@@ -1,0 +1,7 @@
+# Template 4: Blog & Magazine
+# Typography-focused, reading-optimized, content-heavy styling.
+
+page.includeCSS {
+    desiderioTemplate4 = EXT:desiderio/Resources/Public/Css/template4.css
+    desiderioTemplate4.media = all
+}

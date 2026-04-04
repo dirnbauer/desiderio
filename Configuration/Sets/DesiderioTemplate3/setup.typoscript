@@ -1,0 +1,7 @@
+# Template 3: Portfolio
+# Dark-accented, image-focused, modern portfolio styling.
+
+page.includeCSS {
+    desiderioTemplate3 = EXT:desiderio/Resources/Public/Css/template3.css
+    desiderioTemplate3.media = all
+}

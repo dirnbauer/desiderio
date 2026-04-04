@@ -1,0 +1,8 @@
+# Template 1: SaaS Landing
+# Adds template-specific visual styling on top of the Desiderio base.
+# The HTML structure comes from the base templates — this set only adds CSS.
+
+page.includeCSS {
+    desiderioTemplate1 = EXT:desiderio/Resources/Public/Css/template1.css
+    desiderioTemplate1.media = all
+}

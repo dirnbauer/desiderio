@@ -1,0 +1,39 @@
+{
+    "name": "webconsulting/desiderio",
+    "type": "typo3-cms-extension",
+    "description": "Desiderio — a camino-inspired TYPO3 v14 theme built on shadcn2fluid components. Thank you to the TYPO3 Core Team for the Camino theme that inspired this work.",
+    "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "webconsulting studio"
+        },
+        {
+            "name": "TYPO3 Core Team",
+            "email": "typo3cms@typo3.org",
+            "role": "Original Camino theme developers"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "typo3/cms-core": "^14.3@dev",
+        "typo3/cms-fluid": "^14.3@dev",
+        "webconsulting/shadcn2fluid-templates": "^3.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Webconsulting\\Desiderio\\": "Classes/"
+        }
+    },
+    "extra": {
+        "typo3/cms": {
+            "extension-key": "desiderio"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "typo3/class-alias-loader": true,
+            "typo3/cms-composer-installers": true
+        },
+        "sort-packages": true
+    }
+}

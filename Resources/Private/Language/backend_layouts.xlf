@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" datatype="plaintext" original="messages" date="2025-01-01T00:00:00Z" product-name="desiderio">
+        <header/>
+        <body>
+            <trans-unit id="backend_layout.desiderio_startpage.title" resname="backend_layout.desiderio_startpage.title">
+                <source>Desiderio: Startpage</source>
+            </trans-unit>
+            <trans-unit id="backend_layout.desiderio_contentpage.title" resname="backend_layout.desiderio_contentpage.title">
+                <source>Desiderio: Contentpage</source>
+            </trans-unit>
+            <trans-unit id="backend_layout.desiderio_contentpage_sidebar.title" resname="backend_layout.desiderio_contentpage_sidebar.title">
+                <source>Desiderio: Contentpage with Sidebar</source>
+            </trans-unit>
+            <trans-unit id="backend_layout.desiderio_styleguide.title" resname="backend_layout.desiderio_styleguide.title">
+                <source>Desiderio: Styleguide</source>
+            </trans-unit>
+            <trans-unit id="backend_layout.colPos.0.name" resname="backend_layout.colPos.0.name">
+                <source>Content</source>
+            </trans-unit>
+            <trans-unit id="backend_layout.colPos.1.name" resname="backend_layout.colPos.1.name">
+                <source>Sidebar</source>
+            </trans-unit>
+            <trans-unit id="backend_layout.colPos.2.name" resname="backend_layout.colPos.2.name">
+                <source>Stage</source>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

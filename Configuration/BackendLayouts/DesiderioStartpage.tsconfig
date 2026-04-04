@@ -1,0 +1,37 @@
+mod {
+  web_layout {
+    BackendLayouts {
+      DesiderioStartpage {
+        title = LLL:desiderio.backend_layouts:backend_layout.desiderio_startpage.title
+        config {
+          backend_layout {
+            colCount = 4
+            rowCount = 2
+            rows {
+              1 {
+                columns {
+                  1 {
+                    name = LLL:desiderio.backend_layouts:backend_layout.colPos.2.name
+                    colPos = 2
+                    colspan = 4
+                    identifier = stage
+                  }
+                }
+              }
+              2 {
+                columns {
+                  1 {
+                    name = LLL:desiderio.backend_layouts:backend_layout.colPos.0.name
+                    colPos = 0
+                    colspan = 4
+                    identifier = content
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

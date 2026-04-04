@@ -1,0 +1,69 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:s2f="http://typo3.org/ns/Webconsulting/Shadcn2fluidTemplates/Components/ComponentCollection"
+    data-namespace-typo3-fluid="true"
+>
+
+<header class="desiderio-header {f:if(condition: '{site.configuration.settings.desiderio.header.fixedPosition}', then: 'desiderio-header--fixed')}">
+    <s2f:layout.container>
+        <div class="desiderio-header__inner">
+            <f:link.typolink parameter="{breadcrumb.0.link}" class="desiderio-header__logo">
+                <span class="desiderio-header__logo-text">{breadcrumb.0.title}</span>
+            </f:link.typolink>
+
+            <button type="button" class="desiderio-header__menu-toggle btn btn--ghost btn--icon" data-s2f-menu-toggle data-s2f-menu-target=".desiderio-header__nav" aria-expanded="false" aria-label="Toggle menu">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+            </button>
+
+            <nav class="desiderio-header__nav" aria-label="Main navigation">
+                <f:if condition="{mainMenu}">
+                    <ul class="desiderio-header__nav-list">
+                        <f:for each="{mainMenu}" as="item">
+                            <li class="desiderio-header__nav-item">
+                                <f:link.typolink
+                                    parameter="{item.link}"
+                                    class="desiderio-header__nav-link {f:if(condition: '{item.active}', then: 'desiderio-header__nav-link--active')}"
+                                >
+                                    {item.title}
+                                </f:link.typolink>
+
+                                <f:if condition="{item.hasSubpages}">
+                                    <ul class="desiderio-header__subnav">
+                                        <f:for each="{item.children}" as="subitem">
+                                            <li>
+                                                <f:link.typolink parameter="{subitem.link}" class="desiderio-header__subnav-link">
+                                                    {subitem.title}
+                                                </f:link.typolink>
+                                            </li>
+                                        </f:for>
+                                    </ul>
+                                </f:if>
+                            </li>
+                        </f:for>
+                    </ul>
+                </f:if>
+            </nav>
+
+            <div class="desiderio-header__actions">
+                <f:if condition="{languageNavigation}">
+                    <div class="desiderio-header__lang">
+                        <f:for each="{languageNavigation}" as="lang">
+                            <f:if condition="{lang.available}">
+                                <f:link.typolink parameter="{lang.link}" class="desiderio-header__lang-link {f:if(condition: '{lang.active}', then: 'desiderio-header__lang-link--active')}" hreflang="{lang.hreflang}" title="{lang.title}">
+                                    {lang.navigationTitle}
+                                </f:link.typolink>
+                            </f:if>
+                        </f:for>
+                    </div>
+                </f:if>
+
+                <button type="button" class="desiderio-theme-toggle btn btn--ghost btn--icon" data-s2f-theme-toggle="true" aria-label="Toggle dark mode">
+                    <svg class="desiderio-theme-toggle__sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+                    <svg class="desiderio-theme-toggle__moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+                </button>
+            </div>
+        </div>
+    </s2f:layout.container>
+</header>
+
+</html>

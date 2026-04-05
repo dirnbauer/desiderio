@@ -72,6 +72,14 @@ Desiderio separates **infrastructure** from **visual design**. The base provides
 
 **Switching templates is a one-click operation** — just change which site set is active in your site configuration. The page structure stays the same; only the visual presentation changes.
 
+### What “template” means here
+
+In this project, a **template design** is **not** a second copy of the Fluid page templates or backend layouts. Those live once in the base site set (`webconsulting/desiderio`): `PAGEVIEW` wiring, page templates, header/footer partials, TypoScript, and shared `desiderio.css` / `desiderio.js`.
+
+Each of the five **look** packages (`webconsulting/desiderio-template1` … `template5`) is a small TYPO3 **site set** that **only** depends on the base set and loads **one extra stylesheet** — `Resources/Public/Css/template1.css` through `template5.css` — on top of the base assets. That file overrides the same shared classes (header, main, content frames, sidebar layout) so each design reads as a different visual style while the HTML structure and content areas stay identical.
+
+So: **one infrastructure, five CSS personalities.** If you need a wholly different markup or content-element tree per brand, that would be a separate extension or custom Fluid — not what these five sets are for.
+
 ## Why is this cool?
 
 - **Visual editor first.** Every page template uses `PAGEVIEW` with named content areas, so the TYPO3 visual editor works perfectly. No workarounds, no hacks.

@@ -10,11 +10,11 @@
     <s2f:layout.container>
         <div class="desiderio-article">
             <div class="desiderio-article__content">
-                <f:render.contentArea contentArea="{pageContentAreas.main}"/>
+                {contentAreas.main -> f:render.contentArea()}
             </div>
 
             <aside class="desiderio-article__sidebar">
-                <f:render.contentArea contentArea="{pageContentAreas.sidebar}"/>
+                {contentAreas.sidebar -> f:render.contentArea()}
             </aside>
         </div>
     </s2f:layout.container>

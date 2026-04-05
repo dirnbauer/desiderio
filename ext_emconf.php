@@ -6,7 +6,7 @@ $_EXTKEY ??= 'desiderio';
 
 $EM_CONF[$_EXTKEY] = [
     'title' => 'Desiderio',
-    'description' => 'A camino-inspired TYPO3 v14 theme built on shadcn2fluid components. Thank you to the TYPO3 Core Team and all contributors who created the Camino theme — your work made this possible.',
+    'description' => 'Camino-inspired TYPO3 v14 theme built on shadcn2fluid components.',
     'category' => 'templates',
     'author' => 'webconsulting studio',
     'author_email' => '',

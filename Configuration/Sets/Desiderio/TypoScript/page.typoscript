@@ -2,7 +2,7 @@
 lib.fluidPage = PAGEVIEW
 lib.fluidPage {
   paths.10 = EXT:desiderio/Resources/Private/Templates/
-  # Must not be "content" (Fluid layout slot + VE). Avoid names starting with "content*" (Fluid may mis-resolve paths).
+  # Not "content" (Fluid layout slot + VE). Access areas as {desiderioContentAreas.stage}, .main, .sidebar (not .content).
   contentAs = desiderioContentAreas
 
   dataProcessing {

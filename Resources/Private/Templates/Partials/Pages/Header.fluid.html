@@ -49,7 +49,7 @@
                     <div class="desiderio-header__lang">
                         <f:for each="{languageNavigation}" as="lang">
                             <f:if condition="{lang.available}">
-                                <f:link.typolink parameter="{lang.link}" class="desiderio-header__lang-link {f:if(condition: '{lang.active}', then: 'desiderio-header__lang-link--active')}" hreflang="{lang.hreflang}" title="{lang.title}">
+                                <f:link.typolink parameter="{lang.link}" class="desiderio-header__lang-link {f:if(condition: '{lang.active}', then: 'desiderio-header__lang-link--active')}" additionalAttributes="{hreflang: '{lang.hreflang}'}" title="{lang.title}">
                                     {lang.navigationTitle}
                                 </f:link.typolink>
                             </f:if>

@@ -2,6 +2,8 @@
 lib.fluidPage = PAGEVIEW
 lib.fluidPage {
   paths.10 = EXT:desiderio/Resources/Private/Templates/
+  # Avoid name clash with Visual Editor / other layers that assign {content} as non-ContentArea data.
+  contentAs = pageContentAreas
 
   dataProcessing {
     10 = menu

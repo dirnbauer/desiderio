@@ -10,14 +10,18 @@
 
 <f:render section="Stage" optional="true">
     <!--TYPO3SEARCH_begin-->
-    <f:render.contentArea contentArea="{content.stage}"/>
+    <f:if condition="{content.stage}">
+        <f:render.contentArea contentArea="{content.stage}"/>
+    </f:if>
     <!--TYPO3SEARCH_end-->
 </f:render>
 
 <main class="desiderio-main {f:if(condition: '{site.configuration.settings.desiderio.header.fixedPosition}', then: 'desiderio-main--fixed')}">
     <f:render section="Main" optional="true">
         <!--TYPO3SEARCH_begin-->
-        <f:render.contentArea contentArea="{content.main}"/>
+        <f:if condition="{content.main}">
+            <f:render.contentArea contentArea="{content.main}"/>
+        </f:if>
         <!--TYPO3SEARCH_end-->
     </f:render>
 </main>

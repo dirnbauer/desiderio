@@ -17,6 +17,8 @@ use Webconsulting\Desiderio\Data\StyleguideContentGroups;
  */
 final class StyleguideGroupsViewHelper extends AbstractViewHelper
 {
+    protected $escapeOutput = false;
+
     public function initializeArguments(): void
     {
         $this->registerArgument('as', 'string', 'Template variable name for the groups array', true);

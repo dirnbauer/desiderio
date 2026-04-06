@@ -4,10 +4,6 @@
     "groupTitle": "Content",
     "elements": [
       {
-        "name": "About Us",
-        "ctype": "shadcn2fluid_about-us"
-      },
-      {
         "name": "Accordion",
         "ctype": "shadcn2fluid_accordion"
       },
@@ -16,12 +12,40 @@
         "ctype": "shadcn2fluid_alert"
       },
       {
+        "name": "Article Grid",
+        "ctype": "shadcn2fluid_article-grid"
+      },
+      {
         "name": "Article Hero",
         "ctype": "shadcn2fluid_article-hero"
       },
       {
+        "name": "Audio Player",
+        "ctype": "shadcn2fluid_audio-player"
+      },
+      {
         "name": "Breadcrumb",
         "ctype": "shadcn2fluid_breadcrumb"
+      },
+      {
+        "name": "Callout",
+        "ctype": "shadcn2fluid_callout"
+      },
+      {
+        "name": "Card",
+        "ctype": "shadcn2fluid_card"
+      },
+      {
+        "name": "Card Interactive",
+        "ctype": "shadcn2fluid_card-interactive"
+      },
+      {
+        "name": "Card Overlay",
+        "ctype": "shadcn2fluid_card-overlay"
+      },
+      {
+        "name": "Code Block",
+        "ctype": "shadcn2fluid_code-block"
       },
       {
         "name": "Content Carousel",
@@ -32,76 +56,52 @@
         "ctype": "shadcn2fluid_content-columns"
       },
       {
-        "name": "Content Tabs",
-        "ctype": "shadcn2fluid_content-tabs"
+        "name": "Content Divider",
+        "ctype": "shadcn2fluid_content-divider"
       },
       {
-        "name": "Divider",
-        "ctype": "shadcn2fluid_divider"
+        "name": "Content Grid",
+        "ctype": "shadcn2fluid_content-grid"
+      },
+      {
+        "name": "Content Highlight",
+        "ctype": "shadcn2fluid_content-highlight"
+      },
+      {
+        "name": "Content Sidebar",
+        "ctype": "shadcn2fluid_content-sidebar"
+      },
+      {
+        "name": "Definition List",
+        "ctype": "shadcn2fluid_definition-list"
       },
       {
         "name": "FAQ",
         "ctype": "shadcn2fluid_faq"
       },
       {
-        "name": "Gallery Grid",
-        "ctype": "shadcn2fluid_gallery-grid"
+        "name": "Gallery",
+        "ctype": "shadcn2fluid_gallery"
       },
       {
-        "name": "Gallery Masonry",
-        "ctype": "shadcn2fluid_gallery-masonry"
+        "name": "How To Steps",
+        "ctype": "shadcn2fluid_how-to-steps"
       },
       {
-        "name": "Image Full Width",
-        "ctype": "shadcn2fluid_image-full-width"
-      },
-      {
-        "name": "Image Text",
-        "ctype": "shadcn2fluid_image-text"
-      },
-      {
-        "name": "Image Text Split",
-        "ctype": "shadcn2fluid_image-text-split"
-      },
-      {
-        "name": "Logo Cloud",
-        "ctype": "shadcn2fluid_logo-cloud"
-      },
-      {
-        "name": "Map Embed",
-        "ctype": "shadcn2fluid_map-embed"
+        "name": "Infographic",
+        "ctype": "shadcn2fluid_infographic"
       },
       {
         "name": "Quote",
         "ctype": "shadcn2fluid_quote"
       },
       {
-        "name": "Rich Text",
-        "ctype": "shadcn2fluid_rich-text"
+        "name": "Tabs",
+        "ctype": "shadcn2fluid_tabs"
       },
       {
-        "name": "Spacer",
-        "ctype": "shadcn2fluid_spacer"
-      },
-      {
-        "name": "Steps",
-        "ctype": "shadcn2fluid_steps"
-      },
-      {
-        "name": "Timeline",
-        "ctype": "shadcn2fluid_timeline"
-      },
-      {
-        "name": "Video Embed",
-        "ctype": "shadcn2fluid_video-embed"
-      },
-      {
-        "name": "Video Hero",
-        "ctype": "shadcn2fluid_video-hero"
-      },
-      {
-        "name": "Video Testimonial",
-        "ctype": "shadcn2fluid_video-testimonial"
+        "name": "Textmedia",
+        "ctype": "shadcn2fluid_textmedia"
       }
     ]
   },
@@ -110,24 +110,52 @@
     "groupTitle": "Conversion",
     "elements": [
       {
-        "name": "Banner",
-        "ctype": "shadcn2fluid_banner"
+        "name": "Booking Form",
+        "ctype": "shadcn2fluid_booking-form"
+      },
+      {
+        "name": "Callback Request",
+        "ctype": "shadcn2fluid_callback-request"
       },
       {
         "name": "Contact",
         "ctype": "shadcn2fluid_contact"
       },
       {
+        "name": "Contact Info",
+        "ctype": "shadcn2fluid_contact-info"
+      },
+      {
         "name": "Contact Split",
         "ctype": "shadcn2fluid_contact-split"
+      },
+      {
+        "name": "Cookie Banner",
+        "ctype": "shadcn2fluid_cookie-banner"
+      },
+      {
+        "name": "CTA",
+        "ctype": "shadcn2fluid_cta"
       },
       {
         "name": "CTA Banner",
         "ctype": "shadcn2fluid_cta-banner"
       },
       {
-        "name": "CTA Centered",
-        "ctype": "shadcn2fluid_cta-centered"
+        "name": "CTA Card",
+        "ctype": "shadcn2fluid_cta-card"
+      },
+      {
+        "name": "CTA Floating",
+        "ctype": "shadcn2fluid_cta-floating"
+      },
+      {
+        "name": "CTA Gradient",
+        "ctype": "shadcn2fluid_cta-gradient"
+      },
+      {
+        "name": "CTA Inline",
+        "ctype": "shadcn2fluid_cta-inline"
       },
       {
         "name": "CTA Minimal",
@@ -142,72 +170,40 @@
         "ctype": "shadcn2fluid_cta-with-image"
       },
       {
-        "name": "Download",
-        "ctype": "shadcn2fluid_download"
+        "name": "Demo Request",
+        "ctype": "shadcn2fluid_demo-request"
+      },
+      {
+        "name": "Download Form",
+        "ctype": "shadcn2fluid_download-form"
       },
       {
         "name": "Feedback Form",
         "ctype": "shadcn2fluid_feedback-form"
       },
       {
-        "name": "Lead Magnet",
-        "ctype": "shadcn2fluid_lead-magnet"
-      },
-      {
-        "name": "Login",
-        "ctype": "shadcn2fluid_login"
-      },
-      {
-        "name": "Newsletter",
-        "ctype": "shadcn2fluid_newsletter"
+        "name": "GDPR Banner",
+        "ctype": "shadcn2fluid_gdpr-banner"
       },
       {
         "name": "Newsletter Inline",
         "ctype": "shadcn2fluid_newsletter-inline"
       },
       {
-        "name": "Notification Bar",
-        "ctype": "shadcn2fluid_notification-bar"
+        "name": "Newsletter Signup",
+        "ctype": "shadcn2fluid_newsletter-signup"
       },
       {
-        "name": "Popup Modal",
-        "ctype": "shadcn2fluid_popup-modal"
+        "name": "Notification",
+        "ctype": "shadcn2fluid_notification"
       },
       {
-        "name": "Register",
-        "ctype": "shadcn2fluid_register"
+        "name": "Special Offer",
+        "ctype": "shadcn2fluid_special-offer"
       },
       {
-        "name": "Search",
-        "ctype": "shadcn2fluid_search"
-      },
-      {
-        "name": "Sign Up",
-        "ctype": "shadcn2fluid_sign-up"
-      },
-      {
-        "name": "Social Share",
-        "ctype": "shadcn2fluid_social-share"
-      },
-      {
-        "name": "Sticky CTA",
-        "ctype": "shadcn2fluid_sticky-cta"
-      },
-      {
-        "name": "Subscribe",
-        "ctype": "shadcn2fluid_subscribe"
-      },
-      {
-        "name": "Survey",
-        "ctype": "shadcn2fluid_survey"
-      },
-      {
-        "name": "Waitlist",
-        "ctype": "shadcn2fluid_waitlist"
-      },
-      {
-        "name": "Webinar Registration",
-        "ctype": "shadcn2fluid_webinar-registration"
+        "name": "Waitlist Signup",
+        "ctype": "shadcn2fluid_waitlist-signup"
       }
     ]
   },
@@ -216,24 +212,28 @@
     "groupTitle": "Data",
     "elements": [
       {
-        "name": "Card",
-        "ctype": "shadcn2fluid_card"
-      },
-      {
-        "name": "Card Grid",
-        "ctype": "shadcn2fluid_card-grid"
-      },
-      {
-        "name": "Card Pricing",
-        "ctype": "shadcn2fluid_card-pricing"
+        "name": "Analytics Overview",
+        "ctype": "shadcn2fluid_analytics-overview"
       },
       {
         "name": "Changelog",
         "ctype": "shadcn2fluid_changelog"
       },
       {
+        "name": "Chart",
+        "ctype": "shadcn2fluid_chart"
+      },
+      {
+        "name": "Chart Area",
+        "ctype": "shadcn2fluid_chart-area"
+      },
+      {
         "name": "Chart Bar",
         "ctype": "shadcn2fluid_chart-bar"
+      },
+      {
+        "name": "Chart Donut",
+        "ctype": "shadcn2fluid_chart-donut"
       },
       {
         "name": "Chart Line",
@@ -244,76 +244,72 @@
         "ctype": "shadcn2fluid_chart-pie"
       },
       {
+        "name": "Compare",
+        "ctype": "shadcn2fluid_compare"
+      },
+      {
         "name": "Comparison Table",
         "ctype": "shadcn2fluid_comparison-table"
+      },
+      {
+        "name": "Counter",
+        "ctype": "shadcn2fluid_counter"
+      },
+      {
+        "name": "Data Request Form",
+        "ctype": "shadcn2fluid_data-request-form"
       },
       {
         "name": "Data Table",
         "ctype": "shadcn2fluid_data-table"
       },
       {
-        "name": "File List",
-        "ctype": "shadcn2fluid_file-list"
+        "name": "KPI Cards",
+        "ctype": "shadcn2fluid_kpi-cards"
       },
       {
-        "name": "Icon Grid",
-        "ctype": "shadcn2fluid_icon-grid"
+        "name": "Leaderboard",
+        "ctype": "shadcn2fluid_leaderboard"
       },
       {
-        "name": "Infographic",
-        "ctype": "shadcn2fluid_infographic"
+        "name": "Metric Dashboard",
+        "ctype": "shadcn2fluid_metric-dashboard"
       },
       {
-        "name": "KPI Dashboard",
-        "ctype": "shadcn2fluid_kpi-dashboard"
+        "name": "Progress Bar",
+        "ctype": "shadcn2fluid_progress-bar"
       },
       {
-        "name": "List",
-        "ctype": "shadcn2fluid_list"
+        "name": "Resource Library",
+        "ctype": "shadcn2fluid_resource-library"
       },
       {
-        "name": "List Checked",
-        "ctype": "shadcn2fluid_list-checked"
+        "name": "Stat Cards",
+        "ctype": "shadcn2fluid_stat-cards"
       },
       {
-        "name": "Metric Card",
-        "ctype": "shadcn2fluid_metric-card"
+        "name": "Stats",
+        "ctype": "shadcn2fluid_stats"
       },
       {
-        "name": "Progress Tracker",
-        "ctype": "shadcn2fluid_progress-tracker"
+        "name": "Stats Bar",
+        "ctype": "shadcn2fluid_stats-bar"
       },
       {
-        "name": "Roadmap",
-        "ctype": "shadcn2fluid_roadmap"
+        "name": "Stats Counter",
+        "ctype": "shadcn2fluid_stats-counter"
       },
       {
-        "name": "Schedule",
-        "ctype": "shadcn2fluid_schedule"
+        "name": "Stats Inline",
+        "ctype": "shadcn2fluid_stats-inline"
       },
       {
-        "name": "Spec Table",
-        "ctype": "shadcn2fluid_spec-table"
+        "name": "Status Indicator",
+        "ctype": "shadcn2fluid_status-indicator"
       },
       {
-        "name": "Status Page",
-        "ctype": "shadcn2fluid_status-page"
-      },
-      {
-        "name": "Table",
-        "ctype": "shadcn2fluid_table"
-      },
-      {
-        "name": "Tag Cloud",
-        "ctype": "shadcn2fluid_tag-cloud"
-      },
-      {
-        "name": "Tooltip Grid",
-        "ctype": "shadcn2fluid_tooltip-grid"
-      },
-      {
-        "name": "Version History",
-        "ctype": "shadcn2fluid_version-history"
+        "name": "Table Content",
+        "ctype": "shadcn2fluid_table-content"
       }
     ]
   },
@@ -321,6 +317,18 @@
     "groupId": "features",
     "groupTitle": "Features",
     "elements": [
+      {
+        "name": "Badge Grid",
+        "ctype": "shadcn2fluid_badge-grid"
+      },
+      {
+        "name": "Benefit Cards",
+        "ctype": "shadcn2fluid_benefit-cards"
+      },
+      {
+        "name": "Feature Accordion",
+        "ctype": "shadcn2fluid_feature-accordion"
+      },
       {
         "name": "Feature Alternating",
         "ctype": "shadcn2fluid_feature-alternating"
@@ -330,12 +338,20 @@
         "ctype": "shadcn2fluid_feature-bento"
       },
       {
+        "name": "Feature Cards",
+        "ctype": "shadcn2fluid_feature-cards"
+      },
+      {
         "name": "Feature Carousel",
         "ctype": "shadcn2fluid_feature-carousel"
       },
       {
         "name": "Feature Centered",
         "ctype": "shadcn2fluid_feature-centered"
+      },
+      {
+        "name": "Feature Checklist",
+        "ctype": "shadcn2fluid_feature-checklist"
       },
       {
         "name": "Feature Comparison",
@@ -350,76 +366,56 @@
         "ctype": "shadcn2fluid_feature-grid-4"
       },
       {
-        "name": "Feature Icon List",
-        "ctype": "shadcn2fluid_feature-icon-list"
+        "name": "Feature Highlight",
+        "ctype": "shadcn2fluid_feature-highlight"
+      },
+      {
+        "name": "Feature Icons",
+        "ctype": "shadcn2fluid_feature-icons"
+      },
+      {
+        "name": "Feature Image",
+        "ctype": "shadcn2fluid_feature-image"
       },
       {
         "name": "Feature List",
         "ctype": "shadcn2fluid_feature-list"
       },
       {
-        "name": "Feature Numbered",
-        "ctype": "shadcn2fluid_feature-numbered"
+        "name": "Feature Matrix",
+        "ctype": "shadcn2fluid_feature-matrix"
       },
       {
-        "name": "Feature Showcase",
-        "ctype": "shadcn2fluid_feature-showcase"
+        "name": "Feature Minimal",
+        "ctype": "shadcn2fluid_feature-minimal"
+      },
+      {
+        "name": "Feature Numbered",
+        "ctype": "shadcn2fluid_feature-numbered"
       },
       {
         "name": "Feature Split",
         "ctype": "shadcn2fluid_feature-split"
       },
       {
+        "name": "Feature Stats",
+        "ctype": "shadcn2fluid_feature-stats"
+      },
+      {
         "name": "Feature Tabs",
         "ctype": "shadcn2fluid_feature-tabs"
       },
       {
-        "name": "Feature With Image",
-        "ctype": "shadcn2fluid_feature-with-image"
+        "name": "Feature Timeline",
+        "ctype": "shadcn2fluid_feature-timeline"
       },
       {
-        "name": "How It Works",
-        "ctype": "shadcn2fluid_how-it-works"
+        "name": "Feature Video",
+        "ctype": "shadcn2fluid_feature-video"
       },
       {
-        "name": "Integration Grid",
-        "ctype": "shadcn2fluid_integration-grid"
-      },
-      {
-        "name": "Integration Logos",
-        "ctype": "shadcn2fluid_integration-logos"
-      },
-      {
-        "name": "Key Benefits",
-        "ctype": "shadcn2fluid_key-benefits"
-      },
-      {
-        "name": "Process Steps",
-        "ctype": "shadcn2fluid_process-steps"
-      },
-      {
-        "name": "Service Cards",
-        "ctype": "shadcn2fluid_service-cards"
-      },
-      {
-        "name": "Solution Overview",
-        "ctype": "shadcn2fluid_solution-overview"
-      },
-      {
-        "name": "Stat Highlight",
-        "ctype": "shadcn2fluid_stat-highlight"
-      },
-      {
-        "name": "Tech Stack",
-        "ctype": "shadcn2fluid_tech-stack"
-      },
-      {
-        "name": "Use Cases",
-        "ctype": "shadcn2fluid_use-cases"
-      },
-      {
-        "name": "Value Proposition",
-        "ctype": "shadcn2fluid_value-proposition"
+        "name": "Features",
+        "ctype": "shadcn2fluid_features"
       }
     ]
   },
@@ -428,104 +424,104 @@
     "groupTitle": "Footer",
     "elements": [
       {
+        "name": "Accessibility Statement",
+        "ctype": "shadcn2fluid_accessibility-statement"
+      },
+      {
         "name": "Back To Top",
         "ctype": "shadcn2fluid_back-to-top"
       },
       {
-        "name": "Cookie Consent",
-        "ctype": "shadcn2fluid_cookie-consent"
+        "name": "Copyright Bar",
+        "ctype": "shadcn2fluid_copyright-bar"
       },
       {
-        "name": "Copyright",
-        "ctype": "shadcn2fluid_copyright"
+        "name": "Directions",
+        "ctype": "shadcn2fluid_directions"
       },
       {
-        "name": "Data Request Form",
-        "ctype": "shadcn2fluid_data-request-form"
+        "name": "Emergency Contact",
+        "ctype": "shadcn2fluid_emergency-contact"
       },
       {
         "name": "Footer",
         "ctype": "shadcn2fluid_footer"
       },
       {
+        "name": "Footer App Links",
+        "ctype": "shadcn2fluid_footer-app-links"
+      },
+      {
+        "name": "Footer Brand",
+        "ctype": "shadcn2fluid_footer-brand"
+      },
+      {
+        "name": "Footer Centered",
+        "ctype": "shadcn2fluid_footer-centered"
+      },
+      {
         "name": "Footer Columns",
         "ctype": "shadcn2fluid_footer-columns"
       },
       {
-        "name": "Footer Compact",
-        "ctype": "shadcn2fluid_footer-compact"
+        "name": "Footer Contact",
+        "ctype": "shadcn2fluid_footer-contact"
       },
       {
-        "name": "Footer CTA",
-        "ctype": "shadcn2fluid_footer-cta"
-      },
-      {
-        "name": "Footer Links",
-        "ctype": "shadcn2fluid_footer-links"
+        "name": "Footer Dark",
+        "ctype": "shadcn2fluid_footer-dark"
       },
       {
         "name": "Footer Mega",
         "ctype": "shadcn2fluid_footer-mega"
       },
       {
-        "name": "Footer Newsletter",
-        "ctype": "shadcn2fluid_footer-newsletter"
+        "name": "Footer Minimal",
+        "ctype": "shadcn2fluid_footer-minimal"
       },
       {
-        "name": "Footer Simple",
-        "ctype": "shadcn2fluid_footer-simple"
+        "name": "Footer Newsletter",
+        "ctype": "shadcn2fluid_footer-newsletter"
       },
       {
         "name": "Footer Social",
         "ctype": "shadcn2fluid_footer-social"
       },
       {
-        "name": "Language Selector",
-        "ctype": "shadcn2fluid_language-selector"
+        "name": "Footer Split",
+        "ctype": "shadcn2fluid_footer-split"
+      },
+      {
+        "name": "Imprint",
+        "ctype": "shadcn2fluid_imprint"
+      },
+      {
+        "name": "Legal Disclaimer",
+        "ctype": "shadcn2fluid_legal-disclaimer"
       },
       {
         "name": "Legal Links",
         "ctype": "shadcn2fluid_legal-links"
       },
       {
-        "name": "Page Bottom",
-        "ctype": "shadcn2fluid_page-bottom"
-      },
-      {
-        "name": "Partners",
-        "ctype": "shadcn2fluid_partners"
-      },
-      {
-        "name": "Scroll Progress",
-        "ctype": "shadcn2fluid_scroll-progress"
-      },
-      {
-        "name": "Site Credits",
-        "ctype": "shadcn2fluid_site-credits"
+        "name": "Privacy Notice",
+        "ctype": "shadcn2fluid_privacy-notice"
       },
       {
         "name": "Sitemap Grid",
         "ctype": "shadcn2fluid_sitemap-grid"
       },
       {
-        "name": "Sitemap Links",
-        "ctype": "shadcn2fluid_sitemap-links"
+        "name": "Social Links",
+        "ctype": "shadcn2fluid_social-links"
       },
       {
-        "name": "Social Media Links",
-        "ctype": "shadcn2fluid_social-media-links"
+        "name": "Terms Summary",
+        "ctype": "shadcn2fluid_terms-summary"
       },
       {
-        "name": "Status Bar",
-        "ctype": "shadcn2fluid_status-bar"
-      },
-      {
-        "name": "Trust Footer",
-        "ctype": "shadcn2fluid_trust-footer"
-      },
-      {
-        "name": "Trust Seals",
-        "ctype": "shadcn2fluid_trust-seals"
+        "name": "Utility Bar",
+        "ctype": "shadcn2fluid_utility-bar"
       }
     ]
   },
@@ -533,6 +529,14 @@
     "groupId": "hero",
     "groupTitle": "Hero",
     "elements": [
+      {
+        "name": "Hero",
+        "ctype": "shadcn2fluid_hero"
+      },
+      {
+        "name": "Hero Animated",
+        "ctype": "shadcn2fluid_hero-animated"
+      },
       {
         "name": "Hero Announcement",
         "ctype": "shadcn2fluid_hero-announcement"
@@ -542,48 +546,56 @@
         "ctype": "shadcn2fluid_hero-app"
       },
       {
-        "name": "Hero Blog",
-        "ctype": "shadcn2fluid_hero-blog"
+        "name": "Hero Asymmetric",
+        "ctype": "shadcn2fluid_hero-asymmetric"
       },
       {
-        "name": "Hero Centered",
-        "ctype": "shadcn2fluid_hero-centered"
+        "name": "Hero Carousel",
+        "ctype": "shadcn2fluid_hero-carousel"
       },
       {
-        "name": "Hero Corporate",
-        "ctype": "shadcn2fluid_hero-corporate"
+        "name": "Hero Countdown",
+        "ctype": "shadcn2fluid_hero-countdown"
       },
       {
-        "name": "Hero Dashboard",
-        "ctype": "shadcn2fluid_hero-dashboard"
+        "name": "Hero CTA Only",
+        "ctype": "shadcn2fluid_hero-cta-only"
       },
       {
-        "name": "Hero Ecommerce",
-        "ctype": "shadcn2fluid_hero-ecommerce"
+        "name": "Hero Dual CTA",
+        "ctype": "shadcn2fluid_hero-dual-cta"
       },
       {
-        "name": "Hero Event",
-        "ctype": "shadcn2fluid_hero-event"
+        "name": "Hero Form",
+        "ctype": "shadcn2fluid_hero-form"
       },
       {
-        "name": "Hero Full Image",
-        "ctype": "shadcn2fluid_hero-full-image"
+        "name": "Hero Fullscreen",
+        "ctype": "shadcn2fluid_hero-fullscreen"
       },
       {
         "name": "Hero Gradient",
         "ctype": "shadcn2fluid_hero-gradient"
       },
       {
+        "name": "Hero Illustration",
+        "ctype": "shadcn2fluid_hero-illustration"
+      },
+      {
+        "name": "Hero Logo Cloud",
+        "ctype": "shadcn2fluid_hero-logo-cloud"
+      },
+      {
         "name": "Hero Minimal",
         "ctype": "shadcn2fluid_hero-minimal"
       },
       {
-        "name": "Hero Newsletter",
-        "ctype": "shadcn2fluid_hero-newsletter"
+        "name": "Hero Parallax",
+        "ctype": "shadcn2fluid_hero-parallax"
       },
       {
-        "name": "Hero Portfolio",
-        "ctype": "shadcn2fluid_hero-portfolio"
+        "name": "Hero Pricing",
+        "ctype": "shadcn2fluid_hero-pricing"
       },
       {
         "name": "Hero Product",
@@ -598,12 +610,8 @@
         "ctype": "shadcn2fluid_hero-search"
       },
       {
-        "name": "Hero Simple",
-        "ctype": "shadcn2fluid_hero-simple"
-      },
-      {
-        "name": "Hero Split",
-        "ctype": "shadcn2fluid_hero-split"
+        "name": "Hero Stacked",
+        "ctype": "shadcn2fluid_hero-stacked"
       },
       {
         "name": "Hero Startup",
@@ -618,20 +626,8 @@
         "ctype": "shadcn2fluid_hero-testimonial"
       },
       {
-        "name": "Hero Text Only",
-        "ctype": "shadcn2fluid_hero-text-only"
-      },
-      {
         "name": "Hero Video",
         "ctype": "shadcn2fluid_hero-video"
-      },
-      {
-        "name": "Hero Visual",
-        "ctype": "shadcn2fluid_hero-visual"
-      },
-      {
-        "name": "Hero With Form",
-        "ctype": "shadcn2fluid_hero-with-form"
       }
     ]
   },
@@ -640,32 +636,60 @@
     "groupTitle": "Navigation",
     "elements": [
       {
-        "name": "Breadcrumb Nav",
-        "ctype": "shadcn2fluid_breadcrumb-nav"
+        "name": "Announcement Bar",
+        "ctype": "shadcn2fluid_announcement-bar"
+      },
+      {
+        "name": "File Download",
+        "ctype": "shadcn2fluid_file-download"
       },
       {
         "name": "Header Banner",
         "ctype": "shadcn2fluid_header-banner"
       },
       {
+        "name": "Header Page",
+        "ctype": "shadcn2fluid_header-page"
+      },
+      {
         "name": "Header Profile",
         "ctype": "shadcn2fluid_header-profile"
       },
       {
-        "name": "Mobile Menu",
-        "ctype": "shadcn2fluid_mobile-menu"
+        "name": "Header Section",
+        "ctype": "shadcn2fluid_header-section"
+      },
+      {
+        "name": "Map Embed",
+        "ctype": "shadcn2fluid_map-embed"
+      },
+      {
+        "name": "Mega Menu",
+        "ctype": "shadcn2fluid_mega-menu"
+      },
+      {
+        "name": "Nav Pagination",
+        "ctype": "shadcn2fluid_nav-pagination"
+      },
+      {
+        "name": "Nav Steps",
+        "ctype": "shadcn2fluid_nav-steps"
+      },
+      {
+        "name": "Nav Tabs",
+        "ctype": "shadcn2fluid_nav-tabs"
+      },
+      {
+        "name": "Nav TOC",
+        "ctype": "shadcn2fluid_nav-toc"
       },
       {
         "name": "Navbar",
         "ctype": "shadcn2fluid_navbar"
       },
       {
-        "name": "Navbar CTA",
-        "ctype": "shadcn2fluid_navbar-cta"
-      },
-      {
-        "name": "Navbar Dark",
-        "ctype": "shadcn2fluid_navbar-dark"
+        "name": "Navbar Centered",
+        "ctype": "shadcn2fluid_navbar-centered"
       },
       {
         "name": "Navbar Dropdown",
@@ -676,68 +700,40 @@
         "ctype": "shadcn2fluid_navbar-icon"
       },
       {
-        "name": "Navbar Logo",
-        "ctype": "shadcn2fluid_navbar-logo"
-      },
-      {
-        "name": "Navbar Mega",
-        "ctype": "shadcn2fluid_navbar-mega"
-      },
-      {
         "name": "Navbar Minimal",
         "ctype": "shadcn2fluid_navbar-minimal"
       },
       {
-        "name": "Navbar Search",
-        "ctype": "shadcn2fluid_navbar-search"
+        "name": "Navbar Mobile",
+        "ctype": "shadcn2fluid_navbar-mobile"
       },
       {
         "name": "Navbar Sidebar",
         "ctype": "shadcn2fluid_navbar-sidebar"
       },
       {
+        "name": "Navbar Split",
+        "ctype": "shadcn2fluid_navbar-split"
+      },
+      {
+        "name": "Navbar Stacked",
+        "ctype": "shadcn2fluid_navbar-stacked"
+      },
+      {
+        "name": "Navbar Sticky",
+        "ctype": "shadcn2fluid_navbar-sticky"
+      },
+      {
+        "name": "Navbar Tabbed",
+        "ctype": "shadcn2fluid_navbar-tabbed"
+      },
+      {
         "name": "Navbar Transparent",
         "ctype": "shadcn2fluid_navbar-transparent"
       },
       {
-        "name": "Page Header",
-        "ctype": "shadcn2fluid_page-header"
-      },
-      {
-        "name": "Pagination",
-        "ctype": "shadcn2fluid_pagination"
-      },
-      {
-        "name": "Progress Nav",
-        "ctype": "shadcn2fluid_progress-nav"
-      },
-      {
-        "name": "Sidebar Nav",
-        "ctype": "shadcn2fluid_sidebar-nav"
-      },
-      {
-        "name": "Skip Links",
-        "ctype": "shadcn2fluid_skip-links"
-      },
-      {
-        "name": "Sub Navigation",
-        "ctype": "shadcn2fluid_sub-navigation"
-      },
-      {
-        "name": "Tab Bar",
-        "ctype": "shadcn2fluid_tab-bar"
-      },
-      {
-        "name": "Table Of Contents",
-        "ctype": "shadcn2fluid_table-of-contents"
-      },
-      {
-        "name": "Tag Filter",
-        "ctype": "shadcn2fluid_tag-filter"
-      },
-      {
-        "name": "Top Bar",
-        "ctype": "shadcn2fluid_top-bar"
+        "name": "Search Header",
+        "ctype": "shadcn2fluid_search-header"
       }
     ]
   },
@@ -746,68 +742,84 @@
     "groupTitle": "Pricing",
     "elements": [
       {
-        "name": "Add To Cart",
-        "ctype": "shadcn2fluid_add-to-cart"
+        "name": "Bundle Pricing",
+        "ctype": "shadcn2fluid_bundle-pricing"
       },
       {
-        "name": "Cart Summary",
-        "ctype": "shadcn2fluid_cart-summary"
-      },
-      {
-        "name": "Checkout",
-        "ctype": "shadcn2fluid_checkout"
-      },
-      {
-        "name": "Discount Banner",
-        "ctype": "shadcn2fluid_discount-banner"
-      },
-      {
-        "name": "Free Trial",
-        "ctype": "shadcn2fluid_free-trial"
+        "name": "Card Pricing",
+        "ctype": "shadcn2fluid_card-pricing"
       },
       {
         "name": "Order Summary",
         "ctype": "shadcn2fluid_order-summary"
       },
       {
-        "name": "Pricing Cards",
-        "ctype": "shadcn2fluid_pricing-cards"
+        "name": "Pricing",
+        "ctype": "shadcn2fluid_pricing"
+      },
+      {
+        "name": "Pricing Annual Monthly",
+        "ctype": "shadcn2fluid_pricing-annual-monthly"
+      },
+      {
+        "name": "Pricing Calculator",
+        "ctype": "shadcn2fluid_pricing-calculator"
       },
       {
         "name": "Pricing Comparison",
         "ctype": "shadcn2fluid_pricing-comparison"
       },
       {
+        "name": "Pricing Enterprise",
+        "ctype": "shadcn2fluid_pricing-enterprise"
+      },
+      {
         "name": "Pricing FAQ",
         "ctype": "shadcn2fluid_pricing-faq"
       },
       {
-        "name": "Pricing Feature Matrix",
-        "ctype": "shadcn2fluid_pricing-feature-matrix"
+        "name": "Pricing Four Tier",
+        "ctype": "shadcn2fluid_pricing-four-tier"
       },
       {
-        "name": "Pricing Highlight",
-        "ctype": "shadcn2fluid_pricing-highlight"
-      },
-      {
-        "name": "Pricing Minimal",
-        "ctype": "shadcn2fluid_pricing-minimal"
+        "name": "Pricing Simple",
+        "ctype": "shadcn2fluid_pricing-simple"
       },
       {
         "name": "Pricing Slider",
         "ctype": "shadcn2fluid_pricing-slider"
       },
       {
-        "name": "Pricing Table",
-        "ctype": "shadcn2fluid_pricing-table"
+        "name": "Pricing Three Tier",
+        "ctype": "shadcn2fluid_pricing-three-tier"
       },
       {
         "name": "Pricing Toggle",
         "ctype": "shadcn2fluid_pricing-toggle"
       },
       {
+        "name": "Pricing Two Tier",
+        "ctype": "shadcn2fluid_pricing-two-tier"
+      },
+      {
+        "name": "Pricing Usage",
+        "ctype": "shadcn2fluid_pricing-usage"
+      },
+      {
         "name": "Product Card",
         "ctype": "shadcn2fluid_product-card"
+      },
+      {
+        "name": "Product Comparison",
+        "ctype": "shadcn2fluid_product-comparison"
+      },
+      {
+        "name": "Product Feature",
+        "ctype": "shadcn2fluid_product-feature"
+      },
+      {
+        "name": "Product Gallery",
+        "ctype": "shadcn2fluid_product-gallery"
       },
       {
         "name": "Product Grid",
@@ -818,32 +830,16 @@
         "ctype": "shadcn2fluid_product-hero"
       },
       {
-        "name": "Product Quick View",
-        "ctype": "shadcn2fluid_product-quick-view"
-      },
-      {
         "name": "Product Reviews",
         "ctype": "shadcn2fluid_product-reviews"
       },
       {
-        "name": "Promo Code",
-        "ctype": "shadcn2fluid_promo-code"
+        "name": "Product Specs",
+        "ctype": "shadcn2fluid_product-specs"
       },
       {
-        "name": "ROI Calculator",
-        "ctype": "shadcn2fluid_roi-calculator"
-      },
-      {
-        "name": "Shipping Info",
-        "ctype": "shadcn2fluid_shipping-info"
-      },
-      {
-        "name": "Size Guide",
-        "ctype": "shadcn2fluid_size-guide"
-      },
-      {
-        "name": "Wishlist",
-        "ctype": "shadcn2fluid_wishlist"
+        "name": "Use Case Grid",
+        "ctype": "shadcn2fluid_use-case-grid"
       }
     ]
   },
@@ -852,20 +848,24 @@
     "groupTitle": "Social Proof",
     "elements": [
       {
+        "name": "About Us",
+        "ctype": "shadcn2fluid_about-us"
+      },
+      {
         "name": "Awards",
         "ctype": "shadcn2fluid_awards"
       },
       {
-        "name": "Before After",
-        "ctype": "shadcn2fluid_before-after"
+        "name": "Brand Story",
+        "ctype": "shadcn2fluid_brand-story"
       },
       {
-        "name": "Brand Logos",
-        "ctype": "shadcn2fluid_brand-logos"
+        "name": "Case Study Card",
+        "ctype": "shadcn2fluid_case-study-card"
       },
       {
-        "name": "Case Study",
-        "ctype": "shadcn2fluid_case-study"
+        "name": "Case Study Featured",
+        "ctype": "shadcn2fluid_case-study-featured"
       },
       {
         "name": "Case Study Grid",
@@ -876,32 +876,64 @@
         "ctype": "shadcn2fluid_certifications"
       },
       {
-        "name": "Client Counter",
-        "ctype": "shadcn2fluid_client-counter"
+        "name": "Client List",
+        "ctype": "shadcn2fluid_client-list"
       },
       {
-        "name": "Client Logos",
-        "ctype": "shadcn2fluid_client-logos"
+        "name": "Company Culture",
+        "ctype": "shadcn2fluid_company-culture"
       },
       {
-        "name": "Featured In",
-        "ctype": "shadcn2fluid_featured-in"
+        "name": "Company Milestones",
+        "ctype": "shadcn2fluid_company-milestones"
       },
       {
-        "name": "Media Mentions",
-        "ctype": "shadcn2fluid_media-mentions"
+        "name": "Company Perks",
+        "ctype": "shadcn2fluid_company-perks"
       },
       {
-        "name": "Partner Logos",
-        "ctype": "shadcn2fluid_partner-logos"
+        "name": "Company Stats",
+        "ctype": "shadcn2fluid_company-stats"
       },
       {
-        "name": "Portfolio",
-        "ctype": "shadcn2fluid_portfolio"
+        "name": "Company Values",
+        "ctype": "shadcn2fluid_company-values"
       },
       {
-        "name": "Press Logos",
-        "ctype": "shadcn2fluid_press-logos"
+        "name": "Compliance Badges",
+        "ctype": "shadcn2fluid_compliance-badges"
+      },
+      {
+        "name": "Founder Quote",
+        "ctype": "shadcn2fluid_founder-quote"
+      },
+      {
+        "name": "Investor Grid",
+        "ctype": "shadcn2fluid_investor-grid"
+      },
+      {
+        "name": "Logo Carousel",
+        "ctype": "shadcn2fluid_logo-carousel"
+      },
+      {
+        "name": "Logo Cloud",
+        "ctype": "shadcn2fluid_logo-cloud"
+      },
+      {
+        "name": "Logo Grid",
+        "ctype": "shadcn2fluid_logo-grid"
+      },
+      {
+        "name": "Mission Statement",
+        "ctype": "shadcn2fluid_mission-statement"
+      },
+      {
+        "name": "Partner Grid",
+        "ctype": "shadcn2fluid_partner-grid"
+      },
+      {
+        "name": "Press Mentions",
+        "ctype": "shadcn2fluid_press-mentions"
       },
       {
         "name": "Rating Display",
@@ -912,44 +944,12 @@
         "ctype": "shadcn2fluid_review-carousel"
       },
       {
-        "name": "Social Feed",
-        "ctype": "shadcn2fluid_social-feed"
-      },
-      {
-        "name": "Social Proof Bar",
-        "ctype": "shadcn2fluid_social-proof-bar"
-      },
-      {
-        "name": "Stats Counter",
-        "ctype": "shadcn2fluid_stats-counter"
-      },
-      {
-        "name": "Success Metrics",
-        "ctype": "shadcn2fluid_success-metrics"
-      },
-      {
-        "name": "Testimonial",
-        "ctype": "shadcn2fluid_testimonial"
-      },
-      {
-        "name": "Testimonial Carousel",
-        "ctype": "shadcn2fluid_testimonial-carousel"
-      },
-      {
-        "name": "Testimonial Grid",
-        "ctype": "shadcn2fluid_testimonial-grid"
-      },
-      {
-        "name": "Testimonial Wall",
-        "ctype": "shadcn2fluid_testimonial-wall"
+        "name": "Social Proof Counter",
+        "ctype": "shadcn2fluid_social-proof-counter"
       },
       {
         "name": "Trust Badges",
         "ctype": "shadcn2fluid_trust-badges"
-      },
-      {
-        "name": "User Count",
-        "ctype": "shadcn2fluid_user-count"
       }
     ]
   },
@@ -958,68 +958,36 @@
     "groupTitle": "Team",
     "elements": [
       {
-        "name": "About Company",
-        "ctype": "shadcn2fluid_about-company"
+        "name": "Advisor Grid",
+        "ctype": "shadcn2fluid_advisor-grid"
       },
       {
-        "name": "About Mission",
-        "ctype": "shadcn2fluid_about-mission"
-      },
-      {
-        "name": "About Values",
-        "ctype": "shadcn2fluid_about-values"
-      },
-      {
-        "name": "Advisory Board",
-        "ctype": "shadcn2fluid_advisory-board"
-      },
-      {
-        "name": "Author Bio",
-        "ctype": "shadcn2fluid_author-bio"
+        "name": "Blog Teasers",
+        "ctype": "shadcn2fluid_blog-teasers"
       },
       {
         "name": "Board Members",
         "ctype": "shadcn2fluid_board-members"
       },
       {
-        "name": "Careers",
-        "ctype": "shadcn2fluid_careers"
+        "name": "Career Listing",
+        "ctype": "shadcn2fluid_career-listing"
+      },
+      {
+        "name": "Category Cards",
+        "ctype": "shadcn2fluid_category-cards"
       },
       {
         "name": "Company History",
         "ctype": "shadcn2fluid_company-history"
       },
       {
-        "name": "Culture Gallery",
-        "ctype": "shadcn2fluid_culture-gallery"
+        "name": "Job Card",
+        "ctype": "shadcn2fluid_job-card"
       },
       {
-        "name": "Department List",
-        "ctype": "shadcn2fluid_department-list"
-      },
-      {
-        "name": "Employee Spotlight",
-        "ctype": "shadcn2fluid_employee-spotlight"
-      },
-      {
-        "name": "Founders",
-        "ctype": "shadcn2fluid_founders"
-      },
-      {
-        "name": "Hiring Banner",
-        "ctype": "shadcn2fluid_hiring-banner"
-      },
-      {
-        "name": "Job Board",
-        "ctype": "shadcn2fluid_job-board"
-      },
-      {
-        "name": "Job Listing",
-        "ctype": "shadcn2fluid_job-listing"
-      },
-      {
-        "name": "Leadership",
-        "ctype": "shadcn2fluid_leadership"
+        "name": "Office Hours",
+        "ctype": "shadcn2fluid_office-hours"
       },
       {
         "name": "Office Locations",
@@ -1030,20 +998,20 @@
         "ctype": "shadcn2fluid_org-chart"
       },
       {
-        "name": "Perks Benefits",
-        "ctype": "shadcn2fluid_perks-benefits"
-      },
-      {
-        "name": "Speaker Card",
-        "ctype": "shadcn2fluid_speaker-card"
+        "name": "Team",
+        "ctype": "shadcn2fluid_team"
       },
       {
         "name": "Team Carousel",
         "ctype": "shadcn2fluid_team-carousel"
       },
       {
-        "name": "Team Grid",
-        "ctype": "shadcn2fluid_team-grid"
+        "name": "Team CTA",
+        "ctype": "shadcn2fluid_team-cta"
+      },
+      {
+        "name": "Team Department",
+        "ctype": "shadcn2fluid_team-department"
       },
       {
         "name": "Team Grid Minimal",
@@ -1054,8 +1022,40 @@
         "ctype": "shadcn2fluid_team-member"
       },
       {
-        "name": "Volunteer",
-        "ctype": "shadcn2fluid_volunteer"
+        "name": "Team With Bio",
+        "ctype": "shadcn2fluid_team-with-bio"
+      },
+      {
+        "name": "Testimonial",
+        "ctype": "shadcn2fluid_testimonial"
+      },
+      {
+        "name": "Testimonial Carousel",
+        "ctype": "shadcn2fluid_testimonial-carousel"
+      },
+      {
+        "name": "Testimonial Featured",
+        "ctype": "shadcn2fluid_testimonial-featured"
+      },
+      {
+        "name": "Testimonial Grid",
+        "ctype": "shadcn2fluid_testimonial-grid"
+      },
+      {
+        "name": "Testimonial Video",
+        "ctype": "shadcn2fluid_testimonial-video"
+      },
+      {
+        "name": "Testimonial Wall",
+        "ctype": "shadcn2fluid_testimonial-wall"
+      },
+      {
+        "name": "Timeline",
+        "ctype": "shadcn2fluid_timeline"
+      },
+      {
+        "name": "Video Embed",
+        "ctype": "shadcn2fluid_video-embed"
       }
     ]
   }

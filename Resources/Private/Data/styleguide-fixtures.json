@@ -5,15 +5,72 @@
     "description": "We build tools that help teams ship faster and collaborate better.",
     "content": "Founded in 2019, our platform serves over 10,000 teams worldwide with intuitive project management and developer tooling."
   },
+  "shadcn2fluid_accessibility-statement": {
+    "_type": "footer",
+    "columns": [
+      {
+        "title": "Accessibility Commitment",
+        "links": [
+          "WCAG 2.1 AA Compliance",
+          "Screen Reader Support",
+          "Keyboard Navigation"
+        ]
+      },
+      {
+        "title": "Assistive Technologies",
+        "links": [
+          "JAWS",
+          "NVDA",
+          "VoiceOver"
+        ]
+      }
+    ],
+    "copyright": "We are committed to ensuring digital accessibility for people with disabilities. Last reviewed January 2026."
+  },
   "shadcn2fluid_accordion": {
     "_type": "list",
     "header": "Common Questions",
     "description": "Everything you need to know about getting started.",
     "items": [
-      { "title": "How do I create a new project?", "description": "Click the + button in the sidebar to start a new project from scratch or use a template." },
-      { "title": "Can I invite team members?", "description": "Yes, go to Settings > Team and enter their email addresses to send invitations." },
-      { "title": "What integrations are available?", "description": "We support Slack, GitHub, GitLab, Jira, and over 50 other tools via our API." },
-      { "title": "Is there a free plan?", "description": "Our Starter plan is free forever for up to 3 users and 5 projects." }
+      {
+        "title": "How do I create a new project?",
+        "description": "Click the + button in the sidebar to start a new project from scratch or use a template."
+      },
+      {
+        "title": "Can I invite team members?",
+        "description": "Yes, go to Settings > Team and enter their email addresses to send invitations."
+      },
+      {
+        "title": "What integrations are available?",
+        "description": "We support Slack, GitHub, GitLab, Jira, and over 50 other tools via our API."
+      },
+      {
+        "title": "Is there a free plan?",
+        "description": "Our Starter plan is free forever for up to 3 users and 5 projects."
+      }
+    ]
+  },
+  "shadcn2fluid_advisor-grid": {
+    "_type": "team",
+    "header": "Our Advisory Board",
+    "description": "Industry leaders guiding our strategic vision and product direction.",
+    "members": [
+      {
+        "name": "Dr. Elena Fischer",
+        "role": "Strategic Advisor"
+      },
+      {
+        "name": "James Thornton",
+        "role": "Technology Advisor"
+      },
+      {
+        "name": "Priya Mehta",
+        "role": "Growth Advisor"
+      },
+      {
+        "name": "Robert Chen",
+        "role": "Finance Advisor"
+      }
     ]
   },
   "shadcn2fluid_alert": {
@@ -23,6 +80,56 @@
     "icon": "⚠️",
     "primaryButton": "Learn More"
   },
+  "shadcn2fluid_analytics-overview": {
+    "_type": "stats",
+    "header": "Analytics Overview",
+    "stats": [
+      {
+        "value": "2.4M",
+        "label": "Page Views"
+      },
+      {
+        "value": "68%",
+        "label": "Bounce Rate Reduction"
+      },
+      {
+        "value": "4.2 min",
+        "label": "Avg. Session Duration"
+      },
+      {
+        "value": "12.8K",
+        "label": "Active Users"
+      }
+    ]
+  },
+  "shadcn2fluid_announcement-bar": {
+    "_type": "section",
+    "header": "New Feature Release",
+    "description": "Introducing AI-powered analytics dashboards. Try them free for 30 days.",
+    "content": "Our latest update brings real-time insights directly to your workflow. Upgrade now to unlock advanced reporting capabilities."
+  },
+  "shadcn2fluid_article-grid": {
+    "_type": "grid",
+    "header": "Latest Articles",
+    "description": "Insights and best practices from our engineering and product teams.",
+    "items": [
+      {
+        "icon": "📝",
+        "title": "Building Scalable APIs",
+        "description": "Learn how we handle 10M requests per day with our microservices architecture."
+      },
+      {
+        "icon": "🛡️",
+        "title": "Security Best Practices",
+        "description": "A comprehensive guide to securing your SaaS application from common threats."
+      },
+      {
+        "icon": "🚀",
+        "title": "Shipping Faster with CI/CD",
+        "description": "How our team reduced deployment time from hours to minutes."
+      }
+    ]
+  },
   "shadcn2fluid_article-hero": {
     "_type": "hero",
     "header": "The Future of Remote Collaboration",
@@ -31,20 +138,539 @@
     "primaryButton": "Read Article",
     "secondaryButton": "Subscribe"
   },
+  "shadcn2fluid_audio-player": {
+    "_type": "section",
+    "header": "Product Walkthrough",
+    "description": "Listen to our 5-minute audio guide covering the key features of our platform.",
+    "content": "This audio walkthrough covers dashboard navigation, report generation, and team collaboration features. Perfect for onboarding new team members."
+  },
+  "shadcn2fluid_awards": {
+    "_type": "grid",
+    "header": "Awards & Recognition",
+    "description": "Industry recognition for excellence in developer tooling.",
+    "items": [
+      {
+        "icon": "🏆",
+        "title": "Best DevTool 2025",
+        "description": "Awarded by ProductHunt Golden Kitty."
+      },
+      {
+        "icon": "🥇",
+        "title": "G2 Leader",
+        "description": "Top-rated in CI/CD category for 8 consecutive quarters."
+      },
+      {
+        "icon": "⭐",
+        "title": "Gartner Cool Vendor",
+        "description": "Recognized for innovation in cloud infrastructure."
+      }
+    ]
+  },
+  "shadcn2fluid_back-to-top": {
+    "_type": "section",
+    "header": "",
+    "description": "",
+    "content": "Back to top"
+  },
+  "shadcn2fluid_badge-grid": {
+    "_type": "grid",
+    "header": "Why Teams Choose Us",
+    "description": "Trusted by thousands of companies for their most critical workflows.",
+    "items": [
+      {
+        "icon": "⚡",
+        "title": "Lightning Fast",
+        "description": "Sub-100ms response times across all API endpoints."
+      },
+      {
+        "icon": "🔒",
+        "title": "Enterprise Security",
+        "description": "SOC 2 Type II certified with end-to-end encryption."
+      },
+      {
+        "icon": "🌐",
+        "title": "Global CDN",
+        "description": "Content delivered from 200+ edge locations worldwide."
+      },
+      {
+        "icon": "📦",
+        "title": "Easy Integration",
+        "description": "Pre-built connectors for 50+ popular tools and platforms."
+      }
+    ]
+  },
+  "shadcn2fluid_benefit-cards": {
+    "_type": "grid",
+    "header": "Key Benefits",
+    "description": "See how our platform transforms your daily operations.",
+    "items": [
+      {
+        "icon": "⏱️",
+        "title": "Save 10+ Hours Weekly",
+        "description": "Automate repetitive tasks and focus on what matters most."
+      },
+      {
+        "icon": "📈",
+        "title": "Increase Revenue by 30%",
+        "description": "Data-driven insights help you identify and capture new opportunities."
+      },
+      {
+        "icon": "🤝",
+        "title": "Better Team Alignment",
+        "description": "Shared dashboards and real-time updates keep everyone on the same page."
+      }
+    ]
+  },
+  "shadcn2fluid_blog-teasers": {
+    "_type": "grid",
+    "header": "From Our Blog",
+    "description": "Stay up to date with the latest product news and industry insights.",
+    "items": [
+      {
+        "icon": "💡",
+        "title": "The Future of Workflow Automation",
+        "description": "Exploring how AI is reshaping the way teams collaborate and ship software."
+      },
+      {
+        "icon": "📊",
+        "title": "Metrics That Actually Matter",
+        "description": "Stop tracking vanity metrics. Here are the KPIs that drive real growth."
+      },
+      {
+        "icon": "🎯",
+        "title": "Customer Success Playbook",
+        "description": "Our proven framework for reducing churn and increasing lifetime value."
+      }
+    ]
+  },
+  "shadcn2fluid_board-members": {
+    "_type": "team",
+    "header": "Board of Directors",
+    "members": [
+      {
+        "name": "Richard Hayes",
+        "role": "CEO & Co-Founder"
+      },
+      {
+        "name": "Samantha Liu",
+        "role": "Board Chair, Investor"
+      },
+      {
+        "name": "Michael Torres",
+        "role": "Independent Director"
+      }
+    ]
+  },
+  "shadcn2fluid_booking-form": {
+    "_type": "form",
+    "header": "Book a Consultation",
+    "description": "Schedule a free 30-minute session with one of our product specialists.",
+    "fields": [
+      {
+        "label": "Full Name",
+        "type": "text",
+        "placeholder": "Jane Smith"
+      },
+      {
+        "label": "Email Address",
+        "type": "email",
+        "placeholder": "jane@company.com"
+      },
+      {
+        "label": "Preferred Date",
+        "type": "date",
+        "placeholder": "Select a date"
+      },
+      {
+        "label": "Message",
+        "type": "textarea",
+        "placeholder": "Tell us about your needs..."
+      }
+    ],
+    "primaryButton": "Book Now"
+  },
+  "shadcn2fluid_brand-story": {
+    "_type": "section",
+    "header": "Our Brand Story",
+    "description": "From a garage startup to a global platform trusted by thousands.",
+    "content": "Founded in 2019, we set out to solve the biggest pain point in enterprise software: fragmented workflows. Today, our platform connects teams across 40 countries, processing over 50 million transactions daily."
+  },
   "shadcn2fluid_breadcrumb": {
     "_type": "nav",
     "logo": "Acme",
-    "links": ["Home", "Products", "Analytics", "Dashboard"],
+    "links": [
+      "Home",
+      "Products",
+      "Analytics",
+      "Dashboard"
+    ],
     "primaryButton": "Back"
+  },
+  "shadcn2fluid_bundle-pricing": {
+    "_type": "pricing",
+    "header": "Bundle & Save",
+    "description": "Get more value by combining our most popular products.",
+    "plans": [
+      {
+        "name": "Essentials Bundle",
+        "price": "$49",
+        "period": "/month",
+        "features": [
+          "Analytics + Reporting",
+          "5 team members",
+          "Email support",
+          "1 GB storage"
+        ],
+        "button": "Get Essentials",
+        "featured": false
+      },
+      {
+        "name": "Growth Bundle",
+        "price": "$99",
+        "period": "/month",
+        "features": [
+          "All Essentials features",
+          "CRM + Automation",
+          "25 team members",
+          "Priority support",
+          "10 GB storage"
+        ],
+        "button": "Get Growth",
+        "featured": true
+      },
+      {
+        "name": "Enterprise Bundle",
+        "price": "$249",
+        "period": "/month",
+        "features": [
+          "All Growth features",
+          "Custom integrations",
+          "Unlimited team members",
+          "Dedicated account manager",
+          "Unlimited storage"
+        ],
+        "button": "Contact Sales",
+        "featured": false
+      }
+    ]
+  },
+  "shadcn2fluid_card-pricing": {
+    "_type": "pricing",
+    "header": "Simple, Transparent Pricing",
+    "description": "Choose the plan that fits your team.",
+    "plans": [
+      {
+        "name": "Starter",
+        "price": "$0",
+        "period": "per month",
+        "features": [
+          "3 users",
+          "5 projects",
+          "Community support",
+          "1 GB storage"
+        ],
+        "button": "Get Started",
+        "featured": false
+      },
+      {
+        "name": "Pro",
+        "price": "$29",
+        "period": "per month",
+        "features": [
+          "Unlimited users",
+          "Unlimited projects",
+          "Priority support",
+          "50 GB storage"
+        ],
+        "button": "Start Trial",
+        "featured": true
+      },
+      {
+        "name": "Enterprise",
+        "price": "$99",
+        "period": "per month",
+        "features": [
+          "Everything in Pro",
+          "SSO & SAML",
+          "Dedicated account manager",
+          "SLA guarantee"
+        ],
+        "button": "Contact Sales",
+        "featured": false
+      }
+    ]
+  },
+  "shadcn2fluid_card": {
+    "_type": "card",
+    "header": "Quick Start Template",
+    "description": "Pre-configured project template with CI/CD, testing, and monitoring out of the box.",
+    "icon": "📋",
+    "primaryButton": "Use Template"
+  },
+  "shadcn2fluid_case-study-grid": {
+    "_type": "grid",
+    "header": "Customer Success Stories",
+    "description": "See how teams across industries achieve results with our platform.",
+    "items": [
+      {
+        "icon": "🏥",
+        "title": "MedTech Corp",
+        "description": "HIPAA-compliant deploys in under 2 minutes."
+      },
+      {
+        "icon": "🛒",
+        "title": "ShopStream",
+        "description": "99.99% uptime during Black Friday traffic."
+      },
+      {
+        "icon": "🎓",
+        "title": "EduPlatform",
+        "description": "Scaled to 1M students with zero downtime."
+      }
+    ]
+  },
+  "shadcn2fluid_certifications": {
+    "_type": "grid",
+    "header": "Certifications & Compliance",
+    "description": "We meet the highest standards for security and data protection.",
+    "items": [
+      {
+        "icon": "✅",
+        "title": "SOC 2 Type II",
+        "description": "Annual audit by independent firm."
+      },
+      {
+        "icon": "✅",
+        "title": "ISO 27001",
+        "description": "Certified information security."
+      },
+      {
+        "icon": "✅",
+        "title": "GDPR",
+        "description": "Full EU data protection compliance."
+      },
+      {
+        "icon": "✅",
+        "title": "HIPAA",
+        "description": "Healthcare data safeguards."
+      }
+    ]
+  },
+  "shadcn2fluid_changelog": {
+    "_type": "list",
+    "header": "Changelog",
+    "description": "Recent updates and improvements to the platform.",
+    "items": [
+      {
+        "title": "v3.2.0 — March 2026",
+        "description": "Added AI-assisted code review, improved search performance by 40%."
+      },
+      {
+        "title": "v3.1.0 — February 2026",
+        "description": "New dashboard widgets, dark mode improvements, webhook retry logic."
+      },
+      {
+        "title": "v3.0.0 — January 2026",
+        "description": "Major redesign with new navigation, real-time collaboration, and API v3."
+      }
+    ]
+  },
+  "shadcn2fluid_chart-bar": {
+    "_type": "stats",
+    "header": "Monthly Revenue Growth",
+    "stats": [
+      {
+        "value": "$1.2M",
+        "label": "January"
+      },
+      {
+        "value": "$1.5M",
+        "label": "February"
+      },
+      {
+        "value": "$1.8M",
+        "label": "March"
+      },
+      {
+        "value": "$2.1M",
+        "label": "April"
+      }
+    ]
+  },
+  "shadcn2fluid_chart-line": {
+    "_type": "stats",
+    "header": "Active Users Trend",
+    "stats": [
+      {
+        "value": "12,400",
+        "label": "Q1 2025"
+      },
+      {
+        "value": "18,700",
+        "label": "Q2 2025"
+      },
+      {
+        "value": "24,300",
+        "label": "Q3 2025"
+      },
+      {
+        "value": "31,500",
+        "label": "Q4 2025"
+      }
+    ]
+  },
+  "shadcn2fluid_chart-pie": {
+    "_type": "stats",
+    "header": "Traffic Sources",
+    "stats": [
+      {
+        "value": "42%",
+        "label": "Organic Search"
+      },
+      {
+        "value": "28%",
+        "label": "Direct"
+      },
+      {
+        "value": "18%",
+        "label": "Referral"
+      },
+      {
+        "value": "12%",
+        "label": "Social Media"
+      }
+    ]
+  },
+  "shadcn2fluid_company-history": {
+    "_type": "list",
+    "header": "Company History",
+    "description": "From garage startup to global platform.",
+    "items": [
+      {
+        "title": "2019 — The Beginning",
+        "description": "Two engineers frustrated with deployment complexity start building a better solution."
+      },
+      {
+        "title": "2021 — Growth",
+        "description": "Crossed 1,000 customers, raised Series B, expanded to 50 employees."
+      },
+      {
+        "title": "2023 — Scale",
+        "description": "Reached 25,000 teams, opened European headquarters in Berlin."
+      },
+      {
+        "title": "2025 — Today",
+        "description": "50,000+ teams, 200 employees, SOC 2 and ISO 27001 certified."
+      }
+    ]
+  },
+  "shadcn2fluid_comparison-table": {
+    "_type": "table",
+    "header": "Plan Comparison",
+    "headers": [
+      "Feature",
+      "Starter",
+      "Pro",
+      "Enterprise"
+    ],
+    "rows": [
+      {
+        "Feature": "Users",
+        "Starter": "3",
+        "Pro": "Unlimited",
+        "Enterprise": "Unlimited"
+      },
+      {
+        "Feature": "Storage",
+        "Starter": "1 GB",
+        "Pro": "50 GB",
+        "Enterprise": "500 GB"
+      },
+      {
+        "Feature": "Support",
+        "Starter": "Community",
+        "Pro": "Priority",
+        "Enterprise": "Dedicated"
+      },
+      {
+        "Feature": "SSO",
+        "Starter": "No",
+        "Pro": "No",
+        "Enterprise": "Yes"
+      }
+    ]
+  },
+  "shadcn2fluid_contact-split": {
+    "_type": "form",
+    "header": "Get in Touch",
+    "description": "Reach out to our sales team for a personalized demo.",
+    "fields": [
+      {
+        "label": "Name",
+        "type": "text",
+        "placeholder": "Your name"
+      },
+      {
+        "label": "Work Email",
+        "type": "email",
+        "placeholder": "you@company.com"
+      },
+      {
+        "label": "Company",
+        "type": "text",
+        "placeholder": "Company name"
+      },
+      {
+        "label": "Phone",
+        "type": "text",
+        "placeholder": "+1 (555) 000-0000"
+      }
+    ],
+    "primaryButton": "Request Demo"
+  },
+  "shadcn2fluid_contact": {
+    "_type": "form",
+    "header": "Contact Us",
+    "description": "Have a question or want to learn more? Drop us a message.",
+    "fields": [
+      {
+        "label": "Full Name",
+        "type": "text",
+        "placeholder": "Jane Doe"
+      },
+      {
+        "label": "Email Address",
+        "type": "email",
+        "placeholder": "jane@company.com"
+      },
+      {
+        "label": "Message",
+        "type": "text",
+        "placeholder": "Tell us how we can help..."
+      }
+    ],
+    "primaryButton": "Send Message"
   },
   "shadcn2fluid_content-carousel": {
     "_type": "grid",
     "header": "What's New",
     "description": "Browse through our latest updates and announcements.",
     "items": [
-      { "icon": "🚀", "title": "Launch Week Recap", "description": "Five new features shipped in five days." },
-      { "icon": "🔒", "title": "SOC 2 Compliance", "description": "We achieved SOC 2 Type II certification." },
-      { "icon": "🌍", "title": "Global CDN Rollout", "description": "Content delivery from 80+ edge locations worldwide." }
+      {
+        "icon": "🚀",
+        "title": "Launch Week Recap",
+        "description": "Five new features shipped in five days."
+      },
+      {
+        "icon": "🔒",
+        "title": "SOC 2 Compliance",
+        "description": "We achieved SOC 2 Type II certification."
+      },
+      {
+        "icon": "🌍",
+        "title": "Global CDN Rollout",
+        "description": "Content delivery from 80+ edge locations worldwide."
+      }
     ]
   },
   "shadcn2fluid_content-columns": {
@@ -52,193 +678,22 @@
     "header": "Platform Highlights",
     "description": "Three pillars that set us apart from the competition.",
     "items": [
-      { "icon": "⚡", "title": "Blazing Fast", "description": "Sub-100ms response times across all endpoints." },
-      { "icon": "🛡️", "title": "Enterprise Security", "description": "End-to-end encryption with zero-knowledge architecture." },
-      { "icon": "🔄", "title": "Real-time Sync", "description": "Instant updates across all connected devices." }
+      {
+        "icon": "⚡",
+        "title": "Blazing Fast",
+        "description": "Sub-100ms response times across all endpoints."
+      },
+      {
+        "icon": "🛡️",
+        "title": "Enterprise Security",
+        "description": "End-to-end encryption with zero-knowledge architecture."
+      },
+      {
+        "icon": "🔄",
+        "title": "Real-time Sync",
+        "description": "Instant updates across all connected devices."
+      }
     ]
-  },
-  "shadcn2fluid_content-tabs": {
-    "_type": "list",
-    "header": "Explore by Category",
-    "description": "Switch between content sections to find what you need.",
-    "items": [
-      { "title": "Overview", "description": "A high-level summary of your workspace activity and metrics." },
-      { "title": "Analytics", "description": "Detailed charts and reports on usage, performance, and trends." },
-      { "title": "Settings", "description": "Configure notifications, permissions, and integrations." }
-    ]
-  },
-  "shadcn2fluid_divider": {
-    "_type": "section",
-    "header": "",
-    "description": "",
-    "content": "---"
-  },
-  "shadcn2fluid_faq": {
-    "_type": "list",
-    "header": "Frequently Asked Questions",
-    "description": "Find answers to the most common questions about our platform.",
-    "items": [
-      { "title": "What payment methods do you accept?", "description": "We accept all major credit cards, PayPal, and wire transfers for annual plans." },
-      { "title": "Can I cancel my subscription anytime?", "description": "Yes, you can cancel at any time. Your access continues until the end of the billing period." },
-      { "title": "Do you offer refunds?", "description": "We offer a 30-day money-back guarantee on all paid plans." },
-      { "title": "Is my data portable?", "description": "You can export all your data at any time in CSV, JSON, or XML formats." }
-    ]
-  },
-  "shadcn2fluid_gallery-grid": {
-    "_type": "grid",
-    "header": "Project Gallery",
-    "description": "See what teams are building with our platform.",
-    "items": [
-      { "icon": "🎨", "title": "Design System", "description": "A comprehensive UI kit built for scalable applications." },
-      { "icon": "📊", "title": "Analytics Dashboard", "description": "Real-time metrics for SaaS products." },
-      { "icon": "🛒", "title": "E-commerce Store", "description": "Full-featured online storefront with checkout." },
-      { "icon": "📱", "title": "Mobile App", "description": "Cross-platform app built with React Native." }
-    ]
-  },
-  "shadcn2fluid_gallery-masonry": {
-    "_type": "grid",
-    "header": "Creative Showcase",
-    "description": "A curated collection of standout projects from our community.",
-    "items": [
-      { "icon": "🖼️", "title": "Brand Identity", "description": "Complete visual identity for a fintech startup." },
-      { "icon": "📐", "title": "Architecture Portfolio", "description": "Responsive portfolio for a design studio." },
-      { "icon": "🎬", "title": "Video Platform", "description": "Streaming service UI with adaptive bitrate." },
-      { "icon": "📰", "title": "News Aggregator", "description": "AI-curated news feed with topic clustering." }
-    ]
-  },
-  "shadcn2fluid_image-full-width": {
-    "_type": "hero",
-    "header": "See the Bigger Picture",
-    "description": "Immersive visuals that tell your brand's story at full scale.",
-    "badge": "Visual",
-    "primaryButton": "View Gallery",
-    "secondaryButton": "Learn More"
-  },
-  "shadcn2fluid_image-text": {
-    "_type": "section",
-    "header": "Built for Modern Teams",
-    "description": "Our platform adapts to how your team works, not the other way around.",
-    "content": "Whether you prefer kanban boards, timelines, or simple lists, our flexible workspace lets you organize work your way."
-  },
-  "shadcn2fluid_image-text-split": {
-    "_type": "section",
-    "header": "Design Meets Engineering",
-    "description": "Bridge the gap between design and development with real-time collaboration.",
-    "content": "Designers and developers work in the same environment, reducing handoff friction and speeding up iteration cycles."
-  },
-  "shadcn2fluid_logo-cloud": {
-    "_type": "grid",
-    "header": "Trusted by Industry Leaders",
-    "description": "Companies of all sizes rely on our platform.",
-    "items": [
-      { "icon": "🏢", "title": "Stripe", "description": "Payment infrastructure" },
-      { "icon": "🏗️", "title": "Vercel", "description": "Frontend cloud" },
-      { "icon": "📦", "title": "Shopify", "description": "Commerce platform" },
-      { "icon": "🔧", "title": "Datadog", "description": "Monitoring & analytics" }
-    ]
-  },
-  "shadcn2fluid_map-embed": {
-    "_type": "card",
-    "header": "Our Headquarters",
-    "description": "Visit us at 123 Innovation Drive, San Francisco, CA 94107. We're open Monday through Friday, 9 AM to 6 PM.",
-    "icon": "📍",
-    "primaryButton": "Get Directions"
-  },
-  "shadcn2fluid_quote": {
-    "_type": "testimonial",
-    "quote": "Switching to this platform cut our deployment time by 60%. The developer experience is unmatched.",
-    "author": "Sarah Chen",
-    "role": "VP of Engineering",
-    "company": "ScaleOps",
-    "rating": 5
-  },
-  "shadcn2fluid_rich-text": {
-    "_type": "section",
-    "header": "Getting Started Guide",
-    "description": "A step-by-step walkthrough to set up your first project.",
-    "content": "Create your workspace, invite your team, connect your repositories, and deploy your first application in under 10 minutes."
-  },
-  "shadcn2fluid_spacer": {
-    "_type": "section",
-    "header": "",
-    "description": "",
-    "content": ""
-  },
-  "shadcn2fluid_steps": {
-    "_type": "list",
-    "header": "How to Get Started",
-    "description": "Follow these simple steps to set up your account.",
-    "items": [
-      { "title": "Create an Account", "description": "Sign up with your email or connect your GitHub account." },
-      { "title": "Set Up Your Workspace", "description": "Name your workspace and invite your first team members." },
-      { "title": "Connect Your Tools", "description": "Link your repositories, CI/CD pipelines, and communication channels." },
-      { "title": "Deploy Your First App", "description": "Push your code and watch it go live in seconds." }
-    ]
-  },
-  "shadcn2fluid_timeline": {
-    "_type": "list",
-    "header": "Our Journey",
-    "description": "Key milestones in our company's history.",
-    "items": [
-      { "title": "2019 — Founded", "description": "Started in a garage with a vision to simplify DevOps." },
-      { "title": "2020 — Series A", "description": "Raised $12M to scale our engineering team and infrastructure." },
-      { "title": "2022 — 10K Customers", "description": "Crossed 10,000 paying customers across 40 countries." },
-      { "title": "2024 — Enterprise Launch", "description": "Released enterprise tier with SSO, audit logs, and SLA guarantees." }
-    ]
-  },
-  "shadcn2fluid_video-embed": {
-    "_type": "card",
-    "header": "Product Demo",
-    "description": "Watch a 3-minute walkthrough of our core features and see how teams use the platform daily.",
-    "icon": "▶️",
-    "primaryButton": "Watch Now"
-  },
-  "shadcn2fluid_video-hero": {
-    "_type": "hero",
-    "header": "Ship Faster with Confidence",
-    "description": "Watch how leading teams use our platform to deploy 10x faster without sacrificing quality.",
-    "badge": "Watch Demo",
-    "primaryButton": "Play Video",
-    "secondaryButton": "Read Docs"
-  },
-  "shadcn2fluid_video-testimonial": {
-    "_type": "testimonial",
-    "quote": "The onboarding experience was phenomenal. Our entire engineering team was productive within the first day.",
-    "author": "Marcus Rivera",
-    "role": "CTO",
-    "company": "CloudNine Labs",
-    "rating": 5
-  },
-  "shadcn2fluid_banner": {
-    "_type": "hero",
-    "header": "Spring Sale — 40% Off All Plans",
-    "description": "Upgrade to a paid plan before April 30th and lock in our biggest discount of the year.",
-    "badge": "Limited Time",
-    "primaryButton": "Claim Offer",
-    "secondaryButton": "View Plans"
-  },
-  "shadcn2fluid_contact": {
-    "_type": "form",
-    "header": "Contact Us",
-    "description": "Have a question or want to learn more? Drop us a message.",
-    "fields": [
-      { "label": "Full Name", "type": "text", "placeholder": "Jane Doe" },
-      { "label": "Email Address", "type": "email", "placeholder": "jane@company.com" },
-      { "label": "Message", "type": "text", "placeholder": "Tell us how we can help..." }
-    ],
-    "primaryButton": "Send Message"
-  },
-  "shadcn2fluid_contact-split": {
-    "_type": "form",
-    "header": "Get in Touch",
-    "description": "Reach out to our sales team for a personalized demo.",
-    "fields": [
-      { "label": "Name", "type": "text", "placeholder": "Your name" },
-      { "label": "Work Email", "type": "email", "placeholder": "you@company.com" },
-      { "label": "Company", "type": "text", "placeholder": "Company name" },
-      { "label": "Phone", "type": "text", "placeholder": "+1 (555) 000-0000" }
-    ],
-    "primaryButton": "Request Demo"
   },
   "shadcn2fluid_cta-banner": {
     "_type": "hero",
@@ -247,14 +702,6 @@
     "badge": "Get Started",
     "primaryButton": "Start Free Trial",
     "secondaryButton": "Talk to Sales"
-  },
-  "shadcn2fluid_cta-centered": {
-    "_type": "hero",
-    "header": "Start Building Today",
-    "description": "No credit card required. Get your first project running in under 5 minutes.",
-    "badge": "Free Tier",
-    "primaryButton": "Create Account",
-    "secondaryButton": "See Pricing"
   },
   "shadcn2fluid_cta-minimal": {
     "_type": "hero",
@@ -280,418 +727,81 @@
     "primaryButton": "Try Dashboard",
     "secondaryButton": "See Examples"
   },
-  "shadcn2fluid_download": {
-    "_type": "card",
-    "header": "Download Our App",
-    "description": "Get the desktop app for macOS, Windows, and Linux. Stay connected and manage your projects offline.",
-    "icon": "⬇️",
-    "primaryButton": "Download Now"
-  },
-  "shadcn2fluid_feedback-form": {
+  "shadcn2fluid_data-request-form": {
     "_type": "form",
-    "header": "Share Your Feedback",
-    "description": "Help us improve by telling us about your experience.",
+    "header": "Data Access Request",
+    "description": "Submit a GDPR data access or deletion request.",
     "fields": [
-      { "label": "What do you like most?", "type": "text", "placeholder": "Your favorite feature..." },
-      { "label": "What could be better?", "type": "text", "placeholder": "Suggestions for improvement..." },
-      { "label": "Email (optional)", "type": "email", "placeholder": "your@email.com" }
+      {
+        "label": "Full Name",
+        "type": "text",
+        "placeholder": "Your legal name"
+      },
+      {
+        "label": "Email Address",
+        "type": "email",
+        "placeholder": "The email on your account"
+      },
+      {
+        "label": "Request Type",
+        "type": "text",
+        "placeholder": "Access / Deletion / Rectification"
+      }
     ],
-    "primaryButton": "Submit Feedback"
-  },
-  "shadcn2fluid_lead-magnet": {
-    "_type": "form",
-    "header": "Free E-Book: Scaling SaaS to $10M ARR",
-    "description": "Download our comprehensive guide with strategies from 50+ SaaS founders.",
-    "fields": [
-      { "label": "First Name", "type": "text", "placeholder": "Alex" },
-      { "label": "Email", "type": "email", "placeholder": "alex@startup.com" }
-    ],
-    "primaryButton": "Download Free Guide"
-  },
-  "shadcn2fluid_login": {
-    "_type": "form",
-    "header": "Welcome Back",
-    "description": "Sign in to your account to continue.",
-    "fields": [
-      { "label": "Email", "type": "email", "placeholder": "you@example.com" },
-      { "label": "Password", "type": "password", "placeholder": "Enter your password" }
-    ],
-    "primaryButton": "Sign In"
-  },
-  "shadcn2fluid_newsletter": {
-    "_type": "form",
-    "header": "Stay in the Loop",
-    "description": "Get weekly product updates, engineering insights, and community highlights.",
-    "fields": [
-      { "label": "First Name", "type": "text", "placeholder": "Your name" },
-      { "label": "Email Address", "type": "email", "placeholder": "you@example.com" }
-    ],
-    "primaryButton": "Subscribe"
-  },
-  "shadcn2fluid_newsletter-inline": {
-    "_type": "form",
-    "header": "Subscribe to Our Newsletter",
-    "description": "One email per week. No spam, unsubscribe anytime.",
-    "fields": [
-      { "label": "Email", "type": "email", "placeholder": "Enter your email" }
-    ],
-    "primaryButton": "Join"
-  },
-  "shadcn2fluid_notification-bar": {
-    "_type": "card",
-    "header": "New: AI-Powered Code Reviews",
-    "description": "Our latest feature uses machine learning to catch bugs before they reach production. Available on all paid plans.",
-    "icon": "🔔",
-    "primaryButton": "Try It Now"
-  },
-  "shadcn2fluid_popup-modal": {
-    "_type": "card",
-    "header": "Unlock Premium Features",
-    "description": "Upgrade your plan to access advanced analytics, priority support, and unlimited projects.",
-    "icon": "✨",
-    "primaryButton": "Upgrade Now"
-  },
-  "shadcn2fluid_register": {
-    "_type": "form",
-    "header": "Create Your Account",
-    "description": "Join over 50,000 developers already on the platform.",
-    "fields": [
-      { "label": "Full Name", "type": "text", "placeholder": "Jane Smith" },
-      { "label": "Email", "type": "email", "placeholder": "jane@company.com" },
-      { "label": "Password", "type": "password", "placeholder": "Create a strong password" }
-    ],
-    "primaryButton": "Create Account"
-  },
-  "shadcn2fluid_search": {
-    "_type": "form",
-    "header": "Search Our Knowledge Base",
-    "description": "Find tutorials, API references, and troubleshooting guides.",
-    "fields": [
-      { "label": "Search", "type": "text", "placeholder": "Type your question..." }
-    ],
-    "primaryButton": "Search"
-  },
-  "shadcn2fluid_sign-up": {
-    "_type": "form",
-    "header": "Get Started for Free",
-    "description": "No credit card required. Start building in minutes.",
-    "fields": [
-      { "label": "Email", "type": "email", "placeholder": "you@company.com" },
-      { "label": "Password", "type": "password", "placeholder": "Min. 8 characters" }
-    ],
-    "primaryButton": "Sign Up Free"
-  },
-  "shadcn2fluid_social-share": {
-    "_type": "grid",
-    "header": "Share This Page",
-    "description": "Spread the word on your favorite social platforms.",
-    "items": [
-      { "icon": "🐦", "title": "Twitter", "description": "Tweet this article to your followers." },
-      { "icon": "💼", "title": "LinkedIn", "description": "Share with your professional network." },
-      { "icon": "📘", "title": "Facebook", "description": "Post to your timeline." }
-    ]
-  },
-  "shadcn2fluid_sticky-cta": {
-    "_type": "hero",
-    "header": "Don't Miss Out",
-    "description": "Start your free trial today and see results within your first week.",
-    "badge": "Sticky",
-    "primaryButton": "Start Free Trial",
-    "secondaryButton": "Learn More"
-  },
-  "shadcn2fluid_subscribe": {
-    "_type": "form",
-    "header": "Subscribe to Updates",
-    "description": "Be the first to know about new features and product releases.",
-    "fields": [
-      { "label": "Email", "type": "email", "placeholder": "your@email.com" }
-    ],
-    "primaryButton": "Subscribe"
-  },
-  "shadcn2fluid_survey": {
-    "_type": "form",
-    "header": "Quick Survey",
-    "description": "Help us understand your needs. This takes less than 2 minutes.",
-    "fields": [
-      { "label": "What is your role?", "type": "text", "placeholder": "e.g., Developer, Designer, PM" },
-      { "label": "Team size", "type": "text", "placeholder": "e.g., 1-10, 11-50, 50+" },
-      { "label": "Biggest challenge?", "type": "text", "placeholder": "Describe your main pain point..." }
-    ],
-    "primaryButton": "Submit Survey"
-  },
-  "shadcn2fluid_waitlist": {
-    "_type": "form",
-    "header": "Join the Waitlist",
-    "description": "Be among the first to access our next-generation platform.",
-    "fields": [
-      { "label": "Email", "type": "email", "placeholder": "you@example.com" },
-      { "label": "Company", "type": "text", "placeholder": "Where do you work?" }
-    ],
-    "primaryButton": "Join Waitlist"
-  },
-  "shadcn2fluid_webinar-registration": {
-    "_type": "form",
-    "header": "Register for Our Live Webinar",
-    "description": "Learn best practices for scaling your infrastructure. April 15th at 2 PM EST.",
-    "fields": [
-      { "label": "Name", "type": "text", "placeholder": "Your full name" },
-      { "label": "Work Email", "type": "email", "placeholder": "you@company.com" },
-      { "label": "Job Title", "type": "text", "placeholder": "e.g., Engineering Manager" }
-    ],
-    "primaryButton": "Register Now"
-  },
-  "shadcn2fluid_card": {
-    "_type": "card",
-    "header": "Quick Start Template",
-    "description": "Pre-configured project template with CI/CD, testing, and monitoring out of the box.",
-    "icon": "📋",
-    "primaryButton": "Use Template"
-  },
-  "shadcn2fluid_card-grid": {
-    "_type": "grid",
-    "header": "Starter Templates",
-    "description": "Choose a template to kickstart your next project.",
-    "items": [
-      { "icon": "⚛️", "title": "React App", "description": "Modern React with TypeScript and Vite." },
-      { "icon": "🟢", "title": "Node.js API", "description": "Express server with auth and database." },
-      { "icon": "🐍", "title": "Python ML", "description": "Machine learning pipeline with FastAPI." },
-      { "icon": "🦀", "title": "Rust CLI", "description": "High-performance command-line tool." }
-    ]
-  },
-  "shadcn2fluid_card-pricing": {
-    "_type": "pricing",
-    "header": "Simple, Transparent Pricing",
-    "description": "Choose the plan that fits your team.",
-    "plans": [
-      { "name": "Starter", "price": "$0", "period": "per month", "features": ["3 users", "5 projects", "Community support", "1 GB storage"], "button": "Get Started", "featured": false },
-      { "name": "Pro", "price": "$29", "period": "per month", "features": ["Unlimited users", "Unlimited projects", "Priority support", "50 GB storage"], "button": "Start Trial", "featured": true },
-      { "name": "Enterprise", "price": "$99", "period": "per month", "features": ["Everything in Pro", "SSO & SAML", "Dedicated account manager", "SLA guarantee"], "button": "Contact Sales", "featured": false }
-    ]
-  },
-  "shadcn2fluid_changelog": {
-    "_type": "list",
-    "header": "Changelog",
-    "description": "Recent updates and improvements to the platform.",
-    "items": [
-      { "title": "v3.2.0 — March 2026", "description": "Added AI-assisted code review, improved search performance by 40%." },
-      { "title": "v3.1.0 — February 2026", "description": "New dashboard widgets, dark mode improvements, webhook retry logic." },
-      { "title": "v3.0.0 — January 2026", "description": "Major redesign with new navigation, real-time collaboration, and API v3." }
-    ]
-  },
-  "shadcn2fluid_chart-bar": {
-    "_type": "stats",
-    "header": "Monthly Revenue Growth",
-    "stats": [
-      { "value": "$1.2M", "label": "January" },
-      { "value": "$1.5M", "label": "February" },
-      { "value": "$1.8M", "label": "March" },
-      { "value": "$2.1M", "label": "April" }
-    ]
-  },
-  "shadcn2fluid_chart-line": {
-    "_type": "stats",
-    "header": "Active Users Trend",
-    "stats": [
-      { "value": "12,400", "label": "Q1 2025" },
-      { "value": "18,700", "label": "Q2 2025" },
-      { "value": "24,300", "label": "Q3 2025" },
-      { "value": "31,500", "label": "Q4 2025" }
-    ]
-  },
-  "shadcn2fluid_chart-pie": {
-    "_type": "stats",
-    "header": "Traffic Sources",
-    "stats": [
-      { "value": "42%", "label": "Organic Search" },
-      { "value": "28%", "label": "Direct" },
-      { "value": "18%", "label": "Referral" },
-      { "value": "12%", "label": "Social Media" }
-    ]
-  },
-  "shadcn2fluid_comparison-table": {
-    "_type": "table",
-    "header": "Plan Comparison",
-    "headers": ["Feature", "Starter", "Pro", "Enterprise"],
-    "rows": [
-      { "Feature": "Users", "Starter": "3", "Pro": "Unlimited", "Enterprise": "Unlimited" },
-      { "Feature": "Storage", "Starter": "1 GB", "Pro": "50 GB", "Enterprise": "500 GB" },
-      { "Feature": "Support", "Starter": "Community", "Pro": "Priority", "Enterprise": "Dedicated" },
-      { "Feature": "SSO", "Starter": "No", "Pro": "No", "Enterprise": "Yes" }
-    ]
+    "primaryButton": "Submit Request"
   },
   "shadcn2fluid_data-table": {
     "_type": "table",
     "header": "Recent Deployments",
-    "headers": ["Service", "Status", "Last Deploy"],
+    "headers": [
+      "Service",
+      "Status",
+      "Last Deploy"
+    ],
     "rows": [
-      { "Service": "api-gateway", "Status": "Healthy", "Last Deploy": "2 hours ago" },
-      { "Service": "web-frontend", "Status": "Healthy", "Last Deploy": "4 hours ago" },
-      { "Service": "auth-service", "Status": "Degraded", "Last Deploy": "1 day ago" },
-      { "Service": "worker-queue", "Status": "Healthy", "Last Deploy": "6 hours ago" }
+      {
+        "Service": "api-gateway",
+        "Status": "Healthy",
+        "Last Deploy": "2 hours ago"
+      },
+      {
+        "Service": "web-frontend",
+        "Status": "Healthy",
+        "Last Deploy": "4 hours ago"
+      },
+      {
+        "Service": "auth-service",
+        "Status": "Degraded",
+        "Last Deploy": "1 day ago"
+      },
+      {
+        "Service": "worker-queue",
+        "Status": "Healthy",
+        "Last Deploy": "6 hours ago"
+      }
     ]
   },
-  "shadcn2fluid_file-list": {
+  "shadcn2fluid_faq": {
     "_type": "list",
-    "header": "Resources & Downloads",
-    "description": "Helpful documents and guides for your team.",
+    "header": "Frequently Asked Questions",
+    "description": "Find answers to the most common questions about our platform.",
     "items": [
-      { "title": "API Reference (PDF)", "description": "Complete endpoint documentation, 48 pages." },
-      { "title": "Brand Guidelines (ZIP)", "description": "Logos, color palettes, and typography files." },
-      { "title": "Security Whitepaper (PDF)", "description": "Our approach to data protection and compliance." }
-    ]
-  },
-  "shadcn2fluid_icon-grid": {
-    "_type": "grid",
-    "header": "Core Capabilities",
-    "description": "Everything you need to build, deploy, and scale.",
-    "items": [
-      { "icon": "🏗️", "title": "Build", "description": "Automated CI/CD pipelines." },
-      { "icon": "🚢", "title": "Deploy", "description": "One-click deployments to any cloud." },
-      { "icon": "📈", "title": "Monitor", "description": "Real-time performance dashboards." },
-      { "icon": "🔍", "title": "Debug", "description": "Distributed tracing and log aggregation." }
-    ]
-  },
-  "shadcn2fluid_infographic": {
-    "_type": "stats",
-    "header": "Platform at a Glance",
-    "stats": [
-      { "value": "99.99%", "label": "Uptime SLA" },
-      { "value": "50M+", "label": "API Calls/Day" },
-      { "value": "200+", "label": "Integrations" }
-    ]
-  },
-  "shadcn2fluid_kpi-dashboard": {
-    "_type": "stats",
-    "header": "Key Performance Indicators",
-    "stats": [
-      { "value": "$2.4M", "label": "Monthly Revenue" },
-      { "value": "97%", "label": "Customer Retention" },
-      { "value": "4.8/5", "label": "Avg. Rating" },
-      { "value": "18 min", "label": "Avg. Response Time" }
-    ]
-  },
-  "shadcn2fluid_list": {
-    "_type": "list",
-    "header": "Platform Features",
-    "description": "A comprehensive overview of what's included.",
-    "items": [
-      { "title": "Automated Testing", "description": "Run unit, integration, and E2E tests on every push." },
-      { "title": "Environment Management", "description": "Create staging, preview, and production environments instantly." },
-      { "title": "Role-Based Access", "description": "Fine-grained permissions for every team member." }
-    ]
-  },
-  "shadcn2fluid_list-checked": {
-    "_type": "list",
-    "header": "What's Included",
-    "description": "Every plan comes with these essentials.",
-    "items": [
-      { "title": "SSL Certificates", "description": "Automatic HTTPS for all your domains." },
-      { "title": "DDoS Protection", "description": "Enterprise-grade protection at no extra cost." },
-      { "title": "Daily Backups", "description": "Automated backups with one-click restore." },
-      { "title": "99.9% Uptime SLA", "description": "Guaranteed reliability backed by service credits." }
-    ]
-  },
-  "shadcn2fluid_metric-card": {
-    "_type": "stats",
-    "header": "This Month's Highlights",
-    "stats": [
-      { "value": "1,247", "label": "New Signups" },
-      { "value": "89%", "label": "Activation Rate" },
-      { "value": "$48", "label": "ARPU" }
-    ]
-  },
-  "shadcn2fluid_progress-tracker": {
-    "_type": "stats",
-    "header": "Migration Progress",
-    "stats": [
-      { "value": "85%", "label": "Data Migrated" },
-      { "value": "72%", "label": "Users Onboarded" },
-      { "value": "93%", "label": "Tests Passing" },
-      { "value": "60%", "label": "Docs Updated" }
-    ]
-  },
-  "shadcn2fluid_roadmap": {
-    "_type": "list",
-    "header": "Product Roadmap",
-    "description": "What we're building next.",
-    "items": [
-      { "title": "Q2 2026 — AI Copilot", "description": "In-app AI assistant for code generation and debugging." },
-      { "title": "Q3 2026 — Mobile App", "description": "Native iOS and Android apps for on-the-go management." },
-      { "title": "Q4 2026 — Marketplace", "description": "Third-party plugin marketplace with revenue sharing." }
-    ]
-  },
-  "shadcn2fluid_schedule": {
-    "_type": "table",
-    "header": "Event Schedule",
-    "headers": ["Time", "Session", "Speaker"],
-    "rows": [
-      { "Time": "9:00 AM", "Session": "Keynote: The Future of DevOps", "Speaker": "Lisa Park" },
-      { "Time": "10:30 AM", "Session": "Workshop: CI/CD Best Practices", "Speaker": "Tom Nguyen" },
-      { "Time": "1:00 PM", "Session": "Panel: Scaling Engineering Teams", "Speaker": "Multiple" },
-      { "Time": "3:00 PM", "Session": "Demo: New Platform Features", "Speaker": "Product Team" }
-    ]
-  },
-  "shadcn2fluid_spec-table": {
-    "_type": "table",
-    "header": "Technical Specifications",
-    "headers": ["Specification", "Value", "Notes"],
-    "rows": [
-      { "Specification": "Max File Size", "Value": "100 MB", "Notes": "Per upload" },
-      { "Specification": "API Rate Limit", "Value": "1,000 req/min", "Notes": "Per API key" },
-      { "Specification": "Max Concurrent Builds", "Value": "10", "Notes": "Pro plan" },
-      { "Specification": "Data Retention", "Value": "90 days", "Notes": "Configurable" }
-    ]
-  },
-  "shadcn2fluid_status-page": {
-    "_type": "stats",
-    "header": "System Status",
-    "stats": [
-      { "value": "Operational", "label": "API Gateway" },
-      { "value": "Operational", "label": "Web App" },
-      { "value": "Degraded", "label": "Search Index" },
-      { "value": "Operational", "label": "CDN" }
-    ]
-  },
-  "shadcn2fluid_table": {
-    "_type": "table",
-    "header": "Team Members",
-    "headers": ["Name", "Role", "Department"],
-    "rows": [
-      { "Name": "Emily Zhang", "Role": "Lead Engineer", "Department": "Platform" },
-      { "Name": "David Kim", "Role": "Product Designer", "Department": "Design" },
-      { "Name": "Sofia Patel", "Role": "Engineering Manager", "Department": "Backend" }
-    ]
-  },
-  "shadcn2fluid_tag-cloud": {
-    "_type": "grid",
-    "header": "Popular Topics",
-    "description": "Explore content by tag.",
-    "items": [
-      { "icon": "🏷️", "title": "DevOps", "description": "CI/CD, infrastructure, monitoring." },
-      { "icon": "🏷️", "title": "Frontend", "description": "React, Vue, CSS, performance." },
-      { "icon": "🏷️", "title": "Backend", "description": "APIs, databases, microservices." },
-      { "icon": "🏷️", "title": "Security", "description": "Auth, encryption, compliance." }
-    ]
-  },
-  "shadcn2fluid_tooltip-grid": {
-    "_type": "grid",
-    "header": "Feature Matrix",
-    "description": "Hover over each feature to learn more.",
-    "items": [
-      { "icon": "💡", "title": "Smart Suggestions", "description": "AI-powered recommendations based on your workflow." },
-      { "icon": "🔗", "title": "Deep Linking", "description": "Share links directly to specific views and filters." },
-      { "icon": "📌", "title": "Pinned Views", "description": "Save custom views for quick access." }
-    ]
-  },
-  "shadcn2fluid_version-history": {
-    "_type": "list",
-    "header": "Version History",
-    "description": "Track all changes made to this document.",
-    "items": [
-      { "title": "v2.3 — Apr 1, 2026", "description": "Updated pricing section and added new FAQ entries." },
-      { "title": "v2.2 — Mar 15, 2026", "description": "Redesigned hero section with new illustrations." },
-      { "title": "v2.1 — Feb 28, 2026", "description": "Fixed responsive layout issues on mobile devices." },
-      { "title": "v2.0 — Feb 1, 2026", "description": "Major content overhaul with new brand guidelines." }
+      {
+        "title": "What payment methods do you accept?",
+        "description": "We accept all major credit cards, PayPal, and wire transfers for annual plans."
+      },
+      {
+        "title": "Can I cancel my subscription anytime?",
+        "description": "Yes, you can cancel at any time. Your access continues until the end of the billing period."
+      },
+      {
+        "title": "Do you offer refunds?",
+        "description": "We offer a 30-day money-back guarantee on all paid plans."
+      },
+      {
+        "title": "Is my data portable?",
+        "description": "You can export all your data at any time in CSV, JSON, or XML formats."
+      }
     ]
   },
   "shadcn2fluid_feature-alternating": {
@@ -699,9 +809,21 @@
     "header": "Why Teams Choose Us",
     "description": "Alternating feature highlights that showcase our platform's strengths.",
     "items": [
-      { "icon": "🎯", "title": "Goal Tracking", "description": "Set OKRs and track progress across your organization." },
-      { "icon": "📊", "title": "Custom Dashboards", "description": "Build personalized views with drag-and-drop widgets." },
-      { "icon": "🤝", "title": "Cross-Team Collaboration", "description": "Share projects and insights across departments seamlessly." }
+      {
+        "icon": "🎯",
+        "title": "Goal Tracking",
+        "description": "Set OKRs and track progress across your organization."
+      },
+      {
+        "icon": "📊",
+        "title": "Custom Dashboards",
+        "description": "Build personalized views with drag-and-drop widgets."
+      },
+      {
+        "icon": "🤝",
+        "title": "Cross-Team Collaboration",
+        "description": "Share projects and insights across departments seamlessly."
+      }
     ]
   },
   "shadcn2fluid_feature-bento": {
@@ -709,10 +831,26 @@
     "header": "Platform Overview",
     "description": "A bento-style layout of our most impactful features.",
     "items": [
-      { "icon": "⚡", "title": "Instant Deploys", "description": "Push to production in under 10 seconds." },
-      { "icon": "🔄", "title": "Auto Scaling", "description": "Infrastructure scales with your traffic automatically." },
-      { "icon": "🛡️", "title": "Built-in Security", "description": "Vulnerability scanning on every build." },
-      { "icon": "📱", "title": "Mobile Ready", "description": "Manage deployments from your phone." }
+      {
+        "icon": "⚡",
+        "title": "Instant Deploys",
+        "description": "Push to production in under 10 seconds."
+      },
+      {
+        "icon": "🔄",
+        "title": "Auto Scaling",
+        "description": "Infrastructure scales with your traffic automatically."
+      },
+      {
+        "icon": "🛡️",
+        "title": "Built-in Security",
+        "description": "Vulnerability scanning on every build."
+      },
+      {
+        "icon": "📱",
+        "title": "Mobile Ready",
+        "description": "Manage deployments from your phone."
+      }
     ]
   },
   "shadcn2fluid_feature-carousel": {
@@ -720,9 +858,21 @@
     "header": "Explore Our Features",
     "description": "Swipe through our top capabilities.",
     "items": [
-      { "icon": "🔍", "title": "Full-Text Search", "description": "Search across all projects, docs, and conversations." },
-      { "icon": "📧", "title": "Email Notifications", "description": "Get alerts for builds, reviews, and mentions." },
-      { "icon": "📋", "title": "Audit Logs", "description": "Complete activity trail for compliance and debugging." }
+      {
+        "icon": "🔍",
+        "title": "Full-Text Search",
+        "description": "Search across all projects, docs, and conversations."
+      },
+      {
+        "icon": "📧",
+        "title": "Email Notifications",
+        "description": "Get alerts for builds, reviews, and mentions."
+      },
+      {
+        "icon": "📋",
+        "title": "Audit Logs",
+        "description": "Complete activity trail for compliance and debugging."
+      }
     ]
   },
   "shadcn2fluid_feature-centered": {
@@ -734,11 +884,31 @@
   "shadcn2fluid_feature-comparison": {
     "_type": "table",
     "header": "How We Compare",
-    "headers": ["Feature", "Our Platform", "Competitor A", "Competitor B"],
+    "headers": [
+      "Feature",
+      "Our Platform",
+      "Competitor A",
+      "Competitor B"
+    ],
     "rows": [
-      { "Feature": "Deploy Time", "Our Platform": "< 10s", "Competitor A": "2-5 min", "Competitor B": "1-3 min" },
-      { "Feature": "Built-in CI/CD", "Our Platform": "Yes", "Competitor A": "Add-on", "Competitor B": "No" },
-      { "Feature": "Edge Network", "Our Platform": "80+ PoPs", "Competitor A": "30 PoPs", "Competitor B": "15 PoPs" }
+      {
+        "Feature": "Deploy Time",
+        "Our Platform": "< 10s",
+        "Competitor A": "2-5 min",
+        "Competitor B": "1-3 min"
+      },
+      {
+        "Feature": "Built-in CI/CD",
+        "Our Platform": "Yes",
+        "Competitor A": "Add-on",
+        "Competitor B": "No"
+      },
+      {
+        "Feature": "Edge Network",
+        "Our Platform": "80+ PoPs",
+        "Competitor A": "30 PoPs",
+        "Competitor B": "15 PoPs"
+      }
     ]
   },
   "shadcn2fluid_feature-grid-3": {
@@ -746,9 +916,21 @@
     "header": "Developer Experience",
     "description": "Tools that make developers productive from day one.",
     "items": [
-      { "icon": "💻", "title": "Local Dev Server", "description": "Hot reload with environment parity." },
-      { "icon": "🧪", "title": "Testing Framework", "description": "Built-in test runner with coverage reports." },
-      { "icon": "📖", "title": "API Explorer", "description": "Interactive API documentation with try-it-now." }
+      {
+        "icon": "💻",
+        "title": "Local Dev Server",
+        "description": "Hot reload with environment parity."
+      },
+      {
+        "icon": "🧪",
+        "title": "Testing Framework",
+        "description": "Built-in test runner with coverage reports."
+      },
+      {
+        "icon": "📖",
+        "title": "API Explorer",
+        "description": "Interactive API documentation with try-it-now."
+      }
     ]
   },
   "shadcn2fluid_feature-grid-4": {
@@ -756,21 +938,26 @@
     "header": "Enterprise Capabilities",
     "description": "Features built for large-scale organizations.",
     "items": [
-      { "icon": "🔐", "title": "SSO & SAML", "description": "Single sign-on with your identity provider." },
-      { "icon": "📜", "title": "Compliance", "description": "SOC 2, GDPR, and HIPAA ready." },
-      { "icon": "🏢", "title": "Multi-Tenancy", "description": "Isolated environments per team or client." },
-      { "icon": "📞", "title": "Dedicated Support", "description": "Named account manager with 1-hour SLA." }
-    ]
-  },
-  "shadcn2fluid_feature-icon-list": {
-    "_type": "list",
-    "header": "Core Features",
-    "description": "Essential tools included in every plan.",
-    "items": [
-      { "title": "Version Control Integration", "description": "Native support for Git, GitHub, GitLab, and Bitbucket." },
-      { "title": "Automated Deployments", "description": "Deploy on push with zero-downtime rolling updates." },
-      { "title": "Performance Monitoring", "description": "Track response times, error rates, and throughput in real time." },
-      { "title": "Team Collaboration", "description": "Comments, reviews, and shared dashboards for every project." }
+      {
+        "icon": "🔐",
+        "title": "SSO & SAML",
+        "description": "Single sign-on with your identity provider."
+      },
+      {
+        "icon": "📜",
+        "title": "Compliance",
+        "description": "SOC 2, GDPR, and HIPAA ready."
+      },
+      {
+        "icon": "🏢",
+        "title": "Multi-Tenancy",
+        "description": "Isolated environments per team or client."
+      },
+      {
+        "icon": "📞",
+        "title": "Dedicated Support",
+        "description": "Named account manager with 1-hour SLA."
+      }
     ]
   },
   "shadcn2fluid_feature-list": {
@@ -778,9 +965,18 @@
     "header": "Everything You Need",
     "description": "A full-featured platform for modern development teams.",
     "items": [
-      { "title": "Continuous Integration", "description": "Automated builds and tests on every commit." },
-      { "title": "Preview Environments", "description": "Unique URLs for every pull request." },
-      { "title": "Edge Functions", "description": "Run serverless code at the edge for ultra-low latency." }
+      {
+        "title": "Continuous Integration",
+        "description": "Automated builds and tests on every commit."
+      },
+      {
+        "title": "Preview Environments",
+        "description": "Unique URLs for every pull request."
+      },
+      {
+        "title": "Edge Functions",
+        "description": "Run serverless code at the edge for ultra-low latency."
+      }
     ]
   },
   "shadcn2fluid_feature-numbered": {
@@ -788,20 +984,18 @@
     "header": "Setup in 3 Steps",
     "description": "From zero to deployed in minutes.",
     "items": [
-      { "title": "1. Connect Your Repo", "description": "Link your GitHub, GitLab, or Bitbucket repository." },
-      { "title": "2. Configure Build", "description": "We auto-detect your framework and suggest optimal settings." },
-      { "title": "3. Go Live", "description": "Hit deploy and your app is live on our global edge network." }
-    ]
-  },
-  "shadcn2fluid_feature-showcase": {
-    "_type": "grid",
-    "header": "Spotlight Features",
-    "description": "The capabilities our customers love most.",
-    "items": [
-      { "icon": "🤖", "title": "AI Code Review", "description": "Automated PR feedback powered by machine learning." },
-      { "icon": "🌐", "title": "Global Edge Network", "description": "Content served from 80+ locations worldwide." },
-      { "icon": "📊", "title": "Real-time Analytics", "description": "Live dashboards with sub-second data refresh." },
-      { "icon": "🔌", "title": "Plugin Ecosystem", "description": "Extend functionality with 200+ community plugins." }
+      {
+        "title": "1. Connect Your Repo",
+        "description": "Link your GitHub, GitLab, or Bitbucket repository."
+      },
+      {
+        "title": "2. Configure Build",
+        "description": "We auto-detect your framework and suggest optimal settings."
+      },
+      {
+        "title": "3. Go Live",
+        "description": "Hit deploy and your app is live on our global edge network."
+      }
     ]
   },
   "shadcn2fluid_feature-split": {
@@ -815,338 +1009,241 @@
     "header": "Platform Capabilities",
     "description": "Explore features by category.",
     "items": [
-      { "title": "Build & Deploy", "description": "Automated CI/CD with preview deployments for every branch." },
-      { "title": "Monitor & Alert", "description": "Real-time metrics, error tracking, and custom alert rules." },
-      { "title": "Secure & Comply", "description": "Vulnerability scanning, secrets management, and audit logging." }
+      {
+        "title": "Build & Deploy",
+        "description": "Automated CI/CD with preview deployments for every branch."
+      },
+      {
+        "title": "Monitor & Alert",
+        "description": "Real-time metrics, error tracking, and custom alert rules."
+      },
+      {
+        "title": "Secure & Comply",
+        "description": "Vulnerability scanning, secrets management, and audit logging."
+      }
     ]
   },
-  "shadcn2fluid_feature-with-image": {
-    "_type": "section",
-    "header": "Visual Workflow Builder",
-    "description": "Design complex automation workflows with our drag-and-drop interface.",
-    "content": "No coding required. Connect triggers, conditions, and actions to automate deployments, notifications, and data pipelines."
-  },
-  "shadcn2fluid_how-it-works": {
-    "_type": "list",
-    "header": "How It Works",
-    "description": "A simple, streamlined process from start to finish.",
-    "items": [
-      { "title": "Connect", "description": "Link your code repository and configure your build settings." },
-      { "title": "Build", "description": "We compile, test, and optimize your application automatically." },
-      { "title": "Deploy", "description": "Your app goes live on our global infrastructure in seconds." },
-      { "title": "Iterate", "description": "Push changes and see them live instantly with hot reloading." }
-    ]
-  },
-  "shadcn2fluid_integration-grid": {
-    "_type": "grid",
-    "header": "Integrations",
-    "description": "Connect with the tools your team already uses.",
-    "items": [
-      { "icon": "🐙", "title": "GitHub", "description": "Auto-deploy on push, PR previews, status checks." },
-      { "icon": "💬", "title": "Slack", "description": "Deploy notifications and incident alerts." },
-      { "icon": "📊", "title": "Datadog", "description": "Forward metrics and traces automatically." },
-      { "icon": "🎫", "title": "Jira", "description": "Link deployments to tickets and sprints." }
-    ]
-  },
-  "shadcn2fluid_integration-logos": {
-    "_type": "grid",
-    "header": "Works With Your Stack",
-    "description": "First-class support for popular frameworks and services.",
-    "items": [
-      { "icon": "⚛️", "title": "React", "description": "Optimized builds with automatic code splitting." },
-      { "icon": "🟩", "title": "Next.js", "description": "Full support for SSR, ISR, and edge middleware." },
-      { "icon": "🟦", "title": "TypeScript", "description": "First-class type checking in CI pipelines." },
-      { "icon": "🐳", "title": "Docker", "description": "Build and deploy containerized applications." }
-    ]
-  },
-  "shadcn2fluid_key-benefits": {
-    "_type": "grid",
-    "header": "Key Benefits",
-    "description": "Why leading teams switch to our platform.",
-    "items": [
-      { "icon": "⏱️", "title": "Save 10+ Hours/Week", "description": "Automate repetitive DevOps tasks." },
-      { "icon": "💰", "title": "Reduce Costs by 40%", "description": "Eliminate unused infrastructure with auto-scaling." },
-      { "icon": "🚀", "title": "Ship 5x Faster", "description": "From commit to production in under a minute." }
-    ]
-  },
-  "shadcn2fluid_process-steps": {
-    "_type": "list",
-    "header": "Our Process",
-    "description": "How we deliver results for our clients.",
-    "items": [
-      { "title": "Discovery", "description": "We analyze your current infrastructure and identify bottlenecks." },
-      { "title": "Design", "description": "Architect a solution tailored to your scale and requirements." },
-      { "title": "Implementation", "description": "Migrate your workloads with zero downtime." },
-      { "title": "Optimization", "description": "Continuously improve performance and reduce costs." }
-    ]
-  },
-  "shadcn2fluid_service-cards": {
-    "_type": "grid",
-    "header": "Our Services",
-    "description": "End-to-end solutions for modern engineering teams.",
-    "items": [
-      { "icon": "☁️", "title": "Cloud Migration", "description": "Move to the cloud without disruption." },
-      { "icon": "🔧", "title": "DevOps Consulting", "description": "Optimize your pipelines and workflows." },
-      { "icon": "🛡️", "title": "Security Audits", "description": "Identify and fix vulnerabilities before they're exploited." },
-      { "icon": "📊", "title": "Performance Tuning", "description": "Squeeze every millisecond out of your stack." }
-    ]
-  },
-  "shadcn2fluid_solution-overview": {
-    "_type": "grid",
-    "header": "Solutions by Industry",
-    "description": "Tailored experiences for every sector.",
-    "items": [
-      { "icon": "🏥", "title": "Healthcare", "description": "HIPAA-compliant infrastructure for patient data." },
-      { "icon": "🏦", "title": "Finance", "description": "PCI DSS certified payment processing." },
-      { "icon": "🎓", "title": "Education", "description": "Scalable LMS hosting with global reach." }
-    ]
-  },
-  "shadcn2fluid_stat-highlight": {
-    "_type": "stats",
-    "header": "By the Numbers",
-    "stats": [
-      { "value": "99.99%", "label": "Uptime" },
-      { "value": "150ms", "label": "Avg. Response" },
-      { "value": "2M+", "label": "Deploys/Month" },
-      { "value": "45K+", "label": "Active Teams" }
-    ]
-  },
-  "shadcn2fluid_tech-stack": {
-    "_type": "grid",
-    "header": "Our Tech Stack",
-    "description": "Built on battle-tested, open-source technologies.",
-    "items": [
-      { "icon": "🦀", "title": "Rust", "description": "Core engine for maximum performance." },
-      { "icon": "🐘", "title": "PostgreSQL", "description": "Primary datastore with replication." },
-      { "icon": "📮", "title": "Redis", "description": "Caching and real-time pub/sub." },
-      { "icon": "🐳", "title": "Kubernetes", "description": "Container orchestration at scale." }
-    ]
-  },
-  "shadcn2fluid_use-cases": {
-    "_type": "grid",
-    "header": "Use Cases",
-    "description": "How teams across industries leverage our platform.",
-    "items": [
-      { "icon": "🛒", "title": "E-commerce", "description": "High-availability storefronts with sub-second load times." },
-      { "icon": "📰", "title": "Media", "description": "Content delivery for millions of concurrent readers." },
-      { "icon": "🎮", "title": "Gaming", "description": "Low-latency APIs for multiplayer backends." },
-      { "icon": "💊", "title": "Health Tech", "description": "Compliant infrastructure for sensitive patient data." }
-    ]
-  },
-  "shadcn2fluid_value-proposition": {
-    "_type": "hero",
-    "header": "Build Better Software, Faster",
-    "description": "The all-in-one platform that replaces your entire DevOps toolchain. Deploy, monitor, and scale from a single dashboard.",
-    "badge": "All-in-One",
-    "primaryButton": "Get Started Free",
-    "secondaryButton": "Watch Demo"
-  },
-  "shadcn2fluid_back-to-top": {
-    "_type": "section",
-    "header": "",
-    "description": "",
-    "content": "Back to top"
-  },
-  "shadcn2fluid_cookie-consent": {
-    "_type": "card",
-    "header": "We Use Cookies",
-    "description": "This website uses cookies to improve your experience. We only collect essential data and never sell your information.",
-    "icon": "🍪",
-    "primaryButton": "Accept All"
-  },
-  "shadcn2fluid_copyright": {
-    "_type": "section",
-    "header": "",
-    "description": "",
-    "content": "Copyright 2026 Acme Inc. All rights reserved."
-  },
-  "shadcn2fluid_data-request-form": {
+  "shadcn2fluid_feedback-form": {
     "_type": "form",
-    "header": "Data Access Request",
-    "description": "Submit a GDPR data access or deletion request.",
+    "header": "Share Your Feedback",
+    "description": "Help us improve by telling us about your experience.",
     "fields": [
-      { "label": "Full Name", "type": "text", "placeholder": "Your legal name" },
-      { "label": "Email Address", "type": "email", "placeholder": "The email on your account" },
-      { "label": "Request Type", "type": "text", "placeholder": "Access / Deletion / Rectification" }
+      {
+        "label": "What do you like most?",
+        "type": "text",
+        "placeholder": "Your favorite feature..."
+      },
+      {
+        "label": "What could be better?",
+        "type": "text",
+        "placeholder": "Suggestions for improvement..."
+      },
+      {
+        "label": "Email (optional)",
+        "type": "email",
+        "placeholder": "your@email.com"
+      }
     ],
-    "primaryButton": "Submit Request"
-  },
-  "shadcn2fluid_footer": {
-    "_type": "footer",
-    "columns": [
-      { "title": "Product", "links": ["Features", "Pricing", "Changelog", "Roadmap"] },
-      { "title": "Company", "links": ["About", "Careers", "Blog", "Press"] },
-      { "title": "Resources", "links": ["Documentation", "API Reference", "Community", "Status"] },
-      { "title": "Legal", "links": ["Privacy Policy", "Terms of Service", "Cookie Policy", "GDPR"] }
-    ],
-    "copyright": "2026 Acme Inc. All rights reserved."
+    "primaryButton": "Submit Feedback"
   },
   "shadcn2fluid_footer-columns": {
     "_type": "footer",
     "columns": [
-      { "title": "Solutions", "links": ["Startups", "Enterprise", "Agency", "Open Source"] },
-      { "title": "Developers", "links": ["Docs", "API", "SDKs", "CLI"] },
-      { "title": "Support", "links": ["Help Center", "Contact Us", "System Status", "Security"] }
+      {
+        "title": "Solutions",
+        "links": [
+          "Startups",
+          "Enterprise",
+          "Agency",
+          "Open Source"
+        ]
+      },
+      {
+        "title": "Developers",
+        "links": [
+          "Docs",
+          "API",
+          "SDKs",
+          "CLI"
+        ]
+      },
+      {
+        "title": "Support",
+        "links": [
+          "Help Center",
+          "Contact Us",
+          "System Status",
+          "Security"
+        ]
+      }
     ],
     "copyright": "2026 CloudBase Technologies. All rights reserved."
-  },
-  "shadcn2fluid_footer-compact": {
-    "_type": "footer",
-    "columns": [
-      { "title": "Links", "links": ["Home", "Features", "Pricing", "Blog", "Contact"] }
-    ],
-    "copyright": "2026 MiniStack Labs."
-  },
-  "shadcn2fluid_footer-cta": {
-    "_type": "footer",
-    "columns": [
-      { "title": "Product", "links": ["Features", "Integrations", "Pricing"] },
-      { "title": "Company", "links": ["About", "Blog", "Careers"] },
-      { "title": "Get Started", "links": ["Sign Up Free", "Book a Demo", "Contact Sales"] }
-    ],
-    "copyright": "2026 LaunchPad Inc. Ready to get started? Sign up today."
-  },
-  "shadcn2fluid_footer-links": {
-    "_type": "footer",
-    "columns": [
-      { "title": "Quick Links", "links": ["Home", "About", "Services", "Portfolio"] },
-      { "title": "Help", "links": ["FAQ", "Support", "Documentation"] },
-      { "title": "Connect", "links": ["Twitter", "LinkedIn", "GitHub", "Discord"] }
-    ],
-    "copyright": "2026 DevForge LLC."
   },
   "shadcn2fluid_footer-mega": {
     "_type": "footer",
     "columns": [
-      { "title": "Platform", "links": ["Compute", "Storage", "Networking", "Databases", "Analytics"] },
-      { "title": "Solutions", "links": ["E-commerce", "SaaS", "Healthcare", "Finance", "Education"] },
-      { "title": "Developers", "links": ["Documentation", "API Reference", "SDKs", "Tutorials", "Community Forum"] },
-      { "title": "Company", "links": ["About Us", "Careers", "Press Kit", "Partners", "Contact"] }
+      {
+        "title": "Platform",
+        "links": [
+          "Compute",
+          "Storage",
+          "Networking",
+          "Databases",
+          "Analytics"
+        ]
+      },
+      {
+        "title": "Solutions",
+        "links": [
+          "E-commerce",
+          "SaaS",
+          "Healthcare",
+          "Finance",
+          "Education"
+        ]
+      },
+      {
+        "title": "Developers",
+        "links": [
+          "Documentation",
+          "API Reference",
+          "SDKs",
+          "Tutorials",
+          "Community Forum"
+        ]
+      },
+      {
+        "title": "Company",
+        "links": [
+          "About Us",
+          "Careers",
+          "Press Kit",
+          "Partners",
+          "Contact"
+        ]
+      }
     ],
     "copyright": "2026 MegaCloud Corp. Built for builders."
   },
   "shadcn2fluid_footer-newsletter": {
     "_type": "footer",
     "columns": [
-      { "title": "Product", "links": ["Features", "Pricing", "Updates"] },
-      { "title": "Resources", "links": ["Blog", "Guides", "Webinars"] },
-      { "title": "Stay Updated", "links": ["Subscribe to our newsletter for weekly tips and product updates."] }
+      {
+        "title": "Product",
+        "links": [
+          "Features",
+          "Pricing",
+          "Updates"
+        ]
+      },
+      {
+        "title": "Resources",
+        "links": [
+          "Blog",
+          "Guides",
+          "Webinars"
+        ]
+      },
+      {
+        "title": "Stay Updated",
+        "links": [
+          "Subscribe to our newsletter for weekly tips and product updates."
+        ]
+      }
     ],
     "copyright": "2026 InboxFlow. Subscribe for weekly updates."
-  },
-  "shadcn2fluid_footer-simple": {
-    "_type": "footer",
-    "columns": [
-      { "title": "Navigation", "links": ["Home", "About", "Contact"] }
-    ],
-    "copyright": "2026 SimpleStack."
   },
   "shadcn2fluid_footer-social": {
     "_type": "footer",
     "columns": [
-      { "title": "Follow Us", "links": ["Twitter", "GitHub", "LinkedIn", "YouTube"] },
-      { "title": "Company", "links": ["About", "Blog", "Careers"] },
-      { "title": "Legal", "links": ["Privacy", "Terms", "Cookies"] }
+      {
+        "title": "Follow Us",
+        "links": [
+          "Twitter",
+          "GitHub",
+          "LinkedIn",
+          "YouTube"
+        ]
+      },
+      {
+        "title": "Company",
+        "links": [
+          "About",
+          "Blog",
+          "Careers"
+        ]
+      },
+      {
+        "title": "Legal",
+        "links": [
+          "Privacy",
+          "Terms",
+          "Cookies"
+        ]
+      }
     ],
     "copyright": "2026 SocialNode Inc."
   },
-  "shadcn2fluid_language-selector": {
-    "_type": "nav",
-    "logo": "Polyglot",
-    "links": ["English", "Deutsch", "Francais", "Espanol"],
-    "primaryButton": "Select Language"
-  },
-  "shadcn2fluid_legal-links": {
-    "_type": "nav",
-    "logo": "Acme Legal",
-    "links": ["Privacy Policy", "Terms of Service", "Cookie Policy", "Impressum"],
-    "primaryButton": "Contact Legal"
-  },
-  "shadcn2fluid_page-bottom": {
-    "_type": "section",
-    "header": "Ready to Get Started?",
-    "description": "Join thousands of teams building on our platform.",
-    "content": "Start your free trial today. No credit card required."
-  },
-  "shadcn2fluid_partners": {
-    "_type": "grid",
-    "header": "Our Partners",
-    "description": "Strategic partnerships that extend our reach.",
-    "items": [
-      { "icon": "🤝", "title": "AWS", "description": "Advanced technology partner." },
-      { "icon": "🤝", "title": "Google Cloud", "description": "Certified integration partner." },
-      { "icon": "🤝", "title": "Microsoft Azure", "description": "Gold competency partner." }
-    ]
-  },
-  "shadcn2fluid_scroll-progress": {
-    "_type": "section",
-    "header": "",
-    "description": "",
-    "content": "Reading progress indicator"
-  },
-  "shadcn2fluid_site-credits": {
-    "_type": "section",
-    "header": "Site Credits",
-    "description": "",
-    "content": "Designed and built by the Acme design team. Powered by Next.js and Vercel."
-  },
-  "shadcn2fluid_sitemap-grid": {
-    "_type": "grid",
-    "header": "Sitemap",
-    "description": "Browse all pages on our website.",
-    "items": [
-      { "icon": "🏠", "title": "Home", "description": "Main landing page." },
-      { "icon": "📦", "title": "Products", "description": "All products and features." },
-      { "icon": "💰", "title": "Pricing", "description": "Plans and billing." },
-      { "icon": "📝", "title": "Blog", "description": "Articles and tutorials." }
-    ]
-  },
-  "shadcn2fluid_sitemap-links": {
-    "_type": "list",
-    "header": "Sitemap",
-    "description": "Complete list of pages available on this site.",
-    "items": [
-      { "title": "Home", "description": "Landing page with product overview." },
-      { "title": "Features", "description": "Detailed feature descriptions and comparisons." },
-      { "title": "Documentation", "description": "API reference, guides, and tutorials." },
-      { "title": "Blog", "description": "Engineering blog with product updates." }
-    ]
-  },
-  "shadcn2fluid_social-media-links": {
-    "_type": "grid",
-    "header": "Connect With Us",
-    "description": "Follow us on social media for the latest updates.",
-    "items": [
-      { "icon": "🐦", "title": "Twitter", "description": "@acmeinc" },
-      { "icon": "💼", "title": "LinkedIn", "description": "Acme Inc." },
-      { "icon": "🐙", "title": "GitHub", "description": "github.com/acme" }
-    ]
-  },
-  "shadcn2fluid_status-bar": {
-    "_type": "section",
-    "header": "All Systems Operational",
-    "description": "Last updated 2 minutes ago.",
-    "content": "No incidents reported in the last 30 days."
-  },
-  "shadcn2fluid_trust-footer": {
+  "shadcn2fluid_footer": {
     "_type": "footer",
     "columns": [
-      { "title": "Security", "links": ["SOC 2 Certified", "GDPR Compliant", "ISO 27001", "Bug Bounty"] },
-      { "title": "Compliance", "links": ["HIPAA", "PCI DSS", "CCPA", "DPA"] },
-      { "title": "Trust", "links": ["Security Whitepaper", "Penetration Tests", "Incident Response", "Data Centers"] }
+      {
+        "title": "Product",
+        "links": [
+          "Features",
+          "Pricing",
+          "Changelog",
+          "Roadmap"
+        ]
+      },
+      {
+        "title": "Company",
+        "links": [
+          "About",
+          "Careers",
+          "Blog",
+          "Press"
+        ]
+      },
+      {
+        "title": "Resources",
+        "links": [
+          "Documentation",
+          "API Reference",
+          "Community",
+          "Status"
+        ]
+      },
+      {
+        "title": "Legal",
+        "links": [
+          "Privacy Policy",
+          "Terms of Service",
+          "Cookie Policy",
+          "GDPR"
+        ]
+      }
     ],
-    "copyright": "2026 TrustVault Inc. Your data security is our priority."
+    "copyright": "2026 Acme Inc. All rights reserved."
   },
-  "shadcn2fluid_trust-seals": {
-    "_type": "grid",
-    "header": "Trusted & Certified",
-    "description": "Industry-leading security and compliance certifications.",
-    "items": [
-      { "icon": "🛡️", "title": "SOC 2 Type II", "description": "Independently audited security controls." },
-      { "icon": "🇪🇺", "title": "GDPR Compliant", "description": "Full EU data protection compliance." },
-      { "icon": "🔒", "title": "ISO 27001", "description": "Certified information security management." },
-      { "icon": "💳", "title": "PCI DSS", "description": "Secure payment card handling." }
-    ]
+  "shadcn2fluid_header-banner": {
+    "_type": "hero",
+    "header": "Version 4.0 Is Here",
+    "description": "Faster builds, smarter caching, and a brand new UI. Upgrade today.",
+    "badge": "Announcement",
+    "primaryButton": "See What's New",
+    "secondaryButton": "Dismiss"
+  },
+  "shadcn2fluid_header-profile": {
+    "_type": "nav",
+    "logo": "Acme",
+    "links": [
+      "My Profile",
+      "Settings",
+      "Billing",
+      "Help"
+    ],
+    "primaryButton": "Sign Out"
   },
   "shadcn2fluid_hero-announcement": {
     "_type": "hero",
@@ -1164,62 +1261,6 @@
     "primaryButton": "Download App",
     "secondaryButton": "Web App"
   },
-  "shadcn2fluid_hero-blog": {
-    "_type": "hero",
-    "header": "Engineering Blog",
-    "description": "Insights, tutorials, and stories from our engineering team. Learn how we build at scale.",
-    "badge": "Latest Posts",
-    "primaryButton": "Read Blog",
-    "secondaryButton": "Subscribe via RSS"
-  },
-  "shadcn2fluid_hero-centered": {
-    "_type": "hero",
-    "header": "Build. Deploy. Scale.",
-    "description": "The developer platform that handles infrastructure so you can focus on code.",
-    "badge": "Trusted by 50K+ devs",
-    "primaryButton": "Start Building",
-    "secondaryButton": "View Pricing"
-  },
-  "shadcn2fluid_hero-corporate": {
-    "_type": "hero",
-    "header": "Enterprise-Grade Infrastructure",
-    "description": "Secure, scalable, and compliant cloud solutions for organizations that demand the best.",
-    "badge": "Enterprise",
-    "primaryButton": "Contact Sales",
-    "secondaryButton": "Download Whitepaper"
-  },
-  "shadcn2fluid_hero-dashboard": {
-    "_type": "hero",
-    "header": "Insights at Your Fingertips",
-    "description": "Real-time dashboards that give you complete visibility into your application's health and performance.",
-    "badge": "Dashboard",
-    "primaryButton": "Open Dashboard",
-    "secondaryButton": "See Demo"
-  },
-  "shadcn2fluid_hero-ecommerce": {
-    "_type": "hero",
-    "header": "Launch Your Online Store",
-    "description": "Everything you need to sell online: storefront, checkout, payments, and inventory management.",
-    "badge": "E-commerce",
-    "primaryButton": "Start Selling",
-    "secondaryButton": "Browse Themes"
-  },
-  "shadcn2fluid_hero-event": {
-    "_type": "hero",
-    "header": "DevConf 2026 — June 15-17",
-    "description": "Three days of talks, workshops, and networking with the best minds in software engineering.",
-    "badge": "Conference",
-    "primaryButton": "Register Now",
-    "secondaryButton": "View Schedule"
-  },
-  "shadcn2fluid_hero-full-image": {
-    "_type": "hero",
-    "header": "Experience the Difference",
-    "description": "A platform designed with care for developers who appreciate thoughtful design and powerful tooling.",
-    "badge": "",
-    "primaryButton": "Explore",
-    "secondaryButton": ""
-  },
   "shadcn2fluid_hero-gradient": {
     "_type": "hero",
     "header": "Where Innovation Meets Execution",
@@ -1235,22 +1276,6 @@
     "badge": "",
     "primaryButton": "Deploy Now",
     "secondaryButton": ""
-  },
-  "shadcn2fluid_hero-newsletter": {
-    "_type": "hero",
-    "header": "The Weekly Deploy",
-    "description": "Curated engineering content, tool reviews, and industry trends delivered to your inbox every Thursday.",
-    "badge": "Newsletter",
-    "primaryButton": "Subscribe Free",
-    "secondaryButton": "View Archive"
-  },
-  "shadcn2fluid_hero-portfolio": {
-    "_type": "hero",
-    "header": "Our Work Speaks for Itself",
-    "description": "Browse case studies and projects we've delivered for startups, agencies, and enterprises worldwide.",
-    "badge": "Portfolio",
-    "primaryButton": "View Projects",
-    "secondaryButton": "Hire Us"
   },
   "shadcn2fluid_hero-product": {
     "_type": "hero",
@@ -1276,22 +1301,6 @@
     "primaryButton": "Try Search",
     "secondaryButton": "API Access"
   },
-  "shadcn2fluid_hero-simple": {
-    "_type": "hero",
-    "header": "Simple Tools for Complex Problems",
-    "description": "We believe great software should be easy to use. Our platform proves it.",
-    "badge": "",
-    "primaryButton": "Get Started",
-    "secondaryButton": "Learn More"
-  },
-  "shadcn2fluid_hero-split": {
-    "_type": "hero",
-    "header": "Code on the Left. Deploy on the Right.",
-    "description": "Write code in your favorite editor and see it deployed instantly with our real-time preview system.",
-    "badge": "Live Preview",
-    "primaryButton": "Try Live Preview",
-    "secondaryButton": "See How It Works"
-  },
   "shadcn2fluid_hero-startup": {
     "_type": "hero",
     "header": "From Idea to MVP in Days, Not Months",
@@ -1316,14 +1325,6 @@
     "primaryButton": "Read Reviews",
     "secondaryButton": "Start Free"
   },
-  "shadcn2fluid_hero-text-only": {
-    "_type": "hero",
-    "header": "We Build Tools That Developers Love",
-    "description": "Fast, reliable, and beautifully designed. Our platform is crafted with the same care you put into your own products.",
-    "badge": "",
-    "primaryButton": "Explore Features",
-    "secondaryButton": ""
-  },
   "shadcn2fluid_hero-video": {
     "_type": "hero",
     "header": "See It in Action",
@@ -1332,261 +1333,249 @@
     "primaryButton": "Play Video",
     "secondaryButton": "Skip to Signup"
   },
-  "shadcn2fluid_hero-visual": {
-    "_type": "hero",
-    "header": "Beautiful by Default",
-    "description": "Every component is designed with pixel-perfect precision. Your users will notice the difference.",
-    "badge": "Design System",
-    "primaryButton": "Browse Components",
-    "secondaryButton": "Figma File"
+  "shadcn2fluid_infographic": {
+    "_type": "stats",
+    "header": "Platform at a Glance",
+    "stats": [
+      {
+        "value": "99.99%",
+        "label": "Uptime SLA"
+      },
+      {
+        "value": "50M+",
+        "label": "API Calls/Day"
+      },
+      {
+        "value": "200+",
+        "label": "Integrations"
+      }
+    ]
   },
-  "shadcn2fluid_hero-with-form": {
-    "_type": "hero",
-    "header": "Get Early Access",
-    "description": "Enter your email to join the beta and be the first to try our upcoming features.",
-    "badge": "Beta",
-    "primaryButton": "Request Access",
-    "secondaryButton": "Learn More"
-  },
-  "shadcn2fluid_breadcrumb-nav": {
+  "shadcn2fluid_legal-links": {
     "_type": "nav",
-    "logo": "Acme",
-    "links": ["Dashboard", "Projects", "Settings", "API Keys"],
-    "primaryButton": "Go Back"
+    "logo": "Acme Legal",
+    "links": [
+      "Privacy Policy",
+      "Terms of Service",
+      "Cookie Policy",
+      "Impressum"
+    ],
+    "primaryButton": "Contact Legal"
   },
-  "shadcn2fluid_header-banner": {
-    "_type": "hero",
-    "header": "Version 4.0 Is Here",
-    "description": "Faster builds, smarter caching, and a brand new UI. Upgrade today.",
-    "badge": "Announcement",
-    "primaryButton": "See What's New",
-    "secondaryButton": "Dismiss"
+  "shadcn2fluid_logo-cloud": {
+    "_type": "grid",
+    "header": "Trusted by Industry Leaders",
+    "description": "Companies of all sizes rely on our platform.",
+    "items": [
+      {
+        "icon": "🏢",
+        "title": "Stripe",
+        "description": "Payment infrastructure"
+      },
+      {
+        "icon": "🏗️",
+        "title": "Vercel",
+        "description": "Frontend cloud"
+      },
+      {
+        "icon": "📦",
+        "title": "Shopify",
+        "description": "Commerce platform"
+      },
+      {
+        "icon": "🔧",
+        "title": "Datadog",
+        "description": "Monitoring & analytics"
+      }
+    ]
   },
-  "shadcn2fluid_header-profile": {
-    "_type": "nav",
-    "logo": "Acme",
-    "links": ["My Profile", "Settings", "Billing", "Help"],
-    "primaryButton": "Sign Out"
-  },
-  "shadcn2fluid_mobile-menu": {
-    "_type": "nav",
-    "logo": "Acme",
-    "links": ["Home", "Features", "Pricing", "Blog", "Contact"],
-    "primaryButton": "Get Started"
-  },
-  "shadcn2fluid_navbar": {
-    "_type": "nav",
-    "logo": "Acme",
-    "links": ["Products", "Solutions", "Pricing", "Docs"],
-    "primaryButton": "Sign Up"
-  },
-  "shadcn2fluid_navbar-cta": {
-    "_type": "nav",
-    "logo": "FlowCI",
-    "links": ["Features", "Pricing", "Enterprise", "Blog"],
-    "primaryButton": "Start Free Trial"
-  },
-  "shadcn2fluid_navbar-dark": {
-    "_type": "nav",
-    "logo": "NightOwl",
-    "links": ["Dashboard", "Analytics", "Settings", "Docs"],
-    "primaryButton": "Go to App"
+  "shadcn2fluid_map-embed": {
+    "_type": "card",
+    "header": "Our Headquarters",
+    "description": "Visit us at 123 Innovation Drive, San Francisco, CA 94107. We're open Monday through Friday, 9 AM to 6 PM.",
+    "icon": "📍",
+    "primaryButton": "Get Directions"
   },
   "shadcn2fluid_navbar-dropdown": {
     "_type": "nav",
     "logo": "MegaPlatform",
-    "links": ["Products", "Solutions", "Resources", "Company"],
+    "links": [
+      "Products",
+      "Solutions",
+      "Resources",
+      "Company"
+    ],
     "primaryButton": "Contact Us"
   },
   "shadcn2fluid_navbar-icon": {
     "_type": "nav",
     "logo": "Acme",
-    "links": ["Home", "Search", "Notifications", "Profile"],
+    "links": [
+      "Home",
+      "Search",
+      "Notifications",
+      "Profile"
+    ],
     "primaryButton": "New Project"
-  },
-  "shadcn2fluid_navbar-logo": {
-    "_type": "nav",
-    "logo": "AcmeCorp",
-    "links": ["About", "Products", "Careers", "Contact"],
-    "primaryButton": "Login"
-  },
-  "shadcn2fluid_navbar-mega": {
-    "_type": "nav",
-    "logo": "CloudStack",
-    "links": ["Platform", "Solutions", "Developers", "Enterprise"],
-    "primaryButton": "Free Trial"
   },
   "shadcn2fluid_navbar-minimal": {
     "_type": "nav",
     "logo": "Min",
-    "links": ["Docs", "Pricing", "Blog"],
+    "links": [
+      "Docs",
+      "Pricing",
+      "Blog"
+    ],
     "primaryButton": "Sign In"
-  },
-  "shadcn2fluid_navbar-search": {
-    "_type": "nav",
-    "logo": "SearchHub",
-    "links": ["Explore", "Trending", "Collections", "API"],
-    "primaryButton": "Search"
   },
   "shadcn2fluid_navbar-sidebar": {
     "_type": "nav",
     "logo": "AdminPanel",
-    "links": ["Overview", "Users", "Content", "Settings"],
+    "links": [
+      "Overview",
+      "Users",
+      "Content",
+      "Settings"
+    ],
     "primaryButton": "Collapse"
   },
   "shadcn2fluid_navbar-transparent": {
     "_type": "nav",
     "logo": "GlassUI",
-    "links": ["Home", "Work", "About", "Contact"],
+    "links": [
+      "Home",
+      "Work",
+      "About",
+      "Contact"
+    ],
     "primaryButton": "Hire Us"
   },
-  "shadcn2fluid_page-header": {
-    "_type": "hero",
-    "header": "Documentation",
-    "description": "Comprehensive guides, API references, and tutorials to help you get the most out of our platform.",
-    "badge": "Docs",
-    "primaryButton": "Quick Start",
-    "secondaryButton": "API Reference"
-  },
-  "shadcn2fluid_pagination": {
-    "_type": "nav",
-    "logo": "",
-    "links": ["Previous", "1", "2", "3", "Next"],
-    "primaryButton": "Next Page"
-  },
-  "shadcn2fluid_progress-nav": {
-    "_type": "nav",
-    "logo": "Setup Wizard",
-    "links": ["Account", "Workspace", "Integrations", "Review"],
-    "primaryButton": "Continue"
-  },
-  "shadcn2fluid_sidebar-nav": {
-    "_type": "list",
-    "header": "Documentation",
-    "description": "Navigate through our docs.",
-    "items": [
-      { "title": "Getting Started", "description": "Installation, setup, and your first deploy." },
-      { "title": "Core Concepts", "description": "Projects, environments, and deployments." },
-      { "title": "API Reference", "description": "REST and GraphQL endpoint documentation." },
-      { "title": "Troubleshooting", "description": "Common issues and their solutions." }
-    ]
-  },
-  "shadcn2fluid_skip-links": {
-    "_type": "nav",
-    "logo": "",
-    "links": ["Skip to Content", "Skip to Navigation", "Skip to Footer"],
-    "primaryButton": "Skip to Main"
-  },
-  "shadcn2fluid_sub-navigation": {
-    "_type": "nav",
-    "logo": "",
-    "links": ["Overview", "Activity", "Members", "Settings"],
-    "primaryButton": "Invite"
-  },
-  "shadcn2fluid_tab-bar": {
-    "_type": "nav",
-    "logo": "",
-    "links": ["All", "Active", "Completed", "Archived"],
-    "primaryButton": "Filter"
-  },
-  "shadcn2fluid_table-of-contents": {
-    "_type": "list",
-    "header": "Table of Contents",
-    "description": "Jump to a section in this article.",
-    "items": [
-      { "title": "Introduction", "description": "Overview and prerequisites." },
-      { "title": "Installation", "description": "Step-by-step setup instructions." },
-      { "title": "Configuration", "description": "Environment variables and options." },
-      { "title": "Deployment", "description": "Publishing to production." }
-    ]
-  },
-  "shadcn2fluid_tag-filter": {
-    "_type": "nav",
-    "logo": "",
-    "links": ["All", "Frontend", "Backend", "DevOps", "Design"],
-    "primaryButton": "Clear Filters"
-  },
-  "shadcn2fluid_top-bar": {
+  "shadcn2fluid_navbar": {
     "_type": "nav",
     "logo": "Acme",
-    "links": ["Support", "Status", "Changelog", "Community"],
-    "primaryButton": "Dashboard"
+    "links": [
+      "Products",
+      "Solutions",
+      "Pricing",
+      "Docs"
+    ],
+    "primaryButton": "Sign Up"
   },
-  "shadcn2fluid_add-to-cart": {
-    "_type": "card",
-    "header": "Pro Plan — Annual",
-    "description": "$290/year (save $58). Includes unlimited users, projects, and priority support.",
-    "icon": "🛒",
-    "primaryButton": "Add to Cart"
+  "shadcn2fluid_newsletter-inline": {
+    "_type": "form",
+    "header": "Subscribe to Our Newsletter",
+    "description": "One email per week. No spam, unsubscribe anytime.",
+    "fields": [
+      {
+        "label": "Email",
+        "type": "email",
+        "placeholder": "Enter your email"
+      }
+    ],
+    "primaryButton": "Join"
   },
-  "shadcn2fluid_cart-summary": {
-    "_type": "list",
-    "header": "Your Cart",
-    "description": "Review your selected items before checkout.",
+  "shadcn2fluid_office-locations": {
+    "_type": "grid",
+    "header": "Our Offices",
+    "description": "Global presence with a remote-first mindset.",
     "items": [
-      { "title": "Pro Plan (Annual)", "description": "$290.00 — 1 license" },
-      { "title": "Priority Support Add-on", "description": "$49.00 — 12 months" },
-      { "title": "Custom Domain", "description": "$12.00 — 1 domain/year" }
+      {
+        "icon": "🇺🇸",
+        "title": "San Francisco",
+        "description": "HQ — 100 employees"
+      },
+      {
+        "icon": "🇩🇪",
+        "title": "Berlin",
+        "description": "EU hub — 45 employees"
+      },
+      {
+        "icon": "🇯🇵",
+        "title": "Tokyo",
+        "description": "APAC office — 20 employees"
+      },
+      {
+        "icon": "🌍",
+        "title": "Remote",
+        "description": "35 employees across 15 countries"
+      }
     ]
-  },
-  "shadcn2fluid_checkout": {
-    "_type": "form",
-    "header": "Checkout",
-    "description": "Complete your purchase securely.",
-    "fields": [
-      { "label": "Cardholder Name", "type": "text", "placeholder": "Name on card" },
-      { "label": "Email", "type": "email", "placeholder": "Receipt email" },
-      { "label": "Card Number", "type": "text", "placeholder": "4242 4242 4242 4242" }
-    ],
-    "primaryButton": "Pay $351.00"
-  },
-  "shadcn2fluid_discount-banner": {
-    "_type": "hero",
-    "header": "Black Friday: 50% Off Everything",
-    "description": "Our biggest sale of the year. Upgrade your plan and save 50% for the first 12 months.",
-    "badge": "50% OFF",
-    "primaryButton": "Claim Discount",
-    "secondaryButton": "View All Deals"
-  },
-  "shadcn2fluid_free-trial": {
-    "_type": "form",
-    "header": "Start Your 14-Day Free Trial",
-    "description": "Full access to all Pro features. No credit card required.",
-    "fields": [
-      { "label": "Work Email", "type": "email", "placeholder": "you@company.com" },
-      { "label": "Password", "type": "password", "placeholder": "Create a password" }
-    ],
-    "primaryButton": "Start Free Trial"
   },
   "shadcn2fluid_order-summary": {
     "_type": "list",
     "header": "Order Summary",
     "description": "Here's what you're purchasing today.",
     "items": [
-      { "title": "Enterprise Plan", "description": "$99/month billed annually — $1,188.00" },
-      { "title": "Additional Seats (5)", "description": "$25/seat/month — $1,500.00" },
-      { "title": "Discount (20% off)", "description": "-$537.60" }
+      {
+        "title": "Enterprise Plan",
+        "description": "$99/month billed annually — $1,188.00"
+      },
+      {
+        "title": "Additional Seats (5)",
+        "description": "$25/seat/month — $1,500.00"
+      },
+      {
+        "title": "Discount (20% off)",
+        "description": "-$537.60"
+      }
     ]
   },
-  "shadcn2fluid_pricing-cards": {
-    "_type": "pricing",
-    "header": "Plans for Every Team",
-    "description": "Start free, scale as you grow.",
-    "plans": [
-      { "name": "Free", "price": "$0", "period": "per month", "features": ["Up to 3 users", "5 projects", "1 GB storage", "Community forum"], "button": "Get Started", "featured": false },
-      { "name": "Team", "price": "$49", "period": "per month", "features": ["Up to 20 users", "Unlimited projects", "25 GB storage", "Email support"], "button": "Start Trial", "featured": true },
-      { "name": "Business", "price": "$149", "period": "per month", "features": ["Unlimited users", "Unlimited projects", "100 GB storage", "Phone support"], "button": "Contact Sales", "featured": false }
+  "shadcn2fluid_org-chart": {
+    "_type": "team",
+    "header": "Organization Structure",
+    "members": [
+      {
+        "name": "Richard Hayes",
+        "role": "CEO"
+      },
+      {
+        "name": "Angela Chen",
+        "role": "CTO — Engineering"
+      },
+      {
+        "name": "Daniel Okafor",
+        "role": "CPO — Product & Design"
+      },
+      {
+        "name": "Maria Gonzalez",
+        "role": "CRO — Sales & Marketing"
+      }
     ]
   },
   "shadcn2fluid_pricing-comparison": {
     "_type": "table",
     "header": "Pricing Comparison",
-    "headers": ["Feature", "Free", "Team", "Business"],
+    "headers": [
+      "Feature",
+      "Free",
+      "Team",
+      "Business"
+    ],
     "rows": [
-      { "Feature": "Projects", "Free": "5", "Team": "Unlimited", "Business": "Unlimited" },
-      { "Feature": "Build Minutes", "Free": "100/mo", "Team": "3,000/mo", "Business": "10,000/mo" },
-      { "Feature": "Custom Domains", "Free": "1", "Team": "10", "Business": "Unlimited" },
-      { "Feature": "Analytics", "Free": "Basic", "Team": "Advanced", "Business": "Enterprise" }
+      {
+        "Feature": "Projects",
+        "Free": "5",
+        "Team": "Unlimited",
+        "Business": "Unlimited"
+      },
+      {
+        "Feature": "Build Minutes",
+        "Free": "100/mo",
+        "Team": "3,000/mo",
+        "Business": "10,000/mo"
+      },
+      {
+        "Feature": "Custom Domains",
+        "Free": "1",
+        "Team": "10",
+        "Business": "Unlimited"
+      },
+      {
+        "Feature": "Analytics",
+        "Free": "Basic",
+        "Team": "Advanced",
+        "Business": "Enterprise"
+      }
     ]
   },
   "shadcn2fluid_pricing-faq": {
@@ -1594,39 +1583,18 @@
     "header": "Pricing FAQ",
     "description": "Common questions about billing and plans.",
     "items": [
-      { "title": "Can I switch plans later?", "description": "Yes, you can upgrade or downgrade at any time. Changes take effect immediately." },
-      { "title": "What happens after my trial ends?", "description": "You'll be moved to the Free plan unless you choose to subscribe." },
-      { "title": "Do you offer annual billing?", "description": "Yes, annual billing saves you 20% compared to monthly." }
-    ]
-  },
-  "shadcn2fluid_pricing-feature-matrix": {
-    "_type": "table",
-    "header": "Feature Availability",
-    "headers": ["Capability", "Starter", "Growth", "Scale"],
-    "rows": [
-      { "Capability": "API Access", "Starter": "REST only", "Growth": "REST + GraphQL", "Scale": "REST + GraphQL + Webhooks" },
-      { "Capability": "SSO", "Starter": "No", "Growth": "Google/GitHub", "Scale": "SAML/OIDC" },
-      { "Capability": "SLA", "Starter": "None", "Growth": "99.9%", "Scale": "99.99%" }
-    ]
-  },
-  "shadcn2fluid_pricing-highlight": {
-    "_type": "pricing",
-    "header": "Most Popular Plan",
-    "description": "Everything growing teams need at one transparent price.",
-    "plans": [
-      { "name": "Hobby", "price": "$0", "period": "per month", "features": ["Personal projects", "Community support", "Basic analytics"], "button": "Start Free", "featured": false },
-      { "name": "Growth", "price": "$79", "period": "per month", "features": ["Team collaboration", "Advanced analytics", "Priority support", "Custom domains"], "button": "Choose Growth", "featured": true },
-      { "name": "Scale", "price": "$199", "period": "per month", "features": ["Enterprise SSO", "Dedicated infrastructure", "24/7 phone support", "Custom SLA"], "button": "Talk to Sales", "featured": false }
-    ]
-  },
-  "shadcn2fluid_pricing-minimal": {
-    "_type": "pricing",
-    "header": "Simple Pricing",
-    "description": "One plan. Everything included. No surprises.",
-    "plans": [
-      { "name": "Individual", "price": "$9", "period": "per month", "features": ["All features", "5 GB storage", "Email support"], "button": "Sign Up", "featured": false },
-      { "name": "Team", "price": "$29", "period": "per month", "features": ["All features", "50 GB storage", "Priority support", "Team admin"], "button": "Start Trial", "featured": true },
-      { "name": "Unlimited", "price": "$99", "period": "per month", "features": ["All features", "Unlimited storage", "Dedicated support", "Custom integrations"], "button": "Go Unlimited", "featured": false }
+      {
+        "title": "Can I switch plans later?",
+        "description": "Yes, you can upgrade or downgrade at any time. Changes take effect immediately."
+      },
+      {
+        "title": "What happens after my trial ends?",
+        "description": "You'll be moved to the Free plan unless you choose to subscribe."
+      },
+      {
+        "title": "Do you offer annual billing?",
+        "description": "Yes, annual billing saves you 20% compared to monthly."
+      }
     ]
   },
   "shadcn2fluid_pricing-slider": {
@@ -1634,20 +1602,42 @@
     "header": "Pay As You Grow",
     "description": "Adjust your plan based on your usage. Slide to see pricing.",
     "plans": [
-      { "name": "1K Users", "price": "$19", "period": "per month", "features": ["Up to 1,000 MAU", "Basic analytics", "Email support"], "button": "Select", "featured": false },
-      { "name": "10K Users", "price": "$79", "period": "per month", "features": ["Up to 10,000 MAU", "Advanced analytics", "Priority support"], "button": "Select", "featured": true },
-      { "name": "100K Users", "price": "$299", "period": "per month", "features": ["Up to 100,000 MAU", "Enterprise analytics", "Dedicated CSM"], "button": "Select", "featured": false }
-    ]
-  },
-  "shadcn2fluid_pricing-table": {
-    "_type": "table",
-    "header": "Detailed Pricing Breakdown",
-    "headers": ["Feature", "Basic", "Professional", "Enterprise"],
-    "rows": [
-      { "Feature": "Monthly Price", "Basic": "$15", "Professional": "$45", "Enterprise": "Custom" },
-      { "Feature": "Users Included", "Basic": "5", "Professional": "25", "Enterprise": "Unlimited" },
-      { "Feature": "Support", "Basic": "Email", "Professional": "Chat + Email", "Enterprise": "Dedicated" },
-      { "Feature": "Uptime SLA", "Basic": "99.5%", "Professional": "99.9%", "Enterprise": "99.99%" }
+      {
+        "name": "1K Users",
+        "price": "$19",
+        "period": "per month",
+        "features": [
+          "Up to 1,000 MAU",
+          "Basic analytics",
+          "Email support"
+        ],
+        "button": "Select",
+        "featured": false
+      },
+      {
+        "name": "10K Users",
+        "price": "$79",
+        "period": "per month",
+        "features": [
+          "Up to 10,000 MAU",
+          "Advanced analytics",
+          "Priority support"
+        ],
+        "button": "Select",
+        "featured": true
+      },
+      {
+        "name": "100K Users",
+        "price": "$299",
+        "period": "per month",
+        "features": [
+          "Up to 100,000 MAU",
+          "Enterprise analytics",
+          "Dedicated CSM"
+        ],
+        "button": "Select",
+        "featured": false
+      }
     ]
   },
   "shadcn2fluid_pricing-toggle": {
@@ -1655,9 +1645,45 @@
     "header": "Choose Your Billing Cycle",
     "description": "Save 20% with annual billing.",
     "plans": [
-      { "name": "Basic", "price": "$12", "period": "per month", "features": ["Core features", "5 users", "Basic support"], "button": "Choose Basic", "featured": false },
-      { "name": "Standard", "price": "$36", "period": "per month", "features": ["All features", "25 users", "Priority support", "API access"], "button": "Choose Standard", "featured": true },
-      { "name": "Premium", "price": "$84", "period": "per month", "features": ["All features", "Unlimited users", "Dedicated support", "Custom SLA", "SSO"], "button": "Choose Premium", "featured": false }
+      {
+        "name": "Basic",
+        "price": "$12",
+        "period": "per month",
+        "features": [
+          "Core features",
+          "5 users",
+          "Basic support"
+        ],
+        "button": "Choose Basic",
+        "featured": false
+      },
+      {
+        "name": "Standard",
+        "price": "$36",
+        "period": "per month",
+        "features": [
+          "All features",
+          "25 users",
+          "Priority support",
+          "API access"
+        ],
+        "button": "Choose Standard",
+        "featured": true
+      },
+      {
+        "name": "Premium",
+        "price": "$84",
+        "period": "per month",
+        "features": [
+          "All features",
+          "Unlimited users",
+          "Dedicated support",
+          "Custom SLA",
+          "SSO"
+        ],
+        "button": "Choose Premium",
+        "featured": false
+      }
     ]
   },
   "shadcn2fluid_product-card": {
@@ -1672,10 +1698,26 @@
     "header": "Our Products",
     "description": "A suite of tools for the modern development lifecycle.",
     "items": [
-      { "icon": "🚀", "title": "FlowCI", "description": "Continuous integration and deployment." },
-      { "icon": "📊", "title": "Metrica", "description": "Application performance monitoring." },
-      { "icon": "🔑", "title": "VaultKey", "description": "Secrets and credentials management." },
-      { "icon": "📋", "title": "TaskBoard", "description": "Project management for engineering." }
+      {
+        "icon": "🚀",
+        "title": "FlowCI",
+        "description": "Continuous integration and deployment."
+      },
+      {
+        "icon": "📊",
+        "title": "Metrica",
+        "description": "Application performance monitoring."
+      },
+      {
+        "icon": "🔑",
+        "title": "VaultKey",
+        "description": "Secrets and credentials management."
+      },
+      {
+        "icon": "📋",
+        "title": "TaskBoard",
+        "description": "Project management for engineering."
+      }
     ]
   },
   "shadcn2fluid_product-hero": {
@@ -1686,13 +1728,6 @@
     "primaryButton": "Try Metrica Free",
     "secondaryButton": "See Pricing"
   },
-  "shadcn2fluid_product-quick-view": {
-    "_type": "card",
-    "header": "VaultKey — Secrets Manager",
-    "description": "Store, rotate, and audit API keys, tokens, and certificates. Integrates with your CI/CD pipeline.",
-    "icon": "🔑",
-    "primaryButton": "Quick View"
-  },
   "shadcn2fluid_product-reviews": {
     "_type": "testimonial",
     "quote": "FlowCI reduced our build times from 20 minutes to under 3. The parallel execution engine is a game changer.",
@@ -1701,192 +1736,34 @@
     "company": "PixelForge",
     "rating": 5
   },
-  "shadcn2fluid_promo-code": {
-    "_type": "form",
-    "header": "Have a Promo Code?",
-    "description": "Enter your promotional code to apply a discount to your order.",
-    "fields": [
-      { "label": "Promo Code", "type": "text", "placeholder": "e.g., SAVE20" }
-    ],
-    "primaryButton": "Apply Code"
-  },
-  "shadcn2fluid_roi-calculator": {
-    "_type": "stats",
-    "header": "Your Estimated ROI",
-    "stats": [
-      { "value": "$142K", "label": "Annual Savings" },
-      { "value": "320 hrs", "label": "Developer Time Saved" },
-      { "value": "74%", "label": "Fewer Incidents" },
-      { "value": "6 mo", "label": "Payback Period" }
-    ]
-  },
-  "shadcn2fluid_shipping-info": {
-    "_type": "list",
-    "header": "Shipping & Delivery",
-    "description": "Everything you need to know about how we deliver.",
-    "items": [
-      { "title": "Digital Delivery", "description": "All software licenses are delivered instantly via email." },
-      { "title": "License Activation", "description": "Activate your license within your account dashboard." },
-      { "title": "Multi-Device", "description": "Use your license on up to 3 devices simultaneously." }
-    ]
-  },
-  "shadcn2fluid_size-guide": {
-    "_type": "table",
-    "header": "Plan Sizing Guide",
-    "headers": ["Team Size", "Recommended Plan", "Est. Monthly Cost"],
-    "rows": [
-      { "Team Size": "1-5", "Recommended Plan": "Starter", "Est. Monthly Cost": "$0 - $15" },
-      { "Team Size": "6-25", "Recommended Plan": "Team", "Est. Monthly Cost": "$49 - $149" },
-      { "Team Size": "26-100", "Recommended Plan": "Business", "Est. Monthly Cost": "$149 - $499" },
-      { "Team Size": "100+", "Recommended Plan": "Enterprise", "Est. Monthly Cost": "Custom" }
-    ]
-  },
-  "shadcn2fluid_wishlist": {
-    "_type": "list",
-    "header": "Your Wishlist",
-    "description": "Items you've saved for later.",
-    "items": [
-      { "title": "Enterprise Plan Upgrade", "description": "SSO, audit logs, and dedicated support." },
-      { "title": "Custom Domain Add-on", "description": "Use your own domain for hosted pages." },
-      { "title": "Priority Support", "description": "1-hour response time guarantee." }
-    ]
-  },
-  "shadcn2fluid_awards": {
-    "_type": "grid",
-    "header": "Awards & Recognition",
-    "description": "Industry recognition for excellence in developer tooling.",
-    "items": [
-      { "icon": "🏆", "title": "Best DevTool 2025", "description": "Awarded by ProductHunt Golden Kitty." },
-      { "icon": "🥇", "title": "G2 Leader", "description": "Top-rated in CI/CD category for 8 consecutive quarters." },
-      { "icon": "⭐", "title": "Gartner Cool Vendor", "description": "Recognized for innovation in cloud infrastructure." }
-    ]
-  },
-  "shadcn2fluid_before-after": {
-    "_type": "card",
-    "header": "Before & After: FinServe Migration",
-    "description": "FinServe reduced deploy times from 45 minutes to 90 seconds after switching to our platform. Downtime dropped by 98%.",
-    "icon": "🔄",
-    "primaryButton": "Read Full Story"
-  },
-  "shadcn2fluid_brand-logos": {
-    "_type": "grid",
-    "header": "Brands That Trust Us",
-    "description": "From Fortune 500 to fast-growing startups.",
-    "items": [
-      { "icon": "🏢", "title": "Acme Corp", "description": "Enterprise customer since 2021." },
-      { "icon": "🚀", "title": "RocketLab", "description": "Scaled from 10 to 500 engineers." },
-      { "icon": "🌐", "title": "GlobalNet", "description": "5M+ daily API calls." },
-      { "icon": "🏦", "title": "FinanceHub", "description": "PCI-compliant deployment pipeline." }
-    ]
-  },
-  "shadcn2fluid_case-study": {
-    "_type": "card",
-    "header": "Case Study: How TechFlow Saved $500K/Year",
-    "description": "TechFlow consolidated 7 tools into our single platform, reducing costs by 40% and improving developer satisfaction scores by 35%.",
-    "icon": "📄",
-    "primaryButton": "Read Case Study"
-  },
-  "shadcn2fluid_case-study-grid": {
-    "_type": "grid",
-    "header": "Customer Success Stories",
-    "description": "See how teams across industries achieve results with our platform.",
-    "items": [
-      { "icon": "🏥", "title": "MedTech Corp", "description": "HIPAA-compliant deploys in under 2 minutes." },
-      { "icon": "🛒", "title": "ShopStream", "description": "99.99% uptime during Black Friday traffic." },
-      { "icon": "🎓", "title": "EduPlatform", "description": "Scaled to 1M students with zero downtime." }
-    ]
-  },
-  "shadcn2fluid_certifications": {
-    "_type": "grid",
-    "header": "Certifications & Compliance",
-    "description": "We meet the highest standards for security and data protection.",
-    "items": [
-      { "icon": "✅", "title": "SOC 2 Type II", "description": "Annual audit by independent firm." },
-      { "icon": "✅", "title": "ISO 27001", "description": "Certified information security." },
-      { "icon": "✅", "title": "GDPR", "description": "Full EU data protection compliance." },
-      { "icon": "✅", "title": "HIPAA", "description": "Healthcare data safeguards." }
-    ]
-  },
-  "shadcn2fluid_client-counter": {
-    "_type": "stats",
-    "header": "Growing Every Day",
-    "stats": [
-      { "value": "52,000+", "label": "Teams" },
-      { "value": "180+", "label": "Countries" },
-      { "value": "3.2M+", "label": "Deployments" },
-      { "value": "99.99%", "label": "Uptime" }
-    ]
-  },
-  "shadcn2fluid_client-logos": {
-    "_type": "grid",
-    "header": "Our Clients",
-    "description": "Trusted by teams at companies of all sizes.",
-    "items": [
-      { "icon": "🔵", "title": "Notion", "description": "Productivity workspace." },
-      { "icon": "🟣", "title": "Figma", "description": "Design collaboration." },
-      { "icon": "🟢", "title": "Spotify", "description": "Music streaming." },
-      { "icon": "🔴", "title": "Airbnb", "description": "Travel marketplace." }
-    ]
-  },
-  "shadcn2fluid_featured-in": {
-    "_type": "grid",
-    "header": "Featured In",
-    "description": "As seen in leading technology publications.",
-    "items": [
-      { "icon": "📰", "title": "TechCrunch", "description": "The platform redefining cloud deployments." },
-      { "icon": "📰", "title": "The Verge", "description": "A must-have for modern dev teams." },
-      { "icon": "📰", "title": "Wired", "description": "Simplicity meets enterprise power." }
-    ]
-  },
-  "shadcn2fluid_media-mentions": {
-    "_type": "grid",
-    "header": "In the Press",
-    "description": "What the media is saying about us.",
-    "items": [
-      { "icon": "🎙️", "title": "Forbes", "description": "Named in Forbes Cloud 100 list." },
-      { "icon": "📻", "title": "Bloomberg", "description": "Featured in Bloomberg Technology segment." },
-      { "icon": "📺", "title": "CNBC", "description": "CEO interview on scaling infrastructure." }
-    ]
-  },
-  "shadcn2fluid_partner-logos": {
-    "_type": "grid",
-    "header": "Technology Partners",
-    "description": "Strategic alliances with industry leaders.",
-    "items": [
-      { "icon": "☁️", "title": "AWS", "description": "Advanced technology partner." },
-      { "icon": "☁️", "title": "Google Cloud", "description": "Premier partner." },
-      { "icon": "☁️", "title": "Azure", "description": "Gold competency partner." },
-      { "icon": "🐙", "title": "GitHub", "description": "Verified integration partner." }
-    ]
-  },
-  "shadcn2fluid_portfolio": {
-    "_type": "grid",
-    "header": "Client Portfolio",
-    "description": "A selection of projects we're proud of.",
-    "items": [
-      { "icon": "🌐", "title": "GlobalBank Platform", "description": "Custom trading platform handling $2B daily." },
-      { "icon": "🏥", "title": "HealthFirst Portal", "description": "Patient portal serving 5M users." },
-      { "icon": "🎓", "title": "LearnSpace LMS", "description": "E-learning platform for 200+ universities." }
-    ]
-  },
-  "shadcn2fluid_press-logos": {
-    "_type": "grid",
-    "header": "Press Coverage",
-    "description": "Major publications covering our journey.",
-    "items": [
-      { "icon": "📝", "title": "Hacker News", "description": "#1 on front page, 800+ upvotes." },
-      { "icon": "📝", "title": "Product Hunt", "description": "#1 Product of the Day." },
-      { "icon": "📝", "title": "InfoWorld", "description": "Top 10 Cloud Tools of 2025." }
-    ]
+  "shadcn2fluid_quote": {
+    "_type": "testimonial",
+    "quote": "Switching to this platform cut our deployment time by 60%. The developer experience is unmatched.",
+    "author": "Sarah Chen",
+    "role": "VP of Engineering",
+    "company": "ScaleOps",
+    "rating": 5
   },
   "shadcn2fluid_rating-display": {
     "_type": "stats",
     "header": "Customer Ratings",
     "stats": [
-      { "value": "4.9/5", "label": "G2 Reviews" },
-      { "value": "4.8/5", "label": "Capterra" },
-      { "value": "4.9/5", "label": "TrustRadius" },
-      { "value": "98%", "label": "Would Recommend" }
+      {
+        "value": "4.9/5",
+        "label": "G2 Reviews"
+      },
+      {
+        "value": "4.8/5",
+        "label": "Capterra"
+      },
+      {
+        "value": "4.9/5",
+        "label": "TrustRadius"
+      },
+      {
+        "value": "98%",
+        "label": "Would Recommend"
+      }
     ]
   },
   "shadcn2fluid_review-carousel": {
@@ -1897,51 +1774,97 @@
     "company": "Nextera Systems",
     "rating": 5
   },
-  "shadcn2fluid_social-feed": {
+  "shadcn2fluid_sitemap-grid": {
     "_type": "grid",
-    "header": "Community Buzz",
-    "description": "What people are saying about us on social media.",
+    "header": "Sitemap",
+    "description": "Browse all pages on our website.",
     "items": [
-      { "icon": "💬", "title": "@devjane", "description": "Just migrated our CI pipeline — 5x faster builds!" },
-      { "icon": "💬", "title": "@cloudmark", "description": "The best DX I've experienced in 15 years of engineering." },
-      { "icon": "💬", "title": "@sre_alex", "description": "Finally, a platform that doesn't fight you." }
-    ]
-  },
-  "shadcn2fluid_social-proof-bar": {
-    "_type": "stats",
-    "header": "Trusted Worldwide",
-    "stats": [
-      { "value": "50K+", "label": "Teams" },
-      { "value": "2M+", "label": "Deployments/Month" },
-      { "value": "120+", "label": "Countries" }
+      {
+        "icon": "🏠",
+        "title": "Home",
+        "description": "Main landing page."
+      },
+      {
+        "icon": "📦",
+        "title": "Products",
+        "description": "All products and features."
+      },
+      {
+        "icon": "💰",
+        "title": "Pricing",
+        "description": "Plans and billing."
+      },
+      {
+        "icon": "📝",
+        "title": "Blog",
+        "description": "Articles and tutorials."
+      }
     ]
   },
   "shadcn2fluid_stats-counter": {
     "_type": "stats",
     "header": "Platform Metrics",
     "stats": [
-      { "value": "5.2B", "label": "API Requests Served" },
-      { "value": "99.997%", "label": "Historical Uptime" },
-      { "value": "< 50ms", "label": "p95 Latency" }
+      {
+        "value": "5.2B",
+        "label": "API Requests Served"
+      },
+      {
+        "value": "99.997%",
+        "label": "Historical Uptime"
+      },
+      {
+        "value": "< 50ms",
+        "label": "p95 Latency"
+      }
     ]
   },
-  "shadcn2fluid_success-metrics": {
-    "_type": "stats",
-    "header": "Customer Success Metrics",
-    "stats": [
-      { "value": "67%", "label": "Faster Time to Market" },
-      { "value": "45%", "label": "Cost Reduction" },
-      { "value": "92%", "label": "Developer Satisfaction" },
-      { "value": "3x", "label": "Deploy Frequency" }
+  "shadcn2fluid_team-carousel": {
+    "_type": "team",
+    "header": "Meet Our Team",
+    "members": [
+      {
+        "name": "Emily Zhang",
+        "role": "Staff Engineer"
+      },
+      {
+        "name": "Carlos Mendez",
+        "role": "Senior Designer"
+      },
+      {
+        "name": "Aisha Kone",
+        "role": "Product Manager"
+      },
+      {
+        "name": "Liam O'Brien",
+        "role": "DevRel Engineer"
+      }
     ]
   },
-  "shadcn2fluid_testimonial": {
-    "_type": "testimonial",
-    "quote": "This platform transformed how our engineering team operates. We went from weekly releases to multiple deploys per day.",
-    "author": "Priya Sharma",
-    "role": "Director of Engineering",
-    "company": "DataBridge AI",
-    "rating": 5
+  "shadcn2fluid_team-grid-minimal": {
+    "_type": "team",
+    "header": "Our Core Team",
+    "members": [
+      {
+        "name": "Richard Hayes",
+        "role": "CEO"
+      },
+      {
+        "name": "Angela Chen",
+        "role": "CTO"
+      },
+      {
+        "name": "Daniel Okafor",
+        "role": "CPO"
+      }
+    ]
+  },
+  "shadcn2fluid_team-member": {
+    "_type": "card",
+    "header": "Sofia Andersson — VP Frontend",
+    "description": "Sofia leads our frontend engineering team of 25 engineers. She previously built design systems at Spotify and Figma.",
+    "icon": "👤",
+    "primaryButton": "View Profile"
   },
   "shadcn2fluid_testimonial-carousel": {
     "_type": "testimonial",
@@ -1956,10 +1879,26 @@
     "header": "What Our Customers Say",
     "description": "Real feedback from real teams.",
     "items": [
-      { "icon": "⭐", "title": "Sarah L., CTO", "description": "Cut our infrastructure costs by half." },
-      { "icon": "⭐", "title": "Mike R., VP Eng", "description": "Best developer experience on the market." },
-      { "icon": "⭐", "title": "Lisa T., DevOps", "description": "Onboarding took 15 minutes, not 2 weeks." },
-      { "icon": "⭐", "title": "Raj P., Founder", "description": "Scaled from 0 to 1M users without a hitch." }
+      {
+        "icon": "⭐",
+        "title": "Sarah L., CTO",
+        "description": "Cut our infrastructure costs by half."
+      },
+      {
+        "icon": "⭐",
+        "title": "Mike R., VP Eng",
+        "description": "Best developer experience on the market."
+      },
+      {
+        "icon": "⭐",
+        "title": "Lisa T., DevOps",
+        "description": "Onboarding took 15 minutes, not 2 weeks."
+      },
+      {
+        "icon": "⭐",
+        "title": "Raj P., Founder",
+        "description": "Scaled from 0 to 1M users without a hitch."
+      }
     ]
   },
   "shadcn2fluid_testimonial-wall": {
@@ -1967,10 +1906,57 @@
     "header": "Wall of Love",
     "description": "A collection of kind words from our community.",
     "items": [
-      { "icon": "❤️", "title": "Anna K.", "description": "Switched from 3 separate tools. Life is simpler now." },
-      { "icon": "❤️", "title": "Carlos M.", "description": "Deploy previews changed our review process forever." },
-      { "icon": "❤️", "title": "Yuki S.", "description": "The CLI is incredibly well-designed." },
-      { "icon": "❤️", "title": "Ben W.", "description": "Support team resolved my issue in under 10 minutes." }
+      {
+        "icon": "❤️",
+        "title": "Anna K.",
+        "description": "Switched from 3 separate tools. Life is simpler now."
+      },
+      {
+        "icon": "❤️",
+        "title": "Carlos M.",
+        "description": "Deploy previews changed our review process forever."
+      },
+      {
+        "icon": "❤️",
+        "title": "Yuki S.",
+        "description": "The CLI is incredibly well-designed."
+      },
+      {
+        "icon": "❤️",
+        "title": "Ben W.",
+        "description": "Support team resolved my issue in under 10 minutes."
+      }
+    ]
+  },
+  "shadcn2fluid_testimonial": {
+    "_type": "testimonial",
+    "quote": "This platform transformed how our engineering team operates. We went from weekly releases to multiple deploys per day.",
+    "author": "Priya Sharma",
+    "role": "Director of Engineering",
+    "company": "DataBridge AI",
+    "rating": 5
+  },
+  "shadcn2fluid_timeline": {
+    "_type": "list",
+    "header": "Our Journey",
+    "description": "Key milestones in our company's history.",
+    "items": [
+      {
+        "title": "2019 — Founded",
+        "description": "Started in a garage with a vision to simplify DevOps."
+      },
+      {
+        "title": "2020 — Series A",
+        "description": "Raised $12M to scale our engineering team and infrastructure."
+      },
+      {
+        "title": "2022 — 10K Customers",
+        "description": "Crossed 10,000 paying customers across 40 countries."
+      },
+      {
+        "title": "2024 — Enterprise Launch",
+        "description": "Released enterprise tier with SSO, audit logs, and SLA guarantees."
+      }
     ]
   },
   "shadcn2fluid_trust-badges": {
@@ -1978,248 +1964,33 @@
     "header": "Why Teams Trust Us",
     "description": "Security and reliability you can count on.",
     "items": [
-      { "icon": "🔒", "title": "Encrypted at Rest", "description": "AES-256 encryption for all stored data." },
-      { "icon": "🌐", "title": "Global CDN", "description": "80+ edge locations for fast delivery." },
-      { "icon": "🛡️", "title": "DDoS Protection", "description": "Automatic mitigation for all plans." },
-      { "icon": "📋", "title": "Audit Logging", "description": "Complete activity trail for compliance." }
+      {
+        "icon": "🔒",
+        "title": "Encrypted at Rest",
+        "description": "AES-256 encryption for all stored data."
+      },
+      {
+        "icon": "🌐",
+        "title": "Global CDN",
+        "description": "80+ edge locations for fast delivery."
+      },
+      {
+        "icon": "🛡️",
+        "title": "DDoS Protection",
+        "description": "Automatic mitigation for all plans."
+      },
+      {
+        "icon": "📋",
+        "title": "Audit Logging",
+        "description": "Complete activity trail for compliance."
+      }
     ]
   },
-  "shadcn2fluid_user-count": {
-    "_type": "stats",
-    "header": "Join a Growing Community",
-    "stats": [
-      { "value": "250K+", "label": "Registered Users" },
-      { "value": "52K", "label": "Active Teams" },
-      { "value": "8.4K", "label": "Open Source Projects" }
-    ]
-  },
-  "shadcn2fluid_about-company": {
-    "_type": "section",
-    "header": "Who We Are",
-    "description": "A team of engineers, designers, and operators passionate about developer productivity.",
-    "content": "Founded in San Francisco in 2019, we started with a simple belief: deploying software should be as easy as pushing code. Today, we serve teams in over 120 countries."
-  },
-  "shadcn2fluid_about-mission": {
-    "_type": "section",
-    "header": "Our Mission",
-    "description": "To make every developer more productive by removing infrastructure complexity.",
-    "content": "We believe that the best tools disappear into the background, letting you focus on what matters: building great software for your users."
-  },
-  "shadcn2fluid_about-values": {
-    "_type": "grid",
-    "header": "Our Core Values",
-    "description": "The principles that guide every decision we make.",
-    "items": [
-      { "icon": "🎯", "title": "Customer Obsession", "description": "Every feature starts with a real customer problem." },
-      { "icon": "🔬", "title": "Intellectual Honesty", "description": "We follow the data, even when it's uncomfortable." },
-      { "icon": "🤝", "title": "Default to Trust", "description": "We hire great people and give them autonomy." },
-      { "icon": "🚀", "title": "Bias for Action", "description": "Ship early, iterate fast, learn continuously." }
-    ]
-  },
-  "shadcn2fluid_advisory-board": {
-    "_type": "team",
-    "header": "Advisory Board",
-    "members": [
-      { "name": "Dr. Elena Vasquez", "role": "Former CTO, CloudScale" },
-      { "name": "James Park", "role": "Partner, Sequoia Capital" },
-      { "name": "Maya Johnson", "role": "VP Engineering, Stripe" },
-      { "name": "Dr. Hans Weber", "role": "Professor, MIT CSAIL" }
-    ]
-  },
-  "shadcn2fluid_author-bio": {
+  "shadcn2fluid_video-embed": {
     "_type": "card",
-    "header": "Alex Turner — Staff Engineer",
-    "description": "Alex has been building distributed systems for 12 years. Previously at Google and Netflix, now leading our core infrastructure team.",
-    "icon": "✍️",
-    "primaryButton": "View All Posts"
-  },
-  "shadcn2fluid_board-members": {
-    "_type": "team",
-    "header": "Board of Directors",
-    "members": [
-      { "name": "Richard Hayes", "role": "CEO & Co-Founder" },
-      { "name": "Samantha Liu", "role": "Board Chair, Investor" },
-      { "name": "Michael Torres", "role": "Independent Director" }
-    ]
-  },
-  "shadcn2fluid_careers": {
-    "_type": "grid",
-    "header": "Open Positions",
-    "description": "Join our team and help shape the future of developer tools.",
-    "items": [
-      { "icon": "💻", "title": "Senior Backend Engineer", "description": "Remote — Rust/Go experience required." },
-      { "icon": "🎨", "title": "Product Designer", "description": "San Francisco — Design systems focus." },
-      { "icon": "📊", "title": "Data Engineer", "description": "Remote — Analytics pipeline ownership." },
-      { "icon": "📣", "title": "Developer Advocate", "description": "Remote — Community building and content." }
-    ]
-  },
-  "shadcn2fluid_company-history": {
-    "_type": "list",
-    "header": "Company History",
-    "description": "From garage startup to global platform.",
-    "items": [
-      { "title": "2019 — The Beginning", "description": "Two engineers frustrated with deployment complexity start building a better solution." },
-      { "title": "2021 — Growth", "description": "Crossed 1,000 customers, raised Series B, expanded to 50 employees." },
-      { "title": "2023 — Scale", "description": "Reached 25,000 teams, opened European headquarters in Berlin." },
-      { "title": "2025 — Today", "description": "50,000+ teams, 200 employees, SOC 2 and ISO 27001 certified." }
-    ]
-  },
-  "shadcn2fluid_culture-gallery": {
-    "_type": "grid",
-    "header": "Life at Acme",
-    "description": "A peek inside our culture and work environment.",
-    "items": [
-      { "icon": "🏢", "title": "San Francisco HQ", "description": "Open floor plan with mountain views." },
-      { "icon": "🌴", "title": "Team Offsites", "description": "Quarterly retreats to connect and recharge." },
-      { "icon": "🎉", "title": "Hackathons", "description": "48-hour innovation sprints every quarter." }
-    ]
-  },
-  "shadcn2fluid_department-list": {
-    "_type": "list",
-    "header": "Our Departments",
-    "description": "Teams that make it all happen.",
-    "items": [
-      { "title": "Engineering", "description": "85 engineers building the core platform, infrastructure, and developer tools." },
-      { "title": "Product & Design", "description": "20 product managers and designers shaping the user experience." },
-      { "title": "Go-to-Market", "description": "40 people across sales, marketing, and customer success." },
-      { "title": "Operations", "description": "15 people handling finance, HR, legal, and IT." }
-    ]
-  },
-  "shadcn2fluid_employee-spotlight": {
-    "_type": "card",
-    "header": "Employee Spotlight: Kenji Tanaka",
-    "description": "Kenji joined as engineer #12 and now leads our Platform Reliability team. Outside work, he's an avid rock climber and open-source contributor.",
-    "icon": "🌟",
-    "primaryButton": "Read Interview"
-  },
-  "shadcn2fluid_founders": {
-    "_type": "team",
-    "header": "Meet the Founders",
-    "members": [
-      { "name": "Richard Hayes", "role": "CEO & Co-Founder" },
-      { "name": "Angela Chen", "role": "CTO & Co-Founder" },
-      { "name": "Daniel Okafor", "role": "CPO & Co-Founder" }
-    ]
-  },
-  "shadcn2fluid_hiring-banner": {
-    "_type": "hero",
-    "header": "We're Hiring!",
-    "description": "Join a team of 200+ passionate engineers, designers, and operators building the future of cloud infrastructure.",
-    "badge": "Careers",
-    "primaryButton": "View Open Roles",
-    "secondaryButton": "Our Culture"
-  },
-  "shadcn2fluid_job-board": {
-    "_type": "grid",
-    "header": "Current Openings",
-    "description": "Find your next role at Acme.",
-    "items": [
-      { "icon": "🖥️", "title": "Frontend Engineer", "description": "React, TypeScript — Remote" },
-      { "icon": "⚙️", "title": "Infrastructure Engineer", "description": "Kubernetes, Terraform — Remote" },
-      { "icon": "📈", "title": "Growth Marketing Manager", "description": "PLG, content — San Francisco" },
-      { "icon": "🎧", "title": "Customer Success Manager", "description": "Enterprise accounts — New York" }
-    ]
-  },
-  "shadcn2fluid_job-listing": {
-    "_type": "list",
-    "header": "Engineering Roles",
-    "description": "Current openings in our engineering department.",
-    "items": [
-      { "title": "Staff Backend Engineer", "description": "Rust/Go, distributed systems, 8+ years experience. Remote-first." },
-      { "title": "Senior Frontend Engineer", "description": "React, TypeScript, design systems. Remote or San Francisco." },
-      { "title": "Site Reliability Engineer", "description": "Kubernetes, observability, incident management. Remote-first." }
-    ]
-  },
-  "shadcn2fluid_leadership": {
-    "_type": "team",
-    "header": "Leadership Team",
-    "members": [
-      { "name": "Richard Hayes", "role": "Chief Executive Officer" },
-      { "name": "Angela Chen", "role": "Chief Technology Officer" },
-      { "name": "Daniel Okafor", "role": "Chief Product Officer" },
-      { "name": "Maria Gonzalez", "role": "Chief Revenue Officer" }
-    ]
-  },
-  "shadcn2fluid_office-locations": {
-    "_type": "grid",
-    "header": "Our Offices",
-    "description": "Global presence with a remote-first mindset.",
-    "items": [
-      { "icon": "🇺🇸", "title": "San Francisco", "description": "HQ — 100 employees" },
-      { "icon": "🇩🇪", "title": "Berlin", "description": "EU hub — 45 employees" },
-      { "icon": "🇯🇵", "title": "Tokyo", "description": "APAC office — 20 employees" },
-      { "icon": "🌍", "title": "Remote", "description": "35 employees across 15 countries" }
-    ]
-  },
-  "shadcn2fluid_org-chart": {
-    "_type": "team",
-    "header": "Organization Structure",
-    "members": [
-      { "name": "Richard Hayes", "role": "CEO" },
-      { "name": "Angela Chen", "role": "CTO — Engineering" },
-      { "name": "Daniel Okafor", "role": "CPO — Product & Design" },
-      { "name": "Maria Gonzalez", "role": "CRO — Sales & Marketing" }
-    ]
-  },
-  "shadcn2fluid_perks-benefits": {
-    "_type": "grid",
-    "header": "Perks & Benefits",
-    "description": "We take care of our team so they can do their best work.",
-    "items": [
-      { "icon": "🏥", "title": "Health Insurance", "description": "Full medical, dental, and vision for you and dependents." },
-      { "icon": "🏖️", "title": "Unlimited PTO", "description": "Take the time you need to recharge." },
-      { "icon": "📚", "title": "Learning Budget", "description": "$2,000/year for courses, books, and conferences." },
-      { "icon": "🏠", "title": "Remote Stipend", "description": "$500/month for home office setup." }
-    ]
-  },
-  "shadcn2fluid_speaker-card": {
-    "_type": "card",
-    "header": "Angela Chen — CTO & Co-Founder",
-    "description": "Angela speaks regularly at KubeCon, QCon, and StrangeLoop about distributed systems and engineering culture.",
-    "icon": "🎤",
-    "primaryButton": "View Speaking Schedule"
-  },
-  "shadcn2fluid_team-carousel": {
-    "_type": "team",
-    "header": "Meet Our Team",
-    "members": [
-      { "name": "Emily Zhang", "role": "Staff Engineer" },
-      { "name": "Carlos Mendez", "role": "Senior Designer" },
-      { "name": "Aisha Kone", "role": "Product Manager" },
-      { "name": "Liam O'Brien", "role": "DevRel Engineer" }
-    ]
-  },
-  "shadcn2fluid_team-grid": {
-    "_type": "team",
-    "header": "Engineering Leadership",
-    "members": [
-      { "name": "Angela Chen", "role": "CTO" },
-      { "name": "Kenji Tanaka", "role": "VP Platform Reliability" },
-      { "name": "Sofia Andersson", "role": "VP Frontend Engineering" },
-      { "name": "David Kim", "role": "VP Backend Engineering" }
-    ]
-  },
-  "shadcn2fluid_team-grid-minimal": {
-    "_type": "team",
-    "header": "Our Core Team",
-    "members": [
-      { "name": "Richard Hayes", "role": "CEO" },
-      { "name": "Angela Chen", "role": "CTO" },
-      { "name": "Daniel Okafor", "role": "CPO" }
-    ]
-  },
-  "shadcn2fluid_team-member": {
-    "_type": "card",
-    "header": "Sofia Andersson — VP Frontend",
-    "description": "Sofia leads our frontend engineering team of 25 engineers. She previously built design systems at Spotify and Figma.",
-    "icon": "👤",
-    "primaryButton": "View Profile"
-  },
-  "shadcn2fluid_volunteer": {
-    "_type": "card",
-    "header": "Volunteer With Us",
-    "description": "We partner with Code.org and local schools to teach programming. Join our volunteer program and make a difference.",
-    "icon": "🤲",
-    "primaryButton": "Sign Up to Volunteer"
+    "header": "Product Demo",
+    "description": "Watch a 3-minute walkthrough of our core features and see how teams use the platform daily.",
+    "icon": "▶️",
+    "primaryButton": "Watch Now"
   }
 }

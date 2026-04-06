@@ -11,34 +11,40 @@
 </f:section>
 
 <f:section name="Main">
-    <div class="desiderio-styleguide">
+    <div class="desiderio-sg">
 
-        <header class="desiderio-styleguide__header">
-            <div class="desiderio-styleguide__header-left">
-                <h1 class="desiderio-styleguide__title">Content Elements</h1>
-                <span class="desiderio-styleguide__version">desiderio</span>
+        <header class="desiderio-sg__header">
+            <div class="stack stack--horizontal stack--align-center stack--gap-sm">
+                <h1 class="typography typography--h3" style="margin:0;">Content Elements</h1>
+                <span class="badge badge--secondary">250</span>
             </div>
-            <button type="button" class="desiderio-theme-toggle btn btn--ghost btn--icon" data-s2f-theme-toggle="true" aria-label="Toggle dark mode">
-                <svg class="desiderio-theme-toggle__sun" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
-                <svg class="desiderio-theme-toggle__moon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
-            </button>
+            <div class="stack stack--horizontal stack--align-center stack--gap-sm">
+                <div class="desiderio-sg__search-wrap">
+                    <input id="sg-search" class="input" type="search" placeholder="Search elements..." aria-label="Search content elements" />
+                </div>
+                <button type="button" class="btn btn--ghost btn--icon" data-s2f-theme-toggle="true" aria-label="Toggle dark mode">
+                    <svg class="desiderio-theme-toggle__sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+                    <svg class="desiderio-theme-toggle__moon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>
+                </button>
+            </div>
         </header>
 
         <d:styleguideGroups as="styleguideGroups">
-            <nav class="desiderio-styleguide__nav" aria-label="Content element navigation">
-                <div class="desiderio-styleguide__nav-group">
-                    <p class="desiderio-styleguide__nav-heading">Categories</p>
-                    <ul class="desiderio-styleguide__nav-list">
-                        <f:for each="{styleguideGroups}" as="group">
-                            <li>
-                                <a href="#{group.groupId}" class="desiderio-styleguide__nav-link">{group.groupTitle}</a>
-                            </li>
-                        </f:for>
-                    </ul>
-                </div>
+            <nav class="desiderio-sg__nav" aria-label="Content element navigation">
+                <p class="desiderio-sg__nav-heading">Categories</p>
+                <ul class="desiderio-sg__nav-list">
+                    <f:for each="{styleguideGroups}" as="group">
+                        <li>
+                            <a href="#{group.groupId}" class="desiderio-sg__nav-link">
+                                {group.groupTitle}
+                                <span class="desiderio-sg__nav-count">{group.elements -> f:count()}</span>
+                            </a>
+                        </li>
+                    </f:for>
+                </ul>
             </nav>
 
-            <div class="desiderio-styleguide__content">
+            <div class="desiderio-sg__content">
                 <f:for each="{styleguideGroups}" as="group">
                     <f:render
                         partial="Pages/StyleguideGroup"

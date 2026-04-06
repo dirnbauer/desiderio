@@ -9,6 +9,10 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 /**
  * Static list of shadcn2fluid content element groups for the styleguide page.
  * Source: Resources/Private/Data/styleguide-content-groups.json
+ *
+ * Fixture data is loaded from individual fixture.json files inside each
+ * Content Block directory (shadcn2fluid-templates/ContentBlocks/ContentElements/{name}/fixture.json).
+ * Falls back to the monolithic Resources/Private/Data/styleguide-fixtures.json if present.
  */
 final class StyleguideContentGroups
 {
@@ -32,7 +36,13 @@ final class StyleguideContentGroups
     }
 
     /**
-     * @return array<string, array<string, mixed>> Fixture data keyed by ctype
+     * Loads fixture data keyed by ctype.
+     *
+     * Strategy:
+     *  1. Scan ContentBlocks/ContentElements/{name}/fixture.json inside shadcn2fluid-templates.
+     *  2. Fall back to the monolithic JSON in desiderio's Data/ directory.
+     *
+     * @return array<string, array<string, mixed>>
      */
     public static function getFixtures(): array
     {
@@ -40,9 +50,65 @@ final class StyleguideContentGroups
             return self::$fixtureCache;
         }
 
-        $decoded = self::loadJson('EXT:desiderio/Resources/Private/Data/styleguide-fixtures.json');
-        self::$fixtureCache = is_array($decoded) ? $decoded : [];
+        // Load individual fixture.json files from Content Block directories
+        $fixtures = self::loadFixturesFromContentBlocks();
+
+        // Merge with monolithic fallback for any ctypes not found individually
+        $monolithic = self::loadJson('EXT:desiderio/Resources/Private/Data/styleguide-fixtures.json');
+        if (is_array($monolithic)) {
+            foreach ($monolithic as $ctype => $data) {
+                if (!isset($fixtures[$ctype])) {
+                    $fixtures[$ctype] = $data;
+                }
+            }
+        }
+
+        self::$fixtureCache = $fixtures;
         return self::$fixtureCache;
+    }
+
+    /**
+     * Scan Content Block directories for individual fixture.json files.
+     *
+     * @return array<string, array<string, mixed>>
+     */
+    private static function loadFixturesFromContentBlocks(): array
+    {
+        $basePath = GeneralUtility::getFileAbsFileName(
+            'EXT:shadcn2fluid_templates/ContentBlocks/ContentElements'
+        );
+        if ($basePath === '' || !is_dir($basePath)) {
+            return [];
+        }
+
+        $fixtures = [];
+        $dirs = scandir($basePath);
+        if ($dirs === false) {
+            return [];
+        }
+
+        foreach ($dirs as $dir) {
+            if ($dir === '.' || $dir === '..') {
+                continue;
+            }
+            $fixturePath = $basePath . '/' . $dir . '/fixture.json';
+            if (!is_readable($fixturePath)) {
+                continue;
+            }
+            $raw = file_get_contents($fixturePath);
+            if ($raw === false) {
+                continue;
+            }
+            $decoded = json_decode($raw, true);
+            if (!is_array($decoded)) {
+                continue;
+            }
+            // Key by ctype: shadcn2fluid_{dirname}
+            $ctype = 'shadcn2fluid_' . $dir;
+            $fixtures[$ctype] = $decoded;
+        }
+
+        return $fixtures;
     }
 
     /**

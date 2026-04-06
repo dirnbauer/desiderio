@@ -7,25 +7,25 @@
 <f:argument name="groupTitle" type="string" description="Display title for the group"/>
 <f:argument name="elements" type="array" description="Content elements with name and ctype keys"/>
 
-<section class="desiderio-styleguide__group" id="{groupId}">
-    <h2 class="desiderio-styleguide__group-title">
-        {groupTitle}
-        <span class="desiderio-styleguide__group-count">{elements -> f:count()}</span>
-    </h2>
-    <div class="desiderio-styleguide__group-actions">
-        <button type="button" class="desiderio-styleguide__show-all" data-group="{groupId}">
+<section class="desiderio-sg__group" id="{groupId}">
+    <div class="desiderio-sg__group-header">
+        <div class="stack stack--horizontal stack--align-center stack--gap-sm">
+            <h2 class="typography typography--h3" style="margin:0;">{groupTitle}</h2>
+            <span class="badge badge--secondary">{elements -> f:count()}</span>
+        </div>
+        <button type="button" class="btn btn--outline btn--sm desiderio-sg__show-all" data-group="{groupId}">
             Show All
         </button>
     </div>
-    <div class="desiderio-styleguide__element-list">
+    <div class="desiderio-sg__element-list">
         <f:for each="{elements}" as="element">
-            <div class="desiderio-styleguide__element-card"
+            <div class="desiderio-sg__element-card"
                  data-ctype="{element.ctype}"
                  tabindex="0"
                  role="button"
                  aria-expanded="false">
-                <p class="desiderio-styleguide__element-name">{element.name}</p>
-                <p class="desiderio-styleguide__element-ctype">{element.ctype}</p>
+                <p class="desiderio-sg__card-name">{element.name}</p>
+                <p class="desiderio-sg__card-ctype">{element.ctype}</p>
             </div>
         </f:for>
     </div>

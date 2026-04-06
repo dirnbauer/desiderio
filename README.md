@@ -101,12 +101,15 @@ So: **one infrastructure, five CSS personalities.** If you need a wholly differe
 - TYPO3 v14.3+
 - PHP 8.2+
 - [shadcn2fluid-templates](https://github.com/dirnbauer/shadcn2fluid-templates) v3.0+ (installed automatically as a Composer dependency)
+- For TYPO3 Content Blocks with button-style link fields, use a `shadcn2fluid-templates` revision that includes commit `87aa839` (`Fix TYPO3 link rendering across Fluid templates`) or any later release containing that fix.
 
 ## Installation
 
 ```bash
 composer require webconsulting/desiderio
 ```
+
+If Composer resolves an older cached `webconsulting/shadcn2fluid-templates` build, update that package to a revision that includes commit `87aa839` before testing CTA or hero elements with link buttons.
 
 Then in your TYPO3 site configuration, add the site sets you want:
 

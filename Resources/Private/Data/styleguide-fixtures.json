@@ -2862,6 +2862,73 @@
       }
     ]
   },
+  "shadcn2fluid_mission-statement": {
+    "_type": "section",
+    "header": "Our Mission",
+    "description": "To empower every team to do their best work by eliminating friction from their daily workflows.",
+    "content": "We believe that great tools should amplify human creativity, not constrain it. Our mission is to build software that adapts to how teams actually work, helping them move faster, collaborate better, and achieve more than they thought possible."
+  },
+  "shadcn2fluid_nav-pagination": {
+    "_type": "nav",
+    "logo": "Page Navigation",
+    "links": [
+      "Previous",
+      "1",
+      "2",
+      "3",
+      "...",
+      "12",
+      "Next"
+    ],
+    "primaryButton": "Go to Page"
+  },
+  "shadcn2fluid_nav-steps": {
+    "_type": "nav",
+    "logo": "Setup Wizard",
+    "links": [
+      "Account",
+      "Team",
+      "Integrations",
+      "Review",
+      "Launch"
+    ],
+    "primaryButton": "Continue"
+  },
+  "shadcn2fluid_nav-tabs": {
+    "_type": "nav",
+    "logo": "Dashboard",
+    "links": [
+      "Overview",
+      "Analytics",
+      "Reports",
+      "Settings"
+    ],
+    "primaryButton": "New Report"
+  },
+  "shadcn2fluid_nav-toc": {
+    "_type": "nav",
+    "logo": "Documentation",
+    "links": [
+      "Getting Started",
+      "Authentication",
+      "API Reference",
+      "Webhooks",
+      "SDKs",
+      "FAQ"
+    ],
+    "primaryButton": "Search Docs"
+  },
+  "shadcn2fluid_navbar-centered": {
+    "_type": "nav",
+    "logo": "Acme",
+    "links": [
+      "Features",
+      "Pricing",
+      "About",
+      "Blog"
+    ],
+    "primaryButton": "Sign Up"
+  },
   "shadcn2fluid_navbar-dropdown": {
     "_type": "nav",
     "logo": "MegaPlatform",
@@ -2894,6 +2961,18 @@
     ],
     "primaryButton": "Sign In"
   },
+  "shadcn2fluid_navbar-mobile": {
+    "_type": "nav",
+    "logo": "Acme Platform",
+    "links": [
+      "Home",
+      "Product",
+      "Pricing",
+      "Support",
+      "Login"
+    ],
+    "primaryButton": "Get Started"
+  },
   "shadcn2fluid_navbar-sidebar": {
     "_type": "nav",
     "logo": "AdminPanel",
@@ -2904,6 +2983,52 @@
       "Settings"
     ],
     "primaryButton": "Collapse"
+  },
+  "shadcn2fluid_navbar-split": {
+    "_type": "nav",
+    "logo": "Acme",
+    "links": [
+      "Product",
+      "Solutions",
+      "Docs",
+      "Pricing"
+    ],
+    "primaryButton": "Start Building"
+  },
+  "shadcn2fluid_navbar-stacked": {
+    "_type": "nav",
+    "logo": "Acme Platform",
+    "links": [
+      "Platform",
+      "Use Cases",
+      "Customers",
+      "Resources",
+      "Company"
+    ],
+    "primaryButton": "Request Demo"
+  },
+  "shadcn2fluid_navbar-sticky": {
+    "_type": "nav",
+    "logo": "Acme",
+    "links": [
+      "Features",
+      "Enterprise",
+      "Pricing",
+      "Contact"
+    ],
+    "primaryButton": "Free Trial"
+  },
+  "shadcn2fluid_navbar-tabbed": {
+    "_type": "nav",
+    "logo": "Acme",
+    "links": [
+      "Dashboard",
+      "Projects",
+      "Team",
+      "Reports",
+      "Settings"
+    ],
+    "primaryButton": "New Project"
   },
   "shadcn2fluid_navbar-transparent": {
     "_type": "nav",
@@ -2939,6 +3064,48 @@
       }
     ],
     "primaryButton": "Join"
+  },
+  "shadcn2fluid_newsletter-signup": {
+    "_type": "form",
+    "header": "Stay in the Loop",
+    "description": "Get weekly product updates, industry insights, and exclusive tips delivered to your inbox.",
+    "fields": [
+      {
+        "label": "Email Address",
+        "type": "email",
+        "placeholder": "your@email.com"
+      }
+    ],
+    "primaryButton": "Subscribe"
+  },
+  "shadcn2fluid_notification": {
+    "_type": "form",
+    "header": "Notification Preferences",
+    "description": "Choose how you want to be notified about important updates and activity.",
+    "fields": [
+      {
+        "label": "Email Notifications",
+        "type": "checkbox",
+        "placeholder": "Receive updates via email"
+      },
+      {
+        "label": "Push Notifications",
+        "type": "checkbox",
+        "placeholder": "Browser push notifications"
+      },
+      {
+        "label": "SMS Alerts",
+        "type": "checkbox",
+        "placeholder": "Critical alerts via text message"
+      }
+    ],
+    "primaryButton": "Save Preferences"
+  },
+  "shadcn2fluid_office-hours": {
+    "_type": "section",
+    "header": "Office Hours",
+    "description": "Join our weekly open Q&A sessions with the product team.",
+    "content": "Every Wednesday at 2 PM PST, our product managers and engineers host a live session where you can ask questions, share feedback, and preview upcoming features. Sessions are recorded and available on-demand for those who cannot attend live."
   },
   "shadcn2fluid_office-locations": {
     "_type": "grid",
@@ -3008,6 +3175,149 @@
       }
     ]
   },
+  "shadcn2fluid_partner-grid": {
+    "_type": "grid",
+    "header": "Our Partner Ecosystem",
+    "description": "We work with industry-leading partners to deliver comprehensive solutions.",
+    "items": [
+      {
+        "icon": "🤝",
+        "title": "Technology Partners",
+        "description": "Deep integrations with AWS, Google Cloud, and Microsoft Azure."
+      },
+      {
+        "icon": "🏢",
+        "title": "Solution Partners",
+        "description": "Certified consultants who help implement and customize our platform."
+      },
+      {
+        "icon": "🌐",
+        "title": "Channel Partners",
+        "description": "Regional resellers bringing our platform to markets worldwide."
+      },
+      {
+        "icon": "🛠️",
+        "title": "Integration Partners",
+        "description": "Third-party developers building connectors and extensions on our API."
+      }
+    ]
+  },
+  "shadcn2fluid_press-mentions": {
+    "_type": "grid",
+    "header": "In the Press",
+    "description": "See what leading publications are saying about our platform.",
+    "items": [
+      {
+        "icon": "📰",
+        "title": "TechCrunch",
+        "description": "\"The fastest-growing workflow automation platform we have seen this year.\""
+      },
+      {
+        "icon": "💻",
+        "title": "The Verge",
+        "description": "\"A game-changer for distributed teams looking to consolidate their toolstack.\""
+      },
+      {
+        "icon": "📈",
+        "title": "Forbes",
+        "description": "\"Named one of the Top 50 Cloud Companies to Watch in 2026.\""
+      }
+    ]
+  },
+  "shadcn2fluid_pricing-annual-monthly": {
+    "_type": "pricing",
+    "header": "Flexible Billing Options",
+    "description": "Save 20% when you choose annual billing. Switch anytime.",
+    "plans": [
+      {
+        "name": "Basic",
+        "price": "$15",
+        "period": "/user/month",
+        "features": [
+          "10 users included",
+          "5 GB storage",
+          "Basic integrations",
+          "Email support"
+        ],
+        "button": "Choose Basic",
+        "featured": false
+      },
+      {
+        "name": "Business",
+        "price": "$39",
+        "period": "/user/month",
+        "features": [
+          "Unlimited users",
+          "100 GB storage",
+          "Advanced integrations",
+          "Priority support",
+          "Custom roles"
+        ],
+        "button": "Choose Business",
+        "featured": true
+      },
+      {
+        "name": "Scale",
+        "price": "$79",
+        "period": "/user/month",
+        "features": [
+          "Everything in Business",
+          "Unlimited storage",
+          "SSO & SCIM",
+          "Dedicated CSM",
+          "99.99% SLA"
+        ],
+        "button": "Choose Scale",
+        "featured": false
+      }
+    ]
+  },
+  "shadcn2fluid_pricing-calculator": {
+    "_type": "pricing",
+    "header": "Estimate Your Cost",
+    "description": "Use our calculator to find the perfect plan for your team size and usage.",
+    "plans": [
+      {
+        "name": "Small Team",
+        "price": "$99",
+        "period": "/month",
+        "features": [
+          "Up to 10 users",
+          "10K API calls/month",
+          "5 GB storage",
+          "Standard support"
+        ],
+        "button": "Select",
+        "featured": false
+      },
+      {
+        "name": "Growing Team",
+        "price": "$299",
+        "period": "/month",
+        "features": [
+          "Up to 50 users",
+          "100K API calls/month",
+          "50 GB storage",
+          "Priority support"
+        ],
+        "button": "Select",
+        "featured": true
+      },
+      {
+        "name": "Large Organization",
+        "price": "$799",
+        "period": "/month",
+        "features": [
+          "Unlimited users",
+          "Unlimited API calls",
+          "Unlimited storage",
+          "24/7 support"
+        ],
+        "button": "Select",
+        "featured": false
+      }
+    ]
+  },
   "shadcn2fluid_pricing-comparison": {
     "_type": "table",
     "header": "Pricing Comparison",
@@ -3044,6 +3354,54 @@
       }
     ]
   },
+  "shadcn2fluid_pricing-enterprise": {
+    "_type": "pricing",
+    "header": "Enterprise Solutions",
+    "description": "Tailored packages for large organizations with complex requirements.",
+    "plans": [
+      {
+        "name": "Department",
+        "price": "$499",
+        "period": "/month",
+        "features": [
+          "Up to 100 users",
+          "Advanced security",
+          "Custom workflows",
+          "Dedicated support"
+        ],
+        "button": "Get Started",
+        "featured": false
+      },
+      {
+        "name": "Organization",
+        "price": "$1,499",
+        "period": "/month",
+        "features": [
+          "Unlimited users",
+          "SSO & SAML",
+          "Audit logging",
+          "Custom SLA",
+          "Dedicated CSM"
+        ],
+        "button": "Contact Sales",
+        "featured": true
+      },
+      {
+        "name": "Global",
+        "price": "Custom",
+        "period": "",
+        "features": [
+          "Multi-region deployment",
+          "On-premise option",
+          "Custom contracts",
+          "Executive support",
+          "Professional services"
+        ],
+        "button": "Talk to Us",
+        "featured": false
+      }
+    ]
+  },
   "shadcn2fluid_pricing-faq": {
     "_type": "list",
     "header": "Pricing FAQ",
@@ -3060,6 +3418,97 @@
       {
         "title": "Do you offer annual billing?",
         "description": "Yes, annual billing saves you 20% compared to monthly."
+      }
+    ]
+  },
+  "shadcn2fluid_pricing-four-tier": {
+    "_type": "pricing",
+    "header": "Plans for Every Stage",
+    "description": "From solo founders to enterprise teams, we have a plan that fits.",
+    "plans": [
+      {
+        "name": "Solo",
+        "price": "$9",
+        "period": "/month",
+        "features": [
+          "1 user",
+          "3 projects",
+          "Basic features",
+          "Community support"
+        ],
+        "button": "Start Solo",
+        "featured": false
+      },
+      {
+        "name": "Team",
+        "price": "$25",
+        "period": "/user/month",
+        "features": [
+          "Up to 20 users",
+          "Unlimited projects",
+          "Advanced features",
+          "Email support"
+        ],
+        "button": "Start Team",
+        "featured": true
+      },
+      {
+        "name": "Business",
+        "price": "$59",
+        "period": "/user/month",
+        "features": [
+          "Unlimited users",
+          "Admin controls",
+          "Analytics suite",
+          "Priority support"
+        ],
+        "button": "Start Business",
+        "featured": false
+      }
+    ]
+  },
+  "shadcn2fluid_pricing-simple": {
+    "_type": "pricing",
+    "header": "One Simple Price",
+    "description": "No tiers, no confusion. Everything included for one flat rate.",
+    "plans": [
+      {
+        "name": "Free",
+        "price": "$0",
+        "period": "/month",
+        "features": [
+          "Up to 3 users",
+          "1 project",
+          "Basic features"
+        ],
+        "button": "Get Free",
+        "featured": false
+      },
+      {
+        "name": "All-In-One",
+        "price": "$49",
+        "period": "/user/month",
+        "features": [
+          "Unlimited everything",
+          "All features included",
+          "Priority support",
+          "Custom domain",
+          "API access"
+        ],
+        "button": "Get All-In-One",
+        "featured": true
+      },
+      {
+        "name": "Enterprise",
+        "price": "Custom",
+        "period": "",
+        "features": [
+          "Volume discounts",
+          "Dedicated infrastructure",
+          "Custom SLA"
+        ],
+        "button": "Contact Sales",
+        "featured": false
       }
     ]
   },
@@ -3102,6 +3551,54 @@
           "Dedicated CSM"
         ],
         "button": "Select",
+        "featured": false
+      }
+    ]
+  },
+  "shadcn2fluid_pricing-three-tier": {
+    "_type": "pricing",
+    "header": "Pick Your Plan",
+    "description": "All plans include a 14-day free trial. Cancel anytime.",
+    "plans": [
+      {
+        "name": "Lite",
+        "price": "$19",
+        "period": "/month",
+        "features": [
+          "5 team members",
+          "10 projects",
+          "2 GB storage",
+          "Email support"
+        ],
+        "button": "Try Lite",
+        "featured": false
+      },
+      {
+        "name": "Pro",
+        "price": "$49",
+        "period": "/month",
+        "features": [
+          "25 team members",
+          "Unlimited projects",
+          "25 GB storage",
+          "Priority support",
+          "Advanced analytics"
+        ],
+        "button": "Try Pro",
+        "featured": true
+      },
+      {
+        "name": "Max",
+        "price": "$99",
+        "period": "/month",
+        "features": [
+          "Unlimited team members",
+          "Unlimited storage",
+          "SSO integration",
+          "Dedicated support",
+          "Custom branding"
+        ],
+        "button": "Try Max",
         "featured": false
       }
     ]
@@ -3152,12 +3649,271 @@
       }
     ]
   },
+  "shadcn2fluid_pricing-two-tier": {
+    "_type": "pricing",
+    "header": "Simple Pricing",
+    "description": "Two straightforward options. No hidden costs.",
+    "plans": [
+      {
+        "name": "Standard",
+        "price": "$29",
+        "period": "/month",
+        "features": [
+          "Up to 15 users",
+          "All core features",
+          "10 GB storage",
+          "Standard support"
+        ],
+        "button": "Choose Standard",
+        "featured": false
+      },
+      {
+        "name": "Premium",
+        "price": "$79",
+        "period": "/month",
+        "features": [
+          "Unlimited users",
+          "All features",
+          "Unlimited storage",
+          "Priority support",
+          "API access"
+        ],
+        "button": "Choose Premium",
+        "featured": true
+      },
+      {
+        "name": "Custom",
+        "price": "Custom",
+        "period": "",
+        "features": [
+          "Enterprise features",
+          "Volume licensing",
+          "Dedicated support"
+        ],
+        "button": "Contact Us",
+        "featured": false
+      }
+    ]
+  },
+  "shadcn2fluid_pricing-usage": {
+    "_type": "pricing",
+    "header": "Pay As You Grow",
+    "description": "Usage-based pricing that scales with your business. Only pay for what you use.",
+    "plans": [
+      {
+        "name": "Starter",
+        "price": "$0.01",
+        "period": "/request",
+        "features": [
+          "First 10K requests free",
+          "Basic API access",
+          "Community support",
+          "Shared infrastructure"
+        ],
+        "button": "Start Free",
+        "featured": false
+      },
+      {
+        "name": "Growth",
+        "price": "$0.005",
+        "period": "/request",
+        "features": [
+          "Volume discounts",
+          "Premium API access",
+          "Priority support",
+          "Dedicated endpoints"
+        ],
+        "button": "Get Growth",
+        "featured": true
+      },
+      {
+        "name": "Enterprise",
+        "price": "Custom",
+        "period": "",
+        "features": [
+          "Custom rate limits",
+          "Committed use discounts",
+          "SLA guarantee",
+          "Dedicated infrastructure"
+        ],
+        "button": "Talk to Sales",
+        "featured": false
+      }
+    ]
+  },
+  "shadcn2fluid_pricing": {
+    "_type": "pricing",
+    "header": "Choose Your Plan",
+    "description": "Start free and scale as your team grows. No hidden fees.",
+    "plans": [
+      {
+        "name": "Starter",
+        "price": "$0",
+        "period": "/month",
+        "features": [
+          "Up to 5 users",
+          "3 projects",
+          "Basic analytics",
+          "Community support"
+        ],
+        "button": "Get Started Free",
+        "featured": false
+      },
+      {
+        "name": "Professional",
+        "price": "$29",
+        "period": "/user/month",
+        "features": [
+          "Unlimited users",
+          "Unlimited projects",
+          "Advanced analytics",
+          "Priority support",
+          "Custom integrations"
+        ],
+        "button": "Start Free Trial",
+        "featured": true
+      },
+      {
+        "name": "Enterprise",
+        "price": "Custom",
+        "period": "",
+        "features": [
+          "Everything in Professional",
+          "SSO / SAML",
+          "Dedicated account manager",
+          "Custom SLA",
+          "On-premise deployment"
+        ],
+        "button": "Contact Sales",
+        "featured": false
+      }
+    ]
+  },
+  "shadcn2fluid_privacy-notice": {
+    "_type": "footer",
+    "columns": [
+      {
+        "title": "Privacy Notice",
+        "links": [
+          "Data Collection Practices",
+          "Third-Party Sharing",
+          "Your Rights Under GDPR",
+          "California Privacy Rights (CCPA)"
+        ]
+      },
+      {
+        "title": "Data Protection",
+        "links": [
+          "Data Processing Agreement",
+          "Sub-Processor List",
+          "Data Retention Policy"
+        ]
+      }
+    ],
+    "copyright": "Last updated: March 2026. For privacy inquiries, contact privacy@acmeplatform.com."
+  },
   "shadcn2fluid_product-card": {
     "_type": "card",
     "header": "FlowCI Pro",
     "description": "Advanced CI/CD with parallel builds, smart caching, and deployment previews. Built for teams that ship daily.",
     "icon": "📦",
     "primaryButton": "Buy Now — $49/mo"
+  },
+  "shadcn2fluid_product-comparison": {
+    "_type": "table",
+    "header": "How We Compare",
+    "headers": [
+      "Capability",
+      "Acme Platform",
+      "Competitor A",
+      "Competitor B"
+    ],
+    "rows": [
+      {
+        "Capability": "Real-Time Collaboration",
+        "Acme Platform": "Yes",
+        "Competitor A": "Limited",
+        "Competitor B": "No"
+      },
+      {
+        "Capability": "Custom Automations",
+        "Acme Platform": "Unlimited",
+        "Competitor A": "10/month",
+        "Competitor B": "5/month"
+      },
+      {
+        "Capability": "API Access",
+        "Acme Platform": "Full REST & GraphQL",
+        "Competitor A": "REST only",
+        "Competitor B": "Limited"
+      },
+      {
+        "Capability": "Uptime SLA",
+        "Acme Platform": "99.99%",
+        "Competitor A": "99.9%",
+        "Competitor B": "99.5%"
+      },
+      {
+        "Capability": "Free Tier",
+        "Acme Platform": "Yes, 5 users",
+        "Competitor A": "No",
+        "Competitor B": "Yes, 2 users"
+      }
+    ]
+  },
+  "shadcn2fluid_product-feature": {
+    "_type": "pricing",
+    "header": "Product Editions",
+    "description": "Choose the edition that matches your team's needs.",
+    "plans": [
+      {
+        "name": "Standard Edition",
+        "price": "$35",
+        "period": "/user/month",
+        "features": [
+          "Core platform",
+          "Basic analytics",
+          "Standard integrations",
+          "Email support"
+        ],
+        "button": "Get Standard",
+        "featured": false
+      },
+      {
+        "name": "Professional Edition",
+        "price": "$65",
+        "period": "/user/month",
+        "features": [
+          "Everything in Standard",
+          "Advanced analytics",
+          "Custom integrations",
+          "Priority support",
+          "Admin console"
+        ],
+        "button": "Get Professional",
+        "featured": true
+      },
+      {
+        "name": "Enterprise Edition",
+        "price": "$120",
+        "period": "/user/month",
+        "features": [
+          "Everything in Professional",
+          "SSO & SCIM",
+          "Audit logs",
+          "Dedicated CSM",
+          "Custom SLA"
+        ],
+        "button": "Contact Sales",
+        "featured": false
+      }
+    ]
+  },
+  "shadcn2fluid_product-gallery": {
+    "_type": "section",
+    "header": "Product Screenshots",
+    "description": "Take a closer look at the tools and interfaces your team will use daily.",
+    "content": "Our product gallery showcases the main dashboard, workflow builder, analytics suite, team management console, and mobile companion app. Each view is designed for clarity and speed, ensuring your team can find what they need without training."
   },
   "shadcn2fluid_product-grid": {
     "_type": "grid",
@@ -3201,6 +3957,40 @@
     "role": "DevOps Lead",
     "company": "PixelForge",
     "rating": 5
+  },
+  "shadcn2fluid_product-specs": {
+    "_type": "table",
+    "header": "Technical Specifications",
+    "headers": [
+      "Specification",
+      "Details"
+    ],
+    "rows": [
+      {
+        "Specification": "API Protocol",
+        "Details": "REST & GraphQL"
+      },
+      {
+        "Specification": "Authentication",
+        "Details": "OAuth 2.0, API Keys, SAML 2.0"
+      },
+      {
+        "Specification": "Rate Limits",
+        "Details": "10,000 requests/hour (Pro), Custom (Enterprise)"
+      },
+      {
+        "Specification": "Data Encryption",
+        "Details": "AES-256 at rest, TLS 1.3 in transit"
+      },
+      {
+        "Specification": "Uptime SLA",
+        "Details": "99.99% for Enterprise plans"
+      },
+      {
+        "Specification": "Data Centers",
+        "Details": "US-East, US-West, EU-West, AP-Southeast"
+      }
+    ]
   },
   "shadcn2fluid_quote": {
     "_type": "testimonial",

@@ -1,0 +1,25 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:argument name="groupId" type="string" description="HTML id for the group section"/>
+<f:argument name="groupTitle" type="string" description="Display title for the group"/>
+<f:argument name="elements" type="array" description="Content elements with name and ctype keys"/>
+
+<section class="desiderio-styleguide__group" id="{groupId}">
+    <h2 class="desiderio-styleguide__group-title">
+        {groupTitle}
+        <span class="desiderio-styleguide__group-count">{elements -> f:count()}</span>
+    </h2>
+    <div class="desiderio-styleguide__element-list">
+        <f:for each="{elements}" as="element">
+            <div class="desiderio-styleguide__element-card">
+                <p class="desiderio-styleguide__element-name">{element.name}</p>
+                <p class="desiderio-styleguide__element-ctype">{element.ctype}</p>
+            </div>
+        </f:for>
+    </div>
+</section>
+
+</html>

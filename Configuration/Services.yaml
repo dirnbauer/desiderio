@@ -1,0 +1,15 @@
+services:
+  _defaults:
+    autowire: true
+    autoconfigure: true
+    public: false
+
+  Webconsulting\Desiderio\:
+    resource: '../Classes/*'
+    exclude:
+      - '../Classes/ViewHelpers/*'
+
+  Webconsulting\Desiderio\ViewHelpers\:
+    resource: '../Classes/ViewHelpers/*'
+    tags:
+      - name: fluid.viewhelper

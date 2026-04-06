@@ -6,7 +6,14 @@
 <f:layout name="Content/Default"/>
 
 <f:section name="Main">
-    <f:render.text record="{record}" field="bodytext"/>
+    <f:switch expression="{record.mainType}">
+        <f:case value="tx_news_domain_model_news">
+            <f:render.text record="{record}" field="body"/>
+        </f:case>
+        <f:defaultCase>
+            <f:render.text record="{record}" field="bodytext"/>
+        </f:defaultCase>
+    </f:switch>
 </f:section>
 
 </html>

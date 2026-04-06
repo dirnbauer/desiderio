@@ -3992,6 +3992,24 @@
       }
     ]
   },
+  "shadcn2fluid_progress-bar": {
+    "_type": "stats",
+    "header": "Project Progress",
+    "stats": [
+      {
+        "value": "78%",
+        "label": "Sprint Completion"
+      },
+      {
+        "value": "45/52",
+        "label": "Tasks Done"
+      },
+      {
+        "value": "3 days",
+        "label": "Until Deadline"
+      }
+    ]
+  },
   "shadcn2fluid_quote": {
     "_type": "testimonial",
     "quote": "Switching to this platform cut our deployment time by 60%. The developer experience is unmatched.",
@@ -4022,6 +4040,33 @@
       }
     ]
   },
+  "shadcn2fluid_resource-library": {
+    "_type": "grid",
+    "header": "Resource Library",
+    "description": "Guides, templates, and best practices to help you succeed.",
+    "items": [
+      {
+        "icon": "📘",
+        "title": "Getting Started Guide",
+        "description": "A comprehensive walkthrough for new users covering setup, configuration, and first workflows."
+      },
+      {
+        "icon": "📝",
+        "title": "Best Practices Handbook",
+        "description": "Proven strategies from our top-performing customers for maximizing platform value."
+      },
+      {
+        "icon": "📄",
+        "title": "Template Library",
+        "description": "Pre-built workflow templates for sales, marketing, engineering, and HR teams."
+      },
+      {
+        "icon": "🎥",
+        "title": "Video Tutorials",
+        "description": "Step-by-step video guides covering every feature of the platform."
+      }
+    ]
+  },
   "shadcn2fluid_review-carousel": {
     "_type": "testimonial",
     "quote": "We evaluated 12 platforms before choosing this one. The developer experience is years ahead of the competition.",
@@ -4029,6 +4074,18 @@
     "role": "Head of Platform Engineering",
     "company": "Nextera Systems",
     "rating": 5
+  },
+  "shadcn2fluid_search-header": {
+    "_type": "nav",
+    "logo": "Acme Help Center",
+    "links": [
+      "Getting Started",
+      "Account & Billing",
+      "Integrations",
+      "API",
+      "Community"
+    ],
+    "primaryButton": "Search"
   },
   "shadcn2fluid_sitemap-grid": {
     "_type": "grid",
@@ -4057,6 +4114,102 @@
       }
     ]
   },
+  "shadcn2fluid_social-links": {
+    "_type": "footer",
+    "columns": [
+      {
+        "title": "Follow Us",
+        "links": [
+          "Twitter / X",
+          "LinkedIn",
+          "GitHub",
+          "YouTube",
+          "Discord"
+        ]
+      }
+    ],
+    "copyright": "Stay connected with the Acme Platform community."
+  },
+  "shadcn2fluid_social-proof-counter": {
+    "_type": "stats",
+    "header": "Loved by Teams Everywhere",
+    "stats": [
+      {
+        "value": "4.9/5",
+        "label": "Average Rating on G2"
+      },
+      {
+        "value": "2,800+",
+        "label": "5-Star Reviews"
+      },
+      {
+        "value": "#1",
+        "label": "Leader in Workflow Automation"
+      },
+      {
+        "value": "50K+",
+        "label": "Happy Users"
+      }
+    ]
+  },
+  "shadcn2fluid_special-offer": {
+    "_type": "form",
+    "header": "Limited Time Offer: 30% Off Annual Plans",
+    "description": "Lock in our best price before it expires. Offer valid through April 30, 2026.",
+    "fields": [
+      {
+        "label": "Work Email",
+        "type": "email",
+        "placeholder": "you@company.com"
+      },
+      {
+        "label": "Company Size",
+        "type": "select",
+        "placeholder": "Select your team size"
+      }
+    ],
+    "primaryButton": "Claim Your Discount"
+  },
+  "shadcn2fluid_stat-cards": {
+    "_type": "stats",
+    "header": "Platform Highlights",
+    "stats": [
+      {
+        "value": "10B+",
+        "label": "Events Processed"
+      },
+      {
+        "value": "200+",
+        "label": "Edge Locations"
+      },
+      {
+        "value": "< 30ms",
+        "label": "P99 Latency"
+      },
+      {
+        "value": "99.995%",
+        "label": "Historical Uptime"
+      }
+    ]
+  },
+  "shadcn2fluid_stats-bar": {
+    "_type": "stats",
+    "header": "Weekly Performance",
+    "stats": [
+      {
+        "value": "1,842",
+        "label": "Deployments"
+      },
+      {
+        "value": "326",
+        "label": "Pull Requests Merged"
+      },
+      {
+        "value": "97%",
+        "label": "Build Success Rate"
+      }
+    ]
+  },
   "shadcn2fluid_stats-counter": {
     "_type": "stats",
     "header": "Platform Metrics",
@@ -4074,6 +4227,110 @@
         "label": "p95 Latency"
       }
     ]
+  },
+  "shadcn2fluid_stats-inline": {
+    "_type": "stats",
+    "header": "Quick Stats",
+    "stats": [
+      {
+        "value": "3x",
+        "label": "Faster Onboarding"
+      },
+      {
+        "value": "60%",
+        "label": "Less Manual Work"
+      },
+      {
+        "value": "2.5x",
+        "label": "ROI in First Year"
+      }
+    ]
+  },
+  "shadcn2fluid_stats": {
+    "_type": "stats",
+    "header": "Our Impact in Numbers",
+    "stats": [
+      {
+        "value": "5,000+",
+        "label": "Companies Served"
+      },
+      {
+        "value": "120M",
+        "label": "Tasks Automated"
+      },
+      {
+        "value": "8.5M",
+        "label": "Hours Saved"
+      },
+      {
+        "value": "99.99%",
+        "label": "Platform Uptime"
+      }
+    ]
+  },
+  "shadcn2fluid_status-indicator": {
+    "_type": "stats",
+    "header": "System Status",
+    "stats": [
+      {
+        "value": "Operational",
+        "label": "API Gateway"
+      },
+      {
+        "value": "Operational",
+        "label": "Web Application"
+      },
+      {
+        "value": "Operational",
+        "label": "Database Cluster"
+      },
+      {
+        "value": "Degraded",
+        "label": "Webhook Delivery"
+      }
+    ]
+  },
+  "shadcn2fluid_table-content": {
+    "_type": "table",
+    "header": "Subscription Overview",
+    "headers": [
+      "Plan",
+      "Users",
+      "Storage",
+      "Price"
+    ],
+    "rows": [
+      {
+        "Plan": "Free",
+        "Users": "3",
+        "Storage": "500 MB",
+        "Price": "$0/mo"
+      },
+      {
+        "Plan": "Pro",
+        "Users": "25",
+        "Storage": "25 GB",
+        "Price": "$29/mo"
+      },
+      {
+        "Plan": "Business",
+        "Users": "100",
+        "Storage": "250 GB",
+        "Price": "$79/mo"
+      },
+      {
+        "Plan": "Enterprise",
+        "Users": "Unlimited",
+        "Storage": "Unlimited",
+        "Price": "Custom"
+      }
+    ]
+  },
+  "shadcn2fluid_tabs": {
+    "_type": "section",
+    "header": "Explore by Use Case",
+    "description": "See how different teams use our platform to achieve their goals.",
+    "content": "Whether you are in engineering, marketing, sales, or operations, our platform adapts to your workflow. Switch between use cases to see relevant features, integrations, and customer stories tailored to your role."
   },
   "shadcn2fluid_team-carousel": {
     "_type": "team",
@@ -4094,6 +4351,48 @@
       {
         "name": "Liam O'Brien",
         "role": "DevRel Engineer"
+      }
+    ]
+  },
+  "shadcn2fluid_team-cta": {
+    "_type": "team",
+    "header": "Join Our Growing Team",
+    "description": "We are hiring across engineering, design, and go-to-market. Help us shape the future of work.",
+    "members": [
+      {
+        "name": "Engineering",
+        "role": "12 open positions"
+      },
+      {
+        "name": "Design",
+        "role": "4 open positions"
+      },
+      {
+        "name": "Sales & Marketing",
+        "role": "8 open positions"
+      }
+    ]
+  },
+  "shadcn2fluid_team-department": {
+    "_type": "team",
+    "header": "Engineering Leadership",
+    "description": "Our engineering team builds the infrastructure that powers thousands of businesses.",
+    "members": [
+      {
+        "name": "Sarah Chen",
+        "role": "Chief Technology Officer"
+      },
+      {
+        "name": "David Kim",
+        "role": "VP of Platform Engineering"
+      },
+      {
+        "name": "Maria Santos",
+        "role": "Director of Infrastructure"
+      },
+      {
+        "name": "Tom Anderson",
+        "role": "Director of Security"
       }
     ]
   },
@@ -4122,12 +4421,89 @@
     "icon": "👤",
     "primaryButton": "View Profile"
   },
+  "shadcn2fluid_team-with-bio": {
+    "_type": "team",
+    "header": "Leadership Team",
+    "description": "Experienced leaders driving our vision forward.",
+    "members": [
+      {
+        "name": "Alex Rivera",
+        "role": "CEO - Previously VP Product at Stripe"
+      },
+      {
+        "name": "Sarah Chen",
+        "role": "CTO - Former Principal Engineer at Google"
+      },
+      {
+        "name": "Jordan Blake",
+        "role": "CFO - Former Finance Director at Shopify"
+      },
+      {
+        "name": "Nina Williams",
+        "role": "CPO - Former Head of Design at Figma"
+      }
+    ]
+  },
+  "shadcn2fluid_team": {
+    "_type": "team",
+    "header": "Meet Our Team",
+    "description": "The people behind the platform, united by a passion for building great software.",
+    "members": [
+      {
+        "name": "Alex Rivera",
+        "role": "CEO & Co-Founder"
+      },
+      {
+        "name": "Sarah Chen",
+        "role": "CTO & Co-Founder"
+      },
+      {
+        "name": "Marcus Johnson",
+        "role": "VP of Engineering"
+      },
+      {
+        "name": "Lisa Park",
+        "role": "VP of Product"
+      }
+    ]
+  },
+  "shadcn2fluid_terms-summary": {
+    "_type": "footer",
+    "columns": [
+      {
+        "title": "Terms of Service Summary",
+        "links": [
+          "Acceptable Use Policy",
+          "Service Level Agreement",
+          "Data Processing Agreement",
+          "Refund Policy"
+        ]
+      },
+      {
+        "title": "Additional Terms",
+        "links": [
+          "API Terms of Use",
+          "Beta Program Agreement",
+          "Reseller Agreement"
+        ]
+      }
+    ],
+    "copyright": "By using our services, you agree to these terms. Last updated: February 2026."
+  },
   "shadcn2fluid_testimonial-carousel": {
     "_type": "testimonial",
     "quote": "The migration was seamless. Their team handled everything and we had zero downtime during the switch.",
     "author": "Thomas Mueller",
     "role": "SRE Manager",
     "company": "AutoScale GmbH",
+    "rating": 5
+  },
+  "shadcn2fluid_testimonial-featured": {
+    "_type": "testimonial",
+    "quote": "Switching to Acme Platform was the best decision we made this year. Our team's productivity increased by 40% in the first month, and we eliminated three other tools from our stack entirely.",
+    "author": "Michael Torres",
+    "role": "VP of Operations",
+    "company": "ScaleUp Technologies",
     "rating": 5
   },
   "shadcn2fluid_testimonial-grid": {
@@ -4156,6 +4532,14 @@
         "description": "Scaled from 0 to 1M users without a hitch."
       }
     ]
+  },
+  "shadcn2fluid_testimonial-video": {
+    "_type": "testimonial",
+    "quote": "We recorded this testimonial because we genuinely wanted others to know how transformative this platform has been. Our customer onboarding time dropped from 2 weeks to 3 days.",
+    "author": "Rachel Nguyen",
+    "role": "Head of Customer Success",
+    "company": "DataBridge Solutions",
+    "rating": 5
   },
   "shadcn2fluid_testimonial-wall": {
     "_type": "grid",
@@ -4191,6 +4575,12 @@
     "role": "Director of Engineering",
     "company": "DataBridge AI",
     "rating": 5
+  },
+  "shadcn2fluid_textmedia": {
+    "_type": "section",
+    "header": "Why Leading Teams Trust Us",
+    "description": "Our platform combines the power of enterprise software with the simplicity of consumer apps.",
+    "content": "Built on a modern cloud-native architecture, our platform delivers sub-second response times at any scale. With features like real-time collaboration, intelligent automation, and deep integrations, teams can focus on strategy instead of process management."
   },
   "shadcn2fluid_timeline": {
     "_type": "list",
@@ -4242,11 +4632,57 @@
       }
     ]
   },
+  "shadcn2fluid_use-case-grid": {
+    "_type": "grid",
+    "header": "Use Cases",
+    "description": "See how teams use our platform across industries.",
+    "items": [
+      {
+        "icon": "🏥",
+        "title": "Healthcare",
+        "description": "HIPAA-compliant patient data management."
+      },
+      {
+        "icon": "🏦",
+        "title": "Finance",
+        "description": "Real-time fraud detection and compliance."
+      },
+      {
+        "icon": "🎓",
+        "title": "Education",
+        "description": "Scalable learning management for institutions."
+      }
+    ]
+  },
+  "shadcn2fluid_utility-bar": {
+    "_type": "nav",
+    "logo": "Acme",
+    "links": [
+      "Help",
+      "Status",
+      "Blog",
+      "API"
+    ],
+    "primaryButton": "Dashboard"
+  },
   "shadcn2fluid_video-embed": {
     "_type": "card",
     "header": "Product Demo",
     "description": "Watch a 3-minute walkthrough of our core features and see how teams use the platform daily.",
     "icon": "▶️",
     "primaryButton": "Watch Now"
+  },
+  "shadcn2fluid_waitlist-signup": {
+    "_type": "form",
+    "header": "Join the Waitlist",
+    "description": "Be the first to know when we launch.",
+    "fields": [
+      {
+        "label": "Email",
+        "type": "email",
+        "placeholder": "you@example.com"
+      }
+    ],
+    "primaryButton": "Join Waitlist"
   }
 }

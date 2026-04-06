@@ -354,6 +354,49 @@
       }
     ]
   },
+  "shadcn2fluid_callback-request": {
+    "_type": "form",
+    "header": "Request a Callback",
+    "description": "Leave your details and our team will call you back within 2 hours.",
+    "fields": [
+      {
+        "label": "Your Name",
+        "type": "text",
+        "placeholder": "John Doe"
+      },
+      {
+        "label": "Phone Number",
+        "type": "tel",
+        "placeholder": "+1 (555) 123-4567"
+      },
+      {
+        "label": "Preferred Time",
+        "type": "select",
+        "placeholder": "Select a time slot"
+      }
+    ],
+    "primaryButton": "Request Callback"
+  },
+  "shadcn2fluid_callout": {
+    "_type": "section",
+    "header": "Important Update",
+    "description": "Our platform will undergo scheduled maintenance on April 15th from 2:00 AM to 6:00 AM UTC.",
+    "content": "During this window, all services will remain operational but you may experience brief intermittent delays. No action is required on your part."
+  },
+  "shadcn2fluid_card-interactive": {
+    "_type": "card",
+    "header": "Project Management",
+    "description": "Track tasks, milestones, and deliverables with our intuitive kanban boards and Gantt charts.",
+    "icon": "📋",
+    "primaryButton": "Try It Free"
+  },
+  "shadcn2fluid_card-overlay": {
+    "_type": "card",
+    "header": "AI-Powered Insights",
+    "description": "Leverage machine learning to uncover hidden patterns in your data and predict future trends.",
+    "icon": "🧠",
+    "primaryButton": "Explore AI Features"
+  },
   "shadcn2fluid_card-pricing": {
     "_type": "pricing",
     "header": "Simple, Transparent Pricing",
@@ -407,6 +450,42 @@
     "icon": "📋",
     "primaryButton": "Use Template"
   },
+  "shadcn2fluid_career-listing": {
+    "_type": "list",
+    "header": "Open Positions",
+    "description": "Join our team and help build the future of enterprise software.",
+    "items": [
+      {
+        "title": "Senior Full-Stack Engineer",
+        "description": "Remote - Build and scale our core platform using TypeScript, React, and Node.js."
+      },
+      {
+        "title": "Product Designer",
+        "description": "San Francisco - Design intuitive experiences for complex enterprise workflows."
+      },
+      {
+        "title": "DevOps Engineer",
+        "description": "Remote - Own our cloud infrastructure and CI/CD pipelines on AWS and Kubernetes."
+      },
+      {
+        "title": "Customer Success Manager",
+        "description": "New York - Partner with enterprise clients to drive adoption and retention."
+      }
+    ]
+  },
+  "shadcn2fluid_case-study-card": {
+    "_type": "card",
+    "header": "How Acme Corp Reduced Onboarding Time by 60%",
+    "description": "Learn how Acme Corp streamlined their employee onboarding process using our automation workflows and integration platform.",
+    "icon": "🏆",
+    "primaryButton": "Read Case Study"
+  },
+  "shadcn2fluid_case-study-featured": {
+    "_type": "section",
+    "header": "Featured Case Study: TechNova Inc.",
+    "description": "How TechNova scaled from 50 to 5,000 users without adding headcount to their ops team.",
+    "content": "By implementing our platform, TechNova automated 85% of their manual reporting processes, reduced operational costs by $2.4M annually, and improved customer satisfaction scores by 40%. Their team now focuses on strategic initiatives rather than repetitive tasks."
+  },
   "shadcn2fluid_case-study-grid": {
     "_type": "grid",
     "header": "Customer Success Stories",
@@ -426,6 +505,33 @@
         "icon": "🎓",
         "title": "EduPlatform",
         "description": "Scaled to 1M students with zero downtime."
+      }
+    ]
+  },
+  "shadcn2fluid_category-cards": {
+    "_type": "grid",
+    "header": "Explore by Category",
+    "description": "Find the right solution for your specific needs.",
+    "items": [
+      {
+        "icon": "💼",
+        "title": "Sales & Marketing",
+        "description": "CRM, email campaigns, lead scoring, and pipeline management tools."
+      },
+      {
+        "icon": "⚙️",
+        "title": "Engineering",
+        "description": "CI/CD, code review, incident management, and infrastructure monitoring."
+      },
+      {
+        "icon": "💰",
+        "title": "Finance",
+        "description": "Invoicing, expense tracking, budgeting, and financial reporting."
+      },
+      {
+        "icon": "👥",
+        "title": "Human Resources",
+        "description": "Recruiting, onboarding, performance reviews, and employee engagement."
       }
     ]
   },
@@ -475,6 +581,24 @@
       }
     ]
   },
+  "shadcn2fluid_chart-area": {
+    "_type": "stats",
+    "header": "Revenue Growth",
+    "stats": [
+      {
+        "value": "$8.2M",
+        "label": "Q1 Revenue"
+      },
+      {
+        "value": "$12.5M",
+        "label": "Q2 Revenue"
+      },
+      {
+        "value": "52%",
+        "label": "Quarter-over-Quarter Growth"
+      }
+    ]
+  },
   "shadcn2fluid_chart-bar": {
     "_type": "stats",
     "header": "Monthly Revenue Growth",
@@ -494,6 +618,28 @@
       {
         "value": "$2.1M",
         "label": "April"
+      }
+    ]
+  },
+  "shadcn2fluid_chart-donut": {
+    "_type": "stats",
+    "header": "Traffic Sources",
+    "stats": [
+      {
+        "value": "42%",
+        "label": "Organic Search"
+      },
+      {
+        "value": "28%",
+        "label": "Direct"
+      },
+      {
+        "value": "18%",
+        "label": "Referral"
+      },
+      {
+        "value": "12%",
+        "label": "Social Media"
       }
     ]
   },
@@ -541,6 +687,79 @@
       }
     ]
   },
+  "shadcn2fluid_chart": {
+    "_type": "stats",
+    "header": "Performance Metrics",
+    "stats": [
+      {
+        "value": "99.97%",
+        "label": "Uptime"
+      },
+      {
+        "value": "42ms",
+        "label": "Avg. Response Time"
+      },
+      {
+        "value": "1.2B",
+        "label": "Requests Processed"
+      }
+    ]
+  },
+  "shadcn2fluid_client-list": {
+    "_type": "grid",
+    "header": "Trusted by Industry Leaders",
+    "description": "Over 2,000 companies rely on our platform for their daily operations.",
+    "items": [
+      {
+        "icon": "🏢",
+        "title": "Fortune 500 Companies",
+        "description": "35+ Fortune 500 enterprises trust us with their critical workflows."
+      },
+      {
+        "icon": "🚀",
+        "title": "High-Growth Startups",
+        "description": "500+ funded startups choose our platform to scale rapidly."
+      },
+      {
+        "icon": "🌍",
+        "title": "Global Organizations",
+        "description": "Teams in 80+ countries collaborate daily using our tools."
+      }
+    ]
+  },
+  "shadcn2fluid_code-block": {
+    "_type": "section",
+    "header": "Quick Start",
+    "description": "Get up and running in under 5 minutes with our SDK.",
+    "content": "Install the package via npm, initialize the client with your API key, and start making requests. Full documentation and code examples are available in our developer portal."
+  },
+  "shadcn2fluid_company-culture": {
+    "_type": "grid",
+    "header": "Our Culture",
+    "description": "The values and principles that drive everything we do.",
+    "items": [
+      {
+        "icon": "🌱",
+        "title": "Growth Mindset",
+        "description": "We invest in learning and encourage experimentation at every level."
+      },
+      {
+        "icon": "🤝",
+        "title": "Radical Transparency",
+        "description": "Open communication and honest feedback are the foundation of our team."
+      },
+      {
+        "icon": "🎯",
+        "title": "Customer Obsession",
+        "description": "Every decision starts with understanding what our customers truly need."
+      },
+      {
+        "icon": "❤️",
+        "title": "Work-Life Harmony",
+        "description": "Flexible schedules, remote-first, and unlimited PTO because we trust our team."
+      }
+    ]
+  },
   "shadcn2fluid_company-history": {
     "_type": "list",
     "header": "Company History",
@@ -561,6 +780,147 @@
       {
         "title": "2025 — Today",
         "description": "50,000+ teams, 200 employees, SOC 2 and ISO 27001 certified."
+      }
+    ]
+  },
+  "shadcn2fluid_company-milestones": {
+    "_type": "list",
+    "header": "Company Milestones",
+    "description": "Key moments in our journey from idea to industry leader.",
+    "items": [
+      {
+        "title": "2019 - Founded",
+        "description": "Started with a team of 3 in a co-working space with a vision to simplify enterprise workflows."
+      },
+      {
+        "title": "2020 - Series A",
+        "description": "Raised $12M to expand our engineering team and launch our first enterprise product."
+      },
+      {
+        "title": "2022 - 1,000 Customers",
+        "description": "Crossed the 1,000 paying customer milestone with a Net Promoter Score of 72."
+      },
+      {
+        "title": "2024 - Global Expansion",
+        "description": "Opened offices in London and Singapore, serving customers in 40+ countries."
+      }
+    ]
+  },
+  "shadcn2fluid_company-perks": {
+    "_type": "grid",
+    "header": "Employee Benefits & Perks",
+    "description": "We take care of our team so they can do their best work.",
+    "items": [
+      {
+        "icon": "🏥",
+        "title": "Health & Wellness",
+        "description": "Comprehensive medical, dental, and vision insurance for you and your family."
+      },
+      {
+        "icon": "🌴",
+        "title": "Unlimited PTO",
+        "description": "Take the time you need to recharge. We trust you to manage your schedule."
+      },
+      {
+        "icon": "💻",
+        "title": "Equipment Budget",
+        "description": "$3,000 annual stipend for your home office setup and productivity tools."
+      },
+      {
+        "icon": "📚",
+        "title": "Learning & Development",
+        "description": "$2,000 yearly budget for conferences, courses, and professional growth."
+      }
+    ]
+  },
+  "shadcn2fluid_company-stats": {
+    "_type": "stats",
+    "header": "Company at a Glance",
+    "stats": [
+      {
+        "value": "2,500+",
+        "label": "Customers Worldwide"
+      },
+      {
+        "value": "180+",
+        "label": "Team Members"
+      },
+      {
+        "value": "$45M",
+        "label": "Total Funding Raised"
+      },
+      {
+        "value": "40+",
+        "label": "Countries Served"
+      }
+    ]
+  },
+  "shadcn2fluid_company-values": {
+    "_type": "grid",
+    "header": "Our Core Values",
+    "description": "The principles that guide our decisions and define who we are.",
+    "items": [
+      {
+        "icon": "💡",
+        "title": "Innovation First",
+        "description": "We challenge the status quo and continuously push boundaries."
+      },
+      {
+        "icon": "🌟",
+        "title": "Excellence",
+        "description": "We hold ourselves to the highest standards in everything we ship."
+      },
+      {
+        "icon": "🤲",
+        "title": "Integrity",
+        "description": "We do the right thing, even when no one is watching."
+      },
+      {
+        "icon": "💚",
+        "title": "Sustainability",
+        "description": "We build for the long term and consider our impact on the world."
+      }
+    ]
+  },
+  "shadcn2fluid_compare": {
+    "_type": "table",
+    "header": "Product Comparison",
+    "headers": [
+      "Feature",
+      "Basic",
+      "Professional",
+      "Enterprise"
+    ],
+    "rows": [
+      {
+        "Feature": "Users",
+        "Basic": "5",
+        "Professional": "25",
+        "Enterprise": "Unlimited"
+      },
+      {
+        "Feature": "Storage",
+        "Basic": "1 GB",
+        "Professional": "50 GB",
+        "Enterprise": "Unlimited"
+      },
+      {
+        "Feature": "API Access",
+        "Basic": "No",
+        "Professional": "Yes",
+        "Enterprise": "Yes"
+      },
+      {
+        "Feature": "SSO",
+        "Basic": "No",
+        "Professional": "No",
+        "Enterprise": "Yes"
+      },
+      {
+        "Feature": "Support",
+        "Basic": "Email",
+        "Professional": "Priority",
+        "Enterprise": "Dedicated"
       }
     ]
   },
@@ -599,6 +959,39 @@
         "Enterprise": "Yes"
       }
     ]
+  },
+  "shadcn2fluid_compliance-badges": {
+    "_type": "grid",
+    "header": "Compliance & Certifications",
+    "description": "We meet the highest standards for data security and regulatory compliance.",
+    "items": [
+      {
+        "icon": "🛡️",
+        "title": "SOC 2 Type II",
+        "description": "Independently audited security controls for service organizations."
+      },
+      {
+        "icon": "🇪🇺",
+        "title": "GDPR Compliant",
+        "description": "Full compliance with EU data protection regulations."
+      },
+      {
+        "icon": "🏥",
+        "title": "HIPAA Certified",
+        "description": "Meets healthcare industry data privacy and security requirements."
+      },
+      {
+        "icon": "🔐",
+        "title": "ISO 27001",
+        "description": "Certified information security management system."
+      }
+    ]
+  },
+  "shadcn2fluid_contact-info": {
+    "_type": "section",
+    "header": "Get in Touch",
+    "description": "We would love to hear from you. Reach out through any of the channels below.",
+    "content": "Email: hello@acmeplatform.com | Phone: +1 (555) 987-6543 | Address: 123 Innovation Drive, Suite 400, San Francisco, CA 94105. Our support team is available Monday through Friday, 9 AM to 6 PM PST."
   },
   "shadcn2fluid_contact-split": {
     "_type": "form",
@@ -695,6 +1088,106 @@
       }
     ]
   },
+  "shadcn2fluid_content-divider": {
+    "_type": "section",
+    "header": "Ready to Get Started?",
+    "description": "Join thousands of teams already using our platform to work smarter.",
+    "content": "Start your free 14-day trial today. No credit card required."
+  },
+  "shadcn2fluid_content-grid": {
+    "_type": "grid",
+    "header": "Resources & Guides",
+    "description": "Everything you need to get the most out of our platform.",
+    "items": [
+      {
+        "icon": "📖",
+        "title": "Documentation",
+        "description": "Comprehensive API reference and integration guides."
+      },
+      {
+        "icon": "🎓",
+        "title": "Tutorials",
+        "description": "Step-by-step walkthroughs for common use cases."
+      },
+      {
+        "icon": "📹",
+        "title": "Webinars",
+        "description": "Live sessions with our product team every Thursday."
+      },
+      {
+        "icon": "💬",
+        "title": "Community Forum",
+        "description": "Connect with other users and share best practices."
+      }
+    ]
+  },
+  "shadcn2fluid_content-highlight": {
+    "_type": "section",
+    "header": "Why Automation Matters",
+    "description": "Teams that automate their workflows see 3x productivity gains within the first quarter.",
+    "content": "Manual processes are the silent killer of productivity. Our platform identifies bottlenecks in your workflow and suggests automations that save your team hours every week. From approval chains to data synchronization, we handle the tedious work so you can focus on strategy."
+  },
+  "shadcn2fluid_content-sidebar": {
+    "_type": "section",
+    "header": "Product Overview",
+    "description": "A unified platform for teams that want to move faster without sacrificing quality.",
+    "content": "Our platform combines project management, analytics, and collaboration tools into a single workspace. With real-time dashboards, customizable workflows, and native integrations with your favorite tools, everything your team needs is in one place."
+  },
+  "shadcn2fluid_cookie-banner": {
+    "_type": "form",
+    "header": "Cookie Preferences",
+    "description": "We use cookies to enhance your browsing experience and analyze site traffic.",
+    "fields": [
+      {
+        "label": "Essential Cookies",
+        "type": "checkbox",
+        "placeholder": "Always active"
+      },
+      {
+        "label": "Analytics Cookies",
+        "type": "checkbox",
+        "placeholder": "Help us understand how visitors use our site"
+      },
+      {
+        "label": "Marketing Cookies",
+        "type": "checkbox",
+        "placeholder": "Used to deliver relevant advertisements"
+      }
+    ],
+    "primaryButton": "Save Preferences"
+  },
+  "shadcn2fluid_copyright-bar": {
+    "_type": "footer",
+    "columns": [
+      {
+        "title": "Legal",
+        "links": [
+          "Privacy Policy",
+          "Terms of Service",
+          "Cookie Policy"
+        ]
+      }
+    ],
+    "copyright": "© 2026 Acme Platform, Inc. All rights reserved."
+  },
+  "shadcn2fluid_counter": {
+    "_type": "stats",
+    "header": "By the Numbers",
+    "stats": [
+      {
+        "value": "5M+",
+        "label": "Tasks Completed"
+      },
+      {
+        "value": "150K",
+        "label": "Active Users"
+      },
+      {
+        "value": "99.9%",
+        "label": "Satisfaction Rate"
+      }
+    ]
+  },
   "shadcn2fluid_cta-banner": {
     "_type": "hero",
     "header": "Ready to Scale Your Business?",
@@ -702,6 +1195,38 @@
     "badge": "Get Started",
     "primaryButton": "Start Free Trial",
     "secondaryButton": "Talk to Sales"
+  },
+  "shadcn2fluid_cta-card": {
+    "_type": "hero",
+    "header": "Unlock Premium Features",
+    "description": "Upgrade to Pro and get advanced analytics, custom integrations, and priority support.",
+    "badge": "Most Popular",
+    "primaryButton": "Upgrade to Pro",
+    "secondaryButton": "Compare Plans"
+  },
+  "shadcn2fluid_cta-floating": {
+    "_type": "hero",
+    "header": "Need Help Getting Started?",
+    "description": "Chat with our team and get personalized guidance for your use case.",
+    "badge": "Live Support",
+    "primaryButton": "Chat Now",
+    "secondaryButton": "Browse FAQ"
+  },
+  "shadcn2fluid_cta-gradient": {
+    "_type": "hero",
+    "header": "Transform Your Workflow",
+    "description": "Join 10,000+ teams who shipped 2x faster after switching to our platform.",
+    "badge": "Trusted by Leaders",
+    "primaryButton": "Get Started Free",
+    "secondaryButton": "See Success Stories"
+  },
+  "shadcn2fluid_cta-inline": {
+    "_type": "hero",
+    "header": "Ready to Scale?",
+    "description": "Our enterprise plan grows with your team. From 10 to 10,000 users seamlessly.",
+    "badge": "Enterprise Ready",
+    "primaryButton": "Talk to Sales",
+    "secondaryButton": "View Pricing"
   },
   "shadcn2fluid_cta-minimal": {
     "_type": "hero",
@@ -726,6 +1251,14 @@
     "badge": "Customizable",
     "primaryButton": "Try Dashboard",
     "secondaryButton": "See Examples"
+  },
+  "shadcn2fluid_cta": {
+    "_type": "hero",
+    "header": "Start Building Today",
+    "description": "Get instant access to all features. No credit card required.",
+    "badge": "Limited Time Offer",
+    "primaryButton": "Start Free Trial",
+    "secondaryButton": "Watch Demo"
   },
   "shadcn2fluid_data-request-form": {
     "_type": "form",
@@ -781,6 +1314,92 @@
       }
     ]
   },
+  "shadcn2fluid_definition-list": {
+    "_type": "list",
+    "header": "Glossary of Terms",
+    "description": "Key concepts and definitions used throughout our platform.",
+    "items": [
+      {
+        "title": "Workspace",
+        "description": "A shared environment where team members collaborate on projects, manage tasks, and access shared resources."
+      },
+      {
+        "title": "Pipeline",
+        "description": "An automated sequence of stages that data or tasks flow through, from input to completion."
+      },
+      {
+        "title": "Webhook",
+        "description": "A user-defined callback that sends real-time notifications to external services when specific events occur."
+      },
+      {
+        "title": "Role-Based Access Control",
+        "description": "A security model that restricts system access based on the roles assigned to individual users."
+      }
+    ]
+  },
+  "shadcn2fluid_demo-request": {
+    "_type": "form",
+    "header": "Request a Live Demo",
+    "description": "See our platform in action with a personalized walkthrough from our product team.",
+    "fields": [
+      {
+        "label": "Work Email",
+        "type": "email",
+        "placeholder": "you@company.com"
+      },
+      {
+        "label": "Company Name",
+        "type": "text",
+        "placeholder": "Acme Inc."
+      },
+      {
+        "label": "Team Size",
+        "type": "select",
+        "placeholder": "Select team size"
+      },
+      {
+        "label": "What are you looking to solve?",
+        "type": "textarea",
+        "placeholder": "Tell us about your biggest challenges..."
+      }
+    ],
+    "primaryButton": "Schedule Demo"
+  },
+  "shadcn2fluid_directions": {
+    "_type": "section",
+    "header": "How to Find Us",
+    "description": "Visit our headquarters in the heart of San Francisco.",
+    "content": "Located at 123 Innovation Drive, Suite 400, San Francisco, CA 94105. We are two blocks from the Montgomery Street BART station. Visitor parking is available in the building garage. Our office hours are Monday through Friday, 9 AM to 6 PM PST."
+  },
+  "shadcn2fluid_download-form": {
+    "_type": "form",
+    "header": "Download Our Whitepaper",
+    "description": "Get the 2026 State of Enterprise Automation report with insights from 500+ CTOs.",
+    "fields": [
+      {
+        "label": "Full Name",
+        "type": "text",
+        "placeholder": "Sarah Johnson"
+      },
+      {
+        "label": "Work Email",
+        "type": "email",
+        "placeholder": "sarah@company.com"
+      },
+      {
+        "label": "Job Title",
+        "type": "text",
+        "placeholder": "VP of Engineering"
+      }
+    ],
+    "primaryButton": "Download Now"
+  },
+  "shadcn2fluid_emergency-contact": {
+    "_type": "section",
+    "header": "Emergency Support",
+    "description": "Critical issues require immediate attention. Our emergency response team is available 24/7.",
+    "content": "For production-critical incidents, call our emergency hotline at +1 (555) 911-0000 or email emergency@acmeplatform.com. Average response time for P1 incidents is under 15 minutes. For non-critical issues, please use our standard support channels."
+  },
   "shadcn2fluid_faq": {
     "_type": "list",
     "header": "Frequently Asked Questions",
@@ -801,6 +1420,29 @@
       {
         "title": "Is my data portable?",
         "description": "You can export all your data at any time in CSV, JSON, or XML formats."
+      }
+    ]
+  },
+  "shadcn2fluid_feature-accordion": {
+    "_type": "list",
+    "header": "Platform Features",
+    "description": "Explore the capabilities that make our platform stand out.",
+    "items": [
+      {
+        "title": "Real-Time Collaboration",
+        "description": "Multiple team members can edit documents, dashboards, and workflows simultaneously with instant sync."
+      },
+      {
+        "title": "Advanced Permissions",
+        "description": "Granular role-based access control lets you define exactly who can see, edit, or manage each resource."
+      },
+      {
+        "title": "Custom Automations",
+        "description": "Build trigger-based workflows with our visual builder. No coding required."
+      },
+      {
+        "title": "Audit Trail",
+        "description": "Complete history of every action taken in your workspace for compliance and accountability."
       }
     ]
   },
@@ -853,6 +1495,33 @@
       }
     ]
   },
+  "shadcn2fluid_feature-cards": {
+    "_type": "grid",
+    "header": "Powerful Features",
+    "description": "Everything you need to manage projects, track progress, and deliver results.",
+    "items": [
+      {
+        "icon": "📊",
+        "title": "Live Dashboards",
+        "description": "Customizable real-time dashboards that update as your data changes."
+      },
+      {
+        "icon": "🔄",
+        "title": "Workflow Automation",
+        "description": "Automate repetitive tasks with drag-and-drop workflow builders."
+      },
+      {
+        "icon": "🔗",
+        "title": "300+ Integrations",
+        "description": "Connect with Slack, Jira, Salesforce, and hundreds more tools."
+      },
+      {
+        "icon": "📱",
+        "title": "Mobile App",
+        "description": "Stay productive on the go with full-featured iOS and Android apps."
+      }
+    ]
+  },
   "shadcn2fluid_feature-carousel": {
     "_type": "grid",
     "header": "Explore Our Features",
@@ -880,6 +1549,29 @@
     "header": "One Platform, Infinite Possibilities",
     "description": "From startup to enterprise, our platform grows with your ambitions.",
     "content": "Replace your fragmented toolchain with a unified platform that handles project management, CI/CD, monitoring, and incident response in one place."
+  },
+  "shadcn2fluid_feature-checklist": {
+    "_type": "list",
+    "header": "What You Get",
+    "description": "A comprehensive toolkit for modern teams.",
+    "items": [
+      {
+        "title": "Unlimited Projects",
+        "description": "Create as many projects as you need without hitting any caps."
+      },
+      {
+        "title": "Custom Fields & Views",
+        "description": "Tailor your workspace with custom fields, filters, and saved views."
+      },
+      {
+        "title": "Time Tracking",
+        "description": "Built-in time tracking with automatic timesheets and reporting."
+      },
+      {
+        "title": "Version History",
+        "description": "Full version control for all documents with one-click restore."
+      }
+    ]
   },
   "shadcn2fluid_feature-comparison": {
     "_type": "table",
@@ -960,6 +1652,77 @@
       }
     ]
   },
+  "shadcn2fluid_feature-highlight": {
+    "_type": "grid",
+    "header": "Spotlight: Smart Scheduling",
+    "description": "Our AI-powered scheduling engine optimizes resource allocation across your entire organization.",
+    "items": [
+      {
+        "icon": "🧠",
+        "title": "AI Optimization",
+        "description": "Machine learning algorithms find the optimal schedule based on team capacity and priorities."
+      },
+      {
+        "icon": "⚠️",
+        "title": "Conflict Detection",
+        "description": "Automatically identifies scheduling conflicts and suggests resolutions."
+      },
+      {
+        "icon": "📅",
+        "title": "Calendar Sync",
+        "description": "Two-way sync with Google Calendar, Outlook, and Apple Calendar."
+      }
+    ]
+  },
+  "shadcn2fluid_feature-icons": {
+    "_type": "grid",
+    "header": "Built for Scale",
+    "description": "Infrastructure designed to handle enterprise-grade demands.",
+    "items": [
+      {
+        "icon": "☁️",
+        "title": "Cloud Native",
+        "description": "Runs on distributed infrastructure across multiple availability zones."
+      },
+      {
+        "icon": "🔒",
+        "title": "Zero Trust Security",
+        "description": "Every request is authenticated and authorized, no exceptions."
+      },
+      {
+        "icon": "📡",
+        "title": "Real-Time Sync",
+        "description": "Changes propagate instantly across all connected devices and users."
+      },
+      {
+        "icon": "🧱",
+        "title": "Modular Architecture",
+        "description": "Enable only the modules you need. Extend with custom plugins."
+      }
+    ]
+  },
+  "shadcn2fluid_feature-image": {
+    "_type": "grid",
+    "header": "Visual Reporting",
+    "description": "Turn raw data into beautiful, actionable visual reports.",
+    "items": [
+      {
+        "icon": "📈",
+        "title": "Interactive Charts",
+        "description": "Drill down into any metric with clickable, zoomable chart components."
+      },
+      {
+        "icon": "🎨",
+        "title": "Custom Branding",
+        "description": "Apply your brand colors, logos, and fonts to all exported reports."
+      },
+      {
+        "icon": "📧",
+        "title": "Scheduled Reports",
+        "description": "Automatically generate and email reports on a daily, weekly, or monthly cadence."
+      }
+    ]
+  },
   "shadcn2fluid_feature-list": {
     "_type": "list",
     "header": "Everything You Need",
@@ -976,6 +1739,70 @@
       {
         "title": "Edge Functions",
         "description": "Run serverless code at the edge for ultra-low latency."
+      }
+    ]
+  },
+  "shadcn2fluid_feature-matrix": {
+    "_type": "table",
+    "header": "Feature Availability by Plan",
+    "headers": [
+      "Feature",
+      "Starter",
+      "Growth",
+      "Enterprise"
+    ],
+    "rows": [
+      {
+        "Feature": "Custom Dashboards",
+        "Starter": "3",
+        "Growth": "Unlimited",
+        "Enterprise": "Unlimited"
+      },
+      {
+        "Feature": "Team Members",
+        "Starter": "5",
+        "Growth": "50",
+        "Enterprise": "Unlimited"
+      },
+      {
+        "Feature": "API Rate Limit",
+        "Starter": "1K/hr",
+        "Growth": "10K/hr",
+        "Enterprise": "100K/hr"
+      },
+      {
+        "Feature": "Data Retention",
+        "Starter": "30 days",
+        "Growth": "1 year",
+        "Enterprise": "Unlimited"
+      },
+      {
+        "Feature": "SSO / SAML",
+        "Starter": "No",
+        "Growth": "Yes",
+        "Enterprise": "Yes"
+      }
+    ]
+  },
+  "shadcn2fluid_feature-minimal": {
+    "_type": "grid",
+    "header": "Simple Yet Powerful",
+    "description": "Core features that make your team more productive from day one.",
+    "items": [
+      {
+        "icon": "✅",
+        "title": "Task Management",
+        "description": "Organize work with lists, boards, and timelines."
+      },
+      {
+        "icon": "💬",
+        "title": "Team Chat",
+        "description": "Built-in messaging with threads, mentions, and file sharing."
+      },
+      {
+        "icon": "📁",
+        "title": "File Storage",
+        "description": "Centralized document management with search and versioning."
       }
     ]
   },
@@ -1004,6 +1831,28 @@
     "description": "Every deployment is backed by automated rollbacks and health checks.",
     "content": "Our platform monitors your application after every deploy. If error rates spike, we automatically roll back to the last stable version."
   },
+  "shadcn2fluid_feature-stats": {
+    "_type": "stats",
+    "header": "Features That Deliver Results",
+    "stats": [
+      {
+        "value": "300+",
+        "label": "Native Integrations"
+      },
+      {
+        "value": "50M+",
+        "label": "Automations Run Monthly"
+      },
+      {
+        "value": "99.99%",
+        "label": "Platform Uptime"
+      },
+      {
+        "value": "< 50ms",
+        "label": "Average Latency"
+      }
+    ]
+  },
   "shadcn2fluid_feature-tabs": {
     "_type": "list",
     "header": "Platform Capabilities",
@@ -1020,6 +1869,74 @@
       {
         "title": "Secure & Comply",
         "description": "Vulnerability scanning, secrets management, and audit logging."
+      }
+    ]
+  },
+  "shadcn2fluid_feature-timeline": {
+    "_type": "list",
+    "header": "Product Roadmap",
+    "description": "See what we have planned for the coming quarters.",
+    "items": [
+      {
+        "title": "Q2 2026 - AI Copilot",
+        "description": "An AI assistant that helps you write reports, analyze data, and build automations using natural language."
+      },
+      {
+        "title": "Q3 2026 - Advanced Analytics",
+        "description": "Predictive analytics engine with anomaly detection and trend forecasting capabilities."
+      },
+      {
+        "title": "Q4 2026 - Marketplace",
+        "description": "A curated marketplace for community-built templates, integrations, and workflow automations."
+      }
+    ]
+  },
+  "shadcn2fluid_feature-video": {
+    "_type": "grid",
+    "header": "See It in Action",
+    "description": "Watch how teams use our platform to streamline their operations.",
+    "items": [
+      {
+        "icon": "🎬",
+        "title": "Product Tour",
+        "description": "A 3-minute overview of the key features and how they work together."
+      },
+      {
+        "icon": "🛠️",
+        "title": "Setup Walkthrough",
+        "description": "Step-by-step guide to configuring your workspace in under 10 minutes."
+      },
+      {
+        "icon": "💡",
+        "title": "Advanced Tips",
+        "description": "Power-user techniques to get the most out of automations and reports."
+      }
+    ]
+  },
+  "shadcn2fluid_features": {
+    "_type": "grid",
+    "header": "All Features",
+    "description": "A complete suite of tools designed for modern teams.",
+    "items": [
+      {
+        "icon": "📩",
+        "title": "Smart Notifications",
+        "description": "Contextual alerts that keep you informed without overwhelming your inbox."
+      },
+      {
+        "icon": "🔍",
+        "title": "Universal Search",
+        "description": "Find anything across all your projects, documents, and conversations instantly."
+      },
+      {
+        "icon": "📊",
+        "title": "Custom Reports",
+        "description": "Build reports with drag-and-drop widgets and share them with your team."
+      },
+      {
+        "icon": "🔄",
+        "title": "Bi-Directional Sync",
+        "description": "Keep data in sync across all connected tools automatically."
       }
     ]
   },
@@ -1045,6 +1962,74 @@
       }
     ],
     "primaryButton": "Submit Feedback"
+  },
+  "shadcn2fluid_file-download": {
+    "_type": "section",
+    "header": "Download Resources",
+    "description": "Access our latest guides, templates, and toolkits.",
+    "content": "Our resource library includes product datasheets, implementation guides, API documentation, and best practice templates. All resources are available in PDF format and are regularly updated to reflect the latest platform capabilities."
+  },
+  "shadcn2fluid_footer-app-links": {
+    "_type": "footer",
+    "columns": [
+      {
+        "title": "Mobile Apps",
+        "links": [
+          "Download for iOS",
+          "Download for Android",
+          "Desktop App"
+        ]
+      },
+      {
+        "title": "Integrations",
+        "links": [
+          "Slack",
+          "Zapier",
+          "Salesforce"
+        ]
+      }
+    ],
+    "copyright": "© 2026 Acme Platform. Available on iOS, Android, and Desktop."
+  },
+  "shadcn2fluid_footer-brand": {
+    "_type": "footer",
+    "columns": [
+      {
+        "title": "Company",
+        "links": [
+          "About Us",
+          "Careers",
+          "Press Kit",
+          "Blog"
+        ]
+      },
+      {
+        "title": "Product",
+        "links": [
+          "Features",
+          "Pricing",
+          "Integrations",
+          "Changelog"
+        ]
+      }
+    ],
+    "copyright": "© 2026 Acme Platform, Inc. Built with care in San Francisco."
+  },
+  "shadcn2fluid_footer-centered": {
+    "_type": "footer",
+    "columns": [
+      {
+        "title": "Quick Links",
+        "links": [
+          "Home",
+          "Features",
+          "Pricing",
+          "Blog",
+          "Contact"
+        ]
+      }
+    ],
+    "copyright": "© 2026 Acme Platform. All rights reserved."
   },
   "shadcn2fluid_footer-columns": {
     "_type": "footer",
@@ -1078,6 +2063,62 @@
       }
     ],
     "copyright": "2026 CloudBase Technologies. All rights reserved."
+  },
+  "shadcn2fluid_footer-contact": {
+    "_type": "footer",
+    "columns": [
+      {
+        "title": "Support",
+        "links": [
+          "Help Center",
+          "Documentation",
+          "API Reference",
+          "Status Page"
+        ]
+      },
+      {
+        "title": "Contact Us",
+        "links": [
+          "support@acmeplatform.com",
+          "+1 (555) 987-6543",
+          "Live Chat"
+        ]
+      }
+    ],
+    "copyright": "© 2026 Acme Platform. Support available 24/7."
+  },
+  "shadcn2fluid_footer-dark": {
+    "_type": "footer",
+    "columns": [
+      {
+        "title": "Product",
+        "links": [
+          "Features",
+          "Pricing",
+          "Security",
+          "Enterprise"
+        ]
+      },
+      {
+        "title": "Resources",
+        "links": [
+          "Documentation",
+          "Guides",
+          "API Reference",
+          "Community"
+        ]
+      },
+      {
+        "title": "Company",
+        "links": [
+          "About",
+          "Blog",
+          "Careers",
+          "Contact"
+        ]
+      }
+    ],
+    "copyright": "© 2026 Acme Platform, Inc. All rights reserved."
   },
   "shadcn2fluid_footer-mega": {
     "_type": "footer",
@@ -1124,6 +2165,20 @@
       }
     ],
     "copyright": "2026 MegaCloud Corp. Built for builders."
+  },
+  "shadcn2fluid_footer-minimal": {
+    "_type": "footer",
+    "columns": [
+      {
+        "title": "Links",
+        "links": [
+          "Privacy",
+          "Terms",
+          "Cookies"
+        ]
+      }
+    ],
+    "copyright": "© 2026 Acme Platform."
   },
   "shadcn2fluid_footer-newsletter": {
     "_type": "footer",
@@ -1184,6 +2239,39 @@
     ],
     "copyright": "2026 SocialNode Inc."
   },
+  "shadcn2fluid_footer-split": {
+    "_type": "footer",
+    "columns": [
+      {
+        "title": "Solutions",
+        "links": [
+          "For Startups",
+          "For Enterprise",
+          "For Agencies",
+          "For Education"
+        ]
+      },
+      {
+        "title": "Developers",
+        "links": [
+          "API Docs",
+          "SDKs",
+          "Webhooks",
+          "Open Source"
+        ]
+      },
+      {
+        "title": "Legal",
+        "links": [
+          "Privacy Policy",
+          "Terms of Service",
+          "DPA",
+          "SLA"
+        ]
+      }
+    ],
+    "copyright": "© 2026 Acme Platform, Inc. Made with purpose."
+  },
   "shadcn2fluid_footer": {
     "_type": "footer",
     "columns": [
@@ -1226,6 +2314,43 @@
     ],
     "copyright": "2026 Acme Inc. All rights reserved."
   },
+  "shadcn2fluid_founder-quote": {
+    "_type": "testimonial",
+    "quote": "We started this company because we believed enterprise software should be delightful to use, not just functional. Every feature we build starts with empathy for the people who will use it every day.",
+    "author": "Alex Rivera",
+    "role": "Co-Founder & CEO",
+    "company": "Acme Platform",
+    "rating": 5
+  },
+  "shadcn2fluid_gallery": {
+    "_type": "section",
+    "header": "Product Gallery",
+    "description": "Explore screenshots and previews of our platform in action.",
+    "content": "Browse through our gallery to see the dashboard, analytics views, workflow builder, team collaboration features, and mobile app interface. Each screenshot highlights the intuitive design and powerful capabilities of our platform."
+  },
+  "shadcn2fluid_gdpr-banner": {
+    "_type": "form",
+    "header": "Your Privacy Matters",
+    "description": "We comply with GDPR and respect your right to control your personal data.",
+    "fields": [
+      {
+        "label": "Necessary Cookies",
+        "type": "checkbox",
+        "placeholder": "Required for site functionality"
+      },
+      {
+        "label": "Performance Cookies",
+        "type": "checkbox",
+        "placeholder": "Help us improve site performance"
+      },
+      {
+        "label": "Targeting Cookies",
+        "type": "checkbox",
+        "placeholder": "Used for personalized content"
+      }
+    ],
+    "primaryButton": "Accept Selected"
+  },
   "shadcn2fluid_header-banner": {
     "_type": "hero",
     "header": "Version 4.0 Is Here",
@@ -1233,6 +2358,18 @@
     "badge": "Announcement",
     "primaryButton": "See What's New",
     "secondaryButton": "Dismiss"
+  },
+  "shadcn2fluid_header-page": {
+    "_type": "nav",
+    "logo": "Acme Platform",
+    "links": [
+      "Product",
+      "Solutions",
+      "Pricing",
+      "Resources",
+      "Company"
+    ],
+    "primaryButton": "Get Started"
   },
   "shadcn2fluid_header-profile": {
     "_type": "nav",
@@ -1244,6 +2381,20 @@
       "Help"
     ],
     "primaryButton": "Sign Out"
+  },
+  "shadcn2fluid_header-section": {
+    "_type": "section",
+    "header": "Platform Overview",
+    "description": "Discover how our tools help teams collaborate, automate, and deliver faster.",
+    "content": "Our platform brings together project management, analytics, and communication in a single intuitive interface designed for teams of all sizes."
+  },
+  "shadcn2fluid_hero-animated": {
+    "_type": "hero",
+    "header": "Where Ideas Become Impact",
+    "description": "From concept to launch in record time. Our platform accelerates every stage of your product lifecycle.",
+    "badge": "New Release",
+    "primaryButton": "Explore Platform",
+    "secondaryButton": "Watch Overview"
   },
   "shadcn2fluid_hero-announcement": {
     "_type": "hero",
@@ -1261,6 +2412,62 @@
     "primaryButton": "Download App",
     "secondaryButton": "Web App"
   },
+  "shadcn2fluid_hero-asymmetric": {
+    "_type": "hero",
+    "header": "Smarter Workflows Start Here",
+    "description": "Eliminate busywork with intelligent automations that learn from your team's patterns.",
+    "badge": "AI-Powered",
+    "primaryButton": "Try for Free",
+    "secondaryButton": "See How It Works"
+  },
+  "shadcn2fluid_hero-carousel": {
+    "_type": "hero",
+    "header": "One Platform, Endless Possibilities",
+    "description": "From project tracking to revenue analytics, manage everything your team needs in a single workspace.",
+    "badge": "All-in-One",
+    "primaryButton": "Get Started",
+    "secondaryButton": "View Features"
+  },
+  "shadcn2fluid_hero-countdown": {
+    "_type": "hero",
+    "header": "Launch Day is Coming",
+    "description": "Our next-generation platform launches April 30th. Be among the first to experience the future of team collaboration.",
+    "badge": "Coming Soon",
+    "primaryButton": "Join the Waitlist",
+    "secondaryButton": "Learn More"
+  },
+  "shadcn2fluid_hero-cta-only": {
+    "_type": "hero",
+    "header": "Stop Managing, Start Shipping",
+    "description": "Your team deserves tools that stay out of the way. Start your free trial and see the difference.",
+    "badge": "Free for 14 Days",
+    "primaryButton": "Start Now",
+    "secondaryButton": "Talk to Sales"
+  },
+  "shadcn2fluid_hero-dual-cta": {
+    "_type": "hero",
+    "header": "The Platform Teams Love",
+    "description": "Rated #1 by G2 for ease of use. Trusted by 5,000+ companies from startups to Fortune 500.",
+    "badge": "#1 on G2",
+    "primaryButton": "Start Free Trial",
+    "secondaryButton": "Request Demo"
+  },
+  "shadcn2fluid_hero-form": {
+    "_type": "hero",
+    "header": "Get Early Access",
+    "description": "Join 12,000+ professionals on the waitlist for our next-generation analytics engine.",
+    "badge": "Beta Access",
+    "primaryButton": "Request Access",
+    "secondaryButton": "Learn More"
+  },
+  "shadcn2fluid_hero-fullscreen": {
+    "_type": "hero",
+    "header": "Reimagine How Your Team Works",
+    "description": "A unified workspace where strategy meets execution. Plan, build, and measure impact in real time.",
+    "badge": "Enterprise Ready",
+    "primaryButton": "Explore Platform",
+    "secondaryButton": "Watch Video"
+  },
   "shadcn2fluid_hero-gradient": {
     "_type": "hero",
     "header": "Where Innovation Meets Execution",
@@ -1269,6 +2476,22 @@
     "primaryButton": "Get Started",
     "secondaryButton": "Watch Video"
   },
+  "shadcn2fluid_hero-illustration": {
+    "_type": "hero",
+    "header": "Design, Build, Deploy",
+    "description": "From wireframe to production in a single workflow. The development platform built for speed.",
+    "badge": "Developer First",
+    "primaryButton": "Start Building",
+    "secondaryButton": "View Docs"
+  },
+  "shadcn2fluid_hero-logo-cloud": {
+    "_type": "hero",
+    "header": "Trusted by the Best Teams",
+    "description": "Join thousands of companies that rely on our platform to deliver exceptional results every day.",
+    "badge": "Industry Leader",
+    "primaryButton": "Get Started Free",
+    "secondaryButton": "See Case Studies"
+  },
   "shadcn2fluid_hero-minimal": {
     "_type": "hero",
     "header": "Less Complexity. More Shipping.",
@@ -1276,6 +2499,22 @@
     "badge": "",
     "primaryButton": "Deploy Now",
     "secondaryButton": ""
+  },
+  "shadcn2fluid_hero-parallax": {
+    "_type": "hero",
+    "header": "Experience the Future of Work",
+    "description": "Immersive collaboration tools that bring your distributed team together as if they were in the same room.",
+    "badge": "Remote First",
+    "primaryButton": "Try It Free",
+    "secondaryButton": "See Features"
+  },
+  "shadcn2fluid_hero-pricing": {
+    "_type": "hero",
+    "header": "Simple, Transparent Pricing",
+    "description": "No hidden fees, no surprises. Pay only for what you use and scale as you grow.",
+    "badge": "Save 20% Annually",
+    "primaryButton": "View Plans",
+    "secondaryButton": "Calculate Your Price"
   },
   "shadcn2fluid_hero-product": {
     "_type": "hero",
@@ -1300,6 +2539,14 @@
     "badge": "Search",
     "primaryButton": "Try Search",
     "secondaryButton": "API Access"
+  },
+  "shadcn2fluid_hero-stacked": {
+    "_type": "hero",
+    "header": "Your Command Center for Growth",
+    "description": "Unify your sales, marketing, and product data in one dashboard. Make decisions backed by real-time intelligence.",
+    "badge": "Unified Analytics",
+    "primaryButton": "Start Free Trial",
+    "secondaryButton": "See a Demo"
   },
   "shadcn2fluid_hero-startup": {
     "_type": "hero",
@@ -1333,6 +2580,54 @@
     "primaryButton": "Play Video",
     "secondaryButton": "Skip to Signup"
   },
+  "shadcn2fluid_hero": {
+    "_type": "hero",
+    "header": "Build Better Products, Faster",
+    "description": "The all-in-one platform for product teams to plan, build, and ship software with confidence.",
+    "badge": "Now with AI",
+    "primaryButton": "Start Free Trial",
+    "secondaryButton": "Book a Demo"
+  },
+  "shadcn2fluid_how-to-steps": {
+    "_type": "list",
+    "header": "How It Works",
+    "description": "Get up and running in three simple steps.",
+    "items": [
+      {
+        "title": "1. Create Your Workspace",
+        "description": "Sign up in seconds and invite your team members. No credit card required to start."
+      },
+      {
+        "title": "2. Connect Your Tools",
+        "description": "Link your existing tools like Slack, GitHub, and Google Workspace with one-click integrations."
+      },
+      {
+        "title": "3. Start Collaborating",
+        "description": "Build your first workflow, assign tasks, and track progress with real-time dashboards."
+      }
+    ]
+  },
+  "shadcn2fluid_imprint": {
+    "_type": "footer",
+    "columns": [
+      {
+        "title": "Legal Information",
+        "links": [
+          "Acme Platform GmbH",
+          "Mariahilfer Strasse 45, 1060 Wien",
+          "FN 123456a, Handelsgericht Wien"
+        ]
+      },
+      {
+        "title": "Contact",
+        "links": [
+          "office@acmeplatform.at",
+          "+43 1 234 5678"
+        ]
+      }
+    ],
+    "copyright": "Responsible for content: Alex Rivera, CEO. VAT ID: ATU12345678."
+  },
   "shadcn2fluid_infographic": {
     "_type": "stats",
     "header": "Platform at a Glance",
@@ -1351,6 +2646,93 @@
       }
     ]
   },
+  "shadcn2fluid_investor-grid": {
+    "_type": "grid",
+    "header": "Backed by Top Investors",
+    "description": "Our investors include leading venture capital firms and industry pioneers.",
+    "items": [
+      {
+        "icon": "🏦",
+        "title": "Sequoia Capital",
+        "description": "Led our Series B round with a $30M investment in our growth trajectory."
+      },
+      {
+        "icon": "💰",
+        "title": "Andreessen Horowitz",
+        "description": "Strategic partner providing deep expertise in scaling enterprise software."
+      },
+      {
+        "icon": "🌟",
+        "title": "Y Combinator",
+        "description": "Part of the YC W20 batch, where we built our initial product-market fit."
+      }
+    ]
+  },
+  "shadcn2fluid_job-card": {
+    "_type": "card",
+    "header": "Senior Backend Engineer",
+    "description": "Remote - Design and implement scalable microservices handling millions of daily requests. Strong experience with Go, PostgreSQL, and Kubernetes required.",
+    "icon": "💻",
+    "primaryButton": "Apply Now"
+  },
+  "shadcn2fluid_kpi-cards": {
+    "_type": "stats",
+    "header": "Key Performance Indicators",
+    "stats": [
+      {
+        "value": "$4.2M",
+        "label": "Monthly Recurring Revenue"
+      },
+      {
+        "value": "94%",
+        "label": "Customer Retention Rate"
+      },
+      {
+        "value": "18",
+        "label": "Net Promoter Score Growth"
+      },
+      {
+        "value": "3.2x",
+        "label": "LTV/CAC Ratio"
+      }
+    ]
+  },
+  "shadcn2fluid_leaderboard": {
+    "_type": "stats",
+    "header": "Top Performers This Month",
+    "stats": [
+      {
+        "value": "1,247",
+        "label": "Tasks Completed - Team Alpha"
+      },
+      {
+        "value": "1,103",
+        "label": "Tasks Completed - Team Beta"
+      },
+      {
+        "value": "986",
+        "label": "Tasks Completed - Team Gamma"
+      },
+      {
+        "value": "921",
+        "label": "Tasks Completed - Team Delta"
+      }
+    ]
+  },
+  "shadcn2fluid_legal-disclaimer": {
+    "_type": "footer",
+    "columns": [
+      {
+        "title": "Disclaimer",
+        "links": [
+          "Terms of Use",
+          "Limitation of Liability",
+          "Intellectual Property Notice"
+        ]
+      }
+    ],
+    "copyright": "The information provided on this website is for general informational purposes only. All information is provided in good faith. © 2026 Acme Platform, Inc."
+  },
   "shadcn2fluid_legal-links": {
     "_type": "nav",
     "logo": "Acme Legal",
@@ -1361,6 +2743,28 @@
       "Impressum"
     ],
     "primaryButton": "Contact Legal"
+  },
+  "shadcn2fluid_logo-carousel": {
+    "_type": "grid",
+    "header": "Trusted by Leading Brands",
+    "description": "Companies of all sizes rely on our platform to power their operations.",
+    "items": [
+      {
+        "icon": "🎯",
+        "title": "Stripe",
+        "description": "Processes over 2M automated payment reconciliations monthly."
+      },
+      {
+        "icon": "🚀",
+        "title": "Vercel",
+        "description": "Manages 500+ deployment pipelines across 12 engineering teams."
+      },
+      {
+        "icon": "💬",
+        "title": "Intercom",
+        "description": "Coordinates customer support workflows for 8M+ conversations yearly."
+      }
+    ]
   },
   "shadcn2fluid_logo-cloud": {
     "_type": "grid",
@@ -1389,12 +2793,74 @@
       }
     ]
   },
+  "shadcn2fluid_logo-grid": {
+    "_type": "grid",
+    "header": "Our Integration Partners",
+    "description": "Seamlessly connect with the tools your team already uses.",
+    "items": [
+      {
+        "icon": "📨",
+        "title": "Slack",
+        "description": "Get real-time notifications and create tasks directly from Slack messages."
+      },
+      {
+        "icon": "🐙",
+        "title": "GitHub",
+        "description": "Link pull requests, track deployments, and automate code review workflows."
+      },
+      {
+        "icon": "☁️",
+        "title": "Google Workspace",
+        "description": "Sync documents, calendars, and contacts with zero configuration."
+      },
+      {
+        "icon": "📊",
+        "title": "Salesforce",
+        "description": "Bi-directional sync of leads, opportunities, and customer data."
+      }
+    ]
+  },
   "shadcn2fluid_map-embed": {
     "_type": "card",
     "header": "Our Headquarters",
     "description": "Visit us at 123 Innovation Drive, San Francisco, CA 94107. We're open Monday through Friday, 9 AM to 6 PM.",
     "icon": "📍",
     "primaryButton": "Get Directions"
+  },
+  "shadcn2fluid_mega-menu": {
+    "_type": "nav",
+    "logo": "Acme Platform",
+    "links": [
+      "Product",
+      "Solutions",
+      "Resources",
+      "Pricing",
+      "Enterprise",
+      "Developers"
+    ],
+    "primaryButton": "Start Free Trial"
+  },
+  "shadcn2fluid_metric-dashboard": {
+    "_type": "stats",
+    "header": "Dashboard Metrics",
+    "stats": [
+      {
+        "value": "847",
+        "label": "Active Projects"
+      },
+      {
+        "value": "23.4K",
+        "label": "Tasks This Week"
+      },
+      {
+        "value": "92%",
+        "label": "On-Time Delivery Rate"
+      },
+      {
+        "value": "4.8/5",
+        "label": "Team Satisfaction"
+      }
+    ]
   },
   "shadcn2fluid_navbar-dropdown": {
     "_type": "nav",

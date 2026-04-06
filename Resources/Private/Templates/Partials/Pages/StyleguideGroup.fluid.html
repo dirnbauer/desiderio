@@ -12,9 +12,18 @@
         {groupTitle}
         <span class="desiderio-styleguide__group-count">{elements -> f:count()}</span>
     </h2>
+    <div class="desiderio-styleguide__group-actions">
+        <button type="button" class="desiderio-styleguide__show-all" data-group="{groupId}">
+            Show All
+        </button>
+    </div>
     <div class="desiderio-styleguide__element-list">
         <f:for each="{elements}" as="element">
-            <div class="desiderio-styleguide__element-card">
+            <div class="desiderio-styleguide__element-card"
+                 data-ctype="{element.ctype}"
+                 tabindex="0"
+                 role="button"
+                 aria-expanded="false">
                 <p class="desiderio-styleguide__element-name">{element.name}</p>
                 <p class="desiderio-styleguide__element-ctype">{element.ctype}</p>
             </div>

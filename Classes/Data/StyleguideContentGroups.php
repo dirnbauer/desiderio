@@ -15,6 +15,9 @@ final class StyleguideContentGroups
     /** @var list<array{groupId: string, groupTitle: string, elements: list<array{name: string, ctype: string}>}>|null */
     private static ?array $cache = null;
 
+    /** @var array<string, array<string, mixed>>|null */
+    private static ?array $fixtureCache = null;
+
     /**
      * @return list<array{groupId: string, groupTitle: string, elements: list<array{name: string, ctype: string}>}>
      */
@@ -24,27 +27,40 @@ final class StyleguideContentGroups
             return self::$cache;
         }
 
-        $path = GeneralUtility::getFileAbsFileName(
-            'EXT:desiderio/Resources/Private/Data/styleguide-content-groups.json'
-        );
+        self::$cache = self::loadJson('EXT:desiderio/Resources/Private/Data/styleguide-content-groups.json');
+        return self::$cache;
+    }
+
+    /**
+     * @return array<string, array<string, mixed>> Fixture data keyed by ctype
+     */
+    public static function getFixtures(): array
+    {
+        if (self::$fixtureCache !== null) {
+            return self::$fixtureCache;
+        }
+
+        $decoded = self::loadJson('EXT:desiderio/Resources/Private/Data/styleguide-fixtures.json');
+        self::$fixtureCache = is_array($decoded) ? $decoded : [];
+        return self::$fixtureCache;
+    }
+
+    /**
+     * @return array<mixed>
+     */
+    private static function loadJson(string $extensionPath): array
+    {
+        $path = GeneralUtility::getFileAbsFileName($extensionPath);
         if ($path === '' || !is_readable($path)) {
-            self::$cache = [];
-            return self::$cache;
+            return [];
         }
 
         $raw = file_get_contents($path);
         if ($raw === false) {
-            self::$cache = [];
-            return self::$cache;
+            return [];
         }
 
         $decoded = json_decode($raw, true);
-        if (!is_array($decoded)) {
-            self::$cache = [];
-            return self::$cache;
-        }
-
-        self::$cache = $decoded;
-        return self::$cache;
+        return is_array($decoded) ? $decoded : [];
     }
 }

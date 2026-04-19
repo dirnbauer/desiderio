@@ -1,5 +1,6 @@
 <html
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/ViewHelpers"
     data-namespace-typo3-fluid="true"
 >
 
@@ -7,45 +8,19 @@
 
 <f:section name="Main">
     <!--
-      record.mainType is the table name (e.g. tt_content), not tt_content.{CType}.
-      Use record.fullType for table.CType, or record.recordType for CType on tt_content.
-      EXT:news plugins — see georgringer/news Configuration/TCA/Overrides/tt_content.php
+      Use Record::has() (d:recordHasField) before f:render.text so plugins without bodytext
+      (news, WorkOS, etc.) do not hit InvalidArgumentValueException in the visual editor.
     -->
     <f:if condition="{record.mainType} == 'tx_news_domain_model_news'">
         <f:then>
-            <f:render.text record="{record}" field="body"/>
+            <d:recordHasField record="{record}" field="body">
+                <f:render.text record="{record}" field="body"/>
+            </d:recordHasField>
         </f:then>
         <f:else>
-            <f:if condition="{record.mainType} == 'tt_content'">
-                <f:then>
-                    <f:switch expression="{record.recordType}">
-                        <f:case value="news_pi1">
-                        </f:case>
-                        <f:case value="news_newsliststicky">
-                        </f:case>
-                        <f:case value="news_newsdetail">
-                        </f:case>
-                        <f:case value="news_newsselectedlist">
-                        </f:case>
-                        <f:case value="news_newsdatemenu">
-                        </f:case>
-                        <f:case value="news_categorylist">
-                        </f:case>
-                        <f:case value="news_newssearchform">
-                        </f:case>
-                        <f:case value="news_newssearchresult">
-                        </f:case>
-                        <f:case value="news_taglist">
-                        </f:case>
-                        <f:defaultCase>
-                            <f:render.text record="{record}" field="bodytext"/>
-                        </f:defaultCase>
-                    </f:switch>
-                </f:then>
-                <f:else>
-                    <f:render.text record="{record}" field="bodytext"/>
-                </f:else>
-            </f:if>
+            <d:recordHasField record="{record}" field="bodytext">
+                <f:render.text record="{record}" field="bodytext"/>
+            </d:recordHasField>
         </f:else>
     </f:if>
 </f:section>

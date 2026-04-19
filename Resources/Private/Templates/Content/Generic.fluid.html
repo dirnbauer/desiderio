@@ -6,9 +6,28 @@
 <f:layout name="Content/Default"/>
 
 <f:section name="Main">
+    <!-- EXT:news tt_content plugins: no bodytext in visual editor schema (FlexForm-only). See news/Configuration/TCA/Overrides/tt_content.php -->
     <f:switch expression="{record.mainType}">
         <f:case value="tx_news_domain_model_news">
             <f:render.text record="{record}" field="body"/>
+        </f:case>
+        <f:case value="tt_content.news_pi1">
+        </f:case>
+        <f:case value="tt_content.news_newsliststicky">
+        </f:case>
+        <f:case value="tt_content.news_newsdetail">
+        </f:case>
+        <f:case value="tt_content.news_newsselectedlist">
+        </f:case>
+        <f:case value="tt_content.news_newsdatemenu">
+        </f:case>
+        <f:case value="tt_content.news_categorylist">
+        </f:case>
+        <f:case value="tt_content.news_newssearchform">
+        </f:case>
+        <f:case value="tt_content.news_newssearchresult">
+        </f:case>
+        <f:case value="tt_content.news_taglist">
         </f:case>
         <f:defaultCase>
             <f:render.text record="{record}" field="bodytext"/>

@@ -6,33 +6,48 @@
 <f:layout name="Content/Default"/>
 
 <f:section name="Main">
-    <!-- EXT:news tt_content plugins: no bodytext in visual editor schema (FlexForm-only). See news/Configuration/TCA/Overrides/tt_content.php -->
-    <f:switch expression="{record.mainType}">
-        <f:case value="tx_news_domain_model_news">
+    <!--
+      record.mainType is the table name (e.g. tt_content), not tt_content.{CType}.
+      Use record.fullType for table.CType, or record.recordType for CType on tt_content.
+      EXT:news plugins — see georgringer/news Configuration/TCA/Overrides/tt_content.php
+    -->
+    <f:if condition="{record.mainType} == 'tx_news_domain_model_news'">
+        <f:then>
             <f:render.text record="{record}" field="body"/>
-        </f:case>
-        <f:case value="tt_content.news_pi1">
-        </f:case>
-        <f:case value="tt_content.news_newsliststicky">
-        </f:case>
-        <f:case value="tt_content.news_newsdetail">
-        </f:case>
-        <f:case value="tt_content.news_newsselectedlist">
-        </f:case>
-        <f:case value="tt_content.news_newsdatemenu">
-        </f:case>
-        <f:case value="tt_content.news_categorylist">
-        </f:case>
-        <f:case value="tt_content.news_newssearchform">
-        </f:case>
-        <f:case value="tt_content.news_newssearchresult">
-        </f:case>
-        <f:case value="tt_content.news_taglist">
-        </f:case>
-        <f:defaultCase>
-            <f:render.text record="{record}" field="bodytext"/>
-        </f:defaultCase>
-    </f:switch>
+        </f:then>
+        <f:else>
+            <f:if condition="{record.mainType} == 'tt_content'">
+                <f:then>
+                    <f:switch expression="{record.recordType}">
+                        <f:case value="news_pi1">
+                        </f:case>
+                        <f:case value="news_newsliststicky">
+                        </f:case>
+                        <f:case value="news_newsdetail">
+                        </f:case>
+                        <f:case value="news_newsselectedlist">
+                        </f:case>
+                        <f:case value="news_newsdatemenu">
+                        </f:case>
+                        <f:case value="news_categorylist">
+                        </f:case>
+                        <f:case value="news_newssearchform">
+                        </f:case>
+                        <f:case value="news_newssearchresult">
+                        </f:case>
+                        <f:case value="news_taglist">
+                        </f:case>
+                        <f:defaultCase>
+                            <f:render.text record="{record}" field="bodytext"/>
+                        </f:defaultCase>
+                    </f:switch>
+                </f:then>
+                <f:else>
+                    <f:render.text record="{record}" field="bodytext"/>
+                </f:else>
+            </f:if>
+        </f:else>
+    </f:if>
 </f:section>
 
 </html>

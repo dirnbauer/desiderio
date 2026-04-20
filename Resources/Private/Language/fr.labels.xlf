@@ -472,23 +472,6 @@
                 <target>Aucun</target>
             </trans-unit>
 
-            <!-- Page templates (Backend Layouts + Fluid layouts) -->
-            <trans-unit id="page.layout.home">
-                <source>shadcn/ui — Home</source>
-                <target>shadcn/ui — Accueil</target>
-            </trans-unit>
-            <trans-unit id="page.layout.sub">
-                <source>shadcn/ui — Subpage</source>
-                <target>shadcn/ui — Sous-page</target>
-            </trans-unit>
-            <trans-unit id="page.layout.sub_nav">
-                <source>shadcn/ui — Subpage with Navigation</source>
-                <target>shadcn/ui — Sous-page avec navigation</target>
-            </trans-unit>
-            <trans-unit id="page.layout.news">
-                <source>shadcn/ui — News Article</source>
-                <target>shadcn/ui — Article d'actualité</target>
-            </trans-unit>
             <trans-unit id="page.column.main">
                 <source>Main Content</source>
                 <target>Contenu principal</target>

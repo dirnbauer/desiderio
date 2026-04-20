@@ -1,0 +1,12 @@
+includes:
+    - vendor/phpstan/phpstan-phpunit/extension.neon
+
+parameters:
+    phpVersion: 80300
+    level: 9
+    paths:
+        - Classes/
+        - Configuration/Icons.php
+        - ext_emconf.php
+        - ext_localconf.php
+    tmpDir: var/phpstan

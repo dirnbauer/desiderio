@@ -1,0 +1,59 @@
+{
+    "name": "webconsulting/desiderio",
+    "type": "typo3-cms-extension",
+    "description": "Desiderio — shadcn/ui-inspired Fluid 5 component library, 250 content elements, and theme layer for TYPO3 14",
+    "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "webconsulting studio"
+        }
+    ],
+    "require": {
+        "php": "^8.3",
+        "typo3/cms-core": "^14.3@dev",
+        "typo3/cms-fluid": "^14.3@dev",
+        "friendsoftypo3/content-blocks": "^2.2",
+        "praetorius/vite-asset-collector": "^1.7"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "suggest": {
+        "typo3/cms-workspaces": "Recommended to stage and preview content elements in TYPO3 workspaces.",
+        "friendsoftypo3/visual-editor": "Optional. Inline visual editing when templates use f:render.text for text fields."
+    },
+    "autoload": {
+        "psr-4": {
+            "Webconsulting\\Desiderio\\": "Classes/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Webconsulting\\Desiderio\\Tests\\": "Tests/"
+        }
+    },
+    "require-dev": {
+        "phpstan/phpstan": "^2.1",
+        "phpstan/phpstan-phpunit": "^2.0",
+        "phpunit/phpunit": "^11.5",
+        "typo3/testing-framework": "^9.0"
+    },
+    "extra": {
+        "typo3/cms": {
+            "extension-key": "desiderio"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "typo3/class-alias-loader": true,
+            "typo3/cms-composer-installers": true
+        },
+        "platform": {
+            "php": "8.3"
+        },
+        "sort-packages": true
+    },
+    "scripts": {
+        "phpstan": "phpstan analyse --configuration=phpstan.neon.dist",
+        "test": "phpunit --configuration=phpunit.xml.dist"
+    }
+}

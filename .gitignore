@@ -2,3 +2,7 @@
 .idea/
 *.cache
 vendor/
+node_modules/
+var/
+.phpunit.cache/
+composer.lock

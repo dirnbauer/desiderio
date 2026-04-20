@@ -1,0 +1,35 @@
+name: desiderio/investor-grid
+typeName: desiderio_investorgrid
+title: Investor Grid
+description: Grid of investors or backers with logos and funding details
+group: team
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: subheadline
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
+    rows: 2
+  - identifier: investors
+    type: Collection
+    label: Investors
+    minItems: 1
+    fields:
+      - identifier: logo
+        type: File
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:logo'
+        allowed: common-image-types
+        maxitems: 1
+      - identifier: name
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:name'
+        required: true
+      - identifier: type
+        type: Text
+        label: Type
+      - identifier: link
+        type: Link
+        label: Website

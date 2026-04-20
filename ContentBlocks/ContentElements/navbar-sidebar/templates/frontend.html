@@ -1,0 +1,39 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-navbar-sidebar" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="navbar-sidebar">
+    <aside class="navbar-sidebar__panel" aria-label="Sidebar navigation">
+        <div class="navbar-sidebar__brand">
+            <f:if condition="{data.brand_link.url}">
+                <f:then><f:link.typolink parameter="{data.brand_link}" class="navbar-sidebar__brand-link">{data -> f:render.text(field: 'brand')}</f:link.typolink></f:then>
+                <f:else><span class="navbar-sidebar__brand-link">{data -> f:render.text(field: 'brand')}</span></f:else>
+            </f:if>
+        </div>
+        <nav class="navbar-sidebar__nav">
+            <f:for each="{data.sections}" as="section">
+                <div class="navbar-sidebar__section">
+                    <f:if condition="{section.title}">
+                        <h3 class="navbar-sidebar__section-title">{section -> f:render.text(field: 'title')}</h3>
+                    </f:if>
+                    <ul class="navbar-sidebar__list">
+                        <f:for each="{section.links -> f:split(separator: '
+')}" as="linkLine">
+                            <f:if condition="{linkLine -> f:format.trim()}">
+                                <li><span class="navbar-sidebar__link">{linkLine -> f:format.trim()}</span></li>
+                            </f:if>
+                        </f:for>
+                    </ul>
+                </div>
+            </f:for>
+        </nav>
+        <f:if condition="{data.footer_text}">
+            <div class="navbar-sidebar__footer"><p>{data -> f:render.text(field: 'footer_text')}</p></div>
+        </f:if>
+    </aside>
+</d:layout.section>
+
+</html>

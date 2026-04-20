@@ -1,0 +1,88 @@
+name: desiderio/features
+typeName: desiderio_features
+title: Feature Grid
+description: Grid of feature cards with icons, titles, and descriptions
+group: features
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+
+  - identifier: subheadline
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
+    rows: 2
+
+  - identifier: columns
+    type: Select
+    renderType: selectSingle
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:columns'
+    items:
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.2_columns'
+        value: '2'
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.3_columns'
+        value: '3'
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.4_columns'
+        value: '4'
+    default: '3'
+
+  - identifier: variant
+    type: Select
+    renderType: selectSingle
+    label: Feature Style
+    items:
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.icon_top'
+        value: icon-top
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.icon_left'
+        value: icon-left
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:card_style'
+        value: card
+    default: icon-top
+
+  - identifier: feature_items
+    type: Collection
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:features'
+    minItems: 1
+    fields:
+      - identifier: icon_name
+        type: Select
+        renderType: selectSingle
+        label: Icon
+        items:
+          - label: Star
+            value: star
+          - label: Check
+            value: check
+          - label: Heart
+            value: heart
+          - label: Lightning
+            value: lightning
+          - label: Shield
+            value: shield
+          - label: Rocket
+            value: rocket
+          - label: Users
+            value: users
+          - label: Settings
+            value: settings
+          - label: Globe
+            value: globe
+          - label: Lock
+            value: lock
+        default: star
+
+      - identifier: title
+        type: Textarea
+        rows: 1
+        label: Feature Title
+        required: true
+
+      - identifier: description
+        type: Textarea
+        label: Feature Description
+        rows: 2
+
+      - identifier: link
+        type: Link
+        label: Feature Link

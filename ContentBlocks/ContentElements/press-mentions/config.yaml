@@ -1,0 +1,46 @@
+name: desiderio/press-mentions
+typeName: desiderio_pressmentions
+title: Press Mentions
+description: Media coverage and press mention highlights
+group: social-proof
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+
+  - identifier: eyebrow
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
+
+  - identifier: mentions
+    type: Collection
+    label: Press Mentions
+    minItems: 1
+    fields:
+      - identifier: publication
+        type: Textarea
+        rows: 1
+        label: Publication Name
+        required: true
+
+      - identifier: logo
+        type: File
+        label: Publication Logo
+        allowed: common-image-types
+        maxitems: 1
+
+      - identifier: quote
+        type: Textarea
+        label: Quote / Excerpt
+        rows: 2
+
+      - identifier: date
+        type: Textarea
+        rows: 1
+        label: Date
+
+      - identifier: link
+        type: Link
+        label: Article Link

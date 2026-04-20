@@ -1,0 +1,42 @@
+name: desiderio/leaderboard
+typeName: desiderio_leaderboard
+title: Leaderboard
+description: Ranked list with position, name, value, and optional avatar
+group: data
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: description
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
+    rows: 2
+  - identifier: items
+    type: Collection
+    label: Entries
+    minItems: 1
+    fields:
+      - identifier: name
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:name'
+        required: true
+      - identifier: value
+        type: Textarea
+        rows: 1
+        label: Value / Score
+        required: true
+      - identifier: subtitle
+        type: Textarea
+        rows: 1
+        label: Subtitle
+      - identifier: image
+        type: File
+        label: Avatar
+        allowed: common-image-types
+        maxitems: 1
+  - identifier: show_rank
+    type: Checkbox
+    label: Show Rank Numbers
+    default: 1

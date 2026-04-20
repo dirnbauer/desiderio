@@ -1,0 +1,15 @@
+.logo-cloud__intro { text-align: center; margin-block-end: var(--d-spacing-xl); }
+.logo-cloud__eyebrow { font-size: var(--d-text-sm); text-transform: uppercase; letter-spacing: 0.05em; color: var(--primary); font-weight: 600; }
+.logo-cloud__headline { margin-block-start: var(--d-spacing-xs); }
+.logo-cloud__description { color: var(--muted-foreground); max-width: 40rem; margin-inline: auto; }
+.logo-cloud__grid { display: grid; gap: var(--d-spacing-lg); align-items: center; justify-items: center; }
+.logo-cloud__grid--cols-3 { grid-template-columns: repeat(3, 1fr); }
+.logo-cloud__grid--cols-4 { grid-template-columns: repeat(4, 1fr); }
+.logo-cloud__grid--cols-5 { grid-template-columns: repeat(5, 1fr); }
+.logo-cloud__grid--cols-6 { grid-template-columns: repeat(6, 1fr); }
+@media (max-width: 768px) { .logo-cloud__grid { grid-template-columns: repeat(2, 1fr); } }
+.logo-cloud__item { display: flex; align-items: center; justify-content: center; padding: var(--d-spacing-sm); }
+.logo-cloud__link { display: flex; align-items: center; justify-content: center; transition: opacity 0.2s; }
+.logo-cloud__link:hover { opacity: 0.7; }
+.logo-cloud__image { max-height: 3rem; width: auto; object-fit: contain; filter: grayscale(1); opacity: 0.7; transition: all 0.2s; }
+.logo-cloud__item:hover .logo-cloud__image { filter: grayscale(0); opacity: 1; }

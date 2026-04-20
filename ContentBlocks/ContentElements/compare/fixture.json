@@ -1,0 +1,12 @@
+{
+  "_type": "table",
+  "header": "Product Comparison",
+  "headers": ["Feature", "Basic", "Professional", "Enterprise"],
+  "rows": [
+    {"Feature": "Users", "Basic": "5", "Professional": "25", "Enterprise": "Unlimited"},
+    {"Feature": "Storage", "Basic": "1 GB", "Professional": "50 GB", "Enterprise": "Unlimited"},
+    {"Feature": "API Access", "Basic": "No", "Professional": "Yes", "Enterprise": "Yes"},
+    {"Feature": "SSO", "Basic": "No", "Professional": "No", "Enterprise": "Yes"},
+    {"Feature": "Support", "Basic": "Email", "Professional": "Priority", "Enterprise": "Dedicated"}
+  ]
+}

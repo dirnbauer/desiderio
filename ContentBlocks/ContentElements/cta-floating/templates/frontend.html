@@ -1,0 +1,19 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-cta-floating" href="{cb:assetPath()}/frontend.css"/>
+
+<div class="cta-floating cta-floating--{data.position -> f:or(alternative: 'bottom')}">
+    <d:layout.container>
+        <div class="cta-floating__bar">
+            <f:if condition="{data.header}"><span class="cta-floating__text">{data -> f:render.text(field: 'header')}</span></f:if>
+            <f:if condition="{data.cta_text} && {data.cta_link.url}">
+                <d:atom.button href="{data.cta_link.url}" target="{data.cta_link.target}" size="sm">{data -> f:render.text(field: 'cta_text')}</d:atom.button>
+            </f:if>
+        </div>
+    </d:layout.container>
+</div>
+
+</html>

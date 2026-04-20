@@ -1,0 +1,52 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-client-list" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="client-list">
+    <d:layout.container>
+        <f:if condition="{data.eyebrow} || {data.header} || {data.subheadline}">
+            <header class="client-list__intro">
+                <f:if condition="{data.eyebrow}">
+                    <span class="client-list__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span>
+                </f:if>
+                <f:if condition="{data.header}">
+                    <h2 class="client-list__headline">{data -> f:render.text(field: 'header')}</h2>
+                </f:if>
+                <f:if condition="{data.subheadline}">
+                    <p class="client-list__description">{data -> f:render.text(field: 'subheadline')}</p>
+                </f:if>
+            </header>
+        </f:if>
+
+        <ul class="client-list__items">
+            <f:for each="{data.clients}" as="client">
+                <li class="client-list__item">
+                    <f:if condition="{client.logo}">
+                        <div class="client-list__logo">
+                            <f:for each="{client.logo}" as="fileReference">
+                                <img src="{f:uri.image(image: fileReference, maxWidth: 120)}" alt="{client -> f:render.text(field: 'name')}" class="client-list__logo-img"/>
+                            </f:for>
+                        </div>
+                    </f:if>
+                    <div class="client-list__info">
+                        <f:if condition="{client.link.url}">
+                            <f:then>
+                                <f:link.typolink parameter="{client.link}" class="client-list__name">{client -> f:render.text(field: 'name')}</f:link.typolink>
+                            </f:then>
+                            <f:else>
+                                <span class="client-list__name">{client -> f:render.text(field: 'name')}</span>
+                            </f:else>
+                        </f:if>
+                        <f:if condition="{client.industry}">
+                            <span class="client-list__industry">{client -> f:render.text(field: 'industry')}</span>
+                        </f:if>
+                    </div>
+                </li>
+            </f:for>
+        </ul>
+    </d:layout.container>
+</d:layout.section>
+</html>

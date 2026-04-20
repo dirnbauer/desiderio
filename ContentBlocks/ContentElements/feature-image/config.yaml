@@ -1,0 +1,40 @@
+name: desiderio/feature-image
+typeName: desiderio_featureimage
+title: Feature with Image
+description: Single feature highlight with large image and supporting text
+group: features
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: eyebrow
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
+  - identifier: description
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
+    rows: 3
+  - identifier: image
+    type: File
+    label: Feature Image
+    allowed: common-image-types
+    maxitems: 1
+  - identifier: image_position
+    type: Select
+    renderType: selectSingle
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:image_position'
+    items:
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.right'
+        value: right
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.left'
+        value: left
+    default: right
+  - identifier: link
+    type: Link
+    label: Call to Action Link
+  - identifier: link_text
+    type: Textarea
+    rows: 1
+    label: Call to Action Text

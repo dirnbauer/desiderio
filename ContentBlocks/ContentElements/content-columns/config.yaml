@@ -1,0 +1,31 @@
+name: desiderio/content-columns
+typeName: desiderio_contentcolumns
+title: Content Columns
+description: Multi-column rich text layout
+group: content
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: columns
+    type: Select
+    renderType: selectSingle
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:columns'
+    items:
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.2_columns'
+        value: '2'
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.3_columns'
+        value: '3'
+    default: '2'
+  - identifier: items
+    type: Collection
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:column_content'
+    minItems: 2
+    fields:
+      - identifier: content
+        type: Textarea
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:content'
+        enableRichtext: true
+        rows: 6
+        required: true

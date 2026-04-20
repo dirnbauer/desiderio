@@ -1,0 +1,36 @@
+.feature-centered__intro {
+    text-align: center;
+    margin-block-end: var(--d-spacing-2xl);
+    max-width: 42rem;
+    margin-inline: auto;
+}
+.feature-centered__eyebrow {
+    font-size: var(--d-text-sm);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--primary);
+}
+.feature-centered__items {
+    display: flex;
+    flex-direction: column;
+    gap: var(--d-spacing-xl);
+    max-width: 36rem;
+    margin-inline: auto;
+}
+.feature-centered__item {
+    text-align: center;
+}
+.feature-centered__icon {
+    display: block;
+    font-size: 2rem;
+    margin-block-end: var(--d-spacing-sm);
+}
+.feature-centered__title {
+    font-weight: 600;
+    margin-block-end: var(--d-spacing-xs);
+}
+.feature-centered__description {
+    color: var(--muted-foreground);
+    font-size: var(--d-text-sm);
+}

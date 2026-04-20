@@ -1,0 +1,27 @@
+name: desiderio/founder-quote
+typeName: desiderio_founderquote
+title: Founder Quote
+description: Featured quote from a founder or CEO with portrait
+group: team
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: quote
+    type: Textarea
+    label: Quote
+    rows: 4
+  - identifier: name
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:name'
+  - identifier: title
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:title'
+  - identifier: image
+    type: File
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:portrait'
+    allowed: common-image-types
+    maxitems: 1

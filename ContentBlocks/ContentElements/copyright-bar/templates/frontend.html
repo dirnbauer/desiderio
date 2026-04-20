@@ -1,0 +1,30 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-copyright-bar" href="{cb:assetPath()}/frontend.css"/>
+
+<div class="copyright-bar copyright-bar--{data.alignment -> f:or(alternative: 'between')}">
+    <d:layout.container>
+        <div class="copyright-bar__inner">
+            <p class="copyright-bar__text">{data -> f:render.text(field: 'copyright')}</p>
+            <f:if condition="{data.link_items}">
+                <nav aria-label="Legal links">
+                    <ul class="copyright-bar__links">
+                        <f:for each="{data.link_items}" as="item">
+                            <li>
+                                <f:if condition="{item.link}">
+                                    <f:then><f:link.typolink parameter="{item.link}" class="copyright-bar__link">{item -> f:render.text(field: 'label')}</f:link.typolink></f:then>
+                                    <f:else><span class="copyright-bar__link">{item -> f:render.text(field: 'label')}</span></f:else>
+                                </f:if>
+                            </li>
+                        </f:for>
+                    </ul>
+                </nav>
+            </f:if>
+        </div>
+    </d:layout.container>
+</div>
+
+</html>

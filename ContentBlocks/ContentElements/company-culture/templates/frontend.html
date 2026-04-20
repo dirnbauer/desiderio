@@ -1,0 +1,36 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-company-culture" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="company-culture">
+    <d:layout.container>
+        <f:if condition="{data.eyebrow} || {data.header} || {data.subheadline}">
+            <header class="company-culture__intro">
+                <f:if condition="{data.eyebrow}"><span class="company-culture__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span></f:if>
+                <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
+                <f:if condition="{data.subheadline}"><d:atom.typography variant="muted">{data -> f:render.text(field: 'subheadline')}</d:atom.typography></f:if>
+            </header>
+        </f:if>
+
+        <div class="company-culture__grid">
+            <f:for each="{data.items}" as="item">
+                <article class="company-culture__item">
+                    <f:if condition="{item.image}">
+                        <div class="company-culture__image-wrapper">
+                            <f:for each="{item.image}" as="fileReference">
+                                <img src="{f:uri.image(image: fileReference, maxWidth: 640)}" alt="{item -> f:render.text(field: 'title')}" class="company-culture__image"/>
+                            </f:for>
+                        </div>
+                    </f:if>
+                    <f:if condition="{item.title}"><h3 class="company-culture__title">{item -> f:render.text(field: 'title')}</h3></f:if>
+                    <f:if condition="{item.description}"><p class="company-culture__description">{item -> f:render.text(field: 'description')}</p></f:if>
+                </article>
+            </f:for>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

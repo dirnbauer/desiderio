@@ -1,0 +1,35 @@
+name: desiderio/card-overlay
+typeName: desiderio_cardoverlay
+title: Card Overlay
+description: Card with image background and text overlay
+group: data
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: description
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
+    rows: 3
+  - identifier: image
+    type: File
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:background_image'
+    allowed: common-image-types
+    maxitems: 1
+    required: true
+  - identifier: link
+    type: Link
+    label: Card Link
+  - identifier: overlay_opacity
+    type: Select
+    renderType: selectSingle
+    label: Overlay Darkness
+    items:
+      - label: Light
+        value: light
+      - label: Medium
+        value: medium
+      - label: Dark
+        value: dark
+    default: medium

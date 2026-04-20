@@ -1,0 +1,46 @@
+{
+  "_type": "pricing",
+  "header": "Simple, Transparent Pricing",
+  "description": "Choose the plan that fits your team.",
+  "plans": [
+    {
+      "name": "Starter",
+      "price": "$0",
+      "period": "per month",
+      "features": [
+        "3 users",
+        "5 projects",
+        "Community support",
+        "1 GB storage"
+      ],
+      "button": "Get Started",
+      "featured": false
+    },
+    {
+      "name": "Pro",
+      "price": "$29",
+      "period": "per month",
+      "features": [
+        "Unlimited users",
+        "Unlimited projects",
+        "Priority support",
+        "50 GB storage"
+      ],
+      "button": "Start Trial",
+      "featured": true
+    },
+    {
+      "name": "Enterprise",
+      "price": "$99",
+      "period": "per month",
+      "features": [
+        "Everything in Pro",
+        "SSO & SAML",
+        "Dedicated account manager",
+        "SLA guarantee"
+      ],
+      "button": "Contact Sales",
+      "featured": false
+    }
+  ]
+}

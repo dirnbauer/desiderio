@@ -1,0 +1,37 @@
+name: desiderio/pricing-faq
+typeName: desiderio_pricingfaq
+title: Pricing FAQ
+description: Frequently asked questions about pricing and billing
+group: pricing
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+
+  - identifier: eyebrow
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
+
+  - identifier: subheadline
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
+    rows: 2
+
+  - identifier: question_items
+    type: Collection
+    label: Questions
+    minItems: 1
+    fields:
+      - identifier: question
+        type: Textarea
+        rows: 1
+        label: Question
+        required: true
+
+      - identifier: answer
+        type: Textarea
+        label: Answer
+        rows: 3
+        required: true

@@ -1,0 +1,69 @@
+name: desiderio/card
+typeName: desiderio_card
+title: Card
+description: Versatile card component with multiple layout variants
+group: data
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+
+  - identifier: variant
+    type: Select
+    renderType: selectSingle
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:card_style'
+    onChange: reload
+    items:
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.default'
+        value: default
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.horizontal'
+        value: horizontal
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.with_image'
+        value: with-image
+      - label: Overlay
+        value: overlay
+    default: default
+
+  - identifier: card_image
+    type: File
+    label: Card Image
+    allowed: common-image-types
+    maxitems: 1
+    displayCond: 'FIELD:variant:=:with-image,overlay,horizontal'
+
+  - identifier: image_position
+    type: Select
+    renderType: selectSingle
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:image_position'
+    items:
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.left'
+        value: left
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.right'
+        value: right
+    default: left
+    displayCond: 'FIELD:variant:=:horizontal'
+
+  - identifier: description
+    type: Textarea
+    label: Card Description
+    rows: 3
+
+  - identifier: badge_text
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:badge_text'
+
+  - identifier: link
+    type: Link
+    label: Card Link
+
+  - identifier: button_text
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_text'
+
+  - identifier: button_link
+    type: Link
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_link'
+    displayCond: 'FIELD:button_text:!=:'

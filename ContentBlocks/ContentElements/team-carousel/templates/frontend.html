@@ -1,0 +1,41 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-team-carousel" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="team-carousel">
+    <d:layout.container>
+        <f:if condition="{data.eyebrow} || {data.header} || {data.subheadline}">
+            <header class="team-carousel__intro">
+                <f:if condition="{data.eyebrow}"><span class="team-carousel__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span></f:if>
+                <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
+                <f:if condition="{data.subheadline}"><d:atom.typography variant="muted">{data -> f:render.text(field: 'subheadline')}</d:atom.typography></f:if>
+            </header>
+        </f:if>
+
+        <div class="team-carousel__track">
+            <f:for each="{data.members}" as="member">
+                <d:molecule.card class="team-carousel__slide">
+                    <f:if condition="{member.image}">
+                        <div class="team-carousel__image-wrapper">
+                            <f:for each="{member.image}" as="fileReference">
+                                <img src="{f:uri.image(image: fileReference, maxWidth: 400)}" alt="{member -> f:render.text(field: 'name')}" class="team-carousel__image"/>
+                            </f:for>
+                        </div>
+                    </f:if>
+                    <div class="team-carousel__content">
+                        <h3 class="team-carousel__name">{member -> f:render.text(field: 'name')}</h3>
+                        <f:if condition="{member.role}"><p class="team-carousel__role">{member -> f:render.text(field: 'role')}</p></f:if>
+                        <f:if condition="{member.profile_link.url}">
+                            <d:atom.button href="{member.profile_link.url}" target="{member.profile_link.target}" variant="ghost" size="sm">View profile</d:atom.button>
+                        </f:if>
+                    </div>
+                </d:molecule.card>
+            </f:for>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

@@ -1,0 +1,87 @@
+name: desiderio/pricing
+typeName: desiderio_pricing
+title: Pricing
+description: Pricing tables with featured plans and CTA buttons
+group: pricing
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+
+  - identifier: eyebrow
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
+
+  - identifier: subheadline
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
+    rows: 2
+
+  - identifier: columns
+    type: Select
+    renderType: selectSingle
+    label: Plan Columns
+    items:
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.2_columns'
+        value: '2'
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.3_columns'
+        value: '3'
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.4_columns'
+        value: '4'
+    default: '3'
+
+  - identifier: plans
+    type: Collection
+    label: Pricing Plans
+    minItems: 1
+    maxItems: 4
+    fields:
+      - identifier: badge_text
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:badge_text'
+
+      - identifier: name
+        type: Textarea
+        rows: 1
+        label: Plan Name
+        required: true
+
+      - identifier: price
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:price'
+        required: true
+
+      - identifier: billing_period
+        type: Textarea
+        rows: 1
+        label: Billing Period
+        description: e.g. per month or per seat
+
+      - identifier: description
+        type: Textarea
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
+        rows: 2
+
+      - identifier: features_list
+        type: Textarea
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:features_one_per_line'
+        rows: 6
+
+      - identifier: is_featured
+        type: Checkbox
+        label: Featured Plan
+        default: 0
+
+      - identifier: button_text
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_text'
+        default: Get Started
+
+      - identifier: button_link
+        type: Link
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_link'

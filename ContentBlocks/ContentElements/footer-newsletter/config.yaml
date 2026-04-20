@@ -1,0 +1,33 @@
+name: desiderio/footer-newsletter
+typeName: desiderio_footernewsletter
+title: Footer Newsletter
+description: Footer with prominent newsletter signup form
+group: footer
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: description
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
+    rows: 2
+  - identifier: placeholder
+    type: Textarea
+    rows: 1
+    label: Input Placeholder
+    default: Enter your email
+  - identifier: button_text
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_text'
+    default: Subscribe
+  - identifier: privacy_notice
+    type: Textarea
+    rows: 1
+    label: Privacy Note
+    description: Small text below the form
+  - identifier: copyright
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:copyright_text'

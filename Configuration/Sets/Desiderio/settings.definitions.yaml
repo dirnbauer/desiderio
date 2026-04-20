@@ -1,0 +1,11 @@
+categories:
+  desiderio:
+    label: 'Desiderio'
+
+settings:
+  desiderio.header.fixedPosition:
+    label: 'Fixed header'
+    description: 'Keep the site header pinned to the top of the viewport while scrolling.'
+    type: bool
+    default: false
+    category: desiderio

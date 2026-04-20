@@ -1,0 +1,15 @@
+<f:argument name="name" type="string" optional="{true}" />
+<f:argument name="placeholder" type="string" optional="{true}" />
+<f:argument name="rows" type="integer" optional="{true}" default="4" />
+<f:argument name="disabled" type="bool" optional="{true}" default="{false}" />
+<f:argument name="required" type="bool" optional="{true}" default="{false}" />
+<f:argument name="class" type="string" optional="{true}" default="" />
+
+<textarea
+    name="{name}"
+    placeholder="{placeholder}"
+    rows="{rows}"
+    disabled="{disabled}"
+    required="{required}"
+    class="flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-hidden focus-visible:ring-3 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 {class}"
+><f:slot /></textarea>

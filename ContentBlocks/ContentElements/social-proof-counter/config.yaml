@@ -1,0 +1,61 @@
+name: desiderio/social-proof-counter
+typeName: desiderio_socialproofcounter
+title: Social Proof Counter
+description: Live-style counters for users, downloads, or customers
+group: social-proof
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+
+  - identifier: subheadline
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
+    rows: 2
+
+  - identifier: layout
+    type: Select
+    renderType: selectSingle
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:layout'
+    items:
+      - label: Inline Row
+        value: inline
+      - label: Stacked Center
+        value: stacked
+    default: inline
+
+  - identifier: counters
+    type: Collection
+    label: Counters
+    minItems: 1
+    fields:
+      - identifier: value
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:value'
+        required: true
+        description: e.g. 10,000+
+
+      - identifier: label
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:label_field'
+        required: true
+
+      - identifier: icon_name
+        type: Select
+        renderType: selectSingle
+        label: Icon
+        items:
+          - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.none'
+            value: none
+          - label: Users
+            value: users
+          - label: Download
+            value: download
+          - label: Globe
+            value: globe
+          - label: Heart
+            value: heart
+        default: none

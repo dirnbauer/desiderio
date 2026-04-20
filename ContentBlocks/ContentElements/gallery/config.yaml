@@ -1,0 +1,54 @@
+name: desiderio/gallery
+typeName: desiderio_gallery
+title: Gallery / Portfolio
+description: Visual gallery or portfolio grid with optional links
+group: content
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+
+  - identifier: subheadline
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
+    rows: 2
+
+  - identifier: columns
+    type: Select
+    renderType: selectSingle
+    label: Gallery Columns
+    items:
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.2_columns'
+        value: '2'
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.3_columns'
+        value: '3'
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.4_columns'
+        value: '4'
+    default: '3'
+
+  - identifier: items
+    type: Collection
+    label: Gallery Items
+    minItems: 1
+    fields:
+      - identifier: image
+        type: File
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:image'
+        allowed: common-image-types
+        maxitems: 1
+        required: true
+
+      - identifier: title
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:title'
+
+      - identifier: description
+        type: Textarea
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
+        rows: 2
+
+      - identifier: link
+        type: Link
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:optional_link'

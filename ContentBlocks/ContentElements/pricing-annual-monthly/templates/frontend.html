@@ -1,0 +1,65 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-pricing-annual-monthly" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="pricing-annual-monthly">
+    <d:layout.container>
+        <f:if condition="{data.eyebrow} || {data.header} || {data.subheadline}">
+            <header class="pricing-annual-monthly__intro">
+                <f:if condition="{data.eyebrow}">
+                    <span class="pricing-annual-monthly__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span>
+                </f:if>
+                <f:if condition="{data.header}">
+                    <h2 class="pricing-annual-monthly__headline">{data -> f:render.text(field: 'header')}</h2>
+                </f:if>
+                <f:if condition="{data.subheadline}">
+                    <p class="pricing-annual-monthly__description">{data -> f:render.text(field: 'subheadline')}</p>
+                </f:if>
+            </header>
+        </f:if>
+
+        <div class="pricing-annual-monthly__grid">
+            <f:for each="{data.plans}" as="plan">
+                <article class="pricing-annual-monthly__plan {f:if(condition: plan.is_featured, then: 'pricing-annual-monthly__plan--featured')}">
+                    <h3 class="pricing-annual-monthly__name">{plan -> f:render.text(field: 'name')}</h3>
+
+                    <div class="pricing-annual-monthly__prices">
+                        <div class="pricing-annual-monthly__price-block">
+                            <span class="pricing-annual-monthly__price">{plan -> f:render.text(field: 'monthly_price')}</span>
+                            <span class="pricing-annual-monthly__period">/month</span>
+                        </div>
+                        <div class="pricing-annual-monthly__annual">
+                            <span class="pricing-annual-monthly__annual-price">{plan -> f:render.text(field: 'annual_price')}/year</span>
+                            <f:if condition="{plan.savings}">
+                                <span class="pricing-annual-monthly__savings">{plan -> f:render.text(field: 'savings')}</span>
+                            </f:if>
+                        </div>
+                    </div>
+
+                    <f:if condition="{plan.features_list}">
+                        <ul class="pricing-annual-monthly__features">
+                            <f:for each="{plan.features_list -> f:split(separator: '\n')}" as="feature">
+                                <f:if condition="{feature}">
+                                    <li class="pricing-annual-monthly__feature">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
+                                        <span>{feature}</span>
+                                    </li>
+                                </f:if>
+                            </f:for>
+                        </ul>
+                    </f:if>
+
+                    <f:if condition="{plan.button_text} && {plan.button_link.url}">
+                        <f:link.typolink parameter="{plan.button_link}" class="pricing-annual-monthly__button {f:if(condition: plan.is_featured, then: 'pricing-annual-monthly__button--primary', else: 'pricing-annual-monthly__button--outline')}">
+                            {plan -> f:render.text(field: 'button_text')}
+                        </f:link.typolink>
+                    </f:if>
+                </article>
+            </f:for>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+</html>

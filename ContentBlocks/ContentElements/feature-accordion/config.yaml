@@ -1,0 +1,34 @@
+name: desiderio/feature-accordion
+typeName: desiderio_featureaccordion
+title: Feature Accordion
+description: Expandable feature sections with collapsible details
+group: features
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: subheadline
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
+    rows: 2
+  - identifier: image
+    type: File
+    label: Side Image
+    allowed: common-image-types
+    maxitems: 1
+  - identifier: items
+    type: Collection
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:features'
+    minItems: 1
+    fields:
+      - identifier: title
+        type: Textarea
+        rows: 1
+        label: Feature Title
+        required: true
+      - identifier: content
+        type: Textarea
+        label: Feature Details
+        enableRichtext: true
+        rows: 4

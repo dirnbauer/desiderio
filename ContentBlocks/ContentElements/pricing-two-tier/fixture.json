@@ -1,0 +1,46 @@
+{
+  "_type": "pricing",
+  "header": "Simple Pricing",
+  "description": "Two straightforward options. No hidden costs.",
+  "plans": [
+    {
+      "name": "Standard",
+      "price": "$29",
+      "period": "/month",
+      "features": [
+        "Up to 15 users",
+        "All core features",
+        "10 GB storage",
+        "Standard support"
+      ],
+      "button": "Choose Standard",
+      "featured": false
+    },
+    {
+      "name": "Premium",
+      "price": "$79",
+      "period": "/month",
+      "features": [
+        "Unlimited users",
+        "All features",
+        "Unlimited storage",
+        "Priority support",
+        "API access"
+      ],
+      "button": "Choose Premium",
+      "featured": true
+    },
+    {
+      "name": "Custom",
+      "price": "Custom",
+      "period": "",
+      "features": [
+        "Enterprise features",
+        "Volume licensing",
+        "Dedicated support"
+      ],
+      "button": "Contact Us",
+      "featured": false
+    }
+  ]
+}

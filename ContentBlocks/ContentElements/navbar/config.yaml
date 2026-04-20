@@ -1,0 +1,64 @@
+name: desiderio/navbar
+typeName: desiderio_navbar
+title: Navbar
+description: Marketing navigation bar with brand, links, and CTA
+group: navigation
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+
+  - identifier: layout
+    type: Select
+    renderType: selectSingle
+    label: Template Layout
+    items:
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.full_width'
+        value: full-width
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.two_columns'
+        value: two-columns
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.stacked'
+        value: stacked
+    default: full-width
+
+  - identifier: brand
+    type: Textarea
+    rows: 1
+    label: Brand Text
+    required: true
+
+  - identifier: brand_link
+    type: Link
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:brand_link'
+
+  - identifier: nav_items
+    type: Collection
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:navigation_items'
+    fields:
+      - identifier: label
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:label_field'
+        required: true
+      - identifier: link
+        type: Link
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:link'
+
+  - identifier: secondary_button_text
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:secondary_button_text'
+
+  - identifier: secondary_button_link
+    type: Link
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:secondary_button_link'
+
+  - identifier: primary_button_text
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:primary_button_text'
+
+  - identifier: primary_button_link
+    type: Link
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:primary_button_link'

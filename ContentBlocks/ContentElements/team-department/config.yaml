@@ -1,0 +1,28 @@
+name: desiderio/team-department
+typeName: desiderio_teamdepartment
+title: Team Department
+description: Team members grouped by department with section headings
+group: team
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: subheadline
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
+    rows: 2
+  - identifier: department_items
+    type: Collection
+    label: Departments
+    minItems: 1
+    fields:
+      - identifier: name
+        type: Textarea
+        rows: 1
+        label: Department Name
+        required: true
+      - identifier: members
+        type: Textarea
+        label: "Members (one per line, format: Name | Role)"
+        rows: 5

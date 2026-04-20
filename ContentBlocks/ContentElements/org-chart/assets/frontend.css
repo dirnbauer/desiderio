@@ -1,0 +1,31 @@
+.org-chart__intro {
+    text-align: center;
+    margin-block-end: var(--d-spacing-xl);
+}
+.org-chart__levels {
+    display: flex;
+    flex-direction: column;
+    gap: var(--d-spacing-lg);
+    align-items: center;
+}
+.org-chart__level { width: 100%; text-align: center; }
+.org-chart__level-label {
+    font-size: var(--d-text-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--muted-foreground);
+    margin-block-end: var(--d-spacing-sm);
+}
+.org-chart__row {
+    display: flex;
+    gap: var(--d-spacing-md);
+    justify-content: center;
+    flex-wrap: wrap;
+}
+.org-chart__person {
+    min-width: 180px;
+    text-align: center;
+}
+.org-chart__name { font-weight: 600; font-size: var(--d-text-sm); }
+.org-chart__role { font-size: var(--d-text-xs); color: var(--muted-foreground); }

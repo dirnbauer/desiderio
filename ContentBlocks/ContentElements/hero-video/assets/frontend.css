@@ -1,0 +1,48 @@
+.hero-video__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--d-spacing-8);
+    align-items: center;
+    padding-block: var(--d-spacing-12);
+}
+.hero-video__eyebrow {
+    display: block;
+    font-size: var(--d-text-sm);
+    font-weight: 500;
+    color: var(--d-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--d-spacing-2);
+}
+.hero-video__headline {
+    font-size: var(--d-text-4xl);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: var(--d-spacing-4);
+}
+.hero-video__description {
+    font-size: var(--d-text-lg);
+    color: var(--d-muted-foreground);
+    margin-bottom: var(--d-spacing-6);
+}
+.hero-video__panel {
+    background: var(--d-card);
+    border: 1px solid var(--d-border);
+    border-radius: var(--d-radius-lg);
+    padding: var(--d-spacing-6);
+}
+.hero-video__placeholder {
+    aspect-ratio: 16 / 9;
+    background: var(--d-muted);
+    border-radius: var(--d-radius-md);
+    margin-bottom: var(--d-spacing-4);
+}
+.hero-video__panel-title {
+    font-size: var(--d-text-base);
+    font-weight: 600;
+    margin-bottom: var(--d-spacing-1);
+}
+.hero-video__panel-copy {
+    font-size: var(--d-text-sm);
+    color: var(--d-muted-foreground);
+}

@@ -1,0 +1,30 @@
+name: desiderio/faq
+typeName: desiderio_faq
+title: FAQ
+description: Frequently asked questions with structured data support
+group: content
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: subheadline
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
+    rows: 2
+  - identifier: items
+    type: Collection
+    label: Questions
+    minItems: 1
+    fields:
+      - identifier: question
+        type: Textarea
+        rows: 1
+        label: Question
+        required: true
+      - identifier: answer
+        type: Textarea
+        label: Answer
+        enableRichtext: true
+        rows: 4
+        required: true

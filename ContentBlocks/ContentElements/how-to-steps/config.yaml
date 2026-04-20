@@ -1,0 +1,34 @@
+name: desiderio/how-to-steps
+typeName: desiderio_howtosteps
+title: How-To Steps
+description: Numbered instruction steps with structured data for how-to guides
+group: content
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: description
+    type: Textarea
+    label: Introduction
+    rows: 3
+  - identifier: items
+    type: Collection
+    label: Steps
+    minItems: 2
+    fields:
+      - identifier: title
+        type: Textarea
+        rows: 1
+        label: Step Title
+        required: true
+      - identifier: content
+        type: Textarea
+        label: Step Instructions
+        enableRichtext: true
+        rows: 4
+      - identifier: image
+        type: File
+        label: Step Image
+        allowed: common-image-types
+        maxitems: 1

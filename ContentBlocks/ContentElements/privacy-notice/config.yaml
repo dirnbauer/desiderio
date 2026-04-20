@@ -1,0 +1,33 @@
+name: desiderio/privacy-notice
+typeName: desiderio_privacynotice
+title: Privacy Notice
+description: Compact privacy policy summary with expandable sections
+group: footer
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: intro
+    type: Textarea
+    label: Introduction
+    rows: 3
+  - identifier: sections
+    type: Collection
+    label: Sections
+    minItems: 1
+    fields:
+      - identifier: title
+        type: Textarea
+        rows: 1
+        label: Section Title
+        required: true
+      - identifier: content
+        type: Textarea
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:content'
+        enableRichtext: true
+        rows: 4
+  - identifier: last_updated
+    type: Textarea
+    rows: 1
+    label: Last Updated Date

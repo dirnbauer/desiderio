@@ -1,0 +1,37 @@
+name: desiderio/header-profile
+typeName: desiderio_headerprofile
+title: Profile Header
+description: Profile page header with avatar, name, bio, and action buttons
+group: navigation
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:name'
+  - identifier: role
+    type: Textarea
+    rows: 1
+    label: Role / Title
+  - identifier: bio
+    type: Textarea
+    label: Bio
+    rows: 3
+  - identifier: avatar
+    type: File
+    label: Avatar
+    allowed: common-image-types
+    maxitems: 1
+  - identifier: primary_button_text
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:primary_button_text'
+  - identifier: primary_button_link
+    type: Link
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:primary_button_link'
+  - identifier: secondary_button_text
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:secondary_button_text'
+  - identifier: secondary_button_link
+    type: Link
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:secondary_button_link'

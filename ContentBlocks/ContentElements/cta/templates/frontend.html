@@ -1,0 +1,112 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      xmlns:vac="http://typo3.org/ns/Praetorius/ViteAssetCollector/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<vac:asset.vite entry="src/main.ts"
+                manifest="EXT:desiderio/Resources/Public/Vite/.vite/manifest.json" />
+
+<f:variable name="variant" value="{data.variant -> f:or(alternative: 'centered')}" />
+<f:variable name="background" value="{data.background_style -> f:or(alternative: 'default')}" />
+<f:variable name="primaryBtn" value="inline-flex h-11 items-center justify-center gap-2 whitespace-nowrap rounded-md bg-primary px-8 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90 focus-visible:outline-hidden focus-visible:ring-3 focus-visible:ring-ring" />
+<f:variable name="secondaryBtn" value="inline-flex h-11 items-center justify-center gap-2 whitespace-nowrap rounded-md border border-input bg-background px-8 text-sm font-medium text-foreground transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-hidden focus-visible:ring-3 focus-visible:ring-ring" />
+
+<section class="{f:if(condition: '{background}==\'muted\'', then: 'bg-muted', else: '{f:if(condition: \'{background}==\\\'primary\\\'\', then: \'bg-primary text-primary-foreground\', else: \'bg-background\')}')} py-16 md:py-24">
+    <div class="container mx-auto px-4">
+        <f:switch expression="{variant}">
+            <f:case value="split">
+                <div class="grid items-center gap-8 md:grid-cols-2">
+                    <div class="space-y-4">
+                        <f:if condition="{data.header}">
+                            <h2 class="text-3xl font-bold tracking-tight md:text-4xl">{data -> f:render.text(field: 'header')}</h2>
+                        </f:if>
+                        <f:if condition="{data.subheadline}">
+                            <p class="text-lg text-muted-foreground">{data -> f:render.text(field: 'subheadline')}</p>
+                        </f:if>
+                        <div class="flex flex-wrap gap-3 pt-2">
+                            <f:if condition="{data.primary_button_text}">
+                                <f:link.typolink parameter="{data.primary_button_link}" class="{primaryBtn}">
+                                    {data -> f:render.text(field: 'primary_button_text')}
+                                </f:link.typolink>
+                            </f:if>
+                            <f:if condition="{data.secondary_button_text}">
+                                <f:link.typolink parameter="{data.secondary_button_link}" class="{secondaryBtn}">
+                                    {data -> f:render.text(field: 'secondary_button_text')}
+                                </f:link.typolink>
+                            </f:if>
+                        </div>
+                    </div>
+                    <f:if condition="{data.cta_image}">
+                        <div class="overflow-hidden rounded-lg">
+                            <f:for each="{data.cta_image}" as="file">
+                                <f:image image="{file}" alt="" class="h-auto w-full" width="800" />
+                            </f:for>
+                        </div>
+                    </f:if>
+                </div>
+            </f:case>
+            <f:case value="banner">
+                <div class="rounded-lg bg-primary px-6 py-10 text-primary-foreground md:px-12 md:py-16">
+                    <div class="mx-auto max-w-3xl space-y-4 text-center">
+                        <f:if condition="{data.header}">
+                            <h2 class="text-3xl font-bold tracking-tight md:text-4xl">{data -> f:render.text(field: 'header')}</h2>
+                        </f:if>
+                        <f:if condition="{data.subheadline}">
+                            <p class="text-lg opacity-90">{data -> f:render.text(field: 'subheadline')}</p>
+                        </f:if>
+                        <f:if condition="{data.primary_button_text}">
+                            <div class="flex flex-wrap justify-center gap-3 pt-2">
+                                <f:link.typolink parameter="{data.primary_button_link}"
+                                    class="inline-flex h-11 items-center justify-center gap-2 whitespace-nowrap rounded-md bg-background px-8 text-sm font-medium text-foreground transition-colors hover:bg-background/90 focus-visible:outline-hidden focus-visible:ring-3 focus-visible:ring-ring">
+                                    {data -> f:render.text(field: 'primary_button_text')}
+                                </f:link.typolink>
+                            </div>
+                        </f:if>
+                    </div>
+                </div>
+            </f:case>
+            <f:case value="minimal">
+                <div class="flex flex-wrap items-center justify-between gap-4">
+                    <div class="space-y-1">
+                        <f:if condition="{data.header}">
+                            <h2 class="text-2xl font-semibold tracking-tight">{data -> f:render.text(field: 'header')}</h2>
+                        </f:if>
+                        <f:if condition="{data.subheadline}">
+                            <p class="text-sm text-muted-foreground">{data -> f:render.text(field: 'subheadline')}</p>
+                        </f:if>
+                    </div>
+                    <f:if condition="{data.primary_button_text}">
+                        <f:link.typolink parameter="{data.primary_button_link}" class="{primaryBtn}">
+                            {data -> f:render.text(field: 'primary_button_text')}
+                        </f:link.typolink>
+                    </f:if>
+                </div>
+            </f:case>
+            <f:defaultCase>
+                <div class="mx-auto max-w-3xl space-y-4 text-center">
+                    <f:if condition="{data.header}">
+                        <h2 class="text-3xl font-bold tracking-tight md:text-4xl">{data -> f:render.text(field: 'header')}</h2>
+                    </f:if>
+                    <f:if condition="{data.subheadline}">
+                        <p class="text-lg text-muted-foreground">{data -> f:render.text(field: 'subheadline')}</p>
+                    </f:if>
+                    <div class="flex flex-wrap justify-center gap-3 pt-2">
+                        <f:if condition="{data.primary_button_text}">
+                            <f:link.typolink parameter="{data.primary_button_link}" class="{primaryBtn}">
+                                {data -> f:render.text(field: 'primary_button_text')}
+                            </f:link.typolink>
+                        </f:if>
+                        <f:if condition="{data.secondary_button_text}">
+                            <f:link.typolink parameter="{data.secondary_button_link}" class="{secondaryBtn}">
+                                {data -> f:render.text(field: 'secondary_button_text')}
+                            </f:link.typolink>
+                        </f:if>
+                    </div>
+                </div>
+            </f:defaultCase>
+        </f:switch>
+    </div>
+</section>
+
+</html>

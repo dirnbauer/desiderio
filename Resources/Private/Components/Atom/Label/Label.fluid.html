@@ -1,0 +1,6 @@
+<f:argument name="for" type="string" optional="{true}" />
+<f:argument name="class" type="string" optional="{true}" default="" />
+
+<label for="{for}" class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 {class}">
+    <f:slot />
+</label>

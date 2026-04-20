@@ -1,0 +1,42 @@
+name: desiderio/comparison-table
+typeName: desiderio_comparisontable
+title: Comparison Table
+description: Side-by-side feature comparison table with check/cross indicators
+group: data
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: description
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
+    rows: 2
+  - identifier: column_items
+    type: Collection
+    label: Comparison Columns
+    minItems: 2
+    fields:
+      - identifier: name
+        type: Textarea
+        rows: 1
+        label: Column Name
+        required: true
+      - identifier: highlighted
+        type: Checkbox
+        label: Highlight
+        default: 0
+  - identifier: feature_items
+    type: Collection
+    label: Feature Rows
+    minItems: 1
+    fields:
+      - identifier: name
+        type: Text
+        label: Feature Name
+        required: true
+      - identifier: tier_values
+        type: Textarea
+        rows: 1
+        label: Values (comma-separated)
+        description: Use "yes", "no", or text for each column

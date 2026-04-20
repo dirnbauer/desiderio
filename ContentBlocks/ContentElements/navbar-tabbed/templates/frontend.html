@@ -1,0 +1,26 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-navbar-tabbed" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="navbar-tabbed">
+    <d:layout.container>
+        <nav class="navbar-tabbed__inner" aria-label="Tabbed navigation">
+            <div class="navbar-tabbed__brand">{data -> f:render.text(field: 'brand')}</div>
+            <div class="navbar-tabbed__tabs" role="tablist">
+                <f:for each="{data.tabs}" as="tab">
+                    <f:if condition="{tab.link.url}">
+                        <f:link.typolink parameter="{tab.link}" class="navbar-tabbed__tab{f:if(condition: tab.active, then: ' navbar-tabbed__tab--active')}" role="tab">{tab -> f:render.text(field: 'label')}</f:link.typolink>
+                    </f:if>
+                </f:for>
+            </div>
+            <f:if condition="{data.button_text} && {data.button_link.url}">
+                <d:atom.button href="{data.button_link.url}" target="{data.button_link.target}" size="sm">{data -> f:render.text(field: 'button_text')}</d:atom.button>
+            </f:if>
+        </nav>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

@@ -1,0 +1,27 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-utility-bar" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="utility-bar">
+    <d:layout.container>
+        <div class="utility-bar__inner">
+            <f:if condition="{data.left_text}">
+                <p class="utility-bar__text">{data -> f:render.text(field: 'left_text')}</p>
+            </f:if>
+            <f:if condition="{data.link_items}">
+                <nav class="utility-bar__nav" aria-label="Utility navigation">
+                    <f:for each="{data.link_items}" as="item">
+                        <f:if condition="{item.link.url}">
+                            <f:link.typolink parameter="{item.link}" class="utility-bar__link">{item -> f:render.text(field: 'label')}</f:link.typolink>
+                        </f:if>
+                    </f:for>
+                </nav>
+            </f:if>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

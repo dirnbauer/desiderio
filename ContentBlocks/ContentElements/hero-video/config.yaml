@@ -1,0 +1,33 @@
+name: desiderio/hero-video
+typeName: desiderio_herovideo
+title: Hero Video
+description: Hero section with embedded video or video placeholder panel
+group: hero
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: eyebrow
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
+  - identifier: subheadline
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
+    rows: 3
+  - identifier: video_title
+    type: Textarea
+    rows: 1
+    label: Video Title
+  - identifier: video_description
+    type: Textarea
+    label: Video Description
+    rows: 2
+  - identifier: primary_button_text
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:primary_button_text'
+  - identifier: primary_button_link
+    type: Link
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:primary_button_link'

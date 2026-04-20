@@ -1,0 +1,10 @@
+.footer-contact { padding-block: var(--d-spacing-xl); border-top: 1px solid var(--border); }
+.footer-contact__title { font-size: var(--d-text-lg); font-weight: 700; margin-block-end: var(--d-spacing-lg); }
+.footer-contact__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--d-spacing-lg); }
+.footer-contact__item { display: flex; align-items: flex-start; gap: var(--d-spacing-sm); }
+.footer-contact__item svg { flex-shrink: 0; color: var(--muted-foreground); margin-top: 2px; }
+.footer-contact__text { font-size: var(--d-text-sm); white-space: pre-line; }
+.footer-contact__link { font-size: var(--d-text-sm); color: var(--primary); text-decoration: none; }
+.footer-contact__link:hover { text-decoration: underline; }
+.footer-contact__bottom { margin-block-start: var(--d-spacing-xl); padding-block-start: var(--d-spacing-md); border-top: 1px solid var(--border); }
+.footer-contact__copyright { font-size: var(--d-text-xs); color: var(--muted-foreground); }

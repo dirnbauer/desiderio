@@ -1,0 +1,46 @@
+{
+  "_type": "pricing",
+  "header": "Choose Your Billing Cycle",
+  "description": "Save 20% with annual billing.",
+  "plans": [
+    {
+      "name": "Basic",
+      "price": "$12",
+      "period": "per month",
+      "features": [
+        "Core features",
+        "5 users",
+        "Basic support"
+      ],
+      "button": "Choose Basic",
+      "featured": false
+    },
+    {
+      "name": "Standard",
+      "price": "$36",
+      "period": "per month",
+      "features": [
+        "All features",
+        "25 users",
+        "Priority support",
+        "API access"
+      ],
+      "button": "Choose Standard",
+      "featured": true
+    },
+    {
+      "name": "Premium",
+      "price": "$84",
+      "period": "per month",
+      "features": [
+        "All features",
+        "Unlimited users",
+        "Dedicated support",
+        "Custom SLA",
+        "SSO"
+      ],
+      "button": "Choose Premium",
+      "featured": false
+    }
+  ]
+}

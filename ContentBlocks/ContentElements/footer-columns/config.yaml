@@ -1,0 +1,36 @@
+name: desiderio/footer-columns
+typeName: desiderio_footercolumns
+title: Footer Columns
+description: Multi-column footer with grouped link sections
+group: footer
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: brand
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:brand_name'
+  - identifier: description
+    type: Textarea
+    label: Brand Description
+    rows: 3
+  - identifier: column_items
+    type: Collection
+    label: Link Columns
+    minItems: 1
+    fields:
+      - identifier: title
+        type: Textarea
+        rows: 1
+        label: Column Title
+        required: true
+      - identifier: links
+        type: Textarea
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:links_one_per_line'
+        rows: 5
+  - identifier: copyright
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:copyright_text'

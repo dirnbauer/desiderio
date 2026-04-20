@@ -1,0 +1,29 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-company-stats" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="company-stats">
+    <d:layout.container>
+        <f:if condition="{data.header} || {data.subheadline}">
+            <header class="company-stats__intro">
+                <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
+                <f:if condition="{data.subheadline}"><d:atom.typography variant="muted">{data -> f:render.text(field: 'subheadline')}</d:atom.typography></f:if>
+            </header>
+        </f:if>
+
+        <div class="company-stats__grid">
+            <f:for each="{data.stats}" as="stat">
+                <article class="company-stats__item">
+                    <div class="company-stats__value">{stat -> f:render.text(field: 'value')}</div>
+                    <h3 class="company-stats__label">{stat -> f:render.text(field: 'label')}</h3>
+                    <f:if condition="{stat.description_text}"><p class="company-stats__description">{stat -> f:render.text(field: 'description_text')}</p></f:if>
+                </article>
+            </f:for>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

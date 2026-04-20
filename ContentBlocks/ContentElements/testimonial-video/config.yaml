@@ -1,0 +1,43 @@
+name: desiderio/testimonial-video
+typeName: desiderio_testimonialvideo
+title: Testimonial Video
+description: Video testimonial with quote overlay and author info
+group: social-proof
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+
+  - identifier: quote
+    type: Textarea
+    label: Pull Quote
+    rows: 3
+
+  - identifier: video_url
+    type: Text
+    label: Video URL
+    description: YouTube or Vimeo embed URL
+    required: true
+
+  - identifier: poster_image
+    type: File
+    label: Poster Image
+    allowed: common-image-types
+    maxitems: 1
+
+  - identifier: author_name
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:author_name'
+    required: true
+
+  - identifier: author_title
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:author_title'
+
+  - identifier: author_company
+    type: Textarea
+    rows: 1
+    label: Company

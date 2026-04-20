@@ -1,0 +1,36 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-download-form" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="download-form">
+    <d:layout.container>
+        <div class="download-form__layout">
+            <div class="download-form__content">
+                <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
+                <f:if condition="{data.description}"><d:atom.typography variant="muted">{data -> f:render.text(field: 'description')}</d:atom.typography></f:if>
+                <f:if condition="{data.resource_title}"><p class="download-form__resource">{data -> f:render.text(field: 'resource_title')}</p></f:if>
+            </div>
+            <d:molecule.card class="download-form__card">
+                <f:if condition="{data.image}">
+                    <div class="download-form__preview">
+                        <f:for each="{data.image}" as="fileReference">
+                            <img src="{f:uri.image(image: fileReference, maxWidth: 400)}" alt="" class="download-form__image"/>
+                        </f:for>
+                    </div>
+                </f:if>
+                <form class="download-form__form" action="{data.form_action.url}" method="post">
+                    <label class="download-form__field">
+                        <span class="download-form__label">Email</span>
+                        <input class="download-form__input" type="email" name="email" placeholder="you@example.com" required="required"/>
+                    </label>
+                    <d:atom.button type="submit">{data.button_text -> f:or(alternative: 'Download now')}</d:atom.button>
+                </form>
+            </d:molecule.card>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

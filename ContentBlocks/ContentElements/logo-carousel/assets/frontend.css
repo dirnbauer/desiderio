@@ -1,0 +1,11 @@
+.logo-carousel__intro { text-align: center; margin-block-end: var(--d-spacing-lg); }
+.logo-carousel__eyebrow { font-size: var(--d-text-sm); text-transform: uppercase; letter-spacing: 0.05em; color: var(--primary); font-weight: 600; }
+.logo-carousel__headline { margin-block-start: var(--d-spacing-xs); }
+.logo-carousel__track { overflow: hidden; mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); }
+.logo-carousel__slide-group { display: flex; gap: var(--d-spacing-xl); animation: logo-carousel-scroll 30s linear infinite; }
+.logo-carousel__track--slow .logo-carousel__slide-group { animation-duration: 50s; }
+.logo-carousel__track--fast .logo-carousel__slide-group { animation-duration: 15s; }
+@keyframes logo-carousel-scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+.logo-carousel__item { flex-shrink: 0; display: flex; align-items: center; justify-content: center; padding: var(--d-spacing-sm); }
+.logo-carousel__image { max-height: 2.5rem; width: auto; object-fit: contain; filter: grayscale(1); opacity: 0.6; transition: all 0.2s; }
+.logo-carousel__item:hover .logo-carousel__image { filter: grayscale(0); opacity: 1; }

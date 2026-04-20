@@ -1,0 +1,39 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-team-department" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="team-department">
+    <d:layout.container>
+        <f:if condition="{data.header} || {data.subheadline}">
+            <header class="team-department__intro">
+                <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
+                <f:if condition="{data.subheadline}"><d:atom.typography variant="muted">{data -> f:render.text(field: 'subheadline')}</d:atom.typography></f:if>
+            </header>
+        </f:if>
+
+        <f:for each="{data.department_items}" as="dept">
+            <div class="team-department__group">
+                <h3 class="team-department__dept-name">{dept -> f:render.text(field: 'name')}</h3>
+                <div class="team-department__grid">
+                    <f:for each="{dept.members -> f:split(separator: '
+')}" as="memberLine">
+                        <f:if condition="{memberLine -> f:format.trim()}">
+                            <f:variable name="memberParts" value="{memberLine -> f:split(separator: '|')}"/>
+                            <d:molecule.card class="team-department__member">
+                                <div class="team-department__content">
+                                    <h4 class="team-department__name">{memberParts.0 -> f:format.trim()}</h4>
+                                    <f:if condition="{memberParts.1}"><p class="team-department__role">{memberParts.1 -> f:format.trim()}</p></f:if>
+                                </div>
+                            </d:molecule.card>
+                        </f:if>
+                    </f:for>
+                </div>
+            </div>
+        </f:for>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

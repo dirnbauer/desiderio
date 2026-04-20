@@ -1,0 +1,47 @@
+name: desiderio/timeline
+typeName: desiderio_timeline
+title: Timeline
+description: Process, roadmap, and milestone timelines
+group: content
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+
+  - identifier: subheadline
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
+    rows: 2
+
+  - identifier: items
+    type: Collection
+    label: Timeline Items
+    minItems: 1
+    fields:
+      - identifier: step
+        type: Textarea
+        rows: 1
+        label: Step / Date
+        required: true
+
+      - identifier: title
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:title'
+        required: true
+
+      - identifier: content
+        type: Textarea
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:content'
+        rows: 4
+        enableRichtext: true
+
+      - identifier: link_text
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:link_text'
+
+      - identifier: link
+        type: Link
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:link'

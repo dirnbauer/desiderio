@@ -1,0 +1,23 @@
+{
+  "_type": "form",
+  "header": "Share Your Feedback",
+  "description": "Help us improve by telling us about your experience.",
+  "fields": [
+    {
+      "label": "What do you like most?",
+      "type": "text",
+      "placeholder": "Your favorite feature..."
+    },
+    {
+      "label": "What could be better?",
+      "type": "text",
+      "placeholder": "Suggestions for improvement..."
+    },
+    {
+      "label": "Email (optional)",
+      "type": "email",
+      "placeholder": "your@email.com"
+    }
+  ],
+  "primaryButton": "Submit Feedback"
+}

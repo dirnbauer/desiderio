@@ -1,0 +1,36 @@
+name: desiderio/contact-info
+typeName: desiderio_contactinfo
+title: Contact Info
+description: Simple contact information cards with icons
+group: conversion
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: subheadline
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
+    rows: 2
+  - identifier: items
+    type: Collection
+    label: Contact Items
+    minItems: 1
+    fields:
+      - identifier: label
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:label_field'
+        required: true
+      - identifier: value
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:value'
+        required: true
+      - identifier: link
+        type: Link
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:link'
+      - identifier: icon
+        type: Textarea
+        rows: 1
+        label: Icon Label

@@ -1,0 +1,50 @@
+name: desiderio/analytics-overview
+typeName: desiderio_analyticsoverview
+title: Analytics Overview
+description: Dashboard-style overview with key metrics, trend chart, and summary
+group: data
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: period_label
+    type: Textarea
+    rows: 1
+    label: Period Label
+    description: e.g. Last 30 days
+  - identifier: items
+    type: Collection
+    label: Key Metrics
+    minItems: 1
+    fields:
+      - identifier: label
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:label_field'
+        required: true
+      - identifier: value
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:value'
+        required: true
+      - identifier: change
+        type: Textarea
+        rows: 1
+        label: Change
+      - identifier: trend
+        type: Select
+        renderType: selectSingle
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:trend'
+        items:
+          - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.up'
+            value: up
+          - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.down'
+            value: down
+          - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.neutral'
+            value: neutral
+        default: neutral
+  - identifier: summary
+    type: Textarea
+    label: Summary Text
+    rows: 3

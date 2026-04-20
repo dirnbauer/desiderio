@@ -1,0 +1,40 @@
+name: desiderio/team-member
+typeName: desiderio_teammember
+title: Team Member
+description: Single team member profile card with detailed biography
+group: team
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: image
+    type: File
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:portrait'
+    allowed: common-image-types
+    maxitems: 1
+  - identifier: role
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:role'
+  - identifier: bio
+    type: Textarea
+    label: Biography
+    rows: 4
+  - identifier: email
+    type: Text
+    label: Email
+  - identifier: phone
+    type: Text
+    label: Phone
+  - identifier: social_links
+    type: Collection
+    label: Social Links
+    fields:
+      - identifier: platform
+        type: Textarea
+        rows: 1
+        label: Platform
+      - identifier: url
+        type: Link
+        label: URL

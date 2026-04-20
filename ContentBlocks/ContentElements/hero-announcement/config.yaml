@@ -1,0 +1,35 @@
+name: desiderio/hero-announcement
+typeName: desiderio_heroannouncement
+title: Hero Announcement
+description: Hero with top announcement badge and main content
+group: hero
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: subheadline
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
+    rows: 3
+  - identifier: announcement_text
+    type: Textarea
+    rows: 1
+    label: Announcement Text
+  - identifier: announcement_link
+    type: Link
+    label: Announcement Link
+  - identifier: primary_button_text
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:primary_button_text'
+  - identifier: primary_button_link
+    type: Link
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:primary_button_link'
+  - identifier: secondary_button_text
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:secondary_button_text'
+  - identifier: secondary_button_link
+    type: Link
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:secondary_button_link'

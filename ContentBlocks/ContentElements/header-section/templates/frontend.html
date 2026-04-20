@@ -1,0 +1,24 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-header-section" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="header-section header-section--{data.variant -> f:or(alternative: 'center')}">
+    <d:layout.container>
+        <header class="header-section__inner">
+            <f:if condition="{data.eyebrow}">
+                <span class="header-section__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span>
+            </f:if>
+            <f:if condition="{data.header}">
+                <h2 class="header-section__title">{data -> f:render.text(field: 'header')}</h2>
+            </f:if>
+            <f:if condition="{data.subheadline}">
+                <p class="header-section__subtitle">{data -> f:render.text(field: 'subheadline')}</p>
+            </f:if>
+        </header>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

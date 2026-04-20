@@ -1,0 +1,49 @@
+name: desiderio/rating-display
+typeName: desiderio_ratingdisplay
+title: Rating Display
+description: Aggregate rating display with score and review count
+group: social-proof
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+
+  - identifier: eyebrow
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
+
+  - identifier: rating_items
+    type: Collection
+    label: Rating Sources
+    minItems: 1
+    fields:
+      - identifier: platform
+        type: Textarea
+        rows: 1
+        label: Platform Name
+        required: true
+
+      - identifier: score
+        type: Textarea
+        rows: 1
+        label: Score
+        required: true
+        description: e.g. 4.8/5
+
+      - identifier: review_count
+        type: Textarea
+        rows: 1
+        label: Review Count
+        description: e.g. 2,450 reviews
+
+      - identifier: logo
+        type: File
+        label: Platform Logo
+        allowed: common-image-types
+        maxitems: 1
+
+      - identifier: link
+        type: Link
+        label: Platform Link

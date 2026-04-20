@@ -1,0 +1,51 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-certifications" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="certifications">
+    <d:layout.container>
+        <f:if condition="{data.eyebrow} || {data.header} || {data.subheadline}">
+            <header class="certifications__intro">
+                <f:if condition="{data.eyebrow}">
+                    <span class="certifications__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span>
+                </f:if>
+                <f:if condition="{data.header}">
+                    <h2 class="certifications__headline">{data -> f:render.text(field: 'header')}</h2>
+                </f:if>
+                <f:if condition="{data.subheadline}">
+                    <p class="certifications__description">{data -> f:render.text(field: 'subheadline')}</p>
+                </f:if>
+            </header>
+        </f:if>
+
+        <div class="certifications__grid">
+            <f:for each="{data.certifications}" as="cert">
+                <article class="certifications__item">
+                    <f:if condition="{cert.badge_image}">
+                        <div class="certifications__badge">
+                            <f:for each="{cert.badge_image}" as="fileReference">
+                                <img src="{f:uri.image(image: fileReference, maxWidth: 100)}" alt="{cert -> f:render.text(field: 'name')}" class="certifications__badge-img"/>
+                            </f:for>
+                        </div>
+                    </f:if>
+                    <h3 class="certifications__name">{cert -> f:render.text(field: 'name')}</h3>
+                    <f:if condition="{cert.issuer}">
+                        <span class="certifications__issuer">{cert -> f:render.text(field: 'issuer')}</span>
+                    </f:if>
+                    <f:if condition="{cert.description}">
+                        <p class="certifications__cert-description">{cert -> f:render.text(field: 'description')}</p>
+                    </f:if>
+                    <f:if condition="{cert.link.url}">
+                        <f:link.typolink parameter="{cert.link}" class="certifications__link">
+                            Verify &rarr;
+                        </f:link.typolink>
+                    </f:if>
+                </article>
+            </f:for>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+</html>

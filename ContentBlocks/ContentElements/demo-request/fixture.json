@@ -1,0 +1,28 @@
+{
+  "_type": "form",
+  "header": "Request a Live Demo",
+  "description": "See our platform in action with a personalized walkthrough from our product team.",
+  "fields": [
+    {
+      "label": "Work Email",
+      "type": "email",
+      "placeholder": "you@company.com"
+    },
+    {
+      "label": "Company Name",
+      "type": "text",
+      "placeholder": "Acme Inc."
+    },
+    {
+      "label": "Team Size",
+      "type": "select",
+      "placeholder": "Select team size"
+    },
+    {
+      "label": "What are you looking to solve?",
+      "type": "textarea",
+      "placeholder": "Tell us about your biggest challenges..."
+    }
+  ],
+  "primaryButton": "Schedule Demo"
+}

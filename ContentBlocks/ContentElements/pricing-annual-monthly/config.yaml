@@ -1,0 +1,68 @@
+name: desiderio/pricing-annual-monthly
+typeName: desiderio_pricingannualmonthly
+title: Pricing Annual Monthly
+description: Pricing cards with annual and monthly price display and savings badge
+group: pricing
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+
+  - identifier: eyebrow
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
+
+  - identifier: subheadline
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
+    rows: 2
+
+  - identifier: plans
+    type: Collection
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:plans'
+    minItems: 1
+    fields:
+      - identifier: name
+        type: Textarea
+        rows: 1
+        label: Plan Name
+        required: true
+
+      - identifier: monthly_price
+        type: Textarea
+        rows: 1
+        label: Monthly Price
+        required: true
+
+      - identifier: annual_price
+        type: Textarea
+        rows: 1
+        label: Annual Price
+        required: true
+
+      - identifier: savings
+        type: Textarea
+        rows: 1
+        label: Savings Badge
+        description: e.g. Save 20%
+
+      - identifier: features_list
+        type: Textarea
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:features_one_per_line'
+        rows: 5
+
+      - identifier: is_featured
+        type: Checkbox
+        label: Featured Plan
+
+      - identifier: button_text
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_text'
+        default: Get Started
+
+      - identifier: button_link
+        type: Link
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_link'

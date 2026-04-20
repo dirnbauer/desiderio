@@ -1,0 +1,33 @@
+.company-milestones__intro {
+    text-align: center;
+    margin-block-end: var(--d-spacing-xl);
+}
+.company-milestones__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--d-spacing-lg);
+}
+@media (max-width: 768px) {
+    .company-milestones__grid { grid-template-columns: repeat(2, 1fr); }
+}
+.company-milestones__item { text-align: center; }
+.company-milestones__number {
+    display: block;
+    font-size: var(--d-text-3xl);
+    font-weight: 700;
+    color: var(--primary);
+}
+.company-milestones__year {
+    display: block;
+    font-size: var(--d-text-xs);
+    color: var(--muted-foreground);
+    margin-block-end: var(--d-spacing-xs);
+}
+.company-milestones__title {
+    font-weight: 600;
+    margin-block-end: var(--d-spacing-2xs);
+}
+.company-milestones__description {
+    font-size: var(--d-text-sm);
+    color: var(--muted-foreground);
+}

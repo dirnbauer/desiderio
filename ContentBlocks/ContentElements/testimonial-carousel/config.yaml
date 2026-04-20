@@ -1,0 +1,61 @@
+name: desiderio/testimonial-carousel
+typeName: desiderio_testimonialcarousel
+title: Testimonial Carousel
+description: Sliding carousel of customer testimonials
+group: social-proof
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+
+  - identifier: eyebrow
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
+
+  - identifier: autoplay
+    type: Checkbox
+    label: Autoplay
+    default: 1
+
+  - identifier: testimonials
+    type: Collection
+    label: Testimonials
+    minItems: 2
+    fields:
+      - identifier: quote
+        type: Textarea
+        label: Quote
+        rows: 3
+        required: true
+
+      - identifier: author_name
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:author_name'
+        required: true
+
+      - identifier: author_title
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:author_title'
+
+      - identifier: author_image
+        type: File
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:author_photo'
+        allowed: common-image-types
+        maxitems: 1
+
+      - identifier: rating
+        type: Select
+        renderType: selectSingle
+        label: Star Rating
+        items:
+          - label: No Rating
+            value: '0'
+          - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.5_stars'
+            value: '5'
+          - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.4_stars'
+            value: '4'
+        default: '0'

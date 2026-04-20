@@ -1,0 +1,48 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-features" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="features">
+    <d:layout.container>
+        <f:if condition="{data.header} || {data.subheadline}">
+            <div class="features__header">
+                <f:if condition="{data.header}">
+                    <d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography>
+                </f:if>
+                <f:if condition="{data.subheadline}">
+                    <d:atom.typography variant="muted" class="features__subheadline">{data -> f:render.text(field: 'subheadline')}</d:atom.typography>
+                </f:if>
+            </div>
+        </f:if>
+
+        <div class="features__grid features__grid--cols-{data.columns} features__grid--{data.variant}">
+            <f:for each="{data.feature_items}" as="feature">
+                <div class="features__item {f:if(condition: '{data.variant} == \'card\'', then: 'features__item--card')}">
+                    <div class="features__icon" aria-hidden="true">
+                        <span class="features__icon-label">{feature.icon_name}</span>
+                    </div>
+                    <div class="features__content">
+                        <h3 class="features__title">
+                            <f:if condition="{feature.link.url}">
+                                <f:then>
+                                    <f:link.typolink parameter="{feature.link}">{feature -> f:render.text(field: 'title')}</f:link.typolink>
+                                </f:then>
+                                <f:else>
+                                    {feature -> f:render.text(field: 'title')}
+                                </f:else>
+                            </f:if>
+                        </h3>
+                        <f:if condition="{feature.description}">
+                            <p class="features__description">{feature -> f:render.text(field: 'description')}</p>
+                        </f:if>
+                    </div>
+                </div>
+            </f:for>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

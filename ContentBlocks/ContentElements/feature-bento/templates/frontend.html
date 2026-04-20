@@ -1,0 +1,37 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-feature-bento" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="feature-bento">
+    <d:layout.container>
+        <f:if condition="{data.header}">
+            <header class="feature-bento__intro">
+                <d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography>
+                <f:if condition="{data.subheadline}"><d:atom.typography variant="muted">{data -> f:render.text(field: 'subheadline')}</d:atom.typography></f:if>
+            </header>
+        </f:if>
+
+        <div class="feature-bento__grid">
+            <f:for each="{data.items}" as="item">
+                <d:molecule.card class="feature-bento__item feature-bento__item--{item.size -> f:or(alternative: 'small')}">
+                    <f:if condition="{item.image.0}">
+                        <div class="feature-bento__bg">
+                            <f:image image="{item.image.0}" alt="" maxWidth="800" class="feature-bento__bg-image"/>
+                        </div>
+                    </f:if>
+                    <div class="feature-bento__content">
+                        <h3 class="feature-bento__title">{item -> f:render.text(field: 'title')}</h3>
+                        <f:if condition="{item.description}">
+                            <p class="feature-bento__description">{item -> f:render.text(field: 'description')}</p>
+                        </f:if>
+                    </div>
+                </d:molecule.card>
+            </f:for>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

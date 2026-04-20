@@ -1,0 +1,23 @@
+{
+  "_type": "form",
+  "header": "Your Privacy Matters",
+  "description": "We comply with GDPR and respect your right to control your personal data.",
+  "fields": [
+    {
+      "label": "Necessary Cookies",
+      "type": "checkbox",
+      "placeholder": "Required for site functionality"
+    },
+    {
+      "label": "Performance Cookies",
+      "type": "checkbox",
+      "placeholder": "Help us improve site performance"
+    },
+    {
+      "label": "Targeting Cookies",
+      "type": "checkbox",
+      "placeholder": "Used for personalized content"
+    }
+  ],
+  "primaryButton": "Accept Selected"
+}

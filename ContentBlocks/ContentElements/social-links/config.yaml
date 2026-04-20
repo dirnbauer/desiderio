@@ -1,0 +1,28 @@
+name: desiderio/social-links
+typeName: desiderio_sociallinks
+title: Social Links
+description: Row of social media profile links
+group: conversion
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: description_text
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
+  - identifier: link_items
+    type: Collection
+    label: Social Links
+    minItems: 1
+    fields:
+      - identifier: platform
+        type: Textarea
+        rows: 1
+        label: Platform
+        required: true
+      - identifier: url
+        type: Link
+        label: URL
+        required: true

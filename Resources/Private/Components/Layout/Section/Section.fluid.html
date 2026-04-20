@@ -1,0 +1,32 @@
+<f:argument name="class" type="string" optional="{true}" default="" />
+<f:argument name="background" type="string" optional="{true}" default="default" />
+<f:argument name="spacing" type="string" optional="{true}" default="default" />
+<f:argument name="id" type="string" optional="{true}" />
+<f:argument name="style" type="string" optional="{true}" default="" />
+<f:argument name="role" type="string" optional="{true}" />
+
+<f:variable name="bgClass">
+    <f:switch expression="{background}">
+        <f:case value="muted">bg-muted</f:case>
+        <f:case value="primary">bg-primary text-primary-foreground</f:case>
+        <f:case value="secondary">bg-secondary text-secondary-foreground</f:case>
+        <f:case value="accent">bg-accent text-accent-foreground</f:case>
+        <f:case value="card">bg-card text-card-foreground</f:case>
+        <f:defaultCase>bg-background</f:defaultCase>
+    </f:switch>
+</f:variable>
+
+<f:variable name="spacingClass">
+    <f:switch expression="{spacing}">
+        <f:case value="none"></f:case>
+        <f:case value="sm">py-8</f:case>
+        <f:case value="md">py-12</f:case>
+        <f:case value="lg">py-20 md:py-28</f:case>
+        <f:case value="xl">py-24 md:py-32</f:case>
+        <f:defaultCase>py-16 md:py-24</f:defaultCase>
+    </f:switch>
+</f:variable>
+
+<section class="{bgClass -> f:format.trim()} {spacingClass -> f:format.trim()} {class}" id="{id}" style="{style}" role="{role}">
+    <f:slot />
+</section>

@@ -1,0 +1,17 @@
+<f:argument name="size" type="string" optional="{true}" default="default" />
+<f:argument name="class" type="string" optional="{true}" default="" />
+
+<f:variable name="sizeClass">
+    <f:switch expression="{size}">
+        <f:case value="sm">max-w-2xl</f:case>
+        <f:case value="md">max-w-4xl</f:case>
+        <f:case value="lg">max-w-6xl</f:case>
+        <f:case value="xl">max-w-7xl</f:case>
+        <f:case value="full">max-w-none</f:case>
+        <f:defaultCase>max-w-7xl</f:defaultCase>
+    </f:switch>
+</f:variable>
+
+<div class="mx-auto w-full px-4 sm:px-6 lg:px-8 {sizeClass -> f:format.trim()} {class}">
+    <f:slot />
+</div>

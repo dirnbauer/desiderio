@@ -1,0 +1,24 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-navbar-minimal" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="navbar-minimal">
+    <d:layout.container>
+        <nav class="navbar-minimal__inner" aria-label="Minimal navigation">
+            <div class="navbar-minimal__brand">
+                <f:if condition="{data.brand_link.url}">
+                    <f:then><f:link.typolink parameter="{data.brand_link}" class="navbar-minimal__brand-link">{data -> f:render.text(field: 'brand')}</f:link.typolink></f:then>
+                    <f:else><span class="navbar-minimal__brand-link">{data -> f:render.text(field: 'brand')}</span></f:else>
+                </f:if>
+            </div>
+            <f:if condition="{data.button_text} && {data.button_link.url}">
+                <d:atom.button href="{data.button_link.url}" target="{data.button_link.target}" variant="ghost" size="sm">{data -> f:render.text(field: 'button_text')}</d:atom.button>
+            </f:if>
+        </nav>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

@@ -1,0 +1,20 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-nav-tabs" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="nav-tabs nav-tabs--{data.variant -> f:or(alternative: 'underline')}">
+    <d:layout.container>
+        <nav class="nav-tabs__inner" aria-label="Tab navigation" role="tablist">
+            <f:for each="{data.tabs}" as="tab">
+                <f:if condition="{tab.link.url}">
+                    <f:link.typolink parameter="{tab.link}" class="nav-tabs__tab{f:if(condition: tab.active, then: ' nav-tabs__tab--active')}" role="tab">{tab -> f:render.text(field: 'label')}</f:link.typolink>
+                </f:if>
+            </f:for>
+        </nav>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

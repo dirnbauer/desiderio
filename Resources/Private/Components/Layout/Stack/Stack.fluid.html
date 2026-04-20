@@ -1,0 +1,33 @@
+<f:argument name="direction" type="string" optional="{true}" default="vertical" />
+<f:argument name="gap" type="string" optional="{true}" default="default" />
+<f:argument name="align" type="string" optional="{true}" default="stretch" />
+<f:argument name="class" type="string" optional="{true}" default="" />
+
+<f:variable name="directionClass" value="{f:if(condition: '{direction} == \'horizontal\'', then: 'flex flex-row', else: 'flex flex-col')}" />
+
+<f:variable name="gapClass">
+    <f:switch expression="{gap}">
+        <f:case value="none">gap-0</f:case>
+        <f:case value="xs">gap-1</f:case>
+        <f:case value="sm">gap-2</f:case>
+        <f:case value="md">gap-4</f:case>
+        <f:case value="lg">gap-6</f:case>
+        <f:case value="xl">gap-8</f:case>
+        <f:case value="2xl">gap-12</f:case>
+        <f:defaultCase>gap-4</f:defaultCase>
+    </f:switch>
+</f:variable>
+
+<f:variable name="alignClass">
+    <f:switch expression="{align}">
+        <f:case value="start">items-start</f:case>
+        <f:case value="center">items-center</f:case>
+        <f:case value="end">items-end</f:case>
+        <f:case value="baseline">items-baseline</f:case>
+        <f:defaultCase>items-stretch</f:defaultCase>
+    </f:switch>
+</f:variable>
+
+<div class="{directionClass} {gapClass -> f:format.trim()} {alignClass -> f:format.trim()} {class}">
+    <f:slot />
+</div>

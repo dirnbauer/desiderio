@@ -1,0 +1,38 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-file-download" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="file-download">
+    <d:layout.container>
+        <f:if condition="{data.header}">
+            <d:atom.typography tag="h2" variant="h2" class="file-download__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
+        </f:if>
+
+        <div class="file-download__list">
+            <f:for each="{data.items}" as="item">
+                <d:molecule.card class="file-download__item">
+                    <div class="file-download__icon" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    </div>
+                    <div class="file-download__info">
+                        <h3 class="file-download__title">{item -> f:render.text(field: 'title')}</h3>
+                        <f:if condition="{item.description_text}">
+                            <p class="file-download__description">{item -> f:render.text(field: 'description_text')}</p>
+                        </f:if>
+                        <div class="file-download__meta">
+                            <f:if condition="{item.file_size}"><span class="file-download__size">{item -> f:render.text(field: 'file_size')}</span></f:if>
+                        </div>
+                    </div>
+                    <f:if condition="{item.file.0}">
+                        <a href="{f:uri.resource(path: item.file.0.originalFile.identifier, extensionName: '')}" class="file-download__link" download>Download</a>
+                    </f:if>
+                </d:molecule.card>
+            </f:for>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

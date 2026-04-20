@@ -1,0 +1,51 @@
+name: desiderio/certifications
+typeName: desiderio_certifications
+title: Certifications
+description: Certification badges and compliance indicators
+group: social-proof
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+
+  - identifier: eyebrow
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
+
+  - identifier: subheadline
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
+    rows: 2
+
+  - identifier: certifications
+    type: Collection
+    label: Certifications
+    minItems: 1
+    fields:
+      - identifier: name
+        type: Textarea
+        rows: 1
+        label: Certification Name
+        required: true
+
+      - identifier: issuer
+        type: Textarea
+        rows: 1
+        label: Issuing Body
+
+      - identifier: badge_image
+        type: File
+        label: Badge Image
+        allowed: common-image-types
+        maxitems: 1
+
+      - identifier: description
+        type: Textarea
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
+        rows: 2
+
+      - identifier: link
+        type: Link
+        label: Verification Link

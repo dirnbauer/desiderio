@@ -1,0 +1,39 @@
+.header-banner {
+    position: relative;
+    overflow: hidden;
+    padding-block: var(--d-spacing-12);
+}
+.header-banner--dark {
+    background: var(--d-foreground);
+    color: var(--d-background);
+}
+.header-banner--primary {
+    background: var(--d-primary);
+    color: var(--d-primary-foreground);
+}
+.header-banner__bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.3;
+}
+.header-banner__inner {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 42rem;
+    margin-inline: auto;
+}
+.header-banner__title {
+    font-size: var(--d-text-4xl);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: var(--d-spacing-3);
+}
+.header-banner__description {
+    font-size: var(--d-text-lg);
+    opacity: 0.8;
+    margin-bottom: var(--d-spacing-6);
+}

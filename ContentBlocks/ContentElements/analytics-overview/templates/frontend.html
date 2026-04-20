@@ -1,0 +1,43 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-analytics-overview" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="analytics-overview">
+    <d:layout.container>
+        <div class="analytics-overview__card">
+            <div class="analytics-overview__header">
+                <f:if condition="{data.header}">
+                    <h2 class="analytics-overview__title">{data -> f:render.text(field: 'header')}</h2>
+                </f:if>
+                <f:if condition="{data.period_label}">
+                    <span class="analytics-overview__period">{data -> f:render.text(field: 'period_label')}</span>
+                </f:if>
+            </div>
+
+            <div class="analytics-overview__metrics">
+                <f:for each="{data.items}" as="item">
+                    <div class="analytics-overview__metric">
+                        <div class="analytics-overview__metric-label">{item -> f:render.text(field: 'label')}</div>
+                        <div class="analytics-overview__metric-value">{item -> f:render.text(field: 'value')}</div>
+                        <f:if condition="{item.change}">
+                            <div class="analytics-overview__metric-change analytics-overview__metric-change--{item.trend -> f:or(alternative: 'neutral')}">
+                                {item -> f:render.text(field: 'change')}
+                            </div>
+                        </f:if>
+                    </div>
+                </f:for>
+            </div>
+
+            <f:if condition="{data.summary}">
+                <div class="analytics-overview__summary">
+                    <p>{data -> f:render.text(field: 'summary')}</p>
+                </div>
+            </f:if>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

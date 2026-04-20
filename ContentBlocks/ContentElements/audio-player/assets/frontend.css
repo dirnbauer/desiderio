@@ -1,0 +1,19 @@
+.audio-player__card {
+    max-width: 42rem;
+    margin-inline: auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--d-spacing-md);
+}
+.audio-player__title {
+    font-weight: 600;
+    margin-block-end: var(--d-spacing-xs);
+}
+.audio-player__description {
+    color: var(--muted-foreground);
+    font-size: var(--d-text-sm);
+}
+.audio-player__audio {
+    width: 100%;
+    border-radius: var(--d-radius-md);
+}

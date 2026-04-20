@@ -1,0 +1,28 @@
+name: desiderio/legal-disclaimer
+typeName: desiderio_legaldisclaimer
+title: Legal Disclaimer
+description: Legal disclaimer block with structured content
+group: footer
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: content
+    type: Textarea
+    label: Disclaimer Text
+    enableRichtext: true
+    rows: 6
+    required: true
+  - identifier: variant
+    type: Select
+    renderType: selectSingle
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:style'
+    items:
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.default'
+        value: default
+      - label: Boxed
+        value: boxed
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.bordered'
+        value: bordered
+    default: default

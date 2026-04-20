@@ -1,0 +1,17 @@
+<f:argument name="type" type="string" optional="{true}" default="text" />
+<f:argument name="name" type="string" optional="{true}" />
+<f:argument name="placeholder" type="string" optional="{true}" />
+<f:argument name="value" type="string" optional="{true}" />
+<f:argument name="disabled" type="bool" optional="{true}" default="{false}" />
+<f:argument name="required" type="bool" optional="{true}" default="{false}" />
+<f:argument name="class" type="string" optional="{true}" default="" />
+
+<input
+    type="{type}"
+    name="{name}"
+    placeholder="{placeholder}"
+    value="{value}"
+    disabled="{disabled}"
+    required="{required}"
+    class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-hidden focus-visible:ring-3 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 {class}"
+/>

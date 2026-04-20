@@ -1,0 +1,34 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+<f:asset.css identifier="d-hero-app" href="{cb:assetPath()}/frontend.css"/>
+<d:layout.section class="hero-app">
+    <d:layout.container>
+        <div class="hero-app__grid">
+            <div class="hero-app__content">
+                <f:if condition="{data.badge_text}"><d:atom.badge variant="secondary">{data -> f:render.text(field: 'badge_text')}</d:atom.badge></f:if>
+                <f:if condition="{data.header}"><h1 class="hero-app__headline">{data -> f:render.text(field: 'header')}</h1></f:if>
+                <f:if condition="{data.subheadline}"><p class="hero-app__subheadline">{data -> f:render.text(field: 'subheadline')}</p></f:if>
+                <div class="hero-app__actions">
+                    <f:if condition="{data.primary_button_text} && {data.primary_button_link.url}">
+                        <d:atom.button href="{data.primary_button_link.url}" target="{data.primary_button_link.target}" size="lg">{data -> f:render.text(field: 'primary_button_text')}</d:atom.button>
+                    </f:if>
+                    <f:if condition="{data.secondary_button_text} && {data.secondary_button_link.url}">
+                        <d:atom.button href="{data.secondary_button_link.url}" target="{data.secondary_button_link.target}" variant="outline" size="lg">{data -> f:render.text(field: 'secondary_button_text')}</d:atom.button>
+                    </f:if>
+                </div>
+            </div>
+            <div class="hero-app__device">
+                <div class="hero-app__phone-frame">
+                    <f:if condition="{data.app_image}">
+                        <f:for each="{data.app_image}" as="image">
+                            <f:image image="{image}" class="hero-app__screenshot" alt="{data -> f:render.text(field: 'header')}"/>
+                        </f:for>
+                    </f:if>
+                </div>
+            </div>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+</html>

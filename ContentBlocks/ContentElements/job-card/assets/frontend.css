@@ -1,0 +1,21 @@
+.job-card__card { max-width: 640px; margin-inline: auto; }
+.job-card__meta {
+    display: flex;
+    gap: var(--d-spacing-xs);
+    flex-wrap: wrap;
+    margin-block-start: var(--d-spacing-sm);
+}
+.job-card__badge {
+    font-size: var(--d-text-xs);
+    padding: 2px 10px;
+    border-radius: 9999px;
+    background: var(--muted);
+    color: var(--muted-foreground);
+    font-weight: 500;
+}
+.job-card__description {
+    color: var(--muted-foreground);
+    line-height: 1.7;
+    margin-block-start: var(--d-spacing-md);
+}
+.job-card__actions { margin-block-start: var(--d-spacing-lg); }

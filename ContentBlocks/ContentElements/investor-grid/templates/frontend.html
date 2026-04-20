@@ -1,0 +1,36 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-investor-grid" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="investor-grid">
+    <d:layout.container>
+        <f:if condition="{data.header} || {data.subheadline}">
+            <header class="investor-grid__intro">
+                <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
+                <f:if condition="{data.subheadline}"><d:atom.typography variant="muted">{data -> f:render.text(field: 'subheadline')}</d:atom.typography></f:if>
+            </header>
+        </f:if>
+
+        <div class="investor-grid__items">
+            <f:for each="{data.investors}" as="inv">
+                <div class="investor-grid__item">
+                    <f:if condition="{inv.logo}">
+                        <f:for each="{inv.logo}" as="fileReference">
+                            <img src="{f:uri.image(image: fileReference, maxWidth: 160)}" alt="{inv -> f:render.text(field: 'name')}" class="investor-grid__logo"/>
+                        </f:for>
+                    </f:if>
+                    <h3 class="investor-grid__name">{inv -> f:render.text(field: 'name')}</h3>
+                    <f:if condition="{inv.type}"><span class="investor-grid__type">{inv -> f:render.text(field: 'type')}</span></f:if>
+                    <f:if condition="{inv.link.url}">
+                        <f:link.typolink parameter="{inv.link}" class="investor-grid__link">Website</f:link.typolink>
+                    </f:if>
+                </div>
+            </f:for>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

@@ -1,0 +1,36 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-contact-info" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="contact-info">
+    <d:layout.container>
+        <f:if condition="{data.header} || {data.subheadline}">
+            <header class="contact-info__intro">
+                <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
+                <f:if condition="{data.subheadline}"><d:atom.typography variant="muted">{data -> f:render.text(field: 'subheadline')}</d:atom.typography></f:if>
+            </header>
+        </f:if>
+
+        <div class="contact-info__grid">
+            <f:for each="{data.items}" as="item">
+                <d:molecule.card class="contact-info__item">
+                    <f:if condition="{item.icon}"><span class="contact-info__icon">{item -> f:render.text(field: 'icon')}</span></f:if>
+                    <h3 class="contact-info__label">{item -> f:render.text(field: 'label')}</h3>
+                    <f:if condition="{item.link.url}">
+                        <f:then>
+                            <f:link.typolink parameter="{item.link}" class="contact-info__value contact-info__value--link">{item -> f:render.text(field: 'value')}</f:link.typolink>
+                        </f:then>
+                        <f:else>
+                            <p class="contact-info__value">{item -> f:render.text(field: 'value')}</p>
+                        </f:else>
+                    </f:if>
+                </d:molecule.card>
+            </f:for>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

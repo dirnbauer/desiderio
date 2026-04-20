@@ -1,0 +1,33 @@
+name: desiderio/feature-split
+typeName: desiderio_featuresplit
+title: Feature Split
+description: Two-column split layout with feature list and media
+group: features
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: description
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
+    rows: 3
+  - identifier: image
+    type: File
+    label: Side Image
+    allowed: common-image-types
+    maxitems: 1
+  - identifier: items
+    type: Collection
+    label: Feature Points
+    minItems: 1
+    fields:
+      - identifier: title
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:title'
+        required: true
+      - identifier: description_text
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'

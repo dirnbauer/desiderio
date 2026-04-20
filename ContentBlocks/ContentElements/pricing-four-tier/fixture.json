@@ -1,0 +1,46 @@
+{
+  "_type": "pricing",
+  "header": "Plans for Every Stage",
+  "description": "From solo founders to enterprise teams, we have a plan that fits.",
+  "plans": [
+    {
+      "name": "Solo",
+      "price": "$9",
+      "period": "/month",
+      "features": [
+        "1 user",
+        "3 projects",
+        "Basic features",
+        "Community support"
+      ],
+      "button": "Start Solo",
+      "featured": false
+    },
+    {
+      "name": "Team",
+      "price": "$25",
+      "period": "/user/month",
+      "features": [
+        "Up to 20 users",
+        "Unlimited projects",
+        "Advanced features",
+        "Email support"
+      ],
+      "button": "Start Team",
+      "featured": true
+    },
+    {
+      "name": "Business",
+      "price": "$59",
+      "period": "/user/month",
+      "features": [
+        "Unlimited users",
+        "Admin controls",
+        "Analytics suite",
+        "Priority support"
+      ],
+      "button": "Start Business",
+      "featured": false
+    }
+  ]
+}

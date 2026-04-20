@@ -1,0 +1,27 @@
+name: desiderio/org-chart
+typeName: desiderio_orgchart
+title: Org Chart
+description: Hierarchical organizational chart with levels
+group: team
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: subheadline
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
+    rows: 2
+  - identifier: levels
+    type: Collection
+    label: Levels
+    minItems: 1
+    fields:
+      - identifier: level_label
+        type: Textarea
+        rows: 1
+        label: Level Label
+      - identifier: people
+        type: Textarea
+        label: "People (one per line, format: Name | Role)"
+        rows: 5

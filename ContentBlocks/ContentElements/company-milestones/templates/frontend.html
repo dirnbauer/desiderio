@@ -1,0 +1,30 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-company-milestones" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="company-milestones">
+    <d:layout.container>
+        <f:if condition="{data.header} || {data.subheadline}">
+            <header class="company-milestones__intro">
+                <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
+                <f:if condition="{data.subheadline}"><d:atom.typography variant="muted">{data -> f:render.text(field: 'subheadline')}</d:atom.typography></f:if>
+            </header>
+        </f:if>
+
+        <div class="company-milestones__grid">
+            <f:for each="{data.milestones}" as="ms" iteration="i">
+                <article class="company-milestones__item">
+                    <span class="company-milestones__number">{i.cycle}</span>
+                    <f:if condition="{ms.year}"><span class="company-milestones__year">{ms -> f:render.text(field: 'year')}</span></f:if>
+                    <h3 class="company-milestones__title">{ms -> f:render.text(field: 'title')}</h3>
+                    <f:if condition="{ms.description}"><p class="company-milestones__description">{ms -> f:render.text(field: 'description')}</p></f:if>
+                </article>
+            </f:for>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

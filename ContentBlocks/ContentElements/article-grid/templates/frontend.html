@@ -1,0 +1,29 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-article-grid" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="article-grid">
+    <d:layout.container>
+        <header class="article-grid__intro">
+            <f:if condition="{data.eyebrow}"><span class="article-grid__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span></f:if>
+            <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
+        </header>
+        <div class="article-grid__grid">
+            <f:for each="{data.items}" as="item">
+                <d:molecule.card class="article-grid__item">
+                    <f:if condition="{item.category}"><p class="article-grid__category">{item -> f:render.text(field: 'category')}</p></f:if>
+                    <h3 class="article-grid__title">{item -> f:render.text(field: 'title')}</h3>
+                    <p class="article-grid__description">{item -> f:render.text(field: 'description')}</p>
+                    <f:if condition="{item.link.url}">
+                        <f:link.typolink parameter="{item.link}" class="article-grid__link">Read more</f:link.typolink>
+                    </f:if>
+                </d:molecule.card>
+            </f:for>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

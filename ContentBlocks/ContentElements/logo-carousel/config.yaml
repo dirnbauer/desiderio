@@ -1,0 +1,50 @@
+name: desiderio/logo-carousel
+typeName: desiderio_logocarousel
+title: Logo Carousel
+description: Auto-scrolling logo ticker for client and partner logos
+group: social-proof
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+
+  - identifier: eyebrow
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
+
+  - identifier: speed
+    type: Select
+    renderType: selectSingle
+    label: Scroll Speed
+    items:
+      - label: Slow
+        value: slow
+      - label: Normal
+        value: normal
+      - label: Fast
+        value: fast
+    default: normal
+
+  - identifier: logo_items
+    type: Collection
+    label: Logos
+    minItems: 3
+    fields:
+      - identifier: image
+        type: File
+        label: Logo Image
+        allowed: common-image-types
+        maxitems: 1
+        required: true
+
+      - identifier: name
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:company_name'
+        required: true
+
+      - identifier: link
+        type: Link
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:optional_link'

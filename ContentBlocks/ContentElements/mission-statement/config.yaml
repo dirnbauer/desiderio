@@ -1,0 +1,22 @@
+name: desiderio/mission-statement
+typeName: desiderio_missionstatement
+title: Mission Statement
+description: Bold centered mission or vision statement
+group: team
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: eyebrow
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
+  - identifier: statement
+    type: Textarea
+    label: Mission Statement
+    rows: 4
+  - identifier: attribution
+    type: Textarea
+    rows: 1
+    label: Attribution

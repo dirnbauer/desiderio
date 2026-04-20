@@ -1,0 +1,54 @@
+name: desiderio/stats-counter
+typeName: desiderio_statscounter
+title: Stats Counter
+description: Animated counting statistics with large numbers
+group: social-proof
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+
+  - identifier: eyebrow
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
+
+  - identifier: columns
+    type: Select
+    renderType: selectSingle
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:columns'
+    items:
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.3_columns'
+        value: '3'
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.4_columns'
+        value: '4'
+    default: '3'
+
+  - identifier: counters
+    type: Collection
+    label: Counters
+    minItems: 1
+    fields:
+      - identifier: counter_target
+        type: Textarea
+        rows: 1
+        label: Target Value
+        required: true
+
+      - identifier: suffix
+        type: Textarea
+        rows: 1
+        label: Suffix
+        description: e.g. +, %, K
+
+      - identifier: label
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:label_field'
+        required: true
+
+      - identifier: description
+        type: Textarea
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
+        rows: 2

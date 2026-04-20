@@ -1,0 +1,39 @@
+.header-profile {
+    border-bottom: 1px solid var(--d-border);
+}
+.header-profile__inner {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--d-spacing-6);
+    padding-block: var(--d-spacing-8);
+}
+.header-profile__avatar-img {
+    width: 6rem;
+    height: 6rem;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid var(--d-border);
+}
+.header-profile__info {
+    flex: 1;
+}
+.header-profile__name {
+    font-size: var(--d-text-2xl);
+    font-weight: 700;
+    margin-bottom: var(--d-spacing-1);
+}
+.header-profile__role {
+    font-size: var(--d-text-base);
+    color: var(--d-muted-foreground);
+    margin-bottom: var(--d-spacing-2);
+}
+.header-profile__bio {
+    font-size: var(--d-text-sm);
+    color: var(--d-muted-foreground);
+    max-width: 36rem;
+    margin-bottom: var(--d-spacing-4);
+}
+.header-profile__actions {
+    display: flex;
+    gap: var(--d-spacing-2);
+}

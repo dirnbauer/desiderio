@@ -1,0 +1,47 @@
+name: desiderio/infographic
+typeName: desiderio_infographic
+title: Infographic
+description: Visual infographic section with numbered steps and icons
+group: data
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: description
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
+    rows: 2
+  - identifier: layout
+    type: Select
+    renderType: selectSingle
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:layout'
+    items:
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.horizontal'
+        value: horizontal
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.vertical'
+        value: vertical
+    default: horizontal
+  - identifier: items
+    type: Collection
+    label: Steps
+    minItems: 1
+    fields:
+      - identifier: number
+        type: Textarea
+        rows: 1
+        label: Step Number
+      - identifier: title
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:title'
+        required: true
+      - identifier: description
+        type: Textarea
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
+        rows: 2
+      - identifier: image
+        type: File
+        label: Icon/Image
+        allowed: common-image-types
+        maxitems: 1

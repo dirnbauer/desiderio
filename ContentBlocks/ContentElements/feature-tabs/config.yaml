@@ -1,0 +1,37 @@
+name: desiderio/feature-tabs
+typeName: desiderio_featuretabs
+title: Feature Tabs
+description: Tabbed feature presentation with switchable content panels
+group: features
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: subheadline
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
+    rows: 2
+  - identifier: items
+    type: Collection
+    label: Tabs
+    minItems: 2
+    fields:
+      - identifier: tab_label
+        type: Textarea
+        rows: 1
+        label: Tab Label
+        required: true
+      - identifier: title
+        type: Textarea
+        rows: 1
+        label: Content Title
+      - identifier: description
+        type: Textarea
+        label: Content Description
+        rows: 3
+      - identifier: image
+        type: File
+        label: Tab Image
+        allowed: common-image-types
+        maxitems: 1

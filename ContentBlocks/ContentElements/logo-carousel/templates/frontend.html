@@ -1,0 +1,45 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-logo-carousel" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="logo-carousel">
+    <d:layout.container>
+        <f:if condition="{data.eyebrow} || {data.header}">
+            <header class="logo-carousel__intro">
+                <f:if condition="{data.eyebrow}">
+                    <span class="logo-carousel__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span>
+                </f:if>
+                <f:if condition="{data.header}">
+                    <h2 class="logo-carousel__headline">{data -> f:render.text(field: 'header')}</h2>
+                </f:if>
+            </header>
+        </f:if>
+
+        <div class="logo-carousel__track logo-carousel__track--{data.speed -> f:or(alternative: 'normal')}">
+            <div class="logo-carousel__slide-group">
+                <f:for each="{data.logo_items}" as="logo">
+                    <div class="logo-carousel__item">
+                        <f:if condition="{logo.link.url}">
+                            <f:then>
+                                <f:link.typolink parameter="{logo.link}" title="{logo -> f:render.text(field: 'name')}">
+                                    <f:for each="{logo.image}" as="fileReference">
+                                        <img src="{f:uri.image(image: fileReference, maxWidth: 180)}" alt="{logo -> f:render.text(field: 'name')}" class="logo-carousel__image"/>
+                                    </f:for>
+                                </f:link.typolink>
+                            </f:then>
+                            <f:else>
+                                <f:for each="{logo.image}" as="fileReference">
+                                    <img src="{f:uri.image(image: fileReference, maxWidth: 180)}" alt="{logo -> f:render.text(field: 'name')}" class="logo-carousel__image"/>
+                                </f:for>
+                            </f:else>
+                        </f:if>
+                    </div>
+                </f:for>
+            </div>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+</html>

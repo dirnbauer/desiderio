@@ -1,0 +1,22 @@
+name: desiderio/callback-request
+typeName: desiderio_callbackrequest
+title: Callback Request
+description: Request a callback form with phone number capture
+group: conversion
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: description
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
+    rows: 2
+  - identifier: form_action
+    type: Link
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:form_action'
+  - identifier: button_text
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_text'
+    default: Request callback

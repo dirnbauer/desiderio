@@ -1,0 +1,15 @@
+@import './TypoScript/*.typoscript'
+
+page {
+  includeCSS {
+    desiderio = EXT:desiderio/Resources/Public/Css/desiderio.css
+    desiderio.media = all
+  }
+
+  includeJSFooter {
+    desiderio = EXT:desiderio/Resources/Public/JavaScript/desiderio.js
+    desiderio.async = 1
+  }
+
+  10 =< lib.fluidPage
+}

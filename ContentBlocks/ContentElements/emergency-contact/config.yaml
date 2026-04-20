@@ -1,0 +1,24 @@
+name: desiderio/emergency-contact
+typeName: desiderio_emergencycontact
+title: Emergency Contact
+description: Highlighted emergency or urgent contact information
+group: conversion
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: description_text
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
+  - identifier: phone
+    type: Text
+    label: Phone Number
+  - identifier: phone_link
+    type: Link
+    label: Phone Link
+  - identifier: available
+    type: Textarea
+    rows: 1
+    label: Availability

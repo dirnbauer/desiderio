@@ -1,0 +1,28 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-navbar-sticky" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="navbar-sticky">
+    <d:layout.container>
+        <nav class="navbar-sticky__inner" aria-label="Sticky navigation">
+            <div class="navbar-sticky__brand">{data -> f:render.text(field: 'brand')}</div>
+            <ul class="navbar-sticky__nav">
+                <f:for each="{data.nav_items}" as="item">
+                    <li>
+                        <f:if condition="{item.link.url}">
+                            <f:link.typolink parameter="{item.link}" class="navbar-sticky__link">{item -> f:render.text(field: 'label')}</f:link.typolink>
+                        </f:if>
+                    </li>
+                </f:for>
+            </ul>
+            <f:if condition="{data.button_text} && {data.button_link.url}">
+                <d:atom.button href="{data.button_link.url}" target="{data.button_link.target}" size="sm">{data -> f:render.text(field: 'button_text')}</d:atom.button>
+            </f:if>
+        </nav>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

@@ -1,0 +1,32 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-feature-stats" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="feature-stats">
+    <d:layout.container>
+        <div class="feature-stats__layout">
+            <div class="feature-stats__copy">
+                <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
+                <f:if condition="{data.description}">
+                    <d:atom.typography variant="muted" class="feature-stats__description">{data -> f:render.text(field: 'description')}</d:atom.typography>
+                </f:if>
+            </div>
+            <div class="feature-stats__grid">
+                <f:for each="{data.items}" as="item">
+                    <div class="feature-stats__item">
+                        <span class="feature-stats__value">{item -> f:render.text(field: 'value')}</span>
+                        <span class="feature-stats__label">{item -> f:render.text(field: 'label')}</span>
+                        <f:if condition="{item.description_text}">
+                            <span class="feature-stats__detail">{item -> f:render.text(field: 'description_text')}</span>
+                        </f:if>
+                    </div>
+                </f:for>
+            </div>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

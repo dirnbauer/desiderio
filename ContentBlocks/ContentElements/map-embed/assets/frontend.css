@@ -1,0 +1,17 @@
+.map-embed__intro { margin-block-end: var(--d-spacing-lg); }
+.map-embed__address {
+    font-size: var(--d-text-sm);
+    color: var(--muted-foreground);
+    white-space: pre-line;
+    margin-block-start: var(--d-spacing-xs);
+}
+.map-embed__frame {
+    overflow: hidden;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+}
+.map-embed__iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+}

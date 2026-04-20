@@ -1,0 +1,35 @@
+name: desiderio/quote
+typeName: desiderio_quote
+title: Quote
+description: Styled blockquote with attribution
+group: content
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: quote_text
+    type: Textarea
+    label: Quote Text
+    rows: 4
+    required: true
+  - identifier: author
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:author_name'
+  - identifier: role
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:author_role'
+  - identifier: variant
+    type: Select
+    renderType: selectSingle
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:style'
+    items:
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.bordered'
+        value: bordered
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.large'
+        value: large
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.card'
+        value: card
+    default: bordered

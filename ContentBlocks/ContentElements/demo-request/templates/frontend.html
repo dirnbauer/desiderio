@@ -1,0 +1,46 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-demo-request" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="demo-request">
+    <d:layout.container>
+        <div class="demo-request__layout">
+            <div class="demo-request__content">
+                <f:if condition="{data.eyebrow}"><span class="demo-request__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span></f:if>
+                <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
+                <f:if condition="{data.description}"><d:atom.typography variant="muted">{data -> f:render.text(field: 'description')}</d:atom.typography></f:if>
+                <f:if condition="{data.image}">
+                    <f:for each="{data.image}" as="fileReference">
+                        <img src="{f:uri.image(image: fileReference, maxWidth: 480)}" alt="" class="demo-request__image"/>
+                    </f:for>
+                </f:if>
+            </div>
+            <d:molecule.card class="demo-request__form-card">
+                <form class="demo-request__form" action="{data.form_action.url}" method="post">
+                    <label class="demo-request__field">
+                        <span class="demo-request__label">Name</span>
+                        <input class="demo-request__input" type="text" name="name" required="required"/>
+                    </label>
+                    <label class="demo-request__field">
+                        <span class="demo-request__label">Work Email</span>
+                        <input class="demo-request__input" type="email" name="email" required="required"/>
+                    </label>
+                    <label class="demo-request__field">
+                        <span class="demo-request__label">Company</span>
+                        <input class="demo-request__input" type="text" name="company"/>
+                    </label>
+                    <label class="demo-request__field">
+                        <span class="demo-request__label">Message</span>
+                        <textarea class="demo-request__textarea" name="message" rows="3"></textarea>
+                    </label>
+                    <d:atom.button type="submit" size="lg">{data.submit_text -> f:or(alternative: 'Request demo')}</d:atom.button>
+                </form>
+            </d:molecule.card>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

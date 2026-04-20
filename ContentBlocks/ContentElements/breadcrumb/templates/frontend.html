@@ -1,0 +1,37 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-breadcrumb" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="breadcrumb">
+    <d:layout.container>
+        <nav class="breadcrumb__nav" aria-label="Breadcrumb">
+            <ol class="breadcrumb__list">
+                <f:for each="{data.items}" as="item" iteration="iterator">
+                    <li class="breadcrumb__item">
+                        <f:if condition="{iterator.isLast}">
+                            <f:then>
+                                <span class="breadcrumb__current" aria-current="page">{item -> f:render.text(field: 'label')}</span>
+                            </f:then>
+                            <f:else>
+                                <f:if condition="{item.link.url}">
+                                    <f:then>
+                                        <f:link.typolink parameter="{item.link}" class="breadcrumb__link">{item -> f:render.text(field: 'label')}</f:link.typolink>
+                                    </f:then>
+                                    <f:else>
+                                        <span class="breadcrumb__current">{item -> f:render.text(field: 'label')}</span>
+                                    </f:else>
+                                </f:if>
+                                <span class="breadcrumb__separator" aria-hidden="true">/</span>
+                            </f:else>
+                        </f:if>
+                    </li>
+                </f:for>
+            </ol>
+        </nav>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

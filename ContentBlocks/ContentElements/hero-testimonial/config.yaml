@@ -1,0 +1,38 @@
+name: desiderio/hero-testimonial
+typeName: desiderio_herotestimonial
+title: Hero Testimonial
+description: Hero combined with featured customer testimonial
+group: hero
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: subheadline
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
+    rows: 3
+  - identifier: primary_button_text
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:primary_button_text'
+  - identifier: primary_button_link
+    type: Link
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:primary_button_link'
+  - identifier: quote
+    type: Textarea
+    label: Testimonial Quote
+    rows: 3
+  - identifier: author_name
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:author_name'
+  - identifier: author_role
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:author_role'
+  - identifier: author_image
+    type: File
+    label: Author Image
+    allowed: common-image-types
+    maxitems: 1

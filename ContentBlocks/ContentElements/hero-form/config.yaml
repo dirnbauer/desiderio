@@ -1,0 +1,33 @@
+name: desiderio/hero-form
+typeName: desiderio_heroform
+title: Hero Form
+description: Hero section with inline signup or contact form
+group: hero
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: subheadline
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
+    rows: 3
+  - identifier: form_action
+    type: Link
+    label: Form Action URL
+  - identifier: input_placeholder
+    type: Textarea
+    rows: 1
+    label: Input Placeholder
+  - identifier: button_text
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_text'
+  - identifier: privacy_notice
+    type: Textarea
+    rows: 1
+    label: Privacy Text
+  - identifier: badge_text
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:badge_text'

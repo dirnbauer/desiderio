@@ -1,0 +1,28 @@
+.feature-numbered__intro {
+    text-align: center;
+    margin-block-end: var(--d-spacing-xl);
+}
+.feature-numbered__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--d-spacing-lg);
+}
+@media (max-width: 768px) {
+    .feature-numbered__grid { grid-template-columns: 1fr; }
+}
+.feature-numbered__number {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: color-mix(in oklch, var(--primary) 20%, transparent);
+    line-height: 1;
+    margin-block-end: var(--d-spacing-sm);
+}
+.feature-numbered__title {
+    font-weight: 600;
+    margin-block-end: var(--d-spacing-xs);
+}
+.feature-numbered__description {
+    color: var(--muted-foreground);
+    font-size: var(--d-text-sm);
+}

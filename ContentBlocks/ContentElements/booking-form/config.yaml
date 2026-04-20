@@ -1,0 +1,30 @@
+name: desiderio/booking-form
+typeName: desiderio_bookingform
+title: Booking Form
+description: Appointment or meeting booking form
+group: conversion
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: description
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
+    rows: 3
+  - identifier: form_action
+    type: Link
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:form_action'
+  - identifier: submit_text
+    type: Textarea
+    rows: 1
+    label: Submit Button Text
+    default: Book appointment
+  - identifier: show_phone
+    type: Checkbox
+    label: Show Phone Field
+    default: 1
+  - identifier: show_date
+    type: Checkbox
+    label: Show Date Field
+    default: 1

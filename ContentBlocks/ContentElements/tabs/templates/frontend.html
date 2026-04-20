@@ -1,0 +1,43 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-tabs" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="tabs-section">
+    <d:layout.container>
+        <f:if condition="{data.header}">
+            <d:atom.typography tag="h2" variant="h2" class="tabs-section__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
+        </f:if>
+
+        <d:molecule.tabs class="tabs tabs--{data.variant -> f:or(alternative: 'default')}" data-tabs-default="{data.default_tab -> f:or(alternative: '0')}">
+            <div class="tabs__list" role="tablist">
+                <f:for each="{data.items}" as="item" iteration="iter">
+                    <button class="tabs__trigger{f:if(condition: '{data.default_tab} == {iter.index}', then: ' tabs__trigger--active')}{f:if(condition: '!{data.default_tab} && {iter.isFirst}', then: ' tabs__trigger--active')}"
+                            role="tab"
+                            type="button"
+                            aria-selected="{f:if(condition: iter.isFirst, then: 'true', else: 'false')}"
+                            aria-controls="tab-panel-{data.uid}-{iter.index}"
+                            data-tab-trigger="tab-{data.uid}-{iter.index}">
+                        <f:if condition="{item.tab_icon}">
+                            <span class="tabs__icon">{item -> f:render.text(field: 'tab_icon')}</span>
+                        </f:if>
+                        <span class="tabs__label">{item -> f:render.text(field: 'tab_label')}</span>
+                    </button>
+                </f:for>
+            </div>
+
+            <f:for each="{data.items}" as="item" iteration="iter">
+                <div class="tabs__content{f:if(condition: '{data.default_tab} == {iter.index}', then: ' tabs__content--active')}{f:if(condition: '!{data.default_tab} && {iter.isFirst}', then: ' tabs__content--active')}"
+                     role="tabpanel"
+                     id="tab-panel-{data.uid}-{iter.index}"
+                     data-tab-content="tab-{data.uid}-{iter.index}">
+                    {item -> f:render.text(field: 'tab_content')}
+                </div>
+            </f:for>
+        </d:molecule.tabs>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

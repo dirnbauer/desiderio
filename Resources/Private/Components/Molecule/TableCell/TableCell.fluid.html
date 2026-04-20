@@ -1,0 +1,11 @@
+<f:argument name="header" type="bool" optional="{true}" default="{false}" />
+<f:argument name="class" type="string" optional="{true}" default="" />
+
+<f:if condition="{header}">
+    <f:then>
+        <th class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&amp;:has([role=checkbox])]:pr-0 {class}"><f:slot /></th>
+    </f:then>
+    <f:else>
+        <td class="p-4 align-middle [&amp;:has([role=checkbox])]:pr-0 {class}"><f:slot /></td>
+    </f:else>
+</f:if>

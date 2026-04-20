@@ -1,0 +1,31 @@
+.emergency-contact__card {
+    text-align: center;
+    padding: var(--d-spacing-2xl);
+    background: hsl(0 84% 60% / 0.05);
+    border: 2px solid hsl(0 84% 60% / 0.2);
+    border-radius: var(--radius);
+    max-width: 560px;
+    margin-inline: auto;
+}
+.emergency-contact__headline {
+    font-size: var(--d-text-xl);
+    font-weight: 700;
+    color: hsl(0 84% 40%);
+}
+.emergency-contact__description {
+    font-size: var(--d-text-sm);
+    color: var(--muted-foreground);
+    margin-block-start: var(--d-spacing-xs);
+}
+.emergency-contact__phone { margin-block-start: var(--d-spacing-lg); }
+.emergency-contact__number {
+    font-size: var(--d-text-3xl);
+    font-weight: 700;
+    color: hsl(0 84% 40%);
+    text-decoration: none;
+}
+.emergency-contact__available {
+    font-size: var(--d-text-sm);
+    color: var(--muted-foreground);
+    margin-block-start: var(--d-spacing-sm);
+}

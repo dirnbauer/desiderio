@@ -1,0 +1,48 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-testimonial-carousel" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="testimonial-carousel">
+    <d:layout.container>
+        <f:if condition="{data.eyebrow} || {data.header}">
+            <header class="testimonial-carousel__intro">
+                <f:if condition="{data.eyebrow}">
+                    <span class="testimonial-carousel__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span>
+                </f:if>
+                <f:if condition="{data.header}">
+                    <h2 class="testimonial-carousel__headline">{data -> f:render.text(field: 'header')}</h2>
+                </f:if>
+            </header>
+        </f:if>
+
+        <div class="testimonial-carousel__track" data-autoplay="{f:if(condition: data.autoplay, then: 'true', else: 'false')}">
+            <f:for each="{data.testimonials}" as="item" iteration="iter">
+                <div class="testimonial-carousel__slide {f:if(condition: iter.isFirst, then: 'testimonial-carousel__slide--active')}">
+                    <blockquote class="testimonial-carousel__quote">{item -> f:render.text(field: 'quote')}</blockquote>
+                    <div class="testimonial-carousel__author">
+                        <f:if condition="{item.author_image}">
+                            <f:for each="{item.author_image}" as="fileReference">
+                                <img src="{f:uri.image(image: fileReference, width: 48, height: 48)}" alt="{item -> f:render.text(field: 'author_name')}" class="testimonial-carousel__avatar"/>
+                            </f:for>
+                        </f:if>
+                        <div>
+                            <cite class="testimonial-carousel__name">{item -> f:render.text(field: 'author_name')}</cite>
+                            <f:if condition="{item.author_title}">
+                                <span class="testimonial-carousel__role">{item -> f:render.text(field: 'author_title')}</span>
+                            </f:if>
+                        </div>
+                    </div>
+                </div>
+            </f:for>
+        </div>
+
+        <div class="testimonial-carousel__nav">
+            <button type="button" class="testimonial-carousel__prev" aria-label="Previous">&#8592;</button>
+            <button type="button" class="testimonial-carousel__next" aria-label="Next">&#8594;</button>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+</html>

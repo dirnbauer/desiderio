@@ -1,0 +1,46 @@
+name: desiderio/client-list
+typeName: desiderio_clientlist
+title: Client List
+description: Named list of clients with optional logos and industries
+group: social-proof
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+
+  - identifier: eyebrow
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
+
+  - identifier: subheadline
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
+    rows: 2
+
+  - identifier: clients
+    type: Collection
+    label: Clients
+    minItems: 1
+    fields:
+      - identifier: name
+        type: Textarea
+        rows: 1
+        label: Client Name
+        required: true
+
+      - identifier: industry
+        type: Textarea
+        rows: 1
+        label: Industry
+
+      - identifier: logo
+        type: File
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:logo'
+        allowed: common-image-types
+        maxitems: 1
+
+      - identifier: link
+        type: Link
+        label: Website Link

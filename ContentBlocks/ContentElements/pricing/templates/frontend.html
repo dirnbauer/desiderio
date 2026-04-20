@@ -1,0 +1,68 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-pricing" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="pricing">
+    <d:layout.container>
+        <f:if condition="{data.eyebrow} || {data.header} || {data.subheadline}">
+            <header class="pricing__intro">
+                <f:if condition="{data.eyebrow}">
+                    <span class="pricing__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span>
+                </f:if>
+                <f:if condition="{data.header}">
+                    <h2 class="pricing__headline">{data -> f:render.text(field: 'header')}</h2>
+                </f:if>
+                <f:if condition="{data.subheadline}">
+                    <p class="pricing__description">{data -> f:render.text(field: 'subheadline')}</p>
+                </f:if>
+            </header>
+        </f:if>
+
+        <div class="pricing__grid pricing__grid--cols-{data.columns -> f:or(alternative: '3')}">
+            <f:for each="{data.plans}" as="plan">
+                <article class="pricing__plan {f:if(condition: plan.is_featured, then: 'pricing__plan--featured')}">
+                    <div class="pricing__plan-header">
+                        <f:if condition="{plan.badge_text}">
+                            <span class="pricing__badge">{plan -> f:render.text(field: 'badge_text')}</span>
+                        </f:if>
+                        <h3 class="pricing__plan-name">{plan -> f:render.text(field: 'name')}</h3>
+                        <div class="pricing__price-row">
+                            <span class="pricing__plan-price">{plan -> f:render.text(field: 'price')}</span>
+                            <f:if condition="{plan.billing_period}">
+                                <span class="pricing__billing-period">{plan -> f:render.text(field: 'billing_period')}</span>
+                            </f:if>
+                        </div>
+                        <f:if condition="{plan.description}">
+                            <p class="pricing__plan-description">{plan -> f:render.text(field: 'description')}</p>
+                        </f:if>
+                    </div>
+
+                    <f:if condition="{plan.features_list}">
+                        <ul class="pricing__features">
+                            <f:for each="{plan.features_list -> f:split(separator: '\n')}" as="feature">
+                                <f:if condition="{feature}">
+                                    <li class="pricing__feature">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="pricing__check"><path d="M20 6 9 17l-5-5"/></svg>
+                                        <span>{feature}</span>
+                                    </li>
+                                </f:if>
+                            </f:for>
+                        </ul>
+                    </f:if>
+
+                    <f:if condition="{plan.button_text} && {plan.button_link.url}">
+                        <div class="pricing__footer">
+                            <f:link.typolink parameter="{plan.button_link}" class="pricing__button {f:if(condition: plan.is_featured, then: 'pricing__button--primary', else: 'pricing__button--outline')}">
+                                {plan -> f:render.text(field: 'button_text')}
+                            </f:link.typolink>
+                        </div>
+                    </f:if>
+                </article>
+            </f:for>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+</html>

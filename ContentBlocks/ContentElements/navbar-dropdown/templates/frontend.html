@@ -1,0 +1,43 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-navbar-dropdown" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="navbar-dropdown">
+    <d:layout.container>
+        <nav class="navbar-dropdown__inner" aria-label="Dropdown navigation">
+            <div class="navbar-dropdown__brand">
+                <f:if condition="{data.brand_link.url}">
+                    <f:then><f:link.typolink parameter="{data.brand_link}" class="navbar-dropdown__brand-link">{data -> f:render.text(field: 'brand')}</f:link.typolink></f:then>
+                    <f:else><span class="navbar-dropdown__brand-link">{data -> f:render.text(field: 'brand')}</span></f:else>
+                </f:if>
+            </div>
+            <ul class="navbar-dropdown__nav">
+                <f:for each="{data.nav_items}" as="item">
+                    <li class="navbar-dropdown__item">
+                        <f:if condition="{item.link.url}">
+                            <f:link.typolink parameter="{item.link}" class="navbar-dropdown__link">{item -> f:render.text(field: 'label')}</f:link.typolink>
+                        </f:if>
+                        <f:if condition="{item.children}">
+                            <ul class="navbar-dropdown__submenu">
+                                <f:for each="{item.children -> f:split(separator: '
+')}" as="childLine">
+                                    <f:if condition="{childLine -> f:format.trim()}">
+                                        <li><span class="navbar-dropdown__sublink">{childLine -> f:format.trim()}</span></li>
+                                    </f:if>
+                                </f:for>
+                            </ul>
+                        </f:if>
+                    </li>
+                </f:for>
+            </ul>
+            <f:if condition="{data.button_text} && {data.button_link.url}">
+                <d:atom.button href="{data.button_link.url}" target="{data.button_link.target}" size="sm">{data -> f:render.text(field: 'button_text')}</d:atom.button>
+            </f:if>
+        </nav>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

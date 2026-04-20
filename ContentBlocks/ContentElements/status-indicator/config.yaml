@@ -1,0 +1,52 @@
+name: desiderio/status-indicator
+typeName: desiderio_statusindicator
+title: Status Indicator
+description: Service status display with colored dots and labels
+group: data
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: overall_status
+    type: Select
+    renderType: selectSingle
+    label: Overall Status
+    items:
+      - label: Operational
+        value: operational
+      - label: Degraded
+        value: degraded
+      - label: Outage
+        value: outage
+      - label: Maintenance
+        value: maintenance
+    default: operational
+  - identifier: items
+    type: Collection
+    label: Services
+    minItems: 1
+    fields:
+      - identifier: name
+        type: Textarea
+        rows: 1
+        label: Service Name
+        required: true
+      - identifier: status
+        type: Select
+        renderType: selectSingle
+        label: Status
+        items:
+          - label: Operational
+            value: operational
+          - label: Degraded
+            value: degraded
+          - label: Outage
+            value: outage
+          - label: Maintenance
+            value: maintenance
+        default: operational
+      - identifier: detail
+        type: Textarea
+        rows: 1
+        label: Status Detail

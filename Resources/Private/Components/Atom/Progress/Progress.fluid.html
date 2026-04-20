@@ -1,0 +1,7 @@
+<f:argument name="value" type="integer" optional="{true}" default="0" />
+<f:argument name="max" type="integer" optional="{true}" default="100" />
+<f:argument name="class" type="string" optional="{true}" default="" />
+
+<div role="progressbar" class="relative h-2 w-full overflow-hidden rounded-full bg-secondary {class}" aria-valuenow="{value}" aria-valuemin="0" aria-valuemax="{max}">
+    <div class="h-full w-full flex-1 bg-primary transition-all" style="transform: translateX(-{100 - value}%)"></div>
+</div>

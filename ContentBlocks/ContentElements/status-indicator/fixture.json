@@ -1,0 +1,22 @@
+{
+  "_type": "stats",
+  "header": "System Status",
+  "stats": [
+    {
+      "value": "Operational",
+      "label": "API Gateway"
+    },
+    {
+      "value": "Operational",
+      "label": "Web Application"
+    },
+    {
+      "value": "Operational",
+      "label": "Database Cluster"
+    },
+    {
+      "value": "Degraded",
+      "label": "Webhook Delivery"
+    }
+  ]
+}

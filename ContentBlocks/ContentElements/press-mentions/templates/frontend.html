@@ -1,0 +1,50 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-press-mentions" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="press-mentions">
+    <d:layout.container>
+        <f:if condition="{data.eyebrow} || {data.header}">
+            <header class="press-mentions__intro">
+                <f:if condition="{data.eyebrow}">
+                    <span class="press-mentions__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span>
+                </f:if>
+                <f:if condition="{data.header}">
+                    <h2 class="press-mentions__headline">{data -> f:render.text(field: 'header')}</h2>
+                </f:if>
+            </header>
+        </f:if>
+
+        <div class="press-mentions__grid">
+            <f:for each="{data.mentions}" as="mention">
+                <article class="press-mentions__item">
+                    <f:if condition="{mention.logo}">
+                        <div class="press-mentions__logo">
+                            <f:for each="{mention.logo}" as="fileReference">
+                                <img src="{f:uri.image(image: fileReference, maxWidth: 160)}" alt="{mention -> f:render.text(field: 'publication')}" class="press-mentions__logo-img"/>
+                            </f:for>
+                        </div>
+                    </f:if>
+                    <f:if condition="{mention.quote}">
+                        <blockquote class="press-mentions__quote">&ldquo;{mention -> f:render.text(field: 'quote')}&rdquo;</blockquote>
+                    </f:if>
+                    <div class="press-mentions__meta">
+                        <span class="press-mentions__publication">{mention -> f:render.text(field: 'publication')}</span>
+                        <f:if condition="{mention.date}">
+                            <span class="press-mentions__date">{mention -> f:render.text(field: 'date')}</span>
+                        </f:if>
+                    </div>
+                    <f:if condition="{mention.link.url}">
+                        <f:link.typolink parameter="{mention.link}" class="press-mentions__link">
+                            Read article &rarr;
+                        </f:link.typolink>
+                    </f:if>
+                </article>
+            </f:for>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+</html>

@@ -1,0 +1,51 @@
+name: desiderio/product-comparison
+typeName: desiderio_productcomparison
+title: Product Comparison
+description: Side-by-side product comparison with specs
+group: pricing
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+
+  - identifier: eyebrow
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
+
+  - identifier: products
+    type: Collection
+    label: Products
+    minItems: 2
+    maxItems: 3
+    fields:
+      - identifier: name
+        type: Textarea
+        rows: 1
+        label: Product Name
+        required: true
+
+      - identifier: image
+        type: File
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:product_image'
+        allowed: common-image-types
+        maxitems: 1
+
+      - identifier: price
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:price'
+
+      - identifier: specs_text
+        type: Textarea
+        label: Specs (one per line)
+        rows: 6
+
+      - identifier: is_recommended
+        type: Checkbox
+        label: Recommended
+
+      - identifier: link
+        type: Link
+        label: Product Link

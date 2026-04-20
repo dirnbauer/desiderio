@@ -1,0 +1,53 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-rating-display" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="rating-display">
+    <d:layout.container>
+        <f:if condition="{data.eyebrow} || {data.header}">
+            <header class="rating-display__intro">
+                <f:if condition="{data.eyebrow}">
+                    <span class="rating-display__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span>
+                </f:if>
+                <f:if condition="{data.header}">
+                    <h2 class="rating-display__headline">{data -> f:render.text(field: 'header')}</h2>
+                </f:if>
+            </header>
+        </f:if>
+
+        <div class="rating-display__grid">
+            <f:for each="{data.rating_items}" as="rating">
+                <article class="rating-display__item">
+                    <f:if condition="{rating.logo}">
+                        <div class="rating-display__logo">
+                            <f:for each="{rating.logo}" as="fileReference">
+                                <img src="{f:uri.image(image: fileReference, maxWidth: 120)}" alt="{rating -> f:render.text(field: 'platform')}" class="rating-display__logo-img"/>
+                            </f:for>
+                        </div>
+                    </f:if>
+                    <div class="rating-display__score">{rating -> f:render.text(field: 'score')}</div>
+                    <div class="rating-display__stars">
+                        <f:for each="{0: 1, 1: 2, 2: 3, 3: 4, 4: 5}" as="star">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" stroke="none" class="rating-display__star">
+                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                            </svg>
+                        </f:for>
+                    </div>
+                    <f:if condition="{rating.review_count}">
+                        <span class="rating-display__count">{rating -> f:render.text(field: 'review_count')}</span>
+                    </f:if>
+                    <span class="rating-display__platform">{rating -> f:render.text(field: 'platform')}</span>
+                    <f:if condition="{rating.link.url}">
+                        <f:link.typolink parameter="{rating.link}" class="rating-display__link">
+                            View reviews &rarr;
+                        </f:link.typolink>
+                    </f:if>
+                </article>
+            </f:for>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+</html>

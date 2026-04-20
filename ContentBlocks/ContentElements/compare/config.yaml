@@ -1,0 +1,75 @@
+name: desiderio/compare
+typeName: desiderio_compare
+title: Compare
+description: Side-by-side comparison block for plans, products, or approaches
+group: social-proof
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+
+  - identifier: eyebrow
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
+
+  - identifier: subheadline
+    type: Textarea
+    label: Section Subheadline
+    rows: 2
+
+  - identifier: left_title
+    type: Textarea
+    rows: 1
+    label: Left Title
+    required: true
+
+  - identifier: left_description
+    type: Textarea
+    label: Left Description
+    rows: 3
+
+  - identifier: left_points
+    type: Textarea
+    label: Left Points (one per line)
+    rows: 5
+
+  - identifier: left_button_text
+    type: Textarea
+    rows: 1
+    label: Left Button Text
+
+  - identifier: left_button_link
+    type: Link
+    label: Left Button Link
+
+  - identifier: right_badge
+    type: Textarea
+    rows: 1
+    label: Right Badge
+
+  - identifier: right_title
+    type: Textarea
+    rows: 1
+    label: Right Title
+    required: true
+
+  - identifier: right_description
+    type: Textarea
+    label: Right Description
+    rows: 3
+
+  - identifier: right_points
+    type: Textarea
+    label: Right Points (one per line)
+    rows: 5
+
+  - identifier: right_button_text
+    type: Textarea
+    rows: 1
+    label: Right Button Text
+
+  - identifier: right_button_link
+    type: Link
+    label: Right Button Link

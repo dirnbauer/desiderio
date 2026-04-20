@@ -1,0 +1,35 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-product-gallery" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="product-gallery">
+    <d:layout.container>
+        <f:if condition="{data.header}">
+            <h2 class="product-gallery__heading">{data -> f:render.text(field: 'header')}</h2>
+        </f:if>
+
+        <div class="product-gallery__main">
+            <f:for each="{data.images}" as="fileReference" iteration="iter">
+                <f:if condition="{iter.isFirst}">
+                    <img src="{f:uri.image(image: fileReference, maxWidth: 800)}" alt="{data -> f:render.text(field: 'header')}" class="product-gallery__main-image"/>
+                </f:if>
+            </f:for>
+        </div>
+
+        <div class="product-gallery__thumbnails product-gallery__thumbnails--cols-{data.columns -> f:or(alternative: '4')}">
+            <f:for each="{data.images}" as="fileReference" iteration="iter">
+                <button type="button" class="product-gallery__thumb {f:if(condition: iter.isFirst, then: 'product-gallery__thumb--active')}">
+                    <img src="{f:uri.image(image: fileReference, width: 120, height: 120)}" alt="" class="product-gallery__thumb-img"/>
+                </button>
+            </f:for>
+        </div>
+
+        <f:if condition="{data.caption}">
+            <p class="product-gallery__caption">{data -> f:render.text(field: 'caption')}</p>
+        </f:if>
+    </d:layout.container>
+</d:layout.section>
+</html>

@@ -1,0 +1,54 @@
+name: desiderio/stat-cards
+typeName: desiderio_statcards
+title: Stat Cards
+description: Compact statistic cards with icon, value, and trend indicator
+group: data
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: columns
+    type: Select
+    renderType: selectSingle
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:columns'
+    items:
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.2_columns'
+        value: '2'
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.3_columns'
+        value: '3'
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.4_columns'
+        value: '4'
+    default: '4'
+  - identifier: items
+    type: Collection
+    label: Stat Items
+    minItems: 1
+    fields:
+      - identifier: label
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:label_field'
+        required: true
+      - identifier: value
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:value'
+        required: true
+      - identifier: change
+        type: Textarea
+        rows: 1
+        label: Change
+        description: e.g. +12.5%
+      - identifier: trend
+        type: Select
+        renderType: selectSingle
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:trend'
+        items:
+          - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.up'
+            value: up
+          - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.down'
+            value: down
+          - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.neutral'
+            value: neutral
+        default: neutral

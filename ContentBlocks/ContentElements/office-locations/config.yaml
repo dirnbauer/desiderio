@@ -1,0 +1,37 @@
+name: desiderio/office-locations
+typeName: desiderio_officelocations
+title: Office Locations
+description: Cards showing office addresses and contact information
+group: team
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: subheadline
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
+    rows: 2
+  - identifier: location_items
+    type: Collection
+    label: Locations
+    minItems: 1
+    fields:
+      - identifier: city
+        type: Textarea
+        rows: 1
+        label: City
+        required: true
+      - identifier: address
+        type: Textarea
+        label: Address
+        rows: 3
+      - identifier: phone
+        type: Text
+        label: Phone
+      - identifier: email
+        type: Text
+        label: Email
+      - identifier: map_link
+        type: Link
+        label: Map Link

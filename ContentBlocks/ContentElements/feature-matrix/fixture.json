@@ -1,0 +1,12 @@
+{
+  "_type": "table",
+  "header": "Feature Availability by Plan",
+  "headers": ["Feature", "Starter", "Growth", "Enterprise"],
+  "rows": [
+    {"Feature": "Custom Dashboards", "Starter": "3", "Growth": "Unlimited", "Enterprise": "Unlimited"},
+    {"Feature": "Team Members", "Starter": "5", "Growth": "50", "Enterprise": "Unlimited"},
+    {"Feature": "API Rate Limit", "Starter": "1K/hr", "Growth": "10K/hr", "Enterprise": "100K/hr"},
+    {"Feature": "Data Retention", "Starter": "30 days", "Growth": "1 year", "Enterprise": "Unlimited"},
+    {"Feature": "SSO / SAML", "Starter": "No", "Growth": "Yes", "Enterprise": "Yes"}
+  ]
+}

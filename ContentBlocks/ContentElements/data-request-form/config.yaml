@@ -1,0 +1,36 @@
+name: desiderio/data-request-form
+typeName: desiderio_datarequestform
+title: Data Request Form
+description: GDPR data subject request form for access, deletion, or portability
+group: footer
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: description
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
+    rows: 3
+  - identifier: request_types
+    type: Collection
+    label: Request Types
+    fields:
+      - identifier: label
+        type: Textarea
+        rows: 1
+        label: Request Type Label
+        required: true
+      - identifier: value
+        type: Textarea
+        rows: 1
+        label: Form Value
+  - identifier: privacy_text
+    type: Textarea
+    label: Privacy Notice Text
+    rows: 2
+  - identifier: submit_text
+    type: Textarea
+    rows: 1
+    label: Submit Button Text
+    default: Submit Request

@@ -1,0 +1,121 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/ViewHelpers"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:layout name="Pages/Default"/>
+
+<f:section name="Stage">
+    <!-- no stage on docs -->
+</f:section>
+
+<f:section name="Main">
+    <div class="docs" id="docs-app">
+
+        <!-- Sidebar -->
+        <aside class="docs__sidebar" id="docs-sidebar">
+            <div class="docs__sidebar-inner">
+                <div class="docs__search">
+                    <input id="docs-search" class="input" type="search" placeholder="Search components..." aria-label="Search" />
+                </div>
+
+                <nav class="docs__nav" aria-label="Component navigation">
+                    <d:styleguideGroups as="styleguideGroups">
+                        <f:for each="{styleguideGroups}" as="group">
+                            <div class="docs__nav-group" data-group="{group.groupId}">
+                                <button type="button" class="docs__nav-group-btn" aria-expanded="true" data-toggle-group="{group.groupId}">
+                                    <span>{group.groupTitle}</span>
+                                    <span class="docs__nav-count">{group.elements -> f:count()}</span>
+                                </button>
+                                <ul class="docs__nav-list" id="nav-{group.groupId}">
+                                    <f:for each="{group.elements}" as="element">
+                                        <li>
+                                            <a href="#component-{element.ctype}"
+                                               class="docs__nav-link"
+                                               data-ctype="{element.ctype}"
+                                               data-name="{element.name}">
+                                                {element.name}
+                                            </a>
+                                        </li>
+                                    </f:for>
+                                </ul>
+                            </div>
+                        </f:for>
+                    </d:styleguideGroups>
+                </nav>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="docs__main" id="docs-main">
+            <!-- Welcome screen (shown when no component selected) -->
+            <div class="docs__welcome" id="docs-welcome">
+                <div class="container container--sm" style="text-align:center;padding:6rem 2rem;">
+                    <h1 class="typography typography--h1" style="margin-bottom:1rem;">Content Elements</h1>
+                    <p class="typography typography--lead" style="margin-bottom:2rem;">
+                        250 production-ready content elements built with shadcn/ui components.
+                        <br/>Select a component from the sidebar to explore.
+                    </p>
+                    <div class="stack stack--horizontal stack--gap-sm" style="justify-content:center;">
+                        <span class="badge badge--secondary">shadcn/ui</span>
+                        <span class="badge badge--secondary">TYPO3 v14</span>
+                        <span class="badge badge--secondary">Fluid 5</span>
+                        <span class="badge badge--secondary">Atomic Design</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Component view (shown when a component is selected) -->
+            <div class="docs__component" id="docs-component" style="display:none;">
+                <header class="docs__component-header">
+                    <div>
+                        <h1 class="typography typography--h1" id="docs-component-name"></h1>
+                        <div class="stack stack--horizontal stack--gap-sm" style="margin-top:0.5rem;">
+                            <span class="badge badge--outline" id="docs-component-ctype" style="font-family:var(--font-mono);font-size:0.75rem;"></span>
+                        </div>
+                    </div>
+                </header>
+
+                <!-- Tabs: Preview / Code -->
+                <div class="docs__tabs">
+                    <div class="tabs">
+                        <div class="tabs__list">
+                            <button type="button" class="tabs__trigger tabs__trigger--active" data-tab="preview">Preview</button>
+                            <button type="button" class="tabs__trigger" data-tab="code">Fluid Template</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Preview Panel -->
+                <div class="docs__preview" id="docs-preview-panel">
+                    <div class="docs__preview-toolbar">
+                        <div class="stack stack--horizontal stack--gap-sm">
+                            <button type="button" class="btn btn--ghost btn--sm docs__viewport-btn docs__viewport-btn--active" data-viewport="desktop" title="Desktop">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+                            </button>
+                            <button type="button" class="btn btn--ghost btn--sm docs__viewport-btn" data-viewport="tablet" title="Tablet">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M12 18h.01"/></svg>
+                            </button>
+                            <button type="button" class="btn btn--ghost btn--sm docs__viewport-btn" data-viewport="mobile" title="Mobile">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="docs__preview-frame" id="docs-preview-frame">
+                        <!-- Rendered preview goes here -->
+                    </div>
+                </div>
+
+                <!-- Code Panel -->
+                <div class="docs__code-panel" id="docs-code-panel" style="display:none;">
+                    <pre class="docs__code"><code id="docs-code-content"></code></pre>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <d:fixtureJson />
+</f:section>
+
+</html>

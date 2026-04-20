@@ -1,0 +1,35 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+<f:asset.css identifier="d-hero-startup" href="{cb:assetPath()}/frontend.css"/>
+<d:layout.section class="hero-startup">
+    <d:layout.container>
+        <div class="hero-startup__content">
+            <f:if condition="{data.badge_text}"><d:atom.badge variant="secondary">{data -> f:render.text(field: 'badge_text')}</d:atom.badge></f:if>
+            <f:if condition="{data.header}"><h1 class="hero-startup__headline">{data -> f:render.text(field: 'header')}</h1></f:if>
+            <f:if condition="{data.subheadline}"><p class="hero-startup__subheadline">{data -> f:render.text(field: 'subheadline')}</p></f:if>
+            <form class="hero-startup__form" action="{data.form_action.url}" method="post">
+                <div class="hero-startup__input-group">
+                    <input type="email" name="email" placeholder="{data.input_placeholder -> f:or(alternative: 'Enter your email')}" class="hero-startup__input" required="required"/>
+                    <d:atom.button type="submit" size="lg">{data.button_text -> f:or(alternative: 'Join Waitlist')}</d:atom.button>
+                </div>
+            </form>
+            <f:if condition="{data.avatars} || {data.social_proof_text}">
+                <div class="hero-startup__proof">
+                    <f:if condition="{data.avatars}">
+                        <div class="hero-startup__avatars">
+                            <f:for each="{data.avatars}" as="avatar">
+                                <f:image image="{avatar}" width="32" height="32" class="hero-startup__avatar" alt="User"/>
+                            </f:for>
+                        </div>
+                    </f:if>
+                    <f:if condition="{data.social_proof_text}">
+                        <span class="hero-startup__proof-text">{data -> f:render.text(field: 'social_proof_text')}</span>
+                    </f:if>
+                </div>
+            </f:if>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+</html>

@@ -1,0 +1,94 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-chart-stacked-bar" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="chart-stacked-bar-section">
+    <d:layout.container>
+        <div class="chart-stacked-bar"
+             data-chart-json="{data.chart_data -> f:format.htmlspecialchars()}"
+             data-show-legend="{f:if(condition: data.show_legend, then: '1', else: '0')}">
+            <div class="chart-stacked-bar__card">
+                <f:if condition="{data.header} || {data.description}">
+                    <div class="chart-stacked-bar__header">
+                        <f:if condition="{data.header}">
+                            <h3 class="chart-stacked-bar__title">{data -> f:render.text(field: 'header')}</h3>
+                        </f:if>
+                        <f:if condition="{data.description}">
+                            <p class="chart-stacked-bar__description">{data -> f:render.text(field: 'description')}</p>
+                        </f:if>
+                    </div>
+                </f:if>
+                <div class="chart-stacked-bar__plot" id="chart-stacked-bar-{data.uid}"></div>
+            </div>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+
+<script>
+(function () {
+  const uid = {data.uid};
+  const plot = document.getElementById('chart-stacked-bar-' + uid);
+  const root = plot && plot.closest('.chart-stacked-bar');
+  if (!plot || !root) return;
+  const raw = root.getAttribute('data-chart-json');
+  const showLegend = root.getAttribute('data-show-legend') === '1';
+  let rows;
+  try { rows = JSON.parse(raw); } catch (e) { return; }
+  if (!Array.isArray(rows) || !rows.length) return;
+  const w = 400, h = 220, pad = 28, bottom = 36;
+  const chartH = h - pad - bottom;
+  const maxStack = Math.max.apply(null, rows.map(function (r) {
+    const s = r.segments || [];
+    return s.reduce(function (a, b) { return a + Number(b); }, 0);
+  })) || 1;
+  const barW = (w - 2 * pad) / rows.length * 0.55;
+  const gap = (w - 2 * pad - barW * rows.length) / Math.max(rows.length - 1, 1);
+  const colors = ['var(--primary)', 'hsl(142 70% 45%)', 'hsl(210 100% 50%)', 'hsl(38 92% 50%)', 'hsl(280 65% 55%)'];
+  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+  svg.setAttribute('class', 'chart-stacked-bar__svg');
+  if (showLegend) {
+    const leg = document.createElement('div');
+    leg.className = 'chart-stacked-bar__legend';
+    var maxSeg = Math.max.apply(null, rows.map(function (r) { return (r.segments || []).length; }));
+    for (var j = 0; j < maxSeg; j++) {
+      var item = document.createElement('span');
+      item.className = 'chart-stacked-bar__legend-item';
+      item.innerHTML = '<span class="chart-stacked-bar__swatch" style="background:' + colors[j % colors.length] + '"></span> S' + (j + 1);
+      leg.appendChild(item);
+    }
+    plot.appendChild(leg);
+  }
+  rows.forEach(function (row, i) {
+    const x = pad + i * (barW + gap);
+    const segs = (row.segments || []).map(function (v) { return Number(v); });
+    let yAcc = h - bottom;
+    segs.forEach(function (seg, j) {
+      const segH = (seg / maxStack) * chartH;
+      yAcc -= segH;
+      const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+      rect.setAttribute('x', x);
+      rect.setAttribute('y', yAcc);
+      rect.setAttribute('width', barW);
+      rect.setAttribute('height', Math.max(segH, 0.5));
+      rect.setAttribute('rx', '4');
+      rect.setAttribute('fill', colors[j % colors.length]);
+      svg.appendChild(rect);
+    });
+    const lbl = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    lbl.setAttribute('x', x + barW / 2);
+    lbl.setAttribute('y', h - 6);
+    lbl.setAttribute('text-anchor', 'middle');
+    lbl.setAttribute('fill', 'currentColor');
+    lbl.setAttribute('class', 'chart-stacked-bar__tick');
+    lbl.textContent = row.label || '';
+    svg.appendChild(lbl);
+  });
+  plot.appendChild(svg);
+})();
+</script>
+
+</html>

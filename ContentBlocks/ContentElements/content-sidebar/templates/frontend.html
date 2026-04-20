@@ -1,0 +1,27 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-content-sidebar" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="content-sidebar content-sidebar--{data.sidebar_position -> f:or(alternative: 'right')}">
+    <d:layout.container>
+        <f:if condition="{data.header}">
+            <d:atom.typography tag="h2" variant="h2" class="content-sidebar__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
+        </f:if>
+
+        <div class="content-sidebar__grid">
+            <div class="content-sidebar__main">
+                {data -> f:render.text(field: 'content')}
+            </div>
+            <aside class="content-sidebar__aside">
+                <d:molecule.card class="content-sidebar__sidebar-card">
+                    {data -> f:render.text(field: 'sidebar_content')}
+                </d:molecule.card>
+            </aside>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

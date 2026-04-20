@@ -1,0 +1,70 @@
+name: desiderio/chart
+typeName: desiderio_chart
+title: Chart
+description: Interactive area chart with gradient fill, grid lines, and tooltips
+group: data
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+
+  - identifier: description
+    type: Textarea
+    label: Chart Description
+    rows: 2
+
+  - identifier: chart_data
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:chart_data_json'
+    description: |
+      Enter data as JSON array, e.g.:
+      [{"label": "Jan", "value": 186}, {"label": "Feb", "value": 305}]
+    rows: 6
+    required: true
+
+  - identifier: color_variant
+    type: Select
+    renderType: selectSingle
+    label: Chart Color
+    items:
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.primary'
+        value: primary
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.blue'
+        value: blue
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.green'
+        value: green
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.orange'
+        value: orange
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.red'
+        value: red
+    default: primary
+
+  - identifier: show_grid
+    type: Checkbox
+    label: Show Grid Lines
+    default: 1
+
+  - identifier: fill_type
+    type: Select
+    renderType: selectSingle
+    label: Fill Style
+    items:
+      - label: Gradient
+        value: gradient
+      - label: Solid
+        value: solid
+    default: gradient
+
+  - identifier: chart_height
+    type: Select
+    renderType: selectSingle
+    label: Chart Height
+    items:
+      - label: Small (200px)
+        value: small
+      - label: Medium (300px)
+        value: medium
+      - label: Large (400px)
+        value: large
+    default: medium

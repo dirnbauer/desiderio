@@ -1,0 +1,32 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:s2f="http://typo3.org/ns/Webconsulting/Shadcn2fluidTemplates/Components/ComponentCollection"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:page.meta property="viewport">width=device-width, initial-scale=1.0</f:page.meta>
+<f:asset.css identifier="hugeicons" href="https://cdn.hugeicons.com/font/hgi-stroke-rounded.css" priority="1"/>
+
+<f:render partial="Pages/Header" arguments="{_all}"/>
+
+<f:render section="Stage" optional="true">
+    <!--TYPO3SEARCH_begin-->
+    <f:if condition="{content.stage}">
+        <f:render.contentArea contentArea="{content.stage}"/>
+    </f:if>
+    <!--TYPO3SEARCH_end-->
+</f:render>
+
+<main class="desiderio-main {f:if(condition: '{site.configuration.settings.desiderio.header.fixedPosition}', then: 'desiderio-main--fixed')}">
+    <f:render section="Main" optional="true">
+        <!--TYPO3SEARCH_begin-->
+        <f:if condition="{content.main}">
+            <f:render.contentArea contentArea="{content.main}"/>
+        </f:if>
+        <!--TYPO3SEARCH_end-->
+    </f:render>
+</main>
+
+<f:render partial="Pages/Footer" arguments="{_all}"/>
+
+</html>

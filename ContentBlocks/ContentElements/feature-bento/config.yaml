@@ -1,0 +1,45 @@
+name: desiderio/feature-bento
+typeName: desiderio_featurebento
+title: Feature Bento Grid
+description: Asymmetric bento-box layout for feature highlights
+group: features
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: subheadline
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
+    rows: 2
+  - identifier: items
+    type: Collection
+    label: Bento Items
+    minItems: 3
+    fields:
+      - identifier: title
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:title'
+        required: true
+      - identifier: description
+        type: Textarea
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
+        rows: 2
+      - identifier: size
+        type: Select
+        renderType: selectSingle
+        label: Card Size
+        items:
+          - label: Small (1x1)
+            value: small
+          - label: Wide (2x1)
+            value: wide
+          - label: Tall (1x2)
+            value: tall
+        default: small
+      - identifier: image
+        type: File
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:background_image'
+        allowed: common-image-types
+        maxitems: 1

@@ -1,0 +1,37 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-hero-carousel" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="hero-carousel">
+    <d:layout.container>
+        <div class="hero-carousel__track">
+            <f:for each="{data.slides}" as="slide" iteration="iter">
+                <div class="hero-carousel__slide{f:if(condition: iter.isFirst, then: ' hero-carousel__slide--active')}">
+                    <div class="hero-carousel__content">
+                        <f:if condition="{slide.title}">
+                            <h2 class="hero-carousel__title">{slide -> f:render.text(field: 'title')}</h2>
+                        </f:if>
+                        <f:if condition="{slide.description}">
+                            <p class="hero-carousel__description">{slide -> f:render.text(field: 'description')}</p>
+                        </f:if>
+                        <f:if condition="{slide.button_text} && {slide.button_link.url}">
+                            <d:atom.button href="{slide.button_link.url}" target="{slide.button_link.target}" size="lg">{slide -> f:render.text(field: 'button_text')}</d:atom.button>
+                        </f:if>
+                    </div>
+                    <f:if condition="{slide.image}">
+                        <div class="hero-carousel__media">
+                            <f:for each="{slide.image}" as="image">
+                                <f:image image="{image}" class="hero-carousel__image" alt="{slide -> f:render.text(field: 'title')}"/>
+                            </f:for>
+                        </div>
+                    </f:if>
+                </div>
+            </f:for>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

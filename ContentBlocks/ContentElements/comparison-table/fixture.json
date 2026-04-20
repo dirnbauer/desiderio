@@ -1,0 +1,36 @@
+{
+  "_type": "table",
+  "header": "Plan Comparison",
+  "headers": [
+    "Feature",
+    "Starter",
+    "Pro",
+    "Enterprise"
+  ],
+  "rows": [
+    {
+      "Feature": "Users",
+      "Starter": "3",
+      "Pro": "Unlimited",
+      "Enterprise": "Unlimited"
+    },
+    {
+      "Feature": "Storage",
+      "Starter": "1 GB",
+      "Pro": "50 GB",
+      "Enterprise": "500 GB"
+    },
+    {
+      "Feature": "Support",
+      "Starter": "Community",
+      "Pro": "Priority",
+      "Enterprise": "Dedicated"
+    },
+    {
+      "Feature": "SSO",
+      "Starter": "No",
+      "Pro": "No",
+      "Enterprise": "Yes"
+    }
+  ]
+}

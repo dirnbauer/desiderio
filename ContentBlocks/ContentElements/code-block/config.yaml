@@ -1,0 +1,23 @@
+name: desiderio/code-block
+typeName: desiderio_codeblock
+title: Code Block
+description: Syntax-highlighted code snippet with optional title and language
+group: content
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: language
+    type: Text
+    label: Language Label
+    description: e.g. JavaScript, PHP, HTML
+  - identifier: code
+    type: Textarea
+    label: Code
+    rows: 12
+    required: true
+  - identifier: filename
+    type: Text
+    label: Filename
+    description: Optional filename shown above the code

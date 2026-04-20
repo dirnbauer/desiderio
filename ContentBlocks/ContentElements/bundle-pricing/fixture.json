@@ -1,0 +1,48 @@
+{
+  "_type": "pricing",
+  "header": "Bundle & Save",
+  "description": "Get more value by combining our most popular products.",
+  "plans": [
+    {
+      "name": "Essentials Bundle",
+      "price": "$49",
+      "period": "/month",
+      "features": [
+        "Analytics + Reporting",
+        "5 team members",
+        "Email support",
+        "1 GB storage"
+      ],
+      "button": "Get Essentials",
+      "featured": false
+    },
+    {
+      "name": "Growth Bundle",
+      "price": "$99",
+      "period": "/month",
+      "features": [
+        "All Essentials features",
+        "CRM + Automation",
+        "25 team members",
+        "Priority support",
+        "10 GB storage"
+      ],
+      "button": "Get Growth",
+      "featured": true
+    },
+    {
+      "name": "Enterprise Bundle",
+      "price": "$249",
+      "period": "/month",
+      "features": [
+        "All Growth features",
+        "Custom integrations",
+        "Unlimited team members",
+        "Dedicated account manager",
+        "Unlimited storage"
+      ],
+      "button": "Contact Sales",
+      "featured": false
+    }
+  ]
+}

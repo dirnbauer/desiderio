@@ -1,0 +1,39 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-feature-video" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="feature-video">
+    <d:layout.container>
+        <f:if condition="{data.header}">
+            <header class="feature-video__intro">
+                <f:if condition="{data.eyebrow}"><span class="feature-video__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span></f:if>
+                <d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography>
+                <f:if condition="{data.description}"><d:atom.typography variant="muted">{data -> f:render.text(field: 'description')}</d:atom.typography></f:if>
+            </header>
+        </f:if>
+
+        <div class="feature-video__player">
+            <f:if condition="{data.video_url}">
+                <f:then>
+                    <div class="feature-video__embed">
+                        <iframe src="{data -> f:render.text(field: 'video_url')}" frameborder="0" allowfullscreen loading="lazy"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+                    </div>
+                </f:then>
+                <f:else>
+                    <f:if condition="{data.video_file.0}">
+                        <video class="feature-video__native" controls preload="metadata"
+                               {f:if(condition: data.poster.0, then: 'poster="{f:uri.image(image: data.poster.0, maxWidth: 1280)}"')}>
+                            <source src="{f:uri.resource(path: data.video_file.0.originalFile.identifier, extensionName: '')}" type="{data.video_file.0.mimeType}"/>
+                        </video>
+                    </f:if>
+                </f:else>
+            </f:if>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

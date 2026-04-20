@@ -1,0 +1,49 @@
+name: desiderio/case-study-card
+typeName: desiderio_casestudycard
+title: Case Study Card
+description: Single case study highlight card with results
+group: social-proof
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+
+  - identifier: client_name
+    type: Textarea
+    rows: 1
+    label: Client Name
+    required: true
+
+  - identifier: client_logo
+    type: File
+    label: Client Logo
+    allowed: common-image-types
+    maxitems: 1
+
+  - identifier: summary
+    type: Textarea
+    label: Summary
+    rows: 3
+    required: true
+
+  - identifier: result_value
+    type: Textarea
+    rows: 1
+    label: Key Result Value
+    description: e.g. 3x, 150%, $2M
+
+  - identifier: result_label
+    type: Textarea
+    rows: 1
+    label: Key Result Label
+
+  - identifier: image
+    type: File
+    label: Cover Image
+    allowed: common-image-types
+    maxitems: 1
+
+  - identifier: link
+    type: Link
+    label: Read More Link

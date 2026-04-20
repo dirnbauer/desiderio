@@ -1,0 +1,10 @@
+.stats-bar__intro { margin-block-end: var(--d-spacing-xl); }
+.stats-bar__eyebrow { font-size: var(--d-text-sm); text-transform: uppercase; letter-spacing: 0.05em; color: var(--primary); font-weight: 600; }
+.stats-bar__headline { margin-block-start: var(--d-spacing-xs); }
+.stats-bar__description { color: var(--muted-foreground); max-width: 40rem; }
+.stats-bar__items { display: flex; flex-direction: column; gap: var(--d-spacing-lg); max-width: 48rem; }
+.stats-bar__meta { display: flex; justify-content: space-between; align-items: baseline; margin-block-end: var(--d-spacing-xs); }
+.stats-bar__label { font-weight: 500; }
+.stats-bar__value { font-weight: 700; color: var(--primary); }
+.stats-bar__track { width: 100%; height: 0.5rem; background: var(--muted); border-radius: 9999px; overflow: hidden; }
+.stats-bar__fill { height: 100%; background: var(--primary); border-radius: 9999px; transition: width 0.6s ease; }

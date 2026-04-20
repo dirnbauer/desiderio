@@ -1,0 +1,27 @@
+name: desiderio/cta-floating
+typeName: desiderio_ctafloating
+title: CTA Floating
+description: Fixed-position floating call to action bar
+group: conversion
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: cta_text
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_text'
+  - identifier: cta_link
+    type: Link
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_link'
+  - identifier: position
+    type: Select
+    renderType: selectSingle
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:position'
+    items:
+      - label: Bottom
+        value: bottom
+      - label: Top
+        value: top
+    default: bottom

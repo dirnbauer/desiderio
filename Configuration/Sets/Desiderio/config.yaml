@@ -1,0 +1,9 @@
+name: webconsulting/desiderio
+label: "Theme: Desiderio"
+dependencies:
+  - webconsulting/shadcn2fluid-templates
+optionalDependencies:
+  - typo3/felogin
+  - typo3/indexed-search
+  - typo3/form
+  - typo3/seo-sitemap

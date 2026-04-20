@@ -1,0 +1,52 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-footer-mega" href="{cb:assetPath()}/frontend.css"/>
+
+<footer class="footer-mega">
+    <d:layout.container>
+        <div class="footer-mega__top">
+            <div class="footer-mega__brand">
+                <f:if condition="{data.brand}">
+                    <h2 class="footer-mega__title">{data -> f:render.text(field: 'brand')}</h2>
+                </f:if>
+                <f:if condition="{data.description}">
+                    <p class="footer-mega__description">{data -> f:render.text(field: 'description')}</p>
+                </f:if>
+                <f:if condition="{data.newsletter_label}">
+                    <div class="footer-mega__newsletter">
+                        <p class="footer-mega__newsletter-label">{data -> f:render.text(field: 'newsletter_label')}</p>
+                        <form class="footer-mega__newsletter-form">
+                            <input type="email" placeholder="Your email" class="footer-mega__input"/>
+                            <button type="submit" class="footer-mega__submit">Subscribe</button>
+                        </form>
+                    </div>
+                </f:if>
+            </div>
+            <div class="footer-mega__columns">
+                <f:for each="{data.column_items}" as="col">
+                    <nav class="footer-mega__col">
+                        <h3 class="footer-mega__col-title">{col -> f:render.text(field: 'title')}</h3>
+                        <ul class="footer-mega__links">
+                            <f:for each="{col.links -> f:split(separator: '
+')}" as="linkLine">
+                                <f:if condition="{linkLine -> f:format.trim()}">
+                                    <li><span class="footer-mega__link">{linkLine -> f:format.trim()}</span></li>
+                                </f:if>
+                            </f:for>
+                        </ul>
+                    </nav>
+                </f:for>
+            </div>
+        </div>
+        <f:if condition="{data.copyright}">
+            <div class="footer-mega__bottom">
+                <p class="footer-mega__copyright">{data -> f:render.text(field: 'copyright')}</p>
+            </div>
+        </f:if>
+    </d:layout.container>
+</footer>
+
+</html>

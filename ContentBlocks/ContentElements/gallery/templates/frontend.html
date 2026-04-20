@@ -1,0 +1,47 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-gallery" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="gallery">
+    <d:layout.container>
+        <f:if condition="{data.header} || {data.subheadline}">
+            <header class="gallery__intro">
+                <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
+                <f:if condition="{data.subheadline}"><d:atom.typography variant="muted">{data -> f:render.text(field: 'subheadline')}</d:atom.typography></f:if>
+            </header>
+        </f:if>
+
+        <div class="gallery__grid gallery__grid--cols-{data.columns -> f:or(alternative: '3')}">
+            <f:for each="{data.items}" as="item">
+                <article class="gallery__item">
+                    <f:if condition="{item.link.url}">
+                        <f:then>
+                            <f:link.typolink parameter="{item.link}" class="gallery__media-link">
+                                <f:for each="{item.image}" as="fileReference">
+                                    <img src="{f:uri.image(image: fileReference, maxWidth: 960)}" alt="{item -> f:render.text(field: 'title')}" class="gallery__image"/>
+                                </f:for>
+                            </f:link.typolink>
+                        </f:then>
+                        <f:else>
+                            <f:for each="{item.image}" as="fileReference">
+                                <img src="{f:uri.image(image: fileReference, maxWidth: 960)}" alt="{item -> f:render.text(field: 'title')}" class="gallery__image"/>
+                            </f:for>
+                        </f:else>
+                    </f:if>
+
+                    <f:if condition="{item.title} || {item.description}">
+                        <div class="gallery__caption">
+                            <f:if condition="{item.title}"><h3 class="gallery__title">{item -> f:render.text(field: 'title')}</h3></f:if>
+                            <f:if condition="{item.description}"><p class="gallery__description">{item -> f:render.text(field: 'description')}</p></f:if>
+                        </div>
+                    </f:if>
+                </article>
+            </f:for>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

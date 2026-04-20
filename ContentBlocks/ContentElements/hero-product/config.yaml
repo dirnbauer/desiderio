@@ -1,0 +1,42 @@
+name: desiderio/hero-product
+typeName: desiderio_heroproduct
+title: Hero Product
+description: Product-focused hero with feature image and pricing CTA
+group: hero
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: Product Name
+  - identifier: subheadline
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
+    rows: 3
+  - identifier: badge_text
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:badge_text'
+  - identifier: price
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:price'
+  - identifier: product_image
+    type: File
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:product_image'
+    allowed: common-image-types
+    maxitems: 1
+  - identifier: primary_button_text
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:primary_button_text'
+  - identifier: primary_button_link
+    type: Link
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:primary_button_link'
+  - identifier: feature_items
+    type: Collection
+    label: Key Features
+    fields:
+      - identifier: label
+        type: Textarea
+        rows: 1
+        label: Feature

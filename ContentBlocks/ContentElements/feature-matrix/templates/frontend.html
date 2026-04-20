@@ -1,0 +1,31 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-feature-matrix" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="feature-matrix">
+    <d:layout.container>
+        <header class="feature-matrix__intro">
+            <f:if condition="{data.eyebrow}"><span class="feature-matrix__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span></f:if>
+            <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
+        </header>
+        <d:molecule.card class="feature-matrix__table" role="table">
+            <div class="feature-matrix__head" role="row">
+                <span class="feature-matrix__label" role="columnheader">Feature</span>
+                <span class="feature-matrix__value" role="columnheader">{data.left_label -> f:or(alternative: 'Plan A')}</span>
+                <span class="feature-matrix__value" role="columnheader">{data.right_label -> f:or(alternative: 'Plan B')}</span>
+            </div>
+            <f:for each="{data.rows}" as="row">
+                <div class="feature-matrix__row" role="row">
+                    <span class="feature-matrix__label" role="cell">{row -> f:render.text(field: 'label')}</span>
+                    <span class="feature-matrix__value" role="cell">{row -> f:render.text(field: 'left_value')}</span>
+                    <span class="feature-matrix__value" role="cell">{row -> f:render.text(field: 'right_value')}</span>
+                </div>
+            </f:for>
+        </d:molecule.card>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

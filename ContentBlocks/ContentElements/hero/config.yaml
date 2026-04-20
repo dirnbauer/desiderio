@@ -1,0 +1,105 @@
+name: desiderio/hero
+typeName: desiderio_hero
+title: Hero Section
+description: Modern hero section with multiple layout variants
+group: hero
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+
+  - identifier: variant
+    type: Select
+    renderType: selectSingle
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:layout_variant'
+    description: Choose the hero layout style
+    onChange: reload
+    items:
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.centered'
+        value: centered
+      - label: Split (Text + Image)
+        value: split
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:background_image'
+        value: background
+      - label: Gradient
+        value: gradient
+    default: centered
+
+  - identifier: badge_text
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:badge_text'
+    description: Optional badge displayed above the headline
+
+  - identifier: subheadline
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
+    rows: 3
+
+  - identifier: primary_button_text
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:primary_button_text'
+
+  - identifier: primary_button_link
+    type: Link
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:primary_button_link'
+
+  - identifier: primary_button_variant
+    type: Select
+    renderType: selectSingle
+    label: Primary Button Style
+    items:
+      - label: Default (Filled)
+        value: default
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.secondary'
+        value: secondary
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.outline'
+        value: outline
+    default: default
+    displayCond: 'FIELD:primary_button_text:!=:'
+
+  - identifier: secondary_button_text
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:secondary_button_text'
+
+  - identifier: secondary_button_link
+    type: Link
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:secondary_button_link'
+
+  - identifier: hero_image
+    type: File
+    label: Hero Image
+    allowed: common-image-types
+    maxitems: 1
+    displayCond: 'FIELD:variant:!=:centered'
+
+  - identifier: image_position
+    type: Select
+    renderType: selectSingle
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:image_position'
+    items:
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.left'
+        value: left
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.right'
+        value: right
+    default: right
+    displayCond: 'FIELD:variant:=:split'
+
+  - identifier: overlay_opacity
+    type: Select
+    renderType: selectSingle
+    label: Overlay Opacity
+    items:
+      - label: None (0%)
+        value: '0'
+      - label: Light (30%)
+        value: '0.3'
+      - label: Medium (50%)
+        value: '0.5'
+      - label: Heavy (70%)
+        value: '0.7'
+    default: '0.5'
+    displayCond: 'FIELD:variant:=:background'

@@ -1,0 +1,34 @@
+.use-case-grid__intro {
+    text-align: center;
+    margin-block-end: var(--d-spacing-xl);
+}
+.use-case-grid__eyebrow {
+    font-size: var(--d-text-sm);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--primary);
+}
+.use-case-grid__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--d-spacing-lg);
+}
+@media (max-width: 768px) {
+    .use-case-grid__grid { grid-template-columns: 1fr; }
+}
+.use-case-grid__title {
+    font-weight: 600;
+    margin-block-end: var(--d-spacing-xs);
+}
+.use-case-grid__title a {
+    color: inherit;
+    text-decoration: none;
+}
+.use-case-grid__title a:hover {
+    color: var(--primary);
+}
+.use-case-grid__description {
+    color: var(--muted-foreground);
+    font-size: var(--d-text-sm);
+}

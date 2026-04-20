@@ -1,0 +1,23 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-nav-steps" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="nav-steps nav-steps--{data.variant -> f:or(alternative: 'numbered')}">
+    <d:layout.container>
+        <nav class="nav-steps__inner" aria-label="Progress steps">
+            <ol class="nav-steps__list">
+                <f:for each="{data.step_items}" as="step" iteration="iterator">
+                    <li class="nav-steps__item nav-steps__item--{step.status -> f:or(alternative: 'pending')}">
+                        <span class="nav-steps__indicator">{iterator.cycle}</span>
+                        <span class="nav-steps__label">{step -> f:render.text(field: 'label')}</span>
+                    </li>
+                </f:for>
+            </ol>
+        </nav>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

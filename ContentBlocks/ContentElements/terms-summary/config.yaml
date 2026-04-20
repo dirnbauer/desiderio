@@ -1,0 +1,35 @@
+name: desiderio/terms-summary
+typeName: desiderio_termssummary
+title: Terms Summary
+description: Simplified terms of service summary with key points
+group: footer
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: intro
+    type: Textarea
+    label: Introduction
+    rows: 3
+  - identifier: items
+    type: Collection
+    label: Key Terms
+    minItems: 1
+    fields:
+      - identifier: title
+        type: Textarea
+        rows: 1
+        label: Term Title
+        required: true
+      - identifier: summary
+        type: Textarea
+        label: Summary
+        rows: 3
+  - identifier: full_terms_link
+    type: Link
+    label: Full Terms Link
+  - identifier: last_updated
+    type: Textarea
+    rows: 1
+    label: Last Updated

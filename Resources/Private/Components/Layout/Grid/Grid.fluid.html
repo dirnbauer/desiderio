@@ -1,0 +1,29 @@
+<f:argument name="cols" type="string" optional="{true}" default="3" />
+<f:argument name="gap" type="string" optional="{true}" default="default" />
+<f:argument name="class" type="string" optional="{true}" default="" />
+
+<f:variable name="colsClass">
+    <f:switch expression="{cols}">
+        <f:case value="1">grid-cols-1</f:case>
+        <f:case value="2">grid-cols-1 md:grid-cols-2</f:case>
+        <f:case value="3">grid-cols-1 md:grid-cols-2 lg:grid-cols-3</f:case>
+        <f:case value="4">grid-cols-1 sm:grid-cols-2 lg:grid-cols-4</f:case>
+        <f:case value="5">grid-cols-1 sm:grid-cols-2 lg:grid-cols-5</f:case>
+        <f:case value="6">grid-cols-2 md:grid-cols-3 lg:grid-cols-6</f:case>
+        <f:defaultCase>grid-cols-1 md:grid-cols-2 lg:grid-cols-3</f:defaultCase>
+    </f:switch>
+</f:variable>
+
+<f:variable name="gapClass">
+    <f:switch expression="{gap}">
+        <f:case value="sm">gap-3</f:case>
+        <f:case value="md">gap-6</f:case>
+        <f:case value="lg">gap-8</f:case>
+        <f:case value="xl">gap-12</f:case>
+        <f:defaultCase>gap-6</f:defaultCase>
+    </f:switch>
+</f:variable>
+
+<div class="grid {colsClass -> f:format.trim()} {gapClass -> f:format.trim()} {class}">
+    <f:slot />
+</div>

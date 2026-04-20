@@ -1,0 +1,48 @@
+{
+  "_type": "pricing",
+  "header": "Choose Your Plan",
+  "description": "Start free and scale as your team grows. No hidden fees.",
+  "plans": [
+    {
+      "name": "Starter",
+      "price": "$0",
+      "period": "/month",
+      "features": [
+        "Up to 5 users",
+        "3 projects",
+        "Basic analytics",
+        "Community support"
+      ],
+      "button": "Get Started Free",
+      "featured": false
+    },
+    {
+      "name": "Professional",
+      "price": "$29",
+      "period": "/user/month",
+      "features": [
+        "Unlimited users",
+        "Unlimited projects",
+        "Advanced analytics",
+        "Priority support",
+        "Custom integrations"
+      ],
+      "button": "Start Free Trial",
+      "featured": true
+    },
+    {
+      "name": "Enterprise",
+      "price": "Custom",
+      "period": "",
+      "features": [
+        "Everything in Professional",
+        "SSO / SAML",
+        "Dedicated account manager",
+        "Custom SLA",
+        "On-premise deployment"
+      ],
+      "button": "Contact Sales",
+      "featured": false
+    }
+  ]
+}

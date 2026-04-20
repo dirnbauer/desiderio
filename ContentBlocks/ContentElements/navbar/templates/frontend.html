@@ -1,0 +1,51 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-navbar" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="navbar navbar--{data.layout -> f:or(alternative: 'full-width')}">
+    <d:layout.container>
+        <nav class="navbar__inner" aria-label="Main navigation">
+            <div class="navbar__brand">
+                <f:if condition="{data.brand_link.url}">
+                    <f:then>
+                        <f:link.typolink parameter="{data.brand_link}" class="navbar__brand-link">{data -> f:render.text(field: 'brand')}</f:link.typolink>
+                    </f:then>
+                    <f:else>
+                        <span class="navbar__brand-link">{data -> f:render.text(field: 'brand')}</span>
+                    </f:else>
+                </f:if>
+            </div>
+
+            <f:if condition="{data.nav_items}">
+                <ul class="navbar__nav">
+                    <f:for each="{data.nav_items}" as="item">
+                        <li class="navbar__nav-item">
+                            <f:if condition="{item.link.url}">
+                                <f:then>
+                                    <f:link.typolink parameter="{item.link}" class="navbar__nav-link">{item -> f:render.text(field: 'label')}</f:link.typolink>
+                                </f:then>
+                                <f:else>
+                                    <span class="navbar__nav-link">{item -> f:render.text(field: 'label')}</span>
+                                </f:else>
+                            </f:if>
+                        </li>
+                    </f:for>
+                </ul>
+            </f:if>
+
+            <div class="navbar__actions">
+                <f:if condition="{data.secondary_button_text} && {data.secondary_button_link.url}">
+                    <d:atom.button href="{data.secondary_button_link.url}" target="{data.secondary_button_link.target}" variant="ghost">{data -> f:render.text(field: 'secondary_button_text')}</d:atom.button>
+                </f:if>
+                <f:if condition="{data.primary_button_text} && {data.primary_button_link.url}">
+                    <d:atom.button href="{data.primary_button_link.url}" target="{data.primary_button_link.target}" size="sm">{data -> f:render.text(field: 'primary_button_text')}</d:atom.button>
+                </f:if>
+            </div>
+        </nav>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

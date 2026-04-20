@@ -1,0 +1,32 @@
+.company-values__intro {
+    text-align: center;
+    margin-block-end: var(--d-spacing-xl);
+}
+.company-values__eyebrow {
+    font-size: var(--d-text-sm);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--primary);
+}
+.company-values__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--d-spacing-lg);
+}
+@media (max-width: 768px) {
+    .company-values__grid { grid-template-columns: 1fr; }
+}
+.company-values__icon {
+    display: block;
+    font-size: var(--d-text-2xl);
+    margin-block-end: var(--d-spacing-sm);
+}
+.company-values__title {
+    font-weight: 600;
+    margin-block-end: var(--d-spacing-xs);
+}
+.company-values__description {
+    font-size: var(--d-text-sm);
+    color: var(--muted-foreground);
+}

@@ -1,0 +1,36 @@
+name: desiderio/feature-comparison
+typeName: desiderio_featurecomparison
+title: Feature Comparison
+description: Side-by-side feature comparison between two options
+group: features
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: left_title
+    type: Textarea
+    rows: 1
+    label: Left Column Title
+  - identifier: right_title
+    type: Textarea
+    rows: 1
+    label: Right Column Title
+  - identifier: items
+    type: Collection
+    label: Comparison Rows
+    minItems: 1
+    fields:
+      - identifier: feature
+        type: Textarea
+        rows: 1
+        label: Feature Name
+        required: true
+      - identifier: left_supported
+        type: Checkbox
+        label: Supported (Left)
+        default: 0
+      - identifier: right_supported
+        type: Checkbox
+        label: Supported (Right)
+        default: 0

@@ -1,0 +1,41 @@
+name: desiderio/pricing-enterprise
+typeName: desiderio_pricingenterprise
+title: Pricing Enterprise
+description: Enterprise pricing CTA with custom quote request
+group: pricing
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+
+  - identifier: eyebrow
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
+
+  - identifier: description
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
+    rows: 3
+
+  - identifier: features_list
+    type: Textarea
+    label: Key Features (one per line)
+    rows: 6
+
+  - identifier: contact_text
+    type: Textarea
+    rows: 1
+    label: CTA Button Text
+    default: Contact Sales
+
+  - identifier: contact_link
+    type: Link
+    label: CTA Button Link
+
+  - identifier: image
+    type: File
+    label: Illustration
+    allowed: common-image-types
+    maxitems: 1

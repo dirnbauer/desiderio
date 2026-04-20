@@ -1,0 +1,50 @@
+.chart-stacked-bar__card {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--card);
+    overflow: hidden;
+}
+.chart-stacked-bar__header {
+    padding: var(--d-spacing-lg) var(--d-spacing-lg) 0;
+}
+.chart-stacked-bar__title {
+    font-size: var(--d-text-lg);
+    font-weight: 600;
+}
+.chart-stacked-bar__description {
+    font-size: var(--d-text-sm);
+    color: var(--muted-foreground);
+    margin-block-start: var(--d-spacing-xs);
+}
+.chart-stacked-bar__plot {
+    padding: 0 var(--d-spacing-lg) var(--d-spacing-lg);
+}
+.chart-stacked-bar__svg {
+    width: 100%;
+    height: auto;
+    height: 220px;
+    color: var(--muted-foreground);
+}
+.chart-stacked-bar__tick {
+    font-size: 11px;
+}
+.chart-stacked-bar__legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--d-spacing-sm);
+    margin-bottom: var(--d-spacing-md);
+    padding-inline: var(--d-spacing-lg);
+    padding-top: var(--d-spacing-lg);
+    font-size: var(--d-text-xs);
+    color: var(--muted-foreground);
+}
+.chart-stacked-bar__legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+.chart-stacked-bar__swatch {
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 2px;
+}

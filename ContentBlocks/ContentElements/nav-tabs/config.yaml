@@ -1,0 +1,37 @@
+name: desiderio/nav-tabs
+typeName: desiderio_navtabs
+title: Navigation Tabs
+description: Horizontal tab navigation for switching between content sections
+group: navigation
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: variant
+    type: Select
+    renderType: selectSingle
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:style'
+    items:
+      - label: Underline
+        value: underline
+      - label: Pill
+        value: pill
+      - label: Boxed
+        value: boxed
+    default: underline
+  - identifier: tabs
+    type: Collection
+    label: Tabs
+    minItems: 1
+    fields:
+      - identifier: label
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:label_field'
+      - identifier: link
+        type: Link
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:link'
+      - identifier: active
+        type: Checkbox
+        label: Active

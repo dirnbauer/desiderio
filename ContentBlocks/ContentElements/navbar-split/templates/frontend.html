@@ -1,0 +1,36 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-navbar-split" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="navbar-split">
+    <d:layout.container>
+        <nav class="navbar-split__inner" aria-label="Split navigation">
+            <ul class="navbar-split__left">
+                <f:for each="{data.left_items}" as="item">
+                    <li><f:if condition="{item.link.url}"><f:link.typolink parameter="{item.link}" class="navbar-split__link">{item -> f:render.text(field: 'label')}</f:link.typolink></f:if></li>
+                </f:for>
+            </ul>
+            <div class="navbar-split__brand">
+                <f:if condition="{data.brand_link.url}">
+                    <f:then><f:link.typolink parameter="{data.brand_link}" class="navbar-split__brand-link">{data -> f:render.text(field: 'brand')}</f:link.typolink></f:then>
+                    <f:else><span class="navbar-split__brand-link">{data -> f:render.text(field: 'brand')}</span></f:else>
+                </f:if>
+            </div>
+            <div class="navbar-split__right">
+                <ul class="navbar-split__right-nav">
+                    <f:for each="{data.right_items}" as="item">
+                        <li><f:if condition="{item.link.url}"><f:link.typolink parameter="{item.link}" class="navbar-split__link">{item -> f:render.text(field: 'label')}</f:link.typolink></f:if></li>
+                    </f:for>
+                </ul>
+                <f:if condition="{data.button_text} && {data.button_link.url}">
+                    <d:atom.button href="{data.button_link.url}" target="{data.button_link.target}" size="sm">{data -> f:render.text(field: 'button_text')}</d:atom.button>
+                </f:if>
+            </div>
+        </nav>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

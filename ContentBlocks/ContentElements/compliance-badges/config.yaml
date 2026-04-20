@@ -1,0 +1,40 @@
+name: desiderio/compliance-badges
+typeName: desiderio_compliancebadges
+title: Compliance Badges
+description: Row of compliance and certification badges with labels
+group: footer
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: alignment
+    type: Select
+    renderType: selectSingle
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:alignment'
+    items:
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.left'
+        value: left
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.center'
+        value: center
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.right'
+        value: right
+    default: center
+  - identifier: items
+    type: Collection
+    label: Badges
+    minItems: 1
+    fields:
+      - identifier: image
+        type: File
+        label: Badge Image
+        allowed: common-image-types
+        maxitems: 1
+      - identifier: label
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:label_field'
+        required: true
+      - identifier: link
+        type: Link
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:link'

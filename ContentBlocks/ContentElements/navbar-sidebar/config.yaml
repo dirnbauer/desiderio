@@ -1,0 +1,35 @@
+name: desiderio/navbar-sidebar
+typeName: desiderio_navbarsidebar
+title: Sidebar Navbar
+description: Vertical sidebar navigation with collapsible sections
+group: navigation
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: brand
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:brand'
+    required: true
+  - identifier: brand_link
+    type: Link
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:brand_link'
+  - identifier: sections
+    type: Collection
+    label: Sections
+    minItems: 1
+    fields:
+      - identifier: title
+        type: Textarea
+        rows: 1
+        label: Section Title
+      - identifier: links
+        type: Textarea
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:links_one_per_line'
+        rows: 5
+  - identifier: footer_text
+    type: Textarea
+    rows: 1
+    label: Footer Text

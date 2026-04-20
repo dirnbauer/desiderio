@@ -1,0 +1,108 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-chart-contribution" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="chart-contribution-section">
+    <d:layout.container>
+        <div class="chart-contribution" data-chart-json="{data.chart_data -> f:format.htmlspecialchars()}">
+            <div class="chart-contribution__card">
+                <div class="chart-contribution__head">
+                    <div class="chart-contribution__titles">
+                        <f:if condition="{data.header}">
+                            <h3 class="chart-contribution__title">{data -> f:render.text(field: 'header')}</h3>
+                        </f:if>
+                        <f:if condition="{data.subheadline}">
+                            <p class="chart-contribution__sub">{data -> f:render.text(field: 'subheadline')}</p>
+                        </f:if>
+                    </div>
+                    <f:if condition="{data.badge_text}">
+                        <span class="chart-contribution__badge">{data -> f:render.text(field: 'badge_text')}</span>
+                    </f:if>
+                </div>
+
+                <div class="chart-contribution__chart" id="chart-contribution-plot-{data.uid}">
+                    <svg class="chart-contribution__svg" id="chart-contribution-svg-{data.uid}" role="img" aria-hidden="true"></svg>
+                </div>
+
+                <div class="chart-contribution__stats">
+                    <div class="chart-contribution__stat">
+                        <f:if condition="{data.left_stat_label}">
+                            <p class="chart-contribution__stat-label">{data -> f:render.text(field: 'left_stat_label')}</p>
+                        </f:if>
+                        <f:if condition="{data.left_stat_value}">
+                            <p class="chart-contribution__stat-value">{data -> f:render.text(field: 'left_stat_value')}</p>
+                        </f:if>
+                        <f:if condition="{data.left_stat_detail}">
+                            <p class="chart-contribution__stat-detail">{data -> f:render.text(field: 'left_stat_detail')}</p>
+                        </f:if>
+                    </div>
+                    <div class="chart-contribution__stat">
+                        <f:if condition="{data.right_stat_label}">
+                            <p class="chart-contribution__stat-label">{data -> f:render.text(field: 'right_stat_label')}</p>
+                        </f:if>
+                        <f:if condition="{data.right_stat_value}">
+                            <p class="chart-contribution__stat-value">{data -> f:render.text(field: 'right_stat_value')}</p>
+                        </f:if>
+                        <f:if condition="{data.right_stat_detail}">
+                            <p class="chart-contribution__stat-detail">{data -> f:render.text(field: 'right_stat_detail')}</p>
+                        </f:if>
+                    </div>
+                </div>
+
+                <f:if condition="{data.primary_button_text} && {data.primary_button_link.url}">
+                    <div class="chart-contribution__actions">
+                        <d:atom.button href="{data.primary_button_link.url}" target="{data.primary_button_link.target}" class="chart-contribution__btn" size="lg">
+                            {data -> f:render.text(field: 'primary_button_text')}
+                        </d:atom.button>
+                    </div>
+                </f:if>
+            </div>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+
+<script>
+(function () {
+  const uid = {data.uid};
+  const svg = document.getElementById('chart-contribution-svg-' + uid);
+  const root = svg && svg.closest('.chart-contribution');
+  if (!svg || !root) return;
+  let rows;
+  try { rows = JSON.parse(root.getAttribute('data-chart-json')); } catch (e) { return; }
+  if (!Array.isArray(rows) || !rows.length) return;
+  const vals = rows.map(function (r) { return Number(r.value) || 0; });
+  const labels = rows.map(function (r) { return r.label || ''; });
+  const w = 400, h = 160, pad = 12, bottom = 28;
+  const chartH = h - pad - bottom;
+  const max = Math.max.apply(null, vals) || 1;
+  const barW = (w - 2 * pad) / vals.length * 0.55;
+  const gap = (w - 2 * pad - barW * vals.length) / Math.max(vals.length - 1, 1);
+  svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+  vals.forEach(function (v, i) {
+    const x = pad + i * (barW + gap);
+    const bh = (v / max) * chartH;
+    const y = h - bottom - bh;
+    const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+    rect.setAttribute('x', x);
+    rect.setAttribute('y', y);
+    rect.setAttribute('width', barW);
+    rect.setAttribute('height', Math.max(bh, 1));
+    rect.setAttribute('rx', '6');
+    rect.setAttribute('fill', 'hsl(142 70% 48%)');
+    svg.appendChild(rect);
+    const t = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    t.setAttribute('x', x + barW / 2);
+    t.setAttribute('y', h - 4);
+    t.setAttribute('text-anchor', 'middle');
+    t.setAttribute('fill', 'currentColor');
+    t.setAttribute('class', 'chart-contribution__tick');
+    t.textContent = labels[i];
+    svg.appendChild(t);
+  });
+})();
+</script>
+
+</html>

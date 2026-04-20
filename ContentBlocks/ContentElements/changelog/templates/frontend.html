@@ -1,0 +1,39 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-changelog" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="changelog-section">
+    <d:layout.container>
+        <f:if condition="{data.header}">
+            <h2 class="changelog__headline">{data -> f:render.text(field: 'header')}</h2>
+        </f:if>
+        <div class="changelog__list">
+            <f:for each="{data.items}" as="item">
+                <article class="changelog__entry">
+                    <div class="changelog__meta">
+                        <span class="changelog__version">{item -> f:render.text(field: 'version')}</span>
+                        <f:if condition="{item.date}">
+                            <time class="changelog__date">{item -> f:render.text(field: 'date')}</time>
+                        </f:if>
+                        <span class="changelog__tag changelog__tag--{item.tag -> f:or(alternative: 'new')}">
+                            {item.tag -> f:or(alternative: 'new')}
+                        </span>
+                    </div>
+                    <f:if condition="{item.title}">
+                        <h3 class="changelog__title">{item -> f:render.text(field: 'title')}</h3>
+                    </f:if>
+                    <f:if condition="{item.description}">
+                        <div class="changelog__description">
+                            {item -> f:render.text(field: 'description')}
+                        </div>
+                    </f:if>
+                </article>
+            </f:for>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

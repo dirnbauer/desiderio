@@ -1,0 +1,55 @@
+name: desiderio/badge-grid
+typeName: desiderio_badgegrid
+title: Badge Grid
+description: Grid of labeled badges for tags, skills, or categories
+group: data
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: description
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
+    rows: 2
+  - identifier: variant
+    type: Select
+    renderType: selectSingle
+    label: Badge Style
+    items:
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.default'
+        value: default
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.outline'
+        value: outline
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.secondary'
+        value: secondary
+    default: default
+  - identifier: items
+    type: Collection
+    label: Badges
+    minItems: 1
+    fields:
+      - identifier: text
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:badge_text'
+        required: true
+      - identifier: link
+        type: Link
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:link'
+      - identifier: color
+        type: Select
+        renderType: selectSingle
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:color_field'
+        items:
+          - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.default'
+            value: default
+          - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.blue'
+            value: blue
+          - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.green'
+            value: green
+          - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.red'
+            value: red
+          - label: Yellow
+            value: yellow
+        default: default

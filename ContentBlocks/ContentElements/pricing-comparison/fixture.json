@@ -1,0 +1,36 @@
+{
+  "_type": "table",
+  "header": "Pricing Comparison",
+  "headers": [
+    "Feature",
+    "Free",
+    "Team",
+    "Business"
+  ],
+  "rows": [
+    {
+      "Feature": "Projects",
+      "Free": "5",
+      "Team": "Unlimited",
+      "Business": "Unlimited"
+    },
+    {
+      "Feature": "Build Minutes",
+      "Free": "100/mo",
+      "Team": "3,000/mo",
+      "Business": "10,000/mo"
+    },
+    {
+      "Feature": "Custom Domains",
+      "Free": "1",
+      "Team": "10",
+      "Business": "Unlimited"
+    },
+    {
+      "Feature": "Analytics",
+      "Free": "Basic",
+      "Team": "Advanced",
+      "Business": "Enterprise"
+    }
+  ]
+}

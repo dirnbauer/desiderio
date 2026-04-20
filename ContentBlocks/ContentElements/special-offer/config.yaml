@@ -1,0 +1,47 @@
+name: desiderio/special-offer
+typeName: desiderio_specialoffer
+title: Special Offer
+description: Promotional banner with discount and countdown urgency
+group: pricing
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+
+  - identifier: eyebrow
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
+    description: e.g. Limited Time
+
+  - identifier: description
+    type: Textarea
+    label: Offer Description
+    rows: 2
+
+  - identifier: discount_text
+    type: Textarea
+    rows: 1
+    label: Discount Text
+    description: e.g. 50% OFF, Save $200
+
+  - identifier: original_price
+    type: Textarea
+    rows: 1
+    label: Original Price
+
+  - identifier: sale_price
+    type: Textarea
+    rows: 1
+    label: Sale Price
+
+  - identifier: button_text
+    type: Textarea
+    rows: 1
+    label: CTA Button Text
+    default: Claim Offer
+
+  - identifier: button_link
+    type: Link
+    label: CTA Button Link

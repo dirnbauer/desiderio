@@ -1,0 +1,26 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-content-highlight" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="content-highlight content-highlight--{data.variant -> f:or(alternative: 'muted')} content-highlight--{data.alignment -> f:or(alternative: 'left')}">
+    <d:layout.container>
+        <div class="content-highlight__inner">
+            <f:if condition="{data.header}">
+                <d:atom.typography tag="h2" variant="h2" class="content-highlight__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
+            </f:if>
+            <div class="content-highlight__body">
+                {data -> f:render.text(field: 'content')}
+            </div>
+            <f:if condition="{data.link.url} && {data.link_text}">
+                <div class="content-highlight__actions">
+                    <f:link.typolink parameter="{data.link}" class="content-highlight__cta">{data -> f:render.text(field: 'link_text')}</f:link.typolink>
+                </div>
+            </f:if>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

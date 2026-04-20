@@ -1,0 +1,45 @@
+name: desiderio/table-content
+typeName: desiderio_tablecontent
+title: Table Content
+description: Styled data table with header row and body rows
+group: content
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: caption
+    type: Textarea
+    rows: 1
+    label: Table Caption
+  - identifier: column_items
+    type: Collection
+    label: Column Headers
+    minItems: 2
+    fields:
+      - identifier: label
+        type: Textarea
+        rows: 1
+        label: Column Header
+        required: true
+  - identifier: rows
+    type: Collection
+    label: Table Rows
+    minItems: 1
+    fields:
+      - identifier: col1
+        type: Textarea
+        rows: 1
+        label: Column 1
+      - identifier: col2
+        type: Textarea
+        rows: 1
+        label: Column 2
+      - identifier: col3
+        type: Textarea
+        rows: 1
+        label: Column 3
+      - identifier: col4
+        type: Textarea
+        rows: 1
+        label: Column 4

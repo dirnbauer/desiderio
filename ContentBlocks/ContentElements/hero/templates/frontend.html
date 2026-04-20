@@ -1,0 +1,155 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-hero" href="{cb:assetPath()}/frontend.css"/>
+
+<f:switch expression="{data.variant}">
+
+    <f:case value="split">
+        <d:layout.section class="hero hero--split hero--image-{data.image_position -> f:or(alternative: 'right')}">
+            <d:layout.container>
+                <div class="hero__grid">
+                    <div class="hero__content">
+                        <f:if condition="{data.badge_text}">
+                            <d:atom.badge variant="secondary">{data -> f:render.text(field: 'badge_text')}</d:atom.badge>
+                        </f:if>
+                        <f:if condition="{data.header}">
+                            <d:atom.typography tag="h1" variant="h1" class="hero__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
+                        </f:if>
+                        <f:if condition="{data.subheadline}">
+                            <d:atom.typography variant="lead" class="hero__subheadline">{data -> f:render.text(field: 'subheadline')}</d:atom.typography>
+                        </f:if>
+                        <f:if condition="{data.primary_button_text} || {data.secondary_button_text}">
+                            <div class="hero__actions">
+                                <f:if condition="{data.primary_button_text}">
+                                    <f:link.typolink parameter="{data.primary_button_link}">
+                                        <d:atom.button variant="{data.primary_button_variant -> f:or(alternative: 'default')}" size="lg">{data -> f:render.text(field: 'primary_button_text')}</d:atom.button>
+                                    </f:link.typolink>
+                                </f:if>
+                                <f:if condition="{data.secondary_button_text}">
+                                    <f:link.typolink parameter="{data.secondary_button_link}">
+                                        <d:atom.button variant="outline" size="lg">{data -> f:render.text(field: 'secondary_button_text')}</d:atom.button>
+                                    </f:link.typolink>
+                                </f:if>
+                            </div>
+                        </f:if>
+                    </div>
+                    <div class="hero__media">
+                        <f:if condition="{data.hero_image}">
+                            <f:for each="{data.hero_image}" as="image">
+                                <f:image image="{image}" class="hero__image" alt="{data -> f:render.text(field: 'header')}"/>
+                            </f:for>
+                        </f:if>
+                    </div>
+                </div>
+            </d:layout.container>
+        </d:layout.section>
+    </f:case>
+
+    <f:case value="background">
+        <d:layout.section class="hero hero--background">
+            <f:if condition="{data.hero_image}">
+                <f:for each="{data.hero_image}" as="image">
+                    <f:image image="{image}" class="hero__bg-image" alt=""/>
+                </f:for>
+            </f:if>
+            <div class="hero__overlay" style="opacity: {data.overlay_opacity -> f:or(alternative: '0.5')}"></div>
+            <d:layout.container>
+                <div class="hero__content hero__content--over">
+                    <f:if condition="{data.badge_text}">
+                        <d:atom.badge variant="secondary">{data -> f:render.text(field: 'badge_text')}</d:atom.badge>
+                    </f:if>
+                    <f:if condition="{data.header}">
+                        <d:atom.typography tag="h1" variant="h1" class="hero__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
+                    </f:if>
+                    <f:if condition="{data.subheadline}">
+                        <d:atom.typography variant="lead" class="hero__subheadline">{data -> f:render.text(field: 'subheadline')}</d:atom.typography>
+                    </f:if>
+                    <f:if condition="{data.primary_button_text} || {data.secondary_button_text}">
+                        <div class="hero__actions">
+                            <f:if condition="{data.primary_button_text}">
+                                <f:link.typolink parameter="{data.primary_button_link}">
+                                    <d:atom.button variant="{data.primary_button_variant -> f:or(alternative: 'default')}" size="lg">{data -> f:render.text(field: 'primary_button_text')}</d:atom.button>
+                                </f:link.typolink>
+                            </f:if>
+                            <f:if condition="{data.secondary_button_text}">
+                                <f:link.typolink parameter="{data.secondary_button_link}">
+                                    <d:atom.button variant="outline" size="lg">{data -> f:render.text(field: 'secondary_button_text')}</d:atom.button>
+                                </f:link.typolink>
+                            </f:if>
+                        </div>
+                    </f:if>
+                </div>
+            </d:layout.container>
+        </d:layout.section>
+    </f:case>
+
+    <f:case value="gradient">
+        <d:layout.section class="hero hero--gradient">
+            <d:layout.container>
+                <div class="hero__content hero__content--centered">
+                    <f:if condition="{data.badge_text}">
+                        <d:atom.badge variant="secondary">{data -> f:render.text(field: 'badge_text')}</d:atom.badge>
+                    </f:if>
+                    <f:if condition="{data.header}">
+                        <d:atom.typography tag="h1" variant="h1" class="hero__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
+                    </f:if>
+                    <f:if condition="{data.subheadline}">
+                        <d:atom.typography variant="lead" class="hero__subheadline">{data -> f:render.text(field: 'subheadline')}</d:atom.typography>
+                    </f:if>
+                    <f:if condition="{data.primary_button_text} || {data.secondary_button_text}">
+                        <div class="hero__actions">
+                            <f:if condition="{data.primary_button_text}">
+                                <f:link.typolink parameter="{data.primary_button_link}">
+                                    <d:atom.button variant="{data.primary_button_variant -> f:or(alternative: 'default')}" size="lg">{data -> f:render.text(field: 'primary_button_text')}</d:atom.button>
+                                </f:link.typolink>
+                            </f:if>
+                            <f:if condition="{data.secondary_button_text}">
+                                <f:link.typolink parameter="{data.secondary_button_link}">
+                                    <d:atom.button variant="outline" size="lg">{data -> f:render.text(field: 'secondary_button_text')}</d:atom.button>
+                                </f:link.typolink>
+                            </f:if>
+                        </div>
+                    </f:if>
+                </div>
+            </d:layout.container>
+        </d:layout.section>
+    </f:case>
+
+    <f:defaultCase>
+        <d:layout.section class="hero hero--centered">
+            <d:layout.container>
+                <div class="hero__content hero__content--centered">
+                    <f:if condition="{data.badge_text}">
+                        <d:atom.badge variant="secondary">{data -> f:render.text(field: 'badge_text')}</d:atom.badge>
+                    </f:if>
+                    <f:if condition="{data.header}">
+                        <d:atom.typography tag="h1" variant="h1" class="hero__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
+                    </f:if>
+                    <f:if condition="{data.subheadline}">
+                        <d:atom.typography variant="lead" class="hero__subheadline">{data -> f:render.text(field: 'subheadline')}</d:atom.typography>
+                    </f:if>
+                    <f:if condition="{data.primary_button_text} || {data.secondary_button_text}">
+                        <div class="hero__actions">
+                            <f:if condition="{data.primary_button_text}">
+                                <f:link.typolink parameter="{data.primary_button_link}">
+                                    <d:atom.button variant="{data.primary_button_variant -> f:or(alternative: 'default')}" size="lg">{data -> f:render.text(field: 'primary_button_text')}</d:atom.button>
+                                </f:link.typolink>
+                            </f:if>
+                            <f:if condition="{data.secondary_button_text}">
+                                <f:link.typolink parameter="{data.secondary_button_link}">
+                                    <d:atom.button variant="outline" size="lg">{data -> f:render.text(field: 'secondary_button_text')}</d:atom.button>
+                                </f:link.typolink>
+                            </f:if>
+                        </div>
+                    </f:if>
+                </div>
+            </d:layout.container>
+        </d:layout.section>
+    </f:defaultCase>
+
+</f:switch>
+
+</html>

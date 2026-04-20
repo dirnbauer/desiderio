@@ -1,0 +1,34 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-chart-bar" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="chart-bar-section">
+    <d:layout.container>
+        <div class="chart-bar chart-bar--{data.color_variant -> f:or(alternative: 'primary')}"
+             data-chart-data="{data.chart_data -> f:format.htmlspecialchars()}"
+             data-orientation="{data.orientation -> f:or(alternative: 'vertical')}"
+             data-show-grid="{f:if(condition: data.show_grid, then: 'true', else: 'false')}"
+             data-chart-id="chart-bar-{data.uid}">
+            <div class="chart-bar__card">
+                <f:if condition="{data.header} || {data.description}">
+                    <div class="chart-bar__header">
+                        <f:if condition="{data.header}">
+                            <h3 class="chart-bar__title">{data -> f:render.text(field: 'header')}</h3>
+                        </f:if>
+                        <f:if condition="{data.description}">
+                            <p class="chart-bar__description">{data -> f:render.text(field: 'description')}</p>
+                        </f:if>
+                    </div>
+                </f:if>
+                <div class="chart-bar__content">
+                    <svg class="chart-bar__canvas" id="chart-bar-{data.uid}"></svg>
+                </div>
+            </div>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

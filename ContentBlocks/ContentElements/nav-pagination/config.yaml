@@ -1,0 +1,31 @@
+name: desiderio/nav-pagination
+typeName: desiderio_navpagination
+title: Pagination
+description: Page navigation with previous, next, and numbered page links
+group: navigation
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: items
+    type: Collection
+    label: Pages
+    minItems: 1
+    fields:
+      - identifier: label
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:label_field'
+      - identifier: link
+        type: Link
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:link'
+      - identifier: active
+        type: Checkbox
+        label: Active
+  - identifier: previous_link
+    type: Link
+    label: Previous Link
+  - identifier: next_link
+    type: Link
+    label: Next Link

@@ -1,0 +1,54 @@
+name: desiderio/testimonial-grid
+typeName: desiderio_testimonialgrid
+title: Testimonial Grid
+description: Multi-column grid of customer testimonials
+group: social-proof
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+
+  - identifier: eyebrow
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
+
+  - identifier: columns
+    type: Select
+    renderType: selectSingle
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:columns'
+    items:
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.2_columns'
+        value: '2'
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.3_columns'
+        value: '3'
+    default: '3'
+
+  - identifier: testimonials
+    type: Collection
+    label: Testimonials
+    minItems: 1
+    fields:
+      - identifier: quote
+        type: Textarea
+        label: Quote
+        rows: 3
+        required: true
+
+      - identifier: author_name
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:author_name'
+        required: true
+
+      - identifier: author_title
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:author_title'
+
+      - identifier: author_image
+        type: File
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:author_photo'
+        allowed: common-image-types
+        maxitems: 1

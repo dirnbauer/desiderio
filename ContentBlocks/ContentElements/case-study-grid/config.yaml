@@ -1,0 +1,58 @@
+name: desiderio/case-study-grid
+typeName: desiderio_casestudygrid
+title: Case Study Grid
+description: Grid of case study preview cards with results
+group: social-proof
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+
+  - identifier: eyebrow
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
+
+  - identifier: columns
+    type: Select
+    renderType: selectSingle
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:columns'
+    items:
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.2_columns'
+        value: '2'
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.3_columns'
+        value: '3'
+    default: '3'
+
+  - identifier: cases
+    type: Collection
+    label: Case Studies
+    minItems: 1
+    fields:
+      - identifier: client_name
+        type: Textarea
+        rows: 1
+        label: Client Name
+        required: true
+
+      - identifier: summary
+        type: Textarea
+        label: Summary
+        rows: 2
+
+      - identifier: result
+        type: Textarea
+        rows: 1
+        label: Key Result
+        description: e.g. 3x growth
+
+      - identifier: image
+        type: File
+        label: Cover Image
+        allowed: common-image-types
+        maxitems: 1
+
+      - identifier: link
+        type: Link
+        label: Read More Link

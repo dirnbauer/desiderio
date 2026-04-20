@@ -1,0 +1,17 @@
+includes:
+    - vendor/phpstan/phpstan-phpunit/extension.neon
+
+parameters:
+    phpVersion: 80300
+    level: 8
+    paths:
+        - Classes/
+        - Configuration/Icons.php
+        - ext_emconf.php
+        - ext_localconf.php
+    tmpDir: var/phpstan
+    ignoreErrors:
+        # TYPO3 injects $_EXTKEY at runtime for ext_emconf.php.
+        -
+            message: '#^Variable \$_EXTKEY might not be defined\.$#'
+            path: ext_emconf.php

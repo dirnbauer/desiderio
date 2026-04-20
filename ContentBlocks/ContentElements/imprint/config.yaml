@@ -1,0 +1,37 @@
+name: desiderio/imprint
+typeName: desiderio_imprint
+title: Imprint
+description: Legal imprint page with company details and contact info
+group: footer
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: company_name
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:company_name'
+    required: true
+  - identifier: address
+    type: Textarea
+    label: Address
+    rows: 3
+  - identifier: contact_email
+    type: Text
+    label: Email
+  - identifier: contact_phone
+    type: Text
+    label: Phone
+  - identifier: registry_info
+    type: Textarea
+    label: Registry Information
+    rows: 3
+  - identifier: vat_id
+    type: Text
+    label: VAT ID
+  - identifier: additional_info
+    type: Textarea
+    label: Additional Information
+    enableRichtext: true
+    rows: 4

@@ -1,0 +1,40 @@
+name: desiderio/notification
+typeName: desiderio_notification
+title: Notification
+description: Toast-style notification with icon, message, and action button
+group: data
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: content
+    type: Textarea
+    label: Message
+    rows: 3
+    required: true
+  - identifier: variant
+    type: Select
+    renderType: selectSingle
+    label: Type
+    items:
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.info'
+        value: info
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.success'
+        value: success
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.warning'
+        value: warning
+      - label: Error
+        value: error
+    default: info
+  - identifier: action_text
+    type: Textarea
+    rows: 1
+    label: Action Button Text
+  - identifier: action_link
+    type: Link
+    label: Action Button Link
+  - identifier: dismissible
+    type: Checkbox
+    label: Dismissible
+    default: 1

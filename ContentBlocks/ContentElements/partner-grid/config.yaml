@@ -1,0 +1,32 @@
+name: desiderio/partner-grid
+typeName: desiderio_partnergrid
+title: Partner Grid
+description: Grid of partner or client logos with optional links
+group: team
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: subheadline
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
+    rows: 2
+  - identifier: partners
+    type: Collection
+    label: Partners
+    minItems: 1
+    fields:
+      - identifier: logo
+        type: File
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:logo'
+        allowed: common-image-types
+        maxitems: 1
+      - identifier: name
+        type: Textarea
+        rows: 1
+        label: Partner Name
+        required: true
+      - identifier: link
+        type: Link
+        label: Website

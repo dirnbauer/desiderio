@@ -1,0 +1,46 @@
+name: desiderio/article-hero
+typeName: desiderio_articlehero
+title: Article Hero
+description: Editorial article intro with headline, metadata, and cover image
+group: content
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+
+  - identifier: eyebrow
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
+
+  - identifier: dek
+    type: Textarea
+    label: Summary
+    rows: 3
+
+  - identifier: topic
+    type: Textarea
+    rows: 1
+    label: Topic
+
+  - identifier: publish_date
+    type: Textarea
+    rows: 1
+    label: Publish Date
+
+  - identifier: reading_time
+    type: Textarea
+    rows: 1
+    label: Reading Time
+
+  - identifier: author_name
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:author_name'
+
+  - identifier: cover_image
+    type: File
+    label: Cover Image
+    allowed: common-image-types
+    maxitems: 1

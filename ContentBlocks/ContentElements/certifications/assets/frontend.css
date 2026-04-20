@@ -1,0 +1,13 @@
+.certifications__intro { text-align: center; margin-block-end: var(--d-spacing-xl); }
+.certifications__eyebrow { font-size: var(--d-text-sm); text-transform: uppercase; letter-spacing: 0.05em; color: var(--primary); font-weight: 600; }
+.certifications__headline { margin-block-start: var(--d-spacing-xs); }
+.certifications__description { color: var(--muted-foreground); max-width: 40rem; margin-inline: auto; }
+.certifications__grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr)); gap: var(--d-spacing-lg); }
+.certifications__item { text-align: center; padding: var(--d-spacing-lg); border: 1px solid var(--border); border-radius: var(--radius); display: flex; flex-direction: column; align-items: center; gap: var(--d-spacing-sm); }
+.certifications__badge { margin-block-end: var(--d-spacing-xs); }
+.certifications__badge-img { max-height: 4rem; width: auto; object-fit: contain; }
+.certifications__name { font-weight: 600; font-size: var(--d-text-base); }
+.certifications__issuer { font-size: var(--d-text-sm); color: var(--muted-foreground); }
+.certifications__cert-description { font-size: var(--d-text-sm); color: var(--muted-foreground); line-height: 1.5; }
+.certifications__link { font-size: var(--d-text-sm); font-weight: 500; color: var(--primary); text-decoration: none; }
+.certifications__link:hover { text-decoration: underline; }

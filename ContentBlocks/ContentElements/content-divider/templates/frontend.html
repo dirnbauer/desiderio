@@ -1,0 +1,32 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-content-divider" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="content-divider content-divider--spacing-{data.spacing -> f:or(alternative: 'default')} content-divider--color-{data.color -> f:or(alternative: 'default')}">
+    <d:layout.container>
+        <f:switch expression="{data.variant}">
+            <f:case value="with-text">
+                <div class="content-divider__row" role="separator">
+                    <d:atom.separator class="content-divider__line"/>
+                    <f:if condition="{data.divider_text}">
+                        <span class="content-divider__text">{data -> f:render.text(field: 'divider_text')}</span>
+                    </f:if>
+                    <d:atom.separator class="content-divider__line"/>
+                </div>
+            </f:case>
+            <f:case value="decorative">
+                <div class="content-divider__decorative" role="separator">
+                    <d:atom.separator class="content-divider__line content-divider__line--decorative"/>
+                </div>
+            </f:case>
+            <f:defaultCase>
+                <d:atom.separator class="content-divider__line"/>
+            </f:defaultCase>
+        </f:switch>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

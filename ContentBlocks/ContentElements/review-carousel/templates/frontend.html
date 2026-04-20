@@ -1,0 +1,61 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-review-carousel" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="review-carousel">
+    <d:layout.container>
+        <f:if condition="{data.eyebrow} || {data.header}">
+            <header class="review-carousel__intro">
+                <f:if condition="{data.eyebrow}">
+                    <span class="review-carousel__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span>
+                </f:if>
+                <f:if condition="{data.header}">
+                    <h2 class="review-carousel__headline">{data -> f:render.text(field: 'header')}</h2>
+                </f:if>
+            </header>
+        </f:if>
+
+        <div class="review-carousel__track">
+            <f:for each="{data.reviews}" as="review" iteration="iter">
+                <article class="review-carousel__slide {f:if(condition: iter.isFirst, then: 'review-carousel__slide--active')}">
+                    <div class="review-carousel__stars">
+                        <f:for each="{0: 1, 1: 2, 2: 3, 3: 4, 4: 5}" as="star">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                 fill="{f:if(condition: '{star} <= {review.rating}', then: 'currentColor', else: 'none')}"
+                                 stroke="currentColor" stroke-width="2"
+                                 class="review-carousel__star {f:if(condition: '{star} <= {review.rating}', then: 'review-carousel__star--filled')}">
+                                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                            </svg>
+                        </f:for>
+                    </div>
+                    <f:if condition="{review.title}">
+                        <h3 class="review-carousel__title">{review -> f:render.text(field: 'title')}</h3>
+                    </f:if>
+                    <p class="review-carousel__text">{review -> f:render.text(field: 'review_text')}</p>
+                    <div class="review-carousel__reviewer">
+                        <f:if condition="{review.reviewer_image}">
+                            <f:for each="{review.reviewer_image}" as="fileReference">
+                                <img src="{f:uri.image(image: fileReference, width: 40, height: 40)}" alt="{review -> f:render.text(field: 'reviewer_name')}" class="review-carousel__avatar"/>
+                            </f:for>
+                        </f:if>
+                        <div>
+                            <span class="review-carousel__name">{review -> f:render.text(field: 'reviewer_name')}</span>
+                            <f:if condition="{review.date}">
+                                <span class="review-carousel__date">{review -> f:render.text(field: 'date')}</span>
+                            </f:if>
+                        </div>
+                    </div>
+                </article>
+            </f:for>
+        </div>
+
+        <div class="review-carousel__nav">
+            <button type="button" class="review-carousel__prev" aria-label="Previous">&#8592;</button>
+            <button type="button" class="review-carousel__next" aria-label="Next">&#8594;</button>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+</html>

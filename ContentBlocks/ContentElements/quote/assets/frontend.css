@@ -1,0 +1,39 @@
+.quote-section__headline {
+    margin-block-end: var(--d-spacing-lg);
+}
+.quote {
+    max-width: 42rem;
+    margin-inline: auto;
+}
+.quote--bordered {
+    border-left: 4px solid var(--primary);
+    padding-left: var(--d-spacing-lg);
+}
+.quote--large .quote__text p {
+    font-size: 1.5rem;
+    font-weight: 500;
+    line-height: 1.4;
+}
+.quote--card {
+    border: 1px solid var(--border);
+    border-radius: var(--d-radius-lg);
+    padding: var(--d-spacing-xl);
+    background: hsl(color-mix(in oklch, var(--muted) 30%, transparent);
+}
+.quote__text p {
+    font-style: italic;
+    color: var(--foreground);
+}
+.quote__attribution {
+    margin-top: var(--d-spacing-md);
+    display: flex;
+    flex-direction: column;
+    gap: var(--d-spacing-xs);
+}
+.quote__author {
+    font-weight: 600;
+}
+.quote__role {
+    color: var(--muted-foreground);
+    font-size: var(--d-text-sm);
+}

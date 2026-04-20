@@ -1,0 +1,31 @@
+{
+  "_type": "table",
+  "header": "Recent Deployments",
+  "headers": [
+    "Service",
+    "Status",
+    "Last Deploy"
+  ],
+  "rows": [
+    {
+      "Service": "api-gateway",
+      "Status": "Healthy",
+      "Last Deploy": "2 hours ago"
+    },
+    {
+      "Service": "web-frontend",
+      "Status": "Healthy",
+      "Last Deploy": "4 hours ago"
+    },
+    {
+      "Service": "auth-service",
+      "Status": "Degraded",
+      "Last Deploy": "1 day ago"
+    },
+    {
+      "Service": "worker-queue",
+      "Status": "Healthy",
+      "Last Deploy": "6 hours ago"
+    }
+  ]
+}

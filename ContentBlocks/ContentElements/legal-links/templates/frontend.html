@@ -1,0 +1,23 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-legal-links" href="{cb:assetPath()}/frontend.css"/>
+
+<nav class="legal-links legal-links--{data.separator -> f:or(alternative: 'dot')}" aria-label="Legal links">
+    <d:layout.container>
+        <ul class="legal-links__list">
+            <f:for each="{data.link_items}" as="item">
+                <li class="legal-links__item">
+                    <f:if condition="{item.link}">
+                        <f:then><f:link.typolink parameter="{item.link}" class="legal-links__link">{item -> f:render.text(field: 'label')}</f:link.typolink></f:then>
+                        <f:else><span class="legal-links__link">{item -> f:render.text(field: 'label')}</span></f:else>
+                    </f:if>
+                </li>
+            </f:for>
+        </ul>
+    </d:layout.container>
+</nav>
+
+</html>

@@ -1,0 +1,40 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-article-hero" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="article-hero">
+    <d:layout.container>
+        <div class="article-hero__copy">
+            <f:if condition="{data.eyebrow}"><span class="article-hero__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span></f:if>
+
+            <h1 class="article-hero__headline">{data -> f:render.text(field: 'header')}</h1>
+
+            <f:if condition="{data.dek}">
+                <p class="article-hero__dek">{data -> f:render.text(field: 'dek')}</p>
+            </f:if>
+
+            <div class="article-hero__meta">
+                <f:if condition="{data.topic}"><span class="article-hero__meta-item">{data -> f:render.text(field: 'topic')}</span></f:if>
+                <f:if condition="{data.publish_date}"><span class="article-hero__meta-item">{data -> f:render.text(field: 'publish_date')}</span></f:if>
+                <f:if condition="{data.reading_time}"><span class="article-hero__meta-item">{data -> f:render.text(field: 'reading_time')}</span></f:if>
+            </div>
+
+            <f:if condition="{data.author_name}">
+                <div class="article-hero__author">
+                    <p class="article-hero__author-name">{data -> f:render.text(field: 'author_name')}</p>
+                </div>
+            </f:if>
+        </div>
+
+        <f:if condition="{data.cover_image.0}">
+            <div class="article-hero__media">
+                <f:image image="{data.cover_image.0}" alt="{data -> f:render.text(field: 'header')}" maxWidth="1200" class="article-hero__image"/>
+            </div>
+        </f:if>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

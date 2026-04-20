@@ -1,0 +1,30 @@
+name: desiderio/content-sidebar
+typeName: desiderio_contentsidebar
+title: Content with Sidebar
+description: Main content area with a complementary sidebar
+group: content
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: content
+    type: Textarea
+    label: Main Content
+    enableRichtext: true
+    rows: 8
+  - identifier: sidebar_content
+    type: Textarea
+    label: Sidebar Content
+    enableRichtext: true
+    rows: 6
+  - identifier: sidebar_position
+    type: Select
+    renderType: selectSingle
+    label: Sidebar Position
+    items:
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.right'
+        value: right
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.left'
+        value: left
+    default: right

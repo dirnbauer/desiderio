@@ -1,0 +1,56 @@
+name: desiderio/textmedia
+typeName: desiderio_textmedia
+title: Text with Media
+description: Text content with image or video in flexible layouts
+group: content
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+
+  - identifier: layout
+    type: Select
+    renderType: selectSingle
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:layout'
+    items:
+      - label: Media Right
+        value: media-right
+      - label: Media Left
+        value: media-left
+      - label: Media Above
+        value: media-above
+      - label: Media Below
+        value: media-below
+    default: media-right
+
+  - identifier: subheadline
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
+    rows: 2
+
+  - identifier: content
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:content'
+    enableRichtext: true
+    rows: 6
+
+  - identifier: media
+    type: File
+    label: Image or Video
+    allowed: common-media-types
+    maxitems: 1
+
+  - identifier: media_rounded
+    type: Checkbox
+    label: Rounded Corners on Media
+    default: 1
+
+  - identifier: button_text
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_text'
+
+  - identifier: button_link
+    type: Link
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_link'

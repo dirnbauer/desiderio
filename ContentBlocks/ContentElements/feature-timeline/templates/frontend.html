@@ -1,0 +1,44 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      xmlns:vac="http://typo3.org/ns/Praetorius/ViteAssetCollector/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<vac:asset.vite entry="src/main.ts"
+                manifest="EXT:desiderio/Resources/Public/Vite/.vite/manifest.json" />
+
+<section class="bg-background py-16 md:py-24">
+    <div class="container mx-auto px-4">
+        <f:if condition="{data.header}">
+            <header class="mx-auto mb-12 max-w-2xl space-y-2 text-center">
+                <h2 class="text-3xl font-bold tracking-tight md:text-4xl">{data -> f:render.text(field: 'header')}</h2>
+                <f:if condition="{data.subheadline}">
+                    <p class="text-lg text-muted-foreground">{data -> f:render.text(field: 'subheadline')}</p>
+                </f:if>
+            </header>
+        </f:if>
+
+        <ol class="mx-auto flex max-w-2xl flex-col">
+            <f:for each="{data.items}" as="item" iteration="iter">
+                <li class="relative grid grid-cols-[3rem_1fr] gap-6 pb-8 last:pb-0">
+                    <div class="flex flex-col items-center">
+                        <span class="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary text-xs font-semibold text-primary-foreground">
+                            {item -> f:render.text(field: 'step')}
+                        </span>
+                        <f:if condition="{iter.isLast} == 0">
+                            <span class="w-px grow bg-border" aria-hidden="true"></span>
+                        </f:if>
+                    </div>
+                    <div class="rounded-lg border bg-card p-4 text-card-foreground shadow-sm">
+                        <h3 class="font-semibold leading-none tracking-tight">{item -> f:render.text(field: 'title')}</h3>
+                        <f:if condition="{item.description}">
+                            <p class="mt-2 text-sm text-muted-foreground">{item -> f:render.text(field: 'description')}</p>
+                        </f:if>
+                    </div>
+                </li>
+            </f:for>
+        </ol>
+    </div>
+</section>
+
+</html>

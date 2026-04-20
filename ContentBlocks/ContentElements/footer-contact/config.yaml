@@ -1,0 +1,28 @@
+name: desiderio/footer-contact
+typeName: desiderio_footercontact
+title: Footer Contact
+description: Footer with contact details, address, and business hours
+group: footer
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: address
+    type: Textarea
+    label: Address
+    rows: 3
+  - identifier: email
+    type: Text
+    label: Email
+  - identifier: phone
+    type: Text
+    label: Phone
+  - identifier: hours
+    type: Textarea
+    rows: 1
+    label: Business Hours
+  - identifier: copyright
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:copyright_text'

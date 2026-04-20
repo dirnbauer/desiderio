@@ -1,0 +1,69 @@
+name: desiderio/cta
+typeName: desiderio_cta
+title: Call to Action
+description: Prominent call-to-action section with headline and buttons
+group: conversion
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+
+  - identifier: variant
+    type: Select
+    renderType: selectSingle
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:style'
+    onChange: reload
+    items:
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.centered'
+        value: centered
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.split'
+        value: split
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.banner'
+        value: banner
+      - label: Minimal
+        value: minimal
+    default: centered
+
+  - identifier: subheadline
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
+    rows: 3
+
+  - identifier: primary_button_text
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:primary_button_text'
+
+  - identifier: primary_button_link
+    type: Link
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:primary_button_link'
+
+  - identifier: secondary_button_text
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:secondary_button_text'
+
+  - identifier: secondary_button_link
+    type: Link
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:secondary_button_link'
+
+  - identifier: background_style
+    type: Select
+    renderType: selectSingle
+    label: Background Style
+    items:
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.default'
+        value: default
+      - label: Muted
+        value: muted
+      - label: Primary
+        value: primary
+    default: default
+
+  - identifier: cta_image
+    type: File
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:image'
+    allowed: common-image-types
+    maxitems: 1
+    displayCond: 'FIELD:variant:=:split'

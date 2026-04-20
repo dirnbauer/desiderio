@@ -1,0 +1,64 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-mega-menu" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="mega-menu mega-menu--{data.layout -> f:or(alternative: 'full-width')}">
+    <d:layout.container>
+        <nav class="mega-menu__inner" aria-label="Mega menu">
+            <div class="mega-menu__header">
+                <div class="mega-menu__brand">
+                    <f:if condition="{data.brand_link.url}">
+                        <f:then>
+                            <f:link.typolink parameter="{data.brand_link}" class="mega-menu__brand-link">{data -> f:render.text(field: 'brand')}</f:link.typolink>
+                        </f:then>
+                        <f:else>
+                            <span class="mega-menu__brand-link">{data -> f:render.text(field: 'brand')}</span>
+                        </f:else>
+                    </f:if>
+                </div>
+                <f:if condition="{data.primary_button_text} && {data.primary_button_link.url}">
+                    <d:atom.button href="{data.primary_button_link.url}" target="{data.primary_button_link.target}" size="sm">{data -> f:render.text(field: 'primary_button_text')}</d:atom.button>
+                </f:if>
+            </div>
+
+            <div class="mega-menu__panel">
+                <aside class="mega-menu__intro">
+                    <f:if condition="{data.intro_title}">
+                        <h2 class="mega-menu__intro-title">{data -> f:render.text(field: 'intro_title')}</h2>
+                    </f:if>
+                    <f:if condition="{data.intro_text}">
+                        <p class="mega-menu__intro-text">{data -> f:render.text(field: 'intro_text')}</p>
+                    </f:if>
+                </aside>
+
+                <div class="mega-menu__groups">
+                    <f:for each="{data.menu_groups}" as="group">
+                        <section class="mega-menu__group">
+                            <h3 class="mega-menu__group-title">{group -> f:render.text(field: 'title')}</h3>
+                            <f:if condition="{group.description}">
+                                <p class="mega-menu__group-desc">{group -> f:render.text(field: 'description')}</p>
+                            </f:if>
+                            <ul class="mega-menu__links">
+                                <f:for each="{group.links -> f:split(separator: '
+')}" as="linkLine">
+                                    <f:if condition="{linkLine -> f:format.trim()}">
+                                        <li class="mega-menu__link-item">
+                                            <span class="mega-menu__link">
+                                                <span class="mega-menu__link-label">{linkLine -> f:format.trim()}</span>
+                                            </span>
+                                        </li>
+                                    </f:if>
+                                </f:for>
+                            </ul>
+                        </section>
+                    </f:for>
+                </div>
+            </div>
+        </nav>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

@@ -1,0 +1,27 @@
+name: desiderio/contact-split
+typeName: desiderio_contactsplit
+title: Contact Split
+description: Split layout with contact form and image side by side
+group: conversion
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: description
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
+    rows: 3
+  - identifier: image
+    type: File
+    label: Side Image
+    allowed: common-image-types
+    maxitems: 1
+  - identifier: form_action
+    type: Link
+    label: Form Action URL
+  - identifier: submit_text
+    type: Textarea
+    rows: 1
+    label: Submit Button Text
+    default: Send message

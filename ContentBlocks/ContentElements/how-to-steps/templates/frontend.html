@@ -1,0 +1,38 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-how-to-steps" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="how-to-steps" itemscope itemtype="https://schema.org/HowTo">
+    <d:layout.container>
+        <f:if condition="{data.header}">
+            <d:atom.typography tag="h2" variant="h2" class="how-to-steps__headline" itemprop="name">{data -> f:render.text(field: 'header')}</d:atom.typography>
+        </f:if>
+        <f:if condition="{data.description}">
+            <d:atom.typography variant="muted" class="how-to-steps__intro" itemprop="description">{data -> f:render.text(field: 'description')}</d:atom.typography>
+        </f:if>
+
+        <ol class="how-to-steps__list">
+            <f:for each="{data.items}" as="item" iteration="iter">
+                <li class="how-to-steps__item" itemscope itemprop="step" itemtype="https://schema.org/HowToStep">
+                    <div class="how-to-steps__number" aria-hidden="true">{iter.cycle}</div>
+                    <div class="how-to-steps__content">
+                        <h3 class="how-to-steps__title" itemprop="name">{item -> f:render.text(field: 'title')}</h3>
+                        <f:if condition="{item.content}">
+                            <div class="how-to-steps__text" itemprop="text">{item -> f:render.text(field: 'content')}</div>
+                        </f:if>
+                        <f:if condition="{item.image.0}">
+                            <div class="how-to-steps__media">
+                                <f:image image="{item.image.0}" alt="{item -> f:render.text(field: 'title')}" maxWidth="640" class="how-to-steps__image" itemprop="image"/>
+                            </div>
+                        </f:if>
+                    </div>
+                </li>
+            </f:for>
+        </ol>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

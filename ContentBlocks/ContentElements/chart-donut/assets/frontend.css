@@ -1,0 +1,17 @@
+.chart-donut__card {
+    border: 1px solid var(--border); border-radius: var(--radius);
+    background: var(--card); overflow: hidden;
+}
+.chart-donut__header { padding: var(--d-spacing-lg) var(--d-spacing-lg) 0; }
+.chart-donut__title { font-size: var(--d-text-lg); font-weight: 600; }
+.chart-donut__description { font-size: var(--d-text-sm); color: var(--muted-foreground); margin-block-start: var(--d-spacing-xs); }
+.chart-donut__content { padding: var(--d-spacing-lg); display: flex; justify-content: center; }
+.chart-donut__wrapper { position: relative; width: 300px; height: 300px; }
+.chart-donut__canvas { width: 100%; height: 100%; }
+.chart-donut__center {
+    position: absolute; inset: 0; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; text-align: center;
+    pointer-events: none;
+}
+.chart-donut__center-value { font-size: var(--d-text-2xl); font-weight: 700; }
+.chart-donut__center-label { font-size: var(--d-text-sm); color: var(--muted-foreground); }

@@ -26,13 +26,16 @@ final class StyleguideGroupsViewHelper extends AbstractViewHelper
 
     public function render(): string
     {
+        if ($this->renderingContext === null) {
+            return '';
+        }
         $variableProvider = $this->renderingContext->getVariableProvider();
-        $name = $this->arguments['as'];
-        if (method_exists($variableProvider, 'exists') && $variableProvider->exists($name)) {
+        $name = (string) $this->arguments['as'];
+        if ($variableProvider->exists($name)) {
             $variableProvider->remove($name);
         }
         $variableProvider->add($name, StyleguideContentGroups::getGroups());
 
-        return $this->renderChildren();
+        return (string) $this->renderChildren();
     }
 }

@@ -1,0 +1,30 @@
+{
+  "_type": "table",
+  "header": "How We Compare",
+  "headers": [
+    "Feature",
+    "Our Platform",
+    "Competitor A",
+    "Competitor B"
+  ],
+  "rows": [
+    {
+      "Feature": "Deploy Time",
+      "Our Platform": "< 10s",
+      "Competitor A": "2-5 min",
+      "Competitor B": "1-3 min"
+    },
+    {
+      "Feature": "Built-in CI/CD",
+      "Our Platform": "Yes",
+      "Competitor A": "Add-on",
+      "Competitor B": "No"
+    },
+    {
+      "Feature": "Edge Network",
+      "Our Platform": "80+ PoPs",
+      "Competitor A": "30 PoPs",
+      "Competitor B": "15 PoPs"
+    }
+  ]
+}

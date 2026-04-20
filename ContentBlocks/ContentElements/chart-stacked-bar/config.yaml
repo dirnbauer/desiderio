@@ -1,0 +1,25 @@
+name: desiderio/chart-stacked-bar
+typeName: desiderio_chartstackedbar
+title: Chart Stacked Bar
+description: Vertical stacked bar chart with multiple series per category
+group: data
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: description
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
+    rows: 2
+  - identifier: chart_data
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:chart_data_json'
+    description: |
+      JSON array, e.g. [{"label":"Jan","segments":[12,18,9]},{"label":"Feb","segments":[10,20,15]}]
+    rows: 8
+    required: true
+  - identifier: show_legend
+    type: Checkbox
+    label: Show Legend
+    default: 1

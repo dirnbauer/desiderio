@@ -1,0 +1,24 @@
+.cta-inline__bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--d-spacing-lg);
+    padding: var(--d-spacing-lg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--card);
+}
+.cta-inline__headline {
+    font-weight: 600;
+    font-size: var(--d-text-base);
+}
+.cta-inline__description {
+    font-size: var(--d-text-sm);
+    color: var(--muted-foreground);
+}
+@media (max-width: 768px) {
+    .cta-inline__bar {
+        flex-direction: column;
+        text-align: center;
+    }
+}

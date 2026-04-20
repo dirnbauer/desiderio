@@ -1,0 +1,38 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-feature-carousel" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="feature-carousel">
+    <d:layout.container>
+        <f:if condition="{data.header}">
+            <header class="feature-carousel__intro">
+                <d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography>
+                <f:if condition="{data.subheadline}"><d:atom.typography variant="muted">{data -> f:render.text(field: 'subheadline')}</d:atom.typography></f:if>
+            </header>
+        </f:if>
+
+        <div class="feature-carousel__track">
+            <f:for each="{data.items}" as="item">
+                <d:molecule.card class="feature-carousel__slide">
+                    <f:if condition="{item.icon}">
+                        <span class="feature-carousel__icon" aria-hidden="true">{item -> f:render.text(field: 'icon')}</span>
+                    </f:if>
+                    <h3 class="feature-carousel__title">
+                        <f:if condition="{item.link.url}">
+                            <f:then><f:link.typolink parameter="{item.link}">{item -> f:render.text(field: 'title')}</f:link.typolink></f:then>
+                            <f:else>{item -> f:render.text(field: 'title')}</f:else>
+                        </f:if>
+                    </h3>
+                    <f:if condition="{item.description}">
+                        <p class="feature-carousel__description">{item -> f:render.text(field: 'description')}</p>
+                    </f:if>
+                </d:molecule.card>
+            </f:for>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

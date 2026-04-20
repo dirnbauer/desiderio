@@ -1,0 +1,38 @@
+name: desiderio/hero-startup
+typeName: desiderio_herostartup
+title: Hero Startup
+description: Startup landing hero with social proof and waitlist CTA
+group: hero
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: subheadline
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
+    rows: 3
+  - identifier: badge_text
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:badge_text'
+  - identifier: form_action
+    type: Link
+    label: Waitlist Form Action
+  - identifier: input_placeholder
+    type: Textarea
+    rows: 1
+    label: Email Placeholder
+  - identifier: button_text
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_text'
+  - identifier: social_proof_text
+    type: Textarea
+    rows: 1
+    label: Social Proof Text
+  - identifier: avatars
+    type: File
+    label: User Avatars
+    allowed: common-image-types
+    maxitems: 5

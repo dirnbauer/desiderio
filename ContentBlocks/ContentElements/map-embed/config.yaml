@@ -1,0 +1,21 @@
+name: desiderio/map-embed
+typeName: desiderio_mapembed
+title: Map Embed
+description: Embedded map with address details
+group: conversion
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: embed_url
+    type: Text
+    label: Map Embed URL
+  - identifier: address
+    type: Textarea
+    label: Address
+    rows: 3
+  - identifier: height
+    type: Text
+    label: Map Height
+    default: '400'

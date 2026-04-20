@@ -1,0 +1,37 @@
+name: desiderio/card-interactive
+typeName: desiderio_cardinteractive
+title: Card Interactive
+description: Hover-animated card with icon, title, and expandable content
+group: data
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: description
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
+    rows: 3
+  - identifier: icon_style
+    type: Select
+    renderType: selectSingle
+    label: Icon
+    items:
+      - label: Star
+        value: star
+      - label: Heart
+        value: heart
+      - label: Zap
+        value: zap
+      - label: Shield
+        value: shield
+      - label: Globe
+        value: globe
+    default: star
+  - identifier: link
+    type: Link
+    label: Card Link
+  - identifier: badge_text
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:badge_text'

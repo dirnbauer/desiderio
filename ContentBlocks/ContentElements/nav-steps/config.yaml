@@ -1,0 +1,44 @@
+name: desiderio/nav-steps
+typeName: desiderio_navsteps
+title: Steps Navigation
+description: Horizontal step indicator for multi-step forms and wizards
+group: navigation
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: variant
+    type: Select
+    renderType: selectSingle
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:style'
+    items:
+      - label: Numbered
+        value: numbered
+      - label: Dots
+        value: dots
+    default: numbered
+  - identifier: step_items
+    type: Collection
+    label: Steps
+    minItems: 2
+    fields:
+      - identifier: label
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:label_field'
+      - identifier: link
+        type: Link
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:link'
+      - identifier: status
+        type: Select
+        renderType: selectSingle
+        label: Status
+        items:
+          - label: Pending
+            value: pending
+          - label: Current
+            value: current
+          - label: Completed
+            value: completed
+        default: pending

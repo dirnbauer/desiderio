@@ -1,0 +1,52 @@
+name: desiderio/pricing-usage
+typeName: desiderio_pricingusage
+title: Pricing Usage
+description: Usage-based pricing cards with rate and usage metric
+group: pricing
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+
+  - identifier: eyebrow
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
+
+  - identifier: subheadline
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
+    rows: 2
+
+  - identifier: items
+    type: Collection
+    label: Usage Items
+    minItems: 1
+    fields:
+      - identifier: title
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:title'
+        required: true
+
+      - identifier: rate
+        type: Textarea
+        rows: 1
+        label: Rate
+        required: true
+
+      - identifier: unit
+        type: Textarea
+        rows: 1
+        label: Unit
+        required: true
+
+      - identifier: description
+        type: Textarea
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
+        rows: 2
+
+      - identifier: link
+        type: Link
+        label: Details Link

@@ -1,0 +1,23 @@
+{
+  "_type": "list",
+  "header": "Glossary of Terms",
+  "description": "Key concepts and definitions used throughout our platform.",
+  "items": [
+    {
+      "title": "Workspace",
+      "description": "A shared environment where team members collaborate on projects, manage tasks, and access shared resources."
+    },
+    {
+      "title": "Pipeline",
+      "description": "An automated sequence of stages that data or tasks flow through, from input to completion."
+    },
+    {
+      "title": "Webhook",
+      "description": "A user-defined callback that sends real-time notifications to external services when specific events occur."
+    },
+    {
+      "title": "Role-Based Access Control",
+      "description": "A security model that restricts system access based on the roles assigned to individual users."
+    }
+  ]
+}

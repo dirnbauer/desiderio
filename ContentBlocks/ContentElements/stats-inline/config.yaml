@@ -1,0 +1,32 @@
+name: desiderio/stats-inline
+typeName: desiderio_statsinline
+title: Stats Inline
+description: Compact inline stats row for banners and sections
+group: social-proof
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+
+  - identifier: show_separator
+    type: Checkbox
+    label: Show Separators
+    default: 1
+
+  - identifier: stats
+    type: Collection
+    label: Stats
+    minItems: 2
+    fields:
+      - identifier: value
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:value'
+        required: true
+
+      - identifier: label
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:label_field'
+        required: true

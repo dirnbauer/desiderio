@@ -1,0 +1,31 @@
+name: desiderio/demo-request
+typeName: desiderio_demorequest
+title: Demo Request
+description: Request a product demo with details form
+group: conversion
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: eyebrow
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
+  - identifier: description
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
+    rows: 3
+  - identifier: form_action
+    type: Link
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:form_action'
+  - identifier: submit_text
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:submit_text'
+    default: Request demo
+  - identifier: image
+    type: File
+    label: Side Image
+    allowed: common-image-types
+    maxitems: 1

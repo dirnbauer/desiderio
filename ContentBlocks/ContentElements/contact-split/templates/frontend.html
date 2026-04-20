@@ -1,0 +1,41 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-contact-split" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="contact-split">
+    <d:layout.container>
+        <div class="contact-split__layout">
+            <div class="contact-split__content">
+                <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
+                <f:if condition="{data.description}"><d:atom.typography variant="muted">{data -> f:render.text(field: 'description')}</d:atom.typography></f:if>
+                <form class="contact-split__form" action="{data.form_action.url}" method="post">
+                    <label class="contact-split__field">
+                        <span class="contact-split__label">Name</span>
+                        <input class="contact-split__input" type="text" name="name" placeholder="Your name"/>
+                    </label>
+                    <label class="contact-split__field">
+                        <span class="contact-split__label">Email</span>
+                        <input class="contact-split__input" type="email" name="email" placeholder="you@example.com"/>
+                    </label>
+                    <label class="contact-split__field">
+                        <span class="contact-split__label">Message</span>
+                        <textarea class="contact-split__textarea" name="message" rows="4"></textarea>
+                    </label>
+                    <d:atom.button type="submit">{data.submit_text -> f:or(alternative: 'Send message')}</d:atom.button>
+                </form>
+            </div>
+            <f:if condition="{data.image}">
+                <div class="contact-split__image-wrapper">
+                    <f:for each="{data.image}" as="fileReference">
+                        <img src="{f:uri.image(image: fileReference, maxWidth: 640)}" alt="" class="contact-split__image"/>
+                    </f:for>
+                </div>
+            </f:if>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

@@ -1,0 +1,101 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-chart-radar" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="chart-radar-section">
+    <d:layout.container>
+        <div class="chart-radar"
+             data-chart-json="{data.chart_data -> f:format.htmlspecialchars()}"
+             data-fill-opacity="{data.fill_opacity -> f:or(alternative: '0.25')}">
+            <div class="chart-radar__card">
+                <f:if condition="{data.header} || {data.description}">
+                    <div class="chart-radar__header">
+                        <f:if condition="{data.header}">
+                            <h3 class="chart-radar__title">{data -> f:render.text(field: 'header')}</h3>
+                        </f:if>
+                        <f:if condition="{data.description}">
+                            <p class="chart-radar__description">{data -> f:render.text(field: 'description')}</p>
+                        </f:if>
+                    </div>
+                </f:if>
+                <div class="chart-radar__plot" id="chart-radar-{data.uid}"></div>
+            </div>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+
+<script>
+(function () {
+  const plot = document.getElementById('chart-radar-' + {data.uid});
+  const root = plot && plot.closest('.chart-radar');
+  if (!plot || !root) return;
+  let data;
+  try { data = JSON.parse(root.getAttribute('data-chart-json')); } catch (e) { return; }
+  const labels = data.labels || [];
+  const values = (data.values || []).map(function (v) { return Number(v); });
+  if (!labels.length || labels.length !== values.length) return;
+  const maxVal = 5;
+  const cx = 200, cy = 200, r = 150, n = labels.length;
+  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  svg.setAttribute('viewBox', '0 0 400 400');
+  svg.setAttribute('class', 'chart-radar__svg');
+  for (var ring = 1; ring <= 5; ring++) {
+    const poly = [];
+    for (var i = 0; i < n; i++) {
+      const ang = -Math.PI / 2 + (i / n) * 2 * Math.PI;
+      const rr = (r * ring) / 5;
+      poly.push((cx + rr * Math.cos(ang)).toFixed(2) + ' ' + (cy + rr * Math.sin(ang)).toFixed(2));
+    }
+    const g = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+    g.setAttribute('points', poly.join(' '));
+    g.setAttribute('fill', 'none');
+    g.setAttribute('stroke', 'currentColor');
+    g.setAttribute('stroke-opacity', '0.15');
+    g.setAttribute('stroke-width', '1');
+    svg.appendChild(g);
+  }
+  for (var ax = 0; ax < n; ax++) {
+    const ang = -Math.PI / 2 + (ax / n) * 2 * Math.PI;
+    const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+    line.setAttribute('x1', cx);
+    line.setAttribute('y1', cy);
+    line.setAttribute('x2', cx + r * Math.cos(ang));
+    line.setAttribute('y2', cy + r * Math.sin(ang));
+    line.setAttribute('stroke', 'currentColor');
+    line.setAttribute('stroke-opacity', '0.25');
+    svg.appendChild(line);
+    const lx = cx + (r + 18) * Math.cos(ang);
+    const ly = cy + (r + 18) * Math.sin(ang);
+    const t = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    t.setAttribute('x', lx);
+    t.setAttribute('y', ly);
+    t.setAttribute('text-anchor', 'middle');
+    t.setAttribute('dominant-baseline', 'middle');
+    t.setAttribute('fill', 'currentColor');
+    t.setAttribute('class', 'chart-radar__label');
+    t.textContent = labels[ax];
+    svg.appendChild(t);
+  }
+  const pts = [];
+  for (var pi = 0; pi < n; pi++) {
+    const ang = -Math.PI / 2 + (pi / n) * 2 * Math.PI;
+    const v = Math.min(Math.max(values[pi], 0), maxVal);
+    const rr = (r * v) / maxVal;
+    pts.push((cx + rr * Math.cos(ang)).toFixed(2) + ' ' + (cy + rr * Math.sin(ang)).toFixed(2));
+  }
+  const fillOp = parseFloat(root.getAttribute('data-fill-opacity') || '0.25');
+  const area = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+  area.setAttribute('points', pts.join(' '));
+  area.setAttribute('fill', 'var(--primary)');
+  area.setAttribute('fill-opacity', String(fillOp));
+  area.setAttribute('stroke', 'var(--primary)');
+  area.setAttribute('stroke-width', '2');
+  svg.appendChild(area);
+  plot.appendChild(svg);
+})();
+</script>
+
+</html>

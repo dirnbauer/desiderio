@@ -1,0 +1,25 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-definition-list" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="definition-list-section">
+    <d:layout.container>
+        <f:if condition="{data.header}">
+            <d:atom.typography tag="h2" variant="h2" class="definition-list-section__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
+        </f:if>
+
+        <dl class="definition-list definition-list--{data.layout -> f:or(alternative: 'stacked')}">
+            <f:for each="{data.items}" as="item">
+                <div class="definition-list__entry">
+                    <dt class="definition-list__term">{item -> f:render.text(field: 'term')}</dt>
+                    <dd class="definition-list__definition">{item -> f:render.text(field: 'definition')}</dd>
+                </div>
+            </f:for>
+        </dl>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

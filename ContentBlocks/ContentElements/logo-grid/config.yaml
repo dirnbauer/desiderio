@@ -1,0 +1,55 @@
+name: desiderio/logo-grid
+typeName: desiderio_logogrid
+title: Logo Grid
+description: Structured grid of logos with optional captions
+group: social-proof
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+
+  - identifier: eyebrow
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
+
+  - identifier: columns
+    type: Select
+    renderType: selectSingle
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:columns'
+    items:
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.3_columns'
+        value: '3'
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.4_columns'
+        value: '4'
+      - label: 5 Columns
+        value: '5'
+    default: '4'
+
+  - identifier: show_names
+    type: Checkbox
+    label: Show Company Names
+    default: 0
+
+  - identifier: logo_items
+    type: Collection
+    label: Logos
+    minItems: 1
+    fields:
+      - identifier: image
+        type: File
+        label: Logo Image
+        allowed: common-image-types
+        maxitems: 1
+        required: true
+
+      - identifier: name
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:company_name'
+        required: true
+
+      - identifier: link
+        type: Link
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:optional_link'

@@ -1,0 +1,37 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      xmlns:vac="http://typo3.org/ns/Praetorius/ViteAssetCollector/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<vac:asset.vite entry="src/main.ts"
+                manifest="EXT:desiderio/Resources/Public/Vite/.vite/manifest.json" />
+<vac:asset.vite entry="src/ce/chart-donut.ts"
+                manifest="EXT:desiderio/Resources/Public/Vite/.vite/manifest.json" />
+
+<section class="py-8 md:py-12">
+    <div class="container mx-auto px-4">
+        <div data-ce="chart-donut"
+             data-chart-data="{data.chart_data -> f:format.htmlspecialchars()}"
+             data-show-legend="{f:if(condition: data.show_legend, then: 'true', else: 'false')}"
+             data-center-label="{data.center_label}"
+             data-center-value="{data.center_value}"
+             class="mx-auto max-w-xl rounded-lg border bg-card text-card-foreground shadow-sm">
+            <f:if condition="{data.header} || {data.description}">
+                <div class="flex flex-col gap-1.5 p-6">
+                    <f:if condition="{data.header}">
+                        <h3 class="text-lg font-semibold leading-none tracking-tight">{data -> f:render.text(field: 'header')}</h3>
+                    </f:if>
+                    <f:if condition="{data.description}">
+                        <p class="text-sm text-muted-foreground">{data -> f:render.text(field: 'description')}</p>
+                    </f:if>
+                </div>
+            </f:if>
+            <div class="p-6 pt-0">
+                <div data-chart-donut-canvas class="flex min-h-[300px] items-center justify-center"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+</html>

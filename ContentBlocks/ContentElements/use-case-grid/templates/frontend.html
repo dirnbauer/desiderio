@@ -1,0 +1,31 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-use-case-grid" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="use-case-grid">
+    <d:layout.container>
+        <header class="use-case-grid__intro">
+            <f:if condition="{data.eyebrow}"><span class="use-case-grid__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span></f:if>
+            <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
+            <f:if condition="{data.subheadline}"><d:atom.typography variant="muted">{data -> f:render.text(field: 'subheadline')}</d:atom.typography></f:if>
+        </header>
+        <div class="use-case-grid__grid">
+            <f:for each="{data.items}" as="item">
+                <d:molecule.card class="use-case-grid__item">
+                    <h3 class="use-case-grid__title">
+                        <f:if condition="{item.link.url}">
+                            <f:then><f:link.typolink parameter="{item.link}">{item -> f:render.text(field: 'title')}</f:link.typolink></f:then>
+                            <f:else>{item -> f:render.text(field: 'title')}</f:else>
+                        </f:if>
+                    </h3>
+                    <p class="use-case-grid__description">{item -> f:render.text(field: 'description')}</p>
+                </d:molecule.card>
+            </f:for>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

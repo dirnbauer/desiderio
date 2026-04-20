@@ -1,0 +1,39 @@
+name: desiderio/footer-brand
+typeName: desiderio_footerbrand
+title: Footer Brand
+description: Brand-focused footer with large logo, tagline, and links
+group: footer
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: logo
+    type: File
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:logo'
+    allowed: common-image-types
+    maxitems: 1
+  - identifier: brand
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:brand_name'
+  - identifier: tagline
+    type: Textarea
+    rows: 1
+    label: Tagline
+  - identifier: link_items
+    type: Collection
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:links'
+    fields:
+      - identifier: label
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:label_field'
+        required: true
+      - identifier: link
+        type: Link
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:link'
+  - identifier: copyright
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:copyright_text'

@@ -1,0 +1,37 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+<f:asset.css identifier="d-hero-product" href="{cb:assetPath()}/frontend.css"/>
+<d:layout.section class="hero-product">
+    <d:layout.container>
+        <div class="hero-product__grid">
+            <div class="hero-product__content">
+                <f:if condition="{data.badge_text}"><d:atom.badge variant="secondary">{data -> f:render.text(field: 'badge_text')}</d:atom.badge></f:if>
+                <f:if condition="{data.header}"><h1 class="hero-product__title">{data -> f:render.text(field: 'header')}</h1></f:if>
+                <f:if condition="{data.subheadline}"><p class="hero-product__description">{data -> f:render.text(field: 'subheadline')}</p></f:if>
+                <f:if condition="{data.feature_items}">
+                    <ul class="hero-product__features">
+                        <f:for each="{data.feature_items}" as="feature">
+                            <li class="hero-product__feature">{feature -> f:render.text(field: 'label')}</li>
+                        </f:for>
+                    </ul>
+                </f:if>
+                <div class="hero-product__cta">
+                    <f:if condition="{data.price}"><span class="hero-product__price">{data -> f:render.text(field: 'price')}</span></f:if>
+                    <f:if condition="{data.primary_button_text} && {data.primary_button_link.url}">
+                        <d:atom.button href="{data.primary_button_link.url}" target="{data.primary_button_link.target}" size="lg">{data -> f:render.text(field: 'primary_button_text')}</d:atom.button>
+                    </f:if>
+                </div>
+            </div>
+            <div class="hero-product__media">
+                <f:if condition="{data.product_image}">
+                    <f:for each="{data.product_image}" as="image">
+                        <f:image image="{image}" class="hero-product__image" alt="{data -> f:render.text(field: 'header')}"/>
+                    </f:for>
+                </f:if>
+            </div>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+</html>

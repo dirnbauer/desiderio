@@ -1,0 +1,21 @@
+# Default values for the Desiderio base set.
+# Skins override these in their own settings.yaml.
+
+desiderio:
+  layout:
+    density: comfortable
+    container: wide
+    radius: md
+  header:
+    style: solid
+    fixedPosition: false
+  footer:
+    style: columns
+  theme:
+    accent: slate
+    darkModeDefault: system
+    darkModeToggle: true
+  typography:
+    fontSans: inter
+  styleguide:
+    enabled: false

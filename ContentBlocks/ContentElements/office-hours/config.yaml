@@ -1,0 +1,29 @@
+name: desiderio/office-hours
+typeName: desiderio_officehours
+title: Office Hours
+description: Business hours display with days and times
+group: conversion
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: description_text
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
+  - identifier: hours_items
+    type: Collection
+    label: Hours
+    minItems: 1
+    fields:
+      - identifier: day
+        type: Textarea
+        rows: 1
+        label: Day
+        required: true
+      - identifier: time
+        type: Textarea
+        rows: 1
+        label: Hours
+        required: true

@@ -1,0 +1,38 @@
+name: desiderio/footer-mega
+typeName: desiderio_footermega
+title: Footer Mega
+description: Large footer with brand, multiple link groups, social icons, and newsletter
+group: footer
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: brand
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:brand_name'
+  - identifier: description
+    type: Textarea
+    label: Brand Description
+    rows: 3
+  - identifier: column_items
+    type: Collection
+    label: Link Groups
+    fields:
+      - identifier: title
+        type: Textarea
+        rows: 1
+        label: Group Title
+      - identifier: links
+        type: Textarea
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:links_one_per_line'
+        rows: 5
+  - identifier: newsletter_label
+    type: Textarea
+    rows: 1
+    label: Newsletter Label
+  - identifier: copyright
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:copyright_text'

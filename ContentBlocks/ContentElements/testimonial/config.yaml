@@ -1,0 +1,70 @@
+name: desiderio/testimonial
+typeName: desiderio_testimonial
+title: Testimonial
+description: Customer testimonials and quotes with avatar
+group: social-proof
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+
+  - identifier: variant
+    type: Select
+    renderType: selectSingle
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:style'
+    items:
+      - label: Simple Quote
+        value: simple
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:card_style'
+        value: card
+      - label: Large Quote
+        value: large
+    default: simple
+
+  - identifier: quote
+    type: Textarea
+    label: Quote Text
+    rows: 4
+    required: true
+
+  - identifier: author_name
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:author_name'
+    required: true
+
+  - identifier: author_title
+    type: Textarea
+    rows: 1
+    label: Author Title / Role
+
+  - identifier: author_company
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:company_name'
+
+  - identifier: author_image
+    type: File
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:author_photo'
+    allowed: common-image-types
+    maxitems: 1
+
+  - identifier: rating
+    type: Select
+    renderType: selectSingle
+    label: Star Rating
+    items:
+      - label: No Rating
+        value: '0'
+      - label: 1 Star
+        value: '1'
+      - label: 2 Stars
+        value: '2'
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.3_stars'
+        value: '3'
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.4_stars'
+        value: '4'
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.5_stars'
+        value: '5'
+    default: '0'

@@ -1,0 +1,37 @@
+name: desiderio/navbar-tabbed
+typeName: desiderio_navbartabbed
+title: Tabbed Navbar
+description: Navigation with tabbed section switching
+group: navigation
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: brand
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:brand'
+    required: true
+  - identifier: tabs
+    type: Collection
+    label: Tabs
+    minItems: 1
+    fields:
+      - identifier: label
+        type: Textarea
+        rows: 1
+        label: Tab Label
+      - identifier: link
+        type: Link
+        label: Tab Link
+      - identifier: active
+        type: Checkbox
+        label: Active
+  - identifier: button_text
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_text'
+  - identifier: button_link
+    type: Link
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_link'

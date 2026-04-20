@@ -1,0 +1,39 @@
+name: desiderio/copyright-bar
+typeName: desiderio_copyrightbar
+title: Copyright Bar
+description: Slim copyright bar for the very bottom of the page
+group: footer
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: copyright
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:copyright_text'
+    required: true
+  - identifier: link_items
+    type: Collection
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:links'
+    fields:
+      - identifier: label
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:label_field'
+        required: true
+      - identifier: link
+        type: Link
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:link'
+  - identifier: alignment
+    type: Select
+    renderType: selectSingle
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:alignment'
+    items:
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.left'
+        value: left
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.center'
+        value: center
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.between'
+        value: between
+    default: between

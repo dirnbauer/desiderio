@@ -1,0 +1,43 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-pricing-simple" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="pricing-simple">
+    <d:layout.container>
+        <div class="pricing-simple__card">
+            <f:if condition="{data.header}">
+                <h2 class="pricing-simple__headline">{data -> f:render.text(field: 'header')}</h2>
+            </f:if>
+            <div class="pricing-simple__price-row">
+                <span class="pricing-simple__price">{data -> f:render.text(field: 'price')}</span>
+                <f:if condition="{data.billing_period}">
+                    <span class="pricing-simple__period">{data -> f:render.text(field: 'billing_period')}</span>
+                </f:if>
+            </div>
+            <f:if condition="{data.description}">
+                <p class="pricing-simple__description">{data -> f:render.text(field: 'description')}</p>
+            </f:if>
+            <f:if condition="{data.features_list}">
+                <ul class="pricing-simple__features">
+                    <f:for each="{data.features_list -> f:split(separator: '\n')}" as="feature">
+                        <f:if condition="{feature}">
+                            <li class="pricing-simple__feature">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
+                                <span>{feature}</span>
+                            </li>
+                        </f:if>
+                    </f:for>
+                </ul>
+            </f:if>
+            <f:if condition="{data.button_text} && {data.button_link.url}">
+                <f:link.typolink parameter="{data.button_link}" class="pricing-simple__button">
+                    {data -> f:render.text(field: 'button_text')}
+                </f:link.typolink>
+            </f:if>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+</html>

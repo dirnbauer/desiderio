@@ -1,0 +1,47 @@
+name: desiderio/changelog
+typeName: desiderio_changelog
+title: Changelog
+description: Version history timeline with release notes
+group: data
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: items
+    type: Collection
+    label: Releases
+    minItems: 1
+    fields:
+      - identifier: version
+        type: Textarea
+        rows: 1
+        label: Version
+        required: true
+      - identifier: date
+        type: Textarea
+        rows: 1
+        label: Date
+      - identifier: title
+        type: Textarea
+        rows: 1
+        label: Release Title
+      - identifier: description
+        type: Textarea
+        label: Release Notes
+        enableRichtext: true
+        rows: 4
+      - identifier: tag
+        type: Select
+        renderType: selectSingle
+        label: Tag
+        items:
+          - label: New
+            value: new
+          - label: Fix
+            value: fix
+          - label: Improvement
+            value: improvement
+          - label: Breaking
+            value: breaking
+        default: new

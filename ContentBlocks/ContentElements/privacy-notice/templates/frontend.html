@@ -1,0 +1,34 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-privacy-notice" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="privacy-notice-section">
+    <d:layout.container>
+        <div class="privacy-notice">
+            <f:if condition="{data.header}">
+                <h2 class="privacy-notice__title">{data -> f:render.text(field: 'header')}</h2>
+            </f:if>
+            <f:if condition="{data.last_updated}">
+                <p class="privacy-notice__updated">Last updated: {data -> f:render.text(field: 'last_updated')}</p>
+            </f:if>
+            <f:if condition="{data.intro}">
+                <p class="privacy-notice__intro">{data -> f:render.text(field: 'intro')}</p>
+            </f:if>
+            <div class="privacy-notice__sections">
+                <f:for each="{data.sections}" as="section">
+                    <details class="privacy-notice__section">
+                        <summary class="privacy-notice__section-title">{section -> f:render.text(field: 'title')}</summary>
+                        <div class="privacy-notice__section-content">
+                            {section -> f:render.text(field: 'content')}
+                        </div>
+                    </details>
+                </f:for>
+            </div>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

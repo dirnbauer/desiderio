@@ -1,0 +1,23 @@
+{
+  "_type": "form",
+  "header": "Data Access Request",
+  "description": "Submit a GDPR data access or deletion request.",
+  "fields": [
+    {
+      "label": "Full Name",
+      "type": "text",
+      "placeholder": "Your legal name"
+    },
+    {
+      "label": "Email Address",
+      "type": "email",
+      "placeholder": "The email on your account"
+    },
+    {
+      "label": "Request Type",
+      "type": "text",
+      "placeholder": "Access / Deletion / Rectification"
+    }
+  ],
+  "primaryButton": "Submit Request"
+}

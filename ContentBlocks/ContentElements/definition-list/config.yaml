@@ -1,0 +1,37 @@
+name: desiderio/definition-list
+typeName: desiderio_definitionlist
+title: Definition List
+description: Term-definition pairs for glossaries, specs, or key-value data
+group: content
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: layout
+    type: Select
+    renderType: selectSingle
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:layout'
+    items:
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.stacked'
+        value: stacked
+      - label: Inline
+        value: inline
+      - label: Grid
+        value: grid
+    default: stacked
+  - identifier: items
+    type: Collection
+    label: Definitions
+    minItems: 1
+    fields:
+      - identifier: term
+        type: Textarea
+        rows: 1
+        label: Term
+        required: true
+      - identifier: definition
+        type: Textarea
+        label: Definition
+        rows: 2
+        required: true

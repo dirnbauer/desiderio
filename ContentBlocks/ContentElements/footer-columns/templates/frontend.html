@@ -1,0 +1,41 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-footer-columns" href="{cb:assetPath()}/frontend.css"/>
+
+<footer class="footer-columns">
+    <d:layout.container>
+        <div class="footer-columns__grid">
+            <div class="footer-columns__brand">
+                <f:if condition="{data.brand}">
+                    <h2 class="footer-columns__title">{data -> f:render.text(field: 'brand')}</h2>
+                </f:if>
+                <f:if condition="{data.description}">
+                    <p class="footer-columns__description">{data -> f:render.text(field: 'description')}</p>
+                </f:if>
+            </div>
+            <f:for each="{data.column_items}" as="col">
+                <nav class="footer-columns__col">
+                    <h3 class="footer-columns__col-title">{col -> f:render.text(field: 'title')}</h3>
+                    <ul class="footer-columns__links">
+                        <f:for each="{col.links -> f:split(separator: '
+')}" as="linkLine">
+                            <f:if condition="{linkLine -> f:format.trim()}">
+                                <li><span class="footer-columns__link">{linkLine -> f:format.trim()}</span></li>
+                            </f:if>
+                        </f:for>
+                    </ul>
+                </nav>
+            </f:for>
+        </div>
+        <f:if condition="{data.copyright}">
+            <div class="footer-columns__bottom">
+                <p class="footer-columns__copyright">{data -> f:render.text(field: 'copyright')}</p>
+            </div>
+        </f:if>
+    </d:layout.container>
+</footer>
+
+</html>

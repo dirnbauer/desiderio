@@ -1,0 +1,40 @@
+name: desiderio/newsletter-signup
+typeName: desiderio_newslettersignup
+title: Newsletter Signup
+description: Newsletter capture block with signup form and trust copy
+group: conversion
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: eyebrow
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
+  - identifier: subheadline
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
+    rows: 3
+  - identifier: form_action
+    type: Link
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:form_action'
+  - identifier: email_placeholder
+    type: Text
+    label: Email Placeholder
+  - identifier: button_text
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_text'
+  - identifier: privacy_text
+    type: Textarea
+    label: Privacy Text
+    rows: 2
+  - identifier: points
+    type: Collection
+    label: Supporting Points
+    fields:
+      - identifier: text
+        type: Textarea
+        rows: 1
+        label: Point

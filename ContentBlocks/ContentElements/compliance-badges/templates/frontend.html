@@ -1,0 +1,44 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-compliance-badges" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="compliance-badges-section">
+    <d:layout.container>
+        <div class="compliance-badges compliance-badges--{data.alignment -> f:or(alternative: 'center')}">
+            <f:if condition="{data.header}">
+                <h2 class="compliance-badges__title">{data -> f:render.text(field: 'header')}</h2>
+            </f:if>
+            <div class="compliance-badges__list">
+                <f:for each="{data.items}" as="item">
+                    <div class="compliance-badges__item">
+                        <f:if condition="{item.link}">
+                            <f:then>
+                                <f:link.typolink parameter="{item.link}" class="compliance-badges__link" target="_blank">
+                                    <f:if condition="{item.image}">
+                                        <f:for each="{item.image}" as="file">
+                                            <f:image image="{file}" alt="{item -> f:render.text(field: 'label')}" height="48" class="compliance-badges__image"/>
+                                        </f:for>
+                                    </f:if>
+                                    <span class="compliance-badges__label">{item -> f:render.text(field: 'label')}</span>
+                                </f:link.typolink>
+                            </f:then>
+                            <f:else>
+                                <f:if condition="{item.image}">
+                                    <f:for each="{item.image}" as="file">
+                                        <f:image image="{file}" alt="{item -> f:render.text(field: 'label')}" height="48" class="compliance-badges__image"/>
+                                    </f:for>
+                                </f:if>
+                                <span class="compliance-badges__label">{item -> f:render.text(field: 'label')}</span>
+                            </f:else>
+                        </f:if>
+                    </div>
+                </f:for>
+            </div>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

@@ -1,0 +1,32 @@
+name: desiderio/callout
+typeName: desiderio_callout
+title: Callout
+description: Highlighted callout box for tips, warnings, or important notes
+group: content
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: content
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:content'
+    enableRichtext: true
+    rows: 4
+    required: true
+  - identifier: variant
+    type: Select
+    renderType: selectSingle
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:style'
+    items:
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.info'
+        value: info
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.warning'
+        value: warning
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.success'
+        value: success
+      - label: Danger
+        value: danger
+      - label: Note
+        value: note
+    default: info

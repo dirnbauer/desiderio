@@ -1,0 +1,21 @@
+.data-request-form { max-width: 600px; margin-inline: auto; }
+.data-request-form__title { font-size: var(--d-text-xl); font-weight: 700; }
+.data-request-form__description { font-size: var(--d-text-sm); color: var(--muted-foreground); margin-block: var(--d-spacing-xs) var(--d-spacing-lg); }
+.data-request-form__form { display: flex; flex-direction: column; gap: var(--d-spacing-md); }
+.data-request-form__label { display: block; font-size: var(--d-text-sm); font-weight: 500; margin-block-end: 4px; }
+.data-request-form__input,
+.data-request-form__select,
+.data-request-form__textarea {
+    width: 100%; padding: var(--d-spacing-xs) var(--d-spacing-sm);
+    border: 1px solid var(--border); border-radius: var(--radius);
+    font-size: var(--d-text-sm); background: var(--background);
+}
+.data-request-form__textarea { resize: vertical; }
+.data-request-form__privacy { font-size: var(--d-text-xs); color: var(--muted-foreground); }
+.data-request-form__submit {
+    padding: var(--d-spacing-sm) var(--d-spacing-lg); border: none;
+    border-radius: var(--radius); font-size: var(--d-text-sm); font-weight: 500;
+    background: var(--primary); color: var(--primary-foreground);
+    cursor: pointer; align-self: flex-start;
+}
+.data-request-form__submit:hover { opacity: 0.9; }

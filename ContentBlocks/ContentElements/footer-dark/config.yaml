@@ -1,0 +1,34 @@
+name: desiderio/footer-dark
+typeName: desiderio_footerdark
+title: Footer Dark
+description: Dark-themed footer with inverted colors
+group: footer
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: brand
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:brand_name'
+  - identifier: description
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
+    rows: 3
+  - identifier: column_items
+    type: Collection
+    label: Link Groups
+    fields:
+      - identifier: title
+        type: Textarea
+        rows: 1
+        label: Group Title
+      - identifier: links
+        type: Textarea
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:links_one_per_line'
+        rows: 5
+  - identifier: copyright
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:copyright_text'

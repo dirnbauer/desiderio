@@ -1,0 +1,27 @@
+.investor-grid__intro {
+    text-align: center;
+    margin-block-end: var(--d-spacing-xl);
+}
+.investor-grid__items {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--d-spacing-lg);
+}
+@media (max-width: 768px) {
+    .investor-grid__items { grid-template-columns: repeat(2, 1fr); }
+}
+.investor-grid__item {
+    text-align: center;
+    padding: var(--d-spacing-md);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+}
+.investor-grid__logo {
+    max-height: 40px;
+    width: auto;
+    object-fit: contain;
+    margin-block-end: var(--d-spacing-sm);
+}
+.investor-grid__name { font-weight: 600; font-size: var(--d-text-sm); }
+.investor-grid__type { font-size: var(--d-text-xs); color: var(--muted-foreground); display: block; }
+.investor-grid__link { font-size: var(--d-text-xs); color: var(--primary); }

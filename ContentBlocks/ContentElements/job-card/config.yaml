@@ -1,0 +1,28 @@
+name: desiderio/job-card
+typeName: desiderio_jobcard
+title: Job Card
+description: Single featured job posting with details and apply button
+group: team
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: Job Title
+  - identifier: department
+    type: Textarea
+    rows: 1
+    label: Department
+  - identifier: location
+    type: Textarea
+    rows: 1
+    label: Location
+  - identifier: type
+    type: Text
+    label: Employment Type
+  - identifier: description
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
+    rows: 4
+  - identifier: apply_link
+    type: Link
+    label: Apply Link

@@ -1,0 +1,19 @@
+# Skin 5 — Dashboard App
+# Sticky header, compact density, violet accent.
+
+desiderio:
+  layout:
+    density: compact
+    container: full
+    radius: md
+  header:
+    style: sticky
+    fixedPosition: true
+  footer:
+    style: minimal
+  theme:
+    accent: violet
+    darkModeDefault: dark
+    darkModeToggle: true
+  typography:
+    fontSans: geist

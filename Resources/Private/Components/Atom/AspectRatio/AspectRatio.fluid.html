@@ -1,0 +1,6 @@
+<f:argument name="ratio" type="string" optional="{true}" default="16/9" />
+<f:argument name="class" type="string" optional="{true}" default="" />
+
+<div class="relative w-full {class}" style="aspect-ratio: {ratio}">
+    <f:slot />
+</div>

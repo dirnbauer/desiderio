@@ -1,0 +1,33 @@
+name: desiderio/feature-timeline
+typeName: desiderio_featuretimeline
+title: Feature Timeline
+description: Vertical timeline showcasing features with progressive steps
+group: features
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: subheadline
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
+    rows: 2
+  - identifier: items
+    type: Collection
+    label: Timeline Steps
+    minItems: 2
+    fields:
+      - identifier: step
+        type: Textarea
+        rows: 1
+        label: Step Label
+        required: true
+      - identifier: title
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:title'
+        required: true
+      - identifier: description
+        type: Textarea
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
+        rows: 3

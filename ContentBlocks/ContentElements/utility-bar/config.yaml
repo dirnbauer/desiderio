@@ -1,0 +1,27 @@
+name: desiderio/utility-bar
+typeName: desiderio_utilitybar
+title: Utility Bar
+description: Compact utility navigation with support links and contact text
+group: navigation
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+
+  - identifier: left_text
+    type: Textarea
+    rows: 1
+    label: Left Text
+
+  - identifier: link_items
+    type: Collection
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:links'
+    fields:
+      - identifier: label
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:label_field'
+      - identifier: link
+        type: Link
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:link'

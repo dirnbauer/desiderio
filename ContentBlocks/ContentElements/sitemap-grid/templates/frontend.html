@@ -1,0 +1,31 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-sitemap-grid" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="sitemap-grid-section">
+    <d:layout.container>
+        <f:if condition="{data.header}">
+            <h2 class="sitemap-grid__title">{data -> f:render.text(field: 'header')}</h2>
+        </f:if>
+        <div class="sitemap-grid__grid sitemap-grid__grid--cols-{data.columns -> f:or(alternative: '4')}">
+            <f:for each="{data.groups}" as="group">
+                <div class="sitemap-grid__group">
+                    <h3 class="sitemap-grid__group-title">{group -> f:render.text(field: 'title')}</h3>
+                    <ul class="sitemap-grid__links">
+                        <f:for each="{group.pages -> f:split(separator: '
+')}" as="pageLine">
+                            <f:if condition="{pageLine -> f:format.trim()}">
+                                <li><span class="sitemap-grid__link">{pageLine -> f:format.trim()}</span></li>
+                            </f:if>
+                        </f:for>
+                    </ul>
+                </div>
+            </f:for>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

@@ -1,0 +1,37 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-video-embed" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="video-embed">
+    <d:layout.container>
+        <f:if condition="{data.header}">
+            <d:atom.typography tag="h2" variant="h2" class="video-embed__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
+        </f:if>
+
+        <figure class="video-embed__figure">
+            <f:if condition="{data.video_url}">
+                <f:then>
+                    <div class="video-embed__wrapper video-embed__wrapper--{data.aspect_ratio -> f:or(alternative: '16-9')}">
+                        <iframe src="{data -> f:render.text(field: 'video_url')}" frameborder="0" allowfullscreen loading="lazy"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
+                    </div>
+                </f:then>
+                <f:else>
+                    <f:if condition="{data.video_file.0}">
+                        <video class="video-embed__native" controls preload="metadata">
+                            <source src="{f:uri.resource(path: data.video_file.0.originalFile.identifier, extensionName: '')}" type="{data.video_file.0.mimeType}"/>
+                        </video>
+                    </f:if>
+                </f:else>
+            </f:if>
+            <f:if condition="{data.caption}">
+                <figcaption class="video-embed__caption">{data -> f:render.text(field: 'caption')}</figcaption>
+            </f:if>
+        </figure>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

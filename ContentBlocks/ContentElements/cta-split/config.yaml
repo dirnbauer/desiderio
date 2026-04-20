@@ -1,0 +1,40 @@
+name: desiderio/cta-split
+typeName: desiderio_ctasplit
+title: CTA Split
+description: Two-column split CTA with different actions per side
+group: conversion
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: left_title
+    type: Textarea
+    rows: 1
+    label: Left Title
+  - identifier: left_description
+    type: Textarea
+    label: Left Description
+    rows: 2
+  - identifier: left_button_text
+    type: Textarea
+    rows: 1
+    label: Left Button Text
+  - identifier: left_button_link
+    type: Link
+    label: Left Button Link
+  - identifier: right_title
+    type: Textarea
+    rows: 1
+    label: Right Title
+  - identifier: right_description
+    type: Textarea
+    label: Right Description
+    rows: 2
+  - identifier: right_button_text
+    type: Textarea
+    rows: 1
+    label: Right Button Text
+  - identifier: right_button_link
+    type: Link
+    label: Right Button Link

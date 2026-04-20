@@ -1,0 +1,23 @@
+{
+  "_type": "form",
+  "header": "Request a Callback",
+  "description": "Leave your details and our team will call you back within 2 hours.",
+  "fields": [
+    {
+      "label": "Your Name",
+      "type": "text",
+      "placeholder": "John Doe"
+    },
+    {
+      "label": "Phone Number",
+      "type": "tel",
+      "placeholder": "+1 (555) 123-4567"
+    },
+    {
+      "label": "Preferred Time",
+      "type": "select",
+      "placeholder": "Select a time slot"
+    }
+  ],
+  "primaryButton": "Request Callback"
+}

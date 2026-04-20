@@ -1,0 +1,13 @@
+<f:argument name="name" type="string" optional="{true}" />
+<f:argument name="disabled" type="bool" optional="{true}" default="{false}" />
+<f:argument name="required" type="bool" optional="{true}" default="{false}" />
+<f:argument name="class" type="string" optional="{true}" default="" />
+
+<select
+    name="{name}"
+    disabled="{disabled}"
+    required="{required}"
+    class="flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-hidden focus:ring-3 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 {class}"
+>
+    <f:slot />
+</select>

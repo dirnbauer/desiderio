@@ -1,0 +1,19 @@
+# Skin 4 — Blog & Magazine
+# Serif typography, narrow container, columns footer.
+
+desiderio:
+  layout:
+    density: comfortable
+    container: narrow
+    radius: none
+  header:
+    style: solid
+    fixedPosition: false
+  footer:
+    style: columns
+  theme:
+    accent: amber
+    darkModeDefault: light
+    darkModeToggle: true
+  typography:
+    fontSans: serif

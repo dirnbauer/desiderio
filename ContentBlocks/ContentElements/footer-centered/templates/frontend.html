@@ -1,0 +1,42 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-footer-centered" href="{cb:assetPath()}/frontend.css"/>
+
+<footer class="footer-centered">
+    <d:layout.container>
+        <div class="footer-centered__inner">
+            <f:if condition="{data.logo}">
+                <div class="footer-centered__logo">
+                    <f:for each="{data.logo}" as="file">
+                        <f:image image="{file}" alt="{data -> f:render.text(field: 'brand')}" height="32"/>
+                    </f:for>
+                </div>
+            </f:if>
+            <f:if condition="{data.brand}">
+                <h2 class="footer-centered__brand">{data -> f:render.text(field: 'brand')}</h2>
+            </f:if>
+            <f:if condition="{data.link_items}">
+                <nav class="footer-centered__nav" aria-label="Footer navigation">
+                    <ul class="footer-centered__links">
+                        <f:for each="{data.link_items}" as="item">
+                            <li>
+                                <f:if condition="{item.link}">
+                                    <f:then><f:link.typolink parameter="{item.link}" class="footer-centered__link">{item -> f:render.text(field: 'label')}</f:link.typolink></f:then>
+                                    <f:else><span class="footer-centered__link">{item -> f:render.text(field: 'label')}</span></f:else>
+                                </f:if>
+                            </li>
+                        </f:for>
+                    </ul>
+                </nav>
+            </f:if>
+            <f:if condition="{data.copyright}">
+                <p class="footer-centered__copyright">{data -> f:render.text(field: 'copyright')}</p>
+            </f:if>
+        </div>
+    </d:layout.container>
+</footer>
+
+</html>

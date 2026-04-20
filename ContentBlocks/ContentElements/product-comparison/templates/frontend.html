@@ -1,0 +1,57 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-product-comparison" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="product-comparison">
+    <d:layout.container>
+        <f:if condition="{data.eyebrow} || {data.header}">
+            <header class="product-comparison__intro">
+                <f:if condition="{data.eyebrow}">
+                    <span class="product-comparison__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span>
+                </f:if>
+                <f:if condition="{data.header}">
+                    <h2 class="product-comparison__headline">{data -> f:render.text(field: 'header')}</h2>
+                </f:if>
+            </header>
+        </f:if>
+
+        <div class="product-comparison__grid">
+            <f:for each="{data.products}" as="product">
+                <article class="product-comparison__card {f:if(condition: product.is_recommended, then: 'product-comparison__card--recommended')}">
+                    <f:if condition="{product.is_recommended}">
+                        <span class="product-comparison__badge">Recommended</span>
+                    </f:if>
+                    <f:if condition="{product.image}">
+                        <div class="product-comparison__media">
+                            <f:for each="{product.image}" as="fileReference">
+                                <img src="{f:uri.image(image: fileReference, maxWidth: 320)}" alt="{product -> f:render.text(field: 'name')}" class="product-comparison__image"/>
+                            </f:for>
+                        </div>
+                    </f:if>
+                    <h3 class="product-comparison__name">{product -> f:render.text(field: 'name')}</h3>
+                    <f:if condition="{product.price}">
+                        <span class="product-comparison__price">{product -> f:render.text(field: 'price')}</span>
+                    </f:if>
+                    <f:if condition="{product.specs_text}">
+                        <ul class="product-comparison__specs">
+                            <f:for each="{product.specs_text -> f:split(separator: '\n')}" as="spec">
+                                <f:if condition="{spec}">
+                                    <li class="product-comparison__spec">{spec}</li>
+                                </f:if>
+                            </f:for>
+                        </ul>
+                    </f:if>
+                    <f:if condition="{product.link.url}">
+                        <f:link.typolink parameter="{product.link}" class="product-comparison__button {f:if(condition: product.is_recommended, then: 'product-comparison__button--primary', else: 'product-comparison__button--outline')}">
+                            View details
+                        </f:link.typolink>
+                    </f:if>
+                </article>
+            </f:for>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+</html>

@@ -1,0 +1,24 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-social-links" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="social-links">
+    <d:layout.container>
+        <div class="social-links__content">
+            <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
+            <f:if condition="{data.description_text}"><d:atom.typography variant="muted">{data -> f:render.text(field: 'description_text')}</d:atom.typography></f:if>
+            <div class="social-links__list">
+                <f:for each="{data.link_items}" as="link">
+                    <f:if condition="{link.url.url}">
+                        <f:link.typolink parameter="{link.url}" class="social-links__item">{link -> f:render.text(field: 'platform')}</f:link.typolink>
+                    </f:if>
+                </f:for>
+            </div>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

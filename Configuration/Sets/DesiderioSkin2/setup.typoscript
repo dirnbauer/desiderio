@@ -1,0 +1,7 @@
+# Skin 2 — Mainline Corporate
+# One extra stylesheet on top of the Desiderio base.
+
+page.includeCSS {
+    desiderioSkin2 = EXT:desiderio/Resources/Public/Css/skin2.css
+    desiderioSkin2.media = all
+}

@@ -1,0 +1,62 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-pricing-three-tier" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="pricing-three-tier">
+    <d:layout.container>
+        <f:if condition="{data.eyebrow} || {data.header} || {data.subheadline}">
+            <header class="pricing-three-tier__intro">
+                <f:if condition="{data.eyebrow}">
+                    <span class="pricing-three-tier__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span>
+                </f:if>
+                <f:if condition="{data.header}">
+                    <h2 class="pricing-three-tier__headline">{data -> f:render.text(field: 'header')}</h2>
+                </f:if>
+                <f:if condition="{data.subheadline}">
+                    <p class="pricing-three-tier__description">{data -> f:render.text(field: 'subheadline')}</p>
+                </f:if>
+            </header>
+        </f:if>
+
+        <div class="pricing-three-tier__grid">
+            <f:for each="{data.plans}" as="plan">
+                <article class="pricing-three-tier__plan {f:if(condition: plan.is_recommended, then: 'pricing-three-tier__plan--recommended')}">
+                    <f:if condition="{plan.is_recommended}">
+                        <span class="pricing-three-tier__badge">Recommended</span>
+                    </f:if>
+                    <h3 class="pricing-three-tier__name">{plan -> f:render.text(field: 'name')}</h3>
+                    <div class="pricing-three-tier__price-row">
+                        <span class="pricing-three-tier__price">{plan -> f:render.text(field: 'price')}</span>
+                        <f:if condition="{plan.billing_period}">
+                            <span class="pricing-three-tier__period">{plan -> f:render.text(field: 'billing_period')}</span>
+                        </f:if>
+                    </div>
+                    <f:if condition="{plan.description}">
+                        <p class="pricing-three-tier__plan-desc">{plan -> f:render.text(field: 'description')}</p>
+                    </f:if>
+                    <f:if condition="{plan.features_list}">
+                        <ul class="pricing-three-tier__features">
+                            <f:for each="{plan.features_list -> f:split(separator: '\n')}" as="feature">
+                                <f:if condition="{feature}">
+                                    <li class="pricing-three-tier__feature">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
+                                        <span>{feature}</span>
+                                    </li>
+                                </f:if>
+                            </f:for>
+                        </ul>
+                    </f:if>
+                    <f:if condition="{plan.button_text} && {plan.button_link.url}">
+                        <f:link.typolink parameter="{plan.button_link}" class="pricing-three-tier__button {f:if(condition: plan.is_recommended, then: 'pricing-three-tier__button--primary', else: 'pricing-three-tier__button--outline')}">
+                            {plan -> f:render.text(field: 'button_text')}
+                        </f:link.typolink>
+                    </f:if>
+                </article>
+            </f:for>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+</html>

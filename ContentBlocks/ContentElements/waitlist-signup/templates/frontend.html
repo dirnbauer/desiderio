@@ -1,0 +1,24 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-waitlist-signup" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="waitlist-signup">
+    <d:layout.container>
+        <div class="waitlist-signup__content">
+            <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
+            <f:if condition="{data.description}"><d:atom.typography variant="muted">{data -> f:render.text(field: 'description')}</d:atom.typography></f:if>
+            <form class="waitlist-signup__form" action="{data.form_action.url}" method="post">
+                <input class="waitlist-signup__input" type="email" name="email" placeholder="Enter your email" required="required"/>
+                <d:atom.button type="submit" size="lg">{data.button_text -> f:or(alternative: 'Join the waitlist')}</d:atom.button>
+            </form>
+            <f:if condition="{data.count_text}">
+                <p class="waitlist-signup__count">{data -> f:render.text(field: 'count_text')}</p>
+            </f:if>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

@@ -1,0 +1,52 @@
+name: desiderio/tabs
+typeName: desiderio_tabs
+title: Tabs
+description: Tabbed content panels for organizing related information
+group: content
+prefixFields: false
+fields:
+  - identifier: variant
+    type: Select
+    renderType: selectSingle
+    label: Tab Style
+    onChange: reload
+    items:
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.default'
+        value: default
+      - label: Pills
+        value: pills
+      - label: Underline
+        value: underline
+    default: default
+
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+
+  - identifier: default_tab
+    type: Textarea
+    rows: 1
+    label: Default Active Tab
+    description: Index of the tab to show by default (0 = first)
+
+  - identifier: items
+    type: Collection
+    label: Tab Panels
+    minItems: 2
+    fields:
+      - identifier: tab_label
+        type: Textarea
+        rows: 1
+        label: Tab Label
+        required: true
+      - identifier: tab_content
+        type: Textarea
+        label: Tab Content
+        enableRichtext: true
+        rows: 6
+        required: true
+      - identifier: tab_icon
+        type: Textarea
+        rows: 1
+        label: Tab Icon
+        description: Optional icon name (e.g. lucide icon identifier)

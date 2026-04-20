@@ -1,0 +1,46 @@
+name: desiderio/counter
+typeName: desiderio_counter
+title: Counter
+description: Animated number counter with label and optional prefix/suffix
+group: data
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: items
+    type: Collection
+    label: Counters
+    minItems: 1
+    fields:
+      - identifier: target_value
+        type: Number
+        label: Target Value
+        required: true
+      - identifier: prefix
+        type: Textarea
+        rows: 1
+        label: Prefix
+        description: e.g. $ or +
+      - identifier: suffix
+        type: Textarea
+        rows: 1
+        label: Suffix
+        description: e.g. %, K, M
+      - identifier: label
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:label_field'
+        required: true
+  - identifier: columns
+    type: Select
+    renderType: selectSingle
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:columns'
+    items:
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.2_columns'
+        value: '2'
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.3_columns'
+        value: '3'
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.4_columns'
+        value: '4'
+    default: '3'

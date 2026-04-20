@@ -1,0 +1,34 @@
+.brand-story__layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--d-spacing-2xl);
+    align-items: center;
+}
+@media (max-width: 768px) {
+    .brand-story__layout { grid-template-columns: 1fr; }
+}
+.brand-story__eyebrow {
+    font-size: var(--d-text-sm);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--primary);
+    display: block;
+    margin-block-end: var(--d-spacing-xs);
+}
+.brand-story__lead {
+    font-size: var(--d-text-lg);
+    font-weight: 500;
+    line-height: 1.5;
+    margin-block-start: var(--d-spacing-md);
+}
+.brand-story__body {
+    color: var(--muted-foreground);
+    line-height: 1.7;
+    margin-block-start: var(--d-spacing-md);
+}
+.brand-story__image {
+    width: 100%;
+    border-radius: var(--radius);
+    object-fit: cover;
+}

@@ -1,0 +1,65 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-footer" href="{cb:assetPath()}/frontend.css"/>
+
+<footer class="footer footer--{data.layout -> f:or(alternative: 'two-columns')}">
+    <d:layout.container>
+        <div class="footer__inner">
+            <div class="footer__brand">
+                <h2 class="footer__title">{data -> f:render.text(field: 'brand')}</h2>
+                <f:if condition="{data.description}">
+                    <p class="footer__description">{data -> f:render.text(field: 'description')}</p>
+                </f:if>
+            </div>
+
+            <f:if condition="{data.footer_links}">
+                <nav class="footer__nav" aria-label="Footer navigation">
+                    <ul class="footer__links">
+                        <f:for each="{data.footer_links}" as="item">
+                            <li>
+                                <f:if condition="{item.link}">
+                                    <f:then>
+                                        <f:link.typolink parameter="{item.link}" class="footer__link">{item -> f:render.text(field: 'label')}</f:link.typolink>
+                                    </f:then>
+                                    <f:else>
+                                        <span class="footer__link">{item -> f:render.text(field: 'label')}</span>
+                                    </f:else>
+                                </f:if>
+                            </li>
+                        </f:for>
+                    </ul>
+                </nav>
+            </f:if>
+
+            <f:if condition="{data.utility_links}">
+                <nav class="footer__utilities" aria-label="Utility links">
+                    <ul class="footer__links">
+                        <f:for each="{data.utility_links}" as="item">
+                            <li>
+                                <f:if condition="{item.link}">
+                                    <f:then>
+                                        <f:link.typolink parameter="{item.link}" class="footer__link">{item -> f:render.text(field: 'label')}</f:link.typolink>
+                                    </f:then>
+                                    <f:else>
+                                        <span class="footer__link">{item -> f:render.text(field: 'label')}</span>
+                                    </f:else>
+                                </f:if>
+                            </li>
+                        </f:for>
+                    </ul>
+                </nav>
+            </f:if>
+        </div>
+
+        <f:if condition="{data.copyright}">
+            <div class="footer__bottom">
+                <p class="footer__copyright">{data -> f:render.text(field: 'copyright')}</p>
+            </div>
+        </f:if>
+    </d:layout.container>
+</footer>
+
+</html>

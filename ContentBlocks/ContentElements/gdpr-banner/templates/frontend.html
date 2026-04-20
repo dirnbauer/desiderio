@@ -1,0 +1,43 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-gdpr-banner" href="{cb:assetPath()}/frontend.css"/>
+
+<div class="gdpr-banner" role="dialog" aria-label="Cookie consent" data-gdpr-banner="true">
+    <d:layout.container>
+        <div class="gdpr-banner__inner">
+            <div class="gdpr-banner__content">
+                <f:if condition="{data.header}">
+                    <h3 class="gdpr-banner__title">{data -> f:render.text(field: 'header')}</h3>
+                </f:if>
+                <div class="gdpr-banner__message">
+                    {data -> f:render.text(field: 'content')}
+                </div>
+                <f:if condition="{data.privacy_link}">
+                    <f:link.typolink parameter="{data.privacy_link}" class="gdpr-banner__privacy-link">Privacy Policy</f:link.typolink>
+                </f:if>
+            </div>
+            <f:if condition="{data.categories}">
+                <div class="gdpr-banner__categories">
+                    <f:for each="{data.categories}" as="cat">
+                        <label class="gdpr-banner__category">
+                            <input type="checkbox" {f:if(condition: cat.required, then: 'checked disabled')} class="gdpr-banner__checkbox"/>
+                            <span class="gdpr-banner__cat-name">{cat -> f:render.text(field: 'name')}</span>
+                            <f:if condition="{cat.description_text}">
+                                <span class="gdpr-banner__cat-desc">{cat -> f:render.text(field: 'description_text')}</span>
+                            </f:if>
+                        </label>
+                    </f:for>
+                </div>
+            </f:if>
+            <div class="gdpr-banner__actions">
+                <button type="button" class="gdpr-banner__button gdpr-banner__button--accept">{data.accept_text -> f:or(alternative: 'Accept All')}</button>
+                <button type="button" class="gdpr-banner__button gdpr-banner__button--save">{data.save_text -> f:or(alternative: 'Save Preferences')}</button>
+            </div>
+        </div>
+    </d:layout.container>
+</div>
+
+</html>

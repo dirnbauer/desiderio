@@ -1,0 +1,26 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-announcement-bar" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="announcement-bar announcement-bar--{data.variant -> f:or(alternative: 'default')}">
+    <d:layout.container>
+        <div class="announcement-bar__inner">
+            <p class="announcement-bar__message">
+                <span>{data -> f:render.text(field: 'message')}</span>
+                <f:if condition="{data.supporting_text}">
+                    <small class="announcement-bar__supporting">{data -> f:render.text(field: 'supporting_text')}</small>
+                </f:if>
+            </p>
+            <f:if condition="{data.link_text} && {data.link.url}">
+                <f:link.typolink parameter="{data.link}" class="announcement-bar__link">
+                    {data -> f:render.text(field: 'link_text')}
+                </f:link.typolink>
+            </f:if>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

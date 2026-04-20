@@ -1,0 +1,7 @@
+# Skin 1 — SaaS Landing
+# One extra stylesheet on top of the Desiderio base.
+
+page.includeCSS {
+    desiderioSkin1 = EXT:desiderio/Resources/Public/Css/skin1.css
+    desiderioSkin1.media = all
+}

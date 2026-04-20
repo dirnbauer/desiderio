@@ -1,0 +1,67 @@
+name: desiderio/pricing-three-tier
+typeName: desiderio_pricingthreetier
+title: Pricing Three Tier
+description: Classic three-column pricing with recommended plan highlight
+group: pricing
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+
+  - identifier: eyebrow
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
+
+  - identifier: subheadline
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
+    rows: 2
+
+  - identifier: plans
+    type: Collection
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:plans'
+    minItems: 3
+    maxItems: 3
+    fields:
+      - identifier: name
+        type: Textarea
+        rows: 1
+        label: Plan Name
+        required: true
+
+      - identifier: price
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:price'
+        required: true
+
+      - identifier: billing_period
+        type: Textarea
+        rows: 1
+        label: Billing Period
+
+      - identifier: description
+        type: Textarea
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
+        rows: 2
+
+      - identifier: features_list
+        type: Textarea
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:features_one_per_line'
+        rows: 6
+
+      - identifier: is_recommended
+        type: Checkbox
+        label: Recommended Plan
+
+      - identifier: button_text
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_text'
+        default: Get Started
+
+      - identifier: button_link
+        type: Link
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_link'

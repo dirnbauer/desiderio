@@ -1,0 +1,34 @@
+name: desiderio/sitemap-grid
+typeName: desiderio_sitemapgrid
+title: Sitemap Grid
+description: Visual sitemap grid with grouped page links
+group: footer
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: columns
+    type: Select
+    renderType: selectSingle
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:columns'
+    items:
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.3_columns'
+        value: '3'
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.4_columns'
+        value: '4'
+    default: '4'
+  - identifier: groups
+    type: Collection
+    label: Page Groups
+    minItems: 1
+    fields:
+      - identifier: title
+        type: Textarea
+        rows: 1
+        label: Group Title
+        required: true
+      - identifier: pages
+        type: Textarea
+        label: Pages (one per line)
+        rows: 5

@@ -1,0 +1,46 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-partner-grid" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="partner-grid">
+    <d:layout.container>
+        <f:if condition="{data.header} || {data.subheadline}">
+            <header class="partner-grid__intro">
+                <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
+                <f:if condition="{data.subheadline}"><d:atom.typography variant="muted">{data -> f:render.text(field: 'subheadline')}</d:atom.typography></f:if>
+            </header>
+        </f:if>
+
+        <div class="partner-grid__items">
+            <f:for each="{data.partners}" as="partner">
+                <div class="partner-grid__item">
+                    <f:if condition="{partner.link.url}">
+                        <f:then>
+                            <f:link.typolink parameter="{partner.link}" class="partner-grid__link">
+                                <f:if condition="{partner.logo}">
+                                    <f:for each="{partner.logo}" as="fileReference">
+                                        <img src="{f:uri.image(image: fileReference, maxWidth: 200)}" alt="{partner -> f:render.text(field: 'name')}" class="partner-grid__logo"/>
+                                    </f:for>
+                                </f:if>
+                                <span class="partner-grid__name">{partner -> f:render.text(field: 'name')}</span>
+                            </f:link.typolink>
+                        </f:then>
+                        <f:else>
+                            <f:if condition="{partner.logo}">
+                                <f:for each="{partner.logo}" as="fileReference">
+                                    <img src="{f:uri.image(image: fileReference, maxWidth: 200)}" alt="{partner -> f:render.text(field: 'name')}" class="partner-grid__logo"/>
+                                </f:for>
+                            </f:if>
+                            <span class="partner-grid__name">{partner -> f:render.text(field: 'name')}</span>
+                        </f:else>
+                    </f:if>
+                </div>
+            </f:for>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

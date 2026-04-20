@@ -1,0 +1,38 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-career-listing" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="career-listing">
+    <d:layout.container>
+        <f:if condition="{data.eyebrow} || {data.header} || {data.subheadline}">
+            <header class="career-listing__intro">
+                <f:if condition="{data.eyebrow}"><span class="career-listing__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span></f:if>
+                <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
+                <f:if condition="{data.subheadline}"><d:atom.typography variant="muted">{data -> f:render.text(field: 'subheadline')}</d:atom.typography></f:if>
+            </header>
+        </f:if>
+
+        <div class="career-listing__jobs">
+            <f:for each="{data.jobs}" as="job">
+                <article class="career-listing__job">
+                    <div class="career-listing__info">
+                        <h3 class="career-listing__title">{job -> f:render.text(field: 'title')}</h3>
+                        <div class="career-listing__meta">
+                            <f:if condition="{job.department}"><span class="career-listing__dept">{job -> f:render.text(field: 'department')}</span></f:if>
+                            <f:if condition="{job.location}"><span class="career-listing__location">{job -> f:render.text(field: 'location')}</span></f:if>
+                            <f:if condition="{job.type}"><span class="career-listing__type">{job -> f:render.text(field: 'type')}</span></f:if>
+                        </div>
+                    </div>
+                    <f:if condition="{job.apply_link.url}">
+                        <d:atom.button href="{job.apply_link.url}" target="{job.apply_link.target}" variant="outline" size="sm">Apply</d:atom.button>
+                    </f:if>
+                </article>
+            </f:for>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

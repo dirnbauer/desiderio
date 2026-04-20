@@ -1,0 +1,41 @@
+name: desiderio/board-members
+typeName: desiderio_boardmembers
+title: Board Members
+description: Executive board member cards with titles and affiliations
+group: team
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: subheadline
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
+    rows: 2
+  - identifier: members
+    type: Collection
+    label: Board Members
+    minItems: 1
+    fields:
+      - identifier: image
+        type: File
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:portrait'
+        allowed: common-image-types
+        maxitems: 1
+      - identifier: name
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:name'
+        required: true
+      - identifier: title
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:title'
+      - identifier: affiliation
+        type: Textarea
+        rows: 1
+        label: Affiliation
+      - identifier: bio
+        type: Textarea
+        label: Short Bio
+        rows: 2

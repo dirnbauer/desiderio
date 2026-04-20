@@ -1,0 +1,32 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-accessibility-statement" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="a11y-statement-section">
+    <d:layout.container>
+        <div class="a11y-statement">
+            <f:if condition="{data.header}">
+                <h2 class="a11y-statement__title">{data -> f:render.text(field: 'header')}</h2>
+            </f:if>
+            <div class="a11y-statement__badge">
+                WCAG 2.1 Level {data.conformance_level -> f:format.case(mode: 'upper') -> f:or(alternative: 'AA')}
+            </div>
+            <f:if condition="{data.last_updated}">
+                <p class="a11y-statement__updated">Last updated: {data -> f:render.text(field: 'last_updated')}</p>
+            </f:if>
+            <div class="a11y-statement__content">
+                {data -> f:render.text(field: 'content')}
+            </div>
+            <f:if condition="{data.contact_email}">
+                <div class="a11y-statement__contact">
+                    <p>Report accessibility issues: <a href="mailto:{data -> f:render.text(field: 'contact_email')}">{data -> f:render.text(field: 'contact_email')}</a></p>
+                </div>
+            </f:if>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

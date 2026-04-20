@@ -1,0 +1,19 @@
+# Skin 2 — Mainline Corporate
+# Solid header, slate accents, minimal radius, centered footer.
+
+desiderio:
+  layout:
+    density: comfortable
+    container: wide
+    radius: sm
+  header:
+    style: solid
+    fixedPosition: false
+  footer:
+    style: centered
+  theme:
+    accent: slate
+    darkModeDefault: light
+    darkModeToggle: true
+  typography:
+    fontSans: inter

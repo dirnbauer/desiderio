@@ -1,0 +1,39 @@
+name: desiderio/feature-matrix
+typeName: desiderio_featurematrix
+title: Feature Matrix
+description: Feature comparison matrix for products, plans, or capabilities
+group: features
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: eyebrow
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
+  - identifier: left_label
+    type: Textarea
+    rows: 1
+    label: Left Column Label
+  - identifier: right_label
+    type: Textarea
+    rows: 1
+    label: Right Column Label
+  - identifier: rows
+    type: Collection
+    label: Rows
+    minItems: 1
+    fields:
+      - identifier: label
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:label_field'
+      - identifier: left_value
+        type: Textarea
+        rows: 1
+        label: Left Value
+      - identifier: right_value
+        type: Textarea
+        rows: 1
+        label: Right Value

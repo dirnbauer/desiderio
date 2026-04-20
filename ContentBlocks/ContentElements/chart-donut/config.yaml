@@ -1,0 +1,33 @@
+name: desiderio/chart-donut
+typeName: desiderio_chartdonut
+title: Chart Donut
+description: Donut chart with center label and configurable ring width
+group: data
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: description
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
+    rows: 2
+  - identifier: chart_data
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:chart_data_json'
+    rows: 6
+    required: true
+  - identifier: center_label
+    type: Textarea
+    rows: 1
+    label: Center Label
+    description: Text shown in the donut center
+  - identifier: center_value
+    type: Textarea
+    rows: 1
+    label: Center Value
+    description: Large value shown in the donut center
+  - identifier: show_legend
+    type: Checkbox
+    label: Show Legend
+    default: 1

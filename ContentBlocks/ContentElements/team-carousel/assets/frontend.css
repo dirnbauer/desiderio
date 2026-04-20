@@ -1,0 +1,31 @@
+.team-carousel__intro {
+    text-align: center;
+    margin-block-end: var(--d-spacing-xl);
+}
+.team-carousel__eyebrow {
+    font-size: var(--d-text-sm);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--primary);
+}
+.team-carousel__track {
+    display: flex;
+    gap: var(--d-spacing-lg);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding-block-end: var(--d-spacing-sm);
+}
+.team-carousel__slide {
+    flex: 0 0 280px;
+    scroll-snap-align: start;
+}
+.team-carousel__image-wrapper { overflow: hidden; border-radius: var(--radius) var(--radius) 0 0; }
+.team-carousel__image { width: 100%; aspect-ratio: 1; object-fit: cover; }
+.team-carousel__content { padding: var(--d-spacing-md); text-align: center; }
+.team-carousel__name { font-weight: 600; }
+.team-carousel__role {
+    font-size: var(--d-text-sm);
+    color: var(--muted-foreground);
+}

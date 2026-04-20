@@ -1,0 +1,33 @@
+name: desiderio/nav-toc
+typeName: desiderio_navtoc
+title: Table of Contents
+description: Vertical table-of-contents navigation for long-form content
+group: navigation
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: items
+    type: Collection
+    label: TOC Items
+    minItems: 1
+    fields:
+      - identifier: label
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:label_field'
+      - identifier: anchor
+        type: Textarea
+        rows: 1
+        label: Anchor ID
+      - identifier: level
+        type: Select
+        renderType: selectSingle
+        label: Level
+        items:
+          - label: Heading 2
+            value: h2
+          - label: Heading 3
+            value: h3
+        default: h2

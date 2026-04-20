@@ -1,0 +1,37 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-hero-stats" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="hero-stats">
+    <d:layout.container>
+        <div class="hero-stats__grid">
+            <div class="hero-stats__copy">
+                <f:if condition="{data.eyebrow}">
+                    <span class="hero-stats__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span>
+                </f:if>
+                <f:if condition="{data.header}">
+                    <h1 class="hero-stats__headline">{data -> f:render.text(field: 'header')}</h1>
+                </f:if>
+                <f:if condition="{data.subheadline}">
+                    <p class="hero-stats__description">{data -> f:render.text(field: 'subheadline')}</p>
+                </f:if>
+                <f:if condition="{data.primary_button_text} && {data.primary_button_link.url}">
+                    <d:atom.button href="{data.primary_button_link.url}" target="{data.primary_button_link.target}" size="lg">{data -> f:render.text(field: 'primary_button_text')}</d:atom.button>
+                </f:if>
+            </div>
+            <div class="hero-stats__cards">
+                <f:for each="{data.stats}" as="stat">
+                    <article class="hero-stats__stat">
+                        <p class="hero-stats__stat-value">{stat -> f:render.text(field: 'value')}</p>
+                        <p class="hero-stats__stat-label">{stat -> f:render.text(field: 'label')}</p>
+                    </article>
+                </f:for>
+            </div>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

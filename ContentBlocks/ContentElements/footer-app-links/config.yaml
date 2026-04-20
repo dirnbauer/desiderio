@@ -1,0 +1,29 @@
+name: desiderio/footer-app-links
+typeName: desiderio_footerapplinks
+title: Footer App Links
+description: Footer with app store download buttons and QR code
+group: footer
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: description
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
+    rows: 2
+  - identifier: appstore_link
+    type: Link
+    label: App Store Link
+  - identifier: playstore_link
+    type: Link
+    label: Google Play Link
+  - identifier: qr_image
+    type: File
+    label: QR Code Image
+    allowed: common-image-types
+    maxitems: 1
+  - identifier: copyright
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:copyright_text'

@@ -1,0 +1,28 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-audio-player" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="audio-player">
+    <d:layout.container>
+        <d:molecule.card class="audio-player__card">
+            <div class="audio-player__info">
+                <f:if condition="{data.header}">
+                    <h3 class="audio-player__title">{data -> f:render.text(field: 'header')}</h3>
+                </f:if>
+                <f:if condition="{data.description}">
+                    <p class="audio-player__description">{data -> f:render.text(field: 'description')}</p>
+                </f:if>
+            </div>
+            <f:if condition="{data.audio_file.0}">
+                <audio class="audio-player__audio" controls preload="metadata">
+                    <source src="{f:uri.resource(path: data.audio_file.0.originalFile.identifier, extensionName: '')}" type="{data.audio_file.0.mimeType}"/>
+                </audio>
+            </f:if>
+        </d:molecule.card>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

@@ -1,0 +1,28 @@
+name: desiderio/directions
+typeName: desiderio_directions
+title: Directions
+description: How to reach us with multiple transport options
+group: conversion
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: subheadline
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
+    rows: 2
+  - identifier: routes
+    type: Collection
+    label: Routes
+    minItems: 1
+    fields:
+      - identifier: mode
+        type: Textarea
+        rows: 1
+        label: Transport Mode
+        required: true
+      - identifier: description
+        type: Textarea
+        label: Directions
+        rows: 3

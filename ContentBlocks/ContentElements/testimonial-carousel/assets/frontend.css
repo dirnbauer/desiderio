@@ -1,0 +1,16 @@
+.testimonial-carousel__intro { text-align: center; margin-block-end: var(--d-spacing-xl); }
+.testimonial-carousel__eyebrow { font-size: var(--d-text-sm); text-transform: uppercase; letter-spacing: 0.05em; color: var(--primary); font-weight: 600; }
+.testimonial-carousel__headline { margin-block-start: var(--d-spacing-xs); }
+.testimonial-carousel__track { position: relative; overflow: hidden; }
+.testimonial-carousel__slide { display: none; text-align: center; padding: var(--d-spacing-lg); }
+.testimonial-carousel__slide--active { display: block; }
+.testimonial-carousel__quote { font-size: var(--d-text-xl); line-height: 1.6; font-style: italic; max-width: 48rem; margin-inline: auto; margin-block-end: var(--d-spacing-lg); }
+.testimonial-carousel__author { display: flex; align-items: center; justify-content: center; gap: var(--d-spacing-sm); }
+.testimonial-carousel__avatar { width: 3rem; height: 3rem; border-radius: 9999px; object-fit: cover; }
+.testimonial-carousel__name { font-weight: 600; font-style: normal; display: block; }
+.testimonial-carousel__role { font-size: var(--d-text-sm); color: var(--muted-foreground); }
+.testimonial-carousel__nav { display: flex; justify-content: center; gap: var(--d-spacing-sm); margin-block-start: var(--d-spacing-md); }
+.testimonial-carousel__prev,
+.testimonial-carousel__next { background: var(--muted); border: none; border-radius: var(--radius); padding: 0.5rem 1rem; cursor: pointer; font-size: var(--d-text-lg); }
+.testimonial-carousel__prev:hover,
+.testimonial-carousel__next:hover { background: var(--accent); }

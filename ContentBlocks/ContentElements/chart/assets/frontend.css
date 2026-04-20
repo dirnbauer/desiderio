@@ -1,0 +1,26 @@
+.chart__card {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--card);
+    overflow: hidden;
+}
+.chart__header { padding: var(--d-spacing-lg) var(--d-spacing-lg) 0; }
+.chart__title { font-size: var(--d-text-lg); font-weight: 600; }
+.chart__description { font-size: var(--d-text-sm); color: var(--muted-foreground); margin-block-start: var(--d-spacing-xs); }
+.chart__content { padding: var(--d-spacing-lg); position: relative; }
+.chart__canvas { width: 100%; }
+.chart__canvas--small { height: 200px; }
+.chart__canvas--medium { height: 300px; }
+.chart__canvas--large { height: 400px; }
+.chart__tooltip {
+    position: absolute; padding: var(--d-spacing-xs) var(--d-spacing-sm);
+    background: var(--popover); color: var(--popover-foreground);
+    border: 1px solid var(--border); border-radius: var(--radius);
+    font-size: var(--d-text-xs); pointer-events: none; z-index: 10;
+}
+.chart__tooltip-label { font-weight: 600; }
+.chart--primary { --chart-color: var(--primary); }
+.chart--blue { --chart-color: hsl(210 100% 50%); }
+.chart--green { --chart-color: hsl(142 70% 40%); }
+.chart--orange { --chart-color: hsl(25 95% 53%); }
+.chart--red { --chart-color: hsl(0 80% 50%); }

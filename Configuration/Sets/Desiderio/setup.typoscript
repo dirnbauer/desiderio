@@ -2,14 +2,24 @@
 
 page {
   includeCSS {
-    desiderio = EXT:desiderio/Resources/Public/Css/desiderio.css
-    desiderio.media = all
+    desiderioBase = EXT:desiderio/Resources/Public/Css/desiderio.css
+    desiderioBase.media = all
+
+    desiderioComponents = EXT:desiderio/Resources/Public/Css/components.css
+    desiderioComponents.media = all
+
+    desiderioTheme = EXT:desiderio/Resources/Public/Css/shadcn-theme.css
+    desiderioTheme.media = all
   }
 
   includeJSFooter {
-    desiderio = EXT:desiderio/Resources/Public/JavaScript/desiderio.js
-    desiderio.async = 1
+    desiderioComponents = EXT:desiderio/Resources/Public/Js/desiderio.js
+    desiderioComponents.async = 1
   }
+
+  bodyTagCObject = TEXT
+  bodyTagCObject.value = <body data-theme="{$desiderio.theme.darkModeDefault}" data-density="{$desiderio.layout.density}" data-container="{$desiderio.layout.container}" data-radius="{$desiderio.layout.radius}" data-accent="{$desiderio.theme.accent}" data-font="{$desiderio.typography.fontSans}" data-header-style="{$desiderio.header.style}" data-footer-style="{$desiderio.footer.style}">
+  bodyTagCObject.insertData = 1
 
   10 =< lib.fluidPage
 }

@@ -1,0 +1,43 @@
+name: desiderio/announcement-bar
+typeName: desiderio_announcementbar
+title: Announcement Bar
+description: Slim top-of-page announcement or promo bar with optional CTA link
+group: navigation
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+
+  - identifier: variant
+    type: Select
+    renderType: selectSingle
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:style'
+    items:
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.default'
+        value: default
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.accent'
+        value: accent
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.outline'
+        value: outline
+    default: default
+
+  - identifier: message
+    type: Textarea
+    rows: 1
+    label: Message
+    required: true
+
+  - identifier: supporting_text
+    type: Textarea
+    rows: 1
+    label: Supporting Text
+
+  - identifier: link_text
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:link_text'
+
+  - identifier: link
+    type: Link
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:link'

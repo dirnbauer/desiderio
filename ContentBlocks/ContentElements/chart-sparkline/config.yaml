@@ -1,0 +1,37 @@
+name: desiderio/chart-sparkline
+typeName: desiderio_chartsparkline
+title: Chart Sparkline
+description: Compact sparkline trend with optional delta badge
+group: data
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: description
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
+    rows: 2
+  - identifier: chart_data
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:chart_data_json'
+    description: |
+      JSON array of points, e.g. [{"label":"M","value":12},{"label":"T","value":18}] or [10,14,9,22]
+    rows: 4
+    required: true
+  - identifier: trend_badge
+    type: Textarea
+    rows: 1
+    label: 'Trend badge (optional, e.g. +12% vs last month)'
+  - identifier: color_variant
+    type: Select
+    renderType: selectSingle
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:color_field'
+    items:
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.primary'
+        value: primary
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.green'
+        value: green
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.blue'
+        value: blue
+    default: primary

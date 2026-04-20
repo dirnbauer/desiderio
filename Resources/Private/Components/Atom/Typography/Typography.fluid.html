@@ -1,0 +1,31 @@
+<f:argument name="tag" type="string" optional="{true}" default="p" />
+<f:argument name="variant" type="string" optional="{true}" default="p" />
+<f:argument name="class" type="string" optional="{true}" default="" />
+<f:argument name="itemprop" type="string" optional="{true}" />
+
+<f:variable name="variantClass">
+    <f:switch expression="{variant}">
+        <f:case value="h1">scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl</f:case>
+        <f:case value="h2">scroll-m-20 border-b pb-2 text-3xl font-semibold tracking-tight first:mt-0</f:case>
+        <f:case value="h3">scroll-m-20 text-2xl font-semibold tracking-tight</f:case>
+        <f:case value="h4">scroll-m-20 text-xl font-semibold tracking-tight</f:case>
+        <f:case value="lead">text-xl text-muted-foreground</f:case>
+        <f:case value="large">text-lg font-semibold</f:case>
+        <f:case value="small">text-sm font-medium leading-none</f:case>
+        <f:case value="muted">text-sm text-muted-foreground</f:case>
+        <f:case value="blockquote">mt-6 border-l-2 pl-6 italic</f:case>
+        <f:case value="code">relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold</f:case>
+        <f:defaultCase>leading-7</f:defaultCase>
+    </f:switch>
+</f:variable>
+
+<f:variable name="combinedClass" value="{variantClass -> f:format.trim()} {class}" />
+
+<f:switch expression="{tag}">
+    <f:case value="h1"><h1 class="{combinedClass -> f:format.trim()}" itemprop="{itemprop}"><f:slot /></h1></f:case>
+    <f:case value="h2"><h2 class="{combinedClass -> f:format.trim()}" itemprop="{itemprop}"><f:slot /></h2></f:case>
+    <f:case value="h3"><h3 class="{combinedClass -> f:format.trim()}" itemprop="{itemprop}"><f:slot /></h3></f:case>
+    <f:case value="h4"><h4 class="{combinedClass -> f:format.trim()}" itemprop="{itemprop}"><f:slot /></h4></f:case>
+    <f:case value="span"><span class="{combinedClass -> f:format.trim()}" itemprop="{itemprop}"><f:slot /></span></f:case>
+    <f:defaultCase><p class="{combinedClass -> f:format.trim()}" itemprop="{itemprop}"><f:slot /></p></f:defaultCase>
+</f:switch>

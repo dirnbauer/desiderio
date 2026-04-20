@@ -1,0 +1,30 @@
+.board-members__intro {
+    text-align: center;
+    margin-block-end: var(--d-spacing-xl);
+}
+.board-members__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--d-spacing-lg);
+}
+@media (max-width: 768px) {
+    .board-members__grid { grid-template-columns: 1fr; }
+}
+.board-members__image-wrapper { overflow: hidden; border-radius: var(--radius) var(--radius) 0 0; }
+.board-members__image { width: 100%; aspect-ratio: 3/4; object-fit: cover; }
+.board-members__content { padding: var(--d-spacing-md); }
+.board-members__name { font-weight: 600; }
+.board-members__title {
+    font-size: var(--d-text-sm);
+    color: var(--primary);
+    font-weight: 500;
+}
+.board-members__affiliation {
+    font-size: var(--d-text-sm);
+    color: var(--muted-foreground);
+}
+.board-members__bio {
+    font-size: var(--d-text-sm);
+    color: var(--muted-foreground);
+    margin-block-start: var(--d-spacing-xs);
+}

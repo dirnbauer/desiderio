@@ -1,0 +1,17 @@
+<f:argument name="variant" type="string" optional="{true}" default="default" />
+<f:argument name="class" type="string" optional="{true}" default="" />
+
+<f:variable name="base" value="inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-hidden focus:ring-3 focus:ring-ring focus:ring-offset-2" />
+
+<f:variable name="variantClass">
+    <f:switch expression="{variant}">
+        <f:case value="secondary">border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80</f:case>
+        <f:case value="destructive">border-transparent bg-destructive text-destructive-foreground hover:bg-destructive/80</f:case>
+        <f:case value="outline">text-foreground</f:case>
+        <f:defaultCase>border-transparent bg-primary text-primary-foreground hover:bg-primary/80</f:defaultCase>
+    </f:switch>
+</f:variable>
+
+<span class="{base} {variantClass -> f:format.trim()} {class}">
+    <f:slot />
+</span>

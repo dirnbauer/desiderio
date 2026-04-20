@@ -1,0 +1,52 @@
+.chart-heatmap__card {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--card);
+}
+.chart-heatmap__header {
+    padding: var(--d-spacing-lg) var(--d-spacing-lg) 0;
+}
+.chart-heatmap__title {
+    font-size: var(--d-text-lg);
+    font-weight: 600;
+}
+.chart-heatmap__description {
+    font-size: var(--d-text-sm);
+    color: var(--muted-foreground);
+    margin-block-start: var(--d-spacing-xs);
+}
+.chart-heatmap__plot {
+    padding: var(--d-spacing-lg);
+    overflow-x: auto;
+}
+.chart-heatmap__grid {
+    display: grid;
+    gap: 4px;
+    align-items: center;
+    min-width: min-content;
+    font-size: var(--d-text-xs);
+}
+.chart-heatmap__corner {
+    min-width: 3rem;
+}
+.chart-heatmap__colhead {
+    text-align: center;
+    font-weight: 600;
+    color: var(--muted-foreground);
+    padding: 0.25rem;
+}
+.chart-heatmap__rowhead {
+    font-weight: 600;
+    color: var(--muted-foreground);
+    padding: 0.25rem 0.5rem 0.25rem 0;
+    white-space: nowrap;
+}
+.chart-heatmap__cell {
+    border-radius: var(--radius);
+    min-height: 2.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+}

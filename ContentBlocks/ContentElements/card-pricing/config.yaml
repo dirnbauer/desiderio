@@ -1,0 +1,47 @@
+name: desiderio/card-pricing
+typeName: desiderio_cardpricing
+title: Card Pricing
+description: Single pricing card with price, features list, and CTA
+group: data
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: price
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:price'
+    required: true
+  - identifier: billing_period
+    type: Textarea
+    rows: 1
+    label: Billing Period
+    description: e.g. /month, /year
+  - identifier: description
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
+    rows: 2
+  - identifier: feature_items
+    type: Collection
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:features'
+    fields:
+      - identifier: text
+        type: Textarea
+        rows: 1
+        label: Feature Text
+      - identifier: included
+        type: Checkbox
+        label: Included
+        default: 1
+  - identifier: button_text
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_text'
+  - identifier: button_link
+    type: Link
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_link'
+  - identifier: highlighted
+    type: Checkbox
+    label: Highlight Card
+    default: 0

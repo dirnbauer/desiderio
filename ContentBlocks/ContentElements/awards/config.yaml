@@ -1,0 +1,51 @@
+name: desiderio/awards
+typeName: desiderio_awards
+title: Awards
+description: Awards and recognition badges display
+group: social-proof
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+
+  - identifier: eyebrow
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
+
+  - identifier: subheadline
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
+    rows: 2
+
+  - identifier: awards
+    type: Collection
+    label: Awards
+    minItems: 1
+    fields:
+      - identifier: title
+        type: Textarea
+        rows: 1
+        label: Award Title
+        required: true
+
+      - identifier: year
+        type: Textarea
+        rows: 1
+        label: Year
+
+      - identifier: organization
+        type: Textarea
+        rows: 1
+        label: Awarding Organization
+
+      - identifier: image
+        type: File
+        label: Award Badge/Logo
+        allowed: common-image-types
+        maxitems: 1
+
+      - identifier: link
+        type: Link
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:link'

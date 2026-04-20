@@ -1,0 +1,42 @@
+name: desiderio/career-listing
+typeName: desiderio_careerlisting
+title: Career Listing
+description: Job openings listed with department, location and apply link
+group: team
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: eyebrow
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
+  - identifier: subheadline
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
+    rows: 2
+  - identifier: jobs
+    type: Collection
+    label: Job Openings
+    minItems: 1
+    fields:
+      - identifier: title
+        type: Textarea
+        rows: 1
+        label: Job Title
+        required: true
+      - identifier: department
+        type: Textarea
+        rows: 1
+        label: Department
+      - identifier: location
+        type: Textarea
+        rows: 1
+        label: Location
+      - identifier: type
+        type: Text
+        label: Type
+      - identifier: apply_link
+        type: Link
+        label: Apply Link

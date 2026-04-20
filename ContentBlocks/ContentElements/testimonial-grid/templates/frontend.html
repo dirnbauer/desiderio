@@ -1,0 +1,43 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-testimonial-grid" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="testimonial-grid">
+    <d:layout.container>
+        <f:if condition="{data.eyebrow} || {data.header}">
+            <header class="testimonial-grid__intro">
+                <f:if condition="{data.eyebrow}">
+                    <span class="testimonial-grid__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span>
+                </f:if>
+                <f:if condition="{data.header}">
+                    <h2 class="testimonial-grid__headline">{data -> f:render.text(field: 'header')}</h2>
+                </f:if>
+            </header>
+        </f:if>
+
+        <div class="testimonial-grid__items testimonial-grid__items--cols-{data.columns -> f:or(alternative: '3')}">
+            <f:for each="{data.testimonials}" as="item">
+                <article class="testimonial-grid__card">
+                    <blockquote class="testimonial-grid__quote">{item -> f:render.text(field: 'quote')}</blockquote>
+                    <div class="testimonial-grid__author">
+                        <f:if condition="{item.author_image}">
+                            <f:for each="{item.author_image}" as="fileReference">
+                                <img src="{f:uri.image(image: fileReference, width: 48, height: 48)}" alt="{item -> f:render.text(field: 'author_name')}" class="testimonial-grid__avatar"/>
+                            </f:for>
+                        </f:if>
+                        <div>
+                            <cite class="testimonial-grid__name">{item -> f:render.text(field: 'author_name')}</cite>
+                            <f:if condition="{item.author_title}">
+                                <span class="testimonial-grid__role">{item -> f:render.text(field: 'author_title')}</span>
+                            </f:if>
+                        </div>
+                    </div>
+                </article>
+            </f:for>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+</html>

@@ -1,0 +1,44 @@
+name: desiderio/team-with-bio
+typeName: desiderio_teamwithbio
+title: Team with Bio
+description: Team members with extended biography text
+group: team
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: eyebrow
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
+  - identifier: subheadline
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
+    rows: 2
+  - identifier: members
+    type: Collection
+    label: Team Members
+    minItems: 1
+    fields:
+      - identifier: image
+        type: File
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:portrait'
+        allowed: common-image-types
+        maxitems: 1
+      - identifier: name
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:name'
+        required: true
+      - identifier: role
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:role'
+      - identifier: bio
+        type: Textarea
+        label: Biography
+        rows: 4
+      - identifier: profile_link
+        type: Link
+        label: Profile Link

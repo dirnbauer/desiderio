@@ -1,0 +1,50 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-pricing-comparison" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="pricing-comparison">
+    <d:layout.container>
+        <f:if condition="{data.eyebrow} || {data.header}">
+            <header class="pricing-comparison__intro">
+                <f:if condition="{data.eyebrow}">
+                    <span class="pricing-comparison__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span>
+                </f:if>
+                <f:if condition="{data.header}">
+                    <h2 class="pricing-comparison__headline">{data -> f:render.text(field: 'header')}</h2>
+                </f:if>
+            </header>
+        </f:if>
+
+        <div class="pricing-comparison__table-wrap">
+            <table class="pricing-comparison__table">
+                <thead>
+                    <tr>
+                        <th class="pricing-comparison__feature-col">Feature</th>
+                        <f:for each="{data.plans}" as="plan">
+                            <th class="pricing-comparison__plan-col">
+                                <span class="pricing-comparison__plan-name">{plan -> f:render.text(field: 'name')}</span>
+                                <f:if condition="{plan.price}">
+                                    <span class="pricing-comparison__plan-price">{plan -> f:render.text(field: 'price')}</span>
+                                </f:if>
+                            </th>
+                        </f:for>
+                    </tr>
+                </thead>
+                <tbody>
+                    <f:for each="{data.feature_items}" as="row">
+                        <tr>
+                            <td class="pricing-comparison__feature-name">{row -> f:render.text(field: 'feature_name')}</td>
+                            <f:for each="{row.tier_values -> f:split(separator: ',')}" as="val">
+                                <td class="pricing-comparison__cell">{val -> f:format.trim()}</td>
+                            </f:for>
+                        </tr>
+                    </f:for>
+                </tbody>
+            </table>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+</html>

@@ -1,0 +1,27 @@
+name: desiderio/brand-story
+typeName: desiderio_brandstory
+title: Brand Story
+description: Narrative brand section with text blocks and images
+group: team
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: eyebrow
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
+  - identifier: lead
+    type: Textarea
+    label: Lead Paragraph
+    rows: 3
+  - identifier: body
+    type: Textarea
+    label: Body Text
+    rows: 6
+  - identifier: image
+    type: File
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:image'
+    allowed: common-image-types
+    maxitems: 1

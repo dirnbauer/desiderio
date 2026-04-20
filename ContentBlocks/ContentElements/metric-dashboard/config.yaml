@@ -1,0 +1,50 @@
+name: desiderio/metric-dashboard
+typeName: desiderio_metricdashboard
+title: Metric Dashboard
+description: Dashboard layout combining stat cards with a mini chart area
+group: data
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: description
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
+    rows: 2
+  - identifier: items
+    type: Collection
+    label: Metrics
+    minItems: 1
+    fields:
+      - identifier: label
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:label_field'
+        required: true
+      - identifier: value
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:value'
+        required: true
+      - identifier: change
+        type: Textarea
+        rows: 1
+        label: Change
+      - identifier: trend
+        type: Select
+        renderType: selectSingle
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:trend'
+        items:
+          - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.up'
+            value: up
+          - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.down'
+            value: down
+          - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.neutral'
+            value: neutral
+        default: neutral
+  - identifier: chart_data
+    type: Textarea
+    label: Sparkline Data (JSON)
+    description: Optional JSON array for the overview sparkline
+    rows: 4

@@ -1,0 +1,52 @@
+name: desiderio/accordion
+typeName: desiderio_accordion
+title: Accordion / FAQ
+description: Collapsible accordion sections, perfect for FAQs
+group: content
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+
+  - identifier: variant
+    type: Select
+    renderType: selectSingle
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:style'
+    onChange: reload
+    items:
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.default'
+        value: default
+      - label: Bordered
+        value: bordered
+      - label: Separated
+        value: separated
+    default: default
+
+  - identifier: allow_multiple
+    type: Checkbox
+    label: Allow Multiple Open
+    description: Allow multiple accordion items to be open at once
+    default: 0
+
+  - identifier: items
+    type: Collection
+    label: Accordion Items
+    minItems: 1
+    fields:
+      - identifier: title
+        type: Textarea
+        rows: 1
+        label: Question / Title
+        required: true
+
+      - identifier: content
+        type: Textarea
+        label: Answer / Content
+        enableRichtext: true
+        rows: 5
+
+      - identifier: open_by_default
+        type: Checkbox
+        label: Open by Default
+        default: 0

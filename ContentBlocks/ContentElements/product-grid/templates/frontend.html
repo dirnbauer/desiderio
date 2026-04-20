@@ -1,0 +1,48 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-product-grid" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="product-grid">
+    <d:layout.container>
+        <f:if condition="{data.eyebrow} || {data.header}">
+            <header class="product-grid__intro">
+                <f:if condition="{data.eyebrow}">
+                    <span class="product-grid__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span>
+                </f:if>
+                <f:if condition="{data.header}">
+                    <h2 class="product-grid__headline">{data -> f:render.text(field: 'header')}</h2>
+                </f:if>
+            </header>
+        </f:if>
+
+        <div class="product-grid__items product-grid__items--cols-{data.columns -> f:or(alternative: '3')}">
+            <f:for each="{data.products}" as="product">
+                <article class="product-grid__card">
+                    <f:if condition="{product.image}">
+                        <div class="product-grid__media">
+                            <f:for each="{product.image}" as="fileReference">
+                                <img src="{f:uri.image(image: fileReference, maxWidth: 400)}" alt="{product -> f:render.text(field: 'name')}" class="product-grid__image"/>
+                            </f:for>
+                        </div>
+                    </f:if>
+                    <div class="product-grid__body">
+                        <h3 class="product-grid__name">{product -> f:render.text(field: 'name')}</h3>
+                        <span class="product-grid__price">{product -> f:render.text(field: 'price')}</span>
+                        <f:if condition="{product.description_text}">
+                            <p class="product-grid__desc">{product -> f:render.text(field: 'description_text')}</p>
+                        </f:if>
+                        <f:if condition="{product.link.url}">
+                            <f:link.typolink parameter="{product.link}" class="product-grid__link">
+                                View product &rarr;
+                            </f:link.typolink>
+                        </f:if>
+                    </div>
+                </article>
+            </f:for>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+</html>

@@ -1,0 +1,17 @@
+<f:argument name="name" type="string" />
+<f:argument name="size" type="string" optional="{true}" default="default" />
+<f:argument name="class" type="string" optional="{true}" default="" />
+
+<f:variable name="sizeClass">
+    <f:switch expression="{size}">
+        <f:case value="xs">h-3 w-3</f:case>
+        <f:case value="sm">h-4 w-4</f:case>
+        <f:case value="lg">h-6 w-6</f:case>
+        <f:case value="xl">h-8 w-8</f:case>
+        <f:defaultCase>h-5 w-5</f:defaultCase>
+    </f:switch>
+</f:variable>
+
+<svg class="shrink-0 {sizeClass -> f:format.trim()} {class}" aria-hidden="true">
+    <use href="#icon-{name}" />
+</svg>

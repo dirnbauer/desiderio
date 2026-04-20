@@ -1,0 +1,21 @@
+name: desiderio/chart-heatmap
+typeName: desiderio_chartheatmap
+title: Chart Heatmap
+description: Color intensity grid for comparing values across two categories
+group: data
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: description
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
+    rows: 2
+  - identifier: chart_data
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:chart_data_json'
+    description: |
+      JSON: {"rows":["Mon","Tue"],"cols":["A","B","C"],"values":[[1,2,3],[4,5,6]]}
+    rows: 8
+    required: true

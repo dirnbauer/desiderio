@@ -1,0 +1,46 @@
+name: desiderio/alert
+typeName: desiderio_alert
+title: Alert
+description: Alert boxes for important messages, tips, warnings
+group: data
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+
+  - identifier: variant
+    type: Select
+    renderType: selectSingle
+    label: Alert Type
+    onChange: reload
+    items:
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.default'
+        value: default
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.destructive'
+        value: destructive
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.info'
+        value: info
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.success'
+        value: success
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.warning'
+        value: warning
+    default: default
+
+  - identifier: description
+    type: Textarea
+    label: Alert Description
+    enableRichtext: true
+    rows: 3
+    required: true
+
+  - identifier: icon
+    type: Textarea
+    rows: 1
+    label: Icon Name
+    description: Optional icon identifier (e.g. "info", "alert-triangle")
+
+  - identifier: show_close_button
+    type: Checkbox
+    label: Show Close Button
+    default: 0

@@ -1,0 +1,502 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="en" target-language="fr" datatype="plaintext" original="messages" product-name="shadcn2fluid_templates">
+        <header/>
+        <body>
+            <trans-unit id="heading">
+                <source>Heading</source>
+                <target>Titre</target>
+            </trans-unit>
+            <trans-unit id="description">
+                <source>Description</source>
+                <target>Description</target>
+            </trans-unit>
+            <trans-unit id="subheadline">
+                <source>Subheadline</source>
+                <target>Sous-titre</target>
+            </trans-unit>
+            <trans-unit id="eyebrow">
+                <source>Eyebrow</source>
+                <target>Surtitre</target>
+            </trans-unit>
+            <trans-unit id="button_text">
+                <source>Button Text</source>
+                <target>Texte du bouton</target>
+            </trans-unit>
+            <trans-unit id="button_link">
+                <source>Button Link</source>
+                <target>Lien du bouton</target>
+            </trans-unit>
+            <trans-unit id="label">
+                <source>Label</source>
+                <target>Libellé</target>
+            </trans-unit>
+            <trans-unit id="link">
+                <source>Link</source>
+                <target>Lien</target>
+            </trans-unit>
+            <trans-unit id="optional_link">
+                <source>Optional Link</source>
+                <target>Lien optionnel</target>
+            </trans-unit>
+            <trans-unit id="link_text">
+                <source>Link Text</source>
+                <target>Texte du lien</target>
+            </trans-unit>
+            <trans-unit id="title">
+                <source>Title</source>
+                <target>Titre</target>
+            </trans-unit>
+            <trans-unit id="image">
+                <source>Image</source>
+                <target>Image</target>
+            </trans-unit>
+            <trans-unit id="name">
+                <source>Name</source>
+                <target>Nom</target>
+            </trans-unit>
+            <trans-unit id="content">
+                <source>Content</source>
+                <target>Contenu</target>
+            </trans-unit>
+            <trans-unit id="text">
+                <source>Text</source>
+                <target>Texte</target>
+            </trans-unit>
+            <trans-unit id="style">
+                <source>Style</source>
+                <target>Style</target>
+            </trans-unit>
+            <trans-unit id="layout">
+                <source>Layout</source>
+                <target>Disposition</target>
+            </trans-unit>
+            <trans-unit id="columns">
+                <source>Columns</source>
+                <target>Colonnes</target>
+            </trans-unit>
+            <trans-unit id="alignment">
+                <source>Alignment</source>
+                <target>Alignement</target>
+            </trans-unit>
+            <trans-unit id="text_alignment">
+                <source>Text Alignment</source>
+                <target>Alignement du texte</target>
+            </trans-unit>
+            <trans-unit id="primary_button_text">
+                <source>Primary Button Text</source>
+                <target>Texte bouton principal</target>
+            </trans-unit>
+            <trans-unit id="primary_button_link">
+                <source>Primary Button Link</source>
+                <target>Lien bouton principal</target>
+            </trans-unit>
+            <trans-unit id="secondary_button_text">
+                <source>Secondary Button Text</source>
+                <target>Texte bouton secondaire</target>
+            </trans-unit>
+            <trans-unit id="secondary_button_link">
+                <source>Secondary Button Link</source>
+                <target>Lien bouton secondaire</target>
+            </trans-unit>
+            <trans-unit id="badge_text">
+                <source>Badge Text</source>
+                <target>Texte du badge</target>
+            </trans-unit>
+            <trans-unit id="background_image">
+                <source>Background Image</source>
+                <target>Image d&#039;arrière-plan</target>
+            </trans-unit>
+            <trans-unit id="author_name">
+                <source>Author Name</source>
+                <target>Nom de l&#039;auteur</target>
+            </trans-unit>
+            <trans-unit id="author_role">
+                <source>Author Role</source>
+                <target>Rôle de l&#039;auteur</target>
+            </trans-unit>
+            <trans-unit id="author_title">
+                <source>Author Title</source>
+                <target>Titre de l&#039;auteur</target>
+            </trans-unit>
+            <trans-unit id="author_photo">
+                <source>Author Photo</source>
+                <target>Photo de l&#039;auteur</target>
+            </trans-unit>
+            <trans-unit id="copyright_text">
+                <source>Copyright Text</source>
+                <target>Texte de copyright</target>
+            </trans-unit>
+            <trans-unit id="price">
+                <source>Price</source>
+                <target>Prix</target>
+            </trans-unit>
+            <trans-unit id="rating">
+                <source>Rating</source>
+                <target>Évaluation</target>
+            </trans-unit>
+            <trans-unit id="brand">
+                <source>Brand</source>
+                <target>Marque</target>
+            </trans-unit>
+            <trans-unit id="brand_name">
+                <source>Brand Name</source>
+                <target>Nom de marque</target>
+            </trans-unit>
+            <trans-unit id="brand_link">
+                <source>Brand Link</source>
+                <target>Lien de marque</target>
+            </trans-unit>
+            <trans-unit id="form_action">
+                <source>Form Action</source>
+                <target>Action du formulaire</target>
+            </trans-unit>
+            <trans-unit id="features">
+                <source>Features</source>
+                <target>Fonctionnalités</target>
+            </trans-unit>
+            <trans-unit id="features_one_per_line">
+                <source>Features (one per line)</source>
+                <target>Fonctionnalités (une par ligne)</target>
+            </trans-unit>
+            <trans-unit id="portrait">
+                <source>Portrait</source>
+                <target>Portrait</target>
+            </trans-unit>
+            <trans-unit id="value">
+                <source>Value</source>
+                <target>Valeur</target>
+            </trans-unit>
+            <trans-unit id="role">
+                <source>Role</source>
+                <target>Rôle</target>
+            </trans-unit>
+            <trans-unit id="logo">
+                <source>Logo</source>
+                <target>Logo</target>
+            </trans-unit>
+            <trans-unit id="short_description">
+                <source>Short Description</source>
+                <target>Description courte</target>
+            </trans-unit>
+            <trans-unit id="company_name">
+                <source>Company Name</source>
+                <target>Nom de l&#039;entreprise</target>
+            </trans-unit>
+            <trans-unit id="icon_emoji">
+                <source>Icon Emoji or Symbol</source>
+                <target>Icône emoji ou symbole</target>
+            </trans-unit>
+            <trans-unit id="navigation_items">
+                <source>Navigation Items</source>
+                <target>Éléments de navigation</target>
+            </trans-unit>
+            <trans-unit id="links">
+                <source>Links</source>
+                <target>Liens</target>
+            </trans-unit>
+            <trans-unit id="links_one_per_line">
+                <source>Links (one per line)</source>
+                <target>Liens (un par ligne)</target>
+            </trans-unit>
+            <trans-unit id="items">
+                <source>Items</source>
+                <target>Éléments</target>
+            </trans-unit>
+            <trans-unit id="plans">
+                <source>Plans</source>
+                <target>Plans</target>
+            </trans-unit>
+            <trans-unit id="chart_data_json">
+                <source>Chart Data (JSON)</source>
+                <target>Données du graphique (JSON)</target>
+            </trans-unit>
+            <trans-unit id="show_more_link">
+                <source>Show More Link</source>
+                <target>Lien voir plus</target>
+            </trans-unit>
+            <trans-unit id="placeholder_text">
+                <source>Placeholder Text</source>
+                <target>Texte de remplacement</target>
+            </trans-unit>
+            <trans-unit id="submit_text">
+                <source>Submit Text</source>
+                <target>Texte de soumission</target>
+            </trans-unit>
+            <trans-unit id="consent_text">
+                <source>Consent Text</source>
+                <target>Texte de consentement</target>
+            </trans-unit>
+            <trans-unit id="success_message">
+                <source>Success Message</source>
+                <target>Message de succès</target>
+            </trans-unit>
+            <trans-unit id="currency">
+                <source>Currency</source>
+                <target>Devise</target>
+            </trans-unit>
+            <trans-unit id="period">
+                <source>Period</source>
+                <target>Période</target>
+            </trans-unit>
+            <trans-unit id="highlighted">
+                <source>Highlighted</source>
+                <target>Mis en avant</target>
+            </trans-unit>
+            <trans-unit id="product_image">
+                <source>Product Image</source>
+                <target>Image du produit</target>
+            </trans-unit>
+            <trans-unit id="column_content">
+                <source>Column Content</source>
+                <target>Contenu de colonne</target>
+            </trans-unit>
+            <trans-unit id="target_date">
+                <source>Target Date</source>
+                <target>Date cible</target>
+            </trans-unit>
+            <trans-unit id="show_labels">
+                <source>Show Labels</source>
+                <target>Afficher les étiquettes</target>
+            </trans-unit>
+            <trans-unit id="show_grid">
+                <source>Show Grid</source>
+                <target>Afficher la grille</target>
+            </trans-unit>
+            <trans-unit id="card_style">
+                <source>Card Style</source>
+                <target>Style de carte</target>
+            </trans-unit>
+            <trans-unit id="layout_variant">
+                <source>Layout Variant</source>
+                <target>Variante de disposition</target>
+            </trans-unit>
+            <trans-unit id="color">
+                <source>Color</source>
+                <target>Couleur</target>
+            </trans-unit>
+            <trans-unit id="trend">
+                <source>Trend</source>
+                <target>Tendance</target>
+            </trans-unit>
+            <trans-unit id="image_position">
+                <source>Image Position</source>
+                <target>Position de l&#039;image</target>
+            </trans-unit>
+            <trans-unit id="position">
+                <source>Position</source>
+                <target>Position</target>
+            </trans-unit>
+            <trans-unit id="item.left">
+                <source>Left</source>
+                <target>Gauche</target>
+            </trans-unit>
+            <trans-unit id="item.center">
+                <source>Center</source>
+                <target>Centré</target>
+            </trans-unit>
+            <trans-unit id="item.right">
+                <source>Right</source>
+                <target>Droite</target>
+            </trans-unit>
+            <trans-unit id="item.default">
+                <source>Default</source>
+                <target>Par défaut</target>
+            </trans-unit>
+            <trans-unit id="item.2_columns">
+                <source>2 Columns</source>
+                <target>2 colonnes</target>
+            </trans-unit>
+            <trans-unit id="item.3_columns">
+                <source>3 Columns</source>
+                <target>3 colonnes</target>
+            </trans-unit>
+            <trans-unit id="item.4_columns">
+                <source>4 Columns</source>
+                <target>4 colonnes</target>
+            </trans-unit>
+            <trans-unit id="item.horizontal">
+                <source>Horizontal</source>
+                <target>Horizontal</target>
+            </trans-unit>
+            <trans-unit id="item.vertical">
+                <source>Vertical</source>
+                <target>Vertical</target>
+            </trans-unit>
+            <trans-unit id="item.5_stars">
+                <source>5 Stars</source>
+                <target>5 étoiles</target>
+            </trans-unit>
+            <trans-unit id="item.4_stars">
+                <source>4 Stars</source>
+                <target>4 étoiles</target>
+            </trans-unit>
+            <trans-unit id="item.3_stars">
+                <source>3 Stars</source>
+                <target>3 étoiles</target>
+            </trans-unit>
+            <trans-unit id="item.basic">
+                <source>Basic</source>
+                <target>Basique</target>
+            </trans-unit>
+            <trans-unit id="item.with_image">
+                <source>With Image</source>
+                <target>Avec image</target>
+            </trans-unit>
+            <trans-unit id="item.card">
+                <source>Card</source>
+                <target>Carte</target>
+            </trans-unit>
+            <trans-unit id="item.large">
+                <source>Large</source>
+                <target>Grand</target>
+            </trans-unit>
+            <trans-unit id="item.bordered">
+                <source>Bordered</source>
+                <target>Avec bordure</target>
+            </trans-unit>
+            <trans-unit id="item.centered">
+                <source>Centered</source>
+                <target>Centré</target>
+            </trans-unit>
+            <trans-unit id="item.between">
+                <source>Space Between</source>
+                <target>Espacement égal</target>
+            </trans-unit>
+            <trans-unit id="item.accent">
+                <source>Accent</source>
+                <target>Accent</target>
+            </trans-unit>
+            <trans-unit id="item.outline">
+                <source>Outline</source>
+                <target>Contour</target>
+            </trans-unit>
+            <trans-unit id="item.info">
+                <source>Info</source>
+                <target>Info</target>
+            </trans-unit>
+            <trans-unit id="item.success">
+                <source>Success</source>
+                <target>Succès</target>
+            </trans-unit>
+            <trans-unit id="item.warning">
+                <source>Warning</source>
+                <target>Avertissement</target>
+            </trans-unit>
+            <trans-unit id="item.destructive">
+                <source>Destructive</source>
+                <target>Destructif</target>
+            </trans-unit>
+            <trans-unit id="item.simple">
+                <source>Simple</source>
+                <target>Simple</target>
+            </trans-unit>
+            <trans-unit id="item.split">
+                <source>Split</source>
+                <target>Divisé</target>
+            </trans-unit>
+            <trans-unit id="item.background">
+                <source>Background</source>
+                <target>Arrière-plan</target>
+            </trans-unit>
+            <trans-unit id="item.banner">
+                <source>Banner</source>
+                <target>Bannière</target>
+            </trans-unit>
+            <trans-unit id="item.stacked">
+                <source>Stacked</source>
+                <target>Empilé</target>
+            </trans-unit>
+            <trans-unit id="item.icon_top">
+                <source>Icon Top</source>
+                <target>Icône en haut</target>
+            </trans-unit>
+            <trans-unit id="item.icon_left">
+                <source>Icon Left</source>
+                <target>Icône à gauche</target>
+            </trans-unit>
+            <trans-unit id="item.full_width">
+                <source>Full Width</source>
+                <target>Pleine largeur</target>
+            </trans-unit>
+            <trans-unit id="item.two_columns">
+                <source>Two Columns</source>
+                <target>Deux colonnes</target>
+            </trans-unit>
+            <trans-unit id="item.secondary">
+                <source>Secondary</source>
+                <target>Secondaire</target>
+            </trans-unit>
+            <trans-unit id="item.ghost">
+                <source>Ghost</source>
+                <target>Fantôme</target>
+            </trans-unit>
+            <trans-unit id="item.primary">
+                <source>Primary</source>
+                <target>Primaire</target>
+            </trans-unit>
+            <trans-unit id="item.blue">
+                <source>Blue</source>
+                <target>Bleu</target>
+            </trans-unit>
+            <trans-unit id="item.green">
+                <source>Green</source>
+                <target>Vert</target>
+            </trans-unit>
+            <trans-unit id="item.orange">
+                <source>Orange</source>
+                <target>Orange</target>
+            </trans-unit>
+            <trans-unit id="item.red">
+                <source>Red</source>
+                <target>Rouge</target>
+            </trans-unit>
+            <trans-unit id="item.up">
+                <source>Up</source>
+                <target>En hausse</target>
+            </trans-unit>
+            <trans-unit id="item.down">
+                <source>Down</source>
+                <target>En baisse</target>
+            </trans-unit>
+            <trans-unit id="item.neutral">
+                <source>Neutral</source>
+                <target>Neutre</target>
+            </trans-unit>
+            <trans-unit id="item.muted">
+                <source>Muted</source>
+                <target>Atténué</target>
+            </trans-unit>
+            <trans-unit id="item.none">
+                <source>None</source>
+                <target>Aucun</target>
+            </trans-unit>
+
+            <!-- Page templates (Backend Layouts + Fluid layouts) -->
+            <trans-unit id="page.layout.home">
+                <source>shadcn/ui — Home</source>
+                <target>shadcn/ui — Accueil</target>
+            </trans-unit>
+            <trans-unit id="page.layout.sub">
+                <source>shadcn/ui — Subpage</source>
+                <target>shadcn/ui — Sous-page</target>
+            </trans-unit>
+            <trans-unit id="page.layout.sub_nav">
+                <source>shadcn/ui — Subpage with Navigation</source>
+                <target>shadcn/ui — Sous-page avec navigation</target>
+            </trans-unit>
+            <trans-unit id="page.layout.news">
+                <source>shadcn/ui — News Article</source>
+                <target>shadcn/ui — Article d'actualité</target>
+            </trans-unit>
+            <trans-unit id="page.column.main">
+                <source>Main Content</source>
+                <target>Contenu principal</target>
+            </trans-unit>
+            <trans-unit id="page.subnav.aria">
+                <source>Section navigation</source>
+                <target>Navigation de section</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>

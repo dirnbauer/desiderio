@@ -1,0 +1,37 @@
+name: desiderio/legal-links
+typeName: desiderio_legallinks
+title: Legal Links
+description: Inline legal link bar for privacy, terms, imprint
+group: footer
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: link_items
+    type: Collection
+    label: Legal Links
+    minItems: 1
+    fields:
+      - identifier: label
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:label_field'
+        required: true
+      - identifier: link
+        type: Link
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:link'
+  - identifier: separator
+    type: Select
+    renderType: selectSingle
+    label: Separator
+    items:
+      - label: Dot
+        value: dot
+      - label: Pipe
+        value: pipe
+      - label: Slash
+        value: slash
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.none'
+        value: none
+    default: dot

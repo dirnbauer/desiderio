@@ -1,0 +1,45 @@
+name: desiderio/content-highlight
+typeName: desiderio_contenthighlight
+title: Content Highlight
+description: Emphasized content block with accent background for key messages
+group: content
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: content
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:content'
+    enableRichtext: true
+    rows: 6
+    required: true
+  - identifier: variant
+    type: Select
+    renderType: selectSingle
+    label: Background Style
+    items:
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.muted'
+        value: muted
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.primary'
+        value: primary
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.bordered'
+        value: bordered
+    default: muted
+  - identifier: alignment
+    type: Select
+    renderType: selectSingle
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:text_alignment'
+    items:
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.left'
+        value: left
+      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.center'
+        value: center
+    default: left
+  - identifier: link
+    type: Link
+    label: Call to Action Link
+  - identifier: link_text
+    type: Textarea
+    rows: 1
+    label: Call to Action Text

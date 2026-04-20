@@ -1,0 +1,63 @@
+name: desiderio/order-summary
+typeName: desiderio_ordersummary
+title: Order Summary
+description: Order summary card with line items, totals, and CTA
+group: pricing
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+
+  - identifier: items
+    type: Collection
+    label: Line Items
+    minItems: 1
+    fields:
+      - identifier: name
+        type: Textarea
+        rows: 1
+        label: Item Name
+        required: true
+
+      - identifier: quantity
+        type: Textarea
+        rows: 1
+        label: Quantity
+
+      - identifier: price
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:price'
+        required: true
+
+  - identifier: subtotal
+    type: Textarea
+    rows: 1
+    label: Subtotal
+
+  - identifier: discount_label
+    type: Textarea
+    rows: 1
+    label: Discount Label
+
+  - identifier: discount_value
+    type: Textarea
+    rows: 1
+    label: Discount Value
+
+  - identifier: total
+    type: Textarea
+    rows: 1
+    label: Total
+    required: true
+
+  - identifier: button_text
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_text'
+    default: Proceed to Checkout
+
+  - identifier: button_link
+    type: Link
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_link'

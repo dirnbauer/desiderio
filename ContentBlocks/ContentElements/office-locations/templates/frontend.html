@@ -1,0 +1,33 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-office-locations" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="office-locations">
+    <d:layout.container>
+        <f:if condition="{data.header} || {data.subheadline}">
+            <header class="office-locations__intro">
+                <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
+                <f:if condition="{data.subheadline}"><d:atom.typography variant="muted">{data -> f:render.text(field: 'subheadline')}</d:atom.typography></f:if>
+            </header>
+        </f:if>
+
+        <div class="office-locations__grid">
+            <f:for each="{data.location_items}" as="loc">
+                <d:molecule.card class="office-locations__item">
+                    <h3 class="office-locations__city">{loc -> f:render.text(field: 'city')}</h3>
+                    <f:if condition="{loc.address}"><p class="office-locations__address">{loc -> f:render.text(field: 'address')}</p></f:if>
+                    <f:if condition="{loc.phone}"><p class="office-locations__phone">{loc -> f:render.text(field: 'phone')}</p></f:if>
+                    <f:if condition="{loc.email}"><p class="office-locations__email">{loc -> f:render.text(field: 'email')}</p></f:if>
+                    <f:if condition="{loc.map_link.url}">
+                        <d:atom.button href="{loc.map_link.url}" target="{loc.map_link.target}" variant="outline" size="sm">View on map</d:atom.button>
+                    </f:if>
+                </d:molecule.card>
+            </f:for>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

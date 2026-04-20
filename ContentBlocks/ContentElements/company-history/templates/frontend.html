@@ -1,0 +1,31 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-company-history" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="company-history">
+    <d:layout.container>
+        <f:if condition="{data.header} || {data.subheadline}">
+            <header class="company-history__intro">
+                <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
+                <f:if condition="{data.subheadline}"><d:atom.typography variant="muted">{data -> f:render.text(field: 'subheadline')}</d:atom.typography></f:if>
+            </header>
+        </f:if>
+
+        <div class="company-history__timeline">
+            <f:for each="{data.events}" as="event">
+                <article class="company-history__event">
+                    <span class="company-history__year">{event -> f:render.text(field: 'year')}</span>
+                    <div class="company-history__body">
+                        <h3 class="company-history__title">{event -> f:render.text(field: 'title')}</h3>
+                        <f:if condition="{event.description}"><p class="company-history__description">{event -> f:render.text(field: 'description')}</p></f:if>
+                    </div>
+                </article>
+            </f:for>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

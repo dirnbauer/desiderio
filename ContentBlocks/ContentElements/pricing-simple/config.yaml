@@ -1,0 +1,42 @@
+name: desiderio/pricing-simple
+typeName: desiderio_pricingsimple
+title: Pricing Simple
+description: Minimal single-price display with CTA
+group: pricing
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+
+  - identifier: price
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:price'
+    required: true
+
+  - identifier: billing_period
+    type: Textarea
+    rows: 1
+    label: Billing Period
+    description: e.g. per month
+
+  - identifier: description
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
+    rows: 2
+
+  - identifier: features_list
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:features_one_per_line'
+    rows: 5
+
+  - identifier: button_text
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_text'
+    default: Get Started
+
+  - identifier: button_link
+    type: Link
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_link'

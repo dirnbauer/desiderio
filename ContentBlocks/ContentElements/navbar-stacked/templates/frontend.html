@@ -1,0 +1,36 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-navbar-stacked" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="navbar-stacked">
+    <d:layout.container>
+        <nav class="navbar-stacked__inner" aria-label="Stacked navigation">
+            <div class="navbar-stacked__top">
+                <div class="navbar-stacked__brand">
+                    <f:if condition="{data.brand_link.url}">
+                        <f:then><f:link.typolink parameter="{data.brand_link}" class="navbar-stacked__brand-link">{data -> f:render.text(field: 'brand')}</f:link.typolink></f:then>
+                        <f:else><span class="navbar-stacked__brand-link">{data -> f:render.text(field: 'brand')}</span></f:else>
+                    </f:if>
+                    <f:if condition="{data.tagline}">
+                        <span class="navbar-stacked__tagline">{data -> f:render.text(field: 'tagline')}</span>
+                    </f:if>
+                </div>
+                <f:if condition="{data.button_text} && {data.button_link.url}">
+                    <d:atom.button href="{data.button_link.url}" target="{data.button_link.target}" size="sm">{data -> f:render.text(field: 'button_text')}</d:atom.button>
+                </f:if>
+            </div>
+            <div class="navbar-stacked__bottom">
+                <ul class="navbar-stacked__nav">
+                    <f:for each="{data.nav_items}" as="item">
+                        <li><f:if condition="{item.link.url}"><f:link.typolink parameter="{item.link}" class="navbar-stacked__link">{item -> f:render.text(field: 'label')}</f:link.typolink></f:if></li>
+                    </f:for>
+                </ul>
+            </div>
+        </nav>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

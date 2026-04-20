@@ -1,0 +1,58 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-product-reviews" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="product-reviews">
+    <d:layout.container>
+        <f:if condition="{data.header}">
+            <h2 class="product-reviews__heading">{data -> f:render.text(field: 'header')}</h2>
+        </f:if>
+
+        <f:if condition="{data.average_score}">
+            <div class="product-reviews__summary">
+                <span class="product-reviews__avg-score">{data -> f:render.text(field: 'average_score')}</span>
+                <div class="product-reviews__stars">
+                    <f:for each="{0: 1, 1: 2, 2: 3, 3: 4, 4: 5}" as="star">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="none" class="product-reviews__star">
+                            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                        </svg>
+                    </f:for>
+                </div>
+                <f:if condition="{data.total_reviews}">
+                    <span class="product-reviews__total">{data -> f:render.text(field: 'total_reviews')}</span>
+                </f:if>
+            </div>
+        </f:if>
+
+        <div class="product-reviews__list">
+            <f:for each="{data.reviews}" as="review">
+                <article class="product-reviews__review">
+                    <div class="product-reviews__review-header">
+                        <div class="product-reviews__review-stars">
+                            <f:for each="{0: 1, 1: 2, 2: 3, 3: 4, 4: 5}" as="star">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
+                                     fill="{f:if(condition: '{star} <= {review.rating}', then: 'currentColor', else: 'none')}"
+                                     stroke="currentColor" stroke-width="2"
+                                     class="product-reviews__review-star {f:if(condition: '{star} <= {review.rating}', then: 'product-reviews__review-star--filled')}">
+                                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                                </svg>
+                            </f:for>
+                        </div>
+                        <f:if condition="{review.date}">
+                            <span class="product-reviews__review-date">{review -> f:render.text(field: 'date')}</span>
+                        </f:if>
+                    </div>
+                    <f:if condition="{review.title}">
+                        <h3 class="product-reviews__review-title">{review -> f:render.text(field: 'title')}</h3>
+                    </f:if>
+                    <p class="product-reviews__review-text">{review -> f:render.text(field: 'review_text')}</p>
+                    <span class="product-reviews__review-author">{review -> f:render.text(field: 'author')}</span>
+                </article>
+            </f:for>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+</html>

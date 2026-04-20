@@ -1,0 +1,12 @@
+.chart-bar__card {
+    border: 1px solid var(--border); border-radius: var(--radius);
+    background: var(--card); overflow: hidden;
+}
+.chart-bar__header { padding: var(--d-spacing-lg) var(--d-spacing-lg) 0; }
+.chart-bar__title { font-size: var(--d-text-lg); font-weight: 600; }
+.chart-bar__description { font-size: var(--d-text-sm); color: var(--muted-foreground); margin-block-start: var(--d-spacing-xs); }
+.chart-bar__content { padding: var(--d-spacing-lg); }
+.chart-bar__canvas { width: 100%; height: 300px; }
+.chart-bar--primary { --chart-color: var(--primary); }
+.chart-bar--blue { --chart-color: hsl(210 100% 50%); }
+.chart-bar--green { --chart-color: hsl(142 70% 40%); }

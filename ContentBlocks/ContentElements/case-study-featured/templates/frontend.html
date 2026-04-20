@@ -1,0 +1,58 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-case-study-featured" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="case-study-featured">
+    <d:layout.container>
+        <f:if condition="{data.eyebrow}">
+            <span class="case-study-featured__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span>
+        </f:if>
+        <f:if condition="{data.header}">
+            <h2 class="case-study-featured__headline">{data -> f:render.text(field: 'header')}</h2>
+        </f:if>
+
+        <div class="case-study-featured__layout">
+            <f:if condition="{data.image}">
+                <div class="case-study-featured__media">
+                    <f:for each="{data.image}" as="fileReference">
+                        <img src="{f:uri.image(image: fileReference, maxWidth: 800)}" alt="{data -> f:render.text(field: 'client_name')}" class="case-study-featured__image"/>
+                    </f:for>
+                </div>
+            </f:if>
+
+            <div class="case-study-featured__content">
+                <f:if condition="{data.client_logo}">
+                    <div class="case-study-featured__logo">
+                        <f:for each="{data.client_logo}" as="logo">
+                            <img src="{f:uri.image(image: logo, maxWidth: 180)}" alt="{data -> f:render.text(field: 'client_name')}" class="case-study-featured__logo-img"/>
+                        </f:for>
+                    </div>
+                </f:if>
+
+                <h3 class="case-study-featured__client">{data -> f:render.text(field: 'client_name')}</h3>
+                <p class="case-study-featured__description">{data -> f:render.text(field: 'description')}</p>
+
+                <f:if condition="{data.metrics}">
+                    <div class="case-study-featured__metrics">
+                        <f:for each="{data.metrics}" as="metric">
+                            <div class="case-study-featured__metric">
+                                <span class="case-study-featured__metric-value">{metric -> f:render.text(field: 'value')}</span>
+                                <span class="case-study-featured__metric-label">{metric -> f:render.text(field: 'label')}</span>
+                            </div>
+                        </f:for>
+                    </div>
+                </f:if>
+
+                <f:if condition="{data.link.url}">
+                    <f:link.typolink parameter="{data.link}" class="case-study-featured__link">
+                        Read full case study &rarr;
+                    </f:link.typolink>
+                </f:if>
+            </div>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+</html>

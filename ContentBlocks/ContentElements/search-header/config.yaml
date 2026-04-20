@@ -1,0 +1,34 @@
+name: desiderio/search-header
+typeName: desiderio_searchheader
+title: Search Header
+description: Header block with headline, supporting text, and search form
+group: navigation
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+
+  - identifier: eyebrow
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
+
+  - identifier: subheadline
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
+    rows: 2
+
+  - identifier: form_action
+    type: Link
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:form_action'
+
+  - identifier: placeholder
+    type: Textarea
+    rows: 1
+    label: Placeholder
+
+  - identifier: button_text
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_text'

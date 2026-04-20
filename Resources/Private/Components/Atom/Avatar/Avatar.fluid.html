@@ -1,0 +1,25 @@
+<f:argument name="src" type="string" optional="{true}" />
+<f:argument name="alt" type="string" optional="{true}" default="" />
+<f:argument name="fallback" type="string" optional="{true}" />
+<f:argument name="size" type="string" optional="{true}" default="default" />
+<f:argument name="class" type="string" optional="{true}" default="" />
+
+<f:variable name="sizeClass">
+    <f:switch expression="{size}">
+        <f:case value="sm">h-8 w-8</f:case>
+        <f:case value="lg">h-12 w-12</f:case>
+        <f:case value="xl">h-16 w-16</f:case>
+        <f:defaultCase>h-10 w-10</f:defaultCase>
+    </f:switch>
+</f:variable>
+
+<span class="relative flex shrink-0 overflow-hidden rounded-full {sizeClass -> f:format.trim()} {class}">
+    <f:if condition="{src}">
+        <f:then>
+            <img src="{src}" alt="{alt}" class="aspect-square h-full w-full object-cover" loading="lazy" />
+        </f:then>
+        <f:else>
+            <span class="flex h-full w-full items-center justify-center rounded-full bg-muted text-sm font-medium">{fallback}</span>
+        </f:else>
+    </f:if>
+</span>

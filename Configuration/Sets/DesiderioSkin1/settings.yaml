@@ -1,0 +1,19 @@
+# Skin 1 — SaaS Landing
+# Glassmorphic header, spacious rhythm, blue accent.
+
+desiderio:
+  layout:
+    density: spacious
+    container: wide
+    radius: lg
+  header:
+    style: glass
+    fixedPosition: true
+  footer:
+    style: columns
+  theme:
+    accent: blue
+    darkModeDefault: system
+    darkModeToggle: true
+  typography:
+    fontSans: inter

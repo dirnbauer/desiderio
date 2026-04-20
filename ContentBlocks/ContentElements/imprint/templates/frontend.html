@@ -1,0 +1,54 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-imprint" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="imprint-section">
+    <d:layout.container>
+        <div class="imprint">
+            <f:if condition="{data.header}">
+                <h2 class="imprint__title">{data -> f:render.text(field: 'header')}</h2>
+            </f:if>
+            <div class="imprint__grid">
+                <div class="imprint__block">
+                    <h3 class="imprint__label">Company</h3>
+                    <p class="imprint__value">{data -> f:render.text(field: 'company_name')}</p>
+                    <f:if condition="{data.address}">
+                        <p class="imprint__value imprint__address">{data -> f:render.text(field: 'address')}</p>
+                    </f:if>
+                </div>
+                <f:if condition="{data.contact_email} || {data.contact_phone}">
+                    <div class="imprint__block">
+                        <h3 class="imprint__label">Contact</h3>
+                        <f:if condition="{data.contact_email}">
+                            <p class="imprint__value"><a href="mailto:{data -> f:render.text(field: 'contact_email')}">{data -> f:render.text(field: 'contact_email')}</a></p>
+                        </f:if>
+                        <f:if condition="{data.contact_phone}">
+                            <p class="imprint__value"><a href="tel:{data -> f:render.text(field: 'contact_phone')}">{data -> f:render.text(field: 'contact_phone')}</a></p>
+                        </f:if>
+                    </div>
+                </f:if>
+                <f:if condition="{data.registry_info} || {data.vat_id}">
+                    <div class="imprint__block">
+                        <h3 class="imprint__label">Legal</h3>
+                        <f:if condition="{data.registry_info}">
+                            <p class="imprint__value">{data -> f:render.text(field: 'registry_info')}</p>
+                        </f:if>
+                        <f:if condition="{data.vat_id}">
+                            <p class="imprint__value">VAT: {data -> f:render.text(field: 'vat_id')}</p>
+                        </f:if>
+                    </div>
+                </f:if>
+            </div>
+            <f:if condition="{data.additional_info}">
+                <div class="imprint__additional">
+                    {data -> f:render.text(field: 'additional_info')}
+                </div>
+            </f:if>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

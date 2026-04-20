@@ -1,0 +1,12 @@
+.chart-line__card {
+    border: 1px solid var(--border); border-radius: var(--radius);
+    background: var(--card); overflow: hidden;
+}
+.chart-line__header { padding: var(--d-spacing-lg) var(--d-spacing-lg) 0; }
+.chart-line__title { font-size: var(--d-text-lg); font-weight: 600; }
+.chart-line__description { font-size: var(--d-text-sm); color: var(--muted-foreground); margin-block-start: var(--d-spacing-xs); }
+.chart-line__content { padding: var(--d-spacing-lg); }
+.chart-line__canvas { width: 100%; height: 300px; }
+.chart-line--primary { --chart-color: var(--primary); }
+.chart-line--blue { --chart-color: hsl(210 100% 50%); }
+.chart-line--green { --chart-color: hsl(142 70% 40%); }

@@ -1,0 +1,13 @@
+.pricing-usage__intro { text-align: center; margin-block-end: var(--d-spacing-xl); }
+.pricing-usage__eyebrow { font-size: var(--d-text-sm); text-transform: uppercase; letter-spacing: 0.05em; color: var(--primary); font-weight: 600; }
+.pricing-usage__headline { margin-block-start: var(--d-spacing-xs); }
+.pricing-usage__description { color: var(--muted-foreground); max-width: 40rem; margin-inline: auto; }
+.pricing-usage__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: var(--d-spacing-lg); }
+.pricing-usage__card { border: 1px solid var(--border); border-radius: var(--radius); padding: var(--d-spacing-lg); display: flex; flex-direction: column; }
+.pricing-usage__title { font-size: var(--d-text-lg); font-weight: 700; }
+.pricing-usage__rate-row { display: flex; align-items: baseline; gap: 0.25rem; margin-block-start: var(--d-spacing-sm); }
+.pricing-usage__rate { font-size: var(--d-text-2xl); font-weight: 800; color: var(--primary); }
+.pricing-usage__unit { font-size: var(--d-text-sm); color: var(--muted-foreground); }
+.pricing-usage__card-desc { font-size: var(--d-text-sm); color: var(--muted-foreground); margin-block-start: var(--d-spacing-xs); flex: 1; }
+.pricing-usage__link { font-size: var(--d-text-sm); font-weight: 500; color: var(--primary); text-decoration: none; margin-block-start: var(--d-spacing-md); }
+.pricing-usage__link:hover { text-decoration: underline; }

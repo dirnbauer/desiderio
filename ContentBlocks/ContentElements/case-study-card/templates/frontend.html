@@ -1,0 +1,53 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-case-study-card" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="case-study-card">
+    <d:layout.container>
+        <f:if condition="{data.header}">
+            <h2 class="case-study-card__heading">{data -> f:render.text(field: 'header')}</h2>
+        </f:if>
+
+        <article class="case-study-card__wrapper">
+            <f:if condition="{data.image}">
+                <div class="case-study-card__media">
+                    <f:for each="{data.image}" as="fileReference">
+                        <img src="{f:uri.image(image: fileReference, maxWidth: 640)}" alt="{data -> f:render.text(field: 'client_name')}" class="case-study-card__image"/>
+                    </f:for>
+                </div>
+            </f:if>
+
+            <div class="case-study-card__body">
+                <f:if condition="{data.client_logo}">
+                    <div class="case-study-card__logo">
+                        <f:for each="{data.client_logo}" as="logo">
+                            <img src="{f:uri.image(image: logo, maxWidth: 160)}" alt="{data -> f:render.text(field: 'client_name')}" class="case-study-card__logo-img"/>
+                        </f:for>
+                    </div>
+                </f:if>
+
+                <h3 class="case-study-card__client">{data -> f:render.text(field: 'client_name')}</h3>
+                <p class="case-study-card__summary">{data -> f:render.text(field: 'summary')}</p>
+
+                <f:if condition="{data.result_value}">
+                    <div class="case-study-card__result">
+                        <span class="case-study-card__result-value">{data -> f:render.text(field: 'result_value')}</span>
+                        <f:if condition="{data.result_label}">
+                            <span class="case-study-card__result-label">{data -> f:render.text(field: 'result_label')}</span>
+                        </f:if>
+                    </div>
+                </f:if>
+
+                <f:if condition="{data.link.url}">
+                    <f:link.typolink parameter="{data.link}" class="case-study-card__link">
+                        Read case study &rarr;
+                    </f:link.typolink>
+                </f:if>
+            </div>
+        </article>
+    </d:layout.container>
+</d:layout.section>
+</html>

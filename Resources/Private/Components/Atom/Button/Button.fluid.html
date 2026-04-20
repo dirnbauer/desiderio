@@ -1,0 +1,45 @@
+<f:argument name="variant" type="string" optional="{true}" default="default" />
+<f:argument name="size" type="string" optional="{true}" default="default" />
+<f:argument name="href" type="string" optional="{true}" default="" />
+<f:argument name="target" type="string" optional="{true}" default="" />
+<f:argument name="class" type="string" optional="{true}" default="" />
+<f:argument name="disabled" type="bool" optional="{true}" default="{false}" />
+<f:argument name="type" type="string" optional="{true}" default="button" />
+
+<f:variable name="base" value="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-hidden focus-visible:ring-3 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50" />
+
+<f:variable name="variantClass">
+    <f:switch expression="{variant}">
+        <f:case value="destructive">bg-destructive text-destructive-foreground hover:bg-destructive/90</f:case>
+        <f:case value="outline">border border-input bg-background hover:bg-accent hover:text-accent-foreground</f:case>
+        <f:case value="secondary">bg-secondary text-secondary-foreground hover:bg-secondary/80</f:case>
+        <f:case value="ghost">hover:bg-accent hover:text-accent-foreground</f:case>
+        <f:case value="link">text-primary underline-offset-4 hover:underline</f:case>
+        <f:defaultCase>bg-primary text-primary-foreground hover:bg-primary/90</f:defaultCase>
+    </f:switch>
+</f:variable>
+
+<f:variable name="sizeClass">
+    <f:switch expression="{size}">
+        <f:case value="sm">h-9 rounded-md px-3</f:case>
+        <f:case value="lg">h-11 rounded-md px-8</f:case>
+        <f:case value="icon">h-10 w-10</f:case>
+        <f:defaultCase>h-10 px-4 py-2</f:defaultCase>
+    </f:switch>
+</f:variable>
+
+<f:variable name="btnClass" value="{base} {variantClass -> f:format.trim()} {sizeClass -> f:format.trim()} {class}" />
+
+<f:if condition="{href}">
+    <f:then>
+        <f:variable name="rel" value="{f:if(condition: '{target} == \'_blank\'', then: 'noopener noreferrer', else: '')}" />
+        <a href="{href}" class="{btnClass -> f:format.trim()}" target="{target}" rel="{rel}">
+            <f:slot />
+        </a>
+    </f:then>
+    <f:else>
+        <button type="{type}" class="{btnClass -> f:format.trim()}" disabled="{disabled}">
+            <f:slot />
+        </button>
+    </f:else>
+</f:if>

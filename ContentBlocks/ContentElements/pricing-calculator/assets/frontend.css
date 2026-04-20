@@ -1,0 +1,13 @@
+.pricing-calculator__intro { text-align: center; margin-block-end: var(--d-spacing-xl); }
+.pricing-calculator__eyebrow { font-size: var(--d-text-sm); text-transform: uppercase; letter-spacing: 0.05em; color: var(--primary); font-weight: 600; }
+.pricing-calculator__headline { margin-block-start: var(--d-spacing-xs); }
+.pricing-calculator__description { color: var(--muted-foreground); max-width: 40rem; margin-inline: auto; }
+.pricing-calculator__body { max-width: 40rem; margin-inline: auto; }
+.pricing-calculator__slider-area { padding: var(--d-spacing-lg); border: 1px solid var(--border); border-radius: var(--radius); margin-block-end: var(--d-spacing-lg); text-align: center; }
+.pricing-calculator__label { font-weight: 600; display: block; margin-block-end: var(--d-spacing-sm); }
+.pricing-calculator__range { width: 100%; accent-color: var(--primary); }
+.pricing-calculator__value-display { font-size: var(--d-text-2xl); font-weight: 800; color: var(--primary); margin-block-start: var(--d-spacing-sm); }
+.pricing-calculator__table { width: 100%; border-collapse: collapse; }
+.pricing-calculator__table th,
+.pricing-calculator__table td { padding: var(--d-spacing-sm) var(--d-spacing-md); text-align: start; border-block-end: 1px solid var(--border); font-size: var(--d-text-sm); }
+.pricing-calculator__table th { font-weight: 600; background: var(--muted); }

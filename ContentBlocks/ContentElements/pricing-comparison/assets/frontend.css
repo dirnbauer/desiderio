@@ -1,0 +1,15 @@
+.pricing-comparison__intro { text-align: center; margin-block-end: var(--d-spacing-xl); }
+.pricing-comparison__eyebrow { font-size: var(--d-text-sm); text-transform: uppercase; letter-spacing: 0.05em; color: var(--primary); font-weight: 600; }
+.pricing-comparison__headline { margin-block-start: var(--d-spacing-xs); }
+.pricing-comparison__table-wrap { overflow-x: auto; }
+.pricing-comparison__table { width: 100%; border-collapse: collapse; text-align: center; }
+.pricing-comparison__table th,
+.pricing-comparison__table td { padding: var(--d-spacing-sm) var(--d-spacing-md); border-block-end: 1px solid var(--border); }
+.pricing-comparison__feature-col { text-align: start; font-weight: 600; min-width: 12rem; }
+.pricing-comparison__plan-col { min-width: 8rem; }
+.pricing-comparison__plan-name { display: block; font-weight: 700; font-size: var(--d-text-base); }
+.pricing-comparison__plan-price { display: block; font-size: var(--d-text-sm); color: var(--muted-foreground); }
+.pricing-comparison__feature-name { text-align: start; font-size: var(--d-text-sm); }
+.pricing-comparison__cell { font-size: var(--d-text-sm); }
+thead tr { background: var(--muted); }
+tbody tr:hover { background: hsl(color-mix(in oklch, var(--muted) 50%, transparent); }

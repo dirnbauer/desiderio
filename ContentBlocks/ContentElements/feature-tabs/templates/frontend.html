@@ -1,0 +1,46 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-feature-tabs" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="feature-tabs">
+    <d:layout.container>
+        <f:if condition="{data.header}">
+            <header class="feature-tabs__intro">
+                <d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography>
+                <f:if condition="{data.subheadline}"><d:atom.typography variant="muted">{data -> f:render.text(field: 'subheadline')}</d:atom.typography></f:if>
+            </header>
+        </f:if>
+
+        <div class="feature-tabs__tabs" role="tablist">
+            <f:for each="{data.items}" as="item" iteration="iter">
+                <button class="feature-tabs__trigger {f:if(condition: iter.isFirst, then: 'feature-tabs__trigger--active')}"
+                        role="tab"
+                        aria-selected="{f:if(condition: iter.isFirst, then: 'true', else: 'false')}"
+                        data-tab="tab-{data.uid}-{iter.index}">{item -> f:render.text(field: 'tab_label')}</button>
+            </f:for>
+        </div>
+
+        <f:for each="{data.items}" as="item" iteration="iter">
+            <div class="feature-tabs__panel {f:if(condition: iter.isFirst, then: 'feature-tabs__panel--active')}"
+                 role="tabpanel"
+                 id="tab-{data.uid}-{iter.index}">
+                <div class="feature-tabs__content">
+                    <div class="feature-tabs__copy">
+                        <f:if condition="{item.title}"><h3 class="feature-tabs__title">{item -> f:render.text(field: 'title')}</h3></f:if>
+                        <f:if condition="{item.description}"><p class="feature-tabs__description">{item -> f:render.text(field: 'description')}</p></f:if>
+                    </div>
+                    <f:if condition="{item.image.0}">
+                        <div class="feature-tabs__media">
+                            <f:image image="{item.image.0}" alt="{item -> f:render.text(field: 'title')}" maxWidth="800" class="feature-tabs__image"/>
+                        </div>
+                    </f:if>
+                </div>
+            </div>
+        </f:for>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

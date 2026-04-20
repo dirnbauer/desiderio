@@ -1,0 +1,44 @@
+name: desiderio/footer-social
+typeName: desiderio_footersocial
+title: Footer Social
+description: Footer with prominent social media icon links
+group: footer
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: brand
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:brand_name'
+  - identifier: items
+    type: Collection
+    label: Social Links
+    minItems: 1
+    fields:
+      - identifier: platform_name
+        type: Select
+        renderType: selectSingle
+        label: Platform
+        items:
+          - label: Facebook
+            value: facebook
+          - label: X / Twitter
+            value: twitter
+          - label: Instagram
+            value: instagram
+          - label: LinkedIn
+            value: linkedin
+          - label: YouTube
+            value: youtube
+          - label: GitHub
+            value: github
+        default: facebook
+      - identifier: link
+        type: Link
+        label: Profile URL
+  - identifier: copyright
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:copyright_text'

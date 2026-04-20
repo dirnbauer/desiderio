@@ -1,0 +1,22 @@
+{
+  "_type": "grid",
+  "header": "Latest Articles",
+  "description": "Insights and best practices from our engineering and product teams.",
+  "items": [
+    {
+      "icon": "\ud83d\udcdd",
+      "title": "Building Scalable APIs",
+      "description": "Learn how we handle 10M requests per day with our microservices architecture."
+    },
+    {
+      "icon": "\ud83d\udee1\ufe0f",
+      "title": "Security Best Practices",
+      "description": "A comprehensive guide to securing your SaaS application from common threats."
+    },
+    {
+      "icon": "\ud83d\ude80",
+      "title": "Shipping Faster with CI/CD",
+      "description": "How our team reduced deployment time from hours to minutes."
+    }
+  ]
+}

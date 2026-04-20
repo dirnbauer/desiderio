@@ -1,0 +1,37 @@
+name: desiderio/advisor-grid
+typeName: desiderio_advisorgrid
+title: Advisor Grid
+description: Advisory board members displayed in a compact grid
+group: team
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: subheadline
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
+    rows: 2
+  - identifier: advisors
+    type: Collection
+    label: Advisors
+    minItems: 1
+    fields:
+      - identifier: image
+        type: File
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:portrait'
+        allowed: common-image-types
+        maxitems: 1
+      - identifier: name
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:name'
+        required: true
+      - identifier: expertise
+        type: Textarea
+        rows: 1
+        label: Area of Expertise
+      - identifier: company
+        type: Textarea
+        rows: 1
+        label: Company

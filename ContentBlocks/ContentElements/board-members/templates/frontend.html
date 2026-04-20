@@ -1,0 +1,39 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-board-members" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="board-members">
+    <d:layout.container>
+        <f:if condition="{data.header} || {data.subheadline}">
+            <header class="board-members__intro">
+                <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
+                <f:if condition="{data.subheadline}"><d:atom.typography variant="muted">{data -> f:render.text(field: 'subheadline')}</d:atom.typography></f:if>
+            </header>
+        </f:if>
+
+        <div class="board-members__grid">
+            <f:for each="{data.members}" as="member">
+                <d:molecule.card class="board-members__card">
+                    <f:if condition="{member.image}">
+                        <div class="board-members__image-wrapper">
+                            <f:for each="{member.image}" as="fileReference">
+                                <img src="{f:uri.image(image: fileReference, maxWidth: 400)}" alt="{member -> f:render.text(field: 'name')}" class="board-members__image"/>
+                            </f:for>
+                        </div>
+                    </f:if>
+                    <div class="board-members__content">
+                        <h3 class="board-members__name">{member -> f:render.text(field: 'name')}</h3>
+                        <f:if condition="{member.title}"><p class="board-members__title">{member -> f:render.text(field: 'title')}</p></f:if>
+                        <f:if condition="{member.affiliation}"><p class="board-members__affiliation">{member -> f:render.text(field: 'affiliation')}</p></f:if>
+                        <f:if condition="{member.bio}"><p class="board-members__bio">{member -> f:render.text(field: 'bio')}</p></f:if>
+                    </div>
+                </d:molecule.card>
+            </f:for>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

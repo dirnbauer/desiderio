@@ -1,0 +1,13 @@
+.product-specs__intro { margin-block-end: var(--d-spacing-xl); }
+.product-specs__eyebrow { font-size: var(--d-text-sm); text-transform: uppercase; letter-spacing: 0.05em; color: var(--primary); font-weight: 600; }
+.product-specs__headline { margin-block-start: var(--d-spacing-xs); }
+.product-specs__description { color: var(--muted-foreground); }
+.product-specs__layout { display: grid; grid-template-columns: 1fr 1fr; gap: var(--d-spacing-xl); align-items: start; }
+@media (max-width: 768px) { .product-specs__layout { grid-template-columns: 1fr; } }
+.product-specs__table { width: 100%; border-collapse: collapse; }
+.product-specs__table th,
+.product-specs__table td { padding: var(--d-spacing-sm) var(--d-spacing-md); border-block-end: 1px solid var(--border); font-size: var(--d-text-sm); text-align: start; }
+.product-specs__label { font-weight: 600; width: 40%; color: var(--muted-foreground); }
+.product-specs__value { font-weight: 500; }
+.product-specs__table tr:nth-child(even) { background: hsl(color-mix(in oklch, var(--muted) 30%, transparent); }
+.product-specs__image { width: 100%; border-radius: var(--radius); }

@@ -1,0 +1,33 @@
+name: desiderio/feature-stats
+typeName: desiderio_featurestats
+title: Feature Stats
+description: Feature section with supporting statistics and key metrics
+group: features
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  - identifier: description
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
+    rows: 3
+  - identifier: items
+    type: Collection
+    label: Stats
+    minItems: 1
+    fields:
+      - identifier: value
+        type: Textarea
+        rows: 1
+        label: Stat Value
+        required: true
+      - identifier: label
+        type: Textarea
+        rows: 1
+        label: Stat Label
+        required: true
+      - identifier: description_text
+        type: Textarea
+        rows: 1
+        label: Supporting Text

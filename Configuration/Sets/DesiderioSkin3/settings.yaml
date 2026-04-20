@@ -1,0 +1,19 @@
+# Skin 3 — Portfolio
+# Transparent overlay header, full radius, rose accents.
+
+desiderio:
+  layout:
+    density: spacious
+    container: wide
+    radius: full
+  header:
+    style: transparent
+    fixedPosition: false
+  footer:
+    style: minimal
+  theme:
+    accent: rose
+    darkModeDefault: dark
+    darkModeToggle: true
+  typography:
+    fontSans: geist

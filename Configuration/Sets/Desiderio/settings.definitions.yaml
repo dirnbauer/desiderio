@@ -1,11 +1,146 @@
 categories:
   desiderio:
     label: 'Desiderio'
+  desiderio.layout:
+    label: 'Layout'
+    parent: desiderio
+  desiderio.header:
+    label: 'Header'
+    parent: desiderio
+  desiderio.footer:
+    label: 'Footer'
+    parent: desiderio
+  desiderio.theme:
+    label: 'Theme'
+    parent: desiderio
+  desiderio.typography:
+    label: 'Typography'
+    parent: desiderio
+  desiderio.styleguide:
+    label: 'Styleguide'
+    parent: desiderio
 
 settings:
+  # --------------------------------------------------------------- Layout
+  desiderio.layout.density:
+    label: 'Vertical density'
+    description: 'Spacing rhythm for sections and content frames.'
+    type: string
+    enum:
+      compact: 'Compact'
+      comfortable: 'Comfortable'
+      spacious: 'Spacious'
+    default: comfortable
+    category: desiderio.layout
+
+  desiderio.layout.container:
+    label: 'Container width'
+    description: 'Maximum width of the main content column.'
+    type: string
+    enum:
+      narrow: 'Narrow (768px)'
+      wide: 'Wide (1280px)'
+      full: 'Full width'
+    default: wide
+    category: desiderio.layout
+
+  desiderio.layout.radius:
+    label: 'Border radius'
+    description: 'Global corner rounding for cards, buttons, inputs.'
+    type: string
+    enum:
+      none: 'None'
+      sm: 'Small'
+      md: 'Medium'
+      lg: 'Large'
+      full: 'Full'
+    default: md
+    category: desiderio.layout
+
+  # --------------------------------------------------------------- Header
+  desiderio.header.style:
+    label: 'Header style'
+    description: 'Visual treatment for the site header.'
+    type: string
+    enum:
+      solid: 'Solid'
+      transparent: 'Transparent overlay'
+      glass: 'Glass (blurred)'
+      sticky: 'Sticky solid'
+    default: solid
+    category: desiderio.header
+
   desiderio.header.fixedPosition:
-    label: 'Fixed header'
+    label: 'Pin header on scroll'
     description: 'Keep the site header pinned to the top of the viewport while scrolling.'
     type: bool
     default: false
-    category: desiderio
+    category: desiderio.header
+
+  # --------------------------------------------------------------- Footer
+  desiderio.footer.style:
+    label: 'Footer style'
+    description: 'Visual treatment for the site footer.'
+    type: string
+    enum:
+      columns: 'Columns'
+      centered: 'Centered'
+      minimal: 'Minimal'
+      mega: 'Mega (full-width)'
+    default: columns
+    category: desiderio.footer
+
+  # --------------------------------------------------------------- Theme
+  desiderio.theme.accent:
+    label: 'Accent palette'
+    description: 'Primary accent colour family.'
+    type: string
+    enum:
+      slate: 'Slate'
+      rose: 'Rose'
+      blue: 'Blue'
+      emerald: 'Emerald'
+      amber: 'Amber'
+      violet: 'Violet'
+      custom: 'Custom (uses theme.css)'
+    default: slate
+    category: desiderio.theme
+
+  desiderio.theme.darkModeDefault:
+    label: 'Default colour scheme'
+    description: 'Which colour scheme to show before the visitor chooses one.'
+    type: string
+    enum:
+      light: 'Light'
+      dark: 'Dark'
+      system: 'Follow system preference'
+    default: system
+    category: desiderio.theme
+
+  desiderio.theme.darkModeToggle:
+    label: 'Show dark-mode toggle'
+    description: 'Render a sun/moon toggle in the header.'
+    type: bool
+    default: true
+    category: desiderio.theme
+
+  # --------------------------------------------------------------- Typography
+  desiderio.typography.fontSans:
+    label: 'Sans-serif font'
+    description: 'Default body font pair.'
+    type: string
+    enum:
+      inter: 'Inter'
+      geist: 'Geist'
+      system: 'System UI'
+      serif: 'Serif (override)'
+    default: inter
+    category: desiderio.typography
+
+  # --------------------------------------------------------------- Styleguide
+  desiderio.styleguide.enabled:
+    label: 'Enable styleguide template'
+    description: 'Render the Styleguide page template. Leave off in production unless you actively curate the styleguide.'
+    type: bool
+    default: false
+    category: desiderio.styleguide

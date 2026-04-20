@@ -7,12 +7,12 @@ namespace Webconsulting\Desiderio\Data;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
- * Static list of shadcn2fluid content element groups for the styleguide page.
+ * Static list of Desiderio content element groups for the styleguide page.
  * Source: Resources/Private/Data/styleguide-content-groups.json
  *
  * Fixture data is loaded from individual fixture.json files inside each
- * Content Block directory (shadcn2fluid-templates/ContentBlocks/ContentElements/{name}/fixture.json).
- * Falls back to the monolithic Resources/Private/Data/styleguide-fixtures.json if present.
+ * Content Block directory. Falls back to the monolithic
+ * Resources/Private/Data/styleguide-fixtures.json if present.
  */
 final class StyleguideContentGroups
 {
@@ -31,16 +31,14 @@ final class StyleguideContentGroups
             return self::$cache;
         }
 
-        self::$cache = self::loadJson('EXT:desiderio/Resources/Private/Data/styleguide-content-groups.json');
+        /** @var list<array{groupId: string, groupTitle: string, elements: list<array{name: string, ctype: string}>}> $groups */
+        $groups = self::loadJson('EXT:desiderio/Resources/Private/Data/styleguide-content-groups.json');
+        self::$cache = $groups;
         return self::$cache;
     }
 
     /**
      * Loads fixture data keyed by ctype.
-     *
-     * Strategy:
-     *  1. Scan ContentBlocks/ContentElements/{name}/fixture.json inside shadcn2fluid-templates.
-     *  2. Fall back to the monolithic JSON in desiderio's Data/ directory.
      *
      * @return array<string, array<string, mixed>>
      */
@@ -50,16 +48,13 @@ final class StyleguideContentGroups
             return self::$fixtureCache;
         }
 
-        // Load individual fixture.json files from Content Block directories
         $fixtures = self::loadFixturesFromContentBlocks();
 
-        // Merge with monolithic fallback for any ctypes not found individually
+        /** @var array<string, array<string, mixed>> $monolithic */
         $monolithic = self::loadJson('EXT:desiderio/Resources/Private/Data/styleguide-fixtures.json');
-        if (is_array($monolithic)) {
-            foreach ($monolithic as $ctype => $data) {
-                if (!isset($fixtures[$ctype])) {
-                    $fixtures[$ctype] = $data;
-                }
+        foreach ($monolithic as $ctype => $data) {
+            if (!isset($fixtures[$ctype])) {
+                $fixtures[$ctype] = $data;
             }
         }
 
@@ -75,7 +70,7 @@ final class StyleguideContentGroups
     private static function loadFixturesFromContentBlocks(): array
     {
         $basePath = GeneralUtility::getFileAbsFileName(
-            'EXT:shadcn2fluid_templates/ContentBlocks/ContentElements'
+            'EXT:desiderio/ContentBlocks/ContentElements'
         );
         if ($basePath === '' || !is_dir($basePath)) {
             return [];
@@ -103,8 +98,8 @@ final class StyleguideContentGroups
             if (!is_array($decoded)) {
                 continue;
             }
-            // Key by ctype: shadcn2fluid_{dirname}
-            $ctype = 'shadcn2fluid_' . $dir;
+            $ctype = 'desiderio_' . str_replace('-', '', $dir);
+            /** @var array<string, mixed> $decoded */
             $fixtures[$ctype] = $decoded;
         }
 

@@ -192,65 +192,65 @@ function desiderioInit() {
     var name = ctype.replace('shadcn2fluid_', '');
     var lines = [
       '<-- Content Element: ' + name + ' -->',
-      '<s2f:layout.section>',
-      '  <s2f:layout.container>',
+      '<d:layout.section>',
+      '  <d:layout.container>',
     ];
 
     if (data._type === 'hero') {
-      lines.push('    <s2f:atom.badge variant="outline">{data.badge}</s2f:atom.badge>');
-      lines.push('    <s2f:atom.typography tag="h1" variant="h1">');
+      lines.push('    <d:atom.badge variant="outline">{data.badge}</d:atom.badge>');
+      lines.push('    <d:atom.typography tag="h1" variant="h1">');
       lines.push('      {data -> f:render.text(field: \'header\')}');
-      lines.push('    </s2f:atom.typography>');
-      lines.push('    <s2f:atom.typography variant="lead">{data.subheadline}</s2f:atom.typography>');
-      lines.push('    <s2f:atom.button variant="default" size="lg">');
+      lines.push('    </d:atom.typography>');
+      lines.push('    <d:atom.typography variant="lead">{data.subheadline}</d:atom.typography>');
+      lines.push('    <d:atom.button variant="default" size="lg">');
       lines.push('      <f:link.typolink parameter="{data.primary_button_link}">');
       lines.push('        {data.primary_button_text}');
       lines.push('      </f:link.typolink>');
-      lines.push('    </s2f:atom.button>');
+      lines.push('    </d:atom.button>');
     } else if (data._type === 'grid') {
-      lines.push('    <s2f:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: \'header\')}</s2f:atom.typography>');
-      lines.push('    <s2f:layout.grid cols="3">');
+      lines.push('    <d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: \'header\')}</d:atom.typography>');
+      lines.push('    <d:layout.grid cols="3">');
       lines.push('      <f:for each="{data.items}" as="item">');
-      lines.push('        <s2f:molecule.card>');
+      lines.push('        <d:molecule.card>');
       lines.push('          <div class="card__header">');
       lines.push('            <h3 class="card__title">{item -> f:render.text(field: \'title\')}</h3>');
       lines.push('            <p class="card__description">{item -> f:render.text(field: \'description\')}</p>');
       lines.push('          </div>');
-      lines.push('        </s2f:molecule.card>');
+      lines.push('        </d:molecule.card>');
       lines.push('      </f:for>');
-      lines.push('    </s2f:layout.grid>');
+      lines.push('    </d:layout.grid>');
     } else if (data._type === 'form') {
-      lines.push('    <s2f:molecule.card>');
+      lines.push('    <d:molecule.card>');
       lines.push('      <div class="card__header">');
       lines.push('        <h3 class="card__title">{data -> f:render.text(field: \'header\')}</h3>');
       lines.push('      </div>');
       lines.push('      <div class="card__content">');
-      lines.push('        <s2f:atom.label>Email</s2f:atom.label>');
-      lines.push('        <s2f:atom.input type="email" placeholder="you@example.com"/>');
+      lines.push('        <d:atom.label>Email</d:atom.label>');
+      lines.push('        <d:atom.input type="email" placeholder="you@example.com"/>');
       lines.push('      </div>');
       lines.push('      <div class="card__footer">');
-      lines.push('        <s2f:atom.button variant="default">{data.button_text}</s2f:atom.button>');
+      lines.push('        <d:atom.button variant="default">{data.button_text}</d:atom.button>');
       lines.push('      </div>');
-      lines.push('    </s2f:molecule.card>');
+      lines.push('    </d:molecule.card>');
     } else if (data._type === 'list') {
-      lines.push('    <s2f:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: \'header\')}</s2f:atom.typography>');
-      lines.push('    <s2f:molecule.accordion>');
+      lines.push('    <d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: \'header\')}</d:atom.typography>');
+      lines.push('    <d:molecule.accordion>');
       lines.push('      <f:for each="{data.items}" as="item">');
-      lines.push('        <s2f:molecule.accordionItem>');
+      lines.push('        <d:molecule.accordionItem>');
       lines.push('          <div class="accordion__trigger">{item.title}</div>');
       lines.push('          <div class="accordion__body">{item.description}</div>');
-      lines.push('        </s2f:molecule.accordionItem>');
+      lines.push('        </d:molecule.accordionItem>');
       lines.push('      </f:for>');
-      lines.push('    </s2f:molecule.accordion>');
+      lines.push('    </d:molecule.accordion>');
     } else {
-      lines.push('    <s2f:atom.typography tag="h2" variant="h2">');
+      lines.push('    <d:atom.typography tag="h2" variant="h2">');
       lines.push('      {data -> f:render.text(field: \'header\')}');
-      lines.push('    </s2f:atom.typography>');
-      lines.push('    <s2f:atom.typography variant="lead">{data.description}</s2f:atom.typography>');
+      lines.push('    </d:atom.typography>');
+      lines.push('    <d:atom.typography variant="lead">{data.description}</d:atom.typography>');
     }
 
-    lines.push('  </s2f:layout.container>');
-    lines.push('</s2f:layout.section>');
+    lines.push('  </d:layout.container>');
+    lines.push('</d:layout.section>');
 
     return lines.join('\n');
   }

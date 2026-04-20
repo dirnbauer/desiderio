@@ -165,7 +165,7 @@ Four backend layouts, five page templates. Default falls through to Contentpage.
 
 ## 6. Content Elements
 
-- **Exactly 250** elements, grouped into **10 wizard groups of 25** (see `Classes/Data/StyleguideContentGroups.php`).
+- **255** elements, grouped into **10 wizard groups** (see `Classes/Data/StyleguideContentGroups.php`).
 - Each lives at `ContentBlocks/ContentElements/<slug>/` with the standard Content Blocks layout:
   - `config.yaml` · `src/Frontend.html` · `assets/icon.svg` · `language/labels.xlf` · `fixtures/default.json`
 - Naming: lowercase kebab (`hero-centered`, not `HeroCentered`).

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 $EM_CONF[$_EXTKEY] = [
     'title' => 'Desiderio',
-    'description' => 'Desiderio — shadcn/ui-inspired Fluid 5 component library, 250 content elements, and theme layer for TYPO3 14.',
+    'description' => 'Desiderio — shadcn/ui-inspired Fluid 5 component library, 255 content elements, and theme layer for TYPO3 14.',
     'category' => 'templates',
     'author' => 'webconsulting studio',
     'author_email' => '',

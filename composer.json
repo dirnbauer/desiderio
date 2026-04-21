@@ -31,6 +31,9 @@
             "Webconsulting\\Desiderio\\Tests\\": "Tests/"
         }
     },
+    "conflict": {
+        "webconsulting/shadcn2fluid-templates": "*"
+    },
     "require-dev": {
         "phpstan/phpstan": "^2.1",
         "phpstan/phpstan-phpunit": "^2.0",

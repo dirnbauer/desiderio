@@ -16,6 +16,7 @@ final class ExtensionMetadataTest extends TestCase
         self::assertSame('typo3-cms-extension', $composer['type']);
         self::assertSame('desiderio', $composer['extra']['typo3/cms']['extension-key']);
         self::assertArrayHasKey('Webconsulting\\Desiderio\\', $composer['autoload']['psr-4']);
+        self::assertSame('*', $composer['conflict']['webconsulting/shadcn2fluid-templates'] ?? null);
     }
 
     public function testExtEmconfMatchesComposer(): void

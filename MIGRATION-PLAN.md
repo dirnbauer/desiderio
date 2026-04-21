@@ -91,14 +91,14 @@ Rename: any mention of `shadcn2fluid` / `s2f:` / `Shadcn2fluidTemplates` → `de
 
 ## Phase 5 — Site sets with settings (NEW work)
 
-For each of `Desiderio`, `DesiderioSkin1`…`DesiderioSkin5`:
+For each of `Desiderio`, `DesiderioPresetSaas`…`DesiderioPresetDashboard`:
 
 - [ ] `Configuration/Sets/<name>/config.yaml` (name, label, dependencies)
-- [ ] `Configuration/Sets/<name>/settings.definitions.yaml` (per §7 of spec, base set defines all; skins just override defaults)
+- [ ] `Configuration/Sets/<name>/settings.definitions.yaml` (per §7 of spec, base set defines all; presets just override defaults)
 - [ ] `Configuration/Sets/<name>/settings.yaml` (overrides only)
 - [ ] `Configuration/Sets/<name>/setup.typoscript` (PAGEVIEW wiring, asset inclusion keyed by settings)
 - [ ] `Configuration/Sets/<name>/page.tsconfig` (only in base)
-- [ ] `Resources/Public/Css/skinN.css` for N=1..5
+- [ ] `Resources/Public/Css/preset-saas.css`, `preset-corporate.css`, `preset-portfolio.css`, `preset-editorial.css`, `preset-dashboard.css`
 
 Render settings → CSS custom properties via a one-time `<style>` block in `Partials/Head.html`.
 
@@ -122,7 +122,7 @@ After Phase 5 is green locally:
 - [ ] `vendor/bin/phpstan analyse` passes
 - [ ] `vendor/bin/phpunit` passes
 - [ ] Spin up a DDEV TYPO3 14.3 site, install desiderio, render each page template
-- [ ] Switch through all 5 skins, confirm only visuals change
+- [ ] Switch through all 5 presets, confirm only visuals change
 - [ ] Change each setting in Site Management UI, confirm effect in frontend
 - [ ] Styleguide renders all 250 elements
 
@@ -130,7 +130,7 @@ After Phase 5 is green locally:
 
 ## Phase 8 — Merge & release
 
-- [ ] Rewrite `README.md` (single extension, describe all three layers + skins + settings)
+- [ ] Rewrite `README.md` (single extension, describe all three layers + presets + settings)
 - [ ] Merge `v2-bigbang` → `main`
 - [ ] Tag `v2.0.0`
 - [ ] Publish to Packagist

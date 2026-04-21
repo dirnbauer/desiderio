@@ -1,0 +1,7 @@
+# Preset — Mainline Corporate
+# One extra stylesheet on top of the Desiderio base.
+
+page.includeCSS {
+    desiderioPresetCorporate = EXT:desiderio/Resources/Public/Css/preset-corporate.css
+    desiderioPresetCorporate.media = all
+}

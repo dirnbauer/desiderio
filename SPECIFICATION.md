@@ -15,7 +15,7 @@ A single TYPO3 v14 extension that ships:
 2. A **content element library** (250 Content Blocks composing those components)
 3. A **theme layer** (backend layouts, page templates, partials, dark mode, styleguide)
 4. **Settings** per page template (density, container width, header style, footer style, accent, radius, font pair)
-5. A catalog of **visual variants** ("skins") applied via CSS layers
+5. A catalog of **visual variants** ("presets") applied via CSS layers
 
 `shadcn2fluid-templates` is **absorbed and deleted**. `desiderio` becomes self-contained.
 
@@ -80,11 +80,11 @@ desiderio/
 │       │   ├── setup.typoscript
 │       │   ├── page.tsconfig
 │       │   └── ...
-│       ├── DesiderioSkin1/             # SaaS Landing
-│       ├── DesiderioSkin2/             # Mainline Corporate
-│       ├── DesiderioSkin3/             # Portfolio
-│       ├── DesiderioSkin4/             # Blog & Magazine
-│       └── DesiderioSkin5/             # Dashboard App
+│       ├── DesiderioPresetSaas/             # SaaS Landing
+│       ├── DesiderioPresetCorporate/             # Mainline Corporate
+│       ├── DesiderioPresetPortfolio/             # Portfolio
+│       ├── DesiderioPresetEditorial/             # Blog & Magazine
+│       └── DesiderioPresetDashboard/             # Dashboard App
 ├── ContentBlocks/
 │   └── ContentElements/                # 250 content elements (see §6)
 │       ├── hero-centered/
@@ -105,7 +105,7 @@ desiderio/
 │       ├── Css/
 │       │   ├── desiderio.css           # base + tokens + reset
 │       │   ├── components.css          # BEM styles for 37 components
-│       │   ├── skin1.css … skin5.css   # variant layers
+│       │   ├── preset-saas.css … preset-dashboard.css   # variant layers
 │       │   └── theme.css               # shadcn OKLCH tokens
 │       ├── Js/
 │       │   └── desiderio.js            # dark mode, accordion, tabs, counters
@@ -119,7 +119,7 @@ desiderio/
         └── ViewHelpers/                 # NEW — unit tests for 3 ViewHelpers
 ```
 
-> The word **"template"** in old docs is replaced by **"skin"** throughout the new codebase to stop the clash with "page template" (Fluid). A skin is a CSS layer. A page template is a Fluid file.
+> The word **"template"** in old docs is replaced by **"preset"** throughout the new codebase to stop the clash with "page template" (Fluid). A preset is a CSS layer plus default site settings. A page template is a Fluid file.
 
 ---
 
@@ -128,7 +128,7 @@ desiderio/
 ```
 ┌──────────────────────────────────────────────────────────┐
 │ Layer 3 — THEME                                          │
-│ Page templates · Backend layouts · Header/Footer · Skins │
+│ Page templates · Backend layouts · Header/Footer · Presets │
 └──────────────────────────────────────────────────────────┘
                           ▲ renders via PAGEVIEW
 ┌──────────────────────────────────────────────────────────┐
@@ -178,7 +178,7 @@ _List frozen in `SPECIFICATION-content-elements.md` (to be generated from curren
 
 ## 7. Settings (NEW)
 
-Each skin is **more than CSS**. A set of typed settings is exposed via `Configuration/Sets/*/settings.definitions.yaml` and consumable in Fluid via `{settings.desiderio.*}`. Editors change them in the Site Management UI — no code changes.
+Each preset is **more than CSS**. A set of typed settings is exposed via `Configuration/Sets/*/settings.definitions.yaml` and consumable in Fluid via `{settings.desiderio.*}`. Editors change them in the Site Management UI — no code changes.
 
 ```yaml
 # Configuration/Sets/Desiderio/settings.definitions.yaml  (excerpt)
@@ -242,7 +242,7 @@ settings:
     label: "Render Styleguide template"
 ```
 
-Skins override defaults (e.g. `DesiderioSkin4` sets `desiderio.font.sans: serif`, `desiderio.container: narrow`). TypoScript and Fluid read these values through `{settings.desiderio.*}`. CSS reads them via a `<style>` block injected once in `<head>` that maps settings → CSS custom properties:
+Presets override defaults (e.g. `DesiderioPresetEditorial` sets `desiderio.font.sans: serif`, `desiderio.container: narrow`). TypoScript and Fluid read these values through `{settings.desiderio.*}`. CSS reads them via a `<style>` block injected once in `<head>` that maps settings → CSS custom properties:
 
 ```html
 <style>
@@ -258,23 +258,23 @@ No build step. No SCSS. Pure CSS custom properties.
 
 ---
 
-## 8. Skins (formerly "templates")
+## 8. Presets (formerly "templates")
 
 Five site sets extend the base. Each ships **one CSS file + settings overrides**:
 
-| Set | Slug | Character | Overrides |
+| Preset | Slug | Character | Overrides |
 | --- | --- | --- | --- |
-| Skin 1 | `desiderio-skin1` | SaaS Landing | glass header, spacious density, `blue` accent |
-| Skin 2 | `desiderio-skin2` | Mainline Corporate | solid header, centered footer, `slate`, minimal radius |
-| Skin 3 | `desiderio-skin3` | Portfolio | transparent header overlay, `rose`, `full` radius |
-| Skin 4 | `desiderio-skin4` | Blog & Magazine | serif font, `narrow` container, columns footer |
-| Skin 5 | `desiderio-skin5` | Dashboard App | sticky header, `compact` density, monospace accents |
+| SaaS | `desiderio-preset-saas` | SaaS Landing | glass header, spacious density, `blue` accent |
+| Corporate | `desiderio-preset-corporate` | Mainline Corporate | solid header, centered footer, `slate`, minimal radius |
+| Portfolio | `desiderio-preset-portfolio` | Portfolio | transparent header overlay, `rose`, `full` radius |
+| Editorial | `desiderio-preset-editorial` | Blog & Magazine | serif font, `narrow` container, columns footer |
+| Dashboard | `desiderio-preset-dashboard` | Dashboard App | sticky header, `compact` density, monospace accents |
 
-A skin **cannot** change markup, backend layouts, or component structure. It only changes:
-1. CSS (one `skin*.css` file loaded after `desiderio.css`)
+A preset **cannot** change markup, backend layouts, or component structure. It only changes:
+1. CSS (one preset CSS file loaded after `desiderio.css`)
 2. Setting defaults (in `settings.yaml`)
 
-Switching skins is always safe — never breaks content.
+Switching presets is always safe — never breaks content.
 
 ---
 
@@ -361,9 +361,9 @@ The rebuild is done when:
 1. `composer require webconsulting/desiderio` pulls **one** extension.
 2. `shadcn2fluid-templates` no longer exists on disk or in Packagist mirrors used by our projects.
 3. A fresh TYPO3 14.3 site + Desiderio base set renders a Startpage with a hero, features, and footer — zero manual TypoScript.
-4. Switching to any of Skin 1-5 via Site Management changes only visuals.
+4. Switching to any preset via Site Management changes only visuals.
 5. Settings UI in Site Management lists all keys from §7.
 6. `composer test` passes (phpstan + phpunit).
 7. Styleguide renders all 250 elements without errors.
-8. Dark mode toggle works on all 5 skins.
+8. Dark mode toggle works on all 5 presets.
 9. README.md describes the single extension with no reference to `shadcn2fluid_templates`.

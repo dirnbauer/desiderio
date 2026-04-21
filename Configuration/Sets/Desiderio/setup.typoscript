@@ -1,5 +1,9 @@
 @import './TypoScript/*.typoscript'
 
+# Like Camino, the base set owns the PAGE object and delegates rendering
+# to lib.fluidPage so type=0 always has a frontend entry point.
+page = PAGE
+
 page {
   includeCSS {
     desiderioBase = EXT:desiderio/Resources/Public/Css/desiderio.css

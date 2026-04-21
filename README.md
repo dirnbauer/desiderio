@@ -3,7 +3,7 @@
 A self-contained TYPO3 v14 theme extension that bundles a
 [shadcn/ui](https://ui.shadcn.com)-inspired Fluid 5 component library, **255
 content elements**, backend layouts, page templates, and five swappable
-visual skins — without a frontend build step.
+visual presets — without a frontend build step.
 
 > Desiderio 2.0 replaces both `webconsulting/desiderio 1.x` and
 > `webconsulting/shadcn2fluid-templates 3.x`. No backward compatibility; clean
@@ -15,7 +15,7 @@ visual skins — without a frontend build step.
 ```
 ┌──────────────────────────────────────────────────────────┐
 │ Layer 3 — THEME                                          │
-│ Page templates · Backend layouts · Header/Footer · Skins │
+│ Page templates · Backend layouts · Header/Footer · Presets │
 └──────────────────────────────────────────────────────────┘
                           ▲ renders via PAGEVIEW
 ┌──────────────────────────────────────────────────────────┐
@@ -39,11 +39,11 @@ vendor/bin/typo3 extension:setup
 vendor/bin/typo3 cache:flush
 ```
 
-Then enable the base site set plus one of the five skins:
+Then enable the base site set plus one of the five presets:
 
 1. Site Management → Sites → edit the target site
-2. Add `Desiderio — Base` (`webconsulting/desiderio`)
-3. Add one of the five skin sets (see below)
+2. Add `Desiderio Base` (`webconsulting/desiderio`)
+3. Add one of the five preset sets (see below)
 4. Save and flush caches
 
 ## Page templates
@@ -60,25 +60,25 @@ Every content area works with the TYPO3 visual editor. Headers and footers
 are static partials, not content areas — the editing surface stays focused
 on the content that matters.
 
-## Skins
+## Presets
 
 Five site sets that depend on the base set. Each ships a single CSS file and
-overrides base-set setting defaults. Switching skins **never** changes your
+overrides base-set setting defaults. Switching presets **never** changes your
 content, markup, or backend layouts — only the presentation.
 
 | Set                                    | Character             |
 | -------------------------------------- | --------------------- |
-| `webconsulting/desiderio-skin1`        | SaaS Landing          |
-| `webconsulting/desiderio-skin2`        | Mainline Corporate    |
-| `webconsulting/desiderio-skin3`        | Portfolio             |
-| `webconsulting/desiderio-skin4`        | Blog & Magazine       |
-| `webconsulting/desiderio-skin5`        | Dashboard App         |
+| `webconsulting/desiderio-preset-saas`        | SaaS Landing          |
+| `webconsulting/desiderio-preset-corporate`        | Mainline Corporate    |
+| `webconsulting/desiderio-preset-portfolio`        | Portfolio             |
+| `webconsulting/desiderio-preset-editorial`        | Blog & Magazine       |
+| `webconsulting/desiderio-preset-dashboard`        | Dashboard App         |
 
 ## Settings
 
 Every site configures Desiderio through typed settings exposed in
 **Site Management → Settings** (no TypoScript required). The base set
-declares the full schema; skins ship different defaults.
+declares the full schema; presets ship different defaults.
 
 | Setting                              | Values                                               |
 | ------------------------------------ | ---------------------------------------------------- |

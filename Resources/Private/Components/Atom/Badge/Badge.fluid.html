@@ -1,17 +1,19 @@
 <f:argument name="variant" type="string" optional="{true}" default="default" />
 <f:argument name="class" type="string" optional="{true}" default="" />
 
-<f:variable name="base" value="inline-flex items-center rounded-md border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-hidden focus:ring-3 focus:ring-ring focus:ring-offset-2" />
+<f:variable name="base" value="group/badge inline-flex h-5 w-fit shrink-0 items-center justify-center gap-1 overflow-hidden rounded-4xl border border-transparent px-2 py-0.5 text-xs font-medium whitespace-nowrap transition-all focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 [&amp;&gt;svg]:pointer-events-none [&amp;&gt;svg]:size-3!" />
 
 <f:variable name="variantClass">
     <f:switch expression="{variant}">
         <f:case value="secondary">border-transparent bg-secondary text-secondary-foreground hover:bg-secondary/80</f:case>
-        <f:case value="destructive">border-transparent bg-destructive text-destructive-foreground hover:bg-destructive/80</f:case>
-        <f:case value="outline">text-foreground</f:case>
-        <f:defaultCase>border-transparent bg-primary text-primary-foreground hover:bg-primary/80</f:defaultCase>
+        <f:case value="destructive">bg-destructive/10 text-destructive focus-visible:ring-destructive/20 dark:bg-destructive/20 dark:focus-visible:ring-destructive/40 [a]:hover:bg-destructive/20</f:case>
+        <f:case value="outline">border-border text-foreground [a]:hover:bg-muted [a]:hover:text-muted-foreground</f:case>
+        <f:case value="ghost">hover:bg-muted hover:text-muted-foreground dark:hover:bg-muted/50</f:case>
+        <f:case value="link">text-primary underline-offset-4 hover:underline</f:case>
+        <f:defaultCase>bg-primary text-primary-foreground [a]:hover:bg-primary/80</f:defaultCase>
     </f:switch>
 </f:variable>
 
-<span class="{base} {variantClass -> f:format.trim()} {class}">
+<span data-slot="badge" data-variant="{variant}" class="{base} {variantClass -> f:format.trim()} {class}">
     <f:slot />
 </span>

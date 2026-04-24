@@ -1,49 +1,54 @@
 name: desiderio/testimonial-featured
 typeName: desiderio_testimonialfeatured
-title: Testimonial Featured
-description: Large hero-style featured testimonial with background
+title: 'Testimonial Featured'
+description: 'A shadcn/ui styled TYPO3 content element for social proof section, using theme tokens for light and dark mode.'
 group: social-proof
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-
-  - identifier: quote
+  -
+    identifier: quote
     type: Textarea
-    label: Quote Text
+    label: 'Quote Text'
     rows: 4
     required: true
-
-  - identifier: author_name
+  -
+    identifier: author_name
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:author_name'
     required: true
-
-  - identifier: author_title
+  -
+    identifier: author_title
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:author_title'
-
-  - identifier: author_company
+  -
+    identifier: author_company
     type: Textarea
     rows: 1
     label: Company
-
-  - identifier: author_image
+  -
+    identifier: author_image
     type: File
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:author_photo'
     allowed: common-image-types
     maxitems: 1
-
-  - identifier: company_logo
+  -
+    identifier: company_logo
     type: File
-    label: Company Logo
+    label: 'Company Logo'
     allowed: common-image-types
     maxitems: 1
-
-  - identifier: background_image
+  -
+    identifier: background_image
     type: File
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:background_image'
     allowed: common-image-types

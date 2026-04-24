@@ -1,39 +1,51 @@
 name: desiderio/hero-carousel
 typeName: desiderio_herocarousel
-title: Hero Carousel
-description: Hero with rotating slides of headline, text, and image
+title: 'Hero Carousel'
+description: 'A shadcn/ui styled TYPO3 content element for hero section, using theme tokens for light and dark mode.'
 group: hero
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-  - identifier: subheadline
+  -
+    identifier: subheadline
     type: Textarea
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
     rows: 3
-  - identifier: slides
+  -
+    identifier: slides
     type: Collection
     label: Slides
     minItems: 1
     fields:
-      - identifier: title
+      -
+        identifier: title
         type: Textarea
         rows: 1
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:title'
-      - identifier: description
+      -
+        identifier: description
         type: Textarea
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
         rows: 2
-      - identifier: image
+      -
+        identifier: image
         type: File
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:image'
         allowed: common-image-types
         maxitems: 1
-      - identifier: button_text
+      -
+        identifier: button_text
         type: Textarea
         rows: 1
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_text'
-      - identifier: button_link
+      -
+        identifier: button_link
         type: Link
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_link'

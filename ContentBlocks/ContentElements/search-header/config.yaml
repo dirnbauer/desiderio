@@ -1,34 +1,39 @@
 name: desiderio/search-header
 typeName: desiderio_searchheader
-title: Search Header
-description: Header block with headline, supporting text, and search form
+title: 'Search Header'
+description: 'A shadcn/ui styled TYPO3 content element for navigation pattern, using theme tokens for light and dark mode.'
 group: navigation
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-
-  - identifier: eyebrow
+  -
+    identifier: eyebrow
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
-
-  - identifier: subheadline
+  -
+    identifier: subheadline
     type: Textarea
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
     rows: 2
-
-  - identifier: form_action
+  -
+    identifier: form_action
     type: Link
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:form_action'
-
-  - identifier: placeholder
+  -
+    identifier: placeholder
     type: Textarea
     rows: 1
     label: Placeholder
-
-  - identifier: button_text
+  -
+    identifier: button_text
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_text'

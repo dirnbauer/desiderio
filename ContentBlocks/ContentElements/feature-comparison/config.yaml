@@ -1,36 +1,47 @@
 name: desiderio/feature-comparison
 typeName: desiderio_featurecomparison
-title: Feature Comparison
-description: Side-by-side feature comparison between two options
+title: 'Feature Comparison'
+description: 'A shadcn/ui styled TYPO3 content element for feature section, using theme tokens for light and dark mode.'
 group: features
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-  - identifier: left_title
+  -
+    identifier: left_title
     type: Textarea
     rows: 1
-    label: Left Column Title
-  - identifier: right_title
+    label: 'Left Column Title'
+  -
+    identifier: right_title
     type: Textarea
     rows: 1
-    label: Right Column Title
-  - identifier: items
+    label: 'Right Column Title'
+  -
+    identifier: items
     type: Collection
-    label: Comparison Rows
+    label: 'Comparison Rows'
     minItems: 1
     fields:
-      - identifier: feature
+      -
+        identifier: feature
         type: Textarea
         rows: 1
-        label: Feature Name
+        label: 'Feature Name'
         required: true
-      - identifier: left_supported
+      -
+        identifier: left_supported
         type: Checkbox
-        label: Supported (Left)
+        label: 'Supported (Left)'
         default: 0
-      - identifier: right_supported
+      -
+        identifier: right_supported
         type: Checkbox
-        label: Supported (Right)
+        label: 'Supported (Right)'
         default: 0

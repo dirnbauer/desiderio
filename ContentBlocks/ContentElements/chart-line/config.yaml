@@ -1,39 +1,52 @@
 name: desiderio/chart-line
 typeName: desiderio_chartline
-title: Chart Line
-description: Line chart with optional data points and smooth curves
+title: 'Chart Line'
+description: 'A shadcn/ui styled TYPO3 content element for data visualization, using theme tokens for light and dark mode.'
 group: data
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-  - identifier: description
+  -
+    identifier: description
     type: Textarea
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
     rows: 2
-  - identifier: chart_data
+  -
+    identifier: chart_data
     type: Textarea
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:chart_data_json'
     rows: 6
     required: true
-  - identifier: color_variant
+  -
+    identifier: color_variant
     type: Select
     renderType: selectSingle
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:color_field'
     items:
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.primary'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.primary'
         value: primary
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.blue'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.blue'
         value: blue
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.green'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.green'
         value: green
     default: primary
-  - identifier: show_dots
+  -
+    identifier: show_dots
     type: Checkbox
-    label: Show Data Points
+    label: 'Show Data Points'
     default: 1
-  - identifier: smooth
+  -
+    identifier: smooth
     type: Checkbox
-    label: Smooth Curve
+    label: 'Smooth Curve'
     default: 1

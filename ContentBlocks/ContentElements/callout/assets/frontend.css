@@ -4,20 +4,20 @@
     border-left: 4px solid;
 }
 .callout--info {
-    background: hsl(210 100% 97%);
-    border-left-color: hsl(210 100% 50%);
+    background: var(--d-info-muted);
+    border-left-color: var(--d-info);
 }
 .callout--warning {
-    background: hsl(45 100% 96%);
-    border-left-color: hsl(45 100% 42%);
+    background: var(--d-warning-muted);
+    border-left-color: var(--d-warning);
 }
 .callout--success {
-    background: hsl(142 70% 96%);
-    border-left-color: hsl(142 70% 40%);
+    background: var(--d-success-muted);
+    border-left-color: var(--d-success);
 }
 .callout--danger {
-    background: hsl(0 80% 97%);
-    border-left-color: hsl(0 80% 50%);
+    background: var(--d-danger-muted);
+    border-left-color: var(--destructive);
 }
 .callout--note {
     background: var(--muted);

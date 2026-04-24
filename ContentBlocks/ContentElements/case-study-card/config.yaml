@@ -1,49 +1,54 @@
 name: desiderio/case-study-card
 typeName: desiderio_casestudycard
-title: Case Study Card
-description: Single case study highlight card with results
+title: 'Case Study Card'
+description: 'A shadcn/ui styled TYPO3 content element for social proof section, using theme tokens for light and dark mode.'
 group: social-proof
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-
-  - identifier: client_name
+  -
+    identifier: client_name
     type: Textarea
     rows: 1
-    label: Client Name
+    label: 'Client Name'
     required: true
-
-  - identifier: client_logo
+  -
+    identifier: client_logo
     type: File
-    label: Client Logo
+    label: 'Client Logo'
     allowed: common-image-types
     maxitems: 1
-
-  - identifier: summary
+  -
+    identifier: summary
     type: Textarea
     label: Summary
     rows: 3
     required: true
-
-  - identifier: result_value
+  -
+    identifier: result_value
     type: Textarea
     rows: 1
-    label: Key Result Value
-    description: e.g. 3x, 150%, $2M
-
-  - identifier: result_label
+    label: 'Key Result Value'
+    description: 'e.g. 3x, 150%, $2M'
+  -
+    identifier: result_label
     type: Textarea
     rows: 1
-    label: Key Result Label
-
-  - identifier: image
+    label: 'Key Result Label'
+  -
+    identifier: image
     type: File
-    label: Cover Image
+    label: 'Cover Image'
     allowed: common-image-types
     maxitems: 1
-
-  - identifier: link
+  -
+    identifier: link
     type: Link
-    label: Read More Link
+    label: 'Read More Link'

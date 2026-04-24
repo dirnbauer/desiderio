@@ -8,7 +8,7 @@
 .bundle-pricing__item-name { font-weight: 600; }
 .bundle-pricing__item-desc { display: block; font-size: var(--d-text-sm); color: var(--muted-foreground); }
 .bundle-pricing__item-price { font-size: var(--d-text-sm); color: var(--muted-foreground); text-decoration: line-through; }
-.bundle-pricing__footer { padding: var(--d-spacing-lg); text-align: center; background: hsl(color-mix(in oklch, var(--muted) 30%, transparent); }
+.bundle-pricing__footer { padding: var(--d-spacing-lg); text-align: center; background: color-mix(in oklch, var(--muted) 30%, transparent); }
 .bundle-pricing__total { margin-block-end: var(--d-spacing-md); }
 .bundle-pricing__bundle-price { font-size: var(--d-text-3xl); font-weight: 800; }
 .bundle-pricing__savings { display: inline-block; font-size: var(--d-text-sm); font-weight: 600; color: var(--primary); background: color-mix(in oklch, var(--primary) 10%, transparent); padding: 0.125rem 0.5rem; border-radius: var(--radius); margin-inline-start: var(--d-spacing-sm); }

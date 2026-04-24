@@ -1,51 +1,66 @@
 name: desiderio/contact
 typeName: desiderio_contact
 title: Contact
-description: Contact section with info cards and lead form layout
+description: 'A shadcn/ui styled TYPO3 content element for conversion flow, using theme tokens for light and dark mode.'
 group: conversion
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-  - identifier: eyebrow
+  -
+    identifier: eyebrow
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
-  - identifier: subheadline
+  -
+    identifier: subheadline
     type: Textarea
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
     rows: 3
-  - identifier: info_title
+  -
+    identifier: info_title
     type: Textarea
     rows: 1
-    label: Info Panel Title
-  - identifier: info_text
+    label: 'Info Panel Title'
+  -
+    identifier: info_text
     type: Textarea
-    label: Info Panel Text
+    label: 'Info Panel Text'
     rows: 3
-  - identifier: contact_items
+  -
+    identifier: contact_items
     type: Collection
-    label: Contact Items
+    label: 'Contact Items'
     fields:
-      - identifier: label
+      -
+        identifier: label
         type: Textarea
         rows: 1
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:label_field'
         required: true
-      - identifier: value
+      -
+        identifier: value
         type: Textarea
         rows: 1
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:value'
         required: true
-      - identifier: link
+      -
+        identifier: link
         type: Link
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:optional_link'
-  - identifier: form_title
+  -
+    identifier: form_title
     type: Textarea
     rows: 1
-    label: Form Title
-    default: Send us a message
-  - identifier: form_action
+    label: 'Form Title'
+    default: 'Send us a message'
+  -
+    identifier: form_action
     type: Link
-    label: Form Action URL
+    label: 'Form Action URL'

@@ -1,6 +1,6 @@
 .hero-gradient {
-    background: linear-gradient(135deg, var(--gradient-from, hsl(220, 70%, 50%)), var(--gradient-to, hsl(280, 70%, 50%)));
-    color: #fff;
+    background: linear-gradient(135deg, var(--gradient-from, var(--primary)), var(--gradient-to, var(--accent)));
+    color: var(--primary-foreground);
     padding-block: var(--d-spacing-20);
 }
 .hero-gradient__content {

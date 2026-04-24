@@ -1,63 +1,69 @@
 name: desiderio/bundle-pricing
 typeName: desiderio_bundlepricing
-title: Bundle Pricing
-description: Product bundle with combined pricing and savings
+title: 'Bundle Pricing'
+description: 'A shadcn/ui styled TYPO3 content element for pricing section, using theme tokens for light and dark mode.'
 group: pricing
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-
-  - identifier: eyebrow
+  -
+    identifier: eyebrow
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
-
-  - identifier: bundle_price
+  -
+    identifier: bundle_price
     type: Textarea
     rows: 1
-    label: Bundle Price
+    label: 'Bundle Price'
     required: true
-
-  - identifier: savings_text
+  -
+    identifier: savings_text
     type: Textarea
     rows: 1
-    label: Savings Text
-    description: e.g. Save 30%
-
-  - identifier: description
+    label: 'Savings Text'
+    description: 'e.g. Save 30%'
+  -
+    identifier: description
     type: Textarea
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
     rows: 2
-
-  - identifier: items
+  -
+    identifier: items
     type: Collection
-    label: Bundle Items
+    label: 'Bundle Items'
     minItems: 2
     fields:
-      - identifier: name
+      -
+        identifier: name
         type: Textarea
         rows: 1
-        label: Item Name
+        label: 'Item Name'
         required: true
-
-      - identifier: individual_price
+      -
+        identifier: individual_price
         type: Textarea
         rows: 1
-        label: Individual Price
-
-      - identifier: description_text
+        label: 'Individual Price'
+      -
+        identifier: description_text
         type: Textarea
         rows: 1
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:short_description'
-
-  - identifier: button_text
+  -
+    identifier: button_text
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_text'
-    default: Get the Bundle
-
-  - identifier: button_link
+    default: 'Get the Bundle'
+  -
+    identifier: button_link
     type: Link
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_link'

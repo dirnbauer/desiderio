@@ -1,35 +1,46 @@
 name: desiderio/terms-summary
 typeName: desiderio_termssummary
-title: Terms Summary
-description: Simplified terms of service summary with key points
+title: 'Terms Summary Footer'
+description: 'A shadcn/ui styled TYPO3 content element for footer area, using theme tokens for light and dark mode.'
 group: footer
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-  - identifier: intro
+  -
+    identifier: intro
     type: Textarea
     label: Introduction
     rows: 3
-  - identifier: items
+  -
+    identifier: items
     type: Collection
-    label: Key Terms
+    label: 'Key Terms'
     minItems: 1
     fields:
-      - identifier: title
+      -
+        identifier: title
         type: Textarea
         rows: 1
-        label: Term Title
+        label: 'Term Title'
         required: true
-      - identifier: summary
+      -
+        identifier: summary
         type: Textarea
         label: Summary
         rows: 3
-  - identifier: full_terms_link
+  -
+    identifier: full_terms_link
     type: Link
-    label: Full Terms Link
-  - identifier: last_updated
+    label: 'Full Terms Link'
+  -
+    identifier: last_updated
     type: Textarea
     rows: 1
-    label: Last Updated
+    label: 'Last Updated'

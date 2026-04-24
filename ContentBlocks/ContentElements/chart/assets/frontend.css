@@ -20,7 +20,7 @@
 }
 .chart__tooltip-label { font-weight: 600; }
 .chart--primary { --chart-color: var(--primary); }
-.chart--blue { --chart-color: hsl(210 100% 50%); }
-.chart--green { --chart-color: hsl(142 70% 40%); }
-.chart--orange { --chart-color: hsl(25 95% 53%); }
-.chart--red { --chart-color: hsl(0 80% 50%); }
+.chart--blue { --chart-color: var(--d-info); }
+.chart--green { --chart-color: var(--d-success); }
+.chart--orange { --chart-color: var(--d-warning); }
+.chart--red { --chart-color: var(--destructive); }

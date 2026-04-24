@@ -1,18 +1,25 @@
 name: desiderio/chart-pie
 typeName: desiderio_chartpie
-title: Chart Pie
-description: Pie chart with legend and configurable segments
+title: 'Chart Pie'
+description: 'A shadcn/ui styled TYPO3 content element for data visualization, using theme tokens for light and dark mode.'
 group: data
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-  - identifier: description
+  -
+    identifier: description
     type: Textarea
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
     rows: 2
-  - identifier: chart_data
+  -
+    identifier: chart_data
     type: Textarea
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:chart_data_json'
     description: |
@@ -20,19 +27,24 @@ fields:
       [{"label": "Segment A", "value": 40}, {"label": "Segment B", "value": 30}]
     rows: 6
     required: true
-  - identifier: show_legend
+  -
+    identifier: show_legend
     type: Checkbox
-    label: Show Legend
+    label: 'Show Legend'
     default: 1
-  - identifier: chart_size
+  -
+    identifier: chart_size
     type: Select
     renderType: selectSingle
-    label: Chart Size
+    label: 'Chart Size'
     items:
-      - label: Small
+      -
+        label: Small
         value: small
-      - label: Medium
+      -
+        label: Medium
         value: medium
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.large'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.large'
         value: large
     default: medium

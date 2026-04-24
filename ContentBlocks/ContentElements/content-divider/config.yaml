@@ -1,53 +1,67 @@
 name: desiderio/content-divider
 typeName: desiderio_contentdivider
-title: Content Divider
-description: Decorative section divider with optional label
+title: 'Content Divider'
+description: 'A shadcn/ui styled TYPO3 content element for content presentation, using theme tokens for light and dark mode.'
 group: content
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: variant
+  -
+    identifier: variant
     type: Select
     renderType: selectSingle
-    label: Divider Style
+    label: 'Divider Style'
     onChange: reload
     items:
-      - label: Horizontal
+      -
+        label: Horizontal
         value: horizontal
-      - label: With Text
+      -
+        label: 'With Text'
         value: with-text
-      - label: Decorative
+      -
+        label: Decorative
         value: decorative
     default: horizontal
-
-  - identifier: divider_text
+  -
+    identifier: divider_text
     type: Textarea
     rows: 1
-    label: Divider Text
-    description: Text displayed on the divider line
+    label: 'Divider Text'
+    description: 'Text displayed on the divider line'
     displayCond: 'FIELD:variant:=:with-text'
-
-  - identifier: spacing
+  -
+    identifier: spacing
     type: Select
     renderType: selectSingle
     label: Spacing
     items:
-      - label: Small
+      -
+        label: Small
         value: sm
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.default'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.default'
         value: default
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.large'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.large'
         value: lg
     default: default
-
-  - identifier: color
+  -
+    identifier: color
     type: Select
     renderType: selectSingle
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:color_field'
     items:
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.default'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.default'
         value: default
-      - label: Muted
+      -
+        label: Muted
         value: muted
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.primary'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.primary'
         value: primary
     default: default

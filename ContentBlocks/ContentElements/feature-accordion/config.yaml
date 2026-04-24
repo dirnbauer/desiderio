@@ -1,34 +1,44 @@
 name: desiderio/feature-accordion
 typeName: desiderio_featureaccordion
-title: Feature Accordion
-description: Expandable feature sections with collapsible details
+title: 'Feature Accordion'
+description: 'A shadcn/ui styled TYPO3 content element for feature section, using theme tokens for light and dark mode.'
 group: features
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-  - identifier: subheadline
+  -
+    identifier: subheadline
     type: Textarea
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
     rows: 2
-  - identifier: image
+  -
+    identifier: image
     type: File
-    label: Side Image
+    label: 'Side Image'
     allowed: common-image-types
     maxitems: 1
-  - identifier: items
+  -
+    identifier: items
     type: Collection
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:features'
     minItems: 1
     fields:
-      - identifier: title
+      -
+        identifier: title
         type: Textarea
         rows: 1
-        label: Feature Title
+        label: 'Feature Title'
         required: true
-      - identifier: content
+      -
+        identifier: content
         type: Textarea
-        label: Feature Details
+        label: 'Feature Details'
         enableRichtext: true
         rows: 4

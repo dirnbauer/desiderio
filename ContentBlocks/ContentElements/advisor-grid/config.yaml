@@ -1,37 +1,48 @@
 name: desiderio/advisor-grid
 typeName: desiderio_advisorgrid
-title: Advisor Grid
-description: Advisory board members displayed in a compact grid
+title: 'Advisor Grid'
+description: 'A shadcn/ui styled TYPO3 content element for team presentation, using theme tokens for light and dark mode.'
 group: team
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-  - identifier: subheadline
+  -
+    identifier: subheadline
     type: Textarea
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
     rows: 2
-  - identifier: advisors
+  -
+    identifier: advisors
     type: Collection
     label: Advisors
     minItems: 1
     fields:
-      - identifier: image
+      -
+        identifier: image
         type: File
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:portrait'
         allowed: common-image-types
         maxitems: 1
-      - identifier: name
+      -
+        identifier: name
         type: Textarea
         rows: 1
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:name'
         required: true
-      - identifier: expertise
+      -
+        identifier: expertise
         type: Textarea
         rows: 1
-        label: Area of Expertise
-      - identifier: company
+        label: 'Area of Expertise'
+      -
+        identifier: company
         type: Textarea
         rows: 1
         label: Company

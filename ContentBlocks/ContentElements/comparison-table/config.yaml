@@ -1,42 +1,54 @@
 name: desiderio/comparison-table
 typeName: desiderio_comparisontable
-title: Comparison Table
-description: Side-by-side feature comparison table with check/cross indicators
+title: 'Comparison Table'
+description: 'A shadcn/ui styled TYPO3 content element for data visualization, using theme tokens for light and dark mode.'
 group: data
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-  - identifier: description
+  -
+    identifier: description
     type: Textarea
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
     rows: 2
-  - identifier: column_items
+  -
+    identifier: column_items
     type: Collection
-    label: Comparison Columns
+    label: 'Comparison Columns'
     minItems: 2
     fields:
-      - identifier: name
+      -
+        identifier: name
         type: Textarea
         rows: 1
-        label: Column Name
+        label: 'Column Name'
         required: true
-      - identifier: highlighted
+      -
+        identifier: highlighted
         type: Checkbox
         label: Highlight
         default: 0
-  - identifier: feature_items
+  -
+    identifier: feature_items
     type: Collection
-    label: Feature Rows
+    label: 'Feature Rows'
     minItems: 1
     fields:
-      - identifier: name
+      -
+        identifier: name
         type: Text
-        label: Feature Name
+        label: 'Feature Name'
         required: true
-      - identifier: tier_values
+      -
+        identifier: tier_values
         type: Textarea
         rows: 1
-        label: Values (comma-separated)
-        description: Use "yes", "no", or text for each column
+        label: 'Values (comma-separated)'
+        description: 'Use "yes", "no", or text for each column'

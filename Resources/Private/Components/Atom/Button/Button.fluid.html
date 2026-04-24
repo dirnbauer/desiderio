@@ -6,25 +6,29 @@
 <f:argument name="disabled" type="bool" optional="{true}" default="{false}" />
 <f:argument name="type" type="string" optional="{true}" default="button" />
 
-<f:variable name="base" value="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-hidden focus-visible:ring-3 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50" />
+<f:variable name="base" value="group/button inline-flex shrink-0 items-center justify-center rounded-lg border border-transparent bg-clip-padding text-sm font-medium whitespace-nowrap transition-all outline-none select-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 active:not-aria-[haspopup]:translate-y-px disabled:pointer-events-none disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-3 aria-invalid:ring-destructive/20 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 [&amp;_svg]:pointer-events-none [&amp;_svg]:shrink-0 [&amp;_svg:not([class*='size-'])]:size-4" />
 
 <f:variable name="variantClass">
     <f:switch expression="{variant}">
-        <f:case value="destructive">bg-destructive text-destructive-foreground hover:bg-destructive/90</f:case>
-        <f:case value="outline">border border-input bg-background hover:bg-accent hover:text-accent-foreground</f:case>
-        <f:case value="secondary">bg-secondary text-secondary-foreground hover:bg-secondary/80</f:case>
-        <f:case value="ghost">hover:bg-accent hover:text-accent-foreground</f:case>
+        <f:case value="destructive">bg-destructive/10 text-destructive hover:bg-destructive/20 focus-visible:border-destructive/40 focus-visible:ring-destructive/20 dark:bg-destructive/20 dark:hover:bg-destructive/30 dark:focus-visible:ring-destructive/40</f:case>
+        <f:case value="outline">border-border bg-background hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:border-input dark:bg-input/30 dark:hover:bg-input/50</f:case>
+        <f:case value="secondary">bg-secondary text-secondary-foreground hover:bg-secondary/80 aria-expanded:bg-secondary aria-expanded:text-secondary-foreground</f:case>
+        <f:case value="ghost">hover:bg-muted hover:text-foreground aria-expanded:bg-muted aria-expanded:text-foreground dark:hover:bg-muted/50</f:case>
         <f:case value="link">text-primary underline-offset-4 hover:underline</f:case>
-        <f:defaultCase>bg-primary text-primary-foreground hover:bg-primary/90</f:defaultCase>
+        <f:defaultCase>bg-primary text-primary-foreground [a]:hover:bg-primary/80</f:defaultCase>
     </f:switch>
 </f:variable>
 
 <f:variable name="sizeClass">
     <f:switch expression="{size}">
-        <f:case value="sm">h-9 rounded-md px-3</f:case>
-        <f:case value="lg">h-11 rounded-md px-8</f:case>
-        <f:case value="icon">h-10 w-10</f:case>
-        <f:defaultCase>h-10 px-4 py-2</f:defaultCase>
+        <f:case value="xs">h-6 gap-1 rounded-[min(var(--radius-md),10px)] px-2 text-xs in-data-[slot=button-group]:rounded-lg has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 [&amp;_svg:not([class*='size-'])]:size-3</f:case>
+        <f:case value="sm">h-7 gap-1 rounded-[min(var(--radius-md),12px)] px-2.5 text-[0.8rem] in-data-[slot=button-group]:rounded-lg has-data-[icon=inline-end]:pr-1.5 has-data-[icon=inline-start]:pl-1.5 [&amp;_svg:not([class*='size-'])]:size-3.5</f:case>
+        <f:case value="lg">h-9 gap-1.5 px-2.5 has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2</f:case>
+        <f:case value="icon">size-8</f:case>
+        <f:case value="icon-xs">size-6 rounded-[min(var(--radius-md),10px)] in-data-[slot=button-group]:rounded-lg [&amp;_svg:not([class*='size-'])]:size-3</f:case>
+        <f:case value="icon-sm">size-7 rounded-[min(var(--radius-md),12px)] in-data-[slot=button-group]:rounded-lg</f:case>
+        <f:case value="icon-lg">size-9</f:case>
+        <f:defaultCase>h-8 gap-1.5 px-2.5 has-data-[icon=inline-end]:pr-2 has-data-[icon=inline-start]:pl-2</f:defaultCase>
     </f:switch>
 </f:variable>
 
@@ -33,12 +37,12 @@
 <f:if condition="{href}">
     <f:then>
         <f:variable name="rel" value="{f:if(condition: '{target} == \'_blank\'', then: 'noopener noreferrer', else: '')}" />
-        <a href="{href}" class="{btnClass -> f:format.trim()}" target="{target}" rel="{rel}">
+        <a href="{href}" class="{btnClass -> f:format.trim()}" target="{target}" rel="{rel}" data-slot="button" data-variant="{variant}" data-size="{size}">
             <f:slot />
         </a>
     </f:then>
     <f:else>
-        <button type="{type}" class="{btnClass -> f:format.trim()}" disabled="{disabled}">
+        <button type="{type}" class="{btnClass -> f:format.trim()}" disabled="{disabled}" data-slot="button" data-variant="{variant}" data-size="{size}">
             <f:slot />
         </button>
     </f:else>

@@ -1,39 +1,51 @@
 name: desiderio/feature-matrix
 typeName: desiderio_featurematrix
-title: Feature Matrix
-description: Feature comparison matrix for products, plans, or capabilities
+title: 'Feature Matrix'
+description: 'A shadcn/ui styled TYPO3 content element for feature section, using theme tokens for light and dark mode.'
 group: features
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-  - identifier: eyebrow
+  -
+    identifier: eyebrow
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
-  - identifier: left_label
+  -
+    identifier: left_label
     type: Textarea
     rows: 1
-    label: Left Column Label
-  - identifier: right_label
+    label: 'Left Column Label'
+  -
+    identifier: right_label
     type: Textarea
     rows: 1
-    label: Right Column Label
-  - identifier: rows
+    label: 'Right Column Label'
+  -
+    identifier: rows
     type: Collection
     label: Rows
     minItems: 1
     fields:
-      - identifier: label
+      -
+        identifier: label
         type: Textarea
         rows: 1
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:label_field'
-      - identifier: left_value
+      -
+        identifier: left_value
         type: Textarea
         rows: 1
-        label: Left Value
-      - identifier: right_value
+        label: 'Left Value'
+      -
+        identifier: right_value
         type: Textarea
         rows: 1
-        label: Right Value
+        label: 'Right Value'

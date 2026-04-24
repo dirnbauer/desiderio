@@ -1,79 +1,94 @@
 name: desiderio/data-table
 typeName: desiderio_datatable
-title: Data Table
-description: Responsive data table with sortable columns and striped rows
+title: 'Data Table'
+description: 'A shadcn/ui styled TYPO3 content element for data visualization, using theme tokens for light and dark mode.'
 group: data
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: variant
+  -
+    identifier: variant
     type: Select
     renderType: selectSingle
-    label: Table Style
+    label: 'Table Style'
     onChange: reload
     items:
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.default'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.default'
         value: default
-      - label: Striped
+      -
+        label: Striped
         value: striped
-      - label: Bordered
+      -
+        label: Bordered
         value: bordered
     default: default
-
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-
-  - identifier: show_header_row
+  -
+    identifier: show_header_row
     type: Checkbox
-    label: Show Header Row
+    label: 'Show Header Row'
     default: 1
-
-  - identifier: column_definitions
+  -
+    identifier: column_definitions
     type: Collection
-    label: Column Definitions
+    label: 'Column Definitions'
     minItems: 1
     fields:
-      - identifier: column_label
+      -
+        identifier: column_label
         type: Textarea
         rows: 1
-        label: Column Label
+        label: 'Column Label'
         required: true
-      - identifier: column_key
+      -
+        identifier: column_key
         type: Textarea
         rows: 1
-        label: Column Key
+        label: 'Column Key'
         required: true
-      - identifier: column_align
+      -
+        identifier: column_align
         type: Select
         renderType: selectSingle
         label: Alignment
         items:
-          - label: Left
+          -
+            label: Left
             value: left
-          - label: Center
+          -
+            label: Center
             value: center
-          - label: Right
+          -
+            label: Right
             value: right
         default: left
-
-  - identifier: rows
+  -
+    identifier: rows
     type: Collection
-    label: Table Rows
+    label: 'Table Rows'
     minItems: 1
     fields:
-      - identifier: row_data
+      -
+        identifier: row_data
         type: Textarea
-        label: Row Data (columns separated by |)
+        label: 'Row Data (columns separated by |)'
         enableRichtext: true
         rows: 2
-
-  - identifier: show_caption
+  -
+    identifier: show_caption
     type: Checkbox
-    label: Show Caption
+    label: 'Show Caption'
     default: 0
-
-  - identifier: caption_text
+  -
+    identifier: caption_text
     type: Textarea
     rows: 1
-    label: Caption Text
+    label: 'Caption Text'
     displayCond: 'FIELD:show_caption:=:1'

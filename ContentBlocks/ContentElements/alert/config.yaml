@@ -1,46 +1,56 @@
 name: desiderio/alert
 typeName: desiderio_alert
-title: Alert
-description: Alert boxes for important messages, tips, warnings
+title: 'Alert Data View'
+description: 'A shadcn/ui styled TYPO3 content element for data visualization, using theme tokens for light and dark mode.'
 group: data
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-
-  - identifier: variant
+  -
+    identifier: variant
     type: Select
     renderType: selectSingle
-    label: Alert Type
+    label: 'Alert Type'
     onChange: reload
     items:
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.default'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.default'
         value: default
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.destructive'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.destructive'
         value: destructive
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.info'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.info'
         value: info
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.success'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.success'
         value: success
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.warning'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.warning'
         value: warning
     default: default
-
-  - identifier: description
+  -
+    identifier: description
     type: Textarea
-    label: Alert Description
+    label: 'Alert Description'
     enableRichtext: true
     rows: 3
     required: true
-
-  - identifier: icon
+  -
+    identifier: icon
     type: Textarea
     rows: 1
-    label: Icon Name
-    description: Optional icon identifier (e.g. "info", "alert-triangle")
-
-  - identifier: show_close_button
+    label: 'Icon Name'
+    description: 'Optional icon identifier (e.g. "info", "alert-triangle")'
+  -
+    identifier: show_close_button
     type: Checkbox
-    label: Show Close Button
+    label: 'Show Close Button'
     default: 0

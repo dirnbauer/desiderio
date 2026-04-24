@@ -1,32 +1,42 @@
 name: desiderio/feature-video
 typeName: desiderio_featurevideo
-title: Feature Video
-description: Feature presentation with embedded video demonstration
+title: 'Feature Video'
+description: 'A shadcn/ui styled TYPO3 content element for feature section, using theme tokens for light and dark mode.'
 group: features
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-  - identifier: eyebrow
+  -
+    identifier: eyebrow
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
-  - identifier: description
+  -
+    identifier: description
     type: Textarea
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
     rows: 3
-  - identifier: video_url
+  -
+    identifier: video_url
     type: Text
-    label: Video URL
-    description: YouTube or Vimeo embed URL
-  - identifier: video_file
+    label: 'Video URL'
+    description: 'YouTube or Vimeo embed URL'
+  -
+    identifier: video_file
     type: File
-    label: Video File
+    label: 'Video File'
     allowed: common-media-types
     maxitems: 1
-  - identifier: poster
+  -
+    identifier: poster
     type: File
-    label: Poster Image
+    label: 'Poster Image'
     allowed: common-image-types
     maxitems: 1

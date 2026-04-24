@@ -1,25 +1,34 @@
 name: desiderio/cta-card
 typeName: desiderio_ctacard
-title: CTA Card
-description: Card-style call to action with bordered container
+title: 'CTA Card'
+description: 'A shadcn/ui styled TYPO3 content element for conversion flow, using theme tokens for light and dark mode.'
 group: conversion
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-  - identifier: description
+  -
+    identifier: description
     type: Textarea
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
     rows: 3
-  - identifier: cta_text
+  -
+    identifier: cta_text
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_text'
-  - identifier: cta_link
+  -
+    identifier: cta_link
     type: Link
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_link'
-  - identifier: badge
+  -
+    identifier: badge
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:badge_text'

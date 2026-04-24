@@ -12,7 +12,7 @@
     transition: width 0.6s ease;
 }
 .progress-bar__fill--primary { background: var(--primary); }
-.progress-bar__fill--green { background: hsl(142 70% 40%); }
-.progress-bar__fill--blue { background: hsl(210 100% 50%); }
-.progress-bar__fill--orange { background: hsl(25 95% 53%); }
-.progress-bar__fill--red { background: hsl(0 80% 50%); }
+.progress-bar__fill--green { background: var(--d-success); }
+.progress-bar__fill--blue { background: var(--d-info); }
+.progress-bar__fill--orange { background: var(--d-warning); }
+.progress-bar__fill--red { background: var(--destructive); }

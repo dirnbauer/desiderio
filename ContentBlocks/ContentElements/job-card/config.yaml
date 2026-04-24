@@ -1,28 +1,38 @@
 name: desiderio/job-card
 typeName: desiderio_jobcard
-title: Job Card
-description: Single featured job posting with details and apply button
+title: 'Job Card'
+description: 'A shadcn/ui styled TYPO3 content element for team presentation, using theme tokens for light and dark mode.'
 group: team
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
-    label: Job Title
-  - identifier: department
+    label: 'Job Title'
+  -
+    identifier: department
     type: Textarea
     rows: 1
     label: Department
-  - identifier: location
+  -
+    identifier: location
     type: Textarea
     rows: 1
     label: Location
-  - identifier: type
+  -
+    identifier: type
     type: Text
-    label: Employment Type
-  - identifier: description
+    label: 'Employment Type'
+  -
+    identifier: description
     type: Textarea
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
     rows: 4
-  - identifier: apply_link
+  -
+    identifier: apply_link
     type: Link
-    label: Apply Link
+    label: 'Apply Link'

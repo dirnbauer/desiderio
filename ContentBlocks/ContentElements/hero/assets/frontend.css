@@ -47,7 +47,7 @@
     min-height: 60vh;
     display: flex;
     align-items: center;
-    color: #fff;
+    color: var(--primary-foreground);
 }
 .hero__bg-image {
     position: absolute;
@@ -59,7 +59,7 @@
 .hero__overlay {
     position: absolute;
     inset: 0;
-    background: #000;
+    background: var(--foreground);
 }
 .hero__content--over {
     position: relative;

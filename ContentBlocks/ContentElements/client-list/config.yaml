@@ -1,46 +1,52 @@
 name: desiderio/client-list
 typeName: desiderio_clientlist
-title: Client List
-description: Named list of clients with optional logos and industries
+title: 'Client List'
+description: 'A shadcn/ui styled TYPO3 content element for social proof section, using theme tokens for light and dark mode.'
 group: social-proof
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-
-  - identifier: eyebrow
+  -
+    identifier: eyebrow
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
-
-  - identifier: subheadline
+  -
+    identifier: subheadline
     type: Textarea
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
     rows: 2
-
-  - identifier: clients
+  -
+    identifier: clients
     type: Collection
     label: Clients
     minItems: 1
     fields:
-      - identifier: name
+      -
+        identifier: name
         type: Textarea
         rows: 1
-        label: Client Name
+        label: 'Client Name'
         required: true
-
-      - identifier: industry
+      -
+        identifier: industry
         type: Textarea
         rows: 1
         label: Industry
-
-      - identifier: logo
+      -
+        identifier: logo
         type: File
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:logo'
         allowed: common-image-types
         maxitems: 1
-
-      - identifier: link
+      -
+        identifier: link
         type: Link
-        label: Website Link
+        label: 'Website Link'

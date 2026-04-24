@@ -1,32 +1,44 @@
 name: desiderio/callout
 typeName: desiderio_callout
 title: Callout
-description: Highlighted callout box for tips, warnings, or important notes
+description: 'A shadcn/ui styled TYPO3 content element for content presentation, using theme tokens for light and dark mode.'
 group: content
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-  - identifier: content
+  -
+    identifier: content
     type: Textarea
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:content'
     enableRichtext: true
     rows: 4
     required: true
-  - identifier: variant
+  -
+    identifier: variant
     type: Select
     renderType: selectSingle
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:style'
     items:
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.info'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.info'
         value: info
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.warning'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.warning'
         value: warning
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.success'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.success'
         value: success
-      - label: Danger
+      -
+        label: Danger
         value: danger
-      - label: Note
+      -
+        label: Note
         value: note
     default: info

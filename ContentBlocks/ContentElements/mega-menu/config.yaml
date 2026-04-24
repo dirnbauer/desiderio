@@ -1,68 +1,78 @@
 name: desiderio/mega-menu
 typeName: desiderio_megamenu
-title: Mega Menu
-description: Expanded marketing navigation with grouped links and CTA area
+title: 'Mega Menu'
+description: 'A shadcn/ui styled TYPO3 content element for navigation pattern, using theme tokens for light and dark mode.'
 group: navigation
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-
-  - identifier: layout
+  -
+    identifier: layout
     type: Select
     renderType: selectSingle
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:layout'
     items:
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.full_width'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.full_width'
         value: full-width
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.two_columns'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.two_columns'
         value: two-columns
     default: full-width
-
-  - identifier: brand
+  -
+    identifier: brand
     type: Textarea
     rows: 1
-    label: Brand Text
+    label: 'Brand Text'
     required: true
-
-  - identifier: brand_link
+  -
+    identifier: brand_link
     type: Link
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:brand_link'
-
-  - identifier: intro_title
+  -
+    identifier: intro_title
     type: Textarea
     rows: 1
-    label: Intro Title
-
-  - identifier: intro_text
+    label: 'Intro Title'
+  -
+    identifier: intro_text
     type: Textarea
-    label: Intro Text
+    label: 'Intro Text'
     rows: 3
-
-  - identifier: primary_button_text
+  -
+    identifier: primary_button_text
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:primary_button_text'
-
-  - identifier: primary_button_link
+  -
+    identifier: primary_button_link
     type: Link
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:primary_button_link'
-
-  - identifier: menu_groups
+  -
+    identifier: menu_groups
     type: Collection
-    label: Menu Groups
+    label: 'Menu Groups'
     minItems: 1
     fields:
-      - identifier: title
+      -
+        identifier: title
         type: Textarea
         rows: 1
-        label: Group Title
-      - identifier: description
+        label: 'Group Title'
+      -
+        identifier: description
         type: Textarea
-        label: Group Description
+        label: 'Group Description'
         rows: 2
-      - identifier: links
+      -
+        identifier: links
         type: Textarea
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:links_one_per_line'
         rows: 5

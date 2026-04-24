@@ -1,64 +1,76 @@
 name: desiderio/footer
 typeName: desiderio_footer
 title: Footer
-description: Footer block with brand text, navigation links, and utility links
+description: 'A shadcn/ui styled TYPO3 content element for footer area, using theme tokens for light and dark mode.'
 group: footer
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-
-  - identifier: layout
+  -
+    identifier: layout
     type: Select
     renderType: selectSingle
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:layout'
     items:
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.full_width'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.full_width'
         value: full-width
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.two_columns'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.two_columns'
         value: two-columns
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.stacked'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.stacked'
         value: stacked
     default: two-columns
-
-  - identifier: brand
+  -
+    identifier: brand
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:brand'
     required: true
-
-  - identifier: description
+  -
+    identifier: description
     type: Textarea
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
     rows: 3
-
-  - identifier: copyright
+  -
+    identifier: copyright
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:copyright_text'
-
-  - identifier: footer_links
+  -
+    identifier: footer_links
     type: Collection
-    label: Footer Links
+    label: 'Footer Links'
     fields:
-      - identifier: label
+      -
+        identifier: label
         type: Textarea
         rows: 1
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:label_field'
         required: true
-      - identifier: link
+      -
+        identifier: link
         type: Link
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:link'
-
-  - identifier: utility_links
+  -
+    identifier: utility_links
     type: Collection
-    label: Utility Links
+    label: 'Utility Links'
     fields:
-      - identifier: label
+      -
+        identifier: label
         type: Text
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:label_field'
         required: true
-      - identifier: link
+      -
+        identifier: link
         type: Link
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:link'

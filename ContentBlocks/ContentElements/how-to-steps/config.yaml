@@ -1,34 +1,44 @@
 name: desiderio/how-to-steps
 typeName: desiderio_howtosteps
-title: How-To Steps
-description: Numbered instruction steps with structured data for how-to guides
+title: 'How To Steps'
+description: 'A shadcn/ui styled TYPO3 content element for content presentation, using theme tokens for light and dark mode.'
 group: content
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-  - identifier: description
+  -
+    identifier: description
     type: Textarea
     label: Introduction
     rows: 3
-  - identifier: items
+  -
+    identifier: items
     type: Collection
     label: Steps
     minItems: 2
     fields:
-      - identifier: title
+      -
+        identifier: title
         type: Textarea
         rows: 1
-        label: Step Title
+        label: 'Step Title'
         required: true
-      - identifier: content
+      -
+        identifier: content
         type: Textarea
-        label: Step Instructions
+        label: 'Step Instructions'
         enableRichtext: true
         rows: 4
-      - identifier: image
+      -
+        identifier: image
         type: File
-        label: Step Image
+        label: 'Step Image'
         allowed: common-image-types
         maxitems: 1

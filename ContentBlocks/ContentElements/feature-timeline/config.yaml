@@ -1,33 +1,43 @@
 name: desiderio/feature-timeline
 typeName: desiderio_featuretimeline
-title: Feature Timeline
-description: Vertical timeline showcasing features with progressive steps
+title: 'Feature Timeline'
+description: 'A shadcn/ui styled TYPO3 content element for feature section, using theme tokens for light and dark mode.'
 group: features
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-  - identifier: subheadline
+  -
+    identifier: subheadline
     type: Textarea
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
     rows: 2
-  - identifier: items
+  -
+    identifier: items
     type: Collection
-    label: Timeline Steps
+    label: 'Timeline Steps'
     minItems: 2
     fields:
-      - identifier: step
+      -
+        identifier: step
         type: Textarea
         rows: 1
-        label: Step Label
+        label: 'Step Label'
         required: true
-      - identifier: title
+      -
+        identifier: title
         type: Textarea
         rows: 1
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:title'
         required: true
-      - identifier: description
+      -
+        identifier: description
         type: Textarea
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
         rows: 3

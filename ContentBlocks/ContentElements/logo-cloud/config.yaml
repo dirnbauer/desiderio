@@ -1,57 +1,67 @@
 name: desiderio/logo-cloud
 typeName: desiderio_logocloud
-title: Logo Cloud
-description: Social proof logo grid for customers, partners, or press mentions
+title: 'Logo Cloud'
+description: 'A shadcn/ui styled TYPO3 content element for social proof section, using theme tokens for light and dark mode.'
 group: social-proof
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-
-  - identifier: eyebrow
+  -
+    identifier: eyebrow
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
-
-  - identifier: subheadline
+  -
+    identifier: subheadline
     type: Textarea
-    label: Section Subheadline
+    label: 'Section Subheadline'
     rows: 2
-
-  - identifier: columns
+  -
+    identifier: columns
     type: Select
     renderType: selectSingle
-    label: Logo Columns
+    label: 'Logo Columns'
     items:
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.3_columns'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.3_columns'
         value: '3'
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.4_columns'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.4_columns'
         value: '4'
-      - label: 5 Columns
+      -
+        label: '5 Columns'
         value: '5'
-      - label: 6 Columns
+      -
+        label: '6 Columns'
         value: '6'
     default: '5'
-
-  - identifier: logo_items
+  -
+    identifier: logo_items
     type: Collection
     label: Logos
     minItems: 1
     fields:
-      - identifier: image
+      -
+        identifier: image
         type: File
-        label: Logo Image
+        label: 'Logo Image'
         allowed: common-image-types
         maxitems: 1
         required: true
-
-      - identifier: name
+      -
+        identifier: name
         type: Textarea
         rows: 1
-        label: Logo Name
+        label: 'Logo Name'
         required: true
-
-      - identifier: link
+      -
+        identifier: link
         type: Link
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:optional_link'

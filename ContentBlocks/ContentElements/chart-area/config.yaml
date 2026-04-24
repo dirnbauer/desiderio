@@ -1,43 +1,58 @@
 name: desiderio/chart-area
 typeName: desiderio_chartarea
-title: Chart Area
-description: Area chart with gradient fill beneath the line
+title: 'Chart Area'
+description: 'A shadcn/ui styled TYPO3 content element for data visualization, using theme tokens for light and dark mode.'
 group: data
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-  - identifier: description
+  -
+    identifier: description
     type: Textarea
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
     rows: 2
-  - identifier: chart_data
+  -
+    identifier: chart_data
     type: Textarea
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:chart_data_json'
     rows: 6
     required: true
-  - identifier: color_variant
+  -
+    identifier: color_variant
     type: Select
     renderType: selectSingle
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:color_field'
     items:
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.primary'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.primary'
         value: primary
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.blue'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.blue'
         value: blue
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.green'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.green'
         value: green
     default: primary
-  - identifier: fill_opacity
+  -
+    identifier: fill_opacity
     type: Select
     renderType: selectSingle
-    label: Fill Opacity
+    label: 'Fill Opacity'
     items:
-      - label: Light
+      -
+        label: Light
         value: light
-      - label: Medium
+      -
+        label: Medium
         value: medium
-      - label: Strong
+      -
+        label: Strong
         value: strong
     default: medium

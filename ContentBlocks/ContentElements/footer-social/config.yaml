@@ -1,44 +1,60 @@
 name: desiderio/footer-social
 typeName: desiderio_footersocial
-title: Footer Social
-description: Footer with prominent social media icon links
+title: 'Footer Social Footer'
+description: 'A shadcn/ui styled TYPO3 content element for footer area, using theme tokens for light and dark mode.'
 group: footer
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-  - identifier: brand
+  -
+    identifier: brand
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:brand_name'
-  - identifier: items
+  -
+    identifier: items
     type: Collection
-    label: Social Links
+    label: 'Social Links'
     minItems: 1
     fields:
-      - identifier: platform_name
+      -
+        identifier: platform_name
         type: Select
         renderType: selectSingle
         label: Platform
         items:
-          - label: Facebook
+          -
+            label: Facebook
             value: facebook
-          - label: X / Twitter
+          -
+            label: 'X / Twitter'
             value: twitter
-          - label: Instagram
+          -
+            label: Instagram
             value: instagram
-          - label: LinkedIn
+          -
+            label: LinkedIn
             value: linkedin
-          - label: YouTube
+          -
+            label: YouTube
             value: youtube
-          - label: GitHub
+          -
+            label: GitHub
             value: github
         default: facebook
-      - identifier: link
+      -
+        identifier: link
         type: Link
-        label: Profile URL
-  - identifier: copyright
+        label: 'Profile URL'
+  -
+    identifier: copyright
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:copyright_text'

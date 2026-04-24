@@ -1,63 +1,71 @@
 name: desiderio/blog-teasers
 typeName: desiderio_blogteasers
-title: Blog Teasers
-description: Article teaser cards for news, blog, or resource sections
+title: 'Blog Teasers'
+description: 'A shadcn/ui styled TYPO3 content element for content presentation, using theme tokens for light and dark mode.'
 group: content
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-
-  - identifier: subheadline
+  -
+    identifier: subheadline
     type: Textarea
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
     rows: 2
-
-  - identifier: columns
+  -
+    identifier: columns
     type: Select
     renderType: selectSingle
-    label: Teaser Columns
+    label: 'Teaser Columns'
     items:
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.2_columns'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.2_columns'
         value: '2'
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.3_columns'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.3_columns'
         value: '3'
     default: '3'
-
-  - identifier: posts
+  -
+    identifier: posts
     type: Collection
     label: Posts
     minItems: 1
     fields:
-      - identifier: image
+      -
+        identifier: image
         type: File
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:image'
         allowed: common-image-types
         maxitems: 1
-
-      - identifier: category
+      -
+        identifier: category
         type: Textarea
         rows: 1
         label: Category
-
-      - identifier: meta
+      -
+        identifier: meta
         type: Textarea
         rows: 1
         label: Meta
-        description: e.g. 5 min read or Mar 18, 2026
-
-      - identifier: title
+        description: 'e.g. 5 min read or Mar 18, 2026'
+      -
+        identifier: title
         type: Textarea
         rows: 1
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:title'
         required: true
-
-      - identifier: excerpt
+      -
+        identifier: excerpt
         type: Textarea
         label: Excerpt
         rows: 3
-
-      - identifier: link
+      -
+        identifier: link
         type: Link
-        label: Post Link
+        label: 'Post Link'

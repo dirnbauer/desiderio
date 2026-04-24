@@ -1,20 +1,25 @@
 name: desiderio/chart
 typeName: desiderio_chart
 title: Chart
-description: Interactive area chart with gradient fill, grid lines, and tooltips
+description: 'A shadcn/ui styled TYPO3 content element for data visualization, using theme tokens for light and dark mode.'
 group: data
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-
-  - identifier: description
+  -
+    identifier: description
     type: Textarea
-    label: Chart Description
+    label: 'Chart Description'
     rows: 2
-
-  - identifier: chart_data
+  -
+    identifier: chart_data
     type: Textarea
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:chart_data_json'
     description: |
@@ -22,49 +27,59 @@ fields:
       [{"label": "Jan", "value": 186}, {"label": "Feb", "value": 305}]
     rows: 6
     required: true
-
-  - identifier: color_variant
+  -
+    identifier: color_variant
     type: Select
     renderType: selectSingle
-    label: Chart Color
+    label: 'Chart Color'
     items:
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.primary'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.primary'
         value: primary
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.blue'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.blue'
         value: blue
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.green'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.green'
         value: green
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.orange'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.orange'
         value: orange
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.red'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.red'
         value: red
     default: primary
-
-  - identifier: show_grid
+  -
+    identifier: show_grid
     type: Checkbox
-    label: Show Grid Lines
+    label: 'Show Grid Lines'
     default: 1
-
-  - identifier: fill_type
+  -
+    identifier: fill_type
     type: Select
     renderType: selectSingle
-    label: Fill Style
+    label: 'Fill Style'
     items:
-      - label: Gradient
+      -
+        label: Gradient
         value: gradient
-      - label: Solid
+      -
+        label: Solid
         value: solid
     default: gradient
-
-  - identifier: chart_height
+  -
+    identifier: chart_height
     type: Select
     renderType: selectSingle
-    label: Chart Height
+    label: 'Chart Height'
     items:
-      - label: Small (200px)
+      -
+        label: 'Small (200px)'
         value: small
-      - label: Medium (300px)
+      -
+        label: 'Medium (300px)'
         value: medium
-      - label: Large (400px)
+      -
+        label: 'Large (400px)'
         value: large
     default: medium

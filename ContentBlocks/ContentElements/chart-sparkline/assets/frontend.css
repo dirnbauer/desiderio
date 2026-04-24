@@ -40,5 +40,5 @@
     color: var(--chart-color, var(--primary));
 }
 .chart-sparkline--primary { --chart-color: var(--primary); }
-.chart-sparkline--green { --chart-color: hsl(142 70% 45%); }
-.chart-sparkline--blue { --chart-color: hsl(210 100% 50%); }
+.chart-sparkline--green { --chart-color: var(--d-success); }
+.chart-sparkline--blue { --chart-color: var(--d-info); }

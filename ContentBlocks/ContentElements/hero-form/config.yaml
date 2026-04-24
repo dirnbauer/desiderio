@@ -1,33 +1,44 @@
 name: desiderio/hero-form
 typeName: desiderio_heroform
-title: Hero Form
-description: Hero section with inline signup or contact form
+title: 'Hero Form'
+description: 'A shadcn/ui styled TYPO3 content element for hero section, using theme tokens for light and dark mode.'
 group: hero
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-  - identifier: subheadline
+  -
+    identifier: subheadline
     type: Textarea
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
     rows: 3
-  - identifier: form_action
+  -
+    identifier: form_action
     type: Link
-    label: Form Action URL
-  - identifier: input_placeholder
+    label: 'Form Action URL'
+  -
+    identifier: input_placeholder
     type: Textarea
     rows: 1
-    label: Input Placeholder
-  - identifier: button_text
+    label: 'Input Placeholder'
+  -
+    identifier: button_text
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_text'
-  - identifier: privacy_notice
+  -
+    identifier: privacy_notice
     type: Textarea
     rows: 1
-    label: Privacy Text
-  - identifier: badge_text
+    label: 'Privacy Text'
+  -
+    identifier: badge_text
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:badge_text'

@@ -12,4 +12,4 @@
 .pricing-comparison__feature-name { text-align: start; font-size: var(--d-text-sm); }
 .pricing-comparison__cell { font-size: var(--d-text-sm); }
 thead tr { background: var(--muted); }
-tbody tr:hover { background: hsl(color-mix(in oklch, var(--muted) 50%, transparent); }
+tbody tr:hover { background: color-mix(in oklch, var(--muted) 50%, transparent); }

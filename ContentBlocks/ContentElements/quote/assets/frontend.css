@@ -18,7 +18,7 @@
     border: 1px solid var(--border);
     border-radius: var(--d-radius-lg);
     padding: var(--d-spacing-xl);
-    background: hsl(color-mix(in oklch, var(--muted) 30%, transparent);
+    background: color-mix(in oklch, var(--muted) 30%, transparent);
 }
 .quote__text p {
     font-style: italic;

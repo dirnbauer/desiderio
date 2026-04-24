@@ -1,40 +1,54 @@
 name: desiderio/notification
 typeName: desiderio_notification
-title: Notification
-description: Toast-style notification with icon, message, and action button
+title: 'Notification Data View'
+description: 'A shadcn/ui styled TYPO3 content element for data visualization, using theme tokens for light and dark mode.'
 group: data
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-  - identifier: content
+  -
+    identifier: content
     type: Textarea
     label: Message
     rows: 3
     required: true
-  - identifier: variant
+  -
+    identifier: variant
     type: Select
     renderType: selectSingle
     label: Type
     items:
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.info'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.info'
         value: info
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.success'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.success'
         value: success
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.warning'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.warning'
         value: warning
-      - label: Error
+      -
+        label: Error
         value: error
     default: info
-  - identifier: action_text
+  -
+    identifier: action_text
     type: Textarea
     rows: 1
-    label: Action Button Text
-  - identifier: action_link
+    label: 'Action Button Text'
+  -
+    identifier: action_link
     type: Link
-    label: Action Button Link
-  - identifier: dismissible
+    label: 'Action Button Link'
+  -
+    identifier: dismissible
     type: Checkbox
     label: Dismissible
     default: 1

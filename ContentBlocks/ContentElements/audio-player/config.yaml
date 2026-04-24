@@ -1,24 +1,32 @@
 name: desiderio/audio-player
 typeName: desiderio_audioplayer
-title: Audio Player
-description: Embedded audio player with title and description
+title: 'Audio Player'
+description: 'A shadcn/ui styled TYPO3 content element for content presentation, using theme tokens for light and dark mode.'
 group: content
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-  - identifier: description
+  -
+    identifier: description
     type: Textarea
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
     rows: 2
-  - identifier: audio_file
+  -
+    identifier: audio_file
     type: File
-    label: Audio File
+    label: 'Audio File'
     allowed: common-media-types
     maxitems: 1
     required: true
-  - identifier: show_download
+  -
+    identifier: show_download
     type: Checkbox
-    label: Show Download Link
+    label: 'Show Download Link'
     default: 0

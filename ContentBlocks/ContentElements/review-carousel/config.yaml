@@ -1,61 +1,70 @@
 name: desiderio/review-carousel
 typeName: desiderio_reviewcarousel
-title: Review Carousel
-description: Sliding carousel of customer reviews with ratings
+title: 'Review Carousel'
+description: 'A shadcn/ui styled TYPO3 content element for social proof section, using theme tokens for light and dark mode.'
 group: social-proof
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-
-  - identifier: eyebrow
+  -
+    identifier: eyebrow
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
-
-  - identifier: reviews
+  -
+    identifier: reviews
     type: Collection
     label: Reviews
     minItems: 2
     fields:
-      - identifier: reviewer_name
+      -
+        identifier: reviewer_name
         type: Textarea
         rows: 1
-        label: Reviewer Name
+        label: 'Reviewer Name'
         required: true
-
-      - identifier: reviewer_image
+      -
+        identifier: reviewer_image
         type: File
-        label: Reviewer Photo
+        label: 'Reviewer Photo'
         allowed: common-image-types
         maxitems: 1
-
-      - identifier: rating
+      -
+        identifier: rating
         type: Select
         renderType: selectSingle
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:rating'
         items:
-          - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.5_stars'
+          -
+            label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.5_stars'
             value: '5'
-          - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.4_stars'
+          -
+            label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.4_stars'
             value: '4'
-          - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.3_stars'
+          -
+            label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.3_stars'
             value: '3'
         default: '5'
-
-      - identifier: title
+      -
+        identifier: title
         type: Textarea
         rows: 1
-        label: Review Title
-
-      - identifier: review_text
+        label: 'Review Title'
+      -
+        identifier: review_text
         type: Textarea
-        label: Review Text
+        label: 'Review Text'
         rows: 3
         required: true
-
-      - identifier: date
+      -
+        identifier: date
         type: Textarea
         rows: 1
         label: Date

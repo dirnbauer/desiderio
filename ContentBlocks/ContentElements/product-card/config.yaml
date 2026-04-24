@@ -1,48 +1,53 @@
 name: desiderio/product-card
 typeName: desiderio_productcard
-title: Product Card
-description: Single product showcase card with image, price, and CTA
+title: 'Product Card Pricing'
+description: 'A shadcn/ui styled TYPO3 content element for pricing section, using theme tokens for light and dark mode.'
 group: pricing
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-
-  - identifier: image
+  -
+    identifier: image
     type: File
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:product_image'
     allowed: common-image-types
     maxitems: 1
-
-  - identifier: badge
+  -
+    identifier: badge
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:badge_text'
-    description: e.g. New, Sale, Popular
-
-  - identifier: price
+    description: 'e.g. New, Sale, Popular'
+  -
+    identifier: price
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:price'
     required: true
-
-  - identifier: original_price
+  -
+    identifier: original_price
     type: Textarea
     rows: 1
-    label: Original Price (strikethrough)
-
-  - identifier: description
+    label: 'Original Price (strikethrough)'
+  -
+    identifier: description
     type: Textarea
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
     rows: 2
-
-  - identifier: button_text
+  -
+    identifier: button_text
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_text'
-    default: Add to Cart
-
-  - identifier: button_link
+    default: 'Add to Cart'
+  -
+    identifier: button_link
     type: Link
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_link'

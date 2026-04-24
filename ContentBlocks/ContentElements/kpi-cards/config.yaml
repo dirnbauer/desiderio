@@ -1,63 +1,78 @@
 name: desiderio/kpi-cards
 typeName: desiderio_kpicards
-title: KPI Cards
-description: Proof-point metric cards with value, label, and trend direction
+title: 'KPI Cards'
+description: 'A shadcn/ui styled TYPO3 content element for data visualization, using theme tokens for light and dark mode.'
 group: data
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-
-  - identifier: eyebrow
+  -
+    identifier: eyebrow
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
-
-  - identifier: subheadline
+  -
+    identifier: subheadline
     type: Textarea
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
     rows: 3
-
-  - identifier: columns
+  -
+    identifier: columns
     type: Select
     renderType: selectSingle
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:columns'
     items:
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.2_columns'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.2_columns'
         value: '2'
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.3_columns'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.3_columns'
         value: '3'
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.4_columns'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.4_columns'
         value: '4'
     default: '4'
-
-  - identifier: items
+  -
+    identifier: items
     type: Collection
-    label: KPI Items
+    label: 'KPI Items'
     minItems: 1
     fields:
-      - identifier: value
+      -
+        identifier: value
         type: Textarea
         rows: 1
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:value'
-      - identifier: label
+      -
+        identifier: label
         type: Textarea
         rows: 1
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:label_field'
-      - identifier: detail_text
+      -
+        identifier: detail_text
         type: Textarea
         label: Detail
         rows: 2
-      - identifier: trend
+      -
+        identifier: trend
         type: Select
         renderType: selectSingle
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:trend'
         items:
-          - label: Positive
+          -
+            label: Positive
             value: positive
-          - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.neutral'
+          -
+            label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.neutral'
             value: neutral
-          - label: Caution
+          -
+            label: Caution
             value: caution
         default: positive

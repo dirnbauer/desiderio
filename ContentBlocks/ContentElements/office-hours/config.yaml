@@ -1,28 +1,37 @@
 name: desiderio/office-hours
 typeName: desiderio_officehours
-title: Office Hours
-description: Business hours display with days and times
+title: 'Office Hours'
+description: 'A shadcn/ui styled TYPO3 content element for conversion flow, using theme tokens for light and dark mode.'
 group: conversion
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-  - identifier: description_text
+  -
+    identifier: description_text
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
-  - identifier: hours_items
+  -
+    identifier: hours_items
     type: Collection
     label: Hours
     minItems: 1
     fields:
-      - identifier: day
+      -
+        identifier: day
         type: Textarea
         rows: 1
         label: Day
         required: true
-      - identifier: time
+      -
+        identifier: time
         type: Textarea
         rows: 1
         label: Hours

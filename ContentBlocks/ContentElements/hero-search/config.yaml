@@ -1,32 +1,43 @@
 name: desiderio/hero-search
 typeName: desiderio_herosearch
-title: Hero Search
-description: Hero with prominent search bar for platforms and directories
+title: 'Hero Search'
+description: 'A shadcn/ui styled TYPO3 content element for hero section, using theme tokens for light and dark mode.'
 group: hero
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-  - identifier: subheadline
+  -
+    identifier: subheadline
     type: Textarea
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
     rows: 3
-  - identifier: form_action
+  -
+    identifier: form_action
     type: Link
-    label: Search Action URL
-  - identifier: placeholder
+    label: 'Search Action URL'
+  -
+    identifier: placeholder
     type: Textarea
     rows: 1
-    label: Search Placeholder
-  - identifier: categories
+    label: 'Search Placeholder'
+  -
+    identifier: categories
     type: Collection
-    label: Category Filters
+    label: 'Category Filters'
     fields:
-      - identifier: label
+      -
+        identifier: label
         type: Textarea
         rows: 1
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:label_field'
-      - identifier: link
+      -
+        identifier: link
         type: Link
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:link'

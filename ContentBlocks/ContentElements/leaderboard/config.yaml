@@ -1,42 +1,54 @@
 name: desiderio/leaderboard
 typeName: desiderio_leaderboard
 title: Leaderboard
-description: Ranked list with position, name, value, and optional avatar
+description: 'A shadcn/ui styled TYPO3 content element for data visualization, using theme tokens for light and dark mode.'
 group: data
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-  - identifier: description
+  -
+    identifier: description
     type: Textarea
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
     rows: 2
-  - identifier: items
+  -
+    identifier: items
     type: Collection
     label: Entries
     minItems: 1
     fields:
-      - identifier: name
+      -
+        identifier: name
         type: Textarea
         rows: 1
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:name'
         required: true
-      - identifier: value
+      -
+        identifier: value
         type: Textarea
         rows: 1
-        label: Value / Score
+        label: 'Value / Score'
         required: true
-      - identifier: subtitle
+      -
+        identifier: subtitle
         type: Textarea
         rows: 1
         label: Subtitle
-      - identifier: image
+      -
+        identifier: image
         type: File
         label: Avatar
         allowed: common-image-types
         maxitems: 1
-  - identifier: show_rank
+  -
+    identifier: show_rank
     type: Checkbox
-    label: Show Rank Numbers
+    label: 'Show Rank Numbers'
     default: 1

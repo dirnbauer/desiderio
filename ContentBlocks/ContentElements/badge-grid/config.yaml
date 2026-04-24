@@ -1,55 +1,74 @@
 name: desiderio/badge-grid
 typeName: desiderio_badgegrid
-title: Badge Grid
-description: Grid of labeled badges for tags, skills, or categories
+title: 'Badge Grid Data View'
+description: 'A shadcn/ui styled TYPO3 content element for data visualization, using theme tokens for light and dark mode.'
 group: data
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-  - identifier: description
+  -
+    identifier: description
     type: Textarea
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
     rows: 2
-  - identifier: variant
+  -
+    identifier: variant
     type: Select
     renderType: selectSingle
-    label: Badge Style
+    label: 'Badge Style'
     items:
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.default'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.default'
         value: default
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.outline'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.outline'
         value: outline
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.secondary'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.secondary'
         value: secondary
     default: default
-  - identifier: items
+  -
+    identifier: items
     type: Collection
     label: Badges
     minItems: 1
     fields:
-      - identifier: text
+      -
+        identifier: text
         type: Textarea
         rows: 1
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:badge_text'
         required: true
-      - identifier: link
+      -
+        identifier: link
         type: Link
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:link'
-      - identifier: color
+      -
+        identifier: color
         type: Select
         renderType: selectSingle
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:color_field'
         items:
-          - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.default'
+          -
+            label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.default'
             value: default
-          - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.blue'
+          -
+            label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.blue'
             value: blue
-          - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.green'
+          -
+            label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.green'
             value: green
-          - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.red'
+          -
+            label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.red'
             value: red
-          - label: Yellow
+          -
+            label: Yellow
             value: yellow
         default: default

@@ -16,14 +16,14 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 final class StyleguideContentGroups
 {
-    /** @var list<array{groupId: string, groupTitle: string, elements: list<array{name: string, ctype: string}>}>|null */
+    /** @var list<array{groupId: string, groupTitle: string, pageTitle?: string, elements: list<array{name: string, ctype: string}>}>|null */
     private static ?array $cache = null;
 
     /** @var array<string, array<string, mixed>>|null */
     private static ?array $fixtureCache = null;
 
     /**
-     * @return list<array{groupId: string, groupTitle: string, elements: list<array{name: string, ctype: string}>}>
+     * @return list<array{groupId: string, groupTitle: string, pageTitle?: string, elements: list<array{name: string, ctype: string}>}>
      */
     public static function getGroups(): array
     {
@@ -31,14 +31,14 @@ final class StyleguideContentGroups
             return self::$cache;
         }
 
-        /** @var list<array{groupId: string, groupTitle: string, elements: list<array{name: string, ctype: string}>}> $groups */
+        /** @var list<array{groupId: string, groupTitle: string, pageTitle?: string, elements: list<array{name: string, ctype: string}>}> $groups */
         $groups = self::loadJson('EXT:desiderio/Resources/Private/Data/styleguide-content-groups.json');
         self::$cache = $groups;
         return self::$cache;
     }
 
     /**
-     * @return list<array{groupId: string, groupTitle: string, elements: list<array{name: string, ctype: string, fixture: array<string, mixed>}>}>
+     * @return list<array{groupId: string, groupTitle: string, pageTitle?: string, elements: list<array{name: string, ctype: string, fixture: array<string, mixed>}>}>
      */
     public static function getGroupsWithFixtures(): array
     {
@@ -53,7 +53,7 @@ final class StyleguideContentGroups
         }
         unset($group, $element);
 
-        /** @var list<array{groupId: string, groupTitle: string, elements: list<array{name: string, ctype: string, fixture: array<string, mixed>}>}> $groups */
+        /** @var list<array{groupId: string, groupTitle: string, pageTitle?: string, elements: list<array{name: string, ctype: string, fixture: array<string, mixed>}>}> $groups */
         return $groups;
     }
 

@@ -13,7 +13,7 @@
     align-items: center;
     padding: var(--d-spacing-sm) var(--d-spacing-md);
     border-bottom: 1px solid var(--border);
-    background: hsl(color-mix(in oklch, var(--muted) 50%, transparent);
+    background: color-mix(in oklch, var(--muted) 50%, transparent);
 }
 .code-block__filename {
     font-size: var(--d-text-sm);

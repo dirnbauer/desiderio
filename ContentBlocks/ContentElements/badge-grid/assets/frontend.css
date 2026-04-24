@@ -11,11 +11,11 @@ a.badge-grid__badge:hover { opacity: 0.8; }
 .badge-grid__badge--default { background: var(--primary); color: var(--primary-foreground); }
 .badge-grid__badge--outline { background: transparent; border: 1px solid var(--border); color: var(--foreground); }
 .badge-grid__badge--secondary { background: var(--secondary); color: var(--secondary-foreground); }
-.badge-grid__badge--blue { background: hsl(210 100% 50%); color: #fff; }
-.badge-grid__badge--green { background: hsl(142 70% 40%); color: #fff; }
-.badge-grid__badge--red { background: hsl(0 80% 50%); color: #fff; }
-.badge-grid__badge--yellow { background: hsl(45 100% 50%); color: hsl(0 0% 10%); }
-.badge-grid__badge--outline.badge-grid__badge--blue { border-color: hsl(210 100% 50%); color: hsl(210 100% 50%); background: transparent; }
-.badge-grid__badge--outline.badge-grid__badge--green { border-color: hsl(142 70% 40%); color: hsl(142 70% 40%); background: transparent; }
-.badge-grid__badge--outline.badge-grid__badge--red { border-color: hsl(0 80% 50%); color: hsl(0 80% 50%); background: transparent; }
-.badge-grid__badge--outline.badge-grid__badge--yellow { border-color: hsl(45 100% 42%); color: hsl(45 100% 42%); background: transparent; }
+.badge-grid__badge--blue { background: var(--d-info); color: var(--primary-foreground); }
+.badge-grid__badge--green { background: var(--d-success); color: var(--primary-foreground); }
+.badge-grid__badge--red { background: var(--destructive); color: var(--primary-foreground); }
+.badge-grid__badge--yellow { background: var(--d-warning); color: var(--foreground); }
+.badge-grid__badge--outline.badge-grid__badge--blue { border-color: var(--d-info); color: var(--d-info); background: transparent; }
+.badge-grid__badge--outline.badge-grid__badge--green { border-color: var(--d-success); color: var(--d-success); background: transparent; }
+.badge-grid__badge--outline.badge-grid__badge--red { border-color: var(--destructive); color: var(--destructive); background: transparent; }
+.badge-grid__badge--outline.badge-grid__badge--yellow { border-color: var(--d-warning); color: var(--d-warning); background: transparent; }

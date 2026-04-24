@@ -13,13 +13,13 @@
     </f:switch>
 </f:variable>
 
-<span class="relative flex shrink-0 overflow-hidden rounded-full {sizeClass -> f:format.trim()} {class}">
+<span data-slot="avatar" data-size="{size}" class="group/avatar relative flex shrink-0 rounded-full select-none after:absolute after:inset-0 after:rounded-full after:border after:border-border after:mix-blend-darken dark:after:mix-blend-lighten {sizeClass -> f:format.trim()} {class}">
     <f:if condition="{src}">
         <f:then>
-            <img src="{src}" alt="{alt}" class="aspect-square h-full w-full object-cover" loading="lazy" />
+            <img data-slot="avatar-image" src="{src}" alt="{alt}" class="aspect-square size-full rounded-full object-cover" loading="lazy" />
         </f:then>
         <f:else>
-            <span class="flex h-full w-full items-center justify-center rounded-full bg-muted text-sm font-medium">{fallback}</span>
+            <span data-slot="avatar-fallback" class="flex size-full items-center justify-center rounded-full bg-muted text-sm text-muted-foreground group-data-[size=sm]/avatar:text-xs">{fallback}</span>
         </f:else>
     </f:if>
 </span>

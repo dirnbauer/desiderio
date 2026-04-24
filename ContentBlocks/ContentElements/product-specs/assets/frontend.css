@@ -9,5 +9,5 @@
 .product-specs__table td { padding: var(--d-spacing-sm) var(--d-spacing-md); border-block-end: 1px solid var(--border); font-size: var(--d-text-sm); text-align: start; }
 .product-specs__label { font-weight: 600; width: 40%; color: var(--muted-foreground); }
 .product-specs__value { font-weight: 500; }
-.product-specs__table tr:nth-child(even) { background: hsl(color-mix(in oklch, var(--muted) 30%, transparent); }
+.product-specs__table tr:nth-child(even) { background: color-mix(in oklch, var(--muted) 30%, transparent); }
 .product-specs__image { width: 100%; border-radius: var(--radius); }

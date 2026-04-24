@@ -5,7 +5,8 @@
     role="tabpanel"
     x-show="active === '{value}'"
     x-bind:data-state="active === '{value}' ? 'active' : 'inactive'"
-    class="mt-2 ring-offset-background focus-visible:outline-hidden focus-visible:ring-3 focus-visible:ring-ring focus-visible:ring-offset-2 {class}"
+    class="flex-1 text-sm outline-none {class}"
+    data-slot="tabs-content"
     data-d-tabs-content
     data-value="{value}"
 >

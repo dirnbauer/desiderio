@@ -1,35 +1,46 @@
 name: desiderio/navbar-sidebar
 typeName: desiderio_navbarsidebar
-title: Sidebar Navbar
-description: Vertical sidebar navigation with collapsible sections
+title: 'Navigation Bar Sidebar'
+description: 'A shadcn/ui styled TYPO3 content element for navigation pattern, using theme tokens for light and dark mode.'
 group: navigation
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-  - identifier: brand
+  -
+    identifier: brand
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:brand'
     required: true
-  - identifier: brand_link
+  -
+    identifier: brand_link
     type: Link
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:brand_link'
-  - identifier: sections
+  -
+    identifier: sections
     type: Collection
     label: Sections
     minItems: 1
     fields:
-      - identifier: title
+      -
+        identifier: title
         type: Textarea
         rows: 1
-        label: Section Title
-      - identifier: links
+        label: 'Section Title'
+      -
+        identifier: links
         type: Textarea
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:links_one_per_line'
         rows: 5
-  - identifier: footer_text
+  -
+    identifier: footer_text
     type: Textarea
     rows: 1
-    label: Footer Text
+    label: 'Footer Text'

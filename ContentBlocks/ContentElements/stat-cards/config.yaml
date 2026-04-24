@@ -1,54 +1,71 @@
 name: desiderio/stat-cards
 typeName: desiderio_statcards
-title: Stat Cards
-description: Compact statistic cards with icon, value, and trend indicator
+title: 'Stat Cards Data View'
+description: 'A shadcn/ui styled TYPO3 content element for data visualization, using theme tokens for light and dark mode.'
 group: data
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-  - identifier: columns
+  -
+    identifier: columns
     type: Select
     renderType: selectSingle
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:columns'
     items:
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.2_columns'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.2_columns'
         value: '2'
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.3_columns'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.3_columns'
         value: '3'
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.4_columns'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.4_columns'
         value: '4'
     default: '4'
-  - identifier: items
+  -
+    identifier: items
     type: Collection
-    label: Stat Items
+    label: 'Stat Items'
     minItems: 1
     fields:
-      - identifier: label
+      -
+        identifier: label
         type: Textarea
         rows: 1
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:label_field'
         required: true
-      - identifier: value
+      -
+        identifier: value
         type: Textarea
         rows: 1
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:value'
         required: true
-      - identifier: change
+      -
+        identifier: change
         type: Textarea
         rows: 1
         label: Change
-        description: e.g. +12.5%
-      - identifier: trend
+        description: 'e.g. +12.5%'
+      -
+        identifier: trend
         type: Select
         renderType: selectSingle
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:trend'
         items:
-          - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.up'
+          -
+            label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.up'
             value: up
-          - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.down'
+          -
+            label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.down'
             value: down
-          - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.neutral'
+          -
+            label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.neutral'
             value: neutral
         default: neutral

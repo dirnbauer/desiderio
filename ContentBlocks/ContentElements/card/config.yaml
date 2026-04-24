@@ -1,69 +1,80 @@
 name: desiderio/card
 typeName: desiderio_card
-title: Card
-description: Versatile card component with multiple layout variants
+title: 'Card Data View'
+description: 'A shadcn/ui styled TYPO3 content element for data visualization, using theme tokens for light and dark mode.'
 group: data
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-
-  - identifier: variant
+  -
+    identifier: variant
     type: Select
     renderType: selectSingle
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:card_style'
     onChange: reload
     items:
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.default'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.default'
         value: default
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.horizontal'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.horizontal'
         value: horizontal
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.with_image'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.with_image'
         value: with-image
-      - label: Overlay
+      -
+        label: Overlay
         value: overlay
     default: default
-
-  - identifier: card_image
+  -
+    identifier: card_image
     type: File
-    label: Card Image
+    label: 'Card Image'
     allowed: common-image-types
     maxitems: 1
     displayCond: 'FIELD:variant:=:with-image,overlay,horizontal'
-
-  - identifier: image_position
+  -
+    identifier: image_position
     type: Select
     renderType: selectSingle
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:image_position'
     items:
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.left'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.left'
         value: left
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.right'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.right'
         value: right
     default: left
     displayCond: 'FIELD:variant:=:horizontal'
-
-  - identifier: description
+  -
+    identifier: description
     type: Textarea
-    label: Card Description
+    label: 'Card Description'
     rows: 3
-
-  - identifier: badge_text
+  -
+    identifier: badge_text
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:badge_text'
-
-  - identifier: link
+  -
+    identifier: link
     type: Link
-    label: Card Link
-
-  - identifier: button_text
+    label: 'Card Link'
+  -
+    identifier: button_text
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_text'
-
-  - identifier: button_link
+  -
+    identifier: button_link
     type: Link
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_link'
     displayCond: 'FIELD:button_text:!=:'

@@ -1,63 +1,69 @@
 name: desiderio/pricing-toggle
 typeName: desiderio_pricingtoggle
-title: Pricing Toggle
-description: Pricing plans with monthly and yearly values shown together
+title: 'Pricing Toggle'
+description: 'A shadcn/ui styled TYPO3 content element for pricing section, using theme tokens for light and dark mode.'
 group: pricing
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-
-  - identifier: eyebrow
+  -
+    identifier: eyebrow
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
-
-  - identifier: subheadline
+  -
+    identifier: subheadline
     type: Textarea
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
     rows: 2
-
-  - identifier: plans
+  -
+    identifier: plans
     type: Collection
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:plans'
     minItems: 1
     fields:
-      - identifier: title
+      -
+        identifier: title
         type: Textarea
         rows: 1
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:title'
         required: true
-
-      - identifier: monthly_price
+      -
+        identifier: monthly_price
         type: Textarea
         rows: 1
-        label: Monthly Price
+        label: 'Monthly Price'
         required: true
-
-      - identifier: yearly_price
+      -
+        identifier: yearly_price
         type: Textarea
         rows: 1
-        label: Yearly Price
+        label: 'Yearly Price'
         required: true
-
-      - identifier: description
+      -
+        identifier: description
         type: Textarea
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
         rows: 2
-
-      - identifier: features_list
+      -
+        identifier: features_list
         type: Textarea
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:features_one_per_line'
         rows: 4
-
-      - identifier: button_text
+      -
+        identifier: button_text
         type: Textarea
         rows: 1
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_text'
-        default: Choose Plan
-
-      - identifier: button_link
+        default: 'Choose Plan'
+      -
+        identifier: button_link
         type: Link
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_link'

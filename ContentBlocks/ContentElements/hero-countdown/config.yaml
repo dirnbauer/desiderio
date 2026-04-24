@@ -1,28 +1,38 @@
 name: desiderio/hero-countdown
 typeName: desiderio_herocountdown
-title: Hero Countdown
-description: Hero with countdown timer for launches and events
+title: 'Hero Countdown'
+description: 'A shadcn/ui styled TYPO3 content element for hero section, using theme tokens for light and dark mode.'
 group: hero
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-  - identifier: subheadline
+  -
+    identifier: subheadline
     type: Textarea
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
     rows: 3
-  - identifier: target_date
+  -
+    identifier: target_date
     type: DateTime
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:target_date'
-  - identifier: primary_button_text
+  -
+    identifier: primary_button_text
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:primary_button_text'
-  - identifier: primary_button_link
+  -
+    identifier: primary_button_link
     type: Link
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:primary_button_link'
-  - identifier: badge_text
+  -
+    identifier: badge_text
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:badge_text'

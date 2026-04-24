@@ -1,30 +1,40 @@
 name: desiderio/booking-form
 typeName: desiderio_bookingform
-title: Booking Form
-description: Appointment or meeting booking form
+title: 'Booking Form'
+description: 'A shadcn/ui styled TYPO3 content element for conversion flow, using theme tokens for light and dark mode.'
 group: conversion
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-  - identifier: description
+  -
+    identifier: description
     type: Textarea
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
     rows: 3
-  - identifier: form_action
+  -
+    identifier: form_action
     type: Link
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:form_action'
-  - identifier: submit_text
+  -
+    identifier: submit_text
     type: Textarea
     rows: 1
-    label: Submit Button Text
-    default: Book appointment
-  - identifier: show_phone
+    label: 'Submit Button Text'
+    default: 'Book appointment'
+  -
+    identifier: show_phone
     type: Checkbox
-    label: Show Phone Field
+    label: 'Show Phone Field'
     default: 1
-  - identifier: show_date
+  -
+    identifier: show_date
     type: Checkbox
-    label: Show Date Field
+    label: 'Show Date Field'
     default: 1

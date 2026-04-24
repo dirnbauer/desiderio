@@ -1,44 +1,59 @@
 name: desiderio/nav-steps
 typeName: desiderio_navsteps
-title: Steps Navigation
-description: Horizontal step indicator for multi-step forms and wizards
+title: 'Nav Steps'
+description: 'A shadcn/ui styled TYPO3 content element for navigation pattern, using theme tokens for light and dark mode.'
 group: navigation
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-  - identifier: variant
+  -
+    identifier: variant
     type: Select
     renderType: selectSingle
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:style'
     items:
-      - label: Numbered
+      -
+        label: Numbered
         value: numbered
-      - label: Dots
+      -
+        label: Dots
         value: dots
     default: numbered
-  - identifier: step_items
+  -
+    identifier: step_items
     type: Collection
     label: Steps
     minItems: 2
     fields:
-      - identifier: label
+      -
+        identifier: label
         type: Textarea
         rows: 1
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:label_field'
-      - identifier: link
+      -
+        identifier: link
         type: Link
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:link'
-      - identifier: status
+      -
+        identifier: status
         type: Select
         renderType: selectSingle
         label: Status
         items:
-          - label: Pending
+          -
+            label: Pending
             value: pending
-          - label: Current
+          -
+            label: Current
             value: current
-          - label: Completed
+          -
+            label: Completed
             value: completed
         default: pending

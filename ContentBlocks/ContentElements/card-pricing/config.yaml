@@ -1,47 +1,61 @@
 name: desiderio/card-pricing
 typeName: desiderio_cardpricing
-title: Card Pricing
-description: Single pricing card with price, features list, and CTA
+title: 'Card Pricing Data View'
+description: 'A shadcn/ui styled TYPO3 content element for data visualization, using theme tokens for light and dark mode.'
 group: data
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-  - identifier: price
+  -
+    identifier: price
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:price'
     required: true
-  - identifier: billing_period
+  -
+    identifier: billing_period
     type: Textarea
     rows: 1
-    label: Billing Period
-    description: e.g. /month, /year
-  - identifier: description
+    label: 'Billing Period'
+    description: 'e.g. /month, /year'
+  -
+    identifier: description
     type: Textarea
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
     rows: 2
-  - identifier: feature_items
+  -
+    identifier: feature_items
     type: Collection
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:features'
     fields:
-      - identifier: text
+      -
+        identifier: text
         type: Textarea
         rows: 1
-        label: Feature Text
-      - identifier: included
+        label: 'Feature Text'
+      -
+        identifier: included
         type: Checkbox
         label: Included
         default: 1
-  - identifier: button_text
+  -
+    identifier: button_text
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_text'
-  - identifier: button_link
+  -
+    identifier: button_link
     type: Link
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_link'
-  - identifier: highlighted
+  -
+    identifier: highlighted
     type: Checkbox
-    label: Highlight Card
+    label: 'Highlight Card'
     default: 0

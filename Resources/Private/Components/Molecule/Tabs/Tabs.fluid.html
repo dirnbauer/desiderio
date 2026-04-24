@@ -1,9 +1,13 @@
 <f:argument name="defaultValue" type="string" optional="{true}" />
 <f:argument name="class" type="string" optional="{true}" default="" />
+<f:argument name="orientation" type="string" optional="{true}" default="horizontal" />
 
 <div
     x-data="{ active: '{defaultValue}' }"
-    class="{class}"
+    class="group/tabs flex gap-2 data-horizontal:flex-col {class}"
+    data-slot="tabs"
+    data-orientation="{orientation}"
+    data-horizontal
     data-d-tabs
     data-default="{defaultValue}"
 >

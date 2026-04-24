@@ -1,66 +1,79 @@
 name: desiderio/content-carousel
 typeName: desiderio_contentcarousel
-title: Content Carousel
-description: Horizontally scrollable content cards with snap scroll
+title: 'Content Carousel'
+description: 'A shadcn/ui styled TYPO3 content element for content presentation, using theme tokens for light and dark mode.'
 group: content
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: variant
+  -
+    identifier: variant
     type: Select
     renderType: selectSingle
-    label: Carousel Style
+    label: 'Carousel Style'
     onChange: reload
     items:
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.default'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.default'
         value: default
-      - label: Autoplay
+      -
+        label: Autoplay
         value: autoplay
-      - label: Thumbnails
+      -
+        label: Thumbnails
         value: thumbnails
-      - label: Cards
+      -
+        label: Cards
         value: cards
     default: default
-
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-
-  - identifier: items
+  -
+    identifier: items
     type: Collection
     label: Slides
     minItems: 2
     fields:
-      - identifier: slide_image
+      -
+        identifier: slide_image
         type: File
-        label: Slide Image
+        label: 'Slide Image'
         allowed: common-image-types
         maxitems: 1
         required: true
-      - identifier: slide_title
+      -
+        identifier: slide_title
         type: Textarea
         rows: 1
-        label: Slide Title
-      - identifier: slide_description
+        label: 'Slide Title'
+      -
+        identifier: slide_description
         type: Textarea
         rows: 3
-        label: Slide Description
-      - identifier: slide_link
+        label: 'Slide Description'
+      -
+        identifier: slide_link
         type: Link
-        label: Slide Link
-
-  - identifier: autoplay_interval
+        label: 'Slide Link'
+  -
+    identifier: autoplay_interval
     type: Number
-    label: Autoplay Interval (ms)
-    description: Time between slides in milliseconds
+    label: 'Autoplay Interval (ms)'
+    description: 'Time between slides in milliseconds'
     default: 5000
     displayCond: 'FIELD:variant:=:autoplay'
-
-  - identifier: show_navigation
+  -
+    identifier: show_navigation
     type: Checkbox
-    label: Show Navigation Arrows
+    label: 'Show Navigation Arrows'
     default: 1
-
-  - identifier: show_pagination
+  -
+    identifier: show_pagination
     type: Checkbox
-    label: Show Pagination Dots
+    label: 'Show Pagination Dots'
     default: 1

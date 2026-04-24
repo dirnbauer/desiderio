@@ -1,5 +1,5 @@
 .legal-disclaimer { max-width: 800px; margin-inline: auto; }
-.legal-disclaimer--boxed { padding: var(--d-spacing-lg); background: hsl(color-mix(in oklch, var(--muted) 30%, transparent); border-radius: var(--radius); }
+.legal-disclaimer--boxed { padding: var(--d-spacing-lg); background: color-mix(in oklch, var(--muted) 30%, transparent); border-radius: var(--radius); }
 .legal-disclaimer--bordered { padding: var(--d-spacing-lg); border: 1px solid var(--border); border-radius: var(--radius); }
 .legal-disclaimer__title { font-size: var(--d-text-lg); font-weight: 700; margin-block-end: var(--d-spacing-md); }
 .legal-disclaimer__content { font-size: var(--d-text-sm); color: var(--muted-foreground); line-height: 1.7; }

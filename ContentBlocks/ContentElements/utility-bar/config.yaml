@@ -1,27 +1,34 @@
 name: desiderio/utility-bar
 typeName: desiderio_utilitybar
-title: Utility Bar
-description: Compact utility navigation with support links and contact text
+title: 'Utility Bar'
+description: 'A shadcn/ui styled TYPO3 content element for navigation pattern, using theme tokens for light and dark mode.'
 group: navigation
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-
-  - identifier: left_text
+  -
+    identifier: left_text
     type: Textarea
     rows: 1
-    label: Left Text
-
-  - identifier: link_items
+    label: 'Left Text'
+  -
+    identifier: link_items
     type: Collection
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:links'
     fields:
-      - identifier: label
+      -
+        identifier: label
         type: Textarea
         rows: 1
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:label_field'
-      - identifier: link
+      -
+        identifier: link
         type: Link
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:link'

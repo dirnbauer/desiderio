@@ -1,51 +1,57 @@
 name: desiderio/product-comparison
 typeName: desiderio_productcomparison
-title: Product Comparison
-description: Side-by-side product comparison with specs
+title: 'Product Comparison Pricing'
+description: 'A shadcn/ui styled TYPO3 content element for pricing section, using theme tokens for light and dark mode.'
 group: pricing
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-
-  - identifier: eyebrow
+  -
+    identifier: eyebrow
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
-
-  - identifier: products
+  -
+    identifier: products
     type: Collection
     label: Products
     minItems: 2
     maxItems: 3
     fields:
-      - identifier: name
+      -
+        identifier: name
         type: Textarea
         rows: 1
-        label: Product Name
+        label: 'Product Name'
         required: true
-
-      - identifier: image
+      -
+        identifier: image
         type: File
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:product_image'
         allowed: common-image-types
         maxitems: 1
-
-      - identifier: price
+      -
+        identifier: price
         type: Textarea
         rows: 1
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:price'
-
-      - identifier: specs_text
+      -
+        identifier: specs_text
         type: Textarea
-        label: Specs (one per line)
+        label: 'Specs (one per line)'
         rows: 6
-
-      - identifier: is_recommended
+      -
+        identifier: is_recommended
         type: Checkbox
         label: Recommended
-
-      - identifier: link
+      -
+        identifier: link
         type: Link
-        label: Product Link
+        label: 'Product Link'

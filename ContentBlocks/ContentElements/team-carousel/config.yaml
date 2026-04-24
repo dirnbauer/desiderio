@@ -1,40 +1,52 @@
 name: desiderio/team-carousel
 typeName: desiderio_teamcarousel
-title: Team Carousel
-description: Horizontally scrollable team member showcase
+title: 'Team Carousel'
+description: 'A shadcn/ui styled TYPO3 content element for team presentation, using theme tokens for light and dark mode.'
 group: team
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-  - identifier: eyebrow
+  -
+    identifier: eyebrow
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
-  - identifier: subheadline
+  -
+    identifier: subheadline
     type: Textarea
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
     rows: 2
-  - identifier: members
+  -
+    identifier: members
     type: Collection
-    label: Team Members
+    label: 'Team Members'
     minItems: 1
     fields:
-      - identifier: image
+      -
+        identifier: image
         type: File
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:portrait'
         allowed: common-image-types
         maxitems: 1
-      - identifier: name
+      -
+        identifier: name
         type: Textarea
         rows: 1
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:name'
         required: true
-      - identifier: role
+      -
+        identifier: role
         type: Textarea
         rows: 1
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:role'
-      - identifier: profile_link
+      -
+        identifier: profile_link
         type: Link
-        label: Profile Link
+        label: 'Profile Link'

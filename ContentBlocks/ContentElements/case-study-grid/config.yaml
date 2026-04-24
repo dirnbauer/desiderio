@@ -1,58 +1,66 @@
 name: desiderio/case-study-grid
 typeName: desiderio_casestudygrid
-title: Case Study Grid
-description: Grid of case study preview cards with results
+title: 'Case Study Grid'
+description: 'A shadcn/ui styled TYPO3 content element for social proof section, using theme tokens for light and dark mode.'
 group: social-proof
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-
-  - identifier: eyebrow
+  -
+    identifier: eyebrow
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
-
-  - identifier: columns
+  -
+    identifier: columns
     type: Select
     renderType: selectSingle
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:columns'
     items:
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.2_columns'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.2_columns'
         value: '2'
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.3_columns'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.3_columns'
         value: '3'
     default: '3'
-
-  - identifier: cases
+  -
+    identifier: cases
     type: Collection
-    label: Case Studies
+    label: 'Case Studies'
     minItems: 1
     fields:
-      - identifier: client_name
+      -
+        identifier: client_name
         type: Textarea
         rows: 1
-        label: Client Name
+        label: 'Client Name'
         required: true
-
-      - identifier: summary
+      -
+        identifier: summary
         type: Textarea
         label: Summary
         rows: 2
-
-      - identifier: result
+      -
+        identifier: result
         type: Textarea
         rows: 1
-        label: Key Result
-        description: e.g. 3x growth
-
-      - identifier: image
+        label: 'Key Result'
+        description: 'e.g. 3x growth'
+      -
+        identifier: image
         type: File
-        label: Cover Image
+        label: 'Cover Image'
         allowed: common-image-types
         maxitems: 1
-
-      - identifier: link
+      -
+        identifier: link
         type: Link
-        label: Read More Link
+        label: 'Read More Link'

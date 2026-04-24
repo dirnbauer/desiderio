@@ -1,51 +1,57 @@
 name: desiderio/certifications
 typeName: desiderio_certifications
 title: Certifications
-description: Certification badges and compliance indicators
+description: 'A shadcn/ui styled TYPO3 content element for social proof section, using theme tokens for light and dark mode.'
 group: social-proof
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-
-  - identifier: eyebrow
+  -
+    identifier: eyebrow
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
-
-  - identifier: subheadline
+  -
+    identifier: subheadline
     type: Textarea
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
     rows: 2
-
-  - identifier: certifications
+  -
+    identifier: certifications
     type: Collection
     label: Certifications
     minItems: 1
     fields:
-      - identifier: name
+      -
+        identifier: name
         type: Textarea
         rows: 1
-        label: Certification Name
+        label: 'Certification Name'
         required: true
-
-      - identifier: issuer
+      -
+        identifier: issuer
         type: Textarea
         rows: 1
-        label: Issuing Body
-
-      - identifier: badge_image
+        label: 'Issuing Body'
+      -
+        identifier: badge_image
         type: File
-        label: Badge Image
+        label: 'Badge Image'
         allowed: common-image-types
         maxitems: 1
-
-      - identifier: description
+      -
+        identifier: description
         type: Textarea
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
         rows: 2
-
-      - identifier: link
+      -
+        identifier: link
         type: Link
-        label: Verification Link
+        label: 'Verification Link'

@@ -1,42 +1,48 @@
 name: desiderio/product-specs
 typeName: desiderio_productspecs
-title: Product Specs
-description: Technical specifications table for products
+title: 'Product Specs Pricing'
+description: 'A shadcn/ui styled TYPO3 content element for pricing section, using theme tokens for light and dark mode.'
 group: pricing
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-
-  - identifier: eyebrow
+  -
+    identifier: eyebrow
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
-
-  - identifier: description
+  -
+    identifier: description
     type: Textarea
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
     rows: 2
-
-  - identifier: specs
+  -
+    identifier: specs
     type: Collection
     label: Specifications
     minItems: 1
     fields:
-      - identifier: label
+      -
+        identifier: label
         type: Textarea
         rows: 1
-        label: Spec Label
+        label: 'Spec Label'
         required: true
-
-      - identifier: value
+      -
+        identifier: value
         type: Textarea
         rows: 1
-        label: Spec Value
+        label: 'Spec Value'
         required: true
-
-  - identifier: image
+  -
+    identifier: image
     type: File
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:product_image'
     allowed: common-image-types

@@ -1,36 +1,48 @@
 name: desiderio/cta-with-image
 typeName: desiderio_ctawithimage
-title: CTA with Image
-description: Call to action featuring a prominent image
+title: 'CTA With Image'
+description: 'A shadcn/ui styled TYPO3 content element for conversion flow, using theme tokens for light and dark mode.'
 group: conversion
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-  - identifier: description
+  -
+    identifier: description
     type: Textarea
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
     rows: 3
-  - identifier: image
+  -
+    identifier: image
     type: File
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:image'
     allowed: common-image-types
     maxitems: 1
-  - identifier: cta_text
+  -
+    identifier: cta_text
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_text'
-  - identifier: cta_link
+  -
+    identifier: cta_link
     type: Link
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_link'
-  - identifier: image_position
+  -
+    identifier: image_position
     type: Select
     renderType: selectSingle
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:image_position'
     items:
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.left'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.left'
         value: left
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.right'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.right'
         value: right
     default: right

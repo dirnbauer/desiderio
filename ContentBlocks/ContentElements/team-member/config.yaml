@@ -1,40 +1,53 @@
 name: desiderio/team-member
 typeName: desiderio_teammember
-title: Team Member
-description: Single team member profile card with detailed biography
+title: 'Team Member'
+description: 'A shadcn/ui styled TYPO3 content element for team presentation, using theme tokens for light and dark mode.'
 group: team
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-  - identifier: image
+  -
+    identifier: image
     type: File
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:portrait'
     allowed: common-image-types
     maxitems: 1
-  - identifier: role
+  -
+    identifier: role
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:role'
-  - identifier: bio
+  -
+    identifier: bio
     type: Textarea
     label: Biography
     rows: 4
-  - identifier: email
+  -
+    identifier: email
     type: Text
     label: Email
-  - identifier: phone
+  -
+    identifier: phone
     type: Text
     label: Phone
-  - identifier: social_links
+  -
+    identifier: social_links
     type: Collection
-    label: Social Links
+    label: 'Social Links'
     fields:
-      - identifier: platform
+      -
+        identifier: platform
         type: Textarea
         rows: 1
         label: Platform
-      - identifier: url
+      -
+        identifier: url
         type: Link
         label: URL

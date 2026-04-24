@@ -1,31 +1,42 @@
 name: desiderio/back-to-top
 typeName: desiderio_backtotop
-title: Back to Top
-description: Floating back-to-top button with smooth scroll
+title: 'Back To Top Footer'
+description: 'A shadcn/ui styled TYPO3 content element for footer area, using theme tokens for light and dark mode.'
 group: footer
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-  - identifier: label
+  -
+    identifier: label
     type: Textarea
     rows: 1
-    label: Button Label
-    default: Back to top
-  - identifier: show_label
+    label: 'Button Label'
+    default: 'Back to top'
+  -
+    identifier: show_label
     type: Checkbox
-    label: Show Label Text
+    label: 'Show Label Text'
     default: 0
-  - identifier: position
+  -
+    identifier: position
     type: Select
     renderType: selectSingle
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:position'
     items:
-      - label: Bottom Right
+      -
+        label: 'Bottom Right'
         value: bottom-right
-      - label: Bottom Left
+      -
+        label: 'Bottom Left'
         value: bottom-left
-      - label: Bottom Center
+      -
+        label: 'Bottom Center'
         value: bottom-center
     default: bottom-right

@@ -1,37 +1,51 @@
 name: desiderio/card-interactive
 typeName: desiderio_cardinteractive
-title: Card Interactive
-description: Hover-animated card with icon, title, and expandable content
+title: 'Card Interactive Data View'
+description: 'A shadcn/ui styled TYPO3 content element for data visualization, using theme tokens for light and dark mode.'
 group: data
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-  - identifier: description
+  -
+    identifier: description
     type: Textarea
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
     rows: 3
-  - identifier: icon_style
+  -
+    identifier: icon_style
     type: Select
     renderType: selectSingle
     label: Icon
     items:
-      - label: Star
+      -
+        label: Star
         value: star
-      - label: Heart
+      -
+        label: Heart
         value: heart
-      - label: Zap
+      -
+        label: Zap
         value: zap
-      - label: Shield
+      -
+        label: Shield
         value: shield
-      - label: Globe
+      -
+        label: Globe
         value: globe
     default: star
-  - identifier: link
+  -
+    identifier: link
     type: Link
-    label: Card Link
-  - identifier: badge_text
+    label: 'Card Link'
+  -
+    identifier: badge_text
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:badge_text'

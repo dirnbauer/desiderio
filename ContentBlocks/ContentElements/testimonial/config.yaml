@@ -1,70 +1,84 @@
 name: desiderio/testimonial
 typeName: desiderio_testimonial
 title: Testimonial
-description: Customer testimonials and quotes with avatar
+description: 'A shadcn/ui styled TYPO3 content element for social proof section, using theme tokens for light and dark mode.'
 group: social-proof
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-
-  - identifier: variant
+  -
+    identifier: variant
     type: Select
     renderType: selectSingle
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:style'
     items:
-      - label: Simple Quote
+      -
+        label: 'Simple Quote'
         value: simple
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:card_style'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:card_style'
         value: card
-      - label: Large Quote
+      -
+        label: 'Large Quote'
         value: large
     default: simple
-
-  - identifier: quote
+  -
+    identifier: quote
     type: Textarea
-    label: Quote Text
+    label: 'Quote Text'
     rows: 4
     required: true
-
-  - identifier: author_name
+  -
+    identifier: author_name
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:author_name'
     required: true
-
-  - identifier: author_title
+  -
+    identifier: author_title
     type: Textarea
     rows: 1
-    label: Author Title / Role
-
-  - identifier: author_company
+    label: 'Author Title / Role'
+  -
+    identifier: author_company
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:company_name'
-
-  - identifier: author_image
+  -
+    identifier: author_image
     type: File
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:author_photo'
     allowed: common-image-types
     maxitems: 1
-
-  - identifier: rating
+  -
+    identifier: rating
     type: Select
     renderType: selectSingle
-    label: Star Rating
+    label: 'Star Rating'
     items:
-      - label: No Rating
+      -
+        label: 'No Rating'
         value: '0'
-      - label: 1 Star
+      -
+        label: '1 Star'
         value: '1'
-      - label: 2 Stars
+      -
+        label: '2 Stars'
         value: '2'
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.3_stars'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.3_stars'
         value: '3'
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.4_stars'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.4_stars'
         value: '4'
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.5_stars'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.5_stars'
         value: '5'
     default: '0'

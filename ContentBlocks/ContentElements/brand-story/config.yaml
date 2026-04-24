@@ -1,26 +1,35 @@
 name: desiderio/brand-story
 typeName: desiderio_brandstory
-title: Brand Story
-description: Narrative brand section with text blocks and images
+title: 'Brand Story'
+description: 'A shadcn/ui styled TYPO3 content element for team presentation, using theme tokens for light and dark mode.'
 group: team
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-  - identifier: eyebrow
+  -
+    identifier: eyebrow
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
-  - identifier: lead
+  -
+    identifier: lead
     type: Textarea
-    label: Lead Paragraph
+    label: 'Lead Paragraph'
     rows: 3
-  - identifier: body
+  -
+    identifier: body
     type: Textarea
-    label: Body Text
+    label: 'Body Text'
     rows: 6
-  - identifier: image
+  -
+    identifier: image
     type: File
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:image'
     allowed: common-image-types

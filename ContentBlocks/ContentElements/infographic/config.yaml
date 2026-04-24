@@ -1,46 +1,60 @@
 name: desiderio/infographic
 typeName: desiderio_infographic
-title: Infographic
-description: Visual infographic section with numbered steps and icons
+title: 'Infographic Data View'
+description: 'A shadcn/ui styled TYPO3 content element for data visualization, using theme tokens for light and dark mode.'
 group: data
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-  - identifier: description
+  -
+    identifier: description
     type: Textarea
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
     rows: 2
-  - identifier: layout
+  -
+    identifier: layout
     type: Select
     renderType: selectSingle
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:layout'
     items:
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.horizontal'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.horizontal'
         value: horizontal
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.vertical'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.vertical'
         value: vertical
     default: horizontal
-  - identifier: items
+  -
+    identifier: items
     type: Collection
     label: Steps
     minItems: 1
     fields:
-      - identifier: number
+      -
+        identifier: number
         type: Textarea
         rows: 1
-        label: Step Number
-      - identifier: title
+        label: 'Step Number'
+      -
+        identifier: title
         type: Textarea
         rows: 1
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:title'
         required: true
-      - identifier: description
+      -
+        identifier: description
         type: Textarea
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
         rows: 2
-      - identifier: image
+      -
+        identifier: image
         type: File
         label: Icon/Image
         allowed: common-image-types

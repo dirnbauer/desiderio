@@ -1,18 +1,25 @@
 name: desiderio/chart-heatmap
 typeName: desiderio_chartheatmap
-title: Chart Heatmap
-description: Color intensity grid for comparing values across two categories
+title: 'Chart Heatmap'
+description: 'A shadcn/ui styled TYPO3 content element for data visualization, using theme tokens for light and dark mode.'
 group: data
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-  - identifier: description
+  -
+    identifier: description
     type: Textarea
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
     rows: 2
-  - identifier: chart_data
+  -
+    identifier: chart_data
     type: Textarea
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:chart_data_json'
     description: |

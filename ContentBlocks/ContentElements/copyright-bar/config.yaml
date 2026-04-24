@@ -1,39 +1,52 @@
 name: desiderio/copyright-bar
 typeName: desiderio_copyrightbar
-title: Copyright Bar
-description: Slim copyright bar for the very bottom of the page
+title: 'Copyright Bar Footer'
+description: 'A shadcn/ui styled TYPO3 content element for footer area, using theme tokens for light and dark mode.'
 group: footer
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-  - identifier: copyright
+  -
+    identifier: copyright
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:copyright_text'
     required: true
-  - identifier: link_items
+  -
+    identifier: link_items
     type: Collection
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:links'
     fields:
-      - identifier: label
+      -
+        identifier: label
         type: Textarea
         rows: 1
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:label_field'
         required: true
-      - identifier: link
+      -
+        identifier: link
         type: Link
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:link'
-  - identifier: alignment
+  -
+    identifier: alignment
     type: Select
     renderType: selectSingle
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:alignment'
     items:
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.left'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.left'
         value: left
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.center'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.center'
         value: center
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.between'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.between'
         value: between
     default: between

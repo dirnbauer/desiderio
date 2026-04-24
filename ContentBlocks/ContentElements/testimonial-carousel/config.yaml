@@ -1,61 +1,70 @@
 name: desiderio/testimonial-carousel
 typeName: desiderio_testimonialcarousel
-title: Testimonial Carousel
-description: Sliding carousel of customer testimonials
+title: 'Testimonial Carousel'
+description: 'A shadcn/ui styled TYPO3 content element for social proof section, using theme tokens for light and dark mode.'
 group: social-proof
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-
-  - identifier: eyebrow
+  -
+    identifier: eyebrow
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
-
-  - identifier: autoplay
+  -
+    identifier: autoplay
     type: Checkbox
     label: Autoplay
     default: 1
-
-  - identifier: testimonials
+  -
+    identifier: testimonials
     type: Collection
     label: Testimonials
     minItems: 2
     fields:
-      - identifier: quote
+      -
+        identifier: quote
         type: Textarea
         label: Quote
         rows: 3
         required: true
-
-      - identifier: author_name
+      -
+        identifier: author_name
         type: Textarea
         rows: 1
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:author_name'
         required: true
-
-      - identifier: author_title
+      -
+        identifier: author_title
         type: Textarea
         rows: 1
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:author_title'
-
-      - identifier: author_image
+      -
+        identifier: author_image
         type: File
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:author_photo'
         allowed: common-image-types
         maxitems: 1
-
-      - identifier: rating
+      -
+        identifier: rating
         type: Select
         renderType: selectSingle
-        label: Star Rating
+        label: 'Star Rating'
         items:
-          - label: No Rating
+          -
+            label: 'No Rating'
             value: '0'
-          - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.5_stars'
+          -
+            label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.5_stars'
             value: '5'
-          - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.4_stars'
+          -
+            label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.4_stars'
             value: '4'
         default: '0'

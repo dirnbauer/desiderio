@@ -1,75 +1,80 @@
 name: desiderio/compare
 typeName: desiderio_compare
 title: Compare
-description: Side-by-side comparison block for plans, products, or approaches
+description: 'A shadcn/ui styled TYPO3 content element for social proof section, using theme tokens for light and dark mode.'
 group: social-proof
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-
-  - identifier: eyebrow
+  -
+    identifier: eyebrow
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
-
-  - identifier: subheadline
+  -
+    identifier: subheadline
     type: Textarea
-    label: Section Subheadline
+    label: 'Section Subheadline'
     rows: 2
-
-  - identifier: left_title
+  -
+    identifier: left_title
     type: Textarea
     rows: 1
-    label: Left Title
+    label: 'Left Title'
     required: true
-
-  - identifier: left_description
+  -
+    identifier: left_description
     type: Textarea
-    label: Left Description
+    label: 'Left Description'
     rows: 3
-
-  - identifier: left_points
+  -
+    identifier: left_points
     type: Textarea
-    label: Left Points (one per line)
+    label: 'Left Points (one per line)'
     rows: 5
-
-  - identifier: left_button_text
+  -
+    identifier: left_button_text
     type: Textarea
     rows: 1
-    label: Left Button Text
-
-  - identifier: left_button_link
+    label: 'Left Button Text'
+  -
+    identifier: left_button_link
     type: Link
-    label: Left Button Link
-
-  - identifier: right_badge
+    label: 'Left Button Link'
+  -
+    identifier: right_badge
     type: Textarea
     rows: 1
-    label: Right Badge
-
-  - identifier: right_title
+    label: 'Right Badge'
+  -
+    identifier: right_title
     type: Textarea
     rows: 1
-    label: Right Title
+    label: 'Right Title'
     required: true
-
-  - identifier: right_description
+  -
+    identifier: right_description
     type: Textarea
-    label: Right Description
+    label: 'Right Description'
     rows: 3
-
-  - identifier: right_points
+  -
+    identifier: right_points
     type: Textarea
-    label: Right Points (one per line)
+    label: 'Right Points (one per line)'
     rows: 5
-
-  - identifier: right_button_text
+  -
+    identifier: right_button_text
     type: Textarea
     rows: 1
-    label: Right Button Text
-
-  - identifier: right_button_link
+    label: 'Right Button Text'
+  -
+    identifier: right_button_link
     type: Link
-    label: Right Button Link
+    label: 'Right Button Link'

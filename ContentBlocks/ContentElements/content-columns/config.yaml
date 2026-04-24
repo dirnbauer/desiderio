@@ -1,29 +1,39 @@
 name: desiderio/content-columns
 typeName: desiderio_contentcolumns
-title: Content Columns
-description: Multi-column rich text layout
+title: 'Content Columns'
+description: 'A shadcn/ui styled TYPO3 content element for content presentation, using theme tokens for light and dark mode.'
 group: content
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-  - identifier: columns
+  -
+    identifier: columns
     type: Select
     renderType: selectSingle
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:columns'
     items:
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.2_columns'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.2_columns'
         value: '2'
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.3_columns'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.3_columns'
         value: '3'
     default: '2'
-  - identifier: items
+  -
+    identifier: items
     type: Collection
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:column_content'
     minItems: 2
     fields:
-      - identifier: content
+      -
+        identifier: content
         type: Textarea
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:content'
         enableRichtext: true

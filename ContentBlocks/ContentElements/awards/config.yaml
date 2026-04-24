@@ -1,51 +1,57 @@
 name: desiderio/awards
 typeName: desiderio_awards
 title: Awards
-description: Awards and recognition badges display
+description: 'A shadcn/ui styled TYPO3 content element for social proof section, using theme tokens for light and dark mode.'
 group: social-proof
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-
-  - identifier: eyebrow
+  -
+    identifier: eyebrow
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
-
-  - identifier: subheadline
+  -
+    identifier: subheadline
     type: Textarea
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
     rows: 2
-
-  - identifier: awards
+  -
+    identifier: awards
     type: Collection
     label: Awards
     minItems: 1
     fields:
-      - identifier: title
+      -
+        identifier: title
         type: Textarea
         rows: 1
-        label: Award Title
+        label: 'Award Title'
         required: true
-
-      - identifier: year
+      -
+        identifier: year
         type: Textarea
         rows: 1
         label: Year
-
-      - identifier: organization
+      -
+        identifier: organization
         type: Textarea
         rows: 1
-        label: Awarding Organization
-
-      - identifier: image
+        label: 'Awarding Organization'
+      -
+        identifier: image
         type: File
-        label: Award Badge/Logo
+        label: 'Award Badge/Logo'
         allowed: common-image-types
         maxitems: 1
-
-      - identifier: link
+      -
+        identifier: link
         type: Link
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:link'

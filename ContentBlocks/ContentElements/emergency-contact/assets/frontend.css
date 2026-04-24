@@ -1,8 +1,8 @@
 .emergency-contact__card {
     text-align: center;
     padding: var(--d-spacing-2xl);
-    background: hsl(0 84% 60% / 0.05);
-    border: 2px solid hsl(0 84% 60% / 0.2);
+    background: color-mix(in oklch, var(--destructive) 5%, transparent);
+    border: 2px solid color-mix(in oklch, var(--destructive) 20%, transparent);
     border-radius: var(--radius);
     max-width: 560px;
     margin-inline: auto;
@@ -10,7 +10,7 @@
 .emergency-contact__headline {
     font-size: var(--d-text-xl);
     font-weight: 700;
-    color: hsl(0 84% 40%);
+    color: var(--destructive);
 }
 .emergency-contact__description {
     font-size: var(--d-text-sm);
@@ -21,7 +21,7 @@
 .emergency-contact__number {
     font-size: var(--d-text-3xl);
     font-weight: 700;
-    color: hsl(0 84% 40%);
+    color: var(--destructive);
     text-decoration: none;
 }
 .emergency-contact__available {

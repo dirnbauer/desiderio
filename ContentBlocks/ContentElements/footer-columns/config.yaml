@@ -1,36 +1,47 @@
 name: desiderio/footer-columns
 typeName: desiderio_footercolumns
-title: Footer Columns
-description: Multi-column footer with grouped link sections
+title: 'Footer Columns Footer'
+description: 'A shadcn/ui styled TYPO3 content element for footer area, using theme tokens for light and dark mode.'
 group: footer
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-  - identifier: brand
+  -
+    identifier: brand
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:brand_name'
-  - identifier: description
+  -
+    identifier: description
     type: Textarea
-    label: Brand Description
+    label: 'Brand Description'
     rows: 3
-  - identifier: column_items
+  -
+    identifier: column_items
     type: Collection
-    label: Link Columns
+    label: 'Link Columns'
     minItems: 1
     fields:
-      - identifier: title
+      -
+        identifier: title
         type: Textarea
         rows: 1
-        label: Column Title
+        label: 'Column Title'
         required: true
-      - identifier: links
+      -
+        identifier: links
         type: Textarea
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:links_one_per_line'
         rows: 5
-  - identifier: copyright
+  -
+    identifier: copyright
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:copyright_text'

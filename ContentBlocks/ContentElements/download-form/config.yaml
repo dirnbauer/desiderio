@@ -1,31 +1,41 @@
 name: desiderio/download-form
 typeName: desiderio_downloadform
-title: Download Form
-description: Gated content download form with email capture
+title: 'Download Form'
+description: 'A shadcn/ui styled TYPO3 content element for conversion flow, using theme tokens for light and dark mode.'
 group: conversion
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-  - identifier: description
+  -
+    identifier: description
     type: Textarea
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
     rows: 3
-  - identifier: resource_title
+  -
+    identifier: resource_title
     type: Textarea
     rows: 1
-    label: Resource Title
-  - identifier: form_action
+    label: 'Resource Title'
+  -
+    identifier: form_action
     type: Link
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:form_action'
-  - identifier: button_text
+  -
+    identifier: button_text
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_text'
-    default: Download now
-  - identifier: image
+    default: 'Download now'
+  -
+    identifier: image
     type: File
-    label: Preview Image
+    label: 'Preview Image'
     allowed: common-image-types
     maxitems: 1

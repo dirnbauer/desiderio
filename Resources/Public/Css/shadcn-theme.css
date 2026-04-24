@@ -232,6 +232,15 @@ body {
   --d-muted-foreground: var(--muted-foreground);
   --d-border: var(--border);
   --d-ring: var(--ring);
+  --d-info: var(--primary);
+  --d-info-muted: color-mix(in oklch, var(--primary) 10%, var(--background));
+  --d-success: var(--chart-2);
+  --d-success-muted: color-mix(in oklch, var(--chart-2) 12%, var(--background));
+  --d-warning: var(--chart-4);
+  --d-warning-muted: color-mix(in oklch, var(--chart-4) 14%, var(--background));
+  --d-danger: var(--destructive);
+  --d-danger-muted: color-mix(in oklch, var(--destructive) 10%, var(--background));
+  --d-overlay-foreground: var(--primary-foreground);
   --d-radius-sm: calc(var(--radius) * 0.6);
   --d-radius-md: calc(var(--radius) * 0.8);
   --d-radius-lg: var(--radius);

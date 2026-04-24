@@ -1,23 +1,30 @@
 name: desiderio/breadcrumb
 typeName: desiderio_breadcrumb
 title: Breadcrumb
-description: Breadcrumb trail for marketing and documentation pages
+description: 'A shadcn/ui styled TYPO3 content element for navigation pattern, using theme tokens for light and dark mode.'
 group: navigation
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-
-  - identifier: items
+  -
+    identifier: items
     type: Collection
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:items'
     minItems: 1
     fields:
-      - identifier: label
+      -
+        identifier: label
         type: Textarea
         rows: 1
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:label_field'
-      - identifier: link
+      -
+        identifier: link
         type: Link
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:link'

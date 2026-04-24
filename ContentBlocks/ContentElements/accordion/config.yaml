@@ -1,52 +1,61 @@
 name: desiderio/accordion
 typeName: desiderio_accordion
-title: Accordion / FAQ
-description: Collapsible accordion sections, perfect for FAQs
+title: Accordion
+description: 'A shadcn/ui styled TYPO3 content element for content presentation, using theme tokens for light and dark mode.'
 group: content
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-
-  - identifier: variant
+  -
+    identifier: variant
     type: Select
     renderType: selectSingle
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:style'
     onChange: reload
     items:
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.default'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.default'
         value: default
-      - label: Bordered
+      -
+        label: Bordered
         value: bordered
-      - label: Separated
+      -
+        label: Separated
         value: separated
     default: default
-
-  - identifier: allow_multiple
+  -
+    identifier: allow_multiple
     type: Checkbox
-    label: Allow Multiple Open
-    description: Allow multiple accordion items to be open at once
+    label: 'Allow Multiple Open'
+    description: 'Allow multiple accordion items to be open at once'
     default: 0
-
-  - identifier: items
+  -
+    identifier: items
     type: Collection
-    label: Accordion Items
+    label: 'Accordion Items'
     minItems: 1
     fields:
-      - identifier: title
+      -
+        identifier: title
         type: Textarea
         rows: 1
-        label: Question / Title
+        label: 'Question / Title'
         required: true
-
-      - identifier: content
+      -
+        identifier: content
         type: Textarea
-        label: Answer / Content
+        label: 'Answer / Content'
         enableRichtext: true
         rows: 5
-
-      - identifier: open_by_default
+      -
+        identifier: open_by_default
         type: Checkbox
-        label: Open by Default
+        label: 'Open by Default'
         default: 0

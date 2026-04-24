@@ -9,10 +9,10 @@
 .status-indicator__dot {
     width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
 }
-.status-indicator__dot--operational .status-indicator__dot { background: hsl(142 70% 40%); }
-.status-indicator__dot--degraded .status-indicator__dot { background: hsl(45 100% 50%); }
-.status-indicator__dot--outage .status-indicator__dot { background: hsl(0 80% 50%); }
-.status-indicator__dot--maintenance .status-indicator__dot { background: hsl(210 100% 50%); }
+.status-indicator__dot--operational .status-indicator__dot { background: var(--d-success); }
+.status-indicator__dot--degraded .status-indicator__dot { background: var(--d-warning); }
+.status-indicator__dot--outage .status-indicator__dot { background: var(--destructive); }
+.status-indicator__dot--maintenance .status-indicator__dot { background: var(--d-info); }
 .status-indicator__list { list-style: none; padding: 0; margin: 0; }
 .status-indicator__item {
     display: flex; justify-content: space-between; align-items: center;

@@ -1,23 +1,31 @@
 name: desiderio/code-block
 typeName: desiderio_codeblock
-title: Code Block
-description: Syntax-highlighted code snippet with optional title and language
+title: 'Code Block'
+description: 'A shadcn/ui styled TYPO3 content element for content presentation, using theme tokens for light and dark mode.'
 group: content
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-  - identifier: language
+  -
+    identifier: language
     type: Text
-    label: Language Label
-    description: e.g. JavaScript, PHP, HTML
-  - identifier: code
+    label: 'Language Label'
+    description: 'e.g. JavaScript, PHP, HTML'
+  -
+    identifier: code
     type: Textarea
     label: Code
     rows: 12
     required: true
-  - identifier: filename
+  -
+    identifier: filename
     type: Text
     label: Filename
-    description: Optional filename shown above the code
+    description: 'Optional filename shown above the code'

@@ -1,37 +1,49 @@
 name: desiderio/office-locations
 typeName: desiderio_officelocations
-title: Office Locations
-description: Cards showing office addresses and contact information
+title: 'Office Locations'
+description: 'A shadcn/ui styled TYPO3 content element for team presentation, using theme tokens for light and dark mode.'
 group: team
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-  - identifier: subheadline
+  -
+    identifier: subheadline
     type: Textarea
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
     rows: 2
-  - identifier: location_items
+  -
+    identifier: location_items
     type: Collection
     label: Locations
     minItems: 1
     fields:
-      - identifier: city
+      -
+        identifier: city
         type: Textarea
         rows: 1
         label: City
         required: true
-      - identifier: address
+      -
+        identifier: address
         type: Textarea
         label: Address
         rows: 3
-      - identifier: phone
+      -
+        identifier: phone
         type: Text
         label: Phone
-      - identifier: email
+      -
+        identifier: email
         type: Text
         label: Email
-      - identifier: map_link
+      -
+        identifier: map_link
         type: Link
-        label: Map Link
+        label: 'Map Link'

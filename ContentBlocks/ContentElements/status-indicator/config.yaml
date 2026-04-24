@@ -1,52 +1,70 @@
 name: desiderio/status-indicator
 typeName: desiderio_statusindicator
-title: Status Indicator
-description: Service status display with colored dots and labels
+title: 'Status Indicator Data View'
+description: 'A shadcn/ui styled TYPO3 content element for data visualization, using theme tokens for light and dark mode.'
 group: data
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-  - identifier: overall_status
+  -
+    identifier: overall_status
     type: Select
     renderType: selectSingle
-    label: Overall Status
+    label: 'Overall Status'
     items:
-      - label: Operational
+      -
+        label: Operational
         value: operational
-      - label: Degraded
+      -
+        label: Degraded
         value: degraded
-      - label: Outage
+      -
+        label: Outage
         value: outage
-      - label: Maintenance
+      -
+        label: Maintenance
         value: maintenance
     default: operational
-  - identifier: items
+  -
+    identifier: items
     type: Collection
     label: Services
     minItems: 1
     fields:
-      - identifier: name
+      -
+        identifier: name
         type: Textarea
         rows: 1
-        label: Service Name
+        label: 'Service Name'
         required: true
-      - identifier: status
+      -
+        identifier: status
         type: Select
         renderType: selectSingle
         label: Status
         items:
-          - label: Operational
+          -
+            label: Operational
             value: operational
-          - label: Degraded
+          -
+            label: Degraded
             value: degraded
-          - label: Outage
+          -
+            label: Outage
             value: outage
-          - label: Maintenance
+          -
+            label: Maintenance
             value: maintenance
         default: operational
-      - identifier: detail
+      -
+        identifier: detail
         type: Textarea
         rows: 1
-        label: Status Detail
+        label: 'Status Detail'

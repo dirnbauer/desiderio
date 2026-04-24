@@ -11,8 +11,8 @@
 .metric-dashboard__label { font-size: var(--d-text-sm); color: var(--muted-foreground); }
 .metric-dashboard__value { font-size: var(--d-text-2xl); font-weight: 700; margin-block-start: var(--d-spacing-xs); }
 .metric-dashboard__change { font-size: var(--d-text-sm); margin-block-start: var(--d-spacing-xs); }
-.metric-dashboard__change--up { color: hsl(142 70% 40%); }
-.metric-dashboard__change--down { color: hsl(0 80% 50%); }
+.metric-dashboard__change--up { color: var(--d-success); }
+.metric-dashboard__change--down { color: var(--destructive); }
 .metric-dashboard__change--neutral { color: var(--muted-foreground); }
 .metric-dashboard__chart {
     margin-block-start: var(--d-spacing-lg);

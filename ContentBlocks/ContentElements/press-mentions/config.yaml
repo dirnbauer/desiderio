@@ -1,46 +1,52 @@
 name: desiderio/press-mentions
 typeName: desiderio_pressmentions
-title: Press Mentions
-description: Media coverage and press mention highlights
+title: 'Press Mentions'
+description: 'A shadcn/ui styled TYPO3 content element for social proof section, using theme tokens for light and dark mode.'
 group: social-proof
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-
-  - identifier: eyebrow
+  -
+    identifier: eyebrow
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
-
-  - identifier: mentions
+  -
+    identifier: mentions
     type: Collection
-    label: Press Mentions
+    label: 'Press Mentions'
     minItems: 1
     fields:
-      - identifier: publication
+      -
+        identifier: publication
         type: Textarea
         rows: 1
-        label: Publication Name
+        label: 'Publication Name'
         required: true
-
-      - identifier: logo
+      -
+        identifier: logo
         type: File
-        label: Publication Logo
+        label: 'Publication Logo'
         allowed: common-image-types
         maxitems: 1
-
-      - identifier: quote
+      -
+        identifier: quote
         type: Textarea
-        label: Quote / Excerpt
+        label: 'Quote / Excerpt'
         rows: 2
-
-      - identifier: date
+      -
+        identifier: date
         type: Textarea
         rows: 1
         label: Date
-
-      - identifier: link
+      -
+        identifier: link
         type: Link
-        label: Article Link
+        label: 'Article Link'

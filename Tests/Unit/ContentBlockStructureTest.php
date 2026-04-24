@@ -41,6 +41,63 @@ final class ContentBlockStructureTest extends TestCase
         }
     }
 
+    public function testEveryContentBlockDeclaresSharedTypo3Basics(): void
+    {
+        $blocks = glob(self::CONTENT_BLOCKS_DIR . '/*', GLOB_ONLYDIR) ?: [];
+        foreach ($blocks as $block) {
+            $config = Yaml::parseFile("{$block}/config.yaml");
+            $basics = $config['basics'] ?? [];
+            self::assertIsArray($basics, basename($block) . ' basics must be a list');
+            foreach (['TYPO3/Appearance', 'TYPO3/Links', 'TYPO3/Categories'] as $basic) {
+                self::assertContains($basic, $basics, basename($block) . " must include {$basic}");
+            }
+        }
+    }
+
+    public function testEveryContentBlockHasEnglishAndGermanWizardLabels(): void
+    {
+        $blocks = glob(self::CONTENT_BLOCKS_DIR . '/*', GLOB_ONLYDIR) ?: [];
+        foreach ($blocks as $block) {
+            $name = basename($block);
+            $english = (string) file_get_contents("{$block}/language/labels.xlf");
+            $german = (string) file_get_contents("{$block}/language/de.labels.xlf");
+
+            self::assertMatchesRegularExpression('/<trans-unit id="title">\\s*<source>[^<]+<\\/source>/s', $english, "{$name} needs an English title");
+            self::assertStringContainsString('A shadcn/ui styled TYPO3 content element', $english, "{$name} needs the standardized English description");
+            self::assertMatchesRegularExpression('/<trans-unit id="title">\\s*<source>[^<]+<\\/source>\\s*<target>[^<]+<\\/target>/s', $german, "{$name} needs a German title target");
+            self::assertStringContainsString('Ein shadcn/ui gestaltetes TYPO3 Inhaltselement', $german, "{$name} needs the standardized German description");
+        }
+    }
+
+    public function testEveryContentBlockWizardIconUsesTypo3V14SvgStyle(): void
+    {
+        $blocks = glob(self::CONTENT_BLOCKS_DIR . '/*', GLOB_ONLYDIR) ?: [];
+        foreach ($blocks as $block) {
+            $name = basename($block);
+            $icon = (string) file_get_contents("{$block}/assets/icon.svg");
+
+            self::assertStringContainsString('viewBox="0 0 16 16"', $icon, "{$name} icon should use TYPO3 backend icon dimensions");
+            self::assertStringContainsString('currentColor', $icon, "{$name} icon should inherit backend icon color");
+            self::assertStringContainsString('--icon-color-accent', $icon, "{$name} icon should expose the TYPO3 accent variable");
+            self::assertStringNotContainsString('#000', strtolower($icon), "{$name} icon must not hard-code black");
+            self::assertStringNotContainsString('#fff', strtolower($icon), "{$name} icon must not hard-code white");
+        }
+    }
+
+    public function testContentBlockCssUsesShadcnThemeTokens(): void
+    {
+        $files = glob(self::CONTENT_BLOCKS_DIR . '/*/assets/frontend.css') ?: [];
+        self::assertCount(self::EXPECTED_COUNT, $files);
+
+        foreach ($files as $file) {
+            $css = (string) file_get_contents($file);
+            self::assertStringNotContainsString('hsl(', $css, "{$file} must use shadcn CSS variables instead of local HSL colors");
+            self::assertStringNotContainsString('#fff', strtolower($css), "{$file} must not hard-code white");
+            self::assertStringNotContainsString('#000', strtolower($css), "{$file} must not hard-code black");
+            self::assertStringNotContainsString('rgb(', $css, "{$file} must not hard-code rgb colors");
+        }
+    }
+
     public function testEveryFrontendTemplateDeclaresDesiderioNamespace(): void
     {
         $blocks = glob(self::CONTENT_BLOCKS_DIR . '/*', GLOB_ONLYDIR) ?: [];
@@ -114,5 +171,28 @@ final class ContentBlockStructureTest extends TestCase
         self::assertCount(self::EXPECTED_COUNT, $listedTypeNames);
         self::assertSame($expected, $actual);
         self::assertStringNotContainsString('shadcn2fluid', (string) file_get_contents($groupsFile));
+    }
+
+    public function testStyleguideSeedCreatesOnePagePerWizardCategoryBelowParent505(): void
+    {
+        $seedFile = __DIR__ . '/../../Resources/Private/Data/styleguide-page-seed.json';
+        self::assertFileExists($seedFile);
+
+        $seed = json_decode((string) file_get_contents($seedFile), true);
+        self::assertIsArray($seed);
+        self::assertSame(505, $seed['parentPid'] ?? null);
+        self::assertCount(10, $seed['groups'] ?? []);
+
+        $elementCount = 0;
+        foreach ($seed['groups'] as $group) {
+            self::assertIsArray($group);
+            self::assertArrayHasKey('pageTitle', $group);
+            $groupElementCount = count($group['elements'] ?? []);
+            self::assertGreaterThanOrEqual(20, $groupElementCount, (string)($group['groupId'] ?? 'group') . ' should seed about 25 elements');
+            self::assertLessThanOrEqual(30, $groupElementCount, (string)($group['groupId'] ?? 'group') . ' should seed about 25 elements');
+            $elementCount += count($group['elements']);
+        }
+
+        self::assertSame(self::EXPECTED_COUNT, $elementCount);
     }
 }

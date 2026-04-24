@@ -13,7 +13,7 @@
 .card-pricing__period { font-size: var(--d-text-sm); color: var(--muted-foreground); }
 .card-pricing__features { list-style: none; padding: 0; display: flex; flex-direction: column; gap: var(--d-spacing-sm); }
 .card-pricing__feature { display: flex; align-items: center; gap: var(--d-spacing-xs); font-size: var(--d-text-sm); }
-.card-pricing__feature svg { flex-shrink: 0; color: hsl(142 70% 40%); }
+.card-pricing__feature svg { flex-shrink: 0; color: var(--d-success); }
 .card-pricing__feature--excluded { color: var(--muted-foreground); }
 .card-pricing__feature--excluded svg { color: var(--muted-foreground); }
 .card-pricing__action { margin-block-start: auto; }

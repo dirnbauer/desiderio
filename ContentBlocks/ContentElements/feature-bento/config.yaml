@@ -1,44 +1,58 @@
 name: desiderio/feature-bento
 typeName: desiderio_featurebento
-title: Feature Bento Grid
-description: Asymmetric bento-box layout for feature highlights
+title: 'Feature Bento'
+description: 'A shadcn/ui styled TYPO3 content element for feature section, using theme tokens for light and dark mode.'
 group: features
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-  - identifier: subheadline
+  -
+    identifier: subheadline
     type: Textarea
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
     rows: 2
-  - identifier: items
+  -
+    identifier: items
     type: Collection
-    label: Bento Items
+    label: 'Bento Items'
     minItems: 3
     fields:
-      - identifier: title
+      -
+        identifier: title
         type: Textarea
         rows: 1
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:title'
         required: true
-      - identifier: description
+      -
+        identifier: description
         type: Textarea
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
         rows: 2
-      - identifier: size
+      -
+        identifier: size
         type: Select
         renderType: selectSingle
-        label: Card Size
+        label: 'Card Size'
         items:
-          - label: Small (1x1)
+          -
+            label: 'Small (1x1)'
             value: small
-          - label: Wide (2x1)
+          -
+            label: 'Wide (2x1)'
             value: wide
-          - label: Tall (1x2)
+          -
+            label: 'Tall (1x2)'
             value: tall
         default: small
-      - identifier: image
+      -
+        identifier: image
         type: File
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:background_image'
         allowed: common-image-types

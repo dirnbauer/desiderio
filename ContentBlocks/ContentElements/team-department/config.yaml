@@ -1,28 +1,37 @@
 name: desiderio/team-department
 typeName: desiderio_teamdepartment
-title: Team Department
-description: Team members grouped by department with section headings
+title: 'Team Department'
+description: 'A shadcn/ui styled TYPO3 content element for team presentation, using theme tokens for light and dark mode.'
 group: team
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-  - identifier: subheadline
+  -
+    identifier: subheadline
     type: Textarea
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
     rows: 2
-  - identifier: department_items
+  -
+    identifier: department_items
     type: Collection
     label: Departments
     minItems: 1
     fields:
-      - identifier: name
+      -
+        identifier: name
         type: Textarea
         rows: 1
-        label: Department Name
+        label: 'Department Name'
         required: true
-      - identifier: members
+      -
+        identifier: members
         type: Textarea
-        label: "Members (one per line, format: Name | Role)"
+        label: 'Members (one per line, format: Name | Role)'
         rows: 5

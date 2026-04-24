@@ -1,22 +1,30 @@
 name: desiderio/mission-statement
 typeName: desiderio_missionstatement
-title: Mission Statement
-description: Bold centered mission or vision statement
+title: 'Mission Statement'
+description: 'A shadcn/ui styled TYPO3 content element for team presentation, using theme tokens for light and dark mode.'
 group: team
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-  - identifier: eyebrow
+  -
+    identifier: eyebrow
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
-  - identifier: statement
+  -
+    identifier: statement
     type: Textarea
-    label: Mission Statement
+    label: 'Mission Statement'
     rows: 4
-  - identifier: attribution
+  -
+    identifier: attribution
     type: Textarea
     rows: 1
     label: Attribution

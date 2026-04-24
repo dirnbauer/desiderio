@@ -1,87 +1,96 @@
 name: desiderio/pricing
 typeName: desiderio_pricing
 title: Pricing
-description: Pricing tables with featured plans and CTA buttons
+description: 'A shadcn/ui styled TYPO3 content element for pricing section, using theme tokens for light and dark mode.'
 group: pricing
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-
-  - identifier: eyebrow
+  -
+    identifier: eyebrow
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
-
-  - identifier: subheadline
+  -
+    identifier: subheadline
     type: Textarea
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
     rows: 2
-
-  - identifier: columns
+  -
+    identifier: columns
     type: Select
     renderType: selectSingle
-    label: Plan Columns
+    label: 'Plan Columns'
     items:
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.2_columns'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.2_columns'
         value: '2'
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.3_columns'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.3_columns'
         value: '3'
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.4_columns'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.4_columns'
         value: '4'
     default: '3'
-
-  - identifier: plans
+  -
+    identifier: plans
     type: Collection
-    label: Pricing Plans
+    label: 'Pricing Plans'
     minItems: 1
     maxItems: 4
     fields:
-      - identifier: badge_text
+      -
+        identifier: badge_text
         type: Textarea
         rows: 1
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:badge_text'
-
-      - identifier: name
+      -
+        identifier: name
         type: Textarea
         rows: 1
-        label: Plan Name
+        label: 'Plan Name'
         required: true
-
-      - identifier: price
+      -
+        identifier: price
         type: Textarea
         rows: 1
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:price'
         required: true
-
-      - identifier: billing_period
+      -
+        identifier: billing_period
         type: Textarea
         rows: 1
-        label: Billing Period
-        description: e.g. per month or per seat
-
-      - identifier: description
+        label: 'Billing Period'
+        description: 'e.g. per month or per seat'
+      -
+        identifier: description
         type: Textarea
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
         rows: 2
-
-      - identifier: features_list
+      -
+        identifier: features_list
         type: Textarea
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:features_one_per_line'
         rows: 6
-
-      - identifier: is_featured
+      -
+        identifier: is_featured
         type: Checkbox
-        label: Featured Plan
+        label: 'Featured Plan'
         default: 0
-
-      - identifier: button_text
+      -
+        identifier: button_text
         type: Textarea
         rows: 1
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_text'
-        default: Get Started
-
-      - identifier: button_link
+        default: 'Get Started'
+      -
+        identifier: button_link
         type: Link
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_link'

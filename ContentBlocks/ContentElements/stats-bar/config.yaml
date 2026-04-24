@@ -1,42 +1,48 @@
 name: desiderio/stats-bar
 typeName: desiderio_statsbar
-title: Stats Bar
-description: Horizontal bar chart statistics with progress indicators
+title: 'Stats Bar'
+description: 'A shadcn/ui styled TYPO3 content element for social proof section, using theme tokens for light and dark mode.'
 group: social-proof
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-
-  - identifier: eyebrow
+  -
+    identifier: eyebrow
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
-
-  - identifier: subheadline
+  -
+    identifier: subheadline
     type: Textarea
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
     rows: 2
-
-  - identifier: items
+  -
+    identifier: items
     type: Collection
-    label: Stat Bars
+    label: 'Stat Bars'
     minItems: 1
     fields:
-      - identifier: label
+      -
+        identifier: label
         type: Textarea
         rows: 1
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:label_field'
         required: true
-
-      - identifier: value
+      -
+        identifier: value
         type: Textarea
         rows: 1
-        label: Display Value
+        label: 'Display Value'
         required: true
-
-      - identifier: percentage
+      -
+        identifier: percentage
         type: Number
-        label: Bar Percentage (0-100)
+        label: 'Bar Percentage (0-100)'
         required: true

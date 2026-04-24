@@ -1,48 +1,54 @@
 name: desiderio/pricing-slider
 typeName: desiderio_pricingslider
-title: Pricing Slider
-description: Volume-based pricing with interactive range slider
+title: 'Pricing Slider'
+description: 'A shadcn/ui styled TYPO3 content element for pricing section, using theme tokens for light and dark mode.'
 group: pricing
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-
-  - identifier: eyebrow
+  -
+    identifier: eyebrow
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
-
-  - identifier: description
+  -
+    identifier: description
     type: Textarea
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
     rows: 2
-
-  - identifier: unit_label
+  -
+    identifier: unit_label
     type: Textarea
     rows: 1
-    label: Unit Label
+    label: 'Unit Label'
     default: requests
-
-  - identifier: tiers
+  -
+    identifier: tiers
     type: Collection
-    label: Volume Tiers
+    label: 'Volume Tiers'
     minItems: 2
     fields:
-      - identifier: volume
+      -
+        identifier: volume
         type: Textarea
         rows: 1
         label: Volume
         required: true
-
-      - identifier: price
+      -
+        identifier: price
         type: Textarea
         rows: 1
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:price'
         required: true
-
-      - identifier: included_features
+      -
+        identifier: included_features
         type: Textarea
         rows: 1
-        label: Included Features
+        label: 'Included Features'

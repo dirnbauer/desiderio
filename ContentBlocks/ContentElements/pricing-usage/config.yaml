@@ -1,52 +1,58 @@
 name: desiderio/pricing-usage
 typeName: desiderio_pricingusage
-title: Pricing Usage
-description: Usage-based pricing cards with rate and usage metric
+title: 'Pricing Usage'
+description: 'A shadcn/ui styled TYPO3 content element for pricing section, using theme tokens for light and dark mode.'
 group: pricing
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-
-  - identifier: eyebrow
+  -
+    identifier: eyebrow
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
-
-  - identifier: subheadline
+  -
+    identifier: subheadline
     type: Textarea
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
     rows: 2
-
-  - identifier: items
+  -
+    identifier: items
     type: Collection
-    label: Usage Items
+    label: 'Usage Items'
     minItems: 1
     fields:
-      - identifier: title
+      -
+        identifier: title
         type: Textarea
         rows: 1
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:title'
         required: true
-
-      - identifier: rate
+      -
+        identifier: rate
         type: Textarea
         rows: 1
         label: Rate
         required: true
-
-      - identifier: unit
+      -
+        identifier: unit
         type: Textarea
         rows: 1
         label: Unit
         required: true
-
-      - identifier: description
+      -
+        identifier: description
         type: Textarea
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
         rows: 2
-
-      - identifier: link
+      -
+        identifier: link
         type: Link
-        label: Details Link
+        label: 'Details Link'

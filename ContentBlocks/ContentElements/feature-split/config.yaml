@@ -1,33 +1,43 @@
 name: desiderio/feature-split
 typeName: desiderio_featuresplit
-title: Feature Split
-description: Two-column split layout with feature list and media
+title: 'Feature Split'
+description: 'A shadcn/ui styled TYPO3 content element for feature section, using theme tokens for light and dark mode.'
 group: features
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-  - identifier: description
+  -
+    identifier: description
     type: Textarea
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
     rows: 3
-  - identifier: image
+  -
+    identifier: image
     type: File
-    label: Side Image
+    label: 'Side Image'
     allowed: common-image-types
     maxitems: 1
-  - identifier: items
+  -
+    identifier: items
     type: Collection
-    label: Feature Points
+    label: 'Feature Points'
     minItems: 1
     fields:
-      - identifier: title
+      -
+        identifier: title
         type: Textarea
         rows: 1
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:title'
         required: true
-      - identifier: description_text
+      -
+        identifier: description_text
         type: Textarea
         rows: 1
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'

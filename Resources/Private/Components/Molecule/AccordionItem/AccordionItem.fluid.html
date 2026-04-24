@@ -4,7 +4,8 @@
 
 <div
     x-data="{ open: {f:if(condition: open, then: 'true', else: 'false')} }"
-    class="border-b {class}"
+    class="not-last:border-b {class}"
+    data-slot="accordion-item"
     data-d-accordion-item
 >
     <button
@@ -12,19 +13,21 @@
         x-on:click="open = !open"
         x-bind:aria-expanded="open ? 'true' : 'false'"
         x-bind:data-state="open ? 'open' : 'closed'"
-        class="flex flex-1 w-full items-center justify-between py-4 font-medium transition-all hover:underline text-left [&amp;[data-state=open]>svg]:rotate-180"
+        class="group/accordion-trigger relative flex flex-1 w-full items-start justify-between rounded-lg border border-transparent py-2.5 text-left text-sm font-medium transition-all outline-none hover:underline focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50 focus-visible:after:border-ring disabled:pointer-events-none disabled:opacity-50 **:data-[slot=accordion-trigger-icon]:ml-auto **:data-[slot=accordion-trigger-icon]:size-4 **:data-[slot=accordion-trigger-icon]:text-muted-foreground"
+        data-slot="accordion-trigger"
         data-d-accordion-trigger
     >
         <span>{trigger}</span>
-        <svg class="h-4 w-4 shrink-0 transition-transform duration-200" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+        <svg data-slot="accordion-trigger-icon" class="pointer-events-none shrink-0 transition-transform duration-200 group-aria-expanded/accordion-trigger:rotate-180" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
     </button>
     <div
         x-show="open"
         x-collapse
-        class="overflow-hidden text-sm"
+        class="overflow-hidden text-sm data-open:animate-accordion-down data-closed:animate-accordion-up"
+        data-slot="accordion-content"
         data-d-accordion-content
     >
-        <div class="pb-4 pt-0">
+        <div class="h-(--radix-accordion-content-height) pt-0 pb-2.5 [&amp;_a]:underline [&amp;_a]:underline-offset-3 [&amp;_a]:hover:text-foreground [&amp;_p:not(:last-child)]:mb-4">
             <f:slot />
         </div>
     </div>

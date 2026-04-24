@@ -1,46 +1,51 @@
 name: desiderio/article-hero
 typeName: desiderio_articlehero
-title: Article Hero
-description: Editorial article intro with headline, metadata, and cover image
+title: 'Article Hero'
+description: 'A shadcn/ui styled TYPO3 content element for content presentation, using theme tokens for light and dark mode.'
 group: content
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-
-  - identifier: eyebrow
+  -
+    identifier: eyebrow
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
-
-  - identifier: dek
+  -
+    identifier: dek
     type: Textarea
     label: Summary
     rows: 3
-
-  - identifier: topic
+  -
+    identifier: topic
     type: Textarea
     rows: 1
     label: Topic
-
-  - identifier: publish_date
+  -
+    identifier: publish_date
     type: Textarea
     rows: 1
-    label: Publish Date
-
-  - identifier: reading_time
+    label: 'Publish Date'
+  -
+    identifier: reading_time
     type: Textarea
     rows: 1
-    label: Reading Time
-
-  - identifier: author_name
+    label: 'Reading Time'
+  -
+    identifier: author_name
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:author_name'
-
-  - identifier: cover_image
+  -
+    identifier: cover_image
     type: File
-    label: Cover Image
+    label: 'Cover Image'
     allowed: common-image-types
     maxitems: 1

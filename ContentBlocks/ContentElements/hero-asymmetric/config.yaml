@@ -1,37 +1,49 @@
 name: desiderio/hero-asymmetric
 typeName: desiderio_heroasymmetric
-title: Hero Asymmetric
-description: Asymmetric layout hero with offset content and media
+title: 'Hero Asymmetric'
+description: 'A shadcn/ui styled TYPO3 content element for hero section, using theme tokens for light and dark mode.'
 group: hero
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-  - identifier: subheadline
+  -
+    identifier: subheadline
     type: Textarea
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
     rows: 3
-  - identifier: badge_text
+  -
+    identifier: badge_text
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:badge_text'
-  - identifier: hero_image
+  -
+    identifier: hero_image
     type: File
-    label: Hero Image
+    label: 'Hero Image'
     allowed: common-image-types
     maxitems: 1
-  - identifier: primary_button_text
+  -
+    identifier: primary_button_text
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:primary_button_text'
-  - identifier: primary_button_link
+  -
+    identifier: primary_button_link
     type: Link
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:primary_button_link'
-  - identifier: secondary_button_text
+  -
+    identifier: secondary_button_text
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:secondary_button_text'
-  - identifier: secondary_button_link
+  -
+    identifier: secondary_button_link
     type: Link
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:secondary_button_link'

@@ -1,49 +1,61 @@
 name: desiderio/progress-bar
 typeName: desiderio_progressbar
-title: Progress Bar
-description: Visual progress indicator with label and percentage
+title: 'Progress Bar Data View'
+description: 'A shadcn/ui styled TYPO3 content element for data visualization, using theme tokens for light and dark mode.'
 group: data
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: variant
+  -
+    identifier: variant
     type: Select
     renderType: selectSingle
-    label: Progress Style
+    label: 'Progress Style'
     onChange: reload
     items:
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.default'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.default'
         value: default
-      - label: Labeled
+      -
+        label: Labeled
         value: labeled
-      - label: Striped
+      -
+        label: Striped
         value: striped
     default: default
-
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-
-  - identifier: progress_value
+  -
+    identifier: progress_value
     type: Number
-    label: Progress Value (0-100)
+    label: 'Progress Value (0-100)'
     required: true
-
-  - identifier: show_percentage
+  -
+    identifier: show_percentage
     type: Checkbox
-    label: Show Percentage
+    label: 'Show Percentage'
     default: 1
-
-  - identifier: color
+  -
+    identifier: color
     type: Select
     renderType: selectSingle
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:color_field'
     items:
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.primary'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.primary'
         value: primary
-      - label: Success
+      -
+        label: Success
         value: success
-      - label: Warning
+      -
+        label: Warning
         value: warning
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.destructive'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.destructive'
         value: destructive
     default: primary

@@ -1,56 +1,72 @@
 name: desiderio/chart-contribution
 typeName: desiderio_chartcontribution
-title: Chart Contribution
-description: Activity dashboard card with bar chart, KPI tiles, and CTA
+title: 'Chart Contribution'
+description: 'A shadcn/ui styled TYPO3 content element for data visualization, using theme tokens for light and dark mode.'
 group: data
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-  - identifier: subheadline
+  -
+    identifier: subheadline
     type: Textarea
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
     rows: 2
-  - identifier: badge_text
+  -
+    identifier: badge_text
     type: Textarea
     rows: 1
     label: 'Badge (e.g. +12% vs last month)'
-  - identifier: chart_data
+  -
+    identifier: chart_data
     type: Textarea
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:chart_data_json'
     description: |
       JSON array of bars: [{"label":"Dec","value":40},{"label":"Jan","value":52}]
     rows: 6
     required: true
-  - identifier: left_stat_label
+  -
+    identifier: left_stat_label
     type: Textarea
     rows: 1
-    label: Left tile label (uppercase)
-  - identifier: left_stat_value
+    label: 'Left tile label (uppercase)'
+  -
+    identifier: left_stat_value
     type: Textarea
     rows: 1
-    label: Left tile headline
-  - identifier: left_stat_detail
+    label: 'Left tile headline'
+  -
+    identifier: left_stat_detail
     type: Textarea
     rows: 1
-    label: Left tile detail
-  - identifier: right_stat_label
+    label: 'Left tile detail'
+  -
+    identifier: right_stat_label
     type: Textarea
     rows: 1
-    label: Right tile label (uppercase)
-  - identifier: right_stat_value
+    label: 'Right tile label (uppercase)'
+  -
+    identifier: right_stat_value
     type: Textarea
     rows: 1
-    label: Right tile headline
-  - identifier: right_stat_detail
+    label: 'Right tile headline'
+  -
+    identifier: right_stat_detail
     type: Textarea
     rows: 1
-    label: Right tile detail
-  - identifier: primary_button_text
+    label: 'Right tile detail'
+  -
+    identifier: primary_button_text
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:primary_button_text'
-  - identifier: primary_button_link
+  -
+    identifier: primary_button_link
     type: Link
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:primary_button_link'

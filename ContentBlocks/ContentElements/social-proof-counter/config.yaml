@@ -1,61 +1,74 @@
 name: desiderio/social-proof-counter
 typeName: desiderio_socialproofcounter
-title: Social Proof Counter
-description: Live-style counters for users, downloads, or customers
+title: 'Social Proof Counter'
+description: 'A shadcn/ui styled TYPO3 content element for social proof section, using theme tokens for light and dark mode.'
 group: social-proof
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-
-  - identifier: subheadline
+  -
+    identifier: subheadline
     type: Textarea
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
     rows: 2
-
-  - identifier: layout
+  -
+    identifier: layout
     type: Select
     renderType: selectSingle
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:layout'
     items:
-      - label: Inline Row
+      -
+        label: 'Inline Row'
         value: inline
-      - label: Stacked Center
+      -
+        label: 'Stacked Center'
         value: stacked
     default: inline
-
-  - identifier: counters
+  -
+    identifier: counters
     type: Collection
     label: Counters
     minItems: 1
     fields:
-      - identifier: value
+      -
+        identifier: value
         type: Textarea
         rows: 1
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:value'
         required: true
-        description: e.g. 10,000+
-
-      - identifier: label
+        description: 'e.g. 10,000+'
+      -
+        identifier: label
         type: Textarea
         rows: 1
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:label_field'
         required: true
-
-      - identifier: icon_name
+      -
+        identifier: icon_name
         type: Select
         renderType: selectSingle
         label: Icon
         items:
-          - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.none'
+          -
+            label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.none'
             value: none
-          - label: Users
+          -
+            label: Users
             value: users
-          - label: Download
+          -
+            label: Download
             value: download
-          - label: Globe
+          -
+            label: Globe
             value: globe
-          - label: Heart
+          -
+            label: Heart
             value: heart
         default: none

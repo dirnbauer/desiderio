@@ -1,46 +1,59 @@
 name: desiderio/gdpr-banner
 typeName: desiderio_gdprbanner
-title: GDPR Banner
-description: GDPR-compliant consent banner with granular cookie controls
+title: 'GDPR Banner Footer'
+description: 'A shadcn/ui styled TYPO3 content element for footer area, using theme tokens for light and dark mode.'
 group: footer
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-  - identifier: content
+  -
+    identifier: content
     type: Textarea
-    label: Banner Message
+    label: 'Banner Message'
     enableRichtext: true
     rows: 3
     required: true
-  - identifier: categories
+  -
+    identifier: categories
     type: Collection
-    label: Cookie Categories
+    label: 'Cookie Categories'
     fields:
-      - identifier: name
+      -
+        identifier: name
         type: Textarea
         rows: 1
-        label: Category Name
+        label: 'Category Name'
         required: true
-      - identifier: description_text
+      -
+        identifier: description_text
         type: Textarea
         rows: 1
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
-      - identifier: required
+      -
+        identifier: required
         type: Checkbox
-        label: Required (cannot be disabled)
+        label: 'Required (cannot be disabled)'
         default: 0
-  - identifier: accept_text
+  -
+    identifier: accept_text
     type: Textarea
     rows: 1
-    label: Accept All Text
-    default: Accept All
-  - identifier: save_text
+    label: 'Accept All Text'
+    default: 'Accept All'
+  -
+    identifier: save_text
     type: Textarea
     rows: 1
-    label: Save Preferences Text
-    default: Save Preferences
-  - identifier: privacy_link
+    label: 'Save Preferences Text'
+    default: 'Save Preferences'
+  -
+    identifier: privacy_link
     type: Link
-    label: Privacy Policy Link
+    label: 'Privacy Policy Link'

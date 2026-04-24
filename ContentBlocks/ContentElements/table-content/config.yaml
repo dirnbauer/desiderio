@@ -1,45 +1,58 @@
 name: desiderio/table-content
 typeName: desiderio_tablecontent
-title: Table Content
-description: Styled data table with header row and body rows
+title: 'Table Content'
+description: 'A shadcn/ui styled TYPO3 content element for content presentation, using theme tokens for light and dark mode.'
 group: content
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-  - identifier: caption
+  -
+    identifier: caption
     type: Textarea
     rows: 1
-    label: Table Caption
-  - identifier: column_items
+    label: 'Table Caption'
+  -
+    identifier: column_items
     type: Collection
-    label: Column Headers
+    label: 'Column Headers'
     minItems: 2
     fields:
-      - identifier: label
+      -
+        identifier: label
         type: Textarea
         rows: 1
-        label: Column Header
+        label: 'Column Header'
         required: true
-  - identifier: rows
+  -
+    identifier: rows
     type: Collection
-    label: Table Rows
+    label: 'Table Rows'
     minItems: 1
     fields:
-      - identifier: col1
+      -
+        identifier: col1
         type: Textarea
         rows: 1
-        label: Column 1
-      - identifier: col2
+        label: 'Column 1'
+      -
+        identifier: col2
         type: Textarea
         rows: 1
-        label: Column 2
-      - identifier: col3
+        label: 'Column 2'
+      -
+        identifier: col3
         type: Textarea
         rows: 1
-        label: Column 3
-      - identifier: col4
+        label: 'Column 3'
+      -
+        identifier: col4
         type: Textarea
         rows: 1
-        label: Column 4
+        label: 'Column 4'

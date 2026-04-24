@@ -1,63 +1,69 @@
 name: desiderio/order-summary
 typeName: desiderio_ordersummary
-title: Order Summary
-description: Order summary card with line items, totals, and CTA
+title: 'Order Summary Pricing'
+description: 'A shadcn/ui styled TYPO3 content element for pricing section, using theme tokens for light and dark mode.'
 group: pricing
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-
-  - identifier: items
+  -
+    identifier: items
     type: Collection
-    label: Line Items
+    label: 'Line Items'
     minItems: 1
     fields:
-      - identifier: name
+      -
+        identifier: name
         type: Textarea
         rows: 1
-        label: Item Name
+        label: 'Item Name'
         required: true
-
-      - identifier: quantity
+      -
+        identifier: quantity
         type: Textarea
         rows: 1
         label: Quantity
-
-      - identifier: price
+      -
+        identifier: price
         type: Textarea
         rows: 1
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:price'
         required: true
-
-  - identifier: subtotal
+  -
+    identifier: subtotal
     type: Textarea
     rows: 1
     label: Subtotal
-
-  - identifier: discount_label
+  -
+    identifier: discount_label
     type: Textarea
     rows: 1
-    label: Discount Label
-
-  - identifier: discount_value
+    label: 'Discount Label'
+  -
+    identifier: discount_value
     type: Textarea
     rows: 1
-    label: Discount Value
-
-  - identifier: total
+    label: 'Discount Value'
+  -
+    identifier: total
     type: Textarea
     rows: 1
     label: Total
     required: true
-
-  - identifier: button_text
+  -
+    identifier: button_text
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_text'
-    default: Proceed to Checkout
-
-  - identifier: button_link
+    default: 'Proceed to Checkout'
+  -
+    identifier: button_link
     type: Link
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_link'

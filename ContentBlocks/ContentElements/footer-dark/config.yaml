@@ -1,34 +1,45 @@
 name: desiderio/footer-dark
 typeName: desiderio_footerdark
-title: Footer Dark
-description: Dark-themed footer with inverted colors
+title: 'Footer Dark Footer'
+description: 'A shadcn/ui styled TYPO3 content element for footer area, using theme tokens for light and dark mode.'
 group: footer
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-  - identifier: brand
+  -
+    identifier: brand
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:brand_name'
-  - identifier: description
+  -
+    identifier: description
     type: Textarea
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
     rows: 3
-  - identifier: column_items
+  -
+    identifier: column_items
     type: Collection
-    label: Link Groups
+    label: 'Link Groups'
     fields:
-      - identifier: title
+      -
+        identifier: title
         type: Textarea
         rows: 1
-        label: Group Title
-      - identifier: links
+        label: 'Group Title'
+      -
+        identifier: links
         type: Textarea
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:links_one_per_line'
         rows: 5
-  - identifier: copyright
+  -
+    identifier: copyright
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:copyright_text'

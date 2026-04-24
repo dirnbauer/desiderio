@@ -1,41 +1,53 @@
 name: desiderio/board-members
 typeName: desiderio_boardmembers
-title: Board Members
-description: Executive board member cards with titles and affiliations
+title: 'Board Members'
+description: 'A shadcn/ui styled TYPO3 content element for team presentation, using theme tokens for light and dark mode.'
 group: team
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-  - identifier: subheadline
+  -
+    identifier: subheadline
     type: Textarea
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
     rows: 2
-  - identifier: members
+  -
+    identifier: members
     type: Collection
-    label: Board Members
+    label: 'Board Members'
     minItems: 1
     fields:
-      - identifier: image
+      -
+        identifier: image
         type: File
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:portrait'
         allowed: common-image-types
         maxitems: 1
-      - identifier: name
+      -
+        identifier: name
         type: Textarea
         rows: 1
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:name'
         required: true
-      - identifier: title
+      -
+        identifier: title
         type: Textarea
         rows: 1
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:title'
-      - identifier: affiliation
+      -
+        identifier: affiliation
         type: Textarea
         rows: 1
         label: Affiliation
-      - identifier: bio
+      -
+        identifier: bio
         type: Textarea
-        label: Short Bio
+        label: 'Short Bio'
         rows: 2

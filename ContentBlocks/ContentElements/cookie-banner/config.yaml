@@ -1,44 +1,57 @@
 name: desiderio/cookie-banner
 typeName: desiderio_cookiebanner
-title: Cookie Banner
-description: Cookie consent banner with accept/decline and settings options
+title: 'Cookie Banner Footer'
+description: 'A shadcn/ui styled TYPO3 content element for footer area, using theme tokens for light and dark mode.'
 group: footer
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-  - identifier: content
+  -
+    identifier: content
     type: Textarea
-    label: Cookie Message
+    label: 'Cookie Message'
     enableRichtext: true
     rows: 3
     required: true
-  - identifier: accept_text
+  -
+    identifier: accept_text
     type: Textarea
     rows: 1
-    label: Accept Button Text
-    default: Accept All
-  - identifier: decline_text
+    label: 'Accept Button Text'
+    default: 'Accept All'
+  -
+    identifier: decline_text
     type: Textarea
     rows: 1
-    label: Decline Button Text
+    label: 'Decline Button Text'
     default: Decline
-  - identifier: settings_text
+  -
+    identifier: settings_text
     type: Textarea
     rows: 1
-    label: Settings Button Text
-    default: Cookie Settings
-  - identifier: settings_link
+    label: 'Settings Button Text'
+    default: 'Cookie Settings'
+  -
+    identifier: settings_link
     type: Link
-    label: Settings Page Link
-  - identifier: position
+    label: 'Settings Page Link'
+  -
+    identifier: position
     type: Select
     renderType: selectSingle
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:position'
     items:
-      - label: Bottom
+      -
+        label: Bottom
         value: bottom
-      - label: Top
+      -
+        label: Top
         value: top
     default: bottom

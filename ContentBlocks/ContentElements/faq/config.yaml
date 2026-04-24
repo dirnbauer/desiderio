@@ -1,28 +1,37 @@
 name: desiderio/faq
 typeName: desiderio_faq
 title: FAQ
-description: Frequently asked questions with structured data support
+description: 'A shadcn/ui styled TYPO3 content element for content presentation, using theme tokens for light and dark mode.'
 group: content
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-  - identifier: subheadline
+  -
+    identifier: subheadline
     type: Textarea
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
     rows: 2
-  - identifier: items
+  -
+    identifier: items
     type: Collection
     label: Questions
     minItems: 1
     fields:
-      - identifier: question
+      -
+        identifier: question
         type: Textarea
         rows: 1
         label: Question
         required: true
-      - identifier: answer
+      -
+        identifier: answer
         type: Textarea
         label: Answer
         enableRichtext: true

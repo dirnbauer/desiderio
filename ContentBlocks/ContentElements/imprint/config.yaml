@@ -1,37 +1,49 @@
 name: desiderio/imprint
 typeName: desiderio_imprint
-title: Imprint
-description: Legal imprint page with company details and contact info
+title: 'Imprint Footer'
+description: 'A shadcn/ui styled TYPO3 content element for footer area, using theme tokens for light and dark mode.'
 group: footer
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-  - identifier: company_name
+  -
+    identifier: company_name
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:company_name'
     required: true
-  - identifier: address
+  -
+    identifier: address
     type: Textarea
     label: Address
     rows: 3
-  - identifier: contact_email
+  -
+    identifier: contact_email
     type: Text
     label: Email
-  - identifier: contact_phone
+  -
+    identifier: contact_phone
     type: Text
     label: Phone
-  - identifier: registry_info
+  -
+    identifier: registry_info
     type: Textarea
-    label: Registry Information
+    label: 'Registry Information'
     rows: 3
-  - identifier: vat_id
+  -
+    identifier: vat_id
     type: Text
-    label: VAT ID
-  - identifier: additional_info
+    label: 'VAT ID'
+  -
+    identifier: additional_info
     type: Textarea
-    label: Additional Information
+    label: 'Additional Information'
     enableRichtext: true
     rows: 4

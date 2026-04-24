@@ -1,29 +1,39 @@
 name: desiderio/footer-app-links
 typeName: desiderio_footerapplinks
-title: Footer App Links
-description: Footer with app store download buttons and QR code
+title: 'Footer App Links Footer'
+description: 'A shadcn/ui styled TYPO3 content element for footer area, using theme tokens for light and dark mode.'
 group: footer
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-  - identifier: description
+  -
+    identifier: description
     type: Textarea
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
     rows: 2
-  - identifier: appstore_link
+  -
+    identifier: appstore_link
     type: Link
-    label: App Store Link
-  - identifier: playstore_link
+    label: 'App Store Link'
+  -
+    identifier: playstore_link
     type: Link
-    label: Google Play Link
-  - identifier: qr_image
+    label: 'Google Play Link'
+  -
+    identifier: qr_image
     type: File
-    label: QR Code Image
+    label: 'QR Code Image'
     allowed: common-image-types
     maxitems: 1
-  - identifier: copyright
+  -
+    identifier: copyright
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:copyright_text'

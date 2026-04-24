@@ -33,5 +33,5 @@
     border-bottom: none;
 }
 .table-content__table tbody tr:hover {
-    background: hsl(color-mix(in oklch, var(--muted) 50%, transparent);
+    background: color-mix(in oklch, var(--muted) 50%, transparent);
 }

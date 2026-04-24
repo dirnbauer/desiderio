@@ -1,42 +1,56 @@
 name: desiderio/feature-highlight
 typeName: desiderio_featurehighlight
-title: Feature Highlight
-description: Single prominent feature callout with background accent
+title: 'Feature Highlight'
+description: 'A shadcn/ui styled TYPO3 content element for feature section, using theme tokens for light and dark mode.'
 group: features
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-  - identifier: eyebrow
+  -
+    identifier: eyebrow
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
-  - identifier: description
+  -
+    identifier: description
     type: Textarea
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
     rows: 3
-  - identifier: image
+  -
+    identifier: image
     type: File
-    label: Feature Image
+    label: 'Feature Image'
     allowed: common-image-types
     maxitems: 1
-  - identifier: link
+  -
+    identifier: link
     type: Link
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:link'
-  - identifier: link_text
+  -
+    identifier: link_text
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:link_text'
-  - identifier: variant
+  -
+    identifier: variant
     type: Select
     renderType: selectSingle
-    label: Background Style
+    label: 'Background Style'
     items:
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.muted'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.muted'
         value: muted
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.primary'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.primary'
         value: primary
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.none'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.none'
         value: none
     default: muted

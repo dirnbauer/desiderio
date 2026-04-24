@@ -16,7 +16,7 @@
 .navbar-transparent__brand {
     font-weight: 600;
     font-size: var(--d-text-lg);
-    color: #fff;
+    color: var(--primary-foreground);
 }
 .navbar-transparent__nav {
     display: flex;
@@ -35,5 +35,5 @@
     transition: color 0.15s;
 }
 .navbar-transparent__link:hover {
-    color: #fff;
+    color: var(--primary-foreground);
 }

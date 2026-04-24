@@ -83,3 +83,107 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer components {
+  /* Tailwind Styled Content-compatible frame/prose defaults, implemented with Tailwind v4 and shadcn tokens. */
+  .frame,
+  .ce-frame {
+    color: var(--foreground);
+  }
+
+  .frame:not(:first-child),
+  .ce-frame:not(:first-child) {
+    margin-block-start: var(--d-section-y, 3rem);
+  }
+
+  .frame :where(h1, h2, h3, h4, h5, h6),
+  .ce-frame :where(h1, h2, h3, h4, h5, h6),
+  .ce-bodytext :where(h1, h2, h3, h4, h5, h6),
+  .prose :where(h1, h2, h3, h4, h5, h6) {
+    color: var(--foreground);
+    font-family: var(--font-heading);
+    font-weight: 600;
+    letter-spacing: 0;
+  }
+
+  .frame :where(p, li, figcaption),
+  .ce-frame :where(p, li, figcaption),
+  .ce-bodytext :where(p, li, figcaption),
+  .prose :where(p, li, figcaption) {
+    color: var(--muted-foreground);
+    line-height: 1.7;
+  }
+
+  .frame :where(a),
+  .ce-frame :where(a),
+  .ce-bodytext :where(a),
+  .prose :where(a) {
+    color: var(--primary);
+    text-decoration-line: underline;
+    text-underline-offset: 0.25rem;
+  }
+
+  .frame :where(a:hover),
+  .ce-frame :where(a:hover),
+  .ce-bodytext :where(a:hover),
+  .prose :where(a:hover) {
+    color: color-mix(in oklch, var(--primary) 80%, var(--foreground));
+  }
+
+  .frame :where(img, video, iframe),
+  .ce-frame :where(img, video, iframe),
+  .prose :where(img, video, iframe) {
+    border-radius: var(--radius-lg);
+  }
+
+  .frame :where(blockquote),
+  .ce-frame :where(blockquote),
+  .prose :where(blockquote) {
+    border-inline-start: 2px solid var(--border);
+    color: var(--foreground);
+    padding-inline-start: 1rem;
+  }
+
+  .frame :where(table),
+  .ce-frame :where(table),
+  .prose :where(table) {
+    width: 100%;
+    caption-side: bottom;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+  }
+
+  .frame :where(th),
+  .ce-frame :where(th),
+  .prose :where(th) {
+    color: var(--foreground);
+    font-weight: 500;
+    text-align: start;
+  }
+
+  .frame :where(th, td),
+  .ce-frame :where(th, td),
+  .prose :where(th, td) {
+    border-block-end: 1px solid var(--border);
+    padding: 0.5rem;
+  }
+
+  .frame :where(input, textarea, select),
+  .ce-frame :where(input, textarea, select),
+  .desiderio-content-element :where(input, textarea, select) {
+    min-height: 2rem;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--input);
+    background: transparent;
+    color: var(--foreground);
+    font-size: 0.875rem;
+  }
+
+  .frame :where(button, a, input, textarea, select):focus-visible,
+  .ce-frame :where(button, a, input, textarea, select):focus-visible,
+  .desiderio-content-element :where(button, a, input, textarea, select):focus-visible {
+    border-color: var(--ring);
+    outline: none;
+    box-shadow: 0 0 0 3px color-mix(in oklch, var(--ring) 50%, transparent);
+  }
+}

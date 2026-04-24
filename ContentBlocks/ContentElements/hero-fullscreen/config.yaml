@@ -1,45 +1,60 @@
 name: desiderio/hero-fullscreen
 typeName: desiderio_herofullscreen
-title: Hero Fullscreen
-description: Full viewport height hero with centered overlay content
+title: 'Hero Fullscreen'
+description: 'A shadcn/ui styled TYPO3 content element for hero section, using theme tokens for light and dark mode.'
 group: hero
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-  - identifier: subheadline
+  -
+    identifier: subheadline
     type: Textarea
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
     rows: 3
-  - identifier: background_image
+  -
+    identifier: background_image
     type: File
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:background_image'
     allowed: common-image-types
     maxitems: 1
-  - identifier: overlay_opacity
+  -
+    identifier: overlay_opacity
     type: Select
     renderType: selectSingle
-    label: Overlay Opacity
+    label: 'Overlay Opacity'
     items:
-      - label: Light (30%)
+      -
+        label: 'Light (30%)'
         value: '0.3'
-      - label: Medium (50%)
+      -
+        label: 'Medium (50%)'
         value: '0.5'
-      - label: Heavy (70%)
+      -
+        label: 'Heavy (70%)'
         value: '0.7'
     default: '0.5'
-  - identifier: primary_button_text
+  -
+    identifier: primary_button_text
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:primary_button_text'
-  - identifier: primary_button_link
+  -
+    identifier: primary_button_link
     type: Link
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:primary_button_link'
-  - identifier: secondary_button_text
+  -
+    identifier: secondary_button_text
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:secondary_button_text'
-  - identifier: secondary_button_link
+  -
+    identifier: secondary_button_link
     type: Link
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:secondary_button_link'

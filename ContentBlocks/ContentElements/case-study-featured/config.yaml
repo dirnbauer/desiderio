@@ -1,61 +1,67 @@
 name: desiderio/case-study-featured
 typeName: desiderio_casestudyfeatured
-title: Case Study Featured
-description: Large featured case study with full-width layout and metrics
+title: 'Case Study Featured'
+description: 'A shadcn/ui styled TYPO3 content element for social proof section, using theme tokens for light and dark mode.'
 group: social-proof
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-
-  - identifier: eyebrow
+  -
+    identifier: eyebrow
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
-
-  - identifier: client_name
+  -
+    identifier: client_name
     type: Textarea
     rows: 1
-    label: Client Name
+    label: 'Client Name'
     required: true
-
-  - identifier: client_logo
+  -
+    identifier: client_logo
     type: File
-    label: Client Logo
+    label: 'Client Logo'
     allowed: common-image-types
     maxitems: 1
-
-  - identifier: description
+  -
+    identifier: description
     type: Textarea
-    label: Case Study Description
+    label: 'Case Study Description'
     rows: 4
     required: true
-
-  - identifier: image
+  -
+    identifier: image
     type: File
-    label: Hero Image
+    label: 'Hero Image'
     allowed: common-image-types
     maxitems: 1
-
-  - identifier: metrics
+  -
+    identifier: metrics
     type: Collection
-    label: Key Metrics
+    label: 'Key Metrics'
     minItems: 1
     maxItems: 4
     fields:
-      - identifier: value
+      -
+        identifier: value
         type: Textarea
         rows: 1
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:value'
         required: true
-
-      - identifier: label
+      -
+        identifier: label
         type: Textarea
         rows: 1
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:label_field'
         required: true
-
-  - identifier: link
+  -
+    identifier: link
     type: Link
-    label: Read Full Case Study
+    label: 'Read Full Case Study'

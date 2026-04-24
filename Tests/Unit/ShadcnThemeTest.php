@@ -56,12 +56,17 @@ final class ShadcnThemeTest extends TestCase
         self::assertStringContainsString('.dark body[data-shadcn-preset="b3IWPgRwnI"]', $themeCss);
         self::assertStringContainsString('--d-font-sans', $themeCss);
         self::assertStringContainsString('--d-shadow-sm', $themeCss);
+        self::assertStringContainsString('--d-info:', $themeCss);
+        self::assertStringContainsString('--d-success:', $themeCss);
+        self::assertStringContainsString('--d-warning:', $themeCss);
+        self::assertStringContainsString('--d-danger:', $themeCss);
     }
 
     public function testTailwindBuildScansFluidComponentsAndContentBlocks(): void
     {
         $tailwindCss = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Tailwind/desiderio.css');
         $componentsJson = json_decode((string) file_get_contents(__DIR__ . '/../../components.json'), true);
+        $packageJson = json_decode((string) file_get_contents(__DIR__ . '/../../package.json'), true);
 
         self::assertStringContainsString('@import "tailwindcss";', $tailwindCss);
         self::assertStringContainsString('@import "shadcn/tailwind.css";', $tailwindCss);
@@ -70,10 +75,17 @@ final class ShadcnThemeTest extends TestCase
         self::assertStringContainsString('@source "../../../ContentBlocks";', $tailwindCss);
         self::assertStringContainsString('@custom-variant dark', $tailwindCss);
         self::assertStringContainsString('@theme inline', $tailwindCss);
+        self::assertStringContainsString('.ce-bodytext', $tailwindCss);
+        self::assertStringContainsString('.desiderio-content-element', $tailwindCss);
 
         self::assertIsArray($componentsJson);
         self::assertSame('radix-nova', $componentsJson['style'] ?? null);
         self::assertSame('Resources/Private/Tailwind/desiderio.css', $componentsJson['tailwind']['css'] ?? null);
+
+        self::assertIsArray($packageJson);
+        self::assertSame('^4.2.4', $packageJson['dependencies']['tailwindcss'] ?? null);
+        self::assertSame('^4.2.4', $packageJson['dependencies']['@tailwindcss/cli'] ?? null);
+        self::assertSame('^4.4.0', $packageJson['dependencies']['shadcn'] ?? null);
     }
 
     public function testGeneratedTailwindCssContainsShadcnUtilities(): void
@@ -82,7 +94,7 @@ final class ShadcnThemeTest extends TestCase
         self::assertFileExists($generatedCssPath, 'Run npm run build:css after changing Fluid class recipes.');
 
         $generatedCss = (string) file_get_contents($generatedCssPath);
-        foreach (['.bg-card', '.text-card-foreground', '.rounded-lg', '.border-border', '.data-\\[state\\=active\\]\\:bg-background'] as $class) {
+        foreach (['.bg-card', '.text-card-foreground', '.rounded-lg', '.border-border', '.data-active\\:bg-background'] as $class) {
             self::assertStringContainsString($class, $generatedCss);
         }
 

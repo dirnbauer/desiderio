@@ -1,21 +1,29 @@
 name: desiderio/cta-minimal
 typeName: desiderio_ctaminimal
-title: CTA Minimal
-description: Minimal text-only call to action with a single link
+title: 'CTA Minimal'
+description: 'A shadcn/ui styled TYPO3 content element for conversion flow, using theme tokens for light and dark mode.'
 group: conversion
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-  - identifier: description_text
+  -
+    identifier: description_text
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
-  - identifier: cta_text
+  -
+    identifier: cta_text
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:link_text'
-  - identifier: cta_link
+  -
+    identifier: cta_link
     type: Link
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:link'

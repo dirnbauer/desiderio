@@ -13,8 +13,8 @@
     background: var(--card);
 }
 .kpi-cards__value { font-size: var(--d-text-3xl); font-weight: 700; }
-.kpi-cards__item--positive .kpi-cards__value { color: hsl(142 70% 40%); }
+.kpi-cards__item--positive .kpi-cards__value { color: var(--d-success); }
 .kpi-cards__item--neutral .kpi-cards__value { color: var(--muted-foreground); }
-.kpi-cards__item--caution .kpi-cards__value { color: hsl(25 95% 53%); }
+.kpi-cards__item--caution .kpi-cards__value { color: var(--d-warning); }
 .kpi-cards__label { font-size: var(--d-text-base); font-weight: 600; margin-block-start: var(--d-spacing-xs); }
 .kpi-cards__detail { font-size: var(--d-text-sm); color: var(--muted-foreground); margin-block-start: var(--d-spacing-xs); }

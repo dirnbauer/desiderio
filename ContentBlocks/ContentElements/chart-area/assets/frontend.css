@@ -8,5 +8,5 @@
 .chart-area__content { padding: var(--d-spacing-lg); }
 .chart-area__canvas { width: 100%; height: 300px; }
 .chart-area--primary { --chart-color: var(--primary); }
-.chart-area--blue { --chart-color: hsl(210 100% 50%); }
-.chart-area--green { --chart-color: hsl(142 70% 40%); }
+.chart-area--blue { --chart-color: var(--d-info); }
+.chart-area--green { --chart-color: var(--d-success); }

@@ -1,46 +1,60 @@
 name: desiderio/counter
 typeName: desiderio_counter
-title: Counter
-description: Animated number counter with label and optional prefix/suffix
+title: 'Counter Data View'
+description: 'A shadcn/ui styled TYPO3 content element for data visualization, using theme tokens for light and dark mode.'
 group: data
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-  - identifier: items
+  -
+    identifier: items
     type: Collection
     label: Counters
     minItems: 1
     fields:
-      - identifier: target_value
+      -
+        identifier: target_value
         type: Number
-        label: Target Value
+        label: 'Target Value'
         required: true
-      - identifier: prefix
+      -
+        identifier: prefix
         type: Textarea
         rows: 1
         label: Prefix
-        description: e.g. $ or +
-      - identifier: suffix
+        description: 'e.g. $ or +'
+      -
+        identifier: suffix
         type: Textarea
         rows: 1
         label: Suffix
-        description: e.g. %, K, M
-      - identifier: label
+        description: 'e.g. %, K, M'
+      -
+        identifier: label
         type: Textarea
         rows: 1
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:label_field'
         required: true
-  - identifier: columns
+  -
+    identifier: columns
     type: Select
     renderType: selectSingle
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:columns'
     items:
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.2_columns'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.2_columns'
         value: '2'
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.3_columns'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.3_columns'
         value: '3'
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.4_columns'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.4_columns'
         value: '4'
     default: '3'

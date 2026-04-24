@@ -211,6 +211,60 @@
 
 .ce-frame { padding: 1.5rem 0; }
 
+.frame,
+.ce-frame,
+.desiderio-content-element {
+    color: var(--foreground);
+}
+
+.frame :where(h1, h2, h3, h4, h5, h6),
+.ce-frame :where(h1, h2, h3, h4, h5, h6),
+.desiderio-content-element :where(h1, h2, h3, h4, h5, h6) {
+    color: var(--foreground);
+    font-family: var(--d-font-heading);
+    font-weight: 600;
+    letter-spacing: 0;
+}
+
+.frame :where(p, li, figcaption),
+.ce-frame :where(p, li, figcaption),
+.desiderio-content-element :where(p, li, figcaption) {
+    color: var(--muted-foreground);
+    line-height: 1.7;
+}
+
+.frame :where(a),
+.ce-frame :where(a),
+.desiderio-content-element :where(a) {
+    color: var(--primary);
+    text-decoration-line: underline;
+    text-underline-offset: 0.25rem;
+}
+
+.frame :where(img, video, iframe),
+.ce-frame :where(img, video, iframe),
+.desiderio-content-element :where(img, video, iframe) {
+    border-radius: var(--radius);
+}
+
+.frame :where(input, textarea, select),
+.ce-frame :where(input, textarea, select),
+.desiderio-content-element :where(input, textarea, select) {
+    min-height: 2rem;
+    border: 1px solid var(--input);
+    border-radius: var(--radius);
+    background: transparent;
+    color: var(--foreground);
+}
+
+.frame :where(button, a, input, textarea, select):focus-visible,
+.ce-frame :where(button, a, input, textarea, select):focus-visible,
+.desiderio-content-element :where(button, a, input, textarea, select):focus-visible {
+    border-color: var(--ring);
+    outline: none;
+    box-shadow: 0 0 0 3px color-mix(in oklch, var(--ring) 50%, transparent);
+}
+
 .ce-frame--bg-10 {
     background-color: var(--muted);
     padding: 2rem;

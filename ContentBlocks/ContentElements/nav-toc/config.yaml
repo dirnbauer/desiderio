@@ -1,33 +1,44 @@
 name: desiderio/nav-toc
 typeName: desiderio_navtoc
-title: Table of Contents
-description: Vertical table-of-contents navigation for long-form content
+title: 'Nav Toc'
+description: 'A shadcn/ui styled TYPO3 content element for navigation pattern, using theme tokens for light and dark mode.'
 group: navigation
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-  - identifier: items
+  -
+    identifier: items
     type: Collection
-    label: TOC Items
+    label: 'TOC Items'
     minItems: 1
     fields:
-      - identifier: label
+      -
+        identifier: label
         type: Textarea
         rows: 1
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:label_field'
-      - identifier: anchor
+      -
+        identifier: anchor
         type: Textarea
         rows: 1
-        label: Anchor ID
-      - identifier: level
+        label: 'Anchor ID'
+      -
+        identifier: level
         type: Select
         renderType: selectSingle
         label: Level
         items:
-          - label: Heading 2
+          -
+            label: 'Heading 2'
             value: h2
-          - label: Heading 3
+          -
+            label: 'Heading 3'
             value: h3
         default: h2

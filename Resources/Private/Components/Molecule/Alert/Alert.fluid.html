@@ -1,15 +1,15 @@
 <f:argument name="variant" type="string" optional="{true}" default="default" />
 <f:argument name="class" type="string" optional="{true}" default="" />
 
-<f:variable name="base" value="relative w-full rounded-lg border px-4 py-3 text-sm [&amp;>svg+div]:translate-y-[-3px] [&amp;>svg]:absolute [&amp;>svg]:left-4 [&amp;>svg]:top-4 [&amp;>svg]:text-foreground [&amp;>svg~*]:pl-7" />
+<f:variable name="base" value="group/alert relative grid w-full gap-0.5 rounded-lg border px-2.5 py-2 text-left text-sm has-data-[slot=alert-action]:relative has-data-[slot=alert-action]:pr-18 has-[&gt;svg]:grid-cols-[auto_1fr] has-[&gt;svg]:gap-x-2 *:[svg]:row-span-2 *:[svg]:translate-y-0.5 *:[svg]:text-current *:[svg:not([class*='size-'])]:size-4" />
 
 <f:variable name="variantClass">
     <f:switch expression="{variant}">
-        <f:case value="destructive">border-destructive/50 text-destructive dark:border-destructive [&amp;>svg]:text-destructive</f:case>
-        <f:defaultCase>bg-background text-foreground</f:defaultCase>
+        <f:case value="destructive">bg-card text-destructive *:data-[slot=alert-description]:text-destructive/90 *:[svg]:text-current</f:case>
+        <f:defaultCase>bg-card text-card-foreground</f:defaultCase>
     </f:switch>
 </f:variable>
 
-<div role="alert" class="{base} {variantClass -> f:format.trim()} {class}">
+<div role="alert" data-slot="alert" class="{base} {variantClass -> f:format.trim()} {class}">
     <f:slot />
 </div>

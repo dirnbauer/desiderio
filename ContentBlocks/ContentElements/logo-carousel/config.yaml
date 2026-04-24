@@ -1,50 +1,59 @@
 name: desiderio/logo-carousel
 typeName: desiderio_logocarousel
-title: Logo Carousel
-description: Auto-scrolling logo ticker for client and partner logos
+title: 'Logo Carousel'
+description: 'A shadcn/ui styled TYPO3 content element for social proof section, using theme tokens for light and dark mode.'
 group: social-proof
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-
-  - identifier: eyebrow
+  -
+    identifier: eyebrow
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
-
-  - identifier: speed
+  -
+    identifier: speed
     type: Select
     renderType: selectSingle
-    label: Scroll Speed
+    label: 'Scroll Speed'
     items:
-      - label: Slow
+      -
+        label: Slow
         value: slow
-      - label: Normal
+      -
+        label: Normal
         value: normal
-      - label: Fast
+      -
+        label: Fast
         value: fast
     default: normal
-
-  - identifier: logo_items
+  -
+    identifier: logo_items
     type: Collection
     label: Logos
     minItems: 3
     fields:
-      - identifier: image
+      -
+        identifier: image
         type: File
-        label: Logo Image
+        label: 'Logo Image'
         allowed: common-image-types
         maxitems: 1
         required: true
-
-      - identifier: name
+      -
+        identifier: name
         type: Textarea
         rows: 1
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:company_name'
         required: true
-
-      - identifier: link
+      -
+        identifier: link
         type: Link
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:optional_link'

@@ -2,12 +2,12 @@
 <f:argument name="description" type="string" optional="{true}" />
 <f:argument name="class" type="string" optional="{true}" default="" />
 
-<div class="flex flex-col space-y-1.5 p-6 {class}">
+<div data-slot="card-header" class="group/card-header @container/card-header grid auto-rows-min items-start gap-1 rounded-t-xl px-4 group-data-[size=sm]/card:px-3 has-data-[slot=card-action]:grid-cols-[1fr_auto] has-data-[slot=card-description]:grid-rows-[auto_auto] [.border-b]:pb-4 group-data-[size=sm]/card:[.border-b]:pb-3 {class}">
     <f:if condition="{title}">
-        <h3 class="text-2xl font-semibold leading-none tracking-tight">{title}</h3>
+        <h3 data-slot="card-title" class="cn-font-heading text-base leading-snug font-medium group-data-[size=sm]/card:text-sm">{title}</h3>
     </f:if>
     <f:if condition="{description}">
-        <p class="text-sm text-muted-foreground">{description}</p>
+        <p data-slot="card-description" class="text-sm text-muted-foreground">{description}</p>
     </f:if>
     <f:slot />
 </div>

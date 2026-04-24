@@ -1,41 +1,54 @@
 name: desiderio/navbar-dropdown
 typeName: desiderio_navbardropdown
-title: Dropdown Navbar
-description: Navigation with dropdown sub-menus for top-level items
+title: 'Navigation Bar Dropdown'
+description: 'A shadcn/ui styled TYPO3 content element for navigation pattern, using theme tokens for light and dark mode.'
 group: navigation
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-  - identifier: brand
+  -
+    identifier: brand
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:brand'
     required: true
-  - identifier: brand_link
+  -
+    identifier: brand_link
     type: Link
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:brand_link'
-  - identifier: nav_items
+  -
+    identifier: nav_items
     type: Collection
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:navigation_items'
     fields:
-      - identifier: label
+      -
+        identifier: label
         type: Textarea
         rows: 1
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:label_field'
         required: true
-      - identifier: link
+      -
+        identifier: link
         type: Link
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:link'
-      - identifier: children
+      -
+        identifier: children
         type: Textarea
-        label: Sub-items (one per line)
+        label: 'Sub-items (one per line)'
         rows: 4
-  - identifier: button_text
+  -
+    identifier: button_text
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_text'
-  - identifier: button_link
+  -
+    identifier: button_link
     type: Link
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_link'

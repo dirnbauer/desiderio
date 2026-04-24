@@ -1,43 +1,48 @@
 name: desiderio/testimonial-video
 typeName: desiderio_testimonialvideo
-title: Testimonial Video
-description: Video testimonial with quote overlay and author info
+title: 'Testimonial Video'
+description: 'A shadcn/ui styled TYPO3 content element for social proof section, using theme tokens for light and dark mode.'
 group: social-proof
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-
-  - identifier: quote
+  -
+    identifier: quote
     type: Textarea
-    label: Pull Quote
+    label: 'Pull Quote'
     rows: 3
-
-  - identifier: video_url
+  -
+    identifier: video_url
     type: Text
-    label: Video URL
-    description: YouTube or Vimeo embed URL
+    label: 'Video URL'
+    description: 'YouTube or Vimeo embed URL'
     required: true
-
-  - identifier: poster_image
+  -
+    identifier: poster_image
     type: File
-    label: Poster Image
+    label: 'Poster Image'
     allowed: common-image-types
     maxitems: 1
-
-  - identifier: author_name
+  -
+    identifier: author_name
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:author_name'
     required: true
-
-  - identifier: author_title
+  -
+    identifier: author_title
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:author_title'
-
-  - identifier: author_company
+  -
+    identifier: author_company
     type: Textarea
     rows: 1
     label: Company

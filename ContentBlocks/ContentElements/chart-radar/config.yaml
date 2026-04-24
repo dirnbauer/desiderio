@@ -1,33 +1,44 @@
 name: desiderio/chart-radar
 typeName: desiderio_chartradar
-title: Chart Radar
-description: Radar (spider) chart for comparing metrics on multiple axes
+title: 'Chart Radar'
+description: 'A shadcn/ui styled TYPO3 content element for data visualization, using theme tokens for light and dark mode.'
 group: data
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-  - identifier: description
+  -
+    identifier: description
     type: Textarea
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
     rows: 2
-  - identifier: chart_data
+  -
+    identifier: chart_data
     type: Textarea
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:chart_data_json'
     description: |
       JSON object: {"labels":["Speed","Reliability","Support","UX","Price"],"values":[4,5,3,4,5]} (values 0–5 scale)
     rows: 6
     required: true
-  - identifier: fill_opacity
+  -
+    identifier: fill_opacity
     type: Select
     renderType: selectSingle
-    label: Fill opacity
+    label: 'Fill opacity'
     items:
-      - label: Light
+      -
+        label: Light
         value: '0.15'
-      - label: Medium
+      -
+        label: Medium
         value: '0.25'
-      - label: Strong
+      -
+        label: Strong
         value: '0.4'
     default: '0.25'

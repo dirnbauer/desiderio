@@ -1,35 +1,47 @@
 name: desiderio/video-embed
 typeName: desiderio_videoembed
-title: Video Embed
-description: Responsive video embed for YouTube, Vimeo, or self-hosted video
+title: 'Video Embed'
+description: 'A shadcn/ui styled TYPO3 content element for content presentation, using theme tokens for light and dark mode.'
 group: content
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-  - identifier: video_url
+  -
+    identifier: video_url
     type: Text
-    label: Video Embed URL
-    description: YouTube or Vimeo embed URL
-  - identifier: video_file
+    label: 'Video Embed URL'
+    description: 'YouTube or Vimeo embed URL'
+  -
+    identifier: video_file
     type: File
-    label: Video File
+    label: 'Video File'
     allowed: common-media-types
     maxitems: 1
-  - identifier: caption
+  -
+    identifier: caption
     type: Textarea
     rows: 1
     label: Caption
-  - identifier: aspect_ratio
+  -
+    identifier: aspect_ratio
     type: Select
     renderType: selectSingle
-    label: Aspect Ratio
+    label: 'Aspect Ratio'
     items:
-      - label: 16:9
-        value: '16-9'
-      - label: 4:3
-        value: '4-3'
-      - label: 1:1
-        value: '1-1'
-    default: '16-9'
+      -
+        label: '16:9'
+        value: 16-9
+      -
+        label: '4:3'
+        value: 4-3
+      -
+        label: '1:1'
+        value: 1-1
+    default: 16-9

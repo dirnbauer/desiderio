@@ -1,37 +1,50 @@
 name: desiderio/nav-tabs
 typeName: desiderio_navtabs
-title: Navigation Tabs
-description: Horizontal tab navigation for switching between content sections
+title: 'Nav Tabs'
+description: 'A shadcn/ui styled TYPO3 content element for navigation pattern, using theme tokens for light and dark mode.'
 group: navigation
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-  - identifier: variant
+  -
+    identifier: variant
     type: Select
     renderType: selectSingle
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:style'
     items:
-      - label: Underline
+      -
+        label: Underline
         value: underline
-      - label: Pill
+      -
+        label: Pill
         value: pill
-      - label: Boxed
+      -
+        label: Boxed
         value: boxed
     default: underline
-  - identifier: tabs
+  -
+    identifier: tabs
     type: Collection
     label: Tabs
     minItems: 1
     fields:
-      - identifier: label
+      -
+        identifier: label
         type: Textarea
         rows: 1
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:label_field'
-      - identifier: link
+      -
+        identifier: link
         type: Link
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:link'
-      - identifier: active
+      -
+        identifier: active
         type: Checkbox
         label: Active

@@ -1,52 +1,63 @@
 name: desiderio/tabs
 typeName: desiderio_tabs
 title: Tabs
-description: Tabbed content panels for organizing related information
+description: 'A shadcn/ui styled TYPO3 content element for content presentation, using theme tokens for light and dark mode.'
 group: content
 prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
 fields:
-  - identifier: variant
+  -
+    identifier: variant
     type: Select
     renderType: selectSingle
-    label: Tab Style
+    label: 'Tab Style'
     onChange: reload
     items:
-      - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.default'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.default'
         value: default
-      - label: Pills
+      -
+        label: Pills
         value: pills
-      - label: Underline
+      -
+        label: Underline
         value: underline
     default: default
-
-  - identifier: header
+  -
+    identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-
-  - identifier: default_tab
+  -
+    identifier: default_tab
     type: Textarea
     rows: 1
-    label: Default Active Tab
-    description: Index of the tab to show by default (0 = first)
-
-  - identifier: items
+    label: 'Default Active Tab'
+    description: 'Index of the tab to show by default (0 = first)'
+  -
+    identifier: items
     type: Collection
-    label: Tab Panels
+    label: 'Tab Panels'
     minItems: 2
     fields:
-      - identifier: tab_label
+      -
+        identifier: tab_label
         type: Textarea
         rows: 1
-        label: Tab Label
+        label: 'Tab Label'
         required: true
-      - identifier: tab_content
+      -
+        identifier: tab_content
         type: Textarea
-        label: Tab Content
+        label: 'Tab Content'
         enableRichtext: true
         rows: 6
         required: true
-      - identifier: tab_icon
+      -
+        identifier: tab_icon
         type: Textarea
         rows: 1
-        label: Tab Icon
-        description: Optional icon name (e.g. lucide icon identifier)
+        label: 'Tab Icon'
+        description: 'Optional icon name (e.g. lucide icon identifier)'

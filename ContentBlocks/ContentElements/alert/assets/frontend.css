@@ -4,10 +4,10 @@
     border: 1px solid var(--border); border-radius: var(--radius);
     background: var(--card);
 }
-.alert--info { border-color: hsl(210 100% 50%); background: hsl(210 100% 97%); }
-.alert--success { border-color: hsl(142 70% 40%); background: hsl(142 70% 96%); }
-.alert--warning { border-color: hsl(45 100% 42%); background: hsl(45 100% 96%); }
-.alert--destructive { border-color: hsl(0 80% 50%); background: hsl(0 80% 97%); }
+.alert--info { border-color: var(--d-info); background: var(--d-info-muted); }
+.alert--success { border-color: var(--d-success); background: var(--d-success-muted); }
+.alert--warning { border-color: var(--d-warning); background: var(--d-warning-muted); }
+.alert--destructive { border-color: var(--destructive); background: var(--d-danger-muted); }
 .alert__icon { flex-shrink: 0; margin-block-start: 2px; }
 .alert__content { flex: 1; min-width: 0; }
 .alert__title { font-weight: 600; margin-block-end: var(--d-spacing-xs); }

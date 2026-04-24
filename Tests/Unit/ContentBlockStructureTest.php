@@ -75,4 +75,44 @@ final class ContentBlockStructureTest extends TestCase
             }
         }
     }
+
+    public function testStyleguideGroupsReferenceEveryContentBlockTypeName(): void
+    {
+        $groupsFile = __DIR__ . '/../../Resources/Private/Data/styleguide-content-groups.json';
+        $groups = json_decode((string) file_get_contents($groupsFile), true);
+        self::assertIsArray($groups);
+
+        $typeNames = [];
+        $blocks = glob(self::CONTENT_BLOCKS_DIR . '/*', GLOB_ONLYDIR) ?: [];
+        foreach ($blocks as $block) {
+            $config = Yaml::parseFile("{$block}/config.yaml");
+            $typeName = (string) ($config['typeName'] ?? '');
+            self::assertNotSame('', $typeName, basename($block) . ' has no typeName');
+            self::assertFileExists("{$block}/fixture.json", basename($block) . ' has no styleguide fixture');
+            $typeNames[$typeName] = true;
+        }
+
+        $listedTypeNames = [];
+        foreach ($groups as $group) {
+            self::assertIsArray($group);
+            self::assertArrayHasKey('elements', $group);
+            self::assertIsArray($group['elements']);
+            foreach ($group['elements'] as $element) {
+                self::assertIsArray($element);
+                $ctype = (string) ($element['ctype'] ?? '');
+                self::assertStringStartsWith('desiderio_', $ctype);
+                self::assertArrayHasKey($ctype, $typeNames, "{$ctype} is listed in the styleguide but has no Content Block");
+                $listedTypeNames[$ctype] = true;
+            }
+        }
+
+        $expected = array_keys($typeNames);
+        $actual = array_keys($listedTypeNames);
+        sort($expected);
+        sort($actual);
+
+        self::assertCount(self::EXPECTED_COUNT, $listedTypeNames);
+        self::assertSame($expected, $actual);
+        self::assertStringNotContainsString('shadcn2fluid', (string) file_get_contents($groupsFile));
+    }
 }

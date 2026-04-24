@@ -34,7 +34,7 @@ final class StyleguideGroupsViewHelper extends AbstractViewHelper
         if ($variableProvider->exists($name)) {
             $variableProvider->remove($name);
         }
-        $variableProvider->add($name, StyleguideContentGroups::getGroups());
+        $variableProvider->add($name, StyleguideContentGroups::getGroupsWithFixtures());
 
         return (string) $this->renderChildren();
     }

@@ -15,7 +15,10 @@ desiderio:
     accent: slate
     darkModeDefault: system
     darkModeToggle: true
+  shadcn:
+    preset: b0
+    style: radix-nova
   typography:
-    fontSans: inter
+    fontSans: preset
   styleguide:
     enabled: false

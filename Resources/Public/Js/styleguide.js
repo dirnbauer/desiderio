@@ -30,6 +30,7 @@ function desiderioInit() {
   var codeContent = document.getElementById('docs-code-content');
   var searchInput = document.getElementById('docs-search');
   var allNavLinks = document.querySelectorAll('.docs__nav-link');
+  var allOverviewCards = document.querySelectorAll('.docs__overview-card');
 
   /* ================================================================ */
   /*  Sidebar — group collapse/expand                                  */
@@ -55,9 +56,17 @@ function desiderioInit() {
         var name = (link.dataset.name || '').toLowerCase() + ' ' + (link.dataset.ctype || '').toLowerCase();
         link.closest('li').style.display = (q === '' || name.includes(q)) ? '' : 'none';
       });
+      allOverviewCards.forEach(function (card) {
+        var name = (card.dataset.name || '').toLowerCase() + ' ' + (card.dataset.ctype || '').toLowerCase() + ' ' + card.textContent.toLowerCase();
+        card.style.display = (q === '' || name.includes(q)) ? '' : 'none';
+      });
       // Hide empty groups
       document.querySelectorAll('.docs__nav-group').forEach(function (group) {
         var visible = group.querySelectorAll('li:not([style*="display: none"])');
+        group.style.display = visible.length > 0 || q === '' ? '' : 'none';
+      });
+      document.querySelectorAll('.docs__overview-group').forEach(function (group) {
+        var visible = group.querySelectorAll('.docs__overview-card:not([style*="display: none"])');
         group.style.display = visible.length > 0 || q === '' ? '' : 'none';
       });
     });
@@ -105,7 +114,7 @@ function desiderioInit() {
 
     // Find the name from nav
     var navLink = document.querySelector('.docs__nav-link[data-ctype="' + ctype + '"]');
-    var name = navLink ? navLink.dataset.name : ctype.replace('shadcn2fluid_', '');
+    var name = navLink ? navLink.dataset.name : ctype.replace('desiderio_', '');
 
     // Update header
     nameEl.textContent = name;
@@ -189,9 +198,9 @@ function desiderioInit() {
   /*  Code snippet generator                                           */
   /* ================================================================ */
   function generateCodeSnippet(ctype, data) {
-    var name = ctype.replace('shadcn2fluid_', '');
+    var name = ctype.replace('desiderio_', '');
     var lines = [
-      '<-- Content Element: ' + name + ' -->',
+      '<!-- Content Element: ' + name + ' -->',
       '<d:layout.section>',
       '  <d:layout.container>',
     ];
@@ -256,7 +265,7 @@ function desiderioInit() {
   }
 
   /* ================================================================ */
-  /*  RENDER — real shadcn2fluid BEM classes                           */
+  /*  RENDER — shadcn-compatible Desiderio preview classes              */
   /* ================================================================ */
   function renderPreview(d) {
     var fn = renderers[d._type] || renderSection;

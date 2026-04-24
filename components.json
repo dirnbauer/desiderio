@@ -1,0 +1,23 @@
+{
+  "$schema": "https://ui.shadcn.com/schema.json",
+  "style": "radix-nova",
+  "rsc": false,
+  "tsx": true,
+  "tailwind": {
+    "config": "",
+    "css": "Resources/Private/Tailwind/desiderio.css",
+    "baseColor": "neutral",
+    "cssVariables": true,
+    "prefix": ""
+  },
+  "iconLibrary": "lucide",
+  "rtl": false,
+  "aliases": {
+    "components": "./.shadcn/scratch/components",
+    "ui": "./.shadcn/scratch/components/ui",
+    "utils": "./.shadcn/scratch/lib/utils",
+    "lib": "./.shadcn/scratch/lib",
+    "hooks": "./.shadcn/scratch/hooks"
+  },
+  "registries": {}
+}

@@ -38,6 +38,26 @@ final class StyleguideContentGroups
     }
 
     /**
+     * @return list<array{groupId: string, groupTitle: string, elements: list<array{name: string, ctype: string, fixture: array<string, mixed>}>}>
+     */
+    public static function getGroupsWithFixtures(): array
+    {
+        $fixtures = self::getFixtures();
+        $groups = self::getGroups();
+
+        foreach ($groups as &$group) {
+            foreach ($group['elements'] as &$element) {
+                $ctype = $element['ctype'];
+                $element['fixture'] = $fixtures[$ctype] ?? [];
+            }
+        }
+        unset($group, $element);
+
+        /** @var list<array{groupId: string, groupTitle: string, elements: list<array{name: string, ctype: string, fixture: array<string, mixed>}>}> $groups */
+        return $groups;
+    }
+
+    /**
      * Loads fixture data keyed by ctype.
      *
      * @return array<string, array<string, mixed>>
@@ -53,8 +73,9 @@ final class StyleguideContentGroups
         /** @var array<string, array<string, mixed>> $monolithic */
         $monolithic = self::loadJson('EXT:desiderio/Resources/Private/Data/styleguide-fixtures.json');
         foreach ($monolithic as $ctype => $data) {
-            if (!isset($fixtures[$ctype])) {
-                $fixtures[$ctype] = $data;
+            $normalizedCtype = self::normalizeCtype((string)$ctype);
+            if (!isset($fixtures[$normalizedCtype])) {
+                $fixtures[$normalizedCtype] = $data;
             }
         }
 
@@ -104,6 +125,15 @@ final class StyleguideContentGroups
         }
 
         return $fixtures;
+    }
+
+    private static function normalizeCtype(string $ctype): string
+    {
+        if (str_starts_with($ctype, 'shadcn2fluid_')) {
+            return 'desiderio_' . str_replace('-', '', substr($ctype, strlen('shadcn2fluid_')));
+        }
+
+        return $ctype;
     }
 
     /**

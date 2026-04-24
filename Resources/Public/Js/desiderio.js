@@ -7,6 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
   /*  1. Accordion                                                       */
   /* ------------------------------------------------------------------ */
   document.querySelectorAll('[data-d-accordion]').forEach(root => {
+    if (root.hasAttribute('x-data')) return;
+
     const type = root.dataset.type || 'single';
 
     root.addEventListener('click', e => {
@@ -40,6 +42,8 @@ document.addEventListener('DOMContentLoaded', () => {
   /*  2. Tabs                                                            */
   /* ------------------------------------------------------------------ */
   document.querySelectorAll('[data-d-tabs]').forEach(root => {
+    if (root.hasAttribute('x-data')) return;
+
     const activate = value => {
       root.querySelectorAll('[data-d-tabs-trigger]').forEach(t => {
         const active = t.dataset.value === value;
@@ -66,12 +70,41 @@ document.addEventListener('DOMContentLoaded', () => {
   /*  3. Dark-mode toggle                                                */
   /* ------------------------------------------------------------------ */
   const html = document.documentElement;
-  if (localStorage.getItem('d-theme') === 'dark') html.classList.add('dark');
+  const body = document.body;
+  const media = window.matchMedia('(prefers-color-scheme: dark)');
+  const storedTheme = () => localStorage.getItem('d-theme');
+  const siteTheme = () => body?.dataset.theme || 'system';
+  const resolveTheme = preference => (
+    preference === 'dark' || (preference === 'system' && media.matches)
+  );
+
+  const applyTheme = preference => {
+    const selected = preference || siteTheme();
+    const isDark = resolveTheme(selected);
+
+    html.classList.toggle('dark', isDark);
+    html.dataset.theme = selected;
+    if (body) body.dataset.themeCurrent = isDark ? 'dark' : 'light';
+
+    document.querySelectorAll('[data-d-theme-toggle]').forEach(btn => {
+      btn.setAttribute('aria-pressed', String(isDark));
+      btn.setAttribute('title', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+    });
+  };
+
+  applyTheme(storedTheme() || siteTheme());
+
+  media.addEventListener?.('change', () => {
+    if (!storedTheme() && siteTheme() === 'system') {
+      applyTheme('system');
+    }
+  });
 
   document.querySelectorAll('[data-d-theme-toggle]').forEach(btn => {
     btn.addEventListener('click', () => {
-      html.classList.toggle('dark');
-      localStorage.setItem('d-theme', html.classList.contains('dark') ? 'dark' : 'light');
+      const next = html.classList.contains('dark') ? 'light' : 'dark';
+      localStorage.setItem('d-theme', next);
+      applyTheme(next);
     });
   });
 
@@ -140,8 +173,10 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!target) return;
 
       const expanded = btn.getAttribute('aria-expanded') === 'true';
-      btn.setAttribute('aria-expanded', String(!expanded));
-      target.classList.toggle('is-hidden', !expanded);
+      const nextExpanded = !expanded;
+      btn.setAttribute('aria-expanded', String(nextExpanded));
+      target.classList.toggle('is-open', nextExpanded);
+      target.classList.toggle('is-hidden', !nextExpanded);
     });
   });
 

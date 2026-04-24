@@ -3,7 +3,7 @@
 A self-contained TYPO3 v14 theme extension that bundles a
 [shadcn/ui](https://ui.shadcn.com)-inspired Fluid 5 component library, **255
 content elements**, backend layouts, page templates, and five swappable
-visual presets — without a frontend build step.
+visual presets with a committed Tailwind v4/shadcn CSS build.
 
 > Desiderio 2.0 replaces both `webconsulting/desiderio 1.x` and
 > `webconsulting/shadcn2fluid-templates 3.x`. No backward compatibility; clean
@@ -74,6 +74,10 @@ content, markup, or backend layouts — only the presentation.
 | `webconsulting/desiderio-preset-editorial`        | Blog & Magazine       |
 | `webconsulting/desiderio-preset-dashboard`        | Dashboard App         |
 
+The base set also exposes shadcn/create preset support. The committed theme
+CSS currently supports `b0` as the default and `b3IWPgRwnI` as an alternate
+light/dark token set.
+
 ## Settings
 
 Every site configures Desiderio through typed settings exposed in
@@ -91,7 +95,9 @@ declares the full schema; presets ship different defaults.
 | `desiderio.theme.accent`             | `slate`, `rose`, `blue`, `emerald`, `amber`, `violet`, `custom` |
 | `desiderio.theme.darkModeDefault`    | `light`, `dark`, `system`                            |
 | `desiderio.theme.darkModeToggle`     | `true`, `false`                                      |
-| `desiderio.typography.fontSans`      | `inter`, `geist`, `system`, `serif`                  |
+| `desiderio.shadcn.preset`            | `b0`, `b3IWPgRwnI`, `custom`                         |
+| `desiderio.shadcn.style`             | `radix-nova`, `radix-mira`, `custom`                 |
+| `desiderio.typography.fontSans`      | `preset`, `inter`, `geist`, `system`, `serif`        |
 | `desiderio.styleguide.enabled`       | `true`, `false`                                      |
 
 Settings are rendered into `<body data-*>` attributes so hand-written CSS
@@ -116,16 +122,26 @@ Fluid 5 components — no block writes raw HTML. See
 Available in any Fluid template via
 `xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"`.
 
-## Frontend build
+## Frontend Build
 
-**None.** Pure Fluid 5 server-side rendering. Pure CSS. Vanilla JS for
-dark-mode toggle, accordion, tabs, counters. No bundler, no npm build step.
+Fluid remains server-side rendered, but shadcn/Tailwind utility classes are
+compiled into a committed CSS file:
+
+```bash
+npm install
+npm run build:css
+```
+
+The frontend runtime is plain CSS plus Alpine/vanilla JS for dark mode,
+accordion, tabs, counters, and component interactions.
 
 ## Testing
 
 ```bash
 composer install
-vendor/bin/phpunit --testsuite=Unit   # 13 tests, 3444 assertions
+npm install
+npm run build:css
+vendor/bin/phpunit --testsuite=Unit
 vendor/bin/phpstan analyse            # level 8, no errors
 ```
 

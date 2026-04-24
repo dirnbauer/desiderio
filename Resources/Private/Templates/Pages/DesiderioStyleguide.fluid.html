@@ -51,18 +51,47 @@
         <main class="docs__main" id="docs-main">
             <!-- Welcome screen (shown when no component selected) -->
             <div class="docs__welcome" id="docs-welcome">
-                <div class="container container--sm" style="text-align:center;padding:6rem 2rem;">
-                    <h1 class="typography typography--h1" style="margin-bottom:1rem;">Content Elements</h1>
-                    <p class="typography typography--lead" style="margin-bottom:2rem;">
-                        250 production-ready content elements built with shadcn/ui components.
-                        <br/>Select a component from the sidebar to explore.
-                    </p>
-                    <div class="stack stack--horizontal stack--gap-sm" style="justify-content:center;">
-                        <span class="badge badge--secondary">shadcn/ui</span>
-                        <span class="badge badge--secondary">TYPO3 v14</span>
-                        <span class="badge badge--secondary">Fluid 5</span>
-                        <span class="badge badge--secondary">Atomic Design</span>
+                <div class="docs__welcome-inner">
+                    <div class="docs__welcome-hero">
+                        <h1 class="typography typography--h1">Content Elements</h1>
+                        <p class="typography typography--lead">
+                            255 production-ready content elements built from shadcn/ui style recipes.
+                            Select a component to inspect its fixture preview and Fluid template pattern.
+                        </p>
+                        <div class="stack stack--horizontal stack--gap-sm">
+                            <span class="badge badge--secondary">shadcn/ui</span>
+                            <span class="badge badge--secondary">TYPO3 v14</span>
+                            <span class="badge badge--secondary">Fluid 5</span>
+                            <span class="badge badge--secondary">Atomic Design</span>
+                        </div>
                     </div>
+
+                    <d:styleguideGroups as="styleguideGroups">
+                        <div class="docs__overview" aria-label="All content elements">
+                            <f:for each="{styleguideGroups}" as="group">
+                                <section class="docs__overview-group" aria-labelledby="overview-{group.groupId}">
+                                    <div class="docs__overview-group-header">
+                                        <h2 id="overview-{group.groupId}" class="docs__overview-title">{group.groupTitle}</h2>
+                                        <span class="badge badge--outline">{group.elements -> f:count()} elements</span>
+                                    </div>
+                                    <div class="docs__overview-grid">
+                                        <f:for each="{group.elements}" as="element">
+                                            <a href="#component-{element.ctype}"
+                                               class="docs__overview-card"
+                                               data-ctype="{element.ctype}"
+                                               data-name="{element.name}">
+                                                <span class="docs__overview-type">{element.ctype}</span>
+                                                <span class="docs__overview-name">{element.name}</span>
+                                                <span class="docs__overview-text">
+                                                    <d:styleguideFixtureSummary fixture="{element.fixture}" fallback="{element.ctype}" />
+                                                </span>
+                                            </a>
+                                        </f:for>
+                                    </div>
+                                </section>
+                            </f:for>
+                        </div>
+                    </d:styleguideGroups>
                 </div>
             </div>
 

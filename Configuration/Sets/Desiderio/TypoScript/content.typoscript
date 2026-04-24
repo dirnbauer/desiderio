@@ -18,3 +18,14 @@ lib.contentElement {
 
 tt_content = CASE
 tt_content.default =< lib.contentElement
+
+tt_content.menu_pages =< lib.contentElement
+tt_content.menu_pages {
+  dataProcessing.10 = menu
+  dataProcessing.10 {
+    special = list
+    special.value.field = pages
+    as = menu
+    titleField = nav_title // title
+  }
+}

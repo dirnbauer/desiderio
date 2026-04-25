@@ -217,6 +217,40 @@ final class StyleguideSeedCommandTest extends TestCase
         self::assertStringContainsString('Unsplash', $collections['items']['items'][0]['__fileReferences']['image'][0]['description']);
     }
 
+    public function testHeaderFixtureIsIgnoredForHeaderlessContentBlocks(): void
+    {
+        $command = $this->createCommand();
+        $this->setProperty($command, 'contentBlockDefinitions', [
+            'desiderio_contentdivider' => [
+                'fields' => [
+                    'variant' => [
+                        'identifier' => 'variant',
+                        'type' => 'Select',
+                        'default' => 'horizontal',
+                    ],
+                    'divider_text' => [
+                        'identifier' => 'divider_text',
+                        'type' => 'Textarea',
+                    ],
+                ],
+                'collections' => [],
+            ],
+        ]);
+
+        [$fields] = $this->invokeMethod($command, 'resolveFixtureFields', [
+            'desiderio_contentdivider',
+            [
+                'header' => 'Ready to Get Started?',
+                'description' => 'This legacy fixture field must not leak into a headerless TCA schema.',
+            ],
+            'Content Divider',
+        ]);
+
+        self::assertArrayNotHasKey('header', $fields);
+        self::assertSame('horizontal', $fields['variant']);
+        self::assertSame('Divider Text for Content Divider', $fields['divider_text']);
+    }
+
     public function testContentBlockDefinitionKeepsCollectionItemLimits(): void
     {
         $command = $this->createCommand();

@@ -352,7 +352,6 @@ final class SeedStyleguidePagesCommand extends Command
             'pid' => $pid,
             'CType' => $ctype,
             'colPos' => 0,
-            'header' => $fixture['header'] ?? $name,
             'sorting' => $sorting,
             'hidden' => 0,
             'sys_language_uid' => 0,

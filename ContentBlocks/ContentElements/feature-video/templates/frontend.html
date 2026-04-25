@@ -27,7 +27,7 @@
                     <f:if condition="{data.video_file.0}">
                         <video class="feature-video__native" controls preload="metadata"
                                {f:if(condition: data.poster.0, then: 'poster="{f:uri.image(image: data.poster.0, maxWidth: 1280)}"')}>
-                            <source src="{f:uri.resource(path: data.video_file.0.originalFile.identifier, extensionName: '')}" type="{data.video_file.0.mimeType}"/>
+                            <source src="{data.video_file.0.publicUrl}" type="{data.video_file.0.mimeType}"/>
                         </video>
                     </f:if>
                 </f:else>

@@ -27,7 +27,7 @@
                         </div>
                     </div>
                     <f:if condition="{item.file.0}">
-                        <a href="{f:uri.resource(path: item.file.0.originalFile.identifier, extensionName: '')}" class="file-download__link" download>Download</a>
+                        <a href="{item.file.0.publicUrl}" class="file-download__link" download>Download</a>
                     </f:if>
                 </d:molecule.card>
             </f:for>

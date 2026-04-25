@@ -163,6 +163,25 @@ final class ContentBlockStructureTest extends TestCase
         }
     }
 
+    public function testFalFilesAreRenderedWithPublicUrlInsteadOfResourceViewHelper(): void
+    {
+        $templateFiles = glob(self::CONTENT_BLOCKS_DIR . '/*/templates/frontend.html') ?: [];
+        foreach ($templateFiles as $templateFile) {
+            $template = (string) file_get_contents($templateFile);
+
+            self::assertStringNotContainsString(
+                'f:uri.resource(path:',
+                $template,
+                basename(dirname(dirname($templateFile))) . ' passes FAL identifiers to f:uri.resource; use the FileReference publicUrl instead'
+            );
+            self::assertStringNotContainsString(
+                'originalFile.identifier',
+                $template,
+                basename(dirname(dirname($templateFile))) . ' reads FAL identifiers for frontend URLs; use the FileReference publicUrl instead'
+            );
+        }
+    }
+
     public function testNoShadcn2fluidLeftovers(): void
     {
         $blocks = glob(self::CONTENT_BLOCKS_DIR . '/*', GLOB_ONLYDIR) ?: [];

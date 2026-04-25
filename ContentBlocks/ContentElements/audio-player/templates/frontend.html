@@ -18,7 +18,7 @@
             </div>
             <f:if condition="{data.audio_file.0}">
                 <audio class="audio-player__audio" controls preload="metadata">
-                    <source src="{f:uri.resource(path: data.audio_file.0.originalFile.identifier, extensionName: '')}" type="{data.audio_file.0.mimeType}"/>
+                    <source src="{data.audio_file.0.publicUrl}" type="{data.audio_file.0.mimeType}"/>
                 </audio>
             </f:if>
         </d:molecule.card>

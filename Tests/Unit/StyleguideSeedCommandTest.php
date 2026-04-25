@@ -22,6 +22,9 @@ final class StyleguideSeedCommandTest extends TestCase
         self::assertStringContainsString("->update('tt_content')", $source);
         self::assertStringContainsString("'desiderio_%'", $source);
         self::assertStringContainsString('deleteCollectionRowsForParentUids($existingContentUids);', $source);
+        self::assertStringContainsString('completeResolvedFixtureData(', $source);
+        self::assertStringContainsString('seedFileReferences(', $source);
+        self::assertStringContainsString('Resources/Public/Styleguide/Unsplash', $source);
     }
 
     public function testLegacyColumnsFixtureIsResolvedToCollectionData(): void
@@ -34,6 +37,8 @@ final class StyleguideSeedCommandTest extends TestCase
             'collections' => [
                 'column_items' => [
                     'table' => 'column_items',
+                    'minItems' => 1,
+                    'maxItems' => null,
                     'fields' => [
                         'title' => ['identifier' => 'title'],
                         'links' => ['identifier' => 'links'],
@@ -71,6 +76,8 @@ final class StyleguideSeedCommandTest extends TestCase
         $command = $this->createCommand();
         $plansCollection = [
             'table' => 'plans',
+            'minItems' => 1,
+            'maxItems' => null,
             'fields' => [
                 'name' => ['identifier' => 'name'],
                 'price' => ['identifier' => 'price'],
@@ -108,6 +115,8 @@ final class StyleguideSeedCommandTest extends TestCase
         $command = $this->createCommand();
         $collection = [
             'table' => 'column_definitions',
+            'minItems' => 1,
+            'maxItems' => null,
             'fields' => [
                 'column_label' => ['identifier' => 'column_label'],
                 'column_key' => ['identifier' => 'column_key'],
@@ -134,10 +143,14 @@ final class StyleguideSeedCommandTest extends TestCase
                     'column_items' => [
                         'table' => 'column_items',
                         'fields' => [],
+                        'minItems' => 1,
+                        'maxItems' => null,
                     ],
                     'link_items' => [
                         'table' => 'link_items',
                         'fields' => [],
+                        'minItems' => 1,
+                        'maxItems' => null,
                     ],
                 ],
             ],
@@ -147,6 +160,8 @@ final class StyleguideSeedCommandTest extends TestCase
                     'column_items' => [
                         'table' => 'column_items',
                         'fields' => [],
+                        'minItems' => 1,
+                        'maxItems' => null,
                     ],
                 ],
             ],
@@ -156,6 +171,76 @@ final class StyleguideSeedCommandTest extends TestCase
             ['column_items', 'link_items'],
             $this->invokeMethod($command, 'getCollectionTableNames', [])
         );
+    }
+
+    public function testMissingFieldsAndRepeatableItemsAreCompleted(): void
+    {
+        $command = $this->createCommand();
+        $definition = [
+            'fields' => [
+                'header' => ['identifier' => 'header'],
+                'eyebrow' => ['identifier' => 'eyebrow', 'type' => 'Textarea'],
+                'description' => ['identifier' => 'description', 'type' => 'Textarea'],
+                'image' => ['identifier' => 'image', 'type' => 'File', 'maxitems' => 1],
+                'cta_link' => ['identifier' => 'cta_link', 'type' => 'Link'],
+            ],
+            'collections' => [
+                'items' => [
+                    'table' => 'demo_items',
+                    'minItems' => 2,
+                    'maxItems' => 3,
+                    'fields' => [
+                        'title' => ['identifier' => 'title', 'type' => 'Textarea'],
+                        'description' => ['identifier' => 'description', 'type' => 'Textarea'],
+                        'image' => ['identifier' => 'image', 'type' => 'File', 'maxitems' => 1],
+                    ],
+                ],
+            ],
+        ];
+
+        [$fields, $collections, $fileReferences] = $this->invokeMethod($command, 'completeResolvedFixtureData', [
+            'desiderio_demo',
+            'Demo Element',
+            $definition,
+            ['header' => 'Demo Element'],
+            [],
+        ]);
+
+        self::assertSame('Styleguide', $fields['eyebrow']);
+        self::assertStringContainsString('Complete demo content', $fields['description']);
+        self::assertSame('https://example.com/desiderio/cta_link', $fields['cta_link']);
+        self::assertArrayHasKey('image', $fileReferences);
+        self::assertStringContainsString('Unsplash', $fileReferences['image'][0]['description']);
+        self::assertSame(1, $collections['items']['items'][0]['image']);
+        self::assertCount(3, $collections['items']['items']);
+        self::assertArrayHasKey('__fileReferences', $collections['items']['items'][0]);
+        self::assertStringContainsString('Unsplash', $collections['items']['items'][0]['__fileReferences']['image'][0]['description']);
+    }
+
+    public function testContentBlockDefinitionKeepsCollectionItemLimits(): void
+    {
+        $command = $this->createCommand();
+
+        $definition = $this->invokeMethod($command, 'buildContentBlockDefinition', [[
+            'fields' => [
+                [
+                    'identifier' => 'items',
+                    'type' => 'Collection',
+                    'table' => 'demo_items',
+                    'minItems' => 2,
+                    'maxItems' => 4,
+                    'fields' => [
+                        [
+                            'identifier' => 'title',
+                            'type' => 'Textarea',
+                        ],
+                    ],
+                ],
+            ],
+        ]]);
+
+        self::assertSame(2, $definition['collections']['items']['minItems']);
+        self::assertSame(4, $definition['collections']['items']['maxItems']);
     }
 
     private function createCommand(): SeedStyleguidePagesCommand

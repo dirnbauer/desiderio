@@ -251,6 +251,51 @@ final class StyleguideSeedCommandTest extends TestCase
         self::assertSame('Divider Text for Content Divider', $fields['divider_text']);
     }
 
+    public function testLegacyStatsFixturesAreConvertedToChartDataJson(): void
+    {
+        $command = $this->createCommand();
+        $this->setProperty($command, 'contentBlockDefinitions', [
+            'desiderio_chart' => [
+                'fields' => [
+                    'header' => [
+                        'identifier' => 'header',
+                        'type' => 'Textarea',
+                    ],
+                    'chart_data' => [
+                        'identifier' => 'chart_data',
+                        'type' => 'Textarea',
+                    ],
+                ],
+                'collections' => [],
+            ],
+        ]);
+
+        [$fields] = $this->invokeMethod($command, 'resolveFixtureFields', [
+            'desiderio_chart',
+            [
+                '_type' => 'stats',
+                'header' => 'Performance Metrics',
+                'stats' => [
+                    ['value' => '99.97%', 'label' => 'Uptime'],
+                    ['value' => '1.2B', 'label' => 'Requests Processed'],
+                    ['value' => '12,400', 'label' => 'Active Users'],
+                ],
+            ],
+            'Chart',
+        ]);
+
+        self::assertSame('Performance Metrics', $fields['header']);
+        self::assertArrayHasKey('chart_data', $fields);
+        self::assertNotSame('Chart Data for Chart', $fields['chart_data']);
+
+        $chartData = json_decode((string)$fields['chart_data'], true);
+        self::assertSame([
+            ['label' => 'Uptime', 'value' => 99.97],
+            ['label' => 'Requests Processed', 'value' => 1.2],
+            ['label' => 'Active Users', 'value' => 12400],
+        ], $chartData);
+    }
+
     public function testContentBlockDefinitionKeepsCollectionItemLimits(): void
     {
         $command = $this->createCommand();

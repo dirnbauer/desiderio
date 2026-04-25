@@ -438,13 +438,14 @@ final class SeedStyleguidePagesCommand extends Command
             $resolvedFields[$scalarField] = $this->normalizeScalarValue($value);
         }
 
-        return $this->completeResolvedFixtureData($ctype, $name !== '' ? $name : $ctype, $definition, $resolvedFields, $collections);
+        return $this->completeResolvedFixtureData($ctype, $name !== '' ? $name : $ctype, $definition, $resolvedFields, $collections, $fixture);
     }
 
     /**
      * @param array{fields: array<string, array<string, mixed>>, collections: array<string, array{table: string, fields: array<string, array<string, mixed>>, minItems: int, maxItems: int|null}>} $definition
      * @param array<string, mixed> $resolvedFields
      * @param array<string, array{table: string, items: list<array<string, mixed>>}> $collections
+     * @param array<string, mixed> $fixture
      * @return array{0: array<string, mixed>, 1: array<string, array{table: string, items: list<array<string, mixed>>}>, 2: array<string, list<array{file: string, title: string, alternative: string, description: string, source: string}>>}
      */
     private function completeResolvedFixtureData(
@@ -453,6 +454,7 @@ final class SeedStyleguidePagesCommand extends Command
         array $definition,
         array $resolvedFields,
         array $collections,
+        array $fixture = [],
     ): array {
         $fileReferences = [];
 
@@ -464,7 +466,8 @@ final class SeedStyleguidePagesCommand extends Command
             }
 
             if (!array_key_exists($field, $resolvedFields) || $this->isEmptySeedValue($resolvedFields[$field])) {
-                $default = $this->buildDefaultFieldValue($ctype, $name, $field, $fieldConfig, 0);
+                $default = $this->buildFixtureBackedFieldValue($field, $fixture)
+                    ?? $this->buildDefaultFieldValue($ctype, $name, $field, $fieldConfig, 0);
                 if ($default !== self::FIELD_SKIP) {
                     $resolvedFields[$field] = $default;
                 }
@@ -608,6 +611,74 @@ final class SeedStyleguidePagesCommand extends Command
         return '';
     }
 
+    /**
+     * @param array<string, mixed> $fixture
+     */
+    private function buildFixtureBackedFieldValue(string $field, array $fixture): mixed
+    {
+        if ($field === 'chart_data') {
+            return $this->buildChartDataJsonFromFixture($fixture);
+        }
+
+        return null;
+    }
+
+    /**
+     * @param array<string, mixed> $fixture
+     */
+    private function buildChartDataJsonFromFixture(array $fixture): ?string
+    {
+        $stats = $fixture['stats'] ?? null;
+        if (!is_array($stats)) {
+            return null;
+        }
+
+        $points = [];
+        foreach ($stats as $stat) {
+            if (!is_array($stat)) {
+                continue;
+            }
+
+            $label = trim((string)($stat['label'] ?? $stat['title'] ?? $stat['name'] ?? ''));
+            $value = $this->parseFixtureChartNumber($stat['value'] ?? $stat['amount'] ?? $stat['number'] ?? null);
+            if ($label === '' || $value === null) {
+                continue;
+            }
+
+            $points[] = [
+                'label' => $label,
+                'value' => $value,
+            ];
+        }
+
+        if ($points === []) {
+            return null;
+        }
+
+        $json = json_encode($points, JSON_UNESCAPED_SLASHES);
+
+        return is_string($json) ? $json : null;
+    }
+
+    private function parseFixtureChartNumber(mixed $value): int|float|null
+    {
+        if (is_int($value) || is_float($value)) {
+            return $value;
+        }
+        if (!is_scalar($value)) {
+            return null;
+        }
+
+        $normalized = str_replace([',', ' '], '', (string)$value);
+        if (!preg_match('/-?\d+(?:\.\d+)?/', $normalized, $matches)) {
+            return null;
+        }
+
+        $number = (float)$matches[0];
+
+        return floor($number) === $number ? (int)$number : $number;
+    }
+
     private function buildDefaultTextValue(string $ctype, string $name, string $field, int $index): string
     {
         $normalizedField = $this->normalizeIdentifier($field);
@@ -623,6 +694,7 @@ final class SeedStyleguidePagesCommand extends Command
             str_contains($normalizedField, 'feature') || str_contains($normalizedField, 'points') || str_contains($normalizedField, 'specs') => "Fast onboarding\nAccessible components\nProduction ready styling",
             str_contains($normalizedField, 'links') || str_contains($normalizedField, 'pages') || str_contains($normalizedField, 'children') => "Overview|https://example.com/desiderio/overview\nDocs|https://example.com/desiderio/docs\nSupport|https://example.com/desiderio/support",
             str_contains($normalizedField, 'members') || str_contains($normalizedField, 'people') => "Mara Weiss|Product Lead\nJonas Klein|Design Systems\nSofia Berg|Customer Success",
+            $normalizedField === 'chartdata' => '[{"label":"Jan","value":12},{"label":"Feb","value":18},{"label":"Mar","value":14},{"label":"Apr","value":24}]',
             str_contains($normalizedField, 'rowdata') => 'Starter|Active|99%',
             str_contains($normalizedField, 'tiervalues') => 'Included,Included,Priority',
             str_contains($normalizedField, 'columnkey') => $this->buildColumnKey($subject . ' ' . ($index + 1)),

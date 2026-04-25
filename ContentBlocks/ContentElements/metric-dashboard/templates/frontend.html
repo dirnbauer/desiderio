@@ -42,4 +42,44 @@
     </d:layout.container>
 </d:layout.section>
 
+<script>
+(function () {
+  const svg = document.getElementById('metric-dash-' + {data.uid});
+  const root = svg && svg.closest('.metric-dashboard__chart');
+  if (!svg || !root) return;
+  let rows;
+  try { rows = JSON.parse(root.getAttribute('data-chart-data') || '[]'); } catch (e) { return; }
+  if (!Array.isArray(rows) || !rows.length) return;
+  const values = rows.map(function (row) {
+    return row && row.value != null ? Number(row.value) : NaN;
+  }).filter(function (value) { return !isNaN(value); });
+  if (!values.length) return;
+  while (svg.firstChild) svg.removeChild(svg.firstChild);
+  const w = 640, h = 150, pad = 10;
+  const max = Math.max.apply(null, values);
+  const min = Math.min.apply(null, values);
+  const range = max - min || 1;
+  svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+  const points = values.map(function (value, index) {
+    const x = pad + (values.length === 1 ? (w - 2 * pad) / 2 : (index / (values.length - 1)) * (w - 2 * pad));
+    const y = h - pad - ((value - min) / range) * (h - 2 * pad);
+    return [x, y];
+  });
+  const pointList = points.map(function (p) { return p[0].toFixed(2) + ' ' + p[1].toFixed(2); }).join(' ');
+  const area = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+  area.setAttribute('points', pad + ' ' + (h - pad) + ' ' + pointList + ' ' + (w - pad) + ' ' + (h - pad));
+  area.setAttribute('fill', 'var(--primary)');
+  area.setAttribute('opacity', '0.12');
+  svg.appendChild(area);
+  const line = document.createElementNS('http://www.w3.org/2000/svg', 'polyline');
+  line.setAttribute('points', pointList);
+  line.setAttribute('fill', 'none');
+  line.setAttribute('stroke', 'var(--primary)');
+  line.setAttribute('stroke-width', '3');
+  line.setAttribute('stroke-linecap', 'round');
+  line.setAttribute('stroke-linejoin', 'round');
+  svg.appendChild(line);
+})();
+</script>
+
 </html>

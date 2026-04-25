@@ -182,6 +182,22 @@ final class ContentBlockStructureTest extends TestCase
         }
     }
 
+    public function testChartDataTemplatesHaveFrontendRenderer(): void
+    {
+        $templateFiles = glob(self::CONTENT_BLOCKS_DIR . '/*/templates/frontend.html') ?: [];
+        foreach ($templateFiles as $templateFile) {
+            $template = (string) file_get_contents($templateFile);
+            if (!str_contains($template, 'data-chart-data=') && !str_contains($template, 'data-chart-json=')) {
+                continue;
+            }
+
+            self::assertTrue(
+                str_contains($template, 'JSON.parse') || str_contains($template, '<vac:asset.vite'),
+                basename(dirname(dirname($templateFile))) . ' exposes chart JSON but has no frontend renderer'
+            );
+        }
+    }
+
     public function testNoShadcn2fluidLeftovers(): void
     {
         $blocks = glob(self::CONTENT_BLOCKS_DIR . '/*', GLOB_ONLYDIR) ?: [];

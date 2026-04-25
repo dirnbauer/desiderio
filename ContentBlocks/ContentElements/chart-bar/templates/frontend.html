@@ -31,4 +31,91 @@
     </d:layout.container>
 </d:layout.section>
 
+<script>
+(function () {
+  const svg = document.getElementById('chart-bar-' + {data.uid});
+  const root = svg && svg.closest('.chart-bar');
+  if (!svg || !root) return;
+  let rows;
+  try { rows = JSON.parse(root.getAttribute('data-chart-data') || '[]'); } catch (e) { return; }
+  if (!Array.isArray(rows) || !rows.length) return;
+  const values = rows.map(function (row) {
+    return {
+      label: row && row.label ? String(row.label) : '',
+      value: row && row.value != null ? Number(row.value) : NaN
+    };
+  }).filter(function (row) { return !isNaN(row.value); });
+  if (!values.length) return;
+  while (svg.firstChild) svg.removeChild(svg.firstChild);
+  const w = 640, h = 300, padX = 42, padY = 28, bottom = 48;
+  const chartW = w - padX * 2;
+  const chartH = h - padY - bottom;
+  const max = Math.max.apply(null, values.map(function (row) { return row.value; })) || 1;
+  const orientation = root.getAttribute('data-orientation') || 'vertical';
+  svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+  if (root.getAttribute('data-show-grid') === 'true') {
+    for (let i = 0; i <= 4; i++) {
+      const y = padY + (chartH / 4) * i;
+      const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+      line.setAttribute('x1', padX);
+      line.setAttribute('x2', w - padX);
+      line.setAttribute('y1', y);
+      line.setAttribute('y2', y);
+      line.setAttribute('stroke', 'currentColor');
+      line.setAttribute('stroke-opacity', '0.12');
+      svg.appendChild(line);
+    }
+  }
+  if (orientation === 'horizontal') {
+    const rowH = chartH / values.length;
+    values.forEach(function (row, index) {
+      const barW = (row.value / max) * chartW;
+      const y = padY + index * rowH + rowH * 0.18;
+      const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+      rect.setAttribute('x', padX);
+      rect.setAttribute('y', y);
+      rect.setAttribute('width', Math.max(barW, 1));
+      rect.setAttribute('height', rowH * 0.54);
+      rect.setAttribute('rx', '6');
+      rect.setAttribute('fill', 'var(--chart-color, var(--primary))');
+      svg.appendChild(rect);
+      const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      label.setAttribute('x', padX);
+      label.setAttribute('y', y + rowH * 0.82);
+      label.setAttribute('fill', 'currentColor');
+      label.setAttribute('opacity', '0.72');
+      label.textContent = row.label;
+      svg.appendChild(label);
+    });
+    return;
+  }
+  const barW = (chartW / values.length) * 0.56;
+  const gap = (chartW - barW * values.length) / Math.max(values.length - 1, 1);
+  values.forEach(function (row, index) {
+    const valueH = (row.value / max) * chartH;
+    const x = padX + index * (barW + gap);
+    const y = padY + chartH - valueH;
+    const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+    rect.setAttribute('x', x);
+    rect.setAttribute('y', y);
+    rect.setAttribute('width', barW);
+    rect.setAttribute('height', Math.max(valueH, 1));
+    rect.setAttribute('rx', '6');
+    rect.setAttribute('fill', 'var(--chart-color, var(--primary))');
+    const title = document.createElementNS('http://www.w3.org/2000/svg', 'title');
+    title.textContent = row.label + ': ' + row.value;
+    rect.appendChild(title);
+    svg.appendChild(rect);
+    const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    label.setAttribute('x', x + barW / 2);
+    label.setAttribute('y', h - 12);
+    label.setAttribute('text-anchor', 'middle');
+    label.setAttribute('fill', 'currentColor');
+    label.setAttribute('opacity', '0.72');
+    label.textContent = row.label;
+    svg.appendChild(label);
+  });
+})();
+</script>
+
 </html>

@@ -30,4 +30,61 @@
     </d:layout.container>
 </d:layout.section>
 
+<script>
+(function () {
+  const svg = document.getElementById('chart-area-' + {data.uid});
+  const root = svg && svg.closest('.chart-area');
+  if (!svg || !root) return;
+  let rows;
+  try { rows = JSON.parse(root.getAttribute('data-chart-data') || '[]'); } catch (e) { return; }
+  if (!Array.isArray(rows) || !rows.length) return;
+  const values = rows.map(function (row) {
+    return {
+      label: row && row.label ? String(row.label) : '',
+      value: row && row.value != null ? Number(row.value) : NaN
+    };
+  }).filter(function (row) { return !isNaN(row.value); });
+  if (!values.length) return;
+  while (svg.firstChild) svg.removeChild(svg.firstChild);
+  const w = 640, h = 300, padX = 42, padY = 28, bottom = 42;
+  const chartW = w - padX * 2;
+  const chartH = h - padY - bottom;
+  const max = Math.max.apply(null, values.map(function (row) { return row.value; }));
+  const min = Math.min.apply(null, values.map(function (row) { return row.value; }));
+  const range = max - min || 1;
+  const opacityMap = { low: 0.08, medium: 0.18, high: 0.28 };
+  const fillOpacity = opacityMap[root.getAttribute('data-fill-opacity')] || opacityMap.medium;
+  svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+  const points = values.map(function (row, index) {
+    const x = padX + (values.length === 1 ? chartW / 2 : (index / (values.length - 1)) * chartW);
+    const y = padY + chartH - ((row.value - min) / range) * chartH;
+    return [x, y];
+  });
+  const pointList = points.map(function (p) { return p[0].toFixed(2) + ' ' + p[1].toFixed(2); }).join(' ');
+  const area = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+  area.setAttribute('points', padX + ' ' + (h - bottom) + ' ' + pointList + ' ' + (w - padX) + ' ' + (h - bottom));
+  area.setAttribute('fill', 'var(--chart-color, var(--primary))');
+  area.setAttribute('opacity', String(fillOpacity));
+  svg.appendChild(area);
+  const line = document.createElementNS('http://www.w3.org/2000/svg', 'polyline');
+  line.setAttribute('points', pointList);
+  line.setAttribute('fill', 'none');
+  line.setAttribute('stroke', 'var(--chart-color, var(--primary))');
+  line.setAttribute('stroke-width', '3');
+  line.setAttribute('stroke-linecap', 'round');
+  line.setAttribute('stroke-linejoin', 'round');
+  svg.appendChild(line);
+  values.forEach(function (row, index) {
+    const label = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+    label.setAttribute('x', points[index][0]);
+    label.setAttribute('y', h - 10);
+    label.setAttribute('text-anchor', 'middle');
+    label.setAttribute('fill', 'currentColor');
+    label.setAttribute('opacity', '0.72');
+    label.textContent = row.label;
+    svg.appendChild(label);
+  });
+})();
+</script>
+
 </html>

@@ -11,15 +11,16 @@
             <d:atom.typography tag="h2" variant="h2" class="tabs-section__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
         </f:if>
 
-        <d:molecule.tabs class="tabs tabs--{data.variant -> f:or(alternative: 'default')}" data-tabs-default="{data.default_tab -> f:or(alternative: '0')}">
+        <div class="tabs tabs--{data.variant -> f:or(alternative: 'default')}" data-d-tabs data-default="tab-{data.uid}-{data.default_tab -> f:or(alternative: '0')}">
             <div class="tabs__list" role="tablist">
                 <f:for each="{data.items}" as="item" iteration="iter">
-                    <button class="tabs__trigger{f:if(condition: '{data.default_tab} == {iter.index}', then: ' tabs__trigger--active')}{f:if(condition: '!{data.default_tab} && {iter.isFirst}', then: ' tabs__trigger--active')}"
+                    <button class="tabs__trigger{f:if(condition: iter.isFirst, then: ' tabs__trigger--active')}"
                             role="tab"
                             type="button"
                             aria-selected="{f:if(condition: iter.isFirst, then: 'true', else: 'false')}"
                             aria-controls="tab-panel-{data.uid}-{iter.index}"
-                            data-tab-trigger="tab-{data.uid}-{iter.index}">
+                            data-d-tabs-trigger
+                            data-value="tab-{data.uid}-{iter.index}">
                         <f:if condition="{item.tab_icon}">
                             <span class="tabs__icon">{item -> f:render.text(field: 'tab_icon')}</span>
                         </f:if>
@@ -29,14 +30,15 @@
             </div>
 
             <f:for each="{data.items}" as="item" iteration="iter">
-                <div class="tabs__content{f:if(condition: '{data.default_tab} == {iter.index}', then: ' tabs__content--active')}{f:if(condition: '!{data.default_tab} && {iter.isFirst}', then: ' tabs__content--active')}"
+                <div class="tabs__content{f:if(condition: !iter.isFirst, then: ' tabs__content--hidden')}"
                      role="tabpanel"
                      id="tab-panel-{data.uid}-{iter.index}"
-                     data-tab-content="tab-{data.uid}-{iter.index}">
+                     data-d-tabs-content
+                     data-value="tab-{data.uid}-{iter.index}">
                     {item -> f:render.text(field: 'tab_content')}
                 </div>
             </f:for>
-        </d:molecule.tabs>
+        </div>
     </d:layout.container>
 </d:layout.section>
 

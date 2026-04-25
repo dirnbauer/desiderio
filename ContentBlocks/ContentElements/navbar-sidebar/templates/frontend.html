@@ -20,7 +20,7 @@
                         <h3 class="navbar-sidebar__section-title">{section -> f:render.text(field: 'title')}</h3>
                     </f:if>
                     <ul class="navbar-sidebar__list">
-                        <f:for each="{section.links -> f:split(separator: '
+                        <f:for each="{section.links -> f:or(alternative: '') -> f:split(separator: '
 ')}" as="linkLine">
                             <f:if condition="{linkLine -> f:format.trim()}">
                                 <li><span class="navbar-sidebar__link">{linkLine -> f:format.trim()}</span></li>

@@ -149,6 +149,20 @@ final class ContentBlockStructureTest extends TestCase
         }
     }
 
+    public function testFieldBackedSplitViewHelpersProvideStringFallback(): void
+    {
+        $templateFiles = glob(self::CONTENT_BLOCKS_DIR . '/*/templates/frontend.html') ?: [];
+        foreach ($templateFiles as $templateFile) {
+            $template = (string) file_get_contents($templateFile);
+
+            self::assertDoesNotMatchRegularExpression(
+                '/\\{[a-z][a-z0-9_]*(?:\\.[a-z0-9_]+)+\\s*->\\s*f:split\\(/i',
+                $template,
+                basename(dirname(dirname($templateFile))) . ' splits a nullable field directly; add f:or(alternative: \'\') before f:split'
+            );
+        }
+    }
+
     public function testNoShadcn2fluidLeftovers(): void
     {
         $blocks = glob(self::CONTENT_BLOCKS_DIR . '/*', GLOB_ONLYDIR) ?: [];

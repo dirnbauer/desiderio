@@ -32,7 +32,7 @@
                         </span>
                     </f:if>
                     <div class="flex flex-wrap justify-center gap-4">
-                        <f:for each="{level.people -> f:split(separator: '
+                        <f:for each="{level.people -> f:or(alternative: '') -> f:split(separator: '
 ')}" as="personLine">
                             <f:if condition="{personLine -> f:format.trim()}">
                                 <f:variable name="personParts" value="{personLine -> f:split(separator: '|')}"/>

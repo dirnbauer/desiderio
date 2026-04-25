@@ -21,7 +21,7 @@
 
                 <f:if condition="{data.features_list}">
                     <ul class="pricing-enterprise__features">
-                        <f:for each="{data.features_list -> f:split(separator: '\n')}" as="feature">
+                        <f:for each="{data.features_list -> f:or(alternative: '') -> f:split(separator: '\n')}" as="feature">
                             <f:if condition="{feature}">
                                 <li class="pricing-enterprise__feature">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>

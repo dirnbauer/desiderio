@@ -37,7 +37,7 @@
                     <f:for each="{data.feature_items}" as="row">
                         <tr>
                             <td class="pricing-comparison__feature-name">{row -> f:render.text(field: 'feature_name')}</td>
-                            <f:for each="{row.tier_values -> f:split(separator: ',')}" as="val">
+                            <f:for each="{row.tier_values -> f:or(alternative: '') -> f:split(separator: ',')}" as="val">
                                 <td class="pricing-comparison__cell">{val -> f:format.trim()}</td>
                             </f:for>
                         </tr>

@@ -15,7 +15,7 @@
                 <div class="sitemap-grid__group">
                     <h3 class="sitemap-grid__group-title">{group -> f:render.text(field: 'title')}</h3>
                     <ul class="sitemap-grid__links">
-                        <f:for each="{group.pages -> f:split(separator: '
+                        <f:for each="{group.pages -> f:or(alternative: '') -> f:split(separator: '
 ')}" as="pageLine">
                             <f:if condition="{pageLine -> f:format.trim()}">
                                 <li><span class="sitemap-grid__link">{pageLine -> f:format.trim()}</span></li>

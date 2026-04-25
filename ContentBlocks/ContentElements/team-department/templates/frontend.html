@@ -18,7 +18,7 @@
             <div class="team-department__group">
                 <h3 class="team-department__dept-name">{dept -> f:render.text(field: 'name')}</h3>
                 <div class="team-department__grid">
-                    <f:for each="{dept.members -> f:split(separator: '
+                    <f:for each="{dept.members -> f:or(alternative: '') -> f:split(separator: '
 ')}" as="memberLine">
                         <f:if condition="{memberLine -> f:format.trim()}">
                             <f:variable name="memberParts" value="{memberLine -> f:split(separator: '|')}"/>

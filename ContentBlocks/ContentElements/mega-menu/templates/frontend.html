@@ -42,7 +42,7 @@
                                 <p class="mega-menu__group-desc">{group -> f:render.text(field: 'description')}</p>
                             </f:if>
                             <ul class="mega-menu__links">
-                                <f:for each="{group.links -> f:split(separator: '
+                                <f:for each="{group.links -> f:or(alternative: '') -> f:split(separator: '
 ')}" as="linkLine">
                                     <f:if condition="{linkLine -> f:format.trim()}">
                                         <li class="mega-menu__link-item">

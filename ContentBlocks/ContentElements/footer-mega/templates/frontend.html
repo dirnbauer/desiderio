@@ -30,7 +30,7 @@
                     <nav class="footer-mega__col">
                         <h3 class="footer-mega__col-title">{col -> f:render.text(field: 'title')}</h3>
                         <ul class="footer-mega__links">
-                            <f:for each="{col.links -> f:split(separator: '
+                            <f:for each="{col.links -> f:or(alternative: '') -> f:split(separator: '
 ')}" as="linkLine">
                                 <f:if condition="{linkLine -> f:format.trim()}">
                                     <li><span class="footer-mega__link">{linkLine -> f:format.trim()}</span></li>

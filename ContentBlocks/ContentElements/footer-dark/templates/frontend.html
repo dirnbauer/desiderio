@@ -20,7 +20,7 @@
                 <nav class="footer-dark__col">
                     <h3 class="footer-dark__col-title">{col -> f:render.text(field: 'title')}</h3>
                     <ul class="footer-dark__links">
-                        <f:for each="{col.links -> f:split(separator: '
+                        <f:for each="{col.links -> f:or(alternative: '') -> f:split(separator: '
 ')}" as="linkLine">
                             <f:if condition="{linkLine -> f:format.trim()}">
                                 <li><span class="footer-dark__link">{linkLine -> f:format.trim()}</span></li>

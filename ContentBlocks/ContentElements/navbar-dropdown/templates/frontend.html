@@ -22,7 +22,7 @@
                         </f:if>
                         <f:if condition="{item.children}">
                             <ul class="navbar-dropdown__submenu">
-                                <f:for each="{item.children -> f:split(separator: '
+                                <f:for each="{item.children -> f:or(alternative: '') -> f:split(separator: '
 ')}" as="childLine">
                                     <f:if condition="{childLine -> f:format.trim()}">
                                         <li><span class="navbar-dropdown__sublink">{childLine -> f:format.trim()}</span></li>

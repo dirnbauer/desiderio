@@ -27,7 +27,7 @@
                 <p class="card-interactive__description">{data -> f:render.text(field: 'description')}</p>
             </f:if>
             <f:if condition="{data.link}">
-                <f:link.typolink parameter="{data.link}" class="card-interactive__link" aria-label="{data -> f:render.text(field: 'header')}"/>
+                <f:link.typolink parameter="{data.link}" class="card-interactive__link" additionalAttributes="{aria-label: data.header}"/>
             </f:if>
         </div>
     </d:layout.container>

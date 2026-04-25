@@ -130,6 +130,25 @@ final class ContentBlockStructureTest extends TestCase
         }
     }
 
+    public function testTypolinkViewHelpersUseAdditionalAttributesForHtmlAttributes(): void
+    {
+        $templateFiles = glob(self::CONTENT_BLOCKS_DIR . '/*/templates/frontend.html') ?: [];
+        foreach ($templateFiles as $templateFile) {
+            $lines = file($templateFile, FILE_IGNORE_NEW_LINES) ?: [];
+            foreach ($lines as $lineNumber => $line) {
+                if (!str_contains($line, '<f:link.typolink')) {
+                    continue;
+                }
+
+                self::assertDoesNotMatchRegularExpression(
+                    '/<f:link\\.typolink\\b[^\\n]*(?:\\saria-[a-z0-9_-]+\\s*=|\\srole\\s*=|\\sdata-[a-z0-9_-]+\\s*=)/i',
+                    $line,
+                    sprintf('%s:%d passes HTML attributes directly to f:link.typolink; use additionalAttributes instead', basename(dirname(dirname($templateFile))), $lineNumber + 1)
+                );
+            }
+        }
+    }
+
     public function testNoShadcn2fluidLeftovers(): void
     {
         $blocks = glob(self::CONTENT_BLOCKS_DIR . '/*', GLOB_ONLYDIR) ?: [];

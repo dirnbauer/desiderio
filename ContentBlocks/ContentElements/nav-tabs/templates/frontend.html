@@ -10,7 +10,7 @@
         <nav class="nav-tabs__inner" aria-label="Tab navigation" role="tablist">
             <f:for each="{data.tabs}" as="tab">
                 <f:if condition="{tab.link.url}">
-                    <f:link.typolink parameter="{tab.link}" class="nav-tabs__tab{f:if(condition: tab.active, then: ' nav-tabs__tab--active')}" role="tab">{tab -> f:render.text(field: 'label')}</f:link.typolink>
+                    <f:link.typolink parameter="{tab.link}" class="nav-tabs__tab{f:if(condition: tab.active, then: ' nav-tabs__tab--active')}" additionalAttributes="{role: 'tab'}">{tab -> f:render.text(field: 'label')}</f:link.typolink>
                 </f:if>
             </f:for>
         </nav>

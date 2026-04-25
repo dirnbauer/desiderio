@@ -18,7 +18,7 @@
             </header>
         </f:if>
 
-        <div class="infographic__steps infographic__steps--{data.layout -> f:or(alternative: 'horizontal')}">
+        <div class="infographic__steps infographic__steps--{data.shadcn_layout -> f:or(alternative: 'horizontal')}">
             <f:for each="{data.items}" as="item" iteration="iter">
                 <div class="infographic__step">
                     <div class="infographic__number">{item.number -> f:or(alternative: iter.cycle)}</div>

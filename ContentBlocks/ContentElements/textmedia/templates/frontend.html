@@ -5,9 +5,9 @@
 
 <f:asset.css identifier="d-textmedia" href="{cb:assetPath()}/frontend.css"/>
 
-<d:layout.section class="textmedia textmedia--{data.layout}">
+<d:layout.section class="textmedia textmedia--{data.shadcn_layout}">
     <d:layout.container>
-        <f:if condition="{data.layout} == 'media-above'">
+        <f:if condition="{data.shadcn_layout} == 'media-above'">
             <f:if condition="{data.media.0}">
                 <div class="textmedia__media-wrapper">
                     <f:image image="{data.media.0}" alt="{data -> f:render.text(field: 'header')}" maxWidth="1200"
@@ -16,9 +16,9 @@
             </f:if>
         </f:if>
 
-        <f:if condition="{data.layout} == 'media-left' || {data.layout} == 'media-right'">
+        <f:if condition="{data.shadcn_layout} == 'media-left' || {data.shadcn_layout} == 'media-right'">
             <div class="textmedia__grid">
-                <f:if condition="{data.layout} == 'media-left'">
+                <f:if condition="{data.shadcn_layout} == 'media-left'">
                     <f:if condition="{data.media.0}">
                         <div class="textmedia__media-wrapper">
                             <f:image image="{data.media.0}" alt="{data -> f:render.text(field: 'header')}" maxWidth="640"
@@ -40,7 +40,7 @@
                     </f:if>
                 </div>
 
-                <f:if condition="{data.layout} == 'media-right'">
+                <f:if condition="{data.shadcn_layout} == 'media-right'">
                     <f:if condition="{data.media.0}">
                         <div class="textmedia__media-wrapper">
                             <f:image image="{data.media.0}" alt="{data -> f:render.text(field: 'header')}" maxWidth="640"
@@ -51,7 +51,7 @@
             </div>
         </f:if>
 
-        <f:if condition="{data.layout} == 'media-above' || {data.layout} == 'media-below'">
+        <f:if condition="{data.shadcn_layout} == 'media-above' || {data.shadcn_layout} == 'media-below'">
             <div class="textmedia__content">
                 <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
                 <f:if condition="{data.subheadline}"><d:atom.typography variant="muted">{data -> f:render.text(field: 'subheadline')}</d:atom.typography></f:if>
@@ -66,7 +66,7 @@
             </div>
         </f:if>
 
-        <f:if condition="{data.layout} == 'media-below'">
+        <f:if condition="{data.shadcn_layout} == 'media-below'">
             <f:if condition="{data.media.0}">
                 <div class="textmedia__media-wrapper">
                     <f:image image="{data.media.0}" alt="{data -> f:render.text(field: 'header')}" maxWidth="1200"

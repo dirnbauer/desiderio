@@ -24,10 +24,10 @@ fields:
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
     rows: 3
   -
-    identifier: layout
+    identifier: shadcn_layout
     type: Select
     renderType: selectSingle
-    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:layout'
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:shadcn_layout'
     items:
       -
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.full_width'

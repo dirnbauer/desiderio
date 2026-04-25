@@ -12,9 +12,9 @@
                 <input type="search" name="q" placeholder="{data.placeholder -> f:or(alternative: 'Search...')}" class="hero-search__input"/>
                 <d:atom.button type="submit" size="lg">Search</d:atom.button>
             </form>
-            <f:if condition="{data.categories}">
+            <f:if condition="{data.category_filters}">
                 <div class="hero-search__categories">
-                    <f:for each="{data.categories}" as="cat">
+                    <f:for each="{data.category_filters}" as="cat">
                         <f:if condition="{cat.link.url}">
                             <f:link.typolink parameter="{cat.link}" class="hero-search__category">{cat -> f:render.text(field: 'label')}</f:link.typolink>
                         </f:if>

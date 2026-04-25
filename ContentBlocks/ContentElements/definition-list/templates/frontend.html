@@ -11,7 +11,7 @@
             <d:atom.typography tag="h2" variant="h2" class="definition-list-section__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
         </f:if>
 
-        <dl class="definition-list definition-list--{data.layout -> f:or(alternative: 'stacked')}">
+        <dl class="definition-list definition-list--{data.shadcn_layout -> f:or(alternative: 'stacked')}">
             <f:for each="{data.items}" as="item">
                 <div class="definition-list__entry">
                     <dt class="definition-list__term">{item -> f:render.text(field: 'term')}</dt>

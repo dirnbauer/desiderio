@@ -19,9 +19,9 @@
                     <f:link.typolink parameter="{data.privacy_link}" class="gdpr-banner__privacy-link">Privacy Policy</f:link.typolink>
                 </f:if>
             </div>
-            <f:if condition="{data.categories}">
+            <f:if condition="{data.cookie_categories}">
                 <div class="gdpr-banner__categories">
-                    <f:for each="{data.categories}" as="cat">
+                    <f:for each="{data.cookie_categories}" as="cat">
                         <label class="gdpr-banner__category">
                             <input type="checkbox" {f:if(condition: cat.required, then: 'checked disabled')} class="gdpr-banner__checkbox"/>
                             <span class="gdpr-banner__cat-name">{cat -> f:render.text(field: 'name')}</span>

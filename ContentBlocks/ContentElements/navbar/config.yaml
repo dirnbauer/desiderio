@@ -14,7 +14,7 @@ fields:
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
   -
-    identifier: layout
+    identifier: shadcn_layout
     type: Select
     renderType: selectSingle
     label: 'Template Layout'

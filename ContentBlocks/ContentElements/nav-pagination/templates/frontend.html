@@ -9,7 +9,7 @@
     <d:layout.container>
         <nav class="nav-pagination__inner" aria-label="Pagination">
             <f:if condition="{data.previous_link.url}">
-                <f:link.typolink parameter="{data.previous_link}" class="nav-pagination__prev" additionalAttributes="{aria-label: 'Previous page'}">Previous</f:link.typolink>
+                <f:link.typolink parameter="{data.previous_link}" class="nav-pagination__prev" additionalAttributes="{'aria-label': 'Previous page'}">Previous</f:link.typolink>
             </f:if>
             <ul class="nav-pagination__list">
                 <f:for each="{data.items}" as="item">
@@ -28,7 +28,7 @@
                 </f:for>
             </ul>
             <f:if condition="{data.next_link.url}">
-                <f:link.typolink parameter="{data.next_link}" class="nav-pagination__next" additionalAttributes="{aria-label: 'Next page'}">Next</f:link.typolink>
+                <f:link.typolink parameter="{data.next_link}" class="nav-pagination__next" additionalAttributes="{'aria-label': 'Next page'}">Next</f:link.typolink>
             </f:if>
         </nav>
     </d:layout.container>

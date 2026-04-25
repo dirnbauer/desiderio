@@ -1,6 +1,12 @@
 # Default values for the Desiderio base set.
 # Presets override these in their own settings.yaml.
 
+styles:
+  templates:
+    templateRootPath: EXT:desiderio/Resources/Private/FluidStyledContent/Templates/
+    partialRootPath: EXT:desiderio/Resources/Private/FluidStyledContent/Partials/
+    layoutRootPath: EXT:desiderio/Resources/Private/FluidStyledContent/Layouts/
+
 desiderio:
   layout:
     density: comfortable

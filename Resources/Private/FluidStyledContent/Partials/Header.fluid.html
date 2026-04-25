@@ -1,0 +1,74 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:dc="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+    xmlns:dv="http://typo3.org/ns/Webconsulting/Desiderio/ViewHelpers"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:variable name="renderHeader" value="1"/>
+<dv:recordHasField record="{record}" field="header_layout">
+    <f:if condition="{record.header_layout} == 100">
+        <f:variable name="renderHeader" value="0"/>
+    </f:if>
+</dv:recordHasField>
+
+<f:if condition="{renderHeader}">
+    <dv:recordHasField record="{record}" field="header">
+        <header class="ce-fsc__intro">
+            <f:if condition="{record.header}">
+                <f:variable name="headerTag" value="h2"/>
+                <f:variable name="headerVariant" value="h2"/>
+                <dv:recordHasField record="{record}" field="header_layout">
+                    <f:switch expression="{record.header_layout}">
+                        <f:case value="1">
+                            <f:variable name="headerTag" value="h1"/>
+                            <f:variable name="headerVariant" value="h1"/>
+                        </f:case>
+                        <f:case value="3">
+                            <f:variable name="headerTag" value="h3"/>
+                            <f:variable name="headerVariant" value="h3"/>
+                        </f:case>
+                        <f:case value="4">
+                            <f:variable name="headerTag" value="h4"/>
+                            <f:variable name="headerVariant" value="h4"/>
+                        </f:case>
+                        <f:case value="5">
+                            <f:variable name="headerTag" value="h4"/>
+                            <f:variable name="headerVariant" value="large"/>
+                        </f:case>
+                    </f:switch>
+                </dv:recordHasField>
+
+                <dc:atom.typography tag="{headerTag}" variant="{headerVariant}" class="ce-fsc__headline">
+                    <dv:recordHasField record="{record}" field="header_link">
+                        <f:then>
+                            <f:if condition="{record.header_link}">
+                                <f:then>
+                                    <f:link.typolink parameter="{record.header_link}" class="ce-fsc__heading-link">
+                                        <f:render.text record="{record}" field="header"/>
+                                    </f:link.typolink>
+                                </f:then>
+                                <f:else>
+                                    <f:render.text record="{record}" field="header"/>
+                                </f:else>
+                            </f:if>
+                        </f:then>
+                        <f:else>
+                            <f:render.text record="{record}" field="header"/>
+                        </f:else>
+                    </dv:recordHasField>
+                </dc:atom.typography>
+            </f:if>
+
+            <dv:recordHasField record="{record}" field="subheader">
+                <f:if condition="{record.subheader}">
+                    <dc:atom.typography variant="muted" class="ce-fsc__subheadline">
+                        <f:render.text record="{record}" field="subheader"/>
+                    </dc:atom.typography>
+                </f:if>
+            </dv:recordHasField>
+        </header>
+    </dv:recordHasField>
+</f:if>
+
+</html>

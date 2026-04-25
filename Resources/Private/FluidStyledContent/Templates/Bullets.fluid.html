@@ -1,0 +1,29 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:dc="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:layout name="Default"/>
+
+<f:section name="Main">
+    <div class="ce-fsc-list">
+        <f:render partial="Header" arguments="{record: record}"/>
+        <f:if condition="{bullets}">
+            <dc:molecule.card class="ce-fsc-list__card">
+                <dc:molecule.cardContent>
+                    <ul class="ce-fsc-list__items">
+                        <f:for each="{bullets}" as="item">
+                            <li class="ce-fsc-list__item">
+                                <span class="ce-fsc-list__marker" aria-hidden="true"></span>
+                                <span>{item}</span>
+                            </li>
+                        </f:for>
+                    </ul>
+                </dc:molecule.cardContent>
+            </dc:molecule.card>
+        </f:if>
+    </div>
+</f:section>
+
+</html>

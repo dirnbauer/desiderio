@@ -1,0 +1,34 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:dc="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:if condition="{files}">
+    <div class="ce-fsc-files">
+        <f:for each="{files}" as="file">
+            <dc:molecule.card class="ce-fsc-files__item" size="sm">
+                <dc:molecule.cardContent class="ce-fsc-files__content">
+                    <a href="{file.publicUrl}" class="ce-fsc-files__link" download>
+                        <span class="ce-fsc-files__icon" aria-hidden="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="m7 10 5 5 5-5"/><path d="M5 21h14"/></svg>
+                        </span>
+                        <span class="ce-fsc-files__body">
+                            <span class="ce-fsc-files__title">
+                                <f:if condition="{file.title}">
+                                    <f:then>{file.title}</f:then>
+                                    <f:else>{file.name}</f:else>
+                                </f:if>
+                            </span>
+                            <f:if condition="{file.description}">
+                                <span class="ce-fsc-files__description">{file.description}</span>
+                            </f:if>
+                        </span>
+                    </a>
+                </dc:molecule.cardContent>
+            </dc:molecule.card>
+        </f:for>
+    </div>
+</f:if>
+
+</html>

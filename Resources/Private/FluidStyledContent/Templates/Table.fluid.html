@@ -1,0 +1,56 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:dc="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:layout name="Default"/>
+
+<f:section name="Main">
+    <div class="ce-fsc-table">
+        <f:render partial="Header" arguments="{record: record}"/>
+        <f:if condition="{table}">
+            <dc:molecule.card class="ce-fsc-table__card">
+                <dc:molecule.cardContent>
+                    <dc:molecule.table class="ce-fsc-table__table">
+                        <f:if condition="{record.table_caption}">
+                            <caption class="ce-fsc-table__caption">{record.table_caption}</caption>
+                        </f:if>
+                        <f:if condition="{record.table_header_position} == 1">
+                            <thead>
+                                <f:for each="{table}" as="columns" iteration="rowIterator">
+                                    <f:if condition="{rowIterator.isFirst}">
+                                        <tr>
+                                            <f:for each="{columns}" as="column">
+                                                <th scope="col">{column}</th>
+                                            </f:for>
+                                        </tr>
+                                    </f:if>
+                                </f:for>
+                            </thead>
+                        </f:if>
+                        <tbody>
+                            <f:for each="{table}" as="columns" iteration="rowIterator">
+                                <f:if condition="{record.table_header_position} == 1 && {rowIterator.isFirst}">
+                                    <f:then></f:then>
+                                    <f:else>
+                                        <tr>
+                                            <f:for each="{columns}" as="column" iteration="columnIterator">
+                                                <f:if condition="{record.table_header_position} == 2 && {columnIterator.isFirst}">
+                                                    <f:then><th scope="row">{column}</th></f:then>
+                                                    <f:else><td>{column}</td></f:else>
+                                                </f:if>
+                                            </f:for>
+                                        </tr>
+                                    </f:else>
+                                </f:if>
+                            </f:for>
+                        </tbody>
+                    </dc:molecule.table>
+                </dc:molecule.cardContent>
+            </dc:molecule.card>
+        </f:if>
+    </div>
+</f:section>
+
+</html>

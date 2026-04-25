@@ -1,0 +1,15 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:dv="http://typo3.org/ns/Webconsulting/Desiderio/ViewHelpers"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:argument name="field" type="string" optional="{true}" default="bodytext"/>
+
+<dv:recordHasField record="{record}" field="{field}">
+    <div class="ce-fsc__richtext ce-bodytext">
+        <f:render.text record="{record}" field="{field}"/>
+    </div>
+</dv:recordHasField>
+
+</html>

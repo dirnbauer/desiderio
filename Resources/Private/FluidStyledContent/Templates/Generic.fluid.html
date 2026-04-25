@@ -1,0 +1,24 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:dv="http://typo3.org/ns/Webconsulting/Desiderio/ViewHelpers"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:layout name="Default"/>
+
+<f:section name="Main">
+    <f:render partial="Header" arguments="{record: record}"/>
+
+    <f:if condition="{record.mainType} == 'tx_news_domain_model_news'">
+        <f:then>
+            <dv:recordHasField record="{record}" field="body">
+                <f:render partial="RichText" arguments="{record: record, field: 'body'}"/>
+            </dv:recordHasField>
+        </f:then>
+        <f:else>
+            <f:render partial="RichText" arguments="{record: record, field: 'bodytext'}"/>
+        </f:else>
+    </f:if>
+</f:section>
+
+</html>

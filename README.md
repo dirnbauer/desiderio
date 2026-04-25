@@ -109,6 +109,10 @@ can react to them without runtime JavaScript.
 Fluid 5 components — no block writes raw HTML. See
 `ContentBlocks/ContentElements/` for the full list.
 
+Classic TYPO3 Fluid Styled Content elements are overridden from
+`Resources/Private/FluidStyledContent/` and use the same shadcn preset tokens,
+Fluid 5 components, and Tailwind source build as the Content Blocks catalog.
+
 ## Fluid 5 components
 
 - **Atoms (16):** AspectRatio, Avatar, Badge, Button, Icon, Image, Input,

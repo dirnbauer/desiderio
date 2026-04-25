@@ -1,0 +1,66 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:dc="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+    xmlns:dv="http://typo3.org/ns/Webconsulting/Desiderio/ViewHelpers"
+    data-namespace-typo3-fluid="true"
+>
+
+<div class="ce-fsc-menu">
+    <f:render partial="Header" arguments="{record: record}"/>
+
+    <dv:recordHasField record="{record}" field="bodytext">
+        <f:if condition="{record.bodytext}">
+            <div class="ce-fsc-menu__description">
+                <f:render partial="RichText" arguments="{record: record, field: 'bodytext'}"/>
+            </div>
+        </f:if>
+    </dv:recordHasField>
+
+    <f:if condition="{items}">
+        <f:then>
+            <nav class="ce-fsc-menu__nav" aria-label="{record.header}">
+                <dc:layout.grid cols="3" gap="md" class="ce-fsc-menu__grid">
+                    <f:for each="{items}" as="item">
+                        <dc:molecule.card class="ce-fsc-menu__card">
+                            <dc:molecule.cardContent class="ce-fsc-menu__card-content">
+                                <a href="{item.link}" class="ce-fsc-menu__link">
+                                    <span class="ce-fsc-menu__title">{item.title}</span>
+                                    <f:if condition="{item.data.abstract}">
+                                        <span class="ce-fsc-menu__text">{item.data.abstract}</span>
+                                    </f:if>
+                                </a>
+                            </dc:molecule.cardContent>
+                        </dc:molecule.card>
+                    </f:for>
+                </dc:layout.grid>
+            </nav>
+        </f:then>
+        <f:else>
+            <f:if condition="{fallbackPages}">
+                <nav class="ce-fsc-menu__nav" aria-label="{record.header}">
+                    <dc:layout.grid cols="3" gap="md" class="ce-fsc-menu__grid">
+                        <f:for each="{fallbackPages}" as="page">
+                            <dc:molecule.card class="ce-fsc-menu__card">
+                                <dc:molecule.cardContent class="ce-fsc-menu__card-content">
+                                    <f:link.page pageUid="{page.uid}" class="ce-fsc-menu__link">
+                                        <span class="ce-fsc-menu__title">
+                                            <f:if condition="{page.nav_title}">
+                                                <f:then>{page.nav_title}</f:then>
+                                                <f:else>{page.title}</f:else>
+                                            </f:if>
+                                        </span>
+                                        <f:if condition="{page.abstract}">
+                                            <span class="ce-fsc-menu__text">{page.abstract}</span>
+                                        </f:if>
+                                    </f:link.page>
+                                </dc:molecule.cardContent>
+                            </dc:molecule.card>
+                        </f:for>
+                    </dc:layout.grid>
+                </nav>
+            </f:if>
+        </f:else>
+    </f:if>
+</div>
+
+</html>

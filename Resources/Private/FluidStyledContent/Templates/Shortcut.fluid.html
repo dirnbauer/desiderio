@@ -1,0 +1,22 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:dv="http://typo3.org/ns/Webconsulting/Desiderio/ViewHelpers"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:layout name="Default"/>
+
+<f:section name="Main">
+    <div class="ce-fsc-shortcut">
+        <f:render partial="Header" arguments="{record: record}"/>
+        <dv:recordHasField record="{record}" field="records">
+            <f:if condition="{record.records}">
+                <div class="ce-fsc-shortcut__records">
+                    <f:cObject typoscriptObjectPath="lib.desiderioShortcutRecords" data="{record.records}"/>
+                </div>
+            </f:if>
+        </dv:recordHasField>
+    </div>
+</f:section>
+
+</html>

@@ -1,0 +1,19 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:dc="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:argument name="data" type="array" description="Content element record data"/>
+
+<dc:layout.section
+    id="c{data.uid}"
+    spacing="md"
+    class="ce-fsc ce-fsc--{data.CType} ce-frame ce-frame--{data.frame_class}"
+>
+    <dc:layout.container>
+        <f:render section="Main"/>
+    </dc:layout.container>
+</dc:layout.section>
+
+</html>

@@ -1,9 +1,14 @@
 # Content element rendering
 lib.contentElement = FLUIDTEMPLATE
 lib.contentElement {
+  # Legacy Desiderio templates remain as fallback; the FluidStyledContent path
+  # owns the classic TYPO3 CTypes and follows the same shadcn/Fluid 5 recipe as Content Blocks.
   layoutRootPaths.10 = EXT:desiderio/Resources/Private/Templates/Layouts/
+  layoutRootPaths.200 = EXT:desiderio/Resources/Private/FluidStyledContent/Layouts/
   partialRootPaths.10 = EXT:desiderio/Resources/Private/Templates/Partials/
+  partialRootPaths.200 = EXT:desiderio/Resources/Private/FluidStyledContent/Partials/
   templateRootPaths.10 = EXT:desiderio/Resources/Private/Templates/Content/
+  templateRootPaths.200 = EXT:desiderio/Resources/Private/FluidStyledContent/Templates/
 
   templateName >
   templateName.ifEmpty.cObject = TEXT
@@ -16,16 +21,112 @@ lib.contentElement {
   dataProcessing.1421884800 = record-transformation
 }
 
-tt_content = CASE
-tt_content.default =< lib.contentElement
+lib.desiderioContentWithImages =< lib.contentElement
+lib.desiderioContentWithImages {
+  dataProcessing.20 = files
+  dataProcessing.20 {
+    references.fieldName = image
+    as = files
+  }
+}
 
-tt_content.menu_pages =< lib.contentElement
-tt_content.menu_pages {
-  dataProcessing.10 = menu
-  dataProcessing.10 {
+lib.desiderioContentWithFiles =< lib.contentElement
+lib.desiderioContentWithFiles {
+  dataProcessing.20 = files
+  dataProcessing.20 {
+    references.fieldName = media
+    as = files
+  }
+}
+
+lib.desiderioContentWithBullets =< lib.contentElement
+lib.desiderioContentWithBullets {
+  dataProcessing.20 = split
+  dataProcessing.20 {
+    if.isTrue.field = bodytext
+    fieldName = bodytext
+    as = bullets
+    removeEmptyEntries = 1
+  }
+}
+
+lib.desiderioContentWithTable =< lib.contentElement
+lib.desiderioContentWithTable {
+  dataProcessing.20 = comma-separated-value
+  dataProcessing.20 {
+    if.isTrue.field = bodytext
+    fieldName = bodytext
+    fieldDelimiter.field = table_delimiter
+    fieldEnclosure.field = table_enclosure
+    maximumColumns.field = imagecols
+    as = table
+  }
+}
+
+lib.desiderioMenuSelectedPages =< lib.contentElement
+lib.desiderioMenuSelectedPages {
+  dataProcessing.20 = menu
+  dataProcessing.20 {
     special = list
     special.value.field = pages
     as = menu
     titleField = nav_title // title
   }
 }
+
+lib.desiderioMenuSubpages =< lib.contentElement
+lib.desiderioMenuSubpages {
+  dataProcessing.20 = menu
+  dataProcessing.20 {
+    special = directory
+    special.value.field = pages
+    as = menu
+    levels = 2
+    expandAll = 1
+    titleField = nav_title // title
+  }
+}
+
+lib.desiderioMenuRecentlyUpdated =< lib.contentElement
+lib.desiderioMenuRecentlyUpdated {
+  dataProcessing.20 = menu
+  dataProcessing.20 {
+    special = updated
+    as = menu
+    titleField = nav_title // title
+  }
+}
+
+lib.desiderioShortcutRecords = RECORDS
+lib.desiderioShortcutRecords {
+  source.current = 1
+  tables = tt_content
+  dontCheckPid = 1
+}
+
+tt_content = CASE
+tt_content.default =< lib.contentElement
+
+tt_content.header =< lib.contentElement
+tt_content.text =< lib.contentElement
+tt_content.textpic =< lib.desiderioContentWithImages
+tt_content.textmedia =< lib.desiderioContentWithImages
+tt_content.image =< lib.desiderioContentWithImages
+tt_content.uploads =< lib.desiderioContentWithFiles
+tt_content.bullets =< lib.desiderioContentWithBullets
+tt_content.table =< lib.desiderioContentWithTable
+tt_content.div =< lib.contentElement
+tt_content.html =< lib.contentElement
+tt_content.shortcut =< lib.contentElement
+
+tt_content.menu_pages =< lib.desiderioMenuSelectedPages
+tt_content.menu_abstract =< lib.desiderioMenuSelectedPages
+tt_content.menu_related_pages =< lib.desiderioMenuSelectedPages
+tt_content.menu_sitemap =< lib.desiderioMenuSubpages
+tt_content.menu_sitemap_pages =< lib.desiderioMenuSubpages
+tt_content.menu_subpages =< lib.desiderioMenuSubpages
+tt_content.menu_section =< lib.desiderioMenuSubpages
+tt_content.menu_section_pages =< lib.desiderioMenuSubpages
+tt_content.menu_categorized_pages =< lib.desiderioMenuSelectedPages
+tt_content.menu_categorized_content =< lib.contentElement
+tt_content.menu_recently_updated =< lib.desiderioMenuRecentlyUpdated

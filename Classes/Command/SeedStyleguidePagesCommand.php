@@ -236,10 +236,10 @@ final class SeedStyleguidePagesCommand extends Command
             ->executeQuery()
             ->fetchFirstColumn();
 
-        return array_values(array_map(
+        return array_map(
             static fn (mixed $uid): int => (int)$uid,
             $uids
-        ));
+        );
     }
 
     /**
@@ -387,7 +387,8 @@ final class SeedStyleguidePagesCommand extends Command
     }
 
     /**
-     * @param array<string, array{table: string, fields: array<string, array<string, mixed>>}> $collections
+     * @param array<int|string, mixed> $value
+     * @param array{collections: array<string, array{table: string, fields: array<string, array<string, mixed>>}>} $definition
      */
     private function resolveCollectionField(string $field, array $value, array $definition): ?string
     {
@@ -424,6 +425,7 @@ final class SeedStyleguidePagesCommand extends Command
     }
 
     /**
+     * @param array<int|string, mixed> $value
      * @param array{table: string, fields: array<string, array<string, mixed>>} $collection
      */
     private function scoreCollectionCandidate(string $field, array $value, string $identifier, array $collection): float
@@ -484,6 +486,7 @@ final class SeedStyleguidePagesCommand extends Command
     }
 
     /**
+     * @param array<int|string, mixed> $items
      * @param array{table: string, fields: array<string, array<string, mixed>>} $collection
      * @return list<array<string, mixed>>
      */
@@ -564,7 +567,7 @@ final class SeedStyleguidePagesCommand extends Command
 
         if ($normalizedItem === [] && ($this->tableHasColumn($collection['table'], 'row_data') || isset($collection['fields']['row_data']))) {
             $values = array_values($item);
-            if ($values !== [] && !$this->containsNestedArray($values)) {
+            if (!$this->containsNestedArray($values)) {
                 $normalizedItem['row_data'] = implode('|', array_map(static fn (mixed $value): string => trim((string)$value), $values));
                 foreach ($values as $index => $value) {
                     $columnName = 'col' . ($index + 1);
@@ -798,6 +801,9 @@ final class SeedStyleguidePagesCommand extends Command
         return isset($this->getColumnNames($table)[$column]);
     }
 
+    /**
+     * @param array{table: string, fields: array<string, array<string, mixed>>} $collection
+     */
     private function findPreferredTextField(array $collection): ?string
     {
         foreach (['label', 'title', 'name', 'text', 'value', 'question', 'row_data', 'links', 'features_list', 'description'] as $candidate) {
@@ -860,7 +866,7 @@ final class SeedStyleguidePagesCommand extends Command
     }
 
     /**
-     * @param array<int, mixed> $value
+     * @param array<int|string, mixed> $value
      */
     private function isListOfScalars(array $value): bool
     {

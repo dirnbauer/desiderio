@@ -115,6 +115,21 @@ final class ContentBlockStructureTest extends TestCase
         }
     }
 
+    public function testFrontendTemplatesDoNotUseBareBooleanAttributesOnFluidComponents(): void
+    {
+        $blocks = glob(self::CONTENT_BLOCKS_DIR . '/*', GLOB_ONLYDIR) ?: [];
+        foreach ($blocks as $block) {
+            $templateFile = "{$block}/templates/frontend.html";
+            $template = (string) file_get_contents($templateFile);
+
+            self::assertDoesNotMatchRegularExpression(
+                '/<d:[^>]*\\s(?:itemscope|disabled|checked|selected|autofocus|required|readonly|multiple)(?:\\s|\\/?>)/',
+                $template,
+                basename($block) . ' uses a bare boolean HTML attribute on a Fluid component tag'
+            );
+        }
+    }
+
     public function testNoShadcn2fluidLeftovers(): void
     {
         $blocks = glob(self::CONTENT_BLOCKS_DIR . '/*', GLOB_ONLYDIR) ?: [];

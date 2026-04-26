@@ -9,7 +9,7 @@
             <f:if condition="{data.badge_text}"><d:atom.badge variant="secondary">{data -> f:render.text(field: 'badge_text')}</d:atom.badge></f:if>
             <f:if condition="{data.header}"><h1 class="hero-countdown__headline">{data -> f:render.text(field: 'header')}</h1></f:if>
             <f:if condition="{data.subheadline}"><p class="hero-countdown__subheadline">{data -> f:render.text(field: 'subheadline')}</p></f:if>
-            <div class="hero-countdown__timer" data-target-date="{data -> f:render.text(field: 'target_date')}">
+            <div class="hero-countdown__timer" data-target-date="{data.target_date -> f:format.date(format: 'c')}">
                 <div class="hero-countdown__unit"><span class="hero-countdown__value">00</span><span class="hero-countdown__label">Days</span></div>
                 <div class="hero-countdown__unit"><span class="hero-countdown__value">00</span><span class="hero-countdown__label">Hours</span></div>
                 <div class="hero-countdown__unit"><span class="hero-countdown__value">00</span><span class="hero-countdown__label">Minutes</span></div>

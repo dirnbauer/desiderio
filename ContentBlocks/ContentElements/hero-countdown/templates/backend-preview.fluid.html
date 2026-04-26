@@ -38,7 +38,7 @@
         <f:if condition="{data.target_date}">
             <div class="d-ce-preview__field">
                 <span class="d-ce-preview__label">Target Date</span>
-                <span class="d-ce-preview__value">{data.target_date}</span>
+                <span class="d-ce-preview__value">{data.target_date -> f:format.date(format: 'Y-m-d H:i')}</span>
             </div>
         </f:if>
         <f:if condition="{data.primary_button_text}">

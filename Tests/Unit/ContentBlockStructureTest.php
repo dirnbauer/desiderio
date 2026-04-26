@@ -316,6 +316,71 @@ final class ContentBlockStructureTest extends TestCase
         }
     }
 
+    public function testDateAndTimeFieldsAreFormattedInsteadOfRenderedAsText(): void
+    {
+        $blocks = glob(self::CONTENT_BLOCKS_DIR . '/*', GLOB_ONLYDIR) ?: [];
+        foreach ($blocks as $block) {
+            $config = Yaml::parseFile("{$block}/config.yaml");
+            $dateFieldPaths = [];
+
+            foreach (($config['fields'] ?? []) as $field) {
+                $identifier = (string)($field['identifier'] ?? '');
+                if ($identifier === '') {
+                    continue;
+                }
+
+                if (in_array($field['type'] ?? null, ['Date', 'DateTime', 'Time'], true)) {
+                    $dateFieldPaths[] = ['data', $identifier];
+                }
+
+                foreach (($field['fields'] ?? []) as $child) {
+                    $childIdentifier = (string)($child['identifier'] ?? '');
+                    if ($childIdentifier === '') {
+                        continue;
+                    }
+
+                    if (in_array($child['type'] ?? null, ['Date', 'DateTime', 'Time'], true)) {
+                        $dateFieldPaths[] = ['nested', $childIdentifier];
+                    }
+                }
+            }
+
+            if ($dateFieldPaths === []) {
+                continue;
+            }
+
+            $name = basename($block);
+            $templates = [
+                "{$block}/templates/frontend.html",
+                "{$block}/templates/backend-preview.fluid.html",
+            ];
+
+            foreach ($templates as $templateFile) {
+                $template = (string)file_get_contents($templateFile);
+                foreach ($dateFieldPaths as [$scope, $field]) {
+                    if ($scope === 'data') {
+                        self::assertStringNotContainsString(
+                            "f:render.text(field: '{$field}')",
+                            $template,
+                            "{$name} renders {$field} through f:render.text(), but Date/DateTime values are objects in Visual Editor"
+                        );
+                        self::assertDoesNotMatchRegularExpression(
+                            '/>\\s*\\{data\\.' . preg_quote($field, '/') . '\\}\\s*</',
+                            $template,
+                            "{$name} renders {$field} without f:format.date()"
+                        );
+                    } else {
+                        self::assertStringNotContainsString(
+                            "f:render.text(field: '{$field}')",
+                            $template,
+                            "{$name} renders nested {$field} through f:render.text(), but Date/DateTime values are objects in Visual Editor"
+                        );
+                    }
+                }
+            }
+        }
+    }
+
     public function testChartDataTemplatesHaveFrontendRenderer(): void
     {
         $templateFiles = glob(self::CONTENT_BLOCKS_DIR . '/*/templates/frontend.html') ?: [];

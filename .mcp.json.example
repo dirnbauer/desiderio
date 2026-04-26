@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "shadcn": {
+      "command": "npx",
+      "args": [
+        "shadcn@latest",
+        "mcp"
+      ]
+    },
+    "my-typo3-site": {
+      "url": "https://your-project.ddev.site/mcp"
+    }
+  }
+}

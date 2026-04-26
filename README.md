@@ -46,6 +46,27 @@ Then enable the base site set plus one of the five presets:
 3. Add one of the five preset sets (see below)
 4. Save and flush caches
 
+## Cursor MCP (optional)
+
+[Cursor](https://cursor.com) can load [MCP](https://modelcontextprotocol.io) servers from a
+project-local `.mcp.json`. **That file is gitignored** so machine-specific URLs and any future
+secrets stay out of the repository.
+
+1. Copy the example file and adjust it:
+
+   ```bash
+   cp .mcp.json.example .mcp.json
+   ```
+
+2. **`shadcn`:** runs the shadcn MCP via `npx shadcn@latest mcp` (useful for UI work aligned with
+   this theme).
+
+3. **`my-typo3-site`:** set `url` to your TYPO3 site’s MCP endpoint (for example
+   `https://<ddev-project-name>.ddev.site/mcp` when a TYPO3 MCP server is mounted under `/mcp`).
+   Remove the entry or leave it out if you do not use server-side MCP.
+
+Restart Cursor (or reload the window) after changing `.mcp.json`.
+
 ## Page templates
 
 | Backend layout               | Content areas             | Page template        |

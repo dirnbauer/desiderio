@@ -12,7 +12,7 @@
                 <p class="utility-bar__text">{data -> f:render.text(field: 'left_text')}</p>
             </f:if>
             <f:if condition="{data.link_items}">
-                <nav class="utility-bar__nav" aria-label="Utility navigation">
+                <nav class="utility-bar__nav" aria-label="{data.header -> f:or(alternative: 'Utility navigation')}">
                     <f:for each="{data.link_items}" as="item">
                         <f:if condition="{item.link.url}">
                             <f:link.typolink parameter="{item.link}" class="utility-bar__link">{item -> f:render.text(field: 'label')}</f:link.typolink>

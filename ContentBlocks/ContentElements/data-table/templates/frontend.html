@@ -17,7 +17,7 @@
                     <thead class="table__header">
                         <tr class="table__row">
                             <f:for each="{data.column_definitions}" as="col">
-                                <th class="table__head table__head--{col.column_align -> f:or(alternative: 'left')}">{col -> f:render.text(field: 'column_label')}</th>
+                                <th class="table__head table__head--{col.column_align -> f:or(alternative: 'left')}" data-column-key="{col -> f:render.text(field: 'column_key')}">{col -> f:render.text(field: 'column_label')}</th>
                             </f:for>
                         </tr>
                     </thead>
@@ -26,7 +26,7 @@
                     <f:for each="{data.rows}" as="row">
                         <tr class="table__row">
                             <f:for each="{data.column_definitions}" as="col" iteration="colIter">
-                                <td class="table__cell table__cell--{col.column_align -> f:or(alternative: 'left')}">{row -> f:render.text(field: 'row_data')}</td>
+                                <td class="table__cell table__cell--{col.column_align -> f:or(alternative: 'left')}" data-column-key="{col -> f:render.text(field: 'column_key')}">{row -> f:render.text(field: 'row_data')}</td>
                             </f:for>
                         </tr>
                     </f:for>

@@ -7,7 +7,7 @@
 
 <d:layout.section class="navbar-sticky">
     <d:layout.container>
-        <nav class="navbar-sticky__inner" aria-label="Sticky navigation">
+        <nav class="navbar-sticky__inner" aria-label="{data.header -> f:or(alternative: 'Sticky navigation')}">
             <div class="navbar-sticky__brand">{data -> f:render.text(field: 'brand')}</div>
             <ul class="navbar-sticky__nav">
                 <f:for each="{data.nav_items}" as="item">

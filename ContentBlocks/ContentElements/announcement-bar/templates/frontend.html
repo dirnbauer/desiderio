@@ -7,6 +7,9 @@
 
 <d:layout.section class="announcement-bar announcement-bar--{data.variant -> f:or(alternative: 'default')}">
     <d:layout.container>
+        <f:if condition="{data.header}">
+            <h2 class="sr-only">{data -> f:render.text(field: 'header')}</h2>
+        </f:if>
         <div class="announcement-bar__inner">
             <p class="announcement-bar__message">
                 <span>{data -> f:render.text(field: 'message')}</span>

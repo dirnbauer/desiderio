@@ -6,7 +6,7 @@
 <f:asset.css identifier="d-navbar-sidebar" href="{cb:assetPath()}/frontend.css"/>
 
 <d:layout.section class="navbar-sidebar">
-    <aside class="navbar-sidebar__panel" aria-label="Sidebar navigation">
+    <aside class="navbar-sidebar__panel" aria-label="{data.header -> f:or(alternative: 'Sidebar navigation')}">
         <div class="navbar-sidebar__brand">
             <f:if condition="{data.brand_link.url}">
                 <f:then><f:link.typolink parameter="{data.brand_link}" class="navbar-sidebar__brand-link">{data -> f:render.text(field: 'brand')}</f:link.typolink></f:then>

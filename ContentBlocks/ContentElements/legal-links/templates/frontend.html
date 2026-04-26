@@ -5,7 +5,7 @@
 
 <f:asset.css identifier="d-legal-links" href="{cb:assetPath()}/frontend.css"/>
 
-<nav class="legal-links legal-links--{data.separator -> f:or(alternative: 'dot')}" aria-label="Legal links">
+<nav class="legal-links legal-links--{data.separator -> f:or(alternative: 'dot')}" aria-label="{data.header -> f:or(alternative: 'Legal links')}">
     <d:layout.container>
         <ul class="legal-links__list">
             <f:for each="{data.link_items}" as="item">

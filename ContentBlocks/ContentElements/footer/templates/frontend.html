@@ -5,7 +5,7 @@
 
 <f:asset.css identifier="d-footer" href="{cb:assetPath()}/frontend.css"/>
 
-<footer class="footer footer--{data.shadcn_layout -> f:or(alternative: 'two-columns')}">
+<footer class="footer footer--{data.shadcn_layout -> f:or(alternative: 'two-columns')}" aria-label="{data.header -> f:or(alternative: 'Footer')}">
     <d:layout.container>
         <div class="footer__inner">
             <div class="footer__brand">

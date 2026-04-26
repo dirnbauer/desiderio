@@ -5,7 +5,7 @@
 
 <f:asset.css identifier="d-footer-brand" href="{cb:assetPath()}/frontend.css"/>
 
-<footer class="footer-brand">
+<footer class="footer-brand" aria-label="{data.header -> f:or(alternative: 'Footer')}">
     <d:layout.container>
         <div class="footer-brand__inner">
             <div class="footer-brand__identity">

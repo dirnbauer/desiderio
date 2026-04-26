@@ -13,6 +13,9 @@
     </f:if>
     <d:layout.container>
         <div class="testimonial-featured__content">
+            <f:if condition="{data.header}">
+                <h2 class="sr-only">{data -> f:render.text(field: 'header')}</h2>
+            </f:if>
             <f:if condition="{data.company_logo}">
                 <div class="testimonial-featured__logo">
                     <f:for each="{data.company_logo}" as="logo">

@@ -7,7 +7,7 @@
 
 <d:layout.section class="navbar-split">
     <d:layout.container>
-        <nav class="navbar-split__inner" aria-label="Split navigation">
+        <nav class="navbar-split__inner" aria-label="{data.header -> f:or(alternative: 'Split navigation')}">
             <ul class="navbar-split__left">
                 <f:for each="{data.left_items}" as="item">
                     <li><f:if condition="{item.link.url}"><f:link.typolink parameter="{item.link}" class="navbar-split__link">{item -> f:render.text(field: 'label')}</f:link.typolink></f:if></li>

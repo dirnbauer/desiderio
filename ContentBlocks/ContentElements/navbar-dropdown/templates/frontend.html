@@ -7,7 +7,7 @@
 
 <d:layout.section class="navbar-dropdown">
     <d:layout.container>
-        <nav class="navbar-dropdown__inner" aria-label="Dropdown navigation">
+        <nav class="navbar-dropdown__inner" aria-label="{data.header -> f:or(alternative: 'Dropdown navigation')}">
             <div class="navbar-dropdown__brand">
                 <f:if condition="{data.brand_link.url}">
                     <f:then><f:link.typolink parameter="{data.brand_link}" class="navbar-dropdown__brand-link">{data -> f:render.text(field: 'brand')}</f:link.typolink></f:then>

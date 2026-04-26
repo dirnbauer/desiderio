@@ -22,6 +22,11 @@
             <f:for each="{data.testimonials}" as="item" iteration="iter">
                 <div class="testimonial-carousel__slide {f:if(condition: iter.isFirst, then: 'testimonial-carousel__slide--active')}">
                     <blockquote class="testimonial-carousel__quote">{item -> f:render.text(field: 'quote')}</blockquote>
+                    <f:if condition="{item.rating}">
+                        <span class="testimonial-carousel__rating" aria-label="{item -> f:render.text(field: 'rating')} out of 5 stars">
+                            {item -> f:render.text(field: 'rating')} / 5
+                        </span>
+                    </f:if>
                     <div class="testimonial-carousel__author">
                         <f:if condition="{item.author_image}">
                             <f:for each="{item.author_image}" as="fileReference">

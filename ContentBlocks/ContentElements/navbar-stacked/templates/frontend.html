@@ -7,7 +7,7 @@
 
 <d:layout.section class="navbar-stacked">
     <d:layout.container>
-        <nav class="navbar-stacked__inner" aria-label="Stacked navigation">
+        <nav class="navbar-stacked__inner" aria-label="{data.header -> f:or(alternative: 'Stacked navigation')}">
             <div class="navbar-stacked__top">
                 <div class="navbar-stacked__brand">
                     <f:if condition="{data.brand_link.url}">

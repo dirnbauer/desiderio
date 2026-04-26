@@ -7,7 +7,7 @@
 
 <d:layout.section class="navbar-transparent">
     <d:layout.container>
-        <nav class="navbar-transparent__inner" aria-label="Transparent navigation">
+        <nav class="navbar-transparent__inner" aria-label="{data.header -> f:or(alternative: 'Transparent navigation')}">
             <div class="navbar-transparent__brand">{data -> f:render.text(field: 'brand')}</div>
             <ul class="navbar-transparent__nav">
                 <f:for each="{data.nav_items}" as="item">

@@ -21,6 +21,11 @@
                     <source src="{data.audio_file.0.publicUrl}" type="{data.audio_file.0.mimeType}"/>
                 </audio>
             </f:if>
+            <f:if condition="{data.show_download} && {data.audio_file.0}">
+                <a class="audio-player__download" href="{data.audio_file.0.publicUrl}" download>
+                    Download audio
+                </a>
+            </f:if>
         </d:molecule.card>
     </d:layout.container>
 </d:layout.section>

@@ -7,7 +7,7 @@
 
 <d:layout.section class="breadcrumb">
     <d:layout.container>
-        <nav class="breadcrumb__nav" aria-label="Breadcrumb">
+        <nav class="breadcrumb__nav" aria-label="{data.header -> f:or(alternative: 'Breadcrumb')}">
             <ol class="breadcrumb__list">
                 <f:for each="{data.items}" as="item" iteration="iterator">
                     <li class="breadcrumb__item">

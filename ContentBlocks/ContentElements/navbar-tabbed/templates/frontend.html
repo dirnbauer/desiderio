@@ -7,7 +7,7 @@
 
 <d:layout.section class="navbar-tabbed">
     <d:layout.container>
-        <nav class="navbar-tabbed__inner" aria-label="Tabbed navigation">
+        <nav class="navbar-tabbed__inner" aria-label="{data.header -> f:or(alternative: 'Tabbed navigation')}">
             <div class="navbar-tabbed__brand">{data -> f:render.text(field: 'brand')}</div>
             <div class="navbar-tabbed__tabs" role="tablist">
                 <f:for each="{data.tabs}" as="tab">

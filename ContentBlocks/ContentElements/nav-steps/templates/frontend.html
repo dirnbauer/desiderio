@@ -7,12 +7,21 @@
 
 <d:layout.section class="nav-steps nav-steps--{data.variant -> f:or(alternative: 'numbered')}">
     <d:layout.container>
-        <nav class="nav-steps__inner" aria-label="Progress steps">
+        <nav class="nav-steps__inner" aria-label="{data.header -> f:or(alternative: 'Progress steps')}">
             <ol class="nav-steps__list">
                 <f:for each="{data.step_items}" as="step" iteration="iterator">
                     <li class="nav-steps__item nav-steps__item--{step.status -> f:or(alternative: 'pending')}">
                         <span class="nav-steps__indicator">{iterator.cycle}</span>
-                        <span class="nav-steps__label">{step -> f:render.text(field: 'label')}</span>
+                        <f:if condition="{step.link.url}">
+                            <f:then>
+                                <f:link.typolink parameter="{step.link}" class="nav-steps__label nav-steps__link">
+                                    {step -> f:render.text(field: 'label')}
+                                </f:link.typolink>
+                            </f:then>
+                            <f:else>
+                                <span class="nav-steps__label">{step -> f:render.text(field: 'label')}</span>
+                            </f:else>
+                        </f:if>
                     </li>
                 </f:for>
             </ol>

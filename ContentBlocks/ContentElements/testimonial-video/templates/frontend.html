@@ -13,6 +13,13 @@
 
         <div class="testimonial-video__layout">
             <div class="testimonial-video__player">
+                <f:if condition="{data.poster_image}">
+                    <div class="testimonial-video__poster-wrap">
+                        <f:for each="{data.poster_image}" as="poster">
+                            <img src="{f:uri.image(image: poster, maxWidth: 960)}" alt="{data -> f:render.text(field: 'header')}" class="testimonial-video__poster"/>
+                        </f:for>
+                    </div>
+                </f:if>
                 <div class="testimonial-video__embed">
                     <iframe src="{data -> f:render.text(field: 'video_url')}" allowfullscreen loading="lazy" title="Video testimonial from {data -> f:render.text(field: 'author_name')}"></iframe>
                 </div>

@@ -219,6 +219,103 @@ final class ContentBlockStructureTest extends TestCase
         }
     }
 
+    public function testFrontendTemplatesUseEveryDeclaredContentBlockField(): void
+    {
+        $systemFields = [
+            'uid' => true,
+            'pid' => true,
+            'CType' => true,
+            'colPos' => true,
+            'sys_language_uid' => true,
+            'relations' => true,
+            'systemProperties' => true,
+        ];
+
+        $blocks = glob(self::CONTENT_BLOCKS_DIR . '/*', GLOB_ONLYDIR) ?: [];
+        foreach ($blocks as $block) {
+            $name = basename($block);
+            $config = Yaml::parseFile("{$block}/config.yaml");
+            $template = (string) file_get_contents("{$block}/templates/frontend.html");
+            $templateForFields = preg_replace('#<(script|style)\b[^>]*>.*?</\1>#is', '', $template) ?? $template;
+
+            $fieldTypes = [];
+            $nestedFields = [];
+            foreach (($config['fields'] ?? []) as $field) {
+                if (!isset($field['identifier'])) {
+                    continue;
+                }
+
+                $identifier = (string)$field['identifier'];
+                $fieldTypes[$identifier] = $field['type'] ?? (($field['useExistingField'] ?? false) ? 'Existing' : null);
+
+                foreach (($field['fields'] ?? []) as $child) {
+                    if (isset($child['identifier'])) {
+                        $nestedFields[$identifier][(string)$child['identifier']] = true;
+                    }
+                }
+            }
+
+            $usedTopFields = [];
+            preg_match_all('/data\.([A-Za-z_][A-Za-z0-9_]*)/', $templateForFields, $matches);
+            foreach ($matches[1] as $field) {
+                $usedTopFields[$field] = true;
+            }
+
+            preg_match_all('/\{data\s*->\s*f:render\.text\(field:\s*[\'"]([A-Za-z_][A-Za-z0-9_]*)[\'"]/', $templateForFields, $matches);
+            foreach ($matches[1] as $field) {
+                $usedTopFields[$field] = true;
+            }
+
+            preg_match_all('/each="\{data\.([A-Za-z_][A-Za-z0-9_]*)\}"\s+as="([A-Za-z_][A-Za-z0-9_]*)"/', $templateForFields, $loops, PREG_SET_ORDER);
+            foreach ($loops as $loop) {
+                [, $field, $variable] = $loop;
+                $usedTopFields[$field] = true;
+
+                if (($fieldTypes[$field] ?? null) === 'File') {
+                    continue;
+                }
+
+                self::assertSame('Collection', $fieldTypes[$field] ?? null, "{$name}.{$field} is looped in Fluid but is not a Collection");
+
+                $usedNestedFields = [];
+                preg_match_all('/' . preg_quote($variable, '/') . '\.([A-Za-z_][A-Za-z0-9_]*)/', $templateForFields, $nestedMatches);
+                foreach ($nestedMatches[1] as $nestedField) {
+                    $usedNestedFields[$nestedField] = true;
+                }
+
+                preg_match_all('/\{' . preg_quote($variable, '/') . '\s*->\s*f:render\.text\(field:\s*[\'"]([A-Za-z_][A-Za-z0-9_]*)[\'"]/', $templateForFields, $renderMatches);
+                foreach ($renderMatches[1] as $nestedField) {
+                    $usedNestedFields[$nestedField] = true;
+                }
+
+                self::assertSame(
+                    [],
+                    array_values(array_diff(array_keys($usedNestedFields), array_keys($nestedFields[$field] ?? []))),
+                    "{$name}.{$field} renders nested fields that are not declared"
+                );
+                self::assertSame(
+                    [],
+                    array_values(array_diff(array_keys($nestedFields[$field] ?? []), array_keys($usedNestedFields))),
+                    "{$name}.{$field} has declared nested fields that are not rendered"
+                );
+            }
+
+            self::assertSame(
+                [],
+                array_values(array_filter(
+                    array_diff(array_keys($usedTopFields), array_keys($fieldTypes)),
+                    static fn(string $field): bool => !isset($systemFields[$field])
+                )),
+                "{$name} renders top-level fields that are not declared"
+            );
+            self::assertSame(
+                [],
+                array_values(array_diff(array_keys($fieldTypes), array_keys($usedTopFields))),
+                "{$name} has declared top-level fields that are not rendered"
+            );
+        }
+    }
+
     public function testChartDataTemplatesHaveFrontendRenderer(): void
     {
         $templateFiles = glob(self::CONTENT_BLOCKS_DIR . '/*/templates/frontend.html') ?: [];

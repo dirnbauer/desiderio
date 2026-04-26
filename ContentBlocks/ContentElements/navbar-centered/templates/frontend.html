@@ -7,7 +7,7 @@
 
 <d:layout.section class="navbar-centered">
     <d:layout.container>
-        <nav class="navbar-centered__inner" aria-label="Centered navigation">
+        <nav class="navbar-centered__inner" aria-label="{data.header -> f:or(alternative: 'Centered navigation')}">
             <div class="navbar-centered__brand">{data -> f:render.text(field: 'brand')}</div>
             <ul class="navbar-centered__nav">
                 <f:for each="{data.nav_items}" as="item">

@@ -10,7 +10,7 @@
         <div class="copyright-bar__inner">
             <p class="copyright-bar__text">{data -> f:render.text(field: 'copyright')}</p>
             <f:if condition="{data.link_items}">
-                <nav aria-label="Legal links">
+                <nav aria-label="{data.header -> f:or(alternative: 'Legal links')}">
                     <ul class="copyright-bar__links">
                         <f:for each="{data.link_items}" as="item">
                             <li>

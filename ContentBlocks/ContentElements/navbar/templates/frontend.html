@@ -7,7 +7,7 @@
 
 <d:layout.section class="navbar navbar--{data.shadcn_layout -> f:or(alternative: 'full-width')}">
     <d:layout.container>
-        <nav class="navbar__inner" aria-label="Main navigation">
+        <nav class="navbar__inner" aria-label="{data.header -> f:or(alternative: 'Main navigation')}">
             <div class="navbar__brand">
                 <f:if condition="{data.brand_link.url}">
                     <f:then>

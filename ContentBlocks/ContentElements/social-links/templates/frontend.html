@@ -11,9 +11,9 @@
             <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
             <f:if condition="{data.description_text}"><d:atom.typography variant="muted">{data -> f:render.text(field: 'description_text')}</d:atom.typography></f:if>
             <div class="social-links__list">
-                <f:for each="{data.link_items}" as="link">
-                    <f:if condition="{link.url.url}">
-                        <f:link.typolink parameter="{link.url}" class="social-links__item">{link -> f:render.text(field: 'platform')}</f:link.typolink>
+                <f:for each="{data.link_items}" as="item">
+                    <f:if condition="{item.url.url}">
+                        <f:link.typolink parameter="{item.url}" class="social-links__item">{item -> f:render.text(field: 'platform')}</f:link.typolink>
                     </f:if>
                 </f:for>
             </div>

@@ -5,7 +5,7 @@
 
 <f:asset.css identifier="d-footer-minimal" href="{cb:assetPath()}/frontend.css"/>
 
-<footer class="footer-minimal">
+<footer class="footer-minimal" aria-label="{data.header -> f:or(alternative: 'Footer')}">
     <d:layout.container>
         <div class="footer-minimal__inner">
             <p class="footer-minimal__copyright">{data -> f:render.text(field: 'copyright')}</p>

@@ -7,7 +7,7 @@
 
 <d:layout.section class="nav-pagination">
     <d:layout.container>
-        <nav class="nav-pagination__inner" aria-label="Pagination">
+        <nav class="nav-pagination__inner" aria-label="{data.header -> f:or(alternative: 'Pagination')}">
             <f:if condition="{data.previous_link.url}">
                 <f:link.typolink parameter="{data.previous_link}" class="nav-pagination__prev" additionalAttributes="{'aria-label': 'Previous page'}">Previous</f:link.typolink>
             </f:if>

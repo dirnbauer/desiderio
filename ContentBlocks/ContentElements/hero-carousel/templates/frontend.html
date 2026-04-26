@@ -7,6 +7,16 @@
 
 <d:layout.section class="hero-carousel">
     <d:layout.container>
+        <f:if condition="{data.header} || {data.subheadline}">
+            <header class="hero-carousel__intro">
+                <f:if condition="{data.header}">
+                    <h1 class="hero-carousel__headline">{data -> f:render.text(field: 'header')}</h1>
+                </f:if>
+                <f:if condition="{data.subheadline}">
+                    <p class="hero-carousel__subheadline">{data -> f:render.text(field: 'subheadline')}</p>
+                </f:if>
+            </header>
+        </f:if>
         <div class="hero-carousel__track">
             <f:for each="{data.slides}" as="slide" iteration="iter">
                 <div class="hero-carousel__slide{f:if(condition: iter.isFirst, then: ' hero-carousel__slide--active')}">

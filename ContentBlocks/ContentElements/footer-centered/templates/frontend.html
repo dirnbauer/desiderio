@@ -5,7 +5,7 @@
 
 <f:asset.css identifier="d-footer-centered" href="{cb:assetPath()}/frontend.css"/>
 
-<footer class="footer-centered">
+<footer class="footer-centered" aria-label="{data.header -> f:or(alternative: 'Footer')}">
     <d:layout.container>
         <div class="footer-centered__inner">
             <f:if condition="{data.logo}">

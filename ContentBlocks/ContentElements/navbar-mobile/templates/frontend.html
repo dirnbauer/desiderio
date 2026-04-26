@@ -7,7 +7,7 @@
 
 <d:layout.section class="navbar-mobile">
     <d:layout.container>
-        <nav class="navbar-mobile__inner" aria-label="Mobile navigation">
+        <nav class="navbar-mobile__inner" aria-label="{data.header -> f:or(alternative: 'Mobile navigation')}">
             <div class="navbar-mobile__brand">
                 <f:if condition="{data.brand_link.url}">
                     <f:then><f:link.typolink parameter="{data.brand_link}" class="navbar-mobile__brand-link">{data -> f:render.text(field: 'brand')}</f:link.typolink></f:then>

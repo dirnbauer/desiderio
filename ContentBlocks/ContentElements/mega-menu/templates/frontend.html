@@ -7,7 +7,7 @@
 
 <d:layout.section class="mega-menu mega-menu--{data.shadcn_layout -> f:or(alternative: 'full-width')}">
     <d:layout.container>
-        <nav class="mega-menu__inner" aria-label="Mega menu">
+        <nav class="mega-menu__inner" aria-label="{data.header -> f:or(alternative: 'Mega menu')}">
             <div class="mega-menu__header">
                 <div class="mega-menu__brand">
                     <f:if condition="{data.brand_link.url}">

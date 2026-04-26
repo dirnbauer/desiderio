@@ -28,9 +28,9 @@
                     </f:if>
                     <f:if condition="{data.social_links}">
                         <div class="team-member__socials">
-                            <f:for each="{data.social_links}" as="link">
-                                <f:if condition="{link.url.url}">
-                                    <f:link.typolink parameter="{link.url}" class="team-member__social-link">{link -> f:render.text(field: 'platform')}</f:link.typolink>
+                            <f:for each="{data.social_links}" as="item">
+                                <f:if condition="{item.url.url}">
+                                    <f:link.typolink parameter="{item.url}" class="team-member__social-link">{item -> f:render.text(field: 'platform')}</f:link.typolink>
                                 </f:if>
                             </f:for>
                         </div>

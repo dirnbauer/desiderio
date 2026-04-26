@@ -69,4 +69,22 @@ final class ComponentStructureTest extends TestCase
             self::assertStringContainsString('<f:argument', $content, "{$path} lacks typed <f:argument>");
         }
     }
+
+    public function testCardRootHasBorderAndDirectChildPaddingFallback(): void
+    {
+        $card = (string) file_get_contents(self::COMPONENTS_DIR . '/Molecule/Card/Card.fluid.html');
+
+        foreach (['border border-border', 'px-4', 'data-[size=sm]:px-3'] as $class) {
+            self::assertStringContainsString($class, $card);
+        }
+
+        foreach ([
+            'has-data-[slot=card-header]:px-0',
+            'has-data-[slot=card-content]:px-0',
+            'has-data-[slot=card-footer]:px-0',
+            'has-[&gt;img:first-child]:px-0',
+        ] as $class) {
+            self::assertStringContainsString($class, $card);
+        }
+    }
 }

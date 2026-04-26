@@ -2,6 +2,6 @@
 <f:argument name="role" type="string" optional="{true}" />
 <f:argument name="size" type="string" optional="{true}" default="default" />
 
-<div data-slot="card" data-size="{size}" class="group/card flex flex-col gap-4 overflow-hidden rounded-xl bg-card py-4 text-sm text-card-foreground ring-1 ring-foreground/10 has-data-[slot=card-footer]:pb-0 has-[&gt;img:first-child]:pt-0 data-[size=sm]:gap-3 data-[size=sm]:py-3 data-[size=sm]:has-data-[slot=card-footer]:pb-0 *:[img:first-child]:rounded-t-xl *:[img:last-child]:rounded-b-xl {class}" role="{role}">
+<div data-slot="card" data-size="{size}" class="group/card flex flex-col gap-4 overflow-hidden rounded-xl border border-border bg-card px-4 py-4 text-sm text-card-foreground shadow-sm has-data-[slot=card-content]:px-0 has-data-[slot=card-footer]:px-0 has-data-[slot=card-footer]:pb-0 has-data-[slot=card-header]:px-0 has-[&gt;img:first-child]:px-0 has-[&gt;img:first-child]:pt-0 data-[size=sm]:gap-3 data-[size=sm]:px-3 data-[size=sm]:py-3 data-[size=sm]:has-data-[slot=card-content]:px-0 data-[size=sm]:has-data-[slot=card-footer]:px-0 data-[size=sm]:has-data-[slot=card-footer]:pb-0 data-[size=sm]:has-data-[slot=card-header]:px-0 *:[img:first-child]:rounded-t-xl *:[img:last-child]:rounded-b-xl {class}" role="{role}">
     <f:slot />
 </div>

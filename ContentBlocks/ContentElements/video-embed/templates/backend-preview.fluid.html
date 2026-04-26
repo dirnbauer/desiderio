@@ -1,0 +1,56 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:layout name="Preview"/>
+
+<f:section name="Header">
+    <f:if condition="{data.header}">
+        <f:then><cb:link.editRecord uid="{data.uid}" table="{data.mainType}">{data.header}</cb:link.editRecord></f:then>
+        <f:else><cb:link.editRecord uid="{data.uid}" table="{data.mainType}">Video Embed</cb:link.editRecord></f:else>
+    </f:if>
+</f:section>
+
+<f:section name="Content">
+    <f:asset.css identifier="desiderio-content-preview" href="EXT:desiderio/Resources/Public/Css/content-preview.css" />
+    <div class="d-ce-preview" data-slot="card">
+        <div class="d-ce-preview__meta">
+            <span class="d-ce-preview__type" data-slot="badge">Video Embed</span>
+            <f:if condition="{settings._content_block_name}"><span class="d-ce-preview__ctype">{settings._content_block_name}</span></f:if>
+        </div>
+        <f:if condition="{data.header}">
+            <h3 class="d-ce-preview__title">{data.header}</h3>
+        </f:if>
+        <f:if condition="{data.video_url}">
+            <div class="d-ce-preview__field">
+                <span class="d-ce-preview__label">Video URL</span>
+                <span class="d-ce-preview__value">{data.video_url}</span>
+            </div>
+        </f:if>
+        <f:if condition="{data.caption}">
+            <div class="d-ce-preview__field">
+                <span class="d-ce-preview__label">Caption</span>
+                <span class="d-ce-preview__value">{data.caption}</span>
+            </div>
+        </f:if>
+        <f:if condition="{data.aspect_ratio}">
+            <div class="d-ce-preview__field">
+                <span class="d-ce-preview__label">Aspect Ratio</span>
+                <span class="d-ce-preview__value">{data.aspect_ratio}</span>
+            </div>
+        </f:if>
+        <f:if condition="{data.video_file}">
+            <div class="d-ce-preview__thumbs" aria-label="Video File">
+                <f:for each="{data.video_file}" as="file">
+                    <f:if condition="{file.publicUrl}">
+                        <img src="{file.publicUrl}" alt="{file.alternative}" class="d-ce-preview__thumb" loading="lazy" />
+                    </f:if>
+                </f:for>
+            </div>
+        </f:if>
+    </div>
+</f:section>
+
+</html>

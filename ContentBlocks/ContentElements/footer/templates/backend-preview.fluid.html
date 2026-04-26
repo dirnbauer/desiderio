@@ -1,0 +1,77 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:layout name="Preview"/>
+
+<f:section name="Header">
+    <f:if condition="{data.header}">
+        <f:then><cb:link.editRecord uid="{data.uid}" table="{data.mainType}">{data.header}</cb:link.editRecord></f:then>
+        <f:else><cb:link.editRecord uid="{data.uid}" table="{data.mainType}">Footer</cb:link.editRecord></f:else>
+    </f:if>
+</f:section>
+
+<f:section name="Content">
+    <f:asset.css identifier="desiderio-content-preview" href="EXT:desiderio/Resources/Public/Css/content-preview.css" />
+    <div class="d-ce-preview" data-slot="card">
+        <div class="d-ce-preview__meta">
+            <span class="d-ce-preview__type" data-slot="badge">Footer</span>
+            <f:if condition="{settings._content_block_name}"><span class="d-ce-preview__ctype">{settings._content_block_name}</span></f:if>
+        </div>
+        <f:if condition="{data.header}">
+            <h3 class="d-ce-preview__title">{data.header}</h3>
+        </f:if>
+        <f:if condition="{data.description}">
+            <div class="d-ce-preview__field">
+                <span class="d-ce-preview__label">Description</span>
+                <span class="d-ce-preview__value">{data.description}</span>
+            </div>
+        </f:if>
+        <f:if condition="{data.copyright}">
+            <div class="d-ce-preview__field">
+                <span class="d-ce-preview__label">Copyright</span>
+                <span class="d-ce-preview__value">{data.copyright}</span>
+            </div>
+        </f:if>
+        <f:if condition="{data.shadcn_layout}">
+            <div class="d-ce-preview__field">
+                <span class="d-ce-preview__label">Shadcn Layout</span>
+                <span class="d-ce-preview__value">{data.shadcn_layout}</span>
+            </div>
+        </f:if>
+        <f:if condition="{data.brand}">
+            <div class="d-ce-preview__field">
+                <span class="d-ce-preview__label">Brand</span>
+                <span class="d-ce-preview__value">{data.brand}</span>
+            </div>
+        </f:if>
+        <f:if condition="{data.footer_links}">
+            <div class="d-ce-preview__collection">
+                <span class="d-ce-preview__label">Footer Links</span>
+                <ul class="d-ce-preview__list">
+                    <f:for each="{data.footer_links}" as="item">
+                        <li>
+                            <f:if condition="{item.label}"><span>{item.label}</span></f:if>
+                        </li>
+                    </f:for>
+                </ul>
+            </div>
+        </f:if>
+        <f:if condition="{data.utility_links}">
+            <div class="d-ce-preview__collection">
+                <span class="d-ce-preview__label">Utility Links</span>
+                <ul class="d-ce-preview__list">
+                    <f:for each="{data.utility_links}" as="item">
+                        <li>
+                            <f:if condition="{item.label}"><span>{item.label}</span></f:if>
+                        </li>
+                    </f:for>
+                </ul>
+            </div>
+        </f:if>
+    </div>
+</f:section>
+
+</html>

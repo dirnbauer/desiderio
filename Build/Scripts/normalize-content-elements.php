@@ -11,6 +11,7 @@ $root = dirname(__DIR__, 2);
 $contentBlocksDir = $root . '/ContentBlocks/ContentElements';
 $styleguideGroupsFile = $root . '/Resources/Private/Data/styleguide-content-groups.json';
 $styleguideSeedFile = $root . '/Resources/Private/Data/styleguide-page-seed.json';
+$backendPreviewCssFile = $root . '/Resources/Public/Css/content-preview.css';
 
 $groupTitles = [
     'content' => 'Content',
@@ -177,13 +178,34 @@ $germanWords = [
 ];
 
 $manualTitles = [
+    'about-us' => 'About the Company',
+    'back-to-top' => 'Back to Top Button',
+    'cta' => 'Call to Action',
+    'cta-banner' => 'Banner Call to Action',
+    'cta-card' => 'Card Call to Action',
+    'cta-floating' => 'Floating Call to Action',
+    'cta-gradient' => 'Gradient Call to Action',
+    'cta-inline' => 'Inline Call to Action',
+    'cta-minimal' => 'Minimal Call to Action',
+    'cta-split' => 'Split Call to Action',
+    'cta-with-image' => 'Image Call to Action',
     'faq' => 'FAQ',
-    'cta-banner' => 'Call to Action Banner',
-    'gdpr-consent' => 'GDPR Consent',
+    'gdpr-banner' => 'GDPR Banner',
+    'hero-cta-only' => 'Call to Action Hero',
+    'hero-dual-cta' => 'Dual Call to Action Hero',
+    'hero-logo-cloud' => 'Logo Cloud Hero',
+    'how-to-steps' => 'How-to Steps',
+    'kpi-cards' => 'KPI Cards',
+    'map-embed' => 'Map Embed',
+    'mega-menu' => 'Mega Menu',
+    'nav-toc' => 'Table of Contents Navigation',
+    'org-chart' => 'Organization Chart',
     'roi-calculator' => 'ROI Calculator',
+    'social-proof-counter' => 'Social Proof Counter',
+    'textmedia' => 'Text & Media',
 ];
 
-$acronyms = ['api', 'cta', 'faq', 'gdpr', 'kpi', 'roi', 'seo'];
+$acronyms = ['ai', 'api', 'cta', 'faq', 'gdpr', 'kpi', 'roi', 'seo', 'toc', 'ui', 'ux'];
 
 $blocks = glob($contentBlocksDir . '/*', GLOB_ONLYDIR);
 if ($blocks === false) {
@@ -227,6 +249,7 @@ foreach ($blocks as $block) {
     file_put_contents($block . '/language/labels.xlf', xlf($slug, $title, $description));
     file_put_contents($block . '/language/de.labels.xlf', deXlf($slug, $title, $description, $germanTitle, $germanDescription));
     file_put_contents($block . '/assets/icon.svg', iconSvg($slug, $group));
+    file_put_contents($block . '/templates/backend-preview.fluid.html', backendPreviewTemplate($title, $config));
 
     $typeName = (string)($config['typeName'] ?? ('desiderio_' . str_replace('-', '', $slug)));
     $groups[$group][] = [
@@ -260,6 +283,7 @@ file_put_contents($styleguideSeedFile, json_encode([
     'description' => 'Styleguide seed manifest for creating one TYPO3 test page per content element wizard category below page id 505.',
     'groups' => $seedGroups,
 ], JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . "\n");
+file_put_contents($backendPreviewCssFile, backendPreviewCss());
 
 printf("Normalized %d Desiderio Content Blocks.\n", count($blocks));
 
@@ -268,34 +292,93 @@ printf("Normalized %d Desiderio Content Blocks.\n", count($blocks));
  */
 function titleFromSlug(string $slug, string $group, array $acronyms): string
 {
-    $words = array_map(static function (string $word) use ($acronyms): string {
-        return in_array($word, $acronyms, true) ? strtoupper($word) : ucfirst($word);
-    }, explode('-', $slug));
+    $parts = explode('-', $slug);
+    $first = $parts[0] ?? '';
+    $tail = array_slice($parts, 1);
 
-    if ($words === ['Cta']) {
-        return 'Call to Action';
+    if ($first === 'hero') {
+        return $tail === [] ? 'Hero Section' : humanTitle($tail, $acronyms) . ' Hero';
+    }
+    if ($first === 'footer') {
+        return $tail === [] ? 'Footer' : humanTitle($tail, $acronyms) . ' Footer';
+    }
+    if ($first === 'navbar') {
+        return $tail === [] ? 'Navigation Bar' : humanTitle($tail, $acronyms) . ' Navigation Bar';
+    }
+    if ($first === 'nav') {
+        return $tail === [] ? 'Navigation' : humanTitle($tail, $acronyms) . ' Navigation';
+    }
+    if ($first === 'chart') {
+        return $tail === [] ? 'Chart' : humanTitle($tail, $acronyms) . ' Chart';
+    }
+    if ($first === 'pricing') {
+        return $tail === [] ? 'Pricing Section' : humanTitle($tail, $acronyms) . ' Pricing';
+    }
+    if ($first === 'feature') {
+        if (($tail[0] ?? '') === 'grid' && isset($tail[1]) && is_numeric($tail[1])) {
+            return $tail[1] . '-Column Feature Grid';
+        }
+
+        return $tail === [] ? 'Feature Section' : humanTitle($tail, $acronyms) . ' Feature Section';
+    }
+    if ($first === 'testimonial') {
+        return $tail === [] ? 'Testimonial' : humanTitle($tail, $acronyms) . ' Testimonial';
+    }
+    if ($first === 'team') {
+        return $tail === [] ? 'Team Section' : humanTitle($tail, $acronyms) . ' Team Section';
+    }
+    if ($first === 'stats') {
+        return $tail === [] ? 'Stats Section' : humanTitle($tail, $acronyms) . ' Stats';
+    }
+    if ($first === 'content') {
+        return $tail === [] ? 'Content Section' : 'Content ' . humanTitle($tail, $acronyms);
     }
 
-    $title = implode(' ', $words);
-    $title = str_replace('Cta ', 'Call to Action ', $title);
+    $title = humanTitle($parts, $acronyms);
 
-    if ($group === 'hero' && !str_ends_with($title, 'Hero') && !str_starts_with($title, 'Hero ')) {
-        return $title . ' Hero';
-    }
-    if ($group === 'footer' && !str_ends_with($title, 'Footer')) {
-        return $title . ' Footer';
-    }
-    if ($group === 'navigation' && str_starts_with($title, 'Navbar')) {
-        return trim(str_replace('Navbar', 'Navigation Bar', $title));
-    }
     if ($group === 'pricing' && !str_contains($title, 'Pricing') && !str_contains($title, 'Plan')) {
         return $title . ' Pricing';
     }
-    if ($group === 'data' && !preg_match('/(Chart|Table|Metric|KPI|Stats|Analytics|Leaderboard|Sparkline|Radar|Map)/', $title)) {
+    if ($group === 'data' && !preg_match('/(Chart|Table|Metric|KPI|Stats|Analytics|Leaderboard|Sparkline|Radar|Map|Counter)/', $title)) {
         return $title . ' Data View';
     }
 
     return $title;
+}
+
+/**
+ * @param list<string> $parts
+ * @param list<string> $acronyms
+ */
+function humanTitle(array $parts, array $acronyms): string
+{
+    $smallWords = ['and', 'as', 'for', 'in', 'of', 'on', 'or', 'to', 'with'];
+    $words = [];
+
+    foreach ($parts as $index => $part) {
+        if ($part === '') {
+            continue;
+        }
+
+        if (in_array($part, $acronyms, true)) {
+            $words[] = strtoupper($part);
+            continue;
+        }
+
+        if (is_numeric($part)) {
+            $words[] = $part;
+            continue;
+        }
+
+        if ($index > 0 && in_array($part, $smallWords, true)) {
+            $words[] = $part;
+            continue;
+        }
+
+        $words[] = ucfirst($part);
+    }
+
+    return implode(' ', $words);
 }
 
 /**
@@ -344,6 +427,229 @@ function moveKeyAfter(array $config, string $key, mixed $value, string $after): 
     }
 
     return $result;
+}
+
+/**
+ * @param array<string, mixed> $config
+ */
+function backendPreviewTemplate(string $title, array $config): string
+{
+    $fields = previewFields($config['fields'] ?? []);
+    $titleField = preferredField($fields, ['header', 'headline', 'title', 'name', 'label', 'brand_name']);
+    $scalarFields = previewScalarFields($fields, $titleField);
+    $fileFields = previewFieldsOfType($fields, 'File');
+    $collectionFields = previewFieldsOfType($fields, 'Collection');
+
+    $lines = [
+        '<html',
+        '    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"',
+        '    xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"',
+        '    data-namespace-typo3-fluid="true"',
+        '>',
+        '',
+        '<f:layout name="Preview"/>',
+        '',
+        '<f:section name="Header">',
+    ];
+
+    if ($titleField !== null) {
+        $lines[] = '    <f:if condition="{data.' . $titleField . '}">';
+        $lines[] = '        <f:then><cb:link.editRecord uid="{data.uid}" table="{data.mainType}">{data.' . $titleField . '}</cb:link.editRecord></f:then>';
+        $lines[] = '        <f:else><cb:link.editRecord uid="{data.uid}" table="{data.mainType}">' . xml($title) . '</cb:link.editRecord></f:else>';
+        $lines[] = '    </f:if>';
+    } else {
+        $lines[] = '    <cb:link.editRecord uid="{data.uid}" table="{data.mainType}">' . xml($title) . '</cb:link.editRecord>';
+    }
+
+    $lines = [
+        ...$lines,
+        '</f:section>',
+        '',
+        '<f:section name="Content">',
+        '    <f:asset.css identifier="desiderio-content-preview" href="EXT:desiderio/Resources/Public/Css/content-preview.css" />',
+        '    <div class="d-ce-preview" data-slot="card">',
+        '        <div class="d-ce-preview__meta">',
+        '            <span class="d-ce-preview__type" data-slot="badge">' . xml($title) . '</span>',
+        '            <f:if condition="{settings._content_block_name}"><span class="d-ce-preview__ctype">{settings._content_block_name}</span></f:if>',
+        '        </div>',
+    ];
+
+    if ($titleField !== null) {
+        $lines[] = '        <f:if condition="{data.' . $titleField . '}">';
+        $lines[] = '            <h3 class="d-ce-preview__title">{data.' . $titleField . '}</h3>';
+        $lines[] = '        </f:if>';
+    }
+
+    foreach ($scalarFields as $field) {
+        $identifier = (string)$field['identifier'];
+        $label = readableIdentifier($identifier);
+        $lines[] = '        <f:if condition="{data.' . $identifier . '}">';
+        $lines[] = '            <div class="d-ce-preview__field">';
+        $lines[] = '                <span class="d-ce-preview__label">' . xml($label) . '</span>';
+        $lines[] = '                <span class="d-ce-preview__value">{data.' . $identifier . '}</span>';
+        $lines[] = '            </div>';
+        $lines[] = '        </f:if>';
+    }
+
+    foreach ($fileFields as $field) {
+        $identifier = (string)$field['identifier'];
+        $lines[] = '        <f:if condition="{data.' . $identifier . '}">';
+        $lines[] = '            <div class="d-ce-preview__thumbs" aria-label="' . xml(readableIdentifier($identifier)) . '">';
+        $lines[] = '                <f:for each="{data.' . $identifier . '}" as="file">';
+        $lines[] = '                    <f:if condition="{file.publicUrl}">';
+        $lines[] = '                        <img src="{file.publicUrl}" alt="{file.alternative}" class="d-ce-preview__thumb" loading="lazy" />';
+        $lines[] = '                    </f:if>';
+        $lines[] = '                </f:for>';
+        $lines[] = '            </div>';
+        $lines[] = '        </f:if>';
+    }
+
+    foreach ($collectionFields as $field) {
+        $identifier = (string)$field['identifier'];
+        $children = previewScalarFields(previewFields($field['fields'] ?? []), null);
+        $children = array_slice($children, 0, 3);
+        $lines[] = '        <f:if condition="{data.' . $identifier . '}">';
+        $lines[] = '            <div class="d-ce-preview__collection">';
+        $lines[] = '                <span class="d-ce-preview__label">' . xml(readableIdentifier($identifier)) . '</span>';
+        $lines[] = '                <ul class="d-ce-preview__list">';
+        $lines[] = '                    <f:for each="{data.' . $identifier . '}" as="item">';
+        $lines[] = '                        <li>';
+
+        if ($children === []) {
+            $lines[] = '                            <span>' . xml(readableIdentifier($identifier)) . ' item</span>';
+        } else {
+            foreach ($children as $child) {
+                $childIdentifier = (string)$child['identifier'];
+                $lines[] = '                            <f:if condition="{item.' . $childIdentifier . '}"><span>{item.' . $childIdentifier . '}</span></f:if>';
+            }
+        }
+
+        $lines[] = '                        </li>';
+        $lines[] = '                    </f:for>';
+        $lines[] = '                </ul>';
+        $lines[] = '            </div>';
+        $lines[] = '        </f:if>';
+    }
+
+    if ($titleField === null && $scalarFields === [] && $fileFields === [] && $collectionFields === []) {
+        $lines[] = '        <p class="d-ce-preview__empty">Configured content element preview.</p>';
+    }
+
+    $lines = [
+        ...$lines,
+        '    </div>',
+        '</f:section>',
+        '',
+        '</html>',
+    ];
+
+    return implode("\n", $lines) . "\n";
+}
+
+/**
+ * @param mixed $fields
+ * @return list<array<string, mixed>>
+ */
+function previewFields(mixed $fields): array
+{
+    if (!is_array($fields)) {
+        return [];
+    }
+
+    $result = [];
+    foreach ($fields as $field) {
+        if (!is_array($field) || !isset($field['identifier']) || !is_string($field['identifier'])) {
+            continue;
+        }
+        if (!preg_match('/^[a-z][a-z0-9_]*$/', $field['identifier'])) {
+            continue;
+        }
+        $result[] = $field;
+    }
+
+    return $result;
+}
+
+/**
+ * @param list<array<string, mixed>> $fields
+ * @param list<string> $candidates
+ */
+function preferredField(array $fields, array $candidates): ?string
+{
+    $indexed = [];
+    foreach ($fields as $field) {
+        $indexed[(string)$field['identifier']] = true;
+    }
+    foreach ($candidates as $candidate) {
+        if (isset($indexed[$candidate])) {
+            return $candidate;
+        }
+    }
+
+    return null;
+}
+
+/**
+ * @param list<array<string, mixed>> $fields
+ * @return list<array<string, mixed>>
+ */
+function previewFieldsOfType(array $fields, string $type): array
+{
+    return array_values(array_filter(
+        $fields,
+        static fn (array $field): bool => (string)($field['type'] ?? '') === $type
+    ));
+}
+
+/**
+ * @param list<array<string, mixed>> $fields
+ * @return list<array<string, mixed>>
+ */
+function previewScalarFields(array $fields, ?string $titleField): array
+{
+    $scalars = array_filter($fields, static function (array $field) use ($titleField): bool {
+        $identifier = (string)$field['identifier'];
+        $type = (string)($field['type'] ?? 'Textarea');
+        if ($identifier === $titleField) {
+            return false;
+        }
+        if (in_array($type, ['Collection', 'File', 'Link', 'Checkbox'], true)) {
+            return false;
+        }
+
+        return true;
+    });
+
+    usort($scalars, static fn (array $a, array $b): int => previewFieldPriority((string)$a['identifier']) <=> previewFieldPriority((string)$b['identifier']));
+
+    return array_slice(array_values($scalars), 0, 6);
+}
+
+function previewFieldPriority(string $identifier): int
+{
+    $normalized = str_replace('_', '', strtolower($identifier));
+
+    return match (true) {
+        str_contains($normalized, 'eyebrow') || str_contains($normalized, 'badge') || str_contains($normalized, 'kicker') => 10,
+        str_contains($normalized, 'subheadline') || str_contains($normalized, 'description') || str_contains($normalized, 'summary') || str_contains($normalized, 'intro') || str_contains($normalized, 'lead') => 20,
+        str_contains($normalized, 'quote') || str_contains($normalized, 'content') || str_contains($normalized, 'body') || str_contains($normalized, 'copy') => 30,
+        str_contains($normalized, 'value') || str_contains($normalized, 'price') || str_contains($normalized, 'count') || str_contains($normalized, 'rating') => 40,
+        str_contains($normalized, 'chartdata') || str_contains($normalized, 'rowdata') || str_contains($normalized, 'period') || str_contains($normalized, 'date') => 50,
+        str_contains($normalized, 'buttontext') || str_contains($normalized, 'ctatext') || str_contains($normalized, 'label') => 60,
+        default => 90,
+    };
+}
+
+function readableIdentifier(string $identifier): string
+{
+    $label = ucwords(str_replace('_', ' ', $identifier));
+    $label = str_replace(
+        ['Cta', 'Kpi', 'Seo', 'Gdpr', 'Faq', 'Url'],
+        ['Call to Action', 'KPI', 'SEO', 'GDPR', 'FAQ', 'URL'],
+        $label
+    );
+
+    return $label;
 }
 
 function xlf(string $productName, string $title, string $description): string
@@ -428,4 +734,120 @@ function iconSvg(string $slug, string $group): string
   {$shape}
 </svg>
 SVG . "\n";
+}
+
+function backendPreviewCss(): string
+{
+    return <<<'CSS'
+.d-ce-preview {
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+  color: var(--typo3-component-color, inherit);
+  background: var(--typo3-component-bg, transparent);
+  border: 1px solid var(--typo3-component-border-color, rgba(127, 127, 127, .35));
+  border-radius: .5rem;
+  padding: .875rem;
+  box-shadow: var(--typo3-component-box-shadow, none);
+}
+
+.d-ce-preview__meta,
+.d-ce-preview__thumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  align-items: center;
+}
+
+.d-ce-preview__type,
+.d-ce-preview__ctype {
+  display: inline-flex;
+  align-items: center;
+  max-width: 100%;
+  border: 1px solid var(--typo3-component-border-color, rgba(127, 127, 127, .35));
+  border-radius: 999px;
+  padding: .125rem .5rem;
+  font-size: .6875rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.d-ce-preview__type {
+  color: var(--typo3-state-info-color, currentColor);
+  background: var(--typo3-state-info-bg, transparent);
+  text-transform: uppercase;
+}
+
+.d-ce-preview__ctype {
+  color: var(--typo3-component-color-muted, currentColor);
+  font-family: var(--typo3-font-family-monospace, monospace);
+  font-weight: 500;
+}
+
+.d-ce-preview__title {
+  margin: 0;
+  color: var(--typo3-component-color, inherit);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.d-ce-preview__field,
+.d-ce-preview__collection {
+  display: grid;
+  gap: .25rem;
+}
+
+.d-ce-preview__label {
+  color: var(--typo3-component-color-muted, currentColor);
+  font-size: .6875rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.d-ce-preview__value {
+  color: var(--typo3-component-color, inherit);
+  line-height: 1.45;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.d-ce-preview__thumb {
+  width: 4.25rem;
+  height: 4.25rem;
+  object-fit: cover;
+  border: 1px solid var(--typo3-component-border-color, rgba(127, 127, 127, .35));
+  border-radius: .375rem;
+}
+
+.d-ce-preview__list {
+  display: grid;
+  gap: .375rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.d-ce-preview__list li {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .35rem .5rem;
+  align-items: baseline;
+  border: 1px solid var(--typo3-component-border-color, rgba(127, 127, 127, .25));
+  border-radius: .375rem;
+  padding: .5rem .625rem;
+}
+
+.d-ce-preview__list span:first-child {
+  font-weight: 700;
+}
+
+.d-ce-preview__empty {
+  margin: 0;
+  color: var(--typo3-component-color-muted, currentColor);
+}
+CSS . "\n";
 }

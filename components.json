@@ -1,16 +1,16 @@
 {
   "$schema": "https://ui.shadcn.com/schema.json",
-  "style": "radix-nova",
+  "style": "radix-mira",
   "rsc": false,
   "tsx": true,
   "tailwind": {
     "config": "",
     "css": "Resources/Private/Tailwind/desiderio.css",
-    "baseColor": "neutral",
+    "baseColor": "olive",
     "cssVariables": true,
     "prefix": ""
   },
-  "iconLibrary": "lucide",
+  "iconLibrary": "phosphor",
   "rtl": false,
   "aliases": {
     "components": "./.shadcn/scratch/components",

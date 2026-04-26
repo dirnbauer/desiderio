@@ -25,6 +25,23 @@ final class ContentBlockStructureTest extends TestCase
             $name = basename($block);
             self::assertFileExists("{$block}/config.yaml", "Missing config.yaml in {$name}");
             self::assertFileExists("{$block}/templates/frontend.html", "Missing frontend.html in {$name}");
+            self::assertFileExists("{$block}/templates/backend-preview.fluid.html", "Missing backend-preview.fluid.html in {$name}");
+        }
+    }
+
+    public function testContentBlockDisplayNamesUseEditorFriendlyLabels(): void
+    {
+        $expectedTitles = [
+            'cta' => 'Call to Action',
+            'cta-with-image' => 'Image Call to Action',
+            'hero-logo-cloud' => 'Logo Cloud Hero',
+            'nav-toc' => 'Table of Contents Navigation',
+            'textmedia' => 'Text & Media',
+        ];
+
+        foreach ($expectedTitles as $slug => $expectedTitle) {
+            $config = Yaml::parseFile(self::CONTENT_BLOCKS_DIR . "/{$slug}/config.yaml");
+            self::assertSame($expectedTitle, $config['title'] ?? null, "{$slug} should use the improved content element name");
         }
     }
 
@@ -81,6 +98,26 @@ final class ContentBlockStructureTest extends TestCase
             self::assertStringContainsString('--icon-color-accent', $icon, "{$name} icon should expose the TYPO3 accent variable");
             self::assertStringNotContainsString('#000', strtolower($icon), "{$name} icon must not hard-code black");
             self::assertStringNotContainsString('#fff', strtolower($icon), "{$name} icon must not hard-code white");
+        }
+    }
+
+    public function testEveryContentBlockHasUsefulBackendPreview(): void
+    {
+        $previewCss = __DIR__ . '/../../Resources/Public/Css/content-preview.css';
+        self::assertFileExists($previewCss, 'Shared backend preview CSS is missing');
+        self::assertStringContainsString('.d-ce-preview', (string)file_get_contents($previewCss));
+
+        $blocks = glob(self::CONTENT_BLOCKS_DIR . '/*', GLOB_ONLYDIR) ?: [];
+        foreach ($blocks as $block) {
+            $name = basename($block);
+            $template = (string)file_get_contents("{$block}/templates/backend-preview.fluid.html");
+
+            self::assertStringContainsString('<f:layout name="Preview"/>', $template, "{$name} preview must use the Content Blocks Preview layout");
+            self::assertStringContainsString('<f:section name="Header">', $template, "{$name} preview must define a Header section");
+            self::assertStringContainsString('<f:section name="Content">', $template, "{$name} preview must define a Content section");
+            self::assertStringContainsString('desiderio-content-preview', $template, "{$name} preview must load the shared preview CSS");
+            self::assertStringContainsString('d-ce-preview', $template, "{$name} preview must render the useful preview card");
+            self::assertStringNotContainsString('Preview for Content Block', $template, "{$name} still uses the generated fallback preview text");
         }
     }
 

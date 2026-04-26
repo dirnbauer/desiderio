@@ -14,12 +14,13 @@ final class ShadcnThemeTest extends TestCase
         $definitions = Yaml::parseFile(__DIR__ . '/../../Configuration/Sets/Desiderio/settings.definitions.yaml');
         $settings = Yaml::parseFile(__DIR__ . '/../../Configuration/Sets/Desiderio/settings.yaml');
 
-        self::assertSame('b0', $settings['desiderio']['shadcn']['preset'] ?? null);
-        self::assertSame('radix-nova', $settings['desiderio']['shadcn']['style'] ?? null);
+        self::assertSame('b4hb38Fyj', $settings['desiderio']['shadcn']['preset'] ?? null);
+        self::assertSame('radix-mira', $settings['desiderio']['shadcn']['style'] ?? null);
         self::assertSame('preset', $settings['desiderio']['typography']['fontSans'] ?? null);
 
         $presetDefinition = $definitions['settings']['desiderio.shadcn.preset'] ?? [];
-        self::assertSame('b0', $presetDefinition['default'] ?? null);
+        self::assertSame('b4hb38Fyj', $presetDefinition['default'] ?? null);
+        self::assertArrayHasKey('b4hb38Fyj', $presetDefinition['enum'] ?? []);
         self::assertArrayHasKey('b0', $presetDefinition['enum'] ?? []);
         self::assertArrayHasKey('b3IWPgRwnI', $presetDefinition['enum'] ?? []);
         self::assertArrayHasKey('custom', $presetDefinition['enum'] ?? []);
@@ -52,8 +53,11 @@ final class ShadcnThemeTest extends TestCase
 
         self::assertStringContainsString(':root', $themeCss);
         self::assertStringContainsString('.dark', $themeCss);
+        self::assertStringContainsString('body[data-shadcn-preset="b4hb38Fyj"]', $themeCss);
+        self::assertStringContainsString('.dark body[data-shadcn-preset="b4hb38Fyj"]', $themeCss);
         self::assertStringContainsString('body[data-shadcn-preset="b3IWPgRwnI"]', $themeCss);
         self::assertStringContainsString('.dark body[data-shadcn-preset="b3IWPgRwnI"]', $themeCss);
+        self::assertStringContainsString('Nunito Sans Variable', $themeCss);
         self::assertStringContainsString('--d-font-sans', $themeCss);
         self::assertStringContainsString('--d-shadow-sm', $themeCss);
         self::assertStringContainsString('--d-info:', $themeCss);
@@ -79,13 +83,14 @@ final class ShadcnThemeTest extends TestCase
         self::assertStringContainsString('.desiderio-content-element', $tailwindCss);
 
         self::assertIsArray($componentsJson);
-        self::assertSame('radix-nova', $componentsJson['style'] ?? null);
+        self::assertSame('radix-mira', $componentsJson['style'] ?? null);
         self::assertSame('Resources/Private/Tailwind/desiderio.css', $componentsJson['tailwind']['css'] ?? null);
 
         self::assertIsArray($packageJson);
         self::assertSame('^4.2.4', $packageJson['dependencies']['tailwindcss'] ?? null);
         self::assertSame('^4.2.4', $packageJson['dependencies']['@tailwindcss/cli'] ?? null);
-        self::assertSame('^4.4.0', $packageJson['dependencies']['shadcn'] ?? null);
+        self::assertSame('^5.2.7', $packageJson['dependencies']['@fontsource-variable/nunito-sans'] ?? null);
+        self::assertSame('^4.5.0', $packageJson['dependencies']['shadcn'] ?? null);
     }
 
     public function testGeneratedTailwindCssContainsShadcnUtilities(): void

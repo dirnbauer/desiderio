@@ -1,0 +1,110 @@
+.d-ce-preview {
+  display: flex;
+  flex-direction: column;
+  gap: .75rem;
+  color: var(--typo3-component-color, inherit);
+  background: var(--typo3-component-bg, transparent);
+  border: 1px solid var(--typo3-component-border-color, rgba(127, 127, 127, .35));
+  border-radius: .5rem;
+  padding: .875rem;
+  box-shadow: var(--typo3-component-box-shadow, none);
+}
+
+.d-ce-preview__meta,
+.d-ce-preview__thumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  align-items: center;
+}
+
+.d-ce-preview__type,
+.d-ce-preview__ctype {
+  display: inline-flex;
+  align-items: center;
+  max-width: 100%;
+  border: 1px solid var(--typo3-component-border-color, rgba(127, 127, 127, .35));
+  border-radius: 999px;
+  padding: .125rem .5rem;
+  font-size: .6875rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.d-ce-preview__type {
+  color: var(--typo3-state-info-color, currentColor);
+  background: var(--typo3-state-info-bg, transparent);
+  text-transform: uppercase;
+}
+
+.d-ce-preview__ctype {
+  color: var(--typo3-component-color-muted, currentColor);
+  font-family: var(--typo3-font-family-monospace, monospace);
+  font-weight: 500;
+}
+
+.d-ce-preview__title {
+  margin: 0;
+  color: var(--typo3-component-color, inherit);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.d-ce-preview__field,
+.d-ce-preview__collection {
+  display: grid;
+  gap: .25rem;
+}
+
+.d-ce-preview__label {
+  color: var(--typo3-component-color-muted, currentColor);
+  font-size: .6875rem;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.d-ce-preview__value {
+  color: var(--typo3-component-color, inherit);
+  line-height: 1.45;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+.d-ce-preview__thumb {
+  width: 4.25rem;
+  height: 4.25rem;
+  object-fit: cover;
+  border: 1px solid var(--typo3-component-border-color, rgba(127, 127, 127, .35));
+  border-radius: .375rem;
+}
+
+.d-ce-preview__list {
+  display: grid;
+  gap: .375rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.d-ce-preview__list li {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .35rem .5rem;
+  align-items: baseline;
+  border: 1px solid var(--typo3-component-border-color, rgba(127, 127, 127, .25));
+  border-radius: .375rem;
+  padding: .5rem .625rem;
+}
+
+.d-ce-preview__list span:first-child {
+  font-weight: 700;
+}
+
+.d-ce-preview__empty {
+  margin: 0;
+  color: var(--typo3-component-color-muted, currentColor);
+}

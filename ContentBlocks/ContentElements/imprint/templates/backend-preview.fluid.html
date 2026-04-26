@@ -1,0 +1,65 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:layout name="Preview"/>
+
+<f:section name="Header">
+    <f:if condition="{data.header}">
+        <f:then><cb:link.editRecord uid="{data.uid}" table="{data.mainType}">{data.header}</cb:link.editRecord></f:then>
+        <f:else><cb:link.editRecord uid="{data.uid}" table="{data.mainType}">Imprint</cb:link.editRecord></f:else>
+    </f:if>
+</f:section>
+
+<f:section name="Content">
+    <f:asset.css identifier="desiderio-content-preview" href="EXT:desiderio/Resources/Public/Css/content-preview.css" />
+    <div class="d-ce-preview" data-slot="card">
+        <div class="d-ce-preview__meta">
+            <span class="d-ce-preview__type" data-slot="badge">Imprint</span>
+            <f:if condition="{settings._content_block_name}"><span class="d-ce-preview__ctype">{settings._content_block_name}</span></f:if>
+        </div>
+        <f:if condition="{data.header}">
+            <h3 class="d-ce-preview__title">{data.header}</h3>
+        </f:if>
+        <f:if condition="{data.company_name}">
+            <div class="d-ce-preview__field">
+                <span class="d-ce-preview__label">Company Name</span>
+                <span class="d-ce-preview__value">{data.company_name}</span>
+            </div>
+        </f:if>
+        <f:if condition="{data.address}">
+            <div class="d-ce-preview__field">
+                <span class="d-ce-preview__label">Address</span>
+                <span class="d-ce-preview__value">{data.address}</span>
+            </div>
+        </f:if>
+        <f:if condition="{data.contact_email}">
+            <div class="d-ce-preview__field">
+                <span class="d-ce-preview__label">Contact Email</span>
+                <span class="d-ce-preview__value">{data.contact_email}</span>
+            </div>
+        </f:if>
+        <f:if condition="{data.contact_phone}">
+            <div class="d-ce-preview__field">
+                <span class="d-ce-preview__label">Contact Phone</span>
+                <span class="d-ce-preview__value">{data.contact_phone}</span>
+            </div>
+        </f:if>
+        <f:if condition="{data.registry_info}">
+            <div class="d-ce-preview__field">
+                <span class="d-ce-preview__label">Registry Info</span>
+                <span class="d-ce-preview__value">{data.registry_info}</span>
+            </div>
+        </f:if>
+        <f:if condition="{data.vat_id}">
+            <div class="d-ce-preview__field">
+                <span class="d-ce-preview__label">Vat Id</span>
+                <span class="d-ce-preview__value">{data.vat_id}</span>
+            </div>
+        </f:if>
+    </div>
+</f:section>
+
+</html>

@@ -1,0 +1,43 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:layout name="Preview"/>
+
+<f:section name="Header">
+    <f:if condition="{data.header}">
+        <f:then><cb:link.editRecord uid="{data.uid}" table="{data.mainType}">{data.header}</cb:link.editRecord></f:then>
+        <f:else><cb:link.editRecord uid="{data.uid}" table="{data.mainType}">Changelog Data View</cb:link.editRecord></f:else>
+    </f:if>
+</f:section>
+
+<f:section name="Content">
+    <f:asset.css identifier="desiderio-content-preview" href="EXT:desiderio/Resources/Public/Css/content-preview.css" />
+    <div class="d-ce-preview" data-slot="card">
+        <div class="d-ce-preview__meta">
+            <span class="d-ce-preview__type" data-slot="badge">Changelog Data View</span>
+            <f:if condition="{settings._content_block_name}"><span class="d-ce-preview__ctype">{settings._content_block_name}</span></f:if>
+        </div>
+        <f:if condition="{data.header}">
+            <h3 class="d-ce-preview__title">{data.header}</h3>
+        </f:if>
+        <f:if condition="{data.items}">
+            <div class="d-ce-preview__collection">
+                <span class="d-ce-preview__label">Items</span>
+                <ul class="d-ce-preview__list">
+                    <f:for each="{data.items}" as="item">
+                        <li>
+                            <f:if condition="{item.description}"><span>{item.description}</span></f:if>
+                            <f:if condition="{item.date}"><span>{item.date}</span></f:if>
+                            <f:if condition="{item.version}"><span>{item.version}</span></f:if>
+                        </li>
+                    </f:for>
+                </ul>
+            </div>
+        </f:if>
+    </div>
+</f:section>
+
+</html>

@@ -1,0 +1,65 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:layout name="Preview"/>
+
+<f:section name="Header">
+    <f:if condition="{data.header}">
+        <f:then><cb:link.editRecord uid="{data.uid}" table="{data.mainType}">{data.header}</cb:link.editRecord></f:then>
+        <f:else><cb:link.editRecord uid="{data.uid}" table="{data.mainType}">Special Offer Pricing</cb:link.editRecord></f:else>
+    </f:if>
+</f:section>
+
+<f:section name="Content">
+    <f:asset.css identifier="desiderio-content-preview" href="EXT:desiderio/Resources/Public/Css/content-preview.css" />
+    <div class="d-ce-preview" data-slot="card">
+        <div class="d-ce-preview__meta">
+            <span class="d-ce-preview__type" data-slot="badge">Special Offer Pricing</span>
+            <f:if condition="{settings._content_block_name}"><span class="d-ce-preview__ctype">{settings._content_block_name}</span></f:if>
+        </div>
+        <f:if condition="{data.header}">
+            <h3 class="d-ce-preview__title">{data.header}</h3>
+        </f:if>
+        <f:if condition="{data.eyebrow}">
+            <div class="d-ce-preview__field">
+                <span class="d-ce-preview__label">Eyebrow</span>
+                <span class="d-ce-preview__value">{data.eyebrow}</span>
+            </div>
+        </f:if>
+        <f:if condition="{data.description}">
+            <div class="d-ce-preview__field">
+                <span class="d-ce-preview__label">Description</span>
+                <span class="d-ce-preview__value">{data.description}</span>
+            </div>
+        </f:if>
+        <f:if condition="{data.discount_text}">
+            <div class="d-ce-preview__field">
+                <span class="d-ce-preview__label">Discount Text</span>
+                <span class="d-ce-preview__value">{data.discount_text}</span>
+            </div>
+        </f:if>
+        <f:if condition="{data.original_price}">
+            <div class="d-ce-preview__field">
+                <span class="d-ce-preview__label">Original Price</span>
+                <span class="d-ce-preview__value">{data.original_price}</span>
+            </div>
+        </f:if>
+        <f:if condition="{data.sale_price}">
+            <div class="d-ce-preview__field">
+                <span class="d-ce-preview__label">Sale Price</span>
+                <span class="d-ce-preview__value">{data.sale_price}</span>
+            </div>
+        </f:if>
+        <f:if condition="{data.button_text}">
+            <div class="d-ce-preview__field">
+                <span class="d-ce-preview__label">Button Text</span>
+                <span class="d-ce-preview__value">{data.button_text}</span>
+            </div>
+        </f:if>
+    </div>
+</f:section>
+
+</html>

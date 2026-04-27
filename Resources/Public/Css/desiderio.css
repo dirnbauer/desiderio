@@ -20,6 +20,7 @@
 /* ------------------------------------------------------------------ */
 
 .desiderio-header {
+    position: relative;
     border-bottom: 1px solid var(--border);
     background-color: var(--background);
     z-index: 50;

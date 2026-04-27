@@ -96,8 +96,55 @@ content, markup, or backend layouts — only the presentation.
 | `webconsulting/desiderio-preset-dashboard`        | Dashboard App         |
 
 The base set also exposes shadcn/create preset support. The committed theme
-CSS currently supports `b0` as the default and `b3IWPgRwnI` as an alternate
-light/dark token set.
+CSS currently supports `b4hb38Fyj` as the default, plus `b0`,
+`b3IWPgRwnI`, and `b6G5977cw` as alternate light/dark token sets.
+
+### Switching presets/templates
+
+There are two different switches:
+
+1. **Desiderio site preset sets** change broad TYPO3 theme defaults such as
+   header, footer, density, and layout. Enable or replace one of the
+   `webconsulting/desiderio-preset-*` site sets in
+   **Site Management → Sites**.
+2. **shadcn/create preset ids** change the design tokens used by buttons,
+   cards, borders, charts, typography, radius, and dark mode. Change
+   `desiderio.shadcn.preset` in **Site Management → Settings** when the id is
+   already supported by committed CSS.
+
+To switch to `b6G5977cw`:
+
+1. Set `desiderio.shadcn.preset` to `b6G5977cw`.
+2. Set `desiderio.shadcn.style` to `radix-lyra`.
+3. Set `desiderio.layout.radius` to `preset` so the preset can keep its square
+   `--radius: 0` design.
+4. Keep `desiderio.typography.fontSans` on `preset` so JetBrains Mono is used.
+5. Flush TYPO3 caches and check light and dark mode.
+
+Supported shadcn ids can be selected immediately. Unsupported ids need to be
+implemented first:
+
+1. Generate or inspect the shadcn/create preset in a scratch project.
+2. Add `body[data-shadcn-preset="<id>"]` and
+   `.dark body[data-shadcn-preset="<id>"]` token blocks to
+   `Resources/Public/Css/shadcn-theme.css`.
+3. Add the id to `desiderio.shadcn.preset` in
+   `Configuration/Sets/Desiderio/settings.definitions.yaml`.
+4. Optionally make it the default in
+   `Configuration/Sets/Desiderio/settings.yaml`.
+5. Rebuild/check CSS and flush TYPO3 caches.
+
+Changing only `settings.yaml` or Site Settings to an unsupported id will write
+the body attribute, but no visual change will happen because no matching token
+block exists.
+
+The shadcn/create left navigation has values that are preset metadata in
+Desiderio, not all independent runtime switches. `Style`, `Base Color`,
+`Theme`, `Chart Color`, `Heading`, `Font`, and `Radius` are represented through
+the committed preset tokens. `Icon Library`, `Menu`, and `Menu Accent` are
+documented from the preset, but are not separate TYPO3 switches yet. See
+`Documentation/ShadcnUpgrade.md` for the exact support matrix and step-by-step
+workflow.
 
 ## Settings
 
@@ -109,20 +156,31 @@ declares the full schema; presets ship different defaults.
 | ------------------------------------ | ---------------------------------------------------- |
 | `desiderio.layout.density`           | `compact`, `comfortable`, `spacious`                 |
 | `desiderio.layout.container`         | `narrow`, `wide`, `full`                             |
-| `desiderio.layout.radius`            | `none`, `sm`, `md`, `lg`, `full`                     |
+| `desiderio.layout.radius`            | `preset`, `none`, `sm`, `md`, `lg`, `full`           |
 | `desiderio.header.style`             | `solid`, `transparent`, `glass`, `sticky`            |
 | `desiderio.header.fixedPosition`     | `true`, `false`                                      |
 | `desiderio.footer.style`             | `columns`, `centered`, `minimal`, `mega`             |
 | `desiderio.theme.accent`             | `slate`, `rose`, `blue`, `emerald`, `amber`, `violet`, `custom` |
 | `desiderio.theme.darkModeDefault`    | `light`, `dark`, `system`                            |
 | `desiderio.theme.darkModeToggle`     | `true`, `false`                                      |
-| `desiderio.shadcn.preset`            | `b0`, `b3IWPgRwnI`, `custom`                         |
-| `desiderio.shadcn.style`             | `radix-nova`, `radix-mira`, `custom`                 |
+| `desiderio.shadcn.preset`            | `b4hb38Fyj`, `b0`, `b3IWPgRwnI`, `b6G5977cw`, `custom` |
+| `desiderio.shadcn.style`             | `radix-nova`, `radix-mira`, `radix-lyra`, `custom`   |
 | `desiderio.typography.fontSans`      | `preset`, `inter`, `geist`, `system`, `serif`        |
 | `desiderio.styleguide.enabled`       | `true`, `false`                                      |
 
 Settings are rendered into `<body data-*>` attributes so hand-written CSS
 can react to them without runtime JavaScript.
+
+Settings are defined in:
+
+- `Configuration/Sets/Desiderio/settings.definitions.yaml` — selectable values
+  in TYPO3 Site Settings.
+- `Configuration/Sets/Desiderio/settings.yaml` — default values shipped by the
+  base set.
+- `Configuration/Sets/Desiderio/setup.typoscript` — renders the values as
+  `<body data-*>` attributes.
+- `Resources/Public/Css/shadcn-theme.css` — committed token blocks for each
+  supported shadcn/create preset id.
 
 ## Content elements
 

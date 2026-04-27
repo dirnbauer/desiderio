@@ -17,13 +17,22 @@ final class ShadcnThemeTest extends TestCase
         self::assertSame('b4hb38Fyj', $settings['desiderio']['shadcn']['preset'] ?? null);
         self::assertSame('radix-mira', $settings['desiderio']['shadcn']['style'] ?? null);
         self::assertSame('preset', $settings['desiderio']['typography']['fontSans'] ?? null);
+        self::assertSame('preset', $settings['desiderio']['layout']['radius'] ?? null);
 
         $presetDefinition = $definitions['settings']['desiderio.shadcn.preset'] ?? [];
         self::assertSame('b4hb38Fyj', $presetDefinition['default'] ?? null);
         self::assertArrayHasKey('b4hb38Fyj', $presetDefinition['enum'] ?? []);
         self::assertArrayHasKey('b0', $presetDefinition['enum'] ?? []);
         self::assertArrayHasKey('b3IWPgRwnI', $presetDefinition['enum'] ?? []);
+        self::assertArrayHasKey('b6G5977cw', $presetDefinition['enum'] ?? []);
         self::assertArrayHasKey('custom', $presetDefinition['enum'] ?? []);
+
+        $styleDefinition = $definitions['settings']['desiderio.shadcn.style'] ?? [];
+        self::assertArrayHasKey('radix-lyra', $styleDefinition['enum'] ?? []);
+
+        $radiusDefinition = $definitions['settings']['desiderio.layout.radius'] ?? [];
+        self::assertSame('preset', $radiusDefinition['default'] ?? null);
+        self::assertArrayHasKey('preset', $radiusDefinition['enum'] ?? []);
 
         $fontDefinition = $definitions['settings']['desiderio.typography.fontSans'] ?? [];
         self::assertSame('preset', $fontDefinition['default'] ?? null);
@@ -57,6 +66,10 @@ final class ShadcnThemeTest extends TestCase
         self::assertStringContainsString('.dark body[data-shadcn-preset="b4hb38Fyj"]', $themeCss);
         self::assertStringContainsString('body[data-shadcn-preset="b3IWPgRwnI"]', $themeCss);
         self::assertStringContainsString('.dark body[data-shadcn-preset="b3IWPgRwnI"]', $themeCss);
+        self::assertStringContainsString('body[data-shadcn-preset="b6G5977cw"]', $themeCss);
+        self::assertStringContainsString('.dark body[data-shadcn-preset="b6G5977cw"]', $themeCss);
+        self::assertStringContainsString('--radius: 0;', $themeCss);
+        self::assertStringContainsString('JetBrains Mono Variable', $themeCss);
         self::assertStringContainsString('Nunito Sans Variable', $themeCss);
         self::assertStringContainsString('--d-font-sans', $themeCss);
         self::assertStringContainsString('--d-shadow-sm', $themeCss);

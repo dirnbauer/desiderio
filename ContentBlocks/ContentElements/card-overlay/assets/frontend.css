@@ -6,15 +6,15 @@
 .card-overlay__image img { width: 100%; height: 100%; object-fit: cover; }
 .card-overlay__content {
     position: relative; z-index: 2; padding: var(--d-spacing-lg);
-    color: var(--primary-foreground); width: 100%;
+    color: var(--background); width: 100%;
 }
 .card-overlay::after {
     content: ''; position: absolute; inset: 0; z-index: 1;
-    background: linear-gradient(to top, rgba(0,0,0,var(--overlay-opacity)), transparent 70%);
+    background: linear-gradient(to top, color-mix(in oklch, var(--foreground) var(--overlay-strength), transparent), transparent 70%);
 }
-.card-overlay--light { --overlay-opacity: 0.4; }
-.card-overlay--medium { --overlay-opacity: 0.6; }
-.card-overlay--dark { --overlay-opacity: 0.8; }
+.card-overlay--light { --overlay-strength: 40%; }
+.card-overlay--medium { --overlay-strength: 60%; }
+.card-overlay--dark { --overlay-strength: 80%; }
 .card-overlay__title { font-size: var(--d-text-xl); font-weight: 700; }
 .card-overlay__description { font-size: var(--d-text-sm); margin-block-start: var(--d-spacing-xs); opacity: 0.9; }
 .card-overlay__link { position: absolute; inset: 0; z-index: 3; }

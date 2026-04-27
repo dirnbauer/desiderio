@@ -46,7 +46,7 @@
   })) || 1;
   const barW = (w - 2 * pad) / rows.length * 0.55;
   const gap = (w - 2 * pad - barW * rows.length) / Math.max(rows.length - 1, 1);
-  const colors = ['var(--primary)', 'hsl(142 70% 45%)', 'hsl(210 100% 50%)', 'hsl(38 92% 50%)', 'hsl(280 65% 55%)'];
+  const colors = ['var(--chart-1)', 'var(--chart-2)', 'var(--chart-3)', 'var(--chart-4)', 'var(--chart-5)'];
   const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
   svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
   svg.setAttribute('class', 'chart-stacked-bar__svg');

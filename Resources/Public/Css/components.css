@@ -220,7 +220,7 @@ video {
   color: var(--card-foreground);
   border: 1px solid var(--border);
   border-radius: calc(var(--radius, 0.375rem) + 4px);
-  box-shadow: var(--shadow-sm, 0 1px 2px 0 rgb(0 0 0 / 0.05));
+  box-shadow: var(--shadow-sm);
   overflow: hidden;
 }
 
@@ -671,33 +671,33 @@ video {
 }
 
 .alert--info {
-  border-color: hsl(210 100% 50%);
-  background-color: hsl(210 100% 97%);
-  color: hsl(210 100% 35%);
+  border-color: var(--d-info);
+  background-color: var(--d-info-muted);
+  color: var(--d-info);
 }
 
 .alert--info .alert__title {
-  color: hsl(210 100% 30%);
+  color: var(--d-info);
 }
 
 .alert--success {
-  border-color: hsl(142 72% 40%);
-  background-color: hsl(142 72% 97%);
-  color: hsl(142 72% 25%);
+  border-color: var(--d-success);
+  background-color: var(--d-success-muted);
+  color: var(--d-success);
 }
 
 .alert--success .alert__title {
-  color: hsl(142 72% 20%);
+  color: var(--d-success);
 }
 
 .alert--warning {
-  border-color: hsl(38 92% 50%);
-  background-color: hsl(38 92% 97%);
-  color: hsl(38 80% 30%);
+  border-color: var(--d-warning);
+  background-color: var(--d-warning-muted);
+  color: var(--d-warning);
 }
 
 .alert--warning .alert__title {
-  color: hsl(38 80% 25%);
+  color: var(--d-warning);
 }
 
 /* ==========================================================================
@@ -821,7 +821,7 @@ video {
 .tabs__trigger--active {
   background-color: var(--background);
   color: var(--foreground);
-  box-shadow: var(--shadow-sm, 0 1px 2px 0 rgb(0 0 0 / 0.05));
+  box-shadow: var(--shadow-sm);
 }
 
 .tabs__content {

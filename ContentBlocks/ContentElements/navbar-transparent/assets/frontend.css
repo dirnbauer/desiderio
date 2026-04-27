@@ -16,7 +16,7 @@
 .navbar-transparent__brand {
     font-weight: 600;
     font-size: var(--d-text-lg);
-    color: var(--primary-foreground);
+    color: var(--background);
 }
 .navbar-transparent__nav {
     display: flex;
@@ -29,11 +29,11 @@
 .navbar-transparent__link {
     padding: var(--d-spacing-2) var(--d-spacing-3);
     font-size: var(--d-text-sm);
-    color: rgba(255, 255, 255, 0.8);
+    color: color-mix(in oklch, var(--background) 80%, transparent);
     text-decoration: none;
     border-radius: var(--d-radius-md);
     transition: color 0.15s;
 }
 .navbar-transparent__link:hover {
-    color: var(--primary-foreground);
+    color: var(--background);
 }

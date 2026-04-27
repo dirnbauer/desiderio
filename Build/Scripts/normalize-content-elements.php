@@ -730,7 +730,7 @@ function iconSvg(string $slug, string $group): string
 
     return <<<SVG
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round">
-  <style>.accent{stroke:var(--icon-color-accent,#ff8700);fill:none}.no-stroke{stroke:none;fill:var(--icon-color-accent,#ff8700)}</style>
+  <style>.accent{stroke:var(--icon-color-accent,currentColor);fill:none}.no-stroke{stroke:none;fill:var(--icon-color-accent,currentColor)}</style>
   {$shape}
 </svg>
 SVG . "\n";
@@ -745,7 +745,9 @@ function backendPreviewCss(): string
   gap: .75rem;
   color: var(--typo3-component-color, inherit);
   background: var(--typo3-component-bg, transparent);
-  border: 1px solid var(--typo3-component-border-color, rgba(127, 127, 127, .35));
+  --d-ce-preview-border: var(--typo3-component-border-color, var(--border, currentColor));
+  --d-ce-preview-border-muted: color-mix(in oklch, var(--d-ce-preview-border) 70%, transparent);
+  border: 1px solid var(--d-ce-preview-border);
   border-radius: .5rem;
   padding: .875rem;
   box-shadow: var(--typo3-component-box-shadow, none);
@@ -764,7 +766,7 @@ function backendPreviewCss(): string
   display: inline-flex;
   align-items: center;
   max-width: 100%;
-  border: 1px solid var(--typo3-component-border-color, rgba(127, 127, 127, .35));
+  border: 1px solid var(--d-ce-preview-border);
   border-radius: 999px;
   padding: .125rem .5rem;
   font-size: .6875rem;
@@ -819,7 +821,7 @@ function backendPreviewCss(): string
   width: 4.25rem;
   height: 4.25rem;
   object-fit: cover;
-  border: 1px solid var(--typo3-component-border-color, rgba(127, 127, 127, .35));
+  border: 1px solid var(--d-ce-preview-border);
   border-radius: .375rem;
 }
 
@@ -836,7 +838,7 @@ function backendPreviewCss(): string
   flex-wrap: wrap;
   gap: .35rem .5rem;
   align-items: baseline;
-  border: 1px solid var(--typo3-component-border-color, rgba(127, 127, 127, .25));
+  border: 1px solid var(--d-ce-preview-border-muted);
   border-radius: .375rem;
   padding: .5rem .625rem;
 }

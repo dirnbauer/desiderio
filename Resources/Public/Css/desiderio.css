@@ -679,14 +679,14 @@
     background-color: var(--card);
     border: 1px solid var(--border);
     border-radius: var(--radius);
-    box-shadow: var(--shadow-xs, 0 1px 2px rgb(0 0 0 / 0.05));
+    box-shadow: var(--shadow-xs);
     transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
 }
 
 .ce-menu__link:hover,
 .ce-menu__link:focus-visible {
     border-color: var(--ring);
-    box-shadow: var(--shadow-sm, 0 1px 3px rgb(0 0 0 / 0.1));
+    box-shadow: var(--shadow-sm);
     outline: none;
     transform: translateY(-1px);
 }
@@ -1044,8 +1044,8 @@
     padding: 0;
     overflow: auto;
     max-height: 60vh;
-    background-color: oklch(0.16 0 0);
-    color: oklch(0.9 0 0);
+    background-color: var(--card);
+    color: var(--card-foreground);
 }
 
 .docs__code {

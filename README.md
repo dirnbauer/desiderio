@@ -96,8 +96,8 @@ content, markup, or backend layouts — only the presentation.
 | `webconsulting/desiderio-preset-dashboard`        | Dashboard App         |
 
 The base set also exposes shadcn/create preset support. The committed theme
-CSS currently supports `b4hb38Fyj` as the default, plus `b0`,
-`b3IWPgRwnI`, and `b6G5977cw` as alternate light/dark token sets.
+CSS currently supports `b6G5977cw` as the default, plus `b4hb38Fyj`, `b0`,
+and `b3IWPgRwnI` as alternate light/dark token sets.
 
 ### Switching presets/templates
 

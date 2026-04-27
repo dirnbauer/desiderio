@@ -1,11 +1,11 @@
 # Preset — Mainline Corporate
-# Solid header, slate accents, minimal radius, centered footer.
+# Solid header, slate accents, shadcn preset radius, centered footer.
 
 desiderio:
   layout:
     density: comfortable
     container: wide
-    radius: sm
+    radius: preset
   header:
     style: solid
     fixedPosition: false
@@ -16,4 +16,4 @@ desiderio:
     darkModeDefault: light
     darkModeToggle: true
   typography:
-    fontSans: inter
+    fontSans: preset

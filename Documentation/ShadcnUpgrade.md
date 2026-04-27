@@ -29,10 +29,10 @@ token block.
 
 | Preset id | Source style | Notes |
 | --- | --- | --- |
-| `b4hb38Fyj` | `radix-mira` | Default olive product system. |
+| `b6G5977cw` | `radix-lyra` | Default Lyra mono olive preset with square radius and amber charts. |
+| `b4hb38Fyj` | `radix-mira` | Olive product system with Nunito Sans. |
 | `b0` | shadcn default | Neutral fallback tokens in `:root` and `.dark`. |
 | `b3IWPgRwnI` | `radix-mira` | Mist dashboard tokens with Geist and JetBrains Mono. |
-| `b6G5977cw` | `radix-lyra` | Lyra mono olive preset with square radius and amber charts. |
 | `custom` | custom | Requires a matching custom token block. |
 
 ## b6G5977cw Reference

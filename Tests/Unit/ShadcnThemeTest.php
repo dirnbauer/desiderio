@@ -14,13 +14,13 @@ final class ShadcnThemeTest extends TestCase
         $definitions = Yaml::parseFile(__DIR__ . '/../../Configuration/Sets/Desiderio/settings.definitions.yaml');
         $settings = Yaml::parseFile(__DIR__ . '/../../Configuration/Sets/Desiderio/settings.yaml');
 
-        self::assertSame('b4hb38Fyj', $settings['desiderio']['shadcn']['preset'] ?? null);
-        self::assertSame('radix-mira', $settings['desiderio']['shadcn']['style'] ?? null);
+        self::assertSame('b6G5977cw', $settings['desiderio']['shadcn']['preset'] ?? null);
+        self::assertSame('radix-lyra', $settings['desiderio']['shadcn']['style'] ?? null);
         self::assertSame('preset', $settings['desiderio']['typography']['fontSans'] ?? null);
         self::assertSame('preset', $settings['desiderio']['layout']['radius'] ?? null);
 
         $presetDefinition = $definitions['settings']['desiderio.shadcn.preset'] ?? [];
-        self::assertSame('b4hb38Fyj', $presetDefinition['default'] ?? null);
+        self::assertSame('b6G5977cw', $presetDefinition['default'] ?? null);
         self::assertArrayHasKey('b4hb38Fyj', $presetDefinition['enum'] ?? []);
         self::assertArrayHasKey('b0', $presetDefinition['enum'] ?? []);
         self::assertArrayHasKey('b3IWPgRwnI', $presetDefinition['enum'] ?? []);
@@ -96,7 +96,8 @@ final class ShadcnThemeTest extends TestCase
         self::assertStringContainsString('.desiderio-content-element', $tailwindCss);
 
         self::assertIsArray($componentsJson);
-        self::assertSame('radix-mira', $componentsJson['style'] ?? null);
+        self::assertSame('radix-lyra', $componentsJson['style'] ?? null);
+        self::assertSame('tabler', $componentsJson['iconLibrary'] ?? null);
         self::assertSame('Resources/Private/Tailwind/desiderio.css', $componentsJson['tailwind']['css'] ?? null);
 
         self::assertIsArray($packageJson);

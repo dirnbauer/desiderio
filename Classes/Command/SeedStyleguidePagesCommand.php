@@ -563,7 +563,7 @@ final class SeedStyleguidePagesCommand extends Command
             'Date' => strtotime('2026-05-' . str_pad((string)min(28, $index + 1), 2, '0', STR_PAD_LEFT)) ?: time(),
             'DateTime' => strtotime('2026-05-' . str_pad((string)min(28, $index + 1), 2, '0', STR_PAD_LEFT) . ' 09:00:00') ?: time(),
             'File' => self::FIELD_SKIP,
-            'Link' => 'https://example.com/desiderio/' . $this->buildColumnKey($field),
+            'Link' => $this->buildDefaultLinkValue($field, $index),
             'Number' => $this->buildDefaultNumberValue($field, $fieldConfig, $index),
             'Select' => $this->buildDefaultSelectValue($fieldConfig),
             default => $this->buildDefaultTextValue($ctype, $name, $field, $index),
@@ -686,6 +686,7 @@ final class SeedStyleguidePagesCommand extends Command
         $fieldLabel = $this->buildReadableLabel($field);
 
         return match (true) {
+            preg_match('/^(?:link|child)(\d+)label$/', $normalizedField, $matches) === 1 => $this->getDefaultLinkLabel((int)$matches[1]),
             $normalizedField === 'header' || str_contains($normalizedField, 'headline') || str_contains($normalizedField, 'title') => $subject,
             str_contains($normalizedField, 'eyebrow') || str_contains($normalizedField, 'badge') || str_contains($normalizedField, 'kicker') || str_contains($normalizedField, 'status') => 'Styleguide',
             str_contains($normalizedField, 'alt') || str_contains($normalizedField, 'alternative') => 'Accessible demo image for ' . $subject . '.',
@@ -694,7 +695,7 @@ final class SeedStyleguidePagesCommand extends Command
             str_contains($normalizedField, 'description') || str_contains($normalizedField, 'subheadline') || str_contains($normalizedField, 'content') || str_contains($normalizedField, 'body') || str_contains($normalizedField, 'copy') => 'Complete demo content for ' . $subject . ' with shadcn inspired spacing, contrast, and content hierarchy.',
             str_contains($normalizedField, 'ctatext') || str_contains($normalizedField, 'buttontext') || str_contains($normalizedField, 'submittext') => 'Explore ' . $this->buildReadableLabel($name),
             str_contains($normalizedField, 'feature') || str_contains($normalizedField, 'points') || str_contains($normalizedField, 'specs') => "Fast onboarding\nAccessible components\nProduction ready styling",
-            str_contains($normalizedField, 'links') || str_contains($normalizedField, 'pages') || str_contains($normalizedField, 'children') => "Overview|https://example.com/desiderio/overview\nDocs|https://example.com/desiderio/docs\nSupport|https://example.com/desiderio/support",
+            str_contains($normalizedField, 'links') || str_contains($normalizedField, 'pages') || str_contains($normalizedField, 'children') => "Overview\nDocs\nSupport",
             str_contains($normalizedField, 'members') || str_contains($normalizedField, 'people') => "Mara Weiss|Product Lead\nJonas Klein|Design Systems\nSofia Berg|Customer Success",
             $normalizedField === 'chartdata' || (str_contains($normalizedField, 'chart') && str_contains($normalizedField, 'data')) => '[{"label":"Jan","value":12},{"label":"Feb","value":18},{"label":"Mar","value":14},{"label":"Apr","value":24}]',
             str_contains($normalizedField, 'rowdata') => 'Starter|Active|99%',
@@ -715,6 +716,26 @@ final class SeedStyleguidePagesCommand extends Command
             str_contains($normalizedField, 'color') => '#2563eb',
             default => $fieldLabel . ' for ' . $subject,
         };
+    }
+
+    private function buildDefaultLinkValue(string $field, int $index): string
+    {
+        $normalizedField = $this->normalizeIdentifier($field);
+        if (preg_match('/^(?:link|child)(\d+)(?:link)?$/', $normalizedField, $matches) === 1) {
+            return $this->buildDemoUrl($this->getDefaultLinkLabel((int)$matches[1]));
+        }
+
+        return 'https://example.com/desiderio/' . $this->buildColumnKey($field . '-' . ($index + 1));
+    }
+
+    private function getDefaultLinkLabel(int $slot): string
+    {
+        return ['Overview', 'Docs', 'Support', 'Pricing', 'Contact'][max(0, min(4, $slot - 1))];
+    }
+
+    private function buildDemoUrl(string $label): string
+    {
+        return 'https://example.com/desiderio/' . $this->buildColumnKey($label !== '' ? $label : 'link');
     }
 
     private function buildDemoSubject(string $name, int $index): string
@@ -1035,6 +1056,8 @@ final class SeedStyleguidePagesCommand extends Command
             $normalizedItem[$resolvedField] = $this->normalizeScalarValue($value);
         }
 
+        $normalizedItem = $this->populateFixedLinkSlots($normalizedItem, $item, $collection);
+
         if ($normalizedItem === [] && ($this->tableHasColumn($collection['table'], 'row_data') || isset($collection['fields']['row_data']))) {
             $values = array_values($item);
             if (!$this->containsNestedArray($values)) {
@@ -1049,6 +1072,111 @@ final class SeedStyleguidePagesCommand extends Command
         }
 
         return $normalizedItem;
+    }
+
+    /**
+     * @param array<string, mixed> $normalizedItem
+     * @param array<string, mixed> $sourceItem
+     * @param array{table: string, fields: array<string, array<string, mixed>>, minItems?: int, maxItems?: int|null} $collection
+     * @return array<string, mixed>
+     */
+    private function populateFixedLinkSlots(array $normalizedItem, array $sourceItem, array $collection): array
+    {
+        $normalizedItem = $this->populateNumberedLinkSlots(
+            $normalizedItem,
+            $sourceItem['links'] ?? null,
+            $collection,
+            'link_%d_label',
+            'link_%d'
+        );
+
+        return $this->populateNumberedLinkSlots(
+            $normalizedItem,
+            $sourceItem['children'] ?? null,
+            $collection,
+            'child_%d_label',
+            'child_%d_link'
+        );
+    }
+
+    /**
+     * @param array<string, mixed> $normalizedItem
+     * @param array{table: string, fields: array<string, array<string, mixed>>, minItems?: int, maxItems?: int|null} $collection
+     * @return array<string, mixed>
+     */
+    private function populateNumberedLinkSlots(
+        array $normalizedItem,
+        mixed $sourceLinks,
+        array $collection,
+        string $labelPattern,
+        string $linkPattern,
+    ): array {
+        if ($sourceLinks === null || $sourceLinks === '') {
+            return $normalizedItem;
+        }
+
+        if (is_string($sourceLinks)) {
+            $sourceLinks = preg_split('/\R/', $sourceLinks) ?: [];
+        }
+
+        if (!is_array($sourceLinks)) {
+            return $normalizedItem;
+        }
+
+        $slot = 1;
+        foreach ($sourceLinks as $sourceLink) {
+            $labelField = sprintf($labelPattern, $slot);
+            $linkField = sprintf($linkPattern, $slot);
+            if (!$this->collectionHasField($collection, $labelField) && !$this->collectionHasField($collection, $linkField)) {
+                break;
+            }
+
+            [$label, $link] = $this->normalizeLinkFixture($sourceLink);
+            if ($label !== '' && $this->collectionHasField($collection, $labelField) && $this->isEmptySeedValue($normalizedItem[$labelField] ?? null)) {
+                $normalizedItem[$labelField] = $label;
+            }
+            if ($link !== '' && $this->collectionHasField($collection, $linkField) && $this->isEmptySeedValue($normalizedItem[$linkField] ?? null)) {
+                $normalizedItem[$linkField] = $link;
+            }
+
+            $slot++;
+        }
+
+        return $normalizedItem;
+    }
+
+    /**
+     * @return array{0: string, 1: string}
+     */
+    private function normalizeLinkFixture(mixed $sourceLink): array
+    {
+        if (is_array($sourceLink)) {
+            $label = trim((string)($sourceLink['label'] ?? $sourceLink['title'] ?? $sourceLink['text'] ?? $sourceLink['name'] ?? ''));
+            $link = trim((string)($sourceLink['link'] ?? $sourceLink['url'] ?? $sourceLink['href'] ?? ''));
+
+            return [$label, $link !== '' ? $link : $this->buildDemoUrl($label)];
+        }
+
+        $value = trim((string)$sourceLink);
+        if ($value === '') {
+            return ['', ''];
+        }
+
+        if (str_contains($value, '|')) {
+            [$label, $link] = array_pad(array_map('trim', explode('|', $value, 2)), 2, '');
+
+            return [$label, $link !== '' ? $link : $this->buildDemoUrl($label)];
+        }
+
+        return [$value, $this->buildDemoUrl($value)];
+    }
+
+    /**
+     * @param array{table: string, fields: array<string, array<string, mixed>>, minItems?: int, maxItems?: int|null} $collection
+     */
+    private function collectionHasField(array $collection, string $field): bool
+    {
+        return isset($collection['fields'][$field]) || $this->tableHasColumn($collection['table'], $field);
     }
 
     /**

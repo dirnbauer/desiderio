@@ -42,7 +42,9 @@
                     <f:for each="{data.nav_items}" as="item">
                         <li>
                             <f:if condition="{item.label}"><span>{item.label}</span></f:if>
-                            <f:if condition="{item.children}"><span>{item.children}</span></f:if>
+                            <f:if condition="{item.child_1_label}"><span>{item.child_1_label}</span></f:if>
+                            <f:if condition="{item.child_2_label}"><span>{item.child_2_label}</span></f:if>
+                            <f:if condition="{item.child_3_label}"><span>{item.child_3_label}</span></f:if>
                         </li>
                     </f:for>
                 </ul>

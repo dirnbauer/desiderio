@@ -20,12 +20,11 @@
                         <h3 class="navbar-sidebar__section-title">{section -> f:render.text(field: 'title')}</h3>
                     </f:if>
                     <ul class="navbar-sidebar__list">
-                        <f:for each="{section.links -> f:or(alternative: '') -> f:split(separator: '
-')}" as="linkLine">
-                            <f:if condition="{linkLine -> f:format.trim()}">
-                                <li><span class="navbar-sidebar__link">{linkLine -> f:format.trim()}</span></li>
-                            </f:if>
-                        </f:for>
+                        <f:if condition="{section.link_1_label}"><li><f:if condition="{section.link_1.url}"><f:then><f:link.typolink parameter="{section.link_1}" class="navbar-sidebar__link">{section -> f:render.text(field: 'link_1_label')}</f:link.typolink></f:then><f:else><span class="navbar-sidebar__link">{section -> f:render.text(field: 'link_1_label')}</span></f:else></f:if></li></f:if>
+                        <f:if condition="{section.link_2_label}"><li><f:if condition="{section.link_2.url}"><f:then><f:link.typolink parameter="{section.link_2}" class="navbar-sidebar__link">{section -> f:render.text(field: 'link_2_label')}</f:link.typolink></f:then><f:else><span class="navbar-sidebar__link">{section -> f:render.text(field: 'link_2_label')}</span></f:else></f:if></li></f:if>
+                        <f:if condition="{section.link_3_label}"><li><f:if condition="{section.link_3.url}"><f:then><f:link.typolink parameter="{section.link_3}" class="navbar-sidebar__link">{section -> f:render.text(field: 'link_3_label')}</f:link.typolink></f:then><f:else><span class="navbar-sidebar__link">{section -> f:render.text(field: 'link_3_label')}</span></f:else></f:if></li></f:if>
+                        <f:if condition="{section.link_4_label}"><li><f:if condition="{section.link_4.url}"><f:then><f:link.typolink parameter="{section.link_4}" class="navbar-sidebar__link">{section -> f:render.text(field: 'link_4_label')}</f:link.typolink></f:then><f:else><span class="navbar-sidebar__link">{section -> f:render.text(field: 'link_4_label')}</span></f:else></f:if></li></f:if>
+                        <f:if condition="{section.link_5_label}"><li><f:if condition="{section.link_5.url}"><f:then><f:link.typolink parameter="{section.link_5}" class="navbar-sidebar__link">{section -> f:render.text(field: 'link_5_label')}</f:link.typolink></f:then><f:else><span class="navbar-sidebar__link">{section -> f:render.text(field: 'link_5_label')}</span></f:else></f:if></li></f:if>
                     </ul>
                 </div>
             </f:for>

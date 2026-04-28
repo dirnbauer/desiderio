@@ -39,10 +39,41 @@ fields:
         type: Link
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:link'
       -
-        identifier: children
+        identifier: child_1_label
         type: Textarea
-        label: 'Sub-items (one per line)'
-        rows: 4
+        rows: 1
+        label: 'Sub-item 1 Label'
+      -
+        identifier: child_1_link
+        type: Link
+        label: 'Sub-item 1 Link'
+      -
+        identifier: child_2_label
+        type: Textarea
+        rows: 1
+        label: 'Sub-item 2 Label'
+      -
+        identifier: child_2_link
+        type: Link
+        label: 'Sub-item 2 Link'
+      -
+        identifier: child_3_label
+        type: Textarea
+        rows: 1
+        label: 'Sub-item 3 Label'
+      -
+        identifier: child_3_link
+        type: Link
+        label: 'Sub-item 3 Link'
+      -
+        identifier: child_4_label
+        type: Textarea
+        rows: 1
+        label: 'Sub-item 4 Label'
+      -
+        identifier: child_4_link
+        type: Link
+        label: 'Sub-item 4 Link'
   -
     identifier: button_text
     type: Textarea

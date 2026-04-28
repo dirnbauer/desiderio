@@ -12,36 +12,72 @@
       "title": "Product",
       "description": "Explore the core platform, collaboration tools, and workflow automation.",
       "links": [
-        "Platform overview|https://example.com/desiderio/overview",
-        "Feature map|https://example.com/desiderio/features",
-        "Integrations|https://example.com/desiderio/integrations"
+        {
+          "label": "Platform overview",
+          "link": "https://example.com/desiderio/overview"
+        },
+        {
+          "label": "Feature map",
+          "link": "https://example.com/desiderio/features"
+        },
+        {
+          "label": "Integrations",
+          "link": "https://example.com/desiderio/integrations"
+        }
       ]
     },
     {
       "title": "Solutions",
       "description": "Find workflows for product teams, agencies, and enterprise operations.",
       "links": [
-        "For product teams|https://example.com/desiderio/solutions/product",
-        "For agencies|https://example.com/desiderio/solutions/agencies",
-        "For enterprise|https://example.com/desiderio/solutions/enterprise"
+        {
+          "label": "For product teams",
+          "link": "https://example.com/desiderio/solutions/product"
+        },
+        {
+          "label": "For agencies",
+          "link": "https://example.com/desiderio/solutions/agencies"
+        },
+        {
+          "label": "For enterprise",
+          "link": "https://example.com/desiderio/solutions/enterprise"
+        }
       ]
     },
     {
       "title": "Resources",
       "description": "Use practical guides, launch checklists, and technical references.",
       "links": [
-        "Documentation|https://example.com/desiderio/docs",
-        "Customer stories|https://example.com/desiderio/customers",
-        "Support center|https://example.com/desiderio/support"
+        {
+          "label": "Documentation",
+          "link": "https://example.com/desiderio/docs"
+        },
+        {
+          "label": "Customer stories",
+          "link": "https://example.com/desiderio/customers"
+        },
+        {
+          "label": "Support center",
+          "link": "https://example.com/desiderio/support"
+        }
       ]
     },
     {
       "title": "Company",
       "description": "Learn how the team builds accessible, shadcn-inspired TYPO3 experiences.",
       "links": [
-        "About|https://example.com/desiderio/about",
-        "Changelog|https://example.com/desiderio/changelog",
-        "Contact|https://example.com/desiderio/contact"
+        {
+          "label": "About",
+          "link": "https://example.com/desiderio/about"
+        },
+        {
+          "label": "Changelog",
+          "link": "https://example.com/desiderio/changelog"
+        },
+        {
+          "label": "Contact",
+          "link": "https://example.com/desiderio/contact"
+        }
       ]
     }
   ]

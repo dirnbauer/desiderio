@@ -72,7 +72,47 @@ fields:
         label: 'Group Description'
         rows: 2
       -
-        identifier: links
+        identifier: link_1_label
         type: Textarea
-        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:links_one_per_line'
-        rows: 5
+        rows: 1
+        label: 'Link 1 Label'
+      -
+        identifier: link_1
+        type: Link
+        label: 'Link 1'
+      -
+        identifier: link_2_label
+        type: Textarea
+        rows: 1
+        label: 'Link 2 Label'
+      -
+        identifier: link_2
+        type: Link
+        label: 'Link 2'
+      -
+        identifier: link_3_label
+        type: Textarea
+        rows: 1
+        label: 'Link 3 Label'
+      -
+        identifier: link_3
+        type: Link
+        label: 'Link 3'
+      -
+        identifier: link_4_label
+        type: Textarea
+        rows: 1
+        label: 'Link 4 Label'
+      -
+        identifier: link_4
+        type: Link
+        label: 'Link 4'
+      -
+        identifier: link_5_label
+        type: Textarea
+        rows: 1
+        label: 'Link 5 Label'
+      -
+        identifier: link_5
+        type: Link
+        label: 'Link 5'

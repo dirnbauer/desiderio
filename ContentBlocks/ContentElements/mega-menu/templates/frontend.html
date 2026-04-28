@@ -42,27 +42,46 @@
                                 <p class="mega-menu__group-desc">{group -> f:render.text(field: 'description')}</p>
                             </f:if>
                             <ul class="mega-menu__links">
-                                <f:for each="{group.links -> f:or(alternative: '') -> f:split(separator: '
-')}" as="linkLine">
-                                    <f:variable name="linkParts" value="{linkLine -> f:split(separator: '|')}"/>
-                                    <f:variable name="linkLabel" value="{linkParts.0 -> f:format.trim()}"/>
-                                    <f:if condition="{linkLabel}">
-                                        <li class="mega-menu__link-item">
-                                            <f:if condition="{linkParts.1}">
-                                                <f:then>
-                                                    <f:link.typolink parameter="{linkParts.1 -> f:format.trim()}" class="mega-menu__link">
-                                                        <span class="mega-menu__link-label">{linkLabel}</span>
-                                                    </f:link.typolink>
-                                                </f:then>
-                                                <f:else>
-                                                    <span class="mega-menu__link">
-                                                        <span class="mega-menu__link-label">{linkLabel}</span>
-                                                    </span>
-                                                </f:else>
-                                            </f:if>
-                                        </li>
-                                    </f:if>
-                                </f:for>
+                                <f:if condition="{group.link_1_label}">
+                                    <li class="mega-menu__link-item">
+                                        <f:if condition="{group.link_1.url}">
+                                            <f:then><f:link.typolink parameter="{group.link_1}" class="mega-menu__link"><span class="mega-menu__link-label">{group -> f:render.text(field: 'link_1_label')}</span></f:link.typolink></f:then>
+                                            <f:else><span class="mega-menu__link"><span class="mega-menu__link-label">{group -> f:render.text(field: 'link_1_label')}</span></span></f:else>
+                                        </f:if>
+                                    </li>
+                                </f:if>
+                                <f:if condition="{group.link_2_label}">
+                                    <li class="mega-menu__link-item">
+                                        <f:if condition="{group.link_2.url}">
+                                            <f:then><f:link.typolink parameter="{group.link_2}" class="mega-menu__link"><span class="mega-menu__link-label">{group -> f:render.text(field: 'link_2_label')}</span></f:link.typolink></f:then>
+                                            <f:else><span class="mega-menu__link"><span class="mega-menu__link-label">{group -> f:render.text(field: 'link_2_label')}</span></span></f:else>
+                                        </f:if>
+                                    </li>
+                                </f:if>
+                                <f:if condition="{group.link_3_label}">
+                                    <li class="mega-menu__link-item">
+                                        <f:if condition="{group.link_3.url}">
+                                            <f:then><f:link.typolink parameter="{group.link_3}" class="mega-menu__link"><span class="mega-menu__link-label">{group -> f:render.text(field: 'link_3_label')}</span></f:link.typolink></f:then>
+                                            <f:else><span class="mega-menu__link"><span class="mega-menu__link-label">{group -> f:render.text(field: 'link_3_label')}</span></span></f:else>
+                                        </f:if>
+                                    </li>
+                                </f:if>
+                                <f:if condition="{group.link_4_label}">
+                                    <li class="mega-menu__link-item">
+                                        <f:if condition="{group.link_4.url}">
+                                            <f:then><f:link.typolink parameter="{group.link_4}" class="mega-menu__link"><span class="mega-menu__link-label">{group -> f:render.text(field: 'link_4_label')}</span></f:link.typolink></f:then>
+                                            <f:else><span class="mega-menu__link"><span class="mega-menu__link-label">{group -> f:render.text(field: 'link_4_label')}</span></span></f:else>
+                                        </f:if>
+                                    </li>
+                                </f:if>
+                                <f:if condition="{group.link_5_label}">
+                                    <li class="mega-menu__link-item">
+                                        <f:if condition="{group.link_5.url}">
+                                            <f:then><f:link.typolink parameter="{group.link_5}" class="mega-menu__link"><span class="mega-menu__link-label">{group -> f:render.text(field: 'link_5_label')}</span></f:link.typolink></f:then>
+                                            <f:else><span class="mega-menu__link"><span class="mega-menu__link-label">{group -> f:render.text(field: 'link_5_label')}</span></span></f:else>
+                                        </f:if>
+                                    </li>
+                                </f:if>
                             </ul>
                         </section>
                     </f:for>

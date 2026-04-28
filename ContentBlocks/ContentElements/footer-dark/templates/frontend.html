@@ -20,12 +20,11 @@
                 <nav class="footer-dark__col">
                     <h3 class="footer-dark__col-title">{col -> f:render.text(field: 'title')}</h3>
                     <ul class="footer-dark__links">
-                        <f:for each="{col.links -> f:or(alternative: '') -> f:split(separator: '
-')}" as="linkLine">
-                            <f:if condition="{linkLine -> f:format.trim()}">
-                                <li><span class="footer-dark__link">{linkLine -> f:format.trim()}</span></li>
-                            </f:if>
-                        </f:for>
+                        <f:if condition="{col.link_1_label}"><li><f:if condition="{col.link_1.url}"><f:then><f:link.typolink parameter="{col.link_1}" class="footer-dark__link">{col -> f:render.text(field: 'link_1_label')}</f:link.typolink></f:then><f:else><span class="footer-dark__link">{col -> f:render.text(field: 'link_1_label')}</span></f:else></f:if></li></f:if>
+                        <f:if condition="{col.link_2_label}"><li><f:if condition="{col.link_2.url}"><f:then><f:link.typolink parameter="{col.link_2}" class="footer-dark__link">{col -> f:render.text(field: 'link_2_label')}</f:link.typolink></f:then><f:else><span class="footer-dark__link">{col -> f:render.text(field: 'link_2_label')}</span></f:else></f:if></li></f:if>
+                        <f:if condition="{col.link_3_label}"><li><f:if condition="{col.link_3.url}"><f:then><f:link.typolink parameter="{col.link_3}" class="footer-dark__link">{col -> f:render.text(field: 'link_3_label')}</f:link.typolink></f:then><f:else><span class="footer-dark__link">{col -> f:render.text(field: 'link_3_label')}</span></f:else></f:if></li></f:if>
+                        <f:if condition="{col.link_4_label}"><li><f:if condition="{col.link_4.url}"><f:then><f:link.typolink parameter="{col.link_4}" class="footer-dark__link">{col -> f:render.text(field: 'link_4_label')}</f:link.typolink></f:then><f:else><span class="footer-dark__link">{col -> f:render.text(field: 'link_4_label')}</span></f:else></f:if></li></f:if>
+                        <f:if condition="{col.link_5_label}"><li><f:if condition="{col.link_5.url}"><f:then><f:link.typolink parameter="{col.link_5}" class="footer-dark__link">{col -> f:render.text(field: 'link_5_label')}</f:link.typolink></f:then><f:else><span class="footer-dark__link">{col -> f:render.text(field: 'link_5_label')}</span></f:else></f:if></li></f:if>
                     </ul>
                 </nav>
             </f:for>

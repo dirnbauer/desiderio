@@ -21,7 +21,9 @@ fields:
   -
     identifier: levels
     type: Collection
+    table: org_chart_levels
     label: Levels
+    labelField: level_label
     minItems: 1
     fields:
       -
@@ -31,6 +33,21 @@ fields:
         label: 'Level Label'
       -
         identifier: people
-        type: Textarea
-        label: 'People (one per line, format: Name | Role)'
-        rows: 5
+        type: Collection
+        table: org_chart_people
+        label: People
+        labelField: name
+        minItems: 1
+        maxItems: 12
+        fields:
+          -
+            identifier: name
+            type: Textarea
+            rows: 1
+            label: Name
+            required: true
+          -
+            identifier: role
+            type: Textarea
+            rows: 1
+            label: Role

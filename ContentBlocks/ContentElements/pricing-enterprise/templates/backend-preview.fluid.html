@@ -35,10 +35,10 @@
                 <span class="d-ce-preview__value">{data.description}</span>
             </div>
         </f:if>
-        <f:if condition="{data.features_list}">
+        <f:if condition="{data.features}">
             <div class="d-ce-preview__field">
-                <span class="d-ce-preview__label">Features List</span>
-                <span class="d-ce-preview__value">{data.features_list}</span>
+                <span class="d-ce-preview__label">Features</span>
+                <span class="d-ce-preview__value">{data.features -> f:count()} items</span>
             </div>
         </f:if>
         <f:if condition="{data.contact_text}">

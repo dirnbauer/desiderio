@@ -1,31 +1,43 @@
 {
   "_type": "table",
   "header": "Recent Deployments",
-  "headers": [
-    "Service",
-    "Status",
-    "Last Deploy"
+  "variant": "bordered",
+  "show_header_row": true,
+  "column_definitions": [
+    {
+      "column_label": "Service",
+      "column_key": "service",
+      "column_align": "left"
+    },
+    {
+      "column_label": "Status",
+      "column_key": "status",
+      "column_align": "left"
+    },
+    {
+      "column_label": "Last Deploy",
+      "column_key": "last_deploy",
+      "column_align": "right"
+    }
   ],
   "rows": [
     {
-      "Service": "api-gateway",
-      "Status": "Healthy",
-      "Last Deploy": "2 hours ago"
+      "row_label": "api-gateway",
+      "cells": ["api-gateway", "Healthy", "2 hours ago"]
     },
     {
-      "Service": "web-frontend",
-      "Status": "Healthy",
-      "Last Deploy": "4 hours ago"
+      "row_label": "web-frontend",
+      "cells": ["web-frontend", "Healthy", "4 hours ago"]
     },
     {
-      "Service": "auth-service",
-      "Status": "Degraded",
-      "Last Deploy": "1 day ago"
+      "row_label": "auth-service",
+      "cells": ["auth-service", "Degraded", "1 day ago"]
     },
     {
-      "Service": "worker-queue",
-      "Status": "Healthy",
-      "Last Deploy": "6 hours ago"
+      "row_label": "worker-queue",
+      "cells": ["worker-queue", "Healthy", "6 hours ago"]
     }
-  ]
+  ],
+  "show_caption": true,
+  "caption_text": "Deployment health across production services."
 }

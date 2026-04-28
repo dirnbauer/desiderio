@@ -1,25 +1,29 @@
 {
   "_type": "pricing",
   "header": "Pick Your Plan",
-  "description": "All plans include a 14-day free trial. Cancel anytime.",
+  "eyebrow": "Plans",
+  "subheadline": "All plans include a 14-day free trial. Cancel anytime.",
   "plans": [
     {
       "name": "Lite",
       "price": "$19",
-      "period": "/month",
+      "billing_period": "/month",
+      "description": "For individuals validating a new workflow.",
       "features": [
         "5 team members",
         "10 projects",
         "2 GB storage",
         "Email support"
       ],
-      "button": "Try Lite",
-      "featured": false
+      "button_text": "Try Lite",
+      "button_link": "https://example.com/desiderio/pricing/lite",
+      "is_recommended": false
     },
     {
       "name": "Pro",
       "price": "$49",
-      "period": "/month",
+      "billing_period": "/month",
+      "description": "For teams that need shared workspaces and analytics.",
       "features": [
         "25 team members",
         "Unlimited projects",
@@ -27,13 +31,15 @@
         "Priority support",
         "Advanced analytics"
       ],
-      "button": "Try Pro",
-      "featured": true
+      "button_text": "Try Pro",
+      "button_link": "https://example.com/desiderio/pricing/pro",
+      "is_recommended": true
     },
     {
       "name": "Max",
       "price": "$99",
-      "period": "/month",
+      "billing_period": "/month",
+      "description": "For organizations standardizing operations at scale.",
       "features": [
         "Unlimited team members",
         "Unlimited storage",
@@ -41,8 +47,9 @@
         "Dedicated support",
         "Custom branding"
       ],
-      "button": "Try Max",
-      "featured": false
+      "button_text": "Try Max",
+      "button_link": "https://example.com/desiderio/pricing/max",
+      "is_recommended": false
     }
   ]
 }

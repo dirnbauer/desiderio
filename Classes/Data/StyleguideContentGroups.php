@@ -11,8 +11,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  * Source: Resources/Private/Data/styleguide-content-groups.json
  *
  * Fixture data is loaded from individual fixture.json files inside each
- * Content Block directory. Falls back to the monolithic
- * Resources/Private/Data/styleguide-fixtures.json if present.
+ * Content Block directory.
  */
 final class StyleguideContentGroups
 {
@@ -68,18 +67,7 @@ final class StyleguideContentGroups
             return self::$fixtureCache;
         }
 
-        $fixtures = self::loadFixturesFromContentBlocks();
-
-        /** @var array<string, array<string, mixed>> $monolithic */
-        $monolithic = self::loadJson('EXT:desiderio/Resources/Private/Data/styleguide-fixtures.json');
-        foreach ($monolithic as $ctype => $data) {
-            $normalizedCtype = self::normalizeCtype((string)$ctype);
-            if (!isset($fixtures[$normalizedCtype])) {
-                $fixtures[$normalizedCtype] = $data;
-            }
-        }
-
-        self::$fixtureCache = $fixtures;
+        self::$fixtureCache = self::loadFixturesFromContentBlocks();
         return self::$fixtureCache;
     }
 
@@ -125,15 +113,6 @@ final class StyleguideContentGroups
         }
 
         return $fixtures;
-    }
-
-    private static function normalizeCtype(string $ctype): string
-    {
-        if (str_starts_with($ctype, 'shadcn2fluid_')) {
-            return 'desiderio_' . str_replace('-', '', substr($ctype, strlen('shadcn2fluid_')));
-        }
-
-        return $ctype;
     }
 
     /**

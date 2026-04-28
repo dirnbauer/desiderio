@@ -1,45 +1,49 @@
 {
   "_type": "pricing",
   "header": "Plans for Every Stage",
-  "description": "From solo founders to enterprise teams, we have a plan that fits.",
+  "eyebrow": "Plans",
+  "subheadline": "From solo founders to enterprise teams, we have a plan that fits.",
   "plans": [
     {
-      "name": "Solo",
-      "price": "$9",
-      "period": "/month",
+      "title": "Solo",
+      "price": "$9 /month",
+      "description": "For one-person projects and early prototypes.",
       "features": [
         "1 user",
         "3 projects",
         "Basic features",
         "Community support"
       ],
-      "button": "Start Solo",
+      "button_text": "Start Solo",
+      "button_link": "https://example.com/desiderio/pricing/solo",
       "featured": false
     },
     {
-      "name": "Team",
-      "price": "$25",
-      "period": "/user/month",
+      "title": "Team",
+      "price": "$25 /user/month",
+      "description": "For collaborative teams shipping weekly.",
       "features": [
         "Up to 20 users",
         "Unlimited projects",
         "Advanced features",
         "Email support"
       ],
-      "button": "Start Team",
+      "button_text": "Start Team",
+      "button_link": "https://example.com/desiderio/pricing/team",
       "featured": true
     },
     {
-      "name": "Business",
-      "price": "$59",
-      "period": "/user/month",
+      "title": "Business",
+      "price": "$59 /user/month",
+      "description": "For cross-functional teams with governance needs.",
       "features": [
         "Unlimited users",
         "Admin controls",
         "Analytics suite",
         "Priority support"
       ],
-      "button": "Start Business",
+      "button_text": "Start Business",
+      "button_link": "https://example.com/desiderio/pricing/business",
       "featured": false
     }
   ]

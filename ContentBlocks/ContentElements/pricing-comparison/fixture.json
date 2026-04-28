@@ -1,36 +1,37 @@
 {
-  "_type": "table",
+  "_type": "pricing",
   "header": "Pricing Comparison",
-  "headers": [
-    "Feature",
-    "Free",
-    "Team",
-    "Business"
+  "eyebrow": "Plans",
+  "plans": [
+    {
+      "name": "Free",
+      "price": "$0"
+    },
+    {
+      "name": "Team",
+      "price": "$29"
+    },
+    {
+      "name": "Business",
+      "price": "$79"
+    }
   ],
-  "rows": [
+  "pricing_feature_items": [
     {
-      "Feature": "Projects",
-      "Free": "5",
-      "Team": "Unlimited",
-      "Business": "Unlimited"
+      "feature_name": "Projects",
+      "tier_values": ["5", "Unlimited", "Unlimited"]
     },
     {
-      "Feature": "Build Minutes",
-      "Free": "100/mo",
-      "Team": "3,000/mo",
-      "Business": "10,000/mo"
+      "feature_name": "Build Minutes",
+      "tier_values": ["100/mo", "3,000/mo", "10,000/mo"]
     },
     {
-      "Feature": "Custom Domains",
-      "Free": "1",
-      "Team": "10",
-      "Business": "Unlimited"
+      "feature_name": "Custom Domains",
+      "tier_values": ["1", "10", "Unlimited"]
     },
     {
-      "Feature": "Analytics",
-      "Free": "Basic",
-      "Team": "Advanced",
-      "Business": "Enterprise"
+      "feature_name": "Analytics",
+      "tier_values": ["Basic", "Advanced", "Enterprise"]
     }
   ]
 }

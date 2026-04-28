@@ -21,7 +21,9 @@ fields:
   -
     identifier: products
     type: Collection
+    table: product_comparison_products
     label: Products
+    labelField: name
     minItems: 2
     maxItems: 3
     fields:
@@ -43,10 +45,19 @@ fields:
         rows: 1
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:price'
       -
-        identifier: specs_text
-        type: Textarea
-        label: 'Specs (one per line)'
-        rows: 6
+        identifier: specs
+        type: Collection
+        table: product_comparison_specs
+        label: Specs
+        labelField: text
+        minItems: 1
+        maxItems: 8
+        fields:
+          -
+            identifier: text
+            type: Textarea
+            rows: 1
+            label: Spec
       -
         identifier: is_recommended
         type: Checkbox

@@ -42,7 +42,9 @@ fields:
   -
     identifier: plans
     type: Collection
+    table: pricing_plans
     label: 'Pricing Plans'
+    labelField: name
     minItems: 1
     maxItems: 4
     fields:
@@ -75,10 +77,19 @@ fields:
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
         rows: 2
       -
-        identifier: features_list
-        type: Textarea
-        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:features_one_per_line'
-        rows: 6
+        identifier: features
+        type: Collection
+        table: pricing_plan_features
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:features'
+        labelField: text
+        minItems: 1
+        maxItems: 8
+        fields:
+          -
+            identifier: text
+            type: Textarea
+            rows: 1
+            label: 'Feature'
       -
         identifier: is_featured
         type: Checkbox

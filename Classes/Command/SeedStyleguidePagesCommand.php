@@ -28,15 +28,19 @@ final class SeedStyleguidePagesCommand extends Command
     public const DEFAULT_PARENT_PID = 505;
     private const FIELD_SKIP = '__skip__';
     private const FILE_REFERENCES_KEY = '__fileReferences';
+    private const NESTED_COLLECTIONS_KEY = '__collections';
     private const STYLEGUIDE_FAL_FOLDER = 'desiderio-styleguide';
 
     /** @var array<string, array<string, true>> */
     private array $tableColumnsCache = [];
 
     /**
-     * @var array<string, array{fields: array<string, array<string, mixed>>, collections: array<string, array{table: string, fields: array<string, array<string, mixed>>, minItems: int, maxItems: int|null}>}>|null
+     * @var array<string, array{fields: array<string, array<string, mixed>>, collections: array<string, array<string, mixed>>}>|null
      */
     private ?array $contentBlockDefinitions = null;
+
+    /** @var array<string, list<array<string, mixed>>>|null */
+    private ?array $collectionsByParentTable = null;
 
     /** @var array<string, File> */
     private array $styleguideFiles = [];
@@ -215,8 +219,9 @@ final class SeedStyleguidePagesCommand extends Command
         $existingContentUids = $this->findExistingDesiderioContentUids($pageUid);
         if ($existingContentUids !== []) {
             $this->deleteFileReferencesForRecords('tt_content', $existingContentUids);
-            $this->deleteCollectionRowsForParentUids($existingContentUids);
+            $this->deleteCollectionRowsForParentUids($existingContentUids, 'tt_content');
         }
+        $this->deleteCollectionRowsForPage($pageUid);
 
         $queryBuilder = $this->connectionPool->getQueryBuilderForTable('tt_content');
         $queryBuilder
@@ -228,6 +233,26 @@ final class SeedStyleguidePagesCommand extends Command
                 $queryBuilder->expr()->like('CType', $queryBuilder->createNamedParameter('desiderio_%'))
             )
             ->executeStatement();
+    }
+
+    private function deleteCollectionRowsForPage(int $pageUid): void
+    {
+        foreach ($this->getCollectionTableNames() as $table) {
+            if (!$this->tableHasColumn($table, 'pid')) {
+                continue;
+            }
+
+            $collectionUids = $this->findCollectionRowUidsByPid($table, $pageUid);
+            $this->deleteFileReferencesForRecords($table, $collectionUids);
+
+            $queryBuilder = $this->connectionPool->getQueryBuilderForTable($table);
+            $queryBuilder
+                ->delete($table)
+                ->where(
+                    $queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($pageUid))
+                )
+                ->executeStatement();
+        }
     }
 
     /**
@@ -257,14 +282,20 @@ final class SeedStyleguidePagesCommand extends Command
     /**
      * @param list<int> $parentUids
      */
-    private function deleteCollectionRowsForParentUids(array $parentUids): void
+    private function deleteCollectionRowsForParentUids(array $parentUids, string $parentTable): void
     {
-        foreach ($this->getCollectionTableNames() as $table) {
+        if ($parentUids === []) {
+            return;
+        }
+
+        foreach ($this->getCollectionsByParentTable()[$parentTable] ?? [] as $collection) {
+            $table = (string)$collection['table'];
             if (!$this->tableHasColumn($table, 'foreign_table_parent_uid')) {
                 continue;
             }
 
             $collectionUids = $this->findCollectionRowUids($table, $parentUids);
+            $this->deleteCollectionRowsForParentUids($collectionUids, $table);
             $this->deleteFileReferencesForRecords($table, $collectionUids);
 
             $queryBuilder = $this->connectionPool->getQueryBuilderForTable($table);
@@ -301,6 +332,29 @@ final class SeedStyleguidePagesCommand extends Command
                     'foreign_table_parent_uid',
                     $queryBuilder->createNamedParameter($parentUids, ArrayParameterType::INTEGER)
                 )
+            )
+            ->executeQuery()
+            ->fetchFirstColumn();
+
+        return array_map(
+            static fn (mixed $uid): int => (int)$uid,
+            $uids
+        );
+    }
+
+    /**
+     * @return list<int>
+     */
+    private function findCollectionRowUidsByPid(string $table, int $pageUid): array
+    {
+        $queryBuilder = $this->connectionPool->getQueryBuilderForTable($table);
+        $queryBuilder->getRestrictions()->removeAll();
+
+        $uids = $queryBuilder
+            ->select('uid')
+            ->from($table)
+            ->where(
+                $queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($pageUid))
             )
             ->executeQuery()
             ->fetchFirstColumn();
@@ -442,7 +496,7 @@ final class SeedStyleguidePagesCommand extends Command
     }
 
     /**
-     * @param array{fields: array<string, array<string, mixed>>, collections: array<string, array{table: string, fields: array<string, array<string, mixed>>, minItems: int, maxItems: int|null}>} $definition
+     * @param array{fields: array<string, array<string, mixed>>, collections: array<string, array<string, mixed>>} $definition
      * @param array<string, mixed> $resolvedFields
      * @param array<string, array{table: string, items: list<array<string, mixed>>}> $collections
      * @param array<string, mixed> $fixture
@@ -499,7 +553,7 @@ final class SeedStyleguidePagesCommand extends Command
     }
 
     /**
-     * @param array{table: string, fields: array<string, array<string, mixed>>, minItems: int, maxItems: int|null} $collection
+     * @param array<string, mixed> $collection
      * @param array<string, mixed> $item
      * @return array<string, mixed>
      */
@@ -512,6 +566,11 @@ final class SeedStyleguidePagesCommand extends Command
         int $index,
     ): array {
         $fileReferences = [];
+        $nestedCollections = [];
+        if (isset($item[self::NESTED_COLLECTIONS_KEY]) && is_array($item[self::NESTED_COLLECTIONS_KEY])) {
+            $nestedCollections = $item[self::NESTED_COLLECTIONS_KEY];
+            unset($item[self::NESTED_COLLECTIONS_KEY]);
+        }
 
         foreach ($collection['fields'] as $field => $fieldConfig) {
             if ($this->isFileField($fieldConfig)) {
@@ -529,8 +588,33 @@ final class SeedStyleguidePagesCommand extends Command
             }
         }
 
+        foreach (($collection['collections'] ?? []) as $field => $nestedCollection) {
+            $existingItems = $nestedCollections[$field]['items'] ?? [];
+            $targetItemCount = $this->getTargetCollectionItemCount($nestedCollection, count($existingItems));
+            $items = [];
+
+            for ($nestedIndex = 0; $nestedIndex < $targetItemCount; $nestedIndex++) {
+                $nestedItem = $existingItems[$nestedIndex] ?? [];
+                $completedItem = $this->completeCollectionItem($ctype, $name, (string)$field, $nestedCollection, $nestedItem, $nestedIndex);
+                if ($completedItem !== []) {
+                    $items[] = $completedItem;
+                }
+            }
+
+            if ($items !== []) {
+                $nestedCollections[$field] = [
+                    'table' => $nestedCollection['table'],
+                    'items' => $items,
+                ];
+                $item[$field] = count($items);
+            }
+        }
+
         if ($fileReferences !== []) {
             $item[self::FILE_REFERENCES_KEY] = $fileReferences;
+        }
+        if ($nestedCollections !== []) {
+            $item[self::NESTED_COLLECTIONS_KEY] = $nestedCollections;
         }
 
         return $item;
@@ -879,7 +963,7 @@ final class SeedStyleguidePagesCommand extends Command
 
     /**
      * @param array<int|string, mixed> $value
-     * @param array{collections: array<string, array{table: string, fields: array<string, array<string, mixed>>, minItems: int, maxItems: int|null}>} $definition
+     * @param array{collections: array<string, array<string, mixed>>} $definition
      */
     private function resolveCollectionField(string $field, array $value, array $definition): ?string
     {
@@ -917,7 +1001,7 @@ final class SeedStyleguidePagesCommand extends Command
 
     /**
      * @param array<int|string, mixed> $value
-     * @param array{table: string, fields: array<string, array<string, mixed>>, minItems?: int, maxItems?: int|null} $collection
+     * @param array<string, mixed> $collection
      */
     private function scoreCollectionCandidate(string $field, array $value, string $identifier, array $collection): float
     {
@@ -945,7 +1029,7 @@ final class SeedStyleguidePagesCommand extends Command
         }
 
         if ($this->isListOfScalars($value)) {
-            foreach (['label', 'title', 'name', 'text', 'value', 'question', 'row_data', 'links', 'features_list'] as $candidate) {
+            foreach (['label', 'title', 'name', 'feature_name', 'row_label', 'text', 'value', 'question', 'row_data', 'links', 'features', 'features_list'] as $candidate) {
                 if (isset($collection['fields'][$candidate]) || $this->tableHasColumn($collection['table'], $candidate)) {
                     $score += 1.0;
                     break;
@@ -963,7 +1047,10 @@ final class SeedStyleguidePagesCommand extends Command
             }
             foreach (array_keys($item) as $itemKey) {
                 $total++;
-                if ($this->resolveChildField((string)$itemKey, $item[(string)$itemKey], $collection) !== null) {
+                if (
+                    $this->resolveNestedCollectionField((string)$itemKey, $item[(string)$itemKey], $collection) !== null
+                    || $this->resolveChildField((string)$itemKey, $item[(string)$itemKey], $collection) !== null
+                ) {
                     $matches++;
                 }
             }
@@ -978,7 +1065,7 @@ final class SeedStyleguidePagesCommand extends Command
 
     /**
      * @param array<int|string, mixed> $items
-     * @param array{table: string, fields: array<string, array<string, mixed>>, minItems?: int, maxItems?: int|null} $collection
+     * @param array<string, mixed> $collection
      * @return list<array<string, mixed>>
      */
     private function normalizeCollectionItems(array $items, array $collection): array
@@ -1016,7 +1103,7 @@ final class SeedStyleguidePagesCommand extends Command
     }
 
     /**
-     * @param array{table: string, fields: array<string, array<string, mixed>>, minItems?: int, maxItems?: int|null} $collection
+     * @param array<string, mixed> $collection
      * @return array<string, mixed>
      */
     private function normalizeCollectionItem(mixed $item, array $collection): array
@@ -1039,6 +1126,26 @@ final class SeedStyleguidePagesCommand extends Command
         $normalizedItem = [];
         foreach ($item as $field => $value) {
             $field = (string)$field;
+            $nestedCollectionField = $this->resolveNestedCollectionField($field, $value, $collection);
+            if ($nestedCollectionField !== null) {
+                $items = $this->normalizeCollectionItems(
+                    $this->normalizeCollectionSourceItems($value, $field),
+                    $collection['collections'][$nestedCollectionField]
+                );
+                if ($items !== []) {
+                    $normalizedItem[self::NESTED_COLLECTIONS_KEY][$nestedCollectionField] = [
+                        'table' => $collection['collections'][$nestedCollectionField]['table'],
+                        'items' => $items,
+                    ];
+                    $normalizedItem[$nestedCollectionField] = count($items);
+                }
+                continue;
+            }
+
+            if ($this->shouldSkipLegacyStructuredListField($field, $collection)) {
+                continue;
+            }
+
             $resolvedField = $this->resolveChildField($field, $value, $collection);
             if ($resolvedField === null) {
                 continue;
@@ -1057,6 +1164,23 @@ final class SeedStyleguidePagesCommand extends Command
         }
 
         $normalizedItem = $this->populateFixedLinkSlots($normalizedItem, $item, $collection);
+
+        if ($normalizedItem === [] && $this->collectionHasNestedCollection($collection, 'cells')) {
+            $values = array_values($item);
+            if (!$this->containsNestedArray($values)) {
+                $cellItems = $this->normalizeCollectionItems($values, $collection['collections']['cells']);
+                if ($cellItems !== []) {
+                    if (isset($collection['fields']['row_label'])) {
+                        $normalizedItem['row_label'] = $this->normalizeScalarValue($values[0] ?? '');
+                    }
+                    $normalizedItem[self::NESTED_COLLECTIONS_KEY]['cells'] = [
+                        'table' => $collection['collections']['cells']['table'],
+                        'items' => $cellItems,
+                    ];
+                    $normalizedItem['cells'] = count($cellItems);
+                }
+            }
+        }
 
         if ($normalizedItem === [] && ($this->tableHasColumn($collection['table'], 'row_data') || isset($collection['fields']['row_data']))) {
             $values = array_values($item);
@@ -1077,7 +1201,7 @@ final class SeedStyleguidePagesCommand extends Command
     /**
      * @param array<string, mixed> $normalizedItem
      * @param array<string, mixed> $sourceItem
-     * @param array{table: string, fields: array<string, array<string, mixed>>, minItems?: int, maxItems?: int|null} $collection
+     * @param array<string, mixed> $collection
      * @return array<string, mixed>
      */
     private function populateFixedLinkSlots(array $normalizedItem, array $sourceItem, array $collection): array
@@ -1101,7 +1225,7 @@ final class SeedStyleguidePagesCommand extends Command
 
     /**
      * @param array<string, mixed> $normalizedItem
-     * @param array{table: string, fields: array<string, array<string, mixed>>, minItems?: int, maxItems?: int|null} $collection
+     * @param array<string, mixed> $collection
      * @return array<string, mixed>
      */
     private function populateNumberedLinkSlots(
@@ -1172,7 +1296,7 @@ final class SeedStyleguidePagesCommand extends Command
     }
 
     /**
-     * @param array{table: string, fields: array<string, array<string, mixed>>, minItems?: int, maxItems?: int|null} $collection
+     * @param array<string, mixed> $collection
      */
     private function collectionHasField(array $collection, string $field): bool
     {
@@ -1180,23 +1304,104 @@ final class SeedStyleguidePagesCommand extends Command
     }
 
     /**
-     * @param array{table: string, fields: array<string, array<string, mixed>>, minItems?: int, maxItems?: int|null} $collection
+     * @param array{collections?: array<string, array<string, mixed>>} $collection
+     */
+    private function collectionHasNestedCollection(array $collection, string $field): bool
+    {
+        return isset($collection['collections'][$field]);
+    }
+
+    /**
+     * @param array<string, mixed> $collection
+     */
+    private function resolveNestedCollectionField(string $field, mixed $value, array $collection): ?string
+    {
+        if (!is_array($value) && !is_string($value)) {
+            return null;
+        }
+
+        if ($this->collectionHasNestedCollection($collection, $field)) {
+            return $field;
+        }
+
+        foreach ($this->getNestedCollectionFieldAliases()[$field] ?? [] as $candidate) {
+            if ($this->collectionHasNestedCollection($collection, $candidate)) {
+                return $candidate;
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * @return array<int, mixed>
+     */
+    private function normalizeCollectionSourceItems(mixed $value, string $field = ''): array
+    {
+        if (is_string($value)) {
+            $separator = match ($field) {
+                'tier_values', 'values' => '/\s*,\s*/',
+                'row_data', 'cells' => '/\s*\|\s*/',
+                default => '/\R/',
+            };
+
+            return array_values(array_filter(
+                preg_split($separator, $value) ?: [],
+                static fn (mixed $item): bool => trim((string)$item) !== ''
+            ));
+        }
+
+        if (is_array($value)) {
+            return $value;
+        }
+
+        return [];
+    }
+
+    /**
+     * @param array<string, mixed> $collection
+     */
+    private function shouldSkipLegacyStructuredListField(string $field, array $collection): bool
+    {
+        if (
+            in_array($field, ['links', 'children'], true)
+            && (
+                $this->collectionHasField($collection, 'link_1')
+                || $this->collectionHasField($collection, 'link_1_label')
+                || $this->collectionHasField($collection, 'child_1_link')
+                || $this->collectionHasField($collection, 'child_1_label')
+            )
+        ) {
+            return true;
+        }
+
+        foreach ($this->getNestedCollectionFieldAliases()[$field] ?? [] as $candidate) {
+            if ($this->collectionHasNestedCollection($collection, $candidate)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
+     * @param array<string, mixed> $collection
      */
     private function resolveChildField(string $field, mixed $value, array $collection): ?string
     {
-        if (isset($collection['fields'][$field]) || $this->tableHasColumn($collection['table'], $field)) {
+        if (isset($collection['fields'][$field])) {
             return $field;
         }
 
         foreach ($this->getChildFieldAliases()[$field] ?? [] as $candidate) {
-            if (isset($collection['fields'][$candidate]) || $this->tableHasColumn($collection['table'], $candidate)) {
+            if (isset($collection['fields'][$candidate])) {
                 return $candidate;
             }
         }
 
         if ($field === 'title') {
             foreach (['label', 'name'] as $candidate) {
-                if (isset($collection['fields'][$candidate]) || $this->tableHasColumn($collection['table'], $candidate)) {
+                if (isset($collection['fields'][$candidate])) {
                     return $candidate;
                 }
             }
@@ -1204,7 +1409,33 @@ final class SeedStyleguidePagesCommand extends Command
 
         if (is_scalar($value) && $field === 'link') {
             foreach (['url', 'button_link'] as $candidate) {
-                if (isset($collection['fields'][$candidate]) || $this->tableHasColumn($collection['table'], $candidate)) {
+                if (isset($collection['fields'][$candidate])) {
+                    return $candidate;
+                }
+            }
+        }
+
+        if ($this->tableHasColumn($collection['table'], $field)) {
+            return $field;
+        }
+
+        foreach ($this->getChildFieldAliases()[$field] ?? [] as $candidate) {
+            if ($this->tableHasColumn($collection['table'], $candidate)) {
+                return $candidate;
+            }
+        }
+
+        if ($field === 'title') {
+            foreach (['label', 'name'] as $candidate) {
+                if ($this->tableHasColumn($collection['table'], $candidate)) {
+                    return $candidate;
+                }
+            }
+        }
+
+        if (is_scalar($value) && $field === 'link') {
+            foreach (['url', 'button_link'] as $candidate) {
+                if ($this->tableHasColumn($collection['table'], $candidate)) {
                     return $candidate;
                 }
             }
@@ -1235,7 +1466,7 @@ final class SeedStyleguidePagesCommand extends Command
 
     /**
      * @param array<int, mixed> $value
-     * @param array{table: string, fields: array<string, array<string, mixed>>, minItems?: int, maxItems?: int|null} $collection
+     * @param array<string, mixed> $collection
      */
     private function normalizeArrayForCollectionField(array $value, string $field, array $collection): mixed
     {
@@ -1274,6 +1505,11 @@ final class SeedStyleguidePagesCommand extends Command
                     $fileReferences = $item[self::FILE_REFERENCES_KEY];
                     unset($item[self::FILE_REFERENCES_KEY]);
                 }
+                $nestedCollections = [];
+                if (isset($item[self::NESTED_COLLECTIONS_KEY]) && is_array($item[self::NESTED_COLLECTIONS_KEY])) {
+                    $nestedCollections = $item[self::NESTED_COLLECTIONS_KEY];
+                    unset($item[self::NESTED_COLLECTIONS_KEY]);
+                }
 
                 $row = $this->filterRow([
                     'pid' => $pageUid,
@@ -1292,6 +1528,7 @@ final class SeedStyleguidePagesCommand extends Command
                 $connection->insert($table, $row);
                 $collectionRowUid = (int)$connection->lastInsertId();
                 $this->seedFileReferences($table, $collectionRowUid, $pageUid, $now, $fileReferences);
+                $this->seedCollectionRecords($collectionRowUid, $pageUid, $now, $nestedCollections);
             }
         }
     }
@@ -1436,7 +1673,7 @@ final class SeedStyleguidePagesCommand extends Command
     }
 
     /**
-     * @return array<string, array{fields: array<string, array<string, mixed>>, collections: array<string, array{table: string, fields: array<string, array<string, mixed>>, minItems: int, maxItems: int|null}>}>
+     * @return array<string, array{fields: array<string, array<string, mixed>>, collections: array<string, array<string, mixed>>}>
      */
     private function getContentBlockDefinitions(): array
     {
@@ -1481,7 +1718,7 @@ final class SeedStyleguidePagesCommand extends Command
 
     /**
      * @param array<string, mixed> $config
-     * @return array{fields: array<string, array<string, mixed>>, collections: array<string, array{table: string, fields: array<string, array<string, mixed>>, minItems: int, maxItems: int|null}>}
+     * @return array{fields: array<string, array<string, mixed>>, collections: array<string, array<string, mixed>>}
      */
     private function buildContentBlockDefinition(array $config): array
     {
@@ -1501,30 +1738,71 @@ final class SeedStyleguidePagesCommand extends Command
                 continue;
             }
 
-            $childFields = [];
-            foreach (($field['fields'] ?? []) as $childField) {
-                if (!is_array($childField) || !isset($childField['identifier'])) {
-                    continue;
-                }
-                $childFields[(string)$childField['identifier']] = $childField;
-            }
-
-            $definition['collections'][$identifier] = [
-                'table' => (string)($field['table'] ?? $field['foreign_table'] ?? $identifier),
-                'fields' => $childFields,
-                'minItems' => $this->getConfiguredInteger($field, 'minItems')
-                    ?? $this->getConfiguredInteger($field, 'minitems')
-                    ?? 1,
-                'maxItems' => $this->getConfiguredInteger($field, 'maxItems')
-                    ?? $this->getConfiguredInteger($field, 'maxitems'),
-            ];
+            $definition['collections'][$identifier] = $this->buildCollectionDefinition($field, $identifier);
         }
 
         return $definition;
     }
 
     /**
-     * @return array{fields: array<string, array<string, mixed>>, collections: array<string, array{table: string, fields: array<string, array<string, mixed>>, minItems: int, maxItems: int|null}>}|null
+     * @param array<string, mixed> $field
+     * @return array{table: string, fields: array<string, array<string, mixed>>, collections: array<string, array<string, mixed>>, minItems: int, maxItems: int|null}
+     */
+    private function buildCollectionDefinition(array $field, string $fallbackIdentifier): array
+    {
+        $childFields = [];
+        $childCollections = [];
+
+        foreach (($field['fields'] ?? []) as $childField) {
+            if (!is_array($childField) || !isset($childField['identifier'])) {
+                continue;
+            }
+
+            $childIdentifier = (string)$childField['identifier'];
+            if (($childField['type'] ?? '') === 'Collection') {
+                $childCollections[$childIdentifier] = $this->buildCollectionDefinition($childField, $childIdentifier);
+                continue;
+            }
+
+            $childFields[$childIdentifier] = $childField;
+        }
+
+        return [
+            'table' => $this->resolveCollectionTable($field, $fallbackIdentifier),
+            'fields' => $childFields,
+            'collections' => $childCollections,
+            'minItems' => $this->getConfiguredInteger($field, 'minItems')
+                ?? $this->getConfiguredInteger($field, 'minitems')
+                ?? 1,
+            'maxItems' => $this->getConfiguredInteger($field, 'maxItems')
+                ?? $this->getConfiguredInteger($field, 'maxitems'),
+        ];
+    }
+
+    /**
+     * @param array<string, mixed> $field
+     */
+    private function resolveCollectionTable(array $field, string $fallbackIdentifier): string
+    {
+        $configuredTable = (string)($field['table'] ?? $field['foreign_table'] ?? $fallbackIdentifier);
+        if ($configuredTable === $fallbackIdentifier || $this->tableExists($configuredTable)) {
+            return $configuredTable;
+        }
+
+        // Some existing Content Blocks share identifiers like "plans" across
+        // elements. Content Blocks keeps the shared physical table in those
+        // cases, even when newer configs specify a table override. Seed into
+        // the generated table that actually exists, then keep nested tables
+        // element-specific.
+        if ($this->tableExists($fallbackIdentifier)) {
+            return $fallbackIdentifier;
+        }
+
+        return $configuredTable;
+    }
+
+    /**
+     * @return array{fields: array<string, array<string, mixed>>, collections: array<string, array<string, mixed>>}|null
      */
     private function getContentBlockDefinition(string $ctype): ?array
     {
@@ -1538,12 +1816,52 @@ final class SeedStyleguidePagesCommand extends Command
     {
         $tables = [];
         foreach ($this->getContentBlockDefinitions() as $definition) {
-            foreach ($definition['collections'] as $collection) {
-                $tables[$collection['table']] = true;
-            }
+            $this->collectCollectionTableNames($definition['collections'], $tables);
         }
 
         return array_keys($tables);
+    }
+
+    /**
+     * @param array<string, array<string, mixed>> $collections
+     * @param array<string, true> $tables
+     */
+    private function collectCollectionTableNames(array $collections, array &$tables): void
+    {
+        foreach ($collections as $collection) {
+            $tables[(string)$collection['table']] = true;
+            $this->collectCollectionTableNames($collection['collections'] ?? [], $tables);
+        }
+    }
+
+    /**
+     * @return array<string, list<array<string, mixed>>>
+     */
+    private function getCollectionsByParentTable(): array
+    {
+        if ($this->collectionsByParentTable !== null) {
+            return $this->collectionsByParentTable;
+        }
+
+        $map = [];
+        foreach ($this->getContentBlockDefinitions() as $definition) {
+            $this->collectCollectionsByParentTable('tt_content', $definition['collections'], $map);
+        }
+
+        $this->collectionsByParentTable = $map;
+        return $map;
+    }
+
+    /**
+     * @param array<string, array<string, mixed>> $collections
+     * @param array<string, list<array<string, mixed>>> $map
+     */
+    private function collectCollectionsByParentTable(string $parentTable, array $collections, array &$map): void
+    {
+        foreach ($collections as $collection) {
+            $map[$parentTable][] = $collection;
+            $this->collectCollectionsByParentTable((string)$collection['table'], $collection['collections'] ?? [], $map);
+        }
     }
 
     private function tableHasColumn(string $table, string $column): bool
@@ -1551,12 +1869,17 @@ final class SeedStyleguidePagesCommand extends Command
         return isset($this->getColumnNames($table)[$column]);
     }
 
+    private function tableExists(string $table): bool
+    {
+        return $this->getColumnNames($table) !== [];
+    }
+
     /**
-     * @param array{table: string, fields: array<string, array<string, mixed>>, minItems?: int, maxItems?: int|null} $collection
+     * @param array<string, mixed> $collection
      */
     private function findPreferredTextField(array $collection): ?string
     {
-        foreach (['label', 'title', 'name', 'text', 'value', 'question', 'row_data', 'links', 'features_list', 'description'] as $candidate) {
+        foreach (['label', 'title', 'name', 'feature_name', 'row_label', 'text', 'value', 'question', 'row_data', 'links', 'features_list', 'description'] as $candidate) {
             if (isset($collection['fields'][$candidate]) || $this->tableHasColumn($collection['table'], $candidate)) {
                 return $candidate;
             }
@@ -1699,11 +2022,34 @@ final class SeedStyleguidePagesCommand extends Command
             'period' => ['billing_period', 'price_period'],
             'button' => ['button_text'],
             'features' => ['features_list'],
+            'Feature' => ['feature_name', 'name', 'label'],
+            'Capability' => ['feature_name', 'name', 'label'],
             'featured' => ['is_featured', 'featured', 'highlighted', 'is_recommended'],
             'company' => ['company_name', 'affiliation', 'author_company'],
             'author' => ['author_name', 'name'],
             'role' => ['author_title', 'role', 'position'],
             'quote' => ['quote_text', 'quote'],
+        ];
+    }
+
+    /**
+     * @return array<string, list<string>>
+     */
+    private function getNestedCollectionFieldAliases(): array
+    {
+        return [
+            'features_list' => ['features', 'feature_items'],
+            'feature_list' => ['features', 'feature_items'],
+            'features' => ['features', 'feature_items'],
+            'specs_text' => ['specs'],
+            'specs' => ['specs'],
+            'members' => ['members'],
+            'people' => ['people'],
+            'pages' => ['pages'],
+            'tier_values' => ['tier_values'],
+            'values' => ['tier_values'],
+            'row_data' => ['cells'],
+            'cells' => ['cells'],
         ];
     }
 }

@@ -1,25 +1,28 @@
 {
   "_type": "pricing",
   "header": "Flexible Billing Options",
-  "description": "Save 20% when you choose annual billing. Switch anytime.",
+  "subheadline": "Save 20% when you choose annual billing. Switch anytime.",
   "plans": [
     {
       "name": "Basic",
-      "price": "$15",
-      "period": "/user/month",
+      "monthly_price": "$15",
+      "annual_price": "$144",
+      "savings": "Save 20%",
       "features": [
         "10 users included",
         "5 GB storage",
         "Basic integrations",
         "Email support"
       ],
-      "button": "Choose Basic",
-      "featured": false
+      "button_text": "Choose Basic",
+      "button_link": "https://example.com/desiderio/pricing/basic",
+      "is_featured": false
     },
     {
       "name": "Business",
-      "price": "$39",
-      "period": "/user/month",
+      "monthly_price": "$39",
+      "annual_price": "$374",
+      "savings": "Save 20%",
       "features": [
         "Unlimited users",
         "100 GB storage",
@@ -27,13 +30,15 @@
         "Priority support",
         "Custom roles"
       ],
-      "button": "Choose Business",
-      "featured": true
+      "button_text": "Choose Business",
+      "button_link": "https://example.com/desiderio/pricing/business",
+      "is_featured": true
     },
     {
       "name": "Scale",
-      "price": "$79",
-      "period": "/user/month",
+      "monthly_price": "$79",
+      "annual_price": "$758",
+      "savings": "Save 20%",
       "features": [
         "Everything in Business",
         "Unlimited storage",
@@ -41,8 +46,9 @@
         "Dedicated CSM",
         "99.99% SLA"
       ],
-      "button": "Choose Scale",
-      "featured": false
+      "button_text": "Choose Scale",
+      "button_link": "https://example.com/desiderio/pricing/scale",
+      "is_featured": false
     }
   ]
 }

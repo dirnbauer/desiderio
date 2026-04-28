@@ -21,7 +21,9 @@ fields:
   -
     identifier: plans
     type: Collection
+    table: pricing_comparison_plans
     label: 'Plan Names'
+    labelField: name
     minItems: 2
     maxItems: 4
     fields:
@@ -37,9 +39,11 @@ fields:
         rows: 1
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:price'
   -
-    identifier: feature_items
+    identifier: pricing_feature_items
     type: Collection
+    table: pricing_comparison_feature_items
     label: 'Feature Rows'
+    labelField: feature_name
     minItems: 1
     fields:
       -
@@ -50,8 +54,16 @@ fields:
         required: true
       -
         identifier: tier_values
-        type: Textarea
-        rows: 1
-        label: 'Values (comma-separated)'
-        description: 'One value per plan, e.g. Yes, Yes, No'
-        required: true
+        type: Collection
+        table: pricing_comparison_tier_values
+        label: 'Plan Values'
+        labelField: value
+        minItems: 1
+        maxItems: 4
+        fields:
+          -
+            identifier: value
+            type: Textarea
+            rows: 1
+            label: Value
+            required: true

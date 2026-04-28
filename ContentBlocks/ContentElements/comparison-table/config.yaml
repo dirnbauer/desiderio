@@ -21,7 +21,9 @@ fields:
   -
     identifier: column_items
     type: Collection
+    table: comparison_table_columns
     label: 'Comparison Columns'
+    labelField: name
     minItems: 2
     fields:
       -
@@ -36,9 +38,11 @@ fields:
         label: Highlight
         default: 0
   -
-    identifier: feature_items
+    identifier: comparison_feature_items
     type: Collection
+    table: comparison_table_features
     label: 'Feature Rows'
+    labelField: name
     minItems: 1
     fields:
       -
@@ -48,7 +52,14 @@ fields:
         required: true
       -
         identifier: tier_values
-        type: Textarea
-        rows: 1
-        label: 'Values (comma-separated)'
-        description: 'Use "yes", "no", or text for each column'
+        type: Collection
+        table: comparison_table_tier_values
+        label: 'Column Values'
+        labelField: value
+        minItems: 1
+        fields:
+          -
+            identifier: value
+            type: Textarea
+            rows: 1
+            label: Value

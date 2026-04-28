@@ -36,7 +36,7 @@
                     <f:for each="{data.department_items}" as="item">
                         <li>
                             <f:if condition="{item.name}"><span>{item.name}</span></f:if>
-                            <f:if condition="{item.members}"><span>{item.members}</span></f:if>
+                            <f:if condition="{item.members}"><span>{item.members -> f:count()} members</span></f:if>
                         </li>
                     </f:for>
                 </ul>

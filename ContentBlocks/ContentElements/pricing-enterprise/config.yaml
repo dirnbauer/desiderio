@@ -24,10 +24,19 @@ fields:
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
     rows: 3
   -
-    identifier: features_list
-    type: Textarea
-    label: 'Key Features (one per line)'
-    rows: 6
+    identifier: features
+    type: Collection
+    table: pricing_enterprise_features
+    label: 'Key Features'
+    labelField: text
+    minItems: 1
+    maxItems: 8
+    fields:
+      -
+        identifier: text
+        type: Textarea
+        rows: 1
+        label: 'Feature'
   -
     identifier: contact_text
     type: Textarea

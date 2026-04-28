@@ -35,11 +35,11 @@
                     <f:if condition="{product.price}">
                         <span class="product-comparison__price">{product -> f:render.text(field: 'price')}</span>
                     </f:if>
-                    <f:if condition="{product.specs_text}">
+                    <f:if condition="{product.specs}">
                         <ul class="product-comparison__specs">
-                            <f:for each="{product.specs_text -> f:or(alternative: '') -> f:split(separator: '\n')}" as="spec">
-                                <f:if condition="{spec}">
-                                    <li class="product-comparison__spec">{spec}</li>
+                            <f:for each="{product.specs}" as="spec">
+                                <f:if condition="{spec.text}">
+                                    <li class="product-comparison__spec">{spec -> f:render.text(field: 'text')}</li>
                                 </f:if>
                             </f:for>
                         </ul>

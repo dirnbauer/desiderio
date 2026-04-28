@@ -1,12 +1,42 @@
 {
-  "_type": "table",
-  "header": "How We Compare",
-  "headers": ["Capability", "Acme Platform", "Competitor A", "Competitor B"],
-  "rows": [
-    {"Capability": "Real-Time Collaboration", "Acme Platform": "Yes", "Competitor A": "Limited", "Competitor B": "No"},
-    {"Capability": "Custom Automations", "Acme Platform": "Unlimited", "Competitor A": "10/month", "Competitor B": "5/month"},
-    {"Capability": "API Access", "Acme Platform": "Full REST & GraphQL", "Competitor A": "REST only", "Competitor B": "Limited"},
-    {"Capability": "Uptime SLA", "Acme Platform": "99.99%", "Competitor A": "99.9%", "Competitor B": "99.5%"},
-    {"Capability": "Free Tier", "Acme Platform": "Yes, 5 users", "Competitor A": "No", "Competitor B": "Yes, 2 users"}
+  "_type": "pricing",
+  "header": "Compare Product Editions",
+  "eyebrow": "Product comparison",
+  "products": [
+    {
+      "name": "Starter Suite",
+      "price": "$19 /user",
+      "specs": [
+        "Shared dashboards",
+        "5 active projects",
+        "Email support"
+      ],
+      "is_recommended": false,
+      "link": "https://example.com/desiderio/products/starter"
+    },
+    {
+      "name": "Growth Suite",
+      "price": "$49 /user",
+      "specs": [
+        "Advanced workflows",
+        "Unlimited active projects",
+        "Priority support",
+        "Team analytics"
+      ],
+      "is_recommended": true,
+      "link": "https://example.com/desiderio/products/growth"
+    },
+    {
+      "name": "Enterprise Suite",
+      "price": "Custom",
+      "specs": [
+        "SSO and SCIM",
+        "Custom approval flows",
+        "Dedicated success team",
+        "Security review support"
+      ],
+      "is_recommended": false,
+      "link": "https://example.com/desiderio/products/enterprise"
+    }
   ]
 }

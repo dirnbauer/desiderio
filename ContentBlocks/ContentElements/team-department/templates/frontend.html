@@ -18,14 +18,12 @@
             <div class="team-department__group">
                 <h3 class="team-department__dept-name">{dept -> f:render.text(field: 'name')}</h3>
                 <div class="team-department__grid">
-                    <f:for each="{dept.members -> f:or(alternative: '') -> f:split(separator: '
-')}" as="memberLine">
-                        <f:if condition="{memberLine -> f:format.trim()}">
-                            <f:variable name="memberParts" value="{memberLine -> f:split(separator: '|')}"/>
+                    <f:for each="{dept.members}" as="member">
+                        <f:if condition="{member.name}">
                             <d:molecule.card class="team-department__member">
                                 <div class="team-department__content">
-                                    <h4 class="team-department__name">{memberParts.0 -> f:format.trim()}</h4>
-                                    <f:if condition="{memberParts.1}"><p class="team-department__role">{memberParts.1 -> f:format.trim()}</p></f:if>
+                                    <h4 class="team-department__name">{member -> f:render.text(field: 'name')}</h4>
+                                    <f:if condition="{member.role}"><p class="team-department__role">{member -> f:render.text(field: 'role')}</p></f:if>
                                 </div>
                             </d:molecule.card>
                         </f:if>

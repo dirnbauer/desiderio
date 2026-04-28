@@ -1,25 +1,27 @@
 {
   "_type": "pricing",
   "header": "Simple Pricing",
-  "description": "Two straightforward options. No hidden costs.",
+  "eyebrow": "Plans",
+  "subheadline": "Two straightforward options. No hidden costs.",
   "plans": [
     {
-      "name": "Standard",
-      "price": "$29",
-      "period": "/month",
+      "title": "Standard",
+      "price": "$29 /month",
+      "description": "Everything a small team needs to launch.",
       "features": [
         "Up to 15 users",
         "All core features",
         "10 GB storage",
         "Standard support"
       ],
-      "button": "Choose Standard",
+      "button_text": "Choose Standard",
+      "button_link": "https://example.com/desiderio/pricing/standard",
       "featured": false
     },
     {
-      "name": "Premium",
-      "price": "$79",
-      "period": "/month",
+      "title": "Premium",
+      "price": "$79 /month",
+      "description": "More scale, automation, and support for growing teams.",
       "features": [
         "Unlimited users",
         "All features",
@@ -27,20 +29,9 @@
         "Priority support",
         "API access"
       ],
-      "button": "Choose Premium",
+      "button_text": "Choose Premium",
+      "button_link": "https://example.com/desiderio/pricing/premium",
       "featured": true
-    },
-    {
-      "name": "Custom",
-      "price": "Custom",
-      "period": "",
-      "features": [
-        "Enterprise features",
-        "Volume licensing",
-        "Dedicated support"
-      ],
-      "button": "Contact Us",
-      "featured": false
     }
   ]
 }

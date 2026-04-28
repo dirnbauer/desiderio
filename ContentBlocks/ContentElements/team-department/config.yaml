@@ -21,7 +21,9 @@ fields:
   -
     identifier: department_items
     type: Collection
+    table: team_department_departments
     label: Departments
+    labelField: name
     minItems: 1
     fields:
       -
@@ -32,6 +34,21 @@ fields:
         required: true
       -
         identifier: members
-        type: Textarea
-        label: 'Members (one per line, format: Name | Role)'
-        rows: 5
+        type: Collection
+        table: team_department_members
+        label: Members
+        labelField: name
+        minItems: 1
+        maxItems: 12
+        fields:
+          -
+            identifier: name
+            type: Textarea
+            rows: 1
+            label: 'Member Name'
+            required: true
+          -
+            identifier: role
+            type: Textarea
+            rows: 1
+            label: Role

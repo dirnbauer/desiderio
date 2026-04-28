@@ -36,9 +36,18 @@ fields:
     rows: 3
   -
     identifier: left_points
-    type: Textarea
-    label: 'Left Points (one per line)'
-    rows: 5
+    type: Collection
+    table: compare_left_points
+    label: 'Left Points'
+    labelField: text
+    minItems: 1
+    maxItems: 8
+    fields:
+      -
+        identifier: text
+        type: Textarea
+        rows: 1
+        label: Point
   -
     identifier: left_button_text
     type: Textarea
@@ -66,9 +75,18 @@ fields:
     rows: 3
   -
     identifier: right_points
-    type: Textarea
-    label: 'Right Points (one per line)'
-    rows: 5
+    type: Collection
+    table: compare_right_points
+    label: 'Right Points'
+    labelField: text
+    minItems: 1
+    maxItems: 8
+    fields:
+      -
+        identifier: text
+        type: Textarea
+        rows: 1
+        label: Point
   -
     identifier: right_button_text
     type: Textarea

@@ -82,9 +82,19 @@ final class StyleguideSeedCommandTest extends TestCase
                 'name' => ['identifier' => 'name'],
                 'price' => ['identifier' => 'price'],
                 'billing_period' => ['identifier' => 'billing_period'],
-                'features_list' => ['identifier' => 'features_list'],
                 'button_text' => ['identifier' => 'button_text'],
                 'is_featured' => ['identifier' => 'is_featured'],
+            ],
+            'collections' => [
+                'features' => [
+                    'table' => 'plan_features',
+                    'minItems' => 1,
+                    'maxItems' => null,
+                    'fields' => [
+                        'text' => ['identifier' => 'text'],
+                    ],
+                    'collections' => [],
+                ],
             ],
         ];
 
@@ -93,9 +103,18 @@ final class StyleguideSeedCommandTest extends TestCase
                 'name' => 'Professional',
                 'price' => '$29',
                 'billing_period' => '/user/month',
-                'features_list' => "Unlimited users\nPriority support",
+                'features' => 2,
                 'button_text' => 'Start Free Trial',
                 'is_featured' => 1,
+                '__collections' => [
+                    'features' => [
+                        'table' => 'plan_features',
+                        'items' => [
+                            ['text' => 'Unlimited users'],
+                            ['text' => 'Priority support'],
+                        ],
+                    ],
+                ],
             ]],
             $this->invokeMethod($command, 'normalizeCollectionItems', [[
                 [

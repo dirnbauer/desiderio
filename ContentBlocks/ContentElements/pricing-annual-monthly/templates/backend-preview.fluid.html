@@ -41,8 +41,10 @@
                 <ul class="d-ce-preview__list">
                     <f:for each="{data.plans}" as="item">
                         <li>
+                            <f:if condition="{item.name}"><span>{item.name}</span></f:if>
                             <f:if condition="{item.monthly_price}"><span>{item.monthly_price}</span></f:if>
                             <f:if condition="{item.annual_price}"><span>{item.annual_price}</span></f:if>
+                            <f:if condition="{item.features}"><span>{item.features -> f:count()} features</span></f:if>
                             <f:if condition="{item.button_text}"><span>{item.button_text}</span></f:if>
                         </li>
                     </f:for>

@@ -38,6 +38,7 @@ fields:
   -
     identifier: column_definitions
     type: Collection
+    table: data_table_columns
     label: 'Column Definitions'
     minItems: 1
     fields:
@@ -72,15 +73,29 @@ fields:
   -
     identifier: rows
     type: Collection
+    table: data_table_rows
     label: 'Table Rows'
+    labelField: row_label
     minItems: 1
     fields:
       -
-        identifier: row_data
+        identifier: row_label
         type: Textarea
-        label: 'Row Data (columns separated by |)'
-        enableRichtext: true
-        rows: 2
+        rows: 1
+        label: 'Row Label'
+      -
+        identifier: cells
+        type: Collection
+        table: data_table_cells
+        label: Cells
+        labelField: value
+        minItems: 1
+        fields:
+          -
+            identifier: value
+            type: Textarea
+            rows: 1
+            label: Value
   -
     identifier: show_caption
     type: Checkbox

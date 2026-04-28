@@ -40,13 +40,13 @@
                         </f:if>
                     </div>
 
-                    <f:if condition="{plan.features_list}">
+                    <f:if condition="{plan.features}">
                         <ul class="pricing__features">
-                            <f:for each="{plan.features_list -> f:or(alternative: '') -> f:split(separator: '\n')}" as="feature">
-                                <f:if condition="{feature}">
+                            <f:for each="{plan.features}" as="feature">
+                                <f:if condition="{feature.text}">
                                     <li class="pricing__feature">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="pricing__check"><path d="M20 6 9 17l-5-5"/></svg>
-                                        <span>{feature}</span>
+                                        <span>{feature -> f:render.text(field: 'text')}</span>
                                     </li>
                                 </f:if>
                             </f:for>

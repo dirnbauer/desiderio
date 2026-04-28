@@ -1,48 +1,15 @@
 {
-  "_type": "pricing",
+  "_type": "feature",
   "header": "Product Editions",
-  "description": "Choose the edition that matches your team's needs.",
-  "plans": [
-    {
-      "name": "Standard Edition",
-      "price": "$35",
-      "period": "/user/month",
-      "features": [
-        "Core platform",
-        "Basic analytics",
-        "Standard integrations",
-        "Email support"
-      ],
-      "button": "Get Standard",
-      "featured": false
-    },
-    {
-      "name": "Professional Edition",
-      "price": "$65",
-      "period": "/user/month",
-      "features": [
-        "Everything in Standard",
-        "Advanced analytics",
-        "Custom integrations",
-        "Priority support",
-        "Admin console"
-      ],
-      "button": "Get Professional",
-      "featured": true
-    },
-    {
-      "name": "Enterprise Edition",
-      "price": "$120",
-      "period": "/user/month",
-      "features": [
-        "Everything in Professional",
-        "SSO & SCIM",
-        "Audit logs",
-        "Dedicated CSM",
-        "Custom SLA"
-      ],
-      "button": "Contact Sales",
-      "featured": false
-    }
-  ]
+  "eyebrow": "Feature spotlight",
+  "description": "Give teams the capabilities they need without sending editors through encoded list syntax.",
+  "features": [
+    "Core platform workflows",
+    "Advanced analytics",
+    "Custom integrations",
+    "Priority support",
+    "Admin console"
+  ],
+  "button_text": "Explore Editions",
+  "button_link": "https://example.com/desiderio/product-editions"
 }

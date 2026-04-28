@@ -36,7 +36,7 @@
                     <f:for each="{data.groups}" as="item">
                         <li>
                             <f:if condition="{item.title}"><span>{item.title}</span></f:if>
-                            <f:if condition="{item.pages}"><span>{item.pages}</span></f:if>
+                            <f:if condition="{item.pages}"><span>{item.pages -> f:count()} pages</span></f:if>
                         </li>
                     </f:for>
                 </ul>

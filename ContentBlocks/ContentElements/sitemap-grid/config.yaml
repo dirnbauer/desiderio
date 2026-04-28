@@ -29,7 +29,9 @@ fields:
   -
     identifier: groups
     type: Collection
+    table: sitemap_grid_groups
     label: 'Page Groups'
+    labelField: title
     minItems: 1
     fields:
       -
@@ -40,6 +42,20 @@ fields:
         required: true
       -
         identifier: pages
-        type: Textarea
-        label: 'Pages (one per line)'
-        rows: 5
+        type: Collection
+        table: sitemap_grid_pages
+        label: Pages
+        labelField: label
+        minItems: 1
+        maxItems: 12
+        fields:
+          -
+            identifier: label
+            type: Textarea
+            rows: 1
+            label: 'Page Label'
+            required: true
+          -
+            identifier: link
+            type: Link
+            label: 'Page Link'

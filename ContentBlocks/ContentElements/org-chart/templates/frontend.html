@@ -32,14 +32,12 @@
                         </span>
                     </f:if>
                     <div class="flex flex-wrap justify-center gap-4">
-                        <f:for each="{level.people -> f:or(alternative: '') -> f:split(separator: '
-')}" as="personLine">
-                            <f:if condition="{personLine -> f:format.trim()}">
-                                <f:variable name="personParts" value="{personLine -> f:split(separator: '|')}"/>
+                        <f:for each="{level.people}" as="person">
+                            <f:if condition="{person.name}">
                                 <article class="min-w-[180px] rounded-lg border bg-card p-4 text-center shadow-sm">
-                                    <h3 class="font-semibold leading-none tracking-tight">{personParts.0 -> f:format.trim()}</h3>
-                                    <f:if condition="{personParts.1}">
-                                        <p class="mt-1 text-sm text-muted-foreground">{personParts.1 -> f:format.trim()}</p>
+                                    <h3 class="font-semibold leading-none tracking-tight">{person -> f:render.text(field: 'name')}</h3>
+                                    <f:if condition="{person.role}">
+                                        <p class="mt-1 text-sm text-muted-foreground">{person -> f:render.text(field: 'role')}</p>
                                     </f:if>
                                 </article>
                             </f:if>

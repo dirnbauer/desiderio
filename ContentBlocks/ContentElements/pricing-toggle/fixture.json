@@ -1,37 +1,41 @@
 {
   "_type": "pricing",
   "header": "Choose Your Billing Cycle",
-  "description": "Save 20% with annual billing.",
+  "eyebrow": "Plans",
+  "subheadline": "Save 20% with annual billing.",
   "plans": [
     {
-      "name": "Basic",
-      "price": "$12",
-      "period": "per month",
+      "title": "Basic",
+      "monthly_price": "$12",
+      "yearly_price": "$115",
+      "description": "Core features for small teams.",
       "features": [
         "Core features",
         "5 users",
         "Basic support"
       ],
-      "button": "Choose Basic",
-      "featured": false
+      "button_text": "Choose Basic",
+      "button_link": "https://example.com/desiderio/pricing/basic"
     },
     {
-      "name": "Standard",
-      "price": "$36",
-      "period": "per month",
+      "title": "Standard",
+      "monthly_price": "$36",
+      "yearly_price": "$345",
+      "description": "Advanced tools for scaling teams.",
       "features": [
         "All features",
         "25 users",
         "Priority support",
         "API access"
       ],
-      "button": "Choose Standard",
-      "featured": true
+      "button_text": "Choose Standard",
+      "button_link": "https://example.com/desiderio/pricing/standard"
     },
     {
-      "name": "Premium",
-      "price": "$84",
-      "period": "per month",
+      "title": "Premium",
+      "monthly_price": "$84",
+      "yearly_price": "$805",
+      "description": "Enterprise-grade support and controls.",
       "features": [
         "All features",
         "Unlimited users",
@@ -39,8 +43,8 @@
         "Custom SLA",
         "SSO"
       ],
-      "button": "Choose Premium",
-      "featured": false
+      "button_text": "Choose Premium",
+      "button_link": "https://example.com/desiderio/pricing/premium"
     }
   ]
 }

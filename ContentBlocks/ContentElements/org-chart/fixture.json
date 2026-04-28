@@ -1,22 +1,33 @@
 {
   "_type": "team",
   "header": "Organization Structure",
-  "members": [
+  "subheadline": "A clear map of leadership and delivery responsibilities.",
+  "levels": [
     {
-      "name": "Richard Hayes",
-      "role": "CEO"
+      "level_label": "Executive",
+      "people": [
+        {
+          "name": "Richard Hayes",
+          "role": "CEO"
+        }
+      ]
     },
     {
-      "name": "Angela Chen",
-      "role": "CTO — Engineering"
-    },
-    {
-      "name": "Daniel Okafor",
-      "role": "CPO — Product & Design"
-    },
-    {
-      "name": "Maria Gonzalez",
-      "role": "CRO — Sales & Marketing"
+      "level_label": "Leadership",
+      "people": [
+        {
+          "name": "Angela Chen",
+          "role": "CTO - Engineering"
+        },
+        {
+          "name": "Daniel Okafor",
+          "role": "CPO - Product & Design"
+        },
+        {
+          "name": "Maria Gonzalez",
+          "role": "CRO - Sales & Marketing"
+        }
+      ]
     }
   ]
 }

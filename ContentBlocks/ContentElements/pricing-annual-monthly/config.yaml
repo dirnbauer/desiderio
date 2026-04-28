@@ -26,7 +26,9 @@ fields:
   -
     identifier: plans
     type: Collection
+    table: pricing_annual_monthly_plans
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:plans'
+    labelField: name
     minItems: 1
     fields:
       -
@@ -54,10 +56,19 @@ fields:
         label: 'Savings Badge'
         description: 'e.g. Save 20%'
       -
-        identifier: features_list
-        type: Textarea
-        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:features_one_per_line'
-        rows: 5
+        identifier: features
+        type: Collection
+        table: pricing_annual_monthly_plan_features
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:features'
+        labelField: text
+        minItems: 1
+        maxItems: 8
+        fields:
+          -
+            identifier: text
+            type: Textarea
+            rows: 1
+            label: 'Feature'
       -
         identifier: is_featured
         type: Checkbox

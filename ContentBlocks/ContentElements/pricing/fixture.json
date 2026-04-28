@@ -1,25 +1,31 @@
 {
   "_type": "pricing",
   "header": "Choose Your Plan",
-  "description": "Start free and scale as your team grows. No hidden fees.",
+  "eyebrow": "Pricing",
+  "subheadline": "Start free and scale as your team grows. No hidden fees.",
+  "columns": "3",
   "plans": [
     {
       "name": "Starter",
       "price": "$0",
-      "period": "/month",
+      "billing_period": "/month",
+      "description": "For exploration and personal projects.",
       "features": [
         "Up to 5 users",
         "3 projects",
         "Basic analytics",
         "Community support"
       ],
-      "button": "Get Started Free",
-      "featured": false
+      "button_text": "Get Started Free",
+      "button_link": "https://example.com/desiderio/pricing/starter",
+      "is_featured": false
     },
     {
+      "badge_text": "Popular",
       "name": "Professional",
       "price": "$29",
-      "period": "/user/month",
+      "billing_period": "/user/month",
+      "description": "For teams building and iterating every day.",
       "features": [
         "Unlimited users",
         "Unlimited projects",
@@ -27,13 +33,15 @@
         "Priority support",
         "Custom integrations"
       ],
-      "button": "Start Free Trial",
-      "featured": true
+      "button_text": "Start Free Trial",
+      "button_link": "https://example.com/desiderio/pricing/professional",
+      "is_featured": true
     },
     {
       "name": "Enterprise",
       "price": "Custom",
-      "period": "",
+      "billing_period": "",
+      "description": "For organizations with governance and scale requirements.",
       "features": [
         "Everything in Professional",
         "SSO / SAML",
@@ -41,8 +49,9 @@
         "Custom SLA",
         "On-premise deployment"
       ],
-      "button": "Contact Sales",
-      "featured": false
+      "button_text": "Contact Sales",
+      "button_link": "https://example.com/desiderio/pricing/enterprise",
+      "is_featured": false
     }
   ]
 }

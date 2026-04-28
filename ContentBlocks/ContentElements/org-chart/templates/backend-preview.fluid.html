@@ -36,7 +36,7 @@
                     <f:for each="{data.levels}" as="item">
                         <li>
                             <f:if condition="{item.level_label}"><span>{item.level_label}</span></f:if>
-                            <f:if condition="{item.people}"><span>{item.people}</span></f:if>
+                            <f:if condition="{item.people}"><span>{item.people -> f:count()} people</span></f:if>
                         </li>
                     </f:for>
                 </ul>

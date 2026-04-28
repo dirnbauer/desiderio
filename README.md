@@ -9,6 +9,11 @@ visual presets with a committed Tailwind v4/shadcn CSS build.
 > `webconsulting/shadcn2fluid-templates 3.x`. No backward compatibility; clean
 > installs only. See [SPECIFICATION.md](SPECIFICATION.md) and
 > [MIGRATION-PLAN.md](MIGRATION-PLAN.md) for the rewrite rationale.
+>
+> The old `shadcn2fluid_*` fixture mapping is not used at runtime or by the
+> styleguide seed. Demo content now lives beside each Content Block in its own
+> `fixture.json`, keyed by the current `desiderio_*` CType generated from the
+> Content Block folder.
 
 ## Three-layer architecture
 

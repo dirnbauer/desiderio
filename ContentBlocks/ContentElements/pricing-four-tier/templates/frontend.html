@@ -29,13 +29,13 @@
                     <f:if condition="{plan.description}">
                         <p class="pricing-four-tier__plan-desc">{plan -> f:render.text(field: 'description')}</p>
                     </f:if>
-                    <f:if condition="{plan.features_list}">
+                    <f:if condition="{plan.features}">
                         <ul class="pricing-four-tier__features">
-                            <f:for each="{plan.features_list -> f:or(alternative: '') -> f:split(separator: '\n')}" as="feature">
-                                <f:if condition="{feature}">
+                            <f:for each="{plan.features}" as="feature">
+                                <f:if condition="{feature.text}">
                                     <li class="pricing-four-tier__feature">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
-                                        <span>{feature}</span>
+                                        <span>{feature -> f:render.text(field: 'text')}</span>
                                     </li>
                                 </f:if>
                             </f:for>

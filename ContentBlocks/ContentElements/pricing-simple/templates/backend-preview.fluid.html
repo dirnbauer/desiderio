@@ -47,10 +47,10 @@
                 <span class="d-ce-preview__value">{data.button_text}</span>
             </div>
         </f:if>
-        <f:if condition="{data.features_list}">
+        <f:if condition="{data.features}">
             <div class="d-ce-preview__field">
-                <span class="d-ce-preview__label">Features List</span>
-                <span class="d-ce-preview__value">{data.features_list}</span>
+                <span class="d-ce-preview__label">Features</span>
+                <span class="d-ce-preview__value">{data.features -> f:count()} items</span>
             </div>
         </f:if>
     </div>

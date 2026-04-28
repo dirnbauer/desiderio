@@ -30,10 +30,19 @@ fields:
     allowed: common-image-types
     maxitems: 1
   -
-    identifier: features_list
-    type: Textarea
-    label: 'Feature Benefits (one per line)'
-    rows: 6
+    identifier: features
+    type: Collection
+    table: product_feature_features
+    label: 'Feature Benefits'
+    labelField: text
+    minItems: 1
+    maxItems: 8
+    fields:
+      -
+        identifier: text
+        type: Textarea
+        rows: 1
+        label: 'Feature'
   -
     identifier: button_text
     type: Textarea

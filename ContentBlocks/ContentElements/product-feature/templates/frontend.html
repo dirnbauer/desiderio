@@ -26,13 +26,13 @@
                 <f:if condition="{data.description}">
                     <p class="product-feature__description">{data -> f:render.text(field: 'description')}</p>
                 </f:if>
-                <f:if condition="{data.features_list}">
+                <f:if condition="{data.features}">
                     <ul class="product-feature__list">
-                        <f:for each="{data.features_list -> f:or(alternative: '') -> f:split(separator: '\n')}" as="feature">
-                            <f:if condition="{feature}">
+                        <f:for each="{data.features}" as="feature">
+                            <f:if condition="{feature.text}">
                                 <li class="product-feature__item">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
-                                    <span>{feature}</span>
+                                    <span>{feature -> f:render.text(field: 'text')}</span>
                                 </li>
                             </f:if>
                         </f:for>

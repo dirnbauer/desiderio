@@ -1,27 +1,41 @@
 {
-  "_type": "grid",
+  "_type": "footer",
   "header": "Sitemap",
-  "description": "Browse all pages on our website.",
-  "items": [
+  "columns": "4",
+  "groups": [
     {
-      "icon": "🏠",
-      "title": "Home",
-      "description": "Main landing page."
+      "title": "Product",
+      "pages": [
+        {
+          "label": "Overview",
+          "link": "https://example.com/desiderio/overview"
+        },
+        {
+          "label": "Features",
+          "link": "https://example.com/desiderio/features"
+        },
+        {
+          "label": "Pricing",
+          "link": "https://example.com/desiderio/pricing"
+        }
+      ]
     },
     {
-      "icon": "📦",
-      "title": "Products",
-      "description": "All products and features."
-    },
-    {
-      "icon": "💰",
-      "title": "Pricing",
-      "description": "Plans and billing."
-    },
-    {
-      "icon": "📝",
-      "title": "Blog",
-      "description": "Articles and tutorials."
+      "title": "Resources",
+      "pages": [
+        {
+          "label": "Docs",
+          "link": "https://example.com/desiderio/docs"
+        },
+        {
+          "label": "Styleguide",
+          "link": "https://example.com/desiderio/styleguide"
+        },
+        {
+          "label": "Support",
+          "link": "https://example.com/desiderio/support"
+        }
+      ]
     }
   ]
 }

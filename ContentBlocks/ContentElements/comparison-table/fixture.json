@@ -1,36 +1,37 @@
 {
   "_type": "table",
   "header": "Plan Comparison",
-  "headers": [
-    "Feature",
-    "Starter",
-    "Pro",
-    "Enterprise"
+  "description": "Compare the capabilities included in each plan.",
+  "column_items": [
+    {
+      "name": "Starter",
+      "highlighted": false
+    },
+    {
+      "name": "Pro",
+      "highlighted": true
+    },
+    {
+      "name": "Enterprise",
+      "highlighted": false
+    }
   ],
-  "rows": [
+  "comparison_feature_items": [
     {
-      "Feature": "Users",
-      "Starter": "3",
-      "Pro": "Unlimited",
-      "Enterprise": "Unlimited"
+      "name": "Users",
+      "tier_values": ["3", "Unlimited", "Unlimited"]
     },
     {
-      "Feature": "Storage",
-      "Starter": "1 GB",
-      "Pro": "50 GB",
-      "Enterprise": "500 GB"
+      "name": "Storage",
+      "tier_values": ["1 GB", "50 GB", "500 GB"]
     },
     {
-      "Feature": "Support",
-      "Starter": "Community",
-      "Pro": "Priority",
-      "Enterprise": "Dedicated"
+      "name": "Support",
+      "tier_values": ["Community", "Priority", "Dedicated"]
     },
     {
-      "Feature": "SSO",
-      "Starter": "No",
-      "Pro": "No",
-      "Enterprise": "Yes"
+      "name": "SSO",
+      "tier_values": ["No", "No", "Yes"]
     }
   ]
 }

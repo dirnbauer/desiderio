@@ -28,10 +28,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <f:for each="{data.feature_items}" as="feature">
+                    <f:for each="{data.comparison_feature_items}" as="feature">
                         <tr>
-                            <td class="comparison-table__feature-name">{feature -> f:render.text(field: 'name')}</td>
-                            <td class="comparison-table__cell" colspan="{f:count(subject: data.column_items)}">{feature -> f:render.text(field: 'tier_values')}</td>
+                            <td class="comparison-table__feature-name">{feature.name}</td>
+                            <f:for each="{feature.tier_values}" as="value">
+                                <td class="comparison-table__cell">{value.value}</td>
+                            </f:for>
                         </tr>
                     </f:for>
                 </tbody>

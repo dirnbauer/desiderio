@@ -29,9 +29,9 @@
                 </f:if>
                 <f:if condition="{data.left_points}">
                     <ul class="compare__points">
-                        <f:for each="{data.left_points -> f:or(alternative: '') -> f:split(separator: '\n')}" as="point">
-                            <f:if condition="{point}">
-                                <li class="compare__point">{point}</li>
+                        <f:for each="{data.left_points}" as="point">
+                            <f:if condition="{point.text}">
+                                <li class="compare__point">{point -> f:render.text(field: 'text')}</li>
                             </f:if>
                         </f:for>
                     </ul>
@@ -55,9 +55,9 @@
                 </f:if>
                 <f:if condition="{data.right_points}">
                     <ul class="compare__points">
-                        <f:for each="{data.right_points -> f:or(alternative: '') -> f:split(separator: '\n')}" as="point">
-                            <f:if condition="{point}">
-                                <li class="compare__point">{point}</li>
+                        <f:for each="{data.right_points}" as="point">
+                            <f:if condition="{point.text}">
+                                <li class="compare__point">{point -> f:render.text(field: 'text')}</li>
                             </f:if>
                         </f:for>
                     </ul>

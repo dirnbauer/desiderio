@@ -1,45 +1,16 @@
 {
   "_type": "pricing",
   "header": "One Simple Price",
+  "price": "$49",
+  "billing_period": "/user/month",
   "description": "No tiers, no confusion. Everything included for one flat rate.",
-  "plans": [
-    {
-      "name": "Free",
-      "price": "$0",
-      "period": "/month",
-      "features": [
-        "Up to 3 users",
-        "1 project",
-        "Basic features"
-      ],
-      "button": "Get Free",
-      "featured": false
-    },
-    {
-      "name": "All-In-One",
-      "price": "$49",
-      "period": "/user/month",
-      "features": [
-        "Unlimited everything",
-        "All features included",
-        "Priority support",
-        "Custom domain",
-        "API access"
-      ],
-      "button": "Get All-In-One",
-      "featured": true
-    },
-    {
-      "name": "Enterprise",
-      "price": "Custom",
-      "period": "",
-      "features": [
-        "Volume discounts",
-        "Dedicated infrastructure",
-        "Custom SLA"
-      ],
-      "button": "Contact Sales",
-      "featured": false
-    }
-  ]
+  "features": [
+    "Unlimited projects",
+    "All collaboration features",
+    "Priority support",
+    "Custom domain",
+    "API access"
+  ],
+  "button_text": "Get All-In-One",
+  "button_link": "https://example.com/desiderio/pricing/simple"
 }

@@ -1,12 +1,25 @@
 {
-  "_type": "table",
-  "header": "Product Comparison",
-  "headers": ["Feature", "Basic", "Professional", "Enterprise"],
-  "rows": [
-    {"Feature": "Users", "Basic": "5", "Professional": "25", "Enterprise": "Unlimited"},
-    {"Feature": "Storage", "Basic": "1 GB", "Professional": "50 GB", "Enterprise": "Unlimited"},
-    {"Feature": "API Access", "Basic": "No", "Professional": "Yes", "Enterprise": "Yes"},
-    {"Feature": "SSO", "Basic": "No", "Professional": "No", "Enterprise": "Yes"},
-    {"Feature": "Support", "Basic": "Email", "Professional": "Priority", "Enterprise": "Dedicated"}
-  ]
+  "_type": "comparison",
+  "header": "Classic Stack vs Desiderio",
+  "eyebrow": "Compare",
+  "subheadline": "A side-by-side look at what changes when the content model is structured.",
+  "left_title": "Classic Setup",
+  "left_description": "Legacy list fields make editors encode structure inside textareas.",
+  "left_points": [
+    "Newline parsing in templates",
+    "URLs hidden in copy fields",
+    "Harder previews and migrations"
+  ],
+  "left_button_text": "Review legacy setup",
+  "left_button_link": "https://example.com/desiderio/legacy",
+  "right_badge": "Recommended",
+  "right_title": "Desiderio Content Blocks",
+  "right_description": "Repeatable records keep content structured from backend form to frontend render.",
+  "right_points": [
+    "Nested Collections for lists",
+    "TYPO3 Link fields for URLs",
+    "Seed fixtures mirror the editor schema"
+  ],
+  "right_button_text": "Explore the model",
+  "right_button_link": "https://example.com/desiderio/content-blocks"
 }

@@ -44,11 +44,22 @@
                             <ul class="mega-menu__links">
                                 <f:for each="{group.links -> f:or(alternative: '') -> f:split(separator: '
 ')}" as="linkLine">
-                                    <f:if condition="{linkLine -> f:format.trim()}">
+                                    <f:variable name="linkParts" value="{linkLine -> f:split(separator: '|')}"/>
+                                    <f:variable name="linkLabel" value="{linkParts.0 -> f:format.trim()}"/>
+                                    <f:if condition="{linkLabel}">
                                         <li class="mega-menu__link-item">
-                                            <span class="mega-menu__link">
-                                                <span class="mega-menu__link-label">{linkLine -> f:format.trim()}</span>
-                                            </span>
+                                            <f:if condition="{linkParts.1}">
+                                                <f:then>
+                                                    <f:link.typolink parameter="{linkParts.1 -> f:format.trim()}" class="mega-menu__link">
+                                                        <span class="mega-menu__link-label">{linkLabel}</span>
+                                                    </f:link.typolink>
+                                                </f:then>
+                                                <f:else>
+                                                    <span class="mega-menu__link">
+                                                        <span class="mega-menu__link-label">{linkLabel}</span>
+                                                    </span>
+                                                </f:else>
+                                            </f:if>
                                         </li>
                                     </f:if>
                                 </f:for>

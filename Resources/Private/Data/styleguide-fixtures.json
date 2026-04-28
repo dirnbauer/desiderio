@@ -2862,16 +2862,51 @@
   },
   "shadcn2fluid_mega-menu": {
     "_type": "nav",
-    "logo": "Acme Platform",
-    "links": [
-      "Product",
-      "Solutions",
-      "Resources",
-      "Pricing",
-      "Enterprise",
-      "Developers"
-    ],
-    "primaryButton": "Start Free Trial"
+    "header": "Platform Navigation",
+    "brand": "Acme Platform",
+    "brand_link": "https://example.com/desiderio",
+    "intro_title": "Mega Menu",
+    "intro_text": "Structured navigation for product suites, resources, and conversion paths.",
+    "primary_button_text": "Start Free Trial",
+    "primary_button_link": "https://example.com/desiderio/start",
+    "menu_groups": [
+      {
+        "title": "Product",
+        "description": "Explore the core platform, collaboration tools, and workflow automation.",
+        "links": [
+          "Platform overview|https://example.com/desiderio/overview",
+          "Feature map|https://example.com/desiderio/features",
+          "Integrations|https://example.com/desiderio/integrations"
+        ]
+      },
+      {
+        "title": "Solutions",
+        "description": "Find workflows for product teams, agencies, and enterprise operations.",
+        "links": [
+          "For product teams|https://example.com/desiderio/solutions/product",
+          "For agencies|https://example.com/desiderio/solutions/agencies",
+          "For enterprise|https://example.com/desiderio/solutions/enterprise"
+        ]
+      },
+      {
+        "title": "Resources",
+        "description": "Use practical guides, launch checklists, and technical references.",
+        "links": [
+          "Documentation|https://example.com/desiderio/docs",
+          "Customer stories|https://example.com/desiderio/customers",
+          "Support center|https://example.com/desiderio/support"
+        ]
+      },
+      {
+        "title": "Company",
+        "description": "Learn how the team builds accessible, shadcn-inspired TYPO3 experiences.",
+        "links": [
+          "About|https://example.com/desiderio/about",
+          "Changelog|https://example.com/desiderio/changelog",
+          "Contact|https://example.com/desiderio/contact"
+        ]
+      }
+    ]
   },
   "shadcn2fluid_metric-dashboard": {
     "_type": "stats",

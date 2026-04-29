@@ -23,6 +23,19 @@ final class LegacyBackendLayoutMigrationCommandTest extends TestCase
         ], $map);
     }
 
+    public function testPageTsConfigStorageValuesAreMappedWithPrefix(): void
+    {
+        $reflection = new ReflectionClass(MigrateLegacyBackendLayoutsCommand::class);
+        $method = $reflection->getMethod('getLegacyStorageLayoutMap');
+        $map = $method->invoke(null);
+
+        self::assertIsArray($map);
+        self::assertSame('DesiderioStartpage', $map['shadcn2fluid_home']);
+        self::assertSame('pagets__DesiderioStartpage', $map['pagets__shadcn2fluid_home']);
+        self::assertSame('pagets__DesiderioContentpage', $map['pagets__shadcn2fluid_sub']);
+        self::assertSame('pagets__DesiderioContentpageSidebar', $map['pagets__shadcn2fluid_sub_nav']);
+    }
+
     public function testCommandMetadataAndPageFieldsAreDeclared(): void
     {
         $commandFile = __DIR__ . '/../../Classes/Command/MigrateLegacyBackendLayoutsCommand.php';

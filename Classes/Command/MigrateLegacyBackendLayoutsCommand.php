@@ -18,6 +18,8 @@ use TYPO3\CMS\Core\Database\ConnectionPool;
 )]
 final class MigrateLegacyBackendLayoutsCommand extends Command
 {
+    private const string PAGE_TS_CONFIG_PREFIX = 'pagets__';
+
     private const array LEGACY_LAYOUT_MAP = [
         'shadcn2fluid_home' => 'DesiderioStartpage',
         'shadcn2fluid_sub' => 'DesiderioContentpage',
@@ -58,11 +60,12 @@ final class MigrateLegacyBackendLayoutsCommand extends Command
         }
 
         $io->title('Legacy backend layout migration');
+        $legacyStorageLayoutMap = self::getLegacyStorageLayoutMap();
         $io->definitionList(
             ...array_map(
                 static fn(string $from, string $to): array => [$from => $to],
-                array_keys(self::LEGACY_LAYOUT_MAP),
-                array_values(self::LEGACY_LAYOUT_MAP),
+                array_keys($legacyStorageLayoutMap),
+                array_values($legacyStorageLayoutMap),
             )
         );
 
@@ -106,7 +109,8 @@ final class MigrateLegacyBackendLayoutsCommand extends Command
     {
         $queryBuilder = $this->connectionPool->getQueryBuilderForTable('pages');
         $expressionBuilder = $queryBuilder->expr();
-        $legacyIdentifiers = array_keys(self::LEGACY_LAYOUT_MAP);
+        $legacyStorageLayoutMap = self::getLegacyStorageLayoutMap();
+        $legacyIdentifiers = array_keys($legacyStorageLayoutMap);
         $rows = $queryBuilder
             ->select('uid', 'pid', 'title', ...self::LAYOUT_FIELDS)
             ->from('pages')
@@ -131,7 +135,7 @@ final class MigrateLegacyBackendLayoutsCommand extends Command
         foreach ($rows as $row) {
             foreach (self::LAYOUT_FIELDS as $fieldName) {
                 $value = $row[$fieldName] ?? null;
-                if (!is_string($value) || !isset(self::LEGACY_LAYOUT_MAP[$value])) {
+                if (!is_string($value) || !isset($legacyStorageLayoutMap[$value])) {
                     continue;
                 }
                 $affectedRows[] = [
@@ -140,7 +144,7 @@ final class MigrateLegacyBackendLayoutsCommand extends Command
                     'title' => is_string($row['title'] ?? null) ? $row['title'] : '',
                     'fieldName' => $fieldName,
                     'fromLayout' => $value,
-                    'toLayout' => self::LEGACY_LAYOUT_MAP[$value],
+                    'toLayout' => $legacyStorageLayoutMap[$value],
                 ];
             }
         }
@@ -160,11 +164,11 @@ final class MigrateLegacyBackendLayoutsCommand extends Command
      */
     private function migrateAffectedPages(array $affectedRows): int
     {
-        $queryBuilder = $this->connectionPool->getQueryBuilderForTable('pages');
         $updatedRows = 0;
         $now = time();
 
         foreach ($affectedRows as $row) {
+            $queryBuilder = $this->connectionPool->getQueryBuilderForTable('pages');
             $updatedRows += $queryBuilder
                 ->update('pages')
                 ->set($row['fieldName'], $queryBuilder->createNamedParameter($row['toLayout']))
@@ -177,5 +181,19 @@ final class MigrateLegacyBackendLayoutsCommand extends Command
         }
 
         return $updatedRows;
+    }
+
+    /**
+     * @return array<string, string>
+     */
+    private static function getLegacyStorageLayoutMap(): array
+    {
+        $map = self::LEGACY_LAYOUT_MAP;
+
+        foreach (self::LEGACY_LAYOUT_MAP as $fromLayout => $toLayout) {
+            $map[self::PAGE_TS_CONFIG_PREFIX . $fromLayout] = self::PAGE_TS_CONFIG_PREFIX . $toLayout;
+        }
+
+        return $map;
     }
 }

@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" target-language="de" datatype="plaintext" original="messages" product-name="cta-inline">
-        <header/>
-        <body>
-            <trans-unit id="title">
-                <source>Inline Call to Action</source>
-                <target>Inline Call to Action</target>
-            </trans-unit>
-            <trans-unit id="description">
-                <source>A shadcn/ui styled TYPO3 content element for conversion flow, using theme tokens for light and dark mode.</source>
-                <target>Ein shadcn/ui gestaltetes TYPO3 Inhaltselement für Conversion-Flow mit Theme-Tokens für Hell- und Dunkelmodus.</target>
-            </trans-unit>
-        </body>
-    </file>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="de">
+  <file id="cta-inline">
+    <unit id="title">
+      <segment state="final">
+        <source>Inline Call to Action</source>
+        <target>Inline Call to Action</target>
+      </segment>
+    </unit>
+    <unit id="description">
+      <segment state="final">
+        <source>Inline Call to Action provides a focused editorial building block for a recognizable page task. Editors can manage headline and copy fields and link and CTA controls.</source>
+        <target>Inline Call to Action liefert einen eigenständigen redaktionellen Baustein für eine klar erkennbare Seitenaufgabe. Redakteure pflegen Text- und Überschriftenfelder und Link- und CTA-Steuerung.</target>
+      </segment>
+    </unit>
+  </file>
 </xliff>

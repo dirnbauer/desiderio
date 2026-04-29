@@ -621,15 +621,16 @@ final class SeedStyleguidePagesCommand extends Command
     }
 
     /**
-     * @param array{minItems: int, maxItems: int|null} $collection
+     * @param array<string, mixed> $collection
      */
     private function getTargetCollectionItemCount(array $collection, int $existingItemCount): int
     {
-        $minimum = max(1, $collection['minItems']);
+        $minimum = max(1, is_int($collection['minItems'] ?? null) ? $collection['minItems'] : 1);
         $target = max(3, $minimum, $existingItemCount);
+        $maximum = $collection['maxItems'] ?? null;
 
-        if ($collection['maxItems'] !== null) {
-            $target = min($target, max(1, $collection['maxItems']));
+        if (is_int($maximum)) {
+            $target = min($target, max(1, $maximum));
         }
 
         return $target;

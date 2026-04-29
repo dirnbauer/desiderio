@@ -1,7 +1,7 @@
 name: desiderio/pricing-annual-monthly
 typeName: desiderio_pricingannualmonthly
 title: 'Annual Monthly Pricing'
-description: 'A shadcn/ui styled TYPO3 content element for pricing section, using theme tokens for light and dark mode.'
+description: 'Annual Monthly Pricing supports buying decisions with prices, plans, packages, or calculated options. Editors can manage headline and copy fields and repeatable entries.'
 group: pricing
 prefixFields: false
 basics:
@@ -68,7 +68,7 @@ fields:
             identifier: text
             type: Textarea
             rows: 1
-            label: 'Feature'
+            label: Feature
       -
         identifier: is_featured
         type: Checkbox

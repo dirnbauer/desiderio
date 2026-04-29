@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" datatype="plaintext" original="messages" product-name="resource-library">
-        <header/>
-        <body>
-            <trans-unit id="title">
-                <source>Resource Library</source>
-            </trans-unit>
-            <trans-unit id="description">
-                <source>A shadcn/ui styled TYPO3 content element for content presentation, using theme tokens for light and dark mode.</source>
-            </trans-unit>
-        </body>
-    </file>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en">
+  <file id="resource-library">
+    <unit id="title">
+      <segment>
+        <source>Resource Library</source>
+      </segment>
+    </unit>
+    <unit id="description">
+      <segment>
+        <source>Resource Library arranges multiple pieces of content as scannable cards, grids, or libraries. Editors can manage headline and copy fields and repeatable entries.</source>
+      </segment>
+    </unit>
+  </file>
 </xliff>

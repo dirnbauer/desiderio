@@ -25,6 +25,9 @@
                 <tbody>
                     <f:for each="{data.rows}" as="row">
                         <tr class="table__row">
+                            <f:if condition="{row.row_label}">
+                                <td class="table__cell table__cell--row-label">{row -> f:render.text(field: 'row_label')}</td>
+                            </f:if>
                             <f:for each="{row.cells}" as="cell">
                                 <td class="table__cell table__cell--left">{cell -> f:render.text(field: 'value')}</td>
                             </f:for>

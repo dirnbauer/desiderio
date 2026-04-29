@@ -12,31 +12,71 @@ $contentBlocksDir = $root . '/ContentBlocks/ContentElements';
 $styleguideGroupsFile = $root . '/Resources/Private/Data/styleguide-content-groups.json';
 $styleguideSeedFile = $root . '/Resources/Private/Data/styleguide-page-seed.json';
 $backendPreviewCssFile = $root . '/Resources/Public/Css/content-preview.css';
+$sharedLabelsFile = $root . '/Resources/Private/Language/labels.xlf';
+$sharedGermanLabelsFile = $root . '/Resources/Private/Language/de.labels.xlf';
+$contentElementGroupTcaFile = $root . '/Configuration/TCA/Overrides/tt_content.php';
 
-$groupTitles = [
-    'content' => 'Content',
-    'conversion' => 'Conversion',
-    'data' => 'Data Visualization',
-    'features' => 'Feature Sections',
-    'footer' => 'Footers',
-    'hero' => 'Hero Sections',
-    'navigation' => 'Navigation',
-    'pricing' => 'Pricing',
-    'social-proof' => 'Social Proof',
-    'team' => 'Team',
-];
-
-$groupDescriptions = [
-    'content' => ['content presentation', 'Inhaltsdarstellung'],
-    'conversion' => ['conversion flow', 'Conversion-Flow'],
-    'data' => ['data visualization', 'Datenvisualisierung'],
-    'features' => ['feature section', 'Feature-Sektion'],
-    'footer' => ['footer area', 'Footer-Bereich'],
-    'hero' => ['hero section', 'Hero-Bereich'],
-    'navigation' => ['navigation pattern', 'Navigationsmuster'],
-    'pricing' => ['pricing section', 'Preisbereich'],
-    'social-proof' => ['social proof section', 'Social-Proof-Sektion'],
-    'team' => ['team presentation', 'Teamdarstellung'],
+$groupMeta = [
+    'content' => [
+        'title' => 'Content & Editorial',
+        'deTitle' => 'Inhalte & Redaktion',
+        'summary' => 'Text, media, stories, resources, and reusable editorial building blocks.',
+        'deSummary' => 'Text, Medien, Storys, Ressourcen und wiederverwendbare redaktionelle Bausteine.',
+    ],
+    'conversion' => [
+        'title' => 'Leads & Conversion',
+        'deTitle' => 'Leads & Conversion',
+        'summary' => 'Forms, offers, calls to action, and focused steps toward visitor intent.',
+        'deSummary' => 'Formulare, Angebote, Call-to-Actions und fokussierte Schritte zur Besucheraktion.',
+    ],
+    'data' => [
+        'title' => 'Data & Dashboards',
+        'deTitle' => 'Daten & Dashboards',
+        'summary' => 'Charts, metrics, tables, KPIs, and structured data displays.',
+        'deSummary' => 'Diagramme, Kennzahlen, Tabellen, KPIs und strukturierte Datendarstellungen.',
+    ],
+    'features' => [
+        'title' => 'Features & Benefits',
+        'deTitle' => 'Funktionen & Vorteile',
+        'summary' => 'Feature sections, benefit grids, product explanations, and service highlights.',
+        'deSummary' => 'Feature-Sektionen, Vorteilsraster, Produkterklärungen und Service-Highlights.',
+    ],
+    'footer' => [
+        'title' => 'Footers & Utility Areas',
+        'deTitle' => 'Footer & Servicebereiche',
+        'summary' => 'Footer layouts, legal links, contact routes, app links, and page-end utility content.',
+        'deSummary' => 'Footer-Layouts, rechtliche Links, Kontaktwege, App-Links und Serviceinhalte am Seitenende.',
+    ],
+    'hero' => [
+        'title' => 'Hero & Landing Intros',
+        'deTitle' => 'Hero & Seiteneinstiege',
+        'summary' => 'Opening sections for landing pages, products, campaigns, search, video, and launch moments.',
+        'deSummary' => 'Einstiegssektionen für Landingpages, Produkte, Kampagnen, Suche, Video und Launch-Momente.',
+    ],
+    'navigation' => [
+        'title' => 'Navigation & Wayfinding',
+        'deTitle' => 'Navigation & Orientierung',
+        'summary' => 'Menus, breadcrumbs, tabs, steps, pagination, headers, and other orientation patterns.',
+        'deSummary' => 'Menüs, Breadcrumbs, Tabs, Schritte, Paginierung, Header und weitere Orientierungsmuster.',
+    ],
+    'pricing' => [
+        'title' => 'Plans & Pricing',
+        'deTitle' => 'Tarife & Preise',
+        'summary' => 'Pricing tables, plan cards, calculators, package comparisons, and buying decision aids.',
+        'deSummary' => 'Preistabellen, Tarifkarten, Rechner, Paketvergleiche und Entscheidungshilfen für den Kauf.',
+    ],
+    'social-proof' => [
+        'title' => 'Trust & Social Proof',
+        'deTitle' => 'Vertrauen & Referenzen',
+        'summary' => 'Testimonials, reviews, ratings, customer logos, partner proof, and credibility signals.',
+        'deSummary' => 'Testimonials, Bewertungen, Ratings, Kundenlogos, Partnernachweise und Vertrauenssignale.',
+    ],
+    'team' => [
+        'title' => 'People & Team',
+        'deTitle' => 'Menschen & Team',
+        'summary' => 'Team profiles, departments, founders, advisors, company culture, and career content.',
+        'deSummary' => 'Teamprofile, Abteilungen, Gründer, Beratung, Unternehmenskultur und Karriereinhalte.',
+    ],
 ];
 
 $germanWords = [
@@ -227,9 +267,9 @@ foreach ($blocks as $block) {
 
     $group = (string)($config['group'] ?? 'content');
     $title = $manualTitles[$slug] ?? titleFromSlug($slug, $group, $acronyms);
-    $description = descriptionFor($title, $group, $groupDescriptions, 'en');
+    $description = descriptionFor($slug, $title, $group, $config, 'en');
     $germanTitle = germanTitle($title, $germanWords);
-    $germanDescription = descriptionFor($germanTitle, $group, $groupDescriptions, 'de');
+    $germanDescription = descriptionFor($slug, $germanTitle, $group, $config, 'de');
 
     $config['title'] = $title;
     $config['description'] = $description;
@@ -248,7 +288,7 @@ foreach ($blocks as $block) {
     file_put_contents($configPath, rtrim(Yaml::dump($config, 8, 2, Yaml::DUMP_MULTI_LINE_LITERAL_BLOCK)) . "\n");
     file_put_contents($block . '/language/labels.xlf', xlf($slug, $title, $description));
     file_put_contents($block . '/language/de.labels.xlf', deXlf($slug, $title, $description, $germanTitle, $germanDescription));
-    file_put_contents($block . '/assets/icon.svg', iconSvg($slug, $group));
+    file_put_contents($block . '/assets/icon.svg', iconSvg($slug, $group, $title));
     file_put_contents($block . '/templates/backend-preview.fluid.html', backendPreviewTemplate($title, $config));
 
     $typeName = (string)($config['typeName'] ?? ('desiderio_' . str_replace('-', '', $slug)));
@@ -258,7 +298,8 @@ foreach ($blocks as $block) {
     ];
 }
 
-foreach ($groupTitles as $groupId => $groupTitle) {
+foreach ($groupMeta as $groupId => $meta) {
+    $groupTitle = $meta['title'];
     $elements = $groups[$groupId] ?? [];
     usort($elements, static fn (array $a, array $b): int => strcmp((string)$a['name'], (string)$b['name']));
     $seedElements = [];
@@ -284,6 +325,8 @@ file_put_contents($styleguideSeedFile, json_encode([
     'groups' => $seedGroups,
 ], JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . "\n");
 file_put_contents($backendPreviewCssFile, backendPreviewCss());
+writeSharedLabelFiles($sharedLabelsFile, $sharedGermanLabelsFile, $groupMeta);
+writeContentElementGroupTca($contentElementGroupTcaFile, array_keys($groupMeta));
 
 printf("Normalized %d Desiderio Content Blocks.\n", count($blocks));
 
@@ -382,16 +425,147 @@ function humanTitle(array $parts, array $acronyms): string
 }
 
 /**
- * @param array<string, array{0: string, 1: string}> $groupDescriptions
+ * @param array<string, mixed> $config
  */
-function descriptionFor(string $title, string $group, array $groupDescriptions, string $language): string
+function descriptionFor(string $slug, string $title, string $group, array $config, string $language): string
 {
-    [$englishGroup, $germanGroup] = $groupDescriptions[$group] ?? $groupDescriptions['content'];
+    $purpose = purposeSentence($slug, $title, $group, $language);
+    $capabilities = capabilitySentence($config, $language);
+
+    return trim($purpose . ' ' . $capabilities);
+}
+
+function purposeSentence(string $slug, string $title, string $group, string $language): string
+{
+    $keywords = strtolower(str_replace('-', ' ', $slug . ' ' . $group . ' ' . $title));
+
     if ($language === 'de') {
-        return sprintf('Ein shadcn/ui gestaltetes TYPO3 Inhaltselement für %s mit Theme-Tokens für Hell- und Dunkelmodus.', $germanGroup);
+        return match (true) {
+            containsAny($keywords, ['accordion', 'faq']) => sprintf('%s bündelt Antworten oder gegliederte Informationen in einem kompakten aufklappbaren Bereich.', $title),
+            containsAny($keywords, ['alert', 'notification', 'callout', 'status', 'emergency']) => sprintf('%s hebt dringende Hinweise, Statusmeldungen oder wichtige Kontextinformationen sichtbar hervor.', $title),
+            containsAny($keywords, ['analytics', 'kpi', 'metric', 'stats', 'counter', 'leaderboard', 'dashboard']) => sprintf('%s zeigt Kennzahlen und Leistungsdaten als schnell erfassbaren Dashboard-Baustein.', $title),
+            containsAny($keywords, ['area chart', 'bar chart', 'donut chart', 'heatmap', 'line chart', 'pie chart', 'radar', 'sparkline', 'stacked bar']) => sprintf('%s übersetzt Daten in eine konkrete Diagrammform mit klarem visuellen Schwerpunkt.', $title),
+            containsAny($keywords, ['table', 'comparison', 'compare']) => sprintf('%s strukturiert Inhalte für klare Vergleiche, Listen, Zeilen oder tabellarische Details.', $title),
+            containsAny($keywords, ['form', 'signup', 'request', 'booking', 'contact', 'waitlist', 'newsletter', 'demo', 'callback', 'download form']) => sprintf('%s sammelt Besucherinteresse mit fokussierter Formular- oder Anfragekommunikation.', $title),
+            containsAny($keywords, ['pricing', 'plan', 'billing', 'bundle', 'calculator', 'order summary']) => sprintf('%s unterstützt Kaufentscheidungen mit Tarifen, Preisen, Paketen oder berechneten Optionen.', $title),
+            containsAny($keywords, ['testimonial', 'review', 'quote', 'rating', 'award', 'trust', 'client', 'customer', 'logo', 'partner', 'certification', 'press']) => sprintf('%s baut Vertrauen über Stimmen, Logos, Bewertungen, Auszeichnungen oder Referenzen auf.', $title),
+            containsAny($keywords, ['team', 'member', 'founder', 'advisor', 'board', 'profile', 'culture', 'career', 'job', 'office', 'org chart', 'company values', 'company perks']) => sprintf('%s stellt Menschen, Rollen, Kultur oder Karriereinformationen nachvollziehbar vor.', $title),
+            containsAny($keywords, ['navigation', 'navbar', 'menu', 'breadcrumb', 'toc', 'pagination', 'tabs', 'steps', 'search', 'back to top', 'utility bar']) => sprintf('%s hilft Besucherinnen und Besuchern, sich mit Links, Menüs, Ankern oder Suchzugängen zu orientieren.', $title),
+            containsAny($keywords, ['footer', 'copyright', 'legal', 'privacy', 'cookie', 'gdpr', 'accessibility', 'imprint', 'terms']) => sprintf('%s schließt Seiten mit Serviceinformationen, rechtlichen Links oder Kontaktwegen ab.', $title),
+            containsAny($keywords, ['hero']) => sprintf('%s eröffnet Landingpages, Kampagnen oder Produktseiten mit einer starken ersten Botschaft.', $title),
+            containsAny($keywords, ['feature', 'benefit', 'service', 'product', 'use case']) => sprintf('%s erklärt Produktnutzen, Funktionen oder Anwendungsfälle in einer klaren Inhaltsstruktur.', $title),
+            containsAny($keywords, ['gallery', 'image', 'video', 'audio', 'media', 'embed', 'map']) => sprintf('%s kombiniert Medien oder eingebettete Inhalte mit begleitender redaktioneller Aussage.', $title),
+            containsAny($keywords, ['timeline', 'milestone', 'history', 'process', 'how to', 'onboarding', 'progress', 'changelog']) => sprintf('%s macht Abfolgen, Fortschritt, Historie oder Prozessschritte leichter verständlich.', $title),
+            containsAny($keywords, ['card', 'grid', 'list', 'library', 'sitemap', 'category']) => sprintf('%s ordnet mehrere Inhalte als scanbare Karten, Raster oder Bibliothek.', $title),
+            default => sprintf('%s liefert einen eigenständigen redaktionellen Baustein für eine klar erkennbare Seitenaufgabe.', $title),
+        };
     }
 
-    return sprintf('A shadcn/ui styled TYPO3 content element for %s, using theme tokens for light and dark mode.', $englishGroup);
+    return match (true) {
+        containsAny($keywords, ['accordion', 'faq']) => sprintf('%s turns layered answers or grouped information into a compact expandable block.', $title),
+        containsAny($keywords, ['alert', 'notification', 'callout', 'status', 'emergency']) => sprintf('%s highlights urgent notices, status updates, or important contextual messages.', $title),
+        containsAny($keywords, ['analytics', 'kpi', 'metric', 'stats', 'counter', 'leaderboard', 'dashboard']) => sprintf('%s presents performance numbers as a quick-read dashboard block.', $title),
+        containsAny($keywords, ['area chart', 'bar chart', 'donut chart', 'heatmap', 'line chart', 'pie chart', 'radar', 'sparkline', 'stacked bar']) => sprintf('%s turns data into a specific chart treatment with a clear visual focus.', $title),
+        containsAny($keywords, ['table', 'comparison', 'compare']) => sprintf('%s organizes rows, options, and details so visitors can compare information quickly.', $title),
+        containsAny($keywords, ['form', 'signup', 'request', 'booking', 'contact', 'waitlist', 'newsletter', 'demo', 'callback', 'download form']) => sprintf('%s captures visitor intent with focused form or request messaging.', $title),
+        containsAny($keywords, ['pricing', 'plan', 'billing', 'bundle', 'calculator', 'order summary']) => sprintf('%s supports buying decisions with prices, plans, packages, or calculated options.', $title),
+        containsAny($keywords, ['testimonial', 'review', 'quote', 'rating', 'award', 'trust', 'client', 'customer', 'logo', 'partner', 'certification', 'press']) => sprintf('%s builds credibility through voices, logos, ratings, awards, or references.', $title),
+        containsAny($keywords, ['team', 'member', 'founder', 'advisor', 'board', 'profile', 'culture', 'career', 'job', 'office', 'org chart', 'company values', 'company perks']) => sprintf('%s introduces people, roles, culture, or hiring context with clear editorial structure.', $title),
+        containsAny($keywords, ['navigation', 'navbar', 'menu', 'breadcrumb', 'toc', 'pagination', 'tabs', 'steps', 'search', 'back to top', 'utility bar']) => sprintf('%s helps visitors find their way through links, menus, anchors, or search entry points.', $title),
+        containsAny($keywords, ['footer', 'copyright', 'legal', 'privacy', 'cookie', 'gdpr', 'accessibility', 'imprint', 'terms']) => sprintf('%s closes a page with utility information, legal links, contact routes, or service details.', $title),
+        containsAny($keywords, ['hero']) => sprintf('%s opens landing pages, campaigns, or product pages with a strong first message.', $title),
+        containsAny($keywords, ['feature', 'benefit', 'service', 'product', 'use case']) => sprintf('%s explains product value, features, or use cases in a clear content structure.', $title),
+        containsAny($keywords, ['gallery', 'image', 'video', 'audio', 'media', 'embed', 'map']) => sprintf('%s pairs media or embedded content with supporting editorial context.', $title),
+        containsAny($keywords, ['timeline', 'milestone', 'history', 'process', 'how to', 'onboarding', 'progress', 'changelog']) => sprintf('%s makes sequences, progress, history, or process steps easier to understand.', $title),
+        containsAny($keywords, ['card', 'grid', 'list', 'library', 'sitemap', 'category']) => sprintf('%s arranges multiple pieces of content as scannable cards, grids, or libraries.', $title),
+        default => sprintf('%s provides a focused editorial building block for a recognizable page task.', $title),
+    };
+}
+
+/**
+ * @param array<string, mixed> $config
+ */
+function capabilitySentence(array $config, string $language): string
+{
+    $fields = previewFields($config['fields'] ?? []);
+    $fileCount = 0;
+    $linkCount = 0;
+    $collectionCount = 0;
+    $selectCount = 0;
+    $textCount = 0;
+
+    foreach ($fields as $field) {
+        $type = (string)($field['type'] ?? (($field['useExistingField'] ?? false) ? 'Existing' : 'Textarea'));
+        $identifier = (string)$field['identifier'];
+        if ($type === 'File') {
+            $fileCount++;
+        } elseif ($type === 'Link' || str_contains($identifier, 'link')) {
+            $linkCount++;
+        } elseif ($type === 'Collection') {
+            $collectionCount++;
+        } elseif (in_array($type, ['Select', 'Checkbox', 'Radio'], true)) {
+            $selectCount++;
+        } elseif (!in_array($type, ['Palette'], true)) {
+            $textCount++;
+        }
+    }
+
+    $parts = [];
+    if ($textCount > 0) {
+        $parts[] = $language === 'de' ? 'Text- und Überschriftenfelder' : 'headline and copy fields';
+    }
+    if ($fileCount > 0) {
+        $parts[] = $language === 'de' ? 'Medienauswahl' : 'media pickers';
+    }
+    if ($collectionCount > 0) {
+        $parts[] = $language === 'de' ? 'wiederholbare Einträge' : 'repeatable entries';
+    }
+    if ($linkCount > 0) {
+        $parts[] = $language === 'de' ? 'Link- und CTA-Steuerung' : 'link and CTA controls';
+    }
+    if ($selectCount > 0) {
+        $parts[] = $language === 'de' ? 'Layout- oder Variantenoptionen' : 'layout or variant options';
+    }
+
+    if ($parts === []) {
+        return $language === 'de'
+            ? 'Redakteure erhalten eine schlanke Konfiguration ohne unnötige Felder.'
+            : 'Editors get a lean configuration without unnecessary fields.';
+    }
+
+    return $language === 'de'
+        ? 'Redakteure pflegen ' . naturalList($parts, 'de') . '.'
+        : 'Editors can manage ' . naturalList($parts, 'en') . '.';
+}
+
+/**
+ * @param list<string> $needles
+ */
+function containsAny(string $haystack, array $needles): bool
+{
+    foreach ($needles as $needle) {
+        if (str_contains($haystack, $needle)) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+/**
+ * @param list<string> $items
+ */
+function naturalList(array $items, string $language): string
+{
+    $items = array_values(array_filter($items));
+    if (count($items) <= 1) {
+        return $items[0] ?? '';
+    }
+
+    $last = array_pop($items);
+    $joiner = $language === 'de' ? ' und ' : ' and ';
+
+    return implode(', ', $items) . $joiner . $last;
 }
 
 /**
@@ -483,10 +657,11 @@ function backendPreviewTemplate(string $title, array $config): string
     foreach ($scalarFields as $field) {
         $identifier = (string)$field['identifier'];
         $label = readableIdentifier($identifier);
+        $value = previewValueExpression('data.' . $identifier, $field);
         $lines[] = '        <f:if condition="{data.' . $identifier . '}">';
         $lines[] = '            <div class="d-ce-preview__field">';
         $lines[] = '                <span class="d-ce-preview__label">' . xml($label) . '</span>';
-        $lines[] = '                <span class="d-ce-preview__value">{data.' . $identifier . '}</span>';
+        $lines[] = '                <span class="d-ce-preview__value">' . $value . '</span>';
         $lines[] = '            </div>';
         $lines[] = '        </f:if>';
     }
@@ -520,7 +695,8 @@ function backendPreviewTemplate(string $title, array $config): string
         } else {
             foreach ($children as $child) {
                 $childIdentifier = (string)$child['identifier'];
-                $lines[] = '                            <f:if condition="{item.' . $childIdentifier . '}"><span>{item.' . $childIdentifier . '}</span></f:if>';
+                $value = previewValueExpression('item.' . $childIdentifier, $child);
+                $lines[] = '                            <f:if condition="{item.' . $childIdentifier . '}"><span>' . $value . '</span></f:if>';
             }
         }
 
@@ -652,58 +828,189 @@ function readableIdentifier(string $identifier): string
     return $label;
 }
 
+/**
+ * @param array<string, mixed> $field
+ */
+function previewValueExpression(string $path, array $field): string
+{
+    return match ((string)($field['type'] ?? '')) {
+        'Date' => '{' . $path . ' -> f:format.date(format: \'Y-m-d\')}',
+        'DateTime' => '{' . $path . ' -> f:format.date(format: \'Y-m-d H:i\')}',
+        'Time' => '{' . $path . ' -> f:format.date(format: \'H:i\')}',
+        default => '{' . $path . '}',
+    };
+}
+
 function xlf(string $productName, string $title, string $description): string
 {
-    return sprintf(
-        <<<'XML'
-<?xml version="1.0" encoding="utf-8"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" datatype="plaintext" original="messages" product-name="%s">
-        <header/>
-        <body>
-            <trans-unit id="title">
-                <source>%s</source>
-            </trans-unit>
-            <trans-unit id="description">
-                <source>%s</source>
-            </trans-unit>
-        </body>
-    </file>
-</xliff>
-XML,
-        xml($productName),
-        xml($title),
-        xml($description)
-    ) . "\n";
+    return xlf20($productName, [
+        'title' => $title,
+        'description' => $description,
+    ]);
 }
 
 function deXlf(string $productName, string $title, string $description, string $germanTitle, string $germanDescription): string
 {
-    return sprintf(
-        <<<'XML'
-<?xml version="1.0" encoding="utf-8"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" target-language="de" datatype="plaintext" original="messages" product-name="%s">
-        <header/>
-        <body>
-            <trans-unit id="title">
-                <source>%s</source>
-                <target>%s</target>
-            </trans-unit>
-            <trans-unit id="description">
-                <source>%s</source>
-                <target>%s</target>
-            </trans-unit>
-        </body>
-    </file>
-</xliff>
-XML,
-        xml($productName),
-        xml($title),
-        xml($germanTitle),
-        xml($description),
-        xml($germanDescription)
-    ) . "\n";
+    return xlf20($productName, [
+        'title' => $title,
+        'description' => $description,
+    ], [
+        'title' => $germanTitle,
+        'description' => $germanDescription,
+    ], 'de');
+}
+
+/**
+ * @param array<string, string> $sources
+ * @param array<string, string>|null $targets
+ */
+function xlf20(string $productName, array $sources, ?array $targets = null, ?string $targetLanguage = null): string
+{
+    $targetAttribute = $targetLanguage !== null ? ' trgLang="' . xml($targetLanguage) . '"' : '';
+    $lines = [
+        '<?xml version="1.0" encoding="utf-8"?>',
+        '<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en"' . $targetAttribute . '>',
+        '  <file id="' . xml($productName) . '">',
+    ];
+
+    foreach ($sources as $id => $source) {
+        $segmentState = $targetLanguage !== null ? ' state="final"' : '';
+        $lines[] = '    <unit id="' . xml((string)$id) . '">';
+        $lines[] = '      <segment' . $segmentState . '>';
+        $lines[] = '        <source>' . xml($source) . '</source>';
+        if ($targetLanguage !== null) {
+            $lines[] = '        <target>' . xml($targets[$id] ?? $source) . '</target>';
+        }
+        $lines[] = '      </segment>';
+        $lines[] = '    </unit>';
+    }
+
+    $lines[] = '  </file>';
+    $lines[] = '</xliff>';
+
+    return implode("\n", $lines) . "\n";
+}
+
+/**
+ * @param array<string, array{title: string, deTitle: string, summary: string, deSummary: string}> $groupMeta
+ */
+function writeSharedLabelFiles(string $englishFile, string $germanFile, array $groupMeta): void
+{
+    $sources = readXlfSources($englishFile);
+    $targets = readXlfTargets($germanFile);
+
+    foreach ($groupMeta as $group => $meta) {
+        $labelId = contentElementGroupLabelId($group);
+        $descriptionId = $labelId . '.description';
+        $sources[$labelId] = $meta['title'];
+        $sources[$descriptionId] = $meta['summary'];
+        $targets[$labelId] = $meta['deTitle'];
+        $targets[$descriptionId] = $meta['deSummary'];
+    }
+
+    file_put_contents($englishFile, xlf20('desiderio', $sources));
+    file_put_contents($germanFile, xlf20('desiderio', $sources, $targets, 'de'));
+}
+
+/**
+ * @return array<string, string>
+ */
+function readXlfSources(string $file): array
+{
+    return readXlfUnits($file, false);
+}
+
+/**
+ * @return array<string, string>
+ */
+function readXlfTargets(string $file): array
+{
+    return readXlfUnits($file, true);
+}
+
+/**
+ * @return array<string, string>
+ */
+function readXlfUnits(string $file, bool $target): array
+{
+    $document = new DOMDocument();
+    $document->load($file);
+    $xpath = new DOMXPath($document);
+    $units = [];
+
+    foreach ($xpath->query('//*[local-name() = "unit" or local-name() = "trans-unit"]') ?: [] as $unit) {
+        if (!$unit instanceof DOMElement) {
+            continue;
+        }
+        $id = $unit->getAttribute('id');
+        if ($id === '') {
+            continue;
+        }
+        $nodeName = $target ? 'target' : 'source';
+        $node = $xpath->query('.//*[local-name() = "' . $nodeName . '"]', $unit)?->item(0);
+        if (!$node instanceof DOMNode && $target) {
+            $node = $xpath->query('.//*[local-name() = "source"]', $unit)?->item(0);
+        }
+        if (!$node instanceof DOMNode) {
+            continue;
+        }
+        $units[$id] = trim($node->textContent);
+    }
+
+    return $units;
+}
+
+function contentElementGroupLabelId(string $group): string
+{
+    $parts = explode('-', $group);
+    $camel = array_shift($parts) ?: $group;
+    foreach ($parts as $part) {
+        $camel .= ucfirst($part);
+    }
+
+    return 'contentElementGroup.' . $camel;
+}
+
+/**
+ * @param list<string> $groups
+ */
+function writeContentElementGroupTca(string $file, array $groups): void
+{
+    $lines = [
+        '<?php',
+        '',
+        'declare(strict_types=1);',
+        '',
+        'use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;',
+        '',
+        '$position = \'before:default\';',
+        '',
+        'foreach ([',
+    ];
+
+    foreach ($groups as $group) {
+        $lines[] = '    \'' . $group . '\' => \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:' . contentElementGroupLabelId($group) . '\',';
+    }
+
+    $lines = [
+        ...$lines,
+        '] as $group => $label) {',
+        '    ExtensionManagementUtility::addTcaSelectItemGroup(',
+        '        \'tt_content\',',
+        '        \'CType\',',
+        '        $group,',
+        '        $label,',
+        '        $position,',
+        '    );',
+        '    $position = \'after:\' . $group;',
+        '}',
+        '',
+    ];
+
+    if (!is_dir(dirname($file))) {
+        mkdir(dirname($file), 0775, true);
+    }
+    file_put_contents($file, implode("\n", $lines));
 }
 
 function xml(string $value): string
@@ -711,26 +1018,59 @@ function xml(string $value): string
     return htmlspecialchars($value, ENT_XML1 | ENT_COMPAT, 'UTF-8');
 }
 
-function iconSvg(string $slug, string $group): string
+function iconSvg(string $slug, string $group, string $title): string
 {
-    $keywords = $slug . ' ' . $group;
+    $keywords = strtolower(str_replace('-', ' ', $slug . ' ' . $group . ' ' . $title));
+    $iconTitle = xml($title . ' icon');
     $shape = match (true) {
-        str_contains($keywords, 'chart') || str_contains($keywords, 'data') || str_contains($keywords, 'metric') || str_contains($keywords, 'stats') => '<path d="M3.5 12.5h9"/><path d="M4.5 10v2.5"/><path d="M8 7.5v5"/><path d="M11.5 5v7.5"/><circle cx="12.5" cy="3.5" r="1.5" class="accent"/>',
-        str_contains($keywords, 'form') || str_contains($keywords, 'newsletter') || str_contains($keywords, 'contact') || str_contains($keywords, 'booking') || str_contains($keywords, 'request') => '<rect x="3" y="3" width="10" height="10" rx="2"/><path d="M5.25 6h5.5"/><path d="M5.25 8.5h3.5"/><circle cx="11.5" cy="11.5" r="1.5" class="accent"/>',
-        str_contains($keywords, 'navigation') || str_contains($keywords, 'navbar') || str_contains($keywords, 'menu') || str_contains($keywords, 'breadcrumb') => '<path d="M3 4.5h10"/><path d="M3 8h10"/><path d="M3 11.5h7"/><circle cx="12.25" cy="11.5" r="1.25" class="accent"/>',
-        str_contains($keywords, 'hero') => '<rect x="2.75" y="3.25" width="10.5" height="9.5" rx="2"/><path d="M5 6.25h5.5"/><path d="M5 8.5h3.25"/><circle cx="11.5" cy="5.25" r="1.25" class="accent"/>',
-        str_contains($keywords, 'footer') => '<rect x="3" y="3.5" width="10" height="9" rx="2"/><path d="M5 6h6"/><path d="M5 8.25h3"/><rect x="5" y="10.25" width="6" height="1.25" rx=".625" class="accent no-stroke"/>',
-        str_contains($keywords, 'pricing') || str_contains($keywords, 'plan') || str_contains($keywords, 'billing') => '<rect x="3" y="2.75" width="10" height="10.5" rx="2"/><path d="M5.5 6h4"/><path d="M5.5 8h5"/><circle cx="10.75" cy="10.75" r="1.25" class="accent"/>',
-        str_contains($keywords, 'team') || str_contains($keywords, 'member') || str_contains($keywords, 'profile') || str_contains($keywords, 'founder') => '<circle cx="6" cy="5.25" r="2"/><path d="M2.75 12.5c.55-2 1.7-3 3.25-3s2.7 1 3.25 3"/><circle cx="11.25" cy="6.5" r="1.5" class="accent"/>',
-        str_contains($keywords, 'testimonial') || str_contains($keywords, 'review') || str_contains($keywords, 'quote') || str_contains($keywords, 'social-proof') || str_contains($keywords, 'award') => '<path d="M4 5.25h7.5a1.5 1.5 0 0 1 1.5 1.5v3.5a1.5 1.5 0 0 1-1.5 1.5H7l-3 2v-2.5a1.5 1.5 0 0 1-1.5-1.5v-3A1.5 1.5 0 0 1 4 5.25z"/><path d="m9.75 2.75.45.9 1 .15-.72.7.17 1-.9-.48-.9.48.17-1-.72-.7 1-.15z" class="accent"/>',
-        str_contains($keywords, 'media') || str_contains($keywords, 'image') || str_contains($keywords, 'gallery') || str_contains($keywords, 'video') || str_contains($keywords, 'audio') => '<rect x="3" y="3.5" width="10" height="9" rx="2"/><path d="m5.25 10 2-2 1.5 1.5 1-1 2 2.5"/><circle cx="10.75" cy="5.75" r="1" class="accent"/>',
-        str_contains($keywords, 'alert') || str_contains($keywords, 'callout') || str_contains($keywords, 'status') || str_contains($keywords, 'security') || str_contains($keywords, 'legal') || str_contains($keywords, 'privacy') || str_contains($keywords, 'gdpr') || str_contains($keywords, 'accessibility') => '<path d="M8 2.75 13.5 12H2.5z"/><path d="M8 6v2.5"/><circle cx="8" cy="10.5" r=".55" class="accent no-stroke"/>',
+        containsAny($keywords, ['accordion', 'faq']) => '<rect x="3" y="3" width="10" height="10" rx="2"/><path d="M5 5.5h5.5"/><path d="M5 8h4"/><path d="m10.5 10 1.4 1.4 1.4-1.4" class="accent"/>',
+        containsAny($keywords, ['alert', 'callout', 'notification', 'status', 'emergency']) => '<path d="M8 2.75 13.5 12H2.5z"/><path d="M8 6v2.5"/><circle cx="8" cy="10.5" r=".55" class="accent-fill"/>',
+        containsAny($keywords, ['audio']) => '<path d="M4 9.5H2.75v-3H4l2.5-2v7z"/><path d="M9 5.5c.7.7.7 4.3 0 5"/><path d="M11 4c1.5 1.9 1.5 6.1 0 8" class="accent"/>',
+        containsAny($keywords, ['award', 'certification', 'badge']) => '<circle cx="8" cy="6" r="3.25"/><path d="m6.25 9 1.75 4 1.75-4"/><path d="m6.35 6 1.1 1.05L9.7 4.9" class="accent"/>',
+        containsAny($keywords, ['back to top']) => '<path d="M8 12.5v-9"/><path d="m4.75 6.75 3.25-3.25 3.25 3.25"/><path d="M3.25 12.75h9.5" class="accent"/>',
+        containsAny($keywords, ['booking', 'calendar', 'event', 'office hours']) => '<rect x="3" y="4" width="10" height="9" rx="2"/><path d="M3 6.5h10"/><path d="M5.5 2.75v2.5"/><path d="M10.5 2.75v2.5"/><circle cx="10.75" cy="10.25" r="1.35" class="accent"/>',
+        containsAny($keywords, ['breadcrumb', 'steps', 'timeline', 'process', 'how to', 'onboarding', 'progress']) => '<circle cx="3.75" cy="8" r="1.25"/><circle cx="8" cy="8" r="1.25" class="accent"/><circle cx="12.25" cy="8" r="1.25"/><path d="M5 8h1.75M9.25 8H11"/>',
+        containsAny($keywords, ['calculator', 'roi']) => '<rect x="4" y="2.75" width="8" height="10.5" rx="1.75"/><path d="M5.75 5.25h4.5"/><path d="M6 8h.1M8 8h.1M10 8h.1M6 10.5h.1M8 10.5h.1"/><path d="M10 10.5h.1" class="accent"/>',
+        containsAny($keywords, ['carousel', 'slider']) => '<rect x="2.75" y="4" width="5.25" height="7.75" rx="1.4"/><rect x="8" y="3" width="5.25" height="9.75" rx="1.4" class="accent"/><path d="m3 8-1 1 1 1M13 8l1 1-1 1"/>',
+        containsAny($keywords, ['code']) => '<rect x="3" y="3.5" width="10" height="9" rx="2"/><path d="m6.2 6.5-1.5 1.5 1.5 1.5"/><path d="m9.8 6.5 1.5 1.5-1.5 1.5"/><path d="m8.7 5.75-1.4 4.5" class="accent"/>',
+        containsAny($keywords, ['columns', 'split']) => '<rect x="3" y="3.25" width="10" height="9.5" rx="2"/><path d="M8 3.25v9.5"/><path d="M5 6h1.4M9.6 6H11"/><path d="M5 8.5h1.4M9.6 8.5H11" class="accent"/>',
+        containsAny($keywords, ['contact', 'mail', 'newsletter', 'callback']) => '<rect x="2.75" y="4.25" width="10.5" height="7.5" rx="1.75"/><path d="m3.5 5 4.5 3.5L12.5 5"/><circle cx="11.8" cy="10.8" r="1.5" class="accent"/>',
+        containsAny($keywords, ['cookie']) => '<circle cx="8" cy="8" r="4.75"/><circle cx="6.5" cy="6.25" r=".55" class="accent-fill"/><circle cx="9.75" cy="7.25" r=".55" class="accent-fill"/><circle cx="7.8" cy="10" r=".55" class="accent-fill"/>',
+        containsAny($keywords, ['countdown', 'timer']) => '<circle cx="8" cy="8.5" r="4.25"/><path d="M6.5 2.75h3"/><path d="M8 8.5V5.75"/><path d="m8 8.5 2.1 1.2" class="accent"/>',
+        containsAny($keywords, ['cta', 'offer', 'signup', 'request', 'download form', 'demo']) => '<rect x="3" y="4.5" width="10" height="7" rx="2"/><path d="M5.25 8h4.5"/><path d="m9.5 6.25 2 1.75-2 1.75" class="accent"/>',
+        containsAny($keywords, ['data table', 'table']) => '<rect x="3" y="3.5" width="10" height="9" rx="1.5"/><path d="M3 6.5h10M3 9.5h10M6.5 3.5v9"/><path d="M10 3.5v9" class="accent"/>',
+        containsAny($keywords, ['donut']) => '<circle cx="8" cy="8" r="4.5"/><path d="M8 3.5a4.5 4.5 0 0 1 4.5 4.5H8z" class="accent-fill"/>',
+        containsAny($keywords, ['pie']) => '<path d="M8 3.5v4.75h4.75A4.75 4.75 0 1 1 8 3.5z"/><path d="M8 3.5a4.75 4.75 0 0 1 4.75 4.75H8z" class="accent"/>',
+        containsAny($keywords, ['line chart', 'sparkline']) => '<path d="M3.25 12.5h9.5"/><path d="M3.75 10.5 6 8.25l2 1.5 3.75-4.25" class="accent"/><circle cx="11.75" cy="5.5" r="1"/>',
+        containsAny($keywords, ['bar chart', 'stacked bar', 'stats bar']) => '<path d="M3.5 12.5h9"/><rect x="4" y="8" width="1.75" height="4.5" rx=".5"/><rect x="7.1" y="5.5" width="1.75" height="7" rx=".5" class="accent"/><rect x="10.2" y="3.75" width="1.75" height="8.75" rx=".5"/>',
+        containsAny($keywords, ['heatmap', 'contribution']) => '<rect x="3" y="3" width="2.1" height="2.1" rx=".45"/><rect x="6.1" y="3" width="2.1" height="2.1" rx=".45" class="accent-fill"/><rect x="9.2" y="3" width="2.1" height="2.1" rx=".45"/><rect x="3" y="6.1" width="2.1" height="2.1" rx=".45" class="accent-fill"/><rect x="6.1" y="6.1" width="2.1" height="2.1" rx=".45"/><rect x="9.2" y="6.1" width="2.1" height="2.1" rx=".45" class="accent-fill"/><rect x="3" y="9.2" width="2.1" height="2.1" rx=".45"/><rect x="6.1" y="9.2" width="2.1" height="2.1" rx=".45" class="accent-fill"/><rect x="9.2" y="9.2" width="2.1" height="2.1" rx=".45"/>',
+        containsAny($keywords, ['radar']) => '<path d="M8 3.25 12.25 6v4L8 12.75 3.75 10V6z"/><path d="M8 3.25v9.5M3.75 6l8.5 4M12.25 6l-8.5 4" class="accent"/><path d="m8 5.75 2.2 1.4v2L8 10.25 5.8 9.15v-2z"/>',
+        containsAny($keywords, ['chart', 'analytics', 'metric', 'stats', 'kpi', 'counter', 'dashboard', 'leaderboard']) => '<rect x="3" y="3.5" width="10" height="9" rx="2"/><path d="M5.25 10.75V8.5"/><path d="M8 10.75V5.75" class="accent"/><path d="M10.75 10.75V7.25"/><path d="M5 12h6"/>',
+        containsAny($keywords, ['definition', 'changelog', 'resource', 'article', 'blog', 'textmedia', 'content']) => '<path d="M4 2.75h5.25L12 5.5v7.75H4z"/><path d="M9.25 2.75V5.5H12"/><path d="M5.75 7.5h4.5M5.75 9.75h3" class="accent"/>',
+        containsAny($keywords, ['divider']) => '<path d="M2.75 8h10.5"/><circle cx="8" cy="8" r="1.35" class="accent"/><path d="M4.5 5.5h7M4.5 10.5h7"/>',
+        containsAny($keywords, ['embed', 'map', 'directions', 'location']) => '<rect x="3" y="3.25" width="10" height="9.5" rx="2"/><path d="M6.25 5.25 4.75 12M9.75 4l-1.5 7.5M6.25 5.25l3.5-1.25 1.5 1.25v7l-3-1-3.5 1.25v-7z" class="accent"/>',
+        containsAny($keywords, ['file download', 'download']) => '<path d="M4.5 2.75h5L12 5.25v8H4.5z"/><path d="M9.5 2.75v2.5H12"/><path d="M8 6.75v4"/><path d="m6.25 9.25 1.75 1.75 1.75-1.75" class="accent"/>',
+        containsAny($keywords, ['filter']) => '<path d="M3.25 4h9.5L9 8.35v3.4l-2 1v-4.4z"/><path d="M5.25 4h5.5" class="accent"/>',
+        containsAny($keywords, ['footer', 'copyright', 'legal links']) => '<rect x="3" y="3.5" width="10" height="9" rx="2"/><path d="M5 6h6"/><path d="M5 8.25h3"/><rect x="5" y="10.25" width="6" height="1.25" rx=".625" class="accent-fill"/>',
+        containsAny($keywords, ['gallery', 'image', 'product gallery']) => '<rect x="3" y="3.25" width="10" height="9.5" rx="2"/><path d="m5 10 2-2 1.5 1.5 1-1 2 2.5"/><circle cx="10.75" cy="5.75" r="1" class="accent"/>',
+        containsAny($keywords, ['hero']) => '<rect x="2.75" y="3.25" width="10.5" height="9.5" rx="2"/><path d="M5 6.25h5.5"/><path d="M5 8.5h3.25"/><circle cx="11.5" cy="5.25" r="1.25" class="accent"/>',
+        containsAny($keywords, ['logo cloud', 'logo carousel', 'logo grid', 'partner', 'client']) => '<rect x="3" y="4" width="3" height="2" rx=".7"/><rect x="8" y="4" width="5" height="2" rx=".7" class="accent"/><rect x="3" y="8" width="5" height="2" rx=".7" class="accent"/><rect x="10" y="8" width="3" height="2" rx=".7"/>',
+        containsAny($keywords, ['menu', 'navbar', 'navigation', 'toc', 'sitemap']) => '<path d="M3 4.5h10"/><path d="M3 8h10"/><path d="M3 11.5h7"/><circle cx="12.25" cy="11.5" r="1.25" class="accent"/>',
+        containsAny($keywords, ['privacy', 'gdpr', 'security', 'compliance', 'imprint', 'terms', 'accessibility']) => '<path d="M8 2.75 12 4.5v3.25c0 2.65-1.5 4.35-4 5.5-2.5-1.15-4-2.85-4-5.5V4.5z"/><path d="m6.25 8 1.15 1.15L10 6.5" class="accent"/>',
+        containsAny($keywords, ['pricing', 'plan', 'billing', 'bundle', 'order summary']) => '<rect x="3" y="3" width="10" height="10" rx="2"/><path d="M5.25 6h4.5"/><path d="M5.25 8.25h5.5"/><path d="M5.25 10.5h2.5"/><circle cx="10.75" cy="10.75" r="1.25" class="accent"/>',
+        containsAny($keywords, ['product', 'card', 'grid', 'category', 'library']) => '<rect x="3" y="3" width="4.25" height="4.25" rx="1.25"/><rect x="8.75" y="3" width="4.25" height="4.25" rx="1.25" class="accent"/><rect x="3" y="8.75" width="4.25" height="4.25" rx="1.25"/><rect x="8.75" y="8.75" width="4.25" height="4.25" rx="1.25"/>',
+        containsAny($keywords, ['quote', 'testimonial', 'review', 'rating']) => '<path d="M4 5.25h7.5a1.5 1.5 0 0 1 1.5 1.5v3.5a1.5 1.5 0 0 1-1.5 1.5H7l-3 2v-2.5a1.5 1.5 0 0 1-1.5-1.5v-3A1.5 1.5 0 0 1 4 5.25z"/><path d="m9.75 2.75.45.9 1 .15-.72.7.17 1-.9-.48-.9.48.17-1-.72-.7 1-.15z" class="accent"/>',
+        containsAny($keywords, ['search']) => '<circle cx="7" cy="7" r="3.5"/><path d="m9.75 9.75 3 3"/><path d="M5.25 7h3.5" class="accent"/>',
+        containsAny($keywords, ['social']) => '<circle cx="4" cy="8" r="1.5"/><circle cx="11.5" cy="4.5" r="1.5" class="accent"/><circle cx="11.5" cy="11.5" r="1.5"/><path d="m5.35 7.35 4.8-2.25M5.35 8.65l4.8 2.25"/>',
+        containsAny($keywords, ['team', 'member', 'founder', 'advisor', 'board', 'profile', 'office', 'job', 'career', 'org chart']) => '<circle cx="6" cy="5.25" r="2"/><path d="M2.75 12.5c.55-2 1.7-3 3.25-3s2.7 1 3.25 3"/><circle cx="11.25" cy="6.5" r="1.5" class="accent"/><path d="M9.5 12.25c.35-1.2 1-1.8 2-1.8s1.65.6 2 1.8" class="accent"/>',
+        containsAny($keywords, ['video']) => '<rect x="3" y="4" width="10" height="8" rx="2"/><path d="m7 6.5 3.25 1.5L7 9.5z" class="accent-fill"/>',
         default => '<rect x="3" y="3" width="4.25" height="4.25" rx="1.25"/><rect x="8.75" y="3" width="4.25" height="4.25" rx="1.25"/><rect x="3" y="8.75" width="4.25" height="4.25" rx="1.25"/><rect x="8.75" y="8.75" width="4.25" height="4.25" rx="1.25" class="accent"/>',
     };
 
     return <<<SVG
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round">
-  <style>.accent{stroke:var(--icon-color-accent,currentColor);fill:none}.no-stroke{stroke:none;fill:var(--icon-color-accent,currentColor)}</style>
+  <title>{$iconTitle}</title>
+  <style>.accent{stroke:var(--icon-color-accent,currentColor);fill:none}.accent-fill,.no-stroke{stroke:none;fill:var(--icon-color-accent,currentColor)}</style>
   {$shape}
 </svg>
 SVG . "\n";

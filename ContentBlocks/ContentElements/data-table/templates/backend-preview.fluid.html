@@ -56,7 +56,6 @@
                     <f:for each="{data.rows}" as="item">
                         <li>
                             <f:if condition="{item.row_label}"><span>{item.row_label}</span></f:if>
-                            <f:if condition="{item.cells}"><span>{item.cells -> f:count()} cells</span></f:if>
                         </li>
                     </f:for>
                 </ul>

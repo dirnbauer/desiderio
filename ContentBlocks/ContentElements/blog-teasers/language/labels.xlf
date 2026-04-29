@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" datatype="plaintext" original="messages" product-name="blog-teasers">
-        <header/>
-        <body>
-            <trans-unit id="title">
-                <source>Blog Teasers</source>
-            </trans-unit>
-            <trans-unit id="description">
-                <source>A shadcn/ui styled TYPO3 content element for content presentation, using theme tokens for light and dark mode.</source>
-            </trans-unit>
-        </body>
-    </file>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en">
+  <file id="blog-teasers">
+    <unit id="title">
+      <segment>
+        <source>Blog Teasers</source>
+      </segment>
+    </unit>
+    <unit id="description">
+      <segment>
+        <source>Blog Teasers provides a focused editorial building block for a recognizable page task. Editors can manage headline and copy fields, repeatable entries and layout or variant options.</source>
+      </segment>
+    </unit>
+  </file>
 </xliff>

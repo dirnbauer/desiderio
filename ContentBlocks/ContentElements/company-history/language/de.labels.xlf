@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" target-language="de" datatype="plaintext" original="messages" product-name="company-history">
-        <header/>
-        <body>
-            <trans-unit id="title">
-                <source>Company History</source>
-                <target>Company History</target>
-            </trans-unit>
-            <trans-unit id="description">
-                <source>A shadcn/ui styled TYPO3 content element for team presentation, using theme tokens for light and dark mode.</source>
-                <target>Ein shadcn/ui gestaltetes TYPO3 Inhaltselement für Teamdarstellung mit Theme-Tokens für Hell- und Dunkelmodus.</target>
-            </trans-unit>
-        </body>
-    </file>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="de">
+  <file id="company-history">
+    <unit id="title">
+      <segment state="final">
+        <source>Company History</source>
+        <target>Company History</target>
+      </segment>
+    </unit>
+    <unit id="description">
+      <segment state="final">
+        <source>Company History introduces people, roles, culture, or hiring context with clear editorial structure. Editors can manage headline and copy fields and repeatable entries.</source>
+        <target>Company History stellt Menschen, Rollen, Kultur oder Karriereinformationen nachvollziehbar vor. Redakteure pflegen Text- und Überschriftenfelder und wiederholbare Einträge.</target>
+      </segment>
+    </unit>
+  </file>
 </xliff>

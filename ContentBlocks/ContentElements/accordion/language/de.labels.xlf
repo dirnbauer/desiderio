@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" target-language="de" datatype="plaintext" original="messages" product-name="accordion">
-        <header/>
-        <body>
-            <trans-unit id="title">
-                <source>Accordion</source>
-                <target>Akkordeon</target>
-            </trans-unit>
-            <trans-unit id="description">
-                <source>A shadcn/ui styled TYPO3 content element for content presentation, using theme tokens for light and dark mode.</source>
-                <target>Ein shadcn/ui gestaltetes TYPO3 Inhaltselement für Inhaltsdarstellung mit Theme-Tokens für Hell- und Dunkelmodus.</target>
-            </trans-unit>
-        </body>
-    </file>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="de">
+  <file id="accordion">
+    <unit id="title">
+      <segment state="final">
+        <source>Accordion</source>
+        <target>Akkordeon</target>
+      </segment>
+    </unit>
+    <unit id="description">
+      <segment state="final">
+        <source>Accordion turns layered answers or grouped information into a compact expandable block. Editors can manage headline and copy fields, repeatable entries and layout or variant options.</source>
+        <target>Akkordeon bündelt Antworten oder gegliederte Informationen in einem kompakten aufklappbaren Bereich. Redakteure pflegen Text- und Überschriftenfelder, wiederholbare Einträge und Layout- oder Variantenoptionen.</target>
+      </segment>
+    </unit>
+  </file>
 </xliff>

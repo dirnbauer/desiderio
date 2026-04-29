@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" datatype="plaintext" original="messages" product-name="hero-pricing">
-        <header/>
-        <body>
-            <trans-unit id="title">
-                <source>Pricing Hero</source>
-            </trans-unit>
-            <trans-unit id="description">
-                <source>A shadcn/ui styled TYPO3 content element for hero section, using theme tokens for light and dark mode.</source>
-            </trans-unit>
-        </body>
-    </file>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en">
+  <file id="hero-pricing">
+    <unit id="title">
+      <segment>
+        <source>Pricing Hero</source>
+      </segment>
+    </unit>
+    <unit id="description">
+      <segment>
+        <source>Pricing Hero supports buying decisions with prices, plans, packages, or calculated options. Editors can manage headline and copy fields, repeatable entries and link and CTA controls.</source>
+      </segment>
+    </unit>
+  </file>
 </xliff>

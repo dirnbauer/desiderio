@@ -41,12 +41,6 @@
                 <span class="d-ce-preview__value">{data.button_text}</span>
             </div>
         </f:if>
-        <f:if condition="{data.features}">
-            <div class="d-ce-preview__field">
-                <span class="d-ce-preview__label">Features</span>
-                <span class="d-ce-preview__value">{data.features -> f:count()} items</span>
-            </div>
-        </f:if>
         <f:if condition="{data.image}">
             <div class="d-ce-preview__thumbs" aria-label="Image">
                 <f:for each="{data.image}" as="file">
@@ -54,6 +48,18 @@
                         <img src="{file.publicUrl}" alt="{file.alternative}" class="d-ce-preview__thumb" loading="lazy" />
                     </f:if>
                 </f:for>
+            </div>
+        </f:if>
+        <f:if condition="{data.features}">
+            <div class="d-ce-preview__collection">
+                <span class="d-ce-preview__label">Features</span>
+                <ul class="d-ce-preview__list">
+                    <f:for each="{data.features}" as="item">
+                        <li>
+                            <f:if condition="{item.text}"><span>{item.text}</span></f:if>
+                        </li>
+                    </f:for>
+                </ul>
             </div>
         </f:if>
     </div>

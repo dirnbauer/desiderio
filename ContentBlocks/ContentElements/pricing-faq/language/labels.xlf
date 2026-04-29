@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" datatype="plaintext" original="messages" product-name="pricing-faq">
-        <header/>
-        <body>
-            <trans-unit id="title">
-                <source>FAQ Pricing</source>
-            </trans-unit>
-            <trans-unit id="description">
-                <source>A shadcn/ui styled TYPO3 content element for pricing section, using theme tokens for light and dark mode.</source>
-            </trans-unit>
-        </body>
-    </file>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en">
+  <file id="pricing-faq">
+    <unit id="title">
+      <segment>
+        <source>FAQ Pricing</source>
+      </segment>
+    </unit>
+    <unit id="description">
+      <segment>
+        <source>FAQ Pricing turns layered answers or grouped information into a compact expandable block. Editors can manage headline and copy fields and repeatable entries.</source>
+      </segment>
+    </unit>
+  </file>
 </xliff>

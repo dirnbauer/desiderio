@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" datatype="plaintext" original="messages" product-name="analytics-overview">
-        <header/>
-        <body>
-            <trans-unit id="title">
-                <source>Analytics Overview</source>
-            </trans-unit>
-            <trans-unit id="description">
-                <source>A shadcn/ui styled TYPO3 content element for data visualization, using theme tokens for light and dark mode.</source>
-            </trans-unit>
-        </body>
-    </file>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en">
+  <file id="analytics-overview">
+    <unit id="title">
+      <segment>
+        <source>Analytics Overview</source>
+      </segment>
+    </unit>
+    <unit id="description">
+      <segment>
+        <source>Analytics Overview presents performance numbers as a quick-read dashboard block. Editors can manage headline and copy fields and repeatable entries.</source>
+      </segment>
+    </unit>
+  </file>
 </xliff>

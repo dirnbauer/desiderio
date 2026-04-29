@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" datatype="plaintext" original="messages" product-name="case-study-grid">
-        <header/>
-        <body>
-            <trans-unit id="title">
-                <source>Case Study Grid</source>
-            </trans-unit>
-            <trans-unit id="description">
-                <source>A shadcn/ui styled TYPO3 content element for social proof section, using theme tokens for light and dark mode.</source>
-            </trans-unit>
-        </body>
-    </file>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en">
+  <file id="case-study-grid">
+    <unit id="title">
+      <segment>
+        <source>Case Study Grid</source>
+      </segment>
+    </unit>
+    <unit id="description">
+      <segment>
+        <source>Case Study Grid arranges multiple pieces of content as scannable cards, grids, or libraries. Editors can manage headline and copy fields, repeatable entries and layout or variant options.</source>
+      </segment>
+    </unit>
+  </file>
 </xliff>

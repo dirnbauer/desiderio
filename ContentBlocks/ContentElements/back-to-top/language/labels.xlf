@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" datatype="plaintext" original="messages" product-name="back-to-top">
-        <header/>
-        <body>
-            <trans-unit id="title">
-                <source>Back to Top Button</source>
-            </trans-unit>
-            <trans-unit id="description">
-                <source>A shadcn/ui styled TYPO3 content element for footer area, using theme tokens for light and dark mode.</source>
-            </trans-unit>
-        </body>
-    </file>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en">
+  <file id="back-to-top">
+    <unit id="title">
+      <segment>
+        <source>Back to Top Button</source>
+      </segment>
+    </unit>
+    <unit id="description">
+      <segment>
+        <source>Back to Top Button helps visitors find their way through links, menus, anchors, or search entry points. Editors can manage headline and copy fields and layout or variant options.</source>
+      </segment>
+    </unit>
+  </file>
 </xliff>

@@ -79,10 +79,81 @@ final class ContentBlockStructureTest extends TestCase
             $english = (string) file_get_contents("{$block}/language/labels.xlf");
             $german = (string) file_get_contents("{$block}/language/de.labels.xlf");
 
-            self::assertMatchesRegularExpression('/<trans-unit id="title">\\s*<source>[^<]+<\\/source>/s', $english, "{$name} needs an English title");
-            self::assertStringContainsString('A shadcn/ui styled TYPO3 content element', $english, "{$name} needs the standardized English description");
-            self::assertMatchesRegularExpression('/<trans-unit id="title">\\s*<source>[^<]+<\\/source>\\s*<target>[^<]+<\\/target>/s', $german, "{$name} needs a German title target");
-            self::assertStringContainsString('Ein shadcn/ui gestaltetes TYPO3 Inhaltselement', $german, "{$name} needs the standardized German description");
+            self::assertStringContainsString('<xliff version="2.0"', $english, "{$name} must use TYPO3 XLIFF 2.0 for English labels");
+            self::assertStringContainsString('srcLang="en"', $english, "{$name} must declare English as source language");
+            self::assertMatchesRegularExpression('/<unit id="title">\\s*<segment>\\s*<source>[^<]+<\\/source>/s', $english, "{$name} needs an English title");
+            self::assertMatchesRegularExpression('/<unit id="description">\\s*<segment>\\s*<source>[^<]+Editors (?:can manage|get)[^<]+<\\/source>/s', $english, "{$name} needs a self-explanatory English description");
+            self::assertStringNotContainsString('A shadcn/ui styled TYPO3 content element', $english, "{$name} still uses the old generic English description");
+
+            self::assertStringContainsString('<xliff version="2.0"', $german, "{$name} must use TYPO3 XLIFF 2.0 for German labels");
+            self::assertStringContainsString('trgLang="de"', $german, "{$name} must declare German as target language");
+            self::assertMatchesRegularExpression('/<unit id="title">\\s*<segment state="final">\\s*<source>[^<]+<\\/source>\\s*<target>[^<]+<\\/target>/s', $german, "{$name} needs a German title target");
+            self::assertMatchesRegularExpression('/<unit id="description">\\s*<segment state="final">\\s*<source>[^<]+<\\/source>\\s*<target>[^<]+Redakteure (?:pflegen|erhalten)[^<]+<\\/target>/s', $german, "{$name} needs a self-explanatory German description");
+        }
+    }
+
+    public function testContentBlockTitlesAndDescriptionsAreDistinct(): void
+    {
+        $titles = [];
+        $descriptions = [];
+        $blocks = glob(self::CONTENT_BLOCKS_DIR . '/*', GLOB_ONLYDIR) ?: [];
+
+        foreach ($blocks as $block) {
+            $name = basename($block);
+            $config = Yaml::parseFile("{$block}/config.yaml");
+            $title = (string)($config['title'] ?? '');
+            $description = (string)($config['description'] ?? '');
+
+            self::assertNotSame('', $title, "{$name} needs a title");
+            self::assertNotSame('', $description, "{$name} needs a description");
+            if (isset($titles[$title])) {
+                self::fail("{$name} duplicates the title used by {$titles[$title]}");
+            }
+            if (isset($descriptions[$description])) {
+                self::fail("{$name} duplicates the description used by {$descriptions[$description]}");
+            }
+            self::assertStringNotContainsString('A shadcn/ui styled TYPO3 content element', $description, "{$name} still uses a generic description");
+
+            $titles[$title] = $name;
+            $descriptions[$description] = $name;
+        }
+    }
+
+    public function testContentElementWizardGroupsUseLocalizedEditorNames(): void
+    {
+        $expectedGroups = [
+            'content' => ['contentElementGroup.content', 'Content & Editorial', 'Inhalte & Redaktion'],
+            'conversion' => ['contentElementGroup.conversion', 'Leads & Conversion', 'Leads & Conversion'],
+            'data' => ['contentElementGroup.data', 'Data & Dashboards', 'Daten & Dashboards'],
+            'features' => ['contentElementGroup.features', 'Features & Benefits', 'Funktionen & Vorteile'],
+            'footer' => ['contentElementGroup.footer', 'Footers & Utility Areas', 'Footer & Servicebereiche'],
+            'hero' => ['contentElementGroup.hero', 'Hero & Landing Intros', 'Hero & Seiteneinstiege'],
+            'navigation' => ['contentElementGroup.navigation', 'Navigation & Wayfinding', 'Navigation & Orientierung'],
+            'pricing' => ['contentElementGroup.pricing', 'Plans & Pricing', 'Tarife & Preise'],
+            'social-proof' => ['contentElementGroup.socialProof', 'Trust & Social Proof', 'Vertrauen & Referenzen'],
+            'team' => ['contentElementGroup.team', 'People & Team', 'Menschen & Team'],
+        ];
+
+        $tcaOverride = (string)file_get_contents(__DIR__ . '/../../Configuration/TCA/Overrides/tt_content.php');
+        $englishLabels = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Language/labels.xlf');
+        $germanLabels = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Language/de.labels.xlf');
+        $styleguideGroups = json_decode((string)file_get_contents(__DIR__ . '/../../Resources/Private/Data/styleguide-content-groups.json'), true, 512, JSON_THROW_ON_ERROR);
+
+        self::assertStringContainsString('addTcaSelectItemGroup', $tcaOverride);
+        self::assertStringContainsString('<xliff version="2.0"', $englishLabels);
+        self::assertStringContainsString('<xliff version="2.0"', $germanLabels);
+
+        $styleguideTitles = [];
+        foreach ($styleguideGroups as $group) {
+            $styleguideTitles[$group['groupId']] = $group['groupTitle'];
+        }
+
+        foreach ($expectedGroups as $group => [$labelId, $englishTitle, $germanTitle]) {
+            self::assertStringContainsString("'{$group}' => 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:{$labelId}'", $tcaOverride);
+            self::assertStringContainsString('<unit id="' . $labelId . '">', $englishLabels);
+            self::assertStringContainsString('<source>' . htmlspecialchars($englishTitle, ENT_XML1 | ENT_COMPAT, 'UTF-8') . '</source>', $englishLabels);
+            self::assertStringContainsString('<target>' . htmlspecialchars($germanTitle, ENT_XML1 | ENT_COMPAT, 'UTF-8') . '</target>', $germanLabels);
+            self::assertSame($englishTitle, $styleguideTitles[$group] ?? null, "{$group} should use the improved styleguide group title");
         }
     }
 
@@ -94,6 +165,7 @@ final class ContentBlockStructureTest extends TestCase
             $icon = (string) file_get_contents("{$block}/assets/icon.svg");
 
             self::assertStringContainsString('viewBox="0 0 16 16"', $icon, "{$name} icon should use TYPO3 backend icon dimensions");
+            self::assertStringContainsString('<title>', $icon, "{$name} icon should name the element for SVG consumers");
             self::assertStringContainsString('currentColor', $icon, "{$name} icon should inherit backend icon color");
             self::assertStringContainsString('--icon-color-accent', $icon, "{$name} icon should expose the TYPO3 accent variable");
             self::assertStringNotContainsString('#000', strtolower($icon), "{$name} icon must not hard-code black");

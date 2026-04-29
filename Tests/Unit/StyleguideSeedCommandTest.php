@@ -21,7 +21,7 @@ final class StyleguideSeedCommandTest extends TestCase
         self::assertStringContainsString('StyleguideContentGroups::getGroupsWithFixtures()', $source);
         self::assertStringContainsString("->update('tt_content')", $source);
         self::assertStringContainsString("'desiderio_%'", $source);
-        self::assertStringContainsString('deleteCollectionRowsForParentUids($existingContentUids);', $source);
+        self::assertStringContainsString("deleteCollectionRowsForParentUids(\$existingContentUids, 'tt_content');", $source);
         self::assertStringContainsString('completeResolvedFixtureData(', $source);
         self::assertStringContainsString('seedFileReferences(', $source);
         self::assertStringContainsString('Resources/Public/Styleguide/Unsplash', $source);
@@ -103,9 +103,6 @@ final class StyleguideSeedCommandTest extends TestCase
                 'name' => 'Professional',
                 'price' => '$29',
                 'billing_period' => '/user/month',
-                'features' => 2,
-                'button_text' => 'Start Free Trial',
-                'is_featured' => 1,
                 '__collections' => [
                     'features' => [
                         'table' => 'plan_features',
@@ -115,6 +112,9 @@ final class StyleguideSeedCommandTest extends TestCase
                         ],
                     ],
                 ],
+                'features' => 2,
+                'button_text' => 'Start Free Trial',
+                'is_featured' => 1,
             ]],
             $this->invokeMethod($command, 'normalizeCollectionItems', [[
                 [
@@ -231,7 +231,7 @@ final class StyleguideSeedCommandTest extends TestCase
         self::assertStringContainsString('Complete demo content', $fields['description']);
         self::assertStringContainsString('Accessible demo image', $fields['image_alt']);
         self::assertStringContainsString('Unsplash demo image', $fields['image_source']);
-        self::assertSame('https://example.com/desiderio/cta_link', $fields['cta_link']);
+        self::assertSame('https://example.com/desiderio/cta_link_1', $fields['cta_link']);
         self::assertArrayHasKey('image', $fileReferences);
         self::assertStringContainsString('Unsplash', $fileReferences['image'][0]['description']);
         self::assertSame(1, $collections['items']['items'][0]['image']);

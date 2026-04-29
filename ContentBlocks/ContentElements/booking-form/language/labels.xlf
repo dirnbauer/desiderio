@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" datatype="plaintext" original="messages" product-name="booking-form">
-        <header/>
-        <body>
-            <trans-unit id="title">
-                <source>Booking Form</source>
-            </trans-unit>
-            <trans-unit id="description">
-                <source>A shadcn/ui styled TYPO3 content element for conversion flow, using theme tokens for light and dark mode.</source>
-            </trans-unit>
-        </body>
-    </file>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en">
+  <file id="booking-form">
+    <unit id="title">
+      <segment>
+        <source>Booking Form</source>
+      </segment>
+    </unit>
+    <unit id="description">
+      <segment>
+        <source>Booking Form captures visitor intent with focused form or request messaging. Editors can manage headline and copy fields, link and CTA controls and layout or variant options.</source>
+      </segment>
+    </unit>
+  </file>
 </xliff>

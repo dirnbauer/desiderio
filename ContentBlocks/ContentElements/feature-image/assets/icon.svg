@@ -1,4 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round">
-  <style>.accent{stroke:var(--icon-color-accent,currentColor);fill:none}.no-stroke{stroke:none;fill:var(--icon-color-accent,currentColor)}</style>
-  <rect x="3" y="3.5" width="10" height="9" rx="2"/><path d="m5.25 10 2-2 1.5 1.5 1-1 2 2.5"/><circle cx="10.75" cy="5.75" r="1" class="accent"/>
+  <title>Image Feature Section icon</title>
+  <style>.accent{stroke:var(--icon-color-accent,currentColor);fill:none}.accent-fill,.no-stroke{stroke:none;fill:var(--icon-color-accent,currentColor)}</style>
+  <rect x="3" y="3.25" width="10" height="9.5" rx="2"/><path d="m5 10 2-2 1.5 1.5 1-1 2 2.5"/><circle cx="10.75" cy="5.75" r="1" class="accent"/>
 </svg>

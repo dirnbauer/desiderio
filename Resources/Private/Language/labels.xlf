@@ -1,366 +1,700 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" datatype="plaintext" original="messages" product-name="desiderio">
-        <header/>
-        <body>
-            <trans-unit id="heading">
-                <source>Heading</source>
-            </trans-unit>
-            <trans-unit id="description">
-                <source>Description</source>
-            </trans-unit>
-            <trans-unit id="subheadline">
-                <source>Subheadline</source>
-            </trans-unit>
-            <trans-unit id="eyebrow">
-                <source>Eyebrow</source>
-            </trans-unit>
-            <trans-unit id="button_text">
-                <source>Button Text</source>
-            </trans-unit>
-            <trans-unit id="button_link">
-                <source>Button Link</source>
-            </trans-unit>
-            <trans-unit id="label">
-                <source>Label</source>
-            </trans-unit>
-            <trans-unit id="link">
-                <source>Link</source>
-            </trans-unit>
-            <trans-unit id="optional_link">
-                <source>Optional Link</source>
-            </trans-unit>
-            <trans-unit id="link_text">
-                <source>Link Text</source>
-            </trans-unit>
-            <trans-unit id="title">
-                <source>Title</source>
-            </trans-unit>
-            <trans-unit id="image">
-                <source>Image</source>
-            </trans-unit>
-            <trans-unit id="name">
-                <source>Name</source>
-            </trans-unit>
-            <trans-unit id="content">
-                <source>Content</source>
-            </trans-unit>
-            <trans-unit id="text">
-                <source>Text</source>
-            </trans-unit>
-            <trans-unit id="style">
-                <source>Style</source>
-            </trans-unit>
-            <trans-unit id="layout">
-                <source>Layout</source>
-            </trans-unit>
-            <trans-unit id="columns">
-                <source>Columns</source>
-            </trans-unit>
-            <trans-unit id="alignment">
-                <source>Alignment</source>
-            </trans-unit>
-            <trans-unit id="text_alignment">
-                <source>Text Alignment</source>
-            </trans-unit>
-            <trans-unit id="primary_button_text">
-                <source>Primary Button Text</source>
-            </trans-unit>
-            <trans-unit id="primary_button_link">
-                <source>Primary Button Link</source>
-            </trans-unit>
-            <trans-unit id="secondary_button_text">
-                <source>Secondary Button Text</source>
-            </trans-unit>
-            <trans-unit id="secondary_button_link">
-                <source>Secondary Button Link</source>
-            </trans-unit>
-            <trans-unit id="badge_text">
-                <source>Badge Text</source>
-            </trans-unit>
-            <trans-unit id="background_image">
-                <source>Background Image</source>
-            </trans-unit>
-            <trans-unit id="author_name">
-                <source>Author Name</source>
-            </trans-unit>
-            <trans-unit id="author_role">
-                <source>Author Role</source>
-            </trans-unit>
-            <trans-unit id="author_title">
-                <source>Author Title</source>
-            </trans-unit>
-            <trans-unit id="author_photo">
-                <source>Author Photo</source>
-            </trans-unit>
-            <trans-unit id="copyright_text">
-                <source>Copyright Text</source>
-            </trans-unit>
-            <trans-unit id="price">
-                <source>Price</source>
-            </trans-unit>
-            <trans-unit id="rating">
-                <source>Rating</source>
-            </trans-unit>
-            <trans-unit id="brand">
-                <source>Brand</source>
-            </trans-unit>
-            <trans-unit id="brand_name">
-                <source>Brand Name</source>
-            </trans-unit>
-            <trans-unit id="brand_link">
-                <source>Brand Link</source>
-            </trans-unit>
-            <trans-unit id="form_action">
-                <source>Form Action</source>
-            </trans-unit>
-            <trans-unit id="features">
-                <source>Features</source>
-            </trans-unit>
-            <trans-unit id="features_one_per_line">
-                <source>Feature Items</source>
-            </trans-unit>
-            <trans-unit id="portrait">
-                <source>Portrait</source>
-            </trans-unit>
-            <trans-unit id="value">
-                <source>Value</source>
-            </trans-unit>
-            <trans-unit id="role">
-                <source>Role</source>
-            </trans-unit>
-            <trans-unit id="logo">
-                <source>Logo</source>
-            </trans-unit>
-            <trans-unit id="short_description">
-                <source>Short Description</source>
-            </trans-unit>
-            <trans-unit id="company_name">
-                <source>Company Name</source>
-            </trans-unit>
-            <trans-unit id="icon_emoji">
-                <source>Icon Emoji or Symbol</source>
-            </trans-unit>
-            <trans-unit id="navigation_items">
-                <source>Navigation Items</source>
-            </trans-unit>
-            <trans-unit id="links">
-                <source>Links</source>
-            </trans-unit>
-            <trans-unit id="links_one_per_line">
-                <source>Link Items</source>
-            </trans-unit>
-            <trans-unit id="items">
-                <source>Items</source>
-            </trans-unit>
-            <trans-unit id="plans">
-                <source>Plans</source>
-            </trans-unit>
-            <trans-unit id="chart_data_json">
-                <source>Chart Data (JSON)</source>
-            </trans-unit>
-            <trans-unit id="show_more_link">
-                <source>Show More Link</source>
-            </trans-unit>
-            <trans-unit id="placeholder_text">
-                <source>Placeholder Text</source>
-            </trans-unit>
-            <trans-unit id="submit_text">
-                <source>Submit Text</source>
-            </trans-unit>
-            <trans-unit id="consent_text">
-                <source>Consent Text</source>
-            </trans-unit>
-            <trans-unit id="success_message">
-                <source>Success Message</source>
-            </trans-unit>
-            <trans-unit id="currency">
-                <source>Currency</source>
-            </trans-unit>
-            <trans-unit id="period">
-                <source>Period</source>
-            </trans-unit>
-            <trans-unit id="highlighted">
-                <source>Highlighted</source>
-            </trans-unit>
-            <trans-unit id="product_image">
-                <source>Product Image</source>
-            </trans-unit>
-            <trans-unit id="column_content">
-                <source>Column Content</source>
-            </trans-unit>
-            <trans-unit id="target_date">
-                <source>Target Date</source>
-            </trans-unit>
-            <trans-unit id="show_labels">
-                <source>Show Labels</source>
-            </trans-unit>
-            <trans-unit id="show_grid">
-                <source>Show Grid</source>
-            </trans-unit>
-            <trans-unit id="card_style">
-                <source>Card Style</source>
-            </trans-unit>
-            <trans-unit id="layout_variant">
-                <source>Layout Variant</source>
-            </trans-unit>
-            <trans-unit id="color">
-                <source>Color</source>
-            </trans-unit>
-            <trans-unit id="trend">
-                <source>Trend</source>
-            </trans-unit>
-            <trans-unit id="image_position">
-                <source>Image Position</source>
-            </trans-unit>
-            <trans-unit id="position">
-                <source>Position</source>
-            </trans-unit>
-            <trans-unit id="item.left">
-                <source>Left</source>
-            </trans-unit>
-            <trans-unit id="item.center">
-                <source>Center</source>
-            </trans-unit>
-            <trans-unit id="item.right">
-                <source>Right</source>
-            </trans-unit>
-            <trans-unit id="item.default">
-                <source>Default</source>
-            </trans-unit>
-            <trans-unit id="item.2_columns">
-                <source>2 Columns</source>
-            </trans-unit>
-            <trans-unit id="item.3_columns">
-                <source>3 Columns</source>
-            </trans-unit>
-            <trans-unit id="item.4_columns">
-                <source>4 Columns</source>
-            </trans-unit>
-            <trans-unit id="item.horizontal">
-                <source>Horizontal</source>
-            </trans-unit>
-            <trans-unit id="item.vertical">
-                <source>Vertical</source>
-            </trans-unit>
-            <trans-unit id="item.5_stars">
-                <source>5 Stars</source>
-            </trans-unit>
-            <trans-unit id="item.4_stars">
-                <source>4 Stars</source>
-            </trans-unit>
-            <trans-unit id="item.3_stars">
-                <source>3 Stars</source>
-            </trans-unit>
-            <trans-unit id="item.basic">
-                <source>Basic</source>
-            </trans-unit>
-            <trans-unit id="item.with_image">
-                <source>With Image</source>
-            </trans-unit>
-            <trans-unit id="item.card">
-                <source>Card</source>
-            </trans-unit>
-            <trans-unit id="item.large">
-                <source>Large</source>
-            </trans-unit>
-            <trans-unit id="item.bordered">
-                <source>Bordered</source>
-            </trans-unit>
-            <trans-unit id="item.centered">
-                <source>Centered</source>
-            </trans-unit>
-            <trans-unit id="item.between">
-                <source>Space Between</source>
-            </trans-unit>
-            <trans-unit id="item.accent">
-                <source>Accent</source>
-            </trans-unit>
-            <trans-unit id="item.outline">
-                <source>Outline</source>
-            </trans-unit>
-            <trans-unit id="item.info">
-                <source>Info</source>
-            </trans-unit>
-            <trans-unit id="item.success">
-                <source>Success</source>
-            </trans-unit>
-            <trans-unit id="item.warning">
-                <source>Warning</source>
-            </trans-unit>
-            <trans-unit id="item.destructive">
-                <source>Destructive</source>
-            </trans-unit>
-            <trans-unit id="item.simple">
-                <source>Simple</source>
-            </trans-unit>
-            <trans-unit id="item.split">
-                <source>Split</source>
-            </trans-unit>
-            <trans-unit id="item.background">
-                <source>Background</source>
-            </trans-unit>
-            <trans-unit id="item.banner">
-                <source>Banner</source>
-            </trans-unit>
-            <trans-unit id="item.stacked">
-                <source>Stacked</source>
-            </trans-unit>
-            <trans-unit id="item.icon_top">
-                <source>Icon Top</source>
-            </trans-unit>
-            <trans-unit id="item.icon_left">
-                <source>Icon Left</source>
-            </trans-unit>
-            <trans-unit id="item.full_width">
-                <source>Full Width</source>
-            </trans-unit>
-            <trans-unit id="item.two_columns">
-                <source>Two Columns</source>
-            </trans-unit>
-            <trans-unit id="item.secondary">
-                <source>Secondary</source>
-            </trans-unit>
-            <trans-unit id="item.ghost">
-                <source>Ghost</source>
-            </trans-unit>
-            <trans-unit id="item.primary">
-                <source>Primary</source>
-            </trans-unit>
-            <trans-unit id="item.blue">
-                <source>Blue</source>
-            </trans-unit>
-            <trans-unit id="item.green">
-                <source>Green</source>
-            </trans-unit>
-            <trans-unit id="item.orange">
-                <source>Orange</source>
-            </trans-unit>
-            <trans-unit id="item.red">
-                <source>Red</source>
-            </trans-unit>
-            <trans-unit id="item.up">
-                <source>Up</source>
-            </trans-unit>
-            <trans-unit id="item.down">
-                <source>Down</source>
-            </trans-unit>
-            <trans-unit id="item.neutral">
-                <source>Neutral</source>
-            </trans-unit>
-            <trans-unit id="item.muted">
-                <source>Muted</source>
-            </trans-unit>
-            <trans-unit id="item.none">
-                <source>None</source>
-            </trans-unit>
-
-            <trans-unit id="page.column.main">
-                <source>Main Content</source>
-            </trans-unit>
-            <trans-unit id="page.subnav.aria">
-                <source>Section navigation</source>
-            </trans-unit>
-        </body>
-    </file>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en">
+  <file id="desiderio">
+    <unit id="heading">
+      <segment>
+        <source>Heading</source>
+      </segment>
+    </unit>
+    <unit id="description">
+      <segment>
+        <source>Description</source>
+      </segment>
+    </unit>
+    <unit id="subheadline">
+      <segment>
+        <source>Subheadline</source>
+      </segment>
+    </unit>
+    <unit id="eyebrow">
+      <segment>
+        <source>Eyebrow</source>
+      </segment>
+    </unit>
+    <unit id="button_text">
+      <segment>
+        <source>Button Text</source>
+      </segment>
+    </unit>
+    <unit id="button_link">
+      <segment>
+        <source>Button Link</source>
+      </segment>
+    </unit>
+    <unit id="label">
+      <segment>
+        <source>Label</source>
+      </segment>
+    </unit>
+    <unit id="link">
+      <segment>
+        <source>Link</source>
+      </segment>
+    </unit>
+    <unit id="optional_link">
+      <segment>
+        <source>Optional Link</source>
+      </segment>
+    </unit>
+    <unit id="link_text">
+      <segment>
+        <source>Link Text</source>
+      </segment>
+    </unit>
+    <unit id="title">
+      <segment>
+        <source>Title</source>
+      </segment>
+    </unit>
+    <unit id="image">
+      <segment>
+        <source>Image</source>
+      </segment>
+    </unit>
+    <unit id="name">
+      <segment>
+        <source>Name</source>
+      </segment>
+    </unit>
+    <unit id="content">
+      <segment>
+        <source>Content</source>
+      </segment>
+    </unit>
+    <unit id="text">
+      <segment>
+        <source>Text</source>
+      </segment>
+    </unit>
+    <unit id="style">
+      <segment>
+        <source>Style</source>
+      </segment>
+    </unit>
+    <unit id="layout">
+      <segment>
+        <source>Layout</source>
+      </segment>
+    </unit>
+    <unit id="columns">
+      <segment>
+        <source>Columns</source>
+      </segment>
+    </unit>
+    <unit id="alignment">
+      <segment>
+        <source>Alignment</source>
+      </segment>
+    </unit>
+    <unit id="text_alignment">
+      <segment>
+        <source>Text Alignment</source>
+      </segment>
+    </unit>
+    <unit id="primary_button_text">
+      <segment>
+        <source>Primary Button Text</source>
+      </segment>
+    </unit>
+    <unit id="primary_button_link">
+      <segment>
+        <source>Primary Button Link</source>
+      </segment>
+    </unit>
+    <unit id="secondary_button_text">
+      <segment>
+        <source>Secondary Button Text</source>
+      </segment>
+    </unit>
+    <unit id="secondary_button_link">
+      <segment>
+        <source>Secondary Button Link</source>
+      </segment>
+    </unit>
+    <unit id="badge_text">
+      <segment>
+        <source>Badge Text</source>
+      </segment>
+    </unit>
+    <unit id="background_image">
+      <segment>
+        <source>Background Image</source>
+      </segment>
+    </unit>
+    <unit id="author_name">
+      <segment>
+        <source>Author Name</source>
+      </segment>
+    </unit>
+    <unit id="author_role">
+      <segment>
+        <source>Author Role</source>
+      </segment>
+    </unit>
+    <unit id="author_title">
+      <segment>
+        <source>Author Title</source>
+      </segment>
+    </unit>
+    <unit id="author_photo">
+      <segment>
+        <source>Author Photo</source>
+      </segment>
+    </unit>
+    <unit id="copyright_text">
+      <segment>
+        <source>Copyright Text</source>
+      </segment>
+    </unit>
+    <unit id="price">
+      <segment>
+        <source>Price</source>
+      </segment>
+    </unit>
+    <unit id="rating">
+      <segment>
+        <source>Rating</source>
+      </segment>
+    </unit>
+    <unit id="brand">
+      <segment>
+        <source>Brand</source>
+      </segment>
+    </unit>
+    <unit id="brand_name">
+      <segment>
+        <source>Brand Name</source>
+      </segment>
+    </unit>
+    <unit id="brand_link">
+      <segment>
+        <source>Brand Link</source>
+      </segment>
+    </unit>
+    <unit id="form_action">
+      <segment>
+        <source>Form Action</source>
+      </segment>
+    </unit>
+    <unit id="features">
+      <segment>
+        <source>Features</source>
+      </segment>
+    </unit>
+    <unit id="features_one_per_line">
+      <segment>
+        <source>Feature Items</source>
+      </segment>
+    </unit>
+    <unit id="portrait">
+      <segment>
+        <source>Portrait</source>
+      </segment>
+    </unit>
+    <unit id="value">
+      <segment>
+        <source>Value</source>
+      </segment>
+    </unit>
+    <unit id="role">
+      <segment>
+        <source>Role</source>
+      </segment>
+    </unit>
+    <unit id="logo">
+      <segment>
+        <source>Logo</source>
+      </segment>
+    </unit>
+    <unit id="short_description">
+      <segment>
+        <source>Short Description</source>
+      </segment>
+    </unit>
+    <unit id="company_name">
+      <segment>
+        <source>Company Name</source>
+      </segment>
+    </unit>
+    <unit id="icon_emoji">
+      <segment>
+        <source>Icon Emoji or Symbol</source>
+      </segment>
+    </unit>
+    <unit id="navigation_items">
+      <segment>
+        <source>Navigation Items</source>
+      </segment>
+    </unit>
+    <unit id="links">
+      <segment>
+        <source>Links</source>
+      </segment>
+    </unit>
+    <unit id="links_one_per_line">
+      <segment>
+        <source>Link Items</source>
+      </segment>
+    </unit>
+    <unit id="items">
+      <segment>
+        <source>Items</source>
+      </segment>
+    </unit>
+    <unit id="plans">
+      <segment>
+        <source>Plans</source>
+      </segment>
+    </unit>
+    <unit id="chart_data_json">
+      <segment>
+        <source>Chart Data (JSON)</source>
+      </segment>
+    </unit>
+    <unit id="show_more_link">
+      <segment>
+        <source>Show More Link</source>
+      </segment>
+    </unit>
+    <unit id="placeholder_text">
+      <segment>
+        <source>Placeholder Text</source>
+      </segment>
+    </unit>
+    <unit id="submit_text">
+      <segment>
+        <source>Submit Text</source>
+      </segment>
+    </unit>
+    <unit id="consent_text">
+      <segment>
+        <source>Consent Text</source>
+      </segment>
+    </unit>
+    <unit id="success_message">
+      <segment>
+        <source>Success Message</source>
+      </segment>
+    </unit>
+    <unit id="currency">
+      <segment>
+        <source>Currency</source>
+      </segment>
+    </unit>
+    <unit id="period">
+      <segment>
+        <source>Period</source>
+      </segment>
+    </unit>
+    <unit id="highlighted">
+      <segment>
+        <source>Highlighted</source>
+      </segment>
+    </unit>
+    <unit id="product_image">
+      <segment>
+        <source>Product Image</source>
+      </segment>
+    </unit>
+    <unit id="column_content">
+      <segment>
+        <source>Column Content</source>
+      </segment>
+    </unit>
+    <unit id="target_date">
+      <segment>
+        <source>Target Date</source>
+      </segment>
+    </unit>
+    <unit id="show_labels">
+      <segment>
+        <source>Show Labels</source>
+      </segment>
+    </unit>
+    <unit id="show_grid">
+      <segment>
+        <source>Show Grid</source>
+      </segment>
+    </unit>
+    <unit id="card_style">
+      <segment>
+        <source>Card Style</source>
+      </segment>
+    </unit>
+    <unit id="layout_variant">
+      <segment>
+        <source>Layout Variant</source>
+      </segment>
+    </unit>
+    <unit id="color">
+      <segment>
+        <source>Color</source>
+      </segment>
+    </unit>
+    <unit id="trend">
+      <segment>
+        <source>Trend</source>
+      </segment>
+    </unit>
+    <unit id="image_position">
+      <segment>
+        <source>Image Position</source>
+      </segment>
+    </unit>
+    <unit id="position">
+      <segment>
+        <source>Position</source>
+      </segment>
+    </unit>
+    <unit id="item.left">
+      <segment>
+        <source>Left</source>
+      </segment>
+    </unit>
+    <unit id="item.center">
+      <segment>
+        <source>Center</source>
+      </segment>
+    </unit>
+    <unit id="item.right">
+      <segment>
+        <source>Right</source>
+      </segment>
+    </unit>
+    <unit id="item.default">
+      <segment>
+        <source>Default</source>
+      </segment>
+    </unit>
+    <unit id="item.2_columns">
+      <segment>
+        <source>2 Columns</source>
+      </segment>
+    </unit>
+    <unit id="item.3_columns">
+      <segment>
+        <source>3 Columns</source>
+      </segment>
+    </unit>
+    <unit id="item.4_columns">
+      <segment>
+        <source>4 Columns</source>
+      </segment>
+    </unit>
+    <unit id="item.horizontal">
+      <segment>
+        <source>Horizontal</source>
+      </segment>
+    </unit>
+    <unit id="item.vertical">
+      <segment>
+        <source>Vertical</source>
+      </segment>
+    </unit>
+    <unit id="item.5_stars">
+      <segment>
+        <source>5 Stars</source>
+      </segment>
+    </unit>
+    <unit id="item.4_stars">
+      <segment>
+        <source>4 Stars</source>
+      </segment>
+    </unit>
+    <unit id="item.3_stars">
+      <segment>
+        <source>3 Stars</source>
+      </segment>
+    </unit>
+    <unit id="item.basic">
+      <segment>
+        <source>Basic</source>
+      </segment>
+    </unit>
+    <unit id="item.with_image">
+      <segment>
+        <source>With Image</source>
+      </segment>
+    </unit>
+    <unit id="item.card">
+      <segment>
+        <source>Card</source>
+      </segment>
+    </unit>
+    <unit id="item.large">
+      <segment>
+        <source>Large</source>
+      </segment>
+    </unit>
+    <unit id="item.bordered">
+      <segment>
+        <source>Bordered</source>
+      </segment>
+    </unit>
+    <unit id="item.centered">
+      <segment>
+        <source>Centered</source>
+      </segment>
+    </unit>
+    <unit id="item.between">
+      <segment>
+        <source>Space Between</source>
+      </segment>
+    </unit>
+    <unit id="item.accent">
+      <segment>
+        <source>Accent</source>
+      </segment>
+    </unit>
+    <unit id="item.outline">
+      <segment>
+        <source>Outline</source>
+      </segment>
+    </unit>
+    <unit id="item.info">
+      <segment>
+        <source>Info</source>
+      </segment>
+    </unit>
+    <unit id="item.success">
+      <segment>
+        <source>Success</source>
+      </segment>
+    </unit>
+    <unit id="item.warning">
+      <segment>
+        <source>Warning</source>
+      </segment>
+    </unit>
+    <unit id="item.destructive">
+      <segment>
+        <source>Destructive</source>
+      </segment>
+    </unit>
+    <unit id="item.simple">
+      <segment>
+        <source>Simple</source>
+      </segment>
+    </unit>
+    <unit id="item.split">
+      <segment>
+        <source>Split</source>
+      </segment>
+    </unit>
+    <unit id="item.background">
+      <segment>
+        <source>Background</source>
+      </segment>
+    </unit>
+    <unit id="item.banner">
+      <segment>
+        <source>Banner</source>
+      </segment>
+    </unit>
+    <unit id="item.stacked">
+      <segment>
+        <source>Stacked</source>
+      </segment>
+    </unit>
+    <unit id="item.icon_top">
+      <segment>
+        <source>Icon Top</source>
+      </segment>
+    </unit>
+    <unit id="item.icon_left">
+      <segment>
+        <source>Icon Left</source>
+      </segment>
+    </unit>
+    <unit id="item.full_width">
+      <segment>
+        <source>Full Width</source>
+      </segment>
+    </unit>
+    <unit id="item.two_columns">
+      <segment>
+        <source>Two Columns</source>
+      </segment>
+    </unit>
+    <unit id="item.secondary">
+      <segment>
+        <source>Secondary</source>
+      </segment>
+    </unit>
+    <unit id="item.ghost">
+      <segment>
+        <source>Ghost</source>
+      </segment>
+    </unit>
+    <unit id="item.primary">
+      <segment>
+        <source>Primary</source>
+      </segment>
+    </unit>
+    <unit id="item.blue">
+      <segment>
+        <source>Blue</source>
+      </segment>
+    </unit>
+    <unit id="item.green">
+      <segment>
+        <source>Green</source>
+      </segment>
+    </unit>
+    <unit id="item.orange">
+      <segment>
+        <source>Orange</source>
+      </segment>
+    </unit>
+    <unit id="item.red">
+      <segment>
+        <source>Red</source>
+      </segment>
+    </unit>
+    <unit id="item.up">
+      <segment>
+        <source>Up</source>
+      </segment>
+    </unit>
+    <unit id="item.down">
+      <segment>
+        <source>Down</source>
+      </segment>
+    </unit>
+    <unit id="item.neutral">
+      <segment>
+        <source>Neutral</source>
+      </segment>
+    </unit>
+    <unit id="item.muted">
+      <segment>
+        <source>Muted</source>
+      </segment>
+    </unit>
+    <unit id="item.none">
+      <segment>
+        <source>None</source>
+      </segment>
+    </unit>
+    <unit id="page.column.main">
+      <segment>
+        <source>Main Content</source>
+      </segment>
+    </unit>
+    <unit id="page.subnav.aria">
+      <segment>
+        <source>Section navigation</source>
+      </segment>
+    </unit>
+    <unit id="contentElementGroup.content">
+      <segment>
+        <source>Content &amp; Editorial</source>
+      </segment>
+    </unit>
+    <unit id="contentElementGroup.content.description">
+      <segment>
+        <source>Text, media, stories, resources, and reusable editorial building blocks.</source>
+      </segment>
+    </unit>
+    <unit id="contentElementGroup.conversion">
+      <segment>
+        <source>Leads &amp; Conversion</source>
+      </segment>
+    </unit>
+    <unit id="contentElementGroup.conversion.description">
+      <segment>
+        <source>Forms, offers, calls to action, and focused steps toward visitor intent.</source>
+      </segment>
+    </unit>
+    <unit id="contentElementGroup.data">
+      <segment>
+        <source>Data &amp; Dashboards</source>
+      </segment>
+    </unit>
+    <unit id="contentElementGroup.data.description">
+      <segment>
+        <source>Charts, metrics, tables, KPIs, and structured data displays.</source>
+      </segment>
+    </unit>
+    <unit id="contentElementGroup.features">
+      <segment>
+        <source>Features &amp; Benefits</source>
+      </segment>
+    </unit>
+    <unit id="contentElementGroup.features.description">
+      <segment>
+        <source>Feature sections, benefit grids, product explanations, and service highlights.</source>
+      </segment>
+    </unit>
+    <unit id="contentElementGroup.footer">
+      <segment>
+        <source>Footers &amp; Utility Areas</source>
+      </segment>
+    </unit>
+    <unit id="contentElementGroup.footer.description">
+      <segment>
+        <source>Footer layouts, legal links, contact routes, app links, and page-end utility content.</source>
+      </segment>
+    </unit>
+    <unit id="contentElementGroup.hero">
+      <segment>
+        <source>Hero &amp; Landing Intros</source>
+      </segment>
+    </unit>
+    <unit id="contentElementGroup.hero.description">
+      <segment>
+        <source>Opening sections for landing pages, products, campaigns, search, video, and launch moments.</source>
+      </segment>
+    </unit>
+    <unit id="contentElementGroup.navigation">
+      <segment>
+        <source>Navigation &amp; Wayfinding</source>
+      </segment>
+    </unit>
+    <unit id="contentElementGroup.navigation.description">
+      <segment>
+        <source>Menus, breadcrumbs, tabs, steps, pagination, headers, and other orientation patterns.</source>
+      </segment>
+    </unit>
+    <unit id="contentElementGroup.pricing">
+      <segment>
+        <source>Plans &amp; Pricing</source>
+      </segment>
+    </unit>
+    <unit id="contentElementGroup.pricing.description">
+      <segment>
+        <source>Pricing tables, plan cards, calculators, package comparisons, and buying decision aids.</source>
+      </segment>
+    </unit>
+    <unit id="contentElementGroup.socialProof">
+      <segment>
+        <source>Trust &amp; Social Proof</source>
+      </segment>
+    </unit>
+    <unit id="contentElementGroup.socialProof.description">
+      <segment>
+        <source>Testimonials, reviews, ratings, customer logos, partner proof, and credibility signals.</source>
+      </segment>
+    </unit>
+    <unit id="contentElementGroup.team">
+      <segment>
+        <source>People &amp; Team</source>
+      </segment>
+    </unit>
+    <unit id="contentElementGroup.team.description">
+      <segment>
+        <source>Team profiles, departments, founders, advisors, company culture, and career content.</source>
+      </segment>
+    </unit>
+  </file>
 </xliff>

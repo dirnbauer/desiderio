@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" target-language="de" datatype="plaintext" original="messages" product-name="article-hero">
-        <header/>
-        <body>
-            <trans-unit id="title">
-                <source>Article Hero</source>
-                <target>Artikel Hero</target>
-            </trans-unit>
-            <trans-unit id="description">
-                <source>A shadcn/ui styled TYPO3 content element for content presentation, using theme tokens for light and dark mode.</source>
-                <target>Ein shadcn/ui gestaltetes TYPO3 Inhaltselement für Inhaltsdarstellung mit Theme-Tokens für Hell- und Dunkelmodus.</target>
-            </trans-unit>
-        </body>
-    </file>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="de">
+  <file id="article-hero">
+    <unit id="title">
+      <segment state="final">
+        <source>Article Hero</source>
+        <target>Artikel Hero</target>
+      </segment>
+    </unit>
+    <unit id="description">
+      <segment state="final">
+        <source>Article Hero opens landing pages, campaigns, or product pages with a strong first message. Editors can manage headline and copy fields and media pickers.</source>
+        <target>Artikel Hero eröffnet Landingpages, Kampagnen oder Produktseiten mit einer starken ersten Botschaft. Redakteure pflegen Text- und Überschriftenfelder und Medienauswahl.</target>
+      </segment>
+    </unit>
+  </file>
 </xliff>

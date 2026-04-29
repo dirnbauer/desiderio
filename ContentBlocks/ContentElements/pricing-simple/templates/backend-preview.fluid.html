@@ -48,9 +48,15 @@
             </div>
         </f:if>
         <f:if condition="{data.features}">
-            <div class="d-ce-preview__field">
+            <div class="d-ce-preview__collection">
                 <span class="d-ce-preview__label">Features</span>
-                <span class="d-ce-preview__value">{data.features -> f:count()} items</span>
+                <ul class="d-ce-preview__list">
+                    <f:for each="{data.features}" as="item">
+                        <li>
+                            <f:if condition="{item.text}"><span>{item.text}</span></f:if>
+                        </li>
+                    </f:for>
+                </ul>
             </div>
         </f:if>
     </div>

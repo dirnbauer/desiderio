@@ -1,5 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round">
   <title>Steps Navigation icon</title>
   <style>.accent{stroke:var(--icon-color-accent,currentColor);fill:none}.accent-fill,.no-stroke{stroke:none;fill:var(--icon-color-accent,currentColor)}</style>
-  <circle cx="3.75" cy="8" r="1.25"/><circle cx="8" cy="8" r="1.25" class="accent"/><circle cx="12.25" cy="8" r="1.25"/><path d="M5 8h1.75M9.25 8H11"/>
+  <circle cx="4" cy="8" r="1.35"/><circle cx="8" cy="8" r="1.35" class="accent"/><circle cx="12" cy="8" r="1.35"/><path d="M5.35 8h1.3M9.35 8h1.3"/>
+  <g class="icon-signature"><circle cx="12.05" cy="2.25" r=".24" class="accent-fill"/><circle cx="13.45" cy="2.25" r=".24" class="accent-fill"/><circle cx="13.45" cy="3.65" r=".24" class="accent-fill"/><circle cx="13.45" cy="5.05" r=".24" class="accent-fill"/><path d="M12.05 6.9h1.65" class="accent"/><circle cx="12.75" cy="8.85" r=".2" class="accent-fill"/></g>
 </svg>

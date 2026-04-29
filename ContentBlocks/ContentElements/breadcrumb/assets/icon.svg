@@ -1,5 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round">
   <title>Breadcrumb icon</title>
   <style>.accent{stroke:var(--icon-color-accent,currentColor);fill:none}.accent-fill,.no-stroke{stroke:none;fill:var(--icon-color-accent,currentColor)}</style>
-  <circle cx="3.75" cy="8" r="1.25"/><circle cx="8" cy="8" r="1.25" class="accent"/><circle cx="12.25" cy="8" r="1.25"/><path d="M5 8h1.75M9.25 8H11"/>
+  <path d="M3 8h2.75"/><path d="m5.5 5.75 2.25 2.25-2.25 2.25"/><path d="M8.25 8H13" class="accent"/>
+  <g class="icon-signature"><circle cx="12.05" cy="2.25" r=".24" class="accent-fill"/><circle cx="12.05" cy="3.65" r=".24" class="accent-fill"/><path d="M13.7 6.9l-1.65 1.15" class="accent"/><path d="M12.2 8.8h.9" class="accent"/></g>
 </svg>

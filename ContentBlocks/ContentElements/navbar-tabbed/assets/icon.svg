@@ -1,5 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round">
   <title>Tabbed Navigation Bar icon</title>
   <style>.accent{stroke:var(--icon-color-accent,currentColor);fill:none}.accent-fill,.no-stroke{stroke:none;fill:var(--icon-color-accent,currentColor)}</style>
-  <path d="M3 4.5h10"/><path d="M3 8h10"/><path d="M3 11.5h7"/><circle cx="12.25" cy="11.5" r="1.25" class="accent"/>
+  <path d="M3 12.25h10"/><path d="M3.5 12.25v-6h3.5l1 1.5h4.5v4.5"/><path d="M4 5.25h3" class="accent"/>
+  <g class="icon-signature"><circle cx="12.05" cy="2.25" r=".24" class="accent-fill"/><circle cx="13.45" cy="2.25" r=".24" class="accent-fill"/><circle cx="12.05" cy="3.65" r=".24" class="accent-fill"/><circle cx="13.45" cy="3.65" r=".24" class="accent-fill"/><circle cx="13.45" cy="5.05" r=".24" class="accent-fill"/><circle cx="12.75" cy="6.45" r=".24" class="accent-fill"/><path d="M12.05 6.9l1.65 1.15" class="accent"/><path d="M13.15 8.35l-1 .95" class="accent"/></g>
 </svg>

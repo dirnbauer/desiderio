@@ -1,5 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round">
   <title>Logo Cloud Hero icon</title>
   <style>.accent{stroke:var(--icon-color-accent,currentColor);fill:none}.accent-fill,.no-stroke{stroke:none;fill:var(--icon-color-accent,currentColor)}</style>
-  <rect x="2.75" y="3.25" width="10.5" height="9.5" rx="2"/><path d="M5 6.25h5.5"/><path d="M5 8.5h3.25"/><circle cx="11.5" cy="5.25" r="1.25" class="accent"/>
+  <rect x="3" y="4" width="3" height="2" rx=".7"/><rect x="8" y="4" width="5" height="2" rx=".7" class="accent"/><rect x="4.5" y="8.5" width="3.5" height="2" rx=".7" class="accent"/><rect x="9.5" y="8.5" width="2.5" height="2" rx=".7"/>
+  <g class="icon-signature"><circle cx="12.05" cy="2.25" r=".24" class="accent-fill"/><circle cx="12.05" cy="3.65" r=".24" class="accent-fill"/><circle cx="13.45" cy="5.05" r=".24" class="accent-fill"/><path d="M12.05 7.75h1.65" class="accent"/><path d="M12.2 8.8h.9" class="accent"/></g>
 </svg>

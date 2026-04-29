@@ -1,5 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round">
   <title>Sidebar Navigation Bar icon</title>
   <style>.accent{stroke:var(--icon-color-accent,currentColor);fill:none}.accent-fill,.no-stroke{stroke:none;fill:var(--icon-color-accent,currentColor)}</style>
-  <path d="M3 4.5h10"/><path d="M3 8h10"/><path d="M3 11.5h7"/><circle cx="12.25" cy="11.5" r="1.25" class="accent"/>
+  <rect x="3" y="3" width="10" height="10" rx="2"/><path d="M6.5 3v10"/><path d="M4.5 5.5h.1M4.5 8h.1M4.5 10.5h.1" class="accent"/>
+  <g class="icon-signature"><circle cx="13.45" cy="2.25" r=".24" class="accent-fill"/><circle cx="13.45" cy="5.05" r=".24" class="accent-fill"/><circle cx="12.75" cy="6.45" r=".24" class="accent-fill"/><path d="M12.05 7.75h1.65" class="accent"/><circle cx="12.75" cy="8.85" r=".2" class="accent-fill"/></g>
 </svg>

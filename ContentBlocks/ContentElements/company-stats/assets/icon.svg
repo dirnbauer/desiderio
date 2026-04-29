@@ -2,4 +2,5 @@
   <title>Company Stats icon</title>
   <style>.accent{stroke:var(--icon-color-accent,currentColor);fill:none}.accent-fill,.no-stroke{stroke:none;fill:var(--icon-color-accent,currentColor)}</style>
   <rect x="3" y="3.5" width="10" height="9" rx="2"/><path d="M5.25 10.75V8.5"/><path d="M8 10.75V5.75" class="accent"/><path d="M10.75 10.75V7.25"/><path d="M5 12h6"/>
+  <g class="icon-signature"><circle cx="12.05" cy="2.25" r=".24" class="accent-fill"/><circle cx="12.05" cy="3.65" r=".24" class="accent-fill"/><path d="M13.7 6.9l-1.65 1.15" class="accent"/><path d="M13.15 8.35l-1 .95" class="accent"/></g>
 </svg>

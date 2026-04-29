@@ -1,5 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round">
   <title>List Feature Section icon</title>
   <style>.accent{stroke:var(--icon-color-accent,currentColor);fill:none}.accent-fill,.no-stroke{stroke:none;fill:var(--icon-color-accent,currentColor)}</style>
-  <rect x="3" y="3" width="4.25" height="4.25" rx="1.25"/><rect x="8.75" y="3" width="4.25" height="4.25" rx="1.25"/><rect x="3" y="8.75" width="4.25" height="4.25" rx="1.25"/><rect x="8.75" y="8.75" width="4.25" height="4.25" rx="1.25" class="accent"/>
+  <path d="M5.25 5h7"/><path d="M5.25 8h7"/><path d="M5.25 11h7"/><circle cx="3.5" cy="5" r=".5" class="accent-fill"/><circle cx="3.5" cy="8" r=".5" class="accent-fill"/><circle cx="3.5" cy="11" r=".5" class="accent-fill"/>
+  <g class="icon-signature"><circle cx="12.05" cy="3.65" r=".24" class="accent-fill"/><circle cx="12.75" cy="6.45" r=".24" class="accent-fill"/><path d="M12.05 6.9l1.65 1.15" class="accent"/><path d="M12.15 8.35l1 .95" class="accent"/></g>
 </svg>

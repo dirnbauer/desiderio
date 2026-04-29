@@ -2,4 +2,5 @@
   <title>Notification Data View icon</title>
   <style>.accent{stroke:var(--icon-color-accent,currentColor);fill:none}.accent-fill,.no-stroke{stroke:none;fill:var(--icon-color-accent,currentColor)}</style>
   <path d="M8 2.75 13.5 12H2.5z"/><path d="M8 6v2.5"/><circle cx="8" cy="10.5" r=".55" class="accent-fill"/>
+  <g class="icon-signature"><circle cx="13.45" cy="2.25" r=".24" class="accent-fill"/><circle cx="13.45" cy="3.65" r=".24" class="accent-fill"/><circle cx="12.75" cy="6.45" r=".24" class="accent-fill"/><path d="M12.05 6.9l1.65 1.15" class="accent"/><path d="M12.15 8.35l1 .95" class="accent"/></g>
 </svg>

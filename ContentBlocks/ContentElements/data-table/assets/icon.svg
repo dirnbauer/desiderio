@@ -1,5 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round">
   <title>Data Table icon</title>
   <style>.accent{stroke:var(--icon-color-accent,currentColor);fill:none}.accent-fill,.no-stroke{stroke:none;fill:var(--icon-color-accent,currentColor)}</style>
-  <rect x="3" y="3.5" width="10" height="9" rx="1.5"/><path d="M3 6.5h10M3 9.5h10M6.5 3.5v9"/><path d="M10 3.5v9" class="accent"/>
+  <rect x="3" y="3" width="4.25" height="4.25" rx="1.25"/><rect x="8.75" y="3" width="4.25" height="4.25" rx="1.25" class="accent"/><rect x="3" y="8.75" width="4.25" height="4.25" rx="1.25"/><rect x="8.75" y="8.75" width="4.25" height="4.25" rx="1.25"/>
+  <g class="icon-signature"><circle cx="12.05" cy="2.25" r=".24" class="accent-fill"/><circle cx="13.45" cy="2.25" r=".24" class="accent-fill"/><circle cx="12.05" cy="5.05" r=".24" class="accent-fill"/><path d="M13.7 6.9l-1.65 1.15" class="accent"/><path d="M12.2 8.8h.9" class="accent"/></g>
 </svg>

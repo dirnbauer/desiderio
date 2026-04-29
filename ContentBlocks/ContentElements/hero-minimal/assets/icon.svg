@@ -1,5 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round">
   <title>Minimal Hero icon</title>
   <style>.accent{stroke:var(--icon-color-accent,currentColor);fill:none}.accent-fill,.no-stroke{stroke:none;fill:var(--icon-color-accent,currentColor)}</style>
-  <rect x="2.75" y="3.25" width="10.5" height="9.5" rx="2"/><path d="M5 6.25h5.5"/><path d="M5 8.5h3.25"/><circle cx="11.5" cy="5.25" r="1.25" class="accent"/>
+  <path d="M4.25 5.25h7.5"/><path d="M5.5 8h5"/><path d="M6.75 10.75h2.5" class="accent"/>
+  <g class="icon-signature"><circle cx="12.75" cy="6.45" r=".24" class="accent-fill"/><path d="M13.7 6.9l-1.65 1.15" class="accent"/><path d="M12.15 8.35l1 .95" class="accent"/></g>
 </svg>

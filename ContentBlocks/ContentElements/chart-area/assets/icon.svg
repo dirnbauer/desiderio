@@ -1,5 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round">
   <title>Area Chart icon</title>
   <style>.accent{stroke:var(--icon-color-accent,currentColor);fill:none}.accent-fill,.no-stroke{stroke:none;fill:var(--icon-color-accent,currentColor)}</style>
-  <rect x="3" y="3.5" width="10" height="9" rx="2"/><path d="M5.25 10.75V8.5"/><path d="M8 10.75V5.75" class="accent"/><path d="M10.75 10.75V7.25"/><path d="M5 12h6"/>
+  <path d="M3.25 12.5h9.5"/><path d="M4 10.75 6.5 8l2 1.35 3.5-4.1v7.25H4z" class="accent"/><path d="M4 10.75 6.5 8l2 1.35 3.5-4.1"/>
+  <g class="icon-signature"><circle cx="13.45" cy="3.65" r=".24" class="accent-fill"/><path d="M12.05 7.75h1.65" class="accent"/><path d="M12.2 8.8h.9" class="accent"/></g>
 </svg>

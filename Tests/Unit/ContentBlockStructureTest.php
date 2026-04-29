@@ -160,6 +160,7 @@ final class ContentBlockStructureTest extends TestCase
     public function testEveryContentBlockWizardIconUsesTypo3V14SvgStyle(): void
     {
         $blocks = glob(self::CONTENT_BLOCKS_DIR . '/*', GLOB_ONLYDIR) ?: [];
+        $normalizedIcons = [];
         foreach ($blocks as $block) {
             $name = basename($block);
             $icon = (string) file_get_contents("{$block}/assets/icon.svg");
@@ -168,9 +169,18 @@ final class ContentBlockStructureTest extends TestCase
             self::assertStringContainsString('<title>', $icon, "{$name} icon should name the element for SVG consumers");
             self::assertStringContainsString('currentColor', $icon, "{$name} icon should inherit backend icon color");
             self::assertStringContainsString('--icon-color-accent', $icon, "{$name} icon should expose the TYPO3 accent variable");
+            self::assertStringContainsString('icon-signature', $icon, "{$name} icon should include a visible per-element signature mark");
             self::assertStringNotContainsString('#000', strtolower($icon), "{$name} icon must not hard-code black");
             self::assertStringNotContainsString('#fff', strtolower($icon), "{$name} icon must not hard-code white");
+
+            $normalizedIcons[$name] = (string)preg_replace('#<title>.*?</title>\s*#s', '', $icon);
         }
+
+        self::assertSame(
+            count($blocks),
+            count(array_unique($normalizedIcons)),
+            'Every content element wizard icon should have distinct SVG geometry, not just a different title.'
+        );
     }
 
     public function testEveryContentBlockHasUsefulBackendPreview(): void

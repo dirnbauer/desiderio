@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" class="icon-root">
   <title>Carousel Team Section icon</title>
-  <style>.accent{stroke:var(--icon-color-accent,currentColor);fill:none}.accent-fill,.no-stroke{stroke:none;fill:var(--icon-color-accent,currentColor)}</style>
+  <style>.icon-root{color:var(--icon-color-primary,#88919b)}@media (prefers-color-scheme:dark){.icon-root{color:var(--icon-color-primary,#f9fafb)}}.accent{stroke:var(--icon-color-accent,currentColor);fill:none}.accent-fill,.no-stroke{stroke:none;fill:var(--icon-color-accent,currentColor)}</style>
   <circle cx="5" cy="6" r="1.6"/><circle cx="10.5" cy="6" r="1.6" class="accent"/><path d="M3.25 12c.45-1.7 1.35-2.55 2.75-2.55s2.3.85 2.75 2.55M8.5 12c.35-1.35 1.1-2.05 2.15-2.05s1.8.7 2.15 2.05"/><path d="m2.5 8-.9 1 .9 1M13.5 8l.9 1-.9 1"/>
   <g class="icon-signature"><circle cx="12.05" cy="2.25" r=".24" class="accent-fill"/><circle cx="12.05" cy="3.65" r=".24" class="accent-fill"/><circle cx="13.45" cy="3.65" r=".24" class="accent-fill"/><circle cx="13.45" cy="5.05" r=".24" class="accent-fill"/><path d="M12.05 6.9h1.65" class="accent"/><path d="M13.15 8.35l-1 .95" class="accent"/></g>
 </svg>

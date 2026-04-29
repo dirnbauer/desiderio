@@ -3,41 +3,44 @@
       xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
       data-namespace-typo3-fluid="true">
 
-<f:asset.css identifier="d-data-table" href="{cb:assetPath()}/frontend.css"/>
-
 <d:layout.section class="data-table-section">
     <d:layout.container>
         <f:if condition="{data.header}">
-            <d:atom.typography tag="h2" variant="h2" class="data-table-section__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
+            <d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography>
         </f:if>
 
-        <d:molecule.table class="table-wrapper table-wrapper--{data.variant -> f:or(alternative: 'default')}">
-            <table class="table table--{data.variant -> f:or(alternative: 'default')}">
-                <f:if condition="{data.show_header_row} && {data.column_definitions}">
-                    <thead class="table__header">
-                        <tr class="table__row">
-                            <f:for each="{data.column_definitions}" as="col">
-                                <th class="table__head table__head--{col.column_align -> f:or(alternative: 'left')}" data-column-key="{col -> f:render.text(field: 'column_key')}">{col -> f:render.text(field: 'column_label')}</th>
-                            </f:for>
-                        </tr>
-                    </thead>
-                </f:if>
-                <tbody>
-                    <f:for each="{data.rows}" as="row">
-                        <tr class="table__row">
-                            <f:if condition="{row.row_label}">
-                                <td class="table__cell table__cell--row-label">{row -> f:render.text(field: 'row_label')}</td>
-                            </f:if>
-                            <f:for each="{row.cells}" as="cell">
-                                <td class="table__cell table__cell--left">{cell -> f:render.text(field: 'value')}</td>
-                            </f:for>
-                        </tr>
-                    </f:for>
-                </tbody>
-                <f:if condition="{data.show_caption} && {data.caption_text}">
-                    <caption class="table__caption">{data -> f:render.text(field: 'caption_text')}</caption>
-                </f:if>
-            </table>
+        <d:molecule.table>
+            <f:if condition="{data.show_header_row} && {data.column_definitions}">
+                <d:molecule.tableHeader>
+                    <d:molecule.tableRow>
+                        <f:for each="{data.column_definitions}" as="col">
+                            <f:variable name="alignClass">
+                                <f:switch expression="{col.column_align}">
+                                    <f:case value="center">text-center</f:case>
+                                    <f:case value="right">text-right</f:case>
+                                    <f:defaultCase>text-left</f:defaultCase>
+                                </f:switch>
+                            </f:variable>
+                            <d:molecule.tableCell header="{true}" class="{alignClass -> f:format.trim()}">{col -> f:render.text(field: 'column_label')}</d:molecule.tableCell>
+                        </f:for>
+                    </d:molecule.tableRow>
+                </d:molecule.tableHeader>
+            </f:if>
+            <tbody>
+                <f:for each="{data.rows}" as="row">
+                    <d:molecule.tableRow>
+                        <f:if condition="{row.row_label}">
+                            <d:molecule.tableCell class="font-medium">{row -> f:render.text(field: 'row_label')}</d:molecule.tableCell>
+                        </f:if>
+                        <f:for each="{row.cells}" as="cell">
+                            <d:molecule.tableCell>{cell -> f:render.text(field: 'value')}</d:molecule.tableCell>
+                        </f:for>
+                    </d:molecule.tableRow>
+                </f:for>
+            </tbody>
+            <f:if condition="{data.show_caption} && {data.caption_text}">
+                <caption class="mt-2 text-sm text-muted-foreground">{data -> f:render.text(field: 'caption_text')}</caption>
+            </f:if>
         </d:molecule.table>
     </d:layout.container>
 </d:layout.section>

@@ -11,7 +11,7 @@
             <d:atom.typography tag="h2" variant="h2" class="accordion-section__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
         </f:if>
 
-        <d:molecule.accordion class="accordion accordion--{data.variant -> f:or(alternative: 'default')}"
+        <d:molecule.accordion class="accordion"
                                 type="{f:if(condition: data.allow_multiple, then: 'multiple', else: 'single')}">
             <f:for each="{data.items}" as="item" iteration="iter">
                 <details class="accordion__item" {f:if(condition: item.open_by_default, then: 'open')}>

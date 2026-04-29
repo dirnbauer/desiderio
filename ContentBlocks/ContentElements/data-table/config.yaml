@@ -1,7 +1,7 @@
 name: desiderio/data-table
 typeName: desiderio_datatable
 title: 'Data Table'
-description: 'Data Table organizes rows, options, and details so visitors can compare information quickly. Editors can manage headline and copy fields, repeatable entries and layout or variant options.'
+description: 'Data Table organizes rows, options, and details so visitors can compare information quickly. Editors can manage headline and copy fields and repeatable entries.'
 group: data
 prefixFields: false
 basics:
@@ -9,23 +9,6 @@ basics:
   - TYPO3/Links
   - TYPO3/Categories
 fields:
-  -
-    identifier: variant
-    type: Select
-    renderType: selectSingle
-    label: 'Table Style'
-    onChange: reload
-    items:
-      -
-        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.default'
-        value: default
-      -
-        label: Striped
-        value: striped
-      -
-        label: Bordered
-        value: bordered
-    default: default
   -
     identifier: header
     useExistingField: true
@@ -47,12 +30,6 @@ fields:
         type: Textarea
         rows: 1
         label: 'Column Label'
-        required: true
-      -
-        identifier: column_key
-        type: Textarea
-        rows: 1
-        label: 'Column Key'
         required: true
       -
         identifier: column_align

@@ -11,6 +11,10 @@ final class ContentBlockStructureTest extends TestCase
 {
     private const EXPECTED_COUNT = 255;
     private const CONTENT_BLOCKS_DIR = __DIR__ . '/../../ContentBlocks/ContentElements';
+    private const LIGHT_ICON_FALLBACK = '#88919b';
+    private const DARK_ICON_FALLBACK = '#f9fafb';
+    private const LIGHT_BACKEND_SURFACE = '#ffffff';
+    private const DARK_BACKEND_SURFACE = '#24242a';
 
     public function testExpectedNumberOfContentBlocks(): void
     {
@@ -167,8 +171,13 @@ final class ContentBlockStructureTest extends TestCase
 
             self::assertStringContainsString('viewBox="0 0 16 16"', $icon, "{$name} icon should use TYPO3 backend icon dimensions");
             self::assertStringContainsString('<title>', $icon, "{$name} icon should name the element for SVG consumers");
+            self::assertStringContainsString('icon-root', $icon, "{$name} icon should declare the adaptive icon root class");
             self::assertStringContainsString('currentColor', $icon, "{$name} icon should inherit backend icon color");
+            self::assertStringContainsString('--icon-color-primary', $icon, "{$name} icon should expose the TYPO3 primary icon variable");
             self::assertStringContainsString('--icon-color-accent', $icon, "{$name} icon should expose the TYPO3 accent variable");
+            self::assertStringContainsString('prefers-color-scheme:dark', $icon, "{$name} icon should define a dark external-SVG fallback");
+            self::assertStringContainsString(self::LIGHT_ICON_FALLBACK, $icon, "{$name} icon should define a readable light-mode fallback");
+            self::assertStringContainsString(self::DARK_ICON_FALLBACK, $icon, "{$name} icon should define a readable dark-mode fallback");
             self::assertStringContainsString('icon-signature', $icon, "{$name} icon should include a visible per-element signature mark");
             self::assertStringNotContainsString('#000', strtolower($icon), "{$name} icon must not hard-code black");
             self::assertStringNotContainsString('#fff', strtolower($icon), "{$name} icon must not hard-code white");
@@ -181,6 +190,32 @@ final class ContentBlockStructureTest extends TestCase
             count(array_unique($normalizedIcons)),
             'Every content element wizard icon should have distinct SVG geometry, not just a different title.'
         );
+    }
+
+    public function testAllSvgIconsHaveReadableLightAndDarkFallbacks(): void
+    {
+        self::assertGreaterThanOrEqual(3.0, self::contrastRatio(self::LIGHT_ICON_FALLBACK, self::LIGHT_BACKEND_SURFACE));
+        self::assertGreaterThanOrEqual(3.0, self::contrastRatio(self::LIGHT_ICON_FALLBACK, self::DARK_BACKEND_SURFACE));
+        self::assertGreaterThanOrEqual(3.0, self::contrastRatio(self::DARK_ICON_FALLBACK, self::DARK_BACKEND_SURFACE));
+
+        foreach (self::collectSvgIconFiles() as $file) {
+            $relative = str_replace(dirname(__DIR__, 2) . '/', '', $file);
+            $icon = (string)file_get_contents($file);
+            $lower = strtolower($icon);
+
+            self::assertStringContainsString('icon-root', $icon, "{$relative} should declare the adaptive icon root class");
+            self::assertStringContainsString('--icon-color-primary', $icon, "{$relative} should expose the TYPO3 primary icon variable");
+            self::assertStringContainsString('--icon-color-accent', $icon, "{$relative} should expose the TYPO3 accent variable");
+            self::assertStringContainsString('prefers-color-scheme:dark', $icon, "{$relative} should define a dark external-SVG fallback");
+            self::assertStringContainsString(self::LIGHT_ICON_FALLBACK, $icon, "{$relative} should define a readable light-mode fallback");
+            self::assertStringContainsString(self::DARK_ICON_FALLBACK, $icon, "{$relative} should define a readable dark-mode fallback");
+            self::assertStringContainsString('currentColor', $icon, "{$relative} should preserve currentColor inheritance");
+            self::assertStringNotContainsString('#000', $lower, "{$relative} must not hard-code black");
+            self::assertStringNotContainsString('#fff', $lower, "{$relative} must not hard-code white");
+            self::assertStringNotContainsString('black', $lower, "{$relative} must not hard-code black");
+            self::assertStringNotContainsString('white', $lower, "{$relative} must not hard-code white");
+            self::assertDoesNotMatchRegularExpression('/(?:fill|stroke)="#[0-9a-fA-F]{3,8}"/', $icon, "{$relative} must not hard-code SVG paint colors");
+        }
     }
 
     public function testEveryContentBlockHasUsefulBackendPreview(): void
@@ -558,5 +593,65 @@ final class ContentBlockStructureTest extends TestCase
         }
 
         self::assertSame(self::EXPECTED_COUNT, $elementCount);
+    }
+
+    /**
+     * @return list<string>
+     */
+    private static function collectSvgIconFiles(): array
+    {
+        $root = dirname(__DIR__, 2);
+        $files = glob($root . '/ContentBlocks/ContentElements/*/assets/icon.svg') ?: [];
+        $publicIconDirectory = $root . '/Resources/Public/Icons';
+        $iterator = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($publicIconDirectory));
+
+        foreach ($iterator as $file) {
+            if ($file instanceof \SplFileInfo && $file->isFile() && $file->getExtension() === 'svg') {
+                $files[] = $file->getPathname();
+            }
+        }
+
+        sort($files);
+        return array_values(array_unique($files));
+    }
+
+    private static function contrastRatio(string $foreground, string $background): float
+    {
+        $fg = self::relativeLuminance(self::hexToRgb($foreground));
+        $bg = self::relativeLuminance(self::hexToRgb($background));
+        $lighter = max($fg, $bg);
+        $darker = min($fg, $bg);
+
+        return ($lighter + 0.05) / ($darker + 0.05);
+    }
+
+    /**
+     * @return array{0:int,1:int,2:int}
+     */
+    private static function hexToRgb(string $hex): array
+    {
+        $hex = ltrim($hex, '#');
+
+        return [
+            hexdec(substr($hex, 0, 2)),
+            hexdec(substr($hex, 2, 2)),
+            hexdec(substr($hex, 4, 2)),
+        ];
+    }
+
+    /**
+     * @param array{0:int,1:int,2:int} $rgb
+     */
+    private static function relativeLuminance(array $rgb): float
+    {
+        [$r, $g, $b] = array_map(static function (int $channel): float {
+            $value = $channel / 255;
+
+            return $value <= 0.03928
+                ? $value / 12.92
+                : (($value + 0.055) / 1.055) ** 2.4;
+        }, $rgb);
+
+        return (0.2126 * $r) + (0.7152 * $g) + (0.0722 * $b);
     }
 }

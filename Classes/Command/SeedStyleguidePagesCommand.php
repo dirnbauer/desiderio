@@ -479,7 +479,10 @@ final class SeedStyleguidePagesCommand extends Command
                 if ($scalarField !== null) {
                     $normalized = $this->normalizeArrayForScalarField($value, $scalarField);
                     if ($normalized !== self::FIELD_SKIP) {
-                        $resolvedFields[$scalarField] = $normalized;
+                        $resolvedFields[$scalarField] = $this->normalizeFieldValue(
+                            $normalized,
+                            $definition['fields'][$scalarField]
+                        );
                     }
                 }
                 continue;
@@ -489,7 +492,7 @@ final class SeedStyleguidePagesCommand extends Command
             if ($scalarField === null) {
                 continue;
             }
-            $resolvedFields[$scalarField] = $this->normalizeScalarValue($value);
+            $resolvedFields[$scalarField] = $this->normalizeFieldValue($value, $definition['fields'][$scalarField]);
         }
 
         return $this->completeResolvedFixtureData($ctype, $name !== '' ? $name : $ctype, $definition, $resolvedFields, $collections, $fixture);
@@ -681,16 +684,22 @@ final class SeedStyleguidePagesCommand extends Command
      */
     private function buildDefaultSelectValue(array $fieldConfig): mixed
     {
-        if (array_key_exists('default', $fieldConfig) && $fieldConfig['default'] !== '') {
-            return $fieldConfig['default'];
-        }
+        $itemValues = $this->getSelectItemValues($fieldConfig);
 
-        foreach (($fieldConfig['items'] ?? []) as $item) {
-            if (!is_array($item) || !array_key_exists('value', $item)) {
-                continue;
+        if (array_key_exists('default', $fieldConfig) && $fieldConfig['default'] !== '') {
+            if ($itemValues === []) {
+                return $fieldConfig['default'];
             }
 
-            return $item['value'];
+            foreach ($itemValues as $itemValue) {
+                if ((string)$itemValue === (string)$fieldConfig['default']) {
+                    return $itemValue;
+                }
+            }
+        }
+
+        if ($itemValues !== []) {
+            return $itemValues[0];
         }
 
         return '';
@@ -1082,11 +1091,15 @@ final class SeedStyleguidePagesCommand extends Command
                 if ($label === '') {
                     continue;
                 }
-                $definitions[] = [
+                $definition = [
                     'column_label' => $label,
-                    'column_key' => $this->buildColumnKey($label),
-                    'column_align' => 'left',
                 ];
+                if (isset($collection['fields']['column_key'])) {
+                    $definition['column_key'] = $this->buildColumnKey($label);
+                }
+                $definition['column_align'] = 'left';
+
+                $definitions[] = $definition;
             }
 
             return $definitions;
@@ -1116,7 +1129,9 @@ final class SeedStyleguidePagesCommand extends Command
             }
 
             return [
-                $targetField => $this->normalizeScalarValue($item),
+                $targetField => isset($collection['fields'][$targetField])
+                    ? $this->normalizeFieldValue($item, $collection['fields'][$targetField])
+                    : $this->normalizeScalarValue($item),
             ];
         }
 
@@ -1157,11 +1172,15 @@ final class SeedStyleguidePagesCommand extends Command
                 if ($normalized === self::FIELD_SKIP) {
                     continue;
                 }
-                $normalizedItem[$resolvedField] = $normalized;
+                $normalizedItem[$resolvedField] = isset($collection['fields'][$resolvedField])
+                    ? $this->normalizeFieldValue($normalized, $collection['fields'][$resolvedField])
+                    : $normalized;
                 continue;
             }
 
-            $normalizedItem[$resolvedField] = $this->normalizeScalarValue($value);
+            $normalizedItem[$resolvedField] = isset($collection['fields'][$resolvedField])
+                ? $this->normalizeFieldValue($value, $collection['fields'][$resolvedField])
+                : $this->normalizeScalarValue($value);
         }
 
         $normalizedItem = $this->populateFixedLinkSlots($normalizedItem, $item, $collection);
@@ -1808,6 +1827,57 @@ final class SeedStyleguidePagesCommand extends Command
     private function getContentBlockDefinition(string $ctype): ?array
     {
         return $this->getContentBlockDefinitions()[$ctype] ?? null;
+    }
+
+    /**
+     * @param array<string, mixed> $fieldConfig
+     */
+    private function normalizeFieldValue(mixed $value, array $fieldConfig): mixed
+    {
+        $normalized = $this->normalizeScalarValue($value);
+
+        if (($fieldConfig['type'] ?? '') !== 'Select') {
+            return $normalized;
+        }
+
+        return $this->normalizeSelectValue($normalized, $fieldConfig);
+    }
+
+    /**
+     * @param array<string, mixed> $fieldConfig
+     */
+    private function normalizeSelectValue(mixed $value, array $fieldConfig): mixed
+    {
+        if (!is_scalar($value)) {
+            return $this->buildDefaultSelectValue($fieldConfig);
+        }
+
+        foreach ($this->getSelectItemValues($fieldConfig) as $itemValue) {
+            if ((string)$itemValue === (string)$value) {
+                return $itemValue;
+            }
+        }
+
+        return $this->buildDefaultSelectValue($fieldConfig);
+    }
+
+    /**
+     * @param array<string, mixed> $fieldConfig
+     * @return list<mixed>
+     */
+    private function getSelectItemValues(array $fieldConfig): array
+    {
+        $values = [];
+
+        foreach (($fieldConfig['items'] ?? []) as $item) {
+            if (!is_array($item) || !array_key_exists('value', $item)) {
+                continue;
+            }
+
+            $values[] = $item['value'];
+        }
+
+        return $values;
     }
 
     /**

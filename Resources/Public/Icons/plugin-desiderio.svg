@@ -1,7 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="icon-root">
+  <style>.icon-root{color:var(--icon-color-primary,#88919b)}@media (prefers-color-scheme:dark){.icon-root{color:var(--icon-color-primary,#f9fafb)}}.accent{stroke:var(--icon-color-accent,currentColor);fill:none}.accent-fill,.no-stroke{stroke:none;fill:var(--icon-color-accent,currentColor)}</style>
   <rect x="5" y="8" width="9" height="7" rx="1.5" fill="currentColor" opacity=".4"/>
   <rect x="3" y="5" width="9" height="7" rx="1.5" fill="currentColor" opacity=".8"/>
   <rect x="1" y="2" width="9" height="7" rx="1.5" fill="currentColor"/>
-  <rect x="2" y="3" width="7" height="3" rx="1" fill="var(--icon-color-accent, #ff8700)"/>
-  <circle cx="12" cy="3" r="2.5" fill="var(--icon-color-accent, #ff8700)"/>
+  <rect x="2" y="3" width="7" height="3" rx="1" fill="var(--icon-color-accent,currentColor)"/>
+  <circle cx="12" cy="3" r="2.5" fill="var(--icon-color-accent,currentColor)"/>
 </svg>

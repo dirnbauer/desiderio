@@ -1,5 +1,6 @@
 <f:argument name="class" type="string" optional="{true}" default="" />
+<f:argument name="variant" type="string" optional="{true}" default="default" />
 
-<div role="tablist" data-slot="tabs-list" data-variant="default" class="group/tabs-list inline-flex w-fit items-center justify-center rounded-lg bg-muted p-[3px] text-muted-foreground group-data-horizontal/tabs:h-8 group-data-vertical/tabs:h-fit group-data-vertical/tabs:flex-col data-[variant=line]:rounded-none {class}" data-d-tabs-list>
+<div role="tablist" data-slot="tabs-list" data-variant="{variant}" class="group/tabs-list inline-flex w-fit items-center justify-center rounded-lg bg-muted p-[3px] text-muted-foreground group-data-horizontal/tabs:h-8 group-data-vertical/tabs:h-fit group-data-vertical/tabs:flex-col data-[variant=line]:rounded-none {class}" data-d-tabs-list>
     <f:slot />
 </div>

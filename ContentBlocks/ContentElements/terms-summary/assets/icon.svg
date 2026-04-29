@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" class="icon-root">
   <title>Terms Summary icon</title>
-  <style>.accent{stroke:var(--icon-color-accent,currentColor);fill:none}.accent-fill,.no-stroke{stroke:none;fill:var(--icon-color-accent,currentColor)}</style>
+  <style>.icon-root{color:var(--icon-color-primary,#88919b)}@media (prefers-color-scheme:dark){.icon-root{color:var(--icon-color-primary,#f9fafb)}}.accent{stroke:var(--icon-color-accent,currentColor);fill:none}.accent-fill,.no-stroke{stroke:none;fill:var(--icon-color-accent,currentColor)}</style>
   <rect x="4" y="3" width="8" height="10" rx="1.4"/><path d="M6 6h4M6 8.25h4M6 10.5h2"/><path d="m9.5 10.3.65.65 1.25-1.55" class="accent"/>
   <g class="icon-signature"><circle cx="12.05" cy="5.05" r=".24" class="accent-fill"/><circle cx="13.45" cy="5.05" r=".24" class="accent-fill"/><circle cx="12.75" cy="6.45" r=".24" class="accent-fill"/><path d="M12.05 6.9l1.65 1.15" class="accent"/><path d="M13.15 8.35l-1 .95" class="accent"/></g>
 </svg>

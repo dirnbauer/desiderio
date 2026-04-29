@@ -1,9 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-  <rect x="4" y="8" width="56" height="48" rx="4" fill="#f8fafc" stroke="#cbd5e1"/>
-  <rect x="14" y="16" width="36" height="5" rx="1" fill="#1e293b"/>
-  <rect x="18" y="25" width="28" height="2.5" rx="0.5" fill="#94a3b8"/>
-  <rect x="22" y="30" width="20" height="2.5" rx="0.5" fill="#94a3b8"/>
-  <line x1="32" y1="38" x2="32" y2="42" stroke="#cbd5e1" stroke-width="1" stroke-dasharray="2,2"/>
-  <rect x="16" y="44" width="14" height="5" rx="2" fill="#0f172a"/>
-  <rect x="34" y="44" width="14" height="5" rx="2" fill="none" stroke="#0f172a" stroke-width="1.5"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon-root">
+  <style>.icon-root{color:var(--icon-color-primary,#88919b)}@media (prefers-color-scheme:dark){.icon-root{color:var(--icon-color-primary,#f9fafb)}}.accent{stroke:var(--icon-color-accent,currentColor);fill:none}.accent-fill,.no-stroke{stroke:none;fill:var(--icon-color-accent,currentColor)}</style>
+  <rect x="4" y="8" width="56" height="48" rx="4" fill="currentColor" fill-opacity=".08" stroke="currentColor" stroke-opacity=".7"/>
+  <rect x="14" y="16" width="36" height="5" rx="1" fill="currentColor"/>
+  <rect x="18" y="25" width="28" height="2.5" rx="0.5" fill="currentColor" opacity=".55"/>
+  <rect x="22" y="30" width="20" height="2.5" rx="0.5" fill="currentColor" opacity=".55"/>
+  <line x1="32" y1="38" x2="32" y2="42" stroke="currentColor" stroke-opacity=".45" stroke-width="1" stroke-dasharray="2,2"/>
+  <rect x="16" y="44" width="14" height="5" rx="2" fill="currentColor"/>
+  <rect x="34" y="44" width="14" height="5" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/>
 </svg>

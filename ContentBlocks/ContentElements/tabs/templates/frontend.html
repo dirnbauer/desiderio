@@ -3,42 +3,38 @@
       xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
       data-namespace-typo3-fluid="true">
 
-<f:asset.css identifier="d-tabs" href="{cb:assetPath()}/frontend.css"/>
+<f:variable name="tabsVariant">
+    <f:switch expression="{data.variant}">
+        <f:case value="line">line</f:case>
+        <f:case value="underline">line</f:case>
+        <f:defaultCase>default</f:defaultCase>
+    </f:switch>
+</f:variable>
 
 <d:layout.section class="tabs-section">
     <d:layout.container>
         <f:if condition="{data.header}">
-            <d:atom.typography tag="h2" variant="h2" class="tabs-section__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
+            <d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography>
         </f:if>
 
-        <div class="tabs tabs--{data.variant -> f:or(alternative: 'default')}" data-d-tabs data-default="tab-{data.uid}-{data.default_tab -> f:or(alternative: '0')}">
-            <div class="tabs__list" role="tablist">
+        <d:molecule.tabs defaultValue="tab-{data.uid}-{data.default_tab -> f:or(alternative: '0')}">
+            <d:molecule.tabsList variant="{tabsVariant -> f:format.trim()}">
                 <f:for each="{data.items}" as="item" iteration="iter">
-                    <button class="tabs__trigger{f:if(condition: iter.isFirst, then: ' tabs__trigger--active')}"
-                            role="tab"
-                            type="button"
-                            aria-selected="{f:if(condition: iter.isFirst, then: 'true', else: 'false')}"
-                            aria-controls="tab-panel-{data.uid}-{iter.index}"
-                            data-d-tabs-trigger
-                            data-value="tab-{data.uid}-{iter.index}">
+                    <d:molecule.tabsTrigger value="tab-{data.uid}-{iter.index}">
                         <f:if condition="{item.tab_icon}">
-                            <span class="tabs__icon">{item -> f:render.text(field: 'tab_icon')}</span>
+                            <span data-icon="inline-start">{item -> f:render.text(field: 'tab_icon')}</span>
                         </f:if>
-                        <span class="tabs__label">{item -> f:render.text(field: 'tab_label')}</span>
-                    </button>
+                        <span>{item -> f:render.text(field: 'tab_label')}</span>
+                    </d:molecule.tabsTrigger>
                 </f:for>
-            </div>
+            </d:molecule.tabsList>
 
             <f:for each="{data.items}" as="item" iteration="iter">
-                <div class="tabs__content{f:if(condition: !iter.isFirst, then: ' tabs__content--hidden')}"
-                     role="tabpanel"
-                     id="tab-panel-{data.uid}-{iter.index}"
-                     data-d-tabs-content
-                     data-value="tab-{data.uid}-{iter.index}">
+                <d:molecule.tabsContent value="tab-{data.uid}-{iter.index}">
                     {item -> f:render.text(field: 'tab_content')}
-                </div>
+                </d:molecule.tabsContent>
             </f:for>
-        </div>
+        </d:molecule.tabs>
     </d:layout.container>
 </d:layout.section>
 

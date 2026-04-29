@@ -23,12 +23,6 @@
         <f:if condition="{data.header}">
             <h3 class="d-ce-preview__title">{data.header}</h3>
         </f:if>
-        <f:if condition="{data.variant}">
-            <div class="d-ce-preview__field">
-                <span class="d-ce-preview__label">Variant</span>
-                <span class="d-ce-preview__value">{data.variant}</span>
-            </div>
-        </f:if>
         <f:if condition="{data.caption_text}">
             <div class="d-ce-preview__field">
                 <span class="d-ce-preview__label">Caption Text</span>
@@ -42,7 +36,6 @@
                     <f:for each="{data.column_definitions}" as="item">
                         <li>
                             <f:if condition="{item.column_label}"><span>{item.column_label}</span></f:if>
-                            <f:if condition="{item.column_key}"><span>{item.column_key}</span></f:if>
                             <f:if condition="{item.column_align}"><span>{item.column_align}</span></f:if>
                         </li>
                     </f:for>

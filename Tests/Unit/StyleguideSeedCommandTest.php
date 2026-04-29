@@ -150,6 +150,14 @@ final class StyleguideSeedCommandTest extends TestCase
             ],
             $this->invokeMethod($command, 'normalizeCollectionItems', [['Service', 'Last Deploy'], $collection])
         );
+
+        unset($collection['fields']['column_key']);
+        self::assertSame(
+            [
+                ['column_label' => 'Service', 'column_align' => 'left'],
+            ],
+            $this->invokeMethod($command, 'normalizeCollectionItems', [['Service'], $collection])
+        );
     }
 
     public function testCollectionTableNamesAreDerivedUniquelyFromContentBlockDefinitions(): void
@@ -272,6 +280,43 @@ final class StyleguideSeedCommandTest extends TestCase
         self::assertArrayNotHasKey('header', $fields);
         self::assertSame('horizontal', $fields['variant']);
         self::assertSame('Divider Text for Content Divider', $fields['divider_text']);
+    }
+
+    public function testInvalidSelectFixtureValuesFallBackToConfiguredDefaults(): void
+    {
+        $command = $this->createCommand();
+        $this->setProperty($command, 'contentBlockDefinitions', [
+            'desiderio_tabs' => [
+                'fields' => [
+                    'variant' => [
+                        'identifier' => 'variant',
+                        'type' => 'Select',
+                        'items' => [
+                            ['label' => 'Default', 'value' => 'default'],
+                            ['label' => 'Line', 'value' => 'line'],
+                        ],
+                        'default' => 'default',
+                    ],
+                ],
+                'collections' => [],
+            ],
+        ]);
+
+        [$fields] = $this->invokeMethod($command, 'resolveFixtureFields', [
+            'desiderio_tabs',
+            ['variant' => 'underline'],
+            'Tabs',
+        ]);
+
+        self::assertSame('default', $fields['variant']);
+
+        [$fields] = $this->invokeMethod($command, 'resolveFixtureFields', [
+            'desiderio_tabs',
+            ['variant' => 'line'],
+            'Tabs',
+        ]);
+
+        self::assertSame('line', $fields['variant']);
     }
 
     public function testLegacyStatsFixturesAreConvertedToChartDataJson(): void

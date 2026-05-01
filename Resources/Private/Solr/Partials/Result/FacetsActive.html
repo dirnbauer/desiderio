@@ -1,0 +1,26 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en"
+    xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+    xmlns:s="http://typo3.org/ns/ApacheSolrForTypo3/Solr/ViewHelpers"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:section name="FacetsActive">
+    <f:if condition="{resultSet.facets.used -> f:count()}">
+        <div id="tx-solr-facets-in-use" class="flex flex-wrap items-center gap-2 rounded-xl border border-border bg-card px-4 py-3 text-sm text-card-foreground shadow-sm">
+            <span class="font-medium text-muted-foreground"><f:translate key="solr.facets.narrowedBy" domain="desiderio.labels">Narrowed by</f:translate>:</span>
+            <f:for each="{resultSet.facets.used}" as="facet">
+                <f:for each="{facet.allFacetItems.selected}" as="item">
+                    <a href="{s:uri.facet.removeFacetItem(facet: facet, facetItem: item)}" class="facet remove-facet-option solr-ajaxified group/badge inline-flex h-7 w-fit shrink-0 items-center justify-center gap-1 overflow-hidden rounded-4xl border border-border bg-background px-3 text-xs font-medium whitespace-nowrap text-foreground transition-all hover:bg-muted hover:text-foreground focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 active:translate-y-px dark:border-input dark:bg-input/30 dark:hover:bg-input/50">
+                        {facet.label}: {item.label}
+                        <span aria-hidden="true">x</span>
+                    </a>
+                </f:for>
+            </f:for>
+            <a href="{s:uri.facet.removeAllFacets()}" class="solr-ajaxified group/badge inline-flex h-7 w-fit shrink-0 items-center justify-center gap-1 overflow-hidden rounded-4xl border border-transparent bg-secondary px-3 text-xs font-medium whitespace-nowrap text-secondary-foreground transition-all hover:bg-secondary/80 focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 active:translate-y-px">
+                <f:translate key="solr.facets.removeAll" domain="desiderio.labels">Remove all filters</f:translate>
+            </a>
+        </div>
+    </f:if>
+</f:section>
+
+</html>

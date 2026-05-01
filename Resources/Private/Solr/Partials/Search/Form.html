@@ -5,18 +5,16 @@
 >
 
 <f:section name="Form">
-
     <div class="tx-solr-search-form">
-        <s:searchForm id="tx-solr-search-form-pi-results" additionalFilters="{additionalFilters}" suggestHeader="{f:translate(key: 'suggest_header', default: 'Top Results', extensionName: 'solr')}">
+        <s:searchForm id="tx-solr-search-form-pi-results" additionalFilters="{additionalFilters}" suggestHeader="{f:translate(key: 'solr.suggest.header', domain: 'desiderio.labels', default: 'Top Results')}">
             <f:for each="{existingParameters}" key="name" as="value">
                 <f:form.hidden name="{pluginNamespace}{name}" value="{value}" />
             </f:for>
 
-            <div class="input-group">
-                <input type="text" class="tx-solr-q js-solr-q form-control" data-d-solr-suggest name="{pluginNamespace}[q]" value="{q}" maxlength="50" autocomplete="off" />
-                <button class="btn btn-primary tx-solr-submit" type="submit">
-                    <span class="bi bi-search"></span>
-                    <f:translate key="submit" extensionName="solr">Search</f:translate>
+            <div class="relative flex w-full items-stretch gap-2">
+                <input type="search" class="tx-solr-q js-solr-q h-10 w-full min-w-0 rounded-lg border border-input bg-background px-4 py-2 text-sm text-foreground shadow-sm transition-colors placeholder:text-muted-foreground focus-visible:outline-hidden focus-visible:ring-3 focus-visible:ring-ring" data-d-solr-suggest name="{pluginNamespace}[q]" value="{q}" maxlength="50" autocomplete="off" aria-label="{f:translate(key: 'solr.search.label', domain: 'desiderio.labels', default: 'Search')}" />
+                <button class="tx-solr-submit inline-flex h-10 shrink-0 items-center justify-center rounded-lg bg-primary px-4 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90 focus-visible:outline-hidden focus-visible:ring-3 focus-visible:ring-ring" type="submit">
+                    <f:translate key="solr.search.submit" domain="desiderio.labels">Search</f:translate>
                 </button>
             </div>
         </s:searchForm>

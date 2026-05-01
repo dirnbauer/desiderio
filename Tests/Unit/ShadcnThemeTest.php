@@ -88,12 +88,15 @@ final class ShadcnThemeTest extends TestCase
         self::assertStringContainsString('@import "tailwindcss";', $tailwindCss);
         self::assertStringContainsString('@import "shadcn/tailwind.css";', $tailwindCss);
         self::assertStringContainsString('@source "../Components";', $tailwindCss);
+        self::assertStringContainsString('@source "../Solr";', $tailwindCss);
         self::assertStringContainsString('@source "../Templates";', $tailwindCss);
         self::assertStringContainsString('@source "../../../ContentBlocks";', $tailwindCss);
         self::assertStringContainsString('@custom-variant dark', $tailwindCss);
         self::assertStringContainsString('@theme inline', $tailwindCss);
         self::assertStringContainsString('.ce-bodytext', $tailwindCss);
         self::assertStringContainsString('.desiderio-content-element', $tailwindCss);
+        self::assertStringContainsString('.results-highlight', $tailwindCss);
+        self::assertStringContainsString('#tx-solr-facets-in-use :where(a)', $tailwindCss);
 
         self::assertIsArray($componentsJson);
         self::assertSame('radix-lyra', $componentsJson['style'] ?? null);
@@ -113,7 +116,7 @@ final class ShadcnThemeTest extends TestCase
         self::assertFileExists($generatedCssPath, 'Run npm run build:css after changing Fluid class recipes.');
 
         $generatedCss = (string) file_get_contents($generatedCssPath);
-        foreach (['.bg-card', '.text-card-foreground', '.rounded-lg', '.border-border', '.data-active\\:bg-background'] as $class) {
+        foreach (['.bg-card', '.text-card-foreground', '.rounded-lg', '.border-border', '.data-active\\:bg-background', '.results-highlight'] as $class) {
             self::assertStringContainsString($class, $generatedCss);
         }
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en">
+<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en">
   <file id="desiderio">
     <unit id="heading">
       <segment>
@@ -694,6 +694,136 @@
     <unit id="contentElementGroup.team.description">
       <segment>
         <source>Team profiles, departments, founders, advisors, company culture, and career content.</source>
+      </segment>
+    </unit>
+    <unit id="solr.suggest.header">
+      <segment>
+        <source>Top Results</source>
+      </segment>
+    </unit>
+    <unit id="solr.search.label">
+      <segment>
+        <source>Search</source>
+      </segment>
+    </unit>
+    <unit id="solr.search.submit">
+      <segment>
+        <source>Search</source>
+      </segment>
+    </unit>
+    <unit id="solr.lastSearches">
+      <segment>
+        <source>Last searches</source>
+      </segment>
+    </unit>
+    <unit id="solr.frequentSearches">
+      <segment>
+        <source>Frequent searches</source>
+      </segment>
+    </unit>
+    <unit id="solr.debug.parsedQuery">
+      <segment>
+        <source>Parsed Query:</source>
+      </segment>
+    </unit>
+    <unit id="solr.noResultsNothingFound">
+      <segment>
+        <source>Nothing found for "{query}".</source>
+      </segment>
+    </unit>
+    <unit id="solr.noResultsShowingSuggestion">
+      <segment>
+        <source>Showing results for "{query}".</source>
+      </segment>
+    </unit>
+    <unit id="solr.resultsSearchedFor">
+      <segment>
+        <source>Searched for "{query}".</source>
+      </segment>
+    </unit>
+    <unit id="solr.didYouMean">
+      <segment>
+        <source>Did you mean</source>
+      </segment>
+    </unit>
+    <unit id="solr.resultsFound">
+      <segment>
+        <source>{count, plural, one {Found # result.} other {Found # results.}}</source>
+      </segment>
+    </unit>
+    <unit id="solr.resultsRange">
+      <segment>
+        <source>{total, plural, one {Showing result {from} of #.} other {Showing results {from} to {to} of #.}}</source>
+      </segment>
+    </unit>
+    <unit id="solr.facet.showMore">
+      <segment>
+        <source>Show more</source>
+      </segment>
+    </unit>
+    <unit id="solr.facet.showFewer">
+      <segment>
+        <source>Show fewer</source>
+      </segment>
+    </unit>
+    <unit id="solr.sortBy">
+      <segment>
+        <source>Sort by</source>
+      </segment>
+    </unit>
+    <unit id="solr.resultsPerPage">
+      <segment>
+        <source>Results per page:</source>
+      </segment>
+    </unit>
+    <unit id="solr.sponsored">
+      <segment>
+        <source>Sponsored</source>
+      </segment>
+    </unit>
+    <unit id="solr.fileMimeType">
+      <segment>
+        <source>MIME type</source>
+      </segment>
+    </unit>
+    <unit id="solr.fileReferenced">
+      <segment>
+        <source>Referenced on</source>
+      </segment>
+    </unit>
+    <unit id="solr.facets.narrowedBy">
+      <segment>
+        <source>Narrowed by</source>
+      </segment>
+    </unit>
+    <unit id="solr.facets.removeAll">
+      <segment>
+        <source>Remove all filters</source>
+      </segment>
+    </unit>
+    <unit id="solr.pagination.aria">
+      <segment>
+        <source>Search results pagination</source>
+      </segment>
+    </unit>
+    <unit id="solr.resultCount.aria">
+      <segment>
+        <source>{count, plural, one {# result} other {# results}}</source>
+      </segment>
+    </unit>
+    <unit id="solr.contentType.pages">
+      <segment>
+        <source>Pages</source>
+      </segment>
+    </unit>
+    <unit id="solr.contentType.news">
+      <segment>
+        <source>News</source>
+      </segment>
+    </unit>
+    <unit id="solr.contentType.addresses">
+      <segment>
+        <source>Addresses</source>
       </segment>
     </unit>
   </file>

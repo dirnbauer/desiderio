@@ -1,0 +1,29 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en"
+    xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+    xmlns:s="http://typo3.org/ns/ApacheSolrForTypo3/Solr/ViewHelpers"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:section name="FrequentlySearched">
+    <s:frequentlySearched>
+        <f:if condition="{frequentSearches}">
+            <section id="tx-solr-frequent-searches" class="overflow-hidden rounded-xl border border-border bg-card text-card-foreground shadow-sm">
+                <header class="border-b border-border px-4 py-3">
+                    <h2 class="text-sm font-semibold tracking-tight">
+                        <f:translate key="solr.frequentSearches" domain="desiderio.labels">Frequent searches</f:translate>
+                    </h2>
+                </header>
+
+                <ul class="space-y-1 p-2">
+                    <f:for each="{frequentSearches}" as="searchedForInfo">
+                        <li>
+                            <a href="{s:uri.search.startNewSearch(queryString: searchedForInfo.q)}" class="solr-ajaxified block rounded-lg px-3 py-2 text-sm font-medium text-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:bg-muted focus-visible:text-foreground focus-visible:outline-hidden focus-visible:ring-3 focus-visible:ring-ring active:bg-muted active:text-foreground"><f:format.htmlentities>{searchedForInfo.q}</f:format.htmlentities></a>
+                        </li>
+                    </f:for>
+                </ul>
+            </section>
+        </f:if>
+    </s:frequentlySearched>
+</f:section>
+
+</html>

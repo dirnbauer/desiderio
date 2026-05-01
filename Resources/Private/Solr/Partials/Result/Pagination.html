@@ -1,0 +1,53 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en"
+    xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+    xmlns:s="http://typo3.org/ns/ApacheSolrForTypo3/Solr/ViewHelpers"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:section name="Pagination">
+    <nav class="solr-pagination" aria-label="{f:translate(key: 'solr.pagination.aria', domain: 'desiderio.labels')}">
+        <ul class="flex flex-wrap items-center gap-1">
+            <f:if condition="{pagination.previousPageNumber}">
+                <li>
+                    <a class="solr-ajaxified inline-flex h-8 items-center justify-center rounded-lg border border-border bg-background px-3 text-sm font-medium text-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-hidden focus-visible:ring-3 focus-visible:ring-ring active:translate-y-px" href="{s:uri.paginate.resultPage(page: pagination.previousPageNumber)}">&laquo;</a>
+                </li>
+            </f:if>
+
+            <f:if condition="{pagination.hasLessPages}">
+                <li><span class="inline-flex h-8 items-center px-2 text-sm text-muted-foreground">...</span></li>
+            </f:if>
+
+            <f:for each="{pagination.allPageNumbers}" as="page">
+                <f:if condition="{page} == {currentPage}">
+                    <f:then>
+                        <li><span class="inline-flex h-8 min-w-8 items-center justify-center rounded-lg bg-primary px-3 text-sm font-medium text-primary-foreground" aria-current="page">{page}</span></li>
+                    </f:then>
+                    <f:else>
+                        <li>
+                            <f:if condition="{page} > 1">
+                                <f:then>
+                                    <a class="solr-ajaxified inline-flex h-8 min-w-8 items-center justify-center rounded-lg border border-border bg-background px-3 text-sm font-medium text-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-hidden focus-visible:ring-3 focus-visible:ring-ring active:translate-y-px" href="{s:uri.paginate.resultPage(page: page)}">{page}</a>
+                                </f:then>
+                                <f:else>
+                                    <a class="solr-ajaxified inline-flex h-8 min-w-8 items-center justify-center rounded-lg border border-border bg-background px-3 text-sm font-medium text-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-hidden focus-visible:ring-3 focus-visible:ring-ring active:translate-y-px" href="{s:uri.paginate.resultPage()}">{page}</a>
+                                </f:else>
+                            </f:if>
+                        </li>
+                    </f:else>
+                </f:if>
+            </f:for>
+
+            <f:if condition="{pagination.hasMorePages}">
+                <li><span class="inline-flex h-8 items-center px-2 text-sm text-muted-foreground">...</span></li>
+            </f:if>
+
+            <f:if condition="{pagination.nextPageNumber}">
+                <li>
+                    <a class="solr-ajaxified inline-flex h-8 items-center justify-center rounded-lg border border-border bg-background px-3 text-sm font-medium text-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-hidden focus-visible:ring-3 focus-visible:ring-ring active:translate-y-px" href="{s:uri.paginate.resultPage(page: pagination.nextPageNumber)}">&raquo;</a>
+                </li>
+            </f:if>
+        </ul>
+    </nav>
+</f:section>
+
+</html>

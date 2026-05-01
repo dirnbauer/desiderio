@@ -1,39 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en">
+<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en" trgLang="es">
   <file id="backend_layouts">
     <unit id="backend_layout.desiderio_startpage.title">
-      <segment>
+      <segment state="final">
         <source>Desiderio: Startpage</source>
+        <target>Desiderio: página de inicio</target>
       </segment>
     </unit>
     <unit id="backend_layout.desiderio_contentpage.title">
-      <segment>
+      <segment state="final">
         <source>Desiderio: Contentpage</source>
+        <target>Desiderio: página de contenido</target>
       </segment>
     </unit>
     <unit id="backend_layout.desiderio_contentpage_sidebar.title">
-      <segment>
+      <segment state="final">
         <source>Desiderio: Contentpage with Sidebar</source>
+        <target>Desiderio: página de contenido con barra lateral</target>
       </segment>
     </unit>
     <unit id="backend_layout.desiderio_styleguide.title">
-      <segment>
+      <segment state="final">
         <source>Desiderio: Styleguide</source>
+        <target>Desiderio: guía de estilo</target>
       </segment>
     </unit>
     <unit id="backend_layout.colPos.0.name">
-      <segment>
+      <segment state="final">
         <source>Content</source>
+        <target>Contenido</target>
       </segment>
     </unit>
     <unit id="backend_layout.colPos.1.name">
-      <segment>
+      <segment state="final">
         <source>Sidebar</source>
+        <target>Barra lateral</target>
       </segment>
     </unit>
     <unit id="backend_layout.colPos.2.name">
-      <segment>
+      <segment state="final">
         <source>Stage</source>
+        <target>Escenario</target>
       </segment>
     </unit>
   </file>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="de">
+<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en" trgLang="de">
   <file id="desiderio">
     <unit id="heading">
       <segment state="final">
@@ -833,6 +833,162 @@
       <segment state="final">
         <source>Team profiles, departments, founders, advisors, company culture, and career content.</source>
         <target>Teamprofile, Abteilungen, Gründer, Beratung, Unternehmenskultur und Karriereinhalte.</target>
+      </segment>
+    </unit>
+    <unit id="solr.suggest.header">
+      <segment state="final">
+        <source>Top Results</source>
+        <target>Top-Ergebnisse</target>
+      </segment>
+    </unit>
+    <unit id="solr.search.label">
+      <segment state="final">
+        <source>Search</source>
+        <target>Suche</target>
+      </segment>
+    </unit>
+    <unit id="solr.search.submit">
+      <segment state="final">
+        <source>Search</source>
+        <target>Suchen</target>
+      </segment>
+    </unit>
+    <unit id="solr.lastSearches">
+      <segment state="final">
+        <source>Last searches</source>
+        <target>Letzte Suchanfragen</target>
+      </segment>
+    </unit>
+    <unit id="solr.frequentSearches">
+      <segment state="final">
+        <source>Frequent searches</source>
+        <target>Häufige Suchanfragen</target>
+      </segment>
+    </unit>
+    <unit id="solr.debug.parsedQuery">
+      <segment state="final">
+        <source>Parsed Query:</source>
+        <target>Geparste Suchanfrage:</target>
+      </segment>
+    </unit>
+    <unit id="solr.noResultsNothingFound">
+      <segment state="final">
+        <source>Nothing found for "{query}".</source>
+        <target>Nichts gefunden für „{query}“.</target>
+      </segment>
+    </unit>
+    <unit id="solr.noResultsShowingSuggestion">
+      <segment state="final">
+        <source>Showing results for "{query}".</source>
+        <target>Zeige Ergebnisse für „{query}“.</target>
+      </segment>
+    </unit>
+    <unit id="solr.resultsSearchedFor">
+      <segment state="final">
+        <source>Searched for "{query}".</source>
+        <target>Gesucht nach „{query}“.</target>
+      </segment>
+    </unit>
+    <unit id="solr.didYouMean">
+      <segment state="final">
+        <source>Did you mean</source>
+        <target>Meinten Sie</target>
+      </segment>
+    </unit>
+    <unit id="solr.resultsFound">
+      <segment state="final">
+        <source>{count, plural, one {Found # result.} other {Found # results.}}</source>
+        <target>{count, plural, one {# Ergebnis gefunden.} other {# Ergebnisse gefunden.}}</target>
+      </segment>
+    </unit>
+    <unit id="solr.resultsRange">
+      <segment state="final">
+        <source>{total, plural, one {Showing result {from} of #.} other {Showing results {from} to {to} of #.}}</source>
+        <target>{total, plural, one {Zeige Ergebnis {from} von #.} other {Zeige Ergebnisse {from} bis {to} von #.}}</target>
+      </segment>
+    </unit>
+    <unit id="solr.facet.showMore">
+      <segment state="final">
+        <source>Show more</source>
+        <target>Mehr anzeigen</target>
+      </segment>
+    </unit>
+    <unit id="solr.facet.showFewer">
+      <segment state="final">
+        <source>Show fewer</source>
+        <target>Weniger anzeigen</target>
+      </segment>
+    </unit>
+    <unit id="solr.sortBy">
+      <segment state="final">
+        <source>Sort by</source>
+        <target>Sortieren nach</target>
+      </segment>
+    </unit>
+    <unit id="solr.resultsPerPage">
+      <segment state="final">
+        <source>Results per page:</source>
+        <target>Ergebnisse pro Seite:</target>
+      </segment>
+    </unit>
+    <unit id="solr.sponsored">
+      <segment state="final">
+        <source>Sponsored</source>
+        <target>Gesponsert</target>
+      </segment>
+    </unit>
+    <unit id="solr.fileMimeType">
+      <segment state="final">
+        <source>MIME type</source>
+        <target>MIME-Typ</target>
+      </segment>
+    </unit>
+    <unit id="solr.fileReferenced">
+      <segment state="final">
+        <source>Referenced on</source>
+        <target>Referenziert auf</target>
+      </segment>
+    </unit>
+    <unit id="solr.facets.narrowedBy">
+      <segment state="final">
+        <source>Narrowed by</source>
+        <target>Eingeschränkt durch</target>
+      </segment>
+    </unit>
+    <unit id="solr.facets.removeAll">
+      <segment state="final">
+        <source>Remove all filters</source>
+        <target>Alle Filter entfernen</target>
+      </segment>
+    </unit>
+    <unit id="solr.pagination.aria">
+      <segment state="final">
+        <source>Search results pagination</source>
+        <target>Paginierung der Suchergebnisse</target>
+      </segment>
+    </unit>
+    <unit id="solr.resultCount.aria">
+      <segment state="final">
+        <source>{count, plural, one {# result} other {# results}}</source>
+        <target>{count, plural, one {# Ergebnis} other {# Ergebnisse}}</target>
+      </segment>
+    </unit>
+    <unit id="solr.contentType.pages">
+      <segment state="final">
+        <source>Pages</source>
+        <target>Seiten</target>
+      </segment>
+    </unit>
+    <unit id="solr.contentType.news">
+      <segment state="final">
+        <source>News</source>
+        <target>News</target>
+      </segment>
+    </unit>
+    <unit id="solr.contentType.addresses">
+      <segment state="final">
+        <source>Addresses</source>
+        <target>Adressen</target>
       </segment>
     </unit>
   </file>

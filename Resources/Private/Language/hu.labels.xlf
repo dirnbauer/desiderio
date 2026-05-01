@@ -1,46 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en" trgLang="it">
+<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en" trgLang="hu">
   <file id="desiderio">
     <unit id="heading">
       <segment state="final">
         <source>Heading</source>
-        <target>Intestazione</target>
+        <target>Címsor</target>
       </segment>
     </unit>
     <unit id="description">
       <segment state="final">
         <source>Description</source>
-        <target>Descrizione</target>
+        <target>Leírás</target>
       </segment>
     </unit>
     <unit id="subheadline">
       <segment state="final">
         <source>Subheadline</source>
-        <target>Sottotitolo</target>
+        <target>Alcím</target>
       </segment>
     </unit>
     <unit id="eyebrow">
       <segment state="final">
         <source>Eyebrow</source>
-        <target>Sopratitolo</target>
+        <target>Felvezető</target>
       </segment>
     </unit>
     <unit id="button_text">
       <segment state="final">
         <source>Button Text</source>
-        <target>Testo pulsante</target>
+        <target>Gomb szövege</target>
       </segment>
     </unit>
     <unit id="button_link">
       <segment state="final">
         <source>Button Link</source>
-        <target>Link pulsante</target>
+        <target>Gomb linkje</target>
       </segment>
     </unit>
     <unit id="label">
       <segment state="final">
         <source>Label</source>
-        <target>Etichetta</target>
+        <target>Címke</target>
       </segment>
     </unit>
     <unit id="link">
@@ -52,547 +52,547 @@
     <unit id="optional_link">
       <segment state="final">
         <source>Optional Link</source>
-        <target>Link opzionale</target>
+        <target>Opcionális link</target>
       </segment>
     </unit>
     <unit id="link_text">
       <segment state="final">
         <source>Link Text</source>
-        <target>Testo link</target>
+        <target>Link szövege</target>
       </segment>
     </unit>
     <unit id="title">
       <segment state="final">
         <source>Title</source>
-        <target>Titolo</target>
+        <target>Cím</target>
       </segment>
     </unit>
     <unit id="image">
       <segment state="final">
         <source>Image</source>
-        <target>Immagine</target>
+        <target>Kép</target>
       </segment>
     </unit>
     <unit id="name">
       <segment state="final">
         <source>Name</source>
-        <target>Nome</target>
+        <target>Név</target>
       </segment>
     </unit>
     <unit id="content">
       <segment state="final">
         <source>Content</source>
-        <target>Contenuto</target>
+        <target>Tartalom</target>
       </segment>
     </unit>
     <unit id="text">
       <segment state="final">
         <source>Text</source>
-        <target>Testo</target>
+        <target>Szöveg</target>
       </segment>
     </unit>
     <unit id="style">
       <segment state="final">
         <source>Style</source>
-        <target>Stile</target>
+        <target>Stílus</target>
       </segment>
     </unit>
     <unit id="layout">
       <segment state="final">
         <source>Layout</source>
-        <target>Layout</target>
+        <target>Elrendezés</target>
       </segment>
     </unit>
     <unit id="columns">
       <segment state="final">
         <source>Columns</source>
-        <target>Colonne</target>
+        <target>Oszlopok</target>
       </segment>
     </unit>
     <unit id="alignment">
       <segment state="final">
         <source>Alignment</source>
-        <target>Allineamento</target>
+        <target>Igazítás</target>
       </segment>
     </unit>
     <unit id="text_alignment">
       <segment state="final">
         <source>Text Alignment</source>
-        <target>Allineamento testo</target>
+        <target>Szöveg igazítása</target>
       </segment>
     </unit>
     <unit id="primary_button_text">
       <segment state="final">
         <source>Primary Button Text</source>
-        <target>Testo pulsante primario</target>
+        <target>Elsődleges gomb szövege</target>
       </segment>
     </unit>
     <unit id="primary_button_link">
       <segment state="final">
         <source>Primary Button Link</source>
-        <target>Link pulsante primario</target>
+        <target>Elsődleges gomb linkje</target>
       </segment>
     </unit>
     <unit id="secondary_button_text">
       <segment state="final">
         <source>Secondary Button Text</source>
-        <target>Testo pulsante secondario</target>
+        <target>Másodlagos gomb szövege</target>
       </segment>
     </unit>
     <unit id="secondary_button_link">
       <segment state="final">
         <source>Secondary Button Link</source>
-        <target>Link pulsante secondario</target>
+        <target>Másodlagos gomb linkje</target>
       </segment>
     </unit>
     <unit id="badge_text">
       <segment state="final">
         <source>Badge Text</source>
-        <target>Testo badge</target>
+        <target>Jelvény szövege</target>
       </segment>
     </unit>
     <unit id="background_image">
       <segment state="final">
         <source>Background Image</source>
-        <target>Immagine di sfondo</target>
+        <target>Háttérkép</target>
       </segment>
     </unit>
     <unit id="author_name">
       <segment state="final">
         <source>Author Name</source>
-        <target>Nome autore</target>
+        <target>Szerző neve</target>
       </segment>
     </unit>
     <unit id="author_role">
       <segment state="final">
         <source>Author Role</source>
-        <target>Ruolo autore</target>
+        <target>Szerző szerepe</target>
       </segment>
     </unit>
     <unit id="author_title">
       <segment state="final">
         <source>Author Title</source>
-        <target>Titolo autore</target>
+        <target>Szerző titulusa</target>
       </segment>
     </unit>
     <unit id="author_photo">
       <segment state="final">
         <source>Author Photo</source>
-        <target>Foto autore</target>
+        <target>Szerző fotója</target>
       </segment>
     </unit>
     <unit id="copyright_text">
       <segment state="final">
         <source>Copyright Text</source>
-        <target>Testo copyright</target>
+        <target>Szerzői jogi szöveg</target>
       </segment>
     </unit>
     <unit id="price">
       <segment state="final">
         <source>Price</source>
-        <target>Prezzo</target>
+        <target>Ár</target>
       </segment>
     </unit>
     <unit id="rating">
       <segment state="final">
         <source>Rating</source>
-        <target>Valutazione</target>
+        <target>Értékelés</target>
       </segment>
     </unit>
     <unit id="brand">
       <segment state="final">
         <source>Brand</source>
-        <target>Marchio</target>
+        <target>Márka</target>
       </segment>
     </unit>
     <unit id="brand_name">
       <segment state="final">
         <source>Brand Name</source>
-        <target>Nome marchio</target>
+        <target>Márkanév</target>
       </segment>
     </unit>
     <unit id="brand_link">
       <segment state="final">
         <source>Brand Link</source>
-        <target>Link marchio</target>
+        <target>Márka linkje</target>
       </segment>
     </unit>
     <unit id="form_action">
       <segment state="final">
         <source>Form Action</source>
-        <target>Azione modulo</target>
+        <target>Űrlap művelete</target>
       </segment>
     </unit>
     <unit id="features">
       <segment state="final">
         <source>Features</source>
-        <target>Funzionalità</target>
+        <target>Jellemzők</target>
       </segment>
     </unit>
     <unit id="features_one_per_line">
       <segment state="final">
         <source>Feature Items</source>
-        <target>Elementi funzionalità</target>
+        <target>Jellemző elemek</target>
       </segment>
     </unit>
     <unit id="portrait">
       <segment state="final">
         <source>Portrait</source>
-        <target>Ritratto</target>
+        <target>Portré</target>
       </segment>
     </unit>
     <unit id="value">
       <segment state="final">
         <source>Value</source>
-        <target>Valore</target>
+        <target>Érték</target>
       </segment>
     </unit>
     <unit id="role">
       <segment state="final">
         <source>Role</source>
-        <target>Ruolo</target>
+        <target>Szerep</target>
       </segment>
     </unit>
     <unit id="logo">
       <segment state="final">
         <source>Logo</source>
-        <target>Logo</target>
+        <target>Logó</target>
       </segment>
     </unit>
     <unit id="short_description">
       <segment state="final">
         <source>Short Description</source>
-        <target>Descrizione breve</target>
+        <target>Rövid leírás</target>
       </segment>
     </unit>
     <unit id="company_name">
       <segment state="final">
         <source>Company Name</source>
-        <target>Nome azienda</target>
+        <target>Cégnév</target>
       </segment>
     </unit>
     <unit id="icon_emoji">
       <segment state="final">
         <source>Icon Emoji or Symbol</source>
-        <target>Emoji o simbolo icona</target>
+        <target>Ikon, emoji vagy szimbólum</target>
       </segment>
     </unit>
     <unit id="navigation_items">
       <segment state="final">
         <source>Navigation Items</source>
-        <target>Elementi di navigazione</target>
+        <target>Navigációs elemek</target>
       </segment>
     </unit>
     <unit id="links">
       <segment state="final">
         <source>Links</source>
-        <target>Link</target>
+        <target>Linkek</target>
       </segment>
     </unit>
     <unit id="links_one_per_line">
       <segment state="final">
         <source>Link Items</source>
-        <target>Elementi link</target>
+        <target>Link elemek</target>
       </segment>
     </unit>
     <unit id="items">
       <segment state="final">
         <source>Items</source>
-        <target>Elementi</target>
+        <target>Elemek</target>
       </segment>
     </unit>
     <unit id="plans">
       <segment state="final">
         <source>Plans</source>
-        <target>Piani</target>
+        <target>Csomagok</target>
       </segment>
     </unit>
     <unit id="chart_data_json">
       <segment state="final">
         <source>Chart Data (JSON)</source>
-        <target>Dati grafico (JSON)</target>
+        <target>Diagramadatok (JSON)</target>
       </segment>
     </unit>
     <unit id="show_more_link">
       <segment state="final">
         <source>Show More Link</source>
-        <target>Link mostra altro</target>
+        <target>Továbbiak linkje</target>
       </segment>
     </unit>
     <unit id="placeholder_text">
       <segment state="final">
         <source>Placeholder Text</source>
-        <target>Testo segnaposto</target>
+        <target>Helykitöltő szöveg</target>
       </segment>
     </unit>
     <unit id="submit_text">
       <segment state="final">
         <source>Submit Text</source>
-        <target>Testo invio</target>
+        <target>Küldés szövege</target>
       </segment>
     </unit>
     <unit id="consent_text">
       <segment state="final">
         <source>Consent Text</source>
-        <target>Testo consenso</target>
+        <target>Hozzájárulási szöveg</target>
       </segment>
     </unit>
     <unit id="success_message">
       <segment state="final">
         <source>Success Message</source>
-        <target>Messaggio di successo</target>
+        <target>Sikerüzenet</target>
       </segment>
     </unit>
     <unit id="currency">
       <segment state="final">
         <source>Currency</source>
-        <target>Valuta</target>
+        <target>Pénznem</target>
       </segment>
     </unit>
     <unit id="period">
       <segment state="final">
         <source>Period</source>
-        <target>Periodo</target>
+        <target>Időszak</target>
       </segment>
     </unit>
     <unit id="highlighted">
       <segment state="final">
         <source>Highlighted</source>
-        <target>In evidenza</target>
+        <target>Kiemelt</target>
       </segment>
     </unit>
     <unit id="product_image">
       <segment state="final">
         <source>Product Image</source>
-        <target>Immagine prodotto</target>
+        <target>Termékkép</target>
       </segment>
     </unit>
     <unit id="column_content">
       <segment state="final">
         <source>Column Content</source>
-        <target>Contenuto colonna</target>
+        <target>Oszlop tartalma</target>
       </segment>
     </unit>
     <unit id="target_date">
       <segment state="final">
         <source>Target Date</source>
-        <target>Data obiettivo</target>
+        <target>Céldátum</target>
       </segment>
     </unit>
     <unit id="show_labels">
       <segment state="final">
         <source>Show Labels</source>
-        <target>Mostra etichette</target>
+        <target>Címkék megjelenítése</target>
       </segment>
     </unit>
     <unit id="show_grid">
       <segment state="final">
         <source>Show Grid</source>
-        <target>Mostra griglia</target>
+        <target>Rács megjelenítése</target>
       </segment>
     </unit>
     <unit id="card_style">
       <segment state="final">
         <source>Card Style</source>
-        <target>Stile scheda</target>
+        <target>Kártya stílusa</target>
       </segment>
     </unit>
     <unit id="layout_variant">
       <segment state="final">
         <source>Layout Variant</source>
-        <target>Variante layout</target>
+        <target>Elrendezésváltozat</target>
       </segment>
     </unit>
     <unit id="color">
       <segment state="final">
         <source>Color</source>
-        <target>Colore</target>
+        <target>Szín</target>
       </segment>
     </unit>
     <unit id="trend">
       <segment state="final">
         <source>Trend</source>
-        <target>Tendenza</target>
+        <target>Trend</target>
       </segment>
     </unit>
     <unit id="image_position">
       <segment state="final">
         <source>Image Position</source>
-        <target>Posizione immagine</target>
+        <target>Kép pozíciója</target>
       </segment>
     </unit>
     <unit id="position">
       <segment state="final">
         <source>Position</source>
-        <target>Posizione</target>
+        <target>Pozíció</target>
       </segment>
     </unit>
     <unit id="item.left">
       <segment state="final">
         <source>Left</source>
-        <target>Sinistra</target>
+        <target>Bal</target>
       </segment>
     </unit>
     <unit id="item.center">
       <segment state="final">
         <source>Center</source>
-        <target>Centrato</target>
+        <target>Közép</target>
       </segment>
     </unit>
     <unit id="item.right">
       <segment state="final">
         <source>Right</source>
-        <target>Destra</target>
+        <target>Jobb</target>
       </segment>
     </unit>
     <unit id="item.default">
       <segment state="final">
         <source>Default</source>
-        <target>Predefinito</target>
+        <target>Alapértelmezett</target>
       </segment>
     </unit>
     <unit id="item.2_columns">
       <segment state="final">
         <source>2 Columns</source>
-        <target>2 colonne</target>
+        <target>2 oszlop</target>
       </segment>
     </unit>
     <unit id="item.3_columns">
       <segment state="final">
         <source>3 Columns</source>
-        <target>3 colonne</target>
+        <target>3 oszlop</target>
       </segment>
     </unit>
     <unit id="item.4_columns">
       <segment state="final">
         <source>4 Columns</source>
-        <target>4 colonne</target>
+        <target>4 oszlop</target>
       </segment>
     </unit>
     <unit id="item.horizontal">
       <segment state="final">
         <source>Horizontal</source>
-        <target>Orizzontale</target>
+        <target>Vízszintes</target>
       </segment>
     </unit>
     <unit id="item.vertical">
       <segment state="final">
         <source>Vertical</source>
-        <target>Verticale</target>
+        <target>Függőleges</target>
       </segment>
     </unit>
     <unit id="item.5_stars">
       <segment state="final">
         <source>5 Stars</source>
-        <target>5 stelle</target>
+        <target>5 csillag</target>
       </segment>
     </unit>
     <unit id="item.4_stars">
       <segment state="final">
         <source>4 Stars</source>
-        <target>4 stelle</target>
+        <target>4 csillag</target>
       </segment>
     </unit>
     <unit id="item.3_stars">
       <segment state="final">
         <source>3 Stars</source>
-        <target>3 stelle</target>
+        <target>3 csillag</target>
       </segment>
     </unit>
     <unit id="item.basic">
       <segment state="final">
         <source>Basic</source>
-        <target>Base</target>
+        <target>Alap</target>
       </segment>
     </unit>
     <unit id="item.with_image">
       <segment state="final">
         <source>With Image</source>
-        <target>Con immagine</target>
+        <target>Képpel</target>
       </segment>
     </unit>
     <unit id="item.card">
       <segment state="final">
         <source>Card</source>
-        <target>Scheda</target>
+        <target>Kártya</target>
       </segment>
     </unit>
     <unit id="item.large">
       <segment state="final">
         <source>Large</source>
-        <target>Grande</target>
+        <target>Nagy</target>
       </segment>
     </unit>
     <unit id="item.bordered">
       <segment state="final">
         <source>Bordered</source>
-        <target>Con bordo</target>
+        <target>Keretes</target>
       </segment>
     </unit>
     <unit id="item.centered">
       <segment state="final">
         <source>Centered</source>
-        <target>Centrato</target>
+        <target>Középre igazított</target>
       </segment>
     </unit>
     <unit id="item.between">
       <segment state="final">
         <source>Space Between</source>
-        <target>Spazio tra</target>
+        <target>Térköz között</target>
       </segment>
     </unit>
     <unit id="item.accent">
       <segment state="final">
         <source>Accent</source>
-        <target>Accento</target>
+        <target>Kiemelt</target>
       </segment>
     </unit>
     <unit id="item.outline">
       <segment state="final">
         <source>Outline</source>
-        <target>Contorno</target>
+        <target>Körvonal</target>
       </segment>
     </unit>
     <unit id="item.info">
       <segment state="final">
         <source>Info</source>
-        <target>Info</target>
+        <target>Információ</target>
       </segment>
     </unit>
     <unit id="item.success">
       <segment state="final">
         <source>Success</source>
-        <target>Successo</target>
+        <target>Siker</target>
       </segment>
     </unit>
     <unit id="item.warning">
       <segment state="final">
         <source>Warning</source>
-        <target>Avviso</target>
+        <target>Figyelmeztetés</target>
       </segment>
     </unit>
     <unit id="item.destructive">
       <segment state="final">
         <source>Destructive</source>
-        <target>Distruttivo</target>
+        <target>Veszélyes</target>
       </segment>
     </unit>
     <unit id="item.simple">
       <segment state="final">
         <source>Simple</source>
-        <target>Semplice</target>
+        <target>Egyszerű</target>
       </segment>
     </unit>
     <unit id="item.split">
       <segment state="final">
         <source>Split</source>
-        <target>Diviso</target>
+        <target>Osztott</target>
       </segment>
     </unit>
     <unit id="item.background">
       <segment state="final">
         <source>Background</source>
-        <target>Sfondo</target>
+        <target>Háttér</target>
       </segment>
     </unit>
     <unit id="item.banner">
@@ -604,391 +604,391 @@
     <unit id="item.stacked">
       <segment state="final">
         <source>Stacked</source>
-        <target>Impilato</target>
+        <target>Egymás alatt</target>
       </segment>
     </unit>
     <unit id="item.icon_top">
       <segment state="final">
         <source>Icon Top</source>
-        <target>Icona in alto</target>
+        <target>Ikon felül</target>
       </segment>
     </unit>
     <unit id="item.icon_left">
       <segment state="final">
         <source>Icon Left</source>
-        <target>Icona a sinistra</target>
+        <target>Ikon balra</target>
       </segment>
     </unit>
     <unit id="item.full_width">
       <segment state="final">
         <source>Full Width</source>
-        <target>Larghezza piena</target>
+        <target>Teljes szélesség</target>
       </segment>
     </unit>
     <unit id="item.two_columns">
       <segment state="final">
         <source>Two Columns</source>
-        <target>Due colonne</target>
+        <target>Két oszlop</target>
       </segment>
     </unit>
     <unit id="item.secondary">
       <segment state="final">
         <source>Secondary</source>
-        <target>Secondario</target>
+        <target>Másodlagos</target>
       </segment>
     </unit>
     <unit id="item.ghost">
       <segment state="final">
         <source>Ghost</source>
-        <target>Fantasma</target>
+        <target>Átlátszó</target>
       </segment>
     </unit>
     <unit id="item.primary">
       <segment state="final">
         <source>Primary</source>
-        <target>Primario</target>
+        <target>Elsődleges</target>
       </segment>
     </unit>
     <unit id="item.blue">
       <segment state="final">
         <source>Blue</source>
-        <target>Blu</target>
+        <target>Kék</target>
       </segment>
     </unit>
     <unit id="item.green">
       <segment state="final">
         <source>Green</source>
-        <target>Verde</target>
+        <target>Zöld</target>
       </segment>
     </unit>
     <unit id="item.orange">
       <segment state="final">
         <source>Orange</source>
-        <target>Arancione</target>
+        <target>Narancs</target>
       </segment>
     </unit>
     <unit id="item.red">
       <segment state="final">
         <source>Red</source>
-        <target>Rosso</target>
+        <target>Piros</target>
       </segment>
     </unit>
     <unit id="item.up">
       <segment state="final">
         <source>Up</source>
-        <target>In alto</target>
+        <target>Fel</target>
       </segment>
     </unit>
     <unit id="item.down">
       <segment state="final">
         <source>Down</source>
-        <target>In basso</target>
+        <target>Le</target>
       </segment>
     </unit>
     <unit id="item.neutral">
       <segment state="final">
         <source>Neutral</source>
-        <target>Neutro</target>
+        <target>Semleges</target>
       </segment>
     </unit>
     <unit id="item.muted">
       <segment state="final">
         <source>Muted</source>
-        <target>Attenuato</target>
+        <target>Visszafogott</target>
       </segment>
     </unit>
     <unit id="item.none">
       <segment state="final">
         <source>None</source>
-        <target>Nessuno</target>
+        <target>Nincs</target>
       </segment>
     </unit>
     <unit id="page.column.main">
       <segment state="final">
         <source>Main Content</source>
-        <target>Contenuto principale</target>
+        <target>Fő tartalom</target>
       </segment>
     </unit>
     <unit id="page.subnav.aria">
       <segment state="final">
         <source>Section navigation</source>
-        <target>Navigazione della sezione</target>
-      </segment>
-    </unit>
-    <unit id="solr.suggest.header">
-      <segment state="final">
-        <source>Top Results</source>
-        <target>Risultati principali</target>
-      </segment>
-    </unit>
-    <unit id="solr.search.label">
-      <segment state="final">
-        <source>Search</source>
-        <target>Cerca</target>
-      </segment>
-    </unit>
-    <unit id="solr.search.submit">
-      <segment state="final">
-        <source>Search</source>
-        <target>Cerca</target>
-      </segment>
-    </unit>
-    <unit id="solr.lastSearches">
-      <segment state="final">
-        <source>Last searches</source>
-        <target>Ultime ricerche</target>
-      </segment>
-    </unit>
-    <unit id="solr.frequentSearches">
-      <segment state="final">
-        <source>Frequent searches</source>
-        <target>Ricerche frequenti</target>
-      </segment>
-    </unit>
-    <unit id="solr.debug.parsedQuery">
-      <segment state="final">
-        <source>Parsed Query:</source>
-        <target>Query analizzata:</target>
-      </segment>
-    </unit>
-    <unit id="solr.noResultsNothingFound">
-      <segment state="final">
-        <source>Nothing found for "{query}".</source>
-        <target>Nessun risultato per «{query}».</target>
-      </segment>
-    </unit>
-    <unit id="solr.noResultsShowingSuggestion">
-      <segment state="final">
-        <source>Showing results for "{query}".</source>
-        <target>Mostro i risultati per «{query}».</target>
-      </segment>
-    </unit>
-    <unit id="solr.resultsSearchedFor">
-      <segment state="final">
-        <source>Searched for "{query}".</source>
-        <target>Ricerca di «{query}».</target>
-      </segment>
-    </unit>
-    <unit id="solr.didYouMean">
-      <segment state="final">
-        <source>Did you mean</source>
-        <target>Forse intendevi</target>
-      </segment>
-    </unit>
-    <unit id="solr.resultsFound">
-      <segment state="final">
-        <source>{count, plural, one {Found # result.} other {Found # results.}}</source>
-        <target>{count, plural, one {# risultato trovato.} other {# risultati trovati.}}</target>
-      </segment>
-    </unit>
-    <unit id="solr.resultsRange">
-      <segment state="final">
-        <source>{total, plural, one {Showing result {from} of #.} other {Showing results {from} to {to} of #.}}</source>
-        <target>{total, plural, one {Mostro il risultato {from} di #.} other {Mostro i risultati da {from} a {to} di #.}}</target>
-      </segment>
-    </unit>
-    <unit id="solr.facet.showMore">
-      <segment state="final">
-        <source>Show more</source>
-        <target>Mostra di più</target>
-      </segment>
-    </unit>
-    <unit id="solr.facet.showFewer">
-      <segment state="final">
-        <source>Show fewer</source>
-        <target>Mostra meno</target>
-      </segment>
-    </unit>
-    <unit id="solr.sortBy">
-      <segment state="final">
-        <source>Sort by</source>
-        <target>Ordina per</target>
-      </segment>
-    </unit>
-    <unit id="solr.resultsPerPage">
-      <segment state="final">
-        <source>Results per page:</source>
-        <target>Risultati per pagina:</target>
-      </segment>
-    </unit>
-    <unit id="solr.sponsored">
-      <segment state="final">
-        <source>Sponsored</source>
-        <target>Sponsorizzato</target>
-      </segment>
-    </unit>
-    <unit id="solr.fileMimeType">
-      <segment state="final">
-        <source>MIME type</source>
-        <target>Tipo MIME</target>
-      </segment>
-    </unit>
-    <unit id="solr.fileReferenced">
-      <segment state="final">
-        <source>Referenced on</source>
-        <target>Referenziato in</target>
-      </segment>
-    </unit>
-    <unit id="solr.facets.narrowedBy">
-      <segment state="final">
-        <source>Narrowed by</source>
-        <target>Filtrato per</target>
-      </segment>
-    </unit>
-    <unit id="solr.facets.removeAll">
-      <segment state="final">
-        <source>Remove all filters</source>
-        <target>Rimuovi tutti i filtri</target>
-      </segment>
-    </unit>
-    <unit id="solr.pagination.aria">
-      <segment state="final">
-        <source>Search results pagination</source>
-        <target>Paginazione dei risultati di ricerca</target>
-      </segment>
-    </unit>
-    <unit id="solr.resultCount.aria">
-      <segment state="final">
-        <source>{count, plural, one {# result} other {# results}}</source>
-        <target>{count, plural, one {# risultato} other {# risultati}}</target>
-      </segment>
-    </unit>
-    <unit id="solr.contentType.pages">
-      <segment state="final">
-        <source>Pages</source>
-        <target>Pagine</target>
-      </segment>
-    </unit>
-    <unit id="solr.contentType.news">
-      <segment state="final">
-        <source>News</source>
-        <target>News</target>
-      </segment>
-    </unit>
-    <unit id="solr.contentType.addresses">
-      <segment state="final">
-        <source>Addresses</source>
-        <target>Indirizzi</target>
+        <target>Szekciónavigáció</target>
       </segment>
     </unit>
     <unit id="contentElementGroup.content">
       <segment state="final">
         <source>Content &amp; Editorial</source>
-        <target>Contenuti ed editoriale</target>
+        <target>Tartalom és szerkesztett blokkok</target>
       </segment>
     </unit>
     <unit id="contentElementGroup.content.description">
       <segment state="final">
         <source>Text, media, stories, resources, and reusable editorial building blocks.</source>
-        <target>Testi, media, storie, risorse e blocchi editoriali riutilizzabili.</target>
+        <target>Szövegek, média, történetek, erőforrások és újrafelhasználható szerkesztői építőelemek.</target>
       </segment>
     </unit>
     <unit id="contentElementGroup.conversion">
       <segment state="final">
         <source>Leads &amp; Conversion</source>
-        <target>Lead e conversione</target>
+        <target>Leadek és konverzió</target>
       </segment>
     </unit>
     <unit id="contentElementGroup.conversion.description">
       <segment state="final">
         <source>Forms, offers, calls to action, and focused steps toward visitor intent.</source>
-        <target>Moduli, offerte, call to action e passaggi mirati verso l’intento del visitatore.</target>
+        <target>Űrlapok, ajánlatok, cselekvésre ösztönző elemek és célzott lépések a látogatói szándék felé.</target>
       </segment>
     </unit>
     <unit id="contentElementGroup.data">
       <segment state="final">
         <source>Data &amp; Dashboards</source>
-        <target>Dati e dashboard</target>
+        <target>Adatok és dashboardok</target>
       </segment>
     </unit>
     <unit id="contentElementGroup.data.description">
       <segment state="final">
         <source>Charts, metrics, tables, KPIs, and structured data displays.</source>
-        <target>Grafici, metriche, tabelle, KPI e visualizzazioni di dati strutturati.</target>
+        <target>Diagramok, metrikák, táblázatok, KPI-ok és strukturált adatmegjelenítések.</target>
       </segment>
     </unit>
     <unit id="contentElementGroup.features">
       <segment state="final">
         <source>Features &amp; Benefits</source>
-        <target>Funzionalità e benefici</target>
+        <target>Funkciók és előnyök</target>
       </segment>
     </unit>
     <unit id="contentElementGroup.features.description">
       <segment state="final">
         <source>Feature sections, benefit grids, product explanations, and service highlights.</source>
-        <target>Sezioni funzionalità, griglie di benefici, spiegazioni prodotto e punti di forza dei servizi.</target>
+        <target>Funkciószekciók, előnyrácsok, termékmagyarázatok és szolgáltatáskiemelések.</target>
       </segment>
     </unit>
     <unit id="contentElementGroup.footer">
       <segment state="final">
         <source>Footers &amp; Utility Areas</source>
-        <target>Footer e aree di utilità</target>
+        <target>Láblécek és kiegészítő területek</target>
       </segment>
     </unit>
     <unit id="contentElementGroup.footer.description">
       <segment state="final">
         <source>Footer layouts, legal links, contact routes, app links, and page-end utility content.</source>
-        <target>Layout footer, link legali, percorsi di contatto, link app e contenuti di utilità a fine pagina.</target>
+        <target>Lábléc-elrendezések, jogi linkek, kapcsolatfelvételi útvonalak, alkalmazáslinkek és oldalvégi kiegészítő tartalmak.</target>
       </segment>
     </unit>
     <unit id="contentElementGroup.hero">
       <segment state="final">
         <source>Hero &amp; Landing Intros</source>
-        <target>Hero e introduzioni landing</target>
+        <target>Hero és landing bevezetők</target>
       </segment>
     </unit>
     <unit id="contentElementGroup.hero.description">
       <segment state="final">
         <source>Opening sections for landing pages, products, campaigns, search, video, and launch moments.</source>
-        <target>Sezioni iniziali per landing page, prodotti, campagne, ricerca, video e momenti di lancio.</target>
+        <target>Nyitó szekciók landing oldalakhoz, termékekhez, kampányokhoz, kereséshez, videóhoz és launch pillanatokhoz.</target>
       </segment>
     </unit>
     <unit id="contentElementGroup.navigation">
       <segment state="final">
         <source>Navigation &amp; Wayfinding</source>
-        <target>Navigazione e orientamento</target>
+        <target>Navigáció és tájékozódás</target>
       </segment>
     </unit>
     <unit id="contentElementGroup.navigation.description">
       <segment state="final">
         <source>Menus, breadcrumbs, tabs, steps, pagination, headers, and other orientation patterns.</source>
-        <target>Menu, breadcrumb, tab, passaggi, paginazione, header e altri modelli di orientamento.</target>
+        <target>Menük, morzsamenük, fülek, lépések, lapozás, fejlécek és egyéb tájékozódási minták.</target>
       </segment>
     </unit>
     <unit id="contentElementGroup.pricing">
       <segment state="final">
         <source>Plans &amp; Pricing</source>
-        <target>Piani e prezzi</target>
+        <target>Csomagok és árak</target>
       </segment>
     </unit>
     <unit id="contentElementGroup.pricing.description">
       <segment state="final">
         <source>Pricing tables, plan cards, calculators, package comparisons, and buying decision aids.</source>
-        <target>Tabelle prezzi, schede piano, calcolatori, confronti pacchetto e aiuti alla decisione d’acquisto.</target>
+        <target>Ártáblák, csomagkártyák, kalkulátorok, csomag-összehasonlítások és vásárlási döntést segítő elemek.</target>
       </segment>
     </unit>
     <unit id="contentElementGroup.socialProof">
       <segment state="final">
         <source>Trust &amp; Social Proof</source>
-        <target>Fiducia e prova sociale</target>
+        <target>Bizalom és referenciák</target>
       </segment>
     </unit>
     <unit id="contentElementGroup.socialProof.description">
       <segment state="final">
         <source>Testimonials, reviews, ratings, customer logos, partner proof, and credibility signals.</source>
-        <target>Testimonianze, recensioni, valutazioni, loghi clienti, prove partner e segnali di credibilità.</target>
+        <target>Ajánlások, értékelések, minősítések, ügyféllogók, partnerigazolások és hitelességi jelzések.</target>
       </segment>
     </unit>
     <unit id="contentElementGroup.team">
       <segment state="final">
         <source>People &amp; Team</source>
-        <target>Persone e team</target>
+        <target>Emberek és csapat</target>
       </segment>
     </unit>
     <unit id="contentElementGroup.team.description">
       <segment state="final">
         <source>Team profiles, departments, founders, advisors, company culture, and career content.</source>
-        <target>Profili team, reparti, fondatori, consulenti, cultura aziendale e contenuti carriera.</target>
+        <target>Csapatprofilok, részlegek, alapítók, tanácsadók, vállalati kultúra és karriertartalom.</target>
+      </segment>
+    </unit>
+    <unit id="solr.suggest.header">
+      <segment state="final">
+        <source>Top Results</source>
+        <target>Legjobb találatok</target>
+      </segment>
+    </unit>
+    <unit id="solr.search.label">
+      <segment state="final">
+        <source>Search</source>
+        <target>Keresés</target>
+      </segment>
+    </unit>
+    <unit id="solr.search.submit">
+      <segment state="final">
+        <source>Search</source>
+        <target>Keresés</target>
+      </segment>
+    </unit>
+    <unit id="solr.lastSearches">
+      <segment state="final">
+        <source>Last searches</source>
+        <target>Legutóbbi keresések</target>
+      </segment>
+    </unit>
+    <unit id="solr.frequentSearches">
+      <segment state="final">
+        <source>Frequent searches</source>
+        <target>Gyakori keresések</target>
+      </segment>
+    </unit>
+    <unit id="solr.debug.parsedQuery">
+      <segment state="final">
+        <source>Parsed Query:</source>
+        <target>Feldolgozott lekérdezés:</target>
+      </segment>
+    </unit>
+    <unit id="solr.noResultsNothingFound">
+      <segment state="final">
+        <source>Nothing found for "{query}".</source>
+        <target>Nincs találat erre: „{query}”.</target>
+      </segment>
+    </unit>
+    <unit id="solr.noResultsShowingSuggestion">
+      <segment state="final">
+        <source>Showing results for "{query}".</source>
+        <target>Találatok megjelenítése erre: „{query}”.</target>
+      </segment>
+    </unit>
+    <unit id="solr.resultsSearchedFor">
+      <segment state="final">
+        <source>Searched for "{query}".</source>
+        <target>Keresés erre: „{query}”.</target>
+      </segment>
+    </unit>
+    <unit id="solr.didYouMean">
+      <segment state="final">
+        <source>Did you mean</source>
+        <target>Erre gondolt</target>
+      </segment>
+    </unit>
+    <unit id="solr.resultsFound">
+      <segment state="final">
+        <source>{count, plural, one {Found # result.} other {Found # results.}}</source>
+        <target>{count, plural, one {# találat.} other {# találat.}}</target>
+      </segment>
+    </unit>
+    <unit id="solr.resultsRange">
+      <segment state="final">
+        <source>{total, plural, one {Showing result {from} of #.} other {Showing results {from} to {to} of #.}}</source>
+        <target>{total, plural, one {Találat: {from} / #.} other {Találatok: {from}-{to} / #.}}</target>
+      </segment>
+    </unit>
+    <unit id="solr.facet.showMore">
+      <segment state="final">
+        <source>Show more</source>
+        <target>Több megjelenítése</target>
+      </segment>
+    </unit>
+    <unit id="solr.facet.showFewer">
+      <segment state="final">
+        <source>Show fewer</source>
+        <target>Kevesebb megjelenítése</target>
+      </segment>
+    </unit>
+    <unit id="solr.sortBy">
+      <segment state="final">
+        <source>Sort by</source>
+        <target>Rendezés</target>
+      </segment>
+    </unit>
+    <unit id="solr.resultsPerPage">
+      <segment state="final">
+        <source>Results per page:</source>
+        <target>Találatok oldalanként:</target>
+      </segment>
+    </unit>
+    <unit id="solr.sponsored">
+      <segment state="final">
+        <source>Sponsored</source>
+        <target>Szponzorált</target>
+      </segment>
+    </unit>
+    <unit id="solr.fileMimeType">
+      <segment state="final">
+        <source>MIME type</source>
+        <target>MIME-típus</target>
+      </segment>
+    </unit>
+    <unit id="solr.fileReferenced">
+      <segment state="final">
+        <source>Referenced on</source>
+        <target>Hivatkozás helye</target>
+      </segment>
+    </unit>
+    <unit id="solr.facets.narrowedBy">
+      <segment state="final">
+        <source>Narrowed by</source>
+        <target>Szűkítve</target>
+      </segment>
+    </unit>
+    <unit id="solr.facets.removeAll">
+      <segment state="final">
+        <source>Remove all filters</source>
+        <target>Összes szűrő eltávolítása</target>
+      </segment>
+    </unit>
+    <unit id="solr.pagination.aria">
+      <segment state="final">
+        <source>Search results pagination</source>
+        <target>Keresési találatok lapozása</target>
+      </segment>
+    </unit>
+    <unit id="solr.resultCount.aria">
+      <segment state="final">
+        <source>{count, plural, one {# result} other {# results}}</source>
+        <target>{count, plural, one {# találat} other {# találat}}</target>
+      </segment>
+    </unit>
+    <unit id="solr.contentType.pages">
+      <segment state="final">
+        <source>Pages</source>
+        <target>Oldalak</target>
+      </segment>
+    </unit>
+    <unit id="solr.contentType.news">
+      <segment state="final">
+        <source>News</source>
+        <target>Hírek</target>
+      </segment>
+    </unit>
+    <unit id="solr.contentType.addresses">
+      <segment state="final">
+        <source>Addresses</source>
+        <target>Címek</target>
       </segment>
     </unit>
   </file>

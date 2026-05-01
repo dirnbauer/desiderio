@@ -1,0 +1,67 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en"
+    xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+    xmlns:s="http://typo3.org/ns/ApacheSolrForTypo3/Solr/ViewHelpers"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:section name="Document">
+    <article class="search-result results-entry rounded-xl border border-border bg-card p-6 text-card-foreground shadow-sm transition-colors hover:bg-muted/50{f:if(condition:document.isElevated, then: ' results-elevated')}"
+        data-document-score="{document.score}"
+        data-document-id="{document.id}"
+        data-document-url="{document.url}"
+    >
+        <f:if condition="{document.isElevated}">
+            <div class="mb-3 inline-flex h-6 items-center rounded-full bg-secondary px-2.5 text-xs font-medium text-secondary-foreground">
+                <f:translate key="solr.sponsored" domain="desiderio.labels"/>
+            </div>
+        </f:if>
+
+        <header class="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
+            <div class="min-w-0 space-y-1">
+                <h3 class="text-xl font-semibold tracking-tight">
+                    <a class="text-primary underline-offset-4 hover:underline" href="{s:uri.result.addSearchWordList(url:document.url, searchWords:resultSet.usedQuery.query)}">{document.title}</a>
+                </h3>
+                <f:if condition="{document.url}">
+                    <p class="truncate text-xs text-muted-foreground">{document.url}</p>
+                </f:if>
+            </div>
+            <f:if condition="{document.type}">
+                <span class="inline-flex h-6 shrink-0 items-center rounded-full border border-border bg-background px-2.5 text-xs font-medium text-foreground">
+                    <f:switch expression="{document.type}">
+                        <f:case value="pages"><f:translate key="solr.contentType.pages" domain="desiderio.labels">Pages</f:translate></f:case>
+                        <f:case value="tx_news_domain_model_news"><f:translate key="solr.contentType.news" domain="desiderio.labels">News</f:translate></f:case>
+                        <f:case value="tt_address"><f:translate key="solr.contentType.addresses" domain="desiderio.labels">Addresses</f:translate></f:case>
+                        <f:defaultCase>{document.type}</f:defaultCase>
+                    </f:switch>
+                </span>
+            </f:if>
+        </header>
+
+        <div class="mt-4 space-y-3 text-sm text-muted-foreground">
+            <p>{s:document.highlightResult(resultSet:resultSet, document:document, fieldName:'content')}</p>
+            <f:if condition="{document.type} == 'tx_solr_file'">
+                <div class="space-y-2 rounded-lg border border-border bg-background p-3">
+                    <p><f:translate key="solr.fileMimeType" domain="desiderio.labels"/>: {document.fileMimeType}</p>
+                    <p><f:translate key="solr.fileReferenced" domain="desiderio.labels"/>:</p>
+                    <ul class="space-y-1">
+                        <f:if condition="{document.fileReferenceUrl}">
+                            <li><f:link.typolink title="{document.fileReferenceTitle}" parameter="{document.fileReferenceUrl}" class="text-primary underline underline-offset-4">{document.fileReferenceTitle}</f:link.typolink></li>
+                        </f:if>
+                        <f:if condition="{document.variants}">
+                            <f:for each="{document.variants}" as="variant">
+                                <li><f:link.typolink title="{variant.fileReferenceTitle}" parameter="{variant.fileReferenceUrl}" class="text-primary underline underline-offset-4">{variant.fileReferenceTitle}</f:link.typolink></li>
+                            </f:for>
+                        </f:if>
+                    </ul>
+                </div>
+            </f:if>
+
+            <f:variable name="documentScoreAnalyze"><f:render partial="Debug/Explain" section="Explain" arguments="{document: document, resultSet: resultSet}" /></f:variable>
+            <f:if condition="{documentScoreAnalyze}">
+                <div class="rounded-lg border border-border bg-background p-3 text-card-foreground"><f:format.raw>{documentScoreAnalyze}</f:format.raw></div>
+            </f:if>
+        </div>
+    </article>
+</f:section>
+
+</html>

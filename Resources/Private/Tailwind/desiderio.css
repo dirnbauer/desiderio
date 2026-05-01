@@ -7,6 +7,7 @@
 @import "@fontsource-variable/nunito-sans";
 
 @source "../Components";
+@source "../Solr";
 @source "../Templates";
 @source "../FluidStyledContent";
 @source "../../Public/Js";
@@ -187,5 +188,28 @@
     border-color: var(--ring);
     outline: none;
     box-shadow: 0 0 0 3px color-mix(in oklch, var(--ring) 50%, transparent);
+  }
+
+  .results-highlight {
+    @apply inline box-decoration-clone rounded-md bg-primary/10 px-1 py-0.5 font-medium text-primary ring-1 ring-primary/20;
+  }
+
+  .dark .results-highlight {
+    @apply bg-primary/20 ring-primary/30;
+  }
+
+  .facet-option-list :where(a),
+  #tx-solr-frequent-searches :where(a),
+  #tx-solr-lastsearches :where(a),
+  #tx-solr-sorting :where(a, summary),
+  .solr-pagination :where(a),
+  #tx-solr-facets-in-use :where(a),
+  .facet-option-list :where(a:hover, a:focus, a:focus-visible, a:active),
+  #tx-solr-frequent-searches :where(a:hover, a:focus, a:focus-visible, a:active),
+  #tx-solr-lastsearches :where(a:hover, a:focus, a:focus-visible, a:active),
+  #tx-solr-sorting :where(a:hover, a:focus, a:focus-visible, a:active, summary:hover, summary:focus, summary:focus-visible, summary:active),
+  .solr-pagination :where(a:hover, a:focus, a:focus-visible, a:active),
+  #tx-solr-facets-in-use :where(a:hover, a:focus, a:focus-visible, a:active) {
+    text-decoration-line: none;
   }
 }

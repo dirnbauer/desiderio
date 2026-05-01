@@ -1,0 +1,140 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en"
+    xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+    xmlns:s="http://typo3.org/ns/ApacheSolrForTypo3/Solr/ViewHelpers"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:layout name="Split"/>
+
+<f:section name="content">
+    <div id="tx-solr-search" class="space-y-6">
+        <f:render partial="Debug/Query" section="Query" arguments="{resultSet: resultSet}" />
+
+        <div class="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+            <div class="min-w-0 flex-1">
+                <f:render partial="Search/Form" section="Form" arguments="{search:search, additionalFilters:additionalFilters, pluginNamespace: pluginNamespace, resultSet: resultSet}" />
+            </div>
+
+            <f:if condition="{resultSet.hasSearched}">
+                <f:if condition="{resultSet.usedSearchRequest.contextTypoScriptConfiguration.searchSorting}">
+                    <div class="shrink-0">
+                        <f:render partial="Result/Sorting" section="Sorting" arguments="{resultSet:resultSet}" />
+                    </div>
+                </f:if>
+            </f:if>
+        </div>
+
+        <f:if condition="{resultSet.facets.used -> f:count()}">
+            <f:render partial="Result/FacetsActive" section="FacetsActive" arguments="{resultSet:resultSet}" />
+        </f:if>
+
+        <s:debug.query>
+            <f:if condition="{parsedQuery}">
+                <div class="rounded-xl border border-border bg-card px-4 py-3 text-sm text-card-foreground shadow-sm" role="status">
+                    <strong class="block font-semibold"><f:translate key="solr.debug.parsedQuery" domain="desiderio.labels">Parsed Query:</f:translate></strong>
+                    <span class="text-muted-foreground">{parsedQuery}</span>
+                </div>
+            </f:if>
+        </s:debug.query>
+
+        <f:if condition="{resultSet.hasSearched}">
+            <div class="space-y-2 text-sm text-muted-foreground">
+                <f:if condition="{resultSet.isAutoCorrected}">
+                    <f:then>
+                        <p>
+                            <f:translate key="solr.noResultsNothingFound" domain="desiderio.labels" arguments="{query: resultSet.initialQueryString}">Nothing found for "{query}".</f:translate>
+                            <f:translate key="solr.noResultsShowingSuggestion" domain="desiderio.labels" arguments="{query: resultSet.correctedQueryString}">Showing results for "{query}".</f:translate>
+                        </p>
+                    </f:then>
+                    <f:else>
+                        <f:if condition="{resultSet.usedQuery.rawSearchTerm}">
+                            <p>
+                                <f:translate key="solr.resultsSearchedFor" domain="desiderio.labels" arguments="{query: resultSet.usedQuery.rawSearchTerm}">Searched for "{query}".</f:translate>
+                            </p>
+                        </f:if>
+                    </f:else>
+                </f:if>
+
+                <f:if condition="{resultSet.hasSpellCheckingSuggestions}">
+                    <p>
+                        <f:translate key="solr.didYouMean" domain="desiderio.labels">Did you mean</f:translate>
+                        <f:for each="{resultSet.spellCheckingSuggestions}" as="suggestion">
+                            <f:link.page additionalParams="{q: suggestion.suggestion}" class="font-medium text-primary underline underline-offset-4">{suggestion.suggestion}</f:link.page>
+                        </f:for>?
+                    </p>
+                </f:if>
+
+                <f:if condition="{resultSet.allResultCount}">
+                    <p>
+                        <f:translate key="solr.resultsFound" domain="desiderio.labels" arguments="{count: resultSet.allResultCount}">Found {count} results.</f:translate>
+                        <s:pageBrowserRange>
+                            <f:translate key="solr.resultsRange" domain="desiderio.labels" arguments="{from: from, to: to, total: total}">Showing results {from} to {to} of {total}.</f:translate>
+                        </s:pageBrowserRange>
+                    </p>
+                </f:if>
+            </div>
+        </f:if>
+
+        <f:if condition="{resultSet.hasSearched}">
+            <f:if condition="{resultSet.searchresults.hasGroups}">
+                <f:then>
+                    <div class="space-y-6">
+                        <f:for each="{resultSet.searchresults.groups}" as="group">
+                            <section class="space-y-4">
+                                <h2 class="text-xl font-semibold tracking-tight">{group.groupname}</h2>
+                                <f:for each="{group.groupitems}" as="groupItem">
+                                    <div class="space-y-4">
+                                        <p class="text-sm font-medium text-muted-foreground">{groupItem.groupValue} <span>({groupItem.allResultCount})</span></p>
+                                        <s:groupItemPaginate groupItem="{groupItem}" resultSet="{resultSet}">
+                                            <ol start="{pagination.resultCountStart}" class="space-y-4">
+                                                <f:for each="{documents}" as="document">
+                                                    <li>
+                                                        <f:render partial="Result/Document" section="Document" arguments="{resultSet:resultSet, document:document}" />
+                                                    </li>
+                                                </f:for>
+                                            </ol>
+                                        </s:groupItemPaginate>
+                                    </div>
+                                </f:for>
+                            </section>
+                        </f:for>
+                    </div>
+                </f:then>
+                <f:else if="{resultSet.allResultCount}">
+                    <div class="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+                        <f:render partial="Result/Pagination" section="Pagination" arguments="{resultSet: resultSet, pagination: pagination, currentPage: currentPage}"/>
+                        <f:render partial="Result/PerPage" section="PerPage" arguments="{resultSet: resultSet}" />
+                    </div>
+
+                    <div data-start="{pagination.startRecordNumber}" class="space-y-4">
+                        <f:for each="{resultSet.searchResults}" as="document">
+                            <f:render partial="Result/Document" section="Document" arguments="{resultSet: resultSet, document: document}" />
+                        </f:for>
+                    </div>
+
+                    <f:render partial="Result/Pagination" section="Pagination" arguments="{resultSet: resultSet, pagination: pagination, currentPage: currentPage}"/>
+                </f:else>
+            </f:if>
+        </f:if>
+    </div>
+</f:section>
+
+<f:section name="extra">
+    <div id="tx-solr-search-functions" class="space-y-6">
+        <f:if condition="{resultSet.hasSearched}">
+            <f:if condition="{resultSet.usedSearchRequest.contextTypoScriptConfiguration.searchFaceting}">
+                <f:render partial="Result/Facets" section="Facets" arguments="{resultSet:resultSet}" />
+            </f:if>
+        </f:if>
+
+        <f:if condition="{resultSet.usedSearchRequest.contextTypoScriptConfiguration.searchFrequentSearches}">
+            <f:render partial="Search/FrequentlySearched" section="FrequentlySearched" arguments="{resultSet:resultSet}" />
+        </f:if>
+
+        <f:if condition="{resultSet.usedSearchRequest.contextTypoScriptConfiguration.searchLastSearches}">
+            <f:render partial="Search/LastSearches" section="LastSearches" arguments="{resultSet:resultSet}" />
+        </f:if>
+    </div>
+</f:section>
+
+</html>

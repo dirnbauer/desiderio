@@ -142,10 +142,12 @@ final class ContentBlockStructureTest extends TestCase
         $englishLabels = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Language/labels.xlf');
         $germanLabels = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Language/de.labels.xlf');
         $styleguideGroups = json_decode((string)file_get_contents(__DIR__ . '/../../Resources/Private/Data/styleguide-content-groups.json'), true, 512, JSON_THROW_ON_ERROR);
+        $englishXliff = simplexml_load_string($englishLabels) ?: self::fail('labels.xlf must be valid XML');
+        $germanXliff = simplexml_load_string($germanLabels) ?: self::fail('de.labels.xlf must be valid XML');
 
         self::assertStringContainsString('addTcaSelectItemGroup', $tcaOverride);
-        self::assertStringContainsString('<xliff version="2.0"', $englishLabels);
-        self::assertStringContainsString('<xliff version="2.0"', $germanLabels);
+        self::assertSame('2.0', (string)$englishXliff['version']);
+        self::assertSame('2.0', (string)$germanXliff['version']);
 
         $styleguideTitles = [];
         foreach ($styleguideGroups as $group) {

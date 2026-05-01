@@ -1,39 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en">
+<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en" trgLang="de">
   <file id="backend_layouts">
     <unit id="backend_layout.desiderio_startpage.title">
-      <segment>
+      <segment state="final">
         <source>Desiderio: Startpage</source>
+        <target>Desiderio: Startseite</target>
       </segment>
     </unit>
     <unit id="backend_layout.desiderio_contentpage.title">
-      <segment>
+      <segment state="final">
         <source>Desiderio: Contentpage</source>
+        <target>Desiderio: Inhaltsseite</target>
       </segment>
     </unit>
     <unit id="backend_layout.desiderio_contentpage_sidebar.title">
-      <segment>
+      <segment state="final">
         <source>Desiderio: Contentpage with Sidebar</source>
+        <target>Desiderio: Inhaltsseite mit Seitenleiste</target>
       </segment>
     </unit>
     <unit id="backend_layout.desiderio_styleguide.title">
-      <segment>
+      <segment state="final">
         <source>Desiderio: Styleguide</source>
+        <target>Desiderio: Styleguide</target>
       </segment>
     </unit>
     <unit id="backend_layout.colPos.0.name">
-      <segment>
+      <segment state="final">
         <source>Content</source>
+        <target>Inhalt</target>
       </segment>
     </unit>
     <unit id="backend_layout.colPos.1.name">
-      <segment>
+      <segment state="final">
         <source>Sidebar</source>
+        <target>Seitenleiste</target>
       </segment>
     </unit>
     <unit id="backend_layout.colPos.2.name">
-      <segment>
+      <segment state="final">
         <source>Stage</source>
+        <target>Bühne</target>
       </segment>
     </unit>
   </file>

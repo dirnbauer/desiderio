@@ -30,7 +30,9 @@ tx_solr_suggest {
 
 plugin.tx_solr {
   view {
+    templateRootPaths.100 = EXT:desiderio/Resources/Private/Solr/Templates/
     partialRootPaths.100 = EXT:desiderio/Resources/Private/Solr/Partials/
+    layoutRootPaths.100 = EXT:desiderio/Resources/Private/Solr/Layouts/
   }
 
   suggest = 1

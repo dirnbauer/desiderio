@@ -1,0 +1,34 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en"
+    xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+    xmlns:s="http://typo3.org/ns/ApacheSolrForTypo3/Solr/ViewHelpers"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:variable name="facetOptionLimit">{f:if(condition: '{settings.faceting.limit}', then: '{settings.faceting.limit}', else: 10)}</f:variable>
+
+<section class="d-solr-facet" aria-labelledby="facet-label-{facet.name}">
+    <header class="d-solr-facet__header">
+        <h2 class="d-solr-facet__title" id="facet-label-{facet.name}">{facet.label}</h2>
+    </header>
+
+    <ul class="d-solr-facet__list facet-option-list facet-type-options fluidfacet" data-facet-name="{facet.name}" data-facet-label="{facet.label}" id="facet{facet.name}">
+        <f:for each="{facet.options}" as="option" iteration="iteration">
+            <li class="d-solr-facet__item facet-option {f:if(condition:'!({iteration.index} < {facetOptionLimit})', then:' tx-solr-facet-hidden')}" data-facet-item-value="{option.value}">
+                <a class="d-solr-facet__link facet solr-ajaxified" href="{s:uri.facet.addFacetItem(facet: facet, facetItem: option)}">
+                    <span class="d-solr-facet__label">{option.label}</span>
+                    <span class="d-solr-facet__count badge badge--secondary" aria-label="{option.documentCount} results">{option.documentCount}</span>
+                </a>
+            </li>
+        </f:for>
+
+        <f:if condition="{facet.options -> f:count()} > {facetOptionLimit}">
+            <li class="d-solr-facet__item d-solr-facet__item--more">
+                <a href="#" class="d-solr-facet__more tx-solr-facet-show-all" data-label-more="{f:translate(key: 'faceting_showMore', extensionName: 'solr')}" data-label-less="{f:translate(key: 'faceting_showFewer', extensionName: 'solr')}">
+                    <f:translate key="faceting_showMore" extensionName="solr">Show more</f:translate>
+                </a>
+            </li>
+        </f:if>
+    </ul>
+</section>
+
+</html>

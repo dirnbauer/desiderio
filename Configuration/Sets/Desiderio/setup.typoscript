@@ -1,5 +1,10 @@
 @import './TypoScript/*.typoscript'
 
+plugin.tx_solr.index.queue.pages {
+  allowedPageTypes = 1,7,137,138
+  additionalWhereClause = (doktype IN(1,137,138) OR (doktype=7 AND mount_pid_ol=0)) AND no_search = 0
+}
+
 # Like Camino, the base set owns the PAGE object and delegates rendering
 # to lib.fluidPage so type=0 always has a frontend entry point.
 page = PAGE

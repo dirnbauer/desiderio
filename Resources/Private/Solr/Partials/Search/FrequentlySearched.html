@@ -7,17 +7,17 @@
 <f:section name="FrequentlySearched">
     <s:frequentlySearched>
         <f:if condition="{frequentSearches}">
-            <section id="tx-solr-frequent-searches" class="overflow-hidden rounded-xl border border-border bg-card text-card-foreground shadow-sm">
-                <header class="border-b border-border px-4 py-3">
-                    <h2 class="text-sm font-semibold tracking-tight">
-                        <f:translate key="solr.frequentSearches" domain="desiderio.labels">Frequent searches</f:translate>
-                    </h2>
-                </header>
+            <section id="tx-solr-frequent-searches" class="d-solr-suggest d-solr-suggest--facet" aria-labelledby="tx-solr-frequent-searches-label">
+                <h2 class="d-solr-suggest__group" id="tx-solr-frequent-searches-label">
+                    <f:translate key="solr.frequentSearches" domain="desiderio.labels">Frequent searches</f:translate>
+                </h2>
 
-                <ul class="space-y-1 p-2">
+                <ul class="d-solr-facet__list">
                     <f:for each="{frequentSearches}" as="searchedForInfo">
                         <li>
-                            <a href="{s:uri.search.startNewSearch(queryString: searchedForInfo.q)}" class="solr-ajaxified block rounded-lg px-3 py-2 text-sm font-medium text-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:bg-muted focus-visible:text-foreground focus-visible:outline-hidden focus-visible:ring-3 focus-visible:ring-ring active:bg-muted active:text-foreground"><f:format.htmlentities>{searchedForInfo.q}</f:format.htmlentities></a>
+                            <a href="{s:uri.search.startNewSearch(queryString: searchedForInfo.q)}" class="solr-ajaxified d-solr-suggest__option">
+                                <span class="d-solr-suggest__term"><f:format.htmlentities>{searchedForInfo.q}</f:format.htmlentities></span>
+                            </a>
                         </li>
                     </f:for>
                 </ul>

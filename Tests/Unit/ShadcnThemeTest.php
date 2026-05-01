@@ -113,11 +113,15 @@ final class ShadcnThemeTest extends TestCase
     public function testSolrFacetTemplateReusesSuggestStyles(): void
     {
         $facetTemplate = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Solr/Partials/Facets/Options.html');
+        $frequentlySearchedTemplate = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Solr/Partials/Search/FrequentlySearched.html');
         $desiderioCss = (string) file_get_contents(__DIR__ . '/../../Resources/Public/Css/desiderio.css');
 
         self::assertStringContainsString('d-solr-suggest d-solr-suggest--facet', $facetTemplate);
         self::assertStringContainsString('d-solr-suggest__option', $facetTemplate);
         self::assertStringContainsString('d-solr-suggest__count', $facetTemplate);
+        self::assertStringContainsString('d-solr-suggest d-solr-suggest--facet', $frequentlySearchedTemplate);
+        self::assertStringContainsString('d-solr-facet__list', $frequentlySearchedTemplate);
+        self::assertStringContainsString('d-solr-suggest__option', $frequentlySearchedTemplate);
         self::assertStringContainsString('.d-solr-suggest--facet', $desiderioCss);
         self::assertStringContainsString('.d-solr-facet__list', $desiderioCss);
     }

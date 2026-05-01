@@ -29,6 +29,10 @@ tx_solr_suggest {
 }
 
 plugin.tx_solr {
+  view {
+    partialRootPaths.100 = EXT:desiderio/Resources/Private/Solr/Partials/
+  }
+
   suggest = 1
   suggest {
     numberOfSuggestions = 10
@@ -66,6 +70,17 @@ page {
 
     desiderioStyleguide = EXT:desiderio/Resources/Public/Js/styleguide.js
     desiderioStyleguide.defer = 1
+  }
+
+  includeJSFooterlibs {
+    solr-jquery >
+    solr-autocomplete >
+    solr-suggest >
+  }
+
+  includeCSS {
+    solr-suggest >
+    solrSuggest >
   }
 
   bodyTagCObject = TEXT

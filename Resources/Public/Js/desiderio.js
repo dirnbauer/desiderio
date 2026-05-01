@@ -238,8 +238,10 @@ document.addEventListener('DOMContentLoaded', () => {
   class DesiderioSolrSuggest {
     constructor(form) {
       this.form = form;
-      this.input = form.querySelector('.tx-solr-suggest, .js-solr-q, input[name$="[q]"]');
+      this.input = form.querySelector('[data-d-solr-suggest], .js-solr-q, input[name$="[q]"]');
       if (!this.input) return;
+
+      this.disableLegacySuggest();
 
       this.minChars = parseInt(form.dataset.suggestMinChars, 10) || 3;
       this.debounceMs = parseInt(form.dataset.suggestDebounce, 10) || 220;
@@ -277,6 +279,18 @@ document.addEventListener('DOMContentLoaded', () => {
           this.close();
         }
       });
+    }
+
+    disableLegacySuggest() {
+      this.input.classList.remove('tx-solr-suggest', 'tx-solr-suggest-focus');
+
+      if (window.jQuery?.fn?.devbridgeAutocomplete && window.jQuery(this.input).data('autocomplete')) {
+        window.jQuery(this.input).devbridgeAutocomplete('dispose');
+      }
+
+      document
+        .querySelectorAll('.autocomplete-suggestions.tx-solr-autosuggest, .tx-solr-autosuggest')
+        .forEach(element => element.remove());
     }
 
     onSubmit(event) {
@@ -489,7 +503,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const initSolrSuggest = (scope = document) => {
     scope.querySelectorAll('form[data-suggest]').forEach(form => {
       if (form.dataset.dSolrSuggestInit === 'true') return;
-      if (!form.querySelector('.tx-solr-suggest, .js-solr-q, input[name$="[q]"]')) return;
+      if (!form.querySelector('[data-d-solr-suggest], .js-solr-q, input[name$="[q]"]')) return;
       form.dataset.dSolrSuggestInit = 'true';
       new DesiderioSolrSuggest(form);
     });

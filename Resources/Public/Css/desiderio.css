@@ -258,6 +258,17 @@
     color: var(--foreground);
 }
 
+.d-solr-suggest :where(a, a *),
+.facet-option-list :where(a, a *),
+#tx-solr-frequent-searches :where(a, a *),
+#tx-solr-lastsearches :where(a, a *),
+#tx-solr-sorting :where(a, a *, summary, summary *),
+.solr-pagination :where(a, a *),
+#tx-solr-facets-in-use :where(a, a *) {
+    text-decoration: none;
+    text-decoration-line: none;
+}
+
 .frame :where(button, a, input, textarea, select):focus-visible,
 .ce-frame :where(button, a, input, textarea, select):focus-visible,
 .desiderio-content-element :where(button, a, input, textarea, select):focus-visible {

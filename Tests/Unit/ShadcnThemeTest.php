@@ -139,6 +139,16 @@ final class ShadcnThemeTest extends TestCase
         }
     }
 
+    public function testLoadedDesiderioCssKeepsSolrControlsFromInheritingProseLinkUnderlines(): void
+    {
+        $css = (string) file_get_contents(__DIR__ . '/../../Resources/Public/Css/desiderio.css');
+
+        self::assertStringContainsString('.d-solr-suggest :where(a, a *)', $css);
+        self::assertStringContainsString('#tx-solr-facets-in-use :where(a, a *)', $css);
+        self::assertStringContainsString('#tx-solr-sorting :where(a, a *, summary, summary *)', $css);
+        self::assertStringContainsString('text-decoration-line: none;', $css);
+    }
+
     public function testStyleguidePageListsEveryElementOverview(): void
     {
         $template = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Templates/Pages/DesiderioStyleguide.fluid.html');

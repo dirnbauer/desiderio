@@ -1,0 +1,49 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:if condition="{pagination.allPageNumbers -> f:count()} > 1">
+    <nav class="news-pagination" aria-label="News pagination">
+        <ul class="f3-widget-paginator flex flex-wrap gap-1">
+            <f:if condition="{pagination.previousPageNumber} && {pagination.previousPageNumber} >= {pagination.firstPageNumber}">
+                <li>
+                    <a href="{f:uri.action(action: actionName, arguments: {currentPage: pagination.previousPageNumber}, addQueryString: 'untrusted')}" title="{f:translate(key: 'pagination.previous')}" class="inline-flex h-8 items-center rounded-lg border border-border px-2.5 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground">
+                        {f:translate(key: 'widget.pagination.previous', extensionName: 'fluid')}
+                    </a>
+                </li>
+            </f:if>
+
+            <f:if condition="{pagination.hasLessPages}">
+                <li><span class="inline-flex size-8 items-center justify-center text-sm text-muted-foreground">...</span></li>
+            </f:if>
+
+            <f:for each="{pagination.allPageNumbers}" as="page">
+                <f:if condition="{page} == {paginator.currentPageNumber}">
+                    <f:then>
+                        <li><span class="inline-flex size-8 items-center justify-center rounded-lg bg-primary text-sm font-medium text-primary-foreground" aria-current="page">{page}</span></li>
+                    </f:then>
+                    <f:else>
+                        <li>
+                            <a href="{f:uri.action(action: actionName, arguments: {currentPage: page}, addQueryString: 'untrusted')}" class="inline-flex size-8 items-center justify-center rounded-lg border border-border text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground">{page}</a>
+                        </li>
+                    </f:else>
+                </f:if>
+            </f:for>
+
+            <f:if condition="{pagination.hasMorePages}">
+                <li><span class="inline-flex size-8 items-center justify-center text-sm text-muted-foreground">...</span></li>
+            </f:if>
+
+            <f:if condition="{pagination.nextPageNumber} && {pagination.nextPageNumber} <= {pagination.lastPageNumber}">
+                <li>
+                    <a href="{f:uri.action(action: actionName, arguments: {currentPage: pagination.nextPageNumber}, addQueryString: 'untrusted')}" title="{f:translate(key: 'pagination.next')}" class="inline-flex h-8 items-center rounded-lg border border-border px-2.5 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground">
+                        {f:translate(key: 'widget.pagination.next', extensionName: 'fluid')}
+                    </a>
+                </li>
+            </f:if>
+        </ul>
+    </nav>
+</f:if>
+
+</html>

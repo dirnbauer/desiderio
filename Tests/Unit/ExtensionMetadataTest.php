@@ -17,6 +17,9 @@ final class ExtensionMetadataTest extends TestCase
         self::assertSame('desiderio', $composer['extra']['typo3/cms']['extension-key']);
         self::assertArrayHasKey('Webconsulting\\Desiderio\\', $composer['autoload']['psr-4']);
         self::assertSame('*', $composer['conflict']['webconsulting/shadcn2fluid-templates'] ?? null);
+        self::assertSame('^8.3', $composer['require']['php'] ?? null);
+        self::assertSame('^14.3', $composer['require']['typo3/cms-core'] ?? null);
+        self::assertSame('^14.3', $composer['require']['typo3/cms-fluid'] ?? null);
     }
 
     public function testExtEmconfMatchesComposer(): void
@@ -30,6 +33,8 @@ final class ExtensionMetadataTest extends TestCase
         self::assertArrayHasKey('content_blocks', $conf['constraints']['depends']);
         self::assertArrayHasKey('vite_asset_collector', $conf['constraints']['depends']);
         self::assertArrayHasKey('shadcn2fluid_templates', $conf['constraints']['conflicts']);
+        self::assertArrayHasKey('solr', $conf['constraints']['suggests']);
+        self::assertArrayHasKey('news', $conf['constraints']['suggests']);
     }
 
     public function testIconsRegistryIsReadable(): void

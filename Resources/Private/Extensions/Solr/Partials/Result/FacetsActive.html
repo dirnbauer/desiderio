@@ -1,0 +1,26 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:s="http://typo3.org/ns/ApacheSolrForTypo3/Solr/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:section name="FacetsActive">
+    <f:if condition="{resultSet.facets.used -> f:count()}">
+        <div id="tx-solr-facets-in-use" class="flex flex-wrap items-center gap-2">
+            <span class="text-sm text-muted-foreground"><f:translate key="faceting_resultsNarrowedBy" extensionName="solr">Narrowed by</f:translate>:</span>
+            <f:for each="{resultSet.facets.used}" as="facet">
+                <f:for each="{facet.allFacetItems.selected}" as="item">
+                    <d:atom.button href="{s:uri.facet.removeFacetItem(facet: facet, facetItem: item)}" variant="secondary" size="sm" class="facet remove-facet-option solr-ajaxified">
+                        {facet.label}: {item.label}
+                    </d:atom.button>
+                </f:for>
+            </f:for>
+            <d:atom.button href="{s:uri.facet.removeAllFacets()}" variant="outline" size="sm" class="solr-ajaxified">
+                <f:translate key="faceting_removeAllFilters" extensionName="solr">Remove all filters</f:translate>
+            </d:atom.button>
+        </div>
+    </f:if>
+</f:section>
+
+</html>

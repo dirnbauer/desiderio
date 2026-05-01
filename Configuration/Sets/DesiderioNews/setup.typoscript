@@ -1,0 +1,11 @@
+plugin.tx_news {
+  view {
+    templateRootPaths.200 = EXT:desiderio/Resources/Private/Extensions/News/Templates/
+    partialRootPaths.200 = EXT:desiderio/Resources/Private/Extensions/News/Partials/
+    layoutRootPaths.200 = EXT:desiderio/Resources/Private/Extensions/News/Layouts/
+  }
+
+  settings {
+    cssFile >
+  }
+}

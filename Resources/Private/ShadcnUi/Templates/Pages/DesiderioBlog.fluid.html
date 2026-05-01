@@ -1,0 +1,49 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:layout name="Pages/Default"/>
+
+<f:section name="Stage">
+    <!--TYPO3SEARCH_begin-->
+    <f:if condition="{content.stage}">
+        <d:layout.section spacing="md" class="border-b bg-muted/30">
+            <d:layout.container size="lg" class="max-w-5xl">
+                <div class="max-w-3xl">
+                    <f:render.contentArea contentArea="{content.stage}"/>
+                </div>
+            </d:layout.container>
+        </d:layout.section>
+    </f:if>
+    <!--TYPO3SEARCH_end-->
+</f:section>
+
+<f:section name="Main">
+    <!--TYPO3SEARCH_begin-->
+    <d:layout.section spacing="md" class="desiderio-template-blog">
+        <d:layout.container size="xl">
+            <div class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_20rem]">
+                <d:layout.stack gap="xl" class="min-w-0">
+                    <f:if condition="{content.main}">
+                        <f:render.contentArea contentArea="{content.main}"/>
+                    </f:if>
+                </d:layout.stack>
+
+                <f:if condition="{content.sidebar}">
+                    <aside class="min-w-0 border-t pt-6 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0" aria-label="Sidebar">
+                        <div class="lg:sticky lg:top-24">
+                            <d:layout.stack gap="lg">
+                                <f:render.contentArea contentArea="{content.sidebar}"/>
+                            </d:layout.stack>
+                        </div>
+                    </aside>
+                </f:if>
+            </div>
+        </d:layout.container>
+    </d:layout.section>
+    <!--TYPO3SEARCH_end-->
+</f:section>
+
+</html>

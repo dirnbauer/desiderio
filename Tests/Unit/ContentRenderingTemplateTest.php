@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Webconsulting\Desiderio\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Yaml\Yaml;
 
 final class ContentRenderingTemplateTest extends TestCase
 {
@@ -115,5 +116,144 @@ final class ContentRenderingTemplateTest extends TestCase
         self::assertStringContainsString('dc:atom.typography', $header);
         self::assertStringContainsString('@source "../FluidStyledContent";', $tailwind);
         self::assertStringContainsString('templateRootPath: EXT:desiderio/Resources/Private/FluidStyledContent/Templates/', $settings);
+    }
+
+    public function testExtensionIntegrationSiteSetsAreBundledWithBaseSet(): void
+    {
+        $baseSet = Yaml::parseFile(__DIR__ . '/../../Configuration/Sets/Desiderio/config.yaml');
+        $solrSet = Yaml::parseFile(__DIR__ . '/../../Configuration/Sets/DesiderioSolr/config.yaml');
+        $newsSet = Yaml::parseFile(__DIR__ . '/../../Configuration/Sets/DesiderioNews/config.yaml');
+        $solrTypoScript = (string) file_get_contents(__DIR__ . '/../../Configuration/Sets/DesiderioSolr/setup.typoscript');
+        $newsTypoScript = (string) file_get_contents(__DIR__ . '/../../Configuration/Sets/DesiderioNews/setup.typoscript');
+
+        self::assertContains('webconsulting/desiderio-solr', $baseSet['optionalDependencies']);
+        self::assertContains('webconsulting/desiderio-news', $baseSet['optionalDependencies']);
+
+        self::assertSame('webconsulting/desiderio-solr', $solrSet['name']);
+        self::assertTrue($solrSet['hidden']);
+        self::assertContains('apache-solr-for-typo3/solr', $solrSet['optionalDependencies']);
+        self::assertStringContainsString('plugin.tx_solr', $solrTypoScript);
+        self::assertStringContainsString('templateRootPaths.200 = EXT:desiderio/Resources/Private/Extensions/Solr/Templates/', $solrTypoScript);
+        self::assertStringContainsString('partialRootPaths.200 = EXT:desiderio/Resources/Private/Extensions/Solr/Partials/', $solrTypoScript);
+        self::assertStringContainsString('layoutRootPaths.200 = EXT:desiderio/Resources/Private/Extensions/Solr/Layouts/', $solrTypoScript);
+
+        self::assertSame('webconsulting/desiderio-news', $newsSet['name']);
+        self::assertTrue($newsSet['hidden']);
+        self::assertContains('georgringer/news', $newsSet['optionalDependencies']);
+        self::assertStringContainsString('plugin.tx_news', $newsTypoScript);
+        self::assertStringContainsString('templateRootPaths.200 = EXT:desiderio/Resources/Private/Extensions/News/Templates/', $newsTypoScript);
+        self::assertStringContainsString('partialRootPaths.200 = EXT:desiderio/Resources/Private/Extensions/News/Partials/', $newsTypoScript);
+        self::assertStringContainsString('layoutRootPaths.200 = EXT:desiderio/Resources/Private/Extensions/News/Layouts/', $newsTypoScript);
+    }
+
+    public function testContentBlockSiteSetsAreBundledBehindSingleDesiderioSet(): void
+    {
+        $baseSet = Yaml::parseFile(__DIR__ . '/../../Configuration/Sets/Desiderio/config.yaml');
+        $contentElementsSet = Yaml::parseFile(__DIR__ . '/../../Configuration/Sets/DesiderioContentElements/config.yaml');
+        $userTsConfig = (string) file_get_contents(__DIR__ . '/../../Configuration/user.tsconfig');
+
+        $contentBlockNames = [];
+        foreach (glob(__DIR__ . '/../../ContentBlocks/ContentElements/*/config.yaml') ?: [] as $configFile) {
+            $contentBlock = Yaml::parseFile($configFile);
+            $contentBlockNames[] = (string) $contentBlock['name'];
+        }
+        sort($contentBlockNames);
+
+        $setDependencies = $contentElementsSet['optionalDependencies'] ?? [];
+        sort($setDependencies);
+
+        preg_match_all('/options\\.sites\\.hideSets := addToList\\(([^)]+)\\)/', $userTsConfig, $matches);
+        $hiddenSetNames = [];
+        foreach ($matches[1] as $setList) {
+            $hiddenSetNames = array_merge($hiddenSetNames, explode(',', $setList));
+        }
+        sort($hiddenSetNames);
+
+        self::assertContains('webconsulting/desiderio-content-elements', $baseSet['optionalDependencies']);
+        self::assertSame('webconsulting/desiderio-content-elements', $contentElementsSet['name']);
+        self::assertSame('Desiderio Content Elements', $contentElementsSet['label']);
+        self::assertSame($contentBlockNames, $setDependencies);
+        self::assertSame($contentBlockNames, $hiddenSetNames);
+    }
+
+    public function testShadcnUiPageTemplateSiteSetRegistersBlogAndExtensionTemplates(): void
+    {
+        $baseSet = Yaml::parseFile(__DIR__ . '/../../Configuration/Sets/Desiderio/config.yaml');
+        $templateSet = Yaml::parseFile(__DIR__ . '/../../Configuration/Sets/DesiderioShadcnUiTemplates/config.yaml');
+        $typoScript = (string) file_get_contents(__DIR__ . '/../../Configuration/Sets/DesiderioShadcnUiTemplates/setup.typoscript');
+        $pageTsConfig = (string) file_get_contents(__DIR__ . '/../../Configuration/Sets/DesiderioShadcnUiTemplates/page.tsconfig');
+        $backendLayoutLabels = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Language/backend_layouts.xlf');
+
+        self::assertContains('webconsulting/desiderio-shadcnui-templates', $baseSet['optionalDependencies']);
+        self::assertSame('webconsulting/desiderio-shadcnui-templates', $templateSet['name']);
+        self::assertTrue($templateSet['hidden']);
+        self::assertStringContainsString('paths.20 = EXT:desiderio/Resources/Private/ShadcnUi/Templates/', $typoScript);
+        self::assertStringContainsString("EXT:desiderio/Configuration/BackendLayouts/ShadcnUi/*.tsconfig", $pageTsConfig);
+        self::assertStringContainsString('backend_layout.desiderio_blog.title', $backendLayoutLabels);
+        self::assertStringContainsString('backend_layout.desiderio_extension.title', $backendLayoutLabels);
+
+        $requiredFiles = [
+            'Configuration/BackendLayouts/ShadcnUi/DesiderioBlog.tsconfig',
+            'Configuration/BackendLayouts/ShadcnUi/DesiderioExtension.tsconfig',
+            'Resources/Private/ShadcnUi/Templates/Pages/DesiderioBlog.fluid.html',
+            'Resources/Private/ShadcnUi/Templates/Pages/DesiderioExtension.fluid.html',
+        ];
+
+        foreach ($requiredFiles as $relativePath) {
+            self::assertFileExists(__DIR__ . '/../../' . $relativePath, "{$relativePath} must exist");
+        }
+
+        foreach ([
+            'Resources/Private/ShadcnUi/Templates/Pages/DesiderioBlog.fluid.html',
+            'Resources/Private/ShadcnUi/Templates/Pages/DesiderioExtension.fluid.html',
+        ] as $relativePath) {
+            $template = (string) file_get_contents(__DIR__ . '/../../' . $relativePath);
+
+            self::assertStringContainsString('Webconsulting/Desiderio/Components/ComponentCollection', $template);
+            self::assertStringContainsString('<d:layout.section', $template);
+            self::assertStringContainsString('<d:layout.container', $template);
+            self::assertStringContainsString('<d:layout.stack', $template);
+            self::assertStringContainsString('contentArea="{content.stage}"', $template);
+            self::assertStringContainsString('contentArea="{content.main}"', $template);
+            self::assertStringContainsString('contentArea="{content.sidebar}"', $template);
+        }
+    }
+
+    public function testSolrAndNewsOverrideTemplatesFollowUpstreamStructureAndUseDesiderioComponents(): void
+    {
+        $requiredFiles = [
+            'Resources/Private/Extensions/Solr/Layouts/Fullwidth.html',
+            'Resources/Private/Extensions/Solr/Layouts/Split.html',
+            'Resources/Private/Extensions/Solr/Templates/Search/Results.html',
+            'Resources/Private/Extensions/Solr/Templates/Search/Form.html',
+            'Resources/Private/Extensions/Solr/Partials/Search/Form.html',
+            'Resources/Private/Extensions/Solr/Partials/Result/Document.html',
+            'Resources/Private/Extensions/Solr/Partials/Facets/Options.html',
+            'Resources/Private/Extensions/News/Layouts/General.html',
+            'Resources/Private/Extensions/News/Layouts/Detail.html',
+            'Resources/Private/Extensions/News/Templates/News/List.html',
+            'Resources/Private/Extensions/News/Templates/News/Detail.html',
+            'Resources/Private/Extensions/News/Partials/List/Item.html',
+            'Resources/Private/Extensions/News/Partials/List/Pagination.html',
+            'Resources/Private/Extensions/News/Partials/Detail/MediaContainer.html',
+        ];
+
+        foreach ($requiredFiles as $relativePath) {
+            $path = __DIR__ . '/../../' . $relativePath;
+            self::assertFileExists($path, "{$relativePath} must exist");
+        }
+
+        foreach ([
+            'Resources/Private/Extensions/Solr/Templates/Search/Results.html',
+            'Resources/Private/Extensions/Solr/Partials/Search/Form.html',
+            'Resources/Private/Extensions/Solr/Partials/Result/Document.html',
+            'Resources/Private/Extensions/Solr/Partials/Facets/Options.html',
+            'Resources/Private/Extensions/News/Templates/News/List.html',
+            'Resources/Private/Extensions/News/Templates/News/Detail.html',
+            'Resources/Private/Extensions/News/Partials/List/Item.html',
+        ] as $relativePath) {
+            $template = (string) file_get_contents(__DIR__ . '/../../' . $relativePath);
+            self::assertStringContainsString('Webconsulting/Desiderio/Components/ComponentCollection', $template, "{$relativePath} should use Desiderio Fluid components");
+        }
     }
 }

@@ -1,0 +1,22 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+    data-namespace-typo3-fluid="true"
+>
+
+<span class="news-list-category inline-flex flex-wrap gap-2">
+    <f:for each="{categories}" as="category">
+        <f:if condition="{category.shortcut}">
+            <f:then>
+                <f:link.typolink parameter="{category.shortcut}">
+                    <d:atom.badge variant="secondary">{category.title}</d:atom.badge>
+                </f:link.typolink>
+            </f:then>
+            <f:else>
+                <d:atom.badge variant="secondary">{category.title}</d:atom.badge>
+            </f:else>
+        </f:if>
+    </f:for>
+</span>
+
+</html>

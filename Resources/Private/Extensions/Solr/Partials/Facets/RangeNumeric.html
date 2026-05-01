@@ -1,0 +1,33 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:s="http://typo3.org/ns/ApacheSolrForTypo3/Solr/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+    data-namespace-typo3-fluid="true"
+>
+
+<d:molecule.card size="sm" class="facet-card">
+    <d:molecule.cardHeader class="facet-label">
+        <d:atom.typography tag="h3" variant="small">{facet.label}</d:atom.typography>
+    </d:molecule.cardHeader>
+    <d:molecule.cardContent>
+        <div class="facet-type-numericRange fluidfacet" data-facet-name="{facet.name}" data-facet-label="{facet.label}" id="facet{facet.name}">
+            <div class="facet-type-numericRange-data" data-facet-label="{facet.label}" data-facet-url="{s:uri.facet.setFacetItem(facet: facet, facetItemValue: '___FROM___-___TO___')}">
+                <div class="tx-solr-numericRange grid gap-3">
+                    <label for="{facet.name}_min" class="grid gap-1 text-sm text-muted-foreground">
+                        <span>{facet.label} Minimum</span>
+                        <input type="range" min="{facet.range.startInResponse}" value="{f:if(condition: facet.range.startRequested, then: facet.range.startRequested, else: facet.range.startInResponse)}" max="{facet.range.endInResponse}" step="{facet.range.gap}" name="{facet.name}_min" id="{facet.name}_min" class="tx-solr-numericRange__input accent-primary">
+                    </label>
+                    <label for="{facet.name}_max" class="grid gap-1 text-sm text-muted-foreground">
+                        <span>{facet.label} Maximum</span>
+                        <input type="range" min="{facet.range.startInResponse}" value="{f:if(condition: facet.range.endRequested, then: facet.range.endRequested, else: facet.range.endInResponse)}" max="{facet.range.endInResponse}" step="{facet.range.gap}" name="{facet.name}_max" id="{facet.name}_max" class="tx-solr-numericRange__input accent-primary">
+                    </label>
+                    <div class="tx-solr-numericRange__values rounded-lg bg-muted px-2 py-1 text-center text-xs text-muted-foreground">
+                        <span class="tx-solr-numericRange__values--min">{facet.range.startRequested}</span>-<span class="tx-solr-numericRange__values--max">{facet.range.endRequested}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </d:molecule.cardContent>
+</d:molecule.card>
+
+</html>

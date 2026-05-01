@@ -1,0 +1,37 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:s="http://typo3.org/ns/ApacheSolrForTypo3/Solr/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:section name="hierarchyTree">
+    <f:for each="{node.childNodes}" as="childNode" iteration="iteration">
+        <li class="facet-option {f:if(condition: '{iteration.index} > 9', then: ' tx-solr-facet-hidden')}" data-facet-item-value="{childNode.value}">
+            <a class="facet solr-ajaxified flex items-center justify-between gap-3 py-1.5 text-sm text-muted-foreground transition-colors hover:text-primary" href="{s:uri.facet.addFacetItem(facet: facet, facetItem: childNode)}">
+                <span><f:cObject typoscriptObjectPath="lib.tx_solr.pagetitle">{childNode.label}</f:cObject></span>
+                <d:atom.badge variant="secondary" class="facet-result-count">{childNode.documentCount}</d:atom.badge>
+            </a>
+            <f:if condition="{childNode.childNodes}">
+                <ul class="ml-3 border-l border-border pl-3">
+                    <f:render section="hierarchyTree" arguments="{node: childNode, facet: facet}" />
+                </ul>
+            </f:if>
+        </li>
+    </f:for>
+</f:section>
+
+<d:molecule.card size="sm" class="facet-card">
+    <d:molecule.cardHeader class="facet-label">
+        <d:atom.typography tag="h3" variant="small">{facet.label}</d:atom.typography>
+    </d:molecule.cardHeader>
+    <d:molecule.cardContent>
+        <div class="facet-type-hierarchy fluidfacet" data-facet-name="{facet.name}" data-facet-label="{facet.label}" id="facet{facet.name}">
+            <ul>
+                <f:render section="hierarchyTree" arguments="{node: facet, facet: facet}" />
+            </ul>
+        </div>
+    </d:molecule.cardContent>
+</d:molecule.card>
+
+</html>

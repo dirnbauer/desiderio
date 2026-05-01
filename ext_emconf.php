@@ -22,6 +22,8 @@ $EM_CONF[$_EXTKEY] = [
         ],
         'suggests' => [
             'workspaces' => '14.3.0-14.99.99',
+            'solr' => '',
+            'news' => '',
         ],
     ],
 ];

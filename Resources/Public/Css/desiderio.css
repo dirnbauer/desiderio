@@ -297,6 +297,22 @@
     display: none;
 }
 
+.d-solr-suggest--facet {
+    position: static;
+    inset: auto;
+    z-index: auto;
+    max-height: none;
+    box-shadow: var(--shadow-sm, 0 1px 2px 0 rgb(0 0 0 / 0.05));
+}
+
+.d-solr-facet__list {
+    display: grid;
+    gap: 0.125rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
 .d-solr-suggest__option {
     display: flex;
     align-items: flex-start;
@@ -309,9 +325,15 @@
 }
 
 .d-solr-suggest__option:hover,
+.d-solr-suggest__option:focus-visible,
 .d-solr-suggest__option.is-active {
     color: var(--accent-foreground);
     background: var(--accent);
+}
+
+.d-solr-suggest__option:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px color-mix(in oklch, var(--ring) 50%, transparent);
 }
 
 .d-solr-suggest__term,
@@ -344,6 +366,8 @@
 
 .d-solr-suggest__option:hover .d-solr-suggest__count,
 .d-solr-suggest__option:hover .d-solr-suggest__type,
+.d-solr-suggest__option:focus-visible .d-solr-suggest__count,
+.d-solr-suggest__option:focus-visible .d-solr-suggest__type,
 .d-solr-suggest__option.is-active .d-solr-suggest__count,
 .d-solr-suggest__option.is-active .d-solr-suggest__type {
     color: var(--accent-foreground);

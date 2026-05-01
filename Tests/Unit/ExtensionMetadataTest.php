@@ -45,4 +45,24 @@ final class ExtensionMetadataTest extends TestCase
             self::assertStringStartsWith('EXT:desiderio/', $config['source']);
         }
     }
+
+    public function testSolrDefaultsSetIsOwnedByDesiderio(): void
+    {
+        $config = (string) file_get_contents(__DIR__ . '/../../Configuration/Sets/SolrDefaults/config.yaml');
+        $setup = (string) file_get_contents(__DIR__ . '/../../Configuration/Sets/SolrDefaults/setup.typoscript');
+
+        self::assertStringContainsString('name: dirnbauer/solr-defaults', $config);
+        self::assertStringContainsString('EXT:desiderio/Resources/Private/Solr/Templates/', $setup);
+        self::assertStringContainsString('EXT:desiderio/Resources/Private/Solr/Partials/', $setup);
+        self::assertStringContainsString('EXT:desiderio/Resources/Private/Solr/Layouts/', $setup);
+    }
+
+    public function testSharedPaginationPartialsAreAvailableFromDesiderio(): void
+    {
+        $pagination = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Partials/Pagination.html');
+
+        self::assertFileExists(__DIR__ . '/../../Resources/Private/Partials/List/Pagination.html');
+        self::assertFileExists(__DIR__ . '/../../Resources/Private/Partials/Pagination/Pagination.html');
+        self::assertStringContainsString('EXT:desiderio/Resources/Private/Language/locallang.xlf', $pagination);
+    }
 }

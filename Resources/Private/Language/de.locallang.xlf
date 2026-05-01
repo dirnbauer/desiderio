@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en" trgLang="de">
+  <file id="EXT:desiderio/Resources/Private/Language/locallang.xlf" original="EXT:desiderio/Resources/Private/Language/locallang.xlf">
+    <unit id="pagination.aria.label">
+      <segment>
+        <source>Pagination, {totalPages, plural, one {one page} other {# pages}}</source>
+        <target>Seitennavigation, {totalPages, plural, one {eine Seite} other {# Seiten}}</target>
+      </segment>
+    </unit>
+    <unit id="pagination.aria.previous">
+      <segment>
+        <source>Go to previous page</source>
+        <target>Zur vorherigen Seite</target>
+      </segment>
+    </unit>
+    <unit id="pagination.aria.next">
+      <segment>
+        <source>Go to next page</source>
+        <target>Zur nächsten Seite</target>
+      </segment>
+    </unit>
+    <unit id="pagination.aria.goToPage">
+      <segment>
+        <source>Go to page {page} of {totalPages, plural, one {one page} other {# pages}}</source>
+        <target>Zu Seite {page} von {totalPages, plural, one {einer Seite} other {# Seiten}}</target>
+      </segment>
+    </unit>
+    <unit id="pagination.aria.currentPage">
+      <segment>
+        <source>Page {page} of {totalPages, plural, one {one page} other {# pages}}</source>
+        <target>Seite {page} von {totalPages, plural, one {einer Seite} other {# Seiten}}</target>
+      </segment>
+    </unit>
+    <unit id="pagination.previous">
+      <segment>
+        <source>Previous</source>
+        <target>Zurück</target>
+      </segment>
+    </unit>
+    <unit id="pagination.next">
+      <segment>
+        <source>Next</source>
+        <target>Weiter</target>
+      </segment>
+    </unit>
+  </file>
+</xliff>

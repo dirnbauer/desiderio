@@ -374,11 +374,30 @@
 
 .d-solr-suggest__count,
 .d-solr-suggest__type {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
     margin-inline-start: auto;
-    color: var(--muted-foreground);
+    min-width: 1.5rem;
+    min-height: 1.5rem;
+    padding: 0.125rem 0.5rem;
+    color: var(--secondary-foreground);
+    background: var(--secondary);
+    border: 1px solid var(--border);
+    border-radius: 9999px;
     font-size: 0.75rem;
+    font-weight: 500;
     line-height: 1.4;
     white-space: nowrap;
+}
+
+.d-solr-suggest__option:hover .d-solr-suggest__count,
+.d-solr-suggest__option:hover .d-solr-suggest__type,
+.d-solr-suggest__option.is-active .d-solr-suggest__count,
+.d-solr-suggest__option.is-active .d-solr-suggest__type {
+    color: var(--accent-foreground);
+    background: var(--background);
 }
 
 .d-solr-suggest__document {

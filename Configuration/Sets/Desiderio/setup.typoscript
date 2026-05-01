@@ -5,6 +5,39 @@ plugin.tx_solr.index.queue.pages {
   additionalWhereClause = (doktype IN(1,137,138) OR (doktype=7 AND mount_pid_ol=0)) AND no_search = 0
 }
 
+tx_solr_suggest = PAGE
+tx_solr_suggest {
+  typeNum = 7384
+  config {
+    disableAllHeaderCode = 1
+    xhtml_cleaning = 0
+    admPanel = 0
+    additionalHeaders.10.header = Content-type: application/json
+    no_cache = 0
+    debug = 0
+  }
+
+  10 = USER
+  10 {
+    userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+    extensionName = Solr
+    pluginName = pi_suggest
+    vendorName = ApacheSolrForTypo3
+    controller = Suggest
+    action = suggest
+  }
+}
+
+plugin.tx_solr {
+  suggest = 1
+  suggest {
+    numberOfSuggestions = 10
+    suggestField = spell
+    showTopResults = 1
+    numberOfTopResults = 5
+  }
+}
+
 # Like Camino, the base set owns the PAGE object and delegates rendering
 # to lib.fluidPage so type=0 always has a frontend entry point.
 page = PAGE

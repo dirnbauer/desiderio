@@ -192,4 +192,309 @@ document.addEventListener('DOMContentLoaded', () => {
 
     btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
   });
+
+  /* ------------------------------------------------------------------ */
+  /*  9. Solr suggest                                                    */
+  /* ------------------------------------------------------------------ */
+  const appendHighlightedText = (target, text, query) => {
+    const source = String(text || '');
+    const needle = String(query || '').trim();
+
+    if (!needle) {
+      target.textContent = source;
+      return;
+    }
+
+    const lowerSource = source.toLocaleLowerCase();
+    const lowerNeedle = needle.toLocaleLowerCase();
+    let offset = 0;
+
+    while (offset < source.length) {
+      const match = lowerSource.indexOf(lowerNeedle, offset);
+
+      if (match === -1) {
+        target.append(document.createTextNode(source.slice(offset)));
+        break;
+      }
+
+      if (match > offset) {
+        target.append(document.createTextNode(source.slice(offset, match)));
+      }
+
+      const mark = document.createElement('mark');
+      mark.className = 'd-solr-suggest__mark';
+      mark.textContent = source.slice(match, match + needle.length);
+      target.append(mark);
+      offset = match + needle.length;
+    }
+  };
+
+  const normalizeDocuments = documents => {
+    if (Array.isArray(documents)) return documents;
+    if (documents && typeof documents === 'object') return Object.values(documents);
+    return [];
+  };
+
+  class DesiderioSolrSuggest {
+    constructor(form) {
+      this.form = form;
+      this.input = form.querySelector('.tx-solr-suggest, .js-solr-q, input[name$="[q]"]');
+      if (!this.input) return;
+
+      this.minChars = parseInt(form.dataset.suggestMinChars, 10) || 3;
+      this.debounceMs = parseInt(form.dataset.suggestDebounce, 10) || 220;
+      this.maxSuggestions = parseInt(form.dataset.suggestMaxItems, 10) || 10;
+      this.queryParam = form.dataset.suggestParam || 'tx_solr[queryString]';
+      this.timer = null;
+      this.abortController = null;
+      this.activeIndex = -1;
+      this.items = [];
+
+      const anchor = this.input.closest('.input-group') || this.input.parentElement || form;
+      const listId = `d-solr-suggest-${Math.random().toString(36).slice(2)}`;
+
+      anchor.classList.add('d-solr-suggest-anchor');
+      this.list = document.createElement('ul');
+      this.list.className = 'd-solr-suggest';
+      this.list.id = listId;
+      this.list.setAttribute('role', 'listbox');
+      this.list.hidden = true;
+      anchor.append(this.list);
+
+      this.input.setAttribute('role', 'combobox');
+      this.input.setAttribute('aria-autocomplete', 'list');
+      this.input.setAttribute('aria-haspopup', 'listbox');
+      this.input.setAttribute('aria-controls', listId);
+      this.input.setAttribute('aria-expanded', 'false');
+      this.input.setAttribute('autocomplete', 'off');
+
+      this.input.addEventListener('input', () => this.onInput());
+      this.input.addEventListener('keydown', event => this.onKeydown(event));
+      this.input.addEventListener('focus', () => this.onInput());
+      this.form.addEventListener('submit', event => this.onSubmit(event));
+      document.addEventListener('click', event => {
+        if (!this.form.contains(event.target) && !this.list.contains(event.target)) {
+          this.close();
+        }
+      });
+    }
+
+    onSubmit(event) {
+      if (this.input.value.trim() !== '') return;
+
+      event.preventDefault();
+      this.input.focus();
+      this.close();
+    }
+
+    onInput() {
+      window.clearTimeout(this.timer);
+
+      const query = this.input.value.trim();
+      if (query.length < this.minChars) {
+        this.close();
+        return;
+      }
+
+      this.timer = window.setTimeout(() => this.fetchSuggestions(query), this.debounceMs);
+    }
+
+    async fetchSuggestions(query) {
+      this.abortController?.abort();
+      this.abortController = new AbortController();
+
+      try {
+        const url = new URL(this.form.dataset.suggest, window.location.href);
+        url.searchParams.set(this.queryParam, query);
+
+        const response = await fetch(url.toString(), {
+          headers: { Accept: 'application/json' },
+          signal: this.abortController.signal,
+        });
+
+        if (!response.ok) {
+          this.close();
+          return;
+        }
+
+        const data = await response.json();
+
+        if (query !== this.input.value.trim()) {
+          return;
+        }
+
+        this.render(data, query);
+      } catch (error) {
+        if (error.name !== 'AbortError') {
+          this.close();
+        }
+      }
+    }
+
+    render(data, query) {
+      this.list.replaceChildren();
+      this.items = [];
+      this.activeIndex = -1;
+
+      const suggestions = Object.entries(data?.suggestions || {})
+        .slice(0, this.maxSuggestions)
+        .map(([label, count]) => ({
+          type: 'term',
+          label,
+          count,
+        }));
+      const documents = normalizeDocuments(data?.documents)
+        .filter(document => document && document.title && document.link)
+        .map(document => ({
+          type: 'document',
+          label: document.title,
+          link: document.link,
+          content: document.content || '',
+          resultType: document.type || '',
+        }));
+
+      suggestions.forEach(item => this.appendOption(item, query));
+
+      if (documents.length > 0) {
+        const group = document.createElement('li');
+        group.className = 'd-solr-suggest__group';
+        group.setAttribute('role', 'presentation');
+        group.textContent = this.form.dataset.suggestHeader || 'Top results';
+        this.list.append(group);
+        documents.forEach(item => this.appendOption(item, query));
+      }
+
+      if (this.items.length === 0) {
+        this.close();
+        return;
+      }
+
+      this.list.hidden = false;
+      this.input.setAttribute('aria-expanded', 'true');
+    }
+
+    appendOption(item, query) {
+      const option = document.createElement('li');
+      const optionId = `${this.list.id}-option-${this.items.length}`;
+
+      option.className = `d-solr-suggest__option d-solr-suggest__option--${item.type}`;
+      option.id = optionId;
+      option.setAttribute('role', 'option');
+      option.setAttribute('aria-selected', 'false');
+      option.addEventListener('pointerdown', event => {
+        event.preventDefault();
+        this.choose(item);
+      });
+
+      if (item.type === 'term') {
+        const term = document.createElement('span');
+        term.className = 'd-solr-suggest__term';
+        appendHighlightedText(term, item.label, query);
+        option.append(term);
+
+        if (item.count !== undefined) {
+          const count = document.createElement('span');
+          count.className = 'd-solr-suggest__count';
+          count.textContent = item.count;
+          option.append(count);
+        }
+      } else {
+        const body = document.createElement('span');
+        body.className = 'd-solr-suggest__document';
+
+        const title = document.createElement('span');
+        title.className = 'd-solr-suggest__title';
+        appendHighlightedText(title, item.label, query);
+        body.append(title);
+
+        if (item.content) {
+          const content = document.createElement('span');
+          content.className = 'd-solr-suggest__content';
+          content.textContent = item.content;
+          body.append(content);
+        }
+
+        option.append(body);
+
+        if (item.resultType) {
+          const type = document.createElement('span');
+          type.className = 'd-solr-suggest__type';
+          type.textContent = item.resultType;
+          option.append(type);
+        }
+      }
+
+      this.items.push({ item, element: option });
+      this.list.append(option);
+    }
+
+    onKeydown(event) {
+      if (this.list.hidden) return;
+
+      if (event.key === 'ArrowDown') {
+        event.preventDefault();
+        this.moveActive(1);
+      } else if (event.key === 'ArrowUp') {
+        event.preventDefault();
+        this.moveActive(-1);
+      } else if (event.key === 'Enter' && this.activeIndex >= 0) {
+        event.preventDefault();
+        this.choose(this.items[this.activeIndex].item);
+      } else if (event.key === 'Escape') {
+        this.close();
+      }
+    }
+
+    moveActive(direction) {
+      if (this.items.length === 0) return;
+
+      this.activeIndex = (this.activeIndex + direction + this.items.length) % this.items.length;
+      this.items.forEach(({ element }, index) => {
+        const active = index === this.activeIndex;
+        element.classList.toggle('is-active', active);
+        element.setAttribute('aria-selected', String(active));
+      });
+
+      const activeElement = this.items[this.activeIndex].element;
+      this.input.setAttribute('aria-activedescendant', activeElement.id);
+      activeElement.scrollIntoView({ block: 'nearest' });
+    }
+
+    choose(item) {
+      if (item.type === 'document' && item.link) {
+        window.location.href = item.link;
+        return;
+      }
+
+      this.input.value = item.label;
+      this.close();
+
+      if (typeof this.form.requestSubmit === 'function') {
+        this.form.requestSubmit();
+      } else {
+        this.form.submit();
+      }
+    }
+
+    close() {
+      this.list.hidden = true;
+      this.list.replaceChildren();
+      this.items = [];
+      this.activeIndex = -1;
+      this.input.setAttribute('aria-expanded', 'false');
+      this.input.removeAttribute('aria-activedescendant');
+    }
+  }
+
+  const initSolrSuggest = (scope = document) => {
+    scope.querySelectorAll('form[data-suggest]').forEach(form => {
+      if (form.dataset.dSolrSuggestInit === 'true') return;
+      if (!form.querySelector('.tx-solr-suggest, .js-solr-q, input[name$="[q]"]')) return;
+      form.dataset.dSolrSuggestInit = 'true';
+      new DesiderioSolrSuggest(form);
+    });
+  };
+
+  initSolrSuggest();
+  document.body?.addEventListener('tx_solr_updated', () => initSolrSuggest());
 });

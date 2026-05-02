@@ -40,7 +40,7 @@
                                     <h3 class="card__title">{member -> f:render.text(field: 'name')}</h3>
                                     <p class="card__description">{member -> f:render.text(field: 'role')}</p>
                                     <f:if condition="{member.bio}">
-                                        <p class="typography typography--muted" style="margin-top:0.5rem;">{member -> f:render.text(field: 'bio')}</p>
+                                        <p class="typography typography--muted team__list-bio">{member -> f:render.text(field: 'bio')}</p>
                                     </f:if>
                                 </div>
                                 <f:if condition="{member.profile_link.url}">
@@ -56,7 +56,7 @@
             <f:case value="minimal">
                 <div class="team__grid team__grid--cols-{data.columns -> f:or(alternative: '4')}">
                     <f:for each="{data.members}" as="member">
-                        <div class="team__minimal-item" style="text-align:center;">
+                        <div class="team__minimal-item">
                             <f:if condition="{member.image}">
                                 <f:then>
                                     <f:for each="{member.image}" as="fileReference">
@@ -71,7 +71,7 @@
                                     </d:atom.avatar>
                                 </f:else>
                             </f:if>
-                            <h3 class="typography typography--small" style="font-weight:600;margin-top:0.75rem;">{member -> f:render.text(field: 'name')}</h3>
+                            <h3 class="typography typography--small team__minimal-name">{member -> f:render.text(field: 'name')}</h3>
                             <p class="typography typography--muted">{member -> f:render.text(field: 'role')}</p>
                         </div>
                     </f:for>

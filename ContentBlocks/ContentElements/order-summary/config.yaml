@@ -16,6 +16,7 @@ fields:
   -
     identifier: items
     type: Collection
+    table: order_summary_items
     label: 'Line Items'
     minItems: 1
     fields:

@@ -37,6 +37,7 @@ fields:
   -
     identifier: members
     type: Collection
+    table: team_grid_minimal_members
     label: Members
     minItems: 1
     fields:

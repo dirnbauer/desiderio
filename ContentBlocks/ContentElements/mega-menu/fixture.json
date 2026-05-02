@@ -1,84 +1,28 @@
 {
-  "_type": "nav",
-  "header": "Platform Navigation",
-  "brand": "Acme Platform",
-  "brand_link": "https://example.com/desiderio",
-  "intro_title": "Mega Menu",
-  "intro_text": "Structured navigation for product suites, resources, and conversion paths.",
-  "primary_button_text": "Start Free Trial",
-  "primary_button_link": "https://example.com/desiderio/start",
-  "menu_groups": [
-    {
-      "title": "Product",
-      "description": "Explore the core platform, collaboration tools, and workflow automation.",
-      "links": [
+    "_type": "nav",
+    "header": "Platform Navigation",
+    "brand": "Acme Platform",
+    "brand_link": "https://example.com/desiderio",
+    "intro_title": "Mega Menu",
+    "intro_text": "Structured navigation for product suites, resources, and conversion paths.",
+    "primary_button_text": "Start Free Trial",
+    "primary_button_link": "https://example.com/desiderio/start",
+    "menu_groups": [
         {
-          "label": "Platform overview",
-          "link": "https://example.com/desiderio/overview"
+            "title": "Product",
+            "description": "Explore the core platform, collaboration tools, and workflow automation."
         },
         {
-          "label": "Feature map",
-          "link": "https://example.com/desiderio/features"
+            "title": "Solutions",
+            "description": "Find workflows for product teams, agencies, and enterprise operations."
         },
         {
-          "label": "Integrations",
-          "link": "https://example.com/desiderio/integrations"
+            "title": "Resources",
+            "description": "Use practical guides, launch checklists, and technical references."
+        },
+        {
+            "title": "Company",
+            "description": "Learn how the team builds accessible, shadcn-inspired TYPO3 experiences."
         }
-      ]
-    },
-    {
-      "title": "Solutions",
-      "description": "Find workflows for product teams, agencies, and enterprise operations.",
-      "links": [
-        {
-          "label": "For product teams",
-          "link": "https://example.com/desiderio/solutions/product"
-        },
-        {
-          "label": "For agencies",
-          "link": "https://example.com/desiderio/solutions/agencies"
-        },
-        {
-          "label": "For enterprise",
-          "link": "https://example.com/desiderio/solutions/enterprise"
-        }
-      ]
-    },
-    {
-      "title": "Resources",
-      "description": "Use practical guides, launch checklists, and technical references.",
-      "links": [
-        {
-          "label": "Documentation",
-          "link": "https://example.com/desiderio/docs"
-        },
-        {
-          "label": "Customer stories",
-          "link": "https://example.com/desiderio/customers"
-        },
-        {
-          "label": "Support center",
-          "link": "https://example.com/desiderio/support"
-        }
-      ]
-    },
-    {
-      "title": "Company",
-      "description": "Learn how the team builds accessible, shadcn-inspired TYPO3 experiences.",
-      "links": [
-        {
-          "label": "About",
-          "link": "https://example.com/desiderio/about"
-        },
-        {
-          "label": "Changelog",
-          "link": "https://example.com/desiderio/changelog"
-        },
-        {
-          "label": "Contact",
-          "link": "https://example.com/desiderio/contact"
-        }
-      ]
-    }
-  ]
+    ]
 }

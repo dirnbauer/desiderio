@@ -1,23 +1,16 @@
 {
-  "_type": "form",
-  "header": "Contact Us",
-  "description": "Have a question or want to learn more? Drop us a message.",
-  "fields": [
-    {
-      "label": "Full Name",
-      "type": "text",
-      "placeholder": "Jane Doe"
-    },
-    {
-      "label": "Email Address",
-      "type": "email",
-      "placeholder": "jane@company.com"
-    },
-    {
-      "label": "Message",
-      "type": "text",
-      "placeholder": "Tell us how we can help..."
-    }
-  ],
-  "primaryButton": "Send Message"
+    "_type": "form",
+    "header": "Contact Us",
+    "subheadline": "Have a question or want to learn more? Drop us a message.",
+    "contact_items": [
+        {
+            "label": "Full Name"
+        },
+        {
+            "label": "Email Address"
+        },
+        {
+            "label": "Message"
+        }
+    ]
 }

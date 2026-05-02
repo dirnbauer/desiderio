@@ -30,6 +30,7 @@ fields:
   -
     identifier: category_filters
     type: Collection
+    table: hero_search_category_filters
     label: 'Category Filters'
     fields:
       -

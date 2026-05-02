@@ -1,27 +1,22 @@
 {
-  "_type": "grid",
-  "header": "Resource Library",
-  "description": "Guides, templates, and best practices to help you succeed.",
-  "items": [
-    {
-      "icon": "\ud83d\udcd8",
-      "title": "Getting Started Guide",
-      "description": "A comprehensive walkthrough for new users covering setup, configuration, and first workflows."
-    },
-    {
-      "icon": "\ud83d\udcdd",
-      "title": "Best Practices Handbook",
-      "description": "Proven strategies from our top-performing customers for maximizing platform value."
-    },
-    {
-      "icon": "\ud83d\udcc4",
-      "title": "Template Library",
-      "description": "Pre-built workflow templates for sales, marketing, engineering, and HR teams."
-    },
-    {
-      "icon": "\ud83c\udfa5",
-      "title": "Video Tutorials",
-      "description": "Step-by-step video guides covering every feature of the platform."
-    }
-  ]
+    "_type": "grid",
+    "header": "Resource Library",
+    "items": [
+        {
+            "title": "Getting Started Guide",
+            "description": "A comprehensive walkthrough for new users covering setup, configuration, and first workflows."
+        },
+        {
+            "title": "Best Practices Handbook",
+            "description": "Proven strategies from our top-performing customers for maximizing platform value."
+        },
+        {
+            "title": "Template Library",
+            "description": "Pre-built workflow templates for sales, marketing, engineering, and HR teams."
+        },
+        {
+            "title": "Video Tutorials",
+            "description": "Step-by-step video guides covering every feature of the platform."
+        }
+    ]
 }

@@ -1,23 +1,19 @@
 {
-  "_type": "team",
-  "header": "Our Advisory Board",
-  "description": "Industry leaders guiding our strategic vision and product direction.",
-  "members": [
-    {
-      "name": "Dr. Elena Fischer",
-      "role": "Strategic Advisor"
-    },
-    {
-      "name": "James Thornton",
-      "role": "Technology Advisor"
-    },
-    {
-      "name": "Priya Mehta",
-      "role": "Growth Advisor"
-    },
-    {
-      "name": "Robert Chen",
-      "role": "Finance Advisor"
-    }
-  ]
+    "_type": "team",
+    "header": "Our Advisory Board",
+    "subheadline": "Industry leaders guiding our strategic vision and product direction.",
+    "advisors": [
+        {
+            "name": "Dr. Elena Fischer"
+        },
+        {
+            "name": "James Thornton"
+        },
+        {
+            "name": "Priya Mehta"
+        },
+        {
+            "name": "Robert Chen"
+        }
+    ]
 }

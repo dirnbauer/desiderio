@@ -42,6 +42,7 @@ fields:
   -
     identifier: stats
     type: Collection
+    table: stats_stats
     label: Stats
     minItems: 1
     fields:

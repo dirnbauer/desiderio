@@ -21,6 +21,7 @@ fields:
   -
     identifier: items
     type: Collection
+    table: metric_dashboard_items
     label: Metrics
     minItems: 1
     fields:

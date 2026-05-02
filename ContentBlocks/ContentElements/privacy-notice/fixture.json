@@ -1,23 +1,11 @@
 {
-  "_type": "footer",
-  "columns": [
-    {
-      "title": "Privacy Notice",
-      "links": [
-        "Data Collection Practices",
-        "Third-Party Sharing",
-        "Your Rights Under GDPR",
-        "California Privacy Rights (CCPA)"
-      ]
-    },
-    {
-      "title": "Data Protection",
-      "links": [
-        "Data Processing Agreement",
-        "Sub-Processor List",
-        "Data Retention Policy"
-      ]
-    }
-  ],
-  "copyright": "Last updated: March 2026. For privacy inquiries, contact privacy@acmeplatform.com."
+    "_type": "footer",
+    "sections": [
+        {
+            "title": "Privacy Notice"
+        },
+        {
+            "title": "Data Protection"
+        }
+    ]
 }

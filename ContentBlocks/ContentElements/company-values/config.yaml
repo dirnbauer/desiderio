@@ -26,6 +26,7 @@ fields:
   -
     identifier: value_items
     type: Collection
+    table: company_values_value_items
     label: Values
     minItems: 1
     fields:

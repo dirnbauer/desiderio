@@ -1,22 +1,15 @@
 {
-  "_type": "grid",
-  "header": "Customer Success Stories",
-  "description": "See how teams across industries achieve results with our platform.",
-  "items": [
-    {
-      "icon": "🏥",
-      "title": "MedTech Corp",
-      "description": "HIPAA-compliant deploys in under 2 minutes."
-    },
-    {
-      "icon": "🛒",
-      "title": "ShopStream",
-      "description": "99.99% uptime during Black Friday traffic."
-    },
-    {
-      "icon": "🎓",
-      "title": "EduPlatform",
-      "description": "Scaled to 1M students with zero downtime."
-    }
-  ]
+    "_type": "grid",
+    "header": "Customer Success Stories",
+    "cases": [
+        {
+            "summary": "HIPAA-compliant deploys in under 2 minutes."
+        },
+        {
+            "summary": "99.99% uptime during Black Friday traffic."
+        },
+        {
+            "summary": "Scaled to 1M students with zero downtime."
+        }
+    ]
 }

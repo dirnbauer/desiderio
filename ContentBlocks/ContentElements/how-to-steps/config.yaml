@@ -21,6 +21,7 @@ fields:
   -
     identifier: items
     type: Collection
+    table: how_to_steps_items
     label: Steps
     minItems: 2
     fields:

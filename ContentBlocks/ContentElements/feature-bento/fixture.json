@@ -1,27 +1,23 @@
 {
-  "_type": "grid",
-  "header": "Platform Overview",
-  "description": "A bento-style layout of our most impactful features.",
-  "items": [
-    {
-      "icon": "⚡",
-      "title": "Instant Deploys",
-      "description": "Push to production in under 10 seconds."
-    },
-    {
-      "icon": "🔄",
-      "title": "Auto Scaling",
-      "description": "Infrastructure scales with your traffic automatically."
-    },
-    {
-      "icon": "🛡️",
-      "title": "Built-in Security",
-      "description": "Vulnerability scanning on every build."
-    },
-    {
-      "icon": "📱",
-      "title": "Mobile Ready",
-      "description": "Manage deployments from your phone."
-    }
-  ]
+    "_type": "grid",
+    "header": "Platform Overview",
+    "subheadline": "A bento-style layout of our most impactful features.",
+    "items": [
+        {
+            "title": "Instant Deploys",
+            "description": "Push to production in under 10 seconds."
+        },
+        {
+            "title": "Auto Scaling",
+            "description": "Infrastructure scales with your traffic automatically."
+        },
+        {
+            "title": "Built-in Security",
+            "description": "Vulnerability scanning on every build."
+        },
+        {
+            "title": "Mobile Ready",
+            "description": "Manage deployments from your phone."
+        }
+    ]
 }

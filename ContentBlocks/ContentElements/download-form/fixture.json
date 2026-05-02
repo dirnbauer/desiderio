@@ -1,23 +1,6 @@
 {
-  "_type": "form",
-  "header": "Download Our Whitepaper",
-  "description": "Get the 2026 State of Enterprise Automation report with insights from 500+ CTOs.",
-  "fields": [
-    {
-      "label": "Full Name",
-      "type": "text",
-      "placeholder": "Sarah Johnson"
-    },
-    {
-      "label": "Work Email",
-      "type": "email",
-      "placeholder": "sarah@company.com"
-    },
-    {
-      "label": "Job Title",
-      "type": "text",
-      "placeholder": "VP of Engineering"
-    }
-  ],
-  "primaryButton": "Download Now"
+    "_type": "form",
+    "header": "Download Our Whitepaper",
+    "description": "Get the 2026 State of Enterprise Automation report with insights from 500+ CTOs.",
+    "button_text": "Download Now"
 }

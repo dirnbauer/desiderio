@@ -21,6 +21,7 @@ fields:
   -
     identifier: link_items
     type: Collection
+    table: utility_bar_link_items
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:links'
     fields:
       -

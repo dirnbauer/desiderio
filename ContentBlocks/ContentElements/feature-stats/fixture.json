@@ -1,22 +1,22 @@
 {
-  "_type": "stats",
-  "header": "Features That Deliver Results",
-  "stats": [
-    {
-      "value": "300+",
-      "label": "Native Integrations"
-    },
-    {
-      "value": "50M+",
-      "label": "Automations Run Monthly"
-    },
-    {
-      "value": "99.99%",
-      "label": "Platform Uptime"
-    },
-    {
-      "value": "< 50ms",
-      "label": "Average Latency"
-    }
-  ]
+    "_type": "stats",
+    "header": "Features That Deliver Results",
+    "items": [
+        {
+            "value": "300+",
+            "label": "Native Integrations"
+        },
+        {
+            "value": "50M+",
+            "label": "Automations Run Monthly"
+        },
+        {
+            "value": "99.99%",
+            "label": "Platform Uptime"
+        },
+        {
+            "value": "< 50ms",
+            "label": "Average Latency"
+        }
+    ]
 }

@@ -1,13 +1,11 @@
 {
-  "_type": "form",
-  "header": "Stay in the Loop",
-  "description": "Get weekly product updates, industry insights, and exclusive tips delivered to your inbox.",
-  "fields": [
-    {
-      "label": "Email Address",
-      "type": "email",
-      "placeholder": "your@email.com"
-    }
-  ],
-  "primaryButton": "Subscribe"
+    "_type": "form",
+    "header": "Stay in the Loop",
+    "subheadline": "Get weekly product updates, industry insights, and exclusive tips delivered to your inbox.",
+    "points": [
+        {
+            "text": "Email Address"
+        }
+    ],
+    "button_text": "Subscribe"
 }

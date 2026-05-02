@@ -21,6 +21,7 @@ fields:
   -
     identifier: items
     type: Collection
+    table: faq_items
     label: Questions
     minItems: 1
     fields:

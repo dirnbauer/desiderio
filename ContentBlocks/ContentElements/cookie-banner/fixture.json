@@ -1,23 +1,5 @@
 {
-  "_type": "form",
-  "header": "Cookie Preferences",
-  "description": "We use cookies to enhance your browsing experience and analyze site traffic.",
-  "fields": [
-    {
-      "label": "Essential Cookies",
-      "type": "checkbox",
-      "placeholder": "Always active"
-    },
-    {
-      "label": "Analytics Cookies",
-      "type": "checkbox",
-      "placeholder": "Help us understand how visitors use our site"
-    },
-    {
-      "label": "Marketing Cookies",
-      "type": "checkbox",
-      "placeholder": "Used to deliver relevant advertisements"
-    }
-  ],
-  "primaryButton": "Save Preferences"
+    "_type": "form",
+    "header": "Cookie Preferences",
+    "content": "We use cookies to enhance your browsing experience and analyze site traffic."
 }

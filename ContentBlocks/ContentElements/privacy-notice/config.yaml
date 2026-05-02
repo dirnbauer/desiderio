@@ -21,6 +21,7 @@ fields:
   -
     identifier: sections
     type: Collection
+    table: privacy_notice_sections
     label: Sections
     minItems: 1
     fields:

@@ -16,6 +16,7 @@ fields:
   -
     identifier: items
     type: Collection
+    table: breadcrumb_items
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:items'
     minItems: 1
     fields:

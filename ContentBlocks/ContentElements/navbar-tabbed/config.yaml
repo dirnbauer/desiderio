@@ -22,6 +22,7 @@ fields:
   -
     identifier: tabs
     type: Collection
+    table: navbar_tabbed_tabs
     label: Tabs
     minItems: 1
     fields:

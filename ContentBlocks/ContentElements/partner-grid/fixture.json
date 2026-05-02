@@ -1,27 +1,19 @@
 {
-  "_type": "grid",
-  "header": "Our Partner Ecosystem",
-  "description": "We work with industry-leading partners to deliver comprehensive solutions.",
-  "items": [
-    {
-      "icon": "\ud83e\udd1d",
-      "title": "Technology Partners",
-      "description": "Deep integrations with AWS, Google Cloud, and Microsoft Azure."
-    },
-    {
-      "icon": "\ud83c\udfe2",
-      "title": "Solution Partners",
-      "description": "Certified consultants who help implement and customize our platform."
-    },
-    {
-      "icon": "\ud83c\udf10",
-      "title": "Channel Partners",
-      "description": "Regional resellers bringing our platform to markets worldwide."
-    },
-    {
-      "icon": "\ud83d\udee0\ufe0f",
-      "title": "Integration Partners",
-      "description": "Third-party developers building connectors and extensions on our API."
-    }
-  ]
+    "_type": "grid",
+    "header": "Our Partner Ecosystem",
+    "subheadline": "We work with industry-leading partners to deliver comprehensive solutions.",
+    "partners": [
+        {
+            "name": "Technology Partners"
+        },
+        {
+            "name": "Solution Partners"
+        },
+        {
+            "name": "Channel Partners"
+        },
+        {
+            "name": "Integration Partners"
+        }
+    ]
 }

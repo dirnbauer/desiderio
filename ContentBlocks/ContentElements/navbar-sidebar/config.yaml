@@ -26,6 +26,7 @@ fields:
   -
     identifier: sections
     type: Collection
+    table: navbar_sidebar_sections
     label: Sections
     minItems: 1
     fields:

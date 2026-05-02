@@ -29,6 +29,7 @@ fields:
   -
     identifier: step_items
     type: Collection
+    table: nav_steps_step_items
     label: Steps
     minItems: 2
     fields:

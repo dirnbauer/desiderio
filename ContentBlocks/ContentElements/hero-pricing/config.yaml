@@ -31,6 +31,7 @@ fields:
   -
     identifier: feature_items
     type: Collection
+    table: hero_pricing_feature_items
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:features'
     fields:
       -

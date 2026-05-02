@@ -36,6 +36,7 @@ fields:
   -
     identifier: items
     type: Collection
+    table: content_carousel_items
     label: Slides
     minItems: 2
     fields:

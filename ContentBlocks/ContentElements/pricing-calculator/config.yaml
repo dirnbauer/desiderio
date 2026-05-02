@@ -33,6 +33,7 @@ fields:
   -
     identifier: tiers
     type: Collection
+    table: pricing_calculator_tiers
     label: 'Pricing Tiers'
     minItems: 1
     fields:

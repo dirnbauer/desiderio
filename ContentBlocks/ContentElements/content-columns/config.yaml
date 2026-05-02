@@ -29,6 +29,7 @@ fields:
   -
     identifier: items
     type: Collection
+    table: content_columns_items
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:column_content'
     minItems: 2
     fields:

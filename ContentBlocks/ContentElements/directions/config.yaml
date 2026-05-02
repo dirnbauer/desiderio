@@ -21,6 +21,7 @@ fields:
   -
     identifier: routes
     type: Collection
+    table: directions_routes
     label: Routes
     minItems: 1
     fields:

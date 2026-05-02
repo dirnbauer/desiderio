@@ -1,28 +1,6 @@
 {
-  "_type": "form",
-  "header": "Book a Consultation",
-  "description": "Schedule a free 30-minute session with one of our product specialists.",
-  "fields": [
-    {
-      "label": "Full Name",
-      "type": "text",
-      "placeholder": "Jane Smith"
-    },
-    {
-      "label": "Email Address",
-      "type": "email",
-      "placeholder": "jane@company.com"
-    },
-    {
-      "label": "Preferred Date",
-      "type": "date",
-      "placeholder": "Select a date"
-    },
-    {
-      "label": "Message",
-      "type": "textarea",
-      "placeholder": "Tell us about your needs..."
-    }
-  ],
-  "primaryButton": "Book Now"
+    "_type": "form",
+    "header": "Book a Consultation",
+    "description": "Schedule a free 30-minute session with one of our product specialists.",
+    "submit_text": "Book Now"
 }

@@ -1,27 +1,23 @@
 {
-  "_type": "grid",
-  "header": "Enterprise Capabilities",
-  "description": "Features built for large-scale organizations.",
-  "items": [
-    {
-      "icon": "🔐",
-      "title": "SSO & SAML",
-      "description": "Single sign-on with your identity provider."
-    },
-    {
-      "icon": "📜",
-      "title": "Compliance",
-      "description": "SOC 2, GDPR, and HIPAA ready."
-    },
-    {
-      "icon": "🏢",
-      "title": "Multi-Tenancy",
-      "description": "Isolated environments per team or client."
-    },
-    {
-      "icon": "📞",
-      "title": "Dedicated Support",
-      "description": "Named account manager with 1-hour SLA."
-    }
-  ]
+    "_type": "grid",
+    "header": "Enterprise Capabilities",
+    "subheadline": "Features built for large-scale organizations.",
+    "items": [
+        {
+            "icon": "🔐",
+            "title": "SSO & SAML"
+        },
+        {
+            "icon": "📜",
+            "title": "Compliance"
+        },
+        {
+            "icon": "🏢",
+            "title": "Multi-Tenancy"
+        },
+        {
+            "icon": "📞",
+            "title": "Dedicated Support"
+        }
+    ]
 }

@@ -1,22 +1,19 @@
 {
-  "_type": "grid",
-  "header": "Why Teams Choose Us",
-  "description": "Alternating feature highlights that showcase our platform's strengths.",
-  "items": [
-    {
-      "icon": "🎯",
-      "title": "Goal Tracking",
-      "description": "Set OKRs and track progress across your organization."
-    },
-    {
-      "icon": "📊",
-      "title": "Custom Dashboards",
-      "description": "Build personalized views with drag-and-drop widgets."
-    },
-    {
-      "icon": "🤝",
-      "title": "Cross-Team Collaboration",
-      "description": "Share projects and insights across departments seamlessly."
-    }
-  ]
+    "_type": "grid",
+    "header": "Why Teams Choose Us",
+    "subheadline": "Alternating feature highlights that showcase our platform's strengths.",
+    "items": [
+        {
+            "title": "Goal Tracking",
+            "description": "Set OKRs and track progress across your organization."
+        },
+        {
+            "title": "Custom Dashboards",
+            "description": "Build personalized views with drag-and-drop widgets."
+        },
+        {
+            "title": "Cross-Team Collaboration",
+            "description": "Share projects and insights across departments seamlessly."
+        }
+    ]
 }

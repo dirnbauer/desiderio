@@ -40,6 +40,7 @@ fields:
   -
     identifier: social_links
     type: Collection
+    table: team_member_social_links
     label: 'Social Links'
     fields:
       -

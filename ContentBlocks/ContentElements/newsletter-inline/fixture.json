@@ -1,13 +1,6 @@
 {
-  "_type": "form",
-  "header": "Subscribe to Our Newsletter",
-  "description": "One email per week. No spam, unsubscribe anytime.",
-  "fields": [
-    {
-      "label": "Email",
-      "type": "email",
-      "placeholder": "Enter your email"
-    }
-  ],
-  "primaryButton": "Join"
+    "_type": "form",
+    "header": "Subscribe to Our Newsletter",
+    "description_text": "One email per week. No spam, unsubscribe anytime.",
+    "button_text": "Join"
 }

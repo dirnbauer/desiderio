@@ -1,27 +1,23 @@
 {
-  "_type": "grid",
-  "header": "Explore by Category",
-  "description": "Find the right solution for your specific needs.",
-  "items": [
-    {
-      "icon": "\ud83d\udcbc",
-      "title": "Sales & Marketing",
-      "description": "CRM, email campaigns, lead scoring, and pipeline management tools."
-    },
-    {
-      "icon": "\u2699\ufe0f",
-      "title": "Engineering",
-      "description": "CI/CD, code review, incident management, and infrastructure monitoring."
-    },
-    {
-      "icon": "\ud83d\udcb0",
-      "title": "Finance",
-      "description": "Invoicing, expense tracking, budgeting, and financial reporting."
-    },
-    {
-      "icon": "\ud83d\udc65",
-      "title": "Human Resources",
-      "description": "Recruiting, onboarding, performance reviews, and employee engagement."
-    }
-  ]
+    "_type": "grid",
+    "header": "Explore by Category",
+    "subheadline": "Find the right solution for your specific needs.",
+    "items": [
+        {
+            "title": "Sales & Marketing",
+            "description": "CRM, email campaigns, lead scoring, and pipeline management tools."
+        },
+        {
+            "title": "Engineering",
+            "description": "CI/CD, code review, incident management, and infrastructure monitoring."
+        },
+        {
+            "title": "Finance",
+            "description": "Invoicing, expense tracking, budgeting, and financial reporting."
+        },
+        {
+            "title": "Human Resources",
+            "description": "Recruiting, onboarding, performance reviews, and employee engagement."
+        }
+    ]
 }

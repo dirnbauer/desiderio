@@ -1,27 +1,18 @@
 {
-  "_type": "grid",
-  "header": "Our Integration Partners",
-  "description": "Seamlessly connect with the tools your team already uses.",
-  "items": [
-    {
-      "icon": "\ud83d\udce8",
-      "title": "Slack",
-      "description": "Get real-time notifications and create tasks directly from Slack messages."
-    },
-    {
-      "icon": "\ud83d\udc19",
-      "title": "GitHub",
-      "description": "Link pull requests, track deployments, and automate code review workflows."
-    },
-    {
-      "icon": "\u2601\ufe0f",
-      "title": "Google Workspace",
-      "description": "Sync documents, calendars, and contacts with zero configuration."
-    },
-    {
-      "icon": "\ud83d\udcca",
-      "title": "Salesforce",
-      "description": "Bi-directional sync of leads, opportunities, and customer data."
-    }
-  ]
+    "_type": "grid",
+    "header": "Our Integration Partners",
+    "logo_items": [
+        {
+            "name": "Slack"
+        },
+        {
+            "name": "GitHub"
+        },
+        {
+            "name": "Google Workspace"
+        },
+        {
+            "name": "Salesforce"
+        }
+    ]
 }

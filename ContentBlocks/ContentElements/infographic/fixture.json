@@ -1,18 +1,18 @@
 {
-  "_type": "stats",
-  "header": "Platform at a Glance",
-  "stats": [
-    {
-      "value": "99.99%",
-      "label": "Uptime SLA"
-    },
-    {
-      "value": "50M+",
-      "label": "API Calls/Day"
-    },
-    {
-      "value": "200+",
-      "label": "Integrations"
-    }
-  ]
+    "_type": "stats",
+    "header": "Platform at a Glance",
+    "items": [
+        {
+            "number": "99.99%",
+            "title": "Uptime SLA"
+        },
+        {
+            "number": "50M+",
+            "title": "API Calls/Day"
+        },
+        {
+            "number": "200+",
+            "title": "Integrations"
+        }
+    ]
 }

@@ -26,6 +26,7 @@ fields:
   -
     identifier: items
     type: Collection
+    table: pricing_usage_items
     label: 'Usage Items'
     minItems: 1
     fields:

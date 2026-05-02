@@ -1,23 +1,5 @@
 {
-  "_type": "form",
-  "header": "Notification Preferences",
-  "description": "Choose how you want to be notified about important updates and activity.",
-  "fields": [
-    {
-      "label": "Email Notifications",
-      "type": "checkbox",
-      "placeholder": "Receive updates via email"
-    },
-    {
-      "label": "Push Notifications",
-      "type": "checkbox",
-      "placeholder": "Browser push notifications"
-    },
-    {
-      "label": "SMS Alerts",
-      "type": "checkbox",
-      "placeholder": "Critical alerts via text message"
-    }
-  ],
-  "primaryButton": "Save Preferences"
+    "_type": "form",
+    "header": "Notification Preferences",
+    "content": "Choose how you want to be notified about important updates and activity."
 }

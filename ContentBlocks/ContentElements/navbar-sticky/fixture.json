@@ -1,11 +1,11 @@
 {
-  "_type": "nav",
-  "logo": "Acme",
-  "links": [
-    "Features",
-    "Enterprise",
-    "Pricing",
-    "Contact"
-  ],
-  "primaryButton": "Free Trial"
+    "_type": "nav",
+    "brand": "Acme",
+    "nav_items": [
+        "Features",
+        "Enterprise",
+        "Pricing",
+        "Contact"
+    ],
+    "button_text": "Free Trial"
 }

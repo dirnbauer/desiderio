@@ -1,27 +1,19 @@
 {
-  "_type": "grid",
-  "header": "Why Teams Choose Us",
-  "description": "Trusted by thousands of companies for their most critical workflows.",
-  "items": [
-    {
-      "icon": "\u26a1",
-      "title": "Lightning Fast",
-      "description": "Sub-100ms response times across all API endpoints."
-    },
-    {
-      "icon": "\ud83d\udd12",
-      "title": "Enterprise Security",
-      "description": "SOC 2 Type II certified with end-to-end encryption."
-    },
-    {
-      "icon": "\ud83c\udf10",
-      "title": "Global CDN",
-      "description": "Content delivered from 200+ edge locations worldwide."
-    },
-    {
-      "icon": "\ud83d\udce6",
-      "title": "Easy Integration",
-      "description": "Pre-built connectors for 50+ popular tools and platforms."
-    }
-  ]
+    "_type": "grid",
+    "header": "Why Teams Choose Us",
+    "description": "Trusted by thousands of companies for their most critical workflows.",
+    "items": [
+        {
+            "text": "Sub-100ms response times across all API endpoints."
+        },
+        {
+            "text": "SOC 2 Type II certified with end-to-end encryption."
+        },
+        {
+            "text": "Content delivered from 200+ edge locations worldwide."
+        },
+        {
+            "text": "Pre-built connectors for 50+ popular tools and platforms."
+        }
+    ]
 }

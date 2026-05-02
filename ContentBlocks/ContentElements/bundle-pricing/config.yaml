@@ -38,6 +38,7 @@ fields:
   -
     identifier: items
     type: Collection
+    table: bundle_pricing_items
     label: 'Bundle Items'
     minItems: 2
     fields:

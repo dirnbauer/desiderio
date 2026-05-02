@@ -1,22 +1,22 @@
 {
-  "_type": "stats",
-  "header": "Top Performers This Month",
-  "stats": [
-    {
-      "value": "1,247",
-      "label": "Tasks Completed - Team Alpha"
-    },
-    {
-      "value": "1,103",
-      "label": "Tasks Completed - Team Beta"
-    },
-    {
-      "value": "986",
-      "label": "Tasks Completed - Team Gamma"
-    },
-    {
-      "value": "921",
-      "label": "Tasks Completed - Team Delta"
-    }
-  ]
+    "_type": "stats",
+    "header": "Top Performers This Month",
+    "items": [
+        {
+            "value": "1,247",
+            "name": "Tasks Completed - Team Alpha"
+        },
+        {
+            "value": "1,103",
+            "name": "Tasks Completed - Team Beta"
+        },
+        {
+            "value": "986",
+            "name": "Tasks Completed - Team Gamma"
+        },
+        {
+            "value": "921",
+            "name": "Tasks Completed - Team Delta"
+        }
+    ]
 }

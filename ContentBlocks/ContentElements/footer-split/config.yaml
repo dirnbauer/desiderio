@@ -26,6 +26,7 @@ fields:
   -
     identifier: link_items
     type: Collection
+    table: footer_split_link_items
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:links'
     fields:
       -

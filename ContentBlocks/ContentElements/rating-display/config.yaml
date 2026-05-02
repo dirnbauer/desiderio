@@ -21,6 +21,7 @@ fields:
   -
     identifier: rating_items
     type: Collection
+    table: rating_display_rating_items
     label: 'Rating Sources'
     minItems: 1
     fields:

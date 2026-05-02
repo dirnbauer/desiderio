@@ -1,11 +1,10 @@
 {
-  "_type": "nav",
-  "logo": "AdminPanel",
-  "links": [
-    "Overview",
-    "Users",
-    "Content",
-    "Settings"
-  ],
-  "primaryButton": "Collapse"
+    "_type": "nav",
+    "brand": "AdminPanel",
+    "sections": [
+        "Overview",
+        "Users",
+        "Content",
+        "Settings"
+    ]
 }

@@ -16,6 +16,7 @@ fields:
   -
     identifier: items
     type: Collection
+    table: nav_toc_items
     label: 'TOC Items'
     minItems: 1
     fields:

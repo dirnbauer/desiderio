@@ -21,6 +21,7 @@ fields:
   -
     identifier: items
     type: Collection
+    table: feature_grid_3_items
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:features'
     minItems: 3
     fields:

@@ -1,27 +1,18 @@
 {
-  "_type": "grid",
-  "header": "Our Products",
-  "description": "A suite of tools for the modern development lifecycle.",
-  "items": [
-    {
-      "icon": "🚀",
-      "title": "FlowCI",
-      "description": "Continuous integration and deployment."
-    },
-    {
-      "icon": "📊",
-      "title": "Metrica",
-      "description": "Application performance monitoring."
-    },
-    {
-      "icon": "🔑",
-      "title": "VaultKey",
-      "description": "Secrets and credentials management."
-    },
-    {
-      "icon": "📋",
-      "title": "TaskBoard",
-      "description": "Project management for engineering."
-    }
-  ]
+    "_type": "grid",
+    "header": "Our Products",
+    "products": [
+        {
+            "name": "FlowCI"
+        },
+        {
+            "name": "Metrica"
+        },
+        {
+            "name": "VaultKey"
+        },
+        {
+            "name": "TaskBoard"
+        }
+    ]
 }

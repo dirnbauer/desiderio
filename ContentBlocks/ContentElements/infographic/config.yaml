@@ -34,6 +34,7 @@ fields:
   -
     identifier: items
     type: Collection
+    table: infographic_items
     label: Steps
     minItems: 1
     fields:

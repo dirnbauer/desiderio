@@ -21,6 +21,7 @@ fields:
   -
     identifier: milestones
     type: Collection
+    table: company_milestones_milestones
     label: Milestones
     minItems: 1
     fields:

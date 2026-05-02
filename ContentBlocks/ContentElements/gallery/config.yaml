@@ -37,6 +37,7 @@ fields:
   -
     identifier: items
     type: Collection
+    table: gallery_items
     label: 'Gallery Items'
     minItems: 1
     fields:

@@ -26,6 +26,7 @@ fields:
   -
     identifier: clients
     type: Collection
+    table: client_list_clients
     label: Clients
     minItems: 1
     fields:

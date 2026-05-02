@@ -44,6 +44,7 @@ fields:
   -
     identifier: points
     type: Collection
+    table: newsletter_signup_points
     label: 'Supporting Points'
     fields:
       -

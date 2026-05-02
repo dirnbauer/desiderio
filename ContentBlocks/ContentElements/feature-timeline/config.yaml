@@ -21,6 +21,7 @@ fields:
   -
     identifier: items
     type: Collection
+    table: feature_timeline_items
     label: 'Timeline Steps'
     minItems: 2
     fields:

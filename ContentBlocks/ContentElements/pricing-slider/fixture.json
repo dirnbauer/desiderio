@@ -1,43 +1,16 @@
 {
-  "_type": "pricing",
-  "header": "Pay As You Grow",
-  "description": "Adjust your plan based on your usage. Slide to see pricing.",
-  "plans": [
-    {
-      "name": "1K Users",
-      "price": "$19",
-      "period": "per month",
-      "features": [
-        "Up to 1,000 MAU",
-        "Basic analytics",
-        "Email support"
-      ],
-      "button": "Select",
-      "featured": false
-    },
-    {
-      "name": "10K Users",
-      "price": "$79",
-      "period": "per month",
-      "features": [
-        "Up to 10,000 MAU",
-        "Advanced analytics",
-        "Priority support"
-      ],
-      "button": "Select",
-      "featured": true
-    },
-    {
-      "name": "100K Users",
-      "price": "$299",
-      "period": "per month",
-      "features": [
-        "Up to 100,000 MAU",
-        "Enterprise analytics",
-        "Dedicated CSM"
-      ],
-      "button": "Select",
-      "featured": false
-    }
-  ]
+    "_type": "pricing",
+    "header": "Pay As You Grow",
+    "description": "Adjust your plan based on your usage. Slide to see pricing.",
+    "tiers": [
+        {
+            "price": "$19"
+        },
+        {
+            "price": "$79"
+        },
+        {
+            "price": "$299"
+        }
+    ]
 }

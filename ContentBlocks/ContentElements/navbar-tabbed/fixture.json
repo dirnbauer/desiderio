@@ -1,12 +1,12 @@
 {
-  "_type": "nav",
-  "logo": "Acme",
-  "links": [
-    "Dashboard",
-    "Projects",
-    "Team",
-    "Reports",
-    "Settings"
-  ],
-  "primaryButton": "New Project"
+    "_type": "nav",
+    "brand": "Acme",
+    "tabs": [
+        "Dashboard",
+        "Projects",
+        "Team",
+        "Reports",
+        "Settings"
+    ],
+    "button_text": "New Project"
 }

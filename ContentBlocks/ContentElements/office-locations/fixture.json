@@ -1,27 +1,11 @@
 {
-  "_type": "grid",
-  "header": "Our Offices",
-  "description": "Global presence with a remote-first mindset.",
-  "items": [
-    {
-      "icon": "🇺🇸",
-      "title": "San Francisco",
-      "description": "HQ — 100 employees"
-    },
-    {
-      "icon": "🇩🇪",
-      "title": "Berlin",
-      "description": "EU hub — 45 employees"
-    },
-    {
-      "icon": "🇯🇵",
-      "title": "Tokyo",
-      "description": "APAC office — 20 employees"
-    },
-    {
-      "icon": "🌍",
-      "title": "Remote",
-      "description": "35 employees across 15 countries"
-    }
-  ]
+    "_type": "grid",
+    "header": "Our Offices",
+    "subheadline": "Global presence with a remote-first mindset.",
+    "location_items": [
+        [],
+        [],
+        [],
+        []
+    ]
 }

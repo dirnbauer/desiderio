@@ -26,6 +26,7 @@ fields:
   -
     identifier: jobs
     type: Collection
+    table: career_listing_jobs
     label: 'Job Openings'
     minItems: 1
     fields:

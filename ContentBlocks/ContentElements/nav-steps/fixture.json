@@ -1,12 +1,10 @@
 {
-  "_type": "nav",
-  "logo": "Setup Wizard",
-  "links": [
-    "Account",
-    "Team",
-    "Integrations",
-    "Review",
-    "Launch"
-  ],
-  "primaryButton": "Continue"
+    "_type": "nav",
+    "step_items": [
+        "Account",
+        "Team",
+        "Integrations",
+        "Review",
+        "Launch"
+    ]
 }

@@ -26,6 +26,7 @@ fields:
   -
     identifier: testimonials
     type: Collection
+    table: testimonial_carousel_testimonials
     label: Testimonials
     minItems: 2
     fields:

@@ -21,6 +21,7 @@ fields:
   -
     identifier: items
     type: Collection
+    table: resource_library_items
     label: Resources
     minItems: 1
     fields:

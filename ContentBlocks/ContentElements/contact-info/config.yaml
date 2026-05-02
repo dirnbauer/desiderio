@@ -21,6 +21,7 @@ fields:
   -
     identifier: items
     type: Collection
+    table: contact_info_items
     label: 'Contact Items'
     minItems: 1
     fields:

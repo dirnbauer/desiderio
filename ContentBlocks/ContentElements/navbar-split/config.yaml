@@ -26,6 +26,7 @@ fields:
   -
     identifier: left_items
     type: Collection
+    table: navbar_split_left_items
     label: 'Left Links'
     fields:
       -
@@ -40,6 +41,7 @@ fields:
   -
     identifier: right_items
     type: Collection
+    table: navbar_split_right_items
     label: 'Right Links'
     fields:
       -

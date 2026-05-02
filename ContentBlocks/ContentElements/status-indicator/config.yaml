@@ -35,6 +35,7 @@ fields:
   -
     identifier: items
     type: Collection
+    table: status_indicator_items
     label: Services
     minItems: 1
     fields:

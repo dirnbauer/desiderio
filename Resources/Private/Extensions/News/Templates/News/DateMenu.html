@@ -1,0 +1,31 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:layout name="General" />
+
+<f:section name="content">
+    <div class="news-menu-view grid gap-4">
+        <f:for each="{data.single}" key="year" as="months">
+            <d:molecule.card size="sm">
+                <d:molecule.cardHeader title="{year}" />
+                <d:molecule.cardContent>
+                    <ul class="divide-y divide-border">
+                        <f:for each="{months}" key="month" as="count">
+                            <li>
+                                <f:link.action action="list" pageUid="{listPid}" arguments="{overwriteDemand: {year: year, month: month}}" class="flex items-center justify-between gap-3 py-2 text-sm text-muted-foreground transition-colors hover:text-primary">
+                                    <span><f:translate key="month.{month}" /> {year}</span>
+                                    <d:atom.badge variant="secondary">{count} <f:translate key="{f:if(condition: '{count} == 1', then: 'entry', else: 'entries')}" /></d:atom.badge>
+                                </f:link.action>
+                            </li>
+                        </f:for>
+                    </ul>
+                </d:molecule.cardContent>
+            </d:molecule.card>
+        </f:for>
+    </div>
+</f:section>
+
+</html>

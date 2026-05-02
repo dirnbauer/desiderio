@@ -22,6 +22,7 @@ fields:
   -
     identifier: items
     type: Collection
+    table: analytics_overview_items
     label: 'Key Metrics'
     minItems: 1
     fields:

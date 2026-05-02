@@ -1,22 +1,18 @@
 {
-  "_type": "stats",
-  "header": "System Status",
-  "stats": [
-    {
-      "value": "Operational",
-      "label": "API Gateway"
-    },
-    {
-      "value": "Operational",
-      "label": "Web Application"
-    },
-    {
-      "value": "Operational",
-      "label": "Database Cluster"
-    },
-    {
-      "value": "Degraded",
-      "label": "Webhook Delivery"
-    }
-  ]
+    "_type": "stats",
+    "header": "System Status",
+    "items": [
+        {
+            "name": "API Gateway"
+        },
+        {
+            "name": "Web Application"
+        },
+        {
+            "name": "Database Cluster"
+        },
+        {
+            "name": "Webhook Delivery"
+        }
+    ]
 }

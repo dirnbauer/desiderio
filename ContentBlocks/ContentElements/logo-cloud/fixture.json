@@ -1,27 +1,19 @@
 {
-  "_type": "grid",
-  "header": "Trusted by Industry Leaders",
-  "description": "Companies of all sizes rely on our platform.",
-  "items": [
-    {
-      "icon": "🏢",
-      "title": "Stripe",
-      "description": "Payment infrastructure"
-    },
-    {
-      "icon": "🏗️",
-      "title": "Vercel",
-      "description": "Frontend cloud"
-    },
-    {
-      "icon": "📦",
-      "title": "Shopify",
-      "description": "Commerce platform"
-    },
-    {
-      "icon": "🔧",
-      "title": "Datadog",
-      "description": "Monitoring & analytics"
-    }
-  ]
+    "_type": "grid",
+    "header": "Trusted by Industry Leaders",
+    "subheadline": "Companies of all sizes rely on our platform.",
+    "logo_items": [
+        {
+            "name": "Stripe"
+        },
+        {
+            "name": "Vercel"
+        },
+        {
+            "name": "Shopify"
+        },
+        {
+            "name": "Datadog"
+        }
+    ]
 }

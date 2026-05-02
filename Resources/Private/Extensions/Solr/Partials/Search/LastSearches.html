@@ -1,0 +1,33 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:s="http://typo3.org/ns/ApacheSolrForTypo3/Solr/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:section name="LastSearches">
+    <s:lastSearches>
+        <f:if condition="{lastSearches}">
+            <d:molecule.card class="secondaryContentSection" size="sm">
+                <d:molecule.cardHeader>
+                    <d:atom.typography tag="h3" variant="small">
+                        <f:translate key="lastSearches" extensionName="solr">Last searches</f:translate>
+                    </d:atom.typography>
+                </d:molecule.cardHeader>
+                <d:molecule.cardContent>
+                    <ul id="lastSearches" class="divide-y divide-border text-sm">
+                        <f:for each="{lastSearches}" as="searchedFor">
+                            <li>
+                                <a href="{s:uri.search.startNewSearch(queryString: searchedFor)}" class="solr-ajaxified block py-2 text-muted-foreground transition-colors hover:text-primary">
+                                    <f:format.htmlentities>{searchedFor}</f:format.htmlentities>
+                                </a>
+                            </li>
+                        </f:for>
+                    </ul>
+                </d:molecule.cardContent>
+            </d:molecule.card>
+        </f:if>
+    </s:lastSearches>
+</f:section>
+
+</html>

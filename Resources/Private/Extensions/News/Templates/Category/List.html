@@ -1,0 +1,45 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:n="http://typo3.org/ns/GeorgRinger/News/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:layout name="General" />
+
+<f:section name="content">
+    <f:if condition="{categories}">
+        <f:then>
+            <f:render section="categoryTree" arguments="{categories: categories, overwriteDemand: overwriteDemand}" />
+        </f:then>
+        <f:else>
+            <d:molecule.alert>
+                <d:molecule.alertDescription><f:translate key="list_nocategoriesfound" /></d:molecule.alertDescription>
+            </d:molecule.alert>
+        </f:else>
+    </f:if>
+</f:section>
+
+<f:section name="categoryTree">
+    <ul class="grid gap-2">
+        <f:for each="{categories}" as="category">
+            {n:category.count(categoryUid: category.item.uid) -> f:variable(name: 'categoryUsageCount')}
+            <li>
+                <f:link.page title="{category.item.title}" pageUid="{settings.listPid}" additionalParams="{tx_news_pi1: {overwriteDemand: {categories: category.item.uid}}}" class="inline-flex items-center gap-2 rounded-lg border border-border px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground">
+                    <span>{category.item.title}</span>
+                    <f:if condition="{categoryUsageCount}">
+                        <d:atom.badge variant="secondary">{categoryUsageCount}</d:atom.badge>
+                    </f:if>
+                </f:link.page>
+
+                <f:if condition="{category.children}">
+                    <div class="ml-4 mt-2 border-l border-border pl-4">
+                        <f:render section="categoryTree" arguments="{categories: category.children, overwriteDemand: overwriteDemand}" />
+                    </div>
+                </f:if>
+            </li>
+        </f:for>
+    </ul>
+</f:section>
+
+</html>

@@ -26,6 +26,7 @@ fields:
   -
     identifier: nav_items
     type: Collection
+    table: navbar_mobile_nav_items
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:navigation_items'
     fields:
       -

@@ -21,6 +21,7 @@ fields:
   -
     identifier: items
     type: Collection
+    table: feature_alternating_items
     label: 'Feature Rows'
     minItems: 1
     fields:

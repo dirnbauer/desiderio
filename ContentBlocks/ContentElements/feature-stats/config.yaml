@@ -21,6 +21,7 @@ fields:
   -
     identifier: items
     type: Collection
+    table: feature_stats_items
     label: Stats
     minItems: 1
     fields:

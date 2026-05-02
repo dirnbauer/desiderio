@@ -1,0 +1,33 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:s="http://typo3.org/ns/ApacheSolrForTypo3/Solr/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:section name="FrequentlySearched">
+    <s:frequentlySearched>
+        <f:if condition="{frequentSearches}">
+            <d:molecule.card class="secondaryContentSection" size="sm">
+                <d:molecule.cardHeader>
+                    <d:atom.typography tag="h3" variant="small">
+                        <f:translate key="frequentSearches" extensionName="solr">Frequently searched</f:translate>
+                    </d:atom.typography>
+                </d:molecule.cardHeader>
+                <d:molecule.cardContent>
+                    <ul id="frequendSearches" class="flex flex-wrap gap-2">
+                        <f:for each="{frequentSearches}" as="searchedForInfo">
+                            <li class="{searchedForInfo.class}">
+                                <a href="{s:uri.search.startNewSearch(queryString: searchedForInfo.q)}" class="solr-ajaxified inline-flex rounded-lg border border-border px-2 py-1 text-xs font-medium text-muted-foreground transition-colors hover:border-primary hover:text-primary">
+                                    <f:format.htmlentities>{searchedForInfo.q}</f:format.htmlentities>
+                                </a>
+                            </li>
+                        </f:for>
+                    </ul>
+                </d:molecule.cardContent>
+            </d:molecule.card>
+        </f:if>
+    </s:frequentlySearched>
+</f:section>
+
+</html>

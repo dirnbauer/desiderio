@@ -1,0 +1,28 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:n="http://typo3.org/ns/GeorgRinger/News/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:layout name="General" />
+
+<f:section name="content">
+    <f:if condition="{tags}">
+        <ul class="news-tags flex flex-wrap gap-2">
+            <f:for each="{tags}" as="tag">
+                <li>
+                    {n:tag.count(tagUid: tag.uid) -> f:variable(name: 'tagUsageCount')}
+                    <f:link.page title="{tag.title}" pageUid="{settings.listPid}" additionalParams="{tx_news_pi1: {overwriteDemand: {tags: tag}}}" class="inline-flex items-center gap-2 rounded-lg border border-border px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground">
+                        <span>{tag.title}</span>
+                        <f:if condition="{tagUsageCount}">
+                            <d:atom.badge variant="secondary">{tagUsageCount}</d:atom.badge>
+                        </f:if>
+                    </f:link.page>
+                </li>
+            </f:for>
+        </ul>
+    </f:if>
+</f:section>
+
+</html>

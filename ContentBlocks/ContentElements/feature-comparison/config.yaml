@@ -26,6 +26,7 @@ fields:
   -
     identifier: items
     type: Collection
+    table: feature_comparison_items
     label: 'Comparison Rows'
     minItems: 1
     fields:

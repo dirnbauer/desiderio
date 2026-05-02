@@ -90,6 +90,8 @@ final class ShadcnThemeTest extends TestCase
         self::assertStringContainsString('@source "../Components";', $tailwindCss);
         self::assertStringContainsString('@source "../Solr";', $tailwindCss);
         self::assertStringContainsString('@source "../Templates";', $tailwindCss);
+        self::assertStringContainsString('@source "../Extensions";', $tailwindCss);
+        self::assertStringContainsString('@source "../ShadcnUi";', $tailwindCss);
         self::assertStringContainsString('@source "../../../ContentBlocks";', $tailwindCss);
         self::assertStringContainsString('@custom-variant dark', $tailwindCss);
         self::assertStringContainsString('@theme inline', $tailwindCss);

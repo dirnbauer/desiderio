@@ -1,0 +1,7 @@
+plugin.tx_solr {
+  view {
+    templateRootPaths.200 = EXT:desiderio/Resources/Private/Extensions/Solr/Templates/
+    partialRootPaths.200 = EXT:desiderio/Resources/Private/Extensions/Solr/Partials/
+    layoutRootPaths.200 = EXT:desiderio/Resources/Private/Extensions/Solr/Layouts/
+  }
+}

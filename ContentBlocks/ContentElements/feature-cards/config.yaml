@@ -26,6 +26,7 @@ fields:
   -
     identifier: items
     type: Collection
+    table: feature_cards_items
     label: 'Feature Cards'
     minItems: 1
     fields:

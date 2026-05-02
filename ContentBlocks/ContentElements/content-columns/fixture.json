@@ -1,22 +1,15 @@
 {
-  "_type": "grid",
-  "header": "Platform Highlights",
-  "description": "Three pillars that set us apart from the competition.",
-  "items": [
-    {
-      "icon": "⚡",
-      "title": "Blazing Fast",
-      "description": "Sub-100ms response times across all endpoints."
-    },
-    {
-      "icon": "🛡️",
-      "title": "Enterprise Security",
-      "description": "End-to-end encryption with zero-knowledge architecture."
-    },
-    {
-      "icon": "🔄",
-      "title": "Real-time Sync",
-      "description": "Instant updates across all connected devices."
-    }
-  ]
+    "_type": "grid",
+    "header": "Platform Highlights",
+    "items": [
+        {
+            "content": "Sub-100ms response times across all endpoints."
+        },
+        {
+            "content": "End-to-end encryption with zero-knowledge architecture."
+        },
+        {
+            "content": "Instant updates across all connected devices."
+        }
+    ]
 }

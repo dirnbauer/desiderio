@@ -1,11 +1,10 @@
 {
-  "_type": "table",
-  "header": "Subscription Overview",
-  "headers": ["Plan", "Users", "Storage", "Price"],
-  "rows": [
-    {"Plan": "Free", "Users": "3", "Storage": "500 MB", "Price": "$0/mo"},
-    {"Plan": "Pro", "Users": "25", "Storage": "25 GB", "Price": "$29/mo"},
-    {"Plan": "Business", "Users": "100", "Storage": "250 GB", "Price": "$79/mo"},
-    {"Plan": "Enterprise", "Users": "Unlimited", "Storage": "Unlimited", "Price": "Custom"}
-  ]
+    "_type": "table",
+    "header": "Subscription Overview",
+    "rows": [
+        [],
+        [],
+        [],
+        []
+    ]
 }

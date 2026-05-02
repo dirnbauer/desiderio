@@ -21,6 +21,7 @@ fields:
   -
     identifier: items
     type: Collection
+    table: timeline_items
     label: 'Timeline Items'
     minItems: 1
     fields:

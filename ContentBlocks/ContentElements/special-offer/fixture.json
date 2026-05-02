@@ -1,18 +1,6 @@
 {
-  "_type": "form",
-  "header": "Limited Time Offer: 30% Off Annual Plans",
-  "description": "Lock in our best price before it expires. Offer valid through April 30, 2026.",
-  "fields": [
-    {
-      "label": "Work Email",
-      "type": "email",
-      "placeholder": "you@company.com"
-    },
-    {
-      "label": "Company Size",
-      "type": "select",
-      "placeholder": "Select your team size"
-    }
-  ],
-  "primaryButton": "Claim Your Discount"
+    "_type": "form",
+    "header": "Limited Time Offer: 30% Off Annual Plans",
+    "description": "Lock in our best price before it expires. Offer valid through April 30, 2026.",
+    "button_text": "Claim Your Discount"
 }

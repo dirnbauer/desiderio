@@ -1,22 +1,19 @@
 {
-  "_type": "grid",
-  "header": "From Our Blog",
-  "description": "Stay up to date with the latest product news and industry insights.",
-  "items": [
-    {
-      "icon": "\ud83d\udca1",
-      "title": "The Future of Workflow Automation",
-      "description": "Exploring how AI is reshaping the way teams collaborate and ship software."
-    },
-    {
-      "icon": "\ud83d\udcca",
-      "title": "Metrics That Actually Matter",
-      "description": "Stop tracking vanity metrics. Here are the KPIs that drive real growth."
-    },
-    {
-      "icon": "\ud83c\udfaf",
-      "title": "Customer Success Playbook",
-      "description": "Our proven framework for reducing churn and increasing lifetime value."
-    }
-  ]
+    "_type": "grid",
+    "header": "From Our Blog",
+    "subheadline": "Stay up to date with the latest product news and industry insights.",
+    "posts": [
+        {
+            "title": "The Future of Workflow Automation",
+            "excerpt": "Exploring how AI is reshaping the way teams collaborate and ship software."
+        },
+        {
+            "title": "Metrics That Actually Matter",
+            "excerpt": "Stop tracking vanity metrics. Here are the KPIs that drive real growth."
+        },
+        {
+            "title": "Customer Success Playbook",
+            "excerpt": "Our proven framework for reducing churn and increasing lifetime value."
+        }
+    ]
 }

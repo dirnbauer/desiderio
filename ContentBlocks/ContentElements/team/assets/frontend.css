@@ -33,3 +33,13 @@
     margin-block-start: var(--d-spacing-xs);
 }
 .team__actions { margin-block-start: var(--d-spacing-sm); }
+.team__list-bio {
+    margin-block-start: var(--d-spacing-sm);
+}
+.team__minimal-item {
+    text-align: center;
+}
+.team__minimal-name {
+    font-weight: 600;
+    margin-block-start: var(--d-spacing-md);
+}

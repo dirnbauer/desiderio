@@ -1,27 +1,22 @@
 {
-  "_type": "grid",
-  "header": "Resources & Guides",
-  "description": "Everything you need to get the most out of our platform.",
-  "items": [
-    {
-      "icon": "\ud83d\udcd6",
-      "title": "Documentation",
-      "description": "Comprehensive API reference and integration guides."
-    },
-    {
-      "icon": "\ud83c\udf93",
-      "title": "Tutorials",
-      "description": "Step-by-step walkthroughs for common use cases."
-    },
-    {
-      "icon": "\ud83d\udcf9",
-      "title": "Webinars",
-      "description": "Live sessions with our product team every Thursday."
-    },
-    {
-      "icon": "\ud83d\udcac",
-      "title": "Community Forum",
-      "description": "Connect with other users and share best practices."
-    }
-  ]
+    "_type": "grid",
+    "header": "Resources & Guides",
+    "items": [
+        {
+            "title": "Documentation",
+            "content": "Comprehensive API reference and integration guides."
+        },
+        {
+            "title": "Tutorials",
+            "content": "Step-by-step walkthroughs for common use cases."
+        },
+        {
+            "title": "Webinars",
+            "content": "Live sessions with our product team every Thursday."
+        },
+        {
+            "title": "Community Forum",
+            "content": "Connect with other users and share best practices."
+        }
+    ]
 }

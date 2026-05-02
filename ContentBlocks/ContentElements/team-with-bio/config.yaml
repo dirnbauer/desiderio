@@ -26,6 +26,7 @@ fields:
   -
     identifier: members
     type: Collection
+    table: team_with_bio_members
     label: 'Team Members'
     minItems: 1
     fields:

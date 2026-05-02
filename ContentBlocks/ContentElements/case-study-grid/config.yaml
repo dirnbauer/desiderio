@@ -34,6 +34,7 @@ fields:
   -
     identifier: cases
     type: Collection
+    table: case_study_grid_cases
     label: 'Case Studies'
     minItems: 1
     fields:

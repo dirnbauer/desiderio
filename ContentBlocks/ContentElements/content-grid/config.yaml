@@ -29,6 +29,7 @@ fields:
   -
     identifier: items
     type: Collection
+    table: content_grid_items
     label: 'Grid Items'
     minItems: 2
     fields:

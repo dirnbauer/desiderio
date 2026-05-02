@@ -21,6 +21,7 @@ fields:
   -
     identifier: items
     type: Collection
+    table: footer_social_items
     label: 'Social Links'
     minItems: 1
     fields:

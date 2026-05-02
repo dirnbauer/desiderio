@@ -16,6 +16,7 @@ fields:
   -
     identifier: items
     type: Collection
+    table: file_download_items
     label: Files
     minItems: 1
     fields:

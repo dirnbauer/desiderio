@@ -21,6 +21,7 @@ fields:
   -
     identifier: badge_items
     type: Collection
+    table: trust_badges_badge_items
     label: Badges
     minItems: 1
     fields:

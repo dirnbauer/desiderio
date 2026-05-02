@@ -21,6 +21,7 @@ fields:
   -
     identifier: items
     type: Collection
+    table: feature_checklist_items
     label: Checklist
     minItems: 1
     fields:

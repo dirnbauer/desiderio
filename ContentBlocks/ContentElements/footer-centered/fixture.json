@@ -1,16 +1,9 @@
 {
-  "_type": "footer",
-  "columns": [
-    {
-      "title": "Quick Links",
-      "links": [
-        "Home",
-        "Features",
-        "Pricing",
-        "Blog",
-        "Contact"
-      ]
-    }
-  ],
-  "copyright": "\u00a9 2026 Acme Platform. All rights reserved."
+    "_type": "footer",
+    "link_items": [
+        {
+            "label": "Quick Links"
+        }
+    ],
+    "copyright": "© 2026 Acme Platform. All rights reserved."
 }

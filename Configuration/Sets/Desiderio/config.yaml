@@ -2,6 +2,10 @@ name: webconsulting/desiderio
 label: "Desiderio Base"
 dependencies: []
 optionalDependencies:
+  - webconsulting/desiderio-content-elements
+  - webconsulting/desiderio-shadcnui-templates
+  - webconsulting/desiderio-solr
+  - webconsulting/desiderio-news
   - typo3/fluid-styled-content
   - typo3/felogin
   - typo3/indexed-search

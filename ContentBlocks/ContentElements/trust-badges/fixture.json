@@ -1,27 +1,19 @@
 {
-  "_type": "grid",
-  "header": "Why Teams Trust Us",
-  "description": "Security and reliability you can count on.",
-  "items": [
-    {
-      "icon": "🔒",
-      "title": "Encrypted at Rest",
-      "description": "AES-256 encryption for all stored data."
-    },
-    {
-      "icon": "🌐",
-      "title": "Global CDN",
-      "description": "80+ edge locations for fast delivery."
-    },
-    {
-      "icon": "🛡️",
-      "title": "DDoS Protection",
-      "description": "Automatic mitigation for all plans."
-    },
-    {
-      "icon": "📋",
-      "title": "Audit Logging",
-      "description": "Complete activity trail for compliance."
-    }
-  ]
+    "_type": "grid",
+    "header": "Why Teams Trust Us",
+    "subheadline": "Security and reliability you can count on.",
+    "badge_items": [
+        {
+            "label": "Encrypted at Rest"
+        },
+        {
+            "label": "Global CDN"
+        },
+        {
+            "label": "DDoS Protection"
+        },
+        {
+            "label": "Audit Logging"
+        }
+    ]
 }

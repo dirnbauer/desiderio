@@ -32,6 +32,7 @@ fields:
   -
     identifier: items
     type: Collection
+    table: stat_cards_items
     label: 'Stat Items'
     minItems: 1
     fields:

@@ -21,6 +21,7 @@ fields:
   -
     identifier: slides
     type: Collection
+    table: hero_carousel_slides
     label: Slides
     minItems: 1
     fields:

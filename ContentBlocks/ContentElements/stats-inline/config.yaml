@@ -21,6 +21,7 @@ fields:
   -
     identifier: stats
     type: Collection
+    table: stats_inline_stats
     label: Stats
     minItems: 2
     fields:

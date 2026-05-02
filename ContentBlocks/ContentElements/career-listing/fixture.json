@@ -1,23 +1,19 @@
 {
-  "_type": "list",
-  "header": "Open Positions",
-  "description": "Join our team and help build the future of enterprise software.",
-  "items": [
-    {
-      "title": "Senior Full-Stack Engineer",
-      "description": "Remote - Build and scale our core platform using TypeScript, React, and Node.js."
-    },
-    {
-      "title": "Product Designer",
-      "description": "San Francisco - Design intuitive experiences for complex enterprise workflows."
-    },
-    {
-      "title": "DevOps Engineer",
-      "description": "Remote - Own our cloud infrastructure and CI/CD pipelines on AWS and Kubernetes."
-    },
-    {
-      "title": "Customer Success Manager",
-      "description": "New York - Partner with enterprise clients to drive adoption and retention."
-    }
-  ]
+    "_type": "list",
+    "header": "Open Positions",
+    "subheadline": "Join our team and help build the future of enterprise software.",
+    "jobs": [
+        {
+            "title": "Senior Full-Stack Engineer"
+        },
+        {
+            "title": "Product Designer"
+        },
+        {
+            "title": "DevOps Engineer"
+        },
+        {
+            "title": "Customer Success Manager"
+        }
+    ]
 }

@@ -1,0 +1,76 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:n="http://typo3.org/ns/GeorgRinger/News/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+    data-namespace-typo3-fluid="true"
+>
+
+<article class="article articletype-{newsItem.type}{f:if(condition: newsItem.istopnews, then: ' topnews')} h-full" itemscope="itemscope" itemtype="https://schema.org/Article">
+    <n:excludeDisplayedNews newsItem="{newsItem}"/>
+    <d:molecule.card class="h-full">
+        <f:if condition="{newsItem.mediaPreviews}">
+            <f:then>
+                <n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}" class="block overflow-hidden">
+                    <f:alias map="{mediaElement: newsItem.mediaPreviews.0}">
+                        <f:if condition="{mediaElement.originalResource.type} == 2">
+                            <f:image image="{mediaElement}" title="{mediaElement.originalResource.title}" alt="{mediaElement.originalResource.alternative}" loading="{settings.list.media.image.lazyLoading}" maxWidth="{f:if(condition: settings.media.maxWidth, then: settings.media.maxWidth, else: settings.list.media.image.maxWidth)}" maxHeight="{f:if(condition: settings.media.maxHeight, then: settings.media.maxHeight, else: settings.list.media.image.maxHeight)}" class="aspect-[16/10] w-full object-cover transition-transform duration-300 group-hover/card:scale-[1.02]"/>
+                        </f:if>
+                        <f:if condition="{mediaElement.originalResource.type} == 4">
+                            <f:render partial="Detail/MediaVideo" arguments="{mediaElement: mediaElement, settings: settings}"/>
+                        </f:if>
+                        <f:if condition="{mediaElement.originalResource.type} == 5">
+                            <f:image image="{mediaElement}" title="{mediaElement.originalResource.title}" alt="{mediaElement.originalResource.alternative}" loading="{settings.list.media.image.lazyLoading}" maxWidth="{f:if(condition: settings.media.maxWidth, then: settings.media.maxWidth, else: settings.list.media.image.maxWidth)}" maxHeight="{f:if(condition: settings.media.maxHeight, then: settings.media.maxHeight, else: settings.list.media.image.maxHeight)}" class="aspect-[16/10] w-full object-cover transition-transform duration-300 group-hover/card:scale-[1.02]"/>
+                        </f:if>
+                    </f:alias>
+                </n:link>
+            </f:then>
+            <f:else>
+                <f:if condition="{settings.displayDummyIfNoMedia}">
+                    <n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}" class="block overflow-hidden">
+                        <f:image src="{settings.list.media.dummyImage}" title="" alt="" loading="{settings.list.media.image.lazyLoading}" maxWidth="{f:if(condition: settings.media.maxWidth, then: settings.media.maxWidth, else: settings.list.media.image.maxWidth)}" maxHeight="{f:if(condition: settings.media.maxHeight, then: settings.media.maxHeight, else: settings.list.media.image.maxHeight)}" class="aspect-[16/10] w-full object-cover opacity-80"/>
+                    </n:link>
+                </f:if>
+            </f:else>
+        </f:if>
+
+        <div class="flex flex-1 flex-col gap-4 px-4 pb-4">
+            <div class="flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
+                <time itemprop="datePublished" datetime="{f:format.date(date: newsItem.datetime, format: 'c')}">
+                    <f:format.date format="{f:translate(key: 'dateFormat')}">{newsItem.datetime}</f:format.date>
+                </time>
+                <f:if condition="{newsItem.firstCategory}">
+                    <d:atom.badge variant="secondary">{newsItem.firstCategory.title}</d:atom.badge>
+                </f:if>
+                <f:if condition="{newsItem.istopnews}">
+                    <d:atom.badge>Top</d:atom.badge>
+                </f:if>
+            </div>
+
+            <h3 class="text-xl font-semibold tracking-normal" itemprop="headline">
+                <n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}" itemprop="url" class="text-foreground underline-offset-4 hover:text-primary hover:underline">
+                    {newsItem.title}
+                </n:link>
+            </h3>
+
+            <div class="teaser-text text-sm leading-6 text-muted-foreground" itemprop="description">
+                <n:removeMediaTags>
+                    <f:if condition="{newsItem.teaser}">
+                        <f:then>{newsItem.teaser -> f:format.crop(maxCharacters: '{settings.cropMaxCharacters}', respectWordBoundaries: '1') -> f:format.html()}</f:then>
+                        <f:else>{newsItem.bodytext -> f:format.crop(maxCharacters: '{settings.cropMaxCharacters}', respectWordBoundaries: '1') -> f:format.html()}</f:else>
+                    </f:if>
+                </n:removeMediaTags>
+            </div>
+
+            <div class="mt-auto flex flex-wrap items-center justify-between gap-3 text-sm">
+                <f:if condition="{newsItem.author}">
+                    <span class="news-list-author text-muted-foreground"><f:translate key="author" arguments="{0: newsItem.author}"/></span>
+                </f:if>
+                <n:link newsItem="{newsItem}" settings="{settings}" class="more font-medium text-primary underline-offset-4 hover:underline" title="{newsItem.title}">
+                    <f:translate key="more-link"/>
+                </n:link>
+            </div>
+        </div>
+    </d:molecule.card>
+</article>
+
+</html>

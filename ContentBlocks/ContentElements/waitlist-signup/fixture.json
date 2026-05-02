@@ -1,9 +1,6 @@
 {
-  "_type": "form",
-  "header": "Join the Waitlist",
-  "description": "Be the first to know when we launch.",
-  "fields": [
-    { "label": "Email", "type": "email", "placeholder": "you@example.com" }
-  ],
-  "primaryButton": "Join Waitlist"
+    "_type": "form",
+    "header": "Join the Waitlist",
+    "description": "Be the first to know when we launch.",
+    "button_text": "Join Waitlist"
 }

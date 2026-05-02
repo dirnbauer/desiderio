@@ -1,22 +1,10 @@
 {
-  "_type": "stats",
-  "header": "Customer Ratings",
-  "stats": [
-    {
-      "value": "4.9/5",
-      "label": "G2 Reviews"
-    },
-    {
-      "value": "4.8/5",
-      "label": "Capterra"
-    },
-    {
-      "value": "4.9/5",
-      "label": "TrustRadius"
-    },
-    {
-      "value": "98%",
-      "label": "Would Recommend"
-    }
-  ]
+    "_type": "stats",
+    "header": "Customer Ratings",
+    "rating_items": [
+        [],
+        [],
+        [],
+        []
+    ]
 }

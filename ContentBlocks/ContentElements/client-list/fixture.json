@@ -1,22 +1,16 @@
 {
-  "_type": "grid",
-  "header": "Trusted by Industry Leaders",
-  "description": "Over 2,000 companies rely on our platform for their daily operations.",
-  "items": [
-    {
-      "icon": "\ud83c\udfe2",
-      "title": "Fortune 500 Companies",
-      "description": "35+ Fortune 500 enterprises trust us with their critical workflows."
-    },
-    {
-      "icon": "\ud83d\ude80",
-      "title": "High-Growth Startups",
-      "description": "500+ funded startups choose our platform to scale rapidly."
-    },
-    {
-      "icon": "\ud83c\udf0d",
-      "title": "Global Organizations",
-      "description": "Teams in 80+ countries collaborate daily using our tools."
-    }
-  ]
+    "_type": "grid",
+    "header": "Trusted by Industry Leaders",
+    "subheadline": "Over 2,000 companies rely on our platform for their daily operations.",
+    "clients": [
+        {
+            "name": "Fortune 500 Companies"
+        },
+        {
+            "name": "High-Growth Startups"
+        },
+        {
+            "name": "Global Organizations"
+        }
+    ]
 }

@@ -34,6 +34,7 @@ fields:
   -
     identifier: counters
     type: Collection
+    table: stats_counter_counters
     label: Counters
     minItems: 1
     fields:

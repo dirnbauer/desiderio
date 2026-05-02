@@ -21,6 +21,7 @@ fields:
   -
     identifier: items
     type: Collection
+    table: terms_summary_items
     label: 'Key Terms'
     minItems: 1
     fields:

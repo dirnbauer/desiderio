@@ -1,0 +1,36 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:n="http://typo3.org/ns/GeorgRinger/News/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:layout name="General" />
+
+<f:section name="content">
+    <div class="news-search-form">
+        <d:molecule.card>
+            <d:molecule.cardContent>
+                <n:searchForm object="{search}" name="search" pageUid="{settings.listPid}" method="get">
+                    <fieldset class="grid gap-4 md:grid-cols-[minmax(0,1fr)_auto] md:items-end">
+                        <div class="grid gap-2">
+                            <label for="news-subject" class="text-sm font-medium text-foreground"><f:translate key="search-subject" /></label>
+                            <f:form.textfield id="news-subject" property="subject" class="h-10 rounded-lg border border-input bg-background px-3 text-sm text-foreground outline-none placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"/>
+                        </div>
+                        <div class="grid gap-2">
+                            <label for="news-minimumDate" class="text-sm font-medium text-foreground"><f:translate key="search-minimumDate" /></label>
+                            <f:form.textfield id="news-minimumDate" property="minimumDate" type="date" class="h-10 rounded-lg border border-input bg-background px-3 text-sm text-foreground outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"/>
+                        </div>
+                        <div class="grid gap-2">
+                            <label for="news-maximumDate" class="text-sm font-medium text-foreground"><f:translate key="search-maximumDate" /></label>
+                            <f:form.textfield id="news-maximumDate" property="maximumDate" type="date" class="h-10 rounded-lg border border-input bg-background px-3 text-sm text-foreground outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"/>
+                        </div>
+                        <f:form.submit value="{f:translate(key: 'search-start')}" class="inline-flex h-10 items-center justify-center rounded-lg bg-primary px-4 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/80 focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"/>
+                    </fieldset>
+                </n:searchForm>
+            </d:molecule.cardContent>
+        </d:molecule.card>
+    </div>
+</f:section>
+
+</html>

@@ -1,10 +1,19 @@
 {
-  "_type": "grid",
-  "header": "Use Cases",
-  "description": "See how teams use our platform across industries.",
-  "items": [
-    { "icon": "🏥", "title": "Healthcare", "description": "HIPAA-compliant patient data management." },
-    { "icon": "🏦", "title": "Finance", "description": "Real-time fraud detection and compliance." },
-    { "icon": "🎓", "title": "Education", "description": "Scalable learning management for institutions." }
-  ]
+    "_type": "grid",
+    "header": "Use Cases",
+    "subheadline": "See how teams use our platform across industries.",
+    "items": [
+        {
+            "title": "Healthcare",
+            "description": "HIPAA-compliant patient data management."
+        },
+        {
+            "title": "Finance",
+            "description": "Real-time fraud detection and compliance."
+        },
+        {
+            "title": "Education",
+            "description": "Scalable learning management for institutions."
+        }
+    ]
 }

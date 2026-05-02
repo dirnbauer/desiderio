@@ -1,28 +1,6 @@
 {
-  "_type": "form",
-  "header": "Get in Touch",
-  "description": "Reach out to our sales team for a personalized demo.",
-  "fields": [
-    {
-      "label": "Name",
-      "type": "text",
-      "placeholder": "Your name"
-    },
-    {
-      "label": "Work Email",
-      "type": "email",
-      "placeholder": "you@company.com"
-    },
-    {
-      "label": "Company",
-      "type": "text",
-      "placeholder": "Company name"
-    },
-    {
-      "label": "Phone",
-      "type": "text",
-      "placeholder": "+1 (555) 000-0000"
-    }
-  ],
-  "primaryButton": "Request Demo"
+    "_type": "form",
+    "header": "Get in Touch",
+    "description": "Reach out to our sales team for a personalized demo.",
+    "submit_text": "Request Demo"
 }

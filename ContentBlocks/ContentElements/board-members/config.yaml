@@ -21,6 +21,7 @@ fields:
   -
     identifier: members
     type: Collection
+    table: board_members_members
     label: 'Board Members'
     minItems: 1
     fields:

@@ -1,19 +1,18 @@
 {
-  "_type": "list",
-  "header": "Changelog",
-  "description": "Recent updates and improvements to the platform.",
-  "items": [
-    {
-      "title": "v3.2.0 — March 2026",
-      "description": "Added AI-assisted code review, improved search performance by 40%."
-    },
-    {
-      "title": "v3.1.0 — February 2026",
-      "description": "New dashboard widgets, dark mode improvements, webhook retry logic."
-    },
-    {
-      "title": "v3.0.0 — January 2026",
-      "description": "Major redesign with new navigation, real-time collaboration, and API v3."
-    }
-  ]
+    "_type": "list",
+    "header": "Changelog",
+    "items": [
+        {
+            "title": "v3.2.0 — March 2026",
+            "description": "Added AI-assisted code review, improved search performance by 40%."
+        },
+        {
+            "title": "v3.1.0 — February 2026",
+            "description": "New dashboard widgets, dark mode improvements, webhook retry logic."
+        },
+        {
+            "title": "v3.0.0 — January 2026",
+            "description": "Major redesign with new navigation, real-time collaboration, and API v3."
+        }
+    ]
 }

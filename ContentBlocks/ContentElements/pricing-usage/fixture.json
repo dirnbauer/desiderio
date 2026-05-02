@@ -1,46 +1,16 @@
 {
-  "_type": "pricing",
-  "header": "Pay As You Grow",
-  "description": "Usage-based pricing that scales with your business. Only pay for what you use.",
-  "plans": [
-    {
-      "name": "Starter",
-      "price": "$0.01",
-      "period": "/request",
-      "features": [
-        "First 10K requests free",
-        "Basic API access",
-        "Community support",
-        "Shared infrastructure"
-      ],
-      "button": "Start Free",
-      "featured": false
-    },
-    {
-      "name": "Growth",
-      "price": "$0.005",
-      "period": "/request",
-      "features": [
-        "Volume discounts",
-        "Premium API access",
-        "Priority support",
-        "Dedicated endpoints"
-      ],
-      "button": "Get Growth",
-      "featured": true
-    },
-    {
-      "name": "Enterprise",
-      "price": "Custom",
-      "period": "",
-      "features": [
-        "Custom rate limits",
-        "Committed use discounts",
-        "SLA guarantee",
-        "Dedicated infrastructure"
-      ],
-      "button": "Talk to Sales",
-      "featured": false
-    }
-  ]
+    "_type": "pricing",
+    "header": "Pay As You Grow",
+    "subheadline": "Usage-based pricing that scales with your business. Only pay for what you use.",
+    "items": [
+        {
+            "title": "Starter"
+        },
+        {
+            "title": "Growth"
+        },
+        {
+            "title": "Enterprise"
+        }
+    ]
 }

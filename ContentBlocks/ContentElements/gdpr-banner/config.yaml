@@ -23,6 +23,7 @@ fields:
   -
     identifier: cookie_categories
     type: Collection
+    table: gdpr_banner_cookie_categories
     label: 'Cookie Categories'
     fields:
       -

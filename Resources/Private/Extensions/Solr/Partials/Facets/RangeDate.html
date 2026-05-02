@@ -1,0 +1,36 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:s="http://typo3.org/ns/ApacheSolrForTypo3/Solr/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+    data-namespace-typo3-fluid="true"
+>
+
+<d:molecule.card size="sm" class="facet-card">
+    <d:molecule.cardHeader class="facet-label">
+        <d:atom.typography tag="h3" variant="small">{facet.label}</d:atom.typography>
+    </d:molecule.cardHeader>
+    <d:molecule.cardContent>
+        <div
+            data-facet-name="{facet.name}"
+            data-range-gap="{facet.range.gap}"
+            data-facet-url="{s:uri.facet.setFacetItem(facet: facet, facetItemValue: '___FROM___-___TO___')}"
+            data-facet-reset-url="{s:uri.facet.removeFacet(facet: facet)}"
+            data-range-start-validation-text="{f:translate(key: 'daterange_start_validation', extensionName: 'solr')}"
+            data-range-end-validation-text="{f:translate(key: 'daterange_end_validation', extensionName: 'solr')}"
+            class="tx-solr-daterange facet-type-dateRange fluidfacet grid gap-3"
+            data-facet-label="{facet.label}"
+            id="facet{facet.name}"
+        >
+            <label for="{facet.name}_min" class="grid gap-1 text-sm text-muted-foreground">
+                <span>{facet.label} <f:translate key="daterange_start" extensionName="solr">start date</f:translate></span>
+                <input type="date" class="tx-solr-daterange__input h-8 rounded-lg border border-input bg-background px-2 text-sm text-foreground outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50" value="{f:format.date(date: facet.range.startRequested, pattern: 'yyyy-MM-dd')}" min="{f:format.date(date: facet.range.startInResponse, pattern: 'yyyy-MM-dd')}" max="{f:format.date(date: facet.range.endInResponse, pattern: 'yyyy-MM-dd')}" name="{facet.name}_min" id="{facet.name}_min">
+            </label>
+            <label for="{facet.name}_max" class="grid gap-1 text-sm text-muted-foreground">
+                <span>{facet.label} <f:translate key="daterange_end" extensionName="solr">end date</f:translate></span>
+                <input type="date" class="tx-solr-daterange__input h-8 rounded-lg border border-input bg-background px-2 text-sm text-foreground outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50" value="{f:format.date(date: facet.range.endRequested, pattern: 'yyyy-MM-dd')}" min="{f:format.date(date: facet.range.startInResponse, pattern: 'yyyy-MM-dd')}" max="{f:format.date(date: facet.range.endInResponse, pattern: 'yyyy-MM-dd')}" name="{facet.name}_max" id="{facet.name}_max">
+            </label>
+        </div>
+    </d:molecule.cardContent>
+</d:molecule.card>
+
+</html>

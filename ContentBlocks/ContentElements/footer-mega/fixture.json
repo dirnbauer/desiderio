@@ -1,46 +1,18 @@
 {
-  "_type": "footer",
-  "columns": [
-    {
-      "title": "Platform",
-      "links": [
-        "Compute",
-        "Storage",
-        "Networking",
-        "Databases",
-        "Analytics"
-      ]
-    },
-    {
-      "title": "Solutions",
-      "links": [
-        "E-commerce",
-        "SaaS",
-        "Healthcare",
-        "Finance",
-        "Education"
-      ]
-    },
-    {
-      "title": "Developers",
-      "links": [
-        "Documentation",
-        "API Reference",
-        "SDKs",
-        "Tutorials",
-        "Community Forum"
-      ]
-    },
-    {
-      "title": "Company",
-      "links": [
-        "About Us",
-        "Careers",
-        "Press Kit",
-        "Partners",
-        "Contact"
-      ]
-    }
-  ],
-  "copyright": "2026 MegaCloud Corp. Built for builders."
+    "_type": "footer",
+    "column_items": [
+        {
+            "title": "Platform"
+        },
+        {
+            "title": "Solutions"
+        },
+        {
+            "title": "Developers"
+        },
+        {
+            "title": "Company"
+        }
+    ],
+    "copyright": "2026 MegaCloud Corp. Built for builders."
 }

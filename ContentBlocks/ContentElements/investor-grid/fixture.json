@@ -1,22 +1,16 @@
 {
-  "_type": "grid",
-  "header": "Backed by Top Investors",
-  "description": "Our investors include leading venture capital firms and industry pioneers.",
-  "items": [
-    {
-      "icon": "\ud83c\udfe6",
-      "title": "Sequoia Capital",
-      "description": "Led our Series B round with a $30M investment in our growth trajectory."
-    },
-    {
-      "icon": "\ud83d\udcb0",
-      "title": "Andreessen Horowitz",
-      "description": "Strategic partner providing deep expertise in scaling enterprise software."
-    },
-    {
-      "icon": "\ud83c\udf1f",
-      "title": "Y Combinator",
-      "description": "Part of the YC W20 batch, where we built our initial product-market fit."
-    }
-  ]
+    "_type": "grid",
+    "header": "Backed by Top Investors",
+    "subheadline": "Our investors include leading venture capital firms and industry pioneers.",
+    "investors": [
+        {
+            "name": "Sequoia Capital"
+        },
+        {
+            "name": "Andreessen Horowitz"
+        },
+        {
+            "name": "Y Combinator"
+        }
+    ]
 }

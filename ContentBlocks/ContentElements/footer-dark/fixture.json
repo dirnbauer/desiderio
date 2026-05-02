@@ -1,33 +1,15 @@
 {
-  "_type": "footer",
-  "columns": [
-    {
-      "title": "Product",
-      "links": [
-        "Features",
-        "Pricing",
-        "Security",
-        "Enterprise"
-      ]
-    },
-    {
-      "title": "Resources",
-      "links": [
-        "Documentation",
-        "Guides",
-        "API Reference",
-        "Community"
-      ]
-    },
-    {
-      "title": "Company",
-      "links": [
-        "About",
-        "Blog",
-        "Careers",
-        "Contact"
-      ]
-    }
-  ],
-  "copyright": "\u00a9 2026 Acme Platform, Inc. All rights reserved."
+    "_type": "footer",
+    "column_items": [
+        {
+            "title": "Product"
+        },
+        {
+            "title": "Resources"
+        },
+        {
+            "title": "Company"
+        }
+    ],
+    "copyright": "© 2026 Acme Platform, Inc. All rights reserved."
 }

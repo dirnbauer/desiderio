@@ -35,6 +35,7 @@ fields:
   -
     identifier: stats
     type: Collection
+    table: hero_stats_stats
     label: Stats
     minItems: 1
     fields:

@@ -21,6 +21,7 @@ fields:
   -
     identifier: reviews
     type: Collection
+    table: review_carousel_reviews
     label: Reviews
     minItems: 2
     fields:

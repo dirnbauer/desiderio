@@ -1,23 +1,11 @@
 {
-  "_type": "footer",
-  "columns": [
-    {
-      "title": "Terms of Service Summary",
-      "links": [
-        "Acceptable Use Policy",
-        "Service Level Agreement",
-        "Data Processing Agreement",
-        "Refund Policy"
-      ]
-    },
-    {
-      "title": "Additional Terms",
-      "links": [
-        "API Terms of Use",
-        "Beta Program Agreement",
-        "Reseller Agreement"
-      ]
-    }
-  ],
-  "copyright": "By using our services, you agree to these terms. Last updated: February 2026."
+    "_type": "footer",
+    "items": [
+        {
+            "title": "Terms of Service Summary"
+        },
+        {
+            "title": "Additional Terms"
+        }
+    ]
 }

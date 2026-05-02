@@ -21,6 +21,7 @@ fields:
   -
     identifier: items
     type: Collection
+    table: article_grid_items
     label: Articles
     minItems: 1
     fields:

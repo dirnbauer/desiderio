@@ -1,11 +1,11 @@
 {
-  "_type": "nav",
-  "logo": "Acme",
-  "links": [
-    "Products",
-    "Solutions",
-    "Pricing",
-    "Docs"
-  ],
-  "primaryButton": "Sign Up"
+    "_type": "nav",
+    "brand": "Acme",
+    "nav_items": [
+        "Products",
+        "Solutions",
+        "Pricing",
+        "Docs"
+    ],
+    "primary_button_text": "Sign Up"
 }

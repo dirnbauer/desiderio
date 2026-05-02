@@ -21,6 +21,7 @@ fields:
   -
     identifier: partners
     type: Collection
+    table: partner_grid_partners
     label: Partners
     minItems: 1
     fields:

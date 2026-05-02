@@ -21,6 +21,7 @@ fields:
   -
     identifier: items
     type: Collection
+    table: feature_bento_items
     label: 'Bento Items'
     minItems: 3
     fields:

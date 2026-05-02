@@ -22,6 +22,7 @@ fields:
   -
     identifier: items
     type: Collection
+    table: accordion_items
     label: 'Accordion Items'
     minItems: 1
     fields:

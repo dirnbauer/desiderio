@@ -21,6 +21,7 @@ fields:
   -
     identifier: items
     type: Collection
+    table: feature_carousel_items
     label: 'Feature Slides'
     minItems: 3
     fields:

@@ -58,6 +58,7 @@ fields:
   -
     identifier: menu_groups
     type: Collection
+    table: mega_menu_menu_groups
     label: 'Menu Groups'
     minItems: 1
     fields:

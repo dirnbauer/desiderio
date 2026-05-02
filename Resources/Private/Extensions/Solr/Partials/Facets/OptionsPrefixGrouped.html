@@ -1,0 +1,39 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:s="http://typo3.org/ns/ApacheSolrForTypo3/Solr/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+    data-namespace-typo3-fluid="true"
+>
+
+<d:molecule.card size="sm" class="facet-card">
+    <d:molecule.cardHeader class="facet-label">
+        <d:atom.typography tag="h3" variant="small">{facet.label}</d:atom.typography>
+    </d:molecule.cardHeader>
+    <d:molecule.cardContent>
+        <div class="facet-type-options fluidfacet" data-facet-name="{facet.name}" data-facet-label="{facet.label}" id="facet{facet.name}">
+            <s:facet.options.group.prefix.labelPrefixes options="{facet.options}" length="1" sortBy="alpha">
+                <div class="flex flex-col gap-4">
+                    <f:for each="{prefixes}" as="prefix">
+                        <section class="flex flex-col gap-2">
+                            <h4 class="text-xs font-semibold uppercase text-muted-foreground">{prefix}</h4>
+                            <s:facet.options.group.prefix.labelFilter options="{facet.options}" prefix="{prefix}">
+                                <ul class="divide-y divide-border">
+                                    <f:for each="{filteredOptions}" as="option">
+                                        <li>
+                                            <a class="facet solr-ajaxified flex items-center justify-between gap-3 py-2 text-sm text-muted-foreground transition-colors hover:text-primary" href="{s:uri.facet.addFacetItem(facet: facet, facetItem: option)}">
+                                                <span>{option.label}</span>
+                                                <d:atom.badge variant="secondary" class="facet-result-count">{option.documentCount}</d:atom.badge>
+                                            </a>
+                                        </li>
+                                    </f:for>
+                                </ul>
+                            </s:facet.options.group.prefix.labelFilter>
+                        </section>
+                    </f:for>
+                </div>
+            </s:facet.options.group.prefix.labelPrefixes>
+        </div>
+    </d:molecule.cardContent>
+</d:molecule.card>
+
+</html>

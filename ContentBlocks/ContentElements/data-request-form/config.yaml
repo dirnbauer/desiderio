@@ -21,6 +21,7 @@ fields:
   -
     identifier: request_types
     type: Collection
+    table: data_request_form_request_types
     label: 'Request Types'
     fields:
       -

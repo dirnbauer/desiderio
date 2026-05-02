@@ -1,23 +1,23 @@
 {
-  "_type": "list",
-  "header": "Our Journey",
-  "description": "Key milestones in our company's history.",
-  "items": [
-    {
-      "title": "2019 — Founded",
-      "description": "Started in a garage with a vision to simplify DevOps."
-    },
-    {
-      "title": "2020 — Series A",
-      "description": "Raised $12M to scale our engineering team and infrastructure."
-    },
-    {
-      "title": "2022 — 10K Customers",
-      "description": "Crossed 10,000 paying customers across 40 countries."
-    },
-    {
-      "title": "2024 — Enterprise Launch",
-      "description": "Released enterprise tier with SSO, audit logs, and SLA guarantees."
-    }
-  ]
+    "_type": "list",
+    "header": "Our Journey",
+    "subheadline": "Key milestones in our company's history.",
+    "items": [
+        {
+            "title": "2019 — Founded",
+            "content": "Started in a garage with a vision to simplify DevOps."
+        },
+        {
+            "title": "2020 — Series A",
+            "content": "Raised $12M to scale our engineering team and infrastructure."
+        },
+        {
+            "title": "2022 — 10K Customers",
+            "content": "Crossed 10,000 paying customers across 40 countries."
+        },
+        {
+            "title": "2024 — Enterprise Launch",
+            "content": "Released enterprise tier with SSO, audit logs, and SLA guarantees."
+        }
+    ]
 }

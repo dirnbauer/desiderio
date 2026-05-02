@@ -1,22 +1,15 @@
 {
-  "_type": "grid",
-  "header": "Trusted by Leading Brands",
-  "description": "Companies of all sizes rely on our platform to power their operations.",
-  "items": [
-    {
-      "icon": "\ud83c\udfaf",
-      "title": "Stripe",
-      "description": "Processes over 2M automated payment reconciliations monthly."
-    },
-    {
-      "icon": "\ud83d\ude80",
-      "title": "Vercel",
-      "description": "Manages 500+ deployment pipelines across 12 engineering teams."
-    },
-    {
-      "icon": "\ud83d\udcac",
-      "title": "Intercom",
-      "description": "Coordinates customer support workflows for 8M+ conversations yearly."
-    }
-  ]
+    "_type": "grid",
+    "header": "Trusted by Leading Brands",
+    "logo_items": [
+        {
+            "name": "Stripe"
+        },
+        {
+            "name": "Vercel"
+        },
+        {
+            "name": "Intercom"
+        }
+    ]
 }

@@ -42,6 +42,7 @@ fields:
   -
     identifier: items
     type: Collection
+    table: category_cards_items
     label: Categories
     minItems: 1
     fields:

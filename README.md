@@ -51,6 +51,11 @@ Then enable the base site set plus one of the five presets:
 3. Add one of the five preset sets (see below)
 4. Save and flush caches
 
+The base set also pulls in `webconsulting/desiderio-content-elements`, a single
+aggregate set for the full Content Blocks catalog. Individual generated
+`desiderio/*` content block set names are hidden from the backend picker to keep
+site setup focused on the Desiderio-level sets.
+
 ## Cursor MCP (optional)
 
 [Cursor](https://cursor.com) can load [MCP](https://modelcontextprotocol.io) servers from a
@@ -74,17 +79,25 @@ Restart Cursor (or reload the window) after changing `.mcp.json`.
 
 ## Page templates
 
-| Backend layout               | Content areas             | Page template        |
-| ---------------------------- | ------------------------- | -------------------- |
-| `DesiderioStartpage`         | `stage`, `main`           | `Startpage.html`     |
-| `DesiderioContentpage`       | `stage`, `main`           | `Contentpage.html`   |
-| `DesiderioContentpageSidebar`| `stage`, `main`, `sidebar`| `Sidebar.html`       |
-| `DesiderioStyleguide`        | `main`                    | `Styleguide.html`    |
-| _(fallback)_                 | `stage`, `main`           | `Default.html`       |
+| Backend layout                | Content areas              | Page template                         |
+| ----------------------------- | -------------------------- | ------------------------------------- |
+| `DesiderioStartpage`          | `stage`, `main`            | `Pages/DesiderioStartpage.fluid.html` |
+| `DesiderioContentpage`        | `stage`, `main`            | `Pages/DesiderioContentpage.fluid.html` |
+| `DesiderioContentpageSidebar` | `stage`, `main`, `sidebar` | `Pages/DesiderioContentpageSidebar.fluid.html` |
+| `DesiderioStyleguide`         | `main`                     | `Pages/DesiderioStyleguide.fluid.html` |
+| `DesiderioBlog`               | `stage`, `main`, `sidebar` | `Pages/DesiderioBlog.fluid.html` |
+| `DesiderioExtension`          | `stage`, `sidebar`, `main` | `Pages/DesiderioExtension.fluid.html` |
+| _(fallback)_                  | `stage`, `main`            | `Pages/Default.fluid.html` |
 
 Every content area works with the TYPO3 visual editor. Headers and footers
 are static partials, not content areas — the editing surface stays focused
 on the content that matters.
+
+`DesiderioBlog` and `DesiderioExtension` are shipped by the hidden
+`webconsulting/desiderio-shadcnui-templates` site set. The base set lists it
+as an optional dependency, so these shadcn/ui-oriented structures are available
+by default while their PAGEVIEW template root remains isolated at
+`Resources/Private/ShadcnUi/Templates/`.
 
 ## Presets
 
@@ -193,9 +206,30 @@ Settings are defined in:
 Fluid 5 components — no block writes raw HTML. See
 `ContentBlocks/ContentElements/` for the full list.
 
+The full catalog is exposed through the `webconsulting/desiderio-content-elements`
+site set. This set lists the individual `desiderio/*` block sets as optional
+dependencies, so installations that expose Content Blocks as site sets can add
+one Desiderio item instead of selecting blocks one by one.
+
 Classic TYPO3 Fluid Styled Content elements are overridden from
 `Resources/Private/FluidStyledContent/` and use the same shadcn preset tokens,
 Fluid 5 components, and Tailwind source build as the Content Blocks catalog.
+
+## Extension templates
+
+The base site set also ships hidden optional integration sets for common
+extensions:
+
+| Set | Extension | Template paths |
+| --- | --- | --- |
+| `webconsulting/desiderio-solr` | `apache-solr-for-typo3/solr` | `Resources/Private/Extensions/Solr/` |
+| `webconsulting/desiderio-news` | `georgringer/news` | `Resources/Private/Extensions/News/` |
+
+Both sets are listed as optional dependencies of `webconsulting/desiderio`, so
+sites using the base set get the Desiderio template paths by default. The
+third-party extensions stay optional TYPO3 extension suggestions; installing
+Solr or tx_news activates their own runtime, and Desiderio only supplies the
+Fluid override paths and shadcn/Tailwind presentation.
 
 ## Fluid 5 components
 

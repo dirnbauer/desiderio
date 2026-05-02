@@ -1,18 +1,15 @@
 {
-  "_type": "stats",
-  "header": "Platform Metrics",
-  "stats": [
-    {
-      "value": "5.2B",
-      "label": "API Requests Served"
-    },
-    {
-      "value": "99.997%",
-      "label": "Historical Uptime"
-    },
-    {
-      "value": "< 50ms",
-      "label": "p95 Latency"
-    }
-  ]
+    "_type": "stats",
+    "header": "Platform Metrics",
+    "counters": [
+        {
+            "label": "API Requests Served"
+        },
+        {
+            "label": "Historical Uptime"
+        },
+        {
+            "label": "p95 Latency"
+        }
+    ]
 }

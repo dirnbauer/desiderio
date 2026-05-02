@@ -1,22 +1,22 @@
 {
-  "_type": "grid",
-  "header": "Developer Experience",
-  "description": "Tools that make developers productive from day one.",
-  "items": [
-    {
-      "icon": "💻",
-      "title": "Local Dev Server",
-      "description": "Hot reload with environment parity."
-    },
-    {
-      "icon": "🧪",
-      "title": "Testing Framework",
-      "description": "Built-in test runner with coverage reports."
-    },
-    {
-      "icon": "📖",
-      "title": "API Explorer",
-      "description": "Interactive API documentation with try-it-now."
-    }
-  ]
+    "_type": "grid",
+    "header": "Developer Experience",
+    "subheadline": "Tools that make developers productive from day one.",
+    "items": [
+        {
+            "icon": "💻",
+            "title": "Local Dev Server",
+            "description": "Hot reload with environment parity."
+        },
+        {
+            "icon": "🧪",
+            "title": "Testing Framework",
+            "description": "Built-in test runner with coverage reports."
+        },
+        {
+            "icon": "📖",
+            "title": "API Explorer",
+            "description": "Interactive API documentation with try-it-now."
+        }
+    ]
 }

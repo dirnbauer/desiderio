@@ -16,6 +16,7 @@ fields:
   -
     identifier: items
     type: Collection
+    table: counter_items
     label: Counters
     minItems: 1
     fields:

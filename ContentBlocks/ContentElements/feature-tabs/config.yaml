@@ -21,6 +21,7 @@ fields:
   -
     identifier: items
     type: Collection
+    table: feature_tabs_items
     label: Tabs
     minItems: 2
     fields:

@@ -1,0 +1,44 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:s="http://typo3.org/ns/ApacheSolrForTypo3/Solr/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:variable name="facetOptionLimit">{f:if(condition: '{settings.faceting.limit}', then: '{settings.faceting.limit}', else: 10)}</f:variable>
+
+<d:molecule.card size="sm" class="facet-card">
+    <d:molecule.cardHeader class="facet-label">
+        <d:atom.typography tag="h3" variant="small">{facet.label}</d:atom.typography>
+    </d:molecule.cardHeader>
+    <d:molecule.cardContent>
+        <ul class="facet-option-list facet-type-options fluidfacet divide-y divide-border" data-facet-name="{facet.name}" data-facet-label="{facet.label}" id="facet{facet.name}">
+            <f:for each="{facet.options}" as="option" iteration="iteration">
+                <li class="facet-option {f:if(condition: '!({iteration.index} < {facetOptionLimit})', then: ' tx-solr-facet-hidden')}" data-facet-item-value="{option.value}">
+                    <f:if condition="{option.selected}">
+                        <f:then>
+                            <f:variable name="facetOptionUri">{s:uri.facet.removeFacetItem(facet: facet, facetItem: option)}</f:variable>
+                        </f:then>
+                        <f:else>
+                            <f:variable name="facetOptionUri">{s:uri.facet.addFacetItem(facet: facet, facetItem: option)}</f:variable>
+                        </f:else>
+                    </f:if>
+                    <a class="facet solr-ajaxified flex items-center justify-between gap-3 py-2 text-sm transition-colors {f:if(condition: option.selected, then: 'text-primary', else: 'text-muted-foreground hover:text-primary')}" href="{facetOptionUri}">
+                        <span>{option.label}</span>
+                        <d:atom.badge variant="{f:if(condition: option.selected, then: 'default', else: 'secondary')}" class="facet-result-count">{option.documentCount}</d:atom.badge>
+                    </a>
+                </li>
+            </f:for>
+
+            <f:if condition="{facet.options -> f:count()} > {facetOptionLimit}">
+                <li>
+                    <a href="#" class="tx-solr-facet-show-all block py-2 text-sm font-medium text-primary underline-offset-4 hover:underline" data-label-more="{f:translate(key: 'faceting_showMore', extensionName: 'solr')}" data-label-less="{f:translate(key: 'faceting_showFewer', extensionName: 'solr')}">
+                        <f:translate key="faceting_showMore" extensionName="solr">Show more</f:translate>
+                    </a>
+                </li>
+            </f:if>
+        </ul>
+    </d:molecule.cardContent>
+</d:molecule.card>
+
+</html>

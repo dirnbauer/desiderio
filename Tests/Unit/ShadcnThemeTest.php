@@ -126,6 +126,19 @@ final class ShadcnThemeTest extends TestCase
         self::assertStringContainsString('.d-solr-facet__list', $desiderioCss);
     }
 
+    public function testSolrSuggestDropdownUsesContentTypeLabels(): void
+    {
+        $formTemplate = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Solr/Partials/Search/Form.html');
+        $javascript = (string) file_get_contents(__DIR__ . '/../../Resources/Public/Js/desiderio.js');
+
+        self::assertStringContainsString("data-d-solr-type-label-pages=\"{f:translate(key: 'solr.contentType.pages'", $formTemplate);
+        self::assertStringContainsString("data-d-solr-type-label-news=\"{f:translate(key: 'solr.contentType.news'", $formTemplate);
+        self::assertStringContainsString("data-d-solr-type-label-addresses=\"{f:translate(key: 'solr.contentType.addresses'", $formTemplate);
+        self::assertStringContainsString('tx_news_domain_model_news: input.dataset.dSolrTypeLabelNews', $javascript);
+        self::assertStringContainsString('tt_address: input.dataset.dSolrTypeLabelAddresses', $javascript);
+        self::assertStringContainsString('resultType: this.getContentTypeLabel(document.type)', $javascript);
+    }
+
     public function testGeneratedTailwindCssContainsShadcnUtilities(): void
     {
         $generatedCssPath = __DIR__ . '/../../Resources/Public/Css/desiderio-tailwind.css';

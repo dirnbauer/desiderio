@@ -235,6 +235,12 @@ document.addEventListener('DOMContentLoaded', () => {
     return [];
   };
 
+  const createContentTypeLabels = input => ({
+    pages: input.dataset.dSolrTypeLabelPages || 'Pages',
+    tx_news_domain_model_news: input.dataset.dSolrTypeLabelNews || 'News',
+    tt_address: input.dataset.dSolrTypeLabelAddresses || 'Addresses',
+  });
+
   class DesiderioSolrSuggest {
     constructor(form) {
       this.form = form;
@@ -247,6 +253,7 @@ document.addEventListener('DOMContentLoaded', () => {
       this.debounceMs = parseInt(form.dataset.suggestDebounce, 10) || 220;
       this.maxSuggestions = parseInt(form.dataset.suggestMaxItems, 10) || 10;
       this.queryParam = form.dataset.suggestParam || 'tx_solr[queryString]';
+      this.contentTypeLabels = createContentTypeLabels(this.input);
       this.timer = null;
       this.abortController = null;
       this.activeIndex = -1;
@@ -364,7 +371,7 @@ document.addEventListener('DOMContentLoaded', () => {
           label: document.title,
           link: document.link,
           content: document.content || '',
-          resultType: document.type || '',
+          resultType: this.getContentTypeLabel(document.type),
         }));
 
       suggestions.forEach(item => this.appendOption(item, query));
@@ -385,6 +392,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
       this.list.hidden = false;
       this.input.setAttribute('aria-expanded', 'true');
+    }
+
+    getContentTypeLabel(type) {
+      const documentType = String(type || '');
+      return this.contentTypeLabels[documentType] || documentType;
     }
 
     appendOption(item, query) {

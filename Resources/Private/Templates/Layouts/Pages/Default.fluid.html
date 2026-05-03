@@ -5,7 +5,17 @@
 >
 
 <f:page.meta property="viewport">width=device-width, initial-scale=1.0</f:page.meta>
-<f:asset.css identifier="hugeicons" href="https://cdn.hugeicons.com/font/hgi-stroke-rounded.css" priority="1"/>
+<f:comment>
+    Hugeicons stroke font is loaded over a Subresource-Integrity-pinned CDN URL.
+    The hash matches the v1.0.7 build that ships with this Desiderio cut and
+    must be regenerated whenever the icon font is upgraded.
+</f:comment>
+<f:asset.css
+    identifier="hugeicons"
+    href="https://cdn.hugeicons.com/font/v1.0.7/hgi-stroke-rounded.css"
+    priority="1"
+    additionalAttributes="{integrity: 'sha384-cFbB/EdtqpeNNB1pP5EbnLFHFLsvtAW7FxnPaDe5+UDJSb+IPWvP4MRijF6KCFL8', crossorigin: 'anonymous', referrerpolicy: 'no-referrer'}"
+/>
 
 <f:render partial="Pages/Header" arguments="{_all}"/>
 

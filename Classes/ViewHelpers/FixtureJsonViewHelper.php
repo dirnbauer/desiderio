@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Webconsulting\Desiderio\ViewHelpers;
 
+use Psr\Http\Message\ServerRequestInterface;
+use TYPO3\CMS\Core\Security\ContentSecurityPolicy\ConsumableNonce;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 use Webconsulting\Desiderio\Data\StyleguideContentGroups;
 
@@ -12,6 +14,9 @@ use Webconsulting\Desiderio\Data\StyleguideContentGroups;
  *
  * Usage:
  *   <d:fixtureJson />
+ *
+ * Emits a CSP nonce attribute when the request carries a TYPO3 14 ConsumableNonce
+ * so a strict `script-src 'self' 'nonce-…'` policy stays compatible.
  */
 final class FixtureJsonViewHelper extends AbstractViewHelper
 {
@@ -29,6 +34,15 @@ final class FixtureJsonViewHelper extends AbstractViewHelper
             return '';
         }
 
-        return '<script id="styleguide-fixtures" type="application/json">' . $json . '</script>';
+        $nonceAttribute = '';
+        $request = $this->renderingContext?->getAttribute(ServerRequestInterface::class);
+        if ($request instanceof ServerRequestInterface) {
+            $nonce = $request->getAttribute('nonce');
+            if ($nonce instanceof ConsumableNonce) {
+                $nonceAttribute = ' nonce="' . htmlspecialchars($nonce->consume(), ENT_QUOTES | ENT_HTML5) . '"';
+            }
+        }
+
+        return '<script id="styleguide-fixtures" type="application/json"' . $nonceAttribute . '>' . $json . '</script>';
     }
 }

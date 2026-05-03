@@ -54,11 +54,13 @@
                     </div>
                 </f:if>
 
-                <f:variable name="documentScoreAnalyze"><f:render partial="Debug/Explain" section="Explain" arguments="{document: document, resultSet: resultSet}" /></f:variable>
-                <f:if condition="{documentScoreAnalyze}">
-                    <d:molecule.alert class="query-debug mt-3">
-                        <d:molecule.alertDescription><f:format.raw>{documentScoreAnalyze}</f:format.raw></d:molecule.alertDescription>
-                    </d:molecule.alert>
+                <f:if condition="{settings.logging.debugOutput} || {logging.debugOutput}">
+                    <f:variable name="documentScoreAnalyze"><f:render partial="Debug/Explain" section="Explain" arguments="{document: document, resultSet: resultSet}" /></f:variable>
+                    <f:if condition="{documentScoreAnalyze}">
+                        <d:molecule.alert class="query-debug mt-3">
+                            <d:molecule.alertDescription><f:format.raw>{documentScoreAnalyze}</f:format.raw></d:molecule.alertDescription>
+                        </d:molecule.alert>
+                    </f:if>
                 </f:if>
             </div>
         </div>

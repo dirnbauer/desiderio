@@ -25,12 +25,12 @@ fields:
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:badge_text'
   -
     identifier: gradient_from
-    type: Text
+    type: Color
     label: 'Gradient From Color'
-    description: 'CSS color value (e.g. hsl(220, 70%, 50%))'
+    description: 'TCA Color picker; the value is rejected if it is not a valid hex/rgb token.'
   -
     identifier: gradient_to
-    type: Text
+    type: Color
     label: 'Gradient To Color'
   -
     identifier: primary_button_text

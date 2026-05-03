@@ -12,6 +12,8 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use Symfony\Component\Yaml\Yaml;
+use TYPO3\CMS\Core\Context\Context;
+use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Resource\File;
 use TYPO3\CMS\Core\Resource\Folder;
@@ -49,6 +51,8 @@ final class SeedStyleguidePagesCommand extends Command
 
     public function __construct(
         private readonly ConnectionPool $connectionPool,
+        private readonly Context $context,
+        private readonly StorageRepository $storageRepository,
     ) {
         parent::__construct();
     }
@@ -68,6 +72,12 @@ final class SeedStyleguidePagesCommand extends Command
                 null,
                 InputOption::VALUE_NONE,
                 'Only print the planned pages and content element count.'
+            )
+            ->addOption(
+                'allow-production',
+                null,
+                InputOption::VALUE_NONE,
+                'Run even when Application Context is Production. Required to seed against production data.'
             );
     }
 
@@ -76,6 +86,23 @@ final class SeedStyleguidePagesCommand extends Command
         $io = new SymfonyStyle($input, $output);
         $parentPid = (int)$input->getOption('parent');
         $dryRun = (bool)$input->getOption('dry-run');
+        $allowProduction = (bool)$input->getOption('allow-production');
+
+        $workspaceId = (int)$this->context->getPropertyFromAspect('workspace', 'id', 0);
+        if ($workspaceId !== 0) {
+            $io->error(sprintf(
+                'Refusing to seed inside workspace #%d. The seeder writes live records and bypasses workspace overlays. Switch to the live workspace before running this command.',
+                $workspaceId
+            ));
+
+            return self::FAILURE;
+        }
+
+        if (!$allowProduction && Environment::getContext()->isProduction()) {
+            $io->error('Refusing to run in Production application context. Pass --allow-production to override (and only do so on a sandbox).');
+
+            return self::FAILURE;
+        }
         $groups = StyleguideContentGroups::getGroupsWithFixtures();
         $totalElements = array_sum(array_map(
             static fn (array $group): int => count($group['elements']),
@@ -1631,8 +1658,7 @@ final class SeedStyleguidePagesCommand extends Command
             return $this->styleguideFalFolder;
         }
 
-        $storageRepository = GeneralUtility::makeInstance(StorageRepository::class);
-        $storage = $storageRepository->getDefaultStorage();
+        $storage = $this->storageRepository->getDefaultStorage();
         if ($storage === null) {
             throw new \RuntimeException('No default FAL storage is configured for Desiderio styleguide seeding.', 1777100143);
         }

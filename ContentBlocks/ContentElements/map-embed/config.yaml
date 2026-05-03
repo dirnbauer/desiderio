@@ -24,6 +24,6 @@ fields:
     rows: 3
   -
     identifier: height
-    type: Text
-    label: 'Map Height'
-    default: '400'
+    type: Number
+    label: 'Map Height (px)'
+    default: 400

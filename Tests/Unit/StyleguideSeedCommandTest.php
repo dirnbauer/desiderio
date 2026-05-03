@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace Webconsulting\Desiderio\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
+use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Resource\StorageRepository;
 use Webconsulting\Desiderio\Command\SeedStyleguidePagesCommand;
 
 final class StyleguideSeedCommandTest extends TestCase
@@ -392,7 +394,11 @@ final class StyleguideSeedCommandTest extends TestCase
 
     private function createCommand(): SeedStyleguidePagesCommand
     {
-        return new SeedStyleguidePagesCommand($this->createMock(ConnectionPool::class));
+        return new SeedStyleguidePagesCommand(
+            $this->createMock(ConnectionPool::class),
+            $this->createMock(Context::class),
+            $this->createMock(StorageRepository::class),
+        );
     }
 
     /**

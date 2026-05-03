@@ -16,7 +16,7 @@
         "friendsoftypo3/content-blocks": "^2.2",
         "praetorius/vite-asset-collector": "^1.7"
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "prefer-stable": true,
     "suggest": {
         "friendsoftypo3/visual-editor": "Optional. Inline visual editing when templates use f:render.text for text fields.",
@@ -56,12 +56,19 @@
             "typo3/class-alias-loader": true,
             "typo3/cms-composer-installers": true
         },
+        "audit": {
+            "abandoned": "fail"
+        },
         "platform": {
             "php": "8.3"
         },
+        "secure-http": true,
         "sort-packages": true
     },
     "scripts": {
+        "audit": [
+            "@composer audit --no-dev --abandoned=fail"
+        ],
         "phpstan": "phpstan analyse --configuration=phpstan.neon.dist",
         "test": "phpunit --configuration=phpunit.xml.dist"
     }

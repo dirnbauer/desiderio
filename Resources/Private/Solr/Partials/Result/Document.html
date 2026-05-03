@@ -56,9 +56,11 @@
                 </div>
             </f:if>
 
-            <f:variable name="documentScoreAnalyze"><f:render partial="Debug/Explain" section="Explain" arguments="{document: document, resultSet: resultSet}" /></f:variable>
-            <f:if condition="{documentScoreAnalyze}">
-                <div class="rounded-lg border border-border bg-background p-3 text-card-foreground"><f:format.raw>{documentScoreAnalyze}</f:format.raw></div>
+            <f:if condition="{settings.logging.debugOutput} || {logging.debugOutput}">
+                <f:variable name="documentScoreAnalyze"><f:render partial="Debug/Explain" section="Explain" arguments="{document: document, resultSet: resultSet}" /></f:variable>
+                <f:if condition="{documentScoreAnalyze}">
+                    <div class="rounded-lg border border-border bg-background p-3 text-card-foreground"><f:format.raw>{documentScoreAnalyze}</f:format.raw></div>
+                </f:if>
             </f:if>
         </div>
     </article>

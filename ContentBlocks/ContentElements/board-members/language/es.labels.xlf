@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" target-language="es" datatype="plaintext" original="messages" product-name="board-members">
-        <header/>
-        <body>
-            <trans-unit id="title">
-                <source>Board Members</source>
-                <target>Board Members</target>
-            </trans-unit>
-            <trans-unit id="description">
-                <source>Executive board member cards with titles and affiliations</source>
-                <target>Executive board member cards with titles and affiliations</target>
-            </trans-unit>
-        </body>
-    </file>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="es">
+  <file id="board-members">
+    <unit id="title">
+      <segment state="final">
+        <source>Board Members</source>
+        <target>Board Members</target>
+      </segment>
+    </unit>
+    <unit id="description">
+      <segment state="final">
+        <source>Executive board member cards with titles and affiliations</source>
+        <target>Executive board member cards with titles and affiliations</target>
+      </segment>
+    </unit>
+  </file>
 </xliff>

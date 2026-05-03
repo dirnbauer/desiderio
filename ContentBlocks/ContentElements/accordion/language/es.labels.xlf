@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" target-language="es" datatype="plaintext" original="messages" product-name="accordion">
-        <header/>
-        <body>
-            <trans-unit id="title">
-                <source>Accordion / FAQ</source>
-                <target>Accordion / FAQ</target>
-            </trans-unit>
-            <trans-unit id="description">
-                <source>Collapsible accordion sections, perfect for FAQs</source>
-                <target>Collapsible accordion sections, perfect for FAQs</target>
-            </trans-unit>
-        </body>
-    </file>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="es">
+  <file id="accordion">
+    <unit id="title">
+      <segment state="final">
+        <source>Accordion / FAQ</source>
+        <target>Accordion / FAQ</target>
+      </segment>
+    </unit>
+    <unit id="description">
+      <segment state="final">
+        <source>Collapsible accordion sections, perfect for FAQs</source>
+        <target>Collapsible accordion sections, perfect for FAQs</target>
+      </segment>
+    </unit>
+  </file>
 </xliff>

@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" target-language="fr" datatype="plaintext" original="messages" product-name="hero-saas">
-        <header/>
-        <body>
-            <trans-unit id="title">
-                <source>Hero SaaS</source>
-                <target>Héros SaaS</target>
-            </trans-unit>
-            <trans-unit id="description">
-                <source>SaaS product hero with dashboard preview placeholder</source>
-                <target>SaaS product hero with dashboard preview placeholder</target>
-            </trans-unit>
-        </body>
-    </file>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="fr">
+  <file id="hero-saas">
+    <unit id="title">
+      <segment state="final">
+        <source>Hero SaaS</source>
+        <target>Héros SaaS</target>
+      </segment>
+    </unit>
+    <unit id="description">
+      <segment state="final">
+        <source>SaaS product hero with dashboard preview placeholder</source>
+        <target>SaaS product hero with dashboard preview placeholder</target>
+      </segment>
+    </unit>
+  </file>
 </xliff>

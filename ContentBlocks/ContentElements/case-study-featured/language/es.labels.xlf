@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" target-language="es" datatype="plaintext" original="messages" product-name="case-study-featured">
-        <header/>
-        <body>
-            <trans-unit id="title">
-                <source>Case Study Featured</source>
-                <target>Case Study Featured</target>
-            </trans-unit>
-            <trans-unit id="description">
-                <source>Large featured case study with full-width layout and metrics</source>
-                <target>Large featured case study with full-width layout and metrics</target>
-            </trans-unit>
-        </body>
-    </file>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="es">
+  <file id="case-study-featured">
+    <unit id="title">
+      <segment state="final">
+        <source>Case Study Featured</source>
+        <target>Case Study Featured</target>
+      </segment>
+    </unit>
+    <unit id="description">
+      <segment state="final">
+        <source>Large featured case study with full-width layout and metrics</source>
+        <target>Large featured case study with full-width layout and metrics</target>
+      </segment>
+    </unit>
+  </file>
 </xliff>

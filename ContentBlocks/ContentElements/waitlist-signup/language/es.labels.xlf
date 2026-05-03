@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" target-language="es" datatype="plaintext" original="messages" product-name="waitlist-signup">
-        <header/>
-        <body>
-            <trans-unit id="title">
-                <source>Waitlist Signup</source>
-                <target>Waitlist Signup</target>
-            </trans-unit>
-            <trans-unit id="description">
-                <source>Waitlist or early access signup form</source>
-                <target>Waitlist or early access signup form</target>
-            </trans-unit>
-        </body>
-    </file>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="es">
+  <file id="waitlist-signup">
+    <unit id="title">
+      <segment state="final">
+        <source>Waitlist Signup</source>
+        <target>Waitlist Signup</target>
+      </segment>
+    </unit>
+    <unit id="description">
+      <segment state="final">
+        <source>Waitlist or early access signup form</source>
+        <target>Waitlist or early access signup form</target>
+      </segment>
+    </unit>
+  </file>
 </xliff>

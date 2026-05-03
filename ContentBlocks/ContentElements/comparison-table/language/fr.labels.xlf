@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" target-language="fr" datatype="plaintext" original="messages" product-name="comparison-table">
-        <header/>
-        <body>
-            <trans-unit id="title">
-                <source>Comparison Table</source>
-                <target>Comparison Table</target>
-            </trans-unit>
-            <trans-unit id="description">
-                <source>Side-by-side feature comparison table with check/cross indicators</source>
-                <target>Side-by-side feature comparison table with check/cross indicators</target>
-            </trans-unit>
-        </body>
-    </file>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="fr">
+  <file id="comparison-table">
+    <unit id="title">
+      <segment state="final">
+        <source>Comparison Table</source>
+        <target>Comparison Table</target>
+      </segment>
+    </unit>
+    <unit id="description">
+      <segment state="final">
+        <source>Side-by-side feature comparison table with check/cross indicators</source>
+        <target>Side-by-side feature comparison table with check/cross indicators</target>
+      </segment>
+    </unit>
+  </file>
 </xliff>

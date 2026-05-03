@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" target-language="fr" datatype="plaintext" original="messages" product-name="video-embed">
-        <header/>
-        <body>
-            <trans-unit id="title">
-                <source>Video Embed</source>
-                <target>Video Embed</target>
-            </trans-unit>
-            <trans-unit id="description">
-                <source>Responsive video embed for YouTube, Vimeo, or self-hosted video</source>
-                <target>Responsive video embed for YouTube, Vimeo, or self-hosted video</target>
-            </trans-unit>
-        </body>
-    </file>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="fr">
+  <file id="video-embed">
+    <unit id="title">
+      <segment state="final">
+        <source>Video Embed</source>
+        <target>Video Embed</target>
+      </segment>
+    </unit>
+    <unit id="description">
+      <segment state="final">
+        <source>Responsive video embed for YouTube, Vimeo, or self-hosted video</source>
+        <target>Responsive video embed for YouTube, Vimeo, or self-hosted video</target>
+      </segment>
+    </unit>
+  </file>
 </xliff>

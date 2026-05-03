@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" target-language="fr" datatype="plaintext" original="messages" product-name="product-feature">
-        <header/>
-        <body>
-            <trans-unit id="title">
-                <source>Product Feature</source>
-                <target>Product Feature</target>
-            </trans-unit>
-            <trans-unit id="description">
-                <source>Product feature highlight with image and benefit list</source>
-                <target>Product feature highlight with image and benefit list</target>
-            </trans-unit>
-        </body>
-    </file>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="fr">
+  <file id="product-feature">
+    <unit id="title">
+      <segment state="final">
+        <source>Product Feature</source>
+        <target>Product Feature</target>
+      </segment>
+    </unit>
+    <unit id="description">
+      <segment state="final">
+        <source>Product feature highlight with image and benefit list</source>
+        <target>Product feature highlight with image and benefit list</target>
+      </segment>
+    </unit>
+  </file>
 </xliff>

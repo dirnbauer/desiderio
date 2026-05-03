@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" target-language="it" datatype="plaintext" original="messages" product-name="team-member">
-        <header/>
-        <body>
-            <trans-unit id="title">
-                <source>Team Member</source>
-                <target>Team Member</target>
-            </trans-unit>
-            <trans-unit id="description">
-                <source>Single team member profile card with detailed biography</source>
-                <target>Single team member profile card with detailed biography</target>
-            </trans-unit>
-        </body>
-    </file>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="it">
+  <file id="team-member">
+    <unit id="title">
+      <segment state="final">
+        <source>Team Member</source>
+        <target>Team Member</target>
+      </segment>
+    </unit>
+    <unit id="description">
+      <segment state="final">
+        <source>Single team member profile card with detailed biography</source>
+        <target>Single team member profile card with detailed biography</target>
+      </segment>
+    </unit>
+  </file>
 </xliff>

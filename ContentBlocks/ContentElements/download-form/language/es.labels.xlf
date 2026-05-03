@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" target-language="es" datatype="plaintext" original="messages" product-name="download-form">
-        <header/>
-        <body>
-            <trans-unit id="title">
-                <source>Download Form</source>
-                <target>Download Form</target>
-            </trans-unit>
-            <trans-unit id="description">
-                <source>Gated content download form with email capture</source>
-                <target>Gated content download form with email capture</target>
-            </trans-unit>
-        </body>
-    </file>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="es">
+  <file id="download-form">
+    <unit id="title">
+      <segment state="final">
+        <source>Download Form</source>
+        <target>Download Form</target>
+      </segment>
+    </unit>
+    <unit id="description">
+      <segment state="final">
+        <source>Gated content download form with email capture</source>
+        <target>Gated content download form with email capture</target>
+      </segment>
+    </unit>
+  </file>
 </xliff>

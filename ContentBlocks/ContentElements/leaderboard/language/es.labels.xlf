@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" target-language="es" datatype="plaintext" original="messages" product-name="leaderboard">
-        <header/>
-        <body>
-            <trans-unit id="title">
-                <source>Leaderboard</source>
-                <target>Leaderboard</target>
-            </trans-unit>
-            <trans-unit id="description">
-                <source>Ranked list with position, name, value, and optional avatar</source>
-                <target>Ranked list with position, name, value, and optional avatar</target>
-            </trans-unit>
-        </body>
-    </file>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="es">
+  <file id="leaderboard">
+    <unit id="title">
+      <segment state="final">
+        <source>Leaderboard</source>
+        <target>Leaderboard</target>
+      </segment>
+    </unit>
+    <unit id="description">
+      <segment state="final">
+        <source>Ranked list with position, name, value, and optional avatar</source>
+        <target>Ranked list with position, name, value, and optional avatar</target>
+      </segment>
+    </unit>
+  </file>
 </xliff>

@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" target-language="es" datatype="plaintext" original="messages" product-name="imprint">
-        <header/>
-        <body>
-            <trans-unit id="title">
-                <source>Imprint</source>
-                <target>Imprint</target>
-            </trans-unit>
-            <trans-unit id="description">
-                <source>Legal imprint page with company details and contact info</source>
-                <target>Legal imprint page with company details and contact info</target>
-            </trans-unit>
-        </body>
-    </file>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="es">
+  <file id="imprint">
+    <unit id="title">
+      <segment state="final">
+        <source>Imprint</source>
+        <target>Imprint</target>
+      </segment>
+    </unit>
+    <unit id="description">
+      <segment state="final">
+        <source>Legal imprint page with company details and contact info</source>
+        <target>Legal imprint page with company details and contact info</target>
+      </segment>
+    </unit>
+  </file>
 </xliff>

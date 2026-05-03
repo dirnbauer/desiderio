@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" target-language="fr" datatype="plaintext" original="messages" product-name="footer-columns">
-        <header/>
-        <body>
-            <trans-unit id="title">
-                <source>Footer Columns</source>
-                <target>Pied de page Columns</target>
-            </trans-unit>
-            <trans-unit id="description">
-                <source>Multi-column footer with grouped link sections</source>
-                <target>Multi-column footer with grouped link sections</target>
-            </trans-unit>
-        </body>
-    </file>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="fr">
+  <file id="footer-columns">
+    <unit id="title">
+      <segment state="final">
+        <source>Footer Columns</source>
+        <target>Pied de page Columns</target>
+      </segment>
+    </unit>
+    <unit id="description">
+      <segment state="final">
+        <source>Multi-column footer with grouped link sections</source>
+        <target>Multi-column footer with grouped link sections</target>
+      </segment>
+    </unit>
+  </file>
 </xliff>

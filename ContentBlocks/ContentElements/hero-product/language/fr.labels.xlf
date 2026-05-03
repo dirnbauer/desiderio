@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" target-language="fr" datatype="plaintext" original="messages" product-name="hero-product">
-        <header/>
-        <body>
-            <trans-unit id="title">
-                <source>Hero Product</source>
-                <target>Héros Product</target>
-            </trans-unit>
-            <trans-unit id="description">
-                <source>Product-focused hero with feature image and pricing CTA</source>
-                <target>Product-focused hero with feature image and pricing CTA</target>
-            </trans-unit>
-        </body>
-    </file>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="fr">
+  <file id="hero-product">
+    <unit id="title">
+      <segment state="final">
+        <source>Hero Product</source>
+        <target>Héros Product</target>
+      </segment>
+    </unit>
+    <unit id="description">
+      <segment state="final">
+        <source>Product-focused hero with feature image and pricing CTA</source>
+        <target>Product-focused hero with feature image and pricing CTA</target>
+      </segment>
+    </unit>
+  </file>
 </xliff>

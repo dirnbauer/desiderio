@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" target-language="it" datatype="plaintext" original="messages" product-name="pricing-faq">
-        <header/>
-        <body>
-            <trans-unit id="title">
-                <source>Pricing FAQ</source>
-                <target>Prezzi FAQ</target>
-            </trans-unit>
-            <trans-unit id="description">
-                <source>Frequently asked questions about pricing and billing</source>
-                <target>Frequently asked questions about pricing and billing</target>
-            </trans-unit>
-        </body>
-    </file>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="it">
+  <file id="pricing-faq">
+    <unit id="title">
+      <segment state="final">
+        <source>Pricing FAQ</source>
+        <target>Prezzi FAQ</target>
+      </segment>
+    </unit>
+    <unit id="description">
+      <segment state="final">
+        <source>Frequently asked questions about pricing and billing</source>
+        <target>Frequently asked questions about pricing and billing</target>
+      </segment>
+    </unit>
+  </file>
 </xliff>

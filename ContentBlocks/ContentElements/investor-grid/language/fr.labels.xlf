@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" target-language="fr" datatype="plaintext" original="messages" product-name="investor-grid">
-        <header/>
-        <body>
-            <trans-unit id="title">
-                <source>Investor Grid</source>
-                <target>Investor Grid</target>
-            </trans-unit>
-            <trans-unit id="description">
-                <source>Grid of investors or backers with logos and funding details</source>
-                <target>Grid of investors or backers with logos and funding details</target>
-            </trans-unit>
-        </body>
-    </file>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="fr">
+  <file id="investor-grid">
+    <unit id="title">
+      <segment state="final">
+        <source>Investor Grid</source>
+        <target>Investor Grid</target>
+      </segment>
+    </unit>
+    <unit id="description">
+      <segment state="final">
+        <source>Grid of investors or backers with logos and funding details</source>
+        <target>Grid of investors or backers with logos and funding details</target>
+      </segment>
+    </unit>
+  </file>
 </xliff>

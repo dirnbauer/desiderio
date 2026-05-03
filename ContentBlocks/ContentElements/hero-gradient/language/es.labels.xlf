@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" target-language="es" datatype="plaintext" original="messages" product-name="hero-gradient">
-        <header/>
-        <body>
-            <trans-unit id="title">
-                <source>Hero Gradient</source>
-                <target>Hero Gradient</target>
-            </trans-unit>
-            <trans-unit id="description">
-                <source>Hero with gradient background and centered content</source>
-                <target>Hero with gradient background and centered content</target>
-            </trans-unit>
-        </body>
-    </file>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="es">
+  <file id="hero-gradient">
+    <unit id="title">
+      <segment state="final">
+        <source>Hero Gradient</source>
+        <target>Hero Gradient</target>
+      </segment>
+    </unit>
+    <unit id="description">
+      <segment state="final">
+        <source>Hero with gradient background and centered content</source>
+        <target>Hero with gradient background and centered content</target>
+      </segment>
+    </unit>
+  </file>
 </xliff>

@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" target-language="fr" datatype="plaintext" original="messages" product-name="chart-area">
-        <header/>
-        <body>
-            <trans-unit id="title">
-                <source>Chart Area</source>
-                <target>Graphique Area</target>
-            </trans-unit>
-            <trans-unit id="description">
-                <source>Area chart with gradient fill beneath the line</source>
-                <target>Area chart with gradient fill beneath the line</target>
-            </trans-unit>
-        </body>
-    </file>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="fr">
+  <file id="chart-area">
+    <unit id="title">
+      <segment state="final">
+        <source>Chart Area</source>
+        <target>Graphique Area</target>
+      </segment>
+    </unit>
+    <unit id="description">
+      <segment state="final">
+        <source>Area chart with gradient fill beneath the line</source>
+        <target>Area chart with gradient fill beneath the line</target>
+      </segment>
+    </unit>
+  </file>
 </xliff>

@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" target-language="fr" datatype="plaintext" original="messages" product-name="callback-request">
-        <header/>
-        <body>
-            <trans-unit id="title">
-                <source>Callback Request</source>
-                <target>Callback Request</target>
-            </trans-unit>
-            <trans-unit id="description">
-                <source>Request a callback form with phone number capture</source>
-                <target>Request a callback form with phone number capture</target>
-            </trans-unit>
-        </body>
-    </file>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="fr">
+  <file id="callback-request">
+    <unit id="title">
+      <segment state="final">
+        <source>Callback Request</source>
+        <target>Callback Request</target>
+      </segment>
+    </unit>
+    <unit id="description">
+      <segment state="final">
+        <source>Request a callback form with phone number capture</source>
+        <target>Request a callback form with phone number capture</target>
+      </segment>
+    </unit>
+  </file>
 </xliff>

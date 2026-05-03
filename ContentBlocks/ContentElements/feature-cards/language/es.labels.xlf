@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" target-language="es" datatype="plaintext" original="messages" product-name="feature-cards">
-        <header/>
-        <body>
-            <trans-unit id="title">
-                <source>Feature Cards</source>
-                <target>Característica Cards</target>
-            </trans-unit>
-            <trans-unit id="description">
-                <source>Card-based feature presentation with title and supporting copy</source>
-                <target>Card-based feature presentation with title and supporting copy</target>
-            </trans-unit>
-        </body>
-    </file>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="es">
+  <file id="feature-cards">
+    <unit id="title">
+      <segment state="final">
+        <source>Feature Cards</source>
+        <target>Característica Cards</target>
+      </segment>
+    </unit>
+    <unit id="description">
+      <segment state="final">
+        <source>Card-based feature presentation with title and supporting copy</source>
+        <target>Card-based feature presentation with title and supporting copy</target>
+      </segment>
+    </unit>
+  </file>
 </xliff>

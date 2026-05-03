@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" target-language="fr" datatype="plaintext" original="messages" product-name="how-to-steps">
-        <header/>
-        <body>
-            <trans-unit id="title">
-                <source>How-To Steps</source>
-                <target>How-To Steps</target>
-            </trans-unit>
-            <trans-unit id="description">
-                <source>Numbered instruction steps with structured data for how-to guides</source>
-                <target>Numbered instruction steps with structured data for how-to guides</target>
-            </trans-unit>
-        </body>
-    </file>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="fr">
+  <file id="how-to-steps">
+    <unit id="title">
+      <segment state="final">
+        <source>How-To Steps</source>
+        <target>How-To Steps</target>
+      </segment>
+    </unit>
+    <unit id="description">
+      <segment state="final">
+        <source>Numbered instruction steps with structured data for how-to guides</source>
+        <target>Numbered instruction steps with structured data for how-to guides</target>
+      </segment>
+    </unit>
+  </file>
 </xliff>

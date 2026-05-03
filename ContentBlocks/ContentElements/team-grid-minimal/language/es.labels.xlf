@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" target-language="es" datatype="plaintext" original="messages" product-name="team-grid-minimal">
-        <header/>
-        <body>
-            <trans-unit id="title">
-                <source>Team Grid Minimal</source>
-                <target>Equipo Grid Minimal</target>
-            </trans-unit>
-            <trans-unit id="description">
-                <source>Minimal team grid with name and role only</source>
-                <target>Minimal team grid with name and role only</target>
-            </trans-unit>
-        </body>
-    </file>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="es">
+  <file id="team-grid-minimal">
+    <unit id="title">
+      <segment state="final">
+        <source>Team Grid Minimal</source>
+        <target>Equipo Grid Minimal</target>
+      </segment>
+    </unit>
+    <unit id="description">
+      <segment state="final">
+        <source>Minimal team grid with name and role only</source>
+        <target>Minimal team grid with name and role only</target>
+      </segment>
+    </unit>
+  </file>
 </xliff>

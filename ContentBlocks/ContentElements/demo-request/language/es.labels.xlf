@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" target-language="es" datatype="plaintext" original="messages" product-name="demo-request">
-        <header/>
-        <body>
-            <trans-unit id="title">
-                <source>Demo Request</source>
-                <target>Demo Request</target>
-            </trans-unit>
-            <trans-unit id="description">
-                <source>Request a product demo with details form</source>
-                <target>Request a product demo with details form</target>
-            </trans-unit>
-        </body>
-    </file>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="es">
+  <file id="demo-request">
+    <unit id="title">
+      <segment state="final">
+        <source>Demo Request</source>
+        <target>Demo Request</target>
+      </segment>
+    </unit>
+    <unit id="description">
+      <segment state="final">
+        <source>Request a product demo with details form</source>
+        <target>Request a product demo with details form</target>
+      </segment>
+    </unit>
+  </file>
 </xliff>

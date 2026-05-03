@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" target-language="es" datatype="plaintext" original="messages" product-name="testimonial-grid">
-        <header/>
-        <body>
-            <trans-unit id="title">
-                <source>Testimonial Grid</source>
-                <target>Testimonio Grid</target>
-            </trans-unit>
-            <trans-unit id="description">
-                <source>Multi-column grid of customer testimonials</source>
-                <target>Multi-column grid of customer testimonials</target>
-            </trans-unit>
-        </body>
-    </file>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="es">
+  <file id="testimonial-grid">
+    <unit id="title">
+      <segment state="final">
+        <source>Testimonial Grid</source>
+        <target>Testimonio Grid</target>
+      </segment>
+    </unit>
+    <unit id="description">
+      <segment state="final">
+        <source>Multi-column grid of customer testimonials</source>
+        <target>Multi-column grid of customer testimonials</target>
+      </segment>
+    </unit>
+  </file>
 </xliff>

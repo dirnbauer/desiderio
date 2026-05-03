@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" target-language="fr" datatype="plaintext" original="messages" product-name="map-embed">
-        <header/>
-        <body>
-            <trans-unit id="title">
-                <source>Map Embed</source>
-                <target>Map Embed</target>
-            </trans-unit>
-            <trans-unit id="description">
-                <source>Embedded map with address details</source>
-                <target>Embedded map with address details</target>
-            </trans-unit>
-        </body>
-    </file>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="fr">
+  <file id="map-embed">
+    <unit id="title">
+      <segment state="final">
+        <source>Map Embed</source>
+        <target>Map Embed</target>
+      </segment>
+    </unit>
+    <unit id="description">
+      <segment state="final">
+        <source>Embedded map with address details</source>
+        <target>Embedded map with address details</target>
+      </segment>
+    </unit>
+  </file>
 </xliff>

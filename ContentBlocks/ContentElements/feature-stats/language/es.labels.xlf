@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" target-language="es" datatype="plaintext" original="messages" product-name="feature-stats">
-        <header/>
-        <body>
-            <trans-unit id="title">
-                <source>Feature Stats</source>
-                <target>Característica Stats</target>
-            </trans-unit>
-            <trans-unit id="description">
-                <source>Feature section with supporting statistics and key metrics</source>
-                <target>Característica section with supporting statistics and key metrics</target>
-            </trans-unit>
-        </body>
-    </file>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="es">
+  <file id="feature-stats">
+    <unit id="title">
+      <segment state="final">
+        <source>Feature Stats</source>
+        <target>Característica Stats</target>
+      </segment>
+    </unit>
+    <unit id="description">
+      <segment state="final">
+        <source>Feature section with supporting statistics and key metrics</source>
+        <target>Característica section with supporting statistics and key metrics</target>
+      </segment>
+    </unit>
+  </file>
 </xliff>

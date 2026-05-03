@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" target-language="es" datatype="plaintext" original="messages" product-name="team-cta">
-        <header/>
-        <body>
-            <trans-unit id="title">
-                <source>Team CTA</source>
-                <target>Equipo CTA</target>
-            </trans-unit>
-            <trans-unit id="description">
-                <source>Call to action for joining the team with open positions count</source>
-                <target>Call to action for joining the team with open positions count</target>
-            </trans-unit>
-        </body>
-    </file>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="es">
+  <file id="team-cta">
+    <unit id="title">
+      <segment state="final">
+        <source>Team CTA</source>
+        <target>Equipo CTA</target>
+      </segment>
+    </unit>
+    <unit id="description">
+      <segment state="final">
+        <source>Call to action for joining the team with open positions count</source>
+        <target>Call to action for joining the team with open positions count</target>
+      </segment>
+    </unit>
+  </file>
 </xliff>

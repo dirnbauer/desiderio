@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" target-language="fr" datatype="plaintext" original="messages" product-name="feature-timeline">
-        <header/>
-        <body>
-            <trans-unit id="title">
-                <source>Feature Timeline</source>
-                <target>Fonctionnalité Timeline</target>
-            </trans-unit>
-            <trans-unit id="description">
-                <source>Vertical timeline showcasing features with progressive steps</source>
-                <target>Vertical timeline showcasing features with progressive steps</target>
-            </trans-unit>
-        </body>
-    </file>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="fr">
+  <file id="feature-timeline">
+    <unit id="title">
+      <segment state="final">
+        <source>Feature Timeline</source>
+        <target>Fonctionnalité Timeline</target>
+      </segment>
+    </unit>
+    <unit id="description">
+      <segment state="final">
+        <source>Vertical timeline showcasing features with progressive steps</source>
+        <target>Vertical timeline showcasing features with progressive steps</target>
+      </segment>
+    </unit>
+  </file>
 </xliff>

@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" target-language="es" datatype="plaintext" original="messages" product-name="cta-split">
-        <header/>
-        <body>
-            <trans-unit id="title">
-                <source>CTA Split</source>
-                <target>CTA Split</target>
-            </trans-unit>
-            <trans-unit id="description">
-                <source>Two-column split CTA with different actions per side</source>
-                <target>Two-column split CTA with different actions per side</target>
-            </trans-unit>
-        </body>
-    </file>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="es">
+  <file id="cta-split">
+    <unit id="title">
+      <segment state="final">
+        <source>CTA Split</source>
+        <target>CTA Split</target>
+      </segment>
+    </unit>
+    <unit id="description">
+      <segment state="final">
+        <source>Two-column split CTA with different actions per side</source>
+        <target>Two-column split CTA with different actions per side</target>
+      </segment>
+    </unit>
+  </file>
 </xliff>

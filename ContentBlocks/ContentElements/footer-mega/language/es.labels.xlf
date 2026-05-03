@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" target-language="es" datatype="plaintext" original="messages" product-name="footer-mega">
-        <header/>
-        <body>
-            <trans-unit id="title">
-                <source>Footer Mega</source>
-                <target>Pie de página Mega</target>
-            </trans-unit>
-            <trans-unit id="description">
-                <source>Large footer with brand, multiple link groups, social icons, and newsletter</source>
-                <target>Large footer with brand, multiple link groups, social icons, and newsletter</target>
-            </trans-unit>
-        </body>
-    </file>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="es">
+  <file id="footer-mega">
+    <unit id="title">
+      <segment state="final">
+        <source>Footer Mega</source>
+        <target>Pie de página Mega</target>
+      </segment>
+    </unit>
+    <unit id="description">
+      <segment state="final">
+        <source>Large footer with brand, multiple link groups, social icons, and newsletter</source>
+        <target>Large footer with brand, multiple link groups, social icons, and newsletter</target>
+      </segment>
+    </unit>
+  </file>
 </xliff>

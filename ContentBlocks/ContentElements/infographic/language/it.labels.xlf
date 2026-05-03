@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" target-language="it" datatype="plaintext" original="messages" product-name="infographic">
-        <header/>
-        <body>
-            <trans-unit id="title">
-                <source>Infographic</source>
-                <target>Infographic</target>
-            </trans-unit>
-            <trans-unit id="description">
-                <source>Visual infographic section with numbered steps and icons</source>
-                <target>Visual infographic section with numbered steps and icons</target>
-            </trans-unit>
-        </body>
-    </file>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="it">
+  <file id="infographic">
+    <unit id="title">
+      <segment state="final">
+        <source>Infographic</source>
+        <target>Infographic</target>
+      </segment>
+    </unit>
+    <unit id="description">
+      <segment state="final">
+        <source>Visual infographic section with numbered steps and icons</source>
+        <target>Visual infographic section with numbered steps and icons</target>
+      </segment>
+    </unit>
+  </file>
 </xliff>

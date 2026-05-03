@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" target-language="es" datatype="plaintext" original="messages" product-name="notification">
-        <header/>
-        <body>
-            <trans-unit id="title">
-                <source>Notification</source>
-                <target>Notification</target>
-            </trans-unit>
-            <trans-unit id="description">
-                <source>Toast-style notification with icon, message, and action button</source>
-                <target>Toast-style notification with icon, message, and action button</target>
-            </trans-unit>
-        </body>
-    </file>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="es">
+  <file id="notification">
+    <unit id="title">
+      <segment state="final">
+        <source>Notification</source>
+        <target>Notification</target>
+      </segment>
+    </unit>
+    <unit id="description">
+      <segment state="final">
+        <source>Toast-style notification with icon, message, and action button</source>
+        <target>Toast-style notification with icon, message, and action button</target>
+      </segment>
+    </unit>
+  </file>
 </xliff>

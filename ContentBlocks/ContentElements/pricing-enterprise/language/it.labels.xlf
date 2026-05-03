@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" target-language="it" datatype="plaintext" original="messages" product-name="pricing-enterprise">
-        <header/>
-        <body>
-            <trans-unit id="title">
-                <source>Pricing Enterprise</source>
-                <target>Prezzi Enterprise</target>
-            </trans-unit>
-            <trans-unit id="description">
-                <source>Enterprise pricing CTA with custom quote request</source>
-                <target>Enterprise pricing CTA with custom quote request</target>
-            </trans-unit>
-        </body>
-    </file>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="it">
+  <file id="pricing-enterprise">
+    <unit id="title">
+      <segment state="final">
+        <source>Pricing Enterprise</source>
+        <target>Prezzi Enterprise</target>
+      </segment>
+    </unit>
+    <unit id="description">
+      <segment state="final">
+        <source>Enterprise pricing CTA with custom quote request</source>
+        <target>Enterprise pricing CTA with custom quote request</target>
+      </segment>
+    </unit>
+  </file>
 </xliff>

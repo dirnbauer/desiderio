@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" target-language="it" datatype="plaintext" original="messages" product-name="chart-radar">
-        <header/>
-        <body>
-            <trans-unit id="title">
-                <source>Chart Radar</source>
-                <target>Chart Radar</target>
-            </trans-unit>
-            <trans-unit id="description">
-                <source>Radar (spider) chart for comparing metrics on multiple axes</source>
-                <target>Radar (spider) chart for comparing metrics on multiple axes</target>
-            </trans-unit>
-        </body>
-    </file>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="it">
+  <file id="chart-radar">
+    <unit id="title">
+      <segment state="final">
+        <source>Chart Radar</source>
+        <target>Chart Radar</target>
+      </segment>
+    </unit>
+    <unit id="description">
+      <segment state="final">
+        <source>Radar (spider) chart for comparing metrics on multiple axes</source>
+        <target>Radar (spider) chart for comparing metrics on multiple axes</target>
+      </segment>
+    </unit>
+  </file>
 </xliff>

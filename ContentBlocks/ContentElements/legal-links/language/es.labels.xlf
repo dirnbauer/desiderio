@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" target-language="es" datatype="plaintext" original="messages" product-name="legal-links">
-        <header/>
-        <body>
-            <trans-unit id="title">
-                <source>Legal Links</source>
-                <target>Legal Links</target>
-            </trans-unit>
-            <trans-unit id="description">
-                <source>Inline legal link bar for privacy, terms, imprint</source>
-                <target>Inline legal link bar for privacy, terms, imprint</target>
-            </trans-unit>
-        </body>
-    </file>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="es">
+  <file id="legal-links">
+    <unit id="title">
+      <segment state="final">
+        <source>Legal Links</source>
+        <target>Legal Links</target>
+      </segment>
+    </unit>
+    <unit id="description">
+      <segment state="final">
+        <source>Inline legal link bar for privacy, terms, imprint</source>
+        <target>Inline legal link bar for privacy, terms, imprint</target>
+      </segment>
+    </unit>
+  </file>
 </xliff>

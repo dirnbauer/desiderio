@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" target-language="es" datatype="plaintext" original="messages" product-name="navbar-transparent">
-        <header/>
-        <body>
-            <trans-unit id="title">
-                <source>Transparent Navbar</source>
-                <target>Transparent Navbar</target>
-            </trans-unit>
-            <trans-unit id="description">
-                <source>Transparent overlay navigation for hero-first landing pages</source>
-                <target>Transparent overlay navigation for hero-first landing pages</target>
-            </trans-unit>
-        </body>
-    </file>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="es">
+  <file id="navbar-transparent">
+    <unit id="title">
+      <segment state="final">
+        <source>Transparent Navbar</source>
+        <target>Transparent Navbar</target>
+      </segment>
+    </unit>
+    <unit id="description">
+      <segment state="final">
+        <source>Transparent overlay navigation for hero-first landing pages</source>
+        <target>Transparent overlay navigation for hero-first landing pages</target>
+      </segment>
+    </unit>
+  </file>
 </xliff>

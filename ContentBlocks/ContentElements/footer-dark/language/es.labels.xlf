@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" target-language="es" datatype="plaintext" original="messages" product-name="footer-dark">
-        <header/>
-        <body>
-            <trans-unit id="title">
-                <source>Footer Dark</source>
-                <target>Pie de página Dark</target>
-            </trans-unit>
-            <trans-unit id="description">
-                <source>Dark-themed footer with inverted colors</source>
-                <target>Dark-themed footer with inverted colors</target>
-            </trans-unit>
-        </body>
-    </file>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="es">
+  <file id="footer-dark">
+    <unit id="title">
+      <segment state="final">
+        <source>Footer Dark</source>
+        <target>Pie de página Dark</target>
+      </segment>
+    </unit>
+    <unit id="description">
+      <segment state="final">
+        <source>Dark-themed footer with inverted colors</source>
+        <target>Dark-themed footer with inverted colors</target>
+      </segment>
+    </unit>
+  </file>
 </xliff>

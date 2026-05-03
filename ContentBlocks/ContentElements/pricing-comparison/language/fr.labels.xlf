@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" target-language="fr" datatype="plaintext" original="messages" product-name="pricing-comparison">
-        <header/>
-        <body>
-            <trans-unit id="title">
-                <source>Pricing Comparison</source>
-                <target>Tarifs Comparison</target>
-            </trans-unit>
-            <trans-unit id="description">
-                <source>Feature comparison table across pricing plans</source>
-                <target>Fonctionnalité comparison table across pricing plans</target>
-            </trans-unit>
-        </body>
-    </file>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="fr">
+  <file id="pricing-comparison">
+    <unit id="title">
+      <segment state="final">
+        <source>Pricing Comparison</source>
+        <target>Tarifs Comparison</target>
+      </segment>
+    </unit>
+    <unit id="description">
+      <segment state="final">
+        <source>Feature comparison table across pricing plans</source>
+        <target>Fonctionnalité comparison table across pricing plans</target>
+      </segment>
+    </unit>
+  </file>
 </xliff>

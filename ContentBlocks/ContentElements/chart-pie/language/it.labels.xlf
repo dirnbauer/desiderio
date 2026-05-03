@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" target-language="it" datatype="plaintext" original="messages" product-name="chart-pie">
-        <header/>
-        <body>
-            <trans-unit id="title">
-                <source>Chart Pie</source>
-                <target>Grafico Pie</target>
-            </trans-unit>
-            <trans-unit id="description">
-                <source>Pie chart with legend and configurable segments</source>
-                <target>Pie chart with legend and configurable segments</target>
-            </trans-unit>
-        </body>
-    </file>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="it">
+  <file id="chart-pie">
+    <unit id="title">
+      <segment state="final">
+        <source>Chart Pie</source>
+        <target>Grafico Pie</target>
+      </segment>
+    </unit>
+    <unit id="description">
+      <segment state="final">
+        <source>Pie chart with legend and configurable segments</source>
+        <target>Pie chart with legend and configurable segments</target>
+      </segment>
+    </unit>
+  </file>
 </xliff>

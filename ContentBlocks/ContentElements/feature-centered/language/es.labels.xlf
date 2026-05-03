@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" target-language="es" datatype="plaintext" original="messages" product-name="feature-centered">
-        <header/>
-        <body>
-            <trans-unit id="title">
-                <source>Feature Centered</source>
-                <target>Característica Centered</target>
-            </trans-unit>
-            <trans-unit id="description">
-                <source>Centered single-column feature showcase with stacked items</source>
-                <target>Centered single-column feature showcase with stacked items</target>
-            </trans-unit>
-        </body>
-    </file>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="es">
+  <file id="feature-centered">
+    <unit id="title">
+      <segment state="final">
+        <source>Feature Centered</source>
+        <target>Característica Centered</target>
+      </segment>
+    </unit>
+    <unit id="description">
+      <segment state="final">
+        <source>Centered single-column feature showcase with stacked items</source>
+        <target>Centered single-column feature showcase with stacked items</target>
+      </segment>
+    </unit>
+  </file>
 </xliff>

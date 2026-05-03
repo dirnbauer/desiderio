@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" target-language="es" datatype="plaintext" original="messages" product-name="pricing">
-        <header/>
-        <body>
-            <trans-unit id="title">
-                <source>Pricing</source>
-                <target>Precios</target>
-            </trans-unit>
-            <trans-unit id="description">
-                <source>Pricing tables with featured plans and CTA buttons</source>
-                <target>Precios tables with featured plans and CTA buttons</target>
-            </trans-unit>
-        </body>
-    </file>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="es">
+  <file id="pricing">
+    <unit id="title">
+      <segment state="final">
+        <source>Pricing</source>
+        <target>Precios</target>
+      </segment>
+    </unit>
+    <unit id="description">
+      <segment state="final">
+        <source>Pricing tables with featured plans and CTA buttons</source>
+        <target>Precios tables with featured plans and CTA buttons</target>
+      </segment>
+    </unit>
+  </file>
 </xliff>

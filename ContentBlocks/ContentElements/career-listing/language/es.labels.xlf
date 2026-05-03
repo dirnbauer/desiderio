@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" target-language="es" datatype="plaintext" original="messages" product-name="career-listing">
-        <header/>
-        <body>
-            <trans-unit id="title">
-                <source>Career Listing</source>
-                <target>Career Listing</target>
-            </trans-unit>
-            <trans-unit id="description">
-                <source>Job openings listed with department, location and apply link</source>
-                <target>Job openings listed with department, location and apply link</target>
-            </trans-unit>
-        </body>
-    </file>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="es">
+  <file id="career-listing">
+    <unit id="title">
+      <segment state="final">
+        <source>Career Listing</source>
+        <target>Career Listing</target>
+      </segment>
+    </unit>
+    <unit id="description">
+      <segment state="final">
+        <source>Job openings listed with department, location and apply link</source>
+        <target>Job openings listed with department, location and apply link</target>
+      </segment>
+    </unit>
+  </file>
 </xliff>

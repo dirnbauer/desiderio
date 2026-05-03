@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" target-language="es" datatype="plaintext" original="messages" product-name="chart-sparkline">
-        <header/>
-        <body>
-            <trans-unit id="title">
-                <source>Chart Sparkline</source>
-                <target>Chart Sparkline</target>
-            </trans-unit>
-            <trans-unit id="description">
-                <source>Compact sparkline trend with optional delta badge</source>
-                <target>Compact sparkline trend with optional delta badge</target>
-            </trans-unit>
-        </body>
-    </file>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="es">
+  <file id="chart-sparkline">
+    <unit id="title">
+      <segment state="final">
+        <source>Chart Sparkline</source>
+        <target>Chart Sparkline</target>
+      </segment>
+    </unit>
+    <unit id="description">
+      <segment state="final">
+        <source>Compact sparkline trend with optional delta badge</source>
+        <target>Compact sparkline trend with optional delta badge</target>
+      </segment>
+    </unit>
+  </file>
 </xliff>

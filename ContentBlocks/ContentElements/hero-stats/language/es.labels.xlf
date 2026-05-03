@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" target-language="es" datatype="plaintext" original="messages" product-name="hero-stats">
-        <header/>
-        <body>
-            <trans-unit id="title">
-                <source>Hero Stats</source>
-                <target>Hero Stats</target>
-            </trans-unit>
-            <trans-unit id="description">
-                <source>Hero with headline, CTA, and compact stat cards</source>
-                <target>Hero with headline, CTA, and compact stat cards</target>
-            </trans-unit>
-        </body>
-    </file>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="es">
+  <file id="hero-stats">
+    <unit id="title">
+      <segment state="final">
+        <source>Hero Stats</source>
+        <target>Hero Stats</target>
+      </segment>
+    </unit>
+    <unit id="description">
+      <segment state="final">
+        <source>Hero with headline, CTA, and compact stat cards</source>
+        <target>Hero with headline, CTA, and compact stat cards</target>
+      </segment>
+    </unit>
+  </file>
 </xliff>

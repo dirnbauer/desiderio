@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" target-language="es" datatype="plaintext" original="messages" product-name="company-values">
-        <header/>
-        <body>
-            <trans-unit id="title">
-                <source>Company Values</source>
-                <target>Company Values</target>
-            </trans-unit>
-            <trans-unit id="description">
-                <source>Core values presented as icon cards with descriptions</source>
-                <target>Core values presented as icon cards with descriptions</target>
-            </trans-unit>
-        </body>
-    </file>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="es">
+  <file id="company-values">
+    <unit id="title">
+      <segment state="final">
+        <source>Company Values</source>
+        <target>Company Values</target>
+      </segment>
+    </unit>
+    <unit id="description">
+      <segment state="final">
+        <source>Core values presented as icon cards with descriptions</source>
+        <target>Core values presented as icon cards with descriptions</target>
+      </segment>
+    </unit>
+  </file>
 </xliff>

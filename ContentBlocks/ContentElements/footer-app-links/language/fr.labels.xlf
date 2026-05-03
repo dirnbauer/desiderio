@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" target-language="fr" datatype="plaintext" original="messages" product-name="footer-app-links">
-        <header/>
-        <body>
-            <trans-unit id="title">
-                <source>Footer App Links</source>
-                <target>Pied de page App Links</target>
-            </trans-unit>
-            <trans-unit id="description">
-                <source>Footer with app store download buttons and QR code</source>
-                <target>Pied de page with app store download buttons and QR code</target>
-            </trans-unit>
-        </body>
-    </file>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="fr">
+  <file id="footer-app-links">
+    <unit id="title">
+      <segment state="final">
+        <source>Footer App Links</source>
+        <target>Pied de page App Links</target>
+      </segment>
+    </unit>
+    <unit id="description">
+      <segment state="final">
+        <source>Footer with app store download buttons and QR code</source>
+        <target>Pied de page with app store download buttons and QR code</target>
+      </segment>
+    </unit>
+  </file>
 </xliff>

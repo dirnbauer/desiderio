@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" target-language="it" datatype="plaintext" original="messages" product-name="footer-split">
-        <header/>
-        <body>
-            <trans-unit id="title">
-                <source>Footer Split</source>
-                <target>Piè di pagina Split</target>
-            </trans-unit>
-            <trans-unit id="description">
-                <source>Two-column split footer with brand left and links right</source>
-                <target>Two-column split footer with brand left and links right</target>
-            </trans-unit>
-        </body>
-    </file>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="it">
+  <file id="footer-split">
+    <unit id="title">
+      <segment state="final">
+        <source>Footer Split</source>
+        <target>Piè di pagina Split</target>
+      </segment>
+    </unit>
+    <unit id="description">
+      <segment state="final">
+        <source>Two-column split footer with brand left and links right</source>
+        <target>Two-column split footer with brand left and links right</target>
+      </segment>
+    </unit>
+  </file>
 </xliff>

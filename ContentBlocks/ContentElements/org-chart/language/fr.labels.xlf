@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" target-language="fr" datatype="plaintext" original="messages" product-name="org-chart">
-        <header/>
-        <body>
-            <trans-unit id="title">
-                <source>Org Chart</source>
-                <target>Org Chart</target>
-            </trans-unit>
-            <trans-unit id="description">
-                <source>Hierarchical organizational chart with levels</source>
-                <target>Hierarchical organizational chart with levels</target>
-            </trans-unit>
-        </body>
-    </file>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="fr">
+  <file id="org-chart">
+    <unit id="title">
+      <segment state="final">
+        <source>Org Chart</source>
+        <target>Org Chart</target>
+      </segment>
+    </unit>
+    <unit id="description">
+      <segment state="final">
+        <source>Hierarchical organizational chart with levels</source>
+        <target>Hierarchical organizational chart with levels</target>
+      </segment>
+    </unit>
+  </file>
 </xliff>

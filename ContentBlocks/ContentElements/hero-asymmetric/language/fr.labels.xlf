@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" target-language="fr" datatype="plaintext" original="messages" product-name="hero-asymmetric">
-        <header/>
-        <body>
-            <trans-unit id="title">
-                <source>Hero Asymmetric</source>
-                <target>Héros Asymmetric</target>
-            </trans-unit>
-            <trans-unit id="description">
-                <source>Asymmetric layout hero with offset content and media</source>
-                <target>Asymmetric layout hero with offset content and media</target>
-            </trans-unit>
-        </body>
-    </file>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="fr">
+  <file id="hero-asymmetric">
+    <unit id="title">
+      <segment state="final">
+        <source>Hero Asymmetric</source>
+        <target>Héros Asymmetric</target>
+      </segment>
+    </unit>
+    <unit id="description">
+      <segment state="final">
+        <source>Asymmetric layout hero with offset content and media</source>
+        <target>Asymmetric layout hero with offset content and media</target>
+      </segment>
+    </unit>
+  </file>
 </xliff>

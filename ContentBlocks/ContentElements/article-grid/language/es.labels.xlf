@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" target-language="es" datatype="plaintext" original="messages" product-name="article-grid">
-        <header/>
-        <body>
-            <trans-unit id="title">
-                <source>Article Grid</source>
-                <target>Article Grid</target>
-            </trans-unit>
-            <trans-unit id="description">
-                <source>Editorial article grid with card teasers</source>
-                <target>Editorial article grid with card teasers</target>
-            </trans-unit>
-        </body>
-    </file>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="es">
+  <file id="article-grid">
+    <unit id="title">
+      <segment state="final">
+        <source>Article Grid</source>
+        <target>Article Grid</target>
+      </segment>
+    </unit>
+    <unit id="description">
+      <segment state="final">
+        <source>Editorial article grid with card teasers</source>
+        <target>Editorial article grid with card teasers</target>
+      </segment>
+    </unit>
+  </file>
 </xliff>

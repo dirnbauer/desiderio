@@ -4,6 +4,9 @@
     data-namespace-typo3-fluid="true"
 >
 
+<f:argument name="newsItem" type="GeorgRinger\News\Domain\Model\News" optional="true"/>
+<f:argument name="settings" type="array" optional="true"/>
+
 <aside class="news-share flex flex-col gap-3 rounded-xl border border-border bg-card p-4 sm:flex-row sm:items-center sm:justify-between" aria-label="Share this article">
     <div class="text-sm font-medium text-foreground">
         <f:translate key="share-this" extensionName="news">Share this article</f:translate>

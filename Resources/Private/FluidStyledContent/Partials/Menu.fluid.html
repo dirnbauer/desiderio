@@ -5,6 +5,10 @@
     data-namespace-typo3-fluid="true"
 >
 
+<f:argument name="record" type="object" optional="true"/>
+<f:argument name="items" type="iterable" optional="true"/>
+<f:argument name="fallbackPages" type="iterable" optional="true"/>
+
 <div class="ce-fsc-menu">
     <f:render partial="Header" arguments="{record: record}"/>
 

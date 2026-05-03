@@ -13,22 +13,35 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
   (`Default`, `Post`, `Widget`), `BlogList` + `BlogPost` page templates,
   every post / list / widget / comment / page-layout template, and
   30+ partials in `Resources/Private/Extensions/Blog/`.
-- **Fluid 5.3 strong typing** on every blog partial — `<f:argument
-  name="post" type="T3G\AgencyPack\Blog\Domain\Model\Post"/>`,
-  `type="iterable"`, `type="array"`, `type="object"`. Inputs are
-  declared, type-checked, and documented at the partial boundary.
+- **Fluid 5.3 strong typing** extended across the entire override
+  surface: News, Solr, FluidStyledContent, the shared Pagination
+  partials, and every blog partial now declare typed
+  `<f:argument name="…" type="…"/>` blocks. Types pin to concrete
+  domain models where applicable
+  (`GeorgRinger\News\Domain\Model\News`,
+  `T3G\AgencyPack\Blog\Domain\Model\{Post,Author,Category,Tag,Comment}`)
+  with `iterable` / `array` / `object` / `string` for collections,
+  settings bags, paginators, and identifiers.
+- **ICU MessageFormat plural rules** in `locallang.xlf` /
+  `de.locallang.xlf` for `news.loadMore.status`,
+  `news.magazine.items`, `news.comments.count`,
+  `news.tags.count`, `news.categories.count`, and
+  `news.entries.count`. The `LoadMore` partial now passes
+  `{visible: …, total: …}` named arguments to drive the rule.
 - Backend page-layout previews for the seven `blog_*` plugin list types
   via `Configuration/Sets/DesiderioBlog/page.tsconfig`.
-- `t3g/blog` is now in `composer.json` `suggest` and
+- `t3g/blog` added to `composer.json` `suggest` and
   `ext_emconf.php` `suggests`.
 
 ### Changed
 
 - Base set `webconsulting/desiderio` adds `webconsulting/desiderio-blog`
   to its optional dependency list.
-- Test suite grew by one structural test that asserts every blog
-  template uses `<d:…>` shadcn components and every blog partial
-  declares typed `<f:argument>` blocks.
+- Test suite grew by four structural tests asserting:
+  shadcn `<d:…>` usage in blog templates,
+  typed `<f:argument>` declarations across News/Solr/FSC/Pagination,
+  XLIFF 2.0 across every label file (Resources + ContentBlocks),
+  and ICU plural rules on the news labels.
 
 ## [2.1.0] — 2026-05-03
 

@@ -5,6 +5,9 @@
     data-namespace-typo3-fluid="true"
 >
 
+<f:argument name="resultSet" type="object" optional="true"/>
+<f:argument name="settings" type="array" optional="true"/>
+
 <f:section name="FacetsActive">
     <f:if condition="{resultSet.facets.used -> f:count()}">
         <div id="tx-solr-facets-in-use" class="flex flex-wrap items-center gap-2">

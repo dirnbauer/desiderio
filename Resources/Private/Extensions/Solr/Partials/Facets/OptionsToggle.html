@@ -5,6 +5,10 @@
     data-namespace-typo3-fluid="true"
 >
 
+<f:argument name="facet" type="object" optional="true"/>
+<f:argument name="resultSet" type="object" optional="true"/>
+<f:argument name="settings" type="array" optional="true"/>
+
 <f:variable name="facetOptionLimit">{f:if(condition: '{settings.faceting.limit}', then: '{settings.faceting.limit}', else: 10)}</f:variable>
 
 <d:molecule.card size="sm" class="facet-card">

@@ -3,6 +3,9 @@
     data-namespace-typo3-fluid="true"
 >
 
+<f:argument name="record" type="object" optional="true"/>
+<f:argument name="images" type="iterable" optional="true"/>
+
 <f:if condition="{files}">
     <div class="ce-fsc-media ce-fsc-media--{position}">
         <f:for each="{files}" as="file">

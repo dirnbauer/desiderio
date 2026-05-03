@@ -5,6 +5,10 @@
     data-namespace-typo3-fluid="true"
 >
 
+<f:argument name="newsItem" type="GeorgRinger\News\Domain\Model\News" optional="true"/>
+<f:argument name="settings" type="array" optional="true"/>
+<f:argument name="iterator" type="array" optional="true"/>
+
 <article class="article articletype-{newsItem.type}{f:if(condition: newsItem.istopnews, then: ' topnews')} h-full" itemscope="itemscope" itemtype="https://schema.org/Article">
     <n:excludeDisplayedNews newsItem="{newsItem}"/>
     <d:molecule.card class="h-full">

@@ -5,6 +5,10 @@
     data-namespace-typo3-fluid="true"
 >
 
+<f:argument name="facet" type="object" optional="true"/>
+<f:argument name="resultSet" type="object" optional="true"/>
+<f:argument name="settings" type="array" optional="true"/>
+
 <f:section name="hierarchyTree">
     <f:for each="{node.childNodes}" as="childNode" iteration="iteration">
         <li class="facet-option {f:if(condition: '{iteration.index} > 9', then: ' tx-solr-facet-hidden')}" data-facet-item-value="{childNode.value}">

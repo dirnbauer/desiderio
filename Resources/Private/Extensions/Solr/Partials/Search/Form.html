@@ -5,6 +5,10 @@
     data-namespace-typo3-fluid="true"
 >
 
+<f:argument name="additionalFilters" type="array" optional="true"/>
+<f:argument name="existingParameters" type="array" optional="true"/>
+<f:argument name="pluginNamespace" type="string" optional="true"/>
+
 <f:section name="Form">
     <div class="tx-solr-search-form">
         <s:searchForm id="tx-solr-search-form-pi-results" additionalFilters="{additionalFilters}" suggestHeader="{f:translate(key: 'suggest_header', default: 'Top Results', extensionName: 'solr')}">

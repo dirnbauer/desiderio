@@ -4,6 +4,9 @@
     data-namespace-typo3-fluid="true"
 >
 
+<f:argument name="categories" type="iterable" optional="true"/>
+<f:argument name="settings" type="array" optional="true"/>
+
 <span class="news-list-category inline-flex flex-wrap gap-2">
     <f:for each="{categories}" as="category">
         <f:if condition="{category.shortcut}">

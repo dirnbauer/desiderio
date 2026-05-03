@@ -362,4 +362,96 @@ final class ContentRenderingTemplateTest extends TestCase
             self::assertStringContainsString('Webconsulting/Desiderio/Components/ComponentCollection', $template, "{$relativePath} should use Desiderio Fluid components");
         }
     }
+
+    public function testEveryLabelFileIsXliff20(): void
+    {
+        $directories = [
+            __DIR__ . '/../../Resources/Private/Language',
+            __DIR__ . '/../../ContentBlocks/ContentElements',
+        ];
+
+        $files = [];
+        foreach ($directories as $directory) {
+            $iterator = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($directory));
+            foreach ($iterator as $file) {
+                if ($file instanceof \SplFileInfo && $file->isFile() && $file->getExtension() === 'xlf') {
+                    $files[] = $file->getPathname();
+                }
+            }
+        }
+
+        self::assertNotEmpty($files);
+        foreach ($files as $file) {
+            $contents = (string) file_get_contents($file);
+            $relative = str_replace(dirname(__DIR__, 2) . '/', '', $file);
+            self::assertStringContainsString('urn:oasis:names:tc:xliff:document:2.0', $contents, "{$relative} must be XLIFF 2.0");
+            self::assertStringContainsString('<unit ', $contents, "{$relative} must use XLIFF 2.0 <unit> elements");
+            self::assertStringNotContainsString('<trans-unit ', $contents, "{$relative} must not use legacy <trans-unit> elements");
+        }
+    }
+
+    public function testNewsLocallangUsesIcuMessageFormatForPlurals(): void
+    {
+        $english = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Language/locallang.xlf');
+        $german = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Language/de.locallang.xlf');
+
+        self::assertStringContainsString('plural,', $english, 'locallang.xlf must use ICU MessageFormat plural rules');
+        self::assertStringContainsString('plural,', $german, 'de.locallang.xlf must use ICU MessageFormat plural rules');
+
+        foreach (['news.loadMore.status', 'news.magazine.items', 'news.comments.count', 'news.tags.count', 'news.categories.count'] as $unitId) {
+            self::assertStringContainsString('<unit id="' . $unitId . '">', $english, "{$unitId} must exist in locallang.xlf");
+            self::assertStringContainsString('<unit id="' . $unitId . '">', $german, "{$unitId} must exist in de.locallang.xlf");
+        }
+    }
+
+    public function testNewsAndSolrAndFluidStyledContentPartialsDeclareTypedFluidArguments(): void
+    {
+        $partials = [
+            'Resources/Private/Extensions/News/Partials/List/Item.html',
+            'Resources/Private/Extensions/News/Partials/List/Pagination.html',
+            'Resources/Private/Extensions/News/Partials/List/LoadMore.html',
+            'Resources/Private/Extensions/News/Partials/Category/Items.html',
+            'Resources/Private/Extensions/News/Partials/Detail/MediaContainer.html',
+            'Resources/Private/Extensions/News/Partials/Detail/MediaImage.html',
+            'Resources/Private/Extensions/News/Partials/Detail/MediaVideo.html',
+            'Resources/Private/Extensions/News/Partials/Detail/Opengraph.html',
+            'Resources/Private/Extensions/News/Partials/Detail/Shariff.html',
+            'Resources/Private/Extensions/Solr/Partials/Search/Form.html',
+            'Resources/Private/Extensions/Solr/Partials/Search/FrequentlySearched.html',
+            'Resources/Private/Extensions/Solr/Partials/Search/LastSearches.html',
+            'Resources/Private/Extensions/Solr/Partials/Result/Document.html',
+            'Resources/Private/Extensions/Solr/Partials/Result/Pagination.html',
+            'Resources/Private/Extensions/Solr/Partials/Result/Facets.html',
+            'Resources/Private/Extensions/Solr/Partials/Result/FacetsActive.html',
+            'Resources/Private/Extensions/Solr/Partials/Result/Sorting.html',
+            'Resources/Private/Extensions/Solr/Partials/Result/PerPage.html',
+            'Resources/Private/Extensions/Solr/Partials/Facets/Default.html',
+            'Resources/Private/Extensions/Solr/Partials/Facets/Hierarchy.html',
+            'Resources/Private/Extensions/Solr/Partials/Facets/Options.html',
+            'Resources/Private/Extensions/Solr/Partials/Facets/OptionsFiltered.html',
+            'Resources/Private/Extensions/Solr/Partials/Facets/OptionsPrefixGrouped.html',
+            'Resources/Private/Extensions/Solr/Partials/Facets/OptionsSinglemode.html',
+            'Resources/Private/Extensions/Solr/Partials/Facets/OptionsToggle.html',
+            'Resources/Private/Extensions/Solr/Partials/Facets/RangeDate.html',
+            'Resources/Private/Extensions/Solr/Partials/Facets/RangeNumeric.html',
+            'Resources/Private/Extensions/Solr/Partials/Facets/Rootline.html',
+            'Resources/Private/FluidStyledContent/Partials/Header.fluid.html',
+            'Resources/Private/FluidStyledContent/Partials/RichText.fluid.html',
+            'Resources/Private/FluidStyledContent/Partials/Media.fluid.html',
+            'Resources/Private/FluidStyledContent/Partials/Menu.fluid.html',
+            'Resources/Private/FluidStyledContent/Partials/FileList.fluid.html',
+            'Resources/Private/Partials/List/Pagination.html',
+            'Resources/Private/Partials/Pagination/Pagination.html',
+            'Resources/Private/Partials/Pagination.html',
+        ];
+
+        foreach ($partials as $relativePath) {
+            $partial = (string) file_get_contents(__DIR__ . '/../../' . $relativePath);
+            self::assertMatchesRegularExpression(
+                '/<f:argument\\s+name="[^"]+"\\s+type="[^"]+"/',
+                $partial,
+                "{$relativePath} must declare typed <f:argument> for Fluid 5.3 strict typing"
+            );
+        }
+    }
 }

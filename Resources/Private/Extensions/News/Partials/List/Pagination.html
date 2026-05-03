@@ -3,6 +3,10 @@
     data-namespace-typo3-fluid="true"
 >
 
+<f:argument name="pagination" type="object" optional="true"/>
+<f:argument name="paginator" type="object" optional="true"/>
+<f:argument name="actionName" type="string" optional="true"/>
+
 <f:if condition="{pagination.allPageNumbers -> f:count()} > 1">
     <nav class="news-pagination" aria-label="News pagination">
         <ul class="f3-widget-paginator flex flex-wrap gap-1">

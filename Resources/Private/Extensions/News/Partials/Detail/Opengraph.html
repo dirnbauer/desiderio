@@ -4,6 +4,9 @@
     data-namespace-typo3-fluid="true"
 >
 
+<f:argument name="newsItem" type="GeorgRinger\News\Domain\Model\News" optional="true"/>
+<f:argument name="settings" type="array" optional="true"/>
+
 <n:format.nothing>
     <f:if condition="{newsItem.alternativeTitle}">
         <f:then>

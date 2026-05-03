@@ -15,7 +15,11 @@
     through data-attributes so editors can override per plugin instance.
 </f:comment>
 
-<f:variable name="newsList" value="{newsList}"/>
+<f:argument name="newsList" type="iterable" optional="true"/>
+<f:argument name="settings" type="array" optional="true"/>
+<f:argument name="contentObjectData" type="array" optional="true"/>
+<f:argument name="skipFirst" type="integer" optional="true"/>
+
 <f:variable name="skipFirst" value="{skipFirst -> f:or(alternative: 0)}"/>
 <f:variable name="initialCount" value="{settings.list.initialCount -> f:or(alternative: 6)}"/>
 <f:variable name="loadMoreCount" value="{settings.list.loadMoreCount -> f:or(alternative: 3)}"/>
@@ -64,7 +68,7 @@
                     <f:translate
                         key="news.loadMore.status"
                         extensionName="desiderio"
-                        arguments="{0: '{initialCount}', 1: '{totalItems}'}"
+                        arguments="{visible: initialCount, total: totalItems}"
                     >Showing {initialCount} of {totalItems} articles</f:translate>
                 </p>
             </div>

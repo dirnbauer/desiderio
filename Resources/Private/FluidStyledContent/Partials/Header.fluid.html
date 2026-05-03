@@ -5,6 +5,9 @@
     data-namespace-typo3-fluid="true"
 >
 
+<f:argument name="record" type="object" optional="true"/>
+<f:argument name="settings" type="array" optional="true"/>
+
 <f:variable name="renderHeader" value="1"/>
 <dv:recordHasField record="{record}" field="header_layout">
     <f:if condition="{record.header_layout} == 100">

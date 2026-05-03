@@ -43,7 +43,7 @@
     </unit>
     <unit id="news.loadMore.status">
       <segment>
-        <source>Showing {0} of {1} articles</source>
+        <source>Showing {visible, plural, one {one article} other {# articles}} of {total, plural, one {one article} other {# articles}}</source>
       </segment>
     </unit>
     <unit id="news.featured">
@@ -58,7 +58,27 @@
     </unit>
     <unit id="news.magazine.items">
       <segment>
-        <source>articles</source>
+        <source>{count, plural, one {one article} other {# articles}}</source>
+      </segment>
+    </unit>
+    <unit id="news.comments.count">
+      <segment>
+        <source>{count, plural, =0 {No comments yet} one {one comment} other {# comments}}</source>
+      </segment>
+    </unit>
+    <unit id="news.tags.count">
+      <segment>
+        <source>{count, plural, one {one tag} other {# tags}}</source>
+      </segment>
+    </unit>
+    <unit id="news.categories.count">
+      <segment>
+        <source>{count, plural, one {one category} other {# categories}}</source>
+      </segment>
+    </unit>
+    <unit id="news.entries.count">
+      <segment>
+        <source>{count, plural, one {one entry} other {# entries}}</source>
       </segment>
     </unit>
   </file>

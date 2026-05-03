@@ -5,6 +5,11 @@
     data-namespace-typo3-fluid="true"
 >
 
+<f:argument name="document" type="object" optional="true"/>
+<f:argument name="resultSet" type="object" optional="true"/>
+<f:argument name="settings" type="array" optional="true"/>
+<f:argument name="logging" type="array" optional="true"/>
+
 <f:section name="Document">
     <article
         class="search-result results-entry rounded-xl border border-border bg-card p-4 text-card-foreground shadow-sm transition-colors hover:border-primary/40 {f:if(condition: document.isElevated, then: ' results-elevated')}"

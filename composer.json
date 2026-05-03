@@ -38,6 +38,7 @@
         "webconsulting/shadcn2fluid-templates": "*"
     },
     "require-dev": {
+        "cweagans/composer-patches": "^2.0",
         "phpstan/extension-installer": "^1.4",
         "phpstan/phpstan": "^2.1",
         "phpstan/phpstan-phpunit": "^2.0",
@@ -47,12 +48,19 @@
         "typo3/testing-framework": "^9.0"
     },
     "extra": {
+        "composer-exit-on-patch-failure": true,
+        "patches": {
+            "friendsoftypo3/content-blocks": {
+                "Add foreign_field column for Collection child tables (upstream pending: TODO link to issue)": "patches/content-blocks-add-foreign-field-column.patch"
+            }
+        },
         "typo3/cms": {
             "extension-key": "desiderio"
         }
     },
     "config": {
         "allow-plugins": {
+            "cweagans/composer-patches": true,
             "phpstan/extension-installer": true,
             "typo3/class-alias-loader": true,
             "typo3/cms-composer-installers": true

@@ -1,0 +1,17 @@
+{
+    "_hash": "bb1cd81cbd67449dff5a756b89554512f9ae15b9d70c2e1974ef8548ef5e938f",
+    "patches": {
+        "friendsoftypo3/content-blocks": [
+            {
+                "package": "friendsoftypo3/content-blocks",
+                "description": "Add foreign_field column for Collection child tables (upstream pending: TODO link to issue)",
+                "url": "patches/content-blocks-add-foreign-field-column.patch",
+                "sha256": "9dd1409e8e5c6309558faa7b78df7613e0e02a459d224c595ec8c4fe99912cdd",
+                "depth": 1,
+                "extra": {
+                    "provenance": "root"
+                }
+            }
+        ]
+    }
+}

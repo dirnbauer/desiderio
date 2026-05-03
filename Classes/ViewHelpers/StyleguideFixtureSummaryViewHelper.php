@@ -19,9 +19,11 @@ final class StyleguideFixtureSummaryViewHelper extends AbstractViewHelper
 
     public function render(): string
     {
+        $fixtureArgument = $this->arguments['fixture'] ?? [];
         /** @var array<string, mixed> $fixture */
-        $fixture = $this->arguments['fixture'];
-        $fallback = (string)($this->arguments['fallback'] ?? '');
+        $fixture = is_array($fixtureArgument) ? $fixtureArgument : [];
+        $fallbackArgument = $this->arguments['fallback'] ?? '';
+        $fallback = is_string($fallbackArgument) ? $fallbackArgument : '';
 
         $priorityFields = [
             'header',

@@ -1,0 +1,913 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\.$#'
+			identifier: foreach.nonIterable
+			count: 5
+			path: Classes/Command/SeedStyleguidePagesCommand.php
+
+		-
+			message: '#^Binary operation "\." between non\-falsy\-string and mixed results in an error\.$#'
+			identifier: binaryOp.invalid
+			count: 1
+			path: Classes/Command/SeedStyleguidePagesCommand.php
+
+		-
+			message: '#^Cannot access offset ''button_link''\|''url'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: Classes/Command/SeedStyleguidePagesCommand.php
+
+		-
+			message: '#^Cannot access offset ''cells'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 3
+			path: Classes/Command/SeedStyleguidePagesCommand.php
+
+		-
+			message: '#^Cannot access offset ''column_key'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: Classes/Command/SeedStyleguidePagesCommand.php
+
+		-
+			message: '#^Cannot access offset ''description''\|''feature_name''\|''features_list''\|''label''\|''links''\|''name''\|''question''\|''row_data''\|''row_label''\|''text''\|''title''\|''value'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: Classes/Command/SeedStyleguidePagesCommand.php
+
+		-
+			message: '#^Cannot access offset ''feature_name''\|''features''\|''features_list''\|''label''\|''links''\|''name''\|''question''\|''row_data''\|''row_label''\|''text''\|''title''\|''value'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: Classes/Command/SeedStyleguidePagesCommand.php
+
+		-
+			message: '#^Cannot access offset ''items'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: Classes/Command/SeedStyleguidePagesCommand.php
+
+		-
+			message: '#^Cannot access offset ''label''\|''name'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: Classes/Command/SeedStyleguidePagesCommand.php
+
+		-
+			message: '#^Cannot access offset ''row_data'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: Classes/Command/SeedStyleguidePagesCommand.php
+
+		-
+			message: '#^Cannot access offset ''row_label'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: Classes/Command/SeedStyleguidePagesCommand.php
+
+		-
+			message: '#^Cannot access offset ''table'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 3
+			path: Classes/Command/SeedStyleguidePagesCommand.php
+
+		-
+			message: '#^Cannot access offset int\<0, max\> on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: Classes/Command/SeedStyleguidePagesCommand.php
+
+		-
+			message: '#^Cannot access offset string on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 9
+			path: Classes/Command/SeedStyleguidePagesCommand.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 5
+			path: Classes/Command/SeedStyleguidePagesCommand.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 21
+			path: Classes/Command/SeedStyleguidePagesCommand.php
+
+		-
+			message: '#^Casting to int something that''s already int\.$#'
+			identifier: cast.useless
+			count: 1
+			path: Classes/Command/SeedStyleguidePagesCommand.php
+
+		-
+			message: '#^Casting to string something that''s already string\.$#'
+			identifier: cast.useless
+			count: 1
+			path: Classes/Command/SeedStyleguidePagesCommand.php
+
+		-
+			message: '#^Method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:buildCollectionDefinition\(\) should return array\{table\: string, fields\: array\<string, array\<string, mixed\>\>, collections\: array\<string, array\<string, mixed\>\>, minItems\: int, maxItems\: int\|null\} but returns array\{table\: string, fields\: array\<string, non\-empty\-array\<mixed\>\>, collections\: array\<string, array\{table\: string, fields\: array\<string, array\<string, mixed\>\>, collections\: array\<string, array\<string, mixed\>\>, minItems\: int, maxItems\: int\|null\}\>, minItems\: int, maxItems\: int\|null\}\.$#'
+			identifier: return.type
+			count: 1
+			path: Classes/Command/SeedStyleguidePagesCommand.php
+
+		-
+			message: '#^Method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:buildContentBlockDefinition\(\) should return array\{fields\: array\<string, array\<string, mixed\>\>, collections\: array\<string, array\<string, mixed\>\>\} but returns array\{fields\: array\<string, non\-empty\-array\<mixed\>\>, collections\: array\<string, array\{table\: string, fields\: array\<string, array\<string, mixed\>\>, collections\: array\<string, array\<string, mixed\>\>, minItems\: int, maxItems\: int\|null\}\>\}\.$#'
+			identifier: return.type
+			count: 1
+			path: Classes/Command/SeedStyleguidePagesCommand.php
+
+		-
+			message: '#^Method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:completeCollectionItem\(\) should return array\<string, mixed\> but returns array\<mixed\>\.$#'
+			identifier: return.type
+			count: 1
+			path: Classes/Command/SeedStyleguidePagesCommand.php
+
+		-
+			message: '#^Method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:completeResolvedFixtureData\(\) should return array\{array\<string, mixed\>, array\<string, array\{table\: string, items\: list\<array\<string, mixed\>\>\}\>, array\<string, list\<array\{file\: string, title\: string, alternative\: string, description\: string, source\: string\}\>\>\} but returns array\{array\<string, mixed\>, array\<string, array\{table\: mixed, items\: list\<array\<string, mixed\>\>\}\>, array\<string, list\<array\{file\: string, title\: string, alternative\: string, description\: string, source\: string\}\>\>\}\.$#'
+			identifier: return.type
+			count: 1
+			path: Classes/Command/SeedStyleguidePagesCommand.php
+
+		-
+			message: '#^Method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:normalizeCollectionSourceItems\(\) should return array\<int, mixed\> but returns array\<mixed, mixed\>\.$#'
+			identifier: return.type
+			count: 1
+			path: Classes/Command/SeedStyleguidePagesCommand.php
+
+		-
+			message: '#^Only booleans are allowed in a negated boolean, int\|false given\.$#'
+			identifier: booleanNot.exprNotBoolean
+			count: 1
+			path: Classes/Command/SeedStyleguidePagesCommand.php
+
+		-
+			message: '#^Parameter \#1 \$collection of method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:collectionHasNestedCollection\(\) expects array\{collections\?\: array\<string, array\<string, mixed\>\>\}, array\<string, mixed\> given\.$#'
+			identifier: argument.type
+			count: 4
+			path: Classes/Command/SeedStyleguidePagesCommand.php
+
+		-
+			message: '#^Parameter \#1 \$collection of method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:getTargetCollectionItemCount\(\) expects array\<string, mixed\>, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: Classes/Command/SeedStyleguidePagesCommand.php
+
+		-
+			message: '#^Parameter \#1 \$collections of method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:collectCollectionTableNames\(\) expects array\<string, array\<string, mixed\>\>, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: Classes/Command/SeedStyleguidePagesCommand.php
+
+		-
+			message: '#^Parameter \#1 \$config of method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:buildContentBlockDefinition\(\) expects array\<string, mixed\>, array\<mixed, mixed\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: Classes/Command/SeedStyleguidePagesCommand.php
+
+		-
+			message: '#^Parameter \#1 \$field of method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:buildCollectionDefinition\(\) expects array\<string, mixed\>, array\<mixed\> given\.$#'
+			identifier: argument.type
+			count: 2
+			path: Classes/Command/SeedStyleguidePagesCommand.php
+
+		-
+			message: '#^Parameter \#1 \$fieldConfig of method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:isFileField\(\) expects array\<string, mixed\>, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: Classes/Command/SeedStyleguidePagesCommand.php
+
+		-
+			message: '#^Parameter \#1 \$key of function array_key_exists expects int\|string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: Classes/Command/SeedStyleguidePagesCommand.php
+
+		-
+			message: '#^Parameter \#1 \$table of method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:tableHasColumn\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 9
+			path: Classes/Command/SeedStyleguidePagesCommand.php
+
+		-
+			message: '#^Parameter \#1 \$value of function count expects array\|Countable, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: Classes/Command/SeedStyleguidePagesCommand.php
+
+		-
+			message: '#^Parameter \#1 \$value of method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:normalizeArrayForCollectionField\(\) expects array\<int, mixed\>, array\<mixed, mixed\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: Classes/Command/SeedStyleguidePagesCommand.php
+
+		-
+			message: '#^Parameter \#1 \$value of method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:normalizeArrayForScalarField\(\) expects array\<int, mixed\>, array\<mixed, mixed\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: Classes/Command/SeedStyleguidePagesCommand.php
+
+		-
+			message: '#^Parameter \#2 \$collection of method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:normalizeCollectionItems\(\) expects array\<string, mixed\>, mixed given\.$#'
+			identifier: argument.type
+			count: 2
+			path: Classes/Command/SeedStyleguidePagesCommand.php
+
+		-
+			message: '#^Parameter \#2 \$collections of method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:collectCollectionsByParentTable\(\) expects array\<string, array\<string, mixed\>\>, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: Classes/Command/SeedStyleguidePagesCommand.php
+
+		-
+			message: '#^Parameter \#2 \$fieldConfig of method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:buildFileReferenceFixtures\(\) expects array\<string, mixed\>, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: Classes/Command/SeedStyleguidePagesCommand.php
+
+		-
+			message: '#^Parameter \#2 \$fieldConfig of method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:normalizeFieldValue\(\) expects array\<string, mixed\>, mixed given\.$#'
+			identifier: argument.type
+			count: 3
+			path: Classes/Command/SeedStyleguidePagesCommand.php
+
+		-
+			message: '#^Parameter \#2 \$sourceItem of method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:populateFixedLinkSlots\(\) expects array\<string, mixed\>, array\<mixed, mixed\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: Classes/Command/SeedStyleguidePagesCommand.php
+
+		-
+			message: '#^Parameter \#3 \$field of method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:buildDefaultFieldValue\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: Classes/Command/SeedStyleguidePagesCommand.php
+
+		-
+			message: '#^Parameter \#4 \$collection of method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:completeCollectionItem\(\) expects array\<string, mixed\>, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: Classes/Command/SeedStyleguidePagesCommand.php
+
+		-
+			message: '#^Parameter \#4 \$collections of method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:seedCollectionRecords\(\) expects array\<string, array\{table\: string, items\: list\<array\<string, mixed\>\>\}\>, array\<mixed\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: Classes/Command/SeedStyleguidePagesCommand.php
+
+		-
+			message: '#^Parameter \#4 \$fieldConfig of method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:buildDefaultFieldValue\(\) expects array\<string, mixed\>, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: Classes/Command/SeedStyleguidePagesCommand.php
+
+		-
+			message: '#^Parameter \#5 \$collections of method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:completeResolvedFixtureData\(\) expects array\<string, array\{table\: string, items\: list\<array\<string, mixed\>\>\}\>, array\<string, array\{table\: mixed, items\: non\-empty\-list\<array\<string, mixed\>\>\}\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: Classes/Command/SeedStyleguidePagesCommand.php
+
+		-
+			message: '#^Parameter \#5 \$fileReferences of method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:seedFileReferences\(\) expects array\<string, list\<array\{file\: string, title\: string, alternative\: string, description\: string, source\: string\}\>\>, array\<mixed\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: Classes/Command/SeedStyleguidePagesCommand.php
+
+		-
+			message: '#^Parameter \#5 \$item of method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:completeCollectionItem\(\) expects array\<string, mixed\>, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: Classes/Command/SeedStyleguidePagesCommand.php
+
+		-
+			message: '#^Possibly invalid array key type mixed\.$#'
+			identifier: offsetAccess.invalidOffset
+			count: 8
+			path: Classes/Command/SeedStyleguidePagesCommand.php
+
+		-
+			message: '#^Short ternary operator is not allowed\. Use null coalesce operator if applicable or consider using long ternary\.$#'
+			identifier: ternary.shortNotAllowed
+			count: 4
+			path: Classes/Command/SeedStyleguidePagesCommand.php
+
+		-
+			message: '#^Cannot call method getVariableProvider\(\) on TYPO3Fluid\\Fluid\\Core\\Rendering\\RenderingContextInterface\|null\.$#'
+			identifier: method.nonObject
+			count: 1
+			path: Classes/ViewHelpers/StyleguideGroupsViewHelper.php
+
+		-
+			message: '#^Short ternary operator is not allowed\. Use null coalesce operator if applicable or consider using long ternary\.$#'
+			identifier: ternary.shortNotAllowed
+			count: 3
+			path: Tests/Unit/ComponentStructureTest.php
+
+		-
+			message: '#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\.$#'
+			identifier: foreach.nonIterable
+			count: 6
+			path: Tests/Unit/ContentBlockStructureTest.php
+
+		-
+			message: '#^Cannot access offset ''basics'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: Tests/Unit/ContentBlockStructureTest.php
+
+		-
+			message: '#^Cannot access offset ''description'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: Tests/Unit/ContentBlockStructureTest.php
+
+		-
+			message: '#^Cannot access offset ''fields'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 4
+			path: Tests/Unit/ContentBlockStructureTest.php
+
+		-
+			message: '#^Cannot access offset ''groupId'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: Tests/Unit/ContentBlockStructureTest.php
+
+		-
+			message: '#^Cannot access offset ''groupTitle'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: Tests/Unit/ContentBlockStructureTest.php
+
+		-
+			message: '#^Cannot access offset ''identifier'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 4
+			path: Tests/Unit/ContentBlockStructureTest.php
+
+		-
+			message: '#^Cannot access offset ''title'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 2
+			path: Tests/Unit/ContentBlockStructureTest.php
+
+		-
+			message: '#^Cannot access offset ''type'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 3
+			path: Tests/Unit/ContentBlockStructureTest.php
+
+		-
+			message: '#^Cannot access offset ''typeName'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: Tests/Unit/ContentBlockStructureTest.php
+
+		-
+			message: '#^Cannot access offset ''useExistingField'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: Tests/Unit/ContentBlockStructureTest.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 12
+			path: Tests/Unit/ContentBlockStructureTest.php
+
+		-
+			message: '#^Method Webconsulting\\Desiderio\\Tests\\Unit\\ContentBlockStructureTest\:\:hexToRgb\(\) should return array\{int, int, int\} but returns array\{float\|int, float\|int, float\|int\}\.$#'
+			identifier: return.type
+			count: 1
+			path: Tests/Unit/ContentBlockStructureTest.php
+
+		-
+			message: '#^Only booleans are allowed in a ternary operator condition, mixed given\.$#'
+			identifier: ternary.condNotBoolean
+			count: 1
+			path: Tests/Unit/ContentBlockStructureTest.php
+
+		-
+			message: '#^Parameter \#1 \$value of function count expects array\|Countable, mixed given\.$#'
+			identifier: argument.type
+			count: 2
+			path: Tests/Unit/ContentBlockStructureTest.php
+
+		-
+			message: '#^Parameter \#2 \$array of static method PHPUnit\\Framework\\Assert\:\:assertArrayHasKey\(\) expects array\<mixed\>\|ArrayAccess\<\(int\|string\), mixed\>, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: Tests/Unit/ContentBlockStructureTest.php
+
+		-
+			message: '#^Parameter \#2 \$haystack of static method PHPUnit\\Framework\\Assert\:\:assertCount\(\) expects Countable\|iterable, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: Tests/Unit/ContentBlockStructureTest.php
+
+		-
+			message: '#^Possibly invalid array key type mixed\.$#'
+			identifier: offsetAccess.invalidOffset
+			count: 1
+			path: Tests/Unit/ContentBlockStructureTest.php
+
+		-
+			message: '#^Short ternary operator is not allowed\. Use null coalesce operator if applicable or consider using long ternary\.$#'
+			identifier: ternary.shortNotAllowed
+			count: 23
+			path: Tests/Unit/ContentBlockStructureTest.php
+
+		-
+			message: '#^You should use assertCount\(\$expectedCount, \$variable\) instead of assertSame\(\$expectedCount, count\(\$variable\)\)\.$#'
+			identifier: phpunit.assertCount
+			count: 1
+			path: Tests/Unit/ContentBlockStructureTest.php
+
+		-
+			message: '#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\.$#'
+			identifier: foreach.nonIterable
+			count: 2
+			path: Tests/Unit/ContentElementAuditTest.php
+
+		-
+			message: '#^Cannot access offset ''type'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: Tests/Unit/ContentElementAuditTest.php
+
+		-
+			message: '#^Casting to string something that''s already string\.$#'
+			identifier: cast.useless
+			count: 1
+			path: Tests/Unit/ContentElementAuditTest.php
+
+		-
+			message: '#^Parameter \#1 \$array of function array_diff_key expects array, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: Tests/Unit/ContentElementAuditTest.php
+
+		-
+			message: '#^Parameter \#2 \$array of static method PHPUnit\\Framework\\Assert\:\:assertArrayHasKey\(\) expects array\<mixed\>\|ArrayAccess\<\(int\|string\), mixed\>, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: Tests/Unit/ContentElementAuditTest.php
+
+		-
+			message: '#^Parameter \#3 \.\.\.\$values of function sprintf expects bool\|float\|int\|string\|null, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: Tests/Unit/ContentElementAuditTest.php
+
+		-
+			message: '#^Part \$element \(mixed\) of encapsed string cannot be cast to string\.$#'
+			identifier: encapsedStringPart.nonString
+			count: 1
+			path: Tests/Unit/ContentElementAuditTest.php
+
+		-
+			message: '#^Cannot access offset ''hidden'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 3
+			path: Tests/Unit/ContentRenderingTemplateTest.php
+
+		-
+			message: '#^Cannot access offset ''label'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: Tests/Unit/ContentRenderingTemplateTest.php
+
+		-
+			message: '#^Cannot access offset ''name'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 5
+			path: Tests/Unit/ContentRenderingTemplateTest.php
+
+		-
+			message: '#^Cannot access offset ''optionalDependencies'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 6
+			path: Tests/Unit/ContentRenderingTemplateTest.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 1
+			path: Tests/Unit/ContentRenderingTemplateTest.php
+
+		-
+			message: '#^Parameter \#1 \$array of function sort expects TArray of array\<T\>, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: Tests/Unit/ContentRenderingTemplateTest.php
+
+		-
+			message: '#^Parameter \#2 \$haystack of static method PHPUnit\\Framework\\Assert\:\:assertContains\(\) expects iterable, mixed given\.$#'
+			identifier: argument.type
+			count: 5
+			path: Tests/Unit/ContentRenderingTemplateTest.php
+
+		-
+			message: '#^Short ternary operator is not allowed\. Use null coalesce operator if applicable or consider using long ternary\.$#'
+			identifier: ternary.shortNotAllowed
+			count: 1
+			path: Tests/Unit/ContentRenderingTemplateTest.php
+
+		-
+			message: '#^Cannot access offset ''autoload'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: Tests/Unit/ExtensionMetadataTest.php
+
+		-
+			message: '#^Cannot access offset ''conflict'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: Tests/Unit/ExtensionMetadataTest.php
+
+		-
+			message: '#^Cannot access offset ''conflicts'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: Tests/Unit/ExtensionMetadataTest.php
+
+		-
+			message: '#^Cannot access offset ''constraints'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 5
+			path: Tests/Unit/ExtensionMetadataTest.php
+
+		-
+			message: '#^Cannot access offset ''depends'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: Tests/Unit/ExtensionMetadataTest.php
+
+		-
+			message: '#^Cannot access offset ''desiderio'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: Tests/Unit/ExtensionMetadataTest.php
+
+		-
+			message: '#^Cannot access offset ''extension\-key'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: Tests/Unit/ExtensionMetadataTest.php
+
+		-
+			message: '#^Cannot access offset ''extra'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: Tests/Unit/ExtensionMetadataTest.php
+
+		-
+			message: '#^Cannot access offset ''name'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: Tests/Unit/ExtensionMetadataTest.php
+
+		-
+			message: '#^Cannot access offset ''php'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: Tests/Unit/ExtensionMetadataTest.php
+
+		-
+			message: '#^Cannot access offset ''psr\-4'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: Tests/Unit/ExtensionMetadataTest.php
+
+		-
+			message: '#^Cannot access offset ''require'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 3
+			path: Tests/Unit/ExtensionMetadataTest.php
+
+		-
+			message: '#^Cannot access offset ''state'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: Tests/Unit/ExtensionMetadataTest.php
+
+		-
+			message: '#^Cannot access offset ''suggests'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: Tests/Unit/ExtensionMetadataTest.php
+
+		-
+			message: '#^Cannot access offset ''type'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: Tests/Unit/ExtensionMetadataTest.php
+
+		-
+			message: '#^Cannot access offset ''typo3/cms'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: Tests/Unit/ExtensionMetadataTest.php
+
+		-
+			message: '#^Cannot access offset ''typo3/cms\-core'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: Tests/Unit/ExtensionMetadataTest.php
+
+		-
+			message: '#^Cannot access offset ''typo3/cms\-fluid'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: Tests/Unit/ExtensionMetadataTest.php
+
+		-
+			message: '#^Cannot access offset ''version'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: Tests/Unit/ExtensionMetadataTest.php
+
+		-
+			message: '#^Cannot access offset ''webconsulting/shadcn2fluid\-templates'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: Tests/Unit/ExtensionMetadataTest.php
+
+		-
+			message: '#^Parameter \#2 \$array of static method PHPUnit\\Framework\\Assert\:\:assertArrayHasKey\(\) expects array\<mixed\>\|ArrayAccess\<\(int\|string\), mixed\>, mixed given\.$#'
+			identifier: argument.type
+			count: 5
+			path: Tests/Unit/ExtensionMetadataTest.php
+
+		-
+			message: '#^Parameter \#2 \$string of static method PHPUnit\\Framework\\Assert\:\:assertStringStartsWith\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: Tests/Unit/ExtensionMetadataTest.php
+
+		-
+			message: '#^Variable \$EM_CONF might not be defined\.$#'
+			identifier: variable.undefined
+			count: 1
+			path: Tests/Unit/ExtensionMetadataTest.php
+
+		-
+			message: '#^Cannot access offset ''@fontsource\-variable/nunito\-sans'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: Tests/Unit/ShadcnThemeTest.php
+
+		-
+			message: '#^Cannot access offset ''@tailwindcss/cli'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: Tests/Unit/ShadcnThemeTest.php
+
+		-
+			message: '#^Cannot access offset ''css'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: Tests/Unit/ShadcnThemeTest.php
+
+		-
+			message: '#^Cannot access offset ''default'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 3
+			path: Tests/Unit/ShadcnThemeTest.php
+
+		-
+			message: '#^Cannot access offset ''desiderio'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 4
+			path: Tests/Unit/ShadcnThemeTest.php
+
+		-
+			message: '#^Cannot access offset ''desiderio\.layout\.radius'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: Tests/Unit/ShadcnThemeTest.php
+
+		-
+			message: '#^Cannot access offset ''desiderio\.shadcn\.preset'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: Tests/Unit/ShadcnThemeTest.php
+
+		-
+			message: '#^Cannot access offset ''desiderio\.shadcn\.style'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: Tests/Unit/ShadcnThemeTest.php
+
+		-
+			message: '#^Cannot access offset ''desiderio\.typography\.fontSans'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: Tests/Unit/ShadcnThemeTest.php
+
+		-
+			message: '#^Cannot access offset ''enum'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 4
+			path: Tests/Unit/ShadcnThemeTest.php
+
+		-
+			message: '#^Cannot access offset ''fontSans'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: Tests/Unit/ShadcnThemeTest.php
+
+		-
+			message: '#^Cannot access offset ''layout'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: Tests/Unit/ShadcnThemeTest.php
+
+		-
+			message: '#^Cannot access offset ''preset'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: Tests/Unit/ShadcnThemeTest.php
+
+		-
+			message: '#^Cannot access offset ''radius'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: Tests/Unit/ShadcnThemeTest.php
+
+		-
+			message: '#^Cannot access offset ''settings'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 4
+			path: Tests/Unit/ShadcnThemeTest.php
+
+		-
+			message: '#^Cannot access offset ''shadcn'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 3
+			path: Tests/Unit/ShadcnThemeTest.php
+
+		-
+			message: '#^Cannot access offset ''style'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: Tests/Unit/ShadcnThemeTest.php
+
+		-
+			message: '#^Cannot access offset ''tailwindcss'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: Tests/Unit/ShadcnThemeTest.php
+
+		-
+			message: '#^Cannot access offset ''typography'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: Tests/Unit/ShadcnThemeTest.php
+
+		-
+			message: '#^Parameter \#2 \$array of static method PHPUnit\\Framework\\Assert\:\:assertArrayHasKey\(\) expects array\<mixed\>\|ArrayAccess\<\(int\|string\), mixed\>, mixed given\.$#'
+			identifier: argument.type
+			count: 4
+			path: Tests/Unit/ShadcnThemeTest.php
+
+		-
+			message: '#^Call to static method PHPUnit\\Framework\\Assert\:\:assertSame\(\) with 505 and 505 will always evaluate to true\.$#'
+			identifier: staticMethod.alreadyNarrowedType
+			count: 1
+			path: Tests/Unit/StyleguideSeedCommandTest.php
+
+		-
+			message: '#^Cannot access offset ''collections'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 2
+			path: Tests/Unit/StyleguideSeedCommandTest.php
+
+		-
+			message: '#^Cannot access offset ''cta_link'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: Tests/Unit/StyleguideSeedCommandTest.php
+
+		-
+			message: '#^Cannot access offset ''description'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 3
+			path: Tests/Unit/StyleguideSeedCommandTest.php
+
+		-
+			message: '#^Cannot access offset ''divider_text'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: Tests/Unit/StyleguideSeedCommandTest.php
+
+		-
+			message: '#^Cannot access offset ''eyebrow'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: Tests/Unit/StyleguideSeedCommandTest.php
+
+		-
+			message: '#^Cannot access offset ''header'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: Tests/Unit/StyleguideSeedCommandTest.php
+
+		-
+			message: '#^Cannot access offset ''image'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 2
+			path: Tests/Unit/StyleguideSeedCommandTest.php
+
+		-
+			message: '#^Cannot access offset ''image_alt'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: Tests/Unit/StyleguideSeedCommandTest.php
+
+		-
+			message: '#^Cannot access offset ''image_source'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: Tests/Unit/StyleguideSeedCommandTest.php
+
+		-
+			message: '#^Cannot access offset ''items'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 10
+			path: Tests/Unit/StyleguideSeedCommandTest.php
+
+		-
+			message: '#^Cannot access offset ''maxItems'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: Tests/Unit/StyleguideSeedCommandTest.php
+
+		-
+			message: '#^Cannot access offset ''minItems'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: Tests/Unit/StyleguideSeedCommandTest.php
+
+		-
+			message: '#^Cannot access offset ''variant'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 3
+			path: Tests/Unit/StyleguideSeedCommandTest.php
+
+		-
+			message: '#^Cannot access offset 0 on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 4
+			path: Tests/Unit/StyleguideSeedCommandTest.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 1
+			path: Tests/Unit/StyleguideSeedCommandTest.php
+
+		-
+			message: '#^Cannot use array destructuring on mixed\.$#'
+			identifier: offsetAccess.nonArray
+			count: 5
+			path: Tests/Unit/StyleguideSeedCommandTest.php
+
+		-
+			message: '#^Parameter \#2 \$array of static method PHPUnit\\Framework\\Assert\:\:assertArrayHasKey\(\) expects array\<mixed\>\|ArrayAccess\<\(int\|string\), mixed\>, mixed given\.$#'
+			identifier: argument.type
+			count: 3
+			path: Tests/Unit/StyleguideSeedCommandTest.php
+
+		-
+			message: '#^Parameter \#2 \$array of static method PHPUnit\\Framework\\Assert\:\:assertArrayNotHasKey\(\) expects array\<mixed\>\|ArrayAccess\<\(int\|string\), mixed\>, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: Tests/Unit/StyleguideSeedCommandTest.php
+
+		-
+			message: '#^Parameter \#2 \$haystack of static method PHPUnit\\Framework\\Assert\:\:assertCount\(\) expects Countable\|iterable, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: Tests/Unit/StyleguideSeedCommandTest.php
+
+		-
+			message: '#^Parameter \#2 \$haystack of static method PHPUnit\\Framework\\Assert\:\:assertStringContainsString\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 5
+			path: Tests/Unit/StyleguideSeedCommandTest.php
+
+		-
+			message: '#^Cannot access offset mixed on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: ext_emconf.php
+
+		-
+			message: '#^Implicit array creation is not allowed \- variable \$EM_CONF might not exist\.$#'
+			identifier: variable.implicitArray
+			count: 1
+			path: ext_emconf.php

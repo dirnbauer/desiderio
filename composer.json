@@ -12,14 +12,16 @@
         "php": "^8.3",
         "typo3/cms-core": "^14.3",
         "typo3/cms-fluid": "^14.3",
+        "typo3/cms-workspaces": "^14.3",
         "friendsoftypo3/content-blocks": "^2.2",
         "praetorius/vite-asset-collector": "^1.7"
     },
     "minimum-stability": "dev",
     "prefer-stable": true,
     "suggest": {
-        "typo3/cms-workspaces": "Recommended to stage and preview content elements in TYPO3 workspaces.",
-        "friendsoftypo3/visual-editor": "Optional. Inline visual editing when templates use f:render.text for text fields."
+        "friendsoftypo3/visual-editor": "Optional. Inline visual editing when templates use f:render.text for text fields.",
+        "georgringer/news": "Optional. Drives the shadcn-styled News templates and the DesiderioNews backend layout.",
+        "apache-solr-for-typo3/solr": "Optional. Drives the shadcn-styled Solr search templates."
     },
     "autoload": {
         "psr-4": {
@@ -35,9 +37,12 @@
         "webconsulting/shadcn2fluid-templates": "*"
     },
     "require-dev": {
+        "phpstan/extension-installer": "^1.4",
         "phpstan/phpstan": "^2.1",
         "phpstan/phpstan-phpunit": "^2.0",
+        "phpstan/phpstan-strict-rules": "^2.0",
         "phpunit/phpunit": "^11.5",
+        "saschaegerer/phpstan-typo3": "^3.0",
         "typo3/testing-framework": "^9.0"
     },
     "extra": {
@@ -47,6 +52,7 @@
     },
     "config": {
         "allow-plugins": {
+            "phpstan/extension-installer": true,
             "typo3/class-alias-loader": true,
             "typo3/cms-composer-installers": true
         },

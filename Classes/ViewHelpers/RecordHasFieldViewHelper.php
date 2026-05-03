@@ -25,11 +25,14 @@ final class RecordHasFieldViewHelper extends AbstractConditionViewHelper
         $this->registerArgument('field', 'string', 'Field name to check', true);
     }
 
+    /**
+     * @param array<string, mixed> $arguments
+     */
     public static function verdict(array $arguments, RenderingContextInterface $renderingContext): bool
     {
         $record = $arguments['record'] ?? null;
         $field = $arguments['field'] ?? '';
-        if (!$record instanceof ContainerInterface || $field === '') {
+        if (!$record instanceof ContainerInterface || !is_string($field) || $field === '') {
             return false;
         }
 

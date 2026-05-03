@@ -1,0 +1,20 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:layout name="Post" />
+
+<f:section name="Content">
+    <f:if condition="{post} && {settings.comments.active}">
+        <section class="rounded-xl border border-border bg-card p-6" id="postcommentform-{post.uid}" aria-labelledby="postcommentform-{post.uid}-title">
+            <f:variable name="formName" value="Local" />
+            <f:if condition="{settings.comments.disqus.enable}"><f:variable name="formName" value="Disqus" /></f:if>
+            <f:if condition="{post.commentsActive}"><f:else><f:variable name="formName" value="Closed" /></f:else></f:if>
+            <f:render partial="Comments/Form/{formName}" arguments="{_all}" />
+        </section>
+    </f:if>
+</f:section>
+
+</html>

@@ -1,0 +1,57 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:argument name="pagination" type="object" optional="true"/>
+
+<f:if condition="{pagination.allPageNumbers -> f:count()} > 1">
+    <nav class="desiderio-blog-pagination" aria-label="{f:translate(extensionName: 'Blog', key: 'pagination.aria.label', default: 'Pagination')}">
+        <ul class="flex flex-wrap items-center gap-1 text-sm">
+            <f:if condition="{pagination.previousPageNumber}">
+                <li>
+                    <a href="{f:uri.action(arguments: {currentPage: pagination.previousPageNumber}, addQueryString: 1)}" rel="prev" class="inline-flex h-8 items-center rounded-lg border border-border px-2.5 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground" aria-label="{f:translate(extensionName: 'Blog', key: 'pagination.aria.goto.previous', default: 'Previous page')}">
+                        <f:translate extensionName="Blog" key="pagination.previous">Previous</f:translate>
+                    </a>
+                </li>
+            </f:if>
+
+            <f:if condition="{pagination.lessPages}">
+                <li>
+                    <a href="{f:uri.action(arguments: {currentPage: pagination.firstPageNumber}, addQueryString: 1)}" class="inline-flex size-8 items-center justify-center rounded-lg border border-border text-muted-foreground transition-colors hover:bg-muted hover:text-foreground" aria-label="{f:translate(extensionName: 'Blog', key: 'pagination.aria.goto.page', arguments: '{0: pagination.firstPageNumber}')}">{pagination.firstPageNumber}</a>
+                </li>
+                <li><span class="inline-flex size-8 items-center justify-center text-muted-foreground" aria-hidden="true">…</span></li>
+            </f:if>
+
+            <f:for each="{pagination.displayPageNumbers}" as="pageNumber">
+                <f:if condition="{pageNumber} == {pagination.currentPageNumber}">
+                    <f:then>
+                        <li><span class="inline-flex size-8 items-center justify-center rounded-lg bg-primary text-sm font-medium text-primary-foreground" aria-current="page">{pageNumber}</span></li>
+                    </f:then>
+                    <f:else>
+                        <li>
+                            <a href="{f:uri.action(arguments: {currentPage: pageNumber}, addQueryString: 1)}" class="inline-flex size-8 items-center justify-center rounded-lg border border-border text-muted-foreground transition-colors hover:bg-muted hover:text-foreground" aria-label="{f:translate(extensionName: 'Blog', key: 'pagination.aria.goto.page', arguments: '{0: pageNumber}')}">{pageNumber}</a>
+                        </li>
+                    </f:else>
+                </f:if>
+            </f:for>
+
+            <f:if condition="{pagination.morePages}">
+                <li><span class="inline-flex size-8 items-center justify-center text-muted-foreground" aria-hidden="true">…</span></li>
+                <li>
+                    <a href="{f:uri.action(arguments: {currentPage: pagination.lastPageNumber}, addQueryString: 1)}" class="inline-flex size-8 items-center justify-center rounded-lg border border-border text-muted-foreground transition-colors hover:bg-muted hover:text-foreground" aria-label="{f:translate(extensionName: 'Blog', key: 'pagination.aria.goto.page', arguments: '{0: pagination.lastPageNumber}')}">{pagination.lastPageNumber}</a>
+                </li>
+            </f:if>
+
+            <f:if condition="{pagination.nextPageNumber}">
+                <li>
+                    <a href="{f:uri.action(arguments: {currentPage: pagination.nextPageNumber}, addQueryString: 1)}" rel="next" class="inline-flex h-8 items-center rounded-lg border border-border px-2.5 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground" aria-label="{f:translate(extensionName: 'Blog', key: 'pagination.aria.goto.next', default: 'Next page')}">
+                        <f:translate extensionName="Blog" key="pagination.next">Next</f:translate>
+                    </a>
+                </li>
+            </f:if>
+        </ul>
+    </nav>
+</f:if>
+
+</html>

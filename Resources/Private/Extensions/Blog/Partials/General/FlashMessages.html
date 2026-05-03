@@ -1,0 +1,31 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:flashMessages as="flashMessages">
+    <f:if condition="{flashMessages}">
+        <div class="flex flex-col gap-3" role="status">
+            <f:for each="{flashMessages}" as="flashMessage">
+                <f:variable name="variant" value="default" />
+                <f:switch expression="{flashMessage.severity}">
+                    <f:case value="-2"><f:variable name="variant" value="default" /></f:case>
+                    <f:case value="-1"><f:variable name="variant" value="default" /></f:case>
+                    <f:case value="0"><f:variable name="variant" value="default" /></f:case>
+                    <f:case value="1"><f:variable name="variant" value="default" /></f:case>
+                    <f:case value="2"><f:variable name="variant" value="destructive" /></f:case>
+                    <f:defaultCase><f:variable name="variant" value="default" /></f:defaultCase>
+                </f:switch>
+                <d:molecule.alert variant="{variant}">
+                    <f:if condition="{flashMessage.title}">
+                        <d:molecule.alertTitle>{flashMessage.title}</d:molecule.alertTitle>
+                    </f:if>
+                    <d:molecule.alertDescription>{flashMessage.message}</d:molecule.alertDescription>
+                </d:molecule.alert>
+            </f:for>
+        </div>
+    </f:if>
+</f:flashMessages>
+
+</html>

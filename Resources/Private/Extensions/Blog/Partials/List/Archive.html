@@ -1,0 +1,29 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:argument name="year" type="string" optional="true"/>
+<f:argument name="months" type="iterable" optional="true"/>
+<f:argument name="settings" type="array" optional="true"/>
+
+<d:molecule.card class="flex flex-col gap-3 p-4 sm:p-6" data-blog-archive-year="{year}">
+    <h2 class="text-lg font-semibold text-foreground" itemprop="name">
+        <blogvh:link.archive year="{year}" title="{year}" class="text-foreground underline-offset-4 hover:text-primary hover:underline">{year}</blogvh:link.archive>
+    </h2>
+    <ul class="divide-y divide-border text-sm">
+        <f:for each="{months}" as="month">
+            <li class="flex items-center justify-between gap-3 py-2" data-blog-archive-year="{year}" data-blog-archive-month="{month.month}">
+                <blogvh:link.archive year="{year}" month="{month.month}" title="{f:format.date(format: '{settings.archive.monthDateFormat} {settings.archive.yearDateFormat}', date: month.timestamp)}" class="text-muted-foreground underline-offset-4 hover:text-primary hover:underline">
+                    {f:format.date(format: '{settings.archive.monthDateFormat}', date: month.timestamp)}
+                </blogvh:link.archive>
+                <f:if condition="{settings.archive.showCounter} == 1">
+                    <d:atom.badge variant="secondary">{month.count}</d:atom.badge>
+                </f:if>
+            </li>
+        </f:for>
+    </ul>
+</d:molecule.card>
+
+</html>

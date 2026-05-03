@@ -1,0 +1,45 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:variable name="name" value="authors" />
+<f:variable name="icon"><f:render partial="General/BlogIcons" section="Author" optional="true" /></f:variable>
+<f:variable name="prefix"><f:translate extensionName="Blog" key="meta.authors.author" /></f:variable>
+
+<f:if condition="{post.authors}">
+    <f:if condition="{post.authors -> f:count()} > 1">
+        <f:variable name="prefix"><f:translate extensionName="Blog" key="meta.authors.authors" /></f:variable>
+    </f:if>
+    <f:render partial="Meta/Rendering/Item" arguments="{name: name, icon: icon, prefix: prefix}" contentAs="content">
+        <ul class="inline-flex flex-wrap items-center gap-2">
+            <f:for each="{post.authors}" as="author">
+                <li class="inline-flex items-center gap-1" data-blog-author="{author.uid}">
+                    <f:if condition="{avatarSettings.enable}">
+                        <f:variable name="avatarsize" value="{avatarSettings.size as integer}" />
+                        <f:if condition="{avatarsize}"><f:else><f:variable name="avatarsize" value="24" /></f:else></f:if>
+                        <img
+                            loading="lazy"
+                            class="size-6 rounded-full border border-border"
+                            height="{avatarsize}"
+                            width="{avatarsize}"
+                            src="{blogvh:uri.avatar(author: author, size: avatarsize)}"
+                            alt=""
+                            itemprop="image"
+                        >
+                    </f:if>
+                    <f:render section="ProfileLink" arguments="{author: author}" contentAs="content">{author.name}</f:render>
+                </li>
+            </f:for>
+        </ul>
+    </f:render>
+</f:if>
+
+<f:section name="ProfileLink">
+    <f:if condition="{author.detailsPage} || {settings.authorUid}">
+        <f:then><blogvh:link.author rel="author" author="{author}" class="text-foreground underline-offset-4 hover:text-primary hover:underline"><span itemprop="name">{content}</span></blogvh:link.author></f:then>
+        <f:else><span itemprop="name" class="text-foreground">{content}</span></f:else>
+    </f:if>
+</f:section>
+
+</html>

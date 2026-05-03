@@ -1,0 +1,21 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:layout name="Widget" />
+
+<f:section name="Title"><f:translate extensionName="Blog" key="headline.rssfeed">RSS feed</f:translate></f:section>
+
+<f:section name="Content">
+    <ul class="flex flex-col gap-2 text-sm" data-blog-feed="rss">
+        <li>
+            <f:link.page pageUid="{settings.blogUid}" pageType="200" title="Recent posts" class="inline-flex items-center gap-2 text-foreground underline-offset-4 hover:text-primary hover:underline">
+                <span><f:translate extensionName="Blog" key="widget.feed.recentposts">Recent posts</f:translate></span>
+            </f:link.page>
+        </li>
+    </ul>
+</f:section>
+
+</html>

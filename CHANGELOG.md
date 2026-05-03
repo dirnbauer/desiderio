@@ -4,6 +4,32 @@ All notable changes to **webconsulting/desiderio** are documented in this
 file. The format follows [Keep a Changelog](https://keepachangelog.com/)
 and the project adheres to [Semantic Versioning](https://semver.org/).
 
+## [2.2.0] — 2026-05-03
+
+### Added
+
+- **`webconsulting/desiderio-blog` site set** that replaces the upstream
+  `t3g/blog` Bootstrap markup with shadcn-only templates: layouts
+  (`Default`, `Post`, `Widget`), `BlogList` + `BlogPost` page templates,
+  every post / list / widget / comment / page-layout template, and
+  30+ partials in `Resources/Private/Extensions/Blog/`.
+- **Fluid 5.3 strong typing** on every blog partial — `<f:argument
+  name="post" type="T3G\AgencyPack\Blog\Domain\Model\Post"/>`,
+  `type="iterable"`, `type="array"`, `type="object"`. Inputs are
+  declared, type-checked, and documented at the partial boundary.
+- Backend page-layout previews for the seven `blog_*` plugin list types
+  via `Configuration/Sets/DesiderioBlog/page.tsconfig`.
+- `t3g/blog` is now in `composer.json` `suggest` and
+  `ext_emconf.php` `suggests`.
+
+### Changed
+
+- Base set `webconsulting/desiderio` adds `webconsulting/desiderio-blog`
+  to its optional dependency list.
+- Test suite grew by one structural test that asserts every blog
+  template uses `<d:…>` shadcn components and every blog partial
+  declares typed `<f:argument>` blocks.
+
 ## [2.1.0] — 2026-05-03
 
 The "v14.3 LTS only" release. The composer constraints already pinned

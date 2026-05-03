@@ -21,7 +21,8 @@
     "suggest": {
         "friendsoftypo3/visual-editor": "Optional. Inline visual editing when templates use f:render.text for text fields.",
         "georgringer/news": "Optional. Drives the shadcn-styled News templates and the DesiderioNews backend layout.",
-        "apache-solr-for-typo3/solr": "Optional. Drives the shadcn-styled Solr search templates."
+        "apache-solr-for-typo3/solr": "Optional. Drives the shadcn-styled Solr search templates.",
+        "t3g/blog": "Optional. Drives the shadcn-styled t3g/blog overrides shipped under webconsulting/desiderio-blog."
     },
     "autoload": {
         "psr-4": {

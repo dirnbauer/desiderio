@@ -1,0 +1,28 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:variable name="name" value="categories" />
+<f:variable name="icon"><f:render partial="General/BlogIcons" section="Category" optional="true" /></f:variable>
+<f:variable name="prefix"><f:translate extensionName="Blog" key="meta.categories.category" /></f:variable>
+
+<f:if condition="{post.categories}">
+    <f:if condition="{post.categories -> f:count()} > 1">
+        <f:variable name="prefix"><f:translate extensionName="Blog" key="meta.categories.categories" /></f:variable>
+    </f:if>
+    <f:render partial="Meta/Rendering/Item" arguments="{name: name, icon: icon, prefix: prefix}" contentAs="content">
+        <ul class="inline-flex flex-wrap items-center gap-1">
+            <f:for each="{post.categories}" as="postCategory">
+                <li data-blog-category="{postCategory.uid}">
+                    <blogvh:link.category category="{postCategory}">
+                        <d:atom.badge variant="secondary">{postCategory.title}</d:atom.badge>
+                    </blogvh:link.category>
+                </li>
+            </f:for>
+        </ul>
+    </f:render>
+</f:if>
+
+</html>

@@ -1,0 +1,49 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:argument name="post" type="T3G\AgencyPack\Blog\Domain\Model\Post" optional="true"/>
+<f:argument name="settings" type="array" optional="true"/>
+<f:argument name="iterator" type="array" optional="true"/>
+
+<article
+    class="group/card flex h-full flex-col"
+    data-blog-tag="{f:if(condition: post.tags, then: post.tags.0.uid, else: 0)}"
+    data-blog-category="{f:if(condition: post.categories, then: post.categories.0.uid, else: 0)}"
+    itemscope="itemscope"
+    itemtype="https://schema.org/BlogPosting"
+>
+    <d:molecule.card class="h-full">
+        <f:if condition="{post.featuredImage}">
+            <blogvh:link.post post="{post}" class="block overflow-hidden" additionalAttributes="{aria-hidden: 'true'}" tabindex="-1">
+                <f:render partial="General/FeaturedImage" arguments="{image: post.featuredImage, settings: settings.lists.featuredImage}" />
+            </blogvh:link.post>
+        </f:if>
+
+        <div class="flex flex-1 flex-col gap-4 px-4 pb-4">
+            <f:render partial="Meta/ListHeader" arguments="{_all}" />
+
+            <h2 class="text-xl font-semibold tracking-normal" itemprop="name">
+                <blogvh:link.post post="{post}" class="text-foreground underline-offset-4 hover:text-primary hover:underline" itemprop="url"/>
+            </h2>
+
+            <p class="text-sm leading-6 text-muted-foreground" itemprop="description">
+                <f:if condition="{post.abstract}">
+                    <f:then>{post.abstract}</f:then>
+                    <f:else>{post.description}</f:else>
+                </f:if>
+            </p>
+
+            <div class="mt-auto flex flex-wrap items-center justify-between gap-3 text-sm">
+                <f:render partial="Meta/ListFooter" arguments="{_all}" />
+                <blogvh:link.post post="{post}" class="font-medium text-primary underline-offset-4 hover:underline">
+                    <f:translate extensionName="Blog" key="link.read.more">Read more</f:translate> &rarr;
+                </blogvh:link.post>
+            </div>
+        </div>
+    </d:molecule.card>
+</article>
+
+</html>

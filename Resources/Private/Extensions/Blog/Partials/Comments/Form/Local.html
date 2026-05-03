@@ -1,0 +1,14 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+    xmlns:formvh="http://typo3.org/ns/TYPO3/CMS/Form/ViewHelpers"
+    data-namespace-typo3-fluid="true"
+>
+
+<header class="mb-4">
+    <d:atom.typography tag="h3" variant="h4"><f:translate extensionName="Blog" key="headline.commentform">Leave a comment</f:translate></d:atom.typography>
+</header>
+<f:render partial="General/FlashMessages" arguments="{_all}"/>
+<formvh:render factoryClass="T3G\AgencyPack\Blog\Domain\Factory\CommentFormFactory" />
+
+</html>

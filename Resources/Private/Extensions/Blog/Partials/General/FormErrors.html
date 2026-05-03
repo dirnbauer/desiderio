@@ -1,0 +1,25 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:form.validationResults>
+    <f:if condition="{validationResults.flattenedErrors}">
+        <div class="flex flex-col gap-3" role="alert">
+            <f:for each="{validationResults.flattenedErrors}" as="errors" key="propertyPath">
+                <d:molecule.alert variant="destructive">
+                    <d:molecule.alertDescription>
+                        <ul class="list-disc pl-5 text-sm">
+                            <f:for each="{errors}" as="error">
+                                <li>{error}</li>
+                            </f:for>
+                        </ul>
+                    </d:molecule.alertDescription>
+                </d:molecule.alert>
+            </f:for>
+        </div>
+    </f:if>
+</f:form.validationResults>
+
+</html>

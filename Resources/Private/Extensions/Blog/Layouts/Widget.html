@@ -1,0 +1,20 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:spaceless>
+    <aside class="desiderio-blog-widget">
+        <d:molecule.card>
+            <d:molecule.cardHeader>
+                <d:atom.typography tag="h3" variant="h4" class="mb-0"><f:render section="Title" /></d:atom.typography>
+            </d:molecule.cardHeader>
+            <d:molecule.cardContent>
+                <f:render section="Content" />
+            </d:molecule.cardContent>
+        </d:molecule.card>
+    </aside>
+</f:spaceless>
+
+</html>

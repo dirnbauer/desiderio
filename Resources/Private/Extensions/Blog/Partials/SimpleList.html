@@ -1,0 +1,20 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:argument name="posts" type="iterable" optional="true"/>
+<f:argument name="settings" type="array" optional="true"/>
+
+<ul class="divide-y divide-border text-sm">
+    <f:for each="{posts}" as="post">
+        <li class="flex flex-wrap items-baseline gap-2 py-2">
+            <time class="text-muted-foreground" datetime="{f:format.date(format: 'c', date: post.publishDate)}">{f:format.date(format: '{settings.lists.posts.dateFormat}', date: post.publishDate)}</time>
+            <blogvh:link.post post="{post}" class="text-foreground underline-offset-4 hover:text-primary hover:underline">
+                {post.title}
+            </blogvh:link.post>
+        </li>
+    </f:for>
+</ul>
+
+</html>

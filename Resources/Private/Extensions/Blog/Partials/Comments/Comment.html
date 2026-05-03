@@ -1,0 +1,42 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:argument name="comment" type="T3G\AgencyPack\Blog\Domain\Model\Comment" optional="true"/>
+<f:argument name="settings" type="array" optional="true"/>
+
+<f:spaceless>
+    <article id="comment-{comment.uid}" class="flex gap-4" itemprop="comment" itemscope="itemscope" itemtype="https://schema.org/Comment">
+        <div class="shrink-0">
+            <blogvh:gravatar email="{comment.email}" class="size-10 rounded-full border border-border" />
+        </div>
+        <d:molecule.card class="flex-1">
+            <d:molecule.cardContent>
+                <header class="mb-2 flex flex-wrap items-baseline justify-between gap-2 text-sm">
+                    <div class="font-medium text-foreground" itemprop="author" itemscope="itemscope" itemtype="https://schema.org/Person">
+                        <f:render section="CommentUrl" arguments="{_all}" contentAs="content">{comment.name}</f:render>
+                    </div>
+                    <time datetime="{f:format.date(format: 'c', date: comment.crdate)}" itemprop="dateCreated" class="text-xs text-muted-foreground">
+                        <f:format.date format="{settings.comments.date.format}">{comment.crdate}</f:format.date>
+                    </time>
+                </header>
+                <div class="text-sm leading-6 text-muted-foreground" itemprop="text">
+                    <blogvh:format.nl2p>{comment.comment}</blogvh:format.nl2p>
+                </div>
+            </d:molecule.cardContent>
+        </d:molecule.card>
+    </article>
+
+    <f:section name="CommentUrl">
+        <f:if condition="{comment.url} && {settings.comments.features.urls}">
+            <f:then>
+                <f:link.external uri="{comment.url}" target="_blank" rel="external nofollow" class="text-foreground underline-offset-4 hover:text-primary hover:underline"><span itemprop="name">{content}</span></f:link.external>
+            </f:then>
+            <f:else><span itemprop="name">{content}</span></f:else>
+        </f:if>
+    </f:section>
+</f:spaceless>
+
+</html>

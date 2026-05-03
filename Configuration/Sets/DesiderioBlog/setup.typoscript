@@ -1,0 +1,12 @@
+page.includeCSS.t3g_blog >
+
+plugin.tx_blog {
+  view {
+    templateRootPaths.200 = EXT:desiderio/Resources/Private/Extensions/Blog/Templates/
+    partialRootPaths.200 = EXT:desiderio/Resources/Private/Extensions/Blog/Partials/
+    layoutRootPaths.200 = EXT:desiderio/Resources/Private/Extensions/Blog/Layouts/
+  }
+}
+
+# The frontend list view used by the BlogList page template.
+lib.dynamicContent.10.20 < tt_content

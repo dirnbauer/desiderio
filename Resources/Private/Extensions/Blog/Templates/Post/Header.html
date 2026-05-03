@@ -1,0 +1,25 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:layout name="Post" />
+
+<f:section name="Content">
+    <header class="flex flex-col gap-6">
+        <f:if condition="{post.featuredImage}">
+            <div class="overflow-hidden rounded-xl border border-border bg-card">
+                <f:render partial="General/FeaturedImage" arguments="{image: post.featuredImage, settings: settings.post.featuredImage}" />
+            </div>
+        </f:if>
+        <d:atom.typography tag="h1" variant="h1" itemprop="headline">{post.title}</d:atom.typography>
+        <f:if condition="{settings.meta.postheader.enable}">
+            <div class="text-sm text-muted-foreground">
+                <f:render partial="Meta/PostHeader" arguments="{_all}" />
+            </div>
+        </f:if>
+    </header>
+</f:section>
+
+</html>

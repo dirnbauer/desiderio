@@ -1,0 +1,23 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:layout name="Widget" />
+
+<f:section name="Title"><f:translate extensionName="Blog" key="headline.tags">Tags</f:translate></f:section>
+
+<f:section name="Content">
+    <ul class="flex flex-wrap gap-2">
+        <f:for each="{tags}" as="tag">
+            <li data-blog-tag="{tag.uid}" data-active="{f:if(condition: '{currentTag} == {tag.uid}', then: 'true', else: 'false')}">
+                <blogvh:link.tag tag="{tag.tagObject}" title="{tag.tagObject.title}">
+                    <d:atom.badge variant="secondary">{tag.tagObject.title}</d:atom.badge>
+                </blogvh:link.tag>
+            </li>
+        </f:for>
+    </ul>
+</f:section>
+
+</html>

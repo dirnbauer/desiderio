@@ -1,0 +1,14 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:formvh="http://typo3.org/ns/TYPO3/CMS/Form/ViewHelpers"
+    data-namespace-typo3-fluid="true"
+>
+
+<formvh:renderRenderable renderable="{element}">
+    <f:render partial="Field/Field" arguments="{element: element, doNotShowLabel: 1}" contentAs="elementContent">
+        <f:asset.script identifier="d-blog-google-captcha-{element.uniqueIdentifier}" src="https://www.google.com/recaptcha/api.js" async="1" defer="1"/>
+        <div class="g-recaptcha" data-sitekey="{element.properties.sitekey}"></div>
+    </f:render>
+</formvh:renderRenderable>
+
+</html>

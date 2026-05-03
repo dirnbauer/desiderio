@@ -60,3 +60,10 @@ optional TYPO3 ecosystem extensions:
         - ``webconsulting/desiderio-solr`` plus
           ``dirnbauer/solr-defaults`` for shadcn-styled search forms,
           facets, and result documents.
+    *   - ``t3g/blog``
+        - ``webconsulting/desiderio-blog`` (registers
+          ``Resources/Private/Extensions/Blog/`` template paths so
+          ``BlogList`` / ``BlogPost`` / ``Post/*`` / ``Widget/*`` /
+          ``Comment/*`` render through shadcn ``<d:…>`` components).
+          Every partial declares Fluid 5.3 typed ``<f:argument>`` for
+          its inputs.

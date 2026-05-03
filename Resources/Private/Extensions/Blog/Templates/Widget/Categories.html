@@ -1,0 +1,29 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:layout name="Widget" />
+
+<f:section name="Title"><f:translate extensionName="Blog" key="headline.categories">Categories</f:translate></f:section>
+
+<f:section name="Content">
+    <ul class="divide-y divide-border text-sm">
+        <f:for each="{categories}" as="category">
+            <li
+                id="category-{category.uid}"
+                class="py-2"
+                data-blog-category="{category.uid}"
+                data-active="{f:if(condition: '{currentCategory} == {category.uid}', then: 'true', else: 'false')}"
+            >
+                <blogvh:link.category category="{category}" title="{category.title}" class="flex items-center justify-between gap-3 text-foreground underline-offset-4 hover:text-primary hover:underline data-[active=true]:font-medium data-[active=true]:text-primary">
+                    <span>{category.title}</span>
+                    <d:atom.badge variant="secondary"><f:count>{category.posts}</f:count></d:atom.badge>
+                </blogvh:link.category>
+            </li>
+        </f:for>
+    </ul>
+</f:section>
+
+</html>

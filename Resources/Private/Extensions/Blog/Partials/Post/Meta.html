@@ -1,0 +1,59 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:argument name="post" type="T3G\AgencyPack\Blog\Domain\Model\Post" optional="true"/>
+<f:argument name="settings" type="array" optional="true"/>
+
+<div class="flex flex-wrap items-center gap-x-3 gap-y-2 text-xs text-muted-foreground">
+    <span class="entry-date">
+        <blogvh:link.post post="{post}" rel="bookmark" class="text-muted-foreground underline-offset-4 hover:text-primary hover:underline">
+            <time datetime="{f:format.date(format: 'c', date: post.publishDate)}" itemprop="datePublished">{f:format.date(format: '{settings.lists.posts.dateFormat}', date: post.publishDate)}</time>
+        </blogvh:link.post>
+    </span>
+    <f:if condition="{post.categories}">
+        <span aria-hidden="true">·</span>
+        <span class="inline-flex flex-wrap items-center gap-1">
+            <f:for each="{post.categories}" as="postCategory">
+                <blogvh:link.category category="{postCategory}">
+                    <d:atom.badge variant="secondary">{postCategory.title}</d:atom.badge>
+                </blogvh:link.category>
+            </f:for>
+        </span>
+    </f:if>
+    <f:if condition="{post.tags}">
+        <span aria-hidden="true">·</span>
+        <span class="inline-flex flex-wrap items-center gap-1" itemprop="keywords">
+            <f:for each="{post.tags}" as="postTag">
+                <blogvh:link.tag tag="{postTag}">
+                    <d:atom.badge variant="outline">{postTag.title}</d:atom.badge>
+                </blogvh:link.tag>
+            </f:for>
+        </span>
+    </f:if>
+    <f:if condition="{settings.comments.disqus.enable} !== '1'">
+        <f:then>
+            <f:alias map="{commentCount: '{f:count(subject: \'{post.activeComments}\')}'}">
+                <span aria-hidden="true">·</span>
+                <meta itemprop="commentCount" content="{commentCount}"/>
+                <span>
+                    <blogvh:link.post post="{post}" section="comments" class="text-muted-foreground underline-offset-4 hover:text-primary hover:underline">
+                        <f:if condition="{commentCount} == 1">
+                            <f:then><f:translate extensionName="Blog" key="message.comment" arguments="{0: commentCount}">{commentCount} comment</f:translate></f:then>
+                            <f:else><f:translate extensionName="Blog" key="message.comments" arguments="{0: commentCount}">{commentCount} comments</f:translate></f:else>
+                        </f:if>
+                    </blogvh:link.post>
+                </span>
+            </f:alias>
+        </f:then>
+        <f:else>
+            <blogvh:link.post post="{post}" section="disqus_thread" data="{disqus-identifier: '{settings.comments.disqus.shortname}:post:{post.uid}'}" class="text-muted-foreground underline-offset-4 hover:text-primary hover:underline">
+                <f:translate extensionName="Blog" key="message.comments" arguments="{0: 0}">0 comments</f:translate>
+            </blogvh:link.post>
+        </f:else>
+    </f:if>
+</div>
+
+</html>

@@ -1,0 +1,34 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:layout name="Default" />
+
+<f:section name="Main">
+    <d:layout.section spacing="md" class="desiderio-blog desiderio-blog--list">
+        <d:layout.container size="xl">
+            <div class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_18rem]">
+                <d:layout.stack gap="xl" class="min-w-0">
+                    <f:cObject typoscriptObjectPath="lib.dynamicContent" data="{colPos: '0'}" />
+                </d:layout.stack>
+
+                <aside class="min-w-0 border-t pt-6 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0" aria-label="Blog sidebar">
+                    <div class="lg:sticky lg:top-24">
+                        <d:layout.stack gap="lg">
+                            <f:render section="renderPlugin" arguments="{listType: 'blog_sidebar'}" />
+                        </d:layout.stack>
+                    </div>
+                </aside>
+            </div>
+        </d:layout.container>
+    </d:layout.section>
+</f:section>
+
+<f:section name="renderPlugin">
+    {blogvh:data.contentListOptions(listType: listType)}
+    <f:cObject typoscriptObjectPath="tt_content" data="{contentObjectData}" table="tt_content"/>
+</f:section>
+
+</html>

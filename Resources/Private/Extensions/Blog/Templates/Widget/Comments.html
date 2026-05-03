@@ -1,0 +1,30 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:layout name="Widget" />
+
+<f:section name="Title"><f:translate extensionName="Blog" key="headline.recentcomments">Recent comments</f:translate></f:section>
+
+<f:section name="Content">
+    <ul class="divide-y divide-border text-sm">
+        <f:for each="{comments}" as="comment">
+            <li class="py-3" data-blog-comment="{comment.uid}">
+                <p class="text-muted-foreground">
+                    <f:format.crop maxCharacters="100" append="&nbsp;[…]">{comment.comment}</f:format.crop>
+                </p>
+                <div class="mt-1 flex flex-wrap items-baseline gap-1 text-xs text-muted-foreground">
+                    <span class="font-medium text-foreground">{comment.name}</span>
+                    <span><f:translate extensionName="Blog" key="widget.recentcomments.on">on</f:translate></span>
+                    <blogvh:link.post post="{comment.post}" section="comment-{comment.uid}" class="text-foreground underline-offset-4 hover:text-primary hover:underline">
+                        {comment.post.title}
+                    </blogvh:link.post>
+                </div>
+            </li>
+        </f:for>
+    </ul>
+</f:section>
+
+</html>

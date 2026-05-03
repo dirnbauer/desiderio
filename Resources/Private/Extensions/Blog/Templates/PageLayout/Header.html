@@ -1,0 +1,89 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:core="http://typo3.org/ns/TYPO3/CMS/Core/ViewHelpers"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:if condition="{post}">
+    <div class="d-blog-pageheader rounded-lg border border-border bg-card p-4 shadow-sm">
+        <div class="flex items-start gap-4">
+            <div class="d-blog-pageheader__icon">
+                <core:iconForRecord table="pages" row="{post.asArray}" size="large" />
+            </div>
+            <div class="flex-1 grid gap-4">
+                <p class="text-sm leading-6 text-muted-foreground">
+                    <f:if condition="{post.abstract} || {post.description}">
+                        <f:then>{f:if(condition: post.abstract, then: post.abstract, else: post.description)}</f:then>
+                        <f:else><em><f:translate extensionName="blog" key="pagelayout.message.notabstractordescription">No abstract or description set yet.</f:translate></em></f:else>
+                    </f:if>
+                </p>
+                <dl class="grid gap-x-6 gap-y-3 text-sm sm:grid-cols-2">
+                    <div>
+                        <dt class="font-medium text-foreground"><f:translate extensionName="blog" key="pagelayout.section.published">Published</f:translate></dt>
+                        <dd class="text-muted-foreground">
+                            <time datetime="{f:format.date(format: '%Y-%m-%dT%H:%M:%S-%z', date: post.publishDate)}" itemprop="datepublished">
+                                {f:format.date(format: '%d.%m.%Y - %H:%M', date: post.publishDate)}
+                            </time>
+                        </dd>
+                    </div>
+                    <div>
+                        <dt class="font-medium text-foreground"><f:translate extensionName="blog" key="pagelayout.section.authors">Authors</f:translate></dt>
+                        <dd class="text-muted-foreground">
+                            <f:if condition="{post.authors}">
+                                <f:then>
+                                    <ul class="grid gap-1">
+                                        <f:for each="{post.authors}" as="author"><li>{author.name}</li></f:for>
+                                    </ul>
+                                </f:then>
+                                <f:else><em><f:translate extensionName="blog" key="pagelayout.message.noauthor">No author set yet.</f:translate></em></f:else>
+                            </f:if>
+                        </dd>
+                    </div>
+                    <div>
+                        <dt class="font-medium text-foreground"><f:translate extensionName="blog" key="pagelayout.section.featuredimage">Featured image</f:translate></dt>
+                        <dd>
+                            <f:if condition="{post.featuredImage}">
+                                <f:then>
+                                    <f:image loading="lazy" image="{post.featuredImage}" alt="{post.featuredImage.alternative}" title="{post.featuredImage.title}" height="100c" width="200" class="rounded-md border border-border"/>
+                                </f:then>
+                                <f:else><em class="text-muted-foreground"><f:translate extensionName="blog" key="pagelayout.message.nofeaturedimage">No featured image yet.</f:translate></em></f:else>
+                            </f:if>
+                        </dd>
+                    </div>
+                    <f:if condition="{post.tags}">
+                        <div>
+                            <dt class="font-medium text-foreground"><f:translate extensionName="blog" key="pagelayout.section.tags">Tags</f:translate></dt>
+                            <dd>
+                                <ul class="flex flex-wrap gap-1">
+                                    <f:for each="{post.tags}" as="tag">
+                                        <li><span class="inline-flex items-center rounded-md border border-border bg-muted px-2 py-0.5 text-xs font-medium text-muted-foreground">{tag.title}</span></li>
+                                    </f:for>
+                                </ul>
+                            </dd>
+                        </div>
+                    </f:if>
+                    <f:if condition="{post.categories}">
+                        <div>
+                            <dt class="font-medium text-foreground"><f:translate extensionName="blog" key="pagelayout.section.categories">Categories</f:translate></dt>
+                            <dd>
+                                <ul class="flex flex-wrap gap-1">
+                                    <f:for each="{post.categories}" as="category">
+                                        <li><span class="inline-flex items-center rounded-md border border-border bg-muted px-2 py-0.5 text-xs font-medium text-muted-foreground">{category.title}</span></li>
+                                    </f:for>
+                                </ul>
+                            </dd>
+                        </div>
+                    </f:if>
+                </dl>
+                <div>
+                    <blogvh:link.be.post post="{post}" action="edit" class="inline-flex h-9 items-center gap-2 rounded-md border border-border bg-background px-3 text-sm font-medium text-foreground transition-colors hover:bg-muted">
+                        <core:icon identifier="record-blog-post" />
+                        <span><f:translate extensionName="blog" key="pagelayout.button.post.edit">Edit blog post</f:translate></span>
+                    </blogvh:link.be.post>
+                </div>
+            </div>
+        </div>
+    </div>
+</f:if>
+
+</html>

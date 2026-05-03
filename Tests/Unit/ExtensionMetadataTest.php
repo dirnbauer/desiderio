@@ -37,6 +37,7 @@ final class ExtensionMetadataTest extends TestCase
         self::assertArrayHasKey('shadcn2fluid_templates', $conf['constraints']['conflicts']);
         self::assertArrayHasKey('solr', $conf['constraints']['suggests']);
         self::assertArrayHasKey('news', $conf['constraints']['suggests']);
+        self::assertArrayHasKey('blog', $conf['constraints']['suggests']);
     }
 
     public function testIconsRegistryIsReadable(): void

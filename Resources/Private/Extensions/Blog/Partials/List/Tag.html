@@ -1,0 +1,14 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:argument name="tag" type="T3G\AgencyPack\Blog\Domain\Model\Tag" optional="true"/>
+<f:argument name="settings" type="array" optional="true"/>
+
+<blogvh:link.tag tag="{tag}" class="inline-flex items-center" data-blog-tag="{tag.uid}">
+    <d:atom.badge variant="secondary">{tag.title}</d:atom.badge>
+</blogvh:link.tag>
+
+</html>

@@ -122,7 +122,25 @@ lists it as an optional dependency, so these shadcn/ui-oriented structures
 are available by default while their PAGEVIEW template root remains isolated
 at `Resources/Private/ShadcnUi/Templates/`.
 
-### News + blog: shadcn-styled list, magazine view, and load-more
+### t3g/blog: full shadcn override
+
+The hidden site set `webconsulting/desiderio-blog` (auto-pulled by the base
+set when [`t3g/blog`](https://extensions.typo3.org/extension/blog/) is
+installed) replaces the upstream Bootstrap markup with **shadcn-only**
+templates: cards, badges, pagination, alerts, and the post / comments /
+widget chrome all render through `<d:atom.…>` / `<d:molecule.…>` /
+`<d:layout.…>` components.
+
+Every partial under `Resources/Private/Extensions/Blog/Partials/`
+declares its inputs with **Fluid 5.3 typed `<f:argument>`** blocks
+(`type="T3G\AgencyPack\Blog\Domain\Model\Post"`, `type="iterable"`,
+`type="array"`, …). That gives editors and integrators strict typing all
+the way through the override chain.
+
+The set is shipped *hidden* from the Site Management picker — adding the
+base set is enough.
+
+### News: shadcn-styled list, magazine view, and load-more
 
 Drop a `News` plugin onto a `DesiderioBlog` or `DesiderioNews` page and the
 list renders as a 3-column shadcn card grid with a `Detail` view that

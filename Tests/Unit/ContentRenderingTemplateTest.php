@@ -123,11 +123,14 @@ final class ContentRenderingTemplateTest extends TestCase
         $baseSet = Yaml::parseFile(__DIR__ . '/../../Configuration/Sets/Desiderio/config.yaml');
         $solrSet = Yaml::parseFile(__DIR__ . '/../../Configuration/Sets/DesiderioSolr/config.yaml');
         $newsSet = Yaml::parseFile(__DIR__ . '/../../Configuration/Sets/DesiderioNews/config.yaml');
+        $blogSet = Yaml::parseFile(__DIR__ . '/../../Configuration/Sets/DesiderioBlog/config.yaml');
         $solrTypoScript = (string) file_get_contents(__DIR__ . '/../../Configuration/Sets/DesiderioSolr/setup.typoscript');
         $newsTypoScript = (string) file_get_contents(__DIR__ . '/../../Configuration/Sets/DesiderioNews/setup.typoscript');
+        $blogTypoScript = (string) file_get_contents(__DIR__ . '/../../Configuration/Sets/DesiderioBlog/setup.typoscript');
 
         self::assertContains('webconsulting/desiderio-solr', $baseSet['optionalDependencies']);
         self::assertContains('webconsulting/desiderio-news', $baseSet['optionalDependencies']);
+        self::assertContains('webconsulting/desiderio-blog', $baseSet['optionalDependencies']);
 
         self::assertSame('webconsulting/desiderio-solr', $solrSet['name']);
         self::assertTrue($solrSet['hidden']);
@@ -144,6 +147,101 @@ final class ContentRenderingTemplateTest extends TestCase
         self::assertStringContainsString('templateRootPaths.200 = EXT:desiderio/Resources/Private/Extensions/News/Templates/', $newsTypoScript);
         self::assertStringContainsString('partialRootPaths.200 = EXT:desiderio/Resources/Private/Extensions/News/Partials/', $newsTypoScript);
         self::assertStringContainsString('layoutRootPaths.200 = EXT:desiderio/Resources/Private/Extensions/News/Layouts/', $newsTypoScript);
+
+        self::assertSame('webconsulting/desiderio-blog', $blogSet['name']);
+        self::assertTrue($blogSet['hidden']);
+        self::assertContains('t3g/blog', $blogSet['optionalDependencies']);
+        self::assertStringContainsString('plugin.tx_blog', $blogTypoScript);
+        self::assertStringContainsString('templateRootPaths.200 = EXT:desiderio/Resources/Private/Extensions/Blog/Templates/', $blogTypoScript);
+        self::assertStringContainsString('partialRootPaths.200 = EXT:desiderio/Resources/Private/Extensions/Blog/Partials/', $blogTypoScript);
+        self::assertStringContainsString('layoutRootPaths.200 = EXT:desiderio/Resources/Private/Extensions/Blog/Layouts/', $blogTypoScript);
+    }
+
+    public function testDesiderioBlogTemplatesUseShadcnComponentsAndTypedFluidArguments(): void
+    {
+        $requiredFiles = [
+            'Resources/Private/Extensions/Blog/Layouts/Default.html',
+            'Resources/Private/Extensions/Blog/Layouts/Post.html',
+            'Resources/Private/Extensions/Blog/Layouts/Widget.html',
+            'Resources/Private/Extensions/Blog/Templates/Page/BlogList.html',
+            'Resources/Private/Extensions/Blog/Templates/Page/BlogPost.html',
+            'Resources/Private/Extensions/Blog/Templates/Post/Header.html',
+            'Resources/Private/Extensions/Blog/Templates/Post/Footer.html',
+            'Resources/Private/Extensions/Blog/Templates/Post/Authors.html',
+            'Resources/Private/Extensions/Blog/Templates/Post/RelatedPosts.html',
+            'Resources/Private/Extensions/Blog/Templates/Post/ListByDemand.html',
+            'Resources/Private/Extensions/Blog/Templates/Post/ListLatestPosts.html',
+            'Resources/Private/Extensions/Blog/Templates/Post/ListRecentPosts.html',
+            'Resources/Private/Extensions/Blog/Templates/Post/ListPostsByAuthor.html',
+            'Resources/Private/Extensions/Blog/Templates/Post/ListPostsByCategory.html',
+            'Resources/Private/Extensions/Blog/Templates/Post/ListPostsByDate.html',
+            'Resources/Private/Extensions/Blog/Templates/Post/ListPostsByTag.html',
+            'Resources/Private/Extensions/Blog/Templates/Comment/Comments.html',
+            'Resources/Private/Extensions/Blog/Templates/Comment/Form.html',
+            'Resources/Private/Extensions/Blog/Templates/Widget/RecentPosts.html',
+            'Resources/Private/Extensions/Blog/Templates/Widget/Categories.html',
+            'Resources/Private/Extensions/Blog/Templates/Widget/Tags.html',
+            'Resources/Private/Extensions/Blog/Templates/Widget/Archive.html',
+            'Resources/Private/Extensions/Blog/Partials/List.html',
+            'Resources/Private/Extensions/Blog/Partials/TeaserList.html',
+            'Resources/Private/Extensions/Blog/Partials/List/Post.html',
+            'Resources/Private/Extensions/Blog/Partials/Teaser/Post.html',
+            'Resources/Private/Extensions/Blog/Partials/Pagination/Pagination.html',
+            'Resources/Private/Extensions/Blog/Partials/Comments/Comment.html',
+            'Resources/Private/Extensions/Blog/Partials/Post/Author.html',
+            'Resources/Private/Extensions/Blog/Partials/General/FeaturedImage.html',
+            'Resources/Private/Extensions/Blog/Partials/General/SocialIcons.html',
+        ];
+
+        foreach ($requiredFiles as $relativePath) {
+            self::assertFileExists(__DIR__ . '/../../' . $relativePath, "{$relativePath} must exist");
+        }
+
+        $shadcnBackedTemplates = [
+            'Resources/Private/Extensions/Blog/Layouts/Post.html',
+            'Resources/Private/Extensions/Blog/Layouts/Widget.html',
+            'Resources/Private/Extensions/Blog/Templates/Page/BlogList.html',
+            'Resources/Private/Extensions/Blog/Templates/Page/BlogPost.html',
+            'Resources/Private/Extensions/Blog/Templates/Post/Header.html',
+            'Resources/Private/Extensions/Blog/Templates/Comment/Comments.html',
+            'Resources/Private/Extensions/Blog/Templates/Widget/Categories.html',
+            'Resources/Private/Extensions/Blog/Partials/List.html',
+            'Resources/Private/Extensions/Blog/Partials/List/Post.html',
+            'Resources/Private/Extensions/Blog/Partials/Teaser/Post.html',
+            'Resources/Private/Extensions/Blog/Partials/Comments/Comment.html',
+            'Resources/Private/Extensions/Blog/Partials/Post/Author.html',
+        ];
+        foreach ($shadcnBackedTemplates as $relativePath) {
+            $template = (string) file_get_contents(__DIR__ . '/../../' . $relativePath);
+            self::assertStringContainsString('Webconsulting/Desiderio/Components/ComponentCollection', $template, "{$relativePath} should declare the Desiderio component namespace");
+            self::assertMatchesRegularExpression('/<d:(atom|molecule|layout)\\./', $template, "{$relativePath} should render with shadcn <d:…> components");
+        }
+
+        $typedPartials = [
+            'Resources/Private/Extensions/Blog/Partials/List.html',
+            'Resources/Private/Extensions/Blog/Partials/TeaserList.html',
+            'Resources/Private/Extensions/Blog/Partials/SimpleList.html',
+            'Resources/Private/Extensions/Blog/Partials/List/Post.html',
+            'Resources/Private/Extensions/Blog/Partials/Teaser/Post.html',
+            'Resources/Private/Extensions/Blog/Partials/Pagination/Pagination.html',
+            'Resources/Private/Extensions/Blog/Partials/Meta/Rendering/Group.html',
+            'Resources/Private/Extensions/Blog/Partials/Meta/Rendering/Item.html',
+            'Resources/Private/Extensions/Blog/Partials/Comments/Comment.html',
+            'Resources/Private/Extensions/Blog/Partials/Post/Author.html',
+            'Resources/Private/Extensions/Blog/Partials/Post/Meta.html',
+            'Resources/Private/Extensions/Blog/Partials/General/FeaturedImage.html',
+            'Resources/Private/Extensions/Blog/Partials/List/Author.html',
+            'Resources/Private/Extensions/Blog/Partials/List/Category.html',
+            'Resources/Private/Extensions/Blog/Partials/List/Tag.html',
+            'Resources/Private/Extensions/Blog/Partials/List/Archive.html',
+        ];
+        foreach ($typedPartials as $relativePath) {
+            $partial = (string) file_get_contents(__DIR__ . '/../../' . $relativePath);
+            self::assertMatchesRegularExpression('/<f:argument\\s+name="[^"]+"\\s+type="[^"]+"/', $partial, "{$relativePath} must declare typed <f:argument> for Fluid 5.3 strict typing");
+        }
+
+        $blogPageTsConfig = (string) file_get_contents(__DIR__ . '/../../Configuration/Sets/DesiderioBlog/page.tsconfig');
+        self::assertStringContainsString('mod.web_layout.tt_content.preview', $blogPageTsConfig);
     }
 
     public function testContentBlockSiteSetsAreBundledBehindSingleDesiderioSet(): void

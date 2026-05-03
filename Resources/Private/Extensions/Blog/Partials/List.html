@@ -1,0 +1,53 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:comment>
+    Renders a paginated list of blog posts as a shadcn card grid.
+    Fluid 5.3 strong typing: every argument is declared and type-checked.
+</f:comment>
+<f:argument name="posts" type="iterable" optional="true"/>
+<f:argument name="pagination" type="object" optional="true"/>
+<f:argument name="settings" type="array" optional="true"/>
+<f:argument name="type" type="string" optional="true"/>
+
+<f:variable name="paginated" value="{pagination.paginatedItems}"/>
+
+<section class="grid gap-6 md:grid-cols-2 lg:grid-cols-3" data-blog-list="{type -> f:or(alternative: 'default')}">
+    <f:if condition="{pagination} && {paginated}">
+        <f:then>
+            <f:if condition="{settings.lists.pagination.insertAbove}">
+                <div class="md:col-span-2 lg:col-span-3">
+                    <f:render partial="Pagination/Pagination" arguments="{pagination: pagination}" />
+                </div>
+            </f:if>
+            <f:for each="{paginated}" iteration="iterator" as="post">
+                <blogvh:cache post="{post}" />
+                <f:render partial="List/Post" arguments="{_all}" />
+            </f:for>
+            <f:if condition="{settings.lists.pagination.insertBelow}">
+                <div class="md:col-span-2 lg:col-span-3">
+                    <f:render partial="Pagination/Pagination" arguments="{pagination: pagination}" />
+                </div>
+            </f:if>
+        </f:then>
+        <f:else if="{posts}">
+            <f:for each="{posts}" iteration="iterator" as="post">
+                <blogvh:cache post="{post}" />
+                <f:render partial="List/Post" arguments="{_all}" />
+            </f:for>
+        </f:else>
+        <f:else>
+            <div class="md:col-span-2 lg:col-span-3">
+                <d:molecule.alert>
+                    <d:molecule.alertTitle><f:translate extensionName="Blog" key="list.no_posts.title">No posts</f:translate></d:molecule.alertTitle>
+                    <d:molecule.alertDescription><f:translate extensionName="Blog" key="list.no_posts.message">There are no posts yet.</f:translate></d:molecule.alertDescription>
+                </d:molecule.alert>
+            </div>
+        </f:else>
+    </f:if>
+</section>
+
+</html>

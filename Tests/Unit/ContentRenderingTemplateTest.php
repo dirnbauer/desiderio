@@ -191,12 +191,15 @@ final class ContentRenderingTemplateTest extends TestCase
         self::assertStringContainsString("EXT:desiderio/Configuration/BackendLayouts/ShadcnUi/*.tsconfig", $pageTsConfig);
         self::assertStringContainsString('backend_layout.desiderio_blog.title', $backendLayoutLabels);
         self::assertStringContainsString('backend_layout.desiderio_extension.title', $backendLayoutLabels);
+        self::assertStringContainsString('backend_layout.desiderio_news.title', $backendLayoutLabels);
 
         $requiredFiles = [
             'Configuration/BackendLayouts/ShadcnUi/DesiderioBlog.tsconfig',
             'Configuration/BackendLayouts/ShadcnUi/DesiderioExtension.tsconfig',
+            'Configuration/BackendLayouts/ShadcnUi/DesiderioNews.tsconfig',
             'Resources/Private/ShadcnUi/Templates/Pages/DesiderioBlog.fluid.html',
             'Resources/Private/ShadcnUi/Templates/Pages/DesiderioExtension.fluid.html',
+            'Resources/Private/ShadcnUi/Templates/Pages/DesiderioNews.fluid.html',
         ];
 
         foreach ($requiredFiles as $relativePath) {
@@ -206,6 +209,7 @@ final class ContentRenderingTemplateTest extends TestCase
         foreach ([
             'Resources/Private/ShadcnUi/Templates/Pages/DesiderioBlog.fluid.html',
             'Resources/Private/ShadcnUi/Templates/Pages/DesiderioExtension.fluid.html',
+            'Resources/Private/ShadcnUi/Templates/Pages/DesiderioNews.fluid.html',
         ] as $relativePath) {
             $template = (string) file_get_contents(__DIR__ . '/../../' . $relativePath);
 
@@ -233,9 +237,13 @@ final class ContentRenderingTemplateTest extends TestCase
             'Resources/Private/Extensions/News/Layouts/Detail.html',
             'Resources/Private/Extensions/News/Templates/News/List.html',
             'Resources/Private/Extensions/News/Templates/News/Detail.html',
+            'Resources/Private/Extensions/News/Templates/News/MagazineList.html',
             'Resources/Private/Extensions/News/Partials/List/Item.html',
             'Resources/Private/Extensions/News/Partials/List/Pagination.html',
+            'Resources/Private/Extensions/News/Partials/List/LoadMore.html',
             'Resources/Private/Extensions/News/Partials/Detail/MediaContainer.html',
+            'Resources/Private/Extensions/News/Partials/Detail/Opengraph.html',
+            'Resources/Private/Extensions/News/Partials/Detail/Shariff.html',
         ];
 
         foreach ($requiredFiles as $relativePath) {

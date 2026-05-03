@@ -1,0 +1,151 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:n="http://typo3.org/ns/GeorgRinger/News/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:comment>
+    Progressive enhancement: render every news item server-side, then collapse the
+    overflow with a small inline script. With JavaScript the editor sees an
+    "Initial visible" count and a "Load more" button that reveals N additional
+    rows per click (settings.list.loadMoreCount). Without JavaScript every
+    item stays visible and the button never appears, so search engines and
+    screen readers see the complete list. The container exposes its config
+    through data-attributes so editors can override per plugin instance.
+</f:comment>
+
+<f:variable name="newsList" value="{newsList}"/>
+<f:variable name="skipFirst" value="{skipFirst -> f:or(alternative: 0)}"/>
+<f:variable name="initialCount" value="{settings.list.initialCount -> f:or(alternative: 6)}"/>
+<f:variable name="loadMoreCount" value="{settings.list.loadMoreCount -> f:or(alternative: 3)}"/>
+<f:variable name="totalItems" value="{f:count(subject: newsList)}"/>
+<f:variable name="loadMoreId" value="news-load-more-{contentObjectData.uid -> f:or(alternative: 'plugin')}"/>
+
+<f:if condition="{newsList}">
+    <div
+        class="news-list-loadmore flex flex-col gap-6"
+        id="{loadMoreId}"
+        data-news-loadmore="root"
+        data-initial-count="{initialCount}"
+        data-load-more-count="{loadMoreCount}"
+        data-total-items="{totalItems}"
+    >
+        <div
+            class="grid gap-6 md:grid-cols-2 lg:grid-cols-3"
+            data-news-loadmore="grid"
+        >
+            <f:for each="{newsList}" as="newsItem" iteration="iterator">
+                <f:if condition="{iterator.index} >= {skipFirst}">
+                    <div data-news-loadmore="item" data-index="{iterator.index}">
+                        <f:render partial="List/Item" arguments="{newsItem: newsItem, settings: settings, iterator: iterator}"/>
+                    </div>
+                </f:if>
+            </f:for>
+        </div>
+
+        <f:if condition="{totalItems} > {initialCount}">
+            <div class="flex flex-col items-center gap-2 pt-2" data-news-loadmore="actions" hidden>
+                <d:atom.button
+                    type="button"
+                    variant="outline"
+                    size="lg"
+                    data-news-loadmore="trigger"
+                    aria-controls="{loadMoreId}"
+                >
+                    <span data-news-loadmore="label">
+                        <f:translate key="news.loadMore" extensionName="desiderio">Load more articles</f:translate>
+                    </span>
+                    <span class="ml-2 inline-flex items-center justify-center rounded-md bg-primary/10 px-2 py-0.5 text-xs font-semibold text-primary" data-news-loadmore="counter">
+                        +{loadMoreCount}
+                    </span>
+                </d:atom.button>
+                <p class="text-xs text-muted-foreground" aria-live="polite" data-news-loadmore="status">
+                    <f:translate
+                        key="news.loadMore.status"
+                        extensionName="desiderio"
+                        arguments="{0: '{initialCount}', 1: '{totalItems}'}"
+                    >Showing {initialCount} of {totalItems} articles</f:translate>
+                </p>
+            </div>
+        </f:if>
+    </div>
+
+    <f:asset.script identifier="desiderio-news-loadmore" priority="0">
+(function () {
+    'use strict';
+    if (window.__desiderioNewsLoadMore) { return; }
+    window.__desiderioNewsLoadMore = true;
+
+    function activate(root) {
+        var grid = root.querySelector('[data-news-loadmore="grid"]');
+        var actions = root.querySelector('[data-news-loadmore="actions"]');
+        var trigger = root.querySelector('[data-news-loadmore="trigger"]');
+        var status = root.querySelector('[data-news-loadmore="status"]');
+        var counter = root.querySelector('[data-news-loadmore="counter"]');
+        if (!grid || !trigger || !actions) { return; }
+
+        var initial = parseInt(root.getAttribute('data-initial-count'), 10) || 6;
+        var step = parseInt(root.getAttribute('data-load-more-count'), 10) || 3;
+        var total = parseInt(root.getAttribute('data-total-items'), 10) || 0;
+        var items = grid.querySelectorAll('[data-news-loadmore="item"]');
+        if (items.length <= initial) { return; }
+
+        var visible = initial;
+        for (var i = initial; i < items.length; i += 1) {
+            items[i].setAttribute('hidden', 'hidden');
+        }
+        actions.removeAttribute('hidden');
+        if (counter) { counter.textContent = '+' + Math.min(step, items.length - visible); }
+        updateStatus();
+
+        trigger.addEventListener('click', function () {
+            var next = Math.min(visible + step, items.length);
+            for (var j = visible; j < next; j += 1) {
+                items[j].removeAttribute('hidden');
+                var firstFocusable = items[j].querySelector('a, button, [tabindex]:not([tabindex="-1"])');
+                if (j === visible && firstFocusable) {
+                    firstFocusable.setAttribute('data-news-loadmore-focus', 'true');
+                }
+            }
+            visible = next;
+            updateStatus();
+            if (visible >= items.length) {
+                trigger.setAttribute('disabled', 'disabled');
+                trigger.setAttribute('aria-disabled', 'true');
+                actions.setAttribute('hidden', 'hidden');
+            } else if (counter) {
+                counter.textContent = '+' + Math.min(step, items.length - visible);
+            }
+            var focusTarget = grid.querySelector('[data-news-loadmore-focus="true"]');
+            if (focusTarget) {
+                focusTarget.removeAttribute('data-news-loadmore-focus');
+                focusTarget.focus({ preventScroll: false });
+            }
+        });
+
+        function updateStatus() {
+            if (!status) { return; }
+            status.textContent = status.getAttribute('data-template')
+                ? status.getAttribute('data-template')
+                    .replace('{visible}', String(Math.min(visible, total)))
+                    .replace('{total}', String(total))
+                : 'Showing ' + Math.min(visible, total) + ' of ' + total + ' articles';
+        }
+    }
+
+    function init() {
+        var roots = document.querySelectorAll('[data-news-loadmore="root"]');
+        Array.prototype.forEach.call(roots, activate);
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+    } else {
+        init();
+    }
+})();
+    </f:asset.script>
+</f:if>
+
+</html>

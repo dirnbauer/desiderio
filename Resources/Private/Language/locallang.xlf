@@ -36,5 +36,30 @@
         <source>Next</source>
       </segment>
     </unit>
+    <unit id="news.loadMore">
+      <segment>
+        <source>Load more articles</source>
+      </segment>
+    </unit>
+    <unit id="news.loadMore.status">
+      <segment>
+        <source>Showing {0} of {1} articles</source>
+      </segment>
+    </unit>
+    <unit id="news.featured">
+      <segment>
+        <source>Featured</source>
+      </segment>
+    </unit>
+    <unit id="news.magazine.more">
+      <segment>
+        <source>More articles</source>
+      </segment>
+    </unit>
+    <unit id="news.magazine.items">
+      <segment>
+        <source>articles</source>
+      </segment>
+    </unit>
   </file>
 </xliff>

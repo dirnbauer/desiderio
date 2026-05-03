@@ -43,5 +43,35 @@
         <target>Weiter</target>
       </segment>
     </unit>
+    <unit id="news.loadMore">
+      <segment>
+        <source>Load more articles</source>
+        <target>Weitere Artikel laden</target>
+      </segment>
+    </unit>
+    <unit id="news.loadMore.status">
+      <segment>
+        <source>Showing {0} of {1} articles</source>
+        <target>Es werden {0} von {1} Artikeln angezeigt</target>
+      </segment>
+    </unit>
+    <unit id="news.featured">
+      <segment>
+        <source>Featured</source>
+        <target>Empfohlen</target>
+      </segment>
+    </unit>
+    <unit id="news.magazine.more">
+      <segment>
+        <source>More articles</source>
+        <target>Weitere Artikel</target>
+      </segment>
+    </unit>
+    <unit id="news.magazine.items">
+      <segment>
+        <source>articles</source>
+        <target>Artikel</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

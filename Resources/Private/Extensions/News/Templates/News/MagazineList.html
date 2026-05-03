@@ -1,0 +1,121 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:n="http://typo3.org/ns/GeorgRinger/News/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:layout name="General" />
+
+<f:comment>
+    Magazine view: feature article on top (first item), three-column secondary
+    grid below. Pairs with `tx_news.settings.templateLayout = magazine`. The
+    "Load more" mode is reused for the secondary grid so editors can keep an
+    extra batch of items behind the load-more button when the optional setting
+    `settings.list.useLoadMore` is enabled.
+</f:comment>
+
+<f:section name="content">
+    <!--TYPO3SEARCH_end-->
+    <f:if condition="{news}">
+        <f:then>
+            <f:variable name="featured" value="{news.0}"/>
+            <f:variable name="featuredCount" value="1"/>
+
+            <div class="news-magazine flex flex-col gap-10" id="news-magazine-{contentObjectData.uid}">
+                <article class="news-magazine__feature group/card relative overflow-hidden" itemscope="itemscope" itemtype="https://schema.org/Article">
+                    <d:molecule.card class="grid gap-6 md:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] md:items-stretch">
+                        <f:if condition="{featured.mediaPreviews}">
+                            <f:then>
+                                <n:link newsItem="{featured}" settings="{settings}" title="{featured.title}" class="block overflow-hidden md:order-2">
+                                    <f:alias map="{mediaElement: featured.mediaPreviews.0}">
+                                        <f:if condition="{mediaElement.originalResource.type} == 2">
+                                            <f:image image="{mediaElement}" title="{mediaElement.originalResource.title}" alt="{mediaElement.originalResource.alternative}" loading="lazy" maxWidth="1200" maxHeight="900" class="aspect-[4/3] w-full object-cover transition-transform duration-300 group-hover/card:scale-[1.02]"/>
+                                        </f:if>
+                                    </f:alias>
+                                </n:link>
+                            </f:then>
+                            <f:else>
+                                <f:if condition="{settings.displayDummyIfNoMedia}">
+                                    <n:link newsItem="{featured}" settings="{settings}" title="{featured.title}" class="block overflow-hidden md:order-2">
+                                        <f:image src="{settings.list.media.dummyImage}" title="" alt="" loading="lazy" maxWidth="1200" maxHeight="900" class="aspect-[4/3] w-full object-cover opacity-80"/>
+                                    </n:link>
+                                </f:if>
+                            </f:else>
+                        </f:if>
+
+                        <div class="flex flex-col gap-4 px-4 pb-4 md:order-1 md:pb-6 md:pt-6">
+                            <div class="flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
+                                <d:atom.badge>
+                                    <f:translate key="news.featured" extensionName="desiderio">Featured</f:translate>
+                                </d:atom.badge>
+                                <time itemprop="datePublished" datetime="{f:format.date(date: featured.datetime, format: 'c')}">
+                                    <f:format.date format="{f:translate(key: 'dateFormat')}">{featured.datetime}</f:format.date>
+                                </time>
+                                <f:if condition="{featured.firstCategory}">
+                                    <d:atom.badge variant="secondary">{featured.firstCategory.title}</d:atom.badge>
+                                </f:if>
+                            </div>
+
+                            <d:atom.typography tag="h2" variant="h2" itemprop="headline">
+                                <n:link newsItem="{featured}" settings="{settings}" title="{featured.title}" itemprop="url" class="text-foreground underline-offset-4 hover:text-primary hover:underline">
+                                    {featured.title}
+                                </n:link>
+                            </d:atom.typography>
+
+                            <div class="text-base leading-7 text-muted-foreground" itemprop="description">
+                                <n:removeMediaTags>
+                                    <f:if condition="{featured.teaser}">
+                                        <f:then>{featured.teaser -> f:format.crop(maxCharacters: 280, respectWordBoundaries: '1') -> f:format.html()}</f:then>
+                                        <f:else>{featured.bodytext -> f:format.crop(maxCharacters: 280, respectWordBoundaries: '1') -> f:format.html()}</f:else>
+                                    </f:if>
+                                </n:removeMediaTags>
+                            </div>
+
+                            <div class="mt-auto flex flex-wrap items-center gap-3">
+                                <n:link newsItem="{featured}" settings="{settings}" title="{featured.title}" class="inline-flex h-10 items-center justify-center rounded-lg bg-primary px-4 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/80 focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50">
+                                    <f:translate key="more-link" />
+                                </n:link>
+                                <f:if condition="{featured.author}">
+                                    <span class="text-sm text-muted-foreground"><f:translate key="author" arguments="{0: featured.author}"/></span>
+                                </f:if>
+                            </div>
+                        </div>
+                    </d:molecule.card>
+                </article>
+
+                <f:if condition="{f:count(subject: news)} > 1">
+                    <section aria-label="{f:translate(key: 'news.magazine.more', extensionName: 'desiderio', default: 'More articles')}">
+                        <header class="mb-6 flex items-end justify-between gap-4">
+                            <d:atom.typography tag="h3" variant="h3"><f:translate key="news.magazine.more" extensionName="desiderio">More articles</f:translate></d:atom.typography>
+                            <span class="text-sm text-muted-foreground">{f:count(subject: news) - featuredCount} <f:translate key="news.magazine.items" extensionName="desiderio">articles</f:translate></span>
+                        </header>
+
+                        <f:if condition="{settings.list.useLoadMore}">
+                            <f:then>
+                                <f:render partial="List/LoadMore" arguments="{newsList: news, settings: settings, contentObjectData: contentObjectData, skipFirst: 1}"/>
+                            </f:then>
+                            <f:else>
+                                <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                                    <f:for each="{news}" as="newsItem" iteration="iterator">
+                                        <f:if condition="{iterator.index} > 0">
+                                            <f:render partial="List/Item" arguments="{newsItem: newsItem, settings: settings, iterator: iterator}" />
+                                        </f:if>
+                                    </f:for>
+                                </div>
+                            </f:else>
+                        </f:if>
+                    </section>
+                </f:if>
+            </div>
+        </f:then>
+        <f:else>
+            <d:molecule.alert>
+                <d:molecule.alertDescription><f:translate key="list_nonewsfound" /></d:molecule.alertDescription>
+            </d:molecule.alert>
+        </f:else>
+    </f:if>
+    <!--TYPO3SEARCH_begin-->
+</f:section>
+
+</html>

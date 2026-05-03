@@ -1,0 +1,55 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:n="http://typo3.org/ns/GeorgRinger/News/ViewHelpers"
+    data-namespace-typo3-fluid="true"
+>
+
+<n:format.nothing>
+    <f:if condition="{newsItem.alternativeTitle}">
+        <f:then>
+            <f:variable name="metaTitle"><f:format.htmlentitiesDecode>{newsItem.alternativeTitle}</f:format.htmlentitiesDecode></f:variable>
+        </f:then>
+        <f:else>
+            <f:variable name="metaTitle"><f:format.htmlentitiesDecode>{newsItem.title}</f:format.htmlentitiesDecode></f:variable>
+        </f:else>
+    </f:if>
+
+    <f:if condition="{newsItem.teaser}">
+        <f:then>
+            <f:variable name="metaDescription"><f:format.htmlentitiesDecode>{newsItem.teaser -> f:format.stripTags() -> f:format.crop(maxCharacters: 200, respectWordBoundaries: '1')}</f:format.htmlentitiesDecode></f:variable>
+        </f:then>
+        <f:else>
+            <f:variable name="metaDescription"><f:format.htmlentitiesDecode>{newsItem.bodytext -> f:format.stripTags() -> f:format.crop(maxCharacters: 200, respectWordBoundaries: '1')}</f:format.htmlentitiesDecode></f:variable>
+        </f:else>
+    </f:if>
+
+    <n:metaTag type="property" property="og:type" content="article"/>
+    <n:metaTag type="property" property="og:title" content="{metaTitle}"/>
+    <f:if condition="{metaDescription}">
+        <n:metaTag type="property" property="og:description" content="{metaDescription}"/>
+        <n:metaTag type="name" name="description" content="{metaDescription}"/>
+        <n:metaTag type="name" name="twitter:description" content="{metaDescription}"/>
+    </f:if>
+    <n:metaTag type="name" name="twitter:card" content="summary_large_image"/>
+    <n:metaTag type="name" name="twitter:title" content="{metaTitle}"/>
+
+    <f:if condition="{newsItem.fallbackImage}">
+        <n:metaTag type="property" property="og:image" content="{f:uri.image(image: newsItem.fallbackImage, maxWidth: 1200, absolute: 1)}"/>
+        <n:metaTag type="name" name="twitter:image" content="{f:uri.image(image: newsItem.fallbackImage, maxWidth: 1200, absolute: 1)}"/>
+    </f:if>
+
+    <f:if condition="{newsItem.datetime}">
+        <n:metaTag type="property" property="article:published_time" content="{f:format.date(date: newsItem.datetime, format: 'c')}"/>
+    </f:if>
+    <f:if condition="{newsItem.author}">
+        <n:metaTag type="property" property="article:author" content="{newsItem.author}"/>
+    </f:if>
+    <f:for each="{newsItem.tags}" as="tag">
+        <n:metaTag type="property" property="article:tag" content="{tag.title}"/>
+    </f:for>
+    <f:for each="{newsItem.categories}" as="category">
+        <n:metaTag type="property" property="article:section" content="{category.title}"/>
+    </f:for>
+</n:format.nothing>
+
+</html>

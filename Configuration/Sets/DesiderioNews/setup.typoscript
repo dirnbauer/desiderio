@@ -7,5 +7,26 @@ plugin.tx_news {
 
   settings {
     cssFile >
+
+    list {
+      # Progressive "Load more" on news/blog list views.
+      # Editors flip this on (per plugin or via page TSconfig) and tune the
+      # initial count + extra batch size loaded by the shadcn-styled button.
+      useLoadMore = 0
+      initialCount = 6
+      loadMoreCount = 3
+    }
   }
 }
+
+# News landing pages built on the DesiderioNews backend layout default to the
+# load-more list view so editors only need to drop a "List view" plugin in main.
+[backend_layout = "pagets__DesiderioNews"]
+plugin.tx_news.settings.list.useLoadMore = 1
+[end]
+
+# Editorial blog pages keep the same affordance to match the user-facing
+# "extra number to be loaded" expectation.
+[backend_layout = "pagets__DesiderioBlog"]
+plugin.tx_news.settings.list.useLoadMore = 1
+[end]

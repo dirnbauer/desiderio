@@ -1,7 +1,19 @@
-plugin.tx_solr {
-  view {
-    templateRootPaths.200 = EXT:desiderio/Resources/Private/Extensions/Solr/Templates/
-    partialRootPaths.200 = EXT:desiderio/Resources/Private/Extensions/Solr/Partials/
-    layoutRootPaths.200 = EXT:desiderio/Resources/Private/Extensions/Solr/Layouts/
-  }
-}
+# DesiderioSolr Set is intentionally a no-op.
+#
+# The shadcn-styled Solr templates live in Resources/Private/Solr/ and are
+# registered at partialRootPaths.100 by the SolrDefaults Set. The
+# Resources/Private/Extensions/Solr/ tree (added by 33dcb9dd) shipped
+# parallel overrides at .200 that broke the suggest dropdown, the
+# frequent-search underline-suppression rule, and the sort UI. Keeping the
+# files on disk preserves the strong-typing test coverage from da8d713f,
+# but registering them at runtime would override the working .100 tree.
+#
+# When the Extensions/Solr tree is repaired upstream and the suggest
+# attributes / IDs / sort markup match the desiderio CSS contracts, this
+# set can be reactivated by re-adding:
+#
+#   plugin.tx_solr.view {
+#     templateRootPaths.200 = EXT:desiderio/Resources/Private/Extensions/Solr/Templates/
+#     partialRootPaths.200 = EXT:desiderio/Resources/Private/Extensions/Solr/Partials/
+#     layoutRootPaths.200 = EXT:desiderio/Resources/Private/Extensions/Solr/Layouts/
+#   }

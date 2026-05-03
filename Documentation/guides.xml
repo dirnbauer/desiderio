@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+    TYPO3 Documentation rendering config.
+
+    Run a render preview locally with:
+
+        docker run --rm --pull always -v "$(pwd)":/project \
+            ghcr.io/typo3-documentation/render-guides:latest \
+            --config=Documentation
+-->
+<guides
+    xmlns="https://www.phpdoc.org/guides"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="https://www.phpdoc.org/guides ../vendor/phpdocumentor/guides-cli/resources/schema/guides.xsd"
+    project="Desiderio"
+    release="2.1"
+    interlink-shortcode="desiderio"
+>
+    <project
+        title="Desiderio — shadcn/ui-inspired Fluid 5 component library for TYPO3 v14.3 LTS"
+        release="2.1.0"
+        version="2.1"
+        copyright="webconsulting studio"
+    />
+    <extension class="T3DocsThemeExtension\DependencyInjection\T3DocsThemeExtension"/>
+    <inventory id="t3coreapi" url="https://docs.typo3.org/m/typo3/reference-coreapi/main/en-us/"/>
+    <inventory id="t3contentblocks" url="https://docs.typo3.org/p/friendsoftypo3/content-blocks/main/en-us/"/>
+    <inventory id="t3news" url="https://docs.typo3.org/p/georgringer/news/main/en-us/"/>
+</guides>

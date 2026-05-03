@@ -1,9 +1,18 @@
 # Desiderio
 
-A self-contained TYPO3 v14 theme extension that bundles a
+[![CI](https://github.com/webconsulting/desiderio/actions/workflows/ci.yml/badge.svg)](https://github.com/webconsulting/desiderio/actions/workflows/ci.yml)
+![TYPO3](https://img.shields.io/badge/TYPO3-v14.3%20LTS-orange)
+![PHP](https://img.shields.io/badge/PHP-8.3%20%E2%80%93%208.5-blue)
+![PHPStan](https://img.shields.io/badge/PHPStan-level%20max-brightgreen)
+![Version](https://img.shields.io/badge/version-2.1.0-blue)
+
+A self-contained TYPO3 v14.3 LTS theme extension that bundles a
 [shadcn/ui](https://ui.shadcn.com)-inspired Fluid 5 component library, **255
 content elements**, backend layouts, page templates, and five swappable
 visual presets with a committed Tailwind v4/shadcn CSS build.
+
+**Status:** stable · **Version:** 2.1.0 · **TYPO3:** v14.3 LTS only ·
+**PHP:** 8.3 — 8.5 · **License:** GPL-2.0-or-later
 
 > Desiderio 2.0 replaces both `webconsulting/desiderio 1.x` and
 > `webconsulting/shadcn2fluid-templates 3.x`. No backward compatibility; clean
@@ -36,7 +45,9 @@ visual presets with a committed Tailwind v4/shadcn CSS build.
 
 ## Installation
 
-Requires TYPO3 14.3+ with PHP 8.3+:
+Requires TYPO3 14.3 LTS (no v13 fallback) and PHP 8.3 – 8.5. The
+`webconsulting/desiderio` package pulls in `typo3/cms-workspaces ^14.3` so
+draft/preview workflows are available out of the box.
 
 ```bash
 composer require webconsulting/desiderio
@@ -50,6 +61,17 @@ Then enable the base site set plus one of the five presets:
 2. Add `Desiderio Base` (`webconsulting/desiderio`)
 3. Add one of the five preset sets (see below)
 4. Save and flush caches
+
+### Tooling baseline
+
+| Tool | Version pin | Why |
+| --- | --- | --- |
+| TYPO3 | `^14.3` | LTS, only supported branch — v13 is **not** supported. |
+| PHP | `^8.3` (8.3 – 8.5) | Matches TYPO3 v14.3 LTS support matrix. |
+| Workspaces | `^14.3` | Required, not optional, for editorial preview. |
+| PHPStan | `^2.1`, **level max** | Plus `saschaegerer/phpstan-typo3` and `phpstan-strict-rules`. |
+| PHPUnit | `^11.5` | All 62 unit tests pass via `Build/Scripts/runTests.sh`. |
+| Content Blocks | `^2.2` | Drives every one of the 255 content elements. |
 
 The base set also pulls in `webconsulting/desiderio-content-elements`, a single
 aggregate set for the full Content Blocks catalog. Individual generated
@@ -87,17 +109,41 @@ Restart Cursor (or reload the window) after changing `.mcp.json`.
 | `DesiderioStyleguide`         | `main`                     | `Pages/DesiderioStyleguide.fluid.html` |
 | `DesiderioBlog`               | `stage`, `main`, `sidebar` | `Pages/DesiderioBlog.fluid.html` |
 | `DesiderioExtension`          | `stage`, `sidebar`, `main` | `Pages/DesiderioExtension.fluid.html` |
+| `DesiderioNews`               | `stage`, `main`, `sidebar` | `Pages/DesiderioNews.fluid.html` |
 | _(fallback)_                  | `stage`, `main`            | `Pages/Default.fluid.html` |
 
 Every content area works with the TYPO3 visual editor. Headers and footers
 are static partials, not content areas — the editing surface stays focused
 on the content that matters.
 
-`DesiderioBlog` and `DesiderioExtension` are shipped by the hidden
-`webconsulting/desiderio-shadcnui-templates` site set. The base set lists it
-as an optional dependency, so these shadcn/ui-oriented structures are available
-by default while their PAGEVIEW template root remains isolated at
-`Resources/Private/ShadcnUi/Templates/`.
+`DesiderioBlog`, `DesiderioExtension`, and `DesiderioNews` are shipped by the
+hidden `webconsulting/desiderio-shadcnui-templates` site set. The base set
+lists it as an optional dependency, so these shadcn/ui-oriented structures
+are available by default while their PAGEVIEW template root remains isolated
+at `Resources/Private/ShadcnUi/Templates/`.
+
+### News + blog: shadcn-styled list, magazine view, and load-more
+
+Drop a `News` plugin onto a `DesiderioBlog` or `DesiderioNews` page and the
+list renders as a 3-column shadcn card grid with a `Detail` view that
+includes the `Detail/Opengraph` (Open Graph + Twitter card meta) and
+`Detail/Shariff` partials.
+
+The list view supports a configurable **"Load more"** mode driven by three
+plugin / TypoScript settings:
+
+| Setting | Default | Purpose |
+| --- | --- | --- |
+| `plugin.tx_news.settings.list.useLoadMore` | `0` (auto on `DesiderioBlog` + `DesiderioNews`) | Switch the list partial from server-paginated to progressive load-more. |
+| `plugin.tx_news.settings.list.initialCount` | `6` | How many cards are shown before the button appears. |
+| `plugin.tx_news.settings.list.loadMoreCount` | `3` | The "extra number to be loaded" each click. |
+
+The button is rendered with a tiny inline JS asset that hides overflow
+items, reveals `loadMoreCount` more on each click, focuses the first newly
+revealed item for screen readers, and degrades to "show everything" when
+JavaScript is disabled. There is also a `MagazineList.html` template that
+features the first article on top with the rest as the load-more secondary
+grid.
 
 ## Presets
 
@@ -257,16 +303,62 @@ npm run build:css
 The frontend runtime is plain CSS plus Alpine/vanilla JS for dark mode,
 accordion, tabs, counters, and component interactions.
 
-## Testing
+## Testing & quality
 
 ```bash
 composer install
 npm install
 npm run build:css
-vendor/bin/phpunit --testsuite=Unit
-vendor/bin/phpstan analyse            # level 8, no errors
+
+# Unit tests + PHPStan max + content element audit in one command
+Build/Scripts/runTests.sh
+
+# Or à la carte
+Build/Scripts/runTests.sh phpunit
+Build/Scripts/runTests.sh phpstan
+Build/Scripts/runTests.sh audit
 ```
+
+GitHub Actions runs the same matrix on every push and pull request:
+
+- **PHPStan** at `level: max` with `phpstan/extension-installer`,
+  `saschaegerer/phpstan-typo3`, `phpstan/phpstan-strict-rules`, and
+  `phpstan/phpstan-phpunit`. The legacy seed-command type drift is
+  documented in `phpstan-baseline.neon` as a ratchet target.
+- **PHPUnit** ^11.5 across PHP 8.3 + 8.4 against TYPO3 ^14.3.
+- **Content element audit** (`scripts/audit-content-elements.php`) gating
+  the strict categories — `template_undeclared_field`,
+  `hardcoded_inline_style`, `hardcoded_color`, etc. — at zero.
+- **`composer audit`** with `abandoned: fail` and **`composer validate`**.
+
+## Cleanup-loop reports
+
+Every release cuts a fresh round of agentic-skill audits and stores them
+under `Documentation/Reports/`:
+
+- `typo3-conformance.md` — code conventions, v14 deprecations, XLIFF
+  hygiene.
+- `typo3-security.md` — TYPO3-specific XSS / CSP / iframe surface.
+- `typo3-workspaces.md` — workspace overlay correctness, seed-command
+  guards.
+- `typo3-testing.md` — coverage estimate, CI parity.
+- `typo3-docs.md` — documentation freshness vs. shipped behaviour.
+- `security-audit.md` — generic OWASP / dependency / supply chain.
+
+Use these as the entry point when you want to know what the codebase
+already expects to handle.
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the issue, branch, and PR
+workflow. The short form: open a branch off `main`, run
+`Build/Scripts/runTests.sh`, attach the relevant Documentation/Reports/
+findings to your PR.
+
+## Changelog
+
+See [CHANGELOG.md](CHANGELOG.md) for release notes.
 
 ## License
 
-GPL-2.0-or-later.
+[GPL-2.0-or-later](LICENSE).

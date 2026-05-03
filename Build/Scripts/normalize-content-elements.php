@@ -623,21 +623,7 @@ function backendPreviewTemplate(string $title, array $config): string
         '',
         '<f:layout name="Preview"/>',
         '',
-        '<f:section name="Header">',
-    ];
-
-    if ($titleField !== null) {
-        $lines[] = '    <f:if condition="{data.' . $titleField . '}">';
-        $lines[] = '        <f:then><cb:link.editRecord uid="{data.uid}" table="{data.mainType}">{data.' . $titleField . '}</cb:link.editRecord></f:then>';
-        $lines[] = '        <f:else><cb:link.editRecord uid="{data.uid}" table="{data.mainType}">' . xml($title) . '</cb:link.editRecord></f:else>';
-        $lines[] = '    </f:if>';
-    } else {
-        $lines[] = '    <cb:link.editRecord uid="{data.uid}" table="{data.mainType}">' . xml($title) . '</cb:link.editRecord>';
-    }
-
-    $lines = [
-        ...$lines,
-        '</f:section>',
+        '<f:section name="Header"></f:section>',
         '',
         '<f:section name="Content">',
         '    <f:asset.css identifier="desiderio-content-preview" href="EXT:desiderio/Resources/Public/Css/content-preview.css" />',
@@ -645,6 +631,8 @@ function backendPreviewTemplate(string $title, array $config): string
         '        <div class="d-ce-preview__meta">',
         '            <span class="d-ce-preview__type" data-slot="badge">' . xml($title) . '</span>',
         '            <f:if condition="{settings._content_block_name}"><span class="d-ce-preview__ctype">{settings._content_block_name}</span></f:if>',
+        '            <span class="d-ce-preview__ctype"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:preview.uid"/>: {data.uid}</span>',
+        '            <span class="d-ce-preview__ctype"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:preview.page"/>: {data.pid}</span>',
         '        </div>',
     ];
 

@@ -7,16 +7,27 @@ intact.
 ## Workflow
 
 1. Fork or create a feature branch from `main`.
-2. Run the full local check before pushing:
+2. **One-time setup**: enable the repo's git hooks so the pre-commit
+   pipeline catches stale Tailwind bundles before they reach CI:
+
+   ```bash
+   Build/Scripts/setup-hooks.sh
+   ```
+
+   That sets `core.hooksPath = Build/Hooks` and rebuilds `desiderio-tailwind.css`
+   automatically when a commit touches templates, components, or content
+   blocks. If the bundle would change, the commit is rejected with a
+   single-line fix instruction.
+3. Run the full local check before pushing:
 
    ```bash
    Build/Scripts/runTests.sh
    ```
 
-   That runs PHPStan at `level: max`, the 62 unit tests, and the deep
-   content element audit. CI re-runs the same matrix across PHP 8.3 +
-   8.4.
-3. If you touched a Content Block, also run:
+   That runs PHPStan at `level: max`, the 62 unit tests, the deep
+   content element audit, and verifies the Tailwind bundle is in sync.
+   CI re-runs the same matrix across PHP 8.3 + 8.4.
+4. If you touched a Content Block, also run:
 
    ```bash
    php scripts/audit-content-elements.php > /tmp/audit.json
@@ -24,7 +35,18 @@ intact.
 
    The strict categories (`template_undeclared_field`,
    `hardcoded_inline_style`, `hardcoded_color`, etc.) must stay at zero.
-4. Open a PR against `main`. Reference any
+5. If you edited any Fluid template, partial, layout, or component, the
+   compiled Tailwind bundle must travel with the change:
+
+   ```bash
+   npm run build:css
+   git add Resources/Public/Css/desiderio-tailwind.css
+   ```
+
+   The pre-commit hook does this automatically when hooks are enabled.
+   The `tailwind-bundle` CI job rejects PRs where the committed bundle
+   is out of date.
+6. Open a PR against `main`. Reference any
    `Documentation/Reports/*.md` finding your change addresses.
 
 ## Coding standards

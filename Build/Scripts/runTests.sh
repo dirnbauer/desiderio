@@ -7,11 +7,12 @@
 # satisfies the >=8.3 constraint, falls back to whichever `php` is on PATH.
 #
 # Usage:
-#   Build/Scripts/runTests.sh                    # PHPStan + PHPUnit + audit
+#   Build/Scripts/runTests.sh                    # PHPStan + PHPUnit + audit + tailwind
 #   Build/Scripts/runTests.sh phpstan            # PHPStan only
 #   Build/Scripts/runTests.sh phpunit            # PHPUnit only
 #   Build/Scripts/runTests.sh audit              # Content element audit
 #   Build/Scripts/runTests.sh validate           # composer validate + audit
+#   Build/Scripts/runTests.sh tailwind           # Verify Tailwind bundle is in sync
 #   Build/Scripts/runTests.sh -h                 # show help
 
 set -euo pipefail
@@ -59,11 +60,15 @@ case "$TARGET" in
     composer validate --strict --no-check-publish
     composer audit --no-dev --abandoned=fail
     ;;
+  tailwind|css)
+    "$ROOT/Build/Scripts/check-tailwind-built.sh"
+    ;;
   all|"")
     "$PHP" -d memory_limit=2G "$ROOT/vendor/bin/phpstan" analyse --no-progress
     "$PHP" "$ROOT/vendor/bin/phpunit" --testdox
     "$PHP" "$ROOT/scripts/audit-content-elements.php" > /tmp/desiderio-audit.json
     "$PHP" -r '$d=json_decode(file_get_contents("/tmp/desiderio-audit.json"), true); foreach (($d["summary"] ?? []) as $k => $v) { if ($v > 0) printf("%s: %d\n", $k, $v); }'
+    "$ROOT/Build/Scripts/check-tailwind-built.sh"
     ;;
   *)
     echo "Unknown target: $TARGET" >&2

@@ -1,0 +1,54 @@
+#!/usr/bin/env bash
+
+# Desiderio pre-commit hook.
+# Activated by running Build/Scripts/setup-hooks.sh (which sets git
+# core.hooksPath = Build/Hooks).
+#
+# Runs check-tailwind-built.sh only when the staged change touches
+# Tailwind sources, templates, components, content blocks, or the
+# JavaScript that Tailwind v4 also scans via @source. Editing only PHP,
+# tests, or docs is free.
+
+set -euo pipefail
+
+REPO_ROOT="$(git rev-parse --show-toplevel)"
+cd "$REPO_ROOT"
+
+# Files that, when edited, can change the set of Tailwind classes that
+# end up in the compiled bundle. Mirrors the @source directives in
+# Resources/Private/Tailwind/desiderio.css.
+WATCHED_PATHS=(
+  'Resources/Private/Tailwind/'
+  'Resources/Private/Components/'
+  'Resources/Private/Solr/'
+  'Resources/Private/Templates/'
+  'Resources/Private/Extensions/'
+  'Resources/Private/ShadcnUi/'
+  'Resources/Private/FluidStyledContent/'
+  'Resources/Public/Js/'
+  'ContentBlocks/'
+)
+
+# git diff --cached --name-only respects the staging area, which is exactly
+# what we want for a pre-commit hook.
+STAGED="$(git diff --cached --name-only)"
+if [[ -z "$STAGED" ]]; then
+  exit 0
+fi
+
+NEEDS_CHECK=0
+while IFS= read -r file; do
+  for prefix in "${WATCHED_PATHS[@]}"; do
+    if [[ "$file" == "$prefix"* ]]; then
+      NEEDS_CHECK=1
+      break 2
+    fi
+  done
+done <<<"$STAGED"
+
+if [[ "$NEEDS_CHECK" -eq 0 ]]; then
+  exit 0
+fi
+
+echo "pre-commit: rebuilding Tailwind bundle to check it stays in sync..." >&2
+exec Build/Scripts/check-tailwind-built.sh

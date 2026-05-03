@@ -79,3 +79,20 @@ jobs:
 
       - name: Run content element audit
         run: php scripts/audit-content-elements.php > /tmp/audit.json && head -c 4096 /tmp/audit.json
+
+  tailwind-bundle:
+    name: Tailwind bundle is in sync with templates
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install npm dependencies
+        run: npm ci
+
+      - name: Verify Tailwind bundle is current
+        run: Build/Scripts/check-tailwind-built.sh

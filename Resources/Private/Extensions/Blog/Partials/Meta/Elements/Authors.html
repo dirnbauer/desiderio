@@ -12,7 +12,7 @@
         <f:variable name="prefix"><f:translate extensionName="Blog" key="meta.authors.authors" /></f:variable>
     </f:if>
     <f:render partial="Meta/Rendering/Item" arguments="{name: name, icon: icon, prefix: prefix}" contentAs="content">
-        <ul class="inline-flex flex-wrap items-center gap-2">
+        <ul role="list" class="inline-flex flex-wrap items-center gap-2">
             <f:for each="{post.authors}" as="author">
                 <li class="inline-flex items-center gap-1" data-blog-author="{author.uid}">
                     <f:if condition="{avatarSettings.enable}">

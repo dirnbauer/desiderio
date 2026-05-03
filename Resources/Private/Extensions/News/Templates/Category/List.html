@@ -21,7 +21,7 @@
 </f:section>
 
 <f:section name="categoryTree">
-    <ul class="grid gap-2">
+    <ul role="list" class="grid gap-2">
         <f:for each="{categories}" as="category">
             {n:category.count(categoryUid: category.item.uid) -> f:variable(name: 'categoryUsageCount')}
             <li>

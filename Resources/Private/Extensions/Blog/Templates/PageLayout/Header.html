@@ -31,7 +31,7 @@
                         <dd class="text-muted-foreground">
                             <f:if condition="{post.authors}">
                                 <f:then>
-                                    <ul class="grid gap-1">
+                                    <ul role="list" class="grid gap-1">
                                         <f:for each="{post.authors}" as="author"><li>{author.name}</li></f:for>
                                     </ul>
                                 </f:then>
@@ -54,7 +54,7 @@
                         <div>
                             <dt class="font-medium text-foreground"><f:translate extensionName="blog" key="pagelayout.section.tags">Tags</f:translate></dt>
                             <dd>
-                                <ul class="flex flex-wrap gap-1">
+                                <ul role="list" class="flex flex-wrap gap-1">
                                     <f:for each="{post.tags}" as="tag">
                                         <li><span class="inline-flex items-center rounded-md border border-border bg-muted px-2 py-0.5 text-xs font-medium text-muted-foreground">{tag.title}</span></li>
                                     </f:for>
@@ -66,7 +66,7 @@
                         <div>
                             <dt class="font-medium text-foreground"><f:translate extensionName="blog" key="pagelayout.section.categories">Categories</f:translate></dt>
                             <dd>
-                                <ul class="flex flex-wrap gap-1">
+                                <ul role="list" class="flex flex-wrap gap-1">
                                     <f:for each="{post.categories}" as="category">
                                         <li><span class="inline-flex items-center rounded-md border border-border bg-muted px-2 py-0.5 text-xs font-medium text-muted-foreground">{category.title}</span></li>
                                     </f:for>

@@ -38,7 +38,7 @@
                 <div class="text-sm leading-6 text-muted-foreground" itemprop="description"><f:format.html>{author.bio}</f:format.html></div>
             </f:if>
             <f:if condition="{author.website} || {author.twitter} || {author.linkedin} || {author.xing} || {author.instagram}">
-                <ul class="flex flex-wrap gap-2 text-sm">
+                <ul role="list" class="flex flex-wrap gap-2 text-sm">
                     <f:if condition="{author.website}">
                         <li>
                             <a href="{author.website}" class="inline-flex items-center gap-1 text-muted-foreground underline-offset-4 hover:text-primary hover:underline" target="_blank" rel="noopener" itemprop="url">

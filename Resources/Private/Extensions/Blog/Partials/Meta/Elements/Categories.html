@@ -13,7 +13,7 @@
         <f:variable name="prefix"><f:translate extensionName="Blog" key="meta.categories.categories" /></f:variable>
     </f:if>
     <f:render partial="Meta/Rendering/Item" arguments="{name: name, icon: icon, prefix: prefix}" contentAs="content">
-        <ul class="inline-flex flex-wrap items-center gap-1">
+        <ul role="list" class="inline-flex flex-wrap items-center gap-1">
             <f:for each="{post.categories}" as="postCategory">
                 <li data-blog-category="{postCategory.uid}">
                     <blogvh:link.category category="{postCategory}">

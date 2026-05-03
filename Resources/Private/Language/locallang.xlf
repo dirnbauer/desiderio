@@ -81,5 +81,40 @@
         <source>{count, plural, one {one entry} other {# entries}}</source>
       </segment>
     </unit>
+    <unit id="a11y.skipToContent">
+      <segment>
+        <source>Skip to main content</source>
+      </segment>
+    </unit>
+    <unit id="a11y.nav.main">
+      <segment>
+        <source>Main navigation</source>
+      </segment>
+    </unit>
+    <unit id="a11y.nav.footer">
+      <segment>
+        <source>Footer navigation</source>
+      </segment>
+    </unit>
+    <unit id="a11y.nav.language">
+      <segment>
+        <source>Language</source>
+      </segment>
+    </unit>
+    <unit id="a11y.menu.toggle">
+      <segment>
+        <source>Toggle menu</source>
+      </segment>
+    </unit>
+    <unit id="a11y.theme.toggle">
+      <segment>
+        <source>Toggle dark mode</source>
+      </segment>
+    </unit>
+    <unit id="a11y.share.label">
+      <segment>
+        <source>Share this article</source>
+      </segment>
+    </unit>
   </file>
 </xliff>

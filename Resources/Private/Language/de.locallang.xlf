@@ -97,5 +97,47 @@
         <target>{count, plural, one {ein Eintrag} other {# Einträge}}</target>
       </segment>
     </unit>
+    <unit id="a11y.skipToContent">
+      <segment>
+        <source>Skip to main content</source>
+        <target>Zum Hauptinhalt springen</target>
+      </segment>
+    </unit>
+    <unit id="a11y.nav.main">
+      <segment>
+        <source>Main navigation</source>
+        <target>Hauptnavigation</target>
+      </segment>
+    </unit>
+    <unit id="a11y.nav.footer">
+      <segment>
+        <source>Footer navigation</source>
+        <target>Footer-Navigation</target>
+      </segment>
+    </unit>
+    <unit id="a11y.nav.language">
+      <segment>
+        <source>Language</source>
+        <target>Sprache</target>
+      </segment>
+    </unit>
+    <unit id="a11y.menu.toggle">
+      <segment>
+        <source>Toggle menu</source>
+        <target>Menü umschalten</target>
+      </segment>
+    </unit>
+    <unit id="a11y.theme.toggle">
+      <segment>
+        <source>Toggle dark mode</source>
+        <target>Dunkelmodus umschalten</target>
+      </segment>
+    </unit>
+    <unit id="a11y.share.label">
+      <segment>
+        <source>Share this article</source>
+        <target>Diesen Artikel teilen</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

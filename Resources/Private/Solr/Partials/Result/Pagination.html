@@ -6,7 +6,7 @@
 
 <f:section name="Pagination">
     <nav class="solr-pagination" aria-label="{f:translate(key: 'solr.pagination.aria', domain: 'desiderio.labels')}">
-        <ul class="flex flex-wrap items-center gap-1">
+        <ul role="list" class="flex flex-wrap items-center gap-1">
             <f:if condition="{pagination.previousPageNumber}">
                 <li>
                     <a class="solr-ajaxified inline-flex h-8 items-center justify-center rounded-lg border border-border bg-background px-3 text-sm font-medium text-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-hidden focus-visible:ring-3 focus-visible:ring-ring active:translate-y-px" href="{s:uri.paginate.resultPage(page: pagination.previousPageNumber)}">&laquo;</a>

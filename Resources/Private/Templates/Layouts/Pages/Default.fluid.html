@@ -17,6 +17,10 @@
     additionalAttributes="{integrity: 'sha384-cFbB/EdtqpeNNB1pP5EbnLFHFLsvtAW7FxnPaDe5+UDJSb+IPWvP4MRijF6KCFL8', crossorigin: 'anonymous', referrerpolicy: 'no-referrer'}"
 />
 
+<a href="#main-content" class="d-skip-link">
+    <f:translate extensionName="desiderio" key="a11y.skipToContent">Skip to main content</f:translate>
+</a>
+
 <f:render partial="Pages/Header" arguments="{_all}"/>
 
 <f:render section="Stage" optional="true">
@@ -27,7 +31,7 @@
     <!--TYPO3SEARCH_end-->
 </f:render>
 
-<main class="desiderio-main {f:if(condition: '{site.configuration.settings.desiderio.header.fixedPosition}', then: 'desiderio-main--fixed')}">
+<main id="main-content" tabindex="-1" class="desiderio-main {f:if(condition: '{site.configuration.settings.desiderio.header.fixedPosition}', then: 'desiderio-main--fixed')}">
     <f:render section="Main" optional="true">
         <!--TYPO3SEARCH_begin-->
         <f:if condition="{content.main}">

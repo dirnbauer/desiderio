@@ -10,7 +10,7 @@
             <f:for each="{validationResults.flattenedErrors}" as="errors" key="propertyPath">
                 <d:molecule.alert variant="destructive">
                     <d:molecule.alertDescription>
-                        <ul class="list-disc pl-5 text-sm">
+                        <ul role="list" class="list-disc pl-5 text-sm">
                             <f:for each="{errors}" as="error">
                                 <li>{error}</li>
                             </f:for>

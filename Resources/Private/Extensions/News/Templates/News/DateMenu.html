@@ -12,7 +12,7 @@
             <d:molecule.card size="sm">
                 <d:molecule.cardHeader title="{year}" />
                 <d:molecule.cardContent>
-                    <ul class="divide-y divide-border">
+                    <ul role="list" class="divide-y divide-border">
                         <f:for each="{months}" key="month" as="count">
                             <li>
                                 <f:link.action action="list" pageUid="{listPid}" arguments="{overwriteDemand: {year: year, month: month}}" class="flex items-center justify-between gap-3 py-2 text-sm text-muted-foreground transition-colors hover:text-primary">

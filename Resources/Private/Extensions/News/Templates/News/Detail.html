@@ -108,7 +108,7 @@
                         <d:molecule.card class="news-related news-related-news">
                             <d:molecule.cardHeader title="{f:translate(key: 'related-news')}" />
                             <d:molecule.cardContent>
-                                <ul class="divide-y divide-border text-sm">
+                                <ul role="list" class="divide-y divide-border text-sm">
                                     <f:for each="{newsItem.allRelatedSorted}" as="related">
                                         <li class="flex flex-col gap-1 py-2 sm:flex-row sm:items-center sm:justify-between">
                                             <n:link newsItem="{related}" settings="{settings}" title="{related.title}" class="font-medium text-foreground underline-offset-4 hover:text-primary hover:underline">{related.title}</n:link>
@@ -124,7 +124,7 @@
                         <d:molecule.card class="news-related news-related-files">
                             <d:molecule.cardHeader title="{f:translate(key: 'related-files')}" />
                             <d:molecule.cardContent>
-                                <ul class="divide-y divide-border text-sm">
+                                <ul role="list" class="divide-y divide-border text-sm">
                                     <f:for each="{newsItem.relatedFiles}" as="relatedFile">
                                         <li class="flex flex-col gap-1 py-2 sm:flex-row sm:items-center sm:justify-between">
                                             <a href="{relatedFile.originalResource.publicUrl -> f:format.htmlspecialchars()}" target="_blank" rel="noopener noreferrer" class="font-medium text-foreground underline-offset-4 hover:text-primary hover:underline">
@@ -142,7 +142,7 @@
                         <d:molecule.card class="news-related news-related-links">
                             <d:molecule.cardHeader title="{f:translate(key: 'related-links')}" />
                             <d:molecule.cardContent>
-                                <ul class="divide-y divide-border text-sm">
+                                <ul role="list" class="divide-y divide-border text-sm">
                                     <f:for each="{newsItem.relatedLinks}" as="relatedLink">
                                         <li class="py-2">
                                             <f:link.typolink parameter="{relatedLink.uri}" title="{relatedLink.title}" target="{n:targetLink(link: relatedLink.uri)}" class="font-medium text-foreground underline-offset-4 hover:text-primary hover:underline">{f:if(condition: relatedLink.title, then: relatedLink.title, else: relatedLink.uri)}</f:link.typolink>

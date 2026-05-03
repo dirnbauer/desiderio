@@ -8,8 +8,8 @@
 <f:argument name="actionName" type="string" optional="true"/>
 
 <f:if condition="{pagination.allPageNumbers -> f:count()} > 1">
-    <nav class="news-pagination" aria-label="News pagination">
-        <ul class="f3-widget-paginator flex flex-wrap gap-1">
+    <nav class="news-pagination" aria-label="{f:translate(extensionName: 'desiderio', key: 'pagination.aria.label', arguments: '{totalPages: \'{pagination.allPageNumbers -> f:count()}\'}', default: 'Pagination')}">
+        <ul class="f3-widget-paginator flex flex-wrap gap-1" role="list">
             <f:if condition="{pagination.previousPageNumber} && {pagination.previousPageNumber} >= {pagination.firstPageNumber}">
                 <li>
                     <a href="{f:uri.action(action: actionName, arguments: {currentPage: pagination.previousPageNumber}, addQueryString: 'untrusted')}" title="{f:translate(key: 'pagination.previous')}" class="inline-flex h-8 items-center rounded-lg border border-border px-2.5 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground">

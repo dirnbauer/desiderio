@@ -16,7 +16,7 @@
         <d:atom.typography tag="h3" variant="small">{facet.label}</d:atom.typography>
     </d:molecule.cardHeader>
     <d:molecule.cardContent>
-        <ul class="facet-option-list facet-type-options fluidfacet divide-y divide-border" data-facet-name="{facet.name}" data-facet-label="{facet.label}" id="facet{facet.name}">
+        <ul role="list" class="facet-option-list facet-type-options fluidfacet divide-y divide-border" data-facet-name="{facet.name}" data-facet-label="{facet.label}" id="facet{facet.name}">
             <f:for each="{facet.options}" as="option" iteration="iteration">
                 <li class="facet-option {f:if(condition: '!({iteration.index} < {facetOptionLimit})', then: ' tx-solr-facet-hidden')}" data-facet-item-value="{option.value}">
                     <f:if condition="{option.selected}">

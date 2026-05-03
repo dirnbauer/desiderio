@@ -46,7 +46,7 @@
                         <p class="mt-2 text-xs font-medium text-foreground">
                             <f:translate key="file_referenced" extensionName="solr"/>:
                         </p>
-                        <ul class="references mt-1 list-disc space-y-1 pl-4">
+                        <ul role="list" class="references mt-1 list-disc space-y-1 pl-4">
                             <f:if condition="{document.fileReferenceUrl}">
                                 <li><f:link.typolink title="{document.fileReferenceTitle}" parameter="{document.fileReferenceUrl}" class="text-primary underline underline-offset-4">{document.fileReferenceTitle}</f:link.typolink></li>
                             </f:if>

@@ -13,7 +13,7 @@
         <f:variable name="prefix"><f:translate extensionName="Blog" key="meta.tags.tags" /></f:variable>
     </f:if>
     <f:render partial="Meta/Rendering/Item" arguments="{name: name, icon: icon, prefix: prefix}" contentAs="content">
-        <ul class="inline-flex flex-wrap items-center gap-1" itemprop="keywords">
+        <ul role="list" class="inline-flex flex-wrap items-center gap-1" itemprop="keywords">
             <f:for each="{post.tags}" as="postTag">
                 <li data-blog-tag="{postTag.uid}">
                     <blogvh:link.tag tag="{postTag}">

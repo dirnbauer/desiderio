@@ -12,7 +12,7 @@
     <h2 class="text-lg font-semibold text-foreground" itemprop="name">
         <blogvh:link.archive year="{year}" title="{year}" class="text-foreground underline-offset-4 hover:text-primary hover:underline">{year}</blogvh:link.archive>
     </h2>
-    <ul class="divide-y divide-border text-sm">
+    <ul role="list" class="divide-y divide-border text-sm">
         <f:for each="{months}" as="month">
             <li class="flex items-center justify-between gap-3 py-2" data-blog-archive-year="{year}" data-blog-archive-month="{month.month}">
                 <blogvh:link.archive year="{year}" month="{month.month}" title="{f:format.date(format: '{settings.archive.monthDateFormat} {settings.archive.yearDateFormat}', date: month.timestamp)}" class="text-muted-foreground underline-offset-4 hover:text-primary hover:underline">

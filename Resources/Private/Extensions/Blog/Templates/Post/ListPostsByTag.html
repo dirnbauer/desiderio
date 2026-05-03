@@ -46,7 +46,7 @@
             <header class="mb-8">
                 <d:atom.typography tag="h1" variant="h1"><f:translate extensionName="Blog" key="headline.tags">Tags</f:translate></d:atom.typography>
             </header>
-            <ul class="flex flex-wrap gap-2">
+            <ul role="list" class="flex flex-wrap gap-2">
                 <f:for each="{tags}" as="tag">
                     <li>
                         <f:render partial="List/Tag" arguments="{_all}" />

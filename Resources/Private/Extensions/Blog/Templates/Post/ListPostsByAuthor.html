@@ -24,7 +24,7 @@
                     <p class="text-base leading-7 text-muted-foreground">{author.bio}</p>
                 </f:if>
                 <f:if condition="{author.allTags}">
-                    <ul class="flex flex-wrap gap-2">
+                    <ul role="list" class="flex flex-wrap gap-2">
                         <f:for each="{author.allTags}" as="tag">
                             <li>
                                 <blogvh:link.tag tag="{tag}">

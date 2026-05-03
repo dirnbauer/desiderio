@@ -7,7 +7,7 @@
 
 <f:if condition="{pagination.allPageNumbers -> f:count()} > 1">
     <nav class="desiderio-blog-pagination" aria-label="{f:translate(extensionName: 'Blog', key: 'pagination.aria.label', default: 'Pagination')}">
-        <ul class="flex flex-wrap items-center gap-1 text-sm">
+        <ul role="list" class="flex flex-wrap items-center gap-1 text-sm">
             <f:if condition="{pagination.previousPageNumber}">
                 <li>
                     <a href="{f:uri.action(arguments: {currentPage: pagination.previousPageNumber}, addQueryString: 1)}" rel="prev" class="inline-flex h-8 items-center rounded-lg border border-border px-2.5 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground" aria-label="{f:translate(extensionName: 'Blog', key: 'pagination.aria.goto.previous', default: 'Previous page')}">

@@ -13,7 +13,7 @@
     <f:if condition="{years}">
         <f:if condition="{settings.widgets.archive.groupByYear} == 1">
             <f:then>
-                <ul class="flex flex-col gap-3 text-sm" data-blog-archive-type="year" data-archive-type="year">
+                <ul role="list" class="flex flex-col gap-3 text-sm" data-blog-archive-type="year" data-archive-type="year">
                     <f:for each="{years}" key="year" as="months">
                         <li class="flex flex-col gap-2" data-blog-archive-year="{year}">
                             <blogvh:link.archive year="{year}" title="{year}" class="flex items-center justify-between gap-3 font-medium text-foreground underline-offset-4 hover:text-primary hover:underline">
@@ -25,7 +25,7 @@
                                 </f:if>
                             </blogvh:link.archive>
                             <f:if condition="{settings.widgets.archive.groupByMonth}">
-                                <ul class="ml-3 flex flex-col gap-2 border-l border-border pl-3" data-blog-archive-type="month" data-archive-type="month">
+                                <ul role="list" class="ml-3 flex flex-col gap-2 border-l border-border pl-3" data-blog-archive-type="month" data-archive-type="month">
                                     <f:for each="{months}" as="month">
                                         <f:render section="Month" arguments="{settings: settings, year: year, month: month}" />
                                     </f:for>
@@ -36,7 +36,7 @@
                 </ul>
             </f:then>
             <f:else>
-                <ul class="flex flex-col gap-2 text-sm" data-blog-archive-type="month" data-archive-type="month">
+                <ul role="list" class="flex flex-col gap-2 text-sm" data-blog-archive-type="month" data-archive-type="month">
                     <f:for each="{years}" key="year" as="months">
                         <f:for each="{months}" as="month">
                             <f:render section="Month" arguments="{settings: settings, year: year, month: month}" />

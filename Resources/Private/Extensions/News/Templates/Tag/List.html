@@ -9,7 +9,7 @@
 
 <f:section name="content">
     <f:if condition="{tags}">
-        <ul class="news-tags flex flex-wrap gap-2">
+        <ul role="list" class="news-tags flex flex-wrap gap-2">
             <f:for each="{tags}" as="tag">
                 <li>
                     {n:tag.count(tagUid: tag.uid) -> f:variable(name: 'tagUsageCount')}

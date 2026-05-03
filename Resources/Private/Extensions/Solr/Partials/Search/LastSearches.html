@@ -17,7 +17,7 @@
                     </d:atom.typography>
                 </d:molecule.cardHeader>
                 <d:molecule.cardContent>
-                    <ul id="lastSearches" class="divide-y divide-border text-sm">
+                    <ul role="list" id="lastSearches" class="divide-y divide-border text-sm">
                         <f:for each="{lastSearches}" as="searchedFor">
                             <li>
                                 <a href="{s:uri.search.startNewSearch(queryString: searchedFor)}" class="solr-ajaxified block py-2 text-muted-foreground transition-colors hover:text-primary">

@@ -9,7 +9,7 @@
 <f:section name="Title"><f:translate extensionName="Blog" key="headline.recentcomments">Recent comments</f:translate></f:section>
 
 <f:section name="Content">
-    <ul class="divide-y divide-border text-sm">
+    <ul role="list" class="divide-y divide-border text-sm">
         <f:for each="{comments}" as="comment">
             <li class="py-3" data-blog-comment="{comment.uid}">
                 <p class="text-muted-foreground">

@@ -6,7 +6,7 @@
 <f:argument name="posts" type="iterable" optional="true"/>
 <f:argument name="settings" type="array" optional="true"/>
 
-<ul class="divide-y divide-border text-sm">
+<ul role="list" class="divide-y divide-border text-sm">
     <f:for each="{posts}" as="post">
         <li class="flex flex-wrap items-baseline gap-2 py-2">
             <time class="text-muted-foreground" datetime="{f:format.date(format: 'c', date: post.publishDate)}">{f:format.date(format: '{settings.lists.posts.dateFormat}', date: post.publishDate)}</time>

@@ -8,6 +8,32 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Added
 
+- **WCAG 2.2 AA accessibility primitives** in the page chrome:
+  - Skip-to-content link as the first focusable element of every page,
+    targeting a focusable `<main id="main-content" tabindex="-1">`.
+  - `prefers-reduced-motion` global rule that neutralises animations
+    and transitions for users that opt out of motion (WCAG 2.3.3).
+  - `.d-skip-link`, `.sr-only`, `.d-sr-only-focusable` utilities in
+    `Resources/Public/Css/components.css`.
+  - `aria-current="page"` on active nav and subnav links, `aria-controls`
+    + `aria-pressed` on the menu / theme toggle, `aria-hidden` +
+    `focusable="false"` on every decorative SVG icon, and a real
+    `<nav aria-label>` around the language switcher (with `lang`
+    attribute on each native-language label).
+  - `role="list"` patched into 31 `<ul>` elements across News, Solr,
+    Blog, and Pagination overrides where Tailwind utilities strip the
+    native list role in Safari/VoiceOver.
+  - Seven new `a11y.*` units in `locallang.xlf` / `de.locallang.xlf`
+    (`a11y.skipToContent`, `a11y.nav.main`, `a11y.nav.footer`,
+    `a11y.nav.language`, `a11y.menu.toggle`, `a11y.theme.toggle`,
+    `a11y.share.label`).
+- Two new structural tests assert the page-layout primitives, the
+  required a11y locallang units, and the `<ul role="list">` patches
+  across the override surface.
+- `Build/Scripts/inject-role-list.php` helper that idempotently adds
+  `role="list"` to `<ul>` tags whose visual style strips list
+  semantics (Tailwind flex/grid/divide).
+
 - **`webconsulting/desiderio-blog` site set** that replaces the upstream
   `t3g/blog` Bootstrap markup with shadcn-only templates: layouts
   (`Default`, `Post`, `Widget`), `BlogList` + `BlogPost` page templates,

@@ -454,4 +454,75 @@ final class ContentRenderingTemplateTest extends TestCase
             );
         }
     }
+
+    public function testPageLayoutShipsAccessibilityPrimitives(): void
+    {
+        $defaultLayout = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Templates/Layouts/Pages/Default.fluid.html');
+        $headerPartial = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Templates/Partials/Pages/Header.fluid.html');
+        $componentsCss = (string) file_get_contents(__DIR__ . '/../../Resources/Public/Css/components.css');
+        $english = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Language/locallang.xlf');
+        $german = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Language/de.locallang.xlf');
+
+        // Page layout must expose a skip link, a #main-content target, and a focusable <main>.
+        self::assertStringContainsString('class="d-skip-link"', $defaultLayout);
+        self::assertStringContainsString('href="#main-content"', $defaultLayout);
+        self::assertStringContainsString('id="main-content"', $defaultLayout);
+        self::assertStringContainsString('tabindex="-1"', $defaultLayout);
+        self::assertStringContainsString('a11y.skipToContent', $defaultLayout);
+
+        // Header must announce active nav links + interactive controls.
+        self::assertStringContainsString('aria-controls="desiderio-main-nav"', $headerPartial);
+        self::assertStringContainsString("aria-current: \\'page\\'", $headerPartial, 'Active nav links must declare aria-current="page" via additionalAttributes.');
+        self::assertStringContainsString('aria-pressed="false"', $headerPartial);
+        self::assertStringContainsString('focusable="false"', $headerPartial);
+        self::assertStringContainsString('a11y.menu.toggle', $headerPartial);
+        self::assertStringContainsString('a11y.theme.toggle', $headerPartial);
+        self::assertStringContainsString('a11y.nav.language', $headerPartial);
+        self::assertMatchesRegularExpression(
+            '/<ul[^>]*role="list"/',
+            $headerPartial,
+            'Main nav <ul> must carry role="list" for VoiceOver/Safari list semantics.'
+        );
+
+        // Accessibility CSS primitives must be in components.css.
+        self::assertStringContainsString('.d-skip-link', $componentsCss);
+        self::assertStringContainsString('.sr-only', $componentsCss);
+        self::assertStringContainsString('@media (prefers-reduced-motion: reduce)', $componentsCss);
+
+        // a11y.* labels must exist in both locallang files.
+        $a11yLabels = [
+            'a11y.skipToContent',
+            'a11y.nav.main',
+            'a11y.nav.footer',
+            'a11y.nav.language',
+            'a11y.menu.toggle',
+            'a11y.theme.toggle',
+        ];
+        foreach ($a11yLabels as $unitId) {
+            self::assertStringContainsString('<unit id="' . $unitId . '">', $english, "{$unitId} must exist in locallang.xlf");
+            self::assertStringContainsString('<unit id="' . $unitId . '">', $german, "{$unitId} must exist in de.locallang.xlf");
+        }
+    }
+
+    public function testStrippedListSemanticsAreRestoredAcrossOverrides(): void
+    {
+        $files = [
+            'Resources/Private/Extensions/News/Partials/List/Pagination.html',
+            'Resources/Private/Extensions/Blog/Templates/Widget/RecentPosts.html',
+            'Resources/Private/Extensions/Blog/Templates/Widget/Categories.html',
+            'Resources/Private/Extensions/Blog/Templates/Widget/Tags.html',
+            'Resources/Private/Extensions/Blog/Templates/Widget/Archive.html',
+            'Resources/Private/Extensions/Solr/Partials/Result/Pagination.html',
+            'Resources/Private/Extensions/Solr/Partials/Search/FrequentlySearched.html',
+            'Resources/Private/Extensions/Solr/Partials/Search/LastSearches.html',
+        ];
+        foreach ($files as $relativePath) {
+            $template = (string) file_get_contents(__DIR__ . '/../../' . $relativePath);
+            self::assertMatchesRegularExpression(
+                '/<ul\\b[^>]*\\brole="list"/',
+                $template,
+                "{$relativePath} must add role=\"list\" to <ul> elements that strip native list semantics via Tailwind."
+            );
+        }
+    }
 }

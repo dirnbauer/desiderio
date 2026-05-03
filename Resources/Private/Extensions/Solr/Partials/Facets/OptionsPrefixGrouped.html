@@ -21,7 +21,7 @@
                         <section class="flex flex-col gap-2">
                             <h4 class="text-xs font-semibold uppercase text-muted-foreground">{prefix}</h4>
                             <s:facet.options.group.prefix.labelFilter options="{facet.options}" prefix="{prefix}">
-                                <ul class="divide-y divide-border">
+                                <ul role="list" class="divide-y divide-border">
                                     <f:for each="{filteredOptions}" as="option">
                                         <li>
                                             <a class="facet solr-ajaxified flex items-center justify-between gap-3 py-2 text-sm text-muted-foreground transition-colors hover:text-primary" href="{s:uri.facet.addFacetItem(facet: facet, facetItem: option)}">

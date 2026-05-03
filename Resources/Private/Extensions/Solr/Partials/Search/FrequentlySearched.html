@@ -17,7 +17,7 @@
                     </d:atom.typography>
                 </d:molecule.cardHeader>
                 <d:molecule.cardContent>
-                    <ul id="frequendSearches" class="flex flex-wrap gap-2">
+                    <ul role="list" id="frequendSearches" class="flex flex-wrap gap-2">
                         <f:for each="{frequentSearches}" as="searchedForInfo">
                             <li class="{searchedForInfo.class}">
                                 <a href="{s:uri.search.startNewSearch(queryString: searchedForInfo.q)}" class="solr-ajaxified inline-flex rounded-lg border border-border px-2 py-1 text-xs font-medium text-muted-foreground transition-colors hover:border-primary hover:text-primary">

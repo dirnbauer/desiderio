@@ -9,7 +9,7 @@
 <f:section name="Title"><f:translate extensionName="Blog" key="headline.recentposts">Recent posts</f:translate></f:section>
 
 <f:section name="Content">
-    <ul class="divide-y divide-border text-sm">
+    <ul role="list" class="divide-y divide-border text-sm">
         <f:for each="{posts}" as="post">
             <li class="py-2" data-blog-post="{post.uid}">
                 <blogvh:link.post post="{post}" title="{post.title}" class="block text-foreground underline-offset-4 hover:text-primary hover:underline">

@@ -20,7 +20,7 @@
             <label for="facetfilter{facet.name}" class="sr-only">{facet.label}</label>
             <input id="facetfilter{facet.name}" class="facet-filter-box h-8 w-full rounded-lg border border-input bg-background px-2 text-sm text-foreground outline-none placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50" type="search" placeholder="{f:translate(key: 'faceting_filter', default: 'filter', extensionName: 'solr')}..." />
         </div>
-        <ul class="facet-option-list facet-type-options fluidfacet divide-y divide-border" data-facet-name="{facet.name}" data-facet-label="{facet.label}" id="facet{facet.name}">
+        <ul role="list" class="facet-option-list facet-type-options fluidfacet divide-y divide-border" data-facet-name="{facet.name}" data-facet-label="{facet.label}" id="facet{facet.name}">
             <f:for each="{facet.options}" as="option" iteration="iteration">
                 <li class="facet-option facet-filter-item {f:if(condition: '!({iteration.index} < {facetOptionLimit})', then: ' tx-solr-facet-hidden')}" data-facet-item-value="{option.value}">
                     <a class="facet solr-ajaxified flex items-center justify-between gap-3 py-2 text-sm text-muted-foreground transition-colors hover:text-primary" href="{s:uri.facet.addFacetItem(facet: facet, facetItem: option)}">

@@ -1,0 +1,81 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  static-analysis:
+    name: PHPStan + audit (PHP ${{ matrix.php-version }} · TYPO3 ${{ matrix.typo3-version }})
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        php-version: ["8.3", "8.4"]
+        typo3-version: ["^14.3"]
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Set up PHP ${{ matrix.php-version }}
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+          tools: composer:v2
+          coverage: none
+
+      - name: Cache composer dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/composer
+          key: composer-${{ matrix.php-version }}-${{ matrix.typo3-version }}-${{ hashFiles('composer.json') }}
+
+      - name: Pin TYPO3 version (${{ matrix.typo3-version }})
+        run: composer require --no-update --no-interaction "typo3/cms-core:${{ matrix.typo3-version }}" "typo3/cms-fluid:${{ matrix.typo3-version }}" "typo3/cms-workspaces:${{ matrix.typo3-version }}"
+
+      - name: Install
+        run: composer update --no-interaction --no-progress --prefer-dist
+
+      - name: Validate composer.json
+        run: composer validate --strict --no-check-publish
+
+      - name: Audit composer dependencies
+        run: composer audit --no-dev --abandoned=fail
+
+      - name: Run PHPStan (level max)
+        run: vendor/bin/phpstan analyse --no-progress --memory-limit=2G
+
+  unit-tests:
+    name: PHPUnit (PHP ${{ matrix.php-version }} · TYPO3 ${{ matrix.typo3-version }})
+    runs-on: ubuntu-24.04
+    strategy:
+      fail-fast: false
+      matrix:
+        php-version: ["8.3", "8.4"]
+        typo3-version: ["^14.3"]
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Set up PHP ${{ matrix.php-version }}
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php-version }}
+          tools: composer:v2
+          coverage: xdebug
+
+      - name: Pin TYPO3 version (${{ matrix.typo3-version }})
+        run: composer require --no-update --no-interaction "typo3/cms-core:${{ matrix.typo3-version }}" "typo3/cms-fluid:${{ matrix.typo3-version }}" "typo3/cms-workspaces:${{ matrix.typo3-version }}"
+
+      - name: Install
+        run: composer update --no-interaction --no-progress --prefer-dist
+
+      - name: Run PHPUnit
+        run: vendor/bin/phpunit --testdox
+
+      - name: Run content element audit
+        run: php scripts/audit-content-elements.php > /tmp/audit.json && head -c 4096 /tmp/audit.json

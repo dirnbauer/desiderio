@@ -991,5 +991,17 @@
         <target>Adressen</target>
       </segment>
     </unit>
+    <unit id="preview.uid">
+      <segment state="final">
+        <source>UID</source>
+        <target>UID</target>
+      </segment>
+    </unit>
+    <unit id="preview.page">
+      <segment state="final">
+        <source>Page</source>
+        <target>Seite</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

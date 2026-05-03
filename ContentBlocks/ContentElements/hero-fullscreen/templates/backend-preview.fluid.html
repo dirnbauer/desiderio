@@ -6,12 +6,7 @@
 
 <f:layout name="Preview"/>
 
-<f:section name="Header">
-    <f:if condition="{data.header}">
-        <f:then><cb:link.editRecord uid="{data.uid}" table="{data.mainType}">{data.header}</cb:link.editRecord></f:then>
-        <f:else><cb:link.editRecord uid="{data.uid}" table="{data.mainType}">Fullscreen Hero</cb:link.editRecord></f:else>
-    </f:if>
-</f:section>
+<f:section name="Header"></f:section>
 
 <f:section name="Content">
     <f:asset.css identifier="desiderio-content-preview" href="EXT:desiderio/Resources/Public/Css/content-preview.css" />
@@ -19,6 +14,8 @@
         <div class="d-ce-preview__meta">
             <span class="d-ce-preview__type" data-slot="badge">Fullscreen Hero</span>
             <f:if condition="{settings._content_block_name}"><span class="d-ce-preview__ctype">{settings._content_block_name}</span></f:if>
+            <span class="d-ce-preview__ctype"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:preview.uid"/>: {data.uid}</span>
+            <span class="d-ce-preview__ctype"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:preview.page"/>: {data.pid}</span>
         </div>
         <f:if condition="{data.header}">
             <h3 class="d-ce-preview__title">{data.header}</h3>

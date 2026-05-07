@@ -804,19 +804,21 @@ final class SeedStyleguidePagesCommand extends Command
     {
         $normalizedField = $this->normalizeIdentifier($field);
         $subject = $this->buildDemoSubject($name, $index);
+        $elementLabel = $this->buildReadableLabel($name);
         $fieldLabel = $this->buildReadableLabel($field);
 
         return match (true) {
             preg_match('/^(?:link|child)(\d+)label$/', $normalizedField, $matches) === 1 => $this->getDefaultLinkLabel((int)$matches[1]),
             $normalizedField === 'header' || str_contains($normalizedField, 'headline') || str_contains($normalizedField, 'title') => $subject,
-            str_contains($normalizedField, 'eyebrow') || str_contains($normalizedField, 'badge') || str_contains($normalizedField, 'kicker') || str_contains($normalizedField, 'status') => 'Styleguide',
+            str_contains($normalizedField, 'eyebrow') || str_contains($normalizedField, 'badge') || str_contains($normalizedField, 'kicker') || str_contains($normalizedField, 'status') => 'Pattern Library',
             str_contains($normalizedField, 'alt') || str_contains($normalizedField, 'alternative') => 'Accessible demo image for ' . $subject . '.',
             str_contains($normalizedField, 'copyright') => 'Images are credited on their Unsplash file references.',
             str_contains($normalizedField, 'credit') || str_contains($normalizedField, 'source') || str_contains($normalizedField, 'photographer') => 'Photo source: Unsplash demo image with photographer credit stored on the file reference.',
-            str_contains($normalizedField, 'description') || str_contains($normalizedField, 'subheadline') || str_contains($normalizedField, 'content') || str_contains($normalizedField, 'body') || str_contains($normalizedField, 'copy') => 'Complete demo content for ' . $subject . ' with shadcn inspired spacing, contrast, and content hierarchy.',
-            str_contains($normalizedField, 'ctatext') || str_contains($normalizedField, 'buttontext') || str_contains($normalizedField, 'submittext') => 'Explore ' . $this->buildReadableLabel($name),
-            str_contains($normalizedField, 'feature') || str_contains($normalizedField, 'points') || str_contains($normalizedField, 'specs') => "Fast onboarding\nAccessible components\nProduction ready styling",
-            str_contains($normalizedField, 'links') || str_contains($normalizedField, 'pages') || str_contains($normalizedField, 'children') => "Overview\nDocs\nSupport",
+            str_contains($normalizedField, 'description') || str_contains($normalizedField, 'subheadline') || str_contains($normalizedField, 'content') || str_contains($normalizedField, 'body') || str_contains($normalizedField, 'copy') => $this->buildDefaultDemoCopy($elementLabel),
+            str_contains($normalizedField, 'ctatext') || str_contains($normalizedField, 'buttontext') || str_contains($normalizedField, 'submittext') => $this->buildDefaultButtonText($normalizedField, $elementLabel),
+            str_contains($normalizedField, 'placeholder') => 'name@example.com',
+            str_contains($normalizedField, 'feature') || str_contains($normalizedField, 'points') || str_contains($normalizedField, 'specs') => "Guided setup\nReusable content blocks\nTheme-aware presentation",
+            str_contains($normalizedField, 'links') || str_contains($normalizedField, 'pages') || str_contains($normalizedField, 'children') => "Product Tour\nComponent Docs\nSupport Center",
             str_contains($normalizedField, 'members') || str_contains($normalizedField, 'people') => "Mara Weiss|Product Lead\nJonas Klein|Design Systems\nSofia Berg|Customer Success",
             $normalizedField === 'chartdata' || (str_contains($normalizedField, 'chart') && str_contains($normalizedField, 'data')) => '[{"label":"Jan","value":12},{"label":"Feb","value":18},{"label":"Mar","value":14},{"label":"Apr","value":24}]',
             str_contains($normalizedField, 'rowdata') => 'Starter|Active|99%',
@@ -826,7 +828,7 @@ final class SeedStyleguidePagesCommand extends Command
             str_contains($normalizedField, 'align') => 'left',
             str_contains($normalizedField, 'name') || str_contains($normalizedField, 'author') => $subject,
             str_contains($normalizedField, 'role') || str_contains($normalizedField, 'position') => 'Product Strategist',
-            str_contains($normalizedField, 'company') || str_contains($normalizedField, 'brand') => 'Desiderio Labs',
+            str_contains($normalizedField, 'company') || str_contains($normalizedField, 'brand') => 'Desiderio Studio',
             str_contains($normalizedField, 'email') => 'hello@example.com',
             str_contains($normalizedField, 'phone') || str_contains($normalizedField, 'tel') => '+43 1 555 010' . ($index + 1),
             str_contains($normalizedField, 'address') || str_contains($normalizedField, 'location') => 'Vienna, Austria',
@@ -834,9 +836,29 @@ final class SeedStyleguidePagesCommand extends Command
             str_contains($normalizedField, 'period') || str_contains($normalizedField, 'billing') => '/month',
             str_contains($normalizedField, 'size') => '2.4 MB',
             str_contains($normalizedField, 'icon') => ['sparkles', 'shield-check', 'chart-no-axes-combined'][$index % 3],
-            str_contains($normalizedField, 'color') => '#2563eb',
+            str_contains($normalizedField, 'color') => 'primary',
             default => $fieldLabel . ' for ' . $subject,
         };
+    }
+
+    private function buildDefaultDemoCopy(string $elementLabel): string
+    {
+        return sprintf(
+            'A polished %s pattern with realistic copy, clear hierarchy, and enough detail to review spacing, rhythm, and responsive behavior.',
+            strtolower($elementLabel)
+        );
+    }
+
+    private function buildDefaultButtonText(string $normalizedField, string $elementLabel): string
+    {
+        if (str_contains($normalizedField, 'submit')) {
+            return 'Send request';
+        }
+        if (str_contains($normalizedField, 'secondary')) {
+            return 'View details';
+        }
+
+        return 'Explore ' . $elementLabel;
     }
 
     private function buildDefaultLinkValue(string $field, int $index): string

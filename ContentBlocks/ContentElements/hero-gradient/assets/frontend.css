@@ -1,7 +1,29 @@
 .hero-gradient {
-    background: linear-gradient(135deg, var(--gradient-from, var(--primary)), var(--gradient-to, var(--accent)));
-    color: var(--primary-foreground);
+    --gradient-from: var(--primary);
+    --gradient-to: var(--accent);
+    background:
+        radial-gradient(circle at 12% 18%, color-mix(in oklch, var(--gradient-from) 30%, transparent), transparent 30rem),
+        linear-gradient(135deg, color-mix(in oklch, var(--gradient-from) 14%, var(--background)), color-mix(in oklch, var(--gradient-to) 70%, var(--background)));
+    color: var(--foreground);
     padding-block: var(--d-spacing-20);
+}
+.hero-gradient[data-gradient-from="accent"] {
+    --gradient-from: var(--accent);
+}
+.hero-gradient[data-gradient-from="secondary"] {
+    --gradient-from: var(--secondary);
+}
+.hero-gradient[data-gradient-from="muted"] {
+    --gradient-from: var(--muted);
+}
+.hero-gradient[data-gradient-to="primary"] {
+    --gradient-to: var(--primary);
+}
+.hero-gradient[data-gradient-to="secondary"] {
+    --gradient-to: var(--secondary);
+}
+.hero-gradient[data-gradient-to="muted"] {
+    --gradient-to: var(--muted);
 }
 .hero-gradient__content {
     text-align: center;

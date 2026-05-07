@@ -214,6 +214,7 @@ final class StyleguideSeedCommandTest extends TestCase
                 'image_source' => ['identifier' => 'image_source', 'type' => 'Textarea'],
                 'image' => ['identifier' => 'image', 'type' => 'File', 'maxitems' => 1],
                 'cta_link' => ['identifier' => 'cta_link', 'type' => 'Link'],
+                'color' => ['identifier' => 'color', 'type' => 'Textarea'],
             ],
             'collections' => [
                 'items' => [
@@ -237,11 +238,13 @@ final class StyleguideSeedCommandTest extends TestCase
             [],
         ]);
 
-        self::assertSame('Styleguide', $fields['eyebrow']);
-        self::assertStringContainsString('Complete demo content', $fields['description']);
+        self::assertSame('Pattern Library', $fields['eyebrow']);
+        self::assertStringContainsString('polished demo element pattern', strtolower($fields['description']));
+        self::assertStringNotContainsString('Complete demo content', $fields['description']);
         self::assertStringContainsString('Accessible demo image', $fields['image_alt']);
         self::assertStringContainsString('Unsplash demo image', $fields['image_source']);
         self::assertSame('https://example.com/desiderio/cta_link_1', $fields['cta_link']);
+        self::assertSame('primary', $fields['color']);
         self::assertArrayHasKey('image', $fileReferences);
         self::assertStringContainsString('Unsplash', $fileReferences['image'][0]['description']);
         self::assertSame(1, $collections['items']['items'][0]['image']);

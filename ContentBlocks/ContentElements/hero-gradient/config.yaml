@@ -25,13 +25,44 @@ fields:
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:badge_text'
   -
     identifier: gradient_from
-    type: Color
-    label: 'Gradient From Color'
-    description: 'TCA Color picker; the value is rejected if it is not a valid hex/rgb token.'
+    type: Select
+    renderType: selectSingle
+    label: 'Gradient From Token'
+    description: 'Theme token used as the first gradient stop.'
+    items:
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.primary'
+        value: primary
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.accent'
+        value: accent
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.secondary'
+        value: secondary
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.muted'
+        value: muted
+    default: primary
   -
     identifier: gradient_to
-    type: Color
-    label: 'Gradient To Color'
+    type: Select
+    renderType: selectSingle
+    label: 'Gradient To Token'
+    description: 'Theme token used as the second gradient stop.'
+    items:
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.primary'
+        value: primary
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.accent'
+        value: accent
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.secondary'
+        value: secondary
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.muted'
+        value: muted
+    default: accent
   -
     identifier: primary_button_text
     type: Textarea

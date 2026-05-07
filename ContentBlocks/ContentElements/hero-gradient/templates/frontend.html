@@ -5,7 +5,7 @@
 
 <f:asset.css identifier="d-hero-gradient" href="{cb:assetPath()}/frontend.css"/>
 
-<d:layout.section class="hero-gradient" style="--gradient-from: {data.gradient_from -> f:or(alternative: 'var(--primary)')}; --gradient-to: {data.gradient_to -> f:or(alternative: 'var(--accent)')}">
+<d:layout.section class="hero-gradient" data-gradient-from="{data.gradient_from -> f:or(alternative: 'primary')}" data-gradient-to="{data.gradient_to -> f:or(alternative: 'accent')}">
     <d:layout.container>
         <div class="hero-gradient__content">
             <f:if condition="{data.badge_text}">

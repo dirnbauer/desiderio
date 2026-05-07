@@ -1,6 +1,7 @@
 <html
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
     xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
     data-namespace-typo3-fluid="true"
 >
 
@@ -35,7 +36,7 @@
         <f:if condition="{data.icon}">
             <div class="d-ce-preview__field">
                 <span class="d-ce-preview__label">Icon</span>
-                <span class="d-ce-preview__value">{data.icon}</span>
+                <span class="d-ce-preview__value d-ce-preview__icon-value"><span class="d-ce-preview__icon" aria-hidden="true"><d:atom.icon name="{data.icon}" size="sm"/></span></span>
             </div>
         </f:if>
     </div>

@@ -1,6 +1,7 @@
 <html
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
     xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
     data-namespace-typo3-fluid="true"
 >
 
@@ -39,7 +40,7 @@
                     <f:for each="{data.nav_items}" as="item">
                         <li>
                             <f:if condition="{item.label}"><span>{item.label}</span></f:if>
-                            <f:if condition="{item.icon}"><span>{item.icon}</span></f:if>
+                            <f:if condition="{item.icon}"><span class="d-ce-preview__icon" aria-hidden="true"><d:atom.icon name="{item.icon}" size="sm"/></span></f:if>
                         </li>
                     </f:for>
                 </ul>

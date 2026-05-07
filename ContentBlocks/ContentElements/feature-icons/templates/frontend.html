@@ -16,7 +16,7 @@
         <div class="feature-icons__grid feature-icons__grid--cols-{data.columns -> f:or(alternative: '4')}">
             <f:for each="{data.items}" as="item">
                 <div class="feature-icons__item">
-                    <span class="feature-icons__icon" aria-hidden="true">{item -> f:render.text(field: 'icon')}</span>
+                    <span class="feature-icons__icon" aria-hidden="true"><d:atom.icon name="{item.icon}" size="xl"/></span>
                     <h3 class="feature-icons__title">{item -> f:render.text(field: 'title')}</h3>
                     <f:if condition="{item.description_text}">
                         <p class="feature-icons__description">{item -> f:render.text(field: 'description_text')}</p>

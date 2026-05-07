@@ -19,7 +19,7 @@
                     <li>
                         <f:if condition="{item.link.url}">
                             <f:link.typolink parameter="{item.link}" class="navbar-icon__link" title="{item -> f:render.text(field: 'label')}">
-                                <span class="navbar-icon__icon" aria-hidden="true">{item -> f:render.text(field: 'icon')}</span>
+                                <span class="navbar-icon__icon" aria-hidden="true"><d:atom.icon name="{item.icon}" size="sm"/></span>
                                 <span class="navbar-icon__label">{item -> f:render.text(field: 'label')}</span>
                             </f:link.typolink>
                         </f:if>

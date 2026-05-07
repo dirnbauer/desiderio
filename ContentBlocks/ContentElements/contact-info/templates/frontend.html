@@ -17,7 +17,7 @@
         <div class="contact-info__grid">
             <f:for each="{data.items}" as="item">
                 <d:molecule.card class="contact-info__item">
-                    <f:if condition="{item.icon}"><span class="contact-info__icon">{item -> f:render.text(field: 'icon')}</span></f:if>
+                    <f:if condition="{item.icon}"><span class="contact-info__icon" aria-hidden="true"><d:atom.icon name="{item.icon}" size="lg"/></span></f:if>
                     <h3 class="contact-info__label">{item -> f:render.text(field: 'label')}</h3>
                     <f:if condition="{item.link.url}">
                         <f:then>

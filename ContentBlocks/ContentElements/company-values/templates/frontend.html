@@ -18,7 +18,7 @@
         <div class="company-values__grid">
             <f:for each="{data.value_items}" as="value">
                 <d:molecule.card class="company-values__item">
-                    <f:if condition="{value.icon}"><span class="company-values__icon">{value -> f:render.text(field: 'icon')}</span></f:if>
+                    <f:if condition="{value.icon}"><span class="company-values__icon" aria-hidden="true"><d:atom.icon name="{value.icon}" size="lg"/></span></f:if>
                     <h3 class="company-values__title">{value -> f:render.text(field: 'title')}</h3>
                     <f:if condition="{value.description}"><p class="company-values__description">{value -> f:render.text(field: 'description')}</p></f:if>
                 </d:molecule.card>

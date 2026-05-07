@@ -18,7 +18,7 @@
         <div class="company-perks__grid">
             <f:for each="{data.perks}" as="perk">
                 <d:molecule.card class="company-perks__item">
-                    <f:if condition="{perk.icon}"><span class="company-perks__icon">{perk -> f:render.text(field: 'icon')}</span></f:if>
+                    <f:if condition="{perk.icon}"><span class="company-perks__icon" aria-hidden="true"><d:atom.icon name="{perk.icon}" size="lg"/></span></f:if>
                     <h3 class="company-perks__title">{perk -> f:render.text(field: 'title')}</h3>
                     <f:if condition="{perk.description}"><p class="company-perks__description">{perk -> f:render.text(field: 'description')}</p></f:if>
                 </d:molecule.card>

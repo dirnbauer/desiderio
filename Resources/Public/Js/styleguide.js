@@ -193,6 +193,52 @@ function desiderioInit() {
     starEmpty: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>',
     arrowRight: '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>'
   };
+  var ICONS = {
+    'alert-triangle': '<path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/>',
+    'book-open': '<path d="M12 7v14"/><path d="M3 18a2 2 0 0 1 2-2h7"/><path d="M3 6a2 2 0 0 1 2-2h7v17H5a2 2 0 0 0-2 2z"/><path d="M21 6a2 2 0 0 0-2-2h-7v17h7a2 2 0 0 1 2 2z"/>',
+    briefcase: '<path d="M10 6V5a2 2 0 0 1 2-2h0a2 2 0 0 1 2 2v1"/><path d="M3 7h18v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M3 13h18"/><path d="M10 13v1h4v-1"/>',
+    building: '<path d="M4 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16"/><path d="M16 8h2a2 2 0 0 1 2 2v11"/><path d="M9 7h2"/><path d="M9 11h2"/><path d="M9 15h2"/><path d="M4 21h16"/>',
+    chart: '<path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/>',
+    'chart-no-axes-combined': '<path d="M12 16v5"/><path d="M16 14v7"/><path d="M20 10v11"/><path d="m22 3-8.646 8.646a.5.5 0 0 1-.708 0L9.354 8.354a.5.5 0 0 0-.708 0L2 15"/><path d="M4 18v3"/><path d="M8 14v7"/>',
+    check: '<path d="m20 6-11 11-5-5"/>',
+    'check-circle': '<circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/>',
+    clock: '<circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>',
+    cloud: '<path d="M17.5 19H7a5 5 0 1 1 1.6-9.73A6 6 0 0 1 20 12.5 3.5 3.5 0 0 1 17.5 19z"/>',
+    database: '<ellipse cx="12" cy="5" rx="7" ry="3"/><path d="M5 5v6c0 1.66 3.13 3 7 3s7-1.34 7-3V5"/><path d="M5 11v6c0 1.66 3.13 3 7 3s7-1.34 7-3v-6"/>',
+    download: '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/>',
+    file: '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/>',
+    globe: '<circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>',
+    handshake: '<path d="m11 17 2 2a2.8 2.8 0 0 0 4-4"/><path d="m14 14 2.5 2.5a2.8 2.8 0 0 0 4-4L15 7l-3 3a2.8 2.8 0 0 1-4-4l1-1"/><path d="m7 12-2 2a2.8 2.8 0 1 0 4 4l2-2"/><path d="M2 7l4-4 4 4"/><path d="m22 7-4-4-4 4"/>',
+    heart: '<path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7z"/>',
+    info: '<circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/>',
+    lightning: '<path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46L12 9h8a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46L12 15H4z"/>',
+    lock: '<rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/>',
+    mail: '<rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-10 6L2 7"/>',
+    'map-pin': '<path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/>',
+    phone: '<path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13 1 .36 1.98.7 2.92a2 2 0 0 1-.45 2.11L8.09 10a16 16 0 0 0 6 6l1.25-1.27a2 2 0 0 1 2.11-.45c.94.34 1.92.57 2.92.7A2 2 0 0 1 22 16.92z"/>',
+    rocket: '<path d="M4.5 16.5c-1.5 1.26-2 4-2 4s2.74-.5 4-2c.84-.99.78-2.49-.14-3.4-.91-.92-2.41-.98-3.4-.14z"/><path d="m12 15-3-3a22 22 0 0 1 2-5.5C13.5 1.5 19 2 22 2c0 3 .5 8.5-4.5 11a22 22 0 0 1-5.5 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/><circle cx="16" cy="8" r="2"/>',
+    search: '<circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>',
+    settings: '<path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.38a2 2 0 0 0-.73-2.73l-.15-.09a2 2 0 0 1-1-1.74v-.51a2 2 0 0 1 1-1.72l.15-.1a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/>',
+    shield: '<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/>',
+    'shield-check': '<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/>',
+    sparkles: '<path d="M9.94 14.7 8.5 18.5 7.06 14.7 3.5 13.25l3.56-1.45L8.5 8l1.44 3.8 3.56 1.45z"/><path d="M17.5 3.5 16.4 6.4 13.5 7.5l2.9 1.1 1.1 2.9 1.1-2.9 2.9-1.1-2.9-1.1z"/><path d="M18 15.5 17.3 17.3 15.5 18l1.8.7.7 1.8.7-1.8 1.8-.7-1.8-.7z"/>',
+    star: '<path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/>',
+    users: '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
+    'x-circle': '<circle cx="12" cy="12" r="10"/><path d="m15 9-6 6"/><path d="m9 9 6 6"/>',
+    zap: '<path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46L12 9h8a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46L12 15H4z"/>'
+  };
+
+  function renderIcon(name, size) {
+    if (!name || name === 'none') return '';
+    var aliases = { default: 'sparkles', destructive: 'x-circle', success: 'check-circle', warning: 'alert-triangle' };
+    var key = String(name).toLowerCase();
+    var paths = ICONS[aliases[key] || key] || ICONS.sparkles;
+    return '<svg class="icon" width="' + (size || 24) + '" height="' + (size || 24) + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">' + paths + '</svg>';
+  }
+
+  function previewItems(d) {
+    return d.items || d.feature_items || d.value_items || d.perks || d.counters || [];
+  }
 
   /* ================================================================ */
   /*  Code snippet generator                                           */
@@ -305,18 +351,20 @@ function desiderioInit() {
   }
 
   function renderGrid(d) {
-    var items = d.items || [];
+    var items = previewItems(d);
     var cols = items.length <= 3 ? 'grid--cols-3' : 'grid--cols-4';
+    var description = d.description || d.subheadline;
     return '<div class="section section--spacing-sm">' +
       '<div class="container container--lg">' +
         '<div style="text-align:center;margin-bottom:2rem;">' +
           '<h2 class="typography typography--h2">' + esc(d.header) + '</h2>' +
-          (d.description ? '<p class="typography typography--muted" style="margin-top:0.5rem;">' + esc(d.description) + '</p>' : '') +
+          (description ? '<p class="typography typography--muted" style="margin-top:0.5rem;">' + esc(description) + '</p>' : '') +
         '</div>' +
         '<div class="grid ' + cols + '">' +
           items.map(function (item) {
+            var itemIcon = renderIcon(item.icon || item.icon_name || item.tab_icon, 28);
             return '<div class="card"><div class="card__header">' +
-              (item.icon ? '<span style="font-size:1.75rem;line-height:1;">' + item.icon + '</span>' : '') +
+              (itemIcon ? '<span class="icon" style="color:var(--primary);">' + itemIcon + '</span>' : '') +
               '<h3 class="card__title">' + esc(item.title) + '</h3>' +
               (item.description ? '<p class="card__description">' + esc(item.description) + '</p>' : '') +
             '</div></div>';
@@ -347,11 +395,12 @@ function desiderioInit() {
   }
 
   function renderCard(d) {
+    var cardIcon = renderIcon(d.icon || d.icon_style || 'sparkles', 48);
     return '<div class="section section--spacing-sm">' +
       '<div class="container container--sm">' +
         '<div class="card">' +
           '<div class="aspect-ratio aspect-ratio--16-9" style="background:var(--muted);display:flex;align-items:center;justify-content:center;">' +
-            '<span style="font-size:3rem;position:static;">' + (d.icon || '') + '</span>' +
+            '<span class="icon" style="color:var(--primary);position:static;">' + cardIcon + '</span>' +
           '</div>' +
           '<div class="card__header">' +
             '<h3 class="card__title">' + esc(d.header) + '</h3>' +
@@ -439,13 +488,15 @@ function desiderioInit() {
   }
 
   function renderStats(d) {
-    var items = d.stats || [];
+    var items = d.stats || d.counters || [];
     return '<div class="section section--spacing-sm">' +
       '<div class="container container--default">' +
         (d.header ? '<h2 class="typography typography--h2" style="text-align:center;margin-bottom:2rem;">' + esc(d.header) + '</h2>' : '') +
         '<div class="grid grid--cols-' + Math.min(items.length, 4) + '" style="text-align:center;">' +
           items.map(function (s) {
+            var statIcon = renderIcon(s.icon || s.icon_name, 28);
             return '<div class="stack stack--vertical stack--align-center">' +
+              (statIcon ? '<span class="icon" style="color:var(--primary);">' + statIcon + '</span>' : '') +
               '<span class="typography typography--h1" style="color:var(--primary);">' + esc(s.value) + '</span>' +
               '<span class="typography typography--muted">' + esc(s.label) + '</span></div>';
           }).join('') +

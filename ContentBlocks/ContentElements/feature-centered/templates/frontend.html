@@ -17,7 +17,7 @@
             <f:for each="{data.items}" as="item">
                 <div class="feature-centered__item">
                     <f:if condition="{item.icon}">
-                        <span class="feature-centered__icon" aria-hidden="true">{item -> f:render.text(field: 'icon')}</span>
+                        <span class="feature-centered__icon" aria-hidden="true"><d:atom.icon name="{item.icon}" size="xl"/></span>
                     </f:if>
                     <h3 class="feature-centered__title">{item -> f:render.text(field: 'title')}</h3>
                     <f:if condition="{item.description}">

@@ -18,7 +18,7 @@
             <f:for each="{data.items}" as="item">
                 <div class="feature-grid-4__item">
                     <f:if condition="{item.icon}">
-                        <span class="feature-grid-4__icon" aria-hidden="true">{item -> f:render.text(field: 'icon')}</span>
+                        <span class="feature-grid-4__icon" aria-hidden="true"><d:atom.icon name="{item.icon}" size="lg"/></span>
                     </f:if>
                     <h3 class="feature-grid-4__title">{item -> f:render.text(field: 'title')}</h3>
                     <f:if condition="{item.description_text}">

@@ -618,6 +618,7 @@ function backendPreviewTemplate(string $title, array $config): string
         '<html',
         '    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"',
         '    xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"',
+        '    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"',
         '    data-namespace-typo3-fluid="true"',
         '>',
         '',
@@ -649,7 +650,11 @@ function backendPreviewTemplate(string $title, array $config): string
         $lines[] = '        <f:if condition="{data.' . $identifier . '}">';
         $lines[] = '            <div class="d-ce-preview__field">';
         $lines[] = '                <span class="d-ce-preview__label">' . xml($label) . '</span>';
-        $lines[] = '                <span class="d-ce-preview__value">' . $value . '</span>';
+        if (isPreviewIconField($identifier)) {
+            $lines[] = '                <span class="d-ce-preview__value d-ce-preview__icon-value">' . previewIconExpression('data.' . $identifier) . '</span>';
+        } else {
+            $lines[] = '                <span class="d-ce-preview__value">' . $value . '</span>';
+        }
         $lines[] = '            </div>';
         $lines[] = '        </f:if>';
     }
@@ -684,7 +689,11 @@ function backendPreviewTemplate(string $title, array $config): string
             foreach ($children as $child) {
                 $childIdentifier = (string)$child['identifier'];
                 $value = previewValueExpression('item.' . $childIdentifier, $child);
-                $lines[] = '                            <f:if condition="{item.' . $childIdentifier . '}"><span>' . $value . '</span></f:if>';
+                if (isPreviewIconField($childIdentifier)) {
+                    $lines[] = '                            <f:if condition="{item.' . $childIdentifier . '}">' . previewIconExpression('item.' . $childIdentifier) . '</f:if>';
+                } else {
+                    $lines[] = '                            <f:if condition="{item.' . $childIdentifier . '}"><span>' . $value . '</span></f:if>';
+                }
             }
         }
 
@@ -814,6 +823,16 @@ function readableIdentifier(string $identifier): string
     );
 
     return $label;
+}
+
+function isPreviewIconField(string $identifier): bool
+{
+    return in_array($identifier, ['icon', 'icon_name', 'icon_style', 'tab_icon'], true);
+}
+
+function previewIconExpression(string $path): string
+{
+    return '<span class="d-ce-preview__icon" aria-hidden="true"><d:atom.icon name="{' . $path . '}" size="sm"/></span>';
 }
 
 /**

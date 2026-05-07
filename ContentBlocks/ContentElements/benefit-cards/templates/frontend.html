@@ -17,7 +17,7 @@
             <f:for each="{data.items}" as="item">
                 <d:molecule.card class="benefit-cards__item">
                     <f:if condition="{item.icon}">
-                        <span class="benefit-cards__icon" aria-hidden="true">{item -> f:render.text(field: 'icon')}</span>
+                        <span class="benefit-cards__icon" aria-hidden="true"><d:atom.icon name="{item.icon}" size="lg"/></span>
                     </f:if>
                     <h3 class="benefit-cards__title">
                         <f:if condition="{item.link.url}">

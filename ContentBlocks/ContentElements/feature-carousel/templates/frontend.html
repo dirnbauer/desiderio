@@ -18,7 +18,7 @@
             <f:for each="{data.items}" as="item">
                 <d:molecule.card class="feature-carousel__slide">
                     <f:if condition="{item.icon}">
-                        <span class="feature-carousel__icon" aria-hidden="true">{item -> f:render.text(field: 'icon')}</span>
+                        <span class="feature-carousel__icon" aria-hidden="true"><d:atom.icon name="{item.icon}" size="lg"/></span>
                     </f:if>
                     <h3 class="feature-carousel__title">
                         <f:if condition="{item.link.url}">

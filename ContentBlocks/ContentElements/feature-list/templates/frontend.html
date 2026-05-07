@@ -18,7 +18,7 @@
         <div class="feature-list__items">
             <f:for each="{data.items}" as="item">
                 <d:molecule.card class="feature-list__item">
-                    <div class="feature-list__icon">{item.icon -> f:or(alternative: '&#8226;')}</div>
+                    <div class="feature-list__icon" aria-hidden="true"><d:atom.icon name="{item.icon -> f:or(alternative: 'check')}" size="sm"/></div>
                     <div class="feature-list__copy">
                         <h3 class="feature-list__title">{item -> f:render.text(field: 'title')}</h3>
                         <f:if condition="{item.description}">

@@ -259,6 +259,42 @@ final class ContentBlockStructureTest extends TestCase
         }
     }
 
+    public function testIconFieldsRenderThroughSharedIconAtom(): void
+    {
+        $templateFiles = array_merge(
+            glob(self::CONTENT_BLOCKS_DIR . '/*/templates/frontend.html') ?: [],
+            glob(self::CONTENT_BLOCKS_DIR . '/*/templates/backend-preview.fluid.html') ?: [],
+        );
+
+        foreach ($templateFiles as $templateFile) {
+            $template = (string) file_get_contents($templateFile);
+
+            self::assertDoesNotMatchRegularExpression(
+                '/<span(?:\\s+[^>]*)?>\\s*\\{(?:data|item|feature|counter|perk|value)\\.(?:icon|icon_name|icon_style|tab_icon)\\}\\s*<\\/span>/',
+                $template,
+                basename(dirname(dirname($templateFile))) . ' prints an icon field as text; render it through d:atom.icon instead'
+            );
+        }
+
+        $styleguide = (string) file_get_contents(__DIR__ . '/../../Resources/Public/Js/styleguide.js');
+        self::assertStringContainsString('function renderIcon', $styleguide);
+        self::assertDoesNotMatchRegularExpression(
+            '/(?:\\+\\s*(?:item|d)\\.icon\\b|\\b(?:item|d)\\.icon\\s*\\+)/',
+            $styleguide,
+            'styleguide.js must render icon fixture values through the allowlisted SVG renderer'
+        );
+    }
+
+    public function testFixtureIconValuesUseIconNames(): void
+    {
+        $fixtureFiles = glob(self::CONTENT_BLOCKS_DIR . '/*/fixture.json') ?: [];
+
+        foreach ($fixtureFiles as $fixtureFile) {
+            $data = json_decode((string) file_get_contents($fixtureFile), true, 512, JSON_THROW_ON_ERROR);
+            self::assertFixtureIconValuesAreKeys($data, basename(dirname($fixtureFile)));
+        }
+    }
+
     public function testFrontendTemplatesDoNotUseBareBooleanAttributesOnFluidComponents(): void
     {
         $blocks = glob(self::CONTENT_BLOCKS_DIR . '/*', GLOB_ONLYDIR) ?: [];
@@ -607,6 +643,32 @@ final class ContentBlockStructureTest extends TestCase
 
         sort($files);
         return array_values(array_unique($files));
+    }
+
+    /**
+     * @param array<string|int, mixed> $data
+     * @param list<string> $path
+     */
+    private static function assertFixtureIconValuesAreKeys(array $data, string $blockName, array $path = []): void
+    {
+        $iconFields = ['icon' => true, 'icon_name' => true, 'icon_style' => true, 'tab_icon' => true];
+
+        foreach ($data as $key => $value) {
+            $segment = is_int($key) ? '[' . $key . ']' : $key;
+            $nextPath = [...$path, $segment];
+
+            if (is_string($key) && isset($iconFields[$key]) && is_string($value) && $value !== '' && $value !== 'none') {
+                self::assertMatchesRegularExpression(
+                    '/^[a-z0-9-]+$/',
+                    $value,
+                    sprintf('%s fixture icon field %s must use an icon key, not rendered text or emoji', $blockName, implode('.', $nextPath))
+                );
+            }
+
+            if (is_array($value)) {
+                self::assertFixtureIconValuesAreKeys($value, $blockName, $nextPath);
+            }
+        }
     }
 
 }

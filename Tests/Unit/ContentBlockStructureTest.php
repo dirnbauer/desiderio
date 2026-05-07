@@ -291,13 +291,15 @@ final class ContentBlockStructureTest extends TestCase
 
         foreach ($fixtureFiles as $fixtureFile) {
             $data = json_decode((string) file_get_contents($fixtureFile), true, 512, JSON_THROW_ON_ERROR);
+            self::assertIsArray($data);
             self::assertFixtureIconValuesAreKeys($data, basename(dirname($fixtureFile)));
         }
     }
 
     public function testFrontendTemplatesDoNotUseBareBooleanAttributesOnFluidComponents(): void
     {
-        $blocks = glob(self::CONTENT_BLOCKS_DIR . '/*', GLOB_ONLYDIR) ?: [];
+        $blocks = glob(self::CONTENT_BLOCKS_DIR . '/*', GLOB_ONLYDIR);
+        $blocks = $blocks === false ? [] : $blocks;
         foreach ($blocks as $block) {
             $templateFile = "{$block}/templates/frontend.html";
             $template = (string) file_get_contents($templateFile);
@@ -374,7 +376,8 @@ final class ContentBlockStructureTest extends TestCase
             'systemProperties' => true,
         ];
 
-        $blocks = glob(self::CONTENT_BLOCKS_DIR . '/*', GLOB_ONLYDIR) ?: [];
+        $blocks = glob(self::CONTENT_BLOCKS_DIR . '/*', GLOB_ONLYDIR);
+        $blocks = $blocks === false ? [] : $blocks;
         foreach ($blocks as $block) {
             $name = basename($block);
             $config = Yaml::parseFile("{$block}/config.yaml");
@@ -631,7 +634,8 @@ final class ContentBlockStructureTest extends TestCase
     private static function collectSvgIconFiles(): array
     {
         $root = dirname(__DIR__, 2);
-        $files = glob($root . '/ContentBlocks/ContentElements/*/assets/icon.svg') ?: [];
+        $files = glob($root . '/ContentBlocks/ContentElements/*/assets/icon.svg');
+        $files = $files === false ? [] : $files;
         $publicIconDirectory = $root . '/Resources/Public/Icons';
         $iterator = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($publicIconDirectory));
 

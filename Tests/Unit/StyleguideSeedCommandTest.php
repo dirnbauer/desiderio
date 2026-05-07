@@ -230,27 +230,50 @@ final class StyleguideSeedCommandTest extends TestCase
             ],
         ];
 
-        [$fields, $collections, $fileReferences] = $this->invokeMethod($command, 'completeResolvedFixtureData', [
+        $resolvedFixtureData = $this->invokeMethod($command, 'completeResolvedFixtureData', [
             'desiderio_demo',
             'Demo Element',
             $definition,
             ['header' => 'Demo Element'],
             [],
         ]);
+        self::assertIsArray($resolvedFixtureData);
+        self::assertCount(3, $resolvedFixtureData);
+        [$fields, $collections, $fileReferences] = $resolvedFixtureData;
+        self::assertIsArray($fields);
+        self::assertIsArray($collections);
+        self::assertIsArray($fileReferences);
+
+        $description = $fields['description'] ?? null;
+        self::assertIsString($description);
+        $imageAlt = $fields['image_alt'] ?? null;
+        self::assertIsString($imageAlt);
+        $imageSource = $fields['image_source'] ?? null;
+        self::assertIsString($imageSource);
 
         self::assertSame('Pattern Library', $fields['eyebrow']);
-        self::assertStringContainsString('polished demo element pattern', strtolower($fields['description']));
-        self::assertStringNotContainsString('Complete demo content', $fields['description']);
-        self::assertStringContainsString('Accessible demo image', $fields['image_alt']);
-        self::assertStringContainsString('Unsplash demo image', $fields['image_source']);
+        self::assertStringContainsString('polished demo element pattern', strtolower($description));
+        self::assertStringNotContainsString('Complete demo content', $description);
+        self::assertStringContainsString('Accessible demo image', $imageAlt);
+        self::assertStringContainsString('Unsplash demo image', $imageSource);
         self::assertSame('https://example.com/desiderio/cta_link_1', $fields['cta_link']);
         self::assertSame('primary', $fields['color']);
         self::assertArrayHasKey('image', $fileReferences);
-        self::assertStringContainsString('Unsplash', $fileReferences['image'][0]['description']);
+        $imageReferences = $fileReferences['image'] ?? null;
+        self::assertIsArray($imageReferences);
+        $imageReference = $imageReferences[0] ?? null;
+        self::assertIsArray($imageReference);
+        $imageReferenceDescription = $imageReference['description'] ?? null;
+        self::assertIsString($imageReferenceDescription);
+        self::assertStringContainsString('Unsplash', $imageReferenceDescription);
         self::assertSame(1, $collections['items']['items'][0]['image']);
         self::assertCount(3, $collections['items']['items']);
         self::assertArrayHasKey('__fileReferences', $collections['items']['items'][0]);
-        self::assertStringContainsString('Unsplash', $collections['items']['items'][0]['__fileReferences']['image'][0]['description']);
+        $collectionFileReferences = $collections['items']['items'][0]['__fileReferences']['image'][0] ?? null;
+        self::assertIsArray($collectionFileReferences);
+        $collectionImageDescription = $collectionFileReferences['description'] ?? null;
+        self::assertIsString($collectionImageDescription);
+        self::assertStringContainsString('Unsplash', $collectionImageDescription);
     }
 
     public function testHeaderFixtureIsIgnoredForHeaderlessContentBlocks(): void

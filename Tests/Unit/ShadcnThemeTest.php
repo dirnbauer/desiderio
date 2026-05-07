@@ -11,32 +11,56 @@ final class ShadcnThemeTest extends TestCase
 {
     public function testSiteSettingsExposeSupportedShadcnPresets(): void
     {
-        $definitions = Yaml::parseFile(__DIR__ . '/../../Configuration/Sets/Desiderio/settings.definitions.yaml');
-        $settings = Yaml::parseFile(__DIR__ . '/../../Configuration/Sets/Desiderio/settings.yaml');
+        $definitions = self::parseYamlFile(__DIR__ . '/../../Configuration/Sets/Desiderio/settings.definitions.yaml');
+        $settings = self::parseYamlFile(__DIR__ . '/../../Configuration/Sets/Desiderio/settings.yaml');
 
-        self::assertSame('b6G5977cw', $settings['desiderio']['shadcn']['preset'] ?? null);
-        self::assertSame('radix-lyra', $settings['desiderio']['shadcn']['style'] ?? null);
-        self::assertSame('preset', $settings['desiderio']['typography']['fontSans'] ?? null);
-        self::assertSame('preset', $settings['desiderio']['layout']['radius'] ?? null);
+        $siteSettings = $settings['desiderio'] ?? null;
+        self::assertIsArray($siteSettings);
+        $shadcnSettings = $siteSettings['shadcn'] ?? null;
+        self::assertIsArray($shadcnSettings);
+        $typographySettings = $siteSettings['typography'] ?? null;
+        self::assertIsArray($typographySettings);
+        $layoutSettings = $siteSettings['layout'] ?? null;
+        self::assertIsArray($layoutSettings);
 
-        $presetDefinition = $definitions['settings']['desiderio.shadcn.preset'] ?? [];
+        self::assertSame('b6G5977cw', $shadcnSettings['preset'] ?? null);
+        self::assertSame('radix-lyra', $shadcnSettings['style'] ?? null);
+        self::assertSame('preset', $typographySettings['fontSans'] ?? null);
+        self::assertSame('preset', $layoutSettings['radius'] ?? null);
+
+        $settingDefinitions = $definitions['settings'] ?? null;
+        self::assertIsArray($settingDefinitions);
+
+        $presetDefinition = $settingDefinitions['desiderio.shadcn.preset'] ?? null;
+        self::assertIsArray($presetDefinition);
+        $presetEnum = $presetDefinition['enum'] ?? null;
+        self::assertIsArray($presetEnum);
         self::assertSame('b6G5977cw', $presetDefinition['default'] ?? null);
-        self::assertArrayHasKey('b4hb38Fyj', $presetDefinition['enum'] ?? []);
-        self::assertArrayHasKey('b0', $presetDefinition['enum'] ?? []);
-        self::assertArrayHasKey('b3IWPgRwnI', $presetDefinition['enum'] ?? []);
-        self::assertArrayHasKey('b6G5977cw', $presetDefinition['enum'] ?? []);
-        self::assertArrayHasKey('custom', $presetDefinition['enum'] ?? []);
+        self::assertArrayHasKey('b4hb38Fyj', $presetEnum);
+        self::assertArrayHasKey('b0', $presetEnum);
+        self::assertArrayHasKey('b3IWPgRwnI', $presetEnum);
+        self::assertArrayHasKey('b6G5977cw', $presetEnum);
+        self::assertArrayHasKey('custom', $presetEnum);
 
-        $styleDefinition = $definitions['settings']['desiderio.shadcn.style'] ?? [];
-        self::assertArrayHasKey('radix-lyra', $styleDefinition['enum'] ?? []);
+        $styleDefinition = $settingDefinitions['desiderio.shadcn.style'] ?? null;
+        self::assertIsArray($styleDefinition);
+        $styleEnum = $styleDefinition['enum'] ?? null;
+        self::assertIsArray($styleEnum);
+        self::assertArrayHasKey('radix-lyra', $styleEnum);
 
-        $radiusDefinition = $definitions['settings']['desiderio.layout.radius'] ?? [];
+        $radiusDefinition = $settingDefinitions['desiderio.layout.radius'] ?? null;
+        self::assertIsArray($radiusDefinition);
+        $radiusEnum = $radiusDefinition['enum'] ?? null;
+        self::assertIsArray($radiusEnum);
         self::assertSame('preset', $radiusDefinition['default'] ?? null);
-        self::assertArrayHasKey('preset', $radiusDefinition['enum'] ?? []);
+        self::assertArrayHasKey('preset', $radiusEnum);
 
-        $fontDefinition = $definitions['settings']['desiderio.typography.fontSans'] ?? [];
+        $fontDefinition = $settingDefinitions['desiderio.typography.fontSans'] ?? null;
+        self::assertIsArray($fontDefinition);
+        $fontEnum = $fontDefinition['enum'] ?? null;
+        self::assertIsArray($fontEnum);
         self::assertSame('preset', $fontDefinition['default'] ?? null);
-        self::assertArrayHasKey('preset', $fontDefinition['enum'] ?? []);
+        self::assertArrayHasKey('preset', $fontEnum);
     }
 
     public function testTypoScriptIncludesShadcnAssetsAndBodyAttributes(): void
@@ -83,8 +107,8 @@ final class ShadcnThemeTest extends TestCase
     public function testTailwindBuildScansFluidComponentsAndContentBlocks(): void
     {
         $tailwindCss = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Tailwind/desiderio.css');
-        $componentsJson = json_decode((string) file_get_contents(__DIR__ . '/../../components.json'), true);
-        $packageJson = json_decode((string) file_get_contents(__DIR__ . '/../../package.json'), true);
+        $componentsJson = self::decodeJsonFile(__DIR__ . '/../../components.json');
+        $packageJson = self::decodeJsonFile(__DIR__ . '/../../package.json');
 
         self::assertStringContainsString('@import "tailwindcss";', $tailwindCss);
         self::assertStringContainsString('@import "shadcn/tailwind.css";', $tailwindCss);
@@ -101,36 +125,52 @@ final class ShadcnThemeTest extends TestCase
         self::assertStringContainsString('.results-highlight', $tailwindCss);
         self::assertStringContainsString('#tx-solr-facets-in-use :where(a)', $tailwindCss);
 
-        self::assertIsArray($componentsJson);
+        $tailwindConfig = $componentsJson['tailwind'] ?? null;
+        self::assertIsArray($tailwindConfig);
+        $registries = $componentsJson['registries'] ?? null;
+        self::assertIsArray($registries);
         self::assertSame('radix-lyra', $componentsJson['style'] ?? null);
         self::assertSame('tabler', $componentsJson['iconLibrary'] ?? null);
-        self::assertSame('Resources/Private/Tailwind/desiderio.css', $componentsJson['tailwind']['css'] ?? null);
-        self::assertSame('Resources/Public/ShadcnRegistry/{name}.json', $componentsJson['registries']['@desiderio'] ?? null);
+        self::assertSame('Resources/Private/Tailwind/desiderio.css', $tailwindConfig['css'] ?? null);
+        self::assertSame('Resources/Public/ShadcnRegistry/{name}.json', $registries['@desiderio'] ?? null);
 
-        self::assertIsArray($packageJson);
-        self::assertSame('^4.2.4', $packageJson['dependencies']['tailwindcss'] ?? null);
-        self::assertSame('^4.2.4', $packageJson['dependencies']['@tailwindcss/cli'] ?? null);
-        self::assertSame('^5.2.7', $packageJson['dependencies']['@fontsource-variable/nunito-sans'] ?? null);
-        self::assertSame('^4.5.0', $packageJson['dependencies']['shadcn'] ?? null);
-        self::assertSame('shadcn info --json', $packageJson['scripts']['shadcn:info'] ?? null);
-        self::assertSame('shadcn build --output Resources/Public/ShadcnRegistry', $packageJson['scripts']['registry:build'] ?? null);
+        $dependencies = $packageJson['dependencies'] ?? null;
+        self::assertIsArray($dependencies);
+        $scripts = $packageJson['scripts'] ?? null;
+        self::assertIsArray($scripts);
+        self::assertSame('^4.2.4', $dependencies['tailwindcss'] ?? null);
+        self::assertSame('^4.2.4', $dependencies['@tailwindcss/cli'] ?? null);
+        self::assertSame('^5.2.7', $dependencies['@fontsource-variable/nunito-sans'] ?? null);
+        self::assertSame('^4.5.0', $dependencies['shadcn'] ?? null);
+        self::assertSame('shadcn info --json', $scripts['shadcn:info'] ?? null);
+        self::assertSame('shadcn build --output Resources/Public/ShadcnRegistry', $scripts['registry:build'] ?? null);
     }
 
     public function testShadcnCliContextAndRegistryAreConfigured(): void
     {
-        $tsconfig = json_decode((string) file_get_contents(__DIR__ . '/../../tsconfig.json'), true);
-        $registry = json_decode((string) file_get_contents(__DIR__ . '/../../registry.json'), true);
+        $tsconfig = self::decodeJsonFile(__DIR__ . '/../../tsconfig.json');
+        $registry = self::decodeJsonFile(__DIR__ . '/../../registry.json');
 
-        self::assertIsArray($tsconfig);
-        self::assertSame('.', $tsconfig['compilerOptions']['baseUrl'] ?? null);
-        self::assertSame(['./.shadcn/scratch/*'], $tsconfig['compilerOptions']['paths']['@/*'] ?? null);
+        $compilerOptions = $tsconfig['compilerOptions'] ?? null;
+        self::assertIsArray($compilerOptions);
+        $paths = $compilerOptions['paths'] ?? null;
+        self::assertIsArray($paths);
+        self::assertSame('.', $compilerOptions['baseUrl'] ?? null);
+        self::assertSame(['./.shadcn/scratch/*'], $paths['@/*'] ?? null);
 
-        self::assertIsArray($registry);
         self::assertSame('https://ui.shadcn.com/schema/registry.json', $registry['$schema'] ?? null);
         self::assertSame('desiderio', $registry['name'] ?? null);
-        self::assertNotEmpty($registry['items'] ?? []);
+        $items = $registry['items'] ?? null;
+        self::assertIsArray($items);
+        self::assertNotEmpty($items);
 
-        $itemNames = array_column($registry['items'], 'name');
+        $itemNames = [];
+        foreach ($items as $item) {
+            self::assertIsArray($item);
+            $itemName = $item['name'] ?? null;
+            self::assertIsString($itemName);
+            $itemNames[] = $itemName;
+        }
         self::assertContains('desiderio-shadcn-theme', $itemNames);
         self::assertContains('desiderio-content-element-runtime', $itemNames);
     }
@@ -200,5 +240,29 @@ final class ShadcnThemeTest extends TestCase
         self::assertStringContainsString('d:styleguideFixtureSummary', $template);
         self::assertStringContainsString('255 production-ready content elements', $template);
         self::assertStringNotContainsString('250 production-ready content elements', $template);
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    private static function parseYamlFile(string $path): array
+    {
+        $data = Yaml::parseFile($path);
+        self::assertIsArray($data);
+
+        /** @var array<string, mixed> $data */
+        return $data;
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    private static function decodeJsonFile(string $path): array
+    {
+        $data = json_decode((string) file_get_contents($path), true, 512, JSON_THROW_ON_ERROR);
+        self::assertIsArray($data);
+
+        /** @var array<string, mixed> $data */
+        return $data;
     }
 }

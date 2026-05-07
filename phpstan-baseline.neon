@@ -379,12 +379,6 @@ parameters:
 			path: Tests/Unit/ContentBlockStructureTest.php
 
 		-
-			message: '#^Method Webconsulting\\Desiderio\\Tests\\Unit\\ContentBlockStructureTest\:\:hexToRgb\(\) should return array\{int, int, int\} but returns array\{float\|int, float\|int, float\|int\}\.$#'
-			identifier: return.type
-			count: 1
-			path: Tests/Unit/ContentBlockStructureTest.php
-
-		-
 			message: '#^Only booleans are allowed in a ternary operator condition, mixed given\.$#'
 			identifier: ternary.condNotBoolean
 			count: 1
@@ -655,126 +649,6 @@ parameters:
 			path: Tests/Unit/ExtensionMetadataTest.php
 
 		-
-			message: '#^Cannot access offset ''@fontsource\-variable/nunito\-sans'' on mixed\.$#'
-			identifier: offsetAccess.nonOffsetAccessible
-			count: 1
-			path: Tests/Unit/ShadcnThemeTest.php
-
-		-
-			message: '#^Cannot access offset ''@tailwindcss/cli'' on mixed\.$#'
-			identifier: offsetAccess.nonOffsetAccessible
-			count: 1
-			path: Tests/Unit/ShadcnThemeTest.php
-
-		-
-			message: '#^Cannot access offset ''css'' on mixed\.$#'
-			identifier: offsetAccess.nonOffsetAccessible
-			count: 1
-			path: Tests/Unit/ShadcnThemeTest.php
-
-		-
-			message: '#^Cannot access offset ''default'' on mixed\.$#'
-			identifier: offsetAccess.nonOffsetAccessible
-			count: 3
-			path: Tests/Unit/ShadcnThemeTest.php
-
-		-
-			message: '#^Cannot access offset ''desiderio'' on mixed\.$#'
-			identifier: offsetAccess.nonOffsetAccessible
-			count: 4
-			path: Tests/Unit/ShadcnThemeTest.php
-
-		-
-			message: '#^Cannot access offset ''desiderio\.layout\.radius'' on mixed\.$#'
-			identifier: offsetAccess.nonOffsetAccessible
-			count: 1
-			path: Tests/Unit/ShadcnThemeTest.php
-
-		-
-			message: '#^Cannot access offset ''desiderio\.shadcn\.preset'' on mixed\.$#'
-			identifier: offsetAccess.nonOffsetAccessible
-			count: 1
-			path: Tests/Unit/ShadcnThemeTest.php
-
-		-
-			message: '#^Cannot access offset ''desiderio\.shadcn\.style'' on mixed\.$#'
-			identifier: offsetAccess.nonOffsetAccessible
-			count: 1
-			path: Tests/Unit/ShadcnThemeTest.php
-
-		-
-			message: '#^Cannot access offset ''desiderio\.typography\.fontSans'' on mixed\.$#'
-			identifier: offsetAccess.nonOffsetAccessible
-			count: 1
-			path: Tests/Unit/ShadcnThemeTest.php
-
-		-
-			message: '#^Cannot access offset ''enum'' on mixed\.$#'
-			identifier: offsetAccess.nonOffsetAccessible
-			count: 4
-			path: Tests/Unit/ShadcnThemeTest.php
-
-		-
-			message: '#^Cannot access offset ''fontSans'' on mixed\.$#'
-			identifier: offsetAccess.nonOffsetAccessible
-			count: 1
-			path: Tests/Unit/ShadcnThemeTest.php
-
-		-
-			message: '#^Cannot access offset ''layout'' on mixed\.$#'
-			identifier: offsetAccess.nonOffsetAccessible
-			count: 1
-			path: Tests/Unit/ShadcnThemeTest.php
-
-		-
-			message: '#^Cannot access offset ''preset'' on mixed\.$#'
-			identifier: offsetAccess.nonOffsetAccessible
-			count: 1
-			path: Tests/Unit/ShadcnThemeTest.php
-
-		-
-			message: '#^Cannot access offset ''radius'' on mixed\.$#'
-			identifier: offsetAccess.nonOffsetAccessible
-			count: 1
-			path: Tests/Unit/ShadcnThemeTest.php
-
-		-
-			message: '#^Cannot access offset ''settings'' on mixed\.$#'
-			identifier: offsetAccess.nonOffsetAccessible
-			count: 4
-			path: Tests/Unit/ShadcnThemeTest.php
-
-		-
-			message: '#^Cannot access offset ''shadcn'' on mixed\.$#'
-			identifier: offsetAccess.nonOffsetAccessible
-			count: 3
-			path: Tests/Unit/ShadcnThemeTest.php
-
-		-
-			message: '#^Cannot access offset ''style'' on mixed\.$#'
-			identifier: offsetAccess.nonOffsetAccessible
-			count: 1
-			path: Tests/Unit/ShadcnThemeTest.php
-
-		-
-			message: '#^Cannot access offset ''tailwindcss'' on mixed\.$#'
-			identifier: offsetAccess.nonOffsetAccessible
-			count: 1
-			path: Tests/Unit/ShadcnThemeTest.php
-
-		-
-			message: '#^Cannot access offset ''typography'' on mixed\.$#'
-			identifier: offsetAccess.nonOffsetAccessible
-			count: 1
-			path: Tests/Unit/ShadcnThemeTest.php
-
-		-
-			message: '#^Parameter \#2 \$array of static method PHPUnit\\Framework\\Assert\:\:assertArrayHasKey\(\) expects array\<mixed\>\|ArrayAccess\<\(int\|string\), mixed\>, mixed given\.$#'
-			identifier: argument.type
-			count: 4
-			path: Tests/Unit/ShadcnThemeTest.php
-
-		-
 			message: '#^Call to static method PHPUnit\\Framework\\Assert\:\:assertSame\(\) with 505 and 505 will always evaluate to true\.$#'
 			identifier: staticMethod.alreadyNarrowedType
 			count: 1
@@ -787,25 +661,7 @@ parameters:
 			path: Tests/Unit/StyleguideSeedCommandTest.php
 
 		-
-			message: '#^Cannot access offset ''cta_link'' on mixed\.$#'
-			identifier: offsetAccess.nonOffsetAccessible
-			count: 1
-			path: Tests/Unit/StyleguideSeedCommandTest.php
-
-		-
-			message: '#^Cannot access offset ''description'' on mixed\.$#'
-			identifier: offsetAccess.nonOffsetAccessible
-			count: 3
-			path: Tests/Unit/StyleguideSeedCommandTest.php
-
-		-
 			message: '#^Cannot access offset ''divider_text'' on mixed\.$#'
-			identifier: offsetAccess.nonOffsetAccessible
-			count: 1
-			path: Tests/Unit/StyleguideSeedCommandTest.php
-
-		-
-			message: '#^Cannot access offset ''eyebrow'' on mixed\.$#'
 			identifier: offsetAccess.nonOffsetAccessible
 			count: 1
 			path: Tests/Unit/StyleguideSeedCommandTest.php
@@ -823,21 +679,9 @@ parameters:
 			path: Tests/Unit/StyleguideSeedCommandTest.php
 
 		-
-			message: '#^Cannot access offset ''image_alt'' on mixed\.$#'
-			identifier: offsetAccess.nonOffsetAccessible
-			count: 1
-			path: Tests/Unit/StyleguideSeedCommandTest.php
-
-		-
-			message: '#^Cannot access offset ''image_source'' on mixed\.$#'
-			identifier: offsetAccess.nonOffsetAccessible
-			count: 1
-			path: Tests/Unit/StyleguideSeedCommandTest.php
-
-		-
 			message: '#^Cannot access offset ''items'' on mixed\.$#'
 			identifier: offsetAccess.nonOffsetAccessible
-			count: 10
+			count: 6
 			path: Tests/Unit/StyleguideSeedCommandTest.php
 
 		-
@@ -861,7 +705,7 @@ parameters:
 		-
 			message: '#^Cannot access offset 0 on mixed\.$#'
 			identifier: offsetAccess.nonOffsetAccessible
-			count: 4
+			count: 3
 			path: Tests/Unit/StyleguideSeedCommandTest.php
 
 		-
@@ -873,13 +717,13 @@ parameters:
 		-
 			message: '#^Cannot use array destructuring on mixed\.$#'
 			identifier: offsetAccess.nonArray
-			count: 5
+			count: 4
 			path: Tests/Unit/StyleguideSeedCommandTest.php
 
 		-
 			message: '#^Parameter \#2 \$array of static method PHPUnit\\Framework\\Assert\:\:assertArrayHasKey\(\) expects array\<mixed\>\|ArrayAccess\<\(int\|string\), mixed\>, mixed given\.$#'
 			identifier: argument.type
-			count: 3
+			count: 2
 			path: Tests/Unit/StyleguideSeedCommandTest.php
 
 		-
@@ -892,12 +736,6 @@ parameters:
 			message: '#^Parameter \#2 \$haystack of static method PHPUnit\\Framework\\Assert\:\:assertCount\(\) expects Countable\|iterable, mixed given\.$#'
 			identifier: argument.type
 			count: 1
-			path: Tests/Unit/StyleguideSeedCommandTest.php
-
-		-
-			message: '#^Parameter \#2 \$haystack of static method PHPUnit\\Framework\\Assert\:\:assertStringContainsString\(\) expects string, mixed given\.$#'
-			identifier: argument.type
-			count: 5
 			path: Tests/Unit/StyleguideSeedCommandTest.php
 
 		-

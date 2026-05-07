@@ -31,46 +31,4 @@
     </d:layout.container>
 </d:layout.section>
 
-<script>
-(function () {
-  const uid = {data.uid};
-  const svg = document.getElementById('chart-sparkline-svg-' + uid);
-  const root = svg && svg.closest('.chart-sparkline');
-  if (!svg || !root) return;
-  const raw = root.getAttribute('data-chart-json');
-  if (!raw) return;
-  let data;
-  try { data = JSON.parse(raw); } catch (e) { return; }
-  const vals = Array.isArray(data)
-    ? data.map(function (d) { return typeof d === 'number' ? d : (d && d.value != null ? Number(d.value) : NaN); }).filter(function (v) { return !isNaN(v); })
-    : [];
-  if (!vals.length) return;
-  const w = 400, h = 56, pad = 4;
-  svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
-  const max = Math.max.apply(null, vals);
-  const min = Math.min.apply(null, vals);
-  const range = max - min || 1;
-  const pts = vals.map(function (v, i) {
-    const x = pad + (vals.length === 1 ? (w - 2 * pad) / 2 : (i / (vals.length - 1)) * (w - 2 * pad));
-    const y = h - pad - ((v - min) / range) * (h - 2 * pad);
-    return [x, y];
-  });
-  const linePts = pts.map(function (p) { return p[0] + ' ' + p[1]; }).join(' ');
-  const fillPts = '0 ' + h + ' ' + linePts + ' ' + w + ' ' + h;
-  const line = document.createElementNS('http://www.w3.org/2000/svg', 'polyline');
-  line.setAttribute('fill', 'none');
-  line.setAttribute('stroke', 'currentColor');
-  line.setAttribute('stroke-width', '2');
-  line.setAttribute('stroke-linecap', 'round');
-  line.setAttribute('stroke-linejoin', 'round');
-  line.setAttribute('points', linePts);
-  const area = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
-  area.setAttribute('fill', 'currentColor');
-  area.setAttribute('opacity', '0.12');
-  area.setAttribute('points', fillPts);
-  svg.appendChild(area);
-  svg.appendChild(line);
-})();
-</script>
-
 </html>

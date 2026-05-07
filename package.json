@@ -5,7 +5,9 @@
   "description": "Tailwind v4 and shadcn/ui theme build for the Desiderio TYPO3 extension.",
   "scripts": {
     "build:css": "tailwindcss -i Resources/Private/Tailwind/desiderio.css -o Resources/Public/Css/desiderio-tailwind.css --minify",
-    "watch:css": "tailwindcss -i Resources/Private/Tailwind/desiderio.css -o Resources/Public/Css/desiderio-tailwind.css --watch"
+    "watch:css": "tailwindcss -i Resources/Private/Tailwind/desiderio.css -o Resources/Public/Css/desiderio-tailwind.css --watch",
+    "shadcn:info": "shadcn info --json",
+    "registry:build": "shadcn build --output Resources/Public/ShadcnRegistry"
   },
   "dependencies": {
     "@fontsource-variable/geist": "^5.2.8",

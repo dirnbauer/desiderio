@@ -47,4 +47,21 @@
     width: 0.6rem;
     height: 0.6rem;
     border-radius: 2px;
+    background: var(--chart-1);
+}
+
+.chart-stacked-bar__swatch--2 {
+    background: var(--chart-2);
+}
+
+.chart-stacked-bar__swatch--3 {
+    background: var(--chart-3);
+}
+
+.chart-stacked-bar__swatch--4 {
+    background: var(--chart-4);
+}
+
+.chart-stacked-bar__swatch--5 {
+    background: var(--chart-5);
 }

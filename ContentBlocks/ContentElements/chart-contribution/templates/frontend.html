@@ -64,45 +64,4 @@
     </d:layout.container>
 </d:layout.section>
 
-<script>
-(function () {
-  const uid = {data.uid};
-  const svg = document.getElementById('chart-contribution-svg-' + uid);
-  const root = svg && svg.closest('.chart-contribution');
-  if (!svg || !root) return;
-  let rows;
-  try { rows = JSON.parse(root.getAttribute('data-chart-json')); } catch (e) { return; }
-  if (!Array.isArray(rows) || !rows.length) return;
-  const vals = rows.map(function (r) { return Number(r.value) || 0; });
-  const labels = rows.map(function (r) { return r.label || ''; });
-  const w = 400, h = 160, pad = 12, bottom = 28;
-  const chartH = h - pad - bottom;
-  const max = Math.max.apply(null, vals) || 1;
-  const barW = (w - 2 * pad) / vals.length * 0.55;
-  const gap = (w - 2 * pad - barW * vals.length) / Math.max(vals.length - 1, 1);
-  svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
-  vals.forEach(function (v, i) {
-    const x = pad + i * (barW + gap);
-    const bh = (v / max) * chartH;
-    const y = h - bottom - bh;
-    const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
-    rect.setAttribute('x', x);
-    rect.setAttribute('y', y);
-    rect.setAttribute('width', barW);
-    rect.setAttribute('height', Math.max(bh, 1));
-    rect.setAttribute('rx', '6');
-    rect.setAttribute('fill', 'var(--chart-2)');
-    svg.appendChild(rect);
-    const t = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-    t.setAttribute('x', x + barW / 2);
-    t.setAttribute('y', h - 4);
-    t.setAttribute('text-anchor', 'middle');
-    t.setAttribute('fill', 'currentColor');
-    t.setAttribute('class', 'chart-contribution__tick');
-    t.textContent = labels[i];
-    svg.appendChild(t);
-  });
-})();
-</script>
-
 </html>

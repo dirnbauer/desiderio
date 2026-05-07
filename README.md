@@ -216,6 +216,19 @@ implemented first:
    `Configuration/Sets/Desiderio/settings.yaml`.
 5. Rebuild/check CSS and flush TYPO3 caches.
 
+For shadcn-aware tooling, this repository keeps a valid `components.json`,
+scratch TypeScript aliases, and a local registry. Run:
+
+```bash
+npm run shadcn:info
+npm run registry:build
+```
+
+The generated registry JSON is written to `Resources/Public/ShadcnRegistry`.
+It packages the Desiderio theme token contract and shared runtime include
+assets for other shadcn-capable projects without moving TYPO3 rendering out of
+Fluid.
+
 Changing only `settings.yaml` or Site Settings to an unsupported id will write
 the body attribute, but no visual change will happen because no matching token
 block exists.

@@ -70,6 +70,9 @@ page {
     desiderioComponents = EXT:desiderio/Resources/Public/Js/desiderio.js
     desiderioComponents.defer = 1
 
+    desiderioCharts = EXT:desiderio/Resources/Public/Js/charts.js
+    desiderioCharts.defer = 1
+
     desiderioStyleguide = EXT:desiderio/Resources/Public/Js/styleguide.js
     desiderioStyleguide.defer = 1
   }

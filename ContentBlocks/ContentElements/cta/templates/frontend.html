@@ -1,11 +1,7 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
       xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
       xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
-      xmlns:vac="http://typo3.org/ns/Praetorius/ViteAssetCollector/ViewHelpers"
       data-namespace-typo3-fluid="true">
-
-<vac:asset.vite entry="src/main.ts"
-                manifest="EXT:desiderio/Resources/Public/Vite/.vite/manifest.json" />
 
 <f:variable name="variant" value="{data.variant -> f:or(alternative: 'centered')}" />
 <f:variable name="background" value="{data.background_style -> f:or(alternative: 'default')}" />

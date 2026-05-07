@@ -1,0 +1,66 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "desiderio",
+  "homepage": "https://github.com/webconsulting/desiderio",
+  "items": [
+    {
+      "name": "desiderio-shadcn-theme",
+      "type": "registry:theme",
+      "title": "Desiderio shadcn Theme",
+      "description": "TYPO3-ready shadcn/ui token files, Tailwind v4 source, and Site Settings for Desiderio content elements.",
+      "files": [
+        {
+          "path": "Resources/Public/Css/shadcn-theme.css",
+          "type": "registry:file",
+          "target": "Resources/Public/Css/shadcn-theme.css"
+        },
+        {
+          "path": "Resources/Private/Tailwind/desiderio.css",
+          "type": "registry:file",
+          "target": "Resources/Private/Tailwind/desiderio.css"
+        },
+        {
+          "path": "Configuration/Sets/Desiderio/settings.definitions.yaml",
+          "type": "registry:file",
+          "target": "Configuration/Sets/Desiderio/settings.definitions.yaml"
+        },
+        {
+          "path": "Configuration/Sets/Desiderio/settings.yaml",
+          "type": "registry:file",
+          "target": "Configuration/Sets/Desiderio/settings.yaml"
+        }
+      ],
+      "docs": "Install this item only into a TYPO3 extension that follows the Desiderio Content Blocks structure. Raw preset color values belong in shadcn-theme.css; templates, icons, and JavaScript consume semantic shadcn variables."
+    },
+    {
+      "name": "desiderio-content-element-runtime",
+      "type": "registry:block",
+      "title": "Desiderio Content Element Runtime",
+      "description": "Shared TYPO3 include assets for shadcn-styled Desiderio content elements.",
+      "files": [
+        {
+          "path": "Resources/Public/Js/charts.js",
+          "type": "registry:file",
+          "target": "Resources/Public/Js/charts.js"
+        },
+        {
+          "path": "Resources/Public/Js/desiderio.js",
+          "type": "registry:file",
+          "target": "Resources/Public/Js/desiderio.js"
+        },
+        {
+          "path": "Configuration/Sets/Desiderio/setup.typoscript",
+          "type": "registry:file",
+          "target": "Configuration/Sets/Desiderio/setup.typoscript"
+        }
+      ],
+      "registryDependencies": [
+        "card",
+        "badge",
+        "button",
+        "chart"
+      ],
+      "docs": "Content element templates pass data through data-* attributes. JavaScript lives in shared include files and initializes idempotently; do not add inline scripts to Fluid templates."
+    }
+  ]
+}

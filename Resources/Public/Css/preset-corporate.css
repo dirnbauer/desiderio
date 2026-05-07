@@ -1,0 +1,118 @@
+/* ===================================================================
+   Desiderio Template 2: Mainline Corporate
+   Inspired by shadcnblocks.com/template/mainline
+   Minimal, professional design with generous whitespace and clean lines.
+   =================================================================== */
+
+/* ---- Header ---- */
+.desiderio-header {
+    border-bottom: none;
+    padding: 0.5rem 0;
+}
+
+.desiderio-header__inner {
+    padding: 1rem 0;
+}
+
+.desiderio-header__logo-text {
+    font-size: 1.25rem;
+    font-weight: 800;
+    letter-spacing: 0;
+}
+
+.desiderio-header__nav-link {
+    font-weight: 400;
+    font-size: 0.9375rem;
+    color: var(--foreground);
+    opacity: 0.7;
+    transition: opacity 0.2s;
+}
+
+.desiderio-header__nav-link:hover {
+    opacity: 1;
+    background: transparent;
+}
+
+.desiderio-header__nav-link--active {
+    opacity: 1;
+}
+
+/* ---- Main Content ---- */
+.desiderio-main {
+    padding-top: 2rem;
+}
+
+.ce-frame {
+    padding: 3rem 0;
+}
+
+@media (min-width: 1024px) {
+    .ce-frame {
+        padding: 4.5rem 0;
+    }
+}
+
+/* ---- Content Frames — muted, elegant backgrounds ---- */
+.ce-frame--bg-10 {
+    background-color: var(--muted);
+    border-radius: calc(var(--radius) * 2);
+    padding: 3rem 2.5rem;
+    margin: 1rem 0;
+}
+
+.ce-frame--bg-80 {
+    background-color: var(--secondary);
+    border-radius: calc(var(--radius) * 2);
+    padding: 3rem 2.5rem;
+    margin: 1rem 0;
+}
+
+.ce-frame--bg-100 {
+    background-color: var(--foreground);
+    color: var(--background);
+    border-radius: calc(var(--radius) * 2);
+    padding: 3rem 2.5rem;
+    margin: 1rem 0;
+}
+
+/* ---- Sidebar variant — wider gap, lighter sidebar ---- */
+.desiderio-article {
+    padding: 3rem 0;
+}
+
+@media (min-width: 1024px) {
+    .desiderio-article {
+        grid-template-columns: 1fr 300px;
+        gap: 4rem;
+    }
+}
+
+.desiderio-article__sidebar {
+    padding-top: 0.5rem;
+    border-left: 1px solid var(--border);
+    padding-left: 2rem;
+}
+
+/* ---- Footer — minimal single line ---- */
+.desiderio-footer {
+    border-top: none;
+    padding: 3rem 0;
+    margin-top: 6rem;
+}
+
+.desiderio-footer__inner {
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+/* ---- Styleguide — tighter grid ---- */
+.desiderio-styleguide__element-list {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 0.75rem;
+}
+
+.desiderio-styleguide__element-card {
+    border-radius: calc(var(--radius) * 2);
+}

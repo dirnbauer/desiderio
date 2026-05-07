@@ -13,11 +13,13 @@
   "iconLibrary": "tabler",
   "rtl": false,
   "aliases": {
-    "components": "./.shadcn/scratch/components",
-    "ui": "./.shadcn/scratch/components/ui",
-    "utils": "./.shadcn/scratch/lib/utils",
-    "lib": "./.shadcn/scratch/lib",
-    "hooks": "./.shadcn/scratch/hooks"
+    "components": "@/components",
+    "ui": "@/components/ui",
+    "utils": "@/lib/utils",
+    "lib": "@/lib",
+    "hooks": "@/hooks"
   },
-  "registries": {}
+  "registries": {
+    "@desiderio": "Resources/Public/ShadcnRegistry/{name}.json"
+  }
 }

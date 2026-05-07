@@ -106,11 +106,15 @@ Use this workflow for ids that are not already in the enum/CSS.
 5. Run:
 
    ```bash
-   npx shadcn@latest init --template vite --preset <id> \
+   npx shadcn@latest create --template astro --preset <id> \
      --cwd /tmp/desiderio-shadcn-presets \
      --name preset-<id> \
      --yes --no-monorepo --no-reinstall
    ```
+
+   Use `--template vite` instead when you only need to inspect React component
+   class contracts. Use Astro when checking include-file JavaScript or
+   framework-neutral shadcn patterns.
 
 6. Open the generated `components.json`.
 7. Record `style`.
@@ -198,12 +202,36 @@ faithful shadcn/create styles.
 
 ## Component Updates
 
-Use `npx shadcn@latest view <component>` or a temporary scratch app to inspect
-upstream class recipes. Port the class strings, slots, `data-state`, and ARIA
-behavior into Fluid components under `Resources/Private/Components`.
+Use `npm run shadcn:info`, `npx shadcn@latest view <component>`, or a temporary
+scratch app to inspect upstream class recipes. Port the class strings, slots,
+`data-state`, and ARIA behavior into Fluid components under
+`Resources/Private/Components`.
 
 Keep Content Block `config.yaml`, field identifiers, fixtures, and template
 filenames stable unless the content model is intentionally changing.
+
+## Local Registry
+
+Desiderio ships a local shadcn registry definition in `registry.json`.
+`components.json` exposes it through the `@desiderio` namespace and the build
+output lives under `Resources/Public/ShadcnRegistry`.
+
+Run this after changing theme tokens, TypoScript asset includes, or shared
+runtime JavaScript:
+
+```bash
+npm run registry:build
+```
+
+Registry items describe the shadcn theme contract and shared TYPO3 runtime
+assets. They are not React/Astro runtime components; Fluid remains the renderer.
+
+## JavaScript Includes
+
+Content Blocks should emit data attributes and JSON payload attributes. Shared
+browser behavior belongs in include files such as
+`Resources/Public/Js/charts.js`, registered through TypoScript or TYPO3 asset
+APIs. Avoid inline `<script>` renderers in `templates/frontend.html`.
 
 ## Visual QA
 

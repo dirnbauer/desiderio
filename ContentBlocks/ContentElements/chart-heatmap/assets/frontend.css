@@ -49,4 +49,29 @@
     justify-content: center;
     font-variant-numeric: tabular-nums;
     font-weight: 600;
+    background: color-mix(in oklch, var(--primary) 18%, var(--background));
+    color: var(--foreground);
+}
+
+.chart-heatmap__cell--1 {
+    background: color-mix(in oklch, var(--primary) 34%, var(--background));
+}
+
+.chart-heatmap__cell--2 {
+    background: color-mix(in oklch, var(--primary) 50%, var(--background));
+}
+
+.chart-heatmap__cell--3 {
+    background: color-mix(in oklch, var(--primary) 66%, var(--background));
+    color: var(--primary-foreground);
+}
+
+.chart-heatmap__cell--4 {
+    background: color-mix(in oklch, var(--primary) 82%, var(--background));
+    color: var(--primary-foreground);
+}
+
+.chart-heatmap__cell--5 {
+    background: var(--primary);
+    color: var(--primary-foreground);
 }

@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "target": "ES2022",
+    "jsx": "react-jsx",
+    "paths": {
+      "@/*": [
+        "./.shadcn/scratch/*"
+      ],
+      "@/components/*": [
+        "./.shadcn/scratch/components/*"
+      ],
+      "@/hooks/*": [
+        "./.shadcn/scratch/hooks/*"
+      ],
+      "@/lib/*": [
+        "./.shadcn/scratch/lib/*"
+      ]
+    },
+    "types": []
+  },
+  "include": [
+    ".shadcn/scratch/**/*",
+    "Resources/Private/ShadcnUi/**/*"
+  ]
+}

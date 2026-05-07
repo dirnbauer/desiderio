@@ -47,6 +47,7 @@ final class ShadcnThemeTest extends TestCase
         self::assertStringContainsString('Resources/Public/Css/desiderio-tailwind.css', $typoScript);
         self::assertStringContainsString('Resources/Public/Js/alpine.min.js', $typoScript);
         self::assertStringContainsString('Resources/Public/Js/desiderio.js', $typoScript);
+        self::assertStringContainsString('Resources/Public/Js/charts.js', $typoScript);
         self::assertStringContainsString('Resources/Public/Js/styleguide.js', $typoScript);
         self::assertStringContainsString('data-shadcn-preset="{$desiderio.shadcn.preset}"', $typoScript);
         self::assertStringContainsString('data-shadcn-style="{$desiderio.shadcn.style}"', $typoScript);
@@ -104,12 +105,34 @@ final class ShadcnThemeTest extends TestCase
         self::assertSame('radix-lyra', $componentsJson['style'] ?? null);
         self::assertSame('tabler', $componentsJson['iconLibrary'] ?? null);
         self::assertSame('Resources/Private/Tailwind/desiderio.css', $componentsJson['tailwind']['css'] ?? null);
+        self::assertSame('Resources/Public/ShadcnRegistry/{name}.json', $componentsJson['registries']['@desiderio'] ?? null);
 
         self::assertIsArray($packageJson);
         self::assertSame('^4.2.4', $packageJson['dependencies']['tailwindcss'] ?? null);
         self::assertSame('^4.2.4', $packageJson['dependencies']['@tailwindcss/cli'] ?? null);
         self::assertSame('^5.2.7', $packageJson['dependencies']['@fontsource-variable/nunito-sans'] ?? null);
         self::assertSame('^4.5.0', $packageJson['dependencies']['shadcn'] ?? null);
+        self::assertSame('shadcn info --json', $packageJson['scripts']['shadcn:info'] ?? null);
+        self::assertSame('shadcn build --output Resources/Public/ShadcnRegistry', $packageJson['scripts']['registry:build'] ?? null);
+    }
+
+    public function testShadcnCliContextAndRegistryAreConfigured(): void
+    {
+        $tsconfig = json_decode((string) file_get_contents(__DIR__ . '/../../tsconfig.json'), true);
+        $registry = json_decode((string) file_get_contents(__DIR__ . '/../../registry.json'), true);
+
+        self::assertIsArray($tsconfig);
+        self::assertSame('.', $tsconfig['compilerOptions']['baseUrl'] ?? null);
+        self::assertSame(['./.shadcn/scratch/*'], $tsconfig['compilerOptions']['paths']['@/*'] ?? null);
+
+        self::assertIsArray($registry);
+        self::assertSame('https://ui.shadcn.com/schema/registry.json', $registry['$schema'] ?? null);
+        self::assertSame('desiderio', $registry['name'] ?? null);
+        self::assertNotEmpty($registry['items'] ?? []);
+
+        $itemNames = array_column($registry['items'], 'name');
+        self::assertContains('desiderio-shadcn-theme', $itemNames);
+        self::assertContains('desiderio-content-element-runtime', $itemNames);
     }
 
     public function testSolrFacetTemplateReusesSuggestStyles(): void

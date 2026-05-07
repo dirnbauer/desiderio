@@ -1,0 +1,110 @@
+/* ===================================================================
+   Desiderio Template 4: Blog & Magazine
+   Inspired by Ink Blog Template (shadcnstudio.com)
+   Typography-focused, reading-optimized, content-heavy styling.
+   =================================================================== */
+
+/* ---- Header — slim, understated ---- */
+.desiderio-header {
+    border-bottom: 1px solid var(--border);
+}
+
+.desiderio-header__inner {
+    padding: 0.625rem 0;
+}
+
+.desiderio-header__logo-text {
+    font-family: var(--font-serif, Georgia, serif);
+    font-size: 1.375rem;
+    font-weight: 700;
+    letter-spacing: 0;
+}
+
+.desiderio-header__nav-link {
+    font-size: 0.875rem;
+    font-weight: 400;
+}
+
+/* ---- Main Content — reading-width constraint ---- */
+.desiderio-main {
+    max-width: 48rem;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 2rem 1.5rem;
+}
+
+.ce-frame {
+    padding: 1.5rem 0;
+}
+
+/* ---- Content Frames — subtle, reading-friendly backgrounds ---- */
+.ce-frame--bg-10 {
+    background-color: var(--muted);
+    border-left: 3px solid var(--primary);
+    border-radius: 0 var(--radius) var(--radius) 0;
+    padding: 1.5rem 2rem;
+}
+
+.ce-frame--bg-80 {
+    background-color: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem 2rem;
+}
+
+.ce-frame--bg-100 {
+    background-color: var(--primary);
+    color: var(--primary-foreground);
+    border-radius: var(--radius);
+    padding: 1.5rem 2rem;
+}
+
+/* ---- Sidebar — blog sidebar with clear separation ---- */
+.desiderio-article {
+    max-width: none;
+    padding: 2rem 0;
+}
+
+@media (min-width: 1024px) {
+    .desiderio-article {
+        grid-template-columns: 1fr 280px;
+        gap: 3rem;
+    }
+
+    .desiderio-article__content {
+        max-width: 48rem;
+    }
+}
+
+.desiderio-article__sidebar {
+    padding-top: 0.25rem;
+}
+
+/* ---- Footer — editorial style ---- */
+.desiderio-footer {
+    border-top: 2px solid var(--foreground);
+    padding: 2rem 0;
+    margin-top: 3rem;
+}
+
+.desiderio-footer__title {
+    font-family: var(--font-serif, Georgia, serif);
+    font-weight: 700;
+}
+
+/* ---- Styleguide — list-style instead of grid ---- */
+.desiderio-styleguide__element-list {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+}
+
+.desiderio-styleguide__element-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.75rem 1rem;
+}
+
+.desiderio-styleguide__group-title {
+    font-family: var(--font-serif, Georgia, serif);
+}

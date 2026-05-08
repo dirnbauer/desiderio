@@ -253,8 +253,9 @@ final class StyleguideSeedCommandTest extends TestCase
         $imageSource = $fields['image_source'] ?? null;
         self::assertIsString($imageSource);
 
-        self::assertSame('Pattern Library', $fields['eyebrow']);
-        self::assertStringContainsString('polished demo element pattern', strtolower($description));
+        self::assertContains($fields['eyebrow'], ['shadcn/ui', 'Theme tokens', 'Editor ready', 'A11y checked', 'Radix pattern', 'Tailwind v4']);
+        self::assertStringContainsString('shadcn', strtolower($description));
+        self::assertStringContainsString('demo element', strtolower($description));
         self::assertStringNotContainsString('Complete demo content', $description);
         self::assertStringContainsString('Accessible demo image', $imageAlt);
         self::assertStringContainsString('Unsplash demo image', $imageSource);
@@ -311,7 +312,8 @@ final class StyleguideSeedCommandTest extends TestCase
 
         self::assertArrayNotHasKey('header', $fields);
         self::assertSame('horizontal', $fields['variant']);
-        self::assertSame('Divider Text for Content Divider', $fields['divider_text']);
+        self::assertStringContainsString('Content Divider', $fields['divider_text']);
+        self::assertStringNotContainsString('Ready to Get Started?', $fields['divider_text']);
     }
 
     public function testInvalidSelectFixtureValuesFallBackToConfiguredDefaults(): void

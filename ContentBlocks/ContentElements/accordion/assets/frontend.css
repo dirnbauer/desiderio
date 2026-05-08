@@ -3,11 +3,13 @@
     margin-block-end: var(--d-spacing-xl);
 }
 .accordion {
-    max-width: 42rem;
+    width: min(100%, 42rem);
+    max-width: 100%;
     margin-inline: auto;
 }
 .accordion__item {
     border-bottom: 1px solid var(--border);
+    min-width: 0;
 }
 .accordion__trigger {
     display: flex;
@@ -17,10 +19,13 @@
     padding: var(--d-spacing-md) 0;
     cursor: pointer;
     list-style: none;
+    min-width: 0;
 }
 .accordion__trigger::-webkit-details-marker { display: none; }
 .accordion__title {
     font-weight: 600;
+    min-width: 0;
+    overflow-wrap: anywhere;
 }
 .accordion__icon {
     flex-shrink: 0;
@@ -34,4 +39,6 @@ details[open] > .accordion__trigger > .accordion__icon {
     padding-block-end: var(--d-spacing-md);
     color: var(--muted-foreground);
     font-size: var(--d-text-sm);
+    min-width: 0;
+    overflow-wrap: anywhere;
 }

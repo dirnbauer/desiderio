@@ -132,6 +132,7 @@ final class ShadcnThemeTest extends TestCase
         self::assertSame('radix-lyra', $componentsJson['style'] ?? null);
         self::assertSame('tabler', $componentsJson['iconLibrary'] ?? null);
         self::assertSame('Resources/Private/Tailwind/desiderio.css', $tailwindConfig['css'] ?? null);
+        self::assertSame('https://ui.shadcn.com/r/styles/{style}/{name}.json', $registries['@shadcn'] ?? null);
         self::assertSame('Resources/Public/ShadcnRegistry/{name}.json', $registries['@desiderio'] ?? null);
 
         $dependencies = $packageJson['dependencies'] ?? null;
@@ -143,6 +144,7 @@ final class ShadcnThemeTest extends TestCase
         self::assertSame('^5.2.7', $dependencies['@fontsource-variable/nunito-sans'] ?? null);
         self::assertSame('^4.5.0', $dependencies['shadcn'] ?? null);
         self::assertSame('shadcn info --json', $scripts['shadcn:info'] ?? null);
+        self::assertSame('php Build/Scripts/sync-shadcn-fluid-primitives.php', $scripts['shadcn:sync-fluid'] ?? null);
         self::assertSame('shadcn build --output Resources/Public/ShadcnRegistry', $scripts['registry:build'] ?? null);
     }
 

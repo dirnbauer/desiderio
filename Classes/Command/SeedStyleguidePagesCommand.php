@@ -33,6 +33,67 @@ final class SeedStyleguidePagesCommand extends Command
     private const FILE_REFERENCES_KEY = '__fileReferences';
     private const NESTED_COLLECTIONS_KEY = '__collections';
     private const STYLEGUIDE_FAL_FOLDER = 'desiderio-styleguide';
+    private const DEMO_BADGES = [
+        'shadcn/ui',
+        'Theme tokens',
+        'Editor ready',
+        'A11y checked',
+        'Radix pattern',
+        'Tailwind v4',
+    ];
+    private const DEMO_BUTTON_LABELS = [
+        'View component',
+        'Open example',
+        'Compare variants',
+        'Read the notes',
+        'Start review',
+    ];
+    private const DEMO_COPY = [
+        'Uses shadcn card, badge, and button spacing so the element reads like a production surface instead of placeholder content.',
+        'Pairs realistic editorial copy with semantic theme tokens, compact rhythm, and enough detail to review responsive behavior.',
+        'Shows how the content block behaves with real labels, calls to action, and nested records while staying theme aware.',
+        'Keeps the visual hierarchy close to the shadcn defaults: restrained borders, token colors, clear text scale, and direct actions.',
+        'Provides practical demo content for editors who need to judge layout density, empty states, and repeated item styling.',
+    ];
+    private const DEMO_FEATURES = [
+        'Theme-aware component states',
+        'Accessible keyboard focus',
+        'Reusable TYPO3 Content Blocks',
+        'Responsive editor fixtures',
+        'Token-based chart colors',
+    ];
+    private const DEMO_ICONS = [
+        'sparkles',
+        'shield-check',
+        'chart-no-axes-combined',
+        'users',
+        'rocket',
+        'database',
+        'settings',
+        'book-open',
+        'check-circle',
+        'clock',
+        'globe',
+        'map-pin',
+    ];
+    private const DEMO_LINK_LABELS = ['Overview', 'Components', 'Examples', 'Pricing', 'Contact'];
+    private const DEMO_PEOPLE = [
+        ['Mara Weiss', 'Product Design Lead', 'Northstar Labs'],
+        ['Jonas Klein', 'Frontend Engineer', 'Studio Atlas'],
+        ['Sofia Berg', 'Customer Success', 'Helio Systems'],
+        ['Noah Ritter', 'Content Architect', 'Vienna Digital'],
+        ['Lea Fischer', 'Accessibility Reviewer', 'Signal Bureau'],
+    ];
+    private const DEMO_SUBJECTS = [
+        'Component Quality Review',
+        'Theme Token Rollout',
+        'Editor Workflow Launch',
+        'Accessible Pattern Library',
+        'Content Operations Dashboard',
+        'Customer Evidence Hub',
+        'Product Experience Audit',
+        'Reusable Section Blueprint',
+    ];
 
     /** @var array<string, array<string, true>> */
     private array $tableColumnsCache = [];
@@ -626,7 +687,7 @@ final class SeedStyleguidePagesCommand extends Command
         foreach ($definition['fields'] as $field => $fieldConfig) {
             if ($this->isFileField($fieldConfig)) {
                 unset($resolvedFields[$field]);
-                $fileReferences[$field] = $this->buildFileReferenceFixtures($field, $fieldConfig, 0);
+                $fileReferences[$field] = $this->buildFileReferenceFixtures($name . '-' . $field, $fieldConfig, 0);
                 continue;
             }
 
@@ -686,7 +747,7 @@ final class SeedStyleguidePagesCommand extends Command
         foreach ($collection['fields'] as $field => $fieldConfig) {
             if ($this->isFileField($fieldConfig)) {
                 unset($item[$field]);
-                $fileReferences[$field] = $this->buildFileReferenceFixtures($collectionField . '-' . $field, $fieldConfig, $index);
+                $fileReferences[$field] = $this->buildFileReferenceFixtures($name . '-' . $collectionField . '-' . $field, $fieldConfig, $index);
                 $item[$field] = count($fileReferences[$field]);
                 continue;
             }
@@ -779,11 +840,13 @@ final class SeedStyleguidePagesCommand extends Command
 
         return match (true) {
             str_contains($normalizedField, 'rating') => 5,
-            str_contains($normalizedField, 'columns') => 3,
+            str_contains($normalizedField, 'columns') => [3, 4, 2][$index % 3],
             str_contains($normalizedField, 'duration') => 45,
-            str_contains($normalizedField, 'interval') => 5000,
-            str_contains($normalizedField, 'percent') => 92,
-            default => ($index + 1) * 10,
+            str_contains($normalizedField, 'interval') => 6000,
+            str_contains($normalizedField, 'percent') => max(80, 96 - $index),
+            str_contains($normalizedField, 'count') => [128, 2400, 86, 12][$index % 4],
+            str_contains($normalizedField, 'year') => 2026,
+            default => [12, 24, 48, 72, 96][$index % 5],
         };
     }
 
@@ -887,36 +950,44 @@ final class SeedStyleguidePagesCommand extends Command
         $subject = $this->buildDemoSubject($name, $index);
         $elementLabel = $this->buildReadableLabel($name);
         $fieldLabel = $this->buildReadableLabel($field);
+        $person = self::DEMO_PEOPLE[$index % count(self::DEMO_PEOPLE)];
 
         return match (true) {
             preg_match('/^(?:link|child)(\d+)label$/', $normalizedField, $matches) === 1 => $this->getDefaultLinkLabel((int)$matches[1]),
+            str_contains($normalizedField, 'authortitle') || str_contains($normalizedField, 'jobtitle') || str_contains($normalizedField, 'role') || str_contains($normalizedField, 'position') => $person[1],
             $normalizedField === 'header' || str_contains($normalizedField, 'headline') || str_contains($normalizedField, 'title') => $subject,
-            str_contains($normalizedField, 'eyebrow') || str_contains($normalizedField, 'badge') || str_contains($normalizedField, 'kicker') || str_contains($normalizedField, 'status') => 'Pattern Library',
+            str_contains($normalizedField, 'eyebrow') || str_contains($normalizedField, 'badge') || str_contains($normalizedField, 'kicker') || str_contains($normalizedField, 'status') => $this->pickDemoString(self::DEMO_BADGES, $name . '-' . $field, $index),
             str_contains($normalizedField, 'alt') || str_contains($normalizedField, 'alternative') => 'Accessible demo image for ' . $subject . '.',
             str_contains($normalizedField, 'copyright') => 'Images are credited on their Unsplash file references.',
             str_contains($normalizedField, 'credit') || str_contains($normalizedField, 'source') || str_contains($normalizedField, 'photographer') => 'Photo source: Unsplash demo image with photographer credit stored on the file reference.',
-            str_contains($normalizedField, 'description') || str_contains($normalizedField, 'subheadline') || str_contains($normalizedField, 'content') || str_contains($normalizedField, 'body') || str_contains($normalizedField, 'copy') => $this->buildDefaultDemoCopy($elementLabel),
+            str_contains($normalizedField, 'quote') => $this->buildDefaultQuote($elementLabel),
+            str_contains($normalizedField, 'description') || str_contains($normalizedField, 'subheadline') || str_contains($normalizedField, 'content') || str_contains($normalizedField, 'body') || str_contains($normalizedField, 'copy') || str_contains($normalizedField, 'summary') || str_contains($normalizedField, 'bio') => $this->buildDefaultDemoCopy($elementLabel, $fieldLabel, $index),
             str_contains($normalizedField, 'ctatext') || str_contains($normalizedField, 'buttontext') || str_contains($normalizedField, 'submittext') => $this->buildDefaultButtonText($normalizedField, $elementLabel),
+            str_contains($normalizedField, 'linktext') => $this->pickDemoString(self::DEMO_BUTTON_LABELS, $name . '-' . $field, $index),
             str_contains($normalizedField, 'placeholder') => 'name@example.com',
-            str_contains($normalizedField, 'feature') || str_contains($normalizedField, 'points') || str_contains($normalizedField, 'specs') => "Guided setup\nReusable content blocks\nTheme-aware presentation",
-            str_contains($normalizedField, 'links') || str_contains($normalizedField, 'pages') || str_contains($normalizedField, 'children') => "Product Tour\nComponent Docs\nSupport Center",
-            str_contains($normalizedField, 'members') || str_contains($normalizedField, 'people') => "Mara Weiss|Product Lead\nJonas Klein|Design Systems\nSofia Berg|Customer Success",
-            $normalizedField === 'chartdata' || (str_contains($normalizedField, 'chart') && str_contains($normalizedField, 'data')) => '[{"label":"Jan","value":12},{"label":"Feb","value":18},{"label":"Mar","value":14},{"label":"Apr","value":24}]',
-            str_contains($normalizedField, 'rowdata') => 'Starter|Active|99%',
-            str_contains($normalizedField, 'tiervalues') => 'Included,Included,Priority',
+            str_contains($normalizedField, 'feature') || str_contains($normalizedField, 'points') || str_contains($normalizedField, 'specs') => $this->buildDefaultList(self::DEMO_FEATURES, $name . '-' . $field, $index),
+            str_contains($normalizedField, 'links') || str_contains($normalizedField, 'pages') || str_contains($normalizedField, 'children') => implode("\n", self::DEMO_LINK_LABELS),
+            str_contains($normalizedField, 'members') || str_contains($normalizedField, 'people') => $this->buildDefaultPeopleList(),
+            $normalizedField === 'chartdata' || (str_contains($normalizedField, 'chart') && str_contains($normalizedField, 'data')) => $this->buildDefaultChartData($index),
+            str_contains($normalizedField, 'rowdata') => ['Components|Ready|98%', 'Tokens|Synced|24', 'A11y|Passing|AA'][$index % 3],
+            str_contains($normalizedField, 'tiervalues') => 'Included,Token based,Priority review',
             str_contains($normalizedField, 'columnkey') => $this->buildColumnKey($subject . ' ' . ($index + 1)),
             str_contains($normalizedField, 'columnlabel') => $fieldLabel . ' ' . ($index + 1),
             str_contains($normalizedField, 'align') => 'left',
-            str_contains($normalizedField, 'name') || str_contains($normalizedField, 'author') => $subject,
-            str_contains($normalizedField, 'role') || str_contains($normalizedField, 'position') => 'Product Strategist',
-            str_contains($normalizedField, 'company') || str_contains($normalizedField, 'brand') => 'Desiderio Studio',
+            str_contains($normalizedField, 'company') || str_contains($normalizedField, 'brand') => $person[2],
+            str_contains($normalizedField, 'name') || str_contains($normalizedField, 'author') => $person[0],
             str_contains($normalizedField, 'email') => 'hello@example.com',
             str_contains($normalizedField, 'phone') || str_contains($normalizedField, 'tel') => '+43 1 555 010' . ($index + 1),
-            str_contains($normalizedField, 'address') || str_contains($normalizedField, 'location') => 'Vienna, Austria',
-            str_contains($normalizedField, 'price') => '$' . (($index + 1) * 19),
+            str_contains($normalizedField, 'address') || str_contains($normalizedField, 'location') => 'Mariahilfer Strasse 42, 1070 Vienna',
+            str_contains($normalizedField, 'date') => 'May ' . min(28, $index + 8) . ', 2026',
+            str_contains($normalizedField, 'year') => '2026',
+            str_contains($normalizedField, 'trend') => ['positive', 'stable', 'up'][$index % 3],
+            str_contains($normalizedField, 'value') || str_contains($normalizedField, 'metric') => ['98%', '24K', '4.9', '12 ms', 'AA'][$index % 5],
+            str_contains($normalizedField, 'label') => $this->pickDemoString(self::DEMO_FEATURES, $name . '-' . $field, $index),
+            str_contains($normalizedField, 'price') => '$' . [19, 49, 99, 249][$index % 4],
             str_contains($normalizedField, 'period') || str_contains($normalizedField, 'billing') => '/month',
             str_contains($normalizedField, 'size') => '2.4 MB',
-            str_contains($normalizedField, 'icon') => ['sparkles', 'shield-check', 'chart-no-axes-combined'][$index % 3],
+            str_contains($normalizedField, 'icon') => $this->pickDemoString(self::DEMO_ICONS, $name . '-' . $field, $index),
             str_contains($normalizedField, 'gradientto') => 'accent',
             str_contains($normalizedField, 'gradient') => 'primary',
             str_contains($normalizedField, 'color') => 'primary',
@@ -924,10 +995,22 @@ final class SeedStyleguidePagesCommand extends Command
         };
     }
 
-    private function buildDefaultDemoCopy(string $elementLabel): string
+    private function buildDefaultDemoCopy(string $elementLabel, string $fieldLabel, int $index): string
+    {
+        $copy = self::DEMO_COPY[$index % count(self::DEMO_COPY)];
+
+        return sprintf(
+            '%s This %s field is seeded for the %s element.',
+            $copy,
+            strtolower($fieldLabel),
+            strtolower($elementLabel)
+        );
+    }
+
+    private function buildDefaultQuote(string $elementLabel): string
     {
         return sprintf(
-            'A polished %s pattern with realistic copy, clear hierarchy, and enough detail to review spacing, rhythm, and responsive behavior.',
+            'The %s element now feels like something our editors could ship, because the copy, spacing, and actions follow the shadcn preset instead of filler text.',
             strtolower($elementLabel)
         );
     }
@@ -941,7 +1024,7 @@ final class SeedStyleguidePagesCommand extends Command
             return 'View details';
         }
 
-        return 'Explore ' . $elementLabel;
+        return $this->pickDemoString(self::DEMO_BUTTON_LABELS, $elementLabel . '-' . $normalizedField, 0);
     }
 
     private function buildDefaultLinkValue(string $field, int $index): string
@@ -956,19 +1039,75 @@ final class SeedStyleguidePagesCommand extends Command
 
     private function getDefaultLinkLabel(int $slot): string
     {
-        return ['Overview', 'Docs', 'Support', 'Pricing', 'Contact'][max(0, min(4, $slot - 1))];
+        return self::DEMO_LINK_LABELS[max(0, min(count(self::DEMO_LINK_LABELS) - 1, $slot - 1))];
     }
 
     private function buildDemoUrl(string $label): string
     {
-        return 'https://example.com/desiderio/' . $this->buildColumnKey($label !== '' ? $label : 'link');
+        return match ($this->buildColumnKey($label)) {
+            'overview' => 'https://ui.shadcn.com/docs',
+            'components' => 'https://ui.shadcn.com/docs/components',
+            'examples' => 'https://ui.shadcn.com/blocks',
+            default => 'https://example.com/desiderio/' . $this->buildColumnKey($label !== '' ? $label : 'link'),
+        };
     }
 
     private function buildDemoSubject(string $name, int $index): string
     {
         $label = $this->buildReadableLabel($name);
+        $subject = $this->pickDemoString(self::DEMO_SUBJECTS, $name, $index);
 
-        return $index > 0 ? $label . ' Item ' . ($index + 1) : $label;
+        if ($index > 0) {
+            return $subject . ' ' . ($index + 1);
+        }
+
+        return $subject . ' for ' . $label;
+    }
+
+    /**
+     * @param list<string> $values
+     */
+    private function pickDemoString(array $values, string $seed, int $index): string
+    {
+        if ($values === []) {
+            return '';
+        }
+
+        return $values[(abs(crc32($seed)) + $index) % count($values)];
+    }
+
+    /**
+     * @param list<string> $values
+     */
+    private function buildDefaultList(array $values, string $seed, int $index): string
+    {
+        $items = [];
+        for ($offset = 0; $offset < 3; $offset++) {
+            $items[] = $this->pickDemoString($values, $seed, $index + $offset);
+        }
+
+        return implode("\n", array_values(array_unique($items)));
+    }
+
+    private function buildDefaultPeopleList(): string
+    {
+        return implode("\n", array_map(
+            static fn (array $person): string => $person[0] . '|' . $person[1] . '|' . $person[2],
+            array_slice(self::DEMO_PEOPLE, 0, 3)
+        ));
+    }
+
+    private function buildDefaultChartData(int $index): string
+    {
+        $quarters = [
+            ['label' => 'Q1', 'value' => 32 + $index],
+            ['label' => 'Q2', 'value' => 46 + $index],
+            ['label' => 'Q3', 'value' => 41 + $index],
+            ['label' => 'Q4', 'value' => 58 + $index],
+        ];
+        $json = json_encode($quarters, JSON_UNESCAPED_SLASHES);
+
+        return is_string($json) ? $json : '[{"label":"Q1","value":32},{"label":"Q2","value":46},{"label":"Q3","value":41},{"label":"Q4","value":58}]';
     }
 
     private function buildReadableLabel(string $value): string

@@ -7,6 +7,7 @@
     "build:css": "tailwindcss -i Resources/Private/Tailwind/desiderio.css -o Resources/Public/Css/desiderio-tailwind.css --minify",
     "watch:css": "tailwindcss -i Resources/Private/Tailwind/desiderio.css -o Resources/Public/Css/desiderio-tailwind.css --watch",
     "shadcn:info": "shadcn info --json",
+    "shadcn:sync-fluid": "php Build/Scripts/sync-shadcn-fluid-primitives.php",
     "registry:build": "shadcn build --output Resources/Public/ShadcnRegistry"
   },
   "dependencies": {

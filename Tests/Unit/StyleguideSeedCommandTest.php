@@ -215,6 +215,8 @@ final class StyleguideSeedCommandTest extends TestCase
                 'image' => ['identifier' => 'image', 'type' => 'File', 'maxitems' => 1],
                 'cta_link' => ['identifier' => 'cta_link', 'type' => 'Link'],
                 'color' => ['identifier' => 'color', 'type' => 'Textarea'],
+                'gradient_from' => ['identifier' => 'gradient_from', 'type' => 'Textarea'],
+                'gradient_to' => ['identifier' => 'gradient_to', 'type' => 'Textarea'],
             ],
             'collections' => [
                 'items' => [
@@ -258,6 +260,8 @@ final class StyleguideSeedCommandTest extends TestCase
         self::assertStringContainsString('Unsplash demo image', $imageSource);
         self::assertSame('https://example.com/desiderio/cta_link_1', $fields['cta_link']);
         self::assertSame('primary', $fields['color']);
+        self::assertSame('primary', $fields['gradient_from']);
+        self::assertSame('accent', $fields['gradient_to']);
         self::assertArrayHasKey('image', $fileReferences);
         $imageReferences = $fileReferences['image'] ?? null;
         self::assertIsArray($imageReferences);

@@ -19,7 +19,12 @@ lib.contentElement {
   }
 
   dataProcessing.1421884800 = record-transformation
+  dataProcessing.1421884801 = desiderio-content-block-collections
 }
+
+# Content Blocks render through their own prototype. Resolve Desiderio
+# collection rows after the Content Blocks processor decorates the record.
+lib.contentBlock.dataProcessing.20 = desiderio-content-block-collections
 
 lib.desiderioContentWithImages =< lib.contentElement
 lib.desiderioContentWithImages {

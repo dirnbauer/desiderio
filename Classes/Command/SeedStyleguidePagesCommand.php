@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Webconsulting\Desiderio\Command;
 
 use Doctrine\DBAL\ArrayParameterType;
+use Doctrine\DBAL\ParameterType;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -205,38 +206,118 @@ final class SeedStyleguidePagesCommand extends Command
         array $columns,
         int &$createdPages,
     ): int {
-        $title = 'Desiderio ' . $groupTitle;
-        $queryBuilder = $this->connectionPool->getQueryBuilderForTable('pages');
-        $existing = $queryBuilder
-            ->select('uid')
-            ->from('pages')
-            ->where(
-                $queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($parentPid)),
-                $queryBuilder->expr()->eq('title', $queryBuilder->createNamedParameter($title)),
-                $queryBuilder->expr()->eq('deleted', $queryBuilder->createNamedParameter(0))
-            )
-            ->setMaxResults(1)
-            ->executeQuery()
-            ->fetchAssociative();
+        $title = $this->buildStyleguidePageTitle($groupTitle);
+        $slug = $this->buildStyleguidePageSlug($groupId);
+        $existingPageUid = $this->findExistingStyleguidePageUid($parentPid, $title, $slug, $columns);
 
-        if (is_array($existing) && isset($existing['uid'])) {
-            return (int)$existing['uid'];
+        if ($existingPageUid !== null) {
+            $this->updateStyleguidePage($existingPageUid, $title, $slug, $sorting, $now, $columns);
+            return $existingPageUid;
         }
 
-        $row = $this->filterRow([
+        $createdPages++;
+        return $this->createStyleguidePage($parentPid, $title, $slug, $sorting, $now, $columns);
+    }
+
+    private function buildStyleguidePageTitle(string $groupTitle): string
+    {
+        return 'Desiderio ' . $groupTitle;
+    }
+
+    private function buildStyleguidePageSlug(string $groupId): string
+    {
+        return '/desiderio-' . $groupId;
+    }
+
+    /**
+     * @param array<string, true> $columns
+     */
+    private function findExistingStyleguidePageUid(int $parentPid, string $title, string $slug, array $columns): ?int
+    {
+        $where = [
+            'pid = :parentPid',
+            'deleted = 0',
+            '(title = :title OR slug = :slug)',
+        ];
+        $parameters = [
+            'parentPid' => $parentPid,
+            'title' => $title,
+            'slug' => $slug,
+        ];
+        $types = [
+            'parentPid' => ParameterType::INTEGER,
+            'title' => ParameterType::STRING,
+            'slug' => ParameterType::STRING,
+        ];
+
+        if (isset($columns['sys_language_uid'])) {
+            $where[] = 'sys_language_uid = :languageUid';
+            $parameters['languageUid'] = 0;
+            $types['languageUid'] = ParameterType::INTEGER;
+        }
+
+        $existingUid = $this->connectionPool
+            ->getConnectionForTable('pages')
+            ->executeQuery(
+                'SELECT uid FROM pages WHERE ' . implode(' AND ', $where) . ' ORDER BY hidden ASC, uid DESC LIMIT 1',
+                $parameters,
+                $types
+            )
+            ->fetchOne();
+
+        if ($existingUid === false) {
+            return null;
+        }
+
+        return (int)$existingUid;
+    }
+
+    /**
+     * @param array<string, true> $columns
+     */
+    private function updateStyleguidePage(
+        int $pageUid,
+        string $title,
+        string $slug,
+        int $sorting,
+        int $now,
+        array $columns,
+    ): void {
+        $this->connectionPool->getConnectionForTable('pages')->update(
+            'pages',
+            $this->filterRow([
+                'title' => $title,
+                'slug' => $slug,
+                'hidden' => 0,
+                'sorting' => $sorting,
+                'tstamp' => $now,
+            ], $columns),
+            ['uid' => $pageUid]
+        );
+    }
+
+    /**
+     * @param array<string, true> $columns
+     */
+    private function createStyleguidePage(
+        int $parentPid,
+        string $title,
+        string $slug,
+        int $sorting,
+        int $now,
+        array $columns,
+    ): int {
+        $connection = $this->connectionPool->getConnectionForTable('pages');
+        $connection->insert('pages', $this->filterRow([
             'pid' => $parentPid,
             'title' => $title,
             'doktype' => 1,
-            'slug' => '/desiderio-' . $groupId,
+            'slug' => $slug,
             'hidden' => 0,
             'sorting' => $sorting,
             'crdate' => $now,
             'tstamp' => $now,
-        ], $columns);
-
-        $connection = $this->connectionPool->getConnectionForTable('pages');
-        $connection->insert('pages', $row);
-        $createdPages++;
+        ], $columns));
 
         return (int)$connection->lastInsertId();
     }
@@ -836,6 +917,8 @@ final class SeedStyleguidePagesCommand extends Command
             str_contains($normalizedField, 'period') || str_contains($normalizedField, 'billing') => '/month',
             str_contains($normalizedField, 'size') => '2.4 MB',
             str_contains($normalizedField, 'icon') => ['sparkles', 'shield-check', 'chart-no-axes-combined'][$index % 3],
+            str_contains($normalizedField, 'gradientto') => 'accent',
+            str_contains($normalizedField, 'gradient') => 'primary',
             str_contains($normalizedField, 'color') => 'primary',
             default => $fieldLabel . ' for ' . $subject,
         };

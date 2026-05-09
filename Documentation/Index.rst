@@ -45,6 +45,7 @@ a committed Tailwind v4/shadcn CSS build.
 
     Installation/Index
     Editor/Index
+    Screenshots/Index
 
 ..  toctree::
     :maxdepth: 2

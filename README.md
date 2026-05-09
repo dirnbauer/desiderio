@@ -43,6 +43,18 @@ visual presets with a committed Tailwind v4/shadcn CSS build.
 └──────────────────────────────────────────────────────────┘
 ```
 
+## Screenshots
+
+The screenshots below are captured from the Desiderio styleguide app using the
+committed `b6G5977cw` shadcn/create preset and real Content Block fixture data.
+
+| Light mode | Dark mode |
+| --- | --- |
+| ![Desiderio styleguide overview in light mode](Documentation/Images/desiderio-styleguide-overview-light.png) | ![Desiderio styleguide overview in dark mode](Documentation/Images/desiderio-styleguide-overview-dark.png) |
+| The styleguide overview shows the searchable content element catalog, group navigation, and the first generated cards for the 255 shipped elements. | The same overview in dark mode verifies the token-driven surface, sidebar, badges, cards, and text contrast. |
+| ![Desiderio pricing preview in light mode](Documentation/Images/desiderio-styleguide-preview-light.png) | ![Desiderio pricing preview in dark mode](Documentation/Images/desiderio-styleguide-preview-dark.png) |
+| A selected `Three Tier Pricing` element shows the component inspector with the preview tab, viewport controls, and rendered pricing fixture. | The dark-mode version shows the same element preview after the theme tokens switch, including borders, foreground text, and muted labels. |
+
 ## Installation
 
 Requires TYPO3 14.3 LTS (no v13 fallback) and PHP 8.3 – 8.5. The

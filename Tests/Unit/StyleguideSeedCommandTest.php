@@ -301,7 +301,7 @@ final class StyleguideSeedCommandTest extends TestCase
             ],
         ]);
 
-        [$fields] = $this->invokeMethod($command, 'resolveFixtureFields', [
+        $result = $this->invokeMethod($command, 'resolveFixtureFields', [
             'desiderio_contentdivider',
             [
                 'header' => 'Ready to Get Started?',
@@ -310,10 +310,16 @@ final class StyleguideSeedCommandTest extends TestCase
             'Content Divider',
         ]);
 
+        self::assertIsArray($result);
+        $fields = $result[0] ?? null;
+        self::assertIsArray($fields);
+        $dividerText = $fields['divider_text'] ?? null;
+        self::assertIsString($dividerText);
+
         self::assertArrayNotHasKey('header', $fields);
         self::assertSame('horizontal', $fields['variant']);
-        self::assertStringContainsString('Content Divider', $fields['divider_text']);
-        self::assertStringNotContainsString('Ready to Get Started?', $fields['divider_text']);
+        self::assertStringContainsString('Content Divider', $dividerText);
+        self::assertStringNotContainsString('Ready to Get Started?', $dividerText);
     }
 
     public function testInvalidSelectFixtureValuesFallBackToConfiguredDefaults(): void

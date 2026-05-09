@@ -661,12 +661,6 @@ parameters:
 			path: Tests/Unit/StyleguideSeedCommandTest.php
 
 		-
-			message: '#^Cannot access offset ''divider_text'' on mixed\.$#'
-			identifier: offsetAccess.nonOffsetAccessible
-			count: 1
-			path: Tests/Unit/StyleguideSeedCommandTest.php
-
-		-
 			message: '#^Cannot access offset ''header'' on mixed\.$#'
 			identifier: offsetAccess.nonOffsetAccessible
 			count: 1
@@ -699,7 +693,7 @@ parameters:
 		-
 			message: '#^Cannot access offset ''variant'' on mixed\.$#'
 			identifier: offsetAccess.nonOffsetAccessible
-			count: 3
+			count: 2
 			path: Tests/Unit/StyleguideSeedCommandTest.php
 
 		-
@@ -717,19 +711,13 @@ parameters:
 		-
 			message: '#^Cannot use array destructuring on mixed\.$#'
 			identifier: offsetAccess.nonArray
-			count: 4
+			count: 3
 			path: Tests/Unit/StyleguideSeedCommandTest.php
 
 		-
 			message: '#^Parameter \#2 \$array of static method PHPUnit\\Framework\\Assert\:\:assertArrayHasKey\(\) expects array\<mixed\>\|ArrayAccess\<\(int\|string\), mixed\>, mixed given\.$#'
 			identifier: argument.type
 			count: 2
-			path: Tests/Unit/StyleguideSeedCommandTest.php
-
-		-
-			message: '#^Parameter \#2 \$array of static method PHPUnit\\Framework\\Assert\:\:assertArrayNotHasKey\(\) expects array\<mixed\>\|ArrayAccess\<\(int\|string\), mixed\>, mixed given\.$#'
-			identifier: argument.type
-			count: 1
 			path: Tests/Unit/StyleguideSeedCommandTest.php
 
 		-

@@ -33,10 +33,10 @@ final class ContentBlockCollectionProcessor implements DataProcessorInterface
     ) {}
 
     /**
-     * @param array<string, mixed> $contentObjectConfiguration
-     * @param array<string, mixed> $processorConfiguration
-     * @param array<string, mixed> $processedData
-     * @return array<string, mixed>
+     * @param array<mixed> $contentObjectConfiguration
+     * @param array<mixed> $processorConfiguration
+     * @param array<mixed> $processedData
+     * @return array<mixed>
      */
     public function process(
         ContentObjectRenderer $cObj,
@@ -44,7 +44,8 @@ final class ContentBlockCollectionProcessor implements DataProcessorInterface
         array $processorConfiguration,
         array $processedData
     ): array {
-        if (isset($processorConfiguration['if.']) && !$cObj->checkIf($processorConfiguration['if.'])) {
+        $ifConfiguration = $processorConfiguration['if.'] ?? null;
+        if (is_array($ifConfiguration) && !$cObj->checkIf($ifConfiguration)) {
             return $processedData;
         }
 
@@ -57,13 +58,13 @@ final class ContentBlockCollectionProcessor implements DataProcessorInterface
             return $processedData;
         }
 
-        $ctype = (string)($data['CType'] ?? '');
+        $ctype = $this->stringValue($data['CType'] ?? null);
         $definition = $this->getDefinitions()[$ctype] ?? null;
         if ($definition === null || $definition['collections'] === []) {
             return $processedData;
         }
 
-        $uid = (int)($data['uid'] ?? 0);
+        $uid = $this->intValue($data['uid'] ?? null);
         if ($uid <= 0) {
             return $processedData;
         }
@@ -80,8 +81,8 @@ final class ContentBlockCollectionProcessor implements DataProcessorInterface
     }
 
     /**
-     * @param array<string, mixed> $processedData
-     * @return array<string, mixed>
+     * @param array<mixed> $processedData
+     * @return array<mixed>
      */
     private function processContentBlockData(ContentBlockData $data, array $processedData): array
     {
@@ -158,12 +159,12 @@ final class ContentBlockCollectionProcessor implements DataProcessorInterface
                 continue;
             }
 
-            $config = Yaml::parseFile($configPath);
-            if (!is_array($config)) {
+            $config = $this->normalizeStringKeyArray(Yaml::parseFile($configPath));
+            if ($config === null) {
                 continue;
             }
 
-            $ctype = (string)($config['typeName'] ?? '');
+            $ctype = $this->stringValue($config['typeName'] ?? null);
             if ($ctype === '') {
                 continue;
             }
@@ -189,19 +190,21 @@ final class ContentBlockCollectionProcessor implements DataProcessorInterface
 
         $collections = [];
         foreach ($fields as $field) {
-            if (!is_array($field)) {
+            $fieldConfig = $this->normalizeStringKeyArray($field);
+            if ($fieldConfig === null) {
                 continue;
             }
 
-            $identifier = (string)($field['identifier'] ?? '');
-            if ($identifier === '' || (string)($field['type'] ?? '') !== 'Collection') {
+            $identifier = $this->stringValue($fieldConfig['identifier'] ?? null);
+            if ($identifier === '' || $this->stringValue($fieldConfig['type'] ?? null) !== 'Collection') {
                 continue;
             }
 
+            $table = $this->stringValue($fieldConfig['table'] ?? null);
             $collections[$identifier] = [
-                'table' => (string)($field['table'] ?? $identifier),
-                'fields' => $this->indexFields($field['fields'] ?? []),
-                'collections' => $this->extractCollections($field['fields'] ?? []),
+                'table' => $table !== '' ? $table : $identifier,
+                'fields' => $this->indexFields($fieldConfig['fields'] ?? []),
+                'collections' => $this->extractCollections($fieldConfig['fields'] ?? []),
             ];
         }
 
@@ -220,12 +223,13 @@ final class ContentBlockCollectionProcessor implements DataProcessorInterface
 
         $indexed = [];
         foreach ($fields as $field) {
-            if (!is_array($field)) {
+            $fieldConfig = $this->normalizeStringKeyArray($field);
+            if ($fieldConfig === null) {
                 continue;
             }
-            $identifier = (string)($field['identifier'] ?? '');
+            $identifier = $this->stringValue($fieldConfig['identifier'] ?? null);
             if ($identifier !== '') {
-                $indexed[$identifier] = $field;
+                $indexed[$identifier] = $fieldConfig;
             }
         }
 
@@ -238,7 +242,7 @@ final class ContentBlockCollectionProcessor implements DataProcessorInterface
      */
     private function loadCollectionItems(int $parentUid, array $collection): array
     {
-        $table = (string)($collection['table'] ?? '');
+        $table = $this->stringValue($collection['table'] ?? null);
         if ($table === '' || !$this->tableHasColumn($table, 'foreign_table_parent_uid')) {
             return [];
         }
@@ -264,27 +268,24 @@ final class ContentBlockCollectionProcessor implements DataProcessorInterface
             );
         }
 
+        /** @var list<array<string, mixed>> $rows */
         $rows = $queryBuilder->executeQuery()->fetchAllAssociative();
         $items = [];
 
         foreach ($rows as $row) {
+            $rowUid = $this->intValue($row['uid'] ?? null);
             $item = $row;
-            foreach (($collection['fields'] ?? []) as $field => $fieldConfig) {
-                if (!is_string($field) || !is_array($fieldConfig)) {
-                    continue;
-                }
-                $type = (string)($fieldConfig['type'] ?? '');
+            foreach ($this->normalizeStringKeyArrayMap($collection['fields'] ?? null) as $field => $fieldConfig) {
+                $type = $this->stringValue($fieldConfig['type'] ?? null);
                 if ($type === 'File') {
-                    $item[$field] = $this->fileRepository->findByRelation($table, $field, (int)$row['uid']);
+                    $item[$field] = $this->fileRepository->findByRelation($table, $field, $rowUid);
                 } elseif ($type === 'Link' && isset($item[$field]) && is_scalar($item[$field])) {
                     $item[$field] = new TypolinkParameter((string)$item[$field]);
                 }
             }
 
-            foreach (($collection['collections'] ?? []) as $field => $nestedCollection) {
-                if (is_string($field) && is_array($nestedCollection)) {
-                    $item[$field] = $this->loadCollectionItems((int)$row['uid'], $nestedCollection);
-                }
+            foreach ($this->normalizeStringKeyArrayMap($collection['collections'] ?? null) as $field => $nestedCollection) {
+                $item[$field] = $this->loadCollectionItems($rowUid, $nestedCollection);
             }
 
             $record = $this->recordFactory->createResolvedRecordFromDatabaseRow($table, $row);
@@ -294,6 +295,61 @@ final class ContentBlockCollectionProcessor implements DataProcessorInterface
         }
 
         return $items;
+    }
+
+    private function stringValue(mixed $value): string
+    {
+        return is_scalar($value) ? (string)$value : '';
+    }
+
+    private function intValue(mixed $value): int
+    {
+        if (is_int($value)) {
+            return $value;
+        }
+        if (is_string($value) && preg_match('/^-?\d+$/', $value) === 1) {
+            return (int)$value;
+        }
+        return 0;
+    }
+
+    /**
+     * @return array<string, mixed>|null
+     */
+    private function normalizeStringKeyArray(mixed $value): ?array
+    {
+        if (!is_array($value)) {
+            return null;
+        }
+
+        $normalized = [];
+        foreach ($value as $key => $item) {
+            if (is_string($key)) {
+                $normalized[$key] = $item;
+            }
+        }
+
+        return $normalized;
+    }
+
+    /**
+     * @return array<string, array<string, mixed>>
+     */
+    private function normalizeStringKeyArrayMap(mixed $value): array
+    {
+        if (!is_array($value)) {
+            return [];
+        }
+
+        $map = [];
+        foreach ($value as $key => $item) {
+            $normalized = $this->normalizeStringKeyArray($item);
+            if (is_string($key) && $normalized !== null) {
+                $map[$key] = $normalized;
+            }
+        }
+
+        return $map;
     }
 
     private function tableHasColumn(string $table, string $column): bool

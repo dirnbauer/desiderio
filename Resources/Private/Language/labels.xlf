@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en">
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en">
   <file id="desiderio">
     <unit id="heading">
       <segment>
@@ -728,17 +728,17 @@
     </unit>
     <unit id="solr.noResultsNothingFound">
       <segment>
-        <source>Nothing found for "{query}".</source>
+        <source>Nothing found for &quot;{query}&quot;.</source>
       </segment>
     </unit>
     <unit id="solr.noResultsShowingSuggestion">
       <segment>
-        <source>Showing results for "{query}".</source>
+        <source>Showing results for &quot;{query}&quot;.</source>
       </segment>
     </unit>
     <unit id="solr.resultsSearchedFor">
       <segment>
-        <source>Searched for "{query}".</source>
+        <source>Searched for &quot;{query}&quot;.</source>
       </segment>
     </unit>
     <unit id="solr.didYouMean">

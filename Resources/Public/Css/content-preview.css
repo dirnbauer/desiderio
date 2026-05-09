@@ -96,23 +96,10 @@
   display: flex;
   flex-wrap: wrap;
   gap: .35rem .5rem;
-  align-items: center;
+  align-items: baseline;
   border: 1px solid var(--d-ce-preview-border-muted);
   border-radius: .375rem;
   padding: .5rem .625rem;
-}
-
-.d-ce-preview__icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--typo3-state-info-color, currentColor);
-}
-
-.d-ce-preview__icon-value {
-  display: inline-flex;
-  align-items: center;
-  -webkit-line-clamp: unset;
 }
 
 .d-ce-preview__list span:first-child {

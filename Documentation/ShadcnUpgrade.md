@@ -202,8 +202,24 @@ faithful shadcn/create styles.
 
 ## Component Updates
 
-Use `npm run shadcn:info`, `npx shadcn@latest view <component>`, or a temporary
-scratch app to inspect upstream class recipes. Port the class strings, slots,
+Desiderio has two component ownership modes:
+
+1. Registry-backed primitives are synchronized from
+   `https://ui.shadcn.com/r/styles/{style}/{component}.json` by
+   `Build/Scripts/sync-shadcn-fluid-primitives.php`. Buttons, badges, cards,
+   inputs, selects, textareas, tabs, and accordions belong here. If a class
+   exists in the selected shadcn style registry item, port it into the shared
+   Fluid primitive instead of adding one-off classes in content elements.
+2. Local semantic primitives exist where shadcn does not ship a registry
+   component contract. Typography is the main example: the shadcn Typography
+   page is example code, not a shipped component default. Use shadcn tokens,
+   shared CSS, and caller `class` overrides for visual changes; do not copy a
+   docs example such as the `h2` `border-b pb-2` divider into every content
+   element header.
+
+Use `npm run shadcn:info`, `npx shadcn@latest view <component>`,
+`npx shadcn@latest preset decode <id> --json`, or a temporary scratch app to
+inspect upstream class recipes and preset metadata. Port class strings, slots,
 `data-state`, and ARIA behavior into Fluid components under
 `Resources/Private/Components`.
 

@@ -132,7 +132,7 @@ final class ShadcnThemeTest extends TestCase
         self::assertSame('radix-lyra', $componentsJson['style'] ?? null);
         self::assertSame('tabler', $componentsJson['iconLibrary'] ?? null);
         self::assertSame('Resources/Private/Tailwind/desiderio.css', $tailwindConfig['css'] ?? null);
-        self::assertSame('https://ui.shadcn.com/r/styles/{style}/{name}.json', $registries['@shadcn'] ?? null);
+        self::assertArrayNotHasKey('@shadcn', $registries, 'The shadcn CLI provides @shadcn as a built-in registry and rejects overriding it.');
         self::assertSame('Resources/Public/ShadcnRegistry/{name}.json', $registries['@desiderio'] ?? null);
 
         $dependencies = $packageJson['dependencies'] ?? null;

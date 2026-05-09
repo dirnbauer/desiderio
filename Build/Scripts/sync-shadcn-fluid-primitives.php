@@ -20,35 +20,15 @@ $scriptRelativePath = 'Build/Scripts/sync-shadcn-fluid-primitives.php';
 $options = parseOptions($argv);
 $checkOnly = isset($options['check']);
 
-$presetStyles = [
-    'b0' => 'radix-nova',
-    'b3IWPgRwnI' => 'radix-mira',
-    'b4hb38Fyj' => 'radix-mira',
-    'b6G5977cw' => 'radix-lyra',
-];
-
-$presetIconLibraries = [
-    'b0' => 'lucide',
-    'b3IWPgRwnI' => 'phosphor',
-    'b4hb38Fyj' => 'phosphor',
-    'b6G5977cw' => 'tabler',
-];
-
-$presetBaseColors = [
-    'b0' => 'neutral',
-    'b3IWPgRwnI' => 'mist',
-    'b4hb38Fyj' => 'olive',
-    'b6G5977cw' => 'olive',
-];
-
 $settingsPath = $root . '/Configuration/Sets/Desiderio/settings.yaml';
 $componentsPath = $root . '/components.json';
 $settingsYaml = readTextFile($settingsPath);
 $componentsJson = decodeJsonFile($componentsPath);
 
 $preset = $options['preset'] ?? readYamlValue($settingsYaml, 'shadcn', 'preset') ?? 'b6G5977cw';
+$presetMetadata = decodePreset($preset);
 $configuredStyle = readYamlValue($settingsYaml, 'shadcn', 'style') ?? ($componentsJson['style'] ?? null);
-$style = $options['style'] ?? ($presetStyles[$preset] ?? $configuredStyle);
+$style = $options['style'] ?? (presetStyle($presetMetadata) ?? $configuredStyle);
 
 if (!is_string($style) || $style === '' || $style === 'custom') {
     fail('Unable to resolve a concrete shadcn style. Use --style=radix-nova, --style=radix-mira, or --style=radix-lyra.');
@@ -58,8 +38,8 @@ if (!preg_match('/^radix-[a-z0-9-]+$/', $style)) {
     fail(sprintf('Unsupported shadcn style "%s". This sync script expects the official radix registry style ids.', $style));
 }
 
-$iconLibrary = $presetIconLibraries[$preset] ?? ($componentsJson['iconLibrary'] ?? 'lucide');
-$baseColor = $presetBaseColors[$preset] ?? ($componentsJson['tailwind']['baseColor'] ?? 'neutral');
+$iconLibrary = presetValue($presetMetadata, 'iconLibrary') ?? ($componentsJson['iconLibrary'] ?? 'lucide');
+$baseColor = presetValue($presetMetadata, 'baseColor') ?? ($componentsJson['tailwind']['baseColor'] ?? 'neutral');
 
 $recipes = fetchRecipes($style);
 $targets = renderTargets($recipes, $style, $preset, $scriptRelativePath);
@@ -140,6 +120,91 @@ function parseOptions(array $argv): array
     }
 
     return $options;
+}
+
+/**
+ * @return array<string, mixed>|null
+ */
+function decodePreset(string $preset): ?array
+{
+    if ($preset === '' || $preset === 'custom') {
+        return null;
+    }
+
+    $knownPresets = [
+        'b0' => [
+            'values' => [
+                'style' => 'nova',
+                'iconLibrary' => 'lucide',
+                'baseColor' => 'neutral',
+            ],
+        ],
+        'b3IWPgRwnI' => [
+            'values' => [
+                'style' => 'mira',
+                'iconLibrary' => 'phosphor',
+                'baseColor' => 'mist',
+            ],
+        ],
+        'b4hb38Fyj' => [
+            'values' => [
+                'style' => 'mira',
+                'iconLibrary' => 'phosphor',
+                'baseColor' => 'olive',
+            ],
+        ],
+        'b6G5977cw' => [
+            'values' => [
+                'style' => 'lyra',
+                'iconLibrary' => 'tabler',
+                'baseColor' => 'olive',
+            ],
+        ],
+    ];
+
+    $command = 'npx shadcn@latest preset decode ' . escapeshellarg($preset) . ' --json 2>&1';
+    $output = [];
+    $exitCode = 0;
+    exec($command, $output, $exitCode);
+
+    if ($exitCode === 0) {
+        $json = trim(implode("\n", $output));
+        try {
+            $decoded = json_decode($json, true, 512, JSON_THROW_ON_ERROR);
+            if (is_array($decoded) && isset($decoded['values']) && is_array($decoded['values'])) {
+                return $decoded;
+            }
+        } catch (JsonException) {
+            // Fall through to the committed fallback map below.
+        }
+    }
+
+    if (isset($knownPresets[$preset])) {
+        return $knownPresets[$preset];
+    }
+
+    fail(sprintf(
+        'Could not decode shadcn/create preset "%s". Run `npx shadcn@latest preset decode %s --json` manually or use --style=radix-nova|radix-mira|radix-lyra.',
+        $preset,
+        escapeshellarg($preset)
+    ));
+}
+
+function presetStyle(?array $presetMetadata): ?string
+{
+    $style = presetValue($presetMetadata, 'style');
+    if ($style === null || $style === '') {
+        return null;
+    }
+
+    return str_starts_with($style, 'radix-') ? $style : 'radix-' . $style;
+}
+
+function presetValue(?array $presetMetadata, string $key): ?string
+{
+    $value = $presetMetadata['values'][$key] ?? null;
+
+    return is_string($value) && $value !== '' ? $value : null;
 }
 
 /**
@@ -251,6 +316,7 @@ function fetchRegistryFile(string $style, string $component): string
 function renderTargets(array $recipes, string $style, string $preset, string $scriptRelativePath): array
 {
     $header = renderGeneratedHeader($style, $preset, $scriptRelativePath);
+    $localHeader = renderLocalGeneratedHeader($style, $preset, $scriptRelativePath);
 
     return [
         'Resources/Private/Components/Atom/Badge/Badge.fluid.html' => renderBadge($recipes['badge'], $header),
@@ -258,6 +324,7 @@ function renderTargets(array $recipes, string $style, string $preset, string $sc
         'Resources/Private/Components/Atom/Input/Input.fluid.html' => renderInput($recipes['input'], $header),
         'Resources/Private/Components/Atom/Select/Select.fluid.html' => renderSelect($recipes['select'], $header),
         'Resources/Private/Components/Atom/Textarea/Textarea.fluid.html' => renderTextarea($recipes['textarea'], $header),
+        'Resources/Private/Components/Atom/Typography/Typography.fluid.html' => renderTypography($localHeader),
         'Resources/Private/Components/Molecule/AccordionItem/AccordionItem.fluid.html' => renderAccordionItem($recipes['accordion'], $header),
         'Resources/Private/Components/Molecule/Card/Card.fluid.html' => renderCard($recipes['card'], $header),
         'Resources/Private/Components/Molecule/CardFooter/CardFooter.fluid.html' => renderCardFooter($recipes['card'], $header),
@@ -278,6 +345,49 @@ function renderGeneratedHeader(string $style, string $preset, string $scriptRela
         $style,
         $style
     );
+}
+
+function renderLocalGeneratedHeader(string $style, string $preset, string $scriptRelativePath): string
+{
+    return sprintf(
+        "<f:comment>\n  Generated by %s.\n  shadcn preset: %s | style: %s\n  Local semantic primitive. shadcn/ui Typography is documentation example code, not a registry component contract.\n  Visual changes should come from shadcn/create tokens, shared CSS, or caller class overrides.\n</f:comment>\n",
+        $scriptRelativePath,
+        $preset,
+        $style
+    );
+}
+
+function renderTypography(string $header): string
+{
+    return $header
+        . '<f:argument name="tag" type="string" optional="{true}" default="p" />' . "\n"
+        . '<f:argument name="variant" type="string" optional="{true}" default="p" />' . "\n"
+        . '<f:argument name="class" type="string" optional="{true}" default="" />' . "\n"
+        . '<f:argument name="itemprop" type="string" optional="{true}" />' . "\n\n"
+        . '<f:variable name="variantClass">' . "\n"
+        . '    <f:switch expression="{variant}">' . "\n"
+        . '        <f:case value="h1">scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl</f:case>' . "\n"
+        . '        <f:case value="h2">scroll-m-20 text-3xl font-semibold tracking-tight first:mt-0</f:case>' . "\n"
+        . '        <f:case value="h3">scroll-m-20 text-2xl font-semibold tracking-tight</f:case>' . "\n"
+        . '        <f:case value="h4">scroll-m-20 text-xl font-semibold tracking-tight</f:case>' . "\n"
+        . '        <f:case value="lead">text-xl text-muted-foreground</f:case>' . "\n"
+        . '        <f:case value="large">text-lg font-semibold</f:case>' . "\n"
+        . '        <f:case value="small">text-sm font-medium leading-none</f:case>' . "\n"
+        . '        <f:case value="muted">text-sm text-muted-foreground</f:case>' . "\n"
+        . '        <f:case value="blockquote">mt-6 border-l-2 pl-6 italic</f:case>' . "\n"
+        . '        <f:case value="code">relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm font-semibold</f:case>' . "\n"
+        . '        <f:defaultCase>leading-7</f:defaultCase>' . "\n"
+        . '    </f:switch>' . "\n"
+        . '</f:variable>' . "\n\n"
+        . '<f:variable name="combinedClass" value="{variantClass -> f:format.trim()} {class}" />' . "\n\n"
+        . '<f:switch expression="{tag}">' . "\n"
+        . '    <f:case value="h1"><h1 data-slot="typography" data-variant="{variant}" class="{combinedClass -> f:format.trim()}" itemprop="{itemprop}"><f:slot /></h1></f:case>' . "\n"
+        . '    <f:case value="h2"><h2 data-slot="typography" data-variant="{variant}" class="{combinedClass -> f:format.trim()}" itemprop="{itemprop}"><f:slot /></h2></f:case>' . "\n"
+        . '    <f:case value="h3"><h3 data-slot="typography" data-variant="{variant}" class="{combinedClass -> f:format.trim()}" itemprop="{itemprop}"><f:slot /></h3></f:case>' . "\n"
+        . '    <f:case value="h4"><h4 data-slot="typography" data-variant="{variant}" class="{combinedClass -> f:format.trim()}" itemprop="{itemprop}"><f:slot /></h4></f:case>' . "\n"
+        . '    <f:case value="span"><span data-slot="typography" data-variant="{variant}" class="{combinedClass -> f:format.trim()}" itemprop="{itemprop}"><f:slot /></span></f:case>' . "\n"
+        . '    <f:defaultCase><p data-slot="typography" data-variant="{variant}" class="{combinedClass -> f:format.trim()}" itemprop="{itemprop}"><f:slot /></p></f:defaultCase>' . "\n"
+        . '</f:switch>' . "\n";
 }
 
 function renderBadge(array $recipe, string $header): string
@@ -785,7 +895,6 @@ function syncComponentsJson(array $componentsJson, string $style, string $iconLi
         $desiderioRegistry = (string) $componentsJson['registries']['@desiderio'];
     }
     $componentsJson['registries'] = [
-        '@shadcn' => 'https://ui.shadcn.com/r/styles/{style}/{name}.json',
         '@desiderio' => $desiderioRegistry,
     ];
 

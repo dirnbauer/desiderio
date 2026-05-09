@@ -241,6 +241,18 @@ It packages the Desiderio theme token contract and shared runtime include
 assets for other shadcn-capable projects without moving TYPO3 rendering out of
 Fluid.
 
+Fluid primitives are updated from the selected shadcn/create preset with:
+
+```bash
+npm run shadcn:sync-fluid
+```
+
+That command decodes the preset id, updates `components.json` with the matching
+registry style, icon library, and base color, and synchronizes registry-backed
+Fluid primitives from `https://ui.shadcn.com/r/styles/{style}/{name}.json`.
+Local semantic primitives, especially Typography, stay token-driven because
+shadcn Typography is example documentation rather than a registry component.
+
 Changing only `settings.yaml` or Site Settings to an unsupported id will write
 the body attribute, but no visual change will happen because no matching token
 block exists.

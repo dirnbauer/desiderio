@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en" trgLang="de">
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="de">
   <file id="desiderio">
     <unit id="heading">
       <segment state="final">
@@ -273,7 +273,7 @@
     </unit>
     <unit id="icon_emoji">
       <segment state="final">
-        <source>Icon Emoji or Symbol</source>
+        <source>Icon Name</source>
         <target>Icon-Emoji oder Symbol</target>
       </segment>
     </unit>
@@ -873,19 +873,19 @@
     </unit>
     <unit id="solr.noResultsNothingFound">
       <segment state="final">
-        <source>Nothing found for "{query}".</source>
+        <source>Nothing found for &quot;{query}&quot;.</source>
         <target>Nichts gefunden für „{query}“.</target>
       </segment>
     </unit>
     <unit id="solr.noResultsShowingSuggestion">
       <segment state="final">
-        <source>Showing results for "{query}".</source>
+        <source>Showing results for &quot;{query}&quot;.</source>
         <target>Zeige Ergebnisse für „{query}“.</target>
       </segment>
     </unit>
     <unit id="solr.resultsSearchedFor">
       <segment state="final">
-        <source>Searched for "{query}".</source>
+        <source>Searched for &quot;{query}&quot;.</source>
         <target>Gesucht nach „{query}“.</target>
       </segment>
     </unit>

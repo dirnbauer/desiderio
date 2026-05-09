@@ -314,7 +314,8 @@ final class ContentBlockStructureTest extends TestCase
 
     public function testLayoutSectionUsesDeclaredComponentArgumentsOnly(): void
     {
-        $templateFiles = glob(self::CONTENT_BLOCKS_DIR . '/*/templates/frontend.html') ?: [];
+        $templateFiles = glob(self::CONTENT_BLOCKS_DIR . '/*/templates/frontend.html');
+        $templateFiles = $templateFiles === false ? [] : $templateFiles;
         foreach ($templateFiles as $templateFile) {
             $template = (string) file_get_contents($templateFile);
 

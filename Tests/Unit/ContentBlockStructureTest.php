@@ -312,6 +312,20 @@ final class ContentBlockStructureTest extends TestCase
         }
     }
 
+    public function testLayoutSectionUsesDeclaredComponentArgumentsOnly(): void
+    {
+        $templateFiles = glob(self::CONTENT_BLOCKS_DIR . '/*/templates/frontend.html') ?: [];
+        foreach ($templateFiles as $templateFile) {
+            $template = (string) file_get_contents($templateFile);
+
+            self::assertDoesNotMatchRegularExpression(
+                '/<d:layout\\.section\\b(?=[^>]*\\s(?:data|aria)-[a-z0-9_-]+\\s*=)[^>]*>/i',
+                $template,
+                basename(dirname(dirname($templateFile))) . ' passes HTML attributes directly to d:layout.section; use declared component arguments instead'
+            );
+        }
+    }
+
     public function testTypolinkViewHelpersUseAdditionalAttributesForHtmlAttributes(): void
     {
         $templateFiles = glob(self::CONTENT_BLOCKS_DIR . '/*/templates/frontend.html') ?: [];

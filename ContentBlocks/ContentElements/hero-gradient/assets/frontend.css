@@ -7,24 +7,6 @@
     color: var(--foreground);
     padding-block: var(--d-spacing-20);
 }
-.hero-gradient[data-gradient-from="accent"] {
-    --gradient-from: var(--accent);
-}
-.hero-gradient[data-gradient-from="secondary"] {
-    --gradient-from: var(--secondary);
-}
-.hero-gradient[data-gradient-from="muted"] {
-    --gradient-from: var(--muted);
-}
-.hero-gradient[data-gradient-to="primary"] {
-    --gradient-to: var(--primary);
-}
-.hero-gradient[data-gradient-to="secondary"] {
-    --gradient-to: var(--secondary);
-}
-.hero-gradient[data-gradient-to="muted"] {
-    --gradient-to: var(--muted);
-}
 .hero-gradient__content {
     text-align: center;
     max-width: 48rem;

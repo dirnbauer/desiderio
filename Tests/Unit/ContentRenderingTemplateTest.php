@@ -132,9 +132,11 @@ final class ContentRenderingTemplateTest extends TestCase
         self::assertStringContainsString('<f:argument name="files" type="iterable" optional="true"/>', $partial);
         self::assertStringContainsString('<f:argument name="position" type="string" optional="true"/>', $partial);
         self::assertStringContainsString('<f:argument name="maxWidth" type="integer" optional="true" default="1200"/>', $partial);
+        self::assertStringContainsString('condition="{file.uid_local}"', $partial);
+        self::assertStringContainsString('src="{file.uid}"', $partial);
+        self::assertStringContainsString('treatIdAsReference="true"', $partial);
+        self::assertStringContainsString('src="{file.url}"', $partial);
         self::assertStringContainsString('<f:image image="{file}"', $partial);
-        self::assertStringNotContainsString('src="{file.uid}"', $partial);
-        self::assertStringNotContainsString('treatIdAsReference', $partial);
         self::assertStringNotContainsString('name="images"', $partial);
         self::assertStringContainsString('files: record.assets', $textmediaTemplate);
         self::assertStringContainsString('files: record.image', $textpicTemplate);

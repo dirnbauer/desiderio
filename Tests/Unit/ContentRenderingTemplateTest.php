@@ -136,6 +136,7 @@ final class ContentRenderingTemplateTest extends TestCase
         self::assertStringContainsString('src="{file.uid}"', $partial);
         self::assertStringContainsString('treatIdAsReference="true"', $partial);
         self::assertStringContainsString('src="{file.url}"', $partial);
+        self::assertStringContainsString('src="{file.publicUrl}"', $partial);
         self::assertStringContainsString('<f:image image="{file}"', $partial);
         self::assertStringNotContainsString('name="images"', $partial);
         self::assertStringContainsString('files: record.assets', $textmediaTemplate);

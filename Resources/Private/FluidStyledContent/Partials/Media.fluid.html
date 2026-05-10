@@ -22,7 +22,14 @@
                                 <img src="{file.url}" class="ce-fsc-media__image" alt="{file.alternative}"/>
                             </f:then>
                             <f:else>
-                                <f:image image="{file}" class="ce-fsc-media__image" maxWidth="{maxWidth}" alt="{file.alternative}"/>
+                                <f:if condition="{file.publicUrl}">
+                                    <f:then>
+                                        <img src="{file.publicUrl}" class="ce-fsc-media__image" alt="{file.alternative}"/>
+                                    </f:then>
+                                    <f:else>
+                                        <f:image image="{file}" class="ce-fsc-media__image" maxWidth="{maxWidth}" alt="{file.alternative}"/>
+                                    </f:else>
+                                </f:if>
                             </f:else>
                         </f:if>
                     </f:else>

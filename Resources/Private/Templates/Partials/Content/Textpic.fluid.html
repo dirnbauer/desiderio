@@ -27,7 +27,7 @@
         <div class="ce-textmedia__media">
             <f:for each="{files}" as="file">
                 <figure class="ce-textmedia__figure">
-                    <f:image image="{file}" class="ce-textmedia__image" maxWidth="960" alt="{file.alternative}"/>
+                    <f:image src="{file.uid}" treatIdAsReference="1" class="ce-textmedia__image" maxWidth="960" alt="{file.alternative}"/>
                     <f:if condition="{file.description}">
                         <figcaption class="ce-textmedia__caption">{file.description}</figcaption>
                     </f:if>

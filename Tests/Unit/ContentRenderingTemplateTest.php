@@ -118,6 +118,19 @@ final class ContentRenderingTemplateTest extends TestCase
         self::assertStringContainsString('templateRootPath: EXT:desiderio/Resources/Private/FluidStyledContent/Templates/', $settings);
     }
 
+    public function testFluidStyledContentMediaPartialRendersFileReferencesByUid(): void
+    {
+        $partial = (string) file_get_contents(__DIR__ . '/../../Resources/Private/FluidStyledContent/Partials/Media.fluid.html');
+
+        self::assertStringContainsString('<f:argument name="files" type="iterable" optional="true"/>', $partial);
+        self::assertStringContainsString('<f:argument name="position" type="string" optional="true"/>', $partial);
+        self::assertStringContainsString('<f:argument name="maxWidth" type="integer" optional="true" default="1200"/>', $partial);
+        self::assertStringContainsString('src="{file.uid}"', $partial);
+        self::assertStringContainsString('treatIdAsReference="1"', $partial);
+        self::assertStringNotContainsString('image="{file}"', $partial);
+        self::assertStringNotContainsString('name="images"', $partial);
+    }
+
     public function testExtensionIntegrationSiteSetsAreBundledWithBaseSet(): void
     {
         $baseSet = Yaml::parseFile(__DIR__ . '/../../Configuration/Sets/Desiderio/config.yaml');

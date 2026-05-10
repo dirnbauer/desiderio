@@ -4,13 +4,15 @@
 >
 
 <f:argument name="record" type="object" optional="true"/>
-<f:argument name="images" type="iterable" optional="true"/>
+<f:argument name="files" type="iterable" optional="true"/>
+<f:argument name="position" type="string" optional="true"/>
+<f:argument name="maxWidth" type="integer" optional="true" default="1200"/>
 
 <f:if condition="{files}">
     <div class="ce-fsc-media ce-fsc-media--{position}">
         <f:for each="{files}" as="file">
             <figure class="ce-fsc-media__figure">
-                <f:image image="{file}" class="ce-fsc-media__image" maxWidth="{maxWidth}" alt="{file.alternative}"/>
+                <f:image src="{file.uid}" treatIdAsReference="1" class="ce-fsc-media__image" maxWidth="{maxWidth}" alt="{file.alternative}"/>
                 <f:if condition="{file.description}">
                     <figcaption class="ce-fsc-media__caption">{file.description}</figcaption>
                 </f:if>

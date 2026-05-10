@@ -176,7 +176,7 @@ final class ContentRenderingTemplateTest extends TestCase
                 }
 
                 foreach ($matches[0] as $match) {
-                    $line = substr_count(substr($template, 0, (int) $match[1]), "\n") + 1;
+                    $line = substr_count(substr($template, 0, $match[1]), "\n") + 1;
                     $invalidAttributes[] = str_replace(__DIR__ . '/../../', '', $path) . ':' . $line;
                 }
             }

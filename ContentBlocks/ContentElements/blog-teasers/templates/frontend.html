@@ -19,7 +19,7 @@
                 <d:molecule.card class="blog-teasers__item">
                     <f:if condition="{post.image.0}">
                         <div class="blog-teasers__image-wrapper">
-                            <f:image image="{post.image.0}" alt="{post -> f:render.text(field: 'title')}" maxWidth="960" class="blog-teasers__image"/>
+                            <f:image image="{post.image.0}" alt="{post.title}" maxWidth="960" class="blog-teasers__image"/>
                         </div>
                     </f:if>
                     <div class="blog-teasers__body">

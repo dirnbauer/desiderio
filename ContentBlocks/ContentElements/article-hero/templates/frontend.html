@@ -31,7 +31,7 @@
 
         <f:if condition="{data.cover_image.0}">
             <div class="article-hero__media">
-                <f:image image="{data.cover_image.0}" alt="{data -> f:render.text(field: 'header')}" maxWidth="1200" class="article-hero__image"/>
+                <f:image image="{data.cover_image.0}" alt="{data.header}" maxWidth="1200" class="article-hero__image"/>
             </div>
         </f:if>
     </d:layout.container>

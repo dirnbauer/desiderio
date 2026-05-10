@@ -14,7 +14,7 @@
         <div class="product-gallery__main">
             <f:for each="{data.images}" as="fileReference" iteration="iter">
                 <f:if condition="{iter.isFirst}">
-                    <img src="{f:uri.image(image: fileReference, maxWidth: 800)}" alt="{data -> f:render.text(field: 'header')}" class="product-gallery__main-image"/>
+                    <img src="{f:uri.image(image: fileReference, maxWidth: 800)}" alt="{data.header}" class="product-gallery__main-image"/>
                 </f:if>
             </f:for>
         </div>

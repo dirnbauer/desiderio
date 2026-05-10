@@ -27,7 +27,7 @@
                         <f:if condition="{item.image}">
                             <div class="leaderboard__avatar">
                                 <f:for each="{item.image}" as="file">
-                                    <f:image image="{file}" alt="{item -> f:render.text(field: 'name')}" width="40" height="40"/>
+                                    <f:image image="{file}" alt="{item.name}" width="40" height="40"/>
                                 </f:for>
                             </div>
                         </f:if>

@@ -12,7 +12,7 @@
                 <f:if condition="{data.image}">
                     <div class="team-member__image-wrapper">
                         <f:for each="{data.image}" as="fileReference">
-                            <img src="{f:uri.image(image: fileReference, maxWidth: 480)}" alt="{data -> f:render.text(field: 'header')}" class="team-member__image"/>
+                            <img src="{f:uri.image(image: fileReference, maxWidth: 480)}" alt="{data.header}" class="team-member__image"/>
                         </f:for>
                     </div>
                 </f:if>

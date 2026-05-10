@@ -19,7 +19,7 @@
                 <div class="investor-grid__item">
                     <f:if condition="{inv.logo}">
                         <f:for each="{inv.logo}" as="fileReference">
-                            <img src="{f:uri.image(image: fileReference, maxWidth: 160)}" alt="{inv -> f:render.text(field: 'name')}" class="investor-grid__logo"/>
+                            <img src="{f:uri.image(image: fileReference, maxWidth: 160)}" alt="{inv.name}" class="investor-grid__logo"/>
                         </f:for>
                     </f:if>
                     <h3 class="investor-grid__name">{inv -> f:render.text(field: 'name')}</h3>

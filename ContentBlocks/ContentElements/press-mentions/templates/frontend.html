@@ -24,7 +24,7 @@
                     <f:if condition="{mention.logo}">
                         <div class="press-mentions__logo">
                             <f:for each="{mention.logo}" as="fileReference">
-                                <img src="{f:uri.image(image: fileReference, maxWidth: 160)}" alt="{mention -> f:render.text(field: 'publication')}" class="press-mentions__logo-img"/>
+                                <img src="{f:uri.image(image: fileReference, maxWidth: 160)}" alt="{mention.publication}" class="press-mentions__logo-img"/>
                             </f:for>
                         </div>
                     </f:if>

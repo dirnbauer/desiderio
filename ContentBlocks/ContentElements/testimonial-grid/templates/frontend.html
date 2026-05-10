@@ -25,7 +25,7 @@
                     <div class="testimonial-grid__author">
                         <f:if condition="{item.author_image}">
                             <f:for each="{item.author_image}" as="fileReference">
-                                <img src="{f:uri.image(image: fileReference, width: 48, height: 48)}" alt="{item -> f:render.text(field: 'author_name')}" class="testimonial-grid__avatar"/>
+                                <img src="{f:uri.image(image: fileReference, width: 48, height: 48)}" alt="{item.author_name}" class="testimonial-grid__avatar"/>
                             </f:for>
                         </f:if>
                         <div>

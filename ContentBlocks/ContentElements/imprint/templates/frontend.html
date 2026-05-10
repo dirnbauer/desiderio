@@ -23,10 +23,10 @@
                     <div class="imprint__block">
                         <h3 class="imprint__label">Contact</h3>
                         <f:if condition="{data.contact_email}">
-                            <p class="imprint__value"><a href="mailto:{data -> f:render.text(field: 'contact_email')}">{data -> f:render.text(field: 'contact_email')}</a></p>
+                            <p class="imprint__value"><a href="mailto:{data.contact_email}">{data -> f:render.text(field: 'contact_email')}</a></p>
                         </f:if>
                         <f:if condition="{data.contact_phone}">
-                            <p class="imprint__value"><a href="tel:{data -> f:render.text(field: 'contact_phone')}">{data -> f:render.text(field: 'contact_phone')}</a></p>
+                            <p class="imprint__value"><a href="tel:{data.contact_phone}">{data -> f:render.text(field: 'contact_phone')}</a></p>
                         </f:if>
                     </div>
                 </f:if>

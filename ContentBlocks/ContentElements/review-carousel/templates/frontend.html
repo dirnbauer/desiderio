@@ -38,7 +38,7 @@
                     <div class="review-carousel__reviewer">
                         <f:if condition="{review.reviewer_image}">
                             <f:for each="{review.reviewer_image}" as="fileReference">
-                                <img src="{f:uri.image(image: fileReference, width: 40, height: 40)}" alt="{review -> f:render.text(field: 'reviewer_name')}" class="review-carousel__avatar"/>
+                                <img src="{f:uri.image(image: fileReference, width: 40, height: 40)}" alt="{review.reviewer_name}" class="review-carousel__avatar"/>
                             </f:for>
                         </f:if>
                         <div>

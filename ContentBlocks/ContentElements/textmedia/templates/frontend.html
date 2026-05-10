@@ -10,7 +10,7 @@
         <f:if condition="{data.shadcn_layout} == 'media-above'">
             <f:if condition="{data.media.0}">
                 <div class="textmedia__media-wrapper">
-                    <f:image image="{data.media.0}" alt="{data -> f:render.text(field: 'header')}" maxWidth="1200"
+                    <f:image image="{data.media.0}" alt="{data.header}" maxWidth="1200"
                              class="textmedia__media {f:if(condition: data.media_rounded, then: 'textmedia__media--rounded')}"/>
                 </div>
             </f:if>
@@ -21,7 +21,7 @@
                 <f:if condition="{data.shadcn_layout} == 'media-left'">
                     <f:if condition="{data.media.0}">
                         <div class="textmedia__media-wrapper">
-                            <f:image image="{data.media.0}" alt="{data -> f:render.text(field: 'header')}" maxWidth="640"
+                            <f:image image="{data.media.0}" alt="{data.header}" maxWidth="640"
                                      class="textmedia__media {f:if(condition: data.media_rounded, then: 'textmedia__media--rounded')}"/>
                         </div>
                     </f:if>
@@ -43,7 +43,7 @@
                 <f:if condition="{data.shadcn_layout} == 'media-right'">
                     <f:if condition="{data.media.0}">
                         <div class="textmedia__media-wrapper">
-                            <f:image image="{data.media.0}" alt="{data -> f:render.text(field: 'header')}" maxWidth="640"
+                            <f:image image="{data.media.0}" alt="{data.header}" maxWidth="640"
                                      class="textmedia__media {f:if(condition: data.media_rounded, then: 'textmedia__media--rounded')}"/>
                         </div>
                     </f:if>
@@ -69,7 +69,7 @@
         <f:if condition="{data.shadcn_layout} == 'media-below'">
             <f:if condition="{data.media.0}">
                 <div class="textmedia__media-wrapper">
-                    <f:image image="{data.media.0}" alt="{data -> f:render.text(field: 'header')}" maxWidth="1200"
+                    <f:image image="{data.media.0}" alt="{data.header}" maxWidth="1200"
                              class="textmedia__media {f:if(condition: data.media_rounded, then: 'textmedia__media--rounded')}"/>
                 </div>
             </f:if>

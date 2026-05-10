@@ -12,28 +12,7 @@
     <div class="ce-fsc-media ce-fsc-media--{position}">
         <f:for each="{files}" as="file">
             <figure class="ce-fsc-media__figure">
-                <f:if condition="{file.uid_local}">
-                    <f:then>
-                        <f:image src="{file.uid}" treatIdAsReference="true" class="ce-fsc-media__image" maxWidth="{maxWidth}" alt="{file.alternative}"/>
-                    </f:then>
-                    <f:else>
-                        <f:if condition="{file.url}">
-                            <f:then>
-                                <img src="{file.url}" class="ce-fsc-media__image" alt="{file.alternative}"/>
-                            </f:then>
-                            <f:else>
-                                <f:if condition="{file.publicUrl}">
-                                    <f:then>
-                                        <img src="{file.publicUrl}" class="ce-fsc-media__image" alt="{file.alternative}"/>
-                                    </f:then>
-                                    <f:else>
-                                        <f:image image="{file}" class="ce-fsc-media__image" maxWidth="{maxWidth}" alt="{file.alternative}"/>
-                                    </f:else>
-                                </f:if>
-                            </f:else>
-                        </f:if>
-                    </f:else>
-                </f:if>
+                <f:image image="{file}" class="ce-fsc-media__image" maxWidth="{maxWidth}" alt="{file.alternative}"/>
                 <f:if condition="{file.description}">
                     <figcaption class="ce-fsc-media__caption">{file.description}</figcaption>
                 </f:if>

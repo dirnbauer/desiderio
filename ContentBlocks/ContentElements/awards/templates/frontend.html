@@ -27,7 +27,7 @@
                     <f:if condition="{award.image}">
                         <div class="awards__badge">
                             <f:for each="{award.image}" as="fileReference">
-                                <img src="{f:uri.image(image: fileReference, maxWidth: 120)}" alt="{award -> f:render.text(field: 'title')}" class="awards__badge-img"/>
+                                <img src="{f:uri.image(image: fileReference, maxWidth: 120)}" alt="{award.title}" class="awards__badge-img"/>
                             </f:for>
                         </div>
                     </f:if>

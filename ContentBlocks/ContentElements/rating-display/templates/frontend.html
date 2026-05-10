@@ -24,7 +24,7 @@
                     <f:if condition="{rating.logo}">
                         <div class="rating-display__logo">
                             <f:for each="{rating.logo}" as="fileReference">
-                                <img src="{f:uri.image(image: fileReference, maxWidth: 120)}" alt="{rating -> f:render.text(field: 'platform')}" class="rating-display__logo-img"/>
+                                <img src="{f:uri.image(image: fileReference, maxWidth: 120)}" alt="{rating.platform}" class="rating-display__logo-img"/>
                             </f:for>
                         </div>
                     </f:if>

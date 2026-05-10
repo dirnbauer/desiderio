@@ -28,7 +28,7 @@
                     </div>
                     <f:if condition="{item.image.0}">
                         <div class="feature-alternating__media">
-                            <f:image image="{item.image.0}" alt="{item -> f:render.text(field: 'title')}" maxWidth="640" class="feature-alternating__image"/>
+                            <f:image image="{item.image.0}" alt="{item.title}" maxWidth="640" class="feature-alternating__image"/>
                         </div>
                     </f:if>
                 </div>

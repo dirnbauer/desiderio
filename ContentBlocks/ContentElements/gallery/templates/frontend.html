@@ -21,13 +21,13 @@
                         <f:then>
                             <f:link.typolink parameter="{item.link}" class="gallery__media-link">
                                 <f:for each="{item.image}" as="fileReference">
-                                    <img src="{f:uri.image(image: fileReference, maxWidth: 960)}" alt="{item -> f:render.text(field: 'title')}" class="gallery__image"/>
+                                    <img src="{f:uri.image(image: fileReference, maxWidth: 960)}" alt="{item.title}" class="gallery__image"/>
                                 </f:for>
                             </f:link.typolink>
                         </f:then>
                         <f:else>
                             <f:for each="{item.image}" as="fileReference">
-                                <img src="{f:uri.image(image: fileReference, maxWidth: 960)}" alt="{item -> f:render.text(field: 'title')}" class="gallery__image"/>
+                                <img src="{f:uri.image(image: fileReference, maxWidth: 960)}" alt="{item.title}" class="gallery__image"/>
                             </f:for>
                         </f:else>
                     </f:if>

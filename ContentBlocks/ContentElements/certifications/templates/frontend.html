@@ -27,7 +27,7 @@
                     <f:if condition="{cert.badge_image}">
                         <div class="certifications__badge">
                             <f:for each="{cert.badge_image}" as="fileReference">
-                                <img src="{f:uri.image(image: fileReference, maxWidth: 100)}" alt="{cert -> f:render.text(field: 'name')}" class="certifications__badge-img"/>
+                                <img src="{f:uri.image(image: fileReference, maxWidth: 100)}" alt="{cert.name}" class="certifications__badge-img"/>
                             </f:for>
                         </div>
                     </f:if>

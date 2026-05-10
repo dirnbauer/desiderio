@@ -25,7 +25,7 @@
                     <f:if condition="{item.image}">
                         <div class="infographic__icon">
                             <f:for each="{item.image}" as="file">
-                                <f:image image="{file}" alt="{item -> f:render.text(field: 'title')}" width="64"/>
+                                <f:image image="{file}" alt="{item.title}" width="64"/>
                             </f:for>
                         </div>
                     </f:if>

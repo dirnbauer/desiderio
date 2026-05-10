@@ -27,7 +27,7 @@
                                 <f:if condition="{item.slide_image}">
                                     <div class="card__image-wrapper">
                                         <f:for each="{item.slide_image}" as="image">
-                                            <f:image image="{image}" alt="{item -> f:render.text(field: 'slide_title')}" maxWidth="480" class="card__image"/>
+                                            <f:image image="{image}" alt="{item.slide_title}" maxWidth="480" class="card__image"/>
                                         </f:for>
                                     </div>
                                 </f:if>
@@ -51,7 +51,7 @@
                                 <f:if condition="{item.slide_image}">
                                     <div class="content-carousel__image-wrapper">
                                         <f:for each="{item.slide_image}" as="image">
-                                            <f:image image="{image}" alt="{item -> f:render.text(field: 'slide_title')}" maxWidth="960" class="content-carousel__image"/>
+                                            <f:image image="{image}" alt="{item.slide_title}" maxWidth="960" class="content-carousel__image"/>
                                         </f:for>
                                     </div>
                                 </f:if>

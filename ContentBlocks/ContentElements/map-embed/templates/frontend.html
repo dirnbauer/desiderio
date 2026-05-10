@@ -16,7 +16,7 @@
         <f:if condition="{data.embed_url}">
             <f:variable name="mapEmbedHeight"><f:format.number decimals="0" thousandsSeparator="">{data.height -> f:or(alternative: 400)}</f:format.number></f:variable>
             <div class="map-embed__frame" style="height: {mapEmbedHeight}px">
-                <iframe src="{data -> f:render.text(field: 'embed_url')}" class="map-embed__iframe" allowfullscreen="allowfullscreen" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe src="{data.embed_url}" class="map-embed__iframe" allowfullscreen="allowfullscreen" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </f:if>
     </d:layout.container>

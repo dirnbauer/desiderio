@@ -18,7 +18,7 @@
             <f:if condition="{data.image}">
                 <div class="case-study-featured__media">
                     <f:for each="{data.image}" as="fileReference">
-                        <img src="{f:uri.image(image: fileReference, maxWidth: 800)}" alt="{data -> f:render.text(field: 'client_name')}" class="case-study-featured__image"/>
+                        <img src="{f:uri.image(image: fileReference, maxWidth: 800)}" alt="{data.client_name}" class="case-study-featured__image"/>
                     </f:for>
                 </div>
             </f:if>
@@ -27,7 +27,7 @@
                 <f:if condition="{data.client_logo}">
                     <div class="case-study-featured__logo">
                         <f:for each="{data.client_logo}" as="logo">
-                            <img src="{f:uri.image(image: logo, maxWidth: 180)}" alt="{data -> f:render.text(field: 'client_name')}" class="case-study-featured__logo-img"/>
+                            <img src="{f:uri.image(image: logo, maxWidth: 180)}" alt="{data.client_name}" class="case-study-featured__logo-img"/>
                         </f:for>
                     </div>
                 </f:if>

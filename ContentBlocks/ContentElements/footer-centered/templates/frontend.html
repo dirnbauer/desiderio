@@ -11,7 +11,7 @@
             <f:if condition="{data.logo}">
                 <div class="footer-centered__logo">
                     <f:for each="{data.logo}" as="file">
-                        <f:image image="{file}" alt="{data -> f:render.text(field: 'brand')}" height="32"/>
+                        <f:image image="{file}" alt="{data.brand}" height="32"/>
                     </f:for>
                 </div>
             </f:if>

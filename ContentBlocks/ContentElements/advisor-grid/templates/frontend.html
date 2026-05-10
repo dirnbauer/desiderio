@@ -19,7 +19,7 @@
                 <article class="advisor-grid__card">
                     <f:if condition="{advisor.image}">
                         <f:for each="{advisor.image}" as="fileReference">
-                            <img src="{f:uri.image(image: fileReference, width: 80, height: 80)}" alt="{advisor -> f:render.text(field: 'name')}" class="advisor-grid__avatar"/>
+                            <img src="{f:uri.image(image: fileReference, width: 80, height: 80)}" alt="{advisor.name}" class="advisor-grid__avatar"/>
                         </f:for>
                     </f:if>
                     <div>

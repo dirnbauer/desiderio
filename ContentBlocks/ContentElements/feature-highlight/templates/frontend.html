@@ -22,7 +22,7 @@
             </div>
             <f:if condition="{data.image.0}">
                 <div class="feature-highlight__media">
-                    <f:image image="{data.image.0}" alt="{data -> f:render.text(field: 'header')}" maxWidth="640" class="feature-highlight__image"/>
+                    <f:image image="{data.image.0}" alt="{data.header}" maxWidth="640" class="feature-highlight__image"/>
                 </div>
             </f:if>
         </div>

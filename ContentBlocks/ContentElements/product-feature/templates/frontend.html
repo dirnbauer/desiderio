@@ -11,7 +11,7 @@
             <f:if condition="{data.image}">
                 <div class="product-feature__media">
                     <f:for each="{data.image}" as="fileReference">
-                        <img src="{f:uri.image(image: fileReference, maxWidth: 640)}" alt="{data -> f:render.text(field: 'header')}" class="product-feature__image"/>
+                        <img src="{f:uri.image(image: fileReference, maxWidth: 640)}" alt="{data.header}" class="product-feature__image"/>
                     </f:for>
                 </div>
             </f:if>

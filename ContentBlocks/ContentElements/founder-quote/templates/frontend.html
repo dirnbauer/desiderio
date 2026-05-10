@@ -17,7 +17,7 @@
             <f:if condition="{data.image}">
                 <div class="founder-quote__image-wrapper">
                     <f:for each="{data.image}" as="fileReference">
-                        <img src="{f:uri.image(image: fileReference, width: 120, height: 120)}" alt="{data -> f:render.text(field: 'name')}" class="founder-quote__image"/>
+                        <img src="{f:uri.image(image: fileReference, width: 120, height: 120)}" alt="{data.name}" class="founder-quote__image"/>
                     </f:for>
                 </div>
             </f:if>

@@ -11,7 +11,7 @@
             <f:if condition="{data.avatar}">
                 <div class="header-profile__avatar">
                     <f:for each="{data.avatar}" as="image">
-                        <f:image image="{image}" width="96" height="96" class="header-profile__avatar-img" alt="{data -> f:render.text(field: 'header')}"/>
+                        <f:image image="{image}" width="96" height="96" class="header-profile__avatar-img" alt="{data.header}"/>
                     </f:for>
                 </div>
             </f:if>

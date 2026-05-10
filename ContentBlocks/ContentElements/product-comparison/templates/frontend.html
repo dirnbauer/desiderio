@@ -27,7 +27,7 @@
                     <f:if condition="{product.image}">
                         <div class="product-comparison__media">
                             <f:for each="{product.image}" as="fileReference">
-                                <img src="{f:uri.image(image: fileReference, maxWidth: 320)}" alt="{product -> f:render.text(field: 'name')}" class="product-comparison__image"/>
+                                <img src="{f:uri.image(image: fileReference, maxWidth: 320)}" alt="{product.name}" class="product-comparison__image"/>
                             </f:for>
                         </div>
                     </f:if>

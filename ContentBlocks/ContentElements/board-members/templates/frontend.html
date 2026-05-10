@@ -20,7 +20,7 @@
                     <f:if condition="{member.image}">
                         <div class="board-members__image-wrapper">
                             <f:for each="{member.image}" as="fileReference">
-                                <img src="{f:uri.image(image: fileReference, maxWidth: 400)}" alt="{member -> f:render.text(field: 'name')}" class="board-members__image"/>
+                                <img src="{f:uri.image(image: fileReference, maxWidth: 400)}" alt="{member.name}" class="board-members__image"/>
                             </f:for>
                         </div>
                     </f:if>

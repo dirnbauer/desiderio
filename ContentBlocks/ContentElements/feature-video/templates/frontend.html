@@ -19,7 +19,7 @@
             <f:if condition="{data.video_url}">
                 <f:then>
                     <div class="feature-video__embed">
-                        <iframe src="{data -> f:render.text(field: 'video_url')}" frameborder="0" allowfullscreen loading="lazy"
+                        <iframe src="{data.video_url}" frameborder="0" allowfullscreen loading="lazy"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
                     </div>
                 </f:then>

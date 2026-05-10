@@ -73,7 +73,10 @@ final class ContentRenderingTemplateTest extends TestCase
         self::assertStringContainsString('tt_content.bullets =< lib.desiderioContentWithBullets', $typoScript);
         self::assertStringContainsString('tt_content.table =< lib.desiderioContentWithTable', $typoScript);
         self::assertStringContainsString('lib.desiderioShortcutRecords = RECORDS', $typoScript);
-        self::assertStringNotContainsString('dataProcessing.20 = files', $typoScript);
+        self::assertStringContainsString('dataProcessing.10 = files', $typoScript);
+        self::assertStringContainsString('dataProcessing.10.references.fieldName = assets', $typoScript);
+        self::assertStringContainsString('dataProcessing.10.references.fieldName = image', $typoScript);
+        self::assertStringContainsString('references.fieldName = media', $typoScript);
         self::assertStringNotContainsString('lib.desiderioContentWithImages', $typoScript);
         self::assertStringNotContainsString('lib.desiderioContentWithFiles', $typoScript);
         self::assertStringContainsString('dataProcessing.20 = split', $typoScript);
@@ -121,7 +124,7 @@ final class ContentRenderingTemplateTest extends TestCase
         self::assertStringContainsString('templateRootPath: EXT:desiderio/Resources/Private/FluidStyledContent/Templates/', $settings);
     }
 
-    public function testFluidStyledContentMediaTemplatesUseRecordTransformationFileFields(): void
+    public function testFluidStyledContentMediaTemplatesUseFilesProcessorFileObjects(): void
     {
         $partial = (string) file_get_contents(__DIR__ . '/../../Resources/Private/FluidStyledContent/Partials/Media.fluid.html');
         $textmediaTemplate = (string) file_get_contents(__DIR__ . '/../../Resources/Private/FluidStyledContent/Templates/Textmedia.fluid.html');
@@ -132,18 +135,54 @@ final class ContentRenderingTemplateTest extends TestCase
         self::assertStringContainsString('<f:argument name="files" type="iterable" optional="true"/>', $partial);
         self::assertStringContainsString('<f:argument name="position" type="string" optional="true"/>', $partial);
         self::assertStringContainsString('<f:argument name="maxWidth" type="integer" optional="true" default="1200"/>', $partial);
-        self::assertStringContainsString('condition="{file.uid_local}"', $partial);
-        self::assertStringContainsString('src="{file.uid}"', $partial);
-        self::assertStringContainsString('treatIdAsReference="true"', $partial);
-        self::assertStringContainsString('src="{file.url}"', $partial);
-        self::assertStringContainsString('src="{file.publicUrl}"', $partial);
         self::assertStringContainsString('<f:image image="{file}"', $partial);
+        self::assertStringNotContainsString('<img ', $partial);
+        self::assertStringNotContainsString('src="{file.', $partial);
+        self::assertStringNotContainsString('treatIdAsReference', $partial);
         self::assertStringNotContainsString('name="images"', $partial);
-        self::assertStringContainsString('files: record.assets', $textmediaTemplate);
-        self::assertStringContainsString('files: record.image', $textpicTemplate);
-        self::assertStringContainsString('files: record.image', $imageTemplate);
-        self::assertStringContainsString('files: record.media', $uploadsTemplate);
-        self::assertStringNotContainsString('files: files', $textmediaTemplate . $textpicTemplate . $imageTemplate . $uploadsTemplate);
+        self::assertStringContainsString('files: files', $textmediaTemplate);
+        self::assertStringContainsString('files: files', $textpicTemplate);
+        self::assertStringContainsString('files: files', $imageTemplate);
+        self::assertStringContainsString('files: files', $uploadsTemplate);
+        self::assertStringNotContainsString('files: record.', $textmediaTemplate . $textpicTemplate . $imageTemplate . $uploadsTemplate);
+    }
+
+    public function testEditableTextViewHelperIsNotRenderedInsideHtmlAttributes(): void
+    {
+        $templateRoots = [
+            'ContentBlocks',
+            'Resources/Private',
+        ];
+        $invalidAttributes = [];
+
+        foreach ($templateRoots as $templateRoot) {
+            $directory = realpath(__DIR__ . '/../../' . $templateRoot);
+            self::assertIsString($directory);
+
+            $files = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($directory));
+            foreach ($files as $file) {
+                if (!$file instanceof \SplFileInfo || !$file->isFile()) {
+                    continue;
+                }
+
+                $path = $file->getPathname();
+                if (!str_ends_with($path, '.html') && !str_ends_with($path, '.fluid.html')) {
+                    continue;
+                }
+
+                $template = (string) file_get_contents($path);
+                if (preg_match_all('/(?:alt|src|href|title|aria-label)="[^"\n]*\{[^"\n]*->\s*f:render\.text\(/', $template, $matches, PREG_OFFSET_CAPTURE) === false) {
+                    continue;
+                }
+
+                foreach ($matches[0] as $match) {
+                    $line = substr_count(substr($template, 0, (int) $match[1]), "\n") + 1;
+                    $invalidAttributes[] = str_replace(__DIR__ . '/../../', '', $path) . ':' . $line;
+                }
+            }
+        }
+
+        self::assertSame([], $invalidAttributes);
     }
 
     public function testExtensionIntegrationSiteSetsAreBundledWithBaseSet(): void

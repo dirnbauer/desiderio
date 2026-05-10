@@ -19,7 +19,7 @@
                                 <f:link.typolink parameter="{item.link}" class="compliance-badges__link" target="_blank">
                                     <f:if condition="{item.image}">
                                         <f:for each="{item.image}" as="file">
-                                            <f:image image="{file}" alt="{item -> f:render.text(field: 'label')}" height="48" class="compliance-badges__image"/>
+                                            <f:image image="{file}" alt="{item.label}" height="48" class="compliance-badges__image"/>
                                         </f:for>
                                     </f:if>
                                     <span class="compliance-badges__label">{item -> f:render.text(field: 'label')}</span>
@@ -28,7 +28,7 @@
                             <f:else>
                                 <f:if condition="{item.image}">
                                     <f:for each="{item.image}" as="file">
-                                        <f:image image="{file}" alt="{item -> f:render.text(field: 'label')}" height="48" class="compliance-badges__image"/>
+                                        <f:image image="{file}" alt="{item.label}" height="48" class="compliance-badges__image"/>
                                     </f:for>
                                 </f:if>
                                 <span class="compliance-badges__label">{item -> f:render.text(field: 'label')}</span>

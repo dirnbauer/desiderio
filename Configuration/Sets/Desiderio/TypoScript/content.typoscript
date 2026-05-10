@@ -101,9 +101,33 @@ tt_content.stdWrap.wrapContentElementsWithVeWrapper = 1
 tt_content.header =< lib.contentElement
 tt_content.text =< lib.contentElement
 tt_content.textpic =< lib.contentElement
+tt_content.textpic {
+  dataProcessing.10 = files
+  dataProcessing.10.references.fieldName = image
+}
+
 tt_content.textmedia =< lib.contentElement
+tt_content.textmedia {
+  dataProcessing.10 = files
+  dataProcessing.10.references.fieldName = assets
+}
+
 tt_content.image =< lib.contentElement
+tt_content.image {
+  dataProcessing.10 = files
+  dataProcessing.10.references.fieldName = image
+}
+
 tt_content.uploads =< lib.contentElement
+tt_content.uploads {
+  dataProcessing.10 = files
+  dataProcessing.10 {
+    references.fieldName = media
+    collections.field = file_collections
+    sorting.field = filelink_sorting
+    sorting.direction.field = filelink_sorting_direction
+  }
+}
 tt_content.bullets =< lib.desiderioContentWithBullets
 tt_content.table =< lib.desiderioContentWithTable
 tt_content.div =< lib.contentElement

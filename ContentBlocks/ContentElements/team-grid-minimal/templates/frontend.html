@@ -19,7 +19,7 @@
                 <article class="team-grid-minimal__member">
                     <f:if condition="{member.image}">
                         <f:for each="{member.image}" as="fileReference">
-                            <img src="{f:uri.image(image: fileReference, width: 200, height: 200)}" alt="{member -> f:render.text(field: 'name')}" class="team-grid-minimal__image"/>
+                            <img src="{f:uri.image(image: fileReference, width: 200, height: 200)}" alt="{member.name}" class="team-grid-minimal__image"/>
                         </f:for>
                     </f:if>
                     <h3 class="team-grid-minimal__name">{member -> f:render.text(field: 'name')}</h3>

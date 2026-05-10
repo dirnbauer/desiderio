@@ -21,7 +21,7 @@
                     <f:if condition="{item.image}">
                         <div class="company-culture__image-wrapper">
                             <f:for each="{item.image}" as="fileReference">
-                                <img src="{f:uri.image(image: fileReference, maxWidth: 640)}" alt="{item -> f:render.text(field: 'title')}" class="company-culture__image"/>
+                                <img src="{f:uri.image(image: fileReference, maxWidth: 640)}" alt="{item.title}" class="company-culture__image"/>
                             </f:for>
                         </div>
                     </f:if>

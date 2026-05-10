@@ -14,7 +14,7 @@
                         <span class="product-card__badge">{data -> f:render.text(field: 'badge')}</span>
                     </f:if>
                     <f:for each="{data.image}" as="fileReference">
-                        <img src="{f:uri.image(image: fileReference, maxWidth: 480)}" alt="{data -> f:render.text(field: 'header')}" class="product-card__image"/>
+                        <img src="{f:uri.image(image: fileReference, maxWidth: 480)}" alt="{data.header}" class="product-card__image"/>
                     </f:for>
                 </div>
             </f:if>

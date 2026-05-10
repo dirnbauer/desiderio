@@ -22,7 +22,7 @@
                             <f:link.typolink parameter="{partner.link}" class="partner-grid__link">
                                 <f:if condition="{partner.logo}">
                                     <f:for each="{partner.logo}" as="fileReference">
-                                        <img src="{f:uri.image(image: fileReference, maxWidth: 200)}" alt="{partner -> f:render.text(field: 'name')}" class="partner-grid__logo"/>
+                                        <img src="{f:uri.image(image: fileReference, maxWidth: 200)}" alt="{partner.name}" class="partner-grid__logo"/>
                                     </f:for>
                                 </f:if>
                                 <span class="partner-grid__name">{partner -> f:render.text(field: 'name')}</span>
@@ -31,7 +31,7 @@
                         <f:else>
                             <f:if condition="{partner.logo}">
                                 <f:for each="{partner.logo}" as="fileReference">
-                                    <img src="{f:uri.image(image: fileReference, maxWidth: 200)}" alt="{partner -> f:render.text(field: 'name')}" class="partner-grid__logo"/>
+                                    <img src="{f:uri.image(image: fileReference, maxWidth: 200)}" alt="{partner.name}" class="partner-grid__logo"/>
                                 </f:for>
                             </f:if>
                             <span class="partner-grid__name">{partner -> f:render.text(field: 'name')}</span>

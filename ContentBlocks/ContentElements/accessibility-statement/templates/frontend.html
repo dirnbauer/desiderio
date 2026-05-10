@@ -22,7 +22,7 @@
             </div>
             <f:if condition="{data.contact_email}">
                 <div class="a11y-statement__contact">
-                    <p>Report accessibility issues: <a href="mailto:{data -> f:render.text(field: 'contact_email')}">{data -> f:render.text(field: 'contact_email')}</a></p>
+                    <p>Report accessibility issues: <a href="mailto:{data.contact_email}">{data -> f:render.text(field: 'contact_email')}</a></p>
                 </div>
             </f:if>
         </div>

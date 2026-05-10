@@ -34,7 +34,7 @@
                     </div>
                     <f:if condition="{item.image.0}">
                         <div class="feature-tabs__media">
-                            <f:image image="{item.image.0}" alt="{item -> f:render.text(field: 'title')}" maxWidth="800" class="feature-tabs__image"/>
+                            <f:image image="{item.image.0}" alt="{item.title}" maxWidth="800" class="feature-tabs__image"/>
                         </div>
                     </f:if>
                 </div>

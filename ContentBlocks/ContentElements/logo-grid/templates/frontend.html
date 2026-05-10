@@ -23,9 +23,9 @@
                 <div class="logo-grid__item">
                     <f:if condition="{logo.link.url}">
                         <f:then>
-                            <f:link.typolink parameter="{logo.link}" class="logo-grid__link" title="{logo -> f:render.text(field: 'name')}">
+                            <f:link.typolink parameter="{logo.link}" class="logo-grid__link" title="{logo.name}">
                                 <f:for each="{logo.image}" as="fileReference">
-                                    <img src="{f:uri.image(image: fileReference, maxWidth: 200)}" alt="{logo -> f:render.text(field: 'name')}" class="logo-grid__image"/>
+                                    <img src="{f:uri.image(image: fileReference, maxWidth: 200)}" alt="{logo.name}" class="logo-grid__image"/>
                                 </f:for>
                                 <f:if condition="{data.show_names}">
                                     <span class="logo-grid__name">{logo -> f:render.text(field: 'name')}</span>
@@ -35,7 +35,7 @@
                         <f:else>
                             <div class="logo-grid__link">
                                 <f:for each="{logo.image}" as="fileReference">
-                                    <img src="{f:uri.image(image: fileReference, maxWidth: 200)}" alt="{logo -> f:render.text(field: 'name')}" class="logo-grid__image"/>
+                                    <img src="{f:uri.image(image: fileReference, maxWidth: 200)}" alt="{logo.name}" class="logo-grid__image"/>
                                 </f:for>
                                 <f:if condition="{data.show_names}">
                                     <span class="logo-grid__name">{logo -> f:render.text(field: 'name')}</span>

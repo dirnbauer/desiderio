@@ -26,7 +26,7 @@
                                     <f:then>
                                         <f:for each="{member.image}" as="fileReference">
                                             <d:atom.avatar size="lg">
-                                                <img src="{f:uri.image(image: fileReference, maxWidth: 120, maxHeight: 120, cropVariant: 'default')}" alt="{member -> f:render.text(field: 'name')}" class="avatar__image"/>
+                                                <img src="{f:uri.image(image: fileReference, maxWidth: 120, maxHeight: 120, cropVariant: 'default')}" alt="{member.name}" class="avatar__image"/>
                                             </d:atom.avatar>
                                         </f:for>
                                     </f:then>
@@ -61,7 +61,7 @@
                                 <f:then>
                                     <f:for each="{member.image}" as="fileReference">
                                         <d:atom.avatar size="lg" class="team__minimal-avatar">
-                                            <img src="{f:uri.image(image: fileReference, maxWidth: 120, maxHeight: 120, cropVariant: 'default')}" alt="{member -> f:render.text(field: 'name')}" class="avatar__image"/>
+                                            <img src="{f:uri.image(image: fileReference, maxWidth: 120, maxHeight: 120, cropVariant: 'default')}" alt="{member.name}" class="avatar__image"/>
                                         </d:atom.avatar>
                                     </f:for>
                                 </f:then>
@@ -86,7 +86,7 @@
                             <f:if condition="{member.image}">
                                 <div class="team__image-wrapper">
                                     <f:for each="{member.image}" as="fileReference">
-                                        <img src="{f:uri.image(image: fileReference, maxWidth: 640)}" alt="{member -> f:render.text(field: 'name')}" class="team__image"/>
+                                        <img src="{f:uri.image(image: fileReference, maxWidth: 640)}" alt="{member.name}" class="team__image"/>
                                     </f:for>
                                 </div>
                             </f:if>

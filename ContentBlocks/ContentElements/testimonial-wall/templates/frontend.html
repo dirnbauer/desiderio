@@ -28,7 +28,7 @@
                     <div class="testimonial-wall__author">
                         <f:if condition="{item.author_image}">
                             <f:for each="{item.author_image}" as="fileReference">
-                                <img src="{f:uri.image(image: fileReference, width: 40, height: 40)}" alt="{item -> f:render.text(field: 'author_name')}" class="testimonial-wall__avatar"/>
+                                <img src="{f:uri.image(image: fileReference, width: 40, height: 40)}" alt="{item.author_name}" class="testimonial-wall__avatar"/>
                             </f:for>
                         </f:if>
                         <div>

@@ -38,7 +38,7 @@
                     <div class="testimonial__avatar">
                         <f:for each="{data.author_image}" as="fileReference">
                             <img src="{f:uri.image(image: fileReference, width: 64, height: 64)}"
-                                 alt="{data -> f:render.text(field: 'author_name')}" class="testimonial__avatar-image"/>
+                                 alt="{data.author_name}" class="testimonial__avatar-image"/>
                         </f:for>
                     </div>
                 </f:if>

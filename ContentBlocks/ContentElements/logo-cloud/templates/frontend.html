@@ -26,16 +26,16 @@
                 <div class="logo-cloud__item">
                     <f:if condition="{logo.link.url}">
                         <f:then>
-                            <f:link.typolink parameter="{logo.link}" class="logo-cloud__link" title="{logo -> f:render.text(field: 'name')}">
+                            <f:link.typolink parameter="{logo.link}" class="logo-cloud__link" title="{logo.name}">
                                 <f:for each="{logo.image}" as="fileReference">
-                                    <img src="{f:uri.image(image: fileReference, maxWidth: 220)}" alt="{logo -> f:render.text(field: 'name')}" class="logo-cloud__image"/>
+                                    <img src="{f:uri.image(image: fileReference, maxWidth: 220)}" alt="{logo.name}" class="logo-cloud__image"/>
                                 </f:for>
                             </f:link.typolink>
                         </f:then>
                         <f:else>
-                            <div class="logo-cloud__link" title="{logo -> f:render.text(field: 'name')}">
+                            <div class="logo-cloud__link" title="{logo.name}">
                                 <f:for each="{logo.image}" as="fileReference">
-                                    <img src="{f:uri.image(image: fileReference, maxWidth: 220)}" alt="{logo -> f:render.text(field: 'name')}" class="logo-cloud__image"/>
+                                    <img src="{f:uri.image(image: fileReference, maxWidth: 220)}" alt="{logo.name}" class="logo-cloud__image"/>
                                 </f:for>
                             </div>
                         </f:else>

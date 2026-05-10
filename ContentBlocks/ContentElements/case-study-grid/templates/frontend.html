@@ -24,7 +24,7 @@
                     <f:if condition="{item.image}">
                         <div class="case-study-grid__media">
                             <f:for each="{item.image}" as="fileReference">
-                                <img src="{f:uri.image(image: fileReference, maxWidth: 480)}" alt="{item -> f:render.text(field: 'client_name')}" class="case-study-grid__image"/>
+                                <img src="{f:uri.image(image: fileReference, maxWidth: 480)}" alt="{item.client_name}" class="case-study-grid__image"/>
                             </f:for>
                         </div>
                     </f:if>

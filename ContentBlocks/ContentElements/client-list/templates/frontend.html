@@ -27,7 +27,7 @@
                     <f:if condition="{client.logo}">
                         <div class="client-list__logo">
                             <f:for each="{client.logo}" as="fileReference">
-                                <img src="{f:uri.image(image: fileReference, maxWidth: 120)}" alt="{client -> f:render.text(field: 'name')}" class="client-list__logo-img"/>
+                                <img src="{f:uri.image(image: fileReference, maxWidth: 120)}" alt="{client.name}" class="client-list__logo-img"/>
                             </f:for>
                         </div>
                     </f:if>

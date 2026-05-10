@@ -14,7 +14,7 @@
             <ul class="nav-toc__list">
                 <f:for each="{data.items}" as="item">
                     <li class="nav-toc__item nav-toc__item--{item.level -> f:or(alternative: 'h2')}">
-                        <a href="#{item -> f:render.text(field: 'anchor')}" class="nav-toc__link">{item -> f:render.text(field: 'label')}</a>
+                        <a href="#{item.anchor}" class="nav-toc__link">{item -> f:render.text(field: 'label')}</a>
                     </li>
                 </f:for>
             </ul>

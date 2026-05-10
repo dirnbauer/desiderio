@@ -94,6 +94,10 @@ lib.desiderioShortcutRecords {
 tt_content = CASE
 tt_content.default =< lib.contentElement
 
+# Keep EXT:visual_editor's content-element wrapper after replacing tt_content
+# with the Desiderio CASE object.
+tt_content.stdWrap.wrapContentElementsWithVeWrapper = 1
+
 tt_content.header =< lib.contentElement
 tt_content.text =< lib.contentElement
 tt_content.textpic =< lib.contentElement

@@ -67,6 +67,7 @@ final class ContentRenderingTemplateTest extends TestCase
         self::assertStringContainsString('layoutRootPaths.200 = EXT:desiderio/Resources/Private/FluidStyledContent/Layouts/', $typoScript);
         self::assertStringContainsString('dataProcessing.1421884800 = record-transformation', $typoScript);
         self::assertStringContainsString('tt_content.default =< lib.contentElement', $typoScript);
+        self::assertStringContainsString('tt_content.stdWrap.wrapContentElementsWithVeWrapper = 1', $typoScript);
         self::assertStringContainsString('tt_content.textmedia =< lib.contentElement', $typoScript);
         self::assertStringContainsString('tt_content.uploads =< lib.contentElement', $typoScript);
         self::assertStringContainsString('tt_content.bullets =< lib.desiderioContentWithBullets', $typoScript);

@@ -67,12 +67,14 @@ final class ContentRenderingTemplateTest extends TestCase
         self::assertStringContainsString('layoutRootPaths.200 = EXT:desiderio/Resources/Private/FluidStyledContent/Layouts/', $typoScript);
         self::assertStringContainsString('dataProcessing.1421884800 = record-transformation', $typoScript);
         self::assertStringContainsString('tt_content.default =< lib.contentElement', $typoScript);
-        self::assertStringContainsString('tt_content.textmedia =< lib.desiderioContentWithImages', $typoScript);
-        self::assertStringContainsString('tt_content.uploads =< lib.desiderioContentWithFiles', $typoScript);
+        self::assertStringContainsString('tt_content.textmedia =< lib.contentElement', $typoScript);
+        self::assertStringContainsString('tt_content.uploads =< lib.contentElement', $typoScript);
         self::assertStringContainsString('tt_content.bullets =< lib.desiderioContentWithBullets', $typoScript);
         self::assertStringContainsString('tt_content.table =< lib.desiderioContentWithTable', $typoScript);
         self::assertStringContainsString('lib.desiderioShortcutRecords = RECORDS', $typoScript);
-        self::assertStringContainsString('dataProcessing.20 = files', $typoScript);
+        self::assertStringNotContainsString('dataProcessing.20 = files', $typoScript);
+        self::assertStringNotContainsString('lib.desiderioContentWithImages', $typoScript);
+        self::assertStringNotContainsString('lib.desiderioContentWithFiles', $typoScript);
         self::assertStringContainsString('dataProcessing.20 = split', $typoScript);
         self::assertStringContainsString('dataProcessing.20 = comma-separated-value', $typoScript);
     }
@@ -118,17 +120,26 @@ final class ContentRenderingTemplateTest extends TestCase
         self::assertStringContainsString('templateRootPath: EXT:desiderio/Resources/Private/FluidStyledContent/Templates/', $settings);
     }
 
-    public function testFluidStyledContentMediaPartialRendersFileReferencesByUid(): void
+    public function testFluidStyledContentMediaTemplatesUseRecordTransformationFileFields(): void
     {
         $partial = (string) file_get_contents(__DIR__ . '/../../Resources/Private/FluidStyledContent/Partials/Media.fluid.html');
+        $textmediaTemplate = (string) file_get_contents(__DIR__ . '/../../Resources/Private/FluidStyledContent/Templates/Textmedia.fluid.html');
+        $textpicTemplate = (string) file_get_contents(__DIR__ . '/../../Resources/Private/FluidStyledContent/Templates/Textpic.fluid.html');
+        $imageTemplate = (string) file_get_contents(__DIR__ . '/../../Resources/Private/FluidStyledContent/Templates/Image.fluid.html');
+        $uploadsTemplate = (string) file_get_contents(__DIR__ . '/../../Resources/Private/FluidStyledContent/Templates/Uploads.fluid.html');
 
         self::assertStringContainsString('<f:argument name="files" type="iterable" optional="true"/>', $partial);
         self::assertStringContainsString('<f:argument name="position" type="string" optional="true"/>', $partial);
         self::assertStringContainsString('<f:argument name="maxWidth" type="integer" optional="true" default="1200"/>', $partial);
-        self::assertStringContainsString('src="{file.uid}"', $partial);
-        self::assertStringContainsString('treatIdAsReference="1"', $partial);
-        self::assertStringNotContainsString('image="{file}"', $partial);
+        self::assertStringContainsString('<f:image image="{file}"', $partial);
+        self::assertStringNotContainsString('src="{file.uid}"', $partial);
+        self::assertStringNotContainsString('treatIdAsReference', $partial);
         self::assertStringNotContainsString('name="images"', $partial);
+        self::assertStringContainsString('files: record.assets', $textmediaTemplate);
+        self::assertStringContainsString('files: record.image', $textpicTemplate);
+        self::assertStringContainsString('files: record.image', $imageTemplate);
+        self::assertStringContainsString('files: record.media', $uploadsTemplate);
+        self::assertStringNotContainsString('files: files', $textmediaTemplate . $textpicTemplate . $imageTemplate . $uploadsTemplate);
     }
 
     public function testExtensionIntegrationSiteSetsAreBundledWithBaseSet(): void

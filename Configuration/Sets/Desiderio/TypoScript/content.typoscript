@@ -26,24 +26,6 @@ lib.contentElement {
 # collection rows after the Content Blocks processor decorates the record.
 lib.contentBlock.dataProcessing.20 = desiderio-content-block-collections
 
-lib.desiderioContentWithImages =< lib.contentElement
-lib.desiderioContentWithImages {
-  dataProcessing.20 = files
-  dataProcessing.20 {
-    references.fieldName = image
-    as = files
-  }
-}
-
-lib.desiderioContentWithFiles =< lib.contentElement
-lib.desiderioContentWithFiles {
-  dataProcessing.20 = files
-  dataProcessing.20 {
-    references.fieldName = media
-    as = files
-  }
-}
-
 lib.desiderioContentWithBullets =< lib.contentElement
 lib.desiderioContentWithBullets {
   dataProcessing.20 = split
@@ -114,10 +96,10 @@ tt_content.default =< lib.contentElement
 
 tt_content.header =< lib.contentElement
 tt_content.text =< lib.contentElement
-tt_content.textpic =< lib.desiderioContentWithImages
-tt_content.textmedia =< lib.desiderioContentWithImages
-tt_content.image =< lib.desiderioContentWithImages
-tt_content.uploads =< lib.desiderioContentWithFiles
+tt_content.textpic =< lib.contentElement
+tt_content.textmedia =< lib.contentElement
+tt_content.image =< lib.contentElement
+tt_content.uploads =< lib.contentElement
 tt_content.bullets =< lib.desiderioContentWithBullets
 tt_content.table =< lib.desiderioContentWithTable
 tt_content.div =< lib.contentElement

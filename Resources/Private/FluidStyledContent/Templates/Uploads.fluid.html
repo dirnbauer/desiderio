@@ -9,7 +9,7 @@
     <div class="ce-fsc-uploads">
         <f:render partial="Header" arguments="{record: record}"/>
         <f:render partial="RichText" arguments="{record: record, field: 'bodytext'}"/>
-        <f:render partial="FileList" arguments="{files: files}"/>
+        <f:render partial="FileList" arguments="{files: record.media}"/>
     </div>
 </f:section>
 

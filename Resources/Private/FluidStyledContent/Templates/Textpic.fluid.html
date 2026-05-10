@@ -20,7 +20,7 @@
 
     <article class="ce-fsc-textmedia ce-fsc-textmedia--{mediaPosition}">
         <f:if condition="{mediaPosition} == 'above' || {mediaPosition} == 'left'">
-            <f:render partial="Media" arguments="{files: files, position: mediaPosition, maxWidth: 1200}"/>
+            <f:render partial="Media" arguments="{files: record.image, position: mediaPosition, maxWidth: 1200}"/>
         </f:if>
 
         <div class="ce-fsc-textmedia__content">
@@ -29,7 +29,7 @@
         </div>
 
         <f:if condition="{mediaPosition} == 'below' || {mediaPosition} == 'right'">
-            <f:render partial="Media" arguments="{files: files, position: mediaPosition, maxWidth: 1200}"/>
+            <f:render partial="Media" arguments="{files: record.image, position: mediaPosition, maxWidth: 1200}"/>
         </f:if>
     </article>
 </f:section>

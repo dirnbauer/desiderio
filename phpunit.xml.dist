@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit bootstrap="vendor/autoload.php"
+         cacheDirectory=".phpunit.cache"
+         colors="true"
+         executionOrder="depends,defects">
+    <testsuites>
+        <testsuite name="Unit">
+            <directory>Tests/Unit</directory>
+        </testsuite>
+    </testsuites>
+
+    <source>
+        <include>
+            <directory>Classes</directory>
+            <file>Configuration/Icons.php</file>
+            <file>ext_emconf.php</file>
+            <file>ext_localconf.php</file>
+        </include>
+    </source>
+</phpunit>

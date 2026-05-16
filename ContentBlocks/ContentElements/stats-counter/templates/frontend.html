@@ -21,8 +21,8 @@
         <div class="stats-counter__grid stats-counter__grid--cols-{data.columns -> f:or(alternative: '3')}">
             <f:for each="{data.counters}" as="counter">
                 <div class="stats-counter__item">
-                    <span class="stats-counter__value" data-target="{counter -> f:render.text(field: 'counter_target')}">
-                        {counter -> f:render.text(field: 'counter_target')}<f:if condition="{counter.suffix}">{counter -> f:render.text(field: 'suffix')}</f:if>
+                    <span class="stats-counter__value">
+                        <span data-d-counter data-target="{counter -> f:render.text(field: 'counter_target')}">{counter -> f:render.text(field: 'counter_target')}</span><f:if condition="{counter.suffix}">{counter -> f:render.text(field: 'suffix')}</f:if>
                     </span>
                     <h3 class="stats-counter__label">{counter -> f:render.text(field: 'label')}</h3>
                     <f:if condition="{counter.description}">

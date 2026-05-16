@@ -12,12 +12,12 @@
         </f:if>
         <div class="counter__grid counter__grid--cols-{data.columns -> f:or(alternative: '3')}">
             <f:for each="{data.items}" as="item">
-                <div class="counter__item" data-target="{item.target_value}">
+                <div class="counter__item">
                     <div class="counter__value">
                         <f:if condition="{item.prefix}">
                             <span class="counter__prefix">{item -> f:render.text(field: 'prefix')}</span>
                         </f:if>
-                        <span class="counter__number">0</span>
+                        <span class="counter__number" data-d-counter data-target="{item.target_value}">{item.target_value}</span>
                         <f:if condition="{item.suffix}">
                             <span class="counter__suffix">{item -> f:render.text(field: 'suffix')}</span>
                         </f:if>

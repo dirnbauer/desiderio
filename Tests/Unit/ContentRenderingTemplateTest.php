@@ -200,6 +200,20 @@ final class ContentRenderingTemplateTest extends TestCase
         self::assertStringContainsString("range.setAttribute('aria-valuetext'", $javascript);
     }
 
+    public function testCounterTemplatesAreConnectedToSharedRuntime(): void
+    {
+        $counterTemplate = (string) file_get_contents(__DIR__ . '/../../ContentBlocks/ContentElements/counter/templates/frontend.html');
+        $statsCounterTemplate = (string) file_get_contents(__DIR__ . '/../../ContentBlocks/ContentElements/stats-counter/templates/frontend.html');
+        $javascript = (string) file_get_contents(__DIR__ . '/../../Resources/Public/Js/desiderio.js');
+
+        self::assertStringContainsString('data-d-counter', $counterTemplate);
+        self::assertStringContainsString('data-target="{item.target_value}"', $counterTemplate);
+        self::assertStringContainsString('{item.target_value}</span>', $counterTemplate);
+        self::assertStringContainsString('data-d-counter', $statsCounterTemplate);
+        self::assertStringContainsString("document.querySelectorAll('[data-d-counter]')", $javascript);
+        self::assertStringContainsString('requestAnimationFrame(step)', $javascript);
+    }
+
     public function testExtensionIntegrationSiteSetsAreBundledWithBaseSet(): void
     {
         $baseSet = Yaml::parseFile(__DIR__ . '/../../Configuration/Sets/Desiderio/config.yaml');

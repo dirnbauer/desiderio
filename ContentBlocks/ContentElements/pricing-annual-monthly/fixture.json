@@ -1,54 +1,54 @@
 {
-  "_type": "pricing",
-  "header": "Annual Monthly Pricing for polished pricing system",
-  "subheadline": "Helps buyers compare options quickly with credible tiers, compact benefits, and confident action labels.",
-  "plans": [
-    {
-      "name": "Starter",
-      "monthly_price": "$19",
-      "annual_price": "$19",
-      "savings": "Save 20%",
-      "features": [
-        "Chart colors mapped to semantic tokens",
-        "Production-ready empty and loaded states",
-        "Token-aware light and dark states",
-        "Accessible keyboard focus patterns"
-      ],
-      "button_text": "See it live",
-      "button_link": "https://ui.shadcn.com/docs/annual-monthly-pricing",
-      "is_featured": false
-    },
-    {
-      "name": "Scale",
-      "monthly_price": "$49",
-      "annual_price": "$49",
-      "savings": "Save 20%",
-      "features": [
-        "Chart colors mapped to semantic tokens",
-        "Production-ready empty and loaded states",
-        "Token-aware light and dark states",
-        "Accessible keyboard focus patterns",
-        "Responsive cards tuned for real content"
-      ],
-      "button_text": "Review setup",
-      "button_link": "https://ui.shadcn.com/docs/annual-monthly-pricing",
-      "is_featured": true
-    },
-    {
-      "name": "Studio",
-      "monthly_price": "$99",
-      "annual_price": "$99",
-      "savings": "Save 20%",
-      "features": [
-        "Chart colors mapped to semantic tokens",
-        "Production-ready empty and loaded states",
-        "Token-aware light and dark states",
-        "Accessible keyboard focus patterns",
-        "Responsive cards tuned for real content"
-      ],
-      "button_text": "Explore pattern",
-      "button_link": "https://ui.shadcn.com/docs/annual-monthly-pricing",
-      "is_featured": false
-    }
-  ]
+    "_type": "pricing",
+    "header": "Annual Monthly Pricing for confident plan comparison",
+    "subheadline": "Helps buyers compare plans quickly with crisp values, direct feature language, and token-backed card hierarchy. This annual monthly pricing example includes realistic content for browser review.",
+    "plans": [
+        {
+            "name": "Noah Ritter",
+            "monthly_price": "$19",
+            "annual_price": "$19",
+            "savings": "Save 20%",
+            "features": [
+                "Chart colors mapped to semantic tokens",
+                "Production-ready empty and loaded states",
+                "Token-aware light and dark states",
+                "Accessible keyboard focus patterns"
+            ],
+            "button_text": "Compare states",
+            "button_link": "https://ui.shadcn.com/docs/annual-monthly-pricing",
+            "is_featured": false
+        },
+        {
+            "name": "Lea Fischer",
+            "monthly_price": "$49",
+            "annual_price": "$49",
+            "savings": "Save 20%",
+            "features": [
+                "Chart colors mapped to semantic tokens",
+                "Production-ready empty and loaded states",
+                "Token-aware light and dark states",
+                "Accessible keyboard focus patterns",
+                "Responsive cards tuned for real content"
+            ],
+            "button_text": "Read playbook",
+            "button_link": "https://ui.shadcn.com/docs/annual-monthly-pricing",
+            "is_featured": true
+        },
+        {
+            "name": "Mara Weiss",
+            "monthly_price": "$99",
+            "annual_price": "$99",
+            "savings": "Save 20%",
+            "features": [
+                "Chart colors mapped to semantic tokens",
+                "Production-ready empty and loaded states",
+                "Token-aware light and dark states",
+                "Accessible keyboard focus patterns",
+                "Responsive cards tuned for real content"
+            ],
+            "button_text": "Start review",
+            "button_link": "https://ui.shadcn.com/docs/annual-monthly-pricing",
+            "is_featured": false
+        }
+    ]
 }

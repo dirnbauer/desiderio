@@ -1,33 +1,33 @@
 {
-  "_type": "team",
-  "header": "Department Team Section that feels ready to ship",
-  "subheadline": "Gives the people section a sharp editorial voice with credible roles, concise bios, and modern visual support.",
-  "department_items": [
-    {
-      "name": "Team signal",
-      "members": [
+    "_type": "team",
+    "header": "Department Team Section for modern people pages",
+    "subheadline": "Presents people and culture with confident profile copy, modern imagery, and calm card structure. This department team section example includes realistic content for browser review.",
+    "department_items": [
         {
-          "name": "Ava Stein",
-          "role": "Principal Product Designer"
+            "name": "Noah Ritter",
+            "members": [
+                {
+                    "name": "Lea Fischer",
+                    "role": "Product Design Lead"
+                },
+                {
+                    "name": "Mara Weiss",
+                    "role": "Frontend Engineer"
+                }
+            ]
         },
         {
-          "name": "Milo Hartmann",
-          "role": "Frontend Systems Lead"
+            "name": "Lea Fischer",
+            "members": [
+                {
+                    "name": "Mara Weiss",
+                    "role": "Frontend Engineer"
+                },
+                {
+                    "name": "Jonas Klein",
+                    "role": "Customer Success"
+                }
+            ]
         }
-      ]
-    },
-    {
-      "name": "Culture proof",
-      "members": [
-        {
-          "name": "Ava Stein",
-          "role": "Principal Product Designer"
-        },
-        {
-          "name": "Milo Hartmann",
-          "role": "Frontend Systems Lead"
-        }
-      ]
-    }
-  ]
+    ]
 }

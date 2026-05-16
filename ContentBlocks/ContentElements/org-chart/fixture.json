@@ -1,33 +1,33 @@
 {
-  "_type": "team",
-  "header": "Organization Chart that feels ready to ship",
-  "subheadline": "Gives the people section a sharp editorial voice with credible roles, concise bios, and modern visual support.",
-  "levels": [
-    {
-      "level_label": "Theme aware",
-      "people": [
+    "_type": "team",
+    "header": "Organization Chart for modern people pages",
+    "subheadline": "Presents people and culture with confident profile copy, modern imagery, and calm card structure. This organization chart example includes realistic content for browser review.",
+    "levels": [
         {
-          "name": "Ava Stein",
-          "role": "Principal Product Designer"
-        }
-      ]
-    },
-    {
-      "level_label": "A11y checked",
-      "people": [
-        {
-          "name": "Ava Stein",
-          "role": "Principal Product Designer"
+            "level_label": "Mobile polish",
+            "people": [
+                {
+                    "name": "Lea Fischer",
+                    "role": "Product Design Lead"
+                }
+            ]
         },
         {
-          "name": "Milo Hartmann",
-          "role": "Frontend Systems Lead"
-        },
-        {
-          "name": "Nina Berger",
-          "role": "Content Operations Lead"
+            "level_label": "Token coverage",
+            "people": [
+                {
+                    "name": "Mara Weiss",
+                    "role": "Frontend Engineer"
+                },
+                {
+                    "name": "Jonas Klein",
+                    "role": "Customer Success"
+                },
+                {
+                    "name": "Sofia Berg",
+                    "role": "Content Architect"
+                }
+            ]
         }
-      ]
-    }
-  ]
+    ]
 }

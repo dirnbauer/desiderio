@@ -56,7 +56,7 @@ final class SeedStyleguidePagesCommand extends Command
         'Combines compact badges, direct actions, and scannable content density for desktop, tablet, and mobile review.',
         'Shows editor-owned fields with believable labels, nested records, and modern media while staying inside the shared theme system.',
         'Keeps the surface quiet and premium with clean borders, strong focus states, restrained shadows, and no one-off decoration.',
-        'Pairs credible product context, sharp metrics, and Unsplash imagery so the imported page feels launch-ready.',
+        'Pairs credible product context, sharp metrics, and Unsplash imagery so the imported page is launch-ready.',
     ];
     private const DEMO_FEATURES = [
         'Theme-aware states',
@@ -1049,7 +1049,12 @@ final class SeedStyleguidePagesCommand extends Command
 
         return match (true) {
             preg_match('/^(?:link|child)(\d+)label$/', $normalizedField, $matches) === 1 => $this->getDefaultLinkLabel((int)$matches[1]),
+            $normalizedField === 'accepttext' => 'Accept all',
+            $normalizedField === 'declinetext' => 'Decline',
+            $normalizedField === 'settingstext' => 'Settings',
+            $normalizedField === 'privacytext' => 'Privacy',
             str_contains($normalizedField, 'authortitle') || str_contains($normalizedField, 'jobtitle') || str_contains($normalizedField, 'role') || str_contains($normalizedField, 'position') => $person[1],
+            str_contains($normalizedField, 'subheadline') => $this->buildDefaultDemoCopy($elementLabel, $fieldLabel, $index),
             $normalizedField === 'header' || str_contains($normalizedField, 'headline') || str_contains($normalizedField, 'title') => $subject,
             str_contains($normalizedField, 'eyebrow') || str_contains($normalizedField, 'badge') || str_contains($normalizedField, 'kicker') || str_contains($normalizedField, 'status') => $this->pickDemoString(self::DEMO_BADGES, $name . '-' . $field, $index),
             str_contains($normalizedField, 'url') || str_contains($normalizedField, 'href') => $this->buildDefaultUrlTextValue($ctype, $field, $index),
@@ -1057,7 +1062,7 @@ final class SeedStyleguidePagesCommand extends Command
             str_contains($normalizedField, 'copyright') => 'Images are credited on their Unsplash file references.',
             str_contains($normalizedField, 'credit') || str_contains($normalizedField, 'source') || str_contains($normalizedField, 'photographer') => 'Photo source: Unsplash demo image with photographer credit stored on the file reference.',
             str_contains($normalizedField, 'quote') => $this->buildDefaultQuote($elementLabel),
-            str_contains($normalizedField, 'description') || str_contains($normalizedField, 'subheadline') || str_contains($normalizedField, 'content') || str_contains($normalizedField, 'body') || str_contains($normalizedField, 'copy') || str_contains($normalizedField, 'summary') || str_contains($normalizedField, 'bio') => $this->buildDefaultDemoCopy($elementLabel, $fieldLabel, $index),
+            str_contains($normalizedField, 'description') || str_contains($normalizedField, 'content') || str_contains($normalizedField, 'body') || str_contains($normalizedField, 'copy') || str_contains($normalizedField, 'summary') || str_contains($normalizedField, 'bio') => $this->buildDefaultDemoCopy($elementLabel, $fieldLabel, $index),
             str_contains($normalizedField, 'ctatext') || str_contains($normalizedField, 'buttontext') || str_contains($normalizedField, 'submittext') => $this->buildDefaultButtonText($normalizedField, $elementLabel),
             str_contains($normalizedField, 'linktext') => $this->pickDemoString(self::DEMO_BUTTON_LABELS, $name . '-' . $field, $index),
             str_contains($normalizedField, 'placeholder') => 'name@example.com',

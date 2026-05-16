@@ -1,55 +1,55 @@
 {
-  "_type": "pricing",
-  "header": "Three Tier Pricing that feels ready to ship",
-  "eyebrow": "Token polish",
-  "subheadline": "Helps buyers compare options quickly with credible tiers, compact benefits, and confident action labels.",
-  "plans": [
-    {
-      "name": "Starter",
-      "price": "$19",
-      "billing_period": "/month",
-      "description": "Built to show the three tier pricing with real labels, compact spacing, modern imagery, and practical states instead of placeholder filler.",
-      "features": [
-        "Production-ready empty and loaded states",
-        "Token-aware light and dark states",
-        "Accessible keyboard focus patterns",
-        "Responsive cards tuned for real content"
-      ],
-      "button_text": "Open preview",
-      "button_link": "https://ui.shadcn.com/docs/three-tier-pricing",
-      "is_recommended": false
-    },
-    {
-      "name": "Scale",
-      "price": "$49",
-      "billing_period": "/month",
-      "description": "Clean hierarchy, restrained borders, and direct actions make this three tier pricing easy to scan across desktop and mobile previews.",
-      "features": [
-        "Production-ready empty and loaded states",
-        "Token-aware light and dark states",
-        "Accessible keyboard focus patterns",
-        "Responsive cards tuned for real content",
-        "Editor-friendly TYPO3 Content Blocks"
-      ],
-      "button_text": "Explore pattern",
-      "button_link": "https://ui.shadcn.com/docs/three-tier-pricing",
-      "is_recommended": true
-    },
-    {
-      "name": "Studio",
-      "price": "$99",
-      "billing_period": "/month",
-      "description": "The seeded content keeps the component sleek, credible, and import-ready while staying inside the Desiderio shadcn design language.",
-      "features": [
-        "Production-ready empty and loaded states",
-        "Token-aware light and dark states",
-        "Accessible keyboard focus patterns",
-        "Responsive cards tuned for real content",
-        "Editor-friendly TYPO3 Content Blocks"
-      ],
-      "button_text": "Review setup",
-      "button_link": "https://ui.shadcn.com/docs/three-tier-pricing",
-      "is_recommended": false
-    }
-  ]
+    "_type": "pricing",
+    "header": "Three Tier Pricing for confident plan comparison",
+    "eyebrow": "Modern import",
+    "subheadline": "Helps buyers compare plans quickly with crisp values, direct feature language, and token-backed card hierarchy. This three tier pricing example includes realistic content for browser review.",
+    "plans": [
+        {
+            "name": "Lea Fischer",
+            "price": "$19",
+            "billing_period": "/month",
+            "description": "Shows pricing states with practical labels, scannable benefits, and decision support that feels production-ready. This three tier pricing example includes realistic content for browser review.",
+            "features": [
+                "Production-ready empty and loaded states",
+                "Token-aware light and dark states",
+                "Accessible keyboard focus patterns",
+                "Responsive cards tuned for real content"
+            ],
+            "button_text": "Read playbook",
+            "button_link": "https://ui.shadcn.com/docs/three-tier-pricing",
+            "is_recommended": false
+        },
+        {
+            "name": "Mara Weiss",
+            "price": "$49",
+            "billing_period": "/month",
+            "description": "Keeps commercial content confident and compact so plan comparison works across desktop tables and mobile cards. This three tier pricing example includes realistic content for browser review.",
+            "features": [
+                "Production-ready empty and loaded states",
+                "Token-aware light and dark states",
+                "Accessible keyboard focus patterns",
+                "Responsive cards tuned for real content",
+                "Editor-friendly TYPO3 Content Blocks"
+            ],
+            "button_text": "Start review",
+            "button_link": "https://ui.shadcn.com/docs/three-tier-pricing",
+            "is_recommended": true
+        },
+        {
+            "name": "Jonas Klein",
+            "price": "$99",
+            "billing_period": "/month",
+            "description": "Helps buyers compare plans quickly with crisp values, direct feature language, and token-backed card hierarchy. This three tier pricing example includes realistic content for browser review.",
+            "features": [
+                "Production-ready empty and loaded states",
+                "Token-aware light and dark states",
+                "Accessible keyboard focus patterns",
+                "Responsive cards tuned for real content",
+                "Editor-friendly TYPO3 Content Blocks"
+            ],
+            "button_text": "Explore flow",
+            "button_link": "https://ui.shadcn.com/docs/three-tier-pricing",
+            "is_recommended": false
+        }
+    ]
 }

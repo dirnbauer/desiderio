@@ -1,41 +1,41 @@
 {
-  "_type": "footer",
-  "header": "Sitemap Grid that feels ready to ship",
-  "columns": "4",
-  "groups": [
-    {
-      "title": "Launch Title",
-      "pages": [
+    "_type": "footer",
+    "header": "Sitemap Grid for refined utility areas",
+    "columns": "4",
+    "groups": [
         {
-          "label": "A11y checked",
-          "link": "https://ui.shadcn.com/docs/sitemap-grid"
+            "title": "Sitemap Grid for refined utility areas",
+            "pages": [
+                {
+                    "label": "Token coverage",
+                    "link": "https://ui.shadcn.com/docs/sitemap-grid"
+                },
+                {
+                    "label": "Trust lift",
+                    "link": "https://ui.shadcn.com/docs/sitemap-grid"
+                },
+                {
+                    "label": "Signal quality",
+                    "link": "https://ui.shadcn.com/docs/sitemap-grid"
+                }
+            ]
         },
         {
-          "label": "Fast preview",
-          "link": "https://ui.shadcn.com/docs/sitemap-grid"
-        },
-        {
-          "label": "Editor ready",
-          "link": "https://ui.shadcn.com/docs/sitemap-grid"
+            "title": "Sitemap Grid for refined utility areas",
+            "pages": [
+                {
+                    "label": "Trust lift",
+                    "link": "https://ui.shadcn.com/docs/sitemap-grid"
+                },
+                {
+                    "label": "Signal quality",
+                    "link": "https://ui.shadcn.com/docs/sitemap-grid"
+                },
+                {
+                    "label": "Launch velocity",
+                    "link": "https://ui.shadcn.com/docs/sitemap-grid"
+                }
+            ]
         }
-      ]
-    },
-    {
-      "title": "Workflow Title",
-      "pages": [
-        {
-          "label": "A11y checked",
-          "link": "https://ui.shadcn.com/docs/sitemap-grid"
-        },
-        {
-          "label": "Fast preview",
-          "link": "https://ui.shadcn.com/docs/sitemap-grid"
-        },
-        {
-          "label": "Editor ready",
-          "link": "https://ui.shadcn.com/docs/sitemap-grid"
-        }
-      ]
-    }
-  ]
+    ]
 }

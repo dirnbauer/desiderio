@@ -1,21 +1,21 @@
 {
-  "_type": "stats",
-  "header": "Counter that feels ready to ship",
-  "items": [
-    {
-      "target_value": 128,
-      "suffix": "%",
-      "label": "Token polish"
-    },
-    {
-      "target_value": 24,
-      "suffix": "h",
-      "label": "Import ready"
-    },
-    {
-      "target_value": 3,
-      "prefix": "+",
-      "label": "Clean states"
-    }
-  ]
+    "_type": "stats",
+    "header": "Counter for live product intelligence",
+    "items": [
+        {
+            "target_value": 128,
+            "suffix": "%",
+            "label": "Token coverage"
+        },
+        {
+            "target_value": 24,
+            "suffix": "h",
+            "label": "Trust lift"
+        },
+        {
+            "target_value": 3,
+            "prefix": "+",
+            "label": "Signal quality"
+        }
+    ]
 }

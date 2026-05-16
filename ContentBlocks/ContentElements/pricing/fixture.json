@@ -1,57 +1,57 @@
 {
-  "_type": "pricing",
-  "header": "Pricing Section that feels ready to ship",
-  "eyebrow": "Fast preview",
-  "subheadline": "Helps buyers compare options quickly with credible tiers, compact benefits, and confident action labels.",
-  "columns": "3",
-  "plans": [
-    {
-      "name": "Starter",
-      "price": "$19",
-      "billing_period": "/month",
-      "description": "Built to show the pricing section with real labels, compact spacing, modern imagery, and practical states instead of placeholder filler.",
-      "features": [
-        "Clean mobile behavior for dense content",
-        "Chart colors mapped to semantic tokens",
-        "Production-ready empty and loaded states",
-        "Token-aware light and dark states"
-      ],
-      "button_text": "Explore pattern",
-      "button_link": "https://ui.shadcn.com/docs/pricing-section",
-      "is_featured": false
-    },
-    {
-      "badge_text": "Modern media",
-      "name": "Scale",
-      "price": "$49",
-      "billing_period": "/month",
-      "description": "Clean hierarchy, restrained borders, and direct actions make this pricing section easy to scan across desktop and mobile previews.",
-      "features": [
-        "Clean mobile behavior for dense content",
-        "Chart colors mapped to semantic tokens",
-        "Production-ready empty and loaded states",
-        "Token-aware light and dark states",
-        "Accessible keyboard focus patterns"
-      ],
-      "button_text": "Open preview",
-      "button_link": "https://ui.shadcn.com/docs/pricing-section",
-      "is_featured": true
-    },
-    {
-      "name": "Studio",
-      "price": "$99",
-      "billing_period": "/month",
-      "description": "The seeded content keeps the component sleek, credible, and import-ready while staying inside the Desiderio shadcn design language.",
-      "features": [
-        "Clean mobile behavior for dense content",
-        "Chart colors mapped to semantic tokens",
-        "Production-ready empty and loaded states",
-        "Token-aware light and dark states",
-        "Accessible keyboard focus patterns"
-      ],
-      "button_text": "Start with this",
-      "button_link": "https://ui.shadcn.com/docs/pricing-section",
-      "is_featured": false
-    }
-  ]
+    "_type": "pricing",
+    "header": "Pricing Section for confident plan comparison",
+    "eyebrow": "Modern import",
+    "subheadline": "Helps buyers compare plans quickly with crisp values, direct feature language, and token-backed card hierarchy. This pricing section example includes realistic content for browser review.",
+    "columns": "3",
+    "plans": [
+        {
+            "name": "Mara Weiss",
+            "price": "$19",
+            "billing_period": "/month",
+            "description": "Keeps commercial content confident and compact so plan comparison works across desktop tables and mobile cards. This pricing section example includes realistic content for browser review.",
+            "features": [
+                "Clean mobile behavior for dense content",
+                "Chart colors mapped to semantic tokens",
+                "Production-ready empty and loaded states",
+                "Token-aware light and dark states"
+            ],
+            "button_text": "Start review",
+            "button_link": "https://ui.shadcn.com/docs/pricing-section",
+            "is_featured": false
+        },
+        {
+            "badge_text": "shadcn/ui",
+            "name": "Sofia Berg",
+            "price": "$49",
+            "billing_period": "/month",
+            "description": "Shows pricing states with practical labels, scannable benefits, and decision support that feels production-ready. This pricing section example includes realistic content for browser review.",
+            "features": [
+                "Clean mobile behavior for dense content",
+                "Chart colors mapped to semantic tokens",
+                "Production-ready empty and loaded states",
+                "Token-aware light and dark states",
+                "Accessible keyboard focus patterns"
+            ],
+            "button_text": "View pattern",
+            "button_link": "https://ui.shadcn.com/docs/pricing-section",
+            "is_featured": true
+        },
+        {
+            "name": "Sofia Berg",
+            "price": "$99",
+            "billing_period": "/month",
+            "description": "Shows pricing states with practical labels, scannable benefits, and decision support that feels production-ready. This pricing section example includes realistic content for browser review.",
+            "features": [
+                "Clean mobile behavior for dense content",
+                "Chart colors mapped to semantic tokens",
+                "Production-ready empty and loaded states",
+                "Token-aware light and dark states",
+                "Accessible keyboard focus patterns"
+            ],
+            "button_text": "View pattern",
+            "button_link": "https://ui.shadcn.com/docs/pricing-section",
+            "is_featured": false
+        }
+    ]
 }

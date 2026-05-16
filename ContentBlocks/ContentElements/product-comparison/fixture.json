@@ -1,42 +1,42 @@
 {
-  "_type": "pricing",
-  "header": "Product Comparison Pricing that feels ready to ship",
-  "eyebrow": "Token polish",
-  "products": [
-    {
-      "name": "Workflow Name",
-      "price": "$19",
-      "specs": [
-        "Reusable labels, metrics, and actions",
-        "Clean mobile behavior for dense content",
-        "Chart colors mapped to semantic tokens"
-      ],
-      "is_recommended": false,
-      "link": "https://ui.shadcn.com/docs/product-comparison-pricing"
-    },
-    {
-      "name": "Launch Name",
-      "price": "$49",
-      "specs": [
-        "Reusable labels, metrics, and actions",
-        "Clean mobile behavior for dense content",
-        "Chart colors mapped to semantic tokens",
-        "Production-ready empty and loaded states"
-      ],
-      "is_recommended": true,
-      "link": "https://ui.shadcn.com/docs/product-comparison-pricing"
-    },
-    {
-      "name": "Signal Name",
-      "price": "$99",
-      "specs": [
-        "Reusable labels, metrics, and actions",
-        "Clean mobile behavior for dense content",
-        "Chart colors mapped to semantic tokens",
-        "Production-ready empty and loaded states"
-      ],
-      "is_recommended": false,
-      "link": "https://ui.shadcn.com/docs/product-comparison-pricing"
-    }
-  ]
+    "_type": "pricing",
+    "header": "Product Comparison Pricing for confident plan comparison",
+    "eyebrow": "Modern import",
+    "products": [
+        {
+            "name": "Noah Ritter",
+            "price": "$19",
+            "specs": [
+                "Reusable labels, metrics, and actions",
+                "Clean mobile behavior for dense content",
+                "Chart colors mapped to semantic tokens"
+            ],
+            "is_recommended": false,
+            "link": "https://ui.shadcn.com/docs/product-comparison-pricing"
+        },
+        {
+            "name": "Lea Fischer",
+            "price": "$49",
+            "specs": [
+                "Reusable labels, metrics, and actions",
+                "Clean mobile behavior for dense content",
+                "Chart colors mapped to semantic tokens",
+                "Production-ready empty and loaded states"
+            ],
+            "is_recommended": true,
+            "link": "https://ui.shadcn.com/docs/product-comparison-pricing"
+        },
+        {
+            "name": "Mara Weiss",
+            "price": "$99",
+            "specs": [
+                "Reusable labels, metrics, and actions",
+                "Clean mobile behavior for dense content",
+                "Chart colors mapped to semantic tokens",
+                "Production-ready empty and loaded states"
+            ],
+            "is_recommended": false,
+            "link": "https://ui.shadcn.com/docs/product-comparison-pricing"
+        }
+    ]
 }

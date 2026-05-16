@@ -1,53 +1,53 @@
 {
-  "_type": "table",
-  "header": "Comparison Table that feels ready to ship",
-  "description": "Clean hierarchy, restrained borders, and direct actions make this comparison table easy to scan across desktop and mobile previews.",
-  "column_items": [
-    {
-      "name": "Platform",
-      "highlighted": false
-    },
-    {
-      "name": "Solutions",
-      "highlighted": true
-    },
-    {
-      "name": "Resources",
-      "highlighted": false
-    }
-  ],
-  "comparison_feature_items": [
-    {
-      "name": "Seats",
-      "tier_values": [
-        "Included",
-        "Advanced",
-        "Priority"
-      ]
-    },
-    {
-      "name": "Workspace storage",
-      "tier_values": [
-        "Included",
-        "Advanced",
-        "Priority"
-      ]
-    },
-    {
-      "name": "Priority support",
-      "tier_values": [
-        "Included",
-        "Advanced",
-        "Priority"
-      ]
-    },
-    {
-      "name": "SSO and roles",
-      "tier_values": [
-        "Included",
-        "Advanced",
-        "Priority"
-      ]
-    }
-  ]
+    "_type": "table",
+    "header": "Comparison Table for live product intelligence",
+    "description": "Turns dense numbers into a responsive analytics block that stays readable from desktop dashboards to mobile reviews. This comparison table example includes realistic content for browser review.",
+    "column_items": [
+        {
+            "name": "Noah Ritter",
+            "highlighted": false
+        },
+        {
+            "name": "Lea Fischer",
+            "highlighted": true
+        },
+        {
+            "name": "Mara Weiss",
+            "highlighted": false
+        }
+    ],
+    "comparison_feature_items": [
+        {
+            "name": "Lea Fischer",
+            "tier_values": [
+                "Included",
+                "Advanced",
+                "Priority"
+            ]
+        },
+        {
+            "name": "Mara Weiss",
+            "tier_values": [
+                "Included",
+                "Advanced",
+                "Priority"
+            ]
+        },
+        {
+            "name": "Jonas Klein",
+            "tier_values": [
+                "Included",
+                "Advanced",
+                "Priority"
+            ]
+        },
+        {
+            "name": "Sofia Berg",
+            "tier_values": [
+                "Included",
+                "Advanced",
+                "Priority"
+            ]
+        }
+    ]
 }

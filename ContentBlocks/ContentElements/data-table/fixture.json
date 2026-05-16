@@ -1,55 +1,55 @@
 {
-  "_type": "table",
-  "header": "Data Table for polished analytics workspace",
-  "show_header_row": true,
-  "column_definitions": [
-    {
-      "column_label": "Service",
-      "column_align": "left"
-    },
-    {
-      "column_label": "Status",
-      "column_align": "left"
-    },
-    {
-      "column_label": "Last update",
-      "column_align": "right"
-    }
-  ],
-  "rows": [
-    {
-      "row_label": "API Gateway",
-      "cells": [
-        "API Gateway",
-        "Synced",
-        "2 min ago"
-      ]
-    },
-    {
-      "row_label": "Editor Preview",
-      "cells": [
-        "API Gateway",
-        "Synced",
-        "2 min ago"
-      ]
-    },
-    {
-      "row_label": "Content Import",
-      "cells": [
-        "API Gateway",
-        "Synced",
-        "2 min ago"
-      ]
-    },
-    {
-      "row_label": "Theme Build",
-      "cells": [
-        "API Gateway",
-        "Synced",
-        "2 min ago"
-      ]
-    }
-  ],
-  "show_caption": true,
-  "caption_text": "Preview data for the data table seed import."
+    "_type": "table",
+    "header": "Data Table for live product intelligence",
+    "show_header_row": true,
+    "column_definitions": [
+        {
+            "column_label": "Mobile polish",
+            "column_align": "left"
+        },
+        {
+            "column_label": "Token coverage",
+            "column_align": "left"
+        },
+        {
+            "column_label": "Trust lift",
+            "column_align": "right"
+        }
+    ],
+    "rows": [
+        {
+            "row_label": "Token coverage",
+            "cells": [
+                "API Gateway",
+                "Synced",
+                "2 min ago"
+            ]
+        },
+        {
+            "row_label": "Trust lift",
+            "cells": [
+                "API Gateway",
+                "Synced",
+                "2 min ago"
+            ]
+        },
+        {
+            "row_label": "Signal quality",
+            "cells": [
+                "API Gateway",
+                "Synced",
+                "2 min ago"
+            ]
+        },
+        {
+            "row_label": "Launch velocity",
+            "cells": [
+                "API Gateway",
+                "Synced",
+                "2 min ago"
+            ]
+        }
+    ],
+    "show_caption": true,
+    "caption_text": "Preview data for the data table seed import."
 }

@@ -643,12 +643,6 @@ parameters:
 			path: Tests/Unit/StyleguideSeedCommandTest.php
 
 		-
-			message: '#^Cannot access offset ''collections'' on mixed\.$#'
-			identifier: offsetAccess.nonOffsetAccessible
-			count: 2
-			path: Tests/Unit/StyleguideSeedCommandTest.php
-
-		-
 			message: '#^Cannot access offset ''header'' on mixed\.$#'
 			identifier: offsetAccess.nonOffsetAccessible
 			count: 1
@@ -663,19 +657,7 @@ parameters:
 		-
 			message: '#^Cannot access offset ''items'' on mixed\.$#'
 			identifier: offsetAccess.nonOffsetAccessible
-			count: 6
-			path: Tests/Unit/StyleguideSeedCommandTest.php
-
-		-
-			message: '#^Cannot access offset ''maxItems'' on mixed\.$#'
-			identifier: offsetAccess.nonOffsetAccessible
-			count: 1
-			path: Tests/Unit/StyleguideSeedCommandTest.php
-
-		-
-			message: '#^Cannot access offset ''minItems'' on mixed\.$#'
-			identifier: offsetAccess.nonOffsetAccessible
-			count: 1
+			count: 4
 			path: Tests/Unit/StyleguideSeedCommandTest.php
 
 		-

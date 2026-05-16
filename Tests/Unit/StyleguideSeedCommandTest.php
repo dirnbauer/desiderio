@@ -172,15 +172,41 @@ final class StyleguideSeedCommandTest extends TestCase
         ]);
 
         self::assertIsArray($resolvedFixtureData);
-        [$fields, $collections] = $resolvedFixtureData;
+        $fields = $resolvedFixtureData[0] ?? null;
+        $collections = $resolvedFixtureData[1] ?? null;
+        self::assertIsArray($fields);
+        self::assertIsArray($collections);
+
+        $tiers = $collections['tiers'] ?? null;
+        self::assertIsArray($tiers);
+        $tierItems = $tiers['items'] ?? null;
+        self::assertIsArray($tierItems);
+
+        $firstTier = $tierItems[0] ?? null;
+        self::assertIsArray($firstTier);
+        $secondTier = $tierItems[1] ?? null;
+        self::assertIsArray($secondTier);
+        $thirdTier = $tierItems[2] ?? null;
+        self::assertIsArray($thirdTier);
+
+        $firstTierVolume = $firstTier['volume'] ?? null;
+        self::assertIsString($firstTierVolume);
+        $firstTierIncludedFeatures = $firstTier['included_features'] ?? null;
+        self::assertIsString($firstTierIncludedFeatures);
+        $secondTierVolume = $secondTier['volume'] ?? null;
+        self::assertIsString($secondTierVolume);
+        $secondTierPrice = $secondTier['price'] ?? null;
+        self::assertIsString($secondTierPrice);
+        $thirdTierVolume = $thirdTier['volume'] ?? null;
+        self::assertIsString($thirdTierVolume);
 
         self::assertSame('requests', $fields['unit_label']);
-        self::assertSame('1K', $collections['tiers']['items'][0]['volume']);
-        self::assertSame('10K', $collections['tiers']['items'][1]['volume']);
-        self::assertSame('100K', $collections['tiers']['items'][2]['volume']);
-        self::assertSame('$79', $collections['tiers']['items'][1]['price']);
-        self::assertStringContainsString('Theme-aware component states', $collections['tiers']['items'][0]['included_features']);
-        self::assertStringNotContainsString('Volume for', $collections['tiers']['items'][0]['volume']);
+        self::assertSame('1K', $firstTierVolume);
+        self::assertSame('10K', $secondTierVolume);
+        self::assertSame('100K', $thirdTierVolume);
+        self::assertSame('$79', $secondTierPrice);
+        self::assertStringContainsString('Theme-aware component states', $firstTierIncludedFeatures);
+        self::assertStringNotContainsString('Volume for', $firstTierVolume);
     }
 
     public function testHeadersAreConvertedToColumnDefinitions(): void
@@ -540,7 +566,7 @@ final class StyleguideSeedCommandTest extends TestCase
             ],
         ]);
 
-        [$fields] = $this->invokeMethod($command, 'resolveFixtureFields', [
+        $resolvedFixtureData = $this->invokeMethod($command, 'resolveFixtureFields', [
             'desiderio_mapembed',
             [
                 '_type' => 'card',
@@ -548,12 +574,18 @@ final class StyleguideSeedCommandTest extends TestCase
             ],
             'Map Embed',
         ]);
+        self::assertIsArray($resolvedFixtureData);
+        $fields = $resolvedFixtureData[0] ?? null;
+        self::assertIsArray($fields);
+
+        $embedUrl = $fields['embed_url'] ?? null;
+        self::assertIsString($embedUrl);
 
         self::assertSame('Our Headquarters', $fields['header']);
         self::assertSame(400, $fields['height']);
         self::assertSame('Mariahilfer Strasse 42, 1070 Vienna', $fields['address']);
-        self::assertStringStartsWith('https://www.openstreetmap.org/export/embed.html?', $fields['embed_url']);
-        self::assertStringNotContainsString('Embed Url for', $fields['embed_url']);
+        self::assertStringStartsWith('https://www.openstreetmap.org/export/embed.html?', $embedUrl);
+        self::assertStringNotContainsString('Embed Url for', $embedUrl);
     }
 
     public function testContentBlockDefinitionKeepsCollectionItemLimits(): void
@@ -577,9 +609,14 @@ final class StyleguideSeedCommandTest extends TestCase
                 ],
             ],
         ]]);
+        self::assertIsArray($definition);
+        $collections = $definition['collections'] ?? null;
+        self::assertIsArray($collections);
+        $items = $collections['items'] ?? null;
+        self::assertIsArray($items);
 
-        self::assertSame(2, $definition['collections']['items']['minItems']);
-        self::assertSame(4, $definition['collections']['items']['maxItems']);
+        self::assertSame(2, $items['minItems']);
+        self::assertSame(4, $items['maxItems']);
     }
 
     private function createCommand(): SeedStyleguidePagesCommand

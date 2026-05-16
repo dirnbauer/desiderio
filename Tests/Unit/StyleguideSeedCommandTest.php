@@ -227,7 +227,7 @@ final class StyleguideSeedCommandTest extends TestCase
         self::assertSame('10K', $secondTierVolume);
         self::assertSame('100K', $thirdTierVolume);
         self::assertSame('$79', $secondTierPrice);
-        self::assertStringContainsString('Accessible keyboard focus', $firstTierIncludedFeatures);
+        self::assertStringContainsString('Keyboard focus built in', $firstTierIncludedFeatures);
         self::assertStringNotContainsString('Volume for', $firstTierVolume);
     }
 
@@ -353,7 +353,7 @@ final class StyleguideSeedCommandTest extends TestCase
         $imageSource = $fields['image_source'] ?? null;
         self::assertIsString($imageSource);
 
-        self::assertContains($fields['eyebrow'], ['shadcn/ui system', 'Token driven', 'Production polish', 'A11y ready', 'Radix pattern', 'Modern TYPO3']);
+        self::assertContains($fields['eyebrow'], ['shadcn/ui', 'Token-ready', 'Premium surface', 'A11y checked', 'Radix rhythm', 'Modern TYPO3']);
         self::assertStringContainsString('shadcn', strtolower($description));
         self::assertStringContainsString('demo element', strtolower($description));
         self::assertStringNotContainsString('Complete demo content', $description);

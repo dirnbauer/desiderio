@@ -1,0 +1,13 @@
+.DS_Store
+.idea/
+*.cache
+vendor/
+node_modules/
+var/
+.phpunit.cache/
+composer.lock
+public/
+!Resources/Public/
+!Resources/Public/ShadcnRegistry/
+!Resources/Public/ShadcnRegistry/**
+.mcp.json

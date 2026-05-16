@@ -1,0 +1,76 @@
+{
+    "name": "webconsulting/desiderio",
+    "type": "typo3-cms-extension",
+    "description": "Desiderio — shadcn/ui-inspired Fluid 5 component library, 255 content elements, and theme layer for TYPO3 14",
+    "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "webconsulting studio"
+        }
+    ],
+    "require": {
+        "php": "^8.3",
+        "typo3/cms-core": "^14.3",
+        "typo3/cms-fluid": "^14.3",
+        "typo3/cms-workspaces": "^14.3",
+        "friendsoftypo3/content-blocks": "^2.2",
+        "praetorius/vite-asset-collector": "^1.7"
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true,
+    "suggest": {
+        "friendsoftypo3/visual-editor": "Optional. Inline visual editing when templates use f:render.text for text fields.",
+        "georgringer/news": "Optional. Drives the shadcn-styled News templates and the DesiderioNews backend layout.",
+        "apache-solr-for-typo3/solr": "Optional. Drives the shadcn-styled Solr search templates.",
+        "t3g/blog": "Optional. Drives the shadcn-styled t3g/blog overrides shipped under webconsulting/desiderio-blog."
+    },
+    "autoload": {
+        "psr-4": {
+            "Webconsulting\\Desiderio\\": "Classes/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Webconsulting\\Desiderio\\Tests\\": "Tests/"
+        }
+    },
+    "conflict": {
+        "webconsulting/shadcn2fluid-templates": "*"
+    },
+    "require-dev": {
+        "phpstan/extension-installer": "^1.4",
+        "phpstan/phpstan": "^2.1",
+        "phpstan/phpstan-phpunit": "^2.0",
+        "phpstan/phpstan-strict-rules": "^2.0",
+        "phpunit/phpunit": "^11.5",
+        "saschaegerer/phpstan-typo3": "^3.0",
+        "typo3/testing-framework": "^9.0"
+    },
+    "extra": {
+        "typo3/cms": {
+            "extension-key": "desiderio"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "phpstan/extension-installer": true,
+            "typo3/class-alias-loader": true,
+            "typo3/cms-composer-installers": true
+        },
+        "audit": {
+            "abandoned": "fail"
+        },
+        "platform": {
+            "php": "8.3"
+        },
+        "secure-http": true,
+        "sort-packages": true
+    },
+    "scripts": {
+        "audit": [
+            "@composer audit --no-dev --abandoned=fail"
+        ],
+        "phpstan": "phpstan analyse --configuration=phpstan.neon.dist",
+        "test": "phpunit --configuration=phpunit.xml.dist"
+    }
+}

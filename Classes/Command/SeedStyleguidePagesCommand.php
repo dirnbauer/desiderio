@@ -16,6 +16,7 @@ use Symfony\Component\Yaml\Yaml;
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Database\Query\QueryBuilder;
 use TYPO3\CMS\Core\Resource\File;
 use TYPO3\CMS\Core\Resource\Folder;
 use TYPO3\CMS\Core\Resource\StorageRepository;
@@ -306,6 +307,16 @@ final class SeedStyleguidePagesCommand extends Command
             $parameters['languageUid'] = 0;
             $types['languageUid'] = ParameterType::INTEGER;
         }
+        if (isset($columns['t3ver_wsid'])) {
+            $where[] = 't3ver_wsid = :workspaceId';
+            $parameters['workspaceId'] = 0;
+            $types['workspaceId'] = ParameterType::INTEGER;
+        }
+        if (isset($columns['t3ver_oid'])) {
+            $where[] = 't3ver_oid = :workspaceOriginalUid';
+            $parameters['workspaceOriginalUid'] = 0;
+            $types['workspaceOriginalUid'] = ParameterType::INTEGER;
+        }
 
         $existingUid = $this->connectionPool
             ->getConnectionForTable('pages')
@@ -389,7 +400,8 @@ final class SeedStyleguidePagesCommand extends Command
             ->set('tstamp', (string)$now)
             ->where(
                 $queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($pageUid)),
-                $queryBuilder->expr()->like('CType', $queryBuilder->createNamedParameter('desiderio_%'))
+                $queryBuilder->expr()->like('CType', $queryBuilder->createNamedParameter('desiderio_%')),
+                ...$this->buildLiveWorkspaceConstraints($queryBuilder, 'tt_content')
             )
             ->executeStatement();
     }
@@ -408,7 +420,8 @@ final class SeedStyleguidePagesCommand extends Command
             $queryBuilder
                 ->delete($table)
                 ->where(
-                    $queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($pageUid))
+                    $queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($pageUid)),
+                    ...$this->buildLiveWorkspaceConstraints($queryBuilder, $table)
                 )
                 ->executeStatement();
         }
@@ -427,7 +440,8 @@ final class SeedStyleguidePagesCommand extends Command
             ->from('tt_content')
             ->where(
                 $queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($pageUid)),
-                $queryBuilder->expr()->like('CType', $queryBuilder->createNamedParameter('desiderio_%'))
+                $queryBuilder->expr()->like('CType', $queryBuilder->createNamedParameter('desiderio_%')),
+                ...$this->buildLiveWorkspaceConstraints($queryBuilder, 'tt_content')
             )
             ->executeQuery()
             ->fetchFirstColumn();
@@ -464,7 +478,8 @@ final class SeedStyleguidePagesCommand extends Command
                     $queryBuilder->expr()->in(
                         'foreign_table_parent_uid',
                         $queryBuilder->createNamedParameter($parentUids, ArrayParameterType::INTEGER)
-                    )
+                    ),
+                    ...$this->buildLiveWorkspaceConstraints($queryBuilder, $table)
                 )
                 ->executeStatement();
         }
@@ -490,7 +505,8 @@ final class SeedStyleguidePagesCommand extends Command
                 $queryBuilder->expr()->in(
                     'foreign_table_parent_uid',
                     $queryBuilder->createNamedParameter($parentUids, ArrayParameterType::INTEGER)
-                )
+                ),
+                ...$this->buildLiveWorkspaceConstraints($queryBuilder, $table)
             )
             ->executeQuery()
             ->fetchFirstColumn();
@@ -513,7 +529,8 @@ final class SeedStyleguidePagesCommand extends Command
             ->select('uid')
             ->from($table)
             ->where(
-                $queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($pageUid))
+                $queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($pageUid)),
+                ...$this->buildLiveWorkspaceConstraints($queryBuilder, $table)
             )
             ->executeQuery()
             ->fetchFirstColumn();
@@ -542,9 +559,36 @@ final class SeedStyleguidePagesCommand extends Command
                 $queryBuilder->expr()->in(
                     'uid_foreign',
                     $queryBuilder->createNamedParameter($recordUids, ArrayParameterType::INTEGER)
-                )
+                ),
+                ...$this->buildLiveWorkspaceConstraints($queryBuilder, 'sys_file_reference')
             )
             ->executeStatement();
+    }
+
+    /**
+     * Restrict destructive styleguide cleanup to live rows. TYPO3 stores
+     * workspace versions in the same table, so queries with restrictions
+     * removed must add the live workspace predicates explicitly.
+     *
+     * @return list<string>
+     */
+    private function buildLiveWorkspaceConstraints(QueryBuilder $queryBuilder, string $table): array
+    {
+        $constraints = [];
+        if ($this->tableHasColumn($table, 't3ver_wsid')) {
+            $constraints[] = $queryBuilder->expr()->eq(
+                't3ver_wsid',
+                $queryBuilder->createNamedParameter(0, ParameterType::INTEGER)
+            );
+        }
+        if ($this->tableHasColumn($table, 't3ver_oid')) {
+            $constraints[] = $queryBuilder->expr()->eq(
+                't3ver_oid',
+                $queryBuilder->createNamedParameter(0, ParameterType::INTEGER)
+            );
+        }
+
+        return $constraints;
     }
 
     /**

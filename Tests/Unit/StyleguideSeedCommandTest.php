@@ -5,7 +5,10 @@ declare(strict_types=1);
 namespace Webconsulting\Desiderio\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
+use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Tester\CommandTester;
 use TYPO3\CMS\Core\Context\Context;
+use TYPO3\CMS\Core\Context\WorkspaceAspect;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Resource\StorageRepository;
 use Webconsulting\Desiderio\Command\SeedStyleguidePagesCommand;
@@ -24,9 +27,28 @@ final class StyleguideSeedCommandTest extends TestCase
         self::assertStringContainsString("->update('tt_content')", $source);
         self::assertStringContainsString("'desiderio_%'", $source);
         self::assertStringContainsString("deleteCollectionRowsForParentUids(\$existingContentUids, 'tt_content');", $source);
+        self::assertStringContainsString("getPropertyFromAspect('workspace', 'id', 0)", $source);
+        self::assertStringContainsString('buildLiveWorkspaceConstraints($queryBuilder, \'tt_content\')', $source);
+        self::assertStringContainsString('buildLiveWorkspaceConstraints($queryBuilder, \'sys_file_reference\')', $source);
         self::assertStringContainsString('completeResolvedFixtureData(', $source);
         self::assertStringContainsString('seedFileReferences(', $source);
         self::assertStringContainsString('Resources/Public/Styleguide/Unsplash', $source);
+    }
+
+    public function testCommandRefusesToSeedInOfflineWorkspace(): void
+    {
+        $context = new Context();
+        $context->setAspect('workspace', new WorkspaceAspect(42));
+        $command = new SeedStyleguidePagesCommand(
+            $this->createMock(ConnectionPool::class),
+            $context,
+            $this->createMock(StorageRepository::class),
+        );
+
+        $tester = new CommandTester($command);
+
+        self::assertSame(Command::FAILURE, $tester->execute([]));
+        self::assertStringContainsString('Refusing to seed inside workspace #42', $tester->getDisplay());
     }
 
     public function testLegacyColumnsFixtureIsResolvedToCollectionData(): void

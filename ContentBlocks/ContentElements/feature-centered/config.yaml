@@ -32,9 +32,13 @@ fields:
     fields:
       -
         identifier: icon
-        type: Textarea
-        rows: 1
+        type: Select
+        renderType: selectSingle
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:icon_emoji'
+        description: 'Semantic icon key rendered through the active shadcn icon library.'
+        itemsProcessors:
+          10:
+            class: Webconsulting\Desiderio\DataHandling\IconItemsProcessor
       -
         identifier: title
         type: Textarea

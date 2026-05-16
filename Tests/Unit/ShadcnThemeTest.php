@@ -25,6 +25,7 @@ final class ShadcnThemeTest extends TestCase
 
         self::assertSame('b6G5977cw', $shadcnSettings['preset'] ?? null);
         self::assertSame('radix-lyra', $shadcnSettings['style'] ?? null);
+        self::assertSame('tabler', $shadcnSettings['iconLibrary'] ?? null);
         self::assertSame('preset', $typographySettings['fontSans'] ?? null);
         self::assertSame('preset', $layoutSettings['radius'] ?? null);
 
@@ -47,6 +48,15 @@ final class ShadcnThemeTest extends TestCase
         $styleEnum = $styleDefinition['enum'] ?? null;
         self::assertIsArray($styleEnum);
         self::assertArrayHasKey('radix-lyra', $styleEnum);
+
+        $iconLibraryDefinition = $settingDefinitions['desiderio.shadcn.iconLibrary'] ?? null;
+        self::assertIsArray($iconLibraryDefinition);
+        $iconLibraryEnum = $iconLibraryDefinition['enum'] ?? null;
+        self::assertIsArray($iconLibraryEnum);
+        self::assertSame('tabler', $iconLibraryDefinition['default'] ?? null);
+        self::assertArrayHasKey('lucide', $iconLibraryEnum);
+        self::assertArrayHasKey('tabler', $iconLibraryEnum);
+        self::assertArrayHasKey('phosphor', $iconLibraryEnum);
 
         $radiusDefinition = $settingDefinitions['desiderio.layout.radius'] ?? null;
         self::assertIsArray($radiusDefinition);
@@ -75,6 +85,7 @@ final class ShadcnThemeTest extends TestCase
         self::assertStringContainsString('Resources/Public/Js/styleguide.js', $typoScript);
         self::assertStringContainsString('data-shadcn-preset="{$desiderio.shadcn.preset}"', $typoScript);
         self::assertStringContainsString('data-shadcn-style="{$desiderio.shadcn.style}"', $typoScript);
+        self::assertStringContainsString('data-icon-library="{$desiderio.shadcn.iconLibrary}"', $typoScript);
     }
 
     public function testThemeCssContainsLightDarkAndPresetTokens(): void
@@ -102,6 +113,11 @@ final class ShadcnThemeTest extends TestCase
         self::assertStringContainsString('--d-success:', $themeCss);
         self::assertStringContainsString('--d-warning:', $themeCss);
         self::assertStringContainsString('--d-danger:', $themeCss);
+
+        $componentsCss = (string) file_get_contents(__DIR__ . '/../../Resources/Public/Css/components.css');
+        self::assertStringContainsString('body[data-icon-library="lucide"] .d-icon[data-icon-library="lucide"]', $componentsCss);
+        self::assertStringContainsString('body[data-icon-library="tabler"] .d-icon[data-icon-library="tabler"]', $componentsCss);
+        self::assertStringContainsString('body[data-icon-library="phosphor"] .d-icon[data-icon-library="phosphor"]', $componentsCss);
     }
 
     public function testTailwindBuildScansFluidComponentsAndContentBlocks(): void

@@ -32,6 +32,24 @@ video {
   max-width: 100%;
 }
 
+.d-icon[data-icon-library] {
+  display: none;
+}
+
+.d-icon[data-icon-library="tabler"] {
+  display: block;
+}
+
+body[data-icon-library] .d-icon[data-icon-library] {
+  display: none;
+}
+
+body[data-icon-library="lucide"] .d-icon[data-icon-library="lucide"],
+body[data-icon-library="tabler"] .d-icon[data-icon-library="tabler"],
+body[data-icon-library="phosphor"] .d-icon[data-icon-library="phosphor"] {
+  display: block;
+}
+
 /* ==========================================================================
    1.1 ACCESSIBILITY PRIMITIVES
    Skip link, screen-reader utility, reduced-motion safety net.

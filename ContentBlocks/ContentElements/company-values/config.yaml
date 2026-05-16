@@ -43,6 +43,10 @@ fields:
         rows: 2
       -
         identifier: icon
-        type: Textarea
-        rows: 1
+        type: Select
+        renderType: selectSingle
         label: 'Icon Name'
+        description: 'Semantic icon key rendered through the active shadcn icon library.'
+        itemsProcessors:
+          10:
+            class: Webconsulting\Desiderio\DataHandling\IconItemsProcessor

@@ -6,6 +6,8 @@ namespace Webconsulting\Desiderio\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Yaml\Yaml;
+use Webconsulting\Desiderio\DataHandling\IconItemsProcessor;
+use Webconsulting\Desiderio\Icon\IconRegistry;
 
 final class ContentBlockStructureTest extends TestCase
 {
@@ -14,7 +16,8 @@ final class ContentBlockStructureTest extends TestCase
 
     public function testExpectedNumberOfContentBlocks(): void
     {
-        $blocks = glob(self::CONTENT_BLOCKS_DIR . '/*', GLOB_ONLYDIR) ?: [];
+        $blocks = glob(self::CONTENT_BLOCKS_DIR . '/*', GLOB_ONLYDIR);
+        $blocks = $blocks === false ? [] : $blocks;
         self::assertCount(self::EXPECTED_COUNT, $blocks, 'Content block count mismatch');
     }
 
@@ -283,6 +286,38 @@ final class ContentBlockStructureTest extends TestCase
             $styleguide,
             'styleguide.js must render icon fixture values through the allowlisted SVG renderer'
         );
+    }
+
+    public function testIconFieldsUseSharedSelectableRegistry(): void
+    {
+        $iconFieldCount = 0;
+        $blocks = glob(self::CONTENT_BLOCKS_DIR . '/*', GLOB_ONLYDIR) ?: [];
+
+        foreach ($blocks as $block) {
+            $config = Yaml::parseFile("{$block}/config.yaml");
+            self::assertIsArray($config);
+
+            $fields = $config['fields'] ?? [];
+            self::assertIsArray($fields);
+
+            foreach (self::collectIconFieldConfigs($fields) as $path => $field) {
+                $iconFieldCount++;
+                self::assertSame('Select', $field['type'] ?? null, basename($block) . " {$path} must use a select field");
+                self::assertSame('selectSingle', $field['renderType'] ?? null, basename($block) . " {$path} must use selectSingle");
+                $itemsProcessors = $field['itemsProcessors'] ?? [];
+                self::assertIsArray($itemsProcessors, basename($block) . " {$path} must define item processors");
+                $iconItemsProcessor = $itemsProcessors[10] ?? [];
+                self::assertIsArray($iconItemsProcessor, basename($block) . " {$path} must define icon item processor 10");
+                self::assertSame(
+                    IconItemsProcessor::class,
+                    $iconItemsProcessor['class'] ?? null,
+                    basename($block) . " {$path} must use the shared icon item processor"
+                );
+                self::assertArrayNotHasKey('items', $field, basename($block) . " {$path} must not define a divergent local icon list");
+            }
+        }
+
+        self::assertSame(16, $iconFieldCount);
     }
 
     public function testFixtureIconValuesUseIconNames(): void
@@ -682,12 +717,58 @@ final class ContentBlockStructureTest extends TestCase
                     $value,
                     sprintf('%s fixture icon field %s must use an icon key, not rendered text or emoji', $blockName, implode('.', $nextPath))
                 );
+                self::assertContains(
+                    $value,
+                    IconRegistry::keys(),
+                    sprintf('%s fixture icon field %s must use a key from IconRegistry', $blockName, implode('.', $nextPath))
+                );
             }
 
             if (is_array($value)) {
                 self::assertFixtureIconValuesAreKeys($value, $blockName, $nextPath);
             }
         }
+    }
+
+    /**
+     * @param array<int|string, mixed> $fields
+     * @param list<string> $path
+     * @return array<string, array<string, mixed>>
+     */
+    private static function collectIconFieldConfigs(array $fields, array $path = []): array
+    {
+        $iconFields = ['icon' => true, 'icon_name' => true, 'icon_style' => true, 'tab_icon' => true];
+        $result = [];
+
+        foreach ($fields as $field) {
+            if (!is_array($field)) {
+                continue;
+            }
+            $fieldConfig = [];
+            foreach ($field as $key => $value) {
+                if (is_string($key)) {
+                    $fieldConfig[$key] = $value;
+                }
+            }
+            $identifier = $fieldConfig['identifier'] ?? '';
+            if (!is_string($identifier)) {
+                continue;
+            }
+            $nextPath = $path;
+            if ($identifier !== '') {
+                $nextPath[] = $identifier;
+            }
+
+            if (isset($iconFields[$identifier])) {
+                $result[implode('.', $nextPath)] = $fieldConfig;
+            }
+
+            if (isset($fieldConfig['fields']) && is_array($fieldConfig['fields'])) {
+                $result = array_merge($result, self::collectIconFieldConfigs($fieldConfig['fields'], $nextPath));
+            }
+        }
+
+        return $result;
     }
 
 }

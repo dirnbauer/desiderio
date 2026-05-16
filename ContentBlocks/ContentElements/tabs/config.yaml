@@ -55,7 +55,10 @@ fields:
         required: true
       -
         identifier: tab_icon
-        type: Textarea
-        rows: 1
+        type: Select
+        renderType: selectSingle
         label: 'Tab Icon'
         description: 'Optional icon name (e.g. lucide icon identifier)'
+        itemsProcessors:
+          10:
+            class: Webconsulting\Desiderio\DataHandling\IconItemsProcessor

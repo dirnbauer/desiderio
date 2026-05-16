@@ -21,6 +21,8 @@ use TYPO3\CMS\Core\Resource\Folder;
 use TYPO3\CMS\Core\Resource\StorageRepository;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use Webconsulting\Desiderio\Data\StyleguideContentGroups;
+use Webconsulting\Desiderio\DataHandling\IconItemsProcessor;
+use Webconsulting\Desiderio\Icon\IconRegistry;
 
 #[AsCommand(
     name: 'desiderio:styleguide:seed',
@@ -61,20 +63,6 @@ final class SeedStyleguidePagesCommand extends Command
         'Reusable TYPO3 Content Blocks',
         'Responsive editor fixtures',
         'Token-based chart colors',
-    ];
-    private const DEMO_ICONS = [
-        'sparkles',
-        'shield-check',
-        'chart-no-axes-combined',
-        'users',
-        'rocket',
-        'database',
-        'settings',
-        'book-open',
-        'check-circle',
-        'clock',
-        'globe',
-        'map-pin',
     ];
     private const DEMO_LINK_LABELS = ['Overview', 'Components', 'Examples', 'Pricing', 'Contact'];
     private const DEMO_PEOPLE = [
@@ -987,7 +975,7 @@ final class SeedStyleguidePagesCommand extends Command
             str_contains($normalizedField, 'price') => '$' . [19, 49, 99, 249][$index % 4],
             str_contains($normalizedField, 'period') || str_contains($normalizedField, 'billing') => '/month',
             str_contains($normalizedField, 'size') => '2.4 MB',
-            str_contains($normalizedField, 'icon') => $this->pickDemoString(self::DEMO_ICONS, $name . '-' . $field, $index),
+            str_contains($normalizedField, 'icon') => $this->pickDemoString(IconRegistry::demoKeys(), $name . '-' . $field, $index),
             str_contains($normalizedField, 'gradientto') => 'accent',
             str_contains($normalizedField, 'gradient') => 'primary',
             str_contains($normalizedField, 'color') => 'primary',
@@ -2122,6 +2110,15 @@ final class SeedStyleguidePagesCommand extends Command
             return $this->buildDefaultSelectValue($fieldConfig);
         }
 
+        if ($this->usesIconItemsProcessor($fieldConfig)) {
+            $normalizedIcon = IconRegistry::normalizeKey((string)$value);
+            foreach ($this->getSelectItemValues($fieldConfig) as $itemValue) {
+                if ((string)$itemValue === $normalizedIcon) {
+                    return $itemValue;
+                }
+            }
+        }
+
         foreach ($this->getSelectItemValues($fieldConfig) as $itemValue) {
             if ((string)$itemValue === (string)$value) {
                 return $itemValue;
@@ -2137,6 +2134,10 @@ final class SeedStyleguidePagesCommand extends Command
      */
     private function getSelectItemValues(array $fieldConfig): array
     {
+        if ($this->usesIconItemsProcessor($fieldConfig)) {
+            return IconRegistry::keys();
+        }
+
         $values = [];
 
         foreach (($fieldConfig['items'] ?? []) as $item) {
@@ -2148,6 +2149,28 @@ final class SeedStyleguidePagesCommand extends Command
         }
 
         return $values;
+    }
+
+    /**
+     * @param array<string, mixed> $fieldConfig
+     */
+    private function usesIconItemsProcessor(array $fieldConfig): bool
+    {
+        $processors = $fieldConfig['itemsProcessors'] ?? [];
+        if (!is_array($processors)) {
+            return false;
+        }
+
+        foreach ($processors as $processor) {
+            if (!is_array($processor)) {
+                continue;
+            }
+            if (($processor['class'] ?? null) === IconItemsProcessor::class) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     /**
@@ -2164,14 +2187,23 @@ final class SeedStyleguidePagesCommand extends Command
     }
 
     /**
-     * @param array<string, array<string, mixed>> $collections
+     * @param array<int|string, mixed> $collections
      * @param array<string, true> $tables
      */
     private function collectCollectionTableNames(array $collections, array &$tables): void
     {
         foreach ($collections as $collection) {
-            $tables[(string)$collection['table']] = true;
-            $this->collectCollectionTableNames($collection['collections'] ?? [], $tables);
+            if (!is_array($collection)) {
+                continue;
+            }
+            $table = $collection['table'] ?? null;
+            if (is_string($table) && $table !== '') {
+                $tables[$table] = true;
+            }
+            $nestedCollections = $collection['collections'] ?? [];
+            if (is_array($nestedCollections)) {
+                $this->collectCollectionTableNames($nestedCollections, $tables);
+            }
         }
     }
 
@@ -2194,14 +2226,31 @@ final class SeedStyleguidePagesCommand extends Command
     }
 
     /**
-     * @param array<string, array<string, mixed>> $collections
+     * @param array<int|string, mixed> $collections
      * @param array<string, list<array<string, mixed>>> $map
      */
     private function collectCollectionsByParentTable(string $parentTable, array $collections, array &$map): void
     {
         foreach ($collections as $collection) {
-            $map[$parentTable][] = $collection;
-            $this->collectCollectionsByParentTable((string)$collection['table'], $collection['collections'] ?? [], $map);
+            if (!is_array($collection)) {
+                continue;
+            }
+            $collectionConfig = [];
+            foreach ($collection as $key => $value) {
+                if (is_string($key)) {
+                    $collectionConfig[$key] = $value;
+                }
+            }
+            $table = $collectionConfig['table'] ?? null;
+            if (!is_string($table) || $table === '') {
+                continue;
+            }
+            $nestedCollections = $collectionConfig['collections'] ?? [];
+            if (!is_array($nestedCollections)) {
+                $nestedCollections = [];
+            }
+            $map[$parentTable][] = $collectionConfig;
+            $this->collectCollectionsByParentTable($table, $nestedCollections, $map);
         }
     }
 

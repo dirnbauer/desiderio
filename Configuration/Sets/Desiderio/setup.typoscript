@@ -89,7 +89,7 @@ page {
   }
 
   bodyTagCObject = TEXT
-  bodyTagCObject.value = <body data-theme="{$desiderio.theme.darkModeDefault}" data-shadcn-preset="{$desiderio.shadcn.preset}" data-shadcn-style="{$desiderio.shadcn.style}" data-density="{$desiderio.layout.density}" data-container="{$desiderio.layout.container}" data-radius="{$desiderio.layout.radius}" data-accent="{$desiderio.theme.accent}" data-font="{$desiderio.typography.fontSans}" data-header-style="{$desiderio.header.style}" data-footer-style="{$desiderio.footer.style}">
+  bodyTagCObject.value = <body data-theme="{$desiderio.theme.darkModeDefault}" data-shadcn-preset="{$desiderio.shadcn.preset}" data-shadcn-style="{$desiderio.shadcn.style}" data-icon-library="{$desiderio.shadcn.iconLibrary}" data-density="{$desiderio.layout.density}" data-container="{$desiderio.layout.container}" data-radius="{$desiderio.layout.radius}" data-accent="{$desiderio.theme.accent}" data-font="{$desiderio.typography.fontSans}" data-header-style="{$desiderio.header.style}" data-footer-style="{$desiderio.footer.style}">
   bodyTagCObject.insertData = 1
 
   10 =< lib.fluidPage

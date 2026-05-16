@@ -45,7 +45,7 @@ $recipes = fetchRecipes($style);
 $targets = renderTargets($recipes, $style, $preset, $scriptRelativePath);
 
 $expectedComponentsJson = syncComponentsJson($componentsJson, $style, $iconLibrary, $baseColor);
-$expectedSettingsYaml = syncSettingsYaml($settingsYaml, $preset, $style);
+$expectedSettingsYaml = syncSettingsYaml($settingsYaml, $preset, $style, $iconLibrary);
 
 if ($checkOnly) {
     $errors = [];
@@ -158,6 +158,13 @@ function decodePreset(string $preset): ?array
                 'style' => 'lyra',
                 'iconLibrary' => 'tabler',
                 'baseColor' => 'olive',
+            ],
+        ],
+        'b1FSk5ls0' => [
+            'values' => [
+                'style' => 'nova',
+                'iconLibrary' => 'phosphor',
+                'baseColor' => 'taupe',
             ],
         ],
     ];
@@ -901,10 +908,11 @@ function syncComponentsJson(array $componentsJson, string $style, string $iconLi
     return $componentsJson;
 }
 
-function syncSettingsYaml(string $settingsYaml, string $preset, string $style): string
+function syncSettingsYaml(string $settingsYaml, string $preset, string $style, string $iconLibrary): string
 {
     $updated = replaceYamlSectionValue($settingsYaml, 'shadcn', 'preset', $preset);
     $updated = replaceYamlSectionValue($updated, 'shadcn', 'style', $style);
+    $updated = replaceYamlSectionValue($updated, 'shadcn', 'iconLibrary', $iconLibrary);
 
     return str_ends_with($updated, "\n") ? $updated : $updated . "\n";
 }

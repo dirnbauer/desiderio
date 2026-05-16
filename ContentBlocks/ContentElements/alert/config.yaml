@@ -45,10 +45,14 @@ fields:
     required: true
   -
     identifier: icon
-    type: Textarea
-    rows: 1
+    type: Select
+    renderType: selectSingle
     label: 'Icon Name'
     description: 'Optional icon identifier (e.g. "info", "alert-triangle")'
+    itemsProcessors:
+      10:
+        class: Webconsulting\Desiderio\DataHandling\IconItemsProcessor
+    default: alert-triangle
   -
     identifier: show_close_button
     type: Checkbox

@@ -40,9 +40,13 @@ fields:
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:link'
       -
         identifier: icon
-        type: Textarea
-        rows: 1
+        type: Select
+        renderType: selectSingle
         label: 'Icon Name'
+        description: 'Semantic icon key rendered through the active shadcn icon library.'
+        itemsProcessors:
+          10:
+            class: Webconsulting\Desiderio\DataHandling\IconItemsProcessor
   -
     identifier: button_text
     type: Textarea

@@ -250,6 +250,8 @@ npm run shadcn:sync-fluid
 That command decodes the preset id, updates `components.json` with the matching
 registry style, icon library, and base color, and synchronizes registry-backed
 Fluid primitives from `https://ui.shadcn.com/r/styles/{style}/{name}.json`.
+It also updates the default `desiderio.shadcn.iconLibrary` value so new installs
+render semantic icon fields with the icon family from the selected preset.
 Local semantic primitives, especially Typography, stay token-driven because
 shadcn Typography is example documentation rather than a registry component.
 
@@ -260,8 +262,10 @@ block exists.
 The shadcn/create left navigation has values that are preset metadata in
 Desiderio, not all independent runtime switches. `Style`, `Base Color`,
 `Theme`, `Chart Color`, `Heading`, `Font`, and `Radius` are represented through
-the committed preset tokens. `Icon Library`, `Menu`, and `Menu Accent` are
-documented from the preset, but are not separate TYPO3 switches yet. See
+the committed preset tokens. `Icon Library` is a separate TYPO3 setting that
+renders stable semantic icon keys as Lucide, Tabler, or Phosphor SVGs. `Menu`
+and `Menu Accent` are documented from the preset, but are not separate TYPO3
+switches yet. See
 `Documentation/ShadcnUpgrade.md` for the exact support matrix and step-by-step
 workflow.
 

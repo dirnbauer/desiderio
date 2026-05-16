@@ -23,22 +23,10 @@ fields:
     type: Select
     renderType: selectSingle
     label: Icon
-    items:
-      -
-        label: Star
-        value: star
-      -
-        label: Heart
-        value: heart
-      -
-        label: Zap
-        value: zap
-      -
-        label: Shield
-        value: shield
-      -
-        label: Globe
-        value: globe
+    description: 'Semantic icon key rendered through the active shadcn icon library.'
+    itemsProcessors:
+      10:
+        class: Webconsulting\Desiderio\DataHandling\IconItemsProcessor
     default: star
   -
     identifier: link

@@ -189,16 +189,28 @@ committed preset, but not every left-nav value is an independent runtime setting
 | Chart Color | Supported through `--chart-1` to `--chart-5`. Not an independent TYPO3 setting. |
 | Heading | Supported through preset font tokens and `--d-font-heading`. |
 | Font | Supported through preset font tokens. `desiderio.typography.fontSans` can override it. |
-| Icon Library | Not a runtime switch. TYPO3 Content Block icons are committed SVG files using `currentColor`. |
+| Icon Library | Stored as `desiderio.shadcn.iconLibrary`. Content records keep semantic Desiderio icon keys, and rendering resolves them to Lucide, Tabler, or Phosphor SVGs at runtime. |
 | Radius | Supported through preset tokens when `desiderio.layout.radius = preset`; otherwise the site radius setting overrides it. |
 | Menu | Partially supported by Desiderio header/site styles. The shadcn `menuColor` value is documented but not yet an independent setting. |
 | Menu Accent | Documented from the preset. Not yet an independent TYPO3 setting. |
 | `--preset <id>` | Supported when the id exists in Site Settings and `shadcn-theme.css`. |
 
-To support every left-nav value as an independent TYPO3 runtime switch, add new
-Site Settings, render them as `<body data-*>` attributes in TypoScript, add CSS
-rules for each value, and update tests/docs. Until then, use preset ids for
-faithful shadcn/create styles.
+To support every remaining left-nav value as an independent TYPO3 runtime
+switch, add new Site Settings, render them as `<body data-*>` attributes in
+TypoScript, add CSS rules for each value, and update tests/docs. Until then, use
+preset ids for faithful shadcn/create styles.
+
+## Icon Fields
+
+Editor-facing Content Block icon fields must store semantic Desiderio keys such
+as `shield-check`, `rocket`, or `map-pin`. They must not store library-specific
+imports or SVG names. All icon fields use `type: Select`, `renderType:
+selectSingle`, and `Webconsulting\Desiderio\DataHandling\IconItemsProcessor`.
+
+`Classes/Icon/IconRegistry.php` is the source of truth for labels, allowed keys,
+demo values, aliases, and library rendering support. This lets a site change
+`desiderio.shadcn.iconLibrary` from `tabler` to `phosphor` later without
+rewriting existing `tt_content` or collection rows.
 
 ## Component Updates
 

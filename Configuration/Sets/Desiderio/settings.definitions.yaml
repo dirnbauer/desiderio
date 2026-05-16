@@ -154,6 +154,17 @@ settings:
     default: radix-lyra
     category: desiderio.shadcn
 
+  desiderio.shadcn.iconLibrary:
+    label: 'Icon library'
+    description: 'SVG icon family used to render semantic Desiderio icon keys. Stored content keeps stable icon keys, so this can be changed later without rewriting content records.'
+    type: string
+    enum:
+      lucide: 'Lucide'
+      tabler: 'Tabler'
+      phosphor: 'Phosphor'
+    default: tabler
+    category: desiderio.shadcn
+
   # --------------------------------------------------------------- Typography
   desiderio.typography.fontSans:
     label: 'Sans-serif font'

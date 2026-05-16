@@ -93,7 +93,7 @@ parameters:
 		-
 			message: '#^Cannot cast mixed to string\.$#'
 			identifier: cast.string
-			count: 21
+			count: 20
 			path: Classes/Command/SeedStyleguidePagesCommand.php
 
 		-
@@ -157,12 +157,6 @@ parameters:
 			path: Classes/Command/SeedStyleguidePagesCommand.php
 
 		-
-			message: '#^Parameter \#1 \$collections of method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:collectCollectionTableNames\(\) expects array\<string, array\<string, mixed\>\>, mixed given\.$#'
-			identifier: argument.type
-			count: 1
-			path: Classes/Command/SeedStyleguidePagesCommand.php
-
-		-
 			message: '#^Parameter \#1 \$config of method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:buildContentBlockDefinition\(\) expects array\<string, mixed\>, array\<mixed, mixed\> given\.$#'
 			identifier: argument.type
 			count: 1
@@ -214,12 +208,6 @@ parameters:
 			message: '#^Parameter \#2 \$collection of method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:normalizeCollectionItems\(\) expects array\<string, mixed\>, mixed given\.$#'
 			identifier: argument.type
 			count: 2
-			path: Classes/Command/SeedStyleguidePagesCommand.php
-
-		-
-			message: '#^Parameter \#2 \$collections of method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:collectCollectionsByParentTable\(\) expects array\<string, array\<string, mixed\>\>, mixed given\.$#'
-			identifier: argument.type
-			count: 1
 			path: Classes/Command/SeedStyleguidePagesCommand.php
 
 		-

@@ -56,20 +56,8 @@ fields:
         type: Select
         renderType: selectSingle
         label: Icon
-        items:
-          -
-            label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.none'
-            value: none
-          -
-            label: Users
-            value: users
-          -
-            label: Download
-            value: download
-          -
-            label: Globe
-            value: globe
-          -
-            label: Heart
-            value: heart
+        description: 'Semantic icon key rendered through the active shadcn icon library.'
+        itemsProcessors:
+          10:
+            class: Webconsulting\Desiderio\DataHandling\IconItemsProcessor
         default: none

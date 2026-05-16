@@ -1,0 +1,31 @@
+# Default values for the Desiderio base set.
+# Presets override these in their own settings.yaml.
+
+styles:
+  templates:
+    templateRootPath: EXT:desiderio/Resources/Private/FluidStyledContent/Templates/
+    partialRootPath: EXT:desiderio/Resources/Private/FluidStyledContent/Partials/
+    layoutRootPath: EXT:desiderio/Resources/Private/FluidStyledContent/Layouts/
+
+desiderio:
+  layout:
+    density: comfortable
+    container: wide
+    radius: preset
+  header:
+    style: solid
+    fixedPosition: false
+  footer:
+    style: columns
+  theme:
+    accent: slate
+    darkModeDefault: system
+    darkModeToggle: true
+  shadcn:
+    preset: b6G5977cw
+    style: radix-lyra
+    iconLibrary: tabler
+  typography:
+    fontSans: preset
+  styleguide:
+    enabled: false

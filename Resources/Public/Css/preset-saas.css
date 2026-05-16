@@ -1,0 +1,32 @@
+/* ===================================================================
+   Desiderio Template 1: SaaS Landing
+   Clean, modern marketing page styling.
+   =================================================================== */
+
+/* Template-specific overrides for the SaaS landing page look */
+
+.desiderio-header {
+    backdrop-filter: blur(8px);
+    background-color: color-mix(in oklch, var(--background) 80%, transparent);
+}
+
+.desiderio-main {
+    padding-top: 1rem;
+}
+
+/* Hero-area enhancements for landing pages */
+.ce-frame:first-child {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
+
+/* Slightly larger content area spacing for landing page rhythm */
+.ce-frame {
+    padding: 2rem 0;
+}
+
+@media (min-width: 1024px) {
+    .ce-frame {
+        padding: 3rem 0;
+    }
+}

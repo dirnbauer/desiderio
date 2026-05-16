@@ -1,0 +1,96 @@
+@import './TypoScript/*.typoscript'
+
+plugin.tx_solr.index.queue.pages {
+  allowedPageTypes = 1,7,137,138
+  additionalWhereClause = (doktype IN(1,137,138) OR (doktype=7 AND mount_pid_ol=0)) AND no_search = 0
+}
+
+tx_solr_suggest = PAGE
+tx_solr_suggest {
+  typeNum = 7384
+  config {
+    disableAllHeaderCode = 1
+    xhtml_cleaning = 0
+    admPanel = 0
+    additionalHeaders.10.header = Content-type: application/json
+    no_cache = 0
+    debug = 0
+  }
+
+  10 = USER
+  10 {
+    userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+    extensionName = Solr
+    pluginName = pi_suggest
+    vendorName = ApacheSolrForTypo3
+    controller = Suggest
+    action = suggest
+  }
+}
+
+plugin.tx_solr {
+  view {
+    templateRootPaths.100 = EXT:desiderio/Resources/Private/Solr/Templates/
+    partialRootPaths.100 = EXT:desiderio/Resources/Private/Solr/Partials/
+    layoutRootPaths.100 = EXT:desiderio/Resources/Private/Solr/Layouts/
+  }
+
+  suggest = 1
+  suggest {
+    numberOfSuggestions = 10
+    suggestField = spell
+    showTopResults = 1
+    numberOfTopResults = 5
+  }
+}
+
+# Like Camino, the base set owns the PAGE object and delegates rendering
+# to lib.fluidPage so type=0 always has a frontend entry point.
+page = PAGE
+
+page {
+  includeCSS {
+    desiderioTheme = EXT:desiderio/Resources/Public/Css/shadcn-theme.css
+    desiderioTheme.media = all
+
+    desiderioTailwind = EXT:desiderio/Resources/Public/Css/desiderio-tailwind.css
+    desiderioTailwind.media = all
+
+    desiderioComponents = EXT:desiderio/Resources/Public/Css/components.css
+    desiderioComponents.media = all
+
+    desiderioBase = EXT:desiderio/Resources/Public/Css/desiderio.css
+    desiderioBase.media = all
+  }
+
+  includeJSFooter {
+    desiderioAlpine = EXT:desiderio/Resources/Public/Js/alpine.min.js
+    desiderioAlpine.defer = 1
+
+    desiderioComponents = EXT:desiderio/Resources/Public/Js/desiderio.js
+    desiderioComponents.defer = 1
+
+    desiderioCharts = EXT:desiderio/Resources/Public/Js/charts.js
+    desiderioCharts.defer = 1
+
+    desiderioStyleguide = EXT:desiderio/Resources/Public/Js/styleguide.js
+    desiderioStyleguide.defer = 1
+  }
+
+  includeJSFooterlibs {
+    solr-jquery >
+    solr-autocomplete >
+    solr-suggest >
+  }
+
+  includeCSS {
+    solr-suggest >
+    solrSuggest >
+  }
+
+  bodyTagCObject = TEXT
+  bodyTagCObject.value = <body data-theme="{$desiderio.theme.darkModeDefault}" data-shadcn-preset="{$desiderio.shadcn.preset}" data-shadcn-style="{$desiderio.shadcn.style}" data-icon-library="{$desiderio.shadcn.iconLibrary}" data-density="{$desiderio.layout.density}" data-container="{$desiderio.layout.container}" data-radius="{$desiderio.layout.radius}" data-accent="{$desiderio.theme.accent}" data-font="{$desiderio.typography.fontSans}" data-header-style="{$desiderio.header.style}" data-footer-style="{$desiderio.footer.style}">
+  bodyTagCObject.insertData = 1
+
+  10 =< lib.fluidPage
+}

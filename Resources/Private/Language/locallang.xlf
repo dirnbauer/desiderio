@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en">
+  <file id="EXT:desiderio/Resources/Private/Language/locallang.xlf" original="EXT:desiderio/Resources/Private/Language/locallang.xlf">
+    <unit id="pagination.aria.label">
+      <segment>
+        <source>Pagination, {totalPages, plural, one {one page} other {# pages}}</source>
+      </segment>
+    </unit>
+    <unit id="pagination.aria.previous">
+      <segment>
+        <source>Go to previous page</source>
+      </segment>
+    </unit>
+    <unit id="pagination.aria.next">
+      <segment>
+        <source>Go to next page</source>
+      </segment>
+    </unit>
+    <unit id="pagination.aria.goToPage">
+      <segment>
+        <source>Go to page {page} of {totalPages, plural, one {one page} other {# pages}}</source>
+      </segment>
+    </unit>
+    <unit id="pagination.aria.currentPage">
+      <segment>
+        <source>Page {page} of {totalPages, plural, one {one page} other {# pages}}</source>
+      </segment>
+    </unit>
+    <unit id="pagination.previous">
+      <segment>
+        <source>Previous</source>
+      </segment>
+    </unit>
+    <unit id="pagination.next">
+      <segment>
+        <source>Next</source>
+      </segment>
+    </unit>
+    <unit id="news.loadMore">
+      <segment>
+        <source>Load more articles</source>
+      </segment>
+    </unit>
+    <unit id="news.loadMore.status">
+      <segment>
+        <source>Showing {visible, plural, one {one article} other {# articles}} of {total, plural, one {one article} other {# articles}}</source>
+      </segment>
+    </unit>
+    <unit id="news.featured">
+      <segment>
+        <source>Featured</source>
+      </segment>
+    </unit>
+    <unit id="news.magazine.more">
+      <segment>
+        <source>More articles</source>
+      </segment>
+    </unit>
+    <unit id="news.magazine.items">
+      <segment>
+        <source>{count, plural, one {one article} other {# articles}}</source>
+      </segment>
+    </unit>
+    <unit id="news.comments.count">
+      <segment>
+        <source>{count, plural, =0 {No comments yet} one {one comment} other {# comments}}</source>
+      </segment>
+    </unit>
+    <unit id="news.tags.count">
+      <segment>
+        <source>{count, plural, one {one tag} other {# tags}}</source>
+      </segment>
+    </unit>
+    <unit id="news.categories.count">
+      <segment>
+        <source>{count, plural, one {one category} other {# categories}}</source>
+      </segment>
+    </unit>
+    <unit id="news.entries.count">
+      <segment>
+        <source>{count, plural, one {one entry} other {# entries}}</source>
+      </segment>
+    </unit>
+    <unit id="a11y.skipToContent">
+      <segment>
+        <source>Skip to main content</source>
+      </segment>
+    </unit>
+    <unit id="a11y.nav.main">
+      <segment>
+        <source>Main navigation</source>
+      </segment>
+    </unit>
+    <unit id="a11y.nav.footer">
+      <segment>
+        <source>Footer navigation</source>
+      </segment>
+    </unit>
+    <unit id="a11y.nav.language">
+      <segment>
+        <source>Language</source>
+      </segment>
+    </unit>
+    <unit id="a11y.menu.toggle">
+      <segment>
+        <source>Toggle menu</source>
+      </segment>
+    </unit>
+    <unit id="a11y.theme.toggle">
+      <segment>
+        <source>Toggle dark mode</source>
+      </segment>
+    </unit>
+    <unit id="a11y.share.label">
+      <segment>
+        <source>Share this article</source>
+      </segment>
+    </unit>
+  </file>
+</xliff>

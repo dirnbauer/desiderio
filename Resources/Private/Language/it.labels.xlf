@@ -1,0 +1,1007 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en" trgLang="it">
+  <file id="desiderio">
+    <unit id="heading">
+      <segment state="final">
+        <source>Heading</source>
+        <target>Intestazione</target>
+      </segment>
+    </unit>
+    <unit id="description">
+      <segment state="final">
+        <source>Description</source>
+        <target>Descrizione</target>
+      </segment>
+    </unit>
+    <unit id="subheadline">
+      <segment state="final">
+        <source>Subheadline</source>
+        <target>Sottotitolo</target>
+      </segment>
+    </unit>
+    <unit id="eyebrow">
+      <segment state="final">
+        <source>Eyebrow</source>
+        <target>Sopratitolo</target>
+      </segment>
+    </unit>
+    <unit id="button_text">
+      <segment state="final">
+        <source>Button Text</source>
+        <target>Testo pulsante</target>
+      </segment>
+    </unit>
+    <unit id="button_link">
+      <segment state="final">
+        <source>Button Link</source>
+        <target>Link pulsante</target>
+      </segment>
+    </unit>
+    <unit id="label">
+      <segment state="final">
+        <source>Label</source>
+        <target>Etichetta</target>
+      </segment>
+    </unit>
+    <unit id="link">
+      <segment state="final">
+        <source>Link</source>
+        <target>Link</target>
+      </segment>
+    </unit>
+    <unit id="optional_link">
+      <segment state="final">
+        <source>Optional Link</source>
+        <target>Link opzionale</target>
+      </segment>
+    </unit>
+    <unit id="link_text">
+      <segment state="final">
+        <source>Link Text</source>
+        <target>Testo link</target>
+      </segment>
+    </unit>
+    <unit id="title">
+      <segment state="final">
+        <source>Title</source>
+        <target>Titolo</target>
+      </segment>
+    </unit>
+    <unit id="image">
+      <segment state="final">
+        <source>Image</source>
+        <target>Immagine</target>
+      </segment>
+    </unit>
+    <unit id="name">
+      <segment state="final">
+        <source>Name</source>
+        <target>Nome</target>
+      </segment>
+    </unit>
+    <unit id="content">
+      <segment state="final">
+        <source>Content</source>
+        <target>Contenuto</target>
+      </segment>
+    </unit>
+    <unit id="text">
+      <segment state="final">
+        <source>Text</source>
+        <target>Testo</target>
+      </segment>
+    </unit>
+    <unit id="style">
+      <segment state="final">
+        <source>Style</source>
+        <target>Stile</target>
+      </segment>
+    </unit>
+    <unit id="layout">
+      <segment state="final">
+        <source>Layout</source>
+        <target>Layout</target>
+      </segment>
+    </unit>
+    <unit id="columns">
+      <segment state="final">
+        <source>Columns</source>
+        <target>Colonne</target>
+      </segment>
+    </unit>
+    <unit id="alignment">
+      <segment state="final">
+        <source>Alignment</source>
+        <target>Allineamento</target>
+      </segment>
+    </unit>
+    <unit id="text_alignment">
+      <segment state="final">
+        <source>Text Alignment</source>
+        <target>Allineamento testo</target>
+      </segment>
+    </unit>
+    <unit id="primary_button_text">
+      <segment state="final">
+        <source>Primary Button Text</source>
+        <target>Testo pulsante primario</target>
+      </segment>
+    </unit>
+    <unit id="primary_button_link">
+      <segment state="final">
+        <source>Primary Button Link</source>
+        <target>Link pulsante primario</target>
+      </segment>
+    </unit>
+    <unit id="secondary_button_text">
+      <segment state="final">
+        <source>Secondary Button Text</source>
+        <target>Testo pulsante secondario</target>
+      </segment>
+    </unit>
+    <unit id="secondary_button_link">
+      <segment state="final">
+        <source>Secondary Button Link</source>
+        <target>Link pulsante secondario</target>
+      </segment>
+    </unit>
+    <unit id="badge_text">
+      <segment state="final">
+        <source>Badge Text</source>
+        <target>Testo badge</target>
+      </segment>
+    </unit>
+    <unit id="background_image">
+      <segment state="final">
+        <source>Background Image</source>
+        <target>Immagine di sfondo</target>
+      </segment>
+    </unit>
+    <unit id="author_name">
+      <segment state="final">
+        <source>Author Name</source>
+        <target>Nome autore</target>
+      </segment>
+    </unit>
+    <unit id="author_role">
+      <segment state="final">
+        <source>Author Role</source>
+        <target>Ruolo autore</target>
+      </segment>
+    </unit>
+    <unit id="author_title">
+      <segment state="final">
+        <source>Author Title</source>
+        <target>Titolo autore</target>
+      </segment>
+    </unit>
+    <unit id="author_photo">
+      <segment state="final">
+        <source>Author Photo</source>
+        <target>Foto autore</target>
+      </segment>
+    </unit>
+    <unit id="copyright_text">
+      <segment state="final">
+        <source>Copyright Text</source>
+        <target>Testo copyright</target>
+      </segment>
+    </unit>
+    <unit id="price">
+      <segment state="final">
+        <source>Price</source>
+        <target>Prezzo</target>
+      </segment>
+    </unit>
+    <unit id="rating">
+      <segment state="final">
+        <source>Rating</source>
+        <target>Valutazione</target>
+      </segment>
+    </unit>
+    <unit id="brand">
+      <segment state="final">
+        <source>Brand</source>
+        <target>Marchio</target>
+      </segment>
+    </unit>
+    <unit id="brand_name">
+      <segment state="final">
+        <source>Brand Name</source>
+        <target>Nome marchio</target>
+      </segment>
+    </unit>
+    <unit id="brand_link">
+      <segment state="final">
+        <source>Brand Link</source>
+        <target>Link marchio</target>
+      </segment>
+    </unit>
+    <unit id="form_action">
+      <segment state="final">
+        <source>Form Action</source>
+        <target>Azione modulo</target>
+      </segment>
+    </unit>
+    <unit id="features">
+      <segment state="final">
+        <source>Features</source>
+        <target>Funzionalità</target>
+      </segment>
+    </unit>
+    <unit id="features_one_per_line">
+      <segment state="final">
+        <source>Feature Items</source>
+        <target>Elementi funzionalità</target>
+      </segment>
+    </unit>
+    <unit id="portrait">
+      <segment state="final">
+        <source>Portrait</source>
+        <target>Ritratto</target>
+      </segment>
+    </unit>
+    <unit id="value">
+      <segment state="final">
+        <source>Value</source>
+        <target>Valore</target>
+      </segment>
+    </unit>
+    <unit id="role">
+      <segment state="final">
+        <source>Role</source>
+        <target>Ruolo</target>
+      </segment>
+    </unit>
+    <unit id="logo">
+      <segment state="final">
+        <source>Logo</source>
+        <target>Logo</target>
+      </segment>
+    </unit>
+    <unit id="short_description">
+      <segment state="final">
+        <source>Short Description</source>
+        <target>Descrizione breve</target>
+      </segment>
+    </unit>
+    <unit id="company_name">
+      <segment state="final">
+        <source>Company Name</source>
+        <target>Nome azienda</target>
+      </segment>
+    </unit>
+    <unit id="icon_emoji">
+      <segment state="final">
+        <source>Icon Emoji or Symbol</source>
+        <target>Emoji o simbolo icona</target>
+      </segment>
+    </unit>
+    <unit id="navigation_items">
+      <segment state="final">
+        <source>Navigation Items</source>
+        <target>Elementi di navigazione</target>
+      </segment>
+    </unit>
+    <unit id="links">
+      <segment state="final">
+        <source>Links</source>
+        <target>Link</target>
+      </segment>
+    </unit>
+    <unit id="links_one_per_line">
+      <segment state="final">
+        <source>Link Items</source>
+        <target>Elementi link</target>
+      </segment>
+    </unit>
+    <unit id="items">
+      <segment state="final">
+        <source>Items</source>
+        <target>Elementi</target>
+      </segment>
+    </unit>
+    <unit id="plans">
+      <segment state="final">
+        <source>Plans</source>
+        <target>Piani</target>
+      </segment>
+    </unit>
+    <unit id="chart_data_json">
+      <segment state="final">
+        <source>Chart Data (JSON)</source>
+        <target>Dati grafico (JSON)</target>
+      </segment>
+    </unit>
+    <unit id="show_more_link">
+      <segment state="final">
+        <source>Show More Link</source>
+        <target>Link mostra altro</target>
+      </segment>
+    </unit>
+    <unit id="placeholder_text">
+      <segment state="final">
+        <source>Placeholder Text</source>
+        <target>Testo segnaposto</target>
+      </segment>
+    </unit>
+    <unit id="submit_text">
+      <segment state="final">
+        <source>Submit Text</source>
+        <target>Testo invio</target>
+      </segment>
+    </unit>
+    <unit id="consent_text">
+      <segment state="final">
+        <source>Consent Text</source>
+        <target>Testo consenso</target>
+      </segment>
+    </unit>
+    <unit id="success_message">
+      <segment state="final">
+        <source>Success Message</source>
+        <target>Messaggio di successo</target>
+      </segment>
+    </unit>
+    <unit id="currency">
+      <segment state="final">
+        <source>Currency</source>
+        <target>Valuta</target>
+      </segment>
+    </unit>
+    <unit id="period">
+      <segment state="final">
+        <source>Period</source>
+        <target>Periodo</target>
+      </segment>
+    </unit>
+    <unit id="highlighted">
+      <segment state="final">
+        <source>Highlighted</source>
+        <target>In evidenza</target>
+      </segment>
+    </unit>
+    <unit id="product_image">
+      <segment state="final">
+        <source>Product Image</source>
+        <target>Immagine prodotto</target>
+      </segment>
+    </unit>
+    <unit id="column_content">
+      <segment state="final">
+        <source>Column Content</source>
+        <target>Contenuto colonna</target>
+      </segment>
+    </unit>
+    <unit id="target_date">
+      <segment state="final">
+        <source>Target Date</source>
+        <target>Data obiettivo</target>
+      </segment>
+    </unit>
+    <unit id="show_labels">
+      <segment state="final">
+        <source>Show Labels</source>
+        <target>Mostra etichette</target>
+      </segment>
+    </unit>
+    <unit id="show_grid">
+      <segment state="final">
+        <source>Show Grid</source>
+        <target>Mostra griglia</target>
+      </segment>
+    </unit>
+    <unit id="card_style">
+      <segment state="final">
+        <source>Card Style</source>
+        <target>Stile scheda</target>
+      </segment>
+    </unit>
+    <unit id="layout_variant">
+      <segment state="final">
+        <source>Layout Variant</source>
+        <target>Variante layout</target>
+      </segment>
+    </unit>
+    <unit id="color">
+      <segment state="final">
+        <source>Color</source>
+        <target>Colore</target>
+      </segment>
+    </unit>
+    <unit id="trend">
+      <segment state="final">
+        <source>Trend</source>
+        <target>Tendenza</target>
+      </segment>
+    </unit>
+    <unit id="image_position">
+      <segment state="final">
+        <source>Image Position</source>
+        <target>Posizione immagine</target>
+      </segment>
+    </unit>
+    <unit id="position">
+      <segment state="final">
+        <source>Position</source>
+        <target>Posizione</target>
+      </segment>
+    </unit>
+    <unit id="item.left">
+      <segment state="final">
+        <source>Left</source>
+        <target>Sinistra</target>
+      </segment>
+    </unit>
+    <unit id="item.center">
+      <segment state="final">
+        <source>Center</source>
+        <target>Centrato</target>
+      </segment>
+    </unit>
+    <unit id="item.right">
+      <segment state="final">
+        <source>Right</source>
+        <target>Destra</target>
+      </segment>
+    </unit>
+    <unit id="item.default">
+      <segment state="final">
+        <source>Default</source>
+        <target>Predefinito</target>
+      </segment>
+    </unit>
+    <unit id="item.2_columns">
+      <segment state="final">
+        <source>2 Columns</source>
+        <target>2 colonne</target>
+      </segment>
+    </unit>
+    <unit id="item.3_columns">
+      <segment state="final">
+        <source>3 Columns</source>
+        <target>3 colonne</target>
+      </segment>
+    </unit>
+    <unit id="item.4_columns">
+      <segment state="final">
+        <source>4 Columns</source>
+        <target>4 colonne</target>
+      </segment>
+    </unit>
+    <unit id="item.horizontal">
+      <segment state="final">
+        <source>Horizontal</source>
+        <target>Orizzontale</target>
+      </segment>
+    </unit>
+    <unit id="item.vertical">
+      <segment state="final">
+        <source>Vertical</source>
+        <target>Verticale</target>
+      </segment>
+    </unit>
+    <unit id="item.5_stars">
+      <segment state="final">
+        <source>5 Stars</source>
+        <target>5 stelle</target>
+      </segment>
+    </unit>
+    <unit id="item.4_stars">
+      <segment state="final">
+        <source>4 Stars</source>
+        <target>4 stelle</target>
+      </segment>
+    </unit>
+    <unit id="item.3_stars">
+      <segment state="final">
+        <source>3 Stars</source>
+        <target>3 stelle</target>
+      </segment>
+    </unit>
+    <unit id="item.basic">
+      <segment state="final">
+        <source>Basic</source>
+        <target>Base</target>
+      </segment>
+    </unit>
+    <unit id="item.with_image">
+      <segment state="final">
+        <source>With Image</source>
+        <target>Con immagine</target>
+      </segment>
+    </unit>
+    <unit id="item.card">
+      <segment state="final">
+        <source>Card</source>
+        <target>Scheda</target>
+      </segment>
+    </unit>
+    <unit id="item.large">
+      <segment state="final">
+        <source>Large</source>
+        <target>Grande</target>
+      </segment>
+    </unit>
+    <unit id="item.bordered">
+      <segment state="final">
+        <source>Bordered</source>
+        <target>Con bordo</target>
+      </segment>
+    </unit>
+    <unit id="item.centered">
+      <segment state="final">
+        <source>Centered</source>
+        <target>Centrato</target>
+      </segment>
+    </unit>
+    <unit id="item.between">
+      <segment state="final">
+        <source>Space Between</source>
+        <target>Spazio tra</target>
+      </segment>
+    </unit>
+    <unit id="item.accent">
+      <segment state="final">
+        <source>Accent</source>
+        <target>Accento</target>
+      </segment>
+    </unit>
+    <unit id="item.outline">
+      <segment state="final">
+        <source>Outline</source>
+        <target>Contorno</target>
+      </segment>
+    </unit>
+    <unit id="item.info">
+      <segment state="final">
+        <source>Info</source>
+        <target>Info</target>
+      </segment>
+    </unit>
+    <unit id="item.success">
+      <segment state="final">
+        <source>Success</source>
+        <target>Successo</target>
+      </segment>
+    </unit>
+    <unit id="item.warning">
+      <segment state="final">
+        <source>Warning</source>
+        <target>Avviso</target>
+      </segment>
+    </unit>
+    <unit id="item.destructive">
+      <segment state="final">
+        <source>Destructive</source>
+        <target>Distruttivo</target>
+      </segment>
+    </unit>
+    <unit id="item.simple">
+      <segment state="final">
+        <source>Simple</source>
+        <target>Semplice</target>
+      </segment>
+    </unit>
+    <unit id="item.split">
+      <segment state="final">
+        <source>Split</source>
+        <target>Diviso</target>
+      </segment>
+    </unit>
+    <unit id="item.background">
+      <segment state="final">
+        <source>Background</source>
+        <target>Sfondo</target>
+      </segment>
+    </unit>
+    <unit id="item.banner">
+      <segment state="final">
+        <source>Banner</source>
+        <target>Banner</target>
+      </segment>
+    </unit>
+    <unit id="item.stacked">
+      <segment state="final">
+        <source>Stacked</source>
+        <target>Impilato</target>
+      </segment>
+    </unit>
+    <unit id="item.icon_top">
+      <segment state="final">
+        <source>Icon Top</source>
+        <target>Icona in alto</target>
+      </segment>
+    </unit>
+    <unit id="item.icon_left">
+      <segment state="final">
+        <source>Icon Left</source>
+        <target>Icona a sinistra</target>
+      </segment>
+    </unit>
+    <unit id="item.full_width">
+      <segment state="final">
+        <source>Full Width</source>
+        <target>Larghezza piena</target>
+      </segment>
+    </unit>
+    <unit id="item.two_columns">
+      <segment state="final">
+        <source>Two Columns</source>
+        <target>Due colonne</target>
+      </segment>
+    </unit>
+    <unit id="item.secondary">
+      <segment state="final">
+        <source>Secondary</source>
+        <target>Secondario</target>
+      </segment>
+    </unit>
+    <unit id="item.ghost">
+      <segment state="final">
+        <source>Ghost</source>
+        <target>Fantasma</target>
+      </segment>
+    </unit>
+    <unit id="item.primary">
+      <segment state="final">
+        <source>Primary</source>
+        <target>Primario</target>
+      </segment>
+    </unit>
+    <unit id="item.blue">
+      <segment state="final">
+        <source>Blue</source>
+        <target>Blu</target>
+      </segment>
+    </unit>
+    <unit id="item.green">
+      <segment state="final">
+        <source>Green</source>
+        <target>Verde</target>
+      </segment>
+    </unit>
+    <unit id="item.orange">
+      <segment state="final">
+        <source>Orange</source>
+        <target>Arancione</target>
+      </segment>
+    </unit>
+    <unit id="item.red">
+      <segment state="final">
+        <source>Red</source>
+        <target>Rosso</target>
+      </segment>
+    </unit>
+    <unit id="item.up">
+      <segment state="final">
+        <source>Up</source>
+        <target>In alto</target>
+      </segment>
+    </unit>
+    <unit id="item.down">
+      <segment state="final">
+        <source>Down</source>
+        <target>In basso</target>
+      </segment>
+    </unit>
+    <unit id="item.neutral">
+      <segment state="final">
+        <source>Neutral</source>
+        <target>Neutro</target>
+      </segment>
+    </unit>
+    <unit id="item.muted">
+      <segment state="final">
+        <source>Muted</source>
+        <target>Attenuato</target>
+      </segment>
+    </unit>
+    <unit id="item.none">
+      <segment state="final">
+        <source>None</source>
+        <target>Nessuno</target>
+      </segment>
+    </unit>
+    <unit id="page.column.main">
+      <segment state="final">
+        <source>Main Content</source>
+        <target>Contenuto principale</target>
+      </segment>
+    </unit>
+    <unit id="page.subnav.aria">
+      <segment state="final">
+        <source>Section navigation</source>
+        <target>Navigazione della sezione</target>
+      </segment>
+    </unit>
+    <unit id="solr.suggest.header">
+      <segment state="final">
+        <source>Top Results</source>
+        <target>Risultati principali</target>
+      </segment>
+    </unit>
+    <unit id="solr.search.label">
+      <segment state="final">
+        <source>Search</source>
+        <target>Cerca</target>
+      </segment>
+    </unit>
+    <unit id="solr.search.submit">
+      <segment state="final">
+        <source>Search</source>
+        <target>Cerca</target>
+      </segment>
+    </unit>
+    <unit id="solr.lastSearches">
+      <segment state="final">
+        <source>Last searches</source>
+        <target>Ultime ricerche</target>
+      </segment>
+    </unit>
+    <unit id="solr.frequentSearches">
+      <segment state="final">
+        <source>Frequent searches</source>
+        <target>Ricerche frequenti</target>
+      </segment>
+    </unit>
+    <unit id="solr.debug.parsedQuery">
+      <segment state="final">
+        <source>Parsed Query:</source>
+        <target>Query analizzata:</target>
+      </segment>
+    </unit>
+    <unit id="solr.noResultsNothingFound">
+      <segment state="final">
+        <source>Nothing found for "{query}".</source>
+        <target>Nessun risultato per «{query}».</target>
+      </segment>
+    </unit>
+    <unit id="solr.noResultsShowingSuggestion">
+      <segment state="final">
+        <source>Showing results for "{query}".</source>
+        <target>Mostro i risultati per «{query}».</target>
+      </segment>
+    </unit>
+    <unit id="solr.resultsSearchedFor">
+      <segment state="final">
+        <source>Searched for "{query}".</source>
+        <target>Ricerca di «{query}».</target>
+      </segment>
+    </unit>
+    <unit id="solr.didYouMean">
+      <segment state="final">
+        <source>Did you mean</source>
+        <target>Forse intendevi</target>
+      </segment>
+    </unit>
+    <unit id="solr.resultsFound">
+      <segment state="final">
+        <source>{count, plural, one {Found # result.} other {Found # results.}}</source>
+        <target>{count, plural, one {# risultato trovato.} other {# risultati trovati.}}</target>
+      </segment>
+    </unit>
+    <unit id="solr.resultsRange">
+      <segment state="final">
+        <source>{total, plural, one {Showing result {from} of #.} other {Showing results {from} to {to} of #.}}</source>
+        <target>{total, plural, one {Mostro il risultato {from} di #.} other {Mostro i risultati da {from} a {to} di #.}}</target>
+      </segment>
+    </unit>
+    <unit id="solr.facet.showMore">
+      <segment state="final">
+        <source>Show more</source>
+        <target>Mostra di più</target>
+      </segment>
+    </unit>
+    <unit id="solr.facet.showFewer">
+      <segment state="final">
+        <source>Show fewer</source>
+        <target>Mostra meno</target>
+      </segment>
+    </unit>
+    <unit id="solr.sortBy">
+      <segment state="final">
+        <source>Sort by</source>
+        <target>Ordina per</target>
+      </segment>
+    </unit>
+    <unit id="solr.resultsPerPage">
+      <segment state="final">
+        <source>Results per page:</source>
+        <target>Risultati per pagina:</target>
+      </segment>
+    </unit>
+    <unit id="solr.sponsored">
+      <segment state="final">
+        <source>Sponsored</source>
+        <target>Sponsorizzato</target>
+      </segment>
+    </unit>
+    <unit id="solr.fileMimeType">
+      <segment state="final">
+        <source>MIME type</source>
+        <target>Tipo MIME</target>
+      </segment>
+    </unit>
+    <unit id="solr.fileReferenced">
+      <segment state="final">
+        <source>Referenced on</source>
+        <target>Referenziato in</target>
+      </segment>
+    </unit>
+    <unit id="solr.facets.narrowedBy">
+      <segment state="final">
+        <source>Narrowed by</source>
+        <target>Filtrato per</target>
+      </segment>
+    </unit>
+    <unit id="solr.facets.removeAll">
+      <segment state="final">
+        <source>Remove all filters</source>
+        <target>Rimuovi tutti i filtri</target>
+      </segment>
+    </unit>
+    <unit id="solr.pagination.aria">
+      <segment state="final">
+        <source>Search results pagination</source>
+        <target>Paginazione dei risultati di ricerca</target>
+      </segment>
+    </unit>
+    <unit id="solr.resultCount.aria">
+      <segment state="final">
+        <source>{count, plural, one {# result} other {# results}}</source>
+        <target>{count, plural, one {# risultato} other {# risultati}}</target>
+      </segment>
+    </unit>
+    <unit id="solr.contentType.pages">
+      <segment state="final">
+        <source>Pages</source>
+        <target>Pagine</target>
+      </segment>
+    </unit>
+    <unit id="solr.contentType.news">
+      <segment state="final">
+        <source>News</source>
+        <target>News</target>
+      </segment>
+    </unit>
+    <unit id="solr.contentType.addresses">
+      <segment state="final">
+        <source>Addresses</source>
+        <target>Indirizzi</target>
+      </segment>
+    </unit>
+    <unit id="contentElementGroup.content">
+      <segment state="final">
+        <source>Content &amp; Editorial</source>
+        <target>Contenuti ed editoriale</target>
+      </segment>
+    </unit>
+    <unit id="contentElementGroup.content.description">
+      <segment state="final">
+        <source>Text, media, stories, resources, and reusable editorial building blocks.</source>
+        <target>Testi, media, storie, risorse e blocchi editoriali riutilizzabili.</target>
+      </segment>
+    </unit>
+    <unit id="contentElementGroup.conversion">
+      <segment state="final">
+        <source>Leads &amp; Conversion</source>
+        <target>Lead e conversione</target>
+      </segment>
+    </unit>
+    <unit id="contentElementGroup.conversion.description">
+      <segment state="final">
+        <source>Forms, offers, calls to action, and focused steps toward visitor intent.</source>
+        <target>Moduli, offerte, call to action e passaggi mirati verso l’intento del visitatore.</target>
+      </segment>
+    </unit>
+    <unit id="contentElementGroup.data">
+      <segment state="final">
+        <source>Data &amp; Dashboards</source>
+        <target>Dati e dashboard</target>
+      </segment>
+    </unit>
+    <unit id="contentElementGroup.data.description">
+      <segment state="final">
+        <source>Charts, metrics, tables, KPIs, and structured data displays.</source>
+        <target>Grafici, metriche, tabelle, KPI e visualizzazioni di dati strutturati.</target>
+      </segment>
+    </unit>
+    <unit id="contentElementGroup.features">
+      <segment state="final">
+        <source>Features &amp; Benefits</source>
+        <target>Funzionalità e benefici</target>
+      </segment>
+    </unit>
+    <unit id="contentElementGroup.features.description">
+      <segment state="final">
+        <source>Feature sections, benefit grids, product explanations, and service highlights.</source>
+        <target>Sezioni funzionalità, griglie di benefici, spiegazioni prodotto e punti di forza dei servizi.</target>
+      </segment>
+    </unit>
+    <unit id="contentElementGroup.footer">
+      <segment state="final">
+        <source>Footers &amp; Utility Areas</source>
+        <target>Footer e aree di utilità</target>
+      </segment>
+    </unit>
+    <unit id="contentElementGroup.footer.description">
+      <segment state="final">
+        <source>Footer layouts, legal links, contact routes, app links, and page-end utility content.</source>
+        <target>Layout footer, link legali, percorsi di contatto, link app e contenuti di utilità a fine pagina.</target>
+      </segment>
+    </unit>
+    <unit id="contentElementGroup.hero">
+      <segment state="final">
+        <source>Hero &amp; Landing Intros</source>
+        <target>Hero e introduzioni landing</target>
+      </segment>
+    </unit>
+    <unit id="contentElementGroup.hero.description">
+      <segment state="final">
+        <source>Opening sections for landing pages, products, campaigns, search, video, and launch moments.</source>
+        <target>Sezioni iniziali per landing page, prodotti, campagne, ricerca, video e momenti di lancio.</target>
+      </segment>
+    </unit>
+    <unit id="contentElementGroup.navigation">
+      <segment state="final">
+        <source>Navigation &amp; Wayfinding</source>
+        <target>Navigazione e orientamento</target>
+      </segment>
+    </unit>
+    <unit id="contentElementGroup.navigation.description">
+      <segment state="final">
+        <source>Menus, breadcrumbs, tabs, steps, pagination, headers, and other orientation patterns.</source>
+        <target>Menu, breadcrumb, tab, passaggi, paginazione, header e altri modelli di orientamento.</target>
+      </segment>
+    </unit>
+    <unit id="contentElementGroup.pricing">
+      <segment state="final">
+        <source>Plans &amp; Pricing</source>
+        <target>Piani e prezzi</target>
+      </segment>
+    </unit>
+    <unit id="contentElementGroup.pricing.description">
+      <segment state="final">
+        <source>Pricing tables, plan cards, calculators, package comparisons, and buying decision aids.</source>
+        <target>Tabelle prezzi, schede piano, calcolatori, confronti pacchetto e aiuti alla decisione d’acquisto.</target>
+      </segment>
+    </unit>
+    <unit id="contentElementGroup.socialProof">
+      <segment state="final">
+        <source>Trust &amp; Social Proof</source>
+        <target>Fiducia e prova sociale</target>
+      </segment>
+    </unit>
+    <unit id="contentElementGroup.socialProof.description">
+      <segment state="final">
+        <source>Testimonials, reviews, ratings, customer logos, partner proof, and credibility signals.</source>
+        <target>Testimonianze, recensioni, valutazioni, loghi clienti, prove partner e segnali di credibilità.</target>
+      </segment>
+    </unit>
+    <unit id="contentElementGroup.team">
+      <segment state="final">
+        <source>People &amp; Team</source>
+        <target>Persone e team</target>
+      </segment>
+    </unit>
+    <unit id="contentElementGroup.team.description">
+      <segment state="final">
+        <source>Team profiles, departments, founders, advisors, company culture, and career content.</source>
+        <target>Profili team, reparti, fondatori, consulenti, cultura aziendale e contenuti carriera.</target>
+      </segment>
+    </unit>
+    <unit id="preview.uid">
+      <segment state="final">
+        <source>UID</source>
+        <target>UID</target>
+      </segment>
+    </unit>
+    <unit id="preview.page">
+      <segment state="final">
+        <source>Page</source>
+        <target>Pagina</target>
+      </segment>
+    </unit>
+  </file>
+</xliff>

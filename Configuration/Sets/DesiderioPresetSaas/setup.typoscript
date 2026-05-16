@@ -1,0 +1,7 @@
+# Preset — SaaS Landing
+# One extra stylesheet on top of the Desiderio base.
+
+page.includeCSS {
+    desiderioPresetSaas = EXT:desiderio/Resources/Public/Css/preset-saas.css
+    desiderioPresetSaas.media = all
+}

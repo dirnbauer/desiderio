@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en" trgLang="fr">
+  <file id="backend_layouts">
+    <unit id="backend_layout.desiderio_startpage.title">
+      <segment state="final">
+        <source>Desiderio: Startpage</source>
+        <target>Desiderio : page d’accueil</target>
+      </segment>
+    </unit>
+    <unit id="backend_layout.desiderio_contentpage.title">
+      <segment state="final">
+        <source>Desiderio: Contentpage</source>
+        <target>Desiderio : page de contenu</target>
+      </segment>
+    </unit>
+    <unit id="backend_layout.desiderio_contentpage_sidebar.title">
+      <segment state="final">
+        <source>Desiderio: Contentpage with Sidebar</source>
+        <target>Desiderio : page de contenu avec barre latérale</target>
+      </segment>
+    </unit>
+    <unit id="backend_layout.desiderio_styleguide.title">
+      <segment state="final">
+        <source>Desiderio: Styleguide</source>
+        <target>Desiderio : guide de style</target>
+      </segment>
+    </unit>
+    <unit id="backend_layout.colPos.0.name">
+      <segment state="final">
+        <source>Content</source>
+        <target>Contenu</target>
+      </segment>
+    </unit>
+    <unit id="backend_layout.colPos.1.name">
+      <segment state="final">
+        <source>Sidebar</source>
+        <target>Barre latérale</target>
+      </segment>
+    </unit>
+    <unit id="backend_layout.colPos.2.name">
+      <segment state="final">
+        <source>Stage</source>
+        <target>Scène</target>
+      </segment>
+    </unit>
+  </file>
+</xliff>

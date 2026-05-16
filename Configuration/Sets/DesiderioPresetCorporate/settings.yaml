@@ -1,0 +1,19 @@
+# Preset — Mainline Corporate
+# Solid header, slate accents, shadcn preset radius, centered footer.
+
+desiderio:
+  layout:
+    density: comfortable
+    container: wide
+    radius: preset
+  header:
+    style: solid
+    fixedPosition: false
+  footer:
+    style: centered
+  theme:
+    accent: slate
+    darkModeDefault: light
+    darkModeToggle: true
+  typography:
+    fontSans: preset

@@ -1,0 +1,73 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/ViewHelpers"
+    data-namespace-typo3-fluid="true"
+>
+
+<div class="ce-menu">
+    <div class="ce-menu__intro">
+        <d:recordHasField record="{record}" field="header">
+            <f:if condition="{record.header}">
+                <h2 class="ce-menu__header"><f:render.text record="{record}" field="header"/></h2>
+            </f:if>
+        </d:recordHasField>
+
+        <d:recordHasField record="{record}" field="subheader">
+            <f:if condition="{record.subheader}">
+                <p class="ce-menu__subheader"><f:render.text record="{record}" field="subheader"/></p>
+            </f:if>
+        </d:recordHasField>
+
+        <d:recordHasField record="{record}" field="bodytext">
+            <f:if condition="{record.bodytext}">
+                <div class="ce-menu__text">
+                    <f:render.text record="{record}" field="bodytext"/>
+                </div>
+            </f:if>
+        </d:recordHasField>
+    </div>
+
+    <f:if condition="{items}">
+        <f:then>
+            <nav class="ce-menu__nav" aria-label="{record.header}">
+                <ul class="ce-menu__list">
+                    <f:for each="{items}" as="item">
+                        <li class="ce-menu__item">
+                            <a href="{item.link}" class="ce-menu__link">
+                                <span class="ce-menu__title">{item.title}</span>
+                                <f:if condition="{item.data.abstract}">
+                                    <span class="ce-menu__description">{item.data.abstract}</span>
+                                </f:if>
+                            </a>
+                        </li>
+                    </f:for>
+                </ul>
+            </nav>
+        </f:then>
+        <f:else>
+            <f:if condition="{fallbackPages}">
+                <nav class="ce-menu__nav" aria-label="{record.header}">
+                    <ul class="ce-menu__list">
+                        <f:for each="{fallbackPages}" as="page">
+                            <li class="ce-menu__item">
+                                <f:link.page pageUid="{page.uid}" class="ce-menu__link">
+                                    <span class="ce-menu__title">
+                                        <f:if condition="{page.nav_title}">
+                                            <f:then>{page.nav_title}</f:then>
+                                            <f:else>{page.title}</f:else>
+                                        </f:if>
+                                    </span>
+                                    <f:if condition="{page.abstract}">
+                                        <span class="ce-menu__description">{page.abstract}</span>
+                                    </f:if>
+                                </f:link.page>
+                            </li>
+                        </f:for>
+                    </ul>
+                </nav>
+            </f:if>
+        </f:else>
+    </f:if>
+</div>
+
+</html>

@@ -1,0 +1,6 @@
+<f:argument name="orientation" type="string" optional="{true}" default="horizontal" />
+<f:argument name="class" type="string" optional="{true}" default="" />
+
+<f:variable name="orientationClass" value="{f:if(condition: '{orientation} == \'vertical\'', then: 'h-full w-px', else: 'h-px w-full')}" />
+
+<div role="separator" data-slot="separator" aria-orientation="{orientation}" class="shrink-0 bg-border data-horizontal:h-px data-horizontal:w-full data-vertical:w-px data-vertical:self-stretch {orientationClass} {class}"></div>

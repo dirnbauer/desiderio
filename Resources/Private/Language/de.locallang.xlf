@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en" trgLang="de">
+  <file id="EXT:desiderio/Resources/Private/Language/locallang.xlf" original="EXT:desiderio/Resources/Private/Language/locallang.xlf">
+    <unit id="pagination.aria.label">
+      <segment>
+        <source>Pagination, {totalPages, plural, one {one page} other {# pages}}</source>
+        <target>Seitennavigation, {totalPages, plural, one {eine Seite} other {# Seiten}}</target>
+      </segment>
+    </unit>
+    <unit id="pagination.aria.previous">
+      <segment>
+        <source>Go to previous page</source>
+        <target>Zur vorherigen Seite</target>
+      </segment>
+    </unit>
+    <unit id="pagination.aria.next">
+      <segment>
+        <source>Go to next page</source>
+        <target>Zur nächsten Seite</target>
+      </segment>
+    </unit>
+    <unit id="pagination.aria.goToPage">
+      <segment>
+        <source>Go to page {page} of {totalPages, plural, one {one page} other {# pages}}</source>
+        <target>Zu Seite {page} von {totalPages, plural, one {einer Seite} other {# Seiten}}</target>
+      </segment>
+    </unit>
+    <unit id="pagination.aria.currentPage">
+      <segment>
+        <source>Page {page} of {totalPages, plural, one {one page} other {# pages}}</source>
+        <target>Seite {page} von {totalPages, plural, one {einer Seite} other {# Seiten}}</target>
+      </segment>
+    </unit>
+    <unit id="pagination.previous">
+      <segment>
+        <source>Previous</source>
+        <target>Zurück</target>
+      </segment>
+    </unit>
+    <unit id="pagination.next">
+      <segment>
+        <source>Next</source>
+        <target>Weiter</target>
+      </segment>
+    </unit>
+    <unit id="news.loadMore">
+      <segment>
+        <source>Load more articles</source>
+        <target>Weitere Artikel laden</target>
+      </segment>
+    </unit>
+    <unit id="news.loadMore.status">
+      <segment>
+        <source>Showing {visible, plural, one {one article} other {# articles}} of {total, plural, one {one article} other {# articles}}</source>
+        <target>{visible, plural, one {Ein Artikel von } other {# von }}{total, plural, one {einem Artikel} other {# Artikeln}} angezeigt</target>
+      </segment>
+    </unit>
+    <unit id="news.featured">
+      <segment>
+        <source>Featured</source>
+        <target>Empfohlen</target>
+      </segment>
+    </unit>
+    <unit id="news.magazine.more">
+      <segment>
+        <source>More articles</source>
+        <target>Weitere Artikel</target>
+      </segment>
+    </unit>
+    <unit id="news.magazine.items">
+      <segment>
+        <source>{count, plural, one {one article} other {# articles}}</source>
+        <target>{count, plural, one {ein Artikel} other {# Artikel}}</target>
+      </segment>
+    </unit>
+    <unit id="news.comments.count">
+      <segment>
+        <source>{count, plural, =0 {No comments yet} one {one comment} other {# comments}}</source>
+        <target>{count, plural, =0 {Noch keine Kommentare} one {ein Kommentar} other {# Kommentare}}</target>
+      </segment>
+    </unit>
+    <unit id="news.tags.count">
+      <segment>
+        <source>{count, plural, one {one tag} other {# tags}}</source>
+        <target>{count, plural, one {ein Tag} other {# Tags}}</target>
+      </segment>
+    </unit>
+    <unit id="news.categories.count">
+      <segment>
+        <source>{count, plural, one {one category} other {# categories}}</source>
+        <target>{count, plural, one {eine Kategorie} other {# Kategorien}}</target>
+      </segment>
+    </unit>
+    <unit id="news.entries.count">
+      <segment>
+        <source>{count, plural, one {one entry} other {# entries}}</source>
+        <target>{count, plural, one {ein Eintrag} other {# Einträge}}</target>
+      </segment>
+    </unit>
+    <unit id="a11y.skipToContent">
+      <segment>
+        <source>Skip to main content</source>
+        <target>Zum Hauptinhalt springen</target>
+      </segment>
+    </unit>
+    <unit id="a11y.nav.main">
+      <segment>
+        <source>Main navigation</source>
+        <target>Hauptnavigation</target>
+      </segment>
+    </unit>
+    <unit id="a11y.nav.footer">
+      <segment>
+        <source>Footer navigation</source>
+        <target>Footer-Navigation</target>
+      </segment>
+    </unit>
+    <unit id="a11y.nav.language">
+      <segment>
+        <source>Language</source>
+        <target>Sprache</target>
+      </segment>
+    </unit>
+    <unit id="a11y.menu.toggle">
+      <segment>
+        <source>Toggle menu</source>
+        <target>Menü umschalten</target>
+      </segment>
+    </unit>
+    <unit id="a11y.theme.toggle">
+      <segment>
+        <source>Toggle dark mode</source>
+        <target>Dunkelmodus umschalten</target>
+      </segment>
+    </unit>
+    <unit id="a11y.share.label">
+      <segment>
+        <source>Share this article</source>
+        <target>Diesen Artikel teilen</target>
+      </segment>
+    </unit>
+  </file>
+</xliff>

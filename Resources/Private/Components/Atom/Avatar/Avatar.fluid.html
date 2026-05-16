@@ -1,0 +1,25 @@
+<f:argument name="src" type="string" optional="{true}" />
+<f:argument name="alt" type="string" optional="{true}" default="" />
+<f:argument name="fallback" type="string" optional="{true}" />
+<f:argument name="size" type="string" optional="{true}" default="default" />
+<f:argument name="class" type="string" optional="{true}" default="" />
+
+<f:variable name="sizeClass">
+    <f:switch expression="{size}">
+        <f:case value="sm">h-8 w-8</f:case>
+        <f:case value="lg">h-12 w-12</f:case>
+        <f:case value="xl">h-16 w-16</f:case>
+        <f:defaultCase>h-10 w-10</f:defaultCase>
+    </f:switch>
+</f:variable>
+
+<span data-slot="avatar" data-size="{size}" class="group/avatar relative flex shrink-0 rounded-full select-none after:absolute after:inset-0 after:rounded-full after:border after:border-border after:mix-blend-darken dark:after:mix-blend-lighten {sizeClass -> f:format.trim()} {class}">
+    <f:if condition="{src}">
+        <f:then>
+            <img data-slot="avatar-image" src="{src}" alt="{alt}" class="aspect-square size-full rounded-full object-cover" loading="lazy" />
+        </f:then>
+        <f:else>
+            <span data-slot="avatar-fallback" class="flex size-full items-center justify-center rounded-full bg-muted text-sm text-muted-foreground group-data-[size=sm]/avatar:text-xs">{fallback}</span>
+        </f:else>
+    </f:if>
+</span>

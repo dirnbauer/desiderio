@@ -1,0 +1,62 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/ViewHelpers"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:switch expression="{record.imageorient}">
+    <f:case value="0">
+        <f:variable name="mediaPosition" value="above"/>
+    </f:case>
+    <f:case value="8">
+        <f:variable name="mediaPosition" value="below"/>
+    </f:case>
+    <f:case value="26">
+        <f:variable name="mediaPosition" value="left"/>
+    </f:case>
+    <f:case value="28">
+        <f:variable name="mediaPosition" value="left"/>
+    </f:case>
+    <f:defaultCase>
+        <f:variable name="mediaPosition" value="right"/>
+    </f:defaultCase>
+</f:switch>
+
+<div class="ce-textmedia ce-textmedia--{mediaPosition}">
+    <f:if condition="{files.0}">
+        <div class="ce-textmedia__media">
+            <f:for each="{files}" as="file">
+                <figure class="ce-textmedia__figure">
+                    <f:image image="{file}" class="ce-textmedia__image" maxWidth="960" alt="{file.alternative}"/>
+                    <f:if condition="{file.description}">
+                        <figcaption class="ce-textmedia__caption">{file.description}</figcaption>
+                    </f:if>
+                </figure>
+            </f:for>
+        </div>
+    </f:if>
+
+    <div class="ce-textmedia__body">
+        <d:recordHasField record="{record}" field="header">
+            <f:if condition="{record.header}">
+                <h2 class="ce-textmedia__header"><f:render.text record="{record}" field="header"/></h2>
+            </f:if>
+        </d:recordHasField>
+
+        <d:recordHasField record="{record}" field="subheader">
+            <f:if condition="{record.subheader}">
+                <p class="ce-textmedia__subheader"><f:render.text record="{record}" field="subheader"/></p>
+            </f:if>
+        </d:recordHasField>
+
+        <d:recordHasField record="{record}" field="bodytext">
+            <f:if condition="{record.bodytext}">
+                <div class="ce-textmedia__text">
+                    <f:render.text record="{record}" field="bodytext"/>
+                </div>
+            </f:if>
+        </d:recordHasField>
+    </div>
+</div>
+
+</html>

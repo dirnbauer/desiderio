@@ -1,0 +1,11 @@
+<f:argument name="orientation" type="string" optional="{true}" default="vertical" />
+<f:argument name="class" type="string" optional="{true}" default="" />
+<f:argument name="style" type="string" optional="{true}" default="" />
+
+<f:variable name="overflowClass" value="{f:if(condition: '{orientation} == \'horizontal\'', then: 'overflow-x-auto overflow-y-hidden', else: 'overflow-y-auto overflow-x-hidden')}" />
+
+<div class="relative {class}" style="{style}">
+    <div class="h-full w-full rounded-[inherit] {overflowClass}">
+        <f:slot />
+    </div>
+</div>

@@ -359,6 +359,62 @@ final class StyleguideSeedCommandTest extends TestCase
         self::assertSame('line', $fields['variant']);
     }
 
+    public function testCountFieldsReceiveCompactSeedValues(): void
+    {
+        $command = $this->createCommand();
+
+        self::assertSame(
+            '128',
+            $this->invokeMethod($command, 'buildDefaultFieldValue', [
+                'desiderio_categorycards',
+                'Category Cards Pricing',
+                'count',
+                ['identifier' => 'count', 'type' => 'Textarea'],
+                0,
+            ])
+        );
+        self::assertSame(
+            '2.4K',
+            $this->invokeMethod($command, 'buildDefaultFieldValue', [
+                'desiderio_ratingdisplay',
+                'Rating Display',
+                'review_count',
+                ['identifier' => 'review_count', 'type' => 'Textarea'],
+                1,
+            ])
+        );
+        self::assertSame(
+            '86',
+            $this->invokeMethod($command, 'buildDefaultFieldValue', [
+                'desiderio_statscounter',
+                'Stats Counter',
+                'counter_target',
+                ['identifier' => 'counter_target', 'type' => 'Textarea'],
+                2,
+            ])
+        );
+        self::assertSame(
+            86,
+            $this->invokeMethod($command, 'buildDefaultFieldValue', [
+                'desiderio_demo',
+                'Demo Element',
+                'total',
+                ['identifier' => 'total', 'type' => 'Number'],
+                2,
+            ])
+        );
+        self::assertSame(
+            'Mara Weiss',
+            $this->invokeMethod($command, 'buildDefaultFieldValue', [
+                'desiderio_demo',
+                'Demo Element',
+                'account_name',
+                ['identifier' => 'account_name', 'type' => 'Textarea'],
+                0,
+            ])
+        );
+    }
+
     public function testLegacyStatsFixturesAreConvertedToChartDataJson(): void
     {
         $command = $this->createCommand();

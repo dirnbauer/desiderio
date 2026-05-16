@@ -832,7 +832,7 @@ final class SeedStyleguidePagesCommand extends Command
             str_contains($normalizedField, 'duration') => 45,
             str_contains($normalizedField, 'interval') => 6000,
             str_contains($normalizedField, 'percent') => max(80, 96 - $index),
-            str_contains($normalizedField, 'count') => [128, 2400, 86, 12][$index % 4],
+            $this->fieldIdentifierContainsAnyWord($field, ['count', 'counter', 'total', 'quantity', 'qty']) => [128, 2400, 86, 12][$index % 4],
             str_contains($normalizedField, 'year') => 2026,
             default => [12, 24, 48, 72, 96][$index % 5],
         };
@@ -970,6 +970,7 @@ final class SeedStyleguidePagesCommand extends Command
             str_contains($normalizedField, 'date') => 'May ' . min(28, $index + 8) . ', 2026',
             str_contains($normalizedField, 'year') => '2026',
             str_contains($normalizedField, 'trend') => ['positive', 'stable', 'up'][$index % 3],
+            $this->fieldIdentifierContainsAnyWord($field, ['count', 'counter', 'total', 'quantity', 'qty']) => ['128', '2.4K', '86', '12'][$index % 4],
             str_contains($normalizedField, 'value') || str_contains($normalizedField, 'metric') => ['98%', '24K', '4.9', '12 ms', 'AA'][$index % 5],
             str_contains($normalizedField, 'label') => $this->pickDemoString(self::DEMO_FEATURES, $name . '-' . $field, $index),
             str_contains($normalizedField, 'price') => '$' . [19, 49, 99, 249][$index % 4],
@@ -2372,6 +2373,26 @@ final class SeedStyleguidePagesCommand extends Command
     private function normalizeIdentifier(string $value): string
     {
         return strtolower(preg_replace('/[^a-z0-9]+/', '', $value) ?? '');
+    }
+
+    /**
+     * @param list<string> $words
+     */
+    private function fieldIdentifierContainsAnyWord(string $field, array $words): bool
+    {
+        $separated = preg_replace('/([a-z0-9])([A-Z])/', '$1 $2', $field) ?? $field;
+        $parts = preg_split('/[^a-zA-Z0-9]+/', strtolower($separated), -1, PREG_SPLIT_NO_EMPTY);
+        if (!is_array($parts)) {
+            return false;
+        }
+
+        foreach ($words as $word) {
+            if (in_array(strtolower($word), $parts, true)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private function singularize(string $value): string

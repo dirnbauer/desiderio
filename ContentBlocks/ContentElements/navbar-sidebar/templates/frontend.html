@@ -1,0 +1,38 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-navbar-sidebar" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="navbar-sidebar">
+    <aside class="navbar-sidebar__panel" aria-label="{data.header -> f:or(alternative: 'Sidebar navigation')}">
+        <div class="navbar-sidebar__brand">
+            <f:if condition="{data.brand_link.url}">
+                <f:then><f:link.typolink parameter="{data.brand_link}" class="navbar-sidebar__brand-link">{data -> f:render.text(field: 'brand')}</f:link.typolink></f:then>
+                <f:else><span class="navbar-sidebar__brand-link">{data -> f:render.text(field: 'brand')}</span></f:else>
+            </f:if>
+        </div>
+        <nav class="navbar-sidebar__nav">
+            <f:for each="{data.sections}" as="section">
+                <div class="navbar-sidebar__section">
+                    <f:if condition="{section.title}">
+                        <h3 class="navbar-sidebar__section-title">{section -> f:render.text(field: 'title')}</h3>
+                    </f:if>
+                    <ul class="navbar-sidebar__list">
+                        <f:if condition="{section.link_1_label}"><li><f:if condition="{section.link_1.url}"><f:then><f:link.typolink parameter="{section.link_1}" class="navbar-sidebar__link">{section -> f:render.text(field: 'link_1_label')}</f:link.typolink></f:then><f:else><span class="navbar-sidebar__link">{section -> f:render.text(field: 'link_1_label')}</span></f:else></f:if></li></f:if>
+                        <f:if condition="{section.link_2_label}"><li><f:if condition="{section.link_2.url}"><f:then><f:link.typolink parameter="{section.link_2}" class="navbar-sidebar__link">{section -> f:render.text(field: 'link_2_label')}</f:link.typolink></f:then><f:else><span class="navbar-sidebar__link">{section -> f:render.text(field: 'link_2_label')}</span></f:else></f:if></li></f:if>
+                        <f:if condition="{section.link_3_label}"><li><f:if condition="{section.link_3.url}"><f:then><f:link.typolink parameter="{section.link_3}" class="navbar-sidebar__link">{section -> f:render.text(field: 'link_3_label')}</f:link.typolink></f:then><f:else><span class="navbar-sidebar__link">{section -> f:render.text(field: 'link_3_label')}</span></f:else></f:if></li></f:if>
+                        <f:if condition="{section.link_4_label}"><li><f:if condition="{section.link_4.url}"><f:then><f:link.typolink parameter="{section.link_4}" class="navbar-sidebar__link">{section -> f:render.text(field: 'link_4_label')}</f:link.typolink></f:then><f:else><span class="navbar-sidebar__link">{section -> f:render.text(field: 'link_4_label')}</span></f:else></f:if></li></f:if>
+                        <f:if condition="{section.link_5_label}"><li><f:if condition="{section.link_5.url}"><f:then><f:link.typolink parameter="{section.link_5}" class="navbar-sidebar__link">{section -> f:render.text(field: 'link_5_label')}</f:link.typolink></f:then><f:else><span class="navbar-sidebar__link">{section -> f:render.text(field: 'link_5_label')}</span></f:else></f:if></li></f:if>
+                    </ul>
+                </div>
+            </f:for>
+        </nav>
+        <f:if condition="{data.footer_text}">
+            <div class="navbar-sidebar__footer"><p>{data -> f:render.text(field: 'footer_text')}</p></div>
+        </f:if>
+    </aside>
+</d:layout.section>
+
+</html>

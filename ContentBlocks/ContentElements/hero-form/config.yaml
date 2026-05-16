@@ -1,0 +1,44 @@
+name: desiderio/hero-form
+typeName: desiderio_heroform
+title: 'Form Hero'
+description: 'Form Hero captures visitor intent with focused form or request messaging. Editors can manage headline and copy fields and link and CTA controls.'
+group: hero
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: subheadline
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
+    rows: 3
+  -
+    identifier: form_action
+    type: Link
+    label: 'Form Action URL'
+  -
+    identifier: input_placeholder
+    type: Textarea
+    rows: 1
+    label: 'Input Placeholder'
+  -
+    identifier: button_text
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_text'
+  -
+    identifier: privacy_notice
+    type: Textarea
+    rows: 1
+    label: 'Privacy Text'
+  -
+    identifier: badge_text
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:badge_text'

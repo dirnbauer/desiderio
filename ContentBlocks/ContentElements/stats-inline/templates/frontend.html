@@ -1,0 +1,24 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-stats-inline" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="stats-inline">
+    <d:layout.container>
+        <f:if condition="{data.header}">
+            <h2 class="stats-inline__heading">{data -> f:render.text(field: 'header')}</h2>
+        </f:if>
+
+        <div class="stats-inline__row {f:if(condition: data.show_separator, then: 'stats-inline__row--separated')}">
+            <f:for each="{data.stats}" as="stat">
+                <div class="stats-inline__item">
+                    <span class="stats-inline__value">{stat -> f:render.text(field: 'value')}</span>
+                    <span class="stats-inline__label">{stat -> f:render.text(field: 'label')}</span>
+                </div>
+            </f:for>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+</html>

@@ -1,0 +1,28 @@
+.office-locations__intro {
+    text-align: center;
+    margin-block-end: var(--d-spacing-xl);
+}
+.office-locations__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--d-spacing-lg);
+}
+@media (max-width: 768px) {
+    .office-locations__grid { grid-template-columns: 1fr; }
+}
+.office-locations__city {
+    font-weight: 600;
+    font-size: var(--d-text-lg);
+    margin-block-end: var(--d-spacing-sm);
+}
+.office-locations__address {
+    font-size: var(--d-text-sm);
+    color: var(--muted-foreground);
+    white-space: pre-line;
+    margin-block-end: var(--d-spacing-xs);
+}
+.office-locations__phone,
+.office-locations__email {
+    font-size: var(--d-text-sm);
+    color: var(--muted-foreground);
+}

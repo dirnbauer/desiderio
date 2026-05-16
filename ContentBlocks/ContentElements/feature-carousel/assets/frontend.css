@@ -1,0 +1,42 @@
+.feature-carousel__intro {
+    text-align: center;
+    margin-block-end: var(--d-spacing-xl);
+}
+.feature-carousel__track {
+    display: flex;
+    gap: var(--d-spacing-md);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding: var(--d-spacing-md);
+    -webkit-overflow-scrolling: touch;
+    padding-block-end: var(--d-spacing-sm);
+}
+.feature-carousel__track::-webkit-scrollbar {
+    height: 4px;
+}
+.feature-carousel__track::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 2px;
+}
+.feature-carousel__slide {
+    flex: 0 0 calc(33.333% - var(--d-spacing-md));
+    scroll-snap-align: start;
+    min-width: 16rem;
+}
+@media (max-width: 768px) {
+    .feature-carousel__slide {
+        flex: 0 0 calc(85% - var(--d-spacing-md));
+    }
+}
+.feature-carousel__icon {
+    font-size: 1.5rem;
+    display: block;
+    margin-block-end: var(--d-spacing-sm);
+}
+.feature-carousel__title { font-weight: 600; margin-block-end: var(--d-spacing-xs); }
+.feature-carousel__title a { color: inherit; text-decoration: none; }
+.feature-carousel__title a:hover { color: var(--primary); }
+.feature-carousel__description {
+    color: var(--muted-foreground);
+    font-size: var(--d-text-sm);
+}

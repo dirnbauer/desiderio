@@ -1,0 +1,9 @@
+.testimonial-video__heading { text-align: center; margin-block-end: var(--d-spacing-xl); }
+.testimonial-video__layout { display: grid; grid-template-columns: 1.2fr 1fr; gap: var(--d-spacing-xl); align-items: center; }
+@media (max-width: 768px) { .testimonial-video__layout { grid-template-columns: 1fr; } }
+.testimonial-video__embed { position: relative; padding-block-end: 56.25%; height: 0; overflow: hidden; border-radius: var(--radius); }
+.testimonial-video__embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.testimonial-video__quote { font-size: var(--d-text-xl); font-style: italic; line-height: 1.6; margin-block-end: var(--d-spacing-lg); color: var(--foreground); }
+.testimonial-video__author { border-block-start: 1px solid var(--border); padding-block-start: var(--d-spacing-md); }
+.testimonial-video__name { font-weight: 600; font-style: normal; display: block; font-size: var(--d-text-base); }
+.testimonial-video__role { font-size: var(--d-text-sm); color: var(--muted-foreground); }

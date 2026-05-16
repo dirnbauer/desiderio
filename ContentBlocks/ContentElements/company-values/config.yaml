@@ -1,0 +1,52 @@
+name: desiderio/company-values
+typeName: desiderio_companyvalues
+title: 'Company Values'
+description: 'Company Values introduces people, roles, culture, or hiring context with clear editorial structure. Editors can manage headline and copy fields and repeatable entries.'
+group: team
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: eyebrow
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
+  -
+    identifier: subheadline
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
+    rows: 2
+  -
+    identifier: value_items
+    type: Collection
+    table: company_values_value_items
+    label: Values
+    minItems: 1
+    fields:
+      -
+        identifier: title
+        type: Textarea
+        rows: 1
+        label: 'Value Title'
+        required: true
+      -
+        identifier: description
+        type: Textarea
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
+        rows: 2
+      -
+        identifier: icon
+        type: Select
+        renderType: selectSingle
+        label: 'Icon Name'
+        description: 'Semantic icon key rendered through the active shadcn icon library.'
+        itemsProcessors:
+          10:
+            class: Webconsulting\Desiderio\DataHandling\IconItemsProcessor

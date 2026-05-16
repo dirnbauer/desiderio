@@ -1,0 +1,41 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-table-content" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="table-content">
+    <d:layout.container>
+        <f:if condition="{data.header}">
+            <d:atom.typography tag="h2" variant="h2" class="table-content__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
+        </f:if>
+
+        <div class="table-content__wrapper">
+            <table class="table-content__table">
+                <f:if condition="{data.caption}">
+                    <caption class="table-content__caption">{data -> f:render.text(field: 'caption')}</caption>
+                </f:if>
+                <thead>
+                    <tr>
+                        <f:for each="{data.column_items}" as="col">
+                            <th class="table-content__th">{col -> f:render.text(field: 'label')}</th>
+                        </f:for>
+                    </tr>
+                </thead>
+                <tbody>
+                    <f:for each="{data.rows}" as="row">
+                        <tr>
+                            <f:if condition="{row.col1}"><td class="table-content__td">{row -> f:render.text(field: 'col1')}</td></f:if>
+                            <f:if condition="{row.col2}"><td class="table-content__td">{row -> f:render.text(field: 'col2')}</td></f:if>
+                            <f:if condition="{row.col3}"><td class="table-content__td">{row -> f:render.text(field: 'col3')}</td></f:if>
+                            <f:if condition="{row.col4}"><td class="table-content__td">{row -> f:render.text(field: 'col4')}</td></f:if>
+                        </tr>
+                    </f:for>
+                </tbody>
+            </table>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

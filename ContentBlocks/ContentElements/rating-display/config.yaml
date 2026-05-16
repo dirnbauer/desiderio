@@ -1,0 +1,56 @@
+name: desiderio/rating-display
+typeName: desiderio_ratingdisplay
+title: 'Rating Display'
+description: 'Rating Display builds credibility through voices, logos, ratings, awards, or references. Editors can manage headline and copy fields and repeatable entries.'
+group: social-proof
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: eyebrow
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
+  -
+    identifier: rating_items
+    type: Collection
+    table: rating_display_rating_items
+    label: 'Rating Sources'
+    minItems: 1
+    fields:
+      -
+        identifier: platform
+        type: Textarea
+        rows: 1
+        label: 'Platform Name'
+        required: true
+      -
+        identifier: score
+        type: Textarea
+        rows: 1
+        label: Score
+        required: true
+        description: 'e.g. 4.8/5'
+      -
+        identifier: review_count
+        type: Textarea
+        rows: 1
+        label: 'Review Count'
+        description: 'e.g. 2,450 reviews'
+      -
+        identifier: logo
+        type: File
+        label: 'Platform Logo'
+        allowed: common-image-types
+        maxitems: 1
+      -
+        identifier: link
+        type: Link
+        label: 'Platform Link'

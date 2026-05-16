@@ -1,0 +1,65 @@
+name: desiderio/textmedia
+typeName: desiderio_textmedia
+title: 'Text & Media'
+description: 'Text & Media pairs media or embedded content with supporting editorial context. Editors can manage headline and copy fields, media pickers, link and CTA controls and layout or variant options.'
+group: content
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: shadcn_layout
+    type: Select
+    renderType: selectSingle
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:shadcn_layout'
+    items:
+      -
+        label: 'Media Right'
+        value: media-right
+      -
+        label: 'Media Left'
+        value: media-left
+      -
+        label: 'Media Above'
+        value: media-above
+      -
+        label: 'Media Below'
+        value: media-below
+    default: media-right
+  -
+    identifier: subheadline
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
+    rows: 2
+  -
+    identifier: content
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:content'
+    enableRichtext: true
+    rows: 6
+  -
+    identifier: media
+    type: File
+    label: 'Image or Video'
+    allowed: common-media-types
+    maxitems: 1
+  -
+    identifier: media_rounded
+    type: Checkbox
+    label: 'Rounded Corners on Media'
+    default: 1
+  -
+    identifier: button_text
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_text'
+  -
+    identifier: button_link
+    type: Link
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_link'

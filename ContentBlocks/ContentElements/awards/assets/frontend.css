@@ -1,0 +1,11 @@
+.awards__intro { text-align: center; margin-block-end: var(--d-spacing-xl); }
+.awards__eyebrow { font-size: var(--d-text-sm); text-transform: uppercase; letter-spacing: 0.05em; color: var(--primary); font-weight: 600; }
+.awards__headline { margin-block-start: var(--d-spacing-xs); }
+.awards__description { color: var(--muted-foreground); max-width: 40rem; margin-inline: auto; }
+.awards__grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr)); gap: var(--d-spacing-lg); }
+.awards__item { text-align: center; padding: var(--d-spacing-lg); border: 1px solid var(--border); border-radius: var(--radius); }
+.awards__badge { margin-block-end: var(--d-spacing-md); }
+.awards__badge-img { max-height: 4rem; width: auto; object-fit: contain; }
+.awards__title { font-size: var(--d-text-base); font-weight: 600; text-decoration: none; color: var(--foreground); }
+a.awards__title:hover { color: var(--primary); }
+.awards__meta { font-size: var(--d-text-sm); color: var(--muted-foreground); display: block; margin-block-start: 0.25rem; }

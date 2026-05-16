@@ -1,0 +1,57 @@
+{
+    "_type": "pricing",
+    "header": "Pricing Section for confident plan comparison",
+    "eyebrow": "Modern import",
+    "subheadline": "Helps buyers compare plans quickly with crisp values, direct feature language, and token-backed card hierarchy. This pricing section example includes realistic content for browser review.",
+    "columns": "3",
+    "plans": [
+        {
+            "name": "Mara Weiss",
+            "price": "$19",
+            "billing_period": "/month",
+            "description": "Keeps commercial content confident and compact so plan comparison works across desktop tables and mobile cards. This pricing section example includes realistic content for browser review.",
+            "features": [
+                "Clean mobile behavior for dense content",
+                "Chart colors mapped to semantic tokens",
+                "Production-ready empty and loaded states",
+                "Token-aware light and dark states"
+            ],
+            "button_text": "Start review",
+            "button_link": "https://ui.shadcn.com/docs/pricing-section",
+            "is_featured": false
+        },
+        {
+            "badge_text": "shadcn/ui",
+            "name": "Sofia Berg",
+            "price": "$49",
+            "billing_period": "/month",
+            "description": "Shows pricing states with practical labels, scannable benefits, and decision support that feels production-ready. This pricing section example includes realistic content for browser review.",
+            "features": [
+                "Clean mobile behavior for dense content",
+                "Chart colors mapped to semantic tokens",
+                "Production-ready empty and loaded states",
+                "Token-aware light and dark states",
+                "Accessible keyboard focus patterns"
+            ],
+            "button_text": "View pattern",
+            "button_link": "https://ui.shadcn.com/docs/pricing-section",
+            "is_featured": true
+        },
+        {
+            "name": "Sofia Berg",
+            "price": "$99",
+            "billing_period": "/month",
+            "description": "Shows pricing states with practical labels, scannable benefits, and decision support that feels production-ready. This pricing section example includes realistic content for browser review.",
+            "features": [
+                "Clean mobile behavior for dense content",
+                "Chart colors mapped to semantic tokens",
+                "Production-ready empty and loaded states",
+                "Token-aware light and dark states",
+                "Accessible keyboard focus patterns"
+            ],
+            "button_text": "View pattern",
+            "button_link": "https://ui.shadcn.com/docs/pricing-section",
+            "is_featured": false
+        }
+    ]
+}

@@ -1,0 +1,40 @@
+name: desiderio/team-cta
+typeName: desiderio_teamcta
+title: 'CTA Team Section'
+description: 'CTA Team Section introduces people, roles, culture, or hiring context with clear editorial structure. Editors can manage headline and copy fields, media pickers and link and CTA controls.'
+group: team
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: description
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
+    rows: 3
+  -
+    identifier: open_count
+    type: Textarea
+    rows: 1
+    label: 'Open Positions Count'
+  -
+    identifier: cta_text
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_text'
+  -
+    identifier: cta_link
+    type: Link
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_link'
+  -
+    identifier: image
+    type: File
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:background_image'
+    allowed: common-image-types
+    maxitems: 1

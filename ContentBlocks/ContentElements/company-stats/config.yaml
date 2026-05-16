@@ -1,0 +1,44 @@
+name: desiderio/company-stats
+typeName: desiderio_companystats
+title: 'Company Stats'
+description: 'Company Stats presents performance numbers as a quick-read dashboard block. Editors can manage headline and copy fields and repeatable entries.'
+group: team
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: subheadline
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
+    rows: 2
+  -
+    identifier: stats
+    type: Collection
+    table: company_stats_stats
+    label: Statistics
+    minItems: 1
+    fields:
+      -
+        identifier: value
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:value'
+        required: true
+      -
+        identifier: label
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:label_field'
+        required: true
+      -
+        identifier: description_text
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'

@@ -1,0 +1,54 @@
+name: desiderio/navbar-stacked
+typeName: desiderio_navbarstacked
+title: 'Stacked Navigation Bar'
+description: 'Stacked Navigation Bar helps visitors find their way through links, menus, anchors, or search entry points. Editors can manage headline and copy fields, repeatable entries and link and CTA controls.'
+group: navigation
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: brand
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:brand'
+    required: true
+  -
+    identifier: brand_link
+    type: Link
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:brand_link'
+  -
+    identifier: tagline
+    type: Textarea
+    rows: 1
+    label: Tagline
+  -
+    identifier: nav_items
+    type: Collection
+    table: navbar_stacked_nav_items
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:navigation_items'
+    fields:
+      -
+        identifier: label
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:label_field'
+      -
+        identifier: link
+        type: Link
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:link'
+  -
+    identifier: button_text
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_text'
+  -
+    identifier: button_link
+    type: Link
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_link'

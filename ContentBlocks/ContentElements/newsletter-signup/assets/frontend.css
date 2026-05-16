@@ -1,0 +1,38 @@
+.newsletter-signup__intro {
+    text-align: center;
+    margin-block-end: var(--d-spacing-xl);
+}
+.newsletter-signup__eyebrow {
+    font-size: var(--d-text-sm);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--primary);
+}
+.newsletter-signup__body {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--d-spacing-xl);
+    align-items: start;
+}
+@media (max-width: 768px) {
+    .newsletter-signup__body { grid-template-columns: 1fr; }
+}
+.newsletter-signup__form {
+    display: flex;
+    gap: var(--d-spacing-sm);
+    align-items: flex-end;
+}
+.newsletter-signup__field { display: flex; flex-direction: column; gap: 4px; flex: 1; }
+.newsletter-signup__label { font-size: var(--d-text-sm); font-weight: 500; }
+.newsletter-signup__input {
+    padding: var(--d-spacing-xs) var(--d-spacing-sm);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    font-size: var(--d-text-sm);
+    background: transparent;
+}
+.newsletter-signup__privacy { font-size: var(--d-text-xs); color: var(--muted-foreground); margin-block-start: var(--d-spacing-sm); }
+.newsletter-signup__points { display: flex; flex-direction: column; gap: var(--d-spacing-sm); }
+.newsletter-signup__point { display: flex; gap: var(--d-spacing-xs); font-size: var(--d-text-sm); }
+.newsletter-signup__check { color: var(--primary); font-weight: 700; }

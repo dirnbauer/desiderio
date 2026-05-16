@@ -1,0 +1,64 @@
+name: desiderio/gallery
+typeName: desiderio_gallery
+title: Gallery
+description: 'Gallery pairs media or embedded content with supporting editorial context. Editors can manage headline and copy fields, repeatable entries and layout or variant options.'
+group: content
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: subheadline
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
+    rows: 2
+  -
+    identifier: columns
+    type: Select
+    renderType: selectSingle
+    label: 'Gallery Columns'
+    items:
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.2_columns'
+        value: '2'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.3_columns'
+        value: '3'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.4_columns'
+        value: '4'
+    default: '3'
+  -
+    identifier: items
+    type: Collection
+    table: gallery_items
+    label: 'Gallery Items'
+    minItems: 1
+    fields:
+      -
+        identifier: image
+        type: File
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:image'
+        allowed: common-image-types
+        maxitems: 1
+        required: true
+      -
+        identifier: title
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:title'
+      -
+        identifier: description
+        type: Textarea
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
+        rows: 2
+      -
+        identifier: link
+        type: Link
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:optional_link'

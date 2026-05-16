@@ -1,0 +1,35 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-stat-cards" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="stat-cards">
+    <d:layout.container>
+        <f:if condition="{data.header}">
+            <h2 class="stat-cards__headline">{data -> f:render.text(field: 'header')}</h2>
+        </f:if>
+        <div class="stat-cards__grid stat-cards__grid--cols-{data.columns -> f:or(alternative: '4')}">
+            <f:for each="{data.items}" as="item">
+                <article class="stat-cards__item">
+                    <div class="stat-cards__label">{item -> f:render.text(field: 'label')}</div>
+                    <div class="stat-cards__value">{item -> f:render.text(field: 'value')}</div>
+                    <f:if condition="{item.change}">
+                        <div class="stat-cards__change stat-cards__change--{item.trend -> f:or(alternative: 'neutral')}">
+                            <f:if condition="{item.trend} == 'up'">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m18 15-6-6-6 6"/></svg>
+                            </f:if>
+                            <f:if condition="{item.trend} == 'down'">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+                            </f:if>
+                            {item -> f:render.text(field: 'change')}
+                        </div>
+                    </f:if>
+                </article>
+            </f:for>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

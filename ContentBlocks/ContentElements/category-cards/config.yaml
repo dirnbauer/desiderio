@@ -1,0 +1,68 @@
+name: desiderio/category-cards
+typeName: desiderio_categorycards
+title: 'Category Cards Pricing'
+description: 'Category Cards Pricing supports buying decisions with prices, plans, packages, or calculated options. Editors can manage headline and copy fields, repeatable entries and layout or variant options.'
+group: pricing
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: eyebrow
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
+  -
+    identifier: subheadline
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
+    rows: 2
+  -
+    identifier: columns
+    type: Select
+    renderType: selectSingle
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:columns'
+    items:
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.2_columns'
+        value: '2'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.3_columns'
+        value: '3'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.4_columns'
+        value: '4'
+    default: '3'
+  -
+    identifier: items
+    type: Collection
+    table: category_cards_items
+    label: Categories
+    minItems: 1
+    fields:
+      -
+        identifier: title
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:title'
+        required: true
+      -
+        identifier: count
+        type: Textarea
+        rows: 1
+        label: Count
+      -
+        identifier: description
+        type: Textarea
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
+        rows: 2
+      -
+        identifier: link
+        type: Link
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:link'

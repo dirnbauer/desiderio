@@ -1,0 +1,39 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-alert" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="alert-section">
+    <d:layout.container>
+        <div class="alert alert--{data.variant -> f:or(alternative: 'default')}"
+             role="alert"
+             data-dismissible="{f:if(condition: data.show_close_button, then: 'true', else: 'false')}">
+
+            <f:if condition="{data.icon}">
+                <span class="alert__icon" aria-hidden="true">
+                    <d:atom.icon name="{data.icon}" size="lg"/>
+                </span>
+            </f:if>
+
+            <div class="alert__content">
+                <f:if condition="{data.header}">
+                    <h5 class="alert__title">{data -> f:render.text(field: 'header')}</h5>
+                </f:if>
+                <div class="alert__description">
+                    {data -> f:render.text(field: 'description')}
+                </div>
+            </div>
+
+            <f:if condition="{data.show_close_button}">
+                <button type="button" class="alert__close" aria-label="Close">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                </button>
+            </f:if>
+
+        </div>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

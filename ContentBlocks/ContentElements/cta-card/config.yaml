@@ -1,0 +1,34 @@
+name: desiderio/cta-card
+typeName: desiderio_ctacard
+title: 'Card Call to Action'
+description: 'Card Call to Action arranges multiple pieces of content as scannable cards, grids, or libraries. Editors can manage headline and copy fields and link and CTA controls.'
+group: conversion
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: description
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
+    rows: 3
+  -
+    identifier: cta_text
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_text'
+  -
+    identifier: cta_link
+    type: Link
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_link'
+  -
+    identifier: badge
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:badge_text'

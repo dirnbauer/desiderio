@@ -1,0 +1,69 @@
+name: desiderio/pricing-comparison
+typeName: desiderio_pricingcomparison
+title: 'Comparison Pricing'
+description: 'Comparison Pricing organizes rows, options, and details so visitors can compare information quickly. Editors can manage headline and copy fields and repeatable entries.'
+group: pricing
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: eyebrow
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
+  -
+    identifier: plans
+    type: Collection
+    table: pricing_comparison_plans
+    label: 'Plan Names'
+    labelField: name
+    minItems: 2
+    maxItems: 4
+    fields:
+      -
+        identifier: name
+        type: Textarea
+        rows: 1
+        label: 'Plan Name'
+        required: true
+      -
+        identifier: price
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:price'
+  -
+    identifier: pricing_feature_items
+    type: Collection
+    table: pricing_comparison_feature_items
+    label: 'Feature Rows'
+    labelField: feature_name
+    minItems: 1
+    fields:
+      -
+        identifier: feature_name
+        type: Textarea
+        rows: 1
+        label: 'Feature Name'
+        required: true
+      -
+        identifier: tier_values
+        type: Collection
+        table: pricing_comparison_tier_values
+        label: 'Plan Values'
+        labelField: value
+        minItems: 1
+        maxItems: 4
+        fields:
+          -
+            identifier: value
+            type: Textarea
+            rows: 1
+            label: Value
+            required: true

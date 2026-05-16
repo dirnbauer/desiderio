@@ -1,0 +1,86 @@
+name: desiderio/footer-dark
+typeName: desiderio_footerdark
+title: 'Dark Footer'
+description: 'Dark Footer closes a page with utility information, legal links, contact routes, or service details. Editors can manage headline and copy fields and repeatable entries.'
+group: footer
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: brand
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:brand_name'
+  -
+    identifier: description
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
+    rows: 3
+  -
+    identifier: column_items
+    type: Collection
+    table: footer_dark_column_items
+    label: 'Link Groups'
+    fields:
+      -
+        identifier: title
+        type: Textarea
+        rows: 1
+        label: 'Group Title'
+      -
+        identifier: link_1_label
+        type: Textarea
+        rows: 1
+        label: 'Link 1 Label'
+      -
+        identifier: link_1
+        type: Link
+        label: 'Link 1'
+      -
+        identifier: link_2_label
+        type: Textarea
+        rows: 1
+        label: 'Link 2 Label'
+      -
+        identifier: link_2
+        type: Link
+        label: 'Link 2'
+      -
+        identifier: link_3_label
+        type: Textarea
+        rows: 1
+        label: 'Link 3 Label'
+      -
+        identifier: link_3
+        type: Link
+        label: 'Link 3'
+      -
+        identifier: link_4_label
+        type: Textarea
+        rows: 1
+        label: 'Link 4 Label'
+      -
+        identifier: link_4
+        type: Link
+        label: 'Link 4'
+      -
+        identifier: link_5_label
+        type: Textarea
+        rows: 1
+        label: 'Link 5 Label'
+      -
+        identifier: link_5
+        type: Link
+        label: 'Link 5'
+  -
+    identifier: copyright
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:copyright_text'

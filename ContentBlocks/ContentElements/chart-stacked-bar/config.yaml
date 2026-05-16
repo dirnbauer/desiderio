@@ -1,0 +1,33 @@
+name: desiderio/chart-stacked-bar
+typeName: desiderio_chartstackedbar
+title: 'Stacked Bar Chart'
+description: 'Stacked Bar Chart turns data into a specific chart treatment with a clear visual focus. Editors can manage headline and copy fields and layout or variant options.'
+group: data
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: description
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
+    rows: 2
+  -
+    identifier: chart_data
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:chart_data_json'
+    description: |
+      JSON array, e.g. [{"label":"Jan","segments":[12,18,9]},{"label":"Feb","segments":[10,20,15]}]
+    rows: 8
+    required: true
+  -
+    identifier: show_legend
+    type: Checkbox
+    label: 'Show Legend'
+    default: 1

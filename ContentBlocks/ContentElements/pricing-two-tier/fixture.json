@@ -1,0 +1,37 @@
+{
+    "_type": "pricing",
+    "header": "Two Tier Pricing for confident plan comparison",
+    "eyebrow": "Modern import",
+    "subheadline": "Helps buyers compare plans quickly with crisp values, direct feature language, and token-backed card hierarchy. This two tier pricing example includes realistic content for browser review.",
+    "plans": [
+        {
+            "title": "Two Tier Pricing for confident plan comparison",
+            "price": "$19",
+            "description": "Helps buyers compare plans quickly with crisp values, direct feature language, and token-backed card hierarchy. This two tier pricing example includes realistic content for browser review.",
+            "features": [
+                "Accessible keyboard focus patterns",
+                "Responsive cards tuned for real content",
+                "Editor-friendly TYPO3 Content Blocks",
+                "Modern Unsplash imagery in the import seed"
+            ],
+            "button_text": "Compare states",
+            "button_link": "https://ui.shadcn.com/docs/two-tier-pricing",
+            "featured": false
+        },
+        {
+            "title": "Two Tier Pricing for confident plan comparison",
+            "price": "$49",
+            "description": "Shows pricing states with practical labels, scannable benefits, and decision support that feels production-ready. This two tier pricing example includes realistic content for browser review.",
+            "features": [
+                "Accessible keyboard focus patterns",
+                "Responsive cards tuned for real content",
+                "Editor-friendly TYPO3 Content Blocks",
+                "Modern Unsplash imagery in the import seed",
+                "Compact shadcn spacing and borders"
+            ],
+            "button_text": "Read playbook",
+            "button_link": "https://ui.shadcn.com/docs/two-tier-pricing",
+            "featured": true
+        }
+    ]
+}

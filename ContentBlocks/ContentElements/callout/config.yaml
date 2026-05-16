@@ -1,0 +1,44 @@
+name: desiderio/callout
+typeName: desiderio_callout
+title: Callout
+description: 'Callout highlights urgent notices, status updates, or important contextual messages. Editors can manage headline and copy fields and layout or variant options.'
+group: content
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: content
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:content'
+    enableRichtext: true
+    rows: 4
+    required: true
+  -
+    identifier: variant
+    type: Select
+    renderType: selectSingle
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:style'
+    items:
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.info'
+        value: info
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.warning'
+        value: warning
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.success'
+        value: success
+      -
+        label: Danger
+        value: danger
+      -
+        label: Note
+        value: note
+    default: info

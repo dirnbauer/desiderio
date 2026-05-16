@@ -1,0 +1,47 @@
+name: desiderio/accessibility-statement
+typeName: desiderio_accessibilitystatement
+title: 'Accessibility Statement'
+description: 'Accessibility Statement closes a page with utility information, legal links, contact routes, or service details. Editors can manage headline and copy fields and layout or variant options.'
+group: footer
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: conformance_level
+    type: Select
+    renderType: selectSingle
+    label: 'Conformance Level'
+    items:
+      -
+        label: 'WCAG 2.1 Level A'
+        value: a
+      -
+        label: 'WCAG 2.1 Level AA'
+        value: aa
+      -
+        label: 'WCAG 2.1 Level AAA'
+        value: aaa
+    default: aa
+  -
+    identifier: content
+    type: Textarea
+    label: 'Statement Content'
+    enableRichtext: true
+    rows: 8
+    required: true
+  -
+    identifier: contact_email
+    type: Text
+    label: 'Contact Email'
+  -
+    identifier: last_updated
+    type: Textarea
+    rows: 1
+    label: 'Last Updated'

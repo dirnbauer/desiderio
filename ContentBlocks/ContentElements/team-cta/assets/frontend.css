@@ -1,0 +1,28 @@
+.team-cta__card {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--radius);
+    background: var(--muted);
+    padding: var(--d-spacing-2xl);
+    text-align: center;
+}
+.team-cta__bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.15;
+}
+.team-cta__content { position: relative; max-width: 600px; margin-inline: auto; }
+.team-cta__count {
+    display: inline-block;
+    font-size: var(--d-text-sm);
+    font-weight: 600;
+    color: var(--primary);
+    background: color-mix(in oklch, var(--primary) 10%, transparent);
+    padding: 2px 12px;
+    border-radius: 9999px;
+    margin-block-end: var(--d-spacing-sm);
+}
+.team-cta__actions { margin-block-start: var(--d-spacing-lg); }

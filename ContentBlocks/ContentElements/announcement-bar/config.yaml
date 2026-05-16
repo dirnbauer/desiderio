@@ -1,0 +1,51 @@
+name: desiderio/announcement-bar
+typeName: desiderio_announcementbar
+title: 'Announcement Bar'
+description: 'Announcement Bar helps visitors find their way through links, menus, anchors, or search entry points. Editors can manage headline and copy fields, link and CTA controls and layout or variant options.'
+group: navigation
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: variant
+    type: Select
+    renderType: selectSingle
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:style'
+    items:
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.default'
+        value: default
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.accent'
+        value: accent
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.outline'
+        value: outline
+    default: default
+  -
+    identifier: message
+    type: Textarea
+    rows: 1
+    label: Message
+    required: true
+  -
+    identifier: supporting_text
+    type: Textarea
+    rows: 1
+    label: 'Supporting Text'
+  -
+    identifier: link_text
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:link_text'
+  -
+    identifier: link
+    type: Link
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:link'

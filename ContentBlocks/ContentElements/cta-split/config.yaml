@@ -1,0 +1,53 @@
+name: desiderio/cta-split
+typeName: desiderio_ctasplit
+title: 'Split Call to Action'
+description: 'Split Call to Action provides a focused editorial building block for a recognizable page task. Editors can manage headline and copy fields and link and CTA controls.'
+group: conversion
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: left_title
+    type: Textarea
+    rows: 1
+    label: 'Left Title'
+  -
+    identifier: left_description
+    type: Textarea
+    label: 'Left Description'
+    rows: 2
+  -
+    identifier: left_button_text
+    type: Textarea
+    rows: 1
+    label: 'Left Button Text'
+  -
+    identifier: left_button_link
+    type: Link
+    label: 'Left Button Link'
+  -
+    identifier: right_title
+    type: Textarea
+    rows: 1
+    label: 'Right Title'
+  -
+    identifier: right_description
+    type: Textarea
+    label: 'Right Description'
+    rows: 2
+  -
+    identifier: right_button_text
+    type: Textarea
+    rows: 1
+    label: 'Right Button Text'
+  -
+    identifier: right_button_link
+    type: Link
+    label: 'Right Button Link'

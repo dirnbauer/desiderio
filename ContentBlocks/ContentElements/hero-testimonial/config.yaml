@@ -1,0 +1,50 @@
+name: desiderio/hero-testimonial
+typeName: desiderio_herotestimonial
+title: 'Testimonial Hero'
+description: 'Testimonial Hero builds credibility through voices, logos, ratings, awards, or references. Editors can manage headline and copy fields, media pickers and link and CTA controls.'
+group: hero
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: subheadline
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
+    rows: 3
+  -
+    identifier: primary_button_text
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:primary_button_text'
+  -
+    identifier: primary_button_link
+    type: Link
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:primary_button_link'
+  -
+    identifier: quote
+    type: Textarea
+    label: 'Testimonial Quote'
+    rows: 3
+  -
+    identifier: author_name
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:author_name'
+  -
+    identifier: author_role
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:author_role'
+  -
+    identifier: author_image
+    type: File
+    label: 'Author Image'
+    allowed: common-image-types
+    maxitems: 1

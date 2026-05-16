@@ -1,0 +1,44 @@
+name: desiderio/feature-split
+typeName: desiderio_featuresplit
+title: 'Split Feature Section'
+description: 'Split Feature Section explains product value, features, or use cases in a clear content structure. Editors can manage headline and copy fields, media pickers and repeatable entries.'
+group: features
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: description
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
+    rows: 3
+  -
+    identifier: image
+    type: File
+    label: 'Side Image'
+    allowed: common-image-types
+    maxitems: 1
+  -
+    identifier: items
+    type: Collection
+    table: feature_split_items
+    label: 'Feature Points'
+    minItems: 1
+    fields:
+      -
+        identifier: title
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:title'
+        required: true
+      -
+        identifier: description_text
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'

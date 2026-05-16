@@ -1,0 +1,54 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-pricing-calculator" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="pricing-calculator">
+    <d:layout.container>
+        <f:if condition="{data.eyebrow} || {data.header} || {data.description}">
+            <header class="pricing-calculator__intro">
+                <f:if condition="{data.eyebrow}">
+                    <span class="pricing-calculator__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span>
+                </f:if>
+                <f:if condition="{data.header}">
+                    <h2 class="pricing-calculator__headline">{data -> f:render.text(field: 'header')}</h2>
+                </f:if>
+                <f:if condition="{data.description}">
+                    <p class="pricing-calculator__description">{data -> f:render.text(field: 'description')}</p>
+                </f:if>
+            </header>
+        </f:if>
+
+        <div class="pricing-calculator__body">
+            <div class="pricing-calculator__slider-area">
+                <label class="pricing-calculator__label">Number of {data.unit_label -> f:or(alternative: 'users')}</label>
+                <input type="range" class="pricing-calculator__range" min="1" max="1000" value="100"/>
+                <div class="pricing-calculator__value-display">100 {data.unit_label -> f:or(alternative: 'users')}</div>
+            </div>
+
+            <div class="pricing-calculator__tiers">
+                <table class="pricing-calculator__table">
+                    <thead>
+                        <tr>
+                            <th>Tier</th>
+                            <th>Up To</th>
+                            <th>Price / {data.unit_label -> f:or(alternative: 'unit')}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <f:for each="{data.tiers}" as="tier">
+                            <tr>
+                                <td>{tier -> f:render.text(field: 'label')}</td>
+                                <td>{tier -> f:render.text(field: 'up_to')} {data.unit_label -> f:or(alternative: 'units')}</td>
+                                <td>{tier -> f:render.text(field: 'price_per_unit')}</td>
+                            </tr>
+                        </f:for>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+</html>

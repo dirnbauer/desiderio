@@ -1,0 +1,48 @@
+name: desiderio/feature-comparison
+typeName: desiderio_featurecomparison
+title: 'Comparison Feature Section'
+description: 'Comparison Feature Section organizes rows, options, and details so visitors can compare information quickly. Editors can manage headline and copy fields and repeatable entries.'
+group: features
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: left_title
+    type: Textarea
+    rows: 1
+    label: 'Left Column Title'
+  -
+    identifier: right_title
+    type: Textarea
+    rows: 1
+    label: 'Right Column Title'
+  -
+    identifier: items
+    type: Collection
+    table: feature_comparison_items
+    label: 'Comparison Rows'
+    minItems: 1
+    fields:
+      -
+        identifier: feature
+        type: Textarea
+        rows: 1
+        label: 'Feature Name'
+        required: true
+      -
+        identifier: left_supported
+        type: Checkbox
+        label: 'Supported (Left)'
+        default: 0
+      -
+        identifier: right_supported
+        type: Checkbox
+        label: 'Supported (Right)'
+        default: 0

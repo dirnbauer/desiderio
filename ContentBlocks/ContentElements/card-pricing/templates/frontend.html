@@ -1,0 +1,47 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-card-pricing" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="card-pricing-section">
+    <d:layout.container>
+        <div class="card-pricing {f:if(condition: data.highlighted, then: 'card-pricing--highlighted')}">
+            <div class="card-pricing__header">
+                <f:if condition="{data.header}">
+                    <h3 class="card-pricing__title">{data -> f:render.text(field: 'header')}</h3>
+                </f:if>
+                <f:if condition="{data.description}">
+                    <p class="card-pricing__description">{data -> f:render.text(field: 'description')}</p>
+                </f:if>
+                <div class="card-pricing__price">
+                    <span class="card-pricing__amount">{data -> f:render.text(field: 'price')}</span>
+                    <f:if condition="{data.billing_period}">
+                        <span class="card-pricing__period">{data -> f:render.text(field: 'billing_period')}</span>
+                    </f:if>
+                </div>
+            </div>
+            <f:if condition="{data.feature_items}">
+                <ul class="card-pricing__features">
+                    <f:for each="{data.feature_items}" as="feature">
+                        <li class="card-pricing__feature {f:if(condition: '!{feature.included}', then: 'card-pricing__feature--excluded')}">
+                            <f:if condition="{feature.included}">
+                                <f:then><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></f:then>
+                                <f:else><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></f:else>
+                            </f:if>
+                            {feature -> f:render.text(field: 'text')}
+                        </li>
+                    </f:for>
+                </ul>
+            </f:if>
+            <f:if condition="{data.button_text}">
+                <div class="card-pricing__action">
+                    <f:link.typolink parameter="{data.button_link}" class="card-pricing__button">{data -> f:render.text(field: 'button_text')}</f:link.typolink>
+                </div>
+            </f:if>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

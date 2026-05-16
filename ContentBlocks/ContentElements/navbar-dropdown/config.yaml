@@ -1,0 +1,86 @@
+name: desiderio/navbar-dropdown
+typeName: desiderio_navbardropdown
+title: 'Dropdown Navigation Bar'
+description: 'Dropdown Navigation Bar helps visitors find their way through links, menus, anchors, or search entry points. Editors can manage headline and copy fields, repeatable entries and link and CTA controls.'
+group: navigation
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: brand
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:brand'
+    required: true
+  -
+    identifier: brand_link
+    type: Link
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:brand_link'
+  -
+    identifier: nav_items
+    type: Collection
+    table: navbar_dropdown_nav_items
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:navigation_items'
+    fields:
+      -
+        identifier: label
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:label_field'
+        required: true
+      -
+        identifier: link
+        type: Link
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:link'
+      -
+        identifier: child_1_label
+        type: Textarea
+        rows: 1
+        label: 'Sub-item 1 Label'
+      -
+        identifier: child_1_link
+        type: Link
+        label: 'Sub-item 1 Link'
+      -
+        identifier: child_2_label
+        type: Textarea
+        rows: 1
+        label: 'Sub-item 2 Label'
+      -
+        identifier: child_2_link
+        type: Link
+        label: 'Sub-item 2 Link'
+      -
+        identifier: child_3_label
+        type: Textarea
+        rows: 1
+        label: 'Sub-item 3 Label'
+      -
+        identifier: child_3_link
+        type: Link
+        label: 'Sub-item 3 Link'
+      -
+        identifier: child_4_label
+        type: Textarea
+        rows: 1
+        label: 'Sub-item 4 Label'
+      -
+        identifier: child_4_link
+        type: Link
+        label: 'Sub-item 4 Link'
+  -
+    identifier: button_text
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_text'
+  -
+    identifier: button_link
+    type: Link
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_link'

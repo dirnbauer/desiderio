@@ -1,0 +1,119 @@
+name: desiderio/mega-menu
+typeName: desiderio_megamenu
+title: 'Mega Menu'
+description: 'Mega Menu helps visitors find their way through links, menus, anchors, or search entry points. Editors can manage headline and copy fields, repeatable entries, link and CTA controls and layout or variant options.'
+group: navigation
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: shadcn_layout
+    type: Select
+    renderType: selectSingle
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:shadcn_layout'
+    items:
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.full_width'
+        value: full-width
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.two_columns'
+        value: two-columns
+    default: full-width
+  -
+    identifier: brand
+    type: Textarea
+    rows: 1
+    label: 'Brand Text'
+    required: true
+  -
+    identifier: brand_link
+    type: Link
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:brand_link'
+  -
+    identifier: intro_title
+    type: Textarea
+    rows: 1
+    label: 'Intro Title'
+  -
+    identifier: intro_text
+    type: Textarea
+    label: 'Intro Text'
+    rows: 3
+  -
+    identifier: primary_button_text
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:primary_button_text'
+  -
+    identifier: primary_button_link
+    type: Link
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:primary_button_link'
+  -
+    identifier: menu_groups
+    type: Collection
+    table: mega_menu_menu_groups
+    label: 'Menu Groups'
+    minItems: 1
+    fields:
+      -
+        identifier: title
+        type: Textarea
+        rows: 1
+        label: 'Group Title'
+      -
+        identifier: description
+        type: Textarea
+        label: 'Group Description'
+        rows: 2
+      -
+        identifier: link_1_label
+        type: Textarea
+        rows: 1
+        label: 'Link 1 Label'
+      -
+        identifier: link_1
+        type: Link
+        label: 'Link 1'
+      -
+        identifier: link_2_label
+        type: Textarea
+        rows: 1
+        label: 'Link 2 Label'
+      -
+        identifier: link_2
+        type: Link
+        label: 'Link 2'
+      -
+        identifier: link_3_label
+        type: Textarea
+        rows: 1
+        label: 'Link 3 Label'
+      -
+        identifier: link_3
+        type: Link
+        label: 'Link 3'
+      -
+        identifier: link_4_label
+        type: Textarea
+        rows: 1
+        label: 'Link 4 Label'
+      -
+        identifier: link_4
+        type: Link
+        label: 'Link 4'
+      -
+        identifier: link_5_label
+        type: Textarea
+        rows: 1
+        label: 'Link 5 Label'
+      -
+        identifier: link_5
+        type: Link
+        label: 'Link 5'

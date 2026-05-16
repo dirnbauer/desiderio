@@ -1,0 +1,32 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+<f:asset.css identifier="d-hero-announcement" href="{cb:assetPath()}/frontend.css"/>
+<d:layout.section class="hero-announcement">
+    <d:layout.container>
+        <div class="hero-announcement__content">
+            <f:if condition="{data.announcement_text}">
+                <div class="hero-announcement__banner">
+                    <f:if condition="{data.announcement_link.url}">
+                        <f:then>
+                            <f:link.typolink parameter="{data.announcement_link}" class="hero-announcement__banner-link">{data -> f:render.text(field: 'announcement_text')}</f:link.typolink>
+                        </f:then>
+                        <f:else><span>{data -> f:render.text(field: 'announcement_text')}</span></f:else>
+                    </f:if>
+                </div>
+            </f:if>
+            <f:if condition="{data.header}"><h1 class="hero-announcement__headline">{data -> f:render.text(field: 'header')}</h1></f:if>
+            <f:if condition="{data.subheadline}"><p class="hero-announcement__subheadline">{data -> f:render.text(field: 'subheadline')}</p></f:if>
+            <div class="hero-announcement__actions">
+                <f:if condition="{data.primary_button_text} && {data.primary_button_link.url}">
+                    <d:atom.button href="{data.primary_button_link.url}" target="{data.primary_button_link.target}" size="lg">{data -> f:render.text(field: 'primary_button_text')}</d:atom.button>
+                </f:if>
+                <f:if condition="{data.secondary_button_text} && {data.secondary_button_link.url}">
+                    <d:atom.button href="{data.secondary_button_link.url}" target="{data.secondary_button_link.target}" variant="outline" size="lg">{data -> f:render.text(field: 'secondary_button_text')}</d:atom.button>
+                </f:if>
+            </div>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+</html>

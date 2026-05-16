@@ -1,0 +1,29 @@
+name: desiderio/map-embed
+typeName: desiderio_mapembed
+title: 'Map Embed'
+description: 'Map Embed pairs media or embedded content with supporting editorial context. Editors can manage headline and copy fields.'
+group: conversion
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: embed_url
+    type: Text
+    label: 'Map Embed URL'
+  -
+    identifier: address
+    type: Textarea
+    label: Address
+    rows: 3
+  -
+    identifier: height
+    type: Number
+    label: 'Map Height (px)'
+    default: 400

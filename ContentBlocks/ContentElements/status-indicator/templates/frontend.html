@@ -1,0 +1,46 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-status-indicator" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="status-indicator-section">
+    <d:layout.container>
+        <div class="status-indicator">
+            <div class="status-indicator__header">
+                <f:if condition="{data.header}">
+                    <h2 class="status-indicator__title">{data -> f:render.text(field: 'header')}</h2>
+                </f:if>
+                <div class="status-indicator__overall status-indicator__dot--{data.overall_status -> f:or(alternative: 'operational')}">
+                    <span class="status-indicator__dot"></span>
+                    <span class="status-indicator__overall-text">
+                        <f:switch expression="{data.overall_status}">
+                            <f:case value="operational">All Systems Operational</f:case>
+                            <f:case value="degraded">Degraded Performance</f:case>
+                            <f:case value="outage">Major Outage</f:case>
+                            <f:case value="maintenance">Under Maintenance</f:case>
+                        </f:switch>
+                    </span>
+                </div>
+            </div>
+            <ul class="status-indicator__list">
+                <f:for each="{data.items}" as="item">
+                    <li class="status-indicator__item">
+                        <div class="status-indicator__service">
+                            <span class="status-indicator__service-name">{item -> f:render.text(field: 'name')}</span>
+                            <f:if condition="{item.detail}">
+                                <span class="status-indicator__detail">{item -> f:render.text(field: 'detail')}</span>
+                            </f:if>
+                        </div>
+                        <div class="status-indicator__status status-indicator__dot--{item.status -> f:or(alternative: 'operational')}">
+                            <span class="status-indicator__dot"></span>
+                        </div>
+                    </li>
+                </f:for>
+            </ul>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

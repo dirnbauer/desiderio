@@ -1,0 +1,30 @@
+name: desiderio/mission-statement
+typeName: desiderio_missionstatement
+title: 'Mission Statement'
+description: 'Mission Statement introduces people, roles, culture, or hiring context with clear editorial structure. Editors can manage headline and copy fields.'
+group: team
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: eyebrow
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
+  -
+    identifier: statement
+    type: Textarea
+    label: 'Mission Statement'
+    rows: 4
+  -
+    identifier: attribution
+    type: Textarea
+    rows: 1
+    label: Attribution

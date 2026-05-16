@@ -1,0 +1,21 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-callout" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="callout-section">
+    <d:layout.container>
+        <div class="callout callout--{data.variant -> f:or(alternative: 'info')}" role="alert">
+            <f:if condition="{data.header}">
+                <h3 class="callout__title">{data -> f:render.text(field: 'header')}</h3>
+            </f:if>
+            <div class="callout__content">
+                {data -> f:render.text(field: 'content')}
+            </div>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

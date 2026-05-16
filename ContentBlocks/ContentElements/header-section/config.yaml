@@ -1,0 +1,38 @@
+name: desiderio/header-section
+typeName: desiderio_headersection
+title: 'Header Section'
+description: 'Header Section helps visitors find their way through links, menus, anchors, or search entry points. Editors can manage headline and copy fields and layout or variant options.'
+group: navigation
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: eyebrow
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
+  -
+    identifier: subheadline
+    type: Textarea
+    label: Subtitle
+    rows: 2
+  -
+    identifier: variant
+    type: Select
+    renderType: selectSingle
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:alignment'
+    items:
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.left'
+        value: left
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.center'
+        value: center
+    default: center

@@ -1,0 +1,52 @@
+name: desiderio/product-hero
+typeName: desiderio_producthero
+title: 'Product Hero Pricing'
+description: 'Product Hero Pricing supports buying decisions with prices, plans, packages, or calculated options. Editors can manage headline and copy fields, media pickers and link and CTA controls.'
+group: pricing
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: eyebrow
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
+  -
+    identifier: description
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
+    rows: 3
+  -
+    identifier: image
+    type: File
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:product_image'
+    allowed: common-image-types
+    maxitems: 1
+  -
+    identifier: price
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:price'
+  -
+    identifier: price_note
+    type: Textarea
+    rows: 1
+    label: 'Price Note'
+    description: 'e.g. Starting at, From'
+  -
+    identifier: button_text
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_text'
+    default: 'Buy Now'
+  -
+    identifier: button_link
+    type: Link
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_link'

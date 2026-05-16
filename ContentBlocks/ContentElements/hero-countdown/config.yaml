@@ -1,0 +1,38 @@
+name: desiderio/hero-countdown
+typeName: desiderio_herocountdown
+title: 'Countdown Hero'
+description: 'Countdown Hero opens landing pages, campaigns, or product pages with a strong first message. Editors can manage headline and copy fields and link and CTA controls.'
+group: hero
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: subheadline
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
+    rows: 3
+  -
+    identifier: target_date
+    type: DateTime
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:target_date'
+  -
+    identifier: primary_button_text
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:primary_button_text'
+  -
+    identifier: primary_button_link
+    type: Link
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:primary_button_link'
+  -
+    identifier: badge_text
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:badge_text'

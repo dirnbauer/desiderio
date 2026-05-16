@@ -1,0 +1,44 @@
+name: desiderio/company-history
+typeName: desiderio_companyhistory
+title: 'Company History'
+description: 'Company History introduces people, roles, culture, or hiring context with clear editorial structure. Editors can manage headline and copy fields and repeatable entries.'
+group: team
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: subheadline
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
+    rows: 2
+  -
+    identifier: events
+    type: Collection
+    table: company_history_events
+    label: Events
+    minItems: 1
+    fields:
+      -
+        identifier: year
+        type: Textarea
+        rows: 1
+        label: Year
+        required: true
+      -
+        identifier: title
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:title'
+        required: true
+      -
+        identifier: description
+        type: Textarea
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
+        rows: 2

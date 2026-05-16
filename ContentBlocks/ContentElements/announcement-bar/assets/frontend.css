@@ -1,0 +1,37 @@
+.announcement-bar {
+    padding-block: var(--d-spacing-2);
+}
+.announcement-bar--default {
+    background: var(--d-primary);
+    color: var(--d-primary-foreground);
+}
+.announcement-bar--accent {
+    background: var(--d-accent);
+    color: var(--d-accent-foreground);
+}
+.announcement-bar--outline {
+    background: transparent;
+    border-bottom: 1px solid var(--d-border);
+    color: var(--d-foreground);
+}
+.announcement-bar__inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--d-spacing-4);
+    font-size: var(--d-text-sm);
+}
+.announcement-bar__message {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: var(--d-spacing-2);
+}
+.announcement-bar__supporting {
+    opacity: 0.8;
+}
+.announcement-bar__link {
+    font-weight: 500;
+    text-decoration: underline;
+    color: inherit;
+}

@@ -1,0 +1,63 @@
+name: desiderio/navbar-split
+typeName: desiderio_navbarsplit
+title: 'Split Navigation Bar'
+description: 'Split Navigation Bar helps visitors find their way through links, menus, anchors, or search entry points. Editors can manage headline and copy fields, repeatable entries and link and CTA controls.'
+group: navigation
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: brand
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:brand'
+    required: true
+  -
+    identifier: brand_link
+    type: Link
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:brand_link'
+  -
+    identifier: left_items
+    type: Collection
+    table: navbar_split_left_items
+    label: 'Left Links'
+    fields:
+      -
+        identifier: label
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:label_field'
+      -
+        identifier: link
+        type: Link
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:link'
+  -
+    identifier: right_items
+    type: Collection
+    table: navbar_split_right_items
+    label: 'Right Links'
+    fields:
+      -
+        identifier: label
+        type: Text
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:label_field'
+      -
+        identifier: link
+        type: Link
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:link'
+  -
+    identifier: button_text
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_text'
+  -
+    identifier: button_link
+    type: Link
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_link'

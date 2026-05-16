@@ -1,0 +1,43 @@
+name: desiderio/chart-donut
+typeName: desiderio_chartdonut
+title: 'Donut Chart'
+description: 'Donut Chart turns data into a specific chart treatment with a clear visual focus. Editors can manage headline and copy fields and layout or variant options.'
+group: data
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: description
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
+    rows: 2
+  -
+    identifier: chart_data
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:chart_data_json'
+    rows: 6
+    required: true
+  -
+    identifier: center_label
+    type: Textarea
+    rows: 1
+    label: 'Center Label'
+    description: 'Text shown in the donut center'
+  -
+    identifier: center_value
+    type: Textarea
+    rows: 1
+    label: 'Center Value'
+    description: 'Large value shown in the donut center'
+  -
+    identifier: show_legend
+    type: Checkbox
+    label: 'Show Legend'
+    default: 1

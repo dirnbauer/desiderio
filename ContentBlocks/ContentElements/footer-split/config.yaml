@@ -1,0 +1,46 @@
+name: desiderio/footer-split
+typeName: desiderio_footersplit
+title: 'Split Footer'
+description: 'Split Footer closes a page with utility information, legal links, contact routes, or service details. Editors can manage headline and copy fields and link and CTA controls.'
+group: footer
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: brand
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:brand_name'
+  -
+    identifier: description
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
+    rows: 3
+  -
+    identifier: link_items
+    type: Collection
+    table: footer_split_link_items
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:links'
+    fields:
+      -
+        identifier: label
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:label_field'
+        required: true
+      -
+        identifier: link
+        type: Link
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:link'
+  -
+    identifier: copyright
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:copyright_text'

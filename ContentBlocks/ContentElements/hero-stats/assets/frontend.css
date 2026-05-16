@@ -1,0 +1,49 @@
+.hero-stats__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--d-spacing-8);
+    align-items: center;
+    padding-block: var(--d-spacing-12);
+}
+.hero-stats__eyebrow {
+    display: block;
+    font-size: var(--d-text-sm);
+    font-weight: 500;
+    color: var(--d-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--d-spacing-2);
+}
+.hero-stats__headline {
+    font-size: var(--d-text-4xl);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: var(--d-spacing-4);
+}
+.hero-stats__description {
+    font-size: var(--d-text-lg);
+    color: var(--d-muted-foreground);
+    margin-bottom: var(--d-spacing-6);
+}
+.hero-stats__cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--d-spacing-4);
+}
+.hero-stats__stat {
+    padding: var(--d-spacing-6);
+    background: var(--d-card);
+    border: 1px solid var(--d-border);
+    border-radius: var(--d-radius-lg);
+    text-align: center;
+}
+.hero-stats__stat-value {
+    font-size: var(--d-text-3xl);
+    font-weight: 700;
+    color: var(--d-foreground);
+    margin-bottom: var(--d-spacing-1);
+}
+.hero-stats__stat-label {
+    font-size: var(--d-text-sm);
+    color: var(--d-muted-foreground);
+}

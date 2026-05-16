@@ -1,0 +1,58 @@
+name: desiderio/team-with-bio
+typeName: desiderio_teamwithbio
+title: 'With Bio Team Section'
+description: 'With Bio Team Section introduces people, roles, culture, or hiring context with clear editorial structure. Editors can manage headline and copy fields and repeatable entries.'
+group: team
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: eyebrow
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
+  -
+    identifier: subheadline
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
+    rows: 2
+  -
+    identifier: members
+    type: Collection
+    table: team_with_bio_members
+    label: 'Team Members'
+    minItems: 1
+    fields:
+      -
+        identifier: image
+        type: File
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:portrait'
+        allowed: common-image-types
+        maxitems: 1
+      -
+        identifier: name
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:name'
+        required: true
+      -
+        identifier: role
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:role'
+      -
+        identifier: bio
+        type: Textarea
+        label: Biography
+        rows: 4
+      -
+        identifier: profile_link
+        type: Link
+        label: 'Profile Link'

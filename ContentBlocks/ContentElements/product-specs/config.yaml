@@ -1,0 +1,50 @@
+name: desiderio/product-specs
+typeName: desiderio_productspecs
+title: 'Product Specs Pricing'
+description: 'Product Specs Pricing supports buying decisions with prices, plans, packages, or calculated options. Editors can manage headline and copy fields, media pickers and repeatable entries.'
+group: pricing
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: eyebrow
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
+  -
+    identifier: description
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
+    rows: 2
+  -
+    identifier: specs
+    type: Collection
+    table: product_specs_specs
+    label: Specifications
+    minItems: 1
+    fields:
+      -
+        identifier: label
+        type: Textarea
+        rows: 1
+        label: 'Spec Label'
+        required: true
+      -
+        identifier: value
+        type: Textarea
+        rows: 1
+        label: 'Spec Value'
+        required: true
+  -
+    identifier: image
+    type: File
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:product_image'
+    allowed: common-image-types
+    maxitems: 1

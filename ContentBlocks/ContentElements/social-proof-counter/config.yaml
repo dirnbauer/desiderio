@@ -1,0 +1,63 @@
+name: desiderio/social-proof-counter
+typeName: desiderio_socialproofcounter
+title: 'Social Proof Counter'
+description: 'Social Proof Counter presents performance numbers as a quick-read dashboard block. Editors can manage headline and copy fields, repeatable entries and layout or variant options.'
+group: social-proof
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: subheadline
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
+    rows: 2
+  -
+    identifier: shadcn_layout
+    type: Select
+    renderType: selectSingle
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:shadcn_layout'
+    items:
+      -
+        label: 'Inline Row'
+        value: inline
+      -
+        label: 'Stacked Center'
+        value: stacked
+    default: inline
+  -
+    identifier: counters
+    type: Collection
+    table: social_proof_counter_counters
+    label: Counters
+    minItems: 1
+    fields:
+      -
+        identifier: value
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:value'
+        required: true
+        description: 'e.g. 10,000+'
+      -
+        identifier: label
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:label_field'
+        required: true
+      -
+        identifier: icon_name
+        type: Select
+        renderType: selectSingle
+        label: Icon
+        description: 'Semantic icon key rendered through the active shadcn icon library.'
+        itemsProcessors:
+          10:
+            class: Webconsulting\Desiderio\DataHandling\IconItemsProcessor
+        default: none

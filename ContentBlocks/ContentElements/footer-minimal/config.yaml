@@ -1,0 +1,37 @@
+name: desiderio/footer-minimal
+typeName: desiderio_footerminimal
+title: 'Minimal Footer'
+description: 'Minimal Footer closes a page with utility information, legal links, contact routes, or service details. Editors can manage headline and copy fields and link and CTA controls.'
+group: footer
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: copyright
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:copyright_text'
+    required: true
+  -
+    identifier: link_items
+    type: Collection
+    table: footer_minimal_link_items
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:links'
+    fields:
+      -
+        identifier: label
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:label_field'
+        required: true
+      -
+        identifier: link
+        type: Link
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:link'

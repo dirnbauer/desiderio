@@ -1,0 +1,35 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-faq" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="faq">
+    <d:layout.container>
+        <f:if condition="{data.header} || {data.subheadline}">
+            <header class="faq__intro">
+                <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
+                <f:if condition="{data.subheadline}"><d:atom.typography variant="muted">{data -> f:render.text(field: 'subheadline')}</d:atom.typography></f:if>
+            </header>
+        </f:if>
+
+        <div class="faq__list" itemscope itemtype="https://schema.org/FAQPage">
+            <f:for each="{data.items}" as="item">
+                <details class="faq__item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
+                    <summary class="faq__question">
+                        <span itemprop="name">{item -> f:render.text(field: 'question')}</span>
+                        <span class="faq__chevron" aria-hidden="true">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+                        </span>
+                    </summary>
+                    <div class="faq__answer" itemscope itemprop="acceptedAnswer" itemtype="https://schema.org/Answer">
+                        <div itemprop="text">{item -> f:render.text(field: 'answer')}</div>
+                    </div>
+                </details>
+            </f:for>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

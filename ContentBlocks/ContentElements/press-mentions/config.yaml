@@ -1,0 +1,53 @@
+name: desiderio/press-mentions
+typeName: desiderio_pressmentions
+title: 'Press Mentions'
+description: 'Press Mentions builds credibility through voices, logos, ratings, awards, or references. Editors can manage headline and copy fields and repeatable entries.'
+group: social-proof
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: eyebrow
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
+  -
+    identifier: mentions
+    type: Collection
+    table: press_mentions_mentions
+    label: 'Press Mentions'
+    minItems: 1
+    fields:
+      -
+        identifier: publication
+        type: Textarea
+        rows: 1
+        label: 'Publication Name'
+        required: true
+      -
+        identifier: logo
+        type: File
+        label: 'Publication Logo'
+        allowed: common-image-types
+        maxitems: 1
+      -
+        identifier: quote
+        type: Textarea
+        label: 'Quote / Excerpt'
+        rows: 2
+      -
+        identifier: date
+        type: Textarea
+        rows: 1
+        label: Date
+      -
+        identifier: link
+        type: Link
+        label: 'Article Link'

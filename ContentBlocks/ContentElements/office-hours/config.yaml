@@ -1,0 +1,39 @@
+name: desiderio/office-hours
+typeName: desiderio_officehours
+title: 'Office Hours'
+description: 'Office Hours introduces people, roles, culture, or hiring context with clear editorial structure. Editors can manage headline and copy fields and repeatable entries.'
+group: conversion
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: description_text
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
+  -
+    identifier: hours_items
+    type: Collection
+    table: office_hours_hours_items
+    label: Hours
+    minItems: 1
+    fields:
+      -
+        identifier: day
+        type: Textarea
+        rows: 1
+        label: Day
+        required: true
+      -
+        identifier: time
+        type: Textarea
+        rows: 1
+        label: Hours
+        required: true

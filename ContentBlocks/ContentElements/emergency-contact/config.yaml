@@ -1,0 +1,33 @@
+name: desiderio/emergency-contact
+typeName: desiderio_emergencycontact
+title: 'Emergency Contact'
+description: 'Emergency Contact highlights urgent notices, status updates, or important contextual messages. Editors can manage headline and copy fields and link and CTA controls.'
+group: conversion
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: description_text
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
+  -
+    identifier: phone
+    type: Text
+    label: 'Phone Number'
+  -
+    identifier: phone_link
+    type: Link
+    label: 'Phone Link'
+  -
+    identifier: available
+    type: Textarea
+    rows: 1
+    label: Availability

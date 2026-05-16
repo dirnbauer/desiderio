@@ -1,0 +1,60 @@
+name: desiderio/alert
+typeName: desiderio_alert
+title: 'Alert Data View'
+description: 'Alert Data View highlights urgent notices, status updates, or important contextual messages. Editors can manage headline and copy fields and layout or variant options.'
+group: data
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: variant
+    type: Select
+    renderType: selectSingle
+    label: 'Alert Type'
+    onChange: reload
+    items:
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.default'
+        value: default
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.destructive'
+        value: destructive
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.info'
+        value: info
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.success'
+        value: success
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.warning'
+        value: warning
+    default: default
+  -
+    identifier: description
+    type: Textarea
+    label: 'Alert Description'
+    enableRichtext: true
+    rows: 3
+    required: true
+  -
+    identifier: icon
+    type: Select
+    renderType: selectSingle
+    label: 'Icon Name'
+    description: 'Optional icon identifier (e.g. "info", "alert-triangle")'
+    itemsProcessors:
+      10:
+        class: Webconsulting\Desiderio\DataHandling\IconItemsProcessor
+    default: alert-triangle
+  -
+    identifier: show_close_button
+    type: Checkbox
+    label: 'Show Close Button'
+    default: 0

@@ -1,0 +1,19 @@
+.pricing-four-tier__intro { text-align: center; margin-block-end: var(--d-spacing-xl); }
+.pricing-four-tier__eyebrow { font-size: var(--d-text-sm); text-transform: uppercase; letter-spacing: 0.05em; color: var(--primary); font-weight: 600; }
+.pricing-four-tier__headline { margin-block-start: var(--d-spacing-xs); }
+.pricing-four-tier__description { color: var(--muted-foreground); max-width: 40rem; margin-inline: auto; }
+.pricing-four-tier__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--d-spacing-md); }
+@media (max-width: 1024px) { .pricing-four-tier__grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px) { .pricing-four-tier__grid { grid-template-columns: 1fr; } }
+.pricing-four-tier__plan { border: 1px solid var(--border); border-radius: var(--radius); padding: var(--d-spacing-lg); display: flex; flex-direction: column; }
+.pricing-four-tier__plan--featured { border-color: var(--primary); box-shadow: 0 0 0 1px var(--primary); }
+.pricing-four-tier__title { font-size: var(--d-text-base); font-weight: 700; }
+.pricing-four-tier__price { font-size: var(--d-text-2xl); font-weight: 800; margin-block-start: var(--d-spacing-sm); }
+.pricing-four-tier__plan-desc { font-size: var(--d-text-sm); color: var(--muted-foreground); margin-block-start: var(--d-spacing-xs); }
+.pricing-four-tier__features { list-style: none; padding: 0; margin-block-start: var(--d-spacing-md); display: flex; flex-direction: column; gap: var(--d-spacing-xs); flex: 1; font-size: var(--d-text-sm); }
+.pricing-four-tier__feature { display: flex; align-items: start; gap: 0.5rem; }
+.pricing-four-tier__feature svg { flex-shrink: 0; color: var(--primary); margin-block-start: 0.125rem; }
+.pricing-four-tier__button { display: block; text-align: center; padding: 0.5rem 1rem; border-radius: var(--radius); font-weight: 500; font-size: var(--d-text-sm); text-decoration: none; margin-block-start: var(--d-spacing-lg); transition: opacity 0.2s; }
+.pricing-four-tier__button--primary { background: var(--primary); color: var(--primary-foreground); }
+.pricing-four-tier__button--outline { border: 1px solid var(--border); color: var(--foreground); }
+.pricing-four-tier__button:hover { opacity: 0.9; }

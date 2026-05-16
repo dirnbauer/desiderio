@@ -1,0 +1,55 @@
+name: desiderio/pricing-enterprise
+typeName: desiderio_pricingenterprise
+title: 'Enterprise Pricing'
+description: 'Enterprise Pricing supports buying decisions with prices, plans, packages, or calculated options. Editors can manage headline and copy fields, media pickers, repeatable entries and link and CTA controls.'
+group: pricing
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: eyebrow
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
+  -
+    identifier: description
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
+    rows: 3
+  -
+    identifier: features
+    type: Collection
+    table: pricing_enterprise_features
+    label: 'Key Features'
+    labelField: text
+    minItems: 1
+    maxItems: 8
+    fields:
+      -
+        identifier: text
+        type: Textarea
+        rows: 1
+        label: Feature
+  -
+    identifier: contact_text
+    type: Textarea
+    rows: 1
+    label: 'CTA Button Text'
+    default: 'Contact Sales'
+  -
+    identifier: contact_link
+    type: Link
+    label: 'CTA Button Link'
+  -
+    identifier: image
+    type: File
+    label: Illustration
+    allowed: common-image-types
+    maxitems: 1

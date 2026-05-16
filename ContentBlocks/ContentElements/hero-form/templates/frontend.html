@@ -1,0 +1,24 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+<f:asset.css identifier="d-hero-form" href="{cb:assetPath()}/frontend.css"/>
+<d:layout.section class="hero-form">
+    <d:layout.container>
+        <div class="hero-form__content">
+            <f:if condition="{data.badge_text}"><d:atom.badge variant="secondary">{data -> f:render.text(field: 'badge_text')}</d:atom.badge></f:if>
+            <f:if condition="{data.header}"><h1 class="hero-form__headline">{data -> f:render.text(field: 'header')}</h1></f:if>
+            <f:if condition="{data.subheadline}"><p class="hero-form__subheadline">{data -> f:render.text(field: 'subheadline')}</p></f:if>
+            <form class="hero-form__form" action="{data.form_action.url}" method="post">
+                <div class="hero-form__input-group">
+                    <input type="email" name="email" placeholder="{data.input_placeholder -> f:or(alternative: 'Enter your email')}" class="hero-form__input" required="required"/>
+                    <d:atom.button type="submit" size="lg">{data.button_text -> f:or(alternative: 'Get Started')}</d:atom.button>
+                </div>
+            </form>
+            <f:if condition="{data.privacy_notice}">
+                <p class="hero-form__privacy">{data -> f:render.text(field: 'privacy_notice')}</p>
+            </f:if>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+</html>

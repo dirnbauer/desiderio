@@ -1,0 +1,87 @@
+name: desiderio/navbar-sidebar
+typeName: desiderio_navbarsidebar
+title: 'Sidebar Navigation Bar'
+description: 'Sidebar Navigation Bar helps visitors find their way through links, menus, anchors, or search entry points. Editors can manage headline and copy fields, repeatable entries and link and CTA controls.'
+group: navigation
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: brand
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:brand'
+    required: true
+  -
+    identifier: brand_link
+    type: Link
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:brand_link'
+  -
+    identifier: sections
+    type: Collection
+    table: navbar_sidebar_sections
+    label: Sections
+    minItems: 1
+    fields:
+      -
+        identifier: title
+        type: Textarea
+        rows: 1
+        label: 'Section Title'
+      -
+        identifier: link_1_label
+        type: Textarea
+        rows: 1
+        label: 'Link 1 Label'
+      -
+        identifier: link_1
+        type: Link
+        label: 'Link 1'
+      -
+        identifier: link_2_label
+        type: Textarea
+        rows: 1
+        label: 'Link 2 Label'
+      -
+        identifier: link_2
+        type: Link
+        label: 'Link 2'
+      -
+        identifier: link_3_label
+        type: Textarea
+        rows: 1
+        label: 'Link 3 Label'
+      -
+        identifier: link_3
+        type: Link
+        label: 'Link 3'
+      -
+        identifier: link_4_label
+        type: Textarea
+        rows: 1
+        label: 'Link 4 Label'
+      -
+        identifier: link_4
+        type: Link
+        label: 'Link 4'
+      -
+        identifier: link_5_label
+        type: Textarea
+        rows: 1
+        label: 'Link 5 Label'
+      -
+        identifier: link_5
+        type: Link
+        label: 'Link 5'
+  -
+    identifier: footer_text
+    type: Textarea
+    rows: 1
+    label: 'Footer Text'

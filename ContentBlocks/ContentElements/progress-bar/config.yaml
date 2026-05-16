@@ -1,0 +1,61 @@
+name: desiderio/progress-bar
+typeName: desiderio_progressbar
+title: 'Progress Bar Data View'
+description: 'Progress Bar Data View makes sequences, progress, history, or process steps easier to understand. Editors can manage headline and copy fields and layout or variant options.'
+group: data
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: variant
+    type: Select
+    renderType: selectSingle
+    label: 'Progress Style'
+    onChange: reload
+    items:
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.default'
+        value: default
+      -
+        label: Labeled
+        value: labeled
+      -
+        label: Striped
+        value: striped
+    default: default
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: progress_value
+    type: Number
+    label: 'Progress Value (0-100)'
+    required: true
+  -
+    identifier: show_percentage
+    type: Checkbox
+    label: 'Show Percentage'
+    default: 1
+  -
+    identifier: color
+    type: Select
+    renderType: selectSingle
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:color_field'
+    items:
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.primary'
+        value: primary
+      -
+        label: Success
+        value: success
+      -
+        label: Warning
+        value: warning
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.destructive'
+        value: destructive
+    default: primary

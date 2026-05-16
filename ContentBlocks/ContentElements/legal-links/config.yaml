@@ -1,0 +1,51 @@
+name: desiderio/legal-links
+typeName: desiderio_legallinks
+title: 'Legal Links'
+description: 'Legal Links closes a page with utility information, legal links, contact routes, or service details. Editors can manage headline and copy fields, link and CTA controls and layout or variant options.'
+group: footer
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: link_items
+    type: Collection
+    table: legal_links_link_items
+    label: 'Legal Links'
+    minItems: 1
+    fields:
+      -
+        identifier: label
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:label_field'
+        required: true
+      -
+        identifier: link
+        type: Link
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:link'
+  -
+    identifier: separator
+    type: Select
+    renderType: selectSingle
+    label: Separator
+    items:
+      -
+        label: Dot
+        value: dot
+      -
+        label: Pipe
+        value: pipe
+      -
+        label: Slash
+        value: slash
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.none'
+        value: none
+    default: dot

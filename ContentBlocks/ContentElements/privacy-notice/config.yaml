@@ -1,0 +1,44 @@
+name: desiderio/privacy-notice
+typeName: desiderio_privacynotice
+title: 'Privacy Notice'
+description: 'Privacy Notice closes a page with utility information, legal links, contact routes, or service details. Editors can manage headline and copy fields and repeatable entries.'
+group: footer
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: intro
+    type: Textarea
+    label: Introduction
+    rows: 3
+  -
+    identifier: sections
+    type: Collection
+    table: privacy_notice_sections
+    label: Sections
+    minItems: 1
+    fields:
+      -
+        identifier: title
+        type: Textarea
+        rows: 1
+        label: 'Section Title'
+        required: true
+      -
+        identifier: content
+        type: Textarea
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:content'
+        enableRichtext: true
+        rows: 4
+  -
+    identifier: last_updated
+    type: Textarea
+    rows: 1
+    label: 'Last Updated Date'

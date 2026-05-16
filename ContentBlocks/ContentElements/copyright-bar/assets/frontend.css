@@ -1,0 +1,9 @@
+.copyright-bar { padding-block: var(--d-spacing-sm); border-top: 1px solid var(--border); background: color-mix(in oklch, var(--muted) 20%, transparent); }
+.copyright-bar__inner { display: flex; align-items: center; gap: var(--d-spacing-md); flex-wrap: wrap; }
+.copyright-bar--between .copyright-bar__inner { justify-content: space-between; }
+.copyright-bar--center .copyright-bar__inner { justify-content: center; }
+.copyright-bar--left .copyright-bar__inner { justify-content: flex-start; }
+.copyright-bar__text { font-size: var(--d-text-xs); color: var(--muted-foreground); }
+.copyright-bar__links { list-style: none; padding: 0; margin: 0; display: flex; gap: var(--d-spacing-md); }
+.copyright-bar__link { font-size: var(--d-text-xs); color: var(--muted-foreground); text-decoration: none; }
+.copyright-bar__link:hover { color: var(--foreground); }

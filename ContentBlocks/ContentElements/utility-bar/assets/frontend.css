@@ -1,0 +1,28 @@
+.utility-bar {
+    background: var(--d-muted);
+    border-bottom: 1px solid var(--d-border);
+}
+.utility-bar__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: var(--d-spacing-2);
+    font-size: var(--d-text-xs);
+}
+.utility-bar__text {
+    color: var(--d-muted-foreground);
+    margin: 0;
+}
+.utility-bar__nav {
+    display: flex;
+    align-items: center;
+    gap: var(--d-spacing-4);
+}
+.utility-bar__link {
+    color: var(--d-muted-foreground);
+    text-decoration: none;
+    transition: color 0.15s;
+}
+.utility-bar__link:hover {
+    color: var(--d-foreground);
+}

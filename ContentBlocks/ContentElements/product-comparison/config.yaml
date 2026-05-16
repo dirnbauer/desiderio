@@ -1,0 +1,68 @@
+name: desiderio/product-comparison
+typeName: desiderio_productcomparison
+title: 'Product Comparison Pricing'
+description: 'Product Comparison Pricing organizes rows, options, and details so visitors can compare information quickly. Editors can manage headline and copy fields and repeatable entries.'
+group: pricing
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: eyebrow
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
+  -
+    identifier: products
+    type: Collection
+    table: product_comparison_products
+    label: Products
+    labelField: name
+    minItems: 2
+    maxItems: 3
+    fields:
+      -
+        identifier: name
+        type: Textarea
+        rows: 1
+        label: 'Product Name'
+        required: true
+      -
+        identifier: image
+        type: File
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:product_image'
+        allowed: common-image-types
+        maxitems: 1
+      -
+        identifier: price
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:price'
+      -
+        identifier: specs
+        type: Collection
+        table: product_comparison_specs
+        label: Specs
+        labelField: text
+        minItems: 1
+        maxItems: 8
+        fields:
+          -
+            identifier: text
+            type: Textarea
+            rows: 1
+            label: Spec
+      -
+        identifier: is_recommended
+        type: Checkbox
+        label: Recommended
+      -
+        identifier: link
+        type: Link
+        label: 'Product Link'

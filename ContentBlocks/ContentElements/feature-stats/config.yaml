@@ -1,0 +1,44 @@
+name: desiderio/feature-stats
+typeName: desiderio_featurestats
+title: 'Stats Feature Section'
+description: 'Stats Feature Section presents performance numbers as a quick-read dashboard block. Editors can manage headline and copy fields and repeatable entries.'
+group: features
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: description
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
+    rows: 3
+  -
+    identifier: items
+    type: Collection
+    table: feature_stats_items
+    label: Stats
+    minItems: 1
+    fields:
+      -
+        identifier: value
+        type: Textarea
+        rows: 1
+        label: 'Stat Value'
+        required: true
+      -
+        identifier: label
+        type: Textarea
+        rows: 1
+        label: 'Stat Label'
+        required: true
+      -
+        identifier: description_text
+        type: Textarea
+        rows: 1
+        label: 'Supporting Text'

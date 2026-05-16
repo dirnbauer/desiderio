@@ -1,0 +1,67 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-contact" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="contact">
+    <d:layout.container>
+        <f:if condition="{data.eyebrow} || {data.header} || {data.subheadline}">
+            <header class="contact__intro">
+                <f:if condition="{data.eyebrow}"><span class="contact__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span></f:if>
+                <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
+                <f:if condition="{data.subheadline}"><d:atom.typography variant="muted">{data -> f:render.text(field: 'subheadline')}</d:atom.typography></f:if>
+            </header>
+        </f:if>
+
+        <div class="contact__grid">
+            <d:molecule.card class="contact__info">
+                <f:if condition="{data.info_title}"><h3 class="contact__info-title">{data -> f:render.text(field: 'info_title')}</h3></f:if>
+                <f:if condition="{data.info_text}"><p class="contact__info-text">{data -> f:render.text(field: 'info_text')}</p></f:if>
+                <f:if condition="{data.contact_items}">
+                    <ul class="contact__list">
+                        <f:for each="{data.contact_items}" as="item">
+                            <li class="contact__list-item">
+                                <span class="contact__list-label">{item -> f:render.text(field: 'label')}</span>
+                                <f:if condition="{item.link.url}">
+                                    <f:then>
+                                        <f:link.typolink parameter="{item.link}" class="contact__list-value">{item -> f:render.text(field: 'value')}</f:link.typolink>
+                                    </f:then>
+                                    <f:else>
+                                        <span class="contact__list-value">{item -> f:render.text(field: 'value')}</span>
+                                    </f:else>
+                                </f:if>
+                            </li>
+                        </f:for>
+                    </ul>
+                </f:if>
+            </d:molecule.card>
+
+            <d:molecule.card class="contact__form-card">
+                <f:if condition="{data.form_title}"><h3 class="contact__form-title">{data -> f:render.text(field: 'form_title')}</h3></f:if>
+                <form class="contact__form" action="{data.form_action.url}" method="post">
+                    <div class="contact__field-grid">
+                        <label class="contact__field">
+                            <span class="contact__label">Name</span>
+                            <input class="contact__input" type="text" name="name" placeholder="Your name"/>
+                        </label>
+                        <label class="contact__field">
+                            <span class="contact__label">Email</span>
+                            <input class="contact__input" type="email" name="email" placeholder="you@example.com"/>
+                        </label>
+                    </div>
+                    <label class="contact__field">
+                        <span class="contact__label">Message</span>
+                        <textarea class="contact__textarea" name="message" rows="5" placeholder="Tell us about your project"></textarea>
+                    </label>
+                    <div class="contact__actions">
+                        <d:atom.button type="submit">Send inquiry</d:atom.button>
+                    </div>
+                </form>
+            </d:molecule.card>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

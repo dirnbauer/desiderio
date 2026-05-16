@@ -1,0 +1,37 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-footer-newsletter" href="{cb:assetPath()}/frontend.css"/>
+
+<footer class="footer-newsletter">
+    <d:layout.container>
+        <div class="footer-newsletter__inner">
+            <div class="footer-newsletter__content">
+                <f:if condition="{data.header}">
+                    <h2 class="footer-newsletter__title">{data -> f:render.text(field: 'header')}</h2>
+                </f:if>
+                <f:if condition="{data.description}">
+                    <p class="footer-newsletter__description">{data -> f:render.text(field: 'description')}</p>
+                </f:if>
+            </div>
+            <div class="footer-newsletter__form-wrapper">
+                <form class="footer-newsletter__form">
+                    <input type="email" placeholder="{data.placeholder -> f:or(alternative: 'Enter your email')}" class="footer-newsletter__input" required="required"/>
+                    <button type="submit" class="footer-newsletter__button">{data.button_text -> f:or(alternative: 'Subscribe')}</button>
+                </form>
+                <f:if condition="{data.privacy_notice}">
+                    <p class="footer-newsletter__privacy">{data -> f:render.text(field: 'privacy_notice')}</p>
+                </f:if>
+            </div>
+        </div>
+        <f:if condition="{data.copyright}">
+            <div class="footer-newsletter__bottom">
+                <p class="footer-newsletter__copyright">{data -> f:render.text(field: 'copyright')}</p>
+            </div>
+        </f:if>
+    </d:layout.container>
+</footer>
+
+</html>

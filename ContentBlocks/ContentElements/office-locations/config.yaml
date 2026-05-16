@@ -1,0 +1,50 @@
+name: desiderio/office-locations
+typeName: desiderio_officelocations
+title: 'Office Locations'
+description: 'Office Locations introduces people, roles, culture, or hiring context with clear editorial structure. Editors can manage headline and copy fields and repeatable entries.'
+group: team
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: subheadline
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
+    rows: 2
+  -
+    identifier: location_items
+    type: Collection
+    table: office_locations_location_items
+    label: Locations
+    minItems: 1
+    fields:
+      -
+        identifier: city
+        type: Textarea
+        rows: 1
+        label: City
+        required: true
+      -
+        identifier: address
+        type: Textarea
+        label: Address
+        rows: 3
+      -
+        identifier: phone
+        type: Text
+        label: Phone
+      -
+        identifier: email
+        type: Text
+        label: Email
+      -
+        identifier: map_link
+        type: Link
+        label: 'Map Link'

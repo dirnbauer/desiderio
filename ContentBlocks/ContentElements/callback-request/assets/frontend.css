@@ -1,0 +1,17 @@
+.callback-request__card { max-width: 480px; margin-inline: auto; text-align: center; }
+.callback-request__form {
+    margin-block-start: var(--d-spacing-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--d-spacing-md);
+    text-align: start;
+}
+.callback-request__field { display: flex; flex-direction: column; gap: 4px; }
+.callback-request__label { font-size: var(--d-text-sm); font-weight: 500; }
+.callback-request__input {
+    padding: var(--d-spacing-xs) var(--d-spacing-sm);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    font-size: var(--d-text-sm);
+    background: transparent;
+}

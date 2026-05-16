@@ -1,0 +1,47 @@
+name: desiderio/feature-grid-4
+typeName: desiderio_featuregrid4
+title: '4-Column Feature Grid'
+description: '4-Column Feature Grid explains product value, features, or use cases in a clear content structure. Editors can manage headline and copy fields and repeatable entries.'
+group: features
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: subheadline
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
+    rows: 2
+  -
+    identifier: items
+    type: Collection
+    table: feature_grid_4_items
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:features'
+    minItems: 4
+    fields:
+      -
+        identifier: icon
+        type: Select
+        renderType: selectSingle
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:icon_emoji'
+        description: 'Semantic icon key rendered through the active shadcn icon library.'
+        itemsProcessors:
+          10:
+            class: Webconsulting\Desiderio\DataHandling\IconItemsProcessor
+      -
+        identifier: title
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:title'
+        required: true
+      -
+        identifier: description_text
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:short_description'

@@ -1,0 +1,50 @@
+name: desiderio/content-grid
+typeName: desiderio_contentgrid
+title: 'Content Grid'
+description: 'Content Grid arranges multiple pieces of content as scannable cards, grids, or libraries. Editors can manage headline and copy fields, repeatable entries and layout or variant options.'
+group: content
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: columns
+    type: Select
+    renderType: selectSingle
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:columns'
+    items:
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.2_columns'
+        value: '2'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.3_columns'
+        value: '3'
+    default: '2'
+  -
+    identifier: items
+    type: Collection
+    table: content_grid_items
+    label: 'Grid Items'
+    minItems: 2
+    fields:
+      -
+        identifier: title
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:title'
+      -
+        identifier: content
+        type: Textarea
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:content'
+        enableRichtext: true
+        rows: 4
+      -
+        identifier: link
+        type: Link
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:link'

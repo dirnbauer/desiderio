@@ -1,0 +1,42 @@
+name: desiderio/feature-video
+typeName: desiderio_featurevideo
+title: 'Video Feature Section'
+description: 'Video Feature Section explains product value, features, or use cases in a clear content structure. Editors can manage headline and copy fields and media pickers.'
+group: features
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: eyebrow
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
+  -
+    identifier: description
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
+    rows: 3
+  -
+    identifier: video_url
+    type: Text
+    label: 'Video URL'
+    description: 'YouTube or Vimeo embed URL'
+  -
+    identifier: video_file
+    type: File
+    label: 'Video File'
+    allowed: common-media-types
+    maxitems: 1
+  -
+    identifier: poster
+    type: File
+    label: 'Poster Image'
+    allowed: common-image-types
+    maxitems: 1

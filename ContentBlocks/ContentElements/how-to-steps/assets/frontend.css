@@ -1,0 +1,47 @@
+.how-to-steps__headline {
+    margin-block-end: var(--d-spacing-sm);
+}
+.how-to-steps__intro {
+    margin-block-end: var(--d-spacing-xl);
+    max-width: 42rem;
+}
+.how-to-steps__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--d-spacing-xl);
+    max-width: 42rem;
+}
+.how-to-steps__item {
+    display: grid;
+    grid-template-columns: 3rem 1fr;
+    gap: var(--d-spacing-md);
+}
+.how-to-steps__number {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 9999px;
+    background: var(--primary);
+    color: var(--primary-foreground);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+.how-to-steps__title {
+    font-weight: 600;
+    margin-block-end: var(--d-spacing-xs);
+}
+.how-to-steps__text {
+    color: var(--muted-foreground);
+    font-size: var(--d-text-sm);
+}
+.how-to-steps__image {
+    border-radius: var(--d-radius-md);
+    width: 100%;
+    height: auto;
+    margin-top: var(--d-spacing-sm);
+}

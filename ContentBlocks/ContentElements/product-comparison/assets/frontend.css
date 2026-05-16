@@ -1,0 +1,17 @@
+.product-comparison__intro { text-align: center; margin-block-end: var(--d-spacing-xl); }
+.product-comparison__eyebrow { font-size: var(--d-text-sm); text-transform: uppercase; letter-spacing: 0.05em; color: var(--primary); font-weight: 600; }
+.product-comparison__headline { margin-block-start: var(--d-spacing-xs); }
+.product-comparison__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr)); gap: var(--d-spacing-lg); }
+.product-comparison__card { border: 1px solid var(--border); border-radius: var(--radius); padding: var(--d-spacing-lg); text-align: center; display: flex; flex-direction: column; align-items: center; position: relative; }
+.product-comparison__card--recommended { border-color: var(--primary); box-shadow: 0 0 0 1px var(--primary); }
+.product-comparison__badge { position: absolute; top: -0.75rem; font-size: var(--d-text-xs); font-weight: 600; background: var(--primary); color: var(--primary-foreground); padding: 0.25rem 0.75rem; border-radius: 9999px; }
+.product-comparison__media { margin-block-end: var(--d-spacing-md); }
+.product-comparison__image { max-height: 10rem; width: auto; object-fit: contain; }
+.product-comparison__name { font-size: var(--d-text-lg); font-weight: 700; }
+.product-comparison__price { font-size: var(--d-text-xl); font-weight: 800; color: var(--primary); margin-block-start: var(--d-spacing-xs); }
+.product-comparison__specs { list-style: none; padding: 0; margin-block-start: var(--d-spacing-md); display: flex; flex-direction: column; gap: var(--d-spacing-xs); text-align: start; width: 100%; flex: 1; }
+.product-comparison__spec { font-size: var(--d-text-sm); padding: var(--d-spacing-xs) 0; border-block-end: 1px solid var(--border); }
+.product-comparison__button { display: block; width: 100%; text-align: center; padding: 0.5rem 1.5rem; border-radius: var(--radius); font-weight: 500; text-decoration: none; margin-block-start: var(--d-spacing-lg); transition: opacity 0.2s; }
+.product-comparison__button--primary { background: var(--primary); color: var(--primary-foreground); }
+.product-comparison__button--outline { border: 1px solid var(--border); color: var(--foreground); }
+.product-comparison__button:hover { opacity: 0.9; }

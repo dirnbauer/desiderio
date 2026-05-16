@@ -1,0 +1,41 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-feedback-form" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="feedback-form">
+    <d:layout.container>
+        <d:molecule.card class="feedback-form__card">
+            <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
+            <f:if condition="{data.description}"><d:atom.typography variant="muted">{data -> f:render.text(field: 'description')}</d:atom.typography></f:if>
+            <form class="feedback-form__form" action="{data.form_action.url}" method="post">
+                <f:if condition="{data.show_rating}">
+                    <fieldset class="feedback-form__rating">
+                        <legend class="feedback-form__label">How would you rate your experience?</legend>
+                        <div class="feedback-form__stars">
+                            <f:for each="{0: 1, 1: 2, 2: 3, 3: 4, 4: 5}" as="star">
+                                <label class="feedback-form__star">
+                                    <input type="radio" name="rating" value="{star}"/>
+                                    <span>{star}</span>
+                                </label>
+                            </f:for>
+                        </div>
+                    </fieldset>
+                </f:if>
+                <label class="feedback-form__field">
+                    <span class="feedback-form__label">Your feedback</span>
+                    <textarea class="feedback-form__textarea" name="feedback" rows="4" required="required"></textarea>
+                </label>
+                <label class="feedback-form__field">
+                    <span class="feedback-form__label">Email (optional)</span>
+                    <input class="feedback-form__input" type="email" name="email"/>
+                </label>
+                <d:atom.button type="submit">{data.submit_text -> f:or(alternative: 'Send feedback')}</d:atom.button>
+            </form>
+        </d:molecule.card>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

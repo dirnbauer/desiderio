@@ -1,0 +1,56 @@
+name: desiderio/feature-highlight
+typeName: desiderio_featurehighlight
+title: 'Highlight Feature Section'
+description: 'Highlight Feature Section explains product value, features, or use cases in a clear content structure. Editors can manage headline and copy fields, media pickers, link and CTA controls and layout or variant options.'
+group: features
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: eyebrow
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
+  -
+    identifier: description
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
+    rows: 3
+  -
+    identifier: image
+    type: File
+    label: 'Feature Image'
+    allowed: common-image-types
+    maxitems: 1
+  -
+    identifier: link
+    type: Link
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:link'
+  -
+    identifier: link_text
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:link_text'
+  -
+    identifier: variant
+    type: Select
+    renderType: selectSingle
+    label: 'Background Style'
+    items:
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.muted'
+        value: muted
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.primary'
+        value: primary
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.none'
+        value: none
+    default: muted

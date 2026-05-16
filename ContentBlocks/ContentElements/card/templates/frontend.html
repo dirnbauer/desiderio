@@ -1,0 +1,157 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-card" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="card-section">
+    <d:layout.container>
+        <f:switch expression="{data.variant}">
+
+            <f:case value="horizontal">
+                <d:molecule.card class="card card--horizontal card--image-{data.image_position -> f:or(alternative: 'left')}">
+                    <div class="card__grid">
+                        <f:if condition="{data.card_image}">
+                            <div class="card__image">
+                                <f:for each="{data.card_image}" as="file">
+                                    <f:image image="{file}" alt="{file.alternative}" width="600"/>
+                                </f:for>
+                            </div>
+                        </f:if>
+                        <div class="card__body">
+                            <f:if condition="{data.badge_text}">
+                                <d:atom.badge variant="secondary" class="card__badge">{data -> f:render.text(field: 'badge_text')}</d:atom.badge>
+                            </f:if>
+                            <f:if condition="{data.header}">
+                                <d:atom.typography tag="h3" variant="h3" class="card__title">
+                                    <f:if condition="{data.link}">
+                                        <f:then><f:link.typolink parameter="{data.link}">{data -> f:render.text(field: 'header')}</f:link.typolink></f:then>
+                                        <f:else>{data -> f:render.text(field: 'header')}</f:else>
+                                    </f:if>
+                                </d:atom.typography>
+                            </f:if>
+                            <f:if condition="{data.description}">
+                                <d:atom.typography variant="muted" class="card__description">{data -> f:render.text(field: 'description')}</d:atom.typography>
+                            </f:if>
+                            <f:if condition="{data.button_text}">
+                                <div class="card__actions">
+                                    <f:link.typolink parameter="{data.button_link}">
+                                        <d:atom.button variant="default">{data -> f:render.text(field: 'button_text')}</d:atom.button>
+                                    </f:link.typolink>
+                                </div>
+                            </f:if>
+                        </div>
+                    </div>
+                </d:molecule.card>
+            </f:case>
+
+            <f:case value="with-image">
+                <d:molecule.card class="card card--with-image">
+                    <f:if condition="{data.card_image}">
+                        <div class="card__image">
+                            <f:for each="{data.card_image}" as="file">
+                                <f:image image="{file}" alt="{file.alternative}" width="800"/>
+                            </f:for>
+                        </div>
+                    </f:if>
+                    <div class="card__header">
+                        <f:if condition="{data.badge_text}">
+                            <d:atom.badge variant="secondary" class="card__badge">{data -> f:render.text(field: 'badge_text')}</d:atom.badge>
+                        </f:if>
+                        <f:if condition="{data.header}">
+                            <d:atom.typography tag="h3" variant="h3" class="card__title">
+                                <f:if condition="{data.link}">
+                                    <f:then><f:link.typolink parameter="{data.link}">{data -> f:render.text(field: 'header')}</f:link.typolink></f:then>
+                                    <f:else>{data -> f:render.text(field: 'header')}</f:else>
+                                </f:if>
+                            </d:atom.typography>
+                        </f:if>
+                    </div>
+                    <div class="card__content">
+                        <f:if condition="{data.description}">
+                            <d:atom.typography variant="muted" class="card__description">{data -> f:render.text(field: 'description')}</d:atom.typography>
+                        </f:if>
+                    </div>
+                    <f:if condition="{data.button_text}">
+                        <div class="card__footer">
+                            <f:link.typolink parameter="{data.button_link}">
+                                <d:atom.button variant="default">{data -> f:render.text(field: 'button_text')}</d:atom.button>
+                            </f:link.typolink>
+                        </div>
+                    </f:if>
+                </d:molecule.card>
+            </f:case>
+
+            <f:case value="overlay">
+                <d:molecule.card class="card card--overlay">
+                    <f:if condition="{data.card_image}">
+                        <div class="card__image card__image--bg">
+                            <f:for each="{data.card_image}" as="file">
+                                <f:image image="{file}" alt="{file.alternative}" width="800"/>
+                            </f:for>
+                        </div>
+                    </f:if>
+                    <div class="card__overlay">
+                        <div class="card__body">
+                            <f:if condition="{data.badge_text}">
+                                <d:atom.badge variant="secondary" class="card__badge">{data -> f:render.text(field: 'badge_text')}</d:atom.badge>
+                            </f:if>
+                            <f:if condition="{data.header}">
+                                <d:atom.typography tag="h3" variant="h3" class="card__title">
+                                    <f:if condition="{data.link}">
+                                        <f:then><f:link.typolink parameter="{data.link}">{data -> f:render.text(field: 'header')}</f:link.typolink></f:then>
+                                        <f:else>{data -> f:render.text(field: 'header')}</f:else>
+                                    </f:if>
+                                </d:atom.typography>
+                            </f:if>
+                            <f:if condition="{data.description}">
+                                <d:atom.typography variant="muted" class="card__description">{data -> f:render.text(field: 'description')}</d:atom.typography>
+                            </f:if>
+                            <f:if condition="{data.button_text}">
+                                <div class="card__actions">
+                                    <f:link.typolink parameter="{data.button_link}">
+                                        <d:atom.button variant="secondary">{data -> f:render.text(field: 'button_text')}</d:atom.button>
+                                    </f:link.typolink>
+                                </div>
+                            </f:if>
+                        </div>
+                    </div>
+                </d:molecule.card>
+            </f:case>
+
+            <f:defaultCase>
+                <d:molecule.card class="card card--default">
+                    <div class="card__header">
+                        <f:if condition="{data.badge_text}">
+                            <d:atom.badge variant="secondary" class="card__badge">{data -> f:render.text(field: 'badge_text')}</d:atom.badge>
+                        </f:if>
+                        <f:if condition="{data.header}">
+                            <d:atom.typography tag="h3" variant="h3" class="card__title">
+                                <f:if condition="{data.link}">
+                                    <f:then><f:link.typolink parameter="{data.link}">{data -> f:render.text(field: 'header')}</f:link.typolink></f:then>
+                                    <f:else>{data -> f:render.text(field: 'header')}</f:else>
+                                </f:if>
+                            </d:atom.typography>
+                        </f:if>
+                    </div>
+                    <div class="card__content">
+                        <f:if condition="{data.description}">
+                            <d:atom.typography variant="muted" class="card__description">{data -> f:render.text(field: 'description')}</d:atom.typography>
+                        </f:if>
+                    </div>
+                    <f:if condition="{data.button_text}">
+                        <div class="card__footer">
+                            <f:link.typolink parameter="{data.button_link}">
+                                <d:atom.button variant="default">{data -> f:render.text(field: 'button_text')}</d:atom.button>
+                            </f:link.typolink>
+                        </div>
+                    </f:if>
+                </d:molecule.card>
+            </f:defaultCase>
+
+        </f:switch>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

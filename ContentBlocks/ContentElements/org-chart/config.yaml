@@ -1,0 +1,53 @@
+name: desiderio/org-chart
+typeName: desiderio_orgchart
+title: 'Organization Chart'
+description: 'Organization Chart introduces people, roles, culture, or hiring context with clear editorial structure. Editors can manage headline and copy fields and repeatable entries.'
+group: team
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: subheadline
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
+    rows: 2
+  -
+    identifier: levels
+    type: Collection
+    table: org_chart_levels
+    label: Levels
+    labelField: level_label
+    minItems: 1
+    fields:
+      -
+        identifier: level_label
+        type: Textarea
+        rows: 1
+        label: 'Level Label'
+      -
+        identifier: people
+        type: Collection
+        table: org_chart_people
+        label: People
+        labelField: name
+        minItems: 1
+        maxItems: 12
+        fields:
+          -
+            identifier: name
+            type: Textarea
+            rows: 1
+            label: Name
+            required: true
+          -
+            identifier: role
+            type: Textarea
+            rows: 1
+            label: Role

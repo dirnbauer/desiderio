@@ -1,0 +1,56 @@
+name: desiderio/career-listing
+typeName: desiderio_careerlisting
+title: 'Career Listing'
+description: 'Career Listing introduces people, roles, culture, or hiring context with clear editorial structure. Editors can manage headline and copy fields and repeatable entries.'
+group: team
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: eyebrow
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
+  -
+    identifier: subheadline
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
+    rows: 2
+  -
+    identifier: jobs
+    type: Collection
+    table: career_listing_jobs
+    label: 'Job Openings'
+    minItems: 1
+    fields:
+      -
+        identifier: title
+        type: Textarea
+        rows: 1
+        label: 'Job Title'
+        required: true
+      -
+        identifier: department
+        type: Textarea
+        rows: 1
+        label: Department
+      -
+        identifier: location
+        type: Textarea
+        rows: 1
+        label: Location
+      -
+        identifier: type
+        type: Text
+        label: Type
+      -
+        identifier: apply_link
+        type: Link
+        label: 'Apply Link'

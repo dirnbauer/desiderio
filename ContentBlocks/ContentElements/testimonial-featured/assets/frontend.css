@@ -1,0 +1,11 @@
+.testimonial-featured { position: relative; overflow: hidden; }
+.testimonial-featured__bg { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0.08; }
+.testimonial-featured__content { position: relative; text-align: center; max-width: 48rem; margin-inline: auto; }
+.testimonial-featured__logo { margin-block-end: var(--d-spacing-lg); }
+.testimonial-featured__logo-img { max-height: 2.5rem; width: auto; }
+.testimonial-featured__quote { font-size: var(--d-text-2xl); line-height: 1.5; font-style: italic; margin-block-end: var(--d-spacing-xl); }
+@media (max-width: 768px) { .testimonial-featured__quote { font-size: var(--d-text-xl); } }
+.testimonial-featured__author { display: flex; align-items: center; justify-content: center; gap: var(--d-spacing-sm); }
+.testimonial-featured__avatar { width: 4rem; height: 4rem; border-radius: 9999px; object-fit: cover; }
+.testimonial-featured__name { font-weight: 700; font-style: normal; display: block; font-size: var(--d-text-lg); }
+.testimonial-featured__role { font-size: var(--d-text-sm); color: var(--muted-foreground); }

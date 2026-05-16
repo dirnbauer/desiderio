@@ -1,0 +1,67 @@
+name: desiderio/feature-list
+typeName: desiderio_featurelist
+title: 'List Feature Section'
+description: 'List Feature Section explains product value, features, or use cases in a clear content structure. Editors can manage headline and copy fields, repeatable entries and layout or variant options.'
+group: features
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: eyebrow
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
+  -
+    identifier: subheadline
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
+    rows: 3
+  -
+    identifier: shadcn_layout
+    type: Select
+    renderType: selectSingle
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:shadcn_layout'
+    items:
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.full_width'
+        value: full-width
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.two_columns'
+        value: two-columns
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.stacked'
+        value: stacked
+    default: two-columns
+  -
+    identifier: items
+    type: Collection
+    table: feature_list_items
+    label: 'Feature Items'
+    minItems: 1
+    fields:
+      -
+        identifier: icon
+        type: Select
+        renderType: selectSingle
+        label: 'Icon Name'
+        description: 'Semantic icon key rendered through the active shadcn icon library.'
+        itemsProcessors:
+          10:
+            class: Webconsulting\Desiderio\DataHandling\IconItemsProcessor
+      -
+        identifier: title
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:title'
+      -
+        identifier: description
+        type: Textarea
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
+        rows: 2

@@ -1,0 +1,60 @@
+name: desiderio/gdpr-banner
+typeName: desiderio_gdprbanner
+title: 'GDPR Banner'
+description: 'GDPR Banner closes a page with utility information, legal links, contact routes, or service details. Editors can manage headline and copy fields, repeatable entries and link and CTA controls.'
+group: footer
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: content
+    type: Textarea
+    label: 'Banner Message'
+    enableRichtext: true
+    rows: 3
+    required: true
+  -
+    identifier: cookie_categories
+    type: Collection
+    table: gdpr_banner_cookie_categories
+    label: 'Cookie Categories'
+    fields:
+      -
+        identifier: name
+        type: Textarea
+        rows: 1
+        label: 'Category Name'
+        required: true
+      -
+        identifier: description_text
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
+      -
+        identifier: required
+        type: Checkbox
+        label: 'Required (cannot be disabled)'
+        default: 0
+  -
+    identifier: accept_text
+    type: Textarea
+    rows: 1
+    label: 'Accept All Text'
+    default: 'Accept All'
+  -
+    identifier: save_text
+    type: Textarea
+    rows: 1
+    label: 'Save Preferences Text'
+    default: 'Save Preferences'
+  -
+    identifier: privacy_link
+    type: Link
+    label: 'Privacy Policy Link'

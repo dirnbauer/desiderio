@@ -1,0 +1,65 @@
+name: desiderio/comparison-table
+typeName: desiderio_comparisontable
+title: 'Comparison Table'
+description: 'Comparison Table organizes rows, options, and details so visitors can compare information quickly. Editors can manage headline and copy fields and repeatable entries.'
+group: data
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: description
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
+    rows: 2
+  -
+    identifier: column_items
+    type: Collection
+    table: comparison_table_columns
+    label: 'Comparison Columns'
+    labelField: name
+    minItems: 2
+    fields:
+      -
+        identifier: name
+        type: Textarea
+        rows: 1
+        label: 'Column Name'
+        required: true
+      -
+        identifier: highlighted
+        type: Checkbox
+        label: Highlight
+        default: 0
+  -
+    identifier: comparison_feature_items
+    type: Collection
+    table: comparison_table_features
+    label: 'Feature Rows'
+    labelField: name
+    minItems: 1
+    fields:
+      -
+        identifier: name
+        type: Text
+        label: 'Feature Name'
+        required: true
+      -
+        identifier: tier_values
+        type: Collection
+        table: comparison_table_tier_values
+        label: 'Column Values'
+        labelField: value
+        minItems: 1
+        fields:
+          -
+            identifier: value
+            type: Textarea
+            rows: 1
+            label: Value

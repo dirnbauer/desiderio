@@ -1,0 +1,61 @@
+name: desiderio/sitemap-grid
+typeName: desiderio_sitemapgrid
+title: 'Sitemap Grid'
+description: 'Sitemap Grid closes a page with utility information, legal links, contact routes, or service details. Editors can manage headline and copy fields, repeatable entries and layout or variant options.'
+group: footer
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: columns
+    type: Select
+    renderType: selectSingle
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:columns'
+    items:
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.3_columns'
+        value: '3'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.4_columns'
+        value: '4'
+    default: '4'
+  -
+    identifier: groups
+    type: Collection
+    table: sitemap_grid_groups
+    label: 'Page Groups'
+    labelField: title
+    minItems: 1
+    fields:
+      -
+        identifier: title
+        type: Textarea
+        rows: 1
+        label: 'Group Title'
+        required: true
+      -
+        identifier: pages
+        type: Collection
+        table: sitemap_grid_pages
+        label: Pages
+        labelField: label
+        minItems: 1
+        maxItems: 12
+        fields:
+          -
+            identifier: label
+            type: Textarea
+            rows: 1
+            label: 'Page Label'
+            required: true
+          -
+            identifier: link
+            type: Link
+            label: 'Page Link'

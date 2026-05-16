@@ -1,0 +1,44 @@
+name: desiderio/pricing-faq
+typeName: desiderio_pricingfaq
+title: 'FAQ Pricing'
+description: 'FAQ Pricing turns layered answers or grouped information into a compact expandable block. Editors can manage headline and copy fields and repeatable entries.'
+group: pricing
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: eyebrow
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
+  -
+    identifier: subheadline
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
+    rows: 2
+  -
+    identifier: question_items
+    type: Collection
+    table: pricing_faq_question_items
+    label: Questions
+    minItems: 1
+    fields:
+      -
+        identifier: question
+        type: Textarea
+        rows: 1
+        label: Question
+        required: true
+      -
+        identifier: answer
+        type: Textarea
+        label: Answer
+        rows: 3
+        required: true

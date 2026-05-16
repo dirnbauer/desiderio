@@ -1,0 +1,36 @@
+name: desiderio/brand-story
+typeName: desiderio_brandstory
+title: 'Brand Story'
+description: 'Brand Story introduces people, roles, culture, or hiring context with clear editorial structure. Editors can manage headline and copy fields and media pickers.'
+group: team
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: eyebrow
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
+  -
+    identifier: lead
+    type: Textarea
+    label: 'Lead Paragraph'
+    rows: 3
+  -
+    identifier: body
+    type: Textarea
+    label: 'Body Text'
+    rows: 6
+  -
+    identifier: image
+    type: File
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:image'
+    allowed: common-image-types
+    maxitems: 1

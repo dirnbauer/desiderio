@@ -1,0 +1,26 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-feature-cards" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="feature-cards">
+    <d:layout.container>
+        <header class="feature-cards__intro">
+            <f:if condition="{data.eyebrow}"><span class="feature-cards__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span></f:if>
+            <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
+            <f:if condition="{data.subheadline}"><d:atom.typography variant="muted">{data -> f:render.text(field: 'subheadline')}</d:atom.typography></f:if>
+        </header>
+        <div class="feature-cards__grid">
+            <f:for each="{data.items}" as="item">
+                <d:molecule.card class="feature-cards__item">
+                    <h3 class="feature-cards__title">{item -> f:render.text(field: 'title')}</h3>
+                    <p class="feature-cards__description">{item -> f:render.text(field: 'description')}</p>
+                </d:molecule.card>
+            </f:for>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

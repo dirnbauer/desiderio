@@ -1,0 +1,16 @@
+.cta-with-image__layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--d-spacing-2xl);
+    align-items: center;
+}
+@media (max-width: 768px) {
+    .cta-with-image__layout { grid-template-columns: 1fr; }
+}
+.cta-with-image--left .cta-with-image__image-wrapper { order: -1; }
+.cta-with-image__image {
+    width: 100%;
+    border-radius: var(--radius);
+    object-fit: cover;
+}
+.cta-with-image__actions { margin-block-start: var(--d-spacing-lg); }

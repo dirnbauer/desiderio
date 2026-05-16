@@ -1,0 +1,45 @@
+name: desiderio/hero-logo-cloud
+typeName: desiderio_herologocloud
+title: 'Logo Cloud Hero'
+description: 'Logo Cloud Hero builds credibility through voices, logos, ratings, awards, or references. Editors can manage headline and copy fields, repeatable entries and link and CTA controls.'
+group: hero
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: eyebrow
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
+  -
+    identifier: subheadline
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
+    rows: 3
+  -
+    identifier: primary_button_text
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:primary_button_text'
+  -
+    identifier: primary_button_link
+    type: Link
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:primary_button_link'
+  -
+    identifier: logo_items
+    type: Collection
+    table: hero_logo_cloud_logo_items
+    label: Logos
+    fields:
+      -
+        identifier: name
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:name'

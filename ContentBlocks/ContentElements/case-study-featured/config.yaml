@@ -1,0 +1,68 @@
+name: desiderio/case-study-featured
+typeName: desiderio_casestudyfeatured
+title: 'Case Study Featured'
+description: 'Case Study Featured explains product value, features, or use cases in a clear content structure. Editors can manage headline and copy fields, media pickers, repeatable entries and link and CTA controls.'
+group: social-proof
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: eyebrow
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
+  -
+    identifier: client_name
+    type: Textarea
+    rows: 1
+    label: 'Client Name'
+    required: true
+  -
+    identifier: client_logo
+    type: File
+    label: 'Client Logo'
+    allowed: common-image-types
+    maxitems: 1
+  -
+    identifier: description
+    type: Textarea
+    label: 'Case Study Description'
+    rows: 4
+    required: true
+  -
+    identifier: image
+    type: File
+    label: 'Hero Image'
+    allowed: common-image-types
+    maxitems: 1
+  -
+    identifier: metrics
+    type: Collection
+    table: case_study_featured_metrics
+    label: 'Key Metrics'
+    minItems: 1
+    maxItems: 4
+    fields:
+      -
+        identifier: value
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:value'
+        required: true
+      -
+        identifier: label
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:label_field'
+        required: true
+  -
+    identifier: link
+    type: Link
+    label: 'Read Full Case Study'

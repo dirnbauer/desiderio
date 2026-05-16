@@ -1,0 +1,54 @@
+name: desiderio/team-member
+typeName: desiderio_teammember
+title: 'Member Team Section'
+description: 'Member Team Section introduces people, roles, culture, or hiring context with clear editorial structure. Editors can manage headline and copy fields, media pickers and link and CTA controls.'
+group: team
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: image
+    type: File
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:portrait'
+    allowed: common-image-types
+    maxitems: 1
+  -
+    identifier: role
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:role'
+  -
+    identifier: bio
+    type: Textarea
+    label: Biography
+    rows: 4
+  -
+    identifier: email
+    type: Text
+    label: Email
+  -
+    identifier: phone
+    type: Text
+    label: Phone
+  -
+    identifier: social_links
+    type: Collection
+    table: team_member_social_links
+    label: 'Social Links'
+    fields:
+      -
+        identifier: platform
+        type: Textarea
+        rows: 1
+        label: Platform
+      -
+        identifier: url
+        type: Link
+        label: URL

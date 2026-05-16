@@ -1,0 +1,45 @@
+name: desiderio/file-download
+typeName: desiderio_filedownload
+title: 'File Download'
+description: 'File Download provides a focused editorial building block for a recognizable page task. Editors can manage headline and copy fields and repeatable entries.'
+group: content
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: items
+    type: Collection
+    table: file_download_items
+    label: Files
+    minItems: 1
+    fields:
+      -
+        identifier: title
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:title'
+        required: true
+      -
+        identifier: description_text
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
+      -
+        identifier: file
+        type: File
+        label: File
+        maxitems: 1
+        required: true
+      -
+        identifier: file_size
+        type: Textarea
+        rows: 1
+        label: 'File Size'
+        description: 'e.g. 2.4 MB'

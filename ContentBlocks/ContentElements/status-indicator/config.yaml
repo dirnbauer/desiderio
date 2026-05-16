@@ -1,0 +1,71 @@
+name: desiderio/status-indicator
+typeName: desiderio_statusindicator
+title: 'Status Indicator Data View'
+description: 'Status Indicator Data View highlights urgent notices, status updates, or important contextual messages. Editors can manage headline and copy fields, repeatable entries and layout or variant options.'
+group: data
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: overall_status
+    type: Select
+    renderType: selectSingle
+    label: 'Overall Status'
+    items:
+      -
+        label: Operational
+        value: operational
+      -
+        label: Degraded
+        value: degraded
+      -
+        label: Outage
+        value: outage
+      -
+        label: Maintenance
+        value: maintenance
+    default: operational
+  -
+    identifier: items
+    type: Collection
+    table: status_indicator_items
+    label: Services
+    minItems: 1
+    fields:
+      -
+        identifier: name
+        type: Textarea
+        rows: 1
+        label: 'Service Name'
+        required: true
+      -
+        identifier: status
+        type: Select
+        renderType: selectSingle
+        label: Status
+        items:
+          -
+            label: Operational
+            value: operational
+          -
+            label: Degraded
+            value: degraded
+          -
+            label: Outage
+            value: outage
+          -
+            label: Maintenance
+            value: maintenance
+        default: operational
+      -
+        identifier: detail
+        type: Textarea
+        rows: 1
+        label: 'Status Detail'

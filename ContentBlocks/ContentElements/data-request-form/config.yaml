@@ -1,0 +1,48 @@
+name: desiderio/data-request-form
+typeName: desiderio_datarequestform
+title: 'Data Request Form'
+description: 'Data Request Form captures visitor intent with focused form or request messaging. Editors can manage headline and copy fields and repeatable entries.'
+group: footer
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: description
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
+    rows: 3
+  -
+    identifier: request_types
+    type: Collection
+    table: data_request_form_request_types
+    label: 'Request Types'
+    fields:
+      -
+        identifier: label
+        type: Textarea
+        rows: 1
+        label: 'Request Type Label'
+        required: true
+      -
+        identifier: value
+        type: Textarea
+        rows: 1
+        label: 'Form Value'
+  -
+    identifier: privacy_text
+    type: Textarea
+    label: 'Privacy Notice Text'
+    rows: 2
+  -
+    identifier: submit_text
+    type: Textarea
+    rows: 1
+    label: 'Submit Button Text'
+    default: 'Submit Request'

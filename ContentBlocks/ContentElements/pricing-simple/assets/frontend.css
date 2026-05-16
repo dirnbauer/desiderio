@@ -1,0 +1,11 @@
+.pricing-simple__card { max-width: 28rem; margin-inline: auto; text-align: center; border: 1px solid var(--border); border-radius: var(--radius); padding: var(--d-spacing-xl); }
+.pricing-simple__headline { font-size: var(--d-text-xl); font-weight: 700; }
+.pricing-simple__price-row { display: flex; align-items: baseline; justify-content: center; gap: 0.25rem; margin-block-start: var(--d-spacing-md); }
+.pricing-simple__price { font-size: var(--d-text-4xl); font-weight: 800; }
+.pricing-simple__period { font-size: var(--d-text-sm); color: var(--muted-foreground); }
+.pricing-simple__description { color: var(--muted-foreground); margin-block-start: var(--d-spacing-sm); }
+.pricing-simple__features { list-style: none; padding: 0; margin-block-start: var(--d-spacing-lg); display: flex; flex-direction: column; gap: var(--d-spacing-xs); text-align: start; }
+.pricing-simple__feature { display: flex; align-items: start; gap: 0.5rem; font-size: var(--d-text-sm); }
+.pricing-simple__feature svg { flex-shrink: 0; color: var(--primary); margin-block-start: 0.125rem; }
+.pricing-simple__button { display: block; text-align: center; padding: 0.75rem 2rem; border-radius: var(--radius); font-weight: 600; text-decoration: none; background: var(--primary); color: var(--primary-foreground); margin-block-start: var(--d-spacing-lg); transition: opacity 0.2s; }
+.pricing-simple__button:hover { opacity: 0.9; }

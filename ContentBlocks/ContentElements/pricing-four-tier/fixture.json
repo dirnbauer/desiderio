@@ -1,0 +1,50 @@
+{
+    "_type": "pricing",
+    "header": "Four Tier Pricing for confident plan comparison",
+    "eyebrow": "Modern import",
+    "subheadline": "Helps buyers compare plans quickly with crisp values, direct feature language, and token-backed card hierarchy. This four tier pricing example includes realistic content for browser review.",
+    "plans": [
+        {
+            "title": "Four Tier Pricing for confident plan comparison",
+            "price": "$19",
+            "description": "Helps buyers compare plans quickly with crisp values, direct feature language, and token-backed card hierarchy. This four tier pricing example includes realistic content for browser review.",
+            "features": [
+                "Compact shadcn spacing and borders",
+                "Reusable labels, metrics, and actions",
+                "Clean mobile behavior for dense content",
+                "Chart colors mapped to semantic tokens"
+            ],
+            "button_text": "Compare states",
+            "button_link": "https://ui.shadcn.com/docs/four-tier-pricing",
+            "featured": false
+        },
+        {
+            "title": "Four Tier Pricing for confident plan comparison",
+            "price": "$49",
+            "description": "Shows pricing states with practical labels, scannable benefits, and decision support that feels production-ready. This four tier pricing example includes realistic content for browser review.",
+            "features": [
+                "Compact shadcn spacing and borders",
+                "Reusable labels, metrics, and actions",
+                "Clean mobile behavior for dense content",
+                "Chart colors mapped to semantic tokens"
+            ],
+            "button_text": "Read playbook",
+            "button_link": "https://ui.shadcn.com/docs/four-tier-pricing",
+            "featured": true
+        },
+        {
+            "title": "Four Tier Pricing for confident plan comparison",
+            "price": "$99",
+            "description": "Keeps commercial content confident and compact so plan comparison works across desktop tables and mobile cards. This four tier pricing example includes realistic content for browser review.",
+            "features": [
+                "Compact shadcn spacing and borders",
+                "Reusable labels, metrics, and actions",
+                "Clean mobile behavior for dense content",
+                "Chart colors mapped to semantic tokens"
+            ],
+            "button_text": "Start review",
+            "button_link": "https://ui.shadcn.com/docs/four-tier-pricing",
+            "featured": false
+        }
+    ]
+}

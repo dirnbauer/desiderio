@@ -1,0 +1,63 @@
+name: desiderio/stats-counter
+typeName: desiderio_statscounter
+title: 'Counter Stats'
+description: 'Counter Stats presents performance numbers as a quick-read dashboard block. Editors can manage headline and copy fields, repeatable entries and layout or variant options.'
+group: social-proof
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: eyebrow
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
+  -
+    identifier: columns
+    type: Select
+    renderType: selectSingle
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:columns'
+    items:
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.3_columns'
+        value: '3'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.4_columns'
+        value: '4'
+    default: '3'
+  -
+    identifier: counters
+    type: Collection
+    table: stats_counter_counters
+    label: Counters
+    minItems: 1
+    fields:
+      -
+        identifier: counter_target
+        type: Textarea
+        rows: 1
+        label: 'Target Value'
+        required: true
+      -
+        identifier: suffix
+        type: Textarea
+        rows: 1
+        label: Suffix
+        description: 'e.g. +, %, K'
+      -
+        identifier: label
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:label_field'
+        required: true
+      -
+        identifier: description
+        type: Textarea
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
+        rows: 2

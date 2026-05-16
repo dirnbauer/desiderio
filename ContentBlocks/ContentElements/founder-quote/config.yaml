@@ -1,0 +1,36 @@
+name: desiderio/founder-quote
+typeName: desiderio_founderquote
+title: 'Founder Quote'
+description: 'Founder Quote builds credibility through voices, logos, ratings, awards, or references. Editors can manage headline and copy fields and media pickers.'
+group: team
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: quote
+    type: Textarea
+    label: Quote
+    rows: 4
+  -
+    identifier: name
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:name'
+  -
+    identifier: title
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:title'
+  -
+    identifier: image
+    type: File
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:portrait'
+    allowed: common-image-types
+    maxitems: 1

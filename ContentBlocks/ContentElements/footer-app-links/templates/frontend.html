@@ -1,0 +1,49 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-footer-app-links" href="{cb:assetPath()}/frontend.css"/>
+
+<footer class="footer-app-links">
+    <d:layout.container>
+        <div class="footer-app-links__inner">
+            <div class="footer-app-links__content">
+                <f:if condition="{data.header}">
+                    <h2 class="footer-app-links__title">{data -> f:render.text(field: 'header')}</h2>
+                </f:if>
+                <f:if condition="{data.description}">
+                    <p class="footer-app-links__description">{data -> f:render.text(field: 'description')}</p>
+                </f:if>
+                <div class="footer-app-links__buttons">
+                    <f:if condition="{data.appstore_link}">
+                        <f:link.typolink parameter="{data.appstore_link}" class="footer-app-links__button" target="_blank">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20.94c1.5 0 2.75 1.06 4 1.06 3 0 6-8 6-12.22A4.91 4.91 0 0 0 17 5c-2.22 0-4 1.44-5 2-1-.56-2.78-2-5-2a4.9 4.9 0 0 0-5 4.78C2 14 5 22 8 22c1.25 0 2.5-1.06 4-1.06Z"/><path d="M10 2c1 .5 2 2 2 5"/></svg>
+                            App Store
+                        </f:link.typolink>
+                    </f:if>
+                    <f:if condition="{data.playstore_link}">
+                        <f:link.typolink parameter="{data.playstore_link}" class="footer-app-links__button" target="_blank">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                            Google Play
+                        </f:link.typolink>
+                    </f:if>
+                </div>
+            </div>
+            <f:if condition="{data.qr_image}">
+                <div class="footer-app-links__qr">
+                    <f:for each="{data.qr_image}" as="file">
+                        <f:image image="{file}" alt="Download QR Code" width="120"/>
+                    </f:for>
+                </div>
+            </f:if>
+        </div>
+        <f:if condition="{data.copyright}">
+            <div class="footer-app-links__bottom">
+                <p class="footer-app-links__copyright">{data -> f:render.text(field: 'copyright')}</p>
+            </div>
+        </f:if>
+    </d:layout.container>
+</footer>
+
+</html>

@@ -1,0 +1,37 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-terms-summary" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="terms-summary-section">
+    <d:layout.container>
+        <div class="terms-summary">
+            <f:if condition="{data.header}">
+                <h2 class="terms-summary__title">{data -> f:render.text(field: 'header')}</h2>
+            </f:if>
+            <f:if condition="{data.last_updated}">
+                <p class="terms-summary__updated">Last updated: {data -> f:render.text(field: 'last_updated')}</p>
+            </f:if>
+            <f:if condition="{data.intro}">
+                <p class="terms-summary__intro">{data -> f:render.text(field: 'intro')}</p>
+            </f:if>
+            <div class="terms-summary__list">
+                <f:for each="{data.items}" as="item">
+                    <div class="terms-summary__item">
+                        <h3 class="terms-summary__item-title">{item -> f:render.text(field: 'title')}</h3>
+                        <p class="terms-summary__item-text">{item -> f:render.text(field: 'summary')}</p>
+                    </div>
+                </f:for>
+            </div>
+            <f:if condition="{data.full_terms_link}">
+                <div class="terms-summary__footer">
+                    <f:link.typolink parameter="{data.full_terms_link}" class="terms-summary__link">Read Full Terms</f:link.typolink>
+                </div>
+            </f:if>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

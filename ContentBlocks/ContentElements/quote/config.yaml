@@ -1,0 +1,47 @@
+name: desiderio/quote
+typeName: desiderio_quote
+title: Quote
+description: 'Quote builds credibility through voices, logos, ratings, awards, or references. Editors can manage headline and copy fields and layout or variant options.'
+group: content
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: quote_text
+    type: Textarea
+    label: 'Quote Text'
+    rows: 4
+    required: true
+  -
+    identifier: author
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:author_name'
+  -
+    identifier: role
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:author_role'
+  -
+    identifier: variant
+    type: Select
+    renderType: selectSingle
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:style'
+    items:
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.bordered'
+        value: bordered
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.large'
+        value: large
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.card'
+        value: card
+    default: bordered

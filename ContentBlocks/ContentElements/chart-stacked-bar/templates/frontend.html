@@ -1,0 +1,30 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-chart-stacked-bar" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="chart-stacked-bar-section">
+    <d:layout.container>
+        <div class="chart-stacked-bar"
+             data-chart-json="{data.chart_data -> f:format.htmlspecialchars()}"
+             data-show-legend="{f:if(condition: data.show_legend, then: '1', else: '0')}">
+            <div class="chart-stacked-bar__card">
+                <f:if condition="{data.header} || {data.description}">
+                    <div class="chart-stacked-bar__header">
+                        <f:if condition="{data.header}">
+                            <h3 class="chart-stacked-bar__title">{data -> f:render.text(field: 'header')}</h3>
+                        </f:if>
+                        <f:if condition="{data.description}">
+                            <p class="chart-stacked-bar__description">{data -> f:render.text(field: 'description')}</p>
+                        </f:if>
+                    </div>
+                </f:if>
+                <div class="chart-stacked-bar__plot" id="chart-stacked-bar-{data.uid}"></div>
+            </div>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

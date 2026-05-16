@@ -1,0 +1,30 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-cookie-banner" href="{cb:assetPath()}/frontend.css"/>
+
+<div class="cookie-banner cookie-banner--{data.position -> f:or(alternative: 'bottom')}" role="alert" data-cookie-banner="true">
+    <d:layout.container>
+        <div class="cookie-banner__inner">
+            <div class="cookie-banner__content">
+                <f:if condition="{data.header}">
+                    <h3 class="cookie-banner__title">{data -> f:render.text(field: 'header')}</h3>
+                </f:if>
+                <div class="cookie-banner__message">
+                    {data -> f:render.text(field: 'content')}
+                </div>
+            </div>
+            <div class="cookie-banner__actions">
+                <button type="button" class="cookie-banner__button cookie-banner__button--accept">{data.accept_text -> f:or(alternative: 'Accept All')}</button>
+                <button type="button" class="cookie-banner__button cookie-banner__button--decline">{data.decline_text -> f:or(alternative: 'Decline')}</button>
+                <f:if condition="{data.settings_link}">
+                    <f:link.typolink parameter="{data.settings_link}" class="cookie-banner__button cookie-banner__button--settings">{data.settings_text -> f:or(alternative: 'Cookie Settings')}</f:link.typolink>
+                </f:if>
+            </div>
+        </div>
+    </d:layout.container>
+</div>
+
+</html>

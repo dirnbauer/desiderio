@@ -1,0 +1,50 @@
+name: desiderio/hero-startup
+typeName: desiderio_herostartup
+title: 'Startup Hero'
+description: 'Startup Hero opens landing pages, campaigns, or product pages with a strong first message. Editors can manage headline and copy fields, media pickers and link and CTA controls.'
+group: hero
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: subheadline
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
+    rows: 3
+  -
+    identifier: badge_text
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:badge_text'
+  -
+    identifier: form_action
+    type: Link
+    label: 'Waitlist Form Action'
+  -
+    identifier: input_placeholder
+    type: Textarea
+    rows: 1
+    label: 'Email Placeholder'
+  -
+    identifier: button_text
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_text'
+  -
+    identifier: social_proof_text
+    type: Textarea
+    rows: 1
+    label: 'Social Proof Text'
+  -
+    identifier: avatars
+    type: File
+    label: 'User Avatars'
+    allowed: common-image-types
+    maxitems: 5

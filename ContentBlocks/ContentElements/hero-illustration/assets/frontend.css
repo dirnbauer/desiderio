@@ -1,0 +1,32 @@
+.hero-illustration__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--d-spacing-8);
+    align-items: center;
+    padding-block: var(--d-spacing-12);
+}
+.hero-illustration--image-left .hero-illustration__media {
+    order: -1;
+}
+.hero-illustration__headline {
+    font-size: var(--d-text-4xl);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: var(--d-spacing-4);
+}
+.hero-illustration__subheadline {
+    font-size: var(--d-text-lg);
+    color: var(--d-muted-foreground);
+    margin-bottom: var(--d-spacing-6);
+}
+.hero-illustration__actions {
+    display: flex;
+    gap: var(--d-spacing-3);
+}
+.hero-illustration__image {
+    width: 100%;
+    height: auto;
+    max-width: 28rem;
+    margin-inline: auto;
+    display: block;
+}

@@ -1,0 +1,84 @@
+name: desiderio/features
+typeName: desiderio_features
+title: Features
+description: 'Features explains product value, features, or use cases in a clear content structure. Editors can manage headline and copy fields, repeatable entries and layout or variant options.'
+group: features
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: subheadline
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
+    rows: 2
+  -
+    identifier: columns
+    type: Select
+    renderType: selectSingle
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:columns'
+    items:
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.2_columns'
+        value: '2'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.3_columns'
+        value: '3'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.4_columns'
+        value: '4'
+    default: '3'
+  -
+    identifier: variant
+    type: Select
+    renderType: selectSingle
+    label: 'Feature Style'
+    items:
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.icon_top'
+        value: icon-top
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.icon_left'
+        value: icon-left
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:card_style'
+        value: card
+    default: icon-top
+  -
+    identifier: feature_items
+    type: Collection
+    table: features_feature_items
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:features'
+    minItems: 1
+    fields:
+      -
+        identifier: icon_name
+        type: Select
+        renderType: selectSingle
+        label: Icon
+        description: 'Semantic icon key rendered through the active shadcn icon library.'
+        itemsProcessors:
+          10:
+            class: Webconsulting\Desiderio\DataHandling\IconItemsProcessor
+        default: star
+      -
+        identifier: title
+        type: Textarea
+        rows: 1
+        label: 'Feature Title'
+        required: true
+      -
+        identifier: description
+        type: Textarea
+        label: 'Feature Description'
+        rows: 2
+      -
+        identifier: link
+        type: Link
+        label: 'Feature Link'

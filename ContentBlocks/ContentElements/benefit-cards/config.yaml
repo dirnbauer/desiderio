@@ -1,0 +1,69 @@
+name: desiderio/benefit-cards
+typeName: desiderio_benefitcards
+title: 'Benefit Cards'
+description: 'Benefit Cards explains product value, features, or use cases in a clear content structure. Editors can manage headline and copy fields, repeatable entries and layout or variant options.'
+group: features
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: eyebrow
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
+  -
+    identifier: subheadline
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
+    rows: 2
+  -
+    identifier: columns
+    type: Select
+    renderType: selectSingle
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:columns'
+    items:
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.2_columns'
+        value: '2'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.3_columns'
+        value: '3'
+    default: '3'
+  -
+    identifier: items
+    type: Collection
+    table: benefit_cards_items
+    label: Benefits
+    minItems: 1
+    fields:
+      -
+        identifier: icon
+        type: Select
+        renderType: selectSingle
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:icon_emoji'
+        description: 'Semantic icon key rendered through the active shadcn icon library.'
+        itemsProcessors:
+          10:
+            class: Webconsulting\Desiderio\DataHandling\IconItemsProcessor
+      -
+        identifier: title
+        type: Textarea
+        rows: 1
+        label: 'Benefit Title'
+        required: true
+      -
+        identifier: description
+        type: Textarea
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
+        rows: 2
+      -
+        identifier: link
+        type: Link
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:link'

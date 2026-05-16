@@ -1,0 +1,13 @@
+.pricing-slider__intro { text-align: center; margin-block-end: var(--d-spacing-xl); }
+.pricing-slider__eyebrow { font-size: var(--d-text-sm); text-transform: uppercase; letter-spacing: 0.05em; color: var(--primary); font-weight: 600; }
+.pricing-slider__headline { margin-block-start: var(--d-spacing-xs); }
+.pricing-slider__description { color: var(--muted-foreground); max-width: 40rem; margin-inline: auto; }
+.pricing-slider__body { max-width: 40rem; margin-inline: auto; }
+.pricing-slider__control { padding: var(--d-spacing-lg) 0; }
+.pricing-slider__range { width: 100%; accent-color: var(--primary); }
+.pricing-slider__tiers { display: grid; grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); gap: var(--d-spacing-md); }
+.pricing-slider__tier { text-align: center; padding: var(--d-spacing-md); border: 1px solid var(--border); border-radius: var(--radius); display: flex; flex-direction: column; gap: 0.25rem; }
+.pricing-slider__tier--active { border-color: var(--primary); background: color-mix(in oklch, var(--primary) 3%, transparent); }
+.pricing-slider__volume { font-size: var(--d-text-sm); font-weight: 600; }
+.pricing-slider__price { font-size: var(--d-text-2xl); font-weight: 800; color: var(--primary); }
+.pricing-slider__features { font-size: var(--d-text-xs); color: var(--muted-foreground); }

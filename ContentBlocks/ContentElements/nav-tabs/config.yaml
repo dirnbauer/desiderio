@@ -1,0 +1,51 @@
+name: desiderio/nav-tabs
+typeName: desiderio_navtabs
+title: 'Tabs Navigation'
+description: 'Tabs Navigation helps visitors find their way through links, menus, anchors, or search entry points. Editors can manage headline and copy fields, repeatable entries and layout or variant options.'
+group: navigation
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: variant
+    type: Select
+    renderType: selectSingle
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:style'
+    items:
+      -
+        label: Underline
+        value: underline
+      -
+        label: Pill
+        value: pill
+      -
+        label: Boxed
+        value: boxed
+    default: underline
+  -
+    identifier: tabs
+    type: Collection
+    table: nav_tabs_tabs
+    label: Tabs
+    minItems: 1
+    fields:
+      -
+        identifier: label
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:label_field'
+      -
+        identifier: link
+        type: Link
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:link'
+      -
+        identifier: active
+        type: Checkbox
+        label: Active

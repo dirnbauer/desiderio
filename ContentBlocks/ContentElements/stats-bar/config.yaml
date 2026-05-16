@@ -1,0 +1,49 @@
+name: desiderio/stats-bar
+typeName: desiderio_statsbar
+title: 'Bar Stats'
+description: 'Bar Stats presents performance numbers as a quick-read dashboard block. Editors can manage headline and copy fields and repeatable entries.'
+group: social-proof
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: eyebrow
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
+  -
+    identifier: subheadline
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
+    rows: 2
+  -
+    identifier: items
+    type: Collection
+    table: stats_bar_items
+    label: 'Stat Bars'
+    minItems: 1
+    fields:
+      -
+        identifier: label
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:label_field'
+        required: true
+      -
+        identifier: value
+        type: Textarea
+        rows: 1
+        label: 'Display Value'
+        required: true
+      -
+        identifier: percentage
+        type: Number
+        label: 'Bar Percentage (0-100)'
+        required: true

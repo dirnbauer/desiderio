@@ -1,0 +1,98 @@
+name: desiderio/compare
+typeName: desiderio_compare
+title: Compare
+description: 'Compare organizes rows, options, and details so visitors can compare information quickly. Editors can manage headline and copy fields, repeatable entries and link and CTA controls.'
+group: social-proof
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: eyebrow
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
+  -
+    identifier: subheadline
+    type: Textarea
+    label: 'Section Subheadline'
+    rows: 2
+  -
+    identifier: left_title
+    type: Textarea
+    rows: 1
+    label: 'Left Title'
+    required: true
+  -
+    identifier: left_description
+    type: Textarea
+    label: 'Left Description'
+    rows: 3
+  -
+    identifier: left_points
+    type: Collection
+    table: compare_left_points
+    label: 'Left Points'
+    labelField: text
+    minItems: 1
+    maxItems: 8
+    fields:
+      -
+        identifier: text
+        type: Textarea
+        rows: 1
+        label: Point
+  -
+    identifier: left_button_text
+    type: Textarea
+    rows: 1
+    label: 'Left Button Text'
+  -
+    identifier: left_button_link
+    type: Link
+    label: 'Left Button Link'
+  -
+    identifier: right_badge
+    type: Textarea
+    rows: 1
+    label: 'Right Badge'
+  -
+    identifier: right_title
+    type: Textarea
+    rows: 1
+    label: 'Right Title'
+    required: true
+  -
+    identifier: right_description
+    type: Textarea
+    label: 'Right Description'
+    rows: 3
+  -
+    identifier: right_points
+    type: Collection
+    table: compare_right_points
+    label: 'Right Points'
+    labelField: text
+    minItems: 1
+    maxItems: 8
+    fields:
+      -
+        identifier: text
+        type: Textarea
+        rows: 1
+        label: Point
+  -
+    identifier: right_button_text
+    type: Textarea
+    rows: 1
+    label: 'Right Button Text'
+  -
+    identifier: right_button_link
+    type: Link
+    label: 'Right Button Link'

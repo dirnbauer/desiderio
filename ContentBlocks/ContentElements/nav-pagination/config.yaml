@@ -1,0 +1,43 @@
+name: desiderio/nav-pagination
+typeName: desiderio_navpagination
+title: 'Pagination Navigation'
+description: 'Pagination Navigation helps visitors find their way through links, menus, anchors, or search entry points. Editors can manage headline and copy fields, repeatable entries and link and CTA controls.'
+group: navigation
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: items
+    type: Collection
+    table: nav_pagination_items
+    label: Pages
+    minItems: 1
+    fields:
+      -
+        identifier: label
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:label_field'
+      -
+        identifier: link
+        type: Link
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:link'
+      -
+        identifier: active
+        type: Checkbox
+        label: Active
+  -
+    identifier: previous_link
+    type: Link
+    label: 'Previous Link'
+  -
+    identifier: next_link
+    type: Link
+    label: 'Next Link'

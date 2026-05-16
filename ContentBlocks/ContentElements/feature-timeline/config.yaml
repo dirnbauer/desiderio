@@ -1,0 +1,44 @@
+name: desiderio/feature-timeline
+typeName: desiderio_featuretimeline
+title: 'Timeline Feature Section'
+description: 'Timeline Feature Section explains product value, features, or use cases in a clear content structure. Editors can manage headline and copy fields and repeatable entries.'
+group: features
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: subheadline
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
+    rows: 2
+  -
+    identifier: items
+    type: Collection
+    table: feature_timeline_items
+    label: 'Timeline Steps'
+    minItems: 2
+    fields:
+      -
+        identifier: step
+        type: Textarea
+        rows: 1
+        label: 'Step Label'
+        required: true
+      -
+        identifier: title
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:title'
+        required: true
+      -
+        identifier: description
+        type: Textarea
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
+        rows: 3

@@ -1,0 +1,30 @@
+.mission-statement__content {
+    text-align: center;
+    max-width: 800px;
+    margin-inline: auto;
+}
+.mission-statement__eyebrow {
+    font-size: var(--d-text-sm);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--primary);
+    display: block;
+    margin-block-end: var(--d-spacing-sm);
+}
+.mission-statement__quote {
+    font-size: var(--d-text-2xl);
+    font-weight: 300;
+    line-height: 1.4;
+    color: var(--foreground);
+    margin-block-start: var(--d-spacing-md);
+    border: none;
+    padding: 0;
+}
+.mission-statement__attribution {
+    display: block;
+    margin-block-start: var(--d-spacing-md);
+    font-size: var(--d-text-sm);
+    font-style: normal;
+    color: var(--muted-foreground);
+}

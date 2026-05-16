@@ -1,0 +1,78 @@
+name: desiderio/footer
+typeName: desiderio_footer
+title: Footer
+description: 'Footer closes a page with utility information, legal links, contact routes, or service details. Editors can manage headline and copy fields, link and CTA controls and layout or variant options.'
+group: footer
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: shadcn_layout
+    type: Select
+    renderType: selectSingle
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:shadcn_layout'
+    items:
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.full_width'
+        value: full-width
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.two_columns'
+        value: two-columns
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.stacked'
+        value: stacked
+    default: two-columns
+  -
+    identifier: brand
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:brand'
+    required: true
+  -
+    identifier: description
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
+    rows: 3
+  -
+    identifier: copyright
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:copyright_text'
+  -
+    identifier: footer_links
+    type: Collection
+    table: footer_footer_links
+    label: 'Footer Links'
+    fields:
+      -
+        identifier: label
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:label_field'
+        required: true
+      -
+        identifier: link
+        type: Link
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:link'
+  -
+    identifier: utility_links
+    type: Collection
+    table: footer_utility_links
+    label: 'Utility Links'
+    fields:
+      -
+        identifier: label
+        type: Text
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:label_field'
+        required: true
+      -
+        identifier: link
+        type: Link
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:link'

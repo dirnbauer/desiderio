@@ -1,0 +1,30 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-quote" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="quote-section">
+    <d:layout.container>
+        <f:if condition="{data.header}">
+            <d:atom.typography tag="h2" variant="h2" class="quote-section__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
+        </f:if>
+
+        <figure class="quote quote--{data.variant -> f:or(alternative: 'bordered')}">
+            <blockquote class="quote__text">
+                <p>{data -> f:render.text(field: 'quote_text')}</p>
+            </blockquote>
+            <f:if condition="{data.author}">
+                <figcaption class="quote__attribution">
+                    <span class="quote__author">{data -> f:render.text(field: 'author')}</span>
+                    <f:if condition="{data.role}">
+                        <span class="quote__role">{data -> f:render.text(field: 'role')}</span>
+                    </f:if>
+                </figcaption>
+            </f:if>
+        </figure>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

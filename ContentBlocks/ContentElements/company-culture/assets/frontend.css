@@ -1,0 +1,37 @@
+.company-culture__intro {
+    text-align: center;
+    margin-block-end: var(--d-spacing-xl);
+}
+.company-culture__eyebrow {
+    font-size: var(--d-text-sm);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--primary);
+}
+.company-culture__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--d-spacing-lg);
+}
+@media (max-width: 768px) {
+    .company-culture__grid { grid-template-columns: 1fr; }
+}
+.company-culture__image-wrapper {
+    overflow: hidden;
+    border-radius: var(--radius);
+    margin-block-end: var(--d-spacing-sm);
+}
+.company-culture__image {
+    width: 100%;
+    aspect-ratio: 4/3;
+    object-fit: cover;
+}
+.company-culture__title {
+    font-weight: 600;
+    margin-block-end: var(--d-spacing-2xs);
+}
+.company-culture__description {
+    font-size: var(--d-text-sm);
+    color: var(--muted-foreground);
+}

@@ -1,0 +1,52 @@
+name: desiderio/chart-line
+typeName: desiderio_chartline
+title: 'Line Chart'
+description: 'Line Chart turns data into a specific chart treatment with a clear visual focus. Editors can manage headline and copy fields and layout or variant options.'
+group: data
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: description
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
+    rows: 2
+  -
+    identifier: chart_data
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:chart_data_json'
+    rows: 6
+    required: true
+  -
+    identifier: color_variant
+    type: Select
+    renderType: selectSingle
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:color_field'
+    items:
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.primary'
+        value: primary
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.blue'
+        value: blue
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.green'
+        value: green
+    default: primary
+  -
+    identifier: show_dots
+    type: Checkbox
+    label: 'Show Data Points'
+    default: 1
+  -
+    identifier: smooth
+    type: Checkbox
+    label: 'Smooth Curve'
+    default: 1

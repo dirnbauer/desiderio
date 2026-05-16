@@ -1,0 +1,45 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-metric-dashboard" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="metric-dashboard">
+    <d:layout.container>
+        <f:if condition="{data.header} || {data.description}">
+            <header class="metric-dashboard__intro">
+                <f:if condition="{data.header}">
+                    <h2 class="metric-dashboard__headline">{data -> f:render.text(field: 'header')}</h2>
+                </f:if>
+                <f:if condition="{data.description}">
+                    <p class="metric-dashboard__description">{data -> f:render.text(field: 'description')}</p>
+                </f:if>
+            </header>
+        </f:if>
+
+        <div class="metric-dashboard__grid">
+            <f:for each="{data.items}" as="item">
+                <article class="metric-dashboard__card">
+                    <div class="metric-dashboard__label">{item -> f:render.text(field: 'label')}</div>
+                    <div class="metric-dashboard__value">{item -> f:render.text(field: 'value')}</div>
+                    <f:if condition="{item.change}">
+                        <div class="metric-dashboard__change metric-dashboard__change--{item.trend -> f:or(alternative: 'neutral')}">
+                            {item -> f:render.text(field: 'change')}
+                        </div>
+                    </f:if>
+                </article>
+            </f:for>
+        </div>
+
+        <f:if condition="{data.chart_data}">
+            <div class="metric-dashboard__chart"
+                 data-chart-data="{data.chart_data -> f:format.htmlspecialchars()}"
+                 data-chart-id="metric-dash-{data.uid}">
+                <svg class="metric-dashboard__sparkline" id="metric-dash-{data.uid}"></svg>
+            </div>
+        </f:if>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

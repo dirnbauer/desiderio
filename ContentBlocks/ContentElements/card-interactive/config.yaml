@@ -1,0 +1,39 @@
+name: desiderio/card-interactive
+typeName: desiderio_cardinteractive
+title: 'Card Interactive Data View'
+description: 'Card Interactive Data View arranges multiple pieces of content as scannable cards, grids, or libraries. Editors can manage headline and copy fields, link and CTA controls and layout or variant options.'
+group: data
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: description
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
+    rows: 3
+  -
+    identifier: icon_style
+    type: Select
+    renderType: selectSingle
+    label: Icon
+    description: 'Semantic icon key rendered through the active shadcn icon library.'
+    itemsProcessors:
+      10:
+        class: Webconsulting\Desiderio\DataHandling\IconItemsProcessor
+    default: star
+  -
+    identifier: link
+    type: Link
+    label: 'Card Link'
+  -
+    identifier: badge_text
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:badge_text'

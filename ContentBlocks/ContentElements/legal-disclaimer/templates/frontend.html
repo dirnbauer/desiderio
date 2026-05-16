@@ -1,0 +1,21 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-legal-disclaimer" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="legal-disclaimer-section">
+    <d:layout.container>
+        <div class="legal-disclaimer legal-disclaimer--{data.variant -> f:or(alternative: 'default')}">
+            <f:if condition="{data.header}">
+                <h2 class="legal-disclaimer__title">{data -> f:render.text(field: 'header')}</h2>
+            </f:if>
+            <div class="legal-disclaimer__content">
+                {data -> f:render.text(field: 'content')}
+            </div>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

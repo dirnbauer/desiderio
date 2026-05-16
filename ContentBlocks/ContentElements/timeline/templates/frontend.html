@@ -1,0 +1,46 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-timeline" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="timeline">
+    <d:layout.container>
+        <f:if condition="{data.header} || {data.subheadline}">
+            <header class="timeline__intro">
+                <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
+                <f:if condition="{data.subheadline}"><d:atom.typography variant="muted">{data -> f:render.text(field: 'subheadline')}</d:atom.typography></f:if>
+            </header>
+        </f:if>
+
+        <div class="timeline__list">
+            <f:for each="{data.items}" as="item" iteration="iteration">
+                <article class="timeline__item">
+                    <div class="timeline__marker" aria-hidden="true">
+                        <span class="timeline__dot"></span>
+                        <f:if condition="{iteration.isLast} == 0">
+                            <span class="timeline__line"></span>
+                        </f:if>
+                    </div>
+                    <d:molecule.card class="timeline__content">
+                        <div class="timeline__step">{item -> f:render.text(field: 'step')}</div>
+                        <h3 class="timeline__title">{item -> f:render.text(field: 'title')}</h3>
+                        <f:if condition="{item.content}">
+                            <div class="timeline__text">
+                                {item -> f:render.text(field: 'content')}
+                            </div>
+                        </f:if>
+                        <f:if condition="{item.link.url} && {item.link_text}">
+                            <div class="timeline__actions">
+                                <f:link.typolink parameter="{item.link}" class="timeline__link">{item -> f:render.text(field: 'link_text')}</f:link.typolink>
+                            </div>
+                        </f:if>
+                    </d:molecule.card>
+                </article>
+            </f:for>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

@@ -1,0 +1,45 @@
+name: desiderio/feature-accordion
+typeName: desiderio_featureaccordion
+title: 'Accordion Feature Section'
+description: 'Accordion Feature Section turns layered answers or grouped information into a compact expandable block. Editors can manage headline and copy fields, media pickers and repeatable entries.'
+group: features
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: subheadline
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
+    rows: 2
+  -
+    identifier: image
+    type: File
+    label: 'Side Image'
+    allowed: common-image-types
+    maxitems: 1
+  -
+    identifier: items
+    type: Collection
+    table: feature_accordion_items
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:features'
+    minItems: 1
+    fields:
+      -
+        identifier: title
+        type: Textarea
+        rows: 1
+        label: 'Feature Title'
+        required: true
+      -
+        identifier: content
+        type: Textarea
+        label: 'Feature Details'
+        enableRichtext: true
+        rows: 4

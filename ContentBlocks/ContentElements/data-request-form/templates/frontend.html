@@ -1,0 +1,49 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-data-request-form" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="data-request-form-section">
+    <d:layout.container>
+        <div class="data-request-form">
+            <f:if condition="{data.header}">
+                <h2 class="data-request-form__title">{data -> f:render.text(field: 'header')}</h2>
+            </f:if>
+            <f:if condition="{data.description}">
+                <p class="data-request-form__description">{data -> f:render.text(field: 'description')}</p>
+            </f:if>
+            <form class="data-request-form__form">
+                <div class="data-request-form__field">
+                    <label class="data-request-form__label" for="drf-name-{data.uid}">Full Name</label>
+                    <input type="text" id="drf-name-{data.uid}" class="data-request-form__input" required="required"/>
+                </div>
+                <div class="data-request-form__field">
+                    <label class="data-request-form__label" for="drf-email-{data.uid}">Email Address</label>
+                    <input type="email" id="drf-email-{data.uid}" class="data-request-form__input" required="required"/>
+                </div>
+                <f:if condition="{data.request_types}">
+                    <div class="data-request-form__field">
+                        <label class="data-request-form__label" for="drf-type-{data.uid}">Request Type</label>
+                        <select id="drf-type-{data.uid}" class="data-request-form__select">
+                            <f:for each="{data.request_types}" as="type">
+                                <option value="{type.value -> f:or(alternative: type.label)}">{type -> f:render.text(field: 'label')}</option>
+                            </f:for>
+                        </select>
+                    </div>
+                </f:if>
+                <div class="data-request-form__field">
+                    <label class="data-request-form__label" for="drf-details-{data.uid}">Additional Details</label>
+                    <textarea id="drf-details-{data.uid}" class="data-request-form__textarea" rows="4"></textarea>
+                </div>
+                <f:if condition="{data.privacy_text}">
+                    <p class="data-request-form__privacy">{data -> f:render.text(field: 'privacy_text')}</p>
+                </f:if>
+                <button type="submit" class="data-request-form__submit">{data.submit_text -> f:or(alternative: 'Submit Request')}</button>
+            </form>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

@@ -1,0 +1,29 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-header-banner" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="header-banner header-banner--{data.variant -> f:or(alternative: 'default')}">
+    <f:if condition="{data.background_image}">
+        <f:for each="{data.background_image}" as="image">
+            <f:image image="{image}" class="header-banner__bg" alt=""/>
+        </f:for>
+    </f:if>
+    <d:layout.container>
+        <header class="header-banner__inner">
+            <f:if condition="{data.header}">
+                <h1 class="header-banner__title">{data -> f:render.text(field: 'header')}</h1>
+            </f:if>
+            <f:if condition="{data.subheadline}">
+                <p class="header-banner__description">{data -> f:render.text(field: 'subheadline')}</p>
+            </f:if>
+            <f:if condition="{data.button_text} && {data.button_link.url}">
+                <d:atom.button href="{data.button_link.url}" target="{data.button_link.target}" size="lg">{data -> f:render.text(field: 'button_text')}</d:atom.button>
+            </f:if>
+        </header>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

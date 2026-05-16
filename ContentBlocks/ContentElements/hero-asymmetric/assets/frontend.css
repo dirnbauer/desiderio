@@ -1,0 +1,31 @@
+.hero-asymmetric__grid {
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    gap: var(--d-spacing-8);
+    align-items: center;
+    padding-block: var(--d-spacing-12);
+}
+.hero-asymmetric__content {
+    padding-right: var(--d-spacing-4);
+}
+.hero-asymmetric__headline {
+    font-size: var(--d-text-4xl);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-top: var(--d-spacing-3);
+    margin-bottom: var(--d-spacing-4);
+}
+.hero-asymmetric__subheadline {
+    font-size: var(--d-text-lg);
+    color: var(--d-muted-foreground);
+    margin-bottom: var(--d-spacing-6);
+}
+.hero-asymmetric__actions {
+    display: flex;
+    gap: var(--d-spacing-3);
+}
+.hero-asymmetric__image {
+    width: 100%;
+    height: auto;
+    border-radius: var(--d-radius-lg);
+}

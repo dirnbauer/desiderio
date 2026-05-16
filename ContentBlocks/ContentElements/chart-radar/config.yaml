@@ -1,0 +1,44 @@
+name: desiderio/chart-radar
+typeName: desiderio_chartradar
+title: 'Radar Chart'
+description: 'Radar Chart turns data into a specific chart treatment with a clear visual focus. Editors can manage headline and copy fields and layout or variant options.'
+group: data
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: description
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
+    rows: 2
+  -
+    identifier: chart_data
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:chart_data_json'
+    description: |
+      JSON object: {"labels":["Speed","Reliability","Support","UX","Price"],"values":[4,5,3,4,5]} (values 0–5 scale)
+    rows: 6
+    required: true
+  -
+    identifier: fill_opacity
+    type: Select
+    renderType: selectSingle
+    label: 'Fill opacity'
+    items:
+      -
+        label: Light
+        value: '0.15'
+      -
+        label: Medium
+        value: '0.25'
+      -
+        label: Strong
+        value: '0.4'
+    default: '0.25'

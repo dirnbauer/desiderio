@@ -1,0 +1,28 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-callback-request" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="callback-request">
+    <d:layout.container>
+        <d:molecule.card class="callback-request__card">
+            <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
+            <f:if condition="{data.description}"><d:atom.typography variant="muted">{data -> f:render.text(field: 'description')}</d:atom.typography></f:if>
+            <form class="callback-request__form" action="{data.form_action.url}" method="post">
+                <label class="callback-request__field">
+                    <span class="callback-request__label">Name</span>
+                    <input class="callback-request__input" type="text" name="name" required="required"/>
+                </label>
+                <label class="callback-request__field">
+                    <span class="callback-request__label">Phone</span>
+                    <input class="callback-request__input" type="tel" name="phone" required="required"/>
+                </label>
+                <d:atom.button type="submit">{data.button_text -> f:or(alternative: 'Request callback')}</d:atom.button>
+            </form>
+        </d:molecule.card>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

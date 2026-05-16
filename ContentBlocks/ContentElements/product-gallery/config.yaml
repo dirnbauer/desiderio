@@ -1,0 +1,43 @@
+name: desiderio/product-gallery
+typeName: desiderio_productgallery
+title: 'Product Gallery Pricing'
+description: 'Product Gallery Pricing supports buying decisions with prices, plans, packages, or calculated options. Editors can manage headline and copy fields, media pickers and layout or variant options.'
+group: pricing
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: images
+    type: File
+    label: 'Product Images'
+    allowed: common-image-types
+    maxitems: 10
+    minitems: 1
+  -
+    identifier: caption
+    type: Textarea
+    rows: 1
+    label: 'Gallery Caption'
+  -
+    identifier: columns
+    type: Select
+    renderType: selectSingle
+    label: 'Thumbnail Columns'
+    items:
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.4_columns'
+        value: '4'
+      -
+        label: '5 Columns'
+        value: '5'
+      -
+        label: '6 Columns'
+        value: '6'
+    default: '4'

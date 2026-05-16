@@ -1,0 +1,52 @@
+name: desiderio/footer-brand
+typeName: desiderio_footerbrand
+title: 'Brand Footer'
+description: 'Brand Footer closes a page with utility information, legal links, contact routes, or service details. Editors can manage headline and copy fields, media pickers and link and CTA controls.'
+group: footer
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: logo
+    type: File
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:logo'
+    allowed: common-image-types
+    maxitems: 1
+  -
+    identifier: brand
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:brand_name'
+  -
+    identifier: tagline
+    type: Textarea
+    rows: 1
+    label: Tagline
+  -
+    identifier: link_items
+    type: Collection
+    table: footer_brand_link_items
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:links'
+    fields:
+      -
+        identifier: label
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:label_field'
+        required: true
+      -
+        identifier: link
+        type: Link
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:link'
+  -
+    identifier: copyright
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:copyright_text'

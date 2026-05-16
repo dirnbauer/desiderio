@@ -1,0 +1,1096 @@
+{
+    "parentPid": 505,
+    "description": "Styleguide seed manifest for creating one TYPO3 test page per content element wizard category below page id 505.",
+    "groups": [
+        {
+            "groupId": "content",
+            "groupTitle": "Content & Editorial",
+            "pageTitle": "Desiderio Content & Editorial",
+            "elements": [
+                {
+                    "name": "Accordion",
+                    "ctype": "desiderio_accordion"
+                },
+                {
+                    "name": "Article Grid",
+                    "ctype": "desiderio_articlegrid"
+                },
+                {
+                    "name": "Article Hero",
+                    "ctype": "desiderio_articlehero"
+                },
+                {
+                    "name": "Audio Player",
+                    "ctype": "desiderio_audioplayer"
+                },
+                {
+                    "name": "Blog Teasers",
+                    "ctype": "desiderio_blogteasers"
+                },
+                {
+                    "name": "Callout",
+                    "ctype": "desiderio_callout"
+                },
+                {
+                    "name": "Code Block",
+                    "ctype": "desiderio_codeblock"
+                },
+                {
+                    "name": "Content Carousel",
+                    "ctype": "desiderio_contentcarousel"
+                },
+                {
+                    "name": "Content Columns",
+                    "ctype": "desiderio_contentcolumns"
+                },
+                {
+                    "name": "Content Divider",
+                    "ctype": "desiderio_contentdivider"
+                },
+                {
+                    "name": "Content Grid",
+                    "ctype": "desiderio_contentgrid"
+                },
+                {
+                    "name": "Content Highlight",
+                    "ctype": "desiderio_contenthighlight"
+                },
+                {
+                    "name": "Content Sidebar",
+                    "ctype": "desiderio_contentsidebar"
+                },
+                {
+                    "name": "Definition List",
+                    "ctype": "desiderio_definitionlist"
+                },
+                {
+                    "name": "FAQ",
+                    "ctype": "desiderio_faq"
+                },
+                {
+                    "name": "File Download",
+                    "ctype": "desiderio_filedownload"
+                },
+                {
+                    "name": "Gallery",
+                    "ctype": "desiderio_gallery"
+                },
+                {
+                    "name": "How-to Steps",
+                    "ctype": "desiderio_howtosteps"
+                },
+                {
+                    "name": "Quote",
+                    "ctype": "desiderio_quote"
+                },
+                {
+                    "name": "Resource Library",
+                    "ctype": "desiderio_resourcelibrary"
+                },
+                {
+                    "name": "Table Content",
+                    "ctype": "desiderio_tablecontent"
+                },
+                {
+                    "name": "Tabs",
+                    "ctype": "desiderio_tabs"
+                },
+                {
+                    "name": "Text & Media",
+                    "ctype": "desiderio_textmedia"
+                },
+                {
+                    "name": "Timeline",
+                    "ctype": "desiderio_timeline"
+                },
+                {
+                    "name": "Video Embed",
+                    "ctype": "desiderio_videoembed"
+                }
+            ]
+        },
+        {
+            "groupId": "conversion",
+            "groupTitle": "Leads & Conversion",
+            "pageTitle": "Desiderio Leads & Conversion",
+            "elements": [
+                {
+                    "name": "Banner Call to Action",
+                    "ctype": "desiderio_ctabanner"
+                },
+                {
+                    "name": "Booking Form",
+                    "ctype": "desiderio_bookingform"
+                },
+                {
+                    "name": "Call to Action",
+                    "ctype": "desiderio_cta"
+                },
+                {
+                    "name": "Callback Request",
+                    "ctype": "desiderio_callbackrequest"
+                },
+                {
+                    "name": "Card Call to Action",
+                    "ctype": "desiderio_ctacard"
+                },
+                {
+                    "name": "Contact",
+                    "ctype": "desiderio_contact"
+                },
+                {
+                    "name": "Contact Info",
+                    "ctype": "desiderio_contactinfo"
+                },
+                {
+                    "name": "Contact Split",
+                    "ctype": "desiderio_contactsplit"
+                },
+                {
+                    "name": "Demo Request",
+                    "ctype": "desiderio_demorequest"
+                },
+                {
+                    "name": "Directions",
+                    "ctype": "desiderio_directions"
+                },
+                {
+                    "name": "Download Form",
+                    "ctype": "desiderio_downloadform"
+                },
+                {
+                    "name": "Emergency Contact",
+                    "ctype": "desiderio_emergencycontact"
+                },
+                {
+                    "name": "Feedback Form",
+                    "ctype": "desiderio_feedbackform"
+                },
+                {
+                    "name": "Floating Call to Action",
+                    "ctype": "desiderio_ctafloating"
+                },
+                {
+                    "name": "Gradient Call to Action",
+                    "ctype": "desiderio_ctagradient"
+                },
+                {
+                    "name": "Image Call to Action",
+                    "ctype": "desiderio_ctawithimage"
+                },
+                {
+                    "name": "Inline Call to Action",
+                    "ctype": "desiderio_ctainline"
+                },
+                {
+                    "name": "Map Embed",
+                    "ctype": "desiderio_mapembed"
+                },
+                {
+                    "name": "Minimal Call to Action",
+                    "ctype": "desiderio_ctaminimal"
+                },
+                {
+                    "name": "Newsletter Inline",
+                    "ctype": "desiderio_newsletterinline"
+                },
+                {
+                    "name": "Newsletter Signup",
+                    "ctype": "desiderio_newslettersignup"
+                },
+                {
+                    "name": "Office Hours",
+                    "ctype": "desiderio_officehours"
+                },
+                {
+                    "name": "Social Links",
+                    "ctype": "desiderio_sociallinks"
+                },
+                {
+                    "name": "Split Call to Action",
+                    "ctype": "desiderio_ctasplit"
+                },
+                {
+                    "name": "Waitlist Signup",
+                    "ctype": "desiderio_waitlistsignup"
+                }
+            ]
+        },
+        {
+            "groupId": "data",
+            "groupTitle": "Data & Dashboards",
+            "pageTitle": "Desiderio Data & Dashboards",
+            "elements": [
+                {
+                    "name": "Alert Data View",
+                    "ctype": "desiderio_alert"
+                },
+                {
+                    "name": "Analytics Overview",
+                    "ctype": "desiderio_analyticsoverview"
+                },
+                {
+                    "name": "Area Chart",
+                    "ctype": "desiderio_chartarea"
+                },
+                {
+                    "name": "Badge Grid Data View",
+                    "ctype": "desiderio_badgegrid"
+                },
+                {
+                    "name": "Bar Chart",
+                    "ctype": "desiderio_chartbar"
+                },
+                {
+                    "name": "Card Data View",
+                    "ctype": "desiderio_card"
+                },
+                {
+                    "name": "Card Interactive Data View",
+                    "ctype": "desiderio_cardinteractive"
+                },
+                {
+                    "name": "Card Overlay Data View",
+                    "ctype": "desiderio_cardoverlay"
+                },
+                {
+                    "name": "Card Pricing Data View",
+                    "ctype": "desiderio_cardpricing"
+                },
+                {
+                    "name": "Changelog Data View",
+                    "ctype": "desiderio_changelog"
+                },
+                {
+                    "name": "Chart",
+                    "ctype": "desiderio_chart"
+                },
+                {
+                    "name": "Comparison Table",
+                    "ctype": "desiderio_comparisontable"
+                },
+                {
+                    "name": "Contribution Chart",
+                    "ctype": "desiderio_chartcontribution"
+                },
+                {
+                    "name": "Counter",
+                    "ctype": "desiderio_counter"
+                },
+                {
+                    "name": "Data Table",
+                    "ctype": "desiderio_datatable"
+                },
+                {
+                    "name": "Donut Chart",
+                    "ctype": "desiderio_chartdonut"
+                },
+                {
+                    "name": "Heatmap Chart",
+                    "ctype": "desiderio_chartheatmap"
+                },
+                {
+                    "name": "Infographic Data View",
+                    "ctype": "desiderio_infographic"
+                },
+                {
+                    "name": "KPI Cards",
+                    "ctype": "desiderio_kpicards"
+                },
+                {
+                    "name": "Leaderboard",
+                    "ctype": "desiderio_leaderboard"
+                },
+                {
+                    "name": "Line Chart",
+                    "ctype": "desiderio_chartline"
+                },
+                {
+                    "name": "Metric Dashboard",
+                    "ctype": "desiderio_metricdashboard"
+                },
+                {
+                    "name": "Notification Data View",
+                    "ctype": "desiderio_notification"
+                },
+                {
+                    "name": "Pie Chart",
+                    "ctype": "desiderio_chartpie"
+                },
+                {
+                    "name": "Progress Bar Data View",
+                    "ctype": "desiderio_progressbar"
+                },
+                {
+                    "name": "Radar Chart",
+                    "ctype": "desiderio_chartradar"
+                },
+                {
+                    "name": "Sparkline Chart",
+                    "ctype": "desiderio_chartsparkline"
+                },
+                {
+                    "name": "Stacked Bar Chart",
+                    "ctype": "desiderio_chartstackedbar"
+                },
+                {
+                    "name": "Stat Cards Data View",
+                    "ctype": "desiderio_statcards"
+                },
+                {
+                    "name": "Status Indicator Data View",
+                    "ctype": "desiderio_statusindicator"
+                }
+            ]
+        },
+        {
+            "groupId": "features",
+            "groupTitle": "Features & Benefits",
+            "pageTitle": "Desiderio Features & Benefits",
+            "elements": [
+                {
+                    "name": "3-Column Feature Grid",
+                    "ctype": "desiderio_featuregrid3"
+                },
+                {
+                    "name": "4-Column Feature Grid",
+                    "ctype": "desiderio_featuregrid4"
+                },
+                {
+                    "name": "Accordion Feature Section",
+                    "ctype": "desiderio_featureaccordion"
+                },
+                {
+                    "name": "Alternating Feature Section",
+                    "ctype": "desiderio_featurealternating"
+                },
+                {
+                    "name": "Benefit Cards",
+                    "ctype": "desiderio_benefitcards"
+                },
+                {
+                    "name": "Bento Feature Section",
+                    "ctype": "desiderio_featurebento"
+                },
+                {
+                    "name": "Cards Feature Section",
+                    "ctype": "desiderio_featurecards"
+                },
+                {
+                    "name": "Carousel Feature Section",
+                    "ctype": "desiderio_featurecarousel"
+                },
+                {
+                    "name": "Centered Feature Section",
+                    "ctype": "desiderio_featurecentered"
+                },
+                {
+                    "name": "Checklist Feature Section",
+                    "ctype": "desiderio_featurechecklist"
+                },
+                {
+                    "name": "Comparison Feature Section",
+                    "ctype": "desiderio_featurecomparison"
+                },
+                {
+                    "name": "Features",
+                    "ctype": "desiderio_features"
+                },
+                {
+                    "name": "Highlight Feature Section",
+                    "ctype": "desiderio_featurehighlight"
+                },
+                {
+                    "name": "Icons Feature Section",
+                    "ctype": "desiderio_featureicons"
+                },
+                {
+                    "name": "Image Feature Section",
+                    "ctype": "desiderio_featureimage"
+                },
+                {
+                    "name": "List Feature Section",
+                    "ctype": "desiderio_featurelist"
+                },
+                {
+                    "name": "Matrix Feature Section",
+                    "ctype": "desiderio_featurematrix"
+                },
+                {
+                    "name": "Minimal Feature Section",
+                    "ctype": "desiderio_featureminimal"
+                },
+                {
+                    "name": "Numbered Feature Section",
+                    "ctype": "desiderio_featurenumbered"
+                },
+                {
+                    "name": "Split Feature Section",
+                    "ctype": "desiderio_featuresplit"
+                },
+                {
+                    "name": "Stats Feature Section",
+                    "ctype": "desiderio_featurestats"
+                },
+                {
+                    "name": "Tabs Feature Section",
+                    "ctype": "desiderio_featuretabs"
+                },
+                {
+                    "name": "Timeline Feature Section",
+                    "ctype": "desiderio_featuretimeline"
+                },
+                {
+                    "name": "Use Case Grid",
+                    "ctype": "desiderio_usecasegrid"
+                },
+                {
+                    "name": "Video Feature Section",
+                    "ctype": "desiderio_featurevideo"
+                }
+            ]
+        },
+        {
+            "groupId": "footer",
+            "groupTitle": "Footers & Utility Areas",
+            "pageTitle": "Desiderio Footers & Utility Areas",
+            "elements": [
+                {
+                    "name": "Accessibility Statement",
+                    "ctype": "desiderio_accessibilitystatement"
+                },
+                {
+                    "name": "App Links Footer",
+                    "ctype": "desiderio_footerapplinks"
+                },
+                {
+                    "name": "Back to Top Button",
+                    "ctype": "desiderio_backtotop"
+                },
+                {
+                    "name": "Brand Footer",
+                    "ctype": "desiderio_footerbrand"
+                },
+                {
+                    "name": "Centered Footer",
+                    "ctype": "desiderio_footercentered"
+                },
+                {
+                    "name": "Columns Footer",
+                    "ctype": "desiderio_footercolumns"
+                },
+                {
+                    "name": "Compliance Badges",
+                    "ctype": "desiderio_compliancebadges"
+                },
+                {
+                    "name": "Contact Footer",
+                    "ctype": "desiderio_footercontact"
+                },
+                {
+                    "name": "Cookie Banner",
+                    "ctype": "desiderio_cookiebanner"
+                },
+                {
+                    "name": "Copyright Bar",
+                    "ctype": "desiderio_copyrightbar"
+                },
+                {
+                    "name": "Dark Footer",
+                    "ctype": "desiderio_footerdark"
+                },
+                {
+                    "name": "Data Request Form",
+                    "ctype": "desiderio_datarequestform"
+                },
+                {
+                    "name": "Footer",
+                    "ctype": "desiderio_footer"
+                },
+                {
+                    "name": "GDPR Banner",
+                    "ctype": "desiderio_gdprbanner"
+                },
+                {
+                    "name": "Imprint",
+                    "ctype": "desiderio_imprint"
+                },
+                {
+                    "name": "Legal Disclaimer",
+                    "ctype": "desiderio_legaldisclaimer"
+                },
+                {
+                    "name": "Legal Links",
+                    "ctype": "desiderio_legallinks"
+                },
+                {
+                    "name": "Mega Footer",
+                    "ctype": "desiderio_footermega"
+                },
+                {
+                    "name": "Minimal Footer",
+                    "ctype": "desiderio_footerminimal"
+                },
+                {
+                    "name": "Newsletter Footer",
+                    "ctype": "desiderio_footernewsletter"
+                },
+                {
+                    "name": "Privacy Notice",
+                    "ctype": "desiderio_privacynotice"
+                },
+                {
+                    "name": "Sitemap Grid",
+                    "ctype": "desiderio_sitemapgrid"
+                },
+                {
+                    "name": "Social Footer",
+                    "ctype": "desiderio_footersocial"
+                },
+                {
+                    "name": "Split Footer",
+                    "ctype": "desiderio_footersplit"
+                },
+                {
+                    "name": "Terms Summary",
+                    "ctype": "desiderio_termssummary"
+                }
+            ]
+        },
+        {
+            "groupId": "hero",
+            "groupTitle": "Hero & Landing Intros",
+            "pageTitle": "Desiderio Hero & Landing Intros",
+            "elements": [
+                {
+                    "name": "Animated Hero",
+                    "ctype": "desiderio_heroanimated"
+                },
+                {
+                    "name": "Announcement Hero",
+                    "ctype": "desiderio_heroannouncement"
+                },
+                {
+                    "name": "App Hero",
+                    "ctype": "desiderio_heroapp"
+                },
+                {
+                    "name": "Asymmetric Hero",
+                    "ctype": "desiderio_heroasymmetric"
+                },
+                {
+                    "name": "Call to Action Hero",
+                    "ctype": "desiderio_heroctaonly"
+                },
+                {
+                    "name": "Carousel Hero",
+                    "ctype": "desiderio_herocarousel"
+                },
+                {
+                    "name": "Countdown Hero",
+                    "ctype": "desiderio_herocountdown"
+                },
+                {
+                    "name": "Dual Call to Action Hero",
+                    "ctype": "desiderio_herodualcta"
+                },
+                {
+                    "name": "Form Hero",
+                    "ctype": "desiderio_heroform"
+                },
+                {
+                    "name": "Fullscreen Hero",
+                    "ctype": "desiderio_herofullscreen"
+                },
+                {
+                    "name": "Gradient Hero",
+                    "ctype": "desiderio_herogradient"
+                },
+                {
+                    "name": "Hero Section",
+                    "ctype": "desiderio_hero"
+                },
+                {
+                    "name": "Illustration Hero",
+                    "ctype": "desiderio_heroillustration"
+                },
+                {
+                    "name": "Logo Cloud Hero",
+                    "ctype": "desiderio_herologocloud"
+                },
+                {
+                    "name": "Minimal Hero",
+                    "ctype": "desiderio_herominimal"
+                },
+                {
+                    "name": "Parallax Hero",
+                    "ctype": "desiderio_heroparallax"
+                },
+                {
+                    "name": "Pricing Hero",
+                    "ctype": "desiderio_heropricing"
+                },
+                {
+                    "name": "Product Hero",
+                    "ctype": "desiderio_heroproduct"
+                },
+                {
+                    "name": "Saas Hero",
+                    "ctype": "desiderio_herosaas"
+                },
+                {
+                    "name": "Search Hero",
+                    "ctype": "desiderio_herosearch"
+                },
+                {
+                    "name": "Stacked Hero",
+                    "ctype": "desiderio_herostacked"
+                },
+                {
+                    "name": "Startup Hero",
+                    "ctype": "desiderio_herostartup"
+                },
+                {
+                    "name": "Stats Hero",
+                    "ctype": "desiderio_herostats"
+                },
+                {
+                    "name": "Testimonial Hero",
+                    "ctype": "desiderio_herotestimonial"
+                },
+                {
+                    "name": "Video Hero",
+                    "ctype": "desiderio_herovideo"
+                }
+            ]
+        },
+        {
+            "groupId": "navigation",
+            "groupTitle": "Navigation & Wayfinding",
+            "pageTitle": "Desiderio Navigation & Wayfinding",
+            "elements": [
+                {
+                    "name": "Announcement Bar",
+                    "ctype": "desiderio_announcementbar"
+                },
+                {
+                    "name": "Breadcrumb",
+                    "ctype": "desiderio_breadcrumb"
+                },
+                {
+                    "name": "Centered Navigation Bar",
+                    "ctype": "desiderio_navbarcentered"
+                },
+                {
+                    "name": "Dropdown Navigation Bar",
+                    "ctype": "desiderio_navbardropdown"
+                },
+                {
+                    "name": "Header Banner",
+                    "ctype": "desiderio_headerbanner"
+                },
+                {
+                    "name": "Header Page",
+                    "ctype": "desiderio_headerpage"
+                },
+                {
+                    "name": "Header Profile",
+                    "ctype": "desiderio_headerprofile"
+                },
+                {
+                    "name": "Header Section",
+                    "ctype": "desiderio_headersection"
+                },
+                {
+                    "name": "Icon Navigation Bar",
+                    "ctype": "desiderio_navbaricon"
+                },
+                {
+                    "name": "Mega Menu",
+                    "ctype": "desiderio_megamenu"
+                },
+                {
+                    "name": "Minimal Navigation Bar",
+                    "ctype": "desiderio_navbarminimal"
+                },
+                {
+                    "name": "Mobile Navigation Bar",
+                    "ctype": "desiderio_navbarmobile"
+                },
+                {
+                    "name": "Navigation Bar",
+                    "ctype": "desiderio_navbar"
+                },
+                {
+                    "name": "Pagination Navigation",
+                    "ctype": "desiderio_navpagination"
+                },
+                {
+                    "name": "Search Header",
+                    "ctype": "desiderio_searchheader"
+                },
+                {
+                    "name": "Sidebar Navigation Bar",
+                    "ctype": "desiderio_navbarsidebar"
+                },
+                {
+                    "name": "Split Navigation Bar",
+                    "ctype": "desiderio_navbarsplit"
+                },
+                {
+                    "name": "Stacked Navigation Bar",
+                    "ctype": "desiderio_navbarstacked"
+                },
+                {
+                    "name": "Steps Navigation",
+                    "ctype": "desiderio_navsteps"
+                },
+                {
+                    "name": "Sticky Navigation Bar",
+                    "ctype": "desiderio_navbarsticky"
+                },
+                {
+                    "name": "Tabbed Navigation Bar",
+                    "ctype": "desiderio_navbartabbed"
+                },
+                {
+                    "name": "Table of Contents Navigation",
+                    "ctype": "desiderio_navtoc"
+                },
+                {
+                    "name": "Tabs Navigation",
+                    "ctype": "desiderio_navtabs"
+                },
+                {
+                    "name": "Transparent Navigation Bar",
+                    "ctype": "desiderio_navbartransparent"
+                },
+                {
+                    "name": "Utility Bar",
+                    "ctype": "desiderio_utilitybar"
+                }
+            ]
+        },
+        {
+            "groupId": "pricing",
+            "groupTitle": "Plans & Pricing",
+            "pageTitle": "Desiderio Plans & Pricing",
+            "elements": [
+                {
+                    "name": "Annual Monthly Pricing",
+                    "ctype": "desiderio_pricingannualmonthly"
+                },
+                {
+                    "name": "Bundle Pricing",
+                    "ctype": "desiderio_bundlepricing"
+                },
+                {
+                    "name": "Calculator Pricing",
+                    "ctype": "desiderio_pricingcalculator"
+                },
+                {
+                    "name": "Category Cards Pricing",
+                    "ctype": "desiderio_categorycards"
+                },
+                {
+                    "name": "Comparison Pricing",
+                    "ctype": "desiderio_pricingcomparison"
+                },
+                {
+                    "name": "Enterprise Pricing",
+                    "ctype": "desiderio_pricingenterprise"
+                },
+                {
+                    "name": "FAQ Pricing",
+                    "ctype": "desiderio_pricingfaq"
+                },
+                {
+                    "name": "Four Tier Pricing",
+                    "ctype": "desiderio_pricingfourtier"
+                },
+                {
+                    "name": "Order Summary Pricing",
+                    "ctype": "desiderio_ordersummary"
+                },
+                {
+                    "name": "Pricing Section",
+                    "ctype": "desiderio_pricing"
+                },
+                {
+                    "name": "Product Card Pricing",
+                    "ctype": "desiderio_productcard"
+                },
+                {
+                    "name": "Product Comparison Pricing",
+                    "ctype": "desiderio_productcomparison"
+                },
+                {
+                    "name": "Product Feature Pricing",
+                    "ctype": "desiderio_productfeature"
+                },
+                {
+                    "name": "Product Gallery Pricing",
+                    "ctype": "desiderio_productgallery"
+                },
+                {
+                    "name": "Product Grid Pricing",
+                    "ctype": "desiderio_productgrid"
+                },
+                {
+                    "name": "Product Hero Pricing",
+                    "ctype": "desiderio_producthero"
+                },
+                {
+                    "name": "Product Reviews Pricing",
+                    "ctype": "desiderio_productreviews"
+                },
+                {
+                    "name": "Product Specs Pricing",
+                    "ctype": "desiderio_productspecs"
+                },
+                {
+                    "name": "Simple Pricing",
+                    "ctype": "desiderio_pricingsimple"
+                },
+                {
+                    "name": "Slider Pricing",
+                    "ctype": "desiderio_pricingslider"
+                },
+                {
+                    "name": "Special Offer Pricing",
+                    "ctype": "desiderio_specialoffer"
+                },
+                {
+                    "name": "Three Tier Pricing",
+                    "ctype": "desiderio_pricingthreetier"
+                },
+                {
+                    "name": "Toggle Pricing",
+                    "ctype": "desiderio_pricingtoggle"
+                },
+                {
+                    "name": "Two Tier Pricing",
+                    "ctype": "desiderio_pricingtwotier"
+                },
+                {
+                    "name": "Usage Pricing",
+                    "ctype": "desiderio_pricingusage"
+                }
+            ]
+        },
+        {
+            "groupId": "social-proof",
+            "groupTitle": "Trust & Social Proof",
+            "pageTitle": "Desiderio Trust & Social Proof",
+            "elements": [
+                {
+                    "name": "Awards",
+                    "ctype": "desiderio_awards"
+                },
+                {
+                    "name": "Bar Stats",
+                    "ctype": "desiderio_statsbar"
+                },
+                {
+                    "name": "Carousel Testimonial",
+                    "ctype": "desiderio_testimonialcarousel"
+                },
+                {
+                    "name": "Case Study Card",
+                    "ctype": "desiderio_casestudycard"
+                },
+                {
+                    "name": "Case Study Featured",
+                    "ctype": "desiderio_casestudyfeatured"
+                },
+                {
+                    "name": "Case Study Grid",
+                    "ctype": "desiderio_casestudygrid"
+                },
+                {
+                    "name": "Certifications",
+                    "ctype": "desiderio_certifications"
+                },
+                {
+                    "name": "Client List",
+                    "ctype": "desiderio_clientlist"
+                },
+                {
+                    "name": "Compare",
+                    "ctype": "desiderio_compare"
+                },
+                {
+                    "name": "Counter Stats",
+                    "ctype": "desiderio_statscounter"
+                },
+                {
+                    "name": "Featured Testimonial",
+                    "ctype": "desiderio_testimonialfeatured"
+                },
+                {
+                    "name": "Grid Testimonial",
+                    "ctype": "desiderio_testimonialgrid"
+                },
+                {
+                    "name": "Inline Stats",
+                    "ctype": "desiderio_statsinline"
+                },
+                {
+                    "name": "Logo Carousel",
+                    "ctype": "desiderio_logocarousel"
+                },
+                {
+                    "name": "Logo Cloud",
+                    "ctype": "desiderio_logocloud"
+                },
+                {
+                    "name": "Logo Grid",
+                    "ctype": "desiderio_logogrid"
+                },
+                {
+                    "name": "Press Mentions",
+                    "ctype": "desiderio_pressmentions"
+                },
+                {
+                    "name": "Rating Display",
+                    "ctype": "desiderio_ratingdisplay"
+                },
+                {
+                    "name": "Review Carousel",
+                    "ctype": "desiderio_reviewcarousel"
+                },
+                {
+                    "name": "Social Proof Counter",
+                    "ctype": "desiderio_socialproofcounter"
+                },
+                {
+                    "name": "Stats Section",
+                    "ctype": "desiderio_stats"
+                },
+                {
+                    "name": "Testimonial",
+                    "ctype": "desiderio_testimonial"
+                },
+                {
+                    "name": "Trust Badges",
+                    "ctype": "desiderio_trustbadges"
+                },
+                {
+                    "name": "Video Testimonial",
+                    "ctype": "desiderio_testimonialvideo"
+                },
+                {
+                    "name": "Wall Testimonial",
+                    "ctype": "desiderio_testimonialwall"
+                }
+            ]
+        },
+        {
+            "groupId": "team",
+            "groupTitle": "People & Team",
+            "pageTitle": "Desiderio People & Team",
+            "elements": [
+                {
+                    "name": "About the Company",
+                    "ctype": "desiderio_aboutus"
+                },
+                {
+                    "name": "Advisor Grid",
+                    "ctype": "desiderio_advisorgrid"
+                },
+                {
+                    "name": "Board Members",
+                    "ctype": "desiderio_boardmembers"
+                },
+                {
+                    "name": "Brand Story",
+                    "ctype": "desiderio_brandstory"
+                },
+                {
+                    "name": "CTA Team Section",
+                    "ctype": "desiderio_teamcta"
+                },
+                {
+                    "name": "Career Listing",
+                    "ctype": "desiderio_careerlisting"
+                },
+                {
+                    "name": "Carousel Team Section",
+                    "ctype": "desiderio_teamcarousel"
+                },
+                {
+                    "name": "Company Culture",
+                    "ctype": "desiderio_companyculture"
+                },
+                {
+                    "name": "Company History",
+                    "ctype": "desiderio_companyhistory"
+                },
+                {
+                    "name": "Company Milestones",
+                    "ctype": "desiderio_companymilestones"
+                },
+                {
+                    "name": "Company Perks",
+                    "ctype": "desiderio_companyperks"
+                },
+                {
+                    "name": "Company Stats",
+                    "ctype": "desiderio_companystats"
+                },
+                {
+                    "name": "Company Values",
+                    "ctype": "desiderio_companyvalues"
+                },
+                {
+                    "name": "Department Team Section",
+                    "ctype": "desiderio_teamdepartment"
+                },
+                {
+                    "name": "Founder Quote",
+                    "ctype": "desiderio_founderquote"
+                },
+                {
+                    "name": "Grid Minimal Team Section",
+                    "ctype": "desiderio_teamgridminimal"
+                },
+                {
+                    "name": "Investor Grid",
+                    "ctype": "desiderio_investorgrid"
+                },
+                {
+                    "name": "Job Card",
+                    "ctype": "desiderio_jobcard"
+                },
+                {
+                    "name": "Member Team Section",
+                    "ctype": "desiderio_teammember"
+                },
+                {
+                    "name": "Mission Statement",
+                    "ctype": "desiderio_missionstatement"
+                },
+                {
+                    "name": "Office Locations",
+                    "ctype": "desiderio_officelocations"
+                },
+                {
+                    "name": "Organization Chart",
+                    "ctype": "desiderio_orgchart"
+                },
+                {
+                    "name": "Partner Grid",
+                    "ctype": "desiderio_partnergrid"
+                },
+                {
+                    "name": "Team Section",
+                    "ctype": "desiderio_team"
+                },
+                {
+                    "name": "With Bio Team Section",
+                    "ctype": "desiderio_teamwithbio"
+                }
+            ]
+        }
+    ]
+}

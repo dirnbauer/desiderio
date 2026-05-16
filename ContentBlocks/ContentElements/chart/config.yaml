@@ -1,0 +1,127 @@
+name: desiderio/chart
+typeName: desiderio_chart
+title: Chart
+description: 'Chart turns compact metric data into a token-driven diagram with legends, labels, and animated line or bar variants. Editors can manage headline, data, legend, and display options.'
+group: data
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: description
+    type: Textarea
+    label: 'Chart Description'
+    rows: 2
+  -
+    identifier: chart_data
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:chart_data_json'
+    description: |
+      Enter data as JSON array, e.g.:
+      [{"label": "Jan", "value": 186}, {"label": "Feb", "value": 305}]
+    rows: 6
+    required: true
+  -
+    identifier: chart_type
+    type: Select
+    renderType: selectSingle
+    label: 'Chart Type'
+    items:
+      -
+        label: Area
+        value: area
+      -
+        label: Line
+        value: line
+      -
+        label: Bar
+        value: bar
+      -
+        label: 'Horizontal Bar'
+        value: horizontal_bar
+    default: area
+  -
+    identifier: color_variant
+    type: Select
+    renderType: selectSingle
+    label: 'Chart Color'
+    items:
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.primary'
+        value: primary
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.blue'
+        value: blue
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.green'
+        value: green
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.orange'
+        value: orange
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.red'
+        value: red
+    default: primary
+  -
+    identifier: show_grid
+    type: Checkbox
+    label: 'Show Grid Lines'
+    default: 1
+  -
+    identifier: show_legend
+    type: Checkbox
+    label: 'Show Legend'
+    default: 1
+  -
+    identifier: legend_position
+    type: Select
+    renderType: selectSingle
+    label: 'Legend Position'
+    items:
+      -
+        label: Bottom
+        value: bottom
+      -
+        label: Right
+        value: right
+    default: bottom
+  -
+    identifier: show_values
+    type: Checkbox
+    label: 'Show Values'
+    default: 1
+  -
+    identifier: fill_type
+    type: Select
+    renderType: selectSingle
+    label: 'Fill Style'
+    items:
+      -
+        label: Gradient
+        value: gradient
+      -
+        label: Solid
+        value: solid
+    default: gradient
+  -
+    identifier: chart_height
+    type: Select
+    renderType: selectSingle
+    label: 'Chart Height'
+    items:
+      -
+        label: 'Small (200px)'
+        value: small
+      -
+        label: 'Medium (300px)'
+        value: medium
+      -
+        label: 'Large (400px)'
+        value: large
+    default: medium

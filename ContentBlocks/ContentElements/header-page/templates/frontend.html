@@ -1,0 +1,29 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-header-page" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="header-page header-page--{data.variant -> f:or(alternative: 'left')}">
+    <d:layout.container>
+        <header class="header-page__inner">
+            <f:if condition="{data.eyebrow}">
+                <span class="header-page__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span>
+            </f:if>
+            <f:if condition="{data.header}">
+                <h1 class="header-page__title">{data -> f:render.text(field: 'header')}</h1>
+            </f:if>
+            <f:if condition="{data.subheadline}">
+                <p class="header-page__description">{data -> f:render.text(field: 'subheadline')}</p>
+            </f:if>
+            <f:if condition="{data.button_text} && {data.button_link.url}">
+                <div class="header-page__actions">
+                    <d:atom.button href="{data.button_link.url}" target="{data.button_link.target}">{data -> f:render.text(field: 'button_text')}</d:atom.button>
+                </div>
+            </f:if>
+        </header>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

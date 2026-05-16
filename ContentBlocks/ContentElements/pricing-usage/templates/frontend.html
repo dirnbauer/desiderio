@@ -1,0 +1,45 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-pricing-usage" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="pricing-usage">
+    <d:layout.container>
+        <f:if condition="{data.eyebrow} || {data.header} || {data.subheadline}">
+            <header class="pricing-usage__intro">
+                <f:if condition="{data.eyebrow}">
+                    <span class="pricing-usage__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span>
+                </f:if>
+                <f:if condition="{data.header}">
+                    <h2 class="pricing-usage__headline">{data -> f:render.text(field: 'header')}</h2>
+                </f:if>
+                <f:if condition="{data.subheadline}">
+                    <p class="pricing-usage__description">{data -> f:render.text(field: 'subheadline')}</p>
+                </f:if>
+            </header>
+        </f:if>
+
+        <div class="pricing-usage__grid">
+            <f:for each="{data.items}" as="item">
+                <article class="pricing-usage__card">
+                    <h3 class="pricing-usage__title">{item -> f:render.text(field: 'title')}</h3>
+                    <div class="pricing-usage__rate-row">
+                        <span class="pricing-usage__rate">{item -> f:render.text(field: 'rate')}</span>
+                        <span class="pricing-usage__unit">/ {item -> f:render.text(field: 'unit')}</span>
+                    </div>
+                    <f:if condition="{item.description}">
+                        <p class="pricing-usage__card-desc">{item -> f:render.text(field: 'description')}</p>
+                    </f:if>
+                    <f:if condition="{item.link.url}">
+                        <f:link.typolink parameter="{item.link}" class="pricing-usage__link">
+                            Learn more &rarr;
+                        </f:link.typolink>
+                    </f:if>
+                </article>
+            </f:for>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+</html>

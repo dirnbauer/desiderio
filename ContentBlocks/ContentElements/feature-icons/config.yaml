@@ -1,0 +1,58 @@
+name: desiderio/feature-icons
+typeName: desiderio_featureicons
+title: 'Icons Feature Section'
+description: 'Icons Feature Section explains product value, features, or use cases in a clear content structure. Editors can manage headline and copy fields, repeatable entries and layout or variant options.'
+group: features
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: columns
+    type: Select
+    renderType: selectSingle
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:columns'
+    items:
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.3_columns'
+        value: '3'
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.4_columns'
+        value: '4'
+      -
+        label: '6 Columns'
+        value: '6'
+    default: '4'
+  -
+    identifier: items
+    type: Collection
+    table: feature_icons_items
+    label: 'Icon Features'
+    minItems: 1
+    fields:
+      -
+        identifier: icon
+        type: Select
+        renderType: selectSingle
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:icon_emoji'
+        description: 'Semantic icon key rendered through the active shadcn icon library.'
+        itemsProcessors:
+          10:
+            class: Webconsulting\Desiderio\DataHandling\IconItemsProcessor
+      -
+        identifier: title
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:title'
+        required: true
+      -
+        identifier: description_text
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:short_description'

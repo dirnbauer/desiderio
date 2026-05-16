@@ -1,0 +1,52 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-chart" href="{cb:assetPath()}/frontend.css"/>
+
+<f:variable name="chartId" value="chart-{data.uid}"/>
+
+<d:layout.section class="chart-section">
+    <d:layout.container>
+        <div class="chart chart--{data.color_variant -> f:or(alternative: 'primary')}"
+             data-chart-type="{data.chart_type -> f:or(alternative: 'area')}"
+             data-chart-data="{data.chart_data -> f:format.htmlspecialchars()}"
+             data-show-grid="{f:if(condition: data.show_grid, then: 'true', else: 'false')}"
+             data-show-legend="{f:if(condition: data.show_legend, then: 'true', else: 'false')}"
+             data-legend-position="{data.legend_position -> f:or(alternative: 'bottom')}"
+             data-show-values="{f:if(condition: data.show_values, then: 'true', else: 'false')}"
+             data-fill-type="{data.fill_type -> f:or(alternative: 'gradient')}"
+             data-chart-id="{chartId}">
+
+            <div class="chart__card">
+                <f:if condition="{data.header} || {data.description}">
+                    <div class="chart__header">
+                        <f:if condition="{data.header}">
+                            <h3 class="chart__title">{data -> f:render.text(field: 'header')}</h3>
+                        </f:if>
+                        <f:if condition="{data.description}">
+                            <p class="chart__description">{data -> f:render.text(field: 'description')}</p>
+                        </f:if>
+                    </div>
+                </f:if>
+
+                <div class="chart__body chart__body--legend-{data.legend_position -> f:or(alternative: 'bottom')}">
+                    <div class="chart__content">
+                        <svg class="chart__canvas chart__canvas--{data.chart_height -> f:or(alternative: 'medium')}"
+                             id="{chartId}"
+                             role="img"
+                             aria-label="{data.header -> f:or(alternative: 'Chart')}"></svg>
+                        <div class="chart__tooltip" style="display: none;">
+                            <div class="chart__tooltip-label"></div>
+                            <div class="chart__tooltip-value"></div>
+                        </div>
+                    </div>
+                    <div class="chart__legend" aria-label="Chart legend"></div>
+                </div>
+            </div>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

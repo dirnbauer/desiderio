@@ -1,0 +1,43 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-progress-bar" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="progress-bar-section progress-bar-section--{data.variant -> f:or(alternative: 'default')}">
+    <d:layout.container>
+        <f:if condition="{data.header}">
+            <d:atom.typography tag="h2" variant="h2" class="progress-bar-section__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
+        </f:if>
+
+        <div class="progress progress--{data.variant -> f:or(alternative: 'default')} progress--{data.color -> f:or(alternative: 'primary')}">
+            <f:if condition="{data.variant} == 'labeled'">
+                <f:then>
+                    <div class="progress__meta">
+                        <f:if condition="{data.header}">
+                            <span class="progress__label">{data -> f:render.text(field: 'header')}</span>
+                        </f:if>
+                        <f:if condition="{data.show_percentage}">
+                            <span class="progress__value">{data.progress_value}%</span>
+                        </f:if>
+                    </div>
+                </f:then>
+            </f:if>
+            <d:atom.progress value="{data.progress_value}" class="progress__track">
+                <div class="progress__indicator progress__indicator--{data.color -> f:or(alternative: 'primary')}{f:if(condition: '{data.variant} == {s:}striped{s:}', then: ' progress__indicator--striped')}"
+                     role="progressbar"
+                     aria-valuenow="{data.progress_value}"
+                     aria-valuemin="0"
+                     aria-valuemax="100"
+                     style="width: {data.progress_value}%">
+                    <f:if condition="{data.show_percentage} && {data.variant} != 'labeled'">
+                        <span class="progress__text">{data.progress_value}%</span>
+                    </f:if>
+                </div>
+            </d:atom.progress>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

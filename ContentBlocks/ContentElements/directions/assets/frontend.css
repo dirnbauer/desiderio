@@ -1,0 +1,21 @@
+.directions__intro {
+    margin-block-end: var(--d-spacing-xl);
+}
+.directions__list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--d-spacing-lg);
+}
+@media (max-width: 768px) {
+    .directions__list { grid-template-columns: 1fr; }
+}
+.directions__mode {
+    font-weight: 600;
+    margin-block-end: var(--d-spacing-xs);
+}
+.directions__description {
+    font-size: var(--d-text-sm);
+    color: var(--muted-foreground);
+    line-height: 1.6;
+    white-space: pre-line;
+}

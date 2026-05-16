@@ -1,0 +1,50 @@
+name: desiderio/definition-list
+typeName: desiderio_definitionlist
+title: 'Definition List'
+description: 'Definition List arranges multiple pieces of content as scannable cards, grids, or libraries. Editors can manage headline and copy fields, repeatable entries and layout or variant options.'
+group: content
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: shadcn_layout
+    type: Select
+    renderType: selectSingle
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:shadcn_layout'
+    items:
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.stacked'
+        value: stacked
+      -
+        label: Inline
+        value: inline
+      -
+        label: Grid
+        value: grid
+    default: stacked
+  -
+    identifier: items
+    type: Collection
+    table: definition_list_items
+    label: Definitions
+    minItems: 1
+    fields:
+      -
+        identifier: term
+        type: Textarea
+        rows: 1
+        label: Term
+        required: true
+      -
+        identifier: definition
+        type: Textarea
+        label: Definition
+        rows: 2
+        required: true

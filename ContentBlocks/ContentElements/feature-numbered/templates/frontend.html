@@ -1,0 +1,31 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-feature-numbered" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="feature-numbered">
+    <d:layout.container>
+        <f:if condition="{data.header}">
+            <header class="feature-numbered__intro">
+                <d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography>
+                <f:if condition="{data.subheadline}"><d:atom.typography variant="muted">{data -> f:render.text(field: 'subheadline')}</d:atom.typography></f:if>
+            </header>
+        </f:if>
+
+        <div class="feature-numbered__grid">
+            <f:for each="{data.items}" as="item" iteration="iter">
+                <div class="feature-numbered__item">
+                    <span class="feature-numbered__number" aria-hidden="true">{f:format.padding(padLength: 2, padString: '0')}{iter.cycle}</span>
+                    <h3 class="feature-numbered__title">{item -> f:render.text(field: 'title')}</h3>
+                    <f:if condition="{item.description}">
+                        <p class="feature-numbered__description">{item -> f:render.text(field: 'description')}</p>
+                    </f:if>
+                </div>
+            </f:for>
+        </div>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

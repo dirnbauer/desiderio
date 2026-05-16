@@ -1,0 +1,56 @@
+name: desiderio/pricing-simple
+typeName: desiderio_pricingsimple
+title: 'Simple Pricing'
+description: 'Simple Pricing supports buying decisions with prices, plans, packages, or calculated options. Editors can manage headline and copy fields, repeatable entries and link and CTA controls.'
+group: pricing
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: price
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:price'
+    required: true
+  -
+    identifier: billing_period
+    type: Textarea
+    rows: 1
+    label: 'Billing Period'
+    description: 'e.g. per month'
+  -
+    identifier: description
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
+    rows: 2
+  -
+    identifier: features
+    type: Collection
+    table: pricing_simple_features
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:features'
+    labelField: text
+    minItems: 1
+    maxItems: 8
+    fields:
+      -
+        identifier: text
+        type: Textarea
+        rows: 1
+        label: Feature
+  -
+    identifier: button_text
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_text'
+    default: 'Get Started'
+  -
+    identifier: button_link
+    type: Link
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_link'

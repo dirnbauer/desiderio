@@ -1,0 +1,38 @@
+name: desiderio/footer-contact
+typeName: desiderio_footercontact
+title: 'Contact Footer'
+description: 'Contact Footer captures visitor intent with focused form or request messaging. Editors can manage headline and copy fields.'
+group: footer
+prefixFields: false
+basics:
+  - TYPO3/Appearance
+  - TYPO3/Links
+  - TYPO3/Categories
+fields:
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+  -
+    identifier: address
+    type: Textarea
+    label: Address
+    rows: 3
+  -
+    identifier: email
+    type: Text
+    label: Email
+  -
+    identifier: phone
+    type: Text
+    label: Phone
+  -
+    identifier: hours
+    type: Textarea
+    rows: 1
+    label: 'Business Hours'
+  -
+    identifier: copyright
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:copyright_text'

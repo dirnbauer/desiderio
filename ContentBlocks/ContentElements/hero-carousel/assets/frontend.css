@@ -1,0 +1,32 @@
+.hero-carousel {
+    padding-block: var(--d-spacing-12);
+    overflow: hidden;
+}
+.hero-carousel__track {
+    position: relative;
+}
+.hero-carousel__slide {
+    display: none;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--d-spacing-8);
+    align-items: center;
+}
+.hero-carousel__slide--active {
+    display: grid;
+}
+.hero-carousel__title {
+    font-size: var(--d-text-4xl);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: var(--d-spacing-4);
+}
+.hero-carousel__description {
+    font-size: var(--d-text-lg);
+    color: var(--d-muted-foreground);
+    margin-bottom: var(--d-spacing-6);
+}
+.hero-carousel__image {
+    width: 100%;
+    height: auto;
+    border-radius: var(--d-radius-lg);
+}

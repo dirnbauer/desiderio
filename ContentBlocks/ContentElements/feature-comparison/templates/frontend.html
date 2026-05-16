@@ -1,0 +1,43 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<f:asset.css identifier="d-feature-comparison" href="{cb:assetPath()}/frontend.css"/>
+
+<d:layout.section class="feature-comparison">
+    <d:layout.container>
+        <f:if condition="{data.header}">
+            <header class="feature-comparison__intro">
+                <d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography>
+            </header>
+        </f:if>
+
+        <d:molecule.card class="feature-comparison__table">
+            <div class="feature-comparison__head">
+                <span class="feature-comparison__feature-col">Feature</span>
+                <span class="feature-comparison__check-col">{data.left_title -> f:or(alternative: 'Option A')}</span>
+                <span class="feature-comparison__check-col">{data.right_title -> f:or(alternative: 'Option B')}</span>
+            </div>
+            <f:for each="{data.items}" as="item">
+                <div class="feature-comparison__row">
+                    <span class="feature-comparison__feature-col">{item -> f:render.text(field: 'feature')}</span>
+                    <span class="feature-comparison__check-col">
+                        <f:if condition="{item.left_supported}">
+                            <f:then><span class="feature-comparison__yes" aria-label="Yes">&#10003;</span></f:then>
+                            <f:else><span class="feature-comparison__no" aria-label="No">&#8212;</span></f:else>
+                        </f:if>
+                    </span>
+                    <span class="feature-comparison__check-col">
+                        <f:if condition="{item.right_supported}">
+                            <f:then><span class="feature-comparison__yes" aria-label="Yes">&#10003;</span></f:then>
+                            <f:else><span class="feature-comparison__no" aria-label="No">&#8212;</span></f:else>
+                        </f:if>
+                    </span>
+                </div>
+            </f:for>
+        </d:molecule.card>
+    </d:layout.container>
+</d:layout.section>
+
+</html>

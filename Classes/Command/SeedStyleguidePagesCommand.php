@@ -954,6 +954,8 @@ final class SeedStyleguidePagesCommand extends Command
             str_contains($normalizedField, 'ctatext') || str_contains($normalizedField, 'buttontext') || str_contains($normalizedField, 'submittext') => $this->buildDefaultButtonText($normalizedField, $elementLabel),
             str_contains($normalizedField, 'linktext') => $this->pickDemoString(self::DEMO_BUTTON_LABELS, $name . '-' . $field, $index),
             str_contains($normalizedField, 'placeholder') => 'name@example.com',
+            $normalizedField === 'unitlabel' => $this->buildDefaultUnitLabel($ctype),
+            $normalizedField === 'volume' => $this->buildDefaultVolumeLabel($index),
             str_contains($normalizedField, 'feature') || str_contains($normalizedField, 'points') || str_contains($normalizedField, 'specs') => $this->buildDefaultList(self::DEMO_FEATURES, $name . '-' . $field, $index),
             str_contains($normalizedField, 'links') || str_contains($normalizedField, 'pages') || str_contains($normalizedField, 'children') => implode("\n", self::DEMO_LINK_LABELS),
             str_contains($normalizedField, 'members') || str_contains($normalizedField, 'people') => $this->buildDefaultPeopleList(),
@@ -1036,6 +1038,16 @@ final class SeedStyleguidePagesCommand extends Command
         }
 
         return $this->pickDemoString(self::DEMO_BUTTON_LABELS, $elementLabel . '-' . $normalizedField, 0);
+    }
+
+    private function buildDefaultUnitLabel(string $ctype): string
+    {
+        return str_contains($this->normalizeIdentifier($ctype), 'pricingcalculator') ? 'users' : 'requests';
+    }
+
+    private function buildDefaultVolumeLabel(int $index): string
+    {
+        return ['1K', '10K', '100K', '1M'][$index % 4];
     }
 
     private function buildDefaultLinkValue(string $field, int $index): string

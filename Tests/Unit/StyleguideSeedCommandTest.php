@@ -131,6 +131,58 @@ final class StyleguideSeedCommandTest extends TestCase
         );
     }
 
+    public function testPricingSliderMissingTierFieldsUsePricingDefaults(): void
+    {
+        $command = $this->createCommand();
+        $definition = [
+            'fields' => [
+                'header' => ['identifier' => 'header', 'type' => 'Textarea'],
+                'unit_label' => ['identifier' => 'unit_label', 'type' => 'Textarea'],
+            ],
+            'collections' => [
+                'tiers' => [
+                    'table' => 'pricing_slider_tiers',
+                    'minItems' => 2,
+                    'maxItems' => null,
+                    'fields' => [
+                        'volume' => ['identifier' => 'volume', 'type' => 'Textarea'],
+                        'price' => ['identifier' => 'price', 'type' => 'Textarea'],
+                        'included_features' => ['identifier' => 'included_features', 'type' => 'Textarea'],
+                    ],
+                ],
+            ],
+        ];
+
+        $resolvedFixtureData = $this->invokeMethod($command, 'completeResolvedFixtureData', [
+            'desiderio_pricingslider',
+            'Slider Pricing',
+            $definition,
+            ['header' => 'Pay As You Grow'],
+            [
+                'tiers' => [
+                    'table' => 'pricing_slider_tiers',
+                    'items' => [
+                        ['price' => '$19'],
+                        ['price' => '$79'],
+                        ['price' => '$299'],
+                    ],
+                ],
+            ],
+            [],
+        ]);
+
+        self::assertIsArray($resolvedFixtureData);
+        [$fields, $collections] = $resolvedFixtureData;
+
+        self::assertSame('requests', $fields['unit_label']);
+        self::assertSame('1K', $collections['tiers']['items'][0]['volume']);
+        self::assertSame('10K', $collections['tiers']['items'][1]['volume']);
+        self::assertSame('100K', $collections['tiers']['items'][2]['volume']);
+        self::assertSame('$79', $collections['tiers']['items'][1]['price']);
+        self::assertStringContainsString('Theme-aware component states', $collections['tiers']['items'][0]['included_features']);
+        self::assertStringNotContainsString('Volume for', $collections['tiers']['items'][0]['volume']);
+    }
+
     public function testHeadersAreConvertedToColumnDefinitions(): void
     {
         $command = $this->createCommand();

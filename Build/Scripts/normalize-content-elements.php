@@ -806,11 +806,31 @@ function previewFieldPriority(string $identifier): int
         str_contains($normalized, 'eyebrow') || str_contains($normalized, 'badge') || str_contains($normalized, 'kicker') => 10,
         str_contains($normalized, 'subheadline') || str_contains($normalized, 'description') || str_contains($normalized, 'summary') || str_contains($normalized, 'intro') || str_contains($normalized, 'lead') => 20,
         str_contains($normalized, 'quote') || str_contains($normalized, 'content') || str_contains($normalized, 'body') || str_contains($normalized, 'copy') => 30,
-        str_contains($normalized, 'value') || str_contains($normalized, 'price') || str_contains($normalized, 'count') || str_contains($normalized, 'rating') => 40,
+        str_contains($normalized, 'value') || str_contains($normalized, 'price') || identifierContainsAnyWord($identifier, ['count', 'counter', 'total', 'quantity', 'qty']) || str_contains($normalized, 'rating') => 40,
         str_contains($normalized, 'chartdata') || str_contains($normalized, 'rowdata') || str_contains($normalized, 'period') || str_contains($normalized, 'date') => 50,
         str_contains($normalized, 'buttontext') || str_contains($normalized, 'ctatext') || str_contains($normalized, 'label') => 60,
         default => 90,
     };
+}
+
+/**
+ * @param list<string> $words
+ */
+function identifierContainsAnyWord(string $identifier, array $words): bool
+{
+    $separated = preg_replace('/([a-z0-9])([A-Z])/', '$1 $2', $identifier) ?? $identifier;
+    $parts = preg_split('/[^a-zA-Z0-9]+/', strtolower($separated), -1, PREG_SPLIT_NO_EMPTY);
+    if (!is_array($parts)) {
+        return false;
+    }
+
+    foreach ($words as $word) {
+        if (in_array(strtolower($word), $parts, true)) {
+            return true;
+        }
+    }
+
+    return false;
 }
 
 function readableIdentifier(string $identifier): string

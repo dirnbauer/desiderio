@@ -37,6 +37,7 @@ Every PR is gated by the GitHub Actions workflow at
     seed-command type drift is captured in
     ``phpstan-baseline.neon`` as a documented ratchet target.
 *   **PHPUnit ^11.5** across PHP 8.3 + 8.4 against TYPO3 ^14.3.
+    The local suite currently covers 88 unit tests.
 *   **Content element audit** (``scripts/audit-content-elements.php``)
     gating ``template_undeclared_field``, ``hardcoded_inline_style``,
     ``hardcoded_color``, and the other strict categories at zero.

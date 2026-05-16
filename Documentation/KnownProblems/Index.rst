@@ -7,8 +7,8 @@ Known problems
 Seed command requires the live workspace
 ========================================
 
-``vendor/bin/typo3 desiderio:styleguide:seed`` writes live records
-directly via Doctrine. As of v2.1.0 the command refuses to run when:
+``vendor/bin/typo3 desiderio:styleguide:seed`` writes styleguide
+fixture records to the live workspace. The command refuses to run when:
 
 *   The active workspace is not the live workspace (returns failure
     with a clear error).
@@ -25,6 +25,8 @@ workspace first and call:
 Files written by the command live in ``fileadmin/desiderio-styleguide/``
 and are **not** workspace-versioned. Re-running the seeder overwrites
 metadata in place; do not point it at editor-curated FAL folders.
+Cleanup queries are explicitly scoped to live workspace rows when TYPO3
+versioning columns exist, so existing draft overlays are left alone.
 
 PHPStan baseline
 ================

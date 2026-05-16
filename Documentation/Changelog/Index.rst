@@ -6,8 +6,8 @@ Changelog
 
 The authoritative release notes live in :file:`CHANGELOG.md` at the
 repository root and follow `Keep a Changelog
-<https://keepachangelog.com/>`__. The current release is **2.1.0** —
-*v14.3 LTS only, six-skill cleanup loop applied*.
+<https://keepachangelog.com/>`__. The current release is **2.2.0** —
+*v14.3 LTS only, workspaces cleanup loop applied*.
 
 Highlights:
 

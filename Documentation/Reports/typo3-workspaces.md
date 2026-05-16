@@ -1,29 +1,37 @@
-# TYPO3 Workspaces Audit (v14.3 LTS)
+# TYPO3 Workspaces Audit
 
-Date: 2026-05-03
-Workspace readiness: Medium
+Date: 2026-05-16
+Target: TYPO3 14.3 LTS only
+Status: Green with documented FAL limitation
 
 ## Summary
 
-The runtime extension code is largely workspace-safe: rendering goes through Fluid Styled Content / Content Blocks (`record-transformation`, `files`, `split`, `comma-separated-value` are all v14 workspace-aware processors), and templates only consume `data.uid` for DOM anchors which is exactly what the overlay mechanism preserves. The principal risk is the `desiderio:styleguide:seed` CLI command: it inserts pages, `tt_content`, collection rows, `sys_file_reference`, and `sys_file_metadata` directly via `Doctrine\DBAL\Connection`, ignoring the active workspace, never setting any `t3ver_*` field, and bypassing `WorkspaceRestriction` in its cleanup queries. Run-time impact is contained (the seeder is an admin tool), but it must never be invoked while a workspace is active or against editor-curated pages.
+Desiderio requires `typo3/cms-workspaces ^14.3` and keeps the
+styleguide seeder out of offline workspaces. The seeder writes fixture
+records to the live workspace only, and destructive cleanup queries now
+add explicit live workspace predicates when TYPO3 versioning columns
+exist.
 
-## Findings
+## Current Controls
 
-- [HIGH] Seeder writes pages/tt_content as live regardless of active workspace - inserts run with no `t3ver_oid`, `t3ver_wsid`, or `t3ver_state` and `filterRow()` only retains schema columns. Path: `Classes/Command/SeedStyleguidePagesCommand.php:131-135, 405-414, 1979-1986`. Fix: detect `Context->getPropertyFromAspect('workspace','id',0) > 0` and fail fast, or route writes through DataHandler so workspaces/history/refindex are honoured.
-- [HIGH] Cleanup `UPDATE`/`DELETE` queries strip all restrictions, so they hit workspace overlay rows too - `markExistingDesiderioContentAsDeleted()` (line 226) updates by `pid` + `CType` only; `findExistingDesiderioContentUids()` and `findCollectionRowUidsByPid()` remove every restriction (`getRestrictions()->removeAll()`), then bulk-delete `sys_file_reference`/collection rows. Path: `Classes/Command/SeedStyleguidePagesCommand.php:217-235, 261-279, 348-366, 371-389`. Fix: scope by `t3ver_wsid = 0` and `t3ver_state IN (0,1)`, or call `DataHandler::process_cmdmap` with `delete` commands.
-- [HIGH] Seeder never declares "live workspace required" - no docblock, runtime guard, or README note tells editors that running the command from a workspace-active backend session would (a) leak fixture pages into live and (b) mass-delete existing styleguide content. Path: `Classes/Command/SeedStyleguidePagesCommand.php:74-149` and `README.md:14`. Fix: add an `assertLiveWorkspace()` helper using `Context` + `WorkspaceAspect`, or set the workspace explicitly via `BackendUserAuthentication::setWorkspace(0)` before any DB write.
-- [MEDIUM] `sys_file_metadata` upsert ignores file-versioning constraints - the seeder writes metadata directly (line 1686-1692), and FAL files are not workspace-versioned at all (see Workspaces skill section 2). For a styleguide that re-imports the same `desiderio-styleguide/` folder, this is acceptable, but overwriting metadata while a workspace draft references the file would push the change live immediately. Path: `Classes/Command/SeedStyleguidePagesCommand.php:1651-1693`. Fix: document the "files are not versioned" caveat or refuse to update metadata when a draft exists.
-- [MEDIUM] Generated styleguide images live under guessable filenames in `fileadmin/desiderio-styleguide/` - basename is reused from the EXT path (e.g. `workspace-marvin-meyer.jpg`). Not confidential, but matches the predictable-filename pattern flagged in the Workspaces skill. Path: `Classes/Command/SeedStyleguidePagesCommand.php:32, 1610-1626, 887-889`. Fix: keep as-is for the styleguide (low sensitivity); document that production media using workspaces must avoid in-place file overwrites.
-- [LOW] No explicit `versioningWS` toggles for Content Blocks child tables - the extension defines collection tables (e.g. `press_mentions_mentions`, `tabs_*`) only via Content Blocks YAML; Content Blocks v2 enables `versioningWS` automatically, but a regression there would silently break workspace overlays for styleguide collections. Path: `ContentBlocks/ContentElements/*/config.yaml`, `Configuration/TCA/Overrides/tt_content.php:1-29`. Fix: add a functional test that asserts `$GLOBALS['TCA'][$childTable]['ctrl']['versioningWS'] === true` for every `type: Collection` table (also satisfies #106821).
-- [INFO] Fluid templates use `{data.uid}` only for DOM anchors / chart IDs - `Resources/Private/FluidStyledContent/Layouts/Default.fluid.html:10`, `Resources/Private/Templates/Layouts/Content/Default.fluid.html:8`, `ContentBlocks/ContentElements/tabs/templates/frontend.html:20-33`, `chart-radar/templates/frontend.html:24-32`, `chart-contribution/templates/frontend.html:26-69`. Because `versionOL()` preserves the live `uid` during overlay (Workspaces skill section 1), these IDs remain stable across draft/live and do not need `t3ver_oid` / `l10n_parent`. No change required.
-- [INFO] Backend layouts are pure colPos config - `Configuration/BackendLayouts/ShadcnUi/DesiderioBlog.tsconfig`, `DesiderioNews.tsconfig`, `DesiderioExtension.tsconfig`, `DesiderioStartpage.tsconfig`, `DesiderioContentpage*.tsconfig`, `DesiderioStyleguide.tsconfig` declare only column structure with no record fetching, so they compose cleanly with workspace previews of `pages` and `tt_content`.
-- [INFO] News rendering delegates to EXT:news - `Configuration/Sets/DesiderioNews/setup.typoscript:1-14` only overrides template/partial/layout paths; record overlays are handled inside `tx_news` (workspace-aware). No raw-array reads in `Resources/Private/Extensions/News/`.
-- [INFO] Content TypoScript stays on workspace-aware processors - `Configuration/Sets/Desiderio/TypoScript/content.typoscript:21,26-31,35-39,44-50,55-63,68-87,91-98` uses `record-transformation`, `files`, `split`, `comma-separated-value`, and `menu`, all of which apply `versionOL()` internally on TYPO3 v14. The single `RECORDS` cObject (`lib.desiderioShortcutRecords`, line 100-105) sets `dontCheckPid = 1` but `RECORDS` itself respects workspace overlays, so existing `tt_content.shortcut` rendering remains correct.
+- `composer.json` requires `typo3/cms-workspaces ^14.3`.
+- `ext_emconf.php` depends on `workspaces` `14.3.0-14.99.99`.
+- `SeedStyleguidePagesCommand` reads the TYPO3 `workspace` context
+  aspect and returns failure for workspace IDs other than `0`.
+- Cleanup queries for `tt_content`, Content Blocks collection tables,
+  and `sys_file_reference` include `t3ver_wsid = 0` and `t3ver_oid = 0`
+  when those columns exist.
+- Existing styleguide page lookup is restricted to live page rows when
+  versioning columns exist.
 
-## Recommended changes (ranked)
+## Remaining Caveat
 
-1. Guard `desiderio:styleguide:seed` against non-live workspaces: read `Context->getPropertyFromAspect('workspace','id',0)`; abort with a clear error if `> 0`. Force `BE_USER->setWorkspace(0)` before any DB write. (Findings 1+3)
-2. Replace the raw cleanup `UPDATE`/`DELETE` chain (`markExistingDesiderioContentAsDeleted`, `deleteCollectionRowsForPage`, `deleteFileReferencesForRecords`) with a single `DataHandler::process_cmdmap` `delete` pass scoped to live records, so `WorkspaceRestriction` and reference index stay consistent. (Finding 2)
-3. Add a functional test (Tests/Functional) that loads `workspaces` core extension and asserts `versioningWS === true` for `pages`, `tt_content`, and every Content Block collection table; this protects against silent regressions on `#106821`. (Finding 6)
-4. Document the seeder constraints in `README.md` and `Documentation/typo3-conformance.md`: "run only on the live workspace, never on editor pages" plus a one-liner about FAL files not being versioned. (Findings 3+4)
-5. Optionally migrate `seedFileReferences()` and `upsertFileMetadata()` to DataHandler so the published reference index stays in sync; current direct inserts work but require manual `bin/typo3 referenceindex:update` after seeding for full correctness in a workspace-enabled instance. (Finding 4)
+FAL files are not workspace-versioned in TYPO3. Files seeded under
+`fileadmin/desiderio-styleguide/` are live files and must not be used as
+a confidentiality boundary for staged editorial content.
+
+## Verification
+
+- `Build/Scripts/runTests.sh phpstan`: passed.
+- `Build/Scripts/runTests.sh phpunit`: 88 tests passed.
+- `Build/Scripts/runTests.sh`: passed.

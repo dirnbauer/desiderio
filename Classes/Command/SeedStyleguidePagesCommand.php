@@ -37,32 +37,32 @@ final class SeedStyleguidePagesCommand extends Command
     private const NESTED_COLLECTIONS_KEY = '__collections';
     private const STYLEGUIDE_FAL_FOLDER = 'desiderio-styleguide';
     private const DEMO_BADGES = [
-        'shadcn/ui system',
-        'Token driven',
-        'Production polish',
-        'A11y ready',
-        'Radix pattern',
+        'shadcn/ui',
+        'Token-ready',
+        'Premium surface',
+        'A11y checked',
+        'Radix rhythm',
         'Modern TYPO3',
     ];
     private const DEMO_BUTTON_LABELS = [
-        'Explore pattern',
+        'View pattern',
         'Open preview',
         'Compare states',
-        'Read the playbook',
-        'Start refinement',
+        'Read playbook',
+        'Start review',
     ];
     private const DEMO_COPY = [
-        'Frames the component like a polished shadcn product surface with crisp hierarchy, token-aware contrast, and copy that feels ready for a launch page.',
-        'Pairs concise editorial rhythm with shadcn card, badge, input, and button patterns so responsive QA can judge real-world density.',
-        'Gives editors useful labels, direct actions, and nested records that demonstrate the component without drifting away from semantic theme tokens.',
-        'Keeps the visual system quiet and premium: clean borders, compact spacing, strong focus states, and no decorative one-off styling.',
-        'Shows how this block behaves with credible product content, sharp metrics, and modern Unsplash imagery in the import seed.',
+        'Uses crisp shadcn hierarchy, semantic tokens, and concise product copy so the component reads like a real SaaS interface.',
+        'Combines compact badges, direct actions, and scannable content density for desktop, tablet, and mobile review.',
+        'Shows editor-owned fields with believable labels, nested records, and modern media while staying inside the shared theme system.',
+        'Keeps the surface quiet and premium with clean borders, strong focus states, restrained shadows, and no one-off decoration.',
+        'Pairs credible product context, sharp metrics, and Unsplash imagery so the imported page feels launch-ready.',
     ];
     private const DEMO_FEATURES = [
-        'Theme-aware component states',
-        'Accessible keyboard focus',
-        'Reusable TYPO3 Content Blocks',
-        'Responsive editor fixtures',
+        'Theme-aware states',
+        'Keyboard focus built in',
+        'Reusable Content Blocks',
+        'Responsive QA content',
         'Token-based chart colors',
         'Modern Unsplash media',
         'Sleek shadcn spacing',
@@ -76,13 +76,13 @@ final class SeedStyleguidePagesCommand extends Command
         ['Lea Fischer', 'Accessibility Reviewer', 'Signal Bureau'],
     ];
     private const DEMO_SUBJECTS = [
-        'Launch-Ready Component System',
-        'Theme Token Command Center',
+        'Launch-Ready Product Surface',
+        'Token System Command Center',
         'Editor Workflow Upgrade',
         'Accessible Pattern Library',
         'Content Operations Dashboard',
         'Customer Evidence Hub',
-        'Product Experience Audit',
+        'Product Experience Review',
         'Reusable Section Blueprint',
     ];
 
@@ -1149,7 +1149,7 @@ final class SeedStyleguidePagesCommand extends Command
         $copy = self::DEMO_COPY[$index % count(self::DEMO_COPY)];
 
         return sprintf(
-            '%s This %s field is seeded for the %s element.',
+            '%s The %s field gives the %s element enough real content to judge spacing, hierarchy, and responsive behavior.',
             $copy,
             strtolower($fieldLabel),
             strtolower($elementLabel)
@@ -1389,6 +1389,27 @@ final class SeedStyleguidePagesCommand extends Command
                 'alt' => 'A bright modern office with glass walls, teal accents, and clean work areas.',
                 'credit' => 'Copyright/credit: Photo by Deliberate Directions on Unsplash. Used as seeded demo imagery.',
                 'source' => 'https://unsplash.com/photos/modern-office-space-with-glass-walls-and-light-decor-wlHBYkK2y4k',
+            ],
+            [
+                'file' => 'Resources/Public/Styleguide/Unsplash/whiteboard-vitaly-gariev.jpg',
+                'title' => 'Strategy whiteboard session',
+                'alt' => 'A modern team reviewing a whiteboard strategy session in a creative office.',
+                'credit' => 'Copyright/credit: Photo by Vitaly Gariev on Unsplash. Used as seeded demo imagery.',
+                'source' => 'https://unsplash.com/photos/team-collaborating-around-a-whiteboard-in-an-office-CdTQI-Nh7J4',
+            ],
+            [
+                'file' => 'Resources/Public/Styleguide/Unsplash/desk-logan-weaver.jpg',
+                'title' => 'Minimal product desk',
+                'alt' => 'A refined modern desk setup with laptop, keyboard, books, and warm task light.',
+                'credit' => 'Copyright/credit: Photo by LOGAN WEAVER | @LGNWVR on Unsplash. Used as seeded demo imagery.',
+                'source' => 'https://unsplash.com/photos/a-modern-desk-setup-with-laptop-and-books-xjyHDnA93Pk',
+            ],
+            [
+                'file' => 'Resources/Public/Styleguide/Unsplash/planning-blue-sky.jpg',
+                'title' => 'Agile planning board',
+                'alt' => 'A team discussing tasks at a whiteboard during an agile planning session.',
+                'credit' => 'Copyright/credit: Photo by blue sky on Unsplash. Used as seeded demo imagery.',
+                'source' => 'https://unsplash.com/photos/four-men-gathered-around-a-whiteboard-with-sticky-notes-MLWk6FFWURU',
             ],
         ];
     }

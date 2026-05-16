@@ -63,6 +63,14 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 - Base set `webconsulting/desiderio` adds `webconsulting/desiderio-blog`
   to its optional dependency list.
+- TYPO3 runtime packages refreshed to the latest `14.3.x` patch line,
+  including `typo3/cms-workspaces 14.3.1`.
+- `SeedStyleguidePagesCommand` cleanup queries now add explicit live
+  workspace predicates (`t3ver_wsid = 0`, `t3ver_oid = 0` when present)
+  before deleting file references or collection rows, so staged workspace
+  overlays are not removed by a live styleguide reseed.
+- Documentation now reflects the live-workspace seeder guard and the
+  current 88-test PHPUnit suite.
 - Test suite grew by four structural tests asserting:
   shadcn `<d:…>` usage in blog templates,
   typed `<f:argument>` declarations across News/Solr/FSC/Pagination,
@@ -143,5 +151,6 @@ and `webconsulting/shadcn2fluid-templates 3.x` with a clean rewrite:
 templates, and five swappable visual presets. See `MIGRATION-PLAN.md`
 for the migration notes from the old extensions.
 
+[2.2.0]: https://github.com/webconsulting/desiderio/releases/tag/v2.2.0
 [2.1.0]: https://github.com/webconsulting/desiderio/releases/tag/v2.1.0
 [2.0.0]: https://github.com/webconsulting/desiderio/releases/tag/v2.0.0

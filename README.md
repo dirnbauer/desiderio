@@ -4,14 +4,14 @@
 ![TYPO3](https://img.shields.io/badge/TYPO3-v14.3%20LTS-orange)
 ![PHP](https://img.shields.io/badge/PHP-8.3%20%E2%80%93%208.5-blue)
 ![PHPStan](https://img.shields.io/badge/PHPStan-level%20max-brightgreen)
-![Version](https://img.shields.io/badge/version-2.1.0-blue)
+![Version](https://img.shields.io/badge/version-2.2.0-blue)
 
 A self-contained TYPO3 v14.3 LTS theme extension that bundles a
 [shadcn/ui](https://ui.shadcn.com)-inspired Fluid 5 component library, **255
 content elements**, backend layouts, page templates, and five swappable
 visual presets with a committed Tailwind v4/shadcn CSS build.
 
-**Status:** stable · **Version:** 2.1.0 · **TYPO3:** v14.3 LTS only ·
+**Status:** stable · **Version:** 2.2.0 · **TYPO3:** v14.3 LTS only ·
 **PHP:** 8.3 — 8.5 · **License:** GPL-2.0-or-later
 
 > Desiderio 2.0 replaces both `webconsulting/desiderio 1.x` and
@@ -82,7 +82,7 @@ Then enable the base site set plus one of the five presets:
 | PHP | `^8.3` (8.3 – 8.5) | Matches TYPO3 v14.3 LTS support matrix. |
 | Workspaces | `^14.3` | Required, not optional, for editorial preview. |
 | PHPStan | `^2.1`, **level max** | Plus `saschaegerer/phpstan-typo3` and `phpstan-strict-rules`. |
-| PHPUnit | `^11.5` | All 62 unit tests pass via `Build/Scripts/runTests.sh`. |
+| PHPUnit | `^11.5` | All 88 unit tests pass via `Build/Scripts/runTests.sh`. |
 | Content Blocks | `^2.2` | Drives every one of the 255 content elements. |
 
 The base set also pulls in `webconsulting/desiderio-content-elements`, a single

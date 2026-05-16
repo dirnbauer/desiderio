@@ -101,6 +101,72 @@
     margin-block-start: var(--d-section-y, 3rem);
   }
 
+  .desiderio-section {
+    position: relative;
+    isolation: isolate;
+    overflow-x: clip;
+    border-block-start: 1px solid color-mix(in oklch, var(--border) 72%, transparent);
+  }
+
+  .desiderio-section:first-child {
+    border-block-start: 0;
+  }
+
+  .desiderio-section > .desiderio-container {
+    container-type: inline-size;
+  }
+
+  .desiderio-section :where(.card, .feature-card, .pricing-card, .testimonial-card, .metric-card, .stat-card, .team-card, .case-study-card, .resource-card, .product-card, .job-card, .leaderboard__item, .notification, .alert, .table-wrapper, [class$="__card"], [class*="__card "], [class$="__panel"], [class*="__panel "]) {
+    border-color: color-mix(in oklch, var(--border) 82%, transparent);
+    background-color: color-mix(in oklch, var(--card) 96%, var(--background));
+    box-shadow: var(--shadow-sm);
+  }
+
+  .desiderio-section :where(.card, .feature-card, .pricing-card, .testimonial-card, .metric-card, .stat-card, .team-card, .case-study-card, .resource-card, .product-card, .job-card, .leaderboard__item, .notification, .alert, .table-wrapper, [class$="__card"], [class*="__card "], [class$="__panel"], [class*="__panel "]) :where(.btn, button, a) {
+    max-width: 100%;
+  }
+
+  .desiderio-section :where(.badge, [class$="__badge"], [class*="__badge "]) {
+    letter-spacing: 0;
+    white-space: normal;
+  }
+
+  .desiderio-section :where(img, video, iframe) {
+    border: 1px solid color-mix(in oklch, var(--border) 72%, transparent);
+    background-color: var(--muted);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .desiderio-section :where(.btn, button, input, textarea, select) {
+    min-width: 0;
+  }
+
+  .desiderio-section :where(.btn, button) {
+    text-wrap: balance;
+  }
+
+  .desiderio-section :where(h1, h2, h3) {
+    text-wrap: balance;
+  }
+
+  .desiderio-section :where(p, li) {
+    overflow-wrap: anywhere;
+  }
+
+  @media (max-width: 767px) {
+    .desiderio-section {
+      padding-block: 2.25rem;
+    }
+
+    .desiderio-section > .desiderio-container {
+      padding-inline: 1rem;
+    }
+
+    .desiderio-section :where(.btn, button, input, textarea, select) {
+      max-width: 100%;
+    }
+  }
+
   .frame :where(h1, h2, h3, h4, h5, h6),
   .ce-frame :where(h1, h2, h3, h4, h5, h6),
   .ce-bodytext :where(h1, h2, h3, h4, h5, h6),

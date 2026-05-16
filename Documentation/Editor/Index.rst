@@ -49,7 +49,7 @@ Workspaces
 
 Desiderio is workspace-aware. Editing a content element from a
 workspace shows the draft state in the backend preview. The
-``desiderio:styleguide:seed`` CLI command **must not be run from a
-workspace context** — it always writes live records and bypasses
-overlays. Switch to the live workspace before invoking it. The command
-fails loudly if you forget.
+``desiderio:styleguide:seed`` CLI command writes styleguide fixture
+records to the live workspace only and refuses to run from an offline
+workspace. Its cleanup queries are scoped to live workspace rows so
+draft overlays are not deleted while editors prepare staged content.

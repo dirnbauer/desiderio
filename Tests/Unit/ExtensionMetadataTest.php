@@ -28,7 +28,7 @@ final class ExtensionMetadataTest extends TestCase
         require __DIR__ . '/../../ext_emconf.php';
         $conf = $EM_CONF[$_EXTKEY];
 
-        self::assertSame('2.1.0', $conf['version']);
+        self::assertSame('2.2.0', $conf['version']);
         self::assertSame('stable', $conf['state']);
         self::assertArrayHasKey('php', $conf['constraints']['depends']);
         self::assertArrayHasKey('workspaces', $conf['constraints']['depends']);

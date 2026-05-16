@@ -95,6 +95,49 @@
     element.appendChild(title);
   }
 
+  function setAnimated(element, index) {
+    element.setAttribute('data-chart-animate', '');
+    element.style.setProperty('--chart-delay', (index * 42) + 'ms');
+  }
+
+  function animateChart(svg) {
+    if (!svg || (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches)) {
+      return;
+    }
+    window.requestAnimationFrame(function () {
+      svg.setAttribute('data-chart-animated', 'true');
+    });
+  }
+
+  function formatValue(value) {
+    if (Math.abs(value) >= 1000) {
+      return value.toLocaleString(undefined, { maximumFractionDigits: 1 });
+    }
+    return String(value);
+  }
+
+  function renderLegend(root, values) {
+    var legend = root.querySelector('.chart__legend');
+    if (!legend) {
+      return;
+    }
+
+    clear(legend);
+    if (root.getAttribute('data-show-legend') !== 'true') {
+      return;
+    }
+
+    values.forEach(function (row, index) {
+      var item = htmlElement('span', 'chart__legend-item');
+      var swatch = htmlElement('span', 'chart__legend-swatch');
+      swatch.style.background = chartColors[index % chartColors.length];
+      item.appendChild(swatch);
+      item.appendChild(htmlElement('span', 'chart__legend-label', row.label || 'Value ' + (index + 1)));
+      item.appendChild(htmlElement('span', 'chart__legend-value', formatValue(row.value)));
+      legend.appendChild(item);
+    });
+  }
+
   function linePoints(values, width, height, padX, padY, bottom) {
     var chartW = width - padX * 2;
     var chartH = height - padY - bottom;
@@ -139,21 +182,25 @@
     }
 
     if (options.area) {
-      svg.appendChild(svgElement('polygon', {
+      var area = svgElement('polygon', {
         points: padX + ' ' + (height - bottom) + ' ' + pointList + ' ' + (width - padX) + ' ' + (height - bottom),
         fill: options.color || 'var(--chart-color, var(--primary))',
         opacity: String(options.areaOpacity || 0.14)
-      }));
+      });
+      setAnimated(area, 0);
+      svg.appendChild(area);
     }
 
-    svg.appendChild(svgElement('polyline', {
+    var line = svgElement('polyline', {
       points: pointList,
       fill: 'none',
       stroke: options.color || 'var(--chart-color, var(--primary))',
       'stroke-width': String(options.strokeWidth || 3),
       'stroke-linecap': 'round',
       'stroke-linejoin': 'round'
-    }));
+    });
+    setAnimated(line, 1);
+    svg.appendChild(line);
 
     if (options.dots) {
       points.forEach(function (point, index) {
@@ -163,6 +210,7 @@
           r: '4',
           fill: options.color || 'var(--chart-color, var(--primary))'
         });
+        setAnimated(dot, index + 2);
         addTitle(dot, values[index].label + ': ' + values[index].value);
         svg.appendChild(dot);
       });
@@ -181,6 +229,130 @@
         svg.appendChild(label);
       });
     }
+
+    if (options.valueLabels) {
+      values.forEach(function (row, index) {
+        var valueLabel = svgElement('text', {
+          x: points[index][0],
+          y: Math.max(14, points[index][1] - 12),
+          'text-anchor': 'middle',
+          class: 'chart__value-label'
+        });
+        valueLabel.textContent = formatValue(row.value);
+        svg.appendChild(valueLabel);
+      });
+    }
+  }
+
+  function drawGenericBarChart(svg, values, options) {
+    var width = options.width || 640;
+    var height = options.height || 300;
+    var padX = options.padX || 42;
+    var padY = options.padY || 28;
+    var bottom = options.bottom || 50;
+    var chartW = width - padX * 2;
+    var chartH = height - padY - bottom;
+    var max = Math.max.apply(null, values.map(function (row) { return row.value; })) || 1;
+    var horizontal = options.orientation === 'horizontal';
+
+    clear(svg);
+    svg.setAttribute('viewBox', '0 0 ' + width + ' ' + height);
+
+    if (options.grid) {
+      for (var i = 0; i <= 4; i++) {
+        var gridY = padY + (chartH / 4) * i;
+        svg.appendChild(svgElement('line', {
+          x1: padX,
+          x2: width - padX,
+          y1: gridY,
+          y2: gridY,
+          stroke: 'currentColor',
+          'stroke-opacity': '0.12'
+        }));
+      }
+    }
+
+    if (horizontal) {
+      var rowH = chartH / values.length;
+      values.forEach(function (row, index) {
+        var barWidth = (row.value / max) * chartW;
+        var y = padY + index * rowH + rowH * 0.18;
+        var rect = svgElement('rect', {
+          x: padX,
+          y: y,
+          width: Math.max(barWidth, 1),
+          height: rowH * 0.54,
+          rx: '6',
+          fill: chartColors[index % chartColors.length]
+        });
+        setAnimated(rect, index);
+        addTitle(rect, row.label + ': ' + row.value);
+        svg.appendChild(rect);
+
+        var label = svgElement('text', {
+          x: padX,
+          y: y + rowH * 0.9,
+          fill: 'currentColor',
+          opacity: '0.72',
+          class: 'chart__tick-label'
+        });
+        label.textContent = row.label;
+        svg.appendChild(label);
+
+        if (options.valueLabels) {
+          var valueLabel = svgElement('text', {
+            x: Math.min(width - padX, padX + barWidth + 10),
+            y: y + rowH * 0.45,
+            'dominant-baseline': 'middle',
+            class: 'chart__value-label'
+          });
+          valueLabel.textContent = formatValue(row.value);
+          svg.appendChild(valueLabel);
+        }
+      });
+      return;
+    }
+
+    var barW = (chartW / values.length) * 0.52;
+    var gap = (chartW - barW * values.length) / Math.max(values.length - 1, 1);
+    values.forEach(function (row, index) {
+      var valueH = (row.value / max) * chartH;
+      var x = padX + index * (barW + gap);
+      var y = padY + chartH - valueH;
+      var rect = svgElement('rect', {
+        x: x,
+        y: y,
+        width: barW,
+        height: Math.max(valueH, 1),
+        rx: '6',
+        fill: chartColors[index % chartColors.length]
+      });
+      setAnimated(rect, index);
+      addTitle(rect, row.label + ': ' + row.value);
+      svg.appendChild(rect);
+
+      var label = svgElement('text', {
+        x: x + barW / 2,
+        y: height - 12,
+        'text-anchor': 'middle',
+        fill: 'currentColor',
+        opacity: '0.72',
+        class: 'chart__tick-label'
+      });
+      label.textContent = row.label;
+      svg.appendChild(label);
+
+      if (options.valueLabels) {
+        var valueLabel = svgElement('text', {
+          x: x + barW / 2,
+          y: Math.max(14, y - 10),
+          'text-anchor': 'middle',
+          class: 'chart__value-label'
+        });
+        valueLabel.textContent = formatValue(row.value);
+        svg.appendChild(valueLabel);
+      }
+    });
   }
 
   function initGenericLine() {
@@ -189,12 +361,26 @@
       var svg = root.querySelector('.chart__canvas');
       var values = numericRows(parseJson(root, 'data-chart-data', []), false);
       if (!svg || !values.length) return;
+      var chartType = root.getAttribute('data-chart-type') || 'area';
+      var showValues = root.getAttribute('data-show-values') === 'true';
 
-      drawLineChart(svg, values, {
-        grid: root.getAttribute('data-show-grid') === 'true',
-        area: root.getAttribute('data-fill-type') !== 'none',
-        dots: true
-      });
+      renderLegend(root, values);
+      if (chartType === 'bar' || chartType === 'horizontal_bar') {
+        drawGenericBarChart(svg, values, {
+          grid: root.getAttribute('data-show-grid') === 'true',
+          orientation: chartType === 'horizontal_bar' ? 'horizontal' : 'vertical',
+          valueLabels: showValues
+        });
+      } else {
+        drawLineChart(svg, values, {
+          grid: root.getAttribute('data-show-grid') === 'true',
+          area: chartType === 'area' && root.getAttribute('data-fill-type') !== 'none',
+          dots: true,
+          labels: true,
+          valueLabels: showValues
+        });
+      }
+      animateChart(svg);
     });
   }
 

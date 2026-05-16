@@ -39,6 +39,18 @@
                 <span class="d-ce-preview__value">{data.color_variant}</span>
             </div>
         </f:if>
+        <f:if condition="{data.chart_type}">
+            <div class="d-ce-preview__field">
+                <span class="d-ce-preview__label">Chart Type</span>
+                <span class="d-ce-preview__value">{data.chart_type}</span>
+            </div>
+        </f:if>
+        <f:if condition="{data.legend_position}">
+            <div class="d-ce-preview__field">
+                <span class="d-ce-preview__label">Legend Position</span>
+                <span class="d-ce-preview__value">{data.legend_position}</span>
+            </div>
+        </f:if>
         <f:if condition="{data.fill_type}">
             <div class="d-ce-preview__field">
                 <span class="d-ce-preview__label">Fill Type</span>

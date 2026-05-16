@@ -214,6 +214,21 @@ final class ContentRenderingTemplateTest extends TestCase
         self::assertStringContainsString('requestAnimationFrame(step)', $javascript);
     }
 
+    public function testGenericChartTemplateIsConnectedToLegendAndAnimationRuntime(): void
+    {
+        $template = (string) file_get_contents(__DIR__ . '/../../ContentBlocks/ContentElements/chart/templates/frontend.html');
+        $javascript = (string) file_get_contents(__DIR__ . '/../../Resources/Public/Js/charts.js');
+
+        self::assertStringContainsString('data-chart-type', $template);
+        self::assertStringContainsString('data-show-legend', $template);
+        self::assertStringContainsString('data-legend-position', $template);
+        self::assertStringContainsString('data-show-values', $template);
+        self::assertStringContainsString('chart__legend', $template);
+        self::assertStringContainsString('renderLegend(root, values)', $javascript);
+        self::assertStringContainsString('drawGenericBarChart(svg, values', $javascript);
+        self::assertStringContainsString('animateChart(svg)', $javascript);
+    }
+
     public function testExtensionIntegrationSiteSetsAreBundledWithBaseSet(): void
     {
         $baseSet = Yaml::parseFile(__DIR__ . '/../../Configuration/Sets/Desiderio/config.yaml');

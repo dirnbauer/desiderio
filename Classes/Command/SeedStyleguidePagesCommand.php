@@ -1125,14 +1125,14 @@ final class SeedStyleguidePagesCommand extends Command
     private function buildDefaultChartData(int $index): string
     {
         $quarters = [
-            ['label' => 'Q1', 'value' => 32 + $index],
-            ['label' => 'Q2', 'value' => 46 + $index],
-            ['label' => 'Q3', 'value' => 41 + $index],
-            ['label' => 'Q4', 'value' => 58 + $index],
+            ['label' => 'Discover', 'value' => 42 + $index],
+            ['label' => 'Evaluate', 'value' => 68 + $index],
+            ['label' => 'Adopt', 'value' => 91 + $index],
+            ['label' => 'Retain', 'value' => 117 + $index],
         ];
         $json = json_encode($quarters, JSON_UNESCAPED_SLASHES);
 
-        return is_string($json) ? $json : '[{"label":"Q1","value":32},{"label":"Q2","value":46},{"label":"Q3","value":41},{"label":"Q4","value":58}]';
+        return is_string($json) ? $json : '[{"label":"Discover","value":42},{"label":"Evaluate","value":68},{"label":"Adopt","value":91},{"label":"Retain","value":117}]';
     }
 
     private function buildReadableLabel(string $value): string

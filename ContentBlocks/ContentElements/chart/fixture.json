@@ -1,4 +1,14 @@
 {
   "_type": "stats",
-  "header": "Chart for polished analytics workspace"
+  "header": "Chart for polished analytics workspace",
+  "description": "Animated shadcn-style diagram with a visible legend, compact value labels, and semantic chart tokens for fast dashboard review.",
+  "chart_type": "area",
+  "chart_data": "[{\"label\":\"Discover\",\"value\":42},{\"label\":\"Evaluate\",\"value\":68},{\"label\":\"Adopt\",\"value\":91},{\"label\":\"Retain\",\"value\":117}]",
+  "color_variant": "primary",
+  "show_grid": 1,
+  "show_legend": 1,
+  "legend_position": "bottom",
+  "show_values": 1,
+  "fill_type": "gradient",
+  "chart_height": "medium"
 }

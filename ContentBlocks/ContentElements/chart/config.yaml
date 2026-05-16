@@ -1,7 +1,7 @@
 name: desiderio/chart
 typeName: desiderio_chart
 title: Chart
-description: 'Chart provides a focused editorial building block for a recognizable page task. Editors can manage headline and copy fields and layout or variant options.'
+description: 'Chart turns compact metric data into a token-driven diagram with legends, labels, and animated line or bar variants. Editors can manage headline, data, legend, and display options.'
 group: data
 prefixFields: false
 basics:
@@ -28,6 +28,25 @@ fields:
     rows: 6
     required: true
   -
+    identifier: chart_type
+    type: Select
+    renderType: selectSingle
+    label: 'Chart Type'
+    items:
+      -
+        label: Area
+        value: area
+      -
+        label: Line
+        value: line
+      -
+        label: Bar
+        value: bar
+      -
+        label: 'Horizontal Bar'
+        value: horizontal_bar
+    default: area
+  -
     identifier: color_variant
     type: Select
     renderType: selectSingle
@@ -53,6 +72,29 @@ fields:
     identifier: show_grid
     type: Checkbox
     label: 'Show Grid Lines'
+    default: 1
+  -
+    identifier: show_legend
+    type: Checkbox
+    label: 'Show Legend'
+    default: 1
+  -
+    identifier: legend_position
+    type: Select
+    renderType: selectSingle
+    label: 'Legend Position'
+    items:
+      -
+        label: Bottom
+        value: bottom
+      -
+        label: Right
+        value: right
+    default: bottom
+  -
+    identifier: show_values
+    type: Checkbox
+    label: 'Show Values'
     default: 1
   -
     identifier: fill_type

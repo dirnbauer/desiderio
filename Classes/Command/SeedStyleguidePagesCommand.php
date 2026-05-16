@@ -651,7 +651,11 @@ final class SeedStyleguidePagesCommand extends Command
             if ($scalarField === null) {
                 continue;
             }
-            $resolvedFields[$scalarField] = $this->normalizeFieldValue($value, $definition['fields'][$scalarField]);
+            $resolvedFields[$scalarField] = $this->normalizeResolvedFixtureFieldValue(
+                $ctype,
+                $scalarField,
+                $this->normalizeFieldValue($value, $definition['fields'][$scalarField])
+            );
         }
 
         return $this->completeResolvedFixtureData($ctype, $name !== '' ? $name : $ctype, $definition, $resolvedFields, $collections, $fixture);
@@ -803,6 +807,11 @@ final class SeedStyleguidePagesCommand extends Command
      */
     private function buildDefaultFieldValue(string $ctype, string $name, string $field, array $fieldConfig, int $index): mixed
     {
+        $chartDefault = $this->buildDefaultChartFieldValue($ctype, $field, $fieldConfig, $index);
+        if ($chartDefault !== null) {
+            return $chartDefault;
+        }
+
         $type = (string)($fieldConfig['type'] ?? 'Textarea');
 
         return match ($type) {
@@ -815,6 +824,58 @@ final class SeedStyleguidePagesCommand extends Command
             'Select' => $this->buildDefaultSelectValue($fieldConfig),
             default => $this->buildDefaultTextValue($ctype, $name, $field, $index),
         };
+    }
+
+    /**
+     * @param array<string, mixed> $fieldConfig
+     */
+    private function buildDefaultChartFieldValue(string $ctype, string $field, array $fieldConfig, int $index): mixed
+    {
+        if ($this->normalizeIdentifier($ctype) !== 'desideriochart') {
+            return null;
+        }
+
+        $normalizedField = $this->normalizeIdentifier($field);
+        $value = match ($normalizedField) {
+            'chartdata' => $this->buildDefaultChartData($index),
+            'charttype' => ['area', 'line', 'bar', 'horizontal_bar'][$index % 4],
+            'colorvariant' => ['primary', 'blue', 'green', 'orange', 'red'][$index % 5],
+            'showgrid', 'showlegend', 'showvalues' => 1,
+            'legendposition' => $index % 4 === 3 ? 'right' : 'bottom',
+            'filltype' => $index % 2 === 0 ? 'gradient' : 'solid',
+            'chartheight' => ['medium', 'large', 'small'][$index % 3],
+            default => null,
+        };
+
+        if ($value === null || ($fieldConfig['type'] ?? null) !== 'Select') {
+            return $value;
+        }
+
+        return $this->normalizeSelectDefaultValue($fieldConfig, $value);
+    }
+
+    /**
+     * @param array<string, mixed> $fieldConfig
+     */
+    private function normalizeSelectDefaultValue(array $fieldConfig, mixed $preferredValue): mixed
+    {
+        $itemValues = $this->getSelectItemValues($fieldConfig);
+        if ($itemValues === []) {
+            return $preferredValue;
+        }
+
+        if (!is_scalar($preferredValue)) {
+            return $this->buildDefaultSelectValue($fieldConfig);
+        }
+
+        $normalizedPreferredValue = (string)$preferredValue;
+        foreach ($itemValues as $itemValue) {
+            if (is_scalar($itemValue) && (string)$itemValue === $normalizedPreferredValue) {
+                return $itemValue;
+            }
+        }
+
+        return $this->buildDefaultSelectValue($fieldConfig);
     }
 
     /**
@@ -1008,6 +1069,35 @@ final class SeedStyleguidePagesCommand extends Command
     private function buildDefaultMapEmbedUrl(): string
     {
         return 'https://www.openstreetmap.org/export/embed.html?bbox=16.3430%2C48.1940%2C16.3530%2C48.2040&layer=mapnik&marker=48.1990%2C16.3480';
+    }
+
+    private function normalizeResolvedFixtureFieldValue(string $ctype, string $field, mixed $value): mixed
+    {
+        if (
+            is_string($value)
+            && $this->isMapEmbedUrlField($ctype, $field)
+            && $this->isShadcnDocumentationUrl($value)
+        ) {
+            return $this->buildDefaultMapEmbedUrl();
+        }
+
+        return $value;
+    }
+
+    private function isMapEmbedUrlField(string $ctype, string $field): bool
+    {
+        $normalizedCtype = $this->normalizeIdentifier($ctype);
+        $normalizedField = $this->normalizeIdentifier($field);
+
+        return str_contains($normalizedCtype, 'mapembed')
+            && (str_contains($normalizedField, 'embed') || str_contains($normalizedField, 'url'));
+    }
+
+    private function isShadcnDocumentationUrl(string $value): bool
+    {
+        $host = parse_url($value, PHP_URL_HOST);
+
+        return is_string($host) && strtolower($host) === 'ui.shadcn.com';
     }
 
     private function buildDefaultDemoCopy(string $elementLabel, string $fieldLabel, int $index): string

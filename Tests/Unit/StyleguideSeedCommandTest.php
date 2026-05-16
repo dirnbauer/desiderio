@@ -538,6 +538,121 @@ final class StyleguideSeedCommandTest extends TestCase
         ], $chartData);
     }
 
+    public function testSparseChartFixturesReceiveModernDiagramControls(): void
+    {
+        $command = $this->createCommand();
+        $this->setProperty($command, 'contentBlockDefinitions', [
+            'desiderio_chart' => [
+                'fields' => [
+                    'header' => [
+                        'identifier' => 'header',
+                        'type' => 'Textarea',
+                    ],
+                    'chart_data' => [
+                        'identifier' => 'chart_data',
+                        'type' => 'Textarea',
+                    ],
+                    'chart_type' => [
+                        'identifier' => 'chart_type',
+                        'type' => 'Select',
+                        'items' => [
+                            ['label' => 'Area', 'value' => 'area'],
+                            ['label' => 'Line', 'value' => 'line'],
+                            ['label' => 'Bar', 'value' => 'bar'],
+                            ['label' => 'Horizontal Bar', 'value' => 'horizontal_bar'],
+                        ],
+                        'default' => 'area',
+                    ],
+                    'color_variant' => [
+                        'identifier' => 'color_variant',
+                        'type' => 'Select',
+                        'items' => [
+                            ['label' => 'Primary', 'value' => 'primary'],
+                            ['label' => 'Blue', 'value' => 'blue'],
+                            ['label' => 'Green', 'value' => 'green'],
+                            ['label' => 'Orange', 'value' => 'orange'],
+                            ['label' => 'Red', 'value' => 'red'],
+                        ],
+                        'default' => 'primary',
+                    ],
+                    'show_grid' => [
+                        'identifier' => 'show_grid',
+                        'type' => 'Checkbox',
+                    ],
+                    'show_legend' => [
+                        'identifier' => 'show_legend',
+                        'type' => 'Checkbox',
+                    ],
+                    'legend_position' => [
+                        'identifier' => 'legend_position',
+                        'type' => 'Select',
+                        'items' => [
+                            ['label' => 'Bottom', 'value' => 'bottom'],
+                            ['label' => 'Right', 'value' => 'right'],
+                        ],
+                        'default' => 'bottom',
+                    ],
+                    'show_values' => [
+                        'identifier' => 'show_values',
+                        'type' => 'Checkbox',
+                    ],
+                    'fill_type' => [
+                        'identifier' => 'fill_type',
+                        'type' => 'Select',
+                        'items' => [
+                            ['label' => 'Gradient', 'value' => 'gradient'],
+                            ['label' => 'Solid', 'value' => 'solid'],
+                        ],
+                        'default' => 'gradient',
+                    ],
+                    'chart_height' => [
+                        'identifier' => 'chart_height',
+                        'type' => 'Select',
+                        'items' => [
+                            ['label' => 'Small', 'value' => 'small'],
+                            ['label' => 'Medium', 'value' => 'medium'],
+                            ['label' => 'Large', 'value' => 'large'],
+                        ],
+                        'default' => 'medium',
+                    ],
+                ],
+                'collections' => [],
+            ],
+        ]);
+
+        $resolvedFixtureData = $this->invokeMethod($command, 'resolveFixtureFields', [
+            'desiderio_chart',
+            [
+                '_type' => 'stats',
+                'header' => 'Modern Diagram',
+            ],
+            'Chart',
+        ]);
+        self::assertIsArray($resolvedFixtureData);
+        $fields = $resolvedFixtureData[0] ?? null;
+        self::assertIsArray($fields);
+
+        self::assertSame('Modern Diagram', $fields['header']);
+        self::assertSame('area', $fields['chart_type']);
+        self::assertSame('primary', $fields['color_variant']);
+        self::assertSame(1, $fields['show_grid']);
+        self::assertSame(1, $fields['show_legend']);
+        self::assertSame('bottom', $fields['legend_position']);
+        self::assertSame(1, $fields['show_values']);
+        self::assertSame('gradient', $fields['fill_type']);
+        self::assertSame('medium', $fields['chart_height']);
+
+        $chartDataJson = $fields['chart_data'] ?? null;
+        self::assertIsString($chartDataJson);
+        $chartData = json_decode($chartDataJson, true);
+        self::assertSame([
+            ['label' => 'Discover', 'value' => 42],
+            ['label' => 'Evaluate', 'value' => 68],
+            ['label' => 'Adopt', 'value' => 91],
+            ['label' => 'Retain', 'value' => 117],
+        ], $chartData);
+    }
+
     public function testMapEmbedDefaultsUseEmbeddableMapUrl(): void
     {
         $command = $this->createCommand();
@@ -571,6 +686,7 @@ final class StyleguideSeedCommandTest extends TestCase
             [
                 '_type' => 'card',
                 'header' => 'Our Headquarters',
+                'embed_url' => 'https://ui.shadcn.com/docs/map-embed',
             ],
             'Map Embed',
         ]);
@@ -585,6 +701,7 @@ final class StyleguideSeedCommandTest extends TestCase
         self::assertSame(400, $fields['height']);
         self::assertSame('Mariahilfer Strasse 42, 1070 Vienna', $fields['address']);
         self::assertStringStartsWith('https://www.openstreetmap.org/export/embed.html?', $embedUrl);
+        self::assertStringNotContainsString('ui.shadcn.com/docs', $embedUrl);
         self::assertStringNotContainsString('Embed Url for', $embedUrl);
     }
 

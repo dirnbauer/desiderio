@@ -331,6 +331,20 @@ final class ContentBlockStructureTest extends TestCase
         }
     }
 
+    public function testIframeFixtureUrlsDoNotUseShadcnDocumentationPages(): void
+    {
+        $fixtureFiles = glob(self::CONTENT_BLOCKS_DIR . '/*/fixture.json');
+        if ($fixtureFiles === false) {
+            $fixtureFiles = [];
+        }
+
+        foreach ($fixtureFiles as $fixtureFile) {
+            $data = json_decode((string) file_get_contents($fixtureFile), true, 512, JSON_THROW_ON_ERROR);
+            self::assertIsArray($data);
+            self::assertFixtureIframeUrlsAreEmbeddable($data, basename(dirname($fixtureFile)));
+        }
+    }
+
     public function testFrontendTemplatesDoNotUseBareBooleanAttributesOnFluidComponents(): void
     {
         $blocks = glob(self::CONTENT_BLOCKS_DIR . '/*', GLOB_ONLYDIR);
@@ -728,6 +742,37 @@ final class ContentBlockStructureTest extends TestCase
                 self::assertFixtureIconValuesAreKeys($value, $blockName, $nextPath);
             }
         }
+    }
+
+    /**
+     * @param array<string|int, mixed> $data
+     * @param list<string> $path
+     */
+    private static function assertFixtureIframeUrlsAreEmbeddable(array $data, string $blockName, array $path = []): void
+    {
+        foreach ($data as $key => $value) {
+            $segment = is_int($key) ? '[' . $key . ']' : $key;
+            $nextPath = [...$path, $segment];
+
+            if (is_string($key) && is_string($value) && self::isIframeUrlField($key)) {
+                self::assertStringNotContainsString(
+                    'https://ui.shadcn.com/docs/',
+                    $value,
+                    sprintf('%s fixture iframe field %s must use an embeddable URL, not a shadcn documentation page', $blockName, implode('.', $nextPath))
+                );
+            }
+
+            if (is_array($value)) {
+                self::assertFixtureIframeUrlsAreEmbeddable($value, $blockName, $nextPath);
+            }
+        }
+    }
+
+    private static function isIframeUrlField(string $field): bool
+    {
+        $normalized = strtolower(str_replace(['-', '_'], '', $field));
+
+        return str_contains($normalized, 'embedurl') || str_contains($normalized, 'videourl');
     }
 
     /**

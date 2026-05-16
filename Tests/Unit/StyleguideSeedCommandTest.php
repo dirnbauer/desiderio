@@ -460,6 +460,50 @@ final class StyleguideSeedCommandTest extends TestCase
         ], $chartData);
     }
 
+    public function testMapEmbedDefaultsUseEmbeddableMapUrl(): void
+    {
+        $command = $this->createCommand();
+        $this->setProperty($command, 'contentBlockDefinitions', [
+            'desiderio_mapembed' => [
+                'fields' => [
+                    'header' => [
+                        'identifier' => 'header',
+                        'type' => 'Textarea',
+                    ],
+                    'embed_url' => [
+                        'identifier' => 'embed_url',
+                        'type' => 'Text',
+                    ],
+                    'address' => [
+                        'identifier' => 'address',
+                        'type' => 'Textarea',
+                    ],
+                    'height' => [
+                        'identifier' => 'height',
+                        'type' => 'Number',
+                        'default' => 400,
+                    ],
+                ],
+                'collections' => [],
+            ],
+        ]);
+
+        [$fields] = $this->invokeMethod($command, 'resolveFixtureFields', [
+            'desiderio_mapembed',
+            [
+                '_type' => 'card',
+                'header' => 'Our Headquarters',
+            ],
+            'Map Embed',
+        ]);
+
+        self::assertSame('Our Headquarters', $fields['header']);
+        self::assertSame(400, $fields['height']);
+        self::assertSame('Mariahilfer Strasse 42, 1070 Vienna', $fields['address']);
+        self::assertStringStartsWith('https://www.openstreetmap.org/export/embed.html?', $fields['embed_url']);
+        self::assertStringNotContainsString('Embed Url for', $fields['embed_url']);
+    }
+
     public function testContentBlockDefinitionKeepsCollectionItemLimits(): void
     {
         $command = $this->createCommand();

@@ -21,14 +21,14 @@
             </header>
         </f:if>
 
-        <div class="pricing-slider__body">
+        <div class="pricing-slider__body" data-d-pricing-slider>
             <div class="pricing-slider__control">
-                <input type="range" class="pricing-slider__range" min="0" max="100" value="50"/>
+                <input type="range" class="pricing-slider__range" min="0" max="100" step="1" value="0" aria-label="Select pricing tier" data-d-pricing-slider-range/>
             </div>
 
             <div class="pricing-slider__tiers">
                 <f:for each="{data.tiers}" as="tier" iteration="iter">
-                    <div class="pricing-slider__tier {f:if(condition: iter.isFirst, then: 'pricing-slider__tier--active')}">
+                    <div class="pricing-slider__tier {f:if(condition: iter.isFirst, then: 'pricing-slider__tier--active')}" data-d-pricing-slider-tier aria-current="{f:if(condition: iter.isFirst, then: 'true', else: 'false')}">
                         <span class="pricing-slider__volume">{tier -> f:render.text(field: 'volume')} {data.unit_label -> f:or(alternative: 'requests')}</span>
                         <span class="pricing-slider__price">{tier -> f:render.text(field: 'price')}</span>
                         <f:if condition="{tier.included_features}">

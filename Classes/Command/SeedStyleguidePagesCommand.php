@@ -945,6 +945,7 @@ final class SeedStyleguidePagesCommand extends Command
             str_contains($normalizedField, 'authortitle') || str_contains($normalizedField, 'jobtitle') || str_contains($normalizedField, 'role') || str_contains($normalizedField, 'position') => $person[1],
             $normalizedField === 'header' || str_contains($normalizedField, 'headline') || str_contains($normalizedField, 'title') => $subject,
             str_contains($normalizedField, 'eyebrow') || str_contains($normalizedField, 'badge') || str_contains($normalizedField, 'kicker') || str_contains($normalizedField, 'status') => $this->pickDemoString(self::DEMO_BADGES, $name . '-' . $field, $index),
+            str_contains($normalizedField, 'url') || str_contains($normalizedField, 'href') => $this->buildDefaultUrlTextValue($ctype, $field, $index),
             str_contains($normalizedField, 'alt') || str_contains($normalizedField, 'alternative') => 'Accessible demo image for ' . $subject . '.',
             str_contains($normalizedField, 'copyright') => 'Images are credited on their Unsplash file references.',
             str_contains($normalizedField, 'credit') || str_contains($normalizedField, 'source') || str_contains($normalizedField, 'photographer') => 'Photo source: Unsplash demo image with photographer credit stored on the file reference.',
@@ -982,6 +983,27 @@ final class SeedStyleguidePagesCommand extends Command
             str_contains($normalizedField, 'color') => 'primary',
             default => $fieldLabel . ' for ' . $subject,
         };
+    }
+
+    private function buildDefaultUrlTextValue(string $ctype, string $field, int $index): string
+    {
+        $normalizedCtype = $this->normalizeIdentifier($ctype);
+        $normalizedField = $this->normalizeIdentifier($field);
+
+        if (str_contains($normalizedField, 'video')) {
+            return 'https://www.youtube-nocookie.com/embed/aqz-KE-bpKQ';
+        }
+
+        if (str_contains($normalizedCtype, 'mapembed') || str_contains($normalizedField, 'map')) {
+            return $this->buildDefaultMapEmbedUrl();
+        }
+
+        return $this->buildDefaultLinkValue($field, $index);
+    }
+
+    private function buildDefaultMapEmbedUrl(): string
+    {
+        return 'https://www.openstreetmap.org/export/embed.html?bbox=16.3430%2C48.1940%2C16.3530%2C48.2040&layer=mapnik&marker=48.1990%2C16.3480';
     }
 
     private function buildDefaultDemoCopy(string $elementLabel, string $fieldLabel, int $index): string

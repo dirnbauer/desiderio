@@ -194,7 +194,46 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* ------------------------------------------------------------------ */
-  /*  9. Solr suggest                                                    */
+  /*  9. Pricing slider                                                  */
+  /* ------------------------------------------------------------------ */
+  document.querySelectorAll('[data-d-pricing-slider]').forEach(root => {
+    const range = root.querySelector('[data-d-pricing-slider-range]');
+    const tiers = Array.from(root.querySelectorAll('[data-d-pricing-slider-tier]'));
+
+    if (!range || tiers.length === 0) return;
+
+    const min = Number(range.min || 0);
+    const max = Number(range.max || tiers.length - 1);
+    const scale = max - min || 1;
+
+    const getTierText = tier => {
+      const volume = tier.querySelector('.pricing-slider__volume')?.textContent?.trim();
+      const price = tier.querySelector('.pricing-slider__price')?.textContent?.trim();
+      return [volume, price].filter(Boolean).join(', ');
+    };
+
+    const activate = () => {
+      const rawValue = Number(range.value);
+      const value = Number.isFinite(rawValue) ? rawValue : min;
+      const position = Math.min(Math.max((value - min) / scale, 0), 1);
+      const activeIndex = Math.round(position * (tiers.length - 1));
+
+      tiers.forEach((tier, index) => {
+        const active = index === activeIndex;
+        tier.classList.toggle('pricing-slider__tier--active', active);
+        tier.setAttribute('aria-current', String(active));
+      });
+
+      range.setAttribute('aria-valuetext', getTierText(tiers[activeIndex]));
+    };
+
+    activate();
+    range.addEventListener('input', activate);
+    range.addEventListener('change', activate);
+  });
+
+  /* ------------------------------------------------------------------ */
+  /*  10. Solr suggest                                                   */
   /* ------------------------------------------------------------------ */
   const appendHighlightedText = (target, text, query) => {
     const source = String(text || '');

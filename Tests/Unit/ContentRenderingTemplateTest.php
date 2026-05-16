@@ -185,6 +185,21 @@ final class ContentRenderingTemplateTest extends TestCase
         self::assertSame([], $invalidAttributes);
     }
 
+    public function testPricingSliderTemplateIsConnectedToSharedRuntime(): void
+    {
+        $template = (string) file_get_contents(__DIR__ . '/../../ContentBlocks/ContentElements/pricing-slider/templates/frontend.html');
+        $javascript = (string) file_get_contents(__DIR__ . '/../../Resources/Public/Js/desiderio.js');
+
+        self::assertStringContainsString('data-d-pricing-slider', $template);
+        self::assertStringContainsString('data-d-pricing-slider-range', $template);
+        self::assertStringContainsString('data-d-pricing-slider-tier', $template);
+        self::assertStringContainsString('value="0"', $template);
+        self::assertStringContainsString("document.querySelectorAll('[data-d-pricing-slider]')", $javascript);
+        self::assertStringContainsString("range.addEventListener('input', activate)", $javascript);
+        self::assertStringContainsString('pricing-slider__tier--active', $javascript);
+        self::assertStringContainsString("range.setAttribute('aria-valuetext'", $javascript);
+    }
+
     public function testExtensionIntegrationSiteSetsAreBundledWithBaseSet(): void
     {
         $baseSet = Yaml::parseFile(__DIR__ . '/../../Configuration/Sets/Desiderio/config.yaml');

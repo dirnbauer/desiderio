@@ -1,42 +1,42 @@
 {
   "_type": "pricing",
-  "header": "Compare Product Editions",
-  "eyebrow": "Product comparison",
+  "header": "Product Comparison Pricing that feels ready to ship",
+  "eyebrow": "Token polish",
   "products": [
     {
-      "name": "Starter Suite",
-      "price": "$19 /user",
+      "name": "Workflow Name",
+      "price": "$19",
       "specs": [
-        "Shared dashboards",
-        "5 active projects",
-        "Email support"
+        "Reusable labels, metrics, and actions",
+        "Clean mobile behavior for dense content",
+        "Chart colors mapped to semantic tokens"
       ],
       "is_recommended": false,
-      "link": "https://example.com/desiderio/products/starter"
+      "link": "https://ui.shadcn.com/docs/product-comparison-pricing"
     },
     {
-      "name": "Growth Suite",
-      "price": "$49 /user",
+      "name": "Launch Name",
+      "price": "$49",
       "specs": [
-        "Advanced workflows",
-        "Unlimited active projects",
-        "Priority support",
-        "Team analytics"
+        "Reusable labels, metrics, and actions",
+        "Clean mobile behavior for dense content",
+        "Chart colors mapped to semantic tokens",
+        "Production-ready empty and loaded states"
       ],
       "is_recommended": true,
-      "link": "https://example.com/desiderio/products/growth"
+      "link": "https://ui.shadcn.com/docs/product-comparison-pricing"
     },
     {
-      "name": "Enterprise Suite",
-      "price": "Custom",
+      "name": "Signal Name",
+      "price": "$99",
       "specs": [
-        "SSO and SCIM",
-        "Custom approval flows",
-        "Dedicated success team",
-        "Security review support"
+        "Reusable labels, metrics, and actions",
+        "Clean mobile behavior for dense content",
+        "Chart colors mapped to semantic tokens",
+        "Production-ready empty and loaded states"
       ],
       "is_recommended": false,
-      "link": "https://example.com/desiderio/products/enterprise"
+      "link": "https://ui.shadcn.com/docs/product-comparison-pricing"
     }
   ]
 }

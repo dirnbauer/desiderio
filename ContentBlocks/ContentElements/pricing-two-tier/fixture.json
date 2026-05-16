@@ -1,36 +1,36 @@
 {
   "_type": "pricing",
-  "header": "Simple Pricing",
-  "eyebrow": "Plans",
-  "subheadline": "Two straightforward options. No hidden costs.",
+  "header": "Two Tier Pricing that feels ready to ship",
+  "eyebrow": "Token polish",
+  "subheadline": "Helps buyers compare options quickly with credible tiers, compact benefits, and confident action labels.",
   "plans": [
     {
-      "title": "Standard",
-      "price": "$29 /month",
-      "description": "Everything a small team needs to launch.",
+      "title": "Starter",
+      "price": "$19",
+      "description": "The seeded content keeps the component sleek, credible, and import-ready while staying inside the Desiderio shadcn design language.",
       "features": [
-        "Up to 15 users",
-        "All core features",
-        "10 GB storage",
-        "Standard support"
+        "Accessible keyboard focus patterns",
+        "Responsive cards tuned for real content",
+        "Editor-friendly TYPO3 Content Blocks",
+        "Modern Unsplash imagery in the import seed"
       ],
-      "button_text": "Choose Standard",
-      "button_link": "https://example.com/desiderio/pricing/standard",
+      "button_text": "Start with this",
+      "button_link": "https://ui.shadcn.com/docs/two-tier-pricing",
       "featured": false
     },
     {
-      "title": "Premium",
-      "price": "$79 /month",
-      "description": "More scale, automation, and support for growing teams.",
+      "title": "Scale",
+      "price": "$49",
+      "description": "A sharp, production-minded two tier pricing using shadcn-style rhythm, semantic tokens, and concise copy so buyers can compare plans quickly and choose with confidence.",
       "features": [
-        "Unlimited users",
-        "All features",
-        "Unlimited storage",
-        "Priority support",
-        "API access"
+        "Accessible keyboard focus patterns",
+        "Responsive cards tuned for real content",
+        "Editor-friendly TYPO3 Content Blocks",
+        "Modern Unsplash imagery in the import seed",
+        "Compact shadcn spacing and borders"
       ],
-      "button_text": "Choose Premium",
-      "button_link": "https://example.com/desiderio/pricing/premium",
+      "button_text": "Open preview",
+      "button_link": "https://ui.shadcn.com/docs/two-tier-pricing",
       "featured": true
     }
   ]

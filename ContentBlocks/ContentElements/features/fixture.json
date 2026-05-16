@@ -1,27 +1,27 @@
 {
-    "_type": "grid",
-    "header": "All Features",
-    "subheadline": "A complete suite of tools designed for modern teams.",
-    "feature_items": [
-        {
-            "icon_name": "rocket",
-            "title": "Smart Notifications",
-            "description": "Contextual alerts that keep you informed without overwhelming your inbox."
-        },
-        {
-            "icon_name": "shield",
-            "title": "Universal Search",
-            "description": "Find anything across all your projects, documents, and conversations instantly."
-        },
-        {
-            "icon_name": "users",
-            "title": "Custom Reports",
-            "description": "Build reports with drag-and-drop widgets and share them with your team."
-        },
-        {
-            "icon_name": "settings",
-            "title": "Bi-Directional Sync",
-            "description": "Keep data in sync across all connected tools automatically."
-        }
-    ]
+  "_type": "grid",
+  "header": "Features that feels ready to ship",
+  "subheadline": "Frames product value with strong hierarchy, modern media support, and scannable details for every viewport.",
+  "feature_items": [
+    {
+      "icon_name": "book-open",
+      "title": "Seats",
+      "description": "The seeded content keeps the component sleek, credible, and import-ready while staying inside the Desiderio shadcn design language."
+    },
+    {
+      "icon_name": "check-circle",
+      "title": "Workspace storage",
+      "description": "A sharp, production-minded features using shadcn-style rhythm, semantic tokens, and concise copy so product teams can show value with clean, scannable sections."
+    },
+    {
+      "icon_name": "clock",
+      "title": "Priority support",
+      "description": "Built to show the features with real labels, compact spacing, modern imagery, and practical states instead of placeholder filler."
+    },
+    {
+      "icon_name": "globe",
+      "title": "SSO and roles",
+      "description": "Clean hierarchy, restrained borders, and direct actions make this features easy to scan across desktop and mobile previews."
+    }
+  ]
 }

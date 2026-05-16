@@ -1,6 +1,6 @@
 {
   "_type": "table",
-  "header": "Recent Deployments",
+  "header": "Data Table for polished analytics workspace",
   "show_header_row": true,
   "column_definitions": [
     {
@@ -12,28 +12,44 @@
       "column_align": "left"
     },
     {
-      "column_label": "Last Deploy",
+      "column_label": "Last update",
       "column_align": "right"
     }
   ],
   "rows": [
     {
-      "row_label": "api-gateway",
-      "cells": ["api-gateway", "Healthy", "2 hours ago"]
+      "row_label": "API Gateway",
+      "cells": [
+        "API Gateway",
+        "Synced",
+        "2 min ago"
+      ]
     },
     {
-      "row_label": "web-frontend",
-      "cells": ["web-frontend", "Healthy", "4 hours ago"]
+      "row_label": "Editor Preview",
+      "cells": [
+        "API Gateway",
+        "Synced",
+        "2 min ago"
+      ]
     },
     {
-      "row_label": "auth-service",
-      "cells": ["auth-service", "Degraded", "1 day ago"]
+      "row_label": "Content Import",
+      "cells": [
+        "API Gateway",
+        "Synced",
+        "2 min ago"
+      ]
     },
     {
-      "row_label": "worker-queue",
-      "cells": ["worker-queue", "Healthy", "6 hours ago"]
+      "row_label": "Theme Build",
+      "cells": [
+        "API Gateway",
+        "Synced",
+        "2 min ago"
+      ]
     }
   ],
   "show_caption": true,
-  "caption_text": "Deployment health across production services."
+  "caption_text": "Preview data for the data table seed import."
 }

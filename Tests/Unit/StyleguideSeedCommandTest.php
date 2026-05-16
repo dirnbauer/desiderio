@@ -205,7 +205,7 @@ final class StyleguideSeedCommandTest extends TestCase
         self::assertSame('10K', $secondTierVolume);
         self::assertSame('100K', $thirdTierVolume);
         self::assertSame('$79', $secondTierPrice);
-        self::assertStringContainsString('Theme-aware component states', $firstTierIncludedFeatures);
+        self::assertStringContainsString('Accessible keyboard focus', $firstTierIncludedFeatures);
         self::assertStringNotContainsString('Volume for', $firstTierVolume);
     }
 
@@ -331,7 +331,7 @@ final class StyleguideSeedCommandTest extends TestCase
         $imageSource = $fields['image_source'] ?? null;
         self::assertIsString($imageSource);
 
-        self::assertContains($fields['eyebrow'], ['shadcn/ui', 'Theme tokens', 'Editor ready', 'A11y checked', 'Radix pattern', 'Tailwind v4']);
+        self::assertContains($fields['eyebrow'], ['shadcn/ui system', 'Token driven', 'Production polish', 'A11y ready', 'Radix pattern', 'Modern TYPO3']);
         self::assertStringContainsString('shadcn', strtolower($description));
         self::assertStringContainsString('demo element', strtolower($description));
         self::assertStringNotContainsString('Complete demo content', $description);

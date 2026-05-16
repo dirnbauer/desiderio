@@ -1,23 +1,23 @@
 {
-    "_type": "grid",
-    "header": "Platform Overview",
-    "subheadline": "A bento-style layout of our most impactful features.",
-    "items": [
-        {
-            "title": "Instant Deploys",
-            "description": "Push to production in under 10 seconds."
-        },
-        {
-            "title": "Auto Scaling",
-            "description": "Infrastructure scales with your traffic automatically."
-        },
-        {
-            "title": "Built-in Security",
-            "description": "Vulnerability scanning on every build."
-        },
-        {
-            "title": "Mobile Ready",
-            "description": "Manage deployments from your phone."
-        }
-    ]
+  "_type": "grid",
+  "header": "Bento Feature Section that feels ready to ship",
+  "subheadline": "Frames product value with strong hierarchy, modern media support, and scannable details for every viewport.",
+  "items": [
+    {
+      "title": "Value spotlight",
+      "description": "Built to show the bento feature section with real labels, compact spacing, modern imagery, and practical states instead of placeholder filler."
+    },
+    {
+      "title": "Workflow advantage",
+      "description": "Clean hierarchy, restrained borders, and direct actions make this bento feature section easy to scan across desktop and mobile previews."
+    },
+    {
+      "title": "Capability layer",
+      "description": "The seeded content keeps the component sleek, credible, and import-ready while staying inside the Desiderio shadcn design language."
+    },
+    {
+      "title": "Product proof",
+      "description": "A sharp, production-minded bento feature section using shadcn-style rhythm, semantic tokens, and concise copy so product teams can show value with clean, scannable sections."
+    }
+  ]
 }

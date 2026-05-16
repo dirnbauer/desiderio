@@ -36,26 +36,26 @@ final class SeedStyleguidePagesCommand extends Command
     private const NESTED_COLLECTIONS_KEY = '__collections';
     private const STYLEGUIDE_FAL_FOLDER = 'desiderio-styleguide';
     private const DEMO_BADGES = [
-        'shadcn/ui',
-        'Theme tokens',
-        'Editor ready',
-        'A11y checked',
+        'shadcn/ui system',
+        'Token driven',
+        'Production polish',
+        'A11y ready',
         'Radix pattern',
-        'Tailwind v4',
+        'Modern TYPO3',
     ];
     private const DEMO_BUTTON_LABELS = [
-        'View component',
-        'Open example',
-        'Compare variants',
-        'Read the notes',
-        'Start review',
+        'Explore pattern',
+        'Open preview',
+        'Compare states',
+        'Read the playbook',
+        'Start refinement',
     ];
     private const DEMO_COPY = [
-        'Uses shadcn card, badge, and button spacing so the element reads like a production surface instead of placeholder content.',
-        'Pairs realistic editorial copy with semantic theme tokens, compact rhythm, and enough detail to review responsive behavior.',
-        'Shows how the content block behaves with real labels, calls to action, and nested records while staying theme aware.',
-        'Keeps the visual hierarchy close to the shadcn defaults: restrained borders, token colors, clear text scale, and direct actions.',
-        'Provides practical demo content for editors who need to judge layout density, empty states, and repeated item styling.',
+        'Frames the component like a polished shadcn product surface with crisp hierarchy, token-aware contrast, and copy that feels ready for a launch page.',
+        'Pairs concise editorial rhythm with shadcn card, badge, input, and button patterns so responsive QA can judge real-world density.',
+        'Gives editors useful labels, direct actions, and nested records that demonstrate the component without drifting away from semantic theme tokens.',
+        'Keeps the visual system quiet and premium: clean borders, compact spacing, strong focus states, and no decorative one-off styling.',
+        'Shows how this block behaves with credible product content, sharp metrics, and modern Unsplash imagery in the import seed.',
     ];
     private const DEMO_FEATURES = [
         'Theme-aware component states',
@@ -63,6 +63,8 @@ final class SeedStyleguidePagesCommand extends Command
         'Reusable TYPO3 Content Blocks',
         'Responsive editor fixtures',
         'Token-based chart colors',
+        'Modern Unsplash media',
+        'Sleek shadcn spacing',
     ];
     private const DEMO_LINK_LABELS = ['Overview', 'Components', 'Examples', 'Pricing', 'Contact'];
     private const DEMO_PEOPLE = [
@@ -73,9 +75,9 @@ final class SeedStyleguidePagesCommand extends Command
         ['Lea Fischer', 'Accessibility Reviewer', 'Signal Bureau'],
     ];
     private const DEMO_SUBJECTS = [
-        'Component Quality Review',
-        'Theme Token Rollout',
-        'Editor Workflow Launch',
+        'Launch-Ready Component System',
+        'Theme Token Command Center',
+        'Editor Workflow Upgrade',
         'Accessible Pattern Library',
         'Content Operations Dashboard',
         'Customer Evidence Hub',
@@ -1218,6 +1220,41 @@ final class SeedStyleguidePagesCommand extends Command
                 'alt' => 'A modern multi-level office atrium with glass railings and warm light.',
                 'credit' => 'Copyright/credit: Photo by Turquo Cabbit on Unsplash. Used as seeded demo imagery.',
                 'source' => 'https://unsplash.com/photos/modern-office-building-interior-with-multiple-floors-QkGDA4Q4Vdk',
+            ],
+            [
+                'file' => 'Resources/Public/Styleguide/Unsplash/workspace-david-kristianto.jpg',
+                'title' => 'Organized product workspace',
+                'alt' => 'A modern organized workspace with a laptop, design tools, and warm task lighting.',
+                'credit' => 'Copyright/credit: Photo by David Kristianto on Unsplash. Used as seeded demo imagery.',
+                'source' => 'https://unsplash.com/photos/a-modern-organized-workspace-with-a-laptop-aN8yRTfGYXY',
+            ],
+            [
+                'file' => 'Resources/Public/Styleguide/Unsplash/dashboard-neil-fernandez.jpg',
+                'title' => 'Dark product dashboard',
+                'alt' => 'A laptop displaying a dark modern dashboard interface.',
+                'credit' => 'Copyright/credit: Photo by Neil Fernandez on Unsplash. Used as seeded demo imagery.',
+                'source' => 'https://unsplash.com/photos/a-modern-laptop-displaying-a-dark-themed-dashboard-6-0ajRI1cgs',
+            ],
+            [
+                'file' => 'Resources/Public/Styleguide/Unsplash/office-e-vos.jpg',
+                'title' => 'Glass office walkways',
+                'alt' => 'A modern office interior with glass walls, walkways, and open communal space.',
+                'credit' => 'Copyright/credit: Photo by E Vos on Unsplash. Used as seeded demo imagery.',
+                'source' => 'https://unsplash.com/photos/modern-office-interior-with-glass-walls-and-walkways-V_yQ8IyCmYY',
+            ],
+            [
+                'file' => 'Resources/Public/Styleguide/Unsplash/facade-fabian-kleiser.jpg',
+                'title' => 'Geometric glass facade',
+                'alt' => 'A blue glass office facade with geometric reflections and evening light.',
+                'credit' => 'Copyright/credit: Photo by Fabian Kleiser on Unsplash. Used as seeded demo imagery.',
+                'source' => 'https://unsplash.com/photos/glass-facade-of-a-modern-office-building-V5vF94h52r0',
+            ],
+            [
+                'file' => 'Resources/Public/Styleguide/Unsplash/office-deliberate-directions.jpg',
+                'title' => 'Glass-walled modern office',
+                'alt' => 'A bright modern office with glass walls, teal accents, and clean work areas.',
+                'credit' => 'Copyright/credit: Photo by Deliberate Directions on Unsplash. Used as seeded demo imagery.',
+                'source' => 'https://unsplash.com/photos/modern-office-space-with-glass-walls-and-light-decor-wlHBYkK2y4k',
             ],
         ];
     }

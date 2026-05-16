@@ -1,56 +1,56 @@
 {
   "_type": "pricing",
-  "header": "Choose Your Plan",
-  "eyebrow": "Pricing",
-  "subheadline": "Start free and scale as your team grows. No hidden fees.",
+  "header": "Pricing Section that feels ready to ship",
+  "eyebrow": "Fast preview",
+  "subheadline": "Helps buyers compare options quickly with credible tiers, compact benefits, and confident action labels.",
   "columns": "3",
   "plans": [
     {
       "name": "Starter",
-      "price": "$0",
+      "price": "$19",
       "billing_period": "/month",
-      "description": "For exploration and personal projects.",
+      "description": "Built to show the pricing section with real labels, compact spacing, modern imagery, and practical states instead of placeholder filler.",
       "features": [
-        "Up to 5 users",
-        "3 projects",
-        "Basic analytics",
-        "Community support"
+        "Clean mobile behavior for dense content",
+        "Chart colors mapped to semantic tokens",
+        "Production-ready empty and loaded states",
+        "Token-aware light and dark states"
       ],
-      "button_text": "Get Started Free",
-      "button_link": "https://example.com/desiderio/pricing/starter",
+      "button_text": "Explore pattern",
+      "button_link": "https://ui.shadcn.com/docs/pricing-section",
       "is_featured": false
     },
     {
-      "badge_text": "Popular",
-      "name": "Professional",
-      "price": "$29",
-      "billing_period": "/user/month",
-      "description": "For teams building and iterating every day.",
+      "badge_text": "Modern media",
+      "name": "Scale",
+      "price": "$49",
+      "billing_period": "/month",
+      "description": "Clean hierarchy, restrained borders, and direct actions make this pricing section easy to scan across desktop and mobile previews.",
       "features": [
-        "Unlimited users",
-        "Unlimited projects",
-        "Advanced analytics",
-        "Priority support",
-        "Custom integrations"
+        "Clean mobile behavior for dense content",
+        "Chart colors mapped to semantic tokens",
+        "Production-ready empty and loaded states",
+        "Token-aware light and dark states",
+        "Accessible keyboard focus patterns"
       ],
-      "button_text": "Start Free Trial",
-      "button_link": "https://example.com/desiderio/pricing/professional",
+      "button_text": "Open preview",
+      "button_link": "https://ui.shadcn.com/docs/pricing-section",
       "is_featured": true
     },
     {
-      "name": "Enterprise",
-      "price": "Custom",
-      "billing_period": "",
-      "description": "For organizations with governance and scale requirements.",
+      "name": "Studio",
+      "price": "$99",
+      "billing_period": "/month",
+      "description": "The seeded content keeps the component sleek, credible, and import-ready while staying inside the Desiderio shadcn design language.",
       "features": [
-        "Everything in Professional",
-        "SSO / SAML",
-        "Dedicated account manager",
-        "Custom SLA",
-        "On-premise deployment"
+        "Clean mobile behavior for dense content",
+        "Chart colors mapped to semantic tokens",
+        "Production-ready empty and loaded states",
+        "Token-aware light and dark states",
+        "Accessible keyboard focus patterns"
       ],
-      "button_text": "Contact Sales",
-      "button_link": "https://example.com/desiderio/pricing/enterprise",
+      "button_text": "Start with this",
+      "button_link": "https://ui.shadcn.com/docs/pricing-section",
       "is_featured": false
     }
   ]

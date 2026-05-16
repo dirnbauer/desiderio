@@ -1,22 +1,22 @@
 {
-    "_type": "list",
-    "header": "Common Questions",
-    "items": [
-        {
-            "title": "How do I create a new project?",
-            "content": "Click the + button in the sidebar to start a new project from scratch or use a template."
-        },
-        {
-            "title": "Can I invite team members?",
-            "content": "Yes, go to Settings > Team and enter their email addresses to send invitations."
-        },
-        {
-            "title": "What integrations are available?",
-            "content": "We support Slack, GitHub, GitLab, Jira, and over 50 other tools via our API."
-        },
-        {
-            "title": "Is there a free plan?",
-            "content": "Our Starter plan is free forever for up to 3 users and 5 projects."
-        }
-    ]
+  "_type": "list",
+  "header": "Accordion for polished editorial system",
+  "items": [
+    {
+      "title": "What makes this pattern production-ready?",
+      "content": "A sharp, production-minded accordion using shadcn-style rhythm, semantic tokens, and concise copy so content teams can publish clearer stories with reusable blocks."
+    },
+    {
+      "title": "How does it stay theme-aware?",
+      "content": "Built to show the accordion with real labels, compact spacing, modern imagery, and practical states instead of placeholder filler."
+    },
+    {
+      "title": "What should editors check first?",
+      "content": "Clean hierarchy, restrained borders, and direct actions make this accordion easy to scan across desktop and mobile previews."
+    },
+    {
+      "title": "How does it behave on mobile?",
+      "content": "The seeded content keeps the component sleek, credible, and import-ready while staying inside the Desiderio shadcn design language."
+    }
+  ]
 }

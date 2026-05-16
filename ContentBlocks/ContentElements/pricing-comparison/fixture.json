@@ -1,37 +1,53 @@
 {
   "_type": "pricing",
-  "header": "Pricing Comparison",
-  "eyebrow": "Plans",
+  "header": "Comparison Pricing for polished pricing system",
+  "eyebrow": "Editor ready",
   "plans": [
     {
-      "name": "Free",
-      "price": "$0"
+      "name": "Starter",
+      "price": "$19"
     },
     {
-      "name": "Team",
-      "price": "$29"
+      "name": "Scale",
+      "price": "$49"
     },
     {
-      "name": "Business",
-      "price": "$79"
+      "name": "Studio",
+      "price": "$99"
     }
   ],
   "pricing_feature_items": [
     {
-      "feature_name": "Projects",
-      "tier_values": ["5", "Unlimited", "Unlimited"]
+      "feature_name": "Reusable labels, metrics, and actions\nClean mobile behavior for dense content\nChart colors mapped to semantic tokens",
+      "tier_values": [
+        "Included",
+        "Advanced",
+        "Priority"
+      ]
     },
     {
-      "feature_name": "Build Minutes",
-      "tier_values": ["100/mo", "3,000/mo", "10,000/mo"]
+      "feature_name": "Reusable labels, metrics, and actions\nClean mobile behavior for dense content\nChart colors mapped to semantic tokens",
+      "tier_values": [
+        "Included",
+        "Advanced",
+        "Priority"
+      ]
     },
     {
-      "feature_name": "Custom Domains",
-      "tier_values": ["1", "10", "Unlimited"]
+      "feature_name": "Reusable labels, metrics, and actions\nClean mobile behavior for dense content\nChart colors mapped to semantic tokens",
+      "tier_values": [
+        "Included",
+        "Advanced",
+        "Priority"
+      ]
     },
     {
-      "feature_name": "Analytics",
-      "tier_values": ["Basic", "Advanced", "Enterprise"]
+      "feature_name": "Reusable labels, metrics, and actions\nClean mobile behavior for dense content\nChart colors mapped to semantic tokens",
+      "tier_values": [
+        "Included",
+        "Advanced",
+        "Priority"
+      ]
     }
   ]
 }

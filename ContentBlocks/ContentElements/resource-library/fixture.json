@@ -1,22 +1,22 @@
 {
-    "_type": "grid",
-    "header": "Resource Library",
-    "items": [
-        {
-            "title": "Getting Started Guide",
-            "description": "A comprehensive walkthrough for new users covering setup, configuration, and first workflows."
-        },
-        {
-            "title": "Best Practices Handbook",
-            "description": "Proven strategies from our top-performing customers for maximizing platform value."
-        },
-        {
-            "title": "Template Library",
-            "description": "Pre-built workflow templates for sales, marketing, engineering, and HR teams."
-        },
-        {
-            "title": "Video Tutorials",
-            "description": "Step-by-step video guides covering every feature of the platform."
-        }
-    ]
+  "_type": "grid",
+  "header": "Resource Library that feels ready to ship",
+  "items": [
+    {
+      "title": "What makes this pattern production-ready?",
+      "description": "The seeded content keeps the component sleek, credible, and import-ready while staying inside the Desiderio shadcn design language."
+    },
+    {
+      "title": "How does it stay theme-aware?",
+      "description": "A sharp, production-minded resource library using shadcn-style rhythm, semantic tokens, and concise copy so content teams can publish clearer stories with reusable blocks."
+    },
+    {
+      "title": "What should editors check first?",
+      "description": "Built to show the resource library with real labels, compact spacing, modern imagery, and practical states instead of placeholder filler."
+    },
+    {
+      "title": "How does it behave on mobile?",
+      "description": "Clean hierarchy, restrained borders, and direct actions make this resource library easy to scan across desktop and mobile previews."
+    }
+  ]
 }

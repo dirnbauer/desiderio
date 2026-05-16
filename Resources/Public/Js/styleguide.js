@@ -174,7 +174,7 @@ function desiderioInit() {
   }
 
   window.addEventListener('hashchange', onHashChange);
-  onHashChange();
+  window.requestAnimationFrame(onHashChange);
 
   // Sidebar link clicks
   allNavLinks.forEach(function (link) {

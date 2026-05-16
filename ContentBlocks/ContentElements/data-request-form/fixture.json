@@ -1,17 +1,17 @@
 {
-    "_type": "form",
-    "header": "Data Access Request",
-    "description": "Submit a GDPR data access or deletion request.",
-    "request_types": [
-        {
-            "label": "Full Name"
-        },
-        {
-            "label": "Email Address"
-        },
-        {
-            "label": "Request Type"
-        }
-    ],
-    "submit_text": "Submit Request"
+  "_type": "form",
+  "header": "Data Request Form that feels ready to ship",
+  "description": "Clean hierarchy, restrained borders, and direct actions make this data request form easy to scan across desktop and mobile previews.",
+  "request_types": [
+    {
+      "label": "Token polish"
+    },
+    {
+      "label": "Import ready"
+    },
+    {
+      "label": "Clean states"
+    }
+  ],
+  "submit_text": "Send request"
 }

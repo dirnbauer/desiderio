@@ -1,28 +1,28 @@
 {
-    "_type": "nav",
-    "header": "Platform Navigation",
-    "brand": "Acme Platform",
-    "brand_link": "https://example.com/desiderio",
-    "intro_title": "Mega Menu",
-    "intro_text": "Structured navigation for product suites, resources, and conversion paths.",
-    "primary_button_text": "Start Free Trial",
-    "primary_button_link": "https://example.com/desiderio/start",
-    "menu_groups": [
-        {
-            "title": "Product",
-            "description": "Explore the core platform, collaboration tools, and workflow automation."
-        },
-        {
-            "title": "Solutions",
-            "description": "Find workflows for product teams, agencies, and enterprise operations."
-        },
-        {
-            "title": "Resources",
-            "description": "Use practical guides, launch checklists, and technical references."
-        },
-        {
-            "title": "Company",
-            "description": "Learn how the team builds accessible, shadcn-inspired TYPO3 experiences."
-        }
-    ]
+  "_type": "nav",
+  "header": "Mega Menu that feels ready to ship",
+  "brand": "Helio Systems",
+  "brand_link": "https://ui.shadcn.com/docs/mega-menu",
+  "intro_title": "Makes movement through the page feel precise with simple labels, clear active states, and compact structure.",
+  "intro_text": "Makes movement through the page feel precise with simple labels, clear active states, and compact structure.",
+  "primary_button_text": "Open preview",
+  "primary_button_link": "https://ui.shadcn.com/docs/mega-menu",
+  "menu_groups": [
+    {
+      "title": "Launch Title",
+      "description": "Built to show the mega menu with real labels, compact spacing, modern imagery, and practical states instead of placeholder filler."
+    },
+    {
+      "title": "Workflow Title",
+      "description": "Clean hierarchy, restrained borders, and direct actions make this mega menu easy to scan across desktop and mobile previews."
+    },
+    {
+      "title": "Signal Title",
+      "description": "The seeded content keeps the component sleek, credible, and import-ready while staying inside the Desiderio shadcn design language."
+    },
+    {
+      "title": "Launch Title",
+      "description": "A sharp, production-minded mega menu using shadcn-style rhythm, semantic tokens, and concise copy so visitors can move through complex content without friction."
+    }
+  ]
 }

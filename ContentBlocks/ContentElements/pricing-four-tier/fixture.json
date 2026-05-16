@@ -1,49 +1,49 @@
 {
   "_type": "pricing",
-  "header": "Plans for Every Stage",
-  "eyebrow": "Plans",
-  "subheadline": "From solo founders to enterprise teams, we have a plan that fits.",
+  "header": "Four Tier Pricing that feels ready to ship",
+  "eyebrow": "Clean states",
+  "subheadline": "Helps buyers compare options quickly with credible tiers, compact benefits, and confident action labels.",
   "plans": [
     {
-      "title": "Solo",
-      "price": "$9 /month",
-      "description": "For one-person projects and early prototypes.",
+      "title": "Starter",
+      "price": "$19",
+      "description": "The seeded content keeps the component sleek, credible, and import-ready while staying inside the Desiderio shadcn design language.",
       "features": [
-        "1 user",
-        "3 projects",
-        "Basic features",
-        "Community support"
+        "Compact shadcn spacing and borders",
+        "Reusable labels, metrics, and actions",
+        "Clean mobile behavior for dense content",
+        "Chart colors mapped to semantic tokens"
       ],
-      "button_text": "Start Solo",
-      "button_link": "https://example.com/desiderio/pricing/solo",
+      "button_text": "See it live",
+      "button_link": "https://ui.shadcn.com/docs/four-tier-pricing",
       "featured": false
     },
     {
-      "title": "Team",
-      "price": "$25 /user/month",
-      "description": "For collaborative teams shipping weekly.",
+      "title": "Scale",
+      "price": "$49",
+      "description": "A sharp, production-minded four tier pricing using shadcn-style rhythm, semantic tokens, and concise copy so buyers can compare plans quickly and choose with confidence.",
       "features": [
-        "Up to 20 users",
-        "Unlimited projects",
-        "Advanced features",
-        "Email support"
+        "Compact shadcn spacing and borders",
+        "Reusable labels, metrics, and actions",
+        "Clean mobile behavior for dense content",
+        "Chart colors mapped to semantic tokens"
       ],
-      "button_text": "Start Team",
-      "button_link": "https://example.com/desiderio/pricing/team",
+      "button_text": "Start with this",
+      "button_link": "https://ui.shadcn.com/docs/four-tier-pricing",
       "featured": true
     },
     {
-      "title": "Business",
-      "price": "$59 /user/month",
-      "description": "For cross-functional teams with governance needs.",
+      "title": "Studio",
+      "price": "$99",
+      "description": "Built to show the four tier pricing with real labels, compact spacing, modern imagery, and practical states instead of placeholder filler.",
       "features": [
-        "Unlimited users",
-        "Admin controls",
-        "Analytics suite",
-        "Priority support"
+        "Compact shadcn spacing and borders",
+        "Reusable labels, metrics, and actions",
+        "Clean mobile behavior for dense content",
+        "Chart colors mapped to semantic tokens"
       ],
-      "button_text": "Start Business",
-      "button_link": "https://example.com/desiderio/pricing/business",
+      "button_text": "Open preview",
+      "button_link": "https://ui.shadcn.com/docs/four-tier-pricing",
       "featured": false
     }
   ]

@@ -1,22 +1,22 @@
 {
-    "_type": "grid",
-    "header": "Explore Our Features",
-    "subheadline": "Swipe through our top capabilities.",
-    "items": [
-        {
-            "icon": "search",
-            "title": "Full-Text Search",
-            "description": "Search across all projects, docs, and conversations."
-        },
-        {
-            "icon": "mail",
-            "title": "Email Notifications",
-            "description": "Get alerts for builds, reviews, and mentions."
-        },
-        {
-            "icon": "file",
-            "title": "Audit Logs",
-            "description": "Complete activity trail for compliance and debugging."
-        }
-    ]
+  "_type": "grid",
+  "header": "Carousel Feature Section that feels ready to ship",
+  "subheadline": "Frames product value with strong hierarchy, modern media support, and scannable details for every viewport.",
+  "items": [
+    {
+      "icon": "users",
+      "title": "Value spotlight",
+      "description": "The seeded content keeps the component sleek, credible, and import-ready while staying inside the Desiderio shadcn design language."
+    },
+    {
+      "icon": "chart-no-axes-combined",
+      "title": "Workflow advantage",
+      "description": "A sharp, production-minded carousel feature section using shadcn-style rhythm, semantic tokens, and concise copy so product teams can show value with clean, scannable sections."
+    },
+    {
+      "icon": "shield-check",
+      "title": "Capability layer",
+      "description": "Built to show the carousel feature section with real labels, compact spacing, modern imagery, and practical states instead of placeholder filler."
+    }
+  ]
 }

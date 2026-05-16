@@ -1,18 +1,18 @@
 {
-    "_type": "stats",
-    "header": "System Status",
-    "items": [
-        {
-            "name": "API Gateway"
-        },
-        {
-            "name": "Web Application"
-        },
-        {
-            "name": "Database Cluster"
-        },
-        {
-            "name": "Webhook Delivery"
-        }
-    ]
+  "_type": "stats",
+  "header": "Status Indicator Data View that feels ready to ship",
+  "items": [
+    {
+      "name": "Live signal"
+    },
+    {
+      "name": "Trend clarity"
+    },
+    {
+      "name": "Operational pulse"
+    },
+    {
+      "name": "Decision metric"
+    }
+  ]
 }

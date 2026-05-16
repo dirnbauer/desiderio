@@ -1,15 +1,15 @@
 {
-    "_type": "stats",
-    "header": "Platform Metrics",
-    "counters": [
-        {
-            "label": "API Requests Served"
-        },
-        {
-            "label": "Historical Uptime"
-        },
-        {
-            "label": "p95 Latency"
-        }
-    ]
+  "_type": "stats",
+  "header": "Counter Stats that feels ready to ship",
+  "counters": [
+    {
+      "label": "Import ready"
+    },
+    {
+      "label": "Token polish"
+    },
+    {
+      "label": "Modern media"
+    }
+  ]
 }

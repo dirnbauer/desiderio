@@ -1,18 +1,18 @@
 {
-    "_type": "grid",
-    "header": "Latest Articles",
-    "items": [
-        {
-            "title": "Building Scalable APIs",
-            "description": "Learn how we handle 10M requests per day with our microservices architecture."
-        },
-        {
-            "title": "Security Best Practices",
-            "description": "A comprehensive guide to securing your SaaS application from common threats."
-        },
-        {
-            "title": "Shipping Faster with CI/CD",
-            "description": "How our team reduced deployment time from hours to minutes."
-        }
-    ]
+  "_type": "grid",
+  "header": "Article Grid that feels ready to ship",
+  "items": [
+    {
+      "title": "What makes this pattern production-ready?",
+      "description": "Built to show the article grid with real labels, compact spacing, modern imagery, and practical states instead of placeholder filler."
+    },
+    {
+      "title": "How does it stay theme-aware?",
+      "description": "Clean hierarchy, restrained borders, and direct actions make this article grid easy to scan across desktop and mobile previews."
+    },
+    {
+      "title": "What should editors check first?",
+      "description": "The seeded content keeps the component sleek, credible, and import-ready while staying inside the Desiderio shadcn design language."
+    }
+  ]
 }

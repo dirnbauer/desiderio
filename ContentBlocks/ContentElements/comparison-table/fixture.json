@@ -1,37 +1,53 @@
 {
   "_type": "table",
-  "header": "Plan Comparison",
-  "description": "Compare the capabilities included in each plan.",
+  "header": "Comparison Table that feels ready to ship",
+  "description": "Clean hierarchy, restrained borders, and direct actions make this comparison table easy to scan across desktop and mobile previews.",
   "column_items": [
     {
-      "name": "Starter",
+      "name": "Platform",
       "highlighted": false
     },
     {
-      "name": "Pro",
+      "name": "Solutions",
       "highlighted": true
     },
     {
-      "name": "Enterprise",
+      "name": "Resources",
       "highlighted": false
     }
   ],
   "comparison_feature_items": [
     {
-      "name": "Users",
-      "tier_values": ["3", "Unlimited", "Unlimited"]
+      "name": "Seats",
+      "tier_values": [
+        "Included",
+        "Advanced",
+        "Priority"
+      ]
     },
     {
-      "name": "Storage",
-      "tier_values": ["1 GB", "50 GB", "500 GB"]
+      "name": "Workspace storage",
+      "tier_values": [
+        "Included",
+        "Advanced",
+        "Priority"
+      ]
     },
     {
-      "name": "Support",
-      "tier_values": ["Community", "Priority", "Dedicated"]
+      "name": "Priority support",
+      "tier_values": [
+        "Included",
+        "Advanced",
+        "Priority"
+      ]
     },
     {
-      "name": "SSO",
-      "tier_values": ["No", "No", "Yes"]
+      "name": "SSO and roles",
+      "tier_values": [
+        "Included",
+        "Advanced",
+        "Priority"
+      ]
     }
   ]
 }

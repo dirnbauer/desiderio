@@ -1,22 +1,22 @@
 {
-    "_type": "grid",
-    "header": "Developer Experience",
-    "subheadline": "Tools that make developers productive from day one.",
-    "items": [
-        {
-            "icon": "settings",
-            "title": "Local Dev Server",
-            "description": "Hot reload with environment parity."
-        },
-        {
-            "icon": "sparkles",
-            "title": "Testing Framework",
-            "description": "Built-in test runner with coverage reports."
-        },
-        {
-            "icon": "book-open",
-            "title": "API Explorer",
-            "description": "Interactive API documentation with try-it-now."
-        }
-    ]
+  "_type": "grid",
+  "header": "3-Column Feature Grid for polished feature narrative",
+  "subheadline": "Frames product value with strong hierarchy, modern media support, and scannable details for every viewport.",
+  "items": [
+    {
+      "icon": "zap",
+      "title": "Value spotlight",
+      "description": "A sharp, production-minded 3-column feature grid using shadcn-style rhythm, semantic tokens, and concise copy so product teams can show value with clean, scannable sections."
+    },
+    {
+      "icon": "handshake",
+      "title": "Workflow advantage",
+      "description": "Built to show the 3-column feature grid with real labels, compact spacing, modern imagery, and practical states instead of placeholder filler."
+    },
+    {
+      "icon": "star",
+      "title": "Capability layer",
+      "description": "Clean hierarchy, restrained borders, and direct actions make this 3-column feature grid easy to scan across desktop and mobile previews."
+    }
+  ]
 }

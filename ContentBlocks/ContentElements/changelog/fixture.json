@@ -1,18 +1,18 @@
 {
-    "_type": "list",
-    "header": "Changelog",
-    "items": [
-        {
-            "title": "v3.2.0 — March 2026",
-            "description": "Added AI-assisted code review, improved search performance by 40%."
-        },
-        {
-            "title": "v3.1.0 — February 2026",
-            "description": "New dashboard widgets, dark mode improvements, webhook retry logic."
-        },
-        {
-            "title": "v3.0.0 — January 2026",
-            "description": "Major redesign with new navigation, real-time collaboration, and API v3."
-        }
-    ]
+  "_type": "list",
+  "header": "Changelog Data View that feels ready to ship",
+  "items": [
+    {
+      "title": "Live signal",
+      "description": "Built to show the changelog data view with real labels, compact spacing, modern imagery, and practical states instead of placeholder filler."
+    },
+    {
+      "title": "Trend clarity",
+      "description": "Clean hierarchy, restrained borders, and direct actions make this changelog data view easy to scan across desktop and mobile previews."
+    },
+    {
+      "title": "Operational pulse",
+      "description": "The seeded content keeps the component sleek, credible, and import-ready while staying inside the Desiderio shadcn design language."
+    }
+  ]
 }

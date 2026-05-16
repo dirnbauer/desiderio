@@ -1,18 +1,18 @@
 {
-    "_type": "stats",
-    "header": "Weekly Performance",
-    "items": [
-        {
-            "value": "1,842",
-            "label": "Deployments"
-        },
-        {
-            "value": "326",
-            "label": "Pull Requests Merged"
-        },
-        {
-            "value": "97%",
-            "label": "Build Success Rate"
-        }
-    ]
+  "_type": "stats",
+  "header": "Bar Stats that feels ready to ship",
+  "items": [
+    {
+      "value": "24K",
+      "label": "Token polish"
+    },
+    {
+      "value": "4.9",
+      "label": "Import ready"
+    },
+    {
+      "value": "12 ms",
+      "label": "Clean states"
+    }
+  ]
 }

@@ -1,0 +1,20 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+    data-namespace-typo3-fluid="true"
+>
+
+<div class="tx_solr desiderio-solr py-8">
+    <d:layout.container>
+        <div class="grid gap-8 lg:grid-cols-[minmax(0,16rem)_minmax(0,1fr)]">
+            <aside class="order-2 lg:order-1">
+                <f:render section="extra" />
+            </aside>
+            <section class="order-1 min-w-0 lg:order-2">
+                <f:render section="content" />
+            </section>
+        </div>
+    </d:layout.container>
+</div>
+
+</html>

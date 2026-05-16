@@ -1,0 +1,38 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:argument name="author" type="T3G\AgencyPack\Blog\Domain\Model\Author" optional="true"/>
+<f:argument name="settings" type="array" optional="true"/>
+
+<d:molecule.card class="flex h-full flex-col gap-4 p-4 sm:p-6" data-blog-author="{author.uid}">
+    <div class="flex items-center gap-3">
+        <f:variable name="avatarsize" value="{settings.authors.avatar.provider.size as integer}" />
+        <f:if condition="{avatarsize}"><f:else><f:variable name="avatarsize" value="48" /></f:else></f:if>
+        <img
+            loading="lazy"
+            class="size-12 rounded-full border border-border object-cover"
+            height="{avatarsize}"
+            width="{avatarsize}"
+            src="{blogvh:uri.avatar(author: author, size: avatarsize)}"
+            alt="{author.name}"
+        >
+        <h2 class="text-lg font-semibold text-foreground" itemprop="name">
+            <blogvh:link.author author="{author}" class="text-foreground underline-offset-4 hover:text-primary hover:underline" />
+        </h2>
+    </div>
+    <f:if condition="{author.bio}">
+        <p class="text-sm leading-6 text-muted-foreground" itemprop="description">
+            <f:format.crop maxCharacters="200" append="&nbsp;[…]">{author.bio}</f:format.crop>
+        </p>
+    </f:if>
+    <p class="mt-auto">
+        <blogvh:link.author author="{author}" class="inline-flex items-center text-sm font-medium text-primary underline-offset-4 hover:underline">
+            <f:translate extensionName="Blog" key="list.show.author">All posts</f:translate> &rarr;
+        </blogvh:link.author>
+    </p>
+</d:molecule.card>
+
+</html>

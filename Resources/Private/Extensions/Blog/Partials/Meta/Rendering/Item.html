@@ -1,0 +1,23 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:argument name="name" type="string" optional="true"/>
+<f:argument name="icon" type="string" optional="true"/>
+<f:argument name="prefix" type="string" optional="true"/>
+<f:argument name="content" type="string" optional="true"/>
+
+<f:if condition="!{name}"><f:variable name="name" value="default" /></f:if>
+
+<div class="inline-flex items-center gap-2" data-blog-meta-item="{name}">
+    <f:if condition="{icon}">
+        <span class="inline-flex size-4 shrink-0 items-center justify-center text-muted-foreground" aria-hidden="true">{icon -> f:format.raw()}</span>
+    </f:if>
+    <div class="inline-flex items-baseline gap-1">
+        <f:if condition="{prefix}"><span class="font-medium text-foreground">{prefix -> f:format.raw()}</span></f:if>
+        <f:if condition="{content}"><span>{content -> f:format.raw()}</span></f:if>
+    </div>
+</div>
+
+</html>

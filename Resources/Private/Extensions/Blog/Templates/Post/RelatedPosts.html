@@ -1,0 +1,18 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:layout name="Post" />
+
+<f:section name="Content">
+    <f:if condition="{posts}">
+        <section class="flex flex-col gap-6" aria-label="{f:translate(extensionName: 'Blog', key: 'headline.relatedposts', default: 'Related posts')}">
+            <d:atom.typography tag="h2" variant="h2"><f:translate extensionName="Blog" key="headline.relatedposts">Related posts</f:translate></d:atom.typography>
+            <f:render partial="TeaserList" arguments="{_all}" />
+        </section>
+    </f:if>
+</f:section>
+
+</html>

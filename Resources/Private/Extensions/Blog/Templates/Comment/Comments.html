@@ -1,0 +1,33 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:layout name="Post" />
+
+<f:section name="Content">
+    <f:if condition="{settings.comments.active}">
+        <section class="flex flex-col gap-4" id="comments" aria-label="{f:translate(extensionName: 'Blog', key: 'headline.comments', default: 'Comments')}">
+            <d:atom.typography tag="h3" variant="h3"><f:translate extensionName="Blog" key="headline.comments">Comments</f:translate></d:atom.typography>
+            <f:if condition="{settings.comments.disqus.enable} !== '1'">
+                <f:if condition="{comments}">
+                    <f:then>
+                        <ol class="flex flex-col gap-4">
+                            <f:for each="{comments}" as="comment">
+                                <li><f:render partial="Comments/Comment" arguments="{comment: comment}"/></li>
+                            </f:for>
+                        </ol>
+                    </f:then>
+                    <f:else>
+                        <d:molecule.alert>
+                            <d:molecule.alertDescription><f:translate extensionName="Blog" key="message.no_comments">No comments yet</f:translate></d:molecule.alertDescription>
+                        </d:molecule.alert>
+                    </f:else>
+                </f:if>
+            </f:if>
+        </section>
+    </f:if>
+</f:section>
+
+</html>

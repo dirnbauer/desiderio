@@ -1,0 +1,37 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:layout name="Default"/>
+
+<f:section name="Main">
+    <f:switch expression="{record.imageorient}">
+        <f:case value="0"><f:variable name="mediaPosition" value="above"/></f:case>
+        <f:case value="8"><f:variable name="mediaPosition" value="below"/></f:case>
+        <f:case value="17"><f:variable name="mediaPosition" value="above"/></f:case>
+        <f:case value="18"><f:variable name="mediaPosition" value="below"/></f:case>
+        <f:case value="25"><f:variable name="mediaPosition" value="left"/></f:case>
+        <f:case value="26"><f:variable name="mediaPosition" value="left"/></f:case>
+        <f:case value="27"><f:variable name="mediaPosition" value="right"/></f:case>
+        <f:case value="28"><f:variable name="mediaPosition" value="right"/></f:case>
+        <f:defaultCase><f:variable name="mediaPosition" value="right"/></f:defaultCase>
+    </f:switch>
+
+    <article class="ce-fsc-textmedia ce-fsc-textmedia--{mediaPosition}">
+        <f:if condition="{mediaPosition} == 'above' || {mediaPosition} == 'left'">
+            <f:render partial="Media" arguments="{files: files, position: mediaPosition, maxWidth: 1200}"/>
+        </f:if>
+
+        <div class="ce-fsc-textmedia__content">
+            <f:render partial="Header" arguments="{record: record}"/>
+            <f:render partial="RichText" arguments="{record: record, field: 'bodytext'}"/>
+        </div>
+
+        <f:if condition="{mediaPosition} == 'below' || {mediaPosition} == 'right'">
+            <f:render partial="Media" arguments="{files: files, position: mediaPosition, maxWidth: 1200}"/>
+        </f:if>
+    </article>
+</f:section>
+
+</html>

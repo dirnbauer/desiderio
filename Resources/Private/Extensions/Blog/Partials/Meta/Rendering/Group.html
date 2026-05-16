@@ -1,0 +1,13 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:argument name="metatype" type="string" optional="true"/>
+<f:argument name="content" type="string" optional="true"/>
+
+<div class="flex flex-wrap items-center gap-x-4 gap-y-2 text-xs text-muted-foreground" data-blog-meta-type="{metatype}">
+    {content -> f:format.raw()}
+</div>
+
+</html>

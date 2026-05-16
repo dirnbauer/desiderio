@@ -1,0 +1,26 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:argument name="category" type="T3G\AgencyPack\Blog\Domain\Model\Category" optional="true"/>
+<f:argument name="settings" type="array" optional="true"/>
+
+<d:molecule.card class="flex h-full flex-col gap-3 p-4 sm:p-6" data-blog-category="{category.uid}">
+    <h2 class="text-lg font-semibold text-foreground" itemprop="name">
+        <blogvh:link.category category="{category}" class="text-foreground underline-offset-4 hover:text-primary hover:underline" />
+    </h2>
+    <f:if condition="{category.description}">
+        <p class="text-sm leading-6 text-muted-foreground" itemprop="description">
+            <f:format.crop maxCharacters="200" append="&nbsp;[…]">{category.description}</f:format.crop>
+        </p>
+    </f:if>
+    <p class="mt-auto">
+        <blogvh:link.category category="{category}" class="inline-flex items-center text-sm font-medium text-primary underline-offset-4 hover:underline">
+            <f:translate extensionName="Blog" key="list.show.category">All posts</f:translate> &rarr;
+        </blogvh:link.category>
+    </p>
+</d:molecule.card>
+
+</html>

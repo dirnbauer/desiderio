@@ -1,0 +1,17 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:layout name="Default"/>
+
+<f:section name="Main">
+    <div class="ce-fsc-html">
+        <f:render partial="Header" arguments="{record: record}"/>
+        <div class="ce-fsc-html__body">
+            {record.bodytext -> f:format.raw()}
+        </div>
+    </div>
+</f:section>
+
+</html>

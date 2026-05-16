@@ -1,0 +1,39 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:layout name="General" />
+
+<f:section name="content">
+    <div class="news-search-result flex flex-col gap-6">
+        <f:if condition="{search}">
+            <f:if condition="{news}">
+                <f:then>
+                    <p class="count-msg text-sm text-muted-foreground">
+                        <f:translate key="search-text" arguments="{0: '{f:count(subject: news)}', 1: search.subject}" />
+                    </p>
+                    <f:if condition="{settings.search.paginate.insertAbove}">
+                        <f:render partial="List/Pagination" arguments="{pagination: pagination.pagination, paginator: pagination.paginator}" />
+                    </f:if>
+                    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                        <f:for each="{pagination.paginator.paginatedItems}" as="newsItem" iteration="iterator">
+                            <f:render partial="List/Item" arguments="{newsItem: newsItem, settings: settings, className: className, view: 'list'}" />
+                        </f:for>
+                    </div>
+                    <f:if condition="{settings.search.paginate.insertBelow}">
+                        <f:render partial="List/Pagination" arguments="{pagination: pagination.pagination, paginator: pagination.paginator}" />
+                    </f:if>
+                </f:then>
+                <f:else>
+                    <d:molecule.alert>
+                        <d:molecule.alertDescription><f:translate key="search-noresult" /></d:molecule.alertDescription>
+                    </d:molecule.alert>
+                </f:else>
+            </f:if>
+        </f:if>
+    </div>
+</f:section>
+
+</html>

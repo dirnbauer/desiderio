@@ -1,0 +1,29 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en"
+    xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+    xmlns:s="http://typo3.org/ns/ApacheSolrForTypo3/Solr/ViewHelpers"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:section name="FrequentlySearched">
+    <s:frequentlySearched>
+        <f:if condition="{frequentSearches}">
+            <section id="tx-solr-frequent-searches" class="d-solr-suggest d-solr-suggest--facet" aria-labelledby="tx-solr-frequent-searches-label">
+                <h2 class="d-solr-suggest__group" id="tx-solr-frequent-searches-label">
+                    <f:translate key="solr.frequentSearches" domain="desiderio.labels">Frequent searches</f:translate>
+                </h2>
+
+                <ul class="d-solr-facet__list">
+                    <f:for each="{frequentSearches}" as="searchedForInfo">
+                        <li>
+                            <a href="{s:uri.search.startNewSearch(queryString: searchedForInfo.q)}" class="solr-ajaxified d-solr-suggest__option">
+                                <span class="d-solr-suggest__term"><f:format.htmlentities>{searchedForInfo.q}</f:format.htmlentities></span>
+                            </a>
+                        </li>
+                    </f:for>
+                </ul>
+            </section>
+        </f:if>
+    </s:frequentlySearched>
+</f:section>
+
+</html>

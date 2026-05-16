@@ -1,0 +1,39 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en"
+    xmlns:f="http://typo3.org/ns/TYPO3/Fluid/ViewHelpers"
+    xmlns:s="http://typo3.org/ns/ApacheSolrForTypo3/Solr/ViewHelpers"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:section name="Sorting">
+    <details id="tx-solr-sorting" class="relative">
+        <summary class="inline-flex h-10 cursor-pointer list-none items-center justify-center gap-2 rounded-lg bg-secondary px-4 text-sm font-medium text-secondary-foreground transition-colors hover:bg-secondary/80 focus-visible:bg-secondary/80 focus-visible:outline-hidden focus-visible:ring-3 focus-visible:ring-ring active:bg-secondary/80 [&::-webkit-details-marker]:hidden">
+            <f:translate key="solr.sortBy" domain="desiderio.labels">Sort by</f:translate>
+            <span class="h-0 w-0 border-x-[5px] border-t-[6px] border-x-transparent border-t-current" aria-hidden="true"></span>
+        </summary>
+
+        <div class="absolute right-0 z-40 mt-2 w-56 overflow-hidden rounded-xl border border-border bg-card p-1 text-card-foreground shadow-md">
+            <f:for each="{resultSet.sortings}" as="sorting">
+                <f:if condition="{sorting.isResetOption}">
+                    <f:then>
+                        <a class="solr-ajaxified flex items-center justify-between gap-3 rounded-lg px-3 py-2 text-sm transition-colors hover:bg-muted hover:text-foreground focus-visible:bg-muted focus-visible:text-foreground focus-visible:outline-hidden focus-visible:ring-3 focus-visible:ring-ring active:bg-muted active:text-foreground {f:if(condition: '{sorting.selected}', then: 'bg-muted text-foreground', else: 'text-muted-foreground')}" href="{s:uri.sorting.removeSorting()}">{sorting.label}</a>
+                    </f:then>
+                    <f:else>
+                        <f:if condition="{sorting.selected}">
+                            <f:then>
+                                <a class="solr-ajaxified flex items-center justify-between gap-3 rounded-lg bg-muted px-3 py-2 text-sm font-medium text-foreground transition-colors hover:bg-muted focus-visible:bg-muted focus-visible:outline-hidden focus-visible:ring-3 focus-visible:ring-ring active:bg-muted" href="{s:uri.sorting.setSorting(sortingName: sorting.name, sortingDirection: sorting.oppositeDirection)}">
+                                    <span>{sorting.label}</span>
+                                    <span aria-hidden="true">{f:if(condition: '{sorting.isAscDirection}', then: 'asc', else: 'desc')}</span>
+                                </a>
+                            </f:then>
+                            <f:else>
+                                <a class="solr-ajaxified flex items-center justify-between gap-3 rounded-lg px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:bg-muted focus-visible:text-foreground focus-visible:outline-hidden focus-visible:ring-3 focus-visible:ring-ring active:bg-muted active:text-foreground" href="{s:uri.sorting.setSorting(sortingName: sorting.name, sortingDirection: sorting.direction)}">{sorting.label}</a>
+                            </f:else>
+                        </f:if>
+                    </f:else>
+                </f:if>
+            </f:for>
+        </div>
+    </details>
+</f:section>
+
+</html>

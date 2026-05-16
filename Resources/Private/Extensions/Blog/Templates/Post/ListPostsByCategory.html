@@ -1,0 +1,58 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:layout name="Default" />
+
+<f:section name="Content">
+    <f:if condition="{category}">
+        <f:then>
+            <header class="mb-8 flex flex-col gap-4">
+                <div class="flex flex-wrap items-center gap-3">
+                    <d:atom.typography tag="h1" variant="h1">
+                        <f:translate extensionName="Blog" key="headline.category.simple">Category</f:translate>:
+                        {category.title}
+                    </d:atom.typography>
+                    <blogvh:link.category class="inline-flex h-9 items-center gap-2 rounded-lg border border-border px-3 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground" rss="true" category="{category}">
+                        <f:render partial="General/SocialIcons" section="Rss" optional="true" />
+                        <span><f:translate extensionName="Blog" key="link.rss" default="RSS"/></span>
+                    </blogvh:link.category>
+                </div>
+                <f:if condition="{category.description}">
+                    <p class="text-base leading-7 text-muted-foreground">{category.description}</p>
+                </f:if>
+            </header>
+            <f:render partial="List" arguments="{_all}" />
+            <f:if condition="{settings.categoryUid} || {category.content}">
+                <footer class="mt-8 flex flex-col gap-6 border-t border-border pt-6">
+                    <f:if condition="{settings.categoryUid}">
+                        <div>
+                            <f:link.page pageUid="{settings.categoryUid}" class="inline-flex h-9 items-center rounded-lg border border-border px-3 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground">
+                                &larr; <f:translate extensionName="Blog" key="list.backlink.categories">Back to all categories</f:translate>
+                            </f:link.page>
+                        </div>
+                    </f:if>
+                    <f:if condition="{category.content}">
+                        <div class="prose prose-neutral max-w-none dark:prose-invert">
+                            <f:cObject typoscriptObjectPath="lib.blog.contentElementRendering">{category.contentElementUidList}</f:cObject>
+                        </div>
+                    </f:if>
+                </footer>
+            </f:if>
+        </f:then>
+        <f:else>
+            <header class="mb-8">
+                <d:atom.typography tag="h1" variant="h1"><f:translate extensionName="Blog" key="headline.categories">Categories</f:translate></d:atom.typography>
+            </header>
+            <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                <f:for each="{categories}" as="category">
+                    <f:render partial="List/Category" arguments="{_all}" />
+                </f:for>
+            </div>
+        </f:else>
+    </f:if>
+</f:section>
+
+</html>

@@ -1,0 +1,29 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:argument name="post" type="T3G\AgencyPack\Blog\Domain\Model\Post" optional="true"/>
+<f:argument name="settings" type="array" optional="true"/>
+
+<div class="rounded-xl border border-border bg-card p-6">
+    <div id="disqus_thread"></div>
+    <f:asset.script identifier="d-blog-disqus-{post.uid}" priority="0">
+var disqus_config = function() {
+    this.page.url = '{post.uri -> f:format.htmlspecialchars()}';
+    this.page.identifier = '{settings.comments.disqus.shortname -> f:format.htmlspecialchars()}:post:{post.uid}';
+};
+(function() {
+    var d = document;
+    var s = d.createElement('script');
+    s.src = '//{settings.comments.disqus.shortname -> f:format.htmlspecialchars()}.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', String(+new Date()));
+    (d.head || d.body).appendChild(s);
+})();
+    </f:asset.script>
+    <noscript>
+        <p class="text-sm text-muted-foreground">Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" class="text-foreground underline">comments powered by Disqus.</a></p>
+    </noscript>
+</div>
+
+</html>

@@ -1,0 +1,21 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:spaceless>
+    <f:if condition="{post}">
+        <f:then>
+            <f:render section="Content" />
+        </f:then>
+        <f:else>
+            <d:molecule.alert variant="destructive">
+                <d:molecule.alertTitle><f:translate extensionName="Blog" key="general.message.configuration_error.title"/></d:molecule.alertTitle>
+                <d:molecule.alertDescription><f:translate extensionName="Blog" key="general.message.configuration_error.single_no_post"/></d:molecule.alertDescription>
+            </d:molecule.alert>
+        </f:else>
+    </f:if>
+</f:spaceless>
+
+</html>

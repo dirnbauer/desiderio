@@ -1341,12 +1341,17 @@ PHP;
      */
     private function isAudioFileField(string $field, array $fieldConfig): bool
     {
-        $haystack = $field . ' ' . (string)($fieldConfig['identifier'] ?? '') . ' ' . (string)($fieldConfig['label'] ?? '');
+        $identifier = $fieldConfig['identifier'] ?? '';
+        $label = $fieldConfig['label'] ?? '';
+        $allowed = $fieldConfig['allowed'] ?? '';
+        $haystack = $field
+            . ' ' . (is_scalar($identifier) ? (string)$identifier : '')
+            . ' ' . (is_scalar($label) ? (string)$label : '');
         $normalized = $this->normalizeIdentifier($haystack);
-        $allowed = strtolower((string)($fieldConfig['allowed'] ?? ''));
+        $allowedTypes = is_scalar($allowed) ? strtolower((string)$allowed) : '';
 
         return str_contains($normalized, 'audio')
-            || str_contains($allowed, 'audio');
+            || str_contains($allowedTypes, 'audio');
     }
 
     /**
@@ -2347,7 +2352,10 @@ PHP;
      */
     private function resolveCollectionTable(array $field, string $fallbackIdentifier): string
     {
-        $configuredTable = (string)($field['table'] ?? $field['foreign_table'] ?? $fallbackIdentifier);
+        $configuredTableValue = $field['table'] ?? $field['foreign_table'] ?? null;
+        $configuredTable = is_string($configuredTableValue) && $configuredTableValue !== ''
+            ? $configuredTableValue
+            : $fallbackIdentifier;
         if ($configuredTable === $fallbackIdentifier || $this->tableExists($configuredTable)) {
             return $configuredTable;
         }
@@ -2415,7 +2423,7 @@ PHP;
 
     /**
      * @param array<string, mixed> $fieldConfig
-     * @return list<mixed>
+     * @return list<scalar>
      */
     private function getSelectItemValues(array $fieldConfig): array
     {
@@ -2430,7 +2438,9 @@ PHP;
                 continue;
             }
 
-            $values[] = $item['value'];
+            if (is_scalar($item['value'])) {
+                $values[] = $item['value'];
+            }
         }
 
         return $values;

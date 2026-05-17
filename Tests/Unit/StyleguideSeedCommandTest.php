@@ -561,8 +561,11 @@ final class StyleguideSeedCommandTest extends TestCase
         ]);
 
         self::assertIsArray($references);
-        self::assertSame('Resources/Public/Styleguide/Audio/editorial-brief.wav', $references[0]['file'] ?? null);
-        self::assertSame('Editorial brief audio', $references[0]['title'] ?? null);
+        self::assertArrayHasKey(0, $references);
+        $reference = $references[0];
+        self::assertIsArray($reference);
+        self::assertSame('Resources/Public/Styleguide/Audio/editorial-brief.wav', $reference['file'] ?? null);
+        self::assertSame('Editorial brief audio', $reference['title'] ?? null);
     }
 
     public function testBlogTeaserMetaDefaultsToReadingTime(): void
@@ -684,8 +687,12 @@ final class StyleguideSeedCommandTest extends TestCase
 
         foreach ($items as $item) {
             self::assertIsArray($item);
-            self::assertNotSame('', trim((string)($item['tab_label'] ?? '')));
-            self::assertNotSame('', trim((string)($item['tab_content'] ?? '')));
+            $label = $item['tab_label'] ?? null;
+            $content = $item['tab_content'] ?? null;
+            self::assertIsString($label);
+            self::assertIsString($content);
+            self::assertNotSame('', trim($label));
+            self::assertNotSame('', trim($content));
         }
     }
 
@@ -725,8 +732,9 @@ final class StyleguideSeedCommandTest extends TestCase
         self::assertSame('Performance Metrics', $fields['header']);
         self::assertArrayHasKey('chart_data', $fields);
         self::assertNotSame('Chart Data for Chart', $fields['chart_data']);
+        self::assertIsString($fields['chart_data']);
 
-        $chartData = json_decode((string)$fields['chart_data'], true);
+        $chartData = json_decode($fields['chart_data'], true);
         self::assertSame([
             ['label' => 'Uptime', 'value' => 99.97],
             ['label' => 'Requests Processed', 'value' => 1.2],

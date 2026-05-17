@@ -288,6 +288,9 @@ foreach ($blocks as $block) {
     file_put_contents($configPath, rtrim(Yaml::dump($config, 8, 2, Yaml::DUMP_MULTI_LINE_LITERAL_BLOCK)) . "\n");
     file_put_contents($block . '/language/labels.xlf', xlf($slug, $title, $description));
     file_put_contents($block . '/language/de.labels.xlf', deXlf($slug, $title, $description, $germanTitle, $germanDescription));
+    foreach (['es', 'fr', 'it'] as $language) {
+        file_put_contents($block . '/language/' . $language . '.labels.xlf', translatedXlf($slug, $title, $description, $language));
+    }
     file_put_contents($block . '/assets/icon.svg', iconSvg($slug, $group, $title));
     file_put_contents($block . '/templates/backend-preview.fluid.html', backendPreviewTemplate($title, $config));
 
@@ -429,113 +432,114 @@ function humanTitle(array $parts, array $acronyms): string
  */
 function descriptionFor(string $slug, string $title, string $group, array $config, string $language): string
 {
-    $purpose = purposeSentence($slug, $title, $group, $language);
-    $capabilities = capabilitySentence($config, $language);
-
-    return trim($purpose . ' ' . $capabilities);
+    return purposeSentence($slug, $title, $group, $language);
 }
 
 function purposeSentence(string $slug, string $title, string $group, string $language): string
 {
-    $keywords = strtolower(str_replace('-', ' ', $slug . ' ' . $group . ' ' . $title));
+    $keywords = keywordContext($slug . ' ' . $group . ' ' . $title);
+    $plainTitle = plainTitle($title);
 
     if ($language === 'de') {
-        return match (true) {
-            containsAny($keywords, ['accordion', 'faq']) => sprintf('%s bündelt Antworten oder gegliederte Informationen in einem kompakten aufklappbaren Bereich.', $title),
-            containsAny($keywords, ['alert', 'notification', 'callout', 'status', 'emergency']) => sprintf('%s hebt dringende Hinweise, Statusmeldungen oder wichtige Kontextinformationen sichtbar hervor.', $title),
-            containsAny($keywords, ['analytics', 'kpi', 'metric', 'stats', 'counter', 'leaderboard', 'dashboard']) => sprintf('%s zeigt Kennzahlen und Leistungsdaten als schnell erfassbaren Dashboard-Baustein.', $title),
-            containsAny($keywords, ['area chart', 'bar chart', 'donut chart', 'heatmap', 'line chart', 'pie chart', 'radar', 'sparkline', 'stacked bar']) => sprintf('%s übersetzt Daten in eine konkrete Diagrammform mit klarem visuellen Schwerpunkt.', $title),
-            containsAny($keywords, ['table', 'comparison', 'compare']) => sprintf('%s strukturiert Inhalte für klare Vergleiche, Listen, Zeilen oder tabellarische Details.', $title),
-            containsAny($keywords, ['form', 'signup', 'request', 'booking', 'contact', 'waitlist', 'newsletter', 'demo', 'callback', 'download form']) => sprintf('%s sammelt Besucherinteresse mit fokussierter Formular- oder Anfragekommunikation.', $title),
-            containsAny($keywords, ['pricing', 'plan', 'billing', 'bundle', 'calculator', 'order summary']) => sprintf('%s unterstützt Kaufentscheidungen mit Tarifen, Preisen, Paketen oder berechneten Optionen.', $title),
-            containsAny($keywords, ['testimonial', 'review', 'quote', 'rating', 'award', 'trust', 'client', 'customer', 'logo', 'partner', 'certification', 'press']) => sprintf('%s baut Vertrauen über Stimmen, Logos, Bewertungen, Auszeichnungen oder Referenzen auf.', $title),
-            containsAny($keywords, ['team', 'member', 'founder', 'advisor', 'board', 'profile', 'culture', 'career', 'job', 'office', 'org chart', 'company values', 'company perks']) => sprintf('%s stellt Menschen, Rollen, Kultur oder Karriereinformationen nachvollziehbar vor.', $title),
-            containsAny($keywords, ['navigation', 'navbar', 'menu', 'breadcrumb', 'toc', 'pagination', 'tabs', 'steps', 'search', 'back to top', 'utility bar']) => sprintf('%s hilft Besucherinnen und Besuchern, sich mit Links, Menüs, Ankern oder Suchzugängen zu orientieren.', $title),
-            containsAny($keywords, ['footer', 'copyright', 'legal', 'privacy', 'cookie', 'gdpr', 'accessibility', 'imprint', 'terms']) => sprintf('%s schließt Seiten mit Serviceinformationen, rechtlichen Links oder Kontaktwegen ab.', $title),
-            containsAny($keywords, ['hero']) => sprintf('%s eröffnet Landingpages, Kampagnen oder Produktseiten mit einer starken ersten Botschaft.', $title),
-            containsAny($keywords, ['feature', 'benefit', 'service', 'product', 'use case']) => sprintf('%s erklärt Produktnutzen, Funktionen oder Anwendungsfälle in einer klaren Inhaltsstruktur.', $title),
-            containsAny($keywords, ['gallery', 'image', 'video', 'audio', 'media', 'embed', 'map']) => sprintf('%s kombiniert Medien oder eingebettete Inhalte mit begleitender redaktioneller Aussage.', $title),
-            containsAny($keywords, ['timeline', 'milestone', 'history', 'process', 'how to', 'onboarding', 'progress', 'changelog']) => sprintf('%s macht Abfolgen, Fortschritt, Historie oder Prozessschritte leichter verständlich.', $title),
-            containsAny($keywords, ['card', 'grid', 'list', 'library', 'sitemap', 'category']) => sprintf('%s ordnet mehrere Inhalte als scanbare Karten, Raster oder Bibliothek.', $title),
-            default => sprintf('%s liefert einen eigenständigen redaktionellen Baustein für eine klar erkennbare Seitenaufgabe.', $title),
+        $subject = 'das Element ' . $plainTitle;
+        $action = match (true) {
+            hasAnyTerm($keywords, ['accordion', 'faq']) => 'kurze Antworten kompakt halten und Details aufklappen',
+            hasAnyTerm($keywords, ['alert', 'notification', 'callout', 'status', 'emergency']) => 'wichtige Hinweise, Warnungen oder Status schnell sichtbar machen',
+            hasAnyTerm($keywords, ['team', 'member', 'founder', 'advisor', 'board', 'profile', 'culture', 'career', 'job', 'office', 'org chart', 'organization chart', 'company values', 'company perks', 'mission statement']) => 'Menschen, Rollen, Kultur oder offene Stellen greifbar machen',
+            hasAnyTerm($keywords, ['analytics', 'kpi', 'metric', 'stat', 'stats', 'counter', 'leaderboard', 'dashboard']) => 'wenige Kennzahlen direkt vergleichbar machen',
+            hasAnyTerm($keywords, ['bar chart', 'stacked bar']) => 'Kategorien, Summen oder Rangfolgen klar vergleichen',
+            hasAnyTerm($keywords, ['line chart', 'area chart', 'sparkline']) => 'Trends oder Veränderungsraten über Zeit zeigen',
+            hasAnyTerm($keywords, ['donut chart', 'pie chart']) => 'Anteile eines Ganzen mit wenigen Segmenten erklären',
+            hasAnyTerm($keywords, ['heatmap', 'radar']) => 'Muster, Intensität oder mehrere Dimensionen kompakt vergleichen',
+            hasAnyTerm($keywords, ['contribution chart']) => 'Aktivität oder Häufigkeit über viele Zeitpunkte verdichten',
+            hasAnyTerm($keywords, ['chart', 'infographic']) => 'einfache Daten visuell verständlich machen',
+            hasAnyTerm($keywords, ['blog', 'article', 'teaser']) => 'redaktionelle Einstiege oder verwandte Beiträge scanbar machen',
+            hasAnyTerm($keywords, ['table', 'comparison', 'compare', 'toc']) => 'Zeilen, Optionen oder Inhalte präzise vergleichbar machen',
+            hasAnyTerm($keywords, ['cta', 'call to action']) => 'eine klare nächste Aktion im Seitenfluss auslösen',
+            hasAnyTerm($keywords, ['form', 'signup', 'request', 'booking', 'contact', 'waitlist', 'newsletter', 'demo', 'callback', 'download form', 'data request']) => 'eine Anfrage, Anmeldung oder Kontaktaufnahme erfassen',
+            hasAnyTerm($keywords, ['pricing', 'plan', 'billing', 'bundle', 'calculator', 'order summary']) => 'Tarife, Pakete oder Kosten entscheidungsnah darstellen',
+            hasAnyTerm($keywords, ['testimonial', 'review', 'reviews', 'quote', 'rating', 'ratings', 'award', 'awards', 'trust', 'client', 'clients', 'customer', 'customers', 'logo', 'logos', 'partner', 'partners', 'certification', 'certifications', 'press', 'case study']) => 'Vertrauen mit Stimmen, Logos, Bewertungen oder Nachweisen aufbauen',
+            hasAnyTerm($keywords, ['navigation', 'navbar', 'menu', 'breadcrumb', 'pagination', 'tabs', 'steps', 'search', 'back to top', 'utility bar', 'announcement bar']) => 'Besuchern Orientierung oder klare nächste Wege geben',
+            hasAnyTerm($keywords, ['footer', 'copyright', 'legal', 'privacy', 'cookie', 'gdpr', 'accessibility', 'imprint', 'terms', 'compliance']) => 'Serviceinformationen, Rechtliches oder Kontaktwege abschließen',
+            hasAnyTerm($keywords, ['hero']) => 'eine Seite mit Botschaft, Nutzen und Hauptaktion eröffnen',
+            hasAnyTerm($keywords, ['feature', 'features', 'benefit', 'benefits', 'service', 'services', 'product', 'products', 'use case']) => 'Produktnutzen, Funktionen oder Anwendungsfälle strukturiert erklären',
+            hasAnyTerm($keywords, ['gallery', 'image']) => 'mehrere Bilder durchsuchbar machen und ein Motiv hervorheben',
+            hasAnyTerm($keywords, ['video', 'audio', 'media', 'embed', 'map']) => 'Medien oder Standortinhalte mit Kontext einbetten',
+            hasAnyTerm($keywords, ['timeline', 'milestone', 'history', 'process', 'how to', 'onboarding', 'progress', 'changelog']) => 'Ablauf, Fortschritt oder Historie Schritt für Schritt zeigen',
+            hasAnyTerm($keywords, ['card', 'grid', 'list', 'library', 'sitemap', 'category', 'carousel']) => 'mehrere Inhalte als scanbare Sammlung ordnen',
+            hasAnyTerm($keywords, ['code block']) => 'Code oder technische Beispiele lesbar präsentieren',
+            hasAnyTerm($keywords, ['file download']) => 'Downloads mit Titel, Kontext und klarer Aktion anbieten',
+            hasAnyTerm($keywords, ['content columns', 'content highlight', 'content sidebar']) => 'redaktionelle Inhalte klar gliedern und gewichten',
+            hasAnyTerm($keywords, ['divider']) => 'redaktionelle Abschnitte ruhig voneinander trennen',
+            hasAnyTerm($keywords, ['social links']) => 'Besucher zu externen Social-Profilen weiterführen',
+            hasAnyTerm($keywords, ['directions', 'office hours']) => 'Besuchs- oder Erreichbarkeitsfragen schnell beantworten',
+            default => 'einem klar abgegrenzten Inhalt eine eigene Aufgabe geben',
         };
+
+        return sprintf('Einsetzen, wenn %s %s soll.', $subject, $action);
     }
 
-    return match (true) {
-        containsAny($keywords, ['accordion', 'faq']) => sprintf('%s turns layered answers or grouped information into a compact expandable block.', $title),
-        containsAny($keywords, ['alert', 'notification', 'callout', 'status', 'emergency']) => sprintf('%s highlights urgent notices, status updates, or important contextual messages.', $title),
-        containsAny($keywords, ['analytics', 'kpi', 'metric', 'stats', 'counter', 'leaderboard', 'dashboard']) => sprintf('%s presents performance numbers as a quick-read dashboard block.', $title),
-        containsAny($keywords, ['area chart', 'bar chart', 'donut chart', 'heatmap', 'line chart', 'pie chart', 'radar', 'sparkline', 'stacked bar']) => sprintf('%s turns data into a specific chart treatment with a clear visual focus.', $title),
-        containsAny($keywords, ['table', 'comparison', 'compare']) => sprintf('%s organizes rows, options, and details so visitors can compare information quickly.', $title),
-        containsAny($keywords, ['form', 'signup', 'request', 'booking', 'contact', 'waitlist', 'newsletter', 'demo', 'callback', 'download form']) => sprintf('%s captures visitor intent with focused form or request messaging.', $title),
-        containsAny($keywords, ['pricing', 'plan', 'billing', 'bundle', 'calculator', 'order summary']) => sprintf('%s supports buying decisions with prices, plans, packages, or calculated options.', $title),
-        containsAny($keywords, ['testimonial', 'review', 'quote', 'rating', 'award', 'trust', 'client', 'customer', 'logo', 'partner', 'certification', 'press']) => sprintf('%s builds credibility through voices, logos, ratings, awards, or references.', $title),
-        containsAny($keywords, ['team', 'member', 'founder', 'advisor', 'board', 'profile', 'culture', 'career', 'job', 'office', 'org chart', 'company values', 'company perks']) => sprintf('%s introduces people, roles, culture, or hiring context with clear editorial structure.', $title),
-        containsAny($keywords, ['navigation', 'navbar', 'menu', 'breadcrumb', 'toc', 'pagination', 'tabs', 'steps', 'search', 'back to top', 'utility bar']) => sprintf('%s helps visitors find their way through links, menus, anchors, or search entry points.', $title),
-        containsAny($keywords, ['footer', 'copyright', 'legal', 'privacy', 'cookie', 'gdpr', 'accessibility', 'imprint', 'terms']) => sprintf('%s closes a page with utility information, legal links, contact routes, or service details.', $title),
-        containsAny($keywords, ['hero']) => sprintf('%s opens landing pages, campaigns, or product pages with a strong first message.', $title),
-        containsAny($keywords, ['feature', 'benefit', 'service', 'product', 'use case']) => sprintf('%s explains product value, features, or use cases in a clear content structure.', $title),
-        containsAny($keywords, ['gallery', 'image', 'video', 'audio', 'media', 'embed', 'map']) => sprintf('%s pairs media or embedded content with supporting editorial context.', $title),
-        containsAny($keywords, ['timeline', 'milestone', 'history', 'process', 'how to', 'onboarding', 'progress', 'changelog']) => sprintf('%s makes sequences, progress, history, or process steps easier to understand.', $title),
-        containsAny($keywords, ['card', 'grid', 'list', 'library', 'sitemap', 'category']) => sprintf('%s arranges multiple pieces of content as scannable cards, grids, or libraries.', $title),
-        default => sprintf('%s provides a focused editorial building block for a recognizable page task.', $title),
+    $subject = 'the ' . strtolower($plainTitle);
+    $action = match (true) {
+        hasAnyTerm($keywords, ['accordion', 'faq']) => 'should keep answers compact until readers need detail',
+        hasAnyTerm($keywords, ['alert', 'notification', 'callout', 'status', 'emergency']) => 'should make important notices visible without a full section',
+        hasAnyTerm($keywords, ['team', 'member', 'founder', 'advisor', 'board', 'profile', 'culture', 'career', 'job', 'office', 'org chart', 'organization chart', 'company values', 'company perks', 'mission statement']) => 'should introduce people, roles, culture, or hiring context',
+        hasAnyTerm($keywords, ['analytics', 'kpi', 'metric', 'stat', 'stats', 'counter', 'leaderboard', 'dashboard']) => 'should surface key numbers for quick comparison',
+        hasAnyTerm($keywords, ['bar chart', 'stacked bar']) => 'should compare categories, totals, or rankings clearly',
+        hasAnyTerm($keywords, ['line chart', 'area chart', 'sparkline']) => 'should show trends or rates of change over time',
+        hasAnyTerm($keywords, ['donut chart', 'pie chart']) => 'should explain parts of a whole with only a few segments',
+        hasAnyTerm($keywords, ['heatmap', 'radar']) => 'should compare patterns, intensity, or several dimensions compactly',
+        hasAnyTerm($keywords, ['contribution chart']) => 'should compress activity or frequency across many time points',
+        hasAnyTerm($keywords, ['chart', 'infographic']) => 'should make simple data easy to understand visually',
+        hasAnyTerm($keywords, ['blog', 'article', 'teaser']) => 'should make editorial entry points or related posts easy to scan',
+        hasAnyTerm($keywords, ['table', 'comparison', 'compare', 'toc']) => 'should compare rows, options, or structured content precisely',
+        hasAnyTerm($keywords, ['cta', 'call to action']) => 'should prompt one clear next action in the page flow',
+        hasAnyTerm($keywords, ['form', 'signup', 'request', 'booking', 'contact', 'waitlist', 'newsletter', 'demo', 'callback', 'download form', 'data request']) => 'should collect a request, signup, booking, or contact action',
+        hasAnyTerm($keywords, ['pricing', 'plan', 'billing', 'bundle', 'calculator', 'order summary']) => 'should present costs or plan choices close to a decision',
+        hasAnyTerm($keywords, ['testimonial', 'review', 'reviews', 'quote', 'rating', 'ratings', 'award', 'awards', 'trust', 'client', 'clients', 'customer', 'customers', 'logo', 'logos', 'partner', 'partners', 'certification', 'certifications', 'press', 'case study']) => 'should turn proof points into visible trust signals',
+        hasAnyTerm($keywords, ['navigation', 'navbar', 'menu', 'breadcrumb', 'pagination', 'tabs', 'steps', 'search', 'back to top', 'utility bar', 'announcement bar']) => 'should help visitors move through sections or pages',
+        hasAnyTerm($keywords, ['footer', 'copyright', 'legal', 'privacy', 'cookie', 'gdpr', 'accessibility', 'imprint', 'terms', 'compliance']) => 'should close the page with service, legal, or contact context',
+        hasAnyTerm($keywords, ['hero']) => 'should open a page with message, value, and the next action',
+        hasAnyTerm($keywords, ['feature', 'features', 'benefit', 'benefits', 'service', 'services', 'product', 'products', 'use case']) => 'should explain product value in a structured section',
+        hasAnyTerm($keywords, ['gallery', 'image']) => 'should let visitors browse visuals while one image stays prominent',
+        hasAnyTerm($keywords, ['video', 'audio', 'media', 'embed', 'map']) => 'should embed media or location content with context',
+        hasAnyTerm($keywords, ['timeline', 'milestone', 'history', 'process', 'how to', 'onboarding', 'progress', 'changelog']) => 'should show process, progress, or history in order',
+        hasAnyTerm($keywords, ['card', 'grid', 'list', 'library', 'sitemap', 'category', 'carousel']) => 'should make a collection easy to scan',
+        hasAnyTerm($keywords, ['code block']) => 'should present code or technical snippets clearly',
+        hasAnyTerm($keywords, ['file download']) => 'should offer a downloadable asset with title, context, and action',
+        hasAnyTerm($keywords, ['content columns', 'content highlight', 'content sidebar']) => 'should structure editorial copy with clearer emphasis',
+        hasAnyTerm($keywords, ['divider']) => 'should separate editorial sections without heavy content',
+        hasAnyTerm($keywords, ['social links']) => 'should route visitors to external social profiles',
+        hasAnyTerm($keywords, ['directions', 'office hours']) => 'should answer visit planning questions quickly',
+        default => 'should give one focused content task its own place',
     };
+
+    return sprintf('Use when %s %s.', $subject, $action);
+}
+
+function plainTitle(string $title): string
+{
+    return trim($title, " \t\n\r\0\x0B'\"");
+}
+
+function keywordContext(string $value): string
+{
+    return ' ' . trim((string)preg_replace('/[^a-z0-9]+/', ' ', strtolower($value))) . ' ';
 }
 
 /**
- * @param array<string, mixed> $config
+ * @param list<string> $terms
  */
-function capabilitySentence(array $config, string $language): string
+function hasAnyTerm(string $context, array $terms): bool
 {
-    $fields = previewFields($config['fields'] ?? []);
-    $fileCount = 0;
-    $linkCount = 0;
-    $collectionCount = 0;
-    $selectCount = 0;
-    $textCount = 0;
-
-    foreach ($fields as $field) {
-        $type = (string)($field['type'] ?? (($field['useExistingField'] ?? false) ? 'Existing' : 'Textarea'));
-        $identifier = (string)$field['identifier'];
-        if ($type === 'File') {
-            $fileCount++;
-        } elseif ($type === 'Link' || str_contains($identifier, 'link')) {
-            $linkCount++;
-        } elseif ($type === 'Collection') {
-            $collectionCount++;
-        } elseif (in_array($type, ['Select', 'Checkbox', 'Radio'], true)) {
-            $selectCount++;
-        } elseif (!in_array($type, ['Palette'], true)) {
-            $textCount++;
+    foreach ($terms as $term) {
+        $normalizedTerm = trim((string)preg_replace('/[^a-z0-9]+/', ' ', strtolower($term)));
+        if ($normalizedTerm !== '' && str_contains($context, ' ' . $normalizedTerm . ' ')) {
+            return true;
         }
     }
 
-    $parts = [];
-    if ($textCount > 0) {
-        $parts[] = $language === 'de' ? 'Text- und Überschriftenfelder' : 'headline and copy fields';
-    }
-    if ($fileCount > 0) {
-        $parts[] = $language === 'de' ? 'Medienauswahl' : 'media pickers';
-    }
-    if ($collectionCount > 0) {
-        $parts[] = $language === 'de' ? 'wiederholbare Einträge' : 'repeatable entries';
-    }
-    if ($linkCount > 0) {
-        $parts[] = $language === 'de' ? 'Link- und CTA-Steuerung' : 'link and CTA controls';
-    }
-    if ($selectCount > 0) {
-        $parts[] = $language === 'de' ? 'Layout- oder Variantenoptionen' : 'layout or variant options';
-    }
-
-    if ($parts === []) {
-        return $language === 'de'
-            ? 'Redakteure erhalten eine schlanke Konfiguration ohne unnötige Felder.'
-            : 'Editors get a lean configuration without unnecessary fields.';
-    }
-
-    return $language === 'de'
-        ? 'Redakteure pflegen ' . naturalList($parts, 'de') . '.'
-        : 'Editors can manage ' . naturalList($parts, 'en') . '.';
+    return false;
 }
 
 /**
@@ -550,22 +554,6 @@ function containsAny(string $haystack, array $needles): bool
     }
 
     return false;
-}
-
-/**
- * @param list<string> $items
- */
-function naturalList(array $items, string $language): string
-{
-    $items = array_values(array_filter($items));
-    if (count($items) <= 1) {
-        return $items[0] ?? '';
-    }
-
-    $last = array_pop($items);
-    $joiner = $language === 'de' ? ' und ' : ' and ';
-
-    return implode(', ', $items) . $joiner . $last;
 }
 
 /**
@@ -887,6 +875,17 @@ function deXlf(string $productName, string $title, string $description, string $
     ], 'de');
 }
 
+function translatedXlf(string $productName, string $title, string $description, string $targetLanguage): string
+{
+    return xlf20($productName, [
+        'title' => $title,
+        'description' => $description,
+    ], [
+        'title' => $title,
+        'description' => $description,
+    ], $targetLanguage);
+}
+
 /**
  * @param array<string, string> $sources
  * @param array<string, string>|null $targets
@@ -1008,7 +1007,9 @@ function writeContentElementGroupTca(string $file, array $groups): void
         '',
         'declare(strict_types=1);',
         '',
+        'use Symfony\Component\Yaml\Yaml;',
         'use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;',
+        'use TYPO3\CMS\Core\Utility\GeneralUtility;',
         '',
         '$position = \'before:default\';',
         '',
@@ -1030,6 +1031,62 @@ function writeContentElementGroupTca(string $file, array $groups): void
         '        $position,',
         '    );',
         '    $position = \'after:\' . $group;',
+        '}',
+        '',
+        '// Content Blocks keeps non-shareable inline relation options on the base column.',
+        '// Re-apply them per CType because Desiderio intentionally reuses names like "items".',
+        '$contentElementsPath = GeneralUtility::getFileAbsFileName(\'EXT:desiderio/ContentBlocks/ContentElements\');',
+        'if ($contentElementsPath !== \'\' && is_dir($contentElementsPath)) {',
+        '    foreach (glob($contentElementsPath . \'/*/config.yaml\') ?: [] as $configPath) {',
+        '        $config = Yaml::parseFile($configPath);',
+        '        if (!is_array($config)) {',
+        '            continue;',
+        '        }',
+        '',
+        '        $typeName = (string)($config[\'typeName\'] ?? \'\');',
+        '        if ($typeName === \'\' || !isset($GLOBALS[\'TCA\'][\'tt_content\'][\'types\'][$typeName])) {',
+        '            continue;',
+        '        }',
+        '',
+        '        foreach (($config[\'fields\'] ?? []) as $field) {',
+        '            if (!is_array($field) || ($field[\'type\'] ?? \'\') !== \'Collection\') {',
+        '                continue;',
+        '            }',
+        '',
+        '            $identifier = (string)($field[\'identifier\'] ?? \'\');',
+        '            if ($identifier === \'\') {',
+        '                continue;',
+        '            }',
+        '',
+        '            $relationConfig = [',
+        '                \'foreign_table\' => (string)($field[\'foreign_table\'] ?? $field[\'table\'] ?? $identifier),',
+        '            ];',
+        '',
+        '            if (!isset($field[\'MM\'])) {',
+        '                $relationConfig[\'foreign_field\'] = (string)($field[\'foreign_field\'] ?? \'foreign_table_parent_uid\');',
+        '            }',
+        '',
+        '            if (isset($field[\'foreign_table_field\'])) {',
+        '                $relationConfig[\'foreign_table_field\'] = (string)$field[\'foreign_table_field\'];',
+        '            } elseif (($field[\'shareAcrossTables\'] ?? false) === true) {',
+        '                $relationConfig[\'foreign_table_field\'] = \'tablenames\';',
+        '            }',
+        '',
+        '            $foreignMatchFields = is_array($field[\'foreign_match_fields\'] ?? null)',
+        '                ? $field[\'foreign_match_fields\']',
+        '                : [];',
+        '            if (($field[\'shareAcrossFields\'] ?? false) === true) {',
+        '                $foreignMatchFields[\'fieldname\'] = $identifier;',
+        '            }',
+        '            if ($foreignMatchFields !== []) {',
+        '                $relationConfig[\'foreign_match_fields\'] = $foreignMatchFields;',
+        '            }',
+        '',
+        '            foreach ($relationConfig as $option => $value) {',
+        '                $GLOBALS[\'TCA\'][\'tt_content\'][\'types\'][$typeName][\'columnsOverrides\'][$identifier][\'config\'][$option] = $value;',
+        '            }',
+        '        }',
+        '    }',
         '}',
         '',
     ];

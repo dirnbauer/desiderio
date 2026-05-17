@@ -229,6 +229,16 @@ final class ContentRenderingTemplateTest extends TestCase
         self::assertStringContainsString('animateChart(svg)', $javascript);
     }
 
+    public function testTabsTemplateRendersCollectionPanelContentInline(): void
+    {
+        $template = (string) file_get_contents(__DIR__ . '/../../ContentBlocks/ContentElements/tabs/templates/frontend.html');
+
+        self::assertStringContainsString('data-d-tabs-content', $template);
+        self::assertStringContainsString('data-value="tab-{data.uid}-{iter.index}"', $template);
+        self::assertStringContainsString("{item -> f:render.text(field: 'tab_content')}", $template);
+        self::assertStringNotContainsString('<d:molecule.tabsContent', $template);
+    }
+
     public function testExtensionIntegrationSiteSetsAreBundledWithBaseSet(): void
     {
         $baseSet = Yaml::parseFile(__DIR__ . '/../../Configuration/Sets/Desiderio/config.yaml');

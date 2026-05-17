@@ -21,16 +21,16 @@
         <f:if condition="{data.header}">
             <h3 class="d-ce-preview__title">{data.header}</h3>
         </f:if>
-        <f:if condition="{data.average_score}">
-            <div class="d-ce-preview__field">
-                <span class="d-ce-preview__label">Average Score</span>
-                <span class="d-ce-preview__value">{data.average_score}</span>
-            </div>
-        </f:if>
         <f:if condition="{data.total_reviews}">
             <div class="d-ce-preview__field">
                 <span class="d-ce-preview__label">Total Reviews</span>
                 <span class="d-ce-preview__value">{data.total_reviews}</span>
+            </div>
+        </f:if>
+        <f:if condition="{data.average_score}">
+            <div class="d-ce-preview__field">
+                <span class="d-ce-preview__label">Average Score</span>
+                <span class="d-ce-preview__value">{data.average_score}</span>
             </div>
         </f:if>
         <f:if condition="{data.reviews}">

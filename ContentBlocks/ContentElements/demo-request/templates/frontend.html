@@ -14,7 +14,7 @@
                 <f:if condition="{data.description}"><d:atom.typography variant="muted">{data -> f:render.text(field: 'description')}</d:atom.typography></f:if>
                 <f:if condition="{data.image}">
                     <f:for each="{data.image}" as="fileReference">
-                        <img src="{f:uri.image(image: fileReference, maxWidth: 480)}" alt="" class="demo-request__image"/>
+                        <f:image image="{fileReference}" maxWidth="480" alt="" class="demo-request__image"/>
                     </f:for>
                 </f:if>
             </div>

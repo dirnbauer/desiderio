@@ -33,16 +33,16 @@
                 <span class="d-ce-preview__value">{data.chart_data}</span>
             </div>
         </f:if>
-        <f:if condition="{data.color_variant}">
-            <div class="d-ce-preview__field">
-                <span class="d-ce-preview__label">Color Variant</span>
-                <span class="d-ce-preview__value">{data.color_variant}</span>
-            </div>
-        </f:if>
         <f:if condition="{data.chart_type}">
             <div class="d-ce-preview__field">
                 <span class="d-ce-preview__label">Chart Type</span>
                 <span class="d-ce-preview__value">{data.chart_type}</span>
+            </div>
+        </f:if>
+        <f:if condition="{data.color_variant}">
+            <div class="d-ce-preview__field">
+                <span class="d-ce-preview__label">Color Variant</span>
+                <span class="d-ce-preview__value">{data.color_variant}</span>
             </div>
         </f:if>
         <f:if condition="{data.legend_position}">
@@ -55,12 +55,6 @@
             <div class="d-ce-preview__field">
                 <span class="d-ce-preview__label">Fill Type</span>
                 <span class="d-ce-preview__value">{data.fill_type}</span>
-            </div>
-        </f:if>
-        <f:if condition="{data.chart_height}">
-            <div class="d-ce-preview__field">
-                <span class="d-ce-preview__label">Chart Height</span>
-                <span class="d-ce-preview__value">{data.chart_height}</span>
             </div>
         </f:if>
     </div>

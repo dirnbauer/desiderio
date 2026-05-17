@@ -21,16 +21,22 @@
         <f:if condition="{data.header}">
             <h3 class="d-ce-preview__title">{data.header}</h3>
         </f:if>
-        <f:if condition="{data.discount_label}">
-            <div class="d-ce-preview__field">
-                <span class="d-ce-preview__label">Discount Label</span>
-                <span class="d-ce-preview__value">{data.discount_label}</span>
-            </div>
-        </f:if>
         <f:if condition="{data.discount_value}">
             <div class="d-ce-preview__field">
                 <span class="d-ce-preview__label">Discount Value</span>
                 <span class="d-ce-preview__value">{data.discount_value}</span>
+            </div>
+        </f:if>
+        <f:if condition="{data.total}">
+            <div class="d-ce-preview__field">
+                <span class="d-ce-preview__label">Total</span>
+                <span class="d-ce-preview__value">{data.total}</span>
+            </div>
+        </f:if>
+        <f:if condition="{data.discount_label}">
+            <div class="d-ce-preview__field">
+                <span class="d-ce-preview__label">Discount Label</span>
+                <span class="d-ce-preview__value">{data.discount_label}</span>
             </div>
         </f:if>
         <f:if condition="{data.button_text}">
@@ -45,21 +51,15 @@
                 <span class="d-ce-preview__value">{data.subtotal}</span>
             </div>
         </f:if>
-        <f:if condition="{data.total}">
-            <div class="d-ce-preview__field">
-                <span class="d-ce-preview__label">Total</span>
-                <span class="d-ce-preview__value">{data.total}</span>
-            </div>
-        </f:if>
         <f:if condition="{data.items}">
             <div class="d-ce-preview__collection">
                 <span class="d-ce-preview__label">Items</span>
                 <ul class="d-ce-preview__list">
                     <f:for each="{data.items}" as="item">
                         <li>
+                            <f:if condition="{item.quantity}"><span>{item.quantity}</span></f:if>
                             <f:if condition="{item.price}"><span>{item.price}</span></f:if>
                             <f:if condition="{item.name}"><span>{item.name}</span></f:if>
-                            <f:if condition="{item.quantity}"><span>{item.quantity}</span></f:if>
                         </li>
                     </f:for>
                 </ul>

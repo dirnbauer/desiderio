@@ -33,12 +33,6 @@
                 <span class="d-ce-preview__value">{data.description}</span>
             </div>
         </f:if>
-        <f:if condition="{data.discount_text}">
-            <div class="d-ce-preview__field">
-                <span class="d-ce-preview__label">Discount Text</span>
-                <span class="d-ce-preview__value">{data.discount_text}</span>
-            </div>
-        </f:if>
         <f:if condition="{data.original_price}">
             <div class="d-ce-preview__field">
                 <span class="d-ce-preview__label">Original Price</span>
@@ -55,6 +49,12 @@
             <div class="d-ce-preview__field">
                 <span class="d-ce-preview__label">Button Text</span>
                 <span class="d-ce-preview__value">{data.button_text}</span>
+            </div>
+        </f:if>
+        <f:if condition="{data.discount_text}">
+            <div class="d-ce-preview__field">
+                <span class="d-ce-preview__label">Discount Text</span>
+                <span class="d-ce-preview__value">{data.discount_text}</span>
             </div>
         </f:if>
     </div>

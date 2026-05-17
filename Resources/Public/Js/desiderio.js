@@ -67,7 +67,45 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* ------------------------------------------------------------------ */
-  /*  3. Dark-mode toggle                                                */
+  /*  3. Gallery browser                                                 */
+  /* ------------------------------------------------------------------ */
+  document.querySelectorAll('[data-d-gallery]').forEach(root => {
+    const main = root.querySelector('[data-d-gallery-main]');
+    const title = root.querySelector('[data-d-gallery-title]');
+    const description = root.querySelector('[data-d-gallery-description]');
+    const thumbs = Array.from(root.querySelectorAll('[data-d-gallery-thumb]'));
+
+    if (!main || thumbs.length === 0) return;
+
+    const activate = thumb => {
+      const src = thumb.dataset.largeSrc;
+      if (!src) return;
+
+      main.src = src;
+      main.alt = thumb.dataset.thumbAlt || thumb.dataset.thumbTitle || '';
+
+      if (title) {
+        title.textContent = thumb.dataset.thumbTitle || '';
+        title.hidden = title.textContent.trim() === '';
+      }
+      if (description) {
+        description.textContent = thumb.dataset.thumbDescription || '';
+        description.hidden = description.textContent.trim() === '';
+      }
+
+      thumbs.forEach(item => item.setAttribute('aria-selected', String(item === thumb)));
+    };
+
+    thumbs.forEach(thumb => {
+      thumb.addEventListener('click', () => activate(thumb));
+    });
+
+    const selected = thumbs.find(thumb => thumb.getAttribute('aria-selected') === 'true') || thumbs[0];
+    activate(selected);
+  });
+
+  /* ------------------------------------------------------------------ */
+  /*  4. Dark-mode toggle                                                */
   /* ------------------------------------------------------------------ */
   const html = document.documentElement;
   const body = document.body;
@@ -109,7 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* ------------------------------------------------------------------ */
-  /*  4. Scroll animations (IntersectionObserver)                        */
+  /*  5. Scroll animations (IntersectionObserver)                        */
   /* ------------------------------------------------------------------ */
   if ('IntersectionObserver' in window) {
     const animObs = new IntersectionObserver(
@@ -125,7 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ------------------------------------------------------------------ */
-  /*  5. Counter                                                         */
+  /*  6. Counter                                                         */
   /* ------------------------------------------------------------------ */
   if ('IntersectionObserver' in window) {
     const counterObs = new IntersectionObserver(
@@ -155,7 +193,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ------------------------------------------------------------------ */
-  /*  6. Click-outside                                                   */
+  /*  7. Click-outside                                                   */
   /* ------------------------------------------------------------------ */
   document.addEventListener('click', e => {
     document.querySelectorAll('[data-d-click-outside]:not(.is-hidden)').forEach(el => {
@@ -164,7 +202,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* ------------------------------------------------------------------ */
-  /*  7. Mobile menu toggle                                              */
+  /*  8. Mobile menu toggle                                              */
   /* ------------------------------------------------------------------ */
   document.querySelectorAll('[data-d-menu-toggle]').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -181,7 +219,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* ------------------------------------------------------------------ */
-  /*  8. Back to top                                                     */
+  /*  9. Back to top                                                     */
   /* ------------------------------------------------------------------ */
   document.querySelectorAll('[data-d-back-to-top]').forEach(btn => {
     const threshold = parseInt(btn.dataset.threshold, 10) || 300;
@@ -194,7 +232,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* ------------------------------------------------------------------ */
-  /*  9. Pricing slider                                                  */
+  /*  10. Pricing slider                                                 */
   /* ------------------------------------------------------------------ */
   document.querySelectorAll('[data-d-pricing-slider]').forEach(root => {
     const range = root.querySelector('[data-d-pricing-slider-range]');
@@ -233,7 +271,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* ------------------------------------------------------------------ */
-  /*  10. Solr suggest                                                   */
+  /*  11. Solr suggest                                                   */
   /* ------------------------------------------------------------------ */
   const appendHighlightedText = (target, text, query) => {
     const source = String(text || '');

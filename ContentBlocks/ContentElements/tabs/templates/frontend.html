@@ -30,9 +30,17 @@
             </d:molecule.tabsList>
 
             <f:for each="{data.items}" as="item" iteration="iter">
-                <d:molecule.tabsContent value="tab-{data.uid}-{iter.index}">
+                <div
+                    role="tabpanel"
+                    x-show="active === 'tab-{data.uid}-{iter.index}'"
+                    x-bind:data-state="active === 'tab-{data.uid}-{iter.index}' ? 'active' : 'inactive'"
+                    class="tabs__content flex-1 text-xs/relaxed outline-none"
+                    data-slot="tabs-content"
+                    data-d-tabs-content
+                    data-value="tab-{data.uid}-{iter.index}"
+                >
                     {item -> f:render.text(field: 'tab_content')}
-                </d:molecule.tabsContent>
+                </div>
             </f:for>
         </d:molecule.tabs>
     </d:layout.container>

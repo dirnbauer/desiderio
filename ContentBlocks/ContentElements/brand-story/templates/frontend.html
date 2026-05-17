@@ -17,7 +17,7 @@
             <f:if condition="{data.image}">
                 <div class="brand-story__image-wrapper">
                     <f:for each="{data.image}" as="fileReference">
-                        <img src="{f:uri.image(image: fileReference, maxWidth: 640)}" alt="" class="brand-story__image"/>
+                        <f:image image="{fileReference}" maxWidth="640" alt="" class="brand-story__image"/>
                     </f:for>
                 </div>
             </f:if>

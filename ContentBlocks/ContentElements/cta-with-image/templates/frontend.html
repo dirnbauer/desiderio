@@ -20,7 +20,7 @@
             <f:if condition="{data.image}">
                 <div class="cta-with-image__image-wrapper">
                     <f:for each="{data.image}" as="fileReference">
-                        <img src="{f:uri.image(image: fileReference, maxWidth: 640)}" alt="" class="cta-with-image__image"/>
+                        <f:image image="{fileReference}" maxWidth="640" alt="" class="cta-with-image__image"/>
                     </f:for>
                 </div>
             </f:if>

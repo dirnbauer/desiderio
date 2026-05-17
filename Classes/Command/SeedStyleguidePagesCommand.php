@@ -52,17 +52,17 @@ final class SeedStyleguidePagesCommand extends Command
         'Start review',
     ];
     private const DEMO_COPY = [
-        'Uses crisp shadcn hierarchy, semantic tokens, and concise product copy so the component reads like a real SaaS interface.',
-        'Combines compact badges, direct actions, and scannable content density for desktop, tablet, and mobile review.',
-        'Shows editor-owned fields with believable labels, nested records, and modern media while staying inside the shared theme system.',
-        'Keeps the surface quiet and premium with clean borders, strong focus states, restrained shadows, and no one-off decoration.',
-        'Pairs credible product context, sharp metrics, and Unsplash imagery so the imported page is launch-ready.',
+        'Compare plans, proof points, and next steps without forcing visitors to decode the layout.',
+        'Show the most important detail first, then support it with compact copy and clear actions.',
+        'Keep repeated items short enough for cards, grids, and mobile stacks to stay balanced.',
+        'Pair concrete product context with restrained surfaces, visible focus states, and useful media.',
+        'Use specific labels, real numbers, and direct calls to action so the preview feels launch-ready.',
     ];
     private const DEMO_FEATURES = [
         'Theme-aware states',
         'Keyboard focus built in',
         'Reusable Content Blocks',
-        'Responsive QA content',
+        'Responsive review content',
         'Token-based chart colors',
         'Modern Unsplash media',
         'Sleek shadcn spacing',
@@ -76,13 +76,13 @@ final class SeedStyleguidePagesCommand extends Command
         ['Lea Fischer', 'Accessibility Reviewer', 'Signal Bureau'],
     ];
     private const DEMO_SUBJECTS = [
-        'Launch-Ready Product Surface',
-        'Token System Command Center',
-        'Editor Workflow Upgrade',
-        'Accessible Pattern Library',
-        'Content Operations Dashboard',
+        'Launch Readiness Review',
+        'Pattern Library Rollout',
+        'Content Operations Brief',
         'Customer Evidence Hub',
-        'Product Experience Review',
+        'Product Adoption Report',
+        'Editor Workflow Upgrade',
+        'Service Performance Snapshot',
         'Reusable Section Blueprint',
     ];
 
@@ -1153,18 +1153,13 @@ final class SeedStyleguidePagesCommand extends Command
     {
         $copy = self::DEMO_COPY[$index % count(self::DEMO_COPY)];
 
-        return sprintf(
-            '%s The %s field gives the %s element enough real content to judge spacing, hierarchy, and responsive behavior.',
-            $copy,
-            strtolower($fieldLabel),
-            strtolower($elementLabel)
-        );
+        return sprintf('%s Built for the %s pattern.', $copy, strtolower($elementLabel));
     }
 
     private function buildDefaultQuote(string $elementLabel): string
     {
         return sprintf(
-            'The %s element now feels like something our editors could ship, because the copy, spacing, and actions follow the shadcn preset instead of filler text.',
+            'The %s element gives editors a polished pattern they can publish without rewriting the layout around the content.',
             strtolower($elementLabel)
         );
     }
@@ -1225,7 +1220,7 @@ final class SeedStyleguidePagesCommand extends Command
             return $subject . ' ' . ($index + 1);
         }
 
-        return $subject . ' for ' . $label;
+        return $label . ': ' . $subject;
     }
 
     /**

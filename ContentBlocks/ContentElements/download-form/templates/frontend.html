@@ -17,7 +17,7 @@
                 <f:if condition="{data.image}">
                     <div class="download-form__preview">
                         <f:for each="{data.image}" as="fileReference">
-                            <img src="{f:uri.image(image: fileReference, maxWidth: 400)}" alt="" class="download-form__image"/>
+                            <f:image image="{fileReference}" maxWidth="400" alt="" class="download-form__image"/>
                         </f:for>
                     </div>
                 </f:if>

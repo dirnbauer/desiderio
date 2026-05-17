@@ -85,17 +85,19 @@ final class ContentBlockStructureTest extends TestCase
             self::assertStringContainsString('<xliff version="2.0"', $english, "{$name} must use TYPO3 XLIFF 2.0 for English labels");
             self::assertStringContainsString('srcLang="en"', $english, "{$name} must declare English as source language");
             self::assertMatchesRegularExpression('/<unit id="title">\\s*<segment>\\s*<source>[^<]+<\\/source>/s', $english, "{$name} needs an English title");
-            self::assertMatchesRegularExpression('/<unit id="description">\\s*<segment>\\s*<source>[^<]+Editors (?:can manage|get)[^<]+<\\/source>/s', $english, "{$name} needs a self-explanatory English description");
+            self::assertMatchesRegularExpression('/<unit id="description">\\s*<segment>\\s*<source>Use when [^<]+<\\/source>/s', $english, "{$name} needs a concise English use-case description");
             self::assertStringNotContainsString('A shadcn/ui styled TYPO3 content element', $english, "{$name} still uses the old generic English description");
+            self::assertStringNotContainsString('Editors can manage', $english, "{$name} still describes editor fields instead of usage");
 
             self::assertStringContainsString('<xliff version="2.0"', $german, "{$name} must use TYPO3 XLIFF 2.0 for German labels");
             self::assertStringContainsString('trgLang="de"', $german, "{$name} must declare German as target language");
             self::assertMatchesRegularExpression('/<unit id="title">\\s*<segment state="final">\\s*<source>[^<]+<\\/source>\\s*<target>[^<]+<\\/target>/s', $german, "{$name} needs a German title target");
-            self::assertMatchesRegularExpression('/<unit id="description">\\s*<segment state="final">\\s*<source>[^<]+<\\/source>\\s*<target>[^<]+Redakteure (?:pflegen|erhalten)[^<]+<\\/target>/s', $german, "{$name} needs a self-explanatory German description");
+            self::assertMatchesRegularExpression('/<unit id="description">\\s*<segment state="final">\\s*<source>Use when [^<]+<\\/source>\\s*<target>Einsetzen, wenn [^<]+<\\/target>/s', $german, "{$name} needs a concise German use-case description");
+            self::assertStringNotContainsString('Redakteure pflegen', $german, "{$name} still describes editor fields instead of usage");
         }
     }
 
-    public function testContentBlockTitlesAndDescriptionsAreDistinct(): void
+    public function testContentBlockTitlesAndDescriptionsAreUseful(): void
     {
         $titles = [];
         $descriptions = [];
@@ -112,10 +114,13 @@ final class ContentBlockStructureTest extends TestCase
             if (isset($titles[$title])) {
                 self::fail("{$name} duplicates the title used by {$titles[$title]}");
             }
+            self::assertStringNotContainsString('A shadcn/ui styled TYPO3 content element', $description, "{$name} still uses a generic description");
+            self::assertStringStartsWith('Use when ', $description, "{$name} description should explain when to use the element");
+            self::assertStringNotContainsString('give one focused content task', $description, "{$name} still uses the generic fallback description");
+            self::assertLessThanOrEqual(150, strlen($description), "{$name} description should stay short enough for the wizard");
             if (isset($descriptions[$description])) {
                 self::fail("{$name} duplicates the description used by {$descriptions[$description]}");
             }
-            self::assertStringNotContainsString('A shadcn/ui styled TYPO3 content element', $description, "{$name} still uses a generic description");
 
             $titles[$title] = $name;
             $descriptions[$description] = $name;
@@ -667,6 +672,22 @@ final class ContentBlockStructureTest extends TestCase
         self::assertCount(self::EXPECTED_COUNT, $listedTypeNames);
         self::assertSame($expected, $actual);
         self::assertStringNotContainsString('shadcn2fluid', (string) file_get_contents($groupsFile));
+    }
+
+    public function testFrontendImageTagsKeepFalReferencesEditable(): void
+    {
+        $blocks = glob(self::CONTENT_BLOCKS_DIR . '/*', GLOB_ONLYDIR);
+        $blocks = $blocks === false ? [] : $blocks;
+        foreach ($blocks as $block) {
+            $name = basename($block);
+            $template = (string)file_get_contents("{$block}/templates/frontend.html");
+
+            self::assertDoesNotMatchRegularExpression(
+                '/<img\s+[^>]*src="\{f:uri\.image\(/s',
+                $template,
+                "{$name} renders FAL images through raw URI output; use <f:image image=\"{fileReference}\"> so Visual Editor image edit overlays can attach."
+            );
+        }
     }
 
     public function testStyleguideSeedCreatesOnePagePerWizardCategoryBelowParent505(): void

@@ -14,32 +14,44 @@
             </header>
         </f:if>
 
-        <div class="gallery__grid gallery__grid--cols-{data.columns -> f:or(alternative: '3')}">
-            <f:for each="{data.items}" as="item">
-                <article class="gallery__item">
-                    <f:if condition="{item.link.url}">
-                        <f:then>
-                            <f:link.typolink parameter="{item.link}" class="gallery__media-link">
-                                <f:for each="{item.image}" as="fileReference">
-                                    <img src="{f:uri.image(image: fileReference, maxWidth: 960)}" alt="{item.title}" class="gallery__image"/>
-                                </f:for>
-                            </f:link.typolink>
-                        </f:then>
-                        <f:else>
-                            <f:for each="{item.image}" as="fileReference">
-                                <img src="{f:uri.image(image: fileReference, maxWidth: 960)}" alt="{item.title}" class="gallery__image"/>
-                            </f:for>
-                        </f:else>
+        <div class="gallery__browser" data-d-gallery>
+            <figure class="gallery__featured">
+                <f:for each="{data.items}" as="item" iteration="galleryIteration">
+                    <f:if condition="{galleryIteration.isFirst}">
+                        <f:for each="{item.image}" as="fileReference">
+                            <f:image image="{fileReference}" maxWidth="1440" alt="{item.title}" class="gallery__featured-image" data-d-gallery-main/>
+                        </f:for>
+                        <f:if condition="{item.title} || {item.description}">
+                            <figcaption class="gallery__featured-caption">
+                                <f:if condition="{item.title}"><span class="gallery__title" data-d-gallery-title>{item -> f:render.text(field: 'title')}</span></f:if>
+                                <f:if condition="{item.description}"><span class="gallery__description" data-d-gallery-description>{item -> f:render.text(field: 'description')}</span></f:if>
+                            </figcaption>
+                        </f:if>
                     </f:if>
+                </f:for>
+            </figure>
 
-                    <f:if condition="{item.title} || {item.description}">
-                        <div class="gallery__caption">
-                            <f:if condition="{item.title}"><h3 class="gallery__title">{item -> f:render.text(field: 'title')}</h3></f:if>
-                            <f:if condition="{item.description}"><p class="gallery__description">{item -> f:render.text(field: 'description')}</p></f:if>
-                        </div>
-                    </f:if>
-                </article>
-            </f:for>
+            <div class="gallery__thumbs gallery__thumbs--cols-{data.columns -> f:or(alternative: '3')}" role="list">
+                <f:for each="{data.items}" as="item" iteration="galleryIteration">
+                    <f:for each="{item.image}" as="fileReference">
+                        <button type="button"
+                                class="gallery__thumb"
+                                data-d-gallery-thumb
+                                data-large-src="{f:uri.image(image: fileReference, maxWidth: 1440)}"
+                                data-thumb-title="{item.title}"
+                                data-thumb-description="{item.description}"
+                                data-thumb-alt="{item.title}"
+                                data-thumb-link="{item.link.url}"
+                                aria-selected="{f:if(condition: galleryIteration.isFirst, then: 'true', else: 'false')}"
+                                role="listitem">
+                            <f:image image="{fileReference}" maxWidth="480" alt="{item.title}" class="gallery__thumb-image"/>
+                            <f:if condition="{item.title}">
+                                <span class="gallery__thumb-label">{item -> f:render.text(field: 'title')}</span>
+                            </f:if>
+                        </button>
+                    </f:for>
+                </f:for>
+            </div>
         </div>
     </d:layout.container>
 </d:layout.section>

@@ -30,7 +30,7 @@
             <f:if condition="{data.image}">
                 <div class="contact-split__image-wrapper">
                     <f:for each="{data.image}" as="fileReference">
-                        <img src="{f:uri.image(image: fileReference, maxWidth: 640)}" alt="" class="contact-split__image"/>
+                        <f:image image="{fileReference}" maxWidth="640" alt="" class="contact-split__image"/>
                     </f:for>
                 </div>
             </f:if>

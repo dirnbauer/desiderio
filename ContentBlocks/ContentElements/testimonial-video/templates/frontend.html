@@ -16,7 +16,7 @@
                 <f:if condition="{data.poster_image}">
                     <div class="testimonial-video__poster-wrap">
                         <f:for each="{data.poster_image}" as="poster">
-                            <img src="{f:uri.image(image: poster, maxWidth: 960)}" alt="{data.header}" class="testimonial-video__poster"/>
+                            <f:image image="{poster}" maxWidth="960" alt="{data.header}" class="testimonial-video__poster"/>
                         </f:for>
                     </div>
                 </f:if>

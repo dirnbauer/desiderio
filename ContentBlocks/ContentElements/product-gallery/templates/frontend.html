@@ -14,7 +14,7 @@
         <div class="product-gallery__main">
             <f:for each="{data.images}" as="fileReference" iteration="iter">
                 <f:if condition="{iter.isFirst}">
-                    <img src="{f:uri.image(image: fileReference, maxWidth: 800)}" alt="{data.header}" class="product-gallery__main-image"/>
+                    <f:image image="{fileReference}" maxWidth="800" alt="{data.header}" class="product-gallery__main-image"/>
                 </f:if>
             </f:for>
         </div>
@@ -22,7 +22,7 @@
         <div class="product-gallery__thumbnails product-gallery__thumbnails--cols-{data.columns -> f:or(alternative: '4')}">
             <f:for each="{data.images}" as="fileReference" iteration="iter">
                 <button type="button" class="product-gallery__thumb {f:if(condition: iter.isFirst, then: 'product-gallery__thumb--active')}">
-                    <img src="{f:uri.image(image: fileReference, width: 120, height: 120)}" alt="" class="product-gallery__thumb-img"/>
+                    <f:image image="{fileReference}" width="120" height="120" alt="" class="product-gallery__thumb-img"/>
                 </button>
             </f:for>
         </div>

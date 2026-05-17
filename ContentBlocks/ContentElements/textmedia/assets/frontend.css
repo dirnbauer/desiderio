@@ -4,6 +4,9 @@
     gap: var(--d-spacing-xl);
     align-items: center;
 }
+.textmedia__content [data-variant="h2"] + [data-variant="muted"] {
+    margin-block-start: var(--d-spacing-sm);
+}
 @media (max-width: 768px) {
     .textmedia__grid { grid-template-columns: 1fr; }
 }

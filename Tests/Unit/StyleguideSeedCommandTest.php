@@ -516,6 +516,179 @@ final class StyleguideSeedCommandTest extends TestCase
         );
     }
 
+    public function testArticleHeroMetadataDefaultsStayCompact(): void
+    {
+        $command = $this->createCommand();
+
+        self::assertSame(
+            'Dauer in min',
+            $this->invokeMethod($command, 'buildDefaultFieldValue', [
+                'desiderio_articlehero',
+                'Article Hero',
+                'reading_time',
+                ['identifier' => 'reading_time', 'type' => 'Textarea'],
+                0,
+            ])
+        );
+
+        $topic = $this->invokeMethod($command, 'buildDefaultFieldValue', [
+            'desiderio_articlehero',
+            'Article Hero',
+            'topic',
+            ['identifier' => 'topic', 'type' => 'Textarea'],
+            0,
+        ]);
+
+        self::assertIsString($topic);
+        self::assertLessThanOrEqual(24, strlen($topic));
+        self::assertStringNotContainsString('for Reusable Section Blueprint', $topic);
+    }
+
+    public function testAudioPlayerFileFieldUsesAudioFixture(): void
+    {
+        $command = $this->createCommand();
+
+        $references = $this->invokeMethod($command, 'buildFileReferenceFixtures', [
+            'Audio Player-audio_file',
+            [
+                'identifier' => 'audio_file',
+                'type' => 'File',
+                'label' => 'Audio File',
+                'allowed' => 'common-media-types',
+                'maxitems' => 1,
+            ],
+            0,
+        ]);
+
+        self::assertIsArray($references);
+        self::assertSame('Resources/Public/Styleguide/Audio/editorial-brief.wav', $references[0]['file'] ?? null);
+        self::assertSame('Editorial brief audio', $references[0]['title'] ?? null);
+    }
+
+    public function testBlogTeaserMetaDefaultsToReadingTime(): void
+    {
+        $command = $this->createCommand();
+
+        self::assertSame(
+            '5min read',
+            $this->invokeMethod($command, 'buildDefaultFieldValue', [
+                'desiderio_blogteasers',
+                'Blog Teasers',
+                'meta',
+                ['identifier' => 'meta', 'type' => 'Textarea'],
+                0,
+            ])
+        );
+    }
+
+    public function testCodeBlockDefaultsUsePhpExample(): void
+    {
+        $command = $this->createCommand();
+
+        self::assertSame(
+            'PHP',
+            $this->invokeMethod($command, 'buildDefaultFieldValue', [
+                'desiderio_codeblock',
+                'Code Block',
+                'language',
+                ['identifier' => 'language', 'type' => 'Text'],
+                0,
+            ])
+        );
+        self::assertSame(
+            'ArticleTeaserRenderer.php',
+            $this->invokeMethod($command, 'buildDefaultFieldValue', [
+                'desiderio_codeblock',
+                'Code Block',
+                'filename',
+                ['identifier' => 'filename', 'type' => 'Text'],
+                0,
+            ])
+        );
+
+        $code = $this->invokeMethod($command, 'buildDefaultFieldValue', [
+            'desiderio_codeblock',
+            'Code Block',
+            'code',
+            ['identifier' => 'code', 'type' => 'Textarea'],
+            0,
+        ]);
+
+        self::assertIsString($code);
+        self::assertStringContainsString('final class ArticleTeaserRenderer', $code);
+        self::assertStringContainsString('5min read', $code);
+    }
+
+    public function testTimelineStepDefaultsStayCompact(): void
+    {
+        $command = $this->createCommand();
+
+        self::assertSame(
+            'Plan',
+            $this->invokeMethod($command, 'buildDefaultFieldValue', [
+                'desiderio_timeline',
+                'Timeline',
+                'step',
+                ['identifier' => 'step', 'type' => 'Textarea'],
+                0,
+            ])
+        );
+        self::assertSame(
+            'Build',
+            $this->invokeMethod($command, 'buildDefaultFieldValue', [
+                'desiderio_timeline',
+                'Timeline',
+                'step',
+                ['identifier' => 'step', 'type' => 'Textarea'],
+                1,
+            ])
+        );
+    }
+
+    public function testTableContentFixtureProvidesFourColumnHeaders(): void
+    {
+        $fixture = json_decode(
+            (string)file_get_contents(__DIR__ . '/../../ContentBlocks/ContentElements/table-content/fixture.json'),
+            true,
+            512,
+            JSON_THROW_ON_ERROR
+        );
+
+        self::assertIsArray($fixture);
+        self::assertSame('Accessible pattern comparison for Table Content', $fixture['caption'] ?? null);
+        self::assertSame(
+            [
+                ['label' => 'Reusable Content Blocks'],
+                ['label' => 'Responsive QA content'],
+                ['label' => 'Token-based chart colors'],
+                ['label' => 'Editorial workflow'],
+            ],
+            $fixture['column_items'] ?? null
+        );
+    }
+
+    public function testTabsFixtureProvidesTabContentForEveryPanel(): void
+    {
+        $fixture = json_decode(
+            (string)file_get_contents(__DIR__ . '/../../ContentBlocks/ContentElements/tabs/fixture.json'),
+            true,
+            512,
+            JSON_THROW_ON_ERROR
+        );
+
+        self::assertIsArray($fixture);
+        self::assertSame('default', $fixture['variant'] ?? null);
+        $items = $fixture['items'] ?? null;
+        self::assertIsArray($items);
+        self::assertCount(3, $items);
+
+        foreach ($items as $item) {
+            self::assertIsArray($item);
+            self::assertNotSame('', trim((string)($item['tab_label'] ?? '')));
+            self::assertNotSame('', trim((string)($item['tab_content'] ?? '')));
+        }
+    }
+
     public function testLegacyStatsFixturesAreConvertedToChartDataJson(): void
     {
         $command = $this->createCommand();

@@ -39,7 +39,10 @@
                     data-d-tabs-content
                     data-value="tab-{data.uid}-{iter.index}"
                 >
-                    {item -> f:render.text(field: 'tab_content')}
+                    <f:if condition="{item.tab_content}">
+                        <f:then>{item -> f:render.text(field: 'tab_content')}</f:then>
+                        <f:else><f:format.html>{data.items.0.tab_content}</f:format.html></f:else>
+                    </f:if>
                 </div>
             </f:for>
         </d:molecule.tabs>

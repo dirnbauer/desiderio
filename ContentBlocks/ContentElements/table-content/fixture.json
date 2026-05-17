@@ -1,10 +1,39 @@
 {
     "_type": "table",
     "header": "Table Content for polished editorial systems",
+    "caption": "Accessible pattern comparison for Table Content",
+    "column_items": [
+        {
+            "label": "Reusable Content Blocks"
+        },
+        {
+            "label": "Responsive QA content"
+        },
+        {
+            "label": "Token-based chart colors"
+        },
+        {
+            "label": "Editorial workflow"
+        }
+    ],
     "rows": [
-        [],
-        [],
-        [],
-        []
+        {
+            "col1": "Content elements",
+            "col2": "Mobile and desktop checks",
+            "col3": "Theme-aware palettes",
+            "col4": "Editor-ready publishing"
+        },
+        {
+            "col1": "Fixture data",
+            "col2": "Balanced row lengths",
+            "col3": "Accessible contrast",
+            "col4": "Reviewable preview states"
+        },
+        {
+            "col1": "Fluid templates",
+            "col2": "Responsive table layout",
+            "col3": "Reusable CSS tokens",
+            "col4": "Clean seeded examples"
+        }
     ]
 }

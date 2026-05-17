@@ -26,10 +26,16 @@
 }
 .article-hero__meta {
     display: flex;
+    flex-wrap: wrap;
     gap: var(--d-spacing-md);
     justify-content: center;
+    align-items: center;
     font-size: var(--d-text-sm);
     color: var(--muted-foreground);
+}
+.article-hero__meta-item {
+    display: inline-flex;
+    align-items: center;
 }
 .article-hero__meta-item + .article-hero__meta-item::before {
     content: '\00b7';

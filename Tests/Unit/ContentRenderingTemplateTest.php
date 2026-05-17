@@ -236,7 +236,38 @@ final class ContentRenderingTemplateTest extends TestCase
         self::assertStringContainsString('data-d-tabs-content', $template);
         self::assertStringContainsString('data-value="tab-{data.uid}-{iter.index}"', $template);
         self::assertStringContainsString("{item -> f:render.text(field: 'tab_content')}", $template);
+        self::assertStringContainsString('{data.items.0.tab_content}', $template);
         self::assertStringNotContainsString('<d:molecule.tabsContent', $template);
+    }
+
+    public function testIntroHeadingSpacingOnlyAppliesWhenMutedTextFollows(): void
+    {
+        $timelineCss = (string)file_get_contents(__DIR__ . '/../../ContentBlocks/ContentElements/timeline/assets/frontend.css');
+        $textmediaCss = (string)file_get_contents(__DIR__ . '/../../ContentBlocks/ContentElements/textmedia/assets/frontend.css');
+
+        self::assertStringContainsString(
+            '.timeline__intro [data-variant="h2"] + [data-variant="muted"]',
+            $timelineCss
+        );
+        self::assertStringContainsString('margin-block-start: var(--d-spacing-sm);', $timelineCss);
+        self::assertStringContainsString(
+            '.textmedia__content [data-variant="h2"] + [data-variant="muted"]',
+            $textmediaCss
+        );
+        self::assertStringContainsString('margin-block-start: var(--d-spacing-sm);', $textmediaCss);
+    }
+
+    public function testTimelineListUsesContinuousRailAndSeparatedCards(): void
+    {
+        $timelineCss = (string)file_get_contents(__DIR__ . '/../../ContentBlocks/ContentElements/timeline/assets/frontend.css');
+
+        self::assertStringContainsString('.timeline__list::before', $timelineCss);
+        self::assertStringContainsString('gap: var(--d-spacing-lg);', $timelineCss);
+        self::assertStringContainsString('.timeline__line', $timelineCss);
+        self::assertStringContainsString('display: none;', $timelineCss);
+        self::assertStringContainsString('.timeline__content', $timelineCss);
+        self::assertStringContainsString('border-radius: var(--d-radius-lg);', $timelineCss);
+        self::assertStringContainsString('padding: var(--d-spacing-lg);', $timelineCss);
     }
 
     public function testExtensionIntegrationSiteSetsAreBundledWithBaseSet(): void

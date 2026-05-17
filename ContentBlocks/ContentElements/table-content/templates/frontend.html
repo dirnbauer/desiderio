@@ -19,7 +19,7 @@
                 <thead>
                     <tr>
                         <f:for each="{data.column_items}" as="col">
-                            <th class="table-content__th">{col -> f:render.text(field: 'label')}</th>
+                            <th class="table-content__th" scope="col">{col -> f:render.text(field: 'label')}</th>
                         </f:for>
                     </tr>
                 </thead>

@@ -1063,6 +1063,13 @@ final class SeedStyleguidePagesCommand extends Command
             str_contains($normalizedField, 'credit') || str_contains($normalizedField, 'source') || str_contains($normalizedField, 'photographer') => 'Photo source: Unsplash demo image with photographer credit stored on the file reference.',
             str_contains($normalizedField, 'quote') => $this->buildDefaultQuote($elementLabel),
             str_contains($normalizedField, 'description') || str_contains($normalizedField, 'content') || str_contains($normalizedField, 'body') || str_contains($normalizedField, 'copy') || str_contains($normalizedField, 'summary') || str_contains($normalizedField, 'bio') => $this->buildDefaultDemoCopy($elementLabel, $fieldLabel, $index),
+            $normalizedField === 'step' => ['Plan', 'Build', 'Review', 'Publish'][$index % 4],
+            $normalizedField === 'topic' || str_contains($normalizedField, 'topic') => $this->pickDemoString(['Artikel Hero', 'Content Strategy', 'Editorial Systems', 'Launch Notes', 'Customer Stories'], $name . '-' . $field, $index),
+            str_contains($normalizedField, 'readingtime') || (str_contains($normalizedField, 'reading') && str_contains($normalizedField, 'time')) => 'Dauer in min',
+            $normalizedField === 'meta' => '5min read',
+            $normalizedField === 'language' => 'PHP',
+            $normalizedField === 'filename' => 'ArticleTeaserRenderer.php',
+            $normalizedField === 'code' => $this->buildDefaultCodeBlockValue(),
             str_contains($normalizedField, 'ctatext') || str_contains($normalizedField, 'buttontext') || str_contains($normalizedField, 'submittext') => $this->buildDefaultButtonText($normalizedField, $elementLabel),
             str_contains($normalizedField, 'linktext') => $this->pickDemoString(self::DEMO_BUTTON_LABELS, $name . '-' . $field, $index),
             str_contains($normalizedField, 'placeholder') => 'name@example.com',
@@ -1097,6 +1104,26 @@ final class SeedStyleguidePagesCommand extends Command
             str_contains($normalizedField, 'color') => 'primary',
             default => $fieldLabel . ' for ' . $subject,
         };
+    }
+
+    private function buildDefaultCodeBlockValue(): string
+    {
+        return <<<'PHP'
+<?php
+
+declare(strict_types=1);
+
+final class ArticleTeaserRenderer
+{
+    public function render(array $article): string
+    {
+        $title = htmlspecialchars((string)($article['title'] ?? ''), ENT_QUOTES, 'UTF-8');
+        $meta = htmlspecialchars((string)($article['meta'] ?? '5min read'), ENT_QUOTES, 'UTF-8');
+
+        return sprintf('<article><p>%s</p><h2>%s</h2></article>', $meta, $title);
+    }
+}
+PHP;
     }
 
     private function buildDefaultUrlTextValue(string $ctype, string $field, int $index): string
@@ -1289,7 +1316,9 @@ final class SeedStyleguidePagesCommand extends Command
             ?? $this->getConfiguredInteger($fieldConfig, 'maxItems')
             ?? 1;
         $count = max(1, min(3, $maxItems));
-        $assets = $this->getStyleguideImageAssets();
+        $assets = $this->isAudioFileField($field, $fieldConfig)
+            ? $this->getStyleguideAudioAssets()
+            : $this->getStyleguideImageAssets();
         $references = [];
 
         for ($offset = 0; $offset < $count; $offset++) {
@@ -1305,6 +1334,35 @@ final class SeedStyleguidePagesCommand extends Command
         }
 
         return $references;
+    }
+
+    /**
+     * @param array<string, mixed> $fieldConfig
+     */
+    private function isAudioFileField(string $field, array $fieldConfig): bool
+    {
+        $haystack = $field . ' ' . (string)($fieldConfig['identifier'] ?? '') . ' ' . (string)($fieldConfig['label'] ?? '');
+        $normalized = $this->normalizeIdentifier($haystack);
+        $allowed = strtolower((string)($fieldConfig['allowed'] ?? ''));
+
+        return str_contains($normalized, 'audio')
+            || str_contains($allowed, 'audio');
+    }
+
+    /**
+     * @return list<array{file: string, title: string, alt: string, credit: string, source: string}>
+     */
+    private function getStyleguideAudioAssets(): array
+    {
+        return [
+            [
+                'file' => 'Resources/Public/Styleguide/Audio/editorial-brief.wav',
+                'title' => 'Editorial brief audio',
+                'alt' => 'Short generated audio tone for the Audio Player styleguide fixture.',
+                'credit' => 'Generated demo audio for Desiderio styleguide seeding.',
+                'source' => 'EXT:desiderio/Resources/Public/Styleguide/Audio/editorial-brief.wav',
+            ],
+        ];
     }
 
     /**

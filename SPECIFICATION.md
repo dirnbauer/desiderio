@@ -169,6 +169,12 @@ Four backend layouts, five page templates. Default falls through to Contentpage.
 - Each lives at `ContentBlocks/ContentElements/<slug>/` with the standard Content Blocks layout:
   - `config.yaml` · `src/Frontend.html` · `assets/icon.svg` · `language/labels.xlf` · `fixtures/default.json`
 - Naming: lowercase kebab (`hero-centered`, not `HeroCentered`).
+- Image and media fields render through TYPO3 Fluid ViewHelpers. Use
+  `<f:image image="{fileReference}" ... data="{d-gallery-main: 'true'}"/>`
+  for images and `f:uri.image(image: fileReference, ...)` for processed URLs in
+  JavaScript data attributes. Literal `<img>` tags must not be used for FAL
+  `FileReference` objects because they bypass Visual Editor image decoration
+  and can force Fluid to stringify the object.
 - `ContentBlockStructureTest` asserts:
   - All 250 slugs exist · each has all required files · YAML parses · wizard group is one of the 10 · Fluid parses · fixture JSON parses.
 

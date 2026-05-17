@@ -18,6 +18,9 @@ the latest compatible 14.3 patch line and workspaces remain mandatory.
   strict rules, and PHPUnit rules.
 - Services use constructor injection and `Services.yaml` autowiring.
 - No TYPO3 13 compatibility branch remains in runtime constraints.
+- Content Block media templates render FAL references through TYPO3 Fluid
+  image APIs (`<f:image>` / `f:uri.image()`), keeping Visual Editor decoration
+  and avoiding direct `FileReference` string conversion.
 
 ## Changes In This Pass
 

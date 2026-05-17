@@ -82,7 +82,7 @@ Then enable the base site set plus one of the five presets:
 | PHP | `^8.3` (8.3 – 8.5) | Matches TYPO3 v14.3 LTS support matrix. |
 | Workspaces | `^14.3` | Required, not optional, for editorial preview. |
 | PHPStan | `^2.1`, **level max** | Plus `saschaegerer/phpstan-typo3` and `phpstan-strict-rules`. |
-| PHPUnit | `^11.5` | All 88 unit tests pass via `Build/Scripts/runTests.sh`. |
+| PHPUnit | `^11.5` | All 100 unit tests pass via `Build/Scripts/runTests.sh`. |
 | Content Blocks | `^2.2` | Drives every one of the 255 content elements. |
 
 The base set also pulls in `webconsulting/desiderio-content-elements`, a single
@@ -322,6 +322,26 @@ one Desiderio item instead of selecting blocks one by one.
 Classic TYPO3 Fluid Styled Content elements are overridden from
 `Resources/Private/FluidStyledContent/` and use the same shadcn preset tokens,
 Fluid 5 components, and Tailwind source build as the Content Blocks catalog.
+
+### Media rendering in Content Blocks
+
+Image and media fields must stay on TYPO3 Fluid ViewHelpers. Use `<f:image>`
+for rendered images and `f:uri.image()` when a JavaScript data attribute needs a
+processed image URL. Do not replace a TYPO3 file reference with a literal
+`<img>` tag in `templates/frontend.html`.
+
+Custom attributes on `<f:image>` should use Fluid's structured attribute
+arguments, especially for `data-*` values:
+
+```html
+<f:image image="{fileReference}" maxWidth="1440" alt="{item.title}"
+         class="gallery__featured-image"
+         data="{d-gallery-main: 'true'}"/>
+```
+
+This keeps Visual Editor image decoration active and avoids Fluid trying to
+convert `TYPO3\CMS\Core\Resource\FileReference` objects to strings while
+compiling non-standard ViewHelper attributes.
 
 ## Extension templates
 

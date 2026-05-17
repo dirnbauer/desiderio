@@ -15,9 +15,12 @@ workspace behavior, and local test suite.
 - Documentation changelog page updated to `2.2.0`.
 - Editor and Known Problems docs updated for live-workspace seeder
   behavior and live-row cleanup scoping.
-- Developer docs and README updated to the current 88-test suite.
+- Developer docs and README updated to the current 100-test suite.
 - Timestamped before/after reports were added for each requested
   agentic skill loop.
+- README, contributing notes, specification, and shadcn upgrade guidance now
+  document the `<f:image>` / `f:uri.image()` convention for Content Block media
+  fields and structured Fluid `data` arguments.
 
 ## Verification
 

@@ -238,6 +238,25 @@ inspect upstream class recipes and preset metadata. Port class strings, slots,
 Keep Content Block `config.yaml`, field identifiers, fixtures, and template
 filenames stable unless the content model is intentionally changing.
 
+## Media ViewHelpers
+
+Content Block image fields must render through TYPO3 Fluid image APIs. Prefer
+`<f:image>` for markup and `f:uri.image()` for processed URLs in JavaScript data
+attributes. Do not hand-write literal `<img>` tags for FAL `FileReference`
+objects.
+
+When a ViewHelper-rendered image needs custom `data-*` attributes, use Fluid's
+structured arguments:
+
+```html
+<f:image image="{fileReference}" maxWidth="1440" alt="{item.title}"
+         class="gallery__featured-image"
+         data="{d-gallery-main: 'true'}"/>
+```
+
+This keeps the Visual Editor's image ViewHelper decoration available and avoids
+Fluid treating a `FileReference` as a string while compiling unusual attributes.
+
 ## Local Registry
 
 Desiderio ships a local shadcn registry definition in `registry.json`.

@@ -24,7 +24,7 @@ intact.
    Build/Scripts/runTests.sh
    ```
 
-   That runs PHPStan at `level: max`, the 88 unit tests, the deep
+   That runs PHPStan at `level: max`, the 100 unit tests, the deep
    content element audit, and verifies the Tailwind bundle is in sync.
    CI re-runs the same matrix across PHP 8.3 + 8.4.
 4. If you touched a Content Block, also run:
@@ -60,6 +60,10 @@ intact.
   the icon `var(--token, fallback)` contract.
 - PSR-12 / PSR-4 layout, one class per file, namespace matches the
   on-disk path.
+- Content Block image fields render through `<f:image>` or `f:uri.image()`.
+  Pass custom `data-*` attributes through structured Fluid arguments such as
+  `data="{d-gallery-main: 'true'}"`; do not hand-write literal `<img>` tags for
+  FAL `FileReference` objects.
 
 ## Translation files
 

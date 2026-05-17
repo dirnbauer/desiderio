@@ -4,6 +4,21 @@ All notable changes to **webconsulting/desiderio** are documented in this
 file. The format follows [Keep a Changelog](https://keepachangelog.com/)
 and the project adheres to [Semantic Versioning](https://semver.org/).
 
+## [Unreleased]
+
+### Fixed
+
+- Gallery featured images now keep using `<f:image>` with structured Fluid
+  `data` arguments, preventing `FileReference` string-conversion errors in
+  Visual Editor rendering.
+
+### Documentation
+
+- Documented the Content Block media-rendering convention in README,
+  contribution notes, shadcn upgrade guidance, and audit reports.
+- Refreshed maintained markdown references to the current 100-test local
+  PHPUnit suite.
+
 ## [2.2.0] — 2026-05-03
 
 ### Added
@@ -69,8 +84,8 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
   workspace predicates (`t3ver_wsid = 0`, `t3ver_oid = 0` when present)
   before deleting file references or collection rows, so staged workspace
   overlays are not removed by a live styleguide reseed.
-- Documentation now reflects the live-workspace seeder guard and the
-  current 88-test PHPUnit suite.
+- Documentation reflected the live-workspace seeder guard and the
+  then-current 88-test PHPUnit suite.
 - Test suite grew by four structural tests asserting:
   shadcn `<d:…>` usage in blog templates,
   typed `<f:argument>` declarations across News/Solr/FSC/Pagination,
@@ -154,3 +169,4 @@ for the migration notes from the old extensions.
 [2.2.0]: https://github.com/webconsulting/desiderio/releases/tag/v2.2.0
 [2.1.0]: https://github.com/webconsulting/desiderio/releases/tag/v2.1.0
 [2.0.0]: https://github.com/webconsulting/desiderio/releases/tag/v2.0.0
+[Unreleased]: https://github.com/webconsulting/desiderio/compare/v2.2.0...HEAD

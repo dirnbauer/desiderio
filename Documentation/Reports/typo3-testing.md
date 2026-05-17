@@ -8,14 +8,14 @@ Status: Green
 
 The extension is gated by PHPStan at `level: max`, PHPUnit 11.5, the
 content-element audit, Composer validation/audit, and Tailwind bundle
-sync. The current local PHPUnit suite contains 88 tests and 25,828
+sync. The current local PHPUnit suite contains 100 tests and 27,692
 assertions.
 
 ## Coverage Added In This Pass
 
 - Verified the unit test proving `desiderio:styleguide:seed` refuses to run
   in an offline workspace.
-- Updated docs and README to the current 88-test count.
+- Updated docs and README to the current 100-test count.
 
 ## Verification
 

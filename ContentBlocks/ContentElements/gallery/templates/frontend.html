@@ -19,7 +19,7 @@
                 <f:for each="{data.items}" as="item" iteration="galleryIteration">
                     <f:if condition="{galleryIteration.isFirst}">
                         <f:for each="{item.image}" as="fileReference">
-                            <f:image image="{fileReference}" maxWidth="1440" alt="{item.title}" class="gallery__featured-image" data-d-gallery-main/>
+                            <f:image image="{fileReference}" maxWidth="1440" alt="{item.title}" class="gallery__featured-image" data="{d-gallery-main: 'true'}"/>
                         </f:for>
                         <f:if condition="{item.title} || {item.description}">
                             <figcaption class="gallery__featured-caption">

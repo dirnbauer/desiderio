@@ -33,5 +33,5 @@ a confidentiality boundary for staged editorial content.
 ## Verification
 
 - `Build/Scripts/runTests.sh phpstan`: passed.
-- `Build/Scripts/runTests.sh phpunit`: 88 tests passed.
+- `Build/Scripts/runTests.sh phpunit`: 100 tests passed.
 - `Build/Scripts/runTests.sh`: passed.

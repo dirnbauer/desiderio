@@ -21,6 +21,9 @@ exist.
 - Cleanup queries for `tt_content`, Content Blocks collection tables,
   and `sys_file_reference` include `t3ver_wsid = 0` and `t3ver_oid = 0`
   when those columns exist.
+- Content Blocks collection tables are discovered from generated definitions,
+  including nested collection tables, so the styleguide cleanup follows the
+  current per-collection schema.
 - Existing styleguide page lookup is restricted to live page rows when
   versioning columns exist.
 
@@ -33,5 +36,5 @@ a confidentiality boundary for staged editorial content.
 ## Verification
 
 - `Build/Scripts/runTests.sh phpstan`: passed.
-- `Build/Scripts/runTests.sh phpunit`: 100 tests passed.
+- `Build/Scripts/runTests.sh phpunit`: 101 tests passed.
 - `Build/Scripts/runTests.sh`: passed.

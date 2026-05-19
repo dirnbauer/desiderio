@@ -27,6 +27,7 @@ fields:
     identifier: question_items
     type: Collection
     table: pricing_faq_question_items
+    prefixField: true
     label: Questions
     minItems: 1
     fields:

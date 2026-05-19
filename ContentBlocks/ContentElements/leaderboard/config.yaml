@@ -22,6 +22,7 @@ fields:
     identifier: items
     type: Collection
     table: leaderboard_items
+    prefixField: true
     label: Entries
     minItems: 1
     fields:

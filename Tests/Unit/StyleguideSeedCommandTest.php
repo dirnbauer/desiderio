@@ -33,6 +33,10 @@ final class StyleguideSeedCommandTest extends TestCase
         self::assertStringContainsString('completeResolvedFixtureData(', $source);
         self::assertStringContainsString('seedFileReferences(', $source);
         self::assertStringContainsString('Resources/Public/Styleguide/Unsplash', $source);
+
+        $tcaOverride = (string)file_get_contents(__DIR__ . '/../../Configuration/TCA/Overrides/tt_content.php');
+        self::assertStringNotContainsString('columnsOverrides', $tcaOverride);
+        self::assertStringNotContainsString('Yaml::parseFile', $tcaOverride);
     }
 
     public function testCommandRefusesToSeedInOfflineWorkspace(): void
@@ -914,11 +918,14 @@ final class StyleguideSeedCommandTest extends TestCase
         $command = $this->createCommand();
 
         $definition = $this->invokeMethod($command, 'buildContentBlockDefinition', [[
+            'name' => 'desiderio/demo',
+            'prefixFields' => false,
             'fields' => [
                 [
                     'identifier' => 'items',
                     'type' => 'Collection',
                     'table' => 'demo_items',
+                    'prefixField' => true,
                     'minItems' => 2,
                     'maxItems' => 4,
                     'fields' => [
@@ -938,6 +945,7 @@ final class StyleguideSeedCommandTest extends TestCase
 
         self::assertSame(2, $items['minItems']);
         self::assertSame(4, $items['maxItems']);
+        self::assertSame('desiderio_demo_items', $items['column']);
     }
 
     private function createCommand(): SeedStyleguidePagesCommand

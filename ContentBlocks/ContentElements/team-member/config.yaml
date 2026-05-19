@@ -41,6 +41,7 @@ fields:
     identifier: social_links
     type: Collection
     table: team_member_social_links
+    prefixField: true
     label: 'Social Links'
     fields:
       -

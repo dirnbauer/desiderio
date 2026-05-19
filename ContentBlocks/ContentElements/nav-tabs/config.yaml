@@ -33,6 +33,7 @@ fields:
     identifier: tabs
     type: Collection
     table: nav_tabs_tabs
+    prefixField: true
     label: Tabs
     minItems: 1
     fields:

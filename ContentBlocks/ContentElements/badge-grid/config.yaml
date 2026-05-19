@@ -38,6 +38,7 @@ fields:
     identifier: items
     type: Collection
     table: badge_grid_items
+    prefixField: true
     label: Badges
     minItems: 1
     fields:

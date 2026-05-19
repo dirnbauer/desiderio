@@ -27,6 +27,7 @@ fields:
     identifier: specs
     type: Collection
     table: product_specs_specs
+    prefixField: true
     label: Specifications
     minItems: 1
     fields:

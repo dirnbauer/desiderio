@@ -11,12 +11,18 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 - Gallery featured images now keep using `<f:image>` with structured Fluid
   `data` arguments, preventing `FileReference` string-conversion errors in
   Visual Editor rendering.
+- Content Blocks collection fields now use per-field prefixing instead of a
+  generated TCA override patch, so reused `items`-style identifiers no longer
+  collapse into one shared `tt_content` column.
 
 ### Documentation
 
 - Documented the Content Block media-rendering convention in README,
   contribution notes, shadcn upgrade guidance, and audit reports.
-- Refreshed maintained markdown references to the current 100-test local
+- Documented the collection table policy: per-collection tables are the safe
+  generated default; table reuse is explicit modeling for identical stable
+  child rows and mainly reduces schema noise, not physical database size.
+- Refreshed maintained markdown references to the current 101-test local
   PHPUnit suite.
 
 ## [2.2.0] — 2026-05-03

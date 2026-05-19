@@ -22,6 +22,7 @@ fields:
     identifier: sections
     type: Collection
     table: privacy_notice_sections
+    prefixField: true
     label: Sections
     minItems: 1
     fields:

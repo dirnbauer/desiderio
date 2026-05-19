@@ -27,6 +27,7 @@ fields:
     identifier: nav_items
     type: Collection
     table: navbar_icon_nav_items
+    prefixField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:navigation_items'
     fields:
       -

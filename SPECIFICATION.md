@@ -175,6 +175,16 @@ Four backend layouts, five page templates. Default falls through to Contentpage.
   JavaScript data attributes. Literal `<img>` tags must not be used for FAL
   `FileReference` objects because they bypass Visual Editor image decoration
   and can force Fluid to stringify the object.
+- Top-level `Collection` fields use `prefixField: true` while the root block
+  keeps `prefixFields: false`. This prevents common identifiers such as
+  `items`, `links`, or `features` from sharing one `tt_content` TCA column.
+- Collection child tables are generated per collection by default. Reuse a
+  child table only for a deliberate shared child model with identical fields and
+  unambiguous parent-field matching. The expected win is fewer tables and less
+  schema noise, not a major physical database-size reduction unless table
+  overhead itself is the problem.
+- Multilevel collections are valid when each level declares a stable `table`;
+  the styleguide seeder resolves and writes nested collection rows recursively.
 - `ContentBlockStructureTest` asserts:
   - All 250 slugs exist · each has all required files · YAML parses · wizard group is one of the 10 · Fluid parses · fixture JSON parses.
 

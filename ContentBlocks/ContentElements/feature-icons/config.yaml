@@ -33,6 +33,7 @@ fields:
     identifier: items
     type: Collection
     table: feature_icons_items
+    prefixField: true
     label: 'Icon Features'
     minItems: 1
     fields:

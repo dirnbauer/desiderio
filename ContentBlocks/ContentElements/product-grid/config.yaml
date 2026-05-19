@@ -38,6 +38,7 @@ fields:
     identifier: products
     type: Collection
     table: product_grid_products
+    prefixField: true
     label: Products
     minItems: 1
     fields:

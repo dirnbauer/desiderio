@@ -22,6 +22,7 @@ fields:
     identifier: hours_items
     type: Collection
     table: office_hours_hours_items
+    prefixField: true
     label: Hours
     minItems: 1
     fields:

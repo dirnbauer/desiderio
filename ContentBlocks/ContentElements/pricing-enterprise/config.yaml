@@ -27,6 +27,7 @@ fields:
     identifier: features
     type: Collection
     table: pricing_enterprise_features
+    prefixField: true
     label: 'Key Features'
     labelField: text
     minItems: 1

@@ -22,6 +22,7 @@ fields:
     identifier: routes
     type: Collection
     table: directions_routes
+    prefixField: true
     label: Routes
     minItems: 1
     fields:

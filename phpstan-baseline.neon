@@ -93,7 +93,7 @@ parameters:
 		-
 			message: '#^Cannot cast mixed to string\.$#'
 			identifier: cast.string
-			count: 16
+			count: 15
 			path: Classes/Command/SeedStyleguidePagesCommand.php
 
 		-
@@ -109,25 +109,7 @@ parameters:
 			path: Classes/Command/SeedStyleguidePagesCommand.php
 
 		-
-			message: '#^Method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:buildCollectionDefinition\(\) should return array\{table\: string, fields\: array\<string, array\<string, mixed\>\>, collections\: array\<string, array\<string, mixed\>\>, minItems\: int, maxItems\: int\|null\} but returns array\{table\: string, fields\: array\<string, non\-empty\-array\<mixed\>\>, collections\: array\<string, array\{table\: string, fields\: array\<string, array\<string, mixed\>\>, collections\: array\<string, array\<string, mixed\>\>, minItems\: int, maxItems\: int\|null\}\>, minItems\: int, maxItems\: int\|null\}\.$#'
-			identifier: return.type
-			count: 1
-			path: Classes/Command/SeedStyleguidePagesCommand.php
-
-		-
-			message: '#^Method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:buildContentBlockDefinition\(\) should return array\{fields\: array\<string, array\<string, mixed\>\>, collections\: array\<string, array\<string, mixed\>\>\} but returns array\{fields\: array\<string, non\-empty\-array\<mixed\>\>, collections\: array\<string, array\{table\: string, fields\: array\<string, array\<string, mixed\>\>, collections\: array\<string, array\<string, mixed\>\>, minItems\: int, maxItems\: int\|null\}\>\}\.$#'
-			identifier: return.type
-			count: 1
-			path: Classes/Command/SeedStyleguidePagesCommand.php
-
-		-
 			message: '#^Method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:completeCollectionItem\(\) should return array\<string, mixed\> but returns array\<mixed\>\.$#'
-			identifier: return.type
-			count: 1
-			path: Classes/Command/SeedStyleguidePagesCommand.php
-
-		-
-			message: '#^Method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:completeResolvedFixtureData\(\) should return array\{array\<string, mixed\>, array\<string, array\{table\: string, items\: list\<array\<string, mixed\>\>\}\>, array\<string, list\<array\{file\: string, title\: string, alternative\: string, description\: string, source\: string\}\>\>\} but returns array\{array\<string, mixed\>, array\<string, array\{table\: mixed, items\: list\<array\<string, mixed\>\>\}\>, array\<string, list\<array\{file\: string, title\: string, alternative\: string, description\: string, source\: string\}\>\>\}\.$#'
 			identifier: return.type
 			count: 1
 			path: Classes/Command/SeedStyleguidePagesCommand.php
@@ -154,18 +136,6 @@ parameters:
 			message: '#^Parameter \#1 \$collection of method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:getTargetCollectionItemCount\(\) expects array\<string, mixed\>, mixed given\.$#'
 			identifier: argument.type
 			count: 1
-			path: Classes/Command/SeedStyleguidePagesCommand.php
-
-		-
-			message: '#^Parameter \#1 \$config of method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:buildContentBlockDefinition\(\) expects array\<string, mixed\>, array\<mixed, mixed\> given\.$#'
-			identifier: argument.type
-			count: 1
-			path: Classes/Command/SeedStyleguidePagesCommand.php
-
-		-
-			message: '#^Parameter \#1 \$field of method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:buildCollectionDefinition\(\) expects array\<string, mixed\>, array\<mixed\> given\.$#'
-			identifier: argument.type
-			count: 2
 			path: Classes/Command/SeedStyleguidePagesCommand.php
 
 		-
@@ -241,19 +211,7 @@ parameters:
 			path: Classes/Command/SeedStyleguidePagesCommand.php
 
 		-
-			message: '#^Parameter \#4 \$collections of method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:seedCollectionRecords\(\) expects array\<string, array\{table\: string, items\: list\<array\<string, mixed\>\>\}\>, array\<mixed\> given\.$#'
-			identifier: argument.type
-			count: 1
-			path: Classes/Command/SeedStyleguidePagesCommand.php
-
-		-
 			message: '#^Parameter \#4 \$fieldConfig of method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:buildDefaultFieldValue\(\) expects array\<string, mixed\>, mixed given\.$#'
-			identifier: argument.type
-			count: 1
-			path: Classes/Command/SeedStyleguidePagesCommand.php
-
-		-
-			message: '#^Parameter \#5 \$collections of method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:completeResolvedFixtureData\(\) expects array\<string, array\{table\: string, items\: list\<array\<string, mixed\>\>\}\>, array\<string, array\{table\: mixed, items\: non\-empty\-list\<array\<string, mixed\>\>\}\> given\.$#'
 			identifier: argument.type
 			count: 1
 			path: Classes/Command/SeedStyleguidePagesCommand.php

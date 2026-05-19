@@ -37,6 +37,7 @@ fields:
     identifier: contact_items
     type: Collection
     table: contact_contact_items
+    prefixField: true
     label: 'Contact Items'
     fields:
       -

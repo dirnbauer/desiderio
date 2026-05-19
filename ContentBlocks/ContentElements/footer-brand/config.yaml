@@ -33,6 +33,7 @@ fields:
     identifier: link_items
     type: Collection
     table: footer_brand_link_items
+    prefixField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:links'
     fields:
       -

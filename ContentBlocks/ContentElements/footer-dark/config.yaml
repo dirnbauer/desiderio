@@ -27,6 +27,7 @@ fields:
     identifier: column_items
     type: Collection
     table: footer_dark_column_items
+    prefixField: true
     label: 'Link Groups'
     fields:
       -

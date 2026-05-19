@@ -22,6 +22,7 @@ fields:
     identifier: column_items
     type: Collection
     table: table_content_column_items
+    prefixField: true
     label: 'Column Headers'
     minItems: 2
     fields:
@@ -35,6 +36,7 @@ fields:
     identifier: rows
     type: Collection
     table: table_content_rows
+    prefixField: true
     label: 'Table Rows'
     minItems: 1
     fields:

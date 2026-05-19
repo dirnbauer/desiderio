@@ -17,6 +17,7 @@ fields:
     identifier: items
     type: Collection
     table: nav_pagination_items
+    prefixField: true
     label: Pages
     minItems: 1
     fields:

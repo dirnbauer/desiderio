@@ -27,6 +27,7 @@ fields:
     identifier: items
     type: Collection
     table: use_case_grid_items
+    prefixField: true
     label: 'Use Cases'
     minItems: 1
     fields:

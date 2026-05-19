@@ -27,6 +27,7 @@ fields:
     identifier: testimonials
     type: Collection
     table: testimonial_wall_testimonials
+    prefixField: true
     label: Testimonials
     minItems: 3
     fields:

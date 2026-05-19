@@ -43,6 +43,7 @@ fields:
     identifier: plans
     type: Collection
     table: pricing_plans
+    prefixField: true
     label: 'Pricing Plans'
     labelField: name
     minItems: 1

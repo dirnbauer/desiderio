@@ -43,6 +43,7 @@ fields:
     identifier: items
     type: Collection
     table: category_cards_items
+    prefixField: true
     label: Categories
     minItems: 1
     fields:

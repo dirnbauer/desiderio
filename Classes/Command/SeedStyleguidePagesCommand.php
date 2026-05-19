@@ -594,7 +594,7 @@ final class SeedStyleguidePagesCommand extends Command
     /**
      * @param array<string, mixed> $fixture
      * @param array<string, true> $columns
-     * @return array{row: array<string, mixed>, collections: array<string, array{table: string, items: list<array<string, mixed>>}>, fileReferences: array<string, list<array{file: string, title: string, alternative: string, description: string, source: string}>>}
+     * @return array{row: array<string, mixed>, collections: array<string, array{table: string, column: string, items: list<array<string, mixed>>}>, fileReferences: array<string, list<array{file: string, title: string, alternative: string, description: string, source: string}>>}
      */
     private function buildContentInsert(
         int $pid,
@@ -627,7 +627,7 @@ final class SeedStyleguidePagesCommand extends Command
         }
 
         foreach ($collections as $field => $collection) {
-            $row[$field] = count($collection['items']);
+            $row[$collection['column'] ?? $field] = count($collection['items']);
         }
 
         return [
@@ -639,7 +639,7 @@ final class SeedStyleguidePagesCommand extends Command
 
     /**
      * @param array<string, mixed> $fixture
-     * @return array{0: array<string, mixed>, 1: array<string, array{table: string, items: list<array<string, mixed>>}>, 2: array<string, list<array{file: string, title: string, alternative: string, description: string, source: string}>>}
+     * @return array{0: array<string, mixed>, 1: array<string, array{table: string, column: string, items: list<array<string, mixed>>}>, 2: array<string, list<array{file: string, title: string, alternative: string, description: string, source: string}>>}
      */
     private function resolveFixtureFields(string $ctype, array $fixture, string $name = ''): array
     {
@@ -670,8 +670,14 @@ final class SeedStyleguidePagesCommand extends Command
                 if ($collectionField !== null) {
                     $items = $this->normalizeCollectionItems($value, $definition['collections'][$collectionField]);
                     if ($items !== []) {
+                        $collectionTable = $definition['collections'][$collectionField]['table'] ?? null;
+                        $collectionColumn = $definition['collections'][$collectionField]['column'] ?? $collectionField;
+                        if (!is_string($collectionTable) || !is_string($collectionColumn)) {
+                            continue;
+                        }
                         $collections[$collectionField] = [
-                            'table' => $definition['collections'][$collectionField]['table'],
+                            'table' => $collectionTable,
+                            'column' => $collectionColumn,
                             'items' => $items,
                         ];
                     }
@@ -708,9 +714,9 @@ final class SeedStyleguidePagesCommand extends Command
     /**
      * @param array{fields: array<string, array<string, mixed>>, collections: array<string, array<string, mixed>>} $definition
      * @param array<string, mixed> $resolvedFields
-     * @param array<string, array{table: string, items: list<array<string, mixed>>}> $collections
+     * @param array<string, array{table: string, column: string, items: list<array<string, mixed>>}> $collections
      * @param array<string, mixed> $fixture
-     * @return array{0: array<string, mixed>, 1: array<string, array{table: string, items: list<array<string, mixed>>}>, 2: array<string, list<array{file: string, title: string, alternative: string, description: string, source: string}>>}
+     * @return array{0: array<string, mixed>, 1: array<string, array{table: string, column: string, items: list<array<string, mixed>>}>, 2: array<string, list<array{file: string, title: string, alternative: string, description: string, source: string}>>}
      */
     private function completeResolvedFixtureData(
         string $ctype,
@@ -752,8 +758,14 @@ final class SeedStyleguidePagesCommand extends Command
             }
 
             if ($items !== []) {
+                $collectionTable = $collection['table'] ?? null;
+                $collectionColumn = $collection['column'] ?? $field;
+                if (!is_string($collectionTable) || !is_string($collectionColumn)) {
+                    continue;
+                }
                 $collections[$field] = [
-                    'table' => $collection['table'],
+                    'table' => $collectionTable,
+                    'column' => $collectionColumn,
                     'items' => $items,
                 ];
             }
@@ -2055,7 +2067,7 @@ PHP;
     }
 
     /**
-     * @param array<string, array{table: string, items: list<array<string, mixed>>}> $collections
+     * @param array<string, array{table: string, column?: string, items: list<array<string, mixed>>}> $collections
      */
     private function seedCollectionRecords(int $contentUid, int $pageUid, int $now, array $collections): void
     {
@@ -2076,7 +2088,7 @@ PHP;
                 }
                 $nestedCollections = [];
                 if (isset($item[self::NESTED_COLLECTIONS_KEY]) && is_array($item[self::NESTED_COLLECTIONS_KEY])) {
-                    $nestedCollections = $item[self::NESTED_COLLECTIONS_KEY];
+                    $nestedCollections = $this->normalizeCollectionPayloads($item[self::NESTED_COLLECTIONS_KEY]);
                     unset($item[self::NESTED_COLLECTIONS_KEY]);
                 }
 
@@ -2100,6 +2112,44 @@ PHP;
                 $this->seedCollectionRecords($collectionRowUid, $pageUid, $now, $nestedCollections);
             }
         }
+    }
+
+    /**
+     * @param array<mixed, mixed> $collections
+     * @return array<string, array{table: string, column?: string, items: list<array<string, mixed>>}>
+     */
+    private function normalizeCollectionPayloads(array $collections): array
+    {
+        $normalizedCollections = [];
+        foreach ($collections as $field => $collection) {
+            if (!is_string($field) || !is_array($collection)) {
+                continue;
+            }
+
+            $table = $collection['table'] ?? null;
+            $items = $collection['items'] ?? null;
+            if (!is_string($table) || !is_array($items)) {
+                continue;
+            }
+
+            $normalizedItems = [];
+            foreach ($items as $item) {
+                if (is_array($item)) {
+                    $normalizedItems[] = $this->normalizeStringKeyedArray($item);
+                }
+            }
+
+            $normalizedCollections[$field] = [
+                'table' => $table,
+                'items' => $normalizedItems,
+            ];
+
+            if (is_string($collection['column'] ?? null)) {
+                $normalizedCollections[$field]['column'] = $collection['column'];
+            }
+        }
+
+        return $normalizedCollections;
     }
 
     /**
@@ -2276,8 +2326,10 @@ PHP;
             if (!is_array($config)) {
                 continue;
             }
+            $config = $this->normalizeStringKeyedArray($config);
 
-            $definitions['desiderio_' . str_replace('-', '', $directory)] = $this->buildContentBlockDefinition($config);
+            $typeName = (string)($config['typeName'] ?? ('desiderio_' . str_replace('-', '', $directory)));
+            $definitions[$typeName] = $this->buildContentBlockDefinition($config);
         }
 
         $this->contentBlockDefinitions = $definitions;
@@ -2299,14 +2351,22 @@ PHP;
             if (!is_array($field) || !isset($field['identifier'])) {
                 continue;
             }
+            $field = $this->normalizeStringKeyedArray($field);
+            if (!is_string($field['identifier'] ?? null)) {
+                continue;
+            }
 
-            $identifier = (string)$field['identifier'];
+            $identifier = $field['identifier'];
             if (($field['type'] ?? '') !== 'Collection') {
                 $definition['fields'][$identifier] = $field;
                 continue;
             }
 
-            $definition['collections'][$identifier] = $this->buildCollectionDefinition($field, $identifier);
+            $definition['collections'][$identifier] = $this->buildCollectionDefinition(
+                $field,
+                $identifier,
+                $this->resolveRootFieldStorageIdentifier($config, $field, $identifier)
+            );
         }
 
         return $definition;
@@ -2314,9 +2374,9 @@ PHP;
 
     /**
      * @param array<string, mixed> $field
-     * @return array{table: string, fields: array<string, array<string, mixed>>, collections: array<string, array<string, mixed>>, minItems: int, maxItems: int|null}
+     * @return array{table: string, column: string, fields: array<string, array<string, mixed>>, collections: array<string, array<string, mixed>>, minItems: int, maxItems: int|null}
      */
-    private function buildCollectionDefinition(array $field, string $fallbackIdentifier): array
+    private function buildCollectionDefinition(array $field, string $fallbackIdentifier, ?string $column = null): array
     {
         $childFields = [];
         $childCollections = [];
@@ -2325,8 +2385,12 @@ PHP;
             if (!is_array($childField) || !isset($childField['identifier'])) {
                 continue;
             }
+            $childField = $this->normalizeStringKeyedArray($childField);
+            if (!is_string($childField['identifier'] ?? null)) {
+                continue;
+            }
 
-            $childIdentifier = (string)$childField['identifier'];
+            $childIdentifier = $childField['identifier'];
             if (($childField['type'] ?? '') === 'Collection') {
                 $childCollections[$childIdentifier] = $this->buildCollectionDefinition($childField, $childIdentifier);
                 continue;
@@ -2337,6 +2401,7 @@ PHP;
 
         return [
             'table' => $this->resolveCollectionTable($field, $fallbackIdentifier),
+            'column' => $column ?? $fallbackIdentifier,
             'fields' => $childFields,
             'collections' => $childCollections,
             'minItems' => $this->getConfiguredInteger($field, 'minItems')
@@ -2353,23 +2418,73 @@ PHP;
     private function resolveCollectionTable(array $field, string $fallbackIdentifier): string
     {
         $configuredTableValue = $field['table'] ?? $field['foreign_table'] ?? null;
-        $configuredTable = is_string($configuredTableValue) && $configuredTableValue !== ''
+        return is_string($configuredTableValue) && $configuredTableValue !== ''
             ? $configuredTableValue
             : $fallbackIdentifier;
-        if ($configuredTable === $fallbackIdentifier || $this->tableExists($configuredTable)) {
-            return $configuredTable;
+    }
+
+    /**
+     * @param array<string, mixed> $config
+     */
+    private function resolveContentBlockPrefix(array $config): string
+    {
+        $name = is_string($config['name'] ?? null) ? $config['name'] : '';
+        if (!str_contains($name, '/')) {
+            return '';
         }
 
-        // Some existing Content Blocks share identifiers like "plans" across
-        // elements. Content Blocks keeps the shared physical table in those
-        // cases, even when newer configs specify a table override. Seed into
-        // the generated table that actually exists, then keep nested tables
-        // element-specific.
-        if ($this->tableExists($fallbackIdentifier)) {
-            return $fallbackIdentifier;
+        $parts = explode('/', $name, 2);
+        $vendorPrefix = is_string($config['vendorPrefix'] ?? null) && $config['vendorPrefix'] !== ''
+            ? $config['vendorPrefix']
+            : $parts[0];
+        $prefixType = is_string($config['prefixType'] ?? null) ? $config['prefixType'] : 'full';
+
+        if ($prefixType === 'vendor') {
+            return str_replace('-', '', $vendorPrefix);
         }
 
-        return $configuredTable;
+        return str_replace('-', '', $vendorPrefix) . '_' . str_replace('-', '', $parts[1]);
+    }
+
+    /**
+     * @param array<string, mixed> $config
+     * @param array<string, mixed> $field
+     */
+    private function resolveRootFieldStorageIdentifier(array $config, array $field, string $identifier): string
+    {
+        if (($field['useExistingField'] ?? false) === true) {
+            return $identifier;
+        }
+
+        $prefixEnabled = array_key_exists('prefixField', $field)
+            ? (bool)$field['prefixField']
+            : (bool)($config['prefixFields'] ?? true);
+        if (!$prefixEnabled) {
+            return $identifier;
+        }
+
+        $prefix = $this->resolveContentBlockPrefix([
+            ...$config,
+            'prefixType' => $field['prefixType'] ?? ($config['prefixType'] ?? 'full'),
+        ]);
+
+        return $prefix !== '' ? $prefix . '_' . $identifier : $identifier;
+    }
+
+    /**
+     * @param array<mixed, mixed> $array
+     * @return array<string, mixed>
+     */
+    private function normalizeStringKeyedArray(array $array): array
+    {
+        $normalized = [];
+        foreach ($array as $key => $value) {
+            if (is_string($key)) {
+                $normalized[$key] = $value;
+            }
+        }
+
+        return $normalized;
     }
 
     /**
@@ -2552,11 +2667,6 @@ PHP;
     private function tableHasColumn(string $table, string $column): bool
     {
         return isset($this->getColumnNames($table)[$column]);
-    }
-
-    private function tableExists(string $table): bool
-    {
-        return $this->getColumnNames($table) !== [];
     }
 
     /**

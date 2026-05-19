@@ -35,6 +35,7 @@ fields:
     identifier: posts
     type: Collection
     table: blog_teasers_posts
+    prefixField: true
     label: Posts
     minItems: 1
     fields:

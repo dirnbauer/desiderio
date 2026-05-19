@@ -27,6 +27,7 @@ fields:
     identifier: sections
     type: Collection
     table: navbar_sidebar_sections
+    prefixField: true
     label: Sections
     minItems: 1
     fields:

@@ -22,6 +22,7 @@ fields:
     identifier: advisors
     type: Collection
     table: advisor_grid_advisors
+    prefixField: true
     label: Advisors
     minItems: 1
     fields:

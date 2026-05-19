@@ -74,6 +74,31 @@ final class ContentBlockStructureTest extends TestCase
         }
     }
 
+    public function testTopLevelCollectionFieldsArePrefixed(): void
+    {
+        $blocks = glob(self::CONTENT_BLOCKS_DIR . '/*', GLOB_ONLYDIR);
+        $blocks = $blocks === false ? [] : $blocks;
+        foreach ($blocks as $block) {
+            $config = Yaml::parseFile("{$block}/config.yaml");
+            self::assertIsArray($config);
+            $fields = $config['fields'] ?? [];
+            self::assertIsArray($fields, basename($block) . ' fields must be a list');
+
+            foreach ($fields as $field) {
+                if (!is_array($field) || ($field['type'] ?? '') !== 'Collection') {
+                    continue;
+                }
+
+                $identifier = $field['identifier'] ?? 'collection';
+                $identifier = is_scalar($identifier) ? (string)$identifier : 'collection';
+                self::assertTrue(
+                    $field['prefixField'] ?? false,
+                    basename($block) . '.' . $identifier . ' must enable prefixField so reused tt_content Collection identifiers do not share one TCA column.'
+                );
+            }
+        }
+    }
+
     public function testEveryContentBlockHasEnglishAndGermanWizardLabels(): void
     {
         $blocks = glob(self::CONTENT_BLOCKS_DIR . '/*', GLOB_ONLYDIR) ?: [];

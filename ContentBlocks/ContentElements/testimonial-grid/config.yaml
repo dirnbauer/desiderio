@@ -35,6 +35,7 @@ fields:
     identifier: testimonials
     type: Collection
     table: testimonial_grid_testimonials
+    prefixField: true
     label: Testimonials
     minItems: 1
     fields:

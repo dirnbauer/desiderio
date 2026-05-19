@@ -66,6 +66,10 @@ Copy from `/Users/dirnbauer/projects/shadcn2fluid-templates` → `/Users/dirnbau
   - Update vendor prefix: all `shadcn2fluid-templates/*` slugs → `desiderio/*`
   - Replace `<s2f:…>` → `<d:…>` in all `Frontend.html`
   - Update labels.xlf if they reference the old name
+  - Keep top-level Content Blocks `Collection` fields prefixed when
+    `prefixFields: false` is used at the root; do not collapse generated child
+    tables by matching generic identifiers unless the reused table is an
+    explicit shared child model.
 - [ ] `Resources/Public/Css/components.css` → `Resources/Public/Css/components.css`
 - [ ] `Resources/Public/Js/s2f.js` → `Resources/Public/Js/desiderio.js`
 - [ ] `Resources/Public/Icons/` → `Resources/Public/Icons/`
@@ -147,4 +151,8 @@ After Phase 5 is green locally:
 **Real risks:**
 - The `<s2f:…>` → `<d:…>` rename must be exhaustive across ~250 `Frontend.html` files. Plan: codemod + `ContentBlockStructureTest` to catch stragglers.
 - 250 content block YAMLs may reference each other by vendor prefix. Plan: grep for `shadcn2fluid-templates/` before Phase 5 sign-off.
+- Collection table reuse can reduce schema noise, but it is not a migration
+  shortcut. Plan: keep generated per-collection tables unless two collections
+  intentionally share the same stable child schema and parent-field matching is
+  unambiguous.
 - Settings-driven CSS needs care to stay cache-friendly. Plan: emit one `<style>` block in `<head>` derived from `{settings.desiderio.*}`; nothing dynamic per-request beyond that.

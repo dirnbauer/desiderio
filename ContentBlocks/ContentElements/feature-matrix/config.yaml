@@ -32,6 +32,7 @@ fields:
     identifier: rows
     type: Collection
     table: feature_matrix_rows
+    prefixField: true
     label: Rows
     minItems: 1
     fields:

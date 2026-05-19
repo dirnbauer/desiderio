@@ -22,6 +22,7 @@ fields:
     identifier: slides
     type: Collection
     table: hero_carousel_slides
+    prefixField: true
     label: Slides
     minItems: 1
     fields:

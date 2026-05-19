@@ -7,8 +7,10 @@ Status: Green
 ## Summary
 
 The generic security pass found no dependency advisories and no new
-source TODO/FIXME markers. The only existing TODO marker remains in
-`patches.lock.json` as upstream patch metadata and was not changed.
+source TODO/FIXME markers. The obsolete Content Blocks patch metadata has
+been removed after replacing the workaround with per-field Collection
+prefixing. Collection table reuse remains an explicit modeling decision rather
+than an automatic schema compaction step.
 
 ## Checks
 
@@ -19,6 +21,9 @@ source TODO/FIXME markers. The only existing TODO marker remains in
 - Service lookup scan: no new service `GeneralUtility::makeInstance()`
   usage was introduced.
 - Workspace destructive query risk: fixed by live-row predicates.
+- Collection table policy: default generated per-collection tables are kept for
+  clear ownership; reuse is reserved for intentionally identical child models
+  and mainly reduces schema noise.
 
 ## Verification
 

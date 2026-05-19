@@ -27,6 +27,7 @@ fields:
     identifier: awards
     type: Collection
     table: awards_awards
+    prefixField: true
     label: Awards
     minItems: 1
     fields:

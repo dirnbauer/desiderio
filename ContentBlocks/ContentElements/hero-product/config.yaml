@@ -47,6 +47,7 @@ fields:
     identifier: feature_items
     type: Collection
     table: hero_product_feature_items
+    prefixField: true
     label: 'Key Features'
     fields:
       -

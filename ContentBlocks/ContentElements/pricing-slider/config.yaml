@@ -33,6 +33,7 @@ fields:
     identifier: tiers
     type: Collection
     table: pricing_slider_tiers
+    prefixField: true
     label: 'Volume Tiers'
     minItems: 2
     fields:

@@ -34,6 +34,7 @@ fields:
     identifier: features
     type: Collection
     table: pricing_simple_features
+    prefixField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:features'
     labelField: text
     minItems: 1

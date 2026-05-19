@@ -27,6 +27,7 @@ fields:
     identifier: certifications
     type: Collection
     table: certifications_certifications
+    prefixField: true
     label: Certifications
     minItems: 1
     fields:

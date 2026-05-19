@@ -283,6 +283,7 @@ foreach ($blocks as $block) {
             $basics[] = $basic;
         }
     }
+    $config['fields'] = enableTopLevelCollectionFieldPrefixing($config['fields'] ?? []);
     $config = moveKeyAfter($config, 'basics', $basics, 'prefixFields');
 
     file_put_contents($configPath, rtrim(Yaml::dump($config, 8, 2, Yaml::DUMP_MULTI_LINE_LITERAL_BLOCK)) . "\n");
@@ -589,6 +590,32 @@ function moveKeyAfter(array $config, string $key, mixed $value, string $after): 
     }
 
     return $result;
+}
+
+/**
+ * @param mixed $fields
+ * @return list<array<string, mixed>>
+ */
+function enableTopLevelCollectionFieldPrefixing(mixed $fields): array
+{
+    if (!is_array($fields)) {
+        return [];
+    }
+
+    $normalized = [];
+    foreach ($fields as $field) {
+        if (!is_array($field)) {
+            continue;
+        }
+
+        if (($field['type'] ?? '') === 'Collection') {
+            $field = moveKeyAfter($field, 'prefixField', true, array_key_exists('table', $field) ? 'table' : 'type');
+        }
+
+        $normalized[] = $field;
+    }
+
+    return $normalized;
 }
 
 /**
@@ -1007,9 +1034,7 @@ function writeContentElementGroupTca(string $file, array $groups): void
         '',
         'declare(strict_types=1);',
         '',
-        'use Symfony\Component\Yaml\Yaml;',
         'use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;',
-        'use TYPO3\CMS\Core\Utility\GeneralUtility;',
         '',
         '$position = \'before:default\';',
         '',
@@ -1031,62 +1056,6 @@ function writeContentElementGroupTca(string $file, array $groups): void
         '        $position,',
         '    );',
         '    $position = \'after:\' . $group;',
-        '}',
-        '',
-        '// Content Blocks keeps non-shareable inline relation options on the base column.',
-        '// Re-apply them per CType because Desiderio intentionally reuses names like "items".',
-        '$contentElementsPath = GeneralUtility::getFileAbsFileName(\'EXT:desiderio/ContentBlocks/ContentElements\');',
-        'if ($contentElementsPath !== \'\' && is_dir($contentElementsPath)) {',
-        '    foreach (glob($contentElementsPath . \'/*/config.yaml\') ?: [] as $configPath) {',
-        '        $config = Yaml::parseFile($configPath);',
-        '        if (!is_array($config)) {',
-        '            continue;',
-        '        }',
-        '',
-        '        $typeName = (string)($config[\'typeName\'] ?? \'\');',
-        '        if ($typeName === \'\' || !isset($GLOBALS[\'TCA\'][\'tt_content\'][\'types\'][$typeName])) {',
-        '            continue;',
-        '        }',
-        '',
-        '        foreach (($config[\'fields\'] ?? []) as $field) {',
-        '            if (!is_array($field) || ($field[\'type\'] ?? \'\') !== \'Collection\') {',
-        '                continue;',
-        '            }',
-        '',
-        '            $identifier = (string)($field[\'identifier\'] ?? \'\');',
-        '            if ($identifier === \'\') {',
-        '                continue;',
-        '            }',
-        '',
-        '            $relationConfig = [',
-        '                \'foreign_table\' => (string)($field[\'foreign_table\'] ?? $field[\'table\'] ?? $identifier),',
-        '            ];',
-        '',
-        '            if (!isset($field[\'MM\'])) {',
-        '                $relationConfig[\'foreign_field\'] = (string)($field[\'foreign_field\'] ?? \'foreign_table_parent_uid\');',
-        '            }',
-        '',
-        '            if (isset($field[\'foreign_table_field\'])) {',
-        '                $relationConfig[\'foreign_table_field\'] = (string)$field[\'foreign_table_field\'];',
-        '            } elseif (($field[\'shareAcrossTables\'] ?? false) === true) {',
-        '                $relationConfig[\'foreign_table_field\'] = \'tablenames\';',
-        '            }',
-        '',
-        '            $foreignMatchFields = is_array($field[\'foreign_match_fields\'] ?? null)',
-        '                ? $field[\'foreign_match_fields\']',
-        '                : [];',
-        '            if (($field[\'shareAcrossFields\'] ?? false) === true) {',
-        '                $foreignMatchFields[\'fieldname\'] = $identifier;',
-        '            }',
-        '            if ($foreignMatchFields !== []) {',
-        '                $relationConfig[\'foreign_match_fields\'] = $foreignMatchFields;',
-        '            }',
-        '',
-        '            foreach ($relationConfig as $option => $value) {',
-        '                $GLOBALS[\'TCA\'][\'tt_content\'][\'types\'][$typeName][\'columnsOverrides\'][$identifier][\'config\'][$option] = $value;',
-        '            }',
-        '        }',
-        '    }',
         '}',
         '',
     ];

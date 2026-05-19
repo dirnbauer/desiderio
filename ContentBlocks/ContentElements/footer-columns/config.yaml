@@ -27,6 +27,7 @@ fields:
     identifier: column_items
     type: Collection
     table: footer_columns_column_items
+    prefixField: true
     label: 'Link Columns'
     minItems: 1
     fields:

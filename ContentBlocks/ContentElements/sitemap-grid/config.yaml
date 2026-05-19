@@ -30,6 +30,7 @@ fields:
     identifier: groups
     type: Collection
     table: sitemap_grid_groups
+    prefixField: true
     label: 'Page Groups'
     labelField: title
     minItems: 1

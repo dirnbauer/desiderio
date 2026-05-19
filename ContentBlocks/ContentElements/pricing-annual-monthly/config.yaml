@@ -27,6 +27,7 @@ fields:
     identifier: plans
     type: Collection
     table: pricing_annual_monthly_plans
+    prefixField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:plans'
     labelField: name
     minItems: 1

@@ -18,6 +18,9 @@ now call out TYPO3's non-versioned FAL behavior explicitly.
   passed.
 - The seeder refuses offline workspaces.
 - Destructive seeder cleanup is scoped to live workspace rows.
+- Content Blocks collection tables stay owned by their generated collection by
+  default; any shared table must be an explicit identical child model to avoid
+  ambiguous parent-field relationships.
 - CSP nonce handling remains in `FixtureJsonViewHelper`.
 
 ## Remaining Caveat

@@ -22,6 +22,7 @@ fields:
     identifier: members
     type: Collection
     table: board_members_members
+    prefixField: true
     label: 'Board Members'
     minItems: 1
     fields:

@@ -40,6 +40,7 @@ fields:
     identifier: items
     type: Collection
     table: benefit_cards_items
+    prefixField: true
     label: Benefits
     minItems: 1
     fields:

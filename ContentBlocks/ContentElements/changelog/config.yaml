@@ -17,6 +17,7 @@ fields:
     identifier: items
     type: Collection
     table: changelog_items
+    prefixField: true
     label: Releases
     minItems: 1
     fields:

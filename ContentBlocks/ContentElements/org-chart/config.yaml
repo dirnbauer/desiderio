@@ -22,6 +22,7 @@ fields:
     identifier: levels
     type: Collection
     table: org_chart_levels
+    prefixField: true
     label: Levels
     labelField: level_label
     minItems: 1

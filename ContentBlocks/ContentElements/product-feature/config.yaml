@@ -33,6 +33,7 @@ fields:
     identifier: features
     type: Collection
     table: product_feature_features
+    prefixField: true
     label: 'Feature Benefits'
     labelField: text
     minItems: 1

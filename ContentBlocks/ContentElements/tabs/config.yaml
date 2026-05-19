@@ -37,6 +37,7 @@ fields:
     identifier: items
     type: Collection
     table: tabs_items
+    prefixField: true
     label: 'Tab Panels'
     minItems: 2
     fields:

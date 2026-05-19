@@ -22,6 +22,7 @@ fields:
     identifier: stats
     type: Collection
     table: stats_inline_stats
+    prefixField: true
     label: Stats
     minItems: 2
     fields:

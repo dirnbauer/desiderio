@@ -28,6 +28,7 @@ fields:
     identifier: items
     type: Collection
     table: feature_split_items
+    prefixField: true
     label: 'Feature Points'
     minItems: 1
     fields:

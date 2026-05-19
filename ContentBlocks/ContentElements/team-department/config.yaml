@@ -22,6 +22,7 @@ fields:
     identifier: department_items
     type: Collection
     table: team_department_departments
+    prefixField: true
     label: Departments
     labelField: name
     minItems: 1

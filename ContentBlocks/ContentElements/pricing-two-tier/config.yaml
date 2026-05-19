@@ -27,6 +27,7 @@ fields:
     identifier: plans
     type: Collection
     table: pricing_two_tier_plans
+    prefixField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:plans'
     labelField: title
     minItems: 2

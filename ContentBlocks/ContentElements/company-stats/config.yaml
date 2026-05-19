@@ -22,6 +22,7 @@ fields:
     identifier: stats
     type: Collection
     table: company_stats_stats
+    prefixField: true
     label: Statistics
     minItems: 1
     fields:

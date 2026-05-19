@@ -22,6 +22,7 @@ fields:
     identifier: products
     type: Collection
     table: product_comparison_products
+    prefixField: true
     label: Products
     labelField: name
     minItems: 2

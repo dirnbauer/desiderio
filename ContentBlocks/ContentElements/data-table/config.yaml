@@ -22,6 +22,7 @@ fields:
     identifier: column_definitions
     type: Collection
     table: data_table_columns
+    prefixField: true
     label: 'Column Definitions'
     minItems: 1
     fields:
@@ -51,6 +52,7 @@ fields:
     identifier: rows
     type: Collection
     table: data_table_rows
+    prefixField: true
     label: 'Table Rows'
     labelField: row_label
     minItems: 1

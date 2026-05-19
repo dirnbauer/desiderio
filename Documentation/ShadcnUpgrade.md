@@ -280,6 +280,19 @@ browser behavior belongs in include files such as
 `Resources/Public/Js/charts.js`, registered through TypoScript or TYPO3 asset
 APIs. Avoid inline `<script>` renderers in `templates/frontend.html`.
 
+## Collection Schema Policy
+
+Top-level Content Blocks `Collection` fields should keep `prefixField: true`
+when a block uses root-level `prefixFields: false`. That keeps the root
+`tt_content` columns distinct even when multiple content elements reuse
+generic field identifiers such as `items`.
+
+Prefer the generated one-table-per-collection model. Reusing collection child
+tables is an explicit content-modeling decision for identical stable row
+schemas, not an automatic cleanup based on field names. It can make the schema
+list shorter, but usually does not materially shrink database storage unless
+the database engine's per-table overhead is the real issue.
+
 ## Visual QA
 
 Use the Desiderio styleguide page as the all-content-elements overview. Check

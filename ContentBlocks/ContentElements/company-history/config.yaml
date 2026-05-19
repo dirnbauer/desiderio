@@ -22,6 +22,7 @@ fields:
     identifier: events
     type: Collection
     table: company_history_events
+    prefixField: true
     label: Events
     minItems: 1
     fields:

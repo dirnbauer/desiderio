@@ -22,6 +22,7 @@ fields:
     identifier: location_items
     type: Collection
     table: office_locations_location_items
+    prefixField: true
     label: Locations
     minItems: 1
     fields:

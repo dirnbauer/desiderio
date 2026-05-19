@@ -82,7 +82,7 @@ Then enable the base site set plus one of the five presets:
 | PHP | `^8.3` (8.3 – 8.5) | Matches TYPO3 v14.3 LTS support matrix. |
 | Workspaces | `^14.3` | Required, not optional, for editorial preview. |
 | PHPStan | `^2.1`, **level max** | Plus `saschaegerer/phpstan-typo3` and `phpstan-strict-rules`. |
-| PHPUnit | `^11.5` | All 100 unit tests pass via `Build/Scripts/runTests.sh`. |
+| PHPUnit | `^11.5` | All 101 unit tests pass via `Build/Scripts/runTests.sh`. |
 | Content Blocks | `^2.2` | Drives every one of the 255 content elements. |
 
 The base set also pulls in `webconsulting/desiderio-content-elements`, a single
@@ -322,6 +322,35 @@ one Desiderio item instead of selecting blocks one by one.
 Classic TYPO3 Fluid Styled Content elements are overridden from
 `Resources/Private/FluidStyledContent/` and use the same shadcn preset tokens,
 Fluid 5 components, and Tailwind source build as the Content Blocks catalog.
+
+### Collection fields and generated tables
+
+Desiderio keeps `prefixFields: false` at the content-element root so editor
+field names stay readable, but every top-level Content Blocks `Collection`
+field uses `prefixField: true`. That gives each `tt_content` collection count
+its own TCA column, even when many content elements use identifiers such as
+`items`, `links`, or `features`.
+
+The generated default is one child table per collection. This creates more
+tables, but it keeps schemas, labels, migrations, fixtures, and styleguide seed
+logic local to the content element that owns them. Reusing a collection table is
+allowed only as an explicit modeling decision, not automatically because field
+identifiers match.
+
+Reuse a child table only when the child rows are intentionally the same model
+across all parents, for example a simple `label` + `link` list or repeated
+`label` + `value` metric rows. Avoid reuse when schemas can evolve
+independently, when editor labels or validation differ, or when two collection
+fields on the same parent would point at the same child table without a
+separate match field such as Content Blocks `shareAcrossFields`.
+
+The practical benefit is fewer tables and less schema noise. Do not expect a
+large physical database-size reduction unless table overhead in the database
+engine is the actual bottleneck.
+
+Nested collections are supported when each level declares its own stable
+`table`. The styleguide seed command walks those structures recursively and
+writes child rows below the current parent row.
 
 ### Media rendering in Content Blocks
 

@@ -43,6 +43,7 @@ fields:
     identifier: stats
     type: Collection
     table: stats_stats
+    prefixField: true
     label: Stats
     minItems: 1
     fields:

@@ -46,6 +46,7 @@ fields:
     identifier: metrics
     type: Collection
     table: case_study_featured_metrics
+    prefixField: true
     label: 'Key Metrics'
     minItems: 1
     maxItems: 4

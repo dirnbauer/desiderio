@@ -7,7 +7,7 @@ Status: Green
 ## Summary
 
 README and Documentation now match the current release metadata,
-workspace behavior, and local test suite.
+workspace behavior, Content Blocks collection modeling, and local test suite.
 
 ## Changes In This Pass
 
@@ -15,12 +15,15 @@ workspace behavior, and local test suite.
 - Documentation changelog page updated to `2.2.0`.
 - Editor and Known Problems docs updated for live-workspace seeder
   behavior and live-row cleanup scoping.
-- Developer docs and README updated to the current 100-test suite.
+- Developer docs and README updated to the current 101-test suite.
 - Timestamped before/after reports were added for each requested
   agentic skill loop.
 - README, contributing notes, specification, and shadcn upgrade guidance now
   document the `<f:image>` / `f:uri.image()` convention for Content Block media
   fields and structured Fluid `data` arguments.
+- README, contributing notes, specification, migration notes, and shadcn
+  guidance now document `Collection` field prefixing, nested collection seeding,
+  and when collection table reuse is appropriate.
 
 ## Verification
 

@@ -22,6 +22,7 @@ fields:
     identifier: mentions
     type: Collection
     table: press_mentions_mentions
+    prefixField: true
     label: 'Press Mentions'
     minItems: 1
     fields:

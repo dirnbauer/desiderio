@@ -22,6 +22,7 @@ fields:
     identifier: plans
     type: Collection
     table: pricing_comparison_plans
+    prefixField: true
     label: 'Plan Names'
     labelField: name
     minItems: 2
@@ -42,6 +43,7 @@ fields:
     identifier: pricing_feature_items
     type: Collection
     table: pricing_comparison_feature_items
+    prefixField: true
     label: 'Feature Rows'
     labelField: feature_name
     minItems: 1

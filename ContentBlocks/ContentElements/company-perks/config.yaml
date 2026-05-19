@@ -27,6 +27,7 @@ fields:
     identifier: perks
     type: Collection
     table: company_perks_perks
+    prefixField: true
     label: Perks
     minItems: 1
     fields:

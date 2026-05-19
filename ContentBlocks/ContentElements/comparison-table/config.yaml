@@ -22,6 +22,7 @@ fields:
     identifier: column_items
     type: Collection
     table: comparison_table_columns
+    prefixField: true
     label: 'Comparison Columns'
     labelField: name
     minItems: 2
@@ -41,6 +42,7 @@ fields:
     identifier: comparison_feature_items
     type: Collection
     table: comparison_table_features
+    prefixField: true
     label: 'Feature Rows'
     labelField: name
     minItems: 1

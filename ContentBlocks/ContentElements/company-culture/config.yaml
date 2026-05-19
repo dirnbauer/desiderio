@@ -27,6 +27,7 @@ fields:
     identifier: items
     type: Collection
     table: company_culture_items
+    prefixField: true
     label: 'Culture Highlights'
     minItems: 1
     fields:

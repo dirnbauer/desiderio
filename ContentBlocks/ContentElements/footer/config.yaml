@@ -49,6 +49,7 @@ fields:
     identifier: footer_links
     type: Collection
     table: footer_footer_links
+    prefixField: true
     label: 'Footer Links'
     fields:
       -
@@ -65,6 +66,7 @@ fields:
     identifier: utility_links
     type: Collection
     table: footer_utility_links
+    prefixField: true
     label: 'Utility Links'
     fields:
       -

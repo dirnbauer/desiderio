@@ -33,6 +33,7 @@ fields:
     identifier: items
     type: Collection
     table: compliance_badges_items
+    prefixField: true
     label: Badges
     minItems: 1
     fields:

@@ -27,6 +27,7 @@ fields:
     identifier: items
     type: Collection
     table: stats_bar_items
+    prefixField: true
     label: 'Stat Bars'
     minItems: 1
     fields:

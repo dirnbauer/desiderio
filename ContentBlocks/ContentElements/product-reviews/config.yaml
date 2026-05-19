@@ -29,6 +29,7 @@ fields:
     identifier: reviews
     type: Collection
     table: product_reviews_reviews
+    prefixField: true
     label: Reviews
     minItems: 1
     fields:

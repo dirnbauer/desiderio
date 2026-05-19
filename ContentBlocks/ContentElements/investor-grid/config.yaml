@@ -22,6 +22,7 @@ fields:
     identifier: investors
     type: Collection
     table: investor_grid_investors
+    prefixField: true
     label: Investors
     minItems: 1
     fields:

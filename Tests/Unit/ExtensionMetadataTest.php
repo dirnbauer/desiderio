@@ -59,7 +59,7 @@ final class ExtensionMetadataTest extends TestCase
         $config = (string) file_get_contents(__DIR__ . '/../../Configuration/Sets/SolrDefaults/config.yaml');
         $setup = (string) file_get_contents(__DIR__ . '/../../Configuration/Sets/SolrDefaults/setup.typoscript');
 
-        self::assertStringContainsString('name: dirnbauer/solr-defaults', $config);
+        self::assertStringContainsString('name: webconsulting/solr-defaults', $config);
         self::assertStringContainsString('EXT:desiderio/Resources/Private/Solr/Templates/', $setup);
         self::assertStringContainsString('EXT:desiderio/Resources/Private/Solr/Partials/', $setup);
         self::assertStringContainsString('EXT:desiderio/Resources/Private/Solr/Layouts/', $setup);

@@ -12,7 +12,7 @@ declare(strict_types=1);
  * we cannot identify (multi-attribute pre-existing role).
  */
 
-$root = '/Users/dirnbauer/projects/desiderio';
+$root = dirname(__DIR__, 2);
 
 $candidatePatterns = [
     'flex flex-wrap',

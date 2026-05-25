@@ -7,8 +7,8 @@ Companion to [SPECIFICATION.md](SPECIFICATION.md). Executed in order. **No backw
 ## Phase 0 — Snapshot (safety net, not for compatibility)
 
 - [ ] Tag both extensions at HEAD before touching anything
-  - `cd /Users/dirnbauer/projects/desiderio && git tag pre-bigbang-v1 && git push --tags`
-  - `cd /Users/dirnbauer/projects/shadcn2fluid-templates && git tag pre-bigbang-v3 && git push --tags`
+  - `cd /path/to/desiderio && git tag pre-bigbang-v1 && git push --tags`
+  - `cd /path/to/shadcn2fluid-templates && git tag pre-bigbang-v3 && git push --tags`
 - [ ] Confirm both working trees are clean (`git status`)
 - [ ] Branch: `git checkout -b v2-bigbang` in desiderio
 
@@ -18,7 +18,7 @@ _Tags let us come back. No other goal._
 
 ## Phase 1 — Scorched Earth (delete everything)
 
-Inside `/Users/dirnbauer/projects/desiderio` on branch `v2-bigbang`:
+Inside `/path/to/desiderio` on branch `v2-bigbang`:
 
 - [ ] Delete everything except:
   - `.git/`
@@ -34,7 +34,7 @@ git rm -rf Classes Configuration Resources Documentation \
 rm -rf node_modules
 ```
 
-Inside `/Users/dirnbauer/projects/shadcn2fluid-templates`:
+Inside `/path/to/shadcn2fluid-templates`:
 
 - [ ] Leave untouched for now. After Phase 5 passes, the **repo itself is archived and the local directory deleted** (see Phase 6).
 
@@ -56,7 +56,7 @@ Inside `/Users/dirnbauer/projects/shadcn2fluid-templates`:
 
 ## Phase 3 — Port components & content blocks from shadcn2fluid-templates
 
-Copy from `/Users/dirnbauer/projects/shadcn2fluid-templates` → `/Users/dirnbauer/projects/desiderio`, **renaming as we go**:
+Copy from `/path/to/shadcn2fluid-templates` to `/path/to/desiderio`, **renaming as we go**:
 
 - [ ] `Resources/Private/Components/` → `Resources/Private/Components/`
   - Replace all `<s2f:…>` → `<d:…>` in component templates (global sed)
@@ -116,7 +116,7 @@ After Phase 5 is green locally:
 - [ ] Tag final version: `v3.0.0-archived`
 - [ ] Push tag, then **archive the GitHub repo** (UI setting — needs user confirmation)
 - [ ] Remove Packagist package (needs user confirmation — irreversible)
-- [ ] Delete local directory `/Users/dirnbauer/projects/shadcn2fluid-templates` (needs user confirmation)
+- [ ] Delete local directory `/path/to/shadcn2fluid-templates` (needs user confirmation)
 
 ---
 

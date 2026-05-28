@@ -357,7 +357,7 @@ final class StyleguideSeedCommandTest extends TestCase
         $imageSource = $fields['image_source'] ?? null;
         self::assertIsString($imageSource);
 
-        self::assertContains($fields['eyebrow'], ['shadcn/ui', 'Token-ready', 'Premium surface', 'A11y checked', 'Radix rhythm', 'Modern TYPO3']);
+        self::assertContains($fields['eyebrow'], ['shadcn/ui', 'TYPO3 Form Framework', 'Fluid 5.3', 'Responsive by default', 'Editor-ready', 'Modern TYPO3']);
         self::assertStringContainsString('demo element', strtolower($description));
         self::assertStringContainsString('pattern', strtolower($description));
         self::assertStringNotContainsString('Complete demo content', $description);

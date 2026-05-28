@@ -313,6 +313,30 @@
         <target>Diagrammdaten (JSON)</target>
       </segment>
     </unit>
+    <unit id="fill_opacity">
+      <segment state="final">
+        <source>Fill Opacity</source>
+        <target>Füll-Deckkraft</target>
+      </segment>
+    </unit>
+    <unit id="item.light">
+      <segment state="final">
+        <source>Light</source>
+        <target>Leicht</target>
+      </segment>
+    </unit>
+    <unit id="item.medium">
+      <segment state="final">
+        <source>Medium</source>
+        <target>Mittel</target>
+      </segment>
+    </unit>
+    <unit id="item.strong">
+      <segment state="final">
+        <source>Strong</source>
+        <target>Stark</target>
+      </segment>
+    </unit>
     <unit id="show_more_link">
       <segment state="final">
         <source>Show More Link</source>

@@ -30,15 +30,15 @@ fields:
     identifier: fill_opacity
     type: Select
     renderType: selectSingle
-    label: 'Fill opacity'
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:fill_opacity'
     items:
       -
-        label: Light
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.light'
         value: '0.15'
       -
-        label: Medium
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.medium'
         value: '0.25'
       -
-        label: Strong
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.strong'
         value: '0.4'
     default: '0.25'

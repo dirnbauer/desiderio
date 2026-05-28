@@ -38,34 +38,34 @@ final class SeedStyleguidePagesCommand extends Command
     private const STYLEGUIDE_FAL_FOLDER = 'desiderio-styleguide';
     private const DEMO_BADGES = [
         'shadcn/ui',
-        'Token-ready',
-        'Premium surface',
+        'TYPO3 Form Framework',
+        'Fluid 5.3',
         'A11y checked',
-        'Radix rhythm',
-        'Modern TYPO3',
+        'Responsive by default',
+        'Editor-ready',
     ];
     private const DEMO_BUTTON_LABELS = [
         'View pattern',
         'Open preview',
         'Compare states',
-        'Read playbook',
-        'Start review',
+        'Get checklist',
+        'Start conversation',
     ];
     private const DEMO_COPY = [
-        'Compare plans, proof points, and next steps without forcing visitors to decode the layout.',
-        'Show the most important detail first, then support it with compact copy and clear actions.',
-        'Keep repeated items short enough for cards, grids, and mobile stacks to stay balanced.',
-        'Pair concrete product context with restrained surfaces, visible focus states, and useful media.',
-        'Use specific labels, real numbers, and direct calls to action so the preview feels launch-ready.',
+        'Lead with the decision visitors need to make, then support it with compact proof and a clear next step.',
+        'Keep the surface calm, scannable, and token-driven so editors can reuse it across real TYPO3 pages.',
+        'Balance short copy, responsive spacing, and accessible controls so mobile stacks stay intentional.',
+        'Pair concrete product context with restrained shadcn surfaces, visible focus states, and useful media.',
+        'Use specific labels, realistic numbers, and TYPO3-native form handling so the preview feels publish-ready.',
     ];
     private const DEMO_FEATURES = [
         'Theme-aware states',
         'Keyboard focus built in',
         'Reusable Content Blocks',
-        'Responsive review content',
+        'Responsive editorial density',
         'Token-based chart colors',
-        'Modern Unsplash media',
-        'Sleek shadcn spacing',
+        'Curated demo media',
+        'TYPO3 Form finishers',
     ];
     private const DEMO_LINK_LABELS = ['Overview', 'Components', 'Examples', 'Pricing', 'Contact'];
     private const DEMO_PEOPLE = [

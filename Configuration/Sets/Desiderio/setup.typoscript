@@ -28,6 +28,44 @@ tx_solr_suggest {
   }
 }
 
+lib.desiderioFormRenderer = USER
+lib.desiderioFormRenderer {
+  userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+  extensionName = Form
+  pluginName = Formframework
+  vendorName = TYPO3\CMS
+  controller = FormFrontend
+  action = render
+
+  settings {
+    persistenceIdentifier = EXT:desiderio/Resources/Private/Forms/DesiderioContact.form.yaml
+  }
+}
+
+lib.desiderioFormRenderer.booking =< lib.desiderioFormRenderer
+lib.desiderioFormRenderer.booking.settings.persistenceIdentifier = EXT:desiderio/Resources/Private/Forms/DesiderioBooking.form.yaml
+
+lib.desiderioFormRenderer.callback =< lib.desiderioFormRenderer
+lib.desiderioFormRenderer.callback.settings.persistenceIdentifier = EXT:desiderio/Resources/Private/Forms/DesiderioCallback.form.yaml
+
+lib.desiderioFormRenderer.contact =< lib.desiderioFormRenderer
+lib.desiderioFormRenderer.contact.settings.persistenceIdentifier = EXT:desiderio/Resources/Private/Forms/DesiderioContact.form.yaml
+
+lib.desiderioFormRenderer.dataRequest =< lib.desiderioFormRenderer
+lib.desiderioFormRenderer.dataRequest.settings.persistenceIdentifier = EXT:desiderio/Resources/Private/Forms/DesiderioDataRequest.form.yaml
+
+lib.desiderioFormRenderer.download =< lib.desiderioFormRenderer
+lib.desiderioFormRenderer.download.settings.persistenceIdentifier = EXT:desiderio/Resources/Private/Forms/DesiderioDownload.form.yaml
+
+lib.desiderioFormRenderer.feedback =< lib.desiderioFormRenderer
+lib.desiderioFormRenderer.feedback.settings.persistenceIdentifier = EXT:desiderio/Resources/Private/Forms/DesiderioFeedback.form.yaml
+
+lib.desiderioFormRenderer.lead =< lib.desiderioFormRenderer
+lib.desiderioFormRenderer.lead.settings.persistenceIdentifier = EXT:desiderio/Resources/Private/Forms/DesiderioLead.form.yaml
+
+lib.desiderioFormRenderer.newsletter =< lib.desiderioFormRenderer
+lib.desiderioFormRenderer.newsletter.settings.persistenceIdentifier = EXT:desiderio/Resources/Private/Forms/DesiderioNewsletter.form.yaml
+
 plugin.tx_solr {
   view {
     templateRootPaths.100 = EXT:desiderio/Resources/Private/Solr/Templates/

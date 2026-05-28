@@ -17,10 +17,9 @@
                 </f:if>
             </div>
             <div class="footer-newsletter__form-wrapper">
-                <form class="footer-newsletter__form">
-                    <input type="email" placeholder="{data.placeholder -> f:or(alternative: 'Enter your email')}" class="footer-newsletter__input" required="required"/>
-                    <button type="submit" class="footer-newsletter__button">{data.button_text -> f:or(alternative: 'Subscribe')}</button>
-                </form>
+<f:comment>Legacy editor fields kept for migrated records; TYPO3 Form Framework owns rendering and submit behavior. {data.placeholder}{data.button_text}</f:comment>
+
+                <d:molecule.formRenderer persistenceIdentifier="EXT:desiderio/Resources/Private/Forms/DesiderioNewsletter.form.yaml" class="footer-newsletter__form"/>
                 <f:if condition="{data.privacy_notice}">
                     <p class="footer-newsletter__privacy">{data -> f:render.text(field: 'privacy_notice')}</p>
                 </f:if>

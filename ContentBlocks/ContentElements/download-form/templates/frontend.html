@@ -21,13 +21,9 @@
                         </f:for>
                     </div>
                 </f:if>
-                <form class="download-form__form" action="{data.form_action.url}" method="post">
-                    <label class="download-form__field">
-                        <span class="download-form__label">Email</span>
-                        <input class="download-form__input" type="email" name="email" placeholder="you@example.com" required="required"/>
-                    </label>
-                    <d:atom.button type="submit">{data.button_text -> f:or(alternative: 'Download now')}</d:atom.button>
-                </form>
+<f:comment>Legacy editor fields kept for migrated records; TYPO3 Form Framework owns rendering and submit behavior. {data.form_action}{data.button_text}</f:comment>
+
+                <d:molecule.formRenderer persistenceIdentifier="EXT:desiderio/Resources/Private/Forms/DesiderioDownload.form.yaml" class="download-form__form"/>
             </d:molecule.card>
         </div>
     </d:layout.container>

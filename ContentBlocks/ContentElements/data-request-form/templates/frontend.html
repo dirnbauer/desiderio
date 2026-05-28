@@ -14,34 +14,12 @@
             <f:if condition="{data.description}">
                 <p class="data-request-form__description">{data -> f:render.text(field: 'description')}</p>
             </f:if>
-            <form class="data-request-form__form">
-                <div class="data-request-form__field">
-                    <label class="data-request-form__label" for="drf-name-{data.uid}">Full Name</label>
-                    <input type="text" id="drf-name-{data.uid}" class="data-request-form__input" required="required"/>
-                </div>
-                <div class="data-request-form__field">
-                    <label class="data-request-form__label" for="drf-email-{data.uid}">Email Address</label>
-                    <input type="email" id="drf-email-{data.uid}" class="data-request-form__input" required="required"/>
-                </div>
-                <f:if condition="{data.request_types}">
-                    <div class="data-request-form__field">
-                        <label class="data-request-form__label" for="drf-type-{data.uid}">Request Type</label>
-                        <select id="drf-type-{data.uid}" class="data-request-form__select">
-                            <f:for each="{data.request_types}" as="type">
-                                <option value="{type.value -> f:or(alternative: type.label)}">{type -> f:render.text(field: 'label')}</option>
-                            </f:for>
-                        </select>
-                    </div>
-                </f:if>
-                <div class="data-request-form__field">
-                    <label class="data-request-form__label" for="drf-details-{data.uid}">Additional Details</label>
-                    <textarea id="drf-details-{data.uid}" class="data-request-form__textarea" rows="4"></textarea>
-                </div>
-                <f:if condition="{data.privacy_text}">
-                    <p class="data-request-form__privacy">{data -> f:render.text(field: 'privacy_text')}</p>
-                </f:if>
-                <button type="submit" class="data-request-form__submit">{data.submit_text -> f:or(alternative: 'Submit Request')}</button>
-            </form>
+<f:comment>Legacy editor fields kept for migrated records; TYPO3 Form Framework owns rendering and submit behavior. {data.request_types}{data.submit_text}</f:comment>
+
+            <d:molecule.formRenderer persistenceIdentifier="EXT:desiderio/Resources/Private/Forms/DesiderioDataRequest.form.yaml" class="data-request-form__form"/>
+            <f:if condition="{data.privacy_text}">
+                <p class="data-request-form__privacy">{data -> f:render.text(field: 'privacy_text')}</p>
+            </f:if>
         </div>
     </d:layout.container>
 </d:layout.section>

@@ -1,0 +1,44 @@
+identifier: desiderio-newsletter
+label: 'Desiderio newsletter'
+type: Form
+renderingOptions:
+  translation:
+    translationFiles:
+      20: 'EXT:desiderio/Resources/Private/Language/forms.xlf'
+  submitButtonLabel: 'Subscribe'
+finishers:
+  -
+    identifier: EmailToReceiver
+    options:
+      subject: 'Newsletter signup: {email}'
+      recipients:
+        hello@example.com: 'Website team'
+      senderAddress: no-reply@example.com
+      senderName: 'Website forms'
+      replyToRecipients:
+        '{email}': '{email}'
+      addHtmlPart: true
+      attachUploads: false
+      title: 'Newsletter signup'
+  -
+    identifier: Confirmation
+    options:
+      message: 'Thank you. Your signup has been received.'
+renderables:
+  -
+    identifier: page-1
+    label: ''
+    type: Page
+    renderables:
+      -
+        identifier: email
+        label: 'Email'
+        type: Email
+        properties:
+          fluidAdditionalAttributes:
+            autocomplete: email
+            placeholder: 'name@example.com'
+            required: required
+        validators:
+          - identifier: NotEmpty
+          - identifier: EmailAddress

@@ -1,0 +1,67 @@
+identifier: desiderio-lead
+label: 'Desiderio lead request'
+type: Form
+renderingOptions:
+  translation:
+    translationFiles:
+      20: 'EXT:desiderio/Resources/Private/Language/forms.xlf'
+  submitButtonLabel: 'Request demo'
+finishers:
+  -
+    identifier: EmailToReceiver
+    options:
+      subject: 'Demo request: {company}'
+      recipients:
+        hello@example.com: 'Website team'
+      senderAddress: no-reply@example.com
+      senderName: 'Website forms'
+      replyToRecipients:
+        '{email}': '{name}'
+      addHtmlPart: true
+      attachUploads: false
+      title: 'Demo request'
+  -
+    identifier: Confirmation
+    options:
+      message: 'Thank you. We will get back to you shortly.'
+renderables:
+  -
+    identifier: page-1
+    label: ''
+    type: Page
+    renderables:
+      -
+        identifier: name
+        label: 'Name'
+        type: Text
+        properties:
+          fluidAdditionalAttributes:
+            autocomplete: name
+            required: required
+        validators:
+          - identifier: NotEmpty
+      -
+        identifier: email
+        label: 'Work email'
+        type: Email
+        properties:
+          fluidAdditionalAttributes:
+            autocomplete: email
+            required: required
+        validators:
+          - identifier: NotEmpty
+          - identifier: EmailAddress
+      -
+        identifier: company
+        label: 'Company'
+        type: Text
+        properties:
+          fluidAdditionalAttributes:
+            autocomplete: organization
+      -
+        identifier: message
+        label: 'Message'
+        type: Textarea
+        properties:
+          fluidAdditionalAttributes:
+            rows: 3

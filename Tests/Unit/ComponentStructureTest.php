@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 
 final class ComponentStructureTest extends TestCase
 {
-    private const EXPECTED_TOTAL = 37;
+    private const EXPECTED_TOTAL = 38;
     private const COMPONENTS_DIR = __DIR__ . '/../../Resources/Private/Components';
     private const EXPECTED_ATOMS = [
         'AspectRatio', 'Avatar', 'Badge', 'Button', 'Icon', 'Image', 'Input',
@@ -19,6 +19,7 @@ final class ComponentStructureTest extends TestCase
         'Accordion', 'AccordionItem', 'Alert', 'AlertDescription', 'AlertTitle',
         'Card', 'CardContent', 'CardFooter', 'CardHeader', 'Table', 'TableCell',
         'TableHeader', 'TableRow', 'Tabs', 'TabsContent', 'TabsList', 'TabsTrigger',
+        'FormRenderer',
     ];
     private const EXPECTED_LAYOUTS = ['Container', 'Grid', 'Section', 'Stack'];
 
@@ -29,7 +30,7 @@ final class ComponentStructureTest extends TestCase
         $layouts = glob(self::COMPONENTS_DIR . '/Layout/*', GLOB_ONLYDIR) ?: [];
 
         self::assertCount(16, $atoms, 'Expected 16 atoms');
-        self::assertCount(17, $molecules, 'Expected 17 molecules');
+        self::assertCount(18, $molecules, 'Expected 18 molecules');
         self::assertCount(4, $layouts, 'Expected 4 layouts');
         self::assertSame(self::EXPECTED_TOTAL, count($atoms) + count($molecules) + count($layouts));
     }

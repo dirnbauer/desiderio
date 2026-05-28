@@ -18,10 +18,7 @@
                 <f:if condition="{data.newsletter_label}">
                     <div class="footer-mega__newsletter">
                         <p class="footer-mega__newsletter-label">{data -> f:render.text(field: 'newsletter_label')}</p>
-                        <form class="footer-mega__newsletter-form">
-                            <input type="email" placeholder="Your email" class="footer-mega__input"/>
-                            <button type="submit" class="footer-mega__submit">Subscribe</button>
-                        </form>
+                        <d:molecule.formRenderer persistenceIdentifier="EXT:desiderio/Resources/Private/Forms/DesiderioNewsletter.form.yaml" class="footer-mega__newsletter-form"/>
                     </div>
                 </f:if>
             </div>

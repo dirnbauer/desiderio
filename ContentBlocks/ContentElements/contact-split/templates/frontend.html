@@ -11,21 +11,9 @@
             <div class="contact-split__content">
                 <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
                 <f:if condition="{data.description}"><d:atom.typography variant="muted">{data -> f:render.text(field: 'description')}</d:atom.typography></f:if>
-                <form class="contact-split__form" action="{data.form_action.url}" method="post">
-                    <label class="contact-split__field">
-                        <span class="contact-split__label">Name</span>
-                        <input class="contact-split__input" type="text" name="name" placeholder="Your name"/>
-                    </label>
-                    <label class="contact-split__field">
-                        <span class="contact-split__label">Email</span>
-                        <input class="contact-split__input" type="email" name="email" placeholder="you@example.com"/>
-                    </label>
-                    <label class="contact-split__field">
-                        <span class="contact-split__label">Message</span>
-                        <textarea class="contact-split__textarea" name="message" rows="4"></textarea>
-                    </label>
-                    <d:atom.button type="submit">{data.submit_text -> f:or(alternative: 'Send message')}</d:atom.button>
-                </form>
+<f:comment>Legacy editor fields kept for migrated records; TYPO3 Form Framework owns rendering and submit behavior. {data.form_action}{data.submit_text}</f:comment>
+
+                <d:molecule.formRenderer persistenceIdentifier="EXT:desiderio/Resources/Private/Forms/DesiderioContact.form.yaml" class="contact-split__form"/>
             </div>
             <f:if condition="{data.image}">
                 <div class="contact-split__image-wrapper">

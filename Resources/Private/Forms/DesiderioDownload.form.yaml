@@ -1,0 +1,44 @@
+identifier: desiderio-download
+label: 'Desiderio download'
+type: Form
+renderingOptions:
+  translation:
+    translationFiles:
+      20: 'EXT:desiderio/Resources/Private/Language/forms.xlf'
+  submitButtonLabel: 'Download now'
+finishers:
+  -
+    identifier: EmailToReceiver
+    options:
+      subject: 'Download request: {email}'
+      recipients:
+        hello@example.com: 'Website team'
+      senderAddress: no-reply@example.com
+      senderName: 'Website forms'
+      replyToRecipients:
+        '{email}': '{email}'
+      addHtmlPart: true
+      attachUploads: false
+      title: 'Download request'
+  -
+    identifier: Confirmation
+    options:
+      message: 'Thank you. Your download request has been received.'
+renderables:
+  -
+    identifier: page-1
+    label: ''
+    type: Page
+    renderables:
+      -
+        identifier: email
+        label: 'Email'
+        type: Email
+        properties:
+          fluidAdditionalAttributes:
+            autocomplete: email
+            placeholder: 'name@example.com'
+            required: required
+        validators:
+          - identifier: NotEmpty
+          - identifier: EmailAddress

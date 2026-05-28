@@ -1,0 +1,26 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:argument name="persistenceIdentifier" type="string" />
+<f:argument name="class" type="string" optional="{true}" default="" />
+
+<f:variable name="formRendererObjectPath">
+    <f:switch expression="{persistenceIdentifier}">
+        <f:case value="EXT:desiderio/Resources/Private/Forms/DesiderioBooking.form.yaml">lib.desiderioFormRenderer.booking</f:case>
+        <f:case value="EXT:desiderio/Resources/Private/Forms/DesiderioCallback.form.yaml">lib.desiderioFormRenderer.callback</f:case>
+        <f:case value="EXT:desiderio/Resources/Private/Forms/DesiderioDataRequest.form.yaml">lib.desiderioFormRenderer.dataRequest</f:case>
+        <f:case value="EXT:desiderio/Resources/Private/Forms/DesiderioDownload.form.yaml">lib.desiderioFormRenderer.download</f:case>
+        <f:case value="EXT:desiderio/Resources/Private/Forms/DesiderioFeedback.form.yaml">lib.desiderioFormRenderer.feedback</f:case>
+        <f:case value="EXT:desiderio/Resources/Private/Forms/DesiderioLead.form.yaml">lib.desiderioFormRenderer.lead</f:case>
+        <f:case value="EXT:desiderio/Resources/Private/Forms/DesiderioNewsletter.form.yaml">lib.desiderioFormRenderer.newsletter</f:case>
+        <f:defaultCase>lib.desiderioFormRenderer.contact</f:defaultCase>
+    </f:switch>
+</f:variable>
+
+<div class="desiderio-form {class}" data-slot="form">
+    <f:cObject typoscriptObjectPath="{formRendererObjectPath -> f:format.trim()}" />
+</div>
+
+</html>

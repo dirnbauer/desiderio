@@ -238,6 +238,161 @@ main[tabindex]:focus-visible {
   padding: 0;
 }
 
+/* ==========================================================================
+   2.1 TYPO3 Form Framework bridge (.desiderio-form)
+   ========================================================================== */
+
+.desiderio-form form {
+  display: grid;
+  gap: var(--d-spacing-md, 1rem);
+  margin: 0;
+}
+
+.desiderio-form .form-element {
+  display: grid;
+  gap: var(--d-spacing-2xs, 0.25rem);
+  margin: 0;
+}
+
+.desiderio-form .form-label,
+.desiderio-form legend {
+  margin: 0;
+  color: var(--foreground);
+  font-size: var(--d-text-sm, 0.875rem);
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.desiderio-form .required {
+  color: var(--destructive);
+  margin-inline-start: 0.125rem;
+}
+
+.desiderio-form .form-control,
+.desiderio-form .form-select,
+.desiderio-form textarea {
+  width: 100%;
+  min-height: 2.5rem;
+  border: 1px solid var(--input);
+  border-radius: var(--radius);
+  background: var(--background);
+  color: var(--foreground);
+  padding: 0.625rem 0.75rem;
+  font: inherit;
+  font-size: var(--d-text-sm, 0.875rem);
+  line-height: 1.4;
+  outline: none;
+  transition: border-color 150ms ease, box-shadow 150ms ease, background-color 150ms ease;
+}
+
+.desiderio-form textarea.form-control {
+  min-height: 7rem;
+  resize: vertical;
+}
+
+.desiderio-form .form-control::placeholder,
+.desiderio-form textarea::placeholder {
+  color: var(--muted-foreground);
+}
+
+.desiderio-form .form-control:focus,
+.desiderio-form .form-select:focus,
+.desiderio-form textarea:focus {
+  border-color: var(--ring);
+  box-shadow: 0 0 0 3px color-mix(in oklch, var(--ring) 24%, transparent);
+}
+
+.desiderio-form .form-check,
+.desiderio-form .form-check-wrapping-label {
+  display: flex;
+  align-items: center;
+  gap: var(--d-spacing-xs, 0.5rem);
+}
+
+.desiderio-form .form-check-input {
+  width: 1rem;
+  height: 1rem;
+  margin: 0;
+  accent-color: var(--primary);
+}
+
+.desiderio-form .actions,
+.desiderio-form .form-navigation {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--d-spacing-sm, 0.75rem);
+  margin: 0;
+}
+
+.desiderio-form .btn,
+.desiderio-form .btn-primary,
+.desiderio-form .btn-outline-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.5rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius);
+  padding: 0.625rem 1rem;
+  font-size: var(--d-text-sm, 0.875rem);
+  font-weight: 500;
+  line-height: 1;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.desiderio-form .btn-primary {
+  background: var(--primary);
+  color: var(--primary-foreground);
+}
+
+.desiderio-form .btn-primary:hover {
+  background: color-mix(in oklch, var(--primary) 88%, transparent);
+}
+
+.desiderio-form .btn-outline-primary {
+  border-color: var(--input);
+  background: var(--background);
+  color: var(--foreground);
+}
+
+.desiderio-form .btn:focus-visible,
+.desiderio-form .btn-primary:focus-visible,
+.desiderio-form .btn-outline-primary:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+
+.desiderio-form .invalid-feedback {
+  color: var(--destructive);
+  font-size: var(--d-text-xs, 0.75rem);
+}
+
+.desiderio-form .is-invalid .form-control,
+.desiderio-form .is-invalid .form-select,
+.desiderio-form .form-control.is-invalid,
+.desiderio-form .form-select.is-invalid {
+  border-color: var(--destructive);
+}
+
+.desiderio-form .form-text {
+  color: var(--muted-foreground);
+  font-size: var(--d-text-xs, 0.75rem);
+}
+
+.desiderio-form .visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 .btn--icon.btn--sm {
   width: 2.25rem;
   height: 2.25rem;

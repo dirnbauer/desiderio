@@ -1,0 +1,9 @@
+name: webconsulting/desiderio-forms
+label: 'Desiderio Form Definitions'
+priority: 100
+
+persistenceManager:
+  allowedExtensionPaths:
+    20: 'EXT:desiderio/Resources/Private/Forms/'
+  allowSaveToExtensionPaths: false
+  allowDeleteFromExtensionPaths: false

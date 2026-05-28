@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="de">
+  <file id="desiderio-forms">
+    <unit id="desiderio-booking.element.desiderio-booking.renderingOptions.submitButtonLabel"><segment state="final"><source>Book appointment</source><target>Termin buchen</target></segment></unit>
+    <unit id="desiderio-booking.finisher.EmailToReceiver.subject"><segment state="final"><source>Booking request: {preferredDate}</source><target>Buchungsanfrage: {preferredDate}</target></segment></unit>
+    <unit id="desiderio-booking.finisher.EmailToReceiver.title"><segment state="final"><source>Booking request</source><target>Buchungsanfrage</target></segment></unit>
+    <unit id="desiderio-booking.finisher.Confirmation.message"><segment state="final"><source>Thank you. Your booking request has been sent.</source><target>Danke. Ihre Buchungsanfrage wurde gesendet.</target></segment></unit>
+    <unit id="desiderio-booking.element.name.properties.label"><segment state="final"><source>Name</source><target>Name</target></segment></unit>
+    <unit id="desiderio-booking.element.email.properties.label"><segment state="final"><source>Email</source><target>E-Mail</target></segment></unit>
+    <unit id="desiderio-booking.element.phone.properties.label"><segment state="final"><source>Phone</source><target>Telefon</target></segment></unit>
+    <unit id="desiderio-booking.element.preferredDate.properties.label"><segment state="final"><source>Preferred date</source><target>Wunschtermin</target></segment></unit>
+    <unit id="desiderio-booking.element.message.properties.label"><segment state="final"><source>Message</source><target>Nachricht</target></segment></unit>
+
+    <unit id="desiderio-callback.element.desiderio-callback.renderingOptions.submitButtonLabel"><segment state="final"><source>Request callback</source><target>Rückruf anfragen</target></segment></unit>
+    <unit id="desiderio-callback.finisher.EmailToReceiver.subject"><segment state="final"><source>Callback request: {name}</source><target>Rückrufanfrage: {name}</target></segment></unit>
+    <unit id="desiderio-callback.finisher.EmailToReceiver.title"><segment state="final"><source>Callback request</source><target>Rückrufanfrage</target></segment></unit>
+    <unit id="desiderio-callback.finisher.Confirmation.message"><segment state="final"><source>Thank you. Your callback request has been sent.</source><target>Danke. Ihre Rückrufanfrage wurde gesendet.</target></segment></unit>
+    <unit id="desiderio-callback.element.name.properties.label"><segment state="final"><source>Name</source><target>Name</target></segment></unit>
+    <unit id="desiderio-callback.element.phone.properties.label"><segment state="final"><source>Phone</source><target>Telefon</target></segment></unit>
+
+    <unit id="desiderio-contact.element.desiderio-contact.renderingOptions.submitButtonLabel"><segment state="final"><source>Send inquiry</source><target>Anfrage senden</target></segment></unit>
+    <unit id="desiderio-contact.finisher.EmailToReceiver.subject"><segment state="final"><source>Website inquiry: {name}</source><target>Website-Anfrage: {name}</target></segment></unit>
+    <unit id="desiderio-contact.finisher.EmailToReceiver.title"><segment state="final"><source>Website inquiry</source><target>Website-Anfrage</target></segment></unit>
+    <unit id="desiderio-contact.finisher.Confirmation.message"><segment state="final"><source>Thank you. Your message has been sent.</source><target>Danke. Ihre Nachricht wurde gesendet.</target></segment></unit>
+    <unit id="desiderio-contact.element.name.properties.label"><segment state="final"><source>Name</source><target>Name</target></segment></unit>
+    <unit id="desiderio-contact.element.email.properties.label"><segment state="final"><source>Email</source><target>E-Mail</target></segment></unit>
+    <unit id="desiderio-contact.element.message.properties.label"><segment state="final"><source>Message</source><target>Nachricht</target></segment></unit>
+
+    <unit id="desiderio-data-request.element.desiderio-data-request.renderingOptions.submitButtonLabel"><segment state="final"><source>Submit request</source><target>Anfrage senden</target></segment></unit>
+    <unit id="desiderio-data-request.finisher.EmailToReceiver.subject"><segment state="final"><source>Data request: {requestType}</source><target>Datenanfrage: {requestType}</target></segment></unit>
+    <unit id="desiderio-data-request.finisher.EmailToReceiver.title"><segment state="final"><source>Data request</source><target>Datenanfrage</target></segment></unit>
+    <unit id="desiderio-data-request.finisher.Confirmation.message"><segment state="final"><source>Thank you. Your request has been sent.</source><target>Danke. Ihre Anfrage wurde gesendet.</target></segment></unit>
+    <unit id="desiderio-data-request.element.name.properties.label"><segment state="final"><source>Full name</source><target>Vollständiger Name</target></segment></unit>
+    <unit id="desiderio-data-request.element.email.properties.label"><segment state="final"><source>Email</source><target>E-Mail</target></segment></unit>
+    <unit id="desiderio-data-request.element.requestType.properties.label"><segment state="final"><source>Request type</source><target>Anfragetyp</target></segment></unit>
+    <unit id="desiderio-data-request.element.requestType.properties.options.export"><segment state="final"><source>Data export</source><target>Datenexport</target></segment></unit>
+    <unit id="desiderio-data-request.element.requestType.properties.options.deletion"><segment state="final"><source>Data deletion</source><target>Datenlöschung</target></segment></unit>
+    <unit id="desiderio-data-request.element.requestType.properties.options.correction"><segment state="final"><source>Data correction</source><target>Datenkorrektur</target></segment></unit>
+    <unit id="desiderio-data-request.element.details.properties.label"><segment state="final"><source>Additional details</source><target>Weitere Details</target></segment></unit>
+
+    <unit id="desiderio-download.element.desiderio-download.renderingOptions.submitButtonLabel"><segment state="final"><source>Download now</source><target>Jetzt herunterladen</target></segment></unit>
+    <unit id="desiderio-download.finisher.EmailToReceiver.subject"><segment state="final"><source>Download request: {email}</source><target>Download-Anfrage: {email}</target></segment></unit>
+    <unit id="desiderio-download.finisher.EmailToReceiver.title"><segment state="final"><source>Download request</source><target>Download-Anfrage</target></segment></unit>
+    <unit id="desiderio-download.finisher.Confirmation.message"><segment state="final"><source>Thank you. Your download request has been received.</source><target>Danke. Ihre Download-Anfrage wurde empfangen.</target></segment></unit>
+    <unit id="desiderio-download.element.email.properties.label"><segment state="final"><source>Email</source><target>E-Mail</target></segment></unit>
+
+    <unit id="desiderio-feedback.element.desiderio-feedback.renderingOptions.submitButtonLabel"><segment state="final"><source>Send feedback</source><target>Feedback senden</target></segment></unit>
+    <unit id="desiderio-feedback.finisher.EmailToReceiver.subject"><segment state="final"><source>Website feedback</source><target>Website-Feedback</target></segment></unit>
+    <unit id="desiderio-feedback.finisher.EmailToReceiver.title"><segment state="final"><source>Website feedback</source><target>Website-Feedback</target></segment></unit>
+    <unit id="desiderio-feedback.finisher.Confirmation.message"><segment state="final"><source>Thank you. Your feedback has been sent.</source><target>Danke. Ihr Feedback wurde gesendet.</target></segment></unit>
+    <unit id="desiderio-feedback.element.rating.properties.label"><segment state="final"><source>How would you rate your experience?</source><target>Wie bewerten Sie Ihre Erfahrung?</target></segment></unit>
+    <unit id="desiderio-feedback.element.feedback.properties.label"><segment state="final"><source>Your feedback</source><target>Ihr Feedback</target></segment></unit>
+    <unit id="desiderio-feedback.element.email.properties.label"><segment state="final"><source>Email (optional)</source><target>E-Mail (optional)</target></segment></unit>
+
+    <unit id="desiderio-lead.element.desiderio-lead.renderingOptions.submitButtonLabel"><segment state="final"><source>Request demo</source><target>Demo anfragen</target></segment></unit>
+    <unit id="desiderio-lead.finisher.EmailToReceiver.subject"><segment state="final"><source>Demo request: {company}</source><target>Demo-Anfrage: {company}</target></segment></unit>
+    <unit id="desiderio-lead.finisher.EmailToReceiver.title"><segment state="final"><source>Demo request</source><target>Demo-Anfrage</target></segment></unit>
+    <unit id="desiderio-lead.finisher.Confirmation.message"><segment state="final"><source>Thank you. We will get back to you shortly.</source><target>Danke. Wir melden uns in Kürze.</target></segment></unit>
+    <unit id="desiderio-lead.element.name.properties.label"><segment state="final"><source>Name</source><target>Name</target></segment></unit>
+    <unit id="desiderio-lead.element.email.properties.label"><segment state="final"><source>Work email</source><target>Geschäftliche E-Mail</target></segment></unit>
+    <unit id="desiderio-lead.element.company.properties.label"><segment state="final"><source>Company</source><target>Unternehmen</target></segment></unit>
+    <unit id="desiderio-lead.element.message.properties.label"><segment state="final"><source>Message</source><target>Nachricht</target></segment></unit>
+
+    <unit id="desiderio-newsletter.element.desiderio-newsletter.renderingOptions.submitButtonLabel"><segment state="final"><source>Subscribe</source><target>Abonnieren</target></segment></unit>
+    <unit id="desiderio-newsletter.finisher.EmailToReceiver.subject"><segment state="final"><source>Newsletter signup: {email}</source><target>Newsletter-Anmeldung: {email}</target></segment></unit>
+    <unit id="desiderio-newsletter.finisher.EmailToReceiver.title"><segment state="final"><source>Newsletter signup</source><target>Newsletter-Anmeldung</target></segment></unit>
+    <unit id="desiderio-newsletter.finisher.Confirmation.message"><segment state="final"><source>Thank you. Your signup has been received.</source><target>Danke. Ihre Anmeldung wurde empfangen.</target></segment></unit>
+    <unit id="desiderio-newsletter.element.email.properties.label"><segment state="final"><source>Email</source><target>E-Mail</target></segment></unit>
+  </file>
+</xliff>

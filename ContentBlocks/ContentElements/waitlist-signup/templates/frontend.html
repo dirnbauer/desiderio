@@ -10,10 +10,9 @@
         <div class="waitlist-signup__content">
             <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
             <f:if condition="{data.description}"><d:atom.typography variant="muted">{data -> f:render.text(field: 'description')}</d:atom.typography></f:if>
-            <form class="waitlist-signup__form" action="{data.form_action.url}" method="post">
-                <input class="waitlist-signup__input" type="email" name="email" placeholder="Enter your email" required="required"/>
-                <d:atom.button type="submit" size="lg">{data.button_text -> f:or(alternative: 'Join the waitlist')}</d:atom.button>
-            </form>
+<f:comment>Legacy editor fields kept for migrated records; TYPO3 Form Framework owns rendering and submit behavior. {data.form_action}{data.button_text}</f:comment>
+
+            <d:molecule.formRenderer persistenceIdentifier="EXT:desiderio/Resources/Private/Forms/DesiderioNewsletter.form.yaml" class="waitlist-signup__form"/>
             <f:if condition="{data.count_text}">
                 <p class="waitlist-signup__count">{data -> f:render.text(field: 'count_text')}</p>
             </f:if>

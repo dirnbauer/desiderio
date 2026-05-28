@@ -1,0 +1,50 @@
+identifier: desiderio-callback
+label: 'Desiderio callback'
+type: Form
+renderingOptions:
+  translation:
+    translationFiles:
+      20: 'EXT:desiderio/Resources/Private/Language/forms.xlf'
+  submitButtonLabel: 'Request callback'
+finishers:
+  -
+    identifier: EmailToReceiver
+    options:
+      subject: 'Callback request: {name}'
+      recipients:
+        hello@example.com: 'Website team'
+      senderAddress: no-reply@example.com
+      senderName: 'Website forms'
+      addHtmlPart: true
+      attachUploads: false
+      title: 'Callback request'
+  -
+    identifier: Confirmation
+    options:
+      message: 'Thank you. Your callback request has been sent.'
+renderables:
+  -
+    identifier: page-1
+    label: ''
+    type: Page
+    renderables:
+      -
+        identifier: name
+        label: 'Name'
+        type: Text
+        properties:
+          fluidAdditionalAttributes:
+            autocomplete: name
+            required: required
+        validators:
+          - identifier: NotEmpty
+      -
+        identifier: phone
+        label: 'Phone'
+        type: Telephone
+        properties:
+          fluidAdditionalAttributes:
+            autocomplete: tel
+            required: required
+        validators:
+          - identifier: NotEmpty

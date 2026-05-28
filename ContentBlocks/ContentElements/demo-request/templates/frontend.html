@@ -19,25 +19,9 @@
                 </f:if>
             </div>
             <d:molecule.card class="demo-request__form-card">
-                <form class="demo-request__form" action="{data.form_action.url}" method="post">
-                    <label class="demo-request__field">
-                        <span class="demo-request__label">Name</span>
-                        <input class="demo-request__input" type="text" name="name" required="required"/>
-                    </label>
-                    <label class="demo-request__field">
-                        <span class="demo-request__label">Work Email</span>
-                        <input class="demo-request__input" type="email" name="email" required="required"/>
-                    </label>
-                    <label class="demo-request__field">
-                        <span class="demo-request__label">Company</span>
-                        <input class="demo-request__input" type="text" name="company"/>
-                    </label>
-                    <label class="demo-request__field">
-                        <span class="demo-request__label">Message</span>
-                        <textarea class="demo-request__textarea" name="message" rows="3"></textarea>
-                    </label>
-                    <d:atom.button type="submit" size="lg">{data.submit_text -> f:or(alternative: 'Request demo')}</d:atom.button>
-                </form>
+<f:comment>Legacy editor fields kept for migrated records; TYPO3 Form Framework owns rendering and submit behavior. {data.form_action}{data.submit_text}</f:comment>
+
+                <d:molecule.formRenderer persistenceIdentifier="EXT:desiderio/Resources/Private/Forms/DesiderioLead.form.yaml" class="demo-request__form"/>
             </d:molecule.card>
         </div>
     </d:layout.container>

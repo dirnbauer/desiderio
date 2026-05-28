@@ -12,10 +12,9 @@
                 <f:if condition="{data.header}"><h3 class="newsletter-inline__headline">{data -> f:render.text(field: 'header')}</h3></f:if>
                 <f:if condition="{data.description_text}"><p class="newsletter-inline__description">{data -> f:render.text(field: 'description_text')}</p></f:if>
             </div>
-            <form class="newsletter-inline__form" action="{data.form_action.url}" method="post">
-                <input class="newsletter-inline__input" type="email" name="email" placeholder="{data.placeholder -> f:or(alternative: 'Enter your email')}"/>
-                <d:atom.button type="submit">{data.button_text -> f:or(alternative: 'Subscribe')}</d:atom.button>
-            </form>
+<f:comment>Legacy editor fields kept for migrated records; TYPO3 Form Framework owns rendering and submit behavior. {data.form_action}{data.placeholder}{data.button_text}</f:comment>
+
+            <d:molecule.formRenderer persistenceIdentifier="EXT:desiderio/Resources/Private/Forms/DesiderioNewsletter.form.yaml" class="newsletter-inline__form"/>
         </div>
     </d:layout.container>
 </d:layout.section>

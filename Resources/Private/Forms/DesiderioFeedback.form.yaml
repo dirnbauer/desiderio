@@ -1,0 +1,62 @@
+identifier: desiderio-feedback
+label: 'Desiderio feedback'
+type: Form
+renderingOptions:
+  translation:
+    translationFiles:
+      20: 'EXT:desiderio/Resources/Private/Language/forms.xlf'
+  submitButtonLabel: 'Send feedback'
+finishers:
+  -
+    identifier: EmailToReceiver
+    options:
+      subject: 'Website feedback'
+      recipients:
+        hello@example.com: 'Website team'
+      senderAddress: no-reply@example.com
+      senderName: 'Website forms'
+      replyToRecipients:
+        '{email}': '{email}'
+      addHtmlPart: true
+      attachUploads: false
+      title: 'Website feedback'
+  -
+    identifier: Confirmation
+    options:
+      message: 'Thank you. Your feedback has been sent.'
+renderables:
+  -
+    identifier: page-1
+    label: ''
+    type: Page
+    renderables:
+      -
+        identifier: rating
+        label: 'How would you rate your experience?'
+        type: RadioButton
+        properties:
+          options:
+            1: '1'
+            2: '2'
+            3: '3'
+            4: '4'
+            5: '5'
+      -
+        identifier: feedback
+        label: 'Your feedback'
+        type: Textarea
+        properties:
+          fluidAdditionalAttributes:
+            rows: 4
+            required: required
+        validators:
+          - identifier: NotEmpty
+      -
+        identifier: email
+        label: 'Email (optional)'
+        type: Email
+        properties:
+          fluidAdditionalAttributes:
+            autocomplete: email
+        validators:
+          - identifier: EmailAddress

@@ -40,25 +40,9 @@
 
             <d:molecule.card class="contact__form-card">
                 <f:if condition="{data.form_title}"><h3 class="contact__form-title">{data -> f:render.text(field: 'form_title')}</h3></f:if>
-                <form class="contact__form" action="{data.form_action.url}" method="post">
-                    <div class="contact__field-grid">
-                        <label class="contact__field">
-                            <span class="contact__label">Name</span>
-                            <input class="contact__input" type="text" name="name" placeholder="Your name"/>
-                        </label>
-                        <label class="contact__field">
-                            <span class="contact__label">Email</span>
-                            <input class="contact__input" type="email" name="email" placeholder="you@example.com"/>
-                        </label>
-                    </div>
-                    <label class="contact__field">
-                        <span class="contact__label">Message</span>
-                        <textarea class="contact__textarea" name="message" rows="5" placeholder="Tell us about your project"></textarea>
-                    </label>
-                    <div class="contact__actions">
-                        <d:atom.button type="submit">Send inquiry</d:atom.button>
-                    </div>
-                </form>
+<f:comment>Legacy editor fields kept for migrated records; TYPO3 Form Framework owns rendering and submit behavior. {data.form_action}</f:comment>
+
+                <d:molecule.formRenderer persistenceIdentifier="EXT:desiderio/Resources/Private/Forms/DesiderioContact.form.yaml" class="contact__form"/>
             </d:molecule.card>
         </div>
     </d:layout.container>

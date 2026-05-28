@@ -1,0 +1,69 @@
+identifier: desiderio-data-request
+label: 'Desiderio data request'
+type: Form
+renderingOptions:
+  translation:
+    translationFiles:
+      20: 'EXT:desiderio/Resources/Private/Language/forms.xlf'
+  submitButtonLabel: 'Submit request'
+finishers:
+  -
+    identifier: EmailToReceiver
+    options:
+      subject: 'Data request: {requestType}'
+      recipients:
+        hello@example.com: 'Website team'
+      senderAddress: no-reply@example.com
+      senderName: 'Website forms'
+      replyToRecipients:
+        '{email}': '{name}'
+      addHtmlPart: true
+      attachUploads: false
+      title: 'Data request'
+  -
+    identifier: Confirmation
+    options:
+      message: 'Thank you. Your request has been sent.'
+renderables:
+  -
+    identifier: page-1
+    label: ''
+    type: Page
+    renderables:
+      -
+        identifier: name
+        label: 'Full name'
+        type: Text
+        properties:
+          fluidAdditionalAttributes:
+            autocomplete: name
+            required: required
+        validators:
+          - identifier: NotEmpty
+      -
+        identifier: email
+        label: 'Email'
+        type: Email
+        properties:
+          fluidAdditionalAttributes:
+            autocomplete: email
+            required: required
+        validators:
+          - identifier: NotEmpty
+          - identifier: EmailAddress
+      -
+        identifier: requestType
+        label: 'Request type'
+        type: SingleSelect
+        properties:
+          options:
+            export: 'Data export'
+            deletion: 'Data deletion'
+            correction: 'Data correction'
+      -
+        identifier: details
+        label: 'Additional details'
+        type: Textarea
+        properties:
+          fluidAdditionalAttributes:
+            rows: 4

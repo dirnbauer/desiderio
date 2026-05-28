@@ -10,35 +10,9 @@
         <d:molecule.card class="booking-form__card">
             <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
             <f:if condition="{data.description}"><d:atom.typography variant="muted">{data -> f:render.text(field: 'description')}</d:atom.typography></f:if>
-            <form class="booking-form__form" action="{data.form_action.url}" method="post">
-                <div class="booking-form__field-grid">
-                    <label class="booking-form__field">
-                        <span class="booking-form__label">Name</span>
-                        <input class="booking-form__input" type="text" name="name" required="required"/>
-                    </label>
-                    <label class="booking-form__field">
-                        <span class="booking-form__label">Email</span>
-                        <input class="booking-form__input" type="email" name="email" required="required"/>
-                    </label>
-                    <f:if condition="{data.show_phone}">
-                        <label class="booking-form__field">
-                            <span class="booking-form__label">Phone</span>
-                            <input class="booking-form__input" type="tel" name="phone"/>
-                        </label>
-                    </f:if>
-                    <f:if condition="{data.show_date}">
-                        <label class="booking-form__field">
-                            <span class="booking-form__label">Preferred Date</span>
-                            <input class="booking-form__input" type="date" name="date"/>
-                        </label>
-                    </f:if>
-                </div>
-                <label class="booking-form__field">
-                    <span class="booking-form__label">Message</span>
-                    <textarea class="booking-form__textarea" name="message" rows="3"></textarea>
-                </label>
-                <d:atom.button type="submit">{data.submit_text -> f:or(alternative: 'Book appointment')}</d:atom.button>
-            </form>
+<f:comment>Legacy editor fields kept for migrated records; TYPO3 Form Framework owns rendering and submit behavior. {data.form_action}{data.submit_text}{data.show_phone}{data.show_date}</f:comment>
+
+            <d:molecule.formRenderer persistenceIdentifier="EXT:desiderio/Resources/Private/Forms/DesiderioBooking.form.yaml" class="booking-form__form"/>
         </d:molecule.card>
     </d:layout.container>
 </d:layout.section>

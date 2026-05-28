@@ -48,8 +48,17 @@
         </a>
     </f:then>
     <f:else>
-        <button type="{type}" class="{btnClass -> f:format.trim()}" disabled="{disabled}" data-slot="button" data-variant="{variant}" data-size="{size}">
-            <f:slot />
-        </button>
+        <f:if condition="{disabled}">
+            <f:then>
+                <button type="{type}" class="{btnClass -> f:format.trim()}" disabled="disabled" data-slot="button" data-variant="{variant}" data-size="{size}">
+                    <f:slot />
+                </button>
+            </f:then>
+            <f:else>
+                <button type="{type}" class="{btnClass -> f:format.trim()}" data-slot="button" data-variant="{variant}" data-size="{size}">
+                    <f:slot />
+                </button>
+            </f:else>
+        </f:if>
     </f:else>
 </f:if>

@@ -204,14 +204,29 @@ final class ContentRenderingTemplateTest extends TestCase
     {
         $counterTemplate = (string) file_get_contents(__DIR__ . '/../../ContentBlocks/ContentElements/counter/templates/frontend.html');
         $statsCounterTemplate = (string) file_get_contents(__DIR__ . '/../../ContentBlocks/ContentElements/stats-counter/templates/frontend.html');
-        $javascript = (string) file_get_contents(__DIR__ . '/../../Resources/Public/Js/desiderio.js');
+        $javascript = (string) file_get_contents(__DIR__ . '/../../Resources/Public/Js/astro.js');
 
-        self::assertStringContainsString('data-d-counter', $counterTemplate);
-        self::assertStringContainsString('data-target="{item.target_value}"', $counterTemplate);
+        self::assertStringContainsString('data-astro-counter', $counterTemplate);
+        self::assertStringContainsString('data-astro-target="{item.target_value}"', $counterTemplate);
         self::assertStringContainsString('{item.target_value}</span>', $counterTemplate);
-        self::assertStringContainsString('data-d-counter', $statsCounterTemplate);
-        self::assertStringContainsString("document.querySelectorAll('[data-d-counter]')", $javascript);
-        self::assertStringContainsString('requestAnimationFrame(step)', $javascript);
+        self::assertStringContainsString('data-astro-counter', $statsCounterTemplate);
+        self::assertStringContainsString("scope.querySelectorAll('[data-astro-counter], [data-d-counter]')", $javascript);
+        self::assertStringContainsString('window.requestAnimationFrame(step)', $javascript);
+    }
+
+    public function testCodeBlockTemplateIsConnectedToAstroHighlightRuntime(): void
+    {
+        $template = (string) file_get_contents(__DIR__ . '/../../ContentBlocks/ContentElements/code-block/templates/frontend.html');
+        $javascript = (string) file_get_contents(__DIR__ . '/../../Resources/Public/Js/astro.js');
+        $css = (string) file_get_contents(__DIR__ . '/../../ContentBlocks/ContentElements/code-block/assets/frontend.css');
+
+        self::assertStringContainsString('data-astro-highlight', $template);
+        self::assertStringContainsString('data-astro-language="{data.language}"', $template);
+        self::assertStringContainsString('data-astro-copy', $template);
+        self::assertStringContainsString('AstroRuntime.prototype.initHighlight', $javascript);
+        self::assertStringContainsString('function highlightPhp(source)', $javascript);
+        self::assertStringContainsString('.astro-token--keyword', $css);
+        self::assertStringContainsString('.astro-token--string', $css);
     }
 
     public function testGenericChartTemplateIsConnectedToLegendAndAnimationRuntime(): void

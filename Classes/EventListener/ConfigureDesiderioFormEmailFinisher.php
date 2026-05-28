@@ -59,10 +59,17 @@ final class ConfigureDesiderioFormEmailFinisher
         }
 
         return [
-            'receiverAddress' => trim((string)$site->getSettings()->get('desiderio.forms.receiverAddress', '')),
-            'receiverName' => trim((string)$site->getSettings()->get('desiderio.forms.receiverName', '')),
-            'senderAddress' => trim((string)$site->getSettings()->get('desiderio.forms.senderAddress', '')),
-            'senderName' => trim((string)$site->getSettings()->get('desiderio.forms.senderName', '')),
+            'receiverAddress' => $this->getStringSiteSetting($site, 'desiderio.forms.receiverAddress'),
+            'receiverName' => $this->getStringSiteSetting($site, 'desiderio.forms.receiverName'),
+            'senderAddress' => $this->getStringSiteSetting($site, 'desiderio.forms.senderAddress'),
+            'senderName' => $this->getStringSiteSetting($site, 'desiderio.forms.senderName'),
         ];
+    }
+
+    private function getStringSiteSetting(Site $site, string $identifier): string
+    {
+        $value = $site->getSettings()->get($identifier, '');
+
+        return is_string($value) ? trim($value) : '';
     }
 }

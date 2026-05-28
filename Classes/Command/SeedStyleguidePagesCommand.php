@@ -1075,6 +1075,8 @@ final class SeedStyleguidePagesCommand extends Command
             str_contains($normalizedField, 'credit') || str_contains($normalizedField, 'source') || str_contains($normalizedField, 'photographer') => 'Photo source: Unsplash demo image with photographer credit stored on the file reference.',
             str_contains($normalizedField, 'quote') => $this->buildDefaultQuote($elementLabel),
             str_contains($normalizedField, 'description') || str_contains($normalizedField, 'content') || str_contains($normalizedField, 'body') || str_contains($normalizedField, 'copy') || str_contains($normalizedField, 'summary') || str_contains($normalizedField, 'bio') => $this->buildDefaultDemoCopy($elementLabel, $fieldLabel, $index),
+            $normalizedField === 'prefix' => '',
+            $normalizedField === 'suffix' => $this->buildDefaultMetricSuffix($ctype, $index),
             $normalizedField === 'step' => ['Plan', 'Build', 'Review', 'Publish'][$index % 4],
             $normalizedField === 'topic' || str_contains($normalizedField, 'topic') => $this->pickDemoString(['Artikel Hero', 'Content Strategy', 'Editorial Systems', 'Launch Notes', 'Customer Stories'], $name . '-' . $field, $index),
             str_contains($normalizedField, 'readingtime') || (str_contains($normalizedField, 'reading') && str_contains($normalizedField, 'time')) => 'Dauer in min',
@@ -1116,6 +1118,21 @@ final class SeedStyleguidePagesCommand extends Command
             str_contains($normalizedField, 'color') => 'primary',
             default => $fieldLabel . ' for ' . $subject,
         };
+    }
+
+    private function buildDefaultMetricSuffix(string $ctype, int $index): string
+    {
+        $normalizedCtype = $this->normalizeIdentifier($ctype);
+
+        if (str_contains($normalizedCtype, 'statscounter')) {
+            return ['', '', '%', '+'][$index % 4];
+        }
+
+        if (str_contains($normalizedCtype, 'counter')) {
+            return ['', 'K', '%', '+'][$index % 4];
+        }
+
+        return '';
     }
 
     private function buildDefaultCodeBlockValue(): string
@@ -1928,7 +1945,7 @@ PHP;
 
             return array_values(array_filter(
                 preg_split($separator, $value) ?: [],
-                static fn (mixed $item): bool => trim((string)$item) !== ''
+                static fn (string $item): bool => trim($item) !== ''
             ));
         }
 

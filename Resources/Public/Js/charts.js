@@ -34,10 +34,20 @@
     }
   }
 
-  function numericRows(rows, positiveOnly) {
-    if (!Array.isArray(rows)) {
-      return [];
+  function listValues(input) {
+    if (Array.isArray(input)) {
+      return input;
     }
+
+    if (input && typeof input === 'object') {
+      return Object.values(input);
+    }
+
+    return [];
+  }
+
+  function numericRows(rows, positiveOnly) {
+    rows = listValues(rows);
 
     return rows.map(function (row) {
       return {
@@ -50,9 +60,7 @@
   }
 
   function numericValues(rows) {
-    if (!Array.isArray(rows)) {
-      return [];
-    }
+    rows = listValues(rows);
 
     return rows.map(function (row) {
       if (typeof row === 'number') {
@@ -681,8 +689,8 @@
       if (!once(root)) return;
       var plot = root.querySelector('.chart-radar__plot');
       var data = parseJson(root, 'data-chart-json', {});
-      var labels = data.labels || [];
-      var values = (data.values || []).map(function (value) { return Number(value); });
+      var labels = listValues(data.labels).map(function (label) { return String(label); });
+      var values = numericValues(data.values);
       if (!plot || !labels.length || labels.length !== values.length) return;
 
       clear(plot);

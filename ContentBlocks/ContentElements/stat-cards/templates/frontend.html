@@ -12,9 +12,9 @@
         </f:if>
         <div class="stat-cards__grid stat-cards__grid--cols-{data.columns -> f:or(alternative: '4')}">
             <f:for each="{data.items}" as="item">
-                <article class="stat-cards__item">
+                <article class="stat-cards__item" data-astro-reveal="slide-up" data-astro-tilt="2">
                     <div class="stat-cards__label">{item -> f:render.text(field: 'label')}</div>
-                    <div class="stat-cards__value">{item -> f:render.text(field: 'value')}</div>
+                    <div class="stat-cards__value" data-astro-counter>{item -> f:render.text(field: 'value')}</div>
                     <f:if condition="{item.change}">
                         <div class="stat-cards__change stat-cards__change--{item.trend -> f:or(alternative: 'neutral')}">
                             <f:if condition="{item.trend} == 'up'">

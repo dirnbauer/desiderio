@@ -24,8 +24,8 @@
             </div>
             <div class="hero-stats__cards">
                 <f:for each="{data.stats}" as="stat">
-                    <article class="hero-stats__stat">
-                        <p class="hero-stats__stat-value">{stat -> f:render.text(field: 'value')}</p>
+                    <article class="hero-stats__stat" data-astro-reveal="slide-up" data-astro-tilt="2">
+                        <p class="hero-stats__stat-value" data-astro-counter>{stat -> f:render.text(field: 'value')}</p>
                         <p class="hero-stats__stat-label">{stat -> f:render.text(field: 'label')}</p>
                     </article>
                 </f:for>

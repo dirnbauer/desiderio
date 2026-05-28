@@ -147,53 +147,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* ------------------------------------------------------------------ */
-  /*  5. Scroll animations (IntersectionObserver)                        */
-  /* ------------------------------------------------------------------ */
-  if ('IntersectionObserver' in window) {
-    const animObs = new IntersectionObserver(
-      entries => entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('is-visible');
-          animObs.unobserve(e.target);
-        }
-      }),
-      { threshold: 0.1 }
-    );
-    document.querySelectorAll('[data-d-animate]').forEach(el => animObs.observe(el));
-  }
-
-  /* ------------------------------------------------------------------ */
-  /*  6. Counter                                                         */
-  /* ------------------------------------------------------------------ */
-  if ('IntersectionObserver' in window) {
-    const counterObs = new IntersectionObserver(
-      entries => entries.forEach(entry => {
-        if (!entry.isIntersecting) return;
-        const el = entry.target;
-        counterObs.unobserve(el);
-
-        const target = parseFloat(el.dataset.target) || 0;
-        const duration = parseInt(el.dataset.duration, 10) || 2000;
-        const isFloat = String(el.dataset.target).includes('.');
-        const start = performance.now();
-
-        const step = now => {
-          const progress = Math.min((now - start) / duration, 1);
-          el.textContent = isFloat
-            ? (target * progress).toFixed(1)
-            : Math.floor(target * progress);
-          if (progress < 1) requestAnimationFrame(step);
-          else el.textContent = el.dataset.target;
-        };
-        requestAnimationFrame(step);
-      }),
-      { threshold: 0.3 }
-    );
-    document.querySelectorAll('[data-d-counter]').forEach(el => counterObs.observe(el));
-  }
-
-  /* ------------------------------------------------------------------ */
-  /*  7. Click-outside                                                   */
+  /*  5. Click-outside                                                   */
   /* ------------------------------------------------------------------ */
   document.addEventListener('click', e => {
     document.querySelectorAll('[data-d-click-outside]:not(.is-hidden)').forEach(el => {
@@ -202,7 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* ------------------------------------------------------------------ */
-  /*  8. Mobile menu toggle                                              */
+  /*  6. Mobile menu toggle                                              */
   /* ------------------------------------------------------------------ */
   document.querySelectorAll('[data-d-menu-toggle]').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -219,7 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* ------------------------------------------------------------------ */
-  /*  9. Back to top                                                     */
+  /*  7. Back to top                                                     */
   /* ------------------------------------------------------------------ */
   document.querySelectorAll('[data-d-back-to-top]').forEach(btn => {
     const threshold = parseInt(btn.dataset.threshold, 10) || 300;
@@ -232,7 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* ------------------------------------------------------------------ */
-  /*  10. Pricing slider                                                 */
+  /*  8. Pricing slider                                                  */
   /* ------------------------------------------------------------------ */
   document.querySelectorAll('[data-d-pricing-slider]').forEach(root => {
     const range = root.querySelector('[data-d-pricing-slider-range]');
@@ -271,7 +225,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* ------------------------------------------------------------------ */
-  /*  11. Solr suggest                                                   */
+  /*  9. Solr suggest                                                    */
   /* ------------------------------------------------------------------ */
   const appendHighlightedText = (target, text, query) => {
     const source = String(text || '');

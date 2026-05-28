@@ -105,6 +105,9 @@ page {
     desiderioAlpine = EXT:desiderio/Resources/Public/Js/alpine.min.js
     desiderioAlpine.defer = 1
 
+    desiderioAstro = EXT:desiderio/Resources/Public/Js/astro.js
+    desiderioAstro.defer = 1
+
     desiderioComponents = EXT:desiderio/Resources/Public/Js/desiderio.js
     desiderioComponents.defer = 1
 

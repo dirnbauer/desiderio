@@ -1,0 +1,513 @@
+/**
+ * Desiderio Astro - progressive enhancement runtime.
+ *
+ * Use this for interaction that pure HTML, CSS, and shadcn-style classes cannot
+ * cover well: counters, scroll reveals, copy buttons, tilt, and marquees.
+ */
+(function () {
+  'use strict';
+
+  var readyAttr = 'astroReady';
+  var reduceMotionQuery = '(prefers-reduced-motion: reduce)';
+  var coarsePointerQuery = '(pointer: coarse)';
+
+  function supports(selector) {
+    return typeof selector === 'string' && selector.trim() !== '';
+  }
+
+  function reducedMotion() {
+    return window.matchMedia && window.matchMedia(reduceMotionQuery).matches;
+  }
+
+  function parseNumberParts(input) {
+    var source = String(input || '').trim();
+    var match = source.match(/(-?\d[\d.,]*)/);
+
+    if (!match) {
+      return null;
+    }
+
+    var numberText = match[1];
+    var lastComma = numberText.lastIndexOf(',');
+    var lastDot = numberText.lastIndexOf('.');
+    var lastSeparator = Math.max(lastComma, lastDot);
+    var decimalDigits = 0;
+    var normalized = numberText;
+
+    if (lastSeparator !== -1) {
+      var fractionLength = numberText.length - lastSeparator - 1;
+      var hasComma = numberText.includes(',');
+      var hasDot = numberText.includes('.');
+      var isDecimalSeparator = fractionLength > 0 && (fractionLength !== 3 || (hasComma && hasDot));
+
+      if (isDecimalSeparator) {
+        decimalDigits = fractionLength;
+        normalized = numberText
+          .slice(0, lastSeparator)
+          .replace(/[.,]/g, '') + '.' + numberText.slice(lastSeparator + 1);
+      } else {
+        normalized = numberText.replace(/[.,]/g, '');
+      }
+    }
+
+    return {
+      target: Number(normalized),
+      decimals: decimalDigits,
+      prefix: source.slice(0, match.index),
+      suffix: source.slice(match.index + numberText.length),
+      source: source
+    };
+  }
+
+  function formatNumber(value, decimals, locale) {
+    return new Intl.NumberFormat(locale || document.documentElement.lang || undefined, {
+      minimumFractionDigits: decimals,
+      maximumFractionDigits: decimals
+    }).format(value);
+  }
+
+  function easeOutCubic(value) {
+    return 1 - Math.pow(1 - value, 3);
+  }
+
+  function setCounterText(element, parts, value) {
+    element.textContent = parts.prefix + formatNumber(value, parts.decimals) + parts.suffix;
+  }
+
+  function closestCopyRoot(button) {
+    return button.closest('[data-astro-copy-root], pre, figure, .code-block, .docs__code-panel');
+  }
+
+  function copyTextFor(button) {
+    var selector = button.dataset.astroCopyTarget;
+    var target = supports(selector) ? document.querySelector(selector) : null;
+
+    if (!target) {
+      target = closestCopyRoot(button)?.querySelector('code, pre, [data-astro-copy-source]');
+    }
+
+    return target?.innerText || target?.textContent || '';
+  }
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, function (char) {
+      return {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#039;'
+      }[char];
+    });
+  }
+
+  function normalizeLanguage(language, source) {
+    var normalized = String(language || '').toLowerCase().replace(/[^a-z0-9+#-]/g, '');
+
+    if (normalized.includes('php') || source.includes('<?php')) {
+      return 'php';
+    }
+
+    if (normalized.includes('javascript') || normalized === 'js' || normalized.includes('typescript') || normalized === 'ts') {
+      return 'js';
+    }
+
+    if (normalized.includes('html') || normalized.includes('xml') || source.trim().startsWith('<')) {
+      return 'html';
+    }
+
+    if (normalized.includes('css') || normalized.includes('scss')) {
+      return 'css';
+    }
+
+    return 'plain';
+  }
+
+  function tokenSpan(type, value) {
+    return '<span class="astro-token astro-token--' + type + '">' + escapeHtml(value) + '</span>';
+  }
+
+  function highlightWithRules(source, pattern, resolveType) {
+    var output = '';
+    var offset = 0;
+
+    source.replace(pattern, function () {
+      var match = arguments[0];
+      var index = arguments[arguments.length - 2];
+      var groups = Array.prototype.slice.call(arguments, 1, -2);
+      var type = resolveType(groups);
+
+      output += escapeHtml(source.slice(offset, index));
+      output += type ? tokenSpan(type, match) : escapeHtml(match);
+      offset = index + match.length;
+
+      return match;
+    });
+
+    return output + escapeHtml(source.slice(offset));
+  }
+
+  function highlightPhp(source) {
+    var keywords = [
+      'abstract', 'array', 'as', 'bool', 'break', 'case', 'catch', 'class', 'const', 'continue', 'declare',
+      'default', 'echo', 'else', 'elseif', 'extends', 'false', 'final', 'float', 'for', 'foreach', 'function',
+      'if', 'implements', 'int', 'interface', 'match', 'namespace', 'new', 'null', 'private', 'protected',
+      'public', 'readonly', 'return', 'self', 'static', 'string', 'strict_types', 'throw', 'trait', 'true',
+      'try', 'use', 'void', 'while'
+    ].join('|');
+    var pattern = new RegExp(
+      '(<\\?php|\\?>)' +
+      '|(\\/\\*[\\s\\S]*?\\*\\/|\\/\\/[^\\n]*|#[^\\n]*)' +
+      '|(\\$[A-Za-z_][\\w]*)' +
+      "|(\\'(?:\\\\.|[^\\'\\\\])*\\'|\"(?:\\\\.|[^\"\\\\])*\")" +
+      '|\\b(' + keywords + ')\\b' +
+      '|\\b([A-Za-z_][\\w]*)(?=\\s*\\()' +
+      '|\\b(\\d+(?:\\.\\d+)?)\\b' +
+      '|([{}()[\\];,.?:=><+\\-*\\/%&|!]+)',
+      'g'
+    );
+
+    return highlightWithRules(source, pattern, function (groups) {
+      if (groups[0]) return 'tag';
+      if (groups[1]) return 'comment';
+      if (groups[2]) return 'variable';
+      if (groups[3]) return 'string';
+      if (groups[4]) return ['true', 'false', 'null', 'self'].includes(groups[4]) ? 'constant' : 'keyword';
+      if (groups[5]) return 'function';
+      if (groups[6]) return 'number';
+      if (groups[7]) return 'operator';
+      return '';
+    });
+  }
+
+  function highlightJs(source) {
+    var keywords = [
+      'async', 'await', 'break', 'case', 'catch', 'class', 'const', 'continue', 'default', 'else', 'export',
+      'extends', 'false', 'finally', 'for', 'from', 'function', 'if', 'import', 'let', 'new', 'null', 'return',
+      'static', 'super', 'switch', 'this', 'throw', 'true', 'try', 'typeof', 'undefined', 'var', 'while'
+    ].join('|');
+    var pattern = new RegExp(
+      '(\\/\\*[\\s\\S]*?\\*\\/|\\/\\/[^\\n]*)' +
+      "|(`(?:\\\\.|[^`\\\\])*`|\\'(?:\\\\.|[^\\'\\\\])*\\'|\"(?:\\\\.|[^\"\\\\])*\")" +
+      '|\\b(' + keywords + ')\\b' +
+      '|\\b([A-Za-z_$][\\w$]*)(?=\\s*\\()' +
+      '|\\b(\\d+(?:\\.\\d+)?)\\b' +
+      '|([{}()[\\];,.?:=><+\\-*\\/%&|!]+)',
+      'g'
+    );
+
+    return highlightWithRules(source, pattern, function (groups) {
+      if (groups[0]) return 'comment';
+      if (groups[1]) return 'string';
+      if (groups[2]) return ['true', 'false', 'null', 'undefined', 'this'].includes(groups[2]) ? 'constant' : 'keyword';
+      if (groups[3]) return 'function';
+      if (groups[4]) return 'number';
+      if (groups[5]) return 'operator';
+      return '';
+    });
+  }
+
+  function highlightHtml(source) {
+    var pattern = /(<!--[\s\S]*?-->)|(<\/?[A-Za-z][^>\s/]*|\/?>)|(\s+[A-Za-z_:.-]+)(?==)|("(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*')/g;
+
+    return highlightWithRules(source, pattern, function (groups) {
+      if (groups[0]) return 'comment';
+      if (groups[1]) return 'tag';
+      if (groups[2]) return 'attribute';
+      if (groups[3]) return 'string';
+      return '';
+    });
+  }
+
+  function highlightCss(source) {
+    var pattern = /(\/\*[\s\S]*?\*\/)|(--[A-Za-z0-9-]+|[.#]?[A-Za-z_][\w-]*)(?=\s*[:{,])|("(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*')|(\b\d+(?:\.\d+)?(?:px|rem|em|%|vh|vw)?\b)|([{}()[\];,.?:=><+\-*\/%&|!]+)/g;
+
+    return highlightWithRules(source, pattern, function (groups) {
+      if (groups[0]) return 'comment';
+      if (groups[1]) return groups[1].startsWith('--') ? 'variable' : 'attribute';
+      if (groups[2]) return 'string';
+      if (groups[3]) return 'number';
+      if (groups[4]) return 'operator';
+      return '';
+    });
+  }
+
+  function highlightCode(source, language) {
+    if (language === 'php') {
+      return highlightPhp(source);
+    }
+
+    if (language === 'js') {
+      return highlightJs(source);
+    }
+
+    if (language === 'html') {
+      return highlightHtml(source);
+    }
+
+    if (language === 'css') {
+      return highlightCss(source);
+    }
+
+    return escapeHtml(source);
+  }
+
+  function AstroRuntime() {
+    this.revealObserver = null;
+    this.counterObserver = null;
+    this.bodyEventsReady = false;
+  }
+
+  AstroRuntime.prototype.init = function (scope) {
+    var root = scope || document;
+
+    this.initReveal(root);
+    this.initCounters(root);
+    this.initHighlight(root);
+    this.initCopy(root);
+    this.initTilt(root);
+    this.initMarquee(root);
+    this.initBodyEvents();
+  };
+
+  AstroRuntime.prototype.initBodyEvents = function () {
+    if (this.bodyEventsReady || !document.body) {
+      return;
+    }
+
+    this.bodyEventsReady = true;
+    document.body.addEventListener('tx_solr_updated', function () {
+      window.DesiderioAstro.init(document);
+    });
+  };
+
+  AstroRuntime.prototype.initReveal = function (scope) {
+    var elements = scope.querySelectorAll('[data-astro-reveal], [data-d-animate]');
+
+    if (!elements.length) {
+      return;
+    }
+
+    if (reducedMotion() || !('IntersectionObserver' in window)) {
+      elements.forEach(function (element) {
+        element.dataset.astroVisible = 'true';
+        element.classList.add('is-visible');
+      });
+      return;
+    }
+
+    if (!this.revealObserver) {
+      this.revealObserver = new IntersectionObserver(function (entries, observer) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) {
+            return;
+          }
+
+          entry.target.dataset.astroVisible = 'true';
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        });
+      }, {
+        rootMargin: '0px 0px -8% 0px',
+        threshold: 0.12
+      });
+    }
+
+    elements.forEach(function (element) {
+      if (element.dataset[readyAttr]?.includes('reveal')) {
+        return;
+      }
+
+      element.dataset[readyAttr] = [element.dataset[readyAttr], 'reveal'].filter(Boolean).join(' ');
+      this.revealObserver.observe(element);
+    }, this);
+  };
+
+  AstroRuntime.prototype.initCounters = function (scope) {
+    var elements = scope.querySelectorAll('[data-astro-counter], [data-d-counter]');
+
+    if (!elements.length) {
+      return;
+    }
+
+    if (!this.counterObserver && 'IntersectionObserver' in window) {
+      this.counterObserver = new IntersectionObserver(function (entries, observer) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) {
+            return;
+          }
+
+          observer.unobserve(entry.target);
+          window.DesiderioAstro.runCounter(entry.target);
+        });
+      }, {
+        rootMargin: '0px 0px -6% 0px',
+        threshold: 0.32
+      });
+    }
+
+    elements.forEach(function (element) {
+      if (element.dataset[readyAttr]?.includes('counter')) {
+        return;
+      }
+
+      var explicitTarget = element.dataset.astroTarget || element.dataset.target;
+      var parts = parseNumberParts(explicitTarget || element.textContent);
+
+      if (!parts || !Number.isFinite(parts.target)) {
+        return;
+      }
+
+      element.dataset.astroOriginalText = element.textContent.trim();
+      element.dataset.astroParsedTarget = String(parts.target);
+      element.dataset.astroParsedDecimals = String(parts.decimals);
+      element.dataset.astroParsedPrefix = parts.prefix;
+      element.dataset.astroParsedSuffix = parts.suffix;
+      element.dataset[readyAttr] = [element.dataset[readyAttr], 'counter'].filter(Boolean).join(' ');
+
+      if (reducedMotion() || !this.counterObserver) {
+        setCounterText(element, parts, parts.target);
+        return;
+      }
+
+      setCounterText(element, parts, 0);
+      this.counterObserver.observe(element);
+    }, this);
+  };
+
+  AstroRuntime.prototype.runCounter = function (element) {
+    var parts = {
+      target: Number(element.dataset.astroParsedTarget || 0),
+      decimals: Number(element.dataset.astroParsedDecimals || 0),
+      prefix: element.dataset.astroParsedPrefix || '',
+      suffix: element.dataset.astroParsedSuffix || ''
+    };
+    var duration = Number(element.dataset.astroDuration || element.dataset.duration || 1400);
+    var start = performance.now();
+
+    if (!Number.isFinite(parts.target)) {
+      return;
+    }
+
+    var step = function (now) {
+      var progress = Math.min((now - start) / duration, 1);
+      var value = parts.target * easeOutCubic(progress);
+
+      setCounterText(element, parts, progress < 1 ? value : parts.target);
+
+      if (progress < 1) {
+        window.requestAnimationFrame(step);
+      }
+    };
+
+    window.requestAnimationFrame(step);
+  };
+
+  AstroRuntime.prototype.initHighlight = function (scope) {
+    scope.querySelectorAll('[data-astro-highlight]').forEach(function (element) {
+      if (element.dataset[readyAttr]?.includes('highlight')) {
+        return;
+      }
+
+      var source = element.dataset.astroSource || element.textContent || '';
+      var language = normalizeLanguage(element.dataset.astroLanguage || element.className, source);
+
+      element.dataset.astroSource = source;
+      element.dataset.astroLanguageNormalized = language;
+      element.innerHTML = highlightCode(source, language);
+      element.dataset[readyAttr] = [element.dataset[readyAttr], 'highlight'].filter(Boolean).join(' ');
+    });
+  };
+
+  AstroRuntime.prototype.initCopy = function (scope) {
+    scope.querySelectorAll('[data-astro-copy]').forEach(function (button) {
+      if (button.dataset[readyAttr]?.includes('copy')) {
+        return;
+      }
+
+      button.dataset[readyAttr] = [button.dataset[readyAttr], 'copy'].filter(Boolean).join(' ');
+      button.addEventListener('click', function () {
+        var text = copyTextFor(button);
+
+        if (!text.trim() || !navigator.clipboard?.writeText) {
+          return;
+        }
+
+        navigator.clipboard.writeText(text).then(function () {
+          button.dataset.astroCopied = 'true';
+          window.setTimeout(function () {
+            delete button.dataset.astroCopied;
+          }, 1800);
+        });
+      });
+    });
+  };
+
+  AstroRuntime.prototype.initTilt = function (scope) {
+    if (reducedMotion() || (window.matchMedia && window.matchMedia(coarsePointerQuery).matches)) {
+      return;
+    }
+
+    scope.querySelectorAll('[data-astro-tilt]').forEach(function (element) {
+      if (element.dataset[readyAttr]?.includes('tilt')) {
+        return;
+      }
+
+      element.dataset[readyAttr] = [element.dataset[readyAttr], 'tilt'].filter(Boolean).join(' ');
+      element.addEventListener('pointermove', function (event) {
+        var rect = element.getBoundingClientRect();
+        var x = ((event.clientX - rect.left) / rect.width - 0.5) * 2;
+        var y = ((event.clientY - rect.top) / rect.height - 0.5) * -2;
+        var limit = Number(element.dataset.astroTilt || 3);
+
+        element.style.setProperty('--astro-tilt-x', (y * limit).toFixed(2) + 'deg');
+        element.style.setProperty('--astro-tilt-y', (x * limit).toFixed(2) + 'deg');
+      });
+      element.addEventListener('pointerleave', function () {
+        element.style.removeProperty('--astro-tilt-x');
+        element.style.removeProperty('--astro-tilt-y');
+      });
+    });
+  };
+
+  AstroRuntime.prototype.initMarquee = function (scope) {
+    scope.querySelectorAll('[data-astro-marquee]').forEach(function (element) {
+      if (element.dataset[readyAttr]?.includes('marquee')) {
+        return;
+      }
+
+      var track = element.querySelector('[data-astro-marquee-track]') || element.firstElementChild;
+
+      if (!track) {
+        return;
+      }
+
+      element.dataset[readyAttr] = [element.dataset[readyAttr], 'marquee'].filter(Boolean).join(' ');
+
+      if (reducedMotion()) {
+        element.dataset.astroPaused = 'true';
+        return;
+      }
+
+      var clone = track.cloneNode(true);
+      clone.setAttribute('aria-hidden', 'true');
+      element.appendChild(clone);
+    });
+  };
+
+  window.DesiderioAstro = window.DesiderioAstro || new AstroRuntime();
+
+  function init() {
+    window.DesiderioAstro.init(document);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init, { once: true });
+  } else {
+    init();
+  }
+
+  document.addEventListener('desiderio:astro:init', function (event) {
+    window.DesiderioAstro.init(event.detail?.scope || document);
+  });
+})();

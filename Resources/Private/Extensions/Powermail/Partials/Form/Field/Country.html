@@ -1,0 +1,17 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:vh="http://typo3.org/ns/In2code/Powermail/ViewHelpers" data-namespace-typo3-fluid="true">
+<f:argument name="field" type="object" />
+<f:argument name="settings" type="array" optional="{true}" />
+<f:argument name="mail" type="object" optional="{true}" />
+
+<div class="powermail_fieldwrap powermail_fieldwrap_type_country powermail_fieldwrap_{field.marker} {field.css} space-y-2">
+    <f:render partial="Form/FieldLabel" arguments="{field: field}" />
+    <vh:form.selectField
+        options="{field.modifiedSettings}"
+        property="{field.marker}"
+        class="powermail_country h-9 w-full min-w-0 rounded-md border border-input bg-background px-3 py-1 text-sm text-foreground shadow-sm transition-colors focus-visible:border-ring focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/50 {vh:validation.errorClass(field: field, class: 'border-destructive ring-destructive/30')}"
+        id="powermail_field_{field.marker}"
+        autocomplete="{vh:string.autocomplete(field: field)}"
+        additionalAttributes="{vh:validation.validationDataAttribute(field: field)}"
+        value="{vh:misc.prefillField(field: field, mail: mail)}" />
+</div>
+</html>

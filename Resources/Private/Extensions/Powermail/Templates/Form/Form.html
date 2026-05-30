@@ -1,0 +1,78 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:vh="http://typo3.org/ns/In2code/Powermail/ViewHelpers"
+    data-namespace-typo3-fluid="true"
+>
+<f:layout name="Default" />
+
+<f:argument name="form" type="object" optional="{true}" />
+<f:argument name="settings" type="array" optional="{true}" />
+<f:argument name="ttContentData" type="array" optional="{true}" />
+<f:argument name="action" type="string" optional="{true}" default="create" />
+<f:argument name="mail" type="object" optional="{true}" />
+
+<f:section name="main">
+    <f:alias map="{flashMessageClass: 'rounded-md border border-destructive/30 bg-destructive/10 p-3 text-sm text-destructive'}">
+        <f:render partial="Misc/FlashMessages" arguments="{_all}" />
+    </f:alias>
+
+    <f:if condition="{form}">
+        <f:then>
+            <section class="mx-auto w-full max-w-3xl">
+                <f:form
+                    action="{action}"
+                    section="c{ttContentData.uid}"
+                    name="field"
+                    enctype="multipart/form-data"
+                    autocomplete="{form.autocompleteToken}"
+                    additionalAttributes="{vh:validation.enableJavascriptValidationAndAjax(form: form)}"
+                    addQueryString="{settings.misc.addQueryString}"
+                    class="powermail_form powermail_form_{form.uid} {form.css} {vh:misc.morestepClass(activate: settings.main.moresteps)} rounded-md border border-border bg-card p-4 text-card-foreground shadow-sm sm:p-6">
+
+                    <f:if condition="{form.css} != 'nolabel'">
+                        <header class="mb-6 space-y-1">
+                            <h2 class="text-xl font-semibold tracking-normal text-foreground">{form.title}</h2>
+                            <p class="text-sm text-muted-foreground">
+                                <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/powermail.xlf:powermail.form.requiredHint" />
+                            </p>
+                        </header>
+                    </f:if>
+
+                    <f:render partial="Misc/FormError" arguments="{_all}" />
+
+                    <f:if condition="{settings.main.moresteps}">
+                        <nav class="mb-6 grid gap-2 rounded-md border border-border bg-muted/30 p-1 text-sm sm:grid-flow-col sm:auto-cols-fr" aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/powermail.xlf:powermail.multistep.label')}">
+                            <f:for each="{form.pages}" as="page" iteration="iterationPages">
+                                <button class="inline-flex h-9 items-center justify-center rounded-sm px-3 text-xs font-medium text-muted-foreground transition-colors hover:bg-background hover:text-foreground data-[active=true]:bg-background data-[active=true]:text-foreground data-[active=true]:shadow-sm"
+                                        type="button"
+                                        data-active="{f:if(condition: iterationPages.isFirst, then: 'true', else: 'false')}"
+                                        data-powermail-morestep-validate="{settings.validation.morestep.fieldset}"
+                                        data-powermail-fieldset="{page.uid}"
+                                        data-powermail-morestep-current="{iterationPages.index}"
+                                        data-powermail-morestep-show="{iterationPages.index}">
+                                    <span class="me-2 inline-flex size-5 items-center justify-center rounded-sm border border-border bg-muted text-[11px]">{iterationPages.cycle}</span>
+                                    {page.title}
+                                </button>
+                            </f:for>
+                        </nav>
+                    </f:if>
+
+                    <div class="space-y-6">
+                        <f:for each="{form.pages}" as="page" iteration="iterationPages">
+                            <f:render partial="Form/Page" arguments="{_all}" />
+                        </f:for>
+                    </div>
+
+                    <f:form.hidden name="mail[form]" value="{form.uid}" class="powermail_form_uid" respectSubmittedDataValue="false" />
+                    <f:render partial="Misc/HoneyPod" arguments="{form: form}" />
+                </f:form>
+            </section>
+        </f:then>
+        <f:else>
+            <div class="rounded-md border border-destructive/30 bg-destructive/10 p-4 text-sm text-destructive">
+                <f:translate key="error_no_form" extensionName="Powermail" />
+            </div>
+        </f:else>
+    </f:if>
+</f:section>
+</html>

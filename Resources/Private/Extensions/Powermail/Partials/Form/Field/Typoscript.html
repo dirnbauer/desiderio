@@ -1,0 +1,7 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<f:argument name="field" type="object" />
+
+<div class="powermail_fieldwrap powermail_fieldwrap_type_typoscript powermail_fieldwrap_{field.marker} {field.css} sm:col-span-2">
+    <f:cObject typoscriptObjectPath="{field.path}" data="{field}" />
+</div>
+</html>

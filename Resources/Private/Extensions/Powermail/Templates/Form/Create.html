@@ -1,0 +1,34 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:vh="http://typo3.org/ns/In2code/Powermail/ViewHelpers"
+    data-namespace-typo3-fluid="true"
+>
+<f:layout name="Default" />
+
+<f:argument name="settings" type="array" optional="{true}" />
+<f:argument name="mail" type="object" optional="{true}" />
+<f:argument name="powermail_rte" type="string" optional="{true}" />
+<f:argument name="optinActive" type="bool" optional="{true}" default="{false}" />
+
+<f:section name="main">
+    <f:alias map="{flashMessageClass: 'rounded-md border border-destructive/30 bg-destructive/10 p-3 text-sm text-destructive'}">
+        <f:render partial="Misc/FlashMessages" arguments="{_all}" />
+    </f:alias>
+
+    <div class="mx-auto max-w-3xl rounded-md border border-border bg-card p-6 text-card-foreground shadow-sm" data-powermail-form="{mail.form.uid}">
+        <f:if condition="{optinActive}">
+            <f:then>
+                <p class="text-sm text-muted-foreground"><f:translate key="optin_seeMail" extensionName="Powermail" /></p>
+            </f:then>
+            <f:else>
+                <div class="prose max-w-none text-sm text-muted-foreground">
+                    <vh:misc.variables mail="{mail}">
+                        <f:format.html parseFuncTSPath="lib.parseFunc_RTE">{powermail_rte}</f:format.html>
+                    </vh:misc.variables>
+                </div>
+                <f:render partial="Misc/GoogleAdwordsConversion" />
+            </f:else>
+        </f:if>
+    </div>
+</f:section>
+</html>

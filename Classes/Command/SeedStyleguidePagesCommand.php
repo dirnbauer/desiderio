@@ -106,6 +106,7 @@ final class SeedStyleguidePagesCommand extends Command
         private readonly ConnectionPool $connectionPool,
         private readonly Context $context,
         private readonly StorageRepository $storageRepository,
+        private ?PowermailDemoSeeder $powermailDemoSeeder = null,
     ) {
         parent::__construct();
     }
@@ -131,6 +132,26 @@ final class SeedStyleguidePagesCommand extends Command
                 null,
                 InputOption::VALUE_NONE,
                 'Run even when Application Context is Production. Required to seed against production data.'
+            )
+            ->addOption(
+                'skip-powermail',
+                null,
+                InputOption::VALUE_NONE,
+                'Do not create the optional powermail demo form pages, even when powermail is installed.'
+            )
+            ->addOption(
+                'powermail-storage-pid',
+                null,
+                InputOption::VALUE_REQUIRED,
+                'Storage page uid for generated powermail form records. Defaults to the generated Desiderio Powermail Lab page.',
+                '0'
+            )
+            ->addOption(
+                'powermail-german-language',
+                null,
+                InputOption::VALUE_REQUIRED,
+                'sys_language_uid used for German powermail demo translations.',
+                '1'
             );
     }
 
@@ -140,6 +161,9 @@ final class SeedStyleguidePagesCommand extends Command
         $parentPid = (int)$input->getOption('parent');
         $dryRun = (bool)$input->getOption('dry-run');
         $allowProduction = (bool)$input->getOption('allow-production');
+        $skipPowermail = (bool)$input->getOption('skip-powermail');
+        $powermailStoragePid = $this->getIntegerInputOption($input, 'powermail-storage-pid');
+        $powermailGermanLanguageUid = $this->getIntegerInputOption($input, 'powermail-german-language');
 
         $workspaceId = (int)$this->context->getPropertyFromAspect('workspace', 'id', 0);
         if ($workspaceId !== 0) {
@@ -168,11 +192,19 @@ final class SeedStyleguidePagesCommand extends Command
                 static fn (array $group): string => sprintf('%s: %d elements', $group['groupTitle'], count($group['elements'])),
                 $groups
             ));
+            if (!$skipPowermail) {
+                $powermailForms = $this->getPowermailDemoSeeder()->getDemoForms();
+                $io->listing(array_map(
+                    static fn (array $form): string => sprintf('Powermail demo: %s', $form['pageTitleEn']),
+                    $powermailForms
+                ));
+            }
             $io->success(sprintf(
-                'Would create or update %d pages and %d content elements below page uid %d.',
+                'Would create or update %d styleguide pages and %d content elements below page uid %d%s.',
                 count($groups),
                 $totalElements,
-                $parentPid
+                $parentPid,
+                $skipPowermail ? '' : sprintf(', plus %d powermail demo forms with EN/DE pages if powermail tables are available', count($this->getPowermailDemoSeeder()->getDemoForms()))
             ));
 
             return self::SUCCESS;
@@ -217,15 +249,49 @@ final class SeedStyleguidePagesCommand extends Command
             }
         }
 
+        $powermailSummary = ['pages' => 0, 'forms' => 0, 'skipped' => true];
+        if (!$skipPowermail) {
+            $powermailSummary = $this->getPowermailDemoSeeder()->seed(
+                $parentPid,
+                $powermailStoragePid,
+                $powermailGermanLanguageUid,
+                $now,
+                $io
+            );
+        }
+
         $io->success(sprintf(
-            'Created or updated %d styleguide pages (%d new) and inserted %d Desiderio content elements below page uid %d.',
+            'Created or updated %d styleguide pages (%d new) and inserted %d Desiderio content elements below page uid %d%s.',
             count($groups),
             $createdPages,
             $createdContentElements,
-            $parentPid
+            $parentPid,
+            $powermailSummary['skipped'] ? '' : sprintf(' Added %d powermail demo forms across %d EN/DE pages.', $powermailSummary['forms'], $powermailSummary['pages'])
         ));
 
         return self::SUCCESS;
+    }
+
+    private function getPowermailDemoSeeder(): PowermailDemoSeeder
+    {
+        if ($this->powermailDemoSeeder === null) {
+            $this->powermailDemoSeeder = new PowermailDemoSeeder($this->connectionPool);
+        }
+
+        return $this->powermailDemoSeeder;
+    }
+
+    private function getIntegerInputOption(InputInterface $input, string $name): int
+    {
+        $value = $input->getOption($name);
+        if (is_int($value)) {
+            return $value;
+        }
+        if (is_string($value) && is_numeric($value)) {
+            return (int)$value;
+        }
+
+        return 0;
     }
 
     /**

@@ -38,6 +38,7 @@ final class ExtensionMetadataTest extends TestCase
         self::assertArrayHasKey('solr', $conf['constraints']['suggests']);
         self::assertArrayHasKey('news', $conf['constraints']['suggests']);
         self::assertArrayHasKey('blog', $conf['constraints']['suggests']);
+        self::assertStringContainsString("'powermail' => ''", (string)file_get_contents(__DIR__ . '/../../ext_emconf.php'));
     }
 
     public function testIconsRegistryIsReadable(): void
@@ -60,9 +61,9 @@ final class ExtensionMetadataTest extends TestCase
         $setup = (string) file_get_contents(__DIR__ . '/../../Configuration/Sets/SolrDefaults/setup.typoscript');
 
         self::assertStringContainsString('name: webconsulting/solr-defaults', $config);
-        self::assertStringContainsString('EXT:desiderio/Resources/Private/Solr/Templates/', $setup);
-        self::assertStringContainsString('EXT:desiderio/Resources/Private/Solr/Partials/', $setup);
-        self::assertStringContainsString('EXT:desiderio/Resources/Private/Solr/Layouts/', $setup);
+        self::assertStringContainsString('webconsulting/desiderio-solr', $config);
+        self::assertStringContainsString('EXT:solr/Configuration/TypoScript/Solr/setup.typoscript', $setup);
+        self::assertStringNotContainsString('EXT:desiderio/Resources/Private/Solr/Templates/', $setup);
     }
 
     public function testSharedPaginationPartialsAreAvailableFromDesiderio(): void

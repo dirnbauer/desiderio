@@ -26,6 +26,7 @@ $EM_CONF[$_EXTKEY] = [
             'solr' => '',
             'news' => '',
             'blog' => '',
+            'powermail' => '',
         ],
     ],
 ];

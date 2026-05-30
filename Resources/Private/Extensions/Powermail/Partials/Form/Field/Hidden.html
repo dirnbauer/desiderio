@@ -1,0 +1,6 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:vh="http://typo3.org/ns/In2code/Powermail/ViewHelpers" data-namespace-typo3-fluid="true">
+<f:argument name="field" type="object" />
+<f:argument name="mail" type="object" optional="{true}" />
+
+<f:form.hidden property="{field.marker}" value="{vh:misc.prefillField(field: field, mail: mail)}" id="powermail_field_{field.marker}" />
+</html>

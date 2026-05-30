@@ -2,8 +2,8 @@ name: webconsulting/desiderio
 label: "Desiderio Base"
 dependencies: []
 optionalDependencies:
-  - webconsulting/desiderio-content-elements
   - webconsulting/desiderio-shadcnui-templates
+  - webconsulting/desiderio-powermail
   - webconsulting/desiderio-solr
   - webconsulting/desiderio-news
   - webconsulting/desiderio-blog

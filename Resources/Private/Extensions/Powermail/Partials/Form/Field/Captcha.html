@@ -1,0 +1,18 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:vh="http://typo3.org/ns/In2code/Powermail/ViewHelpers" data-namespace-typo3-fluid="true">
+<f:argument name="field" type="object" />
+<f:argument name="settings" type="array" optional="{true}" />
+<f:argument name="mail" type="object" optional="{true}" />
+
+<div class="powermail_fieldwrap powermail_fieldwrap_type_captcha powermail_fieldwrap_{field.marker} {field.css} space-y-2">
+    <f:render partial="Form/FieldLabel" arguments="{field: field}" />
+    <div class="rounded-md border border-border bg-muted/30 p-3">
+        <f:form.textfield
+            property="{field.marker}"
+            value=""
+            class="powermail_captcha h-9 w-full min-w-0 rounded-md border border-input bg-background px-3 py-1 text-sm text-foreground shadow-sm focus-visible:border-ring focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/50 {vh:validation.errorClass(field: field, class: 'border-destructive ring-destructive/30')}"
+            additionalAttributes="{vh:validation.captchaDataAttribute(field: field)}"
+            id="powermail_field_{field.marker}" />
+        <vh:validation.captcha field="{field}" alt="captcha" class="powermail_captchaimage mt-3 rounded-md border border-border" id="powermail_captchaimage" />
+    </div>
+</div>
+</html>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en" trgLang="de">
+  <file id="desiderio-powermail">
+    <unit id="powermail.form.requiredHint">
+      <segment state="final"><source>Fields marked with an asterisk are required.</source><target>Mit Stern markierte Felder sind Pflichtfelder.</target></segment>
+    </unit>
+    <unit id="powermail.multistep.label">
+      <segment state="final"><source>Form steps</source><target>Formularschritte</target></segment>
+    </unit>
+    <unit id="powermail.multistep.previous">
+      <segment state="final"><source>Previous</source><target>Zurueck</target></segment>
+    </unit>
+    <unit id="powermail.multistep.next">
+      <segment state="final"><source>Next</source><target>Weiter</target></segment>
+    </unit>
+    <unit id="powermail.confirmation.title">
+      <segment state="final"><source>Review your submission</source><target>Eingaben pruefen</target></segment>
+    </unit>
+    <unit id="powermail.confirmation.description">
+      <segment state="final"><source>Please check the entered values before submitting the form.</source><target>Bitte pruefen Sie die eingegebenen Werte vor dem Absenden.</target></segment>
+    </unit>
+    <unit id="powermail.confirmation.submit">
+      <segment state="final"><source>Submit</source><target>Absenden</target></segment>
+    </unit>
+    <unit id="powermail.confirmation.back">
+      <segment state="final"><source>Back</source><target>Zurueck</target></segment>
+    </unit>
+  </file>
+</xliff>

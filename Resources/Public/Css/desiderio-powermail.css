@@ -1,0 +1,110 @@
+.d-powermail-shell {
+  container-type: inline-size;
+}
+
+.d-powermail .d-powermail-form {
+  overflow: clip;
+  border-color: color-mix(in oklch, var(--border) 76%, var(--foreground) 10%);
+  background:
+    linear-gradient(180deg, color-mix(in oklch, var(--card) 96%, var(--background) 4%), var(--card)),
+    var(--card);
+  box-shadow:
+    0 1px 2px color-mix(in oklch, var(--foreground) 12%, transparent),
+    0 20px 60px color-mix(in oklch, var(--foreground) 10%, transparent);
+}
+
+.d-powermail .d-powermail-form > header {
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 1.25rem;
+}
+
+.d-powermail .d-powermail-form > header h2 {
+  font-family: var(--font-heading);
+  font-size: clamp(1.35rem, 2vw, 1.75rem);
+  line-height: 1.15;
+}
+
+.d-powermail .powermail_multistep_navigation {
+  border-radius: calc(var(--radius) + 0.15rem);
+  background: color-mix(in oklch, var(--muted) 78%, var(--background) 22%);
+}
+
+.d-powermail .powermail_multistep_navigation button {
+  border: 1px solid transparent;
+  min-width: 0;
+}
+
+.d-powermail .powermail_multistep_navigation button.active,
+.d-powermail .powermail_multistep_navigation button[data-active="true"] {
+  border-color: color-mix(in oklch, var(--border) 70%, var(--primary) 30%);
+  background: var(--background);
+  color: var(--foreground);
+  box-shadow: 0 1px 2px color-mix(in oklch, var(--foreground) 12%, transparent);
+}
+
+.d-powermail .powermail_multistep_navigation button.active span,
+.d-powermail .powermail_multistep_navigation button[data-active="true"] span {
+  border-color: color-mix(in oklch, var(--primary) 50%, var(--border) 50%);
+  background: var(--primary);
+  color: var(--primary-foreground);
+}
+
+.d-powermail .powermail_fieldset {
+  border-color: color-mix(in oklch, var(--border) 82%, var(--foreground) 8%);
+  background: color-mix(in oklch, var(--background) 88%, var(--card) 12%);
+}
+
+.d-powermail .powermail_legend,
+.d-powermail .powermail_fieldset > legend {
+  border-radius: var(--radius);
+  background: var(--card);
+  padding-inline: 0.5rem;
+}
+
+.d-powermail .powermail_fieldwrap :is(input:not([type="checkbox"], [type="radio"], [type="submit"], [type="file"]), select, textarea) {
+  min-height: 2.45rem;
+  border-color: color-mix(in oklch, var(--input) 88%, var(--foreground) 8%);
+  background: color-mix(in oklch, var(--background) 96%, var(--card) 4%);
+}
+
+.d-powermail .powermail_fieldwrap :is(input:not([type="checkbox"], [type="radio"], [type="submit"], [type="file"]), select, textarea):focus {
+  border-color: var(--ring);
+  box-shadow: 0 0 0 3px color-mix(in oklch, var(--ring) 22%, transparent);
+}
+
+.d-powermail .powermail_fieldwrap_type_check > .grid > div,
+.d-powermail .powermail_fieldwrap_type_radio > .grid > div {
+  transition: border-color 150ms ease, background-color 150ms ease, box-shadow 150ms ease;
+}
+
+.d-powermail .powermail_fieldwrap_type_check > .grid > div:has(input:checked),
+.d-powermail .powermail_fieldwrap_type_radio > .grid > div:has(input:checked) {
+  border-color: color-mix(in oklch, var(--primary) 48%, var(--border) 52%);
+  background: color-mix(in oklch, var(--primary) 8%, var(--background) 92%);
+  box-shadow: inset 0 0 0 1px color-mix(in oklch, var(--primary) 22%, transparent);
+}
+
+.d-powermail .powermail_tab_navigation {
+  margin-top: 1.25rem;
+}
+
+.d-powermail .powermail_submit {
+  min-height: 2.5rem;
+  min-width: 10rem;
+}
+
+.d-powermail .d-powermail-invalid :is(input, select, textarea),
+.d-powermail :is(input, select, textarea):user-invalid {
+  border-color: var(--destructive);
+}
+
+@container (max-width: 42rem) {
+  .d-powermail .d-powermail-form {
+    padding: 1rem;
+  }
+
+  .d-powermail .powermail_submit {
+    width: 100%;
+  }
+}

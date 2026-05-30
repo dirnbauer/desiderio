@@ -1,8 +1,20 @@
 <html
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:vh="http://typo3.org/ns/In2code/Powermail/ViewHelpers"
     data-namespace-typo3-fluid="true"
 >
 <f:argument name="flashMessageClass" type="string" optional="{true}" default="rounded-md border border-destructive/30 bg-destructive/10 p-3 text-sm text-destructive" />
 
-<f:flashMessages queueIdentifier="extbase.flashmessages.tx_powermail_pi1" class="{flashMessageClass}" />
+<vh:misc.checkForTypoScript settings="{settings}" />
+
+<f:flashMessages queueIdentifier="extbase.flashmessages.tx_powermail_pi1" as="flashMessages">
+    <f:for each="{flashMessages}" as="flashMessage">
+        <div class="{flashMessageClass}" role="alert">
+            <f:if condition="{flashMessage.title}">
+                <p class="font-medium">{flashMessage.title}</p>
+            </f:if>
+            <p>{flashMessage.message}</p>
+        </div>
+    </f:for>
+</f:flashMessages>
 </html>

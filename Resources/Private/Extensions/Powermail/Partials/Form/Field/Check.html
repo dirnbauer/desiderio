@@ -3,7 +3,7 @@
 <f:argument name="settings" type="array" optional="{true}" />
 <f:argument name="mail" type="object" optional="{true}" />
 
-<div class="powermail_fieldwrap powermail_fieldwrap_type_check powermail_fieldwrap_{field.marker} {field.css} space-y-3 sm:col-span-2">
+<div class="powermail_fieldwrap powermail_fieldwrap_type_check powermail_fieldwrap_{field.marker} {field.css} space-y-3 sm:col-span-2" data-desiderio-check-group="{field.marker}" data-desiderio-required="{f:if(condition: field.mandatory, then: 'true', else: 'false')}">
     <f:render partial="Form/FieldLabel" arguments="{field: field}" />
     <div class="grid gap-2">
         <f:for each="{field.modifiedSettings}" as="setting" iteration="index">

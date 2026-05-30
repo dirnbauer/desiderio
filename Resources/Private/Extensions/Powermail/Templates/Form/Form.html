@@ -18,7 +18,7 @@
 
     <f:if condition="{form}">
         <f:then>
-            <section class="mx-auto w-full max-w-3xl">
+            <section class="d-powermail-shell mx-auto w-full max-w-4xl">
                 <f:form
                     action="{action}"
                     section="c{ttContentData.uid}"
@@ -27,7 +27,7 @@
                     autocomplete="{form.autocompleteToken}"
                     additionalAttributes="{vh:validation.enableJavascriptValidationAndAjax(form: form)}"
                     addQueryString="{settings.misc.addQueryString}"
-                    class="powermail_form powermail_form_{form.uid} {form.css} {vh:misc.morestepClass(activate: settings.main.moresteps)} rounded-md border border-border bg-card p-4 text-card-foreground shadow-sm sm:p-6">
+                    class="powermail_form powermail_form_{form.uid} {form.css} {vh:misc.morestepClass(activate: settings.main.moresteps)} d-powermail-form rounded-md border border-border bg-card p-4 text-card-foreground shadow-sm sm:p-6">
 
                     <f:if condition="{form.css} != 'nolabel'">
                         <header class="mb-6 space-y-1">
@@ -41,11 +41,12 @@
                     <f:render partial="Misc/FormError" arguments="{_all}" />
 
                     <f:if condition="{settings.main.moresteps}">
-                        <nav class="mb-6 grid gap-2 rounded-md border border-border bg-muted/30 p-1 text-sm sm:grid-flow-col sm:auto-cols-fr" aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/powermail.xlf:powermail.multistep.label')}">
+                        <nav class="powermail_multistep_navigation mb-6 grid gap-2 rounded-md border border-border bg-muted/30 p-1 text-sm sm:grid-flow-col sm:auto-cols-fr" aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/powermail.xlf:powermail.multistep.label')}">
                             <f:for each="{form.pages}" as="page" iteration="iterationPages">
                                 <button class="inline-flex h-9 items-center justify-center rounded-sm px-3 text-xs font-medium text-muted-foreground transition-colors hover:bg-background hover:text-foreground data-[active=true]:bg-background data-[active=true]:text-foreground data-[active=true]:shadow-sm"
                                         type="button"
                                         data-active="{f:if(condition: iterationPages.isFirst, then: 'true', else: 'false')}"
+                                        aria-current="{f:if(condition: iterationPages.isFirst, then: 'step', else: 'false')}"
                                         data-powermail-morestep-validate="{settings.validation.morestep.fieldset}"
                                         data-powermail-fieldset="{page.uid}"
                                         data-powermail-morestep-current="{iterationPages.index}"

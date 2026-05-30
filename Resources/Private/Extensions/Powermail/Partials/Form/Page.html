@@ -5,7 +5,7 @@
 >
 <f:argument name="page" type="object" />
 <f:argument name="settings" type="array" optional="{true}" />
-<f:argument name="iterationPages" type="object" optional="{true}" />
+<f:argument name="iterationPages" type="array" optional="{true}" />
 <f:argument name="mail" type="object" optional="{true}" />
 
 <fieldset class="powermail_fieldset powermail_fieldset_{page.uid} {page.css} space-y-5 rounded-md border border-border bg-background/60 p-4">
@@ -22,7 +22,7 @@
     <f:if condition="{settings.main.moresteps}">
         <div class="powermail_fieldwrap powermail_tab_navigation flex justify-between gap-2 border-t border-border pt-4">
             <f:if condition="!{iterationPages.isFirst}">
-                <button type="button" class="inline-flex h-9 items-center justify-center rounded-md border border-border bg-background px-3 text-sm font-medium text-foreground shadow-sm transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-powermail-morestep-show="{iterationPages.index}">
+                <button type="button" class="inline-flex h-9 items-center justify-center rounded-md border border-border bg-background px-3 text-sm font-medium text-foreground shadow-sm transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" data-powermail-morestep-show="{iterationPages.index - 1}">
                     <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/powermail.xlf:powermail.multistep.previous" />
                 </button>
             </f:if>

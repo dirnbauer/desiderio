@@ -14,3 +14,31 @@ plugin.tx_powermail {
     }
   }
 }
+
+page {
+  includeCSS {
+    desiderioPowermail = EXT:desiderio/Resources/Public/Css/desiderio-powermail.css
+    desiderioPowermail.media = all
+  }
+
+  includeJSFooter {
+    desiderioPowermail = EXT:desiderio/Resources/Public/Js/desiderio-powermail.js
+    desiderioPowermail.defer = 1
+  }
+}
+
+plugin.tx_powermail.settings.setup.validation {
+  native = 1
+  client = 0
+  morestep.fieldset = 0
+}
+
+tt_content.powermail_pi1 =< lib.contentElement
+tt_content.powermail_pi1 {
+  templateName = PowermailPi1
+  20 = EXTBASEPLUGIN
+  20 {
+    extensionName = Powermail
+    pluginName = Pi1
+  }
+}

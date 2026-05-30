@@ -4,6 +4,11 @@
     data-namespace-typo3-fluid="true"
 >
 
+<f:argument name="document" type="object"/>
+<f:argument name="resultSet" type="object"/>
+<f:argument name="settings" type="array" optional="true"/>
+<f:argument name="logging" type="array" optional="true"/>
+
 <f:section name="Document">
     <article class="search-result results-entry rounded-xl border border-border bg-card p-6 text-card-foreground shadow-sm transition-colors hover:bg-muted/50{f:if(condition:document.isElevated, then: ' results-elevated')}"
         data-document-score="{document.score}"
@@ -43,7 +48,7 @@
                 <div class="space-y-2 rounded-lg border border-border bg-background p-3">
                     <p><f:translate key="solr.fileMimeType" domain="desiderio.labels"/>: {document.fileMimeType}</p>
                     <p><f:translate key="solr.fileReferenced" domain="desiderio.labels"/>:</p>
-                    <ul class="space-y-1">
+                    <ul role="list" class="space-y-1">
                         <f:if condition="{document.fileReferenceUrl}">
                             <li><f:link.typolink title="{document.fileReferenceTitle}" parameter="{document.fileReferenceUrl}" class="text-primary underline underline-offset-4">{document.fileReferenceTitle}</f:link.typolink></li>
                         </f:if>

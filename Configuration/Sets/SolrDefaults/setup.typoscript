@@ -15,12 +15,6 @@ plugin.tx_solr.index.queue.news.fields {
   url.default.typolink.parameter.data = siteSettings:news.pages.detail // site:rootPageId
 }
 
-plugin.tx_solr.view {
-  templateRootPaths.100 = EXT:desiderio/Resources/Private/Solr/Templates/
-  partialRootPaths.100 = EXT:desiderio/Resources/Private/Solr/Partials/
-  layoutRootPaths.100 = EXT:desiderio/Resources/Private/Solr/Layouts/
-}
-
 plugin.tx_solr.search.faceting {
   minimumCount = 0
   keepAllFacetsOnSelection = 1

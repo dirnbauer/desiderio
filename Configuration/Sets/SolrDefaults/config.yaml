@@ -1,3 +1,5 @@
 name: webconsulting/solr-defaults
 label: 'Solr Defaults'
 hidden: true
+dependencies:
+  - webconsulting/desiderio-solr

@@ -295,21 +295,36 @@ final class ContentRenderingTemplateTest extends TestCase
         $newsTypoScript = (string) file_get_contents(__DIR__ . '/../../Configuration/Sets/DesiderioNews/setup.typoscript');
         $blogTypoScript = (string) file_get_contents(__DIR__ . '/../../Configuration/Sets/DesiderioBlog/setup.typoscript');
 
-        self::assertContains('webconsulting/desiderio-solr', $baseSet['optionalDependencies']);
-        self::assertContains('webconsulting/desiderio-news', $baseSet['optionalDependencies']);
-        self::assertContains('webconsulting/desiderio-blog', $baseSet['optionalDependencies']);
+        self::assertIsArray($baseSet);
+        self::assertIsArray($solrSet);
+        self::assertIsArray($newsSet);
+        self::assertIsArray($blogSet);
+
+        $baseOptionalDependencies = $baseSet['optionalDependencies'] ?? [];
+        $solrOptionalDependencies = $solrSet['optionalDependencies'] ?? [];
+        $newsOptionalDependencies = $newsSet['optionalDependencies'] ?? [];
+        $blogOptionalDependencies = $blogSet['optionalDependencies'] ?? [];
+        self::assertIsArray($baseOptionalDependencies);
+        self::assertIsArray($solrOptionalDependencies);
+        self::assertIsArray($newsOptionalDependencies);
+        self::assertIsArray($blogOptionalDependencies);
+
+        self::assertContains('webconsulting/desiderio-solr', $baseOptionalDependencies);
+        self::assertContains('webconsulting/desiderio-news', $baseOptionalDependencies);
+        self::assertContains('webconsulting/desiderio-blog', $baseOptionalDependencies);
 
         self::assertSame('webconsulting/desiderio-solr', $solrSet['name']);
         self::assertTrue($solrSet['hidden']);
-        self::assertContains('apache-solr-for-typo3/solr', $solrSet['optionalDependencies']);
+        self::assertArrayNotHasKey('dependencies', $solrSet);
+        self::assertContains('apache-solr-for-typo3/solr', $solrOptionalDependencies);
         self::assertStringContainsString('plugin.tx_solr', $solrTypoScript);
-        self::assertStringContainsString('templateRootPaths.200 = EXT:desiderio/Resources/Private/Extensions/Solr/Templates/', $solrTypoScript);
-        self::assertStringContainsString('partialRootPaths.200 = EXT:desiderio/Resources/Private/Extensions/Solr/Partials/', $solrTypoScript);
-        self::assertStringContainsString('layoutRootPaths.200 = EXT:desiderio/Resources/Private/Extensions/Solr/Layouts/', $solrTypoScript);
+        self::assertStringContainsString('templateRootPaths.100 = EXT:desiderio/Resources/Private/Solr/Templates/', $solrTypoScript);
+        self::assertStringContainsString('partialRootPaths.100 = EXT:desiderio/Resources/Private/Solr/Partials/', $solrTypoScript);
+        self::assertStringContainsString('layoutRootPaths.100 = EXT:desiderio/Resources/Private/Solr/Layouts/', $solrTypoScript);
 
         self::assertSame('webconsulting/desiderio-news', $newsSet['name']);
         self::assertTrue($newsSet['hidden']);
-        self::assertContains('georgringer/news', $newsSet['optionalDependencies']);
+        self::assertContains('georgringer/news', $newsOptionalDependencies);
         self::assertStringContainsString('plugin.tx_news', $newsTypoScript);
         self::assertStringContainsString('templateRootPaths.200 = EXT:desiderio/Resources/Private/Extensions/News/Templates/', $newsTypoScript);
         self::assertStringContainsString('partialRootPaths.200 = EXT:desiderio/Resources/Private/Extensions/News/Partials/', $newsTypoScript);
@@ -317,7 +332,7 @@ final class ContentRenderingTemplateTest extends TestCase
 
         self::assertSame('webconsulting/desiderio-blog', $blogSet['name']);
         self::assertTrue($blogSet['hidden']);
-        self::assertContains('t3g/blog', $blogSet['optionalDependencies']);
+        self::assertContains('t3g/blog', $blogOptionalDependencies);
         self::assertStringContainsString('plugin.tx_blog', $blogTypoScript);
         self::assertStringContainsString('templateRootPaths.200 = EXT:desiderio/Resources/Private/Extensions/Blog/Templates/', $blogTypoScript);
         self::assertStringContainsString('partialRootPaths.200 = EXT:desiderio/Resources/Private/Extensions/Blog/Partials/', $blogTypoScript);
@@ -444,6 +459,8 @@ final class ContentRenderingTemplateTest extends TestCase
         $baseSet = Yaml::parseFile(__DIR__ . '/../../Configuration/Sets/Desiderio/config.yaml');
         $contentElementsSet = Yaml::parseFile(__DIR__ . '/../../Configuration/Sets/DesiderioContentElements/config.yaml');
         $userTsConfig = (string) file_get_contents(__DIR__ . '/../../Configuration/user.tsconfig');
+        self::assertIsArray($baseSet);
+        self::assertIsArray($contentElementsSet);
 
         $contentBlockNames = [];
         foreach (glob(__DIR__ . '/../../ContentBlocks/ContentElements/*/config.yaml') ?: [] as $configFile) {
@@ -462,9 +479,15 @@ final class ContentRenderingTemplateTest extends TestCase
         }
         sort($hiddenSetNames);
 
-        self::assertContains('webconsulting/desiderio-content-elements', $baseSet['optionalDependencies']);
+        $baseOptionalDependencies = $baseSet['optionalDependencies'] ?? [];
+        $contentElementsDependencies = $contentElementsSet['dependencies'] ?? [];
+        self::assertIsArray($baseOptionalDependencies);
+        self::assertIsArray($contentElementsDependencies);
+
+        self::assertNotContains('webconsulting/desiderio-content-elements', $baseOptionalDependencies);
         self::assertSame('webconsulting/desiderio-content-elements', $contentElementsSet['name']);
         self::assertSame('Desiderio Content Elements', $contentElementsSet['label']);
+        self::assertContains('webconsulting/desiderio', $contentElementsDependencies);
         self::assertSame($contentBlockNames, $setDependencies);
         self::assertSame($contentBlockNames, $hiddenSetNames);
     }
@@ -477,7 +500,13 @@ final class ContentRenderingTemplateTest extends TestCase
         $pageTsConfig = (string) file_get_contents(__DIR__ . '/../../Configuration/Sets/DesiderioShadcnUiTemplates/page.tsconfig');
         $backendLayoutLabels = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Language/backend_layouts.xlf');
 
-        self::assertContains('webconsulting/desiderio-shadcnui-templates', $baseSet['optionalDependencies']);
+        self::assertIsArray($baseSet);
+        self::assertIsArray($templateSet);
+
+        $baseOptionalDependencies = $baseSet['optionalDependencies'] ?? [];
+        self::assertIsArray($baseOptionalDependencies);
+
+        self::assertContains('webconsulting/desiderio-shadcnui-templates', $baseOptionalDependencies);
         self::assertSame('webconsulting/desiderio-shadcnui-templates', $templateSet['name']);
         self::assertTrue($templateSet['hidden']);
         self::assertStringContainsString('paths.20 = EXT:desiderio/Resources/Private/ShadcnUi/Templates/', $typoScript);
@@ -519,13 +548,11 @@ final class ContentRenderingTemplateTest extends TestCase
     public function testSolrAndNewsOverrideTemplatesFollowUpstreamStructureAndUseDesiderioComponents(): void
     {
         $requiredFiles = [
-            'Resources/Private/Extensions/Solr/Layouts/Fullwidth.html',
-            'Resources/Private/Extensions/Solr/Layouts/Split.html',
-            'Resources/Private/Extensions/Solr/Templates/Search/Results.html',
-            'Resources/Private/Extensions/Solr/Templates/Search/Form.html',
-            'Resources/Private/Extensions/Solr/Partials/Search/Form.html',
-            'Resources/Private/Extensions/Solr/Partials/Result/Document.html',
-            'Resources/Private/Extensions/Solr/Partials/Facets/Options.html',
+            'Resources/Private/Solr/Layouts/Split.html',
+            'Resources/Private/Solr/Templates/Search/Results.html',
+            'Resources/Private/Solr/Partials/Search/Form.html',
+            'Resources/Private/Solr/Partials/Result/Document.html',
+            'Resources/Private/Solr/Partials/Facets/Options.html',
             'Resources/Private/Extensions/News/Layouts/General.html',
             'Resources/Private/Extensions/News/Layouts/Detail.html',
             'Resources/Private/Extensions/News/Templates/News/List.html',
@@ -545,10 +572,6 @@ final class ContentRenderingTemplateTest extends TestCase
         }
 
         foreach ([
-            'Resources/Private/Extensions/Solr/Templates/Search/Results.html',
-            'Resources/Private/Extensions/Solr/Partials/Search/Form.html',
-            'Resources/Private/Extensions/Solr/Partials/Result/Document.html',
-            'Resources/Private/Extensions/Solr/Partials/Facets/Options.html',
             'Resources/Private/Extensions/News/Templates/News/List.html',
             'Resources/Private/Extensions/News/Templates/News/Detail.html',
             'Resources/Private/Extensions/News/Partials/List/Item.html',
@@ -611,25 +634,16 @@ final class ContentRenderingTemplateTest extends TestCase
             'Resources/Private/Extensions/News/Partials/Detail/MediaVideo.html',
             'Resources/Private/Extensions/News/Partials/Detail/Opengraph.html',
             'Resources/Private/Extensions/News/Partials/Detail/Shariff.html',
-            'Resources/Private/Extensions/Solr/Partials/Search/Form.html',
-            'Resources/Private/Extensions/Solr/Partials/Search/FrequentlySearched.html',
-            'Resources/Private/Extensions/Solr/Partials/Search/LastSearches.html',
-            'Resources/Private/Extensions/Solr/Partials/Result/Document.html',
-            'Resources/Private/Extensions/Solr/Partials/Result/Pagination.html',
-            'Resources/Private/Extensions/Solr/Partials/Result/Facets.html',
-            'Resources/Private/Extensions/Solr/Partials/Result/FacetsActive.html',
-            'Resources/Private/Extensions/Solr/Partials/Result/Sorting.html',
-            'Resources/Private/Extensions/Solr/Partials/Result/PerPage.html',
-            'Resources/Private/Extensions/Solr/Partials/Facets/Default.html',
-            'Resources/Private/Extensions/Solr/Partials/Facets/Hierarchy.html',
-            'Resources/Private/Extensions/Solr/Partials/Facets/Options.html',
-            'Resources/Private/Extensions/Solr/Partials/Facets/OptionsFiltered.html',
-            'Resources/Private/Extensions/Solr/Partials/Facets/OptionsPrefixGrouped.html',
-            'Resources/Private/Extensions/Solr/Partials/Facets/OptionsSinglemode.html',
-            'Resources/Private/Extensions/Solr/Partials/Facets/OptionsToggle.html',
-            'Resources/Private/Extensions/Solr/Partials/Facets/RangeDate.html',
-            'Resources/Private/Extensions/Solr/Partials/Facets/RangeNumeric.html',
-            'Resources/Private/Extensions/Solr/Partials/Facets/Rootline.html',
+            'Resources/Private/Solr/Partials/Search/Form.html',
+            'Resources/Private/Solr/Partials/Search/FrequentlySearched.html',
+            'Resources/Private/Solr/Partials/Search/LastSearches.html',
+            'Resources/Private/Solr/Partials/Result/Document.html',
+            'Resources/Private/Solr/Partials/Result/Pagination.html',
+            'Resources/Private/Solr/Partials/Result/Facets.html',
+            'Resources/Private/Solr/Partials/Result/FacetsActive.html',
+            'Resources/Private/Solr/Partials/Result/Sorting.html',
+            'Resources/Private/Solr/Partials/Result/PerPage.html',
+            'Resources/Private/Solr/Partials/Facets/Options.html',
             'Resources/Private/FluidStyledContent/Partials/Header.fluid.html',
             'Resources/Private/FluidStyledContent/Partials/RichText.fluid.html',
             'Resources/Private/FluidStyledContent/Partials/Media.fluid.html',
@@ -707,9 +721,9 @@ final class ContentRenderingTemplateTest extends TestCase
             'Resources/Private/Extensions/Blog/Templates/Widget/Categories.html',
             'Resources/Private/Extensions/Blog/Templates/Widget/Tags.html',
             'Resources/Private/Extensions/Blog/Templates/Widget/Archive.html',
-            'Resources/Private/Extensions/Solr/Partials/Result/Pagination.html',
-            'Resources/Private/Extensions/Solr/Partials/Search/FrequentlySearched.html',
-            'Resources/Private/Extensions/Solr/Partials/Search/LastSearches.html',
+            'Resources/Private/Solr/Partials/Result/Pagination.html',
+            'Resources/Private/Solr/Partials/Search/FrequentlySearched.html',
+            'Resources/Private/Solr/Partials/Search/LastSearches.html',
         ];
         foreach ($files as $relativePath) {
             $template = (string) file_get_contents(__DIR__ . '/../../' . $relativePath);

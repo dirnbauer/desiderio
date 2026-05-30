@@ -4,12 +4,15 @@
     data-namespace-typo3-fluid="true"
 >
 
+<f:argument name="facet" type="object" optional="true"/>
+<f:argument name="settings" type="array" optional="true"/>
+
 <f:variable name="facetOptionLimit">{f:if(condition: '{settings.faceting.limit}', then: '{settings.faceting.limit}', else: 10)}</f:variable>
 
 <section class="d-solr-suggest d-solr-suggest--facet" aria-labelledby="facet-label-{facet.name}">
     <h2 class="d-solr-suggest__group" id="facet-label-{facet.name}">{facet.label}</h2>
 
-    <ul class="d-solr-facet__list facet-option-list facet-type-options fluidfacet" data-facet-name="{facet.name}" data-facet-label="{facet.label}" id="facet{facet.name}">
+    <ul role="list" class="d-solr-facet__list facet-option-list facet-type-options fluidfacet" data-facet-name="{facet.name}" data-facet-label="{facet.label}" id="facet{facet.name}">
         <f:for each="{facet.options}" as="option" iteration="iteration">
             <li class="facet-option {f:if(condition:'!({iteration.index} < {facetOptionLimit})', then:' tx-solr-facet-hidden')}" data-facet-item-value="{option.value}">
                 <a class="facet solr-ajaxified d-solr-suggest__option {f:if(condition: option.selected, then: 'is-active')}" href="{s:uri.facet.addFacetItem(facet: facet, facetItem: option)}">

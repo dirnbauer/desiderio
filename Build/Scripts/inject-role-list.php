@@ -27,7 +27,6 @@ $files = [];
 foreach ([
     "$root/Resources/Private/Extensions/Blog",
     "$root/Resources/Private/Extensions/News",
-    "$root/Resources/Private/Extensions/Solr",
     "$root/Resources/Private/Solr",
 ] as $dir) {
     if (!is_dir($dir)) {

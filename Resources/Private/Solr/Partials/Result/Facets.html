@@ -4,6 +4,8 @@
     data-namespace-typo3-fluid="true"
 >
 
+<f:argument name="resultSet" type="object"/>
+
 <f:section name="Facets">
     <div id="tx-solr-faceting" class="space-y-4">
         <s:facet.area.group groupName="main" facets="{resultSet.facets.available}">

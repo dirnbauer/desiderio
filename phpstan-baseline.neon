@@ -403,27 +403,9 @@ parameters:
 			path: Tests/Unit/ContentElementAuditTest.php
 
 		-
-			message: '#^Cannot access offset ''hidden'' on mixed\.$#'
-			identifier: offsetAccess.nonOffsetAccessible
-			count: 4
-			path: Tests/Unit/ContentRenderingTemplateTest.php
-
-		-
-			message: '#^Cannot access offset ''label'' on mixed\.$#'
-			identifier: offsetAccess.nonOffsetAccessible
-			count: 1
-			path: Tests/Unit/ContentRenderingTemplateTest.php
-
-		-
 			message: '#^Cannot access offset ''name'' on mixed\.$#'
 			identifier: offsetAccess.nonOffsetAccessible
-			count: 6
-			path: Tests/Unit/ContentRenderingTemplateTest.php
-
-		-
-			message: '#^Cannot access offset ''optionalDependencies'' on mixed\.$#'
-			identifier: offsetAccess.nonOffsetAccessible
-			count: 7
+			count: 1
 			path: Tests/Unit/ContentRenderingTemplateTest.php
 
 		-
@@ -436,12 +418,6 @@ parameters:
 			message: '#^Parameter \#1 \$array of function sort expects TArray of array\<T\>, mixed given\.$#'
 			identifier: argument.type
 			count: 1
-			path: Tests/Unit/ContentRenderingTemplateTest.php
-
-		-
-			message: '#^Parameter \#2 \$haystack of static method PHPUnit\\Framework\\Assert\:\:assertContains\(\) expects iterable, mixed given\.$#'
-			identifier: argument.type
-			count: 6
 			path: Tests/Unit/ContentRenderingTemplateTest.php
 
 		-

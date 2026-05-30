@@ -4,6 +4,8 @@
     data-namespace-typo3-fluid="true"
 >
 
+<f:argument name="lastSearches" type="iterable" optional="true"/>
+
 <f:section name="LastSearches">
     <s:lastSearches>
         <f:if condition="{lastSearches}">
@@ -14,7 +16,7 @@
                     </h2>
                 </header>
 
-                <ul class="space-y-1 p-2">
+                <ul role="list" class="space-y-1 p-2">
                     <f:for each="{lastSearches}" as="searchedFor">
                         <li>
                             <a href="{s:uri.search.startNewSearch(queryString: searchedFor)}" class="solr-ajaxified block rounded-lg px-3 py-2 text-sm font-medium text-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:bg-muted focus-visible:text-foreground focus-visible:outline-hidden focus-visible:ring-3 focus-visible:ring-ring active:bg-muted active:text-foreground"><f:format.htmlentities>{searchedFor}</f:format.htmlentities></a>

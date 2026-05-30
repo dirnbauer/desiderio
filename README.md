@@ -67,12 +67,14 @@ vendor/bin/typo3 extension:setup
 vendor/bin/typo3 cache:flush
 ```
 
-Then enable the base site set plus one of the five presets:
+Then enable the shadcn/ui theme base, the content-element configuration set,
+and one of the five scenario template sets:
 
 1. Site Management → Sites → edit the target site
 2. Add `Desiderio Base` (`webconsulting/desiderio`)
-3. Add one of the five preset sets (see below)
-4. Save and flush caches
+3. Add `Desiderio Content Elements` (`webconsulting/desiderio-content-elements`)
+4. Add one of the five scenario template sets (see below)
+5. Save and flush caches
 
 ### Tooling baseline
 
@@ -85,8 +87,8 @@ Then enable the base site set plus one of the five presets:
 | PHPUnit | `^11.5` | All 101 unit tests pass via `Build/Scripts/runTests.sh`. |
 | Content Blocks | `^2.2` | Drives every one of the 255 content elements. |
 
-The base set also pulls in `webconsulting/desiderio-content-elements`, a single
-aggregate set for the full Content Blocks catalog. Individual generated
+The content-element configuration set depends on the theme base and exposes a
+single aggregate set for the full Content Blocks catalog. Individual generated
 `desiderio/*` content block set names are hidden from the backend picker to keep
 site setup focused on the Desiderio-level sets.
 
@@ -129,15 +131,15 @@ are static partials, not content areas — the editing surface stays focused
 on the content that matters.
 
 `DesiderioBlog`, `DesiderioExtension`, and `DesiderioNews` are shipped by the
-hidden `webconsulting/desiderio-shadcnui-templates` site set. The base set
+hidden `webconsulting/desiderio-shadcnui-templates` site set. The theme base
 lists it as an optional dependency, so these shadcn/ui-oriented structures
 are available by default while their PAGEVIEW template root remains isolated
 at `Resources/Private/ShadcnUi/Templates/`.
 
 ### t3g/blog: full shadcn override
 
-The hidden site set `webconsulting/desiderio-blog` (auto-pulled by the base
-set when [`t3g/blog`](https://extensions.typo3.org/extension/blog/) is
+The hidden site set `webconsulting/desiderio-blog` (auto-pulled by the theme
+base when [`t3g/blog`](https://extensions.typo3.org/extension/blog/) is
 installed) replaces the upstream Bootstrap markup with **shadcn-only**
 templates: cards, badges, pagination, alerts, and the post / comments /
 widget chrome all render through `<d:atom.…>` / `<d:molecule.…>` /
@@ -149,8 +151,7 @@ declares its inputs with **Fluid 5.3 typed `<f:argument>`** blocks
 `type="array"`, …). That gives editors and integrators strict typing all
 the way through the override chain.
 
-The set is shipped *hidden* from the Site Management picker — adding the
-base set is enough.
+The set is shipped *hidden* from the Site Management picker.
 
 ### News: shadcn-styled list, magazine view, and load-more
 
@@ -175,11 +176,12 @@ JavaScript is disabled. There is also a `MagazineList.html` template that
 features the first article on top with the rest as the load-more secondary
 grid.
 
-## Presets
+## Scenario Templates
 
-Five site sets that depend on the base set. Each ships a single CSS file and
-overrides base-set setting defaults. Switching presets **never** changes your
-content, markup, or backend layouts — only the presentation.
+Five scenario template site sets depend on the theme base. Each ships a single
+CSS file and overrides base-set setting defaults. Switching scenario templates
+**never** changes your content, markup, or backend layouts — only the
+presentation.
 
 | Set                                    | Character             |
 | -------------------------------------- | --------------------- |
@@ -193,11 +195,11 @@ The base set also exposes shadcn/create preset support. The committed theme
 CSS currently supports `b6G5977cw` as the default, plus `b4hb38Fyj`, `b0`,
 and `b3IWPgRwnI` as alternate light/dark token sets.
 
-### Switching presets/templates
+### Switching scenario templates
 
 There are two different switches:
 
-1. **Desiderio site preset sets** change broad TYPO3 theme defaults such as
+1. **Desiderio scenario template sets** change broad TYPO3 theme defaults such as
    header, footer, density, and layout. Enable or replace one of the
    `webconsulting/desiderio-preset-*` site sets in
    **Site Management → Sites**.
@@ -315,9 +317,10 @@ exceptions still share the same CSS variables and runtime assets. See
 `ContentBlocks/ContentElements/` for the full list.
 
 The full catalog is exposed through the `webconsulting/desiderio-content-elements`
-site set. This set lists the individual `desiderio/*` block sets as optional
-dependencies, so installations that expose Content Blocks as site sets can add
-one Desiderio item instead of selecting blocks one by one.
+site set. This set depends on `webconsulting/desiderio` and lists the individual
+`desiderio/*` block sets as optional dependencies, so installations that expose
+Content Blocks as site sets can add one Desiderio item instead of selecting
+blocks one by one.
 
 Classic TYPO3 Fluid Styled Content elements are overridden from
 `Resources/Private/FluidStyledContent/` and use the same shadcn preset tokens,
@@ -372,25 +375,20 @@ This keeps Visual Editor image decoration active and avoids Fluid trying to
 convert `TYPO3\CMS\Core\Resource\FileReference` objects to strings while
 compiling non-standard ViewHelper attributes.
 
-## Extension templates
+## Integration templates
 
-The base site set also ships hidden optional integration sets for common
+The theme base also references hidden optional integration sets for common
 extensions:
 
 | Set | Extension | Template paths |
 | --- | --- | --- |
-| Base set TypoScript | `apache-solr-for-typo3/solr` | `Resources/Private/Solr/` |
+| `webconsulting/desiderio-solr` | `apache-solr-for-typo3/solr` | `Resources/Private/Solr/` |
 | `webconsulting/desiderio-news` | `georgringer/news` | `Resources/Private/Extensions/News/` |
 | `webconsulting/desiderio-blog` | `t3g/blog` | `Resources/Private/Extensions/Blog/` |
 
-The News and Blog sets are hidden optional dependencies of
-`webconsulting/desiderio`, so sites using the base set get the Desiderio
-template paths when the matching third-party extension is installed. Solr is a
-special case: the working Solr override is registered by the base setup at
-`Resources/Private/Solr/`. The hidden `webconsulting/desiderio-solr` set is
-currently a no-op, and `Resources/Private/Extensions/Solr/` is kept on disk for
-typed-template coverage until that parallel override tree is ready to register
-at runtime.
+The Solr, News, and Blog sets are hidden optional dependencies of
+`webconsulting/desiderio`, so sites using the theme base get the Desiderio
+template paths when the matching third-party extension is installed.
 
 ## Fluid 5 components
 

@@ -1,5 +1,7 @@
 name: webconsulting/desiderio-content-elements
 label: "Desiderio Content Elements"
+dependencies:
+  - webconsulting/desiderio
 optionalDependencies:
   - desiderio/about-us
   - desiderio/accessibility-statement

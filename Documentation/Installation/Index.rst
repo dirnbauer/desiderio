@@ -22,17 +22,23 @@ TYPO3 branches are not supported.
     The package pulls in :t3:`typo3/cms-workspaces` ``^14.3`` so
     editorial draft / preview workflows are available out of the box.
 
-#.  Enable the base site set
+#.  Enable the shadcn/ui theme base
 
     Open *Site Management → Sites*, edit the target site, and add
     ``Desiderio Base`` (``webconsulting/desiderio``).
 
-#.  Pick a preset
+#.  Enable the content-element configuration set
 
-    Add **one** of the five preset sets (``…/desiderio-preset-saas``,
+    Add ``Desiderio Content Elements``
+    (``webconsulting/desiderio-content-elements``). This aggregate site set
+    depends on the theme base and pulls in the generated Content Block sets.
+
+#.  Pick a scenario template
+
+    Add **one** of the five scenario template sets (``…/desiderio-preset-saas``,
     ``…/desiderio-preset-corporate``, ``…/desiderio-preset-portfolio``,
     ``…/desiderio-preset-editorial``, ``…/desiderio-preset-dashboard``).
-    Switching presets never changes content, markup, or backend
+    Switching scenario templates never changes content, markup, or backend
     layouts — only the presentation.
 
 #.  Flush caches and reload the backend
@@ -61,13 +67,9 @@ optional TYPO3 ecosystem extensions:
           turns on the **Load more** list mode for ``DesiderioBlog``
           and ``DesiderioNews`` page layouts).
     *   - ``apache-solr-for-typo3/solr``
-        - The base set registers the working shadcn-styled Solr
-          templates from ``Resources/Private/Solr/`` and removes the
-          default Solr frontend assets. The hidden
-          ``webconsulting/desiderio-solr`` set is currently a no-op;
-          ``Resources/Private/Extensions/Solr/`` stays on disk for
-          typed-template coverage until that parallel tree is ready for
-          runtime registration.
+        - ``webconsulting/desiderio-solr`` registers the working
+          shadcn-styled Solr templates from ``Resources/Private/Solr/``
+          and removes the default Solr frontend assets.
     *   - ``t3g/blog``
         - ``webconsulting/desiderio-blog`` (registers
           ``Resources/Private/Extensions/Blog/`` template paths so

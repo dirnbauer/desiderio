@@ -7,14 +7,26 @@
 
 <d:layout.section class="cta-card">
     <d:layout.container>
-        <d:molecule.card class="cta-card__card">
-            <f:if condition="{data.badge}"><span class="cta-card__badge">{data -> f:render.text(field: 'badge')}</span></f:if>
-            <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
-            <f:if condition="{data.description}"><d:atom.typography variant="muted">{data -> f:render.text(field: 'description')}</d:atom.typography></f:if>
+        <d:molecule.card class="cta-card__card" role="region">
+            <f:if condition="{data.badge} || {data.header}">
+                <d:molecule.cardHeader class="cta-card__header">
+                    <f:if condition="{data.badge}">
+                        <d:atom.badge variant="outline" class="cta-card__badge">{data -> f:render.text(field: 'badge')}</d:atom.badge>
+                    </f:if>
+                    <f:if condition="{data.header}">
+                        <d:atom.typography tag="h2" variant="h2" class="cta-card__title">{data -> f:render.text(field: 'header')}</d:atom.typography>
+                    </f:if>
+                </d:molecule.cardHeader>
+            </f:if>
+            <f:if condition="{data.description}">
+                <d:molecule.cardContent class="cta-card__content">
+                    <d:atom.typography variant="lead" class="cta-card__description">{data -> f:render.text(field: 'description')}</d:atom.typography>
+                </d:molecule.cardContent>
+            </f:if>
             <f:if condition="{data.cta_text} && {data.cta_link.url}">
-                <div class="cta-card__actions">
+                <d:molecule.cardFooter class="cta-card__footer">
                     <d:atom.button href="{data.cta_link.url}" target="{data.cta_link.target}" size="lg">{data -> f:render.text(field: 'cta_text')}</d:atom.button>
-                </div>
+                </d:molecule.cardFooter>
             </f:if>
         </d:molecule.card>
     </d:layout.container>

@@ -112,4 +112,4 @@ Backend layouts
 
 ``DesiderioBlog``, ``DesiderioExtension``, and ``DesiderioNews`` are
 registered by the hidden ``webconsulting/desiderio-shadcnui-templates``
-site set. The base set lists it as an optional dependency.
+site set. The theme base lists it as an optional dependency.

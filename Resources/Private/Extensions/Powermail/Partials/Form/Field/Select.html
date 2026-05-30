@@ -3,12 +3,12 @@
 <f:argument name="settings" type="array" optional="{true}" />
 <f:argument name="mail" type="object" optional="{true}" />
 
-<div class="powermail_fieldwrap powermail_fieldwrap_type_select powermail_fieldwrap_{field.marker} {field.css} space-y-2">
+<div class="powermail_fieldwrap powermail_fieldwrap_type_select powermail_fieldwrap_{field.marker} {field.css} d-powermail-field space-y-2">
     <f:render partial="Form/FieldLabel" arguments="{field: field}" />
     <vh:form.selectField
         options="{field.modifiedSettings}"
         property="{field.marker}"
-        class="powermail_select h-9 w-full min-w-0 rounded-md border border-input bg-background px-3 py-1 text-sm text-foreground shadow-sm transition-colors focus-visible:border-ring focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:opacity-50 {vh:validation.errorClass(field: field, class: 'border-destructive ring-destructive/30')}"
+        class="powermail_select d-powermail-control d-powermail-select h-9 w-full min-w-0 rounded-md border border-input bg-background px-3 py-1 text-sm text-foreground shadow-sm transition-colors focus-visible:border-ring focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:opacity-50 {vh:validation.errorClass(field: field, class: 'is-invalid border-destructive ring-destructive/30')}"
         id="powermail_field_{field.marker}"
         autocomplete="{vh:string.autocomplete(field: field)}"
         additionalAttributes="{vh:validation.validationDataAttribute(field: field)}"
@@ -16,7 +16,7 @@
         value="{vh:misc.prefillField(field: field, mail: mail)}" />
     <f:if condition="{field.multiselect}">
         <f:if condition="{settings.validation.client}">
-            <div class="powermail_field_error_container powermail_field_error_container_{field.marker} text-sm text-destructive"></div>
+            <div class="powermail_field_error_container powermail_field_error_container_{field.marker} d-powermail-feedback text-sm text-destructive"></div>
         </f:if>
     </f:if>
 </div>

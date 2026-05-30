@@ -5,10 +5,14 @@
   var fieldsetSelector = ".powermail_fieldset";
   var stepSelector = "[data-powermail-morestep-current]";
 
+  function fieldsetIsVisible(fieldset) {
+    return fieldset.style.display !== "none" && window.getComputedStyle(fieldset).display !== "none";
+  }
+
   function visibleFieldset(form) {
     var fieldsets = Array.from(form.querySelectorAll(fieldsetSelector));
     return fieldsets.find(function (fieldset) {
-      return fieldset.offsetParent !== null;
+      return fieldsetIsVisible(fieldset);
     }) || fieldsets[0] || null;
   }
 
@@ -26,7 +30,7 @@
     });
   }
 
-  function setCheckboxGroupValidity(group) {
+  function setCheckboxGroupValidity(group, showInvalid) {
     var boxes = Array.from(group.querySelectorAll('input[type="checkbox"]'));
     var required = group.dataset.desiderioRequired === "true";
     var valid = !required || boxes.some(function (box) {
@@ -36,12 +40,14 @@
     boxes.forEach(function (box, index) {
       box.setCustomValidity(!valid && index === 0 ? "Please select at least one option." : "");
     });
-    group.classList.toggle("d-powermail-invalid", !valid);
+    group.classList.toggle("d-powermail-invalid", Boolean(showInvalid) && !valid);
     return valid;
   }
 
-  function updateCheckboxGroups(scope) {
-    return Array.from(scope.querySelectorAll("[data-desiderio-check-group]")).every(setCheckboxGroupValidity);
+  function updateCheckboxGroups(scope, showInvalid) {
+    return Array.from(scope.querySelectorAll("[data-desiderio-check-group]")).every(function (group) {
+      return setCheckboxGroupValidity(group, showInvalid || group.dataset.desiderioValidated === "true");
+    });
   }
 
   function fieldsInScope(scope) {
@@ -51,14 +57,17 @@
   }
 
   function scopeIsValid(scope) {
-    updateCheckboxGroups(scope);
+    updateCheckboxGroups(scope, false);
     return fieldsInScope(scope).every(function (field) {
       return field.checkValidity();
     });
   }
 
   function validateScope(scope) {
-    updateCheckboxGroups(scope);
+    scope.querySelectorAll("[data-desiderio-check-group]").forEach(function (group) {
+      group.dataset.desiderioValidated = "true";
+    });
+    updateCheckboxGroups(scope, true);
     var fields = fieldsInScope(scope);
     var invalid = fields.find(function (field) {
       return !field.checkValidity();
@@ -133,9 +142,9 @@
 
   function initializeForm(form) {
     form.querySelectorAll("[data-desiderio-check-group]").forEach(function (group) {
-      setCheckboxGroupValidity(group);
+      setCheckboxGroupValidity(group, false);
       group.addEventListener("change", function () {
-        setCheckboxGroupValidity(group);
+        setCheckboxGroupValidity(group, group.dataset.desiderioValidated === "true");
       });
     });
     syncSteps(form);

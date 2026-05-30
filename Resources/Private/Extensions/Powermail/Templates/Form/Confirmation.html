@@ -11,8 +11,9 @@
 <f:argument name="ttContentData" type="array" optional="{true}" />
 
 <f:section name="main">
-    <div class="mx-auto max-w-3xl rounded-md border border-border bg-card p-6 text-card-foreground shadow-sm">
-        <div class="mb-6 space-y-1">
+    <section class="d-powermail-shell">
+    <div class="d-powermail-card d-powermail-result mx-auto max-w-3xl rounded-md border border-border bg-card p-6 text-card-foreground shadow-sm">
+        <div class="d-powermail-card-header mb-6 space-y-1">
             <h2 class="text-xl font-semibold tracking-normal text-foreground">
                 <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/powermail.xlf:powermail.confirmation.title" />
             </h2>
@@ -20,10 +21,10 @@
                 <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/powermail.xlf:powermail.confirmation.description" />
             </p>
         </div>
-        <div class="rounded-md border border-border bg-muted/30 p-4 text-sm text-muted-foreground">
+        <div class="d-powermail-static d-powermail-confirmation-summary rounded-md border border-border bg-muted/30 p-4 text-sm text-muted-foreground">
             {powermail_all -> f:format.raw()}
         </div>
-        <div class="mt-6 flex flex-wrap gap-2">
+        <div class="d-powermail-confirmation-actions mt-6 flex flex-wrap gap-2">
             <f:form
                 action="form"
                 section="c{ttContentData.uid}"
@@ -35,7 +36,7 @@
                 <f:form.submit
                     value="{f:translate(key: 'confirmation_prev', extensionName: 'Powermail')}"
                     additionalAttributes="{data-powermail-form-ajax: 'confirmation'}"
-                    class="inline-flex h-9 items-center justify-center rounded-md border border-border bg-background px-4 text-sm font-medium text-foreground shadow-sm transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" />
+                    class="d-powermail-button d-powermail-button--outline inline-flex h-9 items-center justify-center rounded-md border border-border bg-background px-4 text-sm font-medium text-foreground shadow-sm transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" />
             </f:form>
 
             <f:form
@@ -49,10 +50,11 @@
                 <f:form.submit
                     value="{f:translate(key: 'confirmation_submit', extensionName: 'Powermail')}"
                     additionalAttributes="{data-powermail-form-ajax: 'submit'}"
-                    class="inline-flex h-9 items-center justify-center rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground shadow-sm transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" />
+                    class="d-powermail-button d-powermail-button--primary inline-flex h-9 items-center justify-center rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground shadow-sm transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" />
             </f:form>
         </div>
     </div>
+    </section>
 </f:section>
 
 <f:section name="HiddenFields">

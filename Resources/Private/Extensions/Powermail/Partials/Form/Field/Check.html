@@ -3,11 +3,11 @@
 <f:argument name="settings" type="array" optional="{true}" />
 <f:argument name="mail" type="object" optional="{true}" />
 
-<div class="powermail_fieldwrap powermail_fieldwrap_type_check powermail_fieldwrap_{field.marker} {field.css} space-y-3 sm:col-span-2" data-desiderio-check-group="{field.marker}" data-desiderio-required="{f:if(condition: field.mandatory, then: 'true', else: 'false')}">
+<div class="powermail_fieldwrap powermail_fieldwrap_type_check powermail_fieldwrap_{field.marker} {field.css} d-powermail-field space-y-3 sm:col-span-2" data-desiderio-check-group="{field.marker}" data-desiderio-required="{f:if(condition: field.mandatory, then: 'true', else: 'false')}">
     <f:render partial="Form/FieldLabel" arguments="{field: field}" />
-    <div class="grid gap-2">
+    <div class="d-powermail-options grid gap-2">
         <f:for each="{field.modifiedSettings}" as="setting" iteration="index">
-            <div class="flex items-start gap-2 rounded-md border border-border bg-background p-3 {vh:validation.errorClass(field: field, class: 'border-destructive')}">
+            <div class="d-powermail-option flex items-start gap-2 rounded-md border border-border bg-background p-3 {vh:validation.errorClass(field: field, class: 'border-destructive')}">
                 <f:form.checkbox
                     property="{field.marker}"
                     multiple="true"
@@ -15,15 +15,15 @@
                     checked="{vh:misc.prefillMultiField(field: field, mail: mail, cycle: index.cycle)}"
                     id="powermail_field_{field.marker}_{index.cycle}"
                     additionalAttributes="{vh:validation.validationDataAttribute(field: field, iteration: index)}"
-                    class="powermail_checkbox powermail_checkbox_{field.uid} mt-0.5 size-4 rounded-sm border border-input bg-background text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" />
-                <label for="powermail_field_{field.marker}_{index.cycle}" class="text-sm leading-5 text-foreground">
+                    class="powermail_checkbox powermail_checkbox_{field.uid} d-powermail-checkbox mt-0.5 size-4 rounded-sm border border-input bg-background text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" />
+                <label for="powermail_field_{field.marker}_{index.cycle}" class="d-powermail-option-label text-sm leading-5 text-foreground">
                     <vh:string.escapeLabels>{setting.label}</vh:string.escapeLabels>
                 </label>
             </div>
         </f:for>
     </div>
     <f:if condition="{settings.validation.client}">
-        <div class="powermail_field_error_container powermail_field_error_container_{field.marker} text-sm text-destructive"></div>
+        <div class="powermail_field_error_container powermail_field_error_container_{field.marker} d-powermail-feedback text-sm text-destructive"></div>
     </f:if>
 </div>
 </html>

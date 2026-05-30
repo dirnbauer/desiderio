@@ -3,14 +3,14 @@
 <f:argument name="settings" type="array" optional="{true}" />
 <f:argument name="mail" type="object" optional="{true}" />
 
-<div class="powermail_fieldwrap powermail_fieldwrap_type_input powermail_fieldwrap_{field.marker} {field.css} space-y-2">
+<div class="powermail_fieldwrap powermail_fieldwrap_type_input powermail_fieldwrap_{field.marker} {field.css} d-powermail-field space-y-2">
     <f:render partial="Form/FieldLabel" arguments="{field: field}" />
     <f:form.textfield
         type="{vh:validation.fieldTypeFromValidation(field: field)}"
         property="{field.marker}"
         placeholder="{field.placeholder}"
         value="{vh:misc.prefillField(field: field, mail: mail)}"
-        class="powermail_input h-9 w-full min-w-0 rounded-md border border-input bg-background px-3 py-1 text-sm text-foreground shadow-sm transition-colors placeholder:text-muted-foreground focus-visible:border-ring focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:opacity-50 {vh:validation.errorClass(field: field, class: 'border-destructive ring-destructive/30')}"
+        class="powermail_input d-powermail-control h-9 w-full min-w-0 rounded-md border border-input bg-background px-3 py-1 text-sm text-foreground shadow-sm transition-colors placeholder:text-muted-foreground focus-visible:border-ring focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:opacity-50 {vh:validation.errorClass(field: field, class: 'is-invalid border-destructive ring-destructive/30')}"
         autocomplete="{vh:string.autocomplete(field: field)}"
         additionalAttributes="{vh:validation.validationDataAttribute(field: field)}"
         id="powermail_field_{field.marker}" />

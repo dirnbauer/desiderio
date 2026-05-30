@@ -1,110 +1,497 @@
+.d-powermail,
+.d-powermail * {
+  box-sizing: border-box;
+}
+
+.d-powermail {
+  inline-size: 100%;
+  overflow-x: clip;
+}
+
 .d-powermail-shell {
   container-type: inline-size;
+  inline-size: min(100%, 64rem);
+  margin-inline: auto;
+  max-inline-size: 100%;
+  padding-inline: clamp(0.75rem, 2vw, 1.5rem);
+}
+
+.d-powermail-card,
+.d-powermail .d-powermail-form {
+  inline-size: 100%;
+  overflow: visible;
+  border: 1px solid color-mix(in oklch, var(--border) 88%, var(--foreground) 8%);
+  border-radius: var(--radius);
+  background: var(--card);
+  color: var(--card-foreground);
+  box-shadow: 0 1px 2px color-mix(in oklch, var(--foreground) 12%, transparent);
 }
 
 .d-powermail .d-powermail-form {
-  overflow: clip;
-  border-color: color-mix(in oklch, var(--border) 76%, var(--foreground) 10%);
-  background:
-    linear-gradient(180deg, color-mix(in oklch, var(--card) 96%, var(--background) 4%), var(--card)),
-    var(--card);
-  box-shadow:
-    0 1px 2px color-mix(in oklch, var(--foreground) 12%, transparent),
-    0 20px 60px color-mix(in oklch, var(--foreground) 10%, transparent);
+  padding: clamp(1rem, 2.4vw, 1.5rem);
 }
 
+.d-powermail .desiderio-powermail-newsletter {
+  max-inline-size: 34rem;
+  margin-inline: auto;
+}
+
+.d-powermail .desiderio-powermail-contact {
+  max-inline-size: 44rem;
+  margin-inline: auto;
+}
+
+.d-powermail .desiderio-powermail-consultation,
+.d-powermail .desiderio-powermail-support-upload {
+  max-inline-size: 52rem;
+  margin-inline: auto;
+}
+
+.d-powermail-card {
+  padding: clamp(1rem, 2.4vw, 1.5rem);
+}
+
+.d-powermail-card-header,
 .d-powermail .d-powermail-form > header {
-  margin-bottom: 1.5rem;
-  border-bottom: 1px solid var(--border);
-  padding-bottom: 1.25rem;
+  margin-block-end: 1.5rem;
+  border-block-end: 1px solid var(--border);
+  padding-block-end: 1.25rem;
 }
 
+.d-powermail-card-header h2,
 .d-powermail .d-powermail-form > header h2 {
+  margin: 0;
   font-family: var(--font-heading);
   font-size: clamp(1.35rem, 2vw, 1.75rem);
   line-height: 1.15;
+  letter-spacing: 0;
+}
+
+.d-powermail-card-header p,
+.d-powermail .d-powermail-form > header p {
+  margin-block-start: 0.35rem;
+}
+
+.d-powermail-alert {
+  margin-block-end: 1rem;
+  border: 1px solid color-mix(in oklch, var(--destructive) 30%, var(--border) 70%);
+  border-radius: var(--radius);
+  background: color-mix(in oklch, var(--destructive) 10%, var(--background) 90%);
+  color: var(--destructive);
+  padding: 0.85rem 1rem;
+  font-size: 0.875rem;
 }
 
 .d-powermail .powermail_multistep_navigation {
-  border-radius: calc(var(--radius) + 0.15rem);
-  background: color-mix(in oklch, var(--muted) 78%, var(--background) 22%);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.35rem;
+  margin-block-end: 1.5rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: color-mix(in oklch, var(--muted) 72%, var(--background) 28%);
+  padding: 0.25rem;
 }
 
+.d-powermail-step,
 .d-powermail .powermail_multistep_navigation button {
+  display: inline-flex;
+  min-inline-size: 0;
+  block-size: 2.25rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
   border: 1px solid transparent;
-  min-width: 0;
+  border-radius: calc(var(--radius) - 2px);
+  background: transparent;
+  color: var(--muted-foreground);
+  font: inherit;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  line-height: 1;
+  padding-inline: 0.75rem;
+  text-align: center;
+  transition: background-color 150ms ease, border-color 150ms ease, color 150ms ease, box-shadow 150ms ease;
+}
+
+.d-powermail-step-index {
+  display: inline-flex;
+  block-size: 1.25rem;
+  inline-size: 1.25rem;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--border);
+  border-radius: calc(var(--radius) - 3px);
+  background: var(--background);
+  color: var(--muted-foreground);
+  font-size: 0.6875rem;
+  line-height: 1;
+}
+
+.d-powermail .powermail_multistep_navigation button:hover {
+  background: color-mix(in oklch, var(--background) 82%, var(--muted) 18%);
+  color: var(--foreground);
 }
 
 .d-powermail .powermail_multistep_navigation button.active,
 .d-powermail .powermail_multistep_navigation button[data-active="true"] {
-  border-color: color-mix(in oklch, var(--border) 70%, var(--primary) 30%);
+  border-color: color-mix(in oklch, var(--border) 72%, var(--primary) 28%);
   background: var(--background);
   color: var(--foreground);
-  box-shadow: 0 1px 2px color-mix(in oklch, var(--foreground) 12%, transparent);
+  box-shadow: 0 1px 2px color-mix(in oklch, var(--foreground) 10%, transparent);
 }
 
-.d-powermail .powermail_multistep_navigation button.active span,
-.d-powermail .powermail_multistep_navigation button[data-active="true"] span {
-  border-color: color-mix(in oklch, var(--primary) 50%, var(--border) 50%);
+.d-powermail .powermail_multistep_navigation button.active .d-powermail-step-index,
+.d-powermail .powermail_multistep_navigation button[data-active="true"] .d-powermail-step-index {
+  border-color: color-mix(in oklch, var(--primary) 48%, var(--border) 52%);
   background: var(--primary);
   color: var(--primary-foreground);
 }
 
+.d-powermail-fieldset,
 .d-powermail .powermail_fieldset {
-  border-color: color-mix(in oklch, var(--border) 82%, var(--foreground) 8%);
-  background: color-mix(in oklch, var(--background) 88%, var(--card) 12%);
+  display: block;
+  min-inline-size: 0;
+  margin: 0;
+  border: 1px solid color-mix(in oklch, var(--border) 88%, var(--foreground) 6%);
+  border-radius: var(--radius);
+  background: color-mix(in oklch, var(--background) 94%, var(--card) 6%);
+  padding: 1rem;
 }
 
+.d-powermail .powermail_fieldset + .powermail_fieldset {
+  margin-block-start: 1.5rem;
+}
+
+.d-powermail-legend,
 .d-powermail .powermail_legend,
 .d-powermail .powermail_fieldset > legend {
-  border-radius: var(--radius);
+  width: auto;
+  max-inline-size: calc(100% - 1rem);
+  border-radius: calc(var(--radius) - 2px);
   background: var(--card);
+  color: var(--foreground);
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.25;
   padding-inline: 0.5rem;
 }
 
-.d-powermail .powermail_fieldwrap :is(input:not([type="checkbox"], [type="radio"], [type="submit"], [type="file"]), select, textarea) {
-  min-height: 2.45rem;
-  border-color: color-mix(in oklch, var(--input) 88%, var(--foreground) 8%);
-  background: color-mix(in oklch, var(--background) 96%, var(--card) 4%);
+.d-powermail-fields {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
 }
 
-.d-powermail .powermail_fieldwrap :is(input:not([type="checkbox"], [type="radio"], [type="submit"], [type="file"]), select, textarea):focus {
+.d-powermail .d-powermail-fields {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.d-powermail .desiderio-powermail-newsletter .d-powermail-fields {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.d-powermail-field {
+  min-inline-size: 0;
+}
+
+.d-powermail .powermail_fieldwrap {
+  min-inline-size: 0;
+}
+
+.d-powermail-label {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.25rem;
+  color: var(--foreground);
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.3;
+}
+
+.d-powermail-required {
+  color: var(--destructive);
+}
+
+.d-powermail-control,
+.d-powermail .powermail_fieldwrap :is(input:not([type="checkbox"], [type="radio"], [type="submit"], [type="reset"], [type="file"], [type="hidden"]), select, textarea) {
+  display: flex;
+  inline-size: 100%;
+  min-inline-size: 0;
+  min-block-size: 2rem;
+  border: 1px solid var(--input);
+  border-radius: 0;
+  background: transparent;
+  color: var(--foreground);
+  font: inherit;
+  font-size: 0.875rem;
+  line-height: 1.4;
+  outline: none;
+  padding: 0.375rem 0.625rem;
+  transition: border-color 150ms ease, box-shadow 150ms ease, background-color 150ms ease;
+}
+
+.d-powermail-control::placeholder,
+.d-powermail .powermail_fieldwrap :is(input, textarea)::placeholder {
+  color: var(--muted-foreground);
+  opacity: 1;
+}
+
+.d-powermail-control:disabled,
+.d-powermail .powermail_fieldwrap :is(input, select, textarea):disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.d-powermail-control:focus-visible,
+.d-powermail .powermail_fieldwrap :is(input:not([type="checkbox"], [type="radio"], [type="submit"], [type="reset"], [type="file"], [type="hidden"]), select, textarea):focus-visible {
   border-color: var(--ring);
-  box-shadow: 0 0 0 3px color-mix(in oklch, var(--ring) 22%, transparent);
+  box-shadow: 0 0 0 1px color-mix(in oklch, var(--ring) 58%, transparent);
 }
 
-.d-powermail .powermail_fieldwrap_type_check > .grid > div,
-.d-powermail .powermail_fieldwrap_type_radio > .grid > div {
-  transition: border-color 150ms ease, background-color 150ms ease, box-shadow 150ms ease;
+.d-powermail-control.is-invalid,
+.d-powermail .d-powermail-invalid :is(input, select, textarea),
+.d-powermail :is(input, select, textarea):user-invalid {
+  border-color: var(--destructive);
+  box-shadow: 0 0 0 1px color-mix(in oklch, var(--destructive) 25%, transparent);
 }
 
-.d-powermail .powermail_fieldwrap_type_check > .grid > div:has(input:checked),
-.d-powermail .powermail_fieldwrap_type_radio > .grid > div:has(input:checked) {
+.d-powermail-textarea,
+.d-powermail .powermail_textarea {
+  min-block-size: 6rem;
+  resize: vertical;
+}
+
+.d-powermail-select,
+.d-powermail .powermail_select,
+.d-powermail .powermail_country {
+  background-color: var(--background);
+}
+
+.d-powermail-file,
+.d-powermail .powermail_file {
+  inline-size: 100%;
+  min-block-size: 4.75rem;
+  border: 1px dashed var(--input);
+  border-radius: 0;
+  background: color-mix(in oklch, var(--muted) 36%, var(--background) 64%);
+  color: var(--muted-foreground);
+  cursor: pointer;
+  font-size: 0.875rem;
+  padding: 0.75rem;
+}
+
+.d-powermail-file::file-selector-button,
+.d-powermail .powermail_file::file-selector-button {
+  min-block-size: 2rem;
+  margin-inline-end: 0.75rem;
+  border: 0;
+  border-radius: 0;
+  background: var(--primary);
+  color: var(--primary-foreground);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding-inline: 0.75rem;
+}
+
+.d-powermail-options {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0.5rem;
+}
+
+.d-powermail-option {
+  display: flex;
+  min-inline-size: 0;
+  align-items: flex-start;
+  gap: 0.65rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--background);
+  padding: 0.75rem;
+  transition: background-color 150ms ease, border-color 150ms ease, box-shadow 150ms ease;
+}
+
+.d-powermail-option:has(input:checked) {
   border-color: color-mix(in oklch, var(--primary) 48%, var(--border) 52%);
   background: color-mix(in oklch, var(--primary) 8%, var(--background) 92%);
   box-shadow: inset 0 0 0 1px color-mix(in oklch, var(--primary) 22%, transparent);
 }
 
-.d-powermail .powermail_tab_navigation {
-  margin-top: 1.25rem;
+.d-powermail-checkbox,
+.d-powermail-radio,
+.d-powermail .powermail_checkbox,
+.d-powermail .powermail_radio {
+  block-size: 1rem;
+  inline-size: 1rem;
+  flex: 0 0 auto;
+  margin-block-start: 0.125rem;
+  accent-color: var(--primary);
 }
 
+.d-powermail-radio,
+.d-powermail .powermail_radio {
+  margin-block-start: 0.0625rem;
+}
+
+.d-powermail-option-label {
+  min-inline-size: 0;
+  color: var(--foreground);
+  font-size: 0.875rem;
+  line-height: 1.45;
+}
+
+.d-powermail-static {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: color-mix(in oklch, var(--muted) 34%, var(--background) 66%);
+  color: var(--muted-foreground);
+  font-size: 0.875rem;
+  padding: 1rem;
+}
+
+.d-powermail-text {
+  color: var(--muted-foreground);
+  font-size: 0.875rem;
+  line-height: 1.6;
+}
+
+.d-powermail-button {
+  display: inline-flex;
+  block-size: 2.25rem;
+  min-inline-size: 0;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid transparent;
+  border-radius: 0;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1;
+  padding-inline: 1rem;
+  text-decoration: none;
+  transition: background-color 150ms ease, border-color 150ms ease, box-shadow 150ms ease, color 150ms ease;
+}
+
+.d-powermail-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.d-powermail-button:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px color-mix(in oklch, var(--ring) 42%, transparent);
+}
+
+.d-powermail-button--primary,
 .d-powermail .powermail_submit {
-  min-height: 2.5rem;
-  min-width: 10rem;
+  border-color: var(--primary);
+  background: var(--primary);
+  color: var(--primary-foreground);
 }
 
-.d-powermail .d-powermail-invalid :is(input, select, textarea),
-.d-powermail :is(input, select, textarea):user-invalid {
-  border-color: var(--destructive);
+.d-powermail-button--primary:hover,
+.d-powermail .powermail_submit:hover {
+  background: color-mix(in oklch, var(--primary) 90%, var(--background) 10%);
+}
+
+.d-powermail-button--outline {
+  border-color: var(--border);
+  background: var(--background);
+  color: var(--foreground);
+}
+
+.d-powermail-button--outline:hover {
+  background: var(--muted);
+}
+
+.d-powermail-button--destructive {
+  border-color: color-mix(in oklch, var(--destructive) 18%, transparent);
+  background: color-mix(in oklch, var(--destructive) 10%, var(--background) 90%);
+  color: var(--destructive);
+}
+
+.d-powermail-button--destructive:hover {
+  background: color-mix(in oklch, var(--destructive) 16%, var(--background) 84%);
+}
+
+.d-powermail .powermail_tab_navigation {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  margin-block-start: 1.25rem;
+  border-block-start: 1px solid var(--border);
+  padding-block-start: 1rem;
+}
+
+.d-powermail .powermail_fieldwrap_type_submit,
+.d-powermail .powermail_fieldwrap_type_reset {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.d-powermail .powermail_fieldwrap_type_submit .d-powermail-button,
+.d-powermail .powermail_submit {
+  min-inline-size: 9rem;
+}
+
+.d-powermail-result {
+  inline-size: min(100%, 48rem);
+}
+
+.d-powermail-confirmation-summary {
+  overflow-x: auto;
+}
+
+.d-powermail-confirmation-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-block-start: 1.5rem;
+}
+
+@container (min-width: 42rem) {
+  .d-powermail .powermail_multistep_navigation {
+    grid-auto-columns: minmax(0, 1fr);
+    grid-auto-flow: column;
+    grid-template-columns: none;
+  }
+
+  .d-powermail-fields {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .d-powermail .d-powermail-fields {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .d-powermail .desiderio-powermail-newsletter .d-powermail-fields {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .d-powermail-options--inline {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @container (max-width: 42rem) {
-  .d-powermail .d-powermail-form {
-    padding: 1rem;
+  .d-powermail-fieldset,
+  .d-powermail .powermail_fieldset {
+    padding: 0.875rem;
   }
 
-  .d-powermail .powermail_submit {
-    width: 100%;
+  .d-powermail .powermail_tab_navigation {
+    flex-direction: column-reverse;
+  }
+
+  .d-powermail .powermail_tab_navigation .d-powermail-button,
+  .d-powermail .powermail_submit,
+  .d-powermail .powermail_fieldwrap_type_submit .d-powermail-button,
+  .d-powermail .powermail_fieldwrap_type_reset .d-powermail-button {
+    inline-size: 100%;
   }
 }

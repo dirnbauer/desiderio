@@ -278,7 +278,9 @@ final class ShadcnThemeTest extends TestCase
     private static function shadcnSettings(): array
     {
         $settings = self::parseYamlFile(__DIR__ . '/../../Configuration/Sets/Desiderio/settings.yaml');
-        $shadcn = $settings['desiderio']['shadcn'] ?? null;
+        $siteSettings = $settings['desiderio'] ?? null;
+        self::assertIsArray($siteSettings);
+        $shadcn = $siteSettings['shadcn'] ?? null;
         self::assertIsArray($shadcn);
 
         /** @var array<string, mixed> $shadcn */

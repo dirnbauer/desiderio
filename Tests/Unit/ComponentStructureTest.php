@@ -116,8 +116,17 @@ final class ComponentStructureTest extends TestCase
     private static function configuredShadcnPresetAndStyle(): array
     {
         $settings = Yaml::parseFile(__DIR__ . '/../../Configuration/Sets/Desiderio/settings.yaml');
-        $shadcn = is_array($settings) ? ($settings['desiderio']['shadcn'] ?? []) : [];
+        self::assertIsArray($settings);
+        $siteSettings = $settings['desiderio'] ?? null;
+        self::assertIsArray($siteSettings);
+        $shadcn = $siteSettings['shadcn'] ?? null;
+        self::assertIsArray($shadcn);
 
-        return [(string) ($shadcn['preset'] ?? ''), (string) ($shadcn['style'] ?? '')];
+        $preset = $shadcn['preset'] ?? null;
+        $style = $shadcn['style'] ?? null;
+        self::assertIsString($preset);
+        self::assertIsString($style);
+
+        return [$preset, $style];
     }
 }

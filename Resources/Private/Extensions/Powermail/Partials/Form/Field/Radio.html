@@ -7,14 +7,14 @@
     <f:render partial="Form/FieldLabel" arguments="{field: field}" />
     <div class="grid gap-2 sm:grid-cols-2">
         <f:for each="{field.modifiedSettings}" as="setting" iteration="index">
-            <div class="flex items-center gap-2 rounded-md border border-border bg-background p-3 {vh:validation.errorClass(field: field, class: 'border-destructive')}">
+            <div class="flex items-center gap-2 rounded-none border border-border bg-background p-3 {vh:validation.errorClass(field: field, class: 'border-destructive')}">
                 <f:form.radio
                     property="{field.marker}"
                     value="{setting.value}"
                     checked="{vh:misc.prefillMultiField(field: field, mail: mail, cycle: index.cycle)}"
                     id="powermail_field_{field.marker}_{index.cycle}"
                     additionalAttributes="{vh:validation.validationDataAttribute(field: field, iteration: index)}"
-                    class="powermail_radio size-4 rounded-full border border-input bg-background text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" />
+                    class="powermail_radio size-4 rounded-full border border-input bg-transparent text-primary accent-primary outline-none focus-visible:ring-1 focus-visible:ring-ring/50 dark:bg-input/30" />
                 <label for="powermail_field_{field.marker}_{index.cycle}" class="text-sm text-foreground">
                     <vh:string.escapeLabels>{setting.label}</vh:string.escapeLabels>
                 </label>
@@ -22,7 +22,7 @@
         </f:for>
     </div>
     <f:if condition="{settings.validation.client}">
-        <div class="powermail_field_error_container powermail_field_error_container_{field.marker} text-sm text-destructive"></div>
+        <div class="powermail_field_error_container powermail_field_error_container_{field.marker} text-xs text-destructive"></div>
     </f:if>
 </div>
 </html>

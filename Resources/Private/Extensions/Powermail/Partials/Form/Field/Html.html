@@ -3,7 +3,7 @@
 <f:argument name="settings" type="array" optional="{true}" />
 
 <div class="powermail_fieldwrap powermail_fieldwrap_type_html powermail_fieldwrap_{field.marker} {field.css} sm:col-span-2">
-    <div class="rounded-md border border-border bg-muted/30 p-4 text-sm text-muted-foreground">
+    <div class="rounded-none border border-border bg-muted/30 p-4 text-sm text-muted-foreground">
         <f:if condition="{settings.misc.htmlForHtmlFields}">
             <f:then><f:sanitize.html>{field.text -> f:format.raw()}</f:sanitize.html></f:then>
             <f:else>{field.text}</f:else>

@@ -14,6 +14,12 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 - Content Blocks collection fields now use per-field prefixing instead of a
   generated TCA override patch, so reused `items`-style identifiers no longer
   collapse into one shared `tt_content` column.
+- Powermail form templates now mirror the committed shadcn `radix-lyra`
+  primitive atoms (flat `rounded-none`, compact `h-8`/`text-xs`, `ring-1`
+  focus, `bg-transparent` inputs with full `dark:` and `aria-invalid:`
+  variants, card surfaces via `ring-1 ring-foreground/10`) instead of a
+  hand-written "new-york" flavour, so embedded forms match the rest of the
+  content-element design system and render correctly in light and dark mode.
 
 ### Documentation
 

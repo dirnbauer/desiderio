@@ -12,7 +12,7 @@
 <f:argument name="mail" type="object" optional="{true}" />
 
 <f:section name="main">
-    <f:alias map="{flashMessageClass: 'rounded-md border border-destructive/30 bg-destructive/10 p-3 text-sm text-destructive'}">
+    <f:alias map="{flashMessageClass: 'rounded-none border border-destructive/30 bg-destructive/10 p-3 text-sm text-destructive'}">
         <f:render partial="Misc/FlashMessages" arguments="{_all}" />
     </f:alias>
 
@@ -27,7 +27,7 @@
                     autocomplete="{form.autocompleteToken}"
                     additionalAttributes="{vh:validation.enableJavascriptValidationAndAjax(form: form)}"
                     addQueryString="{settings.misc.addQueryString}"
-                    class="powermail_form powermail_form_{form.uid} {form.css} {vh:misc.morestepClass(activate: settings.main.moresteps)} rounded-md border border-border bg-card p-4 text-card-foreground shadow-sm sm:p-6">
+                    class="powermail_form powermail_form_{form.uid} {form.css} {vh:misc.morestepClass(activate: settings.main.moresteps)} rounded-none bg-card p-4 text-card-foreground ring-1 ring-foreground/10 sm:p-6">
 
                     <f:if condition="{form.css} != 'nolabel'">
                         <header class="mb-6 space-y-1">
@@ -41,16 +41,16 @@
                     <f:render partial="Misc/FormError" arguments="{_all}" />
 
                     <f:if condition="{settings.main.moresteps}">
-                        <nav class="mb-6 grid gap-2 rounded-md border border-border bg-muted/30 p-1 text-sm sm:grid-flow-col sm:auto-cols-fr" aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/powermail.xlf:powermail.multistep.label')}">
+                        <nav class="mb-6 grid gap-2 rounded-none border border-border bg-muted/30 p-1 text-sm sm:grid-flow-col sm:auto-cols-fr" aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/powermail.xlf:powermail.multistep.label')}">
                             <f:for each="{form.pages}" as="page" iteration="iterationPages">
-                                <button class="inline-flex h-9 items-center justify-center rounded-sm px-3 text-xs font-medium text-muted-foreground transition-colors hover:bg-background hover:text-foreground data-[active=true]:bg-background data-[active=true]:text-foreground data-[active=true]:shadow-sm"
+                                <button class="inline-flex h-8 items-center justify-center rounded-none px-3 text-xs font-medium text-muted-foreground transition-colors outline-none hover:bg-background hover:text-foreground focus-visible:ring-1 focus-visible:ring-ring/50 data-[active=true]:bg-background data-[active=true]:text-foreground data-[active=true]:ring-1 data-[active=true]:ring-foreground/10"
                                         type="button"
                                         data-active="{f:if(condition: iterationPages.isFirst, then: 'true', else: 'false')}"
                                         data-powermail-morestep-validate="{settings.validation.morestep.fieldset}"
                                         data-powermail-fieldset="{page.uid}"
                                         data-powermail-morestep-current="{iterationPages.index}"
                                         data-powermail-morestep-show="{iterationPages.index}">
-                                    <span class="me-2 inline-flex size-5 items-center justify-center rounded-sm border border-border bg-muted text-[11px]">{iterationPages.cycle}</span>
+                                    <span class="me-2 inline-flex size-5 items-center justify-center rounded-none border border-border bg-muted text-[11px]">{iterationPages.cycle}</span>
                                     {page.title}
                                 </button>
                             </f:for>
@@ -69,7 +69,7 @@
             </section>
         </f:then>
         <f:else>
-            <div class="rounded-md border border-destructive/30 bg-destructive/10 p-4 text-sm text-destructive">
+            <div class="rounded-none border border-destructive/30 bg-destructive/10 p-4 text-sm text-destructive">
                 <f:translate key="error_no_form" extensionName="Powermail" />
             </div>
         </f:else>

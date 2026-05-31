@@ -11,11 +11,11 @@
 <f:argument name="optinActive" type="bool" optional="{true}" default="{false}" />
 
 <f:section name="main">
-    <f:alias map="{flashMessageClass: 'rounded-md border border-destructive/30 bg-destructive/10 p-3 text-sm text-destructive'}">
+    <f:alias map="{flashMessageClass: 'rounded-none border border-destructive/30 bg-destructive/10 p-3 text-sm text-destructive'}">
         <f:render partial="Misc/FlashMessages" arguments="{_all}" />
     </f:alias>
 
-    <div class="mx-auto max-w-3xl rounded-md border border-border bg-card p-6 text-card-foreground shadow-sm" data-powermail-form="{mail.form.uid}">
+    <div class="mx-auto max-w-3xl rounded-none bg-card p-6 text-card-foreground ring-1 ring-foreground/10" data-powermail-form="{mail.form.uid}">
         <f:if condition="{optinActive}">
             <f:then>
                 <p class="text-sm text-muted-foreground"><f:translate key="optin_seeMail" extensionName="Powermail" /></p>

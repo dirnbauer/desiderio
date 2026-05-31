@@ -11,7 +11,7 @@
 <f:argument name="ttContentData" type="array" optional="{true}" />
 
 <f:section name="main">
-    <div class="mx-auto max-w-3xl rounded-md border border-border bg-card p-6 text-card-foreground shadow-sm">
+    <div class="mx-auto max-w-3xl rounded-none bg-card p-6 text-card-foreground ring-1 ring-foreground/10">
         <div class="mb-6 space-y-1">
             <h2 class="text-xl font-semibold tracking-normal text-foreground">
                 <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/powermail.xlf:powermail.confirmation.title" />
@@ -20,7 +20,7 @@
                 <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/powermail.xlf:powermail.confirmation.description" />
             </p>
         </div>
-        <div class="rounded-md border border-border bg-muted/30 p-4 text-sm text-muted-foreground">
+        <div class="rounded-none border border-border bg-muted/30 p-4 text-sm text-muted-foreground">
             {powermail_all -> f:format.raw()}
         </div>
         <div class="mt-6 flex flex-wrap gap-2">
@@ -35,7 +35,7 @@
                 <f:form.submit
                     value="{f:translate(key: 'confirmation_prev', extensionName: 'Powermail')}"
                     additionalAttributes="{data-powermail-form-ajax: 'confirmation'}"
-                    class="inline-flex h-9 items-center justify-center rounded-md border border-border bg-background px-4 text-sm font-medium text-foreground shadow-sm transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" />
+                    class="group/button inline-flex h-8 shrink-0 items-center justify-center gap-1.5 rounded-none border border-border bg-background px-2.5 text-xs font-medium text-foreground whitespace-nowrap transition-all outline-none select-none hover:bg-muted hover:text-foreground focus-visible:border-ring focus-visible:ring-1 focus-visible:ring-ring/50 active:translate-y-px disabled:pointer-events-none disabled:opacity-50 dark:border-input dark:bg-input/30 dark:hover:bg-input/50" />
             </f:form>
 
             <f:form
@@ -49,7 +49,7 @@
                 <f:form.submit
                     value="{f:translate(key: 'confirmation_submit', extensionName: 'Powermail')}"
                     additionalAttributes="{data-powermail-form-ajax: 'submit'}"
-                    class="inline-flex h-9 items-center justify-center rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground shadow-sm transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" />
+                    class="group/button inline-flex h-8 shrink-0 items-center justify-center gap-1.5 rounded-none border border-transparent bg-clip-padding bg-primary px-2.5 text-xs font-medium text-primary-foreground whitespace-nowrap transition-all outline-none select-none hover:bg-primary/80 focus-visible:border-ring focus-visible:ring-1 focus-visible:ring-ring/50 active:translate-y-px disabled:pointer-events-none disabled:opacity-50" />
             </f:form>
         </div>
     </div>

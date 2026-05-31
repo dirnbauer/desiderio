@@ -51,12 +51,20 @@ final class PowermailIntegrationTest extends TestCase
         }
 
         $form = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/Powermail/Templates/Form/Form.html');
-        self::assertStringContainsString('rounded-md border border-border bg-card', $form);
+        // Flat radix-lyra card surface (ring, not border+shadow) — mirrors the generated Card atom.
+        self::assertStringContainsString('rounded-none bg-card', $form);
+        self::assertStringContainsString('ring-1 ring-foreground/10', $form);
+        self::assertStringNotContainsString('rounded-md', $form);
+        self::assertStringNotContainsString('shadow-sm', $form);
         self::assertStringContainsString('data-powermail-morestep-show', $form);
 
         $input = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/Powermail/Partials/Form/Field/Input.html');
-        self::assertStringContainsString('border-input bg-background', $input);
-        self::assertStringContainsString('focus-visible:ring-2 focus-visible:ring-ring', $input);
+        // Inputs mirror the generated Input atom (radix-lyra): flat, compact, ring-1, light/dark capable.
+        self::assertStringContainsString('rounded-none border border-input bg-transparent', $input);
+        self::assertStringContainsString('focus-visible:ring-1 focus-visible:ring-ring/50', $input);
+        self::assertStringContainsString('dark:bg-input/30', $input);
+        self::assertStringContainsString('aria-invalid:ring-destructive/20', $input);
+        self::assertStringNotContainsString('focus-visible:ring-2', $input);
     }
 
     public function testPowermailTranslationsAreXliff20InEnglishAndGerman(): void

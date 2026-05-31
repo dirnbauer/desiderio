@@ -13,7 +13,13 @@ require __DIR__ . '/powermail-fluid-templates.php';
  *   php Build/Scripts/sync-shadcn-fluid-primitives.php
  *   php Build/Scripts/sync-shadcn-fluid-primitives.php --preset=b0
  *   php Build/Scripts/sync-shadcn-fluid-primitives.php --style=radix-mira
+ *   php Build/Scripts/sync-shadcn-fluid-primitives.php --style=radix-nova --baseColor=taupe
  *   php Build/Scripts/sync-shadcn-fluid-primitives.php --check
+ *
+ * --preset   shadcn/create id (decodes style + base colour + icons in one go).
+ * --style    radix-<name> source style for the component class contracts.
+ * --baseColor olive|mist|taupe|neutral|stone|zinc|slate|gray — recolours the
+ *            active preset's theme tokens (forces the colour block to regenerate).
  */
 
 $root = dirname(__DIR__, 2);
@@ -41,7 +47,7 @@ if (!preg_match('/^radix-[a-z0-9-]+$/', $style)) {
 }
 
 $iconLibrary = presetValue($presetMetadata, 'iconLibrary') ?? ($componentsJson['iconLibrary'] ?? 'lucide');
-$baseColor = presetValue($presetMetadata, 'baseColor') ?? ($componentsJson['tailwind']['baseColor'] ?? 'neutral');
+$baseColor = $options['baseColor'] ?? presetValue($presetMetadata, 'baseColor') ?? ($componentsJson['tailwind']['baseColor'] ?? 'neutral');
 
 $recipes = fetchRecipes($style);
 $targets = renderTargets($recipes, $style, $preset, $scriptRelativePath);
@@ -52,7 +58,7 @@ $expectedSettingsYaml = syncSettingsYaml($settingsYaml, $preset, $style, $iconLi
 $themePath = $root . '/Resources/Public/Css/shadcn-theme.css';
 $themeCss = readTextFile($themePath);
 $presetBlockSelector = sprintf('body[data-shadcn-preset="%s"]', $preset);
-$expectedThemeCss = syncThemeColors($themeCss, $preset, $baseColor, $style);
+$expectedThemeCss = syncThemeColors($themeCss, $preset, $baseColor, $style, isset($options['baseColor']));
 
 if ($checkOnly) {
     $errors = [];
@@ -135,6 +141,11 @@ function parseOptions(array $argv): array
 
         if (str_starts_with($argument, '--style=')) {
             $options['style'] = substr($argument, 8);
+            continue;
+        }
+
+        if (str_starts_with($argument, '--baseColor=')) {
+            $options['baseColor'] = substr($argument, 12);
             continue;
         }
 
@@ -407,13 +418,19 @@ function renderPresetColorBlock(string $preset, array $palette, string $style): 
  * `--preset=<new-id>` actually re-skin the site instead of falling back to the
  * neutral `:root`.
  */
-function syncThemeColors(string $css, string $preset, string $baseColor, string $style): string
+function syncThemeColors(string $css, string $preset, string $baseColor, string $style, bool $force = false): string
 {
-    if (str_contains($css, sprintf('body[data-shadcn-preset="%s"]', $preset))) {
+    $hasBlock = str_contains($css, sprintf('body[data-shadcn-preset="%s"]', $preset));
+    if ($hasBlock && !$force) {
         return $css;
     }
 
     $block = renderPresetColorBlock($preset, fetchColors($baseColor), $style);
+
+    // An explicit --baseColor recolours the active preset, so drop its old block first.
+    if ($hasBlock) {
+        $css = removePresetColorBlock($css, $preset);
+    }
 
     // Insert before the font/radius utility blocks so preset blocks stay grouped.
     $marker = 'body[data-font="inter"] {';
@@ -423,6 +440,18 @@ function syncThemeColors(string $css, string $preset, string $baseColor, string 
     }
 
     return substr($css, 0, $pos) . $block . "\n" . substr($css, $pos);
+}
+
+/**
+ * Strip the light + dark `body[data-shadcn-preset="…"]` token blocks for a
+ * preset. CSS custom-property blocks have no nested braces, so a non-greedy
+ * `[^}]*` match is safe.
+ */
+function removePresetColorBlock(string $css, string $preset): string
+{
+    $pattern = '/(?:\.dark )?body\[data-shadcn-preset="' . preg_quote($preset, '/') . '"\] \{[^}]*\}\n\n?/';
+
+    return (string) preg_replace($pattern, '', $css);
 }
 
 /**

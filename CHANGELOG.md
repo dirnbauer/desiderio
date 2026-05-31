@@ -30,6 +30,13 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
   hand-committed colour blocks, so the site changed shape but not colour.
   Existing committed blocks stay byte-stable (idempotent), and the sync
   `--check` now fails when the configured preset has no colour block.
+- The sync now accepts `--baseColor=<name>` so a style and palette can be
+  combined without a preset id (e.g. `--style=radix-nova --baseColor=taupe`),
+  force-regenerating the active preset's colour block. The default theme moved
+  to `b27GcrRo` (radix-rhea — modern, rounded, neutral; Inter; Lucide), and
+  `PowermailIntegrationTest` now asserts the generated `Form/ShadcnClass`
+  structure and semantic tokens instead of radix-lyra-specific radius/ring
+  values, so the suite stays green across any preset/style.
 
 ### Documentation
 
@@ -40,6 +47,9 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
   child rows and mainly reduces schema noise, not physical database size.
 - Refreshed maintained markdown references to the current 101-test local
   PHPUnit suite.
+- Documented the two ways to switch the shadcn preset/style in the README: a
+  `--preset=<id>` copied from shadcn/create, or `--style` + `--baseColor`
+  directly (no preset id needed).
 
 ## [2.2.0] — 2026-05-03
 

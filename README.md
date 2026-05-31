@@ -191,9 +191,10 @@ presentation.
 | `webconsulting/desiderio-preset-editorial`        | Blog & Magazine       |
 | `webconsulting/desiderio-preset-dashboard`        | Dashboard App         |
 
-The base set also exposes shadcn/create preset support. The committed theme
-CSS currently supports `b6G5977cw` as the default, plus `b4hb38Fyj`, `b0`,
-and `b3IWPgRwnI` as alternate light/dark token sets.
+The base set also exposes shadcn/create preset support. The committed default
+is `b27GcrRo` (radix-rhea, modern neutral); `b6G5977cw`, `b4hb38Fyj`, `b0`, and
+`b3IWPgRwnI` ship as alternate light/dark token sets, and the sync generates a
+token block for any other preset on demand (see below).
 
 ### Switching scenario templates
 
@@ -208,35 +209,48 @@ There are two different switches:
    `desiderio.shadcn.preset` in **Site Management → Settings** when the id is
    already supported by committed CSS.
 
-To switch to `b6G5977cw`:
+#### Two ways to switch
 
-1. Set `desiderio.shadcn.preset` to `b6G5977cw`.
-2. Set `desiderio.shadcn.style` to `radix-lyra`.
-3. Set `desiderio.layout.radius` to `preset` so the preset can keep its square
-   `--radius: 0` design.
-4. Keep `desiderio.typography.fontSans` on `preset` so JetBrains Mono is used.
-5. Flush TYPO3 caches and check light and dark mode.
+The current default is `b27GcrRo` (radix-rhea — modern, rounded, neutral). One
+command re-skins the whole site — content elements **and** powermail forms,
+shapes **and** colours — then rebuild CSS.
 
-Any shadcn/create id can be adopted with a single command — the sync now
-generates the preset's color tokens from the official palette, so a new id
-re-skins **both shapes and colors** instead of falling back to the neutral
-`:root`:
+**A — a real preset id** from
+[ui.shadcn.com/create](https://ui.shadcn.com/create): copy the `b…` code from
+the share button / URL (`?preset=b…`).
 
 ```bash
-# Re-skin the whole site to any shadcn/create preset id:
-php Build/Scripts/sync-shadcn-fluid-primitives.php --preset=<id>
+php Build/Scripts/sync-shadcn-fluid-primitives.php --preset=b1FSk5ls0
 npm run build:css
 ```
 
-This decodes the id, re-renders the Fluid primitives for the new style,
-fetches the matching base-color palette from
-`https://ui.shadcn.com/r/colors/{baseColor}.json`, and writes the
-`body[data-shadcn-preset="<id>"]` light + dark token blocks into
-`Resources/Public/Css/shadcn-theme.css`. Existing presets keep their committed
-blocks (idempotent). To make the id the default for new installs, set
-`desiderio.shadcn.preset` in `Configuration/Sets/Desiderio/settings.yaml` (or
-pick it in **Site Management → Settings**); fonts stay selectable via
-`desiderio.typography.fontSans` / the `data-font` setting.
+The id decodes into a style + base colour + icon library, so this re-renders
+the Fluid primitive contracts, fetches the matching palette from
+`https://ui.shadcn.com/r/colors/{baseColor}.json`, writes the
+`body[data-shadcn-preset="<id>"]` light + dark blocks into
+`Resources/Public/Css/shadcn-theme.css`, and updates `components.json` + Site
+Settings. Presets that already ship a committed block are left untouched
+(idempotent).
+
+**B — style + base colour directly** (no preset id needed):
+
+```bash
+php Build/Scripts/sync-shadcn-fluid-primitives.php --style=radix-nova --baseColor=taupe
+npm run build:css
+```
+
+- `--style`: `radix-rhea` (modern, current), `radix-lyra` (square/flat),
+  `radix-mira` (soft), or `radix-nova` (rounded).
+- `--baseColor`: `olive` · `mist` · `taupe` · `neutral` · `stone` · `zinc` ·
+  `slate` · `gray` — recolours the active preset's theme tokens.
+
+To make a choice the default for new installs, set `desiderio.shadcn.preset`
+(and `desiderio.shadcn.style`) in `Configuration/Sets/Desiderio/settings.yaml`
+or **Site Management → Settings** — a new id must also be listed in the matching
+`enum` in `settings.definitions.yaml`. Keep `desiderio.layout.radius = preset`
+and `desiderio.typography.fontSans = preset` so the preset owns radius and font.
+`--check` fails when the configured preset has no colour block. Flush TYPO3
+caches and verify light and dark mode.
 
 For shadcn-aware tooling, this repository keeps a valid `components.json`,
 scratch TypeScript aliases, and a local registry. Run:

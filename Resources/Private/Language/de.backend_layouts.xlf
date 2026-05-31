@@ -25,6 +25,18 @@
         <target>Desiderio: Styleguide</target>
       </segment>
     </unit>
+    <unit id="backend_layout.desiderio_search.title">
+      <segment state="final">
+        <source>Desiderio: Search</source>
+        <target>Desiderio: Suche</target>
+      </segment>
+    </unit>
+    <unit id="backend_layout.desiderio_error.title">
+      <segment state="final">
+        <source>Desiderio: Error page</source>
+        <target>Desiderio: Fehlerseite</target>
+      </segment>
+    </unit>
     <unit id="backend_layout.desiderio_news.title">
       <segment state="final">
         <source>Desiderio: News</source>

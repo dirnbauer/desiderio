@@ -7,17 +7,17 @@
 <f:layout name="Split"/>
 
 <f:section name="content">
-    <div id="tx-solr-search" class="space-y-6">
+    <div id="tx-solr-search" class="d-solr-search" data-shadcn-pattern="search-results">
         <f:render partial="Debug/Query" section="Query" arguments="{resultSet: resultSet}" />
 
-        <div class="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-            <div class="min-w-0 flex-1">
+        <div class="d-solr-search__command-row">
+            <div class="d-solr-search__command">
                 <f:render partial="Search/Form" section="Form" arguments="{search:search, additionalFilters:additionalFilters, pluginNamespace: pluginNamespace, resultSet: resultSet}" />
             </div>
 
             <f:if condition="{resultSet.hasSearched}">
                 <f:if condition="{resultSet.usedSearchRequest.contextTypoScriptConfiguration.searchSorting}">
-                    <div class="shrink-0">
+                    <div class="d-solr-search__sort">
                         <f:render partial="Result/Sorting" section="Sorting" arguments="{resultSet:resultSet}" />
                     </div>
                 </f:if>
@@ -30,7 +30,7 @@
 
         <s:debug.query>
             <f:if condition="{parsedQuery}">
-                <div class="rounded-xl border border-border bg-card px-4 py-3 text-sm text-card-foreground shadow-sm" role="status">
+                <div class="d-solr-status-card" role="status" data-slot="card">
                     <strong class="block font-semibold"><f:translate key="solr.debug.parsedQuery" domain="desiderio.labels">Parsed Query:</f:translate></strong>
                     <span class="text-muted-foreground">{parsedQuery}</span>
                 </div>
@@ -38,7 +38,7 @@
         </s:debug.query>
 
         <f:if condition="{resultSet.hasSearched}">
-            <div class="space-y-2 text-sm text-muted-foreground">
+            <div class="d-solr-search__meta">
                 <f:if condition="{resultSet.isAutoCorrected}">
                     <f:then>
                         <p>
@@ -80,15 +80,15 @@
         <f:if condition="{resultSet.hasSearched}">
             <f:if condition="{resultSet.searchresults.hasGroups}">
                 <f:then>
-                    <div class="space-y-6">
+                    <div class="d-solr-results-group-list">
                         <f:for each="{resultSet.searchresults.groups}" as="group">
-                            <section class="space-y-4">
-                                <h2 class="text-xl font-semibold tracking-tight">{group.groupname}</h2>
+                            <section class="d-solr-results-group">
+                                <h2 class="d-solr-results-group__title">{group.groupname}</h2>
                                 <f:for each="{group.groupitems}" as="groupItem">
-                                    <div class="space-y-4">
-                                        <p class="text-sm font-medium text-muted-foreground">{groupItem.groupValue} <span>({groupItem.allResultCount})</span></p>
+                                    <div class="d-solr-results-group__items">
+                                        <p class="d-solr-results-group__label">{groupItem.groupValue} <span>({groupItem.allResultCount})</span></p>
                                         <s:groupItemPaginate groupItem="{groupItem}" resultSet="{resultSet}">
-                                            <ol start="{pagination.resultCountStart}" class="space-y-4">
+                                            <ol start="{pagination.resultCountStart}" class="d-solr-results-list">
                                                 <f:for each="{documents}" as="document">
                                                     <li>
                                                         <f:render partial="Result/Document" section="Document" arguments="{resultSet:resultSet, document:document}" />
@@ -103,14 +103,14 @@
                     </div>
                 </f:then>
                 <f:else if="{resultSet.allResultCount}">
-                    <div class="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+                    <div class="d-solr-results-toolbar">
                         <f:if condition="{pagination.lastPageNumber} > 1">
                             <f:render partial="Result/Pagination" section="Pagination" arguments="{resultSet: resultSet, pagination: pagination, currentPage: currentPage}"/>
                         </f:if>
                         <f:render partial="Result/PerPage" section="PerPage" arguments="{resultSet: resultSet}" />
                     </div>
 
-                    <div data-start="{pagination.startRecordNumber}" class="space-y-4">
+                    <div data-start="{pagination.startRecordNumber}" class="d-solr-results-list">
                         <f:for each="{resultSet.searchResults}" as="document">
                             <f:render partial="Result/Document" section="Document" arguments="{resultSet: resultSet, document: document}" />
                         </f:for>

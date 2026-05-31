@@ -1,0 +1,14 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:argument name="homeLink" type="string" optional="{true}" default=""/>
+
+<p class="desiderio-system-page__home">
+    <f:link.typolink parameter="{homeLink}">
+        <f:translate extensionName="desiderio" key="a11y.nav.home">Home</f:translate>
+    </f:link.typolink>
+</p>
+
+</html>

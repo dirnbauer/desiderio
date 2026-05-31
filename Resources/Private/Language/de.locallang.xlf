@@ -115,6 +115,18 @@
         <target>Footer-Navigation</target>
       </segment>
     </unit>
+    <unit id="a11y.nav.legal">
+      <segment>
+        <source>Legal navigation</source>
+        <target>Rechtliche Navigation</target>
+      </segment>
+    </unit>
+    <unit id="a11y.nav.home">
+      <segment>
+        <source>Home</source>
+        <target>Startseite</target>
+      </segment>
+    </unit>
     <unit id="a11y.nav.language">
       <segment>
         <source>Language</source>
@@ -131,6 +143,96 @@
       <segment>
         <source>Toggle dark mode</source>
         <target>Dunkelmodus umschalten</target>
+      </segment>
+    </unit>
+    <unit id="a11y.theme.switch">
+      <segment>
+        <source>Colour scheme</source>
+        <target>Farbschema</target>
+      </segment>
+    </unit>
+    <unit id="search.label">
+      <segment>
+        <source>Search</source>
+        <target>Suche</target>
+      </segment>
+    </unit>
+    <unit id="search.placeholder">
+      <segment>
+        <source>Search</source>
+        <target>Suche</target>
+      </segment>
+    </unit>
+    <unit id="search.submit">
+      <segment>
+        <source>Search</source>
+        <target>Suchen</target>
+      </segment>
+    </unit>
+    <unit id="theme.light">
+      <segment>
+        <source>Light</source>
+        <target>Hell</target>
+      </segment>
+    </unit>
+    <unit id="theme.dark">
+      <segment>
+        <source>Dark</source>
+        <target>Dunkel</target>
+      </segment>
+    </unit>
+    <unit id="theme.system">
+      <segment>
+        <source>System</source>
+        <target>System</target>
+      </segment>
+    </unit>
+    <unit id="footer.legal.imprint">
+      <segment>
+        <source>Imprint</source>
+        <target>Impressum</target>
+      </segment>
+    </unit>
+    <unit id="footer.legal.privacy">
+      <segment>
+        <source>Privacy</source>
+        <target>Datenschutz</target>
+      </segment>
+    </unit>
+    <unit id="footer.legal.accessibility">
+      <segment>
+        <source>Accessibility</source>
+        <target>Barrierefreiheit</target>
+      </segment>
+    </unit>
+    <unit id="consent.label">
+      <segment>
+        <source>Cookie consent</source>
+        <target>Cookie-Einwilligung</target>
+      </segment>
+    </unit>
+    <unit id="consent.message">
+      <segment>
+        <source>We use optional cookies to measure and improve this website.</source>
+        <target>Wir verwenden optionale Cookies, um diese Website zu messen und zu verbessern.</target>
+      </segment>
+    </unit>
+    <unit id="consent.privacy">
+      <segment>
+        <source>Privacy</source>
+        <target>Datenschutz</target>
+      </segment>
+    </unit>
+    <unit id="consent.accept">
+      <segment>
+        <source>Accept</source>
+        <target>Akzeptieren</target>
+      </segment>
+    </unit>
+    <unit id="consent.decline">
+      <segment>
+        <source>Decline</source>
+        <target>Ablehnen</target>
       </segment>
     </unit>
     <unit id="a11y.share.label">

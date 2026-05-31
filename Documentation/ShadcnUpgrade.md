@@ -12,9 +12,11 @@ binary switcher, or remote preset fetch in production.
 
 People often call two different things "templates":
 
-1. Desiderio site preset sets, for example
-   `webconsulting/desiderio-preset-saas`. These change broad TYPO3 defaults
-   such as header, footer, density, container width, and layout radius.
+1. Desiderio site package sets, for example
+   `webconsulting/site-package-desiderio-saas`. These import the hidden base
+   set, content elements, and one hidden scenario preset. They choose the page
+   shell templates plus broad TYPO3 defaults such as header, footer, density,
+   container width, and layout radius.
 2. shadcn/create preset ids, for example `b4hb38Fyj` or `b6G5977cw`. These
    change CSS tokens for surfaces, borders, radius, charts, typography, and
    dark mode.
@@ -91,9 +93,10 @@ block:
 15. Open the Desiderio styleguide page if enabled.
 16. Open the TYPO3 Page/Layout module and check backend previews.
 
-If a Desiderio site preset set also sets `desiderio.layout.radius`, that site
-preset intentionally overrides the shadcn radius. Change it back to `preset`
-when you want the selected shadcn preset to control radius again.
+If a Desiderio site package selects a hidden preset that also sets
+`desiderio.layout.radius`, that preset intentionally overrides the shadcn
+radius. Change it back to `preset` when you want the selected shadcn preset to
+control radius again.
 
 ## Add A New shadcn/create Preset
 

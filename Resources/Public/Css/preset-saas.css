@@ -14,6 +14,107 @@
     padding-top: 1rem;
 }
 
+.desiderio-saas-template {
+    position: relative;
+    isolation: isolate;
+    background:
+        linear-gradient(180deg, color-mix(in oklch, var(--primary) 7%, transparent), transparent 20rem),
+        var(--background);
+}
+
+.desiderio-saas-template::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto;
+    height: 22rem;
+    pointer-events: none;
+    background:
+        linear-gradient(90deg, transparent, color-mix(in oklch, var(--primary) 12%, transparent), transparent);
+    opacity: 0.8;
+    z-index: -1;
+}
+
+.desiderio-saas-template__stage-inner {
+    border-bottom: 1px solid var(--border);
+    padding-block: 2rem;
+}
+
+.desiderio-saas-template__content {
+    display: grid;
+    gap: 0;
+    min-width: 0;
+    padding-block: 2rem 4rem;
+}
+
+.desiderio-saas-start__hero,
+.desiderio-saas-system__header {
+    display: grid;
+    gap: 0.875rem;
+    max-width: 54rem;
+    padding-block: 4rem 2rem;
+}
+
+.desiderio-saas-start__hero p,
+.desiderio-saas-start__hero h1,
+.desiderio-saas-system__header p,
+.desiderio-saas-system__header h1 {
+    margin: 0;
+}
+
+.desiderio-saas-start__hero p,
+.desiderio-saas-system__header p {
+    color: var(--primary);
+    font-size: 0.75rem;
+    font-weight: 750;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+.desiderio-saas-start__hero h1,
+.desiderio-saas-system__header h1 {
+    color: var(--foreground);
+    font-size: 3rem;
+    font-weight: 780;
+    line-height: 1;
+    letter-spacing: 0;
+}
+
+.desiderio-saas-start__hero span,
+.desiderio-saas-system__header span {
+    max-width: 42rem;
+    color: var(--muted-foreground);
+    font-size: 1rem;
+    line-height: 1.65;
+}
+
+.desiderio-saas-system {
+    position: relative;
+    isolation: isolate;
+    padding-block: 2rem 5rem;
+    background:
+        radial-gradient(circle at 18% 0%, color-mix(in oklch, var(--primary) 13%, transparent), transparent 20rem),
+        var(--background);
+}
+
+.desiderio-saas-system__content {
+    min-width: 0;
+}
+
+.desiderio-saas-sidebar__layout {
+    display: grid;
+    gap: 2rem;
+    min-width: 0;
+    padding-block: 2rem 4rem;
+}
+
+.desiderio-saas-sidebar__aside {
+    min-width: 0;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background-color: color-mix(in oklch, var(--card) 92%, var(--background));
+    padding: 1rem;
+}
+
 /* Hero-area enhancements for landing pages */
 .ce-frame:first-child {
     padding-top: 3rem;
@@ -26,7 +127,29 @@
 }
 
 @media (min-width: 1024px) {
+    .desiderio-saas-start__hero h1,
+    .desiderio-saas-system__header h1 {
+        font-size: 5.5rem;
+    }
+
+    .desiderio-saas-sidebar__layout {
+        grid-template-columns: minmax(0, 1fr) 20rem;
+        align-items: start;
+    }
+
+    .desiderio-saas-sidebar__aside {
+        position: sticky;
+        top: 6rem;
+    }
+
     .ce-frame {
         padding: 3rem 0;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    .desiderio-saas-start__hero h1,
+    .desiderio-saas-system__header h1 {
+        font-size: 4rem;
     }
 }

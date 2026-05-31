@@ -1,0 +1,20 @@
+desiderioRobotsTxt = PAGE
+desiderioRobotsTxt {
+  typeNum = 201
+
+  config {
+    disableAllHeaderCode = 1
+    additionalHeaders.10.header = Content-Type: text/plain; charset=utf-8
+  }
+
+  10 = TEXT
+  10 {
+    if.isTrue = {$desiderio.seo.robotsTxtEnabled}
+    value (
+User-agent: *
+Allow: /
+Sitemap: {site:base}{$desiderio.seo.sitemapPath}
+)
+    insertData = 1
+  }
+}

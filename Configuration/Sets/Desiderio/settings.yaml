@@ -17,6 +17,24 @@ desiderio:
     fixedPosition: false
   footer:
     style: columns
+    copyrightText: ''
+    legalPageIds: ''
+  search:
+    enabled: true
+    targetPageId: ''
+    queryParameter: q
+  seo:
+    defaultDescription: ''
+    defaultRobots: index,follow
+    defaultImage: ''
+    structuredDataEnabled: true
+    robotsTxtEnabled: true
+    sitemapPath: sitemap.xml
+  tracking:
+    enabled: false
+  consent:
+    message: 'We use optional cookies to measure and improve this website.'
+    privacyPageId: ''
   theme:
     accent: slate
     darkModeDefault: system

@@ -45,6 +45,109 @@
     padding-top: 0;
 }
 
+.desiderio-portfolio-template {
+    background:
+        linear-gradient(135deg, color-mix(in oklch, var(--portfolio-accent) 12%, var(--background)), var(--background) 42%),
+        var(--background);
+}
+
+.desiderio-portfolio-template__container {
+    display: grid;
+    gap: 2.5rem;
+    padding-block: 7rem 4rem;
+}
+
+.desiderio-portfolio-template__masthead {
+    display: grid;
+    gap: 0.75rem;
+    max-width: 52rem;
+}
+
+.desiderio-portfolio-template__masthead p,
+.desiderio-portfolio-template__masthead h1 {
+    margin: 0;
+}
+
+.desiderio-portfolio-template__masthead p {
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted-foreground);
+}
+
+.desiderio-portfolio-template__masthead h1 {
+    font-size: 3rem;
+    line-height: 0.92;
+    font-weight: 900;
+    letter-spacing: 0;
+}
+
+.desiderio-portfolio-template__content {
+    min-width: 0;
+}
+
+.desiderio-portfolio-start__masthead span,
+.desiderio-portfolio-system__header span {
+    display: block;
+    max-width: 44rem;
+    color: var(--muted-foreground);
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.desiderio-portfolio-start__content,
+.desiderio-portfolio-system__content {
+    min-width: 0;
+}
+
+.desiderio-portfolio-system {
+    min-height: 72vh;
+    padding-block: 7rem 5rem;
+    background:
+        linear-gradient(135deg, color-mix(in oklch, var(--portfolio-accent) 14%, var(--background)), var(--background) 46%),
+        var(--background);
+}
+
+.desiderio-portfolio-system__header {
+    display: grid;
+    gap: 0.75rem;
+    max-width: 56rem;
+}
+
+.desiderio-portfolio-system__header p,
+.desiderio-portfolio-system__header h1 {
+    margin: 0;
+}
+
+.desiderio-portfolio-system__header p {
+    color: var(--muted-foreground);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.desiderio-portfolio-system__header h1 {
+    color: var(--foreground);
+    font-size: 3rem;
+    font-weight: 900;
+    line-height: 0.92;
+    letter-spacing: 0;
+}
+
+.desiderio-portfolio-sidebar__layout {
+    display: grid;
+    gap: 2rem;
+    min-width: 0;
+}
+
+.desiderio-portfolio-sidebar__aside {
+    min-width: 0;
+    border-top: 1px solid color-mix(in oklch, var(--portfolio-accent) 35%, var(--border));
+    padding-top: 1rem;
+}
+
 /* First content element needs room for transparent header overlay */
 .desiderio-main > .ce-frame:first-child,
 .desiderio-main > [class]:first-child {
@@ -56,8 +159,41 @@
 }
 
 @media (min-width: 1024px) {
+    .desiderio-portfolio-template__masthead h1 {
+        font-size: 7rem;
+    }
+
+    .desiderio-portfolio-system__header h1 {
+        font-size: 6rem;
+    }
+
+    .desiderio-portfolio-sidebar__layout {
+        grid-template-columns: minmax(0, 1fr) 18rem;
+        align-items: start;
+        gap: 3rem;
+    }
+
+    .desiderio-portfolio-sidebar__aside {
+        position: sticky;
+        top: 6rem;
+        border-top: 0;
+        border-left: 1px solid color-mix(in oklch, var(--portfolio-accent) 35%, var(--border));
+        padding-top: 0;
+        padding-left: 1.5rem;
+    }
+
     .ce-frame {
         padding: 4rem 0;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+    .desiderio-portfolio-template__masthead h1 {
+        font-size: 5rem;
+    }
+
+    .desiderio-portfolio-system__header h1 {
+        font-size: 4.5rem;
     }
 }
 

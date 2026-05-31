@@ -112,6 +112,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const media = window.matchMedia('(prefers-color-scheme: dark)');
   const storedTheme = () => localStorage.getItem('d-theme');
   const siteTheme = () => body?.dataset.theme || 'system';
+  const themeLabels = {
+    light: 'Light',
+    dark: 'Dark',
+    system: 'System',
+  };
   const resolveTheme = preference => (
     preference === 'dark' || (preference === 'system' && media.matches)
   );
@@ -128,12 +133,40 @@ document.addEventListener('DOMContentLoaded', () => {
       btn.setAttribute('aria-pressed', String(isDark));
       btn.setAttribute('title', isDark ? 'Switch to light mode' : 'Switch to dark mode');
     });
+
+    document.querySelectorAll('[data-d-theme-option]').forEach(btn => {
+      const active = btn.dataset.dThemeOption === selected;
+      btn.setAttribute('aria-pressed', String(active));
+      btn.dataset.state = active ? 'active' : 'inactive';
+    });
+
+    document.querySelectorAll('[data-d-theme-switch]').forEach(root => {
+      const labelKey = `dThemeLabel${selected.charAt(0).toUpperCase()}${selected.slice(1)}`;
+      const label = root.dataset[labelKey] || themeLabels[selected] || themeLabels.system;
+      const baseLabel = root.dataset.dThemeLabel || 'Colour scheme';
+      root.dataset.themePreference = selected;
+
+      root.querySelectorAll('[data-d-theme-current-icon]').forEach(icon => {
+        const active = icon.dataset.dThemeCurrentIcon === selected;
+        icon.hidden = !active;
+        icon.dataset.state = active ? 'active' : 'inactive';
+      });
+
+      const labelNode = root.querySelector('[data-d-theme-current-label]');
+      if (labelNode) labelNode.textContent = label;
+
+      const summary = root.querySelector('[data-d-theme-summary]');
+      if (summary) {
+        summary.setAttribute('aria-label', `${baseLabel}: ${label}`);
+        summary.setAttribute('title', `${baseLabel}: ${label}`);
+      }
+    });
   };
 
   applyTheme(storedTheme() || siteTheme());
 
   media.addEventListener?.('change', () => {
-    if (!storedTheme() && siteTheme() === 'system') {
+    if ((storedTheme() || siteTheme()) === 'system') {
       applyTheme('system');
     }
   });
@@ -146,12 +179,37 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  document.querySelectorAll('[data-d-theme-option]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const next = btn.dataset.dThemeOption || 'system';
+      localStorage.setItem('d-theme', next);
+      applyTheme(next);
+      const root = btn.closest('[data-d-theme-switch]');
+      if (root && root.tagName.toLowerCase() === 'details') {
+        root.open = false;
+      }
+    });
+  });
+
   /* ------------------------------------------------------------------ */
   /*  5. Click-outside                                                   */
   /* ------------------------------------------------------------------ */
   document.addEventListener('click', e => {
     document.querySelectorAll('[data-d-click-outside]:not(.is-hidden)').forEach(el => {
       if (!el.contains(e.target)) el.classList.add('is-hidden');
+    });
+
+    document.querySelectorAll('details[data-d-close-on-outside][open]').forEach(el => {
+      if (!el.contains(e.target)) el.open = false;
+    });
+  });
+
+  document.addEventListener('keydown', e => {
+    if (e.key !== 'Escape') return;
+
+    document.querySelectorAll('details[data-d-close-on-outside][open]').forEach(el => {
+      el.open = false;
+      el.querySelector('summary')?.focus();
     });
   });
 
@@ -172,8 +230,42 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  document.querySelectorAll('[data-d-primary-nav]').forEach(nav => {
+    const active = nav.querySelector('[aria-current="page"], .desiderio-header__nav-link--active');
+    if (!active || nav.scrollWidth <= nav.clientWidth) return;
+
+    const navRect = nav.getBoundingClientRect();
+    const activeRect = active.getBoundingClientRect();
+    const activeOffset = activeRect.left - navRect.left + nav.scrollLeft;
+    const offset = activeOffset - Math.max((nav.clientWidth - activeRect.width) / 2, 0);
+    nav.scrollTo({ left: Math.max(offset, 0), behavior: 'auto' });
+  });
+
   /* ------------------------------------------------------------------ */
-  /*  7. Back to top                                                     */
+  /*  7. Consent                                                        */
+  /* ------------------------------------------------------------------ */
+  document.querySelectorAll('[data-d-consent]').forEach(banner => {
+    const key = 'd-consent';
+    const stored = localStorage.getItem(key);
+    if (stored === 'accepted' || stored === 'declined') {
+      body.dataset.consent = stored;
+      return;
+    }
+
+    banner.hidden = false;
+
+    const choose = value => {
+      localStorage.setItem(key, value);
+      body.dataset.consent = value;
+      banner.hidden = true;
+    };
+
+    banner.querySelector('[data-d-consent-accept]')?.addEventListener('click', () => choose('accepted'));
+    banner.querySelector('[data-d-consent-decline]')?.addEventListener('click', () => choose('declined'));
+  });
+
+  /* ------------------------------------------------------------------ */
+  /*  8. Back to top                                                     */
   /* ------------------------------------------------------------------ */
   document.querySelectorAll('[data-d-back-to-top]').forEach(btn => {
     const threshold = parseInt(btn.dataset.threshold, 10) || 300;
@@ -186,7 +278,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* ------------------------------------------------------------------ */
-  /*  8. Pricing slider                                                  */
+  /*  9. Pricing slider                                                  */
   /* ------------------------------------------------------------------ */
   document.querySelectorAll('[data-d-pricing-slider]').forEach(root => {
     const range = root.querySelector('[data-d-pricing-slider-range]');
@@ -225,7 +317,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* ------------------------------------------------------------------ */
-  /*  9. Solr suggest                                                    */
+  /*  10. Solr suggest                                                   */
   /* ------------------------------------------------------------------ */
   const appendHighlightedText = (target, text, query) => {
     const source = String(text || '');

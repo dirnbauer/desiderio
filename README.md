@@ -67,14 +67,14 @@ vendor/bin/typo3 extension:setup
 vendor/bin/typo3 cache:flush
 ```
 
-Then enable the shadcn/ui theme base, the content-element configuration set,
-and one of the five scenario template sets:
+Then enable exactly one Desiderio site package. Each package pulls in the
+theme base, content-element catalog, backend layouts, page chrome, production
+defaults, and one website archetype.
 
 1. Site Management → Sites → edit the target site
-2. Add `Desiderio Base` (`webconsulting/desiderio`)
-3. Add `Desiderio Content Elements` (`webconsulting/desiderio-content-elements`)
-4. Add one of the five scenario template sets (see below)
-5. Save and flush caches
+2. Add one `Site Package: Desiderio …` set, for example
+   `webconsulting/site-package-desiderio-corporate`
+3. Save and flush caches
 
 ### Tooling baseline
 
@@ -87,10 +87,10 @@ and one of the five scenario template sets:
 | PHPUnit | `^11.5` | All 101 unit tests pass via `Build/Scripts/runTests.sh`. |
 | Content Blocks | `^2.2` | Drives every one of the 255 content elements. |
 
-The content-element configuration set depends on the theme base and exposes a
-single aggregate set for the full Content Blocks catalog. Individual generated
-`desiderio/*` content block set names are hidden from the backend picker to keep
-site setup focused on the Desiderio-level sets.
+The base set, content-element aggregate, raw preset sets, and individual
+generated `desiderio/*` content block set names are hidden from the backend
+picker. Normal installs choose one site package; custom distribution packages
+can still depend on the hidden lower-level sets directly.
 
 ## Cursor MCP (optional)
 
@@ -176,33 +176,36 @@ JavaScript is disabled. There is also a `MagazineList.html` template that
 features the first article on top with the rest as the load-more secondary
 grid.
 
-## Scenario Templates
+## Site Packages and Scenario Templates
 
-Five scenario template site sets depend on the theme base. Each ships a single
-CSS file and overrides base-set setting defaults. Switching scenario templates
-**never** changes your content, markup, or backend layouts — only the
-presentation.
+Normal installs import **one** visible site set. The five visible site packages
+wrap the hidden base set, the hidden content-element aggregate, and exactly one
+hidden scenario preset with strong defaults.
 
-| Set                                    | Character             |
-| -------------------------------------- | --------------------- |
-| `webconsulting/desiderio-preset-saas`        | SaaS Landing          |
-| `webconsulting/desiderio-preset-corporate`        | Mainline Corporate    |
-| `webconsulting/desiderio-preset-portfolio`        | Portfolio             |
-| `webconsulting/desiderio-preset-editorial`        | Blog & Magazine       |
-| `webconsulting/desiderio-preset-dashboard`        | Dashboard App         |
+| Visible set | Character |
+| --- | --- |
+| `webconsulting/site-package-desiderio-saas` | SaaS Landing |
+| `webconsulting/site-package-desiderio-corporate` | Mainline Corporate |
+| `webconsulting/site-package-desiderio-portfolio` | Portfolio |
+| `webconsulting/site-package-desiderio-editorial` | Blog & Magazine |
+| `webconsulting/site-package-desiderio-dashboard` | Dashboard App |
+
+Internally, the hidden `webconsulting/desiderio-preset-*` sets provide the
+archetype-specific page templates, CSS file, and setting defaults. Switching
+site packages keeps page records and backend layout identifiers stable, but it
+does intentionally change the page shell templates and presentation.
 
 The base set also exposes shadcn/create preset support. The committed default
 is `b27GcrRo` (radix-rhea, modern neutral); `b6G5977cw`, `b4hb38Fyj`, `b0`, and
 `b3IWPgRwnI` ship as alternate light/dark token sets, and the sync generates a
 token block for any other preset on demand (see below).
 
-### Switching scenario templates
+### Switching site packages
 
 There are two different switches:
 
-1. **Desiderio scenario template sets** change broad TYPO3 theme defaults such as
-   header, footer, density, and layout. Enable or replace one of the
-   `webconsulting/desiderio-preset-*` site sets in
+1. **Desiderio site packages** choose a complete website archetype. Enable or
+   replace one of the `webconsulting/site-package-desiderio-*` site sets in
    **Site Management → Sites**.
 2. **shadcn/create preset ids** change the design tokens used by buttons,
    cards, borders, charts, typography, radius, and dark mode. Change
@@ -341,11 +344,12 @@ token-driven Fluid templates; 250 of the 255 shipped frontend templates use the
 exceptions still share the same CSS variables and runtime assets. See
 `ContentBlocks/ContentElements/` for the full list.
 
-The full catalog is exposed through the `webconsulting/desiderio-content-elements`
-site set. This set depends on `webconsulting/desiderio` and lists the individual
-`desiderio/*` block sets as optional dependencies, so installations that expose
-Content Blocks as site sets can add one Desiderio item instead of selecting
-blocks one by one.
+The full catalog is wired through the hidden
+`webconsulting/desiderio-content-elements` site set. This set depends on
+`webconsulting/desiderio` and lists the individual `desiderio/*` block sets as
+optional dependencies. The visible `webconsulting/site-package-desiderio-*`
+sets depend on it, so a normal site import gets the whole editor catalog without
+selecting block sets one by one.
 
 Classic TYPO3 Fluid Styled Content elements are overridden from
 `Resources/Private/FluidStyledContent/` and use the same shadcn preset tokens,
@@ -414,6 +418,10 @@ extensions:
 The Solr, News, and Blog sets are hidden optional dependencies of
 `webconsulting/desiderio`, so sites using the theme base get the Desiderio
 template paths when the matching third-party extension is installed.
+The Solr override follows the shadcn/create surface contract: a tokenized
+create-style rail for facets and recent searches, a command-palette search
+input, `data-slot` markers for input/button/card/badge semantics, and radius,
+font, colour, sidebar, and focus states inherited from the active preset.
 
 ## Fluid 5 components
 

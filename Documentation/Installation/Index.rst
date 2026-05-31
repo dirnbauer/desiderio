@@ -22,24 +22,21 @@ TYPO3 branches are not supported.
     The package pulls in :t3:`typo3/cms-workspaces` ``^14.3`` so
     editorial draft / preview workflows are available out of the box.
 
-#.  Enable the shadcn/ui theme base
+#.  Enable one Desiderio site package
 
-    Open *Site Management → Sites*, edit the target site, and add
-    ``Desiderio Base`` (``webconsulting/desiderio``).
+    Open *Site Management → Sites*, edit the target site, and add **one** of
+    the five visible site package sets:
 
-#.  Enable the content-element configuration set
+    *   ``webconsulting/site-package-desiderio-saas``
+    *   ``webconsulting/site-package-desiderio-corporate``
+    *   ``webconsulting/site-package-desiderio-portfolio``
+    *   ``webconsulting/site-package-desiderio-editorial``
+    *   ``webconsulting/site-package-desiderio-dashboard``
 
-    Add ``Desiderio Content Elements``
-    (``webconsulting/desiderio-content-elements``). This aggregate site set
-    depends on the theme base and pulls in the generated Content Block sets.
-
-#.  Pick a scenario template
-
-    Add **one** of the five scenario template sets (``…/desiderio-preset-saas``,
-    ``…/desiderio-preset-corporate``, ``…/desiderio-preset-portfolio``,
-    ``…/desiderio-preset-editorial``, ``…/desiderio-preset-dashboard``).
-    Switching scenario templates never changes content, markup, or backend
-    layouts — only the presentation.
+    Each site package imports the hidden theme base, hidden content-element
+    aggregate, backend layouts, production defaults, and one hidden scenario
+    preset. Switching packages keeps page records and backend layout names
+    stable, but intentionally changes the page shell templates and presentation.
 
 #.  Flush caches and reload the backend
 

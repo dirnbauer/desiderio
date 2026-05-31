@@ -9,17 +9,17 @@
 <f:section name="LastSearches">
     <s:lastSearches>
         <f:if condition="{lastSearches}">
-            <section id="tx-solr-lastsearches" class="overflow-hidden rounded-xl border border-border bg-card text-card-foreground shadow-sm">
-                <header class="border-b border-border px-4 py-3">
-                    <h2 class="text-sm font-semibold tracking-tight">
-                        <f:translate key="solr.lastSearches" domain="desiderio.labels">Last searches</f:translate>
-                    </h2>
-                </header>
+            <section id="tx-solr-lastsearches" class="d-solr-suggest d-solr-suggest--facet" aria-labelledby="tx-solr-lastsearches-label">
+                <h2 class="d-solr-suggest__group" id="tx-solr-lastsearches-label">
+                    <f:translate key="solr.lastSearches" domain="desiderio.labels">Last searches</f:translate>
+                </h2>
 
-                <ul role="list" class="space-y-1 p-2">
+                <ul role="list" class="d-solr-facet__list">
                     <f:for each="{lastSearches}" as="searchedFor">
                         <li>
-                            <a href="{s:uri.search.startNewSearch(queryString: searchedFor)}" class="solr-ajaxified block rounded-lg px-3 py-2 text-sm font-medium text-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:bg-muted focus-visible:text-foreground focus-visible:outline-hidden focus-visible:ring-3 focus-visible:ring-ring active:bg-muted active:text-foreground"><f:format.htmlentities>{searchedFor}</f:format.htmlentities></a>
+                            <a href="{s:uri.search.startNewSearch(queryString: searchedFor)}" class="solr-ajaxified d-solr-suggest__option">
+                                <span class="d-solr-suggest__term"><f:format.htmlentities>{searchedFor}</f:format.htmlentities></span>
+                            </a>
                         </li>
                     </f:for>
                 </ul>

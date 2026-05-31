@@ -1,0 +1,26 @@
+mod {
+  web_layout {
+    BackendLayouts {
+      DesiderioError {
+        title = LLL:desiderio.backend_layouts:backend_layout.desiderio_error.title
+        config {
+          backend_layout {
+            colCount = 1
+            rowCount = 1
+            rows {
+              1 {
+                columns {
+                  1 {
+                    name = LLL:desiderio.backend_layouts:backend_layout.colPos.0.name
+                    colPos = 0
+                    identifier = main
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

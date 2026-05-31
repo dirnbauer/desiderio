@@ -96,6 +96,16 @@
         <source>Footer navigation</source>
       </segment>
     </unit>
+    <unit id="a11y.nav.legal">
+      <segment>
+        <source>Legal navigation</source>
+      </segment>
+    </unit>
+    <unit id="a11y.nav.home">
+      <segment>
+        <source>Home</source>
+      </segment>
+    </unit>
     <unit id="a11y.nav.language">
       <segment>
         <source>Language</source>
@@ -109,6 +119,81 @@
     <unit id="a11y.theme.toggle">
       <segment>
         <source>Toggle dark mode</source>
+      </segment>
+    </unit>
+    <unit id="a11y.theme.switch">
+      <segment>
+        <source>Colour scheme</source>
+      </segment>
+    </unit>
+    <unit id="search.label">
+      <segment>
+        <source>Search</source>
+      </segment>
+    </unit>
+    <unit id="search.placeholder">
+      <segment>
+        <source>Search</source>
+      </segment>
+    </unit>
+    <unit id="search.submit">
+      <segment>
+        <source>Search</source>
+      </segment>
+    </unit>
+    <unit id="theme.light">
+      <segment>
+        <source>Light</source>
+      </segment>
+    </unit>
+    <unit id="theme.dark">
+      <segment>
+        <source>Dark</source>
+      </segment>
+    </unit>
+    <unit id="theme.system">
+      <segment>
+        <source>System</source>
+      </segment>
+    </unit>
+    <unit id="footer.legal.imprint">
+      <segment>
+        <source>Imprint</source>
+      </segment>
+    </unit>
+    <unit id="footer.legal.privacy">
+      <segment>
+        <source>Privacy</source>
+      </segment>
+    </unit>
+    <unit id="footer.legal.accessibility">
+      <segment>
+        <source>Accessibility</source>
+      </segment>
+    </unit>
+    <unit id="consent.label">
+      <segment>
+        <source>Cookie consent</source>
+      </segment>
+    </unit>
+    <unit id="consent.message">
+      <segment>
+        <source>We use optional cookies to measure and improve this website.</source>
+      </segment>
+    </unit>
+    <unit id="consent.privacy">
+      <segment>
+        <source>Privacy</source>
+      </segment>
+    </unit>
+    <unit id="consent.accept">
+      <segment>
+        <source>Accept</source>
+      </segment>
+    </unit>
+    <unit id="consent.decline">
+      <segment>
+        <source>Decline</source>
       </segment>
     </unit>
     <unit id="a11y.share.label">

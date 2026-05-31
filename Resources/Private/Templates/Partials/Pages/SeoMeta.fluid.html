@@ -1,0 +1,41 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:variable name="siteTitle" value="{site.configuration.websiteTitle -> f:or(alternative: breadcrumb.0.title)}"/>
+<f:variable name="pageTitle" value="{page.pageRecord.title -> f:or(alternative: siteTitle)}"/>
+<f:variable name="metaDescription" value="{page.pageRecord.description -> f:or(alternative: page.pageRecord.abstract) -> f:or(alternative: site.configuration.settings.desiderio.seo.defaultDescription)}"/>
+<f:variable name="robots" value="{site.configuration.settings.desiderio.seo.defaultRobots -> f:or(alternative: 'index,follow')}"/>
+
+<f:if condition="{page.pageRecord.no_follow}">
+    <f:variable name="robots" value="index,nofollow"/>
+</f:if>
+<f:if condition="{page.pageRecord.no_index}">
+    <f:variable name="robots" value="noindex,follow"/>
+</f:if>
+<f:if condition="{page.pageRecord.no_index}">
+    <f:if condition="{page.pageRecord.no_follow}">
+        <f:variable name="robots" value="noindex,nofollow"/>
+    </f:if>
+</f:if>
+
+<f:if condition="{metaDescription}">
+    <f:page.meta property="description">{metaDescription}</f:page.meta>
+    <f:page.meta property="og:description">{metaDescription}</f:page.meta>
+    <f:page.meta property="twitter:description">{metaDescription}</f:page.meta>
+</f:if>
+
+<f:page.meta property="og:title">{pageTitle}</f:page.meta>
+<f:page.meta property="og:site_name">{siteTitle}</f:page.meta>
+<f:page.meta property="og:type">website</f:page.meta>
+<f:page.meta property="og:url">{f:uri.page(absolute: 1)}</f:page.meta>
+<f:page.meta property="robots">{robots}</f:page.meta>
+<f:page.meta property="twitter:card">{f:if(condition: site.configuration.settings.desiderio.seo.defaultImage, then: 'summary_large_image', else: 'summary')}</f:page.meta>
+
+<f:if condition="{site.configuration.settings.desiderio.seo.defaultImage}">
+    <f:page.meta property="og:image">{site.configuration.settings.desiderio.seo.defaultImage}</f:page.meta>
+    <f:page.meta property="twitter:image">{site.configuration.settings.desiderio.seo.defaultImage}</f:page.meta>
+</f:if>
+
+</html>

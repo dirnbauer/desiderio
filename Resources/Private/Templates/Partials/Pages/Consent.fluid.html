@@ -1,0 +1,32 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:if condition="{site.configuration.settings.desiderio.tracking.enabled}">
+    <section class="desiderio-consent" data-d-consent hidden role="dialog" aria-live="polite" aria-label="{f:translate(extensionName: 'desiderio', key: 'consent.label', default: 'Cookie consent')}">
+        <div class="desiderio-consent__body">
+            <p class="desiderio-consent__message">
+                <f:if condition="{site.configuration.settings.desiderio.consent.message}">
+                    <f:then>{site.configuration.settings.desiderio.consent.message}</f:then>
+                    <f:else><f:translate extensionName="desiderio" key="consent.message">We use optional cookies to measure and improve this website.</f:translate></f:else>
+                </f:if>
+            </p>
+            <div class="desiderio-consent__actions">
+                <f:if condition="{site.configuration.settings.desiderio.consent.privacyPageId}">
+                    <f:link.page pageUid="{site.configuration.settings.desiderio.consent.privacyPageId}" class="desiderio-consent__link">
+                        <f:translate extensionName="desiderio" key="consent.privacy">Privacy</f:translate>
+                    </f:link.page>
+                </f:if>
+                <button type="button" class="desiderio-consent__button desiderio-consent__button--secondary" data-d-consent-decline>
+                    <f:translate extensionName="desiderio" key="consent.decline">Decline</f:translate>
+                </button>
+                <button type="button" class="desiderio-consent__button desiderio-consent__button--primary" data-d-consent-accept>
+                    <f:translate extensionName="desiderio" key="consent.accept">Accept</f:translate>
+                </button>
+            </div>
+        </div>
+    </section>
+</f:if>
+
+</html>

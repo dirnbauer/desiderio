@@ -110,6 +110,118 @@ final class ContentRenderingTemplateTest extends TestCase
         }
     }
 
+    public function testPageChromeProvidesWebsiteNavigationControlsAndFooterMenus(): void
+    {
+        $pageTypoScript = (string) file_get_contents(__DIR__ . '/../../Configuration/Sets/Desiderio/TypoScript/page.typoscript');
+        $header = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Templates/Partials/Pages/Header.fluid.html');
+        $footer = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Templates/Partials/Pages/Footer.fluid.html');
+        $css = (string) file_get_contents(__DIR__ . '/../../Resources/Public/Css/desiderio.css');
+        $javascript = (string) file_get_contents(__DIR__ . '/../../Resources/Public/Js/desiderio.js');
+        $settings = (string) file_get_contents(__DIR__ . '/../../Configuration/Sets/Desiderio/settings.yaml');
+        $settingDefinitions = (string) file_get_contents(__DIR__ . '/../../Configuration/Sets/Desiderio/settings.definitions.yaml');
+        $iconRegistry = (string) file_get_contents(__DIR__ . '/../../Classes/Icon/IconRegistry.php');
+
+        self::assertStringContainsString('as = footerMenu', $pageTypoScript);
+        self::assertStringContainsString('as = legalMenu', $pageTypoScript);
+        self::assertStringContainsString('if.isTrue = {$desiderio.footer.legalPageIds}', $pageTypoScript);
+        self::assertStringContainsString('special.value = {$desiderio.footer.legalPageIds}', $pageTypoScript);
+        self::assertStringContainsString('includeNotInMenu = 1', $pageTypoScript);
+
+        foreach ([
+            'data-d-site-header',
+            'data-d-primary-nav',
+            'role="search"',
+            'languageNavigation',
+            '<details',
+            'data-d-theme-switch',
+            'data-d-theme-summary',
+            'data-d-theme-current-icon="system"',
+            'data-d-theme-option="light"',
+            'data-d-theme-option="dark"',
+            'data-d-theme-option="system"',
+        ] as $needle) {
+            self::assertStringContainsString($needle, $header);
+        }
+
+        foreach (['name="search"', 'name="globe"', 'name="menu"', 'name="sun"', 'name="moon"', 'name="monitor"'] as $icon) {
+            self::assertStringContainsString($icon, $header);
+        }
+        foreach (["'search'", "'globe'", "'menu'", "'sun'", "'moon'", "'monitor'"] as $iconKey) {
+            self::assertStringContainsString($iconKey, $iconRegistry);
+        }
+
+        foreach (['footerMenu', 'legalMenu', 'desiderio-footer__copyright', 'footer.legal.imprint', 'footer.legal.privacy', 'footer.legal.accessibility'] as $needle) {
+            self::assertStringContainsString($needle, $footer);
+        }
+
+        foreach (['.desiderio-header__search', '.desiderio-theme-switch__summary', '.desiderio-theme-switch__list', '.desiderio-footer__legal-list'] as $className) {
+            self::assertStringContainsString($className, $css);
+        }
+
+        self::assertStringContainsString("document.querySelectorAll('[data-d-theme-option]')", $javascript);
+        self::assertStringContainsString("details[data-d-close-on-outside][open]", $javascript);
+        self::assertStringContainsString('footer:', $settings);
+        self::assertStringContainsString('search:', $settings);
+        self::assertStringContainsString('desiderio.footer.legalPageIds', $settingDefinitions);
+        self::assertStringContainsString('desiderio.search.targetPageId', $settingDefinitions);
+    }
+
+    public function testProductionWebsiteDefaultsAreConnected(): void
+    {
+        $layout = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Templates/Layouts/Pages/Default.fluid.html');
+        $seoMeta = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Templates/Partials/Pages/SeoMeta.fluid.html');
+        $structuredData = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Templates/Partials/Pages/StructuredData.fluid.html');
+        $consent = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Templates/Partials/Pages/Consent.fluid.html');
+        $robotsTypoScript = (string) file_get_contents(__DIR__ . '/../../Configuration/Sets/Desiderio/TypoScript/seo.typoscript');
+        $css = (string) file_get_contents(__DIR__ . '/../../Resources/Public/Css/desiderio.css');
+        $javascript = (string) file_get_contents(__DIR__ . '/../../Resources/Public/Js/desiderio.js');
+        $settings = Yaml::parseFile(__DIR__ . '/../../Configuration/Sets/Desiderio/settings.yaml');
+        $settingDefinitions = (string) file_get_contents(__DIR__ . '/../../Configuration/Sets/Desiderio/settings.definitions.yaml');
+        $backendLayouts = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Language/backend_layouts.xlf');
+        $structuredDataViewHelper = (string) file_get_contents(__DIR__ . '/../../Classes/ViewHelpers/StructuredDataViewHelper.php');
+
+        foreach (['Pages/SeoMeta', 'Pages/StructuredData', 'Pages/Consent'] as $partialName) {
+            self::assertStringContainsString('partial="' . $partialName . '"', $layout);
+        }
+
+        foreach (['defaultDescription', 'defaultRobots', 'defaultImage', 'structuredDataEnabled', 'robotsTxtEnabled', 'sitemapPath'] as $settingName) {
+            self::assertArrayHasKey($settingName, $settings['desiderio']['seo']);
+        }
+        self::assertArrayHasKey('enabled', $settings['desiderio']['tracking']);
+        self::assertArrayHasKey('message', $settings['desiderio']['consent']);
+        self::assertArrayHasKey('privacyPageId', $settings['desiderio']['consent']);
+
+        foreach (['desiderio.seo.defaultDescription', 'desiderio.seo.robotsTxtEnabled', 'desiderio.tracking.enabled', 'desiderio.consent.privacyPageId'] as $definitionKey) {
+            self::assertStringContainsString($definitionKey, $settingDefinitions);
+        }
+
+        foreach (['property="description"', 'property="og:title"', 'property="og:url"', 'property="twitter:card"', 'property="robots"'] as $needle) {
+            self::assertStringContainsString($needle, $seoMeta);
+        }
+
+        self::assertStringContainsString('<di:structuredData', $structuredData);
+        self::assertStringContainsString('data-desiderio-structured-data', $structuredDataViewHelper);
+        self::assertStringContainsString('SearchAction', $structuredDataViewHelper);
+        self::assertStringContainsString('JSON_HEX_TAG', $structuredDataViewHelper);
+
+        self::assertStringContainsString('typeNum = 201', $robotsTypoScript);
+        self::assertStringContainsString('Sitemap: {site:base}{$desiderio.seo.sitemapPath}', $robotsTypoScript);
+
+        foreach (['data-d-consent', 'data-d-consent-accept', 'data-d-consent-decline'] as $needle) {
+            self::assertStringContainsString($needle, $consent);
+            self::assertStringContainsString($needle, $javascript);
+        }
+        self::assertStringContainsString('.desiderio-consent', $css);
+        self::assertStringContainsString('.desiderio-system-page', $css);
+
+        foreach (['DesiderioSearch', 'DesiderioError'] as $templateName) {
+            self::assertFileExists(__DIR__ . '/../../Configuration/BackendLayouts/' . $templateName . '.tsconfig');
+            self::assertFileExists(__DIR__ . '/../../Resources/Private/Templates/Pages/' . $templateName . '.fluid.html');
+        }
+        self::assertStringContainsString('backend_layout.desiderio_search.title', $backendLayouts);
+        self::assertStringContainsString('backend_layout.desiderio_error.title', $backendLayouts);
+    }
+
     public function testFluidStyledContentUsesPresetAwareShadcnSources(): void
     {
         $layout = (string) file_get_contents(__DIR__ . '/../../Resources/Private/FluidStyledContent/Layouts/Default.fluid.html');
@@ -485,11 +597,79 @@ final class ContentRenderingTemplateTest extends TestCase
         self::assertIsArray($contentElementsDependencies);
 
         self::assertNotContains('webconsulting/desiderio-content-elements', $baseOptionalDependencies);
+        self::assertTrue($baseSet['hidden']);
         self::assertSame('webconsulting/desiderio-content-elements', $contentElementsSet['name']);
         self::assertSame('Desiderio Content Elements', $contentElementsSet['label']);
+        self::assertTrue($contentElementsSet['hidden']);
         self::assertContains('webconsulting/desiderio', $contentElementsDependencies);
         self::assertSame($contentBlockNames, $setDependencies);
         self::assertSame($contentBlockNames, $hiddenSetNames);
+    }
+
+    public function testVisibleDesiderioSiteSetsAreOneClickSitePackages(): void
+    {
+        $expectedSitePackages = [
+            'Corporate' => [
+                'directory' => 'DesiderioSitePackageCorporate',
+                'name' => 'webconsulting/site-package-desiderio-corporate',
+                'preset' => 'webconsulting/desiderio-preset-corporate',
+            ],
+            'Dashboard' => [
+                'directory' => 'DesiderioSitePackageDashboard',
+                'name' => 'webconsulting/site-package-desiderio-dashboard',
+                'preset' => 'webconsulting/desiderio-preset-dashboard',
+            ],
+            'Editorial' => [
+                'directory' => 'DesiderioSitePackageEditorial',
+                'name' => 'webconsulting/site-package-desiderio-editorial',
+                'preset' => 'webconsulting/desiderio-preset-editorial',
+            ],
+            'Portfolio' => [
+                'directory' => 'DesiderioSitePackagePortfolio',
+                'name' => 'webconsulting/site-package-desiderio-portfolio',
+                'preset' => 'webconsulting/desiderio-preset-portfolio',
+            ],
+            'Saas' => [
+                'directory' => 'DesiderioSitePackageSaas',
+                'name' => 'webconsulting/site-package-desiderio-saas',
+                'preset' => 'webconsulting/desiderio-preset-saas',
+            ],
+        ];
+
+        $visibleDesiderioSets = [];
+        foreach (glob(__DIR__ . '/../../Configuration/Sets/*/config.yaml') ?: [] as $configFile) {
+            $set = Yaml::parseFile($configFile);
+            self::assertIsArray($set);
+
+            $name = $set['name'] ?? '';
+            self::assertIsString($name);
+            if (!str_starts_with($name, 'webconsulting/desiderio') && !str_starts_with($name, 'webconsulting/site-package-desiderio')) {
+                continue;
+            }
+
+            if (($set['hidden'] ?? false) === true) {
+                continue;
+            }
+
+            $visibleDesiderioSets[] = $name;
+        }
+        sort($visibleDesiderioSets);
+
+        $expectedVisibleSets = array_column($expectedSitePackages, 'name');
+        sort($expectedVisibleSets);
+        self::assertSame($expectedVisibleSets, $visibleDesiderioSets);
+
+        foreach ($expectedSitePackages as $variant => $sitePackage) {
+            $set = Yaml::parseFile(__DIR__ . '/../../Configuration/Sets/' . $sitePackage['directory'] . '/config.yaml');
+            self::assertIsArray($set);
+
+            $dependencies = $set['dependencies'] ?? [];
+            self::assertIsArray($dependencies);
+            self::assertSame($sitePackage['name'], $set['name']);
+            self::assertStringStartsWith('Site Package: Desiderio ', (string) $set['label']);
+            self::assertContains('webconsulting/desiderio-content-elements', $dependencies, "{$variant} site package must import the full editor catalog");
+            self::assertContains($sitePackage['preset'], $dependencies, "{$variant} site package must select exactly one archetype preset");
+        }
     }
 
     public function testShadcnUiPageTemplateSiteSetRegistersBlogAndExtensionTemplates(): void
@@ -545,6 +725,75 @@ final class ContentRenderingTemplateTest extends TestCase
         }
     }
 
+    public function testScenarioPresetSiteSetsOverridePageviewTemplates(): void
+    {
+        $presets = [
+            'Corporate' => 'DesiderioPresetCorporate',
+            'Dashboard' => 'DesiderioPresetDashboard',
+            'Editorial' => 'DesiderioPresetEditorial',
+            'Portfolio' => 'DesiderioPresetPortfolio',
+            'Saas' => 'DesiderioPresetSaas',
+        ];
+        $sharedPartials = [
+            'ContentArea' => 'contentArea="{content}"',
+            'Stage' => 'contentArea="{content}"',
+            'DashboardRail' => 'desiderio-dashboard-template__rail',
+            'ErrorHomeLink' => 'a11y.nav.home',
+            'SystemHeader' => '<f:argument name="summaryTag"',
+        ];
+
+        foreach ($sharedPartials as $partialName => $expectedMarkup) {
+            $partialPath = 'Resources/Private/Templates/Partials/Presets/' . $partialName . '.fluid.html';
+            $absolutePartialPath = __DIR__ . '/../../' . $partialPath;
+
+            self::assertFileExists($absolutePartialPath, "{$partialPath} must exist for reusable preset chrome");
+            self::assertStringContainsString($expectedMarkup, (string) file_get_contents($absolutePartialPath));
+        }
+
+        foreach ($presets as $presetDirectory => $setDirectory) {
+            $presetSet = Yaml::parseFile(__DIR__ . '/../../Configuration/Sets/' . $setDirectory . '/config.yaml');
+            $typoScript = (string) file_get_contents(__DIR__ . '/../../Configuration/Sets/' . $setDirectory . '/setup.typoscript');
+            $cssPath = __DIR__ . '/../../Resources/Public/Css/preset-' . strtolower($presetDirectory) . '.css';
+            if ($presetDirectory === 'Saas') {
+                $cssPath = __DIR__ . '/../../Resources/Public/Css/preset-saas.css';
+            }
+            $templateNames = [
+                'DesiderioStartpage',
+                'DesiderioContentpage',
+                'DesiderioContentpageSidebar',
+                'DesiderioSearch',
+                'DesiderioError',
+            ];
+
+            self::assertStringContainsString(
+                'lib.fluidPage.paths.30 = EXT:desiderio/Resources/Private/Presets/' . $presetDirectory . '/Templates/',
+                $typoScript,
+                $setDirectory . ' must register a PAGEVIEW override path',
+            );
+            self::assertIsArray($presetSet);
+            self::assertTrue($presetSet['hidden']);
+            self::assertFileExists($cssPath);
+
+            foreach ($templateNames as $templateName) {
+                $templatePath = 'Resources/Private/Presets/' . $presetDirectory . '/Templates/Pages/' . $templateName . '.fluid.html';
+                $absoluteTemplatePath = __DIR__ . '/../../' . $templatePath;
+
+                self::assertFileExists($absoluteTemplatePath, "{$templatePath} must exist so {$setDirectory} is a complete page archetype");
+
+                $template = (string) file_get_contents($absoluteTemplatePath);
+                self::assertStringContainsString('Pages/Default', $template);
+                self::assertStringContainsString('partial="Presets/ContentArea"', $template);
+
+                if (in_array($templateName, ['DesiderioStartpage', 'DesiderioContentpage', 'DesiderioContentpageSidebar'], true)) {
+                    self::assertStringContainsString('partial="Presets/Stage"', $template);
+                }
+            }
+
+            $sidebarTemplate = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Presets/' . $presetDirectory . '/Templates/Pages/DesiderioContentpageSidebar.fluid.html');
+            self::assertStringContainsString('content: content.sidebar', $sidebarTemplate);
+        }
+    }
+
     public function testSolrAndNewsOverrideTemplatesFollowUpstreamStructureAndUseDesiderioComponents(): void
     {
         $requiredFiles = [
@@ -579,6 +828,25 @@ final class ContentRenderingTemplateTest extends TestCase
             $template = (string) file_get_contents(__DIR__ . '/../../' . $relativePath);
             self::assertStringContainsString('Webconsulting/Desiderio/Components/ComponentCollection', $template, "{$relativePath} should use Desiderio Fluid components");
         }
+
+        $solrDocumentPartial = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Solr/Partials/Result/Document.html');
+        $solrLayout = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Solr/Layouts/Split.html');
+        $solrResultsTemplate = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Solr/Templates/Search/Results.html');
+        $solrFormPartial = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Solr/Partials/Search/Form.html');
+
+        self::assertStringContainsString('data-shadcn-pattern="create-shell"', $solrLayout);
+        self::assertStringContainsString('d-solr-create__sidebar', $solrLayout);
+        self::assertStringContainsString('data-shadcn-pattern="search-results"', $solrResultsTemplate);
+        self::assertStringContainsString('data-shadcn-pattern="command-palette"', $solrFormPartial);
+        self::assertStringContainsString('data-slot="input"', $solrFormPartial);
+        self::assertStringContainsString('data-slot="button"', $solrFormPartial);
+        self::assertStringContainsString('<di:icon name="search"', $solrFormPartial);
+        self::assertStringContainsString('Webconsulting/Desiderio/ViewHelpers', $solrDocumentPartial);
+        self::assertStringContainsString('<d:searchSnippet text="{document.title}"', $solrDocumentPartial);
+        self::assertStringContainsString('<d:searchSnippet text="{document.content}"', $solrDocumentPartial);
+        self::assertStringContainsString('maxCharacters="200"', $solrDocumentPartial);
+        self::assertStringContainsString('data-slot="card"', $solrDocumentPartial);
+        self::assertStringContainsString('d-solr-result-card', $solrDocumentPartial);
     }
 
     public function testEveryLabelFileIsXliff20(): void
@@ -683,9 +951,9 @@ final class ContentRenderingTemplateTest extends TestCase
         self::assertStringContainsString('aria-controls="desiderio-main-nav"', $headerPartial);
         self::assertStringContainsString("aria-current: \\'page\\'", $headerPartial, 'Active nav links must declare aria-current="page" via additionalAttributes.');
         self::assertStringContainsString('aria-pressed="false"', $headerPartial);
-        self::assertStringContainsString('focusable="false"', $headerPartial);
+        self::assertStringContainsString('<d:atom.icon', $headerPartial);
         self::assertStringContainsString('a11y.menu.toggle', $headerPartial);
-        self::assertStringContainsString('a11y.theme.toggle', $headerPartial);
+        self::assertStringContainsString('a11y.theme.switch', $headerPartial);
         self::assertStringContainsString('a11y.nav.language', $headerPartial);
         self::assertMatchesRegularExpression(
             '/<ul[^>]*role="list"/',

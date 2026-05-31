@@ -1,0 +1,23 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:layout name="Pages/Default"/>
+
+<f:section name="Stage">
+    <f:render partial="Presets/Stage" arguments="{content: content.stage, class: 'desiderio-saas-template__stage', containerSize: 'xl', innerClass: 'desiderio-saas-template__stage-inner'}"/>
+</f:section>
+
+<f:section name="Main">
+    <div class="desiderio-saas-template">
+        <d:layout.container size="xl">
+            <div class="desiderio-saas-template__content">
+                <f:render partial="Presets/ContentArea" arguments="{content: content.main}"/>
+            </div>
+        </d:layout.container>
+    </div>
+</f:section>
+
+</html>

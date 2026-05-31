@@ -274,23 +274,28 @@ No build step. No SCSS. Pure CSS custom properties.
 
 ---
 
-## 8. Presets (formerly "templates")
+## 8. Site packages and presets
 
-Five site sets extend the base. Each ships **one CSS file + settings overrides**:
+Five visible site packages are the normal import surface. Each depends on the
+hidden base set, hidden content-element aggregate, and one hidden scenario
+preset. The preset ships archetype-specific page templates, **one CSS file**,
+and setting overrides:
 
-| Preset | Slug | Character | Overrides |
+| Package | Preset slug | Character | Overrides |
 | --- | --- | --- | --- |
-| SaaS | `desiderio-preset-saas` | SaaS Landing | glass header, spacious density, `blue` accent |
-| Corporate | `desiderio-preset-corporate` | Mainline Corporate | solid header, centered footer, `slate`, minimal radius |
-| Portfolio | `desiderio-preset-portfolio` | Portfolio | transparent header overlay, `rose`, `full` radius |
-| Editorial | `desiderio-preset-editorial` | Blog & Magazine | serif font, `narrow` container, columns footer |
-| Dashboard | `desiderio-preset-dashboard` | Dashboard App | sticky header, `compact` density, monospace accents |
+| `site-package-desiderio-saas` | `desiderio-preset-saas` | SaaS Landing | glass header, spacious density, `blue` accent |
+| `site-package-desiderio-corporate` | `desiderio-preset-corporate` | Mainline Corporate | solid header, centered footer, `slate`, minimal radius |
+| `site-package-desiderio-portfolio` | `desiderio-preset-portfolio` | Portfolio | transparent header overlay, `rose`, `full` radius |
+| `site-package-desiderio-editorial` | `desiderio-preset-editorial` | Blog & Magazine | serif font, `narrow` container, columns footer |
+| `site-package-desiderio-dashboard` | `desiderio-preset-dashboard` | Dashboard App | sticky header, `compact` density, monospace accents |
 
-A preset **cannot** change markup, backend layouts, or component structure. It only changes:
-1. CSS (one preset CSS file loaded after `desiderio.css`)
-2. Setting defaults (in `settings.yaml`)
+The hidden preset changes:
+1. PAGEVIEW templates for the same backend layout names
+2. CSS (one preset CSS file loaded after `desiderio.css`)
+3. Setting defaults (in `settings.yaml`)
 
-Switching presets is always safe — never breaks content.
+Switching packages is safe for content records and backend layout identifiers,
+but it intentionally changes the page shell markup and presentation.
 
 ---
 

@@ -1,0 +1,35 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:layout name="Pages/Default"/>
+
+<f:section name="Stage">
+    <f:render partial="Presets/Stage" arguments="{content: content.stage, class: 'desiderio-dashboard-template__stage', containerSize: 'full'}"/>
+</f:section>
+
+<f:section name="Main">
+    <div class="desiderio-dashboard-template desiderio-dashboard-sidebar">
+        <d:layout.container size="full" class="desiderio-dashboard-template__container">
+            <f:render partial="Presets/DashboardRail" arguments="{title: breadcrumb.0.title, mainMenu: mainMenu}"/>
+            <section class="desiderio-dashboard-template__content" aria-label="{page.pageRecord.title}">
+                <div class="desiderio-dashboard-template__toolbar">
+                    <p class="desiderio-dashboard-template__eyebrow">Workspace</p>
+                    <h1>{page.pageRecord.title}</h1>
+                </div>
+                <div class="desiderio-dashboard-template__canvas desiderio-dashboard-sidebar__layout">
+                    <div class="desiderio-dashboard-sidebar__main">
+                        <f:render partial="Presets/ContentArea" arguments="{content: content.main}"/>
+                    </div>
+                    <aside class="desiderio-dashboard-sidebar__aside">
+                        <f:render partial="Presets/ContentArea" arguments="{content: content.sidebar}"/>
+                    </aside>
+                </div>
+            </section>
+        </d:layout.container>
+    </div>
+</f:section>
+
+</html>

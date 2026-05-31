@@ -209,6 +209,7 @@ final class ShadcnThemeTest extends TestCase
     {
         $facetTemplate = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Solr/Partials/Facets/Options.html');
         $frequentlySearchedTemplate = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Solr/Partials/Search/FrequentlySearched.html');
+        $lastSearchesTemplate = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Solr/Partials/Search/LastSearches.html');
         $desiderioCss = (string) file_get_contents(__DIR__ . '/../../Resources/Public/Css/desiderio.css');
 
         self::assertStringContainsString('d-solr-suggest d-solr-suggest--facet', $facetTemplate);
@@ -217,8 +218,11 @@ final class ShadcnThemeTest extends TestCase
         self::assertStringContainsString('d-solr-suggest d-solr-suggest--facet', $frequentlySearchedTemplate);
         self::assertStringContainsString('d-solr-facet__list', $frequentlySearchedTemplate);
         self::assertStringContainsString('d-solr-suggest__option', $frequentlySearchedTemplate);
+        self::assertStringContainsString('d-solr-suggest d-solr-suggest--facet', $lastSearchesTemplate);
+        self::assertStringContainsString('d-solr-facet__list', $lastSearchesTemplate);
         self::assertStringContainsString('.d-solr-suggest--facet', $desiderioCss);
         self::assertStringContainsString('.d-solr-facet__list', $desiderioCss);
+        self::assertStringContainsString('.d-solr-create__sidebar .d-solr-suggest__option', $desiderioCss);
     }
 
     public function testSolrSuggestDropdownUsesContentTypeLabels(): void
@@ -258,6 +262,7 @@ final class ShadcnThemeTest extends TestCase
         self::assertStringContainsString('.d-solr-suggest :where(a, a *)', $css);
         self::assertStringContainsString('#tx-solr-facets-in-use :where(a, a *)', $css);
         self::assertStringContainsString('#tx-solr-sorting :where(a, a *, summary, summary *)', $css);
+        self::assertStringContainsString('.d-solr-result-card :where(a, a *)', $css);
         self::assertStringContainsString('text-decoration-line: none;', $css);
     }
 

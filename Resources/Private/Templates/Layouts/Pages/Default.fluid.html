@@ -5,6 +5,8 @@
 >
 
 <f:page.meta property="viewport">width=device-width, initial-scale=1.0</f:page.meta>
+<f:render partial="Pages/SeoMeta" arguments="{_all}"/>
+<f:render partial="Pages/StructuredData" arguments="{_all}"/>
 <f:comment>
     Hugeicons stroke font is loaded over a Subresource-Integrity-pinned CDN URL.
     The hash matches the v1.0.7 build that ships with this Desiderio cut and
@@ -42,5 +44,6 @@
 </main>
 
 <f:render partial="Pages/Footer" arguments="{_all}"/>
+<f:render partial="Pages/Consent" arguments="{_all}"/>
 
 </html>

@@ -1,0 +1,32 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:layout name="Pages/Default"/>
+
+<f:section name="Stage">
+    <f:render partial="Presets/Stage" arguments="{content: content.stage, class: 'desiderio-portfolio-template__stage', containerSize: 'xl'}"/>
+</f:section>
+
+<f:section name="Main">
+    <div class="desiderio-portfolio-template desiderio-portfolio-sidebar">
+        <d:layout.container size="xl" class="desiderio-portfolio-template__container">
+            <div class="desiderio-portfolio-template__masthead">
+                <p>{breadcrumb.0.title}</p>
+                <h1>{page.pageRecord.title}</h1>
+            </div>
+            <div class="desiderio-portfolio-sidebar__layout">
+                <div class="desiderio-portfolio-template__content">
+                    <f:render partial="Presets/ContentArea" arguments="{content: content.main}"/>
+                </div>
+                <aside class="desiderio-portfolio-sidebar__aside">
+                    <f:render partial="Presets/ContentArea" arguments="{content: content.sidebar}"/>
+                </aside>
+            </div>
+        </d:layout.container>
+    </div>
+</f:section>
+
+</html>

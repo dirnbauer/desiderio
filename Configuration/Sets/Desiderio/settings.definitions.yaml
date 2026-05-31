@@ -10,6 +10,18 @@ categories:
   desiderio.footer:
     label: 'Footer'
     parent: desiderio
+  desiderio.search:
+    label: 'Search'
+    parent: desiderio
+  desiderio.seo:
+    label: 'SEO'
+    parent: desiderio
+  desiderio.tracking:
+    label: 'Tracking'
+    parent: desiderio
+  desiderio.consent:
+    label: 'Consent'
+    parent: desiderio
   desiderio.theme:
     label: 'Theme'
     parent: desiderio
@@ -96,6 +108,113 @@ settings:
       mega: 'Mega (full-width)'
     default: columns
     category: desiderio.footer
+
+  desiderio.footer.copyrightText:
+    label: 'Copyright text'
+    description: 'Optional custom footer copyright line. Leave empty to render the current year and site title.'
+    type: string
+    default: ''
+    category: desiderio.footer
+
+  desiderio.footer.legalPageIds:
+    label: 'Legal page IDs'
+    description: 'Comma-separated list of pages for the legal footer menu, for example imprint, privacy, accessibility.'
+    type: string
+    default: ''
+    category: desiderio.footer
+
+  # --------------------------------------------------------------- Search
+  desiderio.search.enabled:
+    label: 'Show search in header'
+    description: 'Render a compact search form in the site header.'
+    type: bool
+    default: true
+    category: desiderio.search
+
+  desiderio.search.targetPageId:
+    label: 'Search result page ID'
+    description: 'Optional page ID that receives the header search request. Empty falls back to the site home page.'
+    type: string
+    default: ''
+    category: desiderio.search
+
+  desiderio.search.queryParameter:
+    label: 'Search query parameter'
+    description: 'GET parameter used by the header search form. Use q for Solr-style search pages.'
+    type: string
+    default: q
+    category: desiderio.search
+
+  # --------------------------------------------------------------- SEO
+  desiderio.seo.defaultDescription:
+    label: 'Default meta description'
+    description: 'Fallback description used when a page record has no SEO description.'
+    type: string
+    default: ''
+    category: desiderio.seo
+
+  desiderio.seo.defaultRobots:
+    label: 'Default robots meta'
+    description: 'Fallback robots directive for pages that do not override indexing settings.'
+    type: string
+    enum:
+      'index,follow': 'Index, follow'
+      'noindex,follow': 'No index, follow'
+      'index,nofollow': 'Index, no follow'
+      'noindex,nofollow': 'No index, no follow'
+    default: 'index,follow'
+    category: desiderio.seo
+
+  desiderio.seo.defaultImage:
+    label: 'Default sharing image URL'
+    description: 'Absolute image URL used for Open Graph and Twitter cards when no extension-specific image is available.'
+    type: string
+    default: ''
+    category: desiderio.seo
+
+  desiderio.seo.structuredDataEnabled:
+    label: 'Emit WebSite structured data'
+    description: 'Adds a small JSON-LD WebSite record with SearchAction when search is enabled.'
+    type: bool
+    default: true
+    category: desiderio.seo
+
+  desiderio.seo.robotsTxtEnabled:
+    label: 'Render robots.txt'
+    description: 'Enables the Desiderio robots.txt page type. The site route enhancer still has to map robots.txt to type 201.'
+    type: bool
+    default: true
+    category: desiderio.seo
+
+  desiderio.seo.sitemapPath:
+    label: 'Sitemap path'
+    description: 'Path appended to the site base URL in robots.txt.'
+    type: string
+    default: sitemap.xml
+    category: desiderio.seo
+
+  # --------------------------------------------------------------- Tracking
+  desiderio.tracking.enabled:
+    label: 'Tracking scripts present'
+    description: 'Shows the consent banner and exposes the visitor choice to custom tracking integrations.'
+    type: bool
+    default: false
+    category: desiderio.tracking
+
+  # --------------------------------------------------------------- Consent
+  desiderio.consent.message:
+    label: 'Consent message'
+    description: 'Short banner text shown only when tracking is enabled.'
+    type: string
+    default: 'We use optional cookies to measure and improve this website.'
+    category: desiderio.consent
+
+  desiderio.consent.privacyPageId:
+    label: 'Privacy page ID'
+    description: 'Optional page ID linked from the consent banner.'
+    type: string
+    default: ''
+    category: desiderio.consent
 
   # --------------------------------------------------------------- Theme
   desiderio.theme.accent:

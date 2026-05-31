@@ -28,16 +28,30 @@ final class SearchSnippetViewHelper extends AbstractViewHelper
 
         $query = is_string($this->arguments['query'] ?? null) ? $this->arguments['query'] : '';
         $terms = $this->extractSearchTerms($query);
-        $maxCharacters = max(1, (int)($this->arguments['maxCharacters'] ?? 200));
-        $append = (string)($this->arguments['append'] ?? '...');
+        $maxCharacters = max(1, $this->intArgument('maxCharacters', 200));
+        $append = $this->stringArgument('append', '...');
 
         $snippet = $this->cropText($text, $terms, $maxCharacters, $append);
 
         return $this->highlightTerms(
             $snippet,
             $terms,
-            (string)($this->arguments['highlightClass'] ?? 'results-highlight')
+            $this->stringArgument('highlightClass', 'results-highlight')
         );
+    }
+
+    private function stringArgument(string $name, string $default = ''): string
+    {
+        $value = $this->arguments[$name] ?? null;
+
+        return is_scalar($value) || $value instanceof \Stringable ? (string)$value : $default;
+    }
+
+    private function intArgument(string $name, int $default): int
+    {
+        $value = $this->arguments[$name] ?? null;
+
+        return is_numeric($value) ? (int)$value : $default;
     }
 
     private function normalizeText(mixed $text): string
@@ -60,7 +74,7 @@ final class SearchSnippetViewHelper extends AbstractViewHelper
         preg_match_all('/[\p{L}\p{N}_-]+/u', html_entity_decode($query, ENT_QUOTES | ENT_HTML5, 'UTF-8'), $matches);
 
         $terms = [];
-        foreach ($matches[0] ?? [] as $term) {
+        foreach ($matches[0] as $term) {
             $term = trim($term, "*? \t\n\r\0\x0B");
             if ($term === '') {
                 continue;
@@ -76,7 +90,7 @@ final class SearchSnippetViewHelper extends AbstractViewHelper
 
         usort($terms, static fn(string $left, string $right): int => mb_strlen($right, 'UTF-8') <=> mb_strlen($left, 'UTF-8'));
 
-        return array_values($terms);
+        return $terms;
     }
 
     /**
@@ -126,7 +140,7 @@ final class SearchSnippetViewHelper extends AbstractViewHelper
             return 0;
         }
 
-        $matchOffset = (int)($matches[0][1] ?? 0);
+        $matchOffset = $matches[0][1] ?? 0;
         $matchPosition = mb_strlen(substr($text, 0, $matchOffset), 'UTF-8');
         $contextBefore = max(20, (int)floor(($maxCharacters - ($appendLength * 2)) / 3));
         $start = max(0, $matchPosition - $contextBefore);
@@ -178,8 +192,8 @@ final class SearchSnippetViewHelper extends AbstractViewHelper
         $offset = 0;
         $class = htmlspecialchars($highlightClass, ENT_QUOTES | ENT_HTML5, 'UTF-8');
         foreach ($matches[0] as $match) {
-            $term = (string)$match[0];
-            $position = (int)$match[1];
+            $term = $match[0];
+            $position = $match[1];
             if ($position < $offset) {
                 continue;
             }

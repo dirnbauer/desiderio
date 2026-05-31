@@ -184,12 +184,22 @@ final class ContentRenderingTemplateTest extends TestCase
             self::assertStringContainsString('partial="' . $partialName . '"', $layout);
         }
 
+        self::assertIsArray($settings);
+        $desiderioSettings = $settings['desiderio'] ?? null;
+        self::assertIsArray($desiderioSettings);
+        $seoSettings = $desiderioSettings['seo'] ?? null;
+        self::assertIsArray($seoSettings);
+        $trackingSettings = $desiderioSettings['tracking'] ?? null;
+        self::assertIsArray($trackingSettings);
+        $consentSettings = $desiderioSettings['consent'] ?? null;
+        self::assertIsArray($consentSettings);
+
         foreach (['defaultDescription', 'defaultRobots', 'defaultImage', 'structuredDataEnabled', 'robotsTxtEnabled', 'sitemapPath'] as $settingName) {
-            self::assertArrayHasKey($settingName, $settings['desiderio']['seo']);
+            self::assertArrayHasKey($settingName, $seoSettings);
         }
-        self::assertArrayHasKey('enabled', $settings['desiderio']['tracking']);
-        self::assertArrayHasKey('message', $settings['desiderio']['consent']);
-        self::assertArrayHasKey('privacyPageId', $settings['desiderio']['consent']);
+        self::assertArrayHasKey('enabled', $trackingSettings);
+        self::assertArrayHasKey('message', $consentSettings);
+        self::assertArrayHasKey('privacyPageId', $consentSettings);
 
         foreach (['desiderio.seo.defaultDescription', 'desiderio.seo.robotsTxtEnabled', 'desiderio.tracking.enabled', 'desiderio.consent.privacyPageId'] as $definitionKey) {
             self::assertStringContainsString($definitionKey, $settingDefinitions);
@@ -637,7 +647,8 @@ final class ContentRenderingTemplateTest extends TestCase
         ];
 
         $visibleDesiderioSets = [];
-        foreach (glob(__DIR__ . '/../../Configuration/Sets/*/config.yaml') ?: [] as $configFile) {
+        $setConfigFiles = glob(__DIR__ . '/../../Configuration/Sets/*/config.yaml');
+        foreach (is_array($setConfigFiles) ? $setConfigFiles : [] as $configFile) {
             $set = Yaml::parseFile($configFile);
             self::assertIsArray($set);
 
@@ -666,7 +677,9 @@ final class ContentRenderingTemplateTest extends TestCase
             $dependencies = $set['dependencies'] ?? [];
             self::assertIsArray($dependencies);
             self::assertSame($sitePackage['name'], $set['name']);
-            self::assertStringStartsWith('Site Package: Desiderio ', (string) $set['label']);
+            $label = $set['label'] ?? '';
+            self::assertIsString($label);
+            self::assertStringStartsWith('Site Package: Desiderio ', $label);
             self::assertContains('webconsulting/desiderio-content-elements', $dependencies, "{$variant} site package must import the full editor catalog");
             self::assertContains($sitePackage['preset'], $dependencies, "{$variant} site package must select exactly one archetype preset");
         }

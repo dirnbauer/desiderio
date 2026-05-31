@@ -28,8 +28,8 @@ final class StructuredDataViewHelper extends AbstractViewHelper
             return '';
         }
 
-        $name = trim((string)($this->arguments['name'] ?? ''));
-        $url = $this->absoluteUrl((string)($this->arguments['url'] ?? ''));
+        $name = trim($this->stringArgument('name'));
+        $url = $this->absoluteUrl($this->stringArgument('url'));
         if ($name === '' || $url === '') {
             return '';
         }
@@ -41,9 +41,9 @@ final class StructuredDataViewHelper extends AbstractViewHelper
             'url' => $url,
         ];
 
-        $searchUrl = $this->absoluteUrl((string)($this->arguments['searchUrl'] ?? ''));
+        $searchUrl = $this->absoluteUrl($this->stringArgument('searchUrl'));
         if (($this->arguments['searchEnabled'] ?? true) !== false && $searchUrl !== '') {
-            $queryParameter = $this->normalizeQueryParameter((string)($this->arguments['queryParameter'] ?? 'q'));
+            $queryParameter = $this->normalizeQueryParameter($this->stringArgument('queryParameter', 'q'));
             $data['potentialAction'] = [
                 '@type' => 'SearchAction',
                 'target' => $searchUrl . (str_contains($searchUrl, '?') ? '&' : '?') . rawurlencode($queryParameter) . '={search_term_string}',
@@ -57,6 +57,13 @@ final class StructuredDataViewHelper extends AbstractViewHelper
         }
 
         return '<script type="application/ld+json" data-desiderio-structured-data' . $this->nonceAttribute() . '>' . $json . '</script>';
+    }
+
+    private function stringArgument(string $name, string $default = ''): string
+    {
+        $value = $this->arguments[$name] ?? null;
+
+        return is_scalar($value) || $value instanceof \Stringable ? (string)$value : $default;
     }
 
     private function absoluteUrl(string $url): string
@@ -90,7 +97,9 @@ final class StructuredDataViewHelper extends AbstractViewHelper
             return 'q';
         }
 
-        return preg_replace('/[^A-Za-z0-9_\\[\\]-]/', '', $queryParameter) ?: 'q';
+        $normalized = preg_replace('/[^A-Za-z0-9_\\[\\]-]/', '', $queryParameter);
+
+        return $normalized === null || $normalized === '' ? 'q' : $normalized;
     }
 
     private function nonceAttribute(): string

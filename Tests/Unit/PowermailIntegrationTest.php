@@ -52,17 +52,24 @@ final class PowermailIntegrationTest extends TestCase
             self::assertStringContainsString('<f:argument', $content, "{$file} must declare typed Fluid arguments");
         }
 
-        // Preset-dependent control classes live in the generated shared partial
-        // (Form/ShadcnClass.html, kept in sync with the shadcn recipe); the field
-        // templates reference it instead of hardcoding radix-lyra classes.
+        // The control classes live in the generated shared partial
+        // (Form/ShadcnClass.html), regenerated per shadcn/create preset. Assert
+        // its STRUCTURE and semantic-token contract — never style-specific radius
+        // or ring values, which legitimately change when the preset changes.
         $registry = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/Powermail/Partials/Form/ShadcnClass.html');
-        self::assertStringContainsString('rounded-none border border-input bg-transparent', $registry);
-        self::assertStringContainsString('focus-visible:ring-1 focus-visible:ring-ring/50', $registry);
-        self::assertStringContainsString('dark:bg-input/30', $registry);
-        self::assertStringContainsString('aria-invalid:ring-destructive/20', $registry);
-        self::assertStringContainsString('<f:case value="radius">rounded-none</f:case>', $registry);
-        self::assertStringNotContainsString('focus-visible:ring-2', $registry);
-        self::assertStringNotContainsString('rounded-md', $registry);
+        foreach (['input', 'textarea', 'select', 'checkbox', 'radio', 'file', 'btnPrimary', 'btnSecondary', 'radius'] as $case) {
+            self::assertStringContainsString(sprintf('<f:case value="%s">', $case), $registry, "ShadcnClass must define the '{$case}' class");
+        }
+        // Controls track the theme via semantic tokens + dark/invalid states in any preset.
+        self::assertStringContainsString('focus-visible:border-ring', $registry);
+        self::assertStringContainsString('focus-visible:ring-ring', $registry);
+        self::assertStringContainsString('aria-invalid:border-destructive', $registry);
+        self::assertStringContainsString('text-foreground', $registry);
+        self::assertStringContainsString('dark:', $registry);
+        // The radius case is a rounded-* utility (square or rounded — the preset's choice).
+        self::assertMatchesRegularExpression('#<f:case value="radius">rounded-[a-z0-9]+</f:case>#', $registry);
+        // No raw colours leak into generated classes — theme tokens only.
+        self::assertDoesNotMatchRegularExpression('/oklch\(|#[0-9a-fA-F]{3}|\brgb\(/', $registry);
 
         $input = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/Powermail/Partials/Form/Field/Input.html');
         self::assertStringContainsString("f:render(partial: 'Form/ShadcnClass', arguments: {name: 'input'})", $input);

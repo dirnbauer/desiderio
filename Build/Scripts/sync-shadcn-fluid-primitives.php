@@ -3,6 +3,8 @@
 
 declare(strict_types=1);
 
+require __DIR__ . '/powermail-fluid-templates.php';
+
 /**
  * Synchronize Fluid primitives with the official shadcn/ui registry recipe for
  * the configured shadcn/create preset.
@@ -325,7 +327,7 @@ function renderTargets(array $recipes, string $style, string $preset, string $sc
     $header = renderGeneratedHeader($style, $preset, $scriptRelativePath);
     $localHeader = renderLocalGeneratedHeader($style, $preset, $scriptRelativePath);
 
-    return [
+    $targets = [
         'Resources/Private/Components/Atom/Badge/Badge.fluid.html' => renderBadge($recipes['badge'], $header),
         'Resources/Private/Components/Atom/Button/Button.fluid.html' => renderButton($recipes['button'], $header),
         'Resources/Private/Components/Atom/Input/Input.fluid.html' => renderInput($recipes['input'], $header),
@@ -341,6 +343,8 @@ function renderTargets(array $recipes, string $style, string $preset, string $sc
         'Resources/Private/Components/Molecule/TabsList/TabsList.fluid.html' => renderTabsList($recipes['tabs'], $header),
         'Resources/Private/Components/Molecule/TabsTrigger/TabsTrigger.fluid.html' => renderTabsTrigger($recipes['tabs'], $header),
     ];
+
+    return $targets + powermailFluidTargets($recipes);
 }
 
 function renderGeneratedHeader(string $style, string $preset, string $scriptRelativePath): string

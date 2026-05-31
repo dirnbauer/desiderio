@@ -42,6 +42,7 @@ final class PowermailIntegrationTest extends TestCase
             'Partials/Form/Field/Textarea.html',
             'Partials/Form/Field/File.html',
             'Partials/Form/Field/Submit.html',
+            'Partials/Form/ShadcnClass.html',
         ];
 
         foreach ($files as $file) {
@@ -51,13 +52,27 @@ final class PowermailIntegrationTest extends TestCase
             self::assertStringContainsString('<f:argument', $content, "{$file} must declare typed Fluid arguments");
         }
 
-        $form = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/Powermail/Templates/Form/Form.html');
-        self::assertStringContainsString('rounded-md border border-border bg-card', $form);
-        self::assertStringContainsString('data-powermail-morestep-show', $form);
+        // Preset-dependent control classes live in the generated shared partial
+        // (Form/ShadcnClass.html, kept in sync with the shadcn recipe); the field
+        // templates reference it instead of hardcoding radix-lyra classes.
+        $registry = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/Powermail/Partials/Form/ShadcnClass.html');
+        self::assertStringContainsString('rounded-none border border-input bg-transparent', $registry);
+        self::assertStringContainsString('focus-visible:ring-1 focus-visible:ring-ring/50', $registry);
+        self::assertStringContainsString('dark:bg-input/30', $registry);
+        self::assertStringContainsString('aria-invalid:ring-destructive/20', $registry);
+        self::assertStringContainsString('<f:case value="radius">rounded-none</f:case>', $registry);
+        self::assertStringNotContainsString('focus-visible:ring-2', $registry);
+        self::assertStringNotContainsString('rounded-md', $registry);
 
         $input = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/Powermail/Partials/Form/Field/Input.html');
-        self::assertStringContainsString('border-input bg-background', $input);
-        self::assertStringContainsString('focus-visible:ring-2 focus-visible:ring-ring', $input);
+        self::assertStringContainsString("f:render(partial: 'Form/ShadcnClass', arguments: {name: 'input'})", $input);
+
+        // Form surface keeps the flat radix-lyra card (ring, not border+shadow) and pulls its radius from the shared partial.
+        $form = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/Powermail/Templates/Form/Form.html');
+        self::assertStringContainsString('ring-1 ring-foreground/10', $form);
+        self::assertStringNotContainsString('shadow-sm', $form);
+        self::assertStringContainsString('data-powermail-morestep-show', $form);
+        self::assertStringContainsString("f:render(partial: 'Form/ShadcnClass'", $form);
     }
 
     public function testPowermailTranslationsAreXliff20InEnglishAndGerman(): void

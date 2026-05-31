@@ -4,6 +4,6 @@
 
 <div class="powermail_fieldwrap powermail_fieldwrap_type_location powermail_fieldwrap_{field.marker} {field.css} d-powermail-field space-y-2">
     <f:render partial="Form/FieldLabel" arguments="{field: field}" />
-    <f:form.textfield property="{field.marker}" value="{vh:misc.prefillField(field: field, mail: mail)}" class="powermail_location d-powermail-control h-9 w-full rounded-md border border-input bg-background px-3 py-1 text-sm text-foreground shadow-sm focus-visible:border-ring focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring/50" id="powermail_field_{field.marker}" />
+    <f:form.textfield property="{field.marker}" value="{vh:misc.prefillField(field: field, mail: mail)}" class="powermail_location d-powermail-control {f:render(partial: 'Form/ShadcnClass', arguments: {name: 'input'}) -> f:format.trim()}" id="powermail_field_{field.marker}" />
 </div>
 </html>

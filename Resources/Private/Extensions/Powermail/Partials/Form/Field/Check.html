@@ -7,7 +7,7 @@
     <f:render partial="Form/FieldLabel" arguments="{field: field}" />
     <div class="d-powermail-options grid gap-2">
         <f:for each="{field.modifiedSettings}" as="setting" iteration="index">
-            <div class="d-powermail-option flex items-start gap-2 rounded-md border border-border bg-background p-3 {vh:validation.errorClass(field: field, class: 'border-destructive')}">
+            <div class="d-powermail-option flex items-start gap-2 {f:render(partial: 'Form/ShadcnClass', arguments: {name: 'radius'}) -> f:format.trim()} border border-border bg-background p-3 {vh:validation.errorClass(field: field, class: 'border-destructive')}">
                 <f:form.checkbox
                     property="{field.marker}"
                     multiple="true"
@@ -15,7 +15,7 @@
                     checked="{vh:misc.prefillMultiField(field: field, mail: mail, cycle: index.cycle)}"
                     id="powermail_field_{field.marker}_{index.cycle}"
                     additionalAttributes="{vh:validation.validationDataAttribute(field: field, iteration: index)}"
-                    class="powermail_checkbox powermail_checkbox_{field.uid} d-powermail-checkbox mt-0.5 size-4 rounded-sm border border-input bg-background text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring" />
+                    class="powermail_checkbox powermail_checkbox_{field.uid} d-powermail-checkbox mt-0.5 {f:render(partial: 'Form/ShadcnClass', arguments: {name: 'checkbox'}) -> f:format.trim()}" />
                 <label for="powermail_field_{field.marker}_{index.cycle}" class="d-powermail-option-label text-sm leading-5 text-foreground">
                     <vh:string.escapeLabels>{setting.label}</vh:string.escapeLabels>
                 </label>

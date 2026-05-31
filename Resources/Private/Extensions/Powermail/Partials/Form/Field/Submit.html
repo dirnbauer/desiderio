@@ -3,6 +3,6 @@
 <f:argument name="settings" type="array" optional="{true}" />
 
 <div class="powermail_fieldwrap powermail_fieldwrap_type_submit powermail_fieldwrap_{field.marker} {field.css} d-powermail-field sm:col-span-2">
-    <f:form.submit value="{field.title}" class="powermail_submit d-powermail-button d-powermail-button--primary inline-flex h-9 items-center justify-center rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground shadow-sm transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50" />
+    <f:form.submit value="{field.title}" class="powermail_submit d-powermail-button d-powermail-button--primary {f:render(partial: 'Form/ShadcnClass', arguments: {name: 'btnPrimary'}) -> f:format.trim()}" />
 </div>
 </html>

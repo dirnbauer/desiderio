@@ -23,9 +23,16 @@ final class ShadcnThemeTest extends TestCase
         $layoutSettings = $siteSettings['layout'] ?? null;
         self::assertIsArray($layoutSettings);
 
-        self::assertSame('b6G5977cw', $shadcnSettings['preset'] ?? null);
-        self::assertSame('radix-lyra', $shadcnSettings['style'] ?? null);
-        self::assertSame('tabler', $shadcnSettings['iconLibrary'] ?? null);
+        // Style-agnostic: validate that whatever shadcn preset/style/icon is CONFIGURED is a
+        // supported option and that the enums still offer every supported choice — never that a
+        // specific style such as radix-lyra is the active one. Switching styles via
+        // shadcn/create must not break the suite.
+        $configuredPreset = $shadcnSettings['preset'] ?? null;
+        $configuredStyle = $shadcnSettings['style'] ?? null;
+        $configuredIconLibrary = $shadcnSettings['iconLibrary'] ?? null;
+        self::assertIsString($configuredPreset);
+        self::assertIsString($configuredStyle);
+        self::assertIsString($configuredIconLibrary);
         self::assertSame('preset', $typographySettings['fontSans'] ?? null);
         self::assertSame('preset', $layoutSettings['radius'] ?? null);
 
@@ -36,24 +43,27 @@ final class ShadcnThemeTest extends TestCase
         self::assertIsArray($presetDefinition);
         $presetEnum = $presetDefinition['enum'] ?? null;
         self::assertIsArray($presetEnum);
-        self::assertSame('b6G5977cw', $presetDefinition['default'] ?? null);
-        self::assertArrayHasKey('b4hb38Fyj', $presetEnum);
-        self::assertArrayHasKey('b0', $presetEnum);
-        self::assertArrayHasKey('b3IWPgRwnI', $presetEnum);
-        self::assertArrayHasKey('b6G5977cw', $presetEnum);
-        self::assertArrayHasKey('custom', $presetEnum);
+        self::assertArrayHasKey($presetDefinition['default'] ?? '', $presetEnum, 'preset default must be a supported enum option');
+        self::assertArrayHasKey($configuredPreset, $presetEnum, 'configured shadcn.preset must be a supported enum option');
+        foreach (['b4hb38Fyj', 'b0', 'b3IWPgRwnI', 'b6G5977cw', 'custom'] as $presetKey) {
+            self::assertArrayHasKey($presetKey, $presetEnum);
+        }
 
         $styleDefinition = $settingDefinitions['desiderio.shadcn.style'] ?? null;
         self::assertIsArray($styleDefinition);
         $styleEnum = $styleDefinition['enum'] ?? null;
         self::assertIsArray($styleEnum);
-        self::assertArrayHasKey('radix-lyra', $styleEnum);
+        self::assertArrayHasKey($configuredStyle, $styleEnum, 'configured shadcn.style must be a supported enum option');
+        foreach (['radix-nova', 'radix-mira', 'radix-lyra', 'custom'] as $styleKey) {
+            self::assertArrayHasKey($styleKey, $styleEnum);
+        }
 
         $iconLibraryDefinition = $settingDefinitions['desiderio.shadcn.iconLibrary'] ?? null;
         self::assertIsArray($iconLibraryDefinition);
         $iconLibraryEnum = $iconLibraryDefinition['enum'] ?? null;
         self::assertIsArray($iconLibraryEnum);
-        self::assertSame('tabler', $iconLibraryDefinition['default'] ?? null);
+        self::assertArrayHasKey($iconLibraryDefinition['default'] ?? '', $iconLibraryEnum, 'iconLibrary default must be a supported enum option');
+        self::assertArrayHasKey($configuredIconLibrary, $iconLibraryEnum, 'configured shadcn.iconLibrary must be a supported enum option');
         self::assertArrayHasKey('lucide', $iconLibraryEnum);
         self::assertArrayHasKey('tabler', $iconLibraryEnum);
         self::assertArrayHasKey('phosphor', $iconLibraryEnum);
@@ -146,8 +156,9 @@ final class ShadcnThemeTest extends TestCase
         self::assertIsArray($tailwindConfig);
         $registries = $componentsJson['registries'] ?? null;
         self::assertIsArray($registries);
-        self::assertSame('radix-lyra', $componentsJson['style'] ?? null);
-        self::assertSame('tabler', $componentsJson['iconLibrary'] ?? null);
+        $shadcnSettings = self::shadcnSettings();
+        self::assertSame($shadcnSettings['style'] ?? null, $componentsJson['style'] ?? null, 'components.json style must match the configured shadcn.style in settings.yaml');
+        self::assertSame($shadcnSettings['iconLibrary'] ?? null, $componentsJson['iconLibrary'] ?? null, 'components.json iconLibrary must match the configured shadcn.iconLibrary in settings.yaml');
         self::assertSame('Resources/Private/Tailwind/desiderio.css', $tailwindConfig['css'] ?? null);
         self::assertArrayNotHasKey('@shadcn', $registries, 'The shadcn CLI provides @shadcn as a built-in registry and rejects overriding it.');
         self::assertSame('Resources/Public/ShadcnRegistry/{name}.json', $registries['@desiderio'] ?? null);
@@ -259,6 +270,19 @@ final class ShadcnThemeTest extends TestCase
         self::assertStringContainsString('d:styleguideFixtureSummary', $template);
         self::assertStringContainsString('255 production-ready content elements', $template);
         self::assertStringNotContainsString('250 production-ready content elements', $template);
+    }
+
+    /**
+     * @return array<string, mixed> the configured desiderio.shadcn settings block
+     */
+    private static function shadcnSettings(): array
+    {
+        $settings = self::parseYamlFile(__DIR__ . '/../../Configuration/Sets/Desiderio/settings.yaml');
+        $shadcn = $settings['desiderio']['shadcn'] ?? null;
+        self::assertIsArray($shadcn);
+
+        /** @var array<string, mixed> $shadcn */
+        return $shadcn;
     }
 
     /**

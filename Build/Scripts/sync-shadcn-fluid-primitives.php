@@ -200,6 +200,13 @@ function decodePreset(string $preset): ?array
                 'baseColor' => 'taupe',
             ],
         ],
+        'b27GcrRo' => [
+            'values' => [
+                'style' => 'rhea',
+                'iconLibrary' => 'lucide',
+                'baseColor' => 'neutral',
+            ],
+        ],
     ];
 
     $command = 'npx shadcn@latest preset decode ' . escapeshellarg($preset) . ' --json 2>&1';

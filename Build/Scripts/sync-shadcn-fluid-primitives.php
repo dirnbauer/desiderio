@@ -49,6 +49,11 @@ $targets = renderTargets($recipes, $style, $preset, $scriptRelativePath);
 $expectedComponentsJson = syncComponentsJson($componentsJson, $style, $iconLibrary, $baseColor);
 $expectedSettingsYaml = syncSettingsYaml($settingsYaml, $preset, $style, $iconLibrary);
 
+$themePath = $root . '/Resources/Public/Css/shadcn-theme.css';
+$themeCss = readTextFile($themePath);
+$presetBlockSelector = sprintf('body[data-shadcn-preset="%s"]', $preset);
+$expectedThemeCss = syncThemeColors($themeCss, $preset, $baseColor, $style);
+
 if ($checkOnly) {
     $errors = [];
 
@@ -58,6 +63,15 @@ if ($checkOnly) {
 
     if (normalizeNewlines($expectedSettingsYaml) !== normalizeNewlines($settingsYaml)) {
         $errors[] = 'Configuration/Sets/Desiderio/settings.yaml is not synchronized with the configured shadcn preset/style.';
+    }
+
+    if (!str_contains($themeCss, $presetBlockSelector)) {
+        $errors[] = sprintf(
+            'Resources/Public/Css/shadcn-theme.css has no color block for preset %s. Run `php %s` to generate it from the %s palette.',
+            $preset,
+            $scriptRelativePath,
+            $baseColor
+        );
     }
 
     foreach ($targets as $relativePath => $content) {
@@ -82,17 +96,23 @@ if ($checkOnly) {
 
 writeFile($componentsPath, encodeJsonFile($expectedComponentsJson));
 writeFile($settingsPath, $expectedSettingsYaml);
+writeFile($themePath, $expectedThemeCss);
 
 foreach ($targets as $relativePath => $content) {
     writeFile($root . '/' . $relativePath, $content);
 }
 
+$themeNote = $expectedThemeCss === $themeCss
+    ? sprintf('preset %s already has a committed color block', $preset)
+    : sprintf('generated the %s color block for preset %s', $baseColor, $preset);
+
 echo sprintf(
-    "Synchronized %d Fluid primitives for preset %s (%s) from https://ui.shadcn.com/r/styles/%s/{component}.json.\n",
+    "Synchronized %d Fluid primitives for preset %s (%s) from https://ui.shadcn.com/r/styles/%s/{component}.json.\nTheme colors: %s.\n",
     count($targets),
     $preset,
     $style,
-    $style
+    $style,
+    $themeNote
 );
 
 /**
@@ -317,6 +337,92 @@ function fetchRegistryFile(string $style, string $component): string
     }
 
     fail(sprintf('Could not find /ui/%s.tsx in official shadcn registry item %s.', $component, $url));
+}
+
+/**
+ * Fetch the light + dark CSS variable palette for a shadcn base color
+ * (e.g. olive, mist, taupe, neutral, stone, zinc, slate, gray) from the
+ * official registry. This is what shadcn/create encodes per preset.
+ *
+ * @return array{light: array<string, string>, dark: array<string, string>}
+ */
+function fetchColors(string $baseColor): array
+{
+    $url = sprintf('https://ui.shadcn.com/r/colors/%s.json', rawurlencode($baseColor));
+    $context = stream_context_create([
+        'http' => [
+            'timeout' => 30,
+            'header' => "User-Agent: desiderio-shadcn-fluid-sync\r\n",
+        ],
+    ]);
+    $json = @file_get_contents($url, false, $context);
+
+    if ($json === false) {
+        fail(sprintf('Could not fetch shadcn color palette: %s (base color "%s").', $url, $baseColor));
+    }
+
+    $data = json_decode($json, true, 512, JSON_THROW_ON_ERROR);
+    $light = $data['cssVars']['light'] ?? null;
+    $dark = $data['cssVars']['dark'] ?? null;
+    if (!is_array($light) || !is_array($dark)) {
+        fail(sprintf('Unexpected shadcn color palette shape for base color "%s".', $baseColor));
+    }
+
+    return ['light' => $light, 'dark' => $dark];
+}
+
+/**
+ * Render the scoped light + dark `body[data-shadcn-preset="…"]` token blocks
+ * for a preset. The radix-lyra style is square, so it forces `--radius: 0`;
+ * other styles inherit the palette's default radius. Fonts intentionally stay
+ * out of the block so they remain selectable via the `data-font` Site Setting.
+ *
+ * @param array{light: array<string, string>, dark: array<string, string>} $palette
+ */
+function renderPresetColorBlock(string $preset, array $palette, string $style): string
+{
+    $radius = str_contains($style, 'lyra') ? '0' : (string) ($palette['light']['radius'] ?? '0.625rem');
+
+    $lines = [sprintf('body[data-shadcn-preset="%s"] {', $preset)];
+    foreach ($palette['light'] as $key => $value) {
+        $lines[] = sprintf('  --%s: %s;', $key, $key === 'radius' ? $radius : $value);
+    }
+    $lines[] = '}';
+    $lines[] = '';
+    $lines[] = sprintf('.dark body[data-shadcn-preset="%s"] {', $preset);
+    foreach ($palette['dark'] as $key => $value) {
+        $lines[] = sprintf('  --%s: %s;', $key, $value);
+    }
+    $lines[] = '}';
+    $lines[] = '';
+
+    return implode("\n", $lines) . "\n";
+}
+
+/**
+ * Ensure the configured preset owns a committed color block in shadcn-theme.css.
+ * Idempotent: a preset that already has a block is left untouched (so the
+ * committed defaults stay byte-stable). A newly configured preset from
+ * shadcn/create gets its palette generated and inserted, which is what makes
+ * `--preset=<new-id>` actually re-skin the site instead of falling back to the
+ * neutral `:root`.
+ */
+function syncThemeColors(string $css, string $preset, string $baseColor, string $style): string
+{
+    if (str_contains($css, sprintf('body[data-shadcn-preset="%s"]', $preset))) {
+        return $css;
+    }
+
+    $block = renderPresetColorBlock($preset, fetchColors($baseColor), $style);
+
+    // Insert before the font/radius utility blocks so preset blocks stay grouped.
+    $marker = 'body[data-font="inter"] {';
+    $pos = strpos($css, $marker);
+    if ($pos === false) {
+        return rtrim($css, "\n") . "\n\n" . $block;
+    }
+
+    return substr($css, 0, $pos) . $block . "\n" . substr($css, $pos);
 }
 
 /**

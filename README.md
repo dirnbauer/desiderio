@@ -217,18 +217,26 @@ To switch to `b6G5977cw`:
 4. Keep `desiderio.typography.fontSans` on `preset` so JetBrains Mono is used.
 5. Flush TYPO3 caches and check light and dark mode.
 
-Supported shadcn ids can be selected immediately. Unsupported ids need to be
-implemented first:
+Any shadcn/create id can be adopted with a single command — the sync now
+generates the preset's color tokens from the official palette, so a new id
+re-skins **both shapes and colors** instead of falling back to the neutral
+`:root`:
 
-1. Generate or inspect the shadcn/create preset in a scratch project.
-2. Add `body[data-shadcn-preset="<id>"]` and
-   `.dark body[data-shadcn-preset="<id>"]` token blocks to
-   `Resources/Public/Css/shadcn-theme.css`.
-3. Add the id to `desiderio.shadcn.preset` in
-   `Configuration/Sets/Desiderio/settings.definitions.yaml`.
-4. Optionally make it the default in
-   `Configuration/Sets/Desiderio/settings.yaml`.
-5. Rebuild/check CSS and flush TYPO3 caches.
+```bash
+# Re-skin the whole site to any shadcn/create preset id:
+php Build/Scripts/sync-shadcn-fluid-primitives.php --preset=<id>
+npm run build:css
+```
+
+This decodes the id, re-renders the Fluid primitives for the new style,
+fetches the matching base-color palette from
+`https://ui.shadcn.com/r/colors/{baseColor}.json`, and writes the
+`body[data-shadcn-preset="<id>"]` light + dark token blocks into
+`Resources/Public/Css/shadcn-theme.css`. Existing presets keep their committed
+blocks (idempotent). To make the id the default for new installs, set
+`desiderio.shadcn.preset` in `Configuration/Sets/Desiderio/settings.yaml` (or
+pick it in **Site Management → Settings**); fonts stay selectable via
+`desiderio.typography.fontSans` / the `data-font` setting.
 
 For shadcn-aware tooling, this repository keeps a valid `components.json`,
 scratch TypeScript aliases, and a local registry. Run:
@@ -250,8 +258,11 @@ npm run shadcn:sync-fluid
 ```
 
 That command decodes the preset id, updates `components.json` with the matching
-registry style, icon library, and base color, and synchronizes registry-backed
-Fluid primitives from `https://ui.shadcn.com/r/styles/{style}/{name}.json`.
+registry style, icon library, and base color, synchronizes registry-backed
+Fluid primitives from `https://ui.shadcn.com/r/styles/{style}/{name}.json`, and
+regenerates the preset's `data-shadcn-preset` color tokens in
+`Resources/Public/Css/shadcn-theme.css` (skipping presets that already ship a
+committed block). `--check` fails when the configured preset has no color block.
 It also updates the default `desiderio.shadcn.iconLibrary` value so new installs
 render semantic icon fields with the icon family from the selected preset.
 Local semantic primitives, especially Typography, stay token-driven because

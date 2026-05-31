@@ -20,6 +20,16 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
   variants, card surfaces via `ring-1 ring-foreground/10`) instead of a
   hand-written "new-york" flavour, so embedded forms match the rest of the
   content-element design system and render correctly in light and dark mode.
+- Switching shadcn/create presets now re-skins colours, not just shapes. The
+  Fluid primitive sync (`Build/Scripts/sync-shadcn-fluid-primitives.php`) now
+  fetches the configured preset's base-colour palette from
+  `https://ui.shadcn.com/r/colors/{baseColor}.json` and writes the
+  `body[data-shadcn-preset="<id>"]` light + dark token blocks into
+  `Resources/Public/Css/shadcn-theme.css`. Previously a newly configured preset
+  id fell back to the neutral `:root` because only a few presets had
+  hand-committed colour blocks, so the site changed shape but not colour.
+  Existing committed blocks stay byte-stable (idempotent), and the sync
+  `--check` now fails when the configured preset has no colour block.
 
 ### Documentation
 

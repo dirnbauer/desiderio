@@ -56,18 +56,24 @@ function powermailClassMap(array $recipes): array
             . ' hover:bg-muted/50 focus-visible:border-ring focus-visible:ring-1 focus-visible:ring-ring/50'
             . ' aria-invalid:border-destructive aria-invalid:ring-1 aria-invalid:ring-destructive/20 dark:bg-input/30'
         ),
-        'btnPrimary' => normalizeClass(
-            $recipes['button']['base'] . ' '
-            . ($recipes['button']['variants']['default'] ?? '') . ' '
-            . ($recipes['button']['sizes']['default'] ?? '')
-        ),
-        'btnSecondary' => normalizeClass(
-            $recipes['button']['base'] . ' '
-            . ($recipes['button']['variants']['outline'] ?? '') . ' '
-            . ($recipes['button']['sizes']['default'] ?? '')
-        ),
+        'btnPrimary' => powermailButtonClass($recipes['button'], 'default'),
+        'btnSecondary' => powermailButtonClass($recipes['button'], 'outline'),
         'radius' => $radius,
     ];
+}
+
+/**
+ * Compose a button class from the shadcn button recipe: base + variant + default size.
+ *
+ * @param array<string, mixed> $button
+ */
+function powermailButtonClass(array $button, string $variant): string
+{
+    return normalizeClass(
+        ($button['base'] ?? '') . ' '
+        . ($button['variants'][$variant] ?? '') . ' '
+        . ($button['sizes']['default'] ?? '')
+    );
 }
 
 function renderShadcnClassPartial(array $recipes): string

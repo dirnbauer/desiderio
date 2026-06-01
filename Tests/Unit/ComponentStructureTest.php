@@ -89,6 +89,14 @@ final class ComponentStructureTest extends TestCase
         }
     }
 
+    public function testTypographySupportsStableElementIds(): void
+    {
+        $typography = (string) file_get_contents(self::COMPONENTS_DIR . '/Atom/Typography/Typography.fluid.html');
+
+        self::assertStringContainsString('<f:argument name="id" type="string" optional="{true}" />', $typography);
+        self::assertStringContainsString('id="{id}"', $typography);
+    }
+
     public function testFluidPrimitiveRecipesAreGeneratedFromConfiguredShadcnPreset(): void
     {
         $script = __DIR__ . '/../../Build/Scripts/sync-shadcn-fluid-primitives.php';

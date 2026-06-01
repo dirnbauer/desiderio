@@ -370,6 +370,7 @@ function renderTypography(string $header): string
         . '<f:argument name="tag" type="string" optional="{true}" default="p" />' . "\n"
         . '<f:argument name="variant" type="string" optional="{true}" default="p" />' . "\n"
         . '<f:argument name="class" type="string" optional="{true}" default="" />' . "\n"
+        . '<f:argument name="id" type="string" optional="{true}" />' . "\n"
         . '<f:argument name="itemprop" type="string" optional="{true}" />' . "\n\n"
         . '<f:variable name="variantClass">' . "\n"
         . '    <f:switch expression="{variant}">' . "\n"
@@ -388,12 +389,12 @@ function renderTypography(string $header): string
         . '</f:variable>' . "\n\n"
         . '<f:variable name="combinedClass" value="{variantClass -> f:format.trim()} {class}" />' . "\n\n"
         . '<f:switch expression="{tag}">' . "\n"
-        . '    <f:case value="h1"><h1 data-slot="typography" data-variant="{variant}" class="{combinedClass -> f:format.trim()}" itemprop="{itemprop}"><f:slot /></h1></f:case>' . "\n"
-        . '    <f:case value="h2"><h2 data-slot="typography" data-variant="{variant}" class="{combinedClass -> f:format.trim()}" itemprop="{itemprop}"><f:slot /></h2></f:case>' . "\n"
-        . '    <f:case value="h3"><h3 data-slot="typography" data-variant="{variant}" class="{combinedClass -> f:format.trim()}" itemprop="{itemprop}"><f:slot /></h3></f:case>' . "\n"
-        . '    <f:case value="h4"><h4 data-slot="typography" data-variant="{variant}" class="{combinedClass -> f:format.trim()}" itemprop="{itemprop}"><f:slot /></h4></f:case>' . "\n"
-        . '    <f:case value="span"><span data-slot="typography" data-variant="{variant}" class="{combinedClass -> f:format.trim()}" itemprop="{itemprop}"><f:slot /></span></f:case>' . "\n"
-        . '    <f:defaultCase><p data-slot="typography" data-variant="{variant}" class="{combinedClass -> f:format.trim()}" itemprop="{itemprop}"><f:slot /></p></f:defaultCase>' . "\n"
+        . '    <f:case value="h1"><h1 data-slot="typography" data-variant="{variant}" class="{combinedClass -> f:format.trim()}" id="{id}" itemprop="{itemprop}"><f:slot /></h1></f:case>' . "\n"
+        . '    <f:case value="h2"><h2 data-slot="typography" data-variant="{variant}" class="{combinedClass -> f:format.trim()}" id="{id}" itemprop="{itemprop}"><f:slot /></h2></f:case>' . "\n"
+        . '    <f:case value="h3"><h3 data-slot="typography" data-variant="{variant}" class="{combinedClass -> f:format.trim()}" id="{id}" itemprop="{itemprop}"><f:slot /></h3></f:case>' . "\n"
+        . '    <f:case value="h4"><h4 data-slot="typography" data-variant="{variant}" class="{combinedClass -> f:format.trim()}" id="{id}" itemprop="{itemprop}"><f:slot /></h4></f:case>' . "\n"
+        . '    <f:case value="span"><span data-slot="typography" data-variant="{variant}" class="{combinedClass -> f:format.trim()}" id="{id}" itemprop="{itemprop}"><f:slot /></span></f:case>' . "\n"
+        . '    <f:defaultCase><p data-slot="typography" data-variant="{variant}" class="{combinedClass -> f:format.trim()}" id="{id}" itemprop="{itemprop}"><f:slot /></p></f:defaultCase>' . "\n"
         . '</f:switch>' . "\n";
 }
 

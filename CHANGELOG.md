@@ -6,6 +6,29 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [2.3.0] — 2026-06-01
+
+### Added
+
+- Editorial preset chrome: a sticky reading-progress bar for long-read article
+  pages (gated behind the `editorial.readingProgress` site setting, default on),
+  a shared article masthead partial (rootline breadcrumb, section kicker, H1,
+  deck, and author/date byline with schema.org Article microdata), and a
+  Dashboard breadcrumb partial wired into the Dashboard page templates.
+
+### Changed
+
+- Reworked the chart content elements: `chart-donut` now uses a structured
+  `segments` collection (label/value/unit) instead of a raw JSON `chart_data`
+  textarea, and chart canvases render as `role="img"` with `aria-describedby`
+  summaries plus visually-hidden data tables, so the drawn chart and its table
+  always carry the same numbers. Series colours come from the `--chart-1..5`
+  tokens.
+- Optimised the 255-element content catalogue: the per-element audit
+  (`scripts/audit-content-elements.php`) strict categories are held at 0, seed
+  fixtures now carry real, de-duplicated headline/body copy (no placeholder
+  filler), and wizard titles/descriptions follow the "Use when …" convention.
+
 ### Fixed
 
 - Gallery featured images now keep using `<f:image>` with structured Fluid
@@ -198,7 +221,8 @@ and `webconsulting/shadcn2fluid-templates 3.x` with a clean rewrite:
 templates, and five swappable visual presets. See `MIGRATION-PLAN.md`
 for the migration notes from the old extensions.
 
+[2.3.0]: https://github.com/webconsulting/desiderio/releases/tag/v2.3.0
 [2.2.0]: https://github.com/webconsulting/desiderio/releases/tag/v2.2.0
 [2.1.0]: https://github.com/webconsulting/desiderio/releases/tag/v2.1.0
 [2.0.0]: https://github.com/webconsulting/desiderio/releases/tag/v2.0.0
-[Unreleased]: https://github.com/webconsulting/desiderio/compare/v2.2.0...HEAD
+[Unreleased]: https://github.com/webconsulting/desiderio/compare/v2.3.0...HEAD

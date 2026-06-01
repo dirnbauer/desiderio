@@ -1,18 +1,34 @@
 {
     "_type": "list",
-    "header": "Changelog Data View for live product intelligence",
+    "header": "What's new",
     "items": [
         {
-            "title": "Changelog Data View for live product intelligence",
-            "description": "Present live product signals with compact metrics and semantic chart colors."
+            "version": "v2.4.0",
+            "date": "2026-05-28",
+            "title": "Saved views and bulk actions",
+            "description": "<p>Save any filtered table as a named view and share it with your team. Select multiple rows to archive, tag, or export in one step.</p>",
+            "tag": "new"
         },
         {
-            "title": "Changelog Data View for live product intelligence",
-            "description": "Let operators scan movement quickly with sharp labels and clear legends."
+            "version": "v2.3.2",
+            "date": "2026-05-14",
+            "title": "Faster dashboard loads",
+            "description": "<p>Dashboards with 50+ widgets now render up to 3x faster thanks to incremental data fetching and cached aggregates.</p>",
+            "tag": "improvement"
         },
         {
-            "title": "Changelog Data View for live product intelligence",
-            "description": "Turn dense numbers into an analytics block that stays readable on mobile."
+            "version": "v2.3.1",
+            "date": "2026-05-06",
+            "title": "CSV export encoding fix",
+            "description": "<p>Resolved an issue where exported CSV files dropped UTF-8 characters in non-Latin locales. Re-exports now preserve every character.</p>",
+            "tag": "fix"
+        },
+        {
+            "version": "v2.3.0",
+            "date": "2026-04-22",
+            "title": "New webhooks API",
+            "description": "<p>Subscribe to record events over HTTPS. The legacy polling endpoint <code>/v1/events</code> is deprecated and will be removed on 1 August 2026.</p>",
+            "tag": "breaking"
         }
     ]
 }

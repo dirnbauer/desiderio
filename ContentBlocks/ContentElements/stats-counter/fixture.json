@@ -1,15 +1,32 @@
 {
     "_type": "stats",
-    "header": "Counter Stats for credible trust signals",
+    "eyebrow": "By the numbers",
+    "header": "Trusted by teams that ship every day",
+    "columns": "4",
     "counters": [
         {
-            "label": "Editor clarity"
+            "counter_target": "12000",
+            "suffix": "+",
+            "label": "Active teams",
+            "description": "Product, design, and engineering teams in 40 countries"
         },
         {
-            "label": "Mobile polish"
+            "counter_target": "99.9",
+            "suffix": "%",
+            "label": "Uptime",
+            "description": "Backed by our 99.9% SLA across every paid plan"
         },
         {
-            "label": "Token coverage"
+            "counter_target": "4.8",
+            "suffix": "/5",
+            "label": "Average rating",
+            "description": "From 2,300+ verified reviews on G2 and Capterra"
+        },
+        {
+            "counter_target": "8",
+            "suffix": "min",
+            "label": "Median response",
+            "description": "Time to first reply from our support team"
         }
     ]
 }

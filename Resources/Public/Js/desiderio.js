@@ -73,6 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const main = root.querySelector('[data-d-gallery-main]');
     const title = root.querySelector('[data-d-gallery-title]');
     const description = root.querySelector('[data-d-gallery-description]');
+    const link = root.querySelector('[data-d-gallery-link]');
     const thumbs = Array.from(root.querySelectorAll('[data-d-gallery-thumb]'));
 
     if (!main || thumbs.length === 0) return;
@@ -91,6 +92,12 @@ document.addEventListener('DOMContentLoaded', () => {
       if (description) {
         description.textContent = thumb.dataset.thumbDescription || '';
         description.hidden = description.textContent.trim() === '';
+      }
+      if (link) {
+        const href = thumb.dataset.thumbLink || '';
+        link.hidden = href === '';
+        if (href) link.setAttribute('href', href);
+        else link.removeAttribute('href');
       }
 
       thumbs.forEach(item => item.setAttribute('aria-selected', String(item === thumb)));
@@ -274,7 +281,8 @@ document.addEventListener('DOMContentLoaded', () => {
     toggle();
     window.addEventListener('scroll', toggle, { passive: true });
 
-    btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+    btn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: reduce.matches ? 'auto' : 'smooth' }));
   });
 
   /* ------------------------------------------------------------------ */

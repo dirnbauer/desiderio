@@ -14,3 +14,5 @@
 .bundle-pricing__savings { display: inline-block; font-size: var(--d-text-sm); font-weight: 600; color: var(--primary); background: color-mix(in oklch, var(--primary) 10%, transparent); padding: 0.125rem 0.5rem; border-radius: var(--radius); margin-inline-start: var(--d-spacing-sm); }
 .bundle-pricing__button { display: inline-flex; padding: 0.75rem 2rem; border-radius: var(--radius); font-weight: 600; text-decoration: none; background: var(--primary); color: var(--primary-foreground); transition: opacity 0.2s; }
 .bundle-pricing__button:hover { opacity: 0.9; }
+.bundle-pricing__button:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { .bundle-pricing__button { transition: none; } }

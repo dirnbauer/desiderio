@@ -7,11 +7,15 @@
 <f:argument name="settings" type="array" optional="true"/>
 <f:argument name="type" type="string" optional="true"/>
 
-<section class="grid gap-6 md:grid-cols-2 lg:grid-cols-3" data-blog-teaserlist="{type -> f:or(alternative: 'default')}" data-blog-postcount="{posts -> f:count()}">
-    <f:for each="{posts}" iteration="iterator" as="post">
-        <blogvh:cache post="{post}" />
-        <f:render partial="Teaser/Post" arguments="{_all}" />
-    </f:for>
-</section>
+<f:if condition="{posts}">
+    <ul role="list" class="grid gap-6 md:grid-cols-2 lg:grid-cols-3" data-blog-teaserlist="{type -> f:or(alternative: 'default')}" data-blog-postcount="{posts -> f:count()}">
+        <f:for each="{posts}" iteration="iterator" as="post">
+            <blogvh:cache post="{post}" />
+            <li class="min-w-0">
+                <f:render partial="Teaser/Post" arguments="{post: post, settings: settings, iterator: iterator}" />
+            </li>
+        </f:for>
+    </ul>
+</f:if>
 
 </html>

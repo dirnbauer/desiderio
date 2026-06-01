@@ -14,20 +14,50 @@
 .navbar-tabbed__tabs {
     display: flex;
     gap: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    min-width: 0;
+    overflow-x: auto;
 }
 .navbar-tabbed__tab {
+    display: inline-block;
     padding: var(--d-spacing-2) var(--d-spacing-4);
     font-size: var(--d-text-sm);
     color: var(--d-muted-foreground);
     text-decoration: none;
+    white-space: nowrap;
     border-bottom: 2px solid transparent;
+    outline: none;
     transition: color 0.15s, border-color 0.15s;
 }
 .navbar-tabbed__tab:hover {
     color: var(--d-foreground);
 }
+.navbar-tabbed__tab:focus-visible {
+    color: var(--d-foreground);
+    border-radius: var(--d-radius-sm);
+    box-shadow: 0 0 0 2px var(--d-ring);
+}
 .navbar-tabbed__tab--active {
     color: var(--d-foreground);
     border-bottom-color: var(--d-primary);
     font-weight: 500;
+}
+
+@media (max-width: 768px) {
+    .navbar-tabbed__inner {
+        flex-wrap: wrap;
+        gap: var(--d-spacing-2);
+    }
+    .navbar-tabbed__tabs {
+        order: 3;
+        width: 100%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .navbar-tabbed__tab {
+        transition: none;
+    }
 }

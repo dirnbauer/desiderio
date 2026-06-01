@@ -6,10 +6,12 @@
 
 <f:layout name="Pages/Default"/>
 
+<f:variable name="searchIntro" value="{page.pageRecord.abstract -> f:or(alternative: '{f:translate(key: \'page.search.intro\', extensionName: \'desiderio\', default: \'Find solutions, case studies, documentation and the right contact across our site.\')}')}"/>
+
 <f:section name="Main">
     <section class="desiderio-system-page desiderio-saas-system desiderio-saas-system--search">
         <d:layout.container size="xl">
-            <f:render partial="Presets/SystemHeader" arguments="{class: 'desiderio-saas-system__header', eyebrow: breadcrumb.0.title, title: page.pageRecord.title, summary: page.pageRecord.abstract, summaryTag: 'span'}"/>
+            <f:render partial="Presets/SystemHeader" arguments="{class: 'desiderio-saas-system__header', eyebrow: '{f:translate(key: \'page.search.eyebrow\', extensionName: \'desiderio\', default: \'Search\')}', eyebrowClass: 'desiderio-saas-template__eyebrow', title: page.pageRecord.title, summary: searchIntro, summaryTag: 'span'}"/>
             <div class="desiderio-system-page__content desiderio-saas-system__content">
                 <f:render partial="Presets/ContentArea" arguments="{content: content.main}"/>
             </div>

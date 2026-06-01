@@ -1,9 +1,29 @@
 {
     "_type": "grid",
-    "header": "Content Carousel for polished editorial systems",
+    "variant": "cards",
+    "header": "Stories from the studio",
+    "autoplay_interval": 5000,
+    "show_navigation": 1,
+    "show_pagination": 1,
     "items": [
-        [],
-        [],
-        []
+        {
+            "slide_title": "Rebuilding checkout in six weeks",
+            "slide_description": "How a focused design sprint cut cart abandonment by 23% for a Vienna retailer.",
+            "slide_link": "t3://page?uid=1"
+        },
+        {
+            "slide_title": "A design system that scales",
+            "slide_description": "Shipping 40+ reusable components let three product teams move in parallel.",
+            "slide_link": "t3://page?uid=1"
+        },
+        {
+            "slide_title": "From prototype to launch",
+            "slide_description": "Turning a weekend concept into a funded product with 5,000 early sign-ups.",
+            "slide_link": "t3://page?uid=1"
+        },
+        {
+            "slide_title": "Accessibility, built in",
+            "slide_description": "Meeting WCAG 2.2 AA from day one, verified with real assistive-tech testing."
+        }
     ]
 }

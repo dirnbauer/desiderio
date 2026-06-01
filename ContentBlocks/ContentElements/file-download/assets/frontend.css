@@ -45,3 +45,7 @@
 .file-download__link:hover {
     background: var(--muted);
 }
+.file-download__link:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+}

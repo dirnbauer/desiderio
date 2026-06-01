@@ -13,12 +13,16 @@
 <f:section name="Main">
     <div class="desiderio-dashboard-template">
         <d:layout.container size="full" class="desiderio-dashboard-template__container">
-            <f:render partial="Presets/DashboardRail" arguments="{title: breadcrumb.0.title, mainMenu: mainMenu}"/>
+            <f:render partial="Presets/DashboardRail" arguments="{title: breadcrumb.0.title, mainMenu: mainMenu, homeLink: breadcrumb.0.link}"/>
 
-            <section class="desiderio-dashboard-template__content" aria-label="{page.pageRecord.title}">
+            <section class="desiderio-dashboard-template__content" aria-labelledby="desiderio-dashboard-heading">
                 <div class="desiderio-dashboard-template__toolbar">
-                    <p class="desiderio-dashboard-template__eyebrow">Workspace</p>
-                    <h1>{page.pageRecord.title}</h1>
+                    <f:render partial="Presets/DashboardBreadcrumb" arguments="{breadcrumb: breadcrumb}"/>
+                    <p class="desiderio-dashboard-template__eyebrow">{f:translate(extensionName: 'desiderio', key: 'dashboard.eyebrow.workspace', default: 'Workspace')}</p>
+                    <h1 id="desiderio-dashboard-heading">{page.pageRecord.title}</h1>
+                    <f:if condition="{page.pageRecord.abstract}">
+                        <p class="desiderio-dashboard-template__lede">{page.pageRecord.abstract}</p>
+                    </f:if>
                 </div>
 
                 <div class="desiderio-dashboard-template__canvas">

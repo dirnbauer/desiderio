@@ -35,16 +35,16 @@ fields:
     identifier: separator
     type: Select
     renderType: selectSingle
-    label: Separator
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:separator'
     items:
       -
-        label: Dot
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.dot'
         value: dot
       -
-        label: Pipe
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.pipe'
         value: pipe
       -
-        label: Slash
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.slash'
         value: slash
       -
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.none'

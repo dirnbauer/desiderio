@@ -1,22 +1,28 @@
 {
     "_type": "list",
-    "header": "Accordion for polished editorial systems",
+    "header": "Frequently asked questions",
+    "allow_multiple": 0,
     "items": [
         {
-            "title": "Accordion for polished editorial systems",
-            "content": "Lead with a clear story, one useful detail, and a calm reading rhythm."
+            "title": "Can I cancel my plan anytime?",
+            "content": "<p>Yes. You can cancel from your account settings in two clicks, and your plan stays active until the end of the current billing period. We don't charge cancellation fees and we never lock you into an annual contract.</p>",
+            "open_by_default": 1
         },
         {
-            "title": "Accordion for polished editorial systems",
-            "content": "Use practical metadata and compact summaries so previews stay easy to compare."
+            "title": "Do you offer a free trial?",
+            "content": "<p>Every plan starts with a 14-day free trial that includes all features. No credit card is required to begin, and we'll email you three days before the trial ends so there are no surprises.</p>"
         },
         {
-            "title": "Accordion for polished editorial systems",
-            "content": "Keep supporting media and copy calm, scannable, and ready to publish."
+            "title": "How does pricing work as my team grows?",
+            "content": "<p>Pricing is per active seat, billed monthly or yearly. Add or remove seats whenever you like; we prorate the difference automatically so you only pay for what you use.</p>"
         },
         {
-            "title": "Accordion for polished editorial systems",
-            "content": "Lead with a clear story, one useful detail, and a calm reading rhythm."
+            "title": "Is my data secure?",
+            "content": "<p>All data is encrypted in transit and at rest, hosted in EU data centres, and backed up daily. We are ISO 27001 certified and complete an independent penetration test every year.</p>"
+        },
+        {
+            "title": "Can I import content from my current CMS?",
+            "content": "<p>Yes. Our migration assistant imports pages, media, and redirects from most major systems, and our support team will review the result with you before you go live.</p>"
         }
     ]
 }

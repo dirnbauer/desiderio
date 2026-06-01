@@ -1,22 +1,27 @@
 {
     "_type": "grid",
-    "header": "Icons Feature Section for premium product storytelling",
+    "header": "Why teams choose us",
+    "columns": "4",
     "items": [
         {
-            "icon": "handshake",
-            "title": "Icons Feature Section for premium product storytelling"
+            "icon": "rocket",
+            "title": "Live in minutes",
+            "description_text": "Import your data and launch the same day."
         },
         {
-            "icon": "star",
-            "title": "Icons Feature Section for premium product storytelling"
+            "icon": "lock",
+            "title": "Private by default",
+            "description_text": "Your data is encrypted and never sold."
         },
         {
-            "icon": "cloud",
-            "title": "Icons Feature Section for premium product storytelling"
+            "icon": "users",
+            "title": "Built for teams",
+            "description_text": "Shared workspaces with roles and permissions."
         },
         {
-            "icon": "download",
-            "title": "Icons Feature Section for premium product storytelling"
+            "icon": "heart",
+            "title": "Support you'll love",
+            "description_text": "Real people answer in minutes, not days."
         }
     ]
 }

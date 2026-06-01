@@ -1,8 +1,10 @@
 {
     "_type": "form",
-    "header": "Cookie Banner for refined utility areas",
-    "content": "Service information, privacy details, and support links are grouped with enough structure for fast scanning.",
+    "header": "We value your privacy",
+    "content": "<p>We use cookies to keep the site reliable, measure traffic, and improve your experience. You can accept all cookies or choose which ones to allow.</p>",
     "accept_text": "Accept all",
     "decline_text": "Decline",
-    "settings_text": "Settings"
+    "settings_text": "Manage preferences",
+    "settings_link": "https://example.com/privacy/cookies",
+    "position": "bottom"
 }

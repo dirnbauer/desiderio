@@ -6,13 +6,38 @@
 
 <f:layout name="Pages/Default"/>
 
+<f:comment>
+    Corporate error page. Reassuring eyebrow + measured intro fallback set the
+    institutional tone, and a primary CTA routes the visitor straight back to a
+    safe destination instead of a bare text link. The home target prefers the
+    rootline home link but falls back to the site root page, so the CTA still
+    resolves on a genuine 404 where the breadcrumb/rootline is empty.
+</f:comment>
+
+<f:variable name="errorEyebrow"><f:translate key="page.error.eyebrow" extensionName="desiderio">Page not found</f:translate></f:variable>
+<f:variable name="errorHomeParameter" value="{breadcrumb.0.link -> f:or(alternative: 't3://page?uid={site.rootPageId}')}"/>
+<f:variable name="errorHomeUri" value="{f:uri.typolink(parameter: errorHomeParameter)}"/>
+<f:if condition="{page.pageRecord.abstract}">
+    <f:then>
+        <f:variable name="errorIntro" value="{page.pageRecord.abstract}"/>
+    </f:then>
+    <f:else>
+        <f:variable name="errorIntro"><f:translate key="page.error.intro" extensionName="desiderio">This page has moved or no longer exists. Use the links below or head back to the homepage to find what you need.</f:translate></f:variable>
+    </f:else>
+</f:if>
+
 <f:section name="Main">
     <section class="desiderio-system-page desiderio-corporate-system desiderio-corporate-system--error">
         <d:layout.container size="xl">
-            <f:render partial="Presets/SystemHeader" arguments="{class: 'desiderio-corporate-system__header', eyebrow: breadcrumb.0.title, eyebrowClass: 'desiderio-corporate-start__eyebrow', title: page.pageRecord.title, summary: page.pageRecord.abstract}"/>
+            <f:render partial="Presets/SystemHeader" arguments="{class: 'desiderio-corporate-system__header', eyebrow: errorEyebrow, eyebrowClass: 'desiderio-corporate-system__eyebrow', title: page.pageRecord.title, summary: errorIntro}"/>
             <div class="desiderio-system-page__content desiderio-corporate-system__content">
                 <f:render partial="Presets/ContentArea" arguments="{content: content.main}"/>
-                <f:render partial="Presets/ErrorHomeLink" arguments="{homeLink: breadcrumb.0.link}"/>
+                <div class="desiderio-corporate-system__actions">
+                    <d:atom.button href="{errorHomeUri -> f:or(alternative: '/')}" variant="default" size="lg">
+                        <span data-icon="inline-start" aria-hidden="true"><d:atom.icon name="building" size="sm"/></span>
+                        <f:translate key="page.error.home" extensionName="desiderio">Back to homepage</f:translate>
+                    </d:atom.button>
+                </div>
             </div>
         </d:layout.container>
     </section>

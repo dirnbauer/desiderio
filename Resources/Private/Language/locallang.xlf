@@ -201,5 +201,260 @@
         <source>Share this article</source>
       </segment>
     </unit>
+    <unit id="dashboard.rail.label">
+      <segment>
+        <source>Workspace navigation</source>
+      </segment>
+    </unit>
+    <unit id="dashboard.rail.workspace">
+      <segment>
+        <source>Workspace</source>
+      </segment>
+    </unit>
+    <unit id="dashboard.rail.sections">
+      <segment>
+        <source>Sections</source>
+      </segment>
+    </unit>
+    <unit id="dashboard.rail.account">
+      <segment>
+        <source>Account</source>
+      </segment>
+    </unit>
+    <unit id="dashboard.rail.overview">
+      <segment>
+        <source>Overview</source>
+      </segment>
+    </unit>
+    <unit id="dashboard.rail.home">
+      <segment>
+        <source>Dashboard home</source>
+      </segment>
+    </unit>
+    <unit id="dashboard.breadcrumb.label">
+      <segment>
+        <source>Breadcrumb</source>
+      </segment>
+    </unit>
+    <unit id="dashboard.eyebrow.overview">
+      <segment>
+        <source>Overview</source>
+      </segment>
+    </unit>
+    <unit id="dashboard.eyebrow.workspace">
+      <segment>
+        <source>Workspace</source>
+      </segment>
+    </unit>
+    <unit id="dashboard.eyebrow.search">
+      <segment>
+        <source>Search</source>
+      </segment>
+    </unit>
+    <unit id="dashboard.eyebrow.status">
+      <segment>
+        <source>Status</source>
+      </segment>
+    </unit>
+    <unit id="dashboard.status.live">
+      <segment>
+        <source>Live data</source>
+      </segment>
+    </unit>
+    <unit id="dashboard.region.metrics">
+      <segment>
+        <source>Key metrics and reports</source>
+      </segment>
+    </unit>
+    <unit id="dashboard.region.activity">
+      <segment>
+        <source>Activity and alerts</source>
+      </segment>
+    </unit>
+    <unit id="dashboard.search.hint">
+      <segment>
+        <source>Search across pages, records, and reports.</source>
+      </segment>
+    </unit>
+    <unit id="dashboard.error.summary">
+      <segment>
+        <source>This view could not be loaded. Check the address or return to your overview.</source>
+      </segment>
+    </unit>
+    <unit id="page.search.eyebrow">
+      <segment>
+        <source>Search</source>
+      </segment>
+    </unit>
+    <unit id="page.search.intro">
+      <segment>
+        <source>Find solutions, case studies, documentation and the right contact across our site.</source>
+      </segment>
+    </unit>
+    <unit id="page.search.results.label">
+      <segment>
+        <source>Search results</source>
+      </segment>
+    </unit>
+    <unit id="page.search.empty">
+      <segment>
+        <source>Start typing to search the archive, or browse the latest stories from the homepage.</source>
+      </segment>
+    </unit>
+    <unit id="page.error.eyebrow">
+      <segment>
+        <source>Page not found</source>
+      </segment>
+    </unit>
+    <unit id="page.error.intro">
+      <segment>
+        <source>This page has moved or no longer exists. Use the links below or head back to the homepage to find what you need.</source>
+      </segment>
+    </unit>
+    <unit id="page.error.empty">
+      <segment>
+        <source>The page you were looking for has moved or no longer exists. Head back to the homepage to pick up the latest stories.</source>
+      </segment>
+    </unit>
+    <unit id="page.error.home">
+      <segment>
+        <source>Back to homepage</source>
+      </segment>
+    </unit>
+    <unit id="corporate.start.eyebrow">
+      <segment>
+        <source>Trusted by teams worldwide</source>
+      </segment>
+    </unit>
+    <unit id="corporate.start.headline">
+      <segment>
+        <source>Build with a partner the whole organisation can rely on</source>
+      </segment>
+    </unit>
+    <unit id="corporate.start.lede">
+      <segment>
+        <source>From strategy to delivery, we help established teams ship dependable products, modernise their platforms and serve their customers with confidence.</source>
+      </segment>
+    </unit>
+    <unit id="corporate.start.actions.label">
+      <segment>
+        <source>Primary actions</source>
+      </segment>
+    </unit>
+    <unit id="corporate.start.cta.primary">
+      <segment>
+        <source>Talk to our team</source>
+      </segment>
+    </unit>
+    <unit id="corporate.start.cta.secondary">
+      <segment>
+        <source>Explore our solutions</source>
+      </segment>
+    </unit>
+    <unit id="corporate.start.trust">
+      <segment>
+        <source>ISO-aligned delivery. Dedicated account team. Response within one business day.</source>
+      </segment>
+    </unit>
+    <unit id="corporate.start.region">
+      <segment>
+        <source>Solutions, proof and contact</source>
+      </segment>
+    </unit>
+    <unit id="corporate.page.eyebrow">
+      <segment>
+        <source>Overview</source>
+      </segment>
+    </unit>
+    <unit id="corporate.page.lede">
+      <segment>
+        <source>A clear, structured look at what we do here and how it helps your organisation move forward.</source>
+      </segment>
+    </unit>
+    <unit id="corporate.sidebar.aria">
+      <segment>
+        <source>Related contacts and downloads</source>
+      </segment>
+    </unit>
+    <unit id="corporate.search.empty">
+      <segment>
+        <source>Enter a term above to search across our solutions, case studies, documentation and contacts.</source>
+      </segment>
+    </unit>
+    <unit id="editorial.breadcrumb.label">
+      <segment>
+        <source>Breadcrumb</source>
+      </segment>
+    </unit>
+    <unit id="editorial.kicker.default">
+      <segment>
+        <source>Feature</source>
+      </segment>
+    </unit>
+    <unit id="editorial.byline.prefix">
+      <segment>
+        <source>By</source>
+      </segment>
+    </unit>
+    <unit id="editorial.meta.published">
+      <segment>
+        <source>Published on {date}</source>
+      </segment>
+    </unit>
+    <unit id="editorial.aside.label">
+      <segment>
+        <source>Article tools and related reading</source>
+      </segment>
+    </unit>
+    <unit id="portfolio.aside.label">
+      <segment>
+        <source>Project details and related work</source>
+      </segment>
+    </unit>
+    <unit id="saas.hero.eyebrow">
+      <segment>
+        <source>Now in public beta</source>
+      </segment>
+    </unit>
+    <unit id="saas.hero.cta.primary">
+      <segment>
+        <source>Start free</source>
+      </segment>
+    </unit>
+    <unit id="saas.hero.cta.secondary">
+      <segment>
+        <source>Book a demo</source>
+      </segment>
+    </unit>
+    <unit id="saas.hero.trust">
+      <segment>
+        <source>No credit card. 14-day Pro trial. Cancel anytime.</source>
+      </segment>
+    </unit>
+    <unit id="saas.hero.actions.label">
+      <segment>
+        <source>Primary actions</source>
+      </segment>
+    </unit>
+    <unit id="saas.region.offer">
+      <segment>
+        <source>Product, pricing and sign-up</source>
+      </segment>
+    </unit>
+    <unit id="saas.page.eyebrow">
+      <segment>
+        <source>Product</source>
+      </segment>
+    </unit>
+    <unit id="saas.page.lede">
+      <segment>
+        <source>Everything your team needs to evaluate, roll out and scale — laid out below.</source>
+      </segment>
+    </unit>
+    <unit id="saas.sidebar.label">
+      <segment>
+        <source>Get started</source>
+      </segment>
+    </unit>
   </file>
 </xliff>

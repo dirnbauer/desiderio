@@ -8,8 +8,9 @@
 <d:layout.section class="header-banner header-banner--{data.variant -> f:or(alternative: 'default')}">
     <f:if condition="{data.background_image}">
         <f:for each="{data.background_image}" as="image">
-            <f:image image="{image}" class="header-banner__bg" alt=""/>
+            <f:image image="{image}" class="header-banner__bg" alt="" loading="lazy" decoding="async"/>
         </f:for>
+        <span class="header-banner__scrim" aria-hidden="true"></span>
     </f:if>
     <d:layout.container>
         <header class="header-banner__inner">

@@ -1,9 +1,9 @@
 {
     "_type": "stats",
-    "header": "Chart for live product intelligence",
-    "description": "Turn dense numbers into an analytics block that stays readable on mobile. The chart labels, legend, and value states are realistic enough for responsive review.",
+    "header": "Monthly active users",
+    "description": "Unique signed-in users per month across web and mobile. Trailing six months, updated nightly.",
     "chart_type": "area",
-    "chart_data": "[{\"label\":\"Discover\",\"value\":42},{\"label\":\"Evaluate\",\"value\":68},{\"label\":\"Adopt\",\"value\":91},{\"label\":\"Retain\",\"value\":117}]",
+    "chart_data": "[{\"label\":\"Jan\",\"value\":8200},{\"label\":\"Feb\",\"value\":9100},{\"label\":\"Mar\",\"value\":10400},{\"label\":\"Apr\",\"value\":11800},{\"label\":\"May\",\"value\":13250},{\"label\":\"Jun\",\"value\":15600}]",
     "color_variant": "primary",
     "show_grid": 1,
     "show_legend": 1,

@@ -8,16 +8,62 @@
 
 <f:section name="Content">
     <header class="flex flex-col gap-6">
-        <f:if condition="{post.featuredImage}">
-            <div class="overflow-hidden rounded-xl border border-border bg-card">
-                <f:render partial="General/FeaturedImage" arguments="{image: post.featuredImage, settings: settings.post.featuredImage}" />
+        <f:variable name="kicker">
+            <f:if condition="{post.categories.0}">
+                <f:then>{post.categories.0.title}</f:then>
+                <f:else><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/blog.xlf:post.kicker.default" /></f:else>
+            </f:if>
+        </f:variable>
+
+        <div class="flex flex-col gap-4">
+            <p class="text-sm font-semibold uppercase tracking-wide text-primary">{kicker -> f:format.trim()}</p>
+            <d:atom.typography tag="h1" variant="h1" itemprop="headline">{post.title}</d:atom.typography>
+
+            <f:if condition="{post.abstract}">
+                <p class="max-w-2xl text-lg leading-8 text-muted-foreground" itemprop="description">{post.abstract}</p>
+            </f:if>
+        </div>
+
+        <f:if condition="{settings.meta.postheader.enable}">
+            <div class="flex flex-wrap items-center gap-x-4 gap-y-2 border-t border-border pt-5 text-sm text-muted-foreground">
+                <span class="inline-flex items-center gap-1.5">
+                    <span class="sr-only"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/blog.xlf:post.published.label" /></span>
+                    <time datetime="{f:format.date(format: 'c', date: post.publishDate)}" itemprop="datePublished">
+                        <f:format.date format="{settings.lists.posts.dateFormat}">{post.publishDate}</f:format.date>
+                    </time>
+                </span>
+
+                <f:if condition="{post.authors}">
+                    <span aria-hidden="true">·</span>
+                    <span class="inline-flex flex-wrap items-center gap-1">
+                        <span class="text-muted-foreground"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/blog.xlf:post.byline.prefix" /></span>
+                        <f:for each="{post.authors}" as="postAuthor" iteration="authorIteration">
+                            <span itemprop="author" itemscope="itemscope" itemtype="https://schema.org/Person">
+                                <blogvh:link.author author="{postAuthor}" rel="author" class="font-medium text-foreground underline-offset-4 hover:text-primary hover:underline"><span itemprop="name">{postAuthor.name}</span></blogvh:link.author>
+                            </span><f:if condition="!{authorIteration.isLast}"><span aria-hidden="true">,</span></f:if>
+                        </f:for>
+                    </span>
+                </f:if>
+
+                <span aria-hidden="true">·</span>
+                <f:render partial="Meta/ReadingTime" arguments="{target: '[data-blog-body]'}" />
+
+                <f:if condition="{post.tags}">
+                    <span class="ml-auto inline-flex flex-wrap items-center gap-1.5" itemprop="keywords">
+                        <f:for each="{post.tags}" as="postTag">
+                            <blogvh:link.tag tag="{postTag}">
+                                <d:atom.badge variant="secondary">{postTag.title}</d:atom.badge>
+                            </blogvh:link.tag>
+                        </f:for>
+                    </span>
+                </f:if>
             </div>
         </f:if>
-        <d:atom.typography tag="h1" variant="h1" itemprop="headline">{post.title}</d:atom.typography>
-        <f:if condition="{settings.meta.postheader.enable}">
-            <div class="text-sm text-muted-foreground">
-                <f:render partial="Meta/PostHeader" arguments="{_all}" />
-            </div>
+
+        <f:if condition="{post.featuredImage}">
+            <figure class="overflow-hidden rounded-xl border border-border bg-card">
+                <f:render partial="General/FeaturedImage" arguments="{image: post.featuredImage, settings: settings.post.featuredImage}" />
+            </figure>
         </f:if>
     </header>
 </f:section>

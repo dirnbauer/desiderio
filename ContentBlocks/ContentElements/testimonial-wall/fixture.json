@@ -1,11 +1,38 @@
 {
     "_type": "grid",
-    "header": "Wall Testimonial for credible trust signals",
-    "subheadline": "Build trust with specific evidence, attribution, and compact proof points.",
+    "eyebrow": "Loved by teams",
+    "header": "What 2,000+ teams say after switching",
+    "subheadline": "Real results from operations, support, and product leads who run their week on the platform.",
     "testimonials": [
-        [],
-        [],
-        [],
-        []
+        {
+            "quote": "We replaced three tools and a weekly status meeting. Our launch reviews now take 20 minutes instead of two hours.",
+            "author_name": "Mara Lindqvist",
+            "author_title": "VP Operations, Halcyon Studios"
+        },
+        {
+            "quote": "Support ticket backlog dropped 64% in the first quarter. The shared inbox and automations did most of the work for us, and onboarding a new agent now takes a single afternoon.",
+            "author_name": "Daniel Okoro",
+            "author_title": "Head of Customer Success, Brightwell"
+        },
+        {
+            "quote": "Setup took an afternoon, not the two-week migration we budgeted for.",
+            "author_name": "Yuki Tanaka",
+            "author_title": "Operations Lead, Meridian Labs"
+        },
+        {
+            "quote": "Our managers finally trust the numbers. Live dashboards killed the Friday spreadsheet ritual, and forecasting is now a five-minute conversation instead of a half-day export.",
+            "author_name": "Priya Raman",
+            "author_title": "Director of Analytics, Northpeak"
+        },
+        {
+            "quote": "Adoption hit 90% in two weeks with zero formal training. The interface just makes sense.",
+            "author_name": "Tom Berger",
+            "author_title": "Engineering Manager, Cobalt"
+        },
+        {
+            "quote": "We onboarded 40 new clients last month without adding headcount. The templates and permission controls let us scale the same playbook to every account without anything slipping.",
+            "author_name": "Sofia Marchetti",
+            "author_title": "Partner, Vantage Consulting"
+        }
     ]
 }

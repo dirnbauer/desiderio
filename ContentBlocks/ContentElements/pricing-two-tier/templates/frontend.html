@@ -10,7 +10,7 @@
         <f:if condition="{data.eyebrow} || {data.header} || {data.subheadline}">
             <header class="pricing-two-tier__intro">
                 <f:if condition="{data.eyebrow}">
-                    <span class="pricing-two-tier__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span>
+                    <p class="pricing-two-tier__eyebrow">{data -> f:render.text(field: 'eyebrow')}</p>
                 </f:if>
                 <f:if condition="{data.header}">
                     <h2 class="pricing-two-tier__headline">{data -> f:render.text(field: 'header')}</h2>
@@ -21,34 +21,40 @@
             </header>
         </f:if>
 
-        <div class="pricing-two-tier__grid">
-            <f:for each="{data.plans}" as="plan">
-                <article class="pricing-two-tier__plan {f:if(condition: plan.featured, then: 'pricing-two-tier__plan--featured')}">
-                    <h3 class="pricing-two-tier__title">{plan -> f:render.text(field: 'title')}</h3>
-                    <p class="pricing-two-tier__price">{plan -> f:render.text(field: 'price')}</p>
-                    <f:if condition="{plan.description}">
-                        <p class="pricing-two-tier__plan-desc">{plan -> f:render.text(field: 'description')}</p>
-                    </f:if>
-                    <f:if condition="{plan.features}">
-                        <ul class="pricing-two-tier__features">
-                            <f:for each="{plan.features}" as="feature">
-                                <f:if condition="{feature.text}">
-                                    <li class="pricing-two-tier__feature">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
-                                        <span>{feature -> f:render.text(field: 'text')}</span>
-                                    </li>
-                                </f:if>
-                            </f:for>
-                        </ul>
-                    </f:if>
-                    <f:if condition="{plan.button_text} && {plan.button_link.url}">
-                        <f:link.typolink parameter="{plan.button_link}" class="pricing-two-tier__button {f:if(condition: plan.featured, then: 'pricing-two-tier__button--primary', else: 'pricing-two-tier__button--outline')}">
-                            {plan -> f:render.text(field: 'button_text')}
-                        </f:link.typolink>
-                    </f:if>
-                </article>
+        <ul class="pricing-two-tier__grid" role="list">
+            <f:for each="{data.plans}" as="plan" iteration="iter">
+                <li class="pricing-two-tier__item">
+                    <article class="pricing-two-tier__plan {f:if(condition: plan.featured, then: 'pricing-two-tier__plan--featured')}" aria-labelledby="pricing-two-tier-{data.uid}-{iter.cycle}">
+                        <f:if condition="{plan.featured}">
+                            <span class="pricing-two-tier__badge">Most popular</span>
+                        </f:if>
+                        <h3 class="pricing-two-tier__title" id="pricing-two-tier-{data.uid}-{iter.cycle}">{plan -> f:render.text(field: 'title')}</h3>
+                        <p class="pricing-two-tier__price">{plan -> f:render.text(field: 'price')}</p>
+                        <f:if condition="{plan.description}">
+                            <p class="pricing-two-tier__plan-desc">{plan -> f:render.text(field: 'description')}</p>
+                        </f:if>
+                        <f:if condition="{plan.features}">
+                            <ul class="pricing-two-tier__features" role="list">
+                                <f:for each="{plan.features}" as="feature">
+                                    <f:if condition="{feature.text}">
+                                        <li class="pricing-two-tier__feature">
+                                            <svg class="pricing-two-tier__check" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg>
+                                            <span>{feature -> f:render.text(field: 'text')}</span>
+                                        </li>
+                                    </f:if>
+                                </f:for>
+                            </ul>
+                        </f:if>
+                        <f:if condition="{plan.button_text} && {plan.button_link.url}">
+                            <f:variable name="planCtaLabel">{plan.button_text} – {plan.title}</f:variable>
+                            <f:link.typolink parameter="{plan.button_link}" class="pricing-two-tier__button {f:if(condition: plan.featured, then: 'pricing-two-tier__button--primary', else: 'pricing-two-tier__button--outline')}" additionalAttributes="{'aria-label': planCtaLabel}">
+                                {plan -> f:render.text(field: 'button_text')}
+                            </f:link.typolink>
+                        </f:if>
+                    </article>
+                </li>
             </f:for>
-        </div>
+        </ul>
     </d:layout.container>
 </d:layout.section>
 </html>

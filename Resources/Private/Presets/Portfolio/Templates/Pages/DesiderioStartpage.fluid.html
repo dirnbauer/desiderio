@@ -11,20 +11,36 @@
 </f:section>
 
 <f:section name="Main">
-    <div class="desiderio-portfolio-template desiderio-portfolio-start">
+    <f:comment>
+        Portfolio cover / work index. The masthead is the maker's billboard:
+        an eyebrow badge, the studio or person name (website title) as the
+        display headline, and a positioning standfirst. The content area below
+        is the curated gallery of work — project teasers, a selected-works grid
+        and contact prompt dropped in by editors. Marked up as a schema.org
+        CollectionPage because it gathers and links the individual works.
+    </f:comment>
+    <section
+        class="desiderio-portfolio-template desiderio-portfolio-start"
+        itemscope="itemscope"
+        itemtype="https://schema.org/CollectionPage"
+    >
         <d:layout.container size="xl" class="desiderio-portfolio-template__container desiderio-portfolio-start__container">
-            <header class="desiderio-portfolio-template__masthead desiderio-portfolio-start__masthead">
-                <p>{breadcrumb.0.title}</p>
-                <h1>{site.configuration.websiteTitle -> f:or(alternative: page.pageRecord.title)}</h1>
+            <header class="desiderio-portfolio-template__masthead desiderio-portfolio-start__masthead" aria-labelledby="portfolio-start-title">
+                <f:if condition="{breadcrumb.0.title}">
+                    <p class="desiderio-portfolio-template__kicker">
+                        <d:atom.badge variant="secondary">{breadcrumb.0.title}</d:atom.badge>
+                    </p>
+                </f:if>
+                <h1 id="portfolio-start-title" itemprop="name">{site.configuration.websiteTitle -> f:or(alternative: page.pageRecord.title)}</h1>
                 <f:if condition="{page.pageRecord.abstract}">
-                    <span>{page.pageRecord.abstract}</span>
+                    <span itemprop="description">{page.pageRecord.abstract}</span>
                 </f:if>
             </header>
-            <div class="desiderio-portfolio-template__content desiderio-portfolio-start__content">
+            <div class="desiderio-portfolio-template__content desiderio-portfolio-start__content" itemprop="mainContentOfPage">
                 <f:render partial="Presets/ContentArea" arguments="{content: content.main}"/>
             </div>
         </d:layout.container>
-    </div>
+    </section>
 </f:section>
 
 </html>

@@ -7,21 +7,22 @@
 
 <d:layout.section class="chart-heatmap-section">
     <d:layout.container>
-        <div class="chart-heatmap" data-chart-json="{data.chart_data -> f:format.htmlspecialchars()}">
+        <figure class="chart-heatmap" data-chart-json="{data.chart_data -> f:format.htmlspecialchars()}">
             <div class="chart-heatmap__card">
                 <f:if condition="{data.header} || {data.description}">
-                    <div class="chart-heatmap__header">
+                    <header class="chart-heatmap__header">
                         <f:if condition="{data.header}">
                             <h3 class="chart-heatmap__title">{data -> f:render.text(field: 'header')}</h3>
                         </f:if>
                         <f:if condition="{data.description}">
                             <p class="chart-heatmap__description">{data -> f:render.text(field: 'description')}</p>
                         </f:if>
-                    </div>
+                    </header>
                 </f:if>
-                <div class="chart-heatmap__plot" id="chart-heatmap-{data.uid}"></div>
+                <div class="chart-heatmap__plot" id="chart-heatmap-{data.uid}" role="img"
+                     aria-label="{f:if(condition: data.header, then: '{data.header}', else: 'Heatmap')}{f:if(condition: data.description, then: '. {data.description}')}"></div>
             </div>
-        </div>
+        </figure>
     </d:layout.container>
 </d:layout.section>
 

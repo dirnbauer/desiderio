@@ -18,25 +18,40 @@
             </header>
         </f:if>
 
-        <div class="metric-dashboard__grid">
+        <dl class="metric-dashboard__grid">
             <f:for each="{data.items}" as="item">
-                <article class="metric-dashboard__card">
-                    <div class="metric-dashboard__label">{item -> f:render.text(field: 'label')}</div>
-                    <div class="metric-dashboard__value">{item -> f:render.text(field: 'value')}</div>
+                <f:variable name="metricTrend">{item.trend -> f:or(alternative: 'neutral')}</f:variable>
+                <div class="metric-dashboard__card">
+                    <dt class="metric-dashboard__label">{item -> f:render.text(field: 'label')}</dt>
+                    <dd class="metric-dashboard__value">{item -> f:render.text(field: 'value')}</dd>
                     <f:if condition="{item.change}">
-                        <div class="metric-dashboard__change metric-dashboard__change--{item.trend -> f:or(alternative: 'neutral')}">
-                            {item -> f:render.text(field: 'change')}
-                        </div>
+                        <p class="metric-dashboard__change metric-dashboard__change--{metricTrend}">
+                            <span class="metric-dashboard__trend-icon" aria-hidden="true">
+                                <f:switch expression="{metricTrend}">
+                                    <f:case value="up"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6-6 6 6"/><path d="M12 3v18"/></svg></f:case>
+                                    <f:case value="down"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21V3"/><path d="m6 15 6 6 6-6"/></svg></f:case>
+                                    <f:defaultCase><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/></svg></f:defaultCase>
+                                </f:switch>
+                            </span>
+                            <span class="sr-only">
+                                <f:switch expression="{metricTrend}">
+                                    <f:case value="up">Trending up:</f:case>
+                                    <f:case value="down">Trending down:</f:case>
+                                    <f:defaultCase>No change:</f:defaultCase>
+                                </f:switch>
+                            </span>
+                            <span class="metric-dashboard__change-text">{item -> f:render.text(field: 'change')}</span>
+                        </p>
                     </f:if>
-                </article>
+                </div>
             </f:for>
-        </div>
+        </dl>
 
         <f:if condition="{data.chart_data}">
             <div class="metric-dashboard__chart"
                  data-chart-data="{data.chart_data -> f:format.htmlspecialchars()}"
                  data-chart-id="metric-dash-{data.uid}">
-                <svg class="metric-dashboard__sparkline" id="metric-dash-{data.uid}"></svg>
+                <svg class="metric-dashboard__sparkline" id="metric-dash-{data.uid}" role="img" aria-label="{data.header -> f:or(alternative: 'Key metrics')} trend over time"></svg>
             </div>
         </f:if>
     </d:layout.container>

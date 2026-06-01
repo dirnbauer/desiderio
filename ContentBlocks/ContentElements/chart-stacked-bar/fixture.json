@@ -1,5 +1,6 @@
 {
-    "header": "Stacked Bar Chart for live product intelligence",
-    "description": "Let operators scan movement quickly with sharp labels and clear legends.",
-    "chart_data": "[{\"label\":\"Discover\",\"value\":69},{\"label\":\"Evaluate\",\"value\":85},{\"label\":\"Adopt\",\"value\":103},{\"label\":\"Retain\",\"value\":118}]"
+    "header": "Revenue by plan, last four quarters",
+    "description": "Recurring revenue split across Starter, Team, and Enterprise tiers.",
+    "chart_data": "[{\"label\":\"Q1\",\"segments\":[42,68,55]},{\"label\":\"Q2\",\"segments\":[48,74,71]},{\"label\":\"Q3\",\"segments\":[51,83,94]},{\"label\":\"Q4\",\"segments\":[58,91,118]}]",
+    "show_legend": 1
 }

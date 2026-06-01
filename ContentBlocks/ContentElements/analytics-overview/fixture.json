@@ -1,22 +1,32 @@
 {
     "_type": "stats",
-    "header": "Analytics Overview for live product intelligence",
+    "header": "Performance this month",
+    "period_label": "Last 30 days",
     "items": [
         {
-            "value": "24K",
-            "label": "Mobile polish"
+            "label": "Visitors",
+            "value": "48,920",
+            "change": "+12.4% vs last month",
+            "trend": "up"
         },
         {
-            "value": "4.9",
-            "label": "Token coverage"
+            "label": "Conversion rate",
+            "value": "3.8%",
+            "change": "+0.6 pts",
+            "trend": "up"
         },
         {
-            "value": "12 ms",
-            "label": "Trust lift"
+            "label": "Avg. order value",
+            "value": "€86.40",
+            "change": "-2.1% vs last month",
+            "trend": "down"
         },
         {
-            "value": "AA",
-            "label": "Signal quality"
+            "label": "Bounce rate",
+            "value": "41.2%",
+            "change": "No change",
+            "trend": "neutral"
         }
-    ]
+    ],
+    "summary": "Traffic and conversion are both up month over month. Order value dipped slightly after the spring promotion ended, so revenue stayed flat."
 }

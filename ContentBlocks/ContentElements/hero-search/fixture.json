@@ -1,5 +1,23 @@
 {
     "_type": "hero",
-    "header": "Search Hero for sleek launch moments",
-    "subheadline": "Open with a clear promise, credible media, and one obvious next action."
+    "header": "How can we help?",
+    "subheadline": "Search 400+ guides and API references, or jump straight to a popular topic below.",
+    "placeholder": "Search guides, APIs, and FAQs",
+    "category_filters": [
+        {
+            "label": "Getting started"
+        },
+        {
+            "label": "Billing"
+        },
+        {
+            "label": "API reference"
+        },
+        {
+            "label": "Integrations"
+        },
+        {
+            "label": "Troubleshooting"
+        }
+    ]
 }

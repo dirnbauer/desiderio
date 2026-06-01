@@ -1,16 +1,25 @@
 {
     "_type": "form",
-    "header": "GDPR Banner for refined utility areas",
-    "content": "Service information, privacy details, and support links are grouped with enough structure for fast scanning.",
+    "header": "We value your privacy",
+    "content": "We use cookies to keep the site reliable, understand how it's used, and improve what we build. Choose which categories to allow.",
     "cookie_categories": [
         {
-            "name": "Noah Ritter"
+            "name": "Essential",
+            "description_text": "Required for core features like security and your saved choices.",
+            "required": 1
         },
         {
-            "name": "Lea Fischer"
+            "name": "Analytics",
+            "description_text": "Anonymous usage data that helps us prioritise improvements.",
+            "required": 0
         },
         {
-            "name": "Mara Weiss"
+            "name": "Marketing",
+            "description_text": "Used to measure campaigns and show more relevant content.",
+            "required": 0
         }
-    ]
+    ],
+    "accept_text": "Accept all",
+    "save_text": "Save preferences",
+    "privacy_link": "https://example.com/privacy"
 }

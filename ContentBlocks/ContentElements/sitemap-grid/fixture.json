@@ -1,40 +1,45 @@
 {
     "_type": "footer",
-    "header": "Sitemap Grid for refined utility areas",
+    "header": "Explore the site",
     "columns": "4",
     "groups": [
         {
-            "title": "Sitemap Grid for refined utility areas",
+            "title": "Product",
             "pages": [
-                {
-                    "label": "Token coverage",
-                    "link": "https://ui.shadcn.com/docs/sitemap-grid"
-                },
-                {
-                    "label": "Trust lift",
-                    "link": "https://ui.shadcn.com/docs/sitemap-grid"
-                },
-                {
-                    "label": "Signal quality",
-                    "link": "https://ui.shadcn.com/docs/sitemap-grid"
-                }
+                { "label": "Features overview", "link": "/product/features" },
+                { "label": "Integrations", "link": "/product/integrations" },
+                { "label": "Pricing", "link": "/pricing" },
+                { "label": "Changelog", "link": "/changelog" },
+                { "label": "Roadmap", "link": "/roadmap" }
             ]
         },
         {
-            "title": "Sitemap Grid for refined utility areas",
+            "title": "Solutions",
             "pages": [
-                {
-                    "label": "Trust lift",
-                    "link": "https://ui.shadcn.com/docs/sitemap-grid"
-                },
-                {
-                    "label": "Signal quality",
-                    "link": "https://ui.shadcn.com/docs/sitemap-grid"
-                },
-                {
-                    "label": "Launch velocity",
-                    "link": "https://ui.shadcn.com/docs/sitemap-grid"
-                }
+                { "label": "For startups", "link": "/solutions/startups" },
+                { "label": "For agencies", "link": "/solutions/agencies" },
+                { "label": "For enterprise", "link": "/solutions/enterprise" },
+                { "label": "Customer stories", "link": "/customers" }
+            ]
+        },
+        {
+            "title": "Resources",
+            "pages": [
+                { "label": "Documentation", "link": "/docs" },
+                { "label": "Help center", "link": "/help" },
+                { "label": "Blog", "link": "/blog" },
+                { "label": "API reference", "link": "/docs/api" },
+                { "label": "System status", "link": "https://status.example.com" }
+            ]
+        },
+        {
+            "title": "Company",
+            "pages": [
+                { "label": "About us", "link": "/about" },
+                { "label": "Careers", "link": "/careers" },
+                { "label": "Contact", "link": "/contact" },
+                { "label": "Privacy policy", "link": "/legal/privacy" },
+                { "label": "Terms of service", "link": "/legal/terms" }
             ]
         }
     ]

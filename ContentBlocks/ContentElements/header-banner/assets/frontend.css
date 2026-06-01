@@ -18,6 +18,17 @@
     height: 100%;
     object-fit: cover;
     opacity: 0.3;
+    z-index: 0;
+}
+.header-banner__scrim {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: color-mix(in oklch, var(--d-background) 55%, transparent);
+}
+.header-banner--dark .header-banner__scrim,
+.header-banner--primary .header-banner__scrim {
+    background: color-mix(in oklch, var(--d-foreground) 45%, transparent);
 }
 .header-banner__inner {
     position: relative;
@@ -32,8 +43,12 @@
     line-height: 1.1;
     margin-bottom: var(--d-spacing-3);
 }
+@media (min-width: 768px) {
+    .header-banner__title { font-size: var(--d-text-5xl); }
+}
 .header-banner__description {
     font-size: var(--d-text-lg);
-    opacity: 0.8;
+    opacity: 0.85;
     margin-bottom: var(--d-spacing-6);
+    text-wrap: pretty;
 }

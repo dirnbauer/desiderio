@@ -10,7 +10,7 @@
         <f:if condition="{data.eyebrow} || {data.header} || {data.subheadline}">
             <header class="category-cards__intro">
                 <f:if condition="{data.eyebrow}">
-                    <span class="category-cards__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span>
+                    <p class="category-cards__eyebrow">{data -> f:render.text(field: 'eyebrow')}</p>
                 </f:if>
                 <f:if condition="{data.header}">
                     <h2 class="category-cards__headline">{data -> f:render.text(field: 'header')}</h2>
@@ -34,8 +34,10 @@
                         <p class="category-cards__card-desc">{item -> f:render.text(field: 'description')}</p>
                     </f:if>
                     <f:if condition="{item.link.url}">
-                        <f:link.typolink parameter="{item.link}" class="category-cards__link">
-                            Explore &rarr;
+                        <f:variable name="exploreLabel">{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:cta.explore')}</f:variable>
+                        <f:link.typolink parameter="{item.link}" class="category-cards__link" additionalAttributes="{'aria-label': '{exploreLabel}: {item.title -> f:format.stripTags() -> f:format.trim()}'}">
+                            <span>{exploreLabel}</span>
+                            <span class="category-cards__link-arrow" aria-hidden="true">&rarr;</span>
                         </f:link.typolink>
                     </f:if>
                 </article>

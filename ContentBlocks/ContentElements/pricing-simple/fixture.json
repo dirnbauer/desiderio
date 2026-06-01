@@ -1,16 +1,17 @@
 {
     "_type": "pricing",
-    "header": "Simple Pricing for confident plan comparison",
-    "price": "$99",
-    "billing_period": "/month",
-    "description": "Show pricing states with practical labels and scannable benefits.",
+    "header": "One plan, everything included",
+    "price": "$29",
+    "billing_period": "per month",
+    "description": "Everything you need to design, build, and ship sites. No tiers, no add-ons, cancel anytime.",
     "features": [
-        "Reusable labels, metrics, and actions",
-        "Clean mobile behavior for dense content",
-        "Chart colors mapped to semantic tokens",
-        "Production-ready empty and loaded states",
-        "Token-aware light and dark states"
+        { "text": "Unlimited projects and pages" },
+        { "text": "10 editor seats included" },
+        { "text": "Custom domains and SSL" },
+        { "text": "Scheduled publishing" },
+        { "text": "Priority email support" },
+        { "text": "100 GB asset storage" }
     ],
-    "button_text": "View pattern",
+    "button_text": "Start free trial",
     "button_link": "https://ui.shadcn.com/docs/simple-pricing"
 }

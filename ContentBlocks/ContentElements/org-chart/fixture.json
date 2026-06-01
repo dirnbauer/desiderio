@@ -1,31 +1,52 @@
 {
     "_type": "team",
-    "header": "Organization Chart for modern people pages",
-    "subheadline": "Present people and culture with confident profile copy and calm card structure.",
+    "header": "How we are organized",
+    "subheadline": "A flat structure built around small, cross-functional teams that ship independently.",
     "levels": [
         {
-            "level_label": "Mobile polish",
+            "level_label": "Leadership",
             "people": [
                 {
-                    "name": "Lea Fischer",
-                    "role": "Product Design Lead"
+                    "name": "Elena Vogt",
+                    "role": "Chief Executive Officer"
                 }
             ]
         },
         {
-            "level_label": "Token coverage",
+            "level_label": "Department leads",
             "people": [
                 {
-                    "name": "Mara Weiss",
-                    "role": "Frontend Engineer"
+                    "name": "Marcus Reinhardt",
+                    "role": "VP Engineering"
                 },
                 {
-                    "name": "Jonas Klein",
-                    "role": "Customer Success"
+                    "name": "Priya Anand",
+                    "role": "VP Product"
                 },
                 {
-                    "name": "Sofia Berg",
-                    "role": "Content Architect"
+                    "name": "Tobias Lindqvist",
+                    "role": "VP Revenue"
+                }
+            ]
+        },
+        {
+            "level_label": "Teams",
+            "people": [
+                {
+                    "name": "Platform",
+                    "role": "8 engineers"
+                },
+                {
+                    "name": "Growth",
+                    "role": "6 people"
+                },
+                {
+                    "name": "Design",
+                    "role": "4 designers"
+                },
+                {
+                    "name": "Customer Success",
+                    "role": "7 people"
                 }
             ]
         }

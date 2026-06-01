@@ -1,55 +1,59 @@
 {
     "_type": "table",
-    "header": "Data Table for live product intelligence",
+    "header": "Integration sync status",
     "show_header_row": true,
     "column_definitions": [
         {
-            "column_label": "Mobile polish",
+            "column_label": "Service",
             "column_align": "left"
         },
         {
-            "column_label": "Token coverage",
+            "column_label": "Status",
             "column_align": "left"
         },
         {
-            "column_label": "Trust lift",
+            "column_label": "Last sync",
+            "column_align": "left"
+        },
+        {
+            "column_label": "Uptime",
             "column_align": "right"
         }
     ],
     "rows": [
         {
-            "row_label": "Token coverage",
+            "row_label": "Salesforce",
             "cells": [
-                "API Gateway",
-                "Synced",
-                "2 min ago"
+                "Connected",
+                "2 minutes ago",
+                "99.98%"
             ]
         },
         {
-            "row_label": "Trust lift",
+            "row_label": "HubSpot",
             "cells": [
-                "API Gateway",
-                "Synced",
-                "2 min ago"
+                "Connected",
+                "6 minutes ago",
+                "99.95%"
             ]
         },
         {
-            "row_label": "Signal quality",
+            "row_label": "Stripe",
             "cells": [
-                "API Gateway",
-                "Synced",
-                "2 min ago"
+                "Connected",
+                "1 minute ago",
+                "100%"
             ]
         },
         {
-            "row_label": "Launch velocity",
+            "row_label": "Slack",
             "cells": [
-                "API Gateway",
-                "Synced",
-                "2 min ago"
+                "Reconnecting",
+                "3 hours ago",
+                "98.20%"
             ]
         }
     ],
     "show_caption": true,
-    "caption_text": "Preview data for the data table seed import."
+    "caption_text": "Sync health for the last 24 hours. Times shown in your local timezone."
 }

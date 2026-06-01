@@ -34,7 +34,7 @@ fields:
     type: Collection
     table: stat_cards_items
     prefixField: true
-    label: 'Stat Items'
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:stats'
     minItems: 1
     fields:
       -
@@ -53,8 +53,8 @@ fields:
         identifier: change
         type: Textarea
         rows: 1
-        label: Change
-        description: 'e.g. +12.5%'
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:change'
+        description: 'Delta vs previous period, e.g. +12.5% or -3 pts.'
       -
         identifier: trend
         type: Select

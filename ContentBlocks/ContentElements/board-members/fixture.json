@@ -1,15 +1,25 @@
 {
     "_type": "team",
-    "header": "Board Members for modern people pages",
+    "header": "Meet our board",
+    "subheadline": "An independent board of operators and investors who have scaled companies from seed to IPO.",
     "members": [
         {
-            "name": "Sofia Berg"
+            "name": "Sofia Berg",
+            "title": "Board Chair",
+            "affiliation": "Former CEO, Northwind Cloud",
+            "bio": "Led Northwind from Series A to a public listing, scaling the team past 2,000 people across nine markets."
         },
         {
-            "name": "Noah Ritter"
+            "name": "Noah Ritter",
+            "title": "Independent Director",
+            "affiliation": "General Partner, Atlas Ventures",
+            "bio": "Early-stage investor in 30+ B2B software companies, with five exits above one billion dollars."
         },
         {
-            "name": "Lea Fischer"
+            "name": "Lea Fischer",
+            "title": "Independent Director",
+            "affiliation": "Former CFO, Meridian Health",
+            "bio": "Brings two decades of financial leadership and audit-committee experience in regulated industries."
         }
     ]
 }

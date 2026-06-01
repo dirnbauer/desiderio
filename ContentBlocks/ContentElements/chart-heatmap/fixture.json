@@ -1,5 +1,5 @@
 {
-    "header": "Heatmap Chart for live product intelligence",
-    "description": "Let operators scan movement quickly with sharp labels and clear legends.",
-    "chart_data": "[{\"label\":\"Discover\",\"value\":58},{\"label\":\"Evaluate\",\"value\":74},{\"label\":\"Adopt\",\"value\":92},{\"label\":\"Retain\",\"value\":107}]"
+    "header": "Support volume by day and shift",
+    "description": "Tickets opened per weekday across three support shifts last month.",
+    "chart_data": "{\"rows\":[\"Mon\",\"Tue\",\"Wed\",\"Thu\",\"Fri\"],\"cols\":[\"Morning\",\"Afternoon\",\"Evening\"],\"values\":[[42,58,31],[55,64,28],[49,71,33],[60,68,37],[38,52,24]]}"
 }

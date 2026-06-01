@@ -21,7 +21,8 @@
                         </f:if>
                     </div>
                 </f:if>
-                <div class="chart-stacked-bar__plot" id="chart-stacked-bar-{data.uid}"></div>
+                <div class="chart-stacked-bar__plot" id="chart-stacked-bar-{data.uid}" role="img"
+                     aria-label="{f:if(condition: data.header, then: '{data.header}, stacked bar chart', else: 'Stacked bar chart')}{f:if(condition: data.description, then: '. {data.description}')}"></div>
             </div>
         </div>
     </d:layout.container>

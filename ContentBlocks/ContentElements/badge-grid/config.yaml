@@ -22,7 +22,7 @@ fields:
     identifier: variant
     type: Select
     renderType: selectSingle
-    label: 'Badge Style'
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:style'
     items:
       -
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.default'
@@ -56,7 +56,7 @@ fields:
         identifier: color
         type: Select
         renderType: selectSingle
-        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:color_field'
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:color'
         items:
           -
             label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.default'

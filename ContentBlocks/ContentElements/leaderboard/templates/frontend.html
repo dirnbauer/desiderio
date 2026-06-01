@@ -6,12 +6,12 @@
 <f:asset.css identifier="d-leaderboard" href="{cb:assetPath()}/frontend.css"/>
 
 <d:layout.section class="leaderboard-section">
-    <d:layout.container>
+    <d:layout.container size="md">
         <div class="leaderboard">
             <f:if condition="{data.header} || {data.description}">
                 <div class="leaderboard__header">
                     <f:if condition="{data.header}">
-                        <h2 class="leaderboard__title">{data -> f:render.text(field: 'header')}</h2>
+                        <d:atom.typography tag="h2" variant="h3" class="leaderboard__title">{data -> f:render.text(field: 'header')}</d:atom.typography>
                     </f:if>
                     <f:if condition="{data.description}">
                         <p class="leaderboard__description">{data -> f:render.text(field: 'description')}</p>
@@ -22,22 +22,28 @@
                 <f:for each="{data.items}" as="item" iteration="iter">
                     <li class="leaderboard__item">
                         <f:if condition="{data.show_rank}">
-                            <span class="leaderboard__rank">{iter.cycle}</span>
+                            <span class="leaderboard__rank" aria-hidden="true">{iter.cycle}</span>
                         </f:if>
-                        <f:if condition="{item.image}">
-                            <div class="leaderboard__avatar">
-                                <f:for each="{item.image}" as="file">
-                                    <f:image image="{file}" alt="{item.name}" width="40" height="40"/>
-                                </f:for>
-                            </div>
-                        </f:if>
+                        <div class="leaderboard__avatar">
+                            <f:if condition="{item.image}">
+                                <f:then>
+                                    <f:for each="{item.image}" as="file">
+                                        <f:image image="{file}" alt="" width="40" height="40" loading="lazy" decoding="async"/>
+                                    </f:for>
+                                </f:then>
+                                <f:else>
+                                    <span class="leaderboard__avatar-fallback" aria-hidden="true">{item.name -> f:format.crop(maxCharacters: 1)}</span>
+                                </f:else>
+                            </f:if>
+                        </div>
                         <div class="leaderboard__info">
                             <span class="leaderboard__name">{item -> f:render.text(field: 'name')}</span>
                             <f:if condition="{item.subtitle}">
                                 <span class="leaderboard__subtitle">{item -> f:render.text(field: 'subtitle')}</span>
                             </f:if>
                         </div>
-                        <span class="leaderboard__value">{item -> f:render.text(field: 'value')}</span>
+                        <span class="leaderboard__value">
+                            <span class="sr-only"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:leaderboard.score"/>: </span>{item -> f:render.text(field: 'value')}</span>
                     </li>
                 </f:for>
             </ol>

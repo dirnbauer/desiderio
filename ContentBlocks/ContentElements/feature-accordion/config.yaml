@@ -21,7 +21,7 @@ fields:
   -
     identifier: image
     type: File
-    label: 'Side Image'
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:image'
     allowed: common-image-types
     maxitems: 1
   -
@@ -36,11 +36,11 @@ fields:
         identifier: title
         type: Textarea
         rows: 1
-        label: 'Feature Title'
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:title'
         required: true
       -
         identifier: content
         type: Textarea
-        label: 'Feature Details'
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:content'
         enableRichtext: true
         rows: 4

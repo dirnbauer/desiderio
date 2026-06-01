@@ -29,10 +29,22 @@
     border-radius: var(--d-radius-sm);
     transition: color 0.15s;
 }
-.nav-toc__link:hover {
+a.nav-toc__link:hover {
     color: var(--d-foreground);
 }
+.nav-toc__link:focus-visible {
+    outline: 2px solid var(--d-ring);
+    outline-offset: 2px;
+}
+.nav-toc__link--static {
+    cursor: default;
+}
 .nav-toc__item--h3 .nav-toc__link {
-    padding-left: var(--d-spacing-6);
+    padding-inline-start: var(--d-spacing-6);
     font-size: var(--d-text-xs);
+}
+@media (prefers-reduced-motion: reduce) {
+    .nav-toc__link {
+        transition: none;
+    }
 }

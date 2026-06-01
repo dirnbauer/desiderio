@@ -22,7 +22,7 @@ fields:
     identifier: columns
     type: Select
     renderType: selectSingle
-    label: 'Teaser Columns'
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:columns'
     items:
       -
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.2_columns'
@@ -70,4 +70,4 @@ fields:
       -
         identifier: link
         type: Link
-        label: 'Post Link'
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:link'

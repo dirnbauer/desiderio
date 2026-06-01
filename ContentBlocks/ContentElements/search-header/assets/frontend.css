@@ -4,42 +4,70 @@
 .search-header__intro {
     max-width: 42rem;
     margin-inline: auto;
-    margin-bottom: var(--d-spacing-6);
+    margin-block-end: var(--d-spacing-6, 1.5rem);
 }
 .search-header__eyebrow {
     display: block;
     font-size: var(--d-text-sm);
-    font-weight: 500;
-    color: var(--d-primary);
-    margin-bottom: var(--d-spacing-2);
+    font-weight: 600;
+    color: var(--primary);
+    margin-block-end: var(--d-spacing-2, 0.5rem);
     text-transform: uppercase;
     letter-spacing: 0.05em;
 }
 .search-header__headline {
-    font-size: var(--d-text-3xl);
-    font-weight: 700;
-    margin-bottom: var(--d-spacing-3);
+    margin-block-end: var(--d-spacing-3, 0.75rem);
 }
 .search-header__description {
-    font-size: var(--d-text-lg);
-    color: var(--d-muted-foreground);
+    color: var(--muted-foreground);
 }
 .search-header__form {
     display: flex;
-    max-width: 32rem;
+    flex-direction: column;
+    gap: var(--d-spacing-2, 0.5rem);
+    max-width: 34rem;
     margin-inline: auto;
-    gap: var(--d-spacing-2);
+}
+.search-header__field {
+    position: relative;
+    flex: 1;
+}
+.search-header__icon {
+    position: absolute;
+    inset-block-start: 50%;
+    inset-inline-start: 0.875rem;
+    transform: translateY(-50%);
+    color: var(--muted-foreground);
+    pointer-events: none;
 }
 .search-header__input {
-    flex: 1;
-    padding: var(--d-spacing-2) var(--d-spacing-4);
-    border: 1px solid var(--d-border);
-    border-radius: var(--d-radius-md);
-    font-size: var(--d-text-sm);
-    background: var(--d-background);
-    color: var(--d-foreground);
+    width: 100%;
+    padding-block: var(--d-spacing-3, 0.75rem);
+    padding-inline: 2.75rem var(--d-spacing-4, 1rem);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    font-size: var(--d-text-base, 1rem);
+    background: var(--background);
+    color: var(--foreground);
 }
-.search-header__input:focus {
-    outline: 2px solid var(--d-ring);
+.search-header__input::placeholder {
+    color: var(--muted-foreground);
+}
+.search-header__input:focus-visible {
+    outline: 2px solid var(--ring);
     outline-offset: 2px;
+    border-color: var(--ring);
+}
+.search-header__submit {
+    width: 100%;
+}
+
+@media (min-width: 640px) {
+    .search-header__form {
+        flex-direction: row;
+        align-items: stretch;
+    }
+    .search-header__submit {
+        width: auto;
+    }
 }

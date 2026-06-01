@@ -44,9 +44,7 @@
                     </f:if>
                 </div>
                 <f:if condition="{data.button_text} && {data.button_link.url}">
-                    <f:link.typolink parameter="{data.button_link}" class="bundle-pricing__button">
-                        {data -> f:render.text(field: 'button_text')}
-                    </f:link.typolink>
+                    <f:link.typolink parameter="{data.button_link}" class="bundle-pricing__button">{data -> f:render.text(field: 'button_text')}</f:link.typolink>
                 </f:if>
             </div>
         </div>

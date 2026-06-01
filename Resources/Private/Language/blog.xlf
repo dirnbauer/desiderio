@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en">
+  <file id="desiderio-blog">
+
+    <!-- Article (single post) -->
+    <unit id="post.breadcrumb.label">
+      <segment><source>Breadcrumb</source></segment>
+    </unit>
+    <unit id="post.breadcrumb.home">
+      <segment><source>Blog</source></segment>
+    </unit>
+    <unit id="post.kicker.default">
+      <segment><source>Article</source></segment>
+    </unit>
+    <unit id="post.byline.prefix">
+      <segment><source>By</source></segment>
+    </unit>
+    <unit id="post.meta.label">
+      <segment><source>Article details</source></segment>
+    </unit>
+    <unit id="post.published.label">
+      <segment><source>Published</source></segment>
+    </unit>
+    <unit id="post.updated.label">
+      <segment><source>Updated</source></segment>
+    </unit>
+    <unit id="post.readingTime">
+      <segment><source>{minutes, plural, one {# min read} other {# min read}}</source></segment>
+    </unit>
+    <unit id="post.readingTime.aria">
+      <segment><source>Estimated reading time: {minutes, plural, one {one minute} other {# minutes}}</source></segment>
+    </unit>
+    <unit id="post.readingTime.template">
+      <segment><source>{n} min read</source></segment>
+    </unit>
+    <unit id="post.readingTime.template.aria">
+      <segment><source>Estimated reading time: {n} min</source></segment>
+    </unit>
+    <unit id="post.progress.label">
+      <segment><source>Reading progress</source></segment>
+    </unit>
+    <unit id="post.body.label">
+      <segment><source>Article body</source></segment>
+    </unit>
+
+    <!-- Counts (ICU plural) -->
+    <unit id="post.comments.count">
+      <segment><source>{count, plural, =0 {No comments yet} one {# comment} other {# comments}}</source></segment>
+    </unit>
+    <unit id="post.tags.label">
+      <segment><source>{count, plural, one {Tag} other {Tags}}</source></segment>
+    </unit>
+    <unit id="post.categories.label">
+      <segment><source>{count, plural, one {Category} other {Categories}}</source></segment>
+    </unit>
+
+    <!-- List view -->
+    <unit id="list.heading">
+      <segment><source>From the blog</source></segment>
+    </unit>
+    <unit id="list.intro">
+      <segment><source>Notes on what we are building, what we are learning, and where the craft is heading.</source></segment>
+    </unit>
+    <unit id="list.count">
+      <segment><source>{count, plural, =0 {No articles yet} one {# article} other {# articles}}</source></segment>
+    </unit>
+    <unit id="list.featured.label">
+      <segment><source>Featured</source></segment>
+    </unit>
+    <unit id="list.empty.title">
+      <segment><source>Nothing published here yet</source></segment>
+    </unit>
+    <unit id="list.empty.description">
+      <segment><source>New articles will appear here as soon as they go live. Check back soon.</source></segment>
+    </unit>
+    <unit id="list.region.label">
+      <segment><source>Article list</source></segment>
+    </unit>
+
+    <!-- Card / teaser -->
+    <unit id="card.readMore">
+      <segment><source>Read article</source></segment>
+    </unit>
+    <unit id="card.readMore.aria">
+      <segment><source>Read the article: {title}</source></segment>
+    </unit>
+
+    <!-- Related & sidebar -->
+    <unit id="related.heading">
+      <segment><source>Keep reading</source></segment>
+    </unit>
+    <unit id="related.intro">
+      <segment><source>More articles picked to pair with this one.</source></segment>
+    </unit>
+    <unit id="sidebar.label">
+      <segment><source>Article tools and related reading</source></segment>
+    </unit>
+
+    <!-- Author -->
+    <unit id="author.about">
+      <segment><source>About the author</source></segment>
+    </unit>
+    <unit id="author.morePosts">
+      <segment><source>More articles by this author</source></segment>
+    </unit>
+    <unit id="author.posts.count">
+      <segment><source>{count, plural, one {# article} other {# articles}}</source></segment>
+    </unit>
+
+    <!-- Comments -->
+    <unit id="comments.heading">
+      <segment><source>{count, plural, =0 {Join the conversation} one {# comment} other {# comments}}</source></segment>
+    </unit>
+    <unit id="comments.form.heading">
+      <segment><source>Leave a comment</source></segment>
+    </unit>
+    <unit id="comments.form.intro">
+      <segment><source>Your email address will not be published.</source></segment>
+    </unit>
+    <unit id="comments.closed">
+      <segment><source>Comments are closed for this article.</source></segment>
+    </unit>
+
+    <!-- Pagination -->
+    <unit id="pagination.label">
+      <segment><source>Pagination, {totalPages, plural, one {one page} other {# pages}}</source></segment>
+    </unit>
+    <unit id="pagination.previous">
+      <segment><source>Previous</source></segment>
+    </unit>
+    <unit id="pagination.next">
+      <segment><source>Next</source></segment>
+    </unit>
+    <unit id="pagination.aria.previous">
+      <segment><source>Go to previous page</source></segment>
+    </unit>
+    <unit id="pagination.aria.next">
+      <segment><source>Go to next page</source></segment>
+    </unit>
+    <unit id="pagination.aria.goToPage">
+      <segment><source>Go to page {page} of {totalPages, plural, one {one page} other {# pages}}</source></segment>
+    </unit>
+    <unit id="pagination.aria.currentPage">
+      <segment><source>Page {page} of {totalPages, plural, one {one page} other {# pages}}</source></segment>
+    </unit>
+
+  </file>
+</xliff>

@@ -1,11 +1,28 @@
 {
     "_type": "grid",
-    "header": "Office Locations for modern people pages",
-    "subheadline": "Present people and culture with confident profile copy and calm card structure.",
+    "header": "Visit us",
+    "subheadline": "Three offices across Europe. Drop by, call, or send us a message.",
     "location_items": [
-        [],
-        [],
-        [],
-        []
+        {
+            "city": "Vienna",
+            "address": "Mariahilfer Straße 103\n1060 Vienna, Austria",
+            "phone": "+43 1 234 56 78",
+            "email": "vienna@example.com",
+            "map_link": "https://maps.google.com/?q=Mariahilfer+Stra%C3%9Fe+103+Vienna"
+        },
+        {
+            "city": "Berlin",
+            "address": "Torstraße 140\n10119 Berlin, Germany",
+            "phone": "+49 30 1234 5678",
+            "email": "berlin@example.com",
+            "map_link": "https://maps.google.com/?q=Torstra%C3%9Fe+140+Berlin"
+        },
+        {
+            "city": "Zurich",
+            "address": "Bahnhofstrasse 21\n8001 Zurich, Switzerland",
+            "phone": "+41 44 123 45 67",
+            "email": "zurich@example.com",
+            "map_link": "https://maps.google.com/?q=Bahnhofstrasse+21+Zurich"
+        }
     ]
 }

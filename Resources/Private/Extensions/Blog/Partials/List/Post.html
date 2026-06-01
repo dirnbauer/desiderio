@@ -7,6 +7,9 @@
 <f:argument name="post" type="T3G\AgencyPack\Blog\Domain\Model\Post" optional="true"/>
 <f:argument name="settings" type="array" optional="true"/>
 <f:argument name="iterator" type="array" optional="true"/>
+<f:argument name="featured" type="boolean" optional="true"/>
+
+<f:variable name="summary" value="{f:if(condition: post.abstract, then: post.abstract, else: post.description)}"/>
 
 <article
     class="group/card flex h-full flex-col"
@@ -17,29 +20,44 @@
 >
     <d:molecule.card class="h-full">
         <f:if condition="{post.featuredImage}">
-            <blogvh:link.post post="{post}" class="block overflow-hidden" additionalAttributes="{aria-hidden: 'true'}" tabindex="-1">
+            <blogvh:link.post post="{post}" class="block overflow-hidden" additionalAttributes="{aria-hidden: 'true', tabindex: '-1'}">
                 <f:render partial="General/FeaturedImage" arguments="{image: post.featuredImage, settings: settings.lists.featuredImage}" />
             </blogvh:link.post>
         </f:if>
 
-        <div class="flex flex-1 flex-col gap-4 px-4 pb-4">
-            <f:render partial="Meta/ListHeader" arguments="{_all}" />
-
-            <h2 class="text-xl font-semibold tracking-normal" itemprop="name">
-                <blogvh:link.post post="{post}" class="text-foreground underline-offset-4 hover:text-primary hover:underline" itemprop="url"/>
-            </h2>
-
-            <p class="text-sm leading-6 text-muted-foreground" itemprop="description">
-                <f:if condition="{post.abstract}">
-                    <f:then>{post.abstract}</f:then>
-                    <f:else>{post.description}</f:else>
+        <div class="flex flex-1 flex-col gap-4 px-5 pb-5">
+            <div class="flex flex-wrap items-center gap-x-3 gap-y-2 text-xs text-muted-foreground">
+                <f:if condition="{featured}">
+                    <d:atom.badge><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/blog.xlf:list.featured.label" /></d:atom.badge>
                 </f:if>
-            </p>
+                <time datetime="{f:format.date(format: 'c', date: post.publishDate)}" itemprop="datePublished">
+                    <f:format.date format="{settings.lists.posts.dateFormat}">{post.publishDate}</f:format.date>
+                </time>
+                <f:if condition="{post.categories.0}">
+                    <span aria-hidden="true">·</span>
+                    <blogvh:link.category category="{post.categories.0}" class="underline-offset-4 hover:text-primary hover:underline">
+                        <d:atom.badge variant="secondary">{post.categories.0.title}</d:atom.badge>
+                    </blogvh:link.category>
+                </f:if>
+            </div>
 
-            <div class="mt-auto flex flex-wrap items-center justify-between gap-3 text-sm">
-                <f:render partial="Meta/ListFooter" arguments="{_all}" />
-                <blogvh:link.post post="{post}" class="font-medium text-primary underline-offset-4 hover:underline">
-                    <f:translate extensionName="Blog" key="link.read.more">Read more</f:translate> &rarr;
+            <h3 class="{f:if(condition: featured, then: 'text-2xl', else: 'text-xl')} font-semibold tracking-normal" itemprop="name">
+                <blogvh:link.post post="{post}" class="text-foreground underline-offset-4 hover:text-primary hover:underline" itemprop="url"/>
+            </h3>
+
+            <f:if condition="{summary}">
+                <p class="line-clamp-3 text-sm leading-6 text-muted-foreground" itemprop="description">{summary}</p>
+            </f:if>
+
+            <div class="mt-auto flex flex-wrap items-center justify-between gap-3 pt-1 text-sm">
+                <f:if condition="{post.authors.0}">
+                    <span class="inline-flex items-center gap-2 text-muted-foreground">
+                        <span class="text-xs"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/blog.xlf:post.byline.prefix" /> {post.authors.0.name}</span>
+                    </span>
+                </f:if>
+                <blogvh:link.post post="{post}" class="inline-flex items-center gap-1 font-medium text-primary underline-offset-4 hover:underline" additionalAttributes="{aria-label: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/blog.xlf:card.readMore.aria\', arguments: {title: post.title})}'}">
+                    <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/blog.xlf:card.readMore" />
+                    <span aria-hidden="true" class="transition-transform group-hover/card:translate-x-0.5">&rarr;</span>
                 </blogvh:link.post>
             </div>
         </div>

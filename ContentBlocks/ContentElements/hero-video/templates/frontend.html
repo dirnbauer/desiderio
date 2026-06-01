@@ -10,25 +10,43 @@
         <div class="hero-video__grid">
             <div class="hero-video__copy">
                 <f:if condition="{data.eyebrow}">
-                    <span class="hero-video__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span>
+                    <p class="hero-video__eyebrow">{data -> f:render.text(field: 'eyebrow')}</p>
                 </f:if>
                 <f:if condition="{data.header}">
-                    <h1 class="hero-video__headline">{data -> f:render.text(field: 'header')}</h1>
+                    <d:atom.typography tag="h1" variant="h1" class="hero-video__headline" itemprop="">
+                        <span id="hero-video-title-{data.uid}">{data -> f:render.text(field: 'header')}</span>
+                    </d:atom.typography>
                 </f:if>
                 <f:if condition="{data.subheadline}">
-                    <p class="hero-video__description">{data -> f:render.text(field: 'subheadline')}</p>
+                    <d:atom.typography variant="lead" class="hero-video__description">{data -> f:render.text(field: 'subheadline')}</d:atom.typography>
                 </f:if>
-                <f:if condition="{data.primary_button_text} && {data.primary_button_link.url}">
-                    <d:atom.button href="{data.primary_button_link.url}" target="{data.primary_button_link.target}" size="lg">{data -> f:render.text(field: 'primary_button_text')}</d:atom.button>
-                </f:if>
-            </div>
-            <div class="hero-video__panel">
-                <div class="hero-video__placeholder"></div>
-                <h2 class="hero-video__panel-title">{data.video_title -> f:or(alternative: 'Product walkthrough')}</h2>
-                <f:if condition="{data.video_description}">
-                    <p class="hero-video__panel-copy">{data -> f:render.text(field: 'video_description')}</p>
+                <f:if condition="{data.primary_button_text} && {data.primary_button_link}">
+                    <div class="hero-video__actions">
+                        <f:link.typolink parameter="{data.primary_button_link}">
+                            <d:atom.button size="lg">{data -> f:render.text(field: 'primary_button_text')}</d:atom.button>
+                        </f:link.typolink>
+                    </div>
                 </f:if>
             </div>
+            <figure class="hero-video__panel">
+                <div class="hero-video__poster">
+                    <span class="hero-video__play" aria-hidden="true">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="hero-video__play-icon">
+                            <path d="M8 5v14l11-7z"/>
+                        </svg>
+                    </span>
+                </div>
+                <f:if condition="{data.video_title} || {data.video_description}">
+                    <figcaption class="hero-video__caption">
+                        <f:if condition="{data.video_title}">
+                            <d:atom.typography variant="large" class="hero-video__panel-title">{data -> f:render.text(field: 'video_title')}</d:atom.typography>
+                        </f:if>
+                        <f:if condition="{data.video_description}">
+                            <d:atom.typography variant="muted" class="hero-video__panel-copy">{data -> f:render.text(field: 'video_description')}</d:atom.typography>
+                        </f:if>
+                    </figcaption>
+                </f:if>
+            </figure>
         </div>
     </d:layout.container>
 </d:layout.section>

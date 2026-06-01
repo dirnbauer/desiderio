@@ -1,16 +1,32 @@
 {
     "_type": "list",
-    "header": "FAQ Pricing for confident plan comparison",
-    "subheadline": "Help buyers compare plans with crisp values and direct feature language.",
+    "header": "Pricing questions, answered",
+    "eyebrow": "Billing FAQ",
+    "subheadline": "The things teams ask most before they pick a plan. Still unsure? Talk to our team.",
     "question_items": [
         {
-            "question": "Can I switch plans later?"
+            "question": "Can I change plans later?",
+            "answer": "Yes. Upgrade or downgrade anytime from your billing settings. Upgrades take effect immediately and we prorate the difference; downgrades apply at the start of your next billing cycle, so you keep paid features until then."
         },
         {
-            "question": "What happens after my trial ends?"
+            "question": "What happens when my free trial ends?",
+            "answer": "Your trial runs for 14 days with no credit card required. When it ends, pick a plan to keep your data and continue. If you do nothing, your workspace pauses but your content stays safe for 30 days."
         },
         {
-            "question": "Do you offer annual billing?"
+            "question": "Do you offer annual billing?",
+            "answer": "Yes. Switch to annual and save two months compared to paying monthly. You can move between monthly and annual at any time, and we apply the credit from unused days to your next invoice."
+        },
+        {
+            "question": "Are there any setup or hidden fees?",
+            "answer": "No setup fees and no surprises. The price you see is what you pay, taxes shown at checkout. Overages are opt-in, so you are never charged for going over a limit without approving it first."
+        },
+        {
+            "question": "What payment methods do you accept?",
+            "answer": "We accept all major credit cards and, on annual plans, payment by invoice and bank transfer. Enterprise customers can pay by purchase order with net-30 terms. All payments are processed securely through Stripe."
+        },
+        {
+            "question": "Can I get a refund?",
+            "answer": "Yes. If you are not happy within 30 days of your first paid invoice, contact support for a full refund, no questions asked. Cancel anytime and you will not be billed for the next cycle."
         }
     ]
 }

@@ -17,7 +17,7 @@
                 </f:if>
             </div>
             <f:for each="{data.column_items}" as="col">
-                <nav class="footer-dark__col">
+                <nav class="footer-dark__col" aria-label="{col.title}">
                     <h3 class="footer-dark__col-title">{col -> f:render.text(field: 'title')}</h3>
                     <ul class="footer-dark__links">
                         <f:if condition="{col.link_1_label}"><li><f:if condition="{col.link_1.url}"><f:then><f:link.typolink parameter="{col.link_1}" class="footer-dark__link">{col -> f:render.text(field: 'link_1_label')}</f:link.typolink></f:then><f:else><span class="footer-dark__link">{col -> f:render.text(field: 'link_1_label')}</span></f:else></f:if></li></f:if>

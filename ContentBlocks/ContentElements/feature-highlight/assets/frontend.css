@@ -11,6 +11,15 @@
     gap: var(--d-spacing-xl);
     align-items: center;
 }
+.feature-highlight__grid--single {
+    grid-template-columns: 1fr;
+    max-width: 42rem;
+    margin-inline: auto;
+    text-align: center;
+}
+.feature-highlight__grid--single .feature-highlight__description {
+    margin-inline: auto;
+}
 @media (max-width: 768px) {
     .feature-highlight__grid { grid-template-columns: 1fr; }
 }
@@ -29,14 +38,8 @@
 .feature-highlight__description {
     margin-block: var(--d-spacing-md);
 }
-.feature-highlight__cta {
-    display: inline-flex;
-    padding: var(--d-spacing-sm) var(--d-spacing-lg);
-    border: 1px solid currentColor;
-    border-radius: var(--d-radius-md);
-    font-weight: 500;
-    text-decoration: none;
-    color: inherit;
+.feature-highlight__actions {
+    margin-block-start: var(--d-spacing-lg);
 }
 .feature-highlight__image {
     border-radius: var(--d-radius-lg);

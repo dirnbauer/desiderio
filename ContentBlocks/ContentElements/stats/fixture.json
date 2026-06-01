@@ -1,22 +1,29 @@
 {
     "_type": "stats",
-    "header": "Stats Section for credible trust signals",
+    "eyebrow": "By the numbers",
+    "header": "Results teams can measure",
+    "subheadline": "Outcomes reported by customers across SaaS, agencies, and ecommerce in their first year with us.",
+    "columns": "4",
     "stats": [
         {
-            "value": "AA",
-            "label": "Mobile polish"
+            "value": "2M+",
+            "label": "Tasks shipped",
+            "description": "Completed each month across all workspaces"
         },
         {
-            "value": "2.4K",
-            "label": "Token coverage"
+            "value": "40hrs",
+            "label": "Saved per team",
+            "description": "Average time recovered every month"
         },
         {
-            "value": "128",
-            "label": "Trust lift"
+            "value": "99.99%",
+            "label": "Uptime",
+            "description": "Measured over the last 12 months"
         },
         {
-            "value": "86",
-            "label": "Signal quality"
+            "value": "4.9/5",
+            "label": "Customer rating",
+            "description": "From 1,200+ verified reviews"
         }
     ]
 }

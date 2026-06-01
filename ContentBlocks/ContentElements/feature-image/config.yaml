@@ -26,7 +26,7 @@ fields:
   -
     identifier: image
     type: File
-    label: 'Feature Image'
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:image'
     allowed: common-image-types
     maxitems: 1
   -
@@ -45,9 +45,9 @@ fields:
   -
     identifier: link
     type: Link
-    label: 'Call to Action Link'
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:link'
   -
     identifier: link_text
     type: Textarea
     rows: 1
-    label: 'Call to Action Text'
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:link_text'

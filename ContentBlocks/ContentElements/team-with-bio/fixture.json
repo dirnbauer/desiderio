@@ -1,23 +1,28 @@
 {
     "_type": "team",
-    "header": "With Bio Team Section for modern people pages",
-    "subheadline": "Present people and culture with confident profile copy and calm card structure.",
+    "eyebrow": "Our team",
+    "header": "The people behind your launch",
+    "subheadline": "A senior, cross-functional team that ships accessible, fast interfaces and stays close to your roadmap.",
     "members": [
         {
-            "name": "Noah Ritter",
-            "role": "Accessibility Reviewer"
-        },
-        {
             "name": "Lea Fischer",
-            "role": "Product Design Lead"
+            "role": "Product Design Lead",
+            "bio": "Leads research and design systems. Turns messy requirements into calm, testable interfaces teams can ship with confidence."
         },
         {
             "name": "Mara Weiss",
-            "role": "Frontend Engineer"
+            "role": "Frontend Engineer",
+            "bio": "Builds component libraries and performance budgets. Obsessed with sub-second loads and keyboard-first interaction patterns."
+        },
+        {
+            "name": "Noah Ritter",
+            "role": "Accessibility Reviewer",
+            "bio": "Audits every release against WCAG 2.2 AA. Pairs with engineers so fixes land before launch, not after."
         },
         {
             "name": "Jonas Klein",
-            "role": "Customer Success"
+            "role": "Customer Success",
+            "bio": "Onboards new teams and runs quarterly reviews. Closes the loop between customer feedback and the product roadmap."
         }
     ]
 }

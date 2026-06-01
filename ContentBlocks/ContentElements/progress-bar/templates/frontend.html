@@ -5,37 +5,43 @@
 
 <f:asset.css identifier="d-progress-bar" href="{cb:assetPath()}/frontend.css"/>
 
-<d:layout.section class="progress-bar-section progress-bar-section--{data.variant -> f:or(alternative: 'default')}">
-    <d:layout.container>
-        <f:if condition="{data.header}">
-            <d:atom.typography tag="h2" variant="h2" class="progress-bar-section__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
+<f:variable name="pct" value="{data.progress_value}"/>
+<f:if condition="{pct} > 100"><f:variable name="pct" value="100"/></f:if>
+<f:if condition="{pct} < 0"><f:variable name="pct" value="0"/></f:if>
+<f:variable name="labelId" value="d-progress-label-{data.uid}"/>
+
+<d:layout.section class="progress-bar progress-bar--{data.variant -> f:or(alternative: 'default')}">
+    <d:layout.container size="md">
+        <f:if condition="{data.header} && {data.variant} != 'labeled'">
+            <d:atom.typography tag="h2" variant="h3" class="progress-bar__headline" id="{labelId}">{data -> f:render.text(field: 'header')}</d:atom.typography>
         </f:if>
 
-        <div class="progress progress--{data.variant -> f:or(alternative: 'default')} progress--{data.color -> f:or(alternative: 'primary')}">
+        <div class="progress-bar__row">
             <f:if condition="{data.variant} == 'labeled'">
-                <f:then>
-                    <div class="progress__meta">
-                        <f:if condition="{data.header}">
-                            <span class="progress__label">{data -> f:render.text(field: 'header')}</span>
-                        </f:if>
-                        <f:if condition="{data.show_percentage}">
-                            <span class="progress__value">{data.progress_value}%</span>
-                        </f:if>
-                    </div>
-                </f:then>
-            </f:if>
-            <d:atom.progress value="{data.progress_value}" class="progress__track">
-                <div class="progress__indicator progress__indicator--{data.color -> f:or(alternative: 'primary')}{f:if(condition: '{data.variant} == {s:}striped{s:}', then: ' progress__indicator--striped')}"
-                     role="progressbar"
-                     aria-valuenow="{data.progress_value}"
-                     aria-valuemin="0"
-                     aria-valuemax="100"
-                     style="width: {data.progress_value}%">
-                    <f:if condition="{data.show_percentage} && {data.variant} != 'labeled'">
-                        <span class="progress__text">{data.progress_value}%</span>
+                <div class="progress-bar__meta">
+                    <f:if condition="{data.header}">
+                        <h2 class="progress-bar__label" id="{labelId}">{data -> f:render.text(field: 'header')}</h2>
+                    </f:if>
+                    <f:if condition="{data.show_percentage}">
+                        <span class="progress-bar__value">{pct}<span aria-hidden="true">%</span></span>
                     </f:if>
                 </div>
-            </d:atom.progress>
+            </f:if>
+
+            <div class="progress-bar__track progress-bar__track--{data.color -> f:or(alternative: 'primary')}"
+                 role="progressbar"
+                 aria-valuenow="{pct}"
+                 aria-valuemin="0"
+                 aria-valuemax="100"
+                 aria-labelledby="{f:if(condition: data.header, then: labelId)}"
+                 aria-valuetext="{pct}%">
+                <f:variable name="fillClass" value="progress-bar__fill progress-bar__fill--{data.color -> f:or(alternative: 'primary')}{f:if(condition: '{data.variant} == {s:}striped{s:}', then: ' progress-bar__fill--striped')}"/>
+                <div class="{fillClass}" style="inline-size: {pct}%"></div>
+            </div>
+
+            <f:if condition="{data.show_percentage} && {data.variant} != 'labeled'">
+                <p class="progress-bar__caption"><span class="progress-bar__caption-value">{pct}<span aria-hidden="true">%</span></span></p>
+            </f:if>
         </div>
     </d:layout.container>
 </d:layout.section>

@@ -25,10 +25,10 @@ fields:
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:shadcn_layout'
     items:
       -
-        label: 'Inline Row'
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:layout.inline'
         value: inline
       -
-        label: 'Stacked Center'
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:layout.stacked'
         value: stacked
     default: inline
   -
@@ -36,7 +36,7 @@ fields:
     type: Collection
     table: social_proof_counter_counters
     prefixField: true
-    label: Counters
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:counters'
     minItems: 1
     fields:
       -
@@ -56,8 +56,8 @@ fields:
         identifier: icon_name
         type: Select
         renderType: selectSingle
-        label: Icon
-        description: 'Semantic icon key rendered through the active shadcn icon library.'
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:icon'
+        description: 'Optional semantic icon key rendered through the active shadcn icon library.'
         itemsProcessors:
           10:
             class: Webconsulting\Desiderio\DataHandling\IconItemsProcessor

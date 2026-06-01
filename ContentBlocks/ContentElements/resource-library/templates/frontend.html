@@ -7,22 +7,33 @@
 
 <d:layout.section class="resource-library">
     <d:layout.container>
-        <header class="resource-library__intro">
-            <f:if condition="{data.eyebrow}"><span class="resource-library__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span></f:if>
-            <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
-        </header>
-        <div class="resource-library__grid">
+        <f:if condition="{data.eyebrow} || {data.header}">
+            <header class="resource-library__intro">
+                <f:if condition="{data.eyebrow}"><span class="resource-library__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span></f:if>
+                <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2" class="resource-library__headline">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
+            </header>
+        </f:if>
+        <ul class="resource-library__grid" role="list">
             <f:for each="{data.items}" as="item">
-                <d:molecule.card class="resource-library__item">
-                    <f:if condition="{item.type_label}"><p class="resource-library__type">{item -> f:render.text(field: 'type_label')}</p></f:if>
-                    <h3 class="resource-library__title">{item -> f:render.text(field: 'title')}</h3>
-                    <p class="resource-library__description">{item -> f:render.text(field: 'description')}</p>
-                    <f:if condition="{item.link.url}">
-                        <f:link.typolink parameter="{item.link}" class="resource-library__link">Open resource</f:link.typolink>
-                    </f:if>
-                </d:molecule.card>
+                <li class="resource-library__cell">
+                    <d:molecule.card class="resource-library__item">
+                        <f:if condition="{item.type_label}">
+                            <d:atom.badge variant="secondary" class="resource-library__type">{item -> f:render.text(field: 'type_label')}</d:atom.badge>
+                        </f:if>
+                        <h3 class="resource-library__title">{item -> f:render.text(field: 'title')}</h3>
+                        <f:if condition="{item.description}">
+                            <p class="resource-library__description">{item -> f:render.text(field: 'description')}</p>
+                        </f:if>
+                        <f:if condition="{item.link.url}">
+                            <f:link.typolink parameter="{item.link}" class="resource-library__link">
+                                <span aria-hidden="true">Open resource &rarr;</span>
+                                <span class="sr-only">Open {item -> f:render.text(field: 'title')}</span>
+                            </f:link.typolink>
+                        </f:if>
+                    </d:molecule.card>
+                </li>
             </f:for>
-        </div>
+        </ul>
     </d:layout.container>
 </d:layout.section>
 

@@ -7,26 +7,27 @@
 
 <d:layout.section class="chart-pie-section">
     <d:layout.container>
-        <div class="chart-pie"
+        <figure class="chart-pie"
              data-chart-data="{data.chart_data -> f:format.htmlspecialchars()}"
              data-show-legend="{f:if(condition: data.show_legend, then: 'true', else: 'false')}"
              data-chart-id="chart-pie-{data.uid}">
             <div class="chart-pie__card">
                 <f:if condition="{data.header} || {data.description}">
-                    <div class="chart-pie__header">
+                    <header class="chart-pie__header">
                         <f:if condition="{data.header}">
                             <h3 class="chart-pie__title">{data -> f:render.text(field: 'header')}</h3>
                         </f:if>
                         <f:if condition="{data.description}">
                             <p class="chart-pie__description">{data -> f:render.text(field: 'description')}</p>
                         </f:if>
-                    </div>
+                    </header>
                 </f:if>
                 <div class="chart-pie__content chart-pie__content--{data.chart_size -> f:or(alternative: 'medium')}">
-                    <svg class="chart-pie__canvas" id="chart-pie-{data.uid}"></svg>
+                    <svg class="chart-pie__canvas" id="chart-pie-{data.uid}" role="img"
+                         aria-label="{f:if(condition: data.header, then: '{data.header}', else: 'Pie chart')}{f:if(condition: data.description, then: '. {data.description}')}"></svg>
                 </div>
             </div>
-        </div>
+        </figure>
     </d:layout.container>
 </d:layout.section>
 

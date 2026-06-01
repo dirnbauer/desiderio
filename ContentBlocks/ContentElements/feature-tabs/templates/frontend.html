@@ -7,39 +7,38 @@
 
 <d:layout.section class="feature-tabs">
     <d:layout.container>
-        <f:if condition="{data.header}">
+        <f:if condition="{data.header} || {data.subheadline}">
             <header class="feature-tabs__intro">
-                <d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography>
+                <f:if condition="{data.header}">
+                    <d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography>
+                </f:if>
                 <f:if condition="{data.subheadline}"><d:atom.typography variant="muted">{data -> f:render.text(field: 'subheadline')}</d:atom.typography></f:if>
             </header>
         </f:if>
 
-        <div class="feature-tabs__tabs" role="tablist">
-            <f:for each="{data.items}" as="item" iteration="iter">
-                <button class="feature-tabs__trigger {f:if(condition: iter.isFirst, then: 'feature-tabs__trigger--active')}"
-                        role="tab"
-                        aria-selected="{f:if(condition: iter.isFirst, then: 'true', else: 'false')}"
-                        data-tab="tab-{data.uid}-{iter.index}">{item -> f:render.text(field: 'tab_label')}</button>
-            </f:for>
-        </div>
+        <d:molecule.tabs defaultValue="tab-{data.uid}-0" class="feature-tabs__tabs">
+            <d:molecule.tabsList class="feature-tabs__list">
+                <f:for each="{data.items}" as="item" iteration="iter">
+                    <d:molecule.tabsTrigger value="tab-{data.uid}-{iter.index}">{item -> f:render.text(field: 'tab_label')}</d:molecule.tabsTrigger>
+                </f:for>
+            </d:molecule.tabsList>
 
-        <f:for each="{data.items}" as="item" iteration="iter">
-            <div class="feature-tabs__panel {f:if(condition: iter.isFirst, then: 'feature-tabs__panel--active')}"
-                 role="tabpanel"
-                 id="tab-{data.uid}-{iter.index}">
-                <div class="feature-tabs__content">
-                    <div class="feature-tabs__copy">
-                        <f:if condition="{item.title}"><h3 class="feature-tabs__title">{item -> f:render.text(field: 'title')}</h3></f:if>
-                        <f:if condition="{item.description}"><p class="feature-tabs__description">{item -> f:render.text(field: 'description')}</p></f:if>
-                    </div>
-                    <f:if condition="{item.image.0}">
-                        <div class="feature-tabs__media">
-                            <f:image image="{item.image.0}" alt="{item.title}" maxWidth="800" class="feature-tabs__image"/>
+            <f:for each="{data.items}" as="item" iteration="iter">
+                <d:molecule.tabsContent value="tab-{data.uid}-{iter.index}" class="feature-tabs__panel">
+                    <div class="feature-tabs__content">
+                        <div class="feature-tabs__copy">
+                            <f:if condition="{item.title}"><h3 class="feature-tabs__title">{item -> f:render.text(field: 'title')}</h3></f:if>
+                            <f:if condition="{item.description}"><p class="feature-tabs__description">{item -> f:render.text(field: 'description')}</p></f:if>
                         </div>
-                    </f:if>
-                </div>
-            </div>
-        </f:for>
+                        <f:if condition="{item.image.0}">
+                            <div class="feature-tabs__media">
+                                <f:image image="{item.image.0}" alt="{item.image.0.alternative}" maxWidth="800" class="feature-tabs__image"/>
+                            </div>
+                        </f:if>
+                    </div>
+                </d:molecule.tabsContent>
+            </f:for>
+        </d:molecule.tabs>
     </d:layout.container>
 </d:layout.section>
 

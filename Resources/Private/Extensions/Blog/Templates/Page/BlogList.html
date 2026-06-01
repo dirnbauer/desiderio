@@ -16,7 +16,10 @@
                     </f:if>
                 </d:layout.stack>
 
-                <aside class="min-w-0 border-t pt-6 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0" aria-label="Blog sidebar">
+                <aside
+                    class="min-w-0 border-t border-border pt-6 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0"
+                    aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/blog.xlf:sidebar.label')}"
+                >
                     <div class="lg:sticky lg:top-24">
                         <d:layout.stack gap="lg">
                             <f:render section="renderPlugin" arguments="{listType: 'blog_sidebar'}" />

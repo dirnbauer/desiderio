@@ -17,16 +17,16 @@ fields:
     identifier: shadcn_layout
     type: Select
     renderType: selectSingle
-    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:shadcn_layout'
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:layout'
     items:
       -
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.stacked'
         value: stacked
       -
-        label: Inline
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.inline'
         value: inline
       -
-        label: Grid
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.grid'
         value: grid
     default: stacked
   -

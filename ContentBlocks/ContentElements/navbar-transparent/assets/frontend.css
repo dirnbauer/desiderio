@@ -35,3 +35,26 @@
 .navbar-transparent__link:hover {
     color: var(--d-foreground);
 }
+.navbar-transparent__link:focus-visible {
+    color: var(--d-foreground);
+    outline: none;
+    box-shadow: 0 0 0 2px var(--d-ring);
+}
+
+@media (max-width: 768px) {
+    .navbar-transparent__inner {
+        flex-wrap: wrap;
+        gap: var(--d-spacing-2);
+    }
+    .navbar-transparent__nav {
+        flex-wrap: wrap;
+        order: 3;
+        width: 100%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .navbar-transparent__link {
+        transition: none;
+    }
+}

@@ -5,6 +5,8 @@
 
 <f:asset.css identifier="d-navbar-mobile" href="{cb:assetPath()}/frontend.css"/>
 
+<f:variable name="toggleLabel">Open menu</f:variable>
+
 <d:layout.section class="navbar-mobile">
     <d:layout.container>
         <nav class="navbar-mobile__inner" aria-label="{data.header -> f:or(alternative: 'Mobile navigation')}">
@@ -14,12 +16,12 @@
                     <f:else><span class="navbar-mobile__brand-link">{data -> f:render.text(field: 'brand')}</span></f:else>
                 </f:if>
             </div>
-            <button class="navbar-mobile__toggle" aria-expanded="false" aria-controls="navbar-mobile-menu" type="button">
-                <span class="navbar-mobile__toggle-bar"></span>
-                <span class="navbar-mobile__toggle-bar"></span>
-                <span class="navbar-mobile__toggle-bar"></span>
+            <button class="navbar-mobile__toggle" type="button" aria-expanded="false" aria-controls="navbar-mobile-menu" aria-label="{toggleLabel}" data-d-menu-toggle data-d-menu-target="#navbar-mobile-menu">
+                <span class="navbar-mobile__toggle-bar" aria-hidden="true"></span>
+                <span class="navbar-mobile__toggle-bar" aria-hidden="true"></span>
+                <span class="navbar-mobile__toggle-bar" aria-hidden="true"></span>
             </button>
-            <div class="navbar-mobile__menu" id="navbar-mobile-menu">
+            <div class="navbar-mobile__menu is-hidden" id="navbar-mobile-menu">
                 <ul class="navbar-mobile__nav">
                     <f:for each="{data.nav_items}" as="item">
                         <li>

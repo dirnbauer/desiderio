@@ -1,5 +1,23 @@
 {
     "_type": "section",
-    "header": "Publish clear support availability",
-    "description_text": "Compact support copy keeps the action understandable without overwhelming the surrounding content."
+    "header": "Support hours",
+    "description_text": "When our team is online to help. All times are Central European Time (CET).",
+    "hours_items": [
+        {
+            "day": "Monday – Thursday",
+            "time": "8:00 – 18:00"
+        },
+        {
+            "day": "Friday",
+            "time": "8:00 – 16:00"
+        },
+        {
+            "day": "Saturday",
+            "time": "10:00 – 14:00"
+        },
+        {
+            "day": "Sunday & public holidays",
+            "time": "Closed"
+        }
+    ]
 }

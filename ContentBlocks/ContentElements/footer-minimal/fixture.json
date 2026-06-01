@@ -1,9 +1,19 @@
 {
     "_type": "footer",
+    "header": "Northwind site footer",
+    "copyright": "© 2026 Northwind Analytics Inc.",
     "link_items": [
         {
-            "label": "Launch velocity"
+            "label": "Privacy"
+        },
+        {
+            "label": "Terms"
+        },
+        {
+            "label": "Cookies"
+        },
+        {
+            "label": "Status"
         }
-    ],
-    "copyright": "Helpful service links, legal context, and brand details stay readable across footer layouts."
+    ]
 }

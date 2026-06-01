@@ -1,19 +1,24 @@
-.booking-form__card { max-width: 640px; margin-inline: auto; }
-.booking-form__form { margin-block-start: var(--d-spacing-lg); display: flex; flex-direction: column; gap: var(--d-spacing-md); }
-.booking-form__field-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--d-spacing-md);
+.booking-form__intro {
+    display: flex;
+    flex-direction: column;
+    gap: var(--d-spacing-sm);
 }
-@media (max-width: 768px) {
-    .booking-form__field-grid { grid-template-columns: 1fr; }
-}
-.booking-form__field { display: flex; flex-direction: column; gap: 4px; }
-.booking-form__label { font-size: var(--d-text-sm); font-weight: 500; }
-.booking-form__input, .booking-form__textarea {
-    padding: var(--d-spacing-xs) var(--d-spacing-sm);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
+.booking-form__title { text-wrap: balance; }
+.booking-form__reassurance {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--d-spacing-xs);
     font-size: var(--d-text-sm);
-    background: transparent;
+    font-weight: 500;
+    color: var(--foreground);
+}
+.booking-form__reassurance-icon {
+    display: inline-flex;
+    color: var(--d-success);
+}
+.booking-form__form {
+    margin-block-start: var(--d-spacing-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--d-spacing-md);
 }

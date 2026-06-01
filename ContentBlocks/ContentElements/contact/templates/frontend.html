@@ -20,21 +20,23 @@
                 <f:if condition="{data.info_title}"><h3 class="contact__info-title">{data -> f:render.text(field: 'info_title')}</h3></f:if>
                 <f:if condition="{data.info_text}"><p class="contact__info-text">{data -> f:render.text(field: 'info_text')}</p></f:if>
                 <f:if condition="{data.contact_items}">
-                    <ul class="contact__list">
+                    <dl class="contact__list">
                         <f:for each="{data.contact_items}" as="item">
-                            <li class="contact__list-item">
-                                <span class="contact__list-label">{item -> f:render.text(field: 'label')}</span>
-                                <f:if condition="{item.link.url}">
-                                    <f:then>
-                                        <f:link.typolink parameter="{item.link}" class="contact__list-value">{item -> f:render.text(field: 'value')}</f:link.typolink>
-                                    </f:then>
-                                    <f:else>
-                                        <span class="contact__list-value">{item -> f:render.text(field: 'value')}</span>
-                                    </f:else>
-                                </f:if>
-                            </li>
+                            <div class="contact__list-item">
+                                <dt class="contact__list-label">{item -> f:render.text(field: 'label')}</dt>
+                                <dd class="contact__list-value-wrap">
+                                    <f:if condition="{item.link.url}">
+                                        <f:then>
+                                            <f:link.typolink parameter="{item.link}" class="contact__list-value rounded-sm hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-card">{item -> f:render.text(field: 'value')}</f:link.typolink>
+                                        </f:then>
+                                        <f:else>
+                                            <span class="contact__list-value">{item -> f:render.text(field: 'value')}</span>
+                                        </f:else>
+                                    </f:if>
+                                </dd>
+                            </div>
                         </f:for>
-                    </ul>
+                    </dl>
                 </f:if>
             </d:molecule.card>
 

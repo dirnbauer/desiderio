@@ -25,6 +25,7 @@ fields:
     prefixField: true
     label: Levels
     labelField: level_label
+    description: 'Each level is one horizontal tier, top to bottom. Add the most senior tier first.'
     minItems: 1
     fields:
       -
@@ -32,6 +33,7 @@ fields:
         type: Textarea
         rows: 1
         label: 'Level Label'
+        description: 'Short tier name, e.g. "Leadership" or "Department leads". Optional.'
       -
         identifier: people
         type: Collection

@@ -1,6 +1,8 @@
 .nav-tabs__inner {
     display: flex;
     gap: var(--d-spacing-1);
+    max-width: 100%;
+    overflow-x: auto;
 }
 .nav-tabs--underline .nav-tabs__inner {
     border-bottom: 1px solid var(--d-border);
@@ -21,11 +23,16 @@
     font-weight: 500;
     color: var(--d-muted-foreground);
     text-decoration: none;
+    white-space: nowrap;
     border-radius: var(--d-radius-md);
     transition: color 0.15s, background-color 0.15s;
 }
 .nav-tabs__tab:hover {
     color: var(--d-foreground);
+}
+.nav-tabs__tab:focus-visible {
+    outline: 2px solid var(--d-ring);
+    outline-offset: 2px;
 }
 .nav-tabs--underline .nav-tabs__tab {
     border-bottom: 2px solid transparent;
@@ -41,4 +48,9 @@
     background: var(--d-background);
     color: var(--d-foreground);
     box-shadow: var(--d-shadow-sm);
+}
+@media (prefers-reduced-motion: reduce) {
+    .nav-tabs__tab {
+        transition: none;
+    }
 }

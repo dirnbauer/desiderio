@@ -14,17 +14,17 @@
             </header>
         </f:if>
 
-        <div class="company-history__timeline">
+        <ol class="company-history__timeline">
             <f:for each="{data.events}" as="event">
-                <article class="company-history__event">
+                <li class="company-history__event">
                     <span class="company-history__year">{event -> f:render.text(field: 'year')}</span>
                     <div class="company-history__body">
                         <h3 class="company-history__title">{event -> f:render.text(field: 'title')}</h3>
                         <f:if condition="{event.description}"><p class="company-history__description">{event -> f:render.text(field: 'description')}</p></f:if>
                     </div>
-                </article>
+                </li>
             </f:for>
-        </div>
+        </ol>
     </d:layout.container>
 </d:layout.section>
 

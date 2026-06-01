@@ -3,13 +3,15 @@
       xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
       data-namespace-typo3-fluid="true">
 
-<section class="bg-background py-16 md:py-24">
-    <div class="container mx-auto px-4">
-        <f:if condition="{data.header}">
+<d:layout.section class="feature-timeline">
+    <d:layout.container size="md">
+        <f:if condition="{data.header} || {data.subheadline}">
             <header class="mx-auto mb-12 max-w-2xl space-y-2 text-center">
-                <h2 class="text-3xl font-bold tracking-tight md:text-4xl">{data -> f:render.text(field: 'header')}</h2>
+                <f:if condition="{data.header}">
+                    <d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography>
+                </f:if>
                 <f:if condition="{data.subheadline}">
-                    <p class="text-lg text-muted-foreground">{data -> f:render.text(field: 'subheadline')}</p>
+                    <d:atom.typography variant="lead">{data -> f:render.text(field: 'subheadline')}</d:atom.typography>
                 </f:if>
             </header>
         </f:if>
@@ -25,7 +27,7 @@
                             <span class="w-px grow bg-border" aria-hidden="true"></span>
                         </f:if>
                     </div>
-                    <div class="rounded-lg border bg-card p-4 text-card-foreground shadow-sm">
+                    <div class="rounded-lg border border-border bg-card p-4 text-card-foreground shadow-sm">
                         <h3 class="font-semibold leading-none tracking-tight">{item -> f:render.text(field: 'title')}</h3>
                         <f:if condition="{item.description}">
                             <p class="mt-2 text-sm text-muted-foreground">{item -> f:render.text(field: 'description')}</p>
@@ -34,7 +36,7 @@
                 </li>
             </f:for>
         </ol>
-    </div>
-</section>
+    </d:layout.container>
+</d:layout.section>
 
 </html>

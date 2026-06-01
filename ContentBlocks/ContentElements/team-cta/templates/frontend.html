@@ -10,13 +10,17 @@
         <div class="team-cta__card">
             <f:if condition="{data.image}">
                 <f:for each="{data.image}" as="fileReference">
-                    <f:image image="{fileReference}" maxWidth="1200" alt="" class="team-cta__bg"/>
+                    <f:image image="{fileReference}" maxWidth="1200" alt="" loading="lazy" decoding="async" class="team-cta__bg"/>
                 </f:for>
             </f:if>
             <div class="team-cta__content">
-                <f:if condition="{data.open_count}"><span class="team-cta__count">{data -> f:render.text(field: 'open_count')} open positions</span></f:if>
+                <f:if condition="{data.open_count}">
+                    <p class="team-cta__count">
+                        <d:atom.badge variant="secondary">{data -> f:render.text(field: 'open_count')} <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:team.open_positions">open positions</f:translate></d:atom.badge>
+                    </p>
+                </f:if>
                 <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
-                <f:if condition="{data.description}"><d:atom.typography variant="muted">{data -> f:render.text(field: 'description')}</d:atom.typography></f:if>
+                <f:if condition="{data.description}"><d:atom.typography variant="lead" class="team-cta__description">{data -> f:render.text(field: 'description')}</d:atom.typography></f:if>
                 <f:if condition="{data.cta_text} && {data.cta_link.url}">
                     <div class="team-cta__actions">
                         <d:atom.button href="{data.cta_link.url}" target="{data.cta_link.target}" size="lg">{data -> f:render.text(field: 'cta_text')}</d:atom.button>

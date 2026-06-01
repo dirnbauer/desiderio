@@ -1,16 +1,27 @@
 {
     "_type": "pricing",
-    "header": "Bundle Pricing for confident plan comparison",
-    "description": "Keep plan comparison compact across desktop tables and mobile cards.",
+    "eyebrow": "Complete bundle",
+    "header": "Everything you need, one price",
+    "description": "Buy the full Growth suite together and save versus paying per tool.",
+    "bundle_price": "$49/mo",
+    "savings_text": "Save 38%",
     "items": [
         {
-            "name": "Noah Ritter"
+            "name": "Analytics dashboard",
+            "individual_price": "$29/mo",
+            "description_text": "Real-time funnels and retention reports"
         },
         {
-            "name": "Lea Fischer"
+            "name": "A/B testing suite",
+            "individual_price": "$24/mo",
+            "description_text": "Unlimited experiments, instant rollout"
         },
         {
-            "name": "Mara Weiss"
+            "name": "Email automation",
+            "individual_price": "$26/mo",
+            "description_text": "Behavioral triggers and drip campaigns"
         }
-    ]
+    ],
+    "button_text": "Get the bundle",
+    "button_link": "https://ui.shadcn.com/docs"
 }

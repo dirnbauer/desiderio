@@ -1,20 +1,96 @@
 .review-carousel__intro { text-align: center; margin-block-end: var(--d-spacing-xl); }
 .review-carousel__eyebrow { font-size: var(--d-text-sm); text-transform: uppercase; letter-spacing: 0.05em; color: var(--primary); font-weight: 600; }
 .review-carousel__headline { margin-block-start: var(--d-spacing-xs); }
-.review-carousel__track { position: relative; overflow: hidden; max-width: 40rem; margin-inline: auto; }
-.review-carousel__slide { display: none; padding: var(--d-spacing-lg); border: 1px solid var(--border); border-radius: var(--radius); }
-.review-carousel__slide--active { display: block; }
+
+.review-carousel__track {
+    position: relative;
+    max-width: 40rem;
+    margin-inline: auto;
+}
+
+.review-carousel__slide {
+    padding: var(--d-spacing-lg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--card);
+    color: var(--card-foreground);
+}
+/* Only the active slide is shown; non-active slides carry aria-hidden="true". */
+.review-carousel__slide[aria-hidden="true"] { display: none; }
+
 .review-carousel__stars { display: flex; gap: 0.125rem; margin-block-end: var(--d-spacing-sm); }
 .review-carousel__star { color: var(--muted-foreground); }
 .review-carousel__star--filled { color: var(--primary); }
-.review-carousel__title { font-weight: 600; margin-block-end: var(--d-spacing-xs); }
-.review-carousel__text { color: var(--muted-foreground); line-height: 1.6; }
-.review-carousel__reviewer { display: flex; align-items: center; gap: var(--d-spacing-sm); margin-block-start: var(--d-spacing-md); padding-block-start: var(--d-spacing-md); border-block-start: 1px solid var(--border); }
+
+.review-carousel__title { font-size: var(--d-text-lg); font-weight: 600; margin-block-end: var(--d-spacing-xs); }
+.review-carousel__text {
+    margin: 0;
+    color: var(--foreground);
+    line-height: 1.6;
+}
+.review-carousel__reviewer {
+    display: flex;
+    align-items: center;
+    gap: var(--d-spacing-sm);
+    margin-block-start: var(--d-spacing-md);
+    padding-block-start: var(--d-spacing-md);
+    border-block-start: 1px solid var(--border);
+}
 .review-carousel__avatar { width: 2.5rem; height: 2.5rem; border-radius: 9999px; object-fit: cover; }
-.review-carousel__name { font-weight: 600; display: block; }
+.review-carousel__meta { display: flex; flex-direction: column; }
+.review-carousel__name { font-weight: 600; }
 .review-carousel__date { font-size: var(--d-text-xs); color: var(--muted-foreground); }
-.review-carousel__nav { display: flex; justify-content: center; gap: var(--d-spacing-sm); margin-block-start: var(--d-spacing-md); }
-.review-carousel__prev,
-.review-carousel__next { background: var(--muted); border: none; border-radius: var(--radius); padding: 0.5rem 1rem; cursor: pointer; }
-.review-carousel__prev:hover,
-.review-carousel__next:hover { background: var(--accent); }
+
+/* Controls injected by Resources/Public/Js/astro.js (shared carousel runtime). */
+.review-carousel__track .hero-carousel__controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--d-spacing-md);
+    margin-block-start: var(--d-spacing-lg);
+}
+.review-carousel__track .hero-carousel__nav {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: var(--d-text-xl);
+    line-height: 1;
+    border: 1px solid var(--border);
+    border-radius: 9999px;
+    background: var(--background);
+    color: var(--foreground);
+    cursor: pointer;
+    transition: background-color 0.15s ease, color 0.15s ease;
+}
+.review-carousel__track .hero-carousel__nav:hover { background: var(--muted); }
+.review-carousel__track .hero-carousel__nav:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+}
+.review-carousel__track .hero-carousel__dots {
+    display: flex;
+    align-items: center;
+    gap: var(--d-spacing-xs);
+}
+.review-carousel__track .hero-carousel__dot {
+    width: 0.625rem;
+    height: 0.625rem;
+    padding: 0;
+    border: 0;
+    border-radius: 9999px;
+    background: var(--border);
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+}
+.review-carousel__track .hero-carousel__dot[aria-selected="true"] { background: var(--primary); }
+.review-carousel__track .hero-carousel__dot:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .review-carousel__track .hero-carousel__nav,
+    .review-carousel__track .hero-carousel__dot { transition: none; }
+}

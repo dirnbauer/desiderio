@@ -1,16 +1,23 @@
 {
     "_type": "grid",
-    "header": "Minimal Feature Section for premium product storytelling",
-    "subheadline": "Explain the benefit in one sentence before showing details or proof.",
+    "header": "Built for editors and developers",
+    "subheadline": "A small, opinionated toolkit that keeps content fast to edit and consistent to maintain.",
     "items": [
         {
-            "title": "Minimal Feature Section for premium product storytelling"
+            "title": "Side-by-side live preview",
+            "description_text": "See every field change render instantly, no separate preview tab."
         },
         {
-            "title": "Minimal Feature Section for premium product storytelling"
+            "title": "One source of truth for styling",
+            "description_text": "Design tokens drive colour, spacing, and radius across all blocks."
         },
         {
-            "title": "Minimal Feature Section for premium product storytelling"
+            "title": "Accessible defaults",
+            "description_text": "Landmarks, heading order, and focus states ship with each element."
+        },
+        {
+            "title": "Clean, semantic markup",
+            "description_text": "Output stays valid and lightweight, with no framework lock-in."
         }
     ]
 }

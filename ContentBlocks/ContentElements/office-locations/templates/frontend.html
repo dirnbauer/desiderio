@@ -14,19 +14,41 @@
             </header>
         </f:if>
 
-        <div class="office-locations__grid">
+        <ul class="office-locations__grid" role="list">
             <f:for each="{data.location_items}" as="loc">
-                <d:molecule.card class="office-locations__item">
-                    <h3 class="office-locations__city">{loc -> f:render.text(field: 'city')}</h3>
-                    <f:if condition="{loc.address}"><p class="office-locations__address">{loc -> f:render.text(field: 'address')}</p></f:if>
-                    <f:if condition="{loc.phone}"><p class="office-locations__phone">{loc -> f:render.text(field: 'phone')}</p></f:if>
-                    <f:if condition="{loc.email}"><p class="office-locations__email">{loc -> f:render.text(field: 'email')}</p></f:if>
-                    <f:if condition="{loc.map_link.url}">
-                        <d:atom.button href="{loc.map_link.url}" target="{loc.map_link.target}" variant="outline" size="sm">View on map</d:atom.button>
-                    </f:if>
-                </d:molecule.card>
+                <li>
+                    <d:molecule.card class="office-locations__item">
+                        <h3 class="office-locations__city">{loc -> f:render.text(field: 'city')}</h3>
+                        <address class="office-locations__details">
+                            <f:if condition="{loc.address}">
+                                <p class="office-locations__address">
+                                    <span class="office-locations__icon" aria-hidden="true"><d:atom.icon name="map-pin" size="sm"/></span>
+                                    <span class="office-locations__lines">{loc -> f:render.text(field: 'address')}</span>
+                                </p>
+                            </f:if>
+                            <f:if condition="{loc.phone}">
+                                <p class="office-locations__line">
+                                    <span class="office-locations__icon" aria-hidden="true"><d:atom.icon name="phone" size="sm"/></span>
+                                    <a class="office-locations__link" href="tel:{loc.phone}">{loc -> f:render.text(field: 'phone')}</a>
+                                </p>
+                            </f:if>
+                            <f:if condition="{loc.email}">
+                                <p class="office-locations__line">
+                                    <span class="office-locations__icon" aria-hidden="true"><d:atom.icon name="mail" size="sm"/></span>
+                                    <a class="office-locations__link" href="mailto:{loc.email}">{loc -> f:render.text(field: 'email')}</a>
+                                </p>
+                            </f:if>
+                        </address>
+                        <f:if condition="{loc.map_link.url}">
+                            <d:atom.button href="{loc.map_link.url}" target="{loc.map_link.target}" variant="outline" size="sm" class="office-locations__map">
+                                <span class="office-locations__map-icon" aria-hidden="true"><d:atom.icon name="map-pin" size="sm"/></span>
+                                <span>Directions to {loc -> f:render.text(field: 'city')}</span>
+                            </d:atom.button>
+                        </f:if>
+                    </d:molecule.card>
+                </li>
             </f:for>
-        </div>
+        </ul>
     </d:layout.container>
 </d:layout.section>
 

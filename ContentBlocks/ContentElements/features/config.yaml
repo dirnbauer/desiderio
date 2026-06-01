@@ -38,7 +38,7 @@ fields:
     identifier: variant
     type: Select
     renderType: selectSingle
-    label: 'Feature Style'
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:feature_style'
     items:
       -
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.icon_top'
@@ -56,13 +56,13 @@ fields:
     table: features_feature_items
     prefixField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:features'
-    minItems: 1
+    minItems: 3
     fields:
       -
         identifier: icon_name
         type: Select
         renderType: selectSingle
-        label: Icon
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:icon'
         description: 'Semantic icon key rendered through the active shadcn icon library.'
         itemsProcessors:
           10:
@@ -72,14 +72,14 @@ fields:
         identifier: title
         type: Textarea
         rows: 1
-        label: 'Feature Title'
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:feature_title'
         required: true
       -
         identifier: description
         type: Textarea
-        label: 'Feature Description'
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:feature_description'
         rows: 2
       -
         identifier: link
         type: Link
-        label: 'Feature Link'
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:feature_link'

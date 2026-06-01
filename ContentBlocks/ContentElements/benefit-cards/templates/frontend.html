@@ -7,30 +7,34 @@
 
 <d:layout.section class="benefit-cards">
     <d:layout.container>
-        <header class="benefit-cards__intro">
-            <f:if condition="{data.eyebrow}"><span class="benefit-cards__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span></f:if>
-            <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
-            <f:if condition="{data.subheadline}"><d:atom.typography variant="muted">{data -> f:render.text(field: 'subheadline')}</d:atom.typography></f:if>
-        </header>
+        <f:if condition="{data.eyebrow} || {data.header} || {data.subheadline}">
+            <header class="benefit-cards__intro">
+                <f:if condition="{data.eyebrow}"><p class="benefit-cards__eyebrow">{data -> f:render.text(field: 'eyebrow')}</p></f:if>
+                <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
+                <f:if condition="{data.subheadline}"><d:atom.typography variant="lead" class="benefit-cards__subheadline">{data -> f:render.text(field: 'subheadline')}</d:atom.typography></f:if>
+            </header>
+        </f:if>
 
-        <div class="benefit-cards__grid benefit-cards__grid--cols-{data.columns -> f:or(alternative: '3')}">
+        <ul class="benefit-cards__grid benefit-cards__grid--cols-{data.columns -> f:or(alternative: '3')}" role="list">
             <f:for each="{data.items}" as="item">
-                <d:molecule.card class="benefit-cards__item">
-                    <f:if condition="{item.icon}">
-                        <span class="benefit-cards__icon" aria-hidden="true"><d:atom.icon name="{item.icon}" size="lg"/></span>
-                    </f:if>
-                    <h3 class="benefit-cards__title">
-                        <f:if condition="{item.link.url}">
-                            <f:then><f:link.typolink parameter="{item.link}">{item -> f:render.text(field: 'title')}</f:link.typolink></f:then>
-                            <f:else>{item -> f:render.text(field: 'title')}</f:else>
+                <li class="benefit-cards__cell">
+                    <d:molecule.card class="benefit-cards__item h-full">
+                        <f:if condition="{item.icon}">
+                            <span class="benefit-cards__icon" aria-hidden="true"><d:atom.icon name="{item.icon}" size="lg"/></span>
                         </f:if>
-                    </h3>
-                    <f:if condition="{item.description}">
-                        <p class="benefit-cards__description">{item -> f:render.text(field: 'description')}</p>
-                    </f:if>
-                </d:molecule.card>
+                        <d:atom.typography tag="h3" variant="large" class="benefit-cards__title">
+                            <f:if condition="{item.link.url}">
+                                <f:then><f:link.typolink parameter="{item.link}" class="rounded-sm focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/30">{item -> f:render.text(field: 'title')}</f:link.typolink></f:then>
+                                <f:else>{item -> f:render.text(field: 'title')}</f:else>
+                            </f:if>
+                        </d:atom.typography>
+                        <f:if condition="{item.description}">
+                            <p class="benefit-cards__description">{item -> f:render.text(field: 'description')}</p>
+                        </f:if>
+                    </d:molecule.card>
+                </li>
             </f:for>
-        </div>
+        </ul>
     </d:layout.container>
 </d:layout.section>
 

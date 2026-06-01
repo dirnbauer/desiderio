@@ -6,6 +6,7 @@
     margin: 0;
     padding: 0;
     counter-reset: step;
+    overflow-x: auto;
 }
 .nav-steps__item {
     display: flex;
@@ -52,8 +53,18 @@
     font-weight: 500;
     color: var(--d-muted-foreground);
     white-space: nowrap;
+    text-decoration: none;
+    border-radius: var(--d-radius-sm);
 }
-.nav-steps__item--current .nav-steps__label {
+a.nav-steps__label:hover {
+    color: var(--d-foreground);
+}
+.nav-steps__link:focus-visible {
+    outline: 2px solid var(--d-ring);
+    outline-offset: 3px;
+}
+.nav-steps__item--current .nav-steps__label,
+.nav-steps__item--completed .nav-steps__label {
     color: var(--d-foreground);
 }
 .nav-steps--dots .nav-steps__indicator {

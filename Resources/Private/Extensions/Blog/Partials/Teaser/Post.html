@@ -8,6 +8,8 @@
 <f:argument name="settings" type="array" optional="true"/>
 <f:argument name="iterator" type="array" optional="true"/>
 
+<f:variable name="summary" value="{f:if(condition: post.abstract, then: post.abstract, else: post.description)}"/>
+
 <article
     class="group/card flex h-full flex-col"
     data-blog-tag="{f:if(condition: post.tags, then: post.tags.0.uid, else: 0)}"
@@ -17,26 +19,35 @@
 >
     <d:molecule.card class="h-full">
         <f:if condition="{post.featuredImage}">
-            <blogvh:link.post post="{post}" class="block overflow-hidden" additionalAttributes="{aria-hidden: 'true'}" tabindex="-1">
+            <blogvh:link.post post="{post}" class="block overflow-hidden" additionalAttributes="{aria-hidden: 'true', tabindex: '-1'}">
                 <f:render partial="General/FeaturedImage" arguments="{image: post.featuredImage, settings: settings.teaser.featuredImage}" />
             </blogvh:link.post>
         </f:if>
 
-        <div class="flex flex-1 flex-col gap-3 px-4 pb-4">
-            <f:render partial="Meta/TeaserHeader" arguments="{_all}" />
-
-            <h2 class="text-lg font-semibold leading-snug" itemprop="name">
-                <blogvh:link.post post="{post}" class="text-foreground underline-offset-4 hover:text-primary hover:underline"/>
-            </h2>
-
-            <p class="text-sm leading-6 text-muted-foreground" itemprop="description">
-                <f:if condition="{post.abstract}">
-                    <f:then>{post.abstract}</f:then>
-                    <f:else>{post.description}</f:else>
+        <div class="flex flex-1 flex-col gap-3 px-5 pb-5">
+            <div class="flex flex-wrap items-center gap-x-3 gap-y-2 text-xs text-muted-foreground">
+                <time datetime="{f:format.date(format: 'c', date: post.publishDate)}" itemprop="datePublished">
+                    <f:format.date format="{settings.lists.posts.dateFormat}">{post.publishDate}</f:format.date>
+                </time>
+                <f:if condition="{post.categories.0}">
+                    <span aria-hidden="true">·</span>
+                    <d:atom.badge variant="secondary">{post.categories.0.title}</d:atom.badge>
                 </f:if>
-            </p>
+            </div>
 
-            <f:render partial="Meta/TeaserFooter" arguments="{_all}" />
+            <h3 class="text-lg font-semibold leading-snug" itemprop="name">
+                <blogvh:link.post post="{post}" class="text-foreground underline-offset-4 hover:text-primary hover:underline" itemprop="url"/>
+            </h3>
+
+            <f:if condition="{summary}">
+                <p class="line-clamp-2 text-sm leading-6 text-muted-foreground" itemprop="description">{summary}</p>
+            </f:if>
+
+            <f:if condition="{post.authors.0}">
+                <div class="mt-auto flex items-center pt-1 text-xs text-muted-foreground">
+                    <span><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/blog.xlf:post.byline.prefix" /> {post.authors.0.name}</span>
+                </div>
+            </f:if>
         </div>
     </d:molecule.card>
 </article>

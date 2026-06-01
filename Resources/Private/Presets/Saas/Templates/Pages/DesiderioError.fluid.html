@@ -6,10 +6,12 @@
 
 <f:layout name="Pages/Default"/>
 
+<f:variable name="errorIntro" value="{page.pageRecord.abstract -> f:or(alternative: '{f:translate(key: \'page.error.intro\', extensionName: \'desiderio\', default: \'This page has moved or no longer exists. Use the links below or head back to the homepage to find what you need.\')}')}"/>
+
 <f:section name="Main">
     <section class="desiderio-system-page desiderio-saas-system desiderio-saas-system--error">
         <d:layout.container size="xl">
-            <f:render partial="Presets/SystemHeader" arguments="{class: 'desiderio-saas-system__header', eyebrow: breadcrumb.0.title, title: page.pageRecord.title, summary: page.pageRecord.abstract, summaryTag: 'span'}"/>
+            <f:render partial="Presets/SystemHeader" arguments="{class: 'desiderio-saas-system__header', eyebrow: '{f:translate(key: \'page.error.eyebrow\', extensionName: \'desiderio\', default: \'Page not found\')}', eyebrowClass: 'desiderio-saas-template__eyebrow', title: page.pageRecord.title, summary: errorIntro, summaryTag: 'span'}"/>
             <div class="desiderio-system-page__content desiderio-saas-system__content">
                 <f:render partial="Presets/ContentArea" arguments="{content: content.main}"/>
                 <f:render partial="Presets/ErrorHomeLink" arguments="{homeLink: breadcrumb.0.link}"/>

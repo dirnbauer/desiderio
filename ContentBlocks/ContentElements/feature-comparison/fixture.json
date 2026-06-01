@@ -1,9 +1,33 @@
 {
     "_type": "table",
-    "header": "Comparison Feature Section for premium product storytelling",
+    "header": "See what you unlock on Pro",
+    "left_title": "Free",
+    "right_title": "Pro",
     "items": [
-        [],
-        [],
-        []
+        {
+            "feature": "Projects",
+            "left_supported": 1,
+            "right_supported": 1
+        },
+        {
+            "feature": "Unlimited team members",
+            "left_supported": 0,
+            "right_supported": 1
+        },
+        {
+            "feature": "Advanced analytics",
+            "left_supported": 0,
+            "right_supported": 1
+        },
+        {
+            "feature": "SSO and audit logs",
+            "left_supported": 0,
+            "right_supported": 1
+        },
+        {
+            "feature": "Priority support",
+            "left_supported": 0,
+            "right_supported": 1
+        }
     ]
 }

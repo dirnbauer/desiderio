@@ -1,5 +1,6 @@
 {
-    "header": "Radar Chart for live product intelligence",
-    "description": "Let operators scan movement quickly with sharp labels and clear legends.",
-    "chart_data": "{\"labels\":[\"Speed\",\"Reliability\",\"Editor UX\",\"Governance\",\"Delivery\"],\"values\":[4.2,4.7,4.4,4.1,4.6]}"
+    "header": "Capability scores vs. category average",
+    "description": "How customers rate the product across five dimensions, on a 0 to 5 scale.",
+    "chart_data": "{\"labels\":[\"Speed\",\"Reliability\",\"Editor UX\",\"Governance\",\"Support\"],\"values\":[4.2,4.7,4.4,3.9,4.6]}",
+    "fill_opacity": "0.25"
 }

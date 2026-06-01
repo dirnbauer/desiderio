@@ -47,3 +47,9 @@ fields:
     identifier: secondary_button_link
     type: Link
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:secondary_button_link'
+  -
+    identifier: reassurance_text
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:reassurance_text'
+    description: 'Short trust line under the buttons (e.g. "No credit card required")'

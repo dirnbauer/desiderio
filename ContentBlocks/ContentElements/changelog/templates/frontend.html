@@ -6,20 +6,21 @@
 <f:asset.css identifier="d-changelog" href="{cb:assetPath()}/frontend.css"/>
 
 <d:layout.section class="changelog-section">
-    <d:layout.container>
+    <d:layout.container size="md">
         <f:if condition="{data.header}">
             <h2 class="changelog__headline">{data -> f:render.text(field: 'header')}</h2>
         </f:if>
-        <div class="changelog__list">
+        <ol class="changelog__list" role="list">
             <f:for each="{data.items}" as="item">
-                <article class="changelog__entry">
+                <li class="changelog__entry">
                     <div class="changelog__meta">
                         <span class="changelog__version">{item -> f:render.text(field: 'version')}</span>
                         <f:if condition="{item.date}">
-                            <time class="changelog__date">{item -> f:render.text(field: 'date')}</time>
+                            <time class="changelog__date" datetime="{item.date}">{item -> f:render.text(field: 'date')}</time>
                         </f:if>
-                        <span class="changelog__tag changelog__tag--{item.tag -> f:or(alternative: 'new')}">
-                            {item.tag -> f:or(alternative: 'new')}
+                        <f:variable name="tagKey">{item.tag -> f:or(alternative: 'new')}</f:variable>
+                        <span class="changelog__tag changelog__tag--{tagKey}">
+                            <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:changelog.tag.{tagKey}">{tagKey}</f:translate>
                         </span>
                     </div>
                     <f:if condition="{item.title}">
@@ -30,9 +31,9 @@
                             {item -> f:render.text(field: 'description')}
                         </div>
                     </f:if>
-                </article>
+                </li>
             </f:for>
-        </div>
+        </ol>
     </d:layout.container>
 </d:layout.section>
 

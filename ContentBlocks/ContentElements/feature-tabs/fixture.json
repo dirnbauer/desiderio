@@ -1,19 +1,27 @@
 {
     "_type": "list",
-    "header": "Tabs Feature Section for premium product storytelling",
-    "subheadline": "Explain the benefit in one sentence before showing details or proof.",
+    "header": "One workspace for the whole content lifecycle",
+    "subheadline": "Plan, build, and ship pages without leaving the editor your team already knows.",
     "items": [
         {
-            "title": "Tabs Feature Section for premium product storytelling",
-            "description": "Use short feature copy so teams can compare capabilities without noise."
+            "tab_label": "Plan",
+            "title": "Map every page before you build it",
+            "description": "Draft structure, assign owners, and track status in a shared board. Editors see what is in progress and what is ready to publish, so nothing stalls in review."
         },
         {
-            "title": "Tabs Feature Section for premium product storytelling",
-            "description": "Show concrete product context with crisp icons and balanced responsive spacing."
+            "tab_label": "Build",
+            "title": "Compose pages from reusable blocks",
+            "description": "Drag pre-approved content blocks into place and edit copy inline. Brand tokens keep every layout on-style, so non-designers ship pages that look designed."
         },
         {
-            "title": "Tabs Feature Section for premium product storytelling",
-            "description": "Explain the benefit in one sentence before showing details or proof."
+            "tab_label": "Publish",
+            "title": "Ship to production in one click",
+            "description": "Preview on real breakpoints, schedule the go-live, and roll back instantly if needed. Versioning keeps a full history of every change you make."
+        },
+        {
+            "tab_label": "Measure",
+            "title": "See what each page earns",
+            "description": "Built-in analytics tie traffic and conversions back to the blocks on the page, so you double down on the layouts that actually move the numbers."
         }
     ]
 }

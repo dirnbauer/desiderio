@@ -33,6 +33,19 @@
     padding: 2rem 1.5rem;
 }
 
+/*
+ * The sidebar archetype requests d:layout.container size="lg" (max-w-6xl,
+ * 72rem) so the article body and the 18rem aside have room to sit side by
+ * side. That intent is nullified if the 48rem reading cap above wins, so lift
+ * the outer constraint whenever <main> actually wraps the two-column layout.
+ * The container's own max-w-6xl then governs the width; the reading measure on
+ * .desiderio-editorial-template__content keeps the prose column comfortable.
+ */
+.desiderio-main:has(.desiderio-editorial-sidebar) {
+    max-width: none;
+    padding-inline: 0;
+}
+
 .desiderio-editorial-template {
     padding-block: 2rem 4rem;
 }
@@ -65,6 +78,103 @@
 
 .desiderio-editorial-template__content {
     min-width: 0;
+    /* Optimal reading measure for the single-column article body (~66ch) */
+    max-width: 42rem;
+}
+
+/* The magazine index and the sidebar body span their full container/column */
+.desiderio-editorial-start__content,
+.desiderio-editorial-sidebar__layout .desiderio-editorial-template__content {
+    max-width: none;
+}
+
+/* ---- Article masthead — kicker, breadcrumb, deck, byline ---- */
+.desiderio-editorial-template__breadcrumb,
+.desiderio-editorial-template__kicker,
+.desiderio-editorial-template__deck,
+.desiderio-editorial-template__byline {
+    margin: 0;
+}
+
+.desiderio-editorial-template__breadcrumb-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted-foreground);
+}
+
+.desiderio-editorial-template__breadcrumb-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.desiderio-editorial-template__breadcrumb-link {
+    color: var(--muted-foreground);
+    text-decoration: none;
+    transition: color 0.15s ease;
+}
+
+.desiderio-editorial-template__breadcrumb-link:hover {
+    color: var(--foreground);
+}
+
+.desiderio-editorial-template__breadcrumb-sep {
+    color: var(--border);
+}
+
+.desiderio-editorial-template__deck {
+    max-width: 42rem;
+    color: var(--muted-foreground);
+    font-size: 1.25rem;
+    line-height: 1.5;
+}
+
+.desiderio-editorial-template__byline {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+}
+
+.desiderio-editorial-template__byline-text {
+    display: grid;
+    gap: 0.1rem;
+}
+
+.desiderio-editorial-template__byline-author {
+    margin: 0;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--foreground);
+}
+
+.desiderio-editorial-template__byline-prefix {
+    font-weight: 400;
+    color: var(--muted-foreground);
+}
+
+.desiderio-editorial-template__byline-role::before {
+    content: " · ";
+    color: var(--muted-foreground);
+}
+
+.desiderio-editorial-template__byline-role {
+    font-weight: 400;
+    color: var(--muted-foreground);
+}
+
+.desiderio-editorial-template__byline-meta {
+    margin: 0;
+    font-size: 0.8125rem;
+    color: var(--muted-foreground);
 }
 
 .desiderio-editorial-start {
@@ -107,6 +217,15 @@
     padding-bottom: 1.5rem;
 }
 
+/* First-class empty state for the system pages when no editor content is placed */
+.desiderio-editorial-system__empty {
+    margin: 0;
+    max-width: 42rem;
+    color: var(--muted-foreground);
+    font-size: 1.0625rem;
+    line-height: 1.65;
+}
+
 .desiderio-editorial-sidebar__layout {
     display: grid;
     gap: 2rem;
@@ -147,19 +266,17 @@
     padding: 1.5rem 2rem;
 }
 
-/* ---- Sidebar — blog sidebar with clear separation ---- */
-.desiderio-article {
-    max-width: none;
-    padding: 2rem 0;
-}
-
 @media (min-width: 1024px) {
     .desiderio-editorial-template__header h1 {
         font-size: 4.25rem;
+        /* Relax the ultra-tight leading at display sizes so descenders and
+           accented capitals (Ç, Â, ĝ) clear the line box instead of clipping. */
+        line-height: 1.02;
     }
 
     .desiderio-editorial-start__cover h1 {
         font-size: 5rem;
+        line-height: 1;
     }
 
     .desiderio-editorial-sidebar__layout {
@@ -176,15 +293,6 @@
         padding-top: 0;
         padding-left: 1.5rem;
     }
-
-    .desiderio-article {
-        grid-template-columns: 1fr 280px;
-        gap: 3rem;
-    }
-
-    .desiderio-article__content {
-        max-width: 48rem;
-    }
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
@@ -197,10 +305,6 @@
     }
 }
 
-.desiderio-article__sidebar {
-    padding-top: 0.25rem;
-}
-
 /* ---- Footer — editorial style ---- */
 .desiderio-footer {
     border-top: 2px solid var(--foreground);
@@ -211,21 +315,4 @@
 .desiderio-footer__title {
     font-family: var(--font-serif, Georgia, serif);
     font-weight: 700;
-}
-
-/* ---- Styleguide — list-style instead of grid ---- */
-.desiderio-styleguide__element-list {
-    grid-template-columns: 1fr;
-    gap: 0.5rem;
-}
-
-.desiderio-styleguide__element-card {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0.75rem 1rem;
-}
-
-.desiderio-styleguide__group-title {
-    font-family: var(--font-serif, Georgia, serif);
 }

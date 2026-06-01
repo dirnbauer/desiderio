@@ -19,6 +19,11 @@
     font-size: var(--d-text-xl);
     color: var(--d-foreground);
     text-decoration: none;
+    border-radius: var(--d-radius-sm);
+    outline: none;
+}
+.navbar-stacked__brand-link:focus-visible {
+    box-shadow: 0 0 0 2px var(--d-ring);
 }
 .navbar-stacked__tagline {
     font-size: var(--d-text-sm);
@@ -46,4 +51,26 @@
 .navbar-stacked__link:hover {
     color: var(--d-foreground);
     background: var(--d-accent);
+}
+.navbar-stacked__link:focus-visible {
+    color: var(--d-foreground);
+    outline: none;
+    box-shadow: 0 0 0 2px var(--d-ring);
+}
+
+@media (max-width: 768px) {
+    .navbar-stacked__top {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--d-spacing-3);
+    }
+    .navbar-stacked__nav {
+        flex-wrap: wrap;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .navbar-stacked__link {
+        transition: none;
+    }
 }

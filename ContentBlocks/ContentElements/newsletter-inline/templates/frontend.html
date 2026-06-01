@@ -9,7 +9,7 @@
     <d:layout.container>
         <div class="newsletter-inline__bar">
             <div class="newsletter-inline__text">
-                <f:if condition="{data.header}"><h3 class="newsletter-inline__headline">{data -> f:render.text(field: 'header')}</h3></f:if>
+                <f:if condition="{data.header}"><h2 class="newsletter-inline__headline">{data -> f:render.text(field: 'header')}</h2></f:if>
                 <f:if condition="{data.description_text}"><p class="newsletter-inline__description">{data -> f:render.text(field: 'description_text')}</p></f:if>
             </div>
 <f:comment>Legacy editor fields kept for migrated records; TYPO3 Form Framework owns rendering and submit behavior. {data.form_action}{data.placeholder}{data.button_text}</f:comment>

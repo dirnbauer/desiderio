@@ -15,10 +15,20 @@
             <f:for each="{data.items}" as="item">
                 <d:molecule.card class="article-grid__item">
                     <f:if condition="{item.category}"><p class="article-grid__category">{item -> f:render.text(field: 'category')}</p></f:if>
-                    <h3 class="article-grid__title">{item -> f:render.text(field: 'title')}</h3>
-                    <p class="article-grid__description">{item -> f:render.text(field: 'description')}</p>
+                    <h3 class="article-grid__title">
+                        <f:if condition="{item.link.url}">
+                            <f:then>
+                                <f:link.typolink parameter="{item.link}" class="article-grid__title-link">{item -> f:render.text(field: 'title')}</f:link.typolink>
+                            </f:then>
+                            <f:else>{item -> f:render.text(field: 'title')}</f:else>
+                        </f:if>
+                    </h3>
+                    <f:if condition="{item.description}"><p class="article-grid__description">{item -> f:render.text(field: 'description')}</p></f:if>
                     <f:if condition="{item.link.url}">
-                        <f:link.typolink parameter="{item.link}" class="article-grid__link">Read more</f:link.typolink>
+                        <f:link.typolink parameter="{item.link}" class="article-grid__link" additionalAttributes="{'aria-hidden': 'true', 'tabindex': '-1'}">
+                            <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:read_article" default="Read article"/>
+                            <span class="article-grid__link-arrow" aria-hidden="true">&#8594;</span>
+                        </f:link.typolink>
                     </f:if>
                 </d:molecule.card>
             </f:for>

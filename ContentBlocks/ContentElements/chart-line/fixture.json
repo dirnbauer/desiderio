@@ -1,4 +1,8 @@
 {
-    "_type": "stats",
-    "header": "Line Chart for live product intelligence"
+    "header": "Monthly active workspaces",
+    "description": "Activated workspaces across all plans, January to June 2026.",
+    "chart_data": "[{\"label\":\"Jan\",\"value\":1280},{\"label\":\"Feb\",\"value\":1640},{\"label\":\"Mar\",\"value\":2110},{\"label\":\"Apr\",\"value\":2580},{\"label\":\"May\",\"value\":3240},{\"label\":\"Jun\",\"value\":4015}]",
+    "color_variant": "primary",
+    "show_dots": 1,
+    "smooth": 1
 }

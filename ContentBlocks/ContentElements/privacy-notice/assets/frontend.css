@@ -1,15 +1,22 @@
-.privacy-notice { max-width: 800px; margin-inline: auto; }
-.privacy-notice__title { font-size: var(--d-text-xl); font-weight: 700; }
+.privacy-notice { max-width: 50rem; margin-inline: auto; }
+.privacy-notice__title { font-size: var(--d-text-xl); font-weight: 700; text-wrap: balance; }
 .privacy-notice__updated { font-size: var(--d-text-sm); color: var(--muted-foreground); margin-block-start: var(--d-spacing-xs); }
-.privacy-notice__intro { font-size: var(--d-text-sm); color: var(--muted-foreground); margin-block: var(--d-spacing-lg); line-height: 1.7; }
+.privacy-notice__intro { font-size: var(--d-text-sm); color: var(--muted-foreground); margin-block: var(--d-spacing-lg); line-height: 1.7; text-wrap: pretty; }
 .privacy-notice__sections { display: flex; flex-direction: column; }
-.privacy-notice__section { border-bottom: 1px solid var(--border); }
+.privacy-notice__section { border-block-end: 1px solid var(--border); }
 .privacy-notice__section-title {
+    display: flex; align-items: center; justify-content: space-between; gap: var(--d-spacing-sm);
     padding: var(--d-spacing-md) 0; cursor: pointer;
     font-weight: 600; font-size: var(--d-text-base); list-style: none;
 }
 .privacy-notice__section-title::-webkit-details-marker { display: none; }
-.privacy-notice__section-title::after { content: '+'; float: right; font-weight: 400; }
-.privacy-notice__section[open] .privacy-notice__section-title::after { content: '-'; }
+.privacy-notice__section-title:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; border-radius: var(--radius); }
+.privacy-notice__icon { flex-shrink: 0; color: var(--muted-foreground); transition: transform 0.2s; }
+.privacy-notice__section[open] .privacy-notice__icon { transform: rotate(180deg); }
 .privacy-notice__section-content { padding-block-end: var(--d-spacing-md); font-size: var(--d-text-sm); color: var(--muted-foreground); line-height: 1.7; }
-.privacy-notice__section-content > *:first-child { margin-top: 0; }
+.privacy-notice__section-content > *:first-child { margin-block-start: 0; }
+.privacy-notice__section-content > *:last-child { margin-block-end: 0; }
+.privacy-notice__section-content a { color: var(--primary); }
+@media (prefers-reduced-motion: reduce) {
+    .privacy-notice__icon { transition: none; }
+}

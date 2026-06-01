@@ -5,8 +5,9 @@
     data-namespace-typo3-fluid="true"
 >
 
-<header class="mb-4">
-    <d:atom.typography tag="h3" variant="h4"><f:translate extensionName="Blog" key="headline.commentform">Leave a comment</f:translate></d:atom.typography>
+<header class="mb-4 flex flex-col gap-1">
+    <d:atom.typography tag="h3" variant="h4"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/blog.xlf:comments.form.heading" /></d:atom.typography>
+    <p class="text-sm text-muted-foreground"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/blog.xlf:comments.form.intro" /></p>
 </header>
 <f:render partial="General/FlashMessages" arguments="{_all}"/>
 <formvh:render factoryClass="T3G\AgencyPack\Blog\Domain\Factory\CommentFormFactory" />

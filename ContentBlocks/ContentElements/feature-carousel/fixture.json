@@ -1,22 +1,32 @@
 {
     "_type": "grid",
-    "header": "Carousel Feature Section for premium product storytelling",
-    "subheadline": "Explain the benefit in one sentence before showing details or proof.",
+    "header": "Capabilities that scale with your team",
+    "subheadline": "Swipe through the building blocks teams rely on every day.",
     "items": [
         {
-            "icon": "users",
-            "title": "Carousel Feature Section for premium product storytelling",
-            "description": "Show concrete product context with crisp icons and balanced responsive spacing."
+            "icon": "chart-no-axes-combined",
+            "title": "Live analytics",
+            "description": "Track the metrics that matter and spot trends the moment they emerge."
         },
         {
-            "icon": "chart-no-axes-combined",
-            "title": "Carousel Feature Section for premium product storytelling",
-            "description": "Explain the benefit in one sentence before showing details or proof."
+            "icon": "users",
+            "title": "Team workspaces",
+            "description": "Give every department a shared home for its dashboards and reports."
         },
         {
             "icon": "shield-check",
-            "title": "Carousel Feature Section for premium product storytelling",
-            "description": "Use short feature copy so teams can compare capabilities without noise."
+            "title": "Enterprise security",
+            "description": "SSO, granular roles, and audit logs keep sensitive data protected."
+        },
+        {
+            "icon": "zap",
+            "title": "Instant automations",
+            "description": "Trigger alerts and workflows automatically when a metric crosses a line."
+        },
+        {
+            "icon": "globe",
+            "title": "Global edge delivery",
+            "description": "Dashboards load fast for teammates in every region, around the clock."
         }
     ]
 }

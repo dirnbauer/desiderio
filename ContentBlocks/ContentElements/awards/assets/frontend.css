@@ -6,6 +6,8 @@
 .awards__item { text-align: center; padding: var(--d-spacing-lg); border: 1px solid var(--border); border-radius: var(--radius); }
 .awards__badge { margin-block-end: var(--d-spacing-md); }
 .awards__badge-img { max-height: 4rem; width: auto; object-fit: contain; }
-.awards__title { font-size: var(--d-text-base); font-weight: 600; text-decoration: none; color: var(--foreground); }
-a.awards__title:hover { color: var(--primary); }
-.awards__meta { font-size: var(--d-text-sm); color: var(--muted-foreground); display: block; margin-block-start: 0.25rem; }
+.awards__title { font-size: var(--d-text-base); font-weight: 600; color: var(--foreground); margin: 0; }
+.awards__title-link { color: inherit; text-decoration: none; border-radius: var(--d-radius-sm); }
+.awards__title-link:hover { color: var(--primary); text-decoration: underline; text-underline-offset: 2px; }
+.awards__title-link:focus-visible { outline: 2px solid var(--d-ring); outline-offset: 2px; }
+.awards__meta { font-size: var(--d-text-sm); color: var(--muted-foreground); display: block; margin: 0.25rem 0 0; }

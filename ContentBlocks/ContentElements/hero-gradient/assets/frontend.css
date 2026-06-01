@@ -12,20 +12,32 @@
     max-width: 48rem;
     margin-inline: auto;
 }
-.hero-gradient__headline {
-    font-size: var(--d-text-5xl);
+.hero-gradient .hero-gradient__headline {
+    font-size: var(--d-text-4xl);
     font-weight: 700;
     line-height: 1.1;
+    text-wrap: balance;
     margin-top: var(--d-spacing-4);
     margin-bottom: var(--d-spacing-4);
 }
 .hero-gradient__subheadline {
-    font-size: var(--d-text-xl);
+    font-size: var(--d-text-lg);
+    line-height: 1.6;
     opacity: 0.9;
+    text-wrap: pretty;
     margin-bottom: var(--d-spacing-8);
 }
 .hero-gradient__actions {
     display: flex;
+    flex-wrap: wrap;
     gap: var(--d-spacing-3);
     justify-content: center;
+}
+@media (min-width: 768px) {
+    .hero-gradient .hero-gradient__headline {
+        font-size: var(--d-text-5xl);
+    }
+    .hero-gradient__subheadline {
+        font-size: var(--d-text-xl);
+    }
 }

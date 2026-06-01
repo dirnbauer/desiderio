@@ -1,3 +1,28 @@
 {
-    "_type": "testimonial"
+    "_type": "testimonial",
+    "eyebrow": "Customer reviews",
+    "header": "Trusted by 10,000+ marketing teams",
+    "reviews": [
+        {
+            "reviewer_name": "Sofia Berg",
+            "rating": "5",
+            "title": "Cut our publishing time in half",
+            "review_text": "We went from three weeks to four days per campaign and shipped 40% more pages last quarter. The team finally has time for strategy instead of formatting.",
+            "date": "March 2026"
+        },
+        {
+            "reviewer_name": "Daniel Okafor",
+            "rating": "5",
+            "title": "Onboarding took an afternoon",
+            "review_text": "I expected a month-long rollout. Our 12-person content team was fully live the same day, and support answered every question within the hour.",
+            "date": "February 2026"
+        },
+        {
+            "reviewer_name": "Mei-Ling Tan",
+            "rating": "4",
+            "title": "Best content workflow we've used",
+            "review_text": "Replaced three separate tools with one. Approvals that used to take days now close in a single review cycle. Reporting could go deeper, but it keeps improving.",
+            "date": "January 2026"
+        }
+    ]
 }

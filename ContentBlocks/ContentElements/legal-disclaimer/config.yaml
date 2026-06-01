@@ -16,7 +16,7 @@ fields:
   -
     identifier: content
     type: Textarea
-    label: 'Disclaimer Text'
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:disclaimer_text'
     enableRichtext: true
     rows: 6
     required: true
@@ -30,7 +30,7 @@ fields:
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.default'
         value: default
       -
-        label: Boxed
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.boxed'
         value: boxed
       -
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.bordered'

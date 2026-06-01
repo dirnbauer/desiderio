@@ -18,26 +18,28 @@
             </header>
         </f:if>
 
-        <div class="testimonial-grid__items testimonial-grid__items--cols-{data.columns -> f:or(alternative: '3')}">
+        <ul class="testimonial-grid__items testimonial-grid__items--cols-{data.columns -> f:or(alternative: '3')}" role="list">
             <f:for each="{data.testimonials}" as="item">
-                <article class="testimonial-grid__card">
-                    <blockquote class="testimonial-grid__quote">{item -> f:render.text(field: 'quote')}</blockquote>
-                    <div class="testimonial-grid__author">
-                        <f:if condition="{item.author_image}">
-                            <f:for each="{item.author_image}" as="fileReference">
-                                <f:image image="{fileReference}" width="48" height="48" alt="{item.author_name}" class="testimonial-grid__avatar"/>
-                            </f:for>
-                        </f:if>
-                        <div>
-                            <cite class="testimonial-grid__name">{item -> f:render.text(field: 'author_name')}</cite>
-                            <f:if condition="{item.author_title}">
-                                <span class="testimonial-grid__role">{item -> f:render.text(field: 'author_title')}</span>
+                <li>
+                    <figure class="testimonial-grid__card">
+                        <blockquote class="testimonial-grid__quote">{item -> f:render.text(field: 'quote')}</blockquote>
+                        <figcaption class="testimonial-grid__author">
+                            <f:if condition="{item.author_image}">
+                                <f:for each="{item.author_image}" as="fileReference">
+                                    <f:image image="{fileReference}" width="48" height="48" alt="" loading="lazy" decoding="async" class="testimonial-grid__avatar"/>
+                                </f:for>
                             </f:if>
-                        </div>
-                    </div>
-                </article>
+                            <div class="testimonial-grid__meta">
+                                <cite class="testimonial-grid__name">{item -> f:render.text(field: 'author_name')}</cite>
+                                <f:if condition="{item.author_title}">
+                                    <span class="testimonial-grid__role">{item -> f:render.text(field: 'author_title')}</span>
+                                </f:if>
+                            </div>
+                        </figcaption>
+                    </figure>
+                </li>
             </f:for>
-        </div>
+        </ul>
     </d:layout.container>
 </d:layout.section>
 </html>

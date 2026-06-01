@@ -1,0 +1,38 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:comment>
+    Reading-time chip. Server-side it renders a grammatically correct ICU
+    fallback ("~{minutes} min read", default 1 minute) so the value is meaningful
+    without JavaScript. The shared desiderio-blog.js then refines the number from
+    the real article word count and rewrites the visible label + aria-label using
+    the {n}-token templates in data-template / data-aria-template (kept separate
+    from the ICU strings precisely so the script has a placeholder to substitute).
+</f:comment>
+
+<f:argument name="minutes" type="integer" optional="true"/>
+<f:argument name="target" type="string" optional="true"/>
+
+<f:variable name="minutes" value="{minutes -> f:or(alternative: 1)}"/>
+<f:variable name="rtFallback" value="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/blog.xlf:post.readingTime', arguments: {minutes: minutes})}"/>
+<f:variable name="rtAriaFallback" value="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/blog.xlf:post.readingTime.aria', arguments: {minutes: minutes})}"/>
+<f:variable name="rtTemplate" value="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/blog.xlf:post.readingTime.template')}"/>
+<f:variable name="rtAriaTemplate" value="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/blog.xlf:post.readingTime.template.aria')}"/>
+
+<span
+    class="inline-flex items-center gap-1.5"
+    data-blog-reading-time="true"
+    data-target="{target}"
+    data-aria-template="{rtAriaTemplate}"
+    aria-label="{rtAriaFallback}"
+>
+    <svg class="size-3.5 shrink-0 text-muted-foreground" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+        <circle cx="12" cy="12" r="9"/>
+        <path d="M12 7v5l3 2"/>
+    </svg>
+    <span data-blog-reading-time-label="true" data-template="{rtTemplate}">{rtFallback}</span>
+</span>
+
+</html>

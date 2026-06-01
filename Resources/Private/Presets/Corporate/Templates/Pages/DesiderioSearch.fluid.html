@@ -6,12 +6,38 @@
 
 <f:layout name="Pages/Default"/>
 
+<f:comment>
+    Corporate search page. Stable "Search" eyebrow + a measured intro fallback
+    keep the institutional tone when the editor leaves the abstract empty. The
+    results area is a labelled region so the search form/results are announced.
+</f:comment>
+
+<f:variable name="searchEyebrow"><f:translate key="page.search.eyebrow" extensionName="desiderio">Search</f:translate></f:variable>
+<f:variable name="searchResultsLabel"><f:translate key="page.search.results.label" extensionName="desiderio">Search results</f:translate></f:variable>
+<f:if condition="{page.pageRecord.abstract}">
+    <f:then>
+        <f:variable name="searchIntro" value="{page.pageRecord.abstract}"/>
+    </f:then>
+    <f:else>
+        <f:variable name="searchIntro"><f:translate key="page.search.intro" extensionName="desiderio">Find solutions, case studies, documentation and the right contact across our site.</f:translate></f:variable>
+    </f:else>
+</f:if>
+
 <f:section name="Main">
     <section class="desiderio-system-page desiderio-corporate-system desiderio-corporate-system--search">
         <d:layout.container size="xl">
-            <f:render partial="Presets/SystemHeader" arguments="{class: 'desiderio-corporate-system__header', eyebrow: breadcrumb.0.title, eyebrowClass: 'desiderio-corporate-start__eyebrow', title: page.pageRecord.title, summary: page.pageRecord.abstract}"/>
-            <div class="desiderio-system-page__content desiderio-corporate-system__content">
-                <f:render partial="Presets/ContentArea" arguments="{content: content.main}"/>
+            <f:render partial="Presets/SystemHeader" arguments="{class: 'desiderio-corporate-system__header', eyebrow: searchEyebrow, eyebrowClass: 'desiderio-corporate-system__eyebrow', title: page.pageRecord.title, summary: searchIntro}"/>
+            <div class="desiderio-system-page__content desiderio-corporate-system__content" role="region" aria-label="{searchResultsLabel -> f:format.trim()}">
+                <f:if condition="{content.main}">
+                    <f:then>
+                        <f:render partial="Presets/ContentArea" arguments="{content: content.main}"/>
+                    </f:then>
+                    <f:else>
+                        <p class="desiderio-corporate-system__empty">
+                            <f:translate key="corporate.search.empty" extensionName="desiderio">Enter a term above to search across our solutions, case studies, documentation and contacts.</f:translate>
+                        </p>
+                    </f:else>
+                </f:if>
             </div>
         </d:layout.container>
     </section>

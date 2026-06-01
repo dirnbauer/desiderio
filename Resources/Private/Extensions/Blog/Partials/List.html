@@ -5,7 +5,10 @@
 >
 
 <f:comment>
-    Renders a paginated list of blog posts as a shadcn card grid.
+    Paginated blog index rendered as a shadcn card grid. Modern blog-listing
+    pattern: a labelled heading region with a live article count, a featured
+    lead card for the first post on page one, a responsive card grid, an
+    accessible empty state, and ARIA-described pagination top/bottom.
     Fluid 5.3 strong typing: every argument is declared and type-checked.
 </f:comment>
 <f:argument name="posts" type="iterable" optional="true"/>
@@ -14,38 +17,49 @@
 <f:argument name="type" type="string" optional="true"/>
 
 <f:variable name="paginated" value="{pagination.paginatedItems}"/>
+<f:variable name="items" value="{f:if(condition: '{pagination} && {paginated}', then: paginated, else: posts)}"/>
+<f:variable name="itemCount" value="{items -> f:count()}"/>
+<f:variable name="isFirstPage" value="{f:if(condition: '{pagination.currentPageNumber} == 1 || !{pagination}', then: 1, else: 0)}"/>
 
-<section class="grid gap-6 md:grid-cols-2 lg:grid-cols-3" data-blog-list="{type -> f:or(alternative: 'default')}">
-    <f:if condition="{pagination} && {paginated}">
+<section class="flex flex-col gap-8" data-blog-list="{type -> f:or(alternative: 'default')}" data-blog-postcount="{itemCount}">
+    <f:if condition="{items}">
         <f:then>
-            <f:if condition="{settings.lists.pagination.insertAbove}">
-                <div class="md:col-span-2 lg:col-span-3">
-                    <f:render partial="Pagination/Pagination" arguments="{pagination: pagination}" />
-                </div>
+            <header class="flex flex-col gap-2">
+                <h2 class="text-2xl font-semibold tracking-tight text-foreground">
+                    <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/blog.xlf:list.heading" />
+                </h2>
+                <p class="text-sm text-muted-foreground">
+                    <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/blog.xlf:list.count" arguments="{count: itemCount}" />
+                </p>
+            </header>
+
+            <f:if condition="{settings.lists.pagination.insertAbove} && {pagination}">
+                <f:render partial="Pagination/Pagination" arguments="{pagination: pagination}" />
             </f:if>
-            <f:for each="{paginated}" iteration="iterator" as="post">
-                <blogvh:cache post="{post}" />
-                <f:render partial="List/Post" arguments="{_all}" />
-            </f:for>
-            <f:if condition="{settings.lists.pagination.insertBelow}">
-                <div class="md:col-span-2 lg:col-span-3">
-                    <f:render partial="Pagination/Pagination" arguments="{pagination: pagination}" />
-                </div>
+
+            <ul role="list" class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                <f:for each="{items}" iteration="iterator" as="post">
+                    <blogvh:cache post="{post}" />
+                    <f:variable name="isFeatured" value="0"/>
+                    <f:if condition="{iterator.isFirst} && {isFirstPage}">
+                        <f:if condition="{post.featuredImage}">
+                            <f:variable name="isFeatured" value="1"/>
+                        </f:if>
+                    </f:if>
+                    <li class="{f:if(condition: isFeatured, then: 'md:col-span-2 lg:col-span-3')}">
+                        <f:render partial="List/Post" arguments="{post: post, settings: settings, iterator: iterator, featured: isFeatured}" />
+                    </li>
+                </f:for>
+            </ul>
+
+            <f:if condition="{settings.lists.pagination.insertBelow} && {pagination}">
+                <f:render partial="Pagination/Pagination" arguments="{pagination: pagination}" />
             </f:if>
         </f:then>
-        <f:else if="{posts}">
-            <f:for each="{posts}" iteration="iterator" as="post">
-                <blogvh:cache post="{post}" />
-                <f:render partial="List/Post" arguments="{_all}" />
-            </f:for>
-        </f:else>
         <f:else>
-            <div class="md:col-span-2 lg:col-span-3">
-                <d:molecule.alert>
-                    <d:molecule.alertTitle><f:translate extensionName="Blog" key="list.no_posts.title">No posts</f:translate></d:molecule.alertTitle>
-                    <d:molecule.alertDescription><f:translate extensionName="Blog" key="list.no_posts.message">There are no posts yet.</f:translate></d:molecule.alertDescription>
-                </d:molecule.alert>
-            </div>
+            <d:molecule.card class="flex flex-col items-center gap-3 p-10 text-center">
+                <d:molecule.cardHeader title="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/blog.xlf:list.empty.title')}" description="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/blog.xlf:list.empty.description')}" class="items-center text-center" />
+            </d:molecule.card>
         </f:else>
     </f:if>
 </section>

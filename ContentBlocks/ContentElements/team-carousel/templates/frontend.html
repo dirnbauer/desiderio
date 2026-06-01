@@ -5,36 +5,43 @@
 
 <f:asset.css identifier="d-team-carousel" href="{cb:assetPath()}/frontend.css"/>
 
+<f:variable name="regionLabel">{f:if(condition: '{data.header}', then: '{data.header -> f:format.stripTags()}', else: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:team.members_region\')}')}</f:variable>
+
 <d:layout.section class="team-carousel">
     <d:layout.container>
         <f:if condition="{data.eyebrow} || {data.header} || {data.subheadline}">
             <header class="team-carousel__intro">
-                <f:if condition="{data.eyebrow}"><span class="team-carousel__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span></f:if>
+                <f:if condition="{data.eyebrow}"><d:atom.badge variant="secondary">{data -> f:render.text(field: 'eyebrow')}</d:atom.badge></f:if>
                 <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
-                <f:if condition="{data.subheadline}"><d:atom.typography variant="muted">{data -> f:render.text(field: 'subheadline')}</d:atom.typography></f:if>
+                <f:if condition="{data.subheadline}"><d:atom.typography variant="lead" class="team-carousel__subheadline">{data -> f:render.text(field: 'subheadline')}</d:atom.typography></f:if>
             </header>
         </f:if>
 
-        <div class="team-carousel__track">
+        <ul class="team-carousel__track" role="list" tabindex="0" aria-label="{regionLabel}">
             <f:for each="{data.members}" as="member">
-                <d:molecule.card class="team-carousel__slide">
-                    <f:if condition="{member.image}">
-                        <div class="team-carousel__image-wrapper">
+                <li class="team-carousel__slide">
+                    <d:molecule.card class="team-carousel__card">
+                        <f:if condition="{member.image}">
                             <f:for each="{member.image}" as="fileReference">
-                                <f:image image="{fileReference}" maxWidth="400" alt="{member.name}" class="team-carousel__image"/>
+                                <f:image image="{fileReference}" width="320" height="320" cropVariant="default" alt="" loading="lazy" decoding="async" class="team-carousel__image"/>
                             </f:for>
-                        </div>
-                    </f:if>
-                    <div class="team-carousel__content">
-                        <h3 class="team-carousel__name">{member -> f:render.text(field: 'name')}</h3>
-                        <f:if condition="{member.role}"><p class="team-carousel__role">{member -> f:render.text(field: 'role')}</p></f:if>
-                        <f:if condition="{member.profile_link.url}">
-                            <d:atom.button href="{member.profile_link.url}" target="{member.profile_link.target}" variant="ghost" size="sm">View profile</d:atom.button>
                         </f:if>
-                    </div>
-                </d:molecule.card>
+                        <d:molecule.cardHeader class="team-carousel__content">
+                            <h3 class="team-carousel__name">{member -> f:render.text(field: 'name')}</h3>
+                            <f:if condition="{member.role}"><p class="team-carousel__role">{member -> f:render.text(field: 'role')}</p></f:if>
+                        </d:molecule.cardHeader>
+                        <f:if condition="{member.profile_link.url}">
+                            <d:molecule.cardFooter class="team-carousel__footer">
+                                <d:atom.button href="{member.profile_link.url}" target="{member.profile_link.target}" variant="ghost" size="sm">
+                                    <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:team.view_profile">View profile</f:translate>
+                                    <span class="sr-only"> — {member -> f:render.text(field: 'name')}</span>
+                                </d:atom.button>
+                            </d:molecule.cardFooter>
+                        </f:if>
+                    </d:molecule.card>
+                </li>
             </f:for>
-        </div>
+        </ul>
     </d:layout.container>
 </d:layout.section>
 

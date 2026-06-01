@@ -23,7 +23,7 @@
             >
         </div>
         <div class="flex flex-1 flex-col gap-2">
-            <p class="text-xs font-medium uppercase tracking-wide text-muted-foreground"><f:translate extensionName="Blog" key="author.aboutTheAuthor">About the author</f:translate></p>
+            <p class="text-xs font-medium uppercase tracking-wide text-muted-foreground"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/blog.xlf:author.about" /></p>
             <p class="text-base font-semibold text-foreground">
                 <f:render section="ProfileLink" arguments="{_all}" contentAs="content">{author.name}</f:render>
             </p>
@@ -84,7 +84,7 @@
             <f:if condition="{author.detailsPage} || {settings.authorUid}">
                 <p class="mt-1">
                     <blogvh:link.author author="{author}" class="inline-flex items-center text-sm font-medium text-primary underline-offset-4 hover:underline">
-                        <f:translate extensionName="Blog" key="author.more.posts">More posts by this author</f:translate> &rarr;
+                        <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/blog.xlf:author.morePosts" /> &rarr;
                     </blogvh:link.author>
                 </p>
             </f:if>

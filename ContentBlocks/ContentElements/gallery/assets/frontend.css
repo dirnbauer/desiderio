@@ -38,6 +38,20 @@
     font-size: var(--d-text-xs);
     line-height: 1.55;
 }
+.gallery__featured-link {
+    justify-self: start;
+    width: fit-content;
+    margin-block-start: var(--d-spacing-2xs);
+    font-size: var(--d-text-sm);
+    font-weight: 500;
+    color: var(--primary);
+    text-underline-offset: 3px;
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+}
+.gallery__featured-link:hover { text-decoration: underline; }
+.gallery__featured-link:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
+.gallery__featured-link[hidden] { display: none; }
 .gallery__thumbs {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -96,5 +110,13 @@
     .gallery__thumbs--cols-2,
     .gallery__thumbs--cols-4 {
         grid-template-columns: 1fr;
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    .gallery__thumb {
+        transition: none;
+    }
+    .gallery__thumb:hover {
+        transform: none;
     }
 }

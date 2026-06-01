@@ -1,9 +1,11 @@
 {
     "_type": "nav",
+    "header": "Utility",
+    "left_text": "Free shipping on orders over $50",
     "link_items": [
-        "Overview",
-        "Components",
-        "Examples",
-        "Pricing"
+        { "label": "Track order", "link": "/orders/track" },
+        { "label": "Store locator", "link": "/stores" },
+        { "label": "Help center", "link": "/help" },
+        { "label": "Sign in", "link": "/account/login" }
     ]
 }

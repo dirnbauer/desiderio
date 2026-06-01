@@ -1,21 +1,28 @@
 .hero-cta-only {
-    padding-block: var(--d-spacing-12);
     border-bottom: 1px solid var(--d-border);
 }
 .hero-cta-only__content {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
+    flex-direction: column;
+    align-items: flex-start;
     gap: var(--d-spacing-6);
 }
 .hero-cta-only__headline {
-    font-size: var(--d-text-3xl);
-    font-weight: 700;
-    line-height: 1.2;
     flex: 1;
+    margin: 0;
+    max-width: 32rem;
 }
 .hero-cta-only__actions {
     display: flex;
+    flex-wrap: wrap;
     gap: var(--d-spacing-3);
     flex-shrink: 0;
+}
+
+@media (min-width: 48rem) {
+    .hero-cta-only__content {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
 }

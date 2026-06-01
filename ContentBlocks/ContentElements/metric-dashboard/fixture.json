@@ -1,22 +1,32 @@
 {
     "_type": "stats",
-    "header": "Metric Dashboard for live product intelligence",
+    "header": "This month at a glance",
+    "description": "Key performance metrics across revenue, growth, and retention, updated daily.",
     "items": [
         {
-            "value": "2.4K",
-            "label": "Mobile polish"
+            "label": "Monthly recurring revenue",
+            "value": "$248K",
+            "change": "+12.5% vs last month",
+            "trend": "up"
         },
         {
-            "value": "128",
-            "label": "Token coverage"
+            "label": "Active customers",
+            "value": "3,842",
+            "change": "+318 this month",
+            "trend": "up"
         },
         {
-            "value": "86",
-            "label": "Trust lift"
+            "label": "Trial conversions",
+            "value": "24.6%",
+            "change": "-2.1 pts vs last month",
+            "trend": "down"
         },
         {
-            "value": "98%",
-            "label": "Signal quality"
+            "label": "Avg. response time",
+            "value": "2.4h",
+            "change": "Holding steady",
+            "trend": "neutral"
         }
-    ]
+    ],
+    "chart_data": "[180, 195, 188, 210, 232, 225, 248, 260, 255, 272, 290, 312]"
 }

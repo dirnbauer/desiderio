@@ -11,18 +11,35 @@
 </f:section>
 
 <f:section name="Main">
-    <div class="desiderio-portfolio-template">
+    <f:comment>
+        Portfolio detail / work page. The masthead leads with an eyebrow badge
+        (the parent section), the project or page title and a short standfirst;
+        the content area below carries the visual story authored by editors.
+        Marked up as a schema.org CreativeWork so the work is machine-readable.
+    </f:comment>
+    <article
+        class="desiderio-portfolio-template"
+        itemscope="itemscope"
+        itemtype="https://schema.org/CreativeWork"
+    >
         <d:layout.container size="xl" class="desiderio-portfolio-template__container">
-            <div class="desiderio-portfolio-template__masthead">
-                <p>{breadcrumb.0.title}</p>
-                <h1>{page.pageRecord.title}</h1>
-            </div>
+            <header class="desiderio-portfolio-template__masthead" aria-labelledby="portfolio-page-title">
+                <f:if condition="{breadcrumb.0.title}">
+                    <p class="desiderio-portfolio-template__kicker">
+                        <d:atom.badge variant="secondary">{breadcrumb.0.title}</d:atom.badge>
+                    </p>
+                </f:if>
+                <h1 id="portfolio-page-title" itemprop="name">{page.pageRecord.title}</h1>
+                <f:if condition="{page.pageRecord.abstract}">
+                    <span itemprop="abstract">{page.pageRecord.abstract}</span>
+                </f:if>
+            </header>
 
-            <div class="desiderio-portfolio-template__content">
+            <div class="desiderio-portfolio-template__content" itemprop="text">
                 <f:render partial="Presets/ContentArea" arguments="{content: content.main}"/>
             </div>
         </d:layout.container>
-    </div>
+    </article>
 </f:section>
 
 </html>

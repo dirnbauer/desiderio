@@ -1,6 +1,6 @@
 .mission-statement__content {
     text-align: center;
-    max-width: 800px;
+    max-width: 50rem;
     margin-inline: auto;
 }
 .mission-statement__eyebrow {
@@ -8,7 +8,7 @@
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    color: var(--primary);
+    color: var(--d-primary);
     display: block;
     margin-block-end: var(--d-spacing-sm);
 }
@@ -16,15 +16,16 @@
     font-size: var(--d-text-2xl);
     font-weight: 300;
     line-height: 1.4;
-    color: var(--foreground);
+    color: var(--d-foreground);
     margin-block-start: var(--d-spacing-md);
     border: none;
     padding: 0;
+    text-wrap: balance;
 }
 .mission-statement__attribution {
     display: block;
     margin-block-start: var(--d-spacing-md);
     font-size: var(--d-text-sm);
     font-style: normal;
-    color: var(--muted-foreground);
+    color: var(--d-muted-foreground);
 }

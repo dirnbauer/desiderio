@@ -1,12 +1,13 @@
 {
     "_type": "nav",
+    "header": "Search results pages",
+    "previous_link": "https://ui.shadcn.com/docs?page=1",
+    "next_link": "https://ui.shadcn.com/docs?page=3",
     "items": [
-        "A11y checked",
-        "Fast preview",
-        "Editor ready",
-        "Modern media",
-        "Token polish",
-        "Import ready",
-        "Clean states"
+        { "label": "1", "link": "https://ui.shadcn.com/docs?page=1", "active": false },
+        { "label": "2", "link": "https://ui.shadcn.com/docs?page=2", "active": true },
+        { "label": "3", "link": "https://ui.shadcn.com/docs?page=3", "active": false },
+        { "label": "4", "link": "https://ui.shadcn.com/docs?page=4", "active": false },
+        { "label": "5", "link": "https://ui.shadcn.com/docs?page=5", "active": false }
     ]
 }

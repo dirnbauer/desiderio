@@ -11,34 +11,36 @@
             <h2 class="testimonial-video__heading">{data -> f:render.text(field: 'header')}</h2>
         </f:if>
 
-        <div class="testimonial-video__layout">
+        <figure class="testimonial-video__layout">
             <div class="testimonial-video__player">
-                <f:if condition="{data.poster_image}">
-                    <div class="testimonial-video__poster-wrap">
-                        <f:for each="{data.poster_image}" as="poster">
-                            <f:image image="{poster}" maxWidth="960" alt="{data.header}" class="testimonial-video__poster"/>
-                        </f:for>
-                    </div>
-                </f:if>
                 <div class="testimonial-video__embed">
-                    <iframe src="{data.video_url}" allowfullscreen loading="lazy" title="Video testimonial from {data.author_name}"></iframe>
+                    <f:if condition="{data.poster_image}">
+                        <f:for each="{data.poster_image}" as="poster">
+                            <f:image image="{poster}" maxWidth="960" alt="" class="testimonial-video__poster"/>
+                        </f:for>
+                    </f:if>
+                    <iframe src="{data.video_url}" allowfullscreen loading="lazy"
+                            title="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:testimonial_video.player_title', arguments: {0: data.author_name})}">
+                    </iframe>
                 </div>
             </div>
 
             <div class="testimonial-video__content">
                 <f:if condition="{data.quote}">
-                    <blockquote class="testimonial-video__quote">&ldquo;{data -> f:render.text(field: 'quote')}&rdquo;</blockquote>
+                    <blockquote class="testimonial-video__quote">
+                        <p>{data -> f:render.text(field: 'quote')}</p>
+                    </blockquote>
                 </f:if>
-                <div class="testimonial-video__author">
+                <figcaption class="testimonial-video__author">
                     <cite class="testimonial-video__name">{data -> f:render.text(field: 'author_name')}</cite>
                     <f:if condition="{data.author_title} || {data.author_company}">
                         <span class="testimonial-video__role">
-                            {data -> f:render.text(field: 'author_title')}<f:if condition="{data.author_title} && {data.author_company}">, </f:if>{data -> f:render.text(field: 'author_company')}
+                            <f:if condition="{data.author_title}">{data -> f:render.text(field: 'author_title')}</f:if><f:if condition="{data.author_title} && {data.author_company}">, </f:if><f:if condition="{data.author_company}">{data -> f:render.text(field: 'author_company')}</f:if>
                         </span>
                     </f:if>
-                </div>
+                </figcaption>
             </div>
-        </div>
+        </figure>
     </d:layout.container>
 </d:layout.section>
 </html>

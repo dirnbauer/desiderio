@@ -1,23 +1,32 @@
 {
     "_type": "grid",
-    "header": "Certifications for credible trust signals",
-    "subheadline": "Build trust with specific evidence, attribution, and compact proof points.",
+    "eyebrow": "Compliance",
+    "header": "Audited, certified, and independently verified",
+    "subheadline": "Security and privacy standards our platform is held to, reviewed annually by accredited third parties.",
     "certifications": [
         {
-            "name": "Noah Ritter",
-            "description": "Turn ratings, logos, and testimonials into credible proof points."
+            "name": "SOC 2 Type II",
+            "issuer": "AICPA",
+            "description": "Controls for security, availability, and confidentiality, audited over a 12-month window.",
+            "link": "https://www.aicpa-cima.com/topic/audit-assurance/audit-and-assurance-greater-than-soc-2"
         },
         {
-            "name": "Lea Fischer",
-            "description": "Show quality, adoption, and outcomes with focused credibility signals."
+            "name": "ISO/IEC 27001",
+            "issuer": "BSI Group",
+            "description": "Certified information security management system covering people, process, and technology.",
+            "link": "https://www.iso.org/standard/27001"
         },
         {
-            "name": "Mara Weiss",
-            "description": "Build trust with specific evidence, attribution, and compact proof points."
+            "name": "GDPR Ready",
+            "issuer": "EU 2016/679",
+            "description": "Data processing agreements, EU data residency, and a documented right-to-erasure workflow.",
+            "link": "https://gdpr.eu/"
         },
         {
-            "name": "Jonas Klein",
-            "description": "Turn ratings, logos, and testimonials into credible proof points."
+            "name": "HIPAA Compliant",
+            "issuer": "U.S. HHS",
+            "description": "Safeguards and signed BAAs for handling protected health information at rest and in transit.",
+            "link": "https://www.hhs.gov/hipaa/for-professionals/security/index.html"
         }
     ]
 }

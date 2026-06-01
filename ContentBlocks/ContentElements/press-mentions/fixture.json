@@ -1,9 +1,22 @@
 {
     "_type": "grid",
-    "header": "Press Mentions for credible trust signals",
+    "eyebrow": "In the press",
+    "header": "What the press is saying",
     "mentions": [
-        [],
-        [],
-        []
+        {
+            "publication": "TechCrunch",
+            "quote": "One of the fastest-growing developer tools we have tracked this year, with adoption doubling every quarter.",
+            "date": "March 2025"
+        },
+        {
+            "publication": "Forbes",
+            "quote": "A rare product that makes a genuinely complex workflow feel effortless for non-technical teams.",
+            "date": "January 2025"
+        },
+        {
+            "publication": "The Verge",
+            "quote": "The onboarding is so smooth that most teams ship their first integration in under an hour.",
+            "date": "November 2024"
+        }
     ]
 }

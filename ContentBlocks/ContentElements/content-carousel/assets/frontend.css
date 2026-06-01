@@ -1,14 +1,23 @@
 .content-carousel__intro {
     margin-block-end: var(--d-spacing-xl);
 }
+.content-carousel__viewport {
+    position: relative;
+}
 .content-carousel__track {
     display: flex;
     gap: var(--d-spacing-md);
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     scroll-padding: var(--d-spacing-md);
+    scroll-behavior: smooth;
     -webkit-overflow-scrolling: touch;
     padding-block-end: var(--d-spacing-sm);
+}
+.content-carousel__track:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+    border-radius: var(--radius);
 }
 .content-carousel__track::-webkit-scrollbar {
     height: 4px;
@@ -28,20 +37,144 @@
         flex: 0 0 calc(85% - var(--d-spacing-md));
     }
 }
-.content-carousel__image {
+.content-carousel__image,
+.card__image {
     width: 100%;
     height: auto;
     aspect-ratio: 16/9;
     object-fit: cover;
     display: block;
 }
-.content-carousel__body {
+.content-carousel__body,
+.card__body {
     padding: var(--d-spacing-md);
 }
-.content-carousel__title { font-weight: 600; margin-block-end: var(--d-spacing-xs); }
-.content-carousel__title a { color: inherit; text-decoration: none; }
-.content-carousel__title a:hover { color: var(--primary); }
-.content-carousel__text {
+.content-carousel--cards .card__body { padding: 0; }
+.content-carousel__title,
+.card__title { font-weight: 600; margin-block-end: var(--d-spacing-xs); }
+.content-carousel__title a,
+.card__title a { color: inherit; text-decoration: none; }
+.content-carousel__title a:hover,
+.card__title a:hover { color: var(--primary); }
+.content-carousel__title a:focus-visible,
+.card__title a:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm, 0.25rem);
+}
+.content-carousel__description,
+.card__description {
     color: var(--muted-foreground);
     font-size: var(--d-text-sm);
+    margin: 0;
+}
+
+/* Navigation arrows — shadcn outline / icon button look via semantic tokens */
+.content-carousel__navigation {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--d-spacing-sm);
+    margin-block-start: var(--d-spacing-md);
+}
+.content-carousel__nav {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    inline-size: 2.25rem;
+    block-size: 2.25rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--background);
+    color: var(--foreground);
+    cursor: pointer;
+    transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+.content-carousel__nav:hover {
+    background: var(--muted);
+    color: var(--foreground);
+}
+.content-carousel__nav:focus-visible {
+    outline: none;
+    border-color: var(--ring);
+    box-shadow: 0 0 0 3px color-mix(in oklch, var(--ring) 30%, transparent);
+}
+.content-carousel__nav:active {
+    transform: translateY(1px);
+}
+
+/* Pagination dots */
+.content-carousel__pagination {
+    display: flex;
+    justify-content: center;
+    gap: var(--d-spacing-xs);
+    margin-block-start: var(--d-spacing-md);
+}
+.content-carousel__dot {
+    inline-size: 0.5rem;
+    block-size: 0.5rem;
+    padding: 0;
+    border: 0;
+    border-radius: 9999px;
+    background: var(--border);
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+}
+.content-carousel__dot--active,
+.content-carousel__dot[aria-current="true"] {
+    background: var(--primary);
+    inline-size: 1.25rem;
+}
+.content-carousel__dot:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+}
+
+/* Thumbnails */
+.content-carousel__thumbnails {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--d-spacing-sm);
+    margin-block-start: var(--d-spacing-md);
+}
+.content-carousel__thumb {
+    padding: 0;
+    border: 2px solid transparent;
+    border-radius: var(--radius);
+    overflow: hidden;
+    cursor: pointer;
+    background: var(--muted);
+    inline-size: 4.5rem;
+    block-size: 3rem;
+}
+.content-carousel__thumb--active,
+.content-carousel__thumb[aria-current="true"] { border-color: var(--primary); }
+.content-carousel__thumb:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+}
+.content-carousel__thumb-image {
+    inline-size: 100%;
+    block-size: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Visually hidden live region announcing the active slide */
+.content-carousel__status {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .content-carousel__track { scroll-behavior: auto; }
+    .content-carousel__nav,
+    .content-carousel__dot,
+    .content-carousel__thumb { transition: none; }
 }

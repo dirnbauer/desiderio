@@ -1,9 +1,11 @@
 {
     "_type": "nav",
+    "header": "Account sections",
+    "variant": "underline",
     "tabs": [
-        "Clean states",
-        "Import ready",
-        "Token polish",
-        "Modern media"
+        { "label": "Overview", "link": "https://ui.shadcn.com/docs?tab=overview", "active": true },
+        { "label": "Activity", "link": "https://ui.shadcn.com/docs?tab=activity", "active": false },
+        { "label": "Settings", "link": "https://ui.shadcn.com/docs?tab=settings", "active": false },
+        { "label": "Billing", "link": "https://ui.shadcn.com/docs?tab=billing", "active": false }
     ]
 }

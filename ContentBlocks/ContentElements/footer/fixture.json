@@ -1,4 +1,21 @@
 {
     "_type": "footer",
-    "copyright": "Keep page-end content calm, useful, and easy to scan."
+    "header": "Site footer",
+    "shadcn_layout": "two-columns",
+    "brand": "Northwind",
+    "description": "The workspace where product, design, and engineering ship together. Built for teams that move fast without breaking trust.",
+    "footer_links": [
+        { "label": "Product" },
+        { "label": "Pricing" },
+        { "label": "Customers" },
+        { "label": "Changelog" },
+        { "label": "Docs" }
+    ],
+    "utility_links": [
+        { "label": "Privacy" },
+        { "label": "Terms" },
+        { "label": "Security" },
+        { "label": "Status" }
+    ],
+    "copyright": "© 2026 Northwind Labs, Inc. All rights reserved."
 }

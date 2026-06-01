@@ -22,31 +22,32 @@ fields:
   -
     identifier: description
     type: Textarea
-    label: 'Offer Description'
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:offer_description'
     rows: 2
   -
     identifier: discount_text
     type: Textarea
     rows: 1
-    label: 'Discount Text'
-    description: 'e.g. 50% OFF, Save $200'
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:discount_text'
+    description: 'Big scannable badge, e.g. 50% off, Save $200.'
   -
     identifier: original_price
     type: Textarea
     rows: 1
-    label: 'Original Price'
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:original_price'
   -
     identifier: sale_price
     type: Textarea
     rows: 1
-    label: 'Sale Price'
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:sale_price'
   -
     identifier: button_text
     type: Textarea
     rows: 1
-    label: 'CTA Button Text'
-    default: 'Claim Offer'
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_text'
+    description: '2-5 words, benefit-led, e.g. Claim my discount.'
+    default: 'Claim offer'
   -
     identifier: button_link
     type: Link
-    label: 'CTA Button Link'
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_link'

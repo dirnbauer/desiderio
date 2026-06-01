@@ -10,14 +10,14 @@ basics:
   - TYPO3/Categories
 fields:
   -
-    identifier: header
-    useExistingField: true
-    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
-  -
     identifier: eyebrow
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
+  -
+    identifier: header
+    useExistingField: true
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
   -
     identifier: subheadline
     type: Textarea
@@ -39,6 +39,7 @@ fields:
     prefixField: true
     label: Stats
     minItems: 1
+    maxItems: 4
     fields:
       -
         identifier: value
@@ -50,3 +51,8 @@ fields:
         type: Textarea
         rows: 1
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:label_field'
+      -
+        identifier: stat_description
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:stat_description'

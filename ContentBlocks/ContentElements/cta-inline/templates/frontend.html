@@ -7,15 +7,15 @@
 
 <d:layout.section class="cta-inline">
     <d:layout.container>
-        <div class="cta-inline__bar">
+        <aside class="cta-inline__bar">
             <div class="cta-inline__text">
                 <f:if condition="{data.header}"><h3 class="cta-inline__headline">{data -> f:render.text(field: 'header')}</h3></f:if>
                 <f:if condition="{data.description_text}"><p class="cta-inline__description">{data -> f:render.text(field: 'description_text')}</p></f:if>
             </div>
             <f:if condition="{data.cta_text} && {data.cta_link.url}">
-                <d:atom.button href="{data.cta_link.url}" target="{data.cta_link.target}">{data -> f:render.text(field: 'cta_text')}</d:atom.button>
+                <d:atom.button href="{data.cta_link.url}" target="{data.cta_link.target}" class="cta-inline__action shrink-0">{data -> f:render.text(field: 'cta_text')}</d:atom.button>
             </f:if>
-        </div>
+        </aside>
     </d:layout.container>
 </d:layout.section>
 

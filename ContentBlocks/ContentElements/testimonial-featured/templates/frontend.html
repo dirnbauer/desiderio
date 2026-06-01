@@ -8,7 +8,7 @@
 <d:layout.section class="testimonial-featured">
     <f:if condition="{data.background_image}">
         <f:for each="{data.background_image}" as="bg">
-            <div class="testimonial-featured__bg" style="background-image: url('{f:uri.image(image: bg, maxWidth: 1920)}')"></div>
+            <div class="testimonial-featured__bg" style="background-image: url('{f:uri.image(image: bg, maxWidth: 1920)}')" aria-hidden="true"></div>
         </f:for>
     </f:if>
     <d:layout.container>
@@ -19,7 +19,7 @@
             <f:if condition="{data.company_logo}">
                 <div class="testimonial-featured__logo">
                     <f:for each="{data.company_logo}" as="logo">
-                        <f:image image="{logo}" maxWidth="180" alt="{data.author_company}" class="testimonial-featured__logo-img"/>
+                        <f:image image="{logo}" maxWidth="180" alt="{f:if(condition: logo.alternative, then: logo.alternative, else: data.author_company)}" loading="lazy" decoding="async" class="testimonial-featured__logo-img"/>
                     </f:for>
                 </div>
             </f:if>
@@ -29,7 +29,7 @@
             <div class="testimonial-featured__author">
                 <f:if condition="{data.author_image}">
                     <f:for each="{data.author_image}" as="fileReference">
-                        <f:image image="{fileReference}" width="64" height="64" alt="{data.author_name}" class="testimonial-featured__avatar"/>
+                        <f:image image="{fileReference}" width="64" height="64" alt="" loading="lazy" decoding="async" class="testimonial-featured__avatar"/>
                     </f:for>
                 </f:if>
                 <div>

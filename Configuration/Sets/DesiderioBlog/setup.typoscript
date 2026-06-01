@@ -1,5 +1,14 @@
 page.includeCSS.t3g_blog >
 
+# Progressive-enhancement runtime for the shadcn-styled blog overrides
+# (reading-time estimate + reading-progress bar). Loaded here, inside the
+# DesiderioBlog set, so it ships only when t3g/blog is installed — the set is
+# pulled in through optionalDependencies and never activates without the blog.
+page.includeJSFooter {
+  desiderioBlog = EXT:desiderio/Resources/Public/Js/desiderio-blog.js
+  desiderioBlog.defer = 1
+}
+
 plugin.tx_blog {
   view {
     templateRootPaths.200 = EXT:desiderio/Resources/Private/Extensions/Blog/Templates/

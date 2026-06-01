@@ -8,12 +8,19 @@
         <div class="hero-product__grid">
             <div class="hero-product__content">
                 <f:if condition="{data.badge_text}"><d:atom.badge variant="secondary">{data -> f:render.text(field: 'badge_text')}</d:atom.badge></f:if>
-                <f:if condition="{data.header}"><h1 class="hero-product__title">{data -> f:render.text(field: 'header')}</h1></f:if>
-                <f:if condition="{data.subheadline}"><p class="hero-product__description">{data -> f:render.text(field: 'subheadline')}</p></f:if>
+                <f:if condition="{data.header}">
+                    <d:atom.typography tag="h1" variant="h1" class="hero-product__title">{data -> f:render.text(field: 'header')}</d:atom.typography>
+                </f:if>
+                <f:if condition="{data.subheadline}">
+                    <d:atom.typography variant="lead" class="hero-product__description">{data -> f:render.text(field: 'subheadline')}</d:atom.typography>
+                </f:if>
                 <f:if condition="{data.feature_items}">
                     <ul class="hero-product__features">
                         <f:for each="{data.feature_items}" as="feature">
-                            <li class="hero-product__feature">{feature -> f:render.text(field: 'label')}</li>
+                            <li class="hero-product__feature">
+                                <d:atom.icon name="check" class="hero-product__feature-icon" />
+                                <span>{feature -> f:render.text(field: 'label')}</span>
+                            </li>
                         </f:for>
                     </ul>
                 </f:if>

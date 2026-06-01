@@ -1,17 +1,21 @@
 {
     "_type": "form",
-    "header": "Handle data requests with a clear process",
-    "description": "Use a focused hierarchy, accessible controls, and TYPO3 Form Framework handling so the section is ready for real submissions.",
+    "header": "Request access to your personal data",
+    "description": "Tell us which records you need and we will respond within 30 days, as required under GDPR.",
     "request_types": [
         {
-            "label": "Mobile polish"
+            "label": "Export my data",
+            "value": "export"
         },
         {
-            "label": "Token coverage"
+            "label": "Correct my data",
+            "value": "rectify"
         },
         {
-            "label": "Trust lift"
+            "label": "Delete my account",
+            "value": "erasure"
         }
     ],
-    "submit_text": "Start review"
+    "privacy_text": "We only use these details to verify your identity and process your request. See our privacy policy for how we handle your data.",
+    "submit_text": "Submit request"
 }

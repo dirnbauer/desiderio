@@ -5,51 +5,74 @@
 
 <f:argument name="pagination" type="object" optional="true"/>
 
-<f:if condition="{pagination.allPageNumbers -> f:count()} > 1">
-    <nav class="desiderio-blog-pagination" aria-label="{f:translate(extensionName: 'Blog', key: 'pagination.aria.label', default: 'Pagination')}">
-        <ul role="list" class="flex flex-wrap items-center gap-1 text-sm">
-            <f:if condition="{pagination.previousPageNumber}">
-                <li>
-                    <a href="{f:uri.action(arguments: {currentPage: pagination.previousPageNumber}, addQueryString: 1)}" rel="prev" class="inline-flex h-8 items-center rounded-lg border border-border px-2.5 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground" aria-label="{f:translate(extensionName: 'Blog', key: 'pagination.aria.goto.previous', default: 'Previous page')}">
-                        <f:translate extensionName="Blog" key="pagination.previous">Previous</f:translate>
-                    </a>
-                </li>
-            </f:if>
+<f:variable name="totalPages" value="{pagination.lastPageNumber}"/>
+<f:variable name="lnkClass" value="inline-flex h-9 items-center justify-center rounded-md border border-border px-3 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"/>
+<f:variable name="numClass" value="inline-flex size-9 items-center justify-center rounded-md border border-border text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"/>
+<f:variable name="disabledClass" value="inline-flex h-9 items-center justify-center rounded-md border border-border px-3 text-sm text-muted-foreground/40"/>
 
-            <f:if condition="{pagination.lessPages}">
+<f:if condition="{pagination.allPageNumbers -> f:count()} > 1">
+    <nav class="desiderio-blog-pagination flex items-center justify-center" aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/blog.xlf:pagination.label', arguments: {totalPages: totalPages})}">
+        <ul role="list" class="flex flex-wrap items-center gap-1.5">
+            <li>
+                <f:if condition="{pagination.previousPageNumber}">
+                    <f:then>
+                        <a href="{f:uri.action(arguments: {currentPage: pagination.previousPageNumber}, addQueryString: 'untrusted')}" rel="prev" class="{lnkClass}" aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/blog.xlf:pagination.aria.previous')}">
+                            <span aria-hidden="true">&lsaquo;</span>
+                            <span class="ml-1.5 hidden sm:inline"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/blog.xlf:pagination.previous" /></span>
+                        </a>
+                    </f:then>
+                    <f:else>
+                        <span class="{disabledClass}" aria-hidden="true">
+                            <span>&lsaquo;</span>
+                            <span class="ml-1.5 hidden sm:inline"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/blog.xlf:pagination.previous" /></span>
+                        </span>
+                    </f:else>
+                </f:if>
+            </li>
+
+            <f:if condition="{pagination.hasLessPages}">
                 <li>
-                    <a href="{f:uri.action(arguments: {currentPage: pagination.firstPageNumber}, addQueryString: 1)}" class="inline-flex size-8 items-center justify-center rounded-lg border border-border text-muted-foreground transition-colors hover:bg-muted hover:text-foreground" aria-label="{f:translate(extensionName: 'Blog', key: 'pagination.aria.goto.page', arguments: '{0: pagination.firstPageNumber}')}">{pagination.firstPageNumber}</a>
+                    <a href="{f:uri.action(arguments: {currentPage: pagination.firstPageNumber}, addQueryString: 'untrusted')}" class="{numClass}" aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/blog.xlf:pagination.aria.goToPage', arguments: {page: pagination.firstPageNumber, totalPages: totalPages})}">{pagination.firstPageNumber}</a>
                 </li>
-                <li><span class="inline-flex size-8 items-center justify-center text-muted-foreground" aria-hidden="true">…</span></li>
+                <li><span class="inline-flex size-9 items-center justify-center text-muted-foreground" aria-hidden="true">&hellip;</span></li>
             </f:if>
 
             <f:for each="{pagination.displayPageNumbers}" as="pageNumber">
-                <f:if condition="{pageNumber} == {pagination.currentPageNumber}">
-                    <f:then>
-                        <li><span class="inline-flex size-8 items-center justify-center rounded-lg bg-primary text-sm font-medium text-primary-foreground" aria-current="page">{pageNumber}</span></li>
-                    </f:then>
-                    <f:else>
-                        <li>
-                            <a href="{f:uri.action(arguments: {currentPage: pageNumber}, addQueryString: 1)}" class="inline-flex size-8 items-center justify-center rounded-lg border border-border text-muted-foreground transition-colors hover:bg-muted hover:text-foreground" aria-label="{f:translate(extensionName: 'Blog', key: 'pagination.aria.goto.page', arguments: '{0: pageNumber}')}">{pageNumber}</a>
-                        </li>
-                    </f:else>
-                </f:if>
+                <li>
+                    <f:if condition="{pageNumber} == {pagination.currentPageNumber}">
+                        <f:then>
+                            <span class="inline-flex size-9 items-center justify-center rounded-md bg-primary text-sm font-medium text-primary-foreground" aria-current="page" aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/blog.xlf:pagination.aria.currentPage', arguments: {page: pageNumber, totalPages: totalPages})}">{pageNumber}</span>
+                        </f:then>
+                        <f:else>
+                            <a href="{f:uri.action(arguments: {currentPage: pageNumber}, addQueryString: 'untrusted')}" class="{numClass}" aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/blog.xlf:pagination.aria.goToPage', arguments: {page: pageNumber, totalPages: totalPages})}">{pageNumber}</a>
+                        </f:else>
+                    </f:if>
+                </li>
             </f:for>
 
-            <f:if condition="{pagination.morePages}">
-                <li><span class="inline-flex size-8 items-center justify-center text-muted-foreground" aria-hidden="true">…</span></li>
+            <f:if condition="{pagination.hasMorePages}">
+                <li><span class="inline-flex size-9 items-center justify-center text-muted-foreground" aria-hidden="true">&hellip;</span></li>
                 <li>
-                    <a href="{f:uri.action(arguments: {currentPage: pagination.lastPageNumber}, addQueryString: 1)}" class="inline-flex size-8 items-center justify-center rounded-lg border border-border text-muted-foreground transition-colors hover:bg-muted hover:text-foreground" aria-label="{f:translate(extensionName: 'Blog', key: 'pagination.aria.goto.page', arguments: '{0: pagination.lastPageNumber}')}">{pagination.lastPageNumber}</a>
+                    <a href="{f:uri.action(arguments: {currentPage: pagination.lastPageNumber}, addQueryString: 'untrusted')}" class="{numClass}" aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/blog.xlf:pagination.aria.goToPage', arguments: {page: pagination.lastPageNumber, totalPages: totalPages})}">{pagination.lastPageNumber}</a>
                 </li>
             </f:if>
 
-            <f:if condition="{pagination.nextPageNumber}">
-                <li>
-                    <a href="{f:uri.action(arguments: {currentPage: pagination.nextPageNumber}, addQueryString: 1)}" rel="next" class="inline-flex h-8 items-center rounded-lg border border-border px-2.5 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground" aria-label="{f:translate(extensionName: 'Blog', key: 'pagination.aria.goto.next', default: 'Next page')}">
-                        <f:translate extensionName="Blog" key="pagination.next">Next</f:translate>
-                    </a>
-                </li>
-            </f:if>
+            <li>
+                <f:if condition="{pagination.nextPageNumber}">
+                    <f:then>
+                        <a href="{f:uri.action(arguments: {currentPage: pagination.nextPageNumber}, addQueryString: 'untrusted')}" rel="next" class="{lnkClass}" aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/blog.xlf:pagination.aria.next')}">
+                            <span class="mr-1.5 hidden sm:inline"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/blog.xlf:pagination.next" /></span>
+                            <span aria-hidden="true">&rsaquo;</span>
+                        </a>
+                    </f:then>
+                    <f:else>
+                        <span class="{disabledClass}" aria-hidden="true">
+                            <span class="mr-1.5 hidden sm:inline"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/blog.xlf:pagination.next" /></span>
+                            <span>&rsaquo;</span>
+                        </span>
+                    </f:else>
+                </f:if>
+            </li>
         </ul>
     </nav>
 </f:if>

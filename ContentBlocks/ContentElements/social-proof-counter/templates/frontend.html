@@ -10,27 +10,26 @@
         <f:if condition="{data.header} || {data.subheadline}">
             <header class="social-proof-counter__intro">
                 <f:if condition="{data.header}">
-                    <h2 class="social-proof-counter__headline">{data -> f:render.text(field: 'header')}</h2>
+                    <d:atom.typography tag="h2" variant="h3" class="social-proof-counter__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
                 </f:if>
                 <f:if condition="{data.subheadline}">
-                    <p class="social-proof-counter__description">{data -> f:render.text(field: 'subheadline')}</p>
+                    <d:atom.typography variant="muted" class="social-proof-counter__description">{data -> f:render.text(field: 'subheadline')}</d:atom.typography>
                 </f:if>
             </header>
         </f:if>
 
-        <div class="social-proof-counter__row social-proof-counter__row--{data.shadcn_layout -> f:or(alternative: 'inline')}">
+        <dl class="social-proof-counter__row social-proof-counter__row--{data.shadcn_layout -> f:or(alternative: 'inline')}"
+            aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:stats.aria')}">
             <f:for each="{data.counters}" as="counter">
-                <div class="social-proof-counter__item">
+                <div class="social-proof-counter__item" data-astro-reveal="slide-up">
                     <f:if condition="{counter.icon_name} != 'none'">
-                        <div class="social-proof-counter__icon">
-                            <d:atom.icon name="{counter.icon_name}" size="xl"/>
-                        </div>
+                        <span class="social-proof-counter__icon" aria-hidden="true"><d:atom.icon name="{counter.icon_name}" size="xl"/></span>
                     </f:if>
-                    <span class="social-proof-counter__value">{counter -> f:render.text(field: 'value')}</span>
-                    <span class="social-proof-counter__label">{counter -> f:render.text(field: 'label')}</span>
+                    <dt class="social-proof-counter__label">{counter -> f:render.text(field: 'label')}</dt>
+                    <dd class="social-proof-counter__value" data-astro-counter>{counter -> f:render.text(field: 'value')}</dd>
                 </div>
             </f:for>
-        </div>
+        </dl>
     </d:layout.container>
 </d:layout.section>
 </html>

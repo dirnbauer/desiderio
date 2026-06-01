@@ -267,6 +267,9 @@
     this.initCopy(root);
     this.initTilt(root);
     this.initMarquee(root);
+    this.initCarousel(root);
+    this.initContentCarousel(root);
+    this.initCountdown(root);
     this.initBodyEvents();
   };
 
@@ -492,6 +495,301 @@
       var clone = track.cloneNode(true);
       clone.setAttribute('aria-hidden', 'true');
       element.appendChild(clone);
+    });
+  };
+
+  AstroRuntime.prototype.initCarousel = function (scope) {
+    scope.querySelectorAll('[data-astro-carousel]').forEach(function (root) {
+      if (root.dataset[readyAttr]?.includes('carousel')) {
+        return;
+      }
+
+      var slides = Array.prototype.slice.call(
+        root.querySelectorAll('[data-astro-carousel-slide]')
+      );
+
+      if (slides.length < 2) {
+        return;
+      }
+
+      root.dataset[readyAttr] = [root.dataset[readyAttr], 'carousel'].filter(Boolean).join(' ');
+      root.dataset.astroCarouselReady = 'true';
+
+      var live = root.querySelector('[data-astro-carousel-status]');
+      var index = 0;
+
+      var labels = root.dataset.astroCarouselLabels
+        ? root.dataset.astroCarouselLabels.split('|')
+        : { prev: 'Previous slide', next: 'Next slide', dot: 'Go to slide' };
+      if (Array.isArray(labels)) {
+        labels = { prev: labels[0] || 'Previous slide', next: labels[1] || 'Next slide', dot: labels[2] || 'Go to slide' };
+      }
+
+      function makeButton(cls, text) {
+        var b = document.createElement('button');
+        b.type = 'button';
+        b.className = cls;
+        b.setAttribute('aria-label', text);
+        return b;
+      }
+
+      var controls = document.createElement('div');
+      controls.className = 'hero-carousel__controls';
+
+      var prev = makeButton('hero-carousel__nav hero-carousel__nav--prev', labels.prev);
+      var next = makeButton('hero-carousel__nav hero-carousel__nav--next', labels.next);
+      prev.innerHTML = '<span aria-hidden="true">‹</span>';
+      next.innerHTML = '<span aria-hidden="true">›</span>';
+
+      var dots = document.createElement('div');
+      dots.className = 'hero-carousel__dots';
+      dots.setAttribute('role', 'tablist');
+
+      var dotButtons = slides.map(function (slide, i) {
+        var dot = makeButton('hero-carousel__dot', labels.dot + ' ' + (i + 1));
+        dot.setAttribute('role', 'tab');
+        dot.addEventListener('click', function () {
+          show(i);
+        });
+        dots.appendChild(dot);
+        return dot;
+      });
+
+      function show(i) {
+        index = (i + slides.length) % slides.length;
+        slides.forEach(function (slide, n) {
+          var active = n === index;
+          slide.classList.toggle('hero-carousel__slide--active', active);
+          slide.setAttribute('aria-hidden', active ? 'false' : 'true');
+          slide.toggleAttribute('inert', !active);
+        });
+        dotButtons.forEach(function (dot, n) {
+          var active = n === index;
+          dot.setAttribute('aria-selected', active ? 'true' : 'false');
+          dot.tabIndex = active ? 0 : -1;
+        });
+        if (live) {
+          live.textContent = 'Slide ' + (index + 1) + ' of ' + slides.length;
+        }
+      }
+
+      prev.addEventListener('click', function () {
+        show(index - 1);
+      });
+      next.addEventListener('click', function () {
+        show(index + 1);
+      });
+
+      root.addEventListener('keydown', function (event) {
+        if (event.key === 'ArrowLeft') {
+          show(index - 1);
+        } else if (event.key === 'ArrowRight') {
+          show(index + 1);
+        }
+      });
+
+      controls.appendChild(prev);
+      controls.appendChild(dots);
+      controls.appendChild(next);
+      root.appendChild(controls);
+
+      show(0);
+    });
+  };
+
+  AstroRuntime.prototype.initContentCarousel = function (scope) {
+    scope.querySelectorAll('[data-astro-content-carousel]').forEach(function (root) {
+      if (root.dataset[readyAttr]?.includes('contentCarousel')) {
+        return;
+      }
+
+      var track = root.querySelector('[data-astro-content-carousel-track]');
+      var slides = track
+        ? Array.prototype.slice.call(track.querySelectorAll('.content-carousel__slide'))
+        : [];
+
+      if (!track || slides.length < 2) {
+        return;
+      }
+
+      root.dataset[readyAttr] = [root.dataset[readyAttr], 'contentCarousel'].filter(Boolean).join(' ');
+
+      var prev = root.querySelector('[data-astro-content-carousel-prev]');
+      var next = root.querySelector('[data-astro-content-carousel-next]');
+      var dots = Array.prototype.slice.call(root.querySelectorAll('[data-astro-content-carousel-dot]'));
+      var thumbs = Array.prototype.slice.call(root.querySelectorAll('[data-astro-content-carousel-thumb]'));
+      var status = root.querySelector('[data-astro-content-carousel-status]');
+      var total = slides.length;
+      var index = 0;
+
+      function scrollToIndex(i) {
+        var target = slides[Math.max(0, Math.min(total - 1, i))];
+        if (!target) {
+          return;
+        }
+        var behavior = reducedMotion() ? 'auto' : 'smooth';
+        track.scrollTo({ left: target.offsetLeft - track.offsetLeft, behavior: behavior });
+      }
+
+      function syncActive(active) {
+        index = active;
+        slides.forEach(function (slide, n) {
+          slide.classList.toggle('content-carousel__slide--active', n === active);
+        });
+        [dots, thumbs].forEach(function (group) {
+          group.forEach(function (control, n) {
+            var on = n === active;
+            control.classList.toggle('content-carousel__dot--active', on && control.classList.contains('content-carousel__dot'));
+            control.classList.toggle('content-carousel__thumb--active', on && control.classList.contains('content-carousel__thumb'));
+            control.setAttribute('aria-current', on ? 'true' : 'false');
+          });
+        });
+        if (status) {
+          status.textContent = 'Slide ' + (active + 1) + ' of ' + total;
+        }
+      }
+
+      function closestSlide() {
+        var center = track.scrollLeft + track.clientWidth / 2;
+        var best = 0;
+        var bestDistance = Infinity;
+        slides.forEach(function (slide, n) {
+          var slideCenter = slide.offsetLeft - track.offsetLeft + slide.offsetWidth / 2;
+          var distance = Math.abs(slideCenter - center);
+          if (distance < bestDistance) {
+            bestDistance = distance;
+            best = n;
+          }
+        });
+        return best;
+      }
+
+      if (prev) {
+        prev.addEventListener('click', function () {
+          scrollToIndex(index - 1);
+        });
+      }
+      if (next) {
+        next.addEventListener('click', function () {
+          scrollToIndex(index + 1);
+        });
+      }
+
+      function bindControl(control, i) {
+        control.addEventListener('click', function () {
+          scrollToIndex(i);
+        });
+      }
+      dots.forEach(bindControl);
+      thumbs.forEach(bindControl);
+
+      var scrollFrame = null;
+      track.addEventListener('scroll', function () {
+        if (scrollFrame) {
+          return;
+        }
+        scrollFrame = window.requestAnimationFrame(function () {
+          scrollFrame = null;
+          var current = closestSlide();
+          if (current !== index) {
+            syncActive(current);
+          }
+        });
+      });
+
+      var autoplay = root.dataset.astroContentCarouselAutoplay === 'true' && !reducedMotion();
+      if (autoplay) {
+        var interval = parseInt(root.dataset.astroContentCarouselInterval, 10);
+        if (isNaN(interval) || interval < 1000) {
+          interval = 5000;
+        }
+        var timer = null;
+        var advance = function () {
+          scrollToIndex(index + 1 >= total ? 0 : index + 1);
+        };
+        var play = function () {
+          if (!timer) {
+            timer = window.setInterval(advance, interval);
+          }
+        };
+        var pause = function () {
+          if (timer) {
+            window.clearInterval(timer);
+            timer = null;
+          }
+        };
+        root.addEventListener('mouseenter', pause);
+        root.addEventListener('mouseleave', play);
+        root.addEventListener('focusin', pause);
+        root.addEventListener('focusout', play);
+        document.addEventListener('visibilitychange', function () {
+          if (document.hidden) {
+            pause();
+          } else {
+            play();
+          }
+        });
+        play();
+      }
+
+      syncActive(0);
+    });
+  };
+
+  AstroRuntime.prototype.initCountdown = function (scope) {
+    scope.querySelectorAll('[data-astro-countdown]').forEach(function (root) {
+      if (root.dataset[readyAttr]?.includes('countdown')) {
+        return;
+      }
+
+      var target = Date.parse(root.dataset.astroCountdown || '');
+
+      if (isNaN(target)) {
+        return;
+      }
+
+      root.dataset[readyAttr] = [root.dataset[readyAttr], 'countdown'].filter(Boolean).join(' ');
+
+      var units = {
+        days: root.querySelector('[data-astro-countdown-days]'),
+        hours: root.querySelector('[data-astro-countdown-hours]'),
+        minutes: root.querySelector('[data-astro-countdown-minutes]'),
+        seconds: root.querySelector('[data-astro-countdown-seconds]')
+      };
+
+      function pad(n) {
+        return String(n).padStart(2, '0');
+      }
+
+      function tick() {
+        var diff = Math.max(0, target - Date.now());
+        var totalSeconds = Math.floor(diff / 1000);
+        var days = Math.floor(totalSeconds / 86400);
+        var hours = Math.floor((totalSeconds % 86400) / 3600);
+        var minutes = Math.floor((totalSeconds % 3600) / 60);
+        var seconds = totalSeconds % 60;
+
+        if (units.days) {
+          units.days.textContent = pad(days);
+        }
+        if (units.hours) {
+          units.hours.textContent = pad(hours);
+        }
+        if (units.minutes) {
+          units.minutes.textContent = pad(minutes);
+        }
+        if (units.seconds) {
+          units.seconds.textContent = pad(seconds);
+        }
+
+        if (diff <= 0 && root.dataset.astroCountdownTimer) {
+          window.clearInterval(Number(root.dataset.astroCountdownTimer));
+          root.dataset.astroExpired = 'true';
+        }
+      }
+
+      tick();
+      root.dataset.astroCountdownTimer = String(window.setInterval(tick, 1000));
     });
   };
 

@@ -6,10 +6,13 @@
 <d:layout.section class="data-table-section">
     <d:layout.container>
         <f:if condition="{data.header}">
-            <d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography>
+            <d:atom.typography tag="h2" variant="h2" class="mb-6">{data -> f:render.text(field: 'header')}</d:atom.typography>
         </f:if>
 
         <d:molecule.table>
+            <f:if condition="{data.show_caption} && {data.caption_text}">
+                <caption class="mt-3 text-left text-sm text-muted-foreground">{data -> f:render.text(field: 'caption_text')}</caption>
+            </f:if>
             <f:if condition="{data.show_header_row} && {data.column_definitions}">
                 <d:molecule.tableHeader>
                     <d:molecule.tableRow>
@@ -30,17 +33,22 @@
                 <f:for each="{data.rows}" as="row">
                     <d:molecule.tableRow>
                         <f:if condition="{row.row_label}">
-                            <d:molecule.tableCell class="font-medium">{row -> f:render.text(field: 'row_label')}</d:molecule.tableCell>
+                            <d:molecule.tableCell class="font-medium text-foreground">{row -> f:render.text(field: 'row_label')}</d:molecule.tableCell>
                         </f:if>
-                        <f:for each="{row.cells}" as="cell">
-                            <d:molecule.tableCell>{cell -> f:render.text(field: 'value')}</d:molecule.tableCell>
+                        <f:for each="{row.cells}" as="cell" iteration="cellIter">
+                            <f:variable name="columnIndex" value="{cellIter.index + 1}" />
+                            <f:variable name="cellAlignClass">
+                                <f:switch expression="{data.column_definitions.{columnIndex}.column_align}">
+                                    <f:case value="center">text-center</f:case>
+                                    <f:case value="right">text-right tabular-nums</f:case>
+                                    <f:defaultCase>text-left</f:defaultCase>
+                                </f:switch>
+                            </f:variable>
+                            <d:molecule.tableCell class="{cellAlignClass -> f:format.trim()}">{cell -> f:render.text(field: 'value')}</d:molecule.tableCell>
                         </f:for>
                     </d:molecule.tableRow>
                 </f:for>
             </tbody>
-            <f:if condition="{data.show_caption} && {data.caption_text}">
-                <caption class="mt-2 text-sm text-muted-foreground">{data -> f:render.text(field: 'caption_text')}</caption>
-            </f:if>
         </d:molecule.table>
     </d:layout.container>
 </d:layout.section>

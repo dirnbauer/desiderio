@@ -13,17 +13,21 @@
 <f:section name="Main">
     <div class="desiderio-dashboard-template desiderio-dashboard-sidebar">
         <d:layout.container size="full" class="desiderio-dashboard-template__container">
-            <f:render partial="Presets/DashboardRail" arguments="{title: breadcrumb.0.title, mainMenu: mainMenu}"/>
-            <section class="desiderio-dashboard-template__content" aria-label="{page.pageRecord.title}">
+            <f:render partial="Presets/DashboardRail" arguments="{title: breadcrumb.0.title, mainMenu: mainMenu, homeLink: breadcrumb.0.link}"/>
+            <section class="desiderio-dashboard-template__content" aria-labelledby="desiderio-dashboard-heading">
                 <div class="desiderio-dashboard-template__toolbar">
-                    <p class="desiderio-dashboard-template__eyebrow">Workspace</p>
-                    <h1>{page.pageRecord.title}</h1>
+                    <f:render partial="Presets/DashboardBreadcrumb" arguments="{breadcrumb: breadcrumb}"/>
+                    <p class="desiderio-dashboard-template__eyebrow">{f:translate(extensionName: 'desiderio', key: 'dashboard.eyebrow.workspace', default: 'Workspace')}</p>
+                    <h1 id="desiderio-dashboard-heading">{page.pageRecord.title}</h1>
+                    <f:if condition="{page.pageRecord.abstract}">
+                        <p class="desiderio-dashboard-template__lede">{page.pageRecord.abstract}</p>
+                    </f:if>
                 </div>
                 <div class="desiderio-dashboard-template__canvas desiderio-dashboard-sidebar__layout">
-                    <div class="desiderio-dashboard-sidebar__main">
+                    <div class="desiderio-dashboard-sidebar__main" aria-label="{f:translate(extensionName: 'desiderio', key: 'dashboard.region.metrics', default: 'Key metrics and reports')}">
                         <f:render partial="Presets/ContentArea" arguments="{content: content.main}"/>
                     </div>
-                    <aside class="desiderio-dashboard-sidebar__aside">
+                    <aside class="desiderio-dashboard-sidebar__aside" aria-label="{f:translate(extensionName: 'desiderio', key: 'dashboard.region.activity', default: 'Activity and alerts')}">
                         <f:render partial="Presets/ContentArea" arguments="{content: content.sidebar}"/>
                     </aside>
                 </div>

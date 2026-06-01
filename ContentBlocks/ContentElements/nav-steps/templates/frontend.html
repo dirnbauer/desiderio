@@ -10,16 +10,20 @@
         <nav class="nav-steps__inner" aria-label="{data.header -> f:or(alternative: 'Progress steps')}">
             <ol class="nav-steps__list">
                 <f:for each="{data.step_items}" as="step" iteration="iterator">
-                    <li class="nav-steps__item nav-steps__item--{step.status -> f:or(alternative: 'pending')}">
-                        <span class="nav-steps__indicator">{iterator.cycle}</span>
+                    <f:variable name="stepStatus">{step.status -> f:or(alternative: 'pending')}</f:variable>
+                    <li class="nav-steps__item nav-steps__item--{stepStatus}"<f:if condition="{stepStatus} == 'current'"> aria-current="step"</f:if>>
+                        <span class="nav-steps__indicator" aria-hidden="true">
+                            <f:if condition="{stepStatus} == 'completed'">
+                                <f:then>&#10003;</f:then>
+                                <f:else>{iterator.cycle}</f:else>
+                            </f:if>
+                        </span>
                         <f:if condition="{step.link.url}">
                             <f:then>
-                                <f:link.typolink parameter="{step.link}" class="nav-steps__label nav-steps__link">
-                                    {step -> f:render.text(field: 'label')}
-                                </f:link.typolink>
+                                <f:link.typolink parameter="{step.link}" class="nav-steps__label nav-steps__link">{step -> f:render.text(field: 'label')}<f:if condition="{stepStatus} == 'completed'"><span class="sr-only"> (completed)</span></f:if><f:if condition="{stepStatus} == 'current'"><span class="sr-only"> (current step)</span></f:if></f:link.typolink>
                             </f:then>
                             <f:else>
-                                <span class="nav-steps__label">{step -> f:render.text(field: 'label')}</span>
+                                <span class="nav-steps__label">{step -> f:render.text(field: 'label')}<f:if condition="{stepStatus} == 'current'"><span class="sr-only"> (current step)</span></f:if></span>
                             </f:else>
                         </f:if>
                     </li>

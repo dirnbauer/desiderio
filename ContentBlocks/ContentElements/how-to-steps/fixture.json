@@ -1,19 +1,23 @@
 {
     "_type": "list",
-    "header": "How-to Steps for polished editorial systems",
-    "description": "Keep supporting media and copy calm, scannable, and ready to publish.",
+    "header": "Publish your first changelog in four steps",
+    "description": "A quick setup path from connecting your repository to sharing a polished, on-brand release note with your users.",
     "items": [
         {
-            "title": "How-to Steps for polished editorial systems",
-            "content": "Use practical metadata and compact summaries so previews stay easy to compare."
+            "title": "Connect your repository",
+            "content": "Link GitHub, GitLab, or Bitbucket with one click. Desiderio reads merged pull requests and labels automatically — no scripts or webhooks to configure."
         },
         {
-            "title": "How-to Steps for polished editorial systems",
-            "content": "Keep supporting media and copy calm, scannable, and ready to publish."
+            "title": "Generate a draft from your merges",
+            "content": "Pick a date range or milestone and let the AI group changes into Added, Fixed, and Improved. You get an editable draft in plain language, not commit messages."
         },
         {
-            "title": "How-to Steps for polished editorial systems",
-            "content": "Lead with a clear story, one useful detail, and a calm reading rhythm."
+            "title": "Edit and match your brand",
+            "content": "Refine the copy in the editor, drop in screenshots, and apply your colors and logo. Reusable templates keep every release consistent."
+        },
+        {
+            "title": "Publish and notify",
+            "content": "Push the changelog to your hosted page, embed widget, or RSS feed, and email subscribers in the same step. Schedule it or ship it instantly."
         }
     ]
 }

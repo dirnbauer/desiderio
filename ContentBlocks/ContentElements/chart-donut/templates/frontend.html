@@ -5,29 +5,32 @@
 
 <f:asset.css identifier="d-chart-donut" href="{cb:assetPath()}/frontend.css"/>
 
-<section class="py-8 md:py-12">
-    <div class="container mx-auto px-4">
-        <div data-ce="chart-donut"
+<d:layout.section class="chart-donut-section">
+    <d:layout.container>
+        <figure class="chart-donut"
+             data-ce="chart-donut"
              data-chart-data="{data.chart_data -> f:format.htmlspecialchars()}"
              data-show-legend="{f:if(condition: data.show_legend, then: 'true', else: 'false')}"
              data-center-label="{data.center_label}"
-             data-center-value="{data.center_value}"
-             class="mx-auto max-w-xl rounded-lg border bg-card text-card-foreground shadow-sm">
-            <f:if condition="{data.header} || {data.description}">
-                <div class="flex flex-col gap-1.5 p-6">
-                    <f:if condition="{data.header}">
-                        <h3 class="text-lg font-semibold leading-none tracking-tight">{data -> f:render.text(field: 'header')}</h3>
-                    </f:if>
-                    <f:if condition="{data.description}">
-                        <p class="text-sm text-muted-foreground">{data -> f:render.text(field: 'description')}</p>
-                    </f:if>
+             data-center-value="{data.center_value}">
+            <div class="chart-donut__card">
+                <f:if condition="{data.header} || {data.description}">
+                    <header class="chart-donut__header">
+                        <f:if condition="{data.header}">
+                            <h3 class="chart-donut__title">{data -> f:render.text(field: 'header')}</h3>
+                        </f:if>
+                        <f:if condition="{data.description}">
+                            <p class="chart-donut__description">{data -> f:render.text(field: 'description')}</p>
+                        </f:if>
+                    </header>
+                </f:if>
+                <div class="chart-donut__content">
+                    <div data-chart-donut-canvas class="chart-donut__canvas" role="img"
+                         aria-label="{f:if(condition: data.header, then: '{data.header}', else: 'Donut chart')}{f:if(condition: data.description, then: '. {data.description}')}{f:if(condition: data.center_value, then: '. {data.center_value} {data.center_label}')}"></div>
                 </div>
-            </f:if>
-            <div class="p-6 pt-0">
-                <div data-chart-donut-canvas class="flex min-h-[300px] items-center justify-center"></div>
             </div>
-        </div>
-    </div>
-</section>
+        </figure>
+    </d:layout.container>
+</d:layout.section>
 
 </html>

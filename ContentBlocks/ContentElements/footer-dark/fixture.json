@@ -1,15 +1,33 @@
 {
     "_type": "footer",
+    "header": "Northwind site footer",
+    "brand": "Northwind",
+    "description": "Analytics that product teams actually read. Ship faster with metrics your whole company trusts.",
     "column_items": [
         {
-            "title": "Dark Footer for refined utility areas"
+            "title": "Product",
+            "link_1_label": "Features",
+            "link_2_label": "Integrations",
+            "link_3_label": "Pricing",
+            "link_4_label": "Changelog",
+            "link_5_label": "Roadmap"
         },
         {
-            "title": "Dark Footer for refined utility areas"
+            "title": "Company",
+            "link_1_label": "About us",
+            "link_2_label": "Careers",
+            "link_3_label": "Blog",
+            "link_4_label": "Customers",
+            "link_5_label": "Contact"
         },
         {
-            "title": "Dark Footer for refined utility areas"
+            "title": "Resources",
+            "link_1_label": "Documentation",
+            "link_2_label": "API reference",
+            "link_3_label": "Status page",
+            "link_4_label": "Security",
+            "link_5_label": "Privacy policy"
         }
     ],
-    "copyright": "Helpful service links, legal context, and brand details stay readable across footer layouts."
+    "copyright": "© 2026 Northwind Analytics Inc. All rights reserved."
 }

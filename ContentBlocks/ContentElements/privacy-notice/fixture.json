@@ -1,11 +1,28 @@
 {
     "_type": "footer",
+    "header": "Privacy notice",
+    "intro": "This notice explains what personal data we collect, why we collect it, and the choices you have. We only process data that we genuinely need, and we never sell it.",
+    "last_updated": "12 May 2026",
     "sections": [
         {
-            "title": "Privacy Notice for refined utility areas"
+            "title": "What we collect",
+            "content": "<p>We collect the information you give us directly, such as your name, email address, and account settings. We also collect basic technical data automatically, including your IP address, browser type, and the pages you visit.</p>"
         },
         {
-            "title": "Privacy Notice for refined utility areas"
+            "title": "How we use your data",
+            "content": "<p>Your data helps us provide, secure, and improve the service. Specifically, we use it to:</p><ul><li>Authenticate your account and keep it secure</li><li>Send service updates and respond to support requests</li><li>Measure performance and fix problems</li></ul>"
+        },
+        {
+            "title": "Cookies and tracking",
+            "content": "<p>We use strictly necessary cookies to keep you signed in. Analytics cookies are optional and load only after you accept them. You can change your choice at any time from the cookie settings link in the footer.</p>"
+        },
+        {
+            "title": "Your rights",
+            "content": "<p>You can access, correct, export, or delete your personal data at any time. To exercise any of these rights, email our privacy team and we will respond within 30 days, as required by the GDPR.</p>"
+        },
+        {
+            "title": "Contact us",
+            "content": "<p>Questions about this notice or your data? Write to <strong>privacy@example.com</strong> or to our postal address listed in the imprint. We aim to reply within two business days.</p>"
         }
     ]
 }

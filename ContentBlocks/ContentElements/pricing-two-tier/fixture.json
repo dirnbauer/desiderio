@@ -1,36 +1,36 @@
 {
     "_type": "pricing",
-    "header": "Two Tier Pricing for confident plan comparison",
-    "eyebrow": "Modern import",
-    "subheadline": "Help buyers compare plans with crisp values and direct feature language.",
+    "header": "Simple pricing for every stage",
+    "eyebrow": "Pricing",
+    "subheadline": "Start solo, upgrade when your team grows. No setup fees, cancel anytime.",
     "plans": [
         {
-            "title": "Two Tier Pricing for confident plan comparison",
-            "price": "$19",
-            "description": "Help buyers compare plans with crisp values and direct feature language.",
+            "title": "Pro",
+            "price": "$29/mo",
+            "description": "Everything one maker needs to launch and grow.",
             "features": [
-                "Accessible keyboard focus patterns",
-                "Responsive cards tuned for concise content",
-                "Editor-friendly TYPO3 Content Blocks",
-                "Modern Unsplash imagery in the import seed"
+                "Unlimited projects",
+                "50,000 monthly visitors",
+                "Custom domain included",
+                "Priority email support"
             ],
-            "button_text": "Compare states",
-            "button_link": "https://ui.shadcn.com/docs/two-tier-pricing",
+            "button_text": "Start free trial",
+            "button_link": "https://ui.shadcn.com/docs",
             "featured": false
         },
         {
-            "title": "Two Tier Pricing for confident plan comparison",
-            "price": "$49",
-            "description": "Show pricing states with practical labels and scannable benefits.",
+            "title": "Team",
+            "price": "$79/mo",
+            "description": "Shared workspaces and controls for growing teams.",
             "features": [
-                "Accessible keyboard focus patterns",
-                "Responsive cards tuned for concise content",
-                "Editor-friendly TYPO3 Content Blocks",
-                "Modern Unsplash imagery in the import seed",
-                "Compact shadcn spacing and borders"
+                "Everything in Pro",
+                "Unlimited team members",
+                "Roles and permissions",
+                "SSO and audit logs",
+                "Dedicated success manager"
             ],
-            "button_text": "Get the checklist",
-            "button_link": "https://ui.shadcn.com/docs/two-tier-pricing",
+            "button_text": "Start free trial",
+            "button_link": "https://ui.shadcn.com/docs",
             "featured": true
         }
     ]

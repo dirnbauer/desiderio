@@ -1,5 +1,25 @@
 {
     "_type": "hero",
-    "header": "Carousel Hero for sleek launch moments",
-    "subheadline": "Open with a clear promise, credible media, and one obvious next action."
+    "header": "One workflow, every release update",
+    "subheadline": "See how teams use Desiderio to turn shipped code into customer-ready changelogs, in-app notes, and email digests.",
+    "slides": [
+        {
+            "title": "Draft release notes from merged PRs",
+            "description": "Desiderio reads your merged pull requests and writes a clear, on-brand changelog you can approve in one pass.",
+            "button_text": "See it in action",
+            "button_link": "t3://page?uid=1"
+        },
+        {
+            "title": "Publish to every channel at once",
+            "description": "Push the same update to your changelog page, in-app widget, and email digest without rewriting a word.",
+            "button_text": "Explore channels",
+            "button_link": "t3://page?uid=1"
+        },
+        {
+            "title": "Keep your voice, every release",
+            "description": "Train Desiderio on past notes so every update sounds like your team wrote it, not a generic AI.",
+            "button_text": "Read the docs",
+            "button_link": "t3://page?uid=1"
+        }
+    ]
 }

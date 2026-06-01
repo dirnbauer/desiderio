@@ -5,7 +5,10 @@
 
 <f:asset.css identifier="d-footer-split" href="{cb:assetPath()}/frontend.css"/>
 
-<footer class="footer-split" aria-label="{data.header -> f:or(alternative: 'Footer')}">
+<f:variable name="footerLabelFallback">{f:translate(key: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/footer-split/language/labels.xlf:footer_label', default: 'Footer')}</f:variable>
+<f:variable name="navLabelFallback">{f:translate(key: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/footer-split/language/labels.xlf:nav_label', default: 'Footer links')}</f:variable>
+
+<footer class="footer-split" aria-label="{data.header -> f:or(alternative: '{footerLabelFallback}')}">
     <d:layout.container>
         <div class="footer-split__inner">
             <div class="footer-split__left">
@@ -20,13 +23,13 @@
                 </f:if>
             </div>
             <f:if condition="{data.link_items}">
-                <nav class="footer-split__right" aria-label="Footer links">
+                <nav class="footer-split__right" aria-label="{navLabelFallback}">
                     <ul class="footer-split__links">
                         <f:for each="{data.link_items}" as="item">
                             <li>
                                 <f:if condition="{item.link}">
                                     <f:then><f:link.typolink parameter="{item.link}" class="footer-split__link">{item -> f:render.text(field: 'label')}</f:link.typolink></f:then>
-                                    <f:else><span class="footer-split__link">{item -> f:render.text(field: 'label')}</span></f:else>
+                                    <f:else><span class="footer-split__link footer-split__link--static">{item -> f:render.text(field: 'label')}</span></f:else>
                                 </f:if>
                             </li>
                         </f:for>

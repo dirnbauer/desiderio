@@ -23,23 +23,27 @@ fields:
     type: Collection
     table: feature_stats_items
     prefixField: true
-    label: Stats
-    minItems: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:stats'
+    minItems: 2
+    maxItems: 4
     fields:
       -
         identifier: value
         type: Textarea
         rows: 1
-        label: 'Stat Value'
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:value'
+        description: 'The large scannable figure, e.g. 99.9%, 40hrs, 4,200, 2x.'
         required: true
       -
         identifier: label
         type: Textarea
         rows: 1
-        label: 'Stat Label'
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:label'
+        description: 'Short 2-5 word name for what the figure measures.'
         required: true
       -
         identifier: description_text
         type: Textarea
         rows: 1
-        label: 'Supporting Text'
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:supporting_text'
+        description: 'Optional one line of context that anchors the number (who, where).'

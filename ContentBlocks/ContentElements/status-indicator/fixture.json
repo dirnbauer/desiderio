@@ -1,18 +1,27 @@
 {
     "_type": "stats",
-    "header": "Status Indicator Data View for live product intelligence",
+    "header": "System status",
+    "overall_status": "degraded",
     "items": [
         {
-            "name": "Sofia Berg"
+            "name": "API & SDK",
+            "status": "operational",
+            "detail": "All endpoints responding normally"
         },
         {
-            "name": "Noah Ritter"
+            "name": "Web dashboard",
+            "status": "operational",
+            "detail": "No issues reported"
         },
         {
-            "name": "Lea Fischer"
+            "name": "Webhooks & integrations",
+            "status": "degraded",
+            "detail": "Delivery delays of up to 5 minutes"
         },
         {
-            "name": "Mara Weiss"
+            "name": "Background jobs",
+            "status": "maintenance",
+            "detail": "Scheduled upgrade until 14:00 UTC"
         }
     ]
 }

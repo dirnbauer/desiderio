@@ -1,52 +1,76 @@
 {
     "_type": "pricing",
-    "header": "Comparison Pricing for confident plan comparison",
-    "eyebrow": "Modern import",
+    "eyebrow": "Compare plans",
+    "header": "Find the plan that fits your team",
     "plans": [
         {
-            "name": "Noah Ritter",
-            "price": "$19"
+            "name": "Starter",
+            "price": "Free"
         },
         {
-            "name": "Lea Fischer",
-            "price": "$49"
+            "name": "Pro",
+            "price": "$29/mo"
         },
         {
-            "name": "Mara Weiss",
-            "price": "$99"
+            "name": "Enterprise",
+            "price": "Custom"
         }
     ],
     "pricing_feature_items": [
         {
-            "feature_name": "Token-based hierarchy\nProduction-ready spacing",
+            "feature_name": "Active projects",
             "tier_values": [
-                "Included",
-                "Advanced",
-                "Priority"
+                "3",
+                "Unlimited",
+                "Unlimited"
             ]
         },
         {
-            "feature_name": "Production-ready spacing",
+            "feature_name": "Media storage",
             "tier_values": [
-                "Included",
-                "Advanced",
-                "Priority"
+                "5 GB",
+                "100 GB",
+                "Unlimited"
             ]
         },
         {
-            "feature_name": "Theme-aware states\nResponsive review content\nModern Unsplash media",
+            "feature_name": "Team members",
             "tier_values": [
-                "Included",
-                "Advanced",
-                "Priority"
+                "1",
+                "Up to 20",
+                "Unlimited"
             ]
         },
         {
-            "feature_name": "Responsive review content\nModern Unsplash media\nAccessible focus behavior",
+            "feature_name": "Advanced analytics",
             "tier_values": [
+                "—",
                 "Included",
-                "Advanced",
-                "Priority"
+                "Included"
+            ]
+        },
+        {
+            "feature_name": "SSO and SCIM",
+            "tier_values": [
+                "—",
+                "—",
+                "Included"
+            ]
+        },
+        {
+            "feature_name": "Priority support",
+            "tier_values": [
+                "Community",
+                "Email",
+                "Dedicated"
+            ]
+        },
+        {
+            "feature_name": "Uptime SLA",
+            "tier_values": [
+                "—",
+                "99.5%",
+                "99.9%"
             ]
         }
     ]

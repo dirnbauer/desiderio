@@ -21,13 +21,13 @@ fields:
   -
     identifier: subheadline
     type: Textarea
-    label: 'Section Subheadline'
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:subheadline'
     rows: 2
   -
     identifier: columns
     type: Select
     renderType: selectSingle
-    label: 'Stat Columns'
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:stat_columns'
     items:
       -
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.2_columns'
@@ -44,7 +44,7 @@ fields:
     type: Collection
     table: stats_stats
     prefixField: true
-    label: Stats
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:stats'
     minItems: 1
     fields:
       -
@@ -52,15 +52,18 @@ fields:
         type: Textarea
         rows: 1
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:value'
+        description: 'The large scannable figure, e.g. 99.9%, 2M+, 40hrs.'
         required: true
       -
         identifier: label
         type: Textarea
         rows: 1
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:label_field'
+        description: 'Short 2-5 word name for what the figure measures.'
         required: true
       -
         identifier: description
         type: Textarea
-        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:stat_description'
+        description: 'Optional one line that anchors the number to who or where.'
         rows: 2

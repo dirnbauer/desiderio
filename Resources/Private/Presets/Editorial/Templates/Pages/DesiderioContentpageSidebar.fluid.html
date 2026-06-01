@@ -7,21 +7,28 @@
 <f:layout name="Pages/Default"/>
 
 <f:section name="Stage">
-    <f:render partial="Presets/Stage" arguments="{content: content.stage, class: 'desiderio-editorial-template__stage', containerSize: 'md'}"/>
+    <f:render partial="Presets/Stage" arguments="{content: content.stage, class: 'desiderio-editorial-template__stage', containerSize: 'lg'}"/>
 </f:section>
 
 <f:section name="Main">
-    <article class="desiderio-editorial-template desiderio-editorial-sidebar">
+    <article class="desiderio-editorial-template desiderio-editorial-sidebar" itemscope="itemscope" itemtype="https://schema.org/Article">
         <d:layout.container size="lg">
-            <header class="desiderio-editorial-template__header">
-                <p class="desiderio-editorial-template__eyebrow">{breadcrumb.0.title}</p>
-                <h1>{page.pageRecord.title}</h1>
-            </header>
+            <f:render
+                partial="Presets/EditorialArticleHeader"
+                arguments="{
+                    breadcrumb: breadcrumb,
+                    title: page.pageRecord.title,
+                    deck: page.pageRecord.abstract,
+                    author: page.pageRecord.author,
+                    date: page.pageRecord.lastUpdated -> f:or(alternative: page.pageRecord.crdate)
+                }"
+            />
+
             <div class="desiderio-editorial-sidebar__layout">
-                <div class="desiderio-editorial-template__content">
+                <div class="desiderio-editorial-template__content" itemprop="articleBody">
                     <f:render partial="Presets/ContentArea" arguments="{content: content.main}"/>
                 </div>
-                <aside class="desiderio-editorial-sidebar__aside">
+                <aside class="desiderio-editorial-sidebar__aside" aria-label="{f:translate(extensionName: 'desiderio', key: 'editorial.aside.label', default: 'Article tools and related reading')}">
                     <f:render partial="Presets/ContentArea" arguments="{content: content.sidebar}"/>
                 </aside>
             </div>

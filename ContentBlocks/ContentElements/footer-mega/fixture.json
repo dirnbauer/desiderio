@@ -1,18 +1,42 @@
 {
     "_type": "footer",
+    "header": "Northwind site footer",
+    "brand": "Northwind",
+    "description": "The analytics platform for product teams. Turn raw events into decisions your whole company can act on.",
+    "newsletter_label": "Get the monthly product digest",
     "column_items": [
         {
-            "title": "Mega Footer for refined utility areas"
+            "title": "Product",
+            "link_1_label": "Features",
+            "link_2_label": "Integrations",
+            "link_3_label": "Pricing",
+            "link_4_label": "Changelog",
+            "link_5_label": "Roadmap"
         },
         {
-            "title": "Mega Footer for refined utility areas"
+            "title": "Solutions",
+            "link_1_label": "For startups",
+            "link_2_label": "For enterprise",
+            "link_3_label": "For agencies",
+            "link_4_label": "For marketing",
+            "link_5_label": "For product teams"
         },
         {
-            "title": "Mega Footer for refined utility areas"
+            "title": "Resources",
+            "link_1_label": "Documentation",
+            "link_2_label": "API reference",
+            "link_3_label": "Guides",
+            "link_4_label": "Status page",
+            "link_5_label": "Community"
         },
         {
-            "title": "Mega Footer for refined utility areas"
+            "title": "Company",
+            "link_1_label": "About us",
+            "link_2_label": "Careers",
+            "link_3_label": "Blog",
+            "link_4_label": "Security",
+            "link_5_label": "Contact"
         }
     ],
-    "copyright": "Helpful service links, legal context, and brand details stay readable across footer layouts."
+    "copyright": "© 2026 Northwind Analytics Inc. All rights reserved."
 }

@@ -1,27 +1,27 @@
 .callout {
     border-radius: var(--d-radius-lg);
     padding: var(--d-spacing-lg);
-    border-left: 4px solid;
+    border-inline-start: 4px solid var(--border);
 }
 .callout--info {
     background: var(--d-info-muted);
-    border-left-color: var(--d-info);
+    border-inline-start-color: var(--d-info);
 }
 .callout--warning {
     background: var(--d-warning-muted);
-    border-left-color: var(--d-warning);
+    border-inline-start-color: var(--d-warning);
 }
 .callout--success {
     background: var(--d-success-muted);
-    border-left-color: var(--d-success);
+    border-inline-start-color: var(--d-success);
 }
 .callout--danger {
     background: var(--d-danger-muted);
-    border-left-color: var(--destructive);
+    border-inline-start-color: var(--d-danger);
 }
 .callout--note {
     background: var(--muted);
-    border-left-color: var(--border);
+    border-inline-start-color: var(--border);
 }
 .callout__title {
     font-weight: 600;

@@ -1,53 +1,54 @@
 {
     "_type": "pricing",
-    "header": "Three Tier Pricing for confident plan comparison",
-    "eyebrow": "Modern import",
-    "subheadline": "Help buyers compare plans with crisp values and direct feature language.",
+    "header": "Simple, transparent pricing",
+    "eyebrow": "Pricing",
+    "subheadline": "Start free, upgrade when you grow. No hidden fees and you can cancel anytime.",
     "plans": [
         {
-            "name": "Lea Fischer",
+            "name": "Starter",
             "price": "$19",
             "billing_period": "/month",
-            "description": "Show pricing states with practical labels and scannable benefits.",
+            "description": "For individuals and small side projects.",
             "features": [
-                "Production-ready empty and loaded states",
-                "Token-aware light and dark states",
-                "Accessible keyboard focus patterns",
-                "Responsive cards tuned for concise content"
+                "3 editor seats",
+                "Unlimited projects",
+                "Email support",
+                "25 GB asset storage"
             ],
-            "button_text": "Get the checklist",
+            "button_text": "Start free",
             "button_link": "https://ui.shadcn.com/docs/three-tier-pricing",
             "is_recommended": false
         },
         {
-            "name": "Mara Weiss",
+            "name": "Pro",
             "price": "$49",
             "billing_period": "/month",
-            "description": "Keep plan comparison compact across desktop tables and mobile cards.",
+            "description": "For growing teams that publish every week.",
             "features": [
-                "Production-ready empty and loaded states",
-                "Token-aware light and dark states",
-                "Accessible keyboard focus patterns",
-                "Responsive cards tuned for concise content",
-                "Editor-friendly TYPO3 Content Blocks"
+                "10 editor seats",
+                "Unlimited projects",
+                "Priority support",
+                "100 GB asset storage",
+                "Roles and permissions",
+                "Scheduled publishing"
             ],
-            "button_text": "Start review",
+            "button_text": "Choose Pro",
             "button_link": "https://ui.shadcn.com/docs/three-tier-pricing",
             "is_recommended": true
         },
         {
-            "name": "Jonas Klein",
+            "name": "Enterprise",
             "price": "$99",
             "billing_period": "/month",
-            "description": "Help buyers compare plans with crisp values and direct feature language.",
+            "description": "For organisations with security and scale needs.",
             "features": [
-                "Production-ready empty and loaded states",
-                "Token-aware light and dark states",
-                "Accessible keyboard focus patterns",
-                "Responsive cards tuned for concise content",
-                "Editor-friendly TYPO3 Content Blocks"
+                "Unlimited seats",
+                "SSO and audit logs",
+                "Dedicated success manager",
+                "99.9% uptime SLA",
+                "Advanced security controls"
             ],
-            "button_text": "Explore flow",
+            "button_text": "Contact sales",
             "button_link": "https://ui.shadcn.com/docs/three-tier-pricing",
             "is_recommended": false
         }

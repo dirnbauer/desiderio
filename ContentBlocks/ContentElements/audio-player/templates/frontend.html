@@ -17,13 +17,15 @@
                 </f:if>
             </div>
             <f:if condition="{data.audio_file.0}">
-                <audio class="audio-player__audio" controls preload="metadata">
+                <audio class="audio-player__audio" controls preload="metadata" title="{data.header}">
                     <source src="{data.audio_file.0.publicUrl}" type="{data.audio_file.0.mimeType}"/>
+                    <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:audio_unsupported" default="Your browser does not support the audio element."/>
                 </audio>
             </f:if>
             <f:if condition="{data.show_download} && {data.audio_file.0}">
                 <a class="audio-player__download" href="{data.audio_file.0.publicUrl}" download>
-                    Download audio
+                    <d:atom.icon name="download" size="sm" class="audio-player__download-icon"/>
+                    <span><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:download_episode" default="Download episode"/></span>
                 </a>
             </f:if>
         </d:molecule.card>

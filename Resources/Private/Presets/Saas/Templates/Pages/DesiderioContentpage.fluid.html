@@ -13,6 +13,11 @@
 <f:section name="Main">
     <div class="desiderio-saas-template">
         <d:layout.container size="xl">
+            <header class="desiderio-saas-template__masthead">
+                <p class="desiderio-saas-template__eyebrow">{breadcrumb.0.title -> f:or(alternative: '{f:translate(extensionName: \'desiderio\', key: \'saas.page.eyebrow\', default: \'Product\')}')}</p>
+                <h1>{page.pageRecord.title}</h1>
+                <p class="desiderio-saas-template__lede">{page.pageRecord.abstract -> f:or(alternative: '{f:translate(extensionName: \'desiderio\', key: \'saas.page.lede\', default: \'Everything your team needs to evaluate, roll out and scale — laid out below.\')}')}</p>
+            </header>
             <div class="desiderio-saas-template__content">
                 <f:render partial="Presets/ContentArea" arguments="{content: content.main}"/>
             </div>

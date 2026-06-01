@@ -1,23 +1,25 @@
 {
     "_type": "team",
-    "header": "Team Section for modern people pages",
-    "subheadline": "Present people and culture with confident profile copy and calm card structure.",
+    "eyebrow": "Our team",
+    "header": "The people behind every release",
+    "subheadline": "A small, senior team across design, engineering, and support — most of us have shipped accessible products for a decade or more.",
+    "variant": "grid",
+    "columns": "3",
     "members": [
         {
-            "name": "Noah Ritter",
-            "role": "Accessibility Reviewer"
-        },
-        {
             "name": "Lea Fischer",
-            "role": "Product Design Lead"
+            "role": "Head of Product Design",
+            "bio": "Leads design systems and accessibility. Previously shaped the GOV.UK component library."
         },
         {
             "name": "Mara Weiss",
-            "role": "Frontend Engineer"
+            "role": "Lead Frontend Engineer",
+            "bio": "Owns our component architecture and ships the design system to production weekly."
         },
         {
-            "name": "Jonas Klein",
-            "role": "Customer Success"
+            "name": "Noah Ritter",
+            "role": "Accessibility Lead",
+            "bio": "Audits every release against WCAG 2.2 AA and runs our screen-reader testing."
         }
     ]
 }

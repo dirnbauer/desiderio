@@ -6,8 +6,13 @@
 .chart-donut__title { font-size: var(--d-text-lg); font-weight: 600; }
 .chart-donut__description { font-size: var(--d-text-sm); color: var(--muted-foreground); margin-block-start: var(--d-spacing-xs); }
 .chart-donut__content { padding: var(--d-spacing-lg); display: flex; justify-content: center; }
-.chart-donut__wrapper { position: relative; width: 300px; height: 300px; }
-.chart-donut__canvas { width: 100%; height: 100%; }
+.chart-donut__canvas {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 300px;
+}
 .chart-donut__svg {
     width: min(100%, 320px);
     height: auto;

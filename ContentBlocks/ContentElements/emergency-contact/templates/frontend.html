@@ -7,22 +7,39 @@
 
 <d:layout.section class="emergency-contact">
     <d:layout.container>
-        <div class="emergency-contact__card">
-            <f:if condition="{data.header}"><h2 class="emergency-contact__headline">{data -> f:render.text(field: 'header')}</h2></f:if>
+        <f:variable name="emergencyId" value="emergency-contact-{data.uid}"/>
+        <div class="emergency-contact__card" role="region" aria-labelledby="{f:if(condition: data.header, then: emergencyId, else: '')}" aria-label="{f:if(condition: data.header, then: '', else: 'Emergency contact')}">
+            <f:if condition="{data.header}">
+                <h2 class="emergency-contact__headline" id="{emergencyId}">
+                    <span class="emergency-contact__headline-icon" aria-hidden="true"><d:atom.icon name="alert-triangle" size="default"/></span>
+                    <span>{data -> f:render.text(field: 'header')}</span>
+                </h2>
+            </f:if>
             <f:if condition="{data.description_text}"><p class="emergency-contact__description">{data -> f:render.text(field: 'description_text')}</p></f:if>
             <f:if condition="{data.phone}">
-                <div class="emergency-contact__phone">
+                <p class="emergency-contact__phone">
                     <f:if condition="{data.phone_link.url}">
                         <f:then>
-                            <f:link.typolink parameter="{data.phone_link}" class="emergency-contact__number">{data -> f:render.text(field: 'phone')}</f:link.typolink>
+                            <f:link.typolink parameter="{data.phone_link}" class="emergency-contact__number">
+                                <span class="emergency-contact__number-icon" aria-hidden="true"><d:atom.icon name="phone" size="default"/></span>
+                                <span>{data -> f:render.text(field: 'phone')}</span>
+                            </f:link.typolink>
                         </f:then>
                         <f:else>
-                            <span class="emergency-contact__number">{data -> f:render.text(field: 'phone')}</span>
+                            <span class="emergency-contact__number">
+                                <span class="emergency-contact__number-icon" aria-hidden="true"><d:atom.icon name="phone" size="default"/></span>
+                                <span>{data -> f:render.text(field: 'phone')}</span>
+                            </span>
                         </f:else>
                     </f:if>
-                </div>
+                </p>
             </f:if>
-            <f:if condition="{data.available}"><p class="emergency-contact__available">{data -> f:render.text(field: 'available')}</p></f:if>
+            <f:if condition="{data.available}">
+                <p class="emergency-contact__available">
+                    <span class="emergency-contact__available-icon" aria-hidden="true"><d:atom.icon name="clock" size="sm"/></span>
+                    <span>{data -> f:render.text(field: 'available')}</span>
+                </p>
+            </f:if>
         </div>
     </d:layout.container>
 </d:layout.section>

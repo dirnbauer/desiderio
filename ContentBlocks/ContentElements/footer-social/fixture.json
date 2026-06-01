@@ -1,9 +1,20 @@
 {
     "_type": "footer",
+    "header": "Northwind site footer",
+    "brand": "Northwind",
     "items": [
-        [],
-        [],
-        []
+        {
+            "platform_name": "linkedin"
+        },
+        {
+            "platform_name": "twitter"
+        },
+        {
+            "platform_name": "github"
+        },
+        {
+            "platform_name": "youtube"
+        }
     ],
-    "copyright": "Helpful service links, legal context, and brand details stay readable across footer layouts."
+    "copyright": "© 2026 Northwind Analytics Inc. All rights reserved."
 }

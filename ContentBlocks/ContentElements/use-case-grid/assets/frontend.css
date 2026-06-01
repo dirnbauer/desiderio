@@ -1,8 +1,12 @@
 .use-case-grid__intro {
     text-align: center;
+    max-width: 42rem;
+    margin-inline: auto;
     margin-block-end: var(--d-spacing-xl);
 }
 .use-case-grid__eyebrow {
+    display: block;
+    margin-block-end: var(--d-spacing-xs);
     font-size: var(--d-text-sm);
     font-weight: 600;
     text-transform: uppercase;
@@ -11,24 +15,34 @@
 }
 .use-case-grid__grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr;
     gap: var(--d-spacing-lg);
 }
-@media (max-width: 768px) {
-    .use-case-grid__grid { grid-template-columns: 1fr; }
+@media (min-width: 640px) {
+    .use-case-grid__grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1024px) {
+    .use-case-grid__grid { grid-template-columns: repeat(3, 1fr); }
 }
 .use-case-grid__title {
     font-weight: 600;
-    margin-block-end: var(--d-spacing-xs);
+    margin: 0 0 var(--d-spacing-xs);
 }
-.use-case-grid__title a {
+.use-case-grid__link {
     color: inherit;
     text-decoration: none;
+    border-radius: var(--d-radius-sm);
 }
-.use-case-grid__title a:hover {
+.use-case-grid__link:hover {
     color: var(--primary);
 }
+.use-case-grid__link:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+}
 .use-case-grid__description {
+    margin: 0;
     color: var(--muted-foreground);
     font-size: var(--d-text-sm);
+    line-height: 1.6;
 }

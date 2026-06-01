@@ -7,7 +7,7 @@
 
 <d:layout.section class="chart-contribution-section">
     <d:layout.container>
-        <div class="chart-contribution" data-chart-json="{data.chart_data -> f:format.htmlspecialchars()}">
+        <figure class="chart-contribution" data-chart-json="{data.chart_data -> f:format.htmlspecialchars()}">
             <div class="chart-contribution__card">
                 <div class="chart-contribution__head">
                     <div class="chart-contribution__titles">
@@ -24,7 +24,8 @@
                 </div>
 
                 <div class="chart-contribution__chart" id="chart-contribution-plot-{data.uid}">
-                    <svg class="chart-contribution__svg" id="chart-contribution-svg-{data.uid}" role="img" aria-hidden="true"></svg>
+                    <svg class="chart-contribution__svg" id="chart-contribution-svg-{data.uid}" role="img"
+                         aria-label="{f:if(condition: data.header, then: '{data.header}', else: 'Contribution activity')}{f:if(condition: data.subheadline, then: '. {data.subheadline}')}"></svg>
                 </div>
 
                 <div class="chart-contribution__stats">
@@ -60,7 +61,7 @@
                     </div>
                 </f:if>
             </div>
-        </div>
+        </figure>
     </d:layout.container>
 </d:layout.section>
 

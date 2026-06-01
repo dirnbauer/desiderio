@@ -6,7 +6,7 @@
 <f:asset.css identifier="d-feature-comparison" href="{cb:assetPath()}/frontend.css"/>
 
 <d:layout.section class="feature-comparison">
-    <d:layout.container>
+    <d:layout.container size="md">
         <f:if condition="{data.header}">
             <header class="feature-comparison__intro">
                 <d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography>
@@ -14,28 +14,34 @@
         </f:if>
 
         <d:molecule.card class="feature-comparison__table">
-            <div class="feature-comparison__head">
-                <span class="feature-comparison__feature-col">Feature</span>
-                <span class="feature-comparison__check-col">{data.left_title -> f:or(alternative: 'Option A')}</span>
-                <span class="feature-comparison__check-col">{data.right_title -> f:or(alternative: 'Option B')}</span>
-            </div>
-            <f:for each="{data.items}" as="item">
-                <div class="feature-comparison__row">
-                    <span class="feature-comparison__feature-col">{item -> f:render.text(field: 'feature')}</span>
-                    <span class="feature-comparison__check-col">
-                        <f:if condition="{item.left_supported}">
-                            <f:then><span class="feature-comparison__yes" aria-label="Yes">&#10003;</span></f:then>
-                            <f:else><span class="feature-comparison__no" aria-label="No">&#8212;</span></f:else>
-                        </f:if>
-                    </span>
-                    <span class="feature-comparison__check-col">
-                        <f:if condition="{item.right_supported}">
-                            <f:then><span class="feature-comparison__yes" aria-label="Yes">&#10003;</span></f:then>
-                            <f:else><span class="feature-comparison__no" aria-label="No">&#8212;</span></f:else>
-                        </f:if>
-                    </span>
-                </div>
-            </f:for>
+            <table class="feature-comparison__grid">
+                <thead>
+                    <tr class="feature-comparison__head">
+                        <th scope="col" class="feature-comparison__feature-col">{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:feature', default: 'Feature')}</th>
+                        <th scope="col" class="feature-comparison__check-col">{data.left_title -> f:or(alternative: 'Free')}</th>
+                        <th scope="col" class="feature-comparison__check-col">{data.right_title -> f:or(alternative: 'Pro')}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <f:for each="{data.items}" as="item">
+                        <tr class="feature-comparison__row">
+                            <th scope="row" class="feature-comparison__feature-col">{item -> f:render.text(field: 'feature')}</th>
+                            <td class="feature-comparison__check-col">
+                                <f:if condition="{item.left_supported}">
+                                    <f:then><span class="feature-comparison__yes"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span class="feature-comparison__sr">{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:included', default: 'Included')}</span></span></f:then>
+                                    <f:else><span class="feature-comparison__no"><span aria-hidden="true">&#8212;</span><span class="feature-comparison__sr">{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:not_included', default: 'Not included')}</span></span></f:else>
+                                </f:if>
+                            </td>
+                            <td class="feature-comparison__check-col">
+                                <f:if condition="{item.right_supported}">
+                                    <f:then><span class="feature-comparison__yes"><svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span class="feature-comparison__sr">{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:included', default: 'Included')}</span></span></f:then>
+                                    <f:else><span class="feature-comparison__no"><span aria-hidden="true">&#8212;</span><span class="feature-comparison__sr">{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:not_included', default: 'Not included')}</span></span></f:else>
+                                </f:if>
+                            </td>
+                        </tr>
+                    </f:for>
+                </tbody>
+            </table>
         </d:molecule.card>
     </d:layout.container>
 </d:layout.section>

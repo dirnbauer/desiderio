@@ -1,4 +1,8 @@
 {
-    "_type": "stats",
-    "header": "Donut Chart for live product intelligence"
+    "header": "Sessions by device",
+    "description": "How visitors reached the app over the last 30 days.",
+    "chart_data": "[{\"label\":\"Desktop\",\"value\":52},{\"label\":\"Mobile\",\"value\":38},{\"label\":\"Tablet\",\"value\":10}]",
+    "center_label": "sessions",
+    "center_value": "128K",
+    "show_legend": 1
 }

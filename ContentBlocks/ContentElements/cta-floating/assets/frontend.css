@@ -17,6 +17,7 @@
     gap: var(--d-spacing-md);
 }
 .cta-floating__text {
+    margin: 0;
     font-weight: 600;
     font-size: var(--d-text-sm);
 }

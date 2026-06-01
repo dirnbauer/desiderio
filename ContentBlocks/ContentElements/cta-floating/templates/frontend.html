@@ -5,10 +5,10 @@
 
 <f:asset.css identifier="d-cta-floating" href="{cb:assetPath()}/frontend.css"/>
 
-<div class="cta-floating cta-floating--{data.position -> f:or(alternative: 'bottom')}">
+<div class="cta-floating cta-floating--{data.position -> f:or(alternative: 'bottom')}" role="region" aria-label="{data.header -> f:or(alternative: 'Call to action')}">
     <d:layout.container>
         <div class="cta-floating__bar">
-            <f:if condition="{data.header}"><span class="cta-floating__text">{data -> f:render.text(field: 'header')}</span></f:if>
+            <f:if condition="{data.header}"><p class="cta-floating__text">{data -> f:render.text(field: 'header')}</p></f:if>
             <f:if condition="{data.cta_text} && {data.cta_link.url}">
                 <d:atom.button href="{data.cta_link.url}" target="{data.cta_link.target}" size="sm">{data -> f:render.text(field: 'cta_text')}</d:atom.button>
             </f:if>

@@ -8,9 +8,16 @@
 
 <f:section name="Content">
     <f:if condition="{posts}">
-        <section class="flex flex-col gap-6" aria-label="{f:translate(extensionName: 'Blog', key: 'headline.relatedposts', default: 'Related posts')}">
-            <d:atom.typography tag="h2" variant="h2"><f:translate extensionName="Blog" key="headline.relatedposts">Related posts</f:translate></d:atom.typography>
-            <f:render partial="TeaserList" arguments="{_all}" />
+        <section class="flex flex-col gap-6 border-t border-border pt-8" aria-labelledby="blog-related-heading">
+            <header class="flex flex-col gap-1">
+                <h2 id="blog-related-heading" class="text-2xl font-semibold tracking-tight text-foreground">
+                    <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/blog.xlf:related.heading" />
+                </h2>
+                <p class="text-sm text-muted-foreground">
+                    <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/blog.xlf:related.intro" />
+                </p>
+            </header>
+            <f:render partial="TeaserList" arguments="{posts: posts, settings: settings, type: 'related'}" />
         </section>
     </f:if>
 </f:section>

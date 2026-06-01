@@ -10,15 +10,21 @@
         <div class="demo-request__layout">
             <div class="demo-request__content">
                 <f:if condition="{data.eyebrow}"><span class="demo-request__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span></f:if>
-                <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
-                <f:if condition="{data.description}"><d:atom.typography variant="muted">{data -> f:render.text(field: 'description')}</d:atom.typography></f:if>
+                <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2" class="demo-request__title">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
+                <f:if condition="{data.description}"><d:atom.typography variant="muted" class="demo-request__description">{data -> f:render.text(field: 'description')}</d:atom.typography></f:if>
+                <f:if condition="{data.reassurance}">
+                    <p class="demo-request__reassurance">
+                        <span class="demo-request__reassurance-icon" aria-hidden="true"><d:atom.icon name="check-circle" size="sm"/></span>
+                        <span>{data -> f:render.text(field: 'reassurance')}</span>
+                    </p>
+                </f:if>
                 <f:if condition="{data.image}">
                     <f:for each="{data.image}" as="fileReference">
-                        <f:image image="{fileReference}" maxWidth="480" alt="" class="demo-request__image"/>
+                        <f:image image="{fileReference}" maxWidth="480" alt="{f:if(condition: fileReference.alternative, then: fileReference.alternative, else: '{data.header}')}" class="demo-request__image"/>
                     </f:for>
                 </f:if>
             </div>
-            <d:molecule.card class="demo-request__form-card">
+            <d:molecule.card class="demo-request__form-card" role="form">
 <f:comment>Legacy editor fields kept for migrated records; TYPO3 Form Framework owns rendering and submit behavior. {data.form_action}{data.submit_text}</f:comment>
 
                 <d:molecule.formRenderer persistenceIdentifier="EXT:desiderio/Resources/Private/Forms/DesiderioLead.form.yaml" class="demo-request__form"/>

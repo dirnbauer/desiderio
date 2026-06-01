@@ -1,9 +1,10 @@
 {
     "_type": "nav",
+    "header": "Breadcrumb",
     "items": [
-        "Modern media",
-        "Token polish",
-        "Import ready",
-        "Clean states"
+        { "label": "Home", "link": "https://ui.shadcn.com/" },
+        { "label": "Solutions", "link": "https://ui.shadcn.com/docs" },
+        { "label": "Customer analytics", "link": "https://ui.shadcn.com/docs/components" },
+        { "label": "Pricing", "link": "" }
     ]
 }

@@ -18,7 +18,7 @@
             <f:for each="{data.items}" as="item">
                 <details class="faq__item" itemscope itemprop="mainEntity" itemtype="https://schema.org/Question">
                     <summary class="faq__question">
-                        <span itemprop="name">{item -> f:render.text(field: 'question')}</span>
+                        <h3 class="faq__question-text" itemprop="name">{item -> f:render.text(field: 'question')}</h3>
                         <span class="faq__chevron" aria-hidden="true">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
                         </span>

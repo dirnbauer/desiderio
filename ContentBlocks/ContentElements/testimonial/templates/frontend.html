@@ -14,12 +14,13 @@
 
         <div class="testimonial__card {f:if(condition: '{data.variant} == \'card\'', then: 'testimonial__card--bordered')}">
             <f:if condition="{ratingInt} > 0">
-                <div class="testimonial__rating">
+                <div class="testimonial__rating" role="img" aria-label="Rated {ratingInt} out of 5">
                     <f:for each="{0: 1, 1: 2, 2: 3, 3: 4, 4: 5}" as="star">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
                              fill="{f:if(condition: '{star} <= {ratingInt}', then: 'currentColor', else: 'none')}"
                              stroke="currentColor" stroke-width="2"
-                             class="testimonial__star {f:if(condition: '{star} <= {ratingInt}', then: 'testimonial__star--filled')}">
+                             class="testimonial__star {f:if(condition: '{star} <= {ratingInt}', then: 'testimonial__star--filled')}"
+                             aria-hidden="true" focusable="false">
                             <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
                         </svg>
                     </f:for>
@@ -28,7 +29,7 @@
 
             <blockquote class="testimonial__quote">
                 <f:if condition="{data.variant} == 'large'">
-                    <span class="testimonial__quote-mark">&ldquo;</span>
+                    <span class="testimonial__quote-mark" aria-hidden="true">&ldquo;</span>
                 </f:if>
                 {data -> f:render.text(field: 'quote')}
             </blockquote>
@@ -38,7 +39,7 @@
                     <div class="testimonial__avatar">
                         <f:for each="{data.author_image}" as="fileReference">
                             <f:image image="{fileReference}" width="64" height="64"
-                                 alt="{data.author_name}" class="testimonial__avatar-image"/>
+                                 alt="" loading="lazy" decoding="async" class="testimonial__avatar-image"/>
                         </f:for>
                     </div>
                 </f:if>

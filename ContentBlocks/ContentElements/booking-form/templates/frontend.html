@@ -6,11 +6,19 @@
 <f:asset.css identifier="d-booking-form" href="{cb:assetPath()}/frontend.css"/>
 
 <d:layout.section class="booking-form">
-    <d:layout.container>
+    <d:layout.container size="md">
         <d:molecule.card class="booking-form__card">
-            <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
-            <f:if condition="{data.description}"><d:atom.typography variant="muted">{data -> f:render.text(field: 'description')}</d:atom.typography></f:if>
-<f:comment>Legacy editor fields kept for migrated records; TYPO3 Form Framework owns rendering and submit behavior. {data.form_action}{data.submit_text}{data.show_phone}{data.show_date}</f:comment>
+            <header class="booking-form__intro">
+                <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h3" class="booking-form__title">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
+                <f:if condition="{data.description}"><d:atom.typography variant="muted" class="booking-form__description">{data -> f:render.text(field: 'description')}</d:atom.typography></f:if>
+                <f:if condition="{data.reassurance}">
+                    <p class="booking-form__reassurance">
+                        <span class="booking-form__reassurance-icon" aria-hidden="true"><d:atom.icon name="check-circle" size="sm"/></span>
+                        <span>{data -> f:render.text(field: 'reassurance')}</span>
+                    </p>
+                </f:if>
+            </header>
+<f:comment>Legacy editor fields kept for migrated records; TYPO3 Form Framework owns field rendering and submit behavior. {data.form_action}{data.submit_text}{data.show_phone}{data.show_date}</f:comment>
 
             <d:molecule.formRenderer persistenceIdentifier="EXT:desiderio/Resources/Private/Forms/DesiderioBooking.form.yaml" class="booking-form__form"/>
         </d:molecule.card>

@@ -1,4 +1,7 @@
 {
-    "_type": "stats",
-    "header": "Pie Chart for live product intelligence"
+    "header": "Revenue by plan",
+    "description": "Share of recurring revenue across plan tiers this quarter.",
+    "chart_data": "[{\"label\":\"Starter\",\"value\":18},{\"label\":\"Team\",\"value\":34},{\"label\":\"Business\",\"value\":31},{\"label\":\"Enterprise\",\"value\":17}]",
+    "show_legend": 1,
+    "chart_size": "medium"
 }

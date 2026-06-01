@@ -14,12 +14,14 @@
         </f:if>
 
         <div class="content-carousel__viewport"
-             data-carousel="true"
-             data-carousel-variant="{data.variant -> f:or(alternative: 'default')}"
-             data-carousel-autoplay="{f:if(condition: '{data.variant} == {s:}autoplay{s:}', then: 'true', else: 'false')}"
-             data-carousel-interval="{data.autoplay_interval -> f:or(alternative: '5000')}">
+             role="region"
+             aria-roledescription="carousel"
+             aria-label="{data.header -> f:or(alternative: 'Content carousel')}"
+             data-astro-content-carousel
+             data-astro-content-carousel-autoplay="{f:if(condition: '{data.variant} == {s:}autoplay{s:}', then: 'true', else: 'false')}"
+             data-astro-content-carousel-interval="{data.autoplay_interval -> f:or(alternative: '5000')}">
 
-            <div class="content-carousel__track">
+            <div class="content-carousel__track" tabindex="0" role="group" aria-label="Slides, scrollable" data-astro-content-carousel-track>
                 <f:for each="{data.items}" as="item" iteration="iter">
                     <f:switch expression="{data.variant}">
                         <f:case value="cards">
@@ -78,34 +80,40 @@
 
             <f:if condition="{data.show_navigation}">
                 <div class="content-carousel__navigation">
-                    <button class="content-carousel__prev" type="button" aria-label="Previous slide" data-carousel-prev>
-                        <span class="content-carousel__arrow content-carousel__arrow--prev"></span>
+                    <button class="content-carousel__nav content-carousel__prev" type="button" aria-label="Previous slide" data-astro-content-carousel-prev>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
                     </button>
-                    <button class="content-carousel__next" type="button" aria-label="Next slide" data-carousel-next>
-                        <span class="content-carousel__arrow content-carousel__arrow--next"></span>
+                    <button class="content-carousel__nav content-carousel__next" type="button" aria-label="Next slide" data-astro-content-carousel-next>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
                     </button>
                 </div>
             </f:if>
 
             <f:if condition="{data.show_pagination}">
-                <div class="content-carousel__pagination">
+                <div class="content-carousel__pagination" role="group" aria-label="Choose slide to display">
                     <f:for each="{data.items}" as="item" iteration="iter">
                         <button class="content-carousel__dot{f:if(condition: iter.isFirst, then: ' content-carousel__dot--active')}"
                                 type="button"
-                                aria-label="Go to slide {iter.cycle}"
-                                data-carousel-dot="{iter.index}"></button>
+                                aria-label="Go to slide {iter.cycle} of {data.items -> f:count()}"
+                                aria-current="{f:if(condition: iter.isFirst, then: 'true', else: 'false')}"
+                                data-astro-content-carousel-dot="{iter.index}"></button>
                     </f:for>
                 </div>
             </f:if>
+
+            <p class="content-carousel__status" aria-live="polite" data-astro-content-carousel-status>
+                Slide 1 of {data.items -> f:count()}
+            </p>
         </div>
 
         <f:if condition="{data.variant} == 'thumbnails'">
-            <div class="content-carousel__thumbnails">
+            <div class="content-carousel__thumbnails" role="group" aria-label="Choose slide to display">
                 <f:for each="{data.items}" as="item" iteration="iter">
                     <button class="content-carousel__thumb{f:if(condition: iter.isFirst, then: ' content-carousel__thumb--active')}"
                             type="button"
-                            aria-label="Go to slide {iter.cycle}"
-                            data-carousel-thumb="{iter.index}">
+                            aria-label="Go to slide {iter.cycle} of {data.items -> f:count()}"
+                            aria-current="{f:if(condition: iter.isFirst, then: 'true', else: 'false')}"
+                            data-astro-content-carousel-thumb="{iter.index}">
                         <f:if condition="{item.slide_image}">
                             <f:for each="{item.slide_image}" as="image">
                                 <f:image image="{image}" alt="" maxWidth="120" class="content-carousel__thumb-image"/>

@@ -6,10 +6,11 @@
 <f:asset.css identifier="d-chart" href="{cb:assetPath()}/frontend.css"/>
 
 <f:variable name="chartId" value="chart-{data.uid}"/>
+<f:variable name="chartLabel">{f:if(condition: data.header, then: '{data.header}', else: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:chart.aria_fallback\')}')}</f:variable>
 
 <d:layout.section class="chart-section">
     <d:layout.container>
-        <div class="chart chart--{data.color_variant -> f:or(alternative: 'primary')}"
+        <figure class="chart chart--{data.color_variant -> f:or(alternative: 'primary')}"
              data-chart-type="{data.chart_type -> f:or(alternative: 'area')}"
              data-chart-data="{data.chart_data -> f:format.htmlspecialchars()}"
              data-show-grid="{f:if(condition: data.show_grid, then: 'true', else: 'false')}"
@@ -21,14 +22,14 @@
 
             <div class="chart__card">
                 <f:if condition="{data.header} || {data.description}">
-                    <div class="chart__header">
+                    <figcaption class="chart__header">
                         <f:if condition="{data.header}">
                             <h3 class="chart__title">{data -> f:render.text(field: 'header')}</h3>
                         </f:if>
                         <f:if condition="{data.description}">
                             <p class="chart__description">{data -> f:render.text(field: 'description')}</p>
                         </f:if>
-                    </div>
+                    </figcaption>
                 </f:if>
 
                 <div class="chart__body chart__body--legend-{data.legend_position -> f:or(alternative: 'bottom')}">
@@ -36,16 +37,16 @@
                         <svg class="chart__canvas chart__canvas--{data.chart_height -> f:or(alternative: 'medium')}"
                              id="{chartId}"
                              role="img"
-                             aria-label="{data.header -> f:or(alternative: 'Chart')}"></svg>
-                        <div class="chart__tooltip" style="display: none;">
+                             aria-label="{chartLabel}"></svg>
+                        <div class="chart__tooltip" hidden>
                             <div class="chart__tooltip-label"></div>
                             <div class="chart__tooltip-value"></div>
                         </div>
                     </div>
-                    <div class="chart__legend" aria-label="Chart legend"></div>
+                    <div class="chart__legend" aria-hidden="true"></div>
                 </div>
             </div>
-        </div>
+        </figure>
     </d:layout.container>
 </d:layout.section>
 

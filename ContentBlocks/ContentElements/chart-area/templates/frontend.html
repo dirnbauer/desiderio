@@ -5,28 +5,34 @@
 
 <f:asset.css identifier="d-chart-area" href="{cb:assetPath()}/frontend.css"/>
 
+<f:variable name="chartLabel">{f:if(condition: data.header, then: '{data.header}', else: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:chart.aria_fallback\')}')}</f:variable>
+<f:comment>Map the editor opacity choice (light/medium/strong) onto the keys charts.js expects (low/medium/high).</f:comment>
+<f:variable name="fillOpacityKey" value="medium"/>
+<f:if condition="{data.fill_opacity} == 'light'"><f:variable name="fillOpacityKey" value="low"/></f:if>
+<f:if condition="{data.fill_opacity} == 'strong'"><f:variable name="fillOpacityKey" value="high"/></f:if>
+
 <d:layout.section class="chart-area-section">
     <d:layout.container>
-        <div class="chart-area chart-area--{data.color_variant -> f:or(alternative: 'primary')}"
+        <figure class="chart-area chart-area--{data.color_variant -> f:or(alternative: 'primary')}"
              data-chart-data="{data.chart_data -> f:format.htmlspecialchars()}"
-             data-fill-opacity="{data.fill_opacity -> f:or(alternative: 'medium')}"
+             data-fill-opacity="{fillOpacityKey}"
              data-chart-id="chart-area-{data.uid}">
             <div class="chart-area__card">
                 <f:if condition="{data.header} || {data.description}">
-                    <div class="chart-area__header">
+                    <figcaption class="chart-area__header">
                         <f:if condition="{data.header}">
                             <h3 class="chart-area__title">{data -> f:render.text(field: 'header')}</h3>
                         </f:if>
                         <f:if condition="{data.description}">
                             <p class="chart-area__description">{data -> f:render.text(field: 'description')}</p>
                         </f:if>
-                    </div>
+                    </figcaption>
                 </f:if>
                 <div class="chart-area__content">
-                    <svg class="chart-area__canvas" id="chart-area-{data.uid}"></svg>
+                    <svg class="chart-area__canvas" id="chart-area-{data.uid}" role="img" aria-label="{chartLabel}"></svg>
                 </div>
             </div>
-        </div>
+        </figure>
     </d:layout.container>
 </d:layout.section>
 

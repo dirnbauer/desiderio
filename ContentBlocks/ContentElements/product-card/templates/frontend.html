@@ -13,26 +13,27 @@
                     <f:if condition="{data.badge}">
                         <span class="product-card__badge">{data -> f:render.text(field: 'badge')}</span>
                     </f:if>
-                    <f:for each="{data.image}" as="fileReference">
-                        <f:image image="{fileReference}" maxWidth="480" alt="{data.header}" class="product-card__image"/>
-                    </f:for>
+                    <f:image image="{data.image.0}" maxWidth="480" loading="lazy" alt="{data.image.0.alternative -> f:or(alternative: data.header)}" class="product-card__image"/>
                 </div>
             </f:if>
             <div class="product-card__body">
                 <f:if condition="{data.header}">
                     <h2 class="product-card__title">{data -> f:render.text(field: 'header')}</h2>
                 </f:if>
-                <div class="product-card__price-row">
-                    <span class="product-card__price">{data -> f:render.text(field: 'price')}</span>
+                <p class="product-card__price-row">
+                    <span class="product-card__price">
+                        <span class="sr-only">Price: </span>{data -> f:render.text(field: 'price')}
+                    </span>
                     <f:if condition="{data.original_price}">
-                        <span class="product-card__original-price">{data -> f:render.text(field: 'original_price')}</span>
+                        <s class="product-card__original-price"><span class="sr-only">Original price: </span>{data -> f:render.text(field: 'original_price')}</s>
                     </f:if>
-                </div>
+                </p>
                 <f:if condition="{data.description}">
                     <p class="product-card__description">{data -> f:render.text(field: 'description')}</p>
                 </f:if>
                 <f:if condition="{data.button_text} && {data.button_link.url}">
-                    <f:link.typolink parameter="{data.button_link}" class="product-card__button">
+                    <f:variable name="cardCtaLabel">{data.button_text} – {data.header}</f:variable>
+                    <f:link.typolink parameter="{data.button_link}" class="product-card__button" additionalAttributes="{'aria-label': cardCtaLabel}">
                         {data -> f:render.text(field: 'button_text')}
                     </f:link.typolink>
                 </f:if>

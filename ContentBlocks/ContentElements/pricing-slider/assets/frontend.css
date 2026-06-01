@@ -4,7 +4,8 @@
 .pricing-slider__description { color: var(--muted-foreground); max-width: 40rem; margin-inline: auto; }
 .pricing-slider__body { max-width: 40rem; margin-inline: auto; }
 .pricing-slider__control { padding: var(--d-spacing-lg) 0; }
-.pricing-slider__range { width: 100%; accent-color: var(--primary); }
+.pricing-slider__range { width: 100%; accent-color: var(--primary); border-radius: 9999px; }
+.pricing-slider__range:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--background), 0 0 0 4px var(--ring); }
 .pricing-slider__tiers { display: grid; grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); gap: var(--d-spacing-md); }
 .pricing-slider__tier { text-align: center; padding: var(--d-spacing-md); border: 1px solid var(--border); border-radius: var(--radius); display: flex; flex-direction: column; gap: 0.25rem; }
 .pricing-slider__tier--active { border-color: var(--primary); background: color-mix(in oklch, var(--primary) 3%, transparent); }

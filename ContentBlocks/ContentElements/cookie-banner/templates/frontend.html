@@ -5,22 +5,25 @@
 
 <f:asset.css identifier="d-cookie-banner" href="{cb:assetPath()}/frontend.css"/>
 
-<div class="cookie-banner cookie-banner--{data.position -> f:or(alternative: 'bottom')}" role="alert" data-cookie-banner="true">
+<div class="cookie-banner cookie-banner--{data.position -> f:or(alternative: 'bottom')}"
+     role="region"
+     aria-label="{data.header -> f:or(alternative: 'Cookie consent')}"
+     data-cookie-banner="true">
     <d:layout.container>
         <div class="cookie-banner__inner">
             <div class="cookie-banner__content">
                 <f:if condition="{data.header}">
-                    <h3 class="cookie-banner__title">{data -> f:render.text(field: 'header')}</h3>
+                    <h2 class="cookie-banner__title">{data -> f:render.text(field: 'header')}</h2>
                 </f:if>
                 <div class="cookie-banner__message">
                     {data -> f:render.text(field: 'content')}
                 </div>
             </div>
             <div class="cookie-banner__actions">
-                <button type="button" class="cookie-banner__button cookie-banner__button--accept">{data.accept_text -> f:or(alternative: 'Accept All')}</button>
-                <button type="button" class="cookie-banner__button cookie-banner__button--decline">{data.decline_text -> f:or(alternative: 'Decline')}</button>
+                <d:atom.button type="button" variant="default" size="sm" class="cookie-banner__action">{data.accept_text -> f:or(alternative: 'Accept all')}</d:atom.button>
+                <d:atom.button type="button" variant="outline" size="sm" class="cookie-banner__action">{data.decline_text -> f:or(alternative: 'Decline')}</d:atom.button>
                 <f:if condition="{data.settings_link}">
-                    <f:link.typolink parameter="{data.settings_link}" class="cookie-banner__button cookie-banner__button--settings">{data.settings_text -> f:or(alternative: 'Cookie Settings')}</f:link.typolink>
+                    <f:link.typolink parameter="{data.settings_link}" class="cookie-banner__settings-link">{data.settings_text -> f:or(alternative: 'Cookie settings')}</f:link.typolink>
                 </f:if>
             </div>
         </div>

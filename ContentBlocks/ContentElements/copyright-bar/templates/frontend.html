@@ -10,13 +10,14 @@
         <div class="copyright-bar__inner">
             <p class="copyright-bar__text">{data -> f:render.text(field: 'copyright')}</p>
             <f:if condition="{data.link_items}">
-                <nav aria-label="{data.header -> f:or(alternative: 'Legal links')}">
+                <f:variable name="navLabelFallback">{f:translate(key: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/copyright-bar/language/labels.xlf:nav_label', default: 'Legal links')}</f:variable>
+                <nav class="copyright-bar__nav" aria-label="{data.header -> f:or(alternative: '{navLabelFallback}')}">
                     <ul class="copyright-bar__links">
                         <f:for each="{data.link_items}" as="item">
                             <li>
                                 <f:if condition="{item.link}">
                                     <f:then><f:link.typolink parameter="{item.link}" class="copyright-bar__link">{item -> f:render.text(field: 'label')}</f:link.typolink></f:then>
-                                    <f:else><span class="copyright-bar__link">{item -> f:render.text(field: 'label')}</span></f:else>
+                                    <f:else><span class="copyright-bar__link copyright-bar__link--static">{item -> f:render.text(field: 'label')}</span></f:else>
                                 </f:if>
                             </li>
                         </f:for>

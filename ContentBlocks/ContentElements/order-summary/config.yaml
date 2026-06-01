@@ -19,6 +19,7 @@ fields:
     table: order_summary_items
     prefixField: true
     label: 'Line Items'
+    description: 'One row per product or plan. Enter the price as a formatted string, e.g. "€290.00".'
     minItems: 1
     fields:
       -
@@ -64,7 +65,7 @@ fields:
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_text'
-    default: 'Proceed to Checkout'
+    default: 'Proceed to checkout'
   -
     identifier: button_link
     type: Link

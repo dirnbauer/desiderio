@@ -1,16 +1,29 @@
 {
     "_type": "pricing",
-    "header": "Calculator Pricing for confident plan comparison",
-    "description": "Keep plan comparison compact across desktop tables and mobile cards.",
+    "eyebrow": "Usage pricing",
+    "header": "Pay only for what you use",
+    "description": "Volume pricing scales down as you grow. The more API calls you make, the less you pay per call.",
+    "unit_label": "API calls",
     "tiers": [
         {
-            "label": "Mobile polish"
+            "label": "Starter",
+            "up_to": "100,000",
+            "price_per_unit": "$0.0010"
         },
         {
-            "label": "Token coverage"
+            "label": "Growth",
+            "up_to": "1,000,000",
+            "price_per_unit": "$0.0006"
         },
         {
-            "label": "Trust lift"
+            "label": "Scale",
+            "up_to": "10,000,000",
+            "price_per_unit": "$0.0003"
+        },
+        {
+            "label": "Enterprise",
+            "up_to": "Unlimited",
+            "price_per_unit": "Custom"
         }
     ]
 }

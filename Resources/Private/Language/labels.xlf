@@ -6,6 +6,21 @@
         <source>Heading</source>
       </segment>
     </unit>
+    <unit id="follow_on">
+      <segment>
+        <source>Follow us on</source>
+      </segment>
+    </unit>
+    <unit id="layout.inline">
+      <segment>
+        <source>Inline row</source>
+      </segment>
+    </unit>
+    <unit id="layout.stacked">
+      <segment>
+        <source>Stacked, centered</source>
+      </segment>
+    </unit>
     <unit id="description">
       <segment>
         <source>Description</source>
@@ -36,6 +51,11 @@
         <source>Label</source>
       </segment>
     </unit>
+    <unit id="label_field">
+      <segment>
+        <source>Label</source>
+      </segment>
+    </unit>
     <unit id="link">
       <segment>
         <source>Link</source>
@@ -49,6 +69,36 @@
     <unit id="link_text">
       <segment>
         <source>Link Text</source>
+      </segment>
+    </unit>
+    <unit id="read_article">
+      <segment>
+        <source>Read article</source>
+      </segment>
+    </unit>
+    <unit id="download_episode">
+      <segment>
+        <source>Download episode</source>
+      </segment>
+    </unit>
+    <unit id="audio_unsupported">
+      <segment>
+        <source>Your browser does not support the audio element.</source>
+      </segment>
+    </unit>
+    <unit id="feature">
+      <segment>
+        <source>Feature</source>
+      </segment>
+    </unit>
+    <unit id="included">
+      <segment>
+        <source>Included</source>
+      </segment>
+    </unit>
+    <unit id="not_included">
+      <segment>
+        <source>Not included</source>
       </segment>
     </unit>
     <unit id="title">
@@ -69,6 +119,16 @@
     <unit id="content">
       <segment>
         <source>Content</source>
+      </segment>
+    </unit>
+    <unit id="disclaimer_text">
+      <segment>
+        <source>Disclaimer Text</source>
+      </segment>
+    </unit>
+    <unit id="disclaimer.aria">
+      <segment>
+        <source>Legal disclaimer</source>
       </segment>
     </unit>
     <unit id="text">
@@ -124,6 +184,11 @@
     <unit id="badge_text">
       <segment>
         <source>Badge Text</source>
+      </segment>
+    </unit>
+    <unit id="reassurance_text">
+      <segment>
+        <source>Reassurance Text</source>
       </segment>
     </unit>
     <unit id="background_image">
@@ -196,6 +261,156 @@
         <source>Feature Items</source>
       </segment>
     </unit>
+    <unit id="feature.included">
+      <segment>
+        <source>Included:</source>
+      </segment>
+    </unit>
+    <unit id="feature.notIncluded">
+      <segment>
+        <source>Not included:</source>
+      </segment>
+    </unit>
+    <unit id="plan.recommended">
+      <segment>
+        <source>Recommended plan</source>
+      </segment>
+    </unit>
+    <unit id="per_month">
+      <segment>
+        <source>/month</source>
+      </segment>
+    </unit>
+    <unit id="per_year">
+      <segment>
+        <source>/year</source>
+      </segment>
+    </unit>
+    <unit id="billed_annually">
+      <segment>
+        <source>billed annually</source>
+      </segment>
+    </unit>
+    <unit id="calc.tier">
+      <segment>
+        <source>Tier</source>
+      </segment>
+    </unit>
+    <unit id="calc.up_to">
+      <segment>
+        <source>Up to</source>
+      </segment>
+    </unit>
+    <unit id="calc.price_per">
+      <segment>
+        <source>Price per unit</source>
+      </segment>
+    </unit>
+    <unit id="apply">
+      <segment>
+        <source>Apply</source>
+      </segment>
+    </unit>
+    <unit id="apply_link">
+      <segment>
+        <source>Apply Link</source>
+      </segment>
+    </unit>
+    <unit id="job.title">
+      <segment>
+        <source>Job Title</source>
+      </segment>
+    </unit>
+    <unit id="job.department">
+      <segment>
+        <source>Department</source>
+      </segment>
+    </unit>
+    <unit id="job.location">
+      <segment>
+        <source>Location</source>
+      </segment>
+    </unit>
+    <unit id="job.employment_type">
+      <segment>
+        <source>Employment Type</source>
+      </segment>
+    </unit>
+    <unit id="job.apply">
+      <segment>
+        <source>Apply now</source>
+      </segment>
+    </unit>
+    <unit id="read_case_study">
+      <segment>
+        <source>Read case study</source>
+      </segment>
+    </unit>
+    <unit id="read_full_case_study">
+      <segment>
+        <source>Read full case study</source>
+      </segment>
+    </unit>
+    <unit id="read_full_terms">
+      <segment>
+        <source>Read full terms</source>
+      </segment>
+    </unit>
+    <unit id="terms_summary.last_updated">
+      <segment>
+        <source>Last updated</source>
+      </segment>
+    </unit>
+    <unit id="carousel.region">
+      <segment>
+        <source>Highlights carousel</source>
+      </segment>
+    </unit>
+    <unit id="carousel.slide">
+      <segment>
+        <source>slide</source>
+      </segment>
+    </unit>
+    <unit id="carousel.previous">
+      <segment>
+        <source>Previous slide</source>
+      </segment>
+    </unit>
+    <unit id="carousel.next">
+      <segment>
+        <source>Next slide</source>
+      </segment>
+    </unit>
+    <unit id="carousel.goto">
+      <segment>
+        <source>Go to slide</source>
+      </segment>
+    </unit>
+    <unit id="countdown.days">
+      <segment>
+        <source>Days</source>
+      </segment>
+    </unit>
+    <unit id="countdown.hours">
+      <segment>
+        <source>Hours</source>
+      </segment>
+    </unit>
+    <unit id="countdown.minutes">
+      <segment>
+        <source>Minutes</source>
+      </segment>
+    </unit>
+    <unit id="countdown.seconds">
+      <segment>
+        <source>Seconds</source>
+      </segment>
+    </unit>
+    <unit id="countdown.deadline">
+      <segment>
+        <source>Deadline</source>
+      </segment>
+    </unit>
     <unit id="portrait">
       <segment>
         <source>Portrait</source>
@@ -206,6 +421,31 @@
         <source>Value</source>
       </segment>
     </unit>
+    <unit id="leaderboard.score">
+      <segment>
+        <source>Score</source>
+      </segment>
+    </unit>
+    <unit id="leaderboard.subtitle">
+      <segment>
+        <source>Subtitle</source>
+      </segment>
+    </unit>
+    <unit id="leaderboard.avatar">
+      <segment>
+        <source>Avatar</source>
+      </segment>
+    </unit>
+    <unit id="leaderboard.show_rank">
+      <segment>
+        <source>Show rank numbers</source>
+      </segment>
+    </unit>
+    <unit id="stat_description">
+      <segment>
+        <source>Context (optional)</source>
+      </segment>
+    </unit>
     <unit id="role">
       <segment>
         <source>Role</source>
@@ -214,6 +454,61 @@
     <unit id="logo">
       <segment>
         <source>Logo</source>
+      </segment>
+    </unit>
+    <unit id="investor_round">
+      <segment>
+        <source>Round / Role</source>
+      </segment>
+    </unit>
+    <unit id="investor.visit">
+      <segment>
+        <source>Visit</source>
+      </segment>
+    </unit>
+    <unit id="partner.name">
+      <segment>
+        <source>Partner Name</source>
+      </segment>
+    </unit>
+    <unit id="partner.kind">
+      <segment>
+        <source>Partner Type</source>
+      </segment>
+    </unit>
+    <unit id="partner.link">
+      <segment>
+        <source>Website</source>
+      </segment>
+    </unit>
+    <unit id="partner.visit">
+      <segment>
+        <source>Visit partner website</source>
+      </segment>
+    </unit>
+    <unit id="publication">
+      <segment>
+        <source>Publication Name</source>
+      </segment>
+    </unit>
+    <unit id="publication_logo">
+      <segment>
+        <source>Publication Logo</source>
+      </segment>
+    </unit>
+    <unit id="quote_excerpt">
+      <segment>
+        <source>Quote / Excerpt</source>
+      </segment>
+    </unit>
+    <unit id="date">
+      <segment>
+        <source>Date</source>
+      </segment>
+    </unit>
+    <unit id="article_link">
+      <segment>
+        <source>Article Link</source>
       </segment>
     </unit>
     <unit id="short_description">
@@ -239,6 +534,16 @@
     <unit id="links">
       <segment>
         <source>Links</source>
+      </segment>
+    </unit>
+    <unit id="separator">
+      <segment>
+        <source>Separator</source>
+      </segment>
+    </unit>
+    <unit id="legal_links.aria">
+      <segment>
+        <source>Legal links</source>
       </segment>
     </unit>
     <unit id="links_one_per_line">
@@ -366,6 +671,21 @@
         <source>Trend</source>
       </segment>
     </unit>
+    <unit id="trend.positive">
+      <segment>
+        <source>Trending up:</source>
+      </segment>
+    </unit>
+    <unit id="trend.neutral">
+      <segment>
+        <source>Holding steady:</source>
+      </segment>
+    </unit>
+    <unit id="trend.caution">
+      <segment>
+        <source>Needs attention:</source>
+      </segment>
+    </unit>
     <unit id="image_position">
       <segment>
         <source>Image Position</source>
@@ -461,6 +781,11 @@
         <source>Bordered</source>
       </segment>
     </unit>
+    <unit id="item.boxed">
+      <segment>
+        <source>Boxed</source>
+      </segment>
+    </unit>
     <unit id="item.centered">
       <segment>
         <source>Centered</source>
@@ -524,6 +849,16 @@
     <unit id="item.stacked">
       <segment>
         <source>Stacked</source>
+      </segment>
+    </unit>
+    <unit id="item.inline">
+      <segment>
+        <source>Inline</source>
+      </segment>
+    </unit>
+    <unit id="item.grid">
+      <segment>
+        <source>Grid</source>
       </segment>
     </unit>
     <unit id="item.icon_top">
@@ -604,6 +939,21 @@
     <unit id="item.none">
       <segment>
         <source>None</source>
+      </segment>
+    </unit>
+    <unit id="item.dot">
+      <segment>
+        <source>Dot</source>
+      </segment>
+    </unit>
+    <unit id="item.pipe">
+      <segment>
+        <source>Pipe</source>
+      </segment>
+    </unit>
+    <unit id="item.slash">
+      <segment>
+        <source>Slash</source>
       </segment>
     </unit>
     <unit id="page.column.main">
@@ -851,6 +1201,31 @@
         <source>Addresses</source>
       </segment>
     </unit>
+    <unit id="download_file">
+      <segment>
+        <source>Download</source>
+      </segment>
+    </unit>
+    <unit id="footer.nav.aria">
+      <segment>
+        <source>Footer navigation</source>
+      </segment>
+    </unit>
+    <unit id="footer.utility.aria">
+      <segment>
+        <source>Legal and utility links</source>
+      </segment>
+    </unit>
+    <unit id="footer.links.aria">
+      <segment>
+        <source>Footer links</source>
+      </segment>
+    </unit>
+    <unit id="footer.qr.alt">
+      <segment>
+        <source>Scan the QR code to download the app</source>
+      </segment>
+    </unit>
     <unit id="preview.uid">
       <segment>
         <source>UID</source>
@@ -859,6 +1234,241 @@
     <unit id="preview.page">
       <segment>
         <source>Page</source>
+      </segment>
+    </unit>
+    <unit id="stats">
+      <segment>
+        <source>Stats</source>
+      </segment>
+    </unit>
+    <unit id="supporting_text">
+      <segment>
+        <source>Supporting text</source>
+      </segment>
+    </unit>
+    <unit id="tabs">
+      <segment>
+        <source>Tabs</source>
+      </segment>
+    </unit>
+    <unit id="tab_label">
+      <segment>
+        <source>Tab label</source>
+      </segment>
+    </unit>
+    <unit id="content_title">
+      <segment>
+        <source>Content title</source>
+      </segment>
+    </unit>
+    <unit id="content_description">
+      <segment>
+        <source>Content description</source>
+      </segment>
+    </unit>
+    <unit id="tab_image">
+      <segment>
+        <source>Tab image</source>
+      </segment>
+    </unit>
+    <unit id="timeline_steps">
+      <segment>
+        <source>Timeline steps</source>
+      </segment>
+    </unit>
+    <unit id="step_label">
+      <segment>
+        <source>Step label</source>
+      </segment>
+    </unit>
+    <unit id="feature_style">
+      <segment>
+        <source>Feature style</source>
+      </segment>
+    </unit>
+    <unit id="feature_title">
+      <segment>
+        <source>Feature title</source>
+      </segment>
+    </unit>
+    <unit id="feature_description">
+      <segment>
+        <source>Feature description</source>
+      </segment>
+    </unit>
+    <unit id="feature_link">
+      <segment>
+        <source>Feature link</source>
+      </segment>
+    </unit>
+    <unit id="icon">
+      <segment>
+        <source>Icon</source>
+      </segment>
+    </unit>
+    <unit id="video_url">
+      <segment>
+        <source>Video URL</source>
+      </segment>
+    </unit>
+    <unit id="video_url.description">
+      <segment>
+        <source>YouTube or Vimeo embed URL</source>
+      </segment>
+    </unit>
+    <unit id="video_file">
+      <segment>
+        <source>Video file</source>
+      </segment>
+    </unit>
+    <unit id="poster_image">
+      <segment>
+        <source>Poster image</source>
+      </segment>
+    </unit>
+    <unit id="video_title">
+      <segment>
+        <source>Video title</source>
+      </segment>
+    </unit>
+    <unit id="testimonial_video.player_title">
+      <segment>
+        <source>Video testimonial from %s</source>
+      </segment>
+    </unit>
+    <unit id="show_rating">
+      <segment>
+        <source>Show rating field</source>
+      </segment>
+    </unit>
+    <unit id="page_groups">
+      <segment>
+        <source>Page groups</source>
+      </segment>
+    </unit>
+    <unit id="group_title">
+      <segment>
+        <source>Group title</source>
+      </segment>
+    </unit>
+    <unit id="page_label">
+      <segment>
+        <source>Page label</source>
+      </segment>
+    </unit>
+    <unit id="page_link">
+      <segment>
+        <source>Page link</source>
+      </segment>
+    </unit>
+    <unit id="sitemap.aria">
+      <segment>
+        <source>Sitemap</source>
+      </segment>
+    </unit>
+    <unit id="social_links">
+      <segment>
+        <source>Social links</source>
+      </segment>
+    </unit>
+    <unit id="platform">
+      <segment>
+        <source>Platform</source>
+      </segment>
+    </unit>
+    <unit id="url">
+      <segment>
+        <source>URL</source>
+      </segment>
+    </unit>
+    <unit id="social_links.aria">
+      <segment>
+        <source>Social media</source>
+      </segment>
+    </unit>
+    <unit id="counters">
+      <segment>
+        <source>Counters</source>
+      </segment>
+    </unit>
+    <unit id="counter.prefix">
+      <segment>
+        <source>Prefix (optional)</source>
+      </segment>
+    </unit>
+    <unit id="counter.suffix">
+      <segment>
+        <source>Suffix (optional)</source>
+      </segment>
+    </unit>
+    <unit id="offer_description">
+      <segment>
+        <source>Offer description</source>
+      </segment>
+    </unit>
+    <unit id="discount_text">
+      <segment>
+        <source>Discount badge text</source>
+      </segment>
+    </unit>
+    <unit id="original_price">
+      <segment>
+        <source>Original price</source>
+      </segment>
+    </unit>
+    <unit id="sale_price">
+      <segment>
+        <source>Sale price</source>
+      </segment>
+    </unit>
+    <unit id="stat_columns">
+      <segment>
+        <source>Columns</source>
+      </segment>
+    </unit>
+    <unit id="change">
+      <segment>
+        <source>Change (optional)</source>
+      </segment>
+    </unit>
+    <unit id="stats.aria">
+      <segment>
+        <source>Key statistics</source>
+      </segment>
+    </unit>
+    <unit id="team.view_profile">
+      <segment>
+        <source>View profile</source>
+      </segment>
+    </unit>
+    <unit id="team.email">
+      <segment>
+        <source>Email</source>
+      </segment>
+    </unit>
+    <unit id="team.call">
+      <segment>
+        <source>Call</source>
+      </segment>
+    </unit>
+    <unit id="team.members_region">
+      <segment>
+        <source>Team members</source>
+      </segment>
+    </unit>
+    <unit id="team.open_positions">
+      <segment>
+        <source>open positions</source>
+      </segment>
+    </unit>
+    <unit id="price.regular">
+      <segment>
+        <source>Regular price:</source>
+      </segment>
+    </unit>
+    <unit id="price.now">
+      <segment>
+        <source>Now:</source>
       </segment>
     </unit>
   </file>

@@ -10,27 +10,27 @@
         <f:if condition="{data.eyebrow} || {data.header}">
             <header class="stats-counter__intro">
                 <f:if condition="{data.eyebrow}">
-                    <span class="stats-counter__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span>
+                    <p class="stats-counter__eyebrow">{data -> f:render.text(field: 'eyebrow')}</p>
                 </f:if>
                 <f:if condition="{data.header}">
-                    <h2 class="stats-counter__headline">{data -> f:render.text(field: 'header')}</h2>
+                    <d:atom.typography tag="h2" variant="h2" class="stats-counter__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
                 </f:if>
             </header>
         </f:if>
 
-        <div class="stats-counter__grid stats-counter__grid--cols-{data.columns -> f:or(alternative: '3')}">
+        <dl class="stats-counter__grid stats-counter__grid--cols-{data.columns -> f:or(alternative: '3')}">
             <f:for each="{data.counters}" as="counter">
                 <div class="stats-counter__item" data-astro-reveal="slide-up">
-                    <span class="stats-counter__value">
-                        <span data-astro-counter data-astro-target="{counter -> f:render.text(field: 'counter_target')}" data-astro-duration="1400">{counter -> f:render.text(field: 'counter_target')}</span><f:if condition="{counter.suffix}">{counter -> f:render.text(field: 'suffix')}</f:if>
-                    </span>
-                    <h3 class="stats-counter__label">{counter -> f:render.text(field: 'label')}</h3>
+                    <dd class="stats-counter__value">
+                        <span data-astro-counter data-astro-target="{counter.counter_target}" data-astro-duration="1400">{counter -> f:render.text(field: 'counter_target')}</span><f:if condition="{counter.suffix}"><span class="stats-counter__suffix">{counter -> f:render.text(field: 'suffix')}</span></f:if>
+                    </dd>
+                    <dt class="stats-counter__label">{counter -> f:render.text(field: 'label')}</dt>
                     <f:if condition="{counter.description}">
-                        <p class="stats-counter__description">{counter -> f:render.text(field: 'description')}</p>
+                        <dd class="stats-counter__description">{counter -> f:render.text(field: 'description')}</dd>
                     </f:if>
                 </div>
             </f:for>
-        </div>
+        </dl>
     </d:layout.container>
 </d:layout.section>
 </html>

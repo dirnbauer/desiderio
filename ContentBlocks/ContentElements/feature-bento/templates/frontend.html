@@ -10,7 +10,7 @@
         <f:if condition="{data.header}">
             <header class="feature-bento__intro">
                 <d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography>
-                <f:if condition="{data.subheadline}"><d:atom.typography variant="muted">{data -> f:render.text(field: 'subheadline')}</d:atom.typography></f:if>
+                <f:if condition="{data.subheadline}"><d:atom.typography variant="lead" class="feature-bento__subheadline">{data -> f:render.text(field: 'subheadline')}</d:atom.typography></f:if>
             </header>
         </f:if>
 
@@ -23,7 +23,7 @@
                         </div>
                     </f:if>
                     <div class="feature-bento__content">
-                        <h3 class="feature-bento__title">{item -> f:render.text(field: 'title')}</h3>
+                        <d:atom.typography tag="h3" variant="large" class="feature-bento__title">{item -> f:render.text(field: 'title')}</d:atom.typography>
                         <f:if condition="{item.description}">
                             <p class="feature-bento__description">{item -> f:render.text(field: 'description')}</p>
                         </f:if>

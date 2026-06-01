@@ -7,7 +7,7 @@
 
 <d:layout.section class="chart-sparkline-section">
     <d:layout.container>
-        <div class="chart-sparkline chart-sparkline--{data.color_variant -> f:or(alternative: 'primary')}"
+        <figure class="chart-sparkline chart-sparkline--{data.color_variant -> f:or(alternative: 'primary')}"
              data-chart-json="{data.chart_data -> f:format.htmlspecialchars()}">
             <div class="chart-sparkline__card">
                 <div class="chart-sparkline__head">
@@ -24,10 +24,14 @@
                     </f:if>
                 </div>
                 <div class="chart-sparkline__plot">
-                    <svg class="chart-sparkline__svg" id="chart-sparkline-svg-{data.uid}" role="img" aria-hidden="true"></svg>
+                    <svg class="chart-sparkline__svg" id="chart-sparkline-svg-{data.uid}" role="img"
+                         aria-label="{f:if(condition: data.header, then: '{data.header} trend', else: 'Trend over time')}{f:if(condition: data.trend_badge, then: ', {data.trend_badge}')}"></svg>
                 </div>
             </div>
-        </div>
+            <f:if condition="{data.trend_badge}">
+                <figcaption class="chart-sparkline__caption sr-only">{data -> f:render.text(field: 'trend_badge')}</figcaption>
+            </f:if>
+        </figure>
     </d:layout.container>
 </d:layout.section>
 

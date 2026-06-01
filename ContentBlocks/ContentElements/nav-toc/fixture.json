@@ -1,11 +1,12 @@
 {
     "_type": "nav",
+    "header": "On this page",
     "items": [
-        "Import ready",
-        "Token polish",
-        "Modern media",
-        "Editor ready",
-        "Fast preview",
-        "A11y checked"
+        { "label": "Getting started", "anchor": "getting-started", "level": "h2" },
+        { "label": "Install the CLI", "anchor": "install-the-cli", "level": "h3" },
+        { "label": "Configure your project", "anchor": "configure-your-project", "level": "h3" },
+        { "label": "Core concepts", "anchor": "core-concepts", "level": "h2" },
+        { "label": "Deploy to production", "anchor": "deploy-to-production", "level": "h2" },
+        { "label": "Troubleshooting", "anchor": "troubleshooting", "level": "h2" }
     ]
 }

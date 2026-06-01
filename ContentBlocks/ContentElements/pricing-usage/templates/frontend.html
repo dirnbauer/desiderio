@@ -10,7 +10,7 @@
         <f:if condition="{data.eyebrow} || {data.header} || {data.subheadline}">
             <header class="pricing-usage__intro">
                 <f:if condition="{data.eyebrow}">
-                    <span class="pricing-usage__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span>
+                    <p class="pricing-usage__eyebrow">{data -> f:render.text(field: 'eyebrow')}</p>
                 </f:if>
                 <f:if condition="{data.header}">
                     <h2 class="pricing-usage__headline">{data -> f:render.text(field: 'header')}</h2>
@@ -21,25 +21,29 @@
             </header>
         </f:if>
 
-        <div class="pricing-usage__grid">
-            <f:for each="{data.items}" as="item">
-                <article class="pricing-usage__card">
-                    <h3 class="pricing-usage__title">{item -> f:render.text(field: 'title')}</h3>
-                    <div class="pricing-usage__rate-row">
-                        <span class="pricing-usage__rate">{item -> f:render.text(field: 'rate')}</span>
-                        <span class="pricing-usage__unit">/ {item -> f:render.text(field: 'unit')}</span>
-                    </div>
-                    <f:if condition="{item.description}">
-                        <p class="pricing-usage__card-desc">{item -> f:render.text(field: 'description')}</p>
-                    </f:if>
-                    <f:if condition="{item.link.url}">
-                        <f:link.typolink parameter="{item.link}" class="pricing-usage__link">
-                            Learn more &rarr;
-                        </f:link.typolink>
-                    </f:if>
-                </article>
+        <ul class="pricing-usage__grid" role="list">
+            <f:for each="{data.items}" as="item" iteration="iter">
+                <li class="pricing-usage__item">
+                    <article class="pricing-usage__card" aria-labelledby="pricing-usage-{data.uid}-{iter.cycle}">
+                        <h3 class="pricing-usage__title" id="pricing-usage-{data.uid}-{iter.cycle}">{item -> f:render.text(field: 'title')}</h3>
+                        <p class="pricing-usage__rate-row">
+                            <span class="pricing-usage__rate">{item -> f:render.text(field: 'rate')}</span>
+                            <span class="pricing-usage__unit">/ {item -> f:render.text(field: 'unit')}</span>
+                        </p>
+                        <f:if condition="{item.description}">
+                            <p class="pricing-usage__card-desc">{item -> f:render.text(field: 'description')}</p>
+                        </f:if>
+                        <f:if condition="{item.link.url}">
+                            <f:variable name="usageLinkLabel">View {item.title} details</f:variable>
+                            <f:link.typolink parameter="{item.link}" class="pricing-usage__link" additionalAttributes="{'aria-label': usageLinkLabel}">
+                                View details
+                                <svg class="pricing-usage__arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+                            </f:link.typolink>
+                        </f:if>
+                    </article>
+                </li>
             </f:for>
-        </div>
+        </ul>
     </d:layout.container>
 </d:layout.section>
 </html>

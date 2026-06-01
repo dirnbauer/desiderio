@@ -35,9 +35,10 @@ fields:
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.warning'
         value: warning
       -
-        label: Error
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.destructive'
         value: error
     default: info
+    description: 'Sets the colour, icon and screen-reader urgency. Warning and error announce as alerts; info and success as status.'
   -
     identifier: action_text
     type: Textarea

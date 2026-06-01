@@ -14,15 +14,35 @@
     <div class="desiderio-saas-template desiderio-saas-start">
         <d:layout.container size="xl">
             <header class="desiderio-saas-start__hero">
-                <p>{breadcrumb.0.title}</p>
+                <p class="desiderio-saas-start__eyebrow">
+                    <d:atom.badge variant="outline" class="desiderio-saas-start__badge">{breadcrumb.0.title -> f:or(alternative: '{f:translate(extensionName: \'desiderio\', key: \'saas.hero.eyebrow\', default: \'Now in public beta\')}')}</d:atom.badge>
+                </p>
                 <h1>{site.configuration.websiteTitle -> f:or(alternative: page.pageRecord.title)}</h1>
                 <f:if condition="{page.pageRecord.abstract}">
-                    <span>{page.pageRecord.abstract}</span>
+                    <span class="desiderio-saas-start__lede">{page.pageRecord.abstract}</span>
                 </f:if>
+                <div class="desiderio-saas-start__actions" role="group" aria-label="{f:translate(extensionName: 'desiderio', key: 'saas.hero.actions.label', default: 'Primary actions')}">
+                    <d:atom.button href="#desiderio-saas-start" size="lg" class="desiderio-saas-start__cta">
+                        <span data-icon="inline-start" aria-hidden="true"><d:atom.icon name="rocket" size="sm"/></span>
+                        <f:translate extensionName="desiderio" key="saas.hero.cta.primary">Start free</f:translate>
+                    </d:atom.button>
+                    <d:atom.button href="#desiderio-saas-start" variant="ghost" size="lg" class="desiderio-saas-start__cta-secondary">
+                        <f:translate extensionName="desiderio" key="saas.hero.cta.secondary">Book a demo</f:translate>
+                    </d:atom.button>
+                </div>
+                <p class="desiderio-saas-start__trust">
+                    <span class="desiderio-saas-start__trust-icon" aria-hidden="true"><d:atom.icon name="check-circle" size="xs"/></span>
+                    <f:translate extensionName="desiderio" key="saas.hero.trust">No credit card. 14-day Pro trial. Cancel anytime.</f:translate>
+                </p>
             </header>
-            <div class="desiderio-saas-template__content desiderio-saas-start__content">
+            <section
+                id="desiderio-saas-start"
+                class="desiderio-saas-template__content desiderio-saas-start__content"
+                tabindex="-1"
+                aria-label="{f:translate(extensionName: 'desiderio', key: 'saas.region.offer', default: 'Product, pricing and sign-up')}"
+            >
                 <f:render partial="Presets/ContentArea" arguments="{content: content.main}"/>
-            </div>
+            </section>
         </d:layout.container>
     </div>
 </f:section>

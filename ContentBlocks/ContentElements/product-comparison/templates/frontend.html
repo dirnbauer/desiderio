@@ -10,7 +10,7 @@
         <f:if condition="{data.eyebrow} || {data.header}">
             <header class="product-comparison__intro">
                 <f:if condition="{data.eyebrow}">
-                    <span class="product-comparison__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span>
+                    <p class="product-comparison__eyebrow">{data -> f:render.text(field: 'eyebrow')}</p>
                 </f:if>
                 <f:if condition="{data.header}">
                     <h2 class="product-comparison__headline">{data -> f:render.text(field: 'header')}</h2>
@@ -18,40 +18,41 @@
             </header>
         </f:if>
 
-        <div class="product-comparison__grid">
-            <f:for each="{data.products}" as="product">
-                <article class="product-comparison__card {f:if(condition: product.is_recommended, then: 'product-comparison__card--recommended')}">
-                    <f:if condition="{product.is_recommended}">
-                        <span class="product-comparison__badge">Recommended</span>
-                    </f:if>
-                    <f:if condition="{product.image}">
-                        <div class="product-comparison__media">
-                            <f:for each="{product.image}" as="fileReference">
-                                <f:image image="{fileReference}" maxWidth="320" alt="{product.name}" class="product-comparison__image"/>
-                            </f:for>
-                        </div>
-                    </f:if>
-                    <h3 class="product-comparison__name">{product -> f:render.text(field: 'name')}</h3>
-                    <f:if condition="{product.price}">
-                        <span class="product-comparison__price">{product -> f:render.text(field: 'price')}</span>
-                    </f:if>
-                    <f:if condition="{product.specs}">
-                        <ul class="product-comparison__specs">
-                            <f:for each="{product.specs}" as="spec">
-                                <f:if condition="{spec.text}">
-                                    <li class="product-comparison__spec">{spec -> f:render.text(field: 'text')}</li>
-                                </f:if>
-                            </f:for>
-                        </ul>
-                    </f:if>
-                    <f:if condition="{product.link.url}">
-                        <f:link.typolink parameter="{product.link}" class="product-comparison__button {f:if(condition: product.is_recommended, then: 'product-comparison__button--primary', else: 'product-comparison__button--outline')}">
-                            View details
-                        </f:link.typolink>
-                    </f:if>
-                </article>
+        <ul class="product-comparison__grid" role="list">
+            <f:for each="{data.products}" as="product" iteration="iter">
+                <li class="product-comparison__item">
+                    <article class="product-comparison__card {f:if(condition: product.is_recommended, then: 'product-comparison__card--recommended')}" aria-labelledby="product-comparison-{data.uid}-{iter.cycle}">
+                        <f:if condition="{product.is_recommended}">
+                            <span class="product-comparison__badge">Recommended</span>
+                        </f:if>
+                        <f:if condition="{product.image}">
+                            <div class="product-comparison__media">
+                                <f:image image="{product.image.0}" maxWidth="320" loading="lazy" alt="{product.image.0.alternative -> f:or(alternative: product.name)}" class="product-comparison__image"/>
+                            </div>
+                        </f:if>
+                        <h3 class="product-comparison__name" id="product-comparison-{data.uid}-{iter.cycle}">{product -> f:render.text(field: 'name')}</h3>
+                        <f:if condition="{product.price}">
+                            <p class="product-comparison__price">{product -> f:render.text(field: 'price')}</p>
+                        </f:if>
+                        <f:if condition="{product.specs}">
+                            <ul class="product-comparison__specs" role="list">
+                                <f:for each="{product.specs}" as="spec">
+                                    <f:if condition="{spec.text}">
+                                        <li class="product-comparison__spec">{spec -> f:render.text(field: 'text')}</li>
+                                    </f:if>
+                                </f:for>
+                            </ul>
+                        </f:if>
+                        <f:if condition="{product.link.url}">
+                            <f:variable name="productCtaLabel">View {product.name} details</f:variable>
+                            <f:link.typolink parameter="{product.link}" class="product-comparison__button {f:if(condition: product.is_recommended, then: 'product-comparison__button--primary', else: 'product-comparison__button--outline')}" additionalAttributes="{'aria-label': productCtaLabel}">
+                                View details
+                            </f:link.typolink>
+                        </f:if>
+                    </article>
+                </li>
             </f:for>
-        </div>
+        </ul>
     </d:layout.container>
 </d:layout.section>
 </html>

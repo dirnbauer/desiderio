@@ -1,0 +1,30 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:comment>
+    Sticky reading-progress bar for the article view. Decorative by default
+    (role=progressbar with a translated label so it is still announced if a
+    user lands on it), starts hidden and is revealed by desiderio-blog.js only
+    when motion is allowed; under prefers-reduced-motion it stays hidden. The
+    inner bar uses transform: scaleX so the browser can composite it cheaply.
+</f:comment>
+
+<div
+    class="pointer-events-none sticky top-0 z-30 -mx-4 h-1 bg-transparent motion-reduce:hidden sm:-mx-6 lg:-mx-8"
+    data-blog-progress="true"
+    role="progressbar"
+    aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/blog.xlf:post.progress.label')}"
+    aria-valuemin="0"
+    aria-valuemax="100"
+    aria-valuenow="0"
+    hidden="hidden"
+>
+    <div
+        class="h-full origin-left scale-x-0 bg-primary transition-transform duration-150 ease-out will-change-transform"
+        data-blog-progress-bar="true"
+    ></div>
+</div>
+
+</html>

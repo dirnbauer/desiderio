@@ -1,16 +1,23 @@
 {
     "_type": "grid",
-    "header": "Investor Grid for modern people pages",
-    "subheadline": "Present people and culture with confident profile copy and calm card structure.",
+    "header": "Backed by investors who scale category leaders",
+    "subheadline": "We raised our Series B in 2024 from funds that have built developer tools used by millions.",
     "investors": [
         {
-            "name": "Noah Ritter"
+            "name": "Accel",
+            "type": "Series B lead"
         },
         {
-            "name": "Lea Fischer"
+            "name": "Point Nine",
+            "type": "Seed lead"
         },
         {
-            "name": "Mara Weiss"
+            "name": "Sequoia",
+            "type": "Series A lead"
+        },
+        {
+            "name": "Y Combinator",
+            "type": "S22 batch"
         }
     ]
 }

@@ -8,17 +8,17 @@
 <d:layout.section class="features">
     <d:layout.container>
         <f:if condition="{data.header} || {data.subheadline}">
-            <div class="features__header">
+            <header class="features__header">
                 <f:if condition="{data.header}">
                     <d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography>
                 </f:if>
                 <f:if condition="{data.subheadline}">
                     <d:atom.typography variant="muted" class="features__subheadline">{data -> f:render.text(field: 'subheadline')}</d:atom.typography>
                 </f:if>
-            </div>
+            </header>
         </f:if>
 
-        <div class="features__grid features__grid--cols-{data.columns} features__grid--{data.variant}">
+        <div class="features__grid features__grid--cols-{data.columns -> f:or(alternative: '3')} features__grid--{data.variant -> f:or(alternative: 'icon-top')}">
             <f:for each="{data.feature_items}" as="feature">
                 <div class="features__item {f:if(condition: '{data.variant} == \'card\'', then: 'features__item--card')}">
                     <div class="features__icon" aria-hidden="true">

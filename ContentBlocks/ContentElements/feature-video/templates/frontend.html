@@ -5,12 +5,16 @@
 
 <f:asset.css identifier="d-feature-video" href="{cb:assetPath()}/frontend.css"/>
 
+<f:variable name="videoTitle">{data.header -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:video_title\')}')}</f:variable>
+
 <d:layout.section class="feature-video">
     <d:layout.container>
-        <f:if condition="{data.header}">
+        <f:if condition="{data.eyebrow} || {data.header} || {data.description}">
             <header class="feature-video__intro">
                 <f:if condition="{data.eyebrow}"><span class="feature-video__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span></f:if>
-                <d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography>
+                <f:if condition="{data.header}">
+                    <d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography>
+                </f:if>
                 <f:if condition="{data.description}"><d:atom.typography variant="muted">{data -> f:render.text(field: 'description')}</d:atom.typography></f:if>
             </header>
         </f:if>
@@ -19,7 +23,7 @@
             <f:if condition="{data.video_url}">
                 <f:then>
                     <div class="feature-video__embed">
-                        <iframe src="{data.video_url}" frameborder="0" allowfullscreen loading="lazy"
+                        <iframe src="{data.video_url}" title="{videoTitle -> f:format.trim()}" frameborder="0" allowfullscreen loading="lazy"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
                     </div>
                 </f:then>

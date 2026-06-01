@@ -21,24 +21,26 @@
             </header>
         </f:if>
 
-        <div class="testimonial-wall__masonry">
+        <div class="testimonial-wall__masonry" role="list">
             <f:for each="{data.testimonials}" as="item">
-                <article class="testimonial-wall__card">
-                    <blockquote class="testimonial-wall__quote">{item -> f:render.text(field: 'quote')}</blockquote>
-                    <div class="testimonial-wall__author">
+                <figure class="testimonial-wall__card" role="listitem">
+                    <blockquote class="testimonial-wall__quote">
+                        <p>{item -> f:render.text(field: 'quote')}</p>
+                    </blockquote>
+                    <figcaption class="testimonial-wall__author">
                         <f:if condition="{item.author_image}">
                             <f:for each="{item.author_image}" as="fileReference">
-                                <f:image image="{fileReference}" width="40" height="40" alt="{item.author_name}" class="testimonial-wall__avatar"/>
+                                <f:image image="{fileReference}" width="40" height="40" alt="" class="testimonial-wall__avatar"/>
                             </f:for>
                         </f:if>
-                        <div>
+                        <span class="testimonial-wall__author-meta">
                             <cite class="testimonial-wall__name">{item -> f:render.text(field: 'author_name')}</cite>
                             <f:if condition="{item.author_title}">
                                 <span class="testimonial-wall__role">{item -> f:render.text(field: 'author_title')}</span>
                             </f:if>
-                        </div>
-                    </div>
-                </article>
+                        </span>
+                    </figcaption>
+                </figure>
             </f:for>
         </div>
     </d:layout.container>

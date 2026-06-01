@@ -11,11 +11,20 @@
 </f:section>
 
 <f:section name="Main">
-    <article class="desiderio-editorial-start">
+    <f:comment>
+        Editorial landing / magazine index. The masthead carries the publication
+        name and standfirst; the content area below holds the curated feed of
+        article teasers, sections and the subscribe prompt placed by editors.
+    </f:comment>
+    <section class="desiderio-editorial-start" aria-labelledby="desiderio-editorial-masthead">
         <d:layout.container size="md">
             <header class="desiderio-editorial-start__cover">
-                <p class="desiderio-editorial-template__eyebrow">{breadcrumb.0.title}</p>
-                <h1>{site.configuration.websiteTitle -> f:or(alternative: page.pageRecord.title)}</h1>
+                <f:if condition="{breadcrumb.0.title}">
+                    <p class="desiderio-editorial-template__kicker">
+                        <d:atom.badge variant="secondary">{breadcrumb.0.title}</d:atom.badge>
+                    </p>
+                </f:if>
+                <h1 id="desiderio-editorial-masthead">{site.configuration.websiteTitle -> f:or(alternative: page.pageRecord.title)}</h1>
                 <f:if condition="{page.pageRecord.abstract}">
                     <p>{page.pageRecord.abstract}</p>
                 </f:if>
@@ -24,7 +33,7 @@
                 <f:render partial="Presets/ContentArea" arguments="{content: content.main}"/>
             </div>
         </d:layout.container>
-    </article>
+    </section>
 </f:section>
 
 </html>

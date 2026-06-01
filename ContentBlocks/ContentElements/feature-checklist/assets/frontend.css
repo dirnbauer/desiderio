@@ -13,6 +13,11 @@
     max-width: 40rem;
     margin-inline: auto;
 }
+.feature-checklist__items {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
 .feature-checklist__item {
     display: flex;
     gap: var(--d-spacing-md);

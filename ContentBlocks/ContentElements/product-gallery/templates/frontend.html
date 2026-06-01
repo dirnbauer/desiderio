@@ -7,29 +7,33 @@
 
 <d:layout.section class="product-gallery">
     <d:layout.container>
-        <f:if condition="{data.header}">
-            <h2 class="product-gallery__heading">{data -> f:render.text(field: 'header')}</h2>
-        </f:if>
+        <figure class="product-gallery__figure" aria-label="{f:if(condition: data.header, then: '{data.header}', else: 'Product gallery')}">
+            <f:if condition="{data.header}">
+                <h2 class="product-gallery__heading">{data -> f:render.text(field: 'header')}</h2>
+            </f:if>
 
-        <div class="product-gallery__main">
-            <f:for each="{data.images}" as="fileReference" iteration="iter">
-                <f:if condition="{iter.isFirst}">
-                    <f:image image="{fileReference}" maxWidth="800" alt="{data.header}" class="product-gallery__main-image"/>
-                </f:if>
-            </f:for>
-        </div>
+            <div class="product-gallery__main">
+                <f:for each="{data.images}" as="fileReference" iteration="iter">
+                    <f:if condition="{iter.isFirst}">
+                        <f:image image="{fileReference}" maxWidth="800" alt="{fileReference.alternative -> f:or(alternative: data.header)}" class="product-gallery__main-image"/>
+                    </f:if>
+                </f:for>
+            </div>
 
-        <div class="product-gallery__thumbnails product-gallery__thumbnails--cols-{data.columns -> f:or(alternative: '4')}">
-            <f:for each="{data.images}" as="fileReference" iteration="iter">
-                <button type="button" class="product-gallery__thumb {f:if(condition: iter.isFirst, then: 'product-gallery__thumb--active')}">
-                    <f:image image="{fileReference}" width="120" height="120" alt="" class="product-gallery__thumb-img"/>
-                </button>
-            </f:for>
-        </div>
+            <f:if condition="{data.images}">
+                <ul class="product-gallery__thumbnails product-gallery__thumbnails--cols-{data.columns -> f:or(alternative: '4')}">
+                    <f:for each="{data.images}" as="fileReference" iteration="iter">
+                        <li class="product-gallery__thumb {f:if(condition: iter.isFirst, then: 'product-gallery__thumb--active')}">
+                            <f:image image="{fileReference}" width="160" height="160" alt="{fileReference.alternative -> f:or(alternative: '{data.header} view {iter.cycle}')}" class="product-gallery__thumb-img" loading="lazy" decoding="async"/>
+                        </li>
+                    </f:for>
+                </ul>
+            </f:if>
 
-        <f:if condition="{data.caption}">
-            <p class="product-gallery__caption">{data -> f:render.text(field: 'caption')}</p>
-        </f:if>
+            <f:if condition="{data.caption}">
+                <figcaption class="product-gallery__caption">{data -> f:render.text(field: 'caption')}</figcaption>
+            </f:if>
+        </figure>
     </d:layout.container>
 </d:layout.section>
 </html>

@@ -1,27 +1,55 @@
 .investor-grid__intro {
     text-align: center;
+    max-width: 48rem;
+    margin-inline: auto;
     margin-block-end: var(--d-spacing-xl);
-}
-.investor-grid__items {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: var(--d-spacing-lg);
-}
-@media (max-width: 768px) {
-    .investor-grid__items { grid-template-columns: repeat(2, 1fr); }
+    display: flex;
+    flex-direction: column;
+    gap: var(--d-spacing-sm);
 }
 .investor-grid__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
-    padding: var(--d-spacing-md);
+    height: 100%;
+    padding: var(--d-spacing-lg) var(--d-spacing-md);
     border: 1px solid var(--border);
     border-radius: var(--radius);
+    background: var(--card);
+}
+.investor-grid__logo-wrap {
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-block-end: var(--d-spacing-sm);
 }
 .investor-grid__logo {
     max-height: 40px;
+    max-width: 140px;
     width: auto;
     object-fit: contain;
-    margin-block-end: var(--d-spacing-sm);
 }
-.investor-grid__name { font-weight: 600; font-size: var(--d-text-sm); }
-.investor-grid__type { font-size: var(--d-text-xs); color: var(--muted-foreground); display: block; }
-.investor-grid__link { font-size: var(--d-text-xs); color: var(--primary); }
+.investor-grid__logo-fallback {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--muted);
+    color: var(--muted-foreground);
+    font-weight: 700;
+    font-size: var(--d-text-lg);
+}
+.investor-grid__name { font-weight: 600; font-size: var(--d-text-base); line-height: 1.4; }
+.investor-grid__type { font-size: var(--d-text-sm); color: var(--muted-foreground); margin-block-start: 2px; }
+.investor-grid__link {
+    margin-block-start: var(--d-spacing-sm);
+    font-size: var(--d-text-sm);
+    font-weight: 500;
+    color: var(--primary);
+    border-radius: var(--d-radius-sm);
+}
+.investor-grid__link:hover { text-decoration: underline; }

@@ -10,18 +10,18 @@
         <div class="feature-minimal__layout">
             <header class="feature-minimal__intro">
                 <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
-                <f:if condition="{data.subheadline}"><d:atom.typography variant="muted">{data -> f:render.text(field: 'subheadline')}</d:atom.typography></f:if>
+                <f:if condition="{data.subheadline}"><d:atom.typography variant="lead" class="feature-minimal__subheadline">{data -> f:render.text(field: 'subheadline')}</d:atom.typography></f:if>
             </header>
-            <div class="feature-minimal__list">
+            <ul class="feature-minimal__list" role="list">
                 <f:for each="{data.items}" as="item">
-                    <div class="feature-minimal__item">
-                        <h3 class="feature-minimal__title">{item -> f:render.text(field: 'title')}</h3>
+                    <li class="feature-minimal__item">
+                        <d:atom.typography tag="h3" variant="large" class="feature-minimal__title">{item -> f:render.text(field: 'title')}</d:atom.typography>
                         <f:if condition="{item.description_text}">
-                            <p class="feature-minimal__description">{item -> f:render.text(field: 'description_text')}</p>
+                            <d:atom.typography variant="muted" class="feature-minimal__description">{item -> f:render.text(field: 'description_text')}</d:atom.typography>
                         </f:if>
-                    </div>
+                    </li>
                 </f:for>
-            </div>
+            </ul>
         </div>
     </d:layout.container>
 </d:layout.section>

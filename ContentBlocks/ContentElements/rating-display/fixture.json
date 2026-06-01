@@ -1,10 +1,27 @@
 {
     "_type": "stats",
-    "header": "Rating Display for credible trust signals",
+    "eyebrow": "Rated by real users",
+    "header": "Teams rate us 4.8 out of 5",
     "rating_items": [
-        [],
-        [],
-        [],
-        []
+        {
+            "platform": "G2",
+            "score": "4.8/5",
+            "review_count": "1,240 reviews"
+        },
+        {
+            "platform": "Capterra",
+            "score": "4.7/5",
+            "review_count": "860 reviews"
+        },
+        {
+            "platform": "TrustRadius",
+            "score": "4.9/5",
+            "review_count": "510 reviews"
+        },
+        {
+            "platform": "Google",
+            "score": "4.8/5",
+            "review_count": "3,100 reviews"
+        }
     ]
 }

@@ -32,18 +32,18 @@
                         </div>
                     </f:if>
                     <div class="awards__info">
-                        <f:if condition="{award.link.url}">
-                            <f:then>
-                                <f:link.typolink parameter="{award.link}" class="awards__title">{award -> f:render.text(field: 'title')}</f:link.typolink>
-                            </f:then>
-                            <f:else>
-                                <h3 class="awards__title">{award -> f:render.text(field: 'title')}</h3>
-                            </f:else>
-                        </f:if>
+                        <h3 class="awards__title">
+                            <f:if condition="{award.link.url}">
+                                <f:then>
+                                    <f:link.typolink parameter="{award.link}" class="awards__title-link">{award -> f:render.text(field: 'title')}</f:link.typolink>
+                                </f:then>
+                                <f:else>{award -> f:render.text(field: 'title')}</f:else>
+                            </f:if>
+                        </h3>
                         <f:if condition="{award.organization} || {award.year}">
-                            <span class="awards__meta">
+                            <p class="awards__meta">
                                 {award -> f:render.text(field: 'organization')}<f:if condition="{award.organization} && {award.year}"> &middot; </f:if>{award -> f:render.text(field: 'year')}
-                            </span>
+                            </p>
                         </f:if>
                     </div>
                 </article>

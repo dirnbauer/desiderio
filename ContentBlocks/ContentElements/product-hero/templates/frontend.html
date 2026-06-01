@@ -36,7 +36,7 @@
             <f:if condition="{data.image}">
                 <div class="product-hero__media">
                     <f:for each="{data.image}" as="fileReference">
-                        <f:image image="{fileReference}" maxWidth="720" alt="{data.header}" class="product-hero__image"/>
+                        <f:image image="{fileReference}" maxWidth="720" alt="{fileReference.alternative -> f:or(alternative: data.header)}" class="product-hero__image" loading="eager" fetchpriority="high" decoding="async"/>
                     </f:for>
                 </div>
             </f:if>

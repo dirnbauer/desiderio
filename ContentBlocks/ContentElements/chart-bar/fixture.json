@@ -1,4 +1,9 @@
 {
     "_type": "stats",
-    "header": "Bar Chart for live product intelligence"
+    "header": "New signups by channel",
+    "description": "Where last quarter's new accounts came from, ranked by volume. Organic and referral lead the mix.",
+    "chart_data": "[{\"label\":\"Organic\",\"value\":1840},{\"label\":\"Referral\",\"value\":1320},{\"label\":\"Paid\",\"value\":940},{\"label\":\"Social\",\"value\":610},{\"label\":\"Email\",\"value\":420}]",
+    "orientation": "vertical",
+    "color_variant": "primary",
+    "show_grid": 1
 }

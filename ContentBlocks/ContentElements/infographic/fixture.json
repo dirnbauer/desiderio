@@ -1,18 +1,28 @@
 {
     "_type": "stats",
-    "header": "Infographic Data View for live product intelligence",
+    "header": "How Desiderio turns code into changelogs",
+    "description": "Four steps from a merged pull request to a published, on-brand release note.",
+    "shadcn_layout": "horizontal",
     "items": [
         {
-            "number": "24K",
-            "title": "Infographic Data View for live product intelligence"
+            "number": "1",
+            "title": "Merge",
+            "description": "A pull request lands and Desiderio captures it with its labels and author."
         },
         {
-            "number": "4.9",
-            "title": "Infographic Data View for live product intelligence"
+            "number": "2",
+            "title": "Draft",
+            "description": "AI groups the changes and writes a plain-language summary you can edit."
         },
         {
-            "number": "12 ms",
-            "title": "Infographic Data View for live product intelligence"
+            "number": "3",
+            "title": "Brand",
+            "description": "Apply your colors, logo, and templates so every release looks consistent."
+        },
+        {
+            "number": "4",
+            "title": "Publish",
+            "description": "Ship to your page, widget, and email subscribers in a single click."
         }
     ]
 }

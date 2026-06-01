@@ -28,7 +28,7 @@ fields:
     type: Collection
     table: pricing_enterprise_features
     prefixField: true
-    label: 'Key Features'
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:features'
     labelField: text
     minItems: 1
     maxItems: 8
@@ -42,15 +42,15 @@ fields:
     identifier: contact_text
     type: Textarea
     rows: 1
-    label: 'CTA Button Text'
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_text'
     default: 'Contact Sales'
   -
     identifier: contact_link
     type: Link
-    label: 'CTA Button Link'
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_link'
   -
     identifier: image
     type: File
-    label: Illustration
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:image'
     allowed: common-image-types
     maxitems: 1

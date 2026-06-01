@@ -11,14 +11,20 @@
 </f:section>
 
 <f:section name="Main">
-    <article class="desiderio-editorial-template">
+    <article class="desiderio-editorial-template" itemscope="itemscope" itemtype="https://schema.org/Article">
         <d:layout.container size="md">
-            <header class="desiderio-editorial-template__header">
-                <p class="desiderio-editorial-template__eyebrow">{breadcrumb.0.title}</p>
-                <h1>{page.pageRecord.title}</h1>
-            </header>
+            <f:render
+                partial="Presets/EditorialArticleHeader"
+                arguments="{
+                    breadcrumb: breadcrumb,
+                    title: page.pageRecord.title,
+                    deck: page.pageRecord.abstract,
+                    author: page.pageRecord.author,
+                    date: page.pageRecord.lastUpdated -> f:or(alternative: page.pageRecord.crdate)
+                }"
+            />
 
-            <div class="desiderio-editorial-template__content">
+            <div class="desiderio-editorial-template__content" itemprop="articleBody">
                 <f:render partial="Presets/ContentArea" arguments="{content: content.main}"/>
             </div>
         </d:layout.container>

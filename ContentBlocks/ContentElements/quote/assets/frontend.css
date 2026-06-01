@@ -5,6 +5,15 @@
     max-width: 42rem;
     margin-inline: auto;
 }
+.quote__mark {
+    display: block;
+    font-size: 3rem;
+    line-height: 1;
+    font-weight: 700;
+    color: color-mix(in oklch, var(--primary) 35%, transparent);
+    margin-block-end: var(--d-spacing-xs);
+}
+.quote--bordered .quote__mark { display: none; }
 .quote--bordered {
     border-left: 4px solid var(--primary);
     padding-left: var(--d-spacing-lg);

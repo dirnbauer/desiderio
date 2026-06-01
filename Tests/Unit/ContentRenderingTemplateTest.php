@@ -492,6 +492,69 @@ final class ContentRenderingTemplateTest extends TestCase
         self::assertSame($contentBlockNames, $hiddenSetNames);
     }
 
+    public function testScenarioPresetSiteSetsOverridePageviewTemplates(): void
+    {
+        $presets = [
+            'Corporate' => 'DesiderioPresetCorporate',
+            'Dashboard' => 'DesiderioPresetDashboard',
+            'Editorial' => 'DesiderioPresetEditorial',
+            'Portfolio' => 'DesiderioPresetPortfolio',
+            'Saas' => 'DesiderioPresetSaas',
+        ];
+        $sharedPartials = [
+            'ContentArea' => 'contentArea="{content}"',
+            'Stage' => 'contentArea="{content}"',
+            'DashboardRail' => 'desiderio-dashboard-template__rail',
+            'ErrorHomeLink' => 'a11y.nav.home',
+            'SystemHeader' => '<f:argument name="summaryTag"',
+        ];
+        $templateNames = [
+            'DesiderioStartpage',
+            'DesiderioContentpage',
+            'DesiderioContentpageSidebar',
+            'DesiderioSearch',
+            'DesiderioError',
+        ];
+
+        foreach ($sharedPartials as $partialName => $expectedMarkup) {
+            $partialPath = 'Resources/Private/Templates/Partials/Presets/' . $partialName . '.fluid.html';
+            $absolutePartialPath = __DIR__ . '/../../' . $partialPath;
+
+            self::assertFileExists($absolutePartialPath, "{$partialPath} must exist for reusable preset chrome");
+            self::assertStringContainsString($expectedMarkup, (string) file_get_contents($absolutePartialPath));
+        }
+
+        foreach ($presets as $presetDirectory => $setDirectory) {
+            $presetSet = Yaml::parseFile(__DIR__ . '/../../Configuration/Sets/' . $setDirectory . '/config.yaml');
+            $typoScript = (string) file_get_contents(__DIR__ . '/../../Configuration/Sets/' . $setDirectory . '/setup.typoscript');
+            $cssName = $presetDirectory === 'Saas' ? 'saas' : strtolower($presetDirectory);
+            $cssPath = __DIR__ . '/../../Resources/Public/Css/preset-' . $cssName . '.css';
+
+            self::assertIsArray($presetSet);
+            self::assertTrue($presetSet['hidden']);
+            self::assertFileExists($cssPath);
+            self::assertStringContainsString(
+                'lib.fluidPage.paths.30 = EXT:desiderio/Resources/Private/Presets/' . $presetDirectory . '/Templates/',
+                $typoScript,
+                $setDirectory . ' must register a PAGEVIEW override path',
+            );
+
+            foreach ($templateNames as $templateName) {
+                $templatePath = 'Resources/Private/Presets/' . $presetDirectory . '/Templates/Pages/' . $templateName . '.fluid.html';
+                $absoluteTemplatePath = __DIR__ . '/../../' . $templatePath;
+
+                self::assertFileExists($absoluteTemplatePath, "{$templatePath} must exist so {$setDirectory} is a complete page archetype");
+
+                $template = (string) file_get_contents($absoluteTemplatePath);
+                self::assertStringContainsString('Pages/Default', $template);
+                self::assertStringContainsString('partial="Presets/ContentArea"', $template);
+            }
+
+            $sidebarTemplate = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Presets/' . $presetDirectory . '/Templates/Pages/DesiderioContentpageSidebar.fluid.html');
+            self::assertStringContainsString('content: content.sidebar', $sidebarTemplate);
+        }
+    }
+
     public function testShadcnUiPageTemplateSiteSetRegistersBlogAndExtensionTemplates(): void
     {
         $baseSet = Yaml::parseFile(__DIR__ . '/../../Configuration/Sets/Desiderio/config.yaml');
@@ -683,9 +746,9 @@ final class ContentRenderingTemplateTest extends TestCase
         self::assertStringContainsString('aria-controls="desiderio-main-nav"', $headerPartial);
         self::assertStringContainsString("aria-current: \\'page\\'", $headerPartial, 'Active nav links must declare aria-current="page" via additionalAttributes.');
         self::assertStringContainsString('aria-pressed="false"', $headerPartial);
-        self::assertStringContainsString('focusable="false"', $headerPartial);
+        self::assertStringContainsString('<d:atom.icon', $headerPartial);
         self::assertStringContainsString('a11y.menu.toggle', $headerPartial);
-        self::assertStringContainsString('a11y.theme.toggle', $headerPartial);
+        self::assertStringContainsString('a11y.theme.switch', $headerPartial);
         self::assertStringContainsString('a11y.nav.language', $headerPartial);
         self::assertMatchesRegularExpression(
             '/<ul[^>]*role="list"/',
@@ -705,7 +768,7 @@ final class ContentRenderingTemplateTest extends TestCase
             'a11y.nav.footer',
             'a11y.nav.language',
             'a11y.menu.toggle',
-            'a11y.theme.toggle',
+            'a11y.theme.switch',
         ];
         foreach ($a11yLabels as $unitId) {
             self::assertStringContainsString('<unit id="' . $unitId . '">', $english, "{$unitId} must exist in locallang.xlf");

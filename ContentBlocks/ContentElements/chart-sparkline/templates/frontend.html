@@ -23,8 +23,8 @@
 <f:variable name="seriesLabel">{f:if(condition: '{data.series_label -> f:format.trim()}', then: '{data.series_label -> f:format.stripTags() -> f:format.trim()}', else: '{f:translate(key: \'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-sparkline/language/labels.xlf:aria.fallback\')}')}</f:variable>
 <f:variable name="chartTitle">{f:if(condition: data.header, then: '{data.header}', else: '{seriesLabel}')}</f:variable>
 <f:variable name="badge">{data.trend_badge -> f:or(alternative: '') -> f:format.stripTags() -> f:format.trim()}</f:variable>
-<f:variable name="pointRows">{data.data_points -> f:or(alternative: '') -> f:split('
-')}</f:variable>
+<f:variable name="pointRows"><f:split separator="
+" value="{data.data_points -> f:or(alternative: '')}"/></f:variable>
 
 <f:comment>Walk the points to find count, first/last period, first/last value and the net change.</f:comment>
 <f:variable name="pointCount" value="{0}"/>
@@ -33,7 +33,7 @@
 <f:variable name="lastLabel" value=""/>
 <f:variable name="lastValue" value="{0}"/>
 <f:for each="{pointRows}" as="pointRow">
-    <f:variable name="rowParts">{pointRow -> f:split('|', 2)}</f:variable>
+    <f:variable name="rowParts"><f:split separator="|" value="{pointRow}" limit="2"/></f:variable>
     <f:variable name="rowLabel">{rowParts.0 -> f:or(alternative: '') -> f:format.trim()}</f:variable>
     <f:variable name="rowValue">{rowParts.1 -> f:or(alternative: '0') -> f:format.trim()}</f:variable>
     <f:if condition="{rowLabel}">
@@ -103,7 +103,7 @@
                     </thead>
                     <tbody>
                         <f:for each="{pointRows}" as="pointRow">
-                            <f:variable name="cellParts">{pointRow -> f:split('|', 2)}</f:variable>
+                            <f:variable name="cellParts"><f:split separator="|" value="{pointRow}" limit="2"/></f:variable>
                             <f:variable name="cellLabel">{cellParts.0 -> f:or(alternative: '') -> f:format.trim()}</f:variable>
                             <f:variable name="cellValue">{cellParts.1 -> f:or(alternative: '') -> f:format.trim()}</f:variable>
                             <f:if condition="{cellLabel}">

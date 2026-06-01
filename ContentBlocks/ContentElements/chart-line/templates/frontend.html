@@ -19,15 +19,15 @@
 <f:variable name="unit">{data.unit -> f:or(alternative: '') -> f:format.trim()}</f:variable>
 <f:variable name="seriesLabel">{f:if(condition: '{data.series_label -> f:format.trim()}', then: '{data.series_label -> f:format.trim()}', else: '{f:translate(key: \'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-line/language/labels.xlf:aria.fallback\')}')}</f:variable>
 <f:variable name="chartTitle">{f:if(condition: data.header, then: '{data.header}', else: '{seriesLabel}')}</f:variable>
-<f:variable name="pointRows">{data.data_points -> f:or(alternative: '') -> f:split('
-')}</f:variable>
+<f:variable name="pointRows"><f:split separator="
+" value="{data.data_points -> f:or(alternative: '')}"/></f:variable>
 
 <f:comment>Count valid points and remember the first/last period so the summary states the span.</f:comment>
 <f:variable name="pointCount" value="{0}"/>
 <f:variable name="firstLabel" value=""/>
 <f:variable name="lastLabel" value=""/>
 <f:for each="{pointRows}" as="pointRow">
-    <f:variable name="rowParts">{pointRow -> f:split('|', 2)}</f:variable>
+    <f:variable name="rowParts"><f:split separator="|" value="{pointRow}" limit="2"/></f:variable>
     <f:variable name="rowLabel">{rowParts.0 -> f:or(alternative: '') -> f:format.trim()}</f:variable>
     <f:if condition="{rowLabel}">
         <f:if condition="{pointCount} == 0">
@@ -79,7 +79,7 @@
                     </thead>
                     <tbody>
                         <f:for each="{pointRows}" as="pointRow">
-                            <f:variable name="rowParts">{pointRow -> f:split('|', 2)}</f:variable>
+                            <f:variable name="rowParts"><f:split separator="|" value="{pointRow}" limit="2"/></f:variable>
                             <f:variable name="rowLabel">{rowParts.0 -> f:or(alternative: '') -> f:format.trim()}</f:variable>
                             <f:variable name="rowValue">{rowParts.1 -> f:or(alternative: '') -> f:format.trim()}</f:variable>
                             <f:if condition="{rowLabel}">

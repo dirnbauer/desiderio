@@ -23,8 +23,8 @@
 <f:variable name="fillOpacityKey" value="medium"/>
 <f:if condition="{data.fill_opacity} == 'light'"><f:variable name="fillOpacityKey" value="low"/></f:if>
 <f:if condition="{data.fill_opacity} == 'strong'"><f:variable name="fillOpacityKey" value="high"/></f:if>
-<f:variable name="rows" value="{data.points -> f:or(alternative: '') -> f:split('
-')}"/>
+<f:variable name="rows"><f:split separator="
+" value="{data.points -> f:or(alternative: '')}"/></f:variable>
 <f:variable name="chartTitle">{f:if(condition: data.header, then: '{data.header}', else: '{f:translate(key: \'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-area/language/labels.xlf:aria.fallback\')}')}</f:variable>
 
 <f:comment>Pass 1: walk the points to find count, first value, latest value and the peak.</f:comment>
@@ -36,7 +36,7 @@
 <f:variable name="peakValue" value="{0}"/>
 <f:variable name="peakLabel" value=""/>
 <f:for each="{rows}" as="row">
-    <f:variable name="parts" value="{row -> f:split('|')}"/>
+    <f:variable name="parts"><f:split separator="|" value="{row}"/></f:variable>
     <f:variable name="rowLabel">{parts.0 -> f:or(alternative: '') -> f:format.trim()}</f:variable>
     <f:variable name="rowValue">{parts.1 -> f:or(alternative: '0') -> f:format.trim()}</f:variable>
     <f:if condition="{rowLabel}">
@@ -139,7 +139,7 @@
                     </thead>
                     <tbody>
                         <f:for each="{rows}" as="row">
-                            <f:variable name="cellParts" value="{row -> f:split('|')}"/>
+                            <f:variable name="cellParts"><f:split separator="|" value="{row}"/></f:variable>
                             <f:variable name="cellLabel">{cellParts.0 -> f:or(alternative: '') -> f:format.trim()}</f:variable>
                             <f:variable name="cellValue">{cellParts.1 -> f:or(alternative: '') -> f:format.trim()}</f:variable>
                             <f:if condition="{cellLabel}">

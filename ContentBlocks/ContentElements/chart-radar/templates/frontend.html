@@ -19,14 +19,14 @@
 </f:comment>
 
 <f:variable name="seriesName">{data.series_name -> f:or(alternative: '') -> f:format.stripTags() -> f:format.trim()}</f:variable>
-<f:variable name="rows" value="{data.axes -> f:or(alternative: '') -> f:split('
-')}"/>
+<f:variable name="rows"><f:split separator="
+" value="{data.axes -> f:or(alternative: '')}"/></f:variable>
 <f:variable name="chartTitle">{f:if(condition: data.header, then: '{data.header}', else: '{f:translate(key: \'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-radar/language/labels.xlf:aria.fallback\')}')}</f:variable>
 
 <f:comment>Count the dimensions so the summary can announce how many axes the shape spans.</f:comment>
 <f:variable name="axisCount" value="{0}"/>
 <f:for each="{rows}" as="row">
-    <f:variable name="countParts" value="{row -> f:split('|')}"/>
+    <f:variable name="countParts"><f:split separator="|" value="{row}"/></f:variable>
     <f:variable name="countLabel">{countParts.0 -> f:or(alternative: '') -> f:format.trim()}</f:variable>
     <f:if condition="{countLabel}">
         <f:variable name="axisCount" value="{axisCount + 1}"/>
@@ -66,7 +66,7 @@
 
                     <ul class="chart-radar__legend" role="list">
                         <f:for each="{rows}" as="row">
-                            <f:variable name="legendParts" value="{row -> f:split('|')}"/>
+                            <f:variable name="legendParts"><f:split separator="|" value="{row}"/></f:variable>
                             <f:variable name="legendLabel">{legendParts.0 -> f:or(alternative: '') -> f:format.trim()}</f:variable>
                             <f:variable name="legendValue">{legendParts.1 -> f:or(alternative: '') -> f:format.trim()}</f:variable>
                             <f:if condition="{legendLabel}">
@@ -93,7 +93,7 @@
                     </thead>
                     <tbody>
                         <f:for each="{rows}" as="row">
-                            <f:variable name="cellParts" value="{row -> f:split('|')}"/>
+                            <f:variable name="cellParts"><f:split separator="|" value="{row}"/></f:variable>
                             <f:variable name="cellLabel">{cellParts.0 -> f:or(alternative: '') -> f:format.trim()}</f:variable>
                             <f:variable name="cellValue">{cellParts.1 -> f:or(alternative: '') -> f:format.trim()}</f:variable>
                             <f:if condition="{cellLabel}">

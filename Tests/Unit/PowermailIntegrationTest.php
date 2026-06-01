@@ -17,10 +17,12 @@ final class PowermailIntegrationTest extends TestCase
         $baseConfig = (string)file_get_contents(__DIR__ . '/../../Configuration/Sets/Desiderio/config.yaml');
 
         self::assertStringContainsString('name: webconsulting/desiderio-powermail', $config);
-        self::assertStringContainsString('webconsulting/desiderio', $config);
-        self::assertStringContainsString('in2code/powermail-main', $config);
+        self::assertMatchesRegularExpression('/dependencies:\s+- webconsulting\/desiderio\s+- in2code\/powermail-main/s', $config);
+        self::assertStringNotContainsString('optionalDependencies:', $config);
         self::assertStringNotContainsString('webconsulting/desiderio-powermail', $baseConfig);
         self::assertStringContainsString('plugin.tx_powermail', $setup);
+        self::assertStringContainsString('tt_content.powermail_pi1', $setup);
+        self::assertStringContainsString('20 = EXTBASEPLUGIN', $setup);
         self::assertStringContainsString('EXT:desiderio/Resources/Private/Extensions/Powermail/Templates/', $setup);
         self::assertStringContainsString('EXT:desiderio/Resources/Private/Extensions/Powermail/Partials/', $setup);
         self::assertStringContainsString('EXT:desiderio/Resources/Private/Extensions/Powermail/Layouts/', $setup);

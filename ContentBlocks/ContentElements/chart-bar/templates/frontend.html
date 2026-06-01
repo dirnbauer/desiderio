@@ -21,15 +21,15 @@
 <f:variable name="orientation">{data.orientation -> f:or(alternative: 'vertical')}</f:variable>
 <f:variable name="unit">{data.unit -> f:or(alternative: '') -> f:format.stripTags() -> f:format.trim()}</f:variable>
 <f:variable name="seriesName">{data.series_name -> f:or(alternative: '') -> f:format.stripTags() -> f:format.trim()}</f:variable>
-<f:variable name="rows" value="{data.bars -> f:or(alternative: '') -> f:split('
-')}"/>
+<f:variable name="rows"><f:split separator="
+" value="{data.bars -> f:or(alternative: '')}"/></f:variable>
 <f:variable name="chartTitle">{f:if(condition: data.header, then: '{data.header}', else: '{f:translate(key: \'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-bar/language/labels.xlf:aria.fallback\')}')}</f:variable>
 
 <f:comment>Pass 1: count bars and total their values so the table foot can show the grand total.</f:comment>
 <f:variable name="total" value="{0}"/>
 <f:variable name="barCount" value="{0}"/>
 <f:for each="{rows}" as="row">
-    <f:variable name="parts" value="{row -> f:split('|')}"/>
+    <f:variable name="parts"><f:split separator="|" value="{row}"/></f:variable>
     <f:variable name="rowLabel">{parts.0 -> f:or(alternative: '') -> f:format.trim()}</f:variable>
     <f:variable name="rowValue">{parts.1 -> f:or(alternative: '0') -> f:format.trim()}</f:variable>
     <f:if condition="{rowLabel}">
@@ -70,7 +70,7 @@
 
                     <ul class="chart-bar__legend" role="list">
                         <f:for each="{rows}" as="row">
-                            <f:variable name="legendParts" value="{row -> f:split('|')}"/>
+                            <f:variable name="legendParts"><f:split separator="|" value="{row}"/></f:variable>
                             <f:variable name="legendLabel">{legendParts.0 -> f:or(alternative: '') -> f:format.trim()}</f:variable>
                             <f:variable name="legendValue">{legendParts.1 -> f:or(alternative: '') -> f:format.trim()}</f:variable>
                             <f:if condition="{legendLabel}">
@@ -98,7 +98,7 @@
                     </thead>
                     <tbody>
                         <f:for each="{rows}" as="row">
-                            <f:variable name="cellParts" value="{row -> f:split('|')}"/>
+                            <f:variable name="cellParts"><f:split separator="|" value="{row}"/></f:variable>
                             <f:variable name="cellLabel">{cellParts.0 -> f:or(alternative: '') -> f:format.trim()}</f:variable>
                             <f:variable name="cellValue">{cellParts.1 -> f:or(alternative: '') -> f:format.trim()}</f:variable>
                             <f:if condition="{cellLabel}">

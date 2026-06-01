@@ -449,7 +449,7 @@ final class ContentBlockStructureTest extends TestCase
                 }
 
                 self::assertDoesNotMatchRegularExpression(
-                    '/<f:link\\.typolink\\b[^\\n]*(?:\\saria-[a-z0-9_-]+\\s*=|\\srole\\s*=|\\sdata-[a-z0-9_-]+\\s*=)/i',
+                    '/<f:link\\.typolink\\b[^\\n]*(?:\\saria-[a-z0-9_-]+\\s*=|\\srole\\s*=|\\sdata-[a-z0-9_-]+\\s*=|\\srel\\s*=)/i',
                     $line,
                     sprintf('%s:%d passes HTML attributes directly to f:link.typolink; use additionalAttributes instead', basename(dirname(dirname($templateFile))), $lineNumber + 1)
                 );
@@ -457,16 +457,16 @@ final class ContentBlockStructureTest extends TestCase
         }
     }
 
-    public function testFieldBackedSplitViewHelpersProvideStringFallback(): void
+    public function testSplitViewHelpersUseTagSyntaxForArrayResults(): void
     {
         $templateFiles = glob(self::CONTENT_BLOCKS_DIR . '/*/templates/frontend.html') ?: [];
         foreach ($templateFiles as $templateFile) {
             $template = (string) file_get_contents($templateFile);
 
             self::assertDoesNotMatchRegularExpression(
-                '/\\{[a-z][a-z0-9_]*(?:\\.[a-z0-9_]+)+\\s*->\\s*f:split\\(/i',
+                '/->\\s*f:split\\(/i',
                 $template,
-                basename(dirname(dirname($templateFile))) . ' splits a nullable field directly; add f:or(alternative: \'\') before f:split'
+                basename(dirname(dirname($templateFile))) . ' uses inline f:split(); assign array results with the <f:split> tag syntax'
             );
         }
     }

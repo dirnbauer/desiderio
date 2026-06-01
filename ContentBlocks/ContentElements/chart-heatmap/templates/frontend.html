@@ -17,9 +17,9 @@
 </f:comment>
 
 <f:variable name="unit">{data.unit -> f:or(alternative: '') -> f:format.trim()}</f:variable>
-<f:variable name="columns">{data.col_labels -> f:or(alternative: '') -> f:split(',')}</f:variable>
-<f:variable name="seriesRows">{data.series -> f:or(alternative: '') -> f:split('
-')}</f:variable>
+<f:variable name="columns"><f:split separator="," value="{data.col_labels -> f:or(alternative: '')}"/></f:variable>
+<f:variable name="seriesRows"><f:split separator="
+" value="{data.series -> f:or(alternative: '')}"/></f:variable>
 <f:variable name="chartTitle">{f:if(condition: data.header, then: '{data.header}', else: '{f:translate(key: \'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-heatmap/language/labels.xlf:aria.fallback\')}')}</f:variable>
 
 <f:comment>Count non-empty rows so the summary can state the grid size.</f:comment>
@@ -79,8 +79,9 @@
                     </thead>
                     <tbody>
                         <f:for each="{seriesRows}" as="seriesRow">
-                            <f:variable name="rowLabel">{seriesRow -> f:split('|', 2) -> f:variable(name: 'rowParts')}{rowParts.0 -> f:format.trim()}</f:variable>
-                            <f:variable name="rowValues">{rowParts.1 -> f:or(alternative: '') -> f:split(',')}</f:variable>
+                            <f:variable name="rowParts"><f:split separator="|" value="{seriesRow}" limit="2"/></f:variable>
+                            <f:variable name="rowLabel">{rowParts.0 -> f:format.trim()}</f:variable>
+                            <f:variable name="rowValues"><f:split separator="," value="{rowParts.1 -> f:or(alternative: '')}"/></f:variable>
                             <f:if condition="{rowLabel}">
                                 <tr>
                                     <th scope="row">{rowLabel}</th>

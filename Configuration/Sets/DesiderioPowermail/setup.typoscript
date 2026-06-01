@@ -17,10 +17,13 @@ plugin.tx_powermail {
 
 tt_content.powermail_pi1 =< lib.contentElement
 tt_content.powermail_pi1 {
-  templateName = Generic
-  20 = EXTBASEPLUGIN
-  20 {
-    extensionName = Powermail
-    pluginName = Pi1
-  }
+  templateName = PowermailPi1
+}
+
+lib.desiderioPowermailPi1 = EXTBASEPLUGIN
+lib.desiderioPowermailPi1 {
+  extensionName = Powermail
+  pluginName = Pi1
+  controller = Form
+  action = form
 }

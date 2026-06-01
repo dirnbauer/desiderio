@@ -15,6 +15,7 @@ final class PowermailIntegrationTest extends TestCase
         $config = (string)file_get_contents(__DIR__ . '/../../Configuration/Sets/DesiderioPowermail/config.yaml');
         $setup = (string)file_get_contents(__DIR__ . '/../../Configuration/Sets/DesiderioPowermail/setup.typoscript');
         $baseConfig = (string)file_get_contents(__DIR__ . '/../../Configuration/Sets/Desiderio/config.yaml');
+        $contentTemplate = (string)file_get_contents(__DIR__ . '/../../Resources/Private/FluidStyledContent/Templates/PowermailPi1.fluid.html');
 
         self::assertStringContainsString('name: webconsulting/desiderio-powermail', $config);
         self::assertMatchesRegularExpression('/dependencies:\s+- webconsulting\/desiderio\s+- in2code\/powermail-main/s', $config);
@@ -22,7 +23,12 @@ final class PowermailIntegrationTest extends TestCase
         self::assertStringNotContainsString('webconsulting/desiderio-powermail', $baseConfig);
         self::assertStringContainsString('plugin.tx_powermail', $setup);
         self::assertStringContainsString('tt_content.powermail_pi1', $setup);
-        self::assertStringContainsString('20 = EXTBASEPLUGIN', $setup);
+        self::assertStringContainsString('templateName = PowermailPi1', $setup);
+        self::assertStringContainsString('lib.desiderioPowermailPi1 = EXTBASEPLUGIN', $setup);
+        self::assertStringContainsString('controller = Form', $setup);
+        self::assertStringContainsString('action = form', $setup);
+        self::assertStringContainsString('lib.desiderioPowermailPi1', $contentTemplate);
+        self::assertStringContainsString('ce-fsc-powermail', $contentTemplate);
         self::assertStringContainsString('EXT:desiderio/Resources/Private/Extensions/Powermail/Templates/', $setup);
         self::assertStringContainsString('EXT:desiderio/Resources/Private/Extensions/Powermail/Partials/', $setup);
         self::assertStringContainsString('EXT:desiderio/Resources/Private/Extensions/Powermail/Layouts/', $setup);
@@ -68,6 +74,13 @@ final class PowermailIntegrationTest extends TestCase
         self::assertStringContainsString('dark:bg-input/30', $input);
         self::assertStringContainsString('aria-invalid:ring-destructive/20', $input);
         self::assertStringNotContainsString('focus-visible:ring-2', $input);
+
+        $flashMessages = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/Powermail/Partials/Misc/FlashMessages.html');
+        self::assertStringContainsString('as="flashMessages"', $flashMessages);
+        self::assertStringNotContainsString('<f:flashMessages queueIdentifier="extbase.flashmessages.tx_powermail_pi1" class=', $flashMessages);
+
+        $page = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/Powermail/Partials/Form/Page.html');
+        self::assertStringContainsString('<f:argument name="iterationPages" type="array"', $page);
     }
 
     public function testPowermailTranslationsAreXliff20InEnglishAndGerman(): void

@@ -13,5 +13,29 @@
         <target>Einsetzen, wenn das Element Karten Preis Daten View Tarife, Pakete oder Kosten entscheidungsnah darstellen soll.</target>
       </segment>
     </unit>
+    <unit id="billing_period">
+      <segment state="final">
+        <source>Billing Period</source>
+        <target>Abrechnungszeitraum</target>
+      </segment>
+    </unit>
+    <unit id="billing_period.description">
+      <segment state="final">
+        <source>Optional cadence shown next to the price, e.g. per user / month or billed annually.</source>
+        <target>Optionaler Takt neben dem Preis, z. B. pro Nutzer / Monat oder jährliche Abrechnung.</target>
+      </segment>
+    </unit>
+    <unit id="feature_text">
+      <segment state="final">
+        <source>Feature Text</source>
+        <target>Funktionstext</target>
+      </segment>
+    </unit>
+    <unit id="highlighted.description">
+      <segment state="final">
+        <source>Marks this as the recommended plan with an accent ring and a badge.</source>
+        <target>Markiert diesen Tarif mit Akzentrahmen und Badge als empfohlen.</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

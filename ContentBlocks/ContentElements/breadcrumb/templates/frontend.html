@@ -5,28 +5,31 @@
 
 <f:asset.css identifier="d-breadcrumb" href="{cb:assetPath()}/frontend.css"/>
 
-<d:layout.section class="breadcrumb">
+<f:variable name="navLabel">{data.header -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:breadcrumb.aria\')}')}</f:variable>
+
+<d:layout.section class="breadcrumb" spacing="sm">
     <d:layout.container>
-        <nav class="breadcrumb__nav" aria-label="{data.header -> f:or(alternative: 'Breadcrumb')}">
-            <ol class="breadcrumb__list">
+        <nav class="breadcrumb__nav" aria-label="{navLabel -> f:format.stripTags() -> f:format.trim()}" data-slot="breadcrumb">
+            <ol class="breadcrumb__list" data-slot="breadcrumb-list" itemscope itemtype="https://schema.org/BreadcrumbList">
                 <f:for each="{data.items}" as="item" iteration="iterator">
-                    <li class="breadcrumb__item">
+                    <li class="breadcrumb__item" data-slot="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
                         <f:if condition="{iterator.isLast}">
                             <f:then>
-                                <span class="breadcrumb__current" aria-current="page">{item -> f:render.text(field: 'label')}</span>
+                                <span class="breadcrumb__current" data-slot="breadcrumb-page" itemprop="name">{item -> f:render.text(field: 'label')}</span>
                             </f:then>
                             <f:else>
                                 <f:if condition="{item.link.url}">
                                     <f:then>
-                                        <f:link.typolink parameter="{item.link}" class="breadcrumb__link">{item -> f:render.text(field: 'label')}</f:link.typolink>
+                                        <f:link.typolink parameter="{item.link}" class="breadcrumb__link focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none" additionalAttributes="{'data-slot': 'breadcrumb-link', 'itemprop': 'item'}"><span itemprop="name">{item -> f:render.text(field: 'label')}</span></f:link.typolink>
                                     </f:then>
                                     <f:else>
-                                        <span class="breadcrumb__current">{item -> f:render.text(field: 'label')}</span>
+                                        <span class="breadcrumb__current" data-slot="breadcrumb-page" itemprop="name">{item -> f:render.text(field: 'label')}</span>
                                     </f:else>
                                 </f:if>
-                                <span class="breadcrumb__separator" aria-hidden="true">/</span>
+                                <span class="breadcrumb__separator" data-slot="breadcrumb-separator" aria-hidden="true">/</span>
                             </f:else>
                         </f:if>
+                        <meta itemprop="position" content="{iterator.cycle}" />
                     </li>
                 </f:for>
             </ol>

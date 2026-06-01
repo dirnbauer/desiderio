@@ -1,53 +1,54 @@
 {
     "_type": "pricing",
-    "header": "Annual Monthly Pricing for confident plan comparison",
-    "subheadline": "Help buyers compare plans with crisp values and direct feature language.",
+    "eyebrow": "Flexible billing",
+    "header": "Pay monthly, or save when you commit for a year",
+    "subheadline": "Every plan shows the monthly rate next to the annual price, so your team can choose the billing cadence that fits the budget.",
     "plans": [
         {
-            "name": "Noah Ritter",
-            "monthly_price": "$19",
-            "annual_price": "$19",
-            "savings": "Save 20%",
+            "name": "Starter",
+            "monthly_price": "$12",
+            "annual_price": "$120",
+            "savings": "2 months free",
             "features": [
-                "Chart colors mapped to semantic tokens",
-                "Production-ready empty and loaded states",
-                "Token-aware light and dark states",
-                "Accessible keyboard focus patterns"
+                "Up to 3 editors and 5 projects",
+                "Unlimited published pages",
+                "Community support within 48 hours",
+                "Weekly traffic and usage reports"
             ],
-            "button_text": "Compare states",
-            "button_link": "https://ui.shadcn.com/docs/annual-monthly-pricing",
+            "button_text": "Start free trial",
+            "button_link": "/signup?plan=starter",
             "is_featured": false
         },
         {
-            "name": "Lea Fischer",
-            "monthly_price": "$49",
-            "annual_price": "$49",
-            "savings": "Save 20%",
+            "name": "Growth",
+            "monthly_price": "$29",
+            "annual_price": "$290",
+            "savings": "2 months free",
             "features": [
-                "Chart colors mapped to semantic tokens",
-                "Production-ready empty and loaded states",
-                "Token-aware light and dark states",
-                "Accessible keyboard focus patterns",
-                "Responsive cards tuned for concise content"
+                "Unlimited editors and projects",
+                "Advanced roles and permissions",
+                "Priority email support within 4 hours",
+                "Custom domains and single sign-on",
+                "Real-time analytics dashboard"
             ],
-            "button_text": "Get the checklist",
-            "button_link": "https://ui.shadcn.com/docs/annual-monthly-pricing",
+            "button_text": "Choose Growth",
+            "button_link": "/signup?plan=growth",
             "is_featured": true
         },
         {
-            "name": "Mara Weiss",
-            "monthly_price": "$99",
-            "annual_price": "$99",
-            "savings": "Save 20%",
+            "name": "Scale",
+            "monthly_price": "$59",
+            "annual_price": "$590",
+            "savings": "2 months free",
             "features": [
-                "Chart colors mapped to semantic tokens",
-                "Production-ready empty and loaded states",
-                "Token-aware light and dark states",
-                "Accessible keyboard focus patterns",
-                "Responsive cards tuned for concise content"
+                "Everything in Growth, unlimited seats",
+                "Dedicated success manager",
+                "99.9% uptime SLA and audit logs",
+                "Guided onboarding and migration",
+                "Quarterly business reviews"
             ],
-            "button_text": "Start review",
-            "button_link": "https://ui.shadcn.com/docs/annual-monthly-pricing",
+            "button_text": "Talk to sales",
+            "button_link": "/contact?topic=scale",
             "is_featured": false
         }
     ]

@@ -13,5 +13,83 @@
         <target>Use when the mega menu should help visitors move through sections or pages.</target>
       </segment>
     </unit>
+    <unit id="nav.aria">
+      <segment state="final">
+        <source>Mega menu</source>
+        <target>Méga-menu</target>
+      </segment>
+    </unit>
+    <unit id="group.aria">
+      <segment state="final">
+        <source>{title} links</source>
+        <target>Liens {title}</target>
+      </segment>
+    </unit>
+    <unit id="external.hint">
+      <segment state="final">
+        <source>(opens in a new tab)</source>
+        <target>(s'ouvre dans un nouvel onglet)</target>
+      </segment>
+    </unit>
+    <unit id="link_1_label">
+      <segment state="final">
+        <source>Link 1 label</source>
+        <target>Libellé du lien 1</target>
+      </segment>
+    </unit>
+    <unit id="link_1">
+      <segment state="final">
+        <source>Link 1 target</source>
+        <target>Cible du lien 1</target>
+      </segment>
+    </unit>
+    <unit id="link_2_label">
+      <segment state="final">
+        <source>Link 2 label</source>
+        <target>Libellé du lien 2</target>
+      </segment>
+    </unit>
+    <unit id="link_2">
+      <segment state="final">
+        <source>Link 2 target</source>
+        <target>Cible du lien 2</target>
+      </segment>
+    </unit>
+    <unit id="link_3_label">
+      <segment state="final">
+        <source>Link 3 label</source>
+        <target>Libellé du lien 3</target>
+      </segment>
+    </unit>
+    <unit id="link_3">
+      <segment state="final">
+        <source>Link 3 target</source>
+        <target>Cible du lien 3</target>
+      </segment>
+    </unit>
+    <unit id="link_4_label">
+      <segment state="final">
+        <source>Link 4 label</source>
+        <target>Libellé du lien 4</target>
+      </segment>
+    </unit>
+    <unit id="link_4">
+      <segment state="final">
+        <source>Link 4 target</source>
+        <target>Cible du lien 4</target>
+      </segment>
+    </unit>
+    <unit id="link_5_label">
+      <segment state="final">
+        <source>Link 5 label</source>
+        <target>Libellé du lien 5</target>
+      </segment>
+    </unit>
+    <unit id="link_5">
+      <segment state="final">
+        <source>Link 5 target</source>
+        <target>Cible du lien 5</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

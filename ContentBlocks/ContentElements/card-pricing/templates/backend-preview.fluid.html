@@ -39,6 +39,12 @@
                 <span class="d-ce-preview__value">{data.billing_period}</span>
             </div>
         </f:if>
+        <f:if condition="{data.highlighted}">
+            <div class="d-ce-preview__field">
+                <span class="d-ce-preview__label">Highlighted</span>
+                <span class="d-ce-preview__value" data-slot="badge"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:plan.recommended"/></span>
+            </div>
+        </f:if>
         <f:if condition="{data.button_text}">
             <div class="d-ce-preview__field">
                 <span class="d-ce-preview__label">Button Text</span>

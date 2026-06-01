@@ -10,7 +10,19 @@
     <unit id="description">
       <segment state="final">
         <source>Use when the floating call to action should prompt one clear next action in the page flow.</source>
-        <target>Einsetzen, wenn das Element Floating Call to Action eine klare nächste Aktion im Seitenfluss auslösen soll.</target>
+        <target>Einsetzen, wenn das schwebende Call-to-Action eine klare nächste Aktion im Seitenfluss auslösen soll.</target>
+      </segment>
+    </unit>
+    <unit id="region.label">
+      <segment state="final">
+        <source>Call to action</source>
+        <target>Handlungsaufforderung</target>
+      </segment>
+    </unit>
+    <unit id="link.newTab">
+      <segment state="final">
+        <source>(opens in a new tab)</source>
+        <target>(wird in einem neuen Tab geöffnet)</target>
       </segment>
     </unit>
   </file>

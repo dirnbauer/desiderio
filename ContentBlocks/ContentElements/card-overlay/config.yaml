@@ -1,7 +1,7 @@
 name: desiderio/card-overlay
 typeName: desiderio_cardoverlay
-title: 'Card Overlay Data View'
-description: 'Use when the card overlay data view should make a collection easy to scan.'
+title: 'Overlay Image Card'
+description: 'Use when a headline and call to action should sit on top of a full-bleed image.'
 group: data
 prefixFields: false
 basics:
@@ -9,6 +9,18 @@ basics:
   - TYPO3/Links
   - TYPO3/Categories
 fields:
+  -
+    identifier: image
+    type: File
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:background_image'
+    allowed: common-image-types
+    maxitems: 1
+    required: true
+  -
+    identifier: eyebrow
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
   -
     identifier: header
     useExistingField: true
@@ -19,29 +31,27 @@ fields:
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
     rows: 3
   -
-    identifier: image
-    type: File
-    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:background_image'
-    allowed: common-image-types
-    maxitems: 1
-    required: true
-  -
     identifier: link
     type: Link
-    label: 'Card Link'
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:link'
   -
-    identifier: overlay_opacity
+    identifier: link_text
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:link_text'
+  -
+    identifier: overlay_intensity
     type: Select
     renderType: selectSingle
-    label: 'Overlay Darkness'
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:style'
     items:
       -
-        label: Light
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.light'
         value: light
       -
-        label: Medium
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.medium'
         value: medium
       -
-        label: Dark
-        value: dark
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.strong'
+        value: strong
     default: medium

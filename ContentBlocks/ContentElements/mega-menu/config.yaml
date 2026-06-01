@@ -27,11 +27,21 @@ fields:
         value: two-columns
     default: full-width
   -
+    identifier: eyebrow
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
+  -
     identifier: brand
     type: Textarea
     rows: 1
-    label: 'Brand Text'
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:brand'
     required: true
+  -
+    identifier: brand_tagline
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:tagline'
   -
     identifier: brand_link
     type: Link
@@ -40,11 +50,11 @@ fields:
     identifier: intro_title
     type: Textarea
     rows: 1
-    label: 'Intro Title'
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:title'
   -
     identifier: intro_text
     type: Textarea
-    label: 'Intro Text'
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
     rows: 3
   -
     identifier: primary_button_text
@@ -67,54 +77,54 @@ fields:
         identifier: title
         type: Textarea
         rows: 1
-        label: 'Group Title'
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:group_title'
       -
         identifier: description
         type: Textarea
-        label: 'Group Description'
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
         rows: 2
       -
         identifier: link_1_label
         type: Textarea
         rows: 1
-        label: 'Link 1 Label'
+        label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/mega-menu/language/labels.xlf:link_1_label'
       -
         identifier: link_1
         type: Link
-        label: 'Link 1'
+        label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/mega-menu/language/labels.xlf:link_1'
       -
         identifier: link_2_label
         type: Textarea
         rows: 1
-        label: 'Link 2 Label'
+        label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/mega-menu/language/labels.xlf:link_2_label'
       -
         identifier: link_2
         type: Link
-        label: 'Link 2'
+        label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/mega-menu/language/labels.xlf:link_2'
       -
         identifier: link_3_label
         type: Textarea
         rows: 1
-        label: 'Link 3 Label'
+        label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/mega-menu/language/labels.xlf:link_3_label'
       -
         identifier: link_3
         type: Link
-        label: 'Link 3'
+        label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/mega-menu/language/labels.xlf:link_3'
       -
         identifier: link_4_label
         type: Textarea
         rows: 1
-        label: 'Link 4 Label'
+        label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/mega-menu/language/labels.xlf:link_4_label'
       -
         identifier: link_4
         type: Link
-        label: 'Link 4'
+        label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/mega-menu/language/labels.xlf:link_4'
       -
         identifier: link_5_label
         type: Textarea
         rows: 1
-        label: 'Link 5 Label'
+        label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/mega-menu/language/labels.xlf:link_5_label'
       -
         identifier: link_5
         type: Link
-        label: 'Link 5'
+        label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/mega-menu/language/labels.xlf:link_5'

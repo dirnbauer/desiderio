@@ -3,24 +3,80 @@
     left: 0;
     right: 0;
     z-index: 50;
-    background: var(--card);
+    background: color-mix(in oklch, var(--card) 92%, transparent);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
     border-top: 1px solid var(--border);
-    padding: var(--d-spacing-sm) 0;
-    box-shadow: 0 -2px 8px color-mix(in oklch, var(--foreground) 5%, transparent);
+    box-shadow: 0 -4px 16px color-mix(in oklch, var(--foreground) 6%, transparent);
 }
-.cta-floating--bottom { bottom: 0; }
-.cta-floating--top { top: 0; border-top: none; border-bottom: 1px solid var(--border); }
+.cta-floating--bottom {
+    bottom: 0;
+    box-shadow: 0 -4px 16px color-mix(in oklch, var(--foreground) 6%, transparent);
+}
+.cta-floating--top {
+    top: 0;
+    border-top: none;
+    border-bottom: 1px solid var(--border);
+    box-shadow: 0 4px 16px color-mix(in oklch, var(--foreground) 6%, transparent);
+}
 .cta-floating__bar {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
-    gap: var(--d-spacing-md);
+    gap: var(--d-spacing-sm) var(--d-spacing-lg);
+    padding-block: var(--d-spacing-sm);
+    position: relative;
+}
+.cta-floating__bar::before {
+    content: "";
+    position: absolute;
+    inset-inline: calc(-1 * var(--d-spacing-md));
+    inset-block-start: calc(-1 * var(--d-spacing-sm));
+    block-size: 2px;
+    background: linear-gradient(90deg, color-mix(in oklch, var(--primary) 30%, transparent), var(--primary), color-mix(in oklch, var(--primary) 30%, transparent));
+}
+.cta-floating--bottom .cta-floating__bar::before {
+    inset-block-start: auto;
+    inset-block-end: calc(-1 * var(--d-spacing-sm));
 }
 .cta-floating__text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    min-inline-size: 0;
+}
+.cta-floating__eyebrow {
+    color: var(--primary);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-size: var(--d-text-xs);
+}
+.cta-floating__headline {
     margin: 0;
-    font-weight: 600;
+    font-size: var(--d-text-base);
+    line-height: 1.3;
+    text-wrap: balance;
+}
+.cta-floating__description {
+    margin: 0;
     font-size: var(--d-text-sm);
+    max-inline-size: 60ch;
+}
+.cta-floating__action {
+    white-space: nowrap;
 }
 @media (max-width: 768px) {
-    .cta-floating__bar { flex-direction: column; text-align: center; }
+    .cta-floating__bar {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+        gap: var(--d-spacing-sm);
+    }
+    .cta-floating__text {
+        align-items: center;
+    }
+    .cta-floating__action {
+        inline-size: 100%;
+    }
 }

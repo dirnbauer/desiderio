@@ -1,7 +1,7 @@
 name: desiderio/navbar-transparent
 typeName: desiderio_navbartransparent
 title: 'Transparent Navigation Bar'
-description: 'Use when the transparent navigation bar should help visitors move through sections or pages.'
+description: 'Use when a navigation bar must float over a hero or image so visitors reach key pages without a solid background.'
 group: navigation
 prefixFields: false
 basics:
@@ -19,6 +19,10 @@ fields:
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:brand'
     required: true
+  -
+    identifier: brand_link
+    type: Link
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:brand_link'
   -
     identifier: nav_items
     type: Collection

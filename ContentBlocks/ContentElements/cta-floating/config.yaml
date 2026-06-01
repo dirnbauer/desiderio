@@ -10,14 +10,28 @@ basics:
   - TYPO3/Categories
 fields:
   -
+    identifier: eyebrow
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:eyebrow'
+    description: 'Optional scannable kicker, e.g. Limited time or New.'
+  -
     identifier: header
     useExistingField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
+    description: 'One short benefit-led line, e.g. Start your free trial today.'
+  -
+    identifier: description_text
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
+    description: 'Optional supporting line that removes the last objection.'
   -
     identifier: cta_text
     type: Textarea
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_text'
+    description: '2-4 words, action-led, e.g. Claim offer.'
   -
     identifier: cta_link
     type: Link
@@ -27,6 +41,7 @@ fields:
     type: Select
     renderType: selectSingle
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:position'
+    description: 'Dock the bar to the bottom (default) or top edge of the viewport.'
     items:
       -
         label: Bottom

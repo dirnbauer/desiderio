@@ -13,5 +13,83 @@
         <target>Einsetzen, wenn das Element Mega Menü Besuchern Orientierung oder klare nächste Wege geben soll.</target>
       </segment>
     </unit>
+    <unit id="nav.aria">
+      <segment state="final">
+        <source>Mega menu</source>
+        <target>Mega-Menü</target>
+      </segment>
+    </unit>
+    <unit id="group.aria">
+      <segment state="final">
+        <source>{title} links</source>
+        <target>{title} Links</target>
+      </segment>
+    </unit>
+    <unit id="external.hint">
+      <segment state="final">
+        <source>(opens in a new tab)</source>
+        <target>(wird in einem neuen Tab geöffnet)</target>
+      </segment>
+    </unit>
+    <unit id="link_1_label">
+      <segment state="final">
+        <source>Link 1 label</source>
+        <target>Link 1 Beschriftung</target>
+      </segment>
+    </unit>
+    <unit id="link_1">
+      <segment state="final">
+        <source>Link 1 target</source>
+        <target>Link 1 Ziel</target>
+      </segment>
+    </unit>
+    <unit id="link_2_label">
+      <segment state="final">
+        <source>Link 2 label</source>
+        <target>Link 2 Beschriftung</target>
+      </segment>
+    </unit>
+    <unit id="link_2">
+      <segment state="final">
+        <source>Link 2 target</source>
+        <target>Link 2 Ziel</target>
+      </segment>
+    </unit>
+    <unit id="link_3_label">
+      <segment state="final">
+        <source>Link 3 label</source>
+        <target>Link 3 Beschriftung</target>
+      </segment>
+    </unit>
+    <unit id="link_3">
+      <segment state="final">
+        <source>Link 3 target</source>
+        <target>Link 3 Ziel</target>
+      </segment>
+    </unit>
+    <unit id="link_4_label">
+      <segment state="final">
+        <source>Link 4 label</source>
+        <target>Link 4 Beschriftung</target>
+      </segment>
+    </unit>
+    <unit id="link_4">
+      <segment state="final">
+        <source>Link 4 target</source>
+        <target>Link 4 Ziel</target>
+      </segment>
+    </unit>
+    <unit id="link_5_label">
+      <segment state="final">
+        <source>Link 5 label</source>
+        <target>Link 5 Beschriftung</target>
+      </segment>
+    </unit>
+    <unit id="link_5">
+      <segment state="final">
+        <source>Link 5 target</source>
+        <target>Link 5 Ziel</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

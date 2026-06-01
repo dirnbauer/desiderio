@@ -23,14 +23,15 @@
         </f:if>
         <f:if condition="{data.items}">
             <div class="d-ce-preview__collection">
-                <span class="d-ce-preview__label">Items</span>
-                <ul class="d-ce-preview__list">
-                    <f:for each="{data.items}" as="item">
-                        <li>
-                            <f:if condition="{item.label}"><span>{item.label}</span></f:if>
-                        </li>
+                <span class="d-ce-preview__label">Trail</span>
+                <p class="d-ce-preview__value">
+                    <f:for each="{data.items}" as="item" iteration="iterator">
+                        <f:if condition="{item.label}">
+                            <f:then><span>{item.label}</span></f:then>
+                            <f:else><span>&#8230;</span></f:else>
+                        </f:if><f:if condition="{iterator.isLast == false}"> &#47; </f:if>
                     </f:for>
-                </ul>
+                </p>
             </div>
         </f:if>
     </div>

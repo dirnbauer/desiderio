@@ -33,9 +33,18 @@
 }
 
 .cookie-banner__title {
+    display: flex;
+    align-items: center;
+    gap: var(--d-spacing-xs);
     font-size: var(--d-text-sm);
     font-weight: 600;
     margin-block-end: 4px;
+}
+
+.cookie-banner__title-icon {
+    display: inline-flex;
+    flex-shrink: 0;
+    color: var(--primary);
 }
 
 .cookie-banner__message {

@@ -1,7 +1,7 @@
 name: desiderio/product-gallery
 typeName: desiderio_productgallery
 title: 'Product Gallery Pricing'
-description: 'Use when the product gallery pricing should present costs or plan choices close to a decision.'
+description: 'Use when a product gallery should pair its photos with a price and a buy action at the decision point.'
 group: pricing
 prefixFields: false
 basics:
@@ -16,28 +16,88 @@ fields:
   -
     identifier: images
     type: File
-    label: 'Product Images'
+    label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/product-gallery/language/labels.xlf:images'
+    description: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/product-gallery/language/labels.xlf:images.description'
     allowed: common-image-types
-    maxitems: 10
+    maxitems: 8
     minitems: 1
   -
     identifier: caption
     type: Textarea
+    rows: 2
+    label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/product-gallery/language/labels.xlf:caption'
+    description: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/product-gallery/language/labels.xlf:caption.description'
+  -
+    identifier: price
+    type: Textarea
     rows: 1
-    label: 'Gallery Caption'
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:price'
+    description: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/product-gallery/language/labels.xlf:price.description'
+    required: true
+  -
+    identifier: compare_at_price
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/product-gallery/language/labels.xlf:compare_at_price'
+    description: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/product-gallery/language/labels.xlf:compare_at_price.description'
+  -
+    identifier: availability
+    type: Select
+    renderType: selectSingle
+    label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/product-gallery/language/labels.xlf:availability'
+    items:
+      -
+        label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/product-gallery/language/labels.xlf:availability.in_stock'
+        value: in_stock
+      -
+        label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/product-gallery/language/labels.xlf:availability.limited'
+        value: limited
+      -
+        label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/product-gallery/language/labels.xlf:availability.preorder'
+        value: preorder
+      -
+        label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/product-gallery/language/labels.xlf:availability.sold_out'
+        value: sold_out
+    default: in_stock
+  -
+    identifier: highlights
+    type: Collection
+    table: product_gallery_highlights
+    prefixField: true
+    label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/product-gallery/language/labels.xlf:highlights'
+    description: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/product-gallery/language/labels.xlf:highlights.description'
+    maxitems: 6
+    fields:
+      -
+        identifier: text
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/product-gallery/language/labels.xlf:highlight.text'
+        required: true
+  -
+    identifier: cta_text
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_text'
+    default: 'Add to cart'
+  -
+    identifier: cta_link
+    type: Link
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_link'
   -
     identifier: columns
     type: Select
     renderType: selectSingle
-    label: 'Thumbnail Columns'
+    label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/product-gallery/language/labels.xlf:columns'
+    description: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/product-gallery/language/labels.xlf:columns.description'
     items:
       -
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.4_columns'
         value: '4'
       -
-        label: '5 Columns'
+        label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/product-gallery/language/labels.xlf:columns.5'
         value: '5'
       -
-        label: '6 Columns'
+        label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/product-gallery/language/labels.xlf:columns.6'
         value: '6'
     default: '4'

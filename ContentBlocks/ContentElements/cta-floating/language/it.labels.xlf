@@ -4,13 +4,25 @@
     <unit id="title">
       <segment state="final">
         <source>Floating Call to Action</source>
-        <target>Floating Call to Action</target>
+        <target>Invito all'azione fluttuante</target>
       </segment>
     </unit>
     <unit id="description">
       <segment state="final">
         <source>Use when the floating call to action should prompt one clear next action in the page flow.</source>
-        <target>Use when the floating call to action should prompt one clear next action in the page flow.</target>
+        <target>Da usare quando l'invito all'azione fluttuante deve suggerire un'unica azione chiara nel flusso della pagina.</target>
+      </segment>
+    </unit>
+    <unit id="region.label">
+      <segment state="final">
+        <source>Call to action</source>
+        <target>Invito all'azione</target>
+      </segment>
+    </unit>
+    <unit id="link.newTab">
+      <segment state="final">
+        <source>(opens in a new tab)</source>
+        <target>(si apre in una nuova scheda)</target>
       </segment>
     </unit>
   </file>

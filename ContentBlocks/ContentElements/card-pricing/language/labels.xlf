@@ -11,5 +11,25 @@
         <source>Use when the card pricing data view should present costs or plan choices close to a decision.</source>
       </segment>
     </unit>
+    <unit id="billing_period">
+      <segment>
+        <source>Billing Period</source>
+      </segment>
+    </unit>
+    <unit id="billing_period.description">
+      <segment>
+        <source>Optional cadence shown next to the price, e.g. per user / month or billed annually.</source>
+      </segment>
+    </unit>
+    <unit id="feature_text">
+      <segment>
+        <source>Feature Text</source>
+      </segment>
+    </unit>
+    <unit id="highlighted.description">
+      <segment>
+        <source>Marks this as the recommended plan with an accent ring and a badge.</source>
+      </segment>
+    </unit>
   </file>
 </xliff>

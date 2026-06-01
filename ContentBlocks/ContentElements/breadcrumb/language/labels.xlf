@@ -8,7 +8,12 @@
     </unit>
     <unit id="description">
       <segment>
-        <source>Use when the breadcrumb should help visitors move through sections or pages.</source>
+        <source>Use when visitors need to see where the current page sits in the site hierarchy and jump back to any parent section in one click.</source>
+      </segment>
+    </unit>
+    <unit id="breadcrumb.aria">
+      <segment>
+        <source>Breadcrumb</source>
       </segment>
     </unit>
   </file>

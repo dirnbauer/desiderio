@@ -16,7 +16,8 @@ fields:
   -
     identifier: content
     type: Textarea
-    label: 'Cookie Message'
+    label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/cookie-banner/language/labels.xlf:field.content'
+    description: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/cookie-banner/language/labels.xlf:field.content.description'
     enableRichtext: true
     rows: 3
     required: true
@@ -24,24 +25,25 @@ fields:
     identifier: accept_text
     type: Textarea
     rows: 1
-    label: 'Accept Button Text'
-    default: 'Accept All'
+    label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/cookie-banner/language/labels.xlf:field.accept_text'
+    default: 'Accept all'
   -
     identifier: decline_text
     type: Textarea
     rows: 1
-    label: 'Decline Button Text'
+    label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/cookie-banner/language/labels.xlf:field.decline_text'
     default: Decline
   -
     identifier: settings_text
     type: Textarea
     rows: 1
-    label: 'Settings Button Text'
-    default: 'Cookie Settings'
+    label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/cookie-banner/language/labels.xlf:field.settings_text'
+    default: 'Manage preferences'
   -
     identifier: settings_link
     type: Link
-    label: 'Settings Page Link'
+    label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/cookie-banner/language/labels.xlf:field.settings_link'
+    description: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/cookie-banner/language/labels.xlf:field.settings_link.description'
   -
     identifier: position
     type: Select
@@ -49,9 +51,9 @@ fields:
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:position'
     items:
       -
-        label: Bottom
+        label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/cookie-banner/language/labels.xlf:item.position.bottom'
         value: bottom
       -
-        label: Top
+        label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/cookie-banner/language/labels.xlf:item.position.top'
         value: top
     default: bottom

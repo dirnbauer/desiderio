@@ -10,50 +10,87 @@
     justify-content: space-between;
     gap: var(--d-spacing-4);
     padding-block: var(--d-spacing-4);
+    border-block-end: 1px solid color-mix(in oklab, var(--d-border) 60%, transparent);
 }
 .navbar-transparent__brand {
+    flex: 0 0 auto;
     font-weight: 600;
     font-size: var(--d-text-lg);
+    letter-spacing: -0.01em;
     color: var(--d-foreground);
+    text-decoration: none;
+}
+.navbar-transparent__brand--link {
+    border-radius: var(--d-radius-md);
+    transition: color 0.15s ease;
+}
+.navbar-transparent__brand--link:hover {
+    color: var(--d-foreground);
+    text-decoration: none;
+}
+.navbar-transparent__brand--link:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--d-background), 0 0 0 4px var(--d-ring);
 }
 .navbar-transparent__nav {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     gap: var(--d-spacing-1);
     list-style: none;
     margin: 0;
     padding: 0;
 }
+.navbar-transparent__item {
+    margin: 0;
+}
 .navbar-transparent__link {
+    display: inline-flex;
+    align-items: center;
     padding: var(--d-spacing-2) var(--d-spacing-3);
     font-size: var(--d-text-sm);
+    font-weight: 500;
+    line-height: 1;
     color: var(--d-muted-foreground);
     text-decoration: none;
     border-radius: var(--d-radius-md);
-    transition: color 0.15s;
+    transition: color 0.15s ease, background-color 0.15s ease;
 }
 .navbar-transparent__link:hover {
-    color: var(--d-foreground);
+    color: var(--d-accent-foreground);
+    background-color: var(--d-accent);
 }
 .navbar-transparent__link:focus-visible {
-    color: var(--d-foreground);
+    color: var(--d-accent-foreground);
+    background-color: var(--d-accent);
     outline: none;
-    box-shadow: 0 0 0 2px var(--d-ring);
+    box-shadow: 0 0 0 2px var(--d-background), 0 0 0 4px var(--d-ring);
+}
+.navbar-transparent__cta {
+    flex: 0 0 auto;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 48rem) {
     .navbar-transparent__inner {
         flex-wrap: wrap;
+        justify-content: space-between;
         gap: var(--d-spacing-2);
     }
     .navbar-transparent__nav {
-        flex-wrap: wrap;
         order: 3;
         width: 100%;
+        justify-content: flex-start;
+        gap: var(--d-spacing-1);
+        padding-block-start: var(--d-spacing-2);
+        border-block-start: 1px solid color-mix(in oklab, var(--d-border) 50%, transparent);
+    }
+    .navbar-transparent__link {
+        padding-block: var(--d-spacing-2);
     }
 }
 
 @media (prefers-reduced-motion: reduce) {
+    .navbar-transparent__brand--link,
     .navbar-transparent__link {
         transition: none;
     }

@@ -23,8 +23,8 @@ fields:
     identifier: billing_period
     type: Textarea
     rows: 1
-    label: 'Billing Period'
-    description: 'e.g. /month, /year'
+    label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/card-pricing/language/labels.xlf:billing_period'
+    description: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/card-pricing/language/labels.xlf:billing_period.description'
   -
     identifier: description
     type: Textarea
@@ -41,11 +41,11 @@ fields:
         identifier: text
         type: Textarea
         rows: 1
-        label: 'Feature Text'
+        label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/card-pricing/language/labels.xlf:feature_text'
       -
         identifier: included
         type: Checkbox
-        label: Included
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:included'
         default: 1
   -
     identifier: button_text
@@ -59,5 +59,6 @@ fields:
   -
     identifier: highlighted
     type: Checkbox
-    label: 'Highlight Card'
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:highlighted'
+    description: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/card-pricing/language/labels.xlf:highlighted.description'
     default: 0

@@ -18,8 +18,20 @@
             <span class="d-ce-preview__ctype"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:preview.uid"/>: {data.uid}</span>
             <span class="d-ce-preview__ctype"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:preview.page"/>: {data.pid}</span>
         </div>
+        <f:if condition="{data.eyebrow}">
+            <div class="d-ce-preview__field">
+                <span class="d-ce-preview__label">Eyebrow</span>
+                <span class="d-ce-preview__value">{data.eyebrow}</span>
+            </div>
+        </f:if>
         <f:if condition="{data.header}">
             <h3 class="d-ce-preview__title">{data.header}</h3>
+        </f:if>
+        <f:if condition="{data.description_text}">
+            <div class="d-ce-preview__field">
+                <span class="d-ce-preview__label">Description</span>
+                <span class="d-ce-preview__value">{data.description_text}</span>
+            </div>
         </f:if>
         <f:if condition="{data.cta_text}">
             <div class="d-ce-preview__field">

@@ -4,13 +4,19 @@
     <unit id="title">
       <segment state="final">
         <source>Breadcrumb</source>
-        <target>Breadcrumb</target>
+        <target>Ruta de navegación</target>
       </segment>
     </unit>
     <unit id="description">
       <segment state="final">
-        <source>Use when the breadcrumb should help visitors move through sections or pages.</source>
-        <target>Use when the breadcrumb should help visitors move through sections or pages.</target>
+        <source>Use when visitors need to see where the current page sits in the site hierarchy and jump back to any parent section in one click.</source>
+        <target>Úsalo cuando los visitantes necesiten ver dónde se ubica la página actual en la jerarquía del sitio y volver a cualquier sección superior con un clic.</target>
+      </segment>
+    </unit>
+    <unit id="breadcrumb.aria">
+      <segment state="final">
+        <source>Breadcrumb</source>
+        <target>Ruta de navegación</target>
       </segment>
     </unit>
   </file>

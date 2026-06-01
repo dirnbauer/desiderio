@@ -1,19 +1,27 @@
 {
     "_type": "grid",
-    "header": "Partner Grid for modern people pages",
-    "subheadline": "Present people and culture with confident profile copy and calm card structure.",
+    "header": "Partners who help our customers go live faster",
+    "subheadline": "From cloud infrastructure to systems integration, these certified technology and solution partners extend our platform and stand behind every rollout.",
     "partners": [
         {
-            "name": "Noah Ritter"
+            "name": "Northwind Cloud",
+            "kind": "Infrastructure Partner",
+            "link": "https://example.com/partners/northwind-cloud"
         },
         {
-            "name": "Lea Fischer"
+            "name": "Helix Integrations",
+            "kind": "Solution Partner",
+            "link": "https://example.com/partners/helix-integrations"
         },
         {
-            "name": "Mara Weiss"
+            "name": "Brightlayer Consulting",
+            "kind": "Implementation Partner",
+            "link": "https://example.com/partners/brightlayer-consulting"
         },
         {
-            "name": "Jonas Klein"
+            "name": "Meridian Security",
+            "kind": "Technology Partner",
+            "link": "https://example.com/partners/meridian-security"
         }
     ]
 }

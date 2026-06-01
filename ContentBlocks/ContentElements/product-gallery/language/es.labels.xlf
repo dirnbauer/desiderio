@@ -4,13 +4,157 @@
     <unit id="title">
       <segment state="final">
         <source>Product Gallery Pricing</source>
-        <target>Product Gallery Pricing</target>
+        <target>Galería de producto con precio</target>
       </segment>
     </unit>
     <unit id="description">
       <segment state="final">
-        <source>Use when the product gallery pricing should present costs or plan choices close to a decision.</source>
-        <target>Use when the product gallery pricing should present costs or plan choices close to a decision.</target>
+        <source>Use when a product gallery should pair its photos with a price and a buy action at the decision point.</source>
+        <target>Úsalo cuando una galería de producto deba unir sus fotos con un precio y una acción de compra en el momento de decidir.</target>
+      </segment>
+    </unit>
+    <unit id="images">
+      <segment state="final">
+        <source>Product Images</source>
+        <target>Imágenes del producto</target>
+      </segment>
+    </unit>
+    <unit id="images.description">
+      <segment state="final">
+        <source>The first image fills the main stage; the rest appear as thumbnails.</source>
+        <target>La primera imagen ocupa el escenario principal; el resto aparece como miniaturas.</target>
+      </segment>
+    </unit>
+    <unit id="caption">
+      <segment state="final">
+        <source>Short Description</source>
+        <target>Descripción breve</target>
+      </segment>
+    </unit>
+    <unit id="caption.description">
+      <segment state="final">
+        <source>Materials, finish or sizing shown in the photos.</source>
+        <target>Materiales, acabado o tallas que se ven en las fotos.</target>
+      </segment>
+    </unit>
+    <unit id="price.description">
+      <segment state="final">
+        <source>Current price, e.g. $1,290.</source>
+        <target>Precio actual, p. ej. 1.290 €.</target>
+      </segment>
+    </unit>
+    <unit id="compare_at_price">
+      <segment state="final">
+        <source>Compare-at Price</source>
+        <target>Precio de referencia</target>
+      </segment>
+    </unit>
+    <unit id="compare_at_price.description">
+      <segment state="final">
+        <source>Optional was-price shown struck through to signal a saving.</source>
+        <target>Precio anterior opcional, tachado para indicar un ahorro.</target>
+      </segment>
+    </unit>
+    <unit id="availability">
+      <segment state="final">
+        <source>Availability</source>
+        <target>Disponibilidad</target>
+      </segment>
+    </unit>
+    <unit id="availability.in_stock">
+      <segment state="final">
+        <source>In stock, ready to ship</source>
+        <target>En stock, listo para enviar</target>
+      </segment>
+    </unit>
+    <unit id="availability.limited">
+      <segment state="final">
+        <source>Only a few left</source>
+        <target>Quedan pocas unidades</target>
+      </segment>
+    </unit>
+    <unit id="availability.preorder">
+      <segment state="final">
+        <source>Available to pre-order</source>
+        <target>Disponible para reservar</target>
+      </segment>
+    </unit>
+    <unit id="availability.sold_out">
+      <segment state="final">
+        <source>Currently sold out</source>
+        <target>Agotado por ahora</target>
+      </segment>
+    </unit>
+    <unit id="highlights">
+      <segment state="final">
+        <source>Buying Points</source>
+        <target>Argumentos de compra</target>
+      </segment>
+    </unit>
+    <unit id="highlights.description">
+      <segment state="final">
+        <source>Reassurances such as delivery, warranty or returns.</source>
+        <target>Garantías como envío, garantía o devoluciones.</target>
+      </segment>
+    </unit>
+    <unit id="highlight.text">
+      <segment state="final">
+        <source>Buying Point</source>
+        <target>Argumento de compra</target>
+      </segment>
+    </unit>
+    <unit id="columns">
+      <segment state="final">
+        <source>Thumbnail Columns</source>
+        <target>Columnas de miniaturas</target>
+      </segment>
+    </unit>
+    <unit id="columns.description">
+      <segment state="final">
+        <source>How many thumbnails sit in each row below the main image.</source>
+        <target>Cuántas miniaturas hay en cada fila debajo de la imagen principal.</target>
+      </segment>
+    </unit>
+    <unit id="columns.5">
+      <segment state="final">
+        <source>5 Columns</source>
+        <target>5 columnas</target>
+      </segment>
+    </unit>
+    <unit id="columns.6">
+      <segment state="final">
+        <source>6 Columns</source>
+        <target>6 columnas</target>
+      </segment>
+    </unit>
+    <unit id="save">
+      <segment state="final">
+        <source>Sale</source>
+        <target>Oferta</target>
+      </segment>
+    </unit>
+    <unit id="sr.price">
+      <segment state="final">
+        <source>Price:</source>
+        <target>Precio:</target>
+      </segment>
+    </unit>
+    <unit id="sr.compare">
+      <segment state="final">
+        <source>Regular price:</source>
+        <target>Precio habitual:</target>
+      </segment>
+    </unit>
+    <unit id="thumbnails.label">
+      <segment state="final">
+        <source>More views</source>
+        <target>Más vistas</target>
+      </segment>
+    </unit>
+    <unit id="fallback.title">
+      <segment state="final">
+        <source>Product</source>
+        <target>Producto</target>
       </segment>
     </unit>
   </file>

@@ -4,13 +4,85 @@
     <unit id="title">
       <segment state="final">
         <source>Stacked Bar Chart</source>
-        <target>Gestapeltes Balken Diagramm</target>
+        <target>Gestapeltes Balkendiagramm</target>
       </segment>
     </unit>
     <unit id="description">
       <segment state="final">
         <source>Use when the stacked bar chart should compare categories, totals, or rankings clearly.</source>
-        <target>Einsetzen, wenn das Element Gestapeltes Balken Diagramm Kategorien, Summen oder Rangfolgen klar vergleichen soll.</target>
+        <target>Einsetzen, wenn Kategorien, Summen oder Rangfolgen als gestapelte Balken klar verglichen werden sollen.</target>
+      </segment>
+    </unit>
+    <unit id="field.series_labels">
+      <segment state="final">
+        <source>Series names</source>
+        <target>Reihennamen</target>
+      </segment>
+    </unit>
+    <unit id="field.series_labels.description">
+      <segment state="final">
+        <source>Comma-separated names for each stacked segment, in order, e.g. Starter, Team, Enterprise. Used for the legend and the screen-reader summary.</source>
+        <target>Kommagetrennte Namen je gestapeltem Segment in Reihenfolge, z. B. Starter, Team, Enterprise. Wird fuer Legende und Screenreader-Zusammenfassung genutzt.</target>
+      </segment>
+    </unit>
+    <unit id="field.palette">
+      <segment state="final">
+        <source>Colour palette</source>
+        <target>Farbpalette</target>
+      </segment>
+    </unit>
+    <unit id="field.show_legend">
+      <segment state="final">
+        <source>Show legend</source>
+        <target>Legende anzeigen</target>
+      </segment>
+    </unit>
+    <unit id="item.palette.default">
+      <segment state="final">
+        <source>Default (multi-colour)</source>
+        <target>Standard (mehrfarbig)</target>
+      </segment>
+    </unit>
+    <unit id="item.palette.brand">
+      <segment state="final">
+        <source>Brand (primary led)</source>
+        <target>Marke (Primaerfarbe)</target>
+      </segment>
+    </unit>
+    <unit id="item.palette.cool">
+      <segment state="final">
+        <source>Cool</source>
+        <target>Kuehl</target>
+      </segment>
+    </unit>
+    <unit id="item.palette.warm">
+      <segment state="final">
+        <source>Warm</source>
+        <target>Warm</target>
+      </segment>
+    </unit>
+    <unit id="legend.heading">
+      <segment state="final">
+        <source>Legend</source>
+        <target>Legende</target>
+      </segment>
+    </unit>
+    <unit id="aria.summary">
+      <segment state="final">
+        <source>{0}: stacked bar chart comparing {1}.</source>
+        <target>{0}: gestapeltes Balkendiagramm, das {1} vergleicht.</target>
+      </segment>
+    </unit>
+    <unit id="aria.summary.no_series">
+      <segment state="final">
+        <source>{0}: stacked bar chart.</source>
+        <target>{0}: gestapeltes Balkendiagramm.</target>
+      </segment>
+    </unit>
+    <unit id="aria.fallback">
+      <segment state="final">
+        <source>Stacked bar chart</source>
+        <target>Gestapeltes Balkendiagramm</target>
       </segment>
     </unit>
   </file>

@@ -2,9 +2,9 @@
     "_type": "nav",
     "header": "Breadcrumb",
     "items": [
-        { "label": "Home", "link": "https://ui.shadcn.com/" },
-        { "label": "Solutions", "link": "https://ui.shadcn.com/docs" },
-        { "label": "Customer analytics", "link": "https://ui.shadcn.com/docs/components" },
-        { "label": "Pricing", "link": "" }
+        { "label": "Home", "link": "t3://page?uid=1" },
+        { "label": "Platform", "link": "t3://page?uid=12" },
+        { "label": "Customer analytics", "link": "t3://page?uid=24" },
+        { "label": "Real-time dashboards", "link": "" }
     ]
 }

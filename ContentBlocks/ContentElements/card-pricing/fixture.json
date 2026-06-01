@@ -1,22 +1,32 @@
 {
     "_type": "pricing",
-    "header": "Card Pricing Data View for live product intelligence",
-    "description": "Turn dense numbers into an analytics block that stays readable on mobile.",
+    "header": "Pro",
+    "description": "For growing teams that need advanced controls, deeper reporting, and priority support.",
+    "price": "$29",
+    "billing_period": "per user / month",
     "feature_items": [
-        [
-            "Editor-friendly TYPO3 Content Blocks",
-            "Modern Unsplash imagery in the import seed",
-            "Compact shadcn spacing and borders"
-        ],
-        [
-            "Editor-friendly TYPO3 Content Blocks",
-            "Modern Unsplash imagery in the import seed",
-            "Compact shadcn spacing and borders"
-        ],
-        [
-            "Editor-friendly TYPO3 Content Blocks",
-            "Modern Unsplash imagery in the import seed",
-            "Compact shadcn spacing and borders"
-        ]
-    ]
+        {
+            "text": "Unlimited projects and content blocks",
+            "included": 1
+        },
+        {
+            "text": "Role-based access with a full audit log",
+            "included": 1
+        },
+        {
+            "text": "Scheduled publishing and approval workflows",
+            "included": 1
+        },
+        {
+            "text": "Priority email and live chat support",
+            "included": 1
+        },
+        {
+            "text": "Dedicated customer success manager",
+            "included": 0
+        }
+    ],
+    "button_text": "Start free trial",
+    "button_link": "https://example.com/signup?plan=pro",
+    "highlighted": 1
 }

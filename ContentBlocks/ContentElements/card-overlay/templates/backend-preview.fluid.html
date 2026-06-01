@@ -13,28 +13,36 @@
     <f:asset.css identifier="desiderio-content-preview" href="EXT:desiderio/Resources/Public/Css/content-preview.css" />
     <div class="d-ce-preview" data-slot="card">
         <div class="d-ce-preview__meta">
-            <span class="d-ce-preview__type" data-slot="badge">Card Overlay Data View</span>
+            <span class="d-ce-preview__type" data-slot="badge">Overlay Image Card</span>
             <f:if condition="{settings._content_block_name}"><span class="d-ce-preview__ctype">{settings._content_block_name}</span></f:if>
             <span class="d-ce-preview__ctype"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:preview.uid"/>: {data.uid}</span>
             <span class="d-ce-preview__ctype"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:preview.page"/>: {data.pid}</span>
         </div>
+        <f:if condition="{data.eyebrow}">
+            <span class="d-ce-preview__badge" data-slot="badge">{data.eyebrow}</span>
+        </f:if>
         <f:if condition="{data.header}">
             <h3 class="d-ce-preview__title">{data.header}</h3>
         </f:if>
         <f:if condition="{data.description}">
-            <div class="d-ce-preview__field">
-                <span class="d-ce-preview__label">Description</span>
-                <span class="d-ce-preview__value">{data.description}</span>
-            </div>
+            <p class="d-ce-preview__text">{data.description}</p>
         </f:if>
-        <f:if condition="{data.overlay_opacity}">
-            <div class="d-ce-preview__field">
-                <span class="d-ce-preview__label">Overlay Opacity</span>
-                <span class="d-ce-preview__value">{data.overlay_opacity}</span>
-            </div>
-        </f:if>
+        <div class="d-ce-preview__grid">
+            <f:if condition="{data.link_text}">
+                <div class="d-ce-preview__field">
+                    <span class="d-ce-preview__label">Call to action</span>
+                    <span class="d-ce-preview__value">{data.link_text}</span>
+                </div>
+            </f:if>
+            <f:if condition="{data.overlay_intensity}">
+                <div class="d-ce-preview__field">
+                    <span class="d-ce-preview__label">Overlay intensity</span>
+                    <span class="d-ce-preview__value">{data.overlay_intensity}</span>
+                </div>
+            </f:if>
+        </div>
         <f:if condition="{data.image}">
-            <div class="d-ce-preview__thumbs" aria-label="Image">
+            <div class="d-ce-preview__thumbs" aria-label="Background image">
                 <f:for each="{data.image}" as="file">
                     <f:if condition="{file.publicUrl}">
                         <img src="{file.publicUrl}" alt="{file.alternative}" class="d-ce-preview__thumb" loading="lazy" />

@@ -4,13 +4,37 @@
     <unit id="title">
       <segment state="final">
         <source>Card Pricing Data View</source>
-        <target>Card Pricing Data View</target>
+        <target>Vista dati scheda prezzi</target>
       </segment>
     </unit>
     <unit id="description">
       <segment state="final">
         <source>Use when the card pricing data view should present costs or plan choices close to a decision.</source>
-        <target>Use when the card pricing data view should present costs or plan choices close to a decision.</target>
+        <target>Usa quando la vista scheda prezzi deve presentare costi o piani vicino a una decisione.</target>
+      </segment>
+    </unit>
+    <unit id="billing_period">
+      <segment state="final">
+        <source>Billing Period</source>
+        <target>Periodo di fatturazione</target>
+      </segment>
+    </unit>
+    <unit id="billing_period.description">
+      <segment state="final">
+        <source>Optional cadence shown next to the price, e.g. per user / month or billed annually.</source>
+        <target>Cadenza opzionale accanto al prezzo, ad es. per utente / mese o fatturazione annuale.</target>
+      </segment>
+    </unit>
+    <unit id="feature_text">
+      <segment state="final">
+        <source>Feature Text</source>
+        <target>Testo della funzionalità</target>
+      </segment>
+    </unit>
+    <unit id="highlighted.description">
+      <segment state="final">
+        <source>Marks this as the recommended plan with an accent ring and a badge.</source>
+        <target>Contrassegna questo piano come consigliato con un bordo accentato e un badge.</target>
       </segment>
     </unit>
   </file>

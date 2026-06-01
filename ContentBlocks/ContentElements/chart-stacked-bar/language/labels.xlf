@@ -11,5 +11,65 @@
         <source>Use when the stacked bar chart should compare categories, totals, or rankings clearly.</source>
       </segment>
     </unit>
+    <unit id="field.series_labels">
+      <segment>
+        <source>Series names</source>
+      </segment>
+    </unit>
+    <unit id="field.series_labels.description">
+      <segment>
+        <source>Comma-separated names for each stacked segment, in order, e.g. Starter, Team, Enterprise. Used for the legend and the screen-reader summary.</source>
+      </segment>
+    </unit>
+    <unit id="field.palette">
+      <segment>
+        <source>Colour palette</source>
+      </segment>
+    </unit>
+    <unit id="field.show_legend">
+      <segment>
+        <source>Show legend</source>
+      </segment>
+    </unit>
+    <unit id="item.palette.default">
+      <segment>
+        <source>Default (multi-colour)</source>
+      </segment>
+    </unit>
+    <unit id="item.palette.brand">
+      <segment>
+        <source>Brand (primary led)</source>
+      </segment>
+    </unit>
+    <unit id="item.palette.cool">
+      <segment>
+        <source>Cool</source>
+      </segment>
+    </unit>
+    <unit id="item.palette.warm">
+      <segment>
+        <source>Warm</source>
+      </segment>
+    </unit>
+    <unit id="legend.heading">
+      <segment>
+        <source>Legend</source>
+      </segment>
+    </unit>
+    <unit id="aria.summary">
+      <segment>
+        <source>{0}: stacked bar chart comparing {1}.</source>
+      </segment>
+    </unit>
+    <unit id="aria.summary.no_series">
+      <segment>
+        <source>{0}: stacked bar chart.</source>
+      </segment>
+    </unit>
+    <unit id="aria.fallback">
+      <segment>
+        <source>Stacked bar chart</source>
+      </segment>
+    </unit>
   </file>
 </xliff>

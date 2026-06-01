@@ -10,15 +10,16 @@ use Webconsulting\Desiderio\Command\PowermailDemoSeeder;
 
 final class PowermailIntegrationTest extends TestCase
 {
-    public function testPowermailSiteSetIsOptionalAndPointsToTemplateOverrides(): void
+    public function testPowermailSiteSetExtendsBaseAndPointsToTemplateOverrides(): void
     {
         $config = (string)file_get_contents(__DIR__ . '/../../Configuration/Sets/DesiderioPowermail/config.yaml');
         $setup = (string)file_get_contents(__DIR__ . '/../../Configuration/Sets/DesiderioPowermail/setup.typoscript');
         $baseConfig = (string)file_get_contents(__DIR__ . '/../../Configuration/Sets/Desiderio/config.yaml');
 
         self::assertStringContainsString('name: webconsulting/desiderio-powermail', $config);
+        self::assertStringContainsString('webconsulting/desiderio', $config);
         self::assertStringContainsString('in2code/powermail-main', $config);
-        self::assertStringContainsString('webconsulting/desiderio-powermail', $baseConfig);
+        self::assertStringNotContainsString('webconsulting/desiderio-powermail', $baseConfig);
         self::assertStringContainsString('plugin.tx_powermail', $setup);
         self::assertStringContainsString('EXT:desiderio/Resources/Private/Extensions/Powermail/Templates/', $setup);
         self::assertStringContainsString('EXT:desiderio/Resources/Private/Extensions/Powermail/Partials/', $setup);

@@ -1,0 +1,53 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:layout name="Pages/Default"/>
+
+<f:comment>
+    Corporate content page. Eyebrow = the parent section crumb (the page's
+    direct parent in the rootline, e.g. "Solutions", "About") so the kicker aids
+    wayfinding. It is only shown when a real parent section exists between the
+    site root and this page (rootline depth >= 3); otherwise a stable "Overview"
+    eyebrow is used so the kicker never echoes the page title or the site root.
+    Title is a real H1 for correct heading order; the lede falls back to a
+    measured intro when the abstract is empty, mirroring the system pages so the
+    masthead is never a lone H1 over a rule.
+</f:comment>
+
+<f:variable name="rootlineDepth" value="{breadcrumb -> f:count()}"/>
+<f:variable name="sectionEyebrow" value="{f:translate(extensionName: 'desiderio', key: 'corporate.page.eyebrow', default: 'Overview')}"/>
+<f:if condition="{rootlineDepth} >= 3">
+    <f:for each="{breadcrumb}" as="crumb" iteration="crumbIteration">
+        <f:if condition="{crumbIteration.cycle} == {rootlineDepth - 1}">
+            <f:variable name="sectionEyebrow" value="{crumb.title}"/>
+        </f:if>
+    </f:for>
+</f:if>
+<f:variable name="pageLede" value="{page.pageRecord.abstract -> f:or(alternative: '{f:translate(extensionName: \'desiderio\', key: \'corporate.page.lede\', default: \'A clear, structured look at what we do here and how it helps your organisation move forward.\')}')}"/>
+
+<f:section name="Stage">
+    <f:render partial="Presets/Stage" arguments="{content: content.stage, class: 'desiderio-corporate-template__stage', containerSize: 'xl', innerClass: 'desiderio-corporate-template__stage-inner'}"/>
+</f:section>
+
+<f:section name="Main">
+    <div class="desiderio-corporate-template">
+        <d:layout.container size="xl" class="desiderio-corporate-template__container">
+            <header class="desiderio-corporate-template__intro">
+                <f:if condition="{sectionEyebrow}">
+                    <p class="desiderio-corporate-template__eyebrow">{sectionEyebrow}</p>
+                </f:if>
+                <h1 class="desiderio-corporate-template__title">{page.pageRecord.title}</h1>
+                <p class="desiderio-corporate-template__lede">{pageLede}</p>
+            </header>
+
+            <div class="desiderio-corporate-template__content">
+                <f:render partial="Presets/ContentArea" arguments="{content: content.main}"/>
+            </div>
+        </d:layout.container>
+    </div>
+</f:section>
+
+</html>

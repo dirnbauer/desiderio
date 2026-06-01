@@ -4,21 +4,69 @@
     data-namespace-typo3-fluid="true"
 >
 
+<f:variable name="siteTitle" value="{site.configuration.websiteTitle -> f:or(alternative: breadcrumb.0.title)}"/>
+
 <footer class="desiderio-footer">
     <d:layout.container>
         <div class="desiderio-footer__inner">
             <div class="desiderio-footer__brand">
-                <p class="desiderio-footer__title">{breadcrumb.0.title}</p>
-                <d:atom.typography tag="p" variant="muted">
-                    Built with shadcn/ui Fluid components for TYPO3 14.
-                </d:atom.typography>
+                <f:link.typolink parameter="{breadcrumb.0.link}" class="desiderio-footer__wordmark">
+                    {siteTitle}
+                </f:link.typolink>
+                <p class="desiderio-footer__copyright">
+                    <f:if condition="{site.configuration.settings.desiderio.footer.copyrightText}">
+                        <f:then>{site.configuration.settings.desiderio.footer.copyrightText}</f:then>
+                        <f:else>© <f:format.date date="now" format="Y" /> {siteTitle}</f:else>
+                    </f:if>
+                </p>
             </div>
 
-            <div class="desiderio-footer__copy">
-                <d:atom.typography tag="p" variant="small">
-                    Inspired by Camino.
-                </d:atom.typography>
-            </div>
+            <f:if condition="{footerMenu}">
+                <nav class="desiderio-footer__nav" aria-label="{f:translate(extensionName: 'desiderio', key: 'a11y.nav.footer', default: 'Footer navigation')}">
+                    <ul class="desiderio-footer__link-list" role="list">
+                        <f:for each="{footerMenu}" as="item">
+                            <li>
+                                <f:link.typolink parameter="{item.link}" class="desiderio-footer__link {f:if(condition: '{item.active}', then: 'desiderio-footer__link--active')}" additionalAttributes="{f:if(condition: '{item.active}', then: '{aria-current: \'page\'}')}">
+                                    {item.title}
+                                </f:link.typolink>
+                            </li>
+                        </f:for>
+                    </ul>
+                </nav>
+            </f:if>
+
+            <nav class="desiderio-footer__legal" aria-label="{f:translate(extensionName: 'desiderio', key: 'a11y.nav.legal', default: 'Legal navigation')}">
+                <ul class="desiderio-footer__legal-list" role="list">
+                    <f:if condition="{legalMenu}">
+                        <f:then>
+                            <f:for each="{legalMenu}" as="item">
+                                <li>
+                                    <f:link.typolink parameter="{item.link}" class="desiderio-footer__legal-link">
+                                        {item.title}
+                                    </f:link.typolink>
+                                </li>
+                            </f:for>
+                        </f:then>
+                        <f:else>
+                            <li>
+                                <a class="desiderio-footer__legal-link" href="{breadcrumb.0.link}imprint">
+                                    <f:translate extensionName="desiderio" key="footer.legal.imprint">Imprint</f:translate>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="desiderio-footer__legal-link" href="{breadcrumb.0.link}privacy">
+                                    <f:translate extensionName="desiderio" key="footer.legal.privacy">Privacy</f:translate>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="desiderio-footer__legal-link" href="{breadcrumb.0.link}accessibility">
+                                    <f:translate extensionName="desiderio" key="footer.legal.accessibility">Accessibility</f:translate>
+                                </a>
+                            </li>
+                        </f:else>
+                    </f:if>
+                </ul>
+            </nav>
         </div>
     </d:layout.container>
 </footer>

@@ -7,6 +7,24 @@
         <target>Überschrift</target>
       </segment>
     </unit>
+    <unit id="follow_on">
+      <segment state="final">
+        <source>Follow us on</source>
+        <target>Follow us on</target>
+      </segment>
+    </unit>
+    <unit id="layout.inline">
+      <segment state="final">
+        <source>Inline row</source>
+        <target>Inline row</target>
+      </segment>
+    </unit>
+    <unit id="layout.stacked">
+      <segment state="final">
+        <source>Stacked, centered</source>
+        <target>Stacked, centered</target>
+      </segment>
+    </unit>
     <unit id="description">
       <segment state="final">
         <source>Description</source>
@@ -43,6 +61,12 @@
         <target>Bezeichnung</target>
       </segment>
     </unit>
+    <unit id="label_field">
+      <segment state="final">
+        <source>Label</source>
+        <target>Bezeichnung</target>
+      </segment>
+    </unit>
     <unit id="link">
       <segment state="final">
         <source>Link</source>
@@ -59,6 +83,42 @@
       <segment state="final">
         <source>Link Text</source>
         <target>Linktext</target>
+      </segment>
+    </unit>
+    <unit id="read_article">
+      <segment state="final">
+        <source>Read article</source>
+        <target>Read article</target>
+      </segment>
+    </unit>
+    <unit id="download_episode">
+      <segment state="final">
+        <source>Download episode</source>
+        <target>Download episode</target>
+      </segment>
+    </unit>
+    <unit id="audio_unsupported">
+      <segment state="final">
+        <source>Your browser does not support the audio element.</source>
+        <target>Your browser does not support the audio element.</target>
+      </segment>
+    </unit>
+    <unit id="feature">
+      <segment state="final">
+        <source>Feature</source>
+        <target>Feature</target>
+      </segment>
+    </unit>
+    <unit id="included">
+      <segment state="final">
+        <source>Included</source>
+        <target>Included</target>
+      </segment>
+    </unit>
+    <unit id="not_included">
+      <segment state="final">
+        <source>Not included</source>
+        <target>Not included</target>
       </segment>
     </unit>
     <unit id="title">
@@ -83,6 +143,18 @@
       <segment state="final">
         <source>Content</source>
         <target>Inhalt</target>
+      </segment>
+    </unit>
+    <unit id="disclaimer_text">
+      <segment state="final">
+        <source>Disclaimer Text</source>
+        <target>Disclaimer Text</target>
+      </segment>
+    </unit>
+    <unit id="disclaimer.aria">
+      <segment state="final">
+        <source>Legal disclaimer</source>
+        <target>Legal disclaimer</target>
       </segment>
     </unit>
     <unit id="text">
@@ -149,6 +221,12 @@
       <segment state="final">
         <source>Badge Text</source>
         <target>Badge-Text</target>
+      </segment>
+    </unit>
+    <unit id="reassurance_text">
+      <segment state="final">
+        <source>Reassurance Text</source>
+        <target>Reassurance Text</target>
       </segment>
     </unit>
     <unit id="background_image">
@@ -235,6 +313,186 @@
         <target>Funktionseinträge</target>
       </segment>
     </unit>
+    <unit id="feature.included">
+      <segment state="final">
+        <source>Included:</source>
+        <target>Included:</target>
+      </segment>
+    </unit>
+    <unit id="feature.notIncluded">
+      <segment state="final">
+        <source>Not included:</source>
+        <target>Not included:</target>
+      </segment>
+    </unit>
+    <unit id="plan.recommended">
+      <segment state="final">
+        <source>Recommended plan</source>
+        <target>Recommended plan</target>
+      </segment>
+    </unit>
+    <unit id="per_month">
+      <segment state="final">
+        <source>/month</source>
+        <target>/month</target>
+      </segment>
+    </unit>
+    <unit id="per_year">
+      <segment state="final">
+        <source>/year</source>
+        <target>/year</target>
+      </segment>
+    </unit>
+    <unit id="billed_annually">
+      <segment state="final">
+        <source>billed annually</source>
+        <target>billed annually</target>
+      </segment>
+    </unit>
+    <unit id="calc.tier">
+      <segment state="final">
+        <source>Tier</source>
+        <target>Tier</target>
+      </segment>
+    </unit>
+    <unit id="calc.up_to">
+      <segment state="final">
+        <source>Up to</source>
+        <target>Up to</target>
+      </segment>
+    </unit>
+    <unit id="calc.price_per">
+      <segment state="final">
+        <source>Price per unit</source>
+        <target>Price per unit</target>
+      </segment>
+    </unit>
+    <unit id="apply">
+      <segment state="final">
+        <source>Apply</source>
+        <target>Apply</target>
+      </segment>
+    </unit>
+    <unit id="apply_link">
+      <segment state="final">
+        <source>Apply Link</source>
+        <target>Apply Link</target>
+      </segment>
+    </unit>
+    <unit id="job.title">
+      <segment state="final">
+        <source>Job Title</source>
+        <target>Job Title</target>
+      </segment>
+    </unit>
+    <unit id="job.department">
+      <segment state="final">
+        <source>Department</source>
+        <target>Department</target>
+      </segment>
+    </unit>
+    <unit id="job.location">
+      <segment state="final">
+        <source>Location</source>
+        <target>Location</target>
+      </segment>
+    </unit>
+    <unit id="job.employment_type">
+      <segment state="final">
+        <source>Employment Type</source>
+        <target>Employment Type</target>
+      </segment>
+    </unit>
+    <unit id="job.apply">
+      <segment state="final">
+        <source>Apply now</source>
+        <target>Apply now</target>
+      </segment>
+    </unit>
+    <unit id="read_case_study">
+      <segment state="final">
+        <source>Read case study</source>
+        <target>Read case study</target>
+      </segment>
+    </unit>
+    <unit id="read_full_case_study">
+      <segment state="final">
+        <source>Read full case study</source>
+        <target>Read full case study</target>
+      </segment>
+    </unit>
+    <unit id="read_full_terms">
+      <segment state="final">
+        <source>Read full terms</source>
+        <target>Read full terms</target>
+      </segment>
+    </unit>
+    <unit id="terms_summary.last_updated">
+      <segment state="final">
+        <source>Last updated</source>
+        <target>Last updated</target>
+      </segment>
+    </unit>
+    <unit id="carousel.region">
+      <segment state="final">
+        <source>Highlights carousel</source>
+        <target>Highlights carousel</target>
+      </segment>
+    </unit>
+    <unit id="carousel.slide">
+      <segment state="final">
+        <source>slide</source>
+        <target>slide</target>
+      </segment>
+    </unit>
+    <unit id="carousel.previous">
+      <segment state="final">
+        <source>Previous slide</source>
+        <target>Previous slide</target>
+      </segment>
+    </unit>
+    <unit id="carousel.next">
+      <segment state="final">
+        <source>Next slide</source>
+        <target>Next slide</target>
+      </segment>
+    </unit>
+    <unit id="carousel.goto">
+      <segment state="final">
+        <source>Go to slide</source>
+        <target>Go to slide</target>
+      </segment>
+    </unit>
+    <unit id="countdown.days">
+      <segment state="final">
+        <source>Days</source>
+        <target>Days</target>
+      </segment>
+    </unit>
+    <unit id="countdown.hours">
+      <segment state="final">
+        <source>Hours</source>
+        <target>Hours</target>
+      </segment>
+    </unit>
+    <unit id="countdown.minutes">
+      <segment state="final">
+        <source>Minutes</source>
+        <target>Minutes</target>
+      </segment>
+    </unit>
+    <unit id="countdown.seconds">
+      <segment state="final">
+        <source>Seconds</source>
+        <target>Seconds</target>
+      </segment>
+    </unit>
+    <unit id="countdown.deadline">
+      <segment state="final">
+        <source>Deadline</source>
+        <target>Deadline</target>
+      </segment>
+    </unit>
     <unit id="portrait">
       <segment state="final">
         <source>Portrait</source>
@@ -247,6 +505,36 @@
         <target>Wert</target>
       </segment>
     </unit>
+    <unit id="leaderboard.score">
+      <segment state="final">
+        <source>Score</source>
+        <target>Score</target>
+      </segment>
+    </unit>
+    <unit id="leaderboard.subtitle">
+      <segment state="final">
+        <source>Subtitle</source>
+        <target>Subtitle</target>
+      </segment>
+    </unit>
+    <unit id="leaderboard.avatar">
+      <segment state="final">
+        <source>Avatar</source>
+        <target>Avatar</target>
+      </segment>
+    </unit>
+    <unit id="leaderboard.show_rank">
+      <segment state="final">
+        <source>Show rank numbers</source>
+        <target>Show rank numbers</target>
+      </segment>
+    </unit>
+    <unit id="stat_description">
+      <segment state="final">
+        <source>Context (optional)</source>
+        <target>Context (optional)</target>
+      </segment>
+    </unit>
     <unit id="role">
       <segment state="final">
         <source>Role</source>
@@ -257,6 +545,72 @@
       <segment state="final">
         <source>Logo</source>
         <target>Logo</target>
+      </segment>
+    </unit>
+    <unit id="investor_round">
+      <segment state="final">
+        <source>Round / Role</source>
+        <target>Round / Role</target>
+      </segment>
+    </unit>
+    <unit id="investor.visit">
+      <segment state="final">
+        <source>Visit</source>
+        <target>Visit</target>
+      </segment>
+    </unit>
+    <unit id="partner.name">
+      <segment state="final">
+        <source>Partner Name</source>
+        <target>Partner Name</target>
+      </segment>
+    </unit>
+    <unit id="partner.kind">
+      <segment state="final">
+        <source>Partner Type</source>
+        <target>Partner Type</target>
+      </segment>
+    </unit>
+    <unit id="partner.link">
+      <segment state="final">
+        <source>Website</source>
+        <target>Website</target>
+      </segment>
+    </unit>
+    <unit id="partner.visit">
+      <segment state="final">
+        <source>Visit partner website</source>
+        <target>Visit partner website</target>
+      </segment>
+    </unit>
+    <unit id="publication">
+      <segment state="final">
+        <source>Publication Name</source>
+        <target>Publication Name</target>
+      </segment>
+    </unit>
+    <unit id="publication_logo">
+      <segment state="final">
+        <source>Publication Logo</source>
+        <target>Publication Logo</target>
+      </segment>
+    </unit>
+    <unit id="quote_excerpt">
+      <segment state="final">
+        <source>Quote / Excerpt</source>
+        <target>Quote / Excerpt</target>
+      </segment>
+    </unit>
+    <unit id="date">
+      <segment state="final">
+        <source>Date</source>
+        <target>Date</target>
+      </segment>
+    </unit>
+    <unit id="article_link">
+      <segment state="final">
+        <source>Article Link</source>
+        <target>Article Link</target>
       </segment>
     </unit>
     <unit id="short_description">
@@ -287,6 +641,18 @@
       <segment state="final">
         <source>Links</source>
         <target>Links</target>
+      </segment>
+    </unit>
+    <unit id="separator">
+      <segment state="final">
+        <source>Separator</source>
+        <target>Separator</target>
+      </segment>
+    </unit>
+    <unit id="legal_links.aria">
+      <segment state="final">
+        <source>Legal links</source>
+        <target>Legal links</target>
       </segment>
     </unit>
     <unit id="links_one_per_line">
@@ -439,6 +805,24 @@
         <target>Trend</target>
       </segment>
     </unit>
+    <unit id="trend.positive">
+      <segment state="final">
+        <source>Trending up:</source>
+        <target>Trending up:</target>
+      </segment>
+    </unit>
+    <unit id="trend.neutral">
+      <segment state="final">
+        <source>Holding steady:</source>
+        <target>Holding steady:</target>
+      </segment>
+    </unit>
+    <unit id="trend.caution">
+      <segment state="final">
+        <source>Needs attention:</source>
+        <target>Needs attention:</target>
+      </segment>
+    </unit>
     <unit id="image_position">
       <segment state="final">
         <source>Image Position</source>
@@ -553,6 +937,12 @@
         <target>Mit Rahmen</target>
       </segment>
     </unit>
+    <unit id="item.boxed">
+      <segment state="final">
+        <source>Boxed</source>
+        <target>Boxed</target>
+      </segment>
+    </unit>
     <unit id="item.centered">
       <segment state="final">
         <source>Centered</source>
@@ -629,6 +1019,18 @@
       <segment state="final">
         <source>Stacked</source>
         <target>Gestapelt</target>
+      </segment>
+    </unit>
+    <unit id="item.inline">
+      <segment state="final">
+        <source>Inline</source>
+        <target>Inline</target>
+      </segment>
+    </unit>
+    <unit id="item.grid">
+      <segment state="final">
+        <source>Grid</source>
+        <target>Grid</target>
       </segment>
     </unit>
     <unit id="item.icon_top">
@@ -725,6 +1127,24 @@
       <segment state="final">
         <source>None</source>
         <target>Keine</target>
+      </segment>
+    </unit>
+    <unit id="item.dot">
+      <segment state="final">
+        <source>Dot</source>
+        <target>Dot</target>
+      </segment>
+    </unit>
+    <unit id="item.pipe">
+      <segment state="final">
+        <source>Pipe</source>
+        <target>Pipe</target>
+      </segment>
+    </unit>
+    <unit id="item.slash">
+      <segment state="final">
+        <source>Slash</source>
+        <target>Slash</target>
       </segment>
     </unit>
     <unit id="page.column.main">
@@ -889,6 +1309,12 @@
         <target>Häufige Suchanfragen</target>
       </segment>
     </unit>
+    <unit id="solr.filters">
+      <segment state="final">
+        <source>Search filters</source>
+        <target>Suchfilter</target>
+      </segment>
+    </unit>
     <unit id="solr.debug.parsedQuery">
       <segment state="final">
         <source>Parsed Query:</source>
@@ -1015,6 +1441,36 @@
         <target>Adressen</target>
       </segment>
     </unit>
+    <unit id="download_file">
+      <segment state="final">
+        <source>Download</source>
+        <target>Download</target>
+      </segment>
+    </unit>
+    <unit id="footer.nav.aria">
+      <segment state="final">
+        <source>Footer navigation</source>
+        <target>Footer navigation</target>
+      </segment>
+    </unit>
+    <unit id="footer.utility.aria">
+      <segment state="final">
+        <source>Legal and utility links</source>
+        <target>Legal and utility links</target>
+      </segment>
+    </unit>
+    <unit id="footer.links.aria">
+      <segment state="final">
+        <source>Footer links</source>
+        <target>Footer links</target>
+      </segment>
+    </unit>
+    <unit id="footer.qr.alt">
+      <segment state="final">
+        <source>Scan the QR code to download the app</source>
+        <target>Scan the QR code to download the app</target>
+      </segment>
+    </unit>
     <unit id="preview.uid">
       <segment state="final">
         <source>UID</source>
@@ -1025,6 +1481,288 @@
       <segment state="final">
         <source>Page</source>
         <target>Seite</target>
+      </segment>
+    </unit>
+    <unit id="stats">
+      <segment state="final">
+        <source>Stats</source>
+        <target>Stats</target>
+      </segment>
+    </unit>
+    <unit id="supporting_text">
+      <segment state="final">
+        <source>Supporting text</source>
+        <target>Supporting text</target>
+      </segment>
+    </unit>
+    <unit id="tabs">
+      <segment state="final">
+        <source>Tabs</source>
+        <target>Tabs</target>
+      </segment>
+    </unit>
+    <unit id="tab_label">
+      <segment state="final">
+        <source>Tab label</source>
+        <target>Tab label</target>
+      </segment>
+    </unit>
+    <unit id="content_title">
+      <segment state="final">
+        <source>Content title</source>
+        <target>Content title</target>
+      </segment>
+    </unit>
+    <unit id="content_description">
+      <segment state="final">
+        <source>Content description</source>
+        <target>Content description</target>
+      </segment>
+    </unit>
+    <unit id="tab_image">
+      <segment state="final">
+        <source>Tab image</source>
+        <target>Tab image</target>
+      </segment>
+    </unit>
+    <unit id="timeline_steps">
+      <segment state="final">
+        <source>Timeline steps</source>
+        <target>Timeline steps</target>
+      </segment>
+    </unit>
+    <unit id="step_label">
+      <segment state="final">
+        <source>Step label</source>
+        <target>Step label</target>
+      </segment>
+    </unit>
+    <unit id="feature_style">
+      <segment state="final">
+        <source>Feature style</source>
+        <target>Feature style</target>
+      </segment>
+    </unit>
+    <unit id="feature_title">
+      <segment state="final">
+        <source>Feature title</source>
+        <target>Feature title</target>
+      </segment>
+    </unit>
+    <unit id="feature_description">
+      <segment state="final">
+        <source>Feature description</source>
+        <target>Feature description</target>
+      </segment>
+    </unit>
+    <unit id="feature_link">
+      <segment state="final">
+        <source>Feature link</source>
+        <target>Feature link</target>
+      </segment>
+    </unit>
+    <unit id="icon">
+      <segment state="final">
+        <source>Icon</source>
+        <target>Icon</target>
+      </segment>
+    </unit>
+    <unit id="video_url">
+      <segment state="final">
+        <source>Video URL</source>
+        <target>Video URL</target>
+      </segment>
+    </unit>
+    <unit id="video_url.description">
+      <segment state="final">
+        <source>YouTube or Vimeo embed URL</source>
+        <target>YouTube or Vimeo embed URL</target>
+      </segment>
+    </unit>
+    <unit id="video_file">
+      <segment state="final">
+        <source>Video file</source>
+        <target>Video file</target>
+      </segment>
+    </unit>
+    <unit id="poster_image">
+      <segment state="final">
+        <source>Poster image</source>
+        <target>Poster image</target>
+      </segment>
+    </unit>
+    <unit id="video_title">
+      <segment state="final">
+        <source>Video title</source>
+        <target>Video title</target>
+      </segment>
+    </unit>
+    <unit id="testimonial_video.player_title">
+      <segment state="final">
+        <source>Video testimonial from %s</source>
+        <target>Video testimonial from %s</target>
+      </segment>
+    </unit>
+    <unit id="show_rating">
+      <segment state="final">
+        <source>Show rating field</source>
+        <target>Show rating field</target>
+      </segment>
+    </unit>
+    <unit id="page_groups">
+      <segment state="final">
+        <source>Page groups</source>
+        <target>Page groups</target>
+      </segment>
+    </unit>
+    <unit id="group_title">
+      <segment state="final">
+        <source>Group title</source>
+        <target>Group title</target>
+      </segment>
+    </unit>
+    <unit id="page_label">
+      <segment state="final">
+        <source>Page label</source>
+        <target>Page label</target>
+      </segment>
+    </unit>
+    <unit id="page_link">
+      <segment state="final">
+        <source>Page link</source>
+        <target>Page link</target>
+      </segment>
+    </unit>
+    <unit id="sitemap.aria">
+      <segment state="final">
+        <source>Sitemap</source>
+        <target>Sitemap</target>
+      </segment>
+    </unit>
+    <unit id="social_links">
+      <segment state="final">
+        <source>Social links</source>
+        <target>Social links</target>
+      </segment>
+    </unit>
+    <unit id="platform">
+      <segment state="final">
+        <source>Platform</source>
+        <target>Platform</target>
+      </segment>
+    </unit>
+    <unit id="url">
+      <segment state="final">
+        <source>URL</source>
+        <target>URL</target>
+      </segment>
+    </unit>
+    <unit id="social_links.aria">
+      <segment state="final">
+        <source>Social media</source>
+        <target>Social media</target>
+      </segment>
+    </unit>
+    <unit id="counters">
+      <segment state="final">
+        <source>Counters</source>
+        <target>Counters</target>
+      </segment>
+    </unit>
+    <unit id="counter.prefix">
+      <segment state="final">
+        <source>Prefix (optional)</source>
+        <target>Prefix (optional)</target>
+      </segment>
+    </unit>
+    <unit id="counter.suffix">
+      <segment state="final">
+        <source>Suffix (optional)</source>
+        <target>Suffix (optional)</target>
+      </segment>
+    </unit>
+    <unit id="offer_description">
+      <segment state="final">
+        <source>Offer description</source>
+        <target>Offer description</target>
+      </segment>
+    </unit>
+    <unit id="discount_text">
+      <segment state="final">
+        <source>Discount badge text</source>
+        <target>Discount badge text</target>
+      </segment>
+    </unit>
+    <unit id="original_price">
+      <segment state="final">
+        <source>Original price</source>
+        <target>Original price</target>
+      </segment>
+    </unit>
+    <unit id="sale_price">
+      <segment state="final">
+        <source>Sale price</source>
+        <target>Sale price</target>
+      </segment>
+    </unit>
+    <unit id="stat_columns">
+      <segment state="final">
+        <source>Columns</source>
+        <target>Columns</target>
+      </segment>
+    </unit>
+    <unit id="change">
+      <segment state="final">
+        <source>Change (optional)</source>
+        <target>Change (optional)</target>
+      </segment>
+    </unit>
+    <unit id="stats.aria">
+      <segment state="final">
+        <source>Key statistics</source>
+        <target>Key statistics</target>
+      </segment>
+    </unit>
+    <unit id="team.view_profile">
+      <segment state="final">
+        <source>View profile</source>
+        <target>View profile</target>
+      </segment>
+    </unit>
+    <unit id="team.email">
+      <segment state="final">
+        <source>Email</source>
+        <target>Email</target>
+      </segment>
+    </unit>
+    <unit id="team.call">
+      <segment state="final">
+        <source>Call</source>
+        <target>Call</target>
+      </segment>
+    </unit>
+    <unit id="team.members_region">
+      <segment state="final">
+        <source>Team members</source>
+        <target>Team members</target>
+      </segment>
+    </unit>
+    <unit id="team.open_positions">
+      <segment state="final">
+        <source>open positions</source>
+        <target>open positions</target>
+      </segment>
+    </unit>
+    <unit id="price.regular">
+      <segment state="final">
+        <source>Regular price:</source>
+        <target>Regular price:</target>
+      </segment>
+    </unit>
+    <unit id="price.now">
+      <segment state="final">
+        <source>Now:</source>
+        <target>Now:</target>
       </segment>
     </unit>
   </file>

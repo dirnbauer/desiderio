@@ -1,0 +1,20 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:layout name="Pages/Default"/>
+
+<f:section name="Main">
+    <section class="desiderio-system-page desiderio-portfolio-system desiderio-portfolio-system--search">
+        <d:layout.container size="xl">
+            <f:render partial="Presets/SystemHeader" arguments="{class: 'desiderio-portfolio-system__header', eyebrow: breadcrumb.0.title, title: page.pageRecord.title, summary: page.pageRecord.abstract -> f:or(alternative: '{f:translate(extensionName: \'desiderio\', key: \'page.search.intro\')}'), summaryTag: 'span'}"/>
+            <div class="desiderio-system-page__content desiderio-portfolio-system__content">
+                <f:render partial="Presets/ContentArea" arguments="{content: content.main}"/>
+            </div>
+        </d:layout.container>
+    </section>
+</f:section>
+
+</html>

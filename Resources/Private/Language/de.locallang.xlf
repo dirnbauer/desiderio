@@ -115,6 +115,18 @@
         <target>Footer-Navigation</target>
       </segment>
     </unit>
+    <unit id="a11y.nav.legal">
+      <segment>
+        <source>Legal navigation</source>
+        <target>Rechtliche Navigation</target>
+      </segment>
+    </unit>
+    <unit id="a11y.nav.home">
+      <segment>
+        <source>Home</source>
+        <target>Startseite</target>
+      </segment>
+    </unit>
     <unit id="a11y.nav.language">
       <segment>
         <source>Language</source>
@@ -133,10 +145,412 @@
         <target>Dunkelmodus umschalten</target>
       </segment>
     </unit>
+    <unit id="a11y.theme.switch">
+      <segment>
+        <source>Colour scheme</source>
+        <target>Farbschema</target>
+      </segment>
+    </unit>
+    <unit id="search.label">
+      <segment>
+        <source>Search</source>
+        <target>Suche</target>
+      </segment>
+    </unit>
+    <unit id="search.placeholder">
+      <segment>
+        <source>Search</source>
+        <target>Suche</target>
+      </segment>
+    </unit>
+    <unit id="search.submit">
+      <segment>
+        <source>Search</source>
+        <target>Suchen</target>
+      </segment>
+    </unit>
+    <unit id="theme.light">
+      <segment>
+        <source>Light</source>
+        <target>Hell</target>
+      </segment>
+    </unit>
+    <unit id="theme.dark">
+      <segment>
+        <source>Dark</source>
+        <target>Dunkel</target>
+      </segment>
+    </unit>
+    <unit id="theme.system">
+      <segment>
+        <source>System</source>
+        <target>System</target>
+      </segment>
+    </unit>
+    <unit id="footer.legal.imprint">
+      <segment>
+        <source>Imprint</source>
+        <target>Impressum</target>
+      </segment>
+    </unit>
+    <unit id="footer.legal.privacy">
+      <segment>
+        <source>Privacy</source>
+        <target>Datenschutz</target>
+      </segment>
+    </unit>
+    <unit id="footer.legal.accessibility">
+      <segment>
+        <source>Accessibility</source>
+        <target>Barrierefreiheit</target>
+      </segment>
+    </unit>
+    <unit id="consent.label">
+      <segment>
+        <source>Cookie consent</source>
+        <target>Cookie-Einwilligung</target>
+      </segment>
+    </unit>
+    <unit id="consent.message">
+      <segment>
+        <source>We use optional cookies to measure and improve this website.</source>
+        <target>Wir verwenden optionale Cookies, um diese Website zu messen und zu verbessern.</target>
+      </segment>
+    </unit>
+    <unit id="consent.privacy">
+      <segment>
+        <source>Privacy</source>
+        <target>Datenschutz</target>
+      </segment>
+    </unit>
+    <unit id="consent.accept">
+      <segment>
+        <source>Accept</source>
+        <target>Akzeptieren</target>
+      </segment>
+    </unit>
+    <unit id="consent.decline">
+      <segment>
+        <source>Decline</source>
+        <target>Ablehnen</target>
+      </segment>
+    </unit>
     <unit id="a11y.share.label">
       <segment>
         <source>Share this article</source>
         <target>Diesen Artikel teilen</target>
+      </segment>
+    </unit>
+    <unit id="dashboard.rail.label">
+      <segment>
+        <source>Workspace navigation</source>
+        <target>Arbeitsbereich-Navigation</target>
+      </segment>
+    </unit>
+    <unit id="dashboard.rail.workspace">
+      <segment>
+        <source>Workspace</source>
+        <target>Arbeitsbereich</target>
+      </segment>
+    </unit>
+    <unit id="dashboard.rail.sections">
+      <segment>
+        <source>Sections</source>
+        <target>Bereiche</target>
+      </segment>
+    </unit>
+    <unit id="dashboard.rail.account">
+      <segment>
+        <source>Account</source>
+        <target>Konto</target>
+      </segment>
+    </unit>
+    <unit id="dashboard.rail.overview">
+      <segment>
+        <source>Overview</source>
+        <target>Übersicht</target>
+      </segment>
+    </unit>
+    <unit id="dashboard.rail.home">
+      <segment>
+        <source>Dashboard home</source>
+        <target>Dashboard-Start</target>
+      </segment>
+    </unit>
+    <unit id="dashboard.breadcrumb.label">
+      <segment>
+        <source>Breadcrumb</source>
+        <target>Brotkrümelnavigation</target>
+      </segment>
+    </unit>
+    <unit id="dashboard.eyebrow.overview">
+      <segment>
+        <source>Overview</source>
+        <target>Übersicht</target>
+      </segment>
+    </unit>
+    <unit id="dashboard.eyebrow.workspace">
+      <segment>
+        <source>Workspace</source>
+        <target>Arbeitsbereich</target>
+      </segment>
+    </unit>
+    <unit id="dashboard.eyebrow.search">
+      <segment>
+        <source>Search</source>
+        <target>Suche</target>
+      </segment>
+    </unit>
+    <unit id="dashboard.eyebrow.status">
+      <segment>
+        <source>Status</source>
+        <target>Status</target>
+      </segment>
+    </unit>
+    <unit id="dashboard.status.live">
+      <segment>
+        <source>Live data</source>
+        <target>Live-Daten</target>
+      </segment>
+    </unit>
+    <unit id="dashboard.region.metrics">
+      <segment>
+        <source>Key metrics and reports</source>
+        <target>Kennzahlen und Berichte</target>
+      </segment>
+    </unit>
+    <unit id="dashboard.region.activity">
+      <segment>
+        <source>Activity and alerts</source>
+        <target>Aktivität und Hinweise</target>
+      </segment>
+    </unit>
+    <unit id="dashboard.search.hint">
+      <segment>
+        <source>Search across pages, records, and reports.</source>
+        <target>Durchsuchen Sie Seiten, Datensätze und Berichte.</target>
+      </segment>
+    </unit>
+    <unit id="dashboard.error.summary">
+      <segment>
+        <source>This view could not be loaded. Check the address or return to your overview.</source>
+        <target>Diese Ansicht konnte nicht geladen werden. Prüfen Sie die Adresse oder kehren Sie zur Übersicht zurück.</target>
+      </segment>
+    </unit>
+    <unit id="page.search.eyebrow">
+      <segment state="final">
+        <source>Search</source>
+        <target>Suche</target>
+      </segment>
+    </unit>
+    <unit id="page.search.intro">
+      <segment state="final">
+        <source>Find solutions, case studies, documentation and the right contact across our site.</source>
+        <target>Finden Sie Lösungen, Fallstudien, Dokumentation und den richtigen Ansprechpartner auf unserer Website.</target>
+      </segment>
+    </unit>
+    <unit id="page.search.results.label">
+      <segment state="final">
+        <source>Search results</source>
+        <target>Suchergebnisse</target>
+      </segment>
+    </unit>
+    <unit id="page.search.empty">
+      <segment state="final">
+        <source>Start typing to search the archive, or browse the latest stories from the homepage.</source>
+        <target>Tippen Sie los, um das Archiv zu durchsuchen, oder entdecken Sie die neuesten Beiträge auf der Startseite.</target>
+      </segment>
+    </unit>
+    <unit id="page.error.eyebrow">
+      <segment state="final">
+        <source>Page not found</source>
+        <target>Seite nicht gefunden</target>
+      </segment>
+    </unit>
+    <unit id="page.error.intro">
+      <segment state="final">
+        <source>This page has moved or no longer exists. Use the links below or head back to the homepage to find what you need.</source>
+        <target>Diese Seite wurde verschoben oder existiert nicht mehr. Nutzen Sie die Links unten oder kehren Sie zur Startseite zurück, um das Gesuchte zu finden.</target>
+      </segment>
+    </unit>
+    <unit id="page.error.empty">
+      <segment state="final">
+        <source>The page you were looking for has moved or no longer exists. Head back to the homepage to pick up the latest stories.</source>
+        <target>Die gesuchte Seite wurde verschoben oder existiert nicht mehr. Kehren Sie zur Startseite zurück, um die neuesten Beiträge zu entdecken.</target>
+      </segment>
+    </unit>
+    <unit id="page.error.home">
+      <segment state="final">
+        <source>Back to homepage</source>
+        <target>Zurück zur Startseite</target>
+      </segment>
+    </unit>
+    <unit id="corporate.start.eyebrow">
+      <segment state="final">
+        <source>Trusted by teams worldwide</source>
+        <target>Weltweit von Teams geschätzt</target>
+      </segment>
+    </unit>
+    <unit id="corporate.start.headline">
+      <segment state="final">
+        <source>Build with a partner the whole organisation can rely on</source>
+        <target>Bauen Sie mit einem Partner, auf den sich Ihre gesamte Organisation verlassen kann</target>
+      </segment>
+    </unit>
+    <unit id="corporate.start.lede">
+      <segment state="final">
+        <source>From strategy to delivery, we help established teams ship dependable products, modernise their platforms and serve their customers with confidence.</source>
+        <target>Von der Strategie bis zur Umsetzung helfen wir etablierten Teams, verlässliche Produkte zu liefern, ihre Plattformen zu modernisieren und ihre Kunden souverän zu betreuen.</target>
+      </segment>
+    </unit>
+    <unit id="corporate.start.actions.label">
+      <segment state="final">
+        <source>Primary actions</source>
+        <target>Primäre Aktionen</target>
+      </segment>
+    </unit>
+    <unit id="corporate.start.cta.primary">
+      <segment state="final">
+        <source>Talk to our team</source>
+        <target>Sprechen Sie mit unserem Team</target>
+      </segment>
+    </unit>
+    <unit id="corporate.start.cta.secondary">
+      <segment state="final">
+        <source>Explore our solutions</source>
+        <target>Lösungen entdecken</target>
+      </segment>
+    </unit>
+    <unit id="corporate.start.trust">
+      <segment state="final">
+        <source>ISO-aligned delivery. Dedicated account team. Response within one business day.</source>
+        <target>ISO-konforme Umsetzung. Festes Ansprechteam. Antwort innerhalb eines Werktags.</target>
+      </segment>
+    </unit>
+    <unit id="corporate.start.region">
+      <segment state="final">
+        <source>Solutions, proof and contact</source>
+        <target>Lösungen, Nachweise und Kontakt</target>
+      </segment>
+    </unit>
+    <unit id="corporate.page.eyebrow">
+      <segment state="final">
+        <source>Overview</source>
+        <target>Überblick</target>
+      </segment>
+    </unit>
+    <unit id="corporate.page.lede">
+      <segment state="final">
+        <source>A clear, structured look at what we do here and how it helps your organisation move forward.</source>
+        <target>Ein klarer, strukturierter Blick darauf, was wir hier tun und wie es Ihre Organisation voranbringt.</target>
+      </segment>
+    </unit>
+    <unit id="corporate.sidebar.aria">
+      <segment state="final">
+        <source>Related contacts and downloads</source>
+        <target>Zugehörige Kontakte und Downloads</target>
+      </segment>
+    </unit>
+    <unit id="corporate.search.empty">
+      <segment state="final">
+        <source>Enter a term above to search across our solutions, case studies, documentation and contacts.</source>
+        <target>Geben Sie oben einen Begriff ein, um unsere Lösungen, Fallstudien, Dokumentation und Kontakte zu durchsuchen.</target>
+      </segment>
+    </unit>
+    <unit id="editorial.breadcrumb.label">
+      <segment state="final">
+        <source>Breadcrumb</source>
+        <target>Brotkrümelnavigation</target>
+      </segment>
+    </unit>
+    <unit id="editorial.kicker.default">
+      <segment state="final">
+        <source>Feature</source>
+        <target>Feature</target>
+      </segment>
+    </unit>
+    <unit id="editorial.byline.prefix">
+      <segment state="final">
+        <source>By</source>
+        <target>Von</target>
+      </segment>
+    </unit>
+    <unit id="editorial.meta.published">
+      <segment state="final">
+        <source>Published on %s</source>
+        <target>Veröffentlicht am %s</target>
+      </segment>
+    </unit>
+    <unit id="editorial.aside.label">
+      <segment state="final">
+        <source>Article tools and related reading</source>
+        <target>Artikel-Werkzeuge und weiterführende Lektüre</target>
+      </segment>
+    </unit>
+    <unit id="editorial.readingProgress.label">
+      <segment state="final">
+        <source>Reading progress</source>
+        <target>Lesefortschritt</target>
+      </segment>
+    </unit>
+    <unit id="portfolio.aside.label">
+      <segment state="final">
+        <source>Project details and related work</source>
+        <target>Projektdetails und verwandte Arbeiten</target>
+      </segment>
+    </unit>
+    <unit id="saas.hero.eyebrow">
+      <segment state="final">
+        <source>Now in public beta</source>
+        <target>Jetzt in der öffentlichen Beta</target>
+      </segment>
+    </unit>
+    <unit id="saas.hero.cta.primary">
+      <segment state="final">
+        <source>Start free</source>
+        <target>Kostenlos starten</target>
+      </segment>
+    </unit>
+    <unit id="saas.hero.cta.secondary">
+      <segment state="final">
+        <source>Book a demo</source>
+        <target>Demo buchen</target>
+      </segment>
+    </unit>
+    <unit id="saas.hero.trust">
+      <segment state="final">
+        <source>No credit card. 14-day Pro trial. Cancel anytime.</source>
+        <target>Keine Kreditkarte. 14 Tage Pro testen. Jederzeit kündbar.</target>
+      </segment>
+    </unit>
+    <unit id="saas.hero.actions.label">
+      <segment state="final">
+        <source>Primary actions</source>
+        <target>Primäre Aktionen</target>
+      </segment>
+    </unit>
+    <unit id="saas.region.offer">
+      <segment state="final">
+        <source>Product, pricing and sign-up</source>
+        <target>Produkt, Preise und Registrierung</target>
+      </segment>
+    </unit>
+    <unit id="saas.page.eyebrow">
+      <segment state="final">
+        <source>Product</source>
+        <target>Produkt</target>
+      </segment>
+    </unit>
+    <unit id="saas.page.lede">
+      <segment state="final">
+        <source>Everything your team needs to evaluate, roll out and scale — laid out below.</source>
+        <target>Alles, was Ihr Team zum Testen, Ausrollen und Skalieren braucht — direkt darunter.</target>
+      </segment>
+    </unit>
+    <unit id="saas.sidebar.label">
+      <segment state="final">
+        <source>Get started</source>
+        <target>Erste Schritte</target>
       </segment>
     </unit>
   </file>

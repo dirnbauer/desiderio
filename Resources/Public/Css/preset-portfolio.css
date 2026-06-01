@@ -7,6 +7,10 @@
 /* ---- Force dark feel even in light mode ---- */
 :root {
     --portfolio-accent: var(--primary);
+    /* Vertical room reserved for the transparent overlay header. Single source
+       of truth for both the first-content-element offset and the sticky aside,
+       so a taller header (wrapped nav, larger logo) is adjusted in one place. */
+    --portfolio-header-offset: 6rem;
 }
 
 /* ---- Header — transparent, overlaying hero ---- */
@@ -45,52 +49,177 @@
     padding-top: 0;
 }
 
-/* First content element needs room for transparent header overlay */
+.desiderio-portfolio-template {
+    background:
+        linear-gradient(135deg, color-mix(in oklch, var(--portfolio-accent) 12%, var(--background)), var(--background) 42%),
+        var(--background);
+}
+
+.desiderio-portfolio-template__container {
+    display: grid;
+    gap: 2.5rem;
+    /* Mobile keeps the top inset tight so content is not pushed below the fold
+       on short viewports; the masthead still clears the overlay header. */
+    padding-block: calc(var(--portfolio-header-offset) + 0.5rem) 3rem;
+}
+
+.desiderio-portfolio-template__masthead {
+    display: grid;
+    gap: 0.75rem;
+    max-width: 52rem;
+}
+
+/* Kicker is the d:atom.badge wrapper — the badge carries its own styling, the
+   wrapper only resets flow spacing so it sits flush above the headline. */
+.desiderio-portfolio-template__kicker {
+    margin: 0;
+}
+
+.desiderio-portfolio-template__masthead h1 {
+    margin: 0;
+    font-size: clamp(3rem, 1.5rem + 7.5vw, 7rem);
+    line-height: 0.92;
+    font-weight: 900;
+    letter-spacing: 0;
+    /* Long single-word project titles must never push horizontal scroll at the
+       awkward ~1024px breakpoint where the headline is largest. */
+    overflow-wrap: break-word;
+    hyphens: auto;
+}
+
+.desiderio-portfolio-template__content {
+    min-width: 0;
+}
+
+.desiderio-portfolio-template__masthead span,
+.desiderio-portfolio-system__header span {
+    display: block;
+    max-width: 44rem;
+    color: var(--muted-foreground);
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.desiderio-portfolio-start__content,
+.desiderio-portfolio-system__content {
+    min-width: 0;
+}
+
+.desiderio-portfolio-system {
+    min-height: 72vh;
+    padding-block: calc(var(--portfolio-header-offset) + 0.5rem) 4rem;
+    background:
+        linear-gradient(135deg, color-mix(in oklch, var(--portfolio-accent) 14%, var(--background)), var(--background) 46%),
+        var(--background);
+}
+
+.desiderio-portfolio-system__header {
+    display: grid;
+    gap: 0.75rem;
+    max-width: 56rem;
+}
+
+.desiderio-portfolio-system__header p,
+.desiderio-portfolio-system__header h1 {
+    margin: 0;
+}
+
+.desiderio-portfolio-system__header p {
+    color: var(--muted-foreground);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+}
+
+.desiderio-portfolio-system__header h1 {
+    color: var(--foreground);
+    font-size: clamp(3rem, 1.7rem + 6.5vw, 6rem);
+    font-weight: 900;
+    line-height: 0.92;
+    letter-spacing: 0;
+    overflow-wrap: break-word;
+    hyphens: auto;
+}
+
+.desiderio-portfolio-sidebar__layout {
+    display: grid;
+    gap: 2rem;
+    min-width: 0;
+}
+
+.desiderio-portfolio-sidebar__aside {
+    min-width: 0;
+    border-top: 1px solid color-mix(in oklch, var(--portfolio-accent) 35%, var(--border));
+    padding-top: 1rem;
+}
+
+/* First content element needs room for the transparent header overlay.
+   Offset is driven by --portfolio-header-offset so it stays in sync with the
+   sticky aside and survives a taller header. */
 .desiderio-main > .ce-frame:first-child,
 .desiderio-main > [class]:first-child {
-    padding-top: 6rem;
+    padding-top: var(--portfolio-header-offset);
 }
 
 .ce-frame {
     padding: 2.5rem 0;
 }
 
+/* From tablet up there is room for a more generous top inset above the masthead.
+   (The display headline itself scales fluidly via clamp(), no step overrides.) */
+@media (min-width: 768px) {
+    .desiderio-portfolio-template__container {
+        padding-block: calc(var(--portfolio-header-offset) + 1.5rem) 4rem;
+    }
+
+    .desiderio-portfolio-system {
+        padding-block: calc(var(--portfolio-header-offset) + 1.5rem) 5rem;
+    }
+}
+
 @media (min-width: 1024px) {
+    .desiderio-portfolio-sidebar__layout {
+        grid-template-columns: minmax(0, 1fr) 18rem;
+        align-items: start;
+        gap: 3rem;
+    }
+
+    .desiderio-portfolio-sidebar__aside {
+        position: sticky;
+        top: var(--portfolio-header-offset);
+        border-top: 0;
+        border-left: 1px solid color-mix(in oklch, var(--portfolio-accent) 35%, var(--border));
+        padding-top: 0;
+        padding-left: 1.5rem;
+    }
+
     .ce-frame {
         padding: 4rem 0;
     }
 }
 
-/* ---- Content Frames — accent-tinted backgrounds ---- */
+/* ---- Content Frames — accent-tinted backgrounds ----
+   Corner radius is driven by the preset's declared radius token (settings.yaml
+   radius: full -> --radius), not hard-coded, so switching the radius setting
+   re-skins the frames instead of being silently overridden. */
 .ce-frame--bg-10 {
     background-color: color-mix(in oklch, var(--portfolio-accent) 5%, var(--background));
-    border-radius: 0;
+    border-radius: var(--radius);
     padding: 3rem 2rem;
 }
 
 .ce-frame--bg-80 {
     background-color: color-mix(in oklch, var(--portfolio-accent) 15%, var(--background));
-    border-radius: 0;
+    border-radius: var(--radius);
     padding: 3rem 2rem;
 }
 
 .ce-frame--bg-100 {
     background-color: var(--portfolio-accent);
     color: var(--primary-foreground);
-    border-radius: 0;
+    border-radius: var(--radius);
     padding: 3rem 2rem;
-}
-
-/* ---- Sidebar — stacked on portfolio, no sidebar border ---- */
-.desiderio-article {
-    padding: 2rem 0;
-}
-
-@media (min-width: 1024px) {
-    .desiderio-article {
-        grid-template-columns: 1fr 280px;
-        gap: 3rem;
-    }
 }
 
 /* ---- Footer — bold, full-width accent band ---- */
@@ -116,16 +245,4 @@
 .desiderio-theme-toggle:hover {
     border-color: var(--portfolio-accent);
     background-color: color-mix(in oklch, var(--portfolio-accent) 10%, transparent);
-}
-
-/* ---- Styleguide — masonry-style cards ---- */
-.desiderio-styleguide__element-card {
-    border: none;
-    background-color: var(--muted);
-    transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.desiderio-styleguide__element-card:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-lg);
 }

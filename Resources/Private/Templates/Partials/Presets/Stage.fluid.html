@@ -1,0 +1,31 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:argument name="content" type="mixed" optional="{true}"/>
+<f:argument name="class" type="string" optional="{true}" default=""/>
+<f:argument name="containerSize" type="string" optional="{true}" default="xl"/>
+<f:argument name="innerClass" type="string" optional="{true}" default=""/>
+
+<!--TYPO3SEARCH_begin-->
+<f:if condition="{content}">
+    <section class="{class}">
+        <d:layout.container size="{containerSize}">
+            <f:if condition="{innerClass}">
+                <f:then>
+                    <div class="{innerClass}">
+                        <f:render.contentArea contentArea="{content}"/>
+                    </div>
+                </f:then>
+                <f:else>
+                    <f:render.contentArea contentArea="{content}"/>
+                </f:else>
+            </f:if>
+        </d:layout.container>
+    </section>
+</f:if>
+<!--TYPO3SEARCH_end-->
+
+</html>

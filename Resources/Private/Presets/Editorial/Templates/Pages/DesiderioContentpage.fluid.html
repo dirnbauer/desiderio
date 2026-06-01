@@ -1,0 +1,36 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:layout name="Pages/Default"/>
+
+<f:section name="Stage">
+    <f:render partial="Presets/Stage" arguments="{content: content.stage, class: 'desiderio-editorial-template__stage', containerSize: 'md'}"/>
+</f:section>
+
+<f:section name="Main">
+    <article class="desiderio-editorial-template" itemscope="itemscope" itemtype="https://schema.org/Article">
+        <d:layout.container size="md">
+            <f:render partial="Presets/EditorialReadingProgress" arguments="{site: site}"/>
+
+            <f:render
+                partial="Presets/EditorialArticleHeader"
+                arguments="{
+                    breadcrumb: breadcrumb,
+                    title: page.pageRecord.title,
+                    deck: page.pageRecord.abstract,
+                    author: page.pageRecord.author,
+                    date: page.pageRecord.lastUpdated -> f:or(alternative: page.pageRecord.crdate)
+                }"
+            />
+
+            <div class="desiderio-editorial-template__content" itemprop="articleBody">
+                <f:render partial="Presets/ContentArea" arguments="{content: content.main}"/>
+            </div>
+        </d:layout.container>
+    </article>
+</f:section>
+
+</html>

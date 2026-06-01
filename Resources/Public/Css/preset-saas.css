@@ -14,6 +14,164 @@
     padding-top: 1rem;
 }
 
+.desiderio-saas-template {
+    position: relative;
+    isolation: isolate;
+    background:
+        linear-gradient(180deg, color-mix(in oklch, var(--primary) 7%, transparent), transparent 20rem),
+        var(--background);
+}
+
+.desiderio-saas-template::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto;
+    height: 22rem;
+    pointer-events: none;
+    background:
+        linear-gradient(90deg, transparent, color-mix(in oklch, var(--primary) 12%, transparent), transparent);
+    opacity: 0.8;
+    z-index: -1;
+}
+
+.desiderio-saas-template__stage-inner {
+    border-bottom: 1px solid var(--border);
+    padding-block: 2rem;
+}
+
+.desiderio-saas-template__content {
+    display: grid;
+    gap: 0;
+    min-width: 0;
+    padding-block: 2rem 4rem;
+}
+
+.desiderio-saas-start__hero,
+.desiderio-saas-template__masthead,
+.desiderio-saas-system__header {
+    display: grid;
+    gap: 0.875rem;
+    max-width: 54rem;
+    padding-block: 4rem 2rem;
+}
+
+.desiderio-saas-template__masthead {
+    padding-block: 3rem 1.5rem;
+}
+
+.desiderio-saas-start__hero > *,
+.desiderio-saas-template__masthead > *,
+.desiderio-saas-system__header > * {
+    margin: 0;
+}
+
+/* Eyebrow as plain kicker text (content masthead + system pages) */
+.desiderio-saas-template__eyebrow {
+    color: var(--primary);
+    font-size: 0.75rem;
+    font-weight: 750;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+/* Hero eyebrow is a dedicated badge wrapper (not the kicker class): it only
+   lays out the badge, which carries its own styling. Kept separate from
+   .desiderio-saas-template__eyebrow so restyling the kicker can never surprise
+   the hero badge and vice versa. */
+.desiderio-saas-start__eyebrow {
+    display: flex;
+}
+
+.desiderio-saas-start__badge {
+    letter-spacing: 0.04em;
+}
+
+.desiderio-saas-start__hero h1,
+.desiderio-saas-template__masthead h1,
+.desiderio-saas-system__header h1 {
+    color: var(--foreground);
+    /* Fluid scale: smoothly 3rem -> 5.5rem instead of stepping at 768/1024,
+       so the ~1023->1024px transition is no longer abrupt. */
+    font-size: clamp(3rem, 1.55rem + 4.6vw, 5.5rem);
+    font-weight: 780;
+    line-height: 1.04;
+    letter-spacing: 0;
+    /* A long single-word website/page title (h1 = site title on the Startpage)
+       must never push horizontal scroll at the awkward ~1024px width where the
+       headline is largest. */
+    overflow-wrap: break-word;
+    hyphens: auto;
+}
+
+.desiderio-saas-template__masthead h1 {
+    /* Content-page masthead sits a notch below the hero/system display size,
+       still fluid so it never steps at a breakpoint. */
+    font-size: clamp(2.25rem, 1.6rem + 2.05vw, 3.25rem);
+}
+
+.desiderio-saas-start__lede,
+.desiderio-saas-template__lede,
+.desiderio-saas-system__header span {
+    max-width: 42rem;
+    color: var(--muted-foreground);
+    font-size: 1rem;
+    line-height: 1.65;
+}
+
+.desiderio-saas-start__lede {
+    font-size: 1.125rem;
+}
+
+/* Above-the-fold conversion actions */
+.desiderio-saas-start__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: 0.5rem;
+}
+
+.desiderio-saas-start__trust {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--muted-foreground);
+    font-size: 0.8125rem;
+    line-height: 1.4;
+}
+
+.desiderio-saas-start__trust-icon {
+    color: var(--primary);
+}
+
+.desiderio-saas-system {
+    position: relative;
+    isolation: isolate;
+    padding-block: 2rem 5rem;
+    background:
+        radial-gradient(circle at 18% 0%, color-mix(in oklch, var(--primary) 13%, transparent), transparent 20rem),
+        var(--background);
+}
+
+.desiderio-saas-system__content {
+    min-width: 0;
+}
+
+.desiderio-saas-sidebar__layout {
+    display: grid;
+    gap: 2rem;
+    min-width: 0;
+    padding-block: 2rem 4rem;
+}
+
+.desiderio-saas-sidebar__aside {
+    min-width: 0;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background-color: color-mix(in oklch, var(--card) 92%, var(--background));
+    padding: 1rem;
+}
+
 /* Hero-area enhancements for landing pages */
 .ce-frame:first-child {
     padding-top: 3rem;
@@ -25,8 +183,58 @@
     padding: 2rem 0;
 }
 
+/* Promote the conversion aside as soon as there is room for a second column.
+   At tablet widths it would otherwise stack far below a tall main column and
+   fall below the fold, weakening the "Get started" conversion intent. */
+@media (min-width: 768px) {
+    .desiderio-saas-sidebar__layout {
+        grid-template-columns: minmax(0, 1fr) 18rem;
+        align-items: start;
+    }
+
+    /* No populated sidebar: collapse to a single column rather than reserving
+       an empty aside track. */
+    .desiderio-saas-sidebar__layout--solo {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .desiderio-saas-sidebar__aside {
+        position: sticky;
+        top: 6rem;
+    }
+}
+
 @media (min-width: 1024px) {
+    .desiderio-saas-sidebar__layout {
+        grid-template-columns: minmax(0, 1fr) 20rem;
+    }
+
+    .desiderio-saas-sidebar__layout--solo {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
     .ce-frame {
         padding: 3rem 0;
+    }
+}
+
+/* Respect reduced-motion: the only motion/effects this preset introduces are
+   the shared button's transition-all (+ active nudge) and the sticky header's
+   backdrop blur. Scope the reset to the preset so generated atoms and the
+   global theme stay untouched. */
+@media (prefers-reduced-motion: reduce) {
+    .desiderio-saas-template :where(a, button, [class*="desiderio-saas-start__cta"]),
+    .desiderio-saas-system :where(a, button) {
+        transition: none;
+    }
+
+    .desiderio-saas-template :where(a, button):active,
+    .desiderio-saas-system :where(a, button):active {
+        transform: none;
+    }
+
+    .desiderio-header {
+        backdrop-filter: none;
+        background-color: var(--background);
     }
 }

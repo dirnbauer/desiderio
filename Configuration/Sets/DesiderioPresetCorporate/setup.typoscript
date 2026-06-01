@@ -1,5 +1,8 @@
-# Preset — Mainline Corporate
-# One extra stylesheet on top of the Desiderio base.
+# Preset — Mainline Corporate.
+# PAGEVIEW still resolves templates by backend layout. The preset path provides
+# replacement templates with the same names so changing the Site Set visibly
+# changes the page shell without rewriting page records.
+lib.fluidPage.paths.30 = EXT:desiderio/Resources/Private/Presets/Corporate/Templates/
 
 page.includeCSS {
     desiderioPresetCorporate = EXT:desiderio/Resources/Public/Css/preset-corporate.css

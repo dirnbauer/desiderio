@@ -1,4 +1,6 @@
 # Preset — Dashboard App
+lib.fluidPage.paths.30 = EXT:desiderio/Resources/Private/Presets/Dashboard/Templates/
+
 page.includeCSS {
     desiderioPresetDashboard = EXT:desiderio/Resources/Public/Css/preset-dashboard.css
     desiderioPresetDashboard.media = all

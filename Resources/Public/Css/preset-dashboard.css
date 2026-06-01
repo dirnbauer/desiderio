@@ -34,8 +34,491 @@
 
 /* ---- Main Content — compact spacing ---- */
 .desiderio-main {
-    padding: 1rem 0;
+    padding: 0;
+    background-color: var(--muted);
+}
+
+.desiderio-main--fixed {
+    /* Single source of truth for the fixed-header height. The sticky rail/aside
+       offsets and the template min-height all derive from this (it inherits down
+       to .desiderio-dashboard-template), so a header that wraps to a taller bar
+       (see the <640px override) shifts everything together instead of leaving
+       three independent magic numbers to drift apart. */
+    --d-dashboard-header-h: 6.5rem;
+    padding-top: var(--d-dashboard-header-h);
+}
+
+.desiderio-dashboard-template {
+    --d-dashboard-sticky-top: calc(var(--d-dashboard-header-h, 6.5rem) + 0.75rem);
+    min-height: calc(100vh - var(--d-dashboard-header-h, 6.5rem));
+    border-top: 1px solid var(--border);
+    background:
+        linear-gradient(180deg, color-mix(in oklch, var(--sidebar) 92%, var(--background)), var(--muted));
+}
+
+.desiderio-dashboard-template__container {
+    display: grid;
+    gap: 1rem;
+    padding-block: 1rem 2rem;
+}
+
+.desiderio-dashboard-template__rail {
+    display: grid;
+    gap: 1rem;
+    align-content: start;
+    min-width: 0;
+    border: 1px solid var(--sidebar-border, var(--border));
+    border-radius: var(--radius);
+    background-color: var(--sidebar, var(--card));
+    padding: 1rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.desiderio-dashboard-template__rail-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 0;
+    font-family: var(--font-mono, monospace);
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--sidebar-foreground, var(--foreground));
+}
+
+.desiderio-dashboard-template__status {
+    width: 0.625rem;
+    height: 0.625rem;
+    border-radius: 999px;
+    background-color: var(--primary);
+    box-shadow: 0 0 0 4px color-mix(in oklch, var(--primary) 18%, transparent);
+    flex: 0 0 auto;
+}
+
+.desiderio-dashboard-template__rail-title {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.desiderio-dashboard-template__rail-meta {
+    margin-inline-start: auto;
+    flex: 0 0 auto;
+    font-size: 0.625rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted-foreground);
+    opacity: 0.85;
+}
+
+.desiderio-dashboard-template__nav-group {
+    display: grid;
+    gap: 0.375rem;
+    min-width: 0;
+}
+
+.desiderio-dashboard-template__nav-label {
+    margin: 0;
+    padding-inline: 0.625rem;
+    font-family: var(--font-mono, monospace);
+    font-size: 0.625rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted-foreground);
+}
+
+.desiderio-dashboard-template__nav {
+    display: grid;
+    gap: 0.125rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.desiderio-dashboard-template__nav-item {
+    min-width: 0;
+}
+
+.desiderio-dashboard-template__nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 0;
+    border-radius: calc(var(--radius) - 2px);
+    padding: 0.5rem 0.625rem;
+    color: var(--sidebar-foreground, var(--foreground));
+    font-size: 0.8125rem;
+    line-height: 1.25;
+    text-decoration: none;
+    opacity: 0.72;
+    cursor: pointer;
+}
+
+/*
+ * Leading marker dot on every top-level section link. Gives the rail a
+ * consistent visual gutter so items align and scan as a list, and turns solid
+ * primary on the active section for at-a-glance orientation on a data-dense
+ * surface. Token-only; no per-item icon data required from the menu. The
+ * footer's Overview link opts out (it already carries a real d:atom.icon).
+ */
+.desiderio-dashboard-template__nav-link:not(.desiderio-dashboard-template__rail-footer-link)::before {
+    content: "";
+    flex: 0 0 auto;
+    width: 0.375rem;
+    height: 0.375rem;
+    border-radius: 999px;
+    border: 1.5px solid currentColor;
+    opacity: 0.55;
+}
+
+.desiderio-dashboard-template__nav-text {
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.desiderio-dashboard-template__nav-link:hover,
+.desiderio-dashboard-template__nav-link--active {
+    background-color: var(--sidebar-accent, var(--accent));
+    color: var(--sidebar-accent-foreground, var(--accent-foreground));
+    opacity: 1;
+}
+
+.desiderio-dashboard-template__nav-link--active::before {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    opacity: 1;
+}
+
+/*
+ * Themed focus ring for the rail/breadcrumb chrome. These links and
+ * <summary> toggles render OUTSIDE the .frame/.ce-frame/.desiderio-content-element
+ * wrappers, so the global :focus-visible rule in desiderio.css never reaches them.
+ * Mirror that ring here (3px var(--ring), using the sidebar ring token on the rail)
+ * so keyboard focus on the densest surface uses the theme instead of the UA outline.
+ */
+.desiderio-dashboard-template__rail :where(a, summary):focus-visible,
+.desiderio-dashboard-template__breadcrumb a:focus-visible {
+    outline: 2px solid transparent;
+    outline-offset: 2px;
+    border-radius: calc(var(--radius) - 2px);
+    box-shadow: 0 0 0 3px color-mix(in oklch, var(--sidebar-ring, var(--ring)) 50%, transparent);
+    opacity: 1;
+}
+
+.desiderio-dashboard-template__nav-disclosure > summary {
+    list-style: none;
+}
+
+.desiderio-dashboard-template__nav-disclosure > summary::-webkit-details-marker {
+    display: none;
+}
+
+.desiderio-dashboard-template__nav-icon {
+    flex: 0 0 auto;
+    opacity: 0.85;
+}
+
+.desiderio-dashboard-template__nav-chevron {
+    margin-inline-start: auto;
+    flex: 0 0 auto;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-right: 1.5px solid currentColor;
+    border-bottom: 1.5px solid currentColor;
+    transform: rotate(45deg);
+    transition: transform 0.2s ease;
+    opacity: 0.7;
+}
+
+.desiderio-dashboard-template__nav-disclosure[open] > summary .desiderio-dashboard-template__nav-chevron {
+    transform: rotate(225deg);
+}
+
+.desiderio-dashboard-template__subnav {
+    display: grid;
+    gap: 0.125rem;
+    margin: 0.125rem 0 0.25rem;
+    padding: 0;
+    list-style: none;
+    border-inline-start: 1px solid var(--sidebar-border, var(--border));
+    margin-inline-start: 0.875rem;
+    padding-inline-start: 0.375rem;
+}
+
+.desiderio-dashboard-template__subnav-link {
+    display: block;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    border-radius: calc(var(--radius) - 2px);
+    padding: 0.375rem 0.625rem;
+    color: var(--sidebar-foreground, var(--foreground));
+    font-size: 0.78125rem;
+    line-height: 1.25;
+    text-decoration: none;
+    opacity: 0.62;
+}
+
+.desiderio-dashboard-template__subnav-link:hover,
+.desiderio-dashboard-template__subnav-link--active {
+    background-color: var(--sidebar-accent, var(--accent));
+    color: var(--sidebar-accent-foreground, var(--accent-foreground));
+    opacity: 1;
+}
+
+.desiderio-dashboard-template__rail-footer {
+    display: grid;
+    gap: 0.375rem;
+    margin-block-start: auto;
+    padding-block-start: 0.75rem;
+    border-block-start: 1px solid var(--sidebar-border, var(--border));
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .desiderio-dashboard-template__nav-chevron,
+    .desiderio-dashboard-template__nav-link,
+    .desiderio-dashboard-template__subnav-link {
+        transition: none;
+    }
+
+    /* Keep the internal nav scroll region instant, even if a smooth
+       scroll-behavior is set higher up the document. */
+    .desiderio-dashboard-template__nav {
+        scroll-behavior: auto;
+    }
+}
+
+.desiderio-dashboard-template__content {
+    min-width: 0;
+    overflow: clip;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
     background-color: var(--background);
+    box-shadow: var(--shadow-sm);
+}
+
+.desiderio-dashboard-template__toolbar {
+    display: grid;
+    gap: 0.25rem;
+    border-bottom: 1px solid var(--border);
+    background-color: color-mix(in oklch, var(--card) 96%, var(--background));
+    padding: 1rem 1.25rem;
+}
+
+.desiderio-dashboard-template__toolbar h1,
+.desiderio-dashboard-template__eyebrow {
+    margin: 0;
+}
+
+.desiderio-dashboard-template__toolbar h1 {
+    font-size: 1.125rem;
+    line-height: 1.3;
+    font-weight: 700;
+}
+
+.desiderio-dashboard-template__eyebrow {
+    font-family: var(--font-mono, monospace);
+    font-size: 0.6875rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted-foreground);
+}
+
+.desiderio-dashboard-template__eyebrow--error {
+    color: var(--destructive);
+}
+
+.desiderio-dashboard-template__toolbar-head {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.desiderio-dashboard-template__status-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    min-width: 0;
+}
+
+.desiderio-dashboard-template__pulse {
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: 999px;
+    background-color: var(--primary);
+    box-shadow: 0 0 0 3px color-mix(in oklch, var(--primary) 20%, transparent);
+    flex: 0 0 auto;
+}
+
+.desiderio-dashboard-template__pulse-label {
+    font-family: var(--font-mono, monospace);
+    font-size: 0.625rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--muted-foreground);
+}
+
+.desiderio-dashboard-template__lede {
+    margin: 0.25rem 0 0;
+    max-width: 60ch;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: var(--muted-foreground);
+}
+
+.desiderio-dashboard-template__breadcrumb {
+    min-width: 0;
+    margin-block-end: 0.125rem;
+}
+
+.desiderio-dashboard-template__breadcrumb-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.25rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: 0.75rem;
+}
+
+.desiderio-dashboard-template__breadcrumb-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+    min-width: 0;
+}
+
+.desiderio-dashboard-template__breadcrumb-link {
+    color: var(--muted-foreground);
+    text-decoration: none;
+}
+
+.desiderio-dashboard-template__breadcrumb-link:hover {
+    color: var(--foreground);
+    text-decoration: underline;
+}
+
+.desiderio-dashboard-template__breadcrumb-sep {
+    color: var(--muted-foreground);
+    opacity: 0.6;
+}
+
+.desiderio-dashboard-template__breadcrumb-current {
+    color: var(--foreground);
+    font-weight: 600;
+}
+
+.desiderio-dashboard-system__alert {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    border: 1px solid color-mix(in oklch, var(--destructive) 35%, var(--border));
+    border-radius: var(--radius);
+    background-color: color-mix(in oklch, var(--destructive) 8%, var(--card));
+    padding: 1rem 1.25rem;
+}
+
+.desiderio-dashboard-system__alert-icon {
+    color: var(--destructive);
+    margin-block-start: 0.125rem;
+    flex: 0 0 auto;
+}
+
+.desiderio-dashboard-system__alert-body {
+    min-width: 0;
+    display: grid;
+    gap: 0.5rem;
+}
+
+.desiderio-dashboard-template__canvas {
+    min-width: 0;
+}
+
+.desiderio-dashboard-template__canvas :where(h1, h2, h3, p, li, a) {
+    overflow-wrap: anywhere;
+}
+
+.desiderio-dashboard-template__canvas > .desiderio-section:first-child {
+    border-block-start: 0;
+}
+
+.desiderio-dashboard-start__canvas,
+.desiderio-dashboard-system__canvas {
+    min-width: 0;
+}
+
+.desiderio-dashboard-sidebar__layout {
+    display: grid;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.desiderio-dashboard-sidebar__main,
+.desiderio-dashboard-sidebar__aside {
+    min-width: 0;
+}
+
+.desiderio-dashboard-sidebar__aside {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background-color: color-mix(in oklch, var(--card) 94%, var(--background));
+    padding: 0.75rem;
+}
+
+.desiderio-dashboard-system__canvas {
+    padding: 1rem;
+}
+
+@media (min-width: 1024px) {
+    .desiderio-dashboard-template__container {
+        grid-template-columns: 17rem minmax(0, 1fr);
+        align-items: start;
+    }
+
+    .desiderio-dashboard-template__rail {
+        position: sticky;
+        top: var(--d-dashboard-sticky-top);
+        /* Cap to the viewport below the fixed header so the rail itself, not just
+           its nav list, scrolls when content is taller than the screen. */
+        max-height: calc(100vh - var(--d-dashboard-sticky-top) - 1rem);
+        overflow: auto;
+    }
+
+    .desiderio-dashboard-sidebar__layout {
+        grid-template-columns: minmax(0, 1fr) 18rem;
+        align-items: start;
+    }
+
+    .desiderio-dashboard-sidebar__aside {
+        position: sticky;
+        top: var(--d-dashboard-sticky-top);
+    }
+}
+
+@media (max-width: 640px) {
+    .desiderio-main--fixed {
+        /* Taller header at this width (logo + nav wrap); bump the one variable so
+           padding, min-height and the sticky offsets all follow. */
+        --d-dashboard-header-h: 7rem;
+    }
+
+    .desiderio-dashboard-template__container {
+        padding-inline: 0;
+    }
+
+    .desiderio-dashboard-template__canvas :where(h1, h2) {
+        font-size: 1.75rem;
+        line-height: 1.15;
+    }
 }
 
 .ce-frame {
@@ -66,26 +549,6 @@
     box-shadow: var(--shadow-sm);
 }
 
-/* ---- Sidebar — dashboard sidebar style ---- */
-.desiderio-article {
-    padding: 1rem 0;
-    gap: 1.5rem;
-}
-
-@media (min-width: 1024px) {
-    .desiderio-article {
-        grid-template-columns: 1fr 260px;
-        gap: 1.5rem;
-    }
-}
-
-.desiderio-article__sidebar {
-    background-color: var(--sidebar, var(--muted));
-    border: 1px solid var(--sidebar-border, var(--border));
-    border-radius: var(--radius);
-    padding: 1rem;
-}
-
 /* ---- Footer — minimal admin bar ---- */
 .desiderio-footer {
     border-top: 1px solid var(--border);
@@ -109,51 +572,4 @@
     width: 2rem;
     height: 2rem;
     border-radius: calc(var(--radius) - 2px);
-}
-
-/* ---- Styleguide — compact data grid ---- */
-.desiderio-styleguide {
-    gap: 1rem;
-}
-
-.desiderio-styleguide__header {
-    padding: 1rem 0;
-}
-
-.desiderio-styleguide__title {
-    font-size: 1.125rem;
-    font-family: var(--font-mono, monospace);
-}
-
-.desiderio-styleguide__element-list {
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 0.5rem;
-}
-
-.desiderio-styleguide__element-card {
-    padding: 0.75rem;
-    border-radius: calc(var(--radius) - 2px);
-    font-size: 0.8125rem;
-}
-
-.desiderio-styleguide__element-name {
-    font-size: 0.8125rem;
-}
-
-.desiderio-styleguide__element-ctype {
-    font-size: 0.6875rem;
-}
-
-.desiderio-styleguide__group {
-    margin-bottom: 2rem;
-}
-
-.desiderio-styleguide__group-title {
-    font-size: 1rem;
-    font-family: var(--font-mono, monospace);
-}
-
-.desiderio-styleguide__nav-link {
-    font-size: 0.75rem;
-    padding: 0.1875rem 0.5rem;
 }

@@ -1,0 +1,88 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:argument name="breadcrumb" type="mixed" optional="{true}"/>
+<f:argument name="title" type="string" optional="{true}" default=""/>
+<f:argument name="deck" type="string" optional="{true}" default=""/>
+<f:argument name="author" type="string" optional="{true}" default=""/>
+<f:argument name="date" type="mixed" optional="{true}"/>
+
+<f:comment>
+    Shared masthead for Editorial article pages (DesiderioContentpage +
+    DesiderioContentpageSidebar). Renders the rootline breadcrumb, a section
+    kicker (the parent crumb when a real section exists, otherwise the "Feature"
+    default), the H1, an optional deck and a byline (author + publication date).
+    Microdata enriches the surrounding schema.org/Article scope. Styling lives in
+    Resources/Public/Css/preset-editorial.css (.desiderio-editorial-template__*).
+</f:comment>
+
+<f:variable name="rootlineDepth" value="{breadcrumb -> f:count()}"/>
+<f:variable name="kicker" value="{f:translate(extensionName: 'desiderio', key: 'editorial.kicker.default', default: 'Feature')}"/>
+<f:if condition="{rootlineDepth} >= 3">
+    <f:for each="{breadcrumb}" as="crumb" iteration="crumbIteration">
+        <f:if condition="{crumbIteration.cycle} == {rootlineDepth - 1}">
+            <f:variable name="kicker" value="{crumb.title}"/>
+        </f:if>
+    </f:for>
+</f:if>
+
+<header class="desiderio-editorial-template__header">
+    <f:if condition="{breadcrumb}">
+        <nav class="desiderio-editorial-template__breadcrumb" aria-label="{f:translate(extensionName: 'desiderio', key: 'editorial.breadcrumb.label', default: 'Breadcrumb')}">
+            <ol class="desiderio-editorial-template__breadcrumb-list">
+                <f:for each="{breadcrumb}" as="crumb" iteration="crumbIteration">
+                    <li class="desiderio-editorial-template__breadcrumb-item">
+                        <f:if condition="{crumbIteration.isLast}">
+                            <f:then>
+                                <span class="desiderio-editorial-template__breadcrumb-link" aria-current="page">{crumb.title}</span>
+                            </f:then>
+                            <f:else>
+                                <a class="desiderio-editorial-template__breadcrumb-link" href="{crumb.link}">{crumb.title}</a>
+                                <span class="desiderio-editorial-template__breadcrumb-sep" aria-hidden="true">/</span>
+                            </f:else>
+                        </f:if>
+                    </li>
+                </f:for>
+            </ol>
+        </nav>
+    </f:if>
+
+    <f:if condition="{kicker}">
+        <p class="desiderio-editorial-template__eyebrow">{kicker}</p>
+    </f:if>
+
+    <h1 itemprop="headline">{title}</h1>
+
+    <f:if condition="{deck}">
+        <p class="desiderio-editorial-template__deck" itemprop="description">{deck}</p>
+    </f:if>
+
+    <f:if condition="{author} || {date}">
+        <div class="desiderio-editorial-template__byline">
+            <f:if condition="{author}">
+                <f:variable name="authorInitial"><f:format.case mode="upper"><f:format.crop maxCharacters="1" append="" respectWordBoundaries="false">{author}</f:format.crop></f:format.case></f:variable>
+                <d:atom.avatar fallback="{authorInitial}" alt=""/>
+            </f:if>
+            <div class="desiderio-editorial-template__byline-text">
+                <f:if condition="{author}">
+                    <p class="desiderio-editorial-template__byline-author" itemprop="author" itemscope="itemscope" itemtype="https://schema.org/Person">
+                        <span class="desiderio-editorial-template__byline-prefix"><f:translate extensionName="desiderio" key="editorial.byline.prefix" default="By"/></span>
+                        <span itemprop="name">{author}</span>
+                    </p>
+                </f:if>
+                <f:if condition="{date}">
+                    <f:variable name="publishedIso"><f:format.date date="@{date}" format="Y-m-d"/></f:variable>
+                    <f:variable name="publishedHuman"><f:format.date date="@{date}" format="F j, Y"/></f:variable>
+                    <p class="desiderio-editorial-template__byline-meta">
+                        <time datetime="{publishedIso}" itemprop="datePublished"><f:translate extensionName="desiderio" key="editorial.meta.published" arguments="{0: publishedHuman}" default="Published on {publishedHuman}"/></time>
+                    </p>
+                </f:if>
+            </div>
+        </div>
+    </f:if>
+</header>
+
+</html>

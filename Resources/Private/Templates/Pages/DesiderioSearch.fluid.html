@@ -1,0 +1,29 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:layout name="Pages/Default"/>
+
+<f:section name="Main">
+    <section class="desiderio-system-page desiderio-system-page--search">
+        <d:layout.container>
+            <header class="desiderio-system-page__header">
+                <h1>{page.pageRecord.title}</h1>
+                <f:if condition="{page.pageRecord.abstract}">
+                    <p>{page.pageRecord.abstract}</p>
+                </f:if>
+            </header>
+            <div class="desiderio-system-page__content">
+                <!--TYPO3SEARCH_begin-->
+                <f:if condition="{content.main}">
+                    <f:render.contentArea contentArea="{content.main}"/>
+                </f:if>
+                <!--TYPO3SEARCH_end-->
+            </div>
+        </d:layout.container>
+    </section>
+</f:section>
+
+</html>

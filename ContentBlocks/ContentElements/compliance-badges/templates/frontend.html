@@ -16,7 +16,7 @@
                     <li class="compliance-badges__item">
                         <f:if condition="{item.link}">
                             <f:then>
-                                <f:link.typolink parameter="{item.link}" target="_blank" rel="noopener noreferrer" class="compliance-badges__link rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background">
+                                <f:link.typolink parameter="{item.link}" target="_blank" additionalAttributes="{'rel': 'noopener noreferrer'}" class="compliance-badges__link rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background">
                                     <f:if condition="{item.image}">
                                         <f:then>
                                             <f:for each="{item.image}" as="file">

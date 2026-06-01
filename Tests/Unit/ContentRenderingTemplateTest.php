@@ -185,6 +185,44 @@ final class ContentRenderingTemplateTest extends TestCase
         self::assertSame([], $invalidAttributes);
     }
 
+    public function testTypolinkViewHelperDoesNotUseUnsupportedRelArgument(): void
+    {
+        $templateRoots = [
+            'ContentBlocks',
+            'Resources/Private',
+        ];
+        $invalidLinks = [];
+
+        foreach ($templateRoots as $templateRoot) {
+            $directory = realpath(__DIR__ . '/../../' . $templateRoot);
+            self::assertIsString($directory);
+
+            $files = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($directory));
+            foreach ($files as $file) {
+                if (!$file instanceof \SplFileInfo || !$file->isFile()) {
+                    continue;
+                }
+
+                $path = $file->getPathname();
+                if (!str_ends_with($path, '.html') && !str_ends_with($path, '.fluid.html')) {
+                    continue;
+                }
+
+                $template = (string) file_get_contents($path);
+                if (preg_match_all('/<f:link\\.typolink\\b[^>]*\\brel\\s*=/s', $template, $matches, PREG_OFFSET_CAPTURE) === false) {
+                    continue;
+                }
+
+                foreach ($matches[0] as $match) {
+                    $line = substr_count(substr($template, 0, $match[1]), "\n") + 1;
+                    $invalidLinks[] = str_replace(__DIR__ . '/../../', '', $path) . ':' . $line;
+                }
+            }
+        }
+
+        self::assertSame([], $invalidLinks, 'Use additionalAttributes for rel on f:link.typolink.');
+    }
+
     public function testPricingSliderTemplateIsConnectedToSharedRuntime(): void
     {
         $template = (string) file_get_contents(__DIR__ . '/../../ContentBlocks/ContentElements/pricing-slider/templates/frontend.html');

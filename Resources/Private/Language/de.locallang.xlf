@@ -477,14 +477,20 @@
     </unit>
     <unit id="editorial.meta.published">
       <segment state="final">
-        <source>Published on {date}</source>
-        <target>Veröffentlicht am {date}</target>
+        <source>Published on %s</source>
+        <target>Veröffentlicht am %s</target>
       </segment>
     </unit>
     <unit id="editorial.aside.label">
       <segment state="final">
         <source>Article tools and related reading</source>
         <target>Artikel-Werkzeuge und weiterführende Lektüre</target>
+      </segment>
+    </unit>
+    <unit id="editorial.readingProgress.label">
+      <segment state="final">
+        <source>Reading progress</source>
+        <target>Lesefortschritt</target>
       </segment>
     </unit>
     <unit id="portfolio.aside.label">

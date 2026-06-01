@@ -34,6 +34,9 @@ categories:
   desiderio.styleguide:
     label: 'Styleguide'
     parent: desiderio
+  desiderio.editorial:
+    label: 'Editorial'
+    parent: desiderio
   desiderio.forms:
     label: 'Forms'
     parent: desiderio
@@ -310,6 +313,14 @@ settings:
     type: bool
     default: false
     category: desiderio.styleguide
+
+  # --------------------------------------------------------------- Editorial
+  desiderio.editorial.readingProgress:
+    label: 'Reading progress bar'
+    description: 'Show a sticky reading-progress indicator at the top of Editorial article pages (Blog & Magazine preset). Updates as the reader scrolls the article body.'
+    type: bool
+    default: true
+    category: desiderio.editorial
 
   # --------------------------------------------------------------- Forms
   desiderio.forms.receiverAddress:

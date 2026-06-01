@@ -654,4 +654,60 @@ document.addEventListener('DOMContentLoaded', () => {
 
   initSolrSuggest();
   document.body?.addEventListener('tx_solr_updated', () => initSolrSuggest());
+
+  /* ------------------------------------------------------------------ */
+  /*  11. Reading progress                                               */
+  /* ------------------------------------------------------------------ */
+  document.querySelectorAll('[data-d-reading-progress]').forEach(root => {
+    const scope = root.closest('.desiderio-editorial-template') || root.closest('article') || document;
+    const selector = root.dataset.dReadingProgressTarget || '[itemprop="articleBody"]';
+    const target = scope.querySelector(selector);
+    const bar = root.querySelector('[role="progressbar"]');
+    const indicator = bar?.querySelector('[data-slot="progress-indicator"]');
+    if (!target || !bar || !indicator) return;
+
+    // The generated Progress atom ships without an accessible name; give the
+    // progressbar one so assistive tech announces what the value tracks.
+    if (!bar.hasAttribute('aria-label')) {
+      bar.setAttribute('aria-label', root.dataset.dReadingProgressLabel || 'Reading progress');
+    }
+
+    // Respect reduced-motion: drop the indicator's easing so the bar snaps to
+    // the scroll position instead of animating toward it.
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const applyMotionPreference = () => {
+      indicator.style.transitionDuration = reduceMotion.matches ? '0s' : '';
+    };
+    applyMotionPreference();
+    reduceMotion.addEventListener?.('change', applyMotionPreference);
+
+    let ticking = false;
+    const measure = () => {
+      ticking = false;
+      const viewport = window.innerHeight || document.documentElement.clientHeight;
+      const rect = target.getBoundingClientRect();
+      const scrollable = rect.height - viewport;
+      let ratio;
+      if (scrollable <= 0) {
+        // Body fits within the viewport: complete once its end is on screen.
+        ratio = rect.bottom <= viewport ? 1 : 0;
+      } else {
+        ratio = -rect.top / scrollable;
+      }
+      const percent = Math.min(Math.max(ratio, 0), 1) * 100;
+      indicator.style.transform = `translateX(-${100 - percent}%)`;
+      bar.setAttribute('aria-valuenow', String(Math.round(percent)));
+    };
+
+    // Coalesce scroll/resize bursts into one layout read per frame.
+    const requestMeasure = () => {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(measure);
+    };
+
+    measure();
+    window.addEventListener('scroll', requestMeasure, { passive: true });
+    window.addEventListener('resize', requestMeasure, { passive: true });
+  });
 });

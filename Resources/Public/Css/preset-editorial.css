@@ -88,6 +88,17 @@
     max-width: none;
 }
 
+/* ---- Reading progress — sticky scroll indicator for long-read articles ----
+   Pins the thin Progress atom to the top of the viewport while the article
+   scrolls beneath it. Motion easing is suppressed for reduced-motion visitors
+   by the data-d-reading-progress handler in Resources/Public/Js/desiderio.js. */
+.desiderio-reading-progress {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    margin-bottom: 1.5rem;
+}
+
 /* ---- Article masthead — kicker, breadcrumb, deck, byline ---- */
 .desiderio-editorial-template__breadcrumb,
 .desiderio-editorial-template__kicker,

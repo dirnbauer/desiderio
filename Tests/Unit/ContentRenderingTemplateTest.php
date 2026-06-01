@@ -751,6 +751,7 @@ final class ContentRenderingTemplateTest extends TestCase
             'ContentArea' => 'contentArea="{content}"',
             'Stage' => 'contentArea="{content}"',
             'DashboardRail' => 'desiderio-dashboard-template__rail',
+            'DashboardBreadcrumb' => 'desiderio-dashboard-template__breadcrumb-current',
             'ErrorHomeLink' => 'a11y.nav.home',
             'SystemHeader' => '<f:argument name="summaryTag"',
         ];

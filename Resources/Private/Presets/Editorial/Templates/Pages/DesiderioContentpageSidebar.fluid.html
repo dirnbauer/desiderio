@@ -13,6 +13,8 @@
 <f:section name="Main">
     <article class="desiderio-editorial-template desiderio-editorial-sidebar" itemscope="itemscope" itemtype="https://schema.org/Article">
         <d:layout.container size="lg">
+            <f:render partial="Presets/EditorialReadingProgress" arguments="{site: site}"/>
+
             <f:render
                 partial="Presets/EditorialArticleHeader"
                 arguments="{

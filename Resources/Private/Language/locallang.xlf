@@ -398,12 +398,17 @@
     </unit>
     <unit id="editorial.meta.published">
       <segment>
-        <source>Published on {date}</source>
+        <source>Published on %s</source>
       </segment>
     </unit>
     <unit id="editorial.aside.label">
       <segment>
         <source>Article tools and related reading</source>
+      </segment>
+    </unit>
+    <unit id="editorial.readingProgress.label">
+      <segment>
+        <source>Reading progress</source>
       </segment>
     </unit>
     <unit id="portfolio.aside.label">

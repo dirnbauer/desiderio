@@ -5,18 +5,23 @@
 >
 
 <f:variable name="siteTitle" value="{site.configuration.websiteTitle -> f:or(alternative: breadcrumb.0.title)}"/>
+<f:variable name="brandWordmark" value="{site.configuration.settings.desiderio.brand.wordmark -> f:or(alternative: siteTitle)}"/>
+<f:variable name="brandTagline" value="{site.configuration.settings.desiderio.brand.tagline}"/>
 
 <footer class="desiderio-footer">
     <d:layout.container>
         <div class="desiderio-footer__inner">
             <div class="desiderio-footer__brand">
-                <f:link.typolink parameter="{breadcrumb.0.link}" class="desiderio-footer__wordmark">
-                    {siteTitle}
+                <f:link.typolink parameter="{breadcrumb.0.link}" class="desiderio-footer__wordmark desiderio-footer__title">
+                    {brandWordmark}
                 </f:link.typolink>
+                <f:if condition="{brandTagline}">
+                    <p class="desiderio-footer__tagline">{brandTagline}</p>
+                </f:if>
                 <p class="desiderio-footer__copyright">
                     <f:if condition="{site.configuration.settings.desiderio.footer.copyrightText}">
                         <f:then>{site.configuration.settings.desiderio.footer.copyrightText}</f:then>
-                        <f:else>© <f:format.date date="now" format="Y" /> {siteTitle}</f:else>
+                        <f:else>© <f:format.date date="now" format="Y" /> {brandWordmark}</f:else>
                     </f:if>
                 </p>
             </div>

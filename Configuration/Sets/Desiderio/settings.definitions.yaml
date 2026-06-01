@@ -1,6 +1,9 @@
 categories:
   desiderio:
     label: 'Desiderio'
+  desiderio.brand:
+    label: 'Brand'
+    parent: desiderio
   desiderio.layout:
     label: 'Layout'
     parent: desiderio
@@ -42,6 +45,21 @@ categories:
     parent: desiderio
 
 settings:
+  # --------------------------------------------------------------- Brand
+  desiderio.brand.wordmark:
+    label: 'Wordmark'
+    description: 'Text rendered as the header and footer brand mark. Scenario presets set this to the active template name.'
+    type: string
+    default: ''
+    category: desiderio.brand
+
+  desiderio.brand.tagline:
+    label: 'Footer tagline'
+    description: 'Short line rendered below the footer wordmark.'
+    type: string
+    default: 'Built with shadcn/ui Fluid components for TYPO3 14.'
+    category: desiderio.brand
+
   # --------------------------------------------------------------- Layout
   desiderio.layout.density:
     label: 'Vertical density'

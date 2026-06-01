@@ -5,6 +5,7 @@
 >
 
 <f:variable name="siteTitle" value="{site.configuration.websiteTitle -> f:or(alternative: breadcrumb.0.title)}"/>
+<f:variable name="brandWordmark" value="{site.configuration.settings.desiderio.brand.wordmark -> f:or(alternative: siteTitle)}"/>
 <f:variable name="searchAction" value="{breadcrumb.0.link}"/>
 <f:if condition="{site.configuration.settings.desiderio.search.targetPageId}">
     <f:variable name="searchAction" value="{f:uri.page(pageUid: site.configuration.settings.desiderio.search.targetPageId)}"/>
@@ -14,7 +15,10 @@
     <d:layout.container>
         <div class="desiderio-header__inner">
             <f:link.typolink parameter="{breadcrumb.0.link}" class="desiderio-header__logo">
-                <span class="desiderio-header__wordmark">{siteTitle}</span>
+                <span class="desiderio-header__brand-mark" aria-hidden="true">
+                    <span class="desiderio-header__brand-mark-inner"></span>
+                </span>
+                <span class="desiderio-header__wordmark desiderio-header__logo-text">{brandWordmark}</span>
             </f:link.typolink>
 
             <button type="button" class="desiderio-header__menu-toggle btn btn--ghost btn--icon" data-d-menu-toggle data-d-menu-target="#desiderio-main-nav" aria-expanded="false" aria-controls="desiderio-main-nav" aria-label="{f:translate(extensionName: 'desiderio', key: 'a11y.menu.toggle', default: 'Toggle menu')}">

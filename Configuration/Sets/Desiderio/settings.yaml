@@ -8,6 +8,9 @@ styles:
     layoutRootPath: EXT:desiderio/Resources/Private/FluidStyledContent/Layouts/
 
 desiderio:
+  brand:
+    wordmark: ''
+    tagline: 'Built with shadcn/ui Fluid components for TYPO3 14.'
   layout:
     density: comfortable
     container: wide

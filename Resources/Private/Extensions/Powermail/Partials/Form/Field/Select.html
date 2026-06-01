@@ -3,12 +3,12 @@
 <f:argument name="settings" type="array" optional="{true}" />
 <f:argument name="mail" type="object" optional="{true}" />
 
-<div class="powermail_fieldwrap powermail_fieldwrap_type_select powermail_fieldwrap_{field.marker} {field.css} space-y-2">
+<div data-slot="form-item" class="powermail_fieldwrap_{field.marker} {field.css} space-y-2">
     <f:render partial="Form/FieldLabel" arguments="{field: field}" />
     <vh:form.selectField
         options="{field.modifiedSettings}"
         property="{field.marker}"
-        class="powermail_select flex min-h-8 w-full min-w-0 items-center justify-between gap-1.5 rounded-none border border-input bg-transparent py-1 pr-2 pl-2.5 text-xs text-foreground transition-colors outline-none focus-visible:border-ring focus-visible:ring-1 focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-1 aria-invalid:ring-destructive/20 dark:bg-input/30 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 {vh:validation.errorClass(field: field, class: 'border-destructive ring-1 ring-destructive/20')}"
+        class="flex h-9 w-full min-w-0 items-center justify-between gap-1.5 rounded-md border border-input bg-transparent px-3 py-1 text-sm text-foreground shadow-xs transition-[color,box-shadow] outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:bg-input/30 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 {vh:validation.errorClass(field: field, class: 'border-destructive ring-destructive/20')}"
         id="powermail_field_{field.marker}"
         autocomplete="{vh:string.autocomplete(field: field)}"
         additionalAttributes="{vh:validation.validationDataAttribute(field: field)}"
@@ -16,7 +16,7 @@
         value="{vh:misc.prefillField(field: field, mail: mail)}" />
     <f:if condition="{field.multiselect}">
         <f:if condition="{settings.validation.client}">
-            <div class="powermail_field_error_container powermail_field_error_container_{field.marker} text-xs text-destructive"></div>
+            <div class="powermail_field_error_container_{field.marker} text-xs text-destructive"></div>
         </f:if>
     </f:if>
 </div>

@@ -627,7 +627,7 @@ final class ContentRenderingTemplateTest extends TestCase
         $baseOptionalDependencies = $baseSet['optionalDependencies'] ?? [];
         self::assertIsArray($baseOptionalDependencies);
 
-        self::assertContains('webconsulting/desiderio-shadcnui-templates', $baseOptionalDependencies);
+        self::assertNotContains('webconsulting/desiderio-shadcnui-templates', $baseOptionalDependencies);
         self::assertSame('webconsulting/desiderio-shadcnui-templates', $templateSet['name']);
         self::assertTrue($templateSet['hidden']);
         self::assertStringContainsString('paths.20 = EXT:desiderio/Resources/Private/ShadcnUi/Templates/', $typoScript);
@@ -647,6 +647,12 @@ final class ContentRenderingTemplateTest extends TestCase
 
         foreach ($requiredFiles as $relativePath) {
             self::assertFileExists(__DIR__ . '/../../' . $relativePath, "{$relativePath} must exist");
+        }
+
+        foreach (['Corporate', 'Dashboard', 'Editorial', 'Portfolio', 'Saas'] as $preset) {
+            $presetSet = Yaml::parseFile(__DIR__ . '/../../Configuration/Sets/DesiderioPreset' . $preset . '/config.yaml');
+            self::assertIsArray($presetSet);
+            self::assertContains('webconsulting/desiderio-shadcnui-templates', $presetSet['dependencies'] ?? []);
         }
 
         foreach ([

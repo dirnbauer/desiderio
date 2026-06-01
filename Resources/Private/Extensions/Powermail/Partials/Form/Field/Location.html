@@ -2,8 +2,8 @@
 <f:argument name="field" type="object" />
 <f:argument name="mail" type="object" optional="{true}" />
 
-<div class="powermail_fieldwrap powermail_fieldwrap_type_location powermail_fieldwrap_{field.marker} {field.css} space-y-2">
+<div data-slot="form-item" class="powermail_fieldwrap_{field.marker} {field.css} space-y-2">
     <f:render partial="Form/FieldLabel" arguments="{field: field}" />
-    <f:form.textfield property="{field.marker}" value="{vh:misc.prefillField(field: field, mail: mail)}" class="powermail_location h-8 w-full min-w-0 rounded-none border border-input bg-transparent px-2.5 py-1 text-xs text-foreground transition-colors outline-none placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-1 focus-visible:ring-ring/50 disabled:pointer-events-none disabled:cursor-not-allowed disabled:bg-input/50 disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-1 aria-invalid:ring-destructive/20 dark:bg-input/30 dark:disabled:bg-input/80 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40" id="powermail_field_{field.marker}" />
+    <f:form.textfield property="{field.marker}" value="{vh:misc.prefillField(field: field, mail: mail)}" class="h-9 w-full min-w-0 rounded-md border border-input bg-transparent px-3 py-1 text-sm text-foreground shadow-xs transition-[color,box-shadow] outline-none placeholder:text-muted-foreground selection:bg-primary selection:text-primary-foreground focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:cursor-not-allowed disabled:bg-input/50 disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:bg-input/30 dark:disabled:bg-input/80 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40" id="powermail_field_{field.marker}" />
 </div>
 </html>

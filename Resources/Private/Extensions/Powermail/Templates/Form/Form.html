@@ -18,7 +18,7 @@
 
     <f:if condition="{form}">
         <f:then>
-            <section class="mx-auto w-full max-w-3xl">
+            <section class="mt-8 w-full max-w-2xl">
                 <f:form
                     action="{action}"
                     section="c{ttContentData.uid}"
@@ -27,13 +27,13 @@
                     autocomplete="{form.autocompleteToken}"
                     additionalAttributes="{vh:validation.enableJavascriptValidationAndAjax(form: form)}"
                     addQueryString="{settings.misc.addQueryString}"
-                    class="powermail_form powermail_form_{form.uid} {form.css} {vh:misc.morestepClass(activate: settings.main.moresteps)} rounded-none bg-card p-4 text-card-foreground ring-1 ring-foreground/10 sm:p-6">
+                    class="{form.css} {vh:misc.morestepClass(activate: settings.main.moresteps)} rounded-lg border border-border/70 bg-card p-5 text-card-foreground shadow-sm sm:p-6">
 
                     <f:if condition="{form.css} != 'nolabel'">
-                        <header class="mb-6 space-y-1">
-                            <h2 class="text-xl font-semibold tracking-normal text-foreground">{form.title}</h2>
-                            <p class="text-sm text-muted-foreground">
-                                <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/powermail.xlf:powermail.form.requiredHint" />
+                        <header data-slot="card-header" class="mb-6 grid gap-1.5 border-b border-border/70 pb-5">
+                            <h2 data-slot="card-title" class="text-lg font-semibold tracking-normal text-foreground">{form.title}</h2>
+                            <p data-slot="card-description" class="text-sm leading-6 text-muted-foreground">
+                                <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/powermail.xlf:powermail.form.requiredHint" arguments="{requiredCount: 1}" />
                             </p>
                         </header>
                     </f:if>
@@ -41,23 +41,23 @@
                     <f:render partial="Misc/FormError" arguments="{_all}" />
 
                     <f:if condition="{settings.main.moresteps}">
-                        <nav class="mb-6 grid gap-2 rounded-none border border-border bg-muted/30 p-1 text-sm sm:grid-flow-col sm:auto-cols-fr" aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/powermail.xlf:powermail.multistep.label')}">
+                        <nav class="mb-6 grid gap-2 rounded-md border border-border bg-muted/30 p-1 text-sm sm:grid-flow-col sm:auto-cols-fr" aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/powermail.xlf:powermail.multistep.label')}">
                             <f:for each="{form.pages}" as="page" iteration="iterationPages">
-                                <button class="inline-flex h-8 items-center justify-center rounded-none px-3 text-xs font-medium text-muted-foreground transition-colors outline-none hover:bg-background hover:text-foreground focus-visible:ring-1 focus-visible:ring-ring/50 data-[active=true]:bg-background data-[active=true]:text-foreground data-[active=true]:ring-1 data-[active=true]:ring-foreground/10"
+                                <button class="inline-flex h-8 items-center justify-center rounded-sm px-3 text-xs font-medium text-muted-foreground transition-colors outline-none hover:bg-background hover:text-foreground focus-visible:ring-1 focus-visible:ring-ring/50 data-[active=true]:bg-background data-[active=true]:text-foreground data-[active=true]:ring-1 data-[active=true]:ring-foreground/10"
                                         type="button"
                                         data-active="{f:if(condition: iterationPages.isFirst, then: 'true', else: 'false')}"
                                         data-powermail-morestep-validate="{settings.validation.morestep.fieldset}"
                                         data-powermail-fieldset="{page.uid}"
                                         data-powermail-morestep-current="{iterationPages.index}"
                                         data-powermail-morestep-show="{iterationPages.index}">
-                                    <span class="me-2 inline-flex size-5 items-center justify-center rounded-none border border-border bg-muted text-[11px]">{iterationPages.cycle}</span>
+                                    <span class="me-2 inline-flex size-5 items-center justify-center rounded-sm border border-border bg-muted text-[11px]">{iterationPages.cycle}</span>
                                     {page.title}
                                 </button>
                             </f:for>
                         </nav>
                     </f:if>
 
-                    <div class="space-y-6">
+                    <div data-slot="card-content" class="space-y-6">
                         <f:for each="{form.pages}" as="page" iteration="iterationPages">
                             <f:render partial="Form/Page" arguments="{_all}" />
                         </f:for>

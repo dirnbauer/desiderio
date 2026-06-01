@@ -6,7 +6,7 @@
 <f:argument name="field" type="object" />
 
 <f:if condition="{field.css} != 'nolabel'">
-    <label for="powermail_field_{field.marker}" class="text-sm font-medium text-foreground" title="{field.description}">
+    <label for="powermail_field_{field.marker}" data-slot="label" class="flex items-center gap-1.5 text-sm leading-none font-medium text-foreground select-none" title="{field.description}">
         <vh:string.escapeLabels>{field.title}</vh:string.escapeLabels>
         <f:if condition="{field.mandatory}">
             <span class="ms-1 text-destructive" aria-hidden="true">*</span>

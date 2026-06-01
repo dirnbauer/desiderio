@@ -1,7 +1,7 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
 <f:argument name="field" type="object" />
 
-<div class="powermail_fieldwrap powermail_fieldwrap_type_text powermail_fieldwrap_{field.marker} {field.css} sm:col-span-2">
+<div data-slot="form-item" class="powermail_fieldwrap_{field.marker} {field.css}">
     <div class="text-sm text-muted-foreground">{field.text}</div>
 </div>
 </html>

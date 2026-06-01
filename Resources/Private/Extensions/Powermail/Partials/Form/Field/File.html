@@ -3,21 +3,21 @@
 <f:argument name="settings" type="array" optional="{true}" />
 <f:argument name="mail" type="object" optional="{true}" />
 
-<div class="powermail_fieldwrap powermail_fieldwrap_type_file powermail_fieldwrap_{field.marker} {field.css} space-y-2 sm:col-span-2">
+<div data-slot="form-item" class="powermail_fieldwrap_type_file powermail_fieldwrap_{field.marker} {field.css} space-y-2">
     <f:render partial="Form/FieldLabel" arguments="{field: field}" />
     <vh:form.multiUpload
         id="powermail_field_{field.marker}"
         property="{field.marker}"
         additionalAttributes="{vh:validation.uploadAttributes(field: field)}"
-        class="powermail_file flex min-h-24 w-full cursor-pointer items-center rounded-none border border-dashed border-input bg-muted/30 px-3 py-3 text-sm text-muted-foreground transition-colors outline-none file:me-3 file:rounded-none file:border-0 file:bg-primary file:px-2.5 file:py-1.5 file:text-xs file:font-medium file:text-primary-foreground hover:bg-muted/50 focus-visible:border-ring focus-visible:ring-1 focus-visible:ring-ring/50 aria-invalid:border-destructive aria-invalid:ring-1 aria-invalid:ring-destructive/20 dark:bg-input/30 {vh:validation.errorClass(field: field, class: 'border-destructive ring-1 ring-destructive/20')}" />
+        class="flex min-h-24 w-full cursor-pointer items-center rounded-md border border-dashed border-input bg-muted/30 px-3 py-3 text-sm text-muted-foreground shadow-xs transition-[color,box-shadow] outline-none file:me-3 file:rounded-sm file:border-0 file:bg-primary file:px-2.5 file:py-1.5 file:text-xs file:font-medium file:text-primary-foreground hover:bg-muted/50 focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:bg-input/30 {vh:validation.errorClass(field: field, class: 'border-destructive ring-destructive/20')}" />
     <f:if condition="{vh:misc.prefillField(field: field, mail: mail)}">
-        <div class="rounded-none border border-border bg-background p-3 text-sm">
+        <div class="rounded-md border border-border bg-background p-3 text-sm">
             <ul class="space-y-1 text-muted-foreground">
                 <f:for each="{vh:misc.prefillField(field: field, mail: mail)}" as="file">
                     <li>{file}<f:form.hidden property="{field.marker}." value="{file}" /></li>
                 </f:for>
             </ul>
-            <button type="button" class="deleteAllFiles mt-3 inline-flex h-8 items-center justify-center rounded-none bg-destructive/10 px-2.5 text-xs font-medium text-destructive transition-all outline-none hover:bg-destructive/20 focus-visible:ring-1 focus-visible:ring-ring/50">
+            <button type="button" class="deleteAllFiles mt-3 inline-flex h-8 items-center justify-center rounded-md bg-destructive/10 px-2.5 text-xs font-medium text-destructive transition-all outline-none hover:bg-destructive/20 focus-visible:ring-1 focus-visible:ring-ring/50">
                 <f:translate key="deleteAllFiles" extensionName="Powermail">Delete All Files</f:translate>
             </button>
         </div>

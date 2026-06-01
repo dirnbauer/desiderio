@@ -3,26 +3,35 @@
 <f:argument name="settings" type="array" optional="{true}" />
 <f:argument name="mail" type="object" optional="{true}" />
 
-<div class="powermail_fieldwrap powermail_fieldwrap_type_radio powermail_fieldwrap_{field.marker} {field.css} space-y-3 sm:col-span-2">
-    <f:render partial="Form/FieldLabel" arguments="{field: field}" />
+<fieldset data-slot="form-item" class="powermail_fieldwrap_{field.marker} {field.css} space-y-2">
+    <f:if condition="{field.css} != 'nolabel'">
+        <legend class="sr-only">
+            <vh:string.escapeLabels>{field.title}</vh:string.escapeLabels>
+        </legend>
+    </f:if>
     <div class="grid gap-2 sm:grid-cols-2">
         <f:for each="{field.modifiedSettings}" as="setting" iteration="index">
-            <div class="flex items-center gap-2 rounded-none border border-border bg-background p-3 {vh:validation.errorClass(field: field, class: 'border-destructive')}">
-                <f:form.radio
-                    property="{field.marker}"
-                    value="{setting.value}"
-                    checked="{vh:misc.prefillMultiField(field: field, mail: mail, cycle: index.cycle)}"
-                    id="powermail_field_{field.marker}_{index.cycle}"
-                    additionalAttributes="{vh:validation.validationDataAttribute(field: field, iteration: index)}"
-                    class="powermail_radio size-4 rounded-full border border-input bg-transparent text-primary accent-primary outline-none focus-visible:ring-1 focus-visible:ring-ring/50 dark:bg-input/30" />
-                <label for="powermail_field_{field.marker}_{index.cycle}" class="text-sm text-foreground">
-                    <vh:string.escapeLabels>{setting.label}</vh:string.escapeLabels>
+            <div>
+                <label for="powermail_field_{field.marker}_{index.cycle}" class="group/radio flex cursor-pointer items-center gap-3 rounded-md border border-input bg-background p-3 text-sm text-foreground shadow-xs transition-colors hover:bg-muted/50 dark:bg-input/30 {vh:validation.errorClass(field: field, class: 'border-destructive bg-destructive/5')}">
+                    <f:form.radio
+                        property="{field.marker}"
+                        value="{setting.value}"
+                        checked="{vh:misc.prefillMultiField(field: field, mail: mail, cycle: index.cycle)}"
+                        id="powermail_field_{field.marker}_{index.cycle}"
+                        additionalAttributes="{vh:validation.validationDataAttribute(field: field, iteration: index)}"
+                        class="size-4! min-h-4! shrink-0 appearance-none rounded-full! border border-input bg-background shadow-xs transition-[color,box-shadow] outline-none checked:border-[5px] checked:border-primary focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:bg-input/30 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40" />
+                    <span data-slot="label" class="min-w-0 text-sm leading-5 text-foreground">
+                        <vh:string.escapeLabels>{setting.label}</vh:string.escapeLabels>
+                        <f:if condition="{field.mandatory}">
+                            <span class="ms-1 text-destructive" aria-hidden="true">*</span>
+                        </f:if>
+                    </span>
                 </label>
             </div>
         </f:for>
     </div>
     <f:if condition="{settings.validation.client}">
-        <div class="powermail_field_error_container powermail_field_error_container_{field.marker} text-xs text-destructive"></div>
+        <div class="powermail_field_error_container_{field.marker} text-xs text-destructive"></div>
     </f:if>
-</div>
+</fieldset>
 </html>

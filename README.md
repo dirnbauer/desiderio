@@ -1,6 +1,6 @@
 # Desiderio
 
-[![CI](https://github.com/webconsulting/desiderio/actions/workflows/ci.yml/badge.svg)](https://github.com/webconsulting/desiderio/actions/workflows/ci.yml)
+[![CI](https://github.com/dirnbauer/desiderio/actions/workflows/ci.yml/badge.svg)](https://github.com/dirnbauer/desiderio/actions/workflows/ci.yml)
 ![TYPO3](https://img.shields.io/badge/TYPO3-v14.3%20LTS-orange)
 ![PHP](https://img.shields.io/badge/PHP-8.3%20%E2%80%93%208.5-blue)
 ![PHPStan](https://img.shields.io/badge/PHPStan-level%20max-brightgreen)

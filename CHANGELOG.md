@@ -221,8 +221,8 @@ and `webconsulting/shadcn2fluid-templates 3.x` with a clean rewrite:
 templates, and five swappable visual presets. See `MIGRATION-PLAN.md`
 for the migration notes from the old extensions.
 
-[2.3.0]: https://github.com/webconsulting/desiderio/releases/tag/v2.3.0
-[2.2.0]: https://github.com/webconsulting/desiderio/releases/tag/v2.2.0
-[2.1.0]: https://github.com/webconsulting/desiderio/releases/tag/v2.1.0
-[2.0.0]: https://github.com/webconsulting/desiderio/releases/tag/v2.0.0
-[Unreleased]: https://github.com/webconsulting/desiderio/compare/v2.3.0...HEAD
+[2.3.0]: https://github.com/dirnbauer/desiderio/releases/tag/v2.3.0
+[2.2.0]: https://github.com/dirnbauer/desiderio/releases/tag/v2.2.0
+[2.1.0]: https://github.com/dirnbauer/desiderio/releases/tag/v2.1.0
+[2.0.0]: https://github.com/dirnbauer/desiderio/releases/tag/v2.0.0
+[Unreleased]: https://github.com/dirnbauer/desiderio/compare/v2.3.0...HEAD

@@ -1,26 +1,38 @@
+.chart-contribution {
+    margin: 0;
+}
 .chart-contribution__card {
     border: 1px solid var(--border);
     border-radius: calc(var(--radius) + 4px);
     background: var(--card);
+    color: var(--card-foreground);
     padding: var(--d-spacing-lg);
     display: flex;
     flex-direction: column;
     gap: var(--d-spacing-lg);
+    max-width: 100%;
+    overflow: hidden;
 }
 .chart-contribution__head {
     display: flex;
+    flex-wrap: wrap;
     align-items: flex-start;
     justify-content: space-between;
     gap: var(--d-spacing-md);
 }
+.chart-contribution__titles {
+    min-width: 0;
+}
 .chart-contribution__title {
     font-size: var(--d-text-lg);
     font-weight: 600;
+    line-height: 1.25;
 }
 .chart-contribution__sub {
     font-size: var(--d-text-sm);
     color: var(--muted-foreground);
     margin-block-start: var(--d-spacing-xs);
+    text-wrap: pretty;
 }
 .chart-contribution__badge {
     flex-shrink: 0;
@@ -31,13 +43,18 @@
     border: 1px solid var(--border);
     background: var(--secondary);
     color: var(--secondary-foreground);
+    white-space: nowrap;
 }
 .chart-contribution__chart {
     width: 100%;
+    min-width: 0;
 }
 .chart-contribution__svg {
+    display: block;
     width: 100%;
-    height: 160px;
+    max-width: 100%;
+    height: auto;
+    aspect-ratio: 400 / 160;
     color: var(--muted-foreground);
 }
 .chart-contribution__tick {
@@ -45,14 +62,16 @@
 }
 .chart-contribution__stats {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
     gap: var(--d-spacing-md);
 }
 .chart-contribution__stat {
     border: 1px solid var(--border);
     border-radius: var(--radius);
     background: var(--muted);
+    color: var(--muted-foreground);
     padding: var(--d-spacing-md);
+    min-width: 0;
 }
 .chart-contribution__stat-label {
     font-size: 0.65rem;
@@ -65,12 +84,14 @@
 .chart-contribution__stat-value {
     font-size: var(--d-text-lg);
     font-weight: 600;
+    color: var(--card-foreground);
     margin: 0 0 0.25rem;
 }
 .chart-contribution__stat-detail {
     font-size: var(--d-text-sm);
     color: var(--muted-foreground);
     margin: 0;
+    text-wrap: pretty;
 }
 .chart-contribution__actions {
     margin-block-start: auto;

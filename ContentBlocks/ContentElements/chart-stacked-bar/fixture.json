@@ -1,8 +1,9 @@
 {
     "header": "Recurring revenue by plan, last four quarters",
-    "description": "Quarterly recurring revenue split across the Starter, Team, and Enterprise tiers, in thousands of euros.",
-    "chart_data": "[{\"label\":\"Q1\",\"segments\":[42,68,55]},{\"label\":\"Q2\",\"segments\":[48,74,71]},{\"label\":\"Q3\",\"segments\":[51,83,94]},{\"label\":\"Q4\",\"segments\":[58,91,118]}]",
+    "description": "Quarterly recurring revenue split across the Starter, Team, and Enterprise tiers. Each bar shows the total for the quarter and how it breaks down by plan.",
     "series_labels": "Starter, Team, Enterprise",
+    "chart_data": "Q1 2025 | 42 | 68 | 55\nQ2 2025 | 48 | 74 | 71\nQ3 2025 | 51 | 83 | 94\nQ4 2025 | 58 | 91 | 118",
+    "unit": "k EUR",
     "palette": "brand",
     "show_legend": 1
 }

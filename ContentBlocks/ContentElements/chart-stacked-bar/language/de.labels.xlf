@@ -21,8 +21,32 @@
     </unit>
     <unit id="field.series_labels.description">
       <segment state="final">
-        <source>Comma-separated names for each stacked segment, in order, e.g. Starter, Team, Enterprise. Used for the legend and the screen-reader summary.</source>
-        <target>Kommagetrennte Namen je gestapeltem Segment in Reihenfolge, z. B. Starter, Team, Enterprise. Wird fuer Legende und Screenreader-Zusammenfassung genutzt.</target>
+        <source>Comma-separated names for the stacked segments, in order, e.g. Starter, Team, Enterprise. They name the legend, the data-table columns and the screen-reader summary, and set how many values each row needs.</source>
+        <target>Kommagetrennte Namen der gestapelten Segmente in Reihenfolge, z. B. Starter, Team, Enterprise. Sie benennen Legende, Datentabellenspalten und Screenreader-Zusammenfassung und legen fest, wie viele Werte jede Zeile braucht.</target>
+      </segment>
+    </unit>
+    <unit id="field.chart_data">
+      <segment state="final">
+        <source>Categories and values</source>
+        <target>Kategorien und Werte</target>
+      </segment>
+    </unit>
+    <unit id="field.chart_data.description">
+      <segment state="final">
+        <source>One category per line: a label, then one value per series, separated by a pipe. The values line up with the series names above. Example: Q1 2025 | 42 | 68 | 55</source>
+        <target>Eine Kategorie pro Zeile: ein Label, dann ein Wert je Reihe, getrennt durch einen senkrechten Strich. Die Werte entsprechen den Reihennamen oben. Beispiel: Q1 2025 | 42 | 68 | 55</target>
+      </segment>
+    </unit>
+    <unit id="field.unit">
+      <segment state="final">
+        <source>Value unit</source>
+        <target>Werteinheit</target>
+      </segment>
+    </unit>
+    <unit id="field.unit.description">
+      <segment state="final">
+        <source>Optional unit shown after each value in the legend and data table, e.g. k EUR, %, or hrs.</source>
+        <target>Optionale Einheit, die in Legende und Datentabelle hinter jedem Wert erscheint, z. B. Tsd. EUR, % oder Std.</target>
       </segment>
     </unit>
     <unit id="field.palette">
@@ -67,16 +91,34 @@
         <target>Legende</target>
       </segment>
     </unit>
+    <unit id="table.category">
+      <segment state="final">
+        <source>Category</source>
+        <target>Kategorie</target>
+      </segment>
+    </unit>
+    <unit id="table.total">
+      <segment state="final">
+        <source>Total</source>
+        <target>Gesamt</target>
+      </segment>
+    </unit>
+    <unit id="table.unit.caption">
+      <segment state="final">
+        <source>values in {0}</source>
+        <target>Werte in {0}</target>
+      </segment>
+    </unit>
     <unit id="aria.summary">
       <segment state="final">
-        <source>{0}: stacked bar chart comparing {1}.</source>
-        <target>{0}: gestapeltes Balkendiagramm, das {1} vergleicht.</target>
+        <source>{0}: stacked bar chart comparing {1, plural, one {# category} other {# categories}} across {2}. The full breakdown follows in the data table.</source>
+        <target>{0}: gestapeltes Balkendiagramm, das {1, plural, one {# Kategorie} other {# Kategorien}} ueber {2} vergleicht. Die vollstaendige Aufschluesselung folgt in der Datentabelle.</target>
       </segment>
     </unit>
     <unit id="aria.summary.no_series">
       <segment state="final">
-        <source>{0}: stacked bar chart.</source>
-        <target>{0}: gestapeltes Balkendiagramm.</target>
+        <source>{0}: stacked bar chart with {1, plural, one {# category} other {# categories}}. The full breakdown follows in the data table.</source>
+        <target>{0}: gestapeltes Balkendiagramm mit {1, plural, one {# Kategorie} other {# Kategorien}}. Die vollstaendige Aufschluesselung folgt in der Datentabelle.</target>
       </segment>
     </unit>
     <unit id="aria.fallback">

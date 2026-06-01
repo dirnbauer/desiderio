@@ -19,19 +19,23 @@ fields:
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
     rows: 2
   -
-    identifier: chart_data
-    type: Textarea
-    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:chart_data_json'
-    description: |
-      JSON array of categories. Each entry has a label and a segments array (one value per series, in series order).
-      Example: [{"label":"Q1","segments":[42,68,55]},{"label":"Q2","segments":[48,74,71]}]
-    rows: 8
-    required: true
-  -
     identifier: series_labels
     type: Text
     label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-stacked-bar/language/labels.xlf:field.series_labels'
     description: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-stacked-bar/language/labels.xlf:field.series_labels.description'
+    required: true
+  -
+    identifier: chart_data
+    type: Textarea
+    label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-stacked-bar/language/labels.xlf:field.chart_data'
+    description: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-stacked-bar/language/labels.xlf:field.chart_data.description'
+    rows: 8
+    required: true
+  -
+    identifier: unit
+    type: Text
+    label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-stacked-bar/language/labels.xlf:field.unit'
+    description: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-stacked-bar/language/labels.xlf:field.unit.description'
   -
     identifier: palette
     type: Select

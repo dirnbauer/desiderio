@@ -6,22 +6,53 @@
 <f:asset.css identifier="d-chart-stacked-bar" href="{cb:assetPath()}/frontend.css"/>
 
 <f:comment>
-  The bars and ticks are drawn into __plot by Resources/Public/Js/charts.js (it reads data-chart-json).
-  Everything outside __plot is server-rendered so the chart stays meaningful without JS and for assistive
-  technology: a visually-hidden summary, a real named legend, and a category/series breakdown list.
-  data-show-legend is forced to 0 so charts.js does not append its generic "S1, S2" legend on top of ours.
+  charts.js (initStackedBar) READS data-chart-json and draws the coloured stack + axis ticks into
+  .chart-stacked-bar__plot, wiping any static children. That plot is therefore decorative: it sits in a
+  role="img" wrapper with a concise aria-label + an aria-describedby summary, so assistive technology
+  announces the figure once and never reaches the injected SVG text.
+
+  Everything meaningful is server-rendered and survives with no JS:
+    - a real, named legend (series colour key) keyed to the same --chart-1..5 tokens the bars use,
+    - a visually-hidden (sr-only) data table carrying every category, every series value, the row
+      totals and the grand total.
+
+  The editor maintains one human-readable "Category | value | value | ..." block in chart_data; the
+  table reads those rows directly and data-chart-json is assembled from the SAME rows below, so the
+  picture and the table can never drift apart. data-show-legend is forced to 0 so charts.js does not
+  append its generic "S1, S2" legend on top of the named one.
 </f:comment>
 
 <f:variable name="palette">{data.palette -> f:or(alternative: 'default')}</f:variable>
-<f:variable name="seriesNames">{data.series_labels -> f:or(alternative: '') -> f:split(',')}</f:variable>
+<f:variable name="seriesNames" value="{data.series_labels -> f:or(alternative: '') -> f:split(',')}"/>
+<f:variable name="seriesSummary">{data.series_labels -> f:or(alternative: '') -> f:format.stripTags() -> f:format.trim()}</f:variable>
 <f:variable name="chartTitle">{f:if(condition: data.header, then: '{data.header}', else: '{f:translate(key: \'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-stacked-bar/language/labels.xlf:aria.fallback\')}')}</f:variable>
-<f:variable name="seriesSummary">{data.series_labels -> f:or(alternative: '') -> f:format.trim()}</f:variable>
-<f:variable name="chartAriaLabel"><f:if condition="{seriesSummary}"><f:then><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-stacked-bar/language/labels.xlf:aria.summary" arguments="{0: chartTitle, 1: seriesSummary}">{chartTitle}: stacked bar chart comparing {seriesSummary}.</f:translate></f:then><f:else><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-stacked-bar/language/labels.xlf:aria.summary.no_series" arguments="{0: chartTitle}">{chartTitle}: stacked bar chart.</f:translate></f:else></f:if></f:variable>
+<f:variable name="unit">{data.unit -> f:or(alternative: '') -> f:format.stripTags() -> f:format.trim()}</f:variable>
+<f:variable name="rows" value="{data.chart_data -> f:or(alternative: '') -> f:split('
+')}"/>
+
+<f:comment>Pass 1: count categories and total every value so the table can show row + grand totals.</f:comment>
+<f:variable name="categoryCount" value="{0}"/>
+<f:variable name="grandTotal" value="{0}"/>
+<f:for each="{rows}" as="row">
+    <f:variable name="cells" value="{row -> f:split('|')}"/>
+    <f:variable name="rowLabel">{cells.0 -> f:or(alternative: '') -> f:format.trim()}</f:variable>
+    <f:if condition="{rowLabel}">
+        <f:variable name="categoryCount" value="{categoryCount + 1}"/>
+        <f:for each="{seriesNames}" as="seriesName" iteration="seriesIter">
+            <f:variable name="grandTotal" value="{grandTotal + (cells.{seriesIter.cycle} -> f:or(alternative: '0') -> f:format.trim())}"/>
+        </f:for>
+    </f:if>
+</f:for>
+
+<f:comment>Pass 2: assemble the JSON charts.js reads from the same rows, so the drawing matches the table.</f:comment>
+<f:variable name="chartJson"><f:spaceless>[<f:for each="{rows}" as="row" iteration="rowIter"><f:variable name="jsonCells" value="{row -> f:split('|')}"/><f:variable name="jsonLabel">{jsonCells.0 -> f:or(alternative: '') -> f:format.stripTags() -> f:format.trim()}</f:variable><f:if condition="{jsonLabel}">{"label":"{jsonLabel}","segments":[<f:for each="{seriesNames}" as="seriesName" iteration="segIter">{jsonCells.{segIter.cycle} -> f:or(alternative: '0') -> f:format.trim()}<f:if condition="!{segIter.isLast}">,</f:if></f:for>]}<f:if condition="!{rowIter.isLast}">,</f:if></f:if></f:for>]</f:spaceless></f:variable>
+
+<f:variable name="chartAriaLabel"><f:if condition="{seriesSummary}"><f:then><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-stacked-bar/language/labels.xlf:aria.summary" arguments="{0: chartTitle, 1: categoryCount, 2: seriesSummary}">{chartTitle}: stacked bar chart comparing {categoryCount} categories across {seriesSummary}. The full breakdown follows in the data table.</f:translate></f:then><f:else><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-stacked-bar/language/labels.xlf:aria.summary.no_series" arguments="{0: chartTitle, 1: categoryCount}">{chartTitle}: stacked bar chart with {categoryCount} categories. The full breakdown follows in the data table.</f:translate></f:else></f:if></f:variable>
 
 <d:layout.section class="chart-stacked-bar-section">
     <d:layout.container>
         <figure class="chart-stacked-bar chart-stacked-bar--palette-{palette}"
-             data-chart-json="{data.chart_data -> f:format.htmlspecialchars()}"
+             data-chart-json="{chartJson -> f:format.htmlspecialchars()}"
              data-show-legend="0"
              data-palette="{palette}"
              data-chart-id="chart-stacked-bar-{data.uid}">
@@ -53,9 +84,62 @@
                     </ul>
                 </f:if>
 
-                <div class="chart-stacked-bar__plot" id="chart-stacked-bar-plot-{data.uid}" role="img" aria-label="{chartAriaLabel -> f:format.trim()}">
+                <div class="chart-stacked-bar__plot" id="chart-stacked-bar-plot-{data.uid}"
+                     role="img"
+                     aria-label="{chartAriaLabel -> f:format.trim()}"
+                     aria-describedby="chart-stacked-bar-desc-{data.uid}">
                     <p class="chart-stacked-bar__fallback" data-variant="muted">{chartAriaLabel -> f:format.trim()}</p>
                 </div>
+
+                <p id="chart-stacked-bar-desc-{data.uid}" class="sr-only">{chartAriaLabel -> f:format.trim()}</p>
+
+                <table class="chart-stacked-bar__table sr-only">
+                    <caption>{chartTitle}<f:if condition="{unit}"> &#8212; <f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-stacked-bar/language/labels.xlf:table.unit.caption" arguments="{0: unit}">values in {unit}</f:translate></f:if></caption>
+                    <thead>
+                        <tr>
+                            <th scope="col"><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-stacked-bar/language/labels.xlf:table.category"/></th>
+                            <f:for each="{seriesNames}" as="seriesName">
+                                <f:if condition="{seriesName -> f:format.trim()}">
+                                    <th scope="col">{seriesName -> f:format.trim()}<f:if condition="{unit}"> ({unit})</f:if></th>
+                                </f:if>
+                            </f:for>
+                            <th scope="col"><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-stacked-bar/language/labels.xlf:table.total"/><f:if condition="{unit}"> ({unit})</f:if></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <f:for each="{rows}" as="row">
+                            <f:variable name="bodyCells" value="{row -> f:split('|')}"/>
+                            <f:variable name="bodyLabel">{bodyCells.0 -> f:or(alternative: '') -> f:format.trim()}</f:variable>
+                            <f:if condition="{bodyLabel}">
+                                <f:variable name="rowTotal" value="{0}"/>
+                                <tr>
+                                    <th scope="row">{bodyLabel}</th>
+                                    <f:for each="{seriesNames}" as="seriesName" iteration="cellIter">
+                                        <f:if condition="{seriesName -> f:format.trim()}">
+                                            <f:variable name="cellValue">{bodyCells.{cellIter.cycle} -> f:or(alternative: '0') -> f:format.trim()}</f:variable>
+                                            <f:variable name="rowTotal" value="{rowTotal + cellValue}"/>
+                                            <td>{cellValue}<f:if condition="{unit}"> {unit}</f:if></td>
+                                        </f:if>
+                                    </f:for>
+                                    <td><f:format.number decimals="0">{rowTotal}</f:format.number><f:if condition="{unit}"> {unit}</f:if></td>
+                                </tr>
+                            </f:if>
+                        </f:for>
+                    </tbody>
+                    <f:if condition="{grandTotal} > 0">
+                        <tfoot>
+                            <tr>
+                                <th scope="row"><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-stacked-bar/language/labels.xlf:table.total"/></th>
+                                <f:for each="{seriesNames}" as="seriesName">
+                                    <f:if condition="{seriesName -> f:format.trim()}">
+                                        <td></td>
+                                    </f:if>
+                                </f:for>
+                                <td><f:format.number decimals="0">{grandTotal}</f:format.number><f:if condition="{unit}"> {unit}</f:if></td>
+                            </tr>
+                        </tfoot>
+                    </f:if>
+                </table>
             </div>
         </figure>
     </d:layout.container>

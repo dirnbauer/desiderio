@@ -1,8 +1,11 @@
 {
     "_type": "stats",
     "header": "New signups by channel",
-    "description": "Where last quarter's new accounts came from, ranked by volume. Organic and referral lead the mix.",
-    "chart_data": "[{\"label\":\"Organic\",\"value\":1840},{\"label\":\"Referral\",\"value\":1320},{\"label\":\"Paid\",\"value\":940},{\"label\":\"Social\",\"value\":610},{\"label\":\"Email\",\"value\":420}]",
+    "description": "Where last quarter's new accounts came from, ranked by volume. Organic search and referrals lead the mix.",
+    "bars": "Organic search | 1840\nReferral | 1320\nPaid ads | 940\nSocial | 610\nEmail | 420",
+    "unit": "new accounts",
+    "series_name": "New signups, Q1 2026",
+    "chart_data": "[{\"label\":\"Organic search\",\"value\":1840},{\"label\":\"Referral\",\"value\":1320},{\"label\":\"Paid ads\",\"value\":940},{\"label\":\"Social\",\"value\":610},{\"label\":\"Email\",\"value\":420}]",
     "orientation": "vertical",
     "color_variant": "primary",
     "show_grid": 1

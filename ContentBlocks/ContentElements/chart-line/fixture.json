@@ -1,6 +1,9 @@
 {
     "header": "Monthly active workspaces",
-    "description": "Activated workspaces across all plans, January to June 2026.",
+    "description": "Workspaces with at least one weekly active member, across all plans, January to June 2026.",
+    "series_label": "Active workspaces",
+    "unit": "workspaces",
+    "data_points": "Jan | 1280\nFeb | 1640\nMar | 2110\nApr | 2580\nMay | 3240\nJun | 4015",
     "chart_data": "[{\"label\":\"Jan\",\"value\":1280},{\"label\":\"Feb\",\"value\":1640},{\"label\":\"Mar\",\"value\":2110},{\"label\":\"Apr\",\"value\":2580},{\"label\":\"May\",\"value\":3240},{\"label\":\"Jun\",\"value\":4015}]",
     "color_variant": "primary",
     "show_dots": 1,

@@ -1,7 +1,7 @@
 name: desiderio/chart-area
 typeName: desiderio_chartarea
 title: 'Area Chart'
-description: 'Use when the area chart should show trends or rates of change over time.'
+description: 'Use when the area chart should show one metric trending over an ordered time axis.'
 group: data
 prefixFields: false
 basics:
@@ -19,16 +19,35 @@ fields:
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
     rows: 2
   -
+    identifier: points
+    type: Textarea
+    label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-area/language/labels.xlf:field.points'
+    description: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-area/language/labels.xlf:field.points.description'
+    rows: 8
+    required: true
+  -
+    identifier: unit
+    type: Text
+    label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-area/language/labels.xlf:field.unit'
+    description: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-area/language/labels.xlf:field.unit.description'
+  -
+    identifier: series_name
+    type: Text
+    label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-area/language/labels.xlf:field.series_name'
+    description: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-area/language/labels.xlf:field.series_name.description'
+  -
     identifier: chart_data
     type: Textarea
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:chart_data_json'
+    description: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-area/language/labels.xlf:field.chart_data.description'
     rows: 6
     required: true
   -
     identifier: color_variant
     type: Select
     renderType: selectSingle
-    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:color_field'
+    label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-area/language/labels.xlf:field.color_variant'
+    description: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-area/language/labels.xlf:field.color_variant.description'
     items:
       -
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.primary'
@@ -44,15 +63,16 @@ fields:
     identifier: fill_opacity
     type: Select
     renderType: selectSingle
-    label: 'Fill Opacity'
+    label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-area/language/labels.xlf:field.fill_opacity'
+    description: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-area/language/labels.xlf:field.fill_opacity.description'
     items:
       -
-        label: Light
+        label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-area/language/labels.xlf:fill_opacity.light'
         value: light
       -
-        label: Medium
+        label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-area/language/labels.xlf:fill_opacity.medium'
         value: medium
       -
-        label: Strong
+        label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-area/language/labels.xlf:fill_opacity.strong'
         value: strong
     default: medium

@@ -19,10 +19,27 @@ fields:
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
     rows: 2
   -
+    identifier: col_labels
+    type: Text
+    label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-heatmap/language/labels.xlf:field.col_labels'
+    description: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-heatmap/language/labels.xlf:field.col_labels.description'
+    required: true
+  -
+    identifier: series
+    type: Textarea
+    label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-heatmap/language/labels.xlf:field.series'
+    description: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-heatmap/language/labels.xlf:field.series.description'
+    rows: 6
+    required: true
+  -
+    identifier: unit
+    type: Text
+    label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-heatmap/language/labels.xlf:field.unit'
+    description: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-heatmap/language/labels.xlf:field.unit.description'
+  -
     identifier: chart_data
     type: Textarea
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:chart_data_json'
-    description: |
-      JSON: {"rows":["Mon","Tue"],"cols":["A","B","C"],"values":[[1,2,3],[4,5,6]]}
+    description: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-heatmap/language/labels.xlf:field.chart_data.description'
     rows: 8
     required: true

@@ -1,14 +1,25 @@
 {
-    "header": "Shipping cadence",
-    "subheadline": "Production deploys per week across all squads, last six weeks.",
-    "badge_text": "+18% vs last month",
-    "chart_data": "[{\"label\":\"W1\",\"value\":34},{\"label\":\"W2\",\"value\":41},{\"label\":\"W3\",\"value\":38},{\"label\":\"W4\",\"value\":52},{\"label\":\"W5\",\"value\":47},{\"label\":\"W6\",\"value\":61}]",
-    "left_stat_label": "Deploys this week",
-    "left_stat_value": "61",
-    "left_stat_detail": "Highest weekly total this quarter.",
-    "right_stat_label": "Median lead time",
-    "right_stat_value": "2.4h",
-    "right_stat_detail": "From merge to production, down from 5.1h.",
-    "primary_button_text": "View pipeline",
-    "primary_button_link": "https://ui.shadcn.com/docs"
+    "header": "Weekly active workspaces",
+    "subheadline": "Teams that ran at least one automation in the Desiderio cloud, by ISO week.",
+    "metric_label": "Active workspaces",
+    "unit": "workspaces",
+    "badge_text": "+18.4% vs. previous 8 weeks",
+    "points": [
+        { "point_label": "W31", "point_value": 1280 },
+        { "point_label": "W32", "point_value": 1344 },
+        { "point_label": "W33", "point_value": 1298 },
+        { "point_label": "W34", "point_value": 1487 },
+        { "point_label": "W35", "point_value": 1562 },
+        { "point_label": "W36", "point_value": 1503 },
+        { "point_label": "W37", "point_value": 1689 },
+        { "point_label": "W38", "point_value": 1814 }
+    ],
+    "left_stat_label": "Active this week",
+    "left_stat_value": "1,814",
+    "left_stat_detail": "Highest weekly count this quarter, up from 1,280 eight weeks ago.",
+    "right_stat_label": "Avg. weekly growth",
+    "right_stat_value": "+4.2%",
+    "right_stat_detail": "Compounded week over week across the last eight ISO weeks.",
+    "primary_button_text": "Open usage dashboard",
+    "primary_button_link": "t3://page?uid=505"
 }

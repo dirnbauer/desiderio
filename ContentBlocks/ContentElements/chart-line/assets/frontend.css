@@ -1,12 +1,49 @@
-.chart-line__card {
-    border: 1px solid var(--border); border-radius: var(--radius);
-    background: var(--card); overflow: hidden;
+.chart-line {
+    margin: 0;
 }
-.chart-line__header { padding: var(--d-spacing-lg) var(--d-spacing-lg) 0; }
-.chart-line__title { font-size: var(--d-text-lg); font-weight: 600; }
-.chart-line__description { font-size: var(--d-text-sm); color: var(--muted-foreground); margin-block-start: var(--d-spacing-xs); }
-.chart-line__content { padding: var(--d-spacing-lg); }
-.chart-line__canvas { width: 100%; height: 300px; }
-.chart-line--primary { --chart-color: var(--primary); }
-.chart-line--blue { --chart-color: var(--d-info); }
-.chart-line--green { --chart-color: var(--d-success); }
+.chart-line__card {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--card);
+    color: var(--card-foreground);
+    overflow: hidden;
+}
+.chart-line__header {
+    padding: var(--d-spacing-lg) var(--d-spacing-lg) 0;
+}
+.chart-line__title {
+    font-size: var(--d-text-lg);
+    font-weight: 600;
+    line-height: 1.3;
+}
+.chart-line__description {
+    font-size: var(--d-text-sm);
+    color: var(--muted-foreground);
+    margin-block-start: var(--d-spacing-xs);
+}
+.chart-line__content {
+    position: relative;
+    padding: var(--d-spacing-lg);
+}
+.chart-line__canvas {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    aspect-ratio: 64 / 30;
+    max-height: 320px;
+    color: var(--muted-foreground);
+}
+.chart-line__fallback {
+    margin: 0;
+    font-size: var(--d-text-sm);
+    color: var(--muted-foreground);
+}
+.chart-line[data-desiderio-chart-ready="1"] .chart-line__fallback {
+    display: none;
+}
+
+/* Single-series stroke colour, sourced from the shadcn chart palette only. */
+.chart-line--primary { --chart-color: var(--chart-1); }
+.chart-line--blue { --chart-color: var(--chart-2); }
+.chart-line--green { --chart-color: var(--chart-3); }

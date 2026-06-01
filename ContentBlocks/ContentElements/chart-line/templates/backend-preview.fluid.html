@@ -27,6 +27,18 @@
                 <span class="d-ce-preview__value">{data.description}</span>
             </div>
         </f:if>
+        <f:if condition="{data.series_label}">
+            <div class="d-ce-preview__field">
+                <span class="d-ce-preview__label">Series</span>
+                <span class="d-ce-preview__value">{data.series_label}<f:if condition="{data.unit}"> ({data.unit})</f:if></span>
+            </div>
+        </f:if>
+        <f:if condition="{data.data_points}">
+            <div class="d-ce-preview__field">
+                <span class="d-ce-preview__label">Data Points</span>
+                <span class="d-ce-preview__value">{data.data_points}</span>
+            </div>
+        </f:if>
         <f:if condition="{data.chart_data}">
             <div class="d-ce-preview__field">
                 <span class="d-ce-preview__label">Chart Data</span>

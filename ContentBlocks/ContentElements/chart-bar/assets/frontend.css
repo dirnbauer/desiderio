@@ -1,13 +1,105 @@
-.chart-bar__card {
-    border: 1px solid var(--border); border-radius: var(--radius);
-    background: var(--card); color: var(--card-foreground);
-    overflow: hidden; box-shadow: var(--d-shadow-sm);
+.chart-bar {
+    display: block;
+    margin: 0;
+    /* One colour token feeds both the bars (charts.js) and the legend swatch; the
+       colour choice below remaps it. Only --chart-N tokens are ever used. */
+    --chart-color: var(--chart-1);
 }
-.chart-bar__header { padding: var(--d-spacing-lg) var(--d-spacing-lg) 0; }
-.chart-bar__title { font-size: var(--d-text-lg); font-weight: 600; }
-.chart-bar__description { font-size: var(--d-text-sm); color: var(--muted-foreground); margin-block-start: var(--d-spacing-xs); }
-.chart-bar__content { padding: var(--d-spacing-lg); }
-.chart-bar__canvas { width: 100%; height: 300px; color: var(--muted-foreground); overflow: visible; }
-.chart-bar--primary { --chart-color: var(--primary); }
-.chart-bar--blue { --chart-color: var(--d-info); }
-.chart-bar--green { --chart-color: var(--d-success); }
+.chart-bar__card {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--card);
+    color: var(--card-foreground);
+    box-shadow: var(--d-shadow-sm);
+    overflow: hidden;
+}
+.chart-bar__header {
+    padding: var(--d-spacing-lg) var(--d-spacing-lg) 0;
+}
+.chart-bar__title {
+    font-size: var(--d-text-lg);
+    font-weight: 600;
+    line-height: 1.3;
+}
+.chart-bar__description {
+    font-size: var(--d-text-sm);
+    color: var(--muted-foreground);
+    margin-block-start: var(--d-spacing-xs);
+    max-width: 60ch;
+}
+.chart-bar__content {
+    padding: var(--d-spacing-lg);
+}
+
+/* charts.js injects a viewBox'd <svg>; we own the responsive box so it scales down
+   and never overflows the card at narrow widths. */
+.chart-bar__figure {
+    width: 100%;
+    min-width: 0;
+}
+.chart-bar__canvas {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    aspect-ratio: 64 / 30;
+    color: var(--muted-foreground);
+    overflow: visible;
+}
+
+/* Server-rendered colour key: real labels + values, keyed to the same --chart-N tokens
+   the bars are painted with. Wraps onto multiple rows so it never overflows. */
+.chart-bar__legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--d-spacing-xs) var(--d-spacing-md);
+    margin: var(--d-spacing-md) 0 0;
+    padding: 0;
+    list-style: none;
+    min-width: 0;
+    font-size: var(--d-text-sm);
+}
+.chart-bar__legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 0;
+}
+.chart-bar__legend-swatch {
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 3px;
+    flex: none;
+    /* Matches the single bar colour charts.js paints; remapped by the colour choice below. */
+    background: var(--chart-color, var(--chart-1));
+}
+.chart-bar__legend-label {
+    color: var(--foreground);
+    font-weight: 500;
+    overflow-wrap: anywhere;
+}
+.chart-bar__legend-value {
+    padding-inline-start: var(--d-spacing-xs);
+    color: var(--muted-foreground);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+
+/* The colour choice remaps the single chart token that both the bars (charts.js reads
+   --chart-color) and the legend swatch inherit, so one editor choice re-skins the whole
+   chart. Only --chart-N tokens are ever referenced. */
+.chart-bar--primary { --chart-color: var(--chart-1); }
+.chart-bar--blue { --chart-color: var(--chart-2); }
+.chart-bar--green { --chart-color: var(--chart-3); }
+
+@media (max-width: 640px) {
+    .chart-bar__header {
+        padding-inline: var(--d-spacing-md);
+    }
+    .chart-bar__content {
+        padding: var(--d-spacing-md);
+    }
+    .chart-bar__canvas {
+        aspect-ratio: 4 / 3;
+    }
+}

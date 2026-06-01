@@ -5,15 +5,68 @@
 
 <f:asset.css identifier="d-chart-area" href="{cb:assetPath()}/frontend.css"/>
 
-<f:variable name="chartLabel">{f:if(condition: data.header, then: '{data.header}', else: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:chart.aria_fallback\')}')}</f:variable>
-<f:comment>Map the editor opacity choice (light/medium/strong) onto the keys charts.js expects (low/medium/high).</f:comment>
+<f:comment>
+  The filled trend line is drawn into .chart-area__canvas by Resources/Public/Js/charts.js (it reads
+  data-chart-data and data-fill-opacity). That SVG is decorative (aria-hidden): charts.js clears it
+  before drawing, so any markup placed inside is lost and it carries no accessible name. Everything
+  that conveys the data is server-rendered and stays meaningful without JS and for assistive tech:
+    - a role="img" figure with a concise aria-label + an aria-describedby summary,
+    - a visually-hidden (sr-only) data table carrying every period, its value, the unit and the net
+      change across the range.
+  The editor keeps one human-readable "Period | Value" list (points); chart_data holds the matching
+  JSON the canvas reads, so the picture and the table can never drift apart.
+</f:comment>
+
+<f:variable name="colorVariant">{data.color_variant -> f:or(alternative: 'primary')}</f:variable>
+<f:variable name="unit">{data.unit -> f:or(alternative: '') -> f:format.stripTags() -> f:format.trim()}</f:variable>
+<f:variable name="seriesName">{data.series_name -> f:or(alternative: '') -> f:format.stripTags() -> f:format.trim()}</f:variable>
 <f:variable name="fillOpacityKey" value="medium"/>
 <f:if condition="{data.fill_opacity} == 'light'"><f:variable name="fillOpacityKey" value="low"/></f:if>
 <f:if condition="{data.fill_opacity} == 'strong'"><f:variable name="fillOpacityKey" value="high"/></f:if>
+<f:variable name="rows" value="{data.points -> f:or(alternative: '') -> f:split('
+')}"/>
+<f:variable name="chartTitle">{f:if(condition: data.header, then: '{data.header}', else: '{f:translate(key: \'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-area/language/labels.xlf:aria.fallback\')}')}</f:variable>
+
+<f:comment>Pass 1: walk the points to find count, first value, latest value and the peak.</f:comment>
+<f:variable name="pointCount" value="{0}"/>
+<f:variable name="firstValue" value="{0}"/>
+<f:variable name="firstLabel" value=""/>
+<f:variable name="lastValue" value="{0}"/>
+<f:variable name="lastLabel" value=""/>
+<f:variable name="peakValue" value="{0}"/>
+<f:variable name="peakLabel" value=""/>
+<f:for each="{rows}" as="row">
+    <f:variable name="parts" value="{row -> f:split('|')}"/>
+    <f:variable name="rowLabel">{parts.0 -> f:or(alternative: '') -> f:format.trim()}</f:variable>
+    <f:variable name="rowValue">{parts.1 -> f:or(alternative: '0') -> f:format.trim()}</f:variable>
+    <f:if condition="{rowLabel}">
+        <f:if condition="{pointCount} == 0">
+            <f:variable name="firstValue" value="{rowValue}"/>
+            <f:variable name="firstLabel" value="{rowLabel}"/>
+            <f:variable name="peakValue" value="{rowValue}"/>
+            <f:variable name="peakLabel" value="{rowLabel}"/>
+        </f:if>
+        <f:variable name="lastValue" value="{rowValue}"/>
+        <f:variable name="lastLabel" value="{rowLabel}"/>
+        <f:if condition="{rowValue} > {peakValue}">
+            <f:variable name="peakValue" value="{rowValue}"/>
+            <f:variable name="peakLabel" value="{rowLabel}"/>
+        </f:if>
+        <f:variable name="pointCount" value="{pointCount + 1}"/>
+    </f:if>
+</f:for>
+<f:variable name="netChange" value="{lastValue - firstValue}"/>
+<f:variable name="trendKey">flat</f:variable>
+<f:if condition="{netChange} > 0"><f:variable name="trendKey">up</f:variable></f:if>
+<f:if condition="{netChange} < 0"><f:variable name="trendKey">down</f:variable></f:if>
+
+<f:variable name="measuringClause"><f:if condition="{seriesName}"><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-area/language/labels.xlf:aria.summary.measuring" arguments="{0: seriesName}"></f:translate></f:if></f:variable>
+<f:variable name="chartAriaLabel"><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-area/language/labels.xlf:aria.summary" arguments="{0: chartTitle, 1: pointCount, 2: firstLabel, 3: lastLabel, 4: measuringClause}">{chartTitle}: area chart trending across {pointCount} periods from {firstLabel} to {lastLabel}. The full series follows in the data table.</f:translate></f:variable>
+<f:variable name="valueColumnLabel"><f:if condition="{seriesName}"><f:then>{seriesName}</f:then><f:else><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-area/language/labels.xlf:table.value"/></f:else></f:if><f:if condition="{unit}"> ({unit})</f:if></f:variable>
 
 <d:layout.section class="chart-area-section">
     <d:layout.container>
-        <figure class="chart-area chart-area--{data.color_variant -> f:or(alternative: 'primary')}"
+        <figure class="chart-area chart-area--{colorVariant}"
              data-chart-data="{data.chart_data -> f:format.htmlspecialchars()}"
              data-fill-opacity="{fillOpacityKey}"
              data-chart-id="chart-area-{data.uid}">
@@ -21,16 +74,91 @@
                 <f:if condition="{data.header} || {data.description}">
                     <figcaption class="chart-area__header">
                         <f:if condition="{data.header}">
-                            <h3 class="chart-area__title">{data -> f:render.text(field: 'header')}</h3>
+                            <h3 class="chart-area__title" data-variant="large">{data -> f:render.text(field: 'header')}</h3>
                         </f:if>
                         <f:if condition="{data.description}">
-                            <p class="chart-area__description">{data -> f:render.text(field: 'description')}</p>
+                            <p class="chart-area__description" data-variant="muted">{data -> f:render.text(field: 'description')}</p>
                         </f:if>
                     </figcaption>
                 </f:if>
+
                 <div class="chart-area__content">
-                    <svg class="chart-area__canvas" id="chart-area-{data.uid}" role="img" aria-label="{chartLabel}"></svg>
+                    <div class="chart-area__figure" role="img"
+                         aria-label="{chartAriaLabel -> f:format.trim()}"
+                         aria-describedby="chart-area-desc-{data.uid}">
+                        <svg class="chart-area__canvas" id="chart-area-{data.uid}" aria-hidden="true" focusable="false"></svg>
+                    </div>
+
+                    <f:if condition="{pointCount} > 0">
+                        <dl class="chart-area__stats">
+                            <div class="chart-area__stat">
+                                <dt class="chart-area__stat-label">{firstLabel}</dt>
+                                <dd class="chart-area__stat-value">{firstValue}<f:if condition="{unit}"> {unit}</f:if></dd>
+                            </div>
+                            <div class="chart-area__stat">
+                                <dt class="chart-area__stat-label">{lastLabel}</dt>
+                                <dd class="chart-area__stat-value">{lastValue}<f:if condition="{unit}"> {unit}</f:if></dd>
+                            </div>
+                            <div class="chart-area__stat">
+                                <dt class="chart-area__stat-label"><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-area/language/labels.xlf:stat.peak"/></dt>
+                                <dd class="chart-area__stat-value">{peakValue}<f:if condition="{unit}"> {unit}</f:if> <span class="chart-area__stat-meta">{peakLabel}</span></dd>
+                            </div>
+                            <div class="chart-area__stat chart-area__stat--trend chart-area__stat--{trendKey}">
+                                <dt class="chart-area__stat-label"><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-area/language/labels.xlf:stat.net_change"/></dt>
+                                <dd class="chart-area__stat-value">
+                                    <span class="chart-area__trend-icon" aria-hidden="true">
+                                        <f:switch expression="{trendKey}">
+                                            <f:case value="up"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6-6 6 6"/><path d="M12 3v18"/></svg></f:case>
+                                            <f:case value="down"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21V3"/><path d="m6 15 6 6 6-6"/></svg></f:case>
+                                            <f:defaultCase><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/></svg></f:defaultCase>
+                                        </f:switch>
+                                    </span>
+                                    <span class="sr-only">
+                                        <f:switch expression="{trendKey}">
+                                            <f:case value="up"><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-area/language/labels.xlf:trend.up"/></f:case>
+                                            <f:case value="down"><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-area/language/labels.xlf:trend.down"/></f:case>
+                                            <f:defaultCase><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-area/language/labels.xlf:trend.flat"/></f:defaultCase>
+                                        </f:switch>
+                                    </span>
+                                    <f:if condition="{netChange} > 0">+</f:if>{netChange}<f:if condition="{unit}"> {unit}</f:if>
+                                </dd>
+                            </div>
+                        </dl>
+                    </f:if>
                 </div>
+
+                <p id="chart-area-desc-{data.uid}" class="sr-only">{chartAriaLabel -> f:format.trim()}</p>
+
+                <table class="chart-area__table sr-only">
+                    <caption>{chartTitle}</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col"><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-area/language/labels.xlf:table.period"/></th>
+                            <th scope="col">{valueColumnLabel -> f:format.trim()}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <f:for each="{rows}" as="row">
+                            <f:variable name="cellParts" value="{row -> f:split('|')}"/>
+                            <f:variable name="cellLabel">{cellParts.0 -> f:or(alternative: '') -> f:format.trim()}</f:variable>
+                            <f:variable name="cellValue">{cellParts.1 -> f:or(alternative: '') -> f:format.trim()}</f:variable>
+                            <f:if condition="{cellLabel}">
+                                <tr>
+                                    <th scope="row">{cellLabel}</th>
+                                    <td>{cellValue}<f:if condition="{unit}"> {unit}</f:if></td>
+                                </tr>
+                            </f:if>
+                        </f:for>
+                    </tbody>
+                    <f:if condition="{pointCount} > 1">
+                        <tfoot>
+                            <tr>
+                                <th scope="row"><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-area/language/labels.xlf:table.net_change"/></th>
+                                <td><f:if condition="{netChange} > 0">+</f:if>{netChange}<f:if condition="{unit}"> {unit}</f:if></td>
+                            </tr>
+                        </tfoot>
+                    </f:if>
+                </table>
             </div>
         </figure>
     </d:layout.container>

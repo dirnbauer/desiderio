@@ -1,26 +1,120 @@
 .chart-donut__card {
-    border: 1px solid var(--border); border-radius: var(--radius);
-    background: var(--card); overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--card);
+    color: var(--card-foreground, var(--foreground));
+    padding: var(--d-spacing-lg);
+    overflow: hidden;
 }
-.chart-donut__header { padding: var(--d-spacing-lg) var(--d-spacing-lg) 0; }
-.chart-donut__title { font-size: var(--d-text-lg); font-weight: 600; }
-.chart-donut__description { font-size: var(--d-text-sm); color: var(--muted-foreground); margin-block-start: var(--d-spacing-xs); }
-.chart-donut__content { padding: var(--d-spacing-lg); display: flex; justify-content: center; }
+.chart-donut__header {
+    margin-block-end: var(--d-spacing-md);
+}
+.chart-donut__title {
+    color: var(--card-foreground, var(--foreground));
+}
+.chart-donut__description {
+    color: var(--muted-foreground);
+    margin-block-start: var(--d-spacing-xs);
+}
+
+.chart-donut__content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: var(--d-spacing-lg);
+}
+
 .chart-donut__canvas {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
-    min-height: 300px;
+    flex: 1 1 14rem;
+    min-width: 0;
+    max-width: 20rem;
+    min-height: 16rem;
 }
 .chart-donut__svg {
-    width: min(100%, 320px);
+    display: block;
+    width: 100%;
+    max-width: 20rem;
     height: auto;
 }
-.chart-donut__center {
-    position: absolute; inset: 0; display: flex; flex-direction: column;
-    align-items: center; justify-content: center; text-align: center;
+
+.chart-donut__center-fallback {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
     pointer-events: none;
 }
-.chart-donut__center-value { font-size: var(--d-text-2xl); font-weight: 700; }
-.chart-donut__center-label { font-size: var(--d-text-sm); color: var(--muted-foreground); }
+.chart-donut__center-value {
+    font-size: var(--d-text-2xl);
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--foreground);
+}
+.chart-donut__center-label {
+    font-size: var(--d-text-sm);
+    color: var(--muted-foreground);
+}
+
+.chart-donut__legend {
+    flex: 1 1 12rem;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--d-spacing-sm);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.chart-donut__legend-item {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: baseline;
+    column-gap: var(--d-spacing-sm);
+    font-size: var(--d-text-sm);
+}
+.chart-donut__swatch {
+    inline-size: 0.75rem;
+    block-size: 0.75rem;
+    border-radius: var(--d-radius-sm, 0.25rem);
+    align-self: center;
+    background: var(--muted);
+}
+.chart-donut__swatch--1 { background: var(--chart-1); }
+.chart-donut__swatch--2 { background: var(--chart-2); }
+.chart-donut__swatch--3 { background: var(--chart-3); }
+.chart-donut__swatch--4 { background: var(--chart-4); }
+.chart-donut__swatch--5 { background: var(--chart-5); }
+.chart-donut__legend-label {
+    color: var(--foreground);
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+.chart-donut__legend-value {
+    color: var(--muted-foreground);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+
+@media (max-width: 30rem) {
+    .chart-donut__card {
+        padding: var(--d-spacing-md);
+    }
+    .chart-donut__content {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .chart-donut__canvas {
+        margin-inline: auto;
+    }
+    .chart-donut__legend {
+        flex-basis: auto;
+    }
+}

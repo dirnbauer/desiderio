@@ -1,7 +1,11 @@
 {
+    "_type": "stats",
     "header": "Weekly active users",
-    "description": "Rolling 12-week trend across all workspaces.",
-    "chart_data": "[42100,43800,43200,45600,47900,47100,49400,51200,50800,53600,55900,58300]",
-    "trend_badge": "+12.4% vs last quarter",
+    "description": "Trailing 12 months of weekly active users across all workspaces, ending May 2026.",
+    "series_label": "Weekly active users",
+    "unit": "users",
+    "data_points": "Jun | 42100\nJul | 43800\nAug | 43200\nSep | 45600\nOct | 47900\nNov | 47100\nDec | 49400\nJan | 51200\nFeb | 50800\nMar | 53600\nApr | 55900\nMay | 58300",
+    "chart_data": "[{\"label\":\"Jun\",\"value\":42100},{\"label\":\"Jul\",\"value\":43800},{\"label\":\"Aug\",\"value\":43200},{\"label\":\"Sep\",\"value\":45600},{\"label\":\"Oct\",\"value\":47900},{\"label\":\"Nov\",\"value\":47100},{\"label\":\"Dec\",\"value\":49400},{\"label\":\"Jan\",\"value\":51200},{\"label\":\"Feb\",\"value\":50800},{\"label\":\"Mar\",\"value\":53600},{\"label\":\"Apr\",\"value\":55900},{\"label\":\"May\",\"value\":58300}]",
+    "trend_badge": "+10.8% QoQ",
     "color_variant": "green"
 }

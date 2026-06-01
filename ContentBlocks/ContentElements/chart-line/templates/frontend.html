@@ -5,6 +5,42 @@
 
 <f:asset.css identifier="d-chart-line" href="{cb:assetPath()}/frontend.css"/>
 
+<f:comment>
+  The line itself is drawn into .chart-line__canvas by Resources/Public/Js/charts.js (it reads
+  data-chart-data). That SVG is decorative (aria-hidden): charts.js clears it before drawing, so any
+  markup inside is lost and it carries no accessible name. Everything that conveys the data is
+  server-rendered and stays meaningful without JS and for assistive technology:
+    - a role="img" figure with a concise aria-label + an aria-describedby summary,
+    - a visually-hidden (sr-only) data table carrying every period, value and unit.
+  The editor maintains one human-readable "Label | value" list (data_points) for the summary and
+  table; chart_data holds the matching JSON the line is drawn from.
+</f:comment>
+
+<f:variable name="unit">{data.unit -> f:or(alternative: '') -> f:format.trim()}</f:variable>
+<f:variable name="seriesLabel">{f:if(condition: '{data.series_label -> f:format.trim()}', then: '{data.series_label -> f:format.trim()}', else: '{f:translate(key: \'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-line/language/labels.xlf:aria.fallback\')}')}</f:variable>
+<f:variable name="chartTitle">{f:if(condition: data.header, then: '{data.header}', else: '{seriesLabel}')}</f:variable>
+<f:variable name="pointRows">{data.data_points -> f:or(alternative: '') -> f:split('
+')}</f:variable>
+
+<f:comment>Count valid points and remember the first/last period so the summary states the span.</f:comment>
+<f:variable name="pointCount" value="{0}"/>
+<f:variable name="firstLabel" value=""/>
+<f:variable name="lastLabel" value=""/>
+<f:for each="{pointRows}" as="pointRow">
+    <f:variable name="rowParts">{pointRow -> f:split('|', 2)}</f:variable>
+    <f:variable name="rowLabel">{rowParts.0 -> f:or(alternative: '') -> f:format.trim()}</f:variable>
+    <f:if condition="{rowLabel}">
+        <f:if condition="{pointCount} == 0">
+            <f:variable name="firstLabel" value="{rowLabel}"/>
+        </f:if>
+        <f:variable name="lastLabel" value="{rowLabel}"/>
+        <f:variable name="pointCount" value="{pointCount + 1}"/>
+    </f:if>
+</f:for>
+
+<f:variable name="chartAriaLabel"><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-line/language/labels.xlf:aria.label" arguments="{title: chartTitle, series: seriesLabel}">{chartTitle}: line chart of {seriesLabel}</f:translate></f:variable>
+<f:variable name="chartAriaSummary"><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-line/language/labels.xlf:aria.summary" arguments="{title: chartTitle, series: seriesLabel, count: pointCount, first: firstLabel, last: lastLabel}">{chartTitle}: {seriesLabel} trend across {pointCount} points, from {firstLabel} to {lastLabel}.</f:translate></f:variable>
+
 <d:layout.section class="chart-line-section">
     <d:layout.container>
         <figure class="chart-line chart-line--{data.color_variant -> f:or(alternative: 'primary')}"
@@ -14,19 +50,47 @@
              data-chart-id="chart-line-{data.uid}">
             <div class="chart-line__card">
                 <f:if condition="{data.header} || {data.description}">
-                    <header class="chart-line__header">
+                    <figcaption class="chart-line__header">
                         <f:if condition="{data.header}">
-                            <h3 class="chart-line__title">{data -> f:render.text(field: 'header')}</h3>
+                            <h3 class="chart-line__title" data-variant="large">{data -> f:render.text(field: 'header')}</h3>
                         </f:if>
                         <f:if condition="{data.description}">
-                            <p class="chart-line__description">{data -> f:render.text(field: 'description')}</p>
+                            <p class="chart-line__description" data-variant="muted">{data -> f:render.text(field: 'description')}</p>
                         </f:if>
-                    </header>
+                    </figcaption>
                 </f:if>
-                <div class="chart-line__content">
-                    <svg class="chart-line__canvas" id="chart-line-{data.uid}" role="img"
-                         aria-label="{f:if(condition: data.header, then: '{data.header}', else: 'Line chart')}{f:if(condition: data.description, then: '. {data.description}')}"></svg>
+
+                <div class="chart-line__content" role="img"
+                     aria-label="{chartAriaLabel -> f:format.trim()}"
+                     aria-describedby="chart-line-desc-{data.uid}">
+                    <svg class="chart-line__canvas" id="chart-line-{data.uid}" aria-hidden="true"></svg>
+                    <p class="chart-line__fallback" data-variant="muted" aria-hidden="true">{chartAriaSummary -> f:format.trim()}</p>
                 </div>
+
+                <p id="chart-line-desc-{data.uid}" class="sr-only">{chartAriaSummary -> f:format.trim()}</p>
+
+                <table class="chart-line__table sr-only">
+                    <caption>{chartTitle}<f:if condition="{unit}"> &#8211; {f:translate(key: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-line/language/labels.xlf:table.unit_caption', arguments: '{unit: unit}')}</f:if></caption>
+                    <thead>
+                        <tr>
+                            <th scope="col"><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-line/language/labels.xlf:table.label_header"/></th>
+                            <th scope="col">{seriesLabel}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <f:for each="{pointRows}" as="pointRow">
+                            <f:variable name="rowParts">{pointRow -> f:split('|', 2)}</f:variable>
+                            <f:variable name="rowLabel">{rowParts.0 -> f:or(alternative: '') -> f:format.trim()}</f:variable>
+                            <f:variable name="rowValue">{rowParts.1 -> f:or(alternative: '') -> f:format.trim()}</f:variable>
+                            <f:if condition="{rowLabel}">
+                                <tr>
+                                    <th scope="row">{rowLabel}</th>
+                                    <td>{rowValue}<f:if condition="{unit}"> {unit}</f:if></td>
+                                </tr>
+                            </f:if>
+                        </f:for>
+                    </tbody>
+                </table>
             </div>
         </figure>
     </d:layout.container>

@@ -6,7 +6,10 @@
 <f:asset.css identifier="d-chart" href="{cb:assetPath()}/frontend.css"/>
 
 <f:variable name="chartId" value="chart-{data.uid}"/>
-<f:variable name="chartLabel">{f:if(condition: data.header, then: '{data.header}', else: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:chart.aria_fallback\')}')}</f:variable>
+<f:variable name="figureLabel">{f:if(condition: data.header, then: '{data.header}', else: '{f:translate(key: \'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart/language/labels.xlf:chart.aria_fallback\')}')}</f:variable>
+<f:variable name="hasTable">{f:if(condition: data.data_points, then: '1', else: '')}</f:variable>
+<f:variable name="describedBy">{f:if(condition: data.data_summary, then: '{chartId}-summary ')}{f:if(condition: hasTable, then: '{chartId}-table')}</f:variable>
+<f:variable name="valueHeading">{f:if(condition: data.series_name, then: '{data.series_name}', else: '{f:translate(key: \'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart/language/labels.xlf:chart.table.value_default\')}')}{f:if(condition: data.value_unit, then: ' ({data.value_unit})')}</f:variable>
 
 <d:layout.section class="chart-section">
     <d:layout.container>
@@ -32,19 +35,45 @@
                     </figcaption>
                 </f:if>
 
+                <f:if condition="{data.data_summary}">
+                    <p class="chart__summary" id="{chartId}-summary">{data -> f:render.text(field: 'data_summary')}</p>
+                </f:if>
+
                 <div class="chart__body chart__body--legend-{data.legend_position -> f:or(alternative: 'bottom')}">
                     <div class="chart__content">
-                        <svg class="chart__canvas chart__canvas--{data.chart_height -> f:or(alternative: 'medium')}"
-                             id="{chartId}"
-                             role="img"
-                             aria-label="{chartLabel}"></svg>
-                        <div class="chart__tooltip" hidden>
+                        <div class="chart__figure" role="img" aria-label="{figureLabel}" aria-describedby="{describedBy -> f:format.trim()}">
+                            <svg class="chart__canvas chart__canvas--{data.chart_height -> f:or(alternative: 'medium')}"
+                                 id="{chartId}"
+                                 aria-hidden="true"
+                                 focusable="false"></svg>
+                        </div>
+                        <div class="chart__tooltip" aria-hidden="true" hidden>
                             <div class="chart__tooltip-label"></div>
                             <div class="chart__tooltip-value"></div>
                         </div>
                     </div>
                     <div class="chart__legend" aria-hidden="true"></div>
                 </div>
+
+                <f:if condition="{hasTable}">
+                    <table class="chart__data-table sr-only" id="{chartId}-table">
+                        <caption>{figureLabel}<f:if condition="{data.value_unit}"> — <f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart/language/labels.xlf:chart.table.unit_caption" arguments="{0: data.value_unit}"/></f:if></caption>
+                        <thead>
+                            <tr>
+                                <th scope="col"><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart/language/labels.xlf:chart.table.category"/></th>
+                                <th scope="col">{valueHeading}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <f:for each="{data.data_points}" as="point">
+                                <tr>
+                                    <th scope="row">{point -> f:render.text(field: 'point_label')}</th>
+                                    <td>{point -> f:render.text(field: 'point_value')}</td>
+                                </tr>
+                            </f:for>
+                        </tbody>
+                    </table>
+                </f:if>
             </div>
         </figure>
     </d:layout.container>

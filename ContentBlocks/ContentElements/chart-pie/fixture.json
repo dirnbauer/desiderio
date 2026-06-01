@@ -1,7 +1,10 @@
 {
-    "header": "Revenue by plan",
-    "description": "Share of recurring revenue across plan tiers this quarter.",
-    "chart_data": "[{\"label\":\"Starter\",\"value\":18},{\"label\":\"Team\",\"value\":34},{\"label\":\"Business\",\"value\":31},{\"label\":\"Enterprise\",\"value\":17}]",
+    "header": "Annual recurring revenue by plan",
+    "description": "Share of ARR across plan tiers at the end of Q1 2026, in thousands of euros.",
+    "segments": "Starter | 184\nTeam | 412\nBusiness | 356\nEnterprise | 298",
+    "unit": "k EUR",
+    "chart_data": "[{\"label\":\"Starter\",\"value\":184},{\"label\":\"Team\",\"value\":412},{\"label\":\"Business\",\"value\":356},{\"label\":\"Enterprise\",\"value\":298}]",
     "show_legend": 1,
+    "palette": "brand",
     "chart_size": "medium"
 }

@@ -29,20 +29,21 @@
         </f:if>
         <f:if condition="{data.center_value}">
             <div class="d-ce-preview__field">
-                <span class="d-ce-preview__label">Center Value</span>
-                <span class="d-ce-preview__value">{data.center_value}</span>
+                <span class="d-ce-preview__label">Centre</span>
+                <span class="d-ce-preview__value">{data.center_value}<f:if condition="{data.center_label}"> {data.center_label}</f:if></span>
             </div>
         </f:if>
-        <f:if condition="{data.chart_data}">
-            <div class="d-ce-preview__field">
-                <span class="d-ce-preview__label">Chart Data</span>
-                <span class="d-ce-preview__value">{data.chart_data}</span>
-            </div>
-        </f:if>
-        <f:if condition="{data.center_label}">
-            <div class="d-ce-preview__field">
-                <span class="d-ce-preview__label">Center Label</span>
-                <span class="d-ce-preview__value">{data.center_label}</span>
+        <f:if condition="{data.segments}">
+            <div class="d-ce-preview__collection">
+                <span class="d-ce-preview__label">Segments</span>
+                <ul class="d-ce-preview__list">
+                    <f:for each="{data.segments}" as="segment">
+                        <li>
+                            <f:if condition="{segment.label}"><span>{segment.label}</span></f:if>
+                            <f:if condition="{segment.value}"><span>{segment.value}<f:if condition="{segment.unit}"> {segment.unit}</f:if></span></f:if>
+                        </li>
+                    </f:for>
+                </ul>
             </div>
         </f:if>
     </div>

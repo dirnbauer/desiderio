@@ -1,8 +1,29 @@
 {
-    "header": "Sessions by device",
-    "description": "How visitors reached the app over the last 30 days.",
-    "chart_data": "[{\"label\":\"Desktop\",\"value\":52},{\"label\":\"Mobile\",\"value\":38},{\"label\":\"Tablet\",\"value\":10}]",
-    "center_label": "sessions",
-    "center_value": "128K",
+    "header": "Cloud spend by service",
+    "description": "Share of the March 2026 infrastructure bill across the four largest cost centres.",
+    "segments": [
+        {
+            "label": "Compute (EC2)",
+            "value": 18400,
+            "unit": "USD"
+        },
+        {
+            "label": "Managed databases",
+            "value": 9750,
+            "unit": "USD"
+        },
+        {
+            "label": "Object storage",
+            "value": 4120,
+            "unit": "USD"
+        },
+        {
+            "label": "Data transfer",
+            "value": 2030,
+            "unit": "USD"
+        }
+    ],
+    "center_value": "$34.3K",
+    "center_label": "total spend",
     "show_legend": 1
 }

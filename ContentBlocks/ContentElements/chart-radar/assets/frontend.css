@@ -1,7 +1,17 @@
+.chart-radar {
+    display: block;
+    margin: 0;
+    /* One chart token feeds the filled shape (charts.js paints the data polygon) and the
+       legend score accent. Only --chart-N tokens are ever referenced. */
+    --chart-color: var(--chart-1);
+}
 .chart-radar__card {
     border: 1px solid var(--border);
     border-radius: var(--radius);
     background: var(--card);
+    color: var(--card-foreground);
+    box-shadow: var(--d-shadow-sm);
+    overflow: hidden;
 }
 .chart-radar__header {
     padding: var(--d-spacing-lg) var(--d-spacing-lg) 0;
@@ -9,23 +19,94 @@
 .chart-radar__title {
     font-size: var(--d-text-lg);
     font-weight: 600;
+    line-height: 1.3;
 }
 .chart-radar__description {
     font-size: var(--d-text-sm);
     color: var(--muted-foreground);
     margin-block-start: var(--d-spacing-xs);
+    max-width: 60ch;
+}
+
+.chart-radar__content {
+    padding: var(--d-spacing-lg);
+}
+
+/* charts.js injects a viewBox'd <svg> with the web, axes and the filled data shape. We own the
+   responsive box so the chart scales down and never overflows the card at narrow widths. */
+.chart-radar__figure {
+    width: 100%;
+    min-width: 0;
 }
 .chart-radar__plot {
-    padding: var(--d-spacing-lg);
     color: var(--muted-foreground);
 }
 .chart-radar__svg {
-    width: 100%;
-    max-width: 420px;
-    margin-inline: auto;
     display: block;
+    width: 100%;
+    max-width: 360px;
     height: auto;
+    margin-inline: auto;
+    aspect-ratio: 1 / 1;
+    overflow: visible;
 }
 .chart-radar__label {
-    font-size: 11px;
+    font-size: 0.6875rem;
+    fill: var(--muted-foreground);
+}
+
+/* Recolour the filled data shape charts.js paints (it is the only polygon carrying a
+   fill-opacity attribute) to a chart token. Presentation attributes lose to author CSS, so the
+   shape follows the shadcn palette; the fill-opacity the editor chose is preserved. */
+.chart-radar__svg polygon[fill-opacity] {
+    fill: var(--chart-color, var(--chart-1));
+    stroke: var(--chart-color, var(--chart-1));
+}
+
+/* No-JS / pre-hydration fallback. charts.js clears __plot before drawing, so this paragraph is
+   only ever visible when the script does not run. */
+.chart-radar__fallback {
+    margin: 0;
+    padding-block: var(--d-spacing-md);
+    font-size: var(--d-text-sm);
+    color: var(--muted-foreground);
+    text-align: center;
+}
+
+/* Server-rendered key: real dimension labels + scores, so the data is readable without the SVG
+   and wraps onto multiple rows so it never overflows. */
+.chart-radar__legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--d-spacing-xs) var(--d-spacing-md);
+    margin: var(--d-spacing-md) 0 0;
+    padding: 0;
+    list-style: none;
+    min-width: 0;
+    font-size: var(--d-text-sm);
+}
+.chart-radar__legend-item {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    min-width: 0;
+}
+.chart-radar__legend-label {
+    color: var(--foreground);
+    font-weight: 500;
+    overflow-wrap: anywhere;
+}
+.chart-radar__legend-value {
+    color: var(--muted-foreground);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+    .chart-radar__header {
+        padding-inline: var(--d-spacing-md);
+    }
+    .chart-radar__content {
+        padding: var(--d-spacing-md);
+    }
 }

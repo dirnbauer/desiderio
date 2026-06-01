@@ -19,16 +19,34 @@ fields:
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
     rows: 2
   -
+    identifier: bars
+    type: Textarea
+    label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-bar/language/labels.xlf:field.bars'
+    description: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-bar/language/labels.xlf:field.bars.description'
+    rows: 6
+    required: true
+  -
+    identifier: unit
+    type: Text
+    label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-bar/language/labels.xlf:field.unit'
+    description: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-bar/language/labels.xlf:field.unit.description'
+  -
+    identifier: series_name
+    type: Text
+    label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-bar/language/labels.xlf:field.series_name'
+    description: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-bar/language/labels.xlf:field.series_name.description'
+  -
     identifier: chart_data
     type: Textarea
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:chart_data_json'
+    description: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-bar/language/labels.xlf:field.chart_data.description'
     rows: 6
     required: true
   -
     identifier: orientation
     type: Select
     renderType: selectSingle
-    label: Orientation
+    label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-bar/language/labels.xlf:field.orientation'
     items:
       -
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.vertical'
@@ -41,7 +59,8 @@ fields:
     identifier: color_variant
     type: Select
     renderType: selectSingle
-    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:color_field'
+    label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-bar/language/labels.xlf:field.color_variant'
+    description: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-bar/language/labels.xlf:field.color_variant.description'
     items:
       -
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.primary'
@@ -56,5 +75,5 @@ fields:
   -
     identifier: show_grid
     type: Checkbox
-    label: 'Show Grid Lines'
+    label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-bar/language/labels.xlf:field.show_grid'
     default: 1

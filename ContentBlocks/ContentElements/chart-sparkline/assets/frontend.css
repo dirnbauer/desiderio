@@ -1,8 +1,16 @@
+.chart-sparkline {
+    display: block;
+    margin: 0;
+}
 .chart-sparkline__card {
     border: 1px solid var(--border);
     border-radius: var(--radius);
     background: var(--card);
+    color: var(--card-foreground);
+    box-shadow: var(--d-shadow-sm);
     padding: var(--d-spacing-lg);
+    min-width: 0;
+    overflow: hidden;
 }
 .chart-sparkline__head {
     display: flex;
@@ -10,17 +18,27 @@
     justify-content: space-between;
     gap: var(--d-spacing-md);
     margin-block-end: var(--d-spacing-md);
+    min-width: 0;
+}
+.chart-sparkline__titles {
+    min-width: 0;
 }
 .chart-sparkline__title {
     font-size: var(--d-text-lg);
     font-weight: 600;
+    line-height: 1.3;
+    overflow-wrap: anywhere;
 }
 .chart-sparkline__description {
     font-size: var(--d-text-sm);
     color: var(--muted-foreground);
     margin-block-start: var(--d-spacing-xs);
+    max-width: 60ch;
 }
 .chart-sparkline__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
     flex-shrink: 0;
     font-size: var(--d-text-xs);
     font-weight: 600;
@@ -29,16 +47,51 @@
     border: 1px solid var(--border);
     background: var(--secondary);
     color: var(--secondary-foreground);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
 }
+.chart-sparkline__badge-icon {
+    display: inline-flex;
+}
+.chart-sparkline__badge--up {
+    border-color: color-mix(in oklab, var(--d-success) 35%, var(--border));
+    color: var(--d-success);
+}
+.chart-sparkline__badge--down {
+    border-color: color-mix(in oklab, var(--destructive) 35%, var(--border));
+    color: var(--destructive);
+}
+
+/* charts.js injects a viewBox'd <svg>; we own the responsive box so the line scales to the
+   card width and never overflows at narrow widths. Colour comes from the --chart-N ramp below. */
 .chart-sparkline__plot {
     width: 100%;
+    min-width: 0;
 }
 .chart-sparkline__svg {
     display: block;
     width: 100%;
+    max-width: 100%;
     height: 56px;
-    color: var(--chart-color, var(--primary));
+    color: var(--chart-color, var(--chart-1));
+    overflow: visible;
 }
-.chart-sparkline--primary { --chart-color: var(--primary); }
-.chart-sparkline--green { --chart-color: var(--d-success); }
-.chart-sparkline--blue { --chart-color: var(--d-info); }
+
+/* Single-series sparkline colour, sourced from the shadcn chart palette only. The editor's
+   colour choice remaps the token the line + fill (charts.js) read. */
+.chart-sparkline--primary { --chart-color: var(--chart-1); }
+.chart-sparkline--blue { --chart-color: var(--chart-2); }
+.chart-sparkline--green { --chart-color: var(--chart-3); }
+
+@media (max-width: 480px) {
+    .chart-sparkline__card {
+        padding: var(--d-spacing-md);
+    }
+    .chart-sparkline__head {
+        flex-direction: column;
+        gap: var(--d-spacing-sm);
+    }
+    .chart-sparkline__badge {
+        align-self: flex-start;
+    }
+}

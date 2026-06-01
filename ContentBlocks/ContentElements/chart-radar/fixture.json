@@ -1,6 +1,9 @@
 {
-    "header": "Capability scores vs. category average",
-    "description": "How customers rate the product across five dimensions, on a 0 to 5 scale.",
-    "chart_data": "{\"labels\":[\"Speed\",\"Reliability\",\"Editor UX\",\"Governance\",\"Support\"],\"values\":[4.2,4.7,4.4,3.9,4.6]}",
+    "_type": "stats",
+    "header": "Platform capability review, Q1 2026",
+    "description": "How verified customers rated Desiderio against six delivery dimensions in the latest quarterly survey (0 = poor, 5 = excellent).",
+    "axes": "Performance | 4.6\nReliability | 4.8\nEditor experience | 4.4\nAccessibility | 4.3\nSecurity & governance | 4.1\nSupport | 4.7",
+    "series_name": "Desiderio, Q1 2026 customer review",
+    "chart_data": "{\"labels\":[\"Performance\",\"Reliability\",\"Editor experience\",\"Accessibility\",\"Security & governance\",\"Support\"],\"values\":[4.6,4.8,4.4,4.3,4.1,4.7]}",
     "fill_opacity": "0.25"
 }

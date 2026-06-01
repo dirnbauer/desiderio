@@ -19,25 +19,45 @@ fields:
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
     rows: 2
   -
-    identifier: chart_data
-    type: Textarea
-    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:chart_data_json'
-    rows: 6
-    required: true
-  -
-    identifier: center_label
-    type: Textarea
-    rows: 1
-    label: 'Center Label'
-    description: 'Text shown in the donut center'
+    identifier: segments
+    type: Collection
+    table: chart_donut_segments
+    prefixField: true
+    label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-donut/language/labels.xlf:field.segments'
+    description: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-donut/language/labels.xlf:field.segments.description'
+    minItems: 2
+    maxItems: 5
+    fields:
+      -
+        identifier: label
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-donut/language/labels.xlf:field.segment.label'
+        required: true
+      -
+        identifier: value
+        type: Number
+        label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-donut/language/labels.xlf:field.segment.value'
+        required: true
+      -
+        identifier: unit
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-donut/language/labels.xlf:field.segment.unit'
   -
     identifier: center_value
     type: Textarea
     rows: 1
-    label: 'Center Value'
-    description: 'Large value shown in the donut center'
+    label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-donut/language/labels.xlf:field.center_value'
+    description: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-donut/language/labels.xlf:field.center_value.description'
+  -
+    identifier: center_label
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-donut/language/labels.xlf:field.center_label'
+    description: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-donut/language/labels.xlf:field.center_label.description'
   -
     identifier: show_legend
     type: Checkbox
-    label: 'Show Legend'
+    label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-donut/language/labels.xlf:field.show_legend'
     default: 1

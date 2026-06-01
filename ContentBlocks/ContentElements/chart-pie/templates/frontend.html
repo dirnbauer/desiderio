@@ -5,27 +5,126 @@
 
 <f:asset.css identifier="d-chart-pie" href="{cb:assetPath()}/frontend.css"/>
 
+<f:comment>
+  The coloured wedges are drawn into .chart-pie__canvas by Resources/Public/Js/charts.js (it reads
+  data-chart-data). That SVG is decorative (aria-hidden): charts.js clears it before drawing, so any
+  markup placed inside it is lost and it carries no accessible name. Everything that conveys the data is
+  server-rendered and stays meaningful without JS and for assistive technology:
+    - a role="img" figure with a concise aria-label + an aria-describedby summary,
+    - a visible, named legend keyed to the same --chart-N tokens charts.js paints with,
+    - a visually-hidden (sr-only) data table carrying every label, value, unit and share of the whole.
+  The editor maintains one human-readable "Label | Value" line per segment (segments); chart_data holds
+  the matching JSON the canvas reads. Each row is split on the pipe; rows are split on the newline.
+</f:comment>
+
+<f:variable name="palette">{data.palette -> f:or(alternative: 'default')}</f:variable>
+<f:variable name="size">{data.chart_size -> f:or(alternative: 'medium')}</f:variable>
+<f:variable name="unit">{data.unit -> f:or(alternative: '') -> f:format.trim()}</f:variable>
+<f:variable name="rows"><f:split separator="
+" value="{data.segments -> f:or(alternative: '')}"/></f:variable>
+<f:variable name="chartTitle">{f:if(condition: data.header, then: '{data.header}', else: '{f:translate(key: \'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-pie/language/labels.xlf:aria.fallback\')}')}</f:variable>
+
+<f:comment>Pass 1: count segments and total their values so the table can show share of the whole.</f:comment>
+<f:variable name="total" value="{0}"/>
+<f:variable name="segmentCount" value="{0}"/>
+<f:for each="{rows}" as="row">
+    <f:variable name="parts"><f:split separator="|" value="{row}"/></f:variable>
+    <f:variable name="rowLabel">{parts.0 -> f:or(alternative: '') -> f:format.trim()}</f:variable>
+    <f:variable name="rowValue">{parts.1 -> f:or(alternative: '0') -> f:format.trim()}</f:variable>
+    <f:if condition="{rowLabel}">
+        <f:variable name="total" value="{total + rowValue}"/>
+        <f:variable name="segmentCount" value="{segmentCount + 1}"/>
+    </f:if>
+</f:for>
+
+<f:variable name="chartAriaLabel"><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-pie/language/labels.xlf:aria.summary" arguments="{0: chartTitle, 1: segmentCount}">{chartTitle}: pie chart with {segmentCount} segments.</f:translate></f:variable>
+
 <d:layout.section class="chart-pie-section">
     <d:layout.container>
-        <figure class="chart-pie"
+        <figure class="chart-pie chart-pie--palette-{palette} chart-pie--{size}"
              data-chart-data="{data.chart_data -> f:format.htmlspecialchars()}"
              data-show-legend="{f:if(condition: data.show_legend, then: 'true', else: 'false')}"
+             data-palette="{palette}"
              data-chart-id="chart-pie-{data.uid}">
             <div class="chart-pie__card">
                 <f:if condition="{data.header} || {data.description}">
-                    <header class="chart-pie__header">
+                    <figcaption class="chart-pie__header">
                         <f:if condition="{data.header}">
-                            <h3 class="chart-pie__title">{data -> f:render.text(field: 'header')}</h3>
+                            <h3 class="chart-pie__title" data-variant="large">{data -> f:render.text(field: 'header')}</h3>
                         </f:if>
                         <f:if condition="{data.description}">
-                            <p class="chart-pie__description">{data -> f:render.text(field: 'description')}</p>
+                            <p class="chart-pie__description" data-variant="muted">{data -> f:render.text(field: 'description')}</p>
                         </f:if>
-                    </header>
+                    </figcaption>
                 </f:if>
-                <div class="chart-pie__content chart-pie__content--{data.chart_size -> f:or(alternative: 'medium')}">
-                    <svg class="chart-pie__canvas" id="chart-pie-{data.uid}" role="img"
-                         aria-label="{f:if(condition: data.header, then: '{data.header}', else: 'Pie chart')}{f:if(condition: data.description, then: '. {data.description}')}"></svg>
+
+                <div class="chart-pie__content">
+                    <div class="chart-pie__figure" role="img"
+                         aria-label="{chartAriaLabel -> f:format.trim()}"
+                         aria-describedby="chart-pie-desc-{data.uid}">
+                        <svg class="chart-pie__canvas" id="chart-pie-{data.uid}" aria-hidden="true" focusable="false"></svg>
+                    </div>
+
+                    <f:if condition="{data.show_legend}">
+                        <ul class="chart-pie__legend" role="list">
+                            <f:for each="{rows}" as="row" iteration="iter">
+                                <f:variable name="legendParts"><f:split separator="|" value="{row}"/></f:variable>
+                                <f:variable name="legendLabel">{legendParts.0 -> f:or(alternative: '') -> f:format.trim()}</f:variable>
+                                <f:variable name="legendValue">{legendParts.1 -> f:or(alternative: '') -> f:format.trim()}</f:variable>
+                                <f:if condition="{legendLabel}">
+                                    <li class="chart-pie__legend-item">
+                                        <span class="chart-pie__legend-swatch chart-pie__legend-swatch--{iter.cycle}" aria-hidden="true"></span>
+                                        <span class="chart-pie__legend-label">{legendLabel}</span>
+                                        <f:if condition="{legendValue}">
+                                            <span class="chart-pie__legend-value">{legendValue}<f:if condition="{unit}"> {unit}</f:if></span>
+                                        </f:if>
+                                    </li>
+                                </f:if>
+                            </f:for>
+                        </ul>
+                    </f:if>
                 </div>
+
+                <p id="chart-pie-desc-{data.uid}" class="sr-only">{chartAriaLabel -> f:format.trim()}</p>
+
+                <table class="chart-pie__table sr-only">
+                    <caption>{chartTitle}</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col"><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-pie/language/labels.xlf:table.segment"/></th>
+                            <th scope="col">
+                                <f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-pie/language/labels.xlf:table.value"/><f:if condition="{unit}"> ({unit})</f:if>
+                            </th>
+                            <th scope="col"><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-pie/language/labels.xlf:table.share"/></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <f:for each="{rows}" as="row">
+                            <f:variable name="cellParts"><f:split separator="|" value="{row}"/></f:variable>
+                            <f:variable name="cellLabel">{cellParts.0 -> f:or(alternative: '') -> f:format.trim()}</f:variable>
+                            <f:variable name="cellValue">{cellParts.1 -> f:or(alternative: '') -> f:format.trim()}</f:variable>
+                            <f:if condition="{cellLabel}">
+                                <tr>
+                                    <th scope="row">{cellLabel}</th>
+                                    <td>{cellValue}<f:if condition="{unit}"> {unit}</f:if></td>
+                                    <td>
+                                        <f:if condition="{total} > 0">
+                                            <f:then><f:format.number decimals="1">{cellValue * 100 / total}</f:format.number>%</f:then>
+                                            <f:else>–</f:else>
+                                        </f:if>
+                                    </td>
+                                </tr>
+                            </f:if>
+                        </f:for>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th scope="row"><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-pie/language/labels.xlf:table.total"/></th>
+                            <td><f:format.number decimals="0">{total}</f:format.number><f:if condition="{unit}"> {unit}</f:if></td>
+                            <td>100%</td>
+                        </tr>
+                    </tfoot>
+                </table>
             </div>
         </figure>
     </d:layout.container>

@@ -11,5 +11,115 @@
         <source>Use when the contribution chart should compress activity or frequency across many time points.</source>
       </segment>
     </unit>
+    <unit id="field.metric_label">
+      <segment>
+        <source>Metric name</source>
+      </segment>
+    </unit>
+    <unit id="field.metric_label.description">
+      <segment>
+        <source>What each bar measures, e.g. Active workspaces. Used as the table column header and the screen-reader chart name.</source>
+      </segment>
+    </unit>
+    <unit id="field.unit">
+      <segment>
+        <source>Unit</source>
+      </segment>
+    </unit>
+    <unit id="field.unit.description">
+      <segment>
+        <source>Unit appended to each value, e.g. workspaces, hours, or %.</source>
+      </segment>
+    </unit>
+    <unit id="field.badge_text">
+      <segment>
+        <source>Trend badge</source>
+      </segment>
+    </unit>
+    <unit id="field.badge_text.description">
+      <segment>
+        <source>Short delta shown next to the title, e.g. +18.4% vs. previous 8 weeks.</source>
+      </segment>
+    </unit>
+    <unit id="field.points">
+      <segment>
+        <source>Data points</source>
+      </segment>
+    </unit>
+    <unit id="field.points.description">
+      <segment>
+        <source>One row per time point, in order. These feed both the bars and the screen-reader data table.</source>
+      </segment>
+    </unit>
+    <unit id="field.point_label">
+      <segment>
+        <source>Period</source>
+      </segment>
+    </unit>
+    <unit id="field.point_label.description">
+      <segment>
+        <source>Short axis label, e.g. W31, Mon, or Jan.</source>
+      </segment>
+    </unit>
+    <unit id="field.point_value">
+      <segment>
+        <source>Value</source>
+      </segment>
+    </unit>
+    <unit id="field.point_value.description">
+      <segment>
+        <source>Numeric value for this period. Bar heights scale to the largest value in the set.</source>
+      </segment>
+    </unit>
+    <unit id="field.left_stat_label">
+      <segment>
+        <source>Left tile label</source>
+      </segment>
+    </unit>
+    <unit id="field.left_stat_value">
+      <segment>
+        <source>Left tile value</source>
+      </segment>
+    </unit>
+    <unit id="field.left_stat_detail">
+      <segment>
+        <source>Left tile detail</source>
+      </segment>
+    </unit>
+    <unit id="field.right_stat_label">
+      <segment>
+        <source>Right tile label</source>
+      </segment>
+    </unit>
+    <unit id="field.right_stat_value">
+      <segment>
+        <source>Right tile value</source>
+      </segment>
+    </unit>
+    <unit id="field.right_stat_detail">
+      <segment>
+        <source>Right tile detail</source>
+      </segment>
+    </unit>
+    <unit id="aria.fallback">
+      <segment>
+        <source>Contribution activity</source>
+      </segment>
+    </unit>
+    <unit id="aria.summary">
+      <segment>
+        <source>{1, plural, =0 {{0}: no data points yet.} one {{0} across one time point, measured in {2}. Values follow in the table below.} other {{0} across # time points, measured in {2}. Values follow in the table below.}}</source>
+      </segment>
+    </unit>
+    <unit id="table.period">
+      <segment>
+        <source>Period</source>
+      </segment>
+    </unit>
+    <unit id="table.value">
+      <segment>
+        <source>Value</source>
+      </segment>
+    </unit>
   </file>
 </xliff>

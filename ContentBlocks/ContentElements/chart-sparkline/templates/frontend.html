@@ -5,32 +5,125 @@
 
 <f:asset.css identifier="d-chart-sparkline" href="{cb:assetPath()}/frontend.css"/>
 
+<f:comment>
+  The trend line is drawn into .chart-sparkline__svg by Resources/Public/Js/charts.js (it reads
+  data-chart-json). That SVG is purely decorative (aria-hidden, focusable=false): charts.js clears it
+  before drawing, so any markup placed inside would be lost and it carries no accessible name.
+  Everything that conveys the numbers is server-rendered and stays meaningful without JS and for
+  assistive technology:
+    - a role="img" figure with a concise aria-label + an aria-describedby summary,
+    - a visually-hidden (sr-only) data table listing every period, its value and the unit.
+  The editor keeps one human-readable "Period | Value" list (data_points) for the summary and table;
+  chart_data holds the matching JSON the sparkline is drawn from, so the picture and the table can
+  never drift apart. Series colour comes only from the --chart-N ramp (remapped in frontend.css).
+</f:comment>
+
+<f:variable name="colorVariant">{data.color_variant -> f:or(alternative: 'primary')}</f:variable>
+<f:variable name="unit">{data.unit -> f:or(alternative: '') -> f:format.stripTags() -> f:format.trim()}</f:variable>
+<f:variable name="seriesLabel">{f:if(condition: '{data.series_label -> f:format.trim()}', then: '{data.series_label -> f:format.stripTags() -> f:format.trim()}', else: '{f:translate(key: \'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-sparkline/language/labels.xlf:aria.fallback\')}')}</f:variable>
+<f:variable name="chartTitle">{f:if(condition: data.header, then: '{data.header}', else: '{seriesLabel}')}</f:variable>
+<f:variable name="badge">{data.trend_badge -> f:or(alternative: '') -> f:format.stripTags() -> f:format.trim()}</f:variable>
+<f:variable name="pointRows">{data.data_points -> f:or(alternative: '') -> f:split('
+')}</f:variable>
+
+<f:comment>Walk the points to find count, first/last period, first/last value and the net change.</f:comment>
+<f:variable name="pointCount" value="{0}"/>
+<f:variable name="firstLabel" value=""/>
+<f:variable name="firstValue" value="{0}"/>
+<f:variable name="lastLabel" value=""/>
+<f:variable name="lastValue" value="{0}"/>
+<f:for each="{pointRows}" as="pointRow">
+    <f:variable name="rowParts">{pointRow -> f:split('|', 2)}</f:variable>
+    <f:variable name="rowLabel">{rowParts.0 -> f:or(alternative: '') -> f:format.trim()}</f:variable>
+    <f:variable name="rowValue">{rowParts.1 -> f:or(alternative: '0') -> f:format.trim()}</f:variable>
+    <f:if condition="{rowLabel}">
+        <f:if condition="{pointCount} == 0">
+            <f:variable name="firstLabel" value="{rowLabel}"/>
+            <f:variable name="firstValue" value="{rowValue}"/>
+        </f:if>
+        <f:variable name="lastLabel" value="{rowLabel}"/>
+        <f:variable name="lastValue" value="{rowValue}"/>
+        <f:variable name="pointCount" value="{pointCount + 1}"/>
+    </f:if>
+</f:for>
+<f:variable name="netChange" value="{lastValue - firstValue}"/>
+<f:variable name="trendKey">flat</f:variable>
+<f:if condition="{netChange} > 0"><f:variable name="trendKey">up</f:variable></f:if>
+<f:if condition="{netChange} < 0"><f:variable name="trendKey">down</f:variable></f:if>
+
+<f:variable name="latestValue">{lastValue}<f:if condition="{unit}"> {unit}</f:if></f:variable>
+<f:variable name="latestClause"><f:if condition="{pointCount} > 0"><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-sparkline/language/labels.xlf:aria.summary.latest" arguments="{0: '{latestValue -> f:format.trim()}', 1: lastLabel}"></f:translate></f:if></f:variable>
+<f:variable name="chartAriaLabel"><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-sparkline/language/labels.xlf:aria.summary" arguments="{0: chartTitle, 1: seriesLabel, 2: pointCount, 3: firstLabel, 4: lastLabel, 5: latestClause}">{chartTitle}: {seriesLabel} sparkline across {pointCount} points from {firstLabel} to {lastLabel}. The full series follows in the data table.</f:translate></f:variable>
+<f:variable name="valueColumnLabel">{seriesLabel}<f:if condition="{unit}"> ({unit})</f:if></f:variable>
+
 <d:layout.section class="chart-sparkline-section">
     <d:layout.container>
-        <figure class="chart-sparkline chart-sparkline--{data.color_variant -> f:or(alternative: 'primary')}"
-             data-chart-json="{data.chart_data -> f:format.htmlspecialchars()}">
+        <figure class="chart-sparkline chart-sparkline--{colorVariant}"
+             data-chart-json="{data.chart_data -> f:format.htmlspecialchars()}"
+             data-chart-id="chart-sparkline-{data.uid}">
             <div class="chart-sparkline__card">
                 <div class="chart-sparkline__head">
                     <div class="chart-sparkline__titles">
                         <f:if condition="{data.header}">
-                            <h3 class="chart-sparkline__title">{data -> f:render.text(field: 'header')}</h3>
+                            <h3 class="chart-sparkline__title" data-variant="large">{data -> f:render.text(field: 'header')}</h3>
                         </f:if>
                         <f:if condition="{data.description}">
-                            <p class="chart-sparkline__description">{data -> f:render.text(field: 'description')}</p>
+                            <p class="chart-sparkline__description" data-variant="muted">{data -> f:render.text(field: 'description')}</p>
                         </f:if>
                     </div>
-                    <f:if condition="{data.trend_badge}">
-                        <span class="chart-sparkline__badge">{data -> f:render.text(field: 'trend_badge')}</span>
+                    <f:if condition="{badge}">
+                        <span class="chart-sparkline__badge chart-sparkline__badge--{trendKey}">
+                            <span class="chart-sparkline__badge-icon" aria-hidden="true">
+                                <f:switch expression="{trendKey}">
+                                    <f:case value="up"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></f:case>
+                                    <f:case value="down"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m7 7 10 10"/><path d="M17 7v10H7"/></svg></f:case>
+                                    <f:defaultCase><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/></svg></f:defaultCase>
+                                </f:switch>
+                            </span>
+                            <span>{data -> f:render.text(field: 'trend_badge')}</span>
+                        </span>
                     </f:if>
                 </div>
-                <div class="chart-sparkline__plot">
-                    <svg class="chart-sparkline__svg" id="chart-sparkline-svg-{data.uid}" role="img"
-                         aria-label="{f:if(condition: data.header, then: '{data.header} trend', else: 'Trend over time')}{f:if(condition: data.trend_badge, then: ', {data.trend_badge}')}"></svg>
+
+                <div class="chart-sparkline__plot" role="img"
+                     aria-label="{chartAriaLabel -> f:format.trim()}"
+                     aria-describedby="chart-sparkline-desc-{data.uid}">
+                    <svg class="chart-sparkline__svg" id="chart-sparkline-svg-{data.uid}" aria-hidden="true" focusable="false"></svg>
                 </div>
+
+                <p id="chart-sparkline-desc-{data.uid}" class="sr-only">{chartAriaLabel -> f:format.trim()}</p>
+
+                <table class="chart-sparkline__table sr-only">
+                    <caption>{chartTitle}</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col"><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-sparkline/language/labels.xlf:table.period"/></th>
+                            <th scope="col">{valueColumnLabel -> f:format.trim()}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <f:for each="{pointRows}" as="pointRow">
+                            <f:variable name="cellParts">{pointRow -> f:split('|', 2)}</f:variable>
+                            <f:variable name="cellLabel">{cellParts.0 -> f:or(alternative: '') -> f:format.trim()}</f:variable>
+                            <f:variable name="cellValue">{cellParts.1 -> f:or(alternative: '') -> f:format.trim()}</f:variable>
+                            <f:if condition="{cellLabel}">
+                                <tr>
+                                    <th scope="row">{cellLabel}</th>
+                                    <td>{cellValue}<f:if condition="{unit}"> {unit}</f:if></td>
+                                </tr>
+                            </f:if>
+                        </f:for>
+                    </tbody>
+                    <f:if condition="{pointCount} > 1">
+                        <tfoot>
+                            <tr>
+                                <th scope="row"><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-sparkline/language/labels.xlf:table.net_change"/></th>
+                                <td><f:if condition="{netChange} > 0">+</f:if>{netChange}<f:if condition="{unit}"> {unit}</f:if></td>
+                            </tr>
+                        </tfoot>
+                    </f:if>
+                </table>
             </div>
-            <f:if condition="{data.trend_badge}">
-                <figcaption class="chart-sparkline__caption sr-only">{data -> f:render.text(field: 'trend_badge')}</figcaption>
-            </f:if>
         </figure>
     </d:layout.container>
 </d:layout.section>

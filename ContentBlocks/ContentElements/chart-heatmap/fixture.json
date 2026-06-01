@@ -1,5 +1,8 @@
 {
-    "header": "Support volume by day and shift",
-    "description": "Tickets opened per weekday across three support shifts last month.",
-    "chart_data": "{\"rows\":[\"Mon\",\"Tue\",\"Wed\",\"Thu\",\"Fri\"],\"cols\":[\"Morning\",\"Afternoon\",\"Evening\"],\"values\":[[42,58,31],[55,64,28],[49,71,33],[60,68,37],[38,52,24]]}"
+    "header": "Support tickets by weekday and shift",
+    "description": "Tickets opened across three daily support shifts, averaged over the last four weeks.",
+    "col_labels": "Morning, Afternoon, Evening",
+    "series": "Monday | 42, 58, 31\nTuesday | 55, 64, 28\nWednesday | 49, 71, 33\nThursday | 60, 68, 37\nFriday | 38, 52, 24",
+    "unit": "tickets",
+    "chart_data": "{\"rows\":[\"Monday\",\"Tuesday\",\"Wednesday\",\"Thursday\",\"Friday\"],\"cols\":[\"Morning\",\"Afternoon\",\"Evening\"],\"values\":[[42,58,31],[55,64,28],[49,71,33],[60,68,37],[38,52,24]]}"
 }

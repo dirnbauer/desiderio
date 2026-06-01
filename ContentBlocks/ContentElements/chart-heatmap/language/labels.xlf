@@ -11,5 +11,60 @@
         <source>Use when the heatmap chart should compare patterns, intensity, or several dimensions compactly.</source>
       </segment>
     </unit>
+    <unit id="field.col_labels">
+      <segment>
+        <source>Column labels</source>
+      </segment>
+    </unit>
+    <unit id="field.col_labels.description">
+      <segment>
+        <source>Comma-separated names for the columns, left to right, e.g. Morning, Afternoon, Evening. Used for the table header and the screen-reader summary.</source>
+      </segment>
+    </unit>
+    <unit id="field.series">
+      <segment>
+        <source>Rows and values</source>
+      </segment>
+    </unit>
+    <unit id="field.series.description">
+      <segment>
+        <source>One row per line as "Row label | v1, v2, v3", with one value per column in column order, e.g. Mon | 42, 58, 31. Drives the accessible data table.</source>
+      </segment>
+    </unit>
+    <unit id="field.unit">
+      <segment>
+        <source>Value unit</source>
+      </segment>
+    </unit>
+    <unit id="field.unit.description">
+      <segment>
+        <source>Optional unit appended to every value, e.g. tickets, %, or €. Shown in the table header and cells.</source>
+      </segment>
+    </unit>
+    <unit id="field.chart_data.description">
+      <segment>
+        <source>JSON the coloured grid reads: {"rows":["Mon","Tue"],"cols":["Morning","Afternoon"],"values":[[42,58],[55,64]]}. Keep it in sync with the rows and column labels above.</source>
+      </segment>
+    </unit>
+    <unit id="aria.fallback">
+      <segment>
+        <source>Heatmap chart</source>
+      </segment>
+    </unit>
+    <unit id="aria.summary">
+      <segment>
+        <source>{0}: heatmap comparing {1} rows across {2} columns.</source>
+      </segment>
+    </unit>
+    <unit id="table.row_header">
+      <segment>
+        <source>Row</source>
+      </segment>
+    </unit>
+    <unit id="table.unit_caption">
+      <segment>
+        <source>values in {0}</source>
+      </segment>
+    </unit>
   </file>
 </xliff>

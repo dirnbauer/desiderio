@@ -1,10 +1,14 @@
-<div class="tx_solr bg-background">
-    <div class="container mx-auto max-w-7xl px-4 py-8">
-        <div class="grid gap-8 md:grid-cols-[240px_minmax(0,1fr)]">
-            <aside class="min-w-0 space-y-6 md:sticky md:top-20 md:self-start">
-                <f:render section="extra" />
-            </aside>
-            <main class="min-w-0 space-y-6">
+<div class="tx_solr d-solr-create" data-shadcn-pattern="create-shell">
+    <f:variable name="extraContent"><f:render section="extra" /></f:variable>
+    <f:variable name="extraContentPlain" value="{extraContent -> f:format.stripTags() -> f:format.trim()}" />
+    <div class="d-solr-create__viewport">
+        <div class="d-solr-create__grid{f:if(condition: extraContentPlain, else: ' d-solr-create__grid--single')}">
+            <f:if condition="{extraContentPlain}">
+                <aside class="d-solr-create__sidebar" aria-label="{f:translate(key: 'solr.filters', domain: 'desiderio.labels', default: 'Search filters')}">
+                    <f:format.raw>{extraContent}</f:format.raw>
+                </aside>
+            </f:if>
+            <main class="d-solr-create__main">
                 <f:render section="content" />
             </main>
         </div>

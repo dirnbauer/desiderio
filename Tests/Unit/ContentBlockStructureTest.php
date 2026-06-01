@@ -99,6 +99,38 @@ final class ContentBlockStructureTest extends TestCase
         }
     }
 
+    public function testSharedSingleLineTextFieldsUseCompatibleTextareaSchema(): void
+    {
+        $expectedTextareaFields = [
+            'badge_text' => true,
+            'primary_button_text' => true,
+            'series_name' => true,
+        ];
+
+        $blocks = glob(self::CONTENT_BLOCKS_DIR . '/*', GLOB_ONLYDIR);
+        $blocks = $blocks === false ? [] : $blocks;
+        foreach ($blocks as $block) {
+            $config = Yaml::parseFile("{$block}/config.yaml");
+            self::assertIsArray($config);
+            $fields = $config['fields'] ?? [];
+            self::assertIsArray($fields, basename($block) . ' fields must be a list');
+
+            foreach ($fields as $field) {
+                if (!is_array($field)) {
+                    continue;
+                }
+
+                $identifier = $field['identifier'] ?? null;
+                if (!is_string($identifier) || !isset($expectedTextareaFields[$identifier])) {
+                    continue;
+                }
+
+                self::assertSame('Textarea', $field['type'] ?? null, basename($block) . '.' . $identifier . ' must compile to the shared Textarea tt_content column type');
+                self::assertSame(1, $field['rows'] ?? null, basename($block) . '.' . $identifier . ' should stay a single-line editor field');
+            }
+        }
+    }
+
     public function testEveryContentBlockHasEnglishAndGermanWizardLabels(): void
     {
         $blocks = glob(self::CONTENT_BLOCKS_DIR . '/*', GLOB_ONLYDIR) ?: [];

@@ -30,7 +30,8 @@ fields:
     description: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-contribution/language/labels.xlf:field.unit.description'
   -
     identifier: badge_text
-    type: Text
+    type: Textarea
+    rows: 1
     label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-contribution/language/labels.xlf:field.badge_text'
     description: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-contribution/language/labels.xlf:field.badge_text.description'
   -
@@ -82,7 +83,8 @@ fields:
     label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-contribution/language/labels.xlf:field.right_stat_detail'
   -
     identifier: primary_button_text
-    type: Text
+    type: Textarea
+    rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:primary_button_text'
   -
     identifier: primary_button_link

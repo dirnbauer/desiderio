@@ -32,7 +32,8 @@ fields:
     description: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-bar/language/labels.xlf:field.unit.description'
   -
     identifier: series_name
-    type: Text
+    type: Textarea
+    rows: 1
     label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-bar/language/labels.xlf:field.series_name'
     description: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-bar/language/labels.xlf:field.series_name.description'
   -

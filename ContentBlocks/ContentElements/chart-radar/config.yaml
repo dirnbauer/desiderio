@@ -27,7 +27,8 @@ fields:
     required: true
   -
     identifier: series_name
-    type: Text
+    type: Textarea
+    rows: 1
     label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-radar/language/labels.xlf:field.series_name'
     description: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-radar/language/labels.xlf:field.series_name.description'
   -

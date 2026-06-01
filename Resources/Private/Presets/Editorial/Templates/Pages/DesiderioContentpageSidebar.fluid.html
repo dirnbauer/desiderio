@@ -14,17 +14,9 @@
     <article class="desiderio-editorial-template desiderio-editorial-sidebar" itemscope="itemscope" itemtype="https://schema.org/Article">
         <d:layout.container size="lg">
             <f:render partial="Presets/EditorialReadingProgress" arguments="{site: site}"/>
+            <f:variable name="articleDate" value="{page.pageRecord.lastUpdated -> f:or(alternative: page.pageRecord.crdate)}"/>
 
-            <f:render
-                partial="Presets/EditorialArticleHeader"
-                arguments="{
-                    breadcrumb: breadcrumb,
-                    title: page.pageRecord.title,
-                    deck: page.pageRecord.abstract,
-                    author: page.pageRecord.author,
-                    date: page.pageRecord.lastUpdated -> f:or(alternative: page.pageRecord.crdate)
-                }"
-            />
+            <f:render partial="Presets/EditorialArticleHeader" arguments="{breadcrumb: breadcrumb, title: page.pageRecord.title, deck: page.pageRecord.abstract, author: page.pageRecord.author, date: articleDate}"/>
 
             <div class="desiderio-editorial-sidebar__layout">
                 <div class="desiderio-editorial-template__content" itemprop="articleBody">

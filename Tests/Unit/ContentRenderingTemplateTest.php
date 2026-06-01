@@ -563,6 +563,11 @@ final class ContentRenderingTemplateTest extends TestCase
                 $template = (string) file_get_contents($absoluteTemplatePath);
                 self::assertStringContainsString('Pages/Default', $template);
                 self::assertStringContainsString('partial="Presets/ContentArea"', $template);
+                self::assertStringNotContainsString(
+                    "arguments=\"{\n",
+                    $template,
+                    "{$templatePath} must not use multi-line inline f:render arguments; Fluid 5/Admin Panel treats them as strings."
+                );
             }
 
             $sidebarTemplate = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Presets/' . $presetDirectory . '/Templates/Pages/DesiderioContentpageSidebar.fluid.html');

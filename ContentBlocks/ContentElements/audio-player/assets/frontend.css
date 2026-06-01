@@ -17,3 +17,22 @@
     width: 100%;
     border-radius: var(--d-radius-md);
 }
+.audio-player__download {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--d-spacing-2);
+    align-self: flex-start;
+    font-size: var(--d-text-sm);
+    font-weight: 500;
+    color: var(--primary);
+    text-decoration: none;
+    border-radius: var(--d-radius-sm);
+}
+.audio-player__download:hover {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+.audio-player__download:focus-visible {
+    outline: 2px solid var(--d-ring);
+    outline-offset: 2px;
+}

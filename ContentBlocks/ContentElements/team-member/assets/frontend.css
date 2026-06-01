@@ -1,11 +1,14 @@
 .team-member__layout {
     display: grid;
-    grid-template-columns: 300px 1fr;
-    gap: var(--d-spacing-xl);
+    grid-template-columns: 1fr;
+    gap: var(--d-spacing-lg);
     align-items: start;
 }
-@media (max-width: 768px) {
-    .team-member__layout { grid-template-columns: 1fr; }
+@media (min-width: 768px) {
+    .team-member__layout {
+        grid-template-columns: 18rem 1fr;
+        gap: var(--d-spacing-xl);
+    }
 }
 .team-member__image {
     width: 100%;
@@ -16,26 +19,66 @@
 .team-member__role {
     font-size: var(--d-text-lg);
     color: var(--muted-foreground);
-    margin-block-end: var(--d-spacing-sm);
+    margin-block: var(--d-spacing-xs) var(--d-spacing-sm);
 }
 .team-member__bio {
     color: var(--muted-foreground);
     line-height: 1.7;
 }
+
+/* Contact (definition list) */
 .team-member__contact {
     display: flex;
-    gap: var(--d-spacing-md);
-    margin-block-start: var(--d-spacing-md);
-    font-size: var(--d-text-sm);
+    flex-wrap: wrap;
+    gap: var(--d-spacing-md) var(--d-spacing-lg);
+    margin: var(--d-spacing-md) 0 0;
+}
+.team-member__contact-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+.team-member__contact-label {
+    font-size: var(--d-text-xs);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
     color: var(--muted-foreground);
 }
+.team-member__contact-value {
+    margin: 0;
+    font-size: var(--d-text-sm);
+}
+.team-member__contact-link {
+    color: var(--foreground);
+    text-decoration: none;
+}
+.team-member__contact-link:hover {
+    text-decoration: underline;
+}
+.team-member__contact-link:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+}
+
+/* Social links */
 .team-member__socials {
     display: flex;
-    gap: var(--d-spacing-sm);
-    margin-block-start: var(--d-spacing-md);
+    flex-wrap: wrap;
+    gap: var(--d-spacing-sm) var(--d-spacing-md);
+    margin: var(--d-spacing-md) 0 0;
+    padding: 0;
+    list-style: none;
 }
 .team-member__social-link {
     font-size: var(--d-text-sm);
     color: var(--primary);
     text-decoration: underline;
+    text-underline-offset: 2px;
+}
+.team-member__social-link:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
 }

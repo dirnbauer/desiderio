@@ -6,21 +6,32 @@
 <f:asset.css identifier="d-job-card" href="{cb:assetPath()}/frontend.css"/>
 
 <d:layout.section class="job-card">
-    <d:layout.container>
+    <d:layout.container size="md">
         <d:molecule.card class="job-card__card">
-            <div class="job-card__header">
-                <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
-                <div class="job-card__meta">
-                    <f:if condition="{data.department}"><span class="job-card__badge">{data -> f:render.text(field: 'department')}</span></f:if>
-                    <f:if condition="{data.location}"><span class="job-card__badge">{data -> f:render.text(field: 'location')}</span></f:if>
-                    <f:if condition="{data.type}"><span class="job-card__badge">{data -> f:render.text(field: 'type')}</span></f:if>
-                </div>
-            </div>
-            <f:if condition="{data.description}"><p class="job-card__description">{data -> f:render.text(field: 'description')}</p></f:if>
+            <d:molecule.cardHeader>
+                <f:if condition="{data.type}">
+                    <d:atom.badge variant="secondary" class="job-card__type">{data -> f:render.text(field: 'type')}</d:atom.badge>
+                </f:if>
+                <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h3" class="job-card__title">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
+                <f:if condition="{data.department} || {data.location}">
+                    <p class="job-card__meta">
+                        <f:if condition="{data.department}"><span class="job-card__dept">{data -> f:render.text(field: 'department')}</span></f:if>
+                        <f:if condition="{data.department} && {data.location}"><span class="job-card__sep" aria-hidden="true">&middot;</span></f:if>
+                        <f:if condition="{data.location}"><span class="job-card__location">{data -> f:render.text(field: 'location')}</span></f:if>
+                    </p>
+                </f:if>
+            </d:molecule.cardHeader>
+            <f:if condition="{data.description}">
+                <d:molecule.cardContent>
+                    <p class="job-card__description">{data -> f:render.text(field: 'description')}</p>
+                </d:molecule.cardContent>
+            </f:if>
             <f:if condition="{data.apply_link.url}">
-                <div class="job-card__actions">
-                    <d:atom.button href="{data.apply_link.url}" target="{data.apply_link.target}" size="lg">Apply now</d:atom.button>
-                </div>
+                <d:molecule.cardFooter class="job-card__footer">
+                    <d:atom.button href="{data.apply_link.url}" target="{data.apply_link.target}" size="lg" class="job-card__apply">
+                        <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:job.apply"/><span class="sr-only"> {data -> f:render.text(field: 'header')}</span>
+                    </d:atom.button>
+                </d:molecule.cardFooter>
             </f:if>
         </d:molecule.card>
     </d:layout.container>

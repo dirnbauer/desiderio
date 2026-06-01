@@ -1,50 +1,52 @@
 {
     "_type": "pricing",
-    "header": "Toggle Pricing for confident plan comparison",
-    "eyebrow": "Modern import",
-    "subheadline": "Help buyers compare plans with crisp values and direct feature language.",
+    "header": "Pricing that scales with your team",
+    "eyebrow": "Pricing",
+    "subheadline": "Pay monthly or save two months a year on annual billing. Switch plans anytime, no fees.",
     "plans": [
         {
-            "title": "Toggle Pricing for confident plan comparison",
+            "title": "Starter",
             "monthly_price": "$19",
             "yearly_price": "$190",
-            "description": "Show pricing states with practical labels and scannable benefits.",
+            "description": "For solo builders shipping their first product.",
             "features": [
-                "Token-aware light and dark states",
-                "Accessible keyboard focus patterns",
-                "Responsive cards tuned for concise content"
+                "Up to 3 projects",
+                "10,000 monthly visitors",
+                "Community support",
+                "Core analytics dashboard"
             ],
-            "button_text": "Get the checklist",
-            "button_link": "https://ui.shadcn.com/docs/toggle-pricing"
+            "button_text": "Start free trial",
+            "button_link": "https://ui.shadcn.com/docs"
         },
         {
-            "title": "Toggle Pricing for confident plan comparison",
+            "title": "Growth",
             "monthly_price": "$49",
             "yearly_price": "$490",
-            "description": "Keep plan comparison compact across desktop tables and mobile cards.",
+            "description": "For growing teams that need room to expand.",
             "features": [
-                "Token-aware light and dark states",
-                "Accessible keyboard focus patterns",
-                "Responsive cards tuned for concise content",
-                "Editor-friendly TYPO3 Content Blocks"
+                "Unlimited projects",
+                "100,000 monthly visitors",
+                "Priority email support",
+                "Advanced analytics and exports",
+                "5 team members included"
             ],
-            "button_text": "Start review",
-            "button_link": "https://ui.shadcn.com/docs/toggle-pricing"
+            "button_text": "Start free trial",
+            "button_link": "https://ui.shadcn.com/docs"
         },
         {
-            "title": "Toggle Pricing for confident plan comparison",
+            "title": "Scale",
             "monthly_price": "$99",
             "yearly_price": "$990",
-            "description": "Help buyers compare plans with crisp values and direct feature language.",
+            "description": "For organizations with high-traffic workloads.",
             "features": [
-                "Token-aware light and dark states",
-                "Accessible keyboard focus patterns",
-                "Responsive cards tuned for concise content",
-                "Editor-friendly TYPO3 Content Blocks",
-                "Modern Unsplash imagery in the import seed"
+                "Everything in Growth",
+                "1M+ monthly visitors",
+                "Dedicated success manager",
+                "SSO and audit logs",
+                "99.9% uptime SLA"
             ],
-            "button_text": "Explore flow",
-            "button_link": "https://ui.shadcn.com/docs/toggle-pricing"
+            "button_text": "Talk to sales",
+            "button_link": "https://ui.shadcn.com/docs"
         }
     ]
 }

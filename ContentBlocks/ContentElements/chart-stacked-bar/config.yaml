@@ -19,15 +19,44 @@ fields:
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
     rows: 2
   -
+    identifier: series_labels
+    type: Text
+    label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-stacked-bar/language/labels.xlf:field.series_labels'
+    description: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-stacked-bar/language/labels.xlf:field.series_labels.description'
+    required: true
+  -
     identifier: chart_data
     type: Textarea
-    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:chart_data_json'
-    description: |
-      JSON array, e.g. [{"label":"Jan","segments":[12,18,9]},{"label":"Feb","segments":[10,20,15]}]
+    label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-stacked-bar/language/labels.xlf:field.chart_data'
+    description: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-stacked-bar/language/labels.xlf:field.chart_data.description'
     rows: 8
     required: true
   -
+    identifier: unit
+    type: Text
+    label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-stacked-bar/language/labels.xlf:field.unit'
+    description: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-stacked-bar/language/labels.xlf:field.unit.description'
+  -
+    identifier: palette
+    type: Select
+    renderType: selectSingle
+    label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-stacked-bar/language/labels.xlf:field.palette'
+    items:
+      -
+        label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-stacked-bar/language/labels.xlf:item.palette.default'
+        value: default
+      -
+        label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-stacked-bar/language/labels.xlf:item.palette.brand'
+        value: brand
+      -
+        label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-stacked-bar/language/labels.xlf:item.palette.cool'
+        value: cool
+      -
+        label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-stacked-bar/language/labels.xlf:item.palette.warm'
+        value: warm
+    default: default
+  -
     identifier: show_legend
     type: Checkbox
-    label: 'Show Legend'
+    label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-stacked-bar/language/labels.xlf:field.show_legend'
     default: 1

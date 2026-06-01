@@ -34,11 +34,9 @@
                             <f:if condition="{data.description}">
                                 <d:atom.typography variant="muted" class="card__description">{data -> f:render.text(field: 'description')}</d:atom.typography>
                             </f:if>
-                            <f:if condition="{data.button_text}">
+                            <f:if condition="{data.button_text} && {data.button_link.url}">
                                 <div class="card__actions">
-                                    <f:link.typolink parameter="{data.button_link}">
-                                        <d:atom.button variant="default">{data -> f:render.text(field: 'button_text')}</d:atom.button>
-                                    </f:link.typolink>
+                                    <d:atom.button href="{data.button_link.url}" target="{data.button_link.target}" variant="default">{data -> f:render.text(field: 'button_text')}</d:atom.button>
                                 </div>
                             </f:if>
                         </div>
@@ -73,11 +71,9 @@
                             <d:atom.typography variant="muted" class="card__description">{data -> f:render.text(field: 'description')}</d:atom.typography>
                         </f:if>
                     </div>
-                    <f:if condition="{data.button_text}">
+                    <f:if condition="{data.button_text} && {data.button_link.url}">
                         <div class="card__footer">
-                            <f:link.typolink parameter="{data.button_link}">
-                                <d:atom.button variant="default">{data -> f:render.text(field: 'button_text')}</d:atom.button>
-                            </f:link.typolink>
+                            <d:atom.button href="{data.button_link.url}" target="{data.button_link.target}" variant="default">{data -> f:render.text(field: 'button_text')}</d:atom.button>
                         </div>
                     </f:if>
                 </d:molecule.card>
@@ -108,11 +104,9 @@
                             <f:if condition="{data.description}">
                                 <d:atom.typography variant="muted" class="card__description">{data -> f:render.text(field: 'description')}</d:atom.typography>
                             </f:if>
-                            <f:if condition="{data.button_text}">
+                            <f:if condition="{data.button_text} && {data.button_link.url}">
                                 <div class="card__actions">
-                                    <f:link.typolink parameter="{data.button_link}">
-                                        <d:atom.button variant="secondary">{data -> f:render.text(field: 'button_text')}</d:atom.button>
-                                    </f:link.typolink>
+                                    <d:atom.button href="{data.button_link.url}" target="{data.button_link.target}" variant="secondary">{data -> f:render.text(field: 'button_text')}</d:atom.button>
                                 </div>
                             </f:if>
                         </div>
@@ -140,11 +134,9 @@
                             <d:atom.typography variant="muted" class="card__description">{data -> f:render.text(field: 'description')}</d:atom.typography>
                         </f:if>
                     </div>
-                    <f:if condition="{data.button_text}">
+                    <f:if condition="{data.button_text} && {data.button_link.url}">
                         <div class="card__footer">
-                            <f:link.typolink parameter="{data.button_link}">
-                                <d:atom.button variant="default">{data -> f:render.text(field: 'button_text')}</d:atom.button>
-                            </f:link.typolink>
+                            <d:atom.button href="{data.button_link.url}" target="{data.button_link.target}" variant="default">{data -> f:render.text(field: 'button_text')}</d:atom.button>
                         </div>
                     </f:if>
                 </d:molecule.card>

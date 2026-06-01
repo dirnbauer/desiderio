@@ -10,14 +10,25 @@
         <div class="download-form__layout">
             <div class="download-form__content">
                 <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
-                <f:if condition="{data.description}"><d:atom.typography variant="muted">{data -> f:render.text(field: 'description')}</d:atom.typography></f:if>
-                <f:if condition="{data.resource_title}"><p class="download-form__resource">{data -> f:render.text(field: 'resource_title')}</p></f:if>
+                <f:if condition="{data.description}"><d:atom.typography variant="muted" class="download-form__description">{data -> f:render.text(field: 'description')}</d:atom.typography></f:if>
+                <f:if condition="{data.resource_title}">
+                    <p class="download-form__resource">
+                        <span class="download-form__resource-icon" aria-hidden="true"><d:atom.icon name="download" size="sm"/></span>
+                        <span>{data -> f:render.text(field: 'resource_title')}</span>
+                    </p>
+                </f:if>
+                <f:if condition="{data.reassurance}">
+                    <p class="download-form__reassurance">
+                        <span class="download-form__reassurance-icon" aria-hidden="true"><d:atom.icon name="check-circle" size="sm"/></span>
+                        <span>{data -> f:render.text(field: 'reassurance')}</span>
+                    </p>
+                </f:if>
             </div>
-            <d:molecule.card class="download-form__card">
+            <d:molecule.card class="download-form__card" role="form">
                 <f:if condition="{data.image}">
                     <div class="download-form__preview">
                         <f:for each="{data.image}" as="fileReference">
-                            <f:image image="{fileReference}" maxWidth="400" alt="" class="download-form__image"/>
+                            <f:image image="{fileReference}" maxWidth="400" alt="{f:if(condition: fileReference.alternative, then: fileReference.alternative, else: '{data.resource_title}')}" class="download-form__image"/>
                         </f:for>
                     </div>
                 </f:if>

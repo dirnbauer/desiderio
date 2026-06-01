@@ -14,14 +14,19 @@
             </header>
         </f:if>
 
-        <div class="directions__list">
+        <ul class="directions__list">
             <f:for each="{data.routes}" as="route">
-                <d:molecule.card class="directions__route">
-                    <h3 class="directions__mode">{route -> f:render.text(field: 'mode')}</h3>
-                    <p class="directions__description">{route -> f:render.text(field: 'description')}</p>
-                </d:molecule.card>
+                <li class="directions__item">
+                    <d:molecule.card class="directions__route">
+                        <h3 class="directions__mode">
+                            <span class="directions__icon" aria-hidden="true"><d:atom.icon name="map-pin" size="sm"/></span>
+                            <span>{route -> f:render.text(field: 'mode')}</span>
+                        </h3>
+                        <p class="directions__description">{route -> f:render.text(field: 'description')}</p>
+                    </d:molecule.card>
+                </li>
             </f:for>
-        </div>
+        </ul>
     </d:layout.container>
 </d:layout.section>
 

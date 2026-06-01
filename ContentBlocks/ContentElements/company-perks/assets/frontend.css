@@ -1,32 +1,47 @@
 .company-perks__intro {
     text-align: center;
+    max-width: 42rem;
+    margin-inline: auto;
     margin-block-end: var(--d-spacing-xl);
 }
 .company-perks__eyebrow {
+    display: block;
     font-size: var(--d-text-sm);
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.05em;
     color: var(--primary);
+    margin-block-end: var(--d-spacing-xs);
+}
+.company-perks__intro [data-slot="typography"][data-variant="muted"] {
+    margin-block-start: var(--d-spacing-sm);
 }
 .company-perks__grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: var(--d-spacing-lg);
 }
-@media (max-width: 768px) {
-    .company-perks__grid { grid-template-columns: 1fr; }
+@media (max-width: 900px) {
+    .company-perks__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 560px) {
+    .company-perks__grid { grid-template-columns: minmax(0, 1fr); }
 }
 .company-perks__icon {
-    display: block;
-    font-size: var(--d-text-2xl);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    color: var(--primary);
     margin-block-end: var(--d-spacing-sm);
 }
 .company-perks__title {
     font-weight: 600;
     margin-block-end: var(--d-spacing-2xs);
+    text-wrap: balance;
 }
 .company-perks__description {
     font-size: var(--d-text-sm);
     color: var(--muted-foreground);
+    text-wrap: pretty;
 }

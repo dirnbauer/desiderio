@@ -8,4 +8,5 @@
     color: var(--muted-foreground); transition: color 0.15s, border-color 0.15s;
 }
 .footer-social__icon:hover { color: var(--foreground); border-color: var(--foreground); }
+.footer-social__icon:focus-visible { outline: 2px solid var(--d-ring); outline-offset: 2px; color: var(--foreground); border-color: var(--foreground); }
 .footer-social__copyright { font-size: var(--d-text-xs); color: var(--muted-foreground); }

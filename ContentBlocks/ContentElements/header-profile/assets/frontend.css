@@ -3,6 +3,7 @@
 }
 .header-profile__inner {
     display: flex;
+    flex-wrap: wrap;
     align-items: flex-start;
     gap: var(--d-spacing-6);
     padding-block: var(--d-spacing-8);
@@ -16,6 +17,7 @@
 }
 .header-profile__info {
     flex: 1;
+    min-width: min(20rem, 100%);
 }
 .header-profile__name {
     font-size: var(--d-text-2xl);

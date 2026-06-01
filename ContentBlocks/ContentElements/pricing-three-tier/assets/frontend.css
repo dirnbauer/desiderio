@@ -19,3 +19,4 @@
 .pricing-three-tier__button--primary { background: var(--primary); color: var(--primary-foreground); }
 .pricing-three-tier__button--outline { border: 1px solid var(--border); color: var(--foreground); }
 .pricing-three-tier__button:hover { opacity: 0.9; }
+.pricing-three-tier__button:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--background), 0 0 0 4px var(--ring); }

@@ -1,48 +1,67 @@
 {
     "_type": "pricing",
-    "header": "Four Tier Pricing for confident plan comparison",
-    "eyebrow": "Modern import",
-    "subheadline": "Help buyers compare plans with crisp values and direct feature language.",
+    "header": "Pick the plan that fits your team",
+    "eyebrow": "Pricing",
+    "subheadline": "Start free and upgrade as you grow. Every plan includes unlimited pages and a 14-day trial of paid features.",
     "plans": [
         {
-            "title": "Four Tier Pricing for confident plan comparison",
-            "price": "$19",
-            "description": "Help buyers compare plans with crisp values and direct feature language.",
+            "title": "Free",
+            "price": "$0",
+            "description": "For trying things out and solo side projects.",
             "features": [
-                "Compact shadcn spacing and borders",
-                "Reusable labels, metrics, and actions",
-                "Clean mobile behavior for dense content",
-                "Chart colors mapped to semantic tokens"
+                { "text": "1 editor seat" },
+                { "text": "Up to 3 projects" },
+                { "text": "Community support" },
+                { "text": "1 GB asset storage" }
             ],
-            "button_text": "Compare states",
+            "button_text": "Start free",
             "button_link": "https://ui.shadcn.com/docs/four-tier-pricing",
             "featured": false
         },
         {
-            "title": "Four Tier Pricing for confident plan comparison",
-            "price": "$49",
-            "description": "Show pricing states with practical labels and scannable benefits.",
+            "title": "Starter",
+            "price": "$19",
+            "description": "For freelancers shipping client sites.",
             "features": [
-                "Compact shadcn spacing and borders",
-                "Reusable labels, metrics, and actions",
-                "Clean mobile behavior for dense content",
-                "Chart colors mapped to semantic tokens"
+                { "text": "3 editor seats" },
+                { "text": "Unlimited projects" },
+                { "text": "Email support" },
+                { "text": "25 GB asset storage" },
+                { "text": "Custom domains" }
             ],
-            "button_text": "Get the checklist",
+            "button_text": "Choose Starter",
+            "button_link": "https://ui.shadcn.com/docs/four-tier-pricing",
+            "featured": false
+        },
+        {
+            "title": "Pro",
+            "price": "$49",
+            "description": "For growing teams that publish weekly.",
+            "features": [
+                { "text": "10 editor seats" },
+                { "text": "Unlimited projects" },
+                { "text": "Priority support" },
+                { "text": "100 GB asset storage" },
+                { "text": "Roles and permissions" },
+                { "text": "Scheduled publishing" }
+            ],
+            "button_text": "Choose Pro",
             "button_link": "https://ui.shadcn.com/docs/four-tier-pricing",
             "featured": true
         },
         {
-            "title": "Four Tier Pricing for confident plan comparison",
+            "title": "Business",
             "price": "$99",
-            "description": "Keep plan comparison compact across desktop tables and mobile cards.",
+            "description": "For organisations with compliance needs.",
             "features": [
-                "Compact shadcn spacing and borders",
-                "Reusable labels, metrics, and actions",
-                "Clean mobile behavior for dense content",
-                "Chart colors mapped to semantic tokens"
+                { "text": "Unlimited seats" },
+                { "text": "SSO and audit logs" },
+                { "text": "Dedicated success manager" },
+                { "text": "500 GB asset storage" },
+                { "text": "99.9% uptime SLA" },
+                { "text": "Advanced security controls" }
             ],
-            "button_text": "Start review",
+            "button_text": "Choose Business",
             "button_link": "https://ui.shadcn.com/docs/four-tier-pricing",
             "featured": false
         }

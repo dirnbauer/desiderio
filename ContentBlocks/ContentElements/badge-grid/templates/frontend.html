@@ -10,25 +10,29 @@
         <f:if condition="{data.header} || {data.description}">
             <header class="badge-grid__intro">
                 <f:if condition="{data.header}">
-                    <h2 class="badge-grid__headline">{data -> f:render.text(field: 'header')}</h2>
+                    <d:atom.typography tag="h2" variant="h2" class="badge-grid__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
                 </f:if>
                 <f:if condition="{data.description}">
-                    <p class="badge-grid__description">{data -> f:render.text(field: 'description')}</p>
+                    <d:atom.typography variant="lead" class="badge-grid__description">{data -> f:render.text(field: 'description')}</d:atom.typography>
                 </f:if>
             </header>
         </f:if>
-        <div class="badge-grid__list">
+        <ul class="badge-grid__list" role="list">
             <f:for each="{data.items}" as="item">
-                <f:if condition="{item.link}">
-                    <f:then>
-                        <f:link.typolink parameter="{item.link}" class="badge-grid__badge badge-grid__badge--{data.variant -> f:or(alternative: 'default')} badge-grid__badge--{item.color -> f:or(alternative: 'default')}">{item -> f:render.text(field: 'text')}</f:link.typolink>
-                    </f:then>
-                    <f:else>
-                        <span class="badge-grid__badge badge-grid__badge--{data.variant -> f:or(alternative: 'default')} badge-grid__badge--{item.color -> f:or(alternative: 'default')}">{item -> f:render.text(field: 'text')}</span>
-                    </f:else>
-                </f:if>
+                <li class="badge-grid__cell badge-grid__cell--style-{data.variant -> f:or(alternative: 'default')}">
+                    <f:if condition="{item.link.url}">
+                        <f:then>
+                            <f:link.typolink parameter="{item.link}" class="badge-grid__link rounded-2xl focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/30">
+                                <d:atom.badge variant="{data.variant -> f:or(alternative: 'default')}" class="badge-grid__badge badge-grid__badge--{item.color -> f:or(alternative: 'default')} h-auto px-3 py-1 text-sm">{item -> f:render.text(field: 'text')}</d:atom.badge>
+                            </f:link.typolink>
+                        </f:then>
+                        <f:else>
+                            <d:atom.badge variant="{data.variant -> f:or(alternative: 'default')}" class="badge-grid__badge badge-grid__badge--{item.color -> f:or(alternative: 'default')} h-auto px-3 py-1 text-sm">{item -> f:render.text(field: 'text')}</d:atom.badge>
+                        </f:else>
+                    </f:if>
+                </li>
             </f:for>
-        </div>
+        </ul>
     </d:layout.container>
 </d:layout.section>
 

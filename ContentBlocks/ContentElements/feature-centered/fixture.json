@@ -1,5 +1,23 @@
 {
     "_type": "section",
-    "header": "Centered Feature Section for premium product storytelling",
-    "subheadline": "Explain the benefit in one sentence before showing details or proof."
+    "eyebrow": "Built for trust",
+    "header": "Security and reliability you can count on",
+    "subheadline": "The guarantees that let enterprise teams move sensitive data without second-guessing.",
+    "items": [
+        {
+            "icon": "shield-check",
+            "title": "SOC 2 Type II certified",
+            "description": "Independently audited controls protect your data end to end, every single day."
+        },
+        {
+            "icon": "lock",
+            "title": "Encryption everywhere",
+            "description": "Your data is encrypted at rest and in transit with industry-standard AES-256."
+        },
+        {
+            "icon": "clock",
+            "title": "99.99% uptime SLA",
+            "description": "A globally redundant platform keeps your dashboards available around the clock."
+        }
+    ]
 }

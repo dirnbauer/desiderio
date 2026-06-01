@@ -1,21 +1,34 @@
 {
     "_type": "table",
-    "header": "Matrix Feature Section for premium product storytelling",
+    "eyebrow": "Compare plans",
+    "header": "Starter vs Pro at a glance",
+    "left_label": "Starter",
+    "right_label": "Pro",
     "rows": [
         {
-            "label": "Editor clarity"
+            "label": "Content blocks",
+            "left_value": "25",
+            "right_value": "Unlimited"
         },
         {
-            "label": "Mobile polish"
+            "label": "Editor seats",
+            "left_value": "3",
+            "right_value": "Unlimited"
         },
         {
-            "label": "Token coverage"
+            "label": "Live preview",
+            "left_value": "Included",
+            "right_value": "Included"
         },
         {
-            "label": "Trust lift"
+            "label": "Custom themes",
+            "left_value": "1",
+            "right_value": "Unlimited"
         },
         {
-            "label": "Signal quality"
+            "label": "Priority support",
+            "left_value": "Email",
+            "right_value": "24/7 chat"
         }
     ]
 }

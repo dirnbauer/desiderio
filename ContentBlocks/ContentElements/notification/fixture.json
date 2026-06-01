@@ -1,5 +1,9 @@
 {
     "_type": "form",
-    "header": "Notification Data View for live product intelligence",
-    "content": "Turn dense numbers into an analytics block that stays readable on mobile."
+    "header": "Scheduled maintenance this Sunday",
+    "content": "We will upgrade the database between 02:00 and 04:00 UTC on Sunday. Expect up to 15 minutes of read-only access during the switchover.",
+    "variant": "warning",
+    "action_text": "View status page",
+    "action_link": "https://status.example.com",
+    "dismissible": 1
 }

@@ -5,29 +5,86 @@
 
 <f:asset.css identifier="d-chart-donut" href="{cb:assetPath()}/frontend.css"/>
 
-<section class="py-8 md:py-12">
-    <div class="container mx-auto px-4">
-        <div data-ce="chart-donut"
-             data-chart-data="{data.chart_data -> f:format.htmlspecialchars()}"
+<f:comment>
+  charts.js (initDonut) reads data-chart-data and DRAWS the donut ring + centre text into
+  .chart-donut__canvas, wiping any static children. So the SVG is purely decorative (aria-hidden) and
+  every meaning lives in server-rendered markup: a role="img" wrapper with a concise aria-label and an
+  aria-describedby summary, plus a visually-hidden data table that carries the exact same numbers.
+  data-chart-data is assembled from the same {data.segments} rows the table uses, so the picture and the
+  table can never drift apart. Series colours come exclusively from the --chart-1..5 tokens.
+</f:comment>
+
+<f:variable name="donutTitle">{f:if(condition: data.header, then: '{data.header}', else: '{f:translate(key: \'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-donut/language/labels.xlf:aria.fallback\')}')}</f:variable>
+<f:variable name="centreValue">{data.center_value -> f:or(alternative: '') -> f:format.stripTags() -> f:format.trim()}</f:variable>
+<f:variable name="centreLabel">{data.center_label -> f:or(alternative: '') -> f:format.stripTags() -> f:format.trim()}</f:variable>
+<f:variable name="chartData"><f:spaceless>[<f:for each="{data.segments}" as="segment" iteration="seg">{"label":"{segment.label -> f:or(alternative: '') -> f:format.stripTags() -> f:format.trim()}","value":{segment.value -> f:or(alternative: '0') -> f:format.trim()}}<f:if condition="!{seg.isLast}">,</f:if></f:for>]</f:spaceless></f:variable>
+
+<d:layout.section class="chart-donut-section">
+    <d:layout.container size="md">
+        <figure class="chart-donut"
+             data-ce="chart-donut"
+             data-chart-data="{chartData -> f:format.htmlspecialchars()}"
              data-show-legend="{f:if(condition: data.show_legend, then: 'true', else: 'false')}"
              data-center-label="{data.center_label}"
-             data-center-value="{data.center_value}"
-             class="mx-auto max-w-xl rounded-lg border bg-card text-card-foreground shadow-sm">
-            <f:if condition="{data.header} || {data.description}">
-                <div class="flex flex-col gap-1.5 p-6">
-                    <f:if condition="{data.header}">
-                        <h3 class="text-lg font-semibold leading-none tracking-tight">{data -> f:render.text(field: 'header')}</h3>
-                    </f:if>
+             data-center-value="{data.center_value}">
+            <div class="chart-donut__card">
+                <figcaption class="chart-donut__header">
+                    <d:atom.typography tag="h3" variant="large" class="chart-donut__title">{donutTitle}</d:atom.typography>
                     <f:if condition="{data.description}">
-                        <p class="text-sm text-muted-foreground">{data -> f:render.text(field: 'description')}</p>
+                        <p class="chart-donut__description" data-variant="muted">{data -> f:render.text(field: 'description')}</p>
+                    </f:if>
+                </figcaption>
+
+                <f:variable name="donutSummary"><f:spaceless><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-donut/language/labels.xlf:aria.summary" arguments="{0: donutTitle, 1: '{data.segments -> f:count()}'}">{donutTitle}: donut chart of {data.segments -> f:count()} segments. Full breakdown in the data table.</f:translate><f:if condition="{centreValue}"> <f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-donut/language/labels.xlf:aria.total" arguments="{0: centreValue, 1: centreLabel}">Centre figure: {centreValue} {centreLabel}.</f:translate></f:if></f:spaceless></f:variable>
+
+                <div class="chart-donut__content">
+                    <div data-chart-donut-canvas class="chart-donut__canvas"
+                         role="img"
+                         aria-label="{donutTitle -> f:format.htmlspecialchars()}"
+                         aria-describedby="chart-donut-summary-{data.uid}">
+                        <f:if condition="{centreValue} || {centreLabel}">
+                            <p class="chart-donut__center-fallback" aria-hidden="true">
+                                <f:if condition="{centreValue}"><span class="chart-donut__center-value">{data.center_value}</span></f:if>
+                                <f:if condition="{centreLabel}"><span class="chart-donut__center-label">{data.center_label}</span></f:if>
+                            </p>
+                        </f:if>
+                    </div>
+
+                    <f:if condition="{data.show_legend}">
+                        <ul class="chart-donut__legend" role="list">
+                            <f:for each="{data.segments}" as="segment" iteration="legIter">
+                                <li class="chart-donut__legend-item">
+                                    <span class="chart-donut__swatch chart-donut__swatch--{legIter.cycle}" aria-hidden="true"></span>
+                                    <span class="chart-donut__legend-label">{segment -> f:render.text(field: 'label')}</span>
+                                    <span class="chart-donut__legend-value">{segment.value}<f:if condition="{segment.unit}"> {segment -> f:render.text(field: 'unit')}</f:if></span>
+                                </li>
+                            </f:for>
+                        </ul>
                     </f:if>
                 </div>
-            </f:if>
-            <div class="p-6 pt-0">
-                <div data-chart-donut-canvas class="flex min-h-[300px] items-center justify-center"></div>
+
+                <p id="chart-donut-summary-{data.uid}" class="sr-only">{donutSummary -> f:format.trim()}</p>
+
+                <table class="sr-only chart-donut__table">
+                    <caption>{donutSummary -> f:format.trim()}</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col"><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-donut/language/labels.xlf:table.segment"/></th>
+                            <th scope="col"><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-donut/language/labels.xlf:table.value"/></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <f:for each="{data.segments}" as="segment">
+                            <tr>
+                                <th scope="row">{segment -> f:render.text(field: 'label')}</th>
+                                <td>{segment.value}<f:if condition="{segment.unit}"> {segment -> f:render.text(field: 'unit')}</f:if></td>
+                            </tr>
+                        </f:for>
+                    </tbody>
+                </table>
             </div>
-        </div>
-    </div>
-</section>
+        </figure>
+    </d:layout.container>
+</d:layout.section>
 
 </html>

@@ -10,26 +10,36 @@
         <f:if condition="{data.header} || {data.subheadline}">
             <header class="investor-grid__intro">
                 <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
-                <f:if condition="{data.subheadline}"><d:atom.typography variant="muted">{data -> f:render.text(field: 'subheadline')}</d:atom.typography></f:if>
+                <f:if condition="{data.subheadline}"><d:atom.typography variant="lead">{data -> f:render.text(field: 'subheadline')}</d:atom.typography></f:if>
             </header>
         </f:if>
 
-        <div class="investor-grid__items">
+        <d:layout.grid cols="4" gap="lg" class="investor-grid__items">
             <f:for each="{data.investors}" as="inv">
                 <div class="investor-grid__item">
-                    <f:if condition="{inv.logo}">
-                        <f:for each="{inv.logo}" as="fileReference">
-                            <f:image image="{fileReference}" maxWidth="160" alt="{inv.name}" class="investor-grid__logo"/>
-                        </f:for>
-                    </f:if>
+                    <div class="investor-grid__logo-wrap">
+                        <f:if condition="{inv.logo}">
+                            <f:then>
+                                <f:for each="{inv.logo}" as="fileReference">
+                                    <f:image image="{fileReference}" maxWidth="160" alt="" loading="lazy" decoding="async" class="investor-grid__logo"/>
+                                </f:for>
+                            </f:then>
+                            <f:else>
+                                <span class="investor-grid__logo-fallback" aria-hidden="true">{inv.name -> f:format.crop(maxCharacters: 1)}</span>
+                            </f:else>
+                        </f:if>
+                    </div>
                     <h3 class="investor-grid__name">{inv -> f:render.text(field: 'name')}</h3>
-                    <f:if condition="{inv.type}"><span class="investor-grid__type">{inv -> f:render.text(field: 'type')}</span></f:if>
+                    <f:if condition="{inv.type}"><p class="investor-grid__type">{inv -> f:render.text(field: 'type')}</p></f:if>
                     <f:if condition="{inv.link.url}">
-                        <f:link.typolink parameter="{inv.link}" class="investor-grid__link">Website</f:link.typolink>
+                        <f:link.typolink parameter="{inv.link}" class="investor-grid__link focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none">
+                            <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:investor.visit"/>
+                            <span class="sr-only">{inv -> f:render.text(field: 'name')}</span>
+                        </f:link.typolink>
                     </f:if>
                 </div>
             </f:for>
-        </div>
+        </d:layout.grid>
     </d:layout.container>
 </d:layout.section>
 

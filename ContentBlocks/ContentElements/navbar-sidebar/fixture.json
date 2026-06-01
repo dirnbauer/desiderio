@@ -1,10 +1,38 @@
 {
     "_type": "nav",
+    "header": "Workspace",
     "brand": "Studio Atlas",
+    "brand_link": "https://example.com/desiderio",
     "sections": [
-        "Modern media",
-        "Token polish",
-        "Import ready",
-        "Clean states"
-    ]
+        {
+            "title": "Overview",
+            "link_1_label": "Dashboard",
+            "link_1": "https://example.com/desiderio/app/dashboard",
+            "link_2_label": "Activity",
+            "link_2": "https://example.com/desiderio/app/activity",
+            "link_3_label": "Reports",
+            "link_3": "https://example.com/desiderio/app/reports"
+        },
+        {
+            "title": "Build",
+            "link_1_label": "Projects",
+            "link_1": "https://example.com/desiderio/app/projects",
+            "link_2_label": "Components",
+            "link_2": "https://example.com/desiderio/app/components",
+            "link_3_label": "Templates",
+            "link_3": "https://example.com/desiderio/app/templates",
+            "link_4_label": "Integrations",
+            "link_4": "https://example.com/desiderio/app/integrations"
+        },
+        {
+            "title": "Account",
+            "link_1_label": "Team members",
+            "link_1": "https://example.com/desiderio/app/team",
+            "link_2_label": "Billing",
+            "link_2": "https://example.com/desiderio/app/billing",
+            "link_3_label": "Settings",
+            "link_3": "https://example.com/desiderio/app/settings"
+        }
+    ],
+    "footer_text": "Signed in as casey@studioatlas.com"
 }

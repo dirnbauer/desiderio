@@ -1,15 +1,40 @@
 {
     "_type": "footer",
+    "brand": "Northwind",
+    "description": "The workspace where product, design, and engineering ship together.",
     "column_items": [
         {
-            "title": "Columns Footer for refined utility areas"
+            "title": "Product",
+            "link_1_label": "Features",
+            "link_2_label": "Integrations",
+            "link_3_label": "Pricing",
+            "link_4_label": "Changelog",
+            "link_5_label": "Roadmap"
         },
         {
-            "title": "Columns Footer for refined utility areas"
+            "title": "Company",
+            "link_1_label": "About",
+            "link_2_label": "Careers",
+            "link_3_label": "Blog",
+            "link_4_label": "Customers",
+            "link_5_label": "Contact"
         },
         {
-            "title": "Columns Footer for refined utility areas"
+            "title": "Resources",
+            "link_1_label": "Documentation",
+            "link_2_label": "API reference",
+            "link_3_label": "Community",
+            "link_4_label": "Help center",
+            "link_5_label": "System status"
+        },
+        {
+            "title": "Legal",
+            "link_1_label": "Privacy",
+            "link_2_label": "Terms",
+            "link_3_label": "Security",
+            "link_4_label": "Cookie settings",
+            "link_5_label": "DPA"
         }
     ],
-    "copyright": "Helpful service links, legal context, and brand details stay readable across footer layouts."
+    "copyright": "© 2026 Northwind Labs, Inc. All rights reserved."
 }

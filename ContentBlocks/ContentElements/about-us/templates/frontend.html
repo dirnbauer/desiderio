@@ -9,9 +9,11 @@
     <d:layout.container>
         <div class="about-us__layout">
             <div class="about-us__content">
-                <f:if condition="{data.eyebrow}"><span class="about-us__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span></f:if>
+                <f:if condition="{data.eyebrow}">
+                    <d:atom.badge variant="secondary" class="about-us__eyebrow">{data -> f:render.text(field: 'eyebrow')}</d:atom.badge>
+                </f:if>
                 <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
-                <f:if condition="{data.description}"><d:atom.typography variant="muted">{data -> f:render.text(field: 'description')}</d:atom.typography></f:if>
+                <f:if condition="{data.description}"><d:atom.typography variant="lead" class="about-us__lead">{data -> f:render.text(field: 'description')}</d:atom.typography></f:if>
                 <f:if condition="{data.cta_text} && {data.cta_link.url}">
                     <div class="about-us__actions">
                         <d:atom.button href="{data.cta_link.url}" target="{data.cta_link.target}" size="lg">{data -> f:render.text(field: 'cta_text')}</d:atom.button>
@@ -21,7 +23,7 @@
             <f:if condition="{data.image}">
                 <div class="about-us__image-wrapper">
                     <f:for each="{data.image}" as="fileReference">
-                        <f:image image="{fileReference}" maxWidth="720" alt="" class="about-us__image"/>
+                        <f:image image="{fileReference}" maxWidth="720" alt="{fileReference.alternative}" loading="lazy" decoding="async" class="about-us__image"/>
                     </f:for>
                 </div>
             </f:if>

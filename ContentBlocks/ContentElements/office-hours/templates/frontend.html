@@ -8,7 +8,12 @@
 <d:layout.section class="office-hours">
     <d:layout.container>
         <d:molecule.card class="office-hours__card">
-            <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
+            <f:if condition="{data.header}">
+                <div class="office-hours__heading">
+                    <span class="office-hours__icon" aria-hidden="true"><d:atom.icon name="clock" size="sm"/></span>
+                    <d:atom.typography tag="h2" variant="h3" class="office-hours__title">{data -> f:render.text(field: 'header')}</d:atom.typography>
+                </div>
+            </f:if>
             <f:if condition="{data.description_text}"><d:atom.typography variant="muted">{data -> f:render.text(field: 'description_text')}</d:atom.typography></f:if>
             <dl class="office-hours__list">
                 <f:for each="{data.hours_items}" as="entry">

@@ -1,22 +1,31 @@
 {
     "_type": "grid",
-    "header": "Resource Library for polished editorial systems",
+    "eyebrow": "Resource library",
+    "header": "Guides, templates, and reports",
     "items": [
         {
-            "title": "Resource Library for polished editorial systems",
-            "description": "Lead with a clear story, one useful detail, and a calm reading rhythm."
+            "title": "The content operations playbook",
+            "type_label": "Guide",
+            "description": "A 24-page framework for scaling content without scaling headcount. Used by 800+ teams.",
+            "link": "https://example.com/playbook"
         },
         {
-            "title": "Resource Library for polished editorial systems",
-            "description": "Use practical metadata and compact summaries so previews stay easy to compare."
+            "title": "Editorial calendar template",
+            "type_label": "Template",
+            "description": "A ready-to-use Notion and Google Sheets calendar to plan a full quarter in an afternoon.",
+            "link": "https://example.com/calendar-template"
         },
         {
-            "title": "Resource Library for polished editorial systems",
-            "description": "Keep supporting media and copy calm, scannable, and ready to publish."
+            "title": "Scaling content with AI",
+            "type_label": "Webinar",
+            "description": "45-minute session with Northwind Studio on cutting production time by 60%.",
+            "link": "https://example.com/ai-webinar"
         },
         {
-            "title": "Resource Library for polished editorial systems",
-            "description": "Lead with a clear story, one useful detail, and a calm reading rhythm."
+            "title": "2026 State of Content report",
+            "type_label": "Report",
+            "description": "Benchmarks from 1,200 marketing teams on budgets, workflows, and AI adoption.",
+            "link": "https://example.com/state-of-content"
         }
     ]
 }

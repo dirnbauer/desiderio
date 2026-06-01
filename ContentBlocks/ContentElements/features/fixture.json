@@ -1,27 +1,40 @@
 {
     "_type": "grid",
-    "header": "Features for premium product storytelling",
-    "subheadline": "Explain the benefit in one sentence before showing details or proof.",
+    "header": "Everything you need to ship pages faster",
+    "subheadline": "A complete content toolkit for product and marketing teams, built on accessible, on-brand components.",
+    "columns": "3",
+    "variant": "card",
     "feature_items": [
         {
             "icon_name": "book-open",
-            "title": "Features for premium product storytelling",
-            "description": "Show concrete product context with crisp icons and balanced responsive spacing."
+            "title": "Reusable content blocks",
+            "description": "Assemble pages from pre-approved sections so every layout stays consistent and on-brand.",
+            "link": "https://example.com/features/content-blocks"
         },
         {
-            "icon_name": "check-circle",
-            "title": "Features for premium product storytelling",
-            "description": "Explain the benefit in one sentence before showing details or proof."
+            "icon_name": "settings",
+            "title": "Brand tokens built in",
+            "description": "Set colours, fonts, and spacing once. Every block updates automatically across the whole site."
         },
         {
-            "icon_name": "clock",
-            "title": "Features for premium product storytelling",
-            "description": "Use short feature copy so teams can compare capabilities without noise."
+            "icon_name": "zap",
+            "title": "Fast by default",
+            "description": "Optimised markup and lazy-loaded media keep Core Web Vitals green without manual tuning."
         },
         {
-            "icon_name": "globe",
-            "title": "Features for premium product storytelling",
-            "description": "Show concrete product context with crisp icons and balanced responsive spacing."
+            "icon_name": "shield-check",
+            "title": "Accessible out of the box",
+            "description": "Semantic landmarks, keyboard support, and visible focus ship with every component you place."
+        },
+        {
+            "icon_name": "users",
+            "title": "Built for teams",
+            "description": "Draft, review, and publish with roles and permissions that keep edits safe and traceable."
+        },
+        {
+            "icon_name": "chart-no-axes-combined",
+            "title": "Insight on every page",
+            "description": "See traffic and conversions per section so you can double down on what actually performs."
         }
     ]
 }

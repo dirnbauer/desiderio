@@ -7,50 +7,51 @@
 
 <d:layout.section class="order-summary">
     <d:layout.container>
-        <div class="order-summary__card">
+        <d:molecule.card class="order-summary__card">
             <f:if condition="{data.header}">
-                <h2 class="order-summary__heading">{data -> f:render.text(field: 'header')}</h2>
+                <d:atom.typography tag="h2" variant="h3" class="order-summary__heading">{data -> f:render.text(field: 'header')}</d:atom.typography>
             </f:if>
 
-            <div class="order-summary__items">
+            <ul class="order-summary__items" role="list">
                 <f:for each="{data.items}" as="item">
-                    <div class="order-summary__line">
-                        <div class="order-summary__line-info">
+                    <li class="order-summary__line">
+                        <span class="order-summary__line-info">
                             <span class="order-summary__line-name">{item -> f:render.text(field: 'name')}</span>
                             <f:if condition="{item.quantity}">
-                                <span class="order-summary__line-qty">x{item -> f:render.text(field: 'quantity')}</span>
+                                <span class="order-summary__line-qty">×{item -> f:render.text(field: 'quantity')}</span>
                             </f:if>
-                        </div>
+                        </span>
                         <span class="order-summary__line-price">{item -> f:render.text(field: 'price')}</span>
-                    </div>
+                    </li>
                 </f:for>
-            </div>
+            </ul>
 
-            <div class="order-summary__totals">
+            <dl class="order-summary__totals">
                 <f:if condition="{data.subtotal}">
                     <div class="order-summary__row">
-                        <span>Subtotal</span>
-                        <span>{data -> f:render.text(field: 'subtotal')}</span>
+                        <dt>Subtotal</dt>
+                        <dd>{data -> f:render.text(field: 'subtotal')}</dd>
                     </div>
                 </f:if>
                 <f:if condition="{data.discount_label} && {data.discount_value}">
                     <div class="order-summary__row order-summary__row--discount">
-                        <span>{data -> f:render.text(field: 'discount_label')}</span>
-                        <span>{data -> f:render.text(field: 'discount_value')}</span>
+                        <dt>{data -> f:render.text(field: 'discount_label')}</dt>
+                        <dd>{data -> f:render.text(field: 'discount_value')}</dd>
                     </div>
                 </f:if>
                 <div class="order-summary__row order-summary__row--total">
-                    <span>Total</span>
-                    <span>{data -> f:render.text(field: 'total')}</span>
+                    <dt>Total</dt>
+                    <dd>{data -> f:render.text(field: 'total')}</dd>
                 </div>
-            </div>
+            </dl>
 
             <f:if condition="{data.button_text} && {data.button_link.url}">
-                <f:link.typolink parameter="{data.button_link}" class="order-summary__button">
-                    {data -> f:render.text(field: 'button_text')}
-                </f:link.typolink>
+                <d:atom.button href="{data.button_link.url}" target="{data.button_link.target}" variant="default" class="order-summary__button">
+                    <span>{data -> f:render.text(field: 'button_text')}</span>
+                    <span class="order-summary__button-icon" aria-hidden="true"><d:atom.icon name="check" size="sm"/></span>
+                </d:atom.button>
             </f:if>
-        </div>
+        </d:molecule.card>
     </d:layout.container>
 </d:layout.section>
 </html>

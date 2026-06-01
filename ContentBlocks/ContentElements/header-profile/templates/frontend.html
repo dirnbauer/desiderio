@@ -17,7 +17,7 @@
             </f:if>
             <div class="header-profile__info">
                 <f:if condition="{data.header}">
-                    <h1 class="header-profile__name">{data -> f:render.text(field: 'header')}</h1>
+                    <d:atom.typography tag="h1" variant="h2" class="header-profile__name">{data -> f:render.text(field: 'header')}</d:atom.typography>
                 </f:if>
                 <f:if condition="{data.role}">
                     <p class="header-profile__role">{data -> f:render.text(field: 'role')}</p>
@@ -25,14 +25,16 @@
                 <f:if condition="{data.bio}">
                     <p class="header-profile__bio">{data -> f:render.text(field: 'bio')}</p>
                 </f:if>
-                <div class="header-profile__actions">
-                    <f:if condition="{data.primary_button_text} && {data.primary_button_link.url}">
-                        <d:atom.button href="{data.primary_button_link.url}" target="{data.primary_button_link.target}" size="sm">{data -> f:render.text(field: 'primary_button_text')}</d:atom.button>
-                    </f:if>
-                    <f:if condition="{data.secondary_button_text} && {data.secondary_button_link.url}">
-                        <d:atom.button href="{data.secondary_button_link.url}" target="{data.secondary_button_link.target}" variant="outline" size="sm">{data -> f:render.text(field: 'secondary_button_text')}</d:atom.button>
-                    </f:if>
-                </div>
+                <f:if condition="{data.primary_button_text} || {data.secondary_button_text}">
+                    <div class="header-profile__actions">
+                        <f:if condition="{data.primary_button_text} && {data.primary_button_link.url}">
+                            <d:atom.button href="{data.primary_button_link.url}" target="{data.primary_button_link.target}" size="sm">{data -> f:render.text(field: 'primary_button_text')}</d:atom.button>
+                        </f:if>
+                        <f:if condition="{data.secondary_button_text} && {data.secondary_button_link.url}">
+                            <d:atom.button href="{data.secondary_button_link.url}" target="{data.secondary_button_link.target}" variant="outline" size="sm">{data -> f:render.text(field: 'secondary_button_text')}</d:atom.button>
+                        </f:if>
+                    </div>
+                </f:if>
             </div>
         </header>
     </d:layout.container>

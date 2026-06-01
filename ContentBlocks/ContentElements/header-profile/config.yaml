@@ -17,12 +17,14 @@ fields:
     identifier: role
     type: Textarea
     rows: 1
-    label: 'Role / Title'
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:role'
+    description: 'Role or title, e.g. VP of Engineering'
   -
     identifier: bio
     type: Textarea
     label: Bio
     rows: 3
+    description: 'One or two sentences of context'
   -
     identifier: avatar
     type: File

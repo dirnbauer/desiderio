@@ -5,8 +5,9 @@
 .pricing-four-tier__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--d-spacing-md); }
 @media (max-width: 1024px) { .pricing-four-tier__grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 640px) { .pricing-four-tier__grid { grid-template-columns: 1fr; } }
-.pricing-four-tier__plan { border: 1px solid var(--border); border-radius: var(--radius); padding: var(--d-spacing-lg); display: flex; flex-direction: column; }
+.pricing-four-tier__plan { position: relative; border: 1px solid var(--border); border-radius: var(--radius); padding: var(--d-spacing-lg); display: flex; flex-direction: column; }
 .pricing-four-tier__plan--featured { border-color: var(--primary); box-shadow: 0 0 0 1px var(--primary); }
+.pricing-four-tier__badge { position: absolute; top: -0.75rem; left: var(--d-spacing-lg); font-size: var(--d-text-xs); font-weight: 600; background: var(--primary); color: var(--primary-foreground); padding: 0.25rem 0.75rem; border-radius: 9999px; }
 .pricing-four-tier__title { font-size: var(--d-text-base); font-weight: 700; }
 .pricing-four-tier__price { font-size: var(--d-text-2xl); font-weight: 800; margin-block-start: var(--d-spacing-sm); }
 .pricing-four-tier__plan-desc { font-size: var(--d-text-sm); color: var(--muted-foreground); margin-block-start: var(--d-spacing-xs); }
@@ -17,3 +18,4 @@
 .pricing-four-tier__button--primary { background: var(--primary); color: var(--primary-foreground); }
 .pricing-four-tier__button--outline { border: 1px solid var(--border); color: var(--foreground); }
 .pricing-four-tier__button:hover { opacity: 0.9; }
+.pricing-four-tier__button:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--background), 0 0 0 4px var(--ring); }

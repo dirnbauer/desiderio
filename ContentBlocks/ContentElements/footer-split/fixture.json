@@ -1,15 +1,25 @@
 {
     "_type": "footer",
+    "header": "Northwind Studio site footer",
+    "brand": "Northwind Studio",
+    "description": "A small product studio shipping calm, accessible software for teams who care about the details.",
     "link_items": [
         {
-            "label": "Launch velocity"
+            "label": "Pricing",
+            "link": "https://example.com/pricing"
         },
         {
-            "label": "Editor clarity"
+            "label": "Documentation",
+            "link": "https://example.com/docs"
         },
         {
-            "label": "Mobile polish"
+            "label": "Contact sales",
+            "link": "https://example.com/contact"
+        },
+        {
+            "label": "Privacy policy",
+            "link": "https://example.com/privacy"
         }
     ],
-    "copyright": "Helpful service links, legal context, and brand details stay readable across footer layouts."
+    "copyright": "© 2026 Northwind Studio. All rights reserved."
 }

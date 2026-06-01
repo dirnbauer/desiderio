@@ -1,16 +1,28 @@
 {
     "_type": "grid",
-    "header": "Client List for credible trust signals",
-    "subheadline": "Build trust with specific evidence, attribution, and compact proof points.",
+    "eyebrow": "Trusted partners",
+    "header": "Teams that ship on Desiderio",
+    "subheadline": "From Series A startups to public enterprises, 400+ teams run their customer-facing sites on our platform.",
     "clients": [
         {
-            "name": "Noah Ritter"
+            "name": "Northwind Logistics",
+            "industry": "Freight & supply chain",
+            "link": "https://www.example.com/northwind"
         },
         {
-            "name": "Lea Fischer"
+            "name": "Lumen Health",
+            "industry": "Digital healthcare",
+            "link": "https://www.example.com/lumen-health"
         },
         {
-            "name": "Mara Weiss"
+            "name": "Vertex Financial",
+            "industry": "Banking & fintech",
+            "link": "https://www.example.com/vertex"
+        },
+        {
+            "name": "Atlas Manufacturing",
+            "industry": "Industrial equipment",
+            "link": "https://www.example.com/atlas"
         }
     ]
 }

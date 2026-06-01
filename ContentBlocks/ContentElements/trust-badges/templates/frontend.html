@@ -18,23 +18,23 @@
             </header>
         </f:if>
 
-        <div class="trust-badges__row">
+        <ul class="trust-badges__row">
             <f:for each="{data.badge_items}" as="badge">
-                <div class="trust-badges__item">
+                <li class="trust-badges__item">
                     <f:if condition="{badge.image}">
-                        <div class="trust-badges__icon">
+                        <span class="trust-badges__icon">
                             <f:for each="{badge.image}" as="fileReference">
-                                <f:image image="{fileReference}" maxWidth="64" alt="{badge.label}" class="trust-badges__icon-img"/>
+                                <f:image image="{fileReference}" maxWidth="64" alt="" class="trust-badges__icon-img"/>
                             </f:for>
-                        </div>
+                        </span>
                     </f:if>
                     <span class="trust-badges__label">{badge -> f:render.text(field: 'label')}</span>
                     <f:if condition="{badge.description_text}">
                         <span class="trust-badges__desc">{badge -> f:render.text(field: 'description_text')}</span>
                     </f:if>
-                </div>
+                </li>
             </f:for>
-        </div>
+        </ul>
     </d:layout.container>
 </d:layout.section>
 </html>

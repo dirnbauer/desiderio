@@ -1,18 +1,49 @@
-.comparison-table__intro { text-align: center; margin-block-end: var(--d-spacing-xl); }
-.comparison-table__headline { font-size: var(--d-text-xl); font-weight: 700; }
-.comparison-table__description { color: var(--muted-foreground); margin-block-start: var(--d-spacing-xs); }
-.comparison-table__wrapper { overflow-x: auto; }
+.comparison-table__intro { text-align: center; max-width: 42rem; margin-inline: auto; margin-block-end: var(--d-spacing-xl); }
+.comparison-table__headline { font-size: var(--d-text-3xl); font-weight: 700; letter-spacing: -0.02em; text-wrap: balance; }
+.comparison-table__description { color: var(--muted-foreground); margin-block-start: var(--d-spacing-sm); text-wrap: pretty; }
+.comparison-table__wrapper {
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+}
+.comparison-table__wrapper:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+}
 .comparison-table__table {
-    width: 100%; border-collapse: collapse; font-size: var(--d-text-sm);
-    border: 1px solid var(--border); border-radius: var(--radius);
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--d-text-sm);
+    min-width: 36rem;
 }
 .comparison-table__table th,
 .comparison-table__table td {
     padding: var(--d-spacing-sm) var(--d-spacing-md);
-    border-bottom: 1px solid var(--border); text-align: center;
+    border-bottom: 1px solid var(--border);
+    text-align: center;
+    vertical-align: middle;
 }
-.comparison-table__table th { font-weight: 600; background: color-mix(in oklch, var(--muted) 30%, transparent); }
+.comparison-table__table tbody tr:last-child th,
+.comparison-table__table tbody tr:last-child td { border-bottom: 0; }
+.comparison-table__table thead th {
+    font-weight: 600;
+    background: color-mix(in oklch, var(--muted) 35%, transparent);
+}
 .comparison-table__feature-col,
-.comparison-table__feature-name { text-align: left; }
-.comparison-table__col--highlighted { background: color-mix(in oklch, var(--primary) 8%, transparent); }
-.comparison-table__table tbody tr:hover { background: color-mix(in oklch, var(--muted) 20%, transparent); }
+.comparison-table__feature-name {
+    text-align: left;
+    font-weight: 600;
+    white-space: nowrap;
+}
+.comparison-table__feature-name { color: var(--foreground); }
+.comparison-table__col--highlighted {
+    background: color-mix(in oklch, var(--primary) 8%, transparent);
+}
+.comparison-table__table thead th.comparison-table__col--highlighted {
+    color: var(--primary);
+    box-shadow: inset 0 2px 0 0 var(--primary);
+}
+.comparison-table__table tbody tr:hover td,
+.comparison-table__table tbody tr:hover th {
+    background: color-mix(in oklch, var(--muted) 20%, transparent);
+}

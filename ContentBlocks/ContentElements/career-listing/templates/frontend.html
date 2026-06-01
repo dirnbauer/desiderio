@@ -6,7 +6,7 @@
 <f:asset.css identifier="d-career-listing" href="{cb:assetPath()}/frontend.css"/>
 
 <d:layout.section class="career-listing">
-    <d:layout.container>
+    <d:layout.container size="lg">
         <f:if condition="{data.eyebrow} || {data.header} || {data.subheadline}">
             <header class="career-listing__intro">
                 <f:if condition="{data.eyebrow}"><span class="career-listing__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span></f:if>
@@ -15,23 +15,25 @@
             </header>
         </f:if>
 
-        <div class="career-listing__jobs">
+        <ul class="career-listing__jobs">
             <f:for each="{data.jobs}" as="job">
-                <article class="career-listing__job">
+                <li class="career-listing__job">
                     <div class="career-listing__info">
                         <h3 class="career-listing__title">{job -> f:render.text(field: 'title')}</h3>
                         <div class="career-listing__meta">
                             <f:if condition="{job.department}"><span class="career-listing__dept">{job -> f:render.text(field: 'department')}</span></f:if>
                             <f:if condition="{job.location}"><span class="career-listing__location">{job -> f:render.text(field: 'location')}</span></f:if>
-                            <f:if condition="{job.type}"><span class="career-listing__type">{job -> f:render.text(field: 'type')}</span></f:if>
+                            <f:if condition="{job.type}"><d:atom.badge variant="secondary" class="career-listing__type">{job -> f:render.text(field: 'type')}</d:atom.badge></f:if>
                         </div>
                     </div>
                     <f:if condition="{job.apply_link.url}">
-                        <d:atom.button href="{job.apply_link.url}" target="{job.apply_link.target}" variant="outline" size="sm">Apply</d:atom.button>
+                        <d:atom.button href="{job.apply_link.url}" target="{job.apply_link.target}" variant="outline" size="sm" class="career-listing__apply">
+                            <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:apply" default="Apply"/><span class="sr-only"> {job -> f:render.text(field: 'title')}</span>
+                        </d:atom.button>
                     </f:if>
-                </article>
+                </li>
             </f:for>
-        </div>
+        </ul>
     </d:layout.container>
 </d:layout.section>
 

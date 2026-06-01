@@ -27,7 +27,7 @@
                     <tbody>
                         <f:for each="{data.specs}" as="spec">
                             <tr>
-                                <th class="product-specs__label">{spec -> f:render.text(field: 'label')}</th>
+                                <th scope="row" class="product-specs__label">{spec -> f:render.text(field: 'label')}</th>
                                 <td class="product-specs__value">{spec -> f:render.text(field: 'value')}</td>
                             </tr>
                         </f:for>
@@ -38,7 +38,7 @@
             <f:if condition="{data.image}">
                 <div class="product-specs__media">
                     <f:for each="{data.image}" as="fileReference">
-                        <f:image image="{fileReference}" maxWidth="480" alt="{data.header}" class="product-specs__image"/>
+                        <f:image image="{fileReference}" maxWidth="480" alt="{fileReference.alternative -> f:or(alternative: data.header)}" class="product-specs__image" loading="lazy" decoding="async"/>
                     </f:for>
                 </div>
             </f:if>

@@ -7,17 +7,21 @@
     <d:layout.container>
         <div class="hero-startup__content">
             <f:if condition="{data.badge_text}"><d:atom.badge variant="secondary">{data -> f:render.text(field: 'badge_text')}</d:atom.badge></f:if>
-            <f:if condition="{data.header}"><h1 class="hero-startup__headline">{data -> f:render.text(field: 'header')}</h1></f:if>
-            <f:if condition="{data.subheadline}"><p class="hero-startup__subheadline">{data -> f:render.text(field: 'subheadline')}</p></f:if>
+            <f:if condition="{data.header}">
+                <d:atom.typography tag="h1" variant="h1" class="hero-startup__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
+            </f:if>
+            <f:if condition="{data.subheadline}">
+                <d:atom.typography variant="lead" class="hero-startup__subheadline">{data -> f:render.text(field: 'subheadline')}</d:atom.typography>
+            </f:if>
 <f:comment>Legacy editor fields kept for migrated records; TYPO3 Form Framework owns rendering and submit behavior. {data.form_action}{data.input_placeholder}{data.button_text}</f:comment>
 
             <d:molecule.formRenderer persistenceIdentifier="EXT:desiderio/Resources/Private/Forms/DesiderioNewsletter.form.yaml" class="hero-startup__form hero-startup__input-group"/>
             <f:if condition="{data.avatars} || {data.social_proof_text}">
                 <div class="hero-startup__proof">
                     <f:if condition="{data.avatars}">
-                        <div class="hero-startup__avatars">
+                        <div class="hero-startup__avatars" aria-hidden="true">
                             <f:for each="{data.avatars}" as="avatar">
-                                <f:image image="{avatar}" width="32" height="32" class="hero-startup__avatar" alt="User"/>
+                                <f:image image="{avatar}" width="32" height="32" class="hero-startup__avatar" alt=""/>
                             </f:for>
                         </div>
                     </f:if>

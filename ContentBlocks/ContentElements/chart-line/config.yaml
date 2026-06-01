@@ -19,9 +19,28 @@ fields:
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
     rows: 2
   -
+    identifier: series_label
+    type: Text
+    label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-line/language/labels.xlf:field.series_label'
+    description: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-line/language/labels.xlf:field.series_label.description'
+    required: true
+  -
+    identifier: unit
+    type: Text
+    label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-line/language/labels.xlf:field.unit'
+    description: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-line/language/labels.xlf:field.unit.description'
+  -
+    identifier: data_points
+    type: Textarea
+    label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-line/language/labels.xlf:field.data_points'
+    description: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-line/language/labels.xlf:field.data_points.description'
+    rows: 6
+    required: true
+  -
     identifier: chart_data
     type: Textarea
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:chart_data_json'
+    description: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-line/language/labels.xlf:field.chart_data.description'
     rows: 6
     required: true
   -
@@ -43,10 +62,10 @@ fields:
   -
     identifier: show_dots
     type: Checkbox
-    label: 'Show Data Points'
+    label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-line/language/labels.xlf:field.show_dots'
     default: 1
   -
     identifier: smooth
     type: Checkbox
-    label: 'Smooth Curve'
+    label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-line/language/labels.xlf:field.smooth'
     default: 1

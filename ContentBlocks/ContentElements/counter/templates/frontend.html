@@ -8,12 +8,12 @@
 <d:layout.section class="counter-section">
     <d:layout.container>
         <f:if condition="{data.header}">
-            <h2 class="counter__headline">{data -> f:render.text(field: 'header')}</h2>
+            <d:atom.typography tag="h2" variant="h2" class="counter__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
         </f:if>
-        <div class="counter__grid counter__grid--cols-{data.columns -> f:or(alternative: '3')}">
+        <dl class="counter__grid counter__grid--cols-{data.columns -> f:or(alternative: '3')}">
             <f:for each="{data.items}" as="item">
                 <div class="counter__item" data-astro-reveal="slide-up">
-                    <div class="counter__value">
+                    <dt class="counter__value">
                         <f:if condition="{item.prefix}">
                             <span class="counter__prefix">{item -> f:render.text(field: 'prefix')}</span>
                         </f:if>
@@ -21,11 +21,11 @@
                         <f:if condition="{item.suffix}">
                             <span class="counter__suffix">{item -> f:render.text(field: 'suffix')}</span>
                         </f:if>
-                    </div>
-                    <div class="counter__label">{item -> f:render.text(field: 'label')}</div>
+                    </dt>
+                    <dd class="counter__label">{item -> f:render.text(field: 'label')}</dd>
                 </div>
             </f:for>
-        </div>
+        </dl>
     </d:layout.container>
 </d:layout.section>
 

@@ -5,31 +5,111 @@
 
 <f:asset.css identifier="d-product-gallery" href="{cb:assetPath()}/frontend.css"/>
 
+<f:variable name="galleryTitle">{f:if(condition: data.header, then: '{data.header}', else: '{f:translate(key: \'LLL:EXT:desiderio/ContentBlocks/ContentElements/product-gallery/language/labels.xlf:fallback.title\', default: \'Product\')}')}</f:variable>
+
 <d:layout.section class="product-gallery">
     <d:layout.container>
-        <f:if condition="{data.header}">
-            <h2 class="product-gallery__heading">{data -> f:render.text(field: 'header')}</h2>
-        </f:if>
+        <article class="product-gallery__layout" itemscope="itemscope" itemtype="https://schema.org/Product" aria-label="{galleryTitle}">
 
-        <div class="product-gallery__main">
-            <f:for each="{data.images}" as="fileReference" iteration="iter">
-                <f:if condition="{iter.isFirst}">
-                    <f:image image="{fileReference}" maxWidth="800" alt="{data.header}" class="product-gallery__main-image"/>
+            <f:if condition="{data.images}">
+                <div class="product-gallery__media">
+                    <f:for each="{data.images}" as="fileReference" iteration="iter">
+                        <f:if condition="{iter.isFirst}">
+                            <div class="product-gallery__stage">
+                                <f:image image="{fileReference}" maxWidth="720" alt="{fileReference.alternative -> f:or(alternative: galleryTitle)}" itemprop="image" class="product-gallery__stage-image"/>
+                            </div>
+                        </f:if>
+                    </f:for>
+
+                    <f:if condition="{data.images -> f:count()} > 1">
+                        <ul class="product-gallery__thumbnails product-gallery__thumbnails--cols-{data.columns -> f:or(alternative: '4')}" role="list" aria-label="{f:translate(key: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/product-gallery/language/labels.xlf:thumbnails.label', default: 'More views')}">
+                            <f:for each="{data.images}" as="fileReference" iteration="iter">
+                                <li class="product-gallery__thumb {f:if(condition: iter.isFirst, then: 'product-gallery__thumb--active')}">
+                                    <f:image image="{fileReference}" width="160" height="160" cropVariant="default" alt="{fileReference.alternative -> f:or(alternative: '{galleryTitle} {iter.cycle}')}" class="product-gallery__thumb-img" loading="lazy" decoding="async"/>
+                                </li>
+                            </f:for>
+                        </ul>
+                    </f:if>
+                </div>
+            </f:if>
+
+            <d:molecule.card class="product-gallery__panel" role="group">
+                <d:molecule.cardHeader class="product-gallery__panel-header">
+                    <f:if condition="{data.compare_at_price}">
+                        <d:atom.badge variant="destructive" class="product-gallery__save">
+                            <f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/product-gallery/language/labels.xlf:save" default="Sale"/>
+                        </d:atom.badge>
+                    </f:if>
+                    <f:if condition="{data.header}">
+                        <d:atom.typography tag="h2" variant="h3" class="product-gallery__title" itemprop="name">{data -> f:render.text(field: 'header')}</d:atom.typography>
+                    </f:if>
+                </d:molecule.cardHeader>
+
+                <d:molecule.cardContent class="product-gallery__panel-content">
+                    <p class="product-gallery__price-row" itemprop="offers" itemscope="itemscope" itemtype="https://schema.org/Offer">
+                        <span class="product-gallery__price" itemprop="price">
+                            <span class="sr-only"><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/product-gallery/language/labels.xlf:sr.price" default="Price:"/> </span>{data -> f:render.text(field: 'price')}
+                        </span>
+                        <f:if condition="{data.compare_at_price}">
+                            <s class="product-gallery__compare"><span class="sr-only"><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/product-gallery/language/labels.xlf:sr.compare" default="Regular price:"/> </span>{data -> f:render.text(field: 'compare_at_price')}</s>
+                        </f:if>
+                    </p>
+
+                    <f:switch expression="{data.availability}">
+                        <f:case value="limited">
+                            <p class="product-gallery__availability product-gallery__availability--limited">
+                                <d:atom.icon name="clock" size="sm" class="product-gallery__availability-icon"/>
+                                <span><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/product-gallery/language/labels.xlf:availability.limited" default="Only a few left"/></span>
+                            </p>
+                        </f:case>
+                        <f:case value="preorder">
+                            <p class="product-gallery__availability product-gallery__availability--preorder">
+                                <d:atom.icon name="clock" size="sm" class="product-gallery__availability-icon"/>
+                                <span><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/product-gallery/language/labels.xlf:availability.preorder" default="Available to pre-order"/></span>
+                            </p>
+                        </f:case>
+                        <f:case value="sold_out">
+                            <p class="product-gallery__availability product-gallery__availability--sold-out">
+                                <d:atom.icon name="x-circle" size="sm" class="product-gallery__availability-icon"/>
+                                <span><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/product-gallery/language/labels.xlf:availability.sold_out" default="Currently sold out"/></span>
+                            </p>
+                        </f:case>
+                        <f:defaultCase>
+                            <p class="product-gallery__availability product-gallery__availability--in-stock">
+                                <d:atom.icon name="check-circle" size="sm" class="product-gallery__availability-icon"/>
+                                <span><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/product-gallery/language/labels.xlf:availability.in_stock" default="In stock, ready to ship"/></span>
+                            </p>
+                        </f:defaultCase>
+                    </f:switch>
+
+                    <f:if condition="{data.caption}">
+                        <p class="product-gallery__caption" itemprop="description">{data -> f:render.text(field: 'caption')}</p>
+                    </f:if>
+
+                    <f:if condition="{data.highlights}">
+                        <ul class="product-gallery__highlights" role="list">
+                            <f:for each="{data.highlights}" as="highlight">
+                                <f:if condition="{highlight.text}">
+                                    <li class="product-gallery__highlight">
+                                        <d:atom.icon name="check" size="sm" class="product-gallery__highlight-icon"/>
+                                        <span>{highlight -> f:render.text(field: 'text')}</span>
+                                    </li>
+                                </f:if>
+                            </f:for>
+                        </ul>
+                    </f:if>
+                </d:molecule.cardContent>
+
+                <f:if condition="{data.cta_text} && {data.cta_link.url} && {data.availability} != 'sold_out'">
+                    <d:molecule.cardFooter class="product-gallery__panel-footer">
+                        <f:variable name="ctaLabel">{data.cta_text} – {galleryTitle}</f:variable>
+                        <f:link.typolink parameter="{data.cta_link}" class="product-gallery__cta" additionalAttributes="{'aria-label': ctaLabel, 'itemprop': 'url'}">
+                            {data -> f:render.text(field: 'cta_text')}
+                        </f:link.typolink>
+                    </d:molecule.cardFooter>
                 </f:if>
-            </f:for>
-        </div>
-
-        <div class="product-gallery__thumbnails product-gallery__thumbnails--cols-{data.columns -> f:or(alternative: '4')}">
-            <f:for each="{data.images}" as="fileReference" iteration="iter">
-                <button type="button" class="product-gallery__thumb {f:if(condition: iter.isFirst, then: 'product-gallery__thumb--active')}">
-                    <f:image image="{fileReference}" width="120" height="120" alt="" class="product-gallery__thumb-img"/>
-                </button>
-            </f:for>
-        </div>
-
-        <f:if condition="{data.caption}">
-            <p class="product-gallery__caption">{data -> f:render.text(field: 'caption')}</p>
-        </f:if>
+            </d:molecule.card>
+        </article>
     </d:layout.container>
 </d:layout.section>
 </html>

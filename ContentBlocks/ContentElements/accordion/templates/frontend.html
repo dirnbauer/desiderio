@@ -6,17 +6,18 @@
 <f:asset.css identifier="d-accordion" href="{cb:assetPath()}/frontend.css"/>
 
 <d:layout.section class="accordion-section">
-    <d:layout.container>
+    <d:layout.container size="md">
         <f:if condition="{data.header}">
             <d:atom.typography tag="h2" variant="h2" class="accordion-section__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
         </f:if>
 
-        <d:molecule.accordion class="accordion"
-                                type="{f:if(condition: data.allow_multiple, then: 'multiple', else: 'single')}">
+        <f:variable name="groupName" value="{f:if(condition: data.allow_multiple, then: '', else: 'accordion-{data.uid}')}"/>
+
+        <div class="accordion" data-d-accordion>
             <f:for each="{data.items}" as="item" iteration="iter">
-                <details class="accordion__item" {f:if(condition: item.open_by_default, then: 'open')}>
+                <details class="accordion__item" name="{groupName}" {f:if(condition: item.open_by_default, then: 'open')}>
                     <summary class="accordion__trigger">
-                        <span class="accordion__title">{item -> f:render.text(field: 'title')}</span>
+                        <h3 class="accordion__title">{item -> f:render.text(field: 'title')}</h3>
                         <span class="accordion__icon" aria-hidden="true">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="m6 9 6 6 6-6"/>
@@ -28,7 +29,7 @@
                     </div>
                 </details>
             </f:for>
-        </d:molecule.accordion>
+        </div>
     </d:layout.container>
 </d:layout.section>
 

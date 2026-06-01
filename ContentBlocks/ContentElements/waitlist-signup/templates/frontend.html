@@ -6,16 +6,23 @@
 <f:asset.css identifier="d-waitlist-signup" href="{cb:assetPath()}/frontend.css"/>
 
 <d:layout.section class="waitlist-signup">
-    <d:layout.container>
+    <d:layout.container size="md">
         <div class="waitlist-signup__content">
-            <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
-            <f:if condition="{data.description}"><d:atom.typography variant="muted">{data -> f:render.text(field: 'description')}</d:atom.typography></f:if>
+            <f:if condition="{data.header} || {data.description}">
+                <header class="waitlist-signup__intro">
+                    <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
+                    <f:if condition="{data.description}"><d:atom.typography variant="lead" class="waitlist-signup__description">{data -> f:render.text(field: 'description')}</d:atom.typography></f:if>
+                </header>
+            </f:if>
+
+            <d:molecule.card class="waitlist-signup__card">
 <f:comment>Legacy editor fields kept for migrated records; TYPO3 Form Framework owns rendering and submit behavior. {data.form_action}{data.button_text}</f:comment>
 
-            <d:molecule.formRenderer persistenceIdentifier="EXT:desiderio/Resources/Private/Forms/DesiderioNewsletter.form.yaml" class="waitlist-signup__form"/>
-            <f:if condition="{data.count_text}">
-                <p class="waitlist-signup__count">{data -> f:render.text(field: 'count_text')}</p>
-            </f:if>
+                <d:molecule.formRenderer persistenceIdentifier="EXT:desiderio/Resources/Private/Forms/DesiderioNewsletter.form.yaml" class="waitlist-signup__form"/>
+                <f:if condition="{data.count_text}">
+                    <p class="waitlist-signup__count">{data -> f:render.text(field: 'count_text')}</p>
+                </f:if>
+            </d:molecule.card>
         </div>
     </d:layout.container>
 </d:layout.section>

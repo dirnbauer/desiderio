@@ -8,7 +8,132 @@
     </unit>
     <unit id="description">
       <segment>
-        <source>Use when the area chart should show trends or rates of change over time.</source>
+        <source>Use when the area chart should show one metric trending over an ordered time axis.</source>
+      </segment>
+    </unit>
+    <unit id="field.points">
+      <segment>
+        <source>Data points</source>
+      </segment>
+    </unit>
+    <unit id="field.points.description">
+      <segment>
+        <source>One point per line as "Period | Value", e.g. Jan | 248. Keep them in time order. Drives the screen-reader data table; match the same labels and values in the chart data JSON below.</source>
+      </segment>
+    </unit>
+    <unit id="field.unit">
+      <segment>
+        <source>Value unit</source>
+      </segment>
+    </unit>
+    <unit id="field.unit.description">
+      <segment>
+        <source>Short unit shown after every value, e.g. "k USD", "%", or "orders". Leave empty for plain numbers.</source>
+      </segment>
+    </unit>
+    <unit id="field.series_name">
+      <segment>
+        <source>Series name</source>
+      </segment>
+    </unit>
+    <unit id="field.series_name.description">
+      <segment>
+        <source>What the line measures, e.g. "Monthly recurring revenue". Shown as the data-table column header and announced to screen readers.</source>
+      </segment>
+    </unit>
+    <unit id="field.chart_data.description">
+      <segment>
+        <source>JSON array the trend line is drawn from. One entry per point in time order: [{"label":"Jan","value":248}]. Match the labels and values entered under Data points.</source>
+      </segment>
+    </unit>
+    <unit id="field.color_variant">
+      <segment>
+        <source>Line colour</source>
+      </segment>
+    </unit>
+    <unit id="field.color_variant.description">
+      <segment>
+        <source>Chart palette colour used for the trend line, its fill and the summary trend marker.</source>
+      </segment>
+    </unit>
+    <unit id="field.fill_opacity">
+      <segment>
+        <source>Fill opacity</source>
+      </segment>
+    </unit>
+    <unit id="field.fill_opacity.description">
+      <segment>
+        <source>How strongly the area under the line is shaded.</source>
+      </segment>
+    </unit>
+    <unit id="fill_opacity.light">
+      <segment>
+        <source>Light</source>
+      </segment>
+    </unit>
+    <unit id="fill_opacity.medium">
+      <segment>
+        <source>Medium</source>
+      </segment>
+    </unit>
+    <unit id="fill_opacity.strong">
+      <segment>
+        <source>Strong</source>
+      </segment>
+    </unit>
+    <unit id="stat.peak">
+      <segment>
+        <source>Peak</source>
+      </segment>
+    </unit>
+    <unit id="stat.net_change">
+      <segment>
+        <source>Net change</source>
+      </segment>
+    </unit>
+    <unit id="table.period">
+      <segment>
+        <source>Period</source>
+      </segment>
+    </unit>
+    <unit id="table.value">
+      <segment>
+        <source>Value</source>
+      </segment>
+    </unit>
+    <unit id="table.net_change">
+      <segment>
+        <source>Net change (first to last)</source>
+      </segment>
+    </unit>
+    <unit id="trend.up">
+      <segment>
+        <source>Trending up:</source>
+      </segment>
+    </unit>
+    <unit id="trend.down">
+      <segment>
+        <source>Trending down:</source>
+      </segment>
+    </unit>
+    <unit id="trend.flat">
+      <segment>
+        <source>No net change:</source>
+      </segment>
+    </unit>
+    <unit id="aria.fallback">
+      <segment>
+        <source>Area chart</source>
+      </segment>
+    </unit>
+    <unit id="aria.summary">
+      <segment>
+        <source>{0}: area chart trending across {1, plural, one {# period} other {# periods}} from {2} to {3}{4}. The full series follows in the data table.</source>
+      </segment>
+    </unit>
+    <unit id="aria.summary.measuring">
+      <segment>
+        <source>, measuring {0}</source>
       </segment>
     </unit>
   </file>

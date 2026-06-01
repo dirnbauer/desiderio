@@ -10,7 +10,7 @@
         <f:if condition="{data.eyebrow} || {data.header} || {data.subheadline}">
             <header class="certifications__intro">
                 <f:if condition="{data.eyebrow}">
-                    <span class="certifications__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span>
+                    <p class="certifications__eyebrow">{data -> f:render.text(field: 'eyebrow')}</p>
                 </f:if>
                 <f:if condition="{data.header}">
                     <h2 class="certifications__headline">{data -> f:render.text(field: 'header')}</h2>
@@ -21,31 +21,33 @@
             </header>
         </f:if>
 
-        <div class="certifications__grid">
+        <ul class="certifications__grid" role="list">
             <f:for each="{data.certifications}" as="cert">
-                <article class="certifications__item">
+                <li class="certifications__item">
                     <f:if condition="{cert.badge_image}">
                         <div class="certifications__badge">
                             <f:for each="{cert.badge_image}" as="fileReference">
-                                <f:image image="{fileReference}" maxWidth="100" alt="{cert.name}" class="certifications__badge-img"/>
+                                <f:image image="{fileReference}" maxWidth="100" alt="{cert.name} badge" class="certifications__badge-img"/>
                             </f:for>
                         </div>
                     </f:if>
                     <h3 class="certifications__name">{cert -> f:render.text(field: 'name')}</h3>
                     <f:if condition="{cert.issuer}">
-                        <span class="certifications__issuer">{cert -> f:render.text(field: 'issuer')}</span>
+                        <p class="certifications__issuer">{cert -> f:render.text(field: 'issuer')}</p>
                     </f:if>
                     <f:if condition="{cert.description}">
                         <p class="certifications__cert-description">{cert -> f:render.text(field: 'description')}</p>
                     </f:if>
                     <f:if condition="{cert.link.url}">
-                        <f:link.typolink parameter="{cert.link}" class="certifications__link">
-                            Verify &rarr;
+                        <f:variable name="verifyLabel">{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:cta.verify')}</f:variable>
+                        <f:link.typolink parameter="{cert.link}" class="certifications__link" additionalAttributes="{'aria-label': '{verifyLabel}: {cert.name -> f:format.stripTags() -> f:format.trim()}'}">
+                            <span>{verifyLabel}</span>
+                            <span class="certifications__link-arrow" aria-hidden="true">&rarr;</span>
                         </f:link.typolink>
                     </f:if>
-                </article>
+                </li>
             </f:for>
-        </div>
+        </ul>
     </d:layout.container>
 </d:layout.section>
 </html>

@@ -2,6 +2,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: var(--d-spacing-3);
+    flex-wrap: wrap;
     padding-block: var(--d-spacing-4);
 }
 .navbar-minimal__brand-link {
@@ -9,4 +11,8 @@
     font-size: var(--d-text-lg);
     color: var(--d-foreground);
     text-decoration: none;
+}
+.navbar-minimal__brand-link:focus-visible {
+    outline: 2px solid var(--d-ring);
+    outline-offset: 2px;
 }

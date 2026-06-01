@@ -8,7 +8,127 @@
     </unit>
     <unit id="description">
       <segment>
-        <source>Use when the product gallery pricing should present costs or plan choices close to a decision.</source>
+        <source>Use when a product gallery should pair its photos with a price and a buy action at the decision point.</source>
+      </segment>
+    </unit>
+    <unit id="images">
+      <segment>
+        <source>Product Images</source>
+      </segment>
+    </unit>
+    <unit id="images.description">
+      <segment>
+        <source>The first image fills the main stage; the rest appear as thumbnails.</source>
+      </segment>
+    </unit>
+    <unit id="caption">
+      <segment>
+        <source>Short Description</source>
+      </segment>
+    </unit>
+    <unit id="caption.description">
+      <segment>
+        <source>Materials, finish or sizing shown in the photos.</source>
+      </segment>
+    </unit>
+    <unit id="price.description">
+      <segment>
+        <source>Current price, e.g. $1,290.</source>
+      </segment>
+    </unit>
+    <unit id="compare_at_price">
+      <segment>
+        <source>Compare-at Price</source>
+      </segment>
+    </unit>
+    <unit id="compare_at_price.description">
+      <segment>
+        <source>Optional was-price shown struck through to signal a saving.</source>
+      </segment>
+    </unit>
+    <unit id="availability">
+      <segment>
+        <source>Availability</source>
+      </segment>
+    </unit>
+    <unit id="availability.in_stock">
+      <segment>
+        <source>In stock, ready to ship</source>
+      </segment>
+    </unit>
+    <unit id="availability.limited">
+      <segment>
+        <source>Only a few left</source>
+      </segment>
+    </unit>
+    <unit id="availability.preorder">
+      <segment>
+        <source>Available to pre-order</source>
+      </segment>
+    </unit>
+    <unit id="availability.sold_out">
+      <segment>
+        <source>Currently sold out</source>
+      </segment>
+    </unit>
+    <unit id="highlights">
+      <segment>
+        <source>Buying Points</source>
+      </segment>
+    </unit>
+    <unit id="highlights.description">
+      <segment>
+        <source>Reassurances such as delivery, warranty or returns.</source>
+      </segment>
+    </unit>
+    <unit id="highlight.text">
+      <segment>
+        <source>Buying Point</source>
+      </segment>
+    </unit>
+    <unit id="columns">
+      <segment>
+        <source>Thumbnail Columns</source>
+      </segment>
+    </unit>
+    <unit id="columns.description">
+      <segment>
+        <source>How many thumbnails sit in each row below the main image.</source>
+      </segment>
+    </unit>
+    <unit id="columns.5">
+      <segment>
+        <source>5 Columns</source>
+      </segment>
+    </unit>
+    <unit id="columns.6">
+      <segment>
+        <source>6 Columns</source>
+      </segment>
+    </unit>
+    <unit id="save">
+      <segment>
+        <source>Sale</source>
+      </segment>
+    </unit>
+    <unit id="sr.price">
+      <segment>
+        <source>Price:</source>
+      </segment>
+    </unit>
+    <unit id="sr.compare">
+      <segment>
+        <source>Regular price:</source>
+      </segment>
+    </unit>
+    <unit id="thumbnails.label">
+      <segment>
+        <source>More views</source>
+      </segment>
+    </unit>
+    <unit id="fallback.title">
+      <segment>
+        <source>Product</source>
       </segment>
     </unit>
   </file>

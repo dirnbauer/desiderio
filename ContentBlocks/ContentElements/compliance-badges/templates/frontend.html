@@ -9,34 +9,52 @@
     <d:layout.container>
         <div class="compliance-badges compliance-badges--{data.alignment -> f:or(alternative: 'center')}">
             <f:if condition="{data.header}">
-                <h2 class="compliance-badges__title">{data -> f:render.text(field: 'header')}</h2>
+                <d:atom.typography tag="h2" variant="small" class="compliance-badges__title text-muted-foreground uppercase tracking-wide">{data -> f:render.text(field: 'header')}</d:atom.typography>
             </f:if>
-            <div class="compliance-badges__list">
+            <ul class="compliance-badges__list" role="list">
                 <f:for each="{data.items}" as="item">
-                    <div class="compliance-badges__item">
+                    <li class="compliance-badges__item">
                         <f:if condition="{item.link}">
                             <f:then>
-                                <f:link.typolink parameter="{item.link}" class="compliance-badges__link" target="_blank">
+                                <f:link.typolink parameter="{item.link}" target="_blank" rel="noopener noreferrer" class="compliance-badges__link rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background">
                                     <f:if condition="{item.image}">
-                                        <f:for each="{item.image}" as="file">
-                                            <f:image image="{file}" alt="{item.label}" height="48" class="compliance-badges__image"/>
-                                        </f:for>
+                                        <f:then>
+                                            <f:for each="{item.image}" as="file">
+                                                <f:image image="{file}" alt="{item.label}" height="48" class="compliance-badges__image"/>
+                                            </f:for>
+                                            <span class="compliance-badges__label text-muted-foreground">{item -> f:render.text(field: 'label')}</span>
+                                        </f:then>
+                                        <f:else>
+                                            <d:atom.badge variant="outline" class="compliance-badges__badge h-auto gap-1.5 px-3 py-1 text-sm">
+                                                <svg class="size-3.5 text-muted-foreground" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 12 2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+                                                {item -> f:render.text(field: 'label')}
+                                            </d:atom.badge>
+                                        </f:else>
                                     </f:if>
-                                    <span class="compliance-badges__label">{item -> f:render.text(field: 'label')}</span>
                                 </f:link.typolink>
                             </f:then>
                             <f:else>
                                 <f:if condition="{item.image}">
-                                    <f:for each="{item.image}" as="file">
-                                        <f:image image="{file}" alt="{item.label}" height="48" class="compliance-badges__image"/>
-                                    </f:for>
+                                    <f:then>
+                                        <span class="compliance-badges__link">
+                                            <f:for each="{item.image}" as="file">
+                                                <f:image image="{file}" alt="{item.label}" height="48" class="compliance-badges__image"/>
+                                            </f:for>
+                                            <span class="compliance-badges__label text-muted-foreground">{item -> f:render.text(field: 'label')}</span>
+                                        </span>
+                                    </f:then>
+                                    <f:else>
+                                        <d:atom.badge variant="outline" class="compliance-badges__badge h-auto gap-1.5 px-3 py-1 text-sm">
+                                            <svg class="size-3.5 text-muted-foreground" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 12 2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+                                            {item -> f:render.text(field: 'label')}
+                                        </d:atom.badge>
+                                    </f:else>
                                 </f:if>
-                                <span class="compliance-badges__label">{item -> f:render.text(field: 'label')}</span>
                             </f:else>
                         </f:if>
-                    </div>
+                    </li>
                 </f:for>
-            </div>
+            </ul>
         </div>
     </d:layout.container>
 </d:layout.section>

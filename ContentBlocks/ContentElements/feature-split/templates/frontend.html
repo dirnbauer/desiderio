@@ -11,22 +11,22 @@
             <div class="feature-split__copy">
                 <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
                 <f:if condition="{data.description}">
-                    <d:atom.typography variant="muted" class="feature-split__description">{data -> f:render.text(field: 'description')}</d:atom.typography>
+                    <d:atom.typography variant="lead" class="feature-split__description">{data -> f:render.text(field: 'description')}</d:atom.typography>
                 </f:if>
-                <div class="feature-split__list">
+                <ul class="feature-split__list" role="list">
                     <f:for each="{data.items}" as="item">
-                        <div class="feature-split__item">
-                            <h3 class="feature-split__title">{item -> f:render.text(field: 'title')}</h3>
+                        <li class="feature-split__item">
+                            <d:atom.typography tag="h3" variant="large" class="feature-split__title">{item -> f:render.text(field: 'title')}</d:atom.typography>
                             <f:if condition="{item.description_text}">
-                                <p class="feature-split__detail">{item -> f:render.text(field: 'description_text')}</p>
+                                <d:atom.typography variant="muted" class="feature-split__detail">{item -> f:render.text(field: 'description_text')}</d:atom.typography>
                             </f:if>
-                        </div>
+                        </li>
                     </f:for>
-                </div>
+                </ul>
             </div>
             <f:if condition="{data.image.0}">
                 <div class="feature-split__media">
-                    <f:image image="{data.image.0}" alt="{data.header}" maxWidth="640" class="feature-split__image"/>
+                    <f:image image="{data.image.0}" alt="{data.image.0.alternative -> f:or(alternative: data.header)}" maxWidth="640" loading="lazy" class="feature-split__image"/>
                 </div>
             </f:if>
         </div>

@@ -27,10 +27,22 @@
                 <span class="d-ce-preview__value">{data.description}</span>
             </div>
         </f:if>
-        <f:if condition="{data.chart_data}">
+        <f:if condition="{data.bars}">
             <div class="d-ce-preview__field">
-                <span class="d-ce-preview__label">Chart Data</span>
-                <span class="d-ce-preview__value">{data.chart_data}</span>
+                <span class="d-ce-preview__label">Bars</span>
+                <span class="d-ce-preview__value">{data.bars}</span>
+            </div>
+        </f:if>
+        <f:if condition="{data.unit}">
+            <div class="d-ce-preview__field">
+                <span class="d-ce-preview__label">Unit</span>
+                <span class="d-ce-preview__value">{data.unit}</span>
+            </div>
+        </f:if>
+        <f:if condition="{data.series_name}">
+            <div class="d-ce-preview__field">
+                <span class="d-ce-preview__label">Series</span>
+                <span class="d-ce-preview__value">{data.series_name}</span>
             </div>
         </f:if>
         <f:if condition="{data.orientation}">
@@ -41,7 +53,7 @@
         </f:if>
         <f:if condition="{data.color_variant}">
             <div class="d-ce-preview__field">
-                <span class="d-ce-preview__label">Color Variant</span>
+                <span class="d-ce-preview__label">Bar Colour</span>
                 <span class="d-ce-preview__value">{data.color_variant}</span>
             </div>
         </f:if>

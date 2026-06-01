@@ -1,22 +1,28 @@
 {
     "_type": "stats",
-    "header": "Social Proof Counter for credible trust signals",
+    "header": "Trusted by teams that ship every day",
+    "subheadline": "From two-person startups to public companies, thousands of teams rely on us to keep work moving.",
+    "shadcn_layout": "inline",
     "counters": [
         {
-            "value": "12 ms",
-            "label": "Mobile polish"
+            "value": "12,000+",
+            "label": "Active teams",
+            "icon_name": "users"
         },
         {
-            "value": "AA",
-            "label": "Token coverage"
+            "value": "40+",
+            "label": "Countries",
+            "icon_name": "globe"
         },
         {
-            "value": "2.4K",
-            "label": "Trust lift"
+            "value": "4.9/5",
+            "label": "Average rating",
+            "icon_name": "star"
         },
         {
-            "value": "128",
-            "label": "Signal quality"
+            "value": "99.99%",
+            "label": "Uptime, last 12 months",
+            "icon_name": "shield-check"
         }
     ]
 }

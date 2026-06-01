@@ -27,21 +27,33 @@
                 <span class="d-ce-preview__value">{data.description}</span>
             </div>
         </f:if>
-        <f:if condition="{data.chart_data}">
+        <f:if condition="{data.series_name}">
             <div class="d-ce-preview__field">
-                <span class="d-ce-preview__label">Chart Data</span>
-                <span class="d-ce-preview__value">{data.chart_data}</span>
+                <span class="d-ce-preview__label">Series name</span>
+                <span class="d-ce-preview__value">{data.series_name}</span>
+            </div>
+        </f:if>
+        <f:if condition="{data.unit}">
+            <div class="d-ce-preview__field">
+                <span class="d-ce-preview__label">Value unit</span>
+                <span class="d-ce-preview__value">{data.unit}</span>
+            </div>
+        </f:if>
+        <f:if condition="{data.points}">
+            <div class="d-ce-preview__field">
+                <span class="d-ce-preview__label">Data points</span>
+                <span class="d-ce-preview__value">{data.points}</span>
             </div>
         </f:if>
         <f:if condition="{data.color_variant}">
             <div class="d-ce-preview__field">
-                <span class="d-ce-preview__label">Color Variant</span>
+                <span class="d-ce-preview__label">Line colour</span>
                 <span class="d-ce-preview__value">{data.color_variant}</span>
             </div>
         </f:if>
         <f:if condition="{data.fill_opacity}">
             <div class="d-ce-preview__field">
-                <span class="d-ce-preview__label">Fill Opacity</span>
+                <span class="d-ce-preview__label">Fill opacity</span>
                 <span class="d-ce-preview__value">{data.fill_opacity}</span>
             </div>
         </f:if>

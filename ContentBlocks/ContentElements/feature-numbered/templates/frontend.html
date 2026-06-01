@@ -10,21 +10,21 @@
         <f:if condition="{data.header}">
             <header class="feature-numbered__intro">
                 <d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography>
-                <f:if condition="{data.subheadline}"><d:atom.typography variant="muted">{data -> f:render.text(field: 'subheadline')}</d:atom.typography></f:if>
+                <f:if condition="{data.subheadline}"><d:atom.typography variant="lead" class="feature-numbered__subheadline">{data -> f:render.text(field: 'subheadline')}</d:atom.typography></f:if>
             </header>
         </f:if>
 
-        <div class="feature-numbered__grid">
+        <ol class="feature-numbered__grid">
             <f:for each="{data.items}" as="item" iteration="iter">
-                <div class="feature-numbered__item">
+                <li class="feature-numbered__item">
                     <span class="feature-numbered__number" aria-hidden="true">{f:format.padding(padLength: 2, padString: '0')}{iter.cycle}</span>
-                    <h3 class="feature-numbered__title">{item -> f:render.text(field: 'title')}</h3>
+                    <d:atom.typography tag="h3" variant="large" class="feature-numbered__title">{item -> f:render.text(field: 'title')}</d:atom.typography>
                     <f:if condition="{item.description}">
-                        <p class="feature-numbered__description">{item -> f:render.text(field: 'description')}</p>
+                        <d:atom.typography variant="muted" class="feature-numbered__description">{item -> f:render.text(field: 'description')}</d:atom.typography>
                     </f:if>
-                </div>
+                </li>
             </f:for>
-        </div>
+        </ol>
     </d:layout.container>
 </d:layout.section>
 

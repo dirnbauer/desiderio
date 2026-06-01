@@ -1,15 +1,23 @@
 {
     "_type": "grid",
-    "header": "Case Study Grid for credible trust signals",
+    "eyebrow": "Case studies",
+    "header": "Proof from teams like yours",
+    "columns": "3",
     "cases": [
         {
-            "summary": "Show quality, adoption, and outcomes with focused credibility signals."
+            "client_name": "Northwind Logistics",
+            "summary": "Replaced manual dispatch spreadsheets with live route planning across 12 depots.",
+            "result": "9x faster planning"
         },
         {
-            "summary": "Build trust with specific evidence, attribution, and compact proof points."
+            "client_name": "Lumen Health",
+            "summary": "Wired clinic dashboards to the data warehouse so every site sees the same numbers.",
+            "result": "70% less reporting time"
         },
         {
-            "summary": "Turn ratings, logos, and testimonials into credible proof points."
+            "client_name": "Atlas Retail",
+            "summary": "Unified 40 storefronts onto one inventory feed ahead of peak season.",
+            "result": "$2.4M recovered sales"
         }
     ]
 }

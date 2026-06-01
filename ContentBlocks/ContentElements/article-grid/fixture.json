@@ -1,18 +1,25 @@
 {
     "_type": "grid",
-    "header": "Article Grid for polished editorial systems",
+    "header": "Latest from the engineering blog",
+    "eyebrow": "Insights",
     "items": [
         {
-            "title": "Article Grid for polished editorial systems",
-            "description": "Lead with a clear story, one useful detail, and a calm reading rhythm."
+            "category": "Architecture",
+            "title": "How we cut p95 latency by 40% with edge caching",
+            "description": "A walkthrough of the cache keys, invalidation rules, and rollout that trimmed our slowest responses across three regions.",
+            "link": "https://example.com/blog/edge-caching-latency"
         },
         {
-            "title": "Article Grid for polished editorial systems",
-            "description": "Use practical metadata and compact summaries so previews stay easy to compare."
+            "category": "Engineering culture",
+            "title": "Shipping on Fridays: how our review process changed",
+            "description": "Smaller pull requests, async approvals, and a stricter test gate let the team release safely at the end of the week.",
+            "link": "https://example.com/blog/shipping-on-fridays"
         },
         {
-            "title": "Article Grid for polished editorial systems",
-            "description": "Keep supporting media and copy calm, scannable, and ready to publish."
+            "category": "Security",
+            "title": "Rotating secrets without a single second of downtime",
+            "description": "The dual-credential pattern we use to roll API keys and database passwords while traffic keeps flowing.",
+            "link": "https://example.com/blog/zero-downtime-secret-rotation"
         }
     ]
 }

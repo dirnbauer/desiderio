@@ -36,21 +36,21 @@ fields:
         identifier: value
         type: Textarea
         rows: 1
-        label: 'Value / Score'
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:leaderboard.score'
         required: true
       -
         identifier: subtitle
         type: Textarea
         rows: 1
-        label: Subtitle
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:leaderboard.subtitle'
       -
         identifier: image
         type: File
-        label: Avatar
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:leaderboard.avatar'
         allowed: common-image-types
         maxitems: 1
   -
     identifier: show_rank
     type: Checkbox
-    label: 'Show Rank Numbers'
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:leaderboard.show_rank'
     default: 1

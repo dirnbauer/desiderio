@@ -1,9 +1,14 @@
 .hero-app__grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     gap: var(--d-spacing-8);
     align-items: center;
     padding-block: var(--d-spacing-12);
+}
+@media (min-width: 768px) {
+    .hero-app__grid {
+        grid-template-columns: 1fr 1fr;
+    }
 }
 .hero-app__headline {
     font-size: var(--d-text-4xl);
@@ -27,6 +32,7 @@
 }
 .hero-app__phone-frame {
     width: 18rem;
+    max-width: 100%;
     border: 3px solid var(--d-border);
     border-radius: 2rem;
     overflow: hidden;

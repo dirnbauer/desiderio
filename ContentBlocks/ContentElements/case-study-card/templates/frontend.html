@@ -15,7 +15,7 @@
             <f:if condition="{data.image}">
                 <div class="case-study-card__media">
                     <f:for each="{data.image}" as="fileReference">
-                        <f:image image="{fileReference}" maxWidth="640" alt="{data.client_name}" class="case-study-card__image"/>
+                        <f:image image="{fileReference}" maxWidth="640" alt="{f:if(condition: fileReference.alternative, then: fileReference.alternative, else: '{data.client_name} case study')}" class="case-study-card__image"/>
                     </f:for>
                 </div>
             </f:if>
@@ -24,7 +24,7 @@
                 <f:if condition="{data.client_logo}">
                     <div class="case-study-card__logo">
                         <f:for each="{data.client_logo}" as="logo">
-                            <f:image image="{logo}" maxWidth="160" alt="{data.client_name}" class="case-study-card__logo-img"/>
+                            <f:image image="{logo}" maxWidth="160" alt="{data.client_name} logo" class="case-study-card__logo-img"/>
                         </f:for>
                     </div>
                 </f:if>
@@ -33,17 +33,17 @@
                 <p class="case-study-card__summary">{data -> f:render.text(field: 'summary')}</p>
 
                 <f:if condition="{data.result_value}">
-                    <div class="case-study-card__result">
+                    <p class="case-study-card__result">
                         <span class="case-study-card__result-value">{data -> f:render.text(field: 'result_value')}</span>
                         <f:if condition="{data.result_label}">
                             <span class="case-study-card__result-label">{data -> f:render.text(field: 'result_label')}</span>
                         </f:if>
-                    </div>
+                    </p>
                 </f:if>
 
                 <f:if condition="{data.link.url}">
                     <f:link.typolink parameter="{data.link}" class="case-study-card__link">
-                        Read case study &rarr;
+                        <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:read_case_study" default="Read case study"/><span class="sr-only"> {data -> f:render.text(field: 'client_name')}</span><span aria-hidden="true"> &rarr;</span>
                     </f:link.typolink>
                 </f:if>
             </div>

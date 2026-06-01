@@ -5,23 +5,95 @@
 
 <f:asset.css identifier="d-chart-heatmap" href="{cb:assetPath()}/frontend.css"/>
 
+<f:comment>
+  The coloured intensity grid is drawn into .chart-heatmap__plot by Resources/Public/Js/charts.js
+  (it reads data-chart-json). That grid is decorative (aria-hidden): charts.js clears __plot before
+  drawing, so any markup placed inside it is lost and it carries no accessible name. Everything that
+  conveys the data is server-rendered and stays meaningful without JS and for assistive technology:
+    - a role="img" figure with a concise aria-label + an aria-describedby summary,
+    - a visually-hidden (sr-only) data table carrying every row, column, value and unit.
+  The editor maintains one human-readable "Row label | v1, v2, v3" list (series) plus the column
+  labels (col_labels); chart_data holds the matching JSON the grid reads.
+</f:comment>
+
+<f:variable name="unit">{data.unit -> f:or(alternative: '') -> f:format.trim()}</f:variable>
+<f:variable name="columns">{data.col_labels -> f:or(alternative: '') -> f:split(',')}</f:variable>
+<f:variable name="seriesRows">{data.series -> f:or(alternative: '') -> f:split('
+')}</f:variable>
+<f:variable name="chartTitle">{f:if(condition: data.header, then: '{data.header}', else: '{f:translate(key: \'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-heatmap/language/labels.xlf:aria.fallback\')}')}</f:variable>
+
+<f:comment>Count non-empty rows so the summary can state the grid size.</f:comment>
+<f:variable name="rowCount" value="{0}"/>
+<f:for each="{seriesRows}" as="seriesRow">
+    <f:if condition="{seriesRow -> f:format.trim()}">
+        <f:variable name="rowCount" value="{rowCount + 1}"/>
+    </f:if>
+</f:for>
+<f:variable name="colCount" value="{0}"/>
+<f:for each="{columns}" as="column">
+    <f:if condition="{column -> f:format.trim()}">
+        <f:variable name="colCount" value="{colCount + 1}"/>
+    </f:if>
+</f:for>
+
+<f:variable name="chartAriaLabel"><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-heatmap/language/labels.xlf:aria.summary" arguments="{0: chartTitle, 1: rowCount, 2: colCount}">{chartTitle}: heatmap of {rowCount} rows by {colCount} columns.</f:translate></f:variable>
+
 <d:layout.section class="chart-heatmap-section">
     <d:layout.container>
-        <div class="chart-heatmap" data-chart-json="{data.chart_data -> f:format.htmlspecialchars()}">
+        <figure class="chart-heatmap"
+             data-chart-json="{data.chart_data -> f:format.htmlspecialchars()}"
+             data-chart-id="chart-heatmap-{data.uid}">
             <div class="chart-heatmap__card">
                 <f:if condition="{data.header} || {data.description}">
-                    <div class="chart-heatmap__header">
+                    <figcaption class="chart-heatmap__header">
                         <f:if condition="{data.header}">
-                            <h3 class="chart-heatmap__title">{data -> f:render.text(field: 'header')}</h3>
+                            <h3 class="chart-heatmap__title" data-variant="large">{data -> f:render.text(field: 'header')}</h3>
                         </f:if>
                         <f:if condition="{data.description}">
-                            <p class="chart-heatmap__description">{data -> f:render.text(field: 'description')}</p>
+                            <p class="chart-heatmap__description" data-variant="muted">{data -> f:render.text(field: 'description')}</p>
                         </f:if>
-                    </div>
+                    </figcaption>
                 </f:if>
-                <div class="chart-heatmap__plot" id="chart-heatmap-{data.uid}"></div>
+
+                <div class="chart-heatmap__figure" role="img"
+                     aria-label="{chartAriaLabel -> f:format.trim()}"
+                     aria-describedby="chart-heatmap-desc-{data.uid}">
+                    <div class="chart-heatmap__plot" id="chart-heatmap-{data.uid}" aria-hidden="true">
+                        <p class="chart-heatmap__fallback" data-variant="muted">{chartAriaLabel -> f:format.trim()}</p>
+                    </div>
+                </div>
+
+                <p id="chart-heatmap-desc-{data.uid}" class="sr-only">{chartAriaLabel -> f:format.trim()}</p>
+
+                <table class="chart-heatmap__table sr-only">
+                    <caption>{chartTitle}<f:if condition="{unit}"> &#8211; {f:translate(key: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-heatmap/language/labels.xlf:table.unit_caption', arguments: '{0: unit}')}</f:if></caption>
+                    <thead>
+                        <tr>
+                            <th scope="col"><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-heatmap/language/labels.xlf:table.row_header"/></th>
+                            <f:for each="{columns}" as="column">
+                                <f:if condition="{column -> f:format.trim()}">
+                                    <th scope="col">{column -> f:format.trim()}</th>
+                                </f:if>
+                            </f:for>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <f:for each="{seriesRows}" as="seriesRow">
+                            <f:variable name="rowLabel">{seriesRow -> f:split('|', 2) -> f:variable(name: 'rowParts')}{rowParts.0 -> f:format.trim()}</f:variable>
+                            <f:variable name="rowValues">{rowParts.1 -> f:or(alternative: '') -> f:split(',')}</f:variable>
+                            <f:if condition="{rowLabel}">
+                                <tr>
+                                    <th scope="row">{rowLabel}</th>
+                                    <f:for each="{rowValues}" as="cellValue">
+                                        <td>{cellValue -> f:format.trim()}<f:if condition="{unit}"> {unit}</f:if></td>
+                                    </f:for>
+                                </tr>
+                            </f:if>
+                        </f:for>
+                    </tbody>
+                </table>
             </div>
-        </div>
+        </figure>
     </d:layout.container>
 </d:layout.section>
 

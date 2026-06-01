@@ -20,20 +20,20 @@
 .textmedia__richtext {
     margin-block: var(--d-spacing-md);
     color: var(--muted-foreground);
+    line-height: 1.7;
 }
+.textmedia__richtext > :first-child { margin-block-start: 0; }
+.textmedia__richtext > :last-child { margin-block-end: 0; }
+.textmedia__richtext p { margin-block: 0 var(--d-spacing-sm); }
+.textmedia__richtext ul {
+    margin-block: var(--d-spacing-sm) 0;
+    padding-inline-start: var(--d-spacing-lg);
+    list-style: disc;
+}
+.textmedia__richtext li { margin-block-end: var(--d-spacing-2xs); }
 .textmedia__actions {
-    margin-top: var(--d-spacing-md);
+    margin-block-start: var(--d-spacing-lg);
 }
-.textmedia__button {
-    display: inline-flex;
-    padding: var(--d-spacing-sm) var(--d-spacing-lg);
-    background: var(--primary);
-    color: var(--primary-foreground);
-    border-radius: var(--d-radius-md);
-    font-weight: 500;
-    text-decoration: none;
-}
-.textmedia__button:hover { opacity: 0.9; }
 .textmedia--media-above .textmedia__media-wrapper,
 .textmedia--media-below .textmedia__media-wrapper {
     margin-block: var(--d-spacing-lg);

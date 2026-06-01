@@ -1,18 +1,44 @@
 {
     "_type": "grid",
-    "header": "Product Grid Pricing for confident plan comparison",
+    "eyebrow": "New arrivals",
+    "header": "Shop the spring collection",
+    "columns": "3",
     "products": [
         {
-            "name": "Sofia Berg"
+            "name": "Aster Lounge Chair",
+            "price": "$420",
+            "description_text": "Solid oak frame with a wool-blend seat.",
+            "link": "https://ui.shadcn.com/"
         },
         {
-            "name": "Noah Ritter"
+            "name": "Maple Side Table",
+            "price": "$185",
+            "description_text": "Hand-finished maple with a hidden drawer.",
+            "link": "https://ui.shadcn.com/"
         },
         {
-            "name": "Lea Fischer"
+            "name": "Linen Floor Lamp",
+            "price": "$240",
+            "description_text": "Warm dimmable light under a linen shade.",
+            "link": "https://ui.shadcn.com/"
         },
         {
-            "name": "Mara Weiss"
+            "name": "Terra Ceramic Vase",
+            "price": "$58",
+            "description_text": "Matte stoneware thrown by hand in Porto.",
+            "link": "https://ui.shadcn.com/"
+        },
+        {
+            "name": "Drift Wool Throw",
+            "price": "$95",
+            "description_text": "Heavyweight merino, woven in Donegal.",
+            "link": "https://ui.shadcn.com/"
+        },
+        {
+            "name": "Harbor Wall Clock",
+            "price": "$72",
+            "description_text": "Silent quartz movement, brushed-steel face.",
+            "link": "https://ui.shadcn.com/"
         }
     ]
 }

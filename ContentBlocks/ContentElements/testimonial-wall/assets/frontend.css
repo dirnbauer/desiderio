@@ -5,9 +5,11 @@
 .testimonial-wall__masonry { columns: 3; column-gap: var(--d-spacing-lg); }
 @media (max-width: 1024px) { .testimonial-wall__masonry { columns: 2; } }
 @media (max-width: 640px) { .testimonial-wall__masonry { columns: 1; } }
-.testimonial-wall__card { break-inside: avoid; border: 1px solid var(--border); border-radius: var(--radius); padding: var(--d-spacing-lg); margin-block-end: var(--d-spacing-lg); }
-.testimonial-wall__quote { font-style: italic; line-height: 1.6; margin-block-end: var(--d-spacing-md); }
+.testimonial-wall__card { break-inside: avoid; border: 1px solid var(--border); border-radius: var(--d-radius-lg); background: var(--card); color: var(--card-foreground); padding: var(--d-spacing-lg); margin: 0 0 var(--d-spacing-lg); }
+.testimonial-wall__quote { margin: 0 0 var(--d-spacing-md); font-style: italic; line-height: 1.6; }
+.testimonial-wall__quote p { margin: 0; }
 .testimonial-wall__author { display: flex; align-items: center; gap: var(--d-spacing-sm); }
-.testimonial-wall__avatar { width: 2.5rem; height: 2.5rem; border-radius: 9999px; object-fit: cover; }
+.testimonial-wall__avatar { width: 2.5rem; height: 2.5rem; border-radius: 9999px; object-fit: cover; flex-shrink: 0; }
+.testimonial-wall__author-meta { display: block; min-width: 0; }
 .testimonial-wall__name { font-weight: 600; font-style: normal; display: block; }
 .testimonial-wall__role { font-size: var(--d-text-sm); color: var(--muted-foreground); }

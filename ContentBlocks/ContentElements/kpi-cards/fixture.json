@@ -1,22 +1,33 @@
 {
     "_type": "stats",
-    "header": "KPI Cards for live product intelligence",
+    "eyebrow": "This quarter",
+    "header": "Key metrics at a glance",
+    "subheadline": "Live numbers from our Q2 board review, updated every morning from the data warehouse.",
+    "columns": "4",
     "items": [
         {
-            "value": "4.9",
-            "label": "Mobile polish"
+            "value": "$1.4M",
+            "label": "Monthly recurring revenue",
+            "detail_text": "Up 18% from last quarter",
+            "trend": "positive"
         },
         {
-            "value": "12 ms",
-            "label": "Token coverage"
+            "value": "2,840",
+            "label": "Active workspaces",
+            "detail_text": "Net new 312 this month",
+            "trend": "positive"
         },
         {
-            "value": "AA",
-            "label": "Trust lift"
+            "value": "99.98%",
+            "label": "Uptime",
+            "detail_text": "Within our enterprise SLA",
+            "trend": "neutral"
         },
         {
-            "value": "2.4K",
-            "label": "Signal quality"
+            "value": "3.1%",
+            "label": "Monthly churn",
+            "detail_text": "Above our 2.5% target",
+            "trend": "caution"
         }
     ]
 }

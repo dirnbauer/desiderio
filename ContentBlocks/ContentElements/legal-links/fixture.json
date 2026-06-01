@@ -1,9 +1,23 @@
 {
     "_type": "nav",
+    "header": "Legal",
+    "separator": "pipe",
     "link_items": [
-        "Overview",
-        "Components",
-        "Examples",
-        "Pricing"
+        {
+            "label": "Privacy Policy",
+            "link": "https://example.com/privacy"
+        },
+        {
+            "label": "Terms of Service",
+            "link": "https://example.com/terms"
+        },
+        {
+            "label": "Cookie Settings",
+            "link": "https://example.com/cookies"
+        },
+        {
+            "label": "Imprint",
+            "link": "https://example.com/imprint"
+        }
     ]
 }

@@ -7,26 +7,31 @@
 
 <d:layout.section class="card-overlay-section">
     <d:layout.container>
-        <div class="card-overlay card-overlay--{data.overlay_opacity -> f:or(alternative: 'medium')}">
-            <f:if condition="{data.image}">
-                <div class="card-overlay__image">
-                    <f:for each="{data.image}" as="file">
-                        <f:image image="{file}" alt="{file.alternative}" width="800"/>
-                    </f:for>
+        <article class="card-overlay card-overlay--{data.overlay_intensity -> f:or(alternative: 'medium')}">
+            <f:if condition="{data.image.0}">
+                <div class="card-overlay__media">
+                    <f:image image="{data.image.0}" alt="{data.image.0.alternative -> f:or(alternative: data.header)}" width="960" height="640" loading="lazy" class="card-overlay__image"/>
                 </div>
             </f:if>
-            <div class="card-overlay__content">
+            <d:layout.stack gap="sm" class="card-overlay__content">
+                <f:if condition="{data.eyebrow}">
+                    <d:atom.badge variant="secondary" class="card-overlay__eyebrow w-fit">{data -> f:render.text(field: 'eyebrow')}</d:atom.badge>
+                </f:if>
                 <f:if condition="{data.header}">
-                    <h3 class="card-overlay__title">{data -> f:render.text(field: 'header')}</h3>
+                    <d:atom.typography tag="h3" variant="h3" class="card-overlay__title">{data -> f:render.text(field: 'header')}</d:atom.typography>
                 </f:if>
                 <f:if condition="{data.description}">
-                    <p class="card-overlay__description">{data -> f:render.text(field: 'description')}</p>
+                    <d:atom.typography tag="p" variant="p" class="card-overlay__description">{data -> f:render.text(field: 'description')}</d:atom.typography>
                 </f:if>
-            </div>
-            <f:if condition="{data.link}">
-                <f:link.typolink parameter="{data.link}" class="card-overlay__link" additionalAttributes="{'aria-label': data.header}"/>
-            </f:if>
-        </div>
+                <f:if condition="{data.link.url}">
+                    <f:variable name="cardOverlayLinkLabel">{data.header -> f:format.stripTags() -> f:format.trim()}</f:variable>
+                    <f:link.typolink parameter="{data.link}" class="card-overlay__cta" additionalAttributes="{'aria-label': cardOverlayLinkLabel}">
+                        <span class="card-overlay__cta-text">{data -> f:render.text(field: 'link_text')}</span>
+                        <span class="card-overlay__cta-arrow" aria-hidden="true">&rarr;</span>
+                    </f:link.typolink>
+                </f:if>
+            </d:layout.stack>
+        </article>
     </d:layout.container>
 </d:layout.section>
 

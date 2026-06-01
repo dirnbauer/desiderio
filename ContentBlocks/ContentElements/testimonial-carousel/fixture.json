@@ -1,3 +1,26 @@
 {
-    "_type": "testimonial"
+    "_type": "testimonial",
+    "eyebrow": "Customer stories",
+    "header": "Teams ship faster with us",
+    "autoplay": 0,
+    "testimonials": [
+        {
+            "quote": "We cut onboarding from three weeks to two days. New hires reach their first shipped feature in week one instead of week four.",
+            "author_name": "Sofia Berg",
+            "author_title": "VP Product, Northwind Logistics",
+            "rating": 5
+        },
+        {
+            "quote": "Page load dropped from 4.1s to under 900ms after the rebuild, and our checkout conversion climbed 18% in the first quarter.",
+            "author_name": "Daniel Okonkwo",
+            "author_title": "Head of Growth, Meridian Retail",
+            "rating": 5
+        },
+        {
+            "quote": "Our accessibility audit went from 40 open issues to zero before launch. Support tickets about navigation dropped by half.",
+            "author_name": "Hannah Vogel",
+            "author_title": "Design Director, Civic Health",
+            "rating": 5
+        }
+    ]
 }

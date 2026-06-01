@@ -12,21 +12,21 @@ fields:
   -
     identifier: header
     useExistingField: true
-    label: 'Job Title'
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:job.title'
   -
     identifier: department
     type: Textarea
     rows: 1
-    label: Department
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:job.department'
   -
     identifier: location
     type: Textarea
     rows: 1
-    label: Location
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:job.location'
   -
     identifier: type
     type: Text
-    label: 'Employment Type'
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:job.employment_type'
   -
     identifier: description
     type: Textarea
@@ -35,4 +35,4 @@ fields:
   -
     identifier: apply_link
     type: Link
-    label: 'Apply Link'
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:apply_link'

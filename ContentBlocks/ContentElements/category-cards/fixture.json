@@ -1,27 +1,33 @@
 {
     "_type": "grid",
-    "header": "Category Cards Pricing for confident plan comparison",
-    "subheadline": "Help buyers compare plans with crisp values and direct feature language.",
+    "eyebrow": "Plans",
+    "header": "Pick the plan that fits your team",
+    "subheadline": "Compare what each tier includes, then upgrade when you outgrow it. Every plan ships with SSO and a 14-day trial.",
+    "columns": "3",
     "items": [
         {
-            "title": "Category Cards Pricing for confident plan comparison",
-            "count": "12 ms",
-            "description": "Keep plan comparison compact across desktop tables and mobile cards."
+            "title": "Starter",
+            "count": "$0/mo",
+            "description": "For solo builders shipping their first project. Up to 3 seats and 5 GB storage.",
+            "link": "t3://page?uid=1"
         },
         {
-            "title": "Category Cards Pricing for confident plan comparison",
-            "count": "AA",
-            "description": "Help buyers compare plans with crisp values and direct feature language."
+            "title": "Team",
+            "count": "$29/seat",
+            "description": "For growing teams that need roles, audit logs, and priority email support.",
+            "link": "t3://page?uid=1"
         },
         {
-            "title": "Category Cards Pricing for confident plan comparison",
-            "count": "2.4K",
-            "description": "Show pricing states with practical labels and scannable benefits."
+            "title": "Business",
+            "count": "$79/seat",
+            "description": "For scaling orgs needing SAML SSO, SOC 2 reports, and a 99.9% uptime SLA.",
+            "link": "t3://page?uid=1"
         },
         {
-            "title": "Category Cards Pricing for confident plan comparison",
-            "count": "128",
-            "description": "Keep plan comparison compact across desktop tables and mobile cards."
+            "title": "Enterprise",
+            "count": "Custom",
+            "description": "For regulated companies that need data residency, SCIM, and a dedicated CSM.",
+            "link": "t3://page?uid=1"
         }
     ]
 }

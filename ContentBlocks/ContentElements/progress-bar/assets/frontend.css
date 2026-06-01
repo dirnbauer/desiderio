@@ -1,18 +1,76 @@
-.progress-bar__headline { margin-block-end: var(--d-spacing-lg); }
-.progress-bar__list { display: flex; flex-direction: column; gap: var(--d-spacing-md); }
-.progress-bar__meta { display: flex; justify-content: space-between; margin-block-end: var(--d-spacing-xs); }
-.progress-bar__label { font-size: var(--d-text-sm); font-weight: 500; }
-.progress-bar__value { font-size: var(--d-text-sm); color: var(--muted-foreground); }
+.progress-bar__headline { margin-block-end: var(--d-spacing-md, 1rem); }
+
+.progress-bar__row { display: flex; flex-direction: column; gap: var(--d-spacing-xs, 0.5rem); }
+
+.progress-bar__meta {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: var(--d-spacing-md, 1rem);
+}
+
+.progress-bar__label { margin: 0; }
+
+.progress-bar__value {
+    font-size: var(--d-text-sm, 0.875rem);
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    color: var(--muted-foreground);
+}
+
+.progress-bar__caption {
+    margin: 0;
+    font-size: var(--d-text-sm, 0.875rem);
+    color: var(--muted-foreground);
+}
+
+.progress-bar__caption-value {
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    color: var(--foreground);
+}
+
 .progress-bar__track {
-    height: 8px; border-radius: 9999px;
-    background: var(--muted); overflow: hidden;
+    block-size: 0.625rem;
+    inline-size: 100%;
+    border-radius: 9999px;
+    background: var(--muted);
+    overflow: hidden;
 }
+
 .progress-bar__fill {
-    height: 100%; border-radius: 9999px;
-    transition: width 0.6s ease;
+    block-size: 100%;
+    border-radius: 9999px;
+    background: var(--primary);
+    transition: inline-size 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
 .progress-bar__fill--primary { background: var(--primary); }
-.progress-bar__fill--green { background: var(--d-success); }
-.progress-bar__fill--blue { background: var(--d-info); }
-.progress-bar__fill--orange { background: var(--d-warning); }
-.progress-bar__fill--red { background: var(--destructive); }
+.progress-bar__fill--success { background: var(--d-success); }
+.progress-bar__fill--warning { background: var(--d-warning); }
+.progress-bar__fill--destructive { background: var(--destructive); }
+
+.progress-bar__fill--striped {
+    background-image: linear-gradient(
+        45deg,
+        color-mix(in oklch, var(--primary-foreground) 22%, transparent) 25%,
+        transparent 25%,
+        transparent 50%,
+        color-mix(in oklch, var(--primary-foreground) 22%, transparent) 50%,
+        color-mix(in oklch, var(--primary-foreground) 22%, transparent) 75%,
+        transparent 75%,
+        transparent
+    );
+    background-size: 1rem 1rem;
+    animation: progress-bar-stripes 1s linear infinite;
+}
+
+@keyframes progress-bar-stripes {
+    from { background-position: 1rem 0; }
+    to { background-position: 0 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .progress-bar__fill { transition: none; }
+    .progress-bar__fill--striped { animation: none; }
+}

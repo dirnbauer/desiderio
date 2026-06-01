@@ -1,16 +1,36 @@
 {
     "_type": "pricing",
-    "header": "Usage Pricing for confident plan comparison",
-    "subheadline": "Help buyers compare plans with crisp values and direct feature language.",
+    "header": "Pay only for what you use",
+    "eyebrow": "Usage-based pricing",
+    "subheadline": "No tiers, no minimums. Metered by the second and billed at the end of each month.",
     "items": [
         {
-            "title": "Usage Pricing for confident plan comparison"
+            "title": "API requests",
+            "rate": "$0.20",
+            "unit": "1,000 calls",
+            "description": "First 100,000 calls each month are free.",
+            "link": "https://ui.shadcn.com/docs"
         },
         {
-            "title": "Usage Pricing for confident plan comparison"
+            "title": "Compute",
+            "rate": "$0.04",
+            "unit": "GB-hour",
+            "description": "Auto-scaling containers, billed per second of runtime.",
+            "link": "https://ui.shadcn.com/docs"
         },
         {
-            "title": "Usage Pricing for confident plan comparison"
+            "title": "Storage",
+            "rate": "$0.02",
+            "unit": "GB / month",
+            "description": "Encrypted object storage with no egress fees.",
+            "link": "https://ui.shadcn.com/docs"
+        },
+        {
+            "title": "Bandwidth",
+            "rate": "$0.09",
+            "unit": "GB transferred",
+            "description": "Global CDN delivery from 30+ edge regions.",
+            "link": "https://ui.shadcn.com/docs"
         }
     ]
 }

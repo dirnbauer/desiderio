@@ -17,30 +17,41 @@
 .definition-list__definition {
     color: var(--muted-foreground);
     font-size: var(--d-text-sm);
+    line-height: 1.6;
     margin: 0;
+}
+
+/* Inline: term in a fixed column, definition beside it — scans as a table. */
+.definition-list--inline {
+    max-width: 52rem;
 }
 .definition-list--inline .definition-list__entry {
     display: grid;
     grid-template-columns: 12rem 1fr;
-    gap: var(--d-spacing-md);
+    gap: var(--d-spacing-md) var(--d-spacing-xl);
+    align-items: baseline;
 }
 .definition-list--inline .definition-list__term {
     margin-block-end: 0;
 }
+
+/* Grid: each pair becomes its own bordered card. */
 .definition-list--grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: var(--d-spacing-md);
+    max-width: 56rem;
 }
 .definition-list--grid .definition-list__entry {
-    padding: var(--d-spacing-md);
+    padding: var(--d-spacing-lg);
     border: 1px solid var(--border);
     border-radius: var(--d-radius-md);
 }
 .definition-list--grid .definition-list__entry + .definition-list__entry {
     border-top: 1px solid var(--border);
 }
+
 @media (max-width: 768px) {
-    .definition-list--inline .definition-list__entry { grid-template-columns: 1fr; }
+    .definition-list--inline .definition-list__entry { grid-template-columns: 1fr; gap: var(--d-spacing-xs); }
     .definition-list--grid { grid-template-columns: 1fr; }
 }

@@ -1,11 +1,13 @@
 {
     "_type": "nav",
+    "header": "Primary",
     "brand": "Studio Atlas",
     "nav_items": [
-        "Overview",
-        "Components",
-        "Examples",
-        "Pricing"
+        { "label": "Product", "link": "https://example.com/desiderio/product" },
+        { "label": "Solutions", "link": "https://example.com/desiderio/solutions" },
+        { "label": "Pricing", "link": "https://example.com/desiderio/pricing" },
+        { "label": "Docs", "link": "https://example.com/desiderio/docs" }
     ],
-    "button_text": "Start conversation"
+    "button_text": "Start free trial",
+    "button_link": "https://example.com/desiderio/signup"
 }

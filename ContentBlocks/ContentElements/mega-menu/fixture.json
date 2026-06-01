@@ -1,28 +1,71 @@
 {
     "_type": "nav",
-    "header": "Mega Menu for effortless wayfinding",
+    "header": "Product navigation",
+    "shadcn_layout": "full-width",
+    "eyebrow": "Explore Helio",
     "brand": "Helio Systems",
-    "brand_link": "https://ui.shadcn.com/docs/mega-menu",
-    "intro_title": "Makes movement through the page feel precise with simple labels, clear active states, and compact structure.",
-    "intro_text": "Makes movement through the page feel precise with simple labels, clear active states, and compact structure.",
-    "primary_button_text": "View pattern",
-    "primary_button_link": "https://ui.shadcn.com/docs/mega-menu",
+    "brand_tagline": "The connected workspace for product teams",
+    "brand_link": "t3://page?uid=1",
+    "intro_title": "Everything in one platform",
+    "intro_text": "Explore the products, solutions, and resources that help teams plan, build, and ship together, all from a single connected workspace.",
+    "primary_button_text": "Start free trial",
+    "primary_button_link": "t3://page?uid=1",
     "menu_groups": [
         {
-            "title": "Mega Menu for effortless wayfinding",
-            "description": "Make wayfinding fast with compact labels and clear active states."
+            "title": "Products",
+            "description": "Tools for every stage of the workflow.",
+            "link_1_label": "Project planning",
+            "link_1": "t3://page?uid=1",
+            "link_2_label": "Automation builder",
+            "link_2": "t3://page?uid=1",
+            "link_3_label": "Analytics dashboard",
+            "link_3": "t3://page?uid=1",
+            "link_4_label": "Integrations",
+            "link_4": "t3://page?uid=1",
+            "link_5_label": "Mobile apps",
+            "link_5": "t3://page?uid=1"
         },
         {
-            "title": "Mega Menu for effortless wayfinding",
-            "description": "Help visitors move through dense content with useful hierarchy and no clutter."
+            "title": "Solutions",
+            "description": "Built for the way your team works.",
+            "link_1_label": "For engineering",
+            "link_1": "t3://page?uid=1",
+            "link_2_label": "For marketing",
+            "link_2": "t3://page?uid=1",
+            "link_3_label": "For operations",
+            "link_3": "t3://page?uid=1",
+            "link_4_label": "For enterprise",
+            "link_4": "t3://page?uid=1",
+            "link_5_label": "For startups",
+            "link_5": "t3://page?uid=1"
         },
         {
-            "title": "Mega Menu for effortless wayfinding",
-            "description": "Turn navigation into a calm surface with dependable focus states."
+            "title": "Resources",
+            "description": "Guides, docs, and community.",
+            "link_1_label": "Documentation",
+            "link_1": "t3://page?uid=1",
+            "link_2_label": "API reference",
+            "link_2": "t3://page?uid=1",
+            "link_3_label": "Help center",
+            "link_3": "t3://page?uid=1",
+            "link_4_label": "Changelog",
+            "link_4": "t3://page?uid=1",
+            "link_5_label": "Community forum",
+            "link_5": "https://community.helio.example.com"
         },
         {
-            "title": "Mega Menu for effortless wayfinding",
-            "description": "Make wayfinding fast with compact labels and clear active states."
+            "title": "Company",
+            "description": "Get to know the team behind Helio.",
+            "link_1_label": "About us",
+            "link_1": "t3://page?uid=1",
+            "link_2_label": "Careers",
+            "link_2": "t3://page?uid=1",
+            "link_3_label": "Blog",
+            "link_3": "t3://page?uid=1",
+            "link_4_label": "Press",
+            "link_4": "t3://page?uid=1",
+            "link_5_label": "Contact",
+            "link_5": "t3://page?uid=1"
         }
     ]
 }

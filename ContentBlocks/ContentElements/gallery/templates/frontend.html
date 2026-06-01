@@ -19,14 +19,14 @@
                 <f:for each="{data.items}" as="item" iteration="galleryIteration">
                     <f:if condition="{galleryIteration.isFirst}">
                         <f:for each="{item.image}" as="fileReference">
-                            <f:image image="{fileReference}" maxWidth="1440" alt="{item.title}" class="gallery__featured-image" data="{d-gallery-main: 'true'}"/>
+                            <f:image image="{fileReference}" maxWidth="1440" alt="{fileReference.alternative -> f:or(alternative: item.title)}" class="gallery__featured-image" data="{d-gallery-main: 'true'}"/>
                         </f:for>
-                        <f:if condition="{item.title} || {item.description}">
-                            <figcaption class="gallery__featured-caption">
-                                <f:if condition="{item.title}"><span class="gallery__title" data-d-gallery-title>{item -> f:render.text(field: 'title')}</span></f:if>
-                                <f:if condition="{item.description}"><span class="gallery__description" data-d-gallery-description>{item -> f:render.text(field: 'description')}</span></f:if>
-                            </figcaption>
-                        </f:if>
+                        <figcaption class="gallery__featured-caption">
+                            <span class="gallery__title" data-d-gallery-title<f:if condition="{item.title}"><f:else> hidden</f:else></f:if>>{item -> f:render.text(field: 'title')}</span>
+                            <span class="gallery__description" data-d-gallery-description<f:if condition="{item.description}"><f:else> hidden</f:else></f:if>>{item -> f:render.text(field: 'description')}</span>
+                            <f:variable name="viewLabel">{f:translate(key: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/gallery/language/labels.xlf:view_image', default: 'View image')}</f:variable>
+                            <a class="gallery__featured-link" data-d-gallery-link href="{item.link.url}"<f:if condition="{item.link.url}"><f:else> hidden</f:else></f:if>>{viewLabel}</a>
+                        </figcaption>
                     </f:if>
                 </f:for>
             </figure>
@@ -40,11 +40,11 @@
                                 data-large-src="{f:uri.image(image: fileReference, maxWidth: 1440)}"
                                 data-thumb-title="{item.title}"
                                 data-thumb-description="{item.description}"
-                                data-thumb-alt="{item.title}"
+                                data-thumb-alt="{fileReference.alternative -> f:or(alternative: item.title)}"
                                 data-thumb-link="{item.link.url}"
                                 aria-selected="{f:if(condition: galleryIteration.isFirst, then: 'true', else: 'false')}"
                                 role="listitem">
-                            <f:image image="{fileReference}" maxWidth="480" alt="{item.title}" class="gallery__thumb-image"/>
+                            <f:image image="{fileReference}" maxWidth="480" alt="{fileReference.alternative -> f:or(alternative: item.title)}" loading="lazy" decoding="async" class="gallery__thumb-image"/>
                             <f:if condition="{item.title}">
                                 <span class="gallery__thumb-label">{item -> f:render.text(field: 'title')}</span>
                             </f:if>

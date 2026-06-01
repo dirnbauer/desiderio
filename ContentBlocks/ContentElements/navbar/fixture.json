@@ -1,11 +1,17 @@
 {
     "_type": "nav",
+    "header": "Primary",
+    "shadcn_layout": "full-width",
     "brand": "Studio Atlas",
+    "brand_link": "https://ui.shadcn.com/",
     "nav_items": [
-        "Overview",
-        "Components",
-        "Examples",
-        "Pricing"
+        { "label": "Product", "link": "https://ui.shadcn.com/docs" },
+        { "label": "Solutions", "link": "https://ui.shadcn.com/docs/components" },
+        { "label": "Pricing", "link": "https://ui.shadcn.com/docs/installation" },
+        { "label": "Docs", "link": "https://ui.shadcn.com/docs/components/navigation-menu" }
     ],
-    "primary_button_text": "Get the checklist"
+    "secondary_button_text": "Sign in",
+    "secondary_button_link": "https://ui.shadcn.com/login",
+    "primary_button_text": "Start free trial",
+    "primary_button_link": "https://ui.shadcn.com/docs/installation"
 }

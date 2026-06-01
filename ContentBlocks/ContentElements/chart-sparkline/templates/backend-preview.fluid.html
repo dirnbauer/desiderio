@@ -21,16 +21,28 @@
         <f:if condition="{data.header}">
             <h3 class="d-ce-preview__title">{data.header}</h3>
         </f:if>
+        <f:if condition="{data.description}">
+            <div class="d-ce-preview__field">
+                <span class="d-ce-preview__label">Description</span>
+                <span class="d-ce-preview__value">{data.description}</span>
+            </div>
+        </f:if>
+        <f:if condition="{data.series_label}">
+            <div class="d-ce-preview__field">
+                <span class="d-ce-preview__label">Series</span>
+                <span class="d-ce-preview__value">{data.series_label}<f:if condition="{data.unit}"> ({data.unit})</f:if></span>
+            </div>
+        </f:if>
         <f:if condition="{data.trend_badge}">
             <div class="d-ce-preview__field">
                 <span class="d-ce-preview__label">Trend Badge</span>
                 <span class="d-ce-preview__value">{data.trend_badge}</span>
             </div>
         </f:if>
-        <f:if condition="{data.description}">
+        <f:if condition="{data.data_points}">
             <div class="d-ce-preview__field">
-                <span class="d-ce-preview__label">Description</span>
-                <span class="d-ce-preview__value">{data.description}</span>
+                <span class="d-ce-preview__label">Data Points</span>
+                <span class="d-ce-preview__value">{data.data_points -> f:format.nl2br()}</span>
             </div>
         </f:if>
         <f:if condition="{data.chart_data}">

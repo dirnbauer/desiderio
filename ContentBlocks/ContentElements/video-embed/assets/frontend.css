@@ -1,12 +1,16 @@
 .video-embed__headline {
     margin-block-end: var(--d-spacing-lg);
+    text-align: center;
+}
+.video-embed__figure {
+    margin: 0;
 }
 .video-embed__wrapper {
     position: relative;
     height: 0;
     overflow: hidden;
     border-radius: var(--d-radius-lg);
-    background: var(--muted);
+    background: var(--d-muted);
 }
 .video-embed__wrapper--16-9 { padding-bottom: 56.25%; }
 .video-embed__wrapper--4-3 { padding-bottom: 75%; }
@@ -16,15 +20,28 @@
     inset: 0;
     width: 100%;
     height: 100%;
+    border: 0;
 }
 .video-embed__native {
+    display: block;
     width: 100%;
     border-radius: var(--d-radius-lg);
-    background: var(--muted);
+    background: var(--d-muted);
+}
+.video-embed__native--16-9 { aspect-ratio: 16 / 9; }
+.video-embed__native--4-3 { aspect-ratio: 4 / 3; }
+.video-embed__native--1-1 { aspect-ratio: 1 / 1; }
+.video-embed__fallback {
+    color: var(--d-primary);
+    text-underline-offset: 4px;
+}
+.video-embed__fallback:focus-visible {
+    outline: 2px solid var(--d-ring);
+    outline-offset: 2px;
 }
 .video-embed__caption {
-    margin-top: var(--d-spacing-sm);
+    margin-block-start: var(--d-spacing-sm);
     font-size: var(--d-text-sm);
-    color: var(--muted-foreground);
+    color: var(--d-muted-foreground);
     text-align: center;
 }

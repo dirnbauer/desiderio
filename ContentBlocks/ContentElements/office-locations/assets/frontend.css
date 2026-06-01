@@ -1,28 +1,48 @@
 .office-locations__intro {
     text-align: center;
     margin-block-end: var(--d-spacing-xl);
+    max-width: 42rem;
+    margin-inline: auto;
 }
 .office-locations__grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
     gap: var(--d-spacing-lg);
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
-@media (max-width: 768px) {
-    .office-locations__grid { grid-template-columns: 1fr; }
-}
+.office-locations__item { height: 100%; }
 .office-locations__city {
     font-weight: 600;
     font-size: var(--d-text-lg);
     margin-block-end: var(--d-spacing-sm);
 }
-.office-locations__address {
+.office-locations__details {
+    font-style: normal;
+    display: flex;
+    flex-direction: column;
+    gap: var(--d-spacing-xs);
+    margin-block-end: var(--d-spacing-md);
+}
+.office-locations__address,
+.office-locations__line {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--d-spacing-xs);
     font-size: var(--d-text-sm);
     color: var(--muted-foreground);
-    white-space: pre-line;
-    margin-block-end: var(--d-spacing-xs);
+    margin: 0;
 }
-.office-locations__phone,
-.office-locations__email {
-    font-size: var(--d-text-sm);
+.office-locations__icon {
+    display: inline-flex;
+    color: var(--primary);
+    margin-block-start: 0.1rem;
+}
+.office-locations__lines { white-space: pre-line; }
+.office-locations__link {
     color: var(--muted-foreground);
+    text-decoration: none;
 }
+.office-locations__link:hover { color: var(--foreground); text-decoration: underline; }
+.office-locations__map-icon { display: inline-flex; }

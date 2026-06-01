@@ -8,21 +8,21 @@
     margin-bottom: var(--d-spacing-10);
 }
 .hero-stacked__headline {
-    font-size: var(--d-text-5xl);
-    font-weight: 700;
-    line-height: 1.1;
     margin-top: var(--d-spacing-4);
     margin-bottom: var(--d-spacing-4);
 }
 .hero-stacked__subheadline {
-    font-size: var(--d-text-xl);
-    color: var(--d-muted-foreground);
     margin-bottom: var(--d-spacing-6);
 }
 .hero-stacked__actions {
     display: flex;
     gap: var(--d-spacing-3);
     justify-content: center;
+    flex-wrap: wrap;
+}
+.hero-stacked__media {
+    max-width: 64rem;
+    margin-inline: auto;
 }
 .hero-stacked__image {
     width: 100%;

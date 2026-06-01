@@ -1,19 +1,27 @@
 {
     "_type": "team",
-    "header": "Advisor Grid for modern people pages",
-    "subheadline": "Present people and culture with confident profile copy and calm card structure.",
+    "header": "Backed by operators who have done it before",
+    "subheadline": "Our advisors guide product, security, and go-to-market decisions every quarter.",
     "advisors": [
         {
-            "name": "Noah Ritter"
+            "name": "Noah Ritter",
+            "expertise": "Accessibility & inclusive design",
+            "company": "Former Lead, GOV.UK Design System"
         },
         {
-            "name": "Lea Fischer"
+            "name": "Lea Fischer",
+            "expertise": "Product & growth",
+            "company": "VP Product, Contentful"
         },
         {
-            "name": "Mara Weiss"
+            "name": "Mara Weiss",
+            "expertise": "Security & compliance",
+            "company": "CISO, Stripe (EU)"
         },
         {
-            "name": "Jonas Klein"
+            "name": "Jonas Klein",
+            "expertise": "Enterprise go-to-market",
+            "company": "Partner, Point Nine Capital"
         }
     ]
 }

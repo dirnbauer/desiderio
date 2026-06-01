@@ -10,30 +10,37 @@
         <f:if condition="{data.eyebrow} || {data.header} || {data.subheadline}">
             <header class="stats-bar__intro">
                 <f:if condition="{data.eyebrow}">
-                    <span class="stats-bar__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span>
+                    <p class="stats-bar__eyebrow">{data -> f:render.text(field: 'eyebrow')}</p>
                 </f:if>
                 <f:if condition="{data.header}">
-                    <h2 class="stats-bar__headline">{data -> f:render.text(field: 'header')}</h2>
+                    <d:atom.typography tag="h2" variant="h2" class="stats-bar__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
                 </f:if>
                 <f:if condition="{data.subheadline}">
-                    <p class="stats-bar__description">{data -> f:render.text(field: 'subheadline')}</p>
+                    <d:atom.typography variant="muted" class="stats-bar__description">{data -> f:render.text(field: 'subheadline')}</d:atom.typography>
                 </f:if>
             </header>
         </f:if>
 
-        <div class="stats-bar__items">
+        <dl class="stats-bar__items">
             <f:for each="{data.items}" as="item">
-                <div class="stats-bar__item">
+                <div class="stats-bar__item" data-astro-reveal="slide-up">
                     <div class="stats-bar__meta">
-                        <span class="stats-bar__label">{item -> f:render.text(field: 'label')}</span>
-                        <span class="stats-bar__value">{item -> f:render.text(field: 'value')}</span>
+                        <dt class="stats-bar__label">{item -> f:render.text(field: 'label')}</dt>
+                        <dd class="stats-bar__value">{item -> f:render.text(field: 'value')}</dd>
                     </div>
-                    <div class="stats-bar__track">
+                    <div
+                        class="stats-bar__track"
+                        role="progressbar"
+                        aria-valuenow="{item.percentage}"
+                        aria-valuemin="0"
+                        aria-valuemax="100"
+                        aria-label="{item.label}"
+                    >
                         <div class="stats-bar__fill" style="width: {item.percentage}%"></div>
                     </div>
                 </div>
             </f:for>
-        </div>
+        </dl>
     </d:layout.container>
 </d:layout.section>
 </html>

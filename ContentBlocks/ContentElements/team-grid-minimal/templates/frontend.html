@@ -10,23 +10,32 @@
         <f:if condition="{data.header} || {data.subheadline}">
             <header class="team-grid-minimal__intro">
                 <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
-                <f:if condition="{data.subheadline}"><d:atom.typography variant="muted">{data -> f:render.text(field: 'subheadline')}</d:atom.typography></f:if>
+                <f:if condition="{data.subheadline}"><d:atom.typography variant="lead" class="team-grid-minimal__subheadline">{data -> f:render.text(field: 'subheadline')}</d:atom.typography></f:if>
             </header>
         </f:if>
 
-        <div class="team-grid-minimal__grid team-grid-minimal__grid--cols-{data.columns -> f:or(alternative: '4')}">
+        <d:layout.grid cols="{data.columns -> f:or(alternative: '4')}" gap="lg" class="team-grid-minimal__grid">
             <f:for each="{data.members}" as="member">
                 <article class="team-grid-minimal__member">
                     <f:if condition="{member.image}">
-                        <f:for each="{member.image}" as="fileReference">
-                            <f:image image="{fileReference}" width="200" height="200" alt="{member.name}" class="team-grid-minimal__image"/>
-                        </f:for>
+                        <f:then>
+                            <f:for each="{member.image}" as="fileReference">
+                                <d:atom.avatar size="xl" class="team-grid-minimal__avatar">
+                                    <f:image image="{fileReference}" width="96" height="96" cropVariant="default" alt="" loading="lazy" decoding="async" class="team-grid-minimal__image"/>
+                                </d:atom.avatar>
+                            </f:for>
+                        </f:then>
+                        <f:else>
+                            <d:atom.avatar size="xl" class="team-grid-minimal__avatar">
+                                <span class="team-grid-minimal__fallback" aria-hidden="true">{member.name -> f:format.crop(maxCharacters: 1)}</span>
+                            </d:atom.avatar>
+                        </f:else>
                     </f:if>
                     <h3 class="team-grid-minimal__name">{member -> f:render.text(field: 'name')}</h3>
                     <f:if condition="{member.role}"><p class="team-grid-minimal__role">{member -> f:render.text(field: 'role')}</p></f:if>
                 </article>
             </f:for>
-        </div>
+        </d:layout.grid>
     </d:layout.container>
 </d:layout.section>
 

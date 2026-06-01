@@ -1,7 +1,30 @@
 {
     "_type": "hero",
-    "header": "Stats Hero for sleek launch moments",
-    "subheadline": "Open with a clear promise, credible media, and one obvious next action.",
-    "eyebrow": "A11y checked",
-    "primary_button_text": "Start review"
+    "eyebrow": "Revenue analytics",
+    "header": "Close the books in days, not weeks",
+    "subheadline": "Northwind gives finance teams one live source of truth, so month-end reporting stops eating your calendar.",
+    "primary_button_text": "Start my free trial",
+    "primary_button_link": "t3://page?uid=1",
+    "stats": [
+        {
+            "value": "2,400+",
+            "label": "Finance teams",
+            "stat_description": "From startups to public companies in 38 countries"
+        },
+        {
+            "value": "6 days",
+            "label": "Faster month-end close",
+            "stat_description": "Average reported in the first quarter"
+        },
+        {
+            "value": "99.98%",
+            "label": "Uptime in 2025",
+            "stat_description": "Backed by a 24/7 status page and SLA"
+        },
+        {
+            "value": "$1.2B",
+            "label": "Reconciled monthly",
+            "stat_description": "Across 14 supported currencies"
+        }
+    ]
 }

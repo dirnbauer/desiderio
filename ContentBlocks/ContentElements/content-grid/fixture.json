@@ -1,22 +1,22 @@
 {
     "_type": "grid",
-    "header": "Content Grid for polished editorial systems",
+    "header": "Everything you need to ship faster",
+    "columns": "3",
     "items": [
         {
-            "title": "Content Grid for polished editorial systems",
-            "content": "Lead with a clear story, one useful detail, and a calm reading rhythm."
+            "title": "Component library",
+            "content": "Forty production-ready blocks you can drop into any page and restyle with a single token swap.",
+            "link": "https://example.com/docs/components"
         },
         {
-            "title": "Content Grid for polished editorial systems",
-            "content": "Use practical metadata and compact summaries so previews stay easy to compare."
+            "title": "Accessibility built in",
+            "content": "Semantic markup, keyboard support, and visible focus ship by default — no retrofitting later.",
+            "link": "https://example.com/docs/accessibility"
         },
         {
-            "title": "Content Grid for polished editorial systems",
-            "content": "Keep supporting media and copy calm, scannable, and ready to publish."
-        },
-        {
-            "title": "Content Grid for polished editorial systems",
-            "content": "Lead with a clear story, one useful detail, and a calm reading rhythm."
+            "title": "Theme presets",
+            "content": "Switch the entire look from one preset without touching a line of template code.",
+            "link": "https://example.com/docs/theming"
         }
     ]
 }

@@ -11,5 +11,75 @@
         <source>Use when the chart should make simple data easy to understand visually.</source>
       </segment>
     </unit>
+    <unit id="chart.aria_fallback">
+      <segment>
+        <source>Data chart</source>
+      </segment>
+    </unit>
+    <unit id="chart.series_name.label">
+      <segment>
+        <source>Series name</source>
+      </segment>
+    </unit>
+    <unit id="chart.series_name.description">
+      <segment>
+        <source>Name of the measured series, e.g. "Active users". Used as the value column heading in the screen-reader data table.</source>
+      </segment>
+    </unit>
+    <unit id="chart.value_unit.label">
+      <segment>
+        <source>Value unit</source>
+      </segment>
+    </unit>
+    <unit id="chart.value_unit.description">
+      <segment>
+        <source>Unit of the values, e.g. "users", "%", or "EUR". Announced to screen readers alongside the numbers.</source>
+      </segment>
+    </unit>
+    <unit id="chart.data_summary.label">
+      <segment>
+        <source>Accessible summary</source>
+      </segment>
+    </unit>
+    <unit id="chart.data_summary.description">
+      <segment>
+        <source>One or two sentences describing the key takeaway of the chart. Read out to screen-reader users as the description of the graphic.</source>
+      </segment>
+    </unit>
+    <unit id="chart.data_points.label">
+      <segment>
+        <source>Data points (accessible table)</source>
+      </segment>
+    </unit>
+    <unit id="chart.data_points.description">
+      <segment>
+        <source>Each data point renders as a row in a visually hidden table so the numbers stay available without the chart graphic. Mirror the values from the chart data above.</source>
+      </segment>
+    </unit>
+    <unit id="chart.data_points.point_label">
+      <segment>
+        <source>Category label</source>
+      </segment>
+    </unit>
+    <unit id="chart.data_points.point_value">
+      <segment>
+        <source>Value</source>
+      </segment>
+    </unit>
+    <unit id="chart.table.category">
+      <segment>
+        <source>Category</source>
+      </segment>
+    </unit>
+    <unit id="chart.table.value_default">
+      <segment>
+        <source>Value</source>
+      </segment>
+    </unit>
+    <unit id="chart.table.unit_caption">
+      <segment>
+        <source>values in {0}</source>
+      </segment>
+    </unit>
   </file>
 </xliff>

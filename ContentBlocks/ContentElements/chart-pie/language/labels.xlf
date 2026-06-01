@@ -11,5 +11,105 @@
         <source>Use when the pie chart should explain parts of a whole with only a few segments.</source>
       </segment>
     </unit>
+    <unit id="field.segments">
+      <segment>
+        <source>Segments</source>
+      </segment>
+    </unit>
+    <unit id="field.segments.description">
+      <segment>
+        <source>One segment per line as "Label | Value", e.g. Enterprise | 412. Drives the legend and the screen-reader data table. Keep the same labels and values in the chart data JSON below.</source>
+      </segment>
+    </unit>
+    <unit id="field.unit">
+      <segment>
+        <source>Value unit</source>
+      </segment>
+    </unit>
+    <unit id="field.unit.description">
+      <segment>
+        <source>Short unit shown after every value, e.g. "k EUR", "%", or "users". Leave empty for plain counts.</source>
+      </segment>
+    </unit>
+    <unit id="field.chart_data.description">
+      <segment>
+        <source>JSON array the wedges are drawn from. One entry per segment: [{"label":"Enterprise","value":412}]. Match the labels and values entered under Segments.</source>
+      </segment>
+    </unit>
+    <unit id="field.show_legend">
+      <segment>
+        <source>Show legend</source>
+      </segment>
+    </unit>
+    <unit id="field.palette">
+      <segment>
+        <source>Colour palette</source>
+      </segment>
+    </unit>
+    <unit id="item.palette.default">
+      <segment>
+        <source>Default (multi-colour)</source>
+      </segment>
+    </unit>
+    <unit id="item.palette.brand">
+      <segment>
+        <source>Brand (primary led)</source>
+      </segment>
+    </unit>
+    <unit id="item.palette.cool">
+      <segment>
+        <source>Cool</source>
+      </segment>
+    </unit>
+    <unit id="item.palette.warm">
+      <segment>
+        <source>Warm</source>
+      </segment>
+    </unit>
+    <unit id="field.chart_size">
+      <segment>
+        <source>Chart size</source>
+      </segment>
+    </unit>
+    <unit id="item.size.small">
+      <segment>
+        <source>Small</source>
+      </segment>
+    </unit>
+    <unit id="item.size.medium">
+      <segment>
+        <source>Medium</source>
+      </segment>
+    </unit>
+    <unit id="table.segment">
+      <segment>
+        <source>Segment</source>
+      </segment>
+    </unit>
+    <unit id="table.value">
+      <segment>
+        <source>Value</source>
+      </segment>
+    </unit>
+    <unit id="table.share">
+      <segment>
+        <source>Share</source>
+      </segment>
+    </unit>
+    <unit id="table.total">
+      <segment>
+        <source>Total</source>
+      </segment>
+    </unit>
+    <unit id="aria.fallback">
+      <segment>
+        <source>Pie chart</source>
+      </segment>
+    </unit>
+    <unit id="aria.summary">
+      <segment>
+        <source>{0}: pie chart showing the share of the whole across {1, plural, one {# segment} other {# segments}}. The full breakdown follows in the data table.</source>
+      </segment>
+    </unit>
   </file>
 </xliff>

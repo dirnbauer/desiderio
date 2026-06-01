@@ -1,16 +1,30 @@
 {
     "_type": "form",
-    "header": "Talk to the team behind the component system",
-    "subheadline": "A composed shadcn-style pattern with practical copy, clear hierarchy, and responsive spacing for production TYPO3 pages.",
+    "eyebrow": "Contact us",
+    "header": "Let's talk about your project",
+    "subheadline": "Tell us what you're building and a solutions engineer will reply within one business day.",
+    "info_title": "Reach us directly",
+    "info_text": "Prefer to skip the form? Call, email, or drop by the studio during office hours.",
+    "form_title": "Send us a message",
+    "form_action": "t3://page?uid=1",
     "contact_items": [
         {
-            "label": "Mobile polish"
+            "label": "Email",
+            "value": "hello@desiderio.studio",
+            "link": "mailto:hello@desiderio.studio"
         },
         {
-            "label": "Token coverage"
+            "label": "Phone",
+            "value": "+43 1 234 5678",
+            "link": "tel:+43123456789"
         },
         {
-            "label": "Trust lift"
+            "label": "Studio",
+            "value": "Mariahilfer Strasse 1, 1060 Vienna"
+        },
+        {
+            "label": "Office hours",
+            "value": "Mon-Fri, 9:00-17:00 CET"
         }
     ]
 }

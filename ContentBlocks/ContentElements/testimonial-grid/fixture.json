@@ -1,10 +1,23 @@
 {
     "_type": "grid",
-    "header": "Grid Testimonial for credible trust signals",
+    "eyebrow": "Loved by teams",
+    "header": "Trusted by people who ship",
+    "columns": "3",
     "testimonials": [
-        [],
-        [],
-        [],
-        []
+        {
+            "quote": "Onboarding dropped from three weeks to two days. New hires ship their first feature in week one now.",
+            "author_name": "Sofia Berg",
+            "author_title": "VP Product, Northwind Logistics"
+        },
+        {
+            "quote": "Checkout conversion rose 18% in a single quarter after the rebuild. The numbers spoke for themselves.",
+            "author_name": "Daniel Okonkwo",
+            "author_title": "Head of Growth, Meridian Retail"
+        },
+        {
+            "quote": "We closed 40 open accessibility issues before launch and cut navigation support tickets in half.",
+            "author_name": "Hannah Vogel",
+            "author_title": "Design Director, Civic Health"
+        }
     ]
 }

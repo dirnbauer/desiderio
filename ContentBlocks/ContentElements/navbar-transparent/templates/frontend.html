@@ -5,21 +5,24 @@
 
 <f:asset.css identifier="d-navbar-transparent" href="{cb:assetPath()}/frontend.css"/>
 
-<d:layout.section class="navbar-transparent">
+<d:layout.section class="navbar-transparent" spacing="none">
     <d:layout.container>
         <nav class="navbar-transparent__inner" aria-label="{data.header -> f:or(alternative: 'Transparent navigation')}">
-            <div class="navbar-transparent__brand">{data -> f:render.text(field: 'brand')}</div>
-            <ul class="navbar-transparent__nav">
+            <f:if condition="{data.brand_link.url}">
+                <f:then><f:link.typolink parameter="{data.brand_link}" class="navbar-transparent__brand navbar-transparent__brand--link">{data -> f:render.text(field: 'brand')}</f:link.typolink></f:then>
+                <f:else><span class="navbar-transparent__brand">{data -> f:render.text(field: 'brand')}</span></f:else>
+            </f:if>
+            <ul class="navbar-transparent__nav" role="list">
                 <f:for each="{data.nav_items}" as="item">
-                    <li>
-                        <f:if condition="{item.link.url}">
+                    <f:if condition="{item.link.url}">
+                        <li class="navbar-transparent__item">
                             <f:link.typolink parameter="{item.link}" class="navbar-transparent__link">{item -> f:render.text(field: 'label')}</f:link.typolink>
-                        </f:if>
-                    </li>
+                        </li>
+                    </f:if>
                 </f:for>
             </ul>
             <f:if condition="{data.button_text} && {data.button_link.url}">
-                <d:atom.button href="{data.button_link.url}" target="{data.button_link.target}" variant="outline" size="sm">{data -> f:render.text(field: 'button_text')}</d:atom.button>
+                <d:atom.button href="{data.button_link.url}" target="{data.button_link.target}" variant="outline" size="sm" class="navbar-transparent__cta">{data -> f:render.text(field: 'button_text')}</d:atom.button>
             </f:if>
         </nav>
     </d:layout.container>

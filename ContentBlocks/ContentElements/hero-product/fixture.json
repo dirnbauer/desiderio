@@ -1,7 +1,22 @@
 {
     "_type": "hero",
-    "header": "Product Hero for sleek launch moments",
-    "subheadline": "Open with a clear promise, credible media, and one obvious next action.",
-    "badge_text": "A11y checked",
-    "primary_button_text": "Start review"
+    "header": "Noise-cancelling headphones, tuned for focus",
+    "subheadline": "40 hours of battery, adaptive ANC, and studio-grade drivers. Built for deep work and long flights.",
+    "badge_text": "New release",
+    "price": "$249",
+    "primary_button_text": "Add to cart",
+    "feature_items": [
+        {
+            "label": "40-hour battery, fast USB-C charging"
+        },
+        {
+            "label": "Adaptive noise cancellation"
+        },
+        {
+            "label": "Multipoint Bluetooth 5.3"
+        },
+        {
+            "label": "Free 2-year warranty"
+        }
+    ]
 }

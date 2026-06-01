@@ -8,7 +8,7 @@
 <d:layout.section class="case-study-featured">
     <d:layout.container>
         <f:if condition="{data.eyebrow}">
-            <span class="case-study-featured__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span>
+            <p class="case-study-featured__eyebrow">{data -> f:render.text(field: 'eyebrow')}</p>
         </f:if>
         <f:if condition="{data.header}">
             <h2 class="case-study-featured__headline">{data -> f:render.text(field: 'header')}</h2>
@@ -18,7 +18,7 @@
             <f:if condition="{data.image}">
                 <div class="case-study-featured__media">
                     <f:for each="{data.image}" as="fileReference">
-                        <f:image image="{fileReference}" maxWidth="800" alt="{data.client_name}" class="case-study-featured__image"/>
+                        <f:image image="{fileReference}" maxWidth="800" alt="{f:if(condition: fileReference.alternative, then: fileReference.alternative, else: '{data.client_name} case study')}" class="case-study-featured__image"/>
                     </f:for>
                 </div>
             </f:if>
@@ -27,7 +27,7 @@
                 <f:if condition="{data.client_logo}">
                     <div class="case-study-featured__logo">
                         <f:for each="{data.client_logo}" as="logo">
-                            <f:image image="{logo}" maxWidth="180" alt="{data.client_name}" class="case-study-featured__logo-img"/>
+                            <f:image image="{logo}" maxWidth="180" alt="{data.client_name} logo" class="case-study-featured__logo-img"/>
                         </f:for>
                     </div>
                 </f:if>
@@ -36,19 +36,19 @@
                 <p class="case-study-featured__description">{data -> f:render.text(field: 'description')}</p>
 
                 <f:if condition="{data.metrics}">
-                    <div class="case-study-featured__metrics">
+                    <dl class="case-study-featured__metrics">
                         <f:for each="{data.metrics}" as="metric">
                             <div class="case-study-featured__metric">
-                                <span class="case-study-featured__metric-value">{metric -> f:render.text(field: 'value')}</span>
-                                <span class="case-study-featured__metric-label">{metric -> f:render.text(field: 'label')}</span>
+                                <dt class="case-study-featured__metric-label">{metric -> f:render.text(field: 'label')}</dt>
+                                <dd class="case-study-featured__metric-value">{metric -> f:render.text(field: 'value')}</dd>
                             </div>
                         </f:for>
-                    </div>
+                    </dl>
                 </f:if>
 
                 <f:if condition="{data.link.url}">
                     <f:link.typolink parameter="{data.link}" class="case-study-featured__link">
-                        Read full case study &rarr;
+                        <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:read_full_case_study" default="Read full case study"/><span class="sr-only"> {data -> f:render.text(field: 'client_name')}</span><span aria-hidden="true"> &rarr;</span>
                     </f:link.typolink>
                 </f:if>
             </div>

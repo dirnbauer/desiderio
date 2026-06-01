@@ -24,7 +24,7 @@
             </div>
             <div class="footer-mega__columns">
                 <f:for each="{data.column_items}" as="col">
-                    <nav class="footer-mega__col">
+                    <nav class="footer-mega__col" aria-label="{col.title}">
                         <h3 class="footer-mega__col-title">{col -> f:render.text(field: 'title')}</h3>
                         <ul class="footer-mega__links">
                             <f:if condition="{col.link_1_label}"><li><f:if condition="{col.link_1.url}"><f:then><f:link.typolink parameter="{col.link_1}" class="footer-mega__link">{col -> f:render.text(field: 'link_1_label')}</f:link.typolink></f:then><f:else><span class="footer-mega__link">{col -> f:render.text(field: 'link_1_label')}</span></f:else></f:if></li></f:if>

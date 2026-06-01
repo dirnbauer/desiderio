@@ -7,39 +7,50 @@
 
 <d:layout.section class="status-indicator-section">
     <d:layout.container>
-        <div class="status-indicator">
+        <section class="status-indicator" aria-label="{f:if(condition: data.header, then: '{data.header}', else: 'Service status')}">
             <div class="status-indicator__header">
                 <f:if condition="{data.header}">
-                    <h2 class="status-indicator__title">{data -> f:render.text(field: 'header')}</h2>
+                    <d:atom.typography tag="h2" variant="h4" class="status-indicator__title">{data -> f:render.text(field: 'header')}</d:atom.typography>
                 </f:if>
-                <div class="status-indicator__overall status-indicator__dot--{data.overall_status -> f:or(alternative: 'operational')}">
-                    <span class="status-indicator__dot"></span>
+                <p class="status-indicator__overall status-indicator__dot--{data.overall_status -> f:or(alternative: 'operational')}">
+                    <span class="status-indicator__dot" aria-hidden="true"></span>
                     <span class="status-indicator__overall-text">
                         <f:switch expression="{data.overall_status}">
-                            <f:case value="operational">All Systems Operational</f:case>
-                            <f:case value="degraded">Degraded Performance</f:case>
-                            <f:case value="outage">Major Outage</f:case>
-                            <f:case value="maintenance">Under Maintenance</f:case>
+                            <f:case value="operational">All systems operational</f:case>
+                            <f:case value="degraded">Degraded performance</f:case>
+                            <f:case value="outage">Major outage</f:case>
+                            <f:case value="maintenance">Under maintenance</f:case>
+                            <f:defaultCase>All systems operational</f:defaultCase>
                         </f:switch>
                     </span>
-                </div>
+                </p>
             </div>
             <ul class="status-indicator__list">
                 <f:for each="{data.items}" as="item">
-                    <li class="status-indicator__item">
+                    <f:variable name="itemStatus" value="{item.status -> f:or(alternative: 'operational')}" />
+                    <li class="status-indicator__item status-indicator__dot--{itemStatus}">
                         <div class="status-indicator__service">
                             <span class="status-indicator__service-name">{item -> f:render.text(field: 'name')}</span>
                             <f:if condition="{item.detail}">
                                 <span class="status-indicator__detail">{item -> f:render.text(field: 'detail')}</span>
                             </f:if>
                         </div>
-                        <div class="status-indicator__status status-indicator__dot--{item.status -> f:or(alternative: 'operational')}">
-                            <span class="status-indicator__dot"></span>
-                        </div>
+                        <span class="status-indicator__status">
+                            <span class="status-indicator__dot" aria-hidden="true"></span>
+                            <span class="status-indicator__status-text">
+                                <f:switch expression="{itemStatus}">
+                                    <f:case value="operational">Operational</f:case>
+                                    <f:case value="degraded">Degraded</f:case>
+                                    <f:case value="outage">Outage</f:case>
+                                    <f:case value="maintenance">Maintenance</f:case>
+                                    <f:defaultCase>Operational</f:defaultCase>
+                                </f:switch>
+                            </span>
+                        </span>
                     </li>
                 </f:for>
             </ul>
-        </div>
+        </section>
     </d:layout.container>
 </d:layout.section>
 

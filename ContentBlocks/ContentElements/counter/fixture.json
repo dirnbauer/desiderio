@@ -1,21 +1,23 @@
 {
     "_type": "stats",
-    "header": "Counter for live product intelligence",
+    "header": "Trusted by teams that ship fast",
+    "columns": "3",
     "items": [
         {
-            "target_value": 128,
+            "target_value": 12000,
+            "suffix": "+",
+            "label": "Sites in production"
+        },
+        {
+            "target_value": 99.9,
             "suffix": "%",
-            "label": "Token coverage"
+            "label": "Uptime, last 12 months"
         },
         {
-            "target_value": 24,
+            "target_value": 40,
+            "prefix": "−",
             "suffix": "h",
-            "label": "Trust lift"
-        },
-        {
-            "target_value": 3,
-            "prefix": "+",
-            "label": "Signal quality"
+            "label": "Build time per page"
         }
     ]
 }

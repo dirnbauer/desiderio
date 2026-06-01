@@ -9,15 +9,17 @@
     <d:layout.container>
         <div class="brand-story__layout">
             <div class="brand-story__text">
-                <f:if condition="{data.eyebrow}"><span class="brand-story__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span></f:if>
+                <f:if condition="{data.eyebrow}">
+                    <d:atom.badge variant="secondary" class="brand-story__eyebrow">{data -> f:render.text(field: 'eyebrow')}</d:atom.badge>
+                </f:if>
                 <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
-                <f:if condition="{data.lead}"><p class="brand-story__lead">{data -> f:render.text(field: 'lead')}</p></f:if>
+                <f:if condition="{data.lead}"><d:atom.typography variant="lead" class="brand-story__lead">{data -> f:render.text(field: 'lead')}</d:atom.typography></f:if>
                 <f:if condition="{data.body}"><div class="brand-story__body">{data -> f:render.text(field: 'body')}</div></f:if>
             </div>
             <f:if condition="{data.image}">
                 <div class="brand-story__image-wrapper">
                     <f:for each="{data.image}" as="fileReference">
-                        <f:image image="{fileReference}" maxWidth="640" alt="" class="brand-story__image"/>
+                        <f:image image="{fileReference}" maxWidth="720" alt="{fileReference.alternative}" loading="lazy" decoding="async" class="brand-story__image"/>
                     </f:for>
                 </div>
             </f:if>

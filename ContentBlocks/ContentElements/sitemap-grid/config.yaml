@@ -31,7 +31,7 @@ fields:
     type: Collection
     table: sitemap_grid_groups
     prefixField: true
-    label: 'Page Groups'
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:page_groups'
     labelField: title
     minItems: 1
     fields:
@@ -39,13 +39,14 @@ fields:
         identifier: title
         type: Textarea
         rows: 1
-        label: 'Group Title'
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:group_title'
+        description: 'Column heading, e.g. Product, Company, Resources. 1-2 words.'
         required: true
       -
         identifier: pages
         type: Collection
         table: sitemap_grid_pages
-        label: Pages
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:links'
         labelField: label
         minItems: 1
         maxItems: 12
@@ -54,9 +55,10 @@ fields:
             identifier: label
             type: Textarea
             rows: 1
-            label: 'Page Label'
+            label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:page_label'
+            description: 'Link text, meaningful out of context. Front-load the topic word.'
             required: true
           -
             identifier: link
             type: Link
-            label: 'Page Link'
+            label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:page_link'

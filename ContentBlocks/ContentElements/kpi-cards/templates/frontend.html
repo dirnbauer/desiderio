@@ -13,10 +13,10 @@
                     <span class="kpi-cards__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span>
                 </f:if>
                 <f:if condition="{data.header}">
-                    <h2 class="kpi-cards__headline">{data -> f:render.text(field: 'header')}</h2>
+                    <d:atom.typography tag="h2" variant="h2" class="kpi-cards__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
                 </f:if>
                 <f:if condition="{data.subheadline}">
-                    <p class="kpi-cards__description">{data -> f:render.text(field: 'subheadline')}</p>
+                    <d:atom.typography variant="lead" class="kpi-cards__description">{data -> f:render.text(field: 'subheadline')}</d:atom.typography>
                 </f:if>
             </header>
         </f:if>
@@ -24,7 +24,23 @@
         <div class="kpi-cards__grid kpi-cards__grid--cols-{data.columns -> f:or(alternative: '4')}">
             <f:for each="{data.items}" as="item">
                 <article class="kpi-cards__item kpi-cards__item--{item.trend -> f:or(alternative: 'positive')}">
-                    <div class="kpi-cards__value">{item -> f:render.text(field: 'value')}</div>
+                    <p class="kpi-cards__value">
+                        <span class="kpi-cards__trend" aria-hidden="true">
+                            <f:switch expression="{item.trend}">
+                                <f:case value="caution"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21V3"/><path d="m6 15 6 6 6-6"/></svg></f:case>
+                                <f:case value="neutral"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/></svg></f:case>
+                                <f:defaultCase><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6-6 6 6"/><path d="M12 3v18"/></svg></f:defaultCase>
+                            </f:switch>
+                        </span>
+                        <span class="sr-only">
+                            <f:switch expression="{item.trend}">
+                                <f:case value="caution"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:trend.caution"/></f:case>
+                                <f:case value="neutral"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:trend.neutral"/></f:case>
+                                <f:defaultCase><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:trend.positive"/></f:defaultCase>
+                            </f:switch>
+                        </span>
+                        <span class="kpi-cards__number">{item -> f:render.text(field: 'value')}</span>
+                    </p>
                     <h3 class="kpi-cards__label">{item -> f:render.text(field: 'label')}</h3>
                     <f:if condition="{item.detail_text}">
                         <p class="kpi-cards__detail">{item -> f:render.text(field: 'detail_text')}</p>

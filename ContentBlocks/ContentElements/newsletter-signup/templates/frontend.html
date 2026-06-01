@@ -26,14 +26,14 @@
             </d:molecule.card>
 
             <f:if condition="{data.points}">
-                <div class="newsletter-signup__points">
+                <ul class="newsletter-signup__points" role="list">
                     <f:for each="{data.points}" as="point">
-                        <div class="newsletter-signup__point">
-                            <span class="newsletter-signup__check">+</span>
+                        <li class="newsletter-signup__point">
+                            <span class="newsletter-signup__check" aria-hidden="true"><d:atom.icon name="check" size="sm"/></span>
                             <span>{point -> f:render.text(field: 'text')}</span>
-                        </div>
+                        </li>
                     </f:for>
-                </div>
+                </ul>
             </f:if>
         </div>
     </d:layout.container>

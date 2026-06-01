@@ -1,9 +1,19 @@
 {
     "_type": "footer",
+    "copyright": "© 2026 Northwind Studio. All rights reserved.",
+    "alignment": "between",
     "link_items": [
         {
-            "label": "Launch velocity"
+            "label": "Privacy",
+            "link": "https://example.com/privacy"
+        },
+        {
+            "label": "Terms",
+            "link": "https://example.com/terms"
+        },
+        {
+            "label": "Imprint",
+            "link": "https://example.com/imprint"
         }
-    ],
-    "copyright": "Helpful service links, legal context, and brand details stay readable across footer layouts."
+    ]
 }

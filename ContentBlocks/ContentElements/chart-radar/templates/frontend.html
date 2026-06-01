@@ -5,25 +5,108 @@
 
 <f:asset.css identifier="d-chart-radar" href="{cb:assetPath()}/frontend.css"/>
 
+<f:comment>
+  The web/grid/axes and the filled data shape are drawn into .chart-radar__plot by
+  Resources/Public/Js/charts.js (it reads data-chart-json: {"labels":[…],"values":[…]}).
+  That SVG is decorative (aria-hidden): charts.js clears the plot before drawing, carries no
+  accessible name, and never runs without JS. Everything that conveys the numbers is
+  server-rendered so the chart stays meaningful for assistive technology and without JS:
+    - a role="img" figure with a concise aria-label + an aria-describedby summary,
+    - a visually-hidden (sr-only) data table with every dimension, its score and the 0–5 scale.
+  The editor maintains one human-readable "Dimension | Score" list (axes) that drives the table
+  and the legend; chart_data holds the matching JSON the plot reads, so the picture and the
+  table can never drift apart.
+</f:comment>
+
+<f:variable name="seriesName">{data.series_name -> f:or(alternative: '') -> f:format.stripTags() -> f:format.trim()}</f:variable>
+<f:variable name="rows" value="{data.axes -> f:or(alternative: '') -> f:split('
+')}"/>
+<f:variable name="chartTitle">{f:if(condition: data.header, then: '{data.header}', else: '{f:translate(key: \'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-radar/language/labels.xlf:aria.fallback\')}')}</f:variable>
+
+<f:comment>Count the dimensions so the summary can announce how many axes the shape spans.</f:comment>
+<f:variable name="axisCount" value="{0}"/>
+<f:for each="{rows}" as="row">
+    <f:variable name="countParts" value="{row -> f:split('|')}"/>
+    <f:variable name="countLabel">{countParts.0 -> f:or(alternative: '') -> f:format.trim()}</f:variable>
+    <f:if condition="{countLabel}">
+        <f:variable name="axisCount" value="{axisCount + 1}"/>
+    </f:if>
+</f:for>
+
+<f:variable name="measuringClause"><f:if condition="{seriesName}"><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-radar/language/labels.xlf:aria.summary.measuring" arguments="{0: seriesName}"></f:translate></f:if></f:variable>
+<f:variable name="chartAriaLabel"><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-radar/language/labels.xlf:aria.summary" arguments="{0: chartTitle, 1: axisCount, 2: measuringClause}">{chartTitle}: radar chart comparing {axisCount} dimensions on a 0–5 scale. The full breakdown follows in the data table.</f:translate></f:variable>
+<f:variable name="scoreColumnLabel"><f:if condition="{seriesName}"><f:then>{seriesName}</f:then><f:else><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-radar/language/labels.xlf:table.score"/></f:else></f:if> <f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-radar/language/labels.xlf:table.scale"/></f:variable>
+
 <d:layout.section class="chart-radar-section">
     <d:layout.container>
-        <div class="chart-radar"
+        <figure class="chart-radar"
              data-chart-json="{data.chart_data -> f:format.htmlspecialchars()}"
-             data-fill-opacity="{data.fill_opacity -> f:or(alternative: '0.25')}">
+             data-fill-opacity="{data.fill_opacity -> f:or(alternative: '0.25')}"
+             data-chart-id="chart-radar-{data.uid}">
             <div class="chart-radar__card">
                 <f:if condition="{data.header} || {data.description}">
-                    <div class="chart-radar__header">
+                    <figcaption class="chart-radar__header">
                         <f:if condition="{data.header}">
-                            <h3 class="chart-radar__title">{data -> f:render.text(field: 'header')}</h3>
+                            <h3 class="chart-radar__title" data-variant="large">{data -> f:render.text(field: 'header')}</h3>
                         </f:if>
                         <f:if condition="{data.description}">
-                            <p class="chart-radar__description">{data -> f:render.text(field: 'description')}</p>
+                            <p class="chart-radar__description" data-variant="muted">{data -> f:render.text(field: 'description')}</p>
                         </f:if>
-                    </div>
+                    </figcaption>
                 </f:if>
-                <div class="chart-radar__plot" id="chart-radar-{data.uid}"></div>
+
+                <div class="chart-radar__content">
+                    <div class="chart-radar__figure" role="img"
+                         aria-label="{chartAriaLabel -> f:format.trim()}"
+                         aria-describedby="chart-radar-desc-{data.uid}">
+                        <div class="chart-radar__plot" id="chart-radar-{data.uid}" aria-hidden="true">
+                            <p class="chart-radar__fallback" data-variant="muted">{chartAriaLabel -> f:format.trim()}</p>
+                        </div>
+                    </div>
+
+                    <ul class="chart-radar__legend" role="list">
+                        <f:for each="{rows}" as="row">
+                            <f:variable name="legendParts" value="{row -> f:split('|')}"/>
+                            <f:variable name="legendLabel">{legendParts.0 -> f:or(alternative: '') -> f:format.trim()}</f:variable>
+                            <f:variable name="legendValue">{legendParts.1 -> f:or(alternative: '') -> f:format.trim()}</f:variable>
+                            <f:if condition="{legendLabel}">
+                                <li class="chart-radar__legend-item">
+                                    <span class="chart-radar__legend-label">{legendLabel}</span>
+                                    <f:if condition="{legendValue}">
+                                        <span class="chart-radar__legend-value">{legendValue}<span aria-hidden="true"> / 5</span></span>
+                                    </f:if>
+                                </li>
+                            </f:if>
+                        </f:for>
+                    </ul>
+                </div>
+
+                <p id="chart-radar-desc-{data.uid}" class="sr-only">{chartAriaLabel -> f:format.trim()}</p>
+
+                <table class="chart-radar__table sr-only">
+                    <caption>{chartTitle}</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col"><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-radar/language/labels.xlf:table.dimension"/></th>
+                            <th scope="col">{scoreColumnLabel -> f:format.trim()}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <f:for each="{rows}" as="row">
+                            <f:variable name="cellParts" value="{row -> f:split('|')}"/>
+                            <f:variable name="cellLabel">{cellParts.0 -> f:or(alternative: '') -> f:format.trim()}</f:variable>
+                            <f:variable name="cellValue">{cellParts.1 -> f:or(alternative: '') -> f:format.trim()}</f:variable>
+                            <f:if condition="{cellLabel}">
+                                <tr>
+                                    <th scope="row">{cellLabel}</th>
+                                    <td>{cellValue} <f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-radar/language/labels.xlf:table.out_of"/></td>
+                                </tr>
+                            </f:if>
+                        </f:for>
+                    </tbody>
+                </table>
             </div>
-        </div>
+        </figure>
     </d:layout.container>
 </d:layout.section>
 

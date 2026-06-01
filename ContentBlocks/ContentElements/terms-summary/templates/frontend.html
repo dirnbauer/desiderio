@@ -8,26 +8,31 @@
 <d:layout.section class="terms-summary-section">
     <d:layout.container>
         <div class="terms-summary">
-            <f:if condition="{data.header}">
-                <h2 class="terms-summary__title">{data -> f:render.text(field: 'header')}</h2>
-            </f:if>
-            <f:if condition="{data.last_updated}">
-                <p class="terms-summary__updated">Last updated: {data -> f:render.text(field: 'last_updated')}</p>
-            </f:if>
-            <f:if condition="{data.intro}">
-                <p class="terms-summary__intro">{data -> f:render.text(field: 'intro')}</p>
-            </f:if>
-            <div class="terms-summary__list">
+            <header class="terms-summary__head">
+                <f:if condition="{data.header}">
+                    <h2 class="terms-summary__title">{data -> f:render.text(field: 'header')}</h2>
+                </f:if>
+                <f:if condition="{data.last_updated}">
+                    <p class="terms-summary__updated"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:terms_summary.last_updated">Last updated</f:translate>: <time>{data -> f:render.text(field: 'last_updated')}</time></p>
+                </f:if>
+                <f:if condition="{data.intro}">
+                    <p class="terms-summary__intro">{data -> f:render.text(field: 'intro')}</p>
+                </f:if>
+            </header>
+            <dl class="terms-summary__list">
                 <f:for each="{data.items}" as="item">
                     <div class="terms-summary__item">
-                        <h3 class="terms-summary__item-title">{item -> f:render.text(field: 'title')}</h3>
-                        <p class="terms-summary__item-text">{item -> f:render.text(field: 'summary')}</p>
+                        <dt class="terms-summary__item-title">{item -> f:render.text(field: 'title')}</dt>
+                        <dd class="terms-summary__item-text">{item -> f:render.text(field: 'summary')}</dd>
                     </div>
                 </f:for>
-            </div>
+            </dl>
             <f:if condition="{data.full_terms_link}">
                 <div class="terms-summary__footer">
-                    <f:link.typolink parameter="{data.full_terms_link}" class="terms-summary__link">Read Full Terms</f:link.typolink>
+                    <f:link.typolink parameter="{data.full_terms_link}" class="terms-summary__link">
+                        <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:read_full_terms">Read full terms</f:translate>
+                        <span aria-hidden="true"> &rarr;</span>
+                    </f:link.typolink>
                 </div>
             </f:if>
         </div>

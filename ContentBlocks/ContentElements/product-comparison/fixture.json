@@ -1,42 +1,46 @@
 {
     "_type": "pricing",
-    "header": "Product Comparison Pricing for confident plan comparison",
-    "eyebrow": "Modern import",
+    "header": "Compare models side by side",
+    "eyebrow": "Product comparison",
     "products": [
         {
-            "name": "Noah Ritter",
-            "price": "$19",
+            "name": "Air 13",
+            "price": "$999",
             "specs": [
-                "Reusable labels, metrics, and actions",
-                "Clean mobile behavior for dense content",
-                "Chart colors mapped to semantic tokens"
+                "13-inch Retina display",
+                "8-core CPU, 8-core GPU",
+                "16GB unified memory",
+                "256GB SSD storage",
+                "18-hour battery life"
             ],
             "is_recommended": false,
-            "link": "https://ui.shadcn.com/docs/product-comparison-pricing"
+            "link": "https://ui.shadcn.com/docs"
         },
         {
-            "name": "Lea Fischer",
-            "price": "$49",
+            "name": "Pro 14",
+            "price": "$1,599",
             "specs": [
-                "Reusable labels, metrics, and actions",
-                "Clean mobile behavior for dense content",
-                "Chart colors mapped to semantic tokens",
-                "Production-ready empty and loaded states"
+                "14-inch Liquid Retina XDR",
+                "10-core CPU, 16-core GPU",
+                "32GB unified memory",
+                "1TB SSD storage",
+                "22-hour battery life"
             ],
             "is_recommended": true,
-            "link": "https://ui.shadcn.com/docs/product-comparison-pricing"
+            "link": "https://ui.shadcn.com/docs"
         },
         {
-            "name": "Mara Weiss",
-            "price": "$99",
+            "name": "Pro 16",
+            "price": "$2,499",
             "specs": [
-                "Reusable labels, metrics, and actions",
-                "Clean mobile behavior for dense content",
-                "Chart colors mapped to semantic tokens",
-                "Production-ready empty and loaded states"
+                "16-inch Liquid Retina XDR",
+                "12-core CPU, 38-core GPU",
+                "64GB unified memory",
+                "2TB SSD storage",
+                "24-hour battery life"
             ],
             "is_recommended": false,
-            "link": "https://ui.shadcn.com/docs/product-comparison-pricing"
+            "link": "https://ui.shadcn.com/docs"
         }
     ]
 }

@@ -31,9 +31,7 @@
             <div class="d-ce-preview__thumbs" aria-label="Audio File">
                 <f:for each="{data.audio_file}" as="file">
                     <f:if condition="{file.publicUrl}">
-                        <audio controls preload="metadata">
-                            <source src="{file.publicUrl}" type="{file.mimeType}" />
-                        </audio>
+                        <img src="{file.publicUrl}" alt="{file.alternative}" class="d-ce-preview__thumb" loading="lazy" />
                     </f:if>
                 </f:for>
             </div>

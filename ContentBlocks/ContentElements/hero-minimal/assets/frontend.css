@@ -6,15 +6,27 @@
     max-width: 36rem;
     margin-inline: auto;
 }
-.hero-minimal__headline {
-    font-size: var(--d-text-5xl);
+.hero-minimal .hero-minimal__headline {
+    font-size: var(--d-text-4xl);
     font-weight: 700;
     line-height: 1.05;
+    text-wrap: balance;
+    letter-spacing: -0.01em;
     margin-bottom: var(--d-spacing-4);
-    letter-spacing: 0;
 }
 .hero-minimal__subheadline {
     font-size: var(--d-text-lg);
-    color: var(--d-muted-foreground);
+    line-height: 1.6;
+    color: var(--muted-foreground);
+    text-wrap: pretty;
     margin-bottom: var(--d-spacing-8);
+}
+.hero-minimal__actions {
+    display: flex;
+    justify-content: center;
+}
+@media (min-width: 768px) {
+    .hero-minimal .hero-minimal__headline {
+        font-size: var(--d-text-5xl);
+    }
 }

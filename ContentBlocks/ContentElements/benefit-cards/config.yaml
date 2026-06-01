@@ -57,7 +57,7 @@ fields:
         identifier: title
         type: Textarea
         rows: 1
-        label: 'Benefit Title'
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:title'
         required: true
       -
         identifier: description

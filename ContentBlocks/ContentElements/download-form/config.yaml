@@ -34,6 +34,12 @@ fields:
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_text'
     default: 'Download now'
   -
+    identifier: reassurance
+    type: Textarea
+    rows: 1
+    label: 'Reassurance Microcopy'
+    description: 'Short trust line shown under the heading, e.g. "Free PDF. No sign-up required."'
+  -
     identifier: image
     type: File
     label: 'Preview Image'

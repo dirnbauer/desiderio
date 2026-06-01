@@ -1,7 +1,7 @@
 name: desiderio/chart-sparkline
 typeName: desiderio_chartsparkline
 title: 'Sparkline Chart'
-description: 'Use when the sparkline chart should show trends or rates of change over time.'
+description: 'Use when a compact inline trend line should summarise one metric inside a KPI card.'
 group: data
 prefixFields: false
 basics:
@@ -19,31 +19,49 @@ fields:
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
     rows: 2
   -
+    identifier: series_label
+    type: Text
+    label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-sparkline/language/labels.xlf:field.series_label'
+    description: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-sparkline/language/labels.xlf:field.series_label.description'
+    required: true
+  -
+    identifier: unit
+    type: Text
+    label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-sparkline/language/labels.xlf:field.unit'
+    description: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-sparkline/language/labels.xlf:field.unit.description'
+  -
+    identifier: data_points
+    type: Textarea
+    label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-sparkline/language/labels.xlf:field.data_points'
+    description: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-sparkline/language/labels.xlf:field.data_points.description'
+    rows: 6
+    required: true
+  -
     identifier: chart_data
     type: Textarea
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:chart_data_json'
-    description: |
-      JSON array of points, e.g. [{"label":"M","value":12},{"label":"T","value":18}] or [10,14,9,22]
+    description: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-sparkline/language/labels.xlf:field.chart_data.description'
     rows: 4
     required: true
   -
     identifier: trend_badge
-    type: Textarea
-    rows: 1
-    label: 'Trend badge (optional, e.g. +12% vs last month)'
+    type: Text
+    label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-sparkline/language/labels.xlf:field.trend_badge'
+    description: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-sparkline/language/labels.xlf:field.trend_badge.description'
   -
     identifier: color_variant
     type: Select
     renderType: selectSingle
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:color_field'
+    description: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-sparkline/language/labels.xlf:field.color_variant.description'
     items:
       -
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.primary'
         value: primary
       -
-        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.green'
-        value: green
-      -
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.blue'
         value: blue
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.green'
+        value: green
     default: primary

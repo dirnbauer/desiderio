@@ -24,6 +24,11 @@
 .hero-announcement__banner-link:hover {
     text-decoration: underline;
 }
+.hero-announcement__banner-link:focus-visible {
+    outline: 2px solid var(--d-ring);
+    outline-offset: 2px;
+    border-radius: var(--d-radius-sm);
+}
 .hero-announcement__headline {
     font-size: var(--d-text-5xl);
     font-weight: 700;

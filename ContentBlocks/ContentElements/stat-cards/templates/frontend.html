@@ -8,23 +8,33 @@
 <d:layout.section class="stat-cards">
     <d:layout.container>
         <f:if condition="{data.header}">
-            <h2 class="stat-cards__headline">{data -> f:render.text(field: 'header')}</h2>
+            <d:atom.typography tag="h2" variant="h3" class="stat-cards__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
         </f:if>
         <div class="stat-cards__grid stat-cards__grid--cols-{data.columns -> f:or(alternative: '4')}">
             <f:for each="{data.items}" as="item">
                 <article class="stat-cards__item" data-astro-reveal="slide-up" data-astro-tilt="2">
-                    <div class="stat-cards__label">{item -> f:render.text(field: 'label')}</div>
-                    <div class="stat-cards__value" data-astro-counter>{item -> f:render.text(field: 'value')}</div>
+                    <dl class="stat-cards__dl">
+                        <dt class="stat-cards__label">{item -> f:render.text(field: 'label')}</dt>
+                        <dd class="stat-cards__value" data-astro-counter>{item -> f:render.text(field: 'value')}</dd>
+                    </dl>
                     <f:if condition="{item.change}">
-                        <div class="stat-cards__change stat-cards__change--{item.trend -> f:or(alternative: 'neutral')}">
-                            <f:if condition="{item.trend} == 'up'">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m18 15-6-6-6 6"/></svg>
-                            </f:if>
-                            <f:if condition="{item.trend} == 'down'">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
-                            </f:if>
+                        <f:variable name="trend">{item.trend -> f:or(alternative: 'neutral')}</f:variable>
+                        <p class="stat-cards__change stat-cards__change--{trend}">
+                            <f:switch expression="{trend}">
+                                <f:case value="up">
+                                    <span class="sr-only">{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:trend.positive')} </span>
+                                    <svg class="stat-cards__arrow" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m18 15-6-6-6 6"/></svg>
+                                </f:case>
+                                <f:case value="down">
+                                    <span class="sr-only">{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:trend.caution')} </span>
+                                    <svg class="stat-cards__arrow" xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+                                </f:case>
+                                <f:defaultCase>
+                                    <span class="sr-only">{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:trend.neutral')} </span>
+                                </f:defaultCase>
+                            </f:switch>
                             {item -> f:render.text(field: 'change')}
-                        </div>
+                        </p>
                     </f:if>
                 </article>
             </f:for>

@@ -13,5 +13,71 @@
         <target>Einsetzen, wenn das Element Heatmap Diagramm Muster, Intensität oder mehrere Dimensionen kompakt vergleichen soll.</target>
       </segment>
     </unit>
+    <unit id="field.col_labels">
+      <segment state="final">
+        <source>Column labels</source>
+        <target>Spaltenbeschriftungen</target>
+      </segment>
+    </unit>
+    <unit id="field.col_labels.description">
+      <segment state="final">
+        <source>Comma-separated names for the columns, left to right, e.g. Morning, Afternoon, Evening. Used for the table header and the screen-reader summary.</source>
+        <target>Kommagetrennte Namen der Spalten von links nach rechts, z. B. Vormittag, Nachmittag, Abend. Werden für den Tabellenkopf und die Screenreader-Zusammenfassung verwendet.</target>
+      </segment>
+    </unit>
+    <unit id="field.series">
+      <segment state="final">
+        <source>Rows and values</source>
+        <target>Zeilen und Werte</target>
+      </segment>
+    </unit>
+    <unit id="field.series.description">
+      <segment state="final">
+        <source>One row per line as "Row label | v1, v2, v3", with one value per column in column order, e.g. Mon | 42, 58, 31. Drives the accessible data table.</source>
+        <target>Eine Zeile pro Datenreihe als "Zeilenname | w1, w2, w3", mit einem Wert je Spalte in Spaltenreihenfolge, z. B. Mo | 42, 58, 31. Speist die barrierefreie Datentabelle.</target>
+      </segment>
+    </unit>
+    <unit id="field.unit">
+      <segment state="final">
+        <source>Value unit</source>
+        <target>Werteinheit</target>
+      </segment>
+    </unit>
+    <unit id="field.unit.description">
+      <segment state="final">
+        <source>Optional unit appended to every value, e.g. tickets, %, or €. Shown in the table header and cells.</source>
+        <target>Optionale Einheit, die an jeden Wert angehängt wird, z. B. Tickets, % oder €. Wird im Tabellenkopf und in den Zellen angezeigt.</target>
+      </segment>
+    </unit>
+    <unit id="field.chart_data.description">
+      <segment state="final">
+        <source>JSON the coloured grid reads: {"rows":["Mon","Tue"],"cols":["Morning","Afternoon"],"values":[[42,58],[55,64]]}. Keep it in sync with the rows and column labels above.</source>
+        <target>JSON, das das farbige Raster liest: {"rows":["Mon","Tue"],"cols":["Morning","Afternoon"],"values":[[42,58],[55,64]]}. Halten Sie es mit den Zeilen und Spaltenbeschriftungen oben synchron.</target>
+      </segment>
+    </unit>
+    <unit id="aria.fallback">
+      <segment state="final">
+        <source>Heatmap chart</source>
+        <target>Heatmap-Diagramm</target>
+      </segment>
+    </unit>
+    <unit id="aria.summary">
+      <segment state="final">
+        <source>{0}: heatmap comparing {1} rows across {2} columns.</source>
+        <target>{0}: Heatmap mit {1} Zeilen über {2} Spalten.</target>
+      </segment>
+    </unit>
+    <unit id="table.row_header">
+      <segment state="final">
+        <source>Row</source>
+        <target>Zeile</target>
+      </segment>
+    </unit>
+    <unit id="table.unit_caption">
+      <segment state="final">
+        <source>values in {0}</source>
+        <target>Werte in {0}</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

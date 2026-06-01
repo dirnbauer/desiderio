@@ -10,26 +10,31 @@
         <f:if condition="{data.header} || {data.subheadline}">
             <header class="advisor-grid__intro">
                 <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
-                <f:if condition="{data.subheadline}"><d:atom.typography variant="muted">{data -> f:render.text(field: 'subheadline')}</d:atom.typography></f:if>
+                <f:if condition="{data.subheadline}"><d:atom.typography variant="lead">{data -> f:render.text(field: 'subheadline')}</d:atom.typography></f:if>
             </header>
         </f:if>
 
-        <div class="advisor-grid__items">
+        <d:layout.grid cols="3" gap="lg" class="advisor-grid__items">
             <f:for each="{data.advisors}" as="advisor">
                 <article class="advisor-grid__card">
                     <f:if condition="{advisor.image}">
-                        <f:for each="{advisor.image}" as="fileReference">
-                            <f:image image="{fileReference}" width="80" height="80" alt="{advisor.name}" class="advisor-grid__avatar"/>
-                        </f:for>
+                        <f:then>
+                            <f:for each="{advisor.image}" as="fileReference">
+                                <f:image image="{fileReference}" width="80" height="80" alt="" loading="lazy" decoding="async" class="advisor-grid__avatar"/>
+                            </f:for>
+                        </f:then>
+                        <f:else>
+                            <span class="advisor-grid__avatar advisor-grid__avatar--fallback" aria-hidden="true">{advisor.name -> f:format.crop(maxCharacters: 1)}</span>
+                        </f:else>
                     </f:if>
-                    <div>
+                    <div class="advisor-grid__body">
                         <h3 class="advisor-grid__name">{advisor -> f:render.text(field: 'name')}</h3>
                         <f:if condition="{advisor.expertise}"><p class="advisor-grid__expertise">{advisor -> f:render.text(field: 'expertise')}</p></f:if>
                         <f:if condition="{advisor.company}"><p class="advisor-grid__company">{advisor -> f:render.text(field: 'company')}</p></f:if>
                     </div>
                 </article>
             </f:for>
-        </div>
+        </d:layout.grid>
     </d:layout.container>
 </d:layout.section>
 

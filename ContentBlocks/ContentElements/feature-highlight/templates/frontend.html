@@ -7,7 +7,7 @@
 
 <d:layout.section class="feature-highlight feature-highlight--{data.variant -> f:or(alternative: 'muted')}">
     <d:layout.container>
-        <div class="feature-highlight__grid">
+        <div class="feature-highlight__grid{f:if(condition: '{data.image.0}', then: '', else: ' feature-highlight__grid--single')}">
             <div class="feature-highlight__copy">
                 <f:if condition="{data.eyebrow}"><span class="feature-highlight__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span></f:if>
                 <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
@@ -16,13 +16,13 @@
                 </f:if>
                 <f:if condition="{data.link.url} && {data.link_text}">
                     <div class="feature-highlight__actions">
-                        <f:link.typolink parameter="{data.link}" class="feature-highlight__cta">{data -> f:render.text(field: 'link_text')}</f:link.typolink>
+                        <d:atom.button href="{data.link.url}" target="{data.link.target}" size="lg" variant="{f:if(condition: '{data.variant} == \'primary\'', then: 'secondary', else: 'default')}">{data -> f:render.text(field: 'link_text')}</d:atom.button>
                     </div>
                 </f:if>
             </div>
             <f:if condition="{data.image.0}">
                 <div class="feature-highlight__media">
-                    <f:image image="{data.image.0}" alt="{data.header}" maxWidth="640" class="feature-highlight__image"/>
+                    <f:image image="{data.image.0}" alt="{data.image.0.alternative -> f:or(alternative: '{data.header}')}" maxWidth="640" class="feature-highlight__image"/>
                 </div>
             </f:if>
         </div>

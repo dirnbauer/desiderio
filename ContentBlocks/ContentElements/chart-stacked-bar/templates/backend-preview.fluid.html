@@ -27,6 +27,24 @@
                 <span class="d-ce-preview__value">{data.description}</span>
             </div>
         </f:if>
+        <f:if condition="{data.series_labels}">
+            <div class="d-ce-preview__field">
+                <span class="d-ce-preview__label">Series</span>
+                <span class="d-ce-preview__value">{data.series_labels}</span>
+            </div>
+        </f:if>
+        <f:if condition="{data.unit}">
+            <div class="d-ce-preview__field">
+                <span class="d-ce-preview__label">Unit</span>
+                <span class="d-ce-preview__value">{data.unit}</span>
+            </div>
+        </f:if>
+        <f:if condition="{data.palette}">
+            <div class="d-ce-preview__field">
+                <span class="d-ce-preview__label">Palette</span>
+                <span class="d-ce-preview__value">{data.palette}</span>
+            </div>
+        </f:if>
         <f:if condition="{data.chart_data}">
             <div class="d-ce-preview__field">
                 <span class="d-ce-preview__label">Chart Data</span>

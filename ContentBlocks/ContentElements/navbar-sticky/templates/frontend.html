@@ -5,10 +5,10 @@
 
 <f:asset.css identifier="d-navbar-sticky" href="{cb:assetPath()}/frontend.css"/>
 
-<d:layout.section class="navbar-sticky">
+<d:layout.section class="navbar-sticky" spacing="none">
     <d:layout.container>
         <nav class="navbar-sticky__inner" aria-label="{data.header -> f:or(alternative: 'Sticky navigation')}">
-            <div class="navbar-sticky__brand">{data -> f:render.text(field: 'brand')}</div>
+            <span class="navbar-sticky__brand">{data -> f:render.text(field: 'brand')}</span>
             <ul class="navbar-sticky__nav">
                 <f:for each="{data.nav_items}" as="item">
                     <li>

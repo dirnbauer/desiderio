@@ -39,6 +39,24 @@
                 <span class="d-ce-preview__value">{data.chart_type}</span>
             </div>
         </f:if>
+        <f:if condition="{data.series_name}">
+            <div class="d-ce-preview__field">
+                <span class="d-ce-preview__label">Series</span>
+                <span class="d-ce-preview__value">{data.series_name}<f:if condition="{data.value_unit}"> ({data.value_unit})</f:if></span>
+            </div>
+        </f:if>
+        <f:if condition="{data.data_summary}">
+            <div class="d-ce-preview__field">
+                <span class="d-ce-preview__label">Accessible Summary</span>
+                <span class="d-ce-preview__value">{data.data_summary}</span>
+            </div>
+        </f:if>
+        <f:if condition="{data.data_points}">
+            <div class="d-ce-preview__field">
+                <span class="d-ce-preview__label">Data Points</span>
+                <span class="d-ce-preview__value"><f:count subject="{data.data_points}"/></span>
+            </div>
+        </f:if>
         <f:if condition="{data.color_variant}">
             <div class="d-ce-preview__field">
                 <span class="d-ce-preview__label">Color Variant</span>

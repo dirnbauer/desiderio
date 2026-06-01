@@ -1,19 +1,38 @@
 {
     "_type": "grid",
-    "header": "Badge Grid Data View for live product intelligence",
-    "description": "Turn dense numbers into an analytics block that stays readable on mobile.",
+    "header": "Built on a stack teams already trust",
+    "description": "The capabilities, integrations, and certifications that keep 4,000+ engineering teams shipping.",
+    "variant": "secondary",
     "items": [
         {
-            "text": "Sub-100ms response times across all API endpoints."
+            "text": "SOC 2 Type II",
+            "color": "green"
         },
         {
-            "text": "SOC 2 Type II certified with end-to-end encryption."
+            "text": "GDPR compliant",
+            "color": "green"
         },
         {
-            "text": "Content delivered from 200+ edge locations worldwide."
+            "text": "99.9% uptime SLA",
+            "color": "blue"
         },
         {
-            "text": "Pre-built connectors for 50+ popular tools and platforms."
+            "text": "Sub-100ms response",
+            "color": "blue"
+        },
+        {
+            "text": "200+ edge locations"
+        },
+        {
+            "text": "50+ native integrations"
+        },
+        {
+            "text": "SSO & SCIM",
+            "color": "default"
+        },
+        {
+            "text": "24/7 support",
+            "color": "yellow"
         }
     ]
 }

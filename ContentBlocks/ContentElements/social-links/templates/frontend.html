@@ -9,14 +9,20 @@
     <d:layout.container>
         <div class="social-links__content">
             <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
-            <f:if condition="{data.description_text}"><d:atom.typography variant="muted">{data -> f:render.text(field: 'description_text')}</d:atom.typography></f:if>
-            <div class="social-links__list">
-                <f:for each="{data.link_items}" as="item">
-                    <f:if condition="{item.url.url}">
-                        <f:link.typolink parameter="{item.url}" class="social-links__item">{item -> f:render.text(field: 'platform')}</f:link.typolink>
-                    </f:if>
-                </f:for>
-            </div>
+            <f:if condition="{data.description_text}"><d:atom.typography variant="muted" class="social-links__description">{data -> f:render.text(field: 'description_text')}</d:atom.typography></f:if>
+            <f:variable name="followLabel">{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:follow_on')}</f:variable>
+            <nav class="social-links__nav" aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:social_links.aria')}">
+                <ul class="social-links__list">
+                    <f:for each="{data.link_items}" as="item">
+                        <f:if condition="{item.url.url}">
+                            <li class="social-links__entry">
+                                <f:variable name="platformName">{item.platform -> f:format.stripTags() -> f:format.trim()}</f:variable>
+                                <f:link.typolink parameter="{item.url}" class="social-links__item" additionalAttributes="{'aria-label': '{followLabel} {platformName}'}">{item -> f:render.text(field: 'platform')}</f:link.typolink>
+                            </li>
+                        </f:if>
+                    </f:for>
+                </ul>
+            </nav>
         </div>
     </d:layout.container>
 </d:layout.section>

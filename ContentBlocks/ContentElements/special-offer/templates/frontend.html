@@ -6,7 +6,7 @@
 <f:asset.css identifier="d-special-offer" href="{cb:assetPath()}/frontend.css"/>
 
 <d:layout.section class="special-offer">
-    <d:layout.container>
+    <d:layout.container size="md">
         <div class="special-offer__banner">
             <f:if condition="{data.eyebrow}">
                 <span class="special-offer__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span>
@@ -17,28 +17,32 @@
             </f:if>
 
             <f:if condition="{data.header}">
-                <h2 class="special-offer__headline">{data -> f:render.text(field: 'header')}</h2>
+                <d:atom.typography tag="h2" variant="h3" class="special-offer__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
             </f:if>
 
             <f:if condition="{data.description}">
-                <p class="special-offer__description">{data -> f:render.text(field: 'description')}</p>
+                <d:atom.typography variant="muted" class="special-offer__description">{data -> f:render.text(field: 'description')}</d:atom.typography>
             </f:if>
 
             <f:if condition="{data.original_price} || {data.sale_price}">
-                <div class="special-offer__prices">
+                <p class="special-offer__prices">
                     <f:if condition="{data.original_price}">
-                        <span class="special-offer__original">{data -> f:render.text(field: 'original_price')}</span>
+                        <span class="special-offer__original">
+                            <span class="sr-only">{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:price.regular')} </span>
+                            <s>{data -> f:render.text(field: 'original_price')}</s>
+                        </span>
                     </f:if>
                     <f:if condition="{data.sale_price}">
-                        <span class="special-offer__sale">{data -> f:render.text(field: 'sale_price')}</span>
+                        <span class="special-offer__sale">
+                            <span class="sr-only">{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:price.now')} </span>
+                            {data -> f:render.text(field: 'sale_price')}
+                        </span>
                     </f:if>
-                </div>
+                </p>
             </f:if>
 
             <f:if condition="{data.button_text} && {data.button_link.url}">
-                <f:link.typolink parameter="{data.button_link}" class="special-offer__button">
-                    {data -> f:render.text(field: 'button_text')}
-                </f:link.typolink>
+                <d:atom.button href="{data.button_link.url}" target="{data.button_link.target}" size="lg" class="special-offer__button">{data -> f:render.text(field: 'button_text')}</d:atom.button>
             </f:if>
         </div>
     </d:layout.container>

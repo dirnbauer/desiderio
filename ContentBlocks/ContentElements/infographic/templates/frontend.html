@@ -10,32 +10,34 @@
         <f:if condition="{data.header} || {data.description}">
             <header class="infographic__intro">
                 <f:if condition="{data.header}">
-                    <h2 class="infographic__headline">{data -> f:render.text(field: 'header')}</h2>
+                    <d:atom.typography tag="h2" variant="h2" class="infographic__headline">
+                        <span id="infographic-title-{data.uid}">{data -> f:render.text(field: 'header')}</span>
+                    </d:atom.typography>
                 </f:if>
                 <f:if condition="{data.description}">
-                    <p class="infographic__description">{data -> f:render.text(field: 'description')}</p>
+                    <d:atom.typography variant="muted" class="infographic__description">{data -> f:render.text(field: 'description')}</d:atom.typography>
                 </f:if>
             </header>
         </f:if>
 
-        <div class="infographic__steps infographic__steps--{data.shadcn_layout -> f:or(alternative: 'horizontal')}">
+        <ol class="infographic__steps infographic__steps--{data.shadcn_layout -> f:or(alternative: 'horizontal')}">
             <f:for each="{data.items}" as="item" iteration="iter">
-                <div class="infographic__step">
-                    <div class="infographic__number">{item.number -> f:or(alternative: iter.cycle)}</div>
+                <li class="infographic__step">
+                    <span class="infographic__number" aria-hidden="true">{item.number -> f:or(alternative: iter.cycle)}</span>
                     <f:if condition="{item.image}">
-                        <div class="infographic__icon">
+                        <span class="infographic__icon" aria-hidden="true">
                             <f:for each="{item.image}" as="file">
-                                <f:image image="{file}" alt="{item.title}" width="64"/>
+                                <f:image image="{file}" alt="" width="64"/>
                             </f:for>
-                        </div>
+                        </span>
                     </f:if>
-                    <h3 class="infographic__step-title">{item -> f:render.text(field: 'title')}</h3>
+                    <d:atom.typography tag="h3" variant="large" class="infographic__step-title">{item -> f:render.text(field: 'title')}</d:atom.typography>
                     <f:if condition="{item.description}">
-                        <p class="infographic__step-description">{item -> f:render.text(field: 'description')}</p>
+                        <d:atom.typography variant="muted" class="infographic__step-description">{item -> f:render.text(field: 'description')}</d:atom.typography>
                     </f:if>
-                </div>
+                </li>
             </f:for>
-        </div>
+        </ol>
     </d:layout.container>
 </d:layout.section>
 

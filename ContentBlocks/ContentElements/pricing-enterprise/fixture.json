@@ -1,15 +1,18 @@
 {
     "_type": "pricing",
-    "header": "Enterprise Pricing for confident plan comparison",
-    "eyebrow": "Modern import",
-    "description": "Help buyers compare plans with crisp values and direct feature language.",
+    "header": "Enterprise plans built for scale and security",
+    "eyebrow": "Enterprise",
+    "description": "Custom pricing for teams over 500 seats. Get dedicated support, advanced security controls, and a migration plan tailored to your stack.",
     "features": [
-        "Editor-friendly TYPO3 Content Blocks",
-        "Modern Unsplash imagery in the import seed",
-        "Compact shadcn spacing and borders",
-        "Reusable labels, metrics, and actions",
-        "Clean mobile behavior for dense content"
+        { "text": "SSO and SCIM user provisioning" },
+        { "text": "99.99% uptime SLA, signed" },
+        { "text": "Dedicated customer success manager" },
+        { "text": "SOC 2 Type II and HIPAA compliance" },
+        { "text": "Unlimited seats and workspaces" },
+        { "text": "Audit logs and data residency controls" },
+        { "text": "Priority support with 1-hour response" },
+        { "text": "Custom onboarding and migration" }
     ],
-    "contact_text": "Contact Sales",
+    "contact_text": "Talk to sales",
     "contact_link": "https://ui.shadcn.com/docs/enterprise-pricing"
 }

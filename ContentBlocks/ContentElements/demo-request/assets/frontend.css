@@ -16,18 +16,24 @@
     display: block;
     margin-block-end: var(--d-spacing-xs);
 }
+.demo-request__description {
+    margin-block-start: var(--d-spacing-sm);
+}
+.demo-request__reassurance {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--d-spacing-xs);
+    margin-block-start: var(--d-spacing-md);
+    font-size: var(--d-text-sm);
+    font-weight: 500;
+    color: var(--foreground);
+}
+.demo-request__reassurance-icon {
+    display: inline-flex;
+    color: var(--d-success);
+}
 .demo-request__image {
     width: 100%;
     border-radius: var(--radius);
     margin-block-start: var(--d-spacing-lg);
-}
-.demo-request__form { display: flex; flex-direction: column; gap: var(--d-spacing-md); }
-.demo-request__field { display: flex; flex-direction: column; gap: 4px; }
-.demo-request__label { font-size: var(--d-text-sm); font-weight: 500; }
-.demo-request__input, .demo-request__textarea {
-    padding: var(--d-spacing-xs) var(--d-spacing-sm);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    font-size: var(--d-text-sm);
-    background: transparent;
 }

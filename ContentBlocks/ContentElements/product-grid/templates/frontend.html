@@ -24,7 +24,7 @@
                     <f:if condition="{product.image}">
                         <div class="product-grid__media">
                             <f:for each="{product.image}" as="fileReference">
-                                <f:image image="{fileReference}" maxWidth="400" alt="{product.name}" class="product-grid__image"/>
+                                <f:image image="{fileReference}" maxWidth="400" alt="{product.name}" class="product-grid__image" loading="lazy" decoding="async"/>
                             </f:for>
                         </div>
                     </f:if>
@@ -36,7 +36,8 @@
                         </f:if>
                         <f:if condition="{product.link.url}">
                             <f:link.typolink parameter="{product.link}" class="product-grid__link">
-                                View product &rarr;
+                                <span>View product<span class="sr-only"> {product.name}</span></span>
+                                <span aria-hidden="true">&rarr;</span>
                             </f:link.typolink>
                         </f:if>
                     </div>

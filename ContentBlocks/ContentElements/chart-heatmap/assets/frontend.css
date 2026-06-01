@@ -1,7 +1,14 @@
+.chart-heatmap {
+    display: block;
+    margin: 0;
+}
 .chart-heatmap__card {
     border: 1px solid var(--border);
     border-radius: var(--radius);
     background: var(--card);
+    color: var(--card-foreground);
+    box-shadow: var(--d-shadow-sm);
+    overflow: hidden;
 }
 .chart-heatmap__header {
     padding: var(--d-spacing-lg) var(--d-spacing-lg) 0;
@@ -9,15 +16,27 @@
 .chart-heatmap__title {
     font-size: var(--d-text-lg);
     font-weight: 600;
+    line-height: 1.3;
 }
 .chart-heatmap__description {
     font-size: var(--d-text-sm);
     color: var(--muted-foreground);
     margin-block-start: var(--d-spacing-xs);
+    max-width: 60ch;
+}
+
+/* Plot: charts.js injects the decorative grid; we own the responsive, scroll-safe box. */
+.chart-heatmap__figure {
+    display: block;
 }
 .chart-heatmap__plot {
     padding: var(--d-spacing-lg);
     overflow-x: auto;
+}
+.chart-heatmap__fallback {
+    margin: 0;
+    font-size: var(--d-text-sm);
+    color: var(--muted-foreground);
 }
 .chart-heatmap__grid {
     display: grid;
@@ -44,34 +63,48 @@
 .chart-heatmap__cell {
     border-radius: var(--radius);
     min-height: 2.25rem;
+    min-width: 2.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
     font-variant-numeric: tabular-nums;
     font-weight: 600;
-    background: color-mix(in oklch, var(--primary) 18%, var(--background));
-    color: var(--foreground);
+    background: var(--muted);
+    color: var(--muted-foreground);
 }
 
+/* Sequential intensity ramp keyed to the shared chart palette (--chart-1 low … --chart-5 high).
+   charts.js buckets each value into one of six classes (--0 … --5). No raw colour values are used. */
+.chart-heatmap__cell--0 {
+    background: var(--muted);
+    color: var(--muted-foreground);
+}
 .chart-heatmap__cell--1 {
-    background: color-mix(in oklch, var(--primary) 34%, var(--background));
+    background: var(--chart-1);
+    color: var(--primary-foreground);
 }
-
 .chart-heatmap__cell--2 {
-    background: color-mix(in oklch, var(--primary) 50%, var(--background));
+    background: var(--chart-2);
+    color: var(--primary-foreground);
 }
-
 .chart-heatmap__cell--3 {
-    background: color-mix(in oklch, var(--primary) 66%, var(--background));
+    background: var(--chart-3);
     color: var(--primary-foreground);
 }
-
 .chart-heatmap__cell--4 {
-    background: color-mix(in oklch, var(--primary) 82%, var(--background));
+    background: var(--chart-4);
+    color: var(--primary-foreground);
+}
+.chart-heatmap__cell--5 {
+    background: var(--chart-5);
     color: var(--primary-foreground);
 }
 
-.chart-heatmap__cell--5 {
-    background: var(--primary);
-    color: var(--primary-foreground);
+@media (max-width: 640px) {
+    .chart-heatmap__header {
+        padding-inline: var(--d-spacing-md);
+    }
+    .chart-heatmap__plot {
+        padding: var(--d-spacing-md);
+    }
 }

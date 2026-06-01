@@ -1,4 +1,11 @@
 {
     "_type": "stats",
-    "header": "Area Chart for live product intelligence"
+    "header": "Monthly recurring revenue",
+    "description": "Net MRR across the trailing eight months, after new, expansion and churned revenue. The fill highlights the cumulative growth trend.",
+    "points": "Oct | 182\nNov | 205\nDec | 231\nJan | 248\nFeb | 279\nMar | 312\nApr | 358\nMay | 401",
+    "unit": "k USD",
+    "series_name": "Net monthly recurring revenue",
+    "chart_data": "[{\"label\":\"Oct\",\"value\":182},{\"label\":\"Nov\",\"value\":205},{\"label\":\"Dec\",\"value\":231},{\"label\":\"Jan\",\"value\":248},{\"label\":\"Feb\",\"value\":279},{\"label\":\"Mar\",\"value\":312},{\"label\":\"Apr\",\"value\":358},{\"label\":\"May\",\"value\":401}]",
+    "color_variant": "primary",
+    "fill_opacity": "strong"
 }

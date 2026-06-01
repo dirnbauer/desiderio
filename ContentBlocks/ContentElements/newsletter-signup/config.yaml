@@ -31,6 +31,7 @@ fields:
     identifier: email_placeholder
     type: Text
     label: 'Email Placeholder'
+    description: 'Greyed-out hint shown inside the email field (kept for migrated records; the Form Framework owns the live field).'
   -
     identifier: button_text
     type: Textarea
@@ -39,7 +40,8 @@ fields:
   -
     identifier: privacy_text
     type: Textarea
-    label: 'Privacy Text'
+    label: 'Privacy Reassurance'
+    description: 'Short reassurance under the button, e.g. "No spam, unsubscribe anytime".'
     rows: 2
   -
     identifier: points
@@ -47,6 +49,7 @@ fields:
     table: newsletter_signup_points
     prefixField: true
     label: 'Supporting Points'
+    description: 'Optional benefit bullets shown beside the form. Keep each to a short, scannable phrase.'
     fields:
       -
         identifier: text

@@ -17,20 +17,26 @@
                 </f:if>
             </header>
         </f:if>
-        <div class="comparison-table__wrapper">
+        <div class="comparison-table__wrapper" role="region" aria-label="{data.header -> f:or(alternative: 'Comparison table')}" tabindex="0">
             <table class="comparison-table__table">
+                <f:if condition="{data.description}">
+                    <caption class="sr-only">{data -> f:render.text(field: 'description')}</caption>
+                </f:if>
                 <thead>
                     <tr>
-                        <th class="comparison-table__feature-col">Feature</th>
+                        <th scope="col" class="comparison-table__feature-col">Feature</th>
                         <f:for each="{data.column_items}" as="col">
-                            <th class="{f:if(condition: col.highlighted, then: 'comparison-table__col--highlighted')}">{col -> f:render.text(field: 'name')}</th>
+                            <th scope="col" class="{f:if(condition: col.highlighted, then: 'comparison-table__col--highlighted')}">
+                                {col -> f:render.text(field: 'name')}
+                                <f:if condition="{col.highlighted}"><span class="sr-only"> (recommended)</span></f:if>
+                            </th>
                         </f:for>
                     </tr>
                 </thead>
                 <tbody>
                     <f:for each="{data.comparison_feature_items}" as="feature">
                         <tr>
-                            <td class="comparison-table__feature-name">{feature.name}</td>
+                            <th scope="row" class="comparison-table__feature-name">{feature.name}</th>
                             <f:for each="{feature.tier_values}" as="value">
                                 <td class="comparison-table__cell">{value.value}</td>
                             </f:for>

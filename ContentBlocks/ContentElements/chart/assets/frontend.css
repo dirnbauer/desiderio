@@ -9,11 +9,13 @@
 .chart__header { padding: var(--d-spacing-lg) var(--d-spacing-lg) 0; }
 .chart__title { font-size: var(--d-text-lg); font-weight: 600; }
 .chart__description { font-size: var(--d-text-sm); color: var(--muted-foreground); margin-block-start: var(--d-spacing-xs); }
+.chart__summary { padding: 0 var(--d-spacing-lg); margin-block-start: var(--d-spacing-sm); font-size: var(--d-text-sm); color: var(--muted-foreground); }
 .chart__body { display: grid; gap: var(--d-spacing-md); padding: var(--d-spacing-lg); }
 .chart__body--legend-right { grid-template-columns: minmax(0, 1fr) minmax(12rem, 0.28fr); align-items: center; }
 @media (max-width: 768px) { .chart__body--legend-right { grid-template-columns: 1fr; } }
 .chart__content { position: relative; min-width: 0; }
-.chart__canvas { width: 100%; color: var(--muted-foreground); overflow: visible; }
+.chart__figure { min-width: 0; }
+.chart__canvas { display: block; width: 100%; max-width: 100%; color: var(--muted-foreground); overflow: visible; }
 .chart__canvas--small { height: 200px; }
 .chart__canvas--medium { height: 300px; }
 .chart__canvas--large { height: 400px; }
@@ -37,7 +39,7 @@
     width: 0.625rem;
     height: 0.625rem;
     border-radius: 999px;
-    background: var(--chart-color, var(--primary));
+    background: var(--chart-color, var(--chart-1));
     box-shadow: 0 0 0 2px var(--card), 0 0 0 3px var(--border);
     flex: 0 0 auto;
 }
@@ -63,8 +65,8 @@
 @media (prefers-reduced-motion: reduce) {
     .chart__canvas[data-chart-animated="true"] [data-chart-animate] { animation: none; }
 }
-.chart--primary { --chart-color: var(--primary); }
-.chart--blue { --chart-color: var(--d-info); }
-.chart--green { --chart-color: var(--d-success); }
-.chart--orange { --chart-color: var(--d-warning); }
-.chart--red { --chart-color: var(--destructive); }
+.chart--primary { --chart-color: var(--chart-1); }
+.chart--blue { --chart-color: var(--chart-2); }
+.chart--green { --chart-color: var(--chart-3); }
+.chart--orange { --chart-color: var(--chart-4); }
+.chart--red { --chart-color: var(--chart-5); }

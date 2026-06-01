@@ -18,8 +18,20 @@
             <span class="d-ce-preview__ctype"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:preview.uid"/>: {data.uid}</span>
             <span class="d-ce-preview__ctype"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:preview.page"/>: {data.pid}</span>
         </div>
+        <f:if condition="{data.eyebrow}">
+            <div class="d-ce-preview__field">
+                <span class="d-ce-preview__label">Eyebrow</span>
+                <span class="d-ce-preview__value">{data.eyebrow}</span>
+            </div>
+        </f:if>
         <f:if condition="{data.header}">
             <h3 class="d-ce-preview__title">{data.header}</h3>
+        </f:if>
+        <f:if condition="{data.brand_tagline}">
+            <div class="d-ce-preview__field">
+                <span class="d-ce-preview__label">Brand Tagline</span>
+                <span class="d-ce-preview__value">{data.brand_tagline}</span>
+            </div>
         </f:if>
         <f:if condition="{data.intro_title}">
             <div class="d-ce-preview__field">
@@ -57,6 +69,7 @@
                 <ul class="d-ce-preview__list">
                     <f:for each="{data.menu_groups}" as="item">
                         <li>
+                            <f:if condition="{item.title}"><strong>{item.title}</strong></f:if>
                             <f:if condition="{item.description}"><span>{item.description}</span></f:if>
                             <f:if condition="{item.link_1_label}"><span>{item.link_1_label}</span></f:if>
                             <f:if condition="{item.link_2_label}"><span>{item.link_2_label}</span></f:if>

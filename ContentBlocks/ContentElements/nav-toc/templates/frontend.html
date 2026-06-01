@@ -6,15 +6,23 @@
 <f:asset.css identifier="d-nav-toc" href="{cb:assetPath()}/frontend.css"/>
 
 <d:layout.section class="nav-toc">
-    <aside class="nav-toc__panel" aria-label="Table of contents">
+    <f:variable name="tocTitleId" value="nav-toc-title-{data.uid}"/>
+    <aside class="nav-toc__panel">
         <f:if condition="{data.header}">
-            <h2 class="nav-toc__title">{data -> f:render.text(field: 'header')}</h2>
+            <p class="nav-toc__title" id="{tocTitleId}">{data -> f:render.text(field: 'header')}</p>
         </f:if>
-        <nav class="nav-toc__nav">
+        <nav class="nav-toc__nav" aria-labelledby="{f:if(condition: data.header, then: tocTitleId)}" aria-label="{f:if(condition: data.header, else: 'Table of contents')}">
             <ul class="nav-toc__list">
                 <f:for each="{data.items}" as="item">
                     <li class="nav-toc__item nav-toc__item--{item.level -> f:or(alternative: 'h2')}">
-                        <a href="#{item.anchor}" class="nav-toc__link">{item -> f:render.text(field: 'label')}</a>
+                        <f:if condition="{item.anchor}">
+                            <f:then>
+                                <a href="#{item.anchor -> f:format.htmlspecialchars()}" class="nav-toc__link">{item -> f:render.text(field: 'label')}</a>
+                            </f:then>
+                            <f:else>
+                                <span class="nav-toc__link nav-toc__link--static">{item -> f:render.text(field: 'label')}</span>
+                            </f:else>
+                        </f:if>
                     </li>
                 </f:for>
             </ul>

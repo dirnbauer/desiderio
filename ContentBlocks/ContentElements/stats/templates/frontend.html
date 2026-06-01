@@ -13,25 +13,26 @@
                     <span class="stats__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span>
                 </f:if>
                 <f:if condition="{data.header}">
-                    <h2 class="stats__headline">{data -> f:render.text(field: 'header')}</h2>
+                    <d:atom.typography tag="h2" variant="h2" class="stats__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
                 </f:if>
                 <f:if condition="{data.subheadline}">
-                    <p class="stats__description">{data -> f:render.text(field: 'subheadline')}</p>
+                    <d:atom.typography variant="lead" class="stats__description">{data -> f:render.text(field: 'subheadline')}</d:atom.typography>
                 </f:if>
             </header>
         </f:if>
 
-        <div class="stats__grid stats__grid--cols-{data.columns -> f:or(alternative: '4')}">
+        <dl class="stats__grid stats__grid--cols-{data.columns -> f:or(alternative: '4')}"
+            aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:stats.aria')}">
             <f:for each="{data.stats}" as="stat">
-                <article class="stats__item">
-                    <div class="stats__value">{stat -> f:render.text(field: 'value')}</div>
-                    <h3 class="stats__label">{stat -> f:render.text(field: 'label')}</h3>
+                <div class="stats__item" data-astro-reveal="slide-up">
+                    <dt class="stats__label">{stat -> f:render.text(field: 'label')}</dt>
+                    <dd class="stats__value" data-astro-counter>{stat -> f:render.text(field: 'value')}</dd>
                     <f:if condition="{stat.description}">
-                        <p class="stats__item-description">{stat -> f:render.text(field: 'description')}</p>
+                        <dd class="stats__item-description">{stat -> f:render.text(field: 'description')}</dd>
                     </f:if>
-                </article>
+                </div>
             </f:for>
-        </div>
+        </dl>
     </d:layout.container>
 </d:layout.section>
 </html>

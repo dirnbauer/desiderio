@@ -1,19 +1,38 @@
 {
     "_type": "grid",
-    "header": "Use Case Grid for premium product storytelling",
-    "subheadline": "Explain the benefit in one sentence before showing details or proof.",
+    "eyebrow": "Use cases",
+    "header": "One platform, built for every team",
+    "subheadline": "See how product, marketing, support, and operations get more done in the same workspace.",
     "items": [
         {
-            "title": "Use Case Grid for premium product storytelling",
-            "description": "Use short feature copy so teams can compare capabilities without noise."
+            "title": "Product teams",
+            "description": "Plan roadmaps, track every release, and keep engineering and design on the same page.",
+            "link": "https://ui.shadcn.com/docs"
         },
         {
-            "title": "Use Case Grid for premium product storytelling",
-            "description": "Show concrete product context with crisp icons and balanced responsive spacing."
+            "title": "Marketing teams",
+            "description": "Run campaigns end to end, from brief to launch, with assets and approvals in one place.",
+            "link": "https://ui.shadcn.com/docs"
         },
         {
-            "title": "Use Case Grid for premium product storytelling",
-            "description": "Explain the benefit in one sentence before showing details or proof."
+            "title": "Customer support",
+            "description": "Triage tickets, share canned replies, and resolve issues faster with full context.",
+            "link": "https://ui.shadcn.com/docs"
+        },
+        {
+            "title": "Operations",
+            "description": "Standardize recurring processes and automate handoffs so nothing slips through.",
+            "link": "https://ui.shadcn.com/docs"
+        },
+        {
+            "title": "Sales teams",
+            "description": "Track deals, automate follow-ups, and forecast revenue from a single pipeline view.",
+            "link": "https://ui.shadcn.com/docs"
+        },
+        {
+            "title": "Agencies",
+            "description": "Manage every client account from one workspace with scoped permissions and shared templates.",
+            "link": "https://ui.shadcn.com/docs"
         }
     ]
 }

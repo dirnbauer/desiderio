@@ -11,31 +11,40 @@
             <header class="team-with-bio__intro">
                 <f:if condition="{data.eyebrow}"><span class="team-with-bio__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span></f:if>
                 <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
-                <f:if condition="{data.subheadline}"><d:atom.typography variant="muted">{data -> f:render.text(field: 'subheadline')}</d:atom.typography></f:if>
+                <f:if condition="{data.subheadline}"><d:atom.typography variant="lead">{data -> f:render.text(field: 'subheadline')}</d:atom.typography></f:if>
             </header>
         </f:if>
 
-        <div class="team-with-bio__list">
+        <ul class="team-with-bio__list" role="list">
             <f:for each="{data.members}" as="member">
-                <article class="team-with-bio__member">
-                    <f:if condition="{member.image}">
+                <li>
+                    <article class="team-with-bio__member">
                         <div class="team-with-bio__image-wrapper">
-                            <f:for each="{member.image}" as="fileReference">
-                                <f:image image="{fileReference}" maxWidth="320" alt="{member.name}" class="team-with-bio__image"/>
-                            </f:for>
+                            <f:if condition="{member.image}">
+                                <f:then>
+                                    <f:for each="{member.image}" as="fileReference">
+                                        <f:image image="{fileReference}" maxWidth="320" alt="" loading="lazy" decoding="async" class="team-with-bio__image"/>
+                                    </f:for>
+                                </f:then>
+                                <f:else>
+                                    <span class="team-with-bio__image team-with-bio__image--fallback" aria-hidden="true">{member.name -> f:format.crop(maxCharacters: 1)}</span>
+                                </f:else>
+                            </f:if>
                         </div>
-                    </f:if>
-                    <div class="team-with-bio__content">
-                        <h3 class="team-with-bio__name">{member -> f:render.text(field: 'name')}</h3>
-                        <f:if condition="{member.role}"><p class="team-with-bio__role">{member -> f:render.text(field: 'role')}</p></f:if>
-                        <f:if condition="{member.bio}"><p class="team-with-bio__bio">{member -> f:render.text(field: 'bio')}</p></f:if>
-                        <f:if condition="{member.profile_link.url}">
-                            <d:atom.button href="{member.profile_link.url}" target="{member.profile_link.target}" variant="ghost" size="sm">Read more</d:atom.button>
-                        </f:if>
-                    </div>
-                </article>
+                        <div class="team-with-bio__content">
+                            <h3 class="team-with-bio__name">{member -> f:render.text(field: 'name')}</h3>
+                            <f:if condition="{member.role}"><p class="team-with-bio__role">{member -> f:render.text(field: 'role')}</p></f:if>
+                            <f:if condition="{member.bio}"><p class="team-with-bio__bio">{member -> f:render.text(field: 'bio')}</p></f:if>
+                            <f:if condition="{member.profile_link.url}">
+                                <d:atom.button href="{member.profile_link.url}" target="{member.profile_link.target}" variant="link" size="sm" class="team-with-bio__link">
+                                    <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:team.view_profile">View profile</f:translate><span class="sr-only"> &ndash; {member -> f:render.text(field: 'name')}</span>
+                                </d:atom.button>
+                            </f:if>
+                        </div>
+                    </article>
+                </li>
             </f:for>
-        </div>
+        </ul>
     </d:layout.container>
 </d:layout.section>
 

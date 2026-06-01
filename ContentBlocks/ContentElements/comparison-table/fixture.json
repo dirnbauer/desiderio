@@ -1,52 +1,68 @@
 {
     "_type": "table",
-    "header": "Comparison Table for live product intelligence",
-    "description": "Turn dense numbers into an analytics block that stays readable on mobile.",
+    "header": "Compare plans side by side",
+    "description": "Every plan includes the core platform. Pick the support and scale your team needs.",
     "column_items": [
         {
-            "name": "Noah Ritter",
+            "name": "Starter",
             "highlighted": false
         },
         {
-            "name": "Lea Fischer",
+            "name": "Pro",
             "highlighted": true
         },
         {
-            "name": "Mara Weiss",
+            "name": "Enterprise",
             "highlighted": false
         }
     ],
     "comparison_feature_items": [
         {
-            "name": "Lea Fischer",
+            "name": "Team members",
             "tier_values": [
-                "Included",
-                "Advanced",
-                "Priority"
+                {"value": "Up to 5"},
+                {"value": "Up to 50"},
+                {"value": "Unlimited"}
             ]
         },
         {
-            "name": "Mara Weiss",
+            "name": "Monthly active users",
             "tier_values": [
-                "Included",
-                "Advanced",
-                "Priority"
+                {"value": "10,000"},
+                {"value": "100,000"},
+                {"value": "Custom"}
             ]
         },
         {
-            "name": "Jonas Klein",
+            "name": "Analytics retention",
             "tier_values": [
-                "Included",
-                "Advanced",
-                "Priority"
+                {"value": "30 days"},
+                {"value": "1 year"},
+                {"value": "Unlimited"}
             ]
         },
         {
-            "name": "Sofia Berg",
+            "name": "SSO and SAML",
             "tier_values": [
-                "Included",
-                "Advanced",
-                "Priority"
+                {"value": "—"},
+                {"value": "Included"},
+                {"value": "Included"}
+            ]
+        },
+        {
+            "name": "Support",
+            "tier_values": [
+                {"value": "Email"},
+                {"value": "Priority"},
+                {"value": "Dedicated manager"}
+            ]
+        },
+        {
+            "name": "Uptime SLA",
+            "tier_values": [
+                {"value": "—"},
+                {"value": "99.9%"},
+                {"value": "99.99%"}
             ]
         }
     ]

@@ -2,5 +2,6 @@
 .footer-minimal__inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--d-spacing-sm); }
 .footer-minimal__copyright { font-size: var(--d-text-xs); color: var(--muted-foreground); }
 .footer-minimal__links { list-style: none; padding: 0; margin: 0; display: flex; gap: var(--d-spacing-md); }
-.footer-minimal__link { font-size: var(--d-text-xs); color: var(--muted-foreground); text-decoration: none; }
+.footer-minimal__link { font-size: var(--d-text-xs); color: var(--muted-foreground); text-decoration: none; border-radius: var(--d-radius-sm); }
 .footer-minimal__link:hover { color: var(--foreground); }
+.footer-minimal__link:focus-visible { outline: 2px solid var(--d-ring); outline-offset: 2px; color: var(--foreground); }

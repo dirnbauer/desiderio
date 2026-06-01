@@ -1,16 +1,29 @@
 {
     "_type": "pricing",
-    "header": "Slider Pricing for confident plan comparison",
-    "description": "Keep plan comparison compact across desktop tables and mobile cards.",
+    "header": "Pay only for what you send",
+    "eyebrow": "Usage pricing",
+    "description": "Slide to match your monthly volume. Every tier includes the full API, webhooks, and 24/7 monitoring.",
+    "unit_label": "API requests / mo",
     "tiers": [
         {
-            "price": "$19"
+            "volume": "Up to 50K",
+            "price": "$0",
+            "included_features": "Free forever"
         },
         {
-            "price": "$49"
+            "volume": "500K",
+            "price": "$49",
+            "included_features": "Email support"
         },
         {
-            "price": "$99"
+            "volume": "2M",
+            "price": "$149",
+            "included_features": "Priority support"
+        },
+        {
+            "volume": "10M",
+            "price": "$399",
+            "included_features": "Dedicated support + SLA"
         }
     ]
 }

@@ -4,11 +4,14 @@
 }
 .contact-info__grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr;
     gap: var(--d-spacing-lg);
 }
-@media (max-width: 768px) {
-    .contact-info__grid { grid-template-columns: 1fr; }
+@media (min-width: 640px) {
+    .contact-info__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (min-width: 1024px) {
+    .contact-info__grid { grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); }
 }
 .contact-info__icon {
     display: block;

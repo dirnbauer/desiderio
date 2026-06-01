@@ -1,30 +1,36 @@
-.card {
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    background: var(--card);
-    color: var(--card-foreground);
-    overflow: hidden;
-}
-.card--horizontal { display: flex; align-items: stretch; }
-.card--horizontal .card__image { flex: 0 0 40%; }
-.card__image img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.card__body { padding: var(--d-spacing-lg); display: flex; flex-direction: column; gap: var(--d-spacing-sm); }
-.card__badge {
-    display: inline-block; width: fit-content;
-    font-size: var(--d-text-xs); font-weight: 600;
-    padding: 2px 8px; border-radius: var(--radius);
-    background: var(--primary); color: var(--primary-foreground);
-}
-.card__title { font-size: var(--d-text-lg); font-weight: 600; }
+/* The d:molecule.card wrapper supplies the base chrome (bg-card, ring, radius,
+   padding). These rules only add the per-variant LAYOUT the molecule does not. */
+
+.card { position: relative; }
+
+/* Shared media */
+.card__image img { width: 100%; height: auto; object-fit: cover; display: block; border-radius: var(--radius); }
+.card__title { text-wrap: balance; }
 .card__title a { color: inherit; text-decoration: none; }
 .card__title a:hover { text-decoration: underline; }
-.card__description { font-size: var(--d-text-sm); color: var(--muted-foreground); }
-.card__actions { margin-block-start: var(--d-spacing-sm); }
-.card__button {
-    display: inline-flex; padding: var(--d-spacing-xs) var(--d-spacing-md);
-    border-radius: var(--radius); font-size: var(--d-text-sm); font-weight: 500;
-    background: var(--primary); color: var(--primary-foreground);
-    text-decoration: none;
+.card__title a:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; border-radius: var(--radius); }
+.card__description { margin-block-start: var(--d-spacing-xs); }
+.card__actions, .card__footer { margin-block-start: var(--d-spacing-sm); }
+.card__badge { width: fit-content; }
+
+/* Horizontal: media beside body */
+.card--horizontal .card__grid { display: flex; flex-direction: column; gap: var(--d-spacing-md); align-items: stretch; }
+.card--horizontal .card__image { flex: 0 0 40%; }
+.card--horizontal .card__image img { height: 100%; }
+.card--horizontal .card__body { display: flex; flex-direction: column; gap: var(--d-spacing-sm); }
+@media (min-width: 640px) {
+    .card--horizontal .card__grid { flex-direction: row; }
+    .card--image-right .card__grid { flex-direction: row-reverse; }
 }
-.card__button:hover { opacity: 0.9; }
-@media (max-width: 640px) { .card--horizontal { flex-direction: column; } }
+
+/* Overlay: text sits on top of the media */
+.card--overlay { justify-content: flex-end; min-height: 18rem; overflow: hidden; }
+.card--overlay .card__image--bg { position: absolute; inset: 0; }
+.card--overlay .card__image--bg img { width: 100%; height: 100%; border-radius: 0; }
+.card--overlay::after {
+    content: ''; position: absolute; inset: 0; z-index: 1;
+    background: linear-gradient(to top, color-mix(in oklch, var(--foreground) 78%, transparent), transparent 65%);
+}
+.card--overlay .card__overlay { position: relative; z-index: 2; width: 100%; color: var(--background); }
+.card--overlay .card__body { display: flex; flex-direction: column; gap: var(--d-spacing-sm); }
+.card--overlay .card__description { color: inherit; opacity: 0.92; }

@@ -11,5 +11,80 @@
         <source>Use when the donut chart should explain parts of a whole with only a few segments.</source>
       </segment>
     </unit>
+    <unit id="field.segments">
+      <segment>
+        <source>Segments</source>
+      </segment>
+    </unit>
+    <unit id="field.segments.description">
+      <segment>
+        <source>Two to five slices of the same whole, in order. These feed both the ring and the screen-reader data table.</source>
+      </segment>
+    </unit>
+    <unit id="field.segment.label">
+      <segment>
+        <source>Segment name</source>
+      </segment>
+    </unit>
+    <unit id="field.segment.value">
+      <segment>
+        <source>Value</source>
+      </segment>
+    </unit>
+    <unit id="field.segment.unit">
+      <segment>
+        <source>Unit</source>
+      </segment>
+    </unit>
+    <unit id="field.center_value">
+      <segment>
+        <source>Centre value</source>
+      </segment>
+    </unit>
+    <unit id="field.center_value.description">
+      <segment>
+        <source>Large figure shown in the middle of the ring, e.g. the total. Leave empty for a plain ring.</source>
+      </segment>
+    </unit>
+    <unit id="field.center_label">
+      <segment>
+        <source>Centre label</source>
+      </segment>
+    </unit>
+    <unit id="field.center_label.description">
+      <segment>
+        <source>Short caption under the centre value, e.g. total spend.</source>
+      </segment>
+    </unit>
+    <unit id="field.show_legend">
+      <segment>
+        <source>Show legend</source>
+      </segment>
+    </unit>
+    <unit id="aria.fallback">
+      <segment>
+        <source>Donut chart</source>
+      </segment>
+    </unit>
+    <unit id="aria.summary">
+      <segment>
+        <source>{1, plural, =0 {{0}: no segments yet.} one {{0}: a single segment. The value follows in the data table.} other {{0}: a donut chart split into # segments. The full breakdown follows in the data table.}}</source>
+      </segment>
+    </unit>
+    <unit id="aria.total">
+      <segment>
+        <source>Centre figure: {0} {1}.</source>
+      </segment>
+    </unit>
+    <unit id="table.segment">
+      <segment>
+        <source>Segment</source>
+      </segment>
+    </unit>
+    <unit id="table.value">
+      <segment>
+        <source>Value</source>
+      </segment>
+    </unit>
   </file>
 </xliff>

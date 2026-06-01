@@ -10,13 +10,19 @@
         <f:if condition="{data.header} || {data.address}">
             <header class="map-embed__intro">
                 <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
-                <f:if condition="{data.address}"><p class="map-embed__address">{data -> f:render.text(field: 'address')}</p></f:if>
+                <f:if condition="{data.address}"><address class="map-embed__address">{data -> f:render.text(field: 'address')}</address></f:if>
             </header>
         </f:if>
         <f:if condition="{data.embed_url}">
             <f:variable name="mapEmbedHeight"><f:format.number decimals="0" thousandsSeparator="">{data.height -> f:or(alternative: 400)}</f:format.number></f:variable>
+            <f:variable name="mapEmbedTitle">
+                <f:if condition="{data.header}">
+                    <f:then>{data -> f:render.text(field: 'header')}</f:then>
+                    <f:else>{data.address -> f:or(alternative: 'Location map')}</f:else>
+                </f:if>
+            </f:variable>
             <div class="map-embed__frame" style="height: {mapEmbedHeight}px">
-                <iframe src="{data.embed_url}" class="map-embed__iframe" allowfullscreen="allowfullscreen" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe src="{data.embed_url}" class="map-embed__iframe" title="{mapEmbedTitle -> f:format.trim()}" allowfullscreen="allowfullscreen" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </f:if>
     </d:layout.container>

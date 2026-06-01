@@ -1,31 +1,52 @@
 {
     "_type": "team",
-    "header": "Department Team Section for modern people pages",
-    "subheadline": "Present people and culture with confident profile copy and calm card structure.",
+    "header": "Organized by the work, not the org chart",
+    "subheadline": "Four cross-functional teams own their roadmaps end to end — from first sketch to production support.",
     "department_items": [
         {
-            "name": "Noah Ritter",
+            "name": "Product & Design",
             "members": [
                 {
                     "name": "Lea Fischer",
-                    "role": "Product Design Lead"
+                    "role": "Head of Design"
                 },
                 {
+                    "name": "Tomas Varga",
+                    "role": "Product Manager"
+                },
+                {
+                    "name": "Amelie Roux",
+                    "role": "UX Researcher"
+                }
+            ]
+        },
+        {
+            "name": "Engineering",
+            "members": [
+                {
                     "name": "Mara Weiss",
+                    "role": "Engineering Lead"
+                },
+                {
+                    "name": "Daniel Okafor",
+                    "role": "Backend Engineer"
+                },
+                {
+                    "name": "Sven Lindqvist",
                     "role": "Frontend Engineer"
                 }
             ]
         },
         {
-            "name": "Lea Fischer",
+            "name": "Customer Success",
             "members": [
                 {
-                    "name": "Mara Weiss",
-                    "role": "Frontend Engineer"
+                    "name": "Priya Nair",
+                    "role": "Success Lead"
                 },
                 {
                     "name": "Jonas Klein",
-                    "role": "Customer Success"
+                    "role": "Onboarding Specialist"
                 }
             ]
         }

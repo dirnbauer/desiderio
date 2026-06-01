@@ -11,5 +11,90 @@
         <source>Use when the bar chart should compare categories, totals, or rankings clearly.</source>
       </segment>
     </unit>
+    <unit id="field.bars">
+      <segment>
+        <source>Bars</source>
+      </segment>
+    </unit>
+    <unit id="field.bars.description">
+      <segment>
+        <source>One bar per line as "Label | Value", e.g. Organic | 1840. Drives the screen-reader data table. Keep the same labels and values in the chart data JSON below.</source>
+      </segment>
+    </unit>
+    <unit id="field.unit">
+      <segment>
+        <source>Value unit</source>
+      </segment>
+    </unit>
+    <unit id="field.unit.description">
+      <segment>
+        <source>Short unit shown after every value, e.g. "new accounts", "k EUR", or "%". Leave empty for plain counts.</source>
+      </segment>
+    </unit>
+    <unit id="field.series_name">
+      <segment>
+        <source>Series name</source>
+      </segment>
+    </unit>
+    <unit id="field.series_name.description">
+      <segment>
+        <source>What the bars measure, e.g. "New signups, Q1 2026". Shown as the data-table column header and announced to screen readers.</source>
+      </segment>
+    </unit>
+    <unit id="field.chart_data.description">
+      <segment>
+        <source>JSON array the bars are drawn from. One entry per bar: [{"label":"Organic","value":1840}]. Match the labels and values entered under Bars.</source>
+      </segment>
+    </unit>
+    <unit id="field.orientation">
+      <segment>
+        <source>Orientation</source>
+      </segment>
+    </unit>
+    <unit id="field.color_variant">
+      <segment>
+        <source>Bar colour</source>
+      </segment>
+    </unit>
+    <unit id="field.color_variant.description">
+      <segment>
+        <source>Chart palette colour used for the bars and the data-table colour key.</source>
+      </segment>
+    </unit>
+    <unit id="field.show_grid">
+      <segment>
+        <source>Show grid lines</source>
+      </segment>
+    </unit>
+    <unit id="table.category">
+      <segment>
+        <source>Category</source>
+      </segment>
+    </unit>
+    <unit id="table.value">
+      <segment>
+        <source>Value</source>
+      </segment>
+    </unit>
+    <unit id="table.total">
+      <segment>
+        <source>Total</source>
+      </segment>
+    </unit>
+    <unit id="aria.fallback">
+      <segment>
+        <source>Bar chart</source>
+      </segment>
+    </unit>
+    <unit id="aria.summary">
+      <segment>
+        <source>{0}: bar chart comparing {1, plural, one {# category} other {# categories}}{2}. The full breakdown follows in the data table.</source>
+      </segment>
+    </unit>
+    <unit id="aria.summary.measuring">
+      <segment>
+        <source>, measuring {0}</source>
+      </segment>
+    </unit>
   </file>
 </xliff>

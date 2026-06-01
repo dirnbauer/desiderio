@@ -1,15 +1,27 @@
 {
     "_type": "list",
-    "header": "Order Summary Pricing for confident plan comparison",
+    "header": "Order summary",
     "items": [
         {
-            "name": "Sofia Berg"
+            "name": "Pro plan, annual",
+            "quantity": "1",
+            "price": "€290.00"
         },
         {
-            "name": "Noah Ritter"
+            "name": "Extra editor seats",
+            "quantity": "3",
+            "price": "€144.00"
         },
         {
-            "name": "Lea Fischer"
+            "name": "Priority support add-on",
+            "quantity": "1",
+            "price": "€96.00"
         }
-    ]
+    ],
+    "subtotal": "€530.00",
+    "discount_label": "Launch discount (20%)",
+    "discount_value": "−€106.00",
+    "total": "€424.00",
+    "button_text": "Proceed to checkout",
+    "button_link": "t3://page?uid=1"
 }

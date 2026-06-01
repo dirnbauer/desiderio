@@ -1,21 +1,32 @@
-.badge-grid__intro { margin-block-end: var(--d-spacing-lg); }
-.badge-grid__headline { font-size: var(--d-text-xl); font-weight: 700; }
-.badge-grid__description { color: var(--muted-foreground); margin-block-start: var(--d-spacing-xs); }
-.badge-grid__list { display: flex; flex-wrap: wrap; gap: var(--d-spacing-sm); }
-.badge-grid__badge {
-    display: inline-flex; align-items: center; padding: 4px 12px;
-    border-radius: 9999px; font-size: var(--d-text-sm); font-weight: 500;
-    text-decoration: none; transition: opacity 0.15s;
+.badge-grid__intro { max-width: 48rem; margin-block-end: var(--d-spacing-lg); }
+.badge-grid__description { margin-block-start: var(--d-spacing-xs); }
+
+.badge-grid__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--d-spacing-sm);
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
-a.badge-grid__badge:hover { opacity: 0.8; }
-.badge-grid__badge--default { background: var(--primary); color: var(--primary-foreground); }
-.badge-grid__badge--outline { background: transparent; border: 1px solid var(--border); color: var(--foreground); }
-.badge-grid__badge--secondary { background: var(--secondary); color: var(--secondary-foreground); }
-.badge-grid__badge--blue { background: var(--d-info); color: var(--primary-foreground); }
-.badge-grid__badge--green { background: var(--d-success); color: var(--primary-foreground); }
-.badge-grid__badge--red { background: var(--destructive); color: var(--primary-foreground); }
-.badge-grid__badge--yellow { background: var(--d-warning); color: var(--foreground); }
-.badge-grid__badge--outline.badge-grid__badge--blue { border-color: var(--d-info); color: var(--d-info); background: transparent; }
-.badge-grid__badge--outline.badge-grid__badge--green { border-color: var(--d-success); color: var(--d-success); background: transparent; }
-.badge-grid__badge--outline.badge-grid__badge--red { border-color: var(--destructive); color: var(--destructive); background: transparent; }
-.badge-grid__badge--outline.badge-grid__badge--yellow { border-color: var(--d-warning); color: var(--d-warning); background: transparent; }
+.badge-grid__cell { display: inline-flex; }
+.badge-grid__link { display: inline-flex; transition: opacity 0.15s ease; }
+.badge-grid__link:hover { opacity: 0.85; }
+
+/*
+ * Optional per-item colour accents. The base chip (shape, focus ring, default /
+ * outline / secondary palettes) is owned by the <d:atom.badge> primitive; these
+ * rules only tint the semantic info / success / warning / destructive variants
+ * the atom does not ship. Scoped via [data-slot=badge] so they win over the
+ * atom's single utility classes. Tokens only — no raw colours.
+ */
+.badge-grid__badge--blue[data-slot="badge"] { background-color: var(--d-info); color: var(--primary-foreground); }
+.badge-grid__badge--green[data-slot="badge"] { background-color: var(--d-success); color: var(--primary-foreground); }
+.badge-grid__badge--red[data-slot="badge"] { background-color: var(--destructive); color: var(--primary-foreground); }
+.badge-grid__badge--yellow[data-slot="badge"] { background-color: var(--d-warning); color: var(--foreground); }
+
+/* Outline parent variant: tint border + text, keep the surface transparent. */
+[data-slot="badge"][data-variant="outline"].badge-grid__badge--blue { border-color: var(--d-info); color: var(--d-info); background-color: transparent; }
+[data-slot="badge"][data-variant="outline"].badge-grid__badge--green { border-color: var(--d-success); color: var(--d-success); background-color: transparent; }
+[data-slot="badge"][data-variant="outline"].badge-grid__badge--red { border-color: var(--destructive); color: var(--destructive); background-color: transparent; }
+[data-slot="badge"][data-variant="outline"].badge-grid__badge--yellow { border-color: var(--d-warning); color: var(--d-warning); background-color: transparent; }

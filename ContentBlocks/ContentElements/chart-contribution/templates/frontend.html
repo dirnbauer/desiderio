@@ -5,9 +5,25 @@
 
 <f:asset.css identifier="d-chart-contribution" href="{cb:assetPath()}/frontend.css"/>
 
+<f:comment>
+  charts.js (initContribution) reads data-chart-json and DRAWS the bars + axis ticks into
+  .chart-contribution__svg, wiping any static children. So the SVG is purely decorative
+  (aria-hidden) and every meaning lives in server-rendered markup: a role="img" wrapper with a
+  concise aria-label + an aria-describedby summary, and a visually-hidden data table that carries
+  the exact same numbers. data-chart-json is assembled from the same {data.points} rows the table
+  uses, so the picture and the table can never drift apart.
+</f:comment>
+
+<f:variable name="metricLabel">{data.metric_label -> f:or(alternative: '') -> f:format.stripTags() -> f:format.trim()}</f:variable>
+<f:variable name="unitLabel">{data.unit -> f:or(alternative: '') -> f:format.stripTags() -> f:format.trim()}</f:variable>
+<f:variable name="headerTitle">{f:if(condition: data.header, then: '{data.header}', else: '{f:translate(key: \'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-contribution/language/labels.xlf:aria.fallback\')}')}</f:variable>
+<f:variable name="chartTitle">{f:if(condition: metricLabel, then: '{metricLabel}', else: '{headerTitle}')}</f:variable>
+
+<f:variable name="chartJson"><f:spaceless>[<f:for each="{data.points}" as="point" iteration="pointIter">{"label":"{point.point_label -> f:or(alternative: '') -> f:format.stripTags() -> f:format.trim()}","value":{point.point_value -> f:or(alternative: '0') -> f:format.trim()}}<f:if condition="!{pointIter.isLast}">,</f:if></f:for>]</f:spaceless></f:variable>
+
 <d:layout.section class="chart-contribution-section">
     <d:layout.container>
-        <div class="chart-contribution" data-chart-json="{data.chart_data -> f:format.htmlspecialchars()}">
+        <figure class="chart-contribution" data-chart-json="{chartJson -> f:format.htmlspecialchars()}" data-chart-id="chart-contribution-{data.uid}">
             <div class="chart-contribution__card">
                 <div class="chart-contribution__head">
                     <div class="chart-contribution__titles">
@@ -19,12 +35,35 @@
                         </f:if>
                     </div>
                     <f:if condition="{data.badge_text}">
-                        <span class="chart-contribution__badge">{data -> f:render.text(field: 'badge_text')}</span>
+                        <span class="chart-contribution__badge" data-slot="badge">{data -> f:render.text(field: 'badge_text')}</span>
                     </f:if>
                 </div>
 
-                <div class="chart-contribution__chart" id="chart-contribution-plot-{data.uid}">
-                    <svg class="chart-contribution__svg" id="chart-contribution-svg-{data.uid}" role="img" aria-hidden="true"></svg>
+                <f:variable name="pointCount" value="{data.points -> f:count()}"/>
+                <f:variable name="chartSummary"><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-contribution/language/labels.xlf:aria.summary" arguments="{0: chartTitle, 1: pointCount, 2: unitLabel}">{chartTitle} over {pointCount} time points.</f:translate></f:variable>
+
+                <div class="chart-contribution__chart" role="img"
+                     aria-label="{chartTitle -> f:format.htmlspecialchars()}"
+                     aria-describedby="chart-contribution-summary-{data.uid}">
+                    <p id="chart-contribution-summary-{data.uid}" class="sr-only">{chartSummary -> f:format.trim()}</p>
+                    <svg class="chart-contribution__svg" id="chart-contribution-svg-{data.uid}" aria-hidden="true" focusable="false"></svg>
+                    <table class="sr-only">
+                        <caption>{chartSummary -> f:format.trim()}</caption>
+                        <thead>
+                            <tr>
+                                <th scope="col"><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-contribution/language/labels.xlf:table.period"/></th>
+                                <th scope="col"><f:if condition="{metricLabel}"><f:then>{metricLabel}<f:if condition="{unitLabel}"> ({unitLabel})</f:if></f:then><f:else><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-contribution/language/labels.xlf:table.value"/></f:else></f:if></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <f:for each="{data.points}" as="point">
+                                <tr>
+                                    <th scope="row">{point -> f:render.text(field: 'point_label')}</th>
+                                    <td>{point.point_value}<f:if condition="{unitLabel}"> {unitLabel}</f:if></td>
+                                </tr>
+                            </f:for>
+                        </tbody>
+                    </table>
                 </div>
 
                 <div class="chart-contribution__stats">
@@ -60,7 +99,7 @@
                     </div>
                 </f:if>
             </div>
-        </div>
+        </figure>
     </d:layout.container>
 </d:layout.section>
 

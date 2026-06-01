@@ -45,6 +45,7 @@
                 <ul class="d-ce-preview__list">
                     <f:for each="{data.stats}" as="item">
                         <li>
+                            <f:if condition="{item.stat_description}"><span>{item.stat_description}</span></f:if>
                             <f:if condition="{item.value}"><span>{item.value}</span></f:if>
                             <f:if condition="{item.label}"><span>{item.label}</span></f:if>
                         </li>

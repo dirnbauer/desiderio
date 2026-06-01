@@ -4,13 +4,133 @@
     <unit id="title">
       <segment state="final">
         <source>Pie Chart</source>
-        <target>Kreis Diagramm</target>
+        <target>Kreisdiagramm</target>
       </segment>
     </unit>
     <unit id="description">
       <segment state="final">
         <source>Use when the pie chart should explain parts of a whole with only a few segments.</source>
-        <target>Einsetzen, wenn das Element Kreis Diagramm einfache Daten visuell verständlich machen soll.</target>
+        <target>Einsetzen, wenn das Kreisdiagramm Anteile an einem Ganzen mit nur wenigen Segmenten erklaeren soll.</target>
+      </segment>
+    </unit>
+    <unit id="field.segments">
+      <segment state="final">
+        <source>Segments</source>
+        <target>Segmente</target>
+      </segment>
+    </unit>
+    <unit id="field.segments.description">
+      <segment state="final">
+        <source>One segment per line as "Label | Value", e.g. Enterprise | 412. Drives the legend and the screen-reader data table. Keep the same labels and values in the chart data JSON below.</source>
+        <target>Ein Segment pro Zeile als "Label | Wert", z. B. Enterprise | 412. Steuert Legende und Screenreader-Datentabelle. Dieselben Labels und Werte im JSON unten verwenden.</target>
+      </segment>
+    </unit>
+    <unit id="field.unit">
+      <segment state="final">
+        <source>Value unit</source>
+        <target>Werteinheit</target>
+      </segment>
+    </unit>
+    <unit id="field.unit.description">
+      <segment state="final">
+        <source>Short unit shown after every value, e.g. "k EUR", "%", or "users". Leave empty for plain counts.</source>
+        <target>Kurze Einheit hinter jedem Wert, z. B. "k EUR", "%" oder "Nutzer". Fuer reine Zahlen leer lassen.</target>
+      </segment>
+    </unit>
+    <unit id="field.chart_data.description">
+      <segment state="final">
+        <source>JSON array the wedges are drawn from. One entry per segment: [{"label":"Enterprise","value":412}]. Match the labels and values entered under Segments.</source>
+        <target>JSON-Array, aus dem die Segmente gezeichnet werden. Ein Eintrag je Segment: [{"label":"Enterprise","value":412}]. Labels und Werte wie unter Segmente angeben.</target>
+      </segment>
+    </unit>
+    <unit id="field.show_legend">
+      <segment state="final">
+        <source>Show legend</source>
+        <target>Legende anzeigen</target>
+      </segment>
+    </unit>
+    <unit id="field.palette">
+      <segment state="final">
+        <source>Colour palette</source>
+        <target>Farbpalette</target>
+      </segment>
+    </unit>
+    <unit id="item.palette.default">
+      <segment state="final">
+        <source>Default (multi-colour)</source>
+        <target>Standard (mehrfarbig)</target>
+      </segment>
+    </unit>
+    <unit id="item.palette.brand">
+      <segment state="final">
+        <source>Brand (primary led)</source>
+        <target>Marke (Primaerfarbe)</target>
+      </segment>
+    </unit>
+    <unit id="item.palette.cool">
+      <segment state="final">
+        <source>Cool</source>
+        <target>Kuehl</target>
+      </segment>
+    </unit>
+    <unit id="item.palette.warm">
+      <segment state="final">
+        <source>Warm</source>
+        <target>Warm</target>
+      </segment>
+    </unit>
+    <unit id="field.chart_size">
+      <segment state="final">
+        <source>Chart size</source>
+        <target>Diagrammgroesse</target>
+      </segment>
+    </unit>
+    <unit id="item.size.small">
+      <segment state="final">
+        <source>Small</source>
+        <target>Klein</target>
+      </segment>
+    </unit>
+    <unit id="item.size.medium">
+      <segment state="final">
+        <source>Medium</source>
+        <target>Mittel</target>
+      </segment>
+    </unit>
+    <unit id="table.segment">
+      <segment state="final">
+        <source>Segment</source>
+        <target>Segment</target>
+      </segment>
+    </unit>
+    <unit id="table.value">
+      <segment state="final">
+        <source>Value</source>
+        <target>Wert</target>
+      </segment>
+    </unit>
+    <unit id="table.share">
+      <segment state="final">
+        <source>Share</source>
+        <target>Anteil</target>
+      </segment>
+    </unit>
+    <unit id="table.total">
+      <segment state="final">
+        <source>Total</source>
+        <target>Gesamt</target>
+      </segment>
+    </unit>
+    <unit id="aria.fallback">
+      <segment state="final">
+        <source>Pie chart</source>
+        <target>Kreisdiagramm</target>
+      </segment>
+    </unit>
+    <unit id="aria.summary">
+      <segment state="final">
+        <source>{0}: pie chart showing the share of the whole across {1, plural, one {# segment} other {# segments}}. The full breakdown follows in the data table.</source>
+        <target>{0}: Kreisdiagramm mit dem Anteil am Ganzen ueber {1, plural, one {# Segment} other {# Segmente}}. Die vollstaendige Aufschluesselung folgt in der Datentabelle.</target>
       </segment>
     </unit>
   </file>

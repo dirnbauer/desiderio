@@ -23,28 +23,30 @@ fields:
     type: Collection
     table: feature_tabs_items
     prefixField: true
-    label: Tabs
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:tabs'
     minItems: 2
+    maxItems: 6
     fields:
       -
         identifier: tab_label
         type: Textarea
         rows: 1
-        label: 'Tab Label'
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:tab_label'
+        description: 'Short 1-2 word trigger shown in the tab bar.'
         required: true
       -
         identifier: title
         type: Textarea
         rows: 1
-        label: 'Content Title'
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:content_title'
       -
         identifier: description
         type: Textarea
-        label: 'Content Description'
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:content_description'
         rows: 3
       -
         identifier: image
         type: File
-        label: 'Tab Image'
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:tab_image'
         allowed: common-image-types
         maxitems: 1

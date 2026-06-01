@@ -1,27 +1,23 @@
 {
     "_type": "grid",
-    "header": "Company Values for modern people pages",
-    "subheadline": "Present people and culture with confident profile copy and calm card structure.",
+    "eyebrow": "What we stand for",
+    "header": "The values we hire and lead by",
+    "subheadline": "Three principles that guide how we build the product and treat each other.",
     "value_items": [
         {
+            "icon": "users",
+            "title": "Customers first",
+            "description": "Every decision starts with the people who use our product. We talk to them weekly and ship what they actually need."
+        },
+        {
             "icon": "shield-check",
-            "title": "Company Values for modern people pages",
-            "description": "Use concise roles and practical details so organizational content feels current."
+            "title": "Default to trust",
+            "description": "We give ownership early, share context openly, and assume good intent. Autonomy beats approval chains."
         },
         {
-            "icon": "sparkles",
-            "title": "Company Values for modern people pages",
-            "description": "Present people and culture with confident profile copy and calm card structure."
-        },
-        {
-            "icon": "phone",
-            "title": "Company Values for modern people pages",
-            "description": "Make team, career, and company information human and easy to scan."
-        },
-        {
-            "icon": "mail",
-            "title": "Company Values for modern people pages",
-            "description": "Use concise roles and practical details so organizational content feels current."
+            "icon": "lightning",
+            "title": "Ship to learn",
+            "description": "Small bets in days, not big bets in quarters. We'd rather learn from a rough launch than polish in private."
         }
     ]
 }

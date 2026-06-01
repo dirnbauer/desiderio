@@ -5,8 +5,10 @@
 
 <f:asset.css identifier="d-video-embed" href="{cb:assetPath()}/frontend.css"/>
 
+<f:variable name="videoTitle"><f:if condition="{data.caption}"><f:then>{data.caption}</f:then><f:else>{data.header -> f:or(alternative: 'Embedded video')}</f:else></f:if></f:variable>
+
 <d:layout.section class="video-embed">
-    <d:layout.container>
+    <d:layout.container size="lg">
         <f:if condition="{data.header}">
             <d:atom.typography tag="h2" variant="h2" class="video-embed__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
         </f:if>
@@ -15,14 +17,16 @@
             <f:if condition="{data.video_url}">
                 <f:then>
                     <div class="video-embed__wrapper video-embed__wrapper--{data.aspect_ratio -> f:or(alternative: '16-9')}">
-                        <iframe src="{data.video_url}" frameborder="0" allowfullscreen loading="lazy"
+                        <iframe src="{data.video_url}" title="{videoTitle -> f:format.trim()}" frameborder="0" allowfullscreen loading="lazy"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"></iframe>
                     </div>
                 </f:then>
                 <f:else>
                     <f:if condition="{data.video_file.0}">
-                        <video class="video-embed__native" controls preload="metadata">
+                        <video class="video-embed__native video-embed__native--{data.aspect_ratio -> f:or(alternative: '16-9')}" controls preload="metadata"
+                               aria-label="{videoTitle -> f:format.trim()}">
                             <source src="{data.video_file.0.publicUrl}" type="{data.video_file.0.mimeType}"/>
+                            <a href="{data.video_file.0.publicUrl}" class="video-embed__fallback">{videoTitle -> f:format.trim()}</a>
                         </video>
                     </f:if>
                 </f:else>

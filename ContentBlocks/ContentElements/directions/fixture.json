@@ -1,5 +1,19 @@
 {
     "_type": "section",
-    "header": "Help visitors reach the right place",
-    "subheadline": "A composed shadcn-style pattern with practical copy, clear hierarchy, and responsive spacing for production TYPO3 pages."
+    "header": "How to reach our office",
+    "subheadline": "We're in the Stadtmitte district, a five-minute walk from the central station. Choose the route that suits you.",
+    "routes": [
+        {
+            "mode": "By public transport",
+            "description": "Take the U2 or U4 to Stadtmitte. Leave via the Marktplatz exit, then walk two blocks north on Königstraße. We're at number 14, third floor."
+        },
+        {
+            "mode": "By car",
+            "description": "From the A3, take exit 52 and follow signs for Zentrum. Paid parking is available in the Markt-Galerie garage, a two-minute walk from the entrance."
+        },
+        {
+            "mode": "On foot from the station",
+            "description": "From the central station main hall, head east toward Königstraße. Stay on the left-hand side and you'll reach our blue glass entrance in about five minutes."
+        }
+    ]
 }

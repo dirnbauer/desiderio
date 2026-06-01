@@ -5,12 +5,30 @@
 
 <f:asset.css identifier="d-cta-floating" href="{cb:assetPath()}/frontend.css"/>
 
-<div class="cta-floating cta-floating--{data.position -> f:or(alternative: 'bottom')}">
+<f:variable name="headingId" value="d-cta-floating-heading-{data.uid}"/>
+<f:variable name="regionLabel"><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/cta-floating/language/labels.xlf:region.label" default="Call to action"/></f:variable>
+
+<div class="cta-floating cta-floating--{data.position -> f:or(alternative: 'bottom')}"
+     role="region"
+     aria-labelledby="{f:if(condition: data.header, then: headingId)}"
+     aria-label="{f:if(condition: data.header, then: '', else: regionLabel)}">
     <d:layout.container>
         <div class="cta-floating__bar">
-            <f:if condition="{data.header}"><span class="cta-floating__text">{data -> f:render.text(field: 'header')}</span></f:if>
+            <div class="cta-floating__text">
+                <f:if condition="{data.eyebrow}">
+                    <d:atom.typography tag="span" variant="small" class="cta-floating__eyebrow">{data -> f:render.text(field: 'eyebrow')}</d:atom.typography>
+                </f:if>
+                <f:if condition="{data.header}">
+                    <d:atom.typography tag="h2" variant="large" class="cta-floating__headline" id="{headingId}">{data -> f:render.text(field: 'header')}</d:atom.typography>
+                </f:if>
+                <f:if condition="{data.description_text}">
+                    <d:atom.typography variant="muted" class="cta-floating__description">{data -> f:render.text(field: 'description_text')}</d:atom.typography>
+                </f:if>
+            </div>
             <f:if condition="{data.cta_text} && {data.cta_link.url}">
-                <d:atom.button href="{data.cta_link.url}" target="{data.cta_link.target}" size="sm">{data -> f:render.text(field: 'cta_text')}</d:atom.button>
+                <d:atom.button href="{data.cta_link.url}" target="{data.cta_link.target}" size="lg" class="cta-floating__action shrink-0">
+                    {data -> f:render.text(field: 'cta_text')}<f:if condition="{data.cta_link.target} == '_blank'"><span class="sr-only"> <f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/cta-floating/language/labels.xlf:link.newTab" default="(opens in a new tab)"/></span></f:if>
+                </d:atom.button>
             </f:if>
         </div>
     </d:layout.container>

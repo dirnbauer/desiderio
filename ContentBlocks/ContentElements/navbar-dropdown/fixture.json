@@ -1,11 +1,32 @@
 {
     "_type": "nav",
+    "header": "Primary",
     "brand": "Studio Atlas",
+    "brand_link": "https://example.com/desiderio",
     "nav_items": [
-        "Overview",
-        "Components",
-        "Examples",
-        "Pricing"
+        {
+            "label": "Product",
+            "link": "https://example.com/desiderio/product",
+            "child_1_label": "Overview",
+            "child_1_link": "https://example.com/desiderio/product/overview",
+            "child_2_label": "Integrations",
+            "child_2_link": "https://example.com/desiderio/product/integrations",
+            "child_3_label": "Changelog",
+            "child_3_link": "https://example.com/desiderio/product/changelog"
+        },
+        {
+            "label": "Solutions",
+            "link": "https://example.com/desiderio/solutions",
+            "child_1_label": "For startups",
+            "child_1_link": "https://example.com/desiderio/solutions/startups",
+            "child_2_label": "For enterprise",
+            "child_2_link": "https://example.com/desiderio/solutions/enterprise",
+            "child_3_label": "For agencies",
+            "child_3_link": "https://example.com/desiderio/solutions/agencies"
+        },
+        { "label": "Pricing", "link": "https://example.com/desiderio/pricing" },
+        { "label": "Docs", "link": "https://example.com/desiderio/docs" }
     ],
-    "button_text": "Start conversation"
+    "button_text": "Start free trial",
+    "button_link": "https://example.com/desiderio/signup"
 }

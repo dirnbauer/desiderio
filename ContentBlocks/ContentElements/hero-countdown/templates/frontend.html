@@ -2,23 +2,59 @@
       xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
       xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
       data-namespace-typo3-fluid="true">
+
 <f:asset.css identifier="d-hero-countdown" href="{cb:assetPath()}/frontend.css"/>
+
 <d:layout.section class="hero-countdown">
-    <d:layout.container>
+    <d:layout.container size="md">
         <div class="hero-countdown__content">
-            <f:if condition="{data.badge_text}"><d:atom.badge variant="secondary">{data -> f:render.text(field: 'badge_text')}</d:atom.badge></f:if>
-            <f:if condition="{data.header}"><h1 class="hero-countdown__headline">{data -> f:render.text(field: 'header')}</h1></f:if>
-            <f:if condition="{data.subheadline}"><p class="hero-countdown__subheadline">{data -> f:render.text(field: 'subheadline')}</p></f:if>
-            <div class="hero-countdown__timer" data-target-date="{data.target_date -> f:format.date(format: 'c')}">
-                <div class="hero-countdown__unit"><span class="hero-countdown__value">00</span><span class="hero-countdown__label">Days</span></div>
-                <div class="hero-countdown__unit"><span class="hero-countdown__value">00</span><span class="hero-countdown__label">Hours</span></div>
-                <div class="hero-countdown__unit"><span class="hero-countdown__value">00</span><span class="hero-countdown__label">Minutes</span></div>
-                <div class="hero-countdown__unit"><span class="hero-countdown__value">00</span><span class="hero-countdown__label">Seconds</span></div>
-            </div>
-            <f:if condition="{data.primary_button_text} && {data.primary_button_link.url}">
-                <d:atom.button href="{data.primary_button_link.url}" target="{data.primary_button_link.target}" size="lg">{data -> f:render.text(field: 'primary_button_text')}</d:atom.button>
+            <f:if condition="{data.badge_text}">
+                <d:atom.badge variant="secondary" class="hero-countdown__badge">{data -> f:render.text(field: 'badge_text')}</d:atom.badge>
+            </f:if>
+            <f:if condition="{data.header}">
+                <d:atom.typography tag="h1" variant="h1" class="hero-countdown__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
+            </f:if>
+            <f:if condition="{data.subheadline}">
+                <d:atom.typography variant="lead" class="hero-countdown__subheadline">{data -> f:render.text(field: 'subheadline')}</d:atom.typography>
+            </f:if>
+
+            <f:if condition="{data.target_date}">
+                <div class="hero-countdown__timer"
+                     data-astro-countdown="{data.target_date -> f:format.date(format: 'c')}">
+                    <p class="hero-countdown__deadline">
+                        <span class="hero-countdown__deadline-label"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:countdown.deadline"/>:</span>
+                        <time datetime="{data.target_date -> f:format.date(format: 'c')}">{data.target_date -> f:format.date(format: 'F j, Y, H:i')}</time>
+                    </p>
+                    <div class="hero-countdown__units" aria-hidden="true">
+                        <div class="hero-countdown__unit">
+                            <span class="hero-countdown__value" data-astro-countdown-days>00</span>
+                            <span class="hero-countdown__unit-label"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:countdown.days"/></span>
+                        </div>
+                        <div class="hero-countdown__unit">
+                            <span class="hero-countdown__value" data-astro-countdown-hours>00</span>
+                            <span class="hero-countdown__unit-label"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:countdown.hours"/></span>
+                        </div>
+                        <div class="hero-countdown__unit">
+                            <span class="hero-countdown__value" data-astro-countdown-minutes>00</span>
+                            <span class="hero-countdown__unit-label"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:countdown.minutes"/></span>
+                        </div>
+                        <div class="hero-countdown__unit">
+                            <span class="hero-countdown__value" data-astro-countdown-seconds>00</span>
+                            <span class="hero-countdown__unit-label"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:countdown.seconds"/></span>
+                        </div>
+                    </div>
+                </div>
+            </f:if>
+
+            <f:if condition="{data.primary_button_text}">
+                <div class="hero-countdown__actions">
+                    <f:link.typolink parameter="{data.primary_button_link}">
+                        <d:atom.button variant="default" size="lg">{data -> f:render.text(field: 'primary_button_text')}</d:atom.button>
+                    </f:link.typolink>
+                </div>
             </f:if>
         </div>
     </d:layout.container>
 </d:layout.section>
+
 </html>

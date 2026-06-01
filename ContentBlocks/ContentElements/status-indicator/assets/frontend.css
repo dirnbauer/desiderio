@@ -3,23 +3,28 @@
     background: var(--card); overflow: hidden;
 }
 .status-indicator__header { padding: var(--d-spacing-lg); border-bottom: 1px solid var(--border); }
-.status-indicator__title { font-size: var(--d-text-lg); font-weight: 600; margin-block-end: var(--d-spacing-sm); }
-.status-indicator__overall { display: flex; align-items: center; gap: var(--d-spacing-xs); }
-.status-indicator__overall-text { font-size: var(--d-text-sm); font-weight: 500; }
+.status-indicator__title { margin-block-end: var(--d-spacing-sm); }
+.status-indicator__overall { display: flex; align-items: center; gap: var(--d-spacing-xs); margin: 0; }
+.status-indicator__overall-text { font-size: var(--d-text-sm); font-weight: 600; }
 .status-indicator__dot {
-    width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
+    width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; background: var(--muted-foreground);
 }
 .status-indicator__dot--operational .status-indicator__dot { background: var(--d-success); }
 .status-indicator__dot--degraded .status-indicator__dot { background: var(--d-warning); }
 .status-indicator__dot--outage .status-indicator__dot { background: var(--destructive); }
 .status-indicator__dot--maintenance .status-indicator__dot { background: var(--d-info); }
+.status-indicator__dot--operational .status-indicator__status-text { color: var(--d-success); }
+.status-indicator__dot--degraded .status-indicator__status-text { color: var(--d-warning); }
+.status-indicator__dot--outage .status-indicator__status-text { color: var(--destructive); }
+.status-indicator__dot--maintenance .status-indicator__status-text { color: var(--d-info); }
 .status-indicator__list { list-style: none; padding: 0; margin: 0; }
 .status-indicator__item {
-    display: flex; justify-content: space-between; align-items: center;
+    display: flex; justify-content: space-between; align-items: center; gap: var(--d-spacing-md);
     padding: var(--d-spacing-sm) var(--d-spacing-lg);
     border-bottom: 1px solid var(--border);
 }
 .status-indicator__item:last-child { border-bottom: none; }
 .status-indicator__service-name { font-size: var(--d-text-sm); font-weight: 500; }
 .status-indicator__detail { display: block; font-size: var(--d-text-xs); color: var(--muted-foreground); }
-.status-indicator__status { display: flex; align-items: center; }
+.status-indicator__status { display: inline-flex; align-items: center; gap: var(--d-spacing-xs); flex-shrink: 0; }
+.status-indicator__status-text { font-size: var(--d-text-xs); font-weight: 600; }

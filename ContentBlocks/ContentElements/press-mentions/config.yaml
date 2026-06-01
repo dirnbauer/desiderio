@@ -30,25 +30,25 @@ fields:
         identifier: publication
         type: Textarea
         rows: 1
-        label: 'Publication Name'
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:publication'
         required: true
       -
         identifier: logo
         type: File
-        label: 'Publication Logo'
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:publication_logo'
         allowed: common-image-types
         maxitems: 1
       -
         identifier: quote
         type: Textarea
-        label: 'Quote / Excerpt'
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:quote_excerpt'
         rows: 2
       -
         identifier: date
         type: Textarea
         rows: 1
-        label: Date
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:date'
       -
         identifier: link
         type: Link
-        label: 'Article Link'
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:article_link'

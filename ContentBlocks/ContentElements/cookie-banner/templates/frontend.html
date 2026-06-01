@@ -5,22 +5,35 @@
 
 <f:asset.css identifier="d-cookie-banner" href="{cb:assetPath()}/frontend.css"/>
 
-<div class="cookie-banner cookie-banner--{data.position -> f:or(alternative: 'bottom')}" role="alert" data-cookie-banner="true">
+<f:variable name="cookieId" value="cookie-banner-{data.uid}"/>
+<f:variable name="cookieFallback"><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/cookie-banner/language/labels.xlf:aria.region.fallback">Cookie consent</f:translate></f:variable>
+
+<div class="cookie-banner cookie-banner--{data.position -> f:or(alternative: 'bottom')}"
+     role="region"
+     aria-labelledby="{f:if(condition: data.header, then: '{cookieId}-title', else: '')}"
+     aria-label="{f:if(condition: data.header, then: '', else: cookieFallback)}"
+     data-cookie-banner="true">
     <d:layout.container>
         <div class="cookie-banner__inner">
             <div class="cookie-banner__content">
                 <f:if condition="{data.header}">
-                    <h3 class="cookie-banner__title">{data -> f:render.text(field: 'header')}</h3>
+                    <h2 class="cookie-banner__title" id="{cookieId}-title">
+                        <span class="cookie-banner__title-icon" aria-hidden="true"><d:atom.icon name="shield-check" size="sm"/></span>
+                        <span>{data -> f:render.text(field: 'header')}</span>
+                    </h2>
                 </f:if>
                 <div class="cookie-banner__message">
                     {data -> f:render.text(field: 'content')}
                 </div>
             </div>
             <div class="cookie-banner__actions">
-                <button type="button" class="cookie-banner__button cookie-banner__button--accept">{data.accept_text -> f:or(alternative: 'Accept All')}</button>
-                <button type="button" class="cookie-banner__button cookie-banner__button--decline">{data.decline_text -> f:or(alternative: 'Decline')}</button>
+                <d:atom.button type="button" variant="default" size="sm" class="cookie-banner__action">
+                    <span data-icon="inline-start" aria-hidden="true"><d:atom.icon name="check" size="sm"/></span>
+                    <span>{data.accept_text -> f:or(alternative: 'Accept all')}</span>
+                </d:atom.button>
+                <d:atom.button type="button" variant="outline" size="sm" class="cookie-banner__action">{data.decline_text -> f:or(alternative: 'Decline')}</d:atom.button>
                 <f:if condition="{data.settings_link}">
-                    <f:link.typolink parameter="{data.settings_link}" class="cookie-banner__button cookie-banner__button--settings">{data.settings_text -> f:or(alternative: 'Cookie Settings')}</f:link.typolink>
+                    <f:link.typolink parameter="{data.settings_link}" class="cookie-banner__settings-link">{data.settings_text -> f:or(alternative: 'Manage preferences')}</f:link.typolink>
                 </f:if>
             </div>
         </div>

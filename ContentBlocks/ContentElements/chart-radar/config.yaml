@@ -19,11 +19,22 @@ fields:
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
     rows: 2
   -
+    identifier: axes
+    type: Textarea
+    label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-radar/language/labels.xlf:field.axes'
+    description: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-radar/language/labels.xlf:field.axes.description'
+    rows: 6
+    required: true
+  -
+    identifier: series_name
+    type: Text
+    label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-radar/language/labels.xlf:field.series_name'
+    description: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-radar/language/labels.xlf:field.series_name.description'
+  -
     identifier: chart_data
     type: Textarea
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:chart_data_json'
-    description: |
-      JSON object: {"labels":["Speed","Reliability","Support","UX","Price"],"values":[4,5,3,4,5]} (values 0–5 scale)
+    description: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-radar/language/labels.xlf:field.chart_data.description'
     rows: 6
     required: true
   -

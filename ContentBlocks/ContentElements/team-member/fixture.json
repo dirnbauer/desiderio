@@ -1,4 +1,18 @@
 {
-    "_type": "card",
-    "header": "Member Team Section for modern people pages"
+    "_type": "team",
+    "header": "Lea Fischer",
+    "role": "Head of Product Design",
+    "bio": "Lea leads design and accessibility, turning research into interfaces people can actually use. Before joining, she spent six years on the GOV.UK Design System, where her team rebuilt core components to meet WCAG 2.2 AA without slowing delivery. She now runs our weekly design critique and mentors the wider product team on inclusive patterns.",
+    "email": "lea.fischer@example.com",
+    "phone": "+1 (555) 012-3456",
+    "social_links": [
+        {
+            "platform": "LinkedIn",
+            "url": "https://www.linkedin.com/in/example"
+        },
+        {
+            "platform": "Mastodon",
+            "url": "https://mastodon.social/@example"
+        }
+    ]
 }

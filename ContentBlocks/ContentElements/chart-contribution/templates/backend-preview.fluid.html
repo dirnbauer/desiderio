@@ -21,40 +21,47 @@
         <f:if condition="{data.header}">
             <h3 class="d-ce-preview__title">{data.header}</h3>
         </f:if>
-        <f:if condition="{data.badge_text}">
-            <div class="d-ce-preview__field">
-                <span class="d-ce-preview__label">Badge Text</span>
-                <span class="d-ce-preview__value">{data.badge_text}</span>
-            </div>
-        </f:if>
         <f:if condition="{data.subheadline}">
             <div class="d-ce-preview__field">
                 <span class="d-ce-preview__label">Subheadline</span>
                 <span class="d-ce-preview__value">{data.subheadline}</span>
             </div>
         </f:if>
+        <f:if condition="{data.metric_label}">
+            <div class="d-ce-preview__field">
+                <span class="d-ce-preview__label">Metric</span>
+                <span class="d-ce-preview__value">{data.metric_label}<f:if condition="{data.unit}"> ({data.unit})</f:if></span>
+            </div>
+        </f:if>
+        <f:if condition="{data.badge_text}">
+            <div class="d-ce-preview__field">
+                <span class="d-ce-preview__label">Trend Badge</span>
+                <span class="d-ce-preview__value">{data.badge_text}</span>
+            </div>
+        </f:if>
+        <f:if condition="{data.points}">
+            <div class="d-ce-preview__collection">
+                <span class="d-ce-preview__label">Data Points</span>
+                <ul class="d-ce-preview__list">
+                    <f:for each="{data.points}" as="point">
+                        <li>
+                            <f:if condition="{point.point_label}"><span>{point.point_label}</span></f:if>
+                            <f:if condition="{point.point_value}"><span>{point.point_value}<f:if condition="{data.unit}"> {data.unit}</f:if></span></f:if>
+                        </li>
+                    </f:for>
+                </ul>
+            </div>
+        </f:if>
         <f:if condition="{data.left_stat_value}">
             <div class="d-ce-preview__field">
-                <span class="d-ce-preview__label">Left Stat Value</span>
+                <span class="d-ce-preview__label">{data.left_stat_label -> f:or(alternative: 'Left Stat')}</span>
                 <span class="d-ce-preview__value">{data.left_stat_value}</span>
             </div>
         </f:if>
         <f:if condition="{data.right_stat_value}">
             <div class="d-ce-preview__field">
-                <span class="d-ce-preview__label">Right Stat Value</span>
+                <span class="d-ce-preview__label">{data.right_stat_label -> f:or(alternative: 'Right Stat')}</span>
                 <span class="d-ce-preview__value">{data.right_stat_value}</span>
-            </div>
-        </f:if>
-        <f:if condition="{data.chart_data}">
-            <div class="d-ce-preview__field">
-                <span class="d-ce-preview__label">Chart Data</span>
-                <span class="d-ce-preview__value">{data.chart_data}</span>
-            </div>
-        </f:if>
-        <f:if condition="{data.left_stat_label}">
-            <div class="d-ce-preview__field">
-                <span class="d-ce-preview__label">Left Stat Label</span>
-                <span class="d-ce-preview__value">{data.left_stat_label}</span>
             </div>
         </f:if>
     </div>

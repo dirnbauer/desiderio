@@ -9,8 +9,98 @@
     </unit>
     <unit id="description">
       <segment state="final">
-        <source>Use when the sparkline chart should show trends or rates of change over time.</source>
-        <target>Einsetzen, wenn das Element Sparkline Diagramm Trends oder Veränderungsraten über Zeit zeigen soll.</target>
+        <source>Use when a compact inline trend line should summarise one metric inside a KPI card.</source>
+        <target>Einsetzen, wenn eine kompakte Inline-Trendlinie eine Kennzahl in einer KPI-Karte zusammenfassen soll.</target>
+      </segment>
+    </unit>
+    <unit id="field.series_label">
+      <segment state="final">
+        <source>Series name</source>
+        <target>Name der Datenreihe</target>
+      </segment>
+    </unit>
+    <unit id="field.series_label.description">
+      <segment state="final">
+        <source>What the sparkline measures, e.g. "Weekly active users". Used as the data-table column header and announced to screen readers.</source>
+        <target>Was die Sparkline misst, z. B. "Wöchentlich aktive Nutzer". Wird als Spaltenüberschrift der Datentabelle verwendet und Screenreadern vorgelesen.</target>
+      </segment>
+    </unit>
+    <unit id="field.unit">
+      <segment state="final">
+        <source>Value unit</source>
+        <target>Einheit der Werte</target>
+      </segment>
+    </unit>
+    <unit id="field.unit.description">
+      <segment state="final">
+        <source>Short unit shown after every value, e.g. "users", "% MoM", or "k USD". Leave empty for plain numbers.</source>
+        <target>Kurze Einheit hinter jedem Wert, z. B. "Nutzer", "% MoM" oder "Tsd. USD". Für reine Zahlen leer lassen.</target>
+      </segment>
+    </unit>
+    <unit id="field.data_points">
+      <segment state="final">
+        <source>Data points</source>
+        <target>Datenpunkte</target>
+      </segment>
+    </unit>
+    <unit id="field.data_points.description">
+      <segment state="final">
+        <source>One point per line as "Period | Value", e.g. Jul | 42100. Keep them in time order. Drives the screen-reader data table; match the same labels and values in the chart data JSON below.</source>
+        <target>Ein Punkt pro Zeile als "Zeitraum | Wert", z. B. Jul | 42100. In zeitlicher Reihenfolge halten. Speist die Screenreader-Datentabelle; dieselben Bezeichnungen und Werte im Diagramm-JSON unten verwenden.</target>
+      </segment>
+    </unit>
+    <unit id="field.chart_data.description">
+      <segment state="final">
+        <source>JSON array the sparkline is drawn from, in time order: [{"label":"Jul","value":42100}]. Match the labels and values entered under Data points.</source>
+        <target>JSON-Array, aus dem die Sparkline gezeichnet wird, in zeitlicher Reihenfolge: [{"label":"Jul","value":42100}]. Bezeichnungen und Werte aus den Datenpunkten übernehmen.</target>
+      </segment>
+    </unit>
+    <unit id="field.trend_badge">
+      <segment state="final">
+        <source>Trend badge</source>
+        <target>Trend-Badge</target>
+      </segment>
+    </unit>
+    <unit id="field.trend_badge.description">
+      <segment state="final">
+        <source>Optional pill shown beside the title, e.g. "+12.4% vs last quarter". An up, down or flat arrow is added automatically from the net change.</source>
+        <target>Optionales Label neben dem Titel, z. B. "+12,4 % ggü. Vorquartal". Ein Pfeil nach oben, unten oder gerade wird automatisch aus der Nettoveränderung ergänzt.</target>
+      </segment>
+    </unit>
+    <unit id="field.color_variant.description">
+      <segment state="final">
+        <source>Chart palette colour used for the sparkline and its fill.</source>
+        <target>Farbe aus der Diagrammpalette für die Sparkline und ihre Füllung.</target>
+      </segment>
+    </unit>
+    <unit id="aria.fallback">
+      <segment state="final">
+        <source>Sparkline</source>
+        <target>Sparkline</target>
+      </segment>
+    </unit>
+    <unit id="aria.summary">
+      <segment state="final">
+        <source>{0}: {1} sparkline across {2, plural, one {# point} other {# points}} from {3} to {4}{5}. The full series follows in the data table.</source>
+        <target>{0}: {1}-Sparkline über {2, plural, one {# Punkt} other {# Punkte}} von {3} bis {4}{5}. Die vollständige Reihe folgt in der Datentabelle.</target>
+      </segment>
+    </unit>
+    <unit id="aria.summary.latest">
+      <segment state="final">
+        <source>, latest {0} at {1}</source>
+        <target>, zuletzt {0} bei {1}</target>
+      </segment>
+    </unit>
+    <unit id="table.period">
+      <segment state="final">
+        <source>Period</source>
+        <target>Zeitraum</target>
+      </segment>
+    </unit>
+    <unit id="table.net_change">
+      <segment state="final">
+        <source>Net change (first to last)</source>
+        <target>Nettoveränderung (erster bis letzter)</target>
       </segment>
     </unit>
   </file>

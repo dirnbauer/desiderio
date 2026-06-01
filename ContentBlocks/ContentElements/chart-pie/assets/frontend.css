@@ -1,12 +1,134 @@
-.chart-pie__card {
-    border: 1px solid var(--border); border-radius: var(--radius);
-    background: var(--card); overflow: hidden;
+.chart-pie {
+    display: block;
+    margin: 0;
 }
-.chart-pie__header { padding: var(--d-spacing-lg) var(--d-spacing-lg) 0; }
-.chart-pie__title { font-size: var(--d-text-lg); font-weight: 600; }
-.chart-pie__description { font-size: var(--d-text-sm); color: var(--muted-foreground); margin-block-start: var(--d-spacing-xs); }
-.chart-pie__content { padding: var(--d-spacing-lg); display: flex; justify-content: center; }
-.chart-pie__content--small .chart-pie__canvas { width: 200px; height: 200px; }
-.chart-pie__content--medium .chart-pie__canvas { width: 300px; height: 300px; }
-.chart-pie__content--large .chart-pie__canvas { width: 400px; height: 400px; }
-.chart-pie__canvas { max-width: 100%; }
+.chart-pie__card {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--card);
+    color: var(--card-foreground);
+    box-shadow: var(--d-shadow-sm);
+    overflow: hidden;
+}
+.chart-pie__header {
+    padding: var(--d-spacing-lg) var(--d-spacing-lg) 0;
+}
+.chart-pie__title {
+    font-size: var(--d-text-lg);
+    font-weight: 600;
+    line-height: 1.3;
+}
+.chart-pie__description {
+    font-size: var(--d-text-sm);
+    color: var(--muted-foreground);
+    margin-block-start: var(--d-spacing-xs);
+    max-width: 60ch;
+}
+
+/* Plot + legend share a flexible row that stacks on narrow viewports. */
+.chart-pie__content {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: var(--d-spacing-lg);
+    padding: var(--d-spacing-lg);
+}
+.chart-pie__figure {
+    flex: 0 1 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 0;
+}
+
+/* charts.js injects a viewBox'd <svg>; we own the responsive box so it never overflows. */
+.chart-pie__canvas {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+}
+.chart-pie--small .chart-pie__canvas { width: 200px; }
+.chart-pie--medium .chart-pie__canvas { width: 280px; }
+.chart-pie--large .chart-pie__canvas { width: 360px; }
+
+/* Legend: server-rendered with real labels + values, keyed to the chart palette. */
+.chart-pie__legend {
+    display: flex;
+    flex-direction: column;
+    gap: var(--d-spacing-xs);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    min-width: 0;
+    font-size: var(--d-text-sm);
+}
+.chart-pie__legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 0;
+}
+.chart-pie__legend-swatch {
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 3px;
+    flex: none;
+    background: var(--chart-1);
+}
+.chart-pie__legend-swatch--1 { background: var(--chart-1); }
+.chart-pie__legend-swatch--2 { background: var(--chart-2); }
+.chart-pie__legend-swatch--3 { background: var(--chart-3); }
+.chart-pie__legend-swatch--4 { background: var(--chart-4); }
+.chart-pie__legend-swatch--5 { background: var(--chart-5); }
+.chart-pie__legend-label {
+    color: var(--foreground);
+    font-weight: 500;
+    overflow-wrap: anywhere;
+}
+.chart-pie__legend-value {
+    margin-inline-start: auto;
+    padding-inline-start: var(--d-spacing-sm);
+    color: var(--muted-foreground);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+
+/* Palette variants remap the chart tokens that charts.js (wedge fills) and the legend
+   swatches both read, so one editor choice re-skins the whole chart. */
+.chart-pie--palette-brand {
+    --chart-1: var(--primary);
+    --chart-2: var(--chart-2);
+    --chart-3: var(--chart-4);
+    --chart-4: var(--chart-3);
+    --chart-5: var(--chart-5);
+}
+.chart-pie--palette-cool {
+    --chart-1: var(--chart-2);
+    --chart-2: var(--chart-3);
+    --chart-3: var(--chart-5);
+    --chart-4: var(--chart-1);
+    --chart-5: var(--chart-4);
+}
+.chart-pie--palette-warm {
+    --chart-1: var(--chart-5);
+    --chart-2: var(--chart-4);
+    --chart-3: var(--chart-1);
+    --chart-4: var(--chart-2);
+    --chart-5: var(--chart-3);
+}
+
+@media (max-width: 640px) {
+    .chart-pie__header {
+        padding-inline: var(--d-spacing-md);
+    }
+    .chart-pie__content {
+        flex-direction: column;
+        align-items: stretch;
+        padding: var(--d-spacing-md);
+    }
+    .chart-pie__legend {
+        width: 100%;
+    }
+}

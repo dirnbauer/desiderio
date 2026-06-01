@@ -1,6 +1,11 @@
 {
-    "_type": "form",
-    "header": "Special Offer Pricing for confident plan comparison",
-    "description": "Keep plan comparison compact across desktop tables and mobile cards.",
-    "button_text": "Start conversation"
+    "_type": "pricing",
+    "eyebrow": "Limited time",
+    "discount_text": "Save 30%",
+    "header": "Annual plans are 30% off until Friday",
+    "description": "Switch to yearly billing this week and lock in the lower rate for as long as you stay.",
+    "original_price": "$290/yr",
+    "sale_price": "$203/yr",
+    "button_text": "Claim my discount",
+    "button_link": "/checkout?plan=annual&promo=SAVE30"
 }

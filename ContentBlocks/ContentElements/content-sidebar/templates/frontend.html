@@ -15,11 +15,13 @@
             <div class="content-sidebar__main">
                 {data -> f:render.text(field: 'content')}
             </div>
-            <aside class="content-sidebar__aside">
-                <d:molecule.card class="content-sidebar__sidebar-card">
-                    {data -> f:render.text(field: 'sidebar_content')}
-                </d:molecule.card>
-            </aside>
+            <f:if condition="{data.sidebar_content}">
+                <aside class="content-sidebar__aside" aria-label="{f:translate(key: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/content-sidebar/language/labels.xlf:sidebar_label', default: 'Related information')}">
+                    <d:molecule.card class="content-sidebar__sidebar-card">
+                        {data -> f:render.text(field: 'sidebar_content')}
+                    </d:molecule.card>
+                </aside>
+            </f:if>
         </div>
     </d:layout.container>
 </d:layout.section>

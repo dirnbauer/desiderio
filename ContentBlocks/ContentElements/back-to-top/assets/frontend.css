@@ -5,10 +5,22 @@
     border: 1px solid var(--border); border-radius: var(--radius);
     background: var(--card); color: var(--foreground);
     cursor: pointer; box-shadow: 0 2px 8px color-mix(in oklch, var(--foreground) 8%, transparent);
-    transition: opacity 0.2s, transform 0.2s;
+    transition: opacity 0.2s ease, visibility 0.2s ease, background-color 0.2s ease;
 }
 .back-to-top:hover { background: var(--muted); }
+.back-to-top:focus-visible {
+    outline: 2px solid var(--d-ring);
+    outline-offset: 2px;
+}
+.back-to-top.is-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
 .back-to-top--bottom-right { bottom: var(--d-spacing-lg); right: var(--d-spacing-lg); }
 .back-to-top--bottom-left { bottom: var(--d-spacing-lg); left: var(--d-spacing-lg); }
 .back-to-top--bottom-center { bottom: var(--d-spacing-lg); left: 50%; transform: translateX(-50%); }
 .back-to-top__label { font-size: var(--d-text-sm); font-weight: 500; }
+@media (prefers-reduced-motion: reduce) {
+    .back-to-top { transition: none; }
+}

@@ -11,5 +11,75 @@
         <source>Use when the line chart should show trends or rates of change over time.</source>
       </segment>
     </unit>
+    <unit id="field.series_label">
+      <segment>
+        <source>Series name</source>
+      </segment>
+    </unit>
+    <unit id="field.series_label.description">
+      <segment>
+        <source>Name of the plotted measure, e.g. "Activated workspaces". Used in the chart's accessible label and as the value-column header of the data table.</source>
+      </segment>
+    </unit>
+    <unit id="field.unit">
+      <segment>
+        <source>Value unit</source>
+      </segment>
+    </unit>
+    <unit id="field.unit.description">
+      <segment>
+        <source>Optional unit appended to every value for assistive technology, e.g. "workspaces", "%", "€".</source>
+      </segment>
+    </unit>
+    <unit id="field.data_points">
+      <segment>
+        <source>Data points (readable)</source>
+      </segment>
+    </unit>
+    <unit id="field.data_points.description">
+      <segment>
+        <source>One point per line as "Label | value", e.g. "Jan | 1280". Drives the screen-reader summary and data table. Keep it in sync with the chart JSON below.</source>
+      </segment>
+    </unit>
+    <unit id="field.chart_data.description">
+      <segment>
+        <source>JSON the line is drawn from: [{"label":"Jan","value":1280}, …]. Must match the readable data points above.</source>
+      </segment>
+    </unit>
+    <unit id="aria.fallback">
+      <segment>
+        <source>Line chart</source>
+      </segment>
+    </unit>
+    <unit id="aria.label">
+      <segment>
+        <source>{title}: line chart of {series}</source>
+      </segment>
+    </unit>
+    <unit id="aria.summary">
+      <segment>
+        <source>{title}: {series} trend across {count, plural, one {# point} other {# points}}, from {first} to {last}.</source>
+      </segment>
+    </unit>
+    <unit id="table.label_header">
+      <segment>
+        <source>Period</source>
+      </segment>
+    </unit>
+    <unit id="table.unit_caption">
+      <segment>
+        <source>values in {unit}</source>
+      </segment>
+    </unit>
+    <unit id="field.show_dots">
+      <segment>
+        <source>Show data points</source>
+      </segment>
+    </unit>
+    <unit id="field.smooth">
+      <segment>
+        <source>Smooth curve</source>
+      </segment>
+    </unit>
   </file>
 </xliff>

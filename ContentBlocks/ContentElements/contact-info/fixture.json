@@ -1,5 +1,29 @@
 {
     "_type": "section",
-    "header": "Show useful contact routes without clutter",
-    "subheadline": "A composed shadcn-style pattern with practical copy, clear hierarchy, and responsive spacing for production TYPO3 pages."
+    "header": "Reach the right team, faster",
+    "subheadline": "Pick the channel that suits you. Every message reaches a real person, not a queue.",
+    "items": [
+        {
+            "icon": "mail",
+            "label": "Email",
+            "value": "hello@desiderio.studio",
+            "link": "mailto:hello@desiderio.studio"
+        },
+        {
+            "icon": "phone",
+            "label": "Phone",
+            "value": "+43 1 234 5678",
+            "link": "tel:+43123456789"
+        },
+        {
+            "icon": "map-pin",
+            "label": "Studio",
+            "value": "Mariahilfer Strasse 1, 1060 Vienna"
+        },
+        {
+            "icon": "clock",
+            "label": "Office hours",
+            "value": "Mon-Fri, 9:00-17:00 CET"
+        }
+    ]
 }

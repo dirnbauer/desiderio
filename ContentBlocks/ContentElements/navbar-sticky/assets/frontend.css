@@ -37,3 +37,27 @@
 .navbar-sticky__link:hover {
     color: var(--d-foreground);
 }
+.navbar-sticky__link:focus-visible {
+    color: var(--d-foreground);
+    outline: none;
+    box-shadow: 0 0 0 2px var(--d-ring);
+}
+
+@media (max-width: 768px) {
+    .navbar-sticky__inner {
+        flex-wrap: wrap;
+        gap: var(--d-spacing-2);
+    }
+    .navbar-sticky__nav {
+        flex-wrap: wrap;
+        order: 3;
+        width: 100%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .navbar-sticky,
+    .navbar-sticky__link {
+        transition: none;
+    }
+}

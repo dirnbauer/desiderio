@@ -10,26 +10,40 @@
         <div class="analytics-overview__card">
             <div class="analytics-overview__header">
                 <f:if condition="{data.header}">
-                    <h2 class="analytics-overview__title">{data -> f:render.text(field: 'header')}</h2>
+                    <d:atom.typography tag="h2" variant="h3" class="analytics-overview__title">{data -> f:render.text(field: 'header')}</d:atom.typography>
                 </f:if>
                 <f:if condition="{data.period_label}">
-                    <span class="analytics-overview__period">{data -> f:render.text(field: 'period_label')}</span>
+                    <d:atom.badge variant="secondary">{data -> f:render.text(field: 'period_label')}</d:atom.badge>
                 </f:if>
             </div>
 
-            <div class="analytics-overview__metrics">
+            <dl class="analytics-overview__metrics">
                 <f:for each="{data.items}" as="item">
                     <div class="analytics-overview__metric">
-                        <div class="analytics-overview__metric-label">{item -> f:render.text(field: 'label')}</div>
-                        <div class="analytics-overview__metric-value">{item -> f:render.text(field: 'value')}</div>
+                        <dt class="analytics-overview__metric-label">{item -> f:render.text(field: 'label')}</dt>
+                        <dd class="analytics-overview__metric-value">{item -> f:render.text(field: 'value')}</dd>
                         <f:if condition="{item.change}">
-                            <div class="analytics-overview__metric-change analytics-overview__metric-change--{item.trend -> f:or(alternative: 'neutral')}">
-                                {item -> f:render.text(field: 'change')}
-                            </div>
+                            <p class="analytics-overview__metric-change analytics-overview__metric-change--{item.trend -> f:or(alternative: 'neutral')}">
+                                <span class="analytics-overview__metric-arrow" aria-hidden="true">
+                                    <f:switch expression="{item.trend}">
+                                        <f:case value="up"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6-6 6 6"/><path d="M12 3v18"/></svg></f:case>
+                                        <f:case value="down"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21V3"/><path d="m6 15 6 6 6-6"/></svg></f:case>
+                                        <f:defaultCase><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/></svg></f:defaultCase>
+                                    </f:switch>
+                                </span>
+                                <span class="sr-only">
+                                    <f:switch expression="{item.trend}">
+                                        <f:case value="up">Trending up:</f:case>
+                                        <f:case value="down">Trending down:</f:case>
+                                        <f:defaultCase>No change:</f:defaultCase>
+                                    </f:switch>
+                                </span>
+                                <span>{item -> f:render.text(field: 'change')}</span>
+                            </p>
                         </f:if>
                     </div>
                 </f:for>
-            </div>
+            </dl>
 
             <f:if condition="{data.summary}">
                 <div class="analytics-overview__summary">

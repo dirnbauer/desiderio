@@ -23,17 +23,18 @@ fields:
     type: Collection
     table: social_links_link_items
     prefixField: true
-    label: 'Social Links'
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:social_links'
     minItems: 1
     fields:
       -
         identifier: platform
         type: Textarea
         rows: 1
-        label: Platform
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:platform'
+        description: 'Network name shown as the link label, e.g. LinkedIn, GitHub, YouTube.'
         required: true
       -
         identifier: url
         type: Link
-        label: URL
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:url'
         required: true

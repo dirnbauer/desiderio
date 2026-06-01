@@ -5,14 +5,17 @@
 
 <f:asset.css identifier="d-back-to-top" href="{cb:assetPath()}/frontend.css"/>
 
-<button type="button" class="back-to-top back-to-top--{data.position -> f:or(alternative: 'bottom-right')}"
-        aria-label="{data.label -> f:or(alternative: 'Back to top')}"
-        title="{data.header -> f:or(alternative: 'Back to top')}"
-        data-back-to-top="true"
-        onclick="window.scrollTo({top:0,behavior:'smooth'})">
-    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+<f:variable name="btnLabel">{data.label -> f:or(alternative: 'Back to top')}</f:variable>
+<f:variable name="btnTitle">{data.header -> f:or(alternative: '{btnLabel}')}</f:variable>
+
+<button type="button" class="back-to-top back-to-top--{data.position -> f:or(alternative: 'bottom-right')} is-hidden"
+        aria-label="{btnLabel}"
+        title="{btnTitle}"
+        data-d-back-to-top
+        data-threshold="300">
+    <svg xmlns="http://www.w3.org/2000/svg" class="back-to-top__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m18 15-6-6-6 6"/></svg>
     <f:if condition="{data.show_label}">
-        <span class="back-to-top__label">{data.label -> f:or(alternative: 'Back to top')}</span>
+        <span class="back-to-top__label">{btnLabel}</span>
     </f:if>
 </button>
 

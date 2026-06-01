@@ -10,7 +10,7 @@
         <f:if condition="{data.eyebrow} || {data.header} || {data.subheadline}">
             <header class="pricing-toggle__intro">
                 <f:if condition="{data.eyebrow}">
-                    <span class="pricing-toggle__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span>
+                    <p class="pricing-toggle__eyebrow">{data -> f:render.text(field: 'eyebrow')}</p>
                 </f:if>
                 <f:if condition="{data.header}">
                     <h2 class="pricing-toggle__headline">{data -> f:render.text(field: 'header')}</h2>
@@ -21,37 +21,45 @@
             </header>
         </f:if>
 
-        <div class="pricing-toggle__grid">
-            <f:for each="{data.plans}" as="plan">
-                <article class="pricing-toggle__plan">
-                    <h3 class="pricing-toggle__title">{plan -> f:render.text(field: 'title')}</h3>
-                    <div class="pricing-toggle__prices">
-                        <p class="pricing-toggle__price">{plan -> f:render.text(field: 'monthly_price')}<span class="pricing-toggle__period">/mo</span></p>
-                        <p class="pricing-toggle__price-alt">{plan -> f:render.text(field: 'yearly_price')} yearly</p>
-                    </div>
-                    <f:if condition="{plan.description}">
-                        <p class="pricing-toggle__plan-desc">{plan -> f:render.text(field: 'description')}</p>
-                    </f:if>
-                    <f:if condition="{plan.features}">
-                        <ul class="pricing-toggle__features">
-                            <f:for each="{plan.features}" as="feature">
-                                <f:if condition="{feature.text}">
-                                    <li class="pricing-toggle__feature">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
-                                        <span>{feature -> f:render.text(field: 'text')}</span>
-                                    </li>
-                                </f:if>
-                            </f:for>
-                        </ul>
-                    </f:if>
-                    <f:if condition="{plan.button_text} && {plan.button_link.url}">
-                        <f:link.typolink parameter="{plan.button_link}" class="pricing-toggle__button">
-                            {plan -> f:render.text(field: 'button_text')}
-                        </f:link.typolink>
-                    </f:if>
-                </article>
+        <ul class="pricing-toggle__grid" role="list">
+            <f:for each="{data.plans}" as="plan" iteration="iter">
+                <li class="pricing-toggle__item">
+                    <article class="pricing-toggle__plan" aria-labelledby="pricing-toggle-{data.uid}-{iter.cycle}">
+                        <h3 class="pricing-toggle__title" id="pricing-toggle-{data.uid}-{iter.cycle}">{plan -> f:render.text(field: 'title')}</h3>
+                        <div class="pricing-toggle__prices">
+                            <p class="pricing-toggle__price">
+                                <span class="pricing-toggle__amount">{plan -> f:render.text(field: 'monthly_price')}</span>
+                                <span class="pricing-toggle__period">/mo</span>
+                            </p>
+                            <f:if condition="{plan.yearly_price}">
+                                <p class="pricing-toggle__price-alt">or {plan -> f:render.text(field: 'yearly_price')} billed yearly</p>
+                            </f:if>
+                        </div>
+                        <f:if condition="{plan.description}">
+                            <p class="pricing-toggle__plan-desc">{plan -> f:render.text(field: 'description')}</p>
+                        </f:if>
+                        <f:if condition="{plan.features}">
+                            <ul class="pricing-toggle__features" role="list">
+                                <f:for each="{plan.features}" as="feature">
+                                    <f:if condition="{feature.text}">
+                                        <li class="pricing-toggle__feature">
+                                            <svg class="pricing-toggle__check" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg>
+                                            <span>{feature -> f:render.text(field: 'text')}</span>
+                                        </li>
+                                    </f:if>
+                                </f:for>
+                            </ul>
+                        </f:if>
+                        <f:if condition="{plan.button_text} && {plan.button_link.url}">
+                            <f:variable name="planCtaLabel">{plan.button_text} – {plan.title}</f:variable>
+                            <f:link.typolink parameter="{plan.button_link}" class="pricing-toggle__button" additionalAttributes="{'aria-label': planCtaLabel}">
+                                {plan -> f:render.text(field: 'button_text')}
+                            </f:link.typolink>
+                        </f:if>
+                    </article>
+                </li>
             </f:for>
-        </div>
+        </ul>
     </d:layout.container>
 </d:layout.section>
 </html>

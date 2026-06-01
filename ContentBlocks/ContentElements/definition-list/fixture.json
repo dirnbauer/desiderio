@@ -1,10 +1,27 @@
 {
     "_type": "list",
-    "header": "Definition List for polished editorial systems",
+    "header": "Content block glossary",
+    "shadcn_layout": "inline",
     "items": [
-        [],
-        [],
-        [],
-        []
+        {
+            "term": "Content element",
+            "definition": "A single, reusable block an editor places on a page — a hero, a pricing table, an FAQ. Each ships its own schema, template, and preview."
+        },
+        {
+            "term": "Fixture",
+            "definition": "The demo content that seeds an element in the styleguide so editors see realistic copy, not empty fields, before they write their own."
+        },
+        {
+            "term": "Semantic token",
+            "definition": "A theme variable like bg-background or text-muted-foreground. Switching the preset re-skins every element at once — no template edits."
+        },
+        {
+            "term": "Collection",
+            "definition": "A repeatable group of fields inside an element, such as the rows of this glossary. Each row stores in its own database table."
+        },
+        {
+            "term": "Backend preview",
+            "definition": "The compact summary shown in the page module so editors recognise a block at a glance without opening it."
+        }
     ]
 }

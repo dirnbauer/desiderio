@@ -1,6 +1,7 @@
 {
     "_type": "form",
-    "header": "Start a structured project conversation",
-    "description": "Use a focused hierarchy, accessible controls, and TYPO3 Form Framework handling so the section is ready for real submissions.",
-    "submit_text": "Start conversation"
+    "header": "Start a conversation with our team",
+    "description": "Share a few details about your project and we'll match you with the right specialist. Most enquiries get a reply within one business day.",
+    "form_action": "t3://page?uid=1",
+    "submit_text": "Send my message"
 }

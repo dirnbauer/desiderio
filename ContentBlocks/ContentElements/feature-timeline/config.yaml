@@ -23,14 +23,15 @@ fields:
     type: Collection
     table: feature_timeline_items
     prefixField: true
-    label: 'Timeline Steps'
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:timeline_steps'
     minItems: 2
     fields:
       -
         identifier: step
         type: Textarea
         rows: 1
-        label: 'Step Label'
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:step_label'
+        description: 'Short marker shown in the circle, e.g. 1, 2, 3 or Day 1.'
         required: true
       -
         identifier: title

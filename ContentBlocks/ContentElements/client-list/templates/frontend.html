@@ -21,13 +21,13 @@
             </header>
         </f:if>
 
-        <ul class="client-list__items">
+        <ul class="client-list__items" aria-label="{data.header -> f:or(alternative: 'Clients')}">
             <f:for each="{data.clients}" as="client">
                 <li class="client-list__item">
                     <f:if condition="{client.logo}">
                         <div class="client-list__logo">
                             <f:for each="{client.logo}" as="fileReference">
-                                <f:image image="{fileReference}" maxWidth="120" alt="{client.name}" class="client-list__logo-img"/>
+                                <f:image image="{fileReference}" maxWidth="120" alt="{client.name} logo" class="client-list__logo-img" loading="lazy"/>
                             </f:for>
                         </div>
                     </f:if>

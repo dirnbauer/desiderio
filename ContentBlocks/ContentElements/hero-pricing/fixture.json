@@ -1,6 +1,25 @@
 {
     "_type": "hero",
-    "header": "Pricing Hero for sleek launch moments",
-    "subheadline": "Open with a clear promise, credible media, and one obvious next action.",
-    "button_text": "Start conversation"
+    "header": "One plan, every feature, no surprises",
+    "subheadline": "Built for teams of 5 to 50. Start free, upgrade when you ship, and cancel in two clicks.",
+    "price": "$29",
+    "price_period": "user / month",
+    "button_text": "Start free trial",
+    "feature_items": [
+        {
+            "label": "Unlimited projects and members"
+        },
+        {
+            "label": "Advanced analytics dashboard"
+        },
+        {
+            "label": "SSO and audit logs"
+        },
+        {
+            "label": "Priority support, 4-hour reply"
+        },
+        {
+            "label": "99.9% uptime SLA"
+        }
+    ]
 }

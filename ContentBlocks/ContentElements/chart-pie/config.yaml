@@ -19,30 +19,59 @@ fields:
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
     rows: 2
   -
+    identifier: segments
+    type: Textarea
+    label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-pie/language/labels.xlf:field.segments'
+    description: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-pie/language/labels.xlf:field.segments.description'
+    rows: 6
+    required: true
+  -
+    identifier: unit
+    type: Text
+    label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-pie/language/labels.xlf:field.unit'
+    description: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-pie/language/labels.xlf:field.unit.description'
+  -
     identifier: chart_data
     type: Textarea
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:chart_data_json'
-    description: |
-      Enter data as JSON array, e.g.:
-      [{"label": "Segment A", "value": 40}, {"label": "Segment B", "value": 30}]
+    description: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-pie/language/labels.xlf:field.chart_data.description'
     rows: 6
     required: true
   -
     identifier: show_legend
     type: Checkbox
-    label: 'Show Legend'
+    label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-pie/language/labels.xlf:field.show_legend'
     default: 1
+  -
+    identifier: palette
+    type: Select
+    renderType: selectSingle
+    label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-pie/language/labels.xlf:field.palette'
+    items:
+      -
+        label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-pie/language/labels.xlf:item.palette.default'
+        value: default
+      -
+        label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-pie/language/labels.xlf:item.palette.brand'
+        value: brand
+      -
+        label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-pie/language/labels.xlf:item.palette.cool'
+        value: cool
+      -
+        label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-pie/language/labels.xlf:item.palette.warm'
+        value: warm
+    default: default
   -
     identifier: chart_size
     type: Select
     renderType: selectSingle
-    label: 'Chart Size'
+    label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-pie/language/labels.xlf:field.chart_size'
     items:
       -
-        label: Small
+        label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-pie/language/labels.xlf:item.size.small'
         value: small
       -
-        label: Medium
+        label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-pie/language/labels.xlf:item.size.medium'
         value: medium
       -
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.large'

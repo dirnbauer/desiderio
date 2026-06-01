@@ -8,24 +8,23 @@
 <d:layout.section class="sitemap-grid-section">
     <d:layout.container>
         <f:if condition="{data.header}">
-            <h2 class="sitemap-grid__title">{data -> f:render.text(field: 'header')}</h2>
+            <d:atom.typography tag="h2" variant="h3" class="sitemap-grid__title">{data -> f:render.text(field: 'header')}</d:atom.typography>
         </f:if>
-        <div class="sitemap-grid__grid sitemap-grid__grid--cols-{data.columns -> f:or(alternative: '4')}">
-            <f:for each="{data.groups}" as="group">
+        <nav class="sitemap-grid__grid sitemap-grid__grid--cols-{data.columns -> f:or(alternative: '4')}"
+             aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:sitemap.aria')}">
+            <f:for each="{data.groups}" as="group" iteration="groupIter">
                 <div class="sitemap-grid__group">
-                    <h3 class="sitemap-grid__group-title">{group -> f:render.text(field: 'title')}</h3>
-                    <ul class="sitemap-grid__links">
+                    <d:atom.typography tag="h3" variant="small" class="sitemap-grid__group-title" id="sitemap-grid-{data.uid}-{groupIter.cycle}">{group -> f:render.text(field: 'title')}</d:atom.typography>
+                    <ul class="sitemap-grid__links" aria-labelledby="sitemap-grid-{data.uid}-{groupIter.cycle}">
                         <f:for each="{group.pages}" as="page">
                             <f:if condition="{page.label}">
-                                <li>
+                                <li class="sitemap-grid__item">
                                     <f:if condition="{page.link.url}">
                                         <f:then>
-                                            <f:link.typolink parameter="{page.link}" class="sitemap-grid__link">
-                                                {page -> f:render.text(field: 'label')}
-                                            </f:link.typolink>
+                                            <f:link.typolink parameter="{page.link}" class="sitemap-grid__link">{page -> f:render.text(field: 'label')}</f:link.typolink>
                                         </f:then>
                                         <f:else>
-                                            <span class="sitemap-grid__link">{page -> f:render.text(field: 'label')}</span>
+                                            <span class="sitemap-grid__link sitemap-grid__link--static">{page -> f:render.text(field: 'label')}</span>
                                         </f:else>
                                     </f:if>
                                 </li>
@@ -34,7 +33,7 @@
                     </ul>
                 </div>
             </f:for>
-        </div>
+        </nav>
     </d:layout.container>
 </d:layout.section>
 

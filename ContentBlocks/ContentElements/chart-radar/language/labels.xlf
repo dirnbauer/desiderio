@@ -11,5 +11,65 @@
         <source>Use when the radar chart should compare patterns, intensity, or several dimensions compactly.</source>
       </segment>
     </unit>
+    <unit id="field.axes">
+      <segment>
+        <source>Dimensions</source>
+      </segment>
+    </unit>
+    <unit id="field.axes.description">
+      <segment>
+        <source>One axis per line as "Dimension | Score", e.g. Performance | 4.2. Scores use a 0–5 scale and drive the screen-reader data table. Keep the same labels and values in the chart data JSON below.</source>
+      </segment>
+    </unit>
+    <unit id="field.series_name">
+      <segment>
+        <source>Series name</source>
+      </segment>
+    </unit>
+    <unit id="field.series_name.description">
+      <segment>
+        <source>What the shape measures, e.g. "Desiderio, Q1 2026 review". Shown as the data-table score column header and announced to screen readers.</source>
+      </segment>
+    </unit>
+    <unit id="field.chart_data.description">
+      <segment>
+        <source>JSON the shape is drawn from: {"labels":["Performance"],"values":[4.2]} on a 0–5 scale. Match the labels and values entered under Dimensions.</source>
+      </segment>
+    </unit>
+    <unit id="table.dimension">
+      <segment>
+        <source>Dimension</source>
+      </segment>
+    </unit>
+    <unit id="table.score">
+      <segment>
+        <source>Score</source>
+      </segment>
+    </unit>
+    <unit id="table.scale">
+      <segment>
+        <source>(0–5 scale)</source>
+      </segment>
+    </unit>
+    <unit id="table.out_of">
+      <segment>
+        <source>out of 5</source>
+      </segment>
+    </unit>
+    <unit id="aria.fallback">
+      <segment>
+        <source>Radar chart</source>
+      </segment>
+    </unit>
+    <unit id="aria.summary">
+      <segment>
+        <source>{0}: radar chart comparing {1, plural, one {# dimension} other {# dimensions}} on a 0–5 scale{2}. The full breakdown follows in the data table.</source>
+      </segment>
+    </unit>
+    <unit id="aria.summary.measuring">
+      <segment>
+        <source>, measuring {0}</source>
+      </segment>
+    </unit>
   </file>
 </xliff>

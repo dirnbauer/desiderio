@@ -5,6 +5,12 @@
 
 <f:asset.css identifier="d-testimonial-carousel" href="{cb:assetPath()}/frontend.css"/>
 
+<f:variable name="carouselLabel"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:carousel.region"/></f:variable>
+<f:variable name="prevLabel"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:carousel.previous"/></f:variable>
+<f:variable name="nextLabel"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:carousel.next"/></f:variable>
+<f:variable name="dotLabel"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:carousel.goto"/></f:variable>
+<f:variable name="slideLabel"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:carousel.slide"/></f:variable>
+
 <d:layout.section class="testimonial-carousel">
     <d:layout.container>
         <f:if condition="{data.eyebrow} || {data.header}">
@@ -13,40 +19,55 @@
                     <span class="testimonial-carousel__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span>
                 </f:if>
                 <f:if condition="{data.header}">
-                    <h2 class="testimonial-carousel__headline">{data -> f:render.text(field: 'header')}</h2>
+                    <d:atom.typography tag="h2" variant="h2" class="testimonial-carousel__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
                 </f:if>
             </header>
         </f:if>
 
-        <div class="testimonial-carousel__track" data-autoplay="{f:if(condition: data.autoplay, then: 'true', else: 'false')}">
+        <div class="testimonial-carousel__track hero-carousel"
+             role="group"
+             aria-roledescription="carousel"
+             aria-label="{carouselLabel}"
+             data-astro-carousel
+             data-astro-carousel-autoplay="{f:if(condition: data.autoplay, then: 'true', else: 'false')}"
+             data-astro-carousel-labels="{prevLabel}|{nextLabel}|{dotLabel}">
             <f:for each="{data.testimonials}" as="item" iteration="iter">
-                <div class="testimonial-carousel__slide {f:if(condition: iter.isFirst, then: 'testimonial-carousel__slide--active')}">
-                    <blockquote class="testimonial-carousel__quote">{item -> f:render.text(field: 'quote')}</blockquote>
-                    <f:if condition="{item.rating}">
-                        <span class="testimonial-carousel__rating" aria-label="{item.rating} out of 5 stars">
-                            {item -> f:render.text(field: 'rating')} / 5
-                        </span>
+                <article class="testimonial-carousel__slide{f:if(condition: iter.isFirst, then: ' hero-carousel__slide--active')}"
+                         data-astro-carousel-slide
+                         role="group"
+                         aria-roledescription="{slideLabel}"
+                         aria-label="{iter.cycle} / {iter.total}"
+                         aria-hidden="{f:if(condition: iter.isFirst, then: 'false', else: 'true')}">
+                    <f:if condition="{item.rating} > 0">
+                        <div class="testimonial-carousel__rating" role="img" aria-label="Rated {item.rating} out of 5">
+                            <f:for each="{0: 1, 1: 2, 2: 3, 3: 4, 4: 5}" as="star">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                     fill="{f:if(condition: '{star} <= {item.rating}', then: 'currentColor', else: 'none')}"
+                                     stroke="currentColor" stroke-width="2"
+                                     class="testimonial-carousel__star {f:if(condition: '{star} <= {item.rating}', then: 'testimonial-carousel__star--filled')}"
+                                     aria-hidden="true" focusable="false">
+                                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+                                </svg>
+                            </f:for>
+                        </div>
                     </f:if>
+                    <blockquote class="testimonial-carousel__quote">{item -> f:render.text(field: 'quote')}</blockquote>
                     <div class="testimonial-carousel__author">
                         <f:if condition="{item.author_image}">
                             <f:for each="{item.author_image}" as="fileReference">
-                                <f:image image="{fileReference}" width="48" height="48" alt="{item.author_name}" class="testimonial-carousel__avatar"/>
+                                <f:image image="{fileReference}" width="48" height="48" alt="" loading="lazy" decoding="async" class="testimonial-carousel__avatar"/>
                             </f:for>
                         </f:if>
-                        <div>
+                        <div class="testimonial-carousel__meta">
                             <cite class="testimonial-carousel__name">{item -> f:render.text(field: 'author_name')}</cite>
                             <f:if condition="{item.author_title}">
                                 <span class="testimonial-carousel__role">{item -> f:render.text(field: 'author_title')}</span>
                             </f:if>
                         </div>
                     </div>
-                </div>
+                </article>
             </f:for>
-        </div>
-
-        <div class="testimonial-carousel__nav">
-            <button type="button" class="testimonial-carousel__prev" aria-label="Previous">&#8592;</button>
-            <button type="button" class="testimonial-carousel__next" aria-label="Next">&#8594;</button>
+            <p class="sr-only" aria-live="polite" data-astro-carousel-status></p>
         </div>
     </d:layout.container>
 </d:layout.section>

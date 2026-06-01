@@ -5,7 +5,7 @@
 
 <f:asset.css identifier="d-navbar-sidebar" href="{cb:assetPath()}/frontend.css"/>
 
-<d:layout.section class="navbar-sidebar">
+<d:layout.section class="navbar-sidebar" spacing="none">
     <aside class="navbar-sidebar__panel" aria-label="{data.header -> f:or(alternative: 'Sidebar navigation')}">
         <div class="navbar-sidebar__brand">
             <f:if condition="{data.brand_link.url}">

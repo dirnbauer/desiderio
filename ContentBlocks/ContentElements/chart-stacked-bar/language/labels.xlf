@@ -11,5 +11,100 @@
         <source>Use when the stacked bar chart should compare categories, totals, or rankings clearly.</source>
       </segment>
     </unit>
+    <unit id="field.series_labels">
+      <segment>
+        <source>Series names</source>
+      </segment>
+    </unit>
+    <unit id="field.series_labels.description">
+      <segment>
+        <source>Comma-separated names for the stacked segments, in order, e.g. Starter, Team, Enterprise. They name the legend, the data-table columns and the screen-reader summary, and set how many values each row needs.</source>
+      </segment>
+    </unit>
+    <unit id="field.chart_data">
+      <segment>
+        <source>Categories and values</source>
+      </segment>
+    </unit>
+    <unit id="field.chart_data.description">
+      <segment>
+        <source>One category per line: a label, then one value per series, separated by a pipe. The values line up with the series names above. Example: Q1 2025 | 42 | 68 | 55</source>
+      </segment>
+    </unit>
+    <unit id="field.unit">
+      <segment>
+        <source>Value unit</source>
+      </segment>
+    </unit>
+    <unit id="field.unit.description">
+      <segment>
+        <source>Optional unit shown after each value in the legend and data table, e.g. k EUR, %, or hrs.</source>
+      </segment>
+    </unit>
+    <unit id="field.palette">
+      <segment>
+        <source>Colour palette</source>
+      </segment>
+    </unit>
+    <unit id="field.show_legend">
+      <segment>
+        <source>Show legend</source>
+      </segment>
+    </unit>
+    <unit id="item.palette.default">
+      <segment>
+        <source>Default (multi-colour)</source>
+      </segment>
+    </unit>
+    <unit id="item.palette.brand">
+      <segment>
+        <source>Brand (primary led)</source>
+      </segment>
+    </unit>
+    <unit id="item.palette.cool">
+      <segment>
+        <source>Cool</source>
+      </segment>
+    </unit>
+    <unit id="item.palette.warm">
+      <segment>
+        <source>Warm</source>
+      </segment>
+    </unit>
+    <unit id="legend.heading">
+      <segment>
+        <source>Legend</source>
+      </segment>
+    </unit>
+    <unit id="table.category">
+      <segment>
+        <source>Category</source>
+      </segment>
+    </unit>
+    <unit id="table.total">
+      <segment>
+        <source>Total</source>
+      </segment>
+    </unit>
+    <unit id="table.unit.caption">
+      <segment>
+        <source>values in {0}</source>
+      </segment>
+    </unit>
+    <unit id="aria.summary">
+      <segment>
+        <source>{0}: stacked bar chart comparing {1, plural, one {# category} other {# categories}} across {2}. The full breakdown follows in the data table.</source>
+      </segment>
+    </unit>
+    <unit id="aria.summary.no_series">
+      <segment>
+        <source>{0}: stacked bar chart with {1, plural, one {# category} other {# categories}}. The full breakdown follows in the data table.</source>
+      </segment>
+    </unit>
+    <unit id="aria.fallback">
+      <segment>
+        <source>Stacked bar chart</source>
+      </segment>
+    </unit>
   </file>
 </xliff>

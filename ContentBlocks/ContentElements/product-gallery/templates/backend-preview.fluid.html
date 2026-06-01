@@ -21,16 +21,34 @@
         <f:if condition="{data.header}">
             <h3 class="d-ce-preview__title">{data.header}</h3>
         </f:if>
+        <f:if condition="{data.price}">
+            <div class="d-ce-preview__field">
+                <span class="d-ce-preview__label">Price</span>
+                <span class="d-ce-preview__value">{data.price}<f:if condition="{data.compare_at_price}"> (was {data.compare_at_price})</f:if></span>
+            </div>
+        </f:if>
+        <f:if condition="{data.availability}">
+            <div class="d-ce-preview__field">
+                <span class="d-ce-preview__label">Availability</span>
+                <span class="d-ce-preview__value">{data.availability}</span>
+            </div>
+        </f:if>
+        <f:if condition="{data.highlights}">
+            <div class="d-ce-preview__field">
+                <span class="d-ce-preview__label">Highlights</span>
+                <span class="d-ce-preview__value">{data.highlights -> f:count()}</span>
+            </div>
+        </f:if>
+        <f:if condition="{data.cta_text}">
+            <div class="d-ce-preview__field">
+                <span class="d-ce-preview__label">CTA</span>
+                <span class="d-ce-preview__value">{data.cta_text}</span>
+            </div>
+        </f:if>
         <f:if condition="{data.caption}">
             <div class="d-ce-preview__field">
                 <span class="d-ce-preview__label">Caption</span>
                 <span class="d-ce-preview__value">{data.caption}</span>
-            </div>
-        </f:if>
-        <f:if condition="{data.columns}">
-            <div class="d-ce-preview__field">
-                <span class="d-ce-preview__label">Columns</span>
-                <span class="d-ce-preview__value">{data.columns}</span>
             </div>
         </f:if>
         <f:if condition="{data.images}">

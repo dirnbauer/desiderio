@@ -28,6 +28,45 @@ fields:
     rows: 6
     required: true
   -
+    identifier: series_name
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart/language/labels.xlf:chart.series_name.label'
+    description: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart/language/labels.xlf:chart.series_name.description'
+  -
+    identifier: value_unit
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart/language/labels.xlf:chart.value_unit.label'
+    description: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart/language/labels.xlf:chart.value_unit.description'
+  -
+    identifier: data_summary
+    type: Textarea
+    rows: 2
+    label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart/language/labels.xlf:chart.data_summary.label'
+    description: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart/language/labels.xlf:chart.data_summary.description'
+  -
+    identifier: data_points
+    type: Collection
+    table: desiderio_chart_data_points
+    prefixField: true
+    label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart/language/labels.xlf:chart.data_points.label'
+    description: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart/language/labels.xlf:chart.data_points.description'
+    labelField: point_label
+    fields:
+      -
+        identifier: point_label
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart/language/labels.xlf:chart.data_points.point_label'
+        required: true
+      -
+        identifier: point_value
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart/language/labels.xlf:chart.data_points.point_value'
+        required: true
+  -
     identifier: chart_type
     type: Select
     renderType: selectSingle

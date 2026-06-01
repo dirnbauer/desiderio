@@ -8,22 +8,32 @@
 <d:layout.section class="feature-matrix">
     <d:layout.container>
         <header class="feature-matrix__intro">
-            <f:if condition="{data.eyebrow}"><span class="feature-matrix__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span></f:if>
+            <f:if condition="{data.eyebrow}">
+                <d:atom.badge variant="secondary" class="feature-matrix__eyebrow">{data -> f:render.text(field: 'eyebrow')}</d:atom.badge>
+            </f:if>
             <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
         </header>
-        <d:molecule.card class="feature-matrix__table" role="table">
-            <div class="feature-matrix__head" role="row">
-                <span class="feature-matrix__label" role="columnheader">Feature</span>
-                <span class="feature-matrix__value" role="columnheader">{data.left_label -> f:or(alternative: 'Plan A')}</span>
-                <span class="feature-matrix__value" role="columnheader">{data.right_label -> f:or(alternative: 'Plan B')}</span>
-            </div>
-            <f:for each="{data.rows}" as="row">
-                <div class="feature-matrix__row" role="row">
-                    <span class="feature-matrix__label" role="cell">{row -> f:render.text(field: 'label')}</span>
-                    <span class="feature-matrix__value" role="cell">{row -> f:render.text(field: 'left_value')}</span>
-                    <span class="feature-matrix__value" role="cell">{row -> f:render.text(field: 'right_value')}</span>
-                </div>
-            </f:for>
+        <d:molecule.card class="feature-matrix__card">
+            <d:molecule.table class="feature-matrix__table">
+                <d:molecule.tableHeader>
+                    <d:molecule.tableRow>
+                        <d:molecule.tableCell header="{true}">
+                            <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:feature"/>
+                        </d:molecule.tableCell>
+                        <d:molecule.tableCell header="{true}" class="feature-matrix__value">{data.left_label -> f:or(alternative: 'Plan A')}</d:molecule.tableCell>
+                        <d:molecule.tableCell header="{true}" class="feature-matrix__value">{data.right_label -> f:or(alternative: 'Plan B')}</d:molecule.tableCell>
+                    </d:molecule.tableRow>
+                </d:molecule.tableHeader>
+                <tbody data-slot="table-body" class="[&_tr:last-child]:border-0">
+                    <f:for each="{data.rows}" as="row">
+                        <d:molecule.tableRow>
+                            <th scope="row" data-slot="table-head" class="h-10 px-2 text-left align-middle font-medium text-foreground">{row -> f:render.text(field: 'label')}</th>
+                            <d:molecule.tableCell class="feature-matrix__value">{row -> f:render.text(field: 'left_value')}</d:molecule.tableCell>
+                            <d:molecule.tableCell class="feature-matrix__value">{row -> f:render.text(field: 'right_value')}</d:molecule.tableCell>
+                        </d:molecule.tableRow>
+                    </f:for>
+                </tbody>
+            </d:molecule.table>
         </d:molecule.card>
     </d:layout.container>
 </d:layout.section>

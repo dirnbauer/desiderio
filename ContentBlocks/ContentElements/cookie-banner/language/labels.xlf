@@ -11,5 +11,60 @@
         <source>Use when the cookie banner should close the page with service, legal, or contact context.</source>
       </segment>
     </unit>
+    <unit id="field.content">
+      <segment>
+        <source>Cookie message</source>
+      </segment>
+    </unit>
+    <unit id="field.content.description">
+      <segment>
+        <source>Explain what cookies you set and why. Keep it short and link to the full policy.</source>
+      </segment>
+    </unit>
+    <unit id="field.accept_text">
+      <segment>
+        <source>Accept button label</source>
+      </segment>
+    </unit>
+    <unit id="field.decline_text">
+      <segment>
+        <source>Decline button label</source>
+      </segment>
+    </unit>
+    <unit id="field.settings_text">
+      <segment>
+        <source>Settings link label</source>
+      </segment>
+    </unit>
+    <unit id="field.settings_link">
+      <segment>
+        <source>Settings page link</source>
+      </segment>
+    </unit>
+    <unit id="field.settings_link.description">
+      <segment>
+        <source>Where the settings label points, e.g. a dedicated cookie preferences page.</source>
+      </segment>
+    </unit>
+    <unit id="item.position.bottom">
+      <segment>
+        <source>Bottom of the viewport</source>
+      </segment>
+    </unit>
+    <unit id="item.position.top">
+      <segment>
+        <source>Top of the viewport</source>
+      </segment>
+    </unit>
+    <unit id="aria.region">
+      <segment>
+        <source>{0}</source>
+      </segment>
+    </unit>
+    <unit id="aria.region.fallback">
+      <segment>
+        <source>Cookie consent</source>
+      </segment>
+    </unit>
   </file>
 </xliff>

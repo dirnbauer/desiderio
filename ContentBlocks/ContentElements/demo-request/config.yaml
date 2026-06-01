@@ -34,6 +34,12 @@ fields:
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:submit_text'
     default: 'Request demo'
   -
+    identifier: reassurance
+    type: Textarea
+    rows: 1
+    label: 'Reassurance Microcopy'
+    description: 'Short trust line shown under the heading, e.g. "30-minute call. No commitment."'
+  -
     identifier: image
     type: File
     label: 'Side Image'

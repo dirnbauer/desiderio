@@ -15,8 +15,9 @@
             <div class="product-reviews__summary">
                 <span class="product-reviews__avg-score">{data -> f:render.text(field: 'average_score')}</span>
                 <div class="product-reviews__stars">
+                    <span class="sr-only">Average rating {data.average_score} out of 5</span>
                     <f:for each="{0: 1, 1: 2, 2: 3, 3: 4, 4: 5}" as="star">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="none" class="product-reviews__star">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="none" class="product-reviews__star" aria-hidden="true" focusable="false">
                             <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
                         </svg>
                     </f:for>
@@ -32,10 +33,11 @@
                 <article class="product-reviews__review">
                     <div class="product-reviews__review-header">
                         <div class="product-reviews__review-stars">
+                            <span class="sr-only">Rated {review.rating} out of 5</span>
                             <f:for each="{0: 1, 1: 2, 2: 3, 3: 4, 4: 5}" as="star">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"
                                      fill="{f:if(condition: '{star} <= {review.rating}', then: 'currentColor', else: 'none')}"
-                                     stroke="currentColor" stroke-width="2"
+                                     stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"
                                      class="product-reviews__review-star {f:if(condition: '{star} <= {review.rating}', then: 'product-reviews__review-star--filled')}">
                                     <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
                                 </svg>

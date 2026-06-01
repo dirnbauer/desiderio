@@ -27,10 +27,22 @@
                 <span class="d-ce-preview__value">{data.description}</span>
             </div>
         </f:if>
-        <f:if condition="{data.chart_data}">
+        <f:if condition="{data.col_labels}">
             <div class="d-ce-preview__field">
-                <span class="d-ce-preview__label">Chart Data</span>
-                <span class="d-ce-preview__value">{data.chart_data}</span>
+                <span class="d-ce-preview__label">Columns</span>
+                <span class="d-ce-preview__value">{data.col_labels}</span>
+            </div>
+        </f:if>
+        <f:if condition="{data.series}">
+            <div class="d-ce-preview__field">
+                <span class="d-ce-preview__label">Rows and values</span>
+                <span class="d-ce-preview__value">{data.series}</span>
+            </div>
+        </f:if>
+        <f:if condition="{data.unit}">
+            <div class="d-ce-preview__field">
+                <span class="d-ce-preview__label">Unit</span>
+                <span class="d-ce-preview__value">{data.unit}</span>
             </div>
         </f:if>
     </div>

@@ -1,7 +1,12 @@
 {
-    "_type": "footer",
+    "_type": "conversion",
+    "header": "Follow along",
+    "description_text": "Product updates, behind-the-scenes notes, and the occasional hot take — pick your channel.",
     "link_items": [
-        []
-    ],
-    "description_text": "Compact support copy keeps the action understandable without overwhelming the surrounding content."
+        { "platform": "LinkedIn", "url": "https://www.linkedin.com/company/example" },
+        { "platform": "GitHub", "url": "https://github.com/example" },
+        { "platform": "YouTube", "url": "https://www.youtube.com/@example" },
+        { "platform": "X", "url": "https://x.com/example" },
+        { "platform": "Instagram", "url": "https://www.instagram.com/example" }
+    ]
 }

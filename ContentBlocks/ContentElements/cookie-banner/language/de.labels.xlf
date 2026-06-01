@@ -13,5 +13,71 @@
         <target>Einsetzen, wenn das Element Cookie Banner Serviceinformationen, Rechtliches oder Kontaktwege abschließen soll.</target>
       </segment>
     </unit>
+    <unit id="field.content">
+      <segment state="final">
+        <source>Cookie message</source>
+        <target>Cookie-Hinweis</target>
+      </segment>
+    </unit>
+    <unit id="field.content.description">
+      <segment state="final">
+        <source>Explain what cookies you set and why. Keep it short and link to the full policy.</source>
+        <target>Erklären Sie kurz, welche Cookies Sie setzen und warum, und verlinken Sie die vollständige Richtlinie.</target>
+      </segment>
+    </unit>
+    <unit id="field.accept_text">
+      <segment state="final">
+        <source>Accept button label</source>
+        <target>Beschriftung Akzeptieren-Schaltfläche</target>
+      </segment>
+    </unit>
+    <unit id="field.decline_text">
+      <segment state="final">
+        <source>Decline button label</source>
+        <target>Beschriftung Ablehnen-Schaltfläche</target>
+      </segment>
+    </unit>
+    <unit id="field.settings_text">
+      <segment state="final">
+        <source>Settings link label</source>
+        <target>Beschriftung Einstellungen-Link</target>
+      </segment>
+    </unit>
+    <unit id="field.settings_link">
+      <segment state="final">
+        <source>Settings page link</source>
+        <target>Link zur Einstellungsseite</target>
+      </segment>
+    </unit>
+    <unit id="field.settings_link.description">
+      <segment state="final">
+        <source>Where the settings label points, e.g. a dedicated cookie preferences page.</source>
+        <target>Ziel der Beschriftung, z. B. eine eigene Seite für Cookie-Einstellungen.</target>
+      </segment>
+    </unit>
+    <unit id="item.position.bottom">
+      <segment state="final">
+        <source>Bottom of the viewport</source>
+        <target>Unten im Sichtbereich</target>
+      </segment>
+    </unit>
+    <unit id="item.position.top">
+      <segment state="final">
+        <source>Top of the viewport</source>
+        <target>Oben im Sichtbereich</target>
+      </segment>
+    </unit>
+    <unit id="aria.region">
+      <segment state="final">
+        <source>{0}</source>
+        <target>{0}</target>
+      </segment>
+    </unit>
+    <unit id="aria.region.fallback">
+      <segment state="final">
+        <source>Cookie consent</source>
+        <target>Cookie-Einwilligung</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

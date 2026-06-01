@@ -26,17 +26,17 @@ fields:
   -
     identifier: video_url
     type: Text
-    label: 'Video URL'
-    description: 'YouTube or Vimeo embed URL'
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:video_url'
+    description: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:video_url.description'
   -
     identifier: video_file
     type: File
-    label: 'Video File'
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:video_file'
     allowed: common-media-types
     maxitems: 1
   -
     identifier: poster
     type: File
-    label: 'Poster Image'
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:poster_image'
     allowed: common-image-types
     maxitems: 1

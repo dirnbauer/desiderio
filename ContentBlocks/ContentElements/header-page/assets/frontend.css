@@ -23,11 +23,16 @@
     font-weight: 700;
     line-height: 1.1;
     margin-bottom: var(--d-spacing-3);
+    text-wrap: balance;
+}
+@media (min-width: 768px) {
+    .header-page__title { font-size: var(--d-text-5xl); }
 }
 .header-page__description {
     font-size: var(--d-text-lg);
     color: var(--d-muted-foreground);
     max-width: 42rem;
+    text-wrap: pretty;
 }
 .header-page--center .header-page__description {
     margin-inline: auto;

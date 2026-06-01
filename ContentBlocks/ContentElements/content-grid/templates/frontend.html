@@ -11,19 +11,31 @@
             <d:atom.typography tag="h2" variant="h2" class="content-grid__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
         </f:if>
 
-        <div class="content-grid__grid content-grid__grid--cols-{data.columns -> f:or(alternative: '2')}">
+        <d:layout.grid cols="{data.columns -> f:or(alternative: '2')}" gap="lg">
             <f:for each="{data.items}" as="item">
                 <d:molecule.card class="content-grid__item">
-                    <f:if condition="{item.title}"><h3 class="content-grid__title">{item -> f:render.text(field: 'title')}</h3></f:if>
+                    <f:if condition="{item.title}">
+                        <h3 class="content-grid__title">
+                            <f:if condition="{item.link.url}">
+                                <f:then>
+                                    <f:link.typolink parameter="{item.link}" class="content-grid__title-link">{item -> f:render.text(field: 'title')}</f:link.typolink>
+                                </f:then>
+                                <f:else>{item -> f:render.text(field: 'title')}</f:else>
+                            </f:if>
+                        </h3>
+                    </f:if>
                     <f:if condition="{item.content}">
                         <div class="content-grid__content">{item -> f:render.text(field: 'content')}</div>
                     </f:if>
                     <f:if condition="{item.link.url}">
-                        <f:link.typolink parameter="{item.link}" class="content-grid__link">Read more</f:link.typolink>
+                        <f:link.typolink parameter="{item.link}" class="content-grid__link" additionalAttributes="{'aria-hidden': 'true', 'tabindex': '-1'}">
+                            <f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/content-grid/language/labels.xlf:read_more" default="Read more"/>
+                            <span class="content-grid__link-arrow" aria-hidden="true">&#8594;</span>
+                        </f:link.typolink>
                     </f:if>
                 </d:molecule.card>
             </f:for>
-        </div>
+        </d:layout.grid>
     </d:layout.container>
 </d:layout.section>
 

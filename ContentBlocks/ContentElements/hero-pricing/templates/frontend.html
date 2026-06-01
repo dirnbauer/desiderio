@@ -7,18 +7,25 @@
     <d:layout.container>
         <div class="hero-pricing__grid">
             <div class="hero-pricing__content">
-                <f:if condition="{data.header}"><h1 class="hero-pricing__headline">{data -> f:render.text(field: 'header')}</h1></f:if>
-                <f:if condition="{data.subheadline}"><p class="hero-pricing__subheadline">{data -> f:render.text(field: 'subheadline')}</p></f:if>
+                <f:if condition="{data.header}">
+                    <d:atom.typography tag="h1" variant="h1" class="hero-pricing__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
+                </f:if>
+                <f:if condition="{data.subheadline}">
+                    <d:atom.typography variant="lead" class="hero-pricing__subheadline">{data -> f:render.text(field: 'subheadline')}</d:atom.typography>
+                </f:if>
             </div>
-            <div class="hero-pricing__card">
-                <div class="hero-pricing__price-row">
+            <div class="hero-pricing__card" data-slot="card">
+                <p class="hero-pricing__price-row">
                     <span class="hero-pricing__price">{data -> f:render.text(field: 'price')}</span>
                     <f:if condition="{data.price_period}"><span class="hero-pricing__period">/{data -> f:render.text(field: 'price_period')}</span></f:if>
-                </div>
+                </p>
                 <f:if condition="{data.feature_items}">
                     <ul class="hero-pricing__features">
                         <f:for each="{data.feature_items}" as="feature">
-                            <li class="hero-pricing__feature">{feature -> f:render.text(field: 'label')}</li>
+                            <li class="hero-pricing__feature">
+                                <d:atom.icon name="check" class="hero-pricing__feature-icon" />
+                                <span>{feature -> f:render.text(field: 'label')}</span>
+                            </li>
                         </f:for>
                     </ul>
                 </f:if>

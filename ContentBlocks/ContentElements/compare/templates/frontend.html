@@ -28,7 +28,7 @@
                     <p class="compare__panel-description">{data -> f:render.text(field: 'left_description')}</p>
                 </f:if>
                 <f:if condition="{data.left_points}">
-                    <ul class="compare__points">
+                    <ul class="compare__points compare__points--con">
                         <f:for each="{data.left_points}" as="point">
                             <f:if condition="{point.text}">
                                 <li class="compare__point">{point -> f:render.text(field: 'text')}</li>
@@ -38,23 +38,21 @@
                 </f:if>
                 <f:if condition="{data.left_button_text} && {data.left_button_link.url}">
                     <div class="compare__actions">
-                        <f:link.typolink parameter="{data.left_button_link}" class="compare__button compare__button--outline">
-                            {data -> f:render.text(field: 'left_button_text')}
-                        </f:link.typolink>
+                        <d:atom.button href="{data.left_button_link.url}" target="{data.left_button_link.target}" variant="outline" class="compare__button">{data -> f:render.text(field: 'left_button_text')}</d:atom.button>
                     </div>
                 </f:if>
             </article>
 
             <article class="compare__panel compare__panel--accent">
                 <f:if condition="{data.right_badge}">
-                    <span class="compare__badge">{data -> f:render.text(field: 'right_badge')}</span>
+                    <d:atom.badge variant="default" class="compare__badge">{data -> f:render.text(field: 'right_badge')}</d:atom.badge>
                 </f:if>
                 <h3 class="compare__title">{data -> f:render.text(field: 'right_title')}</h3>
                 <f:if condition="{data.right_description}">
                     <p class="compare__panel-description">{data -> f:render.text(field: 'right_description')}</p>
                 </f:if>
                 <f:if condition="{data.right_points}">
-                    <ul class="compare__points">
+                    <ul class="compare__points compare__points--pro">
                         <f:for each="{data.right_points}" as="point">
                             <f:if condition="{point.text}">
                                 <li class="compare__point">{point -> f:render.text(field: 'text')}</li>
@@ -64,9 +62,7 @@
                 </f:if>
                 <f:if condition="{data.right_button_text} && {data.right_button_link.url}">
                     <div class="compare__actions">
-                        <f:link.typolink parameter="{data.right_button_link}" class="compare__button">
-                            {data -> f:render.text(field: 'right_button_text')}
-                        </f:link.typolink>
+                        <d:atom.button href="{data.right_button_link.url}" target="{data.right_button_link.target}" variant="default" class="compare__button">{data -> f:render.text(field: 'right_button_text')}</d:atom.button>
                     </div>
                 </f:if>
             </article>

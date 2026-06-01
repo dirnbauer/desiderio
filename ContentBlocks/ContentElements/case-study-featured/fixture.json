@@ -1,5 +1,13 @@
 {
     "_type": "section",
-    "header": "Case Study Featured for credible trust signals",
-    "description": "Show quality, adoption, and outcomes with focused credibility signals."
+    "eyebrow": "Featured case study",
+    "header": "How Lumen Health cut report turnaround by 70%",
+    "client_name": "Lumen Health",
+    "description": "Lumen's analysts spent two days a week stitching spreadsheets together. We replaced that with live dashboards wired straight to their warehouse. Within a quarter, reporting went from 16 hours to under 5, and every clinic now sees the same numbers in real time.",
+    "metrics": [
+        { "value": "70%", "label": "faster reporting" },
+        { "value": "16h to 5h", "label": "weekly time saved" },
+        { "value": "24", "label": "clinics onboarded" },
+        { "value": "99.9%", "label": "data uptime" }
+    ]
 }

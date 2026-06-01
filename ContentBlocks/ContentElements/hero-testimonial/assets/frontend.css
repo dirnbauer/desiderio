@@ -1,33 +1,42 @@
 .hero-testimonial__grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: var(--d-spacing-8);
+    gap: var(--d-spacing-2xl);
     align-items: center;
     padding-block: var(--d-spacing-12);
 }
+@media (max-width: 768px) {
+    .hero-testimonial__grid {
+        grid-template-columns: 1fr;
+        gap: var(--d-spacing-xl);
+    }
+}
 .hero-testimonial__headline {
-    font-size: var(--d-text-4xl);
-    font-weight: 700;
-    line-height: 1.1;
-    margin-bottom: var(--d-spacing-4);
+    margin: 0 0 var(--d-spacing-4);
 }
 .hero-testimonial__subheadline {
-    font-size: var(--d-text-lg);
-    color: var(--d-muted-foreground);
-    margin-bottom: var(--d-spacing-6);
+    margin: 0 0 var(--d-spacing-6);
+}
+.hero-testimonial__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--d-spacing-3);
 }
 .hero-testimonial__quote-card {
+    margin: 0;
     padding: var(--d-spacing-8);
     background: var(--d-card);
     border: 1px solid var(--d-border);
     border-radius: var(--d-radius-lg);
 }
 .hero-testimonial__quote {
-    font-size: var(--d-text-lg);
-    font-style: italic;
-    color: var(--d-foreground);
     margin: 0 0 var(--d-spacing-6);
+    font-size: var(--d-text-lg);
     line-height: 1.6;
+    color: var(--d-foreground);
+}
+.hero-testimonial__quote p {
+    margin: 0;
 }
 .hero-testimonial__author {
     display: flex;
@@ -35,14 +44,27 @@
     gap: var(--d-spacing-3);
 }
 .hero-testimonial__avatar {
+    display: block;
+    flex-shrink: 0;
     width: 3rem;
     height: 3rem;
-    border-radius: 50%;
+    border-radius: var(--d-radius-full);
+    overflow: hidden;
+}
+.hero-testimonial__avatar-image {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
+}
+.hero-testimonial__author-info {
+    display: flex;
+    flex-direction: column;
 }
 .hero-testimonial__author-name {
     font-weight: 600;
     font-size: var(--d-text-sm);
+    font-style: normal;
+    color: var(--d-foreground);
 }
 .hero-testimonial__author-role {
     font-size: var(--d-text-xs);

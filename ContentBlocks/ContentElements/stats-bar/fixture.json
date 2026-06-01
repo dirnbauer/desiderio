@@ -1,18 +1,28 @@
 {
     "_type": "stats",
-    "header": "Bar Stats for credible trust signals",
+    "eyebrow": "Service levels",
+    "header": "Reliability our customers can plan around",
+    "subheadline": "Measured across all production workspaces over the last 90 days, reported in real time on our public status page.",
     "items": [
         {
-            "value": "24K",
-            "label": "Mobile polish"
+            "label": "API uptime",
+            "value": "99.98%",
+            "percentage": 100
         },
         {
-            "value": "4.9",
-            "label": "Token coverage"
+            "label": "Tickets resolved within SLA",
+            "value": "96%",
+            "percentage": 96
         },
         {
-            "value": "12 ms",
-            "label": "Trust lift"
+            "label": "Customers on the latest release",
+            "value": "88%",
+            "percentage": 88
+        },
+        {
+            "label": "Onboarding completed in week one",
+            "value": "74%",
+            "percentage": 74
         }
     ]
 }

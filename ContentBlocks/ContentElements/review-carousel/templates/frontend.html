@@ -5,6 +5,12 @@
 
 <f:asset.css identifier="d-review-carousel" href="{cb:assetPath()}/frontend.css"/>
 
+<f:variable name="carouselLabel"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:carousel.region"/></f:variable>
+<f:variable name="prevLabel"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:carousel.previous"/></f:variable>
+<f:variable name="nextLabel"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:carousel.next"/></f:variable>
+<f:variable name="dotLabel"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:carousel.goto"/></f:variable>
+<f:variable name="slideLabel"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:carousel.slide"/></f:variable>
+
 <d:layout.section class="review-carousel">
     <d:layout.container>
         <f:if condition="{data.eyebrow} || {data.header}">
@@ -13,15 +19,25 @@
                     <span class="review-carousel__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span>
                 </f:if>
                 <f:if condition="{data.header}">
-                    <h2 class="review-carousel__headline">{data -> f:render.text(field: 'header')}</h2>
+                    <d:atom.typography tag="h2" variant="h2" class="review-carousel__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
                 </f:if>
             </header>
         </f:if>
 
-        <div class="review-carousel__track">
+        <div class="review-carousel__track hero-carousel"
+             role="group"
+             aria-roledescription="carousel"
+             aria-label="{carouselLabel}"
+             data-astro-carousel
+             data-astro-carousel-labels="{prevLabel}|{nextLabel}|{dotLabel}">
             <f:for each="{data.reviews}" as="review" iteration="iter">
-                <article class="review-carousel__slide {f:if(condition: iter.isFirst, then: 'review-carousel__slide--active')}">
-                    <div class="review-carousel__stars">
+                <article class="review-carousel__slide{f:if(condition: iter.isFirst, then: ' hero-carousel__slide--active')}"
+                         data-astro-carousel-slide
+                         role="group"
+                         aria-roledescription="{slideLabel}"
+                         aria-label="{iter.cycle} / {iter.total}"
+                         aria-hidden="{f:if(condition: iter.isFirst, then: 'false', else: 'true')}">
+                    <div class="review-carousel__stars" aria-hidden="true">
                         <f:for each="{0: 1, 1: 2, 2: 3, 3: 4, 4: 5}" as="star">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
                                  fill="{f:if(condition: '{star} <= {review.rating}', then: 'currentColor', else: 'none')}"
@@ -31,17 +47,18 @@
                             </svg>
                         </f:for>
                     </div>
+                    <span class="sr-only">Rated {review.rating -> f:or(alternative: '5')} out of 5</span>
                     <f:if condition="{review.title}">
                         <h3 class="review-carousel__title">{review -> f:render.text(field: 'title')}</h3>
                     </f:if>
-                    <p class="review-carousel__text">{review -> f:render.text(field: 'review_text')}</p>
+                    <blockquote class="review-carousel__text">{review -> f:render.text(field: 'review_text')}</blockquote>
                     <div class="review-carousel__reviewer">
                         <f:if condition="{review.reviewer_image}">
                             <f:for each="{review.reviewer_image}" as="fileReference">
-                                <f:image image="{fileReference}" width="40" height="40" alt="{review.reviewer_name}" class="review-carousel__avatar"/>
+                                <f:image image="{fileReference}" width="40" height="40" alt="" loading="lazy" class="review-carousel__avatar"/>
                             </f:for>
                         </f:if>
-                        <div>
+                        <div class="review-carousel__meta">
                             <span class="review-carousel__name">{review -> f:render.text(field: 'reviewer_name')}</span>
                             <f:if condition="{review.date}">
                                 <span class="review-carousel__date">{review -> f:render.text(field: 'date')}</span>
@@ -50,11 +67,7 @@
                     </div>
                 </article>
             </f:for>
-        </div>
-
-        <div class="review-carousel__nav">
-            <button type="button" class="review-carousel__prev" aria-label="Previous">&#8592;</button>
-            <button type="button" class="review-carousel__next" aria-label="Next">&#8594;</button>
+            <p class="sr-only" aria-live="polite" data-astro-carousel-status></p>
         </div>
     </d:layout.container>
 </d:layout.section>

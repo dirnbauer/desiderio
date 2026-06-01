@@ -8,7 +8,82 @@
     </unit>
     <unit id="description">
       <segment>
-        <source>Use when the sparkline chart should show trends or rates of change over time.</source>
+        <source>Use when a compact inline trend line should summarise one metric inside a KPI card.</source>
+      </segment>
+    </unit>
+    <unit id="field.series_label">
+      <segment>
+        <source>Series name</source>
+      </segment>
+    </unit>
+    <unit id="field.series_label.description">
+      <segment>
+        <source>What the sparkline measures, e.g. "Weekly active users". Used as the data-table column header and announced to screen readers.</source>
+      </segment>
+    </unit>
+    <unit id="field.unit">
+      <segment>
+        <source>Value unit</source>
+      </segment>
+    </unit>
+    <unit id="field.unit.description">
+      <segment>
+        <source>Short unit shown after every value, e.g. "users", "% MoM", or "k USD". Leave empty for plain numbers.</source>
+      </segment>
+    </unit>
+    <unit id="field.data_points">
+      <segment>
+        <source>Data points</source>
+      </segment>
+    </unit>
+    <unit id="field.data_points.description">
+      <segment>
+        <source>One point per line as "Period | Value", e.g. Jul | 42100. Keep them in time order. Drives the screen-reader data table; match the same labels and values in the chart data JSON below.</source>
+      </segment>
+    </unit>
+    <unit id="field.chart_data.description">
+      <segment>
+        <source>JSON array the sparkline is drawn from, in time order: [{"label":"Jul","value":42100}]. Match the labels and values entered under Data points.</source>
+      </segment>
+    </unit>
+    <unit id="field.trend_badge">
+      <segment>
+        <source>Trend badge</source>
+      </segment>
+    </unit>
+    <unit id="field.trend_badge.description">
+      <segment>
+        <source>Optional pill shown beside the title, e.g. "+12.4% vs last quarter". An up, down or flat arrow is added automatically from the net change.</source>
+      </segment>
+    </unit>
+    <unit id="field.color_variant.description">
+      <segment>
+        <source>Chart palette colour used for the sparkline and its fill.</source>
+      </segment>
+    </unit>
+    <unit id="aria.fallback">
+      <segment>
+        <source>Sparkline</source>
+      </segment>
+    </unit>
+    <unit id="aria.summary">
+      <segment>
+        <source>{0}: {1} sparkline across {2, plural, one {# point} other {# points}} from {3} to {4}{5}. The full series follows in the data table.</source>
+      </segment>
+    </unit>
+    <unit id="aria.summary.latest">
+      <segment>
+        <source>, latest {0} at {1}</source>
+      </segment>
+    </unit>
+    <unit id="table.period">
+      <segment>
+        <source>Period</source>
+      </segment>
+    </unit>
+    <unit id="table.net_change">
+      <segment>
+        <source>Net change (first to last)</source>
       </segment>
     </unit>
   </file>

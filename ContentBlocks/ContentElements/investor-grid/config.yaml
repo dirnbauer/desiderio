@@ -41,8 +41,8 @@ fields:
       -
         identifier: type
         type: Text
-        label: Type
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:investor_round'
       -
         identifier: link
         type: Link
-        label: Website
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:link'

@@ -1,23 +1,32 @@
 {
     "_type": "grid",
-    "header": "Bento Feature Section for premium product storytelling",
-    "subheadline": "Explain the benefit in one sentence before showing details or proof.",
+    "header": "One platform, every workflow covered",
+    "subheadline": "From first sync to board-ready report, each piece is built to work together out of the box.",
     "items": [
         {
-            "title": "Bento Feature Section for premium product storytelling",
-            "description": "Use short feature copy so teams can compare capabilities without noise."
+            "title": "Unified data warehouse",
+            "description": "Every source lands in one governed store, so your team queries a single source of truth instead of stitching exports together.",
+            "size": "wide"
         },
         {
-            "title": "Bento Feature Section for premium product storytelling",
-            "description": "Show concrete product context with crisp icons and balanced responsive spacing."
+            "title": "SOC 2 Type II secure",
+            "description": "Encryption at rest and in transit, SSO, and full audit logs keep security and legal teams comfortable.",
+            "size": "tall"
         },
         {
-            "title": "Bento Feature Section for premium product storytelling",
-            "description": "Explain the benefit in one sentence before showing details or proof."
+            "title": "Sub-second queries",
+            "description": "A columnar engine returns answers on billions of rows before your coffee cools.",
+            "size": "small"
         },
         {
-            "title": "Bento Feature Section for premium product storytelling",
-            "description": "Use short feature copy so teams can compare capabilities without noise."
+            "title": "Alerts that reach people",
+            "description": "Route anomalies straight to Slack or email the moment a metric moves.",
+            "size": "small"
+        },
+        {
+            "title": "No-code report builder",
+            "description": "Drag, drop, and publish a polished dashboard without writing a line of SQL.",
+            "size": "wide"
         }
     ]
 }

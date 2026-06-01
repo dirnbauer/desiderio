@@ -36,9 +36,13 @@ fields:
         identifier: name
         type: Textarea
         rows: 1
-        label: 'Partner Name'
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:partner.name'
         required: true
+      -
+        identifier: kind
+        type: Text
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:partner.kind'
       -
         identifier: link
         type: Link
-        label: Website
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:partner.link'

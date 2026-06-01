@@ -6,12 +6,13 @@
 <f:asset.css identifier="d-quote" href="{cb:assetPath()}/frontend.css"/>
 
 <d:layout.section class="quote-section">
-    <d:layout.container>
+    <d:layout.container size="md">
         <f:if condition="{data.header}">
             <d:atom.typography tag="h2" variant="h2" class="quote-section__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
         </f:if>
 
         <figure class="quote quote--{data.variant -> f:or(alternative: 'bordered')}">
+            <span class="quote__mark" aria-hidden="true">&#8220;</span>
             <blockquote class="quote__text">
                 <p>{data -> f:render.text(field: 'quote_text')}</p>
             </blockquote>

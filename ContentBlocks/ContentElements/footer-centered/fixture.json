@@ -1,9 +1,12 @@
 {
     "_type": "footer",
+    "brand": "Northwind",
     "link_items": [
-        {
-            "label": "Launch velocity"
-        }
+        { "label": "Product" },
+        { "label": "Pricing" },
+        { "label": "Docs" },
+        { "label": "Privacy" },
+        { "label": "Terms" }
     ],
-    "copyright": "Helpful service links, legal context, and brand details stay readable across footer layouts."
+    "copyright": "© 2026 Northwind Labs, Inc. All rights reserved."
 }

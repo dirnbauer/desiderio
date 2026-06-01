@@ -1,22 +1,33 @@
 {
     "_type": "stats",
-    "header": "Leaderboard for live product intelligence",
+    "header": "Top contributors this month",
+    "description": "Ranked by points earned for merged pull requests, answered questions, and docs.",
     "items": [
         {
-            "value": "12 ms",
-            "name": "Noah Ritter"
+            "name": "Noah Ritter",
+            "value": "4,820 pts",
+            "subtitle": "Platform team"
         },
         {
-            "value": "AA",
-            "name": "Lea Fischer"
+            "name": "Lea Fischer",
+            "value": "4,310 pts",
+            "subtitle": "Design systems"
         },
         {
-            "value": "2.4K",
-            "name": "Mara Weiss"
+            "name": "Mara Weiss",
+            "value": "3,975 pts",
+            "subtitle": "Developer relations"
         },
         {
-            "value": "128",
-            "name": "Jonas Klein"
+            "name": "Jonas Klein",
+            "value": "3,540 pts",
+            "subtitle": "Community moderator"
+        },
+        {
+            "name": "Priya Nair",
+            "value": "3,120 pts",
+            "subtitle": "Open-source maintainer"
         }
-    ]
+    ],
+    "show_rank": 1
 }

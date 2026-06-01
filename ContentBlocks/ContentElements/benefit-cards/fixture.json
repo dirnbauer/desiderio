@@ -1,22 +1,40 @@
 {
     "_type": "grid",
-    "header": "Benefit Cards for premium product storytelling",
-    "subheadline": "Explain the benefit in one sentence before showing details or proof.",
+    "header": "Everything you need to ship with confidence",
+    "eyebrow": "Why teams switch",
+    "subheadline": "One platform that replaces five tools, so your team stops stitching workflows together and starts shipping.",
+    "columns": "3",
     "items": [
         {
-            "icon": "globe",
-            "title": "Benefit Cards for premium product storytelling",
-            "description": "Show concrete product context with crisp icons and balanced responsive spacing."
+            "icon": "zap",
+            "title": "Launch in minutes",
+            "description": "Connect your stack and go live the same afternoon. No migration project, no professional-services contract.",
+            "link": "t3://page?uid=1"
+        },
+        {
+            "icon": "shield-check",
+            "title": "Enterprise-grade security",
+            "description": "SOC 2 Type II, SSO, and granular roles keep security and compliance teams comfortable from day one."
+        },
+        {
+            "icon": "chart",
+            "title": "Decisions backed by data",
+            "description": "Live dashboards turn raw events into the three metrics your team actually acts on each week."
+        },
+        {
+            "icon": "users",
+            "title": "Built for collaboration",
+            "description": "Shared workspaces, comments, and audit trails keep design, product, and engineering on the same page."
         },
         {
             "icon": "clock",
-            "title": "Benefit Cards for premium product storytelling",
-            "description": "Explain the benefit in one sentence before showing details or proof."
+            "title": "Hours back every week",
+            "description": "Automations handle the repetitive busywork, freeing roughly 40 hours per person each month."
         },
         {
-            "icon": "check-circle",
-            "title": "Benefit Cards for premium product storytelling",
-            "description": "Use short feature copy so teams can compare capabilities without noise."
+            "icon": "globe",
+            "title": "Fast everywhere",
+            "description": "Content is served from 200+ edge locations, so every customer loads in under 100 milliseconds."
         }
     ]
 }

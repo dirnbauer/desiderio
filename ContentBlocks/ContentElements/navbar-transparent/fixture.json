@@ -1,11 +1,14 @@
 {
     "_type": "nav",
-    "brand": "Studio Atlas",
+    "header": "Primary",
+    "brand": "Northwind Studio",
+    "brand_link": "t3://page?uid=1",
     "nav_items": [
-        "Overview",
-        "Components",
-        "Examples",
-        "Pricing"
+        { "label": "Product", "link": "t3://page?uid=1" },
+        { "label": "Features", "link": "t3://page?uid=1" },
+        { "label": "Pricing", "link": "t3://page?uid=1" },
+        { "label": "Docs", "link": "https://ui.shadcn.com/docs" }
     ],
-    "button_text": "Start conversation"
+    "button_text": "Start free trial",
+    "button_link": "t3://page?uid=1"
 }

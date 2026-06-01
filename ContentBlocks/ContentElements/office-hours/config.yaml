@@ -1,7 +1,7 @@
 name: desiderio/office-hours
 typeName: desiderio_officehours
-title: 'Office Hours'
-description: 'Use when the office hours should introduce people, roles, culture, or hiring context.'
+title: 'Office Hours Data View'
+description: 'Use when the office hours data view should introduce people, roles, culture, or hiring context.'
 group: conversion
 prefixFields: false
 basics:
@@ -24,6 +24,7 @@ fields:
     table: office_hours_hours_items
     prefixField: true
     label: Hours
+    description: 'One row per day or day range. Use "Closed" in the Hours field for days you are not open.'
     minItems: 1
     fields:
       -

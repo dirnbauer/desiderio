@@ -1,19 +1,27 @@
 {
     "_type": "grid",
-    "header": "Trust Badges for credible trust signals",
-    "subheadline": "Build trust with specific evidence, attribution, and compact proof points.",
+    "header": "Enterprise-grade security and compliance",
+    "subheadline": "Independently audited and certified, so your data is protected by design.",
     "badge_items": [
         {
-            "label": "Mobile polish"
+            "label": "SOC 2 Type II",
+            "description_text": "Audited annually by an independent firm"
         },
         {
-            "label": "Token coverage"
+            "label": "GDPR compliant",
+            "description_text": "EU data residency and processing controls"
         },
         {
-            "label": "Trust lift"
+            "label": "ISO 27001",
+            "description_text": "Certified information security management"
         },
         {
-            "label": "Signal quality"
+            "label": "256-bit encryption",
+            "description_text": "Data encrypted in transit and at rest"
+        },
+        {
+            "label": "99.9% uptime SLA",
+            "description_text": "Backed by a financially guaranteed contract"
         }
     ]
 }

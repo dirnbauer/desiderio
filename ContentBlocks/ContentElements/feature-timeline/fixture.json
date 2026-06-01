@@ -1,19 +1,27 @@
 {
     "_type": "list",
-    "header": "Timeline Feature Section for premium product storytelling",
-    "subheadline": "Explain the benefit in one sentence before showing details or proof.",
+    "header": "From sign-up to first published page",
+    "subheadline": "A guided four-step onboarding that gets new teams live in their first week.",
     "items": [
         {
-            "title": "Timeline Feature Section for premium product storytelling",
-            "description": "Use short feature copy so teams can compare capabilities without noise."
+            "step": "1",
+            "title": "Connect your site",
+            "description": "Point Desiderio at your domain and import existing pages. No code changes and nothing to install on your server."
         },
         {
-            "title": "Timeline Feature Section for premium product storytelling",
-            "description": "Show concrete product context with crisp icons and balanced responsive spacing."
+            "step": "2",
+            "title": "Pick a starter theme",
+            "description": "Choose a preset and adjust brand colours, fonts, and spacing once. Every block inherits the look automatically."
         },
         {
-            "title": "Timeline Feature Section for premium product storytelling",
-            "description": "Explain the benefit in one sentence before showing details or proof."
+            "step": "3",
+            "title": "Build with content blocks",
+            "description": "Assemble pages from ready-made sections, edit copy inline, and preview on real breakpoints before you ship."
+        },
+        {
+            "step": "4",
+            "title": "Publish and measure",
+            "description": "Go live in one click, then watch traffic and conversions per page so you know what to improve next."
         }
     ]
 }

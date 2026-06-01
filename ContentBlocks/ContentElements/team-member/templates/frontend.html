@@ -12,7 +12,7 @@
                 <f:if condition="{data.image}">
                     <div class="team-member__image-wrapper">
                         <f:for each="{data.image}" as="fileReference">
-                            <f:image image="{fileReference}" maxWidth="480" alt="{data.header}" class="team-member__image"/>
+                            <f:image image="{fileReference}" maxWidth="480" alt="" loading="lazy" decoding="async" class="team-member__image"/>
                         </f:for>
                     </div>
                 </f:if>
@@ -21,19 +21,31 @@
                     <f:if condition="{data.role}"><p class="team-member__role">{data -> f:render.text(field: 'role')}</p></f:if>
                     <f:if condition="{data.bio}"><p class="team-member__bio">{data -> f:render.text(field: 'bio')}</p></f:if>
                     <f:if condition="{data.email} || {data.phone}">
-                        <div class="team-member__contact">
-                            <f:if condition="{data.email}"><span class="team-member__email">{data -> f:render.text(field: 'email')}</span></f:if>
-                            <f:if condition="{data.phone}"><span class="team-member__phone">{data -> f:render.text(field: 'phone')}</span></f:if>
-                        </div>
+                        <dl class="team-member__contact">
+                            <f:if condition="{data.email}">
+                                <div class="team-member__contact-item">
+                                    <dt class="team-member__contact-label"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:team.email">Email</f:translate></dt>
+                                    <dd class="team-member__contact-value"><a href="mailto:{data.email}" class="team-member__contact-link">{data -> f:render.text(field: 'email')}</a></dd>
+                                </div>
+                            </f:if>
+                            <f:if condition="{data.phone}">
+                                <div class="team-member__contact-item">
+                                    <dt class="team-member__contact-label"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:team.call">Call</f:translate></dt>
+                                    <dd class="team-member__contact-value"><a href="tel:{data.phone}" class="team-member__contact-link">{data -> f:render.text(field: 'phone')}</a></dd>
+                                </div>
+                            </f:if>
+                        </dl>
                     </f:if>
                     <f:if condition="{data.social_links}">
-                        <div class="team-member__socials">
+                        <ul class="team-member__socials" role="list">
                             <f:for each="{data.social_links}" as="item">
                                 <f:if condition="{item.url.url}">
-                                    <f:link.typolink parameter="{item.url}" class="team-member__social-link">{item -> f:render.text(field: 'platform')}</f:link.typolink>
+                                    <li>
+                                        <f:link.typolink parameter="{item.url}" class="team-member__social-link">{item -> f:render.text(field: 'platform')}</f:link.typolink>
+                                    </li>
                                 </f:if>
                             </f:for>
-                        </div>
+                        </ul>
                     </f:if>
                 </div>
             </div>

@@ -2584,12 +2584,53 @@ PHP;
     private function normalizeFieldValue(mixed $value, array $fieldConfig): mixed
     {
         $normalized = $this->normalizeScalarValue($value);
+        $type = $fieldConfig['type'] ?? '';
+        if (!is_string($type)) {
+            $type = '';
+        }
 
-        if (($fieldConfig['type'] ?? '') !== 'Select') {
+        if (in_array($type, ['Date', 'DateTime'], true)) {
+            return $this->normalizeDateTimeFieldValue($normalized);
+        }
+
+        if ($type !== 'Select') {
             return $normalized;
         }
 
         return $this->normalizeSelectValue($normalized, $fieldConfig);
+    }
+
+    private function normalizeDateTimeFieldValue(mixed $value): int|string
+    {
+        if ($value instanceof \DateTimeInterface) {
+            return $value->getTimestamp();
+        }
+
+        if (is_int($value)) {
+            return $value;
+        }
+
+        if (is_float($value)) {
+            return (int)$value;
+        }
+
+        if (is_string($value)) {
+            $trimmedValue = trim($value);
+            if ($trimmedValue === '') {
+                return '';
+            }
+
+            if (preg_match('/^-?\d+$/', $trimmedValue) === 1) {
+                return (int)$trimmedValue;
+            }
+
+            $timestamp = strtotime($trimmedValue);
+            if ($timestamp !== false) {
+                return $timestamp;
+            }
+        }
+
+        return '';
     }
 
     /**

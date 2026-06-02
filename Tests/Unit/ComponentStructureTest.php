@@ -75,7 +75,9 @@ final class ComponentStructureTest extends TestCase
     {
         $card = (string) file_get_contents(self::COMPONENTS_DIR . '/Molecule/Card/Card.fluid.html');
 
-        foreach (['rounded-none', 'ring-1 ring-foreground/10', 'px-4', 'data-[size=sm]:px-3'] as $class) {
+        // Radius is tokenized to the shadcn --radius scale (rounded-xl), so it switches
+        // per preset; for the flat radix-lyra preset (--radius: 0) it still renders square.
+        foreach (['rounded-xl', 'ring-1 ring-foreground/10', 'px-4', 'data-[size=sm]:px-3'] as $class) {
             self::assertStringContainsString($class, $card);
         }
 

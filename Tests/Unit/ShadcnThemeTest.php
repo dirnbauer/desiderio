@@ -125,6 +125,40 @@ final class ShadcnThemeTest extends TestCase
         self::assertStringContainsString('body[data-icon-library="remixicon"] .d-icon[data-icon-library="remixicon"]', $componentsCss);
     }
 
+    public function testControlShapeTokensSwitchPerPreset(): void
+    {
+        // Approach D: component shape (radius + control density) follows preset-switchable
+        // tokens, so switching the shadcn preset re-cascades shape at runtime.
+        $tailwindSource = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Tailwind/desiderio.css');
+        foreach (['@utility d-control-h', '@utility d-control-text', '@utility d-control-px'] as $utility) {
+            self::assertStringContainsString($utility, $tailwindSource);
+        }
+        self::assertStringContainsString('var(--d-control-h', $tailwindSource);
+
+        // Token VALUES live per preset in shadcn-theme.css: default profile in :root,
+        // compact profile in the flat radix-lyra preset block.
+        $themeCss = (string) file_get_contents(__DIR__ . '/../../Resources/Public/Css/shadcn-theme.css');
+        self::assertStringContainsString('--d-control-h: 2.25rem;', $themeCss);
+        self::assertStringContainsString('--d-control-h: 2rem;', $themeCss);
+        self::assertStringContainsString('--d-control-text: 0.875rem;', $themeCss);
+
+        // The generated atoms reference the tokens instead of frozen literals.
+        $input = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Components/Atom/Input/Input.fluid.html');
+        self::assertStringContainsString('d-control-h', $input);
+        self::assertStringContainsString('rounded-md', $input);
+        self::assertStringContainsString('d-control-text', $input);
+        self::assertStringNotContainsString('rounded-none', $input);
+
+        // Radio buttons must stay circular regardless of preset.
+        $shadcnClass = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/Powermail/Partials/Form/ShadcnClass.html');
+        self::assertStringContainsString('rounded-full', $shadcnClass);
+
+        // The custom utilities compile and resolve their per-preset variables.
+        $tailwindCss = (string) file_get_contents(__DIR__ . '/../../Resources/Public/Css/desiderio-tailwind.css');
+        self::assertStringContainsString('height:var(--d-control-h', $tailwindCss);
+        self::assertStringContainsString('font-size:var(--d-control-text', $tailwindCss);
+    }
+
     public function testTailwindBuildScansFluidComponentsAndContentBlocks(): void
     {
         $tailwindCss = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Tailwind/desiderio.css');

@@ -70,6 +70,11 @@
   --shadow-xl: var(--d-shadow-xl);
   --shadow-2xl: var(--d-shadow-2xl);
   --spacing: 0.25rem;
+  /* Preset-switchable control density (Approach D): default profile. */
+  --d-control-h: 2.25rem;
+  --d-control-text: 0.875rem;
+  --d-control-leading: 1.25rem;
+  --d-control-px: 0.75rem;
 }
 
 .dark {
@@ -282,6 +287,11 @@ body[data-shadcn-preset="b6G5977cw"] {
   --chart-4: oklch(0.554 0.135 66.442);
   --chart-5: oklch(0.476 0.114 61.907);
   --radius: 0;
+  /* Preset-switchable control density (Approach D): compact profile. */
+  --d-control-h: 2rem;
+  --d-control-text: 0.75rem;
+  --d-control-leading: 1rem;
+  --d-control-px: 0.625rem;
   --sidebar: oklch(0.988 0.003 106.5);
   --sidebar-foreground: oklch(0.153 0.006 107.1);
   --sidebar-primary: oklch(0.228 0.013 107.4);

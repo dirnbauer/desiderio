@@ -75,6 +75,26 @@
   --tracking-tight: 0em;
 }
 
+/* ---------------------------------------------------------------------------
+ * Preset-switchable control shape (Approach D).
+ * Token VALUES live per preset in shadcn-theme.css (:root + body[data-shadcn-preset]),
+ * so switching the shadcn preset re-cascades control height / text / padding at
+ * runtime. Corner radius switches via shadcn's own --radius scale (rounded-md /
+ * rounded-xl), which every preset already declares.
+ * ------------------------------------------------------------------------- */
+@utility d-control-h {
+  height: var(--d-control-h, 2.25rem);
+}
+
+@utility d-control-text {
+  font-size: var(--d-control-text, 0.875rem);
+  line-height: var(--d-control-leading, 1.25rem);
+}
+
+@utility d-control-px {
+  padding-inline: var(--d-control-px, 0.75rem);
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;

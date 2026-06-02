@@ -6,6 +6,18 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Added
+
+- shadcn/ui component **shape now switches per preset at runtime**. Corner
+  radius follows each preset's `--radius` scale and form-control height, text
+  size, and inline padding follow new `--d-control-*` tokens (consumed via
+  `d-control-h` / `d-control-text` / `d-control-px` utilities). Selecting a
+  different `desiderio.shadcn.preset` in the site configuration re-themes
+  component shape — flat/compact radix-lyra vs. rounded/roomier presets —
+  through the `data-shadcn-preset` body attribute with no rebuild. Radio
+  inputs stay circular. Focus-ring and shadow remain on the shared structural
+  baseline of the synced style.
+
 ### Fixed
 
 - Gallery featured images now keep using `<f:image>` with structured Fluid

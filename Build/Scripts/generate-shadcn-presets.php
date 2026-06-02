@@ -31,18 +31,33 @@ $fonts = [
 ];
 $mono = '"JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace';
 
-// id, label, hue, lightAccent (needs dark foreground), radius rem, font key, icon library, compact
+// id, label, hue, lightAccent (needs dark foreground), radius rem, font key, icon,
+// density profile (compact|default|comfortable), focus-ring width, surface shadow (none|sm|md)
 $presets = [
-    ['aurora',   'Aurora — violet',   293, false, '0.625', 'inter',     'lucide',    false],
-    ['marine',   'Marine — blue',     259, false, '0.5',   'geist',     'tabler',    false],
-    ['forest',   'Forest — emerald',  158, false, '0.375', 'inter',     'phosphor',  false],
-    ['ember',    'Ember — orange',     55, false, '0.75',  'nunito',    'hugeicons', false],
-    ['bloom',    'Bloom — rose',       12, false, '1',     'inter',     'lucide',    false],
-    ['lagoon',   'Lagoon — teal',     185, false, '0.5',   'geist',     'phosphor',  false],
-    ['gold',     'Gold — amber',       85, true,  '0.375', 'inter',     'tabler',    false],
-    ['midnight', 'Midnight — indigo', 275, false, '0.625', 'inter',     'lucide',    false],
-    ['blossom',  'Blossom — pink',    350, false, '0.75',  'nunito',    'remixicon', false],
-    ['citrus',   'Citrus — lime mono',130, true,  '0.3',   'jetbrains', 'tabler',    true ],
+    ['aurora',   'Aurora — violet',   293, false, '0.625', 'inter',     'lucide',    'default',     '3px', 'sm'],
+    ['marine',   'Marine — blue',     259, false, '0.5',   'geist',     'tabler',    'comfortable', '2px', 'md'],
+    ['forest',   'Forest — emerald',  158, false, '0.375', 'inter',     'phosphor',  'default',     '2px', 'sm'],
+    ['ember',    'Ember — orange',     55, false, '0.75',  'nunito',    'hugeicons', 'comfortable', '3px', 'md'],
+    ['bloom',    'Bloom — rose',       12, false, '1',     'inter',     'lucide',    'default',     '3px', 'sm'],
+    ['lagoon',   'Lagoon — teal',     185, false, '0.5',   'geist',     'phosphor',  'compact',     '1px', 'none'],
+    ['gold',     'Gold — amber',       85, true,  '0.375', 'inter',     'tabler',    'default',     '2px', 'sm'],
+    ['midnight', 'Midnight — indigo', 275, false, '0.625', 'inter',     'lucide',    'comfortable', '3px', 'md'],
+    ['blossom',  'Blossom — pink',    350, false, '0.75',  'nunito',    'remixicon', 'default',     '2px', 'sm'],
+    ['citrus',   'Citrus — lime mono',130, true,  '0.3',   'jetbrains', 'tabler',    'compact',     '1px', 'none'],
+];
+
+// Control density profiles (default inherits :root). Empty array = no override.
+$densityProfiles = [
+    'compact' => ['--d-control-h' => '2rem', '--d-control-text' => '0.75rem', '--d-control-leading' => '1rem', '--d-control-px' => '0.625rem'],
+    'default' => [],
+    'comfortable' => ['--d-control-h' => '2.5rem', '--d-control-text' => '0.875rem', '--d-control-leading' => '1.5rem', '--d-control-px' => '0.875rem'],
+];
+
+// Surface elevation tokens (none is a valid transparent shadow, safe inside the box-shadow list).
+$shadowTokens = [
+    'none' => '0 0 #0000',
+    'sm' => 'var(--shadow-sm)',
+    'md' => 'var(--shadow-md)',
 ];
 
 /**
@@ -95,10 +110,10 @@ $enumLines = [];
 $mapLines = [];
 $iconLines = [];
 
-foreach ($presets as [$id, $label, $hue, $lightAccent, $radius, $fontKey, $icon, $compact]) {
+foreach ($presets as [$id, $label, $hue, $lightAccent, $radius, $fontKey, $icon, $density, $ringWidth, $shadow]) {
     $tokens = accentTokens($hue, $lightAccent);
 
-    // Light block: accent overrides + radius + fonts (+ compact density).
+    // Light block: accent + radius + fonts + density + focus-ring + elevation.
     $css .= "\nbody[data-shadcn-preset=\"{$id}\"] {\n";
     foreach ($tokens['light'] as $name => $value) {
         $css .= "  {$name}: {$value};\n";
@@ -107,12 +122,11 @@ foreach ($presets as [$id, $label, $hue, $lightAccent, $radius, $fontKey, $icon,
     $css .= "  --d-font-sans: {$fonts[$fontKey]};\n";
     $css .= "  --d-font-heading: var(--d-font-sans);\n";
     $css .= "  --d-font-mono: {$mono};\n";
-    if ($compact) {
-        $css .= "  --d-control-h: 2rem;\n";
-        $css .= "  --d-control-text: 0.75rem;\n";
-        $css .= "  --d-control-leading: 1rem;\n";
-        $css .= "  --d-control-px: 0.625rem;\n";
+    foreach ($densityProfiles[$density] as $name => $value) {
+        $css .= "  {$name}: {$value};\n";
     }
+    $css .= "  --d-ring-width: {$ringWidth};\n";
+    $css .= "  --d-surface-shadow: {$shadowTokens[$shadow]};\n";
     $css .= "}\n";
 
     // Dark block: accent overrides only (neutral dark base inherited from .dark).

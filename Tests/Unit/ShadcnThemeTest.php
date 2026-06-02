@@ -153,10 +153,21 @@ final class ShadcnThemeTest extends TestCase
         $shadcnClass = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/Powermail/Partials/Form/ShadcnClass.html');
         self::assertStringContainsString('rounded-full', $shadcnClass);
 
+        // Focus-ring width and card elevation are tokenized too.
+        self::assertStringContainsString('ring-[var(--d-ring-width)]', $input);
+        $card = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Components/Molecule/Card/Card.fluid.html');
+        self::assertStringContainsString('shadow-[var(--d-surface-shadow)]', $card);
+        self::assertStringContainsString('--d-ring-width: 3px;', $themeCss);
+        self::assertStringContainsString('--d-surface-shadow: 0 0 #0000;', $themeCss);
+        // The flat radix-lyra default keeps a 1px ring.
+        self::assertMatchesRegularExpression('/body\[data-shadcn-preset="b6G5977cw"\][^}]*--d-ring-width: 1px;/s', $themeCss);
+
         // The custom utilities compile and resolve their per-preset variables.
         $tailwindCss = (string) file_get_contents(__DIR__ . '/../../Resources/Public/Css/desiderio-tailwind.css');
         self::assertStringContainsString('height:var(--d-control-h', $tailwindCss);
         self::assertStringContainsString('font-size:var(--d-control-text', $tailwindCss);
+        self::assertStringContainsString('var(--d-ring-width)', $tailwindCss);
+        self::assertStringContainsString('var(--d-surface-shadow)', $tailwindCss);
     }
 
     public function testHousePresetsAreSelectableAndThemed(): void
@@ -181,6 +192,12 @@ final class ShadcnThemeTest extends TestCase
         // House presets re-theme the accent and radius; the mono preset is also compact.
         self::assertStringContainsString('--primary: oklch(0.55 0.2 293)', $themeCss);
         self::assertMatchesRegularExpression('/body\[data-shadcn-preset="citrus"\][^}]*--d-control-h: 2rem;/s', $themeCss);
+
+        // House presets also vary density, focus-ring width, and surface elevation.
+        self::assertMatchesRegularExpression('/body\[data-shadcn-preset="marine"\][^}]*--d-control-h: 2\.5rem;/s', $themeCss);
+        self::assertMatchesRegularExpression('/body\[data-shadcn-preset="marine"\][^}]*--d-ring-width: 2px;/s', $themeCss);
+        self::assertMatchesRegularExpression('/body\[data-shadcn-preset="marine"\][^}]*--d-surface-shadow: var\(--shadow-md\);/s', $themeCss);
+        self::assertMatchesRegularExpression('/body\[data-shadcn-preset="lagoon"\][^}]*--d-ring-width: 1px;/s', $themeCss);
     }
 
     public function testTailwindBuildScansFluidComponentsAndContentBlocks(): void

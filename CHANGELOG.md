@@ -27,6 +27,16 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
   elevation (`--d-surface-shadow`) are tokenized too, so presets can differ in
   focus treatment and depth as well.
 
+### Changed
+
+- The selected preset is now the single source of truth for the look. Removed
+  the inert `desiderio.theme.accent` setting (the preset owns the accent),
+  marked `desiderio.shadcn.style` read-only/advanced (it is the build-time
+  structural base — no runtime effect; the preset drives the live style),
+  relabelled the `desiderio.theme` settings category to **Appearance**
+  (dark-mode only), and stopped emitting the now-unused `data-accent` body
+  attribute.
+
 ### Fixed
 
 - Gallery featured images now keep using `<f:image>` with structured Fluid

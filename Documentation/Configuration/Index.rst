@@ -39,10 +39,6 @@ them in *Site Management → Settings* on each site.
     *   - ``desiderio.footer.style``
         - ``columns``
         - ``columns``, ``centered``, ``minimal``, ``mega``
-    *   - ``desiderio.theme.accent``
-        - ``slate``
-        - ``slate``, ``rose``, ``blue``, ``emerald``, ``amber``,
-          ``violet``, ``custom``
     *   - ``desiderio.theme.darkModeDefault``
         - ``system``
         - ``light``, ``dark``, ``system``
@@ -76,7 +72,7 @@ them in *Site Management → Settings* on each site.
 The base setup renders these settings into the ``<body>`` element as
 ``data-*`` attributes, including ``data-shadcn-preset``,
 ``data-shadcn-style``, ``data-icon-library``, ``data-density``,
-``data-container``, ``data-radius``, ``data-accent``, ``data-font``,
+``data-container``, ``data-radius``, ``data-font``,
 ``data-header-style``, and ``data-footer-style``.
 
 ..  _configuration-theme-presets:

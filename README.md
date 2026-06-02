@@ -286,11 +286,10 @@ declares the full schema; presets ship different defaults.
 | `desiderio.header.style`             | `solid`, `transparent`, `glass`, `sticky`            |
 | `desiderio.header.fixedPosition`     | `true`, `false`                                      |
 | `desiderio.footer.style`             | `columns`, `centered`, `minimal`, `mega`             |
-| `desiderio.theme.accent`             | `slate`, `rose`, `blue`, `emerald`, `amber`, `violet`, `custom` |
 | `desiderio.theme.darkModeDefault`    | `light`, `dark`, `system`                            |
 | `desiderio.theme.darkModeToggle`     | `true`, `false`                                      |
 | `desiderio.shadcn.preset`            | 5 create presets (`b0`, `b4hb38Fyj`, `b3IWPgRwnI`, `b6G5977cw`, `b27GcrRo`) + 10 house presets (`aurora`, `marine`, `forest`, `ember`, `bloom`, `lagoon`, `gold`, `midnight`, `blossom`, `citrus`), `custom`. See [Theme presets](#theme-presets). |
-| `desiderio.shadcn.style`             | `radix-vega`, `radix-nova`, `radix-maia`, `radix-lyra`, `radix-mira`, `radix-luma`, `radix-sera`, `radix-rhea`, `custom` |
+| `desiderio.shadcn.style`             | `radix-vega`…`radix-rhea`, `custom` — advanced/read-only; the preset drives the live look, this is the build-time structural base |
 | `desiderio.shadcn.iconLibrary`       | `lucide`, `tabler`, `hugeicons`, `phosphor`, `remixicon` |
 | `desiderio.typography.fontSans`      | `preset`, `inter`, `geist`, `system`, `serif`        |
 | `desiderio.styleguide.enabled`       | `true`, `false`                                      |

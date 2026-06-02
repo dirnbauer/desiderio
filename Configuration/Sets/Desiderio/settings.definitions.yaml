@@ -26,7 +26,7 @@ categories:
     label: 'Consent'
     parent: desiderio
   desiderio.theme:
-    label: 'Theme'
+    label: 'Appearance'
     parent: desiderio
   desiderio.shadcn:
     label: 'shadcn/ui'
@@ -238,21 +238,6 @@ settings:
     category: desiderio.consent
 
   # --------------------------------------------------------------- Theme
-  desiderio.theme.accent:
-    label: 'Accent palette'
-    description: 'Primary accent colour family.'
-    type: string
-    enum:
-      slate: 'Slate'
-      rose: 'Rose'
-      blue: 'Blue'
-      emerald: 'Emerald'
-      amber: 'Amber'
-      violet: 'Violet'
-      custom: 'Custom (uses theme.css)'
-    default: slate
-    category: desiderio.theme
-
   desiderio.theme.darkModeDefault:
     label: 'Default colour scheme'
     description: 'Which colour scheme to show before the visitor chooses one.'
@@ -297,8 +282,9 @@ settings:
     category: desiderio.shadcn
 
   desiderio.shadcn.style:
-    label: 'shadcn/ui style'
-    description: 'Derived source style for generated Fluid component recipes. Run npm run shadcn:sync-fluid after switching this value.'
+    label: 'shadcn/ui style (advanced)'
+    description: 'Advanced / build-time only. The live look follows the selected preset; this just records the shared structural base used the last time npm run shadcn:sync-fluid ran. Editing it here has no runtime effect, so it is read-only.'
+    readonly: true
     type: string
     enum:
       radix-vega: 'Vega'

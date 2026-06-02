@@ -17,6 +17,10 @@ final class IconRegistryTest extends TestCase
         self::assertSame('phosphor', IconRegistry::libraryForPreset('b3IWPgRwnI'));
         self::assertSame('tabler', IconRegistry::libraryForPreset('b6G5977cw'));
         self::assertSame('lucide', IconRegistry::libraryForPreset('b27GcrRo'));
+        self::assertSame('hugeicons', IconRegistry::libraryForPreset('ember'));
+        self::assertSame('phosphor', IconRegistry::libraryForPreset('forest'));
+        self::assertSame('remixicon', IconRegistry::libraryForPreset('blossom'));
+        self::assertSame('tabler', IconRegistry::libraryForPreset('citrus'));
         self::assertNull(IconRegistry::libraryForPreset('custom'));
     }
 

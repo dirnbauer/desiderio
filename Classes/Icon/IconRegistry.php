@@ -35,6 +35,12 @@ final class IconRegistry
             'b3IWPgRwnI', 'b4hb38Fyj' => 'phosphor',
             'b6G5977cw' => 'tabler',
             'b27GcrRo' => 'lucide',
+            // Desiderio house presets (see Build/Scripts/generate-shadcn-presets.php).
+            'aurora', 'bloom', 'midnight' => 'lucide',
+            'marine', 'gold', 'citrus' => 'tabler',
+            'forest', 'lagoon' => 'phosphor',
+            'ember' => 'hugeicons',
+            'blossom' => 'remixicon',
             default => null,
         };
     }

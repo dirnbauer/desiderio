@@ -180,6 +180,19 @@ function decodePreset(string $preset): ?array
                 'baseColor' => 'neutral',
             ],
         ],
+        // Desiderio house presets (see Build/Scripts/generate-shadcn-presets.php).
+        // They inherit the neutral base and a shared structural style; only the
+        // accent colour, radius, fonts, and density differ per preset.
+        'aurora' => ['values' => ['style' => 'nova', 'iconLibrary' => 'lucide', 'baseColor' => 'neutral']],
+        'marine' => ['values' => ['style' => 'nova', 'iconLibrary' => 'tabler', 'baseColor' => 'neutral']],
+        'forest' => ['values' => ['style' => 'nova', 'iconLibrary' => 'phosphor', 'baseColor' => 'neutral']],
+        'ember' => ['values' => ['style' => 'nova', 'iconLibrary' => 'hugeicons', 'baseColor' => 'neutral']],
+        'bloom' => ['values' => ['style' => 'nova', 'iconLibrary' => 'lucide', 'baseColor' => 'neutral']],
+        'lagoon' => ['values' => ['style' => 'nova', 'iconLibrary' => 'phosphor', 'baseColor' => 'neutral']],
+        'gold' => ['values' => ['style' => 'nova', 'iconLibrary' => 'tabler', 'baseColor' => 'neutral']],
+        'midnight' => ['values' => ['style' => 'nova', 'iconLibrary' => 'lucide', 'baseColor' => 'neutral']],
+        'blossom' => ['values' => ['style' => 'nova', 'iconLibrary' => 'remixicon', 'baseColor' => 'neutral']],
+        'citrus' => ['values' => ['style' => 'nova', 'iconLibrary' => 'tabler', 'baseColor' => 'neutral']],
     ];
 
     $command = 'npx shadcn@latest preset decode ' . escapeshellarg($preset) . ' --json 2>&1';

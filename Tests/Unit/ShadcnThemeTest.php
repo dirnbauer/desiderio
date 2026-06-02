@@ -159,6 +159,30 @@ final class ShadcnThemeTest extends TestCase
         self::assertStringContainsString('font-size:var(--d-control-text', $tailwindCss);
     }
 
+    public function testHousePresetsAreSelectableAndThemed(): void
+    {
+        $housePresets = ['aurora', 'marine', 'forest', 'ember', 'bloom', 'lagoon', 'gold', 'midnight', 'blossom', 'citrus'];
+
+        // Each house preset is offered in the site-configuration dropdown.
+        $definitions = self::parseYamlFile(__DIR__ . '/../../Configuration/Sets/Desiderio/settings.definitions.yaml');
+        $presetEnum = $definitions['settings']['desiderio.shadcn.preset']['enum'] ?? null;
+        self::assertIsArray($presetEnum);
+        foreach ($housePresets as $preset) {
+            self::assertArrayHasKey($preset, $presetEnum);
+        }
+
+        // Each house preset has a light + dark token block keyed on the body attribute.
+        $themeCss = (string) file_get_contents(__DIR__ . '/../../Resources/Public/Css/shadcn-theme.css');
+        foreach ($housePresets as $preset) {
+            self::assertStringContainsString('body[data-shadcn-preset="' . $preset . '"]', $themeCss);
+            self::assertStringContainsString('.dark body[data-shadcn-preset="' . $preset . '"]', $themeCss);
+        }
+
+        // House presets re-theme the accent and radius; the mono preset is also compact.
+        self::assertStringContainsString('--primary: oklch(0.55 0.2 293)', $themeCss);
+        self::assertMatchesRegularExpression('/body\[data-shadcn-preset="citrus"\][^}]*--d-control-h: 2rem;/s', $themeCss);
+    }
+
     public function testTailwindBuildScansFluidComponentsAndContentBlocks(): void
     {
         $tailwindCss = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Tailwind/desiderio.css');

@@ -52,14 +52,17 @@ them in *Site Management → Settings* on each site.
     *   - ``desiderio.shadcn.preset``
         - ``b6G5977cw``
         - ``b4hb38Fyj``, ``b0``, ``b3IWPgRwnI``, ``b6G5977cw``,
-          ``custom``
+          ``b27GcrRo``, ``custom``
     *   - ``desiderio.shadcn.style``
         - ``radix-lyra``
-        - ``radix-nova``, ``radix-mira``, ``radix-lyra``, ``custom``
+        - ``radix-vega``, ``radix-nova``, ``radix-maia``,
+          ``radix-lyra``, ``radix-mira``, ``radix-luma``,
+          ``radix-sera``, ``radix-rhea``, ``custom``
     *   - ``desiderio.shadcn.iconLibrary``
         - ``tabler``
-        - ``lucide``, ``tabler``, ``phosphor``. Stored content keeps
-          semantic icon keys and the renderer resolves them at runtime.
+        - ``lucide``, ``tabler``, ``hugeicons``, ``phosphor``,
+          ``remixicon``. Stored content keeps semantic icon keys and the
+          renderer resolves them at runtime.
     *   - ``desiderio.typography.fontSans``
         - ``preset``
         - ``preset``, ``inter``, ``geist``, ``system``, ``serif``

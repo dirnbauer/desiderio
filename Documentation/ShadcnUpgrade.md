@@ -183,13 +183,13 @@ committed preset, but not every left-nav value is an independent runtime setting
 
 | shadcn/create value | Desiderio support |
 | --- | --- |
-| Style | Stored as `desiderio.shadcn.style`; component class contracts are ported manually into Fluid components. |
+| Style | Stored as `desiderio.shadcn.style`; the sync script accepts `radix-vega`, `radix-nova`, `radix-maia`, `radix-lyra`, `radix-mira`, `radix-luma`, `radix-sera`, and `radix-rhea`. |
 | Base Color | Supported through the selected preset token block. Not an independent TYPO3 setting. |
 | Theme | Supported through the selected preset token block. Not an independent TYPO3 setting. |
 | Chart Color | Supported through `--chart-1` to `--chart-5`. Not an independent TYPO3 setting. |
 | Heading | Supported through preset font tokens and `--d-font-heading`. |
 | Font | Supported through preset font tokens. `desiderio.typography.fontSans` can override it. |
-| Icon Library | Stored as `desiderio.shadcn.iconLibrary`. Content records keep semantic Desiderio icon keys, and rendering resolves them to Lucide, Tabler, or Phosphor SVGs at runtime. |
+| Icon Library | Stored as `desiderio.shadcn.iconLibrary`. Content records keep semantic Desiderio icon keys, and rendering resolves them to Lucide, Tabler Icons, HugeIcons, Phosphor Icons, or Remix Icon SVGs at runtime. |
 | Radius | Supported through preset tokens when `desiderio.layout.radius = preset`; otherwise the site radius setting overrides it. |
 | Menu | Partially supported by Desiderio header/site styles. The shadcn `menuColor` value is documented but not yet an independent setting. |
 | Menu Accent | Documented from the preset. Not yet an independent TYPO3 setting. |
@@ -209,7 +209,7 @@ selectSingle`, and `Webconsulting\Desiderio\DataHandling\IconItemsProcessor`.
 
 `Classes/Icon/IconRegistry.php` is the source of truth for labels, allowed keys,
 demo values, aliases, and library rendering support. This lets a site change
-`desiderio.shadcn.iconLibrary` from `tabler` to `phosphor` later without
+`desiderio.shadcn.iconLibrary` from `tabler` to `remixicon` later without
 rewriting existing `tt_content` or collection rows.
 
 ## Component Updates
@@ -219,9 +219,11 @@ Desiderio has two component ownership modes:
 1. Registry-backed primitives are synchronized from
    `https://ui.shadcn.com/r/styles/{style}/{component}.json` by
    `Build/Scripts/sync-shadcn-fluid-primitives.php`. Buttons, badges, cards,
-   inputs, selects, textareas, tabs, and accordions belong here. If a class
-   exists in the selected shadcn style registry item, port it into the shared
-   Fluid primitive instead of adding one-off classes in content elements.
+   labels, inputs, selects, textareas, tabs, accordions, and the Powermail
+   shadcn class partial belong here. If a class exists in the selected shadcn
+   style registry item, port it into the shared Fluid primitive or generated
+   Powermail class partial instead of adding one-off classes in content
+   elements.
 2. Local semantic primitives exist where shadcn does not ship a registry
    component contract. Typography is the main example: the shadcn Typography
    page is example code, not a shipped component default. Use shadcn tokens,

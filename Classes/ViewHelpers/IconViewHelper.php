@@ -43,8 +43,12 @@ final class IconViewHelper extends AbstractViewHelper
                 htmlspecialchars($classAttribute, ENT_QUOTES | ENT_HTML5),
                 htmlspecialchars($library, ENT_QUOTES | ENT_HTML5),
                 htmlspecialchars($key, ENT_QUOTES | ENT_HTML5),
-                $library === 'phosphor' ? '1.75' : '2',
-                $library === 'tabler' ? 'round' : 'round',
+                match ($library) {
+                    'phosphor' => '1.75',
+                    'hugeicons' => '1.85',
+                    default => '2',
+                },
+                'round',
                 $paths
             );
         }

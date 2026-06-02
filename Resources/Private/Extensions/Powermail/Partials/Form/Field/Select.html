@@ -1,19 +1,42 @@
-<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:vh="http://typo3.org/ns/In2code/Powermail/ViewHelpers" data-namespace-typo3-fluid="true">
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:vh="http://typo3.org/ns/In2code/Powermail/ViewHelpers"
+    xmlns:di="http://typo3.org/ns/Webconsulting/Desiderio/ViewHelpers"
+    data-namespace-typo3-fluid="true"
+>
 <f:argument name="field" type="object" />
 <f:argument name="settings" type="array" optional="{true}" />
 <f:argument name="mail" type="object" optional="{true}" />
 
-<div data-slot="form-item" class="powermail_fieldwrap_{field.marker} {field.css} space-y-2">
+<div role="group" data-slot="field" data-orientation="vertical" class="powermail_fieldwrap_{field.marker} {field.css} {f:render(partial: 'Form/ShadcnClass', arguments: {slot: 'field'}) -> f:format.trim()}">
     <f:render partial="Form/FieldLabel" arguments="{field: field}" />
-    <vh:form.selectField
-        options="{field.modifiedSettings}"
-        property="{field.marker}"
-        class="flex h-9 w-full min-w-0 items-center justify-between gap-1.5 rounded-md border border-input bg-transparent px-3 py-1 text-sm text-foreground shadow-xs transition-[color,box-shadow] outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:cursor-not-allowed disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:bg-input/30 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 {vh:validation.errorClass(field: field, class: 'border-destructive ring-destructive/20')}"
-        id="powermail_field_{field.marker}"
-        autocomplete="{vh:string.autocomplete(field: field)}"
-        additionalAttributes="{vh:validation.validationDataAttribute(field: field)}"
-        multiple="{field.multiselectForField}"
-        value="{vh:misc.prefillField(field: field, mail: mail)}" />
+    <f:if condition="{field.multiselect}">
+        <f:then>
+            <vh:form.selectField
+                options="{field.modifiedSettings}"
+                property="{field.marker}"
+                class="{f:render(partial: 'Form/ShadcnClass', arguments: {slot: 'select'}) -> f:format.trim()} {vh:validation.errorClass(field: field, class: 'border-destructive ring-1 ring-destructive/20')}"
+                id="powermail_field_{field.marker}"
+                autocomplete="{vh:string.autocomplete(field: field)}"
+                additionalAttributes="{vh:validation.validationDataAttribute(field: field)}"
+                multiple="{field.multiselectForField}"
+                value="{vh:misc.prefillField(field: field, mail: mail)}" />
+        </f:then>
+        <f:else>
+            <span data-slot="native-select" class="{f:render(partial: 'Form/ShadcnClass', arguments: {slot: 'selectWrapper'}) -> f:format.trim()}">
+                <vh:form.selectField
+                    options="{field.modifiedSettings}"
+                    property="{field.marker}"
+                    class="{f:render(partial: 'Form/ShadcnClass', arguments: {slot: 'selectNative'}) -> f:format.trim()} {vh:validation.errorClass(field: field, class: 'border-destructive ring-1 ring-destructive/20')}"
+                    id="powermail_field_{field.marker}"
+                    autocomplete="{vh:string.autocomplete(field: field)}"
+                    additionalAttributes="{vh:validation.validationDataAttribute(field: field)}"
+                    multiple="{field.multiselectForField}"
+                    value="{vh:misc.prefillField(field: field, mail: mail)}" />
+                <di:icon name="chevron-down" size="sm" class="{f:render(partial: 'Form/ShadcnClass', arguments: {slot: 'selectIcon'}) -> f:format.trim()}" />
+            </span>
+        </f:else>
+    </f:if>
     <f:if condition="{field.multiselect}">
         <f:if condition="{settings.validation.client}">
             <div class="powermail_field_error_container_{field.marker} text-xs text-destructive"></div>

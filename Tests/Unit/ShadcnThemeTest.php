@@ -47,16 +47,18 @@ final class ShadcnThemeTest extends TestCase
         self::assertIsArray($styleDefinition);
         $styleEnum = $styleDefinition['enum'] ?? null;
         self::assertIsArray($styleEnum);
-        self::assertArrayHasKey('radix-lyra', $styleEnum);
+        foreach (['radix-vega', 'radix-nova', 'radix-maia', 'radix-lyra', 'radix-mira', 'radix-luma', 'radix-sera', 'radix-rhea'] as $style) {
+            self::assertArrayHasKey($style, $styleEnum);
+        }
 
         $iconLibraryDefinition = $settingDefinitions['desiderio.shadcn.iconLibrary'] ?? null;
         self::assertIsArray($iconLibraryDefinition);
         $iconLibraryEnum = $iconLibraryDefinition['enum'] ?? null;
         self::assertIsArray($iconLibraryEnum);
         self::assertSame('tabler', $iconLibraryDefinition['default'] ?? null);
-        self::assertArrayHasKey('lucide', $iconLibraryEnum);
-        self::assertArrayHasKey('tabler', $iconLibraryEnum);
-        self::assertArrayHasKey('phosphor', $iconLibraryEnum);
+        foreach (['lucide', 'tabler', 'hugeicons', 'phosphor', 'remixicon'] as $iconLibrary) {
+            self::assertArrayHasKey($iconLibrary, $iconLibraryEnum);
+        }
 
         $radiusDefinition = $settingDefinitions['desiderio.layout.radius'] ?? null;
         self::assertIsArray($radiusDefinition);
@@ -118,7 +120,9 @@ final class ShadcnThemeTest extends TestCase
         $componentsCss = (string) file_get_contents(__DIR__ . '/../../Resources/Public/Css/components.css');
         self::assertStringContainsString('body[data-icon-library="lucide"] .d-icon[data-icon-library="lucide"]', $componentsCss);
         self::assertStringContainsString('body[data-icon-library="tabler"] .d-icon[data-icon-library="tabler"]', $componentsCss);
+        self::assertStringContainsString('body[data-icon-library="hugeicons"] .d-icon[data-icon-library="hugeicons"]', $componentsCss);
         self::assertStringContainsString('body[data-icon-library="phosphor"] .d-icon[data-icon-library="phosphor"]', $componentsCss);
+        self::assertStringContainsString('body[data-icon-library="remixicon"] .d-icon[data-icon-library="remixicon"]', $componentsCss);
     }
 
     public function testTailwindBuildScansFluidComponentsAndContentBlocks(): void
@@ -163,6 +167,22 @@ final class ShadcnThemeTest extends TestCase
         self::assertSame('shadcn info --json', $scripts['shadcn:info'] ?? null);
         self::assertSame('php Build/Scripts/sync-shadcn-fluid-primitives.php', $scripts['shadcn:sync-fluid'] ?? null);
         self::assertSame('shadcn build --output Resources/Public/ShadcnRegistry', $scripts['registry:build'] ?? null);
+    }
+
+    public function testShadcnFluidSyncSupportsAllCreateStylesAndIconLibraries(): void
+    {
+        $script = (string) file_get_contents(__DIR__ . '/../../Build/Scripts/sync-shadcn-fluid-primitives.php');
+
+        foreach (['radix-vega', 'radix-nova', 'radix-maia', 'radix-lyra', 'radix-mira', 'radix-luma', 'radix-sera', 'radix-rhea'] as $style) {
+            self::assertStringContainsString($style, $script);
+        }
+
+        foreach (['lucide', 'tabler', 'hugeicons', 'phosphor', 'remixicon'] as $iconLibrary) {
+            self::assertStringContainsString($iconLibrary, $script);
+        }
+
+        self::assertStringContainsString('--icon-library=', $script);
+        self::assertStringContainsString('Resources/Private/Extensions/Powermail/Partials/Form/ShadcnClass.html', $script);
     }
 
     public function testShadcnCliContextAndRegistryAreConfigured(): void

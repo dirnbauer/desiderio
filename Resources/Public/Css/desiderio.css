@@ -805,9 +805,9 @@ body {
     border-radius: var(--radius);
 }
 
-.frame :where(input, textarea, select),
-.ce-frame :where(input, textarea, select),
-.desiderio-content-element :where(input, textarea, select) {
+.frame :where(input:not(.d-shadcn-control), textarea:not(.d-shadcn-control), select:not(.d-shadcn-control)),
+.ce-frame :where(input:not(.d-shadcn-control), textarea:not(.d-shadcn-control), select:not(.d-shadcn-control)),
+.desiderio-content-element :where(input:not(.d-shadcn-control), textarea:not(.d-shadcn-control), select:not(.d-shadcn-control)) {
     min-height: 2rem;
     border: 1px solid var(--input);
     border-radius: var(--radius);
@@ -828,9 +828,9 @@ body {
     text-decoration-line: none;
 }
 
-.frame :where(button, a, input, textarea, select):focus-visible,
-.ce-frame :where(button, a, input, textarea, select):focus-visible,
-.desiderio-content-element :where(button, a, input, textarea, select):focus-visible {
+.frame :where(button:not(.d-shadcn-control), a, input:not(.d-shadcn-control), textarea:not(.d-shadcn-control), select:not(.d-shadcn-control)):focus-visible,
+.ce-frame :where(button:not(.d-shadcn-control), a, input:not(.d-shadcn-control), textarea:not(.d-shadcn-control), select:not(.d-shadcn-control)):focus-visible,
+.desiderio-content-element :where(button:not(.d-shadcn-control), a, input:not(.d-shadcn-control), textarea:not(.d-shadcn-control), select:not(.d-shadcn-control)):focus-visible {
     border-color: var(--ring);
     outline: none;
     box-shadow: 0 0 0 3px color-mix(in oklch, var(--ring) 50%, transparent);

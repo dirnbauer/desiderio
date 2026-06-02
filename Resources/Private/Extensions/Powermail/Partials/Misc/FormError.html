@@ -7,7 +7,7 @@
 
 <f:form.validationResults>
     <f:if condition="{validationResults.flattenedErrors}">
-        <nav class="mb-6 rounded-none border border-destructive/30 bg-destructive/10 p-4 text-sm text-destructive" aria-label="{f:translate(key: 'validationerror_container_label', extensionName: 'Powermail')}">
+        <nav class="mb-6 {f:render(partial: 'Form/ShadcnClass', arguments: {slot: 'alertDestructive'}) -> f:format.trim()}" aria-label="{f:translate(key: 'validationerror_container_label', extensionName: 'Powermail')}">
             <h3 class="mb-2 font-medium text-destructive"><f:translate key="validationerror_title" extensionName="Powermail" /></h3>
             <ol class="list-decimal space-y-1 ps-4">
                 <f:for each="{validationResults.flattenedErrors}" as="errors">

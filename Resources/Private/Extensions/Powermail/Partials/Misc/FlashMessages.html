@@ -2,11 +2,13 @@
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
     data-namespace-typo3-fluid="true"
 >
-<f:argument name="flashMessageClass" type="string" optional="{true}" default="rounded-none border border-destructive/30 bg-destructive/10 p-3 text-sm text-destructive" />
+<f:argument name="flashMessageClass" type="string" optional="{true}" default="" />
+
+<f:variable name="defaultFlashMessageClass"><f:render partial="Form/ShadcnClass" arguments="{slot: 'flashDestructive'}" /></f:variable>
 
 <f:flashMessages queueIdentifier="extbase.flashmessages.tx_powermail_pi1" as="flashMessages">
     <f:for each="{flashMessages}" as="flashMessage">
-        <div class="{flashMessageClass}" role="alert">
+        <div class="{f:if(condition: flashMessageClass, then: flashMessageClass, else: defaultFlashMessageClass)}" role="alert">
             <f:if condition="{flashMessage.title}">
                 <p class="font-medium">{flashMessage.title}</p>
             </f:if>

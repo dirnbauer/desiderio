@@ -288,13 +288,17 @@ settings:
 
   desiderio.shadcn.style:
     label: 'shadcn/ui style'
-    description: 'Derived source style for the generated Fluid component recipes. b0 maps to radix-nova, b3IWPgRwnI/b4hb38Fyj map to radix-mira, and b6G5977cw maps to radix-lyra.'
+    description: 'Derived source style for generated Fluid component recipes. Run npm run shadcn:sync-fluid after switching this value.'
     type: string
     enum:
+      radix-vega: 'Vega'
       radix-nova: 'Radix Nova'
+      radix-maia: 'Maia'
+      radix-lyra: 'Lyra'
       radix-mira: 'Radix Mira'
-      radix-lyra: 'Radix Lyra'
-      radix-rhea: 'Radix Rhea'
+      radix-luma: 'Luma'
+      radix-sera: 'Sera'
+      radix-rhea: 'Rhea'
       custom: 'Custom'
     default: radix-lyra
     category: desiderio.shadcn
@@ -305,8 +309,10 @@ settings:
     type: string
     enum:
       lucide: 'Lucide'
-      tabler: 'Tabler'
-      phosphor: 'Phosphor'
+      tabler: 'Tabler Icons'
+      hugeicons: 'HugeIcons'
+      phosphor: 'Phosphor Icons'
+      remixicon: 'Remix Icon'
     default: tabler
     category: desiderio.shadcn
 

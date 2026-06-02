@@ -46,7 +46,9 @@ body[data-icon-library] .d-icon[data-icon-library] {
 
 body[data-icon-library="lucide"] .d-icon[data-icon-library="lucide"],
 body[data-icon-library="tabler"] .d-icon[data-icon-library="tabler"],
-body[data-icon-library="phosphor"] .d-icon[data-icon-library="phosphor"] {
+body[data-icon-library="hugeicons"] .d-icon[data-icon-library="hugeicons"],
+body[data-icon-library="phosphor"] .d-icon[data-icon-library="phosphor"],
+body[data-icon-library="remixicon"] .d-icon[data-icon-library="remixicon"] {
   display: block;
 }
 

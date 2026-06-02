@@ -251,7 +251,8 @@ npm run shadcn:sync-fluid
 
 That command decodes the preset id, updates `components.json` with the matching
 registry style, icon library, and base color, and synchronizes registry-backed
-Fluid primitives from `https://ui.shadcn.com/r/styles/{style}/{name}.json`.
+Fluid primitives and Powermail form class recipes from
+`https://ui.shadcn.com/r/styles/{style}/{name}.json`.
 It also updates the default `desiderio.shadcn.iconLibrary` value so new installs
 render semantic icon fields with the icon family from the selected preset.
 Local semantic primitives, especially Typography, stay token-driven because
@@ -265,9 +266,9 @@ The shadcn/create left navigation has values that are preset metadata in
 Desiderio, not all independent runtime switches. `Style`, `Base Color`,
 `Theme`, `Chart Color`, `Heading`, `Font`, and `Radius` are represented through
 the committed preset tokens. `Icon Library` is a separate TYPO3 setting that
-renders stable semantic icon keys as Lucide, Tabler, or Phosphor SVGs. `Menu`
-and `Menu Accent` are documented from the preset, but are not separate TYPO3
-switches yet. See
+renders stable semantic icon keys as Lucide, Tabler Icons, HugeIcons, Phosphor
+Icons, or Remix Icon SVGs. `Menu` and `Menu Accent` are documented from the
+preset, but are not separate TYPO3 switches yet. See
 `Documentation/ShadcnUpgrade.md` for the exact support matrix and step-by-step
 workflow.
 
@@ -288,9 +289,9 @@ declares the full schema; presets ship different defaults.
 | `desiderio.theme.accent`             | `slate`, `rose`, `blue`, `emerald`, `amber`, `violet`, `custom` |
 | `desiderio.theme.darkModeDefault`    | `light`, `dark`, `system`                            |
 | `desiderio.theme.darkModeToggle`     | `true`, `false`                                      |
-| `desiderio.shadcn.preset`            | `b4hb38Fyj`, `b0`, `b3IWPgRwnI`, `b6G5977cw`, `custom` |
-| `desiderio.shadcn.style`             | `radix-nova`, `radix-mira`, `radix-lyra`, `custom`   |
-| `desiderio.shadcn.iconLibrary`       | `lucide`, `tabler`, `phosphor`                        |
+| `desiderio.shadcn.preset`            | `b4hb38Fyj`, `b0`, `b3IWPgRwnI`, `b6G5977cw`, `b27GcrRo`, `custom` |
+| `desiderio.shadcn.style`             | `radix-vega`, `radix-nova`, `radix-maia`, `radix-lyra`, `radix-mira`, `radix-luma`, `radix-sera`, `radix-rhea`, `custom` |
+| `desiderio.shadcn.iconLibrary`       | `lucide`, `tabler`, `hugeicons`, `phosphor`, `remixicon` |
 | `desiderio.typography.fontSans`      | `preset`, `inter`, `geist`, `system`, `serif`        |
 | `desiderio.styleguide.enabled`       | `true`, `false`                                      |
 

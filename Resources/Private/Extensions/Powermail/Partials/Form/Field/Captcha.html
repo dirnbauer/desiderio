@@ -5,14 +5,14 @@
 
 <div data-slot="form-item" class="powermail_fieldwrap_{field.marker} {field.css} space-y-2">
     <f:render partial="Form/FieldLabel" arguments="{field: field}" />
-    <div class="rounded-md border border-border bg-muted/30 p-3">
+    <div class="{f:render(partial: 'Form/ShadcnClass', arguments: {slot: 'panel'}) -> f:format.trim()}">
         <f:form.textfield
             property="{field.marker}"
             value=""
-            class="h-9 w-full min-w-0 rounded-md border border-input bg-transparent px-3 py-1 text-sm text-foreground shadow-xs transition-[color,box-shadow] outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50 disabled:pointer-events-none disabled:cursor-not-allowed disabled:bg-input/50 disabled:opacity-50 aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:bg-input/30 dark:disabled:bg-input/80 dark:aria-invalid:border-destructive/50 dark:aria-invalid:ring-destructive/40 {vh:validation.errorClass(field: field, class: 'border-destructive ring-destructive/20')}"
+            class="{f:render(partial: 'Form/ShadcnClass', arguments: {slot: 'input'}) -> f:format.trim()} {vh:validation.errorClass(field: field, class: 'border-destructive ring-1 ring-destructive/20')}"
             additionalAttributes="{vh:validation.captchaDataAttribute(field: field)}"
             id="powermail_field_{field.marker}" />
-        <vh:validation.captcha field="{field}" alt="captcha" class="powermail_captchaimage mt-3 rounded-md border border-border" id="powermail_captchaimage" />
+        <vh:validation.captcha field="{field}" alt="captcha" class="{f:render(partial: 'Form/ShadcnClass', arguments: {slot: 'captchaImage'}) -> f:format.trim()}" id="powermail_captchaimage" />
     </div>
 </div>
 </html>

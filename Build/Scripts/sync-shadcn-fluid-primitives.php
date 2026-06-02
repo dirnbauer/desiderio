@@ -10,7 +10,8 @@ declare(strict_types=1);
  * Usage:
  *   php Build/Scripts/sync-shadcn-fluid-primitives.php
  *   php Build/Scripts/sync-shadcn-fluid-primitives.php --preset=b0
- *   php Build/Scripts/sync-shadcn-fluid-primitives.php --style=radix-mira
+ *   php Build/Scripts/sync-shadcn-fluid-primitives.php --style=maia
+ *   php Build/Scripts/sync-shadcn-fluid-primitives.php --icon-library=remixicon
  *   php Build/Scripts/sync-shadcn-fluid-primitives.php --check
  */
 
@@ -28,17 +29,16 @@ $componentsJson = decodeJsonFile($componentsPath);
 $preset = $options['preset'] ?? readYamlValue($settingsYaml, 'shadcn', 'preset') ?? 'b6G5977cw';
 $presetMetadata = decodePreset($preset);
 $configuredStyle = readYamlValue($settingsYaml, 'shadcn', 'style') ?? ($componentsJson['style'] ?? null);
-$style = $options['style'] ?? (presetStyle($presetMetadata) ?? $configuredStyle);
+$styleCandidate = $options['style'] ?? (presetStyle($presetMetadata) ?? $configuredStyle);
 
-if (!is_string($style) || $style === '' || $style === 'custom') {
-    fail('Unable to resolve a concrete shadcn style. Use --style=radix-nova, --style=radix-mira, or --style=radix-lyra.');
+if (!is_string($styleCandidate) || $styleCandidate === '' || $styleCandidate === 'custom') {
+    fail('Unable to resolve a concrete shadcn style. Use --style=vega, --style=nova, --style=maia, --style=lyra, --style=mira, --style=luma, --style=sera, or --style=rhea.');
 }
 
-if (!preg_match('/^radix-[a-z0-9-]+$/', $style)) {
-    fail(sprintf('Unsupported shadcn style "%s". This sync script expects the official radix registry style ids.', $style));
-}
+$style = normalizeStyle($styleCandidate);
 
-$iconLibrary = presetValue($presetMetadata, 'iconLibrary') ?? ($componentsJson['iconLibrary'] ?? 'lucide');
+$iconLibraryCandidate = $options['icon-library'] ?? (presetValue($presetMetadata, 'iconLibrary') ?? ($componentsJson['iconLibrary'] ?? 'lucide'));
+$iconLibrary = normalizeIconLibrary((string) $iconLibraryCandidate);
 $baseColor = presetValue($presetMetadata, 'baseColor') ?? ($componentsJson['tailwind']['baseColor'] ?? 'neutral');
 
 $recipes = fetchRecipes($style);
@@ -116,6 +116,11 @@ function parseOptions(array $argv): array
             continue;
         }
 
+        if (str_starts_with($argument, '--icon-library=')) {
+            $options['icon-library'] = substr($argument, 15);
+            continue;
+        }
+
         fail(sprintf('Unknown argument "%s".', $argument));
     }
 
@@ -167,6 +172,13 @@ function decodePreset(string $preset): ?array
                 'baseColor' => 'taupe',
             ],
         ],
+        'b27GcrRo' => [
+            'values' => [
+                'style' => 'rhea',
+                'iconLibrary' => 'lucide',
+                'baseColor' => 'neutral',
+            ],
+        ],
     ];
 
     $command = 'npx shadcn@latest preset decode ' . escapeshellarg($preset) . ' --json 2>&1';
@@ -191,10 +203,84 @@ function decodePreset(string $preset): ?array
     }
 
     fail(sprintf(
-        'Could not decode shadcn/create preset "%s". Run `npx shadcn@latest preset decode %s --json` manually or use --style=radix-nova|radix-mira|radix-lyra.',
+        'Could not decode shadcn/create preset "%s". Run `npx shadcn@latest preset decode %s --json` manually or use --style=vega|nova|maia|lyra|mira|luma|sera|rhea.',
         $preset,
         escapeshellarg($preset)
     ));
+}
+
+/**
+ * @return array<string, string>
+ */
+function supportedStyles(): array
+{
+    return [
+        'radix-vega' => 'Vega',
+        'radix-nova' => 'Nova',
+        'radix-maia' => 'Maia',
+        'radix-lyra' => 'Lyra',
+        'radix-mira' => 'Mira',
+        'radix-luma' => 'Luma',
+        'radix-sera' => 'Sera',
+        'radix-rhea' => 'Rhea',
+    ];
+}
+
+function normalizeStyle(string $style): string
+{
+    $style = strtolower(trim($style));
+    if ($style !== '' && !str_starts_with($style, 'radix-')) {
+        $style = 'radix-' . $style;
+    }
+
+    if (!array_key_exists($style, supportedStyles())) {
+        fail(sprintf(
+            'Unsupported shadcn style "%s". Supported styles are: %s.',
+            $style,
+            implode(', ', array_keys(supportedStyles()))
+        ));
+    }
+
+    return $style;
+}
+
+/**
+ * @return list<string>
+ */
+function supportedIconLibraries(): array
+{
+    return ['lucide', 'tabler', 'hugeicons', 'phosphor', 'remixicon'];
+}
+
+function normalizeIconLibrary(string $library): string
+{
+    $library = strtolower(trim(str_replace(['_', ' '], '-', $library)));
+    $aliases = [
+        'huge' => 'hugeicons',
+        'huge-icon' => 'hugeicons',
+        'huge-icons' => 'hugeicons',
+        'hugeicons' => 'hugeicons',
+        'lucide-icons' => 'lucide',
+        'phosphor-icon' => 'phosphor',
+        'phosphor-icons' => 'phosphor',
+        'remix' => 'remixicon',
+        'remix-icon' => 'remixicon',
+        'remix-icons' => 'remixicon',
+        'remixicon' => 'remixicon',
+        'tabler-icon' => 'tabler',
+        'tabler-icons' => 'tabler',
+    ];
+    $library = $aliases[$library] ?? $library;
+
+    if (!in_array($library, supportedIconLibraries(), true)) {
+        fail(sprintf(
+            'Unsupported icon library "%s". Supported icon libraries are: %s.',
+            $library,
+            implode(', ', supportedIconLibraries())
+        ));
+    }
+
+    return $library;
 }
 
 function presetStyle(?array $presetMetadata): ?string
@@ -224,7 +310,11 @@ function fetchRecipes(string $style): array
         'badge',
         'button',
         'card',
+        'checkbox',
+        'field',
         'input',
+        'label',
+        'radio-group',
         'select',
         'tabs',
         'textarea',
@@ -238,7 +328,8 @@ function fetchRecipes(string $style): array
     $buttonIndex = strpos($files['button'], 'const buttonVariants');
     $badgeIndex = strpos($files['badge'], 'const badgeVariants');
     $tabsListIndex = strpos($files['tabs'], 'const tabsListVariants');
-    if ($buttonIndex === false || $badgeIndex === false || $tabsListIndex === false) {
+    $fieldIndex = strpos($files['field'], 'const fieldVariants');
+    if ($buttonIndex === false || $badgeIndex === false || $tabsListIndex === false || $fieldIndex === false) {
         fail('The shadcn registry response no longer contains the expected cva variant declarations.');
     }
 
@@ -259,6 +350,27 @@ function fetchRecipes(string $style): array
             'description' => extractCnClassForSlot($files['card'], 'card-description'),
             'content' => extractCnClassForSlot($files['card'], 'card-content'),
             'footer' => extractCnClassForSlot($files['card'], 'card-footer'),
+        ],
+        'checkbox' => [
+            'root' => extractCnClassForSlot($files['checkbox'], 'checkbox'),
+            'indicator' => extractDirectClassForSlot($files['checkbox'], 'checkbox-indicator'),
+        ],
+        'field' => [
+            'set' => extractCnClassForSlot($files['field'], 'field-set'),
+            'legend' => extractCnClassForSlot($files['field'], 'field-legend'),
+            'group' => extractCnClassForSlot($files['field'], 'field-group'),
+            'base' => extractCvaBase($files['field'], 'fieldVariants'),
+            'orientations' => extractObjectEntries(extractObjectBlock($files['field'], 'orientation', $fieldIndex)),
+            'content' => extractCnClassForSlot($files['field'], 'field-content'),
+            'label' => extractCnClassForSlot($files['field'], 'field-label'),
+            'description' => extractCnClassForSlot($files['field'], 'field-description'),
+            'error' => extractCnClassForSlot($files['field'], 'field-error'),
+        ],
+        'label' => extractCnClassForSlot($files['label'], 'label'),
+        'radio' => [
+            'group' => extractCnClassForSlot($files['radio-group'], 'radio-group'),
+            'item' => extractCnClassForSlot($files['radio-group'], 'radio-group-item'),
+            'indicator' => extractDirectClassForSlot($files['radio-group'], 'radio-group-indicator'),
         ],
         'tabs' => [
             'root' => extractCnClassForSlot($files['tabs'], 'tabs'),
@@ -329,9 +441,11 @@ function renderTargets(array $recipes, string $style, string $preset, string $sc
         'Resources/Private/Components/Atom/Badge/Badge.fluid.html' => renderBadge($recipes['badge'], $header),
         'Resources/Private/Components/Atom/Button/Button.fluid.html' => renderButton($recipes['button'], $header),
         'Resources/Private/Components/Atom/Input/Input.fluid.html' => renderInput($recipes['input'], $header),
+        'Resources/Private/Components/Atom/Label/Label.fluid.html' => renderLabel($recipes['label'], $header),
         'Resources/Private/Components/Atom/Select/Select.fluid.html' => renderSelect($recipes['select'], $header),
         'Resources/Private/Components/Atom/Textarea/Textarea.fluid.html' => renderTextarea($recipes['textarea'], $header),
         'Resources/Private/Components/Atom/Typography/Typography.fluid.html' => renderTypography($localHeader),
+        'Resources/Private/Extensions/Powermail/Partials/Form/ShadcnClass.html' => renderPowermailShadcnClass($recipes, $header),
         'Resources/Private/Components/Molecule/AccordionItem/AccordionItem.fluid.html' => renderAccordionItem($recipes['accordion'], $header),
         'Resources/Private/Components/Molecule/Card/Card.fluid.html' => renderCard($recipes['card'], $header),
         'Resources/Private/Components/Molecule/CardFooter/CardFooter.fluid.html' => renderCardFooter($recipes['card'], $header),
@@ -486,16 +600,30 @@ function renderInput(string $class, string $header): string
         . '</f:if>' . "\n";
 }
 
+function renderLabel(string $class, string $header): string
+{
+    return $header
+        . '<f:argument name="for" type="string" optional="{true}" />' . "\n"
+        . '<f:argument name="class" type="string" optional="{true}" default="" />' . "\n\n"
+        . sprintf('<label for="{for}" data-slot="label" class="%s {class}">', attr($class)) . "\n"
+        . '    <f:slot />' . "\n"
+        . '</label>' . "\n";
+}
+
 function renderSelect(array $recipe, string $header): string
 {
-    $class = normalizeClass($recipe['trigger'] . ' max-w-full');
+    $class = normalizeClass($recipe['trigger'] . ' d-shadcn-control max-w-full appearance-none pr-8');
+    $wrapperClass = 'relative block w-full';
+    $iconClass = 'pointer-events-none absolute end-2 top-1/2 size-4 -translate-y-1/2 text-muted-foreground opacity-70';
 
-    return $header
+    return '<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:di="http://typo3.org/ns/Webconsulting/Desiderio/ViewHelpers" data-namespace-typo3-fluid="true">' . "\n"
+        . $header
         . '<f:argument name="name" type="string" optional="{true}" />' . "\n"
         . '<f:argument name="disabled" type="bool" optional="{true}" default="{false}" />' . "\n"
         . '<f:argument name="required" type="bool" optional="{true}" default="{false}" />' . "\n"
         . '<f:argument name="class" type="string" optional="{true}" default="" />' . "\n\n"
         . sprintf('<f:variable name="selectClass" value="%s {class}" />', attr($class)) . "\n\n"
+        . sprintf('<span data-slot="native-select" class="%s">', attr($wrapperClass)) . "\n"
         . '<f:if condition="{disabled}">' . "\n"
         . '    <f:then>' . "\n"
         . '        <f:if condition="{required}">' . "\n"
@@ -517,7 +645,10 @@ function renderSelect(array $recipe, string $header): string
         . '            </f:else>' . "\n"
         . '        </f:if>' . "\n"
         . '    </f:else>' . "\n"
-        . '</f:if>' . "\n";
+        . '</f:if>' . "\n"
+        . sprintf('    <di:icon name="chevron-down" size="sm" class="%s" />', attr($iconClass)) . "\n"
+        . '</span>' . "\n"
+        . '</html>' . "\n";
 }
 
 function renderTextarea(string $class, string $header): string
@@ -552,6 +683,75 @@ function renderTextarea(string $class, string $header): string
         . '        </f:if>' . "\n"
         . '    </f:else>' . "\n"
         . '</f:if>' . "\n";
+}
+
+function renderPowermailShadcnClass(array $recipes, string $header): string
+{
+    $cardRootCompatibility = 'px-4 has-data-[slot=card-header]:px-0 has-data-[slot=card-content]:px-0 has-data-[slot=card-footer]:px-0 has-[>img:first-child]:px-0 data-[size=sm]:px-3 data-[size=sm]:has-data-[slot=card-header]:px-0 data-[size=sm]:has-data-[slot=card-content]:px-0 data-[size=sm]:has-data-[slot=card-footer]:px-0';
+    $controlMarker = 'd-shadcn-control';
+    $fieldVertical = normalizeClass($recipes['field']['base'] . ' ' . ($recipes['field']['orientations']['vertical'] ?? ''));
+    $fieldHorizontal = normalizeClass($recipes['field']['base'] . ' ' . ($recipes['field']['orientations']['horizontal'] ?? ''));
+    $fieldLabel = normalizeClass($recipes['label'] . ' ' . $recipes['field']['label'] . ' font-medium text-foreground');
+    $input = normalizeClass($recipes['input'] . ' ' . $controlMarker . ' min-w-0');
+    $select = normalizeClass($recipes['select']['trigger'] . ' ' . $controlMarker . ' w-full min-w-0 max-w-full');
+    $nativeSelect = normalizeClass($select . ' appearance-none pr-8');
+    $textarea = normalizeClass($recipes['textarea'] . ' ' . $controlMarker . ' min-w-0');
+    $checkbox = normalizeClass(nativeCheckedClass($recipes['checkbox']['root']) . ' ' . $controlMarker . ' peer appearance-none size-4! min-h-4!');
+    $radio = normalizeClass(nativeCheckedClass($recipes['radio']['item']) . ' ' . $controlMarker . ' peer appearance-none size-4! min-h-4!');
+
+    $classes = [
+        'alertDestructive' => 'rounded-md border border-destructive/30 bg-destructive/10 p-4 text-sm text-destructive',
+        'buttonDefault' => normalizeClass(composeButtonClass($recipes['button'], 'default', 'default') . ' ' . $controlMarker),
+        'buttonDestructive' => normalizeClass(composeButtonClass($recipes['button'], 'destructive', 'default') . ' ' . $controlMarker),
+        'buttonOutline' => normalizeClass(composeButtonClass($recipes['button'], 'outline', 'default') . ' ' . $controlMarker),
+        'captchaImage' => 'mt-3 rounded-md border border-border',
+        'card' => normalizeClass($recipes['card']['root'] . ' ' . $cardRootCompatibility),
+        'cardCompact' => normalizeClass($recipes['card']['root'] . ' ' . $cardRootCompatibility . ' p-4'),
+        'cardContent' => normalizeClass($recipes['card']['content'] . ' space-y-6'),
+        'cardDescription' => $recipes['card']['description'],
+        'cardHeaderBordered' => normalizeClass($recipes['card']['header'] . ' border-b'),
+        'cardTitle' => $recipes['card']['title'],
+        'checkboxIcon' => normalizeClass($recipes['checkbox']['indicator'] . ' pointer-events-none absolute left-1/2 top-1/2 size-3.5 -translate-x-1/2 -translate-y-1/2 text-primary-foreground opacity-0 transition-opacity peer-checked:opacity-100'),
+        'checkboxInput' => $checkbox,
+        'field' => $fieldVertical,
+        'fieldError' => $recipes['field']['error'],
+        'fieldGroup' => $recipes['field']['group'],
+        'fieldLabel' => $fieldLabel,
+        'fieldSet' => $recipes['field']['set'],
+        'fileInput' => normalizeClass($input . ' h-auto min-h-24 cursor-pointer items-center border-dashed bg-muted/30 px-3 py-3 text-muted-foreground hover:bg-muted/50'),
+        'flashDestructive' => 'rounded-md border border-destructive/30 bg-destructive/10 p-3 text-sm text-destructive',
+        'input' => $input,
+        'optionLabel' => normalizeClass($fieldHorizontal . ' cursor-pointer items-center gap-3'),
+        'optionText' => normalizeClass($recipes['label'] . ' min-w-0 text-foreground'),
+        'panel' => 'rounded-md border border-border bg-muted/30 p-3 text-sm text-muted-foreground',
+        'panelContent' => 'rounded-md border border-border bg-muted/30 p-4 text-xs/relaxed text-muted-foreground',
+        'radioDot' => 'pointer-events-none absolute left-1/2 top-1/2 size-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary-foreground opacity-0 transition-opacity peer-checked:opacity-100',
+        'radioInput' => $radio,
+        'select' => $select,
+        'selectIcon' => 'pointer-events-none absolute end-2 top-1/2 size-4 -translate-y-1/2 text-muted-foreground opacity-70',
+        'selectNative' => $nativeSelect,
+        'selectWrapper' => 'relative block w-full',
+        'stepIndex' => composeBadgeClass($recipes['badge'], 'outline', 'me-2 size-5 px-0 text-[11px]'),
+        'tabsList' => composeTabsListClass($recipes['tabs'], 'default'),
+        'tabsTrigger' => $recipes['tabs']['trigger'],
+        'textarea' => $textarea,
+    ];
+
+    $lines = [
+        $header,
+        '<f:argument name="slot" type="string" />',
+        '',
+        '<f:switch expression="{slot}">',
+    ];
+
+    foreach ($classes as $slot => $class) {
+        $lines[] = sprintf('    <f:case value="%s">%s</f:case>', attr($slot), text($class));
+    }
+
+    $lines[] = '    <f:defaultCase></f:defaultCase>';
+    $lines[] = '</f:switch>';
+
+    return implode("\n", $lines) . "\n";
 }
 
 function renderAccordionItem(array $recipe, string $header): string
@@ -707,6 +907,42 @@ function renderTabsContent(array $recipe, string $header): string
         . '>' . "\n"
         . '    <f:slot />' . "\n"
         . '</div>' . "\n";
+}
+
+function composeButtonClass(array $recipe, string $variant, string $size): string
+{
+    return normalizeClass(
+        $recipe['base'] . ' '
+        . ($recipe['variants'][$variant] ?? $recipe['variants']['default'] ?? '') . ' '
+        . ($recipe['sizes'][$size] ?? $recipe['sizes']['default'] ?? '')
+    );
+}
+
+function composeBadgeClass(array $recipe, string $variant, string $append = ''): string
+{
+    return normalizeClass(
+        $recipe['base'] . ' '
+        . ($recipe['variants'][$variant] ?? $recipe['variants']['default'] ?? '') . ' '
+        . $append
+    );
+}
+
+function composeTabsListClass(array $recipe, string $variant): string
+{
+    return normalizeClass(
+        $recipe['listBase'] . ' '
+        . ($recipe['listVariants'][$variant] ?? $recipe['listVariants']['default'] ?? '')
+    );
+}
+
+function nativeCheckedClass(string $class): string
+{
+    return normalizeClass(strtr($class, [
+        'aria-invalid:aria-checked:' => 'aria-invalid:checked:',
+        'dark:data-checked:' => 'dark:checked:',
+        'data-checked:' => 'checked:',
+        'aria-checked:' => 'checked:',
+    ]));
 }
 
 function renderSwitch(string $argumentName, array $classes): string

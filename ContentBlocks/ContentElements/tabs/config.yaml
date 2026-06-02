@@ -59,7 +59,7 @@ fields:
         type: Select
         renderType: selectSingle
         label: 'Tab Icon'
-        description: 'Optional icon name (e.g. lucide icon identifier)'
+        description: 'Optional semantic Desiderio icon key; rendering follows the configured icon library.'
         itemsProcessors:
           10:
             class: Webconsulting\Desiderio\DataHandling\IconItemsProcessor

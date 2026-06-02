@@ -13,7 +13,7 @@ final class IconRegistry
      */
     public static function supportedLibraries(): array
     {
-        return ['lucide', 'tabler', 'phosphor'];
+        return ['lucide', 'tabler', 'hugeicons', 'phosphor', 'remixicon'];
     }
 
     public static function isSupportedLibrary(string $library): bool
@@ -34,6 +34,7 @@ final class IconRegistry
             'b0' => 'lucide',
             'b3IWPgRwnI', 'b4hb38Fyj' => 'phosphor',
             'b6G5977cw' => 'tabler',
+            'b27GcrRo' => 'lucide',
             default => null,
         };
     }
@@ -280,6 +281,11 @@ final class IconRegistry
                 'label' => 'Menu',
                 'group' => 'Navigation',
                 'paths' => '<path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/>',
+            ],
+            'chevron-down' => [
+                'label' => 'Chevron Down',
+                'group' => 'Navigation',
+                'paths' => '<path d="m6 9 6 6 6-6"/>',
             ],
             'sun' => [
                 'label' => 'Sun',

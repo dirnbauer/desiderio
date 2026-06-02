@@ -11,11 +11,12 @@ final class IconRegistryTest extends TestCase
 {
     public function testRegistrySupportsConfiguredLibrariesAndPresetDefaults(): void
     {
-        self::assertSame(['lucide', 'tabler', 'phosphor'], IconRegistry::supportedLibraries());
+        self::assertSame(['lucide', 'tabler', 'hugeicons', 'phosphor', 'remixicon'], IconRegistry::supportedLibraries());
         self::assertSame('lucide', IconRegistry::libraryForPreset('b0'));
         self::assertSame('phosphor', IconRegistry::libraryForPreset('b4hb38Fyj'));
         self::assertSame('phosphor', IconRegistry::libraryForPreset('b3IWPgRwnI'));
         self::assertSame('tabler', IconRegistry::libraryForPreset('b6G5977cw'));
+        self::assertSame('lucide', IconRegistry::libraryForPreset('b27GcrRo'));
         self::assertNull(IconRegistry::libraryForPreset('custom'));
     }
 
@@ -25,6 +26,7 @@ final class IconRegistryTest extends TestCase
         self::assertSame('x-circle', IconRegistry::normalizeKey('destructive'));
         self::assertSame('check-circle', IconRegistry::normalizeKey('success'));
         self::assertSame('alert-triangle', IconRegistry::normalizeKey('warning'));
+        self::assertSame('chevron-down', IconRegistry::normalizeKey('chevron-down'));
         self::assertSame('sparkles', IconRegistry::normalizeKey('unknown-icon'));
     }
 

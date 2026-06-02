@@ -12,7 +12,8 @@
 <f:argument name="mail" type="object" optional="{true}" />
 
 <f:section name="main">
-    <f:alias map="{flashMessageClass: 'rounded-none border border-destructive/30 bg-destructive/10 p-3 text-sm text-destructive'}">
+    <f:variable name="flashMessageClass"><f:render partial="Form/ShadcnClass" arguments="{slot: 'flashDestructive'}" /></f:variable>
+    <f:alias map="{flashMessageClass: flashMessageClass}">
         <f:render partial="Misc/FlashMessages" arguments="{_all}" />
     </f:alias>
 
@@ -27,12 +28,12 @@
                     autocomplete="{form.autocompleteToken}"
                     additionalAttributes="{vh:validation.enableJavascriptValidationAndAjax(form: form)}"
                     addQueryString="{settings.misc.addQueryString}"
-                    class="{form.css} {vh:misc.morestepClass(activate: settings.main.moresteps)} rounded-lg border border-border/70 bg-card p-5 text-card-foreground shadow-sm sm:p-6">
+                    class="{form.css} {vh:misc.morestepClass(activate: settings.main.moresteps)} {f:render(partial: 'Form/ShadcnClass', arguments: {slot: 'card'}) -> f:format.trim()}">
 
                     <f:if condition="{form.css} != 'nolabel'">
-                        <header data-slot="card-header" class="mb-6 grid gap-1.5 border-b border-border/70 pb-5">
-                            <h2 data-slot="card-title" class="text-lg font-semibold tracking-normal text-foreground">{form.title}</h2>
-                            <p data-slot="card-description" class="text-sm leading-6 text-muted-foreground">
+                        <header data-slot="card-header" class="{f:render(partial: 'Form/ShadcnClass', arguments: {slot: 'cardHeaderBordered'}) -> f:format.trim()}">
+                            <h2 data-slot="card-title" class="{f:render(partial: 'Form/ShadcnClass', arguments: {slot: 'cardTitle'}) -> f:format.trim()}">{form.title}</h2>
+                            <p data-slot="card-description" class="{f:render(partial: 'Form/ShadcnClass', arguments: {slot: 'cardDescription'}) -> f:format.trim()}">
                                 <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/powermail.xlf:powermail.form.requiredHint" arguments="{requiredCount: 1}" />
                             </p>
                         </header>
@@ -41,23 +42,23 @@
                     <f:render partial="Misc/FormError" arguments="{_all}" />
 
                     <f:if condition="{settings.main.moresteps}">
-                        <nav class="mb-6 grid gap-2 rounded-md border border-border bg-muted/30 p-1 text-sm sm:grid-flow-col sm:auto-cols-fr" aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/powermail.xlf:powermail.multistep.label')}">
+                        <nav class="{f:render(partial: 'Form/ShadcnClass', arguments: {slot: 'tabsList'}) -> f:format.trim()} w-full grid gap-2 sm:grid-flow-col sm:auto-cols-fr" data-variant="default" aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/powermail.xlf:powermail.multistep.label')}">
                             <f:for each="{form.pages}" as="page" iteration="iterationPages">
-                                <button class="inline-flex h-8 items-center justify-center rounded-sm px-3 text-xs font-medium text-muted-foreground transition-colors outline-none hover:bg-background hover:text-foreground focus-visible:ring-1 focus-visible:ring-ring/50 data-[active=true]:bg-background data-[active=true]:text-foreground data-[active=true]:ring-1 data-[active=true]:ring-foreground/10"
+                                <button class="{f:render(partial: 'Form/ShadcnClass', arguments: {slot: 'tabsTrigger'}) -> f:format.trim()} w-full"
                                         type="button"
                                         data-active="{f:if(condition: iterationPages.isFirst, then: 'true', else: 'false')}"
                                         data-powermail-morestep-validate="{settings.validation.morestep.fieldset}"
                                         data-powermail-fieldset="{page.uid}"
                                         data-powermail-morestep-current="{iterationPages.index}"
                                         data-powermail-morestep-show="{iterationPages.index}">
-                                    <span class="me-2 inline-flex size-5 items-center justify-center rounded-sm border border-border bg-muted text-[11px]">{iterationPages.cycle}</span>
+                                    <span class="{f:render(partial: 'Form/ShadcnClass', arguments: {slot: 'stepIndex'}) -> f:format.trim()}">{iterationPages.cycle}</span>
                                     {page.title}
                                 </button>
                             </f:for>
                         </nav>
                     </f:if>
 
-                    <div data-slot="card-content" class="space-y-6">
+                    <div data-slot="card-content" class="{f:render(partial: 'Form/ShadcnClass', arguments: {slot: 'cardContent'}) -> f:format.trim()}">
                         <f:for each="{form.pages}" as="page" iteration="iterationPages">
                             <f:render partial="Form/Page" arguments="{_all}" />
                         </f:for>
@@ -69,7 +70,7 @@
             </section>
         </f:then>
         <f:else>
-            <div class="rounded-none border border-destructive/30 bg-destructive/10 p-4 text-sm text-destructive">
+            <div class="{f:render(partial: 'Form/ShadcnClass', arguments: {slot: 'alertDestructive'}) -> f:format.trim()}">
                 <f:translate key="error_no_form" extensionName="Powermail" />
             </div>
         </f:else>

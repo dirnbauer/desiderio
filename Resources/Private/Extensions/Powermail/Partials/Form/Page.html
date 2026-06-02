@@ -13,7 +13,7 @@
         <legend class="sr-only">{page.title}</legend>
     </f:if>
 
-    <div data-slot="form" class="grid gap-5">
+    <div data-slot="field-group" class="{f:render(partial: 'Form/ShadcnClass', arguments: {slot: 'fieldGroup'}) -> f:format.trim()}">
         <f:for each="{page.fields}" as="field" iteration="iteration">
             <f:render partial="Form/Field/{vh:string.upper(string: field.type)}" arguments="{field: field, settings: settings, mail: mail}" />
         </f:for>
@@ -22,12 +22,12 @@
     <f:if condition="{settings.main.moresteps}">
         <div class="flex justify-between gap-2 border-t border-border pt-4">
             <f:if condition="!{iterationPages.isFirst}">
-                <button type="button" class="group/button inline-flex h-8 shrink-0 items-center justify-center gap-1.5 rounded-md border border-border bg-background px-2.5 text-xs font-medium text-foreground whitespace-nowrap transition-all outline-none select-none hover:bg-muted hover:text-foreground focus-visible:border-ring focus-visible:ring-1 focus-visible:ring-ring/50 active:translate-y-px disabled:pointer-events-none disabled:opacity-50 dark:border-input dark:bg-input/30 dark:hover:bg-input/50" data-powermail-morestep-show="{iterationPages.index}">
+                <button type="button" class="{f:render(partial: 'Form/ShadcnClass', arguments: {slot: 'buttonOutline'}) -> f:format.trim()}" data-powermail-morestep-show="{iterationPages.index}">
                     <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/powermail.xlf:powermail.multistep.previous" />
                 </button>
             </f:if>
             <f:if condition="!{iterationPages.isLast}">
-                <button type="button" class="ms-auto group/button inline-flex h-8 shrink-0 items-center justify-center gap-1.5 rounded-md border border-transparent bg-clip-padding bg-primary px-2.5 text-xs font-medium text-primary-foreground whitespace-nowrap transition-all outline-none select-none hover:bg-primary/80 focus-visible:border-ring focus-visible:ring-1 focus-visible:ring-ring/50 active:translate-y-px disabled:pointer-events-none disabled:opacity-50" data-powermail-morestep-validate="{settings.validation.morestep.fieldset}" data-powermail-morestep-show="{iterationPages.cycle}" data-powermail-morestep-previous>
+                <button type="button" class="ms-auto {f:render(partial: 'Form/ShadcnClass', arguments: {slot: 'buttonDefault'}) -> f:format.trim()}" data-powermail-morestep-validate="{settings.validation.morestep.fieldset}" data-powermail-morestep-show="{iterationPages.cycle}" data-powermail-morestep-previous>
                     <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/powermail.xlf:powermail.multistep.next" />
                 </button>
             </f:if>

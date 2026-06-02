@@ -289,7 +289,7 @@ declares the full schema; presets ship different defaults.
 | `desiderio.theme.accent`             | `slate`, `rose`, `blue`, `emerald`, `amber`, `violet`, `custom` |
 | `desiderio.theme.darkModeDefault`    | `light`, `dark`, `system`                            |
 | `desiderio.theme.darkModeToggle`     | `true`, `false`                                      |
-| `desiderio.shadcn.preset`            | `b4hb38Fyj`, `b0`, `b3IWPgRwnI`, `b6G5977cw`, `b27GcrRo`, `custom` |
+| `desiderio.shadcn.preset`            | 5 create presets (`b0`, `b4hb38Fyj`, `b3IWPgRwnI`, `b6G5977cw`, `b27GcrRo`) + 10 house presets (`aurora`, `marine`, `forest`, `ember`, `bloom`, `lagoon`, `gold`, `midnight`, `blossom`, `citrus`), `custom`. See [Theme presets](#theme-presets). |
 | `desiderio.shadcn.style`             | `radix-vega`, `radix-nova`, `radix-maia`, `radix-lyra`, `radix-mira`, `radix-luma`, `radix-sera`, `radix-rhea`, `custom` |
 | `desiderio.shadcn.iconLibrary`       | `lucide`, `tabler`, `hugeicons`, `phosphor`, `remixicon` |
 | `desiderio.typography.fontSans`      | `preset`, `inter`, `geist`, `system`, `serif`        |
@@ -307,7 +307,99 @@ Settings are defined in:
 - `Configuration/Sets/Desiderio/setup.typoscript` — renders the values as
   `<body data-*>` attributes.
 - `Resources/Public/Css/shadcn-theme.css` — committed token blocks for each
-  supported shadcn/create preset id.
+  supported preset (shadcn/create ids and the bundled house presets).
+
+## Theme presets
+
+A **theme preset** repaints the whole site — base and accent colour, corner
+radius, fonts, icon family, control density, focus-ring width, and surface
+elevation — at runtime. Pick one in **Site Management → Settings → shadcn/ui
+preset**, save, and reload. The choice is rendered onto
+`<body data-shadcn-preset="…">` and the matching variable block cascades from
+`Resources/Public/Css/shadcn-theme.css`. No rebuild, no deployment.
+
+Switching is opt-in: a site keeps its current look until an editor selects a
+different preset.
+
+### What a preset controls
+
+| Dimension            | Mechanism                                                       |
+| -------------------- | --------------------------------------------------------------- |
+| Base + accent colour | per-preset `:root` / `.dark` token block (light + dark)         |
+| Corner radius        | `--radius` (atoms use the `--radius`-following `rounded-*`)      |
+| Control density      | `--d-control-h` / `--d-control-text` / `--d-control-px`          |
+| Focus-ring width     | `--d-ring-width`                                                 |
+| Surface elevation    | `--d-surface-shadow`                                             |
+| Fonts                | `--d-font-sans` / `--d-font-heading` / `--d-font-mono`           |
+| Icon family          | `data-icon-library` (semantic icon keys resolve at runtime)     |
+
+The shape tokens are consumed by the generated Fluid atoms (`d-control-h`,
+`rounded-md`, `ring-[var(--d-ring-width)]`, `shadow-[var(--d-surface-shadow)]`),
+so every component reacts to the active preset without per-preset markup. Radio
+inputs stay circular regardless of radius.
+
+### Available presets
+
+Five are full shadcn/create configurations; ten are bundled "house" presets
+that inherit the neutral base and vary accent, radius, fonts, icons, density,
+ring, and shadow:
+
+| Preset                   | Accent  | Character                          |
+| ------------------------ | ------- | ---------------------------------- |
+| `b6G5977cw` *(default)*  | olive   | Flat, compact "Lyra mono"          |
+| `b0`                     | neutral | Default neutral (Nova)             |
+| `b4hb38Fyj`              | olive   | Mira product system                |
+| `b3IWPgRwnI`             | mist    | Mira dashboard                     |
+| `b27GcrRo`               | neutral | Rhea modern neutral                |
+| `aurora`                 | violet  | Rounded, default density           |
+| `marine`                 | blue    | Comfortable, soft shadow           |
+| `forest`                 | emerald | Tight radius, default              |
+| `ember`                  | orange  | Comfortable, elevated              |
+| `bloom`                  | rose    | Pill radius                        |
+| `lagoon`                 | teal    | Compact, flat                      |
+| `gold`                   | amber   | Default                            |
+| `midnight`               | indigo  | Comfortable, elevated              |
+| `blossom`                | pink    | Rounded, soft shadow               |
+| `citrus`                 | lime    | Compact mono, flat                 |
+
+### Adding a theme
+
+Add one row to the `$presets` table in
+`Build/Scripts/generate-shadcn-presets.php`:
+
+```php
+// id, label, hue, lightAccent, radius, font, icon, density, ring, shadow
+['crimson', 'Crimson — red', 25, false, '0.5', 'geist', 'lucide', 'default', '2px', 'sm'],
+```
+
+| Field         | Options                                                           |
+| ------------- | ---------------------------------------------------------------- |
+| `hue`         | `0–360` oklch hue (≈12 rose, 25 red, 55 orange, 130 lime, 160 emerald, 185 teal, 259 blue, 293 violet, 350 pink) |
+| `lightAccent` | `true` only for bright accents (amber/lime) that need dark text  |
+| `radius`      | rem string: `'0'`, `'0.5'`, `'0.75'`, `'1'`, …                   |
+| `font`        | `inter`, `geist`, `nunito`, `jetbrains`                          |
+| `icon`        | `lucide`, `tabler`, `hugeicons`, `phosphor`, `remixicon`         |
+| `density`     | `compact`, `default`, `comfortable`                              |
+| `ring`        | `'1px'`, `'2px'`, `'3px'`                                         |
+| `shadow`      | `none`, `sm`, `md`                                               |
+
+Then run:
+
+```bash
+php Build/Scripts/generate-shadcn-presets.php
+```
+
+It inserts the CSS block into `shadcn-theme.css` (idempotent) and prints three
+snippets to paste into `settings.definitions.yaml` (the dropdown enum —
+required), `sync-shadcn-fluid-primitives.php` (the `$knownPresets` map), and
+`Classes/Icon/IconRegistry.php` (the `libraryForPreset` arm). The CSS block plus
+the enum entry are all that is strictly required to make a theme selectable.
+Finish with `composer test`.
+
+To reproduce an exact configuration from
+[ui.shadcn.com/create](https://ui.shadcn.com/create), build it there, hit **Get
+Code**, and paste its full `:root` / `.dark` tokens as a new preset block — the
+same shape as the committed `b0` / `b6G5977cw` blocks.
 
 ## Content elements
 

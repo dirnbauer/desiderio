@@ -29,6 +29,12 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Changed
 
+- Made the theme picker discoverable in the site-settings editor. The
+  `desiderio.shadcn` category is now labelled **Theme** (with a description) and
+  ordered first under *Desiderio*, ahead of the *Appearance*, *Typography*,
+  *Layout*, and *Brand* groups, and `desiderio.shadcn.preset` is now labelled
+  **Theme preset** with a benefit-led description. Setting keys, stored values,
+  and runtime behaviour are unchanged.
 - The selected preset is now the single source of truth for the look. Removed
   the inert `desiderio.theme.accent` setting (the preset owns the accent),
   marked `desiderio.shadcn.style` read-only/advanced (it is the build-time

@@ -82,8 +82,8 @@ Theme presets
 
 A *theme preset* repaints the whole site — base and accent colour, corner
 radius, fonts, icon family, control density, focus-ring width, and surface
-elevation — at runtime. Choose one in *Site Management → Settings → shadcn/ui
-preset*, save, and reload. The value is rendered onto
+elevation — at runtime. Choose one in *Site Management → Settings → Theme →
+Theme preset* (the first settings group), save, and reload. The value is rendered onto
 ``<body data-shadcn-preset="…">`` and the matching variable block cascades from
 :file:`Resources/Public/Css/shadcn-theme.css`. No rebuild is required, and a
 site keeps its current look until an editor selects a different preset.

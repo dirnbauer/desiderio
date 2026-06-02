@@ -312,8 +312,8 @@ Settings are defined in:
 
 A **theme preset** repaints the whole site — base and accent colour, corner
 radius, fonts, icon family, control density, focus-ring width, and surface
-elevation — at runtime. Pick one in **Site Management → Settings → shadcn/ui
-preset**, save, and reload. The choice is rendered onto
+elevation — at runtime. Pick one in **Site Management → Settings → Theme →
+Theme preset** (the first settings group), save, and reload. The choice is rendered onto
 `<body data-shadcn-preset="…">` and the matching variable block cascades from
 `Resources/Public/Css/shadcn-theme.css`. No rebuild, no deployment.
 

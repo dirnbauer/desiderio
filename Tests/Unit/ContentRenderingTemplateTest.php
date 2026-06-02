@@ -652,7 +652,9 @@ final class ContentRenderingTemplateTest extends TestCase
         foreach (['Corporate', 'Dashboard', 'Editorial', 'Portfolio', 'Saas'] as $preset) {
             $presetSet = Yaml::parseFile(__DIR__ . '/../../Configuration/Sets/DesiderioPreset' . $preset . '/config.yaml');
             self::assertIsArray($presetSet);
-            self::assertContains('webconsulting/desiderio-shadcnui-templates', $presetSet['dependencies'] ?? []);
+            $presetDependencies = $presetSet['dependencies'] ?? [];
+            self::assertIsArray($presetDependencies);
+            self::assertContains('webconsulting/desiderio-shadcnui-templates', $presetDependencies);
         }
 
         foreach ([

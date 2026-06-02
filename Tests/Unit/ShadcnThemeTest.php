@@ -176,7 +176,11 @@ final class ShadcnThemeTest extends TestCase
 
         // Each house preset is offered in the site-configuration dropdown.
         $definitions = self::parseYamlFile(__DIR__ . '/../../Configuration/Sets/Desiderio/settings.definitions.yaml');
-        $presetEnum = $definitions['settings']['desiderio.shadcn.preset']['enum'] ?? null;
+        $settingDefinitions = $definitions['settings'] ?? null;
+        self::assertIsArray($settingDefinitions);
+        $presetDefinition = $settingDefinitions['desiderio.shadcn.preset'] ?? null;
+        self::assertIsArray($presetDefinition);
+        $presetEnum = $presetDefinition['enum'] ?? null;
         self::assertIsArray($presetEnum);
         foreach ($housePresets as $preset) {
             self::assertArrayHasKey($preset, $presetEnum);

@@ -17,8 +17,8 @@
         <ul role="list" class="inline-flex flex-wrap items-center gap-1">
             <f:for each="{post.categories}" as="postCategory">
                 <li data-blog-category="{postCategory.uid}">
-                    <blogvh:link.category category="{postCategory}" class="inline-flex min-h-6 rounded-md !no-underline outline-none focus-visible:ring-3 focus-visible:ring-ring/40">
-                        <d:atom.badge variant="secondary" class="min-h-6">{postCategory.title}</d:atom.badge>
+                    <blogvh:link.category category="{postCategory}" class="!no-underline">
+                        <d:atom.badge variant="secondary">{postCategory.title}</d:atom.badge>
                     </blogvh:link.category>
                 </li>
             </f:for>

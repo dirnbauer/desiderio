@@ -62,7 +62,7 @@
     <f:if condition="{page.pageRecord.pid} != {site.configuration.settings.plugin.tx_blog.settings.storagePid}">
         <header class="max-w-3xl">
             <d:layout.stack gap="sm">
-                <d:atom.badge variant="secondary" class="min-h-6 w-fit">Blog</d:atom.badge>
+                <d:atom.badge variant="secondary">Blog</d:atom.badge>
                 <d:atom.typography tag="h1" variant="h1" class="tracking-normal">{page.pageRecord.title}</d:atom.typography>
                 <f:if condition="{page.pageRecord.subtitle}">
                     <d:atom.typography variant="lead">{page.pageRecord.subtitle}</d:atom.typography>

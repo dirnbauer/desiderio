@@ -15,8 +15,8 @@
             <ul role="list" class="flex flex-wrap gap-2">
                 <f:for each="{categories}" as="category">
                     <li id="category-{category.uid}" data-blog-category="{category.uid}" data-active="{f:if(condition: '{currentCategory} == {category.uid}', then: 'true', else: 'false')}">
-                        <blogvh:link.category category="{category}" title="{category.title}" class="inline-flex min-h-6 rounded-md !no-underline outline-none focus-visible:ring-3 focus-visible:ring-ring/40">
-                            <d:atom.badge variant="secondary" class="min-h-6">
+                        <blogvh:link.category category="{category}" title="{category.title}" class="!no-underline">
+                            <d:atom.badge variant="secondary">
                                 <span data-icon="inline-start" aria-hidden="true"><d:atom.icon name="folder" size="xs"/></span>
                                 <span>{category.title}</span>
                                 <span class="text-muted-foreground">(<f:count>{category.posts}</f:count>)</span>

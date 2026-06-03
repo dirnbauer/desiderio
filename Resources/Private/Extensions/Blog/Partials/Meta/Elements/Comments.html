@@ -23,7 +23,7 @@
     </f:if>
     <f:render partial="Meta/Rendering/Item" arguments="{name: name}" contentAs="content">
         <meta itemprop="commentCount" content="{commentCount}"/>
-        <blogvh:link.post post="{post}" section="comments" class="inline-flex min-h-6 items-center gap-1 rounded-sm text-foreground !no-underline outline-none transition-colors hover:text-primary focus-visible:ring-3 focus-visible:ring-ring/40">
+        <blogvh:link.post post="{post}" section="comments" class="inline-flex items-center gap-1 text-foreground !no-underline transition-colors hover:text-primary">
             <span aria-hidden="true"><d:atom.icon name="message-circle" size="xs"/></span>
             <span>{text}</span>
         </blogvh:link.post>

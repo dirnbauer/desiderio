@@ -18,8 +18,8 @@
         <span aria-hidden="true">·</span>
         <span class="inline-flex flex-wrap items-center gap-1">
             <f:for each="{post.categories}" as="postCategory">
-                <blogvh:link.category category="{postCategory}" class="inline-flex min-h-6 rounded-md !no-underline outline-none focus-visible:ring-3 focus-visible:ring-ring/40">
-                    <d:atom.badge variant="secondary" class="min-h-6">{postCategory.title}</d:atom.badge>
+                <blogvh:link.category category="{postCategory}" class="!no-underline">
+                    <d:atom.badge variant="secondary">{postCategory.title}</d:atom.badge>
                 </blogvh:link.category>
             </f:for>
         </span>
@@ -28,8 +28,8 @@
         <span aria-hidden="true">·</span>
         <span class="inline-flex flex-wrap items-center gap-1" itemprop="keywords">
             <f:for each="{post.tags}" as="postTag">
-                <blogvh:link.tag tag="{postTag}" class="inline-flex min-h-6 rounded-md !no-underline outline-none focus-visible:ring-3 focus-visible:ring-ring/40">
-                    <d:atom.badge variant="outline" class="min-h-6">{postTag.title}</d:atom.badge>
+                <blogvh:link.tag tag="{postTag}" class="!no-underline">
+                    <d:atom.badge variant="outline">{postTag.title}</d:atom.badge>
                 </blogvh:link.tag>
             </f:for>
         </span>

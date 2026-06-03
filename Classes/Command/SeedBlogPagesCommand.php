@@ -32,6 +32,8 @@ final class SeedBlogPagesCommand extends Command
         'blog_archive',
         'blog_demandedposts',
     ];
+    private const LEGACY_DEFAULT_TAG_TITLES = ['Accessibility', 'TYPO3'];
+    private const REMOVABLE_LEGACY_TAG_TITLES = ['Accessibility'];
 
     /**
      * @var list<array{
@@ -55,7 +57,7 @@ final class SeedBlogPagesCommand extends Command
             'description' => 'Use this post to check the detail page, metadata badges, comments, body copy, lists, and links.',
             'date' => '2026-04-04 10:00:00',
             'categories' => ['Blog', 'TYPO3'],
-            'tags' => ['TYPO3', 'shadcn UI', 'Accessibility'],
+            'tags' => ['TYPO3', 'shadcn UI', 'Fluid'],
             'content' => [
                 [
                     'header' => 'Template coverage',
@@ -63,7 +65,7 @@ final class SeedBlogPagesCommand extends Command
                 ],
                 [
                     'header' => 'What to verify',
-                    'body' => '<ul><li>Category and tag badges appear once near the title.</li><li>Dates, authors, and comments stay in one flat metadata row.</li><li>Keyboard focus remains visible on every link.</li></ul>',
+                    'body' => '<ul><li>Category and tag badges appear once near the title.</li><li>Dates, authors, and comments stay in one flat metadata row.</li><li>The same tokenized badge treatment is used across list and detail views.</li></ul>',
                 ],
             ],
         ],
@@ -439,7 +441,7 @@ final class SeedBlogPagesCommand extends Command
     private function seedDemoContent(int $folderUid, string $layout): array
     {
         $categoryTitles = ['Blog', 'TYPO3'];
-        $tagTitles = ['TYPO3', 'shadcn UI', 'Accessibility'];
+        $tagTitles = ['TYPO3', 'shadcn UI', 'Fluid'];
         foreach (self::DEMO_POSTS as $post) {
             $categoryTitles = array_merge($categoryTitles, $post['categories']);
             $tagTitles = array_merge($tagTitles, $post['tags']);
@@ -478,11 +480,12 @@ final class SeedBlogPagesCommand extends Command
             $layout,
             $categoryUids['Blog'] ?? 0,
             array_values(array_filter(
-                [$tagUids['TYPO3'] ?? 0, $tagUids['Accessibility'] ?? 0],
+                [$tagUids['TYPO3'] ?? 0, $tagUids['shadcn UI'] ?? 0],
                 static fn (int $tagUid): bool => $tagUid > 0
             )),
             $authorUid
         );
+        $this->removeOrphanedLegacyTags($folderUid);
 
         return [
             'posts' => count(array_unique($seededPostUids)),
@@ -628,7 +631,7 @@ final class SeedBlogPagesCommand extends Command
             'xing' => '',
             'instagram' => '',
             'profile' => '',
-            'bio' => 'TYPO3 implementation team maintaining the Desiderio shadcn templates and accessibility checks.',
+            'bio' => 'TYPO3 implementation team maintaining the Desiderio shadcn Blog templates.',
             'posts' => '',
             'details_page' => 0,
         ];
@@ -864,7 +867,7 @@ final class SeedBlogPagesCommand extends Command
             'name' => 'Webconsulting QA',
             'url' => 'https://webconsulting.at/',
             'email' => 'team@webconsulting.at',
-            'comment' => 'Seeded comment for checking the Blog comment counter, comment list, and accessible metadata links.',
+            'comment' => 'Seeded comment for checking the Blog comment counter, comment list, and shadcn metadata links.',
             'parentid' => $postUid,
             'parenttable' => 'pages',
             'post_language_id' => 0,
@@ -988,7 +991,8 @@ final class SeedBlogPagesCommand extends Command
             if ($defaultCategoryUid > 0 && $this->getIntegerRowValue($row, 'categories') <= 0) {
                 $this->replaceCategoryRelations($postUid, [$defaultCategoryUid]);
             }
-            if ($defaultTagUids !== [] && $this->getIntegerRowValue($row, 'tags') <= 0) {
+            $hasLegacyDefaultTags = $this->isSameTitleSet($this->findPostTagTitles($postUid), self::LEGACY_DEFAULT_TAG_TITLES);
+            if ($defaultTagUids !== [] && ($this->getIntegerRowValue($row, 'tags') <= 0 || $hasLegacyDefaultTags)) {
                 $this->replaceTagRelations($postUid, $defaultTagUids);
             }
             if ($authorUid > 0 && $this->getIntegerRowValue($row, 'authors') <= 0) {
@@ -997,6 +1001,109 @@ final class SeedBlogPagesCommand extends Command
 
             $this->ensureComment($postUid);
         }
+    }
+
+    /**
+     * @return list<string>
+     */
+    private function findPostTagTitles(int $postUid): array
+    {
+        $queryBuilder = $this->connectionPool->getQueryBuilderForTable('tx_blog_tag_pages_mm');
+        $queryBuilder->getRestrictions()->removeAll();
+
+        $titles = $queryBuilder
+            ->select('tag.title')
+            ->from('tx_blog_tag_pages_mm', 'relation')
+            ->join(
+                'relation',
+                'tx_blog_domain_model_tag',
+                'tag',
+                (string)$queryBuilder->expr()->and(
+                    $queryBuilder->expr()->eq('tag.uid', $queryBuilder->quoteIdentifier('relation.uid_foreign')),
+                    $queryBuilder->expr()->eq('tag.deleted', $queryBuilder->createNamedParameter(0, ParameterType::INTEGER))
+                )
+            )
+            ->where($queryBuilder->expr()->eq('relation.uid_local', $queryBuilder->createNamedParameter($postUid, ParameterType::INTEGER)))
+            ->orderBy('relation.sorting')
+            ->executeQuery()
+            ->fetchFirstColumn();
+
+        $tagTitles = [];
+        foreach ($titles as $title) {
+            if (is_string($title) && trim($title) !== '') {
+                $tagTitles[] = trim($title);
+            }
+        }
+
+        return $tagTitles;
+    }
+
+    /**
+     * @param list<string> $left
+     * @param list<string> $right
+     */
+    private function isSameTitleSet(array $left, array $right): bool
+    {
+        $left = array_values(array_unique($left));
+        $right = array_values(array_unique($right));
+        sort($left, SORT_STRING);
+        sort($right, SORT_STRING);
+
+        return $left === $right;
+    }
+
+    private function removeOrphanedLegacyTags(int $folderUid): void
+    {
+        foreach (self::REMOVABLE_LEGACY_TAG_TITLES as $tagTitle) {
+            $queryBuilder = $this->connectionPool->getQueryBuilderForTable('tx_blog_domain_model_tag');
+            $queryBuilder->getRestrictions()->removeAll();
+
+            $tagUids = $this->mapIntegerColumn($queryBuilder
+                ->select('uid')
+                ->from('tx_blog_domain_model_tag')
+                ->where(
+                    $queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($folderUid, ParameterType::INTEGER)),
+                    $queryBuilder->expr()->eq('title', $queryBuilder->createNamedParameter($tagTitle)),
+                    $queryBuilder->expr()->eq('deleted', $queryBuilder->createNamedParameter(0, ParameterType::INTEGER))
+                )
+                ->executeQuery()
+                ->fetchFirstColumn());
+
+            foreach ($tagUids as $tagUid) {
+                if ($this->countActiveTagRelations($tagUid) > 0) {
+                    continue;
+                }
+
+                $this->connectionPool->getConnectionForTable('tx_blog_domain_model_tag')->update('tx_blog_domain_model_tag', [
+                    'tstamp' => time(),
+                    'deleted' => 1,
+                ], ['uid' => $tagUid]);
+            }
+        }
+    }
+
+    private function countActiveTagRelations(int $tagUid): int
+    {
+        $queryBuilder = $this->connectionPool->getQueryBuilderForTable('tx_blog_tag_pages_mm');
+        $queryBuilder->getRestrictions()->removeAll();
+
+        $count = $queryBuilder
+            ->count('*')
+            ->from('tx_blog_tag_pages_mm', 'relation')
+            ->join(
+                'relation',
+                'pages',
+                'post',
+                (string)$queryBuilder->expr()->and(
+                    $queryBuilder->expr()->eq('post.uid', $queryBuilder->quoteIdentifier('relation.uid_local')),
+                    $queryBuilder->expr()->eq('post.deleted', $queryBuilder->createNamedParameter(0, ParameterType::INTEGER))
+                )
+            )
+            ->where($queryBuilder->expr()->eq('relation.uid_foreign', $queryBuilder->createNamedParameter($tagUid, ParameterType::INTEGER)))
+            ->executeQuery()
+            ->fetchOne();
+
+        return is_numeric($count) ? (int)$count : 0;
     }
 
     private function nextSorting(string $table, int $pid): int

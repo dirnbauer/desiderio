@@ -17,8 +17,8 @@
         <ul role="list" class="inline-flex flex-wrap items-center gap-1" itemprop="keywords">
             <f:for each="{post.tags}" as="postTag">
                 <li data-blog-tag="{postTag.uid}">
-                    <blogvh:link.tag tag="{postTag}" class="inline-flex min-h-6 rounded-md !no-underline outline-none focus-visible:ring-3 focus-visible:ring-ring/40">
-                        <d:atom.badge variant="outline" class="min-h-6">{postTag.title}</d:atom.badge>
+                    <blogvh:link.tag tag="{postTag}" class="!no-underline">
+                        <d:atom.badge variant="outline">{postTag.title}</d:atom.badge>
                     </blogvh:link.tag>
                 </li>
             </f:for>

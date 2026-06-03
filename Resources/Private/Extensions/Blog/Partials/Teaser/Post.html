@@ -44,16 +44,16 @@
                         <f:for each="{post.categories}" as="postCategory">
                             <li data-blog-category="{postCategory.uid}">
                                 <meta itemprop="articleSection" content="{postCategory.title}"/>
-                                <blogvh:link.category category="{postCategory}" class="inline-flex min-h-6 rounded-md !no-underline outline-none focus-visible:ring-3 focus-visible:ring-ring/40">
-                                    <d:atom.badge variant="secondary" class="min-h-6">{postCategory.title}</d:atom.badge>
+                                <blogvh:link.category category="{postCategory}" class="!no-underline">
+                                    <d:atom.badge variant="secondary">{postCategory.title}</d:atom.badge>
                                 </blogvh:link.category>
                             </li>
                         </f:for>
                         <f:for each="{post.tags}" as="postTag">
                             <li data-blog-tag="{postTag.uid}">
                                 <meta itemprop="keywords" content="{postTag.title}"/>
-                                <blogvh:link.tag tag="{postTag}" class="inline-flex min-h-6 rounded-md !no-underline outline-none focus-visible:ring-3 focus-visible:ring-ring/40">
-                                    <d:atom.badge variant="outline" class="min-h-6">{postTag.title}</d:atom.badge>
+                                <blogvh:link.tag tag="{postTag}" class="!no-underline">
+                                    <d:atom.badge variant="outline">{postTag.title}</d:atom.badge>
                                 </blogvh:link.tag>
                             </li>
                         </f:for>

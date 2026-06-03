@@ -890,9 +890,10 @@ final class PowermailDemoSeeder
     }
 
     /**
-     * @param array<string, mixed> $row
+     * @template TValue
+     * @param array<string, TValue> $row
      * @param array<string, true> $columns
-     * @return array<string, mixed>
+     * @return array<string, TValue>
      */
     private function filterRow(array $row, array $columns): array
     {

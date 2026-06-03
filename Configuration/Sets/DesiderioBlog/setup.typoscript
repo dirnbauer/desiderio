@@ -7,3 +7,144 @@ plugin.tx_blog {
     layoutRootPaths.200 = EXT:desiderio/Resources/Private/Extensions/Blog/Layouts/
   }
 }
+
+tt_content.blog_posts =< lib.contentElement
+tt_content.blog_posts.templateName = BlogPosts
+tt_content.blog_latestposts =< lib.contentElement
+tt_content.blog_latestposts.templateName = BlogLatestposts
+tt_content.blog_category =< lib.contentElement
+tt_content.blog_category.templateName = BlogCategory
+tt_content.blog_authorposts =< lib.contentElement
+tt_content.blog_authorposts.templateName = BlogAuthorposts
+tt_content.blog_tag =< lib.contentElement
+tt_content.blog_tag.templateName = BlogTag
+tt_content.blog_archive =< lib.contentElement
+tt_content.blog_archive.templateName = BlogArchive
+tt_content.blog_sidebar =< lib.contentElement
+tt_content.blog_sidebar.templateName = BlogSidebar
+tt_content.blog_commentform =< lib.contentElement
+tt_content.blog_commentform.templateName = BlogCommentform
+tt_content.blog_comments =< lib.contentElement
+tt_content.blog_comments.templateName = BlogComments
+tt_content.blog_authors =< lib.contentElement
+tt_content.blog_authors.templateName = BlogAuthors
+tt_content.blog_demandedposts =< lib.contentElement
+tt_content.blog_demandedposts.templateName = BlogDemandedposts
+tt_content.blog_relatedposts =< lib.contentElement
+tt_content.blog_relatedposts.templateName = BlogRelatedposts
+tt_content.blog_header =< lib.contentElement
+tt_content.blog_header.templateName = BlogHeader
+tt_content.blog_footer =< lib.contentElement
+tt_content.blog_footer.templateName = BlogFooter
+
+lib.desiderioBlogPosts = EXTBASEPLUGIN
+lib.desiderioBlogPosts {
+  extensionName = Blog
+  pluginName = Posts
+  controller = Post
+  action = listRecentPosts
+}
+
+lib.desiderioBlogDemandedposts = EXTBASEPLUGIN
+lib.desiderioBlogDemandedposts {
+  extensionName = Blog
+  pluginName = DemandedPosts
+  controller = Post
+  action = listByDemand
+}
+
+lib.desiderioBlogLatestposts = EXTBASEPLUGIN
+lib.desiderioBlogLatestposts {
+  extensionName = Blog
+  pluginName = LatestPosts
+  controller = Post
+  action = listLatestPosts
+}
+
+lib.desiderioBlogCategory = EXTBASEPLUGIN
+lib.desiderioBlogCategory {
+  extensionName = Blog
+  pluginName = Category
+  controller = Post
+  action = listPostsByCategory
+}
+
+lib.desiderioBlogAuthorposts = EXTBASEPLUGIN
+lib.desiderioBlogAuthorposts {
+  extensionName = Blog
+  pluginName = AuthorPosts
+  controller = Post
+  action = listPostsByAuthor
+}
+
+lib.desiderioBlogTag = EXTBASEPLUGIN
+lib.desiderioBlogTag {
+  extensionName = Blog
+  pluginName = Tag
+  controller = Post
+  action = listPostsByTag
+}
+
+lib.desiderioBlogArchive = EXTBASEPLUGIN
+lib.desiderioBlogArchive {
+  extensionName = Blog
+  pluginName = Archive
+  controller = Post
+  action = listPostsByDate
+}
+
+lib.desiderioBlogSidebar = EXTBASEPLUGIN
+lib.desiderioBlogSidebar {
+  extensionName = Blog
+  pluginName = Sidebar
+  controller = Post
+  action = sidebar
+}
+
+lib.desiderioBlogCommentform = EXTBASEPLUGIN
+lib.desiderioBlogCommentform {
+  extensionName = Blog
+  pluginName = CommentForm
+  controller = Comment
+  action = form
+}
+
+lib.desiderioBlogComments = EXTBASEPLUGIN
+lib.desiderioBlogComments {
+  extensionName = Blog
+  pluginName = Comments
+  controller = Comment
+  action = comments
+}
+
+lib.desiderioBlogHeader = EXTBASEPLUGIN
+lib.desiderioBlogHeader {
+  extensionName = Blog
+  pluginName = Header
+  controller = Post
+  action = header
+}
+
+lib.desiderioBlogFooter = EXTBASEPLUGIN
+lib.desiderioBlogFooter {
+  extensionName = Blog
+  pluginName = Footer
+  controller = Post
+  action = footer
+}
+
+lib.desiderioBlogAuthors = EXTBASEPLUGIN
+lib.desiderioBlogAuthors {
+  extensionName = Blog
+  pluginName = Authors
+  controller = Post
+  action = authors
+}
+
+lib.desiderioBlogRelatedposts = EXTBASEPLUGIN
+lib.desiderioBlogRelatedposts {
+  extensionName = Blog
+  pluginName = RelatedPosts
+  controller = Post
+  action = relatedPosts
+}

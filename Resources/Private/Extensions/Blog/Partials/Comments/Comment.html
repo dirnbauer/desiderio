@@ -41,7 +41,7 @@
     <f:section name="CommentUrl">
         <f:if condition="{comment.url} && {settings.comments.features.urls}">
             <f:then>
-                <f:link.external uri="{comment.url}" target="_blank" rel="external nofollow noopener" class="rounded-sm underline-offset-4 hover:text-primary hover:underline focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/40"><span itemprop="name">{content}</span></f:link.external>
+                <f:link.external uri="{comment.url}" target="_blank" rel="external nofollow noopener" class="rounded-sm !no-underline hover:text-primary focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/40"><span itemprop="name">{content}</span></f:link.external>
             </f:then>
             <f:else><span itemprop="name">{content}</span></f:else>
         </f:if>

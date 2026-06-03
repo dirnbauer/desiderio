@@ -22,11 +22,10 @@
         </f:if>
     </f:if>
     <f:render partial="Meta/Rendering/Item" arguments="{name: name}" contentAs="content">
-        <blogvh:link.post post="{post}" section="comments">
-            <d:atom.badge variant="{f:if(condition: commentCount, then: 'secondary', else: 'outline')}">
-                <span data-icon="inline-start" aria-hidden="true"><d:atom.icon name="message-circle" size="xs"/></span>
-                <span>{text}</span>
-            </d:atom.badge>
+        <meta itemprop="commentCount" content="{commentCount}"/>
+        <blogvh:link.post post="{post}" section="comments" class="inline-flex min-h-6 items-center gap-1 rounded-sm text-foreground !no-underline outline-none transition-colors hover:text-primary focus-visible:ring-3 focus-visible:ring-ring/40">
+            <span aria-hidden="true"><d:atom.icon name="message-circle" size="xs"/></span>
+            <span>{text}</span>
         </blogvh:link.post>
     </f:render>
 </f:if>

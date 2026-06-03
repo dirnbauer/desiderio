@@ -24,7 +24,7 @@
             >
             <div class="min-w-0">
                 <h2 class="text-lg font-semibold text-foreground" itemprop="name">
-                    <blogvh:link.author author="{author}" class="underline-offset-4 hover:text-primary hover:underline" />
+                    <blogvh:link.author author="{author}" class="!no-underline outline-none transition-colors hover:text-primary focus-visible:ring-3 focus-visible:ring-ring/40" />
                 </h2>
                 <f:if condition="{author.title}">
                     <p class="text-sm text-muted-foreground">{author.title}</p>
@@ -37,7 +37,7 @@
             </p>
         </f:if>
         <p class="mt-auto">
-            <blogvh:link.author author="{author}" class="inline-flex items-center gap-1 text-sm font-medium text-primary underline-offset-4 hover:underline">
+            <blogvh:link.author author="{author}" class="inline-flex items-center gap-1 text-sm font-medium text-primary !no-underline outline-none transition-colors hover:text-primary focus-visible:ring-3 focus-visible:ring-ring/40">
                 <span><f:translate extensionName="Blog" key="list.show.author">All posts</f:translate></span>
                 <d:atom.icon name="arrow-right" size="xs"/>
             </blogvh:link.author>

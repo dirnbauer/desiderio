@@ -29,6 +29,7 @@
                 <f:then>
                     <d:layout.grid cols="3" gap="lg">
                         <d:layout.stack gap="xl" class="md:col-span-2">
+                            <f:render section="BlogListHeading" arguments="{_all}"/>
                             <f:render section="BlogPostHeading" arguments="{_all}"/>
                             <f:if condition="{content.main}">
                                 <f:render.contentArea contentArea="{content.main}"/>
@@ -44,6 +45,7 @@
                 </f:then>
                 <f:else>
                     <d:layout.stack gap="xl">
+                        <f:render section="BlogListHeading" arguments="{_all}"/>
                         <f:render section="BlogPostHeading" arguments="{_all}"/>
                         <f:if condition="{content.main}">
                             <f:render.contentArea contentArea="{content.main}"/>
@@ -54,6 +56,28 @@
         </d:layout.container>
     </d:layout.section>
     <!--TYPO3SEARCH_end-->
+</f:section>
+
+<f:section name="BlogListHeading">
+    <f:if condition="{page.pageRecord.pid} != {site.configuration.settings.plugin.tx_blog.settings.storagePid}">
+        <header class="max-w-3xl">
+            <d:layout.stack gap="sm">
+                <d:atom.badge variant="secondary" class="min-h-6 w-fit">Blog</d:atom.badge>
+                <d:atom.typography tag="h1" variant="h1" class="tracking-normal">{page.pageRecord.title}</d:atom.typography>
+                <f:if condition="{page.pageRecord.subtitle}">
+                    <d:atom.typography variant="lead">{page.pageRecord.subtitle}</d:atom.typography>
+                </f:if>
+                <f:if condition="{page.pageRecord.description} || {page.pageRecord.abstract}">
+                    <d:atom.typography variant="muted">
+                        <f:if condition="{page.pageRecord.abstract}">
+                            <f:then>{page.pageRecord.abstract}</f:then>
+                            <f:else>{page.pageRecord.description}</f:else>
+                        </f:if>
+                    </d:atom.typography>
+                </f:if>
+            </d:layout.stack>
+        </header>
+    </f:if>
 </f:section>
 
 <f:section name="BlogPostHeading">

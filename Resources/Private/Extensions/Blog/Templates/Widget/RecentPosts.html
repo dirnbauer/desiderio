@@ -15,7 +15,7 @@
             <ul role="list" class="flex flex-col gap-1">
                 <f:for each="{posts}" as="post">
                     <li data-blog-post="{post.uid}">
-                        <blogvh:link.post post="{post}" title="{post.title}" class="group/post flex items-center justify-between gap-3 rounded-lg px-2.5 py-2 text-sm font-medium text-foreground underline-offset-4 transition-colors hover:bg-muted hover:text-primary focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/40">
+                        <blogvh:link.post post="{post}" title="{post.title}" class="group/post flex items-center justify-between gap-3 rounded-lg px-2.5 py-2 text-sm font-medium text-foreground !no-underline transition-colors hover:bg-muted hover:text-primary focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/40">
                             <span class="min-w-0 truncate">{post.title}</span>
                             <span class="shrink-0 text-muted-foreground transition-colors group-hover/post:text-primary" aria-hidden="true"><d:atom.icon name="arrow-right" size="xs"/></span>
                         </blogvh:link.post>

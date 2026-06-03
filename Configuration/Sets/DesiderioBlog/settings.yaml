@@ -1,0 +1,67 @@
+# Desiderio Blog default presentation.
+# EXT:blog maps these site settings into the runtime plugin settings.
+
+plugin:
+  tx_blog:
+    settings:
+      meta:
+        listheader:
+          elements:
+            authors:
+              enable: true
+            categories:
+              enable: true
+            tags:
+              enable: false
+            published:
+              enable: true
+            comments:
+              enable: true
+        listfooter:
+          elements:
+            authors:
+              enable: false
+            categories:
+              enable: false
+            tags:
+              enable: true
+            published:
+              enable: false
+            comments:
+              enable: false
+        teaserheader:
+          elements:
+            authors:
+              enable: true
+            categories:
+              enable: true
+            tags:
+              enable: false
+            published:
+              enable: true
+            comments:
+              enable: true
+        teaserfooter:
+          elements:
+            authors:
+              enable: false
+            categories:
+              enable: false
+            tags:
+              enable: true
+            published:
+              enable: false
+            comments:
+              enable: false
+        postfooter:
+          elements:
+            authors:
+              enable: false
+            categories:
+              enable: true
+            tags:
+              enable: true
+            published:
+              enable: false
+            comments:
+              enable: false

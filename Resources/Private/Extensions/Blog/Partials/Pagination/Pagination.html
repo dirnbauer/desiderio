@@ -11,7 +11,7 @@
         <ul role="list" class="flex flex-wrap items-center justify-center gap-1 text-sm sm:justify-start">
             <f:if condition="{pagination.previousPageNumber}">
                 <li>
-                    <a href="{f:uri.action(arguments: {currentPage: pagination.previousPageNumber}, addQueryString: 1)}" rel="prev" class="inline-flex h-9 items-center gap-1 rounded-md border border-border bg-background px-3 font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/40" aria-label="{f:translate(extensionName: 'Blog', key: 'pagination.aria.goto.previous', default: 'Previous page')}">
+                    <a href="{f:uri.action(arguments: {currentPage: pagination.previousPageNumber}, addQueryString: 1)}" rel="prev" class="inline-flex h-9 items-center gap-1 rounded-md border border-border bg-background px-3 font-medium text-muted-foreground !no-underline transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/40" aria-label="{f:translate(extensionName: 'Blog', key: 'pagination.aria.goto.previous', default: 'Previous page')}">
                         <span data-icon="inline-start" aria-hidden="true"><d:atom.icon name="chevron-left" size="xs"/></span>
                         <span><f:translate extensionName="Blog" key="pagination.previous">Previous</f:translate></span>
                     </a>
@@ -20,7 +20,7 @@
 
             <f:if condition="{pagination.lessPages}">
                 <li>
-                    <a href="{f:uri.action(arguments: {currentPage: pagination.firstPageNumber}, addQueryString: 1)}" class="inline-flex size-9 items-center justify-center rounded-md border border-border bg-background font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/40" aria-label="{f:translate(extensionName: 'Blog', key: 'pagination.aria.goto.page', arguments: '{0: pagination.firstPageNumber}')}">{pagination.firstPageNumber}</a>
+                    <a href="{f:uri.action(arguments: {currentPage: pagination.firstPageNumber}, addQueryString: 1)}" class="inline-flex size-9 items-center justify-center rounded-md border border-border bg-background font-medium text-muted-foreground !no-underline transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/40" aria-label="{f:translate(extensionName: 'Blog', key: 'pagination.aria.goto.page', arguments: '{0: pagination.firstPageNumber}')}">{pagination.firstPageNumber}</a>
                 </li>
                 <li><span class="inline-flex size-9 items-center justify-center text-muted-foreground" aria-hidden="true">…</span></li>
             </f:if>
@@ -32,7 +32,7 @@
                     </f:then>
                     <f:else>
                         <li>
-                            <a href="{f:uri.action(arguments: {currentPage: pageNumber}, addQueryString: 1)}" class="inline-flex size-9 items-center justify-center rounded-md border border-border bg-background font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/40" aria-label="{f:translate(extensionName: 'Blog', key: 'pagination.aria.goto.page', arguments: '{0: pageNumber}')}">{pageNumber}</a>
+                            <a href="{f:uri.action(arguments: {currentPage: pageNumber}, addQueryString: 1)}" class="inline-flex size-9 items-center justify-center rounded-md border border-border bg-background font-medium text-muted-foreground !no-underline transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/40" aria-label="{f:translate(extensionName: 'Blog', key: 'pagination.aria.goto.page', arguments: '{0: pageNumber}')}">{pageNumber}</a>
                         </li>
                     </f:else>
                 </f:if>
@@ -41,13 +41,13 @@
             <f:if condition="{pagination.morePages}">
                 <li><span class="inline-flex size-9 items-center justify-center text-muted-foreground" aria-hidden="true">…</span></li>
                 <li>
-                    <a href="{f:uri.action(arguments: {currentPage: pagination.lastPageNumber}, addQueryString: 1)}" class="inline-flex size-9 items-center justify-center rounded-md border border-border bg-background font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/40" aria-label="{f:translate(extensionName: 'Blog', key: 'pagination.aria.goto.page', arguments: '{0: pagination.lastPageNumber}')}">{pagination.lastPageNumber}</a>
+                    <a href="{f:uri.action(arguments: {currentPage: pagination.lastPageNumber}, addQueryString: 1)}" class="inline-flex size-9 items-center justify-center rounded-md border border-border bg-background font-medium text-muted-foreground !no-underline transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/40" aria-label="{f:translate(extensionName: 'Blog', key: 'pagination.aria.goto.page', arguments: '{0: pagination.lastPageNumber}')}">{pagination.lastPageNumber}</a>
                 </li>
             </f:if>
 
             <f:if condition="{pagination.nextPageNumber}">
                 <li>
-                    <a href="{f:uri.action(arguments: {currentPage: pagination.nextPageNumber}, addQueryString: 1)}" rel="next" class="inline-flex h-9 items-center gap-1 rounded-md border border-border bg-background px-3 font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/40" aria-label="{f:translate(extensionName: 'Blog', key: 'pagination.aria.goto.next', default: 'Next page')}">
+                    <a href="{f:uri.action(arguments: {currentPage: pagination.nextPageNumber}, addQueryString: 1)}" rel="next" class="inline-flex h-9 items-center gap-1 rounded-md border border-border bg-background px-3 font-medium text-muted-foreground !no-underline transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/40" aria-label="{f:translate(extensionName: 'Blog', key: 'pagination.aria.goto.next', default: 'Next page')}">
                         <span><f:translate extensionName="Blog" key="pagination.next">Next</f:translate></span>
                         <span data-icon="inline-end" aria-hidden="true"><d:atom.icon name="chevron-right" size="xs"/></span>
                     </a>

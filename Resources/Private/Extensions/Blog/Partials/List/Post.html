@@ -10,49 +10,67 @@
 <f:argument name="iterator" type="array" optional="true"/>
 
 <article
+    class="group/card group/blog-post min-w-0 border-t border-border/70 pt-5 first:border-t-0 first:pt-0"
     data-blog-tag="{f:if(condition: post.tags, then: post.tags.0.uid, else: 0)}"
     data-blog-category="{f:if(condition: post.categories, then: post.categories.0.uid, else: 0)}"
     itemscope="itemscope"
     itemtype="https://schema.org/BlogPosting"
 >
-    <d:molecule.card size="sm">
+    <d:layout.stack gap="md" class="min-w-0">
         <f:if condition="{post.featuredImage}">
-            <blogvh:link.post post="{post}" additionalAttributes="{aria-hidden: 'true'}" tabindex="-1">
+            <blogvh:link.post post="{post}" class="block overflow-hidden rounded-lg bg-muted !no-underline outline-none focus-visible:ring-3 focus-visible:ring-ring/40" additionalAttributes="{aria-hidden: 'true'}" tabindex="-1">
                 <f:render partial="General/FeaturedImage" arguments="{image: post.featuredImage, settings: settings.lists.featuredImage}" />
             </blogvh:link.post>
         </f:if>
 
-        <d:molecule.cardHeader>
-            <f:render partial="Meta/ListHeader" arguments="{_all}" />
-        </d:molecule.cardHeader>
+        <d:layout.stack gap="sm" class="min-w-0">
+            <f:render partial="Meta/Rendering/Group" arguments="{metatype: 'listheader'}" contentAs="content">
+                <f:variable name="avatarSettings" value="{settings.meta.listheader.elements.authors.avatar}" />
+                <f:render partial="Meta/Elements/Authors" arguments="{_all}" />
+                <f:variable name="publishDateFormat" value="{settings.meta.listheader.elements.published.format}" />
+                <f:render partial="Meta/Elements/Published" arguments="{_all}" />
+                <f:render partial="Meta/Elements/Comments" arguments="{_all}" />
+            </f:render>
 
-        <d:molecule.cardContent>
-            <d:layout.stack gap="md">
-                <d:atom.typography tag="h2" variant="h4" itemprop="headline">
-                    <blogvh:link.post post="{post}" class="no-underline underline-offset-4 hover:underline" itemprop="url">
+            <d:layout.stack gap="xs" class="min-w-0">
+                <d:atom.typography tag="h2" variant="h3" class="text-balance leading-tight tracking-normal" itemprop="headline">
+                    <blogvh:link.post post="{post}" class="block rounded-md text-foreground !no-underline outline-none transition-colors hover:text-primary focus-visible:ring-3 focus-visible:ring-ring/40" itemprop="url">
                         {post.title}
                     </blogvh:link.post>
                 </d:atom.typography>
 
-                <d:atom.typography variant="muted" itemprop="description">
+                <f:if condition="{post.categories} || {post.tags}">
+                    <ul role="list" class="flex min-w-0 flex-wrap items-center gap-1.5">
+                        <f:for each="{post.categories}" as="postCategory">
+                            <li data-blog-category="{postCategory.uid}">
+                                <meta itemprop="articleSection" content="{postCategory.title}"/>
+                                <blogvh:link.category category="{postCategory}" class="inline-flex min-h-6 rounded-md !no-underline outline-none focus-visible:ring-3 focus-visible:ring-ring/40">
+                                    <d:atom.badge variant="secondary" class="min-h-6">{postCategory.title}</d:atom.badge>
+                                </blogvh:link.category>
+                            </li>
+                        </f:for>
+                        <f:for each="{post.tags}" as="postTag">
+                            <li data-blog-tag="{postTag.uid}">
+                                <meta itemprop="keywords" content="{postTag.title}"/>
+                                <blogvh:link.tag tag="{postTag}" class="inline-flex min-h-6 rounded-md !no-underline outline-none focus-visible:ring-3 focus-visible:ring-ring/40">
+                                    <d:atom.badge variant="outline" class="min-h-6">{postTag.title}</d:atom.badge>
+                                </blogvh:link.tag>
+                            </li>
+                        </f:for>
+                    </ul>
+                </f:if>
+            </d:layout.stack>
+
+            <f:if condition="{post.abstract} || {post.description}">
+                <d:atom.typography variant="muted" class="line-clamp-4 text-pretty leading-6" itemprop="description">
                     <f:if condition="{post.abstract}">
                         <f:then>{post.abstract}</f:then>
                         <f:else>{post.description}</f:else>
                     </f:if>
                 </d:atom.typography>
-            </d:layout.stack>
-        </d:molecule.cardContent>
-
-        <d:molecule.cardFooter class="justify-between gap-3">
-            <f:render partial="Meta/ListFooter" arguments="{_all}" />
-            <blogvh:link.post post="{post}">
-                <d:atom.badge variant="secondary">
-                    <span><f:translate extensionName="Blog" key="link.read.more">Read more</f:translate></span>
-                    <span data-icon="inline-end" aria-hidden="true"><d:atom.icon name="arrow-right" size="xs"/></span>
-                </d:atom.badge>
-            </blogvh:link.post>
-        </d:molecule.cardFooter>
-    </d:molecule.card>
+            </f:if>
+        </d:layout.stack>
+    </d:layout.stack>
 </article>
 
 </html>

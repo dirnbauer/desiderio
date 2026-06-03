@@ -22,7 +22,7 @@
                             <p class="max-w-3xl text-base leading-7 text-muted-foreground">{author.bio}</p>
                         </f:if>
                     </div>
-                    <blogvh:link.author class="inline-flex h-9 items-center gap-2 rounded-md border border-border bg-background px-3 text-sm font-medium text-foreground transition-colors hover:bg-muted" rss="true" author="{author}">
+                    <blogvh:link.author class="inline-flex h-9 items-center gap-2 rounded-md border border-border bg-background px-3 text-sm font-medium text-foreground !no-underline transition-colors hover:bg-muted" rss="true" author="{author}">
                         <d:atom.icon name="rss" size="xs"/>
                         <span><f:translate extensionName="Blog" key="link.rss" default="RSS"/></span>
                     </blogvh:link.author>
@@ -31,7 +31,7 @@
                     <ul role="list" class="mt-5 flex flex-wrap gap-2">
                         <f:for each="{author.allTags}" as="tag">
                             <li>
-                                <blogvh:link.tag tag="{tag}">
+                                <blogvh:link.tag tag="{tag}" class="!no-underline">
                                     <d:atom.badge variant="outline">{tag.title}</d:atom.badge>
                                 </blogvh:link.tag>
                             </li>
@@ -42,7 +42,7 @@
             <f:render partial="List" arguments="{_all}" />
             <f:if condition="{settings.authorUid}">
                 <footer class="mt-8">
-                    <f:link.page pageUid="{settings.authorUid}" class="inline-flex h-9 items-center gap-2 rounded-md border border-border bg-background px-3 text-sm font-medium text-foreground transition-colors hover:bg-muted">
+                    <f:link.page pageUid="{settings.authorUid}" class="inline-flex h-9 items-center gap-2 rounded-md border border-border bg-background px-3 text-sm font-medium text-foreground !no-underline transition-colors hover:bg-muted">
                         <d:atom.icon name="arrow-left" size="xs"/>
                         <span><f:translate extensionName="Blog" key="list.backlink.authors">Back to all authors</f:translate></span>
                     </f:link.page>

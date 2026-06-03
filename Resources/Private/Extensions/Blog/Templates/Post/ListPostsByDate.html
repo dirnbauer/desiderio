@@ -21,7 +21,7 @@
                             <f:if condition="{month}">{f:format.date(format: '{settings.widgets.archive.monthDateFormat}', date: timestamp)}</f:if> {year}
                         </d:atom.typography>
                     </div>
-                    <blogvh:link.archive class="inline-flex h-9 items-center gap-2 rounded-md border border-border bg-background px-3 text-sm font-medium text-foreground transition-colors hover:bg-muted" rss="true" year="{year}" month="{month}">
+                    <blogvh:link.archive class="inline-flex h-9 items-center gap-2 rounded-md border border-border bg-background px-3 text-sm font-medium text-foreground !no-underline transition-colors hover:bg-muted" rss="true" year="{year}" month="{month}">
                         <d:atom.icon name="rss" size="xs"/>
                         <span><f:translate extensionName="Blog" key="link.rss" default="RSS"/></span>
                     </blogvh:link.archive>
@@ -30,7 +30,7 @@
             <f:render partial="List" arguments="{_all}" />
             <f:if condition="{settings.archiveUid}">
                 <footer class="mt-8">
-                    <f:link.page pageUid="{settings.archiveUid}" class="inline-flex h-9 items-center gap-2 rounded-md border border-border bg-background px-3 text-sm font-medium text-foreground transition-colors hover:bg-muted">
+                    <f:link.page pageUid="{settings.archiveUid}" class="inline-flex h-9 items-center gap-2 rounded-md border border-border bg-background px-3 text-sm font-medium text-foreground !no-underline transition-colors hover:bg-muted">
                         <d:atom.icon name="arrow-left" size="xs"/>
                         <span><f:translate extensionName="Blog" key="list.backlink.archive">Back to archive</f:translate></span>
                     </f:link.page>

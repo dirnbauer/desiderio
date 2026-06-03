@@ -10,7 +10,7 @@
 <f:argument name="type" type="string" optional="true"/>
 
 <section data-blog-teaserlist="{type -> f:or(alternative: 'default')}" data-blog-postcount="{posts -> f:count()}">
-    <d:layout.grid cols="3" gap="md">
+    <d:layout.grid cols="3" gap="md" class="items-start">
         <f:for each="{posts}" iteration="iterator" as="post">
             <blogvh:cache post="{post}" />
             <f:render partial="Teaser/Post" arguments="{_all}" />

@@ -5,12 +5,12 @@
 >
 
 <f:spaceless>
-    <aside>
-        <d:molecule.card size="sm">
-            <d:molecule.cardHeader>
-                <d:atom.typography tag="h3" variant="small"><f:render section="Title" /></d:atom.typography>
+    <aside class="min-w-0">
+        <d:molecule.card size="sm" class="border-border bg-card">
+            <d:molecule.cardHeader class="border-b border-border/70 pb-3">
+                <d:atom.typography tag="h3" variant="small" class="tracking-normal"><f:render section="Title" /></d:atom.typography>
             </d:molecule.cardHeader>
-            <d:molecule.cardContent>
+            <d:molecule.cardContent class="pt-0">
                 <f:render section="Content" />
             </d:molecule.cardContent>
         </d:molecule.card>

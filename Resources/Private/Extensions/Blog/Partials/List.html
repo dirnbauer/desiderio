@@ -19,7 +19,7 @@
                 <f:if condition="{settings.lists.pagination.insertAbove}">
                     <f:render partial="Pagination/Pagination" arguments="{pagination: pagination}" />
                 </f:if>
-                <d:layout.grid cols="3" gap="md">
+                <d:layout.grid cols="3" gap="md" class="items-start">
                     <f:for each="{paginated}" iteration="iterator" as="post">
                         <blogvh:cache post="{post}" />
                         <f:render partial="List/Post" arguments="{_all}" />
@@ -31,7 +31,7 @@
             </d:layout.stack>
         </f:then>
         <f:else if="{posts}">
-            <d:layout.grid cols="3" gap="md">
+            <d:layout.grid cols="3" gap="md" class="items-start">
                 <f:for each="{posts}" iteration="iterator" as="post">
                     <blogvh:cache post="{post}" />
                     <f:render partial="List/Post" arguments="{_all}" />

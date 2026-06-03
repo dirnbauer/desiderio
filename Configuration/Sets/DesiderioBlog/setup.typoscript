@@ -19,4 +19,52 @@ plugin.tx_blog {
     partialRootPaths.200 = EXT:desiderio/Resources/Private/Extensions/Blog/Partials/
     layoutRootPaths.200 = EXT:desiderio/Resources/Private/Extensions/Blog/Layouts/
   }
+
+  settings.meta {
+    listheader {
+      elements {
+        authors.enable = 1
+        categories.enable = 1
+        tags.enable = 0
+        published.enable = 1
+        comments.enable = 1
+      }
+    }
+    listfooter {
+      elements {
+        authors.enable = 0
+        categories.enable = 0
+        tags.enable = 1
+        published.enable = 0
+        comments.enable = 0
+      }
+    }
+    teaserheader {
+      elements {
+        authors.enable = 1
+        categories.enable = 1
+        tags.enable = 0
+        published.enable = 1
+        comments.enable = 1
+      }
+    }
+    teaserfooter {
+      elements {
+        authors.enable = 0
+        categories.enable = 0
+        tags.enable = 1
+        published.enable = 0
+        comments.enable = 0
+      }
+    }
+    postfooter {
+      elements {
+        authors.enable = 0
+        categories.enable = 1
+        tags.enable = 1
+        published.enable = 0
+        comments.enable = 0
+      }
+    }
+  }
 }

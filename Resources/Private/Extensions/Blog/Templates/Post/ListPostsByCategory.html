@@ -22,7 +22,7 @@
                             <p class="max-w-3xl text-base leading-7 text-muted-foreground">{category.description}</p>
                         </f:if>
                     </div>
-                    <blogvh:link.category class="inline-flex h-9 items-center gap-2 rounded-md border border-border bg-background px-3 text-sm font-medium text-foreground transition-colors hover:bg-muted" rss="true" category="{category}">
+                    <blogvh:link.category class="inline-flex h-9 items-center gap-2 rounded-md border border-border bg-background px-3 text-sm font-medium text-foreground !no-underline transition-colors hover:bg-muted" rss="true" category="{category}">
                         <d:atom.icon name="rss" size="xs"/>
                         <span><f:translate extensionName="Blog" key="link.rss" default="RSS"/></span>
                     </blogvh:link.category>
@@ -33,7 +33,7 @@
                 <footer class="mt-8 flex flex-col gap-6 border-t border-border pt-6">
                     <f:if condition="{settings.categoryUid}">
                         <div>
-                            <f:link.page pageUid="{settings.categoryUid}" class="inline-flex h-9 items-center gap-2 rounded-md border border-border bg-background px-3 text-sm font-medium text-foreground transition-colors hover:bg-muted">
+                            <f:link.page pageUid="{settings.categoryUid}" class="inline-flex h-9 items-center gap-2 rounded-md border border-border bg-background px-3 text-sm font-medium text-foreground !no-underline transition-colors hover:bg-muted">
                                 <d:atom.icon name="arrow-left" size="xs"/>
                                 <span><f:translate extensionName="Blog" key="list.backlink.categories">Back to all categories</f:translate></span>
                             </f:link.page>

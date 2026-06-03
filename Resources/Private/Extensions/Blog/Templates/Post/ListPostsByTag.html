@@ -22,7 +22,7 @@
                             <p class="max-w-3xl text-base leading-7 text-muted-foreground">{tag.description}</p>
                         </f:if>
                     </div>
-                    <blogvh:link.tag class="inline-flex h-9 items-center gap-2 rounded-md border border-border bg-background px-3 text-sm font-medium text-foreground transition-colors hover:bg-muted" rss="true" tag="{tag}">
+                    <blogvh:link.tag class="inline-flex h-9 items-center gap-2 rounded-md border border-border bg-background px-3 text-sm font-medium text-foreground !no-underline transition-colors hover:bg-muted" rss="true" tag="{tag}">
                         <d:atom.icon name="rss" size="xs"/>
                         <span><f:translate extensionName="Blog" key="link.rss" default="RSS"/></span>
                     </blogvh:link.tag>
@@ -33,7 +33,7 @@
                 <footer class="mt-8 flex flex-col gap-6 border-t border-border pt-6">
                     <f:if condition="{settings.tagUid}">
                         <div>
-                            <f:link.page pageUid="{settings.tagUid}" class="inline-flex h-9 items-center gap-2 rounded-md border border-border bg-background px-3 text-sm font-medium text-foreground transition-colors hover:bg-muted">
+                            <f:link.page pageUid="{settings.tagUid}" class="inline-flex h-9 items-center gap-2 rounded-md border border-border bg-background px-3 text-sm font-medium text-foreground !no-underline transition-colors hover:bg-muted">
                                 <d:atom.icon name="arrow-left" size="xs"/>
                                 <span><f:translate extensionName="Blog" key="list.backlink.tags">Back to all tags</f:translate></span>
                             </f:link.page>

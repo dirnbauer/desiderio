@@ -7,6 +7,42 @@ plugin.tx_powermail {
 
   settings {
     setup {
+      receiver {
+        default {
+          senderName = TEXT
+          senderName.value = Webconsulting
+
+          senderEmail = TEXT
+          senderEmail.value = office@webconsulting.at
+        }
+
+        overwrite {
+          senderName = TEXT
+          senderName.value = Webconsulting
+
+          senderEmail = TEXT
+          senderEmail.value = office@webconsulting.at
+        }
+      }
+
+      sender {
+        default {
+          senderName = TEXT
+          senderName.value = Webconsulting
+
+          senderEmail = TEXT
+          senderEmail.value = office@webconsulting.at
+        }
+
+        overwrite {
+          senderName = TEXT
+          senderName.value = Webconsulting
+
+          senderEmail = TEXT
+          senderEmail.value = office@webconsulting.at
+        }
+      }
+
       misc {
         htmlForLabels = 1
         showOnlyFilledValues = 1

@@ -1,0 +1,26 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:friendlycaptcha="http://typo3.org/ns/StudioMitte/FriendlyCaptcha/ViewHelpers"
+    data-namespace-typo3-fluid="true"
+>
+<f:argument name="field" type="object" />
+<f:argument name="settings" type="array" optional="{true}" />
+<f:argument name="mail" type="object" optional="{true}" />
+
+<f:variable name="captchaConfiguration" value="{friendlycaptcha:configuration()}" />
+<div role="group" data-slot="field" data-orientation="vertical" class="powermail_fieldwrap_{field.marker} {field.css} {f:render(partial: 'Form/ShadcnClass', arguments: {slot: 'field'}) -> f:format.trim()}">
+    <f:render partial="Form/FieldLabel" arguments="{field: field}" />
+    <f:form.hidden property="{field.marker}" value="1" id="powermail_field_{field.marker}" respectSubmittedDataValue="false" />
+    <f:if condition="{captchaConfiguration.enabled}">
+        <f:then>
+            <f:asset.script defer="1" async="1" identifier="friendlycaptcha" src="{captchaConfiguration.jsPath}" useNonce="true" />
+            <div class="frc-captcha" data-sitekey="{captchaConfiguration.siteKey}" {f:if(condition: '{captchaConfiguration.useEuPuzzleEndpoint}', then: 'data-api-endpoint="eu"')}></div>
+        </f:then>
+        <f:else>
+            <p class="{f:render(partial: 'Form/ShadcnClass', arguments: {slot: 'fieldError'}) -> f:format.trim()}">
+                <f:translate key="LLL:EXT:friendlycaptcha_official/Resources/Private/Language/locallang.xlf:configuration_missing" />
+            </p>
+        </f:else>
+    </f:if>
+</div>
+</html>

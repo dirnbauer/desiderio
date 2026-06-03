@@ -88,16 +88,17 @@ final class PowermailDemoSeeder
         $storagePid = $storagePid > 0 ? $storagePid : $rootUid;
 
         $this->softDeleteOwnedPowermailRecords($now);
-        $ownedPageUids = $this->findOwnedChildPageUids($rootUid, $pageColumns);
+        $ownedPageUids = $this->findOwnedChildPageUids();
         if ($ownedPageUids !== []) {
             $this->softDeleteContentOnPages($ownedPageUids, $now);
+            $this->hidePages($ownedPageUids, $now, $pageColumns);
         }
         $this->softDeleteContentOnPages([$rootUid, $rootTranslationUid], $now);
 
         $this->insertTextContent(
             $rootUid,
             'Powermail form patterns',
-            'Five seeded powermail pages demonstrate a progression from a compact newsletter signup to a complex multi-step project intake. Each form has its own redirect-based thank-you page and German translations.',
+            'Five seeded powermail pages cover common website form patterns. Each form uses Friendly Captcha, office@webconsulting.at as sender and receiver, and a hidden child thank-you page.',
             256,
             $now,
             $contentColumns
@@ -105,7 +106,7 @@ final class PowermailDemoSeeder
         $this->insertTextContent(
             $rootTranslationUid,
             'Powermail Formularmuster',
-            'Fuenf automatisch angelegte Powermail-Seiten zeigen den Weg vom kompakten Newsletter-Formular bis zur komplexen mehrstufigen Projektanfrage. Jedes Formular hat eine eigene Danke-Seite und deutsche Uebersetzungen.',
+            'Fuenf automatisch angelegte Powermail-Seiten decken typische Website-Formulare ab. Jedes Formular nutzt Friendly Captcha, office@webconsulting.at als Absender und Empfaenger sowie eine ausgeblendete Danke-Unterseite.',
             256,
             $now,
             $contentColumns,
@@ -116,26 +117,6 @@ final class PowermailDemoSeeder
         $createdForms = 0;
         foreach ($forms as $index => $form) {
             $sorting = ($index + 1) * 512;
-            $thankUid = $this->upsertPage(
-                $rootUid,
-                $form['thankTitleEn'],
-                '/desiderio-powermail/' . $form['slug'] . '-thank-you',
-                $sorting + 128,
-                $now,
-                $pageColumns
-            );
-            $thankTranslationUid = $this->upsertPage(
-                $rootUid,
-                $form['thankTitleDe'],
-                '/desiderio-powermail/' . $form['slug'] . '-danke',
-                $sorting + 129,
-                $now,
-                $pageColumns,
-                $germanLanguageUid,
-                $thankUid
-            );
-            $createdPages += 2;
-
             $formUids = $this->insertPowermailForm($storagePid, $form, $germanLanguageUid, $now);
             $createdForms++;
 
@@ -156,6 +137,28 @@ final class PowermailDemoSeeder
                 $pageColumns,
                 $germanLanguageUid,
                 $formPageUid
+            );
+            $createdPages += 2;
+
+            $thankUid = $this->upsertPage(
+                $formPageUid,
+                $form['thankTitleEn'],
+                '/desiderio-powermail/' . $form['slug'] . '/thank-you',
+                $sorting + 128,
+                $now,
+                $pageColumns,
+                navHide: true
+            );
+            $thankTranslationUid = $this->upsertPage(
+                $formPageUid,
+                $form['thankTitleDe'],
+                '/desiderio-powermail/' . $form['slug'] . '/danke',
+                $sorting + 129,
+                $now,
+                $pageColumns,
+                $germanLanguageUid,
+                $thankUid,
+                true
             );
             $createdPages += 2;
 
@@ -233,42 +236,17 @@ final class PowermailDemoSeeder
     {
         return [
             [
-                'slug' => 'newsletter',
-                'titleEn' => 'Newsletter Signup',
-                'titleDe' => 'Newsletter Anmeldung',
-                'pageTitleEn' => 'Powermail 01: Newsletter signup',
-                'pageTitleDe' => 'Powermail 01: Newsletter Anmeldung',
-                'introEn' => 'A minimal single-step form with email validation and consent.',
-                'introDe' => 'Ein minimales einstufiges Formular mit E-Mail-Validierung und Zustimmung.',
-                'thankTitleEn' => 'Newsletter signup received',
-                'thankTitleDe' => 'Newsletter Anmeldung erhalten',
-                'thankBodyEn' => 'Thank you for signing up. The demo form redirected to this dedicated thank-you page.',
-                'thankBodyDe' => 'Danke fuer die Anmeldung. Das Demoformular hat auf diese eigene Danke-Seite weitergeleitet.',
-                'moresteps' => false,
-                'pages' => [
-                    [
-                        'titleEn' => 'Signup',
-                        'titleDe' => 'Anmeldung',
-                        'fields' => [
-                            $this->field('input', 'email', 'Email', 'E-Mail', ['mandatory' => true, 'validation' => 1, 'sender_email' => true, 'placeholderEn' => 'you@example.com', 'placeholderDe' => 'sie@example.com']),
-                            $this->field('check', 'consent', 'Consent', 'Zustimmung', ['mandatory' => true, 'options' => [['I agree to receive the newsletter.', 'Ich moechte den Newsletter erhalten.', 'yes']]]),
-                            $this->field('submit', 'submit', 'Subscribe', 'Abonnieren'),
-                        ],
-                    ],
-                ],
-            ],
-            [
                 'slug' => 'contact',
-                'titleEn' => 'Contact Inquiry',
-                'titleDe' => 'Kontaktanfrage',
-                'pageTitleEn' => 'Powermail 02: Contact inquiry',
-                'pageTitleDe' => 'Powermail 02: Kontaktanfrage',
-                'introEn' => 'A standard contact form with sender name, email validation, subject choice, and message.',
-                'introDe' => 'Ein klassisches Kontaktformular mit Absendername, E-Mail-Validierung, Themenauswahl und Nachricht.',
-                'thankTitleEn' => 'Contact inquiry received',
+                'titleEn' => 'Contact Form',
+                'titleDe' => 'Kontaktformular',
+                'pageTitleEn' => 'Powermail 01: Contact form',
+                'pageTitleDe' => 'Powermail 01: Kontaktformular',
+                'introEn' => 'A standard contact form for general inquiries with topic routing and message text.',
+                'introDe' => 'Ein Standard-Kontaktformular fuer allgemeine Anfragen mit Themenauswahl und Nachricht.',
+                'thankTitleEn' => 'Contact request received',
                 'thankTitleDe' => 'Kontaktanfrage erhalten',
-                'thankBodyEn' => 'Thanks. The contact inquiry demo has been submitted.',
-                'thankBodyDe' => 'Danke. Die Demo-Kontaktanfrage wurde uebermittelt.',
+                'thankBodyEn' => 'Thank you. Your contact request has been received.',
+                'thankBodyDe' => 'Danke. Ihre Kontaktanfrage wurde empfangen.',
                 'moresteps' => false,
                 'pages' => [
                     [
@@ -276,129 +254,145 @@ final class PowermailDemoSeeder
                         'titleDe' => 'Kontakt',
                         'fields' => [
                             $this->field('input', 'name', 'Name', 'Name', ['mandatory' => true, 'sender_name' => true]),
-                            $this->field('input', 'email', 'Email', 'E-Mail', ['mandatory' => true, 'validation' => 1, 'sender_email' => true]),
-                            $this->field('select', 'topic', 'Topic', 'Thema', ['mandatory' => true, 'options' => [['General question', 'Allgemeine Frage', 'general'], ['Support', 'Support', 'support'], ['Partnership', 'Partnerschaft', 'partnership']]]),
+                            $this->field('input', 'email', 'Email', 'E-Mail', ['mandatory' => true, 'validation' => 1, 'sender_email' => true, 'placeholderEn' => 'you@example.com', 'placeholderDe' => 'sie@example.com']),
+                            $this->field('input', 'phone', 'Phone', 'Telefon'),
+                            $this->field('select', 'topic', 'Topic', 'Thema', ['mandatory' => true, 'options' => [['General inquiry', 'Allgemeine Anfrage', 'general'], ['Sales', 'Vertrieb', 'sales'], ['Support', 'Support', 'support']]]),
                             $this->field('textarea', 'message', 'Message', 'Nachricht', ['mandatory' => true, 'placeholderEn' => 'How can we help?', 'placeholderDe' => 'Wie koennen wir helfen?']),
-                            $this->field('submit', 'submit', 'Send inquiry', 'Anfrage senden'),
+                            $this->field('friendlycaptcha', 'friendlycaptcha', 'Spam protection', 'Spam-Schutz'),
+                            $this->field('submit', 'submit', 'Send request', 'Anfrage senden'),
                         ],
                     ],
                 ],
             ],
             [
-                'slug' => 'consultation',
-                'titleEn' => 'Consultation Request',
-                'titleDe' => 'Beratungsanfrage',
-                'pageTitleEn' => 'Powermail 03: Two-step consultation',
-                'pageTitleDe' => 'Powermail 03: Zweistufige Beratung',
-                'introEn' => 'A two-step form that separates contact data from appointment preferences.',
-                'introDe' => 'Ein zweistufiges Formular, das Kontaktdaten und Terminwuensche trennt.',
-                'thankTitleEn' => 'Consultation request received',
-                'thankTitleDe' => 'Beratungsanfrage erhalten',
-                'thankBodyEn' => 'Your consultation request has arrived in the demo inbox.',
-                'thankBodyDe' => 'Ihre Beratungsanfrage ist im Demo-Postfach angekommen.',
+                'slug' => 'newsletter',
+                'titleEn' => 'Newsletter Signup',
+                'titleDe' => 'Newsletter Anmeldung',
+                'pageTitleEn' => 'Powermail 02: Newsletter signup',
+                'pageTitleDe' => 'Powermail 02: Newsletter Anmeldung',
+                'introEn' => 'A compact newsletter signup with email validation, interest selection, and consent.',
+                'introDe' => 'Eine kompakte Newsletter-Anmeldung mit E-Mail-Validierung, Interessenauswahl und Zustimmung.',
+                'thankTitleEn' => 'Newsletter signup received',
+                'thankTitleDe' => 'Newsletter Anmeldung erhalten',
+                'thankBodyEn' => 'Thank you for signing up. Your newsletter request has been received.',
+                'thankBodyDe' => 'Danke fuer die Anmeldung. Ihre Newsletter-Anfrage wurde empfangen.',
+                'moresteps' => false,
+                'pages' => [
+                    [
+                        'titleEn' => 'Signup',
+                        'titleDe' => 'Anmeldung',
+                        'fields' => [
+                            $this->field('input', 'email', 'Email', 'E-Mail', ['mandatory' => true, 'validation' => 1, 'sender_email' => true, 'placeholderEn' => 'you@example.com', 'placeholderDe' => 'sie@example.com']),
+                            $this->field('check', 'interests', 'Interests', 'Interessen', ['options' => [['Company news', 'Unternehmensnews', 'news'], ['Events', 'Events', 'events'], ['Product updates', 'Produktupdates', 'updates']]]),
+                            $this->field('check', 'consent', 'Consent', 'Zustimmung', ['mandatory' => true, 'options' => [['I agree to receive the newsletter.', 'Ich moechte den Newsletter erhalten.', 'yes']]]),
+                            $this->field('friendlycaptcha', 'friendlycaptcha', 'Spam protection', 'Spam-Schutz'),
+                            $this->field('submit', 'submit', 'Subscribe', 'Abonnieren'),
+                        ],
+                    ],
+                ],
+            ],
+            [
+                'slug' => 'callback',
+                'titleEn' => 'Callback Request',
+                'titleDe' => 'Rueckrufanfrage',
+                'pageTitleEn' => 'Powermail 03: Callback request',
+                'pageTitleDe' => 'Powermail 03: Rueckrufanfrage',
+                'introEn' => 'A callback request form for users who prefer a phone follow-up.',
+                'introDe' => 'Ein Rueckruf-Formular fuer Nutzerinnen und Nutzer, die eine telefonische Rueckmeldung bevorzugen.',
+                'thankTitleEn' => 'Callback request received',
+                'thankTitleDe' => 'Rueckrufanfrage erhalten',
+                'thankBodyEn' => 'Thank you. Your callback request has been received.',
+                'thankBodyDe' => 'Danke. Ihre Rueckrufanfrage wurde empfangen.',
+                'moresteps' => false,
+                'pages' => [
+                    [
+                        'titleEn' => 'Callback',
+                        'titleDe' => 'Rueckruf',
+                        'fields' => [
+                            $this->field('input', 'name', 'Name', 'Name', ['mandatory' => true, 'sender_name' => true]),
+                            $this->field('input', 'phone', 'Phone', 'Telefon', ['mandatory' => true, 'placeholderEn' => '+43 ...', 'placeholderDe' => '+43 ...']),
+                            $this->field('input', 'email', 'Email', 'E-Mail', ['validation' => 1, 'sender_email' => true]),
+                            $this->field('select', 'preferred_time', 'Preferred time', 'Bevorzugte Zeit', ['mandatory' => true, 'options' => [['Morning', 'Vormittag', 'morning'], ['Afternoon', 'Nachmittag', 'afternoon'], ['Evening', 'Abend', 'evening']]]),
+                            $this->field('textarea', 'reason', 'Reason', 'Anliegen', ['placeholderEn' => 'What should we talk about?', 'placeholderDe' => 'Worum soll es gehen?']),
+                            $this->field('friendlycaptcha', 'friendlycaptcha', 'Spam protection', 'Spam-Schutz'),
+                            $this->field('submit', 'submit', 'Request callback', 'Rueckruf anfordern'),
+                        ],
+                    ],
+                ],
+            ],
+            [
+                'slug' => 'appointment',
+                'titleEn' => 'Appointment Request',
+                'titleDe' => 'Terminanfrage',
+                'pageTitleEn' => 'Powermail 04: Appointment request',
+                'pageTitleDe' => 'Powermail 04: Terminanfrage',
+                'introEn' => 'A two-step appointment form separating contact details from scheduling preferences.',
+                'introDe' => 'Ein zweistufiges Terminformular, das Kontaktdaten und Terminwuensche trennt.',
+                'thankTitleEn' => 'Appointment request received',
+                'thankTitleDe' => 'Terminanfrage erhalten',
+                'thankBodyEn' => 'Thank you. Your appointment request has been received.',
+                'thankBodyDe' => 'Danke. Ihre Terminanfrage wurde empfangen.',
                 'moresteps' => true,
                 'pages' => [
                     [
                         'titleEn' => 'Contact details',
                         'titleDe' => 'Kontaktdaten',
                         'fields' => [
-                            $this->field('input', 'firstname', 'First name', 'Vorname', ['mandatory' => true, 'sender_name' => true]),
-                            $this->field('input', 'lastname', 'Last name', 'Nachname', ['mandatory' => true]),
-                            $this->field('input', 'email', 'Work email', 'Geschaeftliche E-Mail', ['mandatory' => true, 'validation' => 1, 'sender_email' => true]),
+                            $this->field('input', 'name', 'Name', 'Name', ['mandatory' => true, 'sender_name' => true]),
+                            $this->field('input', 'email', 'Email', 'E-Mail', ['mandatory' => true, 'validation' => 1, 'sender_email' => true]),
+                            $this->field('input', 'phone', 'Phone', 'Telefon'),
                             $this->field('input', 'company', 'Company', 'Unternehmen'),
                         ],
                     ],
                     [
-                        'titleEn' => 'Appointment',
+                        'titleEn' => 'Schedule',
                         'titleDe' => 'Termin',
                         'fields' => [
                             $this->field('date', 'preferred_date', 'Preferred date', 'Wunschtermin', ['mandatory' => true]),
+                            $this->field('select', 'preferred_time', 'Preferred time', 'Bevorzugte Zeit', ['mandatory' => true, 'options' => [['Morning', 'Vormittag', 'morning'], ['Afternoon', 'Nachmittag', 'afternoon'], ['Flexible', 'Flexibel', 'flexible']]]),
                             $this->field('radio', 'format', 'Format', 'Format', ['mandatory' => true, 'options' => [['Video call', 'Videocall', 'video'], ['Phone call', 'Telefonat', 'phone'], ['On site', 'Vor Ort', 'onsite']]]),
-                            $this->field('textarea', 'briefing', 'Briefing', 'Briefing', ['placeholderEn' => 'What should we prepare?', 'placeholderDe' => 'Was sollen wir vorbereiten?']),
-                            $this->field('submit', 'submit', 'Request consultation', 'Beratung anfragen'),
+                            $this->field('textarea', 'notes', 'Notes', 'Notizen'),
+                            $this->field('friendlycaptcha', 'friendlycaptcha', 'Spam protection', 'Spam-Schutz'),
+                            $this->field('submit', 'submit', 'Request appointment', 'Termin anfragen'),
                         ],
                     ],
                 ],
             ],
             [
-                'slug' => 'support-upload',
-                'titleEn' => 'Support Upload',
-                'titleDe' => 'Support Upload',
-                'pageTitleEn' => 'Powermail 04: Support upload',
-                'pageTitleDe' => 'Powermail 04: Support Upload',
-                'introEn' => 'A support request with priority, affected area, description, and optional file upload.',
-                'introDe' => 'Eine Supportanfrage mit Prioritaet, betroffenem Bereich, Beschreibung und optionalem Upload.',
+                'slug' => 'support',
+                'titleEn' => 'Support Request',
+                'titleDe' => 'Supportanfrage',
+                'pageTitleEn' => 'Powermail 05: Support request',
+                'pageTitleDe' => 'Powermail 05: Supportanfrage',
+                'introEn' => 'A support request form with priority, affected area, description, and optional attachment.',
+                'introDe' => 'Ein Supportformular mit Prioritaet, betroffenem Bereich, Beschreibung und optionalem Anhang.',
                 'thankTitleEn' => 'Support request received',
                 'thankTitleDe' => 'Supportanfrage erhalten',
-                'thankBodyEn' => 'The support upload demo has saved the request and redirected here.',
-                'thankBodyDe' => 'Die Support-Upload-Demo hat die Anfrage gespeichert und hierher weitergeleitet.',
+                'thankBodyEn' => 'Thank you. Your support request has been received.',
+                'thankBodyDe' => 'Danke. Ihre Supportanfrage wurde empfangen.',
                 'moresteps' => true,
                 'pages' => [
+                    [
+                        'titleEn' => 'Requester',
+                        'titleDe' => 'Anfragende Person',
+                        'fields' => [
+                            $this->field('input', 'name', 'Name', 'Name', ['mandatory' => true, 'sender_name' => true]),
+                            $this->field('input', 'email', 'Email', 'E-Mail', ['mandatory' => true, 'validation' => 1, 'sender_email' => true]),
+                            $this->field('input', 'customer_number', 'Customer number', 'Kundennummer'),
+                            $this->field('select', 'priority', 'Priority', 'Prioritaet', ['mandatory' => true, 'options' => [['Low', 'Niedrig', 'low'], ['Normal', 'Normal', 'normal'], ['Urgent', 'Dringend', 'urgent']]]),
+                        ],
+                    ],
                     [
                         'titleEn' => 'Issue',
                         'titleDe' => 'Problem',
                         'fields' => [
-                            $this->field('input', 'name', 'Name', 'Name', ['mandatory' => true, 'sender_name' => true]),
-                            $this->field('input', 'email', 'Email', 'E-Mail', ['mandatory' => true, 'validation' => 1, 'sender_email' => true]),
-                            $this->field('select', 'priority', 'Priority', 'Prioritaet', ['mandatory' => true, 'options' => [['Low', 'Niedrig', 'low'], ['Normal', 'Normal', 'normal'], ['Urgent', 'Dringend', 'urgent']]]),
-                            $this->field('check', 'affected_area', 'Affected area', 'Betroffener Bereich', ['options' => [['Frontend', 'Frontend', 'frontend'], ['Backend', 'Backend', 'backend'], ['Email delivery', 'E-Mail Versand', 'mail']]]),
-                        ],
-                    ],
-                    [
-                        'titleEn' => 'Details',
-                        'titleDe' => 'Details',
-                        'fields' => [
+                            $this->field('select', 'affected_area', 'Affected area', 'Betroffener Bereich', ['mandatory' => true, 'options' => [['Website', 'Website', 'website'], ['Backend', 'Backend', 'backend'], ['Email delivery', 'E-Mail Versand', 'mail'], ['Other', 'Sonstiges', 'other']]]),
                             $this->field('textarea', 'description', 'Description', 'Beschreibung', ['mandatory' => true]),
                             $this->field('file', 'attachment', 'Attachment', 'Anhang'),
-                            $this->field('submit', 'submit', 'Send support request', 'Supportanfrage senden'),
-                        ],
-                    ],
-                ],
-            ],
-            [
-                'slug' => 'project-intake',
-                'titleEn' => 'Project Intake',
-                'titleDe' => 'Projektanfrage',
-                'pageTitleEn' => 'Powermail 05: Complex project intake',
-                'pageTitleDe' => 'Powermail 05: Komplexe Projektanfrage',
-                'introEn' => 'A multi-step project intake form using several field types and a review-oriented structure.',
-                'introDe' => 'Ein mehrstufiges Projektanfrageformular mit mehreren Feldtypen und pruefbarer Struktur.',
-                'thankTitleEn' => 'Project intake received',
-                'thankTitleDe' => 'Projektanfrage erhalten',
-                'thankBodyEn' => 'The complex intake demo has been submitted. This page can hold conversion tracking, next steps, and editorial thank-you content.',
-                'thankBodyDe' => 'Die komplexe Intake-Demo wurde uebermittelt. Diese Seite kann Conversion-Tracking, naechste Schritte und redaktionelle Danke-Inhalte aufnehmen.',
-                'moresteps' => true,
-                'pages' => [
-                    [
-                        'titleEn' => 'Company',
-                        'titleDe' => 'Unternehmen',
-                        'fields' => [
-                            $this->field('input', 'company', 'Company', 'Unternehmen', ['mandatory' => true]),
-                            $this->field('input', 'website', 'Website', 'Website', ['validation' => 2]),
-                            $this->field('select', 'company_size', 'Company size', 'Unternehmensgroesse', ['options' => [['1-10', '1-10', '1-10'], ['11-50', '11-50', '11-50'], ['51-250', '51-250', '51-250'], ['250+', '250+', '250+']]]),
-                            $this->field('input', 'contact', 'Contact person', 'Kontaktperson', ['mandatory' => true, 'sender_name' => true]),
-                            $this->field('input', 'email', 'Email', 'E-Mail', ['mandatory' => true, 'validation' => 1, 'sender_email' => true]),
-                        ],
-                    ],
-                    [
-                        'titleEn' => 'Scope',
-                        'titleDe' => 'Umfang',
-                        'fields' => [
-                            $this->field('check', 'services', 'Services', 'Leistungen', ['mandatory' => true, 'options' => [['TYPO3 relaunch', 'TYPO3 Relaunch', 'typo3'], ['Design system', 'Designsystem', 'design-system'], ['Search integration', 'Suchintegration', 'search'], ['Forms and automation', 'Formulare und Automatisierung', 'forms']]]),
-                            $this->field('radio', 'timeline', 'Timeline', 'Zeitplan', ['mandatory' => true, 'options' => [['ASAP', 'So bald wie moeglich', 'asap'], ['This quarter', 'Dieses Quartal', 'quarter'], ['Planning ahead', 'Vorausschauende Planung', 'later']]]),
-                            $this->field('select', 'budget', 'Budget range', 'Budgetrahmen', ['options' => [['Under 10k', 'Unter 10k', 'under-10k'], ['10k-25k', '10k-25k', '10-25k'], ['25k-75k', '25k-75k', '25-75k'], ['75k+', '75k+', '75k-plus']]]),
-                        ],
-                    ],
-                    [
-                        'titleEn' => 'Briefing',
-                        'titleDe' => 'Briefing',
-                        'fields' => [
-                            $this->field('html', 'briefing_note', 'Briefing note', 'Briefing Hinweis', ['textEn' => '<p>Use this final step for context, files, and consent before submitting the request.</p>', 'textDe' => '<p>Nutzen Sie diesen letzten Schritt fuer Kontext, Dateien und Zustimmung vor dem Absenden.</p>']),
-                            $this->field('textarea', 'goals', 'Goals and constraints', 'Ziele und Rahmenbedingungen', ['mandatory' => true]),
-                            $this->field('file', 'briefing_file', 'Briefing file', 'Briefing-Datei'),
-                            $this->field('check', 'privacy', 'Privacy', 'Datenschutz', ['mandatory' => true, 'options' => [['I agree that this demo request may be processed.', 'Ich stimme der Verarbeitung dieser Demoanfrage zu.', 'accepted']]]),
+                            $this->field('check', 'privacy', 'Privacy', 'Datenschutz', ['mandatory' => true, 'options' => [['I agree that this request may be processed.', 'Ich stimme der Verarbeitung dieser Anfrage zu.', 'accepted']]]),
                             $this->field('hidden', 'source', 'Source', 'Quelle', ['prefill' => 'desiderio-powermail-demo']),
-                            $this->field('submit', 'submit', 'Submit project intake', 'Projektanfrage senden'),
+                            $this->field('friendlycaptcha', 'friendlycaptcha', 'Spam protection', 'Spam-Schutz'),
+                            $this->field('submit', 'submit', 'Send support request', 'Supportanfrage senden'),
                         ],
                     ],
                 ],
@@ -634,16 +628,16 @@ final class PowermailDemoSeeder
                 'settings.flexform.main.pid' => (string)$storagePid,
             ],
             'receiver' => [
-                'settings.flexform.receiver.name' => 'Desiderio Demo',
-                'settings.flexform.receiver.email' => 'hello@example.com',
-                'settings.flexform.receiver.subject' => 'Powermail demo submission',
+                'settings.flexform.receiver.name' => 'Webconsulting',
+                'settings.flexform.receiver.email' => 'office@webconsulting.at',
+                'settings.flexform.receiver.subject' => 'Powermail form submission',
                 'settings.flexform.receiver.body' => '{powermail_all}',
             ],
             'sender' => [
-                'settings.flexform.sender.name' => 'Desiderio Demo',
-                'settings.flexform.sender.email' => 'no-reply@example.com',
+                'settings.flexform.sender.name' => 'Webconsulting',
+                'settings.flexform.sender.email' => 'office@webconsulting.at',
                 'settings.flexform.sender.subject' => 'Thank you for your request',
-                'settings.flexform.sender.body' => 'Thank you. We received your demo submission.',
+                'settings.flexform.sender.body' => 'Thank you. We received your request.',
             ],
             'thx' => [
                 'settings.flexform.thx.body' => 'Thank you for your submission.',
@@ -676,6 +670,7 @@ final class PowermailDemoSeeder
         array $columns,
         int $languageUid = 0,
         int $l10nParent = 0,
+        bool $navHide = false,
     ): int {
         $existingUid = $this->findExistingPageUid($pid, $slug, $languageUid, $l10nParent, $columns);
         $row = $this->filterRow([
@@ -684,6 +679,7 @@ final class PowermailDemoSeeder
             'doktype' => 1,
             'slug' => $slug,
             'hidden' => 0,
+            'nav_hide' => (int)$navHide,
             'sorting' => $sorting,
             'sys_language_uid' => $languageUid,
             'l10n_parent' => $l10nParent,
@@ -732,17 +728,13 @@ final class PowermailDemoSeeder
     }
 
     /**
-     * @param array<string, true> $columns
      * @return list<int>
      */
-    private function findOwnedChildPageUids(int $rootUid, array $columns): array
+    private function findOwnedChildPageUids(): array
     {
-        $where = ['pid = :rootUid', 'deleted = 0', 'slug LIKE :slug'];
-        $parameters = ['rootUid' => $rootUid, 'slug' => '/desiderio-powermail/%'];
-        $types = ['rootUid' => ParameterType::INTEGER, 'slug' => ParameterType::STRING];
-        if (isset($columns['sys_language_uid'])) {
-            $where[] = 'sys_language_uid IN (0, 1)';
-        }
+        $where = ['deleted = 0', 'slug LIKE :slug'];
+        $parameters = ['slug' => '/desiderio-powermail/%'];
+        $types = ['slug' => ParameterType::STRING];
 
         $uids = $this->connectionPool
             ->getConnectionForTable('pages')
@@ -750,6 +742,40 @@ final class PowermailDemoSeeder
             ->fetchFirstColumn();
 
         return $this->normalizeIntegerList($uids);
+    }
+
+    /**
+     * @param list<int> $pageUids
+     * @param array<string, true> $columns
+     */
+    private function hidePages(array $pageUids, int $now, array $columns): void
+    {
+        if ($pageUids === []) {
+            return;
+        }
+
+        $row = $this->filterRow([
+            'hidden' => 1,
+            'nav_hide' => 1,
+            'tstamp' => $now,
+        ], $columns);
+        if ($row === []) {
+            return;
+        }
+
+        $queryBuilder = $this->connectionPool->getQueryBuilderForTable('pages');
+        $queryBuilder
+            ->update('pages')
+            ->where(
+                $queryBuilder->expr()->in(
+                    'uid',
+                    $queryBuilder->createNamedParameter($pageUids, ArrayParameterType::INTEGER)
+                )
+            );
+        foreach ($row as $column => $value) {
+            $queryBuilder->set($column, (string)$value);
+        }
+        $queryBuilder->executeStatement();
     }
 
     private function softDeleteOwnedPowermailRecords(int $now): void

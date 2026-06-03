@@ -18,10 +18,11 @@ final class PowermailIntegrationTest extends TestCase
         $contentTemplate = (string)file_get_contents(__DIR__ . '/../../Resources/Private/FluidStyledContent/Templates/PowermailPi1.fluid.html');
 
         self::assertStringContainsString('name: webconsulting/desiderio-powermail', $config);
-        self::assertMatchesRegularExpression('/dependencies:\s+- webconsulting\/desiderio\s+- in2code\/powermail-main/s', $config);
+        self::assertMatchesRegularExpression('/dependencies:\s+- webconsulting\/desiderio\s+- in2code\/powermail-main\s+- studiomitte\/friendlycaptcha/s', $config);
         self::assertStringNotContainsString('optionalDependencies:', $config);
         self::assertStringNotContainsString('webconsulting/desiderio-powermail', $baseConfig);
         self::assertStringContainsString('plugin.tx_powermail', $setup);
+        self::assertStringContainsString('office@webconsulting.at', $setup);
         self::assertStringContainsString('tt_content.powermail_pi1', $setup);
         self::assertStringContainsString('templateName = PowermailPi1', $setup);
         self::assertStringContainsString('lib.desiderioPowermailPi1 = EXTBASEPLUGIN', $setup);
@@ -50,6 +51,7 @@ final class PowermailIntegrationTest extends TestCase
             'Partials/Form/Field/Radio.html',
             'Partials/Form/Field/Textarea.html',
             'Partials/Form/Field/File.html',
+            'Partials/Form/Field/Friendlycaptcha.html',
             'Partials/Form/Field/Submit.html',
         ];
 
@@ -119,6 +121,12 @@ final class PowermailIntegrationTest extends TestCase
         self::assertStringContainsString('powermailErrorSelector', $javascript);
         self::assertStringContainsString('dataset.powermailMorestepCurrent', $javascript);
         self::assertStringContainsString('MutationObserver', $javascript);
+
+        $friendlyCaptcha = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/Powermail/Partials/Form/Field/Friendlycaptcha.html');
+        self::assertStringContainsString('friendlycaptcha:configuration()', $friendlyCaptcha);
+        self::assertStringContainsString('identifier="friendlycaptcha"', $friendlyCaptcha);
+        self::assertStringContainsString('class="frc-captcha"', $friendlyCaptcha);
+        self::assertStringContainsString('configuration_missing', $friendlyCaptcha);
     }
 
     public function testPowermailTranslationsAreXliff20InEnglishAndGerman(): void
@@ -134,17 +142,35 @@ final class PowermailIntegrationTest extends TestCase
         }
     }
 
-    public function testPowermailDemoSeederDefinesFiveProgressiveForms(): void
+    public function testPowermailDemoSeederDefinesFiveStandardFormsWithFriendlyCaptcha(): void
     {
         $seeder = new PowermailDemoSeeder($this->createMock(ConnectionPool::class));
         $forms = $seeder->getDemoForms();
 
         self::assertCount(5, $forms);
-        self::assertSame('newsletter', $forms[0]['slug']);
-        self::assertSame('project-intake', $forms[4]['slug']);
+        self::assertSame(['contact', 'newsletter', 'callback', 'appointment', 'support'], array_column($forms, 'slug'));
         self::assertFalse($forms[0]['moresteps']);
-        self::assertTrue($forms[4]['moresteps']);
+        self::assertFalse($forms[2]['moresteps']);
+        self::assertTrue($forms[3]['moresteps']);
         self::assertIsArray($forms[4]['pages']);
-        self::assertCount(3, $forms[4]['pages']);
+        self::assertCount(2, $forms[4]['pages']);
+
+        $captchaFields = 0;
+        foreach ($forms as $form) {
+            foreach ($form['pages'] as $page) {
+                foreach ($page['fields'] as $field) {
+                    if ($field['type'] === 'friendlycaptcha') {
+                        $captchaFields++;
+                    }
+                }
+            }
+        }
+        self::assertSame(5, $captchaFields);
+
+        $source = (string)file_get_contents(__DIR__ . '/../../Classes/Command/PowermailDemoSeeder.php');
+        self::assertStringContainsString('office@webconsulting.at', $source);
+        self::assertStringContainsString("'/desiderio-powermail/' . \$form['slug'] . '/thank-you'", $source);
+        self::assertStringContainsString("'nav_hide' => (int)\$navHide", $source);
+        self::assertStringContainsString('$this->hidePages($ownedPageUids, $now, $pageColumns);', $source);
     }
 }

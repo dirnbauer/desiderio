@@ -153,6 +153,17 @@ the way through the override chain.
 
 The set is shipped *hidden* from the Site Management picker.
 
+For existing Blog page trees, run the layout seeder after enabling the Blog
+set so root, data-folder, list, translated, and post pages use the same
+Desiderio Blog backend layout:
+
+```bash
+vendor/bin/typo3 desiderio:blog:seed-pages --root=15
+```
+
+The command exits without changes when `t3g/blog` is not loaded. Omit
+`--root` to normalize all detected Blog setups.
+
 ### News: shadcn-styled list, magazine view, and load-more
 
 Drop a `News` plugin onto a `DesiderioBlog` or `DesiderioNews` page and the

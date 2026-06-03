@@ -29,7 +29,6 @@
                 <f:then>
                     <d:layout.grid cols="3" gap="lg">
                         <d:layout.stack gap="xl" class="md:col-span-2">
-                            <f:render section="BlogPostHeading" arguments="{_all}"/>
                             <f:if condition="{content.main}">
                                 <f:render.contentArea contentArea="{content.main}"/>
                             </f:if>
@@ -44,7 +43,6 @@
                 </f:then>
                 <f:else>
                     <d:layout.stack gap="xl">
-                        <f:render section="BlogPostHeading" arguments="{_all}"/>
                         <f:if condition="{content.main}">
                             <f:render.contentArea contentArea="{content.main}"/>
                         </f:if>
@@ -54,33 +52,6 @@
         </d:layout.container>
     </d:layout.section>
     <!--TYPO3SEARCH_end-->
-</f:section>
-
-<f:section name="BlogPostHeading">
-    <f:if condition="{page.pageRecord.pid} == {site.configuration.settings.plugin.tx_blog.settings.storagePid}">
-        <d:molecule.card>
-            <d:molecule.cardHeader>
-                <d:layout.stack gap="md">
-                    <d:atom.badge variant="secondary">Blog</d:atom.badge>
-                    <d:atom.typography tag="h1" variant="h1" itemprop="headline">{page.pageRecord.title}</d:atom.typography>
-                    <f:if condition="{page.pageRecord.subtitle}">
-                        <d:atom.typography variant="lead">{page.pageRecord.subtitle}</d:atom.typography>
-                    </f:if>
-                </d:layout.stack>
-            </d:molecule.cardHeader>
-
-            <f:if condition="{page.pageRecord.description} || {page.pageRecord.abstract}">
-                <d:molecule.cardContent>
-                    <d:atom.typography variant="muted" itemprop="description">
-                        <f:if condition="{page.pageRecord.abstract}">
-                            <f:then>{page.pageRecord.abstract}</f:then>
-                            <f:else>{page.pageRecord.description}</f:else>
-                        </f:if>
-                    </d:atom.typography>
-                </d:molecule.cardContent>
-            </f:if>
-        </d:molecule.card>
-    </f:if>
 </f:section>
 
 </html>

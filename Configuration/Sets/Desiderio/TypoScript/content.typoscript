@@ -91,11 +91,10 @@ lib.desiderioShortcutRecords {
   dontCheckPid = 1
 }
 
-tt_content = CASE
 tt_content.default =< lib.contentElement
 
-# Keep EXT:visual_editor's content-element wrapper after replacing tt_content
-# with the Desiderio CASE object.
+# Keep EXT:visual_editor's content-element wrapper on the existing content
+# renderer while preserving extension-provided plugin CTypes.
 tt_content.stdWrap.wrapContentElementsWithVeWrapper = 1
 
 tt_content.header =< lib.contentElement

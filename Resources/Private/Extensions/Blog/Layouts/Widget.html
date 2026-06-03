@@ -5,17 +5,12 @@
 >
 
 <f:spaceless>
-    <aside class="desiderio-blog-widget">
-        <d:molecule.card size="sm" class="border-border bg-card">
-            <d:molecule.cardHeader class="border-b border-border/70 pb-3">
-                <div class="flex items-center justify-between gap-3">
-                    <d:atom.typography tag="h3" variant="small" class="text-foreground"><f:render section="Title" /></d:atom.typography>
-                    <span class="inline-flex size-7 items-center justify-center rounded-md bg-muted text-muted-foreground" aria-hidden="true">
-                        <d:atom.icon name="layout-sidebar-right" size="xs"/>
-                    </span>
-                </div>
+    <aside>
+        <d:molecule.card size="sm">
+            <d:molecule.cardHeader>
+                <d:atom.typography tag="h3" variant="small"><f:render section="Title" /></d:atom.typography>
             </d:molecule.cardHeader>
-            <d:molecule.cardContent class="pt-0">
+            <d:molecule.cardContent>
                 <f:render section="Content" />
             </d:molecule.cardContent>
         </d:molecule.card>

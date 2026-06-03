@@ -1,47 +1,49 @@
 # Use PAGEVIEW to render page templates (enables visual-editor content areas)
+lib.desiderioPageDataProcessing {
+  10 = menu
+  10 {
+    as = mainMenu
+    levels = 2
+    expandAll = 1
+  }
+
+  20 = menu
+  20 {
+    special = rootline
+    as = breadcrumb
+    dataProcessing.10 = record-transformation
+  }
+
+  30 = language-menu
+  30 {
+    as = languageNavigation
+    languages = auto
+  }
+
+  40 = site
+  40.as = site
+
+  50 = menu
+  50 {
+    as = footerMenu
+    levels = 1
+    titleField = nav_title // title
+  }
+
+  60 = menu
+  60 {
+    if.isTrue = {$desiderio.footer.legalPageIds}
+    special = list
+    special.value = {$desiderio.footer.legalPageIds}
+    as = legalMenu
+    includeNotInMenu = 1
+    titleField = nav_title // title
+  }
+}
+
+lib.fluidPage >
 lib.fluidPage = PAGEVIEW
 lib.fluidPage {
   paths.10 = EXT:desiderio/Resources/Private/Templates/
-
-  dataProcessing {
-    10 = menu
-    10 {
-      as = mainMenu
-      levels = 2
-      expandAll = 1
-    }
-
-    20 = menu
-    20 {
-      special = rootline
-      as = breadcrumb
-      dataProcessing.10 = record-transformation
-    }
-
-    30 = language-menu
-    30 {
-      as = languageNavigation
-      languages = auto
-    }
-
-    40 = site
-    40.as = site
-
-    50 = menu
-    50 {
-      as = footerMenu
-      levels = 1
-      titleField = nav_title // title
-    }
-
-    60 = menu
-    60 {
-      if.isTrue = {$desiderio.footer.legalPageIds}
-      special = list
-      special.value = {$desiderio.footer.legalPageIds}
-      as = legalMenu
-      includeNotInMenu = 1
-      titleField = nav_title // title
-    }
-  }
+  dataProcessing < lib.desiderioPageDataProcessing
 }

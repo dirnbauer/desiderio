@@ -33,6 +33,8 @@ desiderio:
     structuredDataEnabled: true
     robotsTxtEnabled: true
     sitemapPath: sitemap.xml
+  news:
+    useLoadMore: false
   tracking:
     enabled: false
   consent:

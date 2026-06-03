@@ -12,33 +12,31 @@
 
 <f:variable name="paginated" value="{pagination.paginatedItems}"/>
 
-<section class="desiderio-blog-list" data-blog-list="{type -> f:or(alternative: 'default')}">
+<section data-blog-list="{type -> f:or(alternative: 'default')}">
     <f:if condition="{pagination} && {paginated}">
         <f:then>
-            <f:if condition="{settings.lists.pagination.insertAbove}">
-                <div class="mb-6">
+            <d:layout.stack gap="lg">
+                <f:if condition="{settings.lists.pagination.insertAbove}">
                     <f:render partial="Pagination/Pagination" arguments="{pagination: pagination}" />
-                </div>
-            </f:if>
-            <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-                <f:for each="{paginated}" iteration="iterator" as="post">
-                    <blogvh:cache post="{post}" />
-                    <f:render partial="List/Post" arguments="{_all}" />
-                </f:for>
-            </div>
-            <f:if condition="{settings.lists.pagination.insertBelow}">
-                <div class="mt-8">
+                </f:if>
+                <d:layout.grid cols="3" gap="md">
+                    <f:for each="{paginated}" iteration="iterator" as="post">
+                        <blogvh:cache post="{post}" />
+                        <f:render partial="List/Post" arguments="{_all}" />
+                    </f:for>
+                </d:layout.grid>
+                <f:if condition="{settings.lists.pagination.insertBelow}">
                     <f:render partial="Pagination/Pagination" arguments="{pagination: pagination}" />
-                </div>
-            </f:if>
+                </f:if>
+            </d:layout.stack>
         </f:then>
         <f:else if="{posts}">
-            <div class="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
+            <d:layout.grid cols="3" gap="md">
                 <f:for each="{posts}" iteration="iterator" as="post">
                     <blogvh:cache post="{post}" />
                     <f:render partial="List/Post" arguments="{_all}" />
                 </f:for>
-            </div>
+            </d:layout.grid>
         </f:else>
         <f:else>
             <d:molecule.alert>

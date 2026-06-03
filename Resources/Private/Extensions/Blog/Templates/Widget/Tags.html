@@ -15,8 +15,8 @@
             <ul role="list" class="flex flex-wrap gap-2">
                 <f:for each="{tags}" as="tag">
                     <li data-blog-tag="{tag.uid}" data-active="{f:if(condition: '{currentTag} == {tag.uid}', then: 'true', else: 'false')}">
-                        <blogvh:link.tag tag="{tag.tagObject}" title="{tag.tagObject.title}" class="inline-flex rounded-md focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/40">
-                            <d:atom.badge variant="secondary" class="gap-1">
+                        <blogvh:link.tag tag="{tag.tagObject}" title="{tag.tagObject.title}">
+                            <d:atom.badge variant="outline">
                                 <span data-icon="inline-start" aria-hidden="true"><d:atom.icon name="tag" size="xs"/></span>
                                 <span>{tag.tagObject.title}</span>
                             </d:atom.badge>

@@ -7,16 +7,27 @@
 <f:layout name="Default"/>
 
 <f:section name="Main">
-    <f:render partial="Header" arguments="{record: record}"/>
-
-    <f:if condition="{record.mainType} == 'tx_news_domain_model_news'">
+    <f:if condition="{content}">
         <f:then>
-            <dv:recordHasField record="{record}" field="body">
-                <f:render partial="RichText" arguments="{record: record, field: 'body'}"/>
-            </dv:recordHasField>
+            {content -> f:format.raw()}
         </f:then>
         <f:else>
-            <f:render partial="RichText" arguments="{record: record, field: 'bodytext'}"/>
+            <f:render partial="Header" arguments="{record: record}"/>
+
+            <f:if condition="{record.mainType} == 'tx_news_domain_model_news'">
+                <f:then>
+                    <dv:recordHasField record="{record}" field="body">
+                        <f:render partial="RichText" arguments="{record: record, field: 'body'}"/>
+                    </dv:recordHasField>
+                </f:then>
+                <f:else>
+                    <f:render partial="RichText" arguments="{record: record, field: 'bodytext'}"/>
+                </f:else>
+            </f:if>
+
+            <f:if condition="{data.CType}">
+                <f:cObject typoscriptObjectPath="tt_content.{data.CType}.20" data="{data}" table="tt_content"/>
+            </f:if>
         </f:else>
     </f:if>
 </f:section>

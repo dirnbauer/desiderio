@@ -30,6 +30,9 @@ categories:
   desiderio.seo:
     label: 'SEO'
     parent: desiderio
+  desiderio.news:
+    label: 'News'
+    parent: desiderio
   desiderio.tracking:
     label: 'Tracking'
     parent: desiderio
@@ -215,6 +218,14 @@ settings:
     type: string
     default: sitemap.xml
     category: desiderio.seo
+
+  # --------------------------------------------------------------- News
+  desiderio.news.useLoadMore:
+    label: 'Use load-more lists'
+    description: 'Default for shadcn-styled EXT:news list templates. Individual plugins can still override the value.'
+    type: bool
+    default: false
+    category: desiderio.news
 
   # --------------------------------------------------------------- Tracking
   desiderio.tracking.enabled:

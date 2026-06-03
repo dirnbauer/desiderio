@@ -10,45 +10,48 @@
 <f:argument name="iterator" type="array" optional="true"/>
 
 <article
-    class="group/card flex h-full flex-col {f:if(condition: iterator.isFirst, then: 'md:col-span-2 xl:col-span-2', else: '')}"
     data-blog-tag="{f:if(condition: post.tags, then: post.tags.0.uid, else: 0)}"
     data-blog-category="{f:if(condition: post.categories, then: post.categories.0.uid, else: 0)}"
     itemscope="itemscope"
     itemtype="https://schema.org/BlogPosting"
 >
-    <d:molecule.card class="h-full border-border bg-card transition-colors hover:border-primary/40">
+    <d:molecule.card size="sm">
         <f:if condition="{post.featuredImage}">
-            <blogvh:link.post post="{post}" class="block overflow-hidden" additionalAttributes="{aria-hidden: 'true'}" tabindex="-1">
-                <f:render partial="General/FeaturedImage" arguments="{image: post.featuredImage, settings: settings.lists.featuredImage, featured: iterator.isFirst}" />
+            <blogvh:link.post post="{post}" additionalAttributes="{aria-hidden: 'true'}" tabindex="-1">
+                <f:render partial="General/FeaturedImage" arguments="{image: post.featuredImage, settings: settings.lists.featuredImage}" />
             </blogvh:link.post>
         </f:if>
 
-        <d:molecule.cardContent class="flex flex-1 flex-col gap-4 pt-0">
+        <d:molecule.cardHeader>
             <f:render partial="Meta/ListHeader" arguments="{_all}" />
+        </d:molecule.cardHeader>
 
-            <div class="flex flex-1 flex-col gap-3">
-                <h2 class="{f:if(condition: iterator.isFirst, then: 'text-2xl sm:text-3xl', else: 'text-xl')} font-semibold leading-tight text-foreground" itemprop="headline">
-                    <blogvh:link.post post="{post}" class="rounded-sm underline-offset-4 hover:text-primary hover:underline focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/40" itemprop="url">
+        <d:molecule.cardContent>
+            <d:layout.stack gap="md">
+                <d:atom.typography tag="h2" variant="h4" itemprop="headline">
+                    <blogvh:link.post post="{post}" class="no-underline underline-offset-4 hover:underline" itemprop="url">
                         {post.title}
                     </blogvh:link.post>
-                </h2>
+                </d:atom.typography>
 
-                <p class="text-sm leading-6 text-muted-foreground" itemprop="description">
+                <d:atom.typography variant="muted" itemprop="description">
                     <f:if condition="{post.abstract}">
                         <f:then>{post.abstract}</f:then>
                         <f:else>{post.description}</f:else>
                     </f:if>
-                </p>
-            </div>
-
-            <div class="mt-auto flex flex-wrap items-center justify-between gap-3 border-t border-border/70 pt-4 text-sm">
-                <f:render partial="Meta/ListFooter" arguments="{_all}" />
-                <blogvh:link.post post="{post}" class="inline-flex items-center gap-1 font-medium text-primary underline-offset-4 hover:underline">
-                    <span><f:translate extensionName="Blog" key="link.read.more">Read more</f:translate></span>
-                    <d:atom.icon name="arrow-right" size="xs"/>
-                </blogvh:link.post>
-            </div>
+                </d:atom.typography>
+            </d:layout.stack>
         </d:molecule.cardContent>
+
+        <d:molecule.cardFooter class="justify-between gap-3">
+            <f:render partial="Meta/ListFooter" arguments="{_all}" />
+            <blogvh:link.post post="{post}">
+                <d:atom.badge variant="secondary">
+                    <span><f:translate extensionName="Blog" key="link.read.more">Read more</f:translate></span>
+                    <span data-icon="inline-end" aria-hidden="true"><d:atom.icon name="arrow-right" size="xs"/></span>
+                </d:atom.badge>
+            </blogvh:link.post>
+        </d:molecule.cardFooter>
     </d:molecule.card>
 </article>
 

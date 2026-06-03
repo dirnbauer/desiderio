@@ -1,6 +1,7 @@
 <html
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
     xmlns:blogvh="http://typo3.org/ns/T3G/AgencyPack/Blog/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
     data-namespace-typo3-fluid="true"
 >
 
@@ -8,11 +9,13 @@
 <f:argument name="settings" type="array" optional="true"/>
 <f:argument name="type" type="string" optional="true"/>
 
-<section class="grid gap-5 md:grid-cols-2 xl:grid-cols-3" data-blog-teaserlist="{type -> f:or(alternative: 'default')}" data-blog-postcount="{posts -> f:count()}">
-    <f:for each="{posts}" iteration="iterator" as="post">
-        <blogvh:cache post="{post}" />
-        <f:render partial="Teaser/Post" arguments="{_all}" />
-    </f:for>
+<section data-blog-teaserlist="{type -> f:or(alternative: 'default')}" data-blog-postcount="{posts -> f:count()}">
+    <d:layout.grid cols="3" gap="md">
+        <f:for each="{posts}" iteration="iterator" as="post">
+            <blogvh:cache post="{post}" />
+            <f:render partial="Teaser/Post" arguments="{_all}" />
+        </f:for>
+    </d:layout.grid>
 </section>
 
 </html>

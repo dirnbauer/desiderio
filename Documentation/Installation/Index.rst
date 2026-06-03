@@ -76,4 +76,8 @@ optional TYPO3 ecosystem extensions:
           ``BlogList`` / ``BlogPost`` / ``Post/*`` / ``Widget/*`` /
           ``Comment/*`` render through shadcn ``<d:…>`` components).
           Every partial declares Fluid 5.3 typed ``<f:argument>`` for
-          its inputs.
+          its inputs. For existing Blog page trees, run
+          ``vendor/bin/typo3 desiderio:blog:seed-pages --root=<blog-root-uid>``
+          after enabling the set so root, data-folder, list, translated,
+          and post pages share the Desiderio Blog backend layout. The
+          command exits without changes when ``t3g/blog`` is not loaded.

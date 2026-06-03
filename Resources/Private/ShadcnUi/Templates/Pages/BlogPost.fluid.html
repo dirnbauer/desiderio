@@ -1,0 +1,76 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:layout name="Pages/Default"/>
+
+<f:section name="Stage">
+    <!--TYPO3SEARCH_begin-->
+    <f:if condition="{content.stage}">
+        <d:layout.section spacing="md" class="border-b bg-muted/30">
+            <d:layout.container size="lg" class="max-w-5xl">
+                <div class="max-w-3xl">
+                    <f:render.contentArea contentArea="{content.stage}"/>
+                </div>
+            </d:layout.container>
+        </d:layout.section>
+    </f:if>
+    <!--TYPO3SEARCH_end-->
+</f:section>
+
+<f:section name="Main">
+    <!--TYPO3SEARCH_begin-->
+    <d:layout.section spacing="md">
+        <d:layout.container size="xl">
+            <f:variable name="hasSidebar" value="{content.sidebar.records}"/>
+            <f:if condition="{hasSidebar}">
+                <f:then>
+                    <d:layout.grid cols="3" gap="lg">
+                        <d:layout.stack gap="xl" class="md:col-span-2">
+                            <f:render section="BlogPostContent" arguments="{_all}"/>
+                        </d:layout.stack>
+
+                        <aside class="md:col-span-2 lg:col-span-1" aria-label="Sidebar">
+                            <d:layout.stack gap="lg">
+                                <f:render.contentArea contentArea="{content.sidebar}"/>
+                                <f:render section="BlogPlugin" arguments="{listType: 'blog_sidebar'}"/>
+                            </d:layout.stack>
+                        </aside>
+                    </d:layout.grid>
+                </f:then>
+                <f:else>
+                    <f:render section="BlogPostContent" arguments="{_all}"/>
+                </f:else>
+            </f:if>
+        </d:layout.container>
+    </d:layout.section>
+    <!--TYPO3SEARCH_end-->
+</f:section>
+
+<f:section name="BlogPostContent">
+    <article role="main" itemscope="itemscope" itemtype="https://schema.org/BlogPosting">
+        <d:layout.stack gap="xl">
+            <f:render section="BlogPlugin" arguments="{listType: 'blog_header'}"/>
+
+            <div itemprop="articleBody">
+                <f:if condition="{content.main}">
+                    <f:render.contentArea contentArea="{content.main}"/>
+                </f:if>
+            </div>
+
+            <f:render section="BlogPlugin" arguments="{listType: 'blog_footer'}"/>
+            <f:render section="BlogPlugin" arguments="{listType: 'blog_authors'}"/>
+            <f:render section="BlogPlugin" arguments="{listType: 'blog_relatedposts'}"/>
+            <f:render section="BlogPlugin" arguments="{listType: 'blog_comments'}"/>
+            <f:render section="BlogPlugin" arguments="{listType: 'blog_commentform'}"/>
+        </d:layout.stack>
+    </article>
+</f:section>
+
+<f:section name="BlogPlugin">
+    <f:cObject typoscriptObjectPath="tt_content.{listType}.20"/>
+</f:section>
+
+</html>

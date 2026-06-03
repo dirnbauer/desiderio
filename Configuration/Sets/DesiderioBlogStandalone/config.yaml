@@ -1,0 +1,8 @@
+name: webconsulting/desiderio-blog-standalone
+label: "Desiderio Blog Standalone"
+hidden: true
+dependencies:
+  - blog/standalone
+  - webconsulting/desiderio
+  - webconsulting/desiderio-shadcnui-templates
+  - webconsulting/desiderio-blog

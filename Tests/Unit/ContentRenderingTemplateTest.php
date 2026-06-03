@@ -6,6 +6,7 @@ namespace Webconsulting\Desiderio\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Yaml\Yaml;
+use Webconsulting\Desiderio\Icon\IconRegistry;
 
 final class ContentRenderingTemplateTest extends TestCase
 {
@@ -461,6 +462,48 @@ final class ContentRenderingTemplateTest extends TestCase
             self::assertMatchesRegularExpression('/<f:argument\\s+name="[^"]+"\\s+type="[^"]+"/', $partial, "{$relativePath} must declare typed <f:argument> for Fluid 5.3 strict typing");
         }
 
+        $blogTemplateDirectory = __DIR__ . '/../../Resources/Private/Extensions/Blog';
+        $blogTemplateFiles = new \RecursiveIteratorIterator(
+            new \RecursiveDirectoryIterator($blogTemplateDirectory, \FilesystemIterator::SKIP_DOTS),
+        );
+        foreach ($blogTemplateFiles as $templateFile) {
+            if (!$templateFile instanceof \SplFileInfo) {
+                continue;
+            }
+
+            if (!$templateFile->isFile() || $templateFile->getExtension() !== 'html') {
+                continue;
+            }
+
+            $template = (string) file_get_contents($templateFile->getPathname());
+            if (!str_contains($template, 'blogvh:')) {
+                continue;
+            }
+
+            $relativePath = str_replace(__DIR__ . '/../../', '', $templateFile->getPathname());
+            self::assertStringContainsString('xmlns:blogvh="http://typo3.org/ns/T3G/AgencyPack/Blog/ViewHelpers"', $template, "{$relativePath} must declare the Blog view helper namespace");
+        }
+
+        $knownIconKeys = array_flip(IconRegistry::keys());
+        $blogTemplateFiles = new \RecursiveIteratorIterator(
+            new \RecursiveDirectoryIterator($blogTemplateDirectory, \FilesystemIterator::SKIP_DOTS),
+        );
+        foreach ($blogTemplateFiles as $templateFile) {
+            if (!$templateFile instanceof \SplFileInfo || !$templateFile->isFile() || $templateFile->getExtension() !== 'html') {
+                continue;
+            }
+
+            $template = (string) file_get_contents($templateFile->getPathname());
+            if (preg_match_all('/<d:atom\.icon\b[^>]*\bname="([^"{]+)"/', $template, $iconMatches) === false) {
+                continue;
+            }
+
+            $relativePath = str_replace(__DIR__ . '/../../', '', $templateFile->getPathname());
+            foreach ($iconMatches[1] as $iconKey) {
+                self::assertArrayHasKey($iconKey, $knownIconKeys, "{$relativePath} uses an unknown Desiderio icon key: {$iconKey}");
+            }
+        }
+
         $blogPageTsConfig = (string) file_get_contents(__DIR__ . '/../../Configuration/Sets/DesiderioBlog/page.tsconfig');
         self::assertStringContainsString('mod.web_layout.tt_content.preview', $blogPageTsConfig);
     }
@@ -692,6 +735,7 @@ final class ContentRenderingTemplateTest extends TestCase
             'Resources/Private/Extensions/News/Partials/List/LoadMore.html',
             'Resources/Private/Extensions/News/Partials/Detail/MediaContainer.html',
             'Resources/Private/Extensions/News/Partials/Detail/Opengraph.html',
+            'Resources/Private/Extensions/News/Partials/Detail/StructuredData.html',
             'Resources/Private/Extensions/News/Partials/Detail/Shariff.html',
         ];
 
@@ -707,6 +751,52 @@ final class ContentRenderingTemplateTest extends TestCase
         ] as $relativePath) {
             $template = (string) file_get_contents(__DIR__ . '/../../' . $relativePath);
             self::assertStringContainsString('Webconsulting/Desiderio/Components/ComponentCollection', $template, "{$relativePath} should use Desiderio Fluid components");
+        }
+
+        $newsTypoScript = (string) file_get_contents(__DIR__ . '/../../Configuration/Sets/DesiderioNews/setup.typoscript');
+        self::assertStringContainsString('structuredData {', $newsTypoScript);
+        self::assertStringContainsString('enabled = {$desiderio.seo.structuredDataEnabled}', $newsTypoScript);
+        self::assertStringContainsString('publisherName = {$desiderio.brand.wordmark}', $newsTypoScript);
+        self::assertStringContainsString('publisherLogo = {$desiderio.seo.defaultImage}', $newsTypoScript);
+
+        $detailLayout = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/News/Layouts/Detail.html');
+        $detailTemplate = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/News/Templates/News/Detail.html');
+        $listItem = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/News/Partials/List/Item.html');
+        $magazineList = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/News/Templates/News/MagazineList.html');
+        $structuredData = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/News/Partials/Detail/StructuredData.html');
+
+        self::assertStringContainsString('https://schema.org/NewsArticle', $detailLayout);
+        self::assertStringContainsString('partial="Detail/StructuredData"', $detailTemplate);
+        self::assertStringContainsString('itemprop="dateModified"', $detailTemplate);
+        self::assertStringContainsString('https://schema.org/NewsArticle', $listItem);
+        self::assertStringContainsString('https://schema.org/NewsArticle', $magazineList);
+        self::assertStringContainsString('<n:headerData>', $structuredData);
+        self::assertStringContainsString('type="application/ld+json"', $structuredData);
+        self::assertStringContainsString('"@type": "NewsArticle"', $structuredData);
+        self::assertStringContainsString('"publisher"', $structuredData);
+        self::assertStringContainsString('f:format.json', $structuredData);
+        self::assertStringContainsString('<f:format.raw>', $structuredData);
+
+        $newsTemplateDirectory = __DIR__ . '/../../Resources/Private/Extensions/News';
+        $newsTemplateFiles = new \RecursiveIteratorIterator(
+            new \RecursiveDirectoryIterator($newsTemplateDirectory, \FilesystemIterator::SKIP_DOTS),
+        );
+        foreach ($newsTemplateFiles as $templateFile) {
+            if (!$templateFile instanceof \SplFileInfo) {
+                continue;
+            }
+
+            if (!$templateFile->isFile() || $templateFile->getExtension() !== 'html') {
+                continue;
+            }
+
+            $template = (string) file_get_contents($templateFile->getPathname());
+            if (!str_contains($template, '<n:') && !str_contains($template, '{n:')) {
+                continue;
+            }
+
+            $relativePath = str_replace(__DIR__ . '/../../', '', $templateFile->getPathname());
+            self::assertStringContainsString('xmlns:n="http://typo3.org/ns/GeorgRinger/News/ViewHelpers"', $template, "{$relativePath} must declare the News view helper namespace");
         }
     }
 
@@ -762,6 +852,7 @@ final class ContentRenderingTemplateTest extends TestCase
             'Resources/Private/Extensions/News/Partials/Detail/MediaImage.html',
             'Resources/Private/Extensions/News/Partials/Detail/MediaVideo.html',
             'Resources/Private/Extensions/News/Partials/Detail/Opengraph.html',
+            'Resources/Private/Extensions/News/Partials/Detail/StructuredData.html',
             'Resources/Private/Extensions/News/Partials/Detail/Shariff.html',
             'Resources/Private/Solr/Partials/Search/Form.html',
             'Resources/Private/Solr/Partials/Search/FrequentlySearched.html',

@@ -14,6 +14,9 @@
             <f:if condition="{settings.detail.showMetaTags}">
                 <f:render partial="Detail/Opengraph" arguments="{newsItem: newsItem, settings: settings}" />
             </f:if>
+            <f:if condition="{settings.structuredData.enabled}">
+                <f:render partial="Detail/StructuredData" arguments="{newsItem: newsItem, settings: settings}" />
+            </f:if>
             <f:if condition="{newsItem.alternativeTitle}">
                 <f:then>
                     <n:titleTag><f:format.htmlentitiesDecode>{newsItem.alternativeTitle}</f:format.htmlentitiesDecode></n:titleTag>
@@ -28,15 +31,17 @@
             <f:if condition="{settings.detail.showPrevNext}">
                 <n:simplePrevNext pidList="{newsItem.pid}" news="{newsItem}" as="paginated" sortField="datetime">
                     <f:if condition="{paginated}">
-                        <nav class="flex flex-col gap-2 text-sm sm:flex-row sm:justify-between" aria-label="News pagination">
+                        <nav class="grid gap-3 text-sm sm:grid-cols-2" aria-label="News pagination">
                             <f:if condition="{paginated.prev}">
-                                <n:link newsItem="{paginated.prev}" settings="{settings}" class="text-muted-foreground underline-offset-4 hover:text-primary hover:underline">
-                                    &larr; {paginated.prev.title}
+                                <n:link newsItem="{paginated.prev}" settings="{settings}" class="rounded-xl border border-border bg-card px-4 py-3 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/40">
+                                    <span class="block text-xs font-medium uppercase tracking-normal"><f:translate key="paginate_previous" /></span>
+                                    <span class="mt-1 block font-medium text-foreground">&larr; {paginated.prev.title}</span>
                                 </n:link>
                             </f:if>
                             <f:if condition="{paginated.next}">
-                                <n:link newsItem="{paginated.next}" settings="{settings}" class="text-muted-foreground underline-offset-4 hover:text-primary hover:underline">
-                                    {paginated.next.title} &rarr;
+                                <n:link newsItem="{paginated.next}" settings="{settings}" class="rounded-xl border border-border bg-card px-4 py-3 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/40 sm:text-right">
+                                    <span class="block text-xs font-medium uppercase tracking-normal"><f:translate key="paginate_next" /></span>
+                                    <span class="mt-1 block font-medium text-foreground">{paginated.next.title} &rarr;</span>
                                 </n:link>
                             </f:if>
                         </nav>
@@ -46,9 +51,13 @@
 
             <header class="flex flex-col gap-4">
                 <div class="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
+                    <f:if condition="{newsItem.istopnews}">
+                        <d:atom.badge><f:translate key="news.featured" extensionName="desiderio">Featured</f:translate></d:atom.badge>
+                    </f:if>
                     <time itemprop="datePublished" datetime="{f:format.date(date: newsItem.datetime, format: 'c')}">
                         <f:format.date format="{f:translate(key: 'dateFormat')}">{newsItem.datetime}</f:format.date>
                     </time>
+                    <meta itemprop="dateModified" content="{f:format.date(date: newsItem.tstamp, format: 'c')}" />
                     <f:if condition="{newsItem.categories}">
                         <f:render partial="Category/Items" arguments="{categories: newsItem.categories, settings: settings}" />
                     </f:if>
@@ -66,15 +75,14 @@
                         </f:for>
                     </div>
                 </f:if>
-            </header>
-
-            <n:renderMedia news="{newsItem}" imgClass="rounded-xl" videoClass="overflow-hidden rounded-xl border border-border" audioClass="rounded-xl border border-border">
                 <f:if condition="{newsItem.teaser}">
                     <div class="text-xl leading-8 text-muted-foreground" itemprop="description">
                         <f:format.html>{newsItem.teaser}</f:format.html>
                     </div>
                 </f:if>
+            </header>
 
+            <n:renderMedia news="{newsItem}" imgClass="rounded-xl" videoClass="overflow-hidden rounded-xl border border-border" audioClass="rounded-xl border border-border">
                 <f:if condition="{newsItem.contentElements}">
                     <div class="news-content-elements">
                         <f:cObject typoscriptObjectPath="lib.tx_news.contentElementRendering">{newsItem.contentElementIdList}</f:cObject>

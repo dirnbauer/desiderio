@@ -1,5 +1,6 @@
 <html
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:blogvh="http://typo3.org/ns/T3G/AgencyPack/Blog/ViewHelpers"
     xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
     data-namespace-typo3-fluid="true"
 >
@@ -9,22 +10,33 @@
 <f:section name="Title"><f:translate extensionName="Blog" key="headline.recentcomments">Recent comments</f:translate></f:section>
 
 <f:section name="Content">
-    <ul role="list" class="divide-y divide-border text-sm">
-        <f:for each="{comments}" as="comment">
-            <li class="py-3" data-blog-comment="{comment.uid}">
-                <p class="text-muted-foreground">
-                    <f:format.crop maxCharacters="100" append="&nbsp;[…]">{comment.comment}</f:format.crop>
-                </p>
-                <div class="mt-1 flex flex-wrap items-baseline gap-1 text-xs text-muted-foreground">
-                    <span class="font-medium text-foreground">{comment.name}</span>
-                    <span><f:translate extensionName="Blog" key="widget.recentcomments.on">on</f:translate></span>
-                    <blogvh:link.post post="{comment.post}" section="comment-{comment.uid}" class="text-foreground underline-offset-4 hover:text-primary hover:underline">
-                        {comment.post.title}
-                    </blogvh:link.post>
-                </div>
-            </li>
-        </f:for>
-    </ul>
+    <f:if condition="{comments}">
+        <f:then>
+            <ul role="list" class="flex flex-col gap-2">
+                <f:for each="{comments}" as="comment">
+                    <li class="rounded-lg border border-border/70 bg-background/60 p-3" data-blog-comment="{comment.uid}">
+                        <p class="text-sm leading-6 text-muted-foreground">
+                            <f:format.crop maxCharacters="110" append="&nbsp;[…]">{comment.comment}</f:format.crop>
+                        </p>
+                        <div class="mt-2 flex flex-wrap items-center gap-1 text-xs text-muted-foreground">
+                            <span class="inline-flex size-5 items-center justify-center rounded-md bg-muted" aria-hidden="true"><d:atom.icon name="message-circle" size="xs"/></span>
+                            <span class="font-medium text-foreground">{comment.name}</span>
+                            <span><f:translate extensionName="Blog" key="widget.recentcomments.on">on</f:translate></span>
+                            <blogvh:link.post post="{comment.post}" section="comment-{comment.uid}" class="font-medium text-primary underline-offset-4 hover:underline">
+                                {comment.post.title}
+                            </blogvh:link.post>
+                        </div>
+                    </li>
+                </f:for>
+            </ul>
+        </f:then>
+        <f:else>
+            <d:molecule.alert class="bg-muted/40">
+                <d:atom.icon name="message-circle" size="sm"/>
+                <d:molecule.alertDescription><f:translate extensionName="Blog" key="comments.empty">No comments yet.</f:translate></d:molecule.alertDescription>
+            </d:molecule.alert>
+        </f:else>
+    </f:if>
 </f:section>
 
 </html>

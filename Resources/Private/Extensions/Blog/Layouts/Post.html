@@ -7,10 +7,12 @@
 <f:spaceless>
     <f:if condition="{post}">
         <f:then>
-            <f:render section="Content" />
+            <div class="desiderio-blog-post-fragment">
+                <f:render section="Content" />
+            </div>
         </f:then>
         <f:else>
-            <d:molecule.alert variant="destructive">
+            <d:molecule.alert variant="destructive" class="my-6">
                 <d:molecule.alertTitle><f:translate extensionName="Blog" key="general.message.configuration_error.title"/></d:molecule.alertTitle>
                 <d:molecule.alertDescription><f:translate extensionName="Blog" key="general.message.configuration_error.single_no_post"/></d:molecule.alertDescription>
             </d:molecule.alert>

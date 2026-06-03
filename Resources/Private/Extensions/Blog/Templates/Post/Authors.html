@@ -1,5 +1,6 @@
 <html
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
     data-namespace-typo3-fluid="true"
 >
 
@@ -7,10 +8,18 @@
 
 <f:section name="Content">
     <f:if condition="{post.authors}">
-        <section class="grid gap-4" aria-label="{f:translate(extensionName: 'Blog', key: 'author.aboutTheAuthor', default: 'About the author')}">
-            <f:for each="{post.authors}" as="author">
-                <f:render partial="Post/Author" arguments="{_all}" />
-            </f:for>
+        <section class="flex flex-col gap-4" aria-label="{f:translate(extensionName: 'Blog', key: 'author.aboutTheAuthor', default: 'About the author')}">
+            <div class="flex items-center gap-2">
+                <span class="inline-flex size-8 items-center justify-center rounded-md bg-muted text-muted-foreground" aria-hidden="true">
+                    <d:atom.icon name="users" size="sm"/>
+                </span>
+                <d:atom.typography tag="h2" variant="h3"><f:translate extensionName="Blog" key="author.aboutTheAuthor">About the author</f:translate></d:atom.typography>
+            </div>
+            <div class="grid gap-4">
+                <f:for each="{post.authors}" as="author">
+                    <f:render partial="Post/Author" arguments="{_all}" />
+                </f:for>
+            </div>
         </section>
     </f:if>
 </f:section>

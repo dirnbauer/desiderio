@@ -1,5 +1,6 @@
 <html
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:blogvh="http://typo3.org/ns/T3G/AgencyPack/Blog/ViewHelpers"
     xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
     data-namespace-typo3-fluid="true"
 >
@@ -9,33 +10,37 @@
 <f:section name="Content">
     <f:if condition="{tag}">
         <f:then>
-            <header class="mb-8 flex flex-col gap-4">
-                <div class="flex flex-wrap items-center gap-3">
-                    <d:atom.typography tag="h1" variant="h1">
-                        <f:translate extensionName="Blog" key="headline.tag.simple">Tag</f:translate>:
-                        {tag.title}
-                    </d:atom.typography>
-                    <blogvh:link.tag class="inline-flex h-9 items-center gap-2 rounded-lg border border-border px-3 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground" rss="true" tag="{tag}">
-                        <f:render partial="General/SocialIcons" section="Rss" optional="true" />
+            <header class="mb-8 rounded-xl border border-border bg-card p-5 sm:p-8">
+                <div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                    <div class="flex flex-col gap-3">
+                        <d:atom.badge variant="secondary" class="w-fit gap-1">
+                            <span data-icon="inline-start" aria-hidden="true"><d:atom.icon name="tag" size="xs"/></span>
+                            <span><f:translate extensionName="Blog" key="headline.tag.simple">Tag</f:translate></span>
+                        </d:atom.badge>
+                        <d:atom.typography tag="h1" variant="h1" class="text-balance">{tag.title}</d:atom.typography>
+                        <f:if condition="{tag.description}">
+                            <p class="max-w-3xl text-base leading-7 text-muted-foreground">{tag.description}</p>
+                        </f:if>
+                    </div>
+                    <blogvh:link.tag class="inline-flex h-9 items-center gap-2 rounded-md border border-border bg-background px-3 text-sm font-medium text-foreground transition-colors hover:bg-muted" rss="true" tag="{tag}">
+                        <d:atom.icon name="rss" size="xs"/>
                         <span><f:translate extensionName="Blog" key="link.rss" default="RSS"/></span>
                     </blogvh:link.tag>
                 </div>
-                <f:if condition="{tag.description}">
-                    <p class="text-base leading-7 text-muted-foreground">{tag.description}</p>
-                </f:if>
             </header>
             <f:render partial="List" arguments="{_all}" />
             <f:if condition="{settings.tagUid} || {tag.content}">
                 <footer class="mt-8 flex flex-col gap-6 border-t border-border pt-6">
                     <f:if condition="{settings.tagUid}">
                         <div>
-                            <f:link.page pageUid="{settings.tagUid}" class="inline-flex h-9 items-center rounded-lg border border-border px-3 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground">
-                                &larr; <f:translate extensionName="Blog" key="list.backlink.tags">Back to all tags</f:translate>
+                            <f:link.page pageUid="{settings.tagUid}" class="inline-flex h-9 items-center gap-2 rounded-md border border-border bg-background px-3 text-sm font-medium text-foreground transition-colors hover:bg-muted">
+                                <d:atom.icon name="arrow-left" size="xs"/>
+                                <span><f:translate extensionName="Blog" key="list.backlink.tags">Back to all tags</f:translate></span>
                             </f:link.page>
                         </div>
                     </f:if>
                     <f:if condition="{tag.content}">
-                        <div class="prose prose-neutral max-w-none dark:prose-invert">
+                        <div class="prose max-w-none">
                             <f:cObject typoscriptObjectPath="lib.blog.contentElementRendering">{tag.contentElementUidList}</f:cObject>
                         </div>
                     </f:if>
@@ -43,7 +48,11 @@
             </f:if>
         </f:then>
         <f:else>
-            <header class="mb-8">
+            <header class="mb-8 flex flex-col gap-3">
+                <d:atom.badge variant="secondary" class="w-fit gap-1">
+                    <span data-icon="inline-start" aria-hidden="true"><d:atom.icon name="tag" size="xs"/></span>
+                    <span><f:translate extensionName="Blog" key="headline.tags">Tags</f:translate></span>
+                </d:atom.badge>
                 <d:atom.typography tag="h1" variant="h1"><f:translate extensionName="Blog" key="headline.tags">Tags</f:translate></d:atom.typography>
             </header>
             <ul role="list" class="flex flex-wrap gap-2">

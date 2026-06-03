@@ -1,0 +1,59 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:n="http://typo3.org/ns/GeorgRinger/News/ViewHelpers"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:argument name="newsItem" type="GeorgRinger\News\Domain\Model\News" optional="true"/>
+<f:argument name="settings" type="array" optional="true"/>
+
+<f:if condition="{newsItem}">
+    <f:variable name="articleUrl"><n:link newsItem="{newsItem}" settings="{settings}" configuration="{forceAbsoluteUrl: 1}" uriOnly="1" /></f:variable>
+    <f:if condition="{newsItem.teaser}">
+        <f:then>
+            <f:variable name="structuredDescription">{newsItem.teaser -> f:format.stripTags() -> f:format.crop(maxCharacters: 240, respectWordBoundaries: '1')}</f:variable>
+        </f:then>
+        <f:else>
+            <f:variable name="structuredDescription">{newsItem.bodytext -> f:format.stripTags() -> f:format.crop(maxCharacters: 240, respectWordBoundaries: '1')}</f:variable>
+        </f:else>
+    </f:if>
+
+    <n:headerData>
+        <script type="application/ld+json"><f:format.raw>
+{
+  "@context": "https://schema.org",
+  "@type": "NewsArticle",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": {articleUrl -> f:format.json()}
+  },
+  "url": {articleUrl -> f:format.json()},
+  "headline": {newsItem.title -> f:format.stripTags() -> f:format.crop(maxCharacters: 110, respectWordBoundaries: '1') -> f:format.json()},
+  "description": {structuredDescription -> f:format.json()},
+  "datePublished": "{f:format.date(date: newsItem.datetime, format: 'c')}",
+  "dateModified": "{f:format.date(date: newsItem.tstamp, format: 'c')}",
+  "author": {
+    "@type": "Person",
+    "name": {newsItem.author -> f:or(alternative: settings.structuredData.publisherName) -> f:or(alternative: 'Editorial team') -> f:format.json()}
+  }<f:if condition="{newsItem.fallbackImage}">,
+  "image": [
+    {f:uri.image(image: newsItem.fallbackImage, maxWidth: 1200, absolute: 1) -> f:format.json()}
+  ]</f:if><f:if condition="{settings.structuredData.publisherName}">,
+  "publisher": {
+    "@type": "Organization",
+    "name": {settings.structuredData.publisherName -> f:format.json()}<f:if condition="{settings.structuredData.publisherLogo}">,
+    "logo": {
+      "@type": "ImageObject",
+      "url": {settings.structuredData.publisherLogo -> f:format.json()}
+    }</f:if>
+  }</f:if><f:if condition="{newsItem.tags}">,
+  "keywords": [
+    <f:for each="{newsItem.tags}" as="tag" iteration="tagIterator"><f:if condition="{tagIterator.index} > 0">, </f:if>{tag.title -> f:format.json()}</f:for>
+  ]</f:if><f:if condition="{newsItem.firstCategory}">,
+  "articleSection": {newsItem.firstCategory.title -> f:format.json()}</f:if>
+}
+        </f:format.raw></script>
+    </n:headerData>
+</f:if>
+
+</html>

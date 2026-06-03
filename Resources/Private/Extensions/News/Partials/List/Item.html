@@ -9,7 +9,7 @@
 <f:argument name="settings" type="array" optional="true"/>
 <f:argument name="iterator" type="array" optional="true"/>
 
-<article class="article articletype-{newsItem.type}{f:if(condition: newsItem.istopnews, then: ' topnews')} h-full" itemscope="itemscope" itemtype="https://schema.org/Article">
+<article class="article articletype-{newsItem.type}{f:if(condition: newsItem.istopnews, then: ' topnews')} group/card h-full" itemscope="itemscope" itemtype="https://schema.org/NewsArticle">
     <n:excludeDisplayedNews newsItem="{newsItem}"/>
     <d:molecule.card class="h-full">
         <f:if condition="{newsItem.mediaPreviews}">
@@ -42,6 +42,7 @@
                 <time itemprop="datePublished" datetime="{f:format.date(date: newsItem.datetime, format: 'c')}">
                     <f:format.date format="{f:translate(key: 'dateFormat')}">{newsItem.datetime}</f:format.date>
                 </time>
+                <meta itemprop="dateModified" content="{f:format.date(date: newsItem.tstamp, format: 'c')}" />
                 <f:if condition="{newsItem.firstCategory}">
                     <d:atom.badge variant="secondary">{newsItem.firstCategory.title}</d:atom.badge>
                 </f:if>
@@ -67,7 +68,10 @@
 
             <div class="mt-auto flex flex-wrap items-center justify-between gap-3 text-sm">
                 <f:if condition="{newsItem.author}">
-                    <span class="news-list-author text-muted-foreground"><f:translate key="author" arguments="{0: newsItem.author}"/></span>
+                    <span class="news-list-author text-muted-foreground" itemprop="author" itemscope="itemscope" itemtype="https://schema.org/Person">
+                        <f:translate key="author" arguments="{0: newsItem.author}"/>
+                        <meta itemprop="name" content="{newsItem.author}" />
+                    </span>
                 </f:if>
                 <n:link newsItem="{newsItem}" settings="{settings}" class="more font-medium text-primary underline-offset-4 hover:underline" title="{newsItem.title}">
                     <f:translate key="more-link"/>

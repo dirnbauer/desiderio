@@ -1,12 +1,21 @@
 <html
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
     data-namespace-typo3-fluid="true"
 >
 
 <f:layout name="Default" />
 
 <f:section name="Content">
-    <f:render partial="TeaserList" arguments="{_all}"/>
+    <section class="flex flex-col gap-5">
+        <div class="flex items-center gap-2">
+            <d:atom.badge variant="secondary" class="gap-1">
+                <span data-icon="inline-start" aria-hidden="true"><d:atom.icon name="sparkles" size="xs"/></span>
+                <span><f:translate extensionName="Blog" key="headline.selectedposts" default="Selected posts"/></span>
+            </d:atom.badge>
+        </div>
+        <f:render partial="TeaserList" arguments="{_all}"/>
+    </section>
 </f:section>
 
 </html>

@@ -7,14 +7,16 @@
 <f:layout name="Default" />
 
 <f:section name="Main">
-    <d:layout.section spacing="md" class="desiderio-blog desiderio-blog--list">
+    <d:layout.section spacing="md" class="desiderio-blog desiderio-blog--list bg-background">
         <d:layout.container size="xl">
-            <div class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_18rem]">
-                <d:layout.stack gap="xl" class="min-w-0">
-                    <f:if condition="{blogContentAreas.content}">
-                        <f:render.contentArea contentArea="{blogContentAreas.content}" />
-                    </f:if>
-                </d:layout.stack>
+            <div class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_20rem]">
+                <main class="min-w-0" aria-label="Blog posts">
+                    <d:layout.stack gap="xl">
+                        <f:if condition="{blogContentAreas.content}">
+                            <f:render.contentArea contentArea="{blogContentAreas.content}" />
+                        </f:if>
+                    </d:layout.stack>
+                </main>
 
                 <aside class="min-w-0 border-t pt-6 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0" aria-label="Blog sidebar">
                     <div class="lg:sticky lg:top-24">

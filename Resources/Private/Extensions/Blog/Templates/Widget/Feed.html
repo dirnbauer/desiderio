@@ -9,10 +9,11 @@
 <f:section name="Title"><f:translate extensionName="Blog" key="headline.rssfeed">RSS feed</f:translate></f:section>
 
 <f:section name="Content">
-    <ul role="list" class="flex flex-col gap-2 text-sm" data-blog-feed="rss">
+    <ul role="list" class="flex flex-col gap-2" data-blog-feed="rss">
         <li>
-            <f:link.page pageUid="{settings.blogUid}" pageType="200" title="Recent posts" class="inline-flex items-center gap-2 text-foreground underline-offset-4 hover:text-primary hover:underline">
+            <f:link.page pageUid="{settings.blogUid}" pageType="200" title="Recent posts" class="inline-flex w-full items-center justify-between gap-3 rounded-lg border border-border bg-background px-3 py-2 text-sm font-medium text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/40">
                 <span><f:translate extensionName="Blog" key="widget.feed.recentposts">Recent posts</f:translate></span>
+                <span data-icon="inline-end" aria-hidden="true"><d:atom.icon name="rss" size="xs"/></span>
             </f:link.page>
         </li>
     </ul>

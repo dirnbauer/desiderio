@@ -1,8 +1,13 @@
 <html
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
     data-namespace-typo3-fluid="true"
 >
 
-<f:render section="Content" />
+<div class="desiderio-blog-plugin">
+    <d:layout.stack gap="xl">
+        <f:render section="Content" />
+    </d:layout.stack>
+</div>
 
 </html>

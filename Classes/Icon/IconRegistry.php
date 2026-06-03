@@ -193,6 +193,26 @@ final class IconRegistry
                 'group' => 'Social',
                 'paths' => '<path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7z"/>',
             ],
+            'brand-instagram' => [
+                'label' => 'Instagram',
+                'group' => 'Social',
+                'paths' => '<rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><path d="M17.5 6.5h.01"/>',
+            ],
+            'brand-linkedin' => [
+                'label' => 'LinkedIn',
+                'group' => 'Social',
+                'paths' => '<path d="M6 9v12"/><path d="M6 5v.01"/><path d="M10 21V9"/><path d="M10 13a4 4 0 0 1 8 0v8"/>',
+            ],
+            'brand-x' => [
+                'label' => 'X',
+                'group' => 'Social',
+                'paths' => '<path d="m4 4 11.7 16"/><path d="M4 20 20 4"/>',
+            ],
+            'brand-xing' => [
+                'label' => 'Xing',
+                'group' => 'Social',
+                'paths' => '<path d="m4 8 3 4-3 4"/><path d="m12 4 4 8-4 8"/>',
+            ],
             'star' => [
                 'label' => 'Star',
                 'group' => 'Social',
@@ -202,6 +222,11 @@ final class IconRegistry
                 'label' => 'Users',
                 'group' => 'Social',
                 'paths' => '<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
+            ],
+            'user' => [
+                'label' => 'User',
+                'group' => 'Social',
+                'paths' => '<path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>',
             ],
             'handshake' => [
                 'label' => 'Handshake',
@@ -253,25 +278,70 @@ final class IconRegistry
                 'group' => 'Content',
                 'paths' => '<path d="M12 7v14"/><path d="M3 18a2 2 0 0 1 2-2h7"/><path d="M3 6a2 2 0 0 1 2-2h7v17H5a2 2 0 0 0-2 2z"/><path d="M21 6a2 2 0 0 0-2-2h-7v17h7a2 2 0 0 1 2 2z"/>',
             ],
+            'bookmark' => [
+                'label' => 'Bookmark',
+                'group' => 'Content',
+                'paths' => '<path d="m19 21-7-4-7 4V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/>',
+            ],
             'file' => [
                 'label' => 'File',
                 'group' => 'Content',
                 'paths' => '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/>',
+            ],
+            'folder' => [
+                'label' => 'Folder',
+                'group' => 'Content',
+                'paths' => '<path d="M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2z"/>',
+            ],
+            'tag' => [
+                'label' => 'Tag',
+                'group' => 'Content',
+                'paths' => '<path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z"/><circle cx="7.5" cy="7.5" r=".5" fill="currentColor"/>',
             ],
             'download' => [
                 'label' => 'Download',
                 'group' => 'Content',
                 'paths' => '<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/>',
             ],
+            'rss' => [
+                'label' => 'RSS',
+                'group' => 'Content',
+                'paths' => '<path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/>',
+            ],
             'clock' => [
                 'label' => 'Clock',
                 'group' => 'Communication',
                 'paths' => '<circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/>',
             ],
+            'calendar' => [
+                'label' => 'Calendar',
+                'group' => 'Communication',
+                'paths' => '<path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/>',
+            ],
             'mail' => [
                 'label' => 'Mail',
                 'group' => 'Communication',
                 'paths' => '<rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-10 6L2 7"/>',
+            ],
+            'message-circle' => [
+                'label' => 'Message Circle',
+                'group' => 'Communication',
+                'paths' => '<path d="M7.9 20A9 9 0 1 0 4 16.1L2 22z"/>',
+            ],
+            'messages' => [
+                'label' => 'Messages',
+                'group' => 'Communication',
+                'paths' => '<path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"/><path d="M8 9h8"/><path d="M8 13h6"/>',
+            ],
+            'send' => [
+                'label' => 'Send',
+                'group' => 'Communication',
+                'paths' => '<path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/>',
+            ],
+            'alert-circle' => [
+                'label' => 'Alert Circle',
+                'group' => 'Status',
+                'paths' => '<circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/>',
             ],
             'phone' => [
                 'label' => 'Phone',
@@ -288,10 +358,40 @@ final class IconRegistry
                 'group' => 'Navigation',
                 'paths' => '<path d="M4 6h16"/><path d="M4 12h16"/><path d="M4 18h16"/>',
             ],
+            'arrow-left' => [
+                'label' => 'Arrow Left',
+                'group' => 'Navigation',
+                'paths' => '<path d="m12 19-7-7 7-7"/><path d="M19 12H5"/>',
+            ],
+            'arrow-right' => [
+                'label' => 'Arrow Right',
+                'group' => 'Navigation',
+                'paths' => '<path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>',
+            ],
             'chevron-down' => [
                 'label' => 'Chevron Down',
                 'group' => 'Navigation',
                 'paths' => '<path d="m6 9 6 6 6-6"/>',
+            ],
+            'chevron-left' => [
+                'label' => 'Chevron Left',
+                'group' => 'Navigation',
+                'paths' => '<path d="m15 18-6-6 6-6"/>',
+            ],
+            'chevron-right' => [
+                'label' => 'Chevron Right',
+                'group' => 'Navigation',
+                'paths' => '<path d="m9 18 6-6-6-6"/>',
+            ],
+            'history' => [
+                'label' => 'History',
+                'group' => 'Navigation',
+                'paths' => '<path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/>',
+            ],
+            'layout-sidebar-right' => [
+                'label' => 'Right Sidebar Layout',
+                'group' => 'Navigation',
+                'paths' => '<rect width="18" height="18" x="3" y="3" rx="2"/><path d="M15 3v18"/>',
             ],
             'sun' => [
                 'label' => 'Sun',

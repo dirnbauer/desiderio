@@ -1,5 +1,6 @@
 <html
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:blogvh="http://typo3.org/ns/T3G/AgencyPack/Blog/ViewHelpers"
     xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
     data-namespace-typo3-fluid="true"
 >
@@ -9,21 +10,29 @@
 <f:section name="Title"><f:translate extensionName="Blog" key="headline.categories">Categories</f:translate></f:section>
 
 <f:section name="Content">
-    <ul role="list" class="divide-y divide-border text-sm">
-        <f:for each="{categories}" as="category">
-            <li
-                id="category-{category.uid}"
-                class="py-2"
-                data-blog-category="{category.uid}"
-                data-active="{f:if(condition: '{currentCategory} == {category.uid}', then: 'true', else: 'false')}"
-            >
-                <blogvh:link.category category="{category}" title="{category.title}" class="flex items-center justify-between gap-3 text-foreground underline-offset-4 hover:text-primary hover:underline data-[active=true]:font-medium data-[active=true]:text-primary">
-                    <span>{category.title}</span>
-                    <d:atom.badge variant="secondary"><f:count>{category.posts}</f:count></d:atom.badge>
-                </blogvh:link.category>
-            </li>
-        </f:for>
-    </ul>
+    <f:if condition="{categories}">
+        <f:then>
+            <ul role="list" class="flex flex-col gap-1">
+                <f:for each="{categories}" as="category">
+                    <li id="category-{category.uid}" data-blog-category="{category.uid}" data-active="{f:if(condition: '{currentCategory} == {category.uid}', then: 'true', else: 'false')}">
+                        <blogvh:link.category category="{category}" title="{category.title}" class="group/category flex items-center justify-between gap-3 rounded-lg border border-transparent px-2.5 py-2 text-sm text-foreground underline-offset-4 transition-colors hover:border-border hover:bg-muted focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/40">
+                            <span class="inline-flex min-w-0 items-center gap-2">
+                                <span class="inline-flex size-6 shrink-0 items-center justify-center rounded-md bg-muted text-muted-foreground" aria-hidden="true"><d:atom.icon name="folder" size="xs"/></span>
+                                <span class="truncate">{category.title}</span>
+                            </span>
+                            <d:atom.badge variant="secondary"><f:count>{category.posts}</f:count></d:atom.badge>
+                        </blogvh:link.category>
+                    </li>
+                </f:for>
+            </ul>
+        </f:then>
+        <f:else>
+            <d:molecule.alert class="bg-muted/40">
+                <d:atom.icon name="folder" size="sm"/>
+                <d:molecule.alertDescription><f:translate extensionName="Blog" key="categories.empty">No categories yet.</f:translate></d:molecule.alertDescription>
+            </d:molecule.alert>
+        </f:else>
+    </f:if>
 </f:section>
 
 </html>

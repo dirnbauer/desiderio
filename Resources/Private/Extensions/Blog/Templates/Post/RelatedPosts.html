@@ -8,8 +8,15 @@
 
 <f:section name="Content">
     <f:if condition="{posts}">
-        <section class="flex flex-col gap-6" aria-label="{f:translate(extensionName: 'Blog', key: 'headline.relatedposts', default: 'Related posts')}">
-            <d:atom.typography tag="h2" variant="h2"><f:translate extensionName="Blog" key="headline.relatedposts">Related posts</f:translate></d:atom.typography>
+        <section class="flex flex-col gap-5" aria-label="{f:translate(extensionName: 'Blog', key: 'headline.relatedposts', default: 'Related posts')}">
+            <div class="flex flex-wrap items-end justify-between gap-3">
+                <div class="flex items-center gap-2">
+                    <span class="inline-flex size-8 items-center justify-center rounded-md bg-muted text-muted-foreground" aria-hidden="true">
+                        <d:atom.icon name="sparkles" size="sm"/>
+                    </span>
+                    <d:atom.typography tag="h2" variant="h3"><f:translate extensionName="Blog" key="headline.relatedposts">Related posts</f:translate></d:atom.typography>
+                </div>
+            </div>
             <f:render partial="TeaserList" arguments="{_all}" />
         </section>
     </f:if>

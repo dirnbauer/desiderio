@@ -7,18 +7,26 @@
 <f:layout name="Post" />
 
 <f:section name="Content">
-    <header class="flex flex-col gap-6">
+    <header class="overflow-hidden rounded-xl border border-border bg-card">
         <f:if condition="{post.featuredImage}">
-            <div class="overflow-hidden rounded-xl border border-border bg-card">
-                <f:render partial="General/FeaturedImage" arguments="{image: post.featuredImage, settings: settings.post.featuredImage}" />
+            <div class="group/card">
+                <f:render partial="General/FeaturedImage" arguments="{image: post.featuredImage, settings: settings.post.featuredImage, featured: 1}" />
             </div>
         </f:if>
-        <d:atom.typography tag="h1" variant="h1" itemprop="headline">{post.title}</d:atom.typography>
-        <f:if condition="{settings.meta.postheader.enable}">
-            <div class="text-sm text-muted-foreground">
+        <div class="flex flex-col gap-5 p-5 sm:p-8">
+            <f:if condition="{settings.meta.postheader.enable}">
                 <f:render partial="Meta/PostHeader" arguments="{_all}" />
-            </div>
-        </f:if>
+            </f:if>
+            <d:atom.typography tag="h1" variant="h1" class="max-w-4xl text-balance" itemprop="headline">{post.title}</d:atom.typography>
+            <f:if condition="{post.abstract} || {post.description}">
+                <p class="max-w-3xl text-lg leading-8 text-muted-foreground" itemprop="description">
+                    <f:if condition="{post.abstract}">
+                        <f:then>{post.abstract}</f:then>
+                        <f:else>{post.description}</f:else>
+                    </f:if>
+                </p>
+            </f:if>
+        </div>
     </header>
 </f:section>
 

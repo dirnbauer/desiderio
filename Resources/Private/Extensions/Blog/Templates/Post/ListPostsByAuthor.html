@@ -1,5 +1,6 @@
 <html
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:blogvh="http://typo3.org/ns/T3G/AgencyPack/Blog/ViewHelpers"
     xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
     data-namespace-typo3-fluid="true"
 >
@@ -9,26 +10,29 @@
 <f:section name="Content">
     <f:if condition="{author}">
         <f:then>
-            <header class="mb-8 flex flex-col gap-4">
-                <div class="flex flex-wrap items-center gap-3">
-                    <d:atom.typography tag="h1" variant="h1">
-                        <f:translate extensionName="Blog" key="headline.author.simple">Author</f:translate>:
-                        {author.name}
-                    </d:atom.typography>
-                    <blogvh:link.author class="inline-flex h-9 items-center gap-2 rounded-lg border border-border px-3 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground" rss="true" author="{author}">
-                        <f:render partial="General/SocialIcons" section="Rss" optional="true" />
+            <header class="mb-8 rounded-xl border border-border bg-card p-5 sm:p-8">
+                <div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                    <div class="flex flex-col gap-3">
+                        <d:atom.badge variant="secondary" class="w-fit gap-1">
+                            <span data-icon="inline-start" aria-hidden="true"><d:atom.icon name="user" size="xs"/></span>
+                            <span><f:translate extensionName="Blog" key="headline.author.simple">Author</f:translate></span>
+                        </d:atom.badge>
+                        <d:atom.typography tag="h1" variant="h1" class="text-balance">{author.name}</d:atom.typography>
+                        <f:if condition="{author.bio}">
+                            <p class="max-w-3xl text-base leading-7 text-muted-foreground">{author.bio}</p>
+                        </f:if>
+                    </div>
+                    <blogvh:link.author class="inline-flex h-9 items-center gap-2 rounded-md border border-border bg-background px-3 text-sm font-medium text-foreground transition-colors hover:bg-muted" rss="true" author="{author}">
+                        <d:atom.icon name="rss" size="xs"/>
                         <span><f:translate extensionName="Blog" key="link.rss" default="RSS"/></span>
                     </blogvh:link.author>
                 </div>
-                <f:if condition="{author.bio}">
-                    <p class="text-base leading-7 text-muted-foreground">{author.bio}</p>
-                </f:if>
                 <f:if condition="{author.allTags}">
-                    <ul role="list" class="flex flex-wrap gap-2">
+                    <ul role="list" class="mt-5 flex flex-wrap gap-2">
                         <f:for each="{author.allTags}" as="tag">
                             <li>
                                 <blogvh:link.tag tag="{tag}">
-                                    <d:atom.badge variant="secondary">{tag.title}</d:atom.badge>
+                                    <d:atom.badge variant="outline">{tag.title}</d:atom.badge>
                                 </blogvh:link.tag>
                             </li>
                         </f:for>
@@ -37,15 +41,20 @@
             </header>
             <f:render partial="List" arguments="{_all}" />
             <f:if condition="{settings.authorUid}">
-                <footer class="mt-8 border-t border-border pt-6">
-                    <f:link.page pageUid="{settings.authorUid}" class="inline-flex h-9 items-center rounded-lg border border-border px-3 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground">
-                        &larr; <f:translate extensionName="Blog" key="list.backlink.authors">Back to all authors</f:translate>
+                <footer class="mt-8">
+                    <f:link.page pageUid="{settings.authorUid}" class="inline-flex h-9 items-center gap-2 rounded-md border border-border bg-background px-3 text-sm font-medium text-foreground transition-colors hover:bg-muted">
+                        <d:atom.icon name="arrow-left" size="xs"/>
+                        <span><f:translate extensionName="Blog" key="list.backlink.authors">Back to all authors</f:translate></span>
                     </f:link.page>
                 </footer>
             </f:if>
         </f:then>
         <f:else>
-            <header class="mb-8">
+            <header class="mb-8 flex flex-col gap-3">
+                <d:atom.badge variant="secondary" class="w-fit gap-1">
+                    <span data-icon="inline-start" aria-hidden="true"><d:atom.icon name="users" size="xs"/></span>
+                    <span><f:translate extensionName="Blog" key="headline.authors">Authors</f:translate></span>
+                </d:atom.badge>
                 <d:atom.typography tag="h1" variant="h1"><f:translate extensionName="Blog" key="headline.authors">Authors</f:translate></d:atom.typography>
             </header>
             <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">

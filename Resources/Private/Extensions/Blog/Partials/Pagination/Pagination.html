@@ -1,5 +1,6 @@
 <html
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
     data-namespace-typo3-fluid="true"
 >
 
@@ -7,46 +8,48 @@
 
 <f:if condition="{pagination.allPageNumbers -> f:count()} > 1">
     <nav class="desiderio-blog-pagination" aria-label="{f:translate(extensionName: 'Blog', key: 'pagination.aria.label', default: 'Pagination')}">
-        <ul role="list" class="flex flex-wrap items-center gap-1 text-sm">
+        <ul role="list" class="flex flex-wrap items-center justify-center gap-1 text-sm sm:justify-start">
             <f:if condition="{pagination.previousPageNumber}">
                 <li>
-                    <a href="{f:uri.action(arguments: {currentPage: pagination.previousPageNumber}, addQueryString: 1)}" rel="prev" class="inline-flex h-8 items-center rounded-lg border border-border px-2.5 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground" aria-label="{f:translate(extensionName: 'Blog', key: 'pagination.aria.goto.previous', default: 'Previous page')}">
-                        <f:translate extensionName="Blog" key="pagination.previous">Previous</f:translate>
+                    <a href="{f:uri.action(arguments: {currentPage: pagination.previousPageNumber}, addQueryString: 1)}" rel="prev" class="inline-flex h-9 items-center gap-1 rounded-md border border-border bg-background px-3 font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/40" aria-label="{f:translate(extensionName: 'Blog', key: 'pagination.aria.goto.previous', default: 'Previous page')}">
+                        <span data-icon="inline-start" aria-hidden="true"><d:atom.icon name="chevron-left" size="xs"/></span>
+                        <span><f:translate extensionName="Blog" key="pagination.previous">Previous</f:translate></span>
                     </a>
                 </li>
             </f:if>
 
             <f:if condition="{pagination.lessPages}">
                 <li>
-                    <a href="{f:uri.action(arguments: {currentPage: pagination.firstPageNumber}, addQueryString: 1)}" class="inline-flex size-8 items-center justify-center rounded-lg border border-border text-muted-foreground transition-colors hover:bg-muted hover:text-foreground" aria-label="{f:translate(extensionName: 'Blog', key: 'pagination.aria.goto.page', arguments: '{0: pagination.firstPageNumber}')}">{pagination.firstPageNumber}</a>
+                    <a href="{f:uri.action(arguments: {currentPage: pagination.firstPageNumber}, addQueryString: 1)}" class="inline-flex size-9 items-center justify-center rounded-md border border-border bg-background font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/40" aria-label="{f:translate(extensionName: 'Blog', key: 'pagination.aria.goto.page', arguments: '{0: pagination.firstPageNumber}')}">{pagination.firstPageNumber}</a>
                 </li>
-                <li><span class="inline-flex size-8 items-center justify-center text-muted-foreground" aria-hidden="true">…</span></li>
+                <li><span class="inline-flex size-9 items-center justify-center text-muted-foreground" aria-hidden="true">…</span></li>
             </f:if>
 
             <f:for each="{pagination.displayPageNumbers}" as="pageNumber">
                 <f:if condition="{pageNumber} == {pagination.currentPageNumber}">
                     <f:then>
-                        <li><span class="inline-flex size-8 items-center justify-center rounded-lg bg-primary text-sm font-medium text-primary-foreground" aria-current="page">{pageNumber}</span></li>
+                        <li><span class="inline-flex size-9 items-center justify-center rounded-md bg-primary text-sm font-medium text-primary-foreground" aria-current="page">{pageNumber}</span></li>
                     </f:then>
                     <f:else>
                         <li>
-                            <a href="{f:uri.action(arguments: {currentPage: pageNumber}, addQueryString: 1)}" class="inline-flex size-8 items-center justify-center rounded-lg border border-border text-muted-foreground transition-colors hover:bg-muted hover:text-foreground" aria-label="{f:translate(extensionName: 'Blog', key: 'pagination.aria.goto.page', arguments: '{0: pageNumber}')}">{pageNumber}</a>
+                            <a href="{f:uri.action(arguments: {currentPage: pageNumber}, addQueryString: 1)}" class="inline-flex size-9 items-center justify-center rounded-md border border-border bg-background font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/40" aria-label="{f:translate(extensionName: 'Blog', key: 'pagination.aria.goto.page', arguments: '{0: pageNumber}')}">{pageNumber}</a>
                         </li>
                     </f:else>
                 </f:if>
             </f:for>
 
             <f:if condition="{pagination.morePages}">
-                <li><span class="inline-flex size-8 items-center justify-center text-muted-foreground" aria-hidden="true">…</span></li>
+                <li><span class="inline-flex size-9 items-center justify-center text-muted-foreground" aria-hidden="true">…</span></li>
                 <li>
-                    <a href="{f:uri.action(arguments: {currentPage: pagination.lastPageNumber}, addQueryString: 1)}" class="inline-flex size-8 items-center justify-center rounded-lg border border-border text-muted-foreground transition-colors hover:bg-muted hover:text-foreground" aria-label="{f:translate(extensionName: 'Blog', key: 'pagination.aria.goto.page', arguments: '{0: pagination.lastPageNumber}')}">{pagination.lastPageNumber}</a>
+                    <a href="{f:uri.action(arguments: {currentPage: pagination.lastPageNumber}, addQueryString: 1)}" class="inline-flex size-9 items-center justify-center rounded-md border border-border bg-background font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/40" aria-label="{f:translate(extensionName: 'Blog', key: 'pagination.aria.goto.page', arguments: '{0: pagination.lastPageNumber}')}">{pagination.lastPageNumber}</a>
                 </li>
             </f:if>
 
             <f:if condition="{pagination.nextPageNumber}">
                 <li>
-                    <a href="{f:uri.action(arguments: {currentPage: pagination.nextPageNumber}, addQueryString: 1)}" rel="next" class="inline-flex h-8 items-center rounded-lg border border-border px-2.5 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground" aria-label="{f:translate(extensionName: 'Blog', key: 'pagination.aria.goto.next', default: 'Next page')}">
-                        <f:translate extensionName="Blog" key="pagination.next">Next</f:translate>
+                    <a href="{f:uri.action(arguments: {currentPage: pagination.nextPageNumber}, addQueryString: 1)}" rel="next" class="inline-flex h-9 items-center gap-1 rounded-md border border-border bg-background px-3 font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/40" aria-label="{f:translate(extensionName: 'Blog', key: 'pagination.aria.goto.next', default: 'Next page')}">
+                        <span><f:translate extensionName="Blog" key="pagination.next">Next</f:translate></span>
+                        <span data-icon="inline-end" aria-hidden="true"><d:atom.icon name="chevron-right" size="xs"/></span>
                     </a>
                 </li>
             </f:if>

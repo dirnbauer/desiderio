@@ -1,5 +1,6 @@
 <html
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:blogvh="http://typo3.org/ns/T3G/AgencyPack/Blog/ViewHelpers"
     xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
     data-namespace-typo3-fluid="true"
 >
@@ -8,94 +9,87 @@
 <f:argument name="settings" type="array" optional="true"/>
 
 <f:spaceless>
-    <d:molecule.card class="flex flex-col gap-4 p-4 sm:flex-row sm:gap-6 sm:p-6" data-blog-author="{author.uid}" itemprop="author" itemscope="itemscope" itemtype="https://schema.org/Person">
-        <div class="shrink-0">
-            <f:variable name="avatarsize" value="{settings.authors.avatar.provider.size as integer}" />
-            <f:if condition="{avatarsize}"><f:else><f:variable name="avatarsize" value="64" /></f:else></f:if>
-            <img
-                loading="lazy"
-                class="size-16 rounded-full border border-border object-cover"
-                height="{avatarsize}"
-                width="{avatarsize}"
-                src="{blogvh:uri.avatar(author: author, size: avatarsize)}"
-                alt="{author.name}"
-                itemprop="image"
-            >
-        </div>
-        <div class="flex flex-1 flex-col gap-2">
-            <p class="text-xs font-medium uppercase tracking-wide text-muted-foreground"><f:translate extensionName="Blog" key="author.aboutTheAuthor">About the author</f:translate></p>
-            <p class="text-base font-semibold text-foreground">
-                <f:render section="ProfileLink" arguments="{_all}" contentAs="content">{author.name}</f:render>
-            </p>
-            <f:if condition="{author.title} || {author.location}">
-                <p class="text-sm text-muted-foreground">
-                    <f:if condition="{author.title}"><span itemprop="jobTitle">{author.title}</span></f:if>
-                    <f:if condition="{author.title} && {author.location}"><span aria-hidden="true">·</span></f:if>
-                    <f:if condition="{author.location}"><span itemprop="homeLocation">{author.location}</span></f:if>
-                </p>
-            </f:if>
-            <f:if condition="{author.bio}">
-                <div class="text-sm leading-6 text-muted-foreground" itemprop="description"><f:format.html>{author.bio}</f:format.html></div>
-            </f:if>
-            <f:if condition="{author.website} || {author.twitter} || {author.linkedin} || {author.xing} || {author.instagram}">
-                <ul role="list" class="flex flex-wrap gap-2 text-sm">
-                    <f:if condition="{author.website}">
-                        <li>
-                            <a href="{author.website}" class="inline-flex items-center gap-1 text-muted-foreground underline-offset-4 hover:text-primary hover:underline" target="_blank" rel="noopener" itemprop="url">
-                                <f:render partial="General/SocialIcons" section="Website" optional="true" />
-                                <span><f:translate extensionName="Blog" key="author.social.website">Website</f:translate></span>
-                            </a>
-                        </li>
+    <div data-blog-author="{author.uid}" itemprop="author" itemscope="itemscope" itemtype="https://schema.org/Person">
+    <d:molecule.card class="border-border bg-card">
+        <d:molecule.cardContent class="pt-0">
+            <div class="grid gap-5 sm:grid-cols-[auto_1fr]">
+                <div class="shrink-0">
+                    <f:variable name="avatarsize" value="{settings.authors.avatar.provider.size as integer}" />
+                    <f:if condition="{avatarsize}"><f:else><f:variable name="avatarsize" value="72" /></f:else></f:if>
+                    <img
+                        loading="lazy"
+                        class="size-20 rounded-full border border-border bg-muted object-cover"
+                        height="{avatarsize}"
+                        width="{avatarsize}"
+                        src="{blogvh:uri.avatar(author: author, size: avatarsize)}"
+                        alt="{author.name}"
+                        itemprop="image"
+                    >
+                </div>
+                <div class="min-w-0 space-y-3">
+                    <div class="space-y-1">
+                        <d:atom.badge variant="secondary" class="gap-1">
+                            <span data-icon="inline-start" aria-hidden="true"><d:atom.icon name="user" size="xs"/></span>
+                            <span><f:translate extensionName="Blog" key="author.aboutTheAuthor">About the author</f:translate></span>
+                        </d:atom.badge>
+                        <p class="text-lg font-semibold text-foreground">
+                            <f:render section="ProfileLink" arguments="{_all}" contentAs="content">{author.name}</f:render>
+                        </p>
+                        <f:if condition="{author.title} || {author.location}">
+                            <p class="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
+                                <f:if condition="{author.title}"><span itemprop="jobTitle">{author.title}</span></f:if>
+                                <f:if condition="{author.title} && {author.location}"><span class="size-1 rounded-full bg-muted-foreground/50" aria-hidden="true"></span></f:if>
+                                <f:if condition="{author.location}"><span itemprop="homeLocation">{author.location}</span></f:if>
+                            </p>
+                        </f:if>
+                    </div>
+                    <f:if condition="{author.bio}">
+                        <div class="prose prose-sm max-w-none text-muted-foreground prose-a:text-primary" itemprop="description"><f:format.html>{author.bio}</f:format.html></div>
                     </f:if>
-                    <f:if condition="{author.twitter}">
-                        <li>
-                            <a href="https://twitter.com/{author.twitter -> f:format.htmlspecialchars()}" class="inline-flex items-center gap-1 text-muted-foreground underline-offset-4 hover:text-primary hover:underline" target="_blank" rel="noopener" itemprop="url">
-                                <f:render partial="General/SocialIcons" section="Twitter" optional="true" />
-                                <span><f:translate extensionName="Blog" key="author.social.twitter">Twitter</f:translate></span>
-                            </a>
-                        </li>
+                    <f:if condition="{author.website} || {author.twitter} || {author.linkedin} || {author.xing} || {author.instagram}">
+                        <ul role="list" class="flex flex-wrap gap-2 text-sm">
+                            <f:if condition="{author.website}">
+                                <li><f:render section="SocialLink" arguments="{href: author.website, icon: 'Website', labelKey: 'author.social.website', label: 'Website'}"/></li>
+                            </f:if>
+                            <f:if condition="{author.twitter}">
+                                <li><f:render section="SocialLink" arguments="{href: author.twitter, prefix: 'https://twitter.com/', icon: 'Twitter', labelKey: 'author.social.twitter', label: 'Twitter'}"/></li>
+                            </f:if>
+                            <f:if condition="{author.instagram}">
+                                <li><f:render section="SocialLink" arguments="{href: author.instagram, icon: 'Instagram', labelKey: 'author.social.instagram', label: 'Instagram'}"/></li>
+                            </f:if>
+                            <f:if condition="{author.linkedin}">
+                                <li><f:render section="SocialLink" arguments="{href: author.linkedin, icon: 'LinkedIn', labelKey: 'author.social.linkedin', label: 'LinkedIn'}"/></li>
+                            </f:if>
+                            <f:if condition="{author.xing}">
+                                <li><f:render section="SocialLink" arguments="{href: author.xing, icon: 'Xing', labelKey: 'author.social.xing', label: 'Xing'}"/></li>
+                            </f:if>
+                        </ul>
                     </f:if>
-                    <f:if condition="{author.instagram}">
-                        <li>
-                            <a href="{author.instagram}" class="inline-flex items-center gap-1 text-muted-foreground underline-offset-4 hover:text-primary hover:underline" target="_blank" rel="noopener" itemprop="url">
-                                <f:render partial="General/SocialIcons" section="Instagram" optional="true" />
-                                <span><f:translate extensionName="Blog" key="author.social.instagram">Instagram</f:translate></span>
-                            </a>
-                        </li>
+                    <f:if condition="{author.detailsPage} || {settings.authorUid}">
+                        <blogvh:link.author author="{author}" class="inline-flex items-center gap-1 text-sm font-medium text-primary underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/40">
+                            <span><f:translate extensionName="Blog" key="author.more.posts">More posts by this author</f:translate></span>
+                            <span data-icon="inline-end" aria-hidden="true"><d:atom.icon name="arrow-right" size="xs"/></span>
+                        </blogvh:link.author>
                     </f:if>
-                    <f:if condition="{author.linkedin}">
-                        <li>
-                            <a href="{author.linkedin}" class="inline-flex items-center gap-1 text-muted-foreground underline-offset-4 hover:text-primary hover:underline" target="_blank" rel="noopener" itemprop="url">
-                                <f:render partial="General/SocialIcons" section="LinkedIn" optional="true" />
-                                <span><f:translate extensionName="Blog" key="author.social.linkedin">LinkedIn</f:translate></span>
-                            </a>
-                        </li>
-                    </f:if>
-                    <f:if condition="{author.xing}">
-                        <li>
-                            <a href="{author.xing}" class="inline-flex items-center gap-1 text-muted-foreground underline-offset-4 hover:text-primary hover:underline" target="_blank" rel="noopener" itemprop="url">
-                                <f:render partial="General/SocialIcons" section="Xing" optional="true" />
-                                <span><f:translate extensionName="Blog" key="author.social.xing">Xing</f:translate></span>
-                            </a>
-                        </li>
-                    </f:if>
-                </ul>
-            </f:if>
-            <f:if condition="{author.detailsPage} || {settings.authorUid}">
-                <p class="mt-1">
-                    <blogvh:link.author author="{author}" class="inline-flex items-center text-sm font-medium text-primary underline-offset-4 hover:underline">
-                        <f:translate extensionName="Blog" key="author.more.posts">More posts by this author</f:translate> &rarr;
-                    </blogvh:link.author>
-                </p>
-            </f:if>
-        </div>
+                </div>
+            </div>
+        </d:molecule.cardContent>
     </d:molecule.card>
+    </div>
 
     <f:section name="ProfileLink">
         <f:if condition="{author.detailsPage} || {settings.authorUid}">
-            <f:then><blogvh:link.author rel="author" author="{author}" class="text-foreground underline-offset-4 hover:text-primary hover:underline"><span itemprop="name">{content}</span></blogvh:link.author></f:then>
+            <f:then><blogvh:link.author rel="author" author="{author}" class="rounded-sm text-foreground underline-offset-4 hover:text-primary hover:underline focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/40"><span itemprop="name">{content}</span></blogvh:link.author></f:then>
             <f:else><span itemprop="name">{content}</span></f:else>
         </f:if>
+    </f:section>
+
+    <f:section name="SocialLink">
+        <f:if condition="!{prefix}"><f:variable name="prefix" value="" /></f:if>
+        <a href="{prefix}{href}" class="inline-flex h-8 items-center gap-1 rounded-md border border-border bg-background px-2.5 text-xs font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/40" target="_blank" rel="noopener noreferrer" itemprop="url">
+            <span data-icon="inline-start" aria-hidden="true"><f:render partial="General/SocialIcons" section="{icon}" optional="true" /></span>
+            <span><f:translate extensionName="Blog" key="{labelKey}">{label}</f:translate></span>
+        </a>
     </f:section>
 </f:spaceless>
 

@@ -1,5 +1,6 @@
 <html
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:blogvh="http://typo3.org/ns/T3G/AgencyPack/Blog/ViewHelpers"
     xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
     data-namespace-typo3-fluid="true"
 >
@@ -8,22 +9,33 @@
 <f:argument name="months" type="iterable" optional="true"/>
 <f:argument name="settings" type="array" optional="true"/>
 
-<d:molecule.card class="flex flex-col gap-3 p-4 sm:p-6" data-blog-archive-year="{year}">
-    <h2 class="text-lg font-semibold text-foreground" itemprop="name">
-        <blogvh:link.archive year="{year}" title="{year}" class="text-foreground underline-offset-4 hover:text-primary hover:underline">{year}</blogvh:link.archive>
-    </h2>
-    <ul role="list" class="divide-y divide-border text-sm">
-        <f:for each="{months}" as="month">
-            <li class="flex items-center justify-between gap-3 py-2" data-blog-archive-year="{year}" data-blog-archive-month="{month.month}">
-                <blogvh:link.archive year="{year}" month="{month.month}" title="{f:format.date(format: '{settings.archive.monthDateFormat} {settings.archive.yearDateFormat}', date: month.timestamp)}" class="text-muted-foreground underline-offset-4 hover:text-primary hover:underline">
-                    {f:format.date(format: '{settings.archive.monthDateFormat}', date: month.timestamp)}
-                </blogvh:link.archive>
-                <f:if condition="{settings.archive.showCounter} == 1">
-                    <d:atom.badge variant="secondary">{month.count}</d:atom.badge>
-                </f:if>
-            </li>
-        </f:for>
-    </ul>
+<div data-blog-archive-year="{year}">
+<d:molecule.card class="border-border bg-card">
+    <d:molecule.cardHeader class="border-b border-border/70 pb-3">
+        <div class="flex items-center justify-between gap-3">
+            <h2 class="text-lg font-semibold text-foreground" itemprop="name">
+                <blogvh:link.archive year="{year}" title="{year}" class="underline-offset-4 hover:text-primary hover:underline">{year}</blogvh:link.archive>
+            </h2>
+            <span class="inline-flex size-8 items-center justify-center rounded-md bg-muted text-muted-foreground" aria-hidden="true">
+                <d:atom.icon name="calendar" size="sm"/>
+            </span>
+        </div>
+    </d:molecule.cardHeader>
+    <d:molecule.cardContent class="pt-0">
+        <ul role="list" class="divide-y divide-border/70 text-sm">
+            <f:for each="{months}" as="month">
+                <li class="flex items-center justify-between gap-3 py-3" data-blog-archive-year="{year}" data-blog-archive-month="{month.month}">
+                    <blogvh:link.archive year="{year}" month="{month.month}" title="{f:format.date(format: '{settings.archive.monthDateFormat} {settings.archive.yearDateFormat}', date: month.timestamp)}" class="font-medium text-foreground underline-offset-4 hover:text-primary hover:underline">
+                        {f:format.date(format: '{settings.archive.monthDateFormat}', date: month.timestamp)}
+                    </blogvh:link.archive>
+                    <f:if condition="{settings.archive.showCounter} == 1">
+                        <d:atom.badge variant="secondary">{month.count}</d:atom.badge>
+                    </f:if>
+                </li>
+            </f:for>
+        </ul>
+    </d:molecule.cardContent>
 </d:molecule.card>
+</div>
 
 </html>

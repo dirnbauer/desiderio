@@ -1,5 +1,6 @@
 <html
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:blogvh="http://typo3.org/ns/T3G/AgencyPack/Blog/ViewHelpers"
     xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
     data-namespace-typo3-fluid="true"
 >
@@ -15,19 +16,21 @@
     itemscope="itemscope"
     itemtype="https://schema.org/BlogPosting"
 >
-    <d:molecule.card class="h-full">
+    <d:molecule.card size="sm" class="h-full border-border bg-card transition-colors hover:border-primary/40">
         <f:if condition="{post.featuredImage}">
             <blogvh:link.post post="{post}" class="block overflow-hidden" additionalAttributes="{aria-hidden: 'true'}" tabindex="-1">
                 <f:render partial="General/FeaturedImage" arguments="{image: post.featuredImage, settings: settings.teaser.featuredImage}" />
             </blogvh:link.post>
         </f:if>
 
-        <div class="flex flex-1 flex-col gap-3 px-4 pb-4">
+        <d:molecule.cardContent class="flex flex-1 flex-col gap-3 pt-0">
             <f:render partial="Meta/TeaserHeader" arguments="{_all}" />
 
-            <h2 class="text-lg font-semibold leading-snug" itemprop="name">
-                <blogvh:link.post post="{post}" class="text-foreground underline-offset-4 hover:text-primary hover:underline"/>
-            </h2>
+            <h3 class="text-lg font-semibold leading-snug text-foreground" itemprop="headline">
+                <blogvh:link.post post="{post}" class="rounded-sm underline-offset-4 hover:text-primary hover:underline focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/40">
+                    {post.title}
+                </blogvh:link.post>
+            </h3>
 
             <p class="text-sm leading-6 text-muted-foreground" itemprop="description">
                 <f:if condition="{post.abstract}">
@@ -36,8 +39,10 @@
                 </f:if>
             </p>
 
-            <f:render partial="Meta/TeaserFooter" arguments="{_all}" />
-        </div>
+            <div class="mt-auto border-t border-border/70 pt-3">
+                <f:render partial="Meta/TeaserFooter" arguments="{_all}" />
+            </div>
+        </d:molecule.cardContent>
     </d:molecule.card>
 </article>
 

@@ -23,7 +23,7 @@
             <f:variable name="featuredCount" value="1"/>
 
             <div class="news-magazine flex flex-col gap-10" id="news-magazine-{contentObjectData.uid}">
-                <article class="news-magazine__feature group/card relative overflow-hidden" itemscope="itemscope" itemtype="https://schema.org/Article">
+                <article class="news-magazine__feature group/card relative overflow-hidden" itemscope="itemscope" itemtype="https://schema.org/NewsArticle">
                     <d:molecule.card class="grid gap-6 md:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] md:items-stretch">
                         <f:if condition="{featured.mediaPreviews}">
                             <f:then>
@@ -52,6 +52,7 @@
                                 <time itemprop="datePublished" datetime="{f:format.date(date: featured.datetime, format: 'c')}">
                                     <f:format.date format="{f:translate(key: 'dateFormat')}">{featured.datetime}</f:format.date>
                                 </time>
+                                <meta itemprop="dateModified" content="{f:format.date(date: featured.tstamp, format: 'c')}" />
                                 <f:if condition="{featured.firstCategory}">
                                     <d:atom.badge variant="secondary">{featured.firstCategory.title}</d:atom.badge>
                                 </f:if>
@@ -77,7 +78,10 @@
                                     <f:translate key="more-link" />
                                 </n:link>
                                 <f:if condition="{featured.author}">
-                                    <span class="text-sm text-muted-foreground"><f:translate key="author" arguments="{0: featured.author}"/></span>
+                                    <span class="text-sm text-muted-foreground" itemprop="author" itemscope="itemscope" itemtype="https://schema.org/Person">
+                                        <f:translate key="author" arguments="{0: featured.author}"/>
+                                        <meta itemprop="name" content="{featured.author}" />
+                                    </span>
                                 </f:if>
                             </div>
                         </div>

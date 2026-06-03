@@ -1,5 +1,6 @@
 <html
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:blogvh="http://typo3.org/ns/T3G/AgencyPack/Blog/ViewHelpers"
     xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
     data-namespace-typo3-fluid="true"
 >
@@ -9,15 +10,28 @@
 <f:section name="Title"><f:translate extensionName="Blog" key="headline.tags">Tags</f:translate></f:section>
 
 <f:section name="Content">
-    <ul role="list" class="flex flex-wrap gap-2">
-        <f:for each="{tags}" as="tag">
-            <li data-blog-tag="{tag.uid}" data-active="{f:if(condition: '{currentTag} == {tag.uid}', then: 'true', else: 'false')}">
-                <blogvh:link.tag tag="{tag.tagObject}" title="{tag.tagObject.title}">
-                    <d:atom.badge variant="secondary">{tag.tagObject.title}</d:atom.badge>
-                </blogvh:link.tag>
-            </li>
-        </f:for>
-    </ul>
+    <f:if condition="{tags}">
+        <f:then>
+            <ul role="list" class="flex flex-wrap gap-2">
+                <f:for each="{tags}" as="tag">
+                    <li data-blog-tag="{tag.uid}" data-active="{f:if(condition: '{currentTag} == {tag.uid}', then: 'true', else: 'false')}">
+                        <blogvh:link.tag tag="{tag.tagObject}" title="{tag.tagObject.title}" class="inline-flex rounded-md focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/40">
+                            <d:atom.badge variant="secondary" class="gap-1">
+                                <span data-icon="inline-start" aria-hidden="true"><d:atom.icon name="tag" size="xs"/></span>
+                                <span>{tag.tagObject.title}</span>
+                            </d:atom.badge>
+                        </blogvh:link.tag>
+                    </li>
+                </f:for>
+            </ul>
+        </f:then>
+        <f:else>
+            <d:molecule.alert class="bg-muted/40">
+                <d:atom.icon name="tag" size="sm"/>
+                <d:molecule.alertDescription><f:translate extensionName="Blog" key="tags.empty">No tags yet.</f:translate></d:molecule.alertDescription>
+            </d:molecule.alert>
+        </f:else>
+    </f:if>
 </f:section>
 
 </html>

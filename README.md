@@ -158,7 +158,10 @@ The set is shipped *hidden* from the Site Management picker.
 Drop a `News` plugin onto a `DesiderioBlog` or `DesiderioNews` page and the
 list renders as a 3-column shadcn card grid with a `Detail` view that
 includes the `Detail/Opengraph` (Open Graph + Twitter card meta) and
-`Detail/Shariff` partials.
+`Detail/Shariff` partials. Detail, list, and magazine cards use
+`schema.org/NewsArticle` microdata, and the detail view emits JSON-LD through
+`Detail/StructuredData.html` when
+`plugin.tx_news.settings.structuredData.enabled` is on.
 
 The list view supports a configurable **"Load more"** mode driven by three
 plugin / TypoScript settings:
@@ -168,6 +171,9 @@ plugin / TypoScript settings:
 | `plugin.tx_news.settings.list.useLoadMore` | `0` (auto on `DesiderioBlog` + `DesiderioNews`) | Switch the list partial from server-paginated to progressive load-more. |
 | `plugin.tx_news.settings.list.initialCount` | `6` | How many cards are shown before the button appears. |
 | `plugin.tx_news.settings.list.loadMoreCount` | `3` | The "extra number to be loaded" each click. |
+| `plugin.tx_news.settings.structuredData.enabled` | `{$desiderio.seo.structuredDataEnabled}` | Emit `NewsArticle` JSON-LD in the page header. |
+| `plugin.tx_news.settings.structuredData.publisherName` | `{$desiderio.brand.wordmark}` | Publisher name used in JSON-LD when configured. |
+| `plugin.tx_news.settings.structuredData.publisherLogo` | `{$desiderio.seo.defaultImage}` | Absolute publisher logo URL used in JSON-LD when configured. |
 
 The button is rendered with a tiny inline JS asset that hides overflow
 items, reveals `loadMoreCount` more on each click, focuses the first newly

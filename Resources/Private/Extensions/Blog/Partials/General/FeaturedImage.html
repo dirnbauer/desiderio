@@ -5,11 +5,12 @@
 
 <f:argument name="image" type="object" optional="true"/>
 <f:argument name="settings" type="array" optional="true"/>
+<f:argument name="featured" type="bool" optional="true"/>
 
 <f:if condition="{image}">
     <f:variable name="height" value="{f:if(condition: settings.height, then: settings.height, else: '400c')}" />
     <f:variable name="width" value="{f:if(condition: settings.width, then: settings.width, else: '1140')}" />
-    <figure class="overflow-hidden">
+    <figure class="overflow-hidden bg-muted">
         <f:image
             loading="lazy"
             image="{image}"
@@ -17,7 +18,7 @@
             title="{image.title}"
             height="{height}"
             width="{width}"
-            class="aspect-[16/10] w-full object-cover transition-transform duration-300 group-hover/card:scale-[1.02]"
+            class="{f:if(condition: featured, then: 'aspect-[21/9]', else: 'aspect-[16/10]')} w-full object-cover transition-transform duration-300 group-hover/card:scale-[1.03]"
         />
     </figure>
 </f:if>

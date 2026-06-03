@@ -5,10 +5,11 @@
     data-namespace-typo3-fluid="true"
 >
 
-<header class="mb-4">
-    <d:atom.typography tag="h3" variant="h4"><f:translate extensionName="Blog" key="headline.commentform">Leave a comment</f:translate></d:atom.typography>
-</header>
-<f:render partial="General/FlashMessages" arguments="{_all}"/>
-<formvh:render factoryClass="T3G\AgencyPack\Blog\Domain\Factory\CommentFormFactory" />
+<div class="flex flex-col gap-5">
+    <f:render partial="General/FlashMessages" arguments="{_all}"/>
+    <div class="rounded-lg border border-border bg-background/70 p-4">
+        <formvh:render factoryClass="T3G\AgencyPack\Blog\Domain\Factory\CommentFormFactory" />
+    </div>
+</div>
 
 </html>

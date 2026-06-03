@@ -1,15 +1,24 @@
 <html
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
     data-namespace-typo3-fluid="true"
 >
 
 <f:layout name="Post" />
 
 <f:section name="Content">
-    <footer class="mt-2 border-t border-border pt-6 text-sm text-muted-foreground">
-        <f:if condition="{settings.meta.postfooter.enable}">
-            <f:render partial="Meta/PostFooter" arguments="{_all}" />
-        </f:if>
+    <footer class="rounded-xl border border-border bg-card p-5 sm:p-6">
+        <div class="flex flex-col gap-4">
+            <div class="flex items-center gap-2 text-sm font-medium text-foreground">
+                <span class="inline-flex size-8 items-center justify-center rounded-md bg-muted text-muted-foreground" aria-hidden="true">
+                    <d:atom.icon name="bookmark" size="sm"/>
+                </span>
+                <span><f:translate extensionName="Blog" key="post.footer.meta" default="Article details"/></span>
+            </div>
+            <f:if condition="{settings.meta.postfooter.enable}">
+                <f:render partial="Meta/PostFooter" arguments="{_all}" />
+            </f:if>
+        </div>
     </footer>
 </f:section>
 

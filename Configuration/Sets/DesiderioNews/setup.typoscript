@@ -16,6 +16,12 @@ plugin.tx_news {
       initialCount = 6
       loadMoreCount = 3
     }
+
+    structuredData {
+      enabled = {$desiderio.seo.structuredDataEnabled}
+      publisherName = {$desiderio.brand.wordmark}
+      publisherLogo = {$desiderio.seo.defaultImage}
+    }
   }
 }
 

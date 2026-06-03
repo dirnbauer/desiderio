@@ -9,6 +9,7 @@
         <div class="flex flex-col gap-3" role="alert">
             <f:for each="{validationResults.flattenedErrors}" as="errors" key="propertyPath">
                 <d:molecule.alert variant="destructive">
+                    <d:atom.icon name="alert-circle" size="sm"/>
                     <d:molecule.alertDescription>
                         <ul role="list" class="list-disc pl-5 text-sm">
                             <f:for each="{errors}" as="error">

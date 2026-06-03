@@ -24,7 +24,7 @@
     <!--TYPO3SEARCH_begin-->
     <d:layout.section spacing="md">
         <d:layout.container size="xl">
-            <f:if condition="{page.pageRecord.pid} == {site.configuration.settings.plugin.tx_blog.settings.storagePid}">
+            <f:if condition="({page.pageRecord.pid} == {site.configuration.settings.plugin.tx_blog.settings.storagePid}) || ({page.pageRecord.doktype} == 137 && {page.pageRecord.pid} > 0)">
                 <f:then>
                     <f:render section="BlogPostPage" arguments="{_all}"/>
                 </f:then>
@@ -98,7 +98,7 @@
 </f:section>
 
 <f:section name="BlogListHeading">
-    <f:if condition="{page.pageRecord.pid} != {site.configuration.settings.plugin.tx_blog.settings.storagePid}">
+    <f:if condition="({page.pageRecord.pid} != {site.configuration.settings.plugin.tx_blog.settings.storagePid}) && !({page.pageRecord.doktype} == 137 && {page.pageRecord.pid} > 0)">
         <header class="max-w-3xl">
             <d:layout.stack gap="sm">
                 <d:atom.badge variant="secondary">Blog</d:atom.badge>

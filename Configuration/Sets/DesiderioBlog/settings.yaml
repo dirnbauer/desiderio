@@ -5,6 +5,18 @@ plugin:
   tx_blog:
     settings:
       meta:
+        postheader:
+          elements:
+            authors:
+              enable: true
+            categories:
+              enable: true
+            tags:
+              enable: true
+            published:
+              enable: true
+            comments:
+              enable: true
         listheader:
           elements:
             authors:

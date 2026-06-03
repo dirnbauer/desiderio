@@ -24,38 +24,77 @@
     <!--TYPO3SEARCH_begin-->
     <d:layout.section spacing="md">
         <d:layout.container size="xl">
-            <f:variable name="hasSidebar" value="{content.sidebar.records}"/>
-            <f:if condition="{hasSidebar}">
+            <f:if condition="{page.pageRecord.pid} == {site.configuration.settings.plugin.tx_blog.settings.storagePid}">
                 <f:then>
-                    <d:layout.grid cols="3" gap="lg">
-                        <d:layout.stack gap="xl" class="md:col-span-2">
-                            <f:render section="BlogListHeading" arguments="{_all}"/>
-                            <f:render section="BlogPostHeading" arguments="{_all}"/>
-                            <f:if condition="{content.main}">
-                                <f:render.contentArea contentArea="{content.main}"/>
-                            </f:if>
-                        </d:layout.stack>
-
-                        <aside class="md:col-span-2 lg:col-span-1" aria-label="Sidebar">
-                            <d:layout.stack gap="lg">
-                                <f:render.contentArea contentArea="{content.sidebar}"/>
-                            </d:layout.stack>
-                        </aside>
-                    </d:layout.grid>
+                    <f:render section="BlogPostPage" arguments="{_all}"/>
                 </f:then>
                 <f:else>
-                    <d:layout.stack gap="xl">
-                        <f:render section="BlogListHeading" arguments="{_all}"/>
-                        <f:render section="BlogPostHeading" arguments="{_all}"/>
-                        <f:if condition="{content.main}">
-                            <f:render.contentArea contentArea="{content.main}"/>
-                        </f:if>
-                    </d:layout.stack>
+                    <f:render section="BlogListPage" arguments="{_all}"/>
                 </f:else>
             </f:if>
         </d:layout.container>
     </d:layout.section>
     <!--TYPO3SEARCH_end-->
+</f:section>
+
+<f:section name="BlogListPage">
+    <d:layout.grid cols="3" gap="lg">
+        <d:layout.stack gap="xl" class="md:col-span-2">
+            <f:render section="BlogListHeading" arguments="{_all}"/>
+            <f:if condition="{content.main}">
+                <f:render.contentArea contentArea="{content.main}"/>
+            </f:if>
+        </d:layout.stack>
+
+        <aside class="md:col-span-2 lg:col-span-1" aria-label="{f:translate(extensionName: 'Blog', key: 'headline.sidebar', default: 'Blog sidebar')}">
+            <div class="lg:sticky lg:top-24">
+                <d:layout.stack gap="lg">
+                    <f:if condition="{content.sidebar.records}">
+                        <f:render.contentArea contentArea="{content.sidebar}"/>
+                    </f:if>
+                    <f:render section="BlogPlugin" arguments="{listType: 'blog_sidebar'}"/>
+                </d:layout.stack>
+            </div>
+        </aside>
+    </d:layout.grid>
+</f:section>
+
+<f:section name="BlogPostPage">
+    <d:layout.grid cols="3" gap="lg">
+        <article
+            class="md:col-span-2"
+            role="main"
+            itemscope="itemscope"
+            itemtype="https://schema.org/BlogPosting"
+        >
+            <d:layout.stack gap="xl">
+                <f:render section="BlogPlugin" arguments="{listType: 'blog_header'}"/>
+
+                <div class="prose max-w-none" itemprop="articleBody">
+                    <f:if condition="{content.main}">
+                        <f:render.contentArea contentArea="{content.main}"/>
+                    </f:if>
+                </div>
+
+                <f:render section="BlogPlugin" arguments="{listType: 'blog_footer'}"/>
+                <f:render section="BlogPlugin" arguments="{listType: 'blog_authors'}"/>
+                <f:render section="BlogPlugin" arguments="{listType: 'blog_comments'}"/>
+                <f:render section="BlogPlugin" arguments="{listType: 'blog_commentform'}"/>
+                <f:render section="BlogPlugin" arguments="{listType: 'blog_relatedposts'}"/>
+            </d:layout.stack>
+        </article>
+
+        <aside class="md:col-span-2 lg:col-span-1" aria-label="{f:translate(extensionName: 'Blog', key: 'headline.sidebar', default: 'Blog sidebar')}">
+            <div class="lg:sticky lg:top-24">
+                <d:layout.stack gap="lg">
+                    <f:if condition="{content.sidebar.records}">
+                        <f:render.contentArea contentArea="{content.sidebar}"/>
+                    </f:if>
+                    <f:render section="BlogPlugin" arguments="{listType: 'blog_sidebar'}"/>
+                </d:layout.stack>
+            </div>
+        </aside>
+    </d:layout.grid>
 </f:section>
 
 <f:section name="BlogListHeading">
@@ -80,31 +119,8 @@
     </f:if>
 </f:section>
 
-<f:section name="BlogPostHeading">
-    <f:if condition="{page.pageRecord.pid} == {site.configuration.settings.plugin.tx_blog.settings.storagePid}">
-        <d:molecule.card>
-            <d:molecule.cardHeader>
-                <d:layout.stack gap="md">
-                    <d:atom.badge variant="secondary">Blog</d:atom.badge>
-                    <d:atom.typography tag="h1" variant="h1" itemprop="headline">{page.pageRecord.title}</d:atom.typography>
-                    <f:if condition="{page.pageRecord.subtitle}">
-                        <d:atom.typography variant="lead">{page.pageRecord.subtitle}</d:atom.typography>
-                    </f:if>
-                </d:layout.stack>
-            </d:molecule.cardHeader>
-
-            <f:if condition="{page.pageRecord.description} || {page.pageRecord.abstract}">
-                <d:molecule.cardContent>
-                    <d:atom.typography variant="muted" itemprop="description">
-                        <f:if condition="{page.pageRecord.abstract}">
-                            <f:then>{page.pageRecord.abstract}</f:then>
-                            <f:else>{page.pageRecord.description}</f:else>
-                        </f:if>
-                    </d:atom.typography>
-                </d:molecule.cardContent>
-            </f:if>
-        </d:molecule.card>
-    </f:if>
+<f:section name="BlogPlugin">
+    <f:cObject typoscriptObjectPath="tt_content.{listType}.20"/>
 </f:section>
 
 </html>

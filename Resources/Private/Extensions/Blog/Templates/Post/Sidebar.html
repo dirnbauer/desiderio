@@ -7,13 +7,13 @@
 <f:layout name="Default" />
 
 <f:section name="Content">
-    <aside class="sticky top-24" aria-label="{f:translate(extensionName: 'Blog', key: 'headline.sidebar', default: 'Blog sidebar')}">
+    <div>
         <d:layout.stack gap="lg">
             <f:for each="{settings.sidebarWidgets}" as="widget">
                 <f:cObject typoscriptObjectPath="{widget}" />
             </f:for>
         </d:layout.stack>
-    </aside>
+    </div>
 </f:section>
 
 </html>

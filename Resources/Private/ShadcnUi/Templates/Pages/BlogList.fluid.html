@@ -24,34 +24,31 @@
     <!--TYPO3SEARCH_begin-->
     <d:layout.section spacing="md">
         <d:layout.container size="xl">
-            <f:variable name="hasSidebar" value="{content.sidebar.records}"/>
-            <f:if condition="{hasSidebar}">
-                <f:then>
-                    <d:layout.grid cols="3" gap="lg">
-                        <d:layout.stack gap="xl" class="md:col-span-2">
-                            <f:if condition="{content.main}">
-                                <f:render.contentArea contentArea="{content.main}"/>
-                            </f:if>
-                        </d:layout.stack>
+            <d:layout.grid cols="3" gap="lg">
+                <d:layout.stack gap="xl" class="md:col-span-2">
+                    <f:if condition="{content.main}">
+                        <f:render.contentArea contentArea="{content.main}"/>
+                    </f:if>
+                </d:layout.stack>
 
-                        <aside class="md:col-span-2 lg:col-span-1" aria-label="Sidebar">
-                            <d:layout.stack gap="lg">
+                <aside class="md:col-span-2 lg:col-span-1" aria-label="{f:translate(extensionName: 'Blog', key: 'headline.sidebar', default: 'Blog sidebar')}">
+                    <div class="lg:sticky lg:top-24">
+                        <d:layout.stack gap="lg">
+                            <f:if condition="{content.sidebar.records}">
                                 <f:render.contentArea contentArea="{content.sidebar}"/>
-                            </d:layout.stack>
-                        </aside>
-                    </d:layout.grid>
-                </f:then>
-                <f:else>
-                    <d:layout.stack gap="xl">
-                        <f:if condition="{content.main}">
-                            <f:render.contentArea contentArea="{content.main}"/>
-                        </f:if>
-                    </d:layout.stack>
-                </f:else>
-            </f:if>
+                            </f:if>
+                            <f:render section="BlogPlugin" arguments="{listType: 'blog_sidebar'}"/>
+                        </d:layout.stack>
+                    </div>
+                </aside>
+            </d:layout.grid>
         </d:layout.container>
     </d:layout.section>
     <!--TYPO3SEARCH_end-->
+</f:section>
+
+<f:section name="BlogPlugin">
+    <f:cObject typoscriptObjectPath="tt_content.{listType}.20"/>
 </f:section>
 
 </html>

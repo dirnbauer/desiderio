@@ -21,6 +21,15 @@ plugin.tx_blog {
   }
 
   settings.meta {
+    postheader {
+      elements {
+        authors.enable = 1
+        categories.enable = 1
+        tags.enable = 1
+        published.enable = 1
+        comments.enable = 1
+      }
+    }
     listheader {
       elements {
         authors.enable = 1

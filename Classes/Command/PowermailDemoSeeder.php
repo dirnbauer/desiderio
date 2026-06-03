@@ -754,11 +754,16 @@ final class PowermailDemoSeeder
             return;
         }
 
-        $row = $this->filterRow([
-            'hidden' => 1,
-            'nav_hide' => 1,
-            'tstamp' => $now,
-        ], $columns);
+        $row = [];
+        if (isset($columns['hidden'])) {
+            $row['hidden'] = 1;
+        }
+        if (isset($columns['nav_hide'])) {
+            $row['nav_hide'] = 1;
+        }
+        if (isset($columns['tstamp'])) {
+            $row['tstamp'] = $now;
+        }
         if ($row === []) {
             return;
         }

@@ -47,10 +47,13 @@
                                 <button class="{f:render(partial: 'Form/ShadcnClass', arguments: {slot: 'tabsTrigger'}) -> f:format.trim()} w-full"
                                         type="button"
                                         data-active="{f:if(condition: iterationPages.isFirst, then: 'true', else: 'false')}"
+                                        data-state="{f:if(condition: iterationPages.isFirst, then: 'active', else: 'inactive')}"
                                         data-powermail-morestep-validate="{settings.validation.morestep.fieldset}"
                                         data-powermail-fieldset="{page.uid}"
                                         data-powermail-morestep-current="{iterationPages.index}"
-                                        data-powermail-morestep-show="{iterationPages.index}">
+                                        data-powermail-morestep-show="{iterationPages.index}"
+                                        aria-selected="{f:if(condition: iterationPages.isFirst, then: 'true', else: 'false')}"
+                                        aria-current="{f:if(condition: iterationPages.isFirst, then: 'step', else: 'false')}">
                                     <span class="{f:render(partial: 'Form/ShadcnClass', arguments: {slot: 'stepIndex'}) -> f:format.trim()}">{iterationPages.cycle}</span>
                                     {page.title}
                                 </button>

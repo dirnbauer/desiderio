@@ -68,6 +68,8 @@ final class PowermailIntegrationTest extends TestCase
         self::assertStringContainsString('data-slot="card-header"', $form);
         self::assertStringNotContainsString('powermail_form powermail_form_', $form);
         self::assertStringContainsString('data-powermail-morestep-show', $form);
+        self::assertStringContainsString('data-state="{f:if(condition: iterationPages.isFirst', $form);
+        self::assertStringContainsString('aria-current="{f:if(condition: iterationPages.isFirst', $form);
 
         $input = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/Powermail/Partials/Form/Field/Input.html');
         self::assertStringContainsString('data-slot="field"', $input);
@@ -109,6 +111,14 @@ final class PowermailIntegrationTest extends TestCase
 
         $page = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/Powermail/Partials/Form/Page.html');
         self::assertStringContainsString('<f:argument name="iterationPages" type="array"', $page);
+        self::assertStringContainsString('powermail_fieldset_{page.uid}', $page);
+        self::assertStringContainsString('data-powermail-morestep-show="{iterationPages.index - 1}"', $page);
+
+        $javascript = (string)file_get_contents(__DIR__ . '/../../Resources/Public/Js/desiderio.js');
+        self::assertStringContainsString('Powermail multi-step state', $javascript);
+        self::assertStringContainsString('powermailErrorSelector', $javascript);
+        self::assertStringContainsString('dataset.powermailMorestepCurrent', $javascript);
+        self::assertStringContainsString('MutationObserver', $javascript);
     }
 
     public function testPowermailTranslationsAreXliff20InEnglishAndGerman(): void

@@ -656,7 +656,122 @@ document.addEventListener('DOMContentLoaded', () => {
   document.body?.addEventListener('tx_solr_updated', () => initSolrSuggest());
 
   /* ------------------------------------------------------------------ */
-  /*  11. Reading progress                                               */
+  /*  11. Powermail multi-step state                                     */
+  /* ------------------------------------------------------------------ */
+  const powermailErrorSelector = [
+    '.border-destructive',
+    '.parsley-error',
+    '.powermail_field_error',
+    '[aria-invalid="true"]',
+    '[aria-invalid="1"]',
+    '[class*="powermail_field_error_container_"]:not(:empty)',
+  ].join(',');
+
+  const setPowermailStepState = (button, active) => {
+    button.classList.toggle('active', active);
+    button.dataset.active = active ? 'true' : 'false';
+    button.dataset.state = active ? 'active' : 'inactive';
+    button.setAttribute('aria-selected', String(active));
+
+    if (active) {
+      button.setAttribute('aria-current', 'step');
+    } else {
+      button.removeAttribute('aria-current');
+    }
+  };
+
+  const getPowermailFieldsets = form => Array.from(form.querySelectorAll('.powermail_fieldset'));
+
+  const getPowermailErrorIndex = fieldsets => fieldsets.findIndex(fieldset => (
+    fieldset.querySelector(powermailErrorSelector) !== null
+  ));
+
+  const getVisiblePowermailIndex = fieldsets => {
+    const visibleIndex = fieldsets.findIndex(fieldset => (
+      fieldset.style.display !== 'none' && !fieldset.hidden
+    ));
+
+    return visibleIndex >= 0 ? visibleIndex : 0;
+  };
+
+  const showPowermailFieldset = (fieldsets, activeIndex) => {
+    fieldsets.forEach((fieldset, index) => {
+      fieldset.style.display = index === activeIndex ? '' : 'none';
+    });
+  };
+
+  const syncPowermailMultistep = form => {
+    if (!form?.classList?.contains('powermail_morestep')) return;
+
+    const fieldsets = getPowermailFieldsets(form);
+    if (fieldsets.length === 0) return;
+
+    const errorIndex = getPowermailErrorIndex(fieldsets);
+    const activeIndex = errorIndex >= 0 ? errorIndex : getVisiblePowermailIndex(fieldsets);
+
+    showPowermailFieldset(fieldsets, activeIndex);
+
+    form.querySelectorAll('[data-powermail-morestep-current]').forEach(button => {
+      setPowermailStepState(button, Number(button.dataset.powermailMorestepCurrent) === activeIndex);
+    });
+  };
+
+  const initPowermailMultistep = (scope = document) => {
+    scope.querySelectorAll('form.powermail_morestep').forEach(syncPowermailMultistep);
+  };
+
+  initPowermailMultistep();
+  window.setTimeout(() => initPowermailMultistep(), 0);
+  window.setTimeout(() => initPowermailMultistep(), 100);
+  window.addEventListener('load', () => initPowermailMultistep(), { once: true });
+
+  document.addEventListener('click', event => {
+    const trigger = event.target.closest('[data-powermail-morestep-show]');
+    if (!trigger) return;
+
+    window.requestAnimationFrame(() => {
+      const form = trigger.closest('form');
+      if (!form?.classList?.contains('powermail_morestep')) return;
+
+      const validateVisibleFields = ['true', '1'].includes(trigger.getAttribute('data-powermail-morestep-validate'));
+      if (
+        validateVisibleFields
+        && form.powermailFormValidation
+        && !form.powermailFormValidation.validateVisibleFields()
+      ) {
+        syncPowermailMultistep(form);
+        return;
+      }
+
+      const targetIndex = Number(trigger.dataset.powermailMorestepShow);
+      if (Number.isInteger(targetIndex)) {
+        showPowermailFieldset(getPowermailFieldsets(form), targetIndex);
+      }
+
+      syncPowermailMultistep(form);
+    });
+  });
+
+  if (document.body) {
+    const powermailObserver = new MutationObserver(records => {
+      const addedPowermailMarkup = records.some(record => Array.from(record.addedNodes).some(node => (
+        node.nodeType === Node.ELEMENT_NODE
+        && (
+          node.matches?.('form.powermail_morestep')
+          || node.querySelector?.('form.powermail_morestep')
+        )
+      )));
+
+      if (addedPowermailMarkup) {
+        window.setTimeout(() => initPowermailMultistep(), 0);
+      }
+    });
+
+    powermailObserver.observe(document.body, { childList: true, subtree: true });
+  }
+
+  /* ------------------------------------------------------------------ */
+  /*  12. Reading progress                                               */
   /* ------------------------------------------------------------------ */
   document.querySelectorAll('[data-d-reading-progress]').forEach(root => {
     const scope = root.closest('.desiderio-editorial-template') || root.closest('article') || document;

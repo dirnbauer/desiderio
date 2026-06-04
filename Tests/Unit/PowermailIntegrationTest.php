@@ -26,10 +26,13 @@ final class PowermailIntegrationTest extends TestCase
         self::assertStringContainsString('htmlForHtmlFields = 1', $setup);
         self::assertStringContainsString('tt_content.powermail_pi1', $setup);
         self::assertStringContainsString('templateName = PowermailPi1', $setup);
-        self::assertStringContainsString('lib.desiderioPowermailPi1 = EXTBASEPLUGIN', $setup);
-        self::assertStringContainsString('controller = Form', $setup);
-        self::assertStringContainsString('action = form', $setup);
-        self::assertStringContainsString('lib.desiderioPowermailPi1', $contentTemplate);
+        self::assertStringContainsString('20 = EXTBASEPLUGIN', $setup);
+        self::assertStringContainsString('extensionName = Powermail', $setup);
+        self::assertStringContainsString('pluginName = Pi1', $setup);
+        self::assertStringNotContainsString('lib.desiderioPowermailPi1', $setup);
+        self::assertStringNotContainsString('controller = Form', $setup);
+        self::assertStringNotContainsString('action = form', $setup);
+        self::assertStringContainsString('tt_content.{data.CType}.20', $contentTemplate);
         self::assertStringContainsString('ce-fsc-powermail', $contentTemplate);
         self::assertStringContainsString('partialRootPaths.1000000 = EXT:desiderio/Resources/Private/Extensions/Powermail/Partials/', $setup);
         self::assertStringContainsString('EXT:desiderio/Resources/Private/Extensions/Powermail/Templates/', $setup);

@@ -8,7 +8,14 @@
 <f:section name="Main">
     <div class="ce-fsc-powermail">
         <f:render partial="Header" arguments="{record: record}"/>
-        <f:cObject typoscriptObjectPath="lib.desiderioPowermailPi1" data="{data}" table="tt_content"/>
+        <f:if condition="{content}">
+            <f:then>
+                {content -> f:format.raw()}
+            </f:then>
+            <f:else>
+                <f:cObject typoscriptObjectPath="tt_content.{data.CType}.20" data="{data}" table="tt_content"/>
+            </f:else>
+        </f:if>
     </div>
 </f:section>
 

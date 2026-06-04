@@ -142,7 +142,11 @@ body {
     background-color: var(--accent);
 }
 
-.desiderio-header__nav-link--active { color: var(--foreground); }
+.desiderio-header__nav-link--active,
+.desiderio-header__nav-link--active:hover {
+    color: var(--accent-foreground);
+    background-color: var(--accent);
+}
 
 .desiderio-header__subnav {
     display: none;

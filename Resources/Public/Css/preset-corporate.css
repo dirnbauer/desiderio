@@ -33,7 +33,10 @@
     background: transparent;
 }
 
-.desiderio-header__nav-link--active {
+.desiderio-header__nav-link--active,
+.desiderio-header__nav-link--active:hover {
+    color: var(--accent-foreground);
+    background: var(--accent);
     opacity: 1;
 }
 

@@ -8,47 +8,46 @@
 
 <f:section name="Content">
     <f:if condition="{settings.comments.active}">
-        <section class="scroll-mt-24" id="comments" aria-labelledby="comments-title">
-            <d:molecule.card class="border-border bg-card">
-                <d:molecule.cardHeader class="border-b border-border/70 pb-4">
-                    <div class="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-                        <div class="space-y-2">
-                            <d:atom.badge variant="secondary" class="w-fit gap-1">
-                                <span data-icon="inline-start" aria-hidden="true"><d:atom.icon name="message-circle" size="xs"/></span>
-                                <span><f:translate extensionName="Blog" key="headline.comments">Comments</f:translate></span>
-                            </d:atom.badge>
-                            <d:atom.typography tag="h2" variant="h3" class="text-balance" id="comments-title">
-                                <f:translate extensionName="Blog" key="headline.comments">Comments</f:translate>
-                            </d:atom.typography>
-                        </div>
-                        <f:if condition="{comments}">
-                            <d:atom.badge variant="outline" class="w-fit">
-                                <f:count>{comments}</f:count>
-                            </d:atom.badge>
-                        </f:if>
-                    </div>
-                </d:molecule.cardHeader>
-                <d:molecule.cardContent class="pt-0">
-                    <f:if condition="{settings.comments.disqus.enable} !== '1'">
-                        <f:if condition="{comments}">
-                            <f:then>
-                                <ol role="list" class="flex flex-col gap-4">
-                                    <f:for each="{comments}" as="comment">
-                                        <li><f:render partial="Comments/Comment" arguments="{comment: comment, settings: settings}"/></li>
-                                    </f:for>
-                                </ol>
-                            </f:then>
-                            <f:else>
-                                <d:molecule.alert class="bg-muted/40">
-                                    <d:atom.icon name="message-circle" size="sm"/>
-                                    <d:molecule.alertTitle><f:translate extensionName="Blog" key="comments.empty.title">No comments yet</f:translate></d:molecule.alertTitle>
-                                    <d:molecule.alertDescription><f:translate extensionName="Blog" key="message.no_comments">No comments yet</f:translate></d:molecule.alertDescription>
-                                </d:molecule.alert>
-                            </f:else>
-                        </f:if>
+        <f:if condition="{comments}">
+            <f:variable name="commentCount" value="{comments -> f:count()}"/>
+        </f:if>
+        <section class="scroll-mt-24 border-t border-border pt-8" id="comments" aria-labelledby="comments-title">
+            <d:layout.stack gap="md">
+                <header class="flex flex-wrap items-center gap-2">
+                    <d:atom.typography tag="h2" variant="h3" class="text-balance" id="comments-title">
+                        <f:translate extensionName="Blog" key="headline.comments">Comments</f:translate>
+                    </d:atom.typography>
+                    <f:if condition="{comments}">
+                        <d:atom.badge variant="outline">
+                            <span data-icon="inline-start" aria-hidden="true"><d:atom.icon name="message-circle" size="xs"/></span>
+                            <span>
+                                <f:translate key="blog.comments.count" extensionName="desiderio" arguments="{count: commentCount}">
+                                    {commentCount} comments
+                                </f:translate>
+                            </span>
+                        </d:atom.badge>
                     </f:if>
-                </d:molecule.cardContent>
-            </d:molecule.card>
+                </header>
+
+                <f:if condition="{settings.comments.disqus.enable} !== '1'">
+                    <f:if condition="{comments}">
+                        <f:then>
+                            <ol role="list" class="divide-y divide-border">
+                                <f:for each="{comments}" as="comment">
+                                    <li class="py-4 first:pt-0 last:pb-0"><f:render partial="Comments/Comment" arguments="{comment: comment, settings: settings}"/></li>
+                                </f:for>
+                            </ol>
+                        </f:then>
+                        <f:else>
+                            <d:molecule.alert class="bg-muted/40">
+                                <d:atom.icon name="message-circle" size="sm"/>
+                                <d:molecule.alertTitle><f:translate extensionName="Blog" key="comments.empty.title">No comments yet</f:translate></d:molecule.alertTitle>
+                                <d:molecule.alertDescription><f:translate extensionName="Blog" key="message.no_comments">No comments yet</f:translate></d:molecule.alertDescription>
+                            </d:molecule.alert>
+                        </f:else>
+                    </f:if>
+                </f:if>
+            </d:layout.stack>
         </section>
     </f:if>
 </f:section>

@@ -8,11 +8,13 @@
 <f:argument name="tag" type="T3G\AgencyPack\Blog\Domain\Model\Tag" optional="true"/>
 <f:argument name="settings" type="array" optional="true"/>
 
-<blogvh:link.tag tag="{tag}" class="inline-flex items-center rounded-md !no-underline focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/40" data-blog-tag="{tag.uid}">
-    <d:atom.badge variant="secondary" class="gap-1">
-        <span data-icon="inline-start" aria-hidden="true"><d:atom.icon name="tag" size="xs"/></span>
-        <span>{tag.title}</span>
-    </d:atom.badge>
-</blogvh:link.tag>
+<span data-blog-tag="{tag.uid}">
+    <blogvh:link.tag tag="{tag}" class="inline-flex items-center rounded-md !no-underline focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/40">
+        <d:atom.badge variant="secondary" class="gap-1">
+            <span data-icon="inline-start" aria-hidden="true"><d:atom.icon name="tag" size="xs"/></span>
+            <span>{tag.title}</span>
+        </d:atom.badge>
+    </blogvh:link.tag>
+</span>
 
 </html>

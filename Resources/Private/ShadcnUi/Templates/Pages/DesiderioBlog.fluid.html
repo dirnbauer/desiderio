@@ -9,7 +9,7 @@
 <f:section name="Stage">
     <!--TYPO3SEARCH_begin-->
     <f:if condition="{content.stage}">
-        <d:layout.section spacing="md" class="border-b bg-muted/30">
+        <d:layout.section spacing="sm" class="border-b bg-muted/30">
             <d:layout.container size="lg" class="max-w-5xl">
                 <div class="max-w-3xl">
                     <f:render.contentArea contentArea="{content.stage}"/>
@@ -22,7 +22,7 @@
 
 <f:section name="Main">
     <!--TYPO3SEARCH_begin-->
-    <d:layout.section spacing="md">
+    <d:layout.section spacing="sm">
         <d:layout.container size="xl">
             <f:if condition="({page.pageRecord.pid} == {site.configuration.settings.plugin.tx_blog.settings.storagePid}) || ({page.pageRecord.doktype} == 137 && {page.pageRecord.pid} > 0)">
                 <f:then>
@@ -48,7 +48,7 @@
 
         <aside class="md:col-span-2 lg:col-span-1" aria-label="{f:translate(extensionName: 'Blog', key: 'headline.sidebar', default: 'Blog sidebar')}">
             <div class="lg:sticky lg:top-24">
-                <d:layout.stack gap="lg">
+                <d:layout.stack gap="xl" class="lg:max-h-[calc(100dvh-7rem)] lg:overflow-y-auto lg:overscroll-contain lg:pr-3">
                     <f:if condition="{content.sidebar.records}">
                         <f:render.contentArea contentArea="{content.sidebar}"/>
                     </f:if>
@@ -86,7 +86,7 @@
 
         <aside class="md:col-span-2 lg:col-span-1" aria-label="{f:translate(extensionName: 'Blog', key: 'headline.sidebar', default: 'Blog sidebar')}">
             <div class="lg:sticky lg:top-24">
-                <d:layout.stack gap="lg">
+                <d:layout.stack gap="xl" class="lg:max-h-[calc(100dvh-7rem)] lg:overflow-y-auto lg:overscroll-contain lg:pr-3">
                     <f:if condition="{content.sidebar.records}">
                         <f:render.contentArea contentArea="{content.sidebar}"/>
                     </f:if>

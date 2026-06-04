@@ -17,7 +17,7 @@
                     <d:atom.typography tag="h2" variant="h3"><f:translate extensionName="Blog" key="headline.relatedposts">Related posts</f:translate></d:atom.typography>
                 </div>
             </div>
-            <f:render partial="TeaserList" arguments="{_all}" />
+            <f:render partial="TeaserList" arguments="{posts: posts, settings: settings, type: 'related'}" />
         </section>
     </f:if>
 </f:section>

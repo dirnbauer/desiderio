@@ -5,15 +5,15 @@
 >
 
 <f:spaceless>
-    <aside class="min-w-0">
-        <d:molecule.card size="sm" class="border-border bg-card">
-            <d:molecule.cardHeader class="border-b border-border/70 pb-3">
+    <aside class="min-w-0 border-b border-border/70 pb-6 last:border-b-0 last:pb-0">
+        <d:layout.stack gap="sm">
+            <header>
                 <d:atom.typography tag="h3" variant="small" class="tracking-normal"><f:render section="Title" /></d:atom.typography>
-            </d:molecule.cardHeader>
-            <d:molecule.cardContent class="pt-0">
+            </header>
+            <div>
                 <f:render section="Content" />
-            </d:molecule.cardContent>
-        </d:molecule.card>
+            </div>
+        </d:layout.stack>
     </aside>
 </f:spaceless>
 

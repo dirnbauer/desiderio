@@ -20,7 +20,7 @@
 
                 <aside class="min-w-0 border-t pt-6 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0" aria-label="Blog sidebar">
                     <div class="lg:sticky lg:top-24">
-                        <d:layout.stack gap="lg">
+                        <d:layout.stack gap="lg" class="lg:max-h-[calc(100dvh-7rem)] lg:overflow-y-auto lg:overscroll-contain lg:pr-3">
                             <f:render section="renderPlugin" arguments="{listType: 'blog_sidebar'}" />
                         </d:layout.stack>
                     </div>

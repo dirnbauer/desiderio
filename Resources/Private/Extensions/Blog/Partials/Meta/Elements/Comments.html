@@ -6,26 +6,17 @@
 >
 
 <f:variable name="name" value="comments" />
-<f:variable name="text"><f:translate extensionName="Blog" key="meta.comments.comments" /></f:variable>
-
 <f:if condition="{settings.comments.active} && {post.commentsActive}">
     <f:variable name="commentCount" value="{post.activeComments -> f:count()}" />
-    <f:if condition="{settings.comments.disqus.enable} != 1">
-        <f:if condition="{commentCount} == 0">
-            <f:variable name="text"><f:translate extensionName="Blog" key="meta.comments.has_comments" arguments="{0: commentCount}" /></f:variable>
-        </f:if>
-        <f:if condition="{commentCount} == 1">
-            <f:variable name="text"><f:translate extensionName="Blog" key="meta.comments.has_comment" arguments="{0: commentCount}" /></f:variable>
-        </f:if>
-        <f:if condition="{commentCount} >= 1">
-            <f:variable name="text"><f:translate extensionName="Blog" key="meta.comments.has_comments" arguments="{0: commentCount}" /></f:variable>
-        </f:if>
-    </f:if>
     <f:render partial="Meta/Rendering/Item" arguments="{name: name}" contentAs="content">
         <meta itemprop="commentCount" content="{commentCount}"/>
         <blogvh:link.post post="{post}" section="comments" class="inline-flex items-center gap-1 text-foreground !no-underline transition-colors hover:text-primary">
             <span aria-hidden="true"><d:atom.icon name="message-circle" size="xs"/></span>
-            <span>{text}</span>
+            <span>
+                <f:translate key="blog.comments.count" extensionName="desiderio" arguments="{count: commentCount}">
+                    {commentCount} comments
+                </f:translate>
+            </span>
         </blogvh:link.post>
     </f:render>
 </f:if>

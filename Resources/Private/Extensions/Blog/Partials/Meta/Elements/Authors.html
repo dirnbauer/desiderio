@@ -1,11 +1,12 @@
 <html
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
     xmlns:blogvh="http://typo3.org/ns/T3G/AgencyPack/Blog/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
     data-namespace-typo3-fluid="true"
 >
 
 <f:variable name="name" value="authors" />
-<f:variable name="icon"><f:render partial="General/BlogIcons" section="Author" optional="true" /></f:variable>
+<f:variable name="icon"><d:atom.icon name="user" size="xs"/></f:variable>
 <f:variable name="prefix"><f:translate extensionName="Blog" key="meta.authors.author" /></f:variable>
 
 <f:if condition="{post.authors}">
@@ -16,19 +17,6 @@
         <ul role="list" class="inline-flex min-w-0 flex-wrap items-center gap-1.5">
             <f:for each="{post.authors}" as="author">
                 <li class="inline-flex min-w-0 items-center gap-1.5" data-blog-author="{author.uid}">
-                    <f:if condition="{avatarSettings.enable}">
-                        <f:variable name="avatarsize" value="{avatarSettings.size as integer}" />
-                        <f:if condition="{avatarsize}"><f:else><f:variable name="avatarsize" value="24" /></f:else></f:if>
-                        <img
-                            loading="lazy"
-                            class="size-5 rounded-full border border-border bg-muted object-cover"
-                            height="{avatarsize}"
-                            width="{avatarsize}"
-                            src="{blogvh:uri.avatar(author: author, size: avatarsize)}"
-                            alt=""
-                            itemprop="image"
-                        >
-                    </f:if>
                     <f:render section="ProfileLink" arguments="{author: author}" contentAs="content">{author.name}</f:render>
                 </li>
             </f:for>

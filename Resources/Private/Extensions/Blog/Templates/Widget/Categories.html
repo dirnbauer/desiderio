@@ -19,7 +19,12 @@
                             <d:atom.badge variant="secondary">
                                 <span data-icon="inline-start" aria-hidden="true"><d:atom.icon name="folder" size="xs"/></span>
                                 <span>{category.title}</span>
-                                <span class="text-muted-foreground">(<f:count>{category.posts}</f:count>)</span>
+                                <span class="text-muted-foreground">
+                                    <f:variable name="categoryCount" value="{category.posts -> f:count()}"/>
+                                    <f:translate key="blog.posts.count" extensionName="desiderio" arguments="{count: categoryCount}">
+                                        {categoryCount} posts
+                                    </f:translate>
+                                </span>
                             </d:atom.badge>
                         </blogvh:link.category>
                     </li>

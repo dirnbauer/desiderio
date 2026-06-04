@@ -13,6 +13,13 @@ page.10.contentAs >
 page.10.dataProcessing >
 page.10.dataProcessing < lib.desiderioPageDataProcessing
 
+blog_rss_posts.config.additionalHeaders.10.header = Content-Type: application/rss+xml; charset=utf-8
+blog_rss_category.config.additionalHeaders.10.header = Content-Type: application/rss+xml; charset=utf-8
+blog_rss_tag.config.additionalHeaders.10.header = Content-Type: application/rss+xml; charset=utf-8
+blog_rss_archive.config.additionalHeaders.10.header = Content-Type: application/rss+xml; charset=utf-8
+blog_rss_comments.config.additionalHeaders.10.header = Content-Type: application/rss+xml; charset=utf-8
+blog_rss_author.config.additionalHeaders.10.header = Content-Type: application/rss+xml; charset=utf-8
+
 plugin.tx_blog {
   view {
     templateRootPaths.200 = EXT:desiderio/Resources/Private/Extensions/Blog/Templates/
@@ -34,7 +41,7 @@ plugin.tx_blog {
       elements {
         authors.enable = 1
         categories.enable = 1
-        tags.enable = 0
+        tags.enable = 1
         published.enable = 1
         comments.enable = 1
       }
@@ -52,7 +59,7 @@ plugin.tx_blog {
       elements {
         authors.enable = 1
         categories.enable = 1
-        tags.enable = 0
+        tags.enable = 1
         published.enable = 1
         comments.enable = 1
       }

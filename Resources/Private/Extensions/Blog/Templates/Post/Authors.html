@@ -8,18 +8,12 @@
 
 <f:section name="Content">
     <f:if condition="{post.authors}">
-        <section class="flex flex-col gap-4" aria-label="{f:translate(extensionName: 'Blog', key: 'author.aboutTheAuthor', default: 'About the author')}">
-            <div class="flex items-center gap-2">
-                <span class="inline-flex size-8 items-center justify-center rounded-md bg-muted text-muted-foreground" aria-hidden="true">
-                    <d:atom.icon name="users" size="sm"/>
-                </span>
-                <d:atom.typography tag="h2" variant="h3"><f:translate extensionName="Blog" key="author.aboutTheAuthor">About the author</f:translate></d:atom.typography>
-            </div>
-            <div class="grid gap-4">
+        <section class="border-t border-border pt-6" aria-label="{f:translate(extensionName: 'Blog', key: 'author.aboutTheAuthor', default: 'About the author')}">
+            <d:layout.stack gap="md">
                 <f:for each="{post.authors}" as="author">
                     <f:render partial="Post/Author" arguments="{_all}" />
                 </f:for>
-            </div>
+            </d:layout.stack>
         </section>
     </f:if>
 </f:section>

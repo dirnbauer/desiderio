@@ -9,13 +9,38 @@
 <f:argument name="settings" type="array" optional="true"/>
 <f:argument name="type" type="string" optional="true"/>
 
-<section data-blog-teaserlist="{type -> f:or(alternative: 'default')}" data-blog-postcount="{posts -> f:count()}">
-    <d:layout.grid cols="3" gap="md" class="items-start">
-        <f:for each="{posts}" iteration="iterator" as="post">
-            <blogvh:cache post="{post}" />
-            <f:render partial="Teaser/Post" arguments="{_all}" />
-        </f:for>
-    </d:layout.grid>
+<f:variable name="listType" value="{type ?: 'default'}"/>
+<f:variable name="postCount" value="{posts -> f:count()}"/>
+
+<section class="min-w-0" data-blog-teaserlist="{listType}" data-blog-postcount="{postCount}">
+    <f:if condition="{posts}">
+        <f:then>
+            <f:switch expression="{listType}">
+                <f:case value="related">
+                    <d:layout.grid cols="3" gap="lg" class="items-start">
+                        <f:for each="{posts}" iteration="iterator" as="post">
+                            <blogvh:cache post="{post}" />
+                            <f:render partial="Teaser/RelatedPost" arguments="{post: post, settings: settings, iterator: iterator}" />
+                        </f:for>
+                    </d:layout.grid>
+                </f:case>
+                <f:defaultCase>
+                    <d:layout.grid cols="3" gap="md" class="items-stretch">
+                        <f:for each="{posts}" iteration="iterator" as="post">
+                            <blogvh:cache post="{post}" />
+                            <f:render partial="Teaser/Post" arguments="{post: post, settings: settings, iterator: iterator}" />
+                        </f:for>
+                    </d:layout.grid>
+                </f:defaultCase>
+            </f:switch>
+        </f:then>
+        <f:else>
+            <d:molecule.alert>
+                <d:atom.icon name="book-open" size="sm"/>
+                <d:molecule.alertDescription><f:translate extensionName="Blog" key="list.no_posts.message">There are no posts yet.</f:translate></d:molecule.alertDescription>
+            </d:molecule.alert>
+        </f:else>
+    </f:if>
 </section>
 
 </html>

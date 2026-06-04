@@ -1,5 +1,6 @@
 <html
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:blogvh="http://typo3.org/ns/T3G/AgencyPack/Blog/ViewHelpers"
     xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
     data-namespace-typo3-fluid="true"
 >
@@ -7,23 +8,46 @@
 <f:layout name="Post" />
 
 <f:section name="Content">
-    <footer>
-        <d:molecule.card size="sm" class="border-border bg-card">
-            <d:molecule.cardHeader class="border-b border-border/70 pb-3">
-                <div class="flex items-center gap-2 text-sm font-medium text-foreground">
-                    <span class="inline-flex size-8 items-center justify-center rounded-md bg-muted text-muted-foreground" aria-hidden="true">
-                        <d:atom.icon name="bookmark" size="sm"/>
-                    </span>
-                    <span><f:translate extensionName="Blog" key="post.footer.meta" default="Filed under"/></span>
-                </div>
-            </d:molecule.cardHeader>
-            <d:molecule.cardContent class="pt-0">
-                <f:if condition="{settings.meta.postfooter.enable}">
-                    <f:render partial="Meta/PostFooter" arguments="{_all}" />
+    <f:if condition="{post.categories} || {post.tags}">
+        <footer class="border-t border-border pt-5" aria-label="{f:translate(extensionName: 'Blog', key: 'post.footer.meta', default: 'Filed under')}">
+            <div class="grid gap-3 text-sm sm:grid-cols-[7rem_minmax(0,1fr)]">
+                <f:if condition="{post.categories}">
+                    <d:atom.typography tag="span" variant="small" class="pt-0.5 text-muted-foreground">
+                        <f:translate extensionName="Blog" key="headline.categories">Categories</f:translate>
+                    </d:atom.typography>
+                    <ul role="list" class="flex flex-wrap items-center gap-1.5">
+                        <f:for each="{post.categories}" as="postCategory">
+                            <li data-blog-category="{postCategory.uid}">
+                                <blogvh:link.category category="{postCategory}" class="!no-underline">
+                                    <d:atom.badge variant="secondary">
+                                        <span data-icon="inline-start" aria-hidden="true"><d:atom.icon name="folder" size="xs"/></span>
+                                        <span>{postCategory.title}</span>
+                                    </d:atom.badge>
+                                </blogvh:link.category>
+                            </li>
+                        </f:for>
+                    </ul>
                 </f:if>
-            </d:molecule.cardContent>
-        </d:molecule.card>
-    </footer>
+                <f:if condition="{post.tags}">
+                    <d:atom.typography tag="span" variant="small" class="pt-0.5 text-muted-foreground">
+                        <f:translate extensionName="Blog" key="headline.tags">Tags</f:translate>
+                    </d:atom.typography>
+                    <ul role="list" class="flex flex-wrap items-center gap-1.5" itemprop="keywords">
+                        <f:for each="{post.tags}" as="postTag">
+                            <li data-blog-tag="{postTag.uid}">
+                                <blogvh:link.tag tag="{postTag}" class="!no-underline">
+                                    <d:atom.badge variant="outline">
+                                        <span data-icon="inline-start" aria-hidden="true"><d:atom.icon name="tag" size="xs"/></span>
+                                        <span>{postTag.title}</span>
+                                    </d:atom.badge>
+                                </blogvh:link.tag>
+                            </li>
+                        </f:for>
+                    </ul>
+                </f:if>
+            </div>
+        </footer>
+    </f:if>
 </f:section>
 
 </html>

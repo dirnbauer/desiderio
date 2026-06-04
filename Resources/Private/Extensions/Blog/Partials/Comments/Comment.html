@@ -9,7 +9,7 @@
 <f:argument name="settings" type="array" optional="true"/>
 
 <f:spaceless>
-    <article id="comment-{comment.uid}" class="group/comment grid gap-3 sm:grid-cols-[auto_1fr]" itemprop="comment" itemscope="itemscope" itemtype="https://schema.org/Comment">
+    <article id="comment-{comment.uid}" class="group/comment grid gap-3 sm:grid-cols-[auto_minmax(0,1fr)]" itemprop="comment" itemscope="itemscope" itemtype="https://schema.org/Comment">
         <div class="flex items-center gap-3 sm:block">
             <blogvh:gravatar email="{comment.email}" class="size-11 rounded-full border border-border bg-muted object-cover" />
             <div class="sm:hidden">
@@ -21,21 +21,20 @@
                 </time>
             </div>
         </div>
-        <d:molecule.card size="sm" class="border-border/80 bg-background/70 shadow-none">
-            <d:molecule.cardContent class="pt-0">
-                <header class="mb-3 hidden items-center justify-between gap-3 text-sm sm:flex">
-                    <p class="font-medium text-foreground" itemprop="author" itemscope="itemscope" itemtype="https://schema.org/Person">
-                        <f:render section="CommentUrl" arguments="{_all}" contentAs="content">{comment.name}</f:render>
-                    </p>
-                    <time datetime="{f:format.date(format: 'c', date: comment.crdate)}" itemprop="dateCreated" class="shrink-0 text-xs text-muted-foreground">
-                        <f:format.date format="{settings.comments.date.format}">{comment.crdate}</f:format.date>
-                    </time>
-                </header>
-                <div class="prose prose-sm max-w-none text-muted-foreground prose-p:my-2 prose-a:text-primary" itemprop="text">
-                    <blogvh:format.nl2p>{comment.comment}</blogvh:format.nl2p>
-                </div>
-            </d:molecule.cardContent>
-        </d:molecule.card>
+        <d:layout.stack gap="sm" class="min-w-0">
+            <header class="mb-2 hidden items-center gap-3 text-sm sm:flex">
+                <p class="font-medium text-foreground" itemprop="author" itemscope="itemscope" itemtype="https://schema.org/Person">
+                    <f:render section="CommentUrl" arguments="{_all}" contentAs="content">{comment.name}</f:render>
+                </p>
+                <span class="size-1 rounded-full bg-muted-foreground/40" aria-hidden="true"></span>
+                <time datetime="{f:format.date(format: 'c', date: comment.crdate)}" itemprop="dateCreated" class="text-xs text-muted-foreground">
+                    <f:format.date format="{settings.comments.date.format}">{comment.crdate}</f:format.date>
+                </time>
+            </header>
+            <div class="prose prose-sm max-w-none text-muted-foreground prose-p:my-2 prose-a:text-primary" itemprop="text">
+                <blogvh:format.nl2p>{comment.comment}</blogvh:format.nl2p>
+            </div>
+        </d:layout.stack>
     </article>
 
     <f:section name="CommentUrl">

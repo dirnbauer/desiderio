@@ -11,35 +11,37 @@
 <f:argument name="type" type="string" optional="true"/>
 
 <f:variable name="paginated" value="{pagination.paginatedItems}"/>
+<f:variable name="listType" value="{type ?: 'default'}"/>
 
-<section data-blog-list="{type -> f:or(alternative: 'default')}">
+<section class="min-w-0" data-blog-list="{listType}">
     <f:if condition="{pagination} && {paginated}">
         <f:then>
             <d:layout.stack gap="lg">
                 <f:if condition="{settings.lists.pagination.insertAbove}">
                     <f:render partial="Pagination/Pagination" arguments="{pagination: pagination}" />
                 </f:if>
-                <d:layout.grid cols="3" gap="md" class="items-start">
+                <d:layout.stack gap="xl" class="min-w-0">
                     <f:for each="{paginated}" iteration="iterator" as="post">
                         <blogvh:cache post="{post}" />
                         <f:render partial="List/Post" arguments="{_all}" />
                     </f:for>
-                </d:layout.grid>
+                </d:layout.stack>
                 <f:if condition="{settings.lists.pagination.insertBelow}">
                     <f:render partial="Pagination/Pagination" arguments="{pagination: pagination}" />
                 </f:if>
             </d:layout.stack>
         </f:then>
         <f:else if="{posts}">
-            <d:layout.grid cols="3" gap="md" class="items-start">
+            <d:layout.stack gap="xl" class="min-w-0">
                 <f:for each="{posts}" iteration="iterator" as="post">
                     <blogvh:cache post="{post}" />
                     <f:render partial="List/Post" arguments="{_all}" />
                 </f:for>
-            </d:layout.grid>
+            </d:layout.stack>
         </f:else>
         <f:else>
             <d:molecule.alert>
+                <d:atom.icon name="book-open" size="sm"/>
                 <d:molecule.alertTitle><f:translate extensionName="Blog" key="list.no_posts.title">No posts</f:translate></d:molecule.alertTitle>
                 <d:molecule.alertDescription><f:translate extensionName="Blog" key="list.no_posts.message">There are no posts yet.</f:translate></d:molecule.alertDescription>
             </d:molecule.alert>

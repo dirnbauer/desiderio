@@ -10,7 +10,7 @@
 <f:section name="Content">
     <f:if condition="!{archiveData}">
         <f:then>
-            <header class="mb-8 rounded-xl border border-border bg-card p-5 sm:p-8">
+            <header class="mb-8">
                 <div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                     <div class="flex flex-col gap-3">
                         <d:atom.badge variant="secondary" class="w-fit gap-1">
@@ -45,11 +45,11 @@
                 </d:atom.badge>
                 <d:atom.typography tag="h1" variant="h1"><f:translate extensionName="Blog" key="headline.archive">Archive</f:translate></d:atom.typography>
             </header>
-            <div class="grid gap-4 md:grid-cols-2">
+            <d:layout.grid cols="2" gap="md">
                 <f:for each="{archiveData}" as="months" key="year">
                     <f:render partial="List/Archive" arguments="{_all}" />
                 </f:for>
-            </div>
+            </d:layout.grid>
         </f:else>
     </f:if>
 </f:section>

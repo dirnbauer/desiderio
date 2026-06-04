@@ -6,19 +6,22 @@
 >
 
 <f:variable name="name" value="categories" />
-<f:variable name="icon"><f:render partial="General/BlogIcons" section="Category" optional="true" /></f:variable>
 <f:variable name="prefix"><f:translate extensionName="Blog" key="meta.categories.category" /></f:variable>
 
 <f:if condition="{post.categories}">
     <f:if condition="{post.categories -> f:count()} > 1">
         <f:variable name="prefix"><f:translate extensionName="Blog" key="meta.categories.categories" /></f:variable>
     </f:if>
-    <f:render partial="Meta/Rendering/Item" arguments="{name: name, icon: icon, prefix: prefix}" contentAs="content">
+    <f:render partial="Meta/Rendering/Item" arguments="{name: name, prefix: prefix}" contentAs="content">
         <ul role="list" class="inline-flex flex-wrap items-center gap-1">
             <f:for each="{post.categories}" as="postCategory">
                 <li data-blog-category="{postCategory.uid}">
+                    <meta itemprop="articleSection" content="{postCategory.title}"/>
                     <blogvh:link.category category="{postCategory}" class="!no-underline">
-                        <d:atom.badge variant="secondary">{postCategory.title}</d:atom.badge>
+                        <d:atom.badge variant="secondary">
+                            <span data-icon="inline-start" aria-hidden="true"><d:atom.icon name="folder" size="xs"/></span>
+                            <span>{postCategory.title}</span>
+                        </d:atom.badge>
                     </blogvh:link.category>
                 </li>
             </f:for>

@@ -46,49 +46,58 @@
 }
 
 .desiderio-corporate-template {
-    border-top: 1px solid var(--border);
-    background:
-        linear-gradient(180deg, color-mix(in oklch, var(--muted) 58%, transparent), transparent 18rem),
-        var(--background);
+    margin-top: -2rem;
+    background: var(--background);
 }
 
 .desiderio-corporate-template__container {
     display: grid;
-    gap: 2rem;
-    padding-block: 2rem 4rem;
+    gap: clamp(2rem, 4vw, 3.5rem);
+    padding-block: 0 clamp(3rem, 6vw, 5rem);
 }
 
 .desiderio-corporate-template__intro {
     display: grid;
-    gap: 0.5rem;
-    max-width: 44rem;
-    padding-bottom: 1rem;
-    border-bottom: 1px solid var(--border);
+    gap: clamp(0.75rem, 1.6vw, 1rem);
+    max-width: none;
+    margin-inline: calc(50% - 50vw);
+    padding: clamp(3rem, 7vw, 5.5rem) max(1rem, calc((100vw - 80rem) / 2 + 2rem));
+    background-color: color-mix(in oklch, var(--muted) 62%, var(--background));
+    border: 0;
 }
 
 .desiderio-corporate-template__eyebrow {
     margin: 0;
-    font-size: 0.75rem;
+    color: var(--primary);
+    font-size: 0.8125rem;
     font-weight: 700;
     letter-spacing: 0.08em;
+    line-height: 1.2;
     text-transform: uppercase;
-    color: var(--muted-foreground);
 }
 
 .desiderio-corporate-template__title {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 62rem;
     margin: 0;
-    font-size: 1.5rem;
-    line-height: 1.15;
-    font-weight: 700;
-    letter-spacing: -0.01em;
+    overflow-wrap: anywhere;
+    hyphens: auto;
+    text-wrap: balance;
     color: var(--foreground);
+    font-family: var(--d-font-heading);
+    font-size: clamp(2.25rem, 5vw, 4rem);
+    font-weight: 700;
+    letter-spacing: 0;
+    line-height: 1.05;
 }
 
 .desiderio-corporate-template__lede {
-    margin: 0.25rem 0 0;
-    max-width: 44rem;
+    max-width: 56rem;
+    margin: 0;
     color: var(--muted-foreground);
-    font-size: 1rem;
+    font-size: clamp(1rem, 1.8vw, 1.25rem);
     line-height: 1.65;
 }
 
@@ -264,7 +273,7 @@
 
 @media (min-width: 1024px) {
     .desiderio-corporate-template__title {
-        font-size: 2.25rem;
+        font-size: clamp(2.25rem, 5vw, 4rem);
     }
 
     .ce-frame {
@@ -292,7 +301,7 @@
 
 @media (min-width: 768px) and (max-width: 1023px) {
     .desiderio-corporate-template__title {
-        font-size: 1.875rem;
+        font-size: clamp(2.25rem, 5vw, 4rem);
     }
 
     .desiderio-corporate-start__masthead h1 {

@@ -662,6 +662,21 @@ body {
     letter-spacing: 0;
 }
 
+.docs__component-header .typography--h1,
+.docs__welcome-hero .typography--h1,
+.desiderio-system-page__header h1,
+.desiderio-corporate-template__title {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    padding: clamp(0.875rem, 1.8vw, 1.25rem) clamp(1rem, 2.8vw, 1.5rem);
+    overflow-wrap: anywhere;
+    hyphens: auto;
+    text-wrap: balance;
+    background-color: color-mix(in oklch, var(--muted) 54%, var(--background));
+    border-block: 1px solid color-mix(in oklch, var(--border) 78%, transparent);
+}
+
 .desiderio-system-page__header p {
     margin: 0;
     color: var(--muted-foreground);

@@ -448,23 +448,6 @@ final class StarterSiteDefinitions
     }
 
     /**
-     * @param list<array{label: string, value: string, change: string, trend: string}> $items
-     * @return StarterBlock
-     */
-    private static function metricDashboard(string $header, string $description, array $items, string $seriesLabel, string $unit): array
-    {
-        return self::block('desiderio_metricdashboard', [
-            'header' => $header,
-            'description' => $description,
-            'items' => $items,
-            'chart_data' => self::chartJson([42, 58, 63, 79, 88, 96]),
-            'chart_series_label' => $seriesLabel,
-            'chart_unit' => $unit,
-        ]);
-    }
-
-
-    /**
      * @param list<array{client_name: string, summary: string, result: string, link: string}> $cases
      * @return StarterBlock
      */
@@ -556,21 +539,4 @@ final class StarterSiteDefinitions
         ]);
     }
 
-    /**
-     * @param list<int> $values
-     */
-    private static function chartJson(array $values): string
-    {
-        $labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'];
-        $points = [];
-        foreach ($values as $index => $value) {
-            $points[] = [
-                'label' => $labels[$index] ?? 'M' . ($index + 1),
-                'value' => $value,
-            ];
-        }
-
-        $json = json_encode($points, JSON_UNESCAPED_SLASHES);
-        return is_string($json) ? $json : '[]';
-    }
 }

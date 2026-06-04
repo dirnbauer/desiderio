@@ -909,7 +909,7 @@ final class ContentRenderingTemplateTest extends TestCase
             'Corporate' => 'DesiderioPresetCorporate',
         ];
         $expectedWordmarks = [
-            'Corporate' => 'Desiderio Corporate',
+            'Corporate' => 'Desiderio',
         ];
         $sharedPartials = [
             'ContentArea' => 'contentArea="{content}"',

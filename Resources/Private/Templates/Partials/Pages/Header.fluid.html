@@ -142,13 +142,18 @@
                 <f:if condition="{languageNavigation}">
                     <details class="desiderio-header__lang">
                         <summary class="desiderio-header__lang-summary" aria-label="{f:translate(extensionName: 'desiderio', key: 'a11y.nav.language', default: 'Language')}">
-                            <d:atom.icon name="globe" size="sm"/>
+                            <span class="desiderio-header__lang-icon" aria-hidden="true">
+                                <d:atom.icon name="globe" size="xs"/>
+                            </span>
                             <span class="desiderio-header__lang-current">
                                 <f:for each="{languageNavigation}" as="lang">
                                     <f:if condition="{lang.active}">
                                         <span lang="{lang.twoLetterIsoCode -> f:or(alternative: lang.hreflang)}">{lang.twoLetterIsoCode -> f:or(alternative: lang.navigationTitle)}</span>
                                     </f:if>
                                 </f:for>
+                            </span>
+                            <span class="desiderio-header__lang-chevron" aria-hidden="true">
+                                <d:atom.icon name="chevron-down" size="xs"/>
                             </span>
                         </summary>
                         <ul class="desiderio-header__lang-list" role="list">

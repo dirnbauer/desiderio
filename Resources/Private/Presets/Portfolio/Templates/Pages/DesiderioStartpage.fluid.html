@@ -1,6 +1,5 @@
 <html
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
-    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
     data-namespace-typo3-fluid="true"
 >
 
@@ -11,45 +10,9 @@
 </f:section>
 
 <f:section name="Main">
-    <f:comment>
-        Portfolio cover / work index. The masthead is now a project-fit screen:
-        positioning headline, studio signal, availability markers, and then
-        editor-authored selected work below.
-    </f:comment>
-    <f:variable name="portfolioTitle" value="{page.pageRecord.title -> f:or(alternative: site.configuration.websiteTitle)}"/>
-    <f:variable name="portfolioDeck" value="{page.pageRecord.abstract -> f:or(alternative: '{f:translate(extensionName: \'desiderio\', key: \'portfolio.start.deck\', default: \'A portfolio starter for selected work, services, proof, process, and a useful project inquiry path.\')}')}"/>
-    <section
-        class="desiderio-portfolio-template desiderio-portfolio-start"
-        itemscope="itemscope"
-        itemtype="https://schema.org/CollectionPage"
-    >
-        <d:layout.container size="xl" class="desiderio-portfolio-template__container desiderio-portfolio-start__container">
-            <header class="desiderio-portfolio-template__masthead desiderio-portfolio-start__masthead" aria-labelledby="portfolio-start-title">
-                <p class="desiderio-portfolio-template__kicker">
-                    <d:atom.badge variant="secondary">{site.configuration.websiteTitle -> f:or(alternative: breadcrumb.0.title)}</d:atom.badge>
-                </p>
-                <p id="portfolio-start-title" class="desiderio-portfolio-template__title" itemprop="name">{portfolioTitle}</p>
-                <span itemprop="description">{portfolioDeck}</span>
-                <dl class="desiderio-portfolio-start__proof" aria-label="{f:translate(extensionName: 'desiderio', key: 'portfolio.start.proof.label', default: 'Studio signals')}">
-                    <div>
-                        <dt><f:translate extensionName="desiderio" key="portfolio.start.proof.focus">Focus</f:translate></dt>
-                        <dd><f:translate extensionName="desiderio" key="portfolio.start.proof.focus.value">Interfaces and systems</f:translate></dd>
-                    </div>
-                    <div>
-                        <dt><f:translate extensionName="desiderio" key="portfolio.start.proof.work">Proof</f:translate></dt>
-                        <dd><f:translate extensionName="desiderio" key="portfolio.start.proof.work.value">Selected work first</f:translate></dd>
-                    </div>
-                    <div>
-                        <dt><f:translate extensionName="desiderio" key="portfolio.start.proof.availability">Availability</f:translate></dt>
-                        <dd><f:translate extensionName="desiderio" key="portfolio.start.proof.availability.value">Project brief required</f:translate></dd>
-                    </div>
-                </dl>
-            </header>
-            <div class="desiderio-portfolio-template__content desiderio-portfolio-start__content" itemprop="mainContentOfPage">
-                <f:render partial="Presets/ContentArea" arguments="{content: content.main}"/>
-            </div>
-        </d:layout.container>
-    </section>
+    <div class="desiderio-portfolio-template desiderio-portfolio-start">
+        <f:render partial="Presets/ContentArea" arguments="{content: content.main}"/>
+    </div>
 </f:section>
 
 </html>

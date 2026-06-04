@@ -115,6 +115,57 @@ final class StarterSiteDefinitionsTest extends TestCase
         }
     }
 
+    public function testStarterContentDoesNotSeedFooterBlocksIntoPageBodies(): void
+    {
+        $footerCtypes = ['desiderio_footerbrand', 'desiderio_footerminimal'];
+
+        foreach (StarterSiteDefinitions::all() as $slug => $starter) {
+            $ctypes = array_map(
+                static fn (array $block): string => (string)$block['ctype'],
+                $this->collectContentBlocks($starter)
+            );
+
+            foreach ($footerCtypes as $ctype) {
+                self::assertNotContains($ctype, $ctypes, $slug . ' must use the page template footer, not a footer content block');
+            }
+        }
+    }
+
+    public function testStartpageTemplatesOnlyRenderContentAreasAndTemplateChrome(): void
+    {
+        $templatePaths = [
+            'corporate' => __DIR__ . '/../../Resources/Private/Presets/Corporate/Templates/Pages/DesiderioStartpage.fluid.html',
+            'dashboard' => __DIR__ . '/../../Resources/Private/Presets/Dashboard/Templates/Pages/DesiderioStartpage.fluid.html',
+            'editorial' => __DIR__ . '/../../Resources/Private/Presets/Editorial/Templates/Pages/DesiderioStartpage.fluid.html',
+            'portfolio' => __DIR__ . '/../../Resources/Private/Presets/Portfolio/Templates/Pages/DesiderioStartpage.fluid.html',
+            'saas' => __DIR__ . '/../../Resources/Private/Presets/Saas/Templates/Pages/DesiderioStartpage.fluid.html',
+        ];
+
+        $bannedTemplateContent = [
+            'page.pageRecord.title',
+            'page.pageRecord.abstract',
+            '<h1',
+            '<dl',
+            'd:atom.button',
+            'corporate.start.',
+            'editorial.start.lane',
+            'portfolio.start.proof',
+            'saas.hero.snapshot',
+        ];
+
+        foreach ($templatePaths as $slug => $path) {
+            self::assertFileExists($path);
+            $template = (string)file_get_contents($path);
+
+            self::assertSame(1, substr_count($template, 'content.main'), $slug . ' startpage must render the main content area exactly once');
+            self::assertStringContainsString('content.stage', $template, $slug . ' startpage must expose the stage content area');
+
+            foreach ($bannedTemplateContent as $needle) {
+                self::assertStringNotContainsString($needle, $template, $slug . ' startpage must not hard-code page content: ' . $needle);
+            }
+        }
+    }
+
     public function testStarterHomepagesUseAdaptedContentFromSourceShowcaseGroups(): void
     {
         $sourceGroups = [

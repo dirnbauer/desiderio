@@ -170,11 +170,6 @@ final class StarterSiteDefinitions
                             ],
                         ],
                     ]),
-                    self::footerBrand('Northstar Advisory Group', 'Operational change, made legible.', [
-                        ['label' => 'Services', 'link' => '#advisory-services'],
-                        ['label' => 'Case Studies', 'link' => '#case-studies'],
-                        ['label' => 'Contact', 'link' => '#contact'],
-                    ]),
                 ],
             ],
             'subpages' => $subpages,
@@ -292,11 +287,6 @@ final class StarterSiteDefinitions
                                 ['label' => 'Accessibility', 'link' => '#accessibility'],
                             ],
                         ],
-                    ]),
-                    self::footerBrand('SignalRoom', 'Operating dashboards with enough detail to make decisions.', [
-                        ['label' => 'Reports', 'link' => '#reports'],
-                        ['label' => 'Settings', 'link' => '#settings'],
-                        ['label' => 'System Health', 'link' => '#system-health'],
                     ]),
                 ],
             ],
@@ -435,11 +425,6 @@ final class StarterSiteDefinitions
                             ],
                         ],
                     ]),
-                    self::footerBrand('Field Ledger', 'Useful analysis, practical guides, and evidence-rich editorial systems.', [
-                        ['label' => 'Newsletter', 'link' => '#newsletter'],
-                        ['label' => 'About', 'link' => '#about'],
-                        ['label' => 'Advertise', 'link' => '#advertise'],
-                    ]),
                 ],
             ],
             'subpages' => $subpages,
@@ -561,11 +546,6 @@ final class StarterSiteDefinitions
                                 ['label' => 'Accessibility', 'link' => '#accessibility'],
                             ],
                         ],
-                    ]),
-                    self::footerBrand('Studio Halden', 'Senior interface work for product, launch, and editorial teams.', [
-                        ['label' => 'Selected Work', 'link' => '#selected-work'],
-                        ['label' => 'Project Brief', 'link' => '#project-brief'],
-                        ['label' => 'Contact', 'link' => '#contact'],
                     ]),
                 ],
             ],
@@ -689,11 +669,6 @@ final class StarterSiteDefinitions
                                 ['label' => 'Accessibility', 'link' => '#accessibility'],
                             ],
                         ],
-                    ]),
-                    self::footerBrand('LaunchLayer', 'Launch workflows, report progress, and keep ownership visible.', [
-                        ['label' => 'Product', 'link' => '#product'],
-                        ['label' => 'Pricing', 'link' => '#pricing'],
-                        ['label' => 'Start Trial', 'link' => '#start-trial'],
                     ]),
                 ],
             ],
@@ -886,7 +861,6 @@ final class StarterSiteDefinitions
             self::page('Imprint', 'imprint', 'Company details and publishing responsibility for procurement, legal, and trust review.', [
                 self::headerSection($brand . ' imprint', 'Legal', 'Company information, publishing responsibility, and durable contact details for legal review.', 'left'),
                 self::textMedia('Company information', 'Verified legal data belongs here before launch.', 'Registered company, business address, responsible editor, and contact route belong here. Keep the copy short and procurement-friendly.', 'media-above'),
-                self::footerMinimal($brand . ' legal links'),
             ], 'DesiderioContentpage', true),
             self::page('Privacy', 'privacy', 'Privacy expectations, request routes, and data handling notes for visitors and buyers.', [
                 self::headerSection('Privacy at ' . $brand, 'Trust', 'Privacy policy content, request handling, and data processing context in plain language.', 'left'),
@@ -895,7 +869,6 @@ final class StarterSiteDefinitions
                     ['question' => 'Who owns the policy?', 'answer' => 'Assign a legal or operations owner and include a durable privacy contact address.'],
                     ['question' => 'Where should forms link?', 'answer' => 'Route privacy requests to a monitored inbox or form with clear response expectations.'],
                 ]),
-                self::footerMinimal($brand . ' legal links'),
             ], 'DesiderioContentpage', true),
             self::page('Accessibility', 'accessibility', 'Accessibility commitments, known limitations, and feedback routes for visitors.', [
                 self::headerSection('Accessibility statement', 'Service quality', 'State the standard, current status, known limitations, and feedback route in plain language.', 'left'),
@@ -1032,37 +1005,6 @@ final class StarterSiteDefinitions
             'header' => $header,
             'columns' => '4',
             'groups' => $groups,
-        ]);
-    }
-
-    /**
-     * @param list<array{label: string, link: string}> $links
-     * @return StarterBlock
-     */
-    private static function footerBrand(string $brand, string $tagline, array $links): array
-    {
-        return self::block('desiderio_footerbrand', [
-            'header' => $brand . ' footer',
-            'brand' => $brand,
-            'tagline' => $tagline,
-            'link_items' => $links,
-            'copyright' => '(c) 2026 ' . $brand . '. All rights reserved.',
-        ]);
-    }
-
-    /**
-     * @return StarterBlock
-     */
-    private static function footerMinimal(string $header): array
-    {
-        return self::block('desiderio_footerminimal', [
-            'header' => $header,
-            'copyright' => '(c) 2026 Desiderio site.',
-            'link_items' => [
-                ['label' => 'Imprint', 'link' => '#imprint'],
-                ['label' => 'Privacy', 'link' => '#privacy'],
-                ['label' => 'Accessibility', 'link' => '#accessibility'],
-            ],
         ]);
     }
 

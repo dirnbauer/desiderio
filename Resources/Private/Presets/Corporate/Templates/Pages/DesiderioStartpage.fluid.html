@@ -1,22 +1,9 @@
 <html
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
-    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
     data-namespace-typo3-fluid="true"
 >
 
 <f:layout name="Pages/Default"/>
-
-<f:comment>
-    Corporate start page. The masthead ships a standing business-development
-    hero, immediate proof strip, and clear actions so the generated starter can
-    be evaluated before any manual copywriting. Editors then build the deeper
-    flow below it as content elements: metrics -> services -> proof -> FAQ ->
-    contact.
-
-    H1 resolves to the page title (the editor's real value proposition); when
-    the title is empty it falls back to a shipped corporate headline rather than
-    the site wordmark, so the primary heading never duplicates the header logo.
-</f:comment>
 
 <f:section name="Stage">
     <f:render partial="Presets/Stage" arguments="{content: content.stage, class: 'desiderio-corporate-start__stage', containerSize: 'xl'}"/>
@@ -24,50 +11,7 @@
 
 <f:section name="Main">
     <div class="desiderio-corporate-start">
-        <d:layout.container size="xl" class="desiderio-corporate-start__container">
-            <header class="desiderio-corporate-start__masthead">
-                <p class="desiderio-corporate-start__eyebrow">
-                    <d:atom.badge variant="outline" class="desiderio-corporate-start__badge">{breadcrumb.0.title -> f:or(alternative: '{f:translate(extensionName: \'desiderio\', key: \'corporate.start.eyebrow\', default: \'Trusted by teams worldwide\')}')}</d:atom.badge>
-                </p>
-                <p class="desiderio-corporate-start__title">{page.pageRecord.title}</p>
-                <p class="desiderio-corporate-start__lede">{page.pageRecord.abstract}</p>
-                <div class="desiderio-corporate-start__actions" role="group" aria-label="{f:translate(extensionName: 'desiderio', key: 'corporate.start.actions.label', default: 'Primary actions')}">
-                    <d:atom.button href="#desiderio-corporate-start" size="lg" class="desiderio-corporate-start__cta">
-                        <span data-icon="inline-start" aria-hidden="true"><d:atom.icon name="handshake" size="sm"/></span>
-                        <f:translate extensionName="desiderio" key="corporate.start.cta.primary">Talk to our team</f:translate>
-                    </d:atom.button>
-                    <d:atom.button href="#desiderio-corporate-start" variant="outline" size="lg" class="desiderio-corporate-start__cta-secondary">
-                        <f:translate extensionName="desiderio" key="corporate.start.cta.secondary">Explore our solutions</f:translate>
-                    </d:atom.button>
-                </div>
-                <p class="desiderio-corporate-start__trust">
-                    <span class="desiderio-corporate-start__trust-icon" aria-hidden="true"><d:atom.icon name="shield-check" size="xs"/></span>
-                    <f:translate extensionName="desiderio" key="corporate.start.trust">ISO-aligned delivery. Dedicated account team. Response within one business day.</f:translate>
-                </p>
-                <dl class="desiderio-corporate-start__proof" aria-label="{f:translate(extensionName: 'desiderio', key: 'corporate.start.proof.label', default: 'Operating proof')}">
-                    <div class="desiderio-corporate-start__proof-item">
-                        <dt><f:translate extensionName="desiderio" key="corporate.start.proof.delivery">Typical first rollout</f:translate></dt>
-                        <dd><f:translate extensionName="desiderio" key="corporate.start.proof.delivery.value">12 weeks</f:translate></dd>
-                    </div>
-                    <div class="desiderio-corporate-start__proof-item">
-                        <dt><f:translate extensionName="desiderio" key="corporate.start.proof.governance">Stakeholder cadence</f:translate></dt>
-                        <dd><f:translate extensionName="desiderio" key="corporate.start.proof.governance.value">Weekly</f:translate></dd>
-                    </div>
-                    <div class="desiderio-corporate-start__proof-item">
-                        <dt><f:translate extensionName="desiderio" key="corporate.start.proof.coverage">Primary coverage</f:translate></dt>
-                        <dd><f:translate extensionName="desiderio" key="corporate.start.proof.coverage.value">EU and US</f:translate></dd>
-                    </div>
-                </dl>
-            </header>
-            <section
-                id="desiderio-corporate-start"
-                class="desiderio-corporate-start__content"
-                tabindex="-1"
-                aria-label="{f:translate(extensionName: 'desiderio', key: 'corporate.start.region', default: 'Solutions, proof and contact')}"
-            >
-                <f:render partial="Presets/ContentArea" arguments="{content: content.main}"/>
-            </section>
-        </d:layout.container>
+        <f:render partial="Presets/ContentArea" arguments="{content: content.main}"/>
     </div>
 </f:section>
 

@@ -15,28 +15,7 @@
     <div class="desiderio-dashboard-template desiderio-dashboard-start">
         <d:layout.container size="full" class="desiderio-dashboard-template__container">
             <f:render partial="Presets/DashboardRail" arguments="{title: dashboardTitle, mainMenu: mainMenu, homeLink: breadcrumb.0.link}"/>
-            <section class="desiderio-dashboard-template__content desiderio-dashboard-start__content" aria-labelledby="desiderio-dashboard-heading">
-                <div class="desiderio-dashboard-template__toolbar">
-                    <div class="desiderio-dashboard-template__toolbar-head">
-                        <p class="desiderio-dashboard-template__eyebrow">{f:translate(extensionName: 'desiderio', key: 'dashboard.eyebrow.overview', default: 'Overview')}</p>
-                        <span class="desiderio-dashboard-template__status-tag" role="status" aria-live="polite">
-                            <span class="desiderio-dashboard-template__pulse" aria-hidden="true"></span>
-                            <span class="desiderio-dashboard-template__pulse-label">{f:translate(extensionName: 'desiderio', key: 'dashboard.status.live', default: 'Live data')}</span>
-                        </span>
-                    </div>
-                    <p id="desiderio-dashboard-heading" class="desiderio-dashboard-template__heading">{page.pageRecord.title -> f:or(alternative: site.configuration.websiteTitle)}</p>
-                    <f:if condition="{page.pageRecord.abstract}">
-                        <p class="desiderio-dashboard-template__lede">{page.pageRecord.abstract}</p>
-                    </f:if>
-                </div>
-                <f:comment>
-                    Inverted pyramid — author content.main top-to-bottom in this order:
-                    1) KPI / metric card row (3-5 single-number cards)
-                    2) Primary chart panel (interactive trend)
-                    3) Secondary visualisations (bento grid of smaller breakdowns)
-                    4) Data table (sortable detail records)
-                    5) Activity / alerts feed
-                </f:comment>
+            <section class="desiderio-dashboard-template__content desiderio-dashboard-start__content" aria-label="{f:translate(extensionName: 'desiderio', key: 'dashboard.region.content', default: 'Dashboard content')}">
                 <div class="desiderio-dashboard-template__canvas desiderio-dashboard-start__canvas">
                     <f:render partial="Presets/ContentArea" arguments="{content: content.main}"/>
                 </div>

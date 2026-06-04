@@ -25,7 +25,7 @@ final class StarterSiteDefinitionsTest extends TestCase
             self::assertIsString($starter['rootTitle'] ?? null, $slug . ' needs a homepage title');
             self::assertIsString($starter['rootSlug'] ?? null, $slug . ' needs a root slug');
             self::assertIsString($starter['purpose'] ?? null, $slug . ' needs a clear template purpose');
-            self::assertNotSame('', trim((string)$starter['purpose']), $slug . ' purpose must not be empty');
+            self::assertNotSame('', trim($starter['purpose']), $slug . ' purpose must not be empty');
             self::assertIsArray($starter['home'] ?? null, $slug . ' needs homepage data');
             self::assertIsArray($starter['subpages'] ?? null, $slug . ' needs subpages');
             self::assertGreaterThanOrEqual(10, count($starter['subpages']), $slug . ' must ship at least ten subpages');

@@ -13,24 +13,23 @@
     <f:asset.css identifier="desiderio-content-preview" href="EXT:desiderio/Resources/Public/Css/content-preview.css" />
     <div class="d-ce-preview" data-slot="card">
         <div class="d-ce-preview__meta">
-            <span class="d-ce-preview__type" data-slot="badge">Social Proof Counter</span>
-            <f:if condition="{settings._content_block_name}"><span class="d-ce-preview__ctype">{settings._content_block_name}</span></f:if>
             <span class="d-ce-preview__ctype"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:preview.uid"/>: {data.uid}</span>
             <span class="d-ce-preview__ctype"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:preview.page"/>: {data.pid}</span>
+            <f:if condition="{settings._content_block_name}"><span class="d-ce-preview__ctype">{settings._content_block_name}</span></f:if>
         </div>
         <f:if condition="{data.header}">
-            <h3 class="d-ce-preview__title">{data.header}</h3>
+            <h3 class="d-ce-preview__title">{data.header -> f:format.stripTags() -> f:format.htmlspecialchars()}</h3>
         </f:if>
         <f:if condition="{data.subheadline}">
             <div class="d-ce-preview__field">
                 <span class="d-ce-preview__label">Subheadline</span>
-                <span class="d-ce-preview__value">{data.subheadline}</span>
+                <span class="d-ce-preview__value">{data.subheadline -> f:format.stripTags() -> f:format.htmlspecialchars()}</span>
             </div>
         </f:if>
         <f:if condition="{data.shadcn_layout}">
             <div class="d-ce-preview__field">
                 <span class="d-ce-preview__label">Shadcn Layout</span>
-                <span class="d-ce-preview__value">{data.shadcn_layout}</span>
+                <span class="d-ce-preview__value">{data.shadcn_layout -> f:format.stripTags() -> f:format.htmlspecialchars()}</span>
             </div>
         </f:if>
         <f:if condition="{data.counters}">
@@ -39,8 +38,8 @@
                 <ul class="d-ce-preview__list">
                     <f:for each="{data.counters}" as="item">
                         <li>
-                            <f:if condition="{item.value}"><span>{item.value}</span></f:if>
-                            <f:if condition="{item.label}"><span>{item.label}</span></f:if>
+                            <f:if condition="{item.value}"><span>{item.value -> f:format.stripTags() -> f:format.htmlspecialchars()}</span></f:if>
+                            <f:if condition="{item.label}"><span>{item.label -> f:format.stripTags() -> f:format.htmlspecialchars()}</span></f:if>
                             <f:if condition="{item.icon_name}"><span class="d-ce-preview__icon" aria-hidden="true"><d:atom.icon name="{item.icon_name}" size="sm"/></span></f:if>
                         </li>
                     </f:for>

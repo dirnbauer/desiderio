@@ -13,25 +13,23 @@
     <f:asset.css identifier="desiderio-content-preview" href="EXT:desiderio/Resources/Public/Css/content-preview.css" />
     <div class="d-ce-preview" data-slot="card">
         <div class="d-ce-preview__meta">
-            <span class="d-ce-preview__type" data-slot="badge">Breadcrumb</span>
-            <f:if condition="{settings._content_block_name}"><span class="d-ce-preview__ctype">{settings._content_block_name}</span></f:if>
             <span class="d-ce-preview__ctype"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:preview.uid"/>: {data.uid}</span>
             <span class="d-ce-preview__ctype"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:preview.page"/>: {data.pid}</span>
+            <f:if condition="{settings._content_block_name}"><span class="d-ce-preview__ctype">{settings._content_block_name}</span></f:if>
         </div>
         <f:if condition="{data.header}">
-            <h3 class="d-ce-preview__title">{data.header}</h3>
+            <h3 class="d-ce-preview__title">{data.header -> f:format.stripTags() -> f:format.htmlspecialchars()}</h3>
         </f:if>
         <f:if condition="{data.items}">
             <div class="d-ce-preview__collection">
-                <span class="d-ce-preview__label">Trail</span>
-                <p class="d-ce-preview__value">
-                    <f:for each="{data.items}" as="item" iteration="iterator">
-                        <f:if condition="{item.label}">
-                            <f:then><span>{item.label}</span></f:then>
-                            <f:else><span>&#8230;</span></f:else>
-                        </f:if><f:if condition="{iterator.isLast == false}"> &#47; </f:if>
+                <span class="d-ce-preview__label">Items</span>
+                <ul class="d-ce-preview__list">
+                    <f:for each="{data.items}" as="item">
+                        <li>
+                            <f:if condition="{item.label}"><span>{item.label -> f:format.stripTags() -> f:format.htmlspecialchars()}</span></f:if>
+                        </li>
                     </f:for>
-                </p>
+                </ul>
             </div>
         </f:if>
     </div>

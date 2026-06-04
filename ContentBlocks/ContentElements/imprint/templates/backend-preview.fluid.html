@@ -13,48 +13,47 @@
     <f:asset.css identifier="desiderio-content-preview" href="EXT:desiderio/Resources/Public/Css/content-preview.css" />
     <div class="d-ce-preview" data-slot="card">
         <div class="d-ce-preview__meta">
-            <span class="d-ce-preview__type" data-slot="badge">Imprint</span>
-            <f:if condition="{settings._content_block_name}"><span class="d-ce-preview__ctype">{settings._content_block_name}</span></f:if>
             <span class="d-ce-preview__ctype"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:preview.uid"/>: {data.uid}</span>
             <span class="d-ce-preview__ctype"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:preview.page"/>: {data.pid}</span>
+            <f:if condition="{settings._content_block_name}"><span class="d-ce-preview__ctype">{settings._content_block_name}</span></f:if>
         </div>
         <f:if condition="{data.header}">
-            <h3 class="d-ce-preview__title">{data.header}</h3>
+            <h3 class="d-ce-preview__title">{data.header -> f:format.stripTags() -> f:format.htmlspecialchars()}</h3>
         </f:if>
         <f:if condition="{data.company_name}">
             <div class="d-ce-preview__field">
                 <span class="d-ce-preview__label">Company Name</span>
-                <span class="d-ce-preview__value">{data.company_name}</span>
+                <span class="d-ce-preview__value">{data.company_name -> f:format.stripTags() -> f:format.htmlspecialchars()}</span>
             </div>
         </f:if>
         <f:if condition="{data.address}">
             <div class="d-ce-preview__field">
                 <span class="d-ce-preview__label">Address</span>
-                <span class="d-ce-preview__value">{data.address}</span>
+                <span class="d-ce-preview__value">{data.address -> f:format.stripTags() -> f:format.htmlspecialchars()}</span>
             </div>
         </f:if>
         <f:if condition="{data.contact_email}">
             <div class="d-ce-preview__field">
                 <span class="d-ce-preview__label">Contact Email</span>
-                <span class="d-ce-preview__value">{data.contact_email}</span>
+                <span class="d-ce-preview__value">{data.contact_email -> f:format.stripTags() -> f:format.htmlspecialchars()}</span>
             </div>
         </f:if>
         <f:if condition="{data.contact_phone}">
             <div class="d-ce-preview__field">
                 <span class="d-ce-preview__label">Contact Phone</span>
-                <span class="d-ce-preview__value">{data.contact_phone}</span>
+                <span class="d-ce-preview__value">{data.contact_phone -> f:format.stripTags() -> f:format.htmlspecialchars()}</span>
             </div>
         </f:if>
         <f:if condition="{data.registry_info}">
             <div class="d-ce-preview__field">
                 <span class="d-ce-preview__label">Registry Info</span>
-                <span class="d-ce-preview__value">{data.registry_info}</span>
+                <span class="d-ce-preview__value">{data.registry_info -> f:format.stripTags() -> f:format.htmlspecialchars()}</span>
             </div>
         </f:if>
         <f:if condition="{data.vat_id}">
             <div class="d-ce-preview__field">
                 <span class="d-ce-preview__label">Vat Id</span>
-                <span class="d-ce-preview__value">{data.vat_id}</span>
+                <span class="d-ce-preview__value">{data.vat_id -> f:format.stripTags() -> f:format.htmlspecialchars()}</span>
             </div>
         </f:if>
     </div>

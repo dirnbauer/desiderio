@@ -13,48 +13,47 @@
     <f:asset.css identifier="desiderio-content-preview" href="EXT:desiderio/Resources/Public/Css/content-preview.css" />
     <div class="d-ce-preview" data-slot="card">
         <div class="d-ce-preview__meta">
-            <span class="d-ce-preview__type" data-slot="badge">Area Chart</span>
-            <f:if condition="{settings._content_block_name}"><span class="d-ce-preview__ctype">{settings._content_block_name}</span></f:if>
             <span class="d-ce-preview__ctype"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:preview.uid"/>: {data.uid}</span>
             <span class="d-ce-preview__ctype"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:preview.page"/>: {data.pid}</span>
+            <f:if condition="{settings._content_block_name}"><span class="d-ce-preview__ctype">{settings._content_block_name}</span></f:if>
         </div>
         <f:if condition="{data.header}">
-            <h3 class="d-ce-preview__title">{data.header}</h3>
+            <h3 class="d-ce-preview__title">{data.header -> f:format.stripTags() -> f:format.htmlspecialchars()}</h3>
         </f:if>
         <f:if condition="{data.description}">
             <div class="d-ce-preview__field">
                 <span class="d-ce-preview__label">Description</span>
-                <span class="d-ce-preview__value">{data.description}</span>
+                <span class="d-ce-preview__value">{data.description -> f:format.stripTags() -> f:format.htmlspecialchars()}</span>
             </div>
         </f:if>
-        <f:if condition="{data.series_name}">
+        <f:if condition="{data.chart_data}">
             <div class="d-ce-preview__field">
-                <span class="d-ce-preview__label">Series name</span>
-                <span class="d-ce-preview__value">{data.series_name}</span>
-            </div>
-        </f:if>
-        <f:if condition="{data.unit}">
-            <div class="d-ce-preview__field">
-                <span class="d-ce-preview__label">Value unit</span>
-                <span class="d-ce-preview__value">{data.unit}</span>
+                <span class="d-ce-preview__label">Chart Data</span>
+                <span class="d-ce-preview__value">{data.chart_data -> f:format.stripTags() -> f:format.htmlspecialchars()}</span>
             </div>
         </f:if>
         <f:if condition="{data.points}">
             <div class="d-ce-preview__field">
-                <span class="d-ce-preview__label">Data points</span>
-                <span class="d-ce-preview__value">{data.points}</span>
+                <span class="d-ce-preview__label">Points</span>
+                <span class="d-ce-preview__value">{data.points -> f:format.stripTags() -> f:format.htmlspecialchars()}</span>
+            </div>
+        </f:if>
+        <f:if condition="{data.unit}">
+            <div class="d-ce-preview__field">
+                <span class="d-ce-preview__label">Unit</span>
+                <span class="d-ce-preview__value">{data.unit -> f:format.stripTags() -> f:format.htmlspecialchars()}</span>
+            </div>
+        </f:if>
+        <f:if condition="{data.series_name}">
+            <div class="d-ce-preview__field">
+                <span class="d-ce-preview__label">Series Name</span>
+                <span class="d-ce-preview__value">{data.series_name -> f:format.stripTags() -> f:format.htmlspecialchars()}</span>
             </div>
         </f:if>
         <f:if condition="{data.color_variant}">
             <div class="d-ce-preview__field">
-                <span class="d-ce-preview__label">Line colour</span>
-                <span class="d-ce-preview__value">{data.color_variant}</span>
-            </div>
-        </f:if>
-        <f:if condition="{data.fill_opacity}">
-            <div class="d-ce-preview__field">
-                <span class="d-ce-preview__label">Fill opacity</span>
-                <span class="d-ce-preview__value">{data.fill_opacity}</span>
+                <span class="d-ce-preview__label">Color Variant</span>
+                <span class="d-ce-preview__value">{data.color_variant -> f:format.stripTags() -> f:format.htmlspecialchars()}</span>
             </div>
         </f:if>
     </div>

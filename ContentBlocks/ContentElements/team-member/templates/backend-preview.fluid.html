@@ -13,36 +13,35 @@
     <f:asset.css identifier="desiderio-content-preview" href="EXT:desiderio/Resources/Public/Css/content-preview.css" />
     <div class="d-ce-preview" data-slot="card">
         <div class="d-ce-preview__meta">
-            <span class="d-ce-preview__type" data-slot="badge">Member Team Section</span>
-            <f:if condition="{settings._content_block_name}"><span class="d-ce-preview__ctype">{settings._content_block_name}</span></f:if>
             <span class="d-ce-preview__ctype"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:preview.uid"/>: {data.uid}</span>
             <span class="d-ce-preview__ctype"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:preview.page"/>: {data.pid}</span>
+            <f:if condition="{settings._content_block_name}"><span class="d-ce-preview__ctype">{settings._content_block_name}</span></f:if>
         </div>
         <f:if condition="{data.header}">
-            <h3 class="d-ce-preview__title">{data.header}</h3>
+            <h3 class="d-ce-preview__title">{data.header -> f:format.stripTags() -> f:format.htmlspecialchars()}</h3>
         </f:if>
         <f:if condition="{data.role}">
             <div class="d-ce-preview__field">
                 <span class="d-ce-preview__label">Role</span>
-                <span class="d-ce-preview__value">{data.role}</span>
+                <span class="d-ce-preview__value">{data.role -> f:format.stripTags() -> f:format.htmlspecialchars()}</span>
             </div>
         </f:if>
         <f:if condition="{data.bio}">
             <div class="d-ce-preview__field">
                 <span class="d-ce-preview__label">Bio</span>
-                <span class="d-ce-preview__value">{data.bio}</span>
+                <span class="d-ce-preview__value">{data.bio -> f:format.stripTags() -> f:format.htmlspecialchars()}</span>
             </div>
         </f:if>
         <f:if condition="{data.email}">
             <div class="d-ce-preview__field">
                 <span class="d-ce-preview__label">Email</span>
-                <span class="d-ce-preview__value">{data.email}</span>
+                <span class="d-ce-preview__value">{data.email -> f:format.stripTags() -> f:format.htmlspecialchars()}</span>
             </div>
         </f:if>
         <f:if condition="{data.phone}">
             <div class="d-ce-preview__field">
                 <span class="d-ce-preview__label">Phone</span>
-                <span class="d-ce-preview__value">{data.phone}</span>
+                <span class="d-ce-preview__value">{data.phone -> f:format.stripTags() -> f:format.htmlspecialchars()}</span>
             </div>
         </f:if>
         <f:if condition="{data.image}">
@@ -60,7 +59,7 @@
                 <ul class="d-ce-preview__list">
                     <f:for each="{data.social_links}" as="item">
                         <li>
-                            <f:if condition="{item.platform}"><span>{item.platform}</span></f:if>
+                            <f:if condition="{item.platform}"><span>{item.platform -> f:format.stripTags() -> f:format.htmlspecialchars()}</span></f:if>
                         </li>
                     </f:for>
                 </ul>

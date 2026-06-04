@@ -645,16 +645,15 @@ function backendPreviewTemplate(string $title, array $config): string
         '    <f:asset.css identifier="desiderio-content-preview" href="EXT:desiderio/Resources/Public/Css/content-preview.css" />',
         '    <div class="d-ce-preview" data-slot="card">',
         '        <div class="d-ce-preview__meta">',
-        '            <span class="d-ce-preview__type" data-slot="badge">' . xml($title) . '</span>',
-        '            <f:if condition="{settings._content_block_name}"><span class="d-ce-preview__ctype">{settings._content_block_name}</span></f:if>',
         '            <span class="d-ce-preview__ctype"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:preview.uid"/>: {data.uid}</span>',
         '            <span class="d-ce-preview__ctype"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:preview.page"/>: {data.pid}</span>',
+        '            <f:if condition="{settings._content_block_name}"><span class="d-ce-preview__ctype">{settings._content_block_name}</span></f:if>',
         '        </div>',
     ];
 
     if ($titleField !== null) {
         $lines[] = '        <f:if condition="{data.' . $titleField . '}">';
-        $lines[] = '            <h3 class="d-ce-preview__title">{data.' . $titleField . '}</h3>';
+        $lines[] = '            <h3 class="d-ce-preview__title">' . previewPlainTextExpression('data.' . $titleField) . '</h3>';
         $lines[] = '        </f:if>';
     }
 
@@ -689,8 +688,9 @@ function backendPreviewTemplate(string $title, array $config): string
 
     foreach ($collectionFields as $field) {
         $identifier = (string)$field['identifier'];
-        $children = previewScalarFields(previewFields($field['fields'] ?? []), null);
-        $children = array_slice($children, 0, 3);
+        $childFields = previewFields($field['fields'] ?? []);
+        $children = array_slice(previewScalarFields($childFields, null), 0, 3);
+        $childFileFields = array_slice(previewFieldsOfType($childFields, 'File'), 0, 1);
         $lines[] = '        <f:if condition="{data.' . $identifier . '}">';
         $lines[] = '            <div class="d-ce-preview__collection">';
         $lines[] = '                <span class="d-ce-preview__label">' . xml(readableIdentifier($identifier)) . '</span>';
@@ -698,7 +698,18 @@ function backendPreviewTemplate(string $title, array $config): string
         $lines[] = '                    <f:for each="{data.' . $identifier . '}" as="item">';
         $lines[] = '                        <li>';
 
-        if ($children === []) {
+        foreach ($childFileFields as $childFileField) {
+            $childFileIdentifier = (string)$childFileField['identifier'];
+            $lines[] = '                            <f:if condition="{item.' . $childFileIdentifier . '}">';
+            $lines[] = '                                <f:for each="{item.' . $childFileIdentifier . '}" as="file">';
+            $lines[] = '                                    <f:if condition="{file.publicUrl}">';
+            $lines[] = '                                        <img src="{file.publicUrl}" alt="{file.alternative}" class="d-ce-preview__thumb d-ce-preview__thumb--inline" loading="lazy" />';
+            $lines[] = '                                    </f:if>';
+            $lines[] = '                                </f:for>';
+            $lines[] = '                            </f:if>';
+        }
+
+        if ($children === [] && $childFileFields === []) {
             $lines[] = '                            <span>' . xml(readableIdentifier($identifier)) . ' item</span>';
         } else {
             foreach ($children as $child) {
@@ -879,8 +890,13 @@ function previewValueExpression(string $path, array $field): string
         'Date' => '{' . $path . ' -> f:format.date(format: \'Y-m-d\')}',
         'DateTime' => '{' . $path . ' -> f:format.date(format: \'Y-m-d H:i\')}',
         'Time' => '{' . $path . ' -> f:format.date(format: \'H:i\')}',
-        default => '{' . $path . '}',
+        default => previewPlainTextExpression($path),
     };
+}
+
+function previewPlainTextExpression(string $path): string
+{
+    return '{' . $path . ' -> f:format.stripTags() -> f:format.htmlspecialchars()}';
 }
 
 function xlf(string $productName, string $title, string $description): string
@@ -1500,14 +1516,14 @@ function backendPreviewCss(): string
 .d-ce-preview {
   display: flex;
   flex-direction: column;
-  gap: .75rem;
+  gap: .5rem;
   color: var(--typo3-component-color, inherit);
   background: var(--typo3-component-bg, transparent);
   --d-ce-preview-border: var(--typo3-component-border-color, var(--border, currentColor));
   --d-ce-preview-border-muted: color-mix(in oklch, var(--d-ce-preview-border) 70%, transparent);
   border: 1px solid var(--d-ce-preview-border);
   border-radius: .5rem;
-  padding: .875rem;
+  padding: .625rem;
   box-shadow: var(--typo3-component-box-shadow, none);
 }
 
@@ -1515,11 +1531,10 @@ function backendPreviewCss(): string
 .d-ce-preview__thumbs {
   display: flex;
   flex-wrap: wrap;
-  gap: .5rem;
+  gap: .375rem;
   align-items: center;
 }
 
-.d-ce-preview__type,
 .d-ce-preview__ctype {
   display: inline-flex;
   align-items: center;
@@ -1528,20 +1543,13 @@ function backendPreviewCss(): string
   border-radius: 999px;
   padding: .125rem .5rem;
   font-size: .6875rem;
-  font-weight: 700;
   line-height: 1.4;
-}
-
-.d-ce-preview__type {
-  color: var(--typo3-state-info-color, currentColor);
-  background: var(--typo3-state-info-bg, transparent);
-  text-transform: uppercase;
 }
 
 .d-ce-preview__ctype {
   color: var(--typo3-component-color-muted, currentColor);
   font-family: var(--typo3-font-family-monospace, monospace);
-  font-weight: 500;
+  font-weight: 400;
 }
 
 .d-ce-preview__title {
@@ -1555,13 +1563,13 @@ function backendPreviewCss(): string
 .d-ce-preview__field,
 .d-ce-preview__collection {
   display: grid;
-  gap: .25rem;
+  gap: .125rem;
 }
 
 .d-ce-preview__label {
   color: var(--typo3-component-color-muted, currentColor);
   font-size: .6875rem;
-  font-weight: 700;
+  font-weight: 400;
   letter-spacing: 0;
   text-transform: uppercase;
 }
@@ -1576,16 +1584,21 @@ function backendPreviewCss(): string
 }
 
 .d-ce-preview__thumb {
-  width: 4.25rem;
-  height: 4.25rem;
+  width: 3.5rem;
+  height: 3.5rem;
   object-fit: cover;
   border: 1px solid var(--d-ce-preview-border);
   border-radius: .375rem;
 }
 
+.d-ce-preview__thumb--inline {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
 .d-ce-preview__list {
   display: grid;
-  gap: .375rem;
+  gap: .25rem;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -1595,14 +1608,18 @@ function backendPreviewCss(): string
   display: flex;
   flex-wrap: wrap;
   gap: .35rem .5rem;
-  align-items: baseline;
+  align-items: center;
   border: 1px solid var(--d-ce-preview-border-muted);
   border-radius: .375rem;
-  padding: .5rem .625rem;
+  padding: .375rem .5rem;
 }
 
-.d-ce-preview__list span:first-child {
-  font-weight: 700;
+.d-ce-preview__list span {
+  font-weight: 400;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 .d-ce-preview__empty {

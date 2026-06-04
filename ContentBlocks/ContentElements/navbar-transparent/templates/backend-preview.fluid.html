@@ -13,24 +13,23 @@
     <f:asset.css identifier="desiderio-content-preview" href="EXT:desiderio/Resources/Public/Css/content-preview.css" />
     <div class="d-ce-preview" data-slot="card">
         <div class="d-ce-preview__meta">
-            <span class="d-ce-preview__type" data-slot="badge">Transparent Navigation Bar</span>
-            <f:if condition="{settings._content_block_name}"><span class="d-ce-preview__ctype">{settings._content_block_name}</span></f:if>
             <span class="d-ce-preview__ctype"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:preview.uid"/>: {data.uid}</span>
             <span class="d-ce-preview__ctype"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:preview.page"/>: {data.pid}</span>
+            <f:if condition="{settings._content_block_name}"><span class="d-ce-preview__ctype">{settings._content_block_name}</span></f:if>
         </div>
         <f:if condition="{data.header}">
-            <h3 class="d-ce-preview__title">{data.header}</h3>
+            <h3 class="d-ce-preview__title">{data.header -> f:format.stripTags() -> f:format.htmlspecialchars()}</h3>
         </f:if>
         <f:if condition="{data.button_text}">
             <div class="d-ce-preview__field">
                 <span class="d-ce-preview__label">Button Text</span>
-                <span class="d-ce-preview__value">{data.button_text}</span>
+                <span class="d-ce-preview__value">{data.button_text -> f:format.stripTags() -> f:format.htmlspecialchars()}</span>
             </div>
         </f:if>
         <f:if condition="{data.brand}">
             <div class="d-ce-preview__field">
                 <span class="d-ce-preview__label">Brand</span>
-                <span class="d-ce-preview__value">{data.brand}</span>
+                <span class="d-ce-preview__value">{data.brand -> f:format.stripTags() -> f:format.htmlspecialchars()}</span>
             </div>
         </f:if>
         <f:if condition="{data.nav_items}">
@@ -39,7 +38,7 @@
                 <ul class="d-ce-preview__list">
                     <f:for each="{data.nav_items}" as="item">
                         <li>
-                            <f:if condition="{item.label}"><span>{item.label}</span></f:if>
+                            <f:if condition="{item.label}"><span>{item.label -> f:format.stripTags() -> f:format.htmlspecialchars()}</span></f:if>
                         </li>
                     </f:for>
                 </ul>

@@ -13,34 +13,40 @@
     <f:asset.css identifier="desiderio-content-preview" href="EXT:desiderio/Resources/Public/Css/content-preview.css" />
     <div class="d-ce-preview" data-slot="card">
         <div class="d-ce-preview__meta">
-            <span class="d-ce-preview__type" data-slot="badge">Donut Chart</span>
-            <f:if condition="{settings._content_block_name}"><span class="d-ce-preview__ctype">{settings._content_block_name}</span></f:if>
             <span class="d-ce-preview__ctype"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:preview.uid"/>: {data.uid}</span>
             <span class="d-ce-preview__ctype"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:preview.page"/>: {data.pid}</span>
+            <f:if condition="{settings._content_block_name}"><span class="d-ce-preview__ctype">{settings._content_block_name}</span></f:if>
         </div>
         <f:if condition="{data.header}">
-            <h3 class="d-ce-preview__title">{data.header}</h3>
+            <h3 class="d-ce-preview__title">{data.header -> f:format.stripTags() -> f:format.htmlspecialchars()}</h3>
         </f:if>
         <f:if condition="{data.description}">
             <div class="d-ce-preview__field">
                 <span class="d-ce-preview__label">Description</span>
-                <span class="d-ce-preview__value">{data.description}</span>
+                <span class="d-ce-preview__value">{data.description -> f:format.stripTags() -> f:format.htmlspecialchars()}</span>
             </div>
         </f:if>
         <f:if condition="{data.center_value}">
             <div class="d-ce-preview__field">
-                <span class="d-ce-preview__label">Centre</span>
-                <span class="d-ce-preview__value">{data.center_value}<f:if condition="{data.center_label}"> {data.center_label}</f:if></span>
+                <span class="d-ce-preview__label">Center Value</span>
+                <span class="d-ce-preview__value">{data.center_value -> f:format.stripTags() -> f:format.htmlspecialchars()}</span>
+            </div>
+        </f:if>
+        <f:if condition="{data.center_label}">
+            <div class="d-ce-preview__field">
+                <span class="d-ce-preview__label">Center Label</span>
+                <span class="d-ce-preview__value">{data.center_label -> f:format.stripTags() -> f:format.htmlspecialchars()}</span>
             </div>
         </f:if>
         <f:if condition="{data.segments}">
             <div class="d-ce-preview__collection">
                 <span class="d-ce-preview__label">Segments</span>
                 <ul class="d-ce-preview__list">
-                    <f:for each="{data.segments}" as="segment">
+                    <f:for each="{data.segments}" as="item">
                         <li>
-                            <f:if condition="{segment.label}"><span>{segment.label}</span></f:if>
-                            <f:if condition="{segment.value}"><span>{segment.value}<f:if condition="{segment.unit}"> {segment.unit}</f:if></span></f:if>
+                            <f:if condition="{item.value}"><span>{item.value -> f:format.stripTags() -> f:format.htmlspecialchars()}</span></f:if>
+                            <f:if condition="{item.label}"><span>{item.label -> f:format.stripTags() -> f:format.htmlspecialchars()}</span></f:if>
+                            <f:if condition="{item.unit}"><span>{item.unit -> f:format.stripTags() -> f:format.htmlspecialchars()}</span></f:if>
                         </li>
                     </f:for>
                 </ul>

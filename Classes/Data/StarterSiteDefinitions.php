@@ -13,7 +13,7 @@ namespace Webconsulting\Desiderio\Data;
  *
  * @phpstan-type StarterBlock array{ctype: string, colPos: int, fields: array<string, mixed>}
  * @phpstan-type StarterHome array{layout: string, content: array<int, StarterBlock>}
- * @phpstan-type StarterPage array{title: string, navTitle: string, slug: string, layout: string, abstract: string, content: array<int, StarterBlock>}
+ * @phpstan-type StarterPage array{title: string, navTitle: string, slug: string, layout: string, abstract: string, navHidden: bool, content: array<int, StarterBlock>}
  * @phpstan-type StarterSite array{label: string, slug: string, rootSlug: string, rootTitle: string, rootNavTitle: string, abstract: string, home: StarterHome, subpages: array<int, StarterPage>}
  */
 final class StarterSiteDefinitions
@@ -53,7 +53,7 @@ final class StarterSiteDefinitions
      */
     private static function corporate(): array
     {
-        $subpages = [
+        $subpages = self::withTopNavigation([
             self::corporatePage('Advisory Services', 'advisory-services', 'Decision support, operating model design, and executive alignment before a transformation starts.', 'Advisory offer', ['Board-ready diagnosis', 'Operating model map', 'Decision memo']),
             self::corporatePage('Implementation Office', 'implementation-office', 'A delivery page for migration, portal, and workflow programs that need senior ownership.', 'Delivery office', ['Program governance', 'Platform delivery', 'Enablement plan']),
             self::corporatePage('Managed Improvement', 'managed-improvement', 'Ongoing optimization for service portals, reporting cadences, and cross-team operations.', 'Retained model', ['Monthly backlog review', 'Reliability improvements', 'Stakeholder reporting']),
@@ -65,7 +65,7 @@ final class StarterSiteDefinitions
             self::corporatePage('Resources', 'resources', 'Guides, checklists, and briefings for enterprise teams planning operational change.', 'Resource center', ['Migration checklist', 'Governance template', 'Service review guide']),
             self::corporatePage('Careers', 'careers', 'Roles, candidate expectations, and how the organization supports calm senior work.', 'Hiring', ['Senior consultant', 'Product engineer', 'Delivery manager']),
             self::corporatePage('Contact', 'contact', 'Routes for new business, partner, support, and procurement conversations.', 'Contact desk', ['Sales inquiry', 'Partnership request', 'Support escalation']),
-        ];
+        ], ['advisory-services', 'implementation-office', 'managed-improvement', 'sector-playbooks', 'case-studies', 'contact']);
         $subpages = array_merge($subpages, self::supportPages('Northstar Advisory Group', 'contact'));
 
         return [
@@ -298,10 +298,10 @@ final class StarterSiteDefinitions
                     ]),
                 ],
             ],
-            'subpages' => array_merge(array_map(
+            'subpages' => array_merge(self::withTopNavigation(array_map(
                 static fn (array $page): array => self::dashboardPage(...$page),
                 $dashboardPages
-            ), $supportPages),
+            ), ['revenue', 'product-analytics', 'customer-health', 'pipeline', 'reports', 'settings']), $supportPages),
         ];
     }
 
@@ -310,7 +310,7 @@ final class StarterSiteDefinitions
      */
     private static function editorial(): array
     {
-        $subpages = [
+        $subpages = self::withTopNavigation([
             self::editorialPage('Front Page', 'front-page', 'Fresh dispatches, short notes, and newly published analysis organized for repeat readers.', 'Front page desk', ['Weekend brief: AI procurement pressure', 'How teams edit policy pages', 'A quieter release note pattern']),
             self::editorialPage('Analysis', 'analysis', 'Deeper interpretation for strategy, design, content, and technology decisions.', 'Analysis desk', ['The cost of generic dashboards', 'What content debt really signals', 'Why governance pages convert']),
             self::editorialPage('Field Guides', 'field-guides', 'Practical playbooks readers can act on after one session.', 'Guide shelf', ['Homepage evidence checklist', 'Dashboard page planning', 'Editorial taxonomy starter']),
@@ -322,7 +322,7 @@ final class StarterSiteDefinitions
             self::editorialPage('Newsletter', 'newsletter', 'A subscription page with proof, archive links, cadence, and reader expectations.', 'Newsletter offer', ['Tuesday briefing', 'Monthly teardown', 'Subscriber Q and A']),
             self::editorialPage('Advertise', 'advertise', 'Sponsor fit, audience profile, packages, and editorial boundaries.', 'Sponsor desk', ['Audience profile', 'Package types', 'Editorial guardrails']),
             self::editorialPage('About', 'about', 'Mission, editorial standards, masthead, correction policy, and contribution paths.', 'About the publication', ['Editorial promise', 'Standards and corrections', 'How to pitch']),
-        ];
+        ], ['front-page', 'analysis', 'field-guides', 'features', 'interviews', 'events']);
         $subpages = array_merge($subpages, self::supportPages('Field Ledger', 'advertise'));
 
         return [
@@ -442,7 +442,7 @@ final class StarterSiteDefinitions
      */
     private static function portfolio(): array
     {
-        $subpages = [
+        $subpages = self::withTopNavigation([
             self::portfolioPage('Selected Work', 'selected-work', 'A focused index of the projects the studio wants buyers to inspect first.', 'Work index', ['Commerce relaunch', 'Analytics platform', 'Editorial identity']),
             self::portfolioPage('Case Studies', 'case-studies', 'Project stories that connect brief, constraints, process, and measurable outcome.', 'Case study archive', ['Revenue cockpit', 'Patient portal', 'Membership relaunch']),
             self::portfolioPage('Capabilities', 'capabilities', 'Offer structure for product strategy, interface systems, launch pages, and implementation support.', 'Studio capabilities', ['Product strategy', 'Interface systems', 'Launch execution']),
@@ -454,7 +454,7 @@ final class StarterSiteDefinitions
             self::portfolioPage('Journal', 'journal', 'Thinking behind recent work, design observations, and launch retrospectives.', 'Studio journal', ['Interface density', 'Portfolio proof', 'Launch rituals']),
             self::portfolioPage('Contact', 'contact', 'Project inquiry, availability, and fit criteria.', 'Project inquiry', ['Budget range', 'Timeline', 'Decision group']),
             self::portfolioPage('Project Brief', 'project-brief', 'A guided intake page that helps leads write a useful first request.', 'Brief builder', ['Goal', 'Audience', 'Constraints']),
-        ];
+        ], ['selected-work', 'case-studies', 'capabilities', 'process', 'sectors', 'results']);
         $subpages = array_merge($subpages, self::supportPages('Studio Halden', 'project-brief'));
 
         return [
@@ -568,7 +568,7 @@ final class StarterSiteDefinitions
      */
     private static function saas(): array
     {
-        $subpages = [
+        $subpages = self::withTopNavigation([
             self::saasPage('Product Tour', 'product', 'Core product tour with jobs-to-be-done, workflows, and outcomes.', 'Product overview', ['Command center', 'Workflow builder', 'Evidence library']),
             self::saasPage('Use Cases', 'use-cases', 'Specific buying contexts for teams evaluating the product.', 'Use case library', ['Revenue operations', 'Customer success', 'Product marketing']),
             self::saasPage('Pricing', 'pricing', 'Plan choices, buyer objections, and frequently asked billing questions.', 'Pricing decision', ['Starter', 'Growth', 'Scale']),
@@ -580,7 +580,7 @@ final class StarterSiteDefinitions
             self::saasPage('Changelog', 'changelog', 'Product updates, launch notes, and roadmap trust signals.', 'Product updates', ['Workflow rules', 'Dashboard exports', 'Permission presets']),
             self::saasPage('Contact Sales', 'contact-sales', 'Enterprise contact path with qualification content and next steps.', 'Sales route', ['Requirements call', 'Security review', 'Pilot scope']),
             self::saasPage('Start Trial', 'start-trial', 'Signup-oriented page with activation expectations and support promises.', 'Trial path', ['14-day trial', 'Guided setup', 'Success review']),
-        ];
+        ], ['product', 'use-cases', 'pricing', 'integrations', 'security', 'customers']);
         $subpages = array_merge($subpages, self::supportPages('LaunchLayer', 'contact-sales'));
 
         return [
@@ -827,7 +827,7 @@ final class StarterSiteDefinitions
      * @param array<int, StarterBlock> $content
      * @return StarterPage
      */
-    private static function page(string $title, string $slug, string $abstract, array $content, string $layout = 'DesiderioContentpage'): array
+    private static function page(string $title, string $slug, string $abstract, array $content, string $layout = 'DesiderioContentpage', bool $navHidden = false): array
     {
         return [
             'title' => $title,
@@ -835,8 +835,28 @@ final class StarterSiteDefinitions
             'slug' => $slug,
             'layout' => $layout,
             'abstract' => $abstract,
+            'navHidden' => $navHidden,
             'content' => $content,
         ];
+    }
+
+    /**
+     * @param list<StarterPage> $pages
+     * @param list<string> $visibleSlugs
+     * @return list<StarterPage>
+     */
+    private static function withTopNavigation(array $pages, array $visibleSlugs): array
+    {
+        $visibleSlugMap = array_fill_keys($visibleSlugs, true);
+
+        return array_map(
+            static function (array $page) use ($visibleSlugMap): array {
+                $page['navHidden'] = !isset($visibleSlugMap[$page['slug']]);
+
+                return $page;
+            },
+            $pages
+        );
     }
 
     /**
@@ -847,16 +867,16 @@ final class StarterSiteDefinitions
         return [
             self::page('Search', 'search', 'Find pages, guides, proof, and operational details across the starter site.', [
                 self::searchHeader('Search ' . $brand, 'Site search', 'Use this page to test search presentation, empty states, and result density.', '/search', 'Search pages, proof, and resources'),
-            ], 'DesiderioSearch'),
+            ], 'DesiderioSearch', true),
             self::page('404', '404', 'A useful error page that routes visitors back into the starter instead of ending the session.', [
                 self::headerSection('This page is not available', '404', 'Route visitors to high-value pages instead of leaving them at a dead end.', 'center'),
                 self::ctaCard('Return to a useful path', 'Go back to the homepage, search the site, or contact the team if something should exist here.', 'Go home', '/', 'Utility page'),
-            ], 'DesiderioError'),
+            ], 'DesiderioError', true),
             self::page('Imprint', 'imprint', 'Company details and publishing responsibility for procurement, legal, and trust review.', [
                 self::headerSection($brand . ' imprint', 'Legal', 'Seeded company information for review and replacement before launch.', 'left'),
                 self::textMedia('Company information', 'Replace this with verified legal data before launch.', 'Registered company, business address, responsible editor, and contact route belong here. Keep the copy short and procurement-friendly.', 'media-above'),
                 self::footerMinimal($brand . ' legal links'),
-            ]),
+            ], 'DesiderioContentpage', true),
             self::page('Privacy', 'privacy', 'Privacy expectations, request routes, and data handling notes for visitors and buyers.', [
                 self::headerSection('Privacy at ' . $brand, 'Trust', 'A practical placeholder for privacy policy content, request handling, and data processing context.', 'left'),
                 self::faq('Privacy questions', 'Replace these answers with reviewed legal copy before publishing.', [
@@ -865,7 +885,7 @@ final class StarterSiteDefinitions
                     ['question' => 'Where should forms link?', 'answer' => 'Route privacy requests to a monitored inbox or form with clear response expectations.'],
                 ]),
                 self::footerMinimal($brand . ' legal links'),
-            ]),
+            ], 'DesiderioContentpage', true),
             self::page('Accessibility', 'accessibility', 'Accessibility commitments, known limitations, and feedback routes for visitors.', [
                 self::headerSection('Accessibility statement', 'Service quality', 'State the standard, current status, known limitations, and feedback route in plain language.', 'left'),
                 self::featureList('Accessibility review points', 'Checklist', 'Use this starter page as a practical audit prompt before launch.', [
@@ -874,7 +894,7 @@ final class StarterSiteDefinitions
                     ['icon' => 'message-square', 'title' => 'Feedback route', 'description' => 'Give visitors a monitored channel for barriers and correction requests.'],
                 ]),
                 self::ctaCard('Report an accessibility issue', 'Describe the page, device, browser, assistive technology, and the barrier you found.', 'Contact the team', '#' . $contactSlug, 'Feedback'),
-            ]),
+            ], 'DesiderioContentpage', true),
         ];
     }
 

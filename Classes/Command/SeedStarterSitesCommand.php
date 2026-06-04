@@ -202,6 +202,7 @@ final class SeedStarterSitesCommand extends Command
                     $rootSlug,
                     $starter['home']['layout'],
                     $starter['abstract'],
+                    false,
                     $starterIndex * 1024,
                     $now,
                     $pageColumns
@@ -215,6 +216,7 @@ final class SeedStarterSitesCommand extends Command
                     $rootSlug,
                     $starter['home']['layout'],
                     $starter['abstract'],
+                    false,
                     $starterIndex * 1024,
                     $now,
                     $pageColumns,
@@ -241,6 +243,7 @@ final class SeedStarterSitesCommand extends Command
                     $childSlug,
                     $page['layout'],
                     $page['abstract'],
+                    (bool)($page['navHidden'] ?? false),
                     ($pageIndex + 1) * 256,
                     $now,
                     $pageColumns,
@@ -485,6 +488,7 @@ final class SeedStarterSitesCommand extends Command
         string $slug,
         string $backendLayout,
         string $abstract,
+        bool $navHidden,
         int $sorting,
         int $now,
         array $columns,
@@ -493,14 +497,14 @@ final class SeedStarterSitesCommand extends Command
     ): int {
         $existingPageUid = $this->findExistingStarterPageUid($parentPid, $title, $slug, $columns);
         if ($existingPageUid !== null) {
-            $this->updateStarterPage($existingPageUid, $title, $navTitle, $slug, $backendLayout, $abstract, $sorting, $now, $columns);
+            $this->updateStarterPage($existingPageUid, $title, $navTitle, $slug, $backendLayout, $abstract, $navHidden, $sorting, $now, $columns);
             $updatedPages++;
 
             return $existingPageUid;
         }
 
         $createdPages++;
-        return $this->createStarterPage($parentPid, $title, $navTitle, $slug, $backendLayout, $abstract, $sorting, $now, $columns);
+        return $this->createStarterPage($parentPid, $title, $navTitle, $slug, $backendLayout, $abstract, $navHidden, $sorting, $now, $columns);
     }
 
     /**
@@ -562,6 +566,7 @@ final class SeedStarterSitesCommand extends Command
         string $slug,
         string $backendLayout,
         string $abstract,
+        bool $navHidden,
         int $sorting,
         int $now,
         array $columns,
@@ -576,6 +581,7 @@ final class SeedStarterSitesCommand extends Command
                 'description' => $abstract,
                 'backend_layout' => $this->buildBackendLayoutIdentifier($backendLayout),
                 'backend_layout_next_level' => $this->buildBackendLayoutIdentifier('DesiderioContentpage'),
+                'nav_hide' => $navHidden ? 1 : 0,
                 'hidden' => 0,
                 'sorting' => $sorting,
                 'tstamp' => $now,
@@ -594,6 +600,7 @@ final class SeedStarterSitesCommand extends Command
         string $slug,
         string $backendLayout,
         string $abstract,
+        bool $navHidden,
         int $sorting,
         int $now,
         array $columns,
@@ -609,6 +616,7 @@ final class SeedStarterSitesCommand extends Command
             'description' => $abstract,
             'backend_layout' => $this->buildBackendLayoutIdentifier($backendLayout),
             'backend_layout_next_level' => $this->buildBackendLayoutIdentifier('DesiderioContentpage'),
+            'nav_hide' => $navHidden ? 1 : 0,
             'hidden' => 0,
             'sorting' => $sorting,
             'crdate' => $now,

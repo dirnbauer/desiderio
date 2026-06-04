@@ -28,6 +28,12 @@ final class StarterSiteDefinitionsTest extends TestCase
             self::assertIsArray($starter['subpages'] ?? null, $slug . ' needs subpages');
             self::assertGreaterThanOrEqual(10, count($starter['subpages']), $slug . ' must ship at least ten subpages');
             self::assertNotEmpty($starter['home']['content'] ?? [], $slug . ' homepage needs content elements');
+            $visibleNavPages = array_values(array_filter(
+                $starter['subpages'],
+                static fn (array $page): bool => !($page['navHidden'] ?? false)
+            ));
+            self::assertGreaterThanOrEqual(4, count($visibleNavPages), $slug . ' needs useful primary navigation');
+            self::assertLessThanOrEqual(7, count($visibleNavPages), $slug . ' must keep primary navigation scannable');
 
             $serialized = json_encode($starter, JSON_THROW_ON_ERROR);
             self::assertStringNotContainsStringIgnoringCase('lorem', $serialized, $slug . ' must not seed lorem ipsum content');
@@ -37,6 +43,7 @@ final class StarterSiteDefinitionsTest extends TestCase
                 self::assertIsString($page['title'] ?? null);
                 self::assertIsString($page['slug'] ?? null);
                 self::assertNotSame('', trim((string)$page['abstract']));
+                self::assertIsBool($page['navHidden'] ?? null);
                 self::assertNotEmpty($page['content'] ?? [], $page['title'] . ' needs content elements');
             }
         }

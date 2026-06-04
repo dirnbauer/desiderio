@@ -18,9 +18,6 @@
     the site wordmark, so the primary heading never duplicates the header logo.
 </f:comment>
 
-<f:variable name="startHeadline" value="{page.pageRecord.title -> f:or(alternative: '{f:translate(extensionName: \'desiderio\', key: \'corporate.start.headline\', default: \'Build with a partner the whole organisation can rely on\')}')}"/>
-<f:variable name="startLede" value="{page.pageRecord.abstract -> f:or(alternative: '{f:translate(extensionName: \'desiderio\', key: \'corporate.start.lede\', default: \'From strategy to delivery, we help established teams ship dependable products, modernise their platforms and serve their customers with confidence.\')}')}"/>
-
 <f:section name="Stage">
     <f:render partial="Presets/Stage" arguments="{content: content.stage, class: 'desiderio-corporate-start__stage', containerSize: 'xl'}"/>
 </f:section>
@@ -32,8 +29,8 @@
                 <p class="desiderio-corporate-start__eyebrow">
                     <d:atom.badge variant="outline" class="desiderio-corporate-start__badge">{breadcrumb.0.title -> f:or(alternative: '{f:translate(extensionName: \'desiderio\', key: \'corporate.start.eyebrow\', default: \'Trusted by teams worldwide\')}')}</d:atom.badge>
                 </p>
-                <h1 class="desiderio-corporate-start__title">{startHeadline}</h1>
-                <p class="desiderio-corporate-start__lede">{startLede}</p>
+                <h1 class="desiderio-corporate-start__title">{page.pageRecord.title}</h1>
+                <p class="desiderio-corporate-start__lede">{page.pageRecord.abstract}</p>
                 <div class="desiderio-corporate-start__actions" role="group" aria-label="{f:translate(extensionName: 'desiderio', key: 'corporate.start.actions.label', default: 'Primary actions')}">
                     <d:atom.button href="#desiderio-corporate-start" size="lg" class="desiderio-corporate-start__cta">
                         <span data-icon="inline-start" aria-hidden="true"><d:atom.icon name="handshake" size="sm"/></span>

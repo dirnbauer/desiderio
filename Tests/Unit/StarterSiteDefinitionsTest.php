@@ -55,11 +55,47 @@ final class StarterSiteDefinitionsTest extends TestCase
         }
     }
 
+    public function testStarterHomepagesUseAdaptedContentFromSourceShowcaseGroups(): void
+    {
+        $sourceGroups = [
+            664 => ['desiderio_articlegrid', 'desiderio_resourcelibrary'],
+            665 => ['desiderio_ctacard'],
+            666 => ['desiderio_metricdashboard', 'desiderio_kpicards', 'desiderio_datatable'],
+            667 => ['desiderio_featurecards', 'desiderio_featurelist'],
+            668 => ['desiderio_footerbrand', 'desiderio_sitemapgrid'],
+            669 => ['desiderio_herostats', 'desiderio_herosaas', 'desiderio_heroproduct'],
+            670 => ['desiderio_headersection', 'desiderio_navtabs'],
+            671 => ['desiderio_pricingthreetier'],
+            672 => ['desiderio_casestudygrid', 'desiderio_testimonialgrid'],
+            673 => ['desiderio_companyvalues', 'desiderio_teamgridminimal'],
+        ];
+
+        foreach (StarterSiteDefinitions::all() as $slug => $starter) {
+            $homepageCtypes = array_map(
+                static fn (array $block): string => (string)$block['ctype'],
+                $starter['home']['content']
+            );
+
+            foreach ($sourceGroups as $sourcePageUid => $ctypes) {
+                self::assertNotSame(
+                    [],
+                    array_values(array_intersect($homepageCtypes, $ctypes)),
+                    sprintf('%s homepage must include adapted content from source showcase page %d', $slug, $sourcePageUid)
+                );
+            }
+        }
+    }
+
     public function testDashboardStarterAddsDummyDashboardsToEveryPage(): void
     {
         $dashboard = StarterSiteDefinitions::all()['dashboard'];
+        $utilitySlugs = ['search', '404', 'imprint', 'privacy', 'accessibility'];
+        $dashboardPages = array_values(array_filter(
+            $dashboard['subpages'],
+            static fn (array $page): bool => !in_array($page['slug'], $utilitySlugs, true)
+        ));
 
-        $pages = array_merge([$dashboard['home']], $dashboard['subpages']);
+        $pages = array_merge([$dashboard['home']], $dashboardPages);
         self::assertGreaterThanOrEqual(11, count($pages));
 
         foreach ($pages as $page) {
@@ -80,6 +116,8 @@ final class StarterSiteDefinitionsTest extends TestCase
 
         self::assertStringContainsString("name: 'desiderio:starter:seed'", $source);
         self::assertStringContainsString("'preset'", $source);
+        self::assertStringContainsString("'root-map'", $source);
+        self::assertStringContainsString("'replace-content'", $source);
         self::assertStringContainsString('StarterSiteDefinitions::all()', $source);
         self::assertStringContainsString('findOrCreateStarterPage', $source);
     }

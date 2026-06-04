@@ -237,10 +237,7 @@
   }
 
   function highlightCode(source, language) {
-    if (window.Prism?.languages?.[language] && typeof window.Prism.highlight === 'function') {
-      return window.Prism.highlight(source, window.Prism.languages[language], language);
-    }
-
+    // Keep code samples on the local highlighter so syntax colors stay independent from the active shadcn accent preset.
     if (language === 'php') {
       return highlightPhp(source);
     }

@@ -10,14 +10,17 @@
     <!--TYPO3SEARCH_end-->
     <f:if condition="{news}">
         <f:then>
-            <div class="news-list-view grid gap-6 md:grid-cols-2 lg:grid-cols-3" id="news-container-{contentObjectData.uid}">
-                <f:for each="{news}" as="newsItem" iteration="iterator">
-                    <f:render partial="List/Item" arguments="{newsItem: newsItem, settings: settings, iterator: iterator}" />
-                </f:for>
+            <div class="news-list-view" id="news-container-{contentObjectData.uid}">
+                <d:layout.grid cols="3" gap="md" class="items-stretch">
+                    <f:for each="{news}" as="newsItem" iteration="iterator">
+                        <f:render partial="List/Item" arguments="{newsItem: newsItem, settings: settings, iterator: iterator}" />
+                    </f:for>
+                </d:layout.grid>
             </div>
         </f:then>
         <f:else>
             <d:molecule.alert>
+                <d:atom.icon name="book-open" size="sm"/>
                 <d:molecule.alertDescription><f:translate key="list_nonewsfound" /></d:molecule.alertDescription>
             </d:molecule.alert>
         </f:else>

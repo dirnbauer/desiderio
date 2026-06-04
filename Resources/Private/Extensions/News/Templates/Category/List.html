@@ -25,10 +25,17 @@
         <f:for each="{categories}" as="category">
             {n:category.count(categoryUid: category.item.uid) -> f:variable(name: 'categoryUsageCount')}
             <li>
-                <f:link.page title="{category.item.title}" pageUid="{settings.listPid}" additionalParams="{tx_news_pi1: {overwriteDemand: {categories: category.item.uid}}}" class="inline-flex items-center gap-2 rounded-lg border border-border px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground">
-                    <span>{category.item.title}</span>
+                <f:link.page title="{category.item.title}" pageUid="{settings.listPid}" additionalParams="{tx_news_pi1: {overwriteDemand: {categories: category.item.uid}}}" class="inline-flex items-center gap-2 !no-underline">
+                    <d:atom.badge variant="outline" class="h-7">
+                        <span data-icon="inline-start" aria-hidden="true"><f:render partial="General/NewsIcons" section="Category"/></span>
+                        <span>{category.item.title}</span>
+                    </d:atom.badge>
                     <f:if condition="{categoryUsageCount}">
-                        <d:atom.badge variant="secondary">{categoryUsageCount}</d:atom.badge>
+                        <d:atom.badge variant="secondary">
+                            <f:translate key="news.entries.count" extensionName="desiderio" arguments="{count: categoryUsageCount}">
+                                {categoryUsageCount} entries
+                            </f:translate>
+                        </d:atom.badge>
                     </f:if>
                 </f:link.page>
 

@@ -1,5 +1,6 @@
 <html
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
     data-namespace-typo3-fluid="true"
 >
 
@@ -12,8 +13,9 @@
         <ul class="f3-widget-paginator flex flex-wrap gap-1" role="list">
             <f:if condition="{pagination.previousPageNumber} && {pagination.previousPageNumber} >= {pagination.firstPageNumber}">
                 <li>
-                    <a href="{f:uri.action(action: actionName, arguments: {currentPage: pagination.previousPageNumber}, addQueryString: 'untrusted')}" title="{f:translate(key: 'pagination.previous')}" class="inline-flex h-8 items-center rounded-lg border border-border px-2.5 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground">
-                        {f:translate(key: 'widget.pagination.previous', extensionName: 'fluid')}
+                    <a href="{f:uri.action(action: actionName, arguments: {currentPage: pagination.previousPageNumber}, addQueryString: 'untrusted')}" title="{f:translate(key: 'pagination.previous')}" class="inline-flex h-8 items-center gap-1.5 rounded-md border border-border bg-background px-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50">
+                        <span data-icon="inline-start" aria-hidden="true"><d:atom.icon name="chevron-left" size="xs"/></span>
+                        <span>{f:translate(key: 'widget.pagination.previous', extensionName: 'fluid')}</span>
                     </a>
                 </li>
             </f:if>
@@ -41,8 +43,9 @@
 
             <f:if condition="{pagination.nextPageNumber} && {pagination.nextPageNumber} <= {pagination.lastPageNumber}">
                 <li>
-                    <a href="{f:uri.action(action: actionName, arguments: {currentPage: pagination.nextPageNumber}, addQueryString: 'untrusted')}" title="{f:translate(key: 'pagination.next')}" class="inline-flex h-8 items-center rounded-lg border border-border px-2.5 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground">
-                        {f:translate(key: 'widget.pagination.next', extensionName: 'fluid')}
+                    <a href="{f:uri.action(action: actionName, arguments: {currentPage: pagination.nextPageNumber}, addQueryString: 'untrusted')}" title="{f:translate(key: 'pagination.next')}" class="inline-flex h-8 items-center gap-1.5 rounded-md border border-border bg-background px-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50">
+                        <span>{f:translate(key: 'widget.pagination.next', extensionName: 'fluid')}</span>
+                        <span data-icon="inline-end" aria-hidden="true"><d:atom.icon name="chevron-right" size="xs"/></span>
                     </a>
                 </li>
             </f:if>

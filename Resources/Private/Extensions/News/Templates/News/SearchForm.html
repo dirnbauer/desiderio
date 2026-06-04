@@ -10,22 +10,31 @@
 <f:section name="content">
     <div class="news-search-form">
         <d:molecule.card>
+            <d:molecule.cardHeader>
+                <div class="flex items-center gap-2">
+                    <d:atom.icon name="search" size="sm"/>
+                    <span data-slot="card-title" class="cn-font-heading text-sm font-medium"><f:translate key="search-start" /></span>
+                </div>
+            </d:molecule.cardHeader>
             <d:molecule.cardContent>
                 <n:searchForm object="{search}" name="search" pageUid="{settings.listPid}" method="get">
                     <fieldset class="grid gap-4 md:grid-cols-[minmax(0,1fr)_auto] md:items-end">
                         <div class="grid gap-2">
-                            <label for="news-subject" class="text-sm font-medium text-foreground"><f:translate key="search-subject" /></label>
-                            <f:form.textfield id="news-subject" property="subject" class="h-10 rounded-lg border border-input bg-background px-3 text-sm text-foreground outline-none placeholder:text-muted-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"/>
+                            <d:atom.label for="news-subject"><f:translate key="search-subject" /></d:atom.label>
+                            <f:form.textfield id="news-subject" property="subject" class="d-control-h w-full min-w-0 rounded-md border border-input bg-transparent d-control-px py-1 d-control-text text-foreground outline-none placeholder:text-muted-foreground transition-colors focus-visible:border-ring focus-visible:ring-[var(--d-ring-width)] focus-visible:ring-ring/50 dark:bg-input/30"/>
                         </div>
                         <div class="grid gap-2">
-                            <label for="news-minimumDate" class="text-sm font-medium text-foreground"><f:translate key="search-minimumDate" /></label>
-                            <f:form.textfield id="news-minimumDate" property="minimumDate" type="date" class="h-10 rounded-lg border border-input bg-background px-3 text-sm text-foreground outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"/>
+                            <d:atom.label for="news-minimumDate"><f:translate key="search-minimumDate" /></d:atom.label>
+                            <f:form.textfield id="news-minimumDate" property="minimumDate" type="date" class="d-control-h w-full min-w-0 rounded-md border border-input bg-transparent d-control-px py-1 d-control-text text-foreground outline-none transition-colors focus-visible:border-ring focus-visible:ring-[var(--d-ring-width)] focus-visible:ring-ring/50 dark:bg-input/30"/>
                         </div>
                         <div class="grid gap-2">
-                            <label for="news-maximumDate" class="text-sm font-medium text-foreground"><f:translate key="search-maximumDate" /></label>
-                            <f:form.textfield id="news-maximumDate" property="maximumDate" type="date" class="h-10 rounded-lg border border-input bg-background px-3 text-sm text-foreground outline-none focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"/>
+                            <d:atom.label for="news-maximumDate"><f:translate key="search-maximumDate" /></d:atom.label>
+                            <f:form.textfield id="news-maximumDate" property="maximumDate" type="date" class="d-control-h w-full min-w-0 rounded-md border border-input bg-transparent d-control-px py-1 d-control-text text-foreground outline-none transition-colors focus-visible:border-ring focus-visible:ring-[var(--d-ring-width)] focus-visible:ring-ring/50 dark:bg-input/30"/>
                         </div>
-                        <f:form.submit value="{f:translate(key: 'search-start')}" class="inline-flex h-10 items-center justify-center rounded-lg bg-primary px-4 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/80 focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50"/>
+                        <d:atom.button type="submit">
+                            <span data-icon="inline-start" aria-hidden="true"><d:atom.icon name="search" size="xs"/></span>
+                            <span><f:translate key="search-start" /></span>
+                        </d:atom.button>
                     </fieldset>
                 </n:searchForm>
             </d:molecule.cardContent>

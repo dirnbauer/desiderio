@@ -1,0 +1,90 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:argument name="newsItem" type="GeorgRinger\News\Domain\Model\News" optional="true"/>
+<f:argument name="settings" type="array" optional="true"/>
+<f:argument name="showLabels" type="bool" optional="{true}" default="{false}"/>
+
+<f:if condition="{newsItem.categories} || {newsItem.tags}">
+    <f:if condition="{showLabels}">
+        <f:then>
+            <div class="grid gap-3 text-sm sm:grid-cols-[7rem_minmax(0,1fr)]">
+                <f:if condition="{newsItem.categories}">
+                    <d:atom.typography tag="span" variant="small" class="pt-0.5 text-muted-foreground">
+                        <f:translate key="categories">Categories</f:translate>
+                    </d:atom.typography>
+                    <ul role="list" class="flex flex-wrap items-center gap-1.5">
+                        <f:render section="Categories" arguments="{_all}"/>
+                    </ul>
+                </f:if>
+                <f:if condition="{newsItem.tags}">
+                    <d:atom.typography tag="span" variant="small" class="pt-0.5 text-muted-foreground">
+                        <f:translate key="tags">Tags</f:translate>
+                    </d:atom.typography>
+                    <ul role="list" class="flex flex-wrap items-center gap-1.5">
+                        <f:render section="Tags" arguments="{_all}"/>
+                    </ul>
+                </f:if>
+            </div>
+        </f:then>
+        <f:else>
+            <ul role="list" class="flex flex-wrap items-center gap-1.5">
+                <f:render section="Categories" arguments="{_all}"/>
+                <f:render section="Tags" arguments="{_all}"/>
+            </ul>
+        </f:else>
+    </f:if>
+</f:if>
+
+<f:section name="Categories">
+    <f:for each="{newsItem.categories}" as="category">
+        <li data-news-category="{category.uid}">
+            <meta itemprop="articleSection" content="{category.title}"/>
+            <f:if condition="{category.shortcut}">
+                <f:then>
+                    <f:link.typolink parameter="{category.shortcut}" class="!no-underline">
+                        <d:atom.badge variant="secondary">
+                            <span data-icon="inline-start" aria-hidden="true"><f:render partial="General/NewsIcons" section="Category"/></span>
+                            <span>{category.title}</span>
+                        </d:atom.badge>
+                    </f:link.typolink>
+                </f:then>
+                <f:else>
+                    <d:atom.badge variant="secondary">
+                        <span data-icon="inline-start" aria-hidden="true"><f:render partial="General/NewsIcons" section="Category"/></span>
+                        <span>{category.title}</span>
+                    </d:atom.badge>
+                </f:else>
+            </f:if>
+        </li>
+    </f:for>
+</f:section>
+
+<f:section name="Tags">
+    <f:for each="{newsItem.tags}" as="tag">
+        <li data-news-tag="{tag.uid}">
+            <meta itemprop="keywords" content="{tag.title}"/>
+            <f:if condition="{settings.listPid}">
+                <f:then>
+                    <f:link.page title="{tag.title}" pageUid="{settings.listPid}" additionalParams="{tx_news_pi1: {overwriteDemand: {tags: tag}}}" class="!no-underline">
+                        <d:atom.badge variant="outline">
+                            <span data-icon="inline-start" aria-hidden="true"><f:render partial="General/NewsIcons" section="Tag"/></span>
+                            <span>{tag.title}</span>
+                        </d:atom.badge>
+                    </f:link.page>
+                </f:then>
+                <f:else>
+                    <d:atom.badge variant="outline">
+                        <span data-icon="inline-start" aria-hidden="true"><f:render partial="General/NewsIcons" section="Tag"/></span>
+                        <span>{tag.title}</span>
+                    </d:atom.badge>
+                </f:else>
+            </f:if>
+        </li>
+    </f:for>
+</f:section>
+
+</html>

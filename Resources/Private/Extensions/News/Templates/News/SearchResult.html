@@ -7,33 +7,34 @@
 <f:layout name="General" />
 
 <f:section name="content">
-    <div class="news-search-result flex flex-col gap-6">
+    <d:layout.stack gap="lg" class="news-search-result">
         <f:if condition="{search}">
             <f:if condition="{news}">
                 <f:then>
-                    <p class="count-msg text-sm text-muted-foreground">
+                    <d:atom.badge variant="secondary" class="w-fit">
                         <f:translate key="search-text" arguments="{0: '{f:count(subject: news)}', 1: search.subject}" />
-                    </p>
+                    </d:atom.badge>
                     <f:if condition="{settings.search.paginate.insertAbove}">
                         <f:render partial="List/Pagination" arguments="{pagination: pagination.pagination, paginator: pagination.paginator}" />
                     </f:if>
-                    <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                    <d:layout.grid cols="3" gap="md" class="items-stretch">
                         <f:for each="{pagination.paginator.paginatedItems}" as="newsItem" iteration="iterator">
                             <f:render partial="List/Item" arguments="{newsItem: newsItem, settings: settings, className: className, view: 'list'}" />
                         </f:for>
-                    </div>
+                    </d:layout.grid>
                     <f:if condition="{settings.search.paginate.insertBelow}">
                         <f:render partial="List/Pagination" arguments="{pagination: pagination.pagination, paginator: pagination.paginator}" />
                     </f:if>
                 </f:then>
                 <f:else>
                     <d:molecule.alert>
+                        <d:atom.icon name="search" size="sm"/>
                         <d:molecule.alertDescription><f:translate key="search-noresult" /></d:molecule.alertDescription>
                     </d:molecule.alert>
                 </f:else>
             </f:if>
         </f:if>
-    </div>
+    </d:layout.stack>
 </f:section>
 
 </html>

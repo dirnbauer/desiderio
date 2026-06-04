@@ -69,7 +69,21 @@
                         <f:translate key="solr.resultsFound" domain="desiderio.labels" arguments="{count: resultSet.allResultCount}">Found {count} results.</f:translate>
                         <f:if condition="{pagination.lastPageNumber} > 1">
                             <s:pageBrowserRange>
-                                <f:translate key="solr.resultsRange" domain="desiderio.labels" arguments="{from: from, to: to, total: total}">Showing results {from} to {to} of {total}.</f:translate>
+                                <f:if condition="{from} == {to}">
+                                    <f:then>
+                                        <f:if condition="{to} == {total}">
+                                            <f:then>
+                                                <f:translate key="solr.resultsRangeLast" domain="desiderio.labels">Showing the last result.</f:translate>
+                                            </f:then>
+                                            <f:else>
+                                                <f:translate key="solr.resultsRangeSingle" domain="desiderio.labels" arguments="{from: from}">Showing result {from}.</f:translate>
+                                            </f:else>
+                                        </f:if>
+                                    </f:then>
+                                    <f:else>
+                                        <f:translate key="solr.resultsRange" domain="desiderio.labels" arguments="{from: from, to: to, total: total}">Showing results {from} to {to} of {total}.</f:translate>
+                                    </f:else>
+                                </f:if>
                             </s:pageBrowserRange>
                         </f:if>
                     </p>

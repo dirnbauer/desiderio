@@ -13,10 +13,17 @@
             <f:for each="{tags}" as="tag">
                 <li>
                     {n:tag.count(tagUid: tag.uid) -> f:variable(name: 'tagUsageCount')}
-                    <f:link.page title="{tag.title}" pageUid="{settings.listPid}" additionalParams="{tx_news_pi1: {overwriteDemand: {tags: tag}}}" class="inline-flex items-center gap-2 rounded-lg border border-border px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground">
-                        <span>{tag.title}</span>
+                    <f:link.page title="{tag.title}" pageUid="{settings.listPid}" additionalParams="{tx_news_pi1: {overwriteDemand: {tags: tag}}}" class="inline-flex items-center gap-2 !no-underline">
+                        <d:atom.badge variant="outline" class="h-7">
+                            <span data-icon="inline-start" aria-hidden="true"><f:render partial="General/NewsIcons" section="Tag"/></span>
+                            <span>{tag.title}</span>
+                        </d:atom.badge>
                         <f:if condition="{tagUsageCount}">
-                            <d:atom.badge variant="secondary">{tagUsageCount}</d:atom.badge>
+                            <d:atom.badge variant="secondary">
+                                <f:translate key="news.entries.count" extensionName="desiderio" arguments="{count: tagUsageCount}">
+                                    {tagUsageCount} entries
+                                </f:translate>
+                            </d:atom.badge>
                         </f:if>
                     </f:link.page>
                 </li>

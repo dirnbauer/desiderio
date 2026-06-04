@@ -27,59 +27,67 @@
             </f:if>
         </n:format.nothing>
 
-        <div class="flex flex-col gap-8">
+        <d:layout.stack gap="xl" class="news-detail">
             <f:if condition="{settings.detail.showPrevNext}">
                 <n:simplePrevNext pidList="{newsItem.pid}" news="{newsItem}" as="paginated" sortField="datetime">
                     <f:if condition="{paginated}">
-                        <nav class="grid gap-3 text-sm sm:grid-cols-2" aria-label="News pagination">
+                        <nav class="grid gap-3 sm:grid-cols-2" aria-label="News pagination">
                             <f:if condition="{paginated.prev}">
-                                <n:link newsItem="{paginated.prev}" settings="{settings}" class="rounded-xl border border-border bg-card px-4 py-3 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/40">
-                                    <span class="block text-xs font-medium uppercase tracking-normal"><f:translate key="paginate_previous" /></span>
-                                    <span class="mt-1 block font-medium text-foreground">&larr; {paginated.prev.title}</span>
-                                </n:link>
+                                <f:link.action action="detail" controller="News" extensionName="News" pluginName="Pi1" pageUid="{settings.detailPid}" arguments="{news: paginated.prev}" class="group/prev rounded-xl border border-border bg-card px-4 py-3 text-sm text-muted-foreground !no-underline transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/40">
+                                    <span class="flex items-center gap-2 text-xs font-medium uppercase tracking-normal">
+                                        <d:atom.icon name="chevron-left" size="xs"/>
+                                        <f:translate key="paginate_previous" />
+                                    </span>
+                                    <span class="mt-1 block font-medium text-foreground group-hover/prev:text-primary">{paginated.prev.title}</span>
+                                </f:link.action>
                             </f:if>
                             <f:if condition="{paginated.next}">
-                                <n:link newsItem="{paginated.next}" settings="{settings}" class="rounded-xl border border-border bg-card px-4 py-3 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/40 sm:text-right">
-                                    <span class="block text-xs font-medium uppercase tracking-normal"><f:translate key="paginate_next" /></span>
-                                    <span class="mt-1 block font-medium text-foreground">{paginated.next.title} &rarr;</span>
-                                </n:link>
+                                <f:link.action action="detail" controller="News" extensionName="News" pluginName="Pi1" pageUid="{settings.detailPid}" arguments="{news: paginated.next}" class="group/next rounded-xl border border-border bg-card px-4 py-3 text-sm text-muted-foreground !no-underline transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/40 sm:text-right">
+                                    <span class="flex items-center gap-2 text-xs font-medium uppercase tracking-normal sm:justify-end">
+                                        <f:translate key="paginate_next" />
+                                        <d:atom.icon name="chevron-right" size="xs"/>
+                                    </span>
+                                    <span class="mt-1 block font-medium text-foreground group-hover/next:text-primary">{paginated.next.title}</span>
+                                </f:link.action>
                             </f:if>
                         </nav>
                     </f:if>
                 </n:simplePrevNext>
             </f:if>
 
-            <header class="flex flex-col gap-4">
+            <header class="flex flex-col gap-6">
                 <div class="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
                     <f:if condition="{newsItem.istopnews}">
-                        <d:atom.badge><f:translate key="news.featured" extensionName="desiderio">Featured</f:translate></d:atom.badge>
+                        <d:atom.badge>
+                            <span data-icon="inline-start" aria-hidden="true"><d:atom.icon name="star" size="xs"/></span>
+                            <span><f:translate key="news.featured" extensionName="desiderio">Featured</f:translate></span>
+                        </d:atom.badge>
                     </f:if>
-                    <time itemprop="datePublished" datetime="{f:format.date(date: newsItem.datetime, format: 'c')}">
-                        <f:format.date format="{f:translate(key: 'dateFormat')}">{newsItem.datetime}</f:format.date>
-                    </time>
+                    <span class="inline-flex items-center gap-1.5">
+                        <f:render partial="General/NewsIcons" section="Published"/>
+                        <time itemprop="datePublished" datetime="{f:format.date(date: newsItem.datetime, format: 'c')}">
+                            <f:format.date format="{f:translate(key: 'dateFormat')}">{newsItem.datetime}</f:format.date>
+                        </time>
+                    </span>
                     <meta itemprop="dateModified" content="{f:format.date(date: newsItem.tstamp, format: 'c')}" />
-                    <f:if condition="{newsItem.categories}">
-                        <f:render partial="Category/Items" arguments="{categories: newsItem.categories, settings: settings}" />
-                    </f:if>
                     <f:if condition="{newsItem.author}">
-                        <span itemprop="author" itemscope="itemscope" itemtype="https://schema.org/Person">
-                            <f:translate key="author_simple" /> <span itemprop="name">{newsItem.author}</span>
+                        <span class="inline-flex items-center gap-1.5" itemprop="author" itemscope="itemscope" itemtype="https://schema.org/Person">
+                            <f:render partial="General/NewsIcons" section="Author"/>
+                            <span itemprop="name">{newsItem.author}</span>
                         </span>
                     </f:if>
                 </div>
-                <d:atom.typography tag="h1" variant="h1" itemprop="headline">{newsItem.title}</d:atom.typography>
-                <f:if condition="{newsItem.tags}">
-                    <div class="flex flex-wrap gap-2" itemprop="keywords">
-                        <f:for each="{newsItem.tags}" as="tag">
-                            <d:atom.badge variant="secondary">{tag.title}</d:atom.badge>
-                        </f:for>
-                    </div>
-                </f:if>
-                <f:if condition="{newsItem.teaser}">
-                    <div class="text-xl leading-8 text-muted-foreground" itemprop="description">
-                        <f:format.html>{newsItem.teaser}</f:format.html>
-                    </div>
-                </f:if>
+
+                <div class="flex flex-col gap-4">
+                    <d:atom.typography tag="h1" variant="h1" class="text-balance leading-tight" itemprop="headline">{newsItem.title}</d:atom.typography>
+                    <f:if condition="{newsItem.teaser}">
+                        <d:atom.typography variant="lead" class="max-w-3xl text-pretty leading-8" itemprop="description">
+                            <f:format.html>{newsItem.teaser}</f:format.html>
+                        </d:atom.typography>
+                    </f:if>
+                </div>
+
+                <f:render partial="Taxonomy" arguments="{newsItem: newsItem, settings: settings, showLabels: true}"/>
             </header>
 
             <n:renderMedia news="{newsItem}" imgClass="rounded-xl" videoClass="overflow-hidden rounded-xl border border-border" audioClass="rounded-xl border border-border">
@@ -96,30 +104,36 @@
                 </div>
             </n:renderMedia>
 
-            <f:if condition="{settings.backPid}">
-                <div class="news-backlink-wrap">
+            <div class="flex flex-wrap items-center gap-3">
+                <f:if condition="{settings.backPid}">
                     <d:atom.button href="{f:uri.page(pageUid: settings.backPid)}" variant="outline">
-                        <f:translate key="back-link" />
+                        <span data-icon="inline-start" aria-hidden="true"><d:atom.icon name="arrow-left" size="xs"/></span>
+                        <span><f:translate key="back-link" /></span>
                     </d:atom.button>
-                </div>
-            </f:if>
+                </f:if>
 
-            <f:if condition="{settings.detail.showSocialShareButtons}">
-                <n:extensionLoaded extensionKey="rx_shariff">
-                    <f:render partial="Detail/Shariff" />
-                </n:extensionLoaded>
-            </f:if>
+                <f:if condition="{settings.detail.showSocialShareButtons}">
+                    <n:extensionLoaded extensionKey="rx_shariff">
+                        <f:render partial="Detail/Shariff" arguments="{newsItem: newsItem, settings: settings}" />
+                    </n:extensionLoaded>
+                </f:if>
+            </div>
 
             <f:if condition="{newsItem.allRelatedSorted} || {newsItem.relatedFiles} || {newsItem.relatedLinks}">
-                <aside class="news-related-wrap grid gap-4">
+                <aside class="news-related-wrap grid gap-4 md:grid-cols-3">
                     <f:if condition="{newsItem.allRelatedSorted}">
                         <d:molecule.card class="news-related news-related-news">
-                            <d:molecule.cardHeader title="{f:translate(key: 'related-news')}" />
+                            <d:molecule.cardHeader>
+                                <div class="flex items-center gap-2">
+                                    <d:atom.icon name="book-open" size="sm"/>
+                                    <span data-slot="card-title" class="cn-font-heading text-sm font-medium"><f:translate key="related-news" /></span>
+                                </div>
+                            </d:molecule.cardHeader>
                             <d:molecule.cardContent>
                                 <ul role="list" class="divide-y divide-border text-sm">
                                     <f:for each="{newsItem.allRelatedSorted}" as="related">
-                                        <li class="flex flex-col gap-1 py-2 sm:flex-row sm:items-center sm:justify-between">
-                                            <n:link newsItem="{related}" settings="{settings}" title="{related.title}" class="font-medium text-foreground underline-offset-4 hover:text-primary hover:underline">{related.title}</n:link>
+                                        <li class="grid gap-1 py-2">
+                                            <f:link.action action="detail" controller="News" extensionName="News" pluginName="Pi1" pageUid="{settings.detailPid}" arguments="{news: related}" title="{related.title}" class="font-medium text-foreground !no-underline underline-offset-4 hover:text-primary hover:underline">{related.title}</f:link.action>
                                             <span class="text-muted-foreground"><f:format.date format="{f:translate(key: 'dateFormat')}">{related.datetime}</f:format.date></span>
                                         </li>
                                     </f:for>
@@ -130,11 +144,16 @@
 
                     <f:if condition="{newsItem.relatedFiles}">
                         <d:molecule.card class="news-related news-related-files">
-                            <d:molecule.cardHeader title="{f:translate(key: 'related-files')}" />
+                            <d:molecule.cardHeader>
+                                <div class="flex items-center gap-2">
+                                    <d:atom.icon name="file" size="sm"/>
+                                    <span data-slot="card-title" class="cn-font-heading text-sm font-medium"><f:translate key="related-files" /></span>
+                                </div>
+                            </d:molecule.cardHeader>
                             <d:molecule.cardContent>
                                 <ul role="list" class="divide-y divide-border text-sm">
                                     <f:for each="{newsItem.relatedFiles}" as="relatedFile">
-                                        <li class="flex flex-col gap-1 py-2 sm:flex-row sm:items-center sm:justify-between">
+                                        <li class="grid gap-1 py-2">
                                             <a href="{relatedFile.originalResource.publicUrl -> f:format.htmlspecialchars()}" target="_blank" rel="noopener noreferrer" class="font-medium text-foreground underline-offset-4 hover:text-primary hover:underline">
                                                 {f:if(condition: relatedFile.originalResource.title, then: relatedFile.originalResource.title, else: relatedFile.originalResource.name)}
                                             </a>
@@ -148,13 +167,18 @@
 
                     <f:if condition="{newsItem.relatedLinks}">
                         <d:molecule.card class="news-related news-related-links">
-                            <d:molecule.cardHeader title="{f:translate(key: 'related-links')}" />
+                            <d:molecule.cardHeader>
+                                <div class="flex items-center gap-2">
+                                    <d:atom.icon name="globe" size="sm"/>
+                                    <span data-slot="card-title" class="cn-font-heading text-sm font-medium"><f:translate key="related-links" /></span>
+                                </div>
+                            </d:molecule.cardHeader>
                             <d:molecule.cardContent>
                                 <ul role="list" class="divide-y divide-border text-sm">
                                     <f:for each="{newsItem.relatedLinks}" as="relatedLink">
-                                        <li class="py-2">
+                                        <li class="grid gap-1 py-2">
                                             <f:link.typolink parameter="{relatedLink.uri}" title="{relatedLink.title}" target="{n:targetLink(link: relatedLink.uri)}" class="font-medium text-foreground underline-offset-4 hover:text-primary hover:underline">{f:if(condition: relatedLink.title, then: relatedLink.title, else: relatedLink.uri)}</f:link.typolink>
-                                            <f:if condition="{relatedLink.description}"><p class="mt-1 text-muted-foreground">{relatedLink.description}</p></f:if>
+                                            <f:if condition="{relatedLink.description}"><span class="text-muted-foreground">{relatedLink.description}</span></f:if>
                                         </li>
                                     </f:for>
                                 </ul>
@@ -163,7 +187,7 @@
                     </f:if>
                 </aside>
             </f:if>
-        </div>
+        </d:layout.stack>
     </f:if>
 </f:section>
 

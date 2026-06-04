@@ -7,11 +7,18 @@
 <f:argument name="newsItem" type="GeorgRinger\News\Domain\Model\News" optional="true"/>
 <f:argument name="settings" type="array" optional="true"/>
 
-<aside class="news-share flex flex-col gap-3 rounded-xl border border-border bg-card p-4 sm:flex-row sm:items-center sm:justify-between" aria-label="Share this article">
-    <div class="text-sm font-medium text-foreground">
-        <f:translate key="share-this" extensionName="news">Share this article</f:translate>
-    </div>
-    <div class="shariff" data-orientation="horizontal" data-services='["facebook","twitter","linkedin","mail"]' data-button-style="icon"></div>
+<aside class="news-share min-w-0" aria-label="Share this article">
+    <d:molecule.card size="sm" class="border-border bg-card">
+        <d:molecule.cardContent>
+            <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                <div class="inline-flex items-center gap-2 text-sm font-medium text-foreground">
+                    <d:atom.icon name="globe" size="sm"/>
+                    <span><f:translate key="share-this" extensionName="news">Share this article</f:translate></span>
+                </div>
+                <div class="shariff" data-orientation="horizontal" data-services='["facebook","twitter","linkedin","mail"]' data-button-style="icon"></div>
+            </div>
+        </d:molecule.cardContent>
+    </d:molecule.card>
 </aside>
 
 </html>

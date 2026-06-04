@@ -7,6 +7,8 @@ plugin.tx_news {
 
   settings {
     cssFile >
+    detailPid = {$news.pages.detail}
+    defaultDetailPid = {$news.pages.detail}
 
     list {
       # Progressive "Load more" on news/blog list views.
@@ -22,4 +24,112 @@ plugin.tx_news {
       publisherLogo = {$desiderio.seo.defaultImage}
     }
   }
+}
+
+lib.desiderioNewsPi1 = EXTBASEPLUGIN
+lib.desiderioNewsPi1 {
+  extensionName = News
+  pluginName = Pi1
+  vendorName = GeorgRinger
+  controller = News
+  action = list
+}
+
+lib.desiderioNewsListSticky =< lib.desiderioNewsPi1
+lib.desiderioNewsListSticky.pluginName = NewsListSticky
+
+lib.desiderioNewsDetail =< lib.desiderioNewsPi1
+lib.desiderioNewsDetail {
+  pluginName = NewsDetail
+  action = detail
+}
+
+lib.desiderioNewsSelectedList =< lib.desiderioNewsPi1
+lib.desiderioNewsSelectedList {
+  pluginName = NewsSelectedList
+  action = selectedList
+}
+
+lib.desiderioNewsDateMenu =< lib.desiderioNewsPi1
+lib.desiderioNewsDateMenu {
+  pluginName = NewsDateMenu
+  action = dateMenu
+}
+
+lib.desiderioNewsCategoryList =< lib.desiderioNewsPi1
+lib.desiderioNewsCategoryList {
+  pluginName = CategoryList
+  controller = Category
+}
+
+lib.desiderioNewsSearchForm =< lib.desiderioNewsPi1
+lib.desiderioNewsSearchForm {
+  pluginName = NewsSearchForm
+  action = searchForm
+}
+
+lib.desiderioNewsSearchResult =< lib.desiderioNewsPi1
+lib.desiderioNewsSearchResult {
+  pluginName = NewsSearchResult
+  action = searchResult
+}
+
+lib.desiderioNewsTagList =< lib.desiderioNewsPi1
+lib.desiderioNewsTagList {
+  pluginName = TagList
+  controller = Tag
+}
+
+tt_content.news_pi1 =< lib.contentElement
+tt_content.news_pi1 {
+  templateName = Generic
+  20 =< lib.desiderioNewsPi1
+}
+
+tt_content.news_newsliststicky =< lib.contentElement
+tt_content.news_newsliststicky {
+  templateName = Generic
+  20 =< lib.desiderioNewsListSticky
+}
+
+tt_content.news_newsdetail =< lib.contentElement
+tt_content.news_newsdetail {
+  templateName = Generic
+  20 =< lib.desiderioNewsDetail
+}
+
+tt_content.news_newsselectedlist =< lib.contentElement
+tt_content.news_newsselectedlist {
+  templateName = Generic
+  20 =< lib.desiderioNewsSelectedList
+}
+
+tt_content.news_newsdatemenu =< lib.contentElement
+tt_content.news_newsdatemenu {
+  templateName = Generic
+  20 =< lib.desiderioNewsDateMenu
+}
+
+tt_content.news_categorylist =< lib.contentElement
+tt_content.news_categorylist {
+  templateName = Generic
+  20 =< lib.desiderioNewsCategoryList
+}
+
+tt_content.news_newssearchform =< lib.contentElement
+tt_content.news_newssearchform {
+  templateName = Generic
+  20 =< lib.desiderioNewsSearchForm
+}
+
+tt_content.news_newssearchresult =< lib.contentElement
+tt_content.news_newssearchresult {
+  templateName = Generic
+  20 =< lib.desiderioNewsSearchResult
+}
+
+tt_content.news_taglist =< lib.contentElement
+tt_content.news_taglist {
+  templateName = Generic
+  20 =< lib.desiderioNewsTagList
 }

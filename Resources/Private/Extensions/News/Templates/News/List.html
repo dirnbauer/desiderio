@@ -10,40 +10,43 @@
     <!--TYPO3SEARCH_end-->
     <f:if condition="{news}">
         <f:then>
-            <div class="news-list-view flex flex-col gap-6" id="news-container-{contentObjectData.uid}">
-                <f:if condition="{settings.list.useLoadMore}">
-                    <f:then>
-                        <f:render partial="List/LoadMore" arguments="{newsList: news, settings: settings, contentObjectData: contentObjectData}"/>
-                    </f:then>
-                    <f:else>
-                        <f:if condition="{settings.hidePagination}">
-                            <f:then>
-                                <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                                    <f:for each="{news}" as="newsItem" iteration="iterator">
-                                        <f:render partial="List/Item" arguments="{newsItem: newsItem, settings: settings, iterator: iterator}" />
-                                    </f:for>
-                                </div>
-                            </f:then>
-                            <f:else>
-                                <f:if condition="{settings.list.paginate.insertAbove}">
-                                    <f:render partial="List/Pagination" arguments="{pagination: pagination.pagination, paginator: pagination.paginator}" />
-                                </f:if>
-                                <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                                    <f:for each="{pagination.paginator.paginatedItems}" as="newsItem" iteration="iterator">
-                                        <f:render partial="List/Item" arguments="{newsItem: newsItem, settings: settings, iterator: iterator}" />
-                                    </f:for>
-                                </div>
-                                <f:if condition="{settings.list.paginate.insertBelow}">
-                                    <f:render partial="List/Pagination" arguments="{pagination: pagination.pagination, paginator: pagination.paginator}" />
-                                </f:if>
-                            </f:else>
-                        </f:if>
-                    </f:else>
-                </f:if>
+            <div class="news-list-view min-w-0" id="news-container-{contentObjectData.uid}">
+                <d:layout.stack gap="xl">
+                    <f:if condition="{settings.list.useLoadMore}">
+                        <f:then>
+                            <f:render partial="List/LoadMore" arguments="{newsList: news, settings: settings, contentObjectData: contentObjectData}"/>
+                        </f:then>
+                        <f:else>
+                            <f:if condition="{settings.hidePagination}">
+                                <f:then>
+                                    <d:layout.grid cols="3" gap="md" class="items-stretch">
+                                        <f:for each="{news}" as="newsItem" iteration="iterator">
+                                            <f:render partial="List/Item" arguments="{newsItem: newsItem, settings: settings, iterator: iterator}" />
+                                        </f:for>
+                                    </d:layout.grid>
+                                </f:then>
+                                <f:else>
+                                    <f:if condition="{settings.list.paginate.insertAbove}">
+                                        <f:render partial="List/Pagination" arguments="{pagination: pagination.pagination, paginator: pagination.paginator}" />
+                                    </f:if>
+                                    <d:layout.grid cols="3" gap="md" class="items-stretch">
+                                        <f:for each="{pagination.paginator.paginatedItems}" as="newsItem" iteration="iterator">
+                                            <f:render partial="List/Item" arguments="{newsItem: newsItem, settings: settings, iterator: iterator}" />
+                                        </f:for>
+                                    </d:layout.grid>
+                                    <f:if condition="{settings.list.paginate.insertBelow}">
+                                        <f:render partial="List/Pagination" arguments="{pagination: pagination.pagination, paginator: pagination.paginator}" />
+                                    </f:if>
+                                </f:else>
+                            </f:if>
+                        </f:else>
+                    </f:if>
+                </d:layout.stack>
             </div>
         </f:then>
         <f:else>
             <d:molecule.alert>
+                <d:atom.icon name="book-open" size="sm"/>
                 <d:molecule.alertDescription><f:translate key="list_nonewsfound" /></d:molecule.alertDescription>
             </d:molecule.alert>
         </f:else>

@@ -9,55 +9,71 @@
 <f:argument name="settings" type="array" optional="true"/>
 <f:argument name="iterator" type="array" optional="true"/>
 
-<article class="article articletype-{newsItem.type}{f:if(condition: newsItem.istopnews, then: ' topnews')} group/card h-full" itemscope="itemscope" itemtype="https://schema.org/NewsArticle">
+<article class="article articletype-{newsItem.type}{f:if(condition: newsItem.istopnews, then: ' topnews')} group/card h-full min-w-0" itemscope="itemscope" itemtype="https://schema.org/NewsArticle">
     <n:excludeDisplayedNews newsItem="{newsItem}"/>
-    <d:molecule.card class="h-full">
-        <f:if condition="{newsItem.mediaPreviews}">
-            <f:then>
-                <n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}" class="block overflow-hidden">
-                    <f:alias map="{mediaElement: newsItem.mediaPreviews.0}">
-                        <f:if condition="{mediaElement.originalResource.type} == 2">
-                            <f:image image="{mediaElement}" title="{mediaElement.originalResource.title}" alt="{mediaElement.originalResource.alternative}" loading="{settings.list.media.image.lazyLoading}" maxWidth="{f:if(condition: settings.media.maxWidth, then: settings.media.maxWidth, else: settings.list.media.image.maxWidth)}" maxHeight="{f:if(condition: settings.media.maxHeight, then: settings.media.maxHeight, else: settings.list.media.image.maxHeight)}" class="aspect-[16/10] w-full object-cover transition-transform duration-300 group-hover/card:scale-[1.02]"/>
-                        </f:if>
-                        <f:if condition="{mediaElement.originalResource.type} == 4">
-                            <f:render partial="Detail/MediaVideo" arguments="{mediaElement: mediaElement, settings: settings}"/>
-                        </f:if>
-                        <f:if condition="{mediaElement.originalResource.type} == 5">
-                            <f:image image="{mediaElement}" title="{mediaElement.originalResource.title}" alt="{mediaElement.originalResource.alternative}" loading="{settings.list.media.image.lazyLoading}" maxWidth="{f:if(condition: settings.media.maxWidth, then: settings.media.maxWidth, else: settings.list.media.image.maxWidth)}" maxHeight="{f:if(condition: settings.media.maxHeight, then: settings.media.maxHeight, else: settings.list.media.image.maxHeight)}" class="aspect-[16/10] w-full object-cover transition-transform duration-300 group-hover/card:scale-[1.02]"/>
-                        </f:if>
-                    </f:alias>
-                </n:link>
-            </f:then>
-            <f:else>
-                <f:if condition="{settings.displayDummyIfNoMedia}">
-                    <n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}" class="block overflow-hidden">
-                        <f:image src="{settings.list.media.dummyImage}" title="" alt="" loading="{settings.list.media.image.lazyLoading}" maxWidth="{f:if(condition: settings.media.maxWidth, then: settings.media.maxWidth, else: settings.list.media.image.maxWidth)}" maxHeight="{f:if(condition: settings.media.maxHeight, then: settings.media.maxHeight, else: settings.list.media.image.maxHeight)}" class="aspect-[16/10] w-full object-cover opacity-80"/>
-                    </n:link>
-                </f:if>
-            </f:else>
+
+    <f:if condition="{newsItem.mediaPreviews}">
+        <f:then>
+            <f:variable name="listMediaElement" value="{newsItem.mediaPreviews.0}" />
+        </f:then>
+        <f:else>
+            <f:if condition="{newsItem.falMedia}">
+                <f:then>
+                    <f:variable name="listMediaElement" value="{newsItem.falMedia.0}" />
+                </f:then>
+                <f:else>
+                    <f:variable name="listMediaElement" value="" />
+                </f:else>
+            </f:if>
+        </f:else>
+    </f:if>
+
+    <d:molecule.card class="h-full overflow-hidden border-border/80 bg-card transition-colors hover:border-primary/40">
+        <f:if condition="{listMediaElement}">
+            <div class="border-b border-border bg-muted">
+                <f:link.action action="detail" controller="News" extensionName="News" pluginName="Pi1" pageUid="{settings.detailPid}" arguments="{news: newsItem}" title="{newsItem.title}" class="block overflow-hidden !no-underline">
+                    <f:if condition="{listMediaElement.originalResource.type} == 2">
+                        <f:image image="{listMediaElement}" title="{listMediaElement.originalResource.title}" alt="{listMediaElement.originalResource.alternative}" loading="{settings.list.media.image.lazyLoading}" width="900" class="aspect-[4/3] w-full object-cover transition-transform duration-300 group-hover/card:scale-[1.02]"/>
+                    </f:if>
+                    <f:if condition="{listMediaElement.originalResource.type} == 4">
+                        <f:render partial="Detail/MediaVideo" arguments="{mediaElement: listMediaElement, settings: settings}"/>
+                    </f:if>
+                    <f:if condition="{listMediaElement.originalResource.type} == 5">
+                        <f:image image="{listMediaElement}" title="{listMediaElement.originalResource.title}" alt="{listMediaElement.originalResource.alternative}" loading="{settings.list.media.image.lazyLoading}" width="900" class="aspect-[4/3] w-full object-cover transition-transform duration-300 group-hover/card:scale-[1.02]"/>
+                    </f:if>
+                </f:link.action>
+            </div>
         </f:if>
 
-        <div class="flex flex-1 flex-col gap-4 px-4 pb-4">
-            <div class="flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
-                <time itemprop="datePublished" datetime="{f:format.date(date: newsItem.datetime, format: 'c')}">
-                    <f:format.date format="{f:translate(key: 'dateFormat')}">{newsItem.datetime}</f:format.date>
-                </time>
-                <meta itemprop="dateModified" content="{f:format.date(date: newsItem.tstamp, format: 'c')}" />
-                <f:if condition="{newsItem.firstCategory}">
-                    <d:atom.badge variant="secondary">{newsItem.firstCategory.title}</d:atom.badge>
-                </f:if>
+        <d:molecule.cardContent class="flex h-full flex-col gap-4 py-4">
+            <meta itemprop="dateModified" content="{f:format.date(date: newsItem.tstamp, format: 'c')}" />
+
+            <div class="flex flex-wrap items-center gap-1.5">
+                <d:atom.badge variant="secondary">
+                    <span data-icon="inline-start" aria-hidden="true"><f:render partial="General/NewsIcons" section="Published"/></span>
+                    <time itemprop="datePublished" datetime="{f:format.date(date: newsItem.datetime, format: 'c')}">
+                        <f:format.date format="{f:translate(key: 'dateFormat')}">{newsItem.datetime}</f:format.date>
+                    </time>
+                </d:atom.badge>
                 <f:if condition="{newsItem.istopnews}">
-                    <d:atom.badge>Top</d:atom.badge>
+                    <d:atom.badge class="bg-primary text-primary-foreground">
+                        <span data-icon="inline-start" aria-hidden="true"><d:atom.icon name="star" size="xs"/></span>
+                        <span><f:translate key="news.featured" extensionName="desiderio">Featured</f:translate></span>
+                    </d:atom.badge>
                 </f:if>
             </div>
 
-            <h3 class="text-xl font-semibold tracking-normal" itemprop="headline">
-                <n:link newsItem="{newsItem}" settings="{settings}" title="{newsItem.title}" itemprop="url" class="text-foreground underline-offset-4 hover:text-primary hover:underline">
-                    {newsItem.title}
-                </n:link>
-            </h3>
+            <header class="flex flex-col gap-3">
+                <d:atom.typography tag="h3" variant="h4" class="text-balance text-lg leading-snug tracking-normal" itemprop="headline">
+                    <f:link.action action="detail" controller="News" extensionName="News" pluginName="Pi1" pageUid="{settings.detailPid}" arguments="{news: newsItem}" title="{newsItem.title}" class="rounded-md text-foreground !no-underline outline-none transition-colors hover:text-primary focus-visible:ring-3 focus-visible:ring-ring/40" itemprop="url">
+                        {newsItem.title}
+                    </f:link.action>
+                </d:atom.typography>
 
-            <div class="teaser-text text-sm leading-6 text-muted-foreground" itemprop="description">
+                <f:render partial="Taxonomy" arguments="{newsItem: newsItem, settings: settings}"/>
+            </header>
+
+            <div class="teaser-text line-clamp-4 text-sm leading-6 text-muted-foreground" itemprop="description">
                 <n:removeMediaTags>
                     <f:if condition="{newsItem.teaser}">
                         <f:then>{newsItem.teaser -> f:format.crop(maxCharacters: '{settings.cropMaxCharacters}', respectWordBoundaries: '1') -> f:format.html()}</f:then>
@@ -68,16 +84,17 @@
 
             <div class="mt-auto flex flex-wrap items-center justify-between gap-3 text-sm">
                 <f:if condition="{newsItem.author}">
-                    <span class="news-list-author text-muted-foreground" itemprop="author" itemscope="itemscope" itemtype="https://schema.org/Person">
-                        <f:translate key="author" arguments="{0: newsItem.author}"/>
-                        <meta itemprop="name" content="{newsItem.author}" />
+                    <span class="news-list-author inline-flex min-w-0 items-center gap-1.5 text-muted-foreground" itemprop="author" itemscope="itemscope" itemtype="https://schema.org/Person">
+                        <span aria-hidden="true"><f:render partial="General/NewsIcons" section="Author"/></span>
+                        <span itemprop="name">{newsItem.author}</span>
                     </span>
                 </f:if>
-                <n:link newsItem="{newsItem}" settings="{settings}" class="more font-medium text-primary underline-offset-4 hover:underline" title="{newsItem.title}">
-                    <f:translate key="more-link"/>
-                </n:link>
+                <f:link.action action="detail" controller="News" extensionName="News" pluginName="Pi1" pageUid="{settings.detailPid}" arguments="{news: newsItem}" class="more inline-flex items-center gap-1.5 rounded-md font-medium text-primary !no-underline outline-none transition-colors hover:text-primary focus-visible:ring-3 focus-visible:ring-ring/40" title="{newsItem.title}">
+                    <span><f:translate key="more-link"/></span>
+                    <span data-icon="inline-end" aria-hidden="true"><d:atom.icon name="arrow-right" size="xs"/></span>
+                </f:link.action>
             </div>
-        </div>
+        </d:molecule.cardContent>
     </d:molecule.card>
 </article>
 

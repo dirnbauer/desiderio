@@ -8,14 +8,35 @@
 <f:argument name="settings" type="array" optional="true"/>
 
 <f:if condition="{newsItem}">
-    <f:variable name="articleUrl"><n:link newsItem="{newsItem}" settings="{settings}" configuration="{forceAbsoluteUrl: 1}" uriOnly="1" /></f:variable>
+    <f:variable name="articleUrl"><f:uri.action action="detail" controller="News" extensionName="News" pluginName="Pi1" pageUid="{settings.detailPid}" arguments="{news: newsItem}" absolute="1"/></f:variable>
+    <f:variable name="structuredHeadline"><f:format.crop maxCharacters="110" respectWordBoundaries="1"><f:format.stripTags>{newsItem.title}</f:format.stripTags></f:format.crop></f:variable>
+    <f:variable name="structuredDatePublished"><f:format.date date="{newsItem.datetime}" format="c"/></f:variable>
+    <f:variable name="structuredDateModified"><f:format.date date="{newsItem.tstamp}" format="c"/></f:variable>
     <f:if condition="{newsItem.teaser}">
         <f:then>
-            <f:variable name="structuredDescription">{newsItem.teaser -> f:format.stripTags() -> f:format.crop(maxCharacters: 240, respectWordBoundaries: '1')}</f:variable>
+            <f:variable name="structuredDescription"><f:format.crop maxCharacters="240" respectWordBoundaries="1"><f:format.stripTags>{newsItem.teaser}</f:format.stripTags></f:format.crop></f:variable>
         </f:then>
         <f:else>
-            <f:variable name="structuredDescription">{newsItem.bodytext -> f:format.stripTags() -> f:format.crop(maxCharacters: 240, respectWordBoundaries: '1')}</f:variable>
+            <f:variable name="structuredDescription"><f:format.crop maxCharacters="240" respectWordBoundaries="1"><f:format.stripTags>{newsItem.bodytext}</f:format.stripTags></f:format.crop></f:variable>
         </f:else>
+    </f:if>
+    <f:if condition="{newsItem.author}">
+        <f:then>
+            <f:variable name="structuredAuthor">{newsItem.author}</f:variable>
+        </f:then>
+        <f:else>
+            <f:if condition="{settings.structuredData.publisherName}">
+                <f:then>
+                    <f:variable name="structuredAuthor">{settings.structuredData.publisherName}</f:variable>
+                </f:then>
+                <f:else>
+                    <f:variable name="structuredAuthor">Editorial team</f:variable>
+                </f:else>
+            </f:if>
+        </f:else>
+    </f:if>
+    <f:if condition="{newsItem.falMedia}">
+        <f:variable name="structuredImageUrl"><f:uri.image image="{newsItem.falMedia.0}" maxWidth="1200" absolute="1"/></f:variable>
     </f:if>
 
     <n:headerData>
@@ -25,32 +46,32 @@
   "@type": "NewsArticle",
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": {articleUrl -> f:format.json()}
+    "@id": <f:format.json value="{articleUrl}"/>
   },
-  "url": {articleUrl -> f:format.json()},
-  "headline": {newsItem.title -> f:format.stripTags() -> f:format.crop(maxCharacters: 110, respectWordBoundaries: '1') -> f:format.json()},
-  "description": {structuredDescription -> f:format.json()},
-  "datePublished": "{f:format.date(date: newsItem.datetime, format: 'c')}",
-  "dateModified": "{f:format.date(date: newsItem.tstamp, format: 'c')}",
+  "url": <f:format.json value="{articleUrl}"/>,
+  "headline": <f:format.json value="{structuredHeadline}"/>,
+  "description": <f:format.json value="{structuredDescription}"/>,
+  "datePublished": <f:format.json value="{structuredDatePublished}"/>,
+  "dateModified": <f:format.json value="{structuredDateModified}"/>,
   "author": {
     "@type": "Person",
-    "name": {newsItem.author -> f:or(alternative: settings.structuredData.publisherName) -> f:or(alternative: 'Editorial team') -> f:format.json()}
-  }<f:if condition="{newsItem.fallbackImage}">,
+    "name": <f:format.json value="{structuredAuthor}"/>
+  }<f:if condition="{newsItem.falMedia}">,
   "image": [
-    {f:uri.image(image: newsItem.fallbackImage, maxWidth: 1200, absolute: 1) -> f:format.json()}
+    <f:format.json value="{structuredImageUrl}"/>
   ]</f:if><f:if condition="{settings.structuredData.publisherName}">,
   "publisher": {
     "@type": "Organization",
-    "name": {settings.structuredData.publisherName -> f:format.json()}<f:if condition="{settings.structuredData.publisherLogo}">,
+    "name": <f:format.json value="{settings.structuredData.publisherName}"/><f:if condition="{settings.structuredData.publisherLogo}">,
     "logo": {
       "@type": "ImageObject",
-      "url": {settings.structuredData.publisherLogo -> f:format.json()}
+      "url": <f:format.json value="{settings.structuredData.publisherLogo}"/>
     }</f:if>
   }</f:if><f:if condition="{newsItem.tags}">,
   "keywords": [
-    <f:for each="{newsItem.tags}" as="tag" iteration="tagIterator"><f:if condition="{tagIterator.index} > 0">, </f:if>{tag.title -> f:format.json()}</f:for>
+    <f:for each="{newsItem.tags}" as="tag" iteration="tagIterator"><f:if condition="{tagIterator.index} > 0">, </f:if><f:format.json value="{tag.title}"/></f:for>
   ]</f:if><f:if condition="{newsItem.firstCategory}">,
-  "articleSection": {newsItem.firstCategory.title -> f:format.json()}</f:if>
+  "articleSection": <f:format.json value="{newsItem.firstCategory.title}"/></f:if>
 }
         </f:format.raw></script>
     </n:headerData>

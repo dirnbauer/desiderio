@@ -12,11 +12,17 @@
         <f:if condition="{category.shortcut}">
             <f:then>
                 <f:link.typolink parameter="{category.shortcut}">
-                    <d:atom.badge variant="secondary">{category.title}</d:atom.badge>
+                    <d:atom.badge variant="secondary">
+                        <span data-icon="inline-start" aria-hidden="true"><f:render partial="General/NewsIcons" section="Category"/></span>
+                        <span>{category.title}</span>
+                    </d:atom.badge>
                 </f:link.typolink>
             </f:then>
             <f:else>
-                <d:atom.badge variant="secondary">{category.title}</d:atom.badge>
+                <d:atom.badge variant="secondary">
+                    <span data-icon="inline-start" aria-hidden="true"><f:render partial="General/NewsIcons" section="Category"/></span>
+                    <span>{category.title}</span>
+                </d:atom.badge>
             </f:else>
         </f:if>
     </f:for>

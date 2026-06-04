@@ -18,7 +18,7 @@ final class StarterSiteDefinitionsTest extends TestCase
     {
         $starters = StarterSiteDefinitions::all();
 
-        self::assertSame(['corporate', 'dashboard', 'editorial', 'portfolio', 'saas'], array_keys($starters));
+        self::assertSame(['corporate'], array_keys($starters));
 
         foreach ($starters as $slug => $starter) {
             self::assertIsString($starter['label'] ?? null, $slug . ' needs a label');
@@ -55,10 +55,6 @@ final class StarterSiteDefinitionsTest extends TestCase
     {
         $requiredTerms = [
             'corporate' => ['procurement', 'governance', 'proof', 'contact'],
-            'dashboard' => ['metrics', 'dashboard', 'reports', 'settings'],
-            'editorial' => ['publication', 'newsletter', 'sponsor', 'standards'],
-            'portfolio' => ['selected work', 'capabilities', 'process', 'project brief'],
-            'saas' => ['product', 'pricing', 'security', 'trial'],
         ];
 
         foreach (StarterSiteDefinitions::all() as $slug => $starter) {
@@ -135,10 +131,6 @@ final class StarterSiteDefinitionsTest extends TestCase
     {
         $templatePaths = [
             'corporate' => __DIR__ . '/../../Resources/Private/Presets/Corporate/Templates/Pages/DesiderioStartpage.fluid.html',
-            'dashboard' => __DIR__ . '/../../Resources/Private/Presets/Dashboard/Templates/Pages/DesiderioStartpage.fluid.html',
-            'editorial' => __DIR__ . '/../../Resources/Private/Presets/Editorial/Templates/Pages/DesiderioStartpage.fluid.html',
-            'portfolio' => __DIR__ . '/../../Resources/Private/Presets/Portfolio/Templates/Pages/DesiderioStartpage.fluid.html',
-            'saas' => __DIR__ . '/../../Resources/Private/Presets/Saas/Templates/Pages/DesiderioStartpage.fluid.html',
         ];
 
         $bannedTemplateContent = [
@@ -148,9 +140,6 @@ final class StarterSiteDefinitionsTest extends TestCase
             '<dl',
             'd:atom.button',
             'corporate.start.',
-            'editorial.start.lane',
-            'portfolio.start.proof',
-            'saas.hero.snapshot',
         ];
 
         foreach ($templatePaths as $slug => $path) {
@@ -194,30 +183,6 @@ final class StarterSiteDefinitionsTest extends TestCase
                     sprintf('%s homepage must include adapted content from source showcase page %d', $slug, $sourcePageUid)
                 );
             }
-        }
-    }
-
-    public function testDashboardStarterAddsDummyDashboardsToEveryPage(): void
-    {
-        $dashboard = StarterSiteDefinitions::all()['dashboard'];
-        $utilitySlugs = ['search', '404', 'imprint', 'privacy', 'accessibility'];
-        $dashboardPages = array_values(array_filter(
-            $dashboard['subpages'],
-            static fn (array $page): bool => !in_array($page['slug'], $utilitySlugs, true)
-        ));
-
-        $pages = array_merge([$dashboard['home']], $dashboardPages);
-        self::assertGreaterThanOrEqual(11, count($pages));
-
-        foreach ($pages as $page) {
-            self::assertIsArray($page);
-            $ctypes = array_map(
-                static fn (array $block): string => (string)$block['ctype'],
-                $page['content']
-            );
-
-            self::assertContains('desiderio_metricdashboard', $ctypes, 'Every dashboard starter page needs a metric dashboard block');
-            self::assertContains('desiderio_datatable', $ctypes, 'Every dashboard starter page needs a data table block');
         }
     }
 

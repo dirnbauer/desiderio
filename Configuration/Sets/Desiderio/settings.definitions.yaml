@@ -350,7 +350,7 @@ settings:
   # --------------------------------------------------------------- Editorial
   desiderio.editorial.readingProgress:
     label: 'Reading progress bar'
-    description: 'Show a sticky reading-progress indicator at the top of Editorial article pages (Blog & Magazine preset). Updates as the reader scrolls the article body.'
+    description: 'Show a sticky reading-progress indicator at the top of editorial article pages. Updates as the reader scrolls the article body.'
     type: bool
     default: true
     category: desiderio.editorial

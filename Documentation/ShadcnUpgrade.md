@@ -12,8 +12,8 @@ binary switcher, or remote preset fetch in production.
 
 People often call two different things "templates":
 
-1. Desiderio site preset sets, for example
-   `webconsulting/desiderio-preset-saas`. These change broad TYPO3 defaults
+1. The Desiderio site preset set,
+   `webconsulting/desiderio-preset-corporate`. This changes broad TYPO3 defaults
    such as header, footer, density, container width, and layout radius.
 2. shadcn/create preset ids, for example `b4hb38Fyj` or `b6G5977cw`. These
    change CSS tokens for surfaces, borders, radius, charts, typography, and

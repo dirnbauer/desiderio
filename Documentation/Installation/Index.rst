@@ -33,13 +33,12 @@ TYPO3 branches are not supported.
     (``webconsulting/desiderio-content-elements``). This aggregate site set
     depends on the theme base and pulls in the generated Content Block sets.
 
-#.  Pick a scenario template
+#.  Pick the scenario template
 
-    Add **one** of the five scenario template sets (``…/desiderio-preset-saas``,
-    ``…/desiderio-preset-corporate``, ``…/desiderio-preset-portfolio``,
-    ``…/desiderio-preset-editorial``, ``…/desiderio-preset-dashboard``).
-    Switching scenario templates never changes content, markup, or backend
-    layouts — only the presentation.
+    Add the Corporate scenario template set
+    (``webconsulting/desiderio-preset-corporate``). Switching the scenario
+    template never changes content, markup, or backend layouts — only the
+    presentation.
 
 #.  Flush caches and reload the backend
 

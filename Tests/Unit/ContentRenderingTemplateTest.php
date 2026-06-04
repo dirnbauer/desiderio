@@ -907,23 +907,13 @@ final class ContentRenderingTemplateTest extends TestCase
     {
         $presets = [
             'Corporate' => 'DesiderioPresetCorporate',
-            'Dashboard' => 'DesiderioPresetDashboard',
-            'Editorial' => 'DesiderioPresetEditorial',
-            'Portfolio' => 'DesiderioPresetPortfolio',
-            'Saas' => 'DesiderioPresetSaas',
         ];
         $expectedWordmarks = [
             'Corporate' => 'Desiderio Corporate',
-            'Dashboard' => 'Desiderio Dashboard',
-            'Editorial' => 'Desiderio Editorial',
-            'Portfolio' => 'Desiderio Portfolio',
-            'Saas' => 'Desiderio SaaS',
         ];
         $sharedPartials = [
             'ContentArea' => 'contentArea="{content}"',
             'Stage' => 'contentArea="{content}"',
-            'DashboardRail' => 'desiderio-dashboard-template__rail',
-            'ErrorHomeLink' => 'a11y.nav.home',
             'SystemHeader' => '<f:argument name="summaryTag"',
         ];
         $templateNames = [
@@ -946,7 +936,7 @@ final class ContentRenderingTemplateTest extends TestCase
             $presetSet = Yaml::parseFile(__DIR__ . '/../../Configuration/Sets/' . $setDirectory . '/config.yaml');
             $presetSettings = Yaml::parseFile(__DIR__ . '/../../Configuration/Sets/' . $setDirectory . '/settings.yaml');
             $typoScript = (string) file_get_contents(__DIR__ . '/../../Configuration/Sets/' . $setDirectory . '/setup.typoscript');
-            $cssName = $presetDirectory === 'Saas' ? 'saas' : strtolower($presetDirectory);
+            $cssName = strtolower($presetDirectory);
             $cssPath = __DIR__ . '/../../Resources/Public/Css/preset-' . $cssName . '.css';
 
             self::assertIsArray($presetSet);
@@ -1022,7 +1012,7 @@ final class ContentRenderingTemplateTest extends TestCase
             self::assertFileExists(__DIR__ . '/../../' . $relativePath, "{$relativePath} must exist");
         }
 
-        foreach (['Corporate', 'Dashboard', 'Editorial', 'Portfolio', 'Saas'] as $preset) {
+        foreach (['Corporate'] as $preset) {
             $presetSet = Yaml::parseFile(__DIR__ . '/../../Configuration/Sets/DesiderioPreset' . $preset . '/config.yaml');
             self::assertIsArray($presetSet);
             $presetDependencies = $presetSet['dependencies'] ?? [];

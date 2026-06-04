@@ -1,7 +1,0 @@
-# Preset — Blog & Magazine
-lib.fluidPage.paths.30 = EXT:desiderio/Resources/Private/Presets/Editorial/Templates/
-
-page.includeCSS {
-    desiderioPresetEditorial = EXT:desiderio/Resources/Public/Css/preset-editorial.css
-    desiderioPresetEditorial.media = all
-}

@@ -68,12 +68,12 @@ vendor/bin/typo3 cache:flush
 ```
 
 Then enable the shadcn/ui theme base, the content-element configuration set,
-and one of the five scenario template sets:
+and the Corporate scenario template set:
 
 1. Site Management → Sites → edit the target site
 2. Add `Desiderio Base` (`webconsulting/desiderio`)
 3. Add `Desiderio Content Elements` (`webconsulting/desiderio-content-elements`)
-4. Add one of the five scenario template sets (see below)
+4. Add the Corporate scenario template set (see below)
 5. Save and flush caches
 
 ### Tooling baseline
@@ -193,20 +193,16 @@ JavaScript is disabled. There is also a `MagazineList.html` template that
 features the first article on top with the rest as the load-more secondary
 grid.
 
-## Scenario Templates
+## Scenario Template
 
-Five scenario template site sets depend on the theme base. Each ships a single
-CSS file and overrides base-set setting defaults. Switching scenario templates
+One scenario template site set depends on the theme base. It ships a single CSS
+file and overrides base-set setting defaults. Switching the scenario template
 **never** changes your content, markup, or backend layouts — only the
 presentation.
 
-| Set                                    | Character             |
-| -------------------------------------- | --------------------- |
-| `webconsulting/desiderio-preset-saas`        | SaaS Landing          |
-| `webconsulting/desiderio-preset-corporate`        | Mainline Corporate    |
-| `webconsulting/desiderio-preset-portfolio`        | Portfolio             |
-| `webconsulting/desiderio-preset-editorial`        | Blog & Magazine       |
-| `webconsulting/desiderio-preset-dashboard`        | Dashboard App         |
+| Set | Character |
+| --- | --- |
+| `webconsulting/desiderio-preset-corporate` | Mainline Corporate |
 
 The base set also exposes shadcn/create preset support. The committed theme
 CSS currently supports `b6G5977cw` as the default, plus `b4hb38Fyj`, `b0`,
@@ -214,26 +210,25 @@ and `b3IWPgRwnI` as alternate light/dark token sets.
 
 ### Starter site seeding
 
-Use the starter seeder to create a useful demo site for one or all scenario
-templates. Each starter creates one homepage plus at least ten subpages and
-populates them with real Desiderio Content Blocks instead of lorem ipsum.
+Use the starter seeder to create a useful Corporate demo site. The starter
+creates one homepage plus at least ten subpages and populates them with real
+Desiderio Content Blocks instead of lorem ipsum.
 
 ```bash
 vendor/bin/typo3 desiderio:starter:seed --parent=505 --preset=all
-vendor/bin/typo3 desiderio:starter:seed --parent=505 --preset=dashboard
+vendor/bin/typo3 desiderio:starter:seed --parent=505 --preset=corporate
 ```
 
-Available presets: `corporate`, `dashboard`, `editorial`, `portfolio`, `saas`.
-The dashboard starter includes populated dummy dashboards for every generated
-workspace page.
+Available preset: `corporate`. `all` is kept as an alias for forwards-compatible
+scripts.
 
-### Switching scenario templates
+### Switching the scenario template
 
 There are two different switches:
 
-1. **Desiderio scenario template sets** change broad TYPO3 theme defaults such as
-   header, footer, density, and layout. Enable or replace one of the
-   `webconsulting/desiderio-preset-*` site sets in
+1. **The Desiderio Corporate scenario template set** changes broad TYPO3 theme defaults such as
+   header, footer, density, and layout. Enable or replace
+   `webconsulting/desiderio-preset-corporate` in
    **Site Management → Sites**.
 2. **shadcn/create preset ids** change the design tokens used by buttons,
    cards, borders, charts, typography, radius, and dark mode. Change

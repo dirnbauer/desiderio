@@ -1,7 +1,0 @@
-# Preset — SaaS Landing.
-lib.fluidPage.paths.30 = EXT:desiderio/Resources/Private/Presets/Saas/Templates/
-
-page.includeCSS {
-    desiderioPresetSaas = EXT:desiderio/Resources/Public/Css/preset-saas.css
-    desiderioPresetSaas.media = all
-}

@@ -1,7 +1,0 @@
-# Preset — Portfolio
-lib.fluidPage.paths.30 = EXT:desiderio/Resources/Private/Presets/Portfolio/Templates/
-
-page.includeCSS {
-    desiderioPresetPortfolio = EXT:desiderio/Resources/Public/Css/preset-portfolio.css
-    desiderioPresetPortfolio.media = all
-}

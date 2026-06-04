@@ -30,7 +30,7 @@ use Webconsulting\Desiderio\Data\StarterSiteDefinitions;
  */
 #[AsCommand(
     name: 'desiderio:starter:seed',
-    description: 'Create or update useful Desiderio starter sites for the scenario presets.'
+    description: 'Create or update the useful Desiderio corporate starter site.'
 )]
 final class SeedStarterSitesCommand extends Command
 {
@@ -91,7 +91,7 @@ final class SeedStarterSitesCommand extends Command
                 'preset',
                 null,
                 InputOption::VALUE_REQUIRED,
-                'Preset starter to seed: all, corporate, dashboard, editorial, portfolio, saas. Comma-separated values are allowed.',
+                'Starter to seed: all or corporate. Comma-separated values are allowed for forwards-compatible scripts.',
                 'all'
             )
             ->addOption(
@@ -104,7 +104,7 @@ final class SeedStarterSitesCommand extends Command
                 'root-map',
                 null,
                 InputOption::VALUE_REQUIRED,
-                'Seed selected presets into existing root pages instead of creating roots. Format: corporate:740,dashboard:741,editorial:742,portfolio:743,saas:744.',
+                'Seed the corporate starter into an existing root page instead of creating a root. Format: corporate:740.',
                 ''
             )
             ->addOption(

@@ -3,16 +3,20 @@
 }
 .hero-saas__content {
     text-align: center;
-    max-width: 48rem;
+    max-width: min(48rem, 100%);
     margin-inline: auto;
     margin-bottom: var(--d-spacing-10);
 }
 .hero-saas__headline {
     margin-top: var(--d-spacing-4);
     margin-bottom: var(--d-spacing-4);
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    text-wrap: balance;
 }
 .hero-saas__subheadline {
     margin-bottom: var(--d-spacing-6);
+    overflow-wrap: anywhere;
 }
 .hero-saas__actions {
     display: flex;
@@ -52,4 +56,19 @@
     font-size: var(--d-text-sm);
     font-weight: 600;
     color: var(--d-muted-foreground);
+    overflow-wrap: anywhere;
+}
+@media (max-width: 640px) {
+    .hero-saas {
+        padding-block: var(--d-spacing-10);
+    }
+
+    .hero-saas__headline {
+        font-size: clamp(2.125rem, 9vw, 2.75rem);
+        line-height: 1.08;
+    }
+
+    .hero-saas__logos {
+        gap: var(--d-spacing-3);
+    }
 }

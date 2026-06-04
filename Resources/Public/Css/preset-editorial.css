@@ -227,12 +227,17 @@
     font-weight: 750;
     line-height: 0.96;
     letter-spacing: 0;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    hyphens: auto;
+    text-wrap: balance;
 }
 
 .desiderio-editorial-start__cover > p:last-child {
     color: var(--muted-foreground);
     font-size: 1rem;
     line-height: 1.65;
+    overflow-wrap: anywhere;
 }
 
 .desiderio-editorial-start__lanes {
@@ -362,6 +367,11 @@
 }
 
 @media (max-width: 640px) {
+    .desiderio-editorial-start__cover h1 {
+        font-size: 2.375rem;
+        line-height: 1.05;
+    }
+
     .desiderio-editorial-start__lanes {
         grid-template-columns: 1fr;
     }

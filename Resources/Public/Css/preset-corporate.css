@@ -125,6 +125,10 @@
     font-weight: 750;
     line-height: 1.02;
     letter-spacing: 0;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    hyphens: auto;
+    text-wrap: balance;
 }
 
 .desiderio-corporate-start__lede {
@@ -132,6 +136,7 @@
     color: var(--muted-foreground);
     font-size: 1.125rem;
     line-height: 1.6;
+    overflow-wrap: anywhere;
 }
 
 .desiderio-corporate-start__eyebrow {
@@ -293,6 +298,20 @@
 }
 
 @media (max-width: 640px) {
+    .desiderio-corporate-start__container {
+        padding-block: 2.75rem 3.5rem;
+    }
+
+    .desiderio-corporate-start__masthead h1 {
+        font-size: 2.125rem;
+        line-height: 1.08;
+    }
+
+    .desiderio-corporate-start__lede {
+        font-size: 1rem;
+        line-height: 1.55;
+    }
+
     .desiderio-corporate-start__proof {
         grid-template-columns: 1fr;
     }

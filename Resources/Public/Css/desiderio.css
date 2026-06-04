@@ -786,6 +786,7 @@ body {
     font-family: var(--d-font-heading);
     font-weight: 600;
     letter-spacing: 0;
+    overflow-wrap: anywhere;
 }
 
 .frame :where(p, li, figcaption),
@@ -793,6 +794,7 @@ body {
 .desiderio-content-element :where(p, li, figcaption) {
     color: var(--muted-foreground);
     line-height: 1.7;
+    overflow-wrap: anywhere;
 }
 
 .frame :where(a:not([data-slot="button"])),
@@ -2015,12 +2017,22 @@ article[itemtype="https://schema.org/BlogPosting"] [itemprop="articleBody"] .ce-
     }
     .desiderio-header__actions {
         grid-column: 1 / -1;
-        display: flex;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto auto;
+        align-items: center;
         justify-content: stretch;
         width: 100%;
+        min-width: 0;
+        overflow: hidden;
     }
     .desiderio-header__search {
-        flex: 1 1 9rem;
+        width: auto;
+        max-width: 100%;
+        min-width: 0;
+    }
+    .desiderio-theme-switch,
+    .desiderio-header__lang {
+        min-width: 0;
     }
     .desiderio-header__nav {
         display: none;

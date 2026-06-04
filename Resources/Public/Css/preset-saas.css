@@ -113,8 +113,10 @@
     /* A long single-word website/page title (h1 = site title on the Startpage)
        must never push horizontal scroll at the awkward ~1024px width where the
        headline is largest. */
-    overflow-wrap: break-word;
+    max-width: 100%;
+    overflow-wrap: anywhere;
     hyphens: auto;
+    text-wrap: balance;
 }
 
 .desiderio-saas-template__masthead h1 {
@@ -130,6 +132,7 @@
     color: var(--muted-foreground);
     font-size: 1rem;
     line-height: 1.65;
+    overflow-wrap: anywhere;
 }
 
 .desiderio-saas-start__lede {
@@ -194,6 +197,24 @@
     min-width: 0;
     border-top: 1px solid var(--border);
     padding-top: 0.75rem;
+}
+
+@media (max-width: 640px) {
+    .desiderio-saas-start__hero h1,
+    .desiderio-saas-template__masthead h1,
+    .desiderio-saas-system__header h1 {
+        font-size: 2.375rem;
+        line-height: 1.08;
+    }
+
+    .desiderio-saas-start__snapshot div {
+        display: grid;
+        gap: 0.25rem;
+    }
+
+    .desiderio-saas-start__snapshot dd {
+        font-size: 1.25rem;
+    }
 }
 
 .desiderio-saas-start__snapshot dt,

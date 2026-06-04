@@ -106,7 +106,7 @@ final class ConfigureDesiderioFormEmailFinisher
         $normalizedPaths = [];
         if (is_array($paths)) {
             foreach ($paths as $key => $value) {
-                if ((is_int($key) || is_string($key)) && is_string($value)) {
+                if (is_string($value)) {
                     $normalizedPaths[$key] = $value;
                 }
             }

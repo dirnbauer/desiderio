@@ -579,10 +579,12 @@ final class ContentRenderingTemplateTest extends TestCase
         $solrOptionalDependencies = $solrSet['optionalDependencies'] ?? [];
         $newsDependencies = $newsSet['dependencies'] ?? [];
         $blogOptionalDependencies = $blogSet['optionalDependencies'] ?? [];
+        $blogStandaloneOptionalDependencies = $blogStandaloneSet['optionalDependencies'] ?? [];
         self::assertIsArray($baseOptionalDependencies);
         self::assertIsArray($solrOptionalDependencies);
         self::assertIsArray($newsDependencies);
         self::assertIsArray($blogOptionalDependencies);
+        self::assertIsArray($blogStandaloneOptionalDependencies);
 
         self::assertContains('webconsulting/desiderio-solr', $baseOptionalDependencies);
         self::assertContains('webconsulting/desiderio-news', $baseOptionalDependencies);
@@ -628,7 +630,7 @@ final class ContentRenderingTemplateTest extends TestCase
         self::assertStringNotContainsString('lib.dynamicContent', $blogTypoScript);
 
         self::assertSame('webconsulting/desiderio-blog-standalone', $blogStandaloneSet['name']);
-        self::assertContains('webconsulting/desiderio-news', $blogStandaloneSet['optionalDependencies'] ?? []);
+        self::assertContains('webconsulting/desiderio-news', $blogStandaloneOptionalDependencies);
     }
 
     public function testDesiderioPowermailOptionGroupsExposeVisibleLegend(): void
@@ -799,8 +801,29 @@ final class ContentRenderingTemplateTest extends TestCase
         self::assertStringNotContainsString('avatarSettings', $metaRenderingSection);
 
         $blogSettings = Yaml::parseFile(__DIR__ . '/../../Configuration/Sets/DesiderioBlog/settings.yaml');
-        self::assertTrue($blogSettings['plugin']['tx_blog']['settings']['meta']['listheader']['elements']['tags']['enable'] ?? false);
-        self::assertTrue($blogSettings['plugin']['tx_blog']['settings']['meta']['teaserheader']['elements']['tags']['enable'] ?? false);
+        self::assertIsArray($blogSettings);
+        $blogPlugin = $blogSettings['plugin'] ?? [];
+        self::assertIsArray($blogPlugin);
+        $blogTxBlog = $blogPlugin['tx_blog'] ?? [];
+        self::assertIsArray($blogTxBlog);
+        $blogPluginSettings = $blogTxBlog['settings'] ?? [];
+        self::assertIsArray($blogPluginSettings);
+        $blogMetaSettings = $blogPluginSettings['meta'] ?? [];
+        self::assertIsArray($blogMetaSettings);
+        $blogListHeaderMeta = $blogMetaSettings['listheader'] ?? [];
+        $blogTeaserHeaderMeta = $blogMetaSettings['teaserheader'] ?? [];
+        self::assertIsArray($blogListHeaderMeta);
+        self::assertIsArray($blogTeaserHeaderMeta);
+        $blogListHeaderElements = $blogListHeaderMeta['elements'] ?? [];
+        $blogTeaserHeaderElements = $blogTeaserHeaderMeta['elements'] ?? [];
+        self::assertIsArray($blogListHeaderElements);
+        self::assertIsArray($blogTeaserHeaderElements);
+        $blogListHeaderTags = $blogListHeaderElements['tags'] ?? [];
+        $blogTeaserHeaderTags = $blogTeaserHeaderElements['tags'] ?? [];
+        self::assertIsArray($blogListHeaderTags);
+        self::assertIsArray($blogTeaserHeaderTags);
+        self::assertTrue($blogListHeaderTags['enable'] ?? false);
+        self::assertTrue($blogTeaserHeaderTags['enable'] ?? false);
 
         $blogTypoScript = (string) file_get_contents(__DIR__ . '/../../Configuration/Sets/DesiderioBlog/setup.typoscript');
         self::assertStringContainsString("listheader {\n      elements {\n        authors.enable = 1\n        categories.enable = 1\n        tags.enable = 1", $blogTypoScript);

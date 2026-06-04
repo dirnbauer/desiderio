@@ -3,13 +3,7 @@ parameters:
 		-
 			message: '#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\.$#'
 			identifier: foreach.nonIterable
-			count: 5
-			path: Classes/Command/SeedStyleguidePagesCommand.php
-
-		-
-			message: '#^Binary operation "\." between non\-falsy\-string and mixed results in an error\.$#'
-			identifier: binaryOp.invalid
-			count: 1
+			count: 3
 			path: Classes/Command/SeedStyleguidePagesCommand.php
 
 		-
@@ -43,12 +37,6 @@ parameters:
 			path: Classes/Command/SeedStyleguidePagesCommand.php
 
 		-
-			message: '#^Cannot access offset ''items'' on mixed\.$#'
-			identifier: offsetAccess.nonOffsetAccessible
-			count: 1
-			path: Classes/Command/SeedStyleguidePagesCommand.php
-
-		-
 			message: '#^Cannot access offset ''label''\|''name'' on mixed\.$#'
 			identifier: offsetAccess.nonOffsetAccessible
 			count: 1
@@ -69,19 +57,13 @@ parameters:
 		-
 			message: '#^Cannot access offset ''table'' on mixed\.$#'
 			identifier: offsetAccess.nonOffsetAccessible
-			count: 3
-			path: Classes/Command/SeedStyleguidePagesCommand.php
-
-		-
-			message: '#^Cannot access offset int\<0, max\> on mixed\.$#'
-			identifier: offsetAccess.nonOffsetAccessible
-			count: 1
+			count: 2
 			path: Classes/Command/SeedStyleguidePagesCommand.php
 
 		-
 			message: '#^Cannot access offset string on mixed\.$#'
 			identifier: offsetAccess.nonOffsetAccessible
-			count: 9
+			count: 8
 			path: Classes/Command/SeedStyleguidePagesCommand.php
 
 		-
@@ -93,18 +75,12 @@ parameters:
 		-
 			message: '#^Cannot cast mixed to string\.$#'
 			identifier: cast.string
-			count: 15
+			count: 13
 			path: Classes/Command/SeedStyleguidePagesCommand.php
 
 		-
 			message: '#^Casting to int something that''s already int\.$#'
 			identifier: cast.useless
-			count: 1
-			path: Classes/Command/SeedStyleguidePagesCommand.php
-
-		-
-			message: '#^Method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:completeCollectionItem\(\) should return array\<string, mixed\> but returns array\<mixed\>\.$#'
-			identifier: return.type
 			count: 1
 			path: Classes/Command/SeedStyleguidePagesCommand.php
 
@@ -127,33 +103,9 @@ parameters:
 			path: Classes/Command/SeedStyleguidePagesCommand.php
 
 		-
-			message: '#^Parameter \#1 \$collection of method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:getTargetCollectionItemCount\(\) expects array\<string, mixed\>, mixed given\.$#'
-			identifier: argument.type
-			count: 1
-			path: Classes/Command/SeedStyleguidePagesCommand.php
-
-		-
-			message: '#^Parameter \#1 \$fieldConfig of method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:isFileField\(\) expects array\<string, mixed\>, mixed given\.$#'
-			identifier: argument.type
-			count: 1
-			path: Classes/Command/SeedStyleguidePagesCommand.php
-
-		-
-			message: '#^Parameter \#1 \$key of function array_key_exists expects int\|string, mixed given\.$#'
-			identifier: argument.type
-			count: 1
-			path: Classes/Command/SeedStyleguidePagesCommand.php
-
-		-
 			message: '#^Parameter \#1 \$table of method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:tableHasColumn\(\) expects string, mixed given\.$#'
 			identifier: argument.type
 			count: 9
-			path: Classes/Command/SeedStyleguidePagesCommand.php
-
-		-
-			message: '#^Parameter \#1 \$value of function count expects array\|Countable, mixed given\.$#'
-			identifier: argument.type
-			count: 1
 			path: Classes/Command/SeedStyleguidePagesCommand.php
 
 		-
@@ -175,15 +127,9 @@ parameters:
 			path: Classes/Command/SeedStyleguidePagesCommand.php
 
 		-
-			message: '#^Parameter \#2 \$fieldConfig of method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:buildFileReferenceFixtures\(\) expects array\<string, mixed\>, mixed given\.$#'
-			identifier: argument.type
-			count: 1
-			path: Classes/Command/SeedStyleguidePagesCommand.php
-
-		-
 			message: '#^Parameter \#2 \$fieldConfig of method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:normalizeFieldValue\(\) expects array\<string, mixed\>, mixed given\.$#'
 			identifier: argument.type
-			count: 3
+			count: 2
 			path: Classes/Command/SeedStyleguidePagesCommand.php
 
 		-
@@ -193,39 +139,9 @@ parameters:
 			path: Classes/Command/SeedStyleguidePagesCommand.php
 
 		-
-			message: '#^Parameter \#3 \$field of method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:buildDefaultFieldValue\(\) expects string, mixed given\.$#'
-			identifier: argument.type
-			count: 1
-			path: Classes/Command/SeedStyleguidePagesCommand.php
-
-		-
-			message: '#^Parameter \#4 \$collection of method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:completeCollectionItem\(\) expects array\<string, mixed\>, mixed given\.$#'
-			identifier: argument.type
-			count: 1
-			path: Classes/Command/SeedStyleguidePagesCommand.php
-
-		-
-			message: '#^Parameter \#4 \$fieldConfig of method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:buildDefaultFieldValue\(\) expects array\<string, mixed\>, mixed given\.$#'
-			identifier: argument.type
-			count: 1
-			path: Classes/Command/SeedStyleguidePagesCommand.php
-
-		-
 			message: '#^Parameter \#5 \$fileReferences of method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:seedFileReferences\(\) expects array\<string, list\<array\{file\: string, title\: string, alternative\: string, description\: string, source\: string\}\>\>, array\<mixed\> given\.$#'
 			identifier: argument.type
 			count: 1
-			path: Classes/Command/SeedStyleguidePagesCommand.php
-
-		-
-			message: '#^Parameter \#5 \$item of method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:completeCollectionItem\(\) expects array\<string, mixed\>, mixed given\.$#'
-			identifier: argument.type
-			count: 1
-			path: Classes/Command/SeedStyleguidePagesCommand.php
-
-		-
-			message: '#^Possibly invalid array key type mixed\.$#'
-			identifier: offsetAccess.invalidOffset
-			count: 8
 			path: Classes/Command/SeedStyleguidePagesCommand.php
 
 		-

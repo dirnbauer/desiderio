@@ -528,7 +528,10 @@ final class SeedStyleguidePagesCommand extends Command
         }
 
         foreach ($this->getCollectionsByParentTable()[$parentTable] ?? [] as $collection) {
-            $table = (string)$collection['table'];
+            $table = $collection['table'] ?? null;
+            if (!is_string($table) || $table === '') {
+                continue;
+            }
             if (!$this->tableHasColumn($table, 'foreign_table_parent_uid')) {
                 continue;
             }
@@ -819,8 +822,9 @@ final class SeedStyleguidePagesCommand extends Command
             $items = [];
 
             for ($index = 0; $index < $targetItemCount; $index++) {
-                $item = $existingItems[$index] ?? [];
-                $completedItem = $this->completeCollectionItem($ctype, $name, $field, $collection, $item, $index);
+            $item = $existingItems[$index] ?? [];
+            $item = is_array($item) ? $this->normalizeStringKeyedArray($item) : [];
+            $completedItem = $this->completeCollectionItem($ctype, $name, $field, $collection, $item, $index);
                 if ($completedItem !== []) {
                     $items[] = $completedItem;
                 }
@@ -863,7 +867,16 @@ final class SeedStyleguidePagesCommand extends Command
             unset($item[self::NESTED_COLLECTIONS_KEY]);
         }
 
-        foreach ($collection['fields'] as $field => $fieldConfig) {
+        $collectionFields = $collection['fields'] ?? [];
+        if (!is_array($collectionFields)) {
+            $collectionFields = [];
+        }
+
+        foreach ($collectionFields as $field => $fieldConfig) {
+            if (!is_string($field) || !is_array($fieldConfig)) {
+                continue;
+            }
+            $fieldConfig = $this->normalizeStringKeyedArray($fieldConfig);
             if ($this->isFileField($fieldConfig)) {
                 $explicitReferences = $this->buildFileReferenceFixturesFromFixtureValue($item[$field] ?? null, $fieldConfig);
                 unset($item[$field]);
@@ -882,22 +895,39 @@ final class SeedStyleguidePagesCommand extends Command
             }
         }
 
-        foreach (($collection['collections'] ?? []) as $field => $nestedCollection) {
-            $existingItems = $nestedCollections[$field]['items'] ?? [];
+        $nestedCollectionDefinitions = $collection['collections'] ?? [];
+        if (!is_array($nestedCollectionDefinitions)) {
+            $nestedCollectionDefinitions = [];
+        }
+
+        foreach ($nestedCollectionDefinitions as $field => $nestedCollection) {
+            if (!is_string($field) || !is_array($nestedCollection)) {
+                continue;
+            }
+            $nestedCollection = $this->normalizeStringKeyedArray($nestedCollection);
+            $existingNestedCollection = $nestedCollections[$field] ?? [];
+            $existingItems = is_array($existingNestedCollection) && is_array($existingNestedCollection['items'] ?? null)
+                ? $existingNestedCollection['items']
+                : [];
             $targetItemCount = $this->getTargetCollectionItemCount($nestedCollection, count($existingItems));
             $items = [];
 
             for ($nestedIndex = 0; $nestedIndex < $targetItemCount; $nestedIndex++) {
                 $nestedItem = $existingItems[$nestedIndex] ?? [];
-                $completedItem = $this->completeCollectionItem($ctype, $name, (string)$field, $nestedCollection, $nestedItem, $nestedIndex);
+                $nestedItem = is_array($nestedItem) ? $this->normalizeStringKeyedArray($nestedItem) : [];
+                $completedItem = $this->completeCollectionItem($ctype, $name, $field, $nestedCollection, $nestedItem, $nestedIndex);
                 if ($completedItem !== []) {
                     $items[] = $completedItem;
                 }
             }
 
             if ($items !== []) {
+                $nestedTable = $nestedCollection['table'] ?? null;
+                if (!is_string($nestedTable) || $nestedTable === '') {
+                    continue;
+                }
                 $nestedCollections[$field] = [
-                    'table' => $nestedCollection['table'],
+                    'table' => $nestedTable,
                     'items' => $items,
                 ];
                 $item[$field] = count($items);
@@ -1835,9 +1865,11 @@ PHP;
                 return [];
             }
 
+            $fieldConfig = $this->getCollectionFieldConfig($collection, $targetField);
+
             return [
-                $targetField => isset($collection['fields'][$targetField])
-                    ? $this->normalizeFieldValue($item, $collection['fields'][$targetField])
+                $targetField => $fieldConfig !== null
+                    ? $this->normalizeFieldValue($item, $fieldConfig)
                     : $this->normalizeScalarValue($item),
             ];
         }
@@ -2031,6 +2063,25 @@ PHP;
     }
 
     /**
+     * @param array<string, mixed> $collection
+     * @return array<string, mixed>|null
+     */
+    private function getCollectionFieldConfig(array $collection, string $field): ?array
+    {
+        $fields = $collection['fields'] ?? [];
+        if (!is_array($fields)) {
+            return null;
+        }
+
+        $fieldConfig = $fields[$field] ?? null;
+        if (!is_array($fieldConfig)) {
+            return null;
+        }
+
+        return $this->normalizeStringKeyedArray($fieldConfig);
+    }
+
+    /**
      * @param array{collections?: array<string, array<string, mixed>>} $collection
      */
     private function collectionHasNestedCollection(array $collection, string $field): bool
@@ -2181,14 +2232,30 @@ PHP;
         }
 
         if ($field === 'row_data' && !$this->containsNestedArray($value)) {
-            return implode('|', array_map(static fn (mixed $item): string => trim((string)$item), $value));
+            return $this->formatFlatScalarList($value, '|');
         }
 
         if (!$this->containsNestedArray($value)) {
-            return implode("\n", array_map(static fn (mixed $item): string => trim((string)$item), $value));
+            return $this->formatFlatScalarList($value, "\n");
         }
 
         return self::FIELD_SKIP;
+    }
+
+    /**
+     * @param array<int, mixed> $values
+     */
+    private function formatFlatScalarList(array $values, string $separator): string
+    {
+        $items = [];
+        foreach ($values as $value) {
+            $normalized = $this->normalizeScalarValue($value);
+            if (is_scalar($normalized)) {
+                $items[] = trim((string)$normalized);
+            }
+        }
+
+        return implode($separator, $items);
     }
 
     /**
@@ -2201,16 +2268,17 @@ PHP;
             return '';
         }
 
-        if (isset($collection['fields'][$field]) && $this->isFileField($collection['fields'][$field])) {
+        $fieldConfig = $this->getCollectionFieldConfig($collection, $field);
+        if ($fieldConfig !== null && $this->isFileField($fieldConfig)) {
             return $value;
         }
 
         if ($field === 'row_data' && !$this->containsNestedArray($value)) {
-            return implode('|', array_map(static fn (mixed $item): string => trim((string)$item), $value));
+            return $this->formatFlatScalarList($value, '|');
         }
 
         if (!$this->containsNestedArray($value)) {
-            return implode("\n", array_map(static fn (mixed $item): string => trim((string)$item), $value));
+            return $this->formatFlatScalarList($value, "\n");
         }
 
         return self::FIELD_SKIP;
@@ -2478,7 +2546,10 @@ PHP;
             }
             $config = $this->normalizeStringKeyedArray($config);
 
-            $typeName = (string)($config['typeName'] ?? ('desiderio_' . str_replace('-', '', $directory)));
+            $configuredTypeName = $config['typeName'] ?? null;
+            $typeName = is_string($configuredTypeName) && $configuredTypeName !== ''
+                ? $configuredTypeName
+                : 'desiderio_' . str_replace('-', '', $directory);
             $definitions[$typeName] = $this->buildContentBlockDefinition($config);
         }
 

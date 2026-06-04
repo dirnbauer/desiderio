@@ -44,8 +44,11 @@ final class SeedNewsTaxonomyCommand extends Command
             return self::SUCCESS;
         }
 
-        $categoryTitle = trim((string)$input->getOption('category'));
-        $tagTitles = array_values(array_filter(array_map('trim', explode(',', (string)$input->getOption('tags')))));
+        $categoryTitle = trim($this->optionString($input, 'category'));
+        $tagTitles = array_values(array_filter(
+            array_map('trim', explode(',', $this->optionString($input, 'tags'))),
+            static fn (string $tagTitle): bool => $tagTitle !== ''
+        ));
         if ($categoryTitle === '' && $tagTitles === []) {
             $io->error('Provide at least one category or tag title.');
             return self::FAILURE;
@@ -62,20 +65,20 @@ final class SeedNewsTaxonomyCommand extends Command
         $changedCategories = 0;
         $changedTags = 0;
         foreach ($rows as $row) {
-            $newsUid = (int)$row['uid'];
-            $pid = (int)$row['pid'];
+            $newsUid = $this->integerValue($row['uid'] ?? null);
+            $pid = $this->integerValue($row['pid'] ?? null);
             if ($newsUid <= 0 || $pid <= 0) {
                 continue;
             }
 
-            if ((int)($row['categories'] ?? 0) <= 0 && $categoryTitle !== '') {
+            if ($this->integerValue($row['categories'] ?? null) <= 0 && $categoryTitle !== '') {
                 ++$changedCategories;
                 if (!$dryRun) {
                     $this->addNewsCategory($newsUid, $this->ensureCategory($pid, $categoryTitle));
                 }
             }
 
-            if ((int)($row['tags'] ?? 0) <= 0 && $tagTitles !== []) {
+            if ($this->integerValue($row['tags'] ?? null) <= 0 && $tagTitles !== []) {
                 ++$changedTags;
                 if (!$dryRun) {
                     foreach ($tagTitles as $index => $tagTitle) {
@@ -141,7 +144,7 @@ final class SeedNewsTaxonomyCommand extends Command
             ->fetchOne();
 
         if (is_numeric($uid)) {
-            return (int)$uid;
+            return $this->integerValue($uid);
         }
 
         $now = time();
@@ -155,7 +158,7 @@ final class SeedNewsTaxonomyCommand extends Command
             'sorting' => $this->nextSorting('sys_category', $pid),
         ]);
 
-        return (int)$connection->lastInsertId();
+        return $this->integerValue($connection->lastInsertId());
     }
 
     private function ensureTag(int $pid, string $title): int
@@ -175,7 +178,7 @@ final class SeedNewsTaxonomyCommand extends Command
             ->fetchOne();
 
         if (is_numeric($uid)) {
-            return (int)$uid;
+            return $this->integerValue($uid);
         }
 
         $now = time();
@@ -191,7 +194,7 @@ final class SeedNewsTaxonomyCommand extends Command
             'sys_language_uid' => 0,
         ]);
 
-        return (int)$connection->lastInsertId();
+        return $this->integerValue($connection->lastInsertId());
     }
 
     private function addNewsCategory(int $newsUid, int $categoryUid): void
@@ -266,7 +269,7 @@ final class SeedNewsTaxonomyCommand extends Command
             $queryBuilder->andWhere($queryBuilder->expr()->eq($field, $queryBuilder->createNamedParameter($value, $type)));
         }
 
-        return (int)$queryBuilder->executeQuery()->fetchOne();
+        return $this->integerValue($queryBuilder->executeQuery()->fetchOne());
     }
 
     private function nextSorting(string $table, int $pid): int
@@ -280,7 +283,7 @@ final class SeedNewsTaxonomyCommand extends Command
             ->executeQuery()
             ->fetchOne();
 
-        return (is_numeric($maxSorting) ? (int)$maxSorting : 0) + 256;
+        return $this->integerValue($maxSorting) + 256;
     }
 
     private function optionalPositiveInteger(mixed $value): ?int
@@ -289,7 +292,35 @@ final class SeedNewsTaxonomyCommand extends Command
             return null;
         }
 
-        $integer = (int)$value;
+        $integer = $this->integerValue($value);
         return $integer > 0 ? $integer : null;
+    }
+
+    private function optionString(InputInterface $input, string $name): string
+    {
+        $value = $input->getOption($name);
+        if (is_string($value)) {
+            return $value;
+        }
+        if (is_int($value) || is_float($value) || is_bool($value)) {
+            return (string)$value;
+        }
+
+        return '';
+    }
+
+    private function integerValue(mixed $value): int
+    {
+        if (is_int($value)) {
+            return $value;
+        }
+        if (is_float($value)) {
+            return (int)$value;
+        }
+        if (is_string($value) && is_numeric($value)) {
+            return (int)$value;
+        }
+
+        return 0;
     }
 }

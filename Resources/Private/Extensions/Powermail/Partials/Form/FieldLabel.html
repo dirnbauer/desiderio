@@ -7,10 +7,12 @@
 
 <f:if condition="{field.css} != 'nolabel'">
     <label for="powermail_field_{field.marker}" data-slot="field-label" class="{f:render(partial: 'Form/ShadcnClass', arguments: {slot: 'fieldLabel'}) -> f:format.trim()}" title="{field.description}">
-        <vh:string.escapeLabels>{field.title}</vh:string.escapeLabels>
-        <f:if condition="{field.mandatory}">
-            <span class="ms-1 text-destructive" aria-hidden="true">*</span>
-        </f:if>
+        <span class="inline-flex items-baseline gap-1">
+            <span><vh:string.escapeLabels>{field.title}</vh:string.escapeLabels></span>
+            <f:if condition="{field.mandatory}">
+                <span class="text-destructive" aria-hidden="true">*</span>
+            </f:if>
+        </span>
     </label>
 </f:if>
 </html>

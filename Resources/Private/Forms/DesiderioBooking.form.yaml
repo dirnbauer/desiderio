@@ -21,6 +21,13 @@ finishers:
       attachUploads: false
       title: 'Booking request'
   -
+    identifier: BrevoContact
+    options:
+      emailField: email
+      contactAttributes:
+        FIRSTNAME: name
+        SMS: phone
+  -
     identifier: Confirmation
     options:
       message: 'Thank you. Your booking request has been sent.'
@@ -69,3 +76,9 @@ renderables:
         properties:
           fluidAdditionalAttributes:
             rows: 3
+      -
+        identifier: friendlycaptcha
+        label: 'Spam protection'
+        type: Friendlycaptcha
+        validators:
+          - identifier: Friendlycaptcha

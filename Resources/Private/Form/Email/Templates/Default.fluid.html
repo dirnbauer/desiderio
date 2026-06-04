@@ -1,0 +1,71 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:formvh="http://typo3.org/ns/TYPO3/CMS/Form/ViewHelpers">
+<f:layout name="SystemEmail" />
+<f:section name="Title">{title}</f:section>
+<f:section name="Main">
+    <f:variable name="sourceType" value="website" />
+    <f:if condition="{sourcePageTitle}">
+        <f:variable name="sourceType" value="page" />
+    </f:if>
+    <p style="margin-top: 0;">
+        <f:translate
+            key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:email.form.intro"
+            arguments="{title: title, sourceType: sourceType, sourcePageTitle: sourcePageTitle, sourcePageUrl: sourcePageUrl}"
+        >
+            A new {title} form submission was sent from {sourceType, select, page {the page {sourcePageTitle}} other {the website}} ({sourcePageUrl}).
+        </f:translate>
+    </p>
+    <f:if condition="{messageBefore}">
+        <div>{messageBefore -> f:sanitize.html() -> f:format.html()}</div>
+    </f:if>
+    <f:if condition="!{hideFormValues}">
+        <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" style="margin: 30px 0 28px; border-top: 1px solid #e6e6e6;">
+            <formvh:renderAllFormValues renderable="{form.formDefinition}" as="formValue">
+                <tr>
+                    <f:if condition="{formValue.isSection}">
+                        <f:then>
+                            <td colspan="2" style="padding: 18px 0 10px; color: #1a1a1a; font-family: Helvetica, Arial, sans-serif; font-size: 15px; font-weight: 700;">
+                                {formvh:translateElementProperty(element: formValue.element, property: 'label', languageKey: languageKey)}
+                            </td>
+                        </f:then>
+                        <f:else>
+                            <td valign="top" align="left" style="width: 34%; padding: 16px 18px 16px 0; border-bottom: 1px solid #e6e6e6; color: #666666; font-family: Helvetica, Arial, sans-serif; font-size: 14px; line-height: 1.45;">
+                                {formvh:translateElementProperty(element: formValue.element, property: 'label', languageKey: languageKey) -> f:sanitize.html() -> f:transform.html()}
+                            </td>
+                            <td valign="top" align="left" style="padding: 16px 0; border-bottom: 1px solid #e6e6e6; color: #1a1a1a; font-family: Helvetica, Arial, sans-serif; font-size: 15px; line-height: 1.45;">
+                                <f:if condition="{formValue.value}">
+                                    <f:then>
+                                        <f:if condition="{formValue.isMultiValue}">
+                                            <f:then>
+                                                <table role="presentation" cellspacing="0" cellpadding="0" border="0">
+                                                    <f:for each="{formValue.processedValue}" as="value">
+                                                        <tr>
+                                                            <td style="padding: 0 0 6px; color: #1a1a1a; font-family: Helvetica, Arial, sans-serif; font-size: 15px; line-height: 1.45;">{value}</td>
+                                                        </tr>
+                                                    </f:for>
+                                                </table>
+                                            </f:then>
+                                            <f:else>
+                                                <f:format.nl2br>{formValue.processedValue}</f:format.nl2br>
+                                            </f:else>
+                                        </f:if>
+                                    </f:then>
+                                    <f:else>-</f:else>
+                                </f:if>
+                            </td>
+                        </f:else>
+                    </f:if>
+                </tr>
+            </formvh:renderAllFormValues>
+        </table>
+    </f:if>
+    <f:if condition="{messageAfter}">
+        <div>{messageAfter -> f:sanitize.html() -> f:format.html()}</div>
+    </f:if>
+    <p style="margin: 0;">
+        <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:email.form.goodbye">Best regards,</f:translate><br>
+        <strong><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:email.form.signature">webconsulting &amp; Desiderio</f:translate></strong>
+    </p>
+</f:section>
+</html>

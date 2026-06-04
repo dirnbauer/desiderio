@@ -1,0 +1,175 @@
+<!doctype html>
+<html
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="color-scheme" content="light">
+    <title><f:render section="Title" optional="true" /></title>
+    <style type="text/css">
+        body, table, td, p, a {
+            -ms-text-size-adjust: 100%;
+            -webkit-text-size-adjust: 100%;
+        }
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100% !important;
+            background-color: #f2f2f2;
+            font-family: Helvetica, Arial, sans-serif;
+            color: #1a1a1a;
+        }
+        table {
+            border-collapse: collapse;
+            mso-table-lspace: 0pt;
+            mso-table-rspace: 0pt;
+        }
+        img {
+            border: 0;
+            height: auto;
+            line-height: 100%;
+            outline: none;
+            text-decoration: none;
+            -ms-interpolation-mode: bicubic;
+        }
+        p {
+            margin: 0 0 16px;
+        }
+        a {
+            color: #ff8700;
+            text-decoration: underline;
+        }
+        .email-shell {
+            width: 100%;
+            background-color: #f2f2f2;
+        }
+        .email-accent {
+            background-color: #ff8700;
+            height: 168px;
+            line-height: 168px;
+        }
+        .email-card {
+            width: 600px;
+            max-width: 600px;
+            background-color: #ffffff;
+            border-radius: 4px 4px 0 0;
+        }
+        .email-header {
+            padding: 58px 36px 42px;
+            text-align: center;
+        }
+        .email-title {
+            margin: 34px 0 0;
+            color: #1a1a1a;
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 30px;
+            font-weight: 700;
+            line-height: 1.35;
+            text-align: center;
+        }
+        .email-body {
+            padding: 44px 48px 54px;
+            background-color: #ffffff;
+            color: #1a1a1a;
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        .email-footer {
+            width: 600px;
+            max-width: 600px;
+            background-color: #4d4d4d;
+            border-radius: 0 0 4px 4px;
+        }
+        .email-footer-content {
+            padding: 42px 42px 46px;
+            color: #ffffff;
+            font-family: Helvetica, Arial, sans-serif;
+            font-size: 13px;
+            line-height: 1.55;
+            text-align: center;
+        }
+        .email-footer-content p,
+        .email-footer-content a {
+            color: #ffffff;
+        }
+        .email-footer-content a {
+            text-decoration: underline;
+        }
+        @media only screen and (max-width: 640px) {
+            .email-card,
+            .email-footer {
+                width: 100% !important;
+                max-width: 100% !important;
+                border-radius: 0 !important;
+            }
+            .email-header {
+                padding: 42px 24px 32px !important;
+            }
+            .email-title {
+                font-size: 25px !important;
+            }
+            .email-body {
+                padding: 34px 24px 42px !important;
+            }
+            .email-footer-content {
+                padding: 34px 24px 38px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+<f:variable name="currentYear"><f:format.date format="Y">now</f:format.date></f:variable>
+<center>
+    <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%" class="email-shell">
+        <tr>
+            <td align="center" valign="top" class="email-accent">&nbsp;</td>
+        </tr>
+        <tr>
+            <td align="center" valign="top" style="padding: 0 20px;">
+                <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="600" class="email-card" style="margin-top: -132px;">
+                    <tr>
+                        <td valign="top" class="email-header">
+                            <img src="{normalizedParams.siteUrl}{f:uri.resource(path: 'EXT:desiderio/Resources/Public/Images/webconsulting-logo.svg')}" alt="webconsulting" width="237" height="32" style="display: block; width: 237px; max-width: 100%; height: auto; margin: 0 auto;" />
+                            <h1 class="email-title"><f:render section="Title" optional="true" /></h1>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td valign="top" class="email-body">
+                            <f:render section="Main" />
+                        </td>
+                    </tr>
+                </table>
+                <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="600" class="email-footer">
+                    <tr>
+                        <td valign="top" class="email-footer-content" style="padding: 42px 42px 46px; color: #ffffff; font-family: Helvetica, Arial, sans-serif; font-size: 13px; line-height: 1.55; text-align: center;">
+                            <p style="color: #ffffff;">
+                                <f:translate
+                                    key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:email.footer.notice"
+                                    arguments="{siteName: typo3.sitename, siteUrl: normalizedParams.siteUrl}"
+                                >
+                                    This email was sent by {siteName} from URL: {siteUrl} - Please contact your site administrator if you feel you received this email by accident.
+                                </f:translate>
+                            </p>
+                            <p style="color: #ffffff;">
+                                <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:email.footer.copyright.webconsulting" arguments="{year: currentYear}">&copy; {year} webconsulting gmbh</f:translate><br>
+                                <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:email.footer.copyright.desiderio" arguments="{year: currentYear}">&copy; {year} Desiderio</f:translate>
+                            </p>
+                            <p style="margin-bottom: 0; color: #ffffff;">
+                                {typo3.information.copyrightNotice -> f:format.raw()}
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td style="height: 48px; line-height: 48px;">&nbsp;</td>
+        </tr>
+    </table>
+</center>
+</body>
+</html>

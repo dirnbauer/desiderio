@@ -21,6 +21,12 @@ finishers:
       attachUploads: false
       title: 'Website inquiry'
   -
+    identifier: BrevoContact
+    options:
+      emailField: email
+      contactAttributes:
+        FIRSTNAME: name
+  -
     identifier: Confirmation
     options:
       message: 'Thank you. Your message has been sent.'
@@ -61,3 +67,9 @@ renderables:
             required: required
         validators:
           - identifier: NotEmpty
+      -
+        identifier: friendlycaptcha
+        label: 'Spam protection'
+        type: Friendlycaptcha
+        validators:
+          - identifier: Friendlycaptcha

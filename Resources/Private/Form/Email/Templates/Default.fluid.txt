@@ -1,0 +1,25 @@
+<f:layout name="SystemEmail" />
+<f:section name="Title">{title}</f:section>
+<f:section name="Main">
+<f:variable name="sourceType" value="website" /><f:if condition="{sourcePageTitle}"><f:variable name="sourceType" value="page" /></f:if><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:email.form.intro" arguments="{title: title, sourceType: sourceType, sourcePageTitle: sourcePageTitle, sourcePageUrl: sourcePageUrl}">A new {title} form submission was sent from {sourceType, select, page {the page {sourcePageTitle}} other {the website}} ({sourcePageUrl}).</f:translate>
+
+<f:if condition="{messageBefore}">{messageBefore -> f:format.stripTags()}
+
+</f:if><f:if condition="!{hideFormValues}"><formvh:renderAllFormValues renderable="{form.formDefinition}" as="formValue"><f:spaceless>
+    <f:if condition="{formValue.isMultiValue}">
+        <f:then>
+            <f:if condition="{formValue.isSection}"><f:then>*** {formvh:translateElementProperty(element: formValue.element, property: 'label', languageKey: languageKey)} ***</f:then><f:else>{formvh:translateElementProperty(element: formValue.element, property: 'label', languageKey: languageKey) -> f:format.stripTags()}: <f:for each="{formValue.processedValue}" as="singleValue">- {singleValue}
+            </f:for></f:else></f:if>
+        </f:then>
+        <f:else>
+            <f:if condition="{formValue.isSection}"><f:then>*** {formvh:translateElementProperty(element: formValue.element, property: 'label', languageKey: languageKey)} ***</f:then><f:else>{formvh:translateElementProperty(element: formValue.element, property: 'label', languageKey: languageKey) -> f:format.stripTags()}: <f:if condition="{formValue.processedValue}"><f:then>{formValue.processedValue -> f:format.raw()}</f:then><f:else>-</f:else></f:if></f:else></f:if>
+        </f:else>
+    </f:if>
+</f:spaceless>
+</formvh:renderAllFormValues>
+</f:if><f:if condition="{messageAfter}">
+{messageAfter -> f:format.stripTags()}
+</f:if>
+<f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:email.form.goodbye">Best regards,</f:translate>
+<f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:email.form.signature">webconsulting & Desiderio</f:translate>
+</f:section>

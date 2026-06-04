@@ -15,12 +15,28 @@
 
     <div data-slot="field-group" class="{f:render(partial: 'Form/ShadcnClass', arguments: {slot: 'fieldGroup'}) -> f:format.trim()}">
         <f:for each="{page.fields}" as="field" iteration="iteration">
-            <f:render partial="Form/Field/{vh:string.upper(string: field.type)}" arguments="{field: field, settings: settings, mail: mail}" />
+            <f:if condition="{settings.main.moresteps}">
+                <f:then>
+                    <f:if condition="{iterationPages.isLast}">
+                        <f:then>
+                            <f:if condition="{field.type} != 'submit'">
+                                <f:render partial="Form/Field/{vh:string.upper(string: field.type)}" arguments="{field: field, settings: settings, mail: mail}" />
+                            </f:if>
+                        </f:then>
+                        <f:else>
+                            <f:render partial="Form/Field/{vh:string.upper(string: field.type)}" arguments="{field: field, settings: settings, mail: mail}" />
+                        </f:else>
+                    </f:if>
+                </f:then>
+                <f:else>
+                    <f:render partial="Form/Field/{vh:string.upper(string: field.type)}" arguments="{field: field, settings: settings, mail: mail}" />
+                </f:else>
+            </f:if>
         </f:for>
     </div>
 
     <f:if condition="{settings.main.moresteps}">
-        <div class="flex justify-between gap-2 border-t border-border pt-4">
+        <div class="flex items-center justify-between gap-2 border-t border-border pt-4">
             <f:if condition="!{iterationPages.isFirst}">
                 <button type="button" class="{f:render(partial: 'Form/ShadcnClass', arguments: {slot: 'buttonOutline'}) -> f:format.trim()}" data-powermail-morestep-show="{iterationPages.index - 1}">
                     <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/powermail.xlf:powermail.multistep.previous" />
@@ -30,6 +46,15 @@
                 <button type="button" class="ms-auto {f:render(partial: 'Form/ShadcnClass', arguments: {slot: 'buttonDefault'}) -> f:format.trim()}" data-powermail-morestep-validate="{settings.validation.morestep.fieldset}" data-powermail-morestep-show="{iterationPages.cycle}" data-powermail-morestep-previous>
                     <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/powermail.xlf:powermail.multistep.next" />
                 </button>
+            </f:if>
+            <f:if condition="{iterationPages.isLast}">
+                <div class="ms-auto">
+                    <f:for each="{page.fields}" as="field">
+                        <f:if condition="{field.type} == 'submit'">
+                            <f:render partial="Form/Field/{vh:string.upper(string: field.type)}" arguments="{field: field, settings: settings, mail: mail}" />
+                        </f:if>
+                    </f:for>
+                </div>
             </f:if>
         </div>
     </f:if>

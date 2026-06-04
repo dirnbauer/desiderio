@@ -21,6 +21,10 @@ finishers:
       attachUploads: false
       title: 'Website feedback'
   -
+    identifier: BrevoContact
+    options:
+      emailField: email
+  -
     identifier: Confirmation
     options:
       message: 'Thank you. Your feedback has been sent.'
@@ -36,11 +40,12 @@ renderables:
         type: RadioButton
         properties:
           options:
-            1: '1'
-            2: '2'
-            3: '3'
-            4: '4'
-            5: '5'
+            1: '1 - I could not complete the task without help from someone on the team'
+            2: '2 - Several steps were unclear and slowed me down while I tried to continue'
+            3: '3 - I finished the task, but the flow still needs clearer guidance'
+            4: '4 - Most of the experience worked well, with only small moments of friction'
+            5: '5 - The flow was clear, efficient, and easy to complete with confidence'
+            6: '6 - Excellent experience; I would use this flow again without hesitation'
       -
         identifier: feedback
         label: 'Your feedback'
@@ -60,3 +65,9 @@ renderables:
             autocomplete: email
         validators:
           - identifier: EmailAddress
+      -
+        identifier: friendlycaptcha
+        label: 'Spam protection'
+        type: Friendlycaptcha
+        validators:
+          - identifier: Friendlycaptcha

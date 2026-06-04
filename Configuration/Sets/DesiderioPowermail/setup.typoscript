@@ -44,6 +44,7 @@ plugin.tx_powermail {
       }
 
       misc {
+        htmlForHtmlFields = 1
         htmlForLabels = 1
         showOnlyFilledValues = 1
       }

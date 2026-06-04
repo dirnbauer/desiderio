@@ -21,6 +21,12 @@ finishers:
       attachUploads: false
       title: 'Data request'
   -
+    identifier: BrevoContact
+    options:
+      emailField: email
+      contactAttributes:
+        FIRSTNAME: name
+  -
     identifier: Confirmation
     options:
       message: 'Thank you. Your request has been sent.'
@@ -67,3 +73,9 @@ renderables:
         properties:
           fluidAdditionalAttributes:
             rows: 4
+      -
+        identifier: friendlycaptcha
+        label: 'Spam protection'
+        type: Friendlycaptcha
+        validators:
+          - identifier: Friendlycaptcha

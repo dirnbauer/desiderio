@@ -383,3 +383,45 @@ settings:
     type: string
     default: Website forms
     category: desiderio.forms
+
+  desiderio.forms.friendlyCaptchaTestMode:
+    label: 'Friendly Captcha test mode'
+    description: 'Simulate successful Friendly Captcha verification for Desiderio forms in TYPO3 Development context. Leave disabled on live sites; production still needs a real Friendly Captcha site key and API key.'
+    type: bool
+    default: false
+    category: desiderio.forms
+
+  desiderio.forms.brevo.enabled:
+    label: 'Enable Brevo form sync'
+    description: 'Synchronise successful bundled TYPO3 Form submissions with Brevo. Configure BREVO_API_KEY outside site settings.'
+    type: bool
+    default: false
+    category: desiderio.forms
+
+  desiderio.forms.brevo.listIds:
+    label: 'Brevo list IDs'
+    description: 'Optional comma-separated Brevo contact list IDs that successful form contacts should be added to.'
+    type: string
+    default: ''
+    category: desiderio.forms
+
+  desiderio.forms.brevo.strict:
+    label: 'Require Brevo sync'
+    description: 'Cancel the form success flow when Brevo returns an error. Leave disabled for resilient public forms.'
+    type: bool
+    default: false
+    category: desiderio.forms
+
+  desiderio.forms.brevo.trackEvent:
+    label: 'Track Brevo form event'
+    description: 'Send a Brevo custom event with sanitized submitted field values after contact sync.'
+    type: bool
+    default: true
+    category: desiderio.forms
+
+  desiderio.forms.brevo.eventName:
+    label: 'Brevo event name'
+    description: 'Custom event name used for successful form submissions. Brevo allows letters, numbers, hyphens, and underscores.'
+    type: string
+    default: desiderio_form_submit
+    category: desiderio.forms

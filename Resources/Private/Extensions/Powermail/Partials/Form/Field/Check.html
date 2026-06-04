@@ -10,8 +10,13 @@
 
 <fieldset data-slot="field-set" class="powermail_fieldwrap_{field.marker} {field.css} {f:render(partial: 'Form/ShadcnClass', arguments: {slot: 'fieldSet'}) -> f:format.trim()}">
     <f:if condition="{field.css} != 'nolabel'">
-        <legend class="sr-only">
-            <vh:string.escapeLabels>{field.title}</vh:string.escapeLabels>
+        <legend data-slot="field-legend" class="{f:render(partial: 'Form/ShadcnClass', arguments: {slot: 'fieldLegend'}) -> f:format.trim()}" title="{field.description}">
+            <span class="inline-flex items-baseline gap-1">
+                <span><vh:string.escapeLabels>{field.title}</vh:string.escapeLabels></span>
+                <f:if condition="{field.mandatory}">
+                    <span class="text-destructive" aria-hidden="true">*</span>
+                </f:if>
+            </span>
         </legend>
     </f:if>
     <div data-slot="checkbox-group" class="grid gap-3">
@@ -31,9 +36,6 @@
                     </span>
                     <span data-slot="label" class="{f:render(partial: 'Form/ShadcnClass', arguments: {slot: 'optionText'}) -> f:format.trim()}">
                         <vh:string.escapeLabels>{setting.label}</vh:string.escapeLabels>
-                        <f:if condition="{field.mandatory}">
-                            <span class="ms-1 text-destructive" aria-hidden="true">*</span>
-                        </f:if>
                     </span>
                 </label>
             </div>

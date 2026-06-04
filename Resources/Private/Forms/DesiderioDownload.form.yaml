@@ -21,6 +21,10 @@ finishers:
       attachUploads: false
       title: 'Download request'
   -
+    identifier: BrevoContact
+    options:
+      emailField: email
+  -
     identifier: Confirmation
     options:
       message: 'Thank you. Your download request has been received.'
@@ -42,3 +46,9 @@ renderables:
         validators:
           - identifier: NotEmpty
           - identifier: EmailAddress
+      -
+        identifier: friendlycaptcha
+        label: 'Spam protection'
+        type: Friendlycaptcha
+        validators:
+          - identifier: Friendlycaptcha

@@ -7,3 +7,9 @@ persistenceManager:
     20: 'EXT:desiderio/Resources/Private/Forms/'
   allowSaveToExtensionPaths: false
   allowDeleteFromExtensionPaths: false
+
+prototypes:
+  standard:
+    finishersDefinition:
+      BrevoContact:
+        implementationClassName: Webconsulting\Desiderio\Domain\Finishers\BrevoContactFinisher

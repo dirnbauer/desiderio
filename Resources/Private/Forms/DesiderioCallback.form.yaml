@@ -19,6 +19,12 @@ finishers:
       attachUploads: false
       title: 'Callback request'
   -
+    identifier: BrevoContact
+    options:
+      contactAttributes:
+        FIRSTNAME: name
+        SMS: phone
+  -
     identifier: Confirmation
     options:
       message: 'Thank you. Your callback request has been sent.'
@@ -48,3 +54,9 @@ renderables:
             required: required
         validators:
           - identifier: NotEmpty
+      -
+        identifier: friendlycaptcha
+        label: 'Spam protection'
+        type: Friendlycaptcha
+        validators:
+          - identifier: Friendlycaptcha

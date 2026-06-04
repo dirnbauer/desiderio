@@ -21,6 +21,12 @@ finishers:
       attachUploads: false
       title: 'Demo request'
   -
+    identifier: BrevoContact
+    options:
+      emailField: email
+      contactAttributes:
+        FIRSTNAME: name
+  -
     identifier: Confirmation
     options:
       message: 'Thank you. We will get back to you shortly.'
@@ -65,3 +71,9 @@ renderables:
         properties:
           fluidAdditionalAttributes:
             rows: 3
+      -
+        identifier: friendlycaptcha
+        label: 'Spam protection'
+        type: Friendlycaptcha
+        validators:
+          - identifier: Friendlycaptcha

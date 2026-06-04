@@ -2,7 +2,7 @@
 <f:argument name="field" type="object" />
 <f:argument name="settings" type="array" optional="{true}" />
 
-<div data-slot="form-item" class="powermail_fieldwrap_{field.marker} {field.css} pt-1">
+<div data-slot="form-item" class="powermail_fieldwrap_{field.marker} {field.css}">
     <f:form.submit value="{field.title}" class="{f:render(partial: 'Form/ShadcnClass', arguments: {slot: 'buttonDefault'}) -> f:format.trim()}" />
 </div>
 </html>

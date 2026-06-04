@@ -1,0 +1,10 @@
+<f:spaceless><f:render section="Title" optional="true" />
+<f:render section="Main" /></f:spaceless>
+<f:variable name="currentYear"><f:format.date format="Y">now</f:format.date></f:variable>
+
+<f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:email.footer.notice" arguments="{siteName: typo3.sitename, siteUrl: normalizedParams.siteUrl}">This email was sent by {siteName} from URL: {siteUrl} - Please contact your site administrator if you feel you received this email by accident.</f:translate>
+
+<f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:email.footer.copyright.webconsultingText" arguments="{year: currentYear}">Copyright (c) {year} webconsulting gmbh</f:translate>
+<f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:email.footer.copyright.desiderioText" arguments="{year: currentYear}">Copyright (c) {year} Desiderio</f:translate>
+
+{typo3.information.copyrightNotice -> f:format.stripTags() -> f:format.htmlentitiesDecode()}

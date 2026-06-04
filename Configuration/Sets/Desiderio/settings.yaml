@@ -56,3 +56,10 @@ desiderio:
     receiverName: Website team
     senderAddress: no-reply@example.com
     senderName: Website forms
+    friendlyCaptchaTestMode: false
+    brevo:
+      enabled: false
+      listIds: ''
+      strict: false
+      trackEvent: true
+      eventName: desiderio_form_submit

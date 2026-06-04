@@ -5,6 +5,7 @@
   "description": "Tailwind v4 and shadcn/ui theme build for the Desiderio TYPO3 extension.",
   "scripts": {
     "build:css": "tailwindcss -i Resources/Private/Tailwind/desiderio.css -o Resources/Public/Css/desiderio-tailwind.css --minify",
+    "build:prism": "node Build/Scripts/build-prism-lite.mjs",
     "watch:css": "tailwindcss -i Resources/Private/Tailwind/desiderio.css -o Resources/Public/Css/desiderio-tailwind.css --watch",
     "shadcn:info": "shadcn info --json",
     "shadcn:sync-fluid": "php Build/Scripts/sync-shadcn-fluid-primitives.php",
@@ -17,6 +18,7 @@
     "@fontsource-variable/nunito-sans": "^5.2.7",
     "@tailwindcss/cli": "^4.2.4",
     "alpinejs": "^3.15.11",
+    "prismjs": "^1.30.0",
     "shadcn": "^4.5.0",
     "tailwindcss": "^4.2.4",
     "tw-animate-css": "^1.4.0"

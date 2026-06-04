@@ -108,12 +108,16 @@
       return 'php';
     }
 
-    if (normalized.includes('javascript') || normalized === 'js' || normalized.includes('typescript') || normalized === 'ts') {
-      return 'js';
+    if (normalized.includes('typescript') || normalized === 'ts') {
+      return 'typescript';
+    }
+
+    if (normalized.includes('javascript') || normalized === 'js') {
+      return 'javascript';
     }
 
     if (normalized.includes('html') || normalized.includes('xml') || source.trim().startsWith('<')) {
-      return 'html';
+      return 'markup';
     }
 
     if (normalized.includes('css') || normalized.includes('scss')) {
@@ -233,15 +237,19 @@
   }
 
   function highlightCode(source, language) {
+    if (window.Prism?.languages?.[language] && typeof window.Prism.highlight === 'function') {
+      return window.Prism.highlight(source, window.Prism.languages[language], language);
+    }
+
     if (language === 'php') {
       return highlightPhp(source);
     }
 
-    if (language === 'js') {
+    if (language === 'javascript' || language === 'typescript') {
       return highlightJs(source);
     }
 
-    if (language === 'html') {
+    if (language === 'markup') {
       return highlightHtml(source);
     }
 

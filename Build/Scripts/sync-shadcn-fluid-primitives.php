@@ -705,7 +705,15 @@ function renderPowermailShadcnClass(array $recipes, string $header): string
     $controlMarker = 'd-shadcn-control';
     $fieldVertical = normalizeClass($recipes['field']['base'] . ' ' . ($recipes['field']['orientations']['vertical'] ?? ''));
     $fieldHorizontal = normalizeClass($recipes['field']['base'] . ' ' . ($recipes['field']['orientations']['horizontal'] ?? ''));
-    $fieldLabel = normalizeClass($recipes['label'] . ' ' . $recipes['field']['label'] . ' font-medium text-foreground');
+    $fieldLabel = removeClassTokens(
+        normalizeClass($recipes['label'] . ' ' . $recipes['field']['label'] . ' font-medium text-foreground'),
+        [
+            'has-data-checked:border-primary/30',
+            'has-data-checked:bg-primary/5',
+            'dark:has-data-checked:border-primary/20',
+            'dark:has-data-checked:bg-primary/10',
+        ]
+    );
     $input = normalizeClass($recipes['input'] . ' ' . $controlMarker . ' min-w-0');
     $select = normalizeClass($recipes['select']['trigger'] . ' ' . $controlMarker . ' w-full min-w-0 max-w-full');
     $nativeSelect = normalizeClass($select . ' appearance-none pr-8');
@@ -725,12 +733,13 @@ function renderPowermailShadcnClass(array $recipes, string $header): string
         'cardDescription' => $recipes['card']['description'],
         'cardHeaderBordered' => normalizeClass($recipes['card']['header'] . ' border-b'),
         'cardTitle' => $recipes['card']['title'],
-        'checkboxIcon' => normalizeClass($recipes['checkbox']['indicator'] . ' pointer-events-none absolute left-1/2 top-1/2 size-3.5 -translate-x-1/2 -translate-y-1/2 text-primary-foreground opacity-0 transition-opacity peer-checked:opacity-100'),
+        'checkboxIcon' => normalizeClass($recipes['checkbox']['indicator'] . ' pointer-events-none absolute left-1/2 top-1/2 size-3.5 -translate-x-1/2 -translate-y-1/2 text-background opacity-0 transition-opacity peer-checked:opacity-100'),
         'checkboxInput' => $checkbox,
         'field' => $fieldVertical,
         'fieldError' => $recipes['field']['error'],
         'fieldGroup' => $recipes['field']['group'],
         'fieldLabel' => $fieldLabel,
+        'fieldLegend' => 'flex w-fit items-center gap-2 text-xs font-medium leading-snug text-foreground',
         'fieldSet' => $recipes['field']['set'],
         'fileInput' => normalizeClass($input . ' h-auto min-h-24 cursor-pointer items-center border-dashed bg-muted/30 px-3 py-3 text-muted-foreground hover:bg-muted/50'),
         'flashDestructive' => 'rounded-md border border-destructive/30 bg-destructive/10 p-3 text-sm text-destructive',
@@ -739,7 +748,7 @@ function renderPowermailShadcnClass(array $recipes, string $header): string
         'optionText' => normalizeClass($recipes['label'] . ' min-w-0 text-foreground'),
         'panel' => 'rounded-md border border-border bg-muted/30 p-3 text-sm text-muted-foreground',
         'panelContent' => 'rounded-md border border-border bg-muted/30 p-4 text-xs/relaxed text-muted-foreground',
-        'radioDot' => 'pointer-events-none absolute left-1/2 top-1/2 size-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary-foreground opacity-0 transition-opacity peer-checked:opacity-100',
+        'radioDot' => 'pointer-events-none absolute left-1/2 top-1/2 size-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-background opacity-0 transition-opacity peer-checked:opacity-100',
         'radioInput' => $radio,
         'select' => $select,
         'selectIcon' => 'pointer-events-none absolute end-2 top-1/2 size-4 -translate-y-1/2 text-muted-foreground opacity-70',
@@ -855,7 +864,7 @@ function renderTabs(array $recipe, string $header): string
         . '<f:argument name="class" type="string" optional="{true}" default="" />' . "\n"
         . '<f:argument name="orientation" type="string" optional="{true}" default="horizontal" />' . "\n\n"
         . '<div' . "\n"
-        . '    x-data="{ active: \'{defaultValue}\' }"' . "\n"
+        . '    x-data="Object.fromEntries([[\'active\', \'{defaultValue}\']])"' . "\n"
         . sprintf('    class="%s {class}"', attr($recipe['root'])) . "\n"
         . '    data-slot="tabs"' . "\n"
         . '    data-orientation="{orientation}"' . "\n"
@@ -951,12 +960,44 @@ function composeTabsListClass(array $recipe, string $variant): string
 
 function nativeCheckedClass(string $class): string
 {
-    return normalizeClass(strtr($class, [
+    return neutralizeNativeCheckedState(normalizeClass(strtr($class, [
         'aria-invalid:aria-checked:' => 'aria-invalid:checked:',
         'dark:data-checked:' => 'dark:checked:',
         'data-checked:' => 'checked:',
         'aria-checked:' => 'checked:',
-    ]));
+    ])));
+}
+
+function neutralizeNativeCheckedState(string $class): string
+{
+    $map = [
+        'aria-invalid:checked:border-primary' => 'aria-invalid:checked:border-destructive',
+        'checked:border-primary' => 'checked:border-foreground',
+        'checked:bg-primary' => 'checked:bg-foreground',
+        'checked:text-primary-foreground' => 'checked:text-background',
+        'dark:checked:bg-primary' => 'dark:checked:bg-foreground',
+    ];
+
+    $tokens = preg_split('/\s+/', trim($class)) ?: [];
+    foreach ($tokens as $index => $token) {
+        if (isset($map[$token])) {
+            $tokens[$index] = $map[$token];
+        }
+    }
+
+    return normalizeClass(implode(' ', $tokens));
+}
+
+/**
+ * @param list<string> $tokensToRemove
+ */
+function removeClassTokens(string $class, array $tokensToRemove): string
+{
+    $tokens = preg_split('/\s+/', trim($class)) ?: [];
+    $remove = array_flip($tokensToRemove);
+    $tokens = array_values(array_filter($tokens, static fn (string $token): bool => !isset($remove[$token])));
+
+    return normalizeClass(implode(' ', $tokens));
 }
 
 /**

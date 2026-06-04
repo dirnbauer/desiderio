@@ -124,6 +124,61 @@
     return String(value);
   }
 
+  function formatAxisValue(value, unit) {
+    return formatValue(value) + (unit ? ' ' + unit : '');
+  }
+
+  function niceStep(value) {
+    var exponent = Math.floor(Math.log10(value || 1));
+    var magnitude = Math.pow(10, exponent);
+    var normalized = value / magnitude;
+    var niceNormalized = normalized <= 1 ? 1 : normalized <= 2 ? 2 : normalized <= 5 ? 5 : 10;
+
+    return niceNormalized * magnitude;
+  }
+
+  function yScale(values, tickTarget) {
+    var max = Math.max.apply(null, values.map(function (row) { return row.value; }));
+    var min = Math.min.apply(null, values.map(function (row) { return row.value; }));
+    var range = max - min || Math.abs(max) || 1;
+    var step = niceStep(range / Math.max(1, (tickTarget || 5) - 1));
+    var domainMin = Math.floor(min / step) * step;
+    var domainMax = Math.ceil(max / step) * step;
+    var ticks = [];
+
+    if (domainMin === domainMax) {
+      domainMin -= step;
+      domainMax += step;
+    }
+
+    for (var tick = domainMin; tick <= domainMax + step / 2; tick += step) {
+      ticks.push(Number(tick.toFixed(6)));
+    }
+
+    return {
+      min: domainMin,
+      max: domainMax,
+      ticks: ticks
+    };
+  }
+
+  function yScaleFromZero(values, tickTarget) {
+    var max = Math.max.apply(null, values.map(function (row) { return row.value; })) || 1;
+    var step = niceStep(max / Math.max(1, (tickTarget || 5) - 1));
+    var domainMax = Math.ceil(max / step) * step || step;
+    var ticks = [];
+
+    for (var tick = 0; tick <= domainMax + step / 2; tick += step) {
+      ticks.push(Number(tick.toFixed(6)));
+    }
+
+    return {
+      min: 0,
+      max: domainMax,
+      ticks: ticks
+    };
+  }
+
   function renderLegend(root, values) {
     var legend = root.querySelector('.chart__legend');
     if (!legend) {
@@ -146,11 +201,11 @@
     });
   }
 
-  function linePoints(values, width, height, padX, padY, bottom) {
+  function linePoints(values, width, height, padX, padY, bottom, scale) {
     var chartW = width - padX * 2;
     var chartH = height - padY - bottom;
-    var max = Math.max.apply(null, values.map(function (row) { return row.value; }));
-    var min = Math.min.apply(null, values.map(function (row) { return row.value; }));
+    var max = scale && typeof scale.max === 'number' ? scale.max : Math.max.apply(null, values.map(function (row) { return row.value; }));
+    var min = scale && typeof scale.min === 'number' ? scale.min : Math.min.apply(null, values.map(function (row) { return row.value; }));
     var range = max - min || 1;
 
     return values.map(function (row, index) {
@@ -167,7 +222,8 @@
     var padY = options.padY || 28;
     var bottom = options.bottom || 42;
     var chartH = height - padY - bottom;
-    var points = linePoints(values, width, height, padX, padY, bottom);
+    var scale = options.yAxis ? yScale(values, options.yTickCount || 5) : null;
+    var points = linePoints(values, width, height, padX, padY, bottom, scale);
     var pointList = points.map(function (point) {
       return point[0].toFixed(2) + ' ' + point[1].toFixed(2);
     }).join(' ');
@@ -175,14 +231,44 @@
     clear(svg);
     svg.setAttribute('viewBox', '0 0 ' + width + ' ' + height);
 
-    if (options.grid) {
-      for (var i = 0; i <= 4; i++) {
-        var y = padY + (chartH / 4) * i;
+    if (options.yAxis && scale) {
+      var axisRange = scale.max - scale.min || 1;
+      scale.ticks.slice().reverse().forEach(function (tick) {
+        var y = padY + chartH - ((tick - scale.min) / axisRange) * chartH;
         svg.appendChild(svgElement('line', {
           x1: padX,
           x2: width - padX,
           y1: y,
           y2: y,
+          stroke: 'currentColor',
+          'stroke-opacity': '0.1'
+        }));
+        var label = svgElement('text', {
+          x: padX - 12,
+          y: y + 4,
+          'text-anchor': 'end',
+          class: 'chart__axis-label'
+        });
+        label.textContent = formatAxisValue(tick, options.unit || '');
+        svg.appendChild(label);
+      });
+
+      svg.appendChild(svgElement('line', {
+        x1: padX,
+        x2: padX,
+        y1: padY,
+        y2: height - bottom,
+        stroke: 'currentColor',
+        'stroke-opacity': '0.16'
+      }));
+    } else if (options.grid) {
+      for (var i = 0; i <= 4; i++) {
+        var gridY = padY + (chartH / 4) * i;
+        svg.appendChild(svgElement('line', {
+          x1: padX,
+          x2: width - padX,
+          y1: gridY,
+          y2: gridY,
           stroke: 'currentColor',
           'stroke-opacity': '0.12'
         }));
@@ -231,7 +317,8 @@
           y: height - 10,
           'text-anchor': 'middle',
           fill: 'currentColor',
-          opacity: '0.72'
+          opacity: '0.72',
+          class: 'chart__tick-label'
         });
         label.textContent = row.label;
         svg.appendChild(label);
@@ -381,7 +468,12 @@
         });
       } else {
         drawLineChart(svg, values, {
-          grid: root.getAttribute('data-show-grid') === 'true',
+          yAxis: true,
+          yTickCount: 5,
+          unit: root.getAttribute('data-unit') || '',
+          padX: 78,
+          padY: 30,
+          bottom: 38,
           area: chartType === 'area' && root.getAttribute('data-fill-type') !== 'none',
           dots: true,
           labels: true,
@@ -402,6 +494,12 @@
 
       drawLineChart(svg, values, {
         area: true,
+        yAxis: true,
+        yTickCount: 5,
+        unit: root.getAttribute('data-unit') || '',
+        padX: 78,
+        padY: 30,
+        bottom: 38,
         labels: true,
         areaOpacity: opacityMap[root.getAttribute('data-fill-opacity')] || opacityMap.medium
       });
@@ -416,6 +514,12 @@
       if (!svg || !values.length) return;
 
       drawLineChart(svg, values, {
+        yAxis: true,
+        yTickCount: 5,
+        unit: root.getAttribute('data-unit') || '',
+        padX: 78,
+        padY: 30,
+        bottom: 38,
         dots: root.getAttribute('data-show-dots') === 'true',
         labels: true
       });
@@ -427,17 +531,30 @@
       if (!once(root)) return;
       var svg = root.querySelector('.metric-dashboard__sparkline');
       var rows = parseJson(root, 'data-chart-data', []);
-      var values = numericValues(rows).map(function (value) {
-        return { label: '', value: value };
+      var values = numericRows(rows, false);
+      if (!values.length) {
+        values = numericValues(rows).map(function (value, index) {
+          return { label: String(index + 1), value: value };
+        });
+      }
+      values = values.map(function (row, index) {
+        return {
+          label: row.label || String(index + 1),
+          value: row.value
+        };
       });
       if (!svg || !values.length) return;
 
       drawLineChart(svg, values, {
         width: 640,
-        height: 150,
-        padX: 10,
-        padY: 10,
-        bottom: 10,
+        height: 230,
+        padX: 82,
+        padY: 30,
+        bottom: 42,
+        yAxis: true,
+        yTickCount: 5,
+        unit: root.getAttribute('data-chart-unit') || '',
+        labels: true,
         area: true,
         color: 'var(--primary)',
         areaOpacity: 0.12
@@ -449,17 +566,31 @@
     each('.chart-sparkline', function (root) {
       if (!once(root)) return;
       var svg = root.querySelector('.chart-sparkline__svg');
-      var values = numericValues(parseJson(root, 'data-chart-json', [])).map(function (value) {
-        return { label: '', value: value };
+      var rows = parseJson(root, 'data-chart-json', []);
+      var values = numericRows(rows, false);
+      if (!values.length) {
+        values = numericValues(rows).map(function (value, index) {
+          return { label: String(index + 1), value: value };
+        });
+      }
+      values = values.map(function (row, index) {
+        return {
+          label: row.label || String(index + 1),
+          value: row.value
+        };
       });
       if (!svg || !values.length) return;
 
       drawLineChart(svg, values, {
-        width: 400,
-        height: 56,
-        padX: 4,
-        padY: 4,
-        bottom: 4,
+        width: 420,
+        height: 150,
+        padX: 72,
+        padY: 18,
+        bottom: 34,
+        yAxis: true,
+        yTickCount: 4,
+        unit: root.getAttribute('data-chart-unit') || '',
+        labels: true,
         area: true,
         color: 'currentColor',
         areaOpacity: 0.12,
@@ -478,16 +609,48 @@
       clear(svg);
       var width = 640;
       var height = 300;
-      var padX = 42;
+      var orientation = root.getAttribute('data-orientation') || 'vertical';
+      var padX = orientation === 'horizontal' ? 42 : 78;
       var padY = 28;
       var bottom = 48;
       var chartW = width - padX * 2;
       var chartH = height - padY - bottom;
       var max = Math.max.apply(null, values.map(function (row) { return row.value; })) || 1;
-      var orientation = root.getAttribute('data-orientation') || 'vertical';
+      var seriesName = root.getAttribute('data-series-name') || '';
+      var unit = root.getAttribute('data-unit') || '';
       svg.setAttribute('viewBox', '0 0 ' + width + ' ' + height);
 
-      if (root.getAttribute('data-show-grid') === 'true') {
+      if (orientation === 'vertical') {
+        var scale = yScaleFromZero(values, 5);
+        var axisRange = scale.max - scale.min || 1;
+        scale.ticks.slice().reverse().forEach(function (tick) {
+          var axisY = padY + chartH - ((tick - scale.min) / axisRange) * chartH;
+          svg.appendChild(svgElement('line', {
+            x1: padX,
+            x2: width - padX,
+            y1: axisY,
+            y2: axisY,
+            stroke: 'currentColor',
+            'stroke-opacity': '0.1'
+          }));
+          var axisLabel = svgElement('text', {
+            x: padX - 12,
+            y: axisY + 4,
+            'text-anchor': 'end',
+            class: 'chart__axis-label'
+          });
+          axisLabel.textContent = formatAxisValue(tick, unit);
+          svg.appendChild(axisLabel);
+        });
+        svg.appendChild(svgElement('line', {
+          x1: padX,
+          x2: padX,
+          y1: padY,
+          y2: height - bottom,
+          stroke: 'currentColor',
+          'stroke-opacity': '0.16'
+        }));
+      } else if (root.getAttribute('data-show-grid') === 'true') {
         for (var i = 0; i <= 4; i++) {
           var gridY = padY + (chartH / 4) * i;
           svg.appendChild(svgElement('line', {
@@ -506,19 +669,23 @@
         values.forEach(function (row, index) {
           var barWidth = (row.value / max) * chartW;
           var y = padY + index * rowH + rowH * 0.18;
-          svg.appendChild(svgElement('rect', {
+          var horizontalRect = svgElement('rect', {
             x: padX,
             y: y,
             width: Math.max(barWidth, 1),
             height: rowH * 0.54,
             rx: '6',
-            fill: 'var(--chart-color, var(--primary))'
-          }));
+            fill: chartColors[index % chartColors.length],
+            'data-bar-index': String(index + 1)
+          });
+          addTitle(horizontalRect, 'Bar ' + (index + 1) + ', ' + row.label + (seriesName ? ', ' + seriesName : '') + ': ' + formatAxisValue(row.value, unit));
+          svg.appendChild(horizontalRect);
           var label = svgElement('text', {
             x: padX,
             y: y + rowH * 0.82,
             fill: 'currentColor',
-            opacity: '0.72'
+            opacity: '0.72',
+            class: 'chart__tick-label'
           });
           label.textContent = row.label;
           svg.appendChild(label);
@@ -528,8 +695,10 @@
 
       var barW = (chartW / values.length) * 0.56;
       var gap = (chartW - barW * values.length) / Math.max(values.length - 1, 1);
+      var verticalScale = yScaleFromZero(values, 5);
+      var verticalRange = verticalScale.max - verticalScale.min || 1;
       values.forEach(function (row, index) {
-        var valueH = (row.value / max) * chartH;
+        var valueH = ((row.value - verticalScale.min) / verticalRange) * chartH;
         var x = padX + index * (barW + gap);
         var y = padY + chartH - valueH;
         var rect = svgElement('rect', {
@@ -538,16 +707,18 @@
           width: barW,
           height: Math.max(valueH, 1),
           rx: '6',
-          fill: 'var(--chart-color, var(--primary))'
+          fill: chartColors[index % chartColors.length],
+          'data-bar-index': String(index + 1)
         });
-        addTitle(rect, row.label + ': ' + row.value);
+        addTitle(rect, 'Bar ' + (index + 1) + ', ' + row.label + (seriesName ? ', ' + seriesName : '') + ': ' + formatAxisValue(row.value, unit));
         svg.appendChild(rect);
         var label = svgElement('text', {
           x: x + barW / 2,
           y: height - 12,
           'text-anchor': 'middle',
           fill: 'currentColor',
-          opacity: '0.72'
+          opacity: '0.72',
+          class: 'chart__tick-label'
         });
         label.textContent = row.label;
         svg.appendChild(label);
@@ -602,9 +773,10 @@
       values.forEach(function (row, index) {
         var angle = (row.value / total) * Math.PI * 2;
         var end = start + angle;
+        var colorIndex = (index % chartColors.length) + 1;
         var path = svgElement('path', {
           d: piePath(cx, cy, radius, start, end),
-          fill: chartColors[index % chartColors.length]
+          fill: 'var(--chart-pie-' + colorIndex + ', ' + chartColors[index % chartColors.length] + ')'
         });
         addTitle(path, row.label + ': ' + row.value);
         svg.appendChild(path);
@@ -738,11 +910,21 @@
         svg.appendChild(label);
       }
 
-      var points = values.map(function (value, index) {
+      var pointData = values.map(function (value, index) {
         var angle = -Math.PI / 2 + (index / count) * 2 * Math.PI;
         var clamped = Math.min(Math.max(value, 0), 5);
         var rr = (radius * clamped) / 5;
-        return (cx + rr * Math.cos(angle)).toFixed(2) + ' ' + (cy + rr * Math.sin(angle)).toFixed(2);
+        return {
+          x: cx + rr * Math.cos(angle),
+          y: cy + rr * Math.sin(angle),
+          labelX: cx + Math.max(34, rr - 22) * Math.cos(angle),
+          labelY: cy + Math.max(34, rr - 22) * Math.sin(angle),
+          value: value,
+          label: labels[index]
+        };
+      });
+      var points = pointData.map(function (point) {
+        return point.x.toFixed(2) + ' ' + point.y.toFixed(2);
       });
       svg.appendChild(svgElement('polygon', {
         points: points.join(' '),
@@ -751,6 +933,37 @@
         stroke: 'var(--primary)',
         'stroke-width': '2'
       }));
+
+      pointData.forEach(function (point, index) {
+        var labelText = Number(point.value).toFixed(1);
+        var badgeWidth = 34;
+        var badgeHeight = 18;
+        var labelX = Math.min(Math.max(point.labelX, badgeWidth / 2 + 6), 400 - badgeWidth / 2 - 6);
+        var labelY = Math.min(Math.max(point.labelY, badgeHeight / 2 + 6), 400 - badgeHeight / 2 - 6);
+        var group = svgElement('g', {
+          class: 'chart-radar__value-badge'
+        });
+        var rect = svgElement('rect', {
+          x: (labelX - badgeWidth / 2).toFixed(2),
+          y: (labelY - badgeHeight / 2).toFixed(2),
+          width: String(badgeWidth),
+          height: String(badgeHeight),
+          rx: '9',
+          class: 'chart-radar__value-bg'
+        });
+        var valueLabel = svgElement('text', {
+          x: labelX.toFixed(2),
+          y: (labelY + 3.5).toFixed(2),
+          'text-anchor': 'middle',
+          class: 'chart-radar__value-label'
+        });
+        valueLabel.textContent = labelText;
+        addTitle(group, point.label + ': ' + labelText + ' / 5');
+        group.appendChild(rect);
+        group.appendChild(valueLabel);
+        setAnimated(group, index + 1);
+        svg.appendChild(group);
+      });
       plot.appendChild(svg);
     });
   }
@@ -762,51 +975,124 @@
       var rows = parseJson(root, 'data-chart-json', []);
       if (!plot || !Array.isArray(rows) || !rows.length) return;
 
+      var seriesLabels = (root.getAttribute('data-series-labels') || '').split(',').map(function (label) {
+        return label.trim();
+      }).filter(Boolean);
+      var unit = root.getAttribute('data-chart-unit') || '';
+      var totalsBySeries = [];
+      rows.forEach(function (row) {
+        (row.segments || []).map(Number).forEach(function (seg, index) {
+          totalsBySeries[index] = (totalsBySeries[index] || 0) + (Number.isNaN(seg) ? 0 : seg);
+        });
+      });
+      Array.prototype.forEach.call(root.querySelectorAll('.chart-stacked-bar__legend-item'), function (item, index) {
+        item.style.setProperty('--stacked-legend-color', 'var(--stacked-color-' + ((index % 5) + 1) + ')');
+        if (!item.querySelector('.chart-stacked-bar__legend-value') && totalsBySeries[index] != null) {
+          item.appendChild(htmlElement('span', 'chart-stacked-bar__legend-value', formatAxisValue(totalsBySeries[index], unit)));
+        }
+      });
+
       clear(plot);
-      var width = 400;
-      var height = 220;
-      var pad = 28;
-      var bottom = 36;
-      var chartH = height - pad - bottom;
-      var maxStack = Math.max.apply(null, rows.map(function (row) {
+      var width = 720;
+      var height = 390;
+      var padLeft = 84;
+      var padRight = 28;
+      var padTop = 44;
+      var bottom = 58;
+      var chartW = width - padLeft - padRight;
+      var chartH = height - padTop - bottom;
+      var stackTotals = rows.map(function (row) {
         return (row.segments || []).reduce(function (sum, value) {
           return sum + Number(value);
         }, 0);
-      })) || 1;
-      var barW = (width - 2 * pad) / rows.length * 0.55;
-      var gap = (width - 2 * pad - barW * rows.length) / Math.max(rows.length - 1, 1);
+      });
+      var maxStack = Math.max.apply(null, stackTotals) || 1;
+      var scale = yScaleFromZero(stackTotals.map(function (value) {
+        return { label: '', value: value };
+      }), 5);
+      var axisRange = scale.max - scale.min || 1;
+      var barW = Math.min(76, (chartW / rows.length) * 0.42);
+      var gap = (chartW - barW * rows.length) / Math.max(rows.length - 1, 1);
       var svg = svgElement('svg', { viewBox: '0 0 ' + width + ' ' + height, class: 'chart-stacked-bar__svg' });
 
-      if (root.getAttribute('data-show-legend') === '1') {
-        var legend = htmlElement('div', 'chart-stacked-bar__legend');
-        var maxSeg = Math.max.apply(null, rows.map(function (row) { return (row.segments || []).length; }));
-        for (var j = 0; j < maxSeg; j++) {
-          var item = htmlElement('span', 'chart-stacked-bar__legend-item');
-          item.appendChild(htmlElement('span', 'chart-stacked-bar__swatch chart-stacked-bar__swatch--' + ((j % 5) + 1)));
-          item.appendChild(document.createTextNode('S' + (j + 1)));
-          legend.appendChild(item);
-        }
-        plot.appendChild(legend);
-      }
+      scale.ticks.slice().reverse().forEach(function (tick) {
+        var y = padTop + chartH - ((tick - scale.min) / axisRange) * chartH;
+        svg.appendChild(svgElement('line', {
+          x1: padLeft,
+          x2: width - padRight,
+          y1: y,
+          y2: y,
+          stroke: 'currentColor',
+          'stroke-opacity': '0.1'
+        }));
+        var label = svgElement('text', {
+          x: padLeft - 12,
+          y: y + 4,
+          'text-anchor': 'end',
+          class: 'chart-stacked-bar__axis-label'
+        });
+        label.textContent = formatAxisValue(tick, unit);
+        svg.appendChild(label);
+      });
+      svg.appendChild(svgElement('line', {
+        x1: padLeft,
+        x2: padLeft,
+        y1: padTop,
+        y2: height - bottom,
+        stroke: 'currentColor',
+        'stroke-opacity': '0.18'
+      }));
+      svg.appendChild(svgElement('line', {
+        x1: padLeft,
+        x2: width - padRight,
+        y1: height - bottom,
+        y2: height - bottom,
+        stroke: 'currentColor',
+        'stroke-opacity': '0.18'
+      }));
 
       rows.forEach(function (row, index) {
-        var x = pad + index * (barW + gap);
+        var x = padLeft + index * (barW + gap);
         var yAcc = height - bottom;
+        var total = stackTotals[index] || 0;
         (row.segments || []).map(Number).forEach(function (seg, segIndex) {
-          var segH = (seg / maxStack) * chartH;
+          var value = Number.isNaN(seg) ? 0 : seg;
+          var segH = (value / axisRange) * chartH;
           yAcc -= segH;
-          svg.appendChild(svgElement('rect', {
+          var rect = svgElement('rect', {
             x: x,
             y: yAcc,
             width: barW,
             height: Math.max(segH, 0.5),
-            rx: '4',
-            fill: chartColors[segIndex % chartColors.length]
-          }));
+            rx: '5',
+            fill: 'var(--stacked-color-' + ((segIndex % 5) + 1) + ')'
+          });
+          addTitle(rect, (row.label || 'Category ' + (index + 1)) + ', ' + (seriesLabels[segIndex] || 'Series ' + (segIndex + 1)) + ': ' + formatAxisValue(value, unit));
+          setAnimated(rect, index + segIndex);
+          svg.appendChild(rect);
+          if (segH > 25) {
+            var segmentLabel = svgElement('text', {
+              x: x + barW / 2,
+              y: yAcc + segH / 2 + 3,
+              'text-anchor': 'middle',
+              class: 'chart-stacked-bar__segment-label'
+            });
+            segmentLabel.textContent = formatValue(value);
+            svg.appendChild(segmentLabel);
+          }
         });
+        var totalY = padTop + chartH - ((total - scale.min) / axisRange) * chartH;
+        var totalLabel = svgElement('text', {
+          x: x + barW / 2,
+          y: Math.max(14, totalY - 10),
+          'text-anchor': 'middle',
+          class: 'chart-stacked-bar__total-label'
+        });
+        totalLabel.textContent = formatAxisValue(total, unit);
+        svg.appendChild(totalLabel);
         var label = svgElement('text', {
           x: x + barW / 2,
-          y: height - 6,
+          y: height - 20,
           'text-anchor': 'middle',
           fill: 'currentColor',
           class: 'chart-stacked-bar__tick'
@@ -857,12 +1143,24 @@
     each('.chart-contribution', function (root) {
       if (!once(root)) return;
       var svg = root.querySelector('.chart-contribution__svg');
-      var rows = parseJson(root, 'data-chart-json', []);
-      if (!svg || !Array.isArray(rows) || !rows.length) return;
+      var rows = numericRows(parseJson(root, 'data-chart-json', []), false);
+      if (!rows.length) {
+        rows = Array.prototype.map.call(root.querySelectorAll('tbody tr'), function (row) {
+          var label = row.querySelector('th');
+          var value = row.querySelector('td');
+          return {
+            label: label ? label.textContent.trim() : '',
+            value: value ? Number(value.textContent.replace(/[^0-9.-]/g, '')) : NaN
+          };
+        }).filter(function (row) {
+          return row.label && !Number.isNaN(row.value);
+        });
+      }
+      if (!svg || !rows.length) return;
 
       clear(svg);
-      var values = rows.map(function (row) { return Number(row.value) || 0; });
-      var labels = rows.map(function (row) { return row.label || ''; });
+      var values = rows.map(function (row) { return row.value; });
+      var labels = rows.map(function (row) { return row.label; });
       var width = 400;
       var height = 160;
       var pad = 12;

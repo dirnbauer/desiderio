@@ -31,6 +31,7 @@ final class PowermailIntegrationTest extends TestCase
         self::assertStringContainsString('action = form', $setup);
         self::assertStringContainsString('lib.desiderioPowermailPi1', $contentTemplate);
         self::assertStringContainsString('ce-fsc-powermail', $contentTemplate);
+        self::assertStringContainsString('partialRootPaths.1000000 = EXT:desiderio/Resources/Private/Extensions/Powermail/Partials/', $setup);
         self::assertStringContainsString('EXT:desiderio/Resources/Private/Extensions/Powermail/Templates/', $setup);
         self::assertStringContainsString('EXT:desiderio/Resources/Private/Extensions/Powermail/Partials/', $setup);
         self::assertStringContainsString('EXT:desiderio/Resources/Private/Extensions/Powermail/Layouts/', $setup);
@@ -161,7 +162,9 @@ final class PowermailIntegrationTest extends TestCase
 
         $friendlyCaptcha = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/Powermail/Partials/Form/Field/Friendlycaptcha.html');
         self::assertStringContainsString('friendlycaptcha:configuration()', $friendlyCaptcha);
+        self::assertStringContainsString('di:friendlyCaptchaTestModeEnabled()', $friendlyCaptcha);
         self::assertStringContainsString('identifier="friendlycaptcha"', $friendlyCaptcha);
+        self::assertStringContainsString('friendlyCaptchaTestMode', $friendlyCaptcha);
         self::assertStringContainsString('class="frc-captcha"', $friendlyCaptcha);
         self::assertStringContainsString('configuration_missing', $friendlyCaptcha);
     }

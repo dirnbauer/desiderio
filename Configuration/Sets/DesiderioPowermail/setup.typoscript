@@ -1,8 +1,8 @@
 plugin.tx_powermail {
   view {
-    templateRootPaths.200 = EXT:desiderio/Resources/Private/Extensions/Powermail/Templates/
-    partialRootPaths.200 = EXT:desiderio/Resources/Private/Extensions/Powermail/Partials/
-    layoutRootPaths.200 = EXT:desiderio/Resources/Private/Extensions/Powermail/Layouts/
+    templateRootPaths.1000000 = EXT:desiderio/Resources/Private/Extensions/Powermail/Templates/
+    partialRootPaths.1000000 = EXT:desiderio/Resources/Private/Extensions/Powermail/Partials/
+    layoutRootPaths.1000000 = EXT:desiderio/Resources/Private/Extensions/Powermail/Layouts/
   }
 
   settings {

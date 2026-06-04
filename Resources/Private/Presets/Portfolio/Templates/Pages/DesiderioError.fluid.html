@@ -6,10 +6,19 @@
 
 <f:layout name="Pages/Default"/>
 
+<f:if condition="{page.pageRecord.abstract}">
+    <f:then>
+        <f:variable name="errorIntro" value="{page.pageRecord.abstract}"/>
+    </f:then>
+    <f:else>
+        <f:variable name="errorIntro"><f:translate extensionName="desiderio" key="page.error.intro">This page has moved or no longer exists. Use the links below or head back to the homepage to find what you need.</f:translate></f:variable>
+    </f:else>
+</f:if>
+
 <f:section name="Main">
     <section class="desiderio-system-page desiderio-portfolio-system desiderio-portfolio-system--error">
         <d:layout.container size="xl">
-            <f:render partial="Presets/SystemHeader" arguments="{class: 'desiderio-portfolio-system__header', eyebrow: breadcrumb.0.title, title: page.pageRecord.title, summary: page.pageRecord.abstract -> f:or(alternative: '{f:translate(extensionName: \'desiderio\', key: \'page.error.intro\')}'), summaryTag: 'span'}"/>
+            <f:render partial="Presets/SystemHeader" arguments="{class: 'desiderio-portfolio-system__header', eyebrow: breadcrumb.0.title, title: page.pageRecord.title, summary: errorIntro, summaryTag: 'span'}"/>
             <div class="desiderio-system-page__content desiderio-portfolio-system__content">
                 <f:render partial="Presets/ContentArea" arguments="{content: content.main}"/>
                 <f:render partial="Presets/ErrorHomeLink" arguments="{homeLink: breadcrumb.0.link}"/>

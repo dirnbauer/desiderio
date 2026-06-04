@@ -6,10 +6,19 @@
 
 <f:layout name="Pages/Default"/>
 
+<f:if condition="{page.pageRecord.abstract}">
+    <f:then>
+        <f:variable name="searchIntro" value="{page.pageRecord.abstract}"/>
+    </f:then>
+    <f:else>
+        <f:variable name="searchIntro"><f:translate extensionName="desiderio" key="page.search.intro">Find solutions, case studies, documentation and the right contact across our site.</f:translate></f:variable>
+    </f:else>
+</f:if>
+
 <f:section name="Main">
     <section class="desiderio-system-page desiderio-portfolio-system desiderio-portfolio-system--search">
         <d:layout.container size="xl">
-            <f:render partial="Presets/SystemHeader" arguments="{class: 'desiderio-portfolio-system__header', eyebrow: breadcrumb.0.title, title: page.pageRecord.title, summary: page.pageRecord.abstract -> f:or(alternative: '{f:translate(extensionName: \'desiderio\', key: \'page.search.intro\')}'), summaryTag: 'span'}"/>
+            <f:render partial="Presets/SystemHeader" arguments="{class: 'desiderio-portfolio-system__header', eyebrow: breadcrumb.0.title, title: page.pageRecord.title, summary: searchIntro, summaryTag: 'span'}"/>
             <div class="desiderio-system-page__content desiderio-portfolio-system__content">
                 <f:render partial="Presets/ContentArea" arguments="{content: content.main}"/>
             </div>

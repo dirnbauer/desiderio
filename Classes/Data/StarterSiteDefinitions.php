@@ -577,7 +577,7 @@ final class StarterSiteDefinitions
             self::saasPage('Customers', 'customers', 'Customer proof, outcomes, and role-specific stories.', 'Customer proof', ['Scaleup teams', 'Enterprise pilots', 'Agency partners']),
             self::saasPage('Resources', 'resources', 'Guides, templates, and comparison content for demand capture.', 'Resource hub', ['Buyer guide', 'ROI worksheet', 'Migration plan']),
             self::saasPage('Docs', 'docs', 'Documentation landing page for implementation and product education.', 'Documentation', ['Getting started', 'API basics', 'Release notes']),
-            self::saasPage('Changelog', 'changelog', 'Product updates, launch notes, and roadmap trust signals.', 'Product updates', ['Workflow rules', 'Dashboard exports', 'Permission presets']),
+            self::saasPage('Release Notes', 'release-notes', 'Product updates, launch notes, and roadmap trust signals.', 'Product updates', ['Workflow rules', 'Dashboard exports', 'Permission presets']),
             self::saasPage('Contact Sales', 'contact-sales', 'Enterprise contact path with qualification content and next steps.', 'Sales route', ['Requirements call', 'Security review', 'Pilot scope']),
             self::saasPage('Start Trial', 'start-trial', 'Signup-oriented page with activation expectations and support promises.', 'Trial path', ['14-day trial', 'Guided setup', 'Success review']),
         ], ['product', 'use-cases', 'pricing', 'integrations', 'security', 'customers']);
@@ -589,11 +589,11 @@ final class StarterSiteDefinitions
             'rootSlug' => '/desiderio-saas-starter',
             'rootTitle' => 'LaunchLayer',
             'rootNavTitle' => 'Home',
-            'abstract' => 'A SaaS starter with product narrative, use cases, pricing, integrations, security, customers, resources, docs, changelog, sales, trial, team, and utility pages.',
+            'abstract' => 'A SaaS starter with product narrative, use cases, pricing, integrations, security, customers, resources, docs, release notes, sales, trial, team, and utility pages.',
             'home' => [
                 'layout' => 'DesiderioStartpage',
                 'content' => [
-                    self::heroSaas('Launch workflows your team can measure', 'LaunchLayer', 'A SaaS starter for product-led teams that need a clear product story, proof, pricing, integrations, security, docs, changelog, sales, and trial paths from day one.', 'Start trial', '#start-trial', 'Contact sales', '#contact-sales', ['Northstar Labs', 'Helio Systems', 'Aster Commerce', 'Studio Atlas']),
+                    self::heroSaas('Launch workflows your team can measure', 'LaunchLayer', 'A SaaS starter for product-led teams that need a clear product story, proof, pricing, integrations, security, docs, release notes, sales, and trial paths from day one.', 'Start trial', '#start-trial', 'Contact sales', '#contact-sales', ['Northstar Labs', 'Helio Systems', 'Aster Commerce', 'Studio Atlas']),
                     self::navTabs('SaaS evaluation path', [
                         ['label' => 'Product', 'link' => '#product'],
                         ['label' => 'Use Cases', 'link' => '#use-cases'],
@@ -629,7 +629,7 @@ final class StarterSiteDefinitions
                         ['quote' => 'The trial path sets expectations clearly enough for product-led onboarding.', 'author_name' => 'Sara Yu', 'author_title' => 'Growth Lead, Aster Commerce'],
                     ]),
                     self::faq('Buying questions', 'Answer practical objections before the visitor reaches sales.', [
-                        ['question' => 'Can we use this starter as a real SaaS site skeleton?', 'answer' => 'Yes. The page tree covers the common evaluation path: product, use cases, pricing, integrations, security, resources, docs, changelog, sales, and trial.'],
+                        ['question' => 'Can we use this starter as a real SaaS site skeleton?', 'answer' => 'Yes. The page tree covers the common evaluation path: product, use cases, pricing, integrations, security, resources, docs, release notes, sales, and trial.'],
                         ['question' => 'Does it include realistic content elements?', 'answer' => 'Yes. It uses real Desiderio Content Blocks with collection data, nested pricing features, metrics, charts, tables, and CTAs.'],
                         ['question' => 'Can editors replace everything later?', 'answer' => 'Yes. The command seeds normal TYPO3 pages and content records, so editors can revise, reorder, or delete blocks.'],
                     ]),
@@ -644,7 +644,7 @@ final class StarterSiteDefinitions
                         ['name' => 'Mina Shah', 'role' => 'Customer Success'],
                         ['name' => 'Leo Frank', 'role' => 'Security Engineering'],
                     ]),
-                    self::ctaCard('Start with a measurable launch workflow', 'Use the seeded product, pricing, security, docs, changelog, and trial pages as the first pass of a serious SaaS website.', 'Start trial', '#start-trial', 'Product-led path'),
+                    self::ctaCard('Start with a measurable launch workflow', 'Use the seeded product, pricing, security, docs, release notes, and trial pages as the first pass of a serious SaaS website.', 'Start trial', '#start-trial', 'Product-led path'),
                     self::sitemapGrid('Explore LaunchLayer', [
                         [
                             'title' => 'Product',
@@ -667,7 +667,7 @@ final class StarterSiteDefinitions
                             'pages' => [
                                 ['label' => 'Resources', 'link' => '#resources'],
                                 ['label' => 'Docs', 'link' => '#docs'],
-                                ['label' => 'Changelog', 'link' => '#changelog'],
+                                ['label' => 'Release Notes', 'link' => '#release-notes'],
                             ],
                         ],
                         [

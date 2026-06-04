@@ -71,7 +71,7 @@ them in *Site Management → Settings* on each site.
     *   - ``desiderio.forms.friendlyCaptchaTestMode``
         - ``false``
         - Boolean. Simulates a successful Friendly Captcha verification for
-          Desiderio forms in TYPO3 Development context.
+          Desiderio and Powermail forms in TYPO3 Development context.
 
 The base setup renders these settings into the ``<body>`` element as
 ``data-*`` attributes, including ``data-shadcn-preset``,
@@ -90,9 +90,11 @@ Sites -> Friendly Captcha*.
 For local form testing, enable ``desiderio.forms.friendlyCaptchaTestMode``.
 During frontend requests Desiderio maps that setting to the Friendly Captcha
 extension's ``friendlycaptcha_skip_dev_validation`` site configuration flag.
-The extension only accepts that flag in TYPO3 Development context, so the
-setting simulates a successful server-side verification without weakening a
-Production context.
+The mapped flag is also exposed on TYPO3's global request, because Friendly
+Captcha's Powermail validator reads its configuration from that request. The
+extension only accepts that flag in TYPO3 Development context, so the setting
+simulates a successful server-side verification without weakening a Production
+context.
 
 Automated end-to-end tests can also use Friendly Captcha's header bypass:
 set an environment variable named ``FRIENDLYCAPTCHA_SKIP_HEADER_VALIDATION``

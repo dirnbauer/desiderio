@@ -386,7 +386,7 @@ settings:
 
   desiderio.forms.friendlyCaptchaTestMode:
     label: 'Friendly Captcha test mode'
-    description: 'Simulate successful Friendly Captcha verification for Desiderio forms in TYPO3 Development context. Leave disabled on live sites; production still needs a real Friendly Captcha site key and API key.'
+    description: 'Simulate successful Friendly Captcha verification for Desiderio and Powermail forms in TYPO3 Development context. Leave disabled on live sites; production still needs a real Friendly Captcha site key and API key.'
     type: bool
     default: false
     category: desiderio.forms

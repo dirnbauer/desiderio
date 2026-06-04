@@ -22,22 +22,30 @@ final class FriendlyCaptchaTestModeMiddleware implements MiddlewareInterface
             return $handler->handle($request);
         }
 
+        $site = $this->enableFriendlyCaptchaSkipValidation($site);
+        $request = $request->withAttribute('site', $site);
+
+        $globalRequest = $GLOBALS['TYPO3_REQUEST'] ?? null;
+        if ($globalRequest instanceof ServerRequestInterface) {
+            $GLOBALS['TYPO3_REQUEST'] = $globalRequest->withAttribute('site', $site);
+        }
+
+        return $handler->handle($request);
+    }
+
+    private function enableFriendlyCaptchaSkipValidation(Site $site): Site
+    {
         $configuration = $site->getConfiguration();
         $configuration[self::FRIENDLY_CAPTCHA_SKIP_KEY] = true;
 
-        $request = $request->withAttribute(
-            'site',
-            new Site(
-                $site->getIdentifier(),
-                $site->getRootPageId(),
-                $configuration,
-                $site->getSettings(),
-                $site->getTypoScript(),
-                $site->getTSconfig()
-            )
+        return new Site(
+            $site->getIdentifier(),
+            $site->getRootPageId(),
+            $configuration,
+            $site->getSettings(),
+            $site->getTypoScript(),
+            $site->getTSconfig()
         );
-
-        return $handler->handle($request);
     }
 
     private function isTestModeEnabled(Site $site): bool

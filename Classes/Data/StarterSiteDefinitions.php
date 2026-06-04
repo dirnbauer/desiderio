@@ -14,7 +14,7 @@ namespace Webconsulting\Desiderio\Data;
  * @phpstan-type StarterBlock array{ctype: string, colPos: int, fields: array<string, mixed>}
  * @phpstan-type StarterHome array{layout: string, content: array<int, StarterBlock>}
  * @phpstan-type StarterPage array{title: string, navTitle: string, slug: string, layout: string, abstract: string, navHidden: bool, content: array<int, StarterBlock>}
- * @phpstan-type StarterSite array{label: string, slug: string, rootSlug: string, rootTitle: string, rootNavTitle: string, abstract: string, home: StarterHome, subpages: array<int, StarterPage>}
+ * @phpstan-type StarterSite array{label: string, slug: string, rootSlug: string, rootTitle: string, rootNavTitle: string, purpose: string, abstract: string, home: StarterHome, subpages: array<int, StarterPage>}
  */
 final class StarterSiteDefinitions
 {
@@ -74,31 +74,32 @@ final class StarterSiteDefinitions
             'rootSlug' => '/desiderio-corporate-starter',
             'rootTitle' => 'Northstar Advisory Group',
             'rootNavTitle' => 'Home',
-            'abstract' => 'A complete corporate starter for a senior B2B service firm: positioning, procurement proof, delivery governance, people, resources, hiring, and contact paths.',
+            'purpose' => 'Help enterprise buyers understand the offer, trust the delivery model, and start a qualified procurement-safe conversation.',
+            'abstract' => 'A senior B2B service firm for companies that need operational change delivered with visible governance, procurement-ready proof, and accountable delivery.',
             'home' => [
                 'layout' => 'DesiderioStartpage',
                 'content' => [
-                    self::heroStats('Digital operations work that survives procurement and rollout', 'Northstar Advisory Group', 'A corporate starter for service firms that need buyers to understand the offer, trust the delivery model, and find proof without a sales deck.', 'Book a working session', '#contact', [
+                    self::heroStats('Digital operations work that survives procurement and rollout', 'Northstar Advisory Group', 'For executive teams replacing fragile internal workflows: advisory, implementation, and managed improvement with proof, governance, and procurement support in one clear path.', 'Book a working session', '#contact', [
                         ['value' => '42%', 'label' => 'Less manual handoff', 'stat_description' => 'Measured after replacing regional spreadsheet flows.'],
                         ['value' => '11', 'label' => 'Departments onboarded', 'stat_description' => 'Legal, finance, operations, support, and regional leads.'],
                         ['value' => '24h', 'label' => 'Escalation response', 'stat_description' => 'Contracted production-facing response window.'],
                         ['value' => '99.9%', 'label' => 'Critical uptime', 'stat_description' => 'Tracked across portals and reporting workflows.'],
                     ]),
-                    self::navTabs('Corporate starter map', [
+                    self::navTabs('Corporate buyer path', [
                         ['label' => 'Services', 'link' => '#advisory-services'],
                         ['label' => 'Proof', 'link' => '#case-studies'],
                         ['label' => 'Governance', 'link' => '#governance'],
                         ['label' => 'Procurement', 'link' => '#procurement'],
                         ['label' => 'Contact', 'link' => '#contact'],
                     ]),
-                    self::headerSection('Useful corporate content starts with buying questions', 'Starter strategy', 'The page stack is organized around evaluation: what you do, how delivery is governed, who leads it, what proof exists, and how procurement moves forward.'),
+                    self::headerSection('A corporate site must make the buying case legible', 'Buyer pathway', 'The page stack is organized around evaluation: what you do, how delivery is governed, who leads it, what proof exists, and how procurement moves forward.'),
                     self::kpiCards('Operating proof in one screen', 'Board-level signals', 'Use this row as the first proof check after the masthead.', [
                         ['value' => '38%', 'label' => 'Lower manual handoffs', 'detail_text' => 'Measured after replacing six spreadsheet-led workflows.', 'trend' => 'positive'],
                         ['value' => '11', 'label' => 'Departments onboarded', 'detail_text' => 'Legal, finance, operations, support, and regional teams.', 'trend' => 'positive'],
                         ['value' => '24h', 'label' => 'Escalation response', 'detail_text' => 'Contracted response window for production-facing issues.', 'trend' => 'neutral'],
                         ['value' => '99.9%', 'label' => 'Critical process uptime', 'detail_text' => 'Tracked across service portals and reporting workflows.', 'trend' => 'positive'],
                     ]),
-                    self::featureCards('A corporate starter that works past the hero', 'What visitors need', 'Every block answers a procurement, leadership, or delivery question.', [
+                    self::featureCards('What enterprise buyers need before they talk to sales', 'Evaluation content', 'Every section answers a procurement, leadership, or delivery question.', [
                         ['title' => 'For executives', 'description' => 'Plain-language outcomes, commercial fit, and proof that reduces buying risk.'],
                         ['title' => 'For delivery teams', 'description' => 'Service lines, governance cadence, and clear handoff expectations.'],
                         ['title' => 'For procurement', 'description' => 'Legal, compliance, references, and contact paths ready for review.'],
@@ -123,7 +124,7 @@ final class StarterSiteDefinitions
                         ['title' => 'Reduce operational drag', 'description' => 'The team removes handoffs and reporting loops that slow frontline teams down.', 'icon' => 'workflow'],
                         ['title' => 'Stay accountable after launch', 'description' => 'Improvements continue through managed reviews instead of vanishing at handoff.', 'icon' => 'shield-check'],
                     ]),
-                    self::teamGridMinimal('Client-facing leadership', 'Seeded people content makes the corporate starter feel credible before final team profiles are added.', [
+                    self::teamGridMinimal('Client-facing leadership', 'Senior owners are visible before a buyer asks who will actually guide the work.', [
                         ['name' => 'Mara Stein', 'role' => 'Managing Partner, Advisory'],
                         ['name' => 'Jonas Feld', 'role' => 'Delivery Principal'],
                         ['name' => 'Priya Nair', 'role' => 'Technical Director'],
@@ -206,11 +207,12 @@ final class StarterSiteDefinitions
             'rootSlug' => '/desiderio-dashboard-starter',
             'rootTitle' => 'SignalRoom',
             'rootNavTitle' => 'Overview',
-            'abstract' => 'A dummy analytics application with realistic dashboards, operational pages, data tables, charts, alerts, roles, pricing, and settings.',
+            'purpose' => 'Give operators a populated app shell for scanning metrics, investigating risks, and moving from overview to department dashboards.',
+            'abstract' => 'An operating dashboard for teams that need revenue, product, customer health, pipeline, support, finance, and system health in one workspace.',
             'home' => [
                 'layout' => 'DesiderioStartpage',
                 'content' => [
-                    self::heroSaas('Run the weekly operating room from one dashboard', 'SignalRoom demo workspace', 'A dashboard starter with populated dummy data across revenue, product, customer health, pipeline, experiments, support, finance, and system health.', 'Open reports', '#reports', 'Review settings', '#settings', ['RevOps', 'Product', 'Success', 'Finance']),
+                    self::heroSaas('Run the weekly operating room from one dashboard', 'SignalRoom workspace', 'A populated analytics workspace for revenue, product, customer health, pipeline, experiments, support, finance, and system health.', 'Open reports', '#reports', 'Review settings', '#settings', ['RevOps', 'Product', 'Success', 'Finance']),
                     self::navTabs('Dashboard workspace sections', [
                         ['label' => 'Revenue', 'link' => '#revenue'],
                         ['label' => 'Product', 'link' => '#product-analytics'],
@@ -218,34 +220,34 @@ final class StarterSiteDefinitions
                         ['label' => 'Reports', 'link' => '#reports'],
                         ['label' => 'Settings', 'link' => '#settings'],
                     ]),
-                    self::metricDashboard('Executive overview', 'The homepage is a useful dummy dashboard instead of an empty admin shell.', [
+                    self::metricDashboard('Executive overview', 'The homepage gives leaders a compact operating picture before they open a department view.', [
                         ['label' => 'ARR', 'value' => 'EUR 4.8M', 'change' => '+14% vs last quarter', 'trend' => 'up'],
                         ['label' => 'Active accounts', 'value' => '312', 'change' => '+28 this month', 'trend' => 'up'],
                         ['label' => 'Open risks', 'value' => '17', 'change' => '-6 after review', 'trend' => 'down'],
                         ['label' => 'SLA health', 'value' => '96%', 'change' => '+2 points', 'trend' => 'up'],
                     ], 'Operating score', 'pts'),
-                    self::chartLine('Pipeline trend', 'Dummy data shows the dashboard canvas, chart labels, and responsive behavior.', 'Pipeline value', 'k EUR'),
+                    self::chartLine('Pipeline trend', 'Trend data makes chart hierarchy, labels, and responsive behavior visible.', 'Pipeline value', 'k EUR'),
                     self::dataTable('Priority accounts', ['Account', 'Owner', 'Stage', 'Signal'], [
                         ['Northstar Labs', 'Mara', 'Renewal', 'Expansion likely'],
                         ['Helio Systems', 'Sofia', 'Onboarding', 'Training overdue'],
                         ['Studio Atlas', 'Jonas', 'Active', 'New integration'],
                     ]),
-                    self::featureCards('Dummy dashboards that are useful for review', 'Workspace design', 'Each dashboard page has enough populated metrics, chart data, table rows, and alert copy to test density and navigation.', [
+                    self::featureCards('Dashboards that support decisions, not decoration', 'Workspace design', 'Each dashboard page carries populated metrics, chart data, table rows, and alert copy so teams can judge density and navigation.', [
                         ['title' => 'Executive-ready summary', 'description' => 'High-level scores, risks, and movement across the operating model.'],
-                        ['title' => 'Role-specific pages', 'description' => 'Revenue, product, success, support, operations, finance, and system health pages are all seeded.'],
+                        ['title' => 'Role-specific pages', 'description' => 'Revenue, product, success, support, operations, finance, and system health pages each have a distinct job.'],
                         ['title' => 'Data-state coverage', 'description' => 'Tables, charts, KPI cards, alerts, settings, and reports make empty-state design unnecessary.'],
                     ]),
-                    self::pricingThreeTier('Workspace packages', 'Commercial demo', 'Dashboard starters often need plan and access examples for sales demos and internal tools.', [
-                        ['name' => 'Team', 'price' => 'EUR 49', 'billing_period' => '/seat', 'description' => 'For one team reviewing weekly operating metrics.', 'features' => ['8 dashboards', 'CSV exports', 'Email summaries'], 'is_recommended' => false, 'button_text' => 'Start team plan', 'button_link' => '#settings'],
+                    self::pricingThreeTier('Workspace packages', 'Commercial model', 'Plan and access examples help teams evaluate seats, permissions, exports, and governance needs.', [
+                        ['name' => 'Team', 'price' => 'EUR 49', 'billing_period' => '/seat', 'description' => 'For one team tracking weekly operating metrics.', 'features' => ['8 dashboards', 'CSV exports', 'Email summaries'], 'is_recommended' => false, 'button_text' => 'Start team plan', 'button_link' => '#settings'],
                         ['name' => 'Company', 'price' => 'EUR 99', 'billing_period' => '/seat', 'description' => 'For cross-functional reporting and executive review.', 'features' => ['Unlimited dashboards', 'Role permissions', 'Scheduled reports'], 'is_recommended' => true, 'button_text' => 'Open company plan', 'button_link' => '#settings'],
                         ['name' => 'Enterprise', 'price' => 'Custom', 'billing_period' => '', 'description' => 'For security, data warehouse, and governance requirements.', 'features' => ['SSO', 'Audit logs', 'Dedicated onboarding'], 'is_recommended' => false, 'button_text' => 'Request review', 'button_link' => '#settings'],
                     ]),
                     self::testimonialGrid('Operators using the workspace', 'Internal proof', [
-                        ['quote' => 'The dummy workspace shows enough density to judge whether the dashboard rail and tables are actually useful.', 'author_name' => 'Mara Klein', 'author_title' => 'Executive Sponsor'],
-                        ['quote' => 'Every dashboard page has a metric set, trend chart, and detail table, so reviewers are not staring at placeholders.', 'author_name' => 'Sofia Urban', 'author_title' => 'Customer Health Owner'],
-                        ['quote' => 'Settings, reports, and system health make this feel like a real app shell instead of a homepage mockup.', 'author_name' => 'Jonas Meier', 'author_title' => 'Revenue Operations'],
+                        ['quote' => 'The workspace shows enough density to judge whether the dashboard rail and tables are actually useful.', 'author_name' => 'Mara Klein', 'author_title' => 'Executive Sponsor'],
+                        ['quote' => 'Every dashboard page has a metric set, trend chart, and detail table, so the team can see real operating patterns.', 'author_name' => 'Sofia Urban', 'author_title' => 'Customer Health Owner'],
+                        ['quote' => 'Settings, reports, and system health make this feel like an operating workspace teams can actually use.', 'author_name' => 'Jonas Meier', 'author_title' => 'Revenue Operations'],
                     ]),
-                    self::teamGridMinimal('Workspace owners', 'Team content gives the dashboard starter realistic permission and ownership context.', [
+                    self::teamGridMinimal('Workspace owners', 'Clear owners make metrics actionable: every dashboard has someone responsible for movement.', [
                         ['name' => 'Mara Klein', 'role' => 'Executive Sponsor'],
                         ['name' => 'Sofia Urban', 'role' => 'Customer Health Owner'],
                         ['name' => 'Jonas Meier', 'role' => 'Revenue Operations'],
@@ -256,8 +258,8 @@ final class StarterSiteDefinitions
                         ['title' => 'Customer health watchlist', 'type_label' => 'Dashboard', 'description' => 'Accounts needing renewal, onboarding, or escalation attention.', 'link' => '#customer-health'],
                         ['title' => 'Experiment decision log', 'type_label' => 'Log', 'description' => 'Recent tests, confidence, and next actions for product teams.', 'link' => '#experiments'],
                     ]),
-                    self::alert('Live workspace note', 'success', 'The starter includes dummy dashboards for every navigation section so product teams can review density, charts, and tables immediately.'),
-                    self::ctaCard('Review a populated dashboard set', 'Start with revenue, customer health, reports, and settings to see charts, tables, alerts, ownership, and utility pages working together.', 'Open reports', '#reports', 'Dashboard demo'),
+                    self::alert('Live workspace note', 'success', 'Every navigation section includes metrics, charts, and tables so operators can move from signal to action immediately.'),
+                    self::ctaCard('Review the operating room', 'Start with revenue, customer health, reports, and settings to see charts, tables, alerts, ownership, and utility pages working together.', 'Open reports', '#reports', 'Dashboard demo'),
                     self::sitemapGrid('Open dashboard areas', [
                         [
                             'title' => 'Dashboards',
@@ -291,7 +293,7 @@ final class StarterSiteDefinitions
                             ],
                         ],
                     ]),
-                    self::footerBrand('SignalRoom', 'Dummy operating dashboards with real review density.', [
+                    self::footerBrand('SignalRoom', 'Operating dashboards with enough detail to make decisions.', [
                         ['label' => 'Reports', 'link' => '#reports'],
                         ['label' => 'Settings', 'link' => '#settings'],
                         ['label' => 'System Health', 'link' => '#system-health'],
@@ -319,10 +321,10 @@ final class StarterSiteDefinitions
         $subpages = self::withTopNavigation([
             self::editorialPage('Front Page', 'front-page', 'Fresh dispatches, short notes, and newly published analysis organized for repeat readers.', 'Front page desk', ['Weekend brief: AI procurement pressure', 'How teams edit policy pages', 'A quieter release note pattern']),
             self::editorialPage('Analysis', 'analysis', 'Deeper interpretation for strategy, design, content, and technology decisions.', 'Analysis desk', ['The cost of generic dashboards', 'What content debt really signals', 'Why governance pages convert']),
-            self::editorialPage('Field Guides', 'field-guides', 'Practical playbooks readers can act on after one session.', 'Guide shelf', ['Homepage evidence checklist', 'Dashboard page planning', 'Editorial taxonomy starter']),
+            self::editorialPage('Field Guides', 'field-guides', 'Practical playbooks readers can act on after one session.', 'Guide shelf', ['Homepage evidence checklist', 'Dashboard page planning', 'Editorial taxonomy model']),
             self::editorialPage('Features', 'features', 'Long-form reporting built for immersive reading and strong article packages.', 'Feature package', ['Inside a regional service rebuild', 'A field guide to migration calm', 'How design systems earn trust']),
             self::editorialPage('Interviews', 'interviews', 'Conversations with operators, editors, founders, and technical leads.', 'Interview room', ['A CTO on measuring adoption', 'An editor on reusable briefs', 'A COO on service design']),
-            self::editorialPage('Reviews', 'reviews', 'Structured reviews of tools, patterns, launches, and public examples.', 'Review desk', ['Dashboard onboarding review', 'Pricing page teardown', 'Article template audit']),
+            self::editorialPage('Reviews', 'reviews', 'Structured reviews of tools, patterns, launches, and public examples.', 'Review desk', ['Dashboard onboarding review', 'Pricing page teardown', 'Article system audit']),
             self::editorialPage('Data Room', 'data-room', 'Charts, benchmarks, source material, and lightweight research artifacts.', 'Research shelf', ['Reader survey results', 'Pricing pattern index', 'Dashboard density samples']),
             self::editorialPage('Events', 'events', 'Panels, workshops, live teardowns, and subscriber Q and A sessions.', 'Live program', ['Editorial systems roundtable', 'Dashboard critique clinic', 'Launch page teardown']),
             self::editorialPage('Newsletter', 'newsletter', 'A subscription page with proof, archive links, cadence, and reader expectations.', 'Newsletter offer', ['Tuesday briefing', 'Monthly teardown', 'Subscriber Q and A']),
@@ -337,11 +339,12 @@ final class StarterSiteDefinitions
             'rootSlug' => '/desiderio-editorial-starter',
             'rootTitle' => 'Field Ledger',
             'rootNavTitle' => 'Home',
-            'abstract' => 'A full editorial starter for a serious publication: sections, story packages, resource shelves, sponsor context, newsletter prompts, standards, and article-like subpages.',
+            'purpose' => 'Turn a publication front page into reader retention: clear sections, fresh lead stories, newsletter conversion, sponsor boundaries, and standards.',
+            'abstract' => 'A serious publication for operators and editors who want useful analysis, practical field guides, research material, events, and a clear newsletter path.',
             'home' => [
                 'layout' => 'DesiderioStartpage',
                 'content' => [
-                    self::heroStats('A publication starter built around recurring editorial work', 'Field Ledger', 'Use the generated page tree as a first editorial calendar: anchor stories, guides, data posts, interviews, events, newsletter, sponsor information, and standards.', 'Browse the issue', '#front-page', [
+                    self::heroStats('A publication built around recurring editorial work', 'Field Ledger', 'Read anchor stories, practical guides, research notes, interviews, events, newsletter issues, sponsor information, and editorial standards in one publication system.', 'Browse the issue', '#front-page', [
                         ['value' => '6', 'label' => 'Editorial desks', 'stat_description' => 'Analysis, guides, interviews, reviews, data, and events.'],
                         ['value' => '11', 'label' => 'Launch pages', 'stat_description' => 'A complete publication structure beyond the homepage.'],
                         ['value' => '3', 'label' => 'Reader paths', 'stat_description' => 'Brief, deep read, and practical resource routes.'],
@@ -354,18 +357,18 @@ final class StarterSiteDefinitions
                         ['label' => 'Newsletter', 'link' => '#newsletter'],
                         ['label' => 'Advertise', 'link' => '#advertise'],
                     ], 'underline'),
-                    self::headerSection('A front page needs an editorial operating model', 'Starter strategy', 'The content is organized for repeat publishing: what is new, what is evergreen, what is evidence, and what deserves a subscription prompt.'),
+                    self::headerSection('A front page needs an editorial operating model', 'Publishing model', 'The content is organized for repeat publishing: what is new, what is evergreen, what is evidence, and what deserves a subscription prompt.'),
                     self::articleGrid('Top stories to publish first', 'Front page', [
                         ['title' => 'The homepage proof stack that actually helps buyers', 'category' => 'Analysis', 'description' => 'A practical teardown of claims, evidence, and next steps on B2B homepages.', 'link' => '#analysis'],
-                        ['title' => 'Designing dashboards readers can scan in under one minute', 'category' => 'Guide', 'description' => 'A field guide to metrics, chart hierarchy, and executive summaries.', 'link' => '#guides'],
-                        ['title' => 'Why editorial sites need better resource pages', 'category' => 'Opinion', 'description' => 'Resource libraries fail when taxonomy, freshness, and context are treated as afterthoughts.', 'link' => '#resources'],
+                        ['title' => 'Designing dashboards readers can scan in under one minute', 'category' => 'Guide', 'description' => 'A field guide to metrics, chart hierarchy, and executive summaries.', 'link' => '#field-guides'],
+                        ['title' => 'Why editorial sites need better resource pages', 'category' => 'Opinion', 'description' => 'Resource libraries fail when taxonomy, freshness, and context are treated as afterthoughts.', 'link' => '#data-room'],
                     ]),
-                    self::featureList('Editorial lanes', 'Useful structure', 'The starter separates timely posts, deep features, practical guides, and subscription flows.', [
+                    self::featureList('Editorial lanes', 'Useful structure', 'The publication separates timely posts, deep features, practical guides, and subscription flows.', [
                         ['icon' => 'book-open', 'title' => 'Reported features', 'description' => 'Long reads with decks, bylines, and related content blocks.'],
                         ['icon' => 'clock', 'title' => 'Fast briefings', 'description' => 'Short posts for news, release notes, and weekly digests.'],
                         ['icon' => 'database', 'title' => 'Reusable resources', 'description' => 'Evergreen libraries, downloads, and checklist pages.'],
                     ]),
-                    self::metricDashboard('Editorial operating dashboard', 'Dummy editorial metrics help the publication starter feel managed instead of decorative.', [
+                    self::metricDashboard('Editorial operating dashboard', 'Editorial metrics help the publication feel managed instead of decorative.', [
                         ['label' => 'Issue readiness', 'value' => '82%', 'change' => '+14 points', 'trend' => 'up'],
                         ['label' => 'Evergreen updates', 'value' => '18', 'change' => '+5 this month', 'trend' => 'up'],
                         ['label' => 'Sponsor slots', 'value' => '4', 'change' => '2 reserved', 'trend' => 'neutral'],
@@ -376,7 +379,7 @@ final class StarterSiteDefinitions
                         ['title' => 'Homepage evidence planner', 'type_label' => 'Worksheet', 'description' => 'Map proof, objections, and conversion prompts before writing copy.', 'link' => '#analysis'],
                         ['title' => 'Issue calendar model', 'type_label' => 'Template', 'description' => 'A simple planning structure for recurring packages and newsletters.', 'link' => '#newsletter'],
                     ]),
-                    self::pricingThreeTier('Reader and sponsor offers', 'Revenue paths', 'Editorial starters should make subscription and sponsorship pages concrete enough to evaluate.', [
+                    self::pricingThreeTier('Reader and sponsor offers', 'Revenue paths', 'Subscription and sponsorship paths are concrete enough for readers and partners to evaluate.', [
                         ['name' => 'Free Reader', 'price' => '$0', 'billing_period' => '', 'description' => 'Weekly public stories and monthly resource updates.', 'features' => ['Front page access', 'Public archive', 'Monthly digest'], 'is_recommended' => false, 'button_text' => 'Read latest', 'button_link' => '#front-page'],
                         ['name' => 'Member', 'price' => '$12', 'billing_period' => '/month', 'description' => 'Full archive, teardown issues, and subscriber Q and A.', 'features' => ['Premium guides', 'Event replays', 'Subscriber notes'], 'is_recommended' => true, 'button_text' => 'Join readers', 'button_link' => '#newsletter'],
                         ['name' => 'Sponsor', 'price' => 'Custom', 'billing_period' => '', 'description' => 'Clearly labeled sponsorship aligned with the publication audience.', 'features' => ['Audience profile', 'Package options', 'Editorial boundaries'], 'is_recommended' => false, 'button_text' => 'Review sponsor fit', 'button_link' => '#advertise'],
@@ -386,18 +389,18 @@ final class StarterSiteDefinitions
                         ['quote' => 'The data room and corrections page make the publication feel more trustworthy than a normal content hub.', 'author_name' => 'Rafael Stone', 'author_title' => 'Operations Director'],
                         ['quote' => 'Sponsor information is clear without blurring the editorial line.', 'author_name' => 'Nina Brand', 'author_title' => 'Partnerships Manager'],
                     ]),
-                    self::companyValues('Editorial standards readers can trust', 'Standards', 'Values are seeded as editorial promises, not vague brand adjectives.', [
+                    self::companyValues('Editorial standards readers can trust', 'Standards', 'Values are written as editorial promises, not vague brand adjectives.', [
                         ['title' => 'Useful before clever', 'description' => 'Every article should help a reader make a better decision or ask a sharper question.', 'icon' => 'book-open'],
                         ['title' => 'Sources over vibes', 'description' => 'Research pages, interviews, and claims need visible evidence trails.', 'icon' => 'search-check'],
                         ['title' => 'Clear corrections', 'description' => 'The about page includes standards, corrections, and contribution routes.', 'icon' => 'badge-check'],
                     ]),
-                    self::teamGridMinimal('Masthead snapshot', 'People content makes the editorial starter feel like a real publication with owners and standards.', [
+                    self::teamGridMinimal('Masthead snapshot', 'Visible editors and producers make the publication accountable to readers.', [
                         ['name' => 'Lena Hart', 'role' => 'Editor in Chief'],
                         ['name' => 'Marco Weiss', 'role' => 'Analysis Editor'],
                         ['name' => 'Tara Iqbal', 'role' => 'Research Lead'],
                         ['name' => 'Noah Brandt', 'role' => 'Newsletter Producer'],
                     ]),
-                    self::ctaCard('Build the first issue', 'Use the generated pages as the first editorial calendar: publish one anchor story, two guides, and a newsletter issue.', 'Plan the issue', '#newsletter', 'Editorial workflow'),
+                    self::ctaCard('Get the next issue', 'Subscribe for one anchor story, two practical guides, and a concise editorial note each issue.', 'Join readers', '#newsletter', 'Editorial workflow'),
                     self::sitemapGrid('Browse Field Ledger', [
                         [
                             'title' => 'Read',
@@ -469,36 +472,37 @@ final class StarterSiteDefinitions
             'rootSlug' => '/desiderio-portfolio-starter',
             'rootTitle' => 'Studio Halden',
             'rootNavTitle' => 'Home',
-            'abstract' => 'A portfolio starter for a senior digital studio: selected work, case studies, capabilities, process, proof, team, collaborators, journal, and project brief flow.',
+            'purpose' => 'Help buyers judge fit through selected work, services, process, outcomes, people, and a structured project brief.',
+            'abstract' => 'A senior digital studio for product teams that need clear interface direction, production-ready design systems, launch pages, and measurable project outcomes.',
             'home' => [
                 'layout' => 'DesiderioStartpage',
                 'content' => [
-                    self::heroProduct('Interfaces with a point of view', 'Studio Halden', 'A portfolio starter for studios that need buyers to understand taste, judgment, operating model, proof, and project fit before a call.', 'Project slots from EUR 24k', 'Start a project brief', '#project-brief', ['Senior product UI', 'Design systems that ship', 'Launch pages with evidence']),
-                    self::navTabs('Portfolio starter map', [
+                    self::heroProduct('Interfaces with a point of view', 'Studio Halden', 'For product and marketing teams that need buyers to understand taste, judgment, operating model, proof, and project fit before a call.', 'Project slots from EUR 24k', 'Start a project brief', '#project-brief', ['Senior product UI', 'Design systems that ship', 'Launch pages with evidence']),
+                    self::navTabs('Studio buyer path', [
                         ['label' => 'Work', 'link' => '#selected-work'],
                         ['label' => 'Capabilities', 'link' => '#capabilities'],
                         ['label' => 'Process', 'link' => '#process'],
                         ['label' => 'Results', 'link' => '#results'],
                         ['label' => 'Brief', 'link' => '#project-brief'],
                     ]),
-                    self::headerSection('A portfolio should help buyers judge fit, not just browse images', 'Starter strategy', 'The content gives context, constraints, decisions, proof, services, process, people, and a practical inquiry path.'),
+                    self::headerSection('A portfolio should help buyers judge fit, not just browse images', 'Buyer fit', 'The content gives context, constraints, decisions, proof, services, process, people, and a practical inquiry path.'),
                     self::caseStudyGrid('Selected projects', 'Recent work', [
                         ['client_name' => 'Aster Commerce', 'summary' => 'Rebuilt product discovery and checkout guidance for a catalog with 18k SKUs.', 'result' => '+22% product detail engagement', 'link' => '#selected-work'],
                         ['client_name' => 'Civic Ledger', 'summary' => 'Designed a dense reporting workspace for non-technical municipal teams.', 'result' => '6 dashboards shipped', 'link' => '#case-studies'],
                         ['client_name' => 'Field Notes Media', 'summary' => 'Created a publication system for issues, long reads, and sponsor packages.', 'result' => '3x editorial throughput', 'link' => '#journal'],
                     ]),
-                    self::featureCards('What the studio is good for', 'Services', 'A portfolio starter should help a buyer decide whether the studio fits the project.', [
+                    self::featureCards('What the studio is good for', 'Services', 'A buyer should be able to decide whether the studio fits the project before sending a brief.', [
                         ['title' => 'Positioning through interface', 'description' => 'Turn a fuzzy product story into concrete screens, flows, and proof.'],
                         ['title' => 'Design systems that ship', 'description' => 'Reusable components, documentation, and production-ready implementation support.'],
                         ['title' => 'Launch pages with evidence', 'description' => 'Case studies, service pages, and conversion paths that make the work inspectable.'],
                     ]),
-                    self::metricDashboard('Studio proof snapshot', 'Dummy performance data gives the portfolio starter more than a visual gallery.', [
+                    self::metricDashboard('Studio proof snapshot', 'Performance data gives the portfolio more than a visual gallery.', [
                         ['label' => 'Projects shipped', 'value' => '47', 'change' => '+9 this year', 'trend' => 'up'],
                         ['label' => 'Repeat clients', 'value' => '68%', 'change' => '+6 points', 'trend' => 'up'],
                         ['label' => 'Systems adopted', 'value' => '14', 'change' => '+4 launches', 'trend' => 'up'],
                         ['label' => 'Open slots', 'value' => '2', 'change' => 'next quarter', 'trend' => 'neutral'],
                     ], 'Studio proof', 'score'),
-                    self::pricingThreeTier('Project entry points', 'Engagement models', 'A useful portfolio starter gives buyers enough commercial context to decide if they should inquire.', [
+                    self::pricingThreeTier('Project entry points', 'Engagement models', 'Useful commercial context helps buyers decide whether they should inquire.', [
                         ['name' => 'Strategy Sprint', 'price' => 'EUR 12k', 'billing_period' => 'fixed', 'description' => 'For founders and product teams that need clarity before design production.', 'features' => ['Positioning review', 'Interface audit', 'Prototype direction'], 'is_recommended' => false, 'button_text' => 'Scope a sprint', 'button_link' => '#project-brief'],
                         ['name' => 'Launch System', 'price' => 'from EUR 24k', 'billing_period' => 'project', 'description' => 'For sites, product pages, and conversion systems that need to ship.', 'features' => ['Page system', 'Design components', 'Frontend handoff'], 'is_recommended' => true, 'button_text' => 'Brief a launch', 'button_link' => '#project-brief'],
                         ['name' => 'Product UI', 'price' => 'Custom', 'billing_period' => '', 'description' => 'For application interfaces, dashboards, and design systems with product teams.', 'features' => ['Workflow design', 'Component library', 'Engineering support'], 'is_recommended' => false, 'button_text' => 'Discuss product work', 'button_link' => '#contact'],
@@ -513,7 +517,7 @@ final class StarterSiteDefinitions
                         ['title' => 'Design for handoff', 'description' => 'Screens, tokens, components, and rationale are built for the team that owns the product next.', 'icon' => 'package-check'],
                         ['title' => 'Keep critique useful', 'description' => 'Reviews are direct, specific, and tied to the outcome rather than taste alone.', 'icon' => 'messages-square'],
                     ]),
-                    self::teamGridMinimal('Studio team', 'Seeded team profiles help the portfolio feel inspectable and credible before final bios are written.', [
+                    self::teamGridMinimal('Studio team', 'Senior profiles make the studio inspectable before a buyer asks who will do the work.', [
                         ['name' => 'Nina Halden', 'role' => 'Creative Director'],
                         ['name' => 'Oskar Fink', 'role' => 'Product Designer'],
                         ['name' => 'Mira Vogel', 'role' => 'Frontend Lead'],
@@ -595,11 +599,12 @@ final class StarterSiteDefinitions
             'rootSlug' => '/desiderio-saas-starter',
             'rootTitle' => 'LaunchLayer',
             'rootNavTitle' => 'Home',
-            'abstract' => 'A SaaS starter with product narrative, use cases, pricing, integrations, security, customers, resources, docs, release notes, sales, trial, team, and utility pages.',
+            'purpose' => 'Move buyers from product understanding to activation: product tour, use cases, pricing, integrations, security, proof, docs, and trial or sales routes.',
+            'abstract' => 'A SaaS product site for teams that need measurable launch workflows, clear ownership, live reporting, integrations, security proof, pricing, and trial activation.',
             'home' => [
                 'layout' => 'DesiderioStartpage',
                 'content' => [
-                    self::heroSaas('Launch workflows your team can measure', 'LaunchLayer', 'A SaaS starter for product-led teams that need a clear product story, proof, pricing, integrations, security, docs, release notes, sales, and trial paths from day one.', 'Start trial', '#start-trial', 'Contact sales', '#contact-sales', ['Northstar Labs', 'Helio Systems', 'Aster Commerce', 'Studio Atlas']),
+                    self::heroSaas('Launch workflows your team can measure', 'LaunchLayer', 'For product-led teams that need a clear product story, proof, pricing, integrations, security, docs, release notes, sales, and trial paths from day one.', 'Start trial', '#start-trial', 'Contact sales', '#contact-sales', ['Northstar Labs', 'Helio Systems', 'Aster Commerce', 'Studio Atlas']),
                     self::navTabs('SaaS evaluation path', [
                         ['label' => 'Product', 'link' => '#product'],
                         ['label' => 'Use Cases', 'link' => '#use-cases'],
@@ -607,8 +612,8 @@ final class StarterSiteDefinitions
                         ['label' => 'Security', 'link' => '#security'],
                         ['label' => 'Trial', 'link' => '#start-trial'],
                     ]),
-                    self::headerSection('A SaaS starter should answer the full buyer journey', 'Starter strategy', 'The page tree supports product-led browsing, sales-led procurement, documentation, launch notes, trust review, and expansion proof.'),
-                    self::metricDashboard('Product traction snapshot', 'Dummy SaaS metrics give the starter a useful product feel immediately.', [
+                    self::headerSection('A SaaS homepage should answer the full buyer journey', 'Buyer journey', 'The page tree supports product-led browsing, sales-led procurement, documentation, launch notes, trust review, and expansion proof.'),
+                    self::metricDashboard('Product traction snapshot', 'Product metrics make the value proposition concrete before a visitor reaches pricing.', [
                         ['label' => 'Activated teams', 'value' => '1,284', 'change' => '+19% in 30 days', 'trend' => 'up'],
                         ['label' => 'Workflow runs', 'value' => '82k', 'change' => '+31% this quarter', 'trend' => 'up'],
                         ['label' => 'Time saved', 'value' => '14h', 'change' => 'per team weekly', 'trend' => 'neutral'],
@@ -624,7 +629,7 @@ final class StarterSiteDefinitions
                         ['title' => 'Integration checklist', 'type_label' => 'Checklist', 'description' => 'Data sources, permissions, webhooks, and warehouse questions before setup.', 'link' => '#integrations'],
                         ['title' => 'Security review packet', 'type_label' => 'Trust', 'description' => 'SSO, audit logs, retention, subprocessors, and procurement contact route.', 'link' => '#security'],
                     ]),
-                    self::pricingThreeTier('Simple plans for realistic demos', 'Pricing', 'Starter content includes actual plan rows and nested feature lists.', [
+                    self::pricingThreeTier('Simple plans for buying decisions', 'Pricing', 'Plan rows and nested feature lists make the upgrade path, procurement path, and trial path explicit.', [
                         ['name' => 'Starter', 'price' => '$29', 'billing_period' => '/user/month', 'description' => 'For small teams replacing manual status reporting.', 'features' => ['3 workspaces', 'Core dashboards', 'Email support'], 'is_recommended' => false, 'button_text' => 'Start trial', 'button_link' => '#start-trial'],
                         ['name' => 'Growth', 'price' => '$79', 'billing_period' => '/user/month', 'description' => 'For growing teams coordinating multiple departments.', 'features' => ['Unlimited workspaces', 'Advanced automations', 'Priority onboarding'], 'is_recommended' => true, 'button_text' => 'Start trial', 'button_link' => '#start-trial'],
                         ['name' => 'Scale', 'price' => 'Custom', 'billing_period' => '', 'description' => 'For organizations with procurement, security, and data requirements.', 'features' => ['SSO and audit logs', 'Dedicated success plan', 'Security review support'], 'is_recommended' => false, 'button_text' => 'Contact sales', 'button_link' => '#contact-sales'],
@@ -635,22 +640,22 @@ final class StarterSiteDefinitions
                         ['quote' => 'The trial path sets expectations clearly enough for product-led onboarding.', 'author_name' => 'Sara Yu', 'author_title' => 'Growth Lead, Aster Commerce'],
                     ]),
                     self::faq('Buying questions', 'Answer practical objections before the visitor reaches sales.', [
-                        ['question' => 'Can we use this starter as a real SaaS site skeleton?', 'answer' => 'Yes. The page tree covers the common evaluation path: product, use cases, pricing, integrations, security, resources, docs, release notes, sales, and trial.'],
-                        ['question' => 'Does it include realistic content elements?', 'answer' => 'Yes. It uses real Desiderio Content Blocks with collection data, nested pricing features, metrics, charts, tables, and CTAs.'],
-                        ['question' => 'Can editors replace everything later?', 'answer' => 'Yes. The command seeds normal TYPO3 pages and content records, so editors can revise, reorder, or delete blocks.'],
+                        ['question' => 'How quickly can a team try LaunchLayer?', 'answer' => 'A self-serve team can start a trial immediately, connect sample workflows, and review activation with customer success.'],
+                        ['question' => 'What should enterprise buyers inspect first?', 'answer' => 'Start with security, integrations, customer proof, pricing, and the contact sales page for procurement requirements.'],
+                        ['question' => 'Where does the product create the most leverage?', 'answer' => 'It replaces scattered status docs, manual reporting, and unclear ownership with measurable launch workflows.'],
                     ]),
                     self::companyValues('Product promises', 'Operating principles', 'These are written as buyer-facing product principles that make the SaaS offer easier to trust.', [
                         ['title' => 'Every workflow has an owner', 'description' => 'Tasks, approvals, and blockers are visible before they become status meetings.', 'icon' => 'user-check'],
                         ['title' => 'Reports stay close to work', 'description' => 'Dashboards, summaries, and evidence are connected to the workflow that produced them.', 'icon' => 'bar-chart-3'],
                         ['title' => 'Procurement is not an afterthought', 'description' => 'Security, integration, and sales paths are ready for serious evaluation.', 'icon' => 'shield-check'],
                     ]),
-                    self::teamGridMinimal('LaunchLayer team', 'A useful SaaS starter includes people and ownership content for about, trust, and sales pages.', [
+                    self::teamGridMinimal('LaunchLayer team', 'Visible product, success, and security owners reduce friction for serious buyers.', [
                         ['name' => 'Ava Keller', 'role' => 'Founder and CEO'],
                         ['name' => 'Ben Ortega', 'role' => 'Product Lead'],
                         ['name' => 'Mina Shah', 'role' => 'Customer Success'],
                         ['name' => 'Leo Frank', 'role' => 'Security Engineering'],
                     ]),
-                    self::ctaCard('Start with a measurable launch workflow', 'Use the seeded product, pricing, security, docs, release notes, and trial pages as the first pass of a serious SaaS website.', 'Start trial', '#start-trial', 'Product-led path'),
+                    self::ctaCard('Start with a measurable launch workflow', 'Create a workspace, invite the launch owners, and turn the first recurring status update into a measurable workflow.', 'Start trial', '#start-trial', 'Product-led path'),
                     self::sitemapGrid('Explore LaunchLayer', [
                         [
                             'title' => 'Product',
@@ -705,17 +710,17 @@ final class StarterSiteDefinitions
         return self::page($title, $slug, $abstract, [
             self::headerSection($title, $eyebrow, $abstract, 'left'),
             self::textMedia($title . ' overview', $abstract, 'This page gives a buyer enough context to understand the offer, compare it with internal needs, and choose a next step without asking for a brochure.', 'media-right'),
-            self::featureList($title . ' priorities', $eyebrow, 'The first content pass should answer the questions a serious stakeholder brings to this page.', array_map(
+            self::featureList($title . ' priorities', $eyebrow, 'These priorities answer the questions a serious stakeholder brings to this page.', array_map(
                 static fn (string $topic, int $index): array => ['icon' => ['shield-check', 'settings', 'users'][$index % 3], 'title' => $topic, 'description' => 'Explain scope, ownership, and proof for ' . strtolower($topic) . '.'],
                 $topics,
                 array_keys($topics)
             )),
             self::faq($title . ' questions', 'Keep high-friction answers close to the decision.', [
                 ['question' => 'Who is this page for?', 'answer' => 'For stakeholders who need a precise overview before they commit to a call, download, or internal discussion.'],
-                ['question' => 'What should editors replace first?', 'answer' => 'Replace the examples with client-specific outcomes, sector language, and the strongest available proof.'],
+                ['question' => 'What should this page prove?', 'answer' => 'It should connect the offer to client-specific outcomes, sector language, and the strongest available proof.'],
                 ['question' => 'Where should this page send visitors next?', 'answer' => 'Send them to a case study, a service detail page, or the contact route that matches their buying stage.'],
             ]),
-            self::ctaCard('Discuss ' . strtolower($title), 'Use this page as the first draft, then tailor the claims and proof to the organization.', 'Talk to the team', '#contact', 'Corporate starter'),
+            self::ctaCard('Discuss ' . strtolower($title), 'Bring the challenge, current constraints, decision group, and success measure. The team will map the right next step.', 'Talk to the team', '#contact', 'Corporate pathway'),
         ]);
     }
 
@@ -733,13 +738,13 @@ final class StarterSiteDefinitions
         return self::page($title, $slug, $abstract, [
             self::headerSection($title, 'Dashboard', $abstract, 'left'),
             self::metricDashboard($title, $abstract, $items, $seriesLabel, $unit),
-            self::chartLine($seriesLabel . ' trend', 'Dummy trend data for layout review and chart behavior.', $seriesLabel, $unit),
+            self::chartLine($seriesLabel . ' trend', 'Trend data makes movement, comparison, and chart behavior visible at a glance.', $seriesLabel, $unit),
             self::dataTable($title . ' detail', ['Metric', 'Current', 'Target', 'Owner'], [
                 [$metrics[0][0], $metrics[0][1], 'Improve', 'Mara'],
                 [$metrics[1][0], $metrics[1][1], 'Hold', 'Jonas'],
-                [$metrics[2][0], $metrics[2][1], 'Review', 'Sofia'],
+                [$metrics[2][0], $metrics[2][1], 'Resolve', 'Sofia'],
             ]),
-            self::alert($title . ' review note', 'info', 'This dummy dashboard page is intentionally populated so rail navigation, canvas density, and table states can be reviewed immediately.'),
+            self::alert($title . ' operating note', 'info', 'This dashboard is populated with metrics, trend context, and owners so teams can move from signal to action.'),
         ], 'DesiderioContentpage');
     }
 
@@ -752,7 +757,7 @@ final class StarterSiteDefinitions
         return self::page($title, $slug, $abstract, [
             self::headerSection($title, $eyebrow, $abstract, 'left'),
             self::articleGrid($title . ' package', $eyebrow, array_map(
-                static fn (string $story, int $index): array => ['title' => $story, 'category' => $title, 'description' => 'A realistic seeded story entry for the ' . strtolower($title) . ' section, ready for editors to replace with a real article.', 'link' => '#story-' . ($index + 1)],
+                static fn (string $story, int $index): array => ['title' => $story, 'category' => $title, 'description' => 'A section story entry for ' . strtolower($title) . ' that shows the angle, reader promise, and archive path.', 'link' => '#story-' . ($index + 1)],
                 $storyTitles,
                 array_keys($storyTitles)
             )),
@@ -775,7 +780,7 @@ final class StarterSiteDefinitions
             self::headerSection($title, $eyebrow, $abstract, 'left'),
             self::textMedia($title . ' overview', $abstract, 'Use this page to show judgment, not volume. Explain the context, decision constraints, and why this work matters.', 'media-left'),
             self::caseStudyGrid($title . ' examples', $eyebrow, array_map(
-                static fn (string $topic, int $index): array => ['client_name' => $topic, 'summary' => 'A seeded portfolio proof point for ' . strtolower($topic) . '.', 'result' => ['Launch clarity', 'Reusable system', 'Sharper conversion'][$index % 3], 'link' => '#'],
+                static fn (string $topic, int $index): array => ['client_name' => $topic, 'summary' => 'A portfolio proof point for ' . strtolower($topic) . ' with context, constraint, and outcome.', 'result' => ['Launch clarity', 'Reusable system', 'Sharper conversion'][$index % 3], 'link' => '#'],
                 $topics,
                 array_keys($topics)
             )),
@@ -784,7 +789,7 @@ final class StarterSiteDefinitions
                 ['title' => 'Judgment', 'description' => 'Explain the choices, tradeoffs, and what the team refused to do.'],
                 ['title' => 'Outcome', 'description' => 'Connect visuals to measurable or observable change.'],
             ]),
-            self::ctaCard('Start a project conversation', 'Bring the problem, constraints, timeline, and decision group. The project brief page turns that into a useful first call.', 'Open project brief', '#project-brief', 'Portfolio starter'),
+            self::ctaCard('Start a project conversation', 'Bring the problem, constraints, timeline, and decision group. The project brief page turns that into a useful first call.', 'Open project brief', '#project-brief', 'Portfolio pathway'),
         ]);
     }
 
@@ -797,7 +802,7 @@ final class StarterSiteDefinitions
         $content = [
             self::headerSection($title, $eyebrow, $abstract, 'left'),
             self::textMedia($title . ' overview', $abstract, 'The copy should help a buyer understand what the product does, why it matters, and what they should inspect next.', 'media-right'),
-            self::featureList($title . ' essentials', $eyebrow, 'Each item is seeded with concrete product context so the page is useful before final copywriting.', array_map(
+            self::featureList($title . ' essentials', $eyebrow, 'Each item connects a concrete product capability to the buyer question behind this page.', array_map(
                 static fn (string $topic, int $index): array => ['icon' => ['rocket', 'database', 'settings'][$index % 3], 'title' => $topic, 'description' => 'Show how ' . strtolower($topic) . ' helps teams evaluate, adopt, or scale the product.'],
                 $topics,
                 array_keys($topics)
@@ -817,14 +822,14 @@ final class StarterSiteDefinitions
                 ['Security review', 'Self-serve', 'Assisted', 'Dedicated'],
             ]);
         } else {
-            $content[] = self::metricDashboard($title . ' signals', 'Dummy product metrics make the page feel like a working SaaS site.', [
+            $content[] = self::metricDashboard($title . ' signals', 'Product metrics make the page feel connected to real activation, adoption, and risk signals.', [
                 ['label' => $topics[0] ?? 'Activation', 'value' => '74%', 'change' => '+8%', 'trend' => 'up'],
                 ['label' => $topics[1] ?? 'Adoption', 'value' => '2.1k', 'change' => '+19%', 'trend' => 'up'],
                 ['label' => $topics[2] ?? 'Risk', 'value' => '4', 'change' => '-2', 'trend' => 'down'],
             ], $title, '%');
         }
 
-        $content[] = self::ctaCard('Move forward with ' . strtolower($title), 'Choose the next step that matches the buyer stage: self-serve trial, sales call, docs, or a resource.', 'Continue', '#start-trial', 'SaaS starter');
+        $content[] = self::ctaCard('Move forward with ' . strtolower($title), 'Choose the next step that matches the buyer stage: self-serve trial, sales call, docs, or a resource.', 'Continue', '#start-trial', 'SaaS pathway');
 
         return self::page($title, $slug, $abstract, $content);
     }
@@ -871,21 +876,21 @@ final class StarterSiteDefinitions
     private static function supportPages(string $brand, string $contactSlug): array
     {
         return [
-            self::page('Search', 'search', 'Find pages, guides, proof, and operational details across the starter site.', [
-                self::searchHeader('Search ' . $brand, 'Site search', 'Use this page to test search presentation, empty states, and result density.', '/search', 'Search pages, proof, and resources'),
+            self::page('Search', 'search', 'Find pages, guides, proof, and operational details across the site.', [
+                self::searchHeader('Search ' . $brand, 'Site search', 'Find pages, proof, resources, and operational details from one place.', '/search', 'Search pages, proof, and resources'),
             ], 'DesiderioSearch', true),
-            self::page('404', '404', 'A useful error page that routes visitors back into the starter instead of ending the session.', [
+            self::page('404', '404', 'A useful error page that routes visitors back into high-value content instead of ending the session.', [
                 self::headerSection('This page is not available', '404', 'Route visitors to high-value pages instead of leaving them at a dead end.', 'center'),
                 self::ctaCard('Return to a useful path', 'Go back to the homepage, search the site, or contact the team if something should exist here.', 'Go home', '/', 'Utility page'),
             ], 'DesiderioError', true),
             self::page('Imprint', 'imprint', 'Company details and publishing responsibility for procurement, legal, and trust review.', [
-                self::headerSection($brand . ' imprint', 'Legal', 'Seeded company information for review and replacement before launch.', 'left'),
-                self::textMedia('Company information', 'Replace this with verified legal data before launch.', 'Registered company, business address, responsible editor, and contact route belong here. Keep the copy short and procurement-friendly.', 'media-above'),
+                self::headerSection($brand . ' imprint', 'Legal', 'Company information, publishing responsibility, and durable contact details for legal review.', 'left'),
+                self::textMedia('Company information', 'Verified legal data belongs here before launch.', 'Registered company, business address, responsible editor, and contact route belong here. Keep the copy short and procurement-friendly.', 'media-above'),
                 self::footerMinimal($brand . ' legal links'),
             ], 'DesiderioContentpage', true),
             self::page('Privacy', 'privacy', 'Privacy expectations, request routes, and data handling notes for visitors and buyers.', [
-                self::headerSection('Privacy at ' . $brand, 'Trust', 'A practical placeholder for privacy policy content, request handling, and data processing context.', 'left'),
-                self::faq('Privacy questions', 'Replace these answers with reviewed legal copy before publishing.', [
+                self::headerSection('Privacy at ' . $brand, 'Trust', 'Privacy policy content, request handling, and data processing context in plain language.', 'left'),
+                self::faq('Privacy questions', 'These answers should be aligned with reviewed legal copy before publishing.', [
                     ['question' => 'What should be listed here?', 'answer' => 'Data categories, processing purposes, retention periods, subprocessors, contact routes, and user rights.'],
                     ['question' => 'Who owns the policy?', 'answer' => 'Assign a legal or operations owner and include a durable privacy contact address.'],
                     ['question' => 'Where should forms link?', 'answer' => 'Route privacy requests to a monitored inbox or form with clear response expectations.'],
@@ -894,7 +899,7 @@ final class StarterSiteDefinitions
             ], 'DesiderioContentpage', true),
             self::page('Accessibility', 'accessibility', 'Accessibility commitments, known limitations, and feedback routes for visitors.', [
                 self::headerSection('Accessibility statement', 'Service quality', 'State the standard, current status, known limitations, and feedback route in plain language.', 'left'),
-                self::featureList('Accessibility review points', 'Checklist', 'Use this starter page as a practical audit prompt before launch.', [
+                self::featureList('Accessibility review points', 'Checklist', 'Use this page as a practical audit prompt before launch.', [
                     ['icon' => 'keyboard', 'title' => 'Keyboard paths', 'description' => 'Check navigation, forms, menus, tabs, and modal states without a mouse.'],
                     ['icon' => 'contrast', 'title' => 'Readable contrast', 'description' => 'Validate text, buttons, chart labels, and focus indicators across presets.'],
                     ['icon' => 'message-square', 'title' => 'Feedback route', 'description' => 'Give visitors a monitored channel for barriers and correction requests.'],
@@ -1041,7 +1046,7 @@ final class StarterSiteDefinitions
             'brand' => $brand,
             'tagline' => $tagline,
             'link_items' => $links,
-            'copyright' => '(c) 2026 ' . $brand . '. Starter content for review.',
+            'copyright' => '(c) 2026 ' . $brand . '. All rights reserved.',
         ]);
     }
 
@@ -1052,7 +1057,7 @@ final class StarterSiteDefinitions
     {
         return self::block('desiderio_footerminimal', [
             'header' => $header,
-            'copyright' => '(c) 2026 Desiderio starter site.',
+            'copyright' => '(c) 2026 Desiderio site.',
             'link_items' => [
                 ['label' => 'Imprint', 'link' => '#imprint'],
                 ['label' => 'Privacy', 'link' => '#privacy'],
@@ -1099,7 +1104,7 @@ final class StarterSiteDefinitions
             'subheadline' => $subheadline,
             'content' => '<p>' . $content . '</p>',
             'shadcn_layout' => $layout,
-            'button_text' => 'Review details',
+            'button_text' => 'View details',
             'button_link' => '#',
         ]);
     }
@@ -1186,7 +1191,7 @@ final class StarterSiteDefinitions
                 $rows
             ),
             'show_caption' => true,
-            'caption_text' => 'Seeded starter data for layout and content review.',
+            'caption_text' => 'Operating data for comparison and decision support.',
         ]);
     }
 

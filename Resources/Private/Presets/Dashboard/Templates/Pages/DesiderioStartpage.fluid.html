@@ -24,7 +24,7 @@
                             <span class="desiderio-dashboard-template__pulse-label">{f:translate(extensionName: 'desiderio', key: 'dashboard.status.live', default: 'Live data')}</span>
                         </span>
                     </div>
-                    <h1 id="desiderio-dashboard-heading">{page.pageRecord.title -> f:or(alternative: site.configuration.websiteTitle)}</h1>
+                    <p id="desiderio-dashboard-heading" class="desiderio-dashboard-template__heading">{page.pageRecord.title -> f:or(alternative: site.configuration.websiteTitle)}</p>
                     <f:if condition="{page.pageRecord.abstract}">
                         <p class="desiderio-dashboard-template__lede">{page.pageRecord.abstract}</p>
                     </f:if>

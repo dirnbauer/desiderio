@@ -101,6 +101,7 @@
 }
 
 .desiderio-saas-start__hero h1,
+.desiderio-saas-start__headline,
 .desiderio-saas-template__masthead h1,
 .desiderio-saas-system__header h1 {
     color: var(--foreground);
@@ -201,6 +202,7 @@
 
 @media (max-width: 640px) {
     .desiderio-saas-start__hero h1,
+    .desiderio-saas-start__headline,
     .desiderio-saas-template__masthead h1,
     .desiderio-saas-system__header h1 {
         font-size: 2.375rem;

@@ -24,6 +24,8 @@ final class StarterSiteDefinitionsTest extends TestCase
             self::assertIsString($starter['label'] ?? null, $slug . ' needs a label');
             self::assertIsString($starter['rootTitle'] ?? null, $slug . ' needs a homepage title');
             self::assertIsString($starter['rootSlug'] ?? null, $slug . ' needs a root slug');
+            self::assertIsString($starter['purpose'] ?? null, $slug . ' needs a clear template purpose');
+            self::assertNotSame('', trim((string)$starter['purpose']), $slug . ' purpose must not be empty');
             self::assertIsArray($starter['home'] ?? null, $slug . ' needs homepage data');
             self::assertIsArray($starter['subpages'] ?? null, $slug . ' needs subpages');
             self::assertGreaterThanOrEqual(10, count($starter['subpages']), $slug . ' must ship at least ten subpages');
@@ -45,6 +47,57 @@ final class StarterSiteDefinitionsTest extends TestCase
                 self::assertNotSame('', trim((string)$page['abstract']));
                 self::assertIsBool($page['navHidden'] ?? null);
                 self::assertNotEmpty($page['content'] ?? [], $page['title'] . ' needs content elements');
+            }
+        }
+    }
+
+    public function testStarterHomepagesKeepTemplatePurposeSpecific(): void
+    {
+        $requiredTerms = [
+            'corporate' => ['procurement', 'governance', 'proof', 'contact'],
+            'dashboard' => ['metrics', 'dashboard', 'reports', 'settings'],
+            'editorial' => ['publication', 'newsletter', 'sponsor', 'standards'],
+            'portfolio' => ['selected work', 'capabilities', 'process', 'project brief'],
+            'saas' => ['product', 'pricing', 'security', 'trial'],
+        ];
+
+        foreach (StarterSiteDefinitions::all() as $slug => $starter) {
+            $copy = strtolower($this->flattenStrings([
+                $starter['purpose'],
+                $starter['abstract'],
+                $starter['home']['content'],
+            ]));
+
+            foreach ($requiredTerms[$slug] as $term) {
+                self::assertStringContainsString($term, $copy, $slug . ' homepage must cover ' . $term);
+            }
+        }
+    }
+
+    public function testVisitorCopyDoesNotLeakInternalSeedInstructions(): void
+    {
+        $bannedPhrases = [
+            'seeded story',
+            'seeded starter',
+            'dummy dashboard',
+            'dummy product',
+            'replace this',
+            'first draft',
+            'starter content',
+            'layout review',
+            'homepage mockup',
+        ];
+
+        foreach (StarterSiteDefinitions::all() as $slug => $starter) {
+            $copy = strtolower($this->flattenStrings([
+                $starter['purpose'],
+                $starter['abstract'],
+                $starter['home']['content'],
+                $starter['subpages'],
+            ]));
+
+            foreach ($bannedPhrases as $phrase) {
+                self::assertStringNotContainsString($phrase, $copy, $slug . ' leaks internal copy: ' . $phrase);
             }
         }
     }
@@ -143,6 +196,27 @@ final class StarterSiteDefinitionsTest extends TestCase
         }
 
         return $blocks;
+    }
+
+    /**
+     * @param mixed $value
+     */
+    private function flattenStrings(mixed $value): string
+    {
+        if (is_string($value)) {
+            return $value . ' ';
+        }
+
+        if (!is_array($value)) {
+            return '';
+        }
+
+        $copy = '';
+        foreach ($value as $child) {
+            $copy .= $this->flattenStrings($child);
+        }
+
+        return $copy;
     }
 
     /**

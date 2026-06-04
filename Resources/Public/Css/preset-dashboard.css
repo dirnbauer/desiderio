@@ -311,11 +311,13 @@
 }
 
 .desiderio-dashboard-template__toolbar h1,
+.desiderio-dashboard-template__heading,
 .desiderio-dashboard-template__eyebrow {
     margin: 0;
 }
 
-.desiderio-dashboard-template__toolbar h1 {
+.desiderio-dashboard-template__toolbar h1,
+.desiderio-dashboard-template__heading {
     font-size: 1.125rem;
     line-height: 1.3;
     font-weight: 700;

@@ -239,6 +239,21 @@ final class ContentRenderingTemplateTest extends TestCase
         self::assertStringContainsString("range.setAttribute('aria-valuetext'", $javascript);
     }
 
+    public function testTypo3FormBridgeUsesNeutralBordersAndPowermailStyleErrors(): void
+    {
+        $css = (string) file_get_contents(__DIR__ . '/../../Resources/Public/Css/components.css');
+
+        self::assertStringContainsString('.desiderio-form .form-control:focus', $css);
+        self::assertStringContainsString('.desiderio-form .form-control:focus-visible', $css);
+        self::assertStringContainsString('border-color: var(--input);', $css);
+        self::assertStringContainsString('accent-color: var(--foreground);', $css);
+        self::assertStringContainsString('.desiderio-form .form-control[aria-invalid="true"]', $css);
+        self::assertStringContainsString('.desiderio-form textarea.is-invalid', $css);
+        self::assertStringContainsString('border-color: var(--destructive);', $css);
+        self::assertStringContainsString('.desiderio-form .invalid-feedback::before', $css);
+        self::assertStringContainsString('content: "!";', $css);
+    }
+
     public function testCounterTemplatesAreConnectedToSharedRuntime(): void
     {
         $counterTemplate = (string) file_get_contents(__DIR__ . '/../../ContentBlocks/ContentElements/counter/templates/frontend.html');
@@ -258,14 +273,23 @@ final class ContentRenderingTemplateTest extends TestCase
         $template = (string) file_get_contents(__DIR__ . '/../../ContentBlocks/ContentElements/code-block/templates/frontend.html');
         $javascript = (string) file_get_contents(__DIR__ . '/../../Resources/Public/Js/astro.js');
         $css = (string) file_get_contents(__DIR__ . '/../../ContentBlocks/ContentElements/code-block/assets/frontend.css');
+        $setup = (string) file_get_contents(__DIR__ . '/../../Configuration/Sets/Desiderio/setup.typoscript');
+        $prism = (string) file_get_contents(__DIR__ . '/../../Resources/Public/Js/prism-lite.js');
 
         self::assertStringContainsString('data-astro-highlight', $template);
         self::assertStringContainsString('data-astro-language="{data.language}"', $template);
         self::assertStringContainsString('data-astro-copy', $template);
+        self::assertStringContainsString('desiderioPrism = EXT:desiderio/Resources/Public/Js/prism-lite.js', $setup);
+        self::assertStringContainsString('window.Prism.manual = true', $prism);
+        self::assertStringContainsString('languages.php', $prism);
         self::assertStringContainsString('AstroRuntime.prototype.initHighlight', $javascript);
+        self::assertStringContainsString('window.Prism.highlight', $javascript);
         self::assertStringContainsString('function highlightPhp(source)', $javascript);
+        self::assertStringContainsString('.code-block .token.keyword', $css);
+        self::assertStringContainsString('.code-block .token.string', $css);
         self::assertStringContainsString('.astro-token--keyword', $css);
-        self::assertStringContainsString('.astro-token--string', $css);
+        self::assertStringNotContainsString('var(--primary)', $css);
+        self::assertStringNotContainsString('var(--accent)', $css);
     }
 
     public function testGenericChartTemplateIsConnectedToLegendAndAnimationRuntime(): void
@@ -311,15 +335,225 @@ final class ContentRenderingTemplateTest extends TestCase
         self::assertStringContainsString('margin-block-start: var(--d-spacing-sm);', $textmediaCss);
     }
 
-    public function testTimelineListUsesContinuousRailAndSeparatedCards(): void
+    public function testDesiderioMailFormsUseFriendlyCaptcha(): void
+    {
+        $formFiles = [
+            'DesiderioBooking.form.yaml',
+            'DesiderioCallback.form.yaml',
+            'DesiderioContact.form.yaml',
+            'DesiderioDataRequest.form.yaml',
+            'DesiderioDownload.form.yaml',
+            'DesiderioFeedback.form.yaml',
+            'DesiderioLead.form.yaml',
+            'DesiderioNewsletter.form.yaml',
+        ];
+
+        foreach ($formFiles as $formFile) {
+            $form = self::parseYamlArray(__DIR__ . '/../../Resources/Private/Forms/' . $formFile);
+            $finishers = self::requireArray($form['finishers'] ?? null);
+            self::assertContains(
+                'EmailToReceiver',
+                array_column($finishers, 'identifier'),
+                $formFile . ' must still send mail'
+            );
+
+            $renderables = self::requireArray($form['renderables'] ?? null);
+            $page = self::requireArray($renderables[0] ?? null);
+            $fields = self::requireArray($page['renderables'] ?? null);
+            $friendlyCaptchaFields = array_values(array_filter(
+                $fields,
+                static fn (mixed $field): bool => is_array($field)
+                    && ($field['identifier'] ?? '') === 'friendlycaptcha'
+                    && ($field['type'] ?? '') === 'Friendlycaptcha'
+            ));
+
+            self::assertCount(1, $friendlyCaptchaFields, $formFile . ' must contain one Friendly Captcha element');
+            $friendlyCaptchaField = self::requireArray($friendlyCaptchaFields[0]);
+            self::assertSame('Spam protection', $friendlyCaptchaField['label'] ?? null, $formFile);
+            $friendlyCaptchaValidators = self::requireArray($friendlyCaptchaField['validators'] ?? null);
+            self::assertContains(
+                'Friendlycaptcha',
+                array_column($friendlyCaptchaValidators, 'identifier'),
+                $formFile . ' must validate Friendly Captcha server-side'
+            );
+        }
+
+        $composer = json_decode((string)file_get_contents(__DIR__ . '/../../composer.json'), true, 512, JSON_THROW_ON_ERROR);
+        $composer = self::requireArray($composer);
+        $composerSuggest = self::requireArray($composer['suggest'] ?? null);
+        self::assertArrayHasKey('studiomitte/friendlycaptcha', $composerSuggest);
+
+        $baseSet = self::parseYamlArray(__DIR__ . '/../../Configuration/Sets/Desiderio/config.yaml');
+        $optionalDependencies = self::requireArray($baseSet['optionalDependencies'] ?? null);
+        self::assertContains('studiomitte/friendlycaptcha', $optionalDependencies);
+    }
+
+    public function testDesiderioMailFormsUseBrandedEmailTemplates(): void
+    {
+        $listener = (string)file_get_contents(__DIR__ . '/../../Classes/EventListener/ConfigureDesiderioFormEmailFinisher.php');
+        $htmlLayout = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Form/Email/Layouts/SystemEmail.fluid.html');
+        $textLayout = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Form/Email/Layouts/SystemEmail.fluid.txt');
+        $htmlTemplate = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Form/Email/Templates/Default.fluid.html');
+        $textTemplate = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Form/Email/Templates/Default.fluid.txt');
+        $english = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Language/labels.xlf');
+        $german = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Language/de.labels.xlf');
+        $labelPath = 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:';
+
+        self::assertFileExists(__DIR__ . '/../../Resources/Public/Images/webconsulting-logo.svg');
+        self::assertStringContainsString('EMAIL_TEMPLATE_ROOT_PATH', $listener);
+        self::assertStringContainsString('EMAIL_LAYOUT_ROOT_PATH', $listener);
+        self::assertStringContainsString('sourcePageTitle', $listener);
+        self::assertStringContainsString('sourcePageUrl', $listener);
+
+        self::assertStringContainsString('webconsulting-logo.svg', $htmlLayout);
+        self::assertStringContainsString('#ff8700', $htmlLayout);
+        self::assertStringContainsString('color: #ffffff', $htmlLayout);
+        self::assertStringContainsString('&copy;', $htmlLayout);
+        self::assertStringContainsString('webconsulting gmbh', $htmlLayout);
+        self::assertStringContainsString('Desiderio', $htmlLayout);
+        self::assertStringContainsString('This email was sent by', $htmlLayout);
+        self::assertStringContainsString('Copyright (c)', $textLayout);
+        self::assertStringContainsString('key="' . $labelPath . 'email.footer.notice"', $htmlLayout);
+        self::assertStringContainsString('key="' . $labelPath . 'email.footer.notice"', $textLayout);
+
+        self::assertStringContainsString('sourcePageTitle', $htmlTemplate);
+        self::assertStringContainsString('sourcePageUrl', $htmlTemplate);
+        self::assertStringContainsString('formvh:renderAllFormValues', $htmlTemplate);
+        self::assertStringContainsString('Best regards', $htmlTemplate);
+        self::assertStringContainsString('sourcePageTitle', $textTemplate);
+        self::assertStringContainsString('Best regards', $textTemplate);
+        self::assertStringContainsString('key="' . $labelPath . 'email.form.intro"', $htmlTemplate);
+        self::assertStringContainsString('key="' . $labelPath . 'email.form.goodbye"', $htmlTemplate);
+        self::assertStringContainsString('key="' . $labelPath . 'email.form.intro"', $textTemplate);
+
+        foreach ([
+            'email.form.intro',
+            'email.form.goodbye',
+            'email.form.signature',
+            'email.footer.notice',
+            'email.footer.copyright.webconsulting',
+            'email.footer.copyright.desiderio',
+            'email.footer.copyright.webconsultingText',
+            'email.footer.copyright.desiderioText',
+        ] as $unitId) {
+            self::assertStringContainsString('<unit id="' . $unitId . '">', $english);
+            self::assertStringContainsString('<unit id="' . $unitId . '">', $german);
+        }
+        self::assertStringContainsString('{sourceType, select, page', $english);
+        self::assertStringContainsString('{sourceType, select, page', $german);
+        self::assertStringContainsString('{siteName}', $english);
+        self::assertStringContainsString('{siteUrl}', $english);
+        self::assertStringContainsString('{year}', $english);
+    }
+
+    public function testDesiderioFormsRegisterAndUseBrevoContactFinisher(): void
+    {
+        $formConfiguration = self::parseYamlArray(__DIR__ . '/../../Configuration/Form/Desiderio/config.yaml');
+        $prototypes = self::requireArray($formConfiguration['prototypes'] ?? null);
+        $standardPrototype = self::requireArray($prototypes['standard'] ?? null);
+        $finisherDefinitions = self::requireArray($standardPrototype['finishersDefinition'] ?? null);
+        $brevoFinisher = self::requireArray($finisherDefinitions['BrevoContact'] ?? null);
+        self::assertSame(
+            'Webconsulting\Desiderio\Domain\Finishers\BrevoContactFinisher',
+            $brevoFinisher['implementationClassName'] ?? null
+        );
+
+        $settings = self::parseYamlArray(__DIR__ . '/../../Configuration/Sets/Desiderio/settings.yaml');
+        $desiderioSettings = self::requireArray($settings['desiderio'] ?? null);
+        $formSettings = self::requireArray($desiderioSettings['forms'] ?? null);
+        $brevoSettings = self::requireArray($formSettings['brevo'] ?? null);
+        self::assertFalse($formSettings['friendlyCaptchaTestMode'] ?? true);
+        self::assertFalse($brevoSettings['enabled'] ?? true);
+        self::assertTrue($brevoSettings['trackEvent'] ?? false);
+        self::assertSame('desiderio_form_submit', $brevoSettings['eventName'] ?? null);
+
+        $settingDefinitions = self::parseYamlArray(__DIR__ . '/../../Configuration/Sets/Desiderio/settings.definitions.yaml');
+        $definedSettings = self::requireArray($settingDefinitions['settings'] ?? null);
+        $friendlyCaptchaTestMode = self::requireArray($definedSettings['desiderio.forms.friendlyCaptchaTestMode'] ?? null);
+        self::assertSame('bool', $friendlyCaptchaTestMode['type'] ?? null);
+        self::assertFalse($friendlyCaptchaTestMode['default'] ?? true);
+
+        $middleware = (string)file_get_contents(__DIR__ . '/../../Classes/Middleware/FriendlyCaptchaTestModeMiddleware.php');
+        $middlewareRegistration = (string)file_get_contents(__DIR__ . '/../../Configuration/RequestMiddlewares.php');
+        self::assertStringContainsString('desiderio.forms.friendlyCaptchaTestMode', $middleware);
+        self::assertStringContainsString('friendlycaptcha_skip_dev_validation', $middleware);
+        self::assertStringContainsString('webconsulting/desiderio-friendlycaptcha-test-mode', $middlewareRegistration);
+
+        $formFiles = [
+            'DesiderioBooking.form.yaml',
+            'DesiderioCallback.form.yaml',
+            'DesiderioContact.form.yaml',
+            'DesiderioDataRequest.form.yaml',
+            'DesiderioDownload.form.yaml',
+            'DesiderioFeedback.form.yaml',
+            'DesiderioLead.form.yaml',
+            'DesiderioNewsletter.form.yaml',
+        ];
+
+        foreach ($formFiles as $formFile) {
+            $form = self::parseYamlArray(__DIR__ . '/../../Resources/Private/Forms/' . $formFile);
+            $configuredFinishers = self::requireArray($form['finishers'] ?? null);
+            $finishers = array_column($configuredFinishers, 'identifier');
+            $emailFinisherPosition = array_search('EmailToReceiver', $finishers, true);
+            $brevoFinisherPosition = array_search('BrevoContact', $finishers, true);
+            $confirmationFinisherPosition = array_search('Confirmation', $finishers, true);
+
+            self::assertContains('BrevoContact', $finishers, $formFile);
+            self::assertIsInt($emailFinisherPosition);
+            self::assertIsInt($brevoFinisherPosition);
+            self::assertIsInt($confirmationFinisherPosition);
+            self::assertGreaterThan(
+                $emailFinisherPosition,
+                $brevoFinisherPosition,
+                $formFile . ' must sync with Brevo after mail has been prepared'
+            );
+            self::assertLessThan(
+                $confirmationFinisherPosition,
+                $brevoFinisherPosition,
+                $formFile . ' must sync with Brevo before the success response is rendered'
+            );
+        }
+    }
+
+    public function testFeedbackFormUsesSixDescriptiveRatingOptions(): void
+    {
+        $form = self::parseYamlArray(__DIR__ . '/../../Resources/Private/Forms/DesiderioFeedback.form.yaml');
+        $renderables = self::requireArray($form['renderables'] ?? null);
+        $page = self::requireArray($renderables[0] ?? null);
+        $fields = self::requireArray($page['renderables'] ?? null);
+        $ratingFields = array_values(array_filter(
+            $fields,
+            static fn (mixed $field): bool => is_array($field)
+                && ($field['identifier'] ?? '') === 'rating'
+                && ($field['type'] ?? '') === 'RadioButton'
+        ));
+
+        self::assertCount(1, $ratingFields);
+
+        $ratingField = self::requireArray($ratingFields[0]);
+        $properties = self::requireArray($ratingField['properties'] ?? null);
+        $options = self::requireArray($properties['options'] ?? null);
+        self::assertSame([1, 2, 3, 4, 5, 6], array_keys($options));
+
+        foreach ($options as $value => $label) {
+            self::assertIsString($label);
+            self::assertStringStartsWith((string)$value . ' - ', $label);
+            self::assertGreaterThan(55, strlen($label));
+        }
+    }
+
+    public function testTimelineListUsesContinuousRailAndConnectedCards(): void
     {
         $timelineCss = (string)file_get_contents(__DIR__ . '/../../ContentBlocks/ContentElements/timeline/assets/frontend.css');
 
         self::assertStringContainsString('.timeline__list::before', $timelineCss);
-        self::assertStringContainsString('gap: var(--d-spacing-lg);', $timelineCss);
+        self::assertStringContainsString('gap: 0;', $timelineCss);
+        self::assertStringContainsString('.timeline__marker::after', $timelineCss);
+        self::assertStringContainsString('width: calc(var(--d-spacing-md) + 0.5625rem);', $timelineCss);
         self::assertStringContainsString('.timeline__line', $timelineCss);
         self::assertStringContainsString('display: none;', $timelineCss);
         self::assertStringContainsString('.timeline__content', $timelineCss);
+        self::assertStringContainsString('position: relative;', $timelineCss);
         self::assertStringContainsString('border-radius: var(--d-radius-lg);', $timelineCss);
         self::assertStringContainsString('padding: var(--d-spacing-lg);', $timelineCss);
     }
@@ -330,6 +564,7 @@ final class ContentRenderingTemplateTest extends TestCase
         $solrSet = Yaml::parseFile(__DIR__ . '/../../Configuration/Sets/DesiderioSolr/config.yaml');
         $newsSet = Yaml::parseFile(__DIR__ . '/../../Configuration/Sets/DesiderioNews/config.yaml');
         $blogSet = Yaml::parseFile(__DIR__ . '/../../Configuration/Sets/DesiderioBlog/config.yaml');
+        $blogStandaloneSet = Yaml::parseFile(__DIR__ . '/../../Configuration/Sets/DesiderioBlogStandalone/config.yaml');
         $solrTypoScript = (string) file_get_contents(__DIR__ . '/../../Configuration/Sets/DesiderioSolr/setup.typoscript');
         $newsTypoScript = (string) file_get_contents(__DIR__ . '/../../Configuration/Sets/DesiderioNews/setup.typoscript');
         $blogTypoScript = (string) file_get_contents(__DIR__ . '/../../Configuration/Sets/DesiderioBlog/setup.typoscript');
@@ -338,14 +573,15 @@ final class ContentRenderingTemplateTest extends TestCase
         self::assertIsArray($solrSet);
         self::assertIsArray($newsSet);
         self::assertIsArray($blogSet);
+        self::assertIsArray($blogStandaloneSet);
 
         $baseOptionalDependencies = $baseSet['optionalDependencies'] ?? [];
         $solrOptionalDependencies = $solrSet['optionalDependencies'] ?? [];
-        $newsOptionalDependencies = $newsSet['optionalDependencies'] ?? [];
+        $newsDependencies = $newsSet['dependencies'] ?? [];
         $blogOptionalDependencies = $blogSet['optionalDependencies'] ?? [];
         self::assertIsArray($baseOptionalDependencies);
         self::assertIsArray($solrOptionalDependencies);
-        self::assertIsArray($newsOptionalDependencies);
+        self::assertIsArray($newsDependencies);
         self::assertIsArray($blogOptionalDependencies);
 
         self::assertContains('webconsulting/desiderio-solr', $baseOptionalDependencies);
@@ -363,20 +599,57 @@ final class ContentRenderingTemplateTest extends TestCase
 
         self::assertSame('webconsulting/desiderio-news', $newsSet['name']);
         self::assertTrue($newsSet['hidden']);
-        self::assertContains('georgringer/news', $newsOptionalDependencies);
+        self::assertContains('georgringer/news', $newsDependencies);
         self::assertStringContainsString('plugin.tx_news', $newsTypoScript);
         self::assertStringContainsString('templateRootPaths.200 = EXT:desiderio/Resources/Private/Extensions/News/Templates/', $newsTypoScript);
         self::assertStringContainsString('partialRootPaths.200 = EXT:desiderio/Resources/Private/Extensions/News/Partials/', $newsTypoScript);
         self::assertStringContainsString('layoutRootPaths.200 = EXT:desiderio/Resources/Private/Extensions/News/Layouts/', $newsTypoScript);
+        self::assertStringContainsString('detailPid = {$news.pages.detail}', $newsTypoScript);
+        self::assertStringContainsString('defaultDetailPid = {$news.pages.detail}', $newsTypoScript);
+        self::assertStringContainsString('tt_content.news_pi1', $newsTypoScript);
+        self::assertStringContainsString('tt_content.news_newsdetail', $newsTypoScript);
+        self::assertStringContainsString('controller = News', $newsTypoScript);
+        self::assertStringContainsString('action = list', $newsTypoScript);
+        self::assertStringContainsString('action = detail', $newsTypoScript);
 
         self::assertSame('webconsulting/desiderio-blog', $blogSet['name']);
         self::assertTrue($blogSet['hidden']);
-        self::assertContains('t3g/blog', $blogOptionalDependencies);
+        self::assertContains('blog/integration', $blogOptionalDependencies);
         self::assertStringContainsString('plugin.tx_blog', $blogTypoScript);
         self::assertStringContainsString('templateRootPaths.200 = EXT:desiderio/Resources/Private/Extensions/Blog/Templates/', $blogTypoScript);
         self::assertStringContainsString('partialRootPaths.200 = EXT:desiderio/Resources/Private/Extensions/Blog/Partials/', $blogTypoScript);
         self::assertStringContainsString('layoutRootPaths.200 = EXT:desiderio/Resources/Private/Extensions/Blog/Layouts/', $blogTypoScript);
+        foreach (['posts', 'category', 'tag', 'archive', 'comments', 'author'] as $blogFeedName) {
+            self::assertStringContainsString(
+                'blog_rss_' . $blogFeedName . '.config.additionalHeaders.10.header = Content-Type: application/rss+xml; charset=utf-8',
+                $blogTypoScript,
+            );
+        }
         self::assertStringNotContainsString('lib.dynamicContent', $blogTypoScript);
+
+        self::assertSame('webconsulting/desiderio-blog-standalone', $blogStandaloneSet['name']);
+        self::assertContains('webconsulting/desiderio-news', $blogStandaloneSet['optionalDependencies'] ?? []);
+    }
+
+    public function testDesiderioPowermailOptionGroupsExposeVisibleLegend(): void
+    {
+        $shadcnClasses = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/Powermail/Partials/Form/ShadcnClass.html');
+        $groupTemplates = [
+            'Resources/Private/Extensions/Powermail/Partials/Form/Field/Check.html',
+            'Resources/Private/Extensions/Powermail/Partials/Form/Field/Radio.html',
+        ];
+
+        self::assertStringContainsString('<f:case value="fieldLegend">', $shadcnClasses);
+
+        foreach ($groupTemplates as $relativePath) {
+            $template = (string) file_get_contents(__DIR__ . '/../../' . $relativePath);
+
+            self::assertStringContainsString('<fieldset data-slot="field-set"', $template);
+            self::assertStringContainsString('data-slot="field-legend"', $template);
+            self::assertStringContainsString("slot: 'fieldLegend'", $template);
+            self::assertStringNotContainsString('<legend class="sr-only">', $template);
+            self::assertSame(1, substr_count($template, '<f:if condition="{field.mandatory}">'), "{$relativePath} should render the required marker once on the group legend");
+        }
     }
 
     public function testDesiderioBlogTemplatesUseShadcnComponentsAndTypedFluidArguments(): void
@@ -506,6 +779,40 @@ final class ContentRenderingTemplateTest extends TestCase
 
         $blogPageTsConfig = (string) file_get_contents(__DIR__ . '/../../Configuration/Sets/DesiderioBlog/page.tsconfig');
         self::assertStringContainsString('mod.web_layout.tt_content.preview', $blogPageTsConfig);
+
+        $listPostPartial = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/Blog/Partials/List/Post.html');
+        self::assertStringContainsString('partial="Meta/ListHeader"', $listPostPartial);
+        self::assertStringNotContainsString('flex min-w-0 flex-wrap items-start gap-x-3 gap-y-2', $listPostPartial);
+        self::assertStringNotContainsString('partial="Meta/Rendering/Group" arguments="{metatype: \'listheader\'}"', $listPostPartial);
+
+        $teaserPostPartial = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/Blog/Partials/Teaser/Post.html');
+        self::assertStringContainsString('partial="Meta/TeaserHeader"', $teaserPostPartial);
+        self::assertStringNotContainsString('flex min-w-0 flex-wrap items-start gap-x-3 gap-y-2', $teaserPostPartial);
+        self::assertStringNotContainsString('partial="Meta/Rendering/Group" arguments="{metatype: \'teaserheader\'}"', $teaserPostPartial);
+
+        $metaAuthorsPartial = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/Blog/Partials/Meta/Elements/Authors.html');
+        self::assertStringContainsString('<d:atom.icon name="user" size="xs"/>', $metaAuthorsPartial);
+        self::assertStringNotContainsString('blogvh:uri.avatar', $metaAuthorsPartial);
+        self::assertStringNotContainsString('<d:atom.avatar', $metaAuthorsPartial);
+
+        $metaRenderingSection = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/Blog/Partials/Meta/Rendering/Section.html');
+        self::assertStringNotContainsString('avatarSettings', $metaRenderingSection);
+
+        $blogSettings = Yaml::parseFile(__DIR__ . '/../../Configuration/Sets/DesiderioBlog/settings.yaml');
+        self::assertTrue($blogSettings['plugin']['tx_blog']['settings']['meta']['listheader']['elements']['tags']['enable'] ?? false);
+        self::assertTrue($blogSettings['plugin']['tx_blog']['settings']['meta']['teaserheader']['elements']['tags']['enable'] ?? false);
+
+        $blogTypoScript = (string) file_get_contents(__DIR__ . '/../../Configuration/Sets/DesiderioBlog/setup.typoscript');
+        self::assertStringContainsString("listheader {\n      elements {\n        authors.enable = 1\n        categories.enable = 1\n        tags.enable = 1", $blogTypoScript);
+        self::assertStringContainsString("teaserheader {\n      elements {\n        authors.enable = 1\n        categories.enable = 1\n        tags.enable = 1", $blogTypoScript);
+
+        foreach (['Page/BlogList.html', 'Page/BlogPost.html'] as $relativeTemplate) {
+            $template = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/Blog/Templates/' . $relativeTemplate);
+            self::assertStringContainsString('lg:sticky lg:top-24', $template, "{$relativeTemplate} must keep the desktop sidebar sticky");
+            self::assertStringContainsString('lg:max-h-[calc(100dvh-7rem)]', $template, "{$relativeTemplate} must cap the sidebar to the viewport");
+            self::assertStringContainsString('lg:overflow-y-auto', $template, "{$relativeTemplate} must let long sidebar widget stacks scroll");
+            self::assertStringContainsString('lg:overscroll-contain', $template, "{$relativeTemplate} must avoid pulling the page scroll while the sidebar is scrolling");
+        }
     }
 
     public function testDesiderioBlogPageTemplatesAreVisualEditorReady(): void
@@ -701,6 +1008,8 @@ final class ContentRenderingTemplateTest extends TestCase
         }
 
         foreach ([
+            'Resources/Private/ShadcnUi/Templates/Pages/BlogList.fluid.html',
+            'Resources/Private/ShadcnUi/Templates/Pages/BlogPost.fluid.html',
             'Resources/Private/ShadcnUi/Templates/Pages/DesiderioBlog.fluid.html',
             'Resources/Private/ShadcnUi/Templates/Pages/DesiderioExtension.fluid.html',
             'Resources/Private/ShadcnUi/Templates/Pages/DesiderioNews.fluid.html',
@@ -714,6 +1023,18 @@ final class ContentRenderingTemplateTest extends TestCase
             self::assertStringContainsString('contentArea="{content.stage}"', $template);
             self::assertStringContainsString('contentArea="{content.main}"', $template);
             self::assertStringContainsString('contentArea="{content.sidebar}"', $template);
+        }
+
+        foreach ([
+            'Resources/Private/ShadcnUi/Templates/Pages/BlogList.fluid.html',
+            'Resources/Private/ShadcnUi/Templates/Pages/BlogPost.fluid.html',
+            'Resources/Private/ShadcnUi/Templates/Pages/DesiderioBlog.fluid.html',
+        ] as $relativePath) {
+            $template = (string) file_get_contents(__DIR__ . '/../../' . $relativePath);
+            self::assertStringContainsString('lg:sticky lg:top-24', $template, "{$relativePath} must keep the desktop sidebar sticky");
+            self::assertStringContainsString('lg:max-h-[calc(100dvh-7rem)]', $template, "{$relativePath} must cap the sidebar to the viewport");
+            self::assertStringContainsString('lg:overflow-y-auto', $template, "{$relativePath} must let long sidebar widget stacks scroll");
+            self::assertStringContainsString('lg:overscroll-contain', $template, "{$relativePath} must avoid pulling the page scroll while the sidebar is scrolling");
         }
     }
 
@@ -733,6 +1054,8 @@ final class ContentRenderingTemplateTest extends TestCase
             'Resources/Private/Extensions/News/Partials/List/Item.html',
             'Resources/Private/Extensions/News/Partials/List/Pagination.html',
             'Resources/Private/Extensions/News/Partials/List/LoadMore.html',
+            'Resources/Private/Extensions/News/Partials/Taxonomy.html',
+            'Resources/Private/Extensions/News/Partials/General/NewsIcons.html',
             'Resources/Private/Extensions/News/Partials/Detail/MediaContainer.html',
             'Resources/Private/Extensions/News/Partials/Detail/Opengraph.html',
             'Resources/Private/Extensions/News/Partials/Detail/StructuredData.html',
@@ -763,17 +1086,42 @@ final class ContentRenderingTemplateTest extends TestCase
         $detailTemplate = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/News/Templates/News/Detail.html');
         $listItem = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/News/Partials/List/Item.html');
         $magazineList = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/News/Templates/News/MagazineList.html');
+        $taxonomy = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/News/Partials/Taxonomy.html');
+        $newsIcons = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/News/Partials/General/NewsIcons.html');
         $structuredData = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/News/Partials/Detail/StructuredData.html');
 
         self::assertStringContainsString('https://schema.org/NewsArticle', $detailLayout);
         self::assertStringContainsString('partial="Detail/StructuredData"', $detailTemplate);
+        self::assertStringContainsString('partial="Taxonomy"', $detailTemplate);
         self::assertStringContainsString('itemprop="dateModified"', $detailTemplate);
+        self::assertStringContainsString('partial="Taxonomy"', $listItem);
+        self::assertStringContainsString('partial="Taxonomy"', $magazineList);
+        self::assertStringContainsString('partial="General/NewsIcons" section="Category"', $taxonomy);
+        self::assertStringContainsString('partial="General/NewsIcons" section="Tag"', $taxonomy);
+        foreach (['Author', 'Category', 'Tag', 'Published', 'Comment'] as $iconSection) {
+            self::assertStringContainsString('<f:section name="' . $iconSection . '">', $newsIcons);
+        }
+        foreach (['name="user"', 'name="folder"', 'name="tag"', 'name="calendar"', 'name="message-circle"'] as $iconName) {
+            self::assertStringContainsString($iconName, $newsIcons);
+        }
         self::assertStringContainsString('https://schema.org/NewsArticle', $listItem);
         self::assertStringContainsString('https://schema.org/NewsArticle', $magazineList);
+        self::assertStringContainsString('value="{newsItem.falMedia.0}"', $listItem);
+        self::assertStringContainsString('<f:link.action action="detail" controller="News" extensionName="News" pluginName="Pi1"', $listItem);
+        self::assertStringContainsString('aspect-[4/3]', $listItem);
+        self::assertStringContainsString('width="900"', $listItem);
+        self::assertStringNotContainsString('settings.list.media.image.maxHeight', $listItem);
+        self::assertStringNotContainsString('dummyImage', $listItem);
+        self::assertStringContainsString('lg:grid-cols-3', (string) file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/News/Partials/List/LoadMore.html'));
+        self::assertStringContainsString('lg:grid-cols-3', (string) file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/News/Partials/Detail/MediaContainer.html'));
         self::assertStringContainsString('<n:headerData>', $structuredData);
         self::assertStringContainsString('type="application/ld+json"', $structuredData);
         self::assertStringContainsString('"@type": "NewsArticle"', $structuredData);
         self::assertStringContainsString('"publisher"', $structuredData);
+        self::assertStringContainsString('newsItem.falMedia.0', $structuredData);
+        self::assertStringNotContainsString('fallbackImage', $structuredData);
+        self::assertStringNotContainsString('-> f:format.json()', $structuredData);
+        self::assertStringNotContainsString('{f:format.date(date:', $structuredData);
         self::assertStringContainsString('f:format.json', $structuredData);
         self::assertStringContainsString('<f:format.raw>', $structuredData);
 
@@ -835,7 +1183,7 @@ final class ContentRenderingTemplateTest extends TestCase
         self::assertStringContainsString('plural,', $english, 'locallang.xlf must use ICU MessageFormat plural rules');
         self::assertStringContainsString('plural,', $german, 'de.locallang.xlf must use ICU MessageFormat plural rules');
 
-        foreach (['news.loadMore.status', 'news.magazine.items', 'news.comments.count', 'news.tags.count', 'news.categories.count'] as $unitId) {
+        foreach (['news.loadMore.status', 'news.magazine.items', 'news.comments.count', 'news.tags.count', 'news.categories.count', 'blog.comments.count'] as $unitId) {
             self::assertStringContainsString('<unit id="' . $unitId . '">', $english, "{$unitId} must exist in locallang.xlf");
             self::assertStringContainsString('<unit id="' . $unitId . '">', $german, "{$unitId} must exist in de.locallang.xlf");
         }
@@ -847,6 +1195,7 @@ final class ContentRenderingTemplateTest extends TestCase
             'Resources/Private/Extensions/News/Partials/List/Item.html',
             'Resources/Private/Extensions/News/Partials/List/Pagination.html',
             'Resources/Private/Extensions/News/Partials/List/LoadMore.html',
+            'Resources/Private/Extensions/News/Partials/Taxonomy.html',
             'Resources/Private/Extensions/News/Partials/Category/Items.html',
             'Resources/Private/Extensions/News/Partials/Detail/MediaContainer.html',
             'Resources/Private/Extensions/News/Partials/Detail/MediaImage.html',
@@ -968,5 +1317,25 @@ final class ContentRenderingTemplateTest extends TestCase
                 "{$relativePath} must add role=\"list\" to <ul> elements that strip native list semantics via Tailwind."
             );
         }
+    }
+
+    /**
+     * @return array<mixed>
+     */
+    private static function parseYamlArray(string $path): array
+    {
+        $data = Yaml::parseFile($path);
+
+        return self::requireArray($data);
+    }
+
+    /**
+     * @return array<mixed>
+     */
+    private static function requireArray(mixed $value): array
+    {
+        self::assertIsArray($value);
+
+        return $value;
     }
 }

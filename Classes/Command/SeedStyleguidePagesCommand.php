@@ -796,8 +796,11 @@ final class SeedStyleguidePagesCommand extends Command
 
         foreach ($definition['fields'] as $field => $fieldConfig) {
             if ($this->isFileField($fieldConfig)) {
+                $explicitReferences = $this->buildFileReferenceFixturesFromFixtureValue($fixture[$field] ?? null, $fieldConfig);
                 unset($resolvedFields[$field]);
-                $fileReferences[$field] = $this->buildFileReferenceFixtures($name . '-' . $field, $fieldConfig, 0);
+                $fileReferences[$field] = $explicitReferences !== []
+                    ? $explicitReferences
+                    : $this->buildFileReferenceFixtures($name . '-' . $field, $fieldConfig, 0);
                 continue;
             }
 
@@ -862,8 +865,11 @@ final class SeedStyleguidePagesCommand extends Command
 
         foreach ($collection['fields'] as $field => $fieldConfig) {
             if ($this->isFileField($fieldConfig)) {
+                $explicitReferences = $this->buildFileReferenceFixturesFromFixtureValue($item[$field] ?? null, $fieldConfig);
                 unset($item[$field]);
-                $fileReferences[$field] = $this->buildFileReferenceFixtures($name . '-' . $collectionField . '-' . $field, $fieldConfig, $index);
+                $fileReferences[$field] = $explicitReferences !== []
+                    ? $explicitReferences
+                    : $this->buildFileReferenceFixtures($name . '-' . $collectionField . '-' . $field, $fieldConfig, $index);
                 $item[$field] = count($fileReferences[$field]);
                 continue;
             }
@@ -1425,6 +1431,63 @@ PHP;
                 'alternative' => $asset['alt'],
                 'description' => $asset['credit'],
                 'source' => $asset['source'],
+            ];
+        }
+
+        return $references;
+    }
+
+    /**
+     * @param array<string, mixed> $fieldConfig
+     * @return list<array{file: string, title: string, alternative: string, description: string, source: string}>
+     */
+    private function buildFileReferenceFixturesFromFixtureValue(mixed $value, array $fieldConfig): array
+    {
+        if ($this->isEmptySeedValue($value)) {
+            return [];
+        }
+
+        $maxItems = $this->getConfiguredInteger($fieldConfig, 'maxitems')
+            ?? $this->getConfiguredInteger($fieldConfig, 'maxItems')
+            ?? 1;
+        $maxItems = max(1, $maxItems);
+        $items = [];
+
+        if (is_string($value)) {
+            $items[] = ['file' => $value];
+        } elseif (is_array($value) && isset($value['file'])) {
+            $items[] = $this->normalizeStringKeyedArray($value);
+        } elseif (is_array($value)) {
+            foreach ($value as $item) {
+                if (is_string($item)) {
+                    $items[] = ['file' => $item];
+                    continue;
+                }
+                if (is_array($item) && isset($item['file'])) {
+                    $items[] = $this->normalizeStringKeyedArray($item);
+                }
+            }
+        }
+
+        $references = [];
+        foreach (array_slice($items, 0, $maxItems) as $item) {
+            $file = trim((string)($item['file'] ?? ''));
+            if ($file === '') {
+                continue;
+            }
+            if (str_starts_with($file, 'EXT:desiderio/')) {
+                $file = substr($file, strlen('EXT:desiderio/'));
+            }
+
+            $fallbackTitle = $this->buildReadableFileTitle(pathinfo($file, PATHINFO_FILENAME));
+            $source = trim((string)($item['source'] ?? $item['link'] ?? ''));
+
+            $references[] = [
+                'file' => $file,
+                'title' => trim((string)($item['title'] ?? $fallbackTitle)),
+                'alternative' => trim((string)($item['alternative'] ?? $item['alt'] ?? $fallbackTitle)),
+                'description' => trim((string)($item['description'] ?? $item['credit'] ?? $source)),
+                'source' => $source,
             ];
         }
 
@@ -2136,6 +2199,10 @@ PHP;
     {
         if ($value === []) {
             return '';
+        }
+
+        if (isset($collection['fields'][$field]) && $this->isFileField($collection['fields'][$field])) {
+            return $value;
         }
 
         if ($field === 'row_data' && !$this->containsNestedArray($value)) {
@@ -2901,6 +2968,14 @@ PHP;
     private function normalizeIdentifier(string $value): string
     {
         return strtolower(preg_replace('/[^a-z0-9]+/', '', $value) ?? '');
+    }
+
+    private function buildReadableFileTitle(string $value): string
+    {
+        $title = preg_replace('/[^a-zA-Z0-9]+/', ' ', $value) ?? '';
+        $title = trim($title);
+
+        return $title !== '' ? ucwords(strtolower($title)) : 'Styleguide image';
     }
 
     /**

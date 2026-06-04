@@ -4,7 +4,8 @@
     data-namespace-typo3-fluid="true"
 >
 
-<f:variable name="siteTitle" value="{site.configuration.websiteTitle -> f:or(alternative: breadcrumb.0.title)}"/>
+<f:variable name="siteTitle" value="{site.configuration.websiteTitle ?: site.identifier}"/>
+<f:variable name="siteTitle" value="{siteTitle ?: breadcrumb.0.title}"/>
 <f:variable name="searchAction" value="{breadcrumb.0.link}"/>
 <f:if condition="{site.configuration.settings.desiderio.search.targetPageId}">
     <f:variable name="searchAction" value="{f:uri.page(pageUid: site.configuration.settings.desiderio.search.targetPageId)}"/>

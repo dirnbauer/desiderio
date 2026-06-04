@@ -1357,6 +1357,18 @@
         <target>{total, plural, one {Zeige Ergebnis {from} von #.} other {Zeige Ergebnisse {from} bis {to} von #.}}</target>
       </segment>
     </unit>
+    <unit id="solr.resultsRangeLast">
+      <segment state="final">
+        <source>Showing the last result.</source>
+        <target>Zeige das letzte Ergebnis.</target>
+      </segment>
+    </unit>
+    <unit id="solr.resultsRangeSingle">
+      <segment state="final">
+        <source>Showing result {from}.</source>
+        <target>Zeige Ergebnis {from}.</target>
+      </segment>
+    </unit>
     <unit id="solr.facet.showMore">
       <segment state="final">
         <source>Show more</source>
@@ -1763,6 +1775,54 @@
       <segment state="final">
         <source>Now:</source>
         <target>Now:</target>
+      </segment>
+    </unit>
+    <unit id="email.form.intro">
+      <segment state="final">
+        <source>A new {title} form submission was sent from {sourceType, select, page {the page {sourcePageTitle}} other {the website}} ({sourcePageUrl}).</source>
+        <target>Eine neue Formularübermittlung für {title} wurde {sourceType, select, page {von der Seite {sourcePageTitle}} other {von der Website}} ({sourcePageUrl}) gesendet.</target>
+      </segment>
+    </unit>
+    <unit id="email.form.goodbye">
+      <segment state="final">
+        <source>Best regards,</source>
+        <target>Mit freundlichen Grüßen,</target>
+      </segment>
+    </unit>
+    <unit id="email.form.signature">
+      <segment state="final">
+        <source>webconsulting &amp; Desiderio</source>
+        <target>webconsulting &amp; Desiderio</target>
+      </segment>
+    </unit>
+    <unit id="email.footer.notice">
+      <segment state="final">
+        <source>This email was sent by {siteName} from URL: {siteUrl} - Please contact your site administrator if you feel you received this email by accident.</source>
+        <target>Diese E-Mail wurde von {siteName} über die URL {siteUrl} gesendet. Bitte kontaktieren Sie die Website-Administration, falls Sie diese E-Mail versehentlich erhalten haben.</target>
+      </segment>
+    </unit>
+    <unit id="email.footer.copyright.webconsulting">
+      <segment state="final">
+        <source>&#169; {year} webconsulting gmbh</source>
+        <target>&#169; {year} webconsulting gmbh</target>
+      </segment>
+    </unit>
+    <unit id="email.footer.copyright.desiderio">
+      <segment state="final">
+        <source>&#169; {year} Desiderio</source>
+        <target>&#169; {year} Desiderio</target>
+      </segment>
+    </unit>
+    <unit id="email.footer.copyright.webconsultingText">
+      <segment state="final">
+        <source>Copyright (c) {year} webconsulting gmbh</source>
+        <target>Copyright (c) {year} webconsulting gmbh</target>
+      </segment>
+    </unit>
+    <unit id="email.footer.copyright.desiderioText">
+      <segment state="final">
+        <source>Copyright (c) {year} Desiderio</source>
+        <target>Copyright (c) {year} Desiderio</target>
       </segment>
     </unit>
   </file>

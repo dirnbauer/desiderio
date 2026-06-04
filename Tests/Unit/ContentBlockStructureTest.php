@@ -379,7 +379,7 @@ final class ContentBlockStructureTest extends TestCase
             }
         }
 
-        self::assertSame(16, $iconFieldCount);
+        self::assertSame(17, $iconFieldCount);
     }
 
     public function testFixtureIconValuesUseIconNames(): void

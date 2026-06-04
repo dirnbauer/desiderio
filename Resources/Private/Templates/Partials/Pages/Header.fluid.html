@@ -4,8 +4,9 @@
     data-namespace-typo3-fluid="true"
 >
 
-<f:variable name="siteTitle" value="{site.configuration.websiteTitle -> f:or(alternative: breadcrumb.0.title)}"/>
-<f:variable name="brandWordmark" value="{site.configuration.settings.desiderio.brand.wordmark -> f:or(alternative: siteTitle)}"/>
+<f:variable name="siteTitle" value="{site.configuration.websiteTitle ?: site.identifier}"/>
+<f:variable name="siteTitle" value="{siteTitle ?: breadcrumb.0.title}"/>
+<f:variable name="brandWordmark" value="{site.configuration.settings.desiderio.brand.wordmark ?: siteTitle}"/>
 <f:variable name="searchAction" value="{breadcrumb.0.link}"/>
 <f:if condition="{site.configuration.settings.desiderio.search.targetPageId}">
     <f:variable name="searchAction" value="{f:uri.page(pageUid: site.configuration.settings.desiderio.search.targetPageId)}"/>
@@ -57,11 +58,32 @@
 
             <div class="desiderio-header__actions">
                 <f:if condition="{site.configuration.settings.desiderio.search.enabled}">
-                    <form class="desiderio-header__search" action="{searchAction}" method="get" role="search">
+                    <form
+                        class="desiderio-header__search"
+                        action="{searchAction}"
+                        method="get"
+                        role="search"
+                        data-suggest="{f:uri.page(pageType: 7384)}"
+                        data-suggest-param="tx_solr[queryString]"
+                        data-suggest-min-chars="2"
+                        data-suggest-max-items="7"
+                        data-suggest-header="{f:translate(extensionName: 'desiderio', key: 'solr.suggest.header', default: 'Top results')}"
+                    >
                         <label class="d-sr-only" for="desiderio-header-search">
                             <f:translate extensionName="desiderio" key="search.label">Search</f:translate>
                         </label>
-                        <input id="desiderio-header-search" class="desiderio-header__search-input" type="search" name="{site.configuration.settings.desiderio.search.queryParameter -> f:or(alternative: 'q')}" placeholder="{f:translate(extensionName: 'desiderio', key: 'search.placeholder', default: 'Search')}" autocomplete="off"/>
+                        <input
+                            id="desiderio-header-search"
+                            class="desiderio-header__search-input"
+                            type="search"
+                            name="{site.configuration.settings.desiderio.search.queryParameter -> f:or(alternative: 'q')}"
+                            placeholder="{f:translate(extensionName: 'desiderio', key: 'search.placeholder', default: 'Search')}"
+                            autocomplete="off"
+                            data-d-solr-suggest
+                            data-d-solr-type-label-pages="{f:translate(extensionName: 'desiderio', key: 'solr.contentType.pages', default: 'Pages')}"
+                            data-d-solr-type-label-news="{f:translate(extensionName: 'desiderio', key: 'solr.contentType.news', default: 'News')}"
+                            data-d-solr-type-label-addresses="{f:translate(extensionName: 'desiderio', key: 'solr.contentType.addresses', default: 'Addresses')}"
+                        />
                         <button class="desiderio-header__search-submit btn btn--ghost btn--icon" type="submit" aria-label="{f:translate(extensionName: 'desiderio', key: 'search.submit', default: 'Search')}" title="{f:translate(extensionName: 'desiderio', key: 'search.submit', default: 'Search')}">
                             <d:atom.icon name="search" size="sm"/>
                         </button>

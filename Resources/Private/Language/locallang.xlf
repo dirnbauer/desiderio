@@ -46,6 +46,11 @@
         <source>Showing {visible, plural, one {one article} other {# articles}} of {total, plural, one {one article} other {# articles}}</source>
       </segment>
     </unit>
+    <unit id="news.loadMore.status.client">
+      <segment>
+        <source>Showing {visible} of {total} articles</source>
+      </segment>
+    </unit>
     <unit id="news.featured">
       <segment>
         <source>Featured</source>
@@ -63,7 +68,7 @@
     </unit>
     <unit id="news.comments.count">
       <segment>
-        <source>{count, plural, =0 {No comments yet} one {one comment} other {# comments}}</source>
+        <source>{count, plural, =0 {0 comments} one {# comment} other {# comments}}</source>
       </segment>
     </unit>
     <unit id="news.tags.count">
@@ -79,6 +84,16 @@
     <unit id="news.entries.count">
       <segment>
         <source>{count, plural, one {one entry} other {# entries}}</source>
+      </segment>
+    </unit>
+    <unit id="blog.posts.count">
+      <segment>
+        <source>{count, plural, one {one post} other {# posts}}</source>
+      </segment>
+    </unit>
+    <unit id="blog.comments.count">
+      <segment>
+        <source>{count, plural, =0 {0 comments} one {# comment} other {# comments}}</source>
       </segment>
     </unit>
     <unit id="a11y.skipToContent">
@@ -459,6 +474,46 @@
     <unit id="saas.sidebar.label">
       <segment>
         <source>Get started</source>
+      </segment>
+    </unit>
+    <unit id="email.form.intro">
+      <segment>
+        <source>A new {title} form submission was sent from {sourceType, select, page {the page {sourcePageTitle}} other {the website}} ({sourcePageUrl}).</source>
+      </segment>
+    </unit>
+    <unit id="email.form.goodbye">
+      <segment>
+        <source>Best regards,</source>
+      </segment>
+    </unit>
+    <unit id="email.form.signature">
+      <segment>
+        <source>webconsulting &amp; Desiderio</source>
+      </segment>
+    </unit>
+    <unit id="email.footer.notice">
+      <segment>
+        <source>This email was sent by {siteName} from URL: {siteUrl} - Please contact your site administrator if you feel you received this email by accident.</source>
+      </segment>
+    </unit>
+    <unit id="email.footer.copyright.webconsulting">
+      <segment>
+        <source>&#169; {year} webconsulting gmbh</source>
+      </segment>
+    </unit>
+    <unit id="email.footer.copyright.desiderio">
+      <segment>
+        <source>&#169; {year} Desiderio</source>
+      </segment>
+    </unit>
+    <unit id="email.footer.copyright.webconsultingText">
+      <segment>
+        <source>Copyright (c) {year} webconsulting gmbh</source>
+      </segment>
+    </unit>
+    <unit id="email.footer.copyright.desiderioText">
+      <segment>
+        <source>Copyright (c) {year} Desiderio</source>
       </segment>
     </unit>
   </file>

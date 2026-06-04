@@ -1131,6 +1131,16 @@
         <source>{total, plural, one {Showing result {from} of #.} other {Showing results {from} to {to} of #.}}</source>
       </segment>
     </unit>
+    <unit id="solr.resultsRangeLast">
+      <segment>
+        <source>Showing the last result.</source>
+      </segment>
+    </unit>
+    <unit id="solr.resultsRangeSingle">
+      <segment>
+        <source>Showing result {from}.</source>
+      </segment>
+    </unit>
     <unit id="solr.facet.showMore">
       <segment>
         <source>Show more</source>
@@ -1469,6 +1479,46 @@
     <unit id="price.now">
       <segment>
         <source>Now:</source>
+      </segment>
+    </unit>
+    <unit id="email.form.intro">
+      <segment>
+        <source>A new {title} form submission was sent from {sourceType, select, page {the page {sourcePageTitle}} other {the website}} ({sourcePageUrl}).</source>
+      </segment>
+    </unit>
+    <unit id="email.form.goodbye">
+      <segment>
+        <source>Best regards,</source>
+      </segment>
+    </unit>
+    <unit id="email.form.signature">
+      <segment>
+        <source>webconsulting &amp; Desiderio</source>
+      </segment>
+    </unit>
+    <unit id="email.footer.notice">
+      <segment>
+        <source>This email was sent by {siteName} from URL: {siteUrl} - Please contact your site administrator if you feel you received this email by accident.</source>
+      </segment>
+    </unit>
+    <unit id="email.footer.copyright.webconsulting">
+      <segment>
+        <source>&#169; {year} webconsulting gmbh</source>
+      </segment>
+    </unit>
+    <unit id="email.footer.copyright.desiderio">
+      <segment>
+        <source>&#169; {year} Desiderio</source>
+      </segment>
+    </unit>
+    <unit id="email.footer.copyright.webconsultingText">
+      <segment>
+        <source>Copyright (c) {year} webconsulting gmbh</source>
+      </segment>
+    </unit>
+    <unit id="email.footer.copyright.desiderioText">
+      <segment>
+        <source>Copyright (c) {year} Desiderio</source>
       </segment>
     </unit>
   </file>

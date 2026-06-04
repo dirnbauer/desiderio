@@ -55,6 +55,12 @@
         <target>{visible, plural, one {Ein Artikel von } other {# von }}{total, plural, one {einem Artikel} other {# Artikeln}} angezeigt</target>
       </segment>
     </unit>
+    <unit id="news.loadMore.status.client">
+      <segment>
+        <source>Showing {visible} of {total} articles</source>
+        <target>{visible} von {total} Artikeln angezeigt</target>
+      </segment>
+    </unit>
     <unit id="news.featured">
       <segment>
         <source>Featured</source>
@@ -75,8 +81,8 @@
     </unit>
     <unit id="news.comments.count">
       <segment>
-        <source>{count, plural, =0 {No comments yet} one {one comment} other {# comments}}</source>
-        <target>{count, plural, =0 {Noch keine Kommentare} one {ein Kommentar} other {# Kommentare}}</target>
+        <source>{count, plural, =0 {0 comments} one {# comment} other {# comments}}</source>
+        <target>{count, plural, =0 {0 Kommentare} one {# Kommentar} other {# Kommentare}}</target>
       </segment>
     </unit>
     <unit id="news.tags.count">
@@ -95,6 +101,18 @@
       <segment>
         <source>{count, plural, one {one entry} other {# entries}}</source>
         <target>{count, plural, one {ein Eintrag} other {# Einträge}}</target>
+      </segment>
+    </unit>
+    <unit id="blog.posts.count">
+      <segment>
+        <source>{count, plural, one {one post} other {# posts}}</source>
+        <target>{count, plural, one {ein Beitrag} other {# Beiträge}}</target>
+      </segment>
+    </unit>
+    <unit id="blog.comments.count">
+      <segment>
+        <source>{count, plural, =0 {0 comments} one {# comment} other {# comments}}</source>
+        <target>{count, plural, =0 {0 Kommentare} one {# Kommentar} other {# Kommentare}}</target>
       </segment>
     </unit>
     <unit id="a11y.skipToContent">
@@ -551,6 +569,54 @@
       <segment state="final">
         <source>Get started</source>
         <target>Erste Schritte</target>
+      </segment>
+    </unit>
+    <unit id="email.form.intro">
+      <segment state="final">
+        <source>A new {title} form submission was sent from {sourceType, select, page {the page {sourcePageTitle}} other {the website}} ({sourcePageUrl}).</source>
+        <target>Eine neue Formularuebermittlung fuer {title} wurde {sourceType, select, page {von der Seite {sourcePageTitle}} other {von der Website}} ({sourcePageUrl}) gesendet.</target>
+      </segment>
+    </unit>
+    <unit id="email.form.goodbye">
+      <segment state="final">
+        <source>Best regards,</source>
+        <target>Mit freundlichen Gruessen,</target>
+      </segment>
+    </unit>
+    <unit id="email.form.signature">
+      <segment state="final">
+        <source>webconsulting &amp; Desiderio</source>
+        <target>webconsulting &amp; Desiderio</target>
+      </segment>
+    </unit>
+    <unit id="email.footer.notice">
+      <segment state="final">
+        <source>This email was sent by {siteName} from URL: {siteUrl} - Please contact your site administrator if you feel you received this email by accident.</source>
+        <target>Diese E-Mail wurde von {siteName} von URL {siteUrl} gesendet - Bitte kontaktieren Sie Ihre Website-Administration, falls Sie diese E-Mail versehentlich erhalten haben.</target>
+      </segment>
+    </unit>
+    <unit id="email.footer.copyright.webconsulting">
+      <segment state="final">
+        <source>&#169; {year} webconsulting gmbh</source>
+        <target>&#169; {year} webconsulting gmbh</target>
+      </segment>
+    </unit>
+    <unit id="email.footer.copyright.desiderio">
+      <segment state="final">
+        <source>&#169; {year} Desiderio</source>
+        <target>&#169; {year} Desiderio</target>
+      </segment>
+    </unit>
+    <unit id="email.footer.copyright.webconsultingText">
+      <segment state="final">
+        <source>Copyright (c) {year} webconsulting gmbh</source>
+        <target>Copyright (c) {year} webconsulting gmbh</target>
+      </segment>
+    </unit>
+    <unit id="email.footer.copyright.desiderioText">
+      <segment state="final">
+        <source>Copyright (c) {year} Desiderio</source>
+        <target>Copyright (c) {year} Desiderio</target>
       </segment>
     </unit>
   </file>

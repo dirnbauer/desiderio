@@ -68,12 +68,36 @@ them in *Site Management → Settings* on each site.
     *   - ``desiderio.styleguide.enabled``
         - ``false``
         - Boolean. Enables the Styleguide page template.
+    *   - ``desiderio.forms.friendlyCaptchaTestMode``
+        - ``false``
+        - Boolean. Simulates a successful Friendly Captcha verification for
+          Desiderio forms in TYPO3 Development context.
 
 The base setup renders these settings into the ``<body>`` element as
 ``data-*`` attributes, including ``data-shadcn-preset``,
 ``data-shadcn-style``, ``data-icon-library``, ``data-density``,
 ``data-container``, ``data-radius``, ``data-font``,
 ``data-header-style``, and ``data-footer-style``.
+
+Friendly Captcha testing
+========================
+
+Friendly Captcha does not provide a universal token or shared test key for
+submitting protected forms. Production sites need a real Friendly Captcha
+application with a site key and API key configured in *Site Management ->
+Sites -> Friendly Captcha*.
+
+For local form testing, enable ``desiderio.forms.friendlyCaptchaTestMode``.
+During frontend requests Desiderio maps that setting to the Friendly Captcha
+extension's ``friendlycaptcha_skip_dev_validation`` site configuration flag.
+The extension only accepts that flag in TYPO3 Development context, so the
+setting simulates a successful server-side verification without weakening a
+Production context.
+
+Automated end-to-end tests can also use Friendly Captcha's header bypass:
+set an environment variable named ``FRIENDLYCAPTCHA_SKIP_HEADER_VALIDATION``
+to a secret string of at least 30 characters and send the same value in the
+``X-FriendlyCaptcha-Skip-Validation`` request header.
 
 ..  _configuration-theme-presets:
 

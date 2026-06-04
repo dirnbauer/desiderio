@@ -4,8 +4,9 @@
     data-namespace-typo3-fluid="true"
 >
 
-<f:variable name="siteTitle" value="{site.configuration.websiteTitle -> f:or(alternative: breadcrumb.0.title)}"/>
-<f:variable name="brandWordmark" value="{site.configuration.settings.desiderio.brand.wordmark -> f:or(alternative: siteTitle)}"/>
+<f:variable name="siteTitle" value="{site.configuration.websiteTitle ?: site.identifier}"/>
+<f:variable name="siteTitle" value="{siteTitle ?: breadcrumb.0.title}"/>
+<f:variable name="brandWordmark" value="{site.configuration.settings.desiderio.brand.wordmark ?: siteTitle}"/>
 <f:variable name="brandTagline" value="{site.configuration.settings.desiderio.brand.tagline}"/>
 
 <footer class="desiderio-footer">

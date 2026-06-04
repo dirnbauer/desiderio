@@ -3,14 +3,18 @@ lib.desiderioPageDataProcessing {
   10 = menu
   10 {
     as = mainMenu
+    special = directory
+    special.value.data = site:rootPageId
     levels = 2
     expandAll = 1
+    titleField = nav_title // title
   }
 
   20 = menu
   20 {
     special = rootline
     as = breadcrumb
+    titleField = nav_title // title
     dataProcessing.10 = record-transformation
   }
 
@@ -26,6 +30,8 @@ lib.desiderioPageDataProcessing {
   50 = menu
   50 {
     as = footerMenu
+    special = directory
+    special.value.data = site:rootPageId
     levels = 1
     titleField = nav_title // title
   }

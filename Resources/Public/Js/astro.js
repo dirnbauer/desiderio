@@ -238,6 +238,15 @@
 
   function highlightCode(source, language) {
     // Keep code samples on the local highlighter so syntax colors stay independent from the active shadcn accent preset.
+    if (window.Prism && window.Prism.highlight && window.Prism.languages) {
+      var prismLanguage = language === 'markup' ? 'html' : language;
+      var grammar = window.Prism.languages[prismLanguage] || window.Prism.languages[language];
+
+      if (grammar) {
+        return window.Prism.highlight(source, grammar, prismLanguage);
+      }
+    }
+
     if (language === 'php') {
       return highlightPhp(source);
     }

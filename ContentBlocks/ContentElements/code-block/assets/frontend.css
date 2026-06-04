@@ -3,12 +3,12 @@
 }
 .code-block {
     --d-code-comment: color-mix(in oklch, var(--muted-foreground) 78%, transparent);
-    --d-code-keyword: oklch(0.42 0.13 275);
-    --d-code-tag: oklch(0.42 0.12 235);
-    --d-code-string: oklch(0.43 0.12 68);
-    --d-code-variable: oklch(0.42 0.12 18);
-    --d-code-function: oklch(0.41 0.11 205);
-    --d-code-number: oklch(0.42 0.12 328);
+    --d-code-keyword: color-mix(in oklch, var(--foreground) 82%, var(--muted-foreground));
+    --d-code-tag: color-mix(in oklch, var(--foreground) 74%, var(--muted-foreground));
+    --d-code-string: color-mix(in oklch, var(--muted-foreground) 82%, var(--foreground));
+    --d-code-variable: color-mix(in oklch, var(--foreground) 68%, var(--muted-foreground));
+    --d-code-function: color-mix(in oklch, var(--foreground) 78%, var(--muted-foreground));
+    --d-code-number: color-mix(in oklch, var(--foreground) 72%, var(--muted-foreground));
     --d-code-operator: color-mix(in oklch, var(--muted-foreground) 86%, var(--foreground));
     border: 1px solid var(--border);
     border-radius: var(--radius);
@@ -20,12 +20,12 @@
 .dark .code-block,
 [data-theme="dark"] .code-block {
     --d-code-comment: color-mix(in oklch, var(--muted-foreground) 86%, transparent);
-    --d-code-keyword: oklch(0.78 0.11 275);
-    --d-code-tag: oklch(0.79 0.1 235);
-    --d-code-string: oklch(0.8 0.12 72);
-    --d-code-variable: oklch(0.78 0.1 18);
-    --d-code-function: oklch(0.78 0.1 205);
-    --d-code-number: oklch(0.78 0.1 328);
+    --d-code-keyword: color-mix(in oklch, var(--foreground) 88%, var(--muted-foreground));
+    --d-code-tag: color-mix(in oklch, var(--foreground) 82%, var(--muted-foreground));
+    --d-code-string: color-mix(in oklch, var(--foreground) 76%, var(--muted-foreground));
+    --d-code-variable: color-mix(in oklch, var(--foreground) 80%, var(--muted-foreground));
+    --d-code-function: color-mix(in oklch, var(--foreground) 84%, var(--muted-foreground));
+    --d-code-number: color-mix(in oklch, var(--foreground) 78%, var(--muted-foreground));
     --d-code-operator: color-mix(in oklch, var(--muted-foreground) 88%, var(--foreground));
 }
 .code-block__header {

@@ -18,7 +18,7 @@
             <f:for each="{data.items}" as="item" iteration="iteration">
                 <article class="timeline__item">
                     <div class="timeline__marker" aria-hidden="true">
-                        <span class="timeline__dot"></span>
+                        <span class="timeline__dot">{iteration.cycle}</span>
                         <f:if condition="{iteration.isLast} == 0">
                             <span class="timeline__line"></span>
                         </f:if>

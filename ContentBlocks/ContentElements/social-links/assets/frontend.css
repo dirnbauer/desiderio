@@ -14,6 +14,7 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    gap: var(--d-spacing-xs);
     padding: var(--d-spacing-xs) var(--d-spacing-md);
     border: 1px solid var(--border);
     border-radius: var(--radius);
@@ -22,6 +23,15 @@
     text-decoration: none;
     color: var(--foreground);
     transition: background 0.15s, border-color 0.15s;
+}
+.social-links__icon {
+    display: inline-flex;
+    align-items: center;
+    color: var(--muted-foreground);
+}
+.social-links__item:hover .social-links__icon,
+.social-links__item:focus-visible .social-links__icon {
+    color: currentColor;
 }
 .social-links__item:hover {
     background: var(--muted);

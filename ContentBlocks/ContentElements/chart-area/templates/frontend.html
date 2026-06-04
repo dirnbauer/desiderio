@@ -68,6 +68,7 @@
     <d:layout.container>
         <figure class="chart-area chart-area--{colorVariant}"
              data-chart-data="{data.chart_data -> f:format.htmlspecialchars()}"
+             data-unit="{unit -> f:format.htmlspecialchars()}"
              data-fill-opacity="{fillOpacityKey}"
              data-chart-id="chart-area-{data.uid}">
             <div class="chart-area__card">

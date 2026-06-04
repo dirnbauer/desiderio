@@ -8,8 +8,8 @@
 .timeline__list {
     display: flex;
     flex-direction: column;
-    gap: var(--d-spacing-lg);
-    max-width: 48rem;
+    gap: 0;
+    max-width: 52rem;
     margin-inline: auto;
     position: relative;
 }
@@ -23,10 +23,14 @@
 }
 .timeline__item {
     display: grid;
-    grid-template-columns: 2rem 1fr;
-    gap: var(--d-spacing-lg);
+    grid-template-columns: 2rem minmax(0, 1fr);
+    gap: var(--d-spacing-md);
     align-items: start;
     position: relative;
+    padding-block-end: var(--d-spacing-lg);
+}
+.timeline__item:last-child {
+    padding-block-end: 0;
 }
 .timeline__marker {
     display: flex;
@@ -35,6 +39,15 @@
     padding-top: var(--d-spacing-md);
     position: relative;
     z-index: 1;
+}
+.timeline__marker::after {
+    content: '';
+    position: absolute;
+    top: calc(var(--d-spacing-md) + 0.4375rem);
+    left: calc(50% + 0.4375rem);
+    width: calc(var(--d-spacing-md) + 0.5625rem);
+    height: 1px;
+    background: var(--border);
 }
 .timeline__dot {
     width: 0.875rem;
@@ -49,16 +62,26 @@
     display: none;
 }
 .timeline__content {
+    position: relative;
     border: 1px solid var(--border);
     border-radius: var(--d-radius-lg);
     padding: var(--d-spacing-lg);
     background: var(--card);
+    color: var(--card-foreground);
 }
 .timeline__step {
+    display: inline-flex;
+    width: fit-content;
+    align-items: center;
+    min-height: 1.75rem;
+    padding-inline: var(--d-spacing-sm);
+    border: 1px solid var(--border);
+    border-radius: calc(var(--radius) - 2px);
+    background: var(--secondary);
+    color: var(--secondary-foreground);
     font-size: var(--d-text-sm);
     font-weight: 600;
-    color: var(--primary);
-    margin-block-end: var(--d-spacing-xs);
+    margin-block-end: var(--d-spacing-sm);
 }
 .timeline__title {
     font-size: var(--d-text-base);
@@ -85,15 +108,16 @@
     text-underline-offset: 0.2em;
 }
 @media (max-width: 640px) {
-    .timeline__list {
-        gap: var(--d-spacing-md);
-    }
     .timeline__list::before {
         left: 0.75rem;
     }
     .timeline__item {
         grid-template-columns: 1.5rem 1fr;
         gap: var(--d-spacing-md);
+        padding-block-end: var(--d-spacing-md);
+    }
+    .timeline__marker::after {
+        width: calc(var(--d-spacing-md) + 0.3125rem);
     }
     .timeline__content {
         padding: var(--d-spacing-md);

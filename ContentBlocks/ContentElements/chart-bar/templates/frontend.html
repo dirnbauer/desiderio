@@ -46,6 +46,8 @@
     <d:layout.container>
         <figure class="chart-bar chart-bar--{colorVariant}"
              data-chart-data="{data.chart_data -> f:format.htmlspecialchars()}"
+             data-series-name="{seriesName -> f:format.htmlspecialchars()}"
+             data-unit="{unit -> f:format.htmlspecialchars()}"
              data-orientation="{orientation}"
              data-show-grid="{f:if(condition: data.show_grid, then: 'true', else: 'false')}"
              data-chart-id="chart-bar-{data.uid}">
@@ -68,18 +70,27 @@
                         <svg class="chart-bar__canvas" id="chart-bar-{data.uid}" aria-hidden="true" focusable="false"></svg>
                     </div>
 
-                    <ul class="chart-bar__legend" role="list">
-                        <f:for each="{rows}" as="row">
+                    <ul class="chart-bar__legend" role="list" aria-label="{chartTitle} legend">
+                        <f:for each="{rows}" as="row" iteration="legendIterator">
                             <f:variable name="legendParts"><f:split separator="|" value="{row}"/></f:variable>
                             <f:variable name="legendLabel">{legendParts.0 -> f:or(alternative: '') -> f:format.trim()}</f:variable>
                             <f:variable name="legendValue">{legendParts.1 -> f:or(alternative: '') -> f:format.trim()}</f:variable>
                             <f:if condition="{legendLabel}">
-                                <li class="chart-bar__legend-item">
+                                <li class="chart-bar__legend-item chart-bar__legend-item--{legendIterator.cycle}">
                                     <span class="chart-bar__legend-swatch" aria-hidden="true"></span>
-                                    <span class="chart-bar__legend-label">{legendLabel}</span>
-                                    <f:if condition="{legendValue}">
-                                        <span class="chart-bar__legend-value">{legendValue}<f:if condition="{unit}"> {unit}</f:if></span>
-                                    </f:if>
+                                    <span class="chart-bar__legend-body">
+                                        <span class="chart-bar__legend-label">
+                                            <span class="sr-only">Bar {legendIterator.cycle}: </span>{legendLabel}
+                                        </span>
+                                        <f:if condition="{legendValue}">
+                                            <span class="chart-bar__legend-value">
+                                                <f:if condition="{seriesName}">
+                                                    <span class="chart-bar__legend-series">{seriesName}: </span>
+                                                </f:if>
+                                                {legendValue}<f:if condition="{unit}"> {unit}</f:if>
+                                            </span>
+                                        </f:if>
+                                    </span>
                                 </li>
                             </f:if>
                         </f:for>

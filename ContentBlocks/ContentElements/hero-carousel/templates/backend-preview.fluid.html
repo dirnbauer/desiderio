@@ -33,9 +33,10 @@
                 <ul class="d-ce-preview__list">
                     <f:for each="{data.slides}" as="item">
                         <li>
+                            <f:if condition="{item.title}"><span>{item.title}</span></f:if>
+                            <f:if condition="{item.lead}"><span>{item.lead}</span></f:if>
                             <f:if condition="{item.description}"><span>{item.description}</span></f:if>
                             <f:if condition="{item.button_text}"><span>{item.button_text}</span></f:if>
-                            <f:if condition="{item.title}"><span>{item.title}</span></f:if>
                         </li>
                     </f:for>
                 </ul>

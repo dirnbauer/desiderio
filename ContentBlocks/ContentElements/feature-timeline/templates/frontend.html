@@ -3,10 +3,12 @@
       xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
       data-namespace-typo3-fluid="true">
 
+<f:asset.css identifier="d-feature-timeline" href="{cb:assetPath()}/frontend.css"/>
+
 <d:layout.section class="feature-timeline">
     <d:layout.container size="md">
         <f:if condition="{data.header} || {data.subheadline}">
-            <header class="mx-auto mb-12 max-w-2xl space-y-2 text-center">
+            <header class="feature-timeline__intro">
                 <f:if condition="{data.header}">
                     <d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography>
                 </f:if>
@@ -16,21 +18,21 @@
             </header>
         </f:if>
 
-        <ol class="mx-auto flex max-w-2xl flex-col">
+        <ol class="feature-timeline__list">
             <f:for each="{data.items}" as="item" iteration="iter">
-                <li class="relative grid grid-cols-[3rem_1fr] gap-6 pb-8 last:pb-0">
-                    <div class="flex flex-col items-center">
-                        <span class="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary text-xs font-semibold text-primary-foreground">
+                <li class="feature-timeline__item">
+                    <div class="feature-timeline__marker">
+                        <span class="feature-timeline__dot">
                             {item -> f:render.text(field: 'step')}
                         </span>
                         <f:if condition="{iter.isLast} == 0">
-                            <span class="w-px grow bg-border" aria-hidden="true"></span>
+                            <span class="feature-timeline__line" aria-hidden="true"></span>
                         </f:if>
                     </div>
-                    <div class="rounded-lg border border-border bg-card p-4 text-card-foreground shadow-sm">
-                        <h3 class="font-semibold leading-none tracking-tight">{item -> f:render.text(field: 'title')}</h3>
+                    <div class="feature-timeline__card">
+                        <h3 class="feature-timeline__title">{item -> f:render.text(field: 'title')}</h3>
                         <f:if condition="{item.description}">
-                            <p class="mt-2 text-sm text-muted-foreground">{item -> f:render.text(field: 'description')}</p>
+                            <p class="feature-timeline__description">{item -> f:render.text(field: 'description')}</p>
                         </f:if>
                     </div>
                 </li>

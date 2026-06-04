@@ -13,9 +13,9 @@
     display: flex;
     flex-shrink: 0;
     align-items: center;
-    gap: var(--d-spacing-xl, 2rem);
+    gap: var(--d-spacing-md, 1rem);
     margin: 0;
-    padding: 0 calc(var(--d-spacing-xl, 2rem) / 2) 0 0;
+    padding: 0 var(--d-spacing-md, 1rem) 0 0;
     list-style: none;
     animation: logo-carousel-scroll 40s linear infinite;
 }
@@ -25,7 +25,7 @@
 
 @keyframes logo-carousel-scroll {
     from { transform: translateX(0); }
-    to { transform: translateX(calc(-100% - var(--d-spacing-xl, 2rem))); }
+    to { transform: translateX(calc(-100% - var(--d-spacing-md, 1rem))); }
 }
 
 .logo-carousel__item {
@@ -33,26 +33,31 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: var(--d-spacing-sm, 0.75rem);
+    padding: 0;
 }
 .logo-carousel__link {
     display: inline-flex;
     border-radius: var(--radius, 0.625rem);
+    transition: transform 0.2s ease;
 }
 .logo-carousel__link:focus-visible {
     outline: 2px solid var(--ring);
     outline-offset: 4px;
 }
 .logo-carousel__image {
-    max-height: 2.5rem;
+    display: block;
+    max-height: 3.75rem;
     width: auto;
     object-fit: contain;
-    filter: grayscale(1);
-    opacity: 0.6;
-    transition: filter 0.2s ease, opacity 0.2s ease;
+    filter: none;
+    opacity: 0.92;
+    transition: opacity 0.2s ease, transform 0.2s ease;
 }
 .logo-carousel__item:hover .logo-carousel__image,
-.logo-carousel__link:focus-visible .logo-carousel__image { filter: grayscale(0); opacity: 1; }
+.logo-carousel__link:focus-visible .logo-carousel__image {
+    opacity: 1;
+    transform: translateY(-0.125rem);
+}
 
 @media (prefers-reduced-motion: reduce) {
     .logo-carousel__track {

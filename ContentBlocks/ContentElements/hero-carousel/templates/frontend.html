@@ -40,8 +40,11 @@
                         <f:if condition="{slide.title}">
                             <d:atom.typography tag="h2" variant="h2" class="hero-carousel__title">{slide -> f:render.text(field: 'title')}</d:atom.typography>
                         </f:if>
+                        <f:if condition="{slide.lead}">
+                            <d:atom.typography variant="lead" class="hero-carousel__lead">{slide -> f:render.text(field: 'lead')}</d:atom.typography>
+                        </f:if>
                         <f:if condition="{slide.description}">
-                            <d:atom.typography variant="lead" class="hero-carousel__description">{slide -> f:render.text(field: 'description')}</d:atom.typography>
+                            <d:atom.typography class="hero-carousel__description">{slide -> f:render.text(field: 'description')}</d:atom.typography>
                         </f:if>
                         <f:if condition="{slide.button_text}">
                             <f:link.typolink parameter="{slide.button_link}">

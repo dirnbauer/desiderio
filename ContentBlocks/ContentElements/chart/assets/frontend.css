@@ -14,6 +14,11 @@
 .chart__body--legend-right { grid-template-columns: minmax(0, 1fr) minmax(12rem, 0.28fr); align-items: center; }
 @media (max-width: 768px) { .chart__body--legend-right { grid-template-columns: 1fr; } }
 .chart__content { position: relative; min-width: 0; }
+.chart__body--legend-bottom .chart__content,
+.chart__body--legend-bottom .chart__legend {
+    width: min(100%, 64rem);
+    margin-inline: auto;
+}
 .chart__figure { min-width: 0; }
 .chart__canvas { display: block; width: 100%; max-width: 100%; color: var(--muted-foreground); overflow: visible; }
 .chart__canvas--small { height: 200px; }
@@ -29,9 +34,13 @@
 .chart__legend {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap: var(--d-spacing-sm) var(--d-spacing-md);
     color: var(--muted-foreground);
     font-size: var(--d-text-sm);
+}
+.chart__body--legend-right .chart__legend {
+    justify-content: flex-start;
 }
 .chart__legend:empty { display: none; }
 .chart__legend-item { display: inline-flex; align-items: center; gap: var(--d-spacing-xs); min-width: 0; }
@@ -51,7 +60,14 @@
     font-weight: 600;
     font-variant-numeric: tabular-nums;
 }
-.chart__tick-label { font-size: 12px; }
+.chart__tick-label,
+.chart__axis-label {
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0;
+    opacity: 0.66;
+    font-variant-numeric: tabular-nums;
+}
 .chart__canvas[data-chart-animated="true"] [data-chart-animate] {
     animation: chart-enter 520ms cubic-bezier(0.16, 1, 0.3, 1) both;
     animation-delay: var(--chart-delay, 0ms);

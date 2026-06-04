@@ -1,21 +1,49 @@
 {
     "_type": "grid",
-    "eyebrow": "Our partners",
-    "header": "Integrated with the tools you already use",
+    "eyebrow": "Integration partners",
+    "header": "Connected to the tools your teams already use",
     "columns": "4",
     "show_names": 1,
     "logo_items": [
         {
-            "name": "Salesforce"
+            "name": "Salesforce",
+            "image": {
+                "file": "Resources/Public/Styleguide/Logos/Integrations/salesforce.svg",
+                "title": "Salesforce integration",
+                "alternative": "Salesforce integration logo.",
+                "description": "Integration partner logo."
+            },
+            "link": "https://www.salesforce.com/"
         },
         {
-            "name": "Slack"
+            "name": "Slack",
+            "image": {
+                "file": "Resources/Public/Styleguide/Logos/Integrations/slack.svg",
+                "title": "Slack integration",
+                "alternative": "Slack integration logo.",
+                "description": "Integration partner logo."
+            },
+            "link": "https://slack.com/"
         },
         {
-            "name": "HubSpot"
+            "name": "HubSpot",
+            "image": {
+                "file": "Resources/Public/Styleguide/Logos/Integrations/hubspot.svg",
+                "title": "HubSpot integration",
+                "alternative": "HubSpot integration logo.",
+                "description": "Integration partner logo."
+            },
+            "link": "https://www.hubspot.com/"
         },
         {
-            "name": "Zendesk"
+            "name": "Zendesk",
+            "image": {
+                "file": "Resources/Public/Styleguide/Logos/Integrations/zendesk.svg",
+                "title": "Zendesk integration",
+                "alternative": "Zendesk integration logo.",
+                "description": "Integration partner logo."
+            },
+            "link": "https://www.zendesk.com/"
         }
     ]
 }

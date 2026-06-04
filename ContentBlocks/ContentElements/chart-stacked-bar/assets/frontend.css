@@ -1,6 +1,11 @@
 .chart-stacked-bar {
     display: block;
     margin: 0;
+    --stacked-color-1: var(--chart-1);
+    --stacked-color-2: var(--chart-2);
+    --stacked-color-3: var(--chart-3);
+    --stacked-color-4: var(--chart-4);
+    --stacked-color-5: var(--chart-5);
 }
 .chart-stacked-bar__card {
     border: 1px solid var(--border);
@@ -27,20 +32,23 @@
 
 /* Legend: server-rendered with real series names, keyed to the chart palette. */
 .chart-stacked-bar__legend-heading {
-    padding: var(--d-spacing-lg) var(--d-spacing-lg) 0;
-    margin: 0;
-    font-size: var(--d-text-xs);
-    font-weight: 600;
-    letter-spacing: 0.04em;
-    text-transform: uppercase;
-    color: var(--muted-foreground);
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
 }
 .chart-stacked-bar__legend {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--d-spacing-xs) var(--d-spacing-md);
-    margin: 0;
-    padding: var(--d-spacing-sm) var(--d-spacing-lg) 0;
+    justify-content: center;
+    gap: var(--d-spacing-sm);
+    margin: var(--d-spacing-lg) var(--d-spacing-lg) 0;
+    padding: 0;
     list-style: none;
     font-size: var(--d-text-xs);
     color: var(--muted-foreground);
@@ -48,24 +56,35 @@
 .chart-stacked-bar__legend-item {
     display: inline-flex;
     align-items: center;
-    gap: 0.4rem;
+    gap: 0.45rem;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: var(--secondary);
+    color: var(--secondary-foreground);
+    padding: 0.35rem 0.7rem;
+    box-shadow: var(--d-shadow-2xs, none);
 }
 .chart-stacked-bar__legend-label {
     color: var(--foreground);
-    font-weight: 500;
+    font-weight: 600;
+}
+.chart-stacked-bar__legend-value {
+    color: var(--muted-foreground);
+    font-variant-numeric: tabular-nums;
 }
 .chart-stacked-bar__swatch {
     width: 0.7rem;
     height: 0.7rem;
-    border-radius: 3px;
+    border-radius: 999px;
     flex: none;
-    background: var(--chart-1);
+    background: var(--stacked-color-1);
+    box-shadow: 0 0 0 2px var(--card), 0 0 0 3px var(--border);
 }
-.chart-stacked-bar__swatch--1 { background: var(--chart-1); }
-.chart-stacked-bar__swatch--2 { background: var(--chart-2); }
-.chart-stacked-bar__swatch--3 { background: var(--chart-3); }
-.chart-stacked-bar__swatch--4 { background: var(--chart-4); }
-.chart-stacked-bar__swatch--5 { background: var(--chart-5); }
+.chart-stacked-bar__swatch--1 { background: var(--stacked-color-1); }
+.chart-stacked-bar__swatch--2 { background: var(--stacked-color-2); }
+.chart-stacked-bar__swatch--3 { background: var(--stacked-color-3); }
+.chart-stacked-bar__swatch--4 { background: var(--stacked-color-4); }
+.chart-stacked-bar__swatch--5 { background: var(--stacked-color-5); }
 
 /* Plot: charts.js injects the responsive <svg>; we control the responsive box. */
 .chart-stacked-bar__plot {
@@ -75,15 +94,32 @@
     display: block;
     width: 100%;
     height: auto;
-    aspect-ratio: 20 / 11;
-    min-height: 180px;
-    max-height: 360px;
+    aspect-ratio: 16 / 9;
+    min-height: 240px;
+    max-height: 420px;
     color: var(--muted-foreground);
     overflow: visible;
 }
-.chart-stacked-bar__tick {
-    font-size: 0.6875rem;
-    fill: var(--muted-foreground);
+.chart-stacked-bar__tick,
+.chart-stacked-bar__axis-label {
+    font-size: 0.6rem;
+    font-weight: 600;
+    fill: currentColor;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0;
+}
+.chart-stacked-bar__total-label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    fill: var(--foreground);
+    font-variant-numeric: tabular-nums;
+}
+.chart-stacked-bar__segment-label {
+    font-size: 0.52rem;
+    font-weight: 700;
+    fill: var(--background);
+    font-variant-numeric: tabular-nums;
+    pointer-events: none;
 }
 
 /* No-JS / pre-hydration fallback. charts.js clears __plot before drawing, so this
@@ -98,25 +134,25 @@
 /* Palette variants remap the chart tokens that both charts.js (rect fills) and the
    legend swatches read, so a single editor choice re-skins the whole chart. */
 .chart-stacked-bar--palette-brand {
-    --chart-1: var(--primary);
-    --chart-2: var(--chart-2);
-    --chart-3: var(--chart-4);
-    --chart-4: var(--chart-3);
-    --chart-5: var(--chart-5);
+    --stacked-color-1: var(--primary);
+    --stacked-color-2: var(--chart-2);
+    --stacked-color-3: var(--chart-3);
+    --stacked-color-4: var(--chart-4);
+    --stacked-color-5: var(--destructive);
 }
 .chart-stacked-bar--palette-cool {
-    --chart-1: var(--chart-2);
-    --chart-2: var(--chart-3);
-    --chart-3: var(--chart-5);
-    --chart-4: var(--chart-1);
-    --chart-5: var(--chart-4);
+    --stacked-color-1: var(--chart-2);
+    --stacked-color-2: var(--chart-4);
+    --stacked-color-3: var(--chart-1);
+    --stacked-color-4: var(--chart-5);
+    --stacked-color-5: var(--chart-3);
 }
 .chart-stacked-bar--palette-warm {
-    --chart-1: var(--chart-5);
-    --chart-2: var(--chart-4);
-    --chart-3: var(--chart-1);
-    --chart-4: var(--chart-2);
-    --chart-5: var(--chart-3);
+    --stacked-color-1: var(--chart-3);
+    --stacked-color-2: var(--chart-5);
+    --stacked-color-3: var(--chart-1);
+    --stacked-color-4: var(--chart-4);
+    --stacked-color-5: var(--chart-2);
 }
 
 @media (max-width: 640px) {

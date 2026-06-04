@@ -5,23 +5,53 @@
     "badge_items": [
         {
             "label": "SOC 2 Type II",
-            "description_text": "Audited annually by an independent firm"
+            "description_text": "Audited annually by an independent firm",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/compliance-soc2-dashboard.jpg",
+                "title": "Security dashboard",
+                "alternative": "A security operations dashboard used for compliance monitoring.",
+                "description": "Compliance-themed photo from Unsplash."
+            }
         },
         {
             "label": "GDPR compliant",
-            "description_text": "EU data residency and processing controls"
+            "description_text": "EU data residency and processing controls",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/compliance-gdpr-laptop.jpg",
+                "title": "Privacy controls",
+                "alternative": "A laptop workspace representing data privacy and processing controls.",
+                "description": "Compliance-themed photo from Unsplash."
+            }
         },
         {
             "label": "ISO 27001",
-            "description_text": "Certified information security management"
+            "description_text": "Certified information security management",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/compliance-iso-security.jpg",
+                "title": "Information security",
+                "alternative": "A security-focused workspace representing information security management.",
+                "description": "Compliance-themed photo from Unsplash."
+            }
         },
         {
             "label": "256-bit encryption",
-            "description_text": "Data encrypted in transit and at rest"
+            "description_text": "Data encrypted in transit and at rest",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/client-vertex-financial.jpg",
+                "title": "Encrypted systems",
+                "alternative": "A secure digital workspace representing encrypted systems.",
+                "description": "Compliance-themed photo from Unsplash."
+            }
         },
         {
             "label": "99.9% uptime SLA",
-            "description_text": "Backed by a financially guaranteed contract"
+            "description_text": "Backed by a financially guaranteed contract",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/customer-enterprise.jpg",
+                "title": "Reliable infrastructure",
+                "alternative": "An enterprise operations setting representing reliable service infrastructure.",
+                "description": "Compliance-themed photo from Unsplash."
+            }
         }
     ]
 }

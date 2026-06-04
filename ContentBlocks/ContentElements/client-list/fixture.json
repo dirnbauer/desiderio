@@ -7,21 +7,45 @@
         {
             "name": "Northwind Logistics",
             "industry": "Freight & supply chain",
+            "logo": {
+                "file": "Resources/Public/Styleguide/Unsplash/client-northwind-logistics.jpg",
+                "title": "Logistics warehouse",
+                "alternative": "Warehouse shelves and logistics operations.",
+                "description": "Unsplash image used as demo partner media."
+            },
             "link": "https://www.example.com/northwind"
         },
         {
             "name": "Lumen Health",
             "industry": "Digital healthcare",
+            "logo": {
+                "file": "Resources/Public/Styleguide/Unsplash/client-lumen-health.jpg",
+                "title": "Digital healthcare workflow",
+                "alternative": "Healthcare professionals reviewing digital data.",
+                "description": "Unsplash image used as demo partner media."
+            },
             "link": "https://www.example.com/lumen-health"
         },
         {
             "name": "Vertex Financial",
             "industry": "Banking & fintech",
+            "logo": {
+                "file": "Resources/Public/Styleguide/Unsplash/client-vertex-financial.jpg",
+                "title": "Financial planning desk",
+                "alternative": "Financial planning documents on a desk.",
+                "description": "Unsplash image used as demo partner media."
+            },
             "link": "https://www.example.com/vertex"
         },
         {
             "name": "Atlas Manufacturing",
             "industry": "Industrial equipment",
+            "logo": {
+                "file": "Resources/Public/Styleguide/Unsplash/client-atlas-manufacturing.jpg",
+                "title": "Manufacturing equipment",
+                "alternative": "Industrial manufacturing equipment in a factory.",
+                "description": "Unsplash image used as demo partner media."
+            },
             "link": "https://www.example.com/atlas"
         }
     ]

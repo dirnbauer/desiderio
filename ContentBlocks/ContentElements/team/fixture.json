@@ -9,17 +9,35 @@
         {
             "name": "Lea Fischer",
             "role": "Head of Product Design",
-            "bio": "Leads design systems and accessibility. Previously shaped the GOV.UK component library."
+            "bio": "Leads design systems and accessibility. Previously shaped the GOV.UK component library.",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/team-lea-fischer.jpg",
+                "title": "Lea Fischer",
+                "alternative": "Portrait photo of Lea Fischer.",
+                "description": "Portrait-style photo from Unsplash."
+            }
         },
         {
             "name": "Mara Weiss",
             "role": "Lead Frontend Engineer",
-            "bio": "Owns our component architecture and ships the design system to production weekly."
+            "bio": "Owns our component architecture and ships the design system to production weekly.",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/team-mara-weiss.jpg",
+                "title": "Mara Weiss",
+                "alternative": "Portrait photo of Mara Weiss.",
+                "description": "Portrait-style photo from Unsplash."
+            }
         },
         {
             "name": "Noah Ritter",
             "role": "Accessibility Lead",
-            "bio": "Audits every release against WCAG 2.2 AA and runs our screen-reader testing."
+            "bio": "Audits every release against WCAG 2.2 AA and runs our screen-reader testing.",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/team-noah-ritter.jpg",
+                "title": "Noah Ritter",
+                "alternative": "Portrait photo of Noah Ritter.",
+                "description": "Portrait-style photo from Unsplash."
+            }
         }
     ]
 }

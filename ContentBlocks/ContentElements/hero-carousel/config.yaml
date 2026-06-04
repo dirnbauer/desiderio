@@ -32,10 +32,15 @@ fields:
         rows: 1
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:title'
       -
+        identifier: lead
+        type: Textarea
+        label: Lead
+        rows: 2
+      -
         identifier: description
         type: Textarea
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
-        rows: 2
+        rows: 4
       -
         identifier: image
         type: File

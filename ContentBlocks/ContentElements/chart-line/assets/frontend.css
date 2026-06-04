@@ -23,7 +23,7 @@
 }
 .chart-line__content {
     position: relative;
-    padding: var(--d-spacing-lg);
+    padding: var(--d-spacing-lg) var(--d-spacing-lg) var(--d-spacing-sm);
 }
 .chart-line__canvas {
     display: block;
@@ -34,6 +34,21 @@
     max-height: 320px;
     color: var(--muted-foreground);
 }
+.chart-line .chart__axis-label {
+    fill: currentColor;
+    font-size: 8px;
+    font-weight: 500;
+    letter-spacing: 0;
+    opacity: 0.66;
+    font-variant-numeric: tabular-nums;
+}
+.chart-line .chart__tick-label {
+    fill: currentColor;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 0;
+    opacity: 0.66;
+}
 .chart-line__fallback {
     margin: 0;
     font-size: var(--d-text-sm);
@@ -41,6 +56,38 @@
 }
 .chart-line[data-desiderio-chart-ready="1"] .chart-line__fallback {
     display: none;
+}
+.chart-line__legend {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--d-spacing-sm);
+    padding: 0 var(--d-spacing-lg) var(--d-spacing-lg);
+    margin: 0;
+    list-style: none;
+    color: var(--muted-foreground);
+    font-size: var(--d-text-sm);
+}
+.chart-line__legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--d-spacing-xs);
+    min-width: 0;
+}
+.chart-line__legend-swatch {
+    width: 0.625rem;
+    height: 0.625rem;
+    border-radius: var(--d-radius-full);
+    background: var(--chart-color, var(--primary));
+    box-shadow: 0 0 0 2px var(--card), 0 0 0 3px var(--border);
+    flex: 0 0 auto;
+}
+.chart-line__legend-label {
+    color: var(--foreground);
+    font-weight: 500;
+}
+.chart-line__legend-unit {
+    color: var(--muted-foreground);
 }
 
 /* Single-series stroke colour, sourced from the shadcn chart palette only. */

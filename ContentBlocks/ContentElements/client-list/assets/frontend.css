@@ -5,9 +5,33 @@
 .client-list__items { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; }
 .client-list__item { display: flex; align-items: center; gap: var(--d-spacing-md); padding: var(--d-spacing-md) 0; border-block-end: 1px solid var(--border); }
 .client-list__item:last-child { border-block-end: none; }
-.client-list__logo { flex-shrink: 0; width: 5rem; }
-.client-list__logo-img { max-height: 2rem; width: auto; object-fit: contain; }
+.client-list__media,
+.client-list__logo {
+    flex: 0 0 auto;
+    width: 5.5rem;
+    height: 4rem;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--muted);
+}
+.client-list__image,
+.client-list__logo-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
 .client-list__info { display: flex; flex-direction: column; gap: 0.125rem; }
 .client-list__name { font-weight: 600; text-decoration: none; color: var(--foreground); }
 a.client-list__name:hover { color: var(--primary); }
 .client-list__industry { font-size: var(--d-text-sm); color: var(--muted-foreground); }
+
+@media (max-width: 640px) {
+    .client-list__media,
+    .client-list__logo {
+        width: 4.5rem;
+        height: 3.5rem;
+    }
+}

@@ -8,24 +8,48 @@
             "title": "Best B2B SaaS Product",
             "year": "2025",
             "organization": "SaaS Awards",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/dashboard-neil-fernandez.jpg",
+                "title": "Analytics dashboard",
+                "alternative": "A product analytics dashboard shown on a laptop screen.",
+                "description": "Photo by Neil Fernandez on Unsplash."
+            },
             "link": "https://example.com/awards/best-b2b-saas-2025"
         },
         {
             "title": "Leader, Mid-Market Grid",
             "year": "2025",
             "organization": "G2",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/office-deliberate-directions.jpg",
+                "title": "Team workshop",
+                "alternative": "A team collaborating around a conference table during a workshop.",
+                "description": "Photo by Deliberate Directions on Unsplash."
+            },
             "link": "https://example.com/awards/g2-leader-mid-market"
         },
         {
             "title": "Editors' Choice",
             "year": "2024",
             "organization": "TechRadar",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/workspace-david-kristianto.jpg",
+                "title": "Product workspace",
+                "alternative": "A tidy product workspace with tools and notes on a desk.",
+                "description": "Photo by David Kristianto on Unsplash."
+            },
             "link": "https://example.com/awards/techradar-editors-choice"
         },
         {
             "title": "Top 50 Workplaces",
             "year": "2024",
             "organization": "Inc. Magazine",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/planning-blue-sky.jpg",
+                "title": "Planning session",
+                "alternative": "A team discussing tasks at a whiteboard during an agile planning session.",
+                "description": "Photo by blue sky on Unsplash."
+            },
             "link": "https://example.com/awards/inc-top-50-workplaces"
         }
     ]

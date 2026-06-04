@@ -34,6 +34,11 @@ fields:
     label: 'Video Description'
     rows: 2
   -
+    identifier: video_url
+    type: Text
+    label: 'Video URL'
+    description: 'Use an embeddable video URL, for example a YouTube nocookie or Vimeo player URL.'
+  -
     identifier: primary_button_text
     type: Textarea
     rows: 1

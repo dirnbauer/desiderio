@@ -1,24 +1,54 @@
 {
     "_type": "grid",
-    "eyebrow": "Trusted by teams at",
-    "header": "Built for companies that ship",
-    "subheadline": "From early-stage startups to public enterprises, teams rely on us to move faster.",
+    "eyebrow": "Customers",
+    "header": "Teams building with Desiderio",
+    "subheadline": "From AI product teams to enterprise operations, customers use Desiderio to publish, measure, and improve faster.",
     "columns": "5",
     "logo_items": [
         {
-            "name": "Northwind Logistics"
+            "name": "AI product teams",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/customer-product-team.jpg",
+                "title": "AI product team planning work",
+                "alternative": "A product team reviewing work together at a planning wall.",
+                "description": "Unsplash customer image for AI product teams."
+            }
         },
         {
-            "name": "Lumen Health"
+            "name": "Growth teams",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/customer-workshop.jpg",
+                "title": "Growth team workshop",
+                "alternative": "A team collaborating around a table in a workshop.",
+                "description": "Unsplash customer image for growth teams."
+            }
         },
         {
-            "name": "Brightpath Capital"
+            "name": "AI operations",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/customer-engineering.jpg",
+                "title": "AI operations workspace",
+                "alternative": "A person working with technical tools at a desk.",
+                "description": "Unsplash customer image for AI operations."
+            }
         },
         {
-            "name": "Vertex Robotics"
+            "name": "Data teams",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/customer-data-team.jpg",
+                "title": "Data team reviewing results",
+                "alternative": "A professional reviewing digital work on a laptop.",
+                "description": "Unsplash customer image for data teams."
+            }
         },
         {
-            "name": "Atlas Freight"
+            "name": "Enterprise platforms",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/customer-enterprise.jpg",
+                "title": "Enterprise office building",
+                "alternative": "A modern enterprise office building exterior.",
+                "description": "Unsplash customer image for enterprise platforms."
+            }
         }
     ]
 }

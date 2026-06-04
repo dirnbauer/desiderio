@@ -8,21 +8,32 @@
 <d:layout.section class="card-interactive-section">
     <d:layout.container>
         <div class="card-interactive">
-            <f:if condition="{data.badge_text}">
-                <span class="card-interactive__badge">{data -> f:render.text(field: 'badge_text')}</span>
-            </f:if>
-            <div class="card-interactive__icon">
-                <d:atom.icon name="{data.icon_style}" size="xl"/>
+            <div class="card-interactive__header">
+                <div class="card-interactive__icon">
+                    <d:atom.icon name="{data.icon_style}" size="lg"/>
+                </div>
+                <f:if condition="{data.badge_text}">
+                    <span class="card-interactive__badge">{data -> f:render.text(field: 'badge_text')}</span>
+                </f:if>
             </div>
-            <f:if condition="{data.header}">
-                <h3 class="card-interactive__title">{data -> f:render.text(field: 'header')}</h3>
-            </f:if>
-            <f:if condition="{data.description}">
-                <p class="card-interactive__description">{data -> f:render.text(field: 'description')}</p>
-            </f:if>
-            <f:if condition="{data.link}">
-                <f:link.typolink parameter="{data.link}" class="card-interactive__link" additionalAttributes="{'aria-label': data.header}"/>
-            </f:if>
+            <div class="card-interactive__body">
+                <f:if condition="{data.header}">
+                    <h3 class="card-interactive__title">{data -> f:render.text(field: 'header')}</h3>
+                </f:if>
+                <f:if condition="{data.description}">
+                    <p class="card-interactive__description">{data -> f:render.text(field: 'description')}</p>
+                </f:if>
+            </div>
+            <div class="card-interactive__footer">
+                <f:if condition="{data.link}">
+                    <f:link.typolink parameter="{data.link}" class="card-interactive__link" additionalAttributes="{'aria-label': data.header}">
+                        View automation guide
+                        <span class="card-interactive__link-icon" aria-hidden="true">
+                            <d:atom.icon name="arrow-right" size="sm"/>
+                        </span>
+                    </f:link.typolink>
+                </f:if>
+            </div>
         </div>
     </d:layout.container>
 </d:layout.section>

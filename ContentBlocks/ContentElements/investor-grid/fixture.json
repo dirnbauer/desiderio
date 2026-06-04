@@ -5,19 +5,47 @@
     "investors": [
         {
             "name": "Accel",
-            "type": "Series B lead"
+            "type": "Series B lead",
+            "logo": {
+                "file": "Resources/Public/Styleguide/Logos/Investors/accel.svg",
+                "title": "Accel",
+                "alternative": "Accel logo.",
+                "description": "Investor logo."
+            },
+            "link": "https://www.accel.com/"
         },
         {
             "name": "Point Nine",
-            "type": "Seed lead"
+            "type": "Seed lead",
+            "logo": {
+                "file": "Resources/Public/Styleguide/Logos/Investors/point-nine.svg",
+                "title": "Point Nine",
+                "alternative": "Point Nine logo.",
+                "description": "Investor logo."
+            },
+            "link": "https://www.pointnine.com/"
         },
         {
             "name": "Sequoia",
-            "type": "Series A lead"
+            "type": "Series A lead",
+            "logo": {
+                "file": "Resources/Public/Styleguide/Logos/Investors/sequoia.svg",
+                "title": "Sequoia",
+                "alternative": "Sequoia logo.",
+                "description": "Investor logo."
+            },
+            "link": "https://www.sequoiacap.com/"
         },
         {
             "name": "Y Combinator",
-            "type": "S22 batch"
+            "type": "S22 batch",
+            "logo": {
+                "file": "Resources/Public/Styleguide/Logos/Investors/y-combinator.svg",
+                "title": "Y Combinator",
+                "alternative": "Y Combinator logo.",
+                "description": "Investor logo."
+            },
+            "link": "https://www.ycombinator.com/"
         }
     ]
 }

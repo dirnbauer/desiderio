@@ -22,9 +22,11 @@
                 <li class="team-carousel__slide">
                     <d:molecule.card class="team-carousel__card">
                         <f:if condition="{member.image}">
-                            <f:for each="{member.image}" as="fileReference">
-                                <f:image image="{fileReference}" width="320" height="320" cropVariant="default" alt="" loading="lazy" decoding="async" class="team-carousel__image"/>
-                            </f:for>
+                            <div class="team-carousel__media">
+                                <f:for each="{member.image}" as="fileReference">
+                                    <f:image image="{fileReference}" width="640" height="640" cropVariant="default" alt="" loading="lazy" decoding="async" class="team-carousel__image"/>
+                                </f:for>
+                            </div>
                         </f:if>
                         <d:molecule.cardHeader class="team-carousel__content">
                             <h3 class="team-carousel__name">{member -> f:render.text(field: 'name')}</h3>

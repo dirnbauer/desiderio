@@ -25,9 +25,9 @@
             <f:for each="{data.certifications}" as="cert">
                 <li class="certifications__item">
                     <f:if condition="{cert.badge_image}">
-                        <div class="certifications__badge">
+                        <div class="certifications__media">
                             <f:for each="{cert.badge_image}" as="fileReference">
-                                <f:image image="{fileReference}" maxWidth="100" alt="{cert.name} badge" class="certifications__badge-img"/>
+                                <f:image image="{fileReference}" maxWidth="640" alt="{f:if(condition: fileReference.alternative, then: fileReference.alternative, else: '{cert.name} certification')}" loading="lazy" decoding="async" class="certifications__image"/>
                             </f:for>
                         </div>
                     </f:if>
@@ -39,7 +39,7 @@
                         <p class="certifications__cert-description">{cert -> f:render.text(field: 'description')}</p>
                     </f:if>
                     <f:if condition="{cert.link.url}">
-                        <f:variable name="verifyLabel">{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:cta.verify')}</f:variable>
+                        <f:variable name="verifyLabel"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:cta.verify" default="Verify"/></f:variable>
                         <f:link.typolink parameter="{cert.link}" class="certifications__link" additionalAttributes="{'aria-label': '{verifyLabel}: {cert.name -> f:format.stripTags() -> f:format.trim()}'}">
                             <span>{verifyLabel}</span>
                             <span class="certifications__link-arrow" aria-hidden="true">&rarr;</span>

@@ -21,7 +21,17 @@
 }
 .testimonial-grid__quote { margin: 0; font-style: italic; line-height: 1.6; flex: 1; }
 .testimonial-grid__author { display: flex; align-items: center; gap: var(--d-spacing-sm); }
-.testimonial-grid__avatar { width: 2.5rem; height: 2.5rem; border-radius: 9999px; object-fit: cover; }
+.testimonial-grid__avatar {
+    display: block;
+    width: 2.75rem;
+    height: 2.75rem;
+    aspect-ratio: 1;
+    border: 1px solid var(--border);
+    border-radius: 9999px;
+    background: var(--muted);
+    object-fit: cover;
+    object-position: center center;
+}
 .testimonial-grid__meta { min-width: 0; }
 .testimonial-grid__name { font-weight: 600; font-style: normal; display: block; }
 .testimonial-grid__role { font-size: var(--d-text-sm); color: var(--muted-foreground); }

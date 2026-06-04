@@ -6,22 +6,46 @@
         {
             "platform": "G2",
             "score": "4.8/5",
-            "review_count": "1,240 reviews"
+            "review_count": "1,240 reviews",
+            "logo": {
+                "file": "Resources/Public/Styleguide/Logos/Reviews/g2.svg",
+                "title": "G2 reviews logo",
+                "alternative": "G2 reviews logo."
+            },
+            "link": "https://www.g2.com/"
         },
         {
             "platform": "Capterra",
             "score": "4.7/5",
-            "review_count": "860 reviews"
+            "review_count": "860 reviews",
+            "logo": {
+                "file": "Resources/Public/Styleguide/Logos/Reviews/capterra.svg",
+                "title": "Capterra reviews logo",
+                "alternative": "Capterra reviews logo."
+            },
+            "link": "https://www.capterra.com/"
         },
         {
             "platform": "TrustRadius",
             "score": "4.9/5",
-            "review_count": "510 reviews"
+            "review_count": "510 reviews",
+            "logo": {
+                "file": "Resources/Public/Styleguide/Logos/Reviews/trustradius.svg",
+                "title": "TrustRadius reviews logo",
+                "alternative": "TrustRadius reviews logo."
+            },
+            "link": "https://www.trustradius.com/"
         },
         {
             "platform": "Google",
             "score": "4.8/5",
-            "review_count": "3,100 reviews"
+            "review_count": "3,100 reviews",
+            "logo": {
+                "file": "Resources/Public/Styleguide/Logos/Reviews/google.svg",
+                "title": "Google reviews logo",
+                "alternative": "Google reviews logo."
+            },
+            "link": "https://www.google.com/search?q=Desiderio+reviews"
         }
     ]
 }

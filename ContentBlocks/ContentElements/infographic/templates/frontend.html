@@ -23,18 +23,27 @@
         <ol class="infographic__steps infographic__steps--{data.shadcn_layout -> f:or(alternative: 'horizontal')}">
             <f:for each="{data.items}" as="item" iteration="iter">
                 <li class="infographic__step">
-                    <span class="infographic__number" aria-hidden="true">{item.number -> f:or(alternative: iter.cycle)}</span>
-                    <f:if condition="{item.image}">
-                        <span class="infographic__icon" aria-hidden="true">
-                            <f:for each="{item.image}" as="file">
-                                <f:image image="{file}" alt="" width="64"/>
-                            </f:for>
-                        </span>
-                    </f:if>
-                    <d:atom.typography tag="h3" variant="large" class="infographic__step-title">{item -> f:render.text(field: 'title')}</d:atom.typography>
-                    <f:if condition="{item.description}">
-                        <d:atom.typography variant="muted" class="infographic__step-description">{item -> f:render.text(field: 'description')}</d:atom.typography>
-                    </f:if>
+                    <figure class="infographic__visual">
+                        <span class="infographic__number" aria-hidden="true">{item.number -> f:or(alternative: iter.cycle)}</span>
+                        <f:if condition="{item.image}">
+                            <f:then>
+                                <f:for each="{item.image}" as="file">
+                                    <f:image image="{file}" alt="" width="720" height="480" loading="lazy"/>
+                                </f:for>
+                            </f:then>
+                            <f:else>
+                                <span class="infographic__placeholder" aria-hidden="true">
+                                    <d:atom.icon name="arrow-right" size="lg"/>
+                                </span>
+                            </f:else>
+                        </f:if>
+                    </figure>
+                    <div class="infographic__body">
+                        <d:atom.typography tag="h3" variant="large" class="infographic__step-title">{item -> f:render.text(field: 'title')}</d:atom.typography>
+                        <f:if condition="{item.description}">
+                            <d:atom.typography variant="muted" class="infographic__step-description">{item -> f:render.text(field: 'description')}</d:atom.typography>
+                        </f:if>
+                    </div>
                 </li>
             </f:for>
         </ol>

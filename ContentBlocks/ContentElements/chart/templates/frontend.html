@@ -16,6 +16,7 @@
         <figure class="chart chart--{data.color_variant -> f:or(alternative: 'primary')}"
              data-chart-type="{data.chart_type -> f:or(alternative: 'area')}"
              data-chart-data="{data.chart_data -> f:format.htmlspecialchars()}"
+             data-unit="{data.value_unit -> f:format.htmlspecialchars()}"
              data-show-grid="{f:if(condition: data.show_grid, then: 'true', else: 'false')}"
              data-show-legend="{f:if(condition: data.show_legend, then: 'true', else: 'false')}"
              data-legend-position="{data.legend_position -> f:or(alternative: 'bottom')}"

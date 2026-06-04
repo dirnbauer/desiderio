@@ -6,35 +6,403 @@
     "members": [
         {
             "name": "Sofia Berg",
-            "role": "Content Architect"
+            "role": "Content Architect",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-01.jpg",
+                "title": "Sofia Berg portrait",
+                "alternative": "Portrait photo of Sofia Berg.",
+                "description": "Portrait-style photo from Unsplash."
+            }
         },
         {
             "name": "Lea Fischer",
-            "role": "Product Design Lead"
+            "role": "Product Design Lead",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-02.jpg",
+                "title": "Lea Fischer portrait",
+                "alternative": "Portrait photo of Lea Fischer.",
+                "description": "Portrait-style photo from Unsplash."
+            }
         },
         {
             "name": "Mara Weiss",
-            "role": "Frontend Engineer"
+            "role": "Frontend Engineer",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-03.jpg",
+                "title": "Mara Weiss portrait",
+                "alternative": "Portrait photo of Mara Weiss.",
+                "description": "Portrait-style photo from Unsplash."
+            }
         },
         {
             "name": "Noah Ritter",
-            "role": "Accessibility Lead"
+            "role": "Accessibility Lead",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-04.jpg",
+                "title": "Noah Ritter portrait",
+                "alternative": "Portrait photo of Noah Ritter.",
+                "description": "Portrait-style photo from Unsplash."
+            }
         },
         {
             "name": "Daniel Okafor",
-            "role": "Backend Engineer"
+            "role": "Backend Engineer",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-05.jpg",
+                "title": "Daniel Okafor portrait",
+                "alternative": "Portrait photo of Daniel Okafor.",
+                "description": "Portrait-style photo from Unsplash."
+            }
         },
         {
             "name": "Amelie Roux",
-            "role": "UX Researcher"
+            "role": "UX Researcher",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-06.jpg",
+                "title": "Amelie Roux portrait",
+                "alternative": "Portrait photo of Amelie Roux.",
+                "description": "Portrait-style photo from Unsplash."
+            }
         },
         {
             "name": "Priya Nair",
-            "role": "Customer Success"
+            "role": "Customer Success",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-07.jpg",
+                "title": "Priya Nair portrait",
+                "alternative": "Portrait photo of Priya Nair.",
+                "description": "Portrait-style photo from Unsplash."
+            }
         },
         {
             "name": "Sven Lindqvist",
-            "role": "Platform Engineer"
+            "role": "Platform Engineer",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-08.jpg",
+                "title": "Sven Lindqvist portrait",
+                "alternative": "Portrait photo of Sven Lindqvist.",
+                "description": "Portrait-style photo from Unsplash."
+            }
+        },
+        {
+            "name": "Jonas Klein",
+            "role": "Design Systems Engineer",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-09.jpg",
+                "title": "Jonas Klein portrait",
+                "alternative": "Portrait photo of Jonas Klein.",
+                "description": "Portrait-style photo from Unsplash."
+            }
+        },
+        {
+            "name": "Mei-Ling Tan",
+            "role": "Technical Writer",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-10.jpg",
+                "title": "Mei-Ling Tan portrait",
+                "alternative": "Portrait photo of Mei-Ling Tan.",
+                "description": "Portrait-style photo from Unsplash."
+            }
+        },
+        {
+            "name": "Hannah Vogel",
+            "role": "QA Engineer",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-11.jpg",
+                "title": "Hannah Vogel portrait",
+                "alternative": "Portrait photo of Hannah Vogel.",
+                "description": "Portrait-style photo from Unsplash."
+            }
+        },
+        {
+            "name": "Victor Novak",
+            "role": "Product Manager",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-12.jpg",
+                "title": "Victor Novak portrait",
+                "alternative": "Portrait photo of Victor Novak.",
+                "description": "Portrait-style photo from Unsplash."
+            }
+        },
+        {
+            "name": "Aisha Rahman",
+            "role": "Frontend Architect",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-13.jpg",
+                "title": "Aisha Rahman portrait",
+                "alternative": "Portrait photo of Aisha Rahman.",
+                "description": "Portrait-style photo from Unsplash."
+            }
+        },
+        {
+            "name": "Luca Moretti",
+            "role": "Security Engineer",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-14.jpg",
+                "title": "Luca Moretti portrait",
+                "alternative": "Portrait photo of Luca Moretti.",
+                "description": "Portrait-style photo from Unsplash."
+            }
+        },
+        {
+            "name": "Nina Schneider",
+            "role": "Content Strategist",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-15.jpg",
+                "title": "Nina Schneider portrait",
+                "alternative": "Portrait photo of Nina Schneider.",
+                "description": "Portrait-style photo from Unsplash."
+            }
+        },
+        {
+            "name": "Emmanuel Mensah",
+            "role": "Support Lead",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-16.jpg",
+                "title": "Emmanuel Mensah portrait",
+                "alternative": "Portrait photo of Emmanuel Mensah.",
+                "description": "Portrait-style photo from Unsplash."
+            }
+        },
+        {
+            "name": "Clara Dubois",
+            "role": "Data Analyst",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-17.jpg",
+                "title": "Clara Dubois portrait",
+                "alternative": "Portrait photo of Clara Dubois.",
+                "description": "Portrait-style photo from Unsplash."
+            }
+        },
+        {
+            "name": "Mateo Silva",
+            "role": "DevOps Engineer",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-18.jpg",
+                "title": "Mateo Silva portrait",
+                "alternative": "Portrait photo of Mateo Silva.",
+                "description": "Portrait-style photo from Unsplash."
+            }
+        },
+        {
+            "name": "Zara Khan",
+            "role": "Research Lead",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-19.jpg",
+                "title": "Zara Khan portrait",
+                "alternative": "Portrait photo of Zara Khan.",
+                "description": "Portrait-style photo from Unsplash."
+            }
+        },
+        {
+            "name": "Isabel Martin",
+            "role": "Editor",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-20.jpg",
+                "title": "Isabel Martin portrait",
+                "alternative": "Portrait photo of Isabel Martin.",
+                "description": "Portrait-style photo from Unsplash."
+            }
+        },
+        {
+            "name": "Elena Petrova",
+            "role": "Brand Designer",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-21.jpg",
+                "title": "Elena Petrova portrait",
+                "alternative": "Portrait photo of Elena Petrova.",
+                "description": "Portrait-style photo from Unsplash."
+            }
+        },
+        {
+            "name": "Oliver Weber",
+            "role": "Release Manager",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-22.jpg",
+                "title": "Oliver Weber portrait",
+                "alternative": "Portrait photo of Oliver Weber.",
+                "description": "Portrait-style photo from Unsplash."
+            }
+        },
+        {
+            "name": "Greta Holm",
+            "role": "UX Designer",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-23.jpg",
+                "title": "Greta Holm portrait",
+                "alternative": "Portrait photo of Greta Holm.",
+                "description": "Portrait-style photo from Unsplash."
+            }
+        },
+        {
+            "name": "Miriam Cohen",
+            "role": "Customer Educator",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-24.jpg",
+                "title": "Miriam Cohen portrait",
+                "alternative": "Portrait photo of Miriam Cohen.",
+                "description": "Portrait-style photo from Unsplash."
+            }
+        },
+        {
+            "name": "Felix Bauer",
+            "role": "API Engineer",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-25.jpg",
+                "title": "Felix Bauer portrait",
+                "alternative": "Portrait photo of Felix Bauer.",
+                "description": "Portrait-style photo from Unsplash."
+            }
+        },
+        {
+            "name": "Rina Sato",
+            "role": "Localization Lead",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-26.jpg",
+                "title": "Rina Sato portrait",
+                "alternative": "Portrait photo of Rina Sato.",
+                "description": "Portrait-style photo from Unsplash."
+            }
+        },
+        {
+            "name": "Theo Janssen",
+            "role": "Infrastructure Engineer",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-27.jpg",
+                "title": "Theo Janssen portrait",
+                "alternative": "Portrait photo of Theo Janssen.",
+                "description": "Portrait-style photo from Unsplash."
+            }
+        },
+        {
+            "name": "Samir Haddad",
+            "role": "Engineering Manager",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-28.jpg",
+                "title": "Samir Haddad portrait",
+                "alternative": "Portrait photo of Samir Haddad.",
+                "description": "Portrait-style photo from Unsplash."
+            }
+        },
+        {
+            "name": "Kenji Mori",
+            "role": "Frontend Developer",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-29.jpg",
+                "title": "Kenji Mori portrait",
+                "alternative": "Portrait photo of Kenji Mori.",
+                "description": "Portrait-style photo from Unsplash."
+            }
+        },
+        {
+            "name": "Ife Okonkwo",
+            "role": "Accessibility Specialist",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-30.jpg",
+                "title": "Ife Okonkwo portrait",
+                "alternative": "Portrait photo of Ife Okonkwo.",
+                "description": "Portrait-style photo from Unsplash."
+            }
+        },
+        {
+            "name": "Rafael Costa",
+            "role": "Solutions Architect",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-31.jpg",
+                "title": "Rafael Costa portrait",
+                "alternative": "Portrait photo of Rafael Costa.",
+                "description": "Portrait-style photo from Unsplash."
+            }
+        },
+        {
+            "name": "Anika Meier",
+            "role": "Visual Designer",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-32.jpg",
+                "title": "Anika Meier portrait",
+                "alternative": "Portrait photo of Anika Meier.",
+                "description": "Portrait-style photo from Unsplash."
+            }
+        },
+        {
+            "name": "Maya Patel",
+            "role": "Community Manager",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-33.jpg",
+                "title": "Maya Patel portrait",
+                "alternative": "Portrait photo of Maya Patel.",
+                "description": "Portrait-style photo from Unsplash."
+            }
+        },
+        {
+            "name": "Oscar Nilsson",
+            "role": "Product Engineer",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-34.jpg",
+                "title": "Oscar Nilsson portrait",
+                "alternative": "Portrait photo of Oscar Nilsson.",
+                "description": "Portrait-style photo from Unsplash."
+            }
+        },
+        {
+            "name": "Malik Johnson",
+            "role": "Growth Engineer",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-35.jpg",
+                "title": "Malik Johnson portrait",
+                "alternative": "Portrait photo of Malik Johnson.",
+                "description": "Portrait-style photo from Unsplash."
+            }
+        },
+        {
+            "name": "Julien Bernard",
+            "role": "Content Operations",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-36.jpg",
+                "title": "Julien Bernard portrait",
+                "alternative": "Portrait photo of Julien Bernard.",
+                "description": "Portrait-style photo from Unsplash."
+            }
+        },
+        {
+            "name": "Camila Torres",
+            "role": "Customer Success Manager",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-37.jpg",
+                "title": "Camila Torres portrait",
+                "alternative": "Portrait photo of Camila Torres.",
+                "description": "Portrait-style photo from Unsplash."
+            }
+        },
+        {
+            "name": "Sarah Nguyen",
+            "role": "Technical Program Manager",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-38.jpg",
+                "title": "Sarah Nguyen portrait",
+                "alternative": "Portrait photo of Sarah Nguyen.",
+                "description": "Portrait-style photo from Unsplash."
+            }
+        },
+        {
+            "name": "Tobias Richter",
+            "role": "Backend Lead",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-39.jpg",
+                "title": "Tobias Richter portrait",
+                "alternative": "Portrait photo of Tobias Richter.",
+                "description": "Portrait-style photo from Unsplash."
+            }
+        },
+        {
+            "name": "Layla Haddad",
+            "role": "Partnerships Lead",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-40.jpg",
+                "title": "Layla Haddad portrait",
+                "alternative": "Portrait photo of Layla Haddad.",
+                "description": "Portrait-style photo from Unsplash."
+            }
         }
     ]
 }

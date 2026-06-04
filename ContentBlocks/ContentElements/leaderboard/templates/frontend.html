@@ -25,14 +25,21 @@
                             <span class="leaderboard__rank" aria-hidden="true">{iter.cycle}</span>
                         </f:if>
                         <div class="leaderboard__avatar">
-                            <f:if condition="{item.image}">
+                            <f:if condition="{item.avatar_url}">
                                 <f:then>
-                                    <f:for each="{item.image}" as="file">
-                                        <f:image image="{file}" alt="" width="40" height="40" loading="lazy" decoding="async"/>
-                                    </f:for>
+                                    <img src="{item.avatar_url}" alt="" loading="lazy" decoding="async"/>
                                 </f:then>
                                 <f:else>
-                                    <span class="leaderboard__avatar-fallback" aria-hidden="true">{item.name -> f:format.crop(maxCharacters: 1)}</span>
+                                    <f:if condition="{item.image}">
+                                        <f:then>
+                                            <f:for each="{item.image}" as="file">
+                                                <f:image image="{file}" alt="" width="96" height="96" loading="lazy" decoding="async"/>
+                                            </f:for>
+                                        </f:then>
+                                        <f:else>
+                                            <span class="leaderboard__avatar-fallback" aria-hidden="true">{item.name -> f:format.crop(maxCharacters: 1)}</span>
+                                        </f:else>
+                                    </f:if>
                                 </f:else>
                             </f:if>
                         </div>

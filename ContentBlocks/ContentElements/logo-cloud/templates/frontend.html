@@ -28,15 +28,17 @@
                         <f:then>
                             <f:link.typolink parameter="{logo.link}" class="logo-cloud__link" title="{logo.name}">
                                 <f:for each="{logo.image}" as="fileReference">
-                                    <f:image image="{fileReference}" maxWidth="220" alt="{logo.name}" class="logo-cloud__image" loading="lazy"/>
+                                    <f:image image="{fileReference}" maxWidth="520" alt="{logo.name}" class="logo-cloud__image" loading="lazy"/>
                                 </f:for>
+                                <span class="logo-cloud__name">{logo.name}</span>
                             </f:link.typolink>
                         </f:then>
                         <f:else>
                             <div class="logo-cloud__link">
                                 <f:for each="{logo.image}" as="fileReference">
-                                    <f:image image="{fileReference}" maxWidth="220" alt="{logo.name}" class="logo-cloud__image" loading="lazy"/>
+                                    <f:image image="{fileReference}" maxWidth="520" alt="{logo.name}" class="logo-cloud__image" loading="lazy"/>
                                 </f:for>
+                                <span class="logo-cloud__name">{logo.name}</span>
                             </div>
                         </f:else>
                     </f:if>

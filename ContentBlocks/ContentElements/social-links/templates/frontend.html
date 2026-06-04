@@ -17,7 +17,17 @@
                         <f:if condition="{item.url.url}">
                             <li class="social-links__entry">
                                 <f:variable name="platformName">{item.platform -> f:format.stripTags() -> f:format.trim()}</f:variable>
-                                <f:link.typolink parameter="{item.url}" class="social-links__item" additionalAttributes="{'aria-label': '{followLabel} {platformName}'}">{item -> f:render.text(field: 'platform')}</f:link.typolink>
+                                <f:link.typolink parameter="{item.url}" class="social-links__item" additionalAttributes="{'aria-label': '{followLabel} {platformName}'}">
+                                    <f:if condition="{item.icon}">
+                                        <f:switch expression="{item.icon}">
+                                            <f:case value="none"/>
+                                            <f:defaultCase>
+                                                <span class="social-links__icon" aria-hidden="true"><d:atom.icon name="{item.icon}" size="sm"/></span>
+                                            </f:defaultCase>
+                                        </f:switch>
+                                    </f:if>
+                                    <span class="social-links__label">{item -> f:render.text(field: 'platform')}</span>
+                                </f:link.typolink>
                             </li>
                         </f:if>
                     </f:for>

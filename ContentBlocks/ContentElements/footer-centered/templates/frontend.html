@@ -8,13 +8,6 @@
 <footer class="footer-centered" aria-label="{data.header -> f:or(alternative: 'Footer')}">
     <d:layout.container>
         <div class="footer-centered__inner">
-            <f:if condition="{data.logo}">
-                <div class="footer-centered__logo">
-                    <f:for each="{data.logo}" as="file">
-                        <f:image image="{file}" alt="{data.brand}" height="32"/>
-                    </f:for>
-                </div>
-            </f:if>
             <f:if condition="{data.brand}">
                 <d:atom.typography tag="h2" variant="large" class="footer-centered__brand">{data -> f:render.text(field: 'brand')}</d:atom.typography>
             </f:if>

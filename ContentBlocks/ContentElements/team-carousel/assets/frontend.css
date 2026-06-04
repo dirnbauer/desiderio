@@ -18,6 +18,19 @@
     padding-block-end: var(--d-spacing-sm);
     list-style: none;
     scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary) var(--muted);
+}
+.team-carousel__track::-webkit-scrollbar {
+    height: 0.35rem;
+}
+.team-carousel__track::-webkit-scrollbar-track {
+    background: var(--muted);
+    border-radius: 999px;
+}
+.team-carousel__track::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 999px;
 }
 .team-carousel__track:focus-visible {
     outline: 2px solid var(--ring);
@@ -31,14 +44,25 @@
 }
 .team-carousel__card {
     height: 100%;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+}
+.team-carousel__media {
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    background: var(--muted);
 }
 .team-carousel__image {
     width: 100%;
-    aspect-ratio: 1;
+    height: 100%;
     object-fit: cover;
+    object-position: center;
+    display: block;
 }
 .team-carousel__content {
     text-align: center;
+    flex: 1 1 auto;
 }
 .team-carousel__name {
     font-weight: 600;
@@ -49,6 +73,8 @@
 }
 .team-carousel__footer {
     justify-content: center;
+    border-top: 1px solid var(--border);
+    border-radius: 0;
 }
 @media (prefers-reduced-motion: reduce) {
     .team-carousel__track {

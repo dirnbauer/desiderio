@@ -38,12 +38,6 @@ fields:
     minItems: 1
     fields:
       -
-        identifier: image
-        type: File
-        label: 'Badge Image'
-        allowed: common-image-types
-        maxitems: 1
-      -
         identifier: label
         type: Textarea
         rows: 1

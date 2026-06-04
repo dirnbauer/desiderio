@@ -4,20 +4,44 @@
     "subheadline": "See how teams use Desiderio to turn shipped code into customer-ready changelogs, in-app notes, and email digests.",
     "slides": [
         {
-            "title": "Draft release notes from merged PRs",
-            "description": "Desiderio reads your merged pull requests and writes a clear, on-brand changelog you can approve in one pass.",
+            "title": "Turn shipped work into release notes",
+            "lead": "Desiderio reads merged pull requests and turns them into customer-ready updates.",
+            "description": "Review the suggested changelog, adjust the tone, and publish a clean release note without rebuilding the same summary for every channel.",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/planning-blue-sky.jpg",
+                "title": "Release planning session",
+                "alt": "A team discussing tasks at a whiteboard during an agile planning session.",
+                "credit": "Copyright/credit: Photo by blue sky on Unsplash. Used as seeded demo imagery.",
+                "source": "https://unsplash.com/photos/four-men-gathered-around-a-whiteboard-with-sticky-notes-MLWk6FFWURU"
+            },
             "button_text": "See it in action",
             "button_link": "t3://page?uid=1"
         },
         {
             "title": "Publish to every channel at once",
-            "description": "Push the same update to your changelog page, in-app widget, and email digest without rewriting a word.",
+            "lead": "One approved update can feed your changelog, product UI, and email digest.",
+            "description": "Keep message, timing, and links consistent while editors choose exactly where each release update should appear.",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/dashboard-neil-fernandez.jpg",
+                "title": "Product publishing dashboard",
+                "alt": "A laptop displaying a dark modern dashboard interface.",
+                "credit": "Copyright/credit: Photo by Neil Fernandez on Unsplash. Used as seeded demo imagery.",
+                "source": "https://unsplash.com/photos/a-modern-laptop-displaying-a-dark-themed-dashboard-6-0ajRI1cgs"
+            },
             "button_text": "Explore channels",
             "button_link": "t3://page?uid=1"
         },
         {
-            "title": "Keep your voice, every release",
-            "description": "Train Desiderio on past notes so every update sounds like your team wrote it, not a generic AI.",
+            "title": "Keep the same voice every release",
+            "lead": "Reusable brand rules keep automated drafts from sounding generic.",
+            "description": "Base every note on your approved examples, glossary, and product language so customer communication stays clear and familiar.",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/office-deliberate-directions.jpg",
+                "title": "Editorial workspace",
+                "alt": "A bright modern office with glass walls, teal accents, and clean work areas.",
+                "credit": "Copyright/credit: Photo by Deliberate Directions on Unsplash. Used as seeded demo imagery.",
+                "source": "https://unsplash.com/photos/modern-office-space-with-glass-walls-and-light-decor-wlHBYkK2y4k"
+            },
             "button_text": "Read the docs",
             "button_link": "t3://page?uid=1"
         }

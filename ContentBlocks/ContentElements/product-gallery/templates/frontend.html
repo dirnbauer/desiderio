@@ -12,11 +12,11 @@
         <article class="product-gallery__layout" itemscope="itemscope" itemtype="https://schema.org/Product" aria-label="{galleryTitle}">
 
             <f:if condition="{data.images}">
-                <div class="product-gallery__media">
+                <div class="product-gallery__media" data-d-gallery>
                     <f:for each="{data.images}" as="fileReference" iteration="iter">
                         <f:if condition="{iter.isFirst}">
                             <div class="product-gallery__stage">
-                                <f:image image="{fileReference}" maxWidth="720" alt="{fileReference.alternative -> f:or(alternative: galleryTitle)}" itemprop="image" class="product-gallery__stage-image"/>
+                                <f:image image="{fileReference}" maxWidth="720" alt="{fileReference.alternative -> f:or(alternative: galleryTitle)}" itemprop="image" class="product-gallery__stage-image" data="{d-gallery-main: 'true'}"/>
                             </div>
                         </f:if>
                     </f:for>
@@ -24,8 +24,16 @@
                     <f:if condition="{data.images -> f:count()} > 1">
                         <ul class="product-gallery__thumbnails product-gallery__thumbnails--cols-{data.columns -> f:or(alternative: '4')}" role="list" aria-label="{f:translate(key: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/product-gallery/language/labels.xlf:thumbnails.label', default: 'More views')}">
                             <f:for each="{data.images}" as="fileReference" iteration="iter">
-                                <li class="product-gallery__thumb {f:if(condition: iter.isFirst, then: 'product-gallery__thumb--active')}">
-                                    <f:image image="{fileReference}" width="160" height="160" cropVariant="default" alt="{fileReference.alternative -> f:or(alternative: '{galleryTitle} {iter.cycle}')}" class="product-gallery__thumb-img" loading="lazy" decoding="async"/>
+                                <li class="product-gallery__thumb-item">
+                                    <button type="button"
+                                            class="product-gallery__thumb"
+                                            data-d-gallery-thumb
+                                            data-large-src="{f:uri.image(image: fileReference, maxWidth: 720)}"
+                                            data-thumb-alt="{fileReference.alternative -> f:or(alternative: '{galleryTitle} {iter.cycle}')}"
+                                            aria-selected="{f:if(condition: iter.isFirst, then: 'true', else: 'false')}"
+                                            aria-label="{galleryTitle} {iter.cycle}">
+                                        <f:image image="{fileReference}" width="160" height="160" cropVariant="default" alt="" class="product-gallery__thumb-img" loading="lazy" decoding="async"/>
+                                    </button>
                                 </li>
                             </f:for>
                         </ul>

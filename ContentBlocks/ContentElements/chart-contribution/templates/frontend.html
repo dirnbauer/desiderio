@@ -19,7 +19,7 @@
 <f:variable name="headerTitle">{f:if(condition: data.header, then: '{data.header}', else: '{f:translate(key: \'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-contribution/language/labels.xlf:aria.fallback\')}')}</f:variable>
 <f:variable name="chartTitle">{f:if(condition: metricLabel, then: '{metricLabel}', else: '{headerTitle}')}</f:variable>
 
-<f:variable name="chartJson"><f:spaceless>[<f:for each="{data.points}" as="point" iteration="pointIter">{"label":"{point.point_label -> f:or(alternative: '') -> f:format.stripTags() -> f:format.trim()}","value":{point.point_value -> f:or(alternative: '0') -> f:format.trim()}}<f:if condition="!{pointIter.isLast}">,</f:if></f:for>]</f:spaceless></f:variable>
+<f:variable name="chartJson"><f:spaceless>[<f:for each="{data.points}" as="point" iteration="pointIter">{"label":<f:format.json value="{point.point_label}"/>,"value":<f:format.json value="{point.point_value}"/>}<f:if condition="!{pointIter.isLast}">,</f:if></f:for>]</f:spaceless></f:variable>
 
 <d:layout.section class="chart-contribution-section">
     <d:layout.container>

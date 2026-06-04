@@ -9,16 +9,18 @@
     <d:layout.container>
         <div class="footer-brand__inner">
             <div class="footer-brand__identity">
-                <f:if condition="{data.logo}">
-                    <div class="footer-brand__logo">
-                        <f:for each="{data.logo}" as="file">
-                            <f:image image="{file}" alt="{data.brand}" height="48"/>
-                        </f:for>
-                    </div>
-                </f:if>
-                <f:if condition="{data.brand}">
-                    <d:atom.typography tag="h2" variant="large" class="footer-brand__name">{data -> f:render.text(field: 'brand')}</d:atom.typography>
-                </f:if>
+                <div class="footer-brand__lockup">
+                    <f:if condition="{data.logo}">
+                        <div class="footer-brand__logo">
+                            <f:for each="{data.logo}" as="file">
+                                <f:image image="{file}" alt="{data.brand}" width="72"/>
+                            </f:for>
+                        </div>
+                    </f:if>
+                    <f:if condition="{data.brand}">
+                        <d:atom.typography tag="h2" variant="large" class="footer-brand__name">{data -> f:render.text(field: 'brand')}</d:atom.typography>
+                    </f:if>
+                </div>
                 <f:if condition="{data.tagline}">
                     <p class="footer-brand__tagline">{data -> f:render.text(field: 'tagline')}</p>
                 </f:if>

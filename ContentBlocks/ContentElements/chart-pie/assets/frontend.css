@@ -1,6 +1,11 @@
 .chart-pie {
     display: block;
     margin: 0;
+    --chart-pie-1: var(--chart-1);
+    --chart-pie-2: var(--chart-2);
+    --chart-pie-3: var(--chart-3);
+    --chart-pie-4: var(--chart-4);
+    --chart-pie-5: var(--chart-5);
 }
 .chart-pie__card {
     border: 1px solid var(--border);
@@ -75,13 +80,13 @@
     height: 0.75rem;
     border-radius: 3px;
     flex: none;
-    background: var(--chart-1);
+    background: var(--chart-pie-1);
 }
-.chart-pie__legend-swatch--1 { background: var(--chart-1); }
-.chart-pie__legend-swatch--2 { background: var(--chart-2); }
-.chart-pie__legend-swatch--3 { background: var(--chart-3); }
-.chart-pie__legend-swatch--4 { background: var(--chart-4); }
-.chart-pie__legend-swatch--5 { background: var(--chart-5); }
+.chart-pie__legend-swatch--1 { background: var(--chart-pie-1); }
+.chart-pie__legend-swatch--2 { background: var(--chart-pie-2); }
+.chart-pie__legend-swatch--3 { background: var(--chart-pie-3); }
+.chart-pie__legend-swatch--4 { background: var(--chart-pie-4); }
+.chart-pie__legend-swatch--5 { background: var(--chart-pie-5); }
 .chart-pie__legend-label {
     color: var(--foreground);
     font-weight: 500;
@@ -98,25 +103,25 @@
 /* Palette variants remap the chart tokens that charts.js (wedge fills) and the legend
    swatches both read, so one editor choice re-skins the whole chart. */
 .chart-pie--palette-brand {
-    --chart-1: var(--primary);
-    --chart-2: var(--chart-2);
-    --chart-3: var(--chart-4);
-    --chart-4: var(--chart-3);
-    --chart-5: var(--chart-5);
+    --chart-pie-1: var(--chart-1);
+    --chart-pie-2: var(--chart-2);
+    --chart-pie-3: var(--chart-3);
+    --chart-pie-4: var(--chart-4);
+    --chart-pie-5: var(--chart-5);
 }
 .chart-pie--palette-cool {
-    --chart-1: var(--chart-2);
-    --chart-2: var(--chart-3);
-    --chart-3: var(--chart-5);
-    --chart-4: var(--chart-1);
-    --chart-5: var(--chart-4);
+    --chart-pie-1: var(--chart-2);
+    --chart-pie-2: var(--chart-4);
+    --chart-pie-3: var(--chart-1);
+    --chart-pie-4: var(--chart-5);
+    --chart-pie-5: var(--chart-3);
 }
 .chart-pie--palette-warm {
-    --chart-1: var(--chart-5);
-    --chart-2: var(--chart-4);
-    --chart-3: var(--chart-1);
-    --chart-4: var(--chart-2);
-    --chart-5: var(--chart-3);
+    --chart-pie-1: var(--chart-3);
+    --chart-pie-2: var(--chart-5);
+    --chart-pie-3: var(--chart-1);
+    --chart-pie-4: var(--chart-4);
+    --chart-pie-5: var(--chart-2);
 }
 
 @media (max-width: 640px) {

@@ -60,6 +60,7 @@
     <d:layout.container>
         <figure class="chart-sparkline chart-sparkline--{colorVariant}"
              data-chart-json="{data.chart_data -> f:format.htmlspecialchars()}"
+             data-chart-unit="{unit -> f:format.htmlspecialchars()}"
              data-chart-id="chart-sparkline-{data.uid}">
             <div class="chart-sparkline__card">
                 <div class="chart-sparkline__head">

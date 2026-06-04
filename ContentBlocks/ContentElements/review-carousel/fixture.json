@@ -5,6 +5,11 @@
     "reviews": [
         {
             "reviewer_name": "Sofia Berg",
+            "reviewer_image": {
+                "file": "Resources/Public/Styleguide/Unsplash/People/reviewer-sofia-berg.jpg",
+                "title": "Portrait of Sofia Berg",
+                "alternative": "Portrait of Sofia Berg."
+            },
             "rating": "5",
             "title": "Cut our publishing time in half",
             "review_text": "We went from three weeks to four days per campaign and shipped 40% more pages last quarter. The team finally has time for strategy instead of formatting.",
@@ -12,6 +17,11 @@
         },
         {
             "reviewer_name": "Daniel Okafor",
+            "reviewer_image": {
+                "file": "Resources/Public/Styleguide/Unsplash/People/reviewer-daniel-okafor.jpg",
+                "title": "Portrait of Daniel Okafor",
+                "alternative": "Portrait of Daniel Okafor."
+            },
             "rating": "5",
             "title": "Onboarding took an afternoon",
             "review_text": "I expected a month-long rollout. Our 12-person content team was fully live the same day, and support answered every question within the hour.",
@@ -19,6 +29,11 @@
         },
         {
             "reviewer_name": "Mei-Ling Tan",
+            "reviewer_image": {
+                "file": "Resources/Public/Styleguide/Unsplash/People/reviewer-meiling-tan.jpg",
+                "title": "Portrait of Mei-Ling Tan",
+                "alternative": "Portrait of Mei-Ling Tan."
+            },
             "rating": "4",
             "title": "Best content workflow we've used",
             "review_text": "Replaced three separate tools with one. Approvals that used to take days now close in a single review cycle. Reporting could go deeper, but it keeps improving.",

@@ -64,6 +64,13 @@
                         </div>
                     </div>
 
+                    <p class="chart-radar__legend-title">
+                        <f:if condition="{seriesName}">
+                            <f:then>{seriesName}</f:then>
+                            <f:else>Customer rating profile</f:else>
+                        </f:if>
+                        <span>0–5 scale</span>
+                    </p>
                     <ul class="chart-radar__legend" role="list">
                         <f:for each="{rows}" as="row">
                             <f:variable name="legendParts"><f:split separator="|" value="{row}"/></f:variable>

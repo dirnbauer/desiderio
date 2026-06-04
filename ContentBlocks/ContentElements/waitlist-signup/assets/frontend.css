@@ -13,18 +13,60 @@
     text-align: center;
 }
 .waitlist-signup__form {
-    display: flex;
-    flex-wrap: wrap;
+    width: 100%;
+}
+.waitlist-signup__form form {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
     gap: var(--d-spacing-sm);
     align-items: flex-end;
-    justify-content: center;
+    width: min(100%, 34rem);
+    margin-inline: auto;
+    text-align: left;
+}
+.waitlist-signup__form form > div:first-child,
+.waitlist-signup__form form > input[aria-hidden="true"] {
+    display: none;
+}
+.waitlist-signup__form .form-element-email {
+    grid-column: 1;
+    grid-row: 1;
+    margin-block-end: 0;
+}
+.waitlist-signup__form .actions {
+    grid-column: 2;
+    grid-row: 1;
+    display: flex;
+    align-items: flex-end;
+    margin: 0;
+}
+.waitlist-signup__form .actions .btn {
+    min-height: 2.625rem;
+    white-space: nowrap;
+}
+.waitlist-signup__form form > div:has(.frc-captcha) {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    justify-self: center;
+    width: min(100%, 20rem);
+    margin-block-start: var(--d-spacing-xs);
+}
+.waitlist-signup__form form > div:has(.frc-captcha) > label {
+    display: block;
+    margin-block-end: 0.25rem;
 }
 .waitlist-signup__count {
     font-size: var(--d-text-xs);
     color: var(--d-muted-foreground);
-    margin-block-start: var(--d-spacing-sm);
+    margin-block-start: var(--d-spacing-md);
     margin-block-end: 0;
 }
 @media (max-width: 640px) {
-    .waitlist-signup__form { flex-direction: column; align-items: stretch; }
+    .waitlist-signup__form form {
+        grid-template-columns: 1fr;
+    }
+    .waitlist-signup__form .actions,
+    .waitlist-signup__form .actions .btn {
+        width: 100%;
+    }
 }

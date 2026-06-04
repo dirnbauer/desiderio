@@ -14,6 +14,7 @@
     margin-bottom: var(--d-spacing-8);
 }
 .hero-search__form {
+    --hero-search-control-height: 3.5rem;
     display: flex;
     flex-wrap: wrap;
     gap: var(--d-spacing-2);
@@ -23,12 +24,17 @@
 }
 .hero-search__input {
     flex: 1 1 12rem;
-    padding: var(--d-spacing-3) var(--d-spacing-4);
+    height: var(--hero-search-control-height);
+    padding: 0 var(--d-spacing-4);
     color: var(--d-foreground);
     border: 1px solid var(--d-border);
     border-radius: var(--d-radius-md);
     font-size: var(--d-text-base);
     background: var(--d-background);
+}
+.hero-search__form [data-slot="button"][type="submit"] {
+    height: var(--hero-search-control-height);
+    min-height: var(--hero-search-control-height);
 }
 .hero-search__input::placeholder {
     color: var(--d-muted-foreground);

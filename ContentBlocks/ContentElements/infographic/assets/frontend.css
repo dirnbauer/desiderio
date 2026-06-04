@@ -1,17 +1,140 @@
-.infographic__intro { text-align: center; margin-block-end: var(--d-spacing-xl); max-width: 42rem; margin-inline: auto; }
-.infographic__description { margin-block-start: var(--d-spacing-xs); }
-.infographic__steps { list-style: none; padding: 0; margin: 0; }
-.infographic__steps--horizontal { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--d-spacing-xl); }
-.infographic__steps--vertical { display: flex; flex-direction: column; gap: var(--d-spacing-xl); max-width: 38rem; margin-inline: auto; }
-.infographic__step { text-align: center; }
-.infographic__steps--vertical .infographic__step { text-align: left; display: grid; grid-template-columns: 2.5rem 1fr; column-gap: var(--d-spacing-md); row-gap: var(--d-spacing-2xs); align-items: start; }
-.infographic__number {
-    width: 2.5rem; height: 2.5rem; display: flex; align-items: center; justify-content: center;
-    border-radius: var(--d-radius-full); background: var(--d-primary); color: var(--d-primary-foreground);
-    font-weight: 700; font-size: var(--d-text-lg); margin-inline: auto; margin-block-end: var(--d-spacing-sm);
+.infographic__intro {
+    max-width: 48rem;
+    margin-inline: auto;
+    margin-block-end: var(--d-spacing-xl);
+    text-align: center;
 }
-.infographic__steps--vertical .infographic__number { margin: 0; grid-row: span 2; }
-.infographic__icon { display: block; margin-block-end: var(--d-spacing-sm); }
-.infographic__icon img { width: 4rem; height: 4rem; object-fit: contain; margin-inline: auto; }
-.infographic__step-title { display: block; }
-.infographic__step-description { margin-block-start: var(--d-spacing-xs); }
+
+.infographic__description {
+    margin-block-start: var(--d-spacing-xs);
+}
+
+.infographic__steps {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.infographic__steps--horizontal {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+    gap: var(--d-spacing-lg);
+}
+
+.infographic__steps--vertical {
+    display: grid;
+    gap: var(--d-spacing-lg);
+    max-width: 52rem;
+    margin-inline: auto;
+}
+
+.infographic__step {
+    min-width: 0;
+}
+
+.infographic__visual {
+    position: relative;
+    display: grid;
+    place-items: center;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    margin: 0;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--muted);
+    box-shadow: var(--shadow-sm);
+}
+
+.infographic__visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.infographic__number {
+    position: absolute;
+    inset-block-start: var(--d-spacing-sm);
+    inset-inline-start: var(--d-spacing-sm);
+    z-index: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.5rem;
+    height: 2.5rem;
+    padding-inline: 0.75rem;
+    border-radius: var(--d-radius-full);
+    background: var(--primary);
+    color: var(--primary-foreground);
+    font-size: var(--d-text-lg);
+    font-weight: 700;
+    line-height: 1;
+    box-shadow: 0 0 0 4px var(--card);
+}
+
+.infographic__placeholder {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 4rem;
+    height: 4rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--background);
+    color: var(--muted-foreground);
+}
+
+.infographic__body {
+    padding-block-start: var(--d-spacing-md);
+}
+
+.infographic__step-title {
+    display: block;
+}
+
+.infographic__step-description {
+    max-width: 34ch;
+    margin-block-start: var(--d-spacing-xs);
+}
+
+.infographic__steps--horizontal .infographic__body,
+.infographic__steps--horizontal .infographic__step-description {
+    margin-inline: auto;
+    text-align: center;
+}
+
+.infographic__steps--vertical .infographic__step {
+    display: grid;
+    grid-template-columns: minmax(11rem, 0.38fr) minmax(0, 1fr);
+    gap: var(--d-spacing-md);
+    align-items: center;
+}
+
+.infographic__steps--vertical .infographic__body {
+    padding-block-start: 0;
+}
+
+.infographic__steps--vertical .infographic__step-description {
+    max-width: 46ch;
+}
+
+@media (max-width: 640px) {
+    .infographic__intro {
+        text-align: left;
+    }
+
+    .infographic__steps--horizontal {
+        grid-template-columns: 1fr;
+    }
+
+    .infographic__steps--vertical .infographic__step {
+        grid-template-columns: 1fr;
+    }
+
+    .infographic__steps--horizontal .infographic__body,
+    .infographic__steps--horizontal .infographic__step-description {
+        margin-inline: 0;
+        text-align: left;
+    }
+}

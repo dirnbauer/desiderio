@@ -2,11 +2,25 @@
 .compliance-badges--center { text-align: center; }
 .compliance-badges--left { text-align: left; }
 .compliance-badges--right { text-align: right; }
-.compliance-badges__list { display: flex; flex-wrap: wrap; gap: var(--d-spacing-md); margin: 0; padding: 0; list-style: none; align-items: center; }
+.compliance-badges__list { display: flex; flex-wrap: wrap; gap: var(--d-spacing-sm); margin: 0; padding: 0; list-style: none; align-items: center; }
 .compliance-badges--center .compliance-badges__list { justify-content: center; }
 .compliance-badges--right .compliance-badges__list { justify-content: flex-end; }
 .compliance-badges__item { display: inline-flex; }
-.compliance-badges__link { display: inline-flex; flex-direction: column; align-items: center; gap: var(--d-spacing-xs); text-decoration: none; color: inherit; transition: opacity 0.15s ease; }
-.compliance-badges__link:hover { opacity: 0.8; }
-.compliance-badges__image { height: 48px; width: auto; object-fit: contain; }
-.compliance-badges__label { font-size: var(--d-text-xs); }
+.compliance-badges__link { display: inline-flex; text-decoration: none; color: inherit; }
+.compliance-badges__badge {
+    min-height: 2.25rem;
+    gap: var(--d-spacing-xs);
+    padding: var(--d-spacing-xs) var(--d-spacing-sm);
+    font-size: var(--d-text-sm);
+    color: var(--foreground);
+    background: var(--card);
+}
+.compliance-badges__link:hover .compliance-badges__badge {
+    background: var(--muted);
+}
+.compliance-badges__icon {
+    width: 1rem;
+    height: 1rem;
+    color: var(--primary);
+    flex: 0 0 auto;
+}

@@ -82,8 +82,8 @@
     transform: translateY(-1px);
 }
 .gallery__thumb[aria-selected="true"] {
-    border-color: var(--primary);
-    box-shadow: inset 0 0 0 1px var(--primary);
+    border-color: var(--border);
+    box-shadow: none;
 }
 .gallery__thumb-image {
     width: 100%;

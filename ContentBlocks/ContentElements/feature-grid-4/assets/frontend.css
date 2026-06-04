@@ -14,19 +14,40 @@
     .feature-grid-4__grid { grid-template-columns: 1fr; }
 }
 .feature-grid-4__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 0;
+    padding: var(--d-spacing-md);
     text-align: center;
 }
 .feature-grid-4__icon {
-    font-size: 1.5rem;
-    display: block;
-    margin-block-end: var(--d-spacing-sm);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 3.25rem;
+    height: 3.25rem;
+    margin: 0 auto var(--d-spacing-md);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--secondary);
+    color: var(--primary);
+    box-shadow: var(--d-shadow-2xs, none);
+}
+.feature-grid-4__icon svg {
+    width: 1.625rem;
+    height: 1.625rem;
 }
 .feature-grid-4__title {
     font-weight: 600;
     font-size: var(--d-text-sm);
+    line-height: 1.35;
+    margin: 0;
 }
 .feature-grid-4__description {
     color: var(--muted-foreground);
     font-size: var(--d-text-xs);
-    margin-top: var(--d-spacing-xs);
+    line-height: 1.55;
+    margin: var(--d-spacing-xs) auto 0;
+    max-width: 26ch;
 }

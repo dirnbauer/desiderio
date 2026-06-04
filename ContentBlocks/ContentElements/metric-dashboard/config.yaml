@@ -62,6 +62,16 @@ fields:
   -
     identifier: chart_data
     type: Textarea
-    label: 'Sparkline Data (JSON)'
-    description: 'Optional JSON array for the overview sparkline'
+    label: 'Chart Data (JSON)'
+    description: 'Optional JSON array for the overview chart. Use objects with label and value for axis labels.'
     rows: 4
+  -
+    identifier: chart_series_label
+    type: Text
+    label: 'Chart series label'
+    default: 'Monthly recurring revenue'
+  -
+    identifier: chart_unit
+    type: Text
+    label: 'Chart unit'
+    default: 'k USD'

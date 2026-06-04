@@ -7,22 +7,62 @@
         {
             "name": "Lea Fischer",
             "role": "Product Design Lead",
-            "bio": "Leads research and design systems. Turns messy requirements into calm, testable interfaces teams can ship with confidence."
+            "bio": "Leads research and design systems. Turns messy requirements into calm, testable interfaces teams can ship with confidence.",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/team-lea-fischer.jpg",
+                "title": "Lea Fischer",
+                "alternative": "Portrait photo of Lea Fischer.",
+                "description": "Portrait-style photo from Unsplash."
+            },
+            "profile_link": {
+                "url": "#lea-fischer",
+                "title": "View Lea Fischer profile"
+            }
         },
         {
             "name": "Mara Weiss",
             "role": "Frontend Engineer",
-            "bio": "Builds component libraries and performance budgets. Obsessed with sub-second loads and keyboard-first interaction patterns."
+            "bio": "Builds component libraries and performance budgets. Obsessed with sub-second loads and keyboard-first interaction patterns.",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/team-mara-weiss.jpg",
+                "title": "Mara Weiss",
+                "alternative": "Portrait photo of Mara Weiss.",
+                "description": "Portrait-style photo from Unsplash."
+            },
+            "profile_link": {
+                "url": "#mara-weiss",
+                "title": "View Mara Weiss profile"
+            }
         },
         {
             "name": "Noah Ritter",
             "role": "Accessibility Reviewer",
-            "bio": "Audits every release against WCAG 2.2 AA. Pairs with engineers so fixes land before launch, not after."
+            "bio": "Audits every release against WCAG 2.2 AA. Pairs with engineers so fixes land before launch, not after.",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/team-noah-ritter.jpg",
+                "title": "Noah Ritter",
+                "alternative": "Portrait photo of Noah Ritter.",
+                "description": "Portrait-style photo from Unsplash."
+            },
+            "profile_link": {
+                "url": "#noah-ritter",
+                "title": "View Noah Ritter profile"
+            }
         },
         {
             "name": "Jonas Klein",
             "role": "Customer Success",
-            "bio": "Onboards new teams and runs quarterly reviews. Closes the loop between customer feedback and the product roadmap."
+            "bio": "Onboards new teams and runs quarterly reviews. Closes the loop between customer feedback and the product roadmap.",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/team-jonas-klein.jpg",
+                "title": "Jonas Klein",
+                "alternative": "Portrait photo of Jonas Klein.",
+                "description": "Portrait-style photo from Unsplash."
+            },
+            "profile_link": {
+                "url": "#jonas-klein",
+                "title": "View Jonas Klein profile"
+            }
         }
     ]
 }

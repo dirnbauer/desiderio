@@ -53,6 +53,8 @@
     <d:layout.container>
         <figure class="chart-stacked-bar chart-stacked-bar--palette-{palette}"
              data-chart-json="{chartJson -> f:format.htmlspecialchars()}"
+             data-series-labels="{seriesSummary -> f:format.htmlspecialchars()}"
+             data-chart-unit="{unit -> f:format.htmlspecialchars()}"
              data-show-legend="0"
              data-palette="{palette}"
              data-chart-id="chart-stacked-bar-{data.uid}">

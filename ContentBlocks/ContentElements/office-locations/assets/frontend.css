@@ -39,7 +39,7 @@
     color: var(--primary);
     margin-block-start: 0.1rem;
 }
-.office-locations__lines { white-space: pre-line; }
+.office-locations__lines { line-height: 1.45; }
 .office-locations__link {
     color: var(--muted-foreground);
     text-decoration: none;

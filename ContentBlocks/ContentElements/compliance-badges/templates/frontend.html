@@ -17,39 +17,17 @@
                         <f:if condition="{item.link}">
                             <f:then>
                                 <f:link.typolink parameter="{item.link}" target="_blank" additionalAttributes="{'rel': 'noopener noreferrer'}" class="compliance-badges__link rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background">
-                                    <f:if condition="{item.image}">
-                                        <f:then>
-                                            <f:for each="{item.image}" as="file">
-                                                <f:image image="{file}" alt="{item.label}" height="48" class="compliance-badges__image"/>
-                                            </f:for>
-                                            <span class="compliance-badges__label text-muted-foreground">{item -> f:render.text(field: 'label')}</span>
-                                        </f:then>
-                                        <f:else>
-                                            <d:atom.badge variant="outline" class="compliance-badges__badge h-auto gap-1.5 px-3 py-1 text-sm">
-                                                <svg class="size-3.5 text-muted-foreground" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 12 2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
-                                                {item -> f:render.text(field: 'label')}
-                                            </d:atom.badge>
-                                        </f:else>
-                                    </f:if>
+                                    <d:atom.badge variant="outline" class="compliance-badges__badge">
+                                        <svg class="compliance-badges__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 12 2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+                                        {item -> f:render.text(field: 'label')}
+                                    </d:atom.badge>
                                 </f:link.typolink>
                             </f:then>
                             <f:else>
-                                <f:if condition="{item.image}">
-                                    <f:then>
-                                        <span class="compliance-badges__link">
-                                            <f:for each="{item.image}" as="file">
-                                                <f:image image="{file}" alt="{item.label}" height="48" class="compliance-badges__image"/>
-                                            </f:for>
-                                            <span class="compliance-badges__label text-muted-foreground">{item -> f:render.text(field: 'label')}</span>
-                                        </span>
-                                    </f:then>
-                                    <f:else>
-                                        <d:atom.badge variant="outline" class="compliance-badges__badge h-auto gap-1.5 px-3 py-1 text-sm">
-                                            <svg class="size-3.5 text-muted-foreground" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 12 2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
-                                            {item -> f:render.text(field: 'label')}
-                                        </d:atom.badge>
-                                    </f:else>
-                                </f:if>
+                                <d:atom.badge variant="outline" class="compliance-badges__badge">
+                                    <svg class="compliance-badges__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 12 2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+                                    {item -> f:render.text(field: 'label')}
+                                </d:atom.badge>
                             </f:else>
                         </f:if>
                     </li>

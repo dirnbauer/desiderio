@@ -25,9 +25,9 @@
             <f:for each="{data.clients}" as="client">
                 <li class="client-list__item">
                     <f:if condition="{client.logo}">
-                        <div class="client-list__logo">
+                        <div class="client-list__media">
                             <f:for each="{client.logo}" as="fileReference">
-                                <f:image image="{fileReference}" maxWidth="120" alt="{client.name} logo" class="client-list__logo-img" loading="lazy"/>
+                                <f:image image="{fileReference}" maxWidth="240" alt="{f:if(condition: fileReference.alternative, then: fileReference.alternative, else: '{client.name} partner image')}" class="client-list__image" loading="lazy" decoding="async"/>
                             </f:for>
                         </div>
                     </f:if>

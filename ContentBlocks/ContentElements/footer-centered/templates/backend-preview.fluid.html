@@ -33,15 +33,6 @@
                 <span class="d-ce-preview__value">{data.brand}</span>
             </div>
         </f:if>
-        <f:if condition="{data.logo}">
-            <div class="d-ce-preview__thumbs" aria-label="Logo">
-                <f:for each="{data.logo}" as="file">
-                    <f:if condition="{file.publicUrl}">
-                        <img src="{file.publicUrl}" alt="{file.alternative}" class="d-ce-preview__thumb" loading="lazy" />
-                    </f:if>
-                </f:for>
-            </div>
-        </f:if>
         <f:if condition="{data.link_items}">
             <div class="d-ce-preview__collection">
                 <span class="d-ce-preview__label">Link Items</span>

@@ -23,12 +23,12 @@
             <div class="case-study-card__body">
                 <f:if condition="{data.client_logo}">
                     <div class="case-study-card__logo">
-                        <f:for each="{data.client_logo}" as="logo">
-                            <f:image image="{logo}" maxWidth="160" alt="{data.client_name} logo" class="case-study-card__logo-img"/>
+                        <f:for each="{data.client_logo}" as="fileReference">
+                            <f:image image="{fileReference}" maxWidth="180" alt="{f:if(condition: fileReference.alternative, then: fileReference.alternative, else: '{data.client_name} logo')}" class="case-study-card__logo-image"/>
                         </f:for>
                     </div>
                 </f:if>
-
+                <span class="case-study-card__eyebrow">Case study</span>
                 <h3 class="case-study-card__client">{data -> f:render.text(field: 'client_name')}</h3>
                 <p class="case-study-card__summary">{data -> f:render.text(field: 'summary')}</p>
 

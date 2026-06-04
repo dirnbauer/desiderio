@@ -20,10 +20,10 @@
  * the atom does not ship. Scoped via [data-slot=badge] so they win over the
  * atom's single utility classes. Tokens only — no raw colours.
  */
-.badge-grid__badge--blue[data-slot="badge"] { background-color: var(--d-info); color: var(--primary-foreground); }
-.badge-grid__badge--green[data-slot="badge"] { background-color: var(--d-success); color: var(--primary-foreground); }
-.badge-grid__badge--red[data-slot="badge"] { background-color: var(--destructive); color: var(--primary-foreground); }
-.badge-grid__badge--yellow[data-slot="badge"] { background-color: var(--d-warning); color: var(--foreground); }
+.badge-grid__badge--blue[data-slot="badge"] { background-color: var(--d-info); color: var(--background); }
+.badge-grid__badge--green[data-slot="badge"] { background-color: var(--d-success); color: var(--background); }
+.badge-grid__badge--red[data-slot="badge"] { background-color: var(--destructive); color: var(--background); }
+.badge-grid__badge--yellow[data-slot="badge"] { background-color: var(--d-warning); color: var(--background); }
 
 /* Outline parent variant: tint border + text, keep the surface transparent. */
 [data-slot="badge"][data-variant="outline"].badge-grid__badge--blue { border-color: var(--d-info); color: var(--d-info); background-color: transparent; }

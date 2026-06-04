@@ -1,27 +1,51 @@
 {
     "_type": "grid",
-    "header": "Partners who help our customers go live faster",
-    "subheadline": "From cloud infrastructure to systems integration, these certified technology and solution partners extend our platform and stand behind every rollout.",
+    "header": "Technology partners powering modern AI teams",
+    "subheadline": "From frontier models to accelerated compute and connectivity, these real platform partners help customers launch ambitious products faster.",
     "partners": [
         {
-            "name": "Northwind Cloud",
-            "kind": "Infrastructure Partner",
-            "link": "https://example.com/partners/northwind-cloud"
+            "name": "Anthropic",
+            "kind": "AI Model Partner",
+            "logo": {
+                "file": "Resources/Public/Styleguide/Logos/Partners/anthropic.svg",
+                "title": "Anthropic",
+                "alternative": "Anthropic logo.",
+                "description": "Technology partner logo."
+            },
+            "link": "https://www.anthropic.com/"
         },
         {
-            "name": "Helix Integrations",
-            "kind": "Solution Partner",
-            "link": "https://example.com/partners/helix-integrations"
+            "name": "OpenAI",
+            "kind": "AI Platform Partner",
+            "logo": {
+                "file": "Resources/Public/Styleguide/Logos/Partners/openai.svg",
+                "title": "OpenAI",
+                "alternative": "OpenAI logo.",
+                "description": "Technology partner logo."
+            },
+            "link": "https://openai.com/"
         },
         {
-            "name": "Brightlayer Consulting",
-            "kind": "Implementation Partner",
-            "link": "https://example.com/partners/brightlayer-consulting"
+            "name": "SpaceX",
+            "kind": "Connectivity Partner",
+            "logo": {
+                "file": "Resources/Public/Styleguide/Logos/Partners/spacex.svg",
+                "title": "SpaceX",
+                "alternative": "SpaceX logo.",
+                "description": "Technology partner logo."
+            },
+            "link": "https://www.spacex.com/"
         },
         {
-            "name": "Meridian Security",
-            "kind": "Technology Partner",
-            "link": "https://example.com/partners/meridian-security"
+            "name": "NVIDIA",
+            "kind": "Accelerated Compute Partner",
+            "logo": {
+                "file": "Resources/Public/Styleguide/Logos/Partners/nvidia.svg",
+                "title": "NVIDIA",
+                "alternative": "NVIDIA logo.",
+                "description": "Technology partner logo."
+            },
+            "link": "https://www.nvidia.com/"
         }
     ]
 }

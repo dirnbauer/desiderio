@@ -1,14 +1,15 @@
 .newsletter-inline__bar {
-    display: flex;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(18rem, 28rem);
     align-items: center;
-    justify-content: space-between;
-    gap: var(--d-spacing-lg);
-    padding: var(--d-spacing-lg);
+    gap: var(--d-spacing-xl);
+    padding: clamp(var(--d-spacing-lg), 4vw, var(--d-spacing-2xl));
     background: var(--d-muted);
     border-radius: var(--d-radius-lg);
 }
 .newsletter-inline__text {
     min-width: 0;
+    max-width: 68rem;
 }
 .newsletter-inline__headline {
     margin: 0;
@@ -22,17 +23,62 @@
     color: var(--d-muted-foreground);
 }
 .newsletter-inline__form {
-    display: flex;
+    width: min(100%, 28rem);
+    justify-self: end;
+}
+.newsletter-inline__form form {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: end;
     gap: var(--d-spacing-sm);
-    flex-shrink: 0;
+}
+.newsletter-inline__form form > div:first-child:not([class]) {
+    display: contents;
+}
+.newsletter-inline__form .form-element-email {
+    grid-column: 1;
+    grid-row: 1;
+    min-width: 0;
+}
+.newsletter-inline__form .actions,
+.newsletter-inline__form .form-navigation {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: end;
+    gap: 0;
+}
+.newsletter-inline__form .btn-primary {
+    min-height: 2.5rem;
+}
+.newsletter-inline__form form > div:has(.frc-captcha) {
+    grid-column: 1 / -1;
+    grid-row: 2;
+}
+.newsletter-inline__form form > div:has(.frc-captcha) > label {
+    font-size: var(--d-text-xs);
+    color: var(--muted-foreground);
 }
 @media (max-width: 768px) {
     .newsletter-inline__bar {
-        flex-direction: column;
-        align-items: stretch;
+        grid-template-columns: 1fr;
+        gap: var(--d-spacing-lg);
         text-align: center;
     }
     .newsletter-inline__form {
+        width: 100%;
+        justify-self: stretch;
+    }
+}
+@media (max-width: 520px) {
+    .newsletter-inline__bar {
+        padding: var(--d-spacing-lg);
+    }
+    .newsletter-inline__form form {
+        grid-template-columns: 1fr;
+    }
+    .newsletter-inline__form .actions,
+    .newsletter-inline__form .form-navigation,
+    .newsletter-inline__form .btn-primary {
         width: 100%;
     }
 }

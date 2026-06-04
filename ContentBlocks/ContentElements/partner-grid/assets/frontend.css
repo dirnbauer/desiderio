@@ -40,16 +40,16 @@
     box-shadow: var(--d-shadow-sm);
 }
 .partner-grid__logo-wrap {
-    height: 48px;
+    height: 80px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-block-end: var(--d-spacing-sm);
+    margin-block-end: var(--d-spacing-md);
 }
 .partner-grid__logo {
-    max-height: 40px;
-    max-width: 140px;
-    width: auto;
+    height: 64px;
+    width: 220px;
+    max-width: 100%;
     object-fit: contain;
 }
 .partner-grid__logo-fallback {

@@ -3,16 +3,98 @@
 .stats-bar__headline { margin-block-start: var(--d-spacing-xs); }
 .stats-bar__description { color: var(--muted-foreground); margin-block-start: var(--d-spacing-sm); }
 .stats-bar__items { display: flex; flex-direction: column; gap: var(--d-spacing-lg); max-width: 48rem; margin: 0; }
-.stats-bar__item { margin: 0; }
+.stats-bar__item {
+    margin: 0;
+    animation: stats-bar-row-in 0.55s ease both;
+    animation-delay: var(--stats-bar-delay, 0ms);
+}
+.stats-bar__item:nth-child(2) { --stats-bar-delay: 120ms; }
+.stats-bar__item:nth-child(3) { --stats-bar-delay: 240ms; }
+.stats-bar__item:nth-child(4) { --stats-bar-delay: 360ms; }
+.stats-bar__item:nth-child(5) { --stats-bar-delay: 480ms; }
+.stats-bar__item:nth-child(6) { --stats-bar-delay: 600ms; }
 .stats-bar__meta { display: flex; justify-content: space-between; align-items: baseline; gap: var(--d-spacing-md); margin-block-end: var(--d-spacing-xs); }
 .stats-bar__label { font-weight: 500; margin: 0; }
-.stats-bar__value { font-weight: 700; color: var(--primary); margin: 0; font-variant-numeric: tabular-nums; }
+.stats-bar__value {
+    font-weight: 700;
+    color: var(--primary);
+    margin: 0;
+    font-variant-numeric: tabular-nums;
+    animation: stats-bar-value-in 0.45s ease both;
+    animation-delay: calc(var(--stats-bar-delay, 0ms) + 260ms);
+}
 .stats-bar__track { width: 100%; height: 0.5rem; background: var(--muted); border-radius: 9999px; overflow: hidden; }
-.stats-bar__fill { height: 100%; background: var(--primary); border-radius: 9999px; transition: width 0.6s ease; }
+.stats-bar__fill {
+    position: relative;
+    height: 100%;
+    background: var(--primary);
+    border-radius: 9999px;
+    transform-origin: left center;
+    animation: stats-bar-fill-in 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-delay: calc(var(--stats-bar-delay, 0ms) + 160ms);
+}
+.stats-bar__fill::after {
+    position: absolute;
+    inset: 0;
+    content: "";
+    border-radius: inherit;
+    background: linear-gradient(90deg, transparent, color-mix(in oklab, var(--primary-foreground) 28%, transparent), transparent);
+    opacity: 0;
+    transform: translateX(-100%);
+    animation: stats-bar-sheen 1.15s ease-out both;
+    animation-delay: calc(var(--stats-bar-delay, 0ms) + 460ms);
+}
 
 .stats-bar__item[data-astro-reveal] { opacity: 0; transform: translateY(0.75rem); transition: opacity 0.5s ease, transform 0.5s ease; }
 .stats-bar__item[data-astro-reveal].is-visible { opacity: 1; transform: none; }
+
+@keyframes stats-bar-row-in {
+    from {
+        opacity: 0;
+        transform: translateY(0.5rem);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@keyframes stats-bar-fill-in {
+    from { transform: scaleX(0); }
+    to { transform: scaleX(1); }
+}
+
+@keyframes stats-bar-value-in {
+    from {
+        opacity: 0;
+        transform: translateY(0.25rem);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@keyframes stats-bar-sheen {
+    0% {
+        opacity: 0;
+        transform: translateX(-100%);
+    }
+    35% {
+        opacity: 0.45;
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+}
+
 @media (prefers-reduced-motion: reduce) {
+    .stats-bar__item,
+    .stats-bar__value,
+    .stats-bar__fill,
+    .stats-bar__fill::after {
+        animation: none;
+    }
     .stats-bar__item[data-astro-reveal] { opacity: 1; transform: none; transition: none; }
-    .stats-bar__fill { transition: none; }
 }

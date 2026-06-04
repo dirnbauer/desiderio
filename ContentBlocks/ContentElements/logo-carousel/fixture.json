@@ -1,26 +1,208 @@
 {
     "_type": "grid",
-    "eyebrow": "Trusted across industries",
-    "header": "Powering 4,000+ teams worldwide",
+    "eyebrow": "Customers",
+    "header": "AI customers shipping with Desiderio",
     "speed": "normal",
     "logo_items": [
         {
-            "name": "Northwind Logistics"
+            "name": "Anthropic",
+            "image": {
+                "file": "Resources/Public/Styleguide/Logos/AiCustomers/anthropic.svg",
+                "title": "Anthropic customer mark",
+                "alternative": "Anthropic customer mark.",
+                "description": "Demo customer mark."
+            },
+            "link": "https://www.anthropic.com/"
         },
         {
-            "name": "Lumen Health"
+            "name": "OpenAI",
+            "image": {
+                "file": "Resources/Public/Styleguide/Logos/AiCustomers/openai.svg",
+                "title": "OpenAI customer mark",
+                "alternative": "OpenAI customer mark.",
+                "description": "Demo customer mark."
+            },
+            "link": "https://openai.com/"
         },
         {
-            "name": "Brightpath Capital"
+            "name": "Google DeepMind",
+            "image": {
+                "file": "Resources/Public/Styleguide/Logos/AiCustomers/google-deepmind.svg",
+                "title": "Google DeepMind customer mark",
+                "alternative": "Google DeepMind customer mark.",
+                "description": "Demo customer mark."
+            },
+            "link": "https://deepmind.google/"
         },
         {
-            "name": "Vertex Robotics"
+            "name": "Microsoft AI",
+            "image": {
+                "file": "Resources/Public/Styleguide/Logos/AiCustomers/microsoft-ai.svg",
+                "title": "Microsoft AI customer mark",
+                "alternative": "Microsoft AI customer mark.",
+                "description": "Demo customer mark."
+            },
+            "link": "https://www.microsoft.com/ai"
         },
         {
-            "name": "Marigold Studios"
+            "name": "Meta AI",
+            "image": {
+                "file": "Resources/Public/Styleguide/Logos/AiCustomers/meta-ai.svg",
+                "title": "Meta AI customer mark",
+                "alternative": "Meta AI customer mark.",
+                "description": "Demo customer mark."
+            },
+            "link": "https://ai.meta.com/"
         },
         {
-            "name": "Atlas Freight"
+            "name": "NVIDIA",
+            "image": {
+                "file": "Resources/Public/Styleguide/Logos/AiCustomers/nvidia.svg",
+                "title": "NVIDIA customer mark",
+                "alternative": "NVIDIA customer mark.",
+                "description": "Demo customer mark."
+            },
+            "link": "https://www.nvidia.com/en-us/ai/"
+        },
+        {
+            "name": "xAI",
+            "image": {
+                "file": "Resources/Public/Styleguide/Logos/AiCustomers/xai.svg",
+                "title": "xAI customer mark",
+                "alternative": "xAI customer mark.",
+                "description": "Demo customer mark."
+            },
+            "link": "https://x.ai/"
+        },
+        {
+            "name": "Mistral AI",
+            "image": {
+                "file": "Resources/Public/Styleguide/Logos/AiCustomers/mistral-ai.svg",
+                "title": "Mistral AI customer mark",
+                "alternative": "Mistral AI customer mark.",
+                "description": "Demo customer mark."
+            },
+            "link": "https://mistral.ai/"
+        },
+        {
+            "name": "Perplexity",
+            "image": {
+                "file": "Resources/Public/Styleguide/Logos/AiCustomers/perplexity.svg",
+                "title": "Perplexity customer mark",
+                "alternative": "Perplexity customer mark.",
+                "description": "Demo customer mark."
+            },
+            "link": "https://www.perplexity.ai/"
+        },
+        {
+            "name": "Cohere",
+            "image": {
+                "file": "Resources/Public/Styleguide/Logos/AiCustomers/cohere.svg",
+                "title": "Cohere customer mark",
+                "alternative": "Cohere customer mark.",
+                "description": "Demo customer mark."
+            },
+            "link": "https://cohere.com/"
+        },
+        {
+            "name": "Databricks",
+            "image": {
+                "file": "Resources/Public/Styleguide/Logos/AiCustomers/databricks.svg",
+                "title": "Databricks customer mark",
+                "alternative": "Databricks customer mark.",
+                "description": "Demo customer mark."
+            },
+            "link": "https://www.databricks.com/"
+        },
+        {
+            "name": "Scale AI",
+            "image": {
+                "file": "Resources/Public/Styleguide/Logos/AiCustomers/scale-ai.svg",
+                "title": "Scale AI customer mark",
+                "alternative": "Scale AI customer mark.",
+                "description": "Demo customer mark."
+            },
+            "link": "https://scale.com/"
+        },
+        {
+            "name": "Midjourney",
+            "image": {
+                "file": "Resources/Public/Styleguide/Logos/AiCustomers/midjourney.svg",
+                "title": "Midjourney customer mark",
+                "alternative": "Midjourney customer mark.",
+                "description": "Demo customer mark."
+            },
+            "link": "https://www.midjourney.com/"
+        },
+        {
+            "name": "Runway",
+            "image": {
+                "file": "Resources/Public/Styleguide/Logos/AiCustomers/runway.svg",
+                "title": "Runway customer mark",
+                "alternative": "Runway customer mark.",
+                "description": "Demo customer mark."
+            },
+            "link": "https://runwayml.com/"
+        },
+        {
+            "name": "Stability AI",
+            "image": {
+                "file": "Resources/Public/Styleguide/Logos/AiCustomers/stability-ai.svg",
+                "title": "Stability AI customer mark",
+                "alternative": "Stability AI customer mark.",
+                "description": "Demo customer mark."
+            },
+            "link": "https://stability.ai/"
+        },
+        {
+            "name": "Hugging Face",
+            "image": {
+                "file": "Resources/Public/Styleguide/Logos/AiCustomers/hugging-face.svg",
+                "title": "Hugging Face customer mark",
+                "alternative": "Hugging Face customer mark.",
+                "description": "Demo customer mark."
+            },
+            "link": "https://huggingface.co/"
+        },
+        {
+            "name": "Cursor",
+            "image": {
+                "file": "Resources/Public/Styleguide/Logos/AiCustomers/cursor.svg",
+                "title": "Cursor customer mark",
+                "alternative": "Cursor customer mark.",
+                "description": "Demo customer mark."
+            },
+            "link": "https://cursor.com/"
+        },
+        {
+            "name": "LangChain",
+            "image": {
+                "file": "Resources/Public/Styleguide/Logos/AiCustomers/langchain.svg",
+                "title": "LangChain customer mark",
+                "alternative": "LangChain customer mark.",
+                "description": "Demo customer mark."
+            },
+            "link": "https://www.langchain.com/"
+        },
+        {
+            "name": "ElevenLabs",
+            "image": {
+                "file": "Resources/Public/Styleguide/Logos/AiCustomers/elevenlabs.svg",
+                "title": "ElevenLabs customer mark",
+                "alternative": "ElevenLabs customer mark.",
+                "description": "Demo customer mark."
+            },
+            "link": "https://elevenlabs.io/"
+        },
+        {
+            "name": "Harvey",
+            "image": {
+                "file": "Resources/Public/Styleguide/Logos/AiCustomers/harvey.svg",
+                "title": "Harvey customer mark",
+                "alternative": "Harvey customer mark.",
+                "description": "Demo customer mark."
+            },
+            "link": "https://www.harvey.ai/"
         }
     ]
 }

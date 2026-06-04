@@ -7,24 +7,48 @@
         {
             "name": "SOC 2 Type II",
             "issuer": "AICPA",
+            "badge_image": {
+                "file": "Resources/Public/Styleguide/Unsplash/compliance-soc2-dashboard.jpg",
+                "title": "Security operations dashboard",
+                "alternative": "Security operations dashboard on a screen.",
+                "description": "Unsplash image used as demo compliance media."
+            },
             "description": "Controls for security, availability, and confidentiality, audited over a 12-month window.",
             "link": "https://www.aicpa-cima.com/topic/audit-assurance/audit-and-assurance-greater-than-soc-2"
         },
         {
             "name": "ISO/IEC 27001",
             "issuer": "BSI Group",
+            "badge_image": {
+                "file": "Resources/Public/Styleguide/Unsplash/compliance-iso-security.jpg",
+                "title": "Security review workspace",
+                "alternative": "A security review workspace with documents and technology.",
+                "description": "Unsplash image used as demo compliance media."
+            },
             "description": "Certified information security management system covering people, process, and technology.",
             "link": "https://www.iso.org/standard/27001"
         },
         {
             "name": "GDPR Ready",
             "issuer": "EU 2016/679",
+            "badge_image": {
+                "file": "Resources/Public/Styleguide/Unsplash/compliance-gdpr-laptop.jpg",
+                "title": "Privacy workflow on laptop",
+                "alternative": "A laptop used for privacy and data workflow work.",
+                "description": "Unsplash image used as demo compliance media."
+            },
             "description": "Data processing agreements, EU data residency, and a documented right-to-erasure workflow.",
             "link": "https://gdpr.eu/"
         },
         {
             "name": "HIPAA Compliant",
             "issuer": "U.S. HHS",
+            "badge_image": {
+                "file": "Resources/Public/Styleguide/Unsplash/compliance-hipaa-health.jpg",
+                "title": "Healthcare data workflow",
+                "alternative": "Healthcare professionals reviewing digital data.",
+                "description": "Unsplash image used as demo compliance media."
+            },
             "description": "Safeguards and signed BAAs for handling protected health information at rest and in transit.",
             "link": "https://www.hhs.gov/hipaa/for-professionals/security/index.html"
         }

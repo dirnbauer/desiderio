@@ -27,6 +27,16 @@ fields:
     minItems: 1
     fields:
       -
+        identifier: icon
+        type: Select
+        renderType: selectSingle
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:icon'
+        description: 'Optional semantic icon key rendered through the active shadcn icon library.'
+        itemsProcessors:
+          10:
+            class: Webconsulting\Desiderio\DataHandling\IconItemsProcessor
+        default: none
+      -
         identifier: platform
         type: Textarea
         rows: 1

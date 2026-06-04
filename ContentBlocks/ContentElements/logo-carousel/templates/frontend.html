@@ -30,13 +30,13 @@
                             <f:then>
                                 <f:link.typolink parameter="{logo.link}" class="logo-carousel__link" title="{logo.name}">
                                     <f:for each="{logo.image}" as="fileReference">
-                                        <f:image image="{fileReference}" maxWidth="180" alt="{logo.name}" class="logo-carousel__image" loading="lazy"/>
+                                        <f:image image="{fileReference}" maxWidth="260" alt="{logo.name}" class="logo-carousel__image" loading="lazy"/>
                                     </f:for>
                                 </f:link.typolink>
                             </f:then>
                             <f:else>
                                 <f:for each="{logo.image}" as="fileReference">
-                                    <f:image image="{fileReference}" maxWidth="180" alt="{logo.name}" class="logo-carousel__image" loading="lazy"/>
+                                    <f:image image="{fileReference}" maxWidth="260" alt="{logo.name}" class="logo-carousel__image" loading="lazy"/>
                                 </f:for>
                             </f:else>
                         </f:if>
@@ -47,7 +47,7 @@
                 <f:for each="{data.logo_items}" as="logo">
                     <li class="logo-carousel__item">
                         <f:for each="{logo.image}" as="fileReference">
-                            <f:image image="{fileReference}" maxWidth="180" alt="" class="logo-carousel__image" loading="lazy"/>
+                            <f:image image="{fileReference}" maxWidth="260" alt="" class="logo-carousel__image" loading="lazy"/>
                         </f:for>
                     </li>
                 </f:for>

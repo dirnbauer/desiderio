@@ -26,7 +26,7 @@
                         <span class="social-proof-counter__icon" aria-hidden="true"><d:atom.icon name="{counter.icon_name}" size="xl"/></span>
                     </f:if>
                     <dt class="social-proof-counter__label">{counter -> f:render.text(field: 'label')}</dt>
-                    <dd class="social-proof-counter__value" data-astro-counter>{counter -> f:render.text(field: 'value')}</dd>
+                    <dd class="social-proof-counter__value" data-astro-counter data-astro-duration="2800">{counter -> f:render.text(field: 'value')}</dd>
                 </div>
             </f:for>
         </dl>

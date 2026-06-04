@@ -299,8 +299,11 @@ main[tabindex]:focus-visible {
 
 .desiderio-form .form-control:focus,
 .desiderio-form .form-select:focus,
-.desiderio-form textarea:focus {
-  border-color: var(--ring);
+.desiderio-form textarea:focus,
+.desiderio-form .form-control:focus-visible,
+.desiderio-form .form-select:focus-visible,
+.desiderio-form textarea:focus-visible {
+  border-color: var(--input);
   box-shadow: 0 0 0 3px color-mix(in oklch, var(--ring) 24%, transparent);
 }
 
@@ -315,7 +318,13 @@ main[tabindex]:focus-visible {
   width: 1rem;
   height: 1rem;
   margin: 0;
-  accent-color: var(--primary);
+  accent-color: var(--foreground);
+}
+
+.desiderio-form .form-check-input:checked {
+  border-color: var(--foreground);
+  background-color: var(--foreground);
+  color: var(--background);
 }
 
 .desiderio-form .actions,
@@ -330,57 +339,140 @@ main[tabindex]:focus-visible {
 .desiderio-form .btn-primary,
 .desiderio-form .btn-outline-primary {
   display: inline-flex;
+  flex-shrink: 0;
   align-items: center;
   justify-content: center;
-  min-height: 2.5rem;
+  gap: 0.375rem;
+  min-width: 0;
+  height: var(--d-control-h, 2.25rem);
+  min-height: var(--d-control-h, 2.25rem);
   border: 1px solid transparent;
-  border-radius: var(--radius);
-  padding: 0.625rem 1rem;
-  font-size: var(--d-text-sm, 0.875rem);
+  border-radius: var(--radius-md, var(--radius));
+  background-clip: padding-box;
+  padding-inline: var(--d-control-px, 0.75rem);
+  padding-block: 0;
+  font-size: var(--d-control-text, 0.875rem);
   font-weight: 500;
-  line-height: 1;
+  line-height: var(--d-control-leading, 1.25rem);
   text-decoration: none;
+  white-space: nowrap;
   cursor: pointer;
-  transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease, box-shadow 150ms ease;
+  outline: none;
+  user-select: none;
+  transition: background-color 150ms ease, color 150ms ease, border-color 150ms ease, box-shadow 150ms ease, opacity 150ms ease, transform 150ms ease;
 }
 
 .desiderio-form .btn-primary {
-  background: var(--primary);
+  background-color: var(--primary);
   color: var(--primary-foreground);
 }
 
 .desiderio-form .btn-primary:hover {
-  background: color-mix(in oklch, var(--primary) 88%, transparent);
+  background-color: color-mix(in oklch, var(--primary) 80%, transparent);
+}
+
+.desiderio-form .btn-primary:active {
+  transform: translateY(1px);
 }
 
 .desiderio-form .btn-outline-primary {
   border-color: var(--input);
-  background: var(--background);
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+.desiderio-form .btn-outline-primary:hover {
+  background-color: var(--muted);
   color: var(--foreground);
 }
 
 .desiderio-form .btn:focus-visible,
 .desiderio-form .btn-primary:focus-visible,
 .desiderio-form .btn-outline-primary:focus-visible {
-  outline: 2px solid var(--ring);
-  outline-offset: 2px;
+  border-color: var(--ring);
+  box-shadow: 0 0 0 var(--d-ring-width, 3px) color-mix(in oklch, var(--ring) 50%, transparent);
 }
 
-.desiderio-form .invalid-feedback {
-  color: var(--destructive);
-  font-size: var(--d-text-xs, 0.75rem);
+.desiderio-form .btn:disabled,
+.desiderio-form .btn-primary:disabled,
+.desiderio-form .btn-outline-primary:disabled {
+  pointer-events: none;
+  opacity: 0.5;
 }
 
 .desiderio-form .is-invalid .form-control,
 .desiderio-form .is-invalid .form-select,
+.desiderio-form .is-invalid textarea,
+.desiderio-form .form-control[aria-invalid="true"],
+.desiderio-form .form-select[aria-invalid="true"],
+.desiderio-form textarea[aria-invalid="true"],
 .desiderio-form .form-control.is-invalid,
-.desiderio-form .form-select.is-invalid {
+.desiderio-form .form-select.is-invalid,
+.desiderio-form textarea.is-invalid {
   border-color: var(--destructive);
+}
+
+.desiderio-form .form-check-input[aria-invalid="true"],
+.desiderio-form .form-check-input.is-invalid,
+.desiderio-form .is-invalid .form-check-input {
+  border-color: var(--destructive);
+  accent-color: var(--destructive);
+}
+
+.desiderio-form .form-check-input[aria-invalid="true"]:checked,
+.desiderio-form .form-check-input.is-invalid:checked,
+.desiderio-form .is-invalid .form-check-input:checked {
+  border-color: var(--destructive);
+  background-color: var(--destructive);
+}
+
+.desiderio-form .invalid-feedback {
+  display: grid;
+  grid-template-columns: 0.875rem minmax(0, 1fr);
+  gap: 0.125rem 0.375rem;
+  width: 100%;
+  margin: 0.375rem 0 0;
+  padding: 0;
+  color: var(--destructive);
+  font-size: var(--d-text-xs, 0.75rem);
+  line-height: 1.4;
+}
+
+.desiderio-form .invalid-feedback:empty {
+  display: none;
+}
+
+.desiderio-form .invalid-feedback::before {
+  display: inline-flex;
+  grid-column: 1;
+  grid-row: 1;
+  align-items: center;
+  justify-content: center;
+  width: 0.875rem;
+  height: 0.875rem;
+  margin-block-start: 0.0625rem;
+  border: 1px solid color-mix(in oklch, var(--destructive) 45%, transparent);
+  border-radius: 9999px;
+  color: var(--destructive);
+  font-size: 0.625rem;
+  font-weight: 700;
+  line-height: 1;
+  content: "!";
 }
 
 .desiderio-form .form-text {
   color: var(--muted-foreground);
   font-size: var(--d-text-xs, 0.75rem);
+}
+
+.desiderio-form .t3g-blog-hp-wrap,
+.desiderio-form .t3g-blog-hp {
+  position: absolute !important;
+  left: -10000px !important;
+  top: auto !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
 }
 
 .desiderio-form .visually-hidden {
@@ -393,6 +485,115 @@ main[tabindex]:focus-visible {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border: 0;
+}
+
+/* ==========================================================================
+   2.2 Powermail shadcn bridge (.d-powermail)
+   ========================================================================== */
+
+.d-powermail :where(input.d-shadcn-control, textarea.d-shadcn-control, select.d-shadcn-control) {
+  border-color: var(--input);
+}
+
+.d-powermail :where(input.d-shadcn-control, textarea.d-shadcn-control, select.d-shadcn-control):focus,
+.d-powermail :where(input.d-shadcn-control, textarea.d-shadcn-control, select.d-shadcn-control):focus-visible {
+  border-color: var(--input);
+}
+
+.d-powermail :where(input.d-shadcn-control, textarea.d-shadcn-control, select.d-shadcn-control)[aria-invalid="true"],
+.d-powermail :where(input.d-shadcn-control, textarea.d-shadcn-control, select.d-shadcn-control).border-destructive,
+.d-powermail :where(input.d-shadcn-control, textarea.d-shadcn-control, select.d-shadcn-control).powermail_field_error {
+  border-color: var(--destructive);
+}
+
+.d-powermail :where(input[type="checkbox"].d-shadcn-control, input[type="radio"].d-shadcn-control) {
+  accent-color: var(--foreground);
+}
+
+.d-powermail :where(input[type="checkbox"].d-shadcn-control, input[type="radio"].d-shadcn-control):checked {
+  border-color: var(--foreground);
+  background-color: var(--foreground);
+  color: var(--background);
+}
+
+.d-powermail :where(input[type="checkbox"].d-shadcn-control, input[type="radio"].d-shadcn-control)[aria-invalid="true"],
+.d-powermail :where(input[type="checkbox"].d-shadcn-control, input[type="radio"].d-shadcn-control).border-destructive,
+.d-powermail :where(input[type="checkbox"].d-shadcn-control, input[type="radio"].d-shadcn-control).powermail_field_error {
+  border-color: var(--destructive);
+}
+
+.d-powermail :where(input[type="checkbox"].d-shadcn-control, input[type="radio"].d-shadcn-control)[aria-invalid="true"]:checked,
+.d-powermail :where(input[type="checkbox"].d-shadcn-control, input[type="radio"].d-shadcn-control).border-destructive:checked,
+.d-powermail :where(input[type="checkbox"].d-shadcn-control, input[type="radio"].d-shadcn-control).powermail_field_error:checked {
+  border-color: var(--destructive);
+  background-color: var(--destructive);
+}
+
+.d-powermail input[type="checkbox"].d-shadcn-control:checked + svg {
+  color: var(--background);
+}
+
+.d-powermail input[type="radio"].d-shadcn-control:checked + span {
+  background-color: var(--background);
+}
+
+.d-powermail .frc-captcha,
+.desiderio-form .frc-captcha {
+  max-width: 100%;
+  border-radius: var(--radius);
+  overflow: hidden;
+  background-clip: padding-box;
+  contain: paint;
+}
+
+.d-powermail .frc-captcha :where(iframe, div),
+.desiderio-form .frc-captcha :where(iframe, div) {
+  max-width: 100%;
+  border-radius: inherit;
+}
+
+.d-powermail :where([class*="powermail_field_error_container_"]):empty {
+  display: none;
+}
+
+.d-powermail .powermail-errors-list {
+  display: grid;
+  grid-template-columns: 0.875rem minmax(0, 1fr);
+  gap: 0.125rem 0.375rem;
+  width: 100%;
+  margin: 0.375rem 0 0;
+  padding: 0;
+  color: var(--destructive);
+  font-size: var(--d-text-xs, 0.75rem);
+  line-height: 1.4;
+  list-style: none;
+}
+
+.d-powermail [class*="powermail_field_error_container_"] .powermail-errors-list {
+  margin-block-start: 0;
+}
+
+.d-powermail .powermail-errors-list::before {
+  display: inline-flex;
+  grid-column: 1;
+  grid-row: 1;
+  align-items: center;
+  justify-content: center;
+  width: 0.875rem;
+  height: 0.875rem;
+  margin-block-start: 0.0625rem;
+  border: 1px solid color-mix(in oklch, var(--destructive) 45%, transparent);
+  border-radius: 9999px;
+  color: var(--destructive);
+  font-size: 0.625rem;
+  font-weight: 700;
+  line-height: 1;
+  content: "!";
+}
+
+.d-powermail .powermail-errors-list li {
+  grid-column: 2;
+  margin: 0;
 }
 
 .btn--icon.btn--sm {

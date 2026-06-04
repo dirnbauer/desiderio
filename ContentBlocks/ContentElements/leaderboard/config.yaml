@@ -44,6 +44,11 @@ fields:
         rows: 1
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:leaderboard.subtitle'
       -
+        identifier: avatar_url
+        type: Text
+        label: 'Avatar URL'
+        description: 'Optional external portrait image URL. Used before the uploaded avatar file.'
+      -
         identifier: image
         type: File
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:leaderboard.avatar'

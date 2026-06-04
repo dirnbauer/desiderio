@@ -27,21 +27,33 @@
 @media (max-width: 560px) {
     .company-perks__grid { grid-template-columns: minmax(0, 1fr); }
 }
+.company-perks__item {
+    display: grid;
+    grid-template-columns: 2.75rem minmax(0, 1fr);
+    column-gap: var(--d-spacing-md);
+    row-gap: var(--d-spacing-2xs);
+    align-items: start;
+}
 .company-perks__icon {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.5rem;
+    width: 2.75rem;
+    height: 2.75rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--muted);
     color: var(--primary);
-    margin-block-end: var(--d-spacing-sm);
+    grid-row: 1 / span 2;
 }
 .company-perks__title {
     font-weight: 600;
-    margin-block-end: var(--d-spacing-2xs);
+    margin: 0;
     text-wrap: balance;
 }
 .company-perks__description {
     font-size: var(--d-text-sm);
     color: var(--muted-foreground);
     text-wrap: pretty;
+    margin: 0;
 }

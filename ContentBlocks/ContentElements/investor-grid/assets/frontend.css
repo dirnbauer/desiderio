@@ -19,15 +19,15 @@
     background: var(--card);
 }
 .investor-grid__logo-wrap {
-    height: 48px;
+    height: 72px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-block-end: var(--d-spacing-sm);
+    margin-block-end: var(--d-spacing-md);
 }
 .investor-grid__logo {
-    max-height: 40px;
-    max-width: 140px;
+    max-height: 58px;
+    max-width: 190px;
     width: auto;
     object-fit: contain;
 }

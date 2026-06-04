@@ -2,6 +2,14 @@
     margin-block-end: var(--d-spacing-lg);
 }
 .code-block {
+    --d-code-comment: color-mix(in oklch, var(--muted-foreground) 72%, transparent);
+    --d-code-keyword: var(--chart-5);
+    --d-code-tag: var(--chart-2);
+    --d-code-string: var(--chart-3);
+    --d-code-variable: color-mix(in oklch, var(--chart-2) 74%, var(--foreground));
+    --d-code-function: var(--chart-1);
+    --d-code-number: var(--chart-4);
+    --d-code-operator: var(--muted-foreground);
     border: 1px solid var(--border);
     border-radius: var(--radius);
     overflow: hidden;
@@ -85,31 +93,71 @@
     tab-size: 2;
     white-space: pre;
 }
+
+.code-block .token.comment,
+.code-block .token.prolog,
+.code-block .token.doctype,
+.code-block .token.cdata,
 .astro-token--comment {
-    color: color-mix(in oklch, var(--muted-foreground) 72%, transparent);
+    color: var(--d-code-comment);
     font-style: italic;
 }
+
+.code-block .token.punctuation,
+.code-block .token.operator,
+.astro-token--operator {
+    color: var(--d-code-operator);
+}
+
+.code-block .token.keyword,
+.code-block .token.atrule,
 .astro-token--keyword,
-.astro-token--tag {
-    color: var(--primary);
+.code-block .token.important {
+    color: var(--d-code-keyword);
     font-weight: 650;
 }
-.astro-token--string {
-    color: var(--chart-3);
+
+.code-block .token.tag,
+.code-block .token.selector,
+.code-block .token.deleted,
+.astro-token--tag {
+    color: var(--d-code-tag);
+    font-weight: 650;
 }
+
+.code-block .token.string,
+.code-block .token.attr-value,
+.code-block .token.char,
+.code-block .token.builtin,
+.code-block .token.inserted,
+.code-block .token.regex,
+.code-block .token.url,
+.astro-token--string {
+    color: var(--d-code-string);
+}
+
+.code-block .token.variable,
+.code-block .token.property,
+.code-block .token.attr-name,
 .astro-token--variable,
 .astro-token--attribute {
-    color: var(--chart-2);
+    color: var(--d-code-variable);
 }
+
+.code-block .token.function,
+.code-block .token.class-name,
 .astro-token--function {
-    color: var(--chart-5);
+    color: var(--d-code-function);
+    font-weight: 600;
 }
+
+.code-block .token.number,
+.code-block .token.boolean,
+.code-block .token.constant,
+.code-block .token.symbol,
 .astro-token--number,
 .astro-token--constant {
-    color: var(--chart-4);
-}
-.astro-token--operator {
-    color: var(--muted-foreground);
+    color: var(--d-code-number);
 }
 
 @media (max-width: 640px) {

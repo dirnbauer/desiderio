@@ -19,12 +19,6 @@ fields:
     rows: 1
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:brand_name'
   -
-    identifier: logo
-    type: File
-    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:logo'
-    allowed: common-image-types
-    maxitems: 1
-  -
     identifier: link_items
     type: Collection
     table: footer_centered_link_items

@@ -19,11 +19,16 @@
     gap: var(--d-spacing-xl);
     align-items: center;
     text-align: start;
+    padding-inline: var(--d-spacing-md);
 }
 @media (min-width: 768px) {
     .feature-tabs__content {
         grid-template-columns: 1fr 1fr;
+        padding-inline: var(--d-spacing-lg);
     }
+}
+.feature-tabs__copy {
+    min-width: 0;
 }
 .feature-tabs__title {
     font-weight: 600;

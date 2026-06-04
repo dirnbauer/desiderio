@@ -36,7 +36,15 @@
     padding-block-start: var(--d-spacing-md);
     border-block-start: 1px solid var(--border);
 }
-.review-carousel__avatar { width: 2.5rem; height: 2.5rem; border-radius: 9999px; object-fit: cover; }
+.review-carousel__avatar {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 9999px;
+    object-fit: cover;
+    object-position: center;
+    border: 2px solid var(--background);
+    box-shadow: 0 0 0 1px var(--border);
+}
 .review-carousel__meta { display: flex; flex-direction: column; }
 .review-carousel__name { font-weight: 600; }
 .review-carousel__date { font-size: var(--d-text-xs); color: var(--muted-foreground); }

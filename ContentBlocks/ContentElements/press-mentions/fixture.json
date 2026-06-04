@@ -5,18 +5,39 @@
     "mentions": [
         {
             "publication": "TechCrunch",
+            "logo": {
+                "file": "Resources/Public/Styleguide/Logos/Press/techcrunch.svg",
+                "title": "TechCrunch press logo",
+                "alternative": "TechCrunch press logo.",
+                "description": "Press publication logo."
+            },
             "quote": "One of the fastest-growing developer tools we have tracked this year, with adoption doubling every quarter.",
-            "date": "March 2025"
+            "date": "March 2025",
+            "link": "https://techcrunch.com/"
         },
         {
             "publication": "Forbes",
+            "logo": {
+                "file": "Resources/Public/Styleguide/Logos/Press/forbes.svg",
+                "title": "Forbes press logo",
+                "alternative": "Forbes press logo.",
+                "description": "Press publication logo."
+            },
             "quote": "A rare product that makes a genuinely complex workflow feel effortless for non-technical teams.",
-            "date": "January 2025"
+            "date": "January 2025",
+            "link": "https://www.forbes.com/"
         },
         {
             "publication": "The Verge",
+            "logo": {
+                "file": "Resources/Public/Styleguide/Logos/Press/the-verge.svg",
+                "title": "The Verge press logo",
+                "alternative": "The Verge press logo.",
+                "description": "Press publication logo."
+            },
             "quote": "The onboarding is so smooth that most teams ship their first integration in under an hour.",
-            "date": "November 2024"
+            "date": "November 2024",
+            "link": "https://www.theverge.com/"
         }
     ]
 }

@@ -34,15 +34,28 @@
 }
 
 .hero-carousel__title {
+    margin-bottom: var(--d-spacing-3);
+}
+.hero-carousel__lead {
     margin-bottom: var(--d-spacing-4);
 }
 .hero-carousel__description {
     margin-bottom: var(--d-spacing-6);
+    max-width: 42rem;
+    color: var(--d-muted-foreground);
+}
+.hero-carousel__media {
+    overflow: hidden;
+    aspect-ratio: 16 / 10;
+    border-radius: var(--d-radius-lg);
+    border: 1px solid var(--d-border);
+    background: var(--d-muted);
 }
 .hero-carousel__image {
+    display: block;
     width: 100%;
-    height: auto;
-    border-radius: var(--d-radius-lg);
+    height: 100%;
+    object-fit: cover;
 }
 
 .hero-carousel__controls {

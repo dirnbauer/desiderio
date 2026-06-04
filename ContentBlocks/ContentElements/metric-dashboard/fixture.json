@@ -28,5 +28,7 @@
             "trend": "neutral"
         }
     ],
-    "chart_data": "[180, 195, 188, 210, 232, 225, 248, 260, 255, 272, 290, 312]"
+    "chart_series_label": "Monthly recurring revenue",
+    "chart_unit": "k USD",
+    "chart_data": "[{\"label\":\"Jan\",\"value\":180},{\"label\":\"Feb\",\"value\":195},{\"label\":\"Mar\",\"value\":188},{\"label\":\"Apr\",\"value\":210},{\"label\":\"May\",\"value\":232},{\"label\":\"Jun\",\"value\":225},{\"label\":\"Jul\",\"value\":248},{\"label\":\"Aug\",\"value\":260},{\"label\":\"Sep\",\"value\":255},{\"label\":\"Oct\",\"value\":272},{\"label\":\"Nov\",\"value\":290},{\"label\":\"Dec\",\"value\":312}]"
 }

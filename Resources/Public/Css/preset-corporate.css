@@ -59,11 +59,13 @@
 .desiderio-corporate-template__intro {
     display: grid;
     gap: clamp(0.5rem, 1.2vw, 0.75rem);
+    justify-items: center;
     max-width: none;
     margin-inline: calc(50% - 50vw);
     padding: clamp(1.75rem, 4vw, 3rem) max(1rem, calc((100vw - 80rem) / 2 + 2rem));
     background-color: color-mix(in oklch, var(--muted) 62%, var(--background));
     border: 0;
+    text-align: center;
 }
 
 .desiderio-corporate-template__eyebrow {
@@ -81,7 +83,7 @@
     box-sizing: border-box;
     width: 100%;
     max-width: 62rem;
-    margin: 0;
+    margin: 0 auto;
     overflow-wrap: anywhere;
     hyphens: auto;
     text-wrap: balance;
@@ -95,7 +97,7 @@
 
 .desiderio-corporate-template__lede {
     max-width: 56rem;
-    margin: 0;
+    margin: 0 auto;
     color: var(--muted-foreground);
     font-size: clamp(0.9375rem, 1.4vw, 1.125rem);
     line-height: 1.65;

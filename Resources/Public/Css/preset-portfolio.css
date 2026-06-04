@@ -100,6 +100,41 @@
     line-height: 1.6;
 }
 
+.desiderio-portfolio-start__proof {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.75rem;
+    margin: 0.75rem 0 0;
+    max-width: 56rem;
+}
+
+.desiderio-portfolio-start__proof div {
+    display: grid;
+    gap: 0.25rem;
+    min-width: 0;
+    border-top: 1px solid color-mix(in oklch, var(--portfolio-accent) 45%, var(--border));
+    padding-top: 0.75rem;
+}
+
+.desiderio-portfolio-start__proof dt,
+.desiderio-portfolio-start__proof dd {
+    margin: 0;
+}
+
+.desiderio-portfolio-start__proof dt {
+    color: var(--muted-foreground);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.desiderio-portfolio-start__proof dd {
+    color: var(--foreground);
+    font-size: 0.9375rem;
+    line-height: 1.35;
+}
+
 .desiderio-portfolio-start__content,
 .desiderio-portfolio-system__content {
     min-width: 0;
@@ -196,6 +231,12 @@
 
     .ce-frame {
         padding: 4rem 0;
+    }
+}
+
+@media (max-width: 640px) {
+    .desiderio-portfolio-start__proof {
+        grid-template-columns: 1fr;
     }
 }
 

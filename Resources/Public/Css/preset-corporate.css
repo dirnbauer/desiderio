@@ -161,6 +161,40 @@
     color: var(--primary);
 }
 
+.desiderio-corporate-start__proof {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.75rem;
+    margin: 0.75rem 0 0;
+}
+
+.desiderio-corporate-start__proof-item {
+    display: grid;
+    gap: 0.25rem;
+    min-width: 0;
+    border: 1px solid var(--border);
+    background-color: color-mix(in oklch, var(--card) 88%, var(--background));
+    padding: 0.875rem;
+}
+
+.desiderio-corporate-start__proof-item dt,
+.desiderio-corporate-start__proof-item dd {
+    margin: 0;
+}
+
+.desiderio-corporate-start__proof-item dt {
+    color: var(--muted-foreground);
+    font-size: 0.75rem;
+    line-height: 1.35;
+}
+
+.desiderio-corporate-start__proof-item dd {
+    color: var(--foreground);
+    font-size: 1rem;
+    font-weight: 750;
+    line-height: 1.25;
+}
+
 .desiderio-corporate-start__content,
 .desiderio-corporate-system__content {
     min-width: 0;
@@ -255,6 +289,12 @@
 
     .desiderio-corporate-start__masthead h1 {
         font-size: 3.25rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .desiderio-corporate-start__proof {
+        grid-template-columns: 1fr;
     }
 }
 

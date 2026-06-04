@@ -11,29 +11,39 @@
 </f:section>
 
 <f:section name="Main">
+    <f:variable name="saasHeadline" value="{page.pageRecord.title -> f:or(alternative: site.configuration.websiteTitle)}"/>
+    <f:variable name="saasLede" value="{page.pageRecord.abstract -> f:or(alternative: '{f:translate(extensionName: \'desiderio\', key: \'saas.hero.lede\', default: \'A complete SaaS starter for product narrative, use cases, pricing, integrations, security, resources, docs, and trial conversion.\')}')}"/>
     <div class="desiderio-saas-template desiderio-saas-start">
         <d:layout.container size="xl">
             <header class="desiderio-saas-start__hero">
-                <p class="desiderio-saas-start__eyebrow">
-                    <d:atom.badge variant="outline" class="desiderio-saas-start__badge">{breadcrumb.0.title -> f:or(alternative: '{f:translate(extensionName: \'desiderio\', key: \'saas.hero.eyebrow\', default: \'Now in public beta\')}')}</d:atom.badge>
-                </p>
-                <h1>{site.configuration.websiteTitle -> f:or(alternative: page.pageRecord.title)}</h1>
-                <f:if condition="{page.pageRecord.abstract}">
-                    <span class="desiderio-saas-start__lede">{page.pageRecord.abstract}</span>
-                </f:if>
-                <div class="desiderio-saas-start__actions" role="group" aria-label="{f:translate(extensionName: 'desiderio', key: 'saas.hero.actions.label', default: 'Primary actions')}">
-                    <d:atom.button href="#desiderio-saas-start" size="lg" class="desiderio-saas-start__cta">
-                        <span data-icon="inline-start" aria-hidden="true"><d:atom.icon name="rocket" size="sm"/></span>
-                        <f:translate extensionName="desiderio" key="saas.hero.cta.primary">Start free</f:translate>
-                    </d:atom.button>
-                    <d:atom.button href="#desiderio-saas-start" variant="ghost" size="lg" class="desiderio-saas-start__cta-secondary">
-                        <f:translate extensionName="desiderio" key="saas.hero.cta.secondary">Book a demo</f:translate>
-                    </d:atom.button>
+                <div class="desiderio-saas-start__hero-copy">
+                    <p class="desiderio-saas-start__eyebrow">
+                        <d:atom.badge variant="outline" class="desiderio-saas-start__badge">{breadcrumb.0.title -> f:or(alternative: '{f:translate(extensionName: \'desiderio\', key: \'saas.hero.eyebrow\', default: \'Now in public beta\')}')}</d:atom.badge>
+                    </p>
+                    <h1>{saasHeadline}</h1>
+                    <span class="desiderio-saas-start__lede">{saasLede}</span>
+                    <div class="desiderio-saas-start__actions" role="group" aria-label="{f:translate(extensionName: 'desiderio', key: 'saas.hero.actions.label', default: 'Primary actions')}">
+                        <d:atom.button href="#desiderio-saas-start" size="lg" class="desiderio-saas-start__cta">
+                            <span data-icon="inline-start" aria-hidden="true"><d:atom.icon name="rocket" size="sm"/></span>
+                            <f:translate extensionName="desiderio" key="saas.hero.cta.primary">Start free</f:translate>
+                        </d:atom.button>
+                        <d:atom.button href="#desiderio-saas-start" variant="ghost" size="lg" class="desiderio-saas-start__cta-secondary">
+                            <f:translate extensionName="desiderio" key="saas.hero.cta.secondary">Book a demo</f:translate>
+                        </d:atom.button>
+                    </div>
+                    <p class="desiderio-saas-start__trust">
+                        <span class="desiderio-saas-start__trust-icon" aria-hidden="true"><d:atom.icon name="check-circle" size="xs"/></span>
+                        <f:translate extensionName="desiderio" key="saas.hero.trust">No credit card. 14-day Pro trial. Cancel anytime.</f:translate>
+                    </p>
                 </div>
-                <p class="desiderio-saas-start__trust">
-                    <span class="desiderio-saas-start__trust-icon" aria-hidden="true"><d:atom.icon name="check-circle" size="xs"/></span>
-                    <f:translate extensionName="desiderio" key="saas.hero.trust">No credit card. 14-day Pro trial. Cancel anytime.</f:translate>
-                </p>
+                <aside class="desiderio-saas-start__snapshot" aria-label="{f:translate(extensionName: 'desiderio', key: 'saas.hero.snapshot.label', default: 'Product snapshot')}">
+                    <p><f:translate extensionName="desiderio" key="saas.hero.snapshot.title">Activation snapshot</f:translate></p>
+                    <dl>
+                        <div><dt><f:translate extensionName="desiderio" key="saas.hero.snapshot.teams">Teams</f:translate></dt><dd>1,284</dd></div>
+                        <div><dt><f:translate extensionName="desiderio" key="saas.hero.snapshot.workflows">Workflows</f:translate></dt><dd>82k</dd></div>
+                        <div><dt><f:translate extensionName="desiderio" key="saas.hero.snapshot.saved">Hours saved</f:translate></dt><dd>14h</dd></div>
+                    </dl>
+                </aside>
             </header>
             <section
                 id="desiderio-saas-start"

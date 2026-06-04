@@ -212,6 +212,21 @@ The base set also exposes shadcn/create preset support. The committed theme
 CSS currently supports `b6G5977cw` as the default, plus `b4hb38Fyj`, `b0`,
 and `b3IWPgRwnI` as alternate light/dark token sets.
 
+### Starter site seeding
+
+Use the starter seeder to create a useful demo site for one or all scenario
+templates. Each starter creates one homepage plus at least ten subpages and
+populates them with real Desiderio Content Blocks instead of lorem ipsum.
+
+```bash
+vendor/bin/typo3 desiderio:starter:seed --parent=505 --preset=all
+vendor/bin/typo3 desiderio:starter:seed --parent=505 --preset=dashboard
+```
+
+Available presets: `corporate`, `dashboard`, `editorial`, `portfolio`, `saas`.
+The dashboard starter includes populated dummy dashboards for every generated
+workspace page.
+
 ### Switching scenario templates
 
 There are two different switches:

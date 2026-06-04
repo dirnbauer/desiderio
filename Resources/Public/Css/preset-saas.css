@@ -55,11 +55,25 @@
     padding-block: 4rem 2rem;
 }
 
+.desiderio-saas-start__hero {
+    max-width: none;
+    grid-template-columns: minmax(0, 1fr);
+    align-items: end;
+    gap: 2rem;
+}
+
+.desiderio-saas-start__hero-copy {
+    display: grid;
+    gap: 0.875rem;
+    max-width: 54rem;
+}
+
 .desiderio-saas-template__masthead {
     padding-block: 3rem 1.5rem;
 }
 
 .desiderio-saas-start__hero > *,
+.desiderio-saas-start__hero-copy > *,
 .desiderio-saas-template__masthead > *,
 .desiderio-saas-system__header > * {
     margin: 0;
@@ -144,6 +158,62 @@
     color: var(--primary);
 }
 
+.desiderio-saas-start__snapshot {
+    display: grid;
+    gap: 1rem;
+    min-width: 0;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background:
+        linear-gradient(180deg, color-mix(in oklch, var(--primary) 8%, transparent), transparent),
+        color-mix(in oklch, var(--card) 92%, var(--background));
+    padding: 1rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.desiderio-saas-start__snapshot p {
+    margin: 0;
+    color: var(--muted-foreground);
+    font-size: 0.75rem;
+    font-weight: 750;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.desiderio-saas-start__snapshot dl {
+    display: grid;
+    gap: 0.75rem;
+    margin: 0;
+}
+
+.desiderio-saas-start__snapshot div {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    min-width: 0;
+    border-top: 1px solid var(--border);
+    padding-top: 0.75rem;
+}
+
+.desiderio-saas-start__snapshot dt,
+.desiderio-saas-start__snapshot dd {
+    margin: 0;
+}
+
+.desiderio-saas-start__snapshot dt {
+    color: var(--muted-foreground);
+    font-size: 0.875rem;
+}
+
+.desiderio-saas-start__snapshot dd {
+    color: var(--foreground);
+    font-size: 1.5rem;
+    font-weight: 780;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+}
+
 .desiderio-saas-system {
     position: relative;
     isolation: isolate;
@@ -187,6 +257,10 @@
    At tablet widths it would otherwise stack far below a tall main column and
    fall below the fold, weakening the "Get started" conversion intent. */
 @media (min-width: 768px) {
+    .desiderio-saas-start__hero {
+        grid-template-columns: minmax(0, 1fr) minmax(16rem, 22rem);
+    }
+
     .desiderio-saas-sidebar__layout {
         grid-template-columns: minmax(0, 1fr) 18rem;
         align-items: start;

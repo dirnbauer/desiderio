@@ -12,13 +12,12 @@
 
 <f:section name="Main">
     <f:comment>
-        Portfolio cover / work index. The masthead is the maker's billboard:
-        an eyebrow badge, the studio or person name (website title) as the
-        display headline, and a positioning standfirst. The content area below
-        is the curated gallery of work — project teasers, a selected-works grid
-        and contact prompt dropped in by editors. Marked up as a schema.org
-        CollectionPage because it gathers and links the individual works.
+        Portfolio cover / work index. The masthead is now a project-fit screen:
+        positioning headline, studio signal, availability markers, and then
+        editor-authored selected work below.
     </f:comment>
+    <f:variable name="portfolioTitle" value="{page.pageRecord.title -> f:or(alternative: site.configuration.websiteTitle)}"/>
+    <f:variable name="portfolioDeck" value="{page.pageRecord.abstract -> f:or(alternative: '{f:translate(extensionName: \'desiderio\', key: \'portfolio.start.deck\', default: \'A portfolio starter for selected work, services, proof, process, and a useful project inquiry path.\')}')}"/>
     <section
         class="desiderio-portfolio-template desiderio-portfolio-start"
         itemscope="itemscope"
@@ -26,15 +25,25 @@
     >
         <d:layout.container size="xl" class="desiderio-portfolio-template__container desiderio-portfolio-start__container">
             <header class="desiderio-portfolio-template__masthead desiderio-portfolio-start__masthead" aria-labelledby="portfolio-start-title">
-                <f:if condition="{breadcrumb.0.title}">
-                    <p class="desiderio-portfolio-template__kicker">
-                        <d:atom.badge variant="secondary">{breadcrumb.0.title}</d:atom.badge>
-                    </p>
-                </f:if>
-                <h1 id="portfolio-start-title" itemprop="name">{site.configuration.websiteTitle -> f:or(alternative: page.pageRecord.title)}</h1>
-                <f:if condition="{page.pageRecord.abstract}">
-                    <span itemprop="description">{page.pageRecord.abstract}</span>
-                </f:if>
+                <p class="desiderio-portfolio-template__kicker">
+                    <d:atom.badge variant="secondary">{site.configuration.websiteTitle -> f:or(alternative: breadcrumb.0.title)}</d:atom.badge>
+                </p>
+                <h1 id="portfolio-start-title" itemprop="name">{portfolioTitle}</h1>
+                <span itemprop="description">{portfolioDeck}</span>
+                <dl class="desiderio-portfolio-start__proof" aria-label="{f:translate(extensionName: 'desiderio', key: 'portfolio.start.proof.label', default: 'Studio signals')}">
+                    <div>
+                        <dt><f:translate extensionName="desiderio" key="portfolio.start.proof.focus">Focus</f:translate></dt>
+                        <dd><f:translate extensionName="desiderio" key="portfolio.start.proof.focus.value">Interfaces and systems</f:translate></dd>
+                    </div>
+                    <div>
+                        <dt><f:translate extensionName="desiderio" key="portfolio.start.proof.work">Proof</f:translate></dt>
+                        <dd><f:translate extensionName="desiderio" key="portfolio.start.proof.work.value">Selected work first</f:translate></dd>
+                    </div>
+                    <div>
+                        <dt><f:translate extensionName="desiderio" key="portfolio.start.proof.availability">Availability</f:translate></dt>
+                        <dd><f:translate extensionName="desiderio" key="portfolio.start.proof.availability.value">Project brief required</f:translate></dd>
+                    </div>
+                </dl>
             </header>
             <div class="desiderio-portfolio-template__content desiderio-portfolio-start__content" itemprop="mainContentOfPage">
                 <f:render partial="Presets/ContentArea" arguments="{content: content.main}"/>

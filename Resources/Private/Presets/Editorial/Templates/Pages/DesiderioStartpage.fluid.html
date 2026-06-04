@@ -12,22 +12,28 @@
 
 <f:section name="Main">
     <f:comment>
-        Editorial landing / magazine index. The masthead carries the publication
-        name and standfirst; the content area below holds the curated feed of
-        article teasers, sections and the subscribe prompt placed by editors.
+        Editorial landing / magazine index. The masthead now behaves like an
+        issue front page: publication signal, page-specific headline, deck, and
+        section lanes before the editor-authored feed starts.
     </f:comment>
+    <f:variable name="editorialTitle" value="{page.pageRecord.title -> f:or(alternative: site.configuration.websiteTitle)}"/>
+    <f:variable name="editorialDeck" value="{page.pageRecord.abstract -> f:or(alternative: '{f:translate(extensionName: \'desiderio\', key: \'editorial.start.deck\', default: \'A structured publication starter for reported features, practical guides, recurring briefings, and newsletter conversion.\')}')}"/>
     <section class="desiderio-editorial-start" aria-labelledby="desiderio-editorial-masthead">
         <d:layout.container size="md">
             <header class="desiderio-editorial-start__cover">
-                <f:if condition="{breadcrumb.0.title}">
+                <div class="desiderio-editorial-start__meta">
                     <p class="desiderio-editorial-template__kicker">
-                        <d:atom.badge variant="secondary">{breadcrumb.0.title}</d:atom.badge>
+                        <d:atom.badge variant="secondary">{site.configuration.websiteTitle -> f:or(alternative: breadcrumb.0.title)}</d:atom.badge>
                     </p>
-                </f:if>
-                <h1 id="desiderio-editorial-masthead">{site.configuration.websiteTitle -> f:or(alternative: page.pageRecord.title)}</h1>
-                <f:if condition="{page.pageRecord.abstract}">
-                    <p>{page.pageRecord.abstract}</p>
-                </f:if>
+                    <p class="desiderio-editorial-start__issue"><f:translate extensionName="desiderio" key="editorial.start.issue">Issue desk</f:translate></p>
+                </div>
+                <h1 id="desiderio-editorial-masthead">{editorialTitle}</h1>
+                <p>{editorialDeck}</p>
+                <ul class="desiderio-editorial-start__lanes" role="list" aria-label="{f:translate(extensionName: 'desiderio', key: 'editorial.start.lanes.label', default: 'Editorial lanes')}">
+                    <li><span><f:translate extensionName="desiderio" key="editorial.start.lane.features">Features</f:translate></span><strong><f:translate extensionName="desiderio" key="editorial.start.lane.features.value">Long reads</f:translate></strong></li>
+                    <li><span><f:translate extensionName="desiderio" key="editorial.start.lane.guides">Guides</f:translate></span><strong><f:translate extensionName="desiderio" key="editorial.start.lane.guides.value">Practical tools</f:translate></strong></li>
+                    <li><span><f:translate extensionName="desiderio" key="editorial.start.lane.newsletter">Newsletter</f:translate></span><strong><f:translate extensionName="desiderio" key="editorial.start.lane.newsletter.value">Recurring brief</f:translate></strong></li>
+                </ul>
             </header>
             <div class="desiderio-editorial-template__content desiderio-editorial-start__content">
                 <f:render partial="Presets/ContentArea" arguments="{content: content.main}"/>

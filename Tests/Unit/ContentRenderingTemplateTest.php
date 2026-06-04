@@ -641,7 +641,7 @@ final class ContentRenderingTemplateTest extends TestCase
             'Resources/Private/Extensions/Powermail/Partials/Form/Field/Radio.html',
         ];
 
-        self::assertStringContainsString('<f:case value="fieldLegend">', $shadcnClasses);
+        self::assertStringContainsString('<f:case value="fieldLegend">mb-2 flex', $shadcnClasses);
 
         foreach ($groupTemplates as $relativePath) {
             $template = (string) file_get_contents(__DIR__ . '/../../' . $relativePath);

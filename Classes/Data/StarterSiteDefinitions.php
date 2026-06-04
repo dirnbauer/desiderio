@@ -298,10 +298,16 @@ final class StarterSiteDefinitions
                     ]),
                 ],
             ],
-            'subpages' => array_merge(self::withTopNavigation(array_map(
-                static fn (array $page): array => self::dashboardPage(...$page),
-                $dashboardPages
-            ), ['revenue', 'product-analytics', 'customer-health', 'pipeline', 'reports', 'settings']), $supportPages),
+            'subpages' => array_merge(
+                self::withTopNavigation(
+                    array_values(array_map(
+                        static fn (array $page): array => self::dashboardPage(...$page),
+                        $dashboardPages
+                    )),
+                    ['revenue', 'product-analytics', 'customer-health', 'pipeline', 'reports', 'settings']
+                ),
+                $supportPages
+            ),
         ];
     }
 

@@ -16,6 +16,7 @@ use Symfony\Component\Yaml\Yaml;
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Database\Query\Expression\CompositeExpression;
 use TYPO3\CMS\Core\Database\Query\QueryBuilder;
 use TYPO3\CMS\Core\Resource\File;
 use TYPO3\CMS\Core\Resource\Folder;
@@ -701,7 +702,7 @@ final class SeedStarterSitesCommand extends Command
     }
 
     /**
-     * @return list<string>
+     * @return list<string|CompositeExpression>
      */
     private function buildStarterContentDeletionConstraints(QueryBuilder $queryBuilder, string $contentDeleteScope): array
     {

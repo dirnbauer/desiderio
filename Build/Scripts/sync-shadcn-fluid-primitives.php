@@ -739,7 +739,7 @@ function renderPowermailShadcnClass(array $recipes, string $header): string
         'fieldError' => $recipes['field']['error'],
         'fieldGroup' => $recipes['field']['group'],
         'fieldLabel' => $fieldLabel,
-        'fieldLegend' => 'flex w-fit items-center gap-2 text-xs font-medium leading-snug text-foreground',
+        'fieldLegend' => 'mb-2 flex w-fit items-center gap-2 text-xs font-medium leading-snug text-foreground',
         'fieldSet' => $recipes['field']['set'],
         'fileInput' => normalizeClass($input . ' h-auto min-h-24 cursor-pointer items-center border-dashed bg-muted/30 px-3 py-3 text-muted-foreground hover:bg-muted/50'),
         'flashDestructive' => 'rounded-md border border-destructive/30 bg-destructive/10 p-3 text-sm text-destructive',

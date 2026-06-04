@@ -339,7 +339,7 @@ final class SeedStyleguidePagesCommand extends Command
 
     private function buildStyleguidePageTitle(string $groupTitle): string
     {
-        return 'Desiderio ' . $groupTitle;
+        return $groupTitle;
     }
 
     private function buildStyleguidePageSlug(string $groupId): string

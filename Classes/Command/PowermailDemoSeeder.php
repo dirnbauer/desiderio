@@ -69,7 +69,7 @@ final class PowermailDemoSeeder
 
         $rootUid = $this->upsertPage(
             $parentPid,
-            'Desiderio Powermail Lab',
+            'Powermail Lab',
             '/desiderio-powermail-lab',
             8192,
             $now,
@@ -77,7 +77,7 @@ final class PowermailDemoSeeder
         );
         $rootTranslationUid = $this->upsertPage(
             $parentPid,
-            'Desiderio Powermail Labor',
+            'Powermail Labor',
             '/desiderio-powermail-labor',
             8193,
             $now,

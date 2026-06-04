@@ -317,7 +317,7 @@ foreach ($groupMeta as $groupId => $meta) {
     $seedGroups[] = [
         'groupId' => $groupId,
         'groupTitle' => $groupTitle,
-        'pageTitle' => 'Desiderio ' . $groupTitle,
+        'pageTitle' => $groupTitle,
         'elements' => $seedElements,
     ];
 }

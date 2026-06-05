@@ -25,6 +25,7 @@
 .pricing-two-tier__grid {
     list-style: none;
     padding: 0;
+    padding-block-start: 0.625rem;
     margin: 0;
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -42,6 +43,7 @@
     position: relative;
     flex: 1;
     min-width: 0;
+    overflow: visible;
 }
 
 .pricing-two-tier__plan--featured,

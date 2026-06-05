@@ -25,6 +25,7 @@
 .pricing-annual-monthly__grid {
     list-style: none;
     padding: 0;
+    padding-block-start: 0.625rem;
     margin: 0;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
@@ -41,6 +42,7 @@
     position: relative;
     flex: 1;
     min-width: 0;
+    overflow: visible;
 }
 
 .pricing-annual-monthly__plan--featured {

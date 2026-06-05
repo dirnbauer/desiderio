@@ -1,0 +1,20 @@
+/* Pricing plan cards use an overlapping ribbon badge; the card molecule hides overflow by default. */
+:is(
+    .pricing__grid,
+    .pricing-two-tier__grid,
+    .pricing-three-tier__grid,
+    .pricing-four-tier__grid,
+    .pricing-annual-monthly__grid
+) {
+    padding-block-start: 0.625rem;
+}
+
+[data-slot="card"]:is(
+    .pricing__plan,
+    .pricing-two-tier__plan,
+    .pricing-three-tier__plan,
+    .pricing-four-tier__plan,
+    .pricing-annual-monthly__plan
+) {
+    overflow: visible;
+}

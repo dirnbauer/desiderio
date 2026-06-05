@@ -2586,3 +2586,24 @@ article[itemtype="https://schema.org/BlogPosting"] [itemprop="articleBody"] .ce-
 .leaderboard__name { font-weight: 500; font-size: var(--d-text-sm); color: var(--foreground); }
 .leaderboard__subtitle { font-size: var(--d-text-xs); color: var(--muted-foreground); }
 .leaderboard__value { font-weight: 700; font-size: var(--d-text-sm); white-space: nowrap; }
+
+/* Pricing plan cards use an overlapping ribbon badge; the card molecule hides overflow by default. */
+:is(
+    .pricing__grid,
+    .pricing-two-tier__grid,
+    .pricing-three-tier__grid,
+    .pricing-four-tier__grid,
+    .pricing-annual-monthly__grid
+) {
+    padding-block-start: 0.625rem;
+}
+
+[data-slot="card"]:is(
+    .pricing__plan,
+    .pricing-two-tier__plan,
+    .pricing-three-tier__plan,
+    .pricing-four-tier__plan,
+    .pricing-annual-monthly__plan
+) {
+    overflow: visible;
+}

@@ -1004,6 +1004,7 @@ CSS;
 .{$prefix}__grid {
     list-style: none;
     padding: 0;
+    padding-block-start: 0.625rem;
     margin: 0;
     display: grid;
 {$gridColumns}    gap: var(--d-spacing-lg);
@@ -1020,6 +1021,7 @@ CSS;
     position: relative;
     flex: 1;
     min-width: 0;
+    overflow: visible;
 }
 
 .{$prefix}__plan--featured,

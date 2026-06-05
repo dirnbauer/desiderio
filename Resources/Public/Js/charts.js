@@ -450,6 +450,24 @@
     });
   }
 
+  function initLineChartRoots(selector, canvasSelector, buildOptions, animate) {
+    each(selector, function (root) {
+      if (!once(root)) {
+        return;
+      }
+      var svg = root.querySelector(canvasSelector);
+      var values = numericRows(parseJson(root, 'data-chart-data', []), false);
+      if (!svg || !values.length) {
+        return;
+      }
+
+      drawLineChart(svg, values, buildOptions(root, values));
+      if (animate !== false) {
+        animateChart(svg);
+      }
+    });
+  }
+
   function initGenericLine() {
     each('.chart', function (root) {
       if (!once(root)) return;
@@ -485,14 +503,10 @@
   }
 
   function initArea() {
-    each('.chart-area', function (root) {
-      if (!once(root)) return;
-      var svg = root.querySelector('.chart-area__canvas');
-      var values = numericRows(parseJson(root, 'data-chart-data', []), false);
-      if (!svg || !values.length) return;
-      var opacityMap = { low: 0.08, medium: 0.18, high: 0.28 };
+    var opacityMap = { low: 0.08, medium: 0.18, high: 0.28 };
 
-      drawLineChart(svg, values, {
+    initLineChartRoots('.chart-area', '.chart-area__canvas', function (root) {
+      return {
         area: true,
         yAxis: true,
         yTickCount: 5,
@@ -502,18 +516,13 @@
         bottom: 38,
         labels: true,
         areaOpacity: opacityMap[root.getAttribute('data-fill-opacity')] || opacityMap.medium
-      });
-    });
+      };
+    }, false);
   }
 
   function initLine() {
-    each('.chart-line', function (root) {
-      if (!once(root)) return;
-      var svg = root.querySelector('.chart-line__canvas');
-      var values = numericRows(parseJson(root, 'data-chart-data', []), false);
-      if (!svg || !values.length) return;
-
-      drawLineChart(svg, values, {
+    initLineChartRoots('.chart-line', '.chart-line__canvas', function (root) {
+      return {
         yAxis: true,
         yTickCount: 5,
         unit: root.getAttribute('data-unit') || '',
@@ -522,8 +531,8 @@
         bottom: 38,
         dots: root.getAttribute('data-show-dots') === 'true',
         labels: true
-      });
-    });
+      };
+    }, false);
   }
 
   function initMetricDashboard() {

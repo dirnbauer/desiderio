@@ -11,16 +11,10 @@
             <d:atom.typography tag="h2" variant="h2" class="code-block-section__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
         </f:if>
 
-        <div class="code-block" data-astro-copy-root>
-            <f:if condition="{data.filename} || {data.language}">
+        <div class="code-block">
+            <f:if condition="{data.filename}">
                 <div class="code-block__header">
-                    <div class="code-block__meta">
-                        <f:if condition="{data.filename}"><span class="code-block__filename">{data -> f:render.text(field: 'filename')}</span></f:if>
-                        <f:if condition="{data.language}"><span class="code-block__language">{data -> f:render.text(field: 'language')}</span></f:if>
-                    </div>
-                    <button class="code-block__copy" type="button" data-astro-copy data-astro-copy-target="#code-block-{data.uid}" aria-label="{f:translate(key: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/code-block/language/labels.xlf:copy_code')}">
-                        <d:atom.icon name="copy" size="sm"/>
-                    </button>
+                    <span class="code-block__filename">{data -> f:render.text(field: 'filename')}</span>
                 </div>
             </f:if>
             <pre class="code-block__pre"><code id="code-block-{data.uid}" class="code-block__code" data-astro-highlight data-astro-language="{data.language}">{data.code -> f:format.htmlspecialchars()}</code></pre>

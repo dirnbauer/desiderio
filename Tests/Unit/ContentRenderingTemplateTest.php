@@ -278,7 +278,7 @@ final class ContentRenderingTemplateTest extends TestCase
 
         self::assertStringContainsString('data-astro-highlight', $template);
         self::assertStringContainsString('data-astro-language="{data.language}"', $template);
-        self::assertStringContainsString('data-astro-copy', $template);
+        self::assertStringNotContainsString('data-astro-copy', $template);
         self::assertStringContainsString('desiderioPrism = EXT:desiderio/Resources/Public/Js/prism-lite.js', $setup);
         self::assertStringContainsString('window.Prism.manual = true', $prism);
         self::assertStringContainsString('languages.php', $prism);

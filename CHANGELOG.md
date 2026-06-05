@@ -6,6 +6,29 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [2.5.0] — 2026-06-05
+
+### Added
+
+- `StyleguideDemoValueGenerator` — extracted deterministic styleguide demo
+  field defaults from `SeedStyleguidePagesCommand` (~600 lines).
+- `StyleguideCollectionAliasPolicy` — shared alias maps and field resolution
+  for styleguide collection seeding (link slots, nested collections, cells/
+  row_data fallbacks).
+- `Resources/Private/Css/desiderio/` partials plus `npm run build:desiderio-css`
+  to concatenate the hand-written theme CSS from source sections.
+- `initLineChartRoots()` helper in `charts.js` so `.chart-area` and
+  `.chart-line` CE templates reuse the same line-chart bootstrap path as the
+  generic `.chart` renderer (BEM class names unchanged).
+
+### Changed
+
+- `SeedStyleguidePagesCommand` delegates demo values and collection alias
+  resolution to the new seeding classes (~800 lines removed from the command).
+- Styleguide seed unit tests invoke `StyleguideDemoValueGenerator` directly;
+  `ExtensionMetadataTest` now compares `ext_emconf.php` against
+  `composer.json` instead of a hard-coded version string.
+
 ## [2.4.0] — 2026-06-05
 
 ### Added

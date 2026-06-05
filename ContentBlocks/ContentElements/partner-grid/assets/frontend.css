@@ -40,15 +40,18 @@
     box-shadow: var(--d-shadow-sm);
 }
 .partner-grid__logo-wrap {
+    width: 100%;
     height: 80px;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-block-end: var(--d-spacing-md);
+    padding-inline: 0;
 }
 .partner-grid__logo {
-    height: 64px;
-    width: 220px;
+    display: block;
+    max-height: 64px;
+    width: auto;
     max-width: 100%;
     object-fit: contain;
 }

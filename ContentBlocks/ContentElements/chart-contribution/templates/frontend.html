@@ -6,8 +6,8 @@
 <f:asset.css identifier="d-chart-contribution" href="{cb:assetPath()}/frontend.css"/>
 
 <f:comment>
-  charts.js (initContribution) reads data-chart-json and DRAWS the bars + axis ticks into
-  .chart-contribution__svg, wiping any static children. So the SVG is purely decorative
+  charts.js (initContribution) reads data-chart-json and data-unit, then DRAWS the bars, y-axis
+  scale and x-axis ticks into .chart-contribution__svg, wiping any static children. So the SVG is purely decorative
   (aria-hidden) and every meaning lives in server-rendered markup: a role="img" wrapper with a
   concise aria-label + an aria-describedby summary, and a visually-hidden data table that carries
   the exact same numbers. data-chart-json is assembled from the same {data.points} rows the table
@@ -23,7 +23,10 @@
 
 <d:layout.section class="chart-contribution-section">
     <d:layout.container>
-        <figure class="chart-contribution" data-chart-json="{chartJson -> f:format.htmlspecialchars()}" data-chart-id="chart-contribution-{data.uid}">
+        <figure class="chart-contribution"
+             data-chart-json="{chartJson -> f:format.htmlspecialchars()}"
+             data-unit="{unitLabel -> f:format.htmlspecialchars()}"
+             data-chart-id="chart-contribution-{data.uid}">
             <div class="chart-contribution__card">
                 <div class="chart-contribution__head">
                     <div class="chart-contribution__titles">

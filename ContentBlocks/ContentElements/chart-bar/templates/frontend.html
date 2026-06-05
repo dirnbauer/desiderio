@@ -12,6 +12,7 @@
   accessible name. Everything that conveys the data is server-rendered and stays meaningful without
   JS and for assistive technology:
     - a role="img" figure with a concise aria-label + an aria-describedby summary,
+    - a summary stats row (top category, total, lowest and top share),
     - a visually-hidden (sr-only) data table carrying every category, value, unit and the total.
   The editor maintains one human-readable "Label | Value" list (bars); chart_data holds the matching
   JSON the canvas reads, so the picture and the table can never drift apart.
@@ -25,9 +26,13 @@
 " value="{data.bars -> f:or(alternative: '')}"/></f:variable>
 <f:variable name="chartTitle">{f:if(condition: data.header, then: '{data.header}', else: '{f:translate(key: \'LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-bar/language/labels.xlf:aria.fallback\')}')}</f:variable>
 
-<f:comment>Pass 1: count bars and total their values so the table foot can show the grand total.</f:comment>
+<f:comment>Pass 1: count bars, total their values, and find the top and lowest categories for the summary row.</f:comment>
 <f:variable name="total" value="{0}"/>
 <f:variable name="barCount" value="{0}"/>
+<f:variable name="topValue" value="{0}"/>
+<f:variable name="topLabel" value=""/>
+<f:variable name="lowestValue" value=""/>
+<f:variable name="lowestLabel" value=""/>
 <f:for each="{rows}" as="row">
     <f:variable name="parts"><f:split separator="|" value="{row}"/></f:variable>
     <f:variable name="rowLabel">{parts.0 -> f:or(alternative: '') -> f:format.trim()}</f:variable>
@@ -35,8 +40,17 @@
     <f:if condition="{rowLabel}">
         <f:variable name="total" value="{total + rowValue}"/>
         <f:variable name="barCount" value="{barCount + 1}"/>
+        <f:if condition="{topValue} == 0 || {rowValue} > {topValue}">
+            <f:variable name="topValue" value="{rowValue}"/>
+            <f:variable name="topLabel" value="{rowLabel}"/>
+        </f:if>
+        <f:if condition="{lowestLabel} == '' || {rowValue} < {lowestValue}">
+            <f:variable name="lowestValue" value="{rowValue}"/>
+            <f:variable name="lowestLabel" value="{rowLabel}"/>
+        </f:if>
     </f:if>
 </f:for>
+<f:variable name="topShare" value="{topValue * 100 / total}"/>
 
 <f:variable name="measuringClause"><f:if condition="{seriesName}"><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-bar/language/labels.xlf:aria.summary.measuring" arguments="{0: seriesName}"></f:translate></f:if></f:variable>
 <f:variable name="chartAriaLabel"><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-bar/language/labels.xlf:aria.summary" arguments="{0: chartTitle, 1: barCount, 2: measuringClause}">{chartTitle}: bar chart comparing {barCount} categories. The full breakdown follows in the data table.</f:translate></f:variable>
@@ -70,31 +84,28 @@
                         <svg class="chart-bar__canvas" id="chart-bar-{data.uid}" aria-hidden="true" focusable="false"></svg>
                     </div>
 
-                    <ul class="chart-bar__legend" role="list" aria-label="{chartTitle} legend">
-                        <f:for each="{rows}" as="row" iteration="legendIterator">
-                            <f:variable name="legendParts"><f:split separator="|" value="{row}"/></f:variable>
-                            <f:variable name="legendLabel">{legendParts.0 -> f:or(alternative: '') -> f:format.trim()}</f:variable>
-                            <f:variable name="legendValue">{legendParts.1 -> f:or(alternative: '') -> f:format.trim()}</f:variable>
-                            <f:if condition="{legendLabel}">
-                                <li class="chart-bar__legend-item chart-bar__legend-item--{legendIterator.cycle}">
-                                    <span class="chart-bar__legend-swatch" aria-hidden="true"></span>
-                                    <span class="chart-bar__legend-body">
-                                        <span class="chart-bar__legend-label">
-                                            <span class="sr-only">Bar {legendIterator.cycle}: </span>{legendLabel}
-                                        </span>
-                                        <f:if condition="{legendValue}">
-                                            <span class="chart-bar__legend-value">
-                                                <f:if condition="{seriesName}">
-                                                    <span class="chart-bar__legend-series">{seriesName}: </span>
-                                                </f:if>
-                                                {legendValue}<f:if condition="{unit}"> {unit}</f:if>
-                                            </span>
-                                        </f:if>
-                                    </span>
-                                </li>
+                    <f:if condition="{barCount} > 0">
+                        <dl class="chart-bar__stats">
+                            <div class="chart-bar__stat">
+                                <dt class="chart-bar__stat-label"><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-bar/language/labels.xlf:stat.top"/></dt>
+                                <dd class="chart-bar__stat-value">{topValue}<f:if condition="{unit}"> {unit}</f:if> <span class="chart-bar__stat-meta">{topLabel}</span></dd>
+                            </div>
+                            <div class="chart-bar__stat">
+                                <dt class="chart-bar__stat-label"><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-bar/language/labels.xlf:stat.total"/></dt>
+                                <dd class="chart-bar__stat-value"><f:format.number decimals="0">{total}</f:format.number><f:if condition="{unit}"> {unit}</f:if></dd>
+                            </div>
+                            <div class="chart-bar__stat">
+                                <dt class="chart-bar__stat-label"><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-bar/language/labels.xlf:stat.lowest"/></dt>
+                                <dd class="chart-bar__stat-value">{lowestValue}<f:if condition="{unit}"> {unit}</f:if> <span class="chart-bar__stat-meta">{lowestLabel}</span></dd>
+                            </div>
+                            <f:if condition="{total} > 0">
+                                <div class="chart-bar__stat">
+                                    <dt class="chart-bar__stat-label"><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-bar/language/labels.xlf:stat.top_share"/></dt>
+                                    <dd class="chart-bar__stat-value"><f:format.number decimals="0">{topShare}</f:format.number>%</dd>
+                                </div>
                             </f:if>
-                        </f:for>
-                    </ul>
+                        </dl>
+                    </f:if>
                 </div>
 
                 <p id="chart-bar-desc-{data.uid}" class="sr-only">{chartAriaLabel -> f:format.trim()}</p>

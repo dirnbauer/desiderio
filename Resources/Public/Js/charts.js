@@ -128,6 +128,17 @@
     return formatValue(value) + (unit ? ' ' + unit : '');
   }
 
+  function formatCompactAxisValue(value) {
+    var absolute = Math.abs(value);
+    if (absolute >= 1000000) {
+      return (value / 1000000).toLocaleString(undefined, { maximumFractionDigits: 1 }) + 'M';
+    }
+    if (absolute >= 1000) {
+      return (value / 1000).toLocaleString(undefined, { maximumFractionDigits: absolute >= 10000 ? 0 : 1 }) + 'k';
+    }
+    return formatValue(value);
+  }
+
   function niceStep(value) {
     var exponent = Math.floor(Math.log10(value || 1));
     var magnitude = Math.pow(10, exponent);
@@ -222,7 +233,12 @@
     var padY = options.padY || 28;
     var bottom = options.bottom || 42;
     var chartH = height - padY - bottom;
-    var scale = options.yAxis ? yScale(values, options.yTickCount || 5) : null;
+    var scale = null;
+    if (options.yAxis) {
+      scale = options.yAxisFromZero
+        ? yScaleFromZero(values, options.yTickCount || 5)
+        : yScale(values, options.yTickCount || 5);
+    }
     var points = linePoints(values, width, height, padX, padY, bottom, scale);
     var pointList = points.map(function (point) {
       return point[0].toFixed(2) + ' ' + point[1].toFixed(2);
@@ -244,12 +260,14 @@
           'stroke-opacity': '0.1'
         }));
         var label = svgElement('text', {
-          x: padX - 12,
+          x: padX - (options.axisCompact ? 14 : 16),
           y: y + 4,
           'text-anchor': 'end',
           class: 'chart__axis-label'
         });
-        label.textContent = formatAxisValue(tick, options.unit || '');
+        label.textContent = options.axisCompact
+          ? formatCompactAxisValue(tick)
+          : formatAxisValue(tick, options.unit || '');
         svg.appendChild(label);
       });
 
@@ -476,6 +494,7 @@
       if (!svg || !values.length) return;
       var chartType = root.getAttribute('data-chart-type') || 'area';
       var showValues = root.getAttribute('data-show-values') === 'true';
+      var isSeriesChart = chartType === 'area' || chartType === 'line';
 
       renderLegend(root, values);
       if (chartType === 'bar' || chartType === 'horizontal_bar') {
@@ -487,13 +506,17 @@
       } else {
         drawLineChart(svg, values, {
           yAxis: true,
+          yAxisFromZero: isSeriesChart,
           yTickCount: 5,
           unit: root.getAttribute('data-unit') || '',
-          padX: 78,
+          padX: isSeriesChart ? 64 : 90,
           padY: 30,
-          bottom: 38,
+          bottom: 44,
           area: chartType === 'area' && root.getAttribute('data-fill-type') !== 'none',
-          dots: true,
+          areaOpacity: isSeriesChart ? 0.18 : 0.14,
+          axisCompact: isSeriesChart,
+          color: 'var(--chart-color, var(--chart-1))',
+          dots: !isSeriesChart && showValues,
           labels: true,
           valueLabels: showValues
         });
@@ -511,9 +534,9 @@
         yAxis: true,
         yTickCount: 5,
         unit: root.getAttribute('data-unit') || '',
-        padX: 78,
+        padX: 90,
         padY: 30,
-        bottom: 38,
+        bottom: 44,
         labels: true,
         areaOpacity: opacityMap[root.getAttribute('data-fill-opacity')] || opacityMap.medium
       };
@@ -526,9 +549,9 @@
         yAxis: true,
         yTickCount: 5,
         unit: root.getAttribute('data-unit') || '',
-        padX: 78,
+        padX: 90,
         padY: 30,
-        bottom: 38,
+        bottom: 44,
         dots: root.getAttribute('data-show-dots') === 'true',
         labels: true
       };
@@ -608,6 +631,13 @@
     });
   }
 
+  function barFillOpacity(value, max) {
+    if (!max) {
+      return '1';
+    }
+    return String(Math.max(0.42, 0.42 + (value / max) * 0.58));
+  }
+
   function initBar() {
     each('.chart-bar', function (root) {
       if (!once(root)) return;
@@ -619,14 +649,15 @@
       var width = 640;
       var height = 300;
       var orientation = root.getAttribute('data-orientation') || 'vertical';
-      var padX = orientation === 'horizontal' ? 42 : 78;
-      var padY = 28;
-      var bottom = 48;
+      var padX = orientation === 'horizontal' ? 42 : 52;
+      var padY = 30;
+      var bottom = 38;
       var chartW = width - padX * 2;
       var chartH = height - padY - bottom;
       var max = Math.max.apply(null, values.map(function (row) { return row.value; })) || 1;
       var seriesName = root.getAttribute('data-series-name') || '';
       var unit = root.getAttribute('data-unit') || '';
+      var barColor = 'var(--chart-color, var(--chart-1))';
       svg.setAttribute('viewBox', '0 0 ' + width + ' ' + height);
 
       if (orientation === 'vertical') {
@@ -643,12 +674,12 @@
             'stroke-opacity': '0.1'
           }));
           var axisLabel = svgElement('text', {
-            x: padX - 12,
+            x: padX - 14,
             y: axisY + 4,
             'text-anchor': 'end',
             class: 'chart__axis-label'
           });
-          axisLabel.textContent = formatAxisValue(tick, unit);
+          axisLabel.textContent = formatCompactAxisValue(tick);
           svg.appendChild(axisLabel);
         });
         svg.appendChild(svgElement('line', {
@@ -684,7 +715,8 @@
             width: Math.max(barWidth, 1),
             height: rowH * 0.54,
             rx: '6',
-            fill: chartColors[index % chartColors.length],
+            fill: barColor,
+            opacity: barFillOpacity(row.value, max),
             'data-bar-index': String(index + 1)
           });
           addTitle(horizontalRect, 'Bar ' + (index + 1) + ', ' + row.label + (seriesName ? ', ' + seriesName : '') + ': ' + formatAxisValue(row.value, unit));
@@ -716,14 +748,15 @@
           width: barW,
           height: Math.max(valueH, 1),
           rx: '6',
-          fill: chartColors[index % chartColors.length],
+          fill: barColor,
+          opacity: barFillOpacity(row.value, verticalScale.max),
           'data-bar-index': String(index + 1)
         });
         addTitle(rect, 'Bar ' + (index + 1) + ', ' + row.label + (seriesName ? ', ' + seriesName : '') + ': ' + formatAxisValue(row.value, unit));
         svg.appendChild(rect);
         var label = svgElement('text', {
           x: x + barW / 2,
-          y: height - 12,
+          y: height - 14,
           'text-anchor': 'middle',
           fill: 'currentColor',
           opacity: '0.72',
@@ -1170,34 +1203,70 @@
       clear(svg);
       var values = rows.map(function (row) { return row.value; });
       var labels = rows.map(function (row) { return row.label; });
-      var width = 400;
-      var height = 160;
-      var pad = 12;
-      var bottom = 28;
-      var chartH = height - pad - bottom;
-      var max = Math.max.apply(null, values) || 1;
-      var barW = (width - 2 * pad) / values.length * 0.55;
-      var gap = (width - 2 * pad - barW * values.length) / Math.max(values.length - 1, 1);
+      var unit = root.getAttribute('data-unit') || '';
+      var width = 640;
+      var height = 220;
+      var padX = 52;
+      var padY = 24;
+      var bottom = 30;
+      var chartW = width - padX * 2;
+      var chartH = height - padY - bottom;
+      var scale = yScale(rows, 5);
+      var axisRange = scale.max - scale.min || 1;
+      var barW = (chartW / values.length) * 0.52;
+      var gap = (chartW - barW * values.length) / Math.max(values.length - 1, 1);
+      var barColor = 'var(--chart-color, var(--chart-1))';
       svg.setAttribute('viewBox', '0 0 ' + width + ' ' + height);
 
+      scale.ticks.slice().reverse().forEach(function (tick) {
+        var axisY = padY + chartH - ((tick - scale.min) / axisRange) * chartH;
+        svg.appendChild(svgElement('line', {
+          x1: padX,
+          x2: width - padX,
+          y1: axisY,
+          y2: axisY,
+          stroke: 'currentColor',
+          'stroke-opacity': '0.1'
+        }));
+        var axisLabel = svgElement('text', {
+          x: padX - 10,
+          y: axisY + 3,
+          'text-anchor': 'end',
+          class: 'chart-contribution__axis-label',
+          'font-size': '7'
+        });
+        axisLabel.textContent = formatCompactAxisValue(tick) + (unit ? ' ' + unit : '');
+        svg.appendChild(axisLabel);
+      });
+
+      svg.appendChild(svgElement('line', {
+        x1: padX,
+        x2: padX,
+        y1: padY,
+        y2: height - bottom,
+        stroke: 'currentColor',
+        'stroke-opacity': '0.16'
+      }));
+
       values.forEach(function (value, index) {
-        var x = pad + index * (barW + gap);
-        var barH = (value / max) * chartH;
-        var y = height - bottom - barH;
+        var valueH = ((value - scale.min) / axisRange) * chartH;
+        var x = padX + index * (barW + gap);
+        var y = padY + chartH - valueH;
         svg.appendChild(svgElement('rect', {
           x: x,
           y: y,
           width: barW,
-          height: Math.max(barH, 1),
+          height: Math.max(valueH, 1),
           rx: '6',
-          fill: 'var(--chart-2)'
+          fill: barColor,
+          opacity: barFillOpacity(value, Math.max.apply(null, values))
         }));
         var label = svgElement('text', {
           x: x + barW / 2,
-          y: height - 4,
+          y: height - 10,
           'text-anchor': 'middle',
-          fill: 'currentColor',
-          class: 'chart-contribution__tick'
+          class: 'chart-contribution__tick',
+          'font-size': '8'
         });
         label.textContent = labels[index];
         svg.appendChild(label);

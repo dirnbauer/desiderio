@@ -116,7 +116,7 @@ fields:
     identifier: show_legend
     type: Checkbox
     label: 'Show Legend'
-    default: 1
+    default: 0
   -
     identifier: legend_position
     type: Select
@@ -134,7 +134,7 @@ fields:
     identifier: show_values
     type: Checkbox
     label: 'Show Values'
-    default: 1
+    default: 0
   -
     identifier: fill_type
     type: Select

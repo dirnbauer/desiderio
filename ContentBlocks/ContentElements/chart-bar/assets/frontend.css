@@ -1,9 +1,6 @@
 .chart-bar {
     display: block;
     margin: 0;
-    /* One colour token feeds both the bars (charts.js) and the legend swatch; the
-       colour choice below remaps it. Only --chart-N tokens are ever used. */
-    --chart-color: var(--chart-1);
 }
 .chart-bar__card {
     border: 1px solid var(--border);
@@ -45,65 +42,50 @@
     aspect-ratio: 64 / 30;
     color: var(--muted-foreground);
     overflow: visible;
+    /* Bars share one palette token; the editor's colour choice remaps it below. */
+    --chart-color: var(--chart-1);
 }
 
-/* Server-rendered colour key: real labels + values, keyed to the same --chart-N tokens
-   the bars are painted with. Wraps onto multiple rows so it never overflows. */
-.chart-bar__legend {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--d-spacing-xs) var(--d-spacing-md);
-    margin: var(--d-spacing-md) 0 0;
-    padding: 0;
-    list-style: none;
-    min-width: 0;
-    font-size: var(--d-text-xs);
-}
-.chart-bar__legend-item {
-    display: flex;
-    align-items: flex-start;
-    gap: var(--d-spacing-xs);
-    min-width: 0;
-}
-.chart-bar__legend-swatch {
-    width: 0.75rem;
-    height: 0.75rem;
-    border-radius: 3px;
-    margin-block-start: 0.2rem;
-    flex: none;
-    background: var(--chart-bar-item-color, var(--chart-1));
-}
-.chart-bar__legend-item--1 { --chart-bar-item-color: var(--chart-1); }
-.chart-bar__legend-item--2 { --chart-bar-item-color: var(--chart-2); }
-.chart-bar__legend-item--3 { --chart-bar-item-color: var(--chart-3); }
-.chart-bar__legend-item--4 { --chart-bar-item-color: var(--chart-4); }
-.chart-bar__legend-item--5 { --chart-bar-item-color: var(--chart-5); }
-.chart-bar__legend-body {
+/* Server-rendered key facts: top category, total, lowest and leader share. */
+.chart-bar__stats {
     display: grid;
-    gap: 0.125rem;
+    grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+    gap: var(--d-spacing-md);
+    margin: var(--d-spacing-md) 0 0;
+    padding-block-start: var(--d-spacing-md);
+    border-block-start: 1px solid var(--border);
     min-width: 0;
 }
-.chart-bar__legend-label {
-    color: var(--foreground);
-    font-weight: 500;
-    overflow-wrap: anywhere;
-    line-height: 1.25;
+.chart-bar__stat {
+    min-width: 0;
 }
-.chart-bar__legend-value {
+.chart-bar__stat-label {
+    font-size: var(--d-text-xs);
     color: var(--muted-foreground);
-    font-variant-numeric: tabular-nums;
-    line-height: 1.25;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
 }
-.chart-bar__legend-series {
-    color: color-mix(in oklch, var(--muted-foreground) 82%, var(--foreground));
+.chart-bar__stat-value {
+    display: flex;
+    align-items: baseline;
+    gap: 0.35rem;
+    margin: 0;
+    font-size: var(--d-text-lg);
+    font-weight: 600;
+    color: var(--foreground);
+    font-variant-numeric: tabular-nums;
+    overflow-wrap: anywhere;
+}
+.chart-bar__stat-meta {
+    font-size: var(--d-text-xs);
+    font-weight: 500;
+    color: var(--muted-foreground);
 }
 
-/* The colour choice remaps the single chart token that both the bars (charts.js reads
-   --chart-color) and the legend swatch inherit, so one editor choice re-skins the whole
-   chart. Only --chart-N tokens are ever referenced. */
-.chart-bar--primary { --chart-color: var(--chart-1); }
-.chart-bar--blue { --chart-color: var(--chart-2); }
-.chart-bar--green { --chart-color: var(--chart-3); }
+/* Colour choice remaps the chart token the bars (charts.js) read. */
+.chart-bar--primary .chart-bar__canvas { --chart-color: var(--chart-1); }
+.chart-bar--blue .chart-bar__canvas { --chart-color: var(--chart-2); }
+.chart-bar--green .chart-bar__canvas { --chart-color: var(--chart-3); }
 
 .chart-bar .chart__value-label {
     font-size: 9px;
@@ -111,10 +93,11 @@
 }
 .chart-bar .chart__tick-label,
 .chart-bar .chart__axis-label {
-    font-size: 9px;
+    fill: currentColor;
+    font-size: 12px;
     font-weight: 500;
     letter-spacing: 0;
-    opacity: 0.66;
+    opacity: 0.72;
     font-variant-numeric: tabular-nums;
 }
 

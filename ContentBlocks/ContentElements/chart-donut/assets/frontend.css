@@ -3,26 +3,33 @@
     border-radius: var(--radius);
     background: var(--card);
     color: var(--card-foreground, var(--foreground));
-    padding: var(--d-spacing-lg);
+    box-shadow: var(--d-shadow-sm);
     overflow: hidden;
 }
 .chart-donut__header {
-    margin-block-end: var(--d-spacing-md);
+    padding: var(--d-spacing-lg) var(--d-spacing-lg) 0;
 }
 .chart-donut__title {
+    font-size: var(--d-text-lg);
+    font-weight: 600;
+    line-height: 1.3;
     color: var(--card-foreground, var(--foreground));
 }
 .chart-donut__description {
+    font-size: var(--d-text-sm);
     color: var(--muted-foreground);
     margin-block-start: var(--d-spacing-xs);
+    max-width: 60ch;
 }
 
+/* Chart + legend stay grouped and centred; neither column stretches to fill the card. */
 .chart-donut__content {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    gap: var(--d-spacing-lg);
+    gap: var(--d-spacing-lg) var(--d-spacing-xl);
+    padding: var(--d-spacing-lg);
 }
 
 .chart-donut__canvas {
@@ -30,16 +37,31 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    flex: 1 1 14rem;
+    flex: 0 0 auto;
+    width: min(100%, 11.25rem);
+    aspect-ratio: 1;
     min-width: 0;
-    max-width: 20rem;
-    min-height: 16rem;
+    color: var(--foreground);
 }
 .chart-donut__svg {
     display: block;
     width: 100%;
-    max-width: 20rem;
     height: auto;
+}
+
+/* SVG centre text inherits theme tokens for light/dark. */
+.chart-donut__svg .chart-donut__center-value {
+    fill: var(--foreground);
+    font-size: 1.75rem;
+    font-weight: 700;
+}
+.chart-donut__svg .chart-donut__center-label {
+    fill: var(--muted-foreground);
+    font-size: 0.875rem;
+}
+
+.chart-donut__canvas:has(.chart-donut__svg) .chart-donut__center-fallback {
+    display: none;
 }
 
 .chart-donut__center-fallback {
@@ -64,8 +86,8 @@
 }
 
 .chart-donut__legend {
-    flex: 1 1 12rem;
-    min-width: 0;
+    flex: 0 1 auto;
+    width: min(100%, 20rem);
     display: flex;
     flex-direction: column;
     gap: var(--d-spacing-sm);
@@ -74,17 +96,17 @@
     list-style: none;
 }
 .chart-donut__legend-item {
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    align-items: baseline;
-    column-gap: var(--d-spacing-sm);
+    display: flex;
+    align-items: center;
+    gap: var(--d-spacing-sm);
     font-size: var(--d-text-sm);
+    min-width: 0;
 }
 .chart-donut__swatch {
     inline-size: 0.75rem;
     block-size: 0.75rem;
     border-radius: var(--d-radius-sm, 0.25rem);
-    align-self: center;
+    flex: none;
     background: var(--muted);
 }
 .chart-donut__swatch--1 { background: var(--chart-1); }
@@ -93,28 +115,36 @@
 .chart-donut__swatch--4 { background: var(--chart-4); }
 .chart-donut__swatch--5 { background: var(--chart-5); }
 .chart-donut__legend-label {
-    color: var(--foreground);
+    flex: 1 1 auto;
     min-width: 0;
+    color: var(--foreground);
+    font-weight: 500;
     overflow-wrap: anywhere;
 }
 .chart-donut__legend-value {
+    flex: 0 0 auto;
+    padding-inline-start: var(--d-spacing-md);
     color: var(--muted-foreground);
     font-variant-numeric: tabular-nums;
     white-space: nowrap;
 }
 
-@media (max-width: 30rem) {
-    .chart-donut__card {
-        padding: var(--d-spacing-md);
+@media (max-width: 640px) {
+    .chart-donut__header {
+        padding-inline: var(--d-spacing-md);
     }
     .chart-donut__content {
         flex-direction: column;
         align-items: stretch;
+        padding: var(--d-spacing-md);
+        gap: var(--d-spacing-md);
     }
     .chart-donut__canvas {
-        margin-inline: auto;
+        align-self: center;
+        width: min(100%, 10rem);
     }
     .chart-donut__legend {
-        flex-basis: auto;
+        width: 100%;
+        max-width: none;
     }
 }

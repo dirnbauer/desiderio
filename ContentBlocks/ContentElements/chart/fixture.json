@@ -7,19 +7,19 @@
     "value_unit": "users",
     "data_summary": "Monthly active users grew from 8,200 in January to 15,600 in June 2026 — a 90% increase over six months, with the steepest gain between May and June.",
     "data_points": [
-        { "point_label": "January 2026", "point_value": "8,200 users" },
-        { "point_label": "February 2026", "point_value": "9,100 users" },
-        { "point_label": "March 2026", "point_value": "10,400 users" },
-        { "point_label": "April 2026", "point_value": "11,800 users" },
-        { "point_label": "May 2026", "point_value": "13,250 users" },
-        { "point_label": "June 2026", "point_value": "15,600 users" }
+        { "point_label": "Jan", "point_value": "8200" },
+        { "point_label": "Feb", "point_value": "9100" },
+        { "point_label": "Mar", "point_value": "10400" },
+        { "point_label": "Apr", "point_value": "11800" },
+        { "point_label": "May", "point_value": "13250" },
+        { "point_label": "Jun", "point_value": "15600" }
     ],
     "chart_type": "area",
     "color_variant": "primary",
     "show_grid": 1,
-    "show_legend": 1,
+    "show_legend": 0,
     "legend_position": "bottom",
-    "show_values": 1,
+    "show_values": 0,
     "fill_type": "gradient",
     "chart_height": "medium"
 }

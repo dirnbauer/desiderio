@@ -81,5 +81,30 @@
         <source>values in {0}</source>
       </segment>
     </unit>
+    <unit id="chart.stat.peak">
+      <segment>
+        <source>Peak</source>
+      </segment>
+    </unit>
+    <unit id="chart.stat.net_change">
+      <segment>
+        <source>Net change</source>
+      </segment>
+    </unit>
+    <unit id="chart.trend.up">
+      <segment>
+        <source>Trending up:</source>
+      </segment>
+    </unit>
+    <unit id="chart.trend.down">
+      <segment>
+        <source>Trending down:</source>
+      </segment>
+    </unit>
+    <unit id="chart.trend.flat">
+      <segment>
+        <source>No net change:</source>
+      </segment>
+    </unit>
   </file>
 </xliff>

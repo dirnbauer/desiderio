@@ -30,7 +30,7 @@
 .timeline__item {
     --timeline-marker-column: 3rem;
     --timeline-connector-width: calc(
-        50% + (var(--timeline-marker-column) - 100%) / 2 + var(--d-spacing-xl)
+        50% + (var(--timeline-marker-column) - 100%) / 2 + var(--d-spacing-xl) - 4px
     );
 
     display: grid;
@@ -166,7 +166,7 @@
     .timeline__item {
         --timeline-marker-column: 2rem;
         --timeline-connector-width: calc(
-            50% + (var(--timeline-marker-column) - 100%) / 2 + var(--d-spacing-md)
+            50% + (var(--timeline-marker-column) - 100%) / 2 + var(--d-spacing-md) - 4px
         );
 
         grid-template-columns: var(--timeline-marker-column) minmax(0, 1fr);

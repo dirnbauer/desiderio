@@ -670,24 +670,47 @@ body {
     margin: 0;
     color: var(--foreground);
     font-family: var(--d-font-heading);
-    font-size: 2rem;
-    font-weight: 700;
-    line-height: 1.12;
-    letter-spacing: 0;
+    font-size: clamp(1.875rem, 3.5vw, 2.25rem);
+    font-weight: 750;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
 }
 
 .docs__component-header .typography--h1,
 .docs__welcome-hero .typography--h1,
 .desiderio-system-page__header h1 {
+    position: relative;
     display: block;
     box-sizing: border-box;
     width: 100%;
-    padding: clamp(0.875rem, 1.8vw, 1.25rem) clamp(1rem, 2.8vw, 1.5rem);
+    padding: clamp(1.125rem, 2.2vw, 1.5rem) clamp(1rem, 2.8vw, 1.5rem);
     overflow-wrap: anywhere;
     hyphens: auto;
     text-wrap: balance;
-    background-color: color-mix(in oklch, var(--muted) 54%, var(--background));
-    border-block: 1px solid color-mix(in oklch, var(--border) 78%, transparent);
+    background:
+        radial-gradient(ellipse 80% 60% at 50% 0%, color-mix(in oklch, var(--primary) 8%, transparent), transparent 70%),
+        linear-gradient(
+            180deg,
+            color-mix(in oklch, var(--muted) 62%, var(--background)),
+            color-mix(in oklch, var(--muted) 38%, var(--background))
+        );
+    border-block: 1px solid color-mix(in oklch, var(--border) 72%, transparent);
+}
+
+.docs__component-header .typography--h1::after,
+.docs__welcome-hero .typography--h1::after,
+.desiderio-system-page__header h1::after {
+    content: "";
+    display: block;
+    width: clamp(2rem, 5vw, 3rem);
+    height: 3px;
+    margin: clamp(0.75rem, 1.5vw, 1rem) auto 0;
+    border-radius: 999px;
+    background: linear-gradient(
+        90deg,
+        color-mix(in oklch, var(--primary) 85%, var(--foreground)),
+        color-mix(in oklch, var(--primary) 25%, transparent)
+    );
 }
 
 .desiderio-system-page__header p {
@@ -2289,7 +2312,10 @@ article[itemtype="https://schema.org/BlogPosting"] [itemprop="articleBody"] .ce-
 }
 
 .docs__welcome-hero .typography--h1 {
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
+    font-size: clamp(2rem, 4vw, 2.75rem);
+    font-weight: 750;
+    letter-spacing: -0.025em;
 }
 
 .docs__welcome-hero .typography--lead {

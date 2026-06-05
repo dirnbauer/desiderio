@@ -57,28 +57,61 @@
 }
 
 .desiderio-corporate-template__intro {
+    position: relative;
+    isolation: isolate;
     display: grid;
-    gap: clamp(0.5rem, 1.2vw, 0.75rem);
+    gap: clamp(0.625rem, 1.4vw, 0.875rem);
     justify-items: center;
     max-width: none;
     margin-inline: calc(50% - 50vw);
-    padding: clamp(1.75rem, 4vw, 3rem) max(1rem, calc((100vw - 80rem) / 2 + 2rem));
-    background-color: color-mix(in oklch, var(--muted) 62%, var(--background));
-    border: 0;
+    padding: clamp(2rem, 4.5vw, 3.25rem) max(1rem, calc((100vw - 80rem) / 2 + 2rem));
+    overflow: hidden;
+    background:
+        radial-gradient(ellipse 90% 70% at 50% -20%, color-mix(in oklch, var(--primary) 10%, transparent), transparent 65%),
+        linear-gradient(
+            180deg,
+            color-mix(in oklch, var(--muted) 75%, var(--background)),
+            color-mix(in oklch, var(--muted) 40%, var(--background)) 55%,
+            color-mix(in oklch, var(--muted) 22%, var(--background))
+        );
+    border-block: 1px solid color-mix(in oklch, var(--border) 70%, transparent);
     text-align: center;
 }
 
+.desiderio-corporate-template__intro::before {
+    content: "";
+    position: absolute;
+    inset-inline: 10%;
+    top: 0;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        color-mix(in oklch, var(--primary) 40%, var(--border)),
+        transparent
+    );
+    pointer-events: none;
+}
+
 .desiderio-corporate-template__eyebrow {
+    position: relative;
+    z-index: 1;
     margin: 0;
+    padding: 0.25rem 0.75rem;
     color: var(--primary);
-    font-size: 0.8125rem;
+    font-size: 0.75rem;
     font-weight: 700;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.1em;
     line-height: 1.2;
     text-transform: uppercase;
+    background: color-mix(in oklch, var(--primary) 8%, var(--background));
+    border: 1px solid color-mix(in oklch, var(--primary) 18%, var(--border));
+    border-radius: 999px;
 }
 
 .desiderio-corporate-template__title {
+    position: relative;
+    z-index: 1;
     display: block;
     box-sizing: border-box;
     width: 100%;
@@ -89,13 +122,29 @@
     text-wrap: balance;
     color: var(--foreground);
     font-family: var(--d-font-heading);
-    font-size: clamp(1.875rem, 3.5vw, 3rem);
-    font-weight: 700;
-    letter-spacing: 0;
-    line-height: 1.05;
+    font-size: clamp(2rem, 4vw, 3.125rem);
+    font-weight: 750;
+    letter-spacing: -0.025em;
+    line-height: 1.04;
+}
+
+.desiderio-corporate-template__title::after {
+    content: "";
+    display: block;
+    width: clamp(2.5rem, 6vw, 3.5rem);
+    height: 3px;
+    margin: clamp(0.875rem, 1.8vw, 1.125rem) auto 0;
+    border-radius: 999px;
+    background: linear-gradient(
+        90deg,
+        color-mix(in oklch, var(--primary) 85%, var(--foreground)),
+        color-mix(in oklch, var(--primary) 25%, transparent)
+    );
 }
 
 .desiderio-corporate-template__lede {
+    position: relative;
+    z-index: 1;
     max-width: 56rem;
     margin: 0 auto;
     color: var(--muted-foreground);
@@ -274,10 +323,6 @@
 }
 
 @media (min-width: 1024px) {
-    .desiderio-corporate-template__title {
-        font-size: clamp(1.875rem, 3.5vw, 3rem);
-    }
-
     .ce-frame {
         padding: 4.5rem 0;
     }
@@ -302,10 +347,6 @@
 }
 
 @media (min-width: 768px) and (max-width: 1023px) {
-    .desiderio-corporate-template__title {
-        font-size: clamp(1.875rem, 3.5vw, 3rem);
-    }
-
     .desiderio-corporate-start__masthead h1 {
         font-size: 3.25rem;
     }

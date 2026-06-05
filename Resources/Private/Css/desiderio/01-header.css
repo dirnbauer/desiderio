@@ -169,8 +169,36 @@
     position: relative;
     display: flex;
     align-items: center;
-    width: 11rem;
+    width: 2.25rem;
     min-width: 0;
+    flex-shrink: 0;
+    transition: width 180ms ease;
+}
+
+.desiderio-header__search:not(.desiderio-header__search--collapsed) {
+    width: 11rem;
+}
+
+.desiderio-header__search-field {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-width: 0;
+}
+
+.desiderio-header__search--collapsed .desiderio-header__search-field {
+    display: none;
+}
+
+.desiderio-header__search:not(.desiderio-header__search--collapsed) .desiderio-header__search-trigger {
+    display: none;
+}
+
+.desiderio-header__search-trigger {
+    width: 2.25rem;
+    height: 2.25rem;
+    flex-shrink: 0;
 }
 
 .desiderio-header__search-input {
@@ -202,7 +230,7 @@
     height: 2rem;
 }
 
-.desiderio-header__search.d-solr-suggest-anchor .d-solr-suggest {
+.desiderio-header__search .d-solr-suggest {
     inset-inline-start: auto;
     inset-inline-end: 0;
     inline-size: min(26rem, calc(100vw - 2rem));
@@ -219,15 +247,15 @@
     justify-content: center;
     gap: 0.35rem;
     height: 2.25rem;
-    min-width: 3.5rem;
-    border: 1px solid var(--input);
+    min-width: 0;
+    border: 0;
     border-radius: var(--radius);
-    background-color: var(--background);
-    padding: 0 0.625rem;
+    background-color: transparent;
+    padding: 0 0.25rem;
     color: var(--foreground);
     cursor: pointer;
     list-style: none;
-    transition: background-color 150ms ease, border-color 150ms ease, box-shadow 150ms ease;
+    transition: background-color 150ms ease;
 }
 
 .desiderio-header__lang-summary::-webkit-details-marker {
@@ -236,14 +264,12 @@
 
 .desiderio-header__lang-summary:hover,
 .desiderio-header__lang[open] .desiderio-header__lang-summary {
-    border-color: var(--ring);
     background-color: var(--accent);
 }
 
 .desiderio-header__lang-summary:focus-visible {
-    outline: 0;
-    border-color: var(--ring);
-    box-shadow: 0 0 0 3px color-mix(in oklch, var(--ring) 30%, transparent);
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
 }
 
 .desiderio-header__lang-chevron {
@@ -317,7 +343,7 @@
         flex-wrap: wrap;
     }
 
-    .desiderio-header__search {
+    .desiderio-header__search:not(.desiderio-header__search--collapsed) {
         flex: 1 1 12rem;
         width: auto;
     }

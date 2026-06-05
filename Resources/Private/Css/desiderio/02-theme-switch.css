@@ -12,11 +12,11 @@
     align-items: center;
     justify-content: center;
     width: 2.25rem;
-    border: 1px solid var(--border);
+    border: 0;
     border-radius: var(--radius);
     height: 2.25rem;
     color: var(--foreground);
-    background-color: var(--background);
+    background-color: transparent;
     cursor: pointer;
     list-style: none;
 }

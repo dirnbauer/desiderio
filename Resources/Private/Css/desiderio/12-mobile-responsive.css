@@ -31,9 +31,12 @@
         overflow: hidden;
     }
     .desiderio-header__search {
-        width: auto;
         max-width: 100%;
         min-width: 0;
+    }
+
+    .desiderio-header__search:not(.desiderio-header__search--collapsed) {
+        width: auto;
     }
     .desiderio-theme-switch,
     .desiderio-header__lang {

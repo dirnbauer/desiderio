@@ -59,10 +59,11 @@
             <div class="desiderio-header__actions">
                 <f:if condition="{site.configuration.settings.desiderio.search.enabled}">
                     <form
-                        class="desiderio-header__search"
+                        class="desiderio-header__search desiderio-header__search--collapsed"
                         action="{searchAction}"
                         method="get"
                         role="search"
+                        data-d-header-search
                         data-suggest="{f:uri.page(pageType: 7384)}"
                         data-suggest-param="tx_solr[queryString]"
                         data-suggest-min-chars="2"
@@ -72,19 +73,33 @@
                         <label class="d-sr-only" for="desiderio-header-search">
                             <f:translate extensionName="desiderio" key="search.label">Search</f:translate>
                         </label>
-                        <input
-                            id="desiderio-header-search"
-                            class="desiderio-header__search-input"
-                            type="search"
-                            name="{site.configuration.settings.desiderio.search.queryParameter -> f:or(alternative: 'q')}"
-                            placeholder="{f:translate(extensionName: 'desiderio', key: 'search.placeholder', default: 'Search')}"
-                            autocomplete="off"
-                            data-d-solr-suggest
-                            data-d-solr-type-label-pages="{f:translate(extensionName: 'desiderio', key: 'solr.contentType.pages', default: 'Pages')}"
-                            data-d-solr-type-label-news="{f:translate(extensionName: 'desiderio', key: 'solr.contentType.news', default: 'News')}"
-                            data-d-solr-type-label-addresses="{f:translate(extensionName: 'desiderio', key: 'solr.contentType.addresses', default: 'Addresses')}"
-                        />
-                        <button class="desiderio-header__search-submit btn btn--ghost btn--icon" type="submit" aria-label="{f:translate(extensionName: 'desiderio', key: 'search.submit', default: 'Search')}" title="{f:translate(extensionName: 'desiderio', key: 'search.submit', default: 'Search')}">
+                        <div class="desiderio-header__search-field">
+                            <input
+                                id="desiderio-header-search"
+                                class="desiderio-header__search-input"
+                                type="search"
+                                name="{site.configuration.settings.desiderio.search.queryParameter -> f:or(alternative: 'q')}"
+                                placeholder="{f:translate(extensionName: 'desiderio', key: 'search.placeholder', default: 'Search')}"
+                                autocomplete="off"
+                                tabindex="-1"
+                                data-d-solr-suggest
+                                data-d-solr-type-label-pages="{f:translate(extensionName: 'desiderio', key: 'solr.contentType.pages', default: 'Pages')}"
+                                data-d-solr-type-label-news="{f:translate(extensionName: 'desiderio', key: 'solr.contentType.news', default: 'News')}"
+                                data-d-solr-type-label-addresses="{f:translate(extensionName: 'desiderio', key: 'solr.contentType.addresses', default: 'Addresses')}"
+                            />
+                            <button class="desiderio-header__search-submit btn btn--ghost btn--icon" type="submit" aria-label="{f:translate(extensionName: 'desiderio', key: 'search.submit', default: 'Search')}" title="{f:translate(extensionName: 'desiderio', key: 'search.submit', default: 'Search')}">
+                                <d:atom.icon name="search" size="sm"/>
+                            </button>
+                        </div>
+                        <button
+                            type="button"
+                            class="desiderio-header__search-trigger btn btn--ghost btn--icon"
+                            data-d-header-search-toggle
+                            aria-expanded="false"
+                            aria-controls="desiderio-header-search"
+                            aria-label="{f:translate(extensionName: 'desiderio', key: 'search.label', default: 'Search')}"
+                            title="{f:translate(extensionName: 'desiderio', key: 'search.label', default: 'Search')}"
+                        >
                             <d:atom.icon name="search" size="sm"/>
                         </button>
                     </form>

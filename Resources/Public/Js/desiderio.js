@@ -249,6 +249,53 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* ------------------------------------------------------------------ */
+  /*  7. Header search expand/collapse                                   */
+  /* ------------------------------------------------------------------ */
+  const initHeaderSearch = (scope = document) => {
+    scope.querySelectorAll('[data-d-header-search]').forEach(form => {
+      if (form.dataset.dHeaderSearchInit === 'true') return;
+      form.dataset.dHeaderSearchInit = 'true';
+
+      const toggle = form.querySelector('[data-d-header-search-toggle]');
+      const input = form.querySelector('.desiderio-header__search-input');
+      if (!toggle || !input) return;
+
+      const open = () => {
+        form.classList.remove('desiderio-header__search--collapsed');
+        toggle.setAttribute('aria-expanded', 'true');
+        input.removeAttribute('tabindex');
+        window.requestAnimationFrame(() => input.focus());
+      };
+
+      const close = () => {
+        if (form.classList.contains('desiderio-header__search--collapsed')) return;
+
+        form.classList.add('desiderio-header__search--collapsed');
+        toggle.setAttribute('aria-expanded', 'false');
+        input.setAttribute('tabindex', '-1');
+        input.blur();
+      };
+
+      toggle.addEventListener('click', () => open());
+
+      document.addEventListener('click', event => {
+        if (form.classList.contains('desiderio-header__search--collapsed')) return;
+        if (form.contains(event.target)) return;
+        close();
+      });
+
+      document.addEventListener('keydown', event => {
+        if (event.key !== 'Escape') return;
+        if (form.classList.contains('desiderio-header__search--collapsed')) return;
+        close();
+        toggle.focus();
+      });
+    });
+  };
+
+  initHeaderSearch();
+
+  /* ------------------------------------------------------------------ */
   /*  7. Consent                                                        */
   /* ------------------------------------------------------------------ */
   document.querySelectorAll('[data-d-consent]').forEach(banner => {

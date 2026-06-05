@@ -28,8 +28,13 @@
     );
 }
 .timeline__item {
+    --timeline-marker-column: 3rem;
+    --timeline-connector-width: calc(
+        50% + (var(--timeline-marker-column) - 100%) / 2 + var(--d-spacing-xl) + var(--d-spacing-xs)
+    );
+
     display: grid;
-    grid-template-columns: minmax(0, 1fr) 3rem minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr) var(--timeline-marker-column) minmax(0, 1fr);
     gap: var(--d-spacing-xl);
     align-items: start;
     position: relative;
@@ -52,7 +57,7 @@
     position: absolute;
     top: calc(var(--d-spacing-lg) + 0.875rem);
     left: 50%;
-    width: calc(var(--d-spacing-md) + 0.5625rem);
+    width: var(--timeline-connector-width);
     height: 1px;
     background: var(--border);
     z-index: -1;
@@ -157,7 +162,12 @@
         transform: none;
     }
     .timeline__item {
-        grid-template-columns: 2rem minmax(0, 1fr);
+        --timeline-marker-column: 2rem;
+        --timeline-connector-width: calc(
+            50% + (var(--timeline-marker-column) - 100%) / 2 + var(--d-spacing-md) + var(--d-spacing-xs)
+        );
+
+        grid-template-columns: var(--timeline-marker-column) minmax(0, 1fr);
         gap: var(--d-spacing-md);
         padding-block: var(--d-spacing-sm);
     }
@@ -174,7 +184,7 @@
         top: calc(var(--d-spacing-md) + 1rem);
         left: 50%;
         right: auto;
-        width: calc(var(--d-spacing-md) + 0.3125rem);
+        width: var(--timeline-connector-width);
     }
     .timeline__item:nth-child(even) .timeline__marker::after {
         left: 50%;

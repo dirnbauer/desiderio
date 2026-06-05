@@ -7,7 +7,7 @@
 
 <d:layout.section class="feature-carousel">
     <d:layout.container>
-        <div class="feature-carousel__viewport" role="region" aria-label="{data.header -> f:or(alternative: 'Feature highlights')}">
+        <div class="feature-carousel__viewport" data-d-feature-carousel role="region" aria-label="{data.header -> f:or(alternative: 'Feature highlights')}">
             <f:if condition="{data.header}">
                 <header class="feature-carousel__intro">
                     <d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography>
@@ -35,6 +35,11 @@
                     </li>
                 </f:for>
             </ul>
+            <div class="feature-carousel__scroll" aria-hidden="true">
+                <div class="feature-carousel__scroll-track">
+                    <div class="feature-carousel__scroll-thumb"></div>
+                </div>
+            </div>
         </div>
     </d:layout.container>
 </d:layout.section>

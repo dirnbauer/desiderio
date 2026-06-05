@@ -771,7 +771,40 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ------------------------------------------------------------------ */
-  /*  12. Reading progress                                               */
+  /*  12. Feature carousel scroll indicator                              */
+  /* ------------------------------------------------------------------ */
+  document.querySelectorAll('[data-d-feature-carousel]').forEach(root => {
+    const track = root.querySelector('.feature-carousel__track');
+    const thumb = root.querySelector('.feature-carousel__scroll-thumb');
+    const scrollTrack = root.querySelector('.feature-carousel__scroll-track');
+    if (!track || !thumb || !scrollTrack) return;
+
+    let ticking = false;
+    const sync = () => {
+      ticking = false;
+      const maxScroll = track.scrollWidth - track.clientWidth;
+      const ratio = maxScroll > 0 ? track.scrollLeft / maxScroll : 0;
+      const travel = scrollTrack.clientWidth - thumb.clientWidth;
+      thumb.style.transform = `translateX(${ratio * travel}px)`;
+      root.querySelector('.feature-carousel__scroll')?.classList.toggle(
+        'feature-carousel__scroll--hidden',
+        maxScroll <= 0,
+      );
+    };
+
+    const requestSync = () => {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(sync);
+    };
+
+    sync();
+    track.addEventListener('scroll', requestSync, { passive: true });
+    window.addEventListener('resize', requestSync, { passive: true });
+  });
+
+  /* ------------------------------------------------------------------ */
+  /*  13. Reading progress                                               */
   /* ------------------------------------------------------------------ */
   document.querySelectorAll('[data-d-reading-progress]').forEach(root => {
     const scope = root.closest('.desiderio-editorial-template') || root.closest('article') || document;

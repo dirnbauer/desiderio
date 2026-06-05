@@ -27,10 +27,6 @@
     width: min(11rem, 100%);
     aspect-ratio: 35 / 12;
     margin-block-end: var(--d-spacing-sm);
-    padding: 0.375rem 0.75rem;
-    border: 1px solid var(--border);
-    border-radius: calc(var(--radius) - 2px);
-    background: var(--background);
     display: grid;
     place-items: center;
 }

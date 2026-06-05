@@ -42,13 +42,28 @@
 .logo-cloud__image {
     display: block;
     width: auto;
-    height: 2.5rem;
+    height: 2rem;
     max-width: 100%;
     object-fit: contain;
     object-position: center;
     filter: none;
     opacity: 1;
 }
+/* Per-logo optical sizing: heights are hand-tuned so square icons and wide
+   wordmarks read at a balanced visual weight. `height` is a ceiling; wide
+   marks self-limit via max-width without distortion (object-fit: contain). */
+.logo-cloud__image--apple { height: 2.25rem; }
+.logo-cloud__image--alphabet { height: 2.1rem; }
+.logo-cloud__image--jpmorgan-chase { height: 2rem; }
+.logo-cloud__image--amazon { height: 2rem; }
+.logo-cloud__image--walmart { height: 1.85rem; }
+.logo-cloud__image--costco { height: 2rem; }
+.logo-cloud__image--cencora { height: 1.7rem; }
+.logo-cloud__image--cvs-health { height: 1.75rem; }
+.logo-cloud__image--mckesson { height: 1.75rem; }
+.logo-cloud__image--berkshire-hathaway { height: 1.5rem; }
+.logo-cloud__image--exxon-mobil { height: 1.7rem; }
+.logo-cloud__image--unitedhealth-group { height: 1.4rem; }
 .logo-cloud__name {
     display: block;
     text-align: center;

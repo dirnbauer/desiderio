@@ -29,7 +29,7 @@
                             <d:atom.link href="{logo.link.url}" target="{logo.link.target}" variant="muted" class="logo-cloud__link">
                                 <div class="logo-cloud__media">
                                     <f:for each="{logo.image}" as="fileReference">
-                                        <f:image image="{fileReference}" maxWidth="520" alt="{logo.name}" class="logo-cloud__image" loading="lazy" decoding="async"/>
+                                        <f:image image="{fileReference}" maxWidth="520" alt="{logo.name}" class="logo-cloud__image logo-cloud__image--{fileReference.originalFile.nameWithoutExtension -> f:format.case(mode: 'lower')}" loading="lazy" decoding="async"/>
                                     </f:for>
                                 </div>
                                 <span class="logo-cloud__name">{logo.name}</span>
@@ -39,7 +39,7 @@
                             <div class="logo-cloud__link">
                                 <div class="logo-cloud__media">
                                     <f:for each="{logo.image}" as="fileReference">
-                                        <f:image image="{fileReference}" maxWidth="520" alt="{logo.name}" class="logo-cloud__image" loading="lazy" decoding="async"/>
+                                        <f:image image="{fileReference}" maxWidth="520" alt="{logo.name}" class="logo-cloud__image logo-cloud__image--{fileReference.originalFile.nameWithoutExtension -> f:format.case(mode: 'lower')}" loading="lazy" decoding="async"/>
                                     </f:for>
                                 </div>
                                 <span class="logo-cloud__name">{logo.name}</span>

@@ -16,33 +16,34 @@
     width: 100%;
     min-width: 0;
     flex-direction: column;
-    overflow: hidden;
-    border: 1px solid var(--border);
-    border-radius: var(--radius, 0.625rem);
-    background: var(--card);
+    align-items: stretch;
+    gap: var(--d-spacing-sm, 0.75rem);
     color: var(--card-foreground);
     text-decoration: none;
-    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
-.logo-cloud__link:hover {
-    border-color: var(--ring);
-    box-shadow: var(--d-shadow-md);
-    transform: translateY(-0.125rem);
-}
-.logo-cloud__link:focus-visible { outline: 2px solid var(--ring); outline-offset: 4px; }
 .logo-cloud__media {
     display: flex;
     align-items: center;
     justify-content: center;
     aspect-ratio: 4 / 3;
-    padding: var(--d-spacing-sm);
+    padding: var(--d-spacing-md, 1rem);
+    border: 1px solid var(--border);
+    border-radius: var(--radius, 0.625rem);
+    background: var(--muted);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
+.logo-cloud__link:hover .logo-cloud__media {
+    border-color: var(--ring);
+    box-shadow: var(--d-shadow-md);
+    transform: translateY(-0.125rem);
+}
+.logo-cloud__link:focus-visible { outline: none; }
+.logo-cloud__link:focus-visible .logo-cloud__media { outline: 2px solid var(--ring); outline-offset: 2px; }
 .logo-cloud__image {
     display: block;
-    max-width: 100%;
-    max-height: 100%;
     width: auto;
-    height: auto;
+    height: 2.5rem;
+    max-width: 100%;
     object-fit: contain;
     object-position: center;
     filter: none;
@@ -50,7 +51,7 @@
 }
 .logo-cloud__name {
     display: block;
-    padding: var(--d-spacing-sm, 0.75rem) var(--d-spacing-md, 1rem);
+    text-align: center;
     font-size: var(--d-text-sm, 0.875rem);
     font-weight: 600;
 }

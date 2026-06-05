@@ -167,7 +167,10 @@ final class ContentBlockCollectionProcessor implements DataProcessorInterface
         foreach ($rows as $row) {
             $rowUid = $this->intValue($row['uid'] ?? null);
             $item = $row;
-            foreach ($this->normalizeStringKeyArrayMap($collection['fields'] ?? null) as $field => $fieldConfig) {
+            foreach ($this->normalizeStringKeyArray($collection['fields'] ?? null) as $field => $fieldConfig) {
+                if (!is_array($fieldConfig)) {
+                    continue;
+                }
                 $type = $this->stringValue($fieldConfig['type'] ?? null);
                 if ($type === 'File') {
                     $item[$field] = $this->fileRepository->findByRelation($table, $field, $rowUid);
@@ -176,8 +179,11 @@ final class ContentBlockCollectionProcessor implements DataProcessorInterface
                 }
             }
 
-            foreach ($this->normalizeStringKeyArrayMap($collection['collections'] ?? null) as $field => $nestedCollection) {
-                $item[$field] = $this->loadCollectionItems($rowUid, $nestedCollection);
+            foreach ($this->normalizeStringKeyArray($collection['collections'] ?? null) as $field => $nestedCollection) {
+                if (!is_array($nestedCollection)) {
+                    continue;
+                }
+                $item[$field] = $this->loadCollectionItems($rowUid, ContentBlockDefinitionRegistry::normalizeStringKeyedArray($nestedCollection));
             }
 
             $record = $this->recordFactory->createResolvedRecordFromDatabaseRow($table, $row);
@@ -206,12 +212,12 @@ final class ContentBlockCollectionProcessor implements DataProcessorInterface
     }
 
     /**
-     * @return array<string, mixed>|null
+     * @return array<string, mixed>
      */
-    private function normalizeStringKeyArray(mixed $value): ?array
+    private function normalizeStringKeyArray(mixed $value): array
     {
         if (!is_array($value)) {
-            return null;
+            return [];
         }
 
         $normalized = [];
@@ -223,9 +229,4 @@ final class ContentBlockCollectionProcessor implements DataProcessorInterface
 
         return $normalized;
     }
-
-    /**
-     * @return array<string, array<string, mixed>>
-     */
-
 }

@@ -139,7 +139,12 @@ final class ContentBlockDefinitionRegistry
             'collections' => [],
         ];
 
-        foreach (($config['fields'] ?? []) as $field) {
+        $configFields = $config['fields'] ?? [];
+        if (!is_array($configFields)) {
+            $configFields = [];
+        }
+
+        foreach ($configFields as $field) {
             if (!is_array($field) || !isset($field['identifier'])) {
                 continue;
             }
@@ -173,7 +178,12 @@ final class ContentBlockDefinitionRegistry
         $childFields = [];
         $childCollections = [];
 
-        foreach (($field['fields'] ?? []) as $childField) {
+        $nestedFields = $field['fields'] ?? [];
+        if (!is_array($nestedFields)) {
+            $nestedFields = [];
+        }
+
+        foreach ($nestedFields as $childField) {
             if (!is_array($childField) || !isset($childField['identifier'])) {
                 continue;
             }
@@ -220,7 +230,7 @@ final class ContentBlockDefinitionRegistry
             $mapped[$identifier] = [
                 'table' => is_string($collection['table'] ?? null) ? $collection['table'] : $identifier,
                 'fields' => is_array($collection['fields'] ?? null) ? $collection['fields'] : [],
-                'collections' => self::mapRuntimeCollections($nestedCollections),
+                'collections' => self::mapRuntimeCollections(self::normalizeStringKeyedNestedCollections($nestedCollections)),
             ];
         }
 
@@ -308,6 +318,22 @@ final class ContentBlockDefinitionRegistry
         foreach ($array as $key => $value) {
             if (is_string($key)) {
                 $normalized[$key] = $value;
+            }
+        }
+
+        return $normalized;
+    }
+
+    /**
+     * @param array<mixed> $collections
+     * @return array<string, array<string, mixed>>
+     */
+    private static function normalizeStringKeyedNestedCollections(array $collections): array
+    {
+        $normalized = [];
+        foreach ($collections as $key => $collection) {
+            if (is_string($key) && is_array($collection)) {
+                $normalized[$key] = self::normalizeStringKeyedArray($collection);
             }
         }
 

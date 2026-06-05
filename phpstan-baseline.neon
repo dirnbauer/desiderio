@@ -1,18 +1,6 @@
 parameters:
 	ignoreErrors:
 		-
-			message: '#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\.$#'
-			identifier: foreach.nonIterable
-			count: 3
-			path: Classes/Command/SeedStyleguidePagesCommand.php
-
-		-
-			message: '#^Cannot access offset ''button_link''\|''url'' on mixed\.$#'
-			identifier: offsetAccess.nonOffsetAccessible
-			count: 1
-			path: Classes/Command/SeedStyleguidePagesCommand.php
-
-		-
 			message: '#^Cannot access offset ''cells'' on mixed\.$#'
 			identifier: offsetAccess.nonOffsetAccessible
 			count: 3
@@ -32,12 +20,6 @@ parameters:
 
 		-
 			message: '#^Cannot access offset ''feature_name''\|''features''\|''features_list''\|''label''\|''links''\|''name''\|''question''\|''row_data''\|''row_label''\|''text''\|''title''\|''value'' on mixed\.$#'
-			identifier: offsetAccess.nonOffsetAccessible
-			count: 1
-			path: Classes/Command/SeedStyleguidePagesCommand.php
-
-		-
-			message: '#^Cannot access offset ''label''\|''name'' on mixed\.$#'
 			identifier: offsetAccess.nonOffsetAccessible
 			count: 1
 			path: Classes/Command/SeedStyleguidePagesCommand.php
@@ -63,7 +45,7 @@ parameters:
 		-
 			message: '#^Cannot access offset string on mixed\.$#'
 			identifier: offsetAccess.nonOffsetAccessible
-			count: 8
+			count: 6
 			path: Classes/Command/SeedStyleguidePagesCommand.php
 
 		-
@@ -75,37 +57,13 @@ parameters:
 		-
 			message: '#^Cannot cast mixed to string\.$#'
 			identifier: cast.string
-			count: 13
+			count: 12
 			path: Classes/Command/SeedStyleguidePagesCommand.php
 
 		-
 			message: '#^Casting to int something that''s already int\.$#'
 			identifier: cast.useless
 			count: 1
-			path: Classes/Command/SeedStyleguidePagesCommand.php
-
-		-
-			message: '#^Method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:normalizeCollectionSourceItems\(\) should return array\<int, mixed\> but returns array\<mixed, mixed\>\.$#'
-			identifier: return.type
-			count: 1
-			path: Classes/Command/SeedStyleguidePagesCommand.php
-
-		-
-			message: '#^Only booleans are allowed in a negated boolean, int\|false given\.$#'
-			identifier: booleanNot.exprNotBoolean
-			count: 1
-			path: Classes/Command/SeedStyleguidePagesCommand.php
-
-		-
-			message: '#^Parameter \#1 \$collection of method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:collectionHasNestedCollection\(\) expects array\{collections\?\: array\<string, array\<string, mixed\>\>\}, array\<string, mixed\> given\.$#'
-			identifier: argument.type
-			count: 4
-			path: Classes/Command/SeedStyleguidePagesCommand.php
-
-		-
-			message: '#^Parameter \#1 \$table of method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:tableHasColumn\(\) expects string, mixed given\.$#'
-			identifier: argument.type
-			count: 9
 			path: Classes/Command/SeedStyleguidePagesCommand.php
 
 		-
@@ -142,12 +100,6 @@ parameters:
 			message: '#^Parameter \#5 \$fileReferences of method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:seedFileReferences\(\) expects array\<string, list\<array\{file\: string, title\: string, alternative\: string, description\: string, source\: string\}\>\>, array\<mixed\> given\.$#'
 			identifier: argument.type
 			count: 1
-			path: Classes/Command/SeedStyleguidePagesCommand.php
-
-		-
-			message: '#^Short ternary operator is not allowed\. Use null coalesce operator if applicable or consider using long ternary\.$#'
-			identifier: ternary.shortNotAllowed
-			count: 4
 			path: Classes/Command/SeedStyleguidePagesCommand.php
 
 		-

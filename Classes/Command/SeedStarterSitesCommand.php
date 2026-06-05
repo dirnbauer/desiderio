@@ -1528,7 +1528,26 @@ final class SeedStarterSitesCommand extends Command
     /**
      * @param array<string, mixed> $row
      */
+    private function hasPayloadBeyondSystemFields(array $row): bool
+    {
+        $systemFields = [
+            'pid' => true,
+            'sorting' => true,
+            'hidden' => true,
+            'sys_language_uid' => true,
+            'crdate' => true,
+            'tstamp' => true,
+            'foreign_table_parent_uid' => true,
+        ];
 
+        foreach ($row as $field => $_value) {
+            if (!isset($systemFields[$field])) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 
     private function buildReadableFileTitle(string $value): string
     {

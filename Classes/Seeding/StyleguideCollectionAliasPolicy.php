@@ -14,11 +14,12 @@ final class StyleguideCollectionAliasPolicy
     ) {}
 
     /**
-     * @param array{collections?: array<string, array<string, mixed>>} $collection
+     * @param array<string, mixed> $collection
      */
     public function collectionHasNestedCollection(array $collection, string $field): bool
     {
-        return isset($collection['collections'][$field]);
+        $collections = $collection['collections'] ?? null;
+        return is_array($collections) && isset($collections[$field]);
     }
 
     /**
@@ -74,19 +75,20 @@ final class StyleguideCollectionAliasPolicy
      */
     public function resolveChildField(string $field, mixed $value, array $collection): ?string
     {
-        if (isset($collection['fields'][$field])) {
+        $fields = $collection['fields'] ?? null;
+        if (is_array($fields) && isset($fields[$field])) {
             return $field;
         }
 
         foreach ($this->getChildFieldAliases()[$field] ?? [] as $candidate) {
-            if (isset($collection['fields'][$candidate])) {
+            if (is_array($fields) && isset($fields[$candidate])) {
                 return $candidate;
             }
         }
 
         if ($field === 'title') {
             foreach (['label', 'name'] as $candidate) {
-                if (isset($collection['fields'][$candidate])) {
+                if (is_array($fields) && isset($fields[$candidate])) {
                     return $candidate;
                 }
             }
@@ -94,25 +96,25 @@ final class StyleguideCollectionAliasPolicy
 
         if (is_scalar($value) && $field === 'link') {
             foreach (['url', 'button_link'] as $candidate) {
-                if (isset($collection['fields'][$candidate])) {
+                if (is_array($fields) && isset($fields[$candidate])) {
                     return $candidate;
                 }
             }
         }
 
-        if ($this->databaseSchema->tableHasColumn($collection['table'], $field)) {
+        if ($this->databaseSchema->tableHasColumn($this->getCollectionTable($collection), $field)) {
             return $field;
         }
 
         foreach ($this->getChildFieldAliases()[$field] ?? [] as $candidate) {
-            if ($this->databaseSchema->tableHasColumn($collection['table'], $candidate)) {
+            if ($this->databaseSchema->tableHasColumn($this->getCollectionTable($collection), $candidate)) {
                 return $candidate;
             }
         }
 
         if ($field === 'title') {
             foreach (['label', 'name'] as $candidate) {
-                if ($this->databaseSchema->tableHasColumn($collection['table'], $candidate)) {
+                if ($this->databaseSchema->tableHasColumn($this->getCollectionTable($collection), $candidate)) {
                     return $candidate;
                 }
             }
@@ -120,7 +122,7 @@ final class StyleguideCollectionAliasPolicy
 
         if (is_scalar($value) && $field === 'link') {
             foreach (['url', 'button_link'] as $candidate) {
-                if ($this->databaseSchema->tableHasColumn($collection['table'], $candidate)) {
+                if ($this->databaseSchema->tableHasColumn($this->getCollectionTable($collection), $candidate)) {
                     return $candidate;
                 }
             }
@@ -142,13 +144,13 @@ final class StyleguideCollectionAliasPolicy
             };
 
             return array_values(array_filter(
-                preg_split($separator, $value) ?: [],
+                is_array($parts = preg_split($separator, $value)) ? $parts : [],
                 static fn (string $item): bool => trim($item) !== ''
             ));
         }
 
         if (is_array($value)) {
-            return $value;
+            return array_values($value);
         }
 
         return [];
@@ -219,7 +221,17 @@ final class StyleguideCollectionAliasPolicy
      */
     private function collectionHasField(array $collection, string $field): bool
     {
-        return isset($collection['fields'][$field])
-            || $this->databaseSchema->tableHasColumn($collection['table'], $field);
+        $fields = $collection['fields'] ?? null;
+        return (is_array($fields) && isset($fields[$field]))
+            || $this->databaseSchema->tableHasColumn($this->getCollectionTable($collection), $field);
+    }
+
+    /**
+     * @param array<string, mixed> $collection
+     */
+    private function getCollectionTable(array $collection): string
+    {
+        $table = $collection['table'] ?? '';
+        return is_string($table) ? $table : '';
     }
 }

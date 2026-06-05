@@ -966,7 +966,7 @@ final class SeedStyleguidePagesCommand extends Command
                 $file = substr($file, strlen('EXT:desiderio/'));
             }
 
-            $fallbackTitle = $this->buildReadableFileTitle(pathinfo($file, PATHINFO_FILENAME));
+            $fallbackTitle = $this->demoValueGenerator->buildReadableFileTitle(pathinfo($file, PATHINFO_FILENAME));
             $source = trim((string)($item['source'] ?? $item['link'] ?? ''));
 
             $references[] = [
@@ -1224,7 +1224,7 @@ final class SeedStyleguidePagesCommand extends Command
 
         if ($this->isListOfScalars($value)) {
             foreach (['label', 'title', 'name', 'feature_name', 'row_label', 'text', 'value', 'question', 'row_data', 'links', 'features', 'features_list'] as $candidate) {
-                if (isset($collection['fields'][$candidate]) || $this->databaseSchema->tableHasColumn($collection['table'], $candidate)) {
+                if (isset($collection['fields'][$candidate]) || $this->databaseSchema->tableHasColumn($this->getCollectionTable($collection), $candidate)) {
                     $score += 1.0;
                     break;
                 }
@@ -1388,13 +1388,13 @@ final class SeedStyleguidePagesCommand extends Command
             }
         }
 
-        if ($normalizedItem === [] && ($this->databaseSchema->tableHasColumn($collection['table'], 'row_data') || isset($collection['fields']['row_data']))) {
+        if ($normalizedItem === [] && ($this->databaseSchema->tableHasColumn($this->getCollectionTable($collection), 'row_data') || isset($collection['fields']['row_data']))) {
             $values = array_values($item);
             if (!$this->containsNestedArray($values)) {
                 $normalizedItem['row_data'] = implode('|', array_map(static fn (mixed $value): string => trim((string)$value), $values));
                 foreach ($values as $index => $value) {
                     $columnName = 'col' . ($index + 1);
-                    if ($this->databaseSchema->tableHasColumn($collection['table'], $columnName)) {
+                    if ($this->databaseSchema->tableHasColumn($this->getCollectionTable($collection), $columnName)) {
                         $normalizedItem[$columnName] = $this->normalizeScalarValue($value);
                     }
                 }
@@ -1446,7 +1446,8 @@ final class SeedStyleguidePagesCommand extends Command
         }
 
         if (is_string($sourceLinks)) {
-            $sourceLinks = preg_split('/\R/', $sourceLinks) ?: [];
+            $splitLinks = preg_split('/\R/', $sourceLinks);
+            $sourceLinks = is_array($splitLinks) ? $splitLinks : [];
         }
 
         if (!is_array($sourceLinks)) {
@@ -1484,7 +1485,7 @@ final class SeedStyleguidePagesCommand extends Command
             $label = trim((string)($sourceLink['label'] ?? $sourceLink['title'] ?? $sourceLink['text'] ?? $sourceLink['name'] ?? ''));
             $link = trim((string)($sourceLink['link'] ?? $sourceLink['url'] ?? $sourceLink['href'] ?? ''));
 
-            return [$label, $link !== '' ? $link : $this->buildDemoUrl($label)];
+            return [$label, $link !== '' ? $link : $this->demoValueGenerator->buildDemoUrl($label)];
         }
 
         $value = trim((string)$sourceLink);
@@ -1495,10 +1496,10 @@ final class SeedStyleguidePagesCommand extends Command
         if (str_contains($value, '|')) {
             [$label, $link] = array_pad(array_map('trim', explode('|', $value, 2)), 2, '');
 
-            return [$label, $link !== '' ? $link : $this->buildDemoUrl($label)];
+            return [$label, $link !== '' ? $link : $this->demoValueGenerator->buildDemoUrl($label)];
         }
 
-        return [$value, $this->buildDemoUrl($value)];
+        return [$value, $this->demoValueGenerator->buildDemoUrl($value)];
     }
 
     /**
@@ -1506,7 +1507,17 @@ final class SeedStyleguidePagesCommand extends Command
      */
     private function collectionHasField(array $collection, string $field): bool
     {
-        return isset($collection['fields'][$field]) || $this->databaseSchema->tableHasColumn($collection['table'], $field);
+        return isset($collection['fields'][$field])
+            || $this->databaseSchema->tableHasColumn($this->getCollectionTable($collection), $field);
+    }
+
+    /**
+     * @param array<string, mixed> $collection
+     */
+    private function getCollectionTable(array $collection): string
+    {
+        $table = $collection['table'] ?? '';
+        return is_string($table) ? $table : '';
     }
 
     /**
@@ -1974,23 +1985,44 @@ final class SeedStyleguidePagesCommand extends Command
     }
 
     /**
-     * @param array<int|string, mixed> $collections
-     * @param array<string, list<array<string, mixed>>> $map
-     */
-
-
-    /**
      * @param array<string, mixed> $collection
      */
     private function findPreferredTextField(array $collection): ?string
     {
         foreach (['label', 'title', 'name', 'feature_name', 'row_label', 'text', 'value', 'question', 'row_data', 'links', 'features_list', 'description'] as $candidate) {
-            if (isset($collection['fields'][$candidate]) || $this->databaseSchema->tableHasColumn($collection['table'], $candidate)) {
+            if (isset($collection['fields'][$candidate]) || $this->databaseSchema->tableHasColumn($this->getCollectionTable($collection), $candidate)) {
                 return $candidate;
             }
         }
 
         return null;
+    }
+
+    /**
+     * @param array<int|string, mixed> $collections
+     * @param array<string, list<array<string, mixed>>> $map
+     */
+    private function collectCollectionsByParentTable(string $parentTable, array $collections, array &$map): void
+    {
+        foreach ($collections as $collection) {
+            if (!is_array($collection)) {
+                continue;
+            }
+
+            $collectionConfig = ContentBlockDefinitionRegistry::normalizeStringKeyedArray($collection);
+            $table = $collectionConfig['table'] ?? null;
+            if (!is_string($table) || $table === '') {
+                continue;
+            }
+
+            $nestedCollections = $collectionConfig['collections'] ?? [];
+            if (!is_array($nestedCollections)) {
+                $nestedCollections = [];
+            }
+
+            $map[$parentTable][] = $collectionConfig;
+            $this->collectCollectionsByParentTable($table, $nestedCollections, $map);
+        }
     }
 
     private function normalizeScalarValue(mixed $value): mixed

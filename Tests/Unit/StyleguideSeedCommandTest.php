@@ -1032,10 +1032,4 @@ final class StyleguideSeedCommandTest extends TestCase
 
         return $reflection->invokeArgs($object, $arguments);
     }
-
-    private function setProperty(object $object, string $property, mixed $value): void
-    {
-        $reflection = new \ReflectionProperty($object, $property);
-        $reflection->setValue($object, $value);
-    }
 }

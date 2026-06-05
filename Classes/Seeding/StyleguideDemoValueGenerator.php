@@ -63,6 +63,9 @@ final class StyleguideDemoValueGenerator
         'Service Performance Snapshot',
         'Reusable Section Blueprint',
     ];
+    /**
+     * @param array<string, mixed> $fieldConfig
+     */
     public function buildDefaultFieldValue(string $ctype, string $name, string $field, array $fieldConfig, int $index): mixed
     {
         $chartDefault = $this->buildDefaultChartFieldValue($ctype, $field, $fieldConfig, $index);
@@ -70,12 +73,13 @@ final class StyleguideDemoValueGenerator
             return $chartDefault;
         }
 
-        $type = (string)($fieldConfig['type'] ?? 'Textarea');
+        $configuredType = $fieldConfig['type'] ?? 'Textarea';
+        $type = is_scalar($configuredType) ? (string)$configuredType : 'Textarea';
 
         return match ($type) {
             'Checkbox' => 1,
-            'Date' => strtotime('2026-05-' . str_pad((string)min(28, $index + 1), 2, '0', STR_PAD_LEFT)) ?: time(),
-            'DateTime' => strtotime('2026-05-' . str_pad((string)min(28, $index + 1), 2, '0', STR_PAD_LEFT) . ' 09:00:00') ?: time(),
+            'Date' => $this->buildDefaultDateTimestamp($index),
+            'DateTime' => $this->buildDefaultDateTimeTimestamp($index),
             'File' => self::FIELD_SKIP,
             'Link' => $this->buildDefaultLinkValue($field, $index),
             'Number' => $this->buildDefaultNumberValue($field, $fieldConfig, $index),
@@ -171,8 +175,10 @@ final class StyleguideDemoValueGenerator
                 return $fieldConfig['default'];
             }
 
+            $default = $fieldConfig['default'];
+            $defaultString = is_scalar($default) ? (string)$default : '';
             foreach ($itemValues as $itemValue) {
-                if ((string)$itemValue === (string)$fieldConfig['default']) {
+                if (is_scalar($itemValue) && (string)$itemValue === $defaultString) {
                     return $itemValue;
                 }
             }
@@ -213,7 +219,8 @@ final class StyleguideDemoValueGenerator
                 continue;
             }
 
-            $label = trim((string)($stat['label'] ?? $stat['title'] ?? $stat['name'] ?? ''));
+            $labelValue = $stat['label'] ?? $stat['title'] ?? $stat['name'] ?? '';
+            $label = trim(is_scalar($labelValue) ? (string)$labelValue : '');
             $value = $this->parseFixtureChartNumber($stat['value'] ?? $stat['amount'] ?? $stat['number'] ?? null);
             if ($label === '' || $value === null) {
                 continue;
@@ -244,7 +251,7 @@ final class StyleguideDemoValueGenerator
         }
 
         $normalized = str_replace([',', ' '], '', (string)$value);
-        if (!preg_match('/-?\d+(?:\.\d+)?/', $normalized, $matches)) {
+        if (preg_match('/-?\d+(?:\.\d+)?/', $normalized, $matches) !== 1) {
             return null;
         }
 
@@ -444,6 +451,18 @@ PHP;
         return ['1K', '10K', '100K', '1M'][$index % 4];
     }
 
+    private function buildDefaultDateTimestamp(int $index): int
+    {
+        $timestamp = strtotime('2026-05-' . str_pad((string)min(28, $index + 1), 2, '0', STR_PAD_LEFT));
+        return $timestamp !== false ? $timestamp : time();
+    }
+
+    private function buildDefaultDateTimeTimestamp(int $index): int
+    {
+        $timestamp = strtotime('2026-05-' . str_pad((string)min(28, $index + 1), 2, '0', STR_PAD_LEFT) . ' 09:00:00');
+        return $timestamp !== false ? $timestamp : time();
+    }
+
     public function buildDefaultLinkValue(string $field, int $index): string
     {
         $normalizedField = $this->normalizeIdentifier($field);
@@ -536,6 +555,10 @@ PHP;
 
         return $value !== '' ? ucwords(strtolower($value)) : 'Demo';
     }
+    /**
+     * @param array<string, mixed> $fieldConfig
+     * @return list<mixed>
+     */
     public function getSelectItemValues(array $fieldConfig): array
     {
         if ($this->usesIconItemsProcessor($fieldConfig)) {
@@ -544,7 +567,12 @@ PHP;
 
         $values = [];
 
-        foreach (($fieldConfig['items'] ?? []) as $item) {
+        $items = $fieldConfig['items'] ?? [];
+        if (!is_array($items)) {
+            return $values;
+        }
+
+        foreach ($items as $item) {
             if (!is_array($item) || !array_key_exists('value', $item)) {
                 continue;
             }

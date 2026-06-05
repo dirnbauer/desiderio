@@ -25,7 +25,12 @@ final class ExtensionMetadataTest extends TestCase
     public function testExtEmconfMatchesComposer(): void
     {
         $composer = json_decode((string) file_get_contents(__DIR__ . '/../../composer.json'), true, 512, JSON_THROW_ON_ERROR);
-        $expectedVersion = $composer['extra']['typo3/cms']['version'] ?? null;
+        self::assertIsArray($composer);
+        $extra = $composer['extra'] ?? null;
+        self::assertIsArray($extra);
+        $typo3Extra = $extra['typo3/cms'] ?? null;
+        self::assertIsArray($typo3Extra);
+        $expectedVersion = $typo3Extra['version'] ?? null;
 
         $_EXTKEY = 'desiderio';
         require __DIR__ . '/../../ext_emconf.php';

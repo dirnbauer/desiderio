@@ -54,7 +54,7 @@
                                     <f:for each="{tier.features}" as="feature">
                                         <f:if condition="{feature.text}">
                                             <li class="pricing-three-tier__feature">
-                                                <d:atom.icon name="check" size="sm" class="pricing-three-tier__check" aria-hidden="true"/>
+                                                <d:atom.icon name="check" size="sm" class="pricing-three-tier__check"/>
                                                 <d:atom.typography tag="span" variant="small">{feature -> f:render.text(field: 'text')}</d:atom.typography>
                                             </li>
                                         </f:if>

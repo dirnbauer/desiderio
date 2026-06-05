@@ -31,7 +31,7 @@
                         <f:for each="{data.features}" as="feature">
                             <f:if condition="{feature.text}">
                                 <li class="product-feature__item">
-                                    <d:atom.icon name="check" size="sm" aria-hidden="true"/>
+                                    <d:atom.icon name="check" size="sm"/>
                                     <span>{feature -> f:render.text(field: 'text')}</span>
                                 </li>
                             </f:if>

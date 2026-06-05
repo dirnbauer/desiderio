@@ -43,7 +43,7 @@
                                 <f:for each="{plan.features}" as="feature">
                                     <f:if condition="{feature.text}">
                                         <li class="pricing-toggle__feature">
-                                            <d:atom.icon name="check" size="sm" class="pricing-toggle__check" aria-hidden="true"/>
+                                            <d:atom.icon name="check" size="sm" class="pricing-toggle__check"/>
                                             <span>{feature -> f:render.text(field: 'text')}</span>
                                         </li>
                                     </f:if>

@@ -28,13 +28,13 @@
                             <th scope="row" class="feature-comparison__feature-col">{item -> f:render.text(field: 'feature')}</th>
                             <td class="feature-comparison__check-col">
                                 <f:if condition="{item.left_supported}">
-                                    <f:then><span class="feature-comparison__yes"><d:atom.icon name="check" size="sm" aria-hidden="true"/><span class="feature-comparison__sr">{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:included', default: 'Included')}</span></span></f:then>
+                                    <f:then><span class="feature-comparison__yes"><d:atom.icon name="check" size="sm"/><span class="feature-comparison__sr">{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:included', default: 'Included')}</span></span></f:then>
                                     <f:else><span class="feature-comparison__no"><span aria-hidden="true">&#8212;</span><span class="feature-comparison__sr">{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:not_included', default: 'Not included')}</span></span></f:else>
                                 </f:if>
                             </td>
                             <td class="feature-comparison__check-col">
                                 <f:if condition="{item.right_supported}">
-                                    <f:then><span class="feature-comparison__yes"><d:atom.icon name="check" size="sm" aria-hidden="true"/><span class="feature-comparison__sr">{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:included', default: 'Included')}</span></span></f:then>
+                                    <f:then><span class="feature-comparison__yes"><d:atom.icon name="check" size="sm"/><span class="feature-comparison__sr">{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:included', default: 'Included')}</span></span></f:then>
                                     <f:else><span class="feature-comparison__no"><span aria-hidden="true">&#8212;</span><span class="feature-comparison__sr">{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:not_included', default: 'Not included')}</span></span></f:else>
                                 </f:if>
                             </td>

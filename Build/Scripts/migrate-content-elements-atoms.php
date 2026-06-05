@@ -220,7 +220,7 @@ final class ContentElementAtomMigrator
                                     <f:for each="{tier.features}" as="feature">
                                         <f:if condition="{feature.text}">
                                             <li class="pricing-three-tier__feature">
-                                                <d:atom.icon name="check" size="sm" class="pricing-three-tier__check" aria-hidden="true"/>
+                                                <d:atom.icon name="check" size="sm" class="pricing-three-tier__check"/>
                                                 <d:atom.typography tag="span" variant="small">{feature -> f:render.text(field: 'text')}</d:atom.typography>
                                             </li>
                                         </f:if>
@@ -298,7 +298,7 @@ HTML);
                                     <f:for each="{tier.features}" as="feature">
                                         <f:if condition="{feature.text}">
                                             <li class="pricing-four-tier__feature">
-                                                <d:atom.icon name="check" size="sm" class="pricing-four-tier__check" aria-hidden="true"/>
+                                                <d:atom.icon name="check" size="sm" class="pricing-four-tier__check"/>
                                                 <d:atom.typography tag="span" variant="small">{feature -> f:render.text(field: 'text')}</d:atom.typography>
                                             </li>
                                         </f:if>
@@ -383,7 +383,7 @@ HTML);
                                     <f:for each="{tier.features}" as="feature">
                                         <f:if condition="{feature.text}">
                                             <li class="pricing-two-tier__feature">
-                                                <d:atom.icon name="check" size="sm" class="pricing-two-tier__check" aria-hidden="true"/>
+                                                <d:atom.icon name="check" size="sm" class="pricing-two-tier__check"/>
                                                 <d:atom.typography tag="span" variant="small">{feature -> f:render.text(field: 'text')}</d:atom.typography>
                                             </li>
                                         </f:if>
@@ -476,7 +476,7 @@ HTML);
                                     <f:for each="{tier.features}" as="feature">
                                         <f:if condition="{feature.text}">
                                             <li class="pricing__feature">
-                                                <d:atom.icon name="check" size="sm" class="pricing__check" aria-hidden="true"/>
+                                                <d:atom.icon name="check" size="sm" class="pricing__check"/>
                                                 <d:atom.typography tag="span" variant="small">{feature -> f:render.text(field: 'text')}</d:atom.typography>
                                             </li>
                                         </f:if>
@@ -534,7 +534,7 @@ HTML);
                         <f:for each="{data.features}" as="feature">
                             <f:if condition="{feature.text}">
                                 <li class="pricing-simple__feature">
-                                    <d:atom.icon name="check" size="sm" class="pricing-simple__check" aria-hidden="true"/>
+                                    <d:atom.icon name="check" size="sm" class="pricing-simple__check"/>
                                     <d:atom.typography tag="span" variant="small">{feature -> f:render.text(field: 'text')}</d:atom.typography>
                                 </li>
                             </f:if>
@@ -586,7 +586,7 @@ HTML);
                                 <f:for each="{data.features}" as="feature">
                                     <f:if condition="{feature.text}">
                                         <li class="pricing-enterprise__feature">
-                                            <d:atom.icon name="check" size="sm" class="pricing-enterprise__check" aria-hidden="true"/>
+                                            <d:atom.icon name="check" size="sm" class="pricing-enterprise__check"/>
                                             <d:atom.typography tag="span" variant="small">{feature -> f:render.text(field: 'text')}</d:atom.typography>
                                         </li>
                                     </f:if>
@@ -905,7 +905,7 @@ HTML;
                     $class = ' class="' . $classMatch[1] . '"';
                 }
 
-                return '<d:atom.icon name="check" size="sm"' . $class . ' aria-hidden="true"/>';
+                return '<d:atom.icon name="check" size="sm"' . $class . '/>';
             },
             $template,
         );

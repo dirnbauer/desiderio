@@ -9,6 +9,7 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 use TYPO3\CMS\Core\Site\Entity\Site;
+use Webconsulting\Desiderio\Utility\SiteSettingsBoolean;
 
 final class FriendlyCaptchaTestModeMiddleware implements MiddlewareInterface
 {
@@ -18,7 +19,7 @@ final class FriendlyCaptchaTestModeMiddleware implements MiddlewareInterface
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         $site = $request->getAttribute('site');
-        if (!$site instanceof Site || !$this->isTestModeEnabled($site)) {
+        if (!$site instanceof Site || !SiteSettingsBoolean::isEnabled($site, self::SETTING_IDENTIFIER)) {
             return $handler->handle($request);
         }
 
@@ -46,27 +47,5 @@ final class FriendlyCaptchaTestModeMiddleware implements MiddlewareInterface
             $site->getTypoScript(),
             $site->getTSconfig()
         );
-    }
-
-    private function isTestModeEnabled(Site $site): bool
-    {
-        if ($site->getSettings()->isEmpty()) {
-            return false;
-        }
-
-        $value = $site->getSettings()->get(self::SETTING_IDENTIFIER, false);
-        if (is_bool($value)) {
-            return $value;
-        }
-
-        if (is_int($value)) {
-            return $value === 1;
-        }
-
-        if (is_string($value)) {
-            return in_array(strtolower(trim($value)), ['1', 'true', 'yes', 'on'], true);
-        }
-
-        return false;
     }
 }

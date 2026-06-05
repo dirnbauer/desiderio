@@ -9,6 +9,7 @@ use TYPO3\CMS\Core\Attribute\AsEventListener;
 use TYPO3\CMS\Core\Site\Entity\Site;
 use TYPO3\CMS\Form\Event\BeforeEmailFinisherInitializedEvent;
 use TYPO3\CMS\Frontend\Page\PageInformation;
+use Webconsulting\Desiderio\Utility\DesiderioFormIdentifier;
 
 final class ConfigureDesiderioFormEmailFinisher
 {
@@ -19,7 +20,7 @@ final class ConfigureDesiderioFormEmailFinisher
     public function __invoke(BeforeEmailFinisherInitializedEvent $event): void
     {
         $formIdentifier = $event->getFinisherContext()->getFormRuntime()->getIdentifier();
-        if (!str_starts_with($formIdentifier, 'desiderio-')) {
+        if (!DesiderioFormIdentifier::matches($formIdentifier)) {
             return;
         }
 

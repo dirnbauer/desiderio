@@ -9,6 +9,7 @@ use TYPO3\CMS\Core\Http\RequestFactory;
 use TYPO3\CMS\Core\Site\Entity\Site;
 use TYPO3\CMS\Form\Domain\Finishers\AbstractFinisher;
 use TYPO3\CMS\Form\Domain\Finishers\Exception\FinisherException;
+use Webconsulting\Desiderio\Utility\DesiderioFormIdentifier;
 
 /**
  * @phpstan-type BrevoConfiguration array{enabled: bool, apiKey: string, listIds: list<int>, strict: bool, trackEvent: bool, eventName: string}
@@ -36,7 +37,7 @@ final class BrevoContactFinisher extends AbstractFinisher
     protected function executeInternal(): ?string
     {
         $formIdentifier = $this->finisherContext->getFormRuntime()->getIdentifier();
-        if (!str_starts_with($formIdentifier, 'desiderio-')) {
+        if (!DesiderioFormIdentifier::matches($formIdentifier)) {
             return null;
         }
 

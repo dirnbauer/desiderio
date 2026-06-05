@@ -7,6 +7,7 @@ namespace Webconsulting\Desiderio\ViewHelpers;
 use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Site\Entity\Site;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
+use Webconsulting\Desiderio\Utility\SiteSettingsBoolean;
 
 final class FriendlyCaptchaTestModeEnabledViewHelper extends AbstractViewHelper
 {
@@ -20,27 +21,10 @@ final class FriendlyCaptchaTestModeEnabledViewHelper extends AbstractViewHelper
         }
 
         $site = $request->getAttribute('site');
-        if (!$site instanceof Site || $site->getSettings()->isEmpty()) {
+        if (!$site instanceof Site) {
             return false;
         }
 
-        return $this->isTruthy($site->getSettings()->get(self::SETTING_IDENTIFIER, false));
-    }
-
-    private function isTruthy(mixed $value): bool
-    {
-        if (is_bool($value)) {
-            return $value;
-        }
-
-        if (is_int($value)) {
-            return $value === 1;
-        }
-
-        if (is_string($value)) {
-            return in_array(strtolower(trim($value)), ['1', 'true', 'yes', 'on'], true);
-        }
-
-        return false;
+        return SiteSettingsBoolean::isEnabled($site, self::SETTING_IDENTIFIER);
     }
 }

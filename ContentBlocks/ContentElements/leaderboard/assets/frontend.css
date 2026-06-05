@@ -15,11 +15,17 @@
 .leaderboard__rank {
     width: 2.25rem; height: 2.25rem; display: flex; align-items: center; justify-content: center;
     font-size: var(--d-text-sm); font-weight: 700; flex-shrink: 0;
-    border-radius: 50%; background: var(--muted); color: var(--muted-foreground);
+    border-radius: 50%;
+    background: var(--chart-1);
+    color: var(--foreground);
 }
-.leaderboard__item:nth-child(1) .leaderboard__rank { background: var(--d-warning); color: var(--foreground); }
-.leaderboard__item:nth-child(2) .leaderboard__rank { background: var(--muted-foreground); color: var(--background); }
-.leaderboard__item:nth-child(3) .leaderboard__rank { background: var(--d-warning-muted); color: var(--d-warning); }
+.leaderboard__item:nth-child(1) .leaderboard__rank { background: var(--chart-5); color: var(--background); }
+.leaderboard__item:nth-child(2) .leaderboard__rank { background: var(--chart-4); color: var(--background); }
+.leaderboard__item:nth-child(3) .leaderboard__rank { background: var(--chart-3); color: var(--background); }
+.leaderboard__item:nth-child(4) .leaderboard__rank { background: var(--chart-2); color: var(--background); }
+.dark .leaderboard__item:nth-child(-n+4) .leaderboard__rank { color: var(--foreground); }
+.dark .leaderboard__item:nth-child(n+5) .leaderboard__rank,
+.dark .leaderboard__rank { color: var(--background); }
 .leaderboard__avatar {
     width: 3.5rem; height: 3.5rem; flex-shrink: 0;
     display: flex; align-items: center; justify-content: center;

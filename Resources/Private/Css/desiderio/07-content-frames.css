@@ -10,6 +10,10 @@
     color: var(--foreground);
 }
 
+.desiderio-content-element .leaderboard__item:nth-child(-n+4) .leaderboard__rank {
+    color: oklch(0.985 0 0);
+}
+
 .frame :where(h1, h2, h3, h4, h5, h6),
 .ce-frame :where(h1, h2, h3, h4, h5, h6),
 .desiderio-content-element :where(h1, h2, h3, h4, h5, h6) {

@@ -1,3 +1,7 @@
+/* ------------------------------------------------------------------ */
+/*  Leaderboard (global — loaded via desiderio.css, not asset cache)  */
+/* ------------------------------------------------------------------ */
+
 .leaderboard {
     border: 1px solid var(--border); border-radius: var(--radius);
     background: var(--card); overflow: hidden;

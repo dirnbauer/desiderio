@@ -11,13 +11,20 @@
     </f:switch>
 </f:variable>
 
+<f:asset.css identifier="d-tabs" href="{cb:assetPath()}/frontend.css"/>
+
 <d:layout.section class="tabs-section">
     <d:layout.container>
         <f:if condition="{data.header}">
-            <d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography>
+            <d:atom.typography tag="h2" variant="h2" class="tabs-section__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
         </f:if>
 
-        <d:molecule.tabs defaultValue="tab-{data.uid}-{data.default_tab -> f:or(alternative: '0')}">
+        <f:variable name="defaultTabIndex" value="0" />
+        <f:if condition="{data.default_tab}">
+            <f:variable name="defaultTabIndex">{data.default_tab}</f:variable>
+        </f:if>
+
+        <d:molecule.tabs defaultValue="tab-{data.uid}-{defaultTabIndex}">
             <d:molecule.tabsList variant="{tabsVariant -> f:format.trim()}">
                 <f:for each="{data.items}" as="item" iteration="iter">
                     <d:molecule.tabsTrigger value="tab-{data.uid}-{iter.index}">

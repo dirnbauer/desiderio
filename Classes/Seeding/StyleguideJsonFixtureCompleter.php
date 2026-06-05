@@ -76,6 +76,10 @@ final class StyleguideJsonFixtureCompleter
             }
         }
 
+        if ($this->demoValueGenerator->normalizeIdentifier($ctype) === 'desideriotabs') {
+            $fixture['default_tab'] = $this->demoValueGenerator->normalizeTabsDefaultTab($fixture['default_tab'] ?? 0);
+        }
+
         return $fixture;
     }
 

@@ -15,6 +15,7 @@ use Webconsulting\Desiderio\Command\SeedStyleguidePagesCommand;
 use Webconsulting\Desiderio\Data\ContentBlockDefinitionRegistry;
 use Webconsulting\Desiderio\Seeding\DatabaseSchemaHelper;
 use Webconsulting\Desiderio\Seeding\StyleguideDemoValueGenerator;
+use Webconsulting\Desiderio\Seeding\StyleguideJsonFixtureCompleter;
 
 final class StyleguideSeedCommandTest extends TestCase
 {
@@ -745,6 +746,7 @@ final class StyleguideSeedCommandTest extends TestCase
 
         self::assertIsArray($fixture);
         self::assertSame('default', $fixture['variant'] ?? null);
+        self::assertSame(0, $fixture['default_tab'] ?? null);
         $items = $fixture['items'] ?? null;
         self::assertIsArray($items);
         self::assertCount(3, $items);
@@ -757,7 +759,37 @@ final class StyleguideSeedCommandTest extends TestCase
             self::assertIsString($content);
             self::assertNotSame('', trim($label));
             self::assertNotSame('', trim($content));
+            self::assertGreaterThanOrEqual(170, strlen($content));
+            self::assertLessThanOrEqual(230, strlen($content));
         }
+    }
+
+    public function testTabsFixtureNormalizesInvalidDefaultTabIndex(): void
+    {
+        $completer = new StyleguideJsonFixtureCompleter();
+        $definition = ContentBlockDefinitionRegistry::buildDefinitionFromConfig(
+            ContentBlockDefinitionRegistry::normalizeStringKeyedArray(
+                \Symfony\Component\Yaml\Yaml::parseFile(
+                    __DIR__ . '/../../ContentBlocks/ContentElements/tabs/config.yaml'
+                ) ?: []
+            ),
+        );
+
+        $completed = $completer->complete(
+            'desiderio_tabs',
+            'tabs',
+            $definition,
+            [
+                '_type' => 'list',
+                'default_tab' => 'Default Tab for Tabs: Customer Evidence Hub',
+                'items' => [
+                    ['tab_label' => 'One', 'tab_content' => str_repeat('a', 200)],
+                    ['tab_label' => 'Two', 'tab_content' => str_repeat('b', 200)],
+                ],
+            ],
+        );
+
+        self::assertSame(0, $completed['default_tab'] ?? null);
     }
 
     public function testLegacyStatsFixturesAreConvertedToChartDataJson(): void

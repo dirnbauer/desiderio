@@ -63,6 +63,11 @@ final class StyleguideDemoValueGenerator
         'Service Performance Snapshot',
         'Reusable Section Blueprint',
     ];
+    private const DEMO_TAB_PANEL_COPY = [
+        'Organize related topics into focused panels so visitors compare options without leaving the page. The first tab stays selected by default, and spacing stays aligned with the rest of your editorial layout.',
+        'Preview how tab labels wrap, how icons align, and how panel copy scales on smaller breakpoints. Each seeded panel carries enough text to judge line length, hierarchy, and the gap between the tab list and body content.',
+        'Give editors realistic labels, icons, and body copy so previews feel publish-ready. The tabs element should read like a finished section, not a placeholder, which makes spacing and default-state checks faster during QA.',
+    ];
     /**
      * @param array<string, mixed> $fieldConfig
      */
@@ -153,6 +158,7 @@ final class StyleguideDemoValueGenerator
 
         return match (true) {
             str_contains($normalizedField, 'rating') => 5,
+            $normalizedField === 'defaulttab' => 0,
             str_contains($normalizedField, 'columns') => [3, 4, 2][$index % 3],
             str_contains($normalizedField, 'duration') => 45,
             str_contains($normalizedField, 'interval') => 6000,
@@ -283,6 +289,7 @@ final class StyleguideDemoValueGenerator
             str_contains($normalizedField, 'copyright') => 'Images are credited on their Unsplash file references.',
             str_contains($normalizedField, 'credit') || str_contains($normalizedField, 'source') || str_contains($normalizedField, 'photographer') => 'Photo source: Unsplash demo image with photographer credit stored on the file reference.',
             str_contains($normalizedField, 'quote') => $this->buildDefaultQuote($elementLabel),
+            $normalizedField === 'tabcontent' => $this->buildDefaultTabPanelCopy($index),
             str_contains($normalizedField, 'description') || str_contains($normalizedField, 'content') || str_contains($normalizedField, 'body') || str_contains($normalizedField, 'copy') || str_contains($normalizedField, 'summary') || str_contains($normalizedField, 'bio') => $this->buildDefaultDemoCopy($elementLabel, $fieldLabel, $index),
             $normalizedField === 'prefix' => '',
             $normalizedField === 'suffix' => $this->buildDefaultMetricSuffix($ctype, $index),
@@ -395,7 +402,27 @@ PHP;
             return $this->buildDefaultMapEmbedUrl();
         }
 
+        if (
+            $this->normalizeIdentifier($ctype) === 'desideriotabs'
+            && $this->normalizeIdentifier($field) === 'defaulttab'
+        ) {
+            return $this->normalizeTabsDefaultTab($value);
+        }
+
         return $value;
+    }
+
+    public function normalizeTabsDefaultTab(mixed $value): int
+    {
+        if (is_int($value) && $value >= 0) {
+            return $value;
+        }
+
+        if (is_string($value) && preg_match('/^\d+$/', trim($value)) === 1) {
+            return (int)trim($value);
+        }
+
+        return 0;
     }
 
     public function isMapEmbedUrlField(string $ctype, string $field): bool
@@ -419,6 +446,11 @@ PHP;
         $copy = self::DEMO_COPY[$index % count(self::DEMO_COPY)];
 
         return sprintf('%s Built for the %s pattern.', $copy, strtolower($elementLabel));
+    }
+
+    public function buildDefaultTabPanelCopy(int $index): string
+    {
+        return self::DEMO_TAB_PANEL_COPY[$index % count(self::DEMO_TAB_PANEL_COPY)];
     }
 
     public function buildDefaultQuote(string $elementLabel): string

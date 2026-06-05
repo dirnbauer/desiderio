@@ -29,10 +29,10 @@ fields:
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:heading'
   -
     identifier: default_tab
-    type: Textarea
-    rows: 1
+    type: Number
     label: 'Default Active Tab'
     description: 'Index of the tab to show by default (0 = first)'
+    default: 0
   -
     identifier: items
     type: Collection

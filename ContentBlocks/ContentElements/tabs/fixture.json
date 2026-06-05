@@ -2,22 +2,22 @@
     "_type": "list",
     "header": "Tabs for polished editorial systems",
     "variant": "default",
+    "default_tab": 0,
     "items": [
         {
             "tab_label": "Sleek shadcn spacing",
-            "tab_content": "Uses crisp shadcn hierarchy, semantic tokens, and concise product copy so the component reads like a real SaaS interface. The tab content field gives the tabs element enough real content to judge spacing, hierarchy, and responsive behavior.",
+            "tab_content": "Organize related topics into focused panels so visitors compare options without leaving the page. The first tab stays selected by default, and spacing stays aligned with the rest of your editorial layout.",
             "tab_icon": "sparkles"
         },
         {
             "tab_label": "Responsive QA",
-            "tab_content": "Keeps the first panel available as the default and gives editors clear fallback content when a tab panel is still empty.",
+            "tab_content": "Preview how tab labels wrap, how icons align, and how panel copy scales on smaller breakpoints. Each seeded panel carries enough text to judge line length, hierarchy, and the gap between the tab list and body content.",
             "tab_icon": "shield-check"
         },
         {
             "tab_label": "Editorial workflow",
-            "tab_content": "Pairs each tab label with practical content so seeded examples stay useful in previews and frontend checks.",
+            "tab_content": "Give editors realistic labels, icons, and body copy so previews feel publish-ready. The tabs element should read like a finished section, not a placeholder, which makes spacing and default-state checks faster during QA.",
             "tab_icon": "book-open"
         }
-    ],
-    "default_tab": "Default Tab for Tabs: Customer Evidence Hub"
+    ]
 }

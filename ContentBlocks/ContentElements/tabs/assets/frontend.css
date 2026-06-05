@@ -1,1 +1,7 @@
-/* Uses shared shadcn Fluid tabs components. */
+.tabs-section__headline {
+    margin-block-end: var(--d-spacing-xl);
+}
+
+.tabs-section [data-slot="tabs-content"] {
+    margin-block-start: var(--d-spacing-md);
+}

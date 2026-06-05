@@ -1024,7 +1024,11 @@ final class SeedStarterSitesCommand extends Command
         }
 
         $memberName = $this->stringFromMixed($normalizedItem['name'] ?? $item['name'] ?? '');
-        foreach ($collection['fields'] ?? [] as $fieldName => $fieldConfig) {
+        $collectionFields = $collection['fields'] ?? null;
+        if (!is_array($collectionFields)) {
+            $collectionFields = [];
+        }
+        foreach ($collectionFields as $fieldName => $fieldConfig) {
             if (!is_string($fieldName) || !is_array($fieldConfig) || isset($fileReferences[$fieldName])) {
                 continue;
             }

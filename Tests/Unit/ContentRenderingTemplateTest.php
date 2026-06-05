@@ -548,7 +548,9 @@ final class ContentRenderingTemplateTest extends TestCase
         self::assertStringContainsString('.timeline__list::before', $timelineCss);
         self::assertStringContainsString('gap: 0;', $timelineCss);
         self::assertStringContainsString('.timeline__marker::after', $timelineCss);
-        self::assertStringContainsString('width: calc(var(--d-spacing-md) + 0.5625rem);', $timelineCss);
+        self::assertStringContainsString('--timeline-marker-column:', $timelineCss);
+        self::assertStringContainsString('--timeline-connector-width:', $timelineCss);
+        self::assertStringContainsString('width: var(--timeline-connector-width);', $timelineCss);
         self::assertStringContainsString('.timeline__content', $timelineCss);
         self::assertStringContainsString('position: relative;', $timelineCss);
         self::assertStringContainsString('border-radius: var(--d-radius-lg);', $timelineCss);

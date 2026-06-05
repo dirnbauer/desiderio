@@ -2,51 +2,51 @@
     "_type": "grid",
     "eyebrow": "Trusted partners",
     "header": "Teams that ship on Desiderio",
-    "subheadline": "From Series A startups to public enterprises, 400+ teams run their customer-facing sites on our platform.",
+    "subheadline": "From Fortune 500 leaders to global enterprises, teams run customer-facing operations on our platform.",
     "clients": [
         {
-            "name": "Northwind Logistics",
-            "industry": "Freight & supply chain",
+            "name": "Walmart",
+            "industry": "Retail",
             "logo": {
-                "file": "Resources/Public/Styleguide/Unsplash/client-northwind-logistics.jpg",
-                "title": "Logistics warehouse",
-                "alternative": "Warehouse shelves and logistics operations.",
-                "description": "Unsplash image used as demo partner media."
+                "file": "Resources/Public/Styleguide/Logos/Fortune500/walmart.svg",
+                "title": "Walmart logo",
+                "alternative": "Walmart company logo.",
+                "description": "Fortune 500 #1 company logo for demo customer content."
             },
-            "link": "https://www.example.com/northwind"
+            "link": "https://www.example.com/walmart"
         },
         {
-            "name": "Lumen Health",
-            "industry": "Digital healthcare",
+            "name": "Amazon",
+            "industry": "Retail & cloud",
             "logo": {
-                "file": "Resources/Public/Styleguide/Unsplash/client-lumen-health.jpg",
-                "title": "Digital healthcare workflow",
-                "alternative": "Healthcare professionals reviewing digital data.",
-                "description": "Unsplash image used as demo partner media."
+                "file": "Resources/Public/Styleguide/Logos/Fortune500/amazon.svg",
+                "title": "Amazon logo",
+                "alternative": "Amazon company logo.",
+                "description": "Fortune 500 #2 company logo for demo customer content."
             },
-            "link": "https://www.example.com/lumen-health"
+            "link": "https://www.example.com/amazon"
         },
         {
-            "name": "Vertex Financial",
-            "industry": "Banking & fintech",
+            "name": "Apple",
+            "industry": "Technology",
             "logo": {
-                "file": "Resources/Public/Styleguide/Unsplash/client-vertex-financial.jpg",
-                "title": "Financial planning desk",
-                "alternative": "Financial planning documents on a desk.",
-                "description": "Unsplash image used as demo partner media."
+                "file": "Resources/Public/Styleguide/Logos/Fortune500/apple.svg",
+                "title": "Apple logo",
+                "alternative": "Apple company logo.",
+                "description": "Fortune 500 #4 company logo for demo customer content."
             },
-            "link": "https://www.example.com/vertex"
+            "link": "https://www.example.com/apple"
         },
         {
-            "name": "Atlas Manufacturing",
-            "industry": "Industrial equipment",
+            "name": "Alphabet",
+            "industry": "Technology & cloud",
             "logo": {
-                "file": "Resources/Public/Styleguide/Unsplash/client-atlas-manufacturing.jpg",
-                "title": "Manufacturing equipment",
-                "alternative": "Industrial manufacturing equipment in a factory.",
-                "description": "Unsplash image used as demo partner media."
+                "file": "Resources/Public/Styleguide/Logos/Fortune500/alphabet.svg",
+                "title": "Alphabet logo",
+                "alternative": "Alphabet company logo.",
+                "description": "Fortune 500 #7 company logo for demo customer content."
             },
-            "link": "https://www.example.com/atlas"
+            "link": "https://www.example.com/alphabet"
         }
     ]
 }

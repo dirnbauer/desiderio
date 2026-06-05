@@ -51,7 +51,11 @@
     },
     "extra": {
         "typo3/cms": {
-            "extension-key": "desiderio"
+            "extension-key": "desiderio",
+            "version": "2.3.0",
+            "Package": {
+                "providesPackages": {}
+            }
         }
     },
     "config": {

@@ -6,6 +6,8 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [2.3.0] — 2026-06-05
+
 ### Added
 
 - Ten selectable **house presets** (Aurora, Marine, Forest, Ember, Bloom,
@@ -68,6 +70,16 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
   child rows and mainly reduces schema noise, not physical database size.
 - Refreshed maintained markdown references to the current 101-test local
   PHPUnit suite.
+- Extracted `ContentBlockDefinitionRegistry` and `DatabaseSchemaHelper`
+  so styleguide/starter seed commands and the collection processor share
+  one Content Block YAML loader and database schema helper instead of
+  maintaining three copies.
+- Switched code-block highlighting to **Prism-only** output and removed
+  the duplicate regex highlighter path from `astro.js`.
+- Centralized Friendly Captcha test-mode parsing and Desiderio form
+  identifier checks in shared utility classes.
+- Removed the redundant `pageTitle` field from styleguide seed manifests;
+  page titles now derive from `groupTitle`.
 
 ## [2.2.0] — 2026-05-03
 
@@ -216,7 +228,8 @@ and `webconsulting/shadcn2fluid-templates 3.x` with a clean rewrite:
 templates, and five swappable visual presets. See `MIGRATION-PLAN.md`
 for the migration notes from the old extensions.
 
+[2.3.0]: https://github.com/webconsulting/desiderio/releases/tag/v2.3.0
 [2.2.0]: https://github.com/webconsulting/desiderio/releases/tag/v2.2.0
 [2.1.0]: https://github.com/webconsulting/desiderio/releases/tag/v2.1.0
 [2.0.0]: https://github.com/webconsulting/desiderio/releases/tag/v2.0.0
-[Unreleased]: https://github.com/webconsulting/desiderio/compare/v2.2.0...HEAD
+[Unreleased]: https://github.com/webconsulting/desiderio/compare/v2.3.0...HEAD

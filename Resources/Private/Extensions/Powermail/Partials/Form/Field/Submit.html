@@ -1,8 +1,10 @@
-<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection" data-namespace-typo3-fluid="true">
 <f:argument name="field" type="object" />
 <f:argument name="settings" type="array" optional="{true}" />
 
+<f:variable name="buttonDefaultClass"><d:atom.controlClass slot="buttonDefault" /></f:variable>
+
 <div data-slot="form-item" class="powermail_fieldwrap_{field.marker} {field.css}">
-    <f:form.submit value="{field.title}" class="{f:render(partial: 'Form/ShadcnClass', arguments: {slot: 'buttonDefault'}) -> f:format.trim()}" />
+    <f:form.submit value="{field.title}" class="{buttonDefaultClass -> f:format.trim()}" />
 </div>
 </html>

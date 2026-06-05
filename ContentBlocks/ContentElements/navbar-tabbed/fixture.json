@@ -3,11 +3,32 @@
     "header": "Primary",
     "brand": "Northwind Studio",
     "tabs": [
-        "Overview",
-        "Components",
-        "Templates",
-        "Pricing",
-        "Changelog"
+        {
+            "label": "TYPO3 Form finishers",
+            "link": "https://example.com/desiderio/link_1",
+            "active": 1
+        },
+        {
+            "label": "Theme-aware states",
+            "link": "https://example.com/desiderio/link_2",
+            "active": 1
+        },
+        {
+            "label": "Keyboard focus built in",
+            "link": "https://example.com/desiderio/link_3",
+            "active": 1
+        },
+        {
+            "label": "Reusable Content Blocks",
+            "link": "https://example.com/desiderio/link_4",
+            "active": 1
+        },
+        {
+            "label": "Responsive editorial density",
+            "link": "https://example.com/desiderio/link_5",
+            "active": 1
+        }
     ],
-    "button_text": "Start free trial"
+    "button_text": "Start free trial",
+    "button_link": "https://example.com/desiderio/button_link_1"
 }

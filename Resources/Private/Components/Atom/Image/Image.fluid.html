@@ -1,3 +1,5 @@
+<html xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
 <f:argument name="src" type="string" />
 <f:argument name="alt" type="string" optional="{true}" default="" />
 <f:argument name="width" type="string" optional="{true}" />
@@ -8,7 +10,7 @@
 
 <f:if condition="{aspectRatio}">
     <f:then>
-        <div class="relative w-full" style="aspect-ratio: {aspectRatio}">
+        <d:atom.aspectRatio ratio="{aspectRatio}" class="w-full">
             <img
                 src="{src}"
                 alt="{alt}"
@@ -16,8 +18,9 @@
                 height="{height}"
                 loading="{loading}"
                 class="absolute inset-0 h-full w-full object-cover {class}"
+                data-slot="image"
             />
-        </div>
+        </d:atom.aspectRatio>
     </f:then>
     <f:else>
         <img
@@ -27,6 +30,8 @@
             height="{height}"
             loading="{loading}"
             class="max-w-full h-auto {class}"
+            data-slot="image"
         />
     </f:else>
 </f:if>
+</html>

@@ -1,13 +1,15 @@
-<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection">
 <f:argument name="field" type="object" />
 <f:argument name="settings" type="array" optional="{true}" />
 
+
 <div data-slot="form-item" class="powermail_fieldwrap_{field.marker} {field.css}">
-    <div class="{f:render(partial: 'Form/ShadcnClass', arguments: {slot: 'panelContent'}) -> f:format.trim()} text-sm">
+    <div class="{controlClassPanelContent -> f:format.trim()} text-sm">
         <f:if condition="{settings.misc.htmlForHtmlFields}">
             <f:then><f:sanitize.html>{field.text -> f:format.raw()}</f:sanitize.html></f:then>
             <f:else>{field.text}</f:else>
         </f:if>
     </div>
-</div>
+</d:molecule.field>
 </html>

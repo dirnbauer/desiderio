@@ -10,10 +10,18 @@
             "billing_period": "/month",
             "description": "For individuals and small side projects.",
             "features": [
-                "3 editor seats",
-                "Unlimited projects",
-                "Email support",
-                "25 GB asset storage"
+                {
+                    "text": "Text for Pricing Three Tier: Pattern Library Rollout"
+                },
+                {
+                    "text": "Text for Content Operations Brief 2"
+                },
+                {
+                    "text": "Text for Customer Evidence Hub 3"
+                },
+                {
+                    "text": "Text for Product Adoption Report 4"
+                }
             ],
             "button_text": "Start free",
             "button_link": "https://ui.shadcn.com/docs/three-tier-pricing",
@@ -25,12 +33,24 @@
             "billing_period": "/month",
             "description": "For growing teams that publish every week.",
             "features": [
-                "10 editor seats",
-                "Unlimited projects",
-                "Priority support",
-                "100 GB asset storage",
-                "Roles and permissions",
-                "Scheduled publishing"
+                {
+                    "text": "Text for Pricing Three Tier: Pattern Library Rollout"
+                },
+                {
+                    "text": "Text for Content Operations Brief 2"
+                },
+                {
+                    "text": "Text for Customer Evidence Hub 3"
+                },
+                {
+                    "text": "Text for Product Adoption Report 4"
+                },
+                {
+                    "text": "Text for Editor Workflow Upgrade 5"
+                },
+                {
+                    "text": "Text for Service Performance Snapshot 6"
+                }
             ],
             "button_text": "Choose Pro",
             "button_link": "https://ui.shadcn.com/docs/three-tier-pricing",
@@ -42,11 +62,21 @@
             "billing_period": "/month",
             "description": "For organisations with security and scale needs.",
             "features": [
-                "Unlimited seats",
-                "SSO and audit logs",
-                "Dedicated success manager",
-                "99.9% uptime SLA",
-                "Advanced security controls"
+                {
+                    "text": "Text for Pricing Three Tier: Pattern Library Rollout"
+                },
+                {
+                    "text": "Text for Content Operations Brief 2"
+                },
+                {
+                    "text": "Text for Customer Evidence Hub 3"
+                },
+                {
+                    "text": "Text for Product Adoption Report 4"
+                },
+                {
+                    "text": "Text for Editor Workflow Upgrade 5"
+                }
             ],
             "button_text": "Contact sales",
             "button_link": "https://ui.shadcn.com/docs/three-tier-pricing",

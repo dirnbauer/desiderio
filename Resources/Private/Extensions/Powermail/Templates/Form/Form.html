@@ -1,6 +1,7 @@
 <html
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
     xmlns:vh="http://typo3.org/ns/In2code/Powermail/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
     data-namespace-typo3-fluid="true"
 >
 <f:layout name="Default" />
@@ -12,14 +13,18 @@
 <f:argument name="mail" type="object" optional="{true}" />
 
 <f:section name="main">
-    <f:variable name="flashMessageClass"><f:render partial="Form/ShadcnClass" arguments="{slot: 'flashDestructive'}" /></f:variable>
+    <f:variable name="flashMessageClass"><d:atom.controlClass slot="flashDestructive" /></f:variable>
     <f:alias map="{flashMessageClass: flashMessageClass}">
         <f:render partial="Misc/FlashMessages" arguments="{_all}" />
     </f:alias>
 
     <f:if condition="{form}">
         <f:then>
-            <section class="mt-8 w-full max-w-2xl">
+            <f:variable name="formCardClass"><d:atom.controlClass slot="card" /></f:variable>
+            <f:variable name="cardHeaderClass"><d:atom.controlClass slot="cardHeaderBordered" /></f:variable>
+            <f:variable name="cardTitleClass"><d:atom.controlClass slot="cardTitle" /></f:variable>
+            <f:variable name="cardDescriptionClass"><d:atom.controlClass slot="cardDescription" /></f:variable>
+            <d:layout.container size="md" class="mt-8 w-full max-w-2xl">
                 <f:form
                     action="{action}"
                     section="c{ttContentData.uid}"
@@ -28,12 +33,12 @@
                     autocomplete="{form.autocompleteToken}"
                     additionalAttributes="{vh:validation.enableJavascriptValidationAndAjax(form: form)}"
                     addQueryString="{settings.misc.addQueryString}"
-                    class="{form.css} {vh:misc.morestepClass(activate: settings.main.moresteps)} {f:render(partial: 'Form/ShadcnClass', arguments: {slot: 'card'}) -> f:format.trim()}">
+                    class="{form.css} {vh:misc.morestepClass(activate: settings.main.moresteps)} {formCardClass -> f:format.trim()}">
 
                     <f:if condition="{form.css} != 'nolabel'">
-                        <header data-slot="card-header" class="{f:render(partial: 'Form/ShadcnClass', arguments: {slot: 'cardHeaderBordered'}) -> f:format.trim()}">
-                            <h2 data-slot="card-title" class="{f:render(partial: 'Form/ShadcnClass', arguments: {slot: 'cardTitle'}) -> f:format.trim()}">{form.title}</h2>
-                            <p data-slot="card-description" class="{f:render(partial: 'Form/ShadcnClass', arguments: {slot: 'cardDescription'}) -> f:format.trim()}">
+                        <header data-slot="card-header" class="{cardHeaderClass -> f:format.trim()}">
+                            <h2 data-slot="card-title" class="{cardTitleClass -> f:format.trim()}">{form.title}</h2>
+                            <p data-slot="card-description" class="{cardDescriptionClass -> f:format.trim()}">
                                 <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/powermail.xlf:powermail.form.requiredHint" arguments="{requiredCount: 1}" />
                             </p>
                         </header>
@@ -42,9 +47,12 @@
                     <f:render partial="Misc/FormError" arguments="{_all}" />
 
                     <f:if condition="{settings.main.moresteps}">
-                        <nav class="{f:render(partial: 'Form/ShadcnClass', arguments: {slot: 'tabsList'}) -> f:format.trim()} w-full grid gap-2 sm:grid-flow-col sm:auto-cols-fr" data-variant="default" aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/powermail.xlf:powermail.multistep.label')}">
+                        <f:variable name="tabsListClass"><d:atom.controlClass slot="tabsList" /></f:variable>
+                        <f:variable name="tabsTriggerClass"><d:atom.controlClass slot="tabsTrigger" /></f:variable>
+                        <f:variable name="stepIndexClass"><d:atom.controlClass slot="stepIndex" /></f:variable>
+                        <nav class="{tabsListClass -> f:format.trim()} w-full grid gap-2 sm:grid-flow-col sm:auto-cols-fr" data-variant="default" aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/powermail.xlf:powermail.multistep.label')}">
                             <f:for each="{form.pages}" as="page" iteration="iterationPages">
-                                <button class="{f:render(partial: 'Form/ShadcnClass', arguments: {slot: 'tabsTrigger'}) -> f:format.trim()} w-full"
+                                <button class="{tabsTriggerClass -> f:format.trim()} w-full"
                                         type="button"
                                         data-active="{f:if(condition: iterationPages.isFirst, then: 'true', else: 'false')}"
                                         data-state="{f:if(condition: iterationPages.isFirst, then: 'active', else: 'inactive')}"
@@ -54,26 +62,27 @@
                                         data-powermail-morestep-show="{iterationPages.index}"
                                         aria-selected="{f:if(condition: iterationPages.isFirst, then: 'true', else: 'false')}"
                                         aria-current="{f:if(condition: iterationPages.isFirst, then: 'step', else: 'false')}">
-                                    <span class="{f:render(partial: 'Form/ShadcnClass', arguments: {slot: 'stepIndex'}) -> f:format.trim()}">{iterationPages.cycle}</span>
+                                    <span class="{stepIndexClass -> f:format.trim()}">{iterationPages.cycle}</span>
                                     {page.title}
                                 </button>
                             </f:for>
                         </nav>
                     </f:if>
 
-                    <div data-slot="card-content" class="{f:render(partial: 'Form/ShadcnClass', arguments: {slot: 'cardContent'}) -> f:format.trim()}">
+                    <d:molecule.cardContent>
                         <f:for each="{form.pages}" as="page" iteration="iterationPages">
                             <f:render partial="Form/Page" arguments="{_all}" />
                         </f:for>
-                    </div>
+                    </d:molecule.cardContent>
 
                     <f:form.hidden name="mail[form]" value="{form.uid}" class="powermail_form_uid" respectSubmittedDataValue="false" />
                     <f:render partial="Misc/HoneyPod" arguments="{form: form}" />
                 </f:form>
-            </section>
+            </d:layout.container>
         </f:then>
         <f:else>
-            <div class="{f:render(partial: 'Form/ShadcnClass', arguments: {slot: 'alertDestructive'}) -> f:format.trim()}">
+            <f:variable name="alertClass"><d:atom.controlClass slot="alertDestructive" /></f:variable>
+            <div class="{alertClass -> f:format.trim()}">
                 <f:translate key="error_no_form" extensionName="Powermail" />
             </div>
         </f:else>

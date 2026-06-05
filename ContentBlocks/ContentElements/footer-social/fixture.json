@@ -4,17 +4,21 @@
     "brand": "Northwind",
     "items": [
         {
-            "platform_name": "linkedin"
+            "platform_name": "linkedin",
+            "link": "https://example.com/desiderio/link_1"
         },
         {
-            "platform_name": "twitter"
+            "platform_name": "twitter",
+            "link": "https://example.com/desiderio/link_2"
         },
         {
-            "platform_name": "github"
+            "platform_name": "github",
+            "link": "https://example.com/desiderio/link_3"
         },
         {
-            "platform_name": "youtube"
+            "platform_name": "youtube",
+            "link": "https://example.com/desiderio/link_4"
         }
     ],
-    "copyright": "© 2026 Northwind Analytics Inc. All rights reserved."
+    "copyright": "\u00a9 2026 Northwind Analytics Inc. All rights reserved."
 }

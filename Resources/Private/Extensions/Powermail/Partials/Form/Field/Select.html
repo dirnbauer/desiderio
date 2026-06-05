@@ -8,14 +8,18 @@
 <f:argument name="settings" type="array" optional="{true}" />
 <f:argument name="mail" type="object" optional="{true}" />
 
-<div role="group" data-slot="field" data-orientation="vertical" class="powermail_fieldwrap_{field.marker} {field.css} {f:render(partial: 'Form/ShadcnClass', arguments: {slot: 'field'}) -> f:format.trim()}">
+<f:variable name="selectClass"><d:atom.controlClass slot="select" /></f:variable>
+<f:variable name="selectNativeClass"><d:atom.controlClass slot="selectNative" /></f:variable>
+<f:variable name="selectIconClass"><d:atom.controlClass slot="selectIcon" /></f:variable>
+
+<d:molecule.field class="powermail_fieldwrap_{field.marker} {field.css}">
     <f:render partial="Form/FieldLabel" arguments="{field: field}" />
     <f:if condition="{field.multiselect}">
         <f:then>
             <vh:form.selectField
                 options="{field.modifiedSettings}"
                 property="{field.marker}"
-                class="{f:render(partial: 'Form/ShadcnClass', arguments: {slot: 'select'}) -> f:format.trim()} {vh:validation.errorClass(field: field, class: 'border-destructive ring-1 ring-destructive/20')}"
+                class="{selectClass -> f:format.trim()} {vh:validation.errorClass(field: field, class: 'border-destructive ring-1 ring-destructive/20')}"
                 id="powermail_field_{field.marker}"
                 autocomplete="{vh:string.autocomplete(field: field)}"
                 additionalAttributes="{vh:validation.validationDataAttribute(field: field)}"
@@ -23,18 +27,18 @@
                 value="{vh:misc.prefillField(field: field, mail: mail)}" />
         </f:then>
         <f:else>
-            <span data-slot="native-select" class="{f:render(partial: 'Form/ShadcnClass', arguments: {slot: 'selectWrapper'}) -> f:format.trim()}">
+            <d:molecule.selectNative>
                 <vh:form.selectField
                     options="{field.modifiedSettings}"
                     property="{field.marker}"
-                    class="{f:render(partial: 'Form/ShadcnClass', arguments: {slot: 'selectNative'}) -> f:format.trim()} {vh:validation.errorClass(field: field, class: 'border-destructive ring-1 ring-destructive/20')}"
+                    class="{selectNativeClass -> f:format.trim()} {vh:validation.errorClass(field: field, class: 'border-destructive ring-1 ring-destructive/20')}"
                     id="powermail_field_{field.marker}"
                     autocomplete="{vh:string.autocomplete(field: field)}"
                     additionalAttributes="{vh:validation.validationDataAttribute(field: field)}"
                     multiple="{field.multiselectForField}"
                     value="{vh:misc.prefillField(field: field, mail: mail)}" />
-                <di:icon name="chevron-down" size="sm" class="{f:render(partial: 'Form/ShadcnClass', arguments: {slot: 'selectIcon'}) -> f:format.trim()}" />
-            </span>
+                <di:icon name="chevron-down" size="sm" class="{selectIconClass -> f:format.trim()}" />
+            </d:molecule.selectNative>
         </f:else>
     </f:if>
     <f:if condition="{field.multiselect}">
@@ -42,5 +46,5 @@
             <div class="powermail_field_error_container_{field.marker} text-xs text-destructive"></div>
         </f:if>
     </f:if>
-</div>
+</d:molecule.field>
 </html>

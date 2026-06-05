@@ -4,15 +4,38 @@
     "eyebrow": "Enterprise",
     "description": "Custom pricing for teams over 500 seats. Get dedicated support, advanced security controls, and a migration plan tailored to your stack.",
     "features": [
-        { "text": "SSO and SCIM user provisioning" },
-        { "text": "99.99% uptime SLA, signed" },
-        { "text": "Dedicated customer success manager" },
-        { "text": "SOC 2 Type II and HIPAA compliance" },
-        { "text": "Unlimited seats and workspaces" },
-        { "text": "Audit logs and data residency controls" },
-        { "text": "Priority support with 1-hour response" },
-        { "text": "Custom onboarding and migration" }
+        {
+            "text": "SSO and SCIM user provisioning"
+        },
+        {
+            "text": "99.99% uptime SLA, signed"
+        },
+        {
+            "text": "Dedicated customer success manager"
+        },
+        {
+            "text": "SOC 2 Type II and HIPAA compliance"
+        },
+        {
+            "text": "Unlimited seats and workspaces"
+        },
+        {
+            "text": "Audit logs and data residency controls"
+        },
+        {
+            "text": "Priority support with 1-hour response"
+        },
+        {
+            "text": "Custom onboarding and migration"
+        }
     ],
     "contact_text": "Talk to sales",
-    "contact_link": "https://ui.shadcn.com/docs/enterprise-pricing"
+    "contact_link": "https://ui.shadcn.com/docs/enterprise-pricing",
+    "image": {
+        "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-14.jpg",
+        "title": "Team Member portrait",
+        "alternative": "Portrait photo of Team Member.",
+        "description": "Portrait-style photo from Unsplash collection #25880.",
+        "source": "https://unsplash.com/collections/25880"
+    }
 }

@@ -459,11 +459,22 @@ function renderTargets(array $recipes, string $style, string $preset, string $sc
         'Resources/Private/Components/Atom/Select/Select.fluid.html' => renderSelect($recipes['select'], $header),
         'Resources/Private/Components/Atom/Textarea/Textarea.fluid.html' => renderTextarea($recipes['textarea'], $header),
         'Resources/Private/Components/Atom/Typography/Typography.fluid.html' => renderTypography($localHeader),
+        'Resources/Private/Components/Atom/ControlClass/ControlClass.fluid.html' => renderControlClass($recipes, $header),
         'Resources/Private/Extensions/Powermail/Partials/Form/ShadcnClass.html' => renderPowermailShadcnClass($recipes, $header),
         'Resources/Private/Components/Molecule/AccordionItem/AccordionItem.fluid.html' => renderAccordionItem($recipes['accordion'], $header),
         'Resources/Private/Components/Molecule/Card/Card.fluid.html' => renderCard($recipes['card'], $header),
+        'Resources/Private/Components/Molecule/CardContent/CardContent.fluid.html' => renderCardContent($recipes['card'], $header),
         'Resources/Private/Components/Molecule/CardFooter/CardFooter.fluid.html' => renderCardFooter($recipes['card'], $header),
         'Resources/Private/Components/Molecule/CardHeader/CardHeader.fluid.html' => renderCardHeader($recipes['card'], $header),
+        'Resources/Private/Components/Molecule/CheckboxControl/CheckboxControl.fluid.html' => renderCheckboxControl($header),
+        'Resources/Private/Components/Molecule/Field/Field.fluid.html' => renderField($recipes, $header),
+        'Resources/Private/Components/Molecule/FieldGroup/FieldGroup.fluid.html' => renderFieldGroup($recipes, $header),
+        'Resources/Private/Components/Molecule/FieldLabel/FieldLabel.fluid.html' => renderFieldLabel($recipes, $header),
+        'Resources/Private/Components/Molecule/FieldLegend/FieldLegend.fluid.html' => renderFieldLegend($header),
+        'Resources/Private/Components/Molecule/FieldSet/FieldSet.fluid.html' => renderFieldSet($recipes, $header),
+        'Resources/Private/Components/Molecule/OptionLabel/OptionLabel.fluid.html' => renderOptionLabel($recipes, $header),
+        'Resources/Private/Components/Molecule/RadioControl/RadioControl.fluid.html' => renderRadioControl($recipes, $header),
+        'Resources/Private/Components/Molecule/SelectNative/SelectNative.fluid.html' => renderSelectNative($recipes, $header),
         'Resources/Private/Components/Molecule/Tabs/Tabs.fluid.html' => renderTabs($recipes['tabs'], $header),
         'Resources/Private/Components/Molecule/TabsContent/TabsContent.fluid.html' => renderTabsContent($recipes['tabs'], $header),
         'Resources/Private/Components/Molecule/TabsList/TabsList.fluid.html' => renderTabsList($recipes['tabs'], $header),
@@ -699,7 +710,10 @@ function renderTextarea(string $class, string $header): string
         . '</f:if>' . "\n";
 }
 
-function renderPowermailShadcnClass(array $recipes, string $header): string
+/**
+ * @return array<string, string>
+ */
+function composeControlClassMap(array $recipes): array
 {
     $cardRootCompatibility = 'px-4 has-data-[slot=card-header]:px-0 has-data-[slot=card-content]:px-0 has-data-[slot=card-footer]:px-0 has-[>img:first-child]:px-0 data-[size=sm]:px-3 data-[size=sm]:has-data-[slot=card-header]:px-0 data-[size=sm]:has-data-[slot=card-content]:px-0 data-[size=sm]:has-data-[slot=card-footer]:px-0';
     $controlMarker = 'd-shadcn-control';
@@ -721,7 +735,7 @@ function renderPowermailShadcnClass(array $recipes, string $header): string
     $checkbox = normalizeClass(nativeCheckedClass($recipes['checkbox']['root']) . ' ' . $controlMarker . ' peer appearance-none size-4! min-h-4!');
     $radio = normalizeClass(nativeCheckedClass($recipes['radio']['item']) . ' ' . $controlMarker . ' peer appearance-none size-4! min-h-4!');
 
-    $classes = [
+    return [
         'alertDestructive' => 'rounded-md border border-destructive/30 bg-destructive/10 p-4 text-sm text-destructive',
         'buttonDefault' => normalizeClass(composeButtonClass($recipes['button'], 'default', 'default') . ' ' . $controlMarker),
         'buttonDestructive' => normalizeClass(composeButtonClass($recipes['button'], 'destructive', 'default') . ' ' . $controlMarker),
@@ -736,6 +750,7 @@ function renderPowermailShadcnClass(array $recipes, string $header): string
         'checkboxIcon' => normalizeClass($recipes['checkbox']['indicator'] . ' pointer-events-none absolute left-1/2 top-1/2 size-3.5 -translate-x-1/2 -translate-y-1/2 text-background opacity-0 transition-opacity peer-checked:opacity-100'),
         'checkboxInput' => $checkbox,
         'field' => $fieldVertical,
+        'fieldHorizontal' => $fieldHorizontal,
         'fieldError' => $recipes['field']['error'],
         'fieldGroup' => $recipes['field']['group'],
         'fieldLabel' => $fieldLabel,
@@ -759,7 +774,10 @@ function renderPowermailShadcnClass(array $recipes, string $header): string
         'tabsTrigger' => $recipes['tabs']['trigger'],
         'textarea' => $textarea,
     ];
+}
 
+function renderControlClassSwitch(array $classes, string $header): string
+{
     $lines = [
         $header,
         '<f:argument name="slot" type="string" />',
@@ -775,6 +793,142 @@ function renderPowermailShadcnClass(array $recipes, string $header): string
     $lines[] = '</f:switch>';
 
     return implode("\n", $lines) . "\n";
+}
+
+function renderControlClass(array $recipes, string $header): string
+{
+    return renderControlClassSwitch(composeControlClassMap($recipes), $header);
+}
+
+function renderPowermailShadcnClass(array $recipes, string $header): string
+{
+    return renderControlClass($recipes, $header);
+}
+
+function renderField(array $recipes, string $header): string
+{
+    $classes = composeControlClassMap($recipes);
+
+    return $header
+        . '<f:argument name="orientation" type="string" optional="{true}" default="vertical" />' . "\n"
+        . '<f:argument name="class" type="string" optional="{true}" default="" />' . "\n"
+        . '<f:argument name="role" type="string" optional="{true}" default="group" />' . "\n\n"
+        . '<f:variable name="orientationClass">' . "\n"
+        . '    <f:switch expression="{orientation}">' . "\n"
+        . sprintf('        <f:case value="horizontal">%s</f:case>', text($classes['fieldHorizontal'])) . "\n"
+        . sprintf('        <f:defaultCase>%s</f:defaultCase>', text($classes['field'])) . "\n"
+        . '    </f:switch>' . "\n"
+        . '</f:variable>' . "\n\n"
+        . '<div role="{role}" data-slot="field" data-orientation="{orientation}" class="{orientationClass -> f:format.trim()} {class}">' . "\n"
+        . '    <f:slot />' . "\n"
+        . '</div>' . "\n";
+}
+
+function renderFieldLabel(array $recipes, string $header): string
+{
+    $classes = composeControlClassMap($recipes);
+
+    return $header
+        . '<f:argument name="for" type="string" />' . "\n"
+        . '<f:argument name="mandatory" type="bool" optional="{true}" default="{false}" />' . "\n"
+        . '<f:argument name="title" type="string" optional="{true}" />' . "\n"
+        . '<f:argument name="class" type="string" optional="{true}" default="" />' . "\n\n"
+        . sprintf('<label for="{for}" data-slot="field-label" class="%s {class}" title="{title}">', attr($classes['fieldLabel'])) . "\n"
+        . '    <span class="inline-flex items-baseline gap-1">' . "\n"
+        . '        <span><f:slot /></span>' . "\n"
+        . '        <f:if condition="{mandatory}">' . "\n"
+        . '            <span class="text-destructive" aria-hidden="true">*</span>' . "\n"
+        . '        </f:if>' . "\n"
+        . '    </span>' . "\n"
+        . '</label>' . "\n";
+}
+
+function renderFieldGroup(array $recipes, string $header): string
+{
+    $classes = composeControlClassMap($recipes);
+
+    return $header
+        . '<f:argument name="class" type="string" optional="{true}" default="" />' . "\n\n"
+        . sprintf('<div data-slot="field-group" class="%s {class}">', attr($classes['fieldGroup'])) . "\n"
+        . '    <f:slot />' . "\n"
+        . '</div>' . "\n";
+}
+
+function renderFieldSet(array $recipes, string $header): string
+{
+    $classes = composeControlClassMap($recipes);
+
+    return $header
+        . '<f:argument name="class" type="string" optional="{true}" default="" />' . "\n\n"
+        . sprintf('<fieldset data-slot="field-set" class="%s {class}">', attr($classes['fieldSet'])) . "\n"
+        . '    <f:slot />' . "\n"
+        . '</fieldset>' . "\n";
+}
+
+function renderFieldLegend(string $header): string
+{
+    return $header
+        . '<f:argument name="mandatory" type="bool" optional="{true}" default="{false}" />' . "\n"
+        . '<f:argument name="title" type="string" optional="{true}" />' . "\n"
+        . '<f:argument name="class" type="string" optional="{true}" default="" />' . "\n\n"
+        . '<legend data-slot="field-legend" class="mb-2 flex w-fit items-center gap-2 text-xs font-medium leading-snug text-foreground {class}" title="{title}">' . "\n"
+        . '    <span class="inline-flex items-baseline gap-1">' . "\n"
+        . '        <span><f:slot /></span>' . "\n"
+        . '        <f:if condition="{mandatory}">' . "\n"
+        . '            <span class="text-destructive" aria-hidden="true">*</span>' . "\n"
+        . '        </f:if>' . "\n"
+        . '    </span>' . "\n"
+        . '</legend>' . "\n";
+}
+
+function renderOptionLabel(array $recipes, string $header): string
+{
+    $classes = composeControlClassMap($recipes);
+
+    return $header
+        . '<f:argument name="for" type="string" optional="{true}" />' . "\n"
+        . '<f:argument name="class" type="string" optional="{true}" default="" />' . "\n\n"
+        . sprintf('<label for="{for}" data-slot="field" data-orientation="horizontal" class="%s {class}">', attr($classes['optionLabel'])) . "\n"
+        . '    <f:slot />' . "\n"
+        . '</label>' . "\n";
+}
+
+function renderCheckboxControl(string $header): string
+{
+    return $header
+        . '<f:argument name="class" type="string" optional="{true}" default="" />' . "\n\n"
+        . '<span data-slot="checkbox" class="relative inline-flex size-4 shrink-0 items-center justify-center {class}">' . "\n"
+        . '    <f:slot />' . "\n"
+        . '</span>' . "\n";
+}
+
+function renderRadioControl(array $recipes, string $header): string
+{
+    return $header
+        . '<f:argument name="class" type="string" optional="{true}" default="" />' . "\n\n"
+        . '<span data-slot="radio-group-item" class="relative inline-flex size-4 shrink-0 items-center justify-center {class}">' . "\n"
+        . '    <f:slot />' . "\n"
+        . '</span>' . "\n";
+}
+
+function renderSelectNative(array $recipes, string $header): string
+{
+    $classes = composeControlClassMap($recipes);
+
+    return $header
+        . '<f:argument name="class" type="string" optional="{true}" default="" />' . "\n\n"
+        . sprintf('<span data-slot="native-select" class="%s {class}">', attr($classes['selectWrapper'])) . "\n"
+        . '    <f:slot />' . "\n"
+        . '</span>' . "\n";
+}
+
+function renderCardContent(array $recipe, string $header): string
+{
+    return $header
+        . '<f:argument name="class" type="string" optional="{true}" default="" />' . "\n\n"
+        . sprintf('<div data-slot="card-content" class="%s space-y-6 {class}">', attr($recipe['content'])) . "\n"
+        . '    <f:slot />' . "\n"
+        . '</div>' . "\n";
 }
 
 function renderAccordionItem(array $recipe, string $header): string

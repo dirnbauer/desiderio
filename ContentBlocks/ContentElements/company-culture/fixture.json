@@ -6,15 +6,36 @@
     "items": [
         {
             "title": "Remote-first by default",
-            "description": "Work from anywhere in our core hours. We document decisions in writing so no one is blocked by a time zone."
+            "description": "Work from anywhere in our core hours. We document decisions in writing so no one is blocked by a time zone.",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-14.jpg",
+                "title": "Team Member portrait",
+                "alternative": "Portrait photo of Team Member.",
+                "description": "Portrait-style photo from Unsplash collection #25880.",
+                "source": "https://unsplash.com/collections/25880"
+            }
         },
         {
             "title": "Ship, then refine",
-            "description": "Small releases over big launches. We trust teammates to deploy on day one and learn from real usage."
+            "description": "Small releases over big launches. We trust teammates to deploy on day one and learn from real usage.",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-28.jpg",
+                "title": "Team Member portrait",
+                "alternative": "Portrait photo of Team Member.",
+                "description": "Portrait-style photo from Unsplash collection #25880.",
+                "source": "https://unsplash.com/collections/25880"
+            }
         },
         {
             "title": "Grow on the clock",
-            "description": "Every engineer gets a yearly learning budget and one focused day each week for deep work and side projects."
+            "description": "Every engineer gets a yearly learning budget and one focused day each week for deep work and side projects.",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-10.jpg",
+                "title": "Team Member portrait",
+                "alternative": "Portrait photo of Team Member.",
+                "description": "Portrait-style photo from Unsplash collection #25880.",
+                "source": "https://unsplash.com/collections/25880"
+            }
         }
     ]
 }

@@ -10,19 +10,23 @@
         },
         {
             "title": "Do you offer a free trial?",
-            "content": "<p>Every plan starts with a 14-day free trial that includes all features. No credit card is required to begin, and we'll email you three days before the trial ends so there are no surprises.</p>"
+            "content": "<p>Every plan starts with a 14-day free trial that includes all features. No credit card is required to begin, and we'll email you three days before the trial ends so there are no surprises.</p>",
+            "open_by_default": 1
         },
         {
             "title": "How does pricing work as my team grows?",
-            "content": "<p>Pricing is per active seat, billed monthly or yearly. Add or remove seats whenever you like; we prorate the difference automatically so you only pay for what you use.</p>"
+            "content": "<p>Pricing is per active seat, billed monthly or yearly. Add or remove seats whenever you like; we prorate the difference automatically so you only pay for what you use.</p>",
+            "open_by_default": 1
         },
         {
             "title": "Is my data secure?",
-            "content": "<p>All data is encrypted in transit and at rest, hosted in EU data centres, and backed up daily. We are ISO 27001 certified and complete an independent penetration test every year.</p>"
+            "content": "<p>All data is encrypted in transit and at rest, hosted in EU data centres, and backed up daily. We are ISO 27001 certified and complete an independent penetration test every year.</p>",
+            "open_by_default": 1
         },
         {
             "title": "Can I import content from my current CMS?",
-            "content": "<p>Yes. Our migration assistant imports pages, media, and redirects from most major systems, and our support team will review the result with you before you go live.</p>"
+            "content": "<p>Yes. Our migration assistant imports pages, media, and redirects from most major systems, and our support team will review the result with you before you go live.</p>",
+            "open_by_default": 1
         }
     ]
 }

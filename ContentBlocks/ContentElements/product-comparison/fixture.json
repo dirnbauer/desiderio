@@ -7,40 +7,91 @@
             "name": "Air 13",
             "price": "$999",
             "specs": [
-                "13-inch Retina display",
-                "8-core CPU, 8-core GPU",
-                "16GB unified memory",
-                "256GB SSD storage",
-                "18-hour battery life"
+                {
+                    "text": "Text for Product Comparison: Reusable Section Blueprint"
+                },
+                {
+                    "text": "Text for Launch Readiness Review 2"
+                },
+                {
+                    "text": "Text for Pattern Library Rollout 3"
+                },
+                {
+                    "text": "Text for Content Operations Brief 4"
+                },
+                {
+                    "text": "Text for Customer Evidence Hub 5"
+                }
             ],
             "is_recommended": false,
-            "link": "https://ui.shadcn.com/docs"
+            "link": "https://ui.shadcn.com/docs",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-14.jpg",
+                "title": "Team Member portrait",
+                "alternative": "Portrait photo of Team Member.",
+                "description": "Portrait-style photo from Unsplash collection #25880.",
+                "source": "https://unsplash.com/collections/25880"
+            }
         },
         {
             "name": "Pro 14",
             "price": "$1,599",
             "specs": [
-                "14-inch Liquid Retina XDR",
-                "10-core CPU, 16-core GPU",
-                "32GB unified memory",
-                "1TB SSD storage",
-                "22-hour battery life"
+                {
+                    "text": "Text for Product Comparison: Reusable Section Blueprint"
+                },
+                {
+                    "text": "Text for Launch Readiness Review 2"
+                },
+                {
+                    "text": "Text for Pattern Library Rollout 3"
+                },
+                {
+                    "text": "Text for Content Operations Brief 4"
+                },
+                {
+                    "text": "Text for Customer Evidence Hub 5"
+                }
             ],
             "is_recommended": true,
-            "link": "https://ui.shadcn.com/docs"
+            "link": "https://ui.shadcn.com/docs",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-28.jpg",
+                "title": "Team Member portrait",
+                "alternative": "Portrait photo of Team Member.",
+                "description": "Portrait-style photo from Unsplash collection #25880.",
+                "source": "https://unsplash.com/collections/25880"
+            }
         },
         {
             "name": "Pro 16",
             "price": "$2,499",
             "specs": [
-                "16-inch Liquid Retina XDR",
-                "12-core CPU, 38-core GPU",
-                "64GB unified memory",
-                "2TB SSD storage",
-                "24-hour battery life"
+                {
+                    "text": "Text for Product Comparison: Reusable Section Blueprint"
+                },
+                {
+                    "text": "Text for Launch Readiness Review 2"
+                },
+                {
+                    "text": "Text for Pattern Library Rollout 3"
+                },
+                {
+                    "text": "Text for Content Operations Brief 4"
+                },
+                {
+                    "text": "Text for Customer Evidence Hub 5"
+                }
             ],
             "is_recommended": false,
-            "link": "https://ui.shadcn.com/docs"
+            "link": "https://ui.shadcn.com/docs",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-10.jpg",
+                "title": "Team Member portrait",
+                "alternative": "Portrait photo of Team Member.",
+                "description": "Portrait-style photo from Unsplash collection #25880.",
+                "source": "https://unsplash.com/collections/25880"
+            }
         }
     ]
 }

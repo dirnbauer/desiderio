@@ -2,5 +2,35 @@
     "_type": "nav",
     "header": "Primary",
     "brand": "Northwind Studio",
-    "button_text": "Start free trial"
+    "button_text": "Start free trial",
+    "brand_link": "https://example.com/desiderio/brand_link_1",
+    "button_link": "https://example.com/desiderio/button_link_1",
+    "left_items": [
+        {
+            "label": "TYPO3 Form finishers",
+            "link": "https://example.com/desiderio/link_1"
+        },
+        {
+            "label": "Theme-aware states",
+            "link": "https://example.com/desiderio/link_2"
+        },
+        {
+            "label": "Keyboard focus built in",
+            "link": "https://example.com/desiderio/link_3"
+        }
+    ],
+    "right_items": [
+        {
+            "label": "TYPO3 Form finishers",
+            "link": "https://example.com/desiderio/link_1"
+        },
+        {
+            "label": "Theme-aware states",
+            "link": "https://example.com/desiderio/link_2"
+        },
+        {
+            "label": "Keyboard focus built in",
+            "link": "https://example.com/desiderio/link_3"
+        }
+    ]
 }

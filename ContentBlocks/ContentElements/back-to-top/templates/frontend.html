@@ -7,13 +7,15 @@
 
 <f:variable name="btnLabel">{data.label -> f:or(alternative: 'Back to top')}</f:variable>
 <f:variable name="btnTitle">{data.header -> f:or(alternative: '{btnLabel}')}</f:variable>
+<f:variable name="btnClass"><d:atom.controlClass slot="buttonOutline" /></f:variable>
 
-<button type="button" class="back-to-top back-to-top--{data.position -> f:or(alternative: 'bottom-right')} is-hidden"
+<button type="button"
+        class="{btnClass -> f:format.trim()} back-to-top back-to-top--{data.position -> f:or(alternative: 'bottom-right')} is-hidden"
         aria-label="{btnLabel}"
         title="{btnTitle}"
         data-d-back-to-top
         data-threshold="300">
-    <svg xmlns="http://www.w3.org/2000/svg" class="back-to-top__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m18 15-6-6-6 6"/></svg>
+    <d:atom.icon name="chevron-up" size="sm" class="back-to-top__icon" />
     <f:if condition="{data.show_label}">
         <span class="back-to-top__label">{btnLabel}</span>
     </f:if>

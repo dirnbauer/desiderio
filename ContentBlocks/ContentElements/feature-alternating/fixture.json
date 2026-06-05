@@ -5,15 +5,39 @@
     "items": [
         {
             "title": "Connect every source in minutes",
-            "description": "Plug into your warehouse, CRM, and ad platforms with prebuilt connectors. Data syncs automatically, so analysts spend their time on answers instead of exports."
+            "description": "Plug into your warehouse, CRM, and ad platforms with prebuilt connectors. Data syncs automatically, so analysts spend their time on answers instead of exports.",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-14.jpg",
+                "title": "Team Member portrait",
+                "alternative": "Portrait photo of Team Member.",
+                "description": "Portrait-style photo from Unsplash collection #25880.",
+                "source": "https://unsplash.com/collections/25880"
+            },
+            "link": "https://example.com/desiderio/link_1"
         },
         {
             "title": "Model once, reuse everywhere",
-            "description": "Define your core metrics in a shared semantic layer. Every chart, alert, and report draws from the same definitions, so revenue always means revenue."
+            "description": "Define your core metrics in a shared semantic layer. Every chart, alert, and report draws from the same definitions, so revenue always means revenue.",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-28.jpg",
+                "title": "Team Member portrait",
+                "alternative": "Portrait photo of Team Member.",
+                "description": "Portrait-style photo from Unsplash collection #25880.",
+                "source": "https://unsplash.com/collections/25880"
+            },
+            "link": "https://example.com/desiderio/link_2"
         },
         {
             "title": "Share insights people actually open",
-            "description": "Push dashboards to Slack, email, or a public link with one click. Stakeholders see the numbers in the tools they already live in, updated in real time."
+            "description": "Push dashboards to Slack, email, or a public link with one click. Stakeholders see the numbers in the tools they already live in, updated in real time.",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-10.jpg",
+                "title": "Team Member portrait",
+                "alternative": "Portrait photo of Team Member.",
+                "description": "Portrait-style photo from Unsplash collection #25880.",
+                "source": "https://unsplash.com/collections/25880"
+            },
+            "link": "https://example.com/desiderio/link_3"
         }
     ]
 }

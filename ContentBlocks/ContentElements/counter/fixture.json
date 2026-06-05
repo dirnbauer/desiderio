@@ -6,16 +6,18 @@
         {
             "target_value": 12000,
             "suffix": "+",
-            "label": "Sites in production"
+            "label": "Sites in production",
+            "prefix": ""
         },
         {
             "target_value": 99.9,
             "suffix": "%",
-            "label": "Uptime, last 12 months"
+            "label": "Uptime, last 12 months",
+            "prefix": ""
         },
         {
             "target_value": 40,
-            "prefix": "−",
+            "prefix": "\u2212",
             "suffix": "h",
             "label": "Build time per page"
         }

@@ -5,19 +5,25 @@
     "placeholder": "Search guides, APIs, and FAQs",
     "category_filters": [
         {
-            "label": "Getting started"
+            "label": "Getting started",
+            "link": "https://example.com/desiderio/link_1"
         },
         {
-            "label": "Billing"
+            "label": "Billing",
+            "link": "https://example.com/desiderio/link_2"
         },
         {
-            "label": "API reference"
+            "label": "API reference",
+            "link": "https://example.com/desiderio/link_3"
         },
         {
-            "label": "Integrations"
+            "label": "Integrations",
+            "link": "https://example.com/desiderio/link_4"
         },
         {
-            "label": "Troubleshooting"
+            "label": "Troubleshooting",
+            "link": "https://example.com/desiderio/link_5"
         }
-    ]
+    ],
+    "form_action": "https://example.com/desiderio/form_action_1"
 }

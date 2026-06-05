@@ -9,41 +9,110 @@
         {
             "slide_title": "Rebuilding checkout in six weeks",
             "slide_description": "How a focused design sprint cut cart abandonment by 23% for a Vienna retailer.",
-            "slide_link": "t3://page?uid=1"
+            "slide_link": "t3://page?uid=1",
+            "slide_image": {
+                "file": "Resources/Public/Styleguide/Unsplash/office-turquo-cabbit.jpg",
+                "title": "Modern office atrium",
+                "alternative": "A modern multi-level office atrium with glass railings and warm light.",
+                "description": "Copyright/credit: Photo by Turquo Cabbit on Unsplash. Used as seeded demo imagery.",
+                "source": "https://unsplash.com/photos/modern-office-building-interior-with-multiple-floors-QkGDA4Q4Vdk"
+            }
         },
         {
             "slide_title": "A design system that scales",
             "slide_description": "Shipping 40+ reusable components let three product teams move in parallel.",
-            "slide_link": "t3://page?uid=1"
+            "slide_link": "t3://page?uid=1",
+            "slide_image": {
+                "file": "Resources/Public/Styleguide/Unsplash/laptop-glenn-carstens-peters.jpg",
+                "title": "Planning on a laptop",
+                "alternative": "Hands using a laptop while planning work on a wooden desk.",
+                "description": "Copyright/credit: Photo by Glenn Carstens-Peters on Unsplash. Used as seeded demo imagery.",
+                "source": "https://unsplash.com/photos/person-using-macbook-pro-npxXWgQ33ZQ"
+            }
         },
         {
             "slide_title": "From prototype to launch",
             "slide_description": "Turning a weekend concept into a funded product with 5,000 early sign-ups.",
-            "slide_link": "t3://page?uid=1"
+            "slide_link": "t3://page?uid=1",
+            "slide_image": {
+                "file": "Resources/Public/Styleguide/Unsplash/workspace-marvin-meyer.jpg",
+                "title": "Collaborative workspace",
+                "alternative": "People working together around laptops in a collaborative workspace.",
+                "description": "Copyright/credit: Photo by Marvin Meyer on Unsplash. Used as seeded demo imagery.",
+                "source": "https://unsplash.com/photos/people-sitting-down-near-table-with-assorted-laptop-computers-SYTO3xs06fU"
+            }
         },
         {
             "slide_title": "Accessibility, built in",
-            "slide_description": "Meeting WCAG 2.2 AA from day one, verified with real assistive-tech testing."
+            "slide_description": "Meeting WCAG 2.2 AA from day one, verified with real assistive-tech testing.",
+            "slide_image": {
+                "file": "Resources/Public/Styleguide/Unsplash/workspace-marvin-meyer.jpg",
+                "title": "Collaborative workspace",
+                "alternative": "People working together around laptops in a collaborative workspace.",
+                "description": "Copyright/credit: Photo by Marvin Meyer on Unsplash. Used as seeded demo imagery.",
+                "source": "https://unsplash.com/photos/people-sitting-down-near-table-with-assorted-laptop-computers-SYTO3xs06fU"
+            },
+            "slide_link": "https://example.com/desiderio/slide_link_4"
         },
         {
             "slide_title": "Sharper onboarding metrics",
-            "slide_description": "A lean activation flow helped new accounts reach their first useful dashboard in minutes."
+            "slide_description": "A lean activation flow helped new accounts reach their first useful dashboard in minutes.",
+            "slide_image": {
+                "file": "Resources/Public/Styleguide/Unsplash/laptop-mimi-thian.jpg",
+                "title": "Laptop work session",
+                "alternative": "A laptop open on a person's lap during a focused work session.",
+                "description": "Copyright/credit: Photo by Mimi Thian on Unsplash. Used as seeded demo imagery.",
+                "source": "https://unsplash.com/photos/macbook-on-womans-lap-i5cd_SlY8XY"
+            },
+            "slide_link": "https://example.com/desiderio/slide_link_5"
         },
         {
             "slide_title": "Editorial tools for launch day",
-            "slide_description": "Editors shipped campaign pages without developer handoffs, while previews stayed production-accurate."
+            "slide_description": "Editors shipped campaign pages without developer handoffs, while previews stayed production-accurate.",
+            "slide_image": {
+                "file": "Resources/Public/Styleguide/Unsplash/customer-enterprise.jpg",
+                "title": "Enterprise customer workspace",
+                "alternative": "A large retail distribution facility with loading bays.",
+                "description": "Unsplash image used as demo cover photography.",
+                "source": "https://unsplash.com/"
+            },
+            "slide_link": "https://example.com/desiderio/slide_link_6"
         },
         {
             "slide_title": "Search that feels immediate",
-            "slide_description": "Filtered result pages now keep context, surface useful facets, and recover gracefully from empty states."
+            "slide_description": "Filtered result pages now keep context, surface useful facets, and recover gracefully from empty states.",
+            "slide_image": {
+                "file": "Resources/Public/Styleguide/Unsplash/dashboard-neil-fernandez.jpg",
+                "title": "Dark product dashboard",
+                "alternative": "A laptop displaying a dark modern dashboard interface.",
+                "description": "Copyright/credit: Photo by Neil Fernandez on Unsplash. Used as seeded demo imagery.",
+                "source": "https://unsplash.com/photos/a-modern-laptop-displaying-a-dark-themed-dashboard-6-0ajRI1cgs"
+            },
+            "slide_link": "https://example.com/desiderio/slide_link_7"
         },
         {
             "slide_title": "A calmer support workspace",
-            "slide_description": "Shared queues, reusable answers, and clear escalation paths reduced daily review time."
+            "slide_description": "Shared queues, reusable answers, and clear escalation paths reduced daily review time.",
+            "slide_image": {
+                "file": "Resources/Public/Styleguide/Unsplash/dashboard-neil-fernandez.jpg",
+                "title": "Dark product dashboard",
+                "alternative": "A laptop displaying a dark modern dashboard interface.",
+                "description": "Copyright/credit: Photo by Neil Fernandez on Unsplash. Used as seeded demo imagery.",
+                "source": "https://unsplash.com/photos/a-modern-laptop-displaying-a-dark-themed-dashboard-6-0ajRI1cgs"
+            },
+            "slide_link": "https://example.com/desiderio/slide_link_8"
         },
         {
             "slide_title": "Performance budget recovered",
-            "slide_description": "Image, script, and layout cleanup brought the product site back under its target Core Web Vitals budget."
+            "slide_description": "Image, script, and layout cleanup brought the product site back under its target Core Web Vitals budget.",
+            "slide_image": {
+                "file": "Resources/Public/Styleguide/Unsplash/office-turquo-cabbit.jpg",
+                "title": "Modern office atrium",
+                "alternative": "A modern multi-level office atrium with glass railings and warm light.",
+                "description": "Copyright/credit: Photo by Turquo Cabbit on Unsplash. Used as seeded demo imagery.",
+                "source": "https://unsplash.com/photos/modern-office-building-interior-with-multiple-floors-QkGDA4Q4Vdk"
+            },
+            "slide_link": "https://example.com/desiderio/slide_link_9"
         }
     ]
 }

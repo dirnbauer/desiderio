@@ -1,19 +1,23 @@
 {
     "_type": "footer",
     "header": "Northwind site footer",
-    "copyright": "© 2026 Northwind Analytics Inc.",
+    "copyright": "\u00a9 2026 Northwind Analytics Inc.",
     "link_items": [
         {
-            "label": "Privacy"
+            "label": "Privacy",
+            "link": "https://example.com/desiderio/link_1"
         },
         {
-            "label": "Terms"
+            "label": "Terms",
+            "link": "https://example.com/desiderio/link_2"
         },
         {
-            "label": "Cookies"
+            "label": "Cookies",
+            "link": "https://example.com/desiderio/link_3"
         },
         {
-            "label": "Status"
+            "label": "Status",
+            "link": "https://example.com/desiderio/link_4"
         }
     ]
 }

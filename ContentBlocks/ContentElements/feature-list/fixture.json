@@ -6,15 +6,19 @@
     "items": [
         {
             "title": "Reusable content blocks",
-            "description": "Compose pages from a shared catalog so editors stay consistent without touching code."
+            "description": "Compose pages from a shared catalog so editors stay consistent without touching code.",
+            "icon": "globe"
         },
         {
             "title": "Token-driven theming",
-            "description": "Switch the entire look with a shadcn preset — every element re-skins from semantic tokens."
+            "description": "Switch the entire look with a shadcn preset \u2014 every element re-skins from semantic tokens.",
+            "icon": "map-pin"
         },
         {
             "title": "Accessible by default",
-            "description": "Keyboard focus, semantic landmarks, and screen-reader labels ship with every block."
+            "description": "Keyboard focus, semantic landmarks, and screen-reader labels ship with every block.",
+            "icon": "sparkles"
         }
-    ]
+    ],
+    "shadcn_layout": "two-columns"
 }

@@ -6,10 +6,40 @@
     "compare_at_price": "$1,540",
     "availability": "limited",
     "highlights": [
-        { "text": "Free white-glove delivery within 3-5 business days" },
-        { "text": "10-year frame warranty, 2-year upholstery warranty" },
-        { "text": "100-night home trial with free returns" }
+        {
+            "text": "Free white-glove delivery within 3-5 business days"
+        },
+        {
+            "text": "10-year frame warranty, 2-year upholstery warranty"
+        },
+        {
+            "text": "100-night home trial with free returns"
+        }
     ],
     "cta_text": "Add to cart",
-    "columns": "5"
+    "columns": "5",
+    "images": [
+        {
+            "file": "Resources/Public/Styleguide/Unsplash/laptop-mimi-thian.jpg",
+            "title": "Laptop work session",
+            "alternative": "A laptop open on a person's lap during a focused work session.",
+            "description": "Copyright/credit: Photo by Mimi Thian on Unsplash. Used as seeded demo imagery.",
+            "source": "https://unsplash.com/photos/macbook-on-womans-lap-i5cd_SlY8XY"
+        },
+        {
+            "file": "Resources/Public/Styleguide/Unsplash/laptop-mimi-thian.jpg",
+            "title": "Laptop work session",
+            "alternative": "A laptop open on a person's lap during a focused work session.",
+            "description": "Copyright/credit: Photo by Mimi Thian on Unsplash. Used as seeded demo imagery.",
+            "source": "https://unsplash.com/photos/macbook-on-womans-lap-i5cd_SlY8XY"
+        },
+        {
+            "file": "Resources/Public/Styleguide/Unsplash/customer-enterprise.jpg",
+            "title": "Enterprise customer workspace",
+            "alternative": "A large retail distribution facility with loading bays.",
+            "description": "Unsplash image used as demo cover photography.",
+            "source": "https://unsplash.com/"
+        }
+    ],
+    "cta_link": "https://example.com/desiderio/cta_link_1"
 }

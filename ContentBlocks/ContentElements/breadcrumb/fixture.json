@@ -2,9 +2,21 @@
     "_type": "nav",
     "header": "Breadcrumb",
     "items": [
-        { "label": "Home", "link": "t3://page?uid=1" },
-        { "label": "Platform", "link": "t3://page?uid=12" },
-        { "label": "Customer analytics", "link": "t3://page?uid=24" },
-        { "label": "Real-time dashboards", "link": "" }
+        {
+            "label": "Home",
+            "link": "t3://page?uid=1"
+        },
+        {
+            "label": "Platform",
+            "link": "t3://page?uid=12"
+        },
+        {
+            "label": "Customer analytics",
+            "link": "t3://page?uid=24"
+        },
+        {
+            "label": "Real-time dashboards",
+            "link": "https://example.com/desiderio/link_4"
+        }
     ]
 }

@@ -1,18 +1,22 @@
-<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:vh="http://typo3.org/ns/In2code/Powermail/ViewHelpers" data-namespace-typo3-fluid="true">
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:vh="http://typo3.org/ns/In2code/Powermail/ViewHelpers" xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection" data-namespace-typo3-fluid="true">
 <f:argument name="field" type="object" />
 <f:argument name="settings" type="array" optional="{true}" />
 <f:argument name="mail" type="object" optional="{true}" />
 
-<div data-slot="form-item" class="powermail_fieldwrap_{field.marker} {field.css} space-y-2">
+<f:variable name="panelClass"><d:atom.controlClass slot="panel" /></f:variable>
+<f:variable name="inputClass"><d:atom.controlClass slot="input" /></f:variable>
+<f:variable name="captchaImageClass"><d:atom.controlClass slot="captchaImage" /></f:variable>
+
+<d:molecule.field class="powermail_fieldwrap_{field.marker} {field.css} space-y-2">
     <f:render partial="Form/FieldLabel" arguments="{field: field}" />
-    <div class="{f:render(partial: 'Form/ShadcnClass', arguments: {slot: 'panel'}) -> f:format.trim()}">
+    <div class="{panelClass -> f:format.trim()}">
         <f:form.textfield
             property="{field.marker}"
             value=""
-            class="{f:render(partial: 'Form/ShadcnClass', arguments: {slot: 'input'}) -> f:format.trim()} {vh:validation.errorClass(field: field, class: 'border-destructive ring-1 ring-destructive/20')}"
+            class="{inputClass -> f:format.trim()} {vh:validation.errorClass(field: field, class: 'border-destructive ring-1 ring-destructive/20')}"
             additionalAttributes="{vh:validation.captchaDataAttribute(field: field)}"
             id="powermail_field_{field.marker}" />
-        <vh:validation.captcha field="{field}" alt="captcha" class="{f:render(partial: 'Form/ShadcnClass', arguments: {slot: 'captchaImage'}) -> f:format.trim()}" id="powermail_captchaimage" />
+        <vh:validation.captcha field="{field}" alt="captcha" class="{captchaImageClass -> f:format.trim()}" id="powermail_captchaimage" />
     </div>
-</div>
+</d:molecule.field>
 </html>

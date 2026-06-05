@@ -9,21 +9,42 @@
             "meta": "8 min read",
             "title": "How we cut p99 latency from 1.2s to 180ms",
             "excerpt": "The three database changes and one cache layer that made our API feel instant for every customer.",
-            "link": "t3://page?uid=1"
+            "link": "t3://page?uid=1",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-14.jpg",
+                "title": "Team Member portrait",
+                "alternative": "Portrait photo of Team Member.",
+                "description": "Portrait-style photo from Unsplash collection #25880.",
+                "source": "https://unsplash.com/collections/25880"
+            }
         },
         {
             "category": "Product",
             "meta": "5 min read",
             "title": "The four metrics that actually predict churn",
             "excerpt": "Stop watching vanity dashboards. These leading indicators flag who is leaving weeks before they do.",
-            "link": "t3://page?uid=1"
+            "link": "t3://page?uid=1",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-28.jpg",
+                "title": "Team Member portrait",
+                "alternative": "Portrait photo of Team Member.",
+                "description": "Portrait-style photo from Unsplash collection #25880.",
+                "source": "https://unsplash.com/collections/25880"
+            }
         },
         {
             "category": "Culture",
             "meta": "6 min read",
             "title": "Why we ship on Fridays now",
             "excerpt": "Continuous deployment changed our relationship with risk and made the whole team braver in the process.",
-            "link": "t3://page?uid=1"
+            "link": "t3://page?uid=1",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-10.jpg",
+                "title": "Team Member portrait",
+                "alternative": "Portrait photo of Team Member.",
+                "description": "Portrait-style photo from Unsplash collection #25880.",
+                "source": "https://unsplash.com/collections/25880"
+            }
         }
     ]
 }

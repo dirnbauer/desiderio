@@ -5,5 +5,29 @@
     "badge_text": "Launching soon",
     "input_placeholder": "you@company.com",
     "button_text": "Join the waitlist",
-    "social_proof_text": "Join 2,400+ founders already on the list"
+    "social_proof_text": "Join 2,400+ founders already on the list",
+    "form_action": "https://example.com/desiderio/form_action_1",
+    "avatars": [
+        {
+            "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-39.jpg",
+            "title": "Team Member portrait",
+            "alternative": "Portrait photo of Team Member.",
+            "description": "Portrait-style photo from Unsplash collection #25880.",
+            "source": "https://unsplash.com/collections/25880"
+        },
+        {
+            "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-17.jpg",
+            "title": "Team Member portrait",
+            "alternative": "Portrait photo of Team Member.",
+            "description": "Portrait-style photo from Unsplash collection #25880.",
+            "source": "https://unsplash.com/collections/25880"
+        },
+        {
+            "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-11.jpg",
+            "title": "Team Member portrait",
+            "alternative": "Portrait photo of Team Member.",
+            "description": "Portrait-style photo from Unsplash collection #25880.",
+            "source": "https://unsplash.com/collections/25880"
+        }
+    ]
 }

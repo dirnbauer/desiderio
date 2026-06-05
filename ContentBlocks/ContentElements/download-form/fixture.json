@@ -4,5 +4,13 @@
     "description": "A practical checklist for content editors: heading order, focus states, alt text, and the copy lengths that keep a page scannable. Built from the WCAG and NN/g guidance behind this library.",
     "resource_title": "The 24-point content block QA checklist (PDF)",
     "button_text": "Email me the checklist",
-    "reassurance": "Free PDF. One email, unsubscribe anytime."
+    "reassurance": "Free PDF. One email, unsubscribe anytime.",
+    "form_action": "https://example.com/desiderio/form_action_1",
+    "image": {
+        "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-14.jpg",
+        "title": "Team Member portrait",
+        "alternative": "Portrait photo of Team Member.",
+        "description": "Portrait-style photo from Unsplash collection #25880.",
+        "source": "https://unsplash.com/collections/25880"
+    }
 }

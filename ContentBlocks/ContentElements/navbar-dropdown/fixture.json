@@ -12,7 +12,9 @@
             "child_2_label": "Integrations",
             "child_2_link": "https://example.com/desiderio/product/integrations",
             "child_3_label": "Changelog",
-            "child_3_link": "https://example.com/desiderio/product/changelog"
+            "child_3_link": "https://example.com/desiderio/product/changelog",
+            "child_4_label": "Pricing",
+            "child_4_link": "https://example.com/desiderio/pricing"
         },
         {
             "label": "Solutions",
@@ -22,10 +24,34 @@
             "child_2_label": "For enterprise",
             "child_2_link": "https://example.com/desiderio/solutions/enterprise",
             "child_3_label": "For agencies",
-            "child_3_link": "https://example.com/desiderio/solutions/agencies"
+            "child_3_link": "https://example.com/desiderio/solutions/agencies",
+            "child_4_label": "Pricing",
+            "child_4_link": "https://example.com/desiderio/pricing"
         },
-        { "label": "Pricing", "link": "https://example.com/desiderio/pricing" },
-        { "label": "Docs", "link": "https://example.com/desiderio/docs" }
+        {
+            "label": "Pricing",
+            "link": "https://example.com/desiderio/pricing",
+            "child_1_label": "Overview",
+            "child_1_link": "https://ui.shadcn.com/docs",
+            "child_2_label": "Components",
+            "child_2_link": "https://ui.shadcn.com/docs/components",
+            "child_3_label": "Examples",
+            "child_3_link": "https://ui.shadcn.com/blocks",
+            "child_4_label": "Pricing",
+            "child_4_link": "https://example.com/desiderio/pricing"
+        },
+        {
+            "label": "Docs",
+            "link": "https://example.com/desiderio/docs",
+            "child_1_label": "Overview",
+            "child_1_link": "https://ui.shadcn.com/docs",
+            "child_2_label": "Components",
+            "child_2_link": "https://ui.shadcn.com/docs/components",
+            "child_3_label": "Examples",
+            "child_3_link": "https://ui.shadcn.com/blocks",
+            "child_4_label": "Pricing",
+            "child_4_link": "https://example.com/desiderio/pricing"
+        }
     ],
     "button_text": "Start free trial",
     "button_link": "https://example.com/desiderio/signup"

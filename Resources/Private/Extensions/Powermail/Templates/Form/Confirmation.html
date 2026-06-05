@@ -1,6 +1,7 @@
 <html
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
     xmlns:vh="http://typo3.org/ns/In2code/Powermail/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
     data-namespace-typo3-fluid="true"
 >
 <f:layout name="Default" />
@@ -10,49 +11,61 @@
 <f:argument name="powermail_all" type="string" optional="{true}" />
 <f:argument name="ttContentData" type="array" optional="{true}" />
 
-<f:section name="main">
-    <div class="mt-8 max-w-2xl {f:render(partial: 'Form/ShadcnClass', arguments: {slot: 'cardCompact'}) -> f:format.trim()}" data-slot="card">
-        <div data-slot="card-header" class="{f:render(partial: 'Form/ShadcnClass', arguments: {slot: 'cardHeaderBordered'}) -> f:format.trim()}">
-            <h2 data-slot="card-title" class="{f:render(partial: 'Form/ShadcnClass', arguments: {slot: 'cardTitle'}) -> f:format.trim()}">
-                <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/powermail.xlf:powermail.confirmation.title" />
-            </h2>
-            <p data-slot="card-description" class="{f:render(partial: 'Form/ShadcnClass', arguments: {slot: 'cardDescription'}) -> f:format.trim()}">
-                <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/powermail.xlf:powermail.confirmation.description" />
-            </p>
-        </div>
-        <div class="{f:render(partial: 'Form/ShadcnClass', arguments: {slot: 'panelContent'}) -> f:format.trim()}">
-            {powermail_all -> f:format.raw()}
-        </div>
-        <div class="mt-6 flex flex-wrap gap-2">
-            <f:form
-                action="form"
-                section="c{ttContentData.uid}"
-                name="field"
-                enctype="multipart/form-data"
-                addQueryString="{settings.misc.addQueryString}"
-                additionalAttributes="{vh:validation.enableJavascriptValidationAndAjax(form: mail.form)}">
-                <f:render section="HiddenFields" arguments="{_all}" />
-                <f:form.submit
-                    value="{f:translate(key: 'confirmation_prev', extensionName: 'Powermail')}"
-                    additionalAttributes="{data-powermail-form-ajax: 'confirmation'}"
-                    class="{f:render(partial: 'Form/ShadcnClass', arguments: {slot: 'buttonOutline'}) -> f:format.trim()}" />
-            </f:form>
+<f:variable name="cardCompactClass"><d:atom.controlClass slot="cardCompact" /></f:variable>
+<f:variable name="cardHeaderClass"><d:atom.controlClass slot="cardHeaderBordered" /></f:variable>
+<f:variable name="cardTitleClass"><d:atom.controlClass slot="cardTitle" /></f:variable>
+<f:variable name="cardDescriptionClass"><d:atom.controlClass slot="cardDescription" /></f:variable>
+<f:variable name="panelContentClass"><d:atom.controlClass slot="panelContent" /></f:variable>
+<f:variable name="buttonOutlineClass"><d:atom.controlClass slot="buttonOutline" /></f:variable>
+<f:variable name="buttonDefaultClass"><d:atom.controlClass slot="buttonDefault" /></f:variable>
 
-            <f:form
-                action="create"
-                section="c{ttContentData.uid}"
-                name="field"
-                enctype="multipart/form-data"
-                addQueryString="{settings.misc.addQueryString}"
-                additionalAttributes="{vh:validation.enableJavascriptValidationAndAjax(form: mail.form)}">
-                <f:render section="HiddenFields" arguments="{_all}" />
-                <f:form.submit
-                    value="{f:translate(key: 'confirmation_submit', extensionName: 'Powermail')}"
-                    additionalAttributes="{data-powermail-form-ajax: 'submit'}"
-                    class="{f:render(partial: 'Form/ShadcnClass', arguments: {slot: 'buttonDefault'}) -> f:format.trim()}" />
-            </f:form>
-        </div>
-    </div>
+<f:section name="main">
+    <d:layout.container size="md" class="mt-8 max-w-2xl">
+        <d:molecule.card class="{cardCompactClass -> f:format.trim()} p-4">
+            <d:molecule.cardHeader class="border-b">
+                <f:slot>
+                    <h2 data-slot="card-title" class="{cardTitleClass -> f:format.trim()}">
+                        <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/powermail.xlf:powermail.confirmation.title" />
+                    </h2>
+                    <p data-slot="card-description" class="{cardDescriptionClass -> f:format.trim()}">
+                        <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/powermail.xlf:powermail.confirmation.description" />
+                    </p>
+                </f:slot>
+            </d:molecule.cardHeader>
+            <d:molecule.cardContent class="{panelContentClass -> f:format.trim()}">
+                {powermail_all -> f:format.raw()}
+            </d:molecule.cardContent>
+            <d:molecule.cardFooter class="mt-6 flex flex-wrap gap-2">
+                <f:form
+                    action="form"
+                    section="c{ttContentData.uid}"
+                    name="field"
+                    enctype="multipart/form-data"
+                    addQueryString="{settings.misc.addQueryString}"
+                    additionalAttributes="{vh:validation.enableJavascriptValidationAndAjax(form: mail.form)}">
+                    <f:render section="HiddenFields" arguments="{_all}" />
+                    <f:form.submit
+                        value="{f:translate(key: 'confirmation_prev', extensionName: 'Powermail')}"
+                        additionalAttributes="{data-powermail-form-ajax: 'confirmation'}"
+                        class="{buttonOutlineClass -> f:format.trim()}" />
+                </f:form>
+
+                <f:form
+                    action="create"
+                    section="c{ttContentData.uid}"
+                    name="field"
+                    enctype="multipart/form-data"
+                    addQueryString="{settings.misc.addQueryString}"
+                    additionalAttributes="{vh:validation.enableJavascriptValidationAndAjax(form: mail.form)}">
+                    <f:render section="HiddenFields" arguments="{_all}" />
+                    <f:form.submit
+                        value="{f:translate(key: 'confirmation_submit', extensionName: 'Powermail')}"
+                        additionalAttributes="{data-powermail-form-ajax: 'submit'}"
+                        class="{buttonDefaultClass -> f:format.trim()}" />
+                </f:form>
+            </d:molecule.cardFooter>
+        </d:molecule.card>
+    </d:layout.container>
 </f:section>
 
 <f:section name="HiddenFields">

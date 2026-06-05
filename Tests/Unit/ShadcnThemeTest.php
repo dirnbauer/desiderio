@@ -261,6 +261,7 @@ final class ShadcnThemeTest extends TestCase
         }
 
         self::assertStringContainsString('--icon-library=', $script);
+        self::assertStringContainsString('Resources/Private/Components/Atom/ControlClass/ControlClass.fluid.html', $script);
         self::assertStringContainsString('Resources/Private/Extensions/Powermail/Partials/Form/ShadcnClass.html', $script);
     }
 

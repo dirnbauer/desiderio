@@ -2,25 +2,21 @@
 <f:argument name="variant" type="string" optional="{true}" default="default" />
 <f:argument name="external" type="bool" optional="{true}" default="{false}" />
 <f:argument name="class" type="string" optional="{true}" default="" />
+<f:argument name="target" type="string" optional="{true}" default="" />
+<f:argument name="title" type="string" optional="{true}" />
 
 <f:variable name="variantClass">
     <f:switch expression="{variant}">
         <f:case value="muted">text-muted-foreground hover:text-foreground transition-colors</f:case>
         <f:case value="underline">text-foreground underline underline-offset-4 hover:text-primary</f:case>
         <f:case value="button">inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline</f:case>
-        <f:defaultCase>text-primary underline-offset-4 hover:underline</f:defaultCase>
+        <f:defaultCase>text-primary underline-offset-4 hover:underline</f:case>
     </f:switch>
 </f:variable>
 
-<f:if condition="{external}">
-    <f:then>
-        <a href="{href}" class="{variantClass -> f:format.trim()} {class}" target="_blank" rel="noopener noreferrer">
-            <f:slot />
-        </a>
-    </f:then>
-    <f:else>
-        <a href="{href}" class="{variantClass -> f:format.trim()} {class}">
-            <f:slot />
-        </a>
-    </f:else>
-</f:if>
+<f:variable name="resolvedTarget" value="{f:if(condition: external, then: '_blank', else: target)}" />
+<f:variable name="rel" value="{f:if(condition: '{resolvedTarget} == \'_blank\'', then: 'noopener noreferrer', else: '')}" />
+
+<a href="{href}" class="{variantClass -> f:format.trim()} {class}" target="{resolvedTarget}" rel="{rel}" title="{title}" data-slot="link" data-variant="{variant}">
+    <f:slot />
+</a>

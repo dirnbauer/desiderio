@@ -1,10 +1,11 @@
 <html
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
     data-namespace-typo3-fluid="true"
 >
 <f:argument name="flashMessageClass" type="string" optional="{true}" default="" />
 
-<f:variable name="defaultFlashMessageClass"><f:render partial="Form/ShadcnClass" arguments="{slot: 'flashDestructive'}" /></f:variable>
+<f:variable name="defaultFlashMessageClass"><d:atom.controlClass slot="flashDestructive" /></f:variable>
 
 <f:flashMessages queueIdentifier="extbase.flashmessages.tx_powermail_pi1" as="flashMessages">
     <f:for each="{flashMessages}" as="flashMessage">

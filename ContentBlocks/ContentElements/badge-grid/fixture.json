@@ -6,33 +6,43 @@
     "items": [
         {
             "text": "SOC 2 Type II",
-            "color": "green"
+            "color": "green",
+            "link": "https://example.com/desiderio/link_1"
         },
         {
             "text": "GDPR compliant",
-            "color": "green"
+            "color": "green",
+            "link": "https://example.com/desiderio/link_2"
         },
         {
             "text": "99.9% uptime SLA",
-            "color": "blue"
+            "color": "blue",
+            "link": "https://example.com/desiderio/link_3"
         },
         {
             "text": "Sub-100ms response",
-            "color": "blue"
+            "color": "blue",
+            "link": "https://example.com/desiderio/link_4"
         },
         {
-            "text": "200+ edge locations"
-        },
-        {
-            "text": "50+ native integrations"
-        },
-        {
-            "text": "SSO & SCIM",
+            "text": "200+ edge locations",
+            "link": "https://example.com/desiderio/link_5",
             "color": "default"
         },
         {
+            "text": "50+ native integrations",
+            "link": "https://example.com/desiderio/link_6",
+            "color": "default"
+        },
+        {
+            "text": "SSO & SCIM",
+            "color": "default",
+            "link": "https://example.com/desiderio/link_7"
+        },
+        {
             "text": "24/7 support",
-            "color": "yellow"
+            "color": "yellow",
+            "link": "https://example.com/desiderio/link_8"
         }
     ]
 }

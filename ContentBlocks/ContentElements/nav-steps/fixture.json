@@ -3,9 +3,25 @@
     "header": "Checkout progress",
     "variant": "numbered",
     "step_items": [
-        { "label": "Your cart", "link": "https://ui.shadcn.com/docs?step=cart", "status": "completed" },
-        { "label": "Shipping", "link": "https://ui.shadcn.com/docs?step=shipping", "status": "completed" },
-        { "label": "Payment", "link": "https://ui.shadcn.com/docs?step=payment", "status": "current" },
-        { "label": "Review order", "link": "", "status": "pending" }
+        {
+            "label": "Your cart",
+            "link": "https://ui.shadcn.com/docs?step=cart",
+            "status": "completed"
+        },
+        {
+            "label": "Shipping",
+            "link": "https://ui.shadcn.com/docs?step=shipping",
+            "status": "completed"
+        },
+        {
+            "label": "Payment",
+            "link": "https://ui.shadcn.com/docs?step=payment",
+            "status": "current"
+        },
+        {
+            "label": "Review order",
+            "link": "https://example.com/desiderio/link_4",
+            "status": "pending"
+        }
     ]
 }

@@ -41,7 +41,7 @@ final class PowermailIntegrationTest extends TestCase
         self::assertStringContainsString('EXT:desiderio/Resources/Private/Extensions/Powermail/Layouts/', $setup);
     }
 
-    public function testPowermailTemplatesUseFluidArgumentsAndShadcnClasses(): void
+    public function testPowermailTemplatesUseFluidArgumentsAndDesiderioComponents(): void
     {
         $files = [
             'Layouts/Default.html',
@@ -69,10 +69,10 @@ final class PowermailIntegrationTest extends TestCase
         }
 
         $form = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/Powermail/Templates/Form/Form.html');
-        self::assertStringContainsString('mt-8 w-full max-w-2xl', $form);
-        self::assertStringContainsString("slot: 'card'", $form);
-        self::assertStringContainsString("slot: 'cardHeaderBordered'", $form);
-        self::assertStringContainsString("slot: 'tabsList'", $form);
+        self::assertStringContainsString('Webconsulting/Desiderio/Components/ComponentCollection', $form);
+        self::assertStringContainsString('<d:layout.container', $form);
+        self::assertStringContainsString('<d:molecule.cardContent', $form);
+        self::assertStringContainsString('<d:atom.controlClass slot="card"', $form);
         self::assertStringContainsString('data-slot="card-header"', $form);
         self::assertStringNotContainsString('powermail_form powermail_form_', $form);
         self::assertStringContainsString('data-powermail-morestep-show', $form);
@@ -81,61 +81,58 @@ final class PowermailIntegrationTest extends TestCase
 
         $input = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/Powermail/Partials/Form/Field/Input.html');
         $fieldLabel = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/Powermail/Partials/Form/FieldLabel.html');
-        self::assertStringContainsString('data-slot="field"', $input);
-        self::assertStringContainsString("slot: 'field'", $input);
-        self::assertStringContainsString("slot: 'input'", $input);
+        self::assertStringContainsString('<d:molecule.field', $input);
+        self::assertStringContainsString('<d:atom.controlClass slot="input"', $input);
         self::assertStringContainsString('border-destructive ring-1 ring-destructive/20', $input);
         self::assertStringNotContainsString('powermail_input', $input);
-        self::assertStringContainsString('inline-flex items-baseline gap-1', $fieldLabel);
+        self::assertStringContainsString('<d:molecule.fieldLabel', $fieldLabel);
         self::assertStringNotContainsString('ms-1 text-destructive', $fieldLabel);
 
         $select = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/Powermail/Partials/Form/Field/Select.html');
-        self::assertStringContainsString('data-slot="native-select"', $select);
+        self::assertStringContainsString('<d:molecule.selectNative', $select);
         self::assertStringContainsString('<di:icon name="chevron-down"', $select);
-        self::assertStringContainsString("slot: 'selectNative'", $select);
-        self::assertStringContainsString("slot: 'selectIcon'", $select);
-        self::assertStringContainsString("slot: 'selectWrapper'", $select);
+        self::assertStringContainsString('<d:atom.controlClass slot="selectNative"', $select);
+        self::assertStringContainsString('<d:atom.controlClass slot="selectIcon"', $select);
 
         $checkbox = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/Powermail/Partials/Form/Field/Check.html');
-        self::assertStringContainsString('data-slot="checkbox"', $checkbox);
+        self::assertStringContainsString('<d:molecule.checkboxControl', $checkbox);
         self::assertStringContainsString('xmlns:di="http://typo3.org/ns/Webconsulting/Desiderio/ViewHelpers"', $checkbox);
         self::assertStringContainsString('<di:icon name="check"', $checkbox);
-        self::assertStringContainsString("slot: 'checkboxInput'", $checkbox);
-        self::assertStringContainsString("slot: 'checkboxIcon'", $checkbox);
-        self::assertStringContainsString("slot: 'optionLabel'", $checkbox);
-        self::assertStringContainsString('data-slot="field-legend"', $checkbox);
-        self::assertStringContainsString("slot: 'fieldLegend'", $checkbox);
-        self::assertStringContainsString('inline-flex items-baseline gap-1', $checkbox);
+        self::assertStringContainsString('<d:atom.controlClass slot="checkboxInput"', $checkbox);
+        self::assertStringContainsString('<d:molecule.optionLabel', $checkbox);
+        self::assertStringContainsString('<d:molecule.fieldLegend', $checkbox);
         self::assertStringNotContainsString('ms-1 text-destructive', $checkbox);
         self::assertStringNotContainsString('powermail_checkbox', $checkbox);
         self::assertStringNotContainsString('<f:render partial="Form/FieldLabel"', $checkbox);
 
         $radio = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/Powermail/Partials/Form/Field/Radio.html');
-        self::assertStringContainsString('inline-flex items-baseline gap-1', $radio);
+        self::assertStringContainsString('<d:molecule.fieldLegend', $radio);
         self::assertStringNotContainsString('ms-1 text-destructive', $radio);
 
         $html = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/Powermail/Partials/Form/Field/Html.html');
         self::assertStringContainsString('settings.misc.htmlForHtmlFields', $html);
         self::assertStringContainsString('<f:sanitize.html>{field.text -> f:format.raw()}</f:sanitize.html>', $html);
 
+        $controlClass = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Components/Atom/ControlClass/ControlClass.fluid.html');
+        self::assertStringContainsString('Generated by Build/Scripts/sync-shadcn-fluid-primitives.php', $controlClass);
+        self::assertStringContainsString('<f:argument name="slot" type="string" />', $controlClass);
+        self::assertStringContainsString('<f:case value="checkboxInput">', $controlClass);
+        self::assertStringContainsString('<f:case value="radioInput">', $controlClass);
+        self::assertStringContainsString('<f:case value="selectNative">', $controlClass);
+        self::assertStringContainsString('<f:case value="selectIcon">', $controlClass);
+        self::assertStringContainsString('<f:case value="buttonDefault">', $controlClass);
+        self::assertStringContainsString('checked:border-foreground', $controlClass);
+        self::assertStringContainsString('checked:bg-foreground', $controlClass);
+        self::assertStringContainsString('checked:text-background', $controlClass);
+        self::assertStringContainsString('aria-invalid:checked:border-destructive', $controlClass);
+        self::assertStringNotContainsString('checked:border-primary', $controlClass);
+        self::assertStringNotContainsString('checked:bg-primary', $controlClass);
+        self::assertStringNotContainsString('aria-invalid:checked:border-primary', $controlClass);
+        self::assertStringNotContainsString('has-data-checked:border-primary', $controlClass);
+        self::assertStringNotContainsString('has-data-checked:bg-primary', $controlClass);
+
         $shadcnClass = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/Powermail/Partials/Form/ShadcnClass.html');
-        self::assertStringContainsString('Generated by Build/Scripts/sync-shadcn-fluid-primitives.php', $shadcnClass);
-        self::assertStringContainsString('<f:argument name="slot" type="string" />', $shadcnClass);
-        self::assertStringContainsString('<f:case value="checkboxInput">', $shadcnClass);
-        self::assertStringContainsString('<f:case value="radioInput">', $shadcnClass);
-        self::assertStringContainsString('<f:case value="selectNative">', $shadcnClass);
-        self::assertStringContainsString('<f:case value="selectIcon">', $shadcnClass);
-        self::assertStringContainsString('<f:case value="buttonDefault">', $shadcnClass);
-        self::assertStringContainsString('checked:border-foreground', $shadcnClass);
-        self::assertStringContainsString('checked:bg-foreground', $shadcnClass);
-        self::assertStringContainsString('checked:text-background', $shadcnClass);
-        self::assertStringContainsString('aria-invalid:checked:border-destructive', $shadcnClass);
-        self::assertStringContainsString('<f:case value="fieldLegend">', $shadcnClass);
-        self::assertStringNotContainsString('checked:border-primary', $shadcnClass);
-        self::assertStringNotContainsString('checked:bg-primary', $shadcnClass);
-        self::assertStringNotContainsString('aria-invalid:checked:border-primary', $shadcnClass);
-        self::assertStringNotContainsString('has-data-checked:border-primary', $shadcnClass);
-        self::assertStringNotContainsString('has-data-checked:bg-primary', $shadcnClass);
+        self::assertSame($controlClass, $shadcnClass, 'Powermail ShadcnClass partial must stay synchronized with d:atom.controlClass');
 
         $componentsCss = (string)file_get_contents(__DIR__ . '/../../Resources/Public/Css/components.css');
         self::assertStringContainsString('.d-powermail :where(input.d-shadcn-control, textarea.d-shadcn-control, select.d-shadcn-control)', $componentsCss);

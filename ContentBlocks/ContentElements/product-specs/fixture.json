@@ -4,13 +4,44 @@
     "header": "Aria 3 at a glance",
     "description": "Everything that ships in the box, measured and verified.",
     "specs": [
-        { "label": "Driver", "value": "40 mm dynamic, titanium-coated" },
-        { "label": "Battery life", "value": "40 hours (ANC on), 60 hours (ANC off)" },
-        { "label": "Quick charge", "value": "5 min = 4 hours playback" },
-        { "label": "Bluetooth", "value": "5.4, multipoint to 2 devices" },
-        { "label": "Noise cancelling", "value": "Adaptive hybrid, up to 30 dB" },
-        { "label": "Weight", "value": "248 g" },
-        { "label": "Connectivity", "value": "USB-C, 3.5 mm, LDAC / aptX" },
-        { "label": "Warranty", "value": "2 years, parts and labour" }
-    ]
+        {
+            "label": "Driver",
+            "value": "40 mm dynamic, titanium-coated"
+        },
+        {
+            "label": "Battery life",
+            "value": "40 hours (ANC on), 60 hours (ANC off)"
+        },
+        {
+            "label": "Quick charge",
+            "value": "5 min = 4 hours playback"
+        },
+        {
+            "label": "Bluetooth",
+            "value": "5.4, multipoint to 2 devices"
+        },
+        {
+            "label": "Noise cancelling",
+            "value": "Adaptive hybrid, up to 30 dB"
+        },
+        {
+            "label": "Weight",
+            "value": "248 g"
+        },
+        {
+            "label": "Connectivity",
+            "value": "USB-C, 3.5 mm, LDAC / aptX"
+        },
+        {
+            "label": "Warranty",
+            "value": "2 years, parts and labour"
+        }
+    ],
+    "image": {
+        "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-14.jpg",
+        "title": "Team Member portrait",
+        "alternative": "Portrait photo of Team Member.",
+        "description": "Portrait-style photo from Unsplash collection #25880.",
+        "source": "https://unsplash.com/collections/25880"
+    }
 }

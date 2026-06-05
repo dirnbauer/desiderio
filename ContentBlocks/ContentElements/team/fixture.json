@@ -2,7 +2,7 @@
     "_type": "team",
     "eyebrow": "Our team",
     "header": "The people behind every release",
-    "subheadline": "A small, senior team across design, engineering, and support — most of us have shipped accessible products for a decade or more.",
+    "subheadline": "A small, senior team across design, engineering, and support \u2014 most of us have shipped accessible products for a decade or more.",
     "variant": "grid",
     "columns": "3",
     "members": [
@@ -15,7 +15,8 @@
                 "title": "Lea Fischer",
                 "alternative": "Portrait photo of Lea Fischer.",
                 "description": "Portrait-style photo from Unsplash."
-            }
+            },
+            "profile_link": "https://example.com/desiderio/profile_link_1"
         },
         {
             "name": "Mara Weiss",
@@ -26,7 +27,8 @@
                 "title": "Mara Weiss",
                 "alternative": "Portrait photo of Mara Weiss.",
                 "description": "Portrait-style photo from Unsplash."
-            }
+            },
+            "profile_link": "https://example.com/desiderio/profile_link_2"
         },
         {
             "name": "Noah Ritter",
@@ -37,7 +39,8 @@
                 "title": "Noah Ritter",
                 "alternative": "Portrait photo of Noah Ritter.",
                 "description": "Portrait-style photo from Unsplash."
-            }
+            },
+            "profile_link": "https://example.com/desiderio/profile_link_3"
         }
     ]
 }

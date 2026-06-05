@@ -4,11 +4,26 @@
     "eyebrow": "Visual editor",
     "description": "Drag blocks, swap images, and publish in minutes. Every change stays on-brand and ships to production with one click.",
     "features": [
-        "Drag-and-drop blocks, no code required",
-        "Live preview on desktop and mobile",
-        "One-click publish with instant rollback",
-        "Reusable components keep every page on-brand"
+        {
+            "text": "Text for Product Feature: Customer Evidence Hub"
+        },
+        {
+            "text": "Text for Product Adoption Report 2"
+        },
+        {
+            "text": "Text for Editor Workflow Upgrade 3"
+        },
+        {
+            "text": "Text for Service Performance Snapshot 4"
+        }
     ],
     "button_text": "Start free trial",
-    "button_link": "https://ui.shadcn.com/"
+    "button_link": "https://ui.shadcn.com/",
+    "image": {
+        "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-14.jpg",
+        "title": "Team Member portrait",
+        "alternative": "Portrait photo of Team Member.",
+        "description": "Portrait-style photo from Unsplash collection #25880.",
+        "source": "https://unsplash.com/collections/25880"
+    }
 }

@@ -640,16 +640,13 @@ final class ContentRenderingTemplateTest extends TestCase
             'Resources/Private/Extensions/Powermail/Partials/Form/Field/Radio.html',
         ];
 
-        self::assertStringContainsString('<f:case value="fieldLegend">mb-2 flex', $shadcnClasses);
-
         foreach ($groupTemplates as $relativePath) {
             $template = (string) file_get_contents(__DIR__ . '/../../' . $relativePath);
 
-            self::assertStringContainsString('<fieldset data-slot="field-set"', $template);
-            self::assertStringContainsString('data-slot="field-legend"', $template);
-            self::assertStringContainsString("slot: 'fieldLegend'", $template);
+            self::assertStringContainsString('<d:molecule.fieldSet', $template);
+            self::assertStringContainsString('<d:molecule.fieldLegend', $template);
             self::assertStringNotContainsString('<legend class="sr-only">', $template);
-            self::assertSame(1, substr_count($template, '<f:if condition="{field.mandatory}">'), "{$relativePath} should render the required marker once on the group legend");
+            self::assertSame(0, substr_count($template, '<f:if condition="{field.mandatory}">'), "{$relativePath} should delegate required markers to d:molecule.fieldLegend");
         }
     }
 

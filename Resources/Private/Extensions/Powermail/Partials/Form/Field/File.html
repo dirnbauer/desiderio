@@ -1,26 +1,30 @@
-<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:vh="http://typo3.org/ns/In2code/Powermail/ViewHelpers" data-namespace-typo3-fluid="true">
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:vh="http://typo3.org/ns/In2code/Powermail/ViewHelpers" xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection" data-namespace-typo3-fluid="true">
 <f:argument name="field" type="object" />
 <f:argument name="settings" type="array" optional="{true}" />
 <f:argument name="mail" type="object" optional="{true}" />
 
-<div data-slot="form-item" class="powermail_fieldwrap_type_file powermail_fieldwrap_{field.marker} {field.css} space-y-2">
+<f:variable name="fileInputClass"><d:atom.controlClass slot="fileInput" /></f:variable>
+<f:variable name="panelClass"><d:atom.controlClass slot="panel" /></f:variable>
+<f:variable name="buttonDestructiveClass"><d:atom.controlClass slot="buttonDestructive" /></f:variable>
+
+<d:molecule.field class="powermail_fieldwrap_type_file powermail_fieldwrap_{field.marker} {field.css} space-y-2">
     <f:render partial="Form/FieldLabel" arguments="{field: field}" />
     <vh:form.multiUpload
         id="powermail_field_{field.marker}"
         property="{field.marker}"
         additionalAttributes="{vh:validation.uploadAttributes(field: field)}"
-        class="{f:render(partial: 'Form/ShadcnClass', arguments: {slot: 'fileInput'}) -> f:format.trim()} {vh:validation.errorClass(field: field, class: 'border-destructive ring-1 ring-destructive/20')}" />
+        class="{fileInputClass -> f:format.trim()} {vh:validation.errorClass(field: field, class: 'border-destructive ring-1 ring-destructive/20')}" />
     <f:if condition="{vh:misc.prefillField(field: field, mail: mail)}">
-        <div class="{f:render(partial: 'Form/ShadcnClass', arguments: {slot: 'panel'}) -> f:format.trim()} bg-background">
+        <div class="{panelClass -> f:format.trim()} bg-background">
             <ul class="space-y-1 text-muted-foreground">
                 <f:for each="{vh:misc.prefillField(field: field, mail: mail)}" as="file">
                     <li>{file}<f:form.hidden property="{field.marker}." value="{file}" /></li>
                 </f:for>
             </ul>
-            <button type="button" class="deleteAllFiles mt-3 {f:render(partial: 'Form/ShadcnClass', arguments: {slot: 'buttonDestructive'}) -> f:format.trim()}">
+            <button type="button" class="deleteAllFiles mt-3 {buttonDestructiveClass -> f:format.trim()}">
                 <f:translate key="deleteAllFiles" extensionName="Powermail">Delete All Files</f:translate>
             </button>
         </div>
     </f:if>
-</div>
+</d:molecule.field>
 </html>

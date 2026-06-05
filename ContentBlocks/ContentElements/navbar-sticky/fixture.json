@@ -3,10 +3,23 @@
     "header": "Primary",
     "brand": "Northwind Studio",
     "nav_items": [
-        "Product",
-        "Features",
-        "Pricing",
-        "Docs"
+        {
+            "label": "Keyboard focus built in",
+            "link": "https://example.com/desiderio/link_1"
+        },
+        {
+            "label": "Reusable Content Blocks",
+            "link": "https://example.com/desiderio/link_2"
+        },
+        {
+            "label": "Responsive editorial density",
+            "link": "https://example.com/desiderio/link_3"
+        },
+        {
+            "label": "Token-based chart colors",
+            "link": "https://example.com/desiderio/link_4"
+        }
     ],
-    "button_text": "Start free trial"
+    "button_text": "Start free trial",
+    "button_link": "https://example.com/desiderio/button_link_1"
 }

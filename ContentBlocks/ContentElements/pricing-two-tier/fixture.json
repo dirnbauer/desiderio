@@ -9,10 +9,18 @@
             "price": "$29/mo",
             "description": "Everything one maker needs to launch and grow.",
             "features": [
-                "Unlimited projects",
-                "50,000 monthly visitors",
-                "Custom domain included",
-                "Priority email support"
+                {
+                    "text": "Text for Pricing Two Tier: Pattern Library Rollout"
+                },
+                {
+                    "text": "Text for Content Operations Brief 2"
+                },
+                {
+                    "text": "Text for Customer Evidence Hub 3"
+                },
+                {
+                    "text": "Text for Product Adoption Report 4"
+                }
             ],
             "button_text": "Start free trial",
             "button_link": "https://ui.shadcn.com/docs",
@@ -23,11 +31,21 @@
             "price": "$79/mo",
             "description": "Shared workspaces and controls for growing teams.",
             "features": [
-                "Everything in Pro",
-                "Unlimited team members",
-                "Roles and permissions",
-                "SSO and audit logs",
-                "Dedicated success manager"
+                {
+                    "text": "Text for Pricing Two Tier: Pattern Library Rollout"
+                },
+                {
+                    "text": "Text for Content Operations Brief 2"
+                },
+                {
+                    "text": "Text for Customer Evidence Hub 3"
+                },
+                {
+                    "text": "Text for Product Adoption Report 4"
+                },
+                {
+                    "text": "Text for Editor Workflow Upgrade 5"
+                }
             ],
             "button_text": "Start free trial",
             "button_link": "https://ui.shadcn.com/docs",

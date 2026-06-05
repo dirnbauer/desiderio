@@ -1,6 +1,7 @@
 <html
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
     xmlns:vh="http://typo3.org/ns/In2code/Powermail/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
     data-namespace-typo3-fluid="true"
 >
 <f:layout name="Default" />
@@ -10,26 +11,34 @@
 <f:argument name="powermail_rte" type="string" optional="{true}" />
 <f:argument name="optinActive" type="bool" optional="{true}" default="{false}" />
 
+<f:variable name="flashMessageClass"><d:atom.controlClass slot="flashDestructive" /></f:variable>
+<f:variable name="cardCompactClass"><d:atom.controlClass slot="cardCompact" /></f:variable>
+
 <f:section name="main">
-    <f:variable name="flashMessageClass"><f:render partial="Form/ShadcnClass" arguments="{slot: 'flashDestructive'}" /></f:variable>
     <f:alias map="{flashMessageClass: flashMessageClass}">
         <f:render partial="Misc/FlashMessages" arguments="{_all}" />
     </f:alias>
 
-    <div class="mt-8 max-w-2xl {f:render(partial: 'Form/ShadcnClass', arguments: {slot: 'cardCompact'}) -> f:format.trim()}" data-slot="card" data-powermail-form="{mail.form.uid}">
-        <f:if condition="{optinActive}">
-            <f:then>
-                <p class="text-sm text-muted-foreground"><f:translate key="optin_seeMail" extensionName="Powermail" /></p>
-            </f:then>
-            <f:else>
-                <div class="prose max-w-none text-sm text-muted-foreground">
-                    <vh:misc.variables mail="{mail}">
-                        <f:format.html parseFuncTSPath="lib.parseFunc_RTE">{powermail_rte}</f:format.html>
-                    </vh:misc.variables>
-                </div>
-                <f:render partial="Misc/GoogleAdwordsConversion" />
-            </f:else>
-        </f:if>
-    </div>
+    <d:layout.container size="md" class="mt-8 max-w-2xl">
+        <div data-powermail-form="{mail.form.uid}">
+        <d:molecule.card class="{cardCompactClass -> f:format.trim()}" role="region">
+            <d:molecule.cardContent>
+                <f:if condition="{optinActive}">
+                    <f:then>
+                        <p class="text-sm text-muted-foreground"><f:translate key="optin_seeMail" extensionName="Powermail" /></p>
+                    </f:then>
+                    <f:else>
+                        <div class="prose max-w-none text-sm text-muted-foreground">
+                            <vh:misc.variables mail="{mail}">
+                                <f:format.html parseFuncTSPath="lib.parseFunc_RTE">{powermail_rte}</f:format.html>
+                            </vh:misc.variables>
+                        </div>
+                        <f:render partial="Misc/GoogleAdwordsConversion" />
+                    </f:else>
+                </f:if>
+            </d:molecule.cardContent>
+        </d:molecule.card>
+        </div>
+    </d:layout.container>
 </f:section>
 </html>

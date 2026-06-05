@@ -5,17 +5,44 @@
     "brand": "Northwind",
     "description": "The workspace where product, design, and engineering ship together. Built for teams that move fast without breaking trust.",
     "footer_links": [
-        { "label": "Product" },
-        { "label": "Pricing" },
-        { "label": "Customers" },
-        { "label": "Changelog" },
-        { "label": "Docs" }
+        {
+            "label": "Product",
+            "link": "https://example.com/desiderio/link_1"
+        },
+        {
+            "label": "Pricing",
+            "link": "https://example.com/desiderio/link_2"
+        },
+        {
+            "label": "Customers",
+            "link": "https://example.com/desiderio/link_3"
+        },
+        {
+            "label": "Changelog",
+            "link": "https://example.com/desiderio/link_4"
+        },
+        {
+            "label": "Docs",
+            "link": "https://example.com/desiderio/link_5"
+        }
     ],
     "utility_links": [
-        { "label": "Privacy" },
-        { "label": "Terms" },
-        { "label": "Security" },
-        { "label": "Status" }
+        {
+            "label": "Privacy",
+            "link": "https://example.com/desiderio/link_1"
+        },
+        {
+            "label": "Terms",
+            "link": "https://example.com/desiderio/link_2"
+        },
+        {
+            "label": "Security",
+            "link": "https://example.com/desiderio/link_3"
+        },
+        {
+            "label": "Status",
+            "link": "https://example.com/desiderio/link_4"
+        }
     ],
-    "copyright": "© 2026 Northwind Labs, Inc. All rights reserved."
+    "copyright": "\u00a9 2026 Northwind Labs, Inc. All rights reserved."
 }

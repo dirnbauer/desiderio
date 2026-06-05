@@ -2,6 +2,7 @@
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
     xmlns:di="http://typo3.org/ns/Webconsulting/Desiderio/ViewHelpers"
     xmlns:friendlycaptcha="http://typo3.org/ns/StudioMitte/FriendlyCaptcha/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
     data-namespace-typo3-fluid="true"
 >
 <f:argument name="field" type="object" />
@@ -10,12 +11,14 @@
 
 <f:variable name="captchaConfiguration" value="{friendlycaptcha:configuration()}" />
 <f:variable name="friendlyCaptchaTestMode" value="{di:friendlyCaptchaTestModeEnabled()}" />
+<f:variable name="fieldErrorClass"><d:atom.controlClass slot="fieldError" /></f:variable>
+
 <f:if condition="{friendlyCaptchaTestMode}">
     <f:then>
         <f:form.hidden property="{field.marker}" value="1" id="powermail_field_{field.marker}" respectSubmittedDataValue="false" />
     </f:then>
     <f:else>
-        <div role="group" data-slot="field" data-orientation="vertical" class="powermail_fieldwrap_{field.marker} {field.css} {f:render(partial: 'Form/ShadcnClass', arguments: {slot: 'field'}) -> f:format.trim()}">
+        <d:molecule.field class="powermail_fieldwrap_{field.marker} {field.css}">
             <f:render partial="Form/FieldLabel" arguments="{field: field}" />
             <f:form.hidden property="{field.marker}" value="1" id="powermail_field_{field.marker}" respectSubmittedDataValue="false" />
             <f:if condition="{captchaConfiguration.enabled}">
@@ -24,12 +27,12 @@
                     <div class="frc-captcha" data-sitekey="{captchaConfiguration.siteKey}" {f:if(condition: '{captchaConfiguration.useEuPuzzleEndpoint}', then: 'data-api-endpoint="eu"')}></div>
                 </f:then>
                 <f:else>
-                    <p class="{f:render(partial: 'Form/ShadcnClass', arguments: {slot: 'fieldError'}) -> f:format.trim()}">
+                    <p class="{fieldErrorClass -> f:format.trim()}">
                         <f:translate key="LLL:EXT:friendlycaptcha_official/Resources/Private/Language/locallang.xlf:configuration_missing" />
                     </p>
                 </f:else>
             </f:if>
-        </div>
+        </d:molecule.field>
     </f:else>
 </f:if>
 </html>

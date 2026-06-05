@@ -2,5 +2,43 @@
     "_type": "section",
     "header": "Selected work",
     "subheadline": "Browse recent projects, then tap any thumbnail to bring it front and centre.",
-    "columns": "3"
+    "columns": "3",
+    "items": [
+        {
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-14.jpg",
+                "title": "Team Member portrait",
+                "alternative": "Portrait photo of Team Member.",
+                "description": "Portrait-style photo from Unsplash collection #25880.",
+                "source": "https://unsplash.com/collections/25880"
+            },
+            "title": "Gallery: Content Operations Brief",
+            "description": "Lead with the decision visitors need to make, then support it with compact proof and a clear next step. Built for the gallery pattern.",
+            "link": "https://example.com/desiderio/link_1"
+        },
+        {
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-28.jpg",
+                "title": "Team Member portrait",
+                "alternative": "Portrait photo of Team Member.",
+                "description": "Portrait-style photo from Unsplash collection #25880.",
+                "source": "https://unsplash.com/collections/25880"
+            },
+            "title": "Customer Evidence Hub 2",
+            "description": "Keep the surface calm, scannable, and token-driven so editors can reuse it across real TYPO3 pages. Built for the gallery pattern.",
+            "link": "https://example.com/desiderio/link_2"
+        },
+        {
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-10.jpg",
+                "title": "Team Member portrait",
+                "alternative": "Portrait photo of Team Member.",
+                "description": "Portrait-style photo from Unsplash collection #25880.",
+                "source": "https://unsplash.com/collections/25880"
+            },
+            "title": "Product Adoption Report 3",
+            "description": "Balance short copy, responsive spacing, and accessible controls so mobile stacks stay intentional. Built for the gallery pattern.",
+            "link": "https://example.com/desiderio/link_3"
+        }
+    ]
 }

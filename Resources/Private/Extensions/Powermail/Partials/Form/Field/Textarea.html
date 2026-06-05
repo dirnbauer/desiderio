@@ -1,9 +1,11 @@
-<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:vh="http://typo3.org/ns/In2code/Powermail/ViewHelpers" data-namespace-typo3-fluid="true">
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:vh="http://typo3.org/ns/In2code/Powermail/ViewHelpers" xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection" data-namespace-typo3-fluid="true">
 <f:argument name="field" type="object" />
 <f:argument name="settings" type="array" optional="{true}" />
 <f:argument name="mail" type="object" optional="{true}" />
 
-<div role="group" data-slot="field" data-orientation="vertical" class="powermail_fieldwrap_{field.marker} {field.css} {f:render(partial: 'Form/ShadcnClass', arguments: {slot: 'field'}) -> f:format.trim()}">
+<f:variable name="textareaClass"><d:atom.controlClass slot="textarea" /></f:variable>
+
+<d:molecule.field class="powermail_fieldwrap_{field.marker} {field.css}">
     <f:render partial="Form/FieldLabel" arguments="{field: field}" />
     <f:form.textarea
         cols="20"
@@ -14,6 +16,6 @@
         value="{vh:misc.prefillField(field: field, mail: mail)}"
         autocomplete="{vh:string.autocomplete(field: field)}"
         additionalAttributes="{vh:validation.validationDataAttribute(field: field)}"
-        class="{f:render(partial: 'Form/ShadcnClass', arguments: {slot: 'textarea'}) -> f:format.trim()} {vh:validation.errorClass(field: field, class: 'border-destructive ring-1 ring-destructive/20')}" />
-</div>
+        class="{textareaClass -> f:format.trim()} {vh:validation.errorClass(field: field, class: 'border-destructive ring-1 ring-destructive/20')}" />
+</d:molecule.field>
 </html>

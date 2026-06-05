@@ -8,18 +8,19 @@ use PHPUnit\Framework\TestCase;
 
 final class ComponentStructureTest extends TestCase
 {
-    private const EXPECTED_TOTAL = 38;
+    private const EXPECTED_TOTAL = 48;
     private const COMPONENTS_DIR = __DIR__ . '/../../Resources/Private/Components';
     private const EXPECTED_ATOMS = [
-        'AspectRatio', 'Avatar', 'Badge', 'Button', 'Icon', 'Image', 'Input',
+        'AspectRatio', 'Avatar', 'Badge', 'Button', 'ControlClass', 'Icon', 'Image', 'Input',
         'Label', 'Link', 'Progress', 'ScrollArea', 'Select', 'Separator',
         'Skeleton', 'Textarea', 'Typography',
     ];
     private const EXPECTED_MOLECULES = [
         'Accordion', 'AccordionItem', 'Alert', 'AlertDescription', 'AlertTitle',
-        'Card', 'CardContent', 'CardFooter', 'CardHeader', 'Table', 'TableCell',
-        'TableHeader', 'TableRow', 'Tabs', 'TabsContent', 'TabsList', 'TabsTrigger',
-        'FormRenderer',
+        'Card', 'CardContent', 'CardFooter', 'CardHeader', 'CheckboxControl', 'Field',
+        'FieldGroup', 'FieldLabel', 'FieldLegend', 'FieldSet', 'FormRenderer', 'OptionLabel',
+        'RadioControl', 'SelectNative', 'Table', 'TableCell', 'TableHeader', 'TableRow',
+        'Tabs', 'TabsContent', 'TabsList', 'TabsTrigger',
     ];
     private const EXPECTED_LAYOUTS = ['Container', 'Grid', 'Section', 'Stack'];
 
@@ -29,8 +30,8 @@ final class ComponentStructureTest extends TestCase
         $molecules = glob(self::COMPONENTS_DIR . '/Molecule/*', GLOB_ONLYDIR) ?: [];
         $layouts = glob(self::COMPONENTS_DIR . '/Layout/*', GLOB_ONLYDIR) ?: [];
 
-        self::assertCount(16, $atoms, 'Expected 16 atoms');
-        self::assertCount(18, $molecules, 'Expected 18 molecules');
+        self::assertCount(17, $atoms, 'Expected 17 atoms');
+        self::assertCount(27, $molecules, 'Expected 27 molecules');
         self::assertCount(4, $layouts, 'Expected 4 layouts');
         self::assertSame(self::EXPECTED_TOTAL, count($atoms) + count($molecules) + count($layouts));
     }

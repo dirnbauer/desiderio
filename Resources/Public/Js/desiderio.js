@@ -271,9 +271,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       };
 
-      const close = () => {
+      const close = ({ force = false } = {}) => {
         if (form.classList.contains('desiderio-header__search--collapsed')) return;
-        if (hasQuery()) return;
+        if (!force && hasQuery()) return;
 
         form.classList.add('desiderio-header__search--collapsed');
         toggle.setAttribute('aria-expanded', 'false');
@@ -296,7 +296,7 @@ document.addEventListener('DOMContentLoaded', () => {
       document.addEventListener('keydown', event => {
         if (event.key !== 'Escape') return;
         if (form.classList.contains('desiderio-header__search--collapsed')) return;
-        close();
+        close({ force: true });
         toggle.focus();
       });
     });

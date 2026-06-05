@@ -78,8 +78,8 @@
         gap: 1.5rem;
     }
     .desiderio-footer__meta {
-        justify-content: flex-start;
-        text-align: start;
+        justify-self: center;
+        text-align: center;
     }
     .desiderio-footer__legal-list {
         justify-content: flex-start;

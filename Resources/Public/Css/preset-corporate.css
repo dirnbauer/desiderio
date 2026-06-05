@@ -362,8 +362,8 @@
 }
 
 .desiderio-footer__inner {
-    justify-content: center;
-    text-align: center;
-    flex-direction: column;
-    gap: 0.5rem;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 2rem;
 }

@@ -13,21 +13,44 @@
 @media (min-width: 1024px) {
     .contact-info__grid { grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); }
 }
+.contact-info__item {
+    gap: var(--d-spacing-2xs);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.contact-info__item:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--d-shadow-md, none);
+}
 .contact-info__icon {
-    display: block;
-    font-size: var(--d-text-2xl);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.75rem;
+    height: 2.75rem;
     margin-block-end: var(--d-spacing-sm);
+    border-radius: var(--radius);
+    background: color-mix(in oklch, var(--primary) 12%, var(--card));
+    color: var(--primary);
+}
+.contact-info__icon svg {
+    width: 1.375rem;
+    height: 1.375rem;
 }
 .contact-info__label {
     font-weight: 600;
     font-size: var(--d-text-sm);
-    margin-block-end: var(--d-spacing-2xs);
+    margin: 0;
 }
 .contact-info__value {
     font-size: var(--d-text-sm);
     color: var(--muted-foreground);
+    margin: 0;
 }
 .contact-info__value--link {
     color: var(--primary);
+    font-weight: 500;
+    text-decoration: none;
+}
+.contact-info__value--link:hover {
     text-decoration: underline;
 }

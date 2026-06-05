@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 
 final class ComponentStructureTest extends TestCase
 {
-    private const EXPECTED_TOTAL = 48;
+    private const EXPECTED_TOTAL = 49;
     private const COMPONENTS_DIR = __DIR__ . '/../../Resources/Private/Components';
     private const EXPECTED_ATOMS = [
         'AspectRatio', 'Avatar', 'Badge', 'Button', 'ControlClass', 'Icon', 'Image', 'Input',
@@ -17,7 +17,7 @@ final class ComponentStructureTest extends TestCase
     ];
     private const EXPECTED_MOLECULES = [
         'Accordion', 'AccordionItem', 'Alert', 'AlertDescription', 'AlertTitle',
-        'Card', 'CardContent', 'CardFooter', 'CardHeader', 'CheckboxControl', 'Field',
+        'Card', 'CardContent', 'CardFooter', 'CardHeader', 'CheckboxControl', 'CheckedListItem', 'Field',
         'FieldGroup', 'FieldLabel', 'FieldLegend', 'FieldSet', 'FormRenderer', 'OptionLabel',
         'RadioControl', 'SelectNative', 'Table', 'TableCell', 'TableHeader', 'TableRow',
         'Tabs', 'TabsContent', 'TabsList', 'TabsTrigger',
@@ -31,7 +31,7 @@ final class ComponentStructureTest extends TestCase
         $layouts = glob(self::COMPONENTS_DIR . '/Layout/*', GLOB_ONLYDIR) ?: [];
 
         self::assertCount(17, $atoms, 'Expected 17 atoms');
-        self::assertCount(27, $molecules, 'Expected 27 molecules');
+        self::assertCount(28, $molecules, 'Expected 28 molecules');
         self::assertCount(4, $layouts, 'Expected 4 layouts');
         self::assertSame(self::EXPECTED_TOTAL, count($atoms) + count($molecules) + count($layouts));
     }

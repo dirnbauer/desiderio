@@ -609,6 +609,8 @@ final class ContentRenderingTemplateTest extends TestCase
         self::assertStringContainsString('defaultDetailPid = {$news.pages.detail}', $newsTypoScript);
         self::assertStringContainsString('tt_content.news_pi1', $newsTypoScript);
         self::assertStringContainsString('tt_content.news_newsdetail', $newsTypoScript);
+        self::assertStringContainsString('variables.content =< lib.desiderioNewsPi1', $newsTypoScript);
+        self::assertStringContainsString('lib.desiderioNewsContentElement', $newsTypoScript);
         self::assertStringContainsString('controller = News', $newsTypoScript);
         self::assertStringContainsString('action = list', $newsTypoScript);
         self::assertStringContainsString('action = detail', $newsTypoScript);

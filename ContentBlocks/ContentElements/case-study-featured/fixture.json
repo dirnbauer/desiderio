@@ -1,13 +1,26 @@
 {
     "_type": "section",
     "eyebrow": "Featured case study",
-    "header": "How Lumen Health cut report turnaround by 70%",
-    "client_name": "Lumen Health",
-    "description": "Lumen's analysts spent two days a week stitching spreadsheets together. We replaced that with live dashboards wired straight to their warehouse. Within a quarter, reporting went from 16 hours to under 5, and every clinic now sees the same numbers in real time.",
+    "header": "How Apple unified global launch reporting",
+    "client_name": "Apple",
+    "client_logo": {
+        "file": "Resources/Public/Styleguide/Logos/Fortune500/apple.svg",
+        "title": "Apple logo",
+        "alternative": "Apple company logo.",
+        "description": "Fortune 500 #4 company logo for demo customer content."
+    },
+    "description": "Apple's operations teams spent two days a week reconciling launch metrics across regions. We replaced that with live dashboards wired straight to their planning systems. Within a quarter, reporting dropped from 16 hours to under 5, and every market now sees the same numbers in real time.",
+    "image": {
+        "file": "Resources/Public/Styleguide/Unsplash/laptop-mimi-thian.jpg",
+        "title": "Product team reviewing dashboards",
+        "alternative": "A product team reviewing analytics on a laptop.",
+        "description": "Unsplash image used as demo case study cover photography."
+    },
     "metrics": [
         { "value": "70%", "label": "faster reporting" },
         { "value": "16h to 5h", "label": "weekly time saved" },
-        { "value": "24", "label": "clinics onboarded" },
+        { "value": "24", "label": "regions onboarded" },
         { "value": "99.9%", "label": "data uptime" }
-    ]
+    ],
+    "link": "https://www.example.com/case-studies/apple"
 }

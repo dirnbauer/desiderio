@@ -1,8 +1,21 @@
 {
     "_type": "card",
     "header": "Customer story",
-    "client_name": "Northwind Logistics",
-    "summary": "After moving their fleet dispatch to our platform, Northwind cut average route planning from 3 hours to 20 minutes and onboarded 12 new depots without adding headcount.",
+    "client_name": "Walmart",
+    "client_logo": {
+        "file": "Resources/Public/Styleguide/Logos/Fortune500/walmart.svg",
+        "title": "Walmart logo",
+        "alternative": "Walmart company logo.",
+        "description": "Fortune 500 #1 company logo for demo customer content."
+    },
+    "summary": "After rolling out our platform across regional distribution centers, Walmart cut store-assortment planning from days to hours and aligned 4,600 locations on one live inventory view.",
     "result_value": "9x",
-    "result_label": "faster route planning"
+    "result_label": "faster rollout planning",
+    "image": {
+        "file": "Resources/Public/Styleguide/Unsplash/customer-enterprise.jpg",
+        "title": "Retail distribution center",
+        "alternative": "A large retail distribution facility with loading bays.",
+        "description": "Unsplash image used as demo case study cover photography."
+    },
+    "link": "https://www.example.com/case-studies/walmart"
 }

@@ -1,55 +1,55 @@
 {
-    "_type": "pricing",
-    "header": "Simple pricing for every stage",
-    "eyebrow": "Pricing",
-    "subheadline": "Start solo, upgrade when your team grows. No setup fees, cancel anytime.",
-    "plans": [
+  "_type": "pricing",
+  "header": "Two Tier Pricing for confident plan comparison",
+  "eyebrow": "Modern import",
+  "subheadline": "Help buyers compare plans with crisp values and direct feature language.",
+  "plans": [
+    {
+      "title": "Two Tier Pricing for confident plan comparison",
+      "price": "$19",
+      "description": "Help buyers compare plans with crisp values and direct feature language.",
+      "features": [
         {
-            "title": "Pro",
-            "price": "$29/mo",
-            "description": "Everything one maker needs to launch and grow.",
-            "features": [
-                {
-                    "text": "Text for Pricing Two Tier: Pattern Library Rollout"
-                },
-                {
-                    "text": "Text for Content Operations Brief 2"
-                },
-                {
-                    "text": "Text for Customer Evidence Hub 3"
-                },
-                {
-                    "text": "Text for Product Adoption Report 4"
-                }
-            ],
-            "button_text": "Start free trial",
-            "button_link": "https://ui.shadcn.com/docs",
-            "featured": false
+          "text": "Accessible keyboard focus patterns"
         },
         {
-            "title": "Team",
-            "price": "$79/mo",
-            "description": "Shared workspaces and controls for growing teams.",
-            "features": [
-                {
-                    "text": "Text for Pricing Two Tier: Pattern Library Rollout"
-                },
-                {
-                    "text": "Text for Content Operations Brief 2"
-                },
-                {
-                    "text": "Text for Customer Evidence Hub 3"
-                },
-                {
-                    "text": "Text for Product Adoption Report 4"
-                },
-                {
-                    "text": "Text for Editor Workflow Upgrade 5"
-                }
-            ],
-            "button_text": "Start free trial",
-            "button_link": "https://ui.shadcn.com/docs",
-            "featured": true
+          "text": "Responsive cards tuned for concise content"
+        },
+        {
+          "text": "Editor-friendly TYPO3 Content Blocks"
+        },
+        {
+          "text": "Modern Unsplash imagery in the import seed"
         }
-    ]
+      ],
+      "button_text": "Compare states",
+      "button_link": "https://ui.shadcn.com/docs/two-tier-pricing",
+      "featured": false
+    },
+    {
+      "title": "Two Tier Pricing for confident plan comparison",
+      "price": "$49",
+      "description": "Show pricing states with practical labels and scannable benefits.",
+      "features": [
+        {
+          "text": "Accessible keyboard focus patterns"
+        },
+        {
+          "text": "Responsive cards tuned for concise content"
+        },
+        {
+          "text": "Editor-friendly TYPO3 Content Blocks"
+        },
+        {
+          "text": "Modern Unsplash imagery in the import seed"
+        },
+        {
+          "text": "Compact shadcn spacing and borders"
+        }
+      ],
+      "button_text": "Get the checklist",
+      "button_link": "https://ui.shadcn.com/docs/two-tier-pricing",
+      "featured": true
+    }
+  ]
 }

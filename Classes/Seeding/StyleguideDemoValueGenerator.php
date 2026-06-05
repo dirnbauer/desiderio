@@ -303,6 +303,7 @@ final class StyleguideDemoValueGenerator
             str_contains($normalizedField, 'ctatext') || str_contains($normalizedField, 'buttontext') || str_contains($normalizedField, 'submittext') => $this->buildDefaultButtonText($normalizedField, $elementLabel),
             str_contains($normalizedField, 'linktext') => $this->pickDemoString(self::DEMO_BUTTON_LABELS, $name . '-' . $field, $index),
             str_contains($normalizedField, 'placeholder') => 'name@example.com',
+            $normalizedField === 'text' => $this->pickDemoString(self::DEMO_FEATURES, $name . '-' . $field, $index),
             $normalizedField === 'unitlabel' => $this->buildDefaultUnitLabel($ctype),
             $normalizedField === 'volume' => $this->buildDefaultVolumeLabel($index),
             str_contains($normalizedField, 'feature') || str_contains($normalizedField, 'points') || str_contains($normalizedField, 'specs') => $this->buildDefaultList(self::DEMO_FEATURES, $name . '-' . $field, $index),

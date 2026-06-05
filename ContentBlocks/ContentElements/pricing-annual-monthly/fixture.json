@@ -1,83 +1,82 @@
 {
-    "_type": "pricing",
-    "eyebrow": "Flexible billing",
-    "header": "Pay monthly, or save when you commit for a year",
-    "subheadline": "Every plan shows the monthly rate next to the annual price, so your team can choose the billing cadence that fits the budget.",
-    "plans": [
+  "_type": "pricing",
+  "header": "Annual Monthly Pricing for confident plan comparison",
+  "subheadline": "Help buyers compare plans with crisp values and direct feature language.",
+  "plans": [
+    {
+      "name": "Noah Ritter",
+      "monthly_price": "$19",
+      "annual_price": "$19",
+      "savings": "Save 20%",
+      "features": [
         {
-            "name": "Starter",
-            "monthly_price": "$12",
-            "annual_price": "$120",
-            "savings": "2 months free",
-            "features": [
-                {
-                    "text": "Text for Pricing Annual Monthly: Editor Workflow Upgrade"
-                },
-                {
-                    "text": "Text for Service Performance Snapshot 2"
-                },
-                {
-                    "text": "Text for Reusable Section Blueprint 3"
-                },
-                {
-                    "text": "Text for Launch Readiness Review 4"
-                }
-            ],
-            "button_text": "Start free trial",
-            "button_link": "/signup?plan=starter",
-            "is_featured": false
+          "text": "Chart colors mapped to semantic tokens"
         },
         {
-            "name": "Growth",
-            "monthly_price": "$29",
-            "annual_price": "$290",
-            "savings": "2 months free",
-            "features": [
-                {
-                    "text": "Text for Pricing Annual Monthly: Editor Workflow Upgrade"
-                },
-                {
-                    "text": "Text for Service Performance Snapshot 2"
-                },
-                {
-                    "text": "Text for Reusable Section Blueprint 3"
-                },
-                {
-                    "text": "Text for Launch Readiness Review 4"
-                },
-                {
-                    "text": "Text for Pattern Library Rollout 5"
-                }
-            ],
-            "button_text": "Choose Growth",
-            "button_link": "/signup?plan=growth",
-            "is_featured": true
+          "text": "Production-ready empty and loaded states"
         },
         {
-            "name": "Scale",
-            "monthly_price": "$59",
-            "annual_price": "$590",
-            "savings": "2 months free",
-            "features": [
-                {
-                    "text": "Text for Pricing Annual Monthly: Editor Workflow Upgrade"
-                },
-                {
-                    "text": "Text for Service Performance Snapshot 2"
-                },
-                {
-                    "text": "Text for Reusable Section Blueprint 3"
-                },
-                {
-                    "text": "Text for Launch Readiness Review 4"
-                },
-                {
-                    "text": "Text for Pattern Library Rollout 5"
-                }
-            ],
-            "button_text": "Talk to sales",
-            "button_link": "/contact?topic=scale",
-            "is_featured": false
+          "text": "Token-aware light and dark states"
+        },
+        {
+          "text": "Accessible keyboard focus patterns"
         }
-    ]
+      ],
+      "button_text": "Compare states",
+      "button_link": "https://ui.shadcn.com/docs/annual-monthly-pricing",
+      "is_featured": false
+    },
+    {
+      "name": "Lea Fischer",
+      "monthly_price": "$49",
+      "annual_price": "$49",
+      "savings": "Save 20%",
+      "features": [
+        {
+          "text": "Chart colors mapped to semantic tokens"
+        },
+        {
+          "text": "Production-ready empty and loaded states"
+        },
+        {
+          "text": "Token-aware light and dark states"
+        },
+        {
+          "text": "Accessible keyboard focus patterns"
+        },
+        {
+          "text": "Responsive cards tuned for concise content"
+        }
+      ],
+      "button_text": "Get the checklist",
+      "button_link": "https://ui.shadcn.com/docs/annual-monthly-pricing",
+      "is_featured": true
+    },
+    {
+      "name": "Mara Weiss",
+      "monthly_price": "$99",
+      "annual_price": "$99",
+      "savings": "Save 20%",
+      "features": [
+        {
+          "text": "Chart colors mapped to semantic tokens"
+        },
+        {
+          "text": "Production-ready empty and loaded states"
+        },
+        {
+          "text": "Token-aware light and dark states"
+        },
+        {
+          "text": "Accessible keyboard focus patterns"
+        },
+        {
+          "text": "Responsive cards tuned for concise content"
+        }
+      ],
+      "button_text": "Start review",
+      "button_link": "https://ui.shadcn.com/docs/annual-monthly-pricing",
+      "is_featured": false
+    }
+  ]
 }

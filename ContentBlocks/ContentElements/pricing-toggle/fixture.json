@@ -1,80 +1,74 @@
 {
-    "_type": "pricing",
-    "header": "Pricing that scales with your team",
-    "eyebrow": "Pricing",
-    "subheadline": "Pay monthly or save two months a year on annual billing. Switch plans anytime, no fees.",
-    "plans": [
+  "_type": "pricing",
+  "header": "Toggle Pricing for confident plan comparison",
+  "eyebrow": "Modern import",
+  "subheadline": "Help buyers compare plans with crisp values and direct feature language.",
+  "plans": [
+    {
+      "title": "Toggle Pricing for confident plan comparison",
+      "monthly_price": "$19",
+      "yearly_price": "$190",
+      "description": "Show pricing states with practical labels and scannable benefits.",
+      "features": [
         {
-            "title": "Starter",
-            "monthly_price": "$19",
-            "yearly_price": "$190",
-            "description": "For solo builders shipping their first product.",
-            "features": [
-                {
-                    "text": "Text for Pricing Toggle: Reusable Section Blueprint"
-                },
-                {
-                    "text": "Text for Launch Readiness Review 2"
-                },
-                {
-                    "text": "Text for Pattern Library Rollout 3"
-                },
-                {
-                    "text": "Text for Content Operations Brief 4"
-                }
-            ],
-            "button_text": "Start free trial",
-            "button_link": "https://ui.shadcn.com/docs"
+          "text": "Token-aware light and dark states"
         },
         {
-            "title": "Growth",
-            "monthly_price": "$49",
-            "yearly_price": "$490",
-            "description": "For growing teams that need room to expand.",
-            "features": [
-                {
-                    "text": "Text for Pricing Toggle: Reusable Section Blueprint"
-                },
-                {
-                    "text": "Text for Launch Readiness Review 2"
-                },
-                {
-                    "text": "Text for Pattern Library Rollout 3"
-                },
-                {
-                    "text": "Text for Content Operations Brief 4"
-                },
-                {
-                    "text": "Text for Customer Evidence Hub 5"
-                }
-            ],
-            "button_text": "Start free trial",
-            "button_link": "https://ui.shadcn.com/docs"
+          "text": "Accessible keyboard focus patterns"
         },
         {
-            "title": "Scale",
-            "monthly_price": "$99",
-            "yearly_price": "$990",
-            "description": "For organizations with high-traffic workloads.",
-            "features": [
-                {
-                    "text": "Text for Pricing Toggle: Reusable Section Blueprint"
-                },
-                {
-                    "text": "Text for Launch Readiness Review 2"
-                },
-                {
-                    "text": "Text for Pattern Library Rollout 3"
-                },
-                {
-                    "text": "Text for Content Operations Brief 4"
-                },
-                {
-                    "text": "Text for Customer Evidence Hub 5"
-                }
-            ],
-            "button_text": "Talk to sales",
-            "button_link": "https://ui.shadcn.com/docs"
+          "text": "Responsive cards tuned for concise content"
         }
-    ]
+      ],
+      "button_text": "Get the checklist",
+      "button_link": "https://ui.shadcn.com/docs/toggle-pricing"
+    },
+    {
+      "title": "Toggle Pricing for confident plan comparison",
+      "monthly_price": "$49",
+      "yearly_price": "$490",
+      "description": "Keep plan comparison compact across desktop tables and mobile cards.",
+      "features": [
+        {
+          "text": "Token-aware light and dark states"
+        },
+        {
+          "text": "Accessible keyboard focus patterns"
+        },
+        {
+          "text": "Responsive cards tuned for concise content"
+        },
+        {
+          "text": "Editor-friendly TYPO3 Content Blocks"
+        }
+      ],
+      "button_text": "Start review",
+      "button_link": "https://ui.shadcn.com/docs/toggle-pricing"
+    },
+    {
+      "title": "Toggle Pricing for confident plan comparison",
+      "monthly_price": "$99",
+      "yearly_price": "$990",
+      "description": "Help buyers compare plans with crisp values and direct feature language.",
+      "features": [
+        {
+          "text": "Token-aware light and dark states"
+        },
+        {
+          "text": "Accessible keyboard focus patterns"
+        },
+        {
+          "text": "Responsive cards tuned for concise content"
+        },
+        {
+          "text": "Editor-friendly TYPO3 Content Blocks"
+        },
+        {
+          "text": "Modern Unsplash imagery in the import seed"
+        }
+      ],
+      "button_text": "Explore flow",
+      "button_link": "https://ui.shadcn.com/docs/toggle-pricing"
+    }
+  ]
 }

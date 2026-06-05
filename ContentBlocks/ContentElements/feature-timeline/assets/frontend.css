@@ -46,7 +46,7 @@
     width: calc(
         var(--feature-timeline-marker-size) / 2 +
         var(--feature-timeline-gap) -
-        4px
+        6px
     );
     height: 1px;
     transform: translateY(-50%);

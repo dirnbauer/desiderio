@@ -5,31 +5,25 @@ declare(strict_types=1);
 namespace Webconsulting\Desiderio\DataProcessing;
 
 use Doctrine\DBAL\ArrayParameterType;
-use Symfony\Component\Yaml\Yaml;
 use TYPO3\CMS\ContentBlocks\DataProcessing\ContentBlockData;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Domain\Record;
 use TYPO3\CMS\Core\Domain\RecordFactory;
 use TYPO3\CMS\Core\LinkHandling\TypolinkParameter;
 use TYPO3\CMS\Core\Resource\FileRepository;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 use TYPO3\CMS\Frontend\ContentObject\DataProcessorInterface;
+use Webconsulting\Desiderio\Data\ContentBlockDefinitionRegistry;
+use Webconsulting\Desiderio\Seeding\DatabaseSchemaHelper;
 
 final class ContentBlockCollectionProcessor implements DataProcessorInterface
 {
-    /**
-     * @var array<string, array{collections: array<string, array<string, mixed>>}>|null
-     */
-    private ?array $definitions = null;
-
-    /** @var array<string, array<string, true>> */
-    private array $tableColumns = [];
 
     public function __construct(
         private readonly ConnectionPool $connectionPool,
         private readonly FileRepository $fileRepository,
         private readonly RecordFactory $recordFactory,
+        private readonly DatabaseSchemaHelper $databaseSchema,
     ) {}
 
     /**
@@ -59,7 +53,7 @@ final class ContentBlockCollectionProcessor implements DataProcessorInterface
         }
 
         $ctype = $this->stringValue($data['CType'] ?? null);
-        $definition = $this->getDefinitions()[$ctype] ?? null;
+        $definition = ContentBlockDefinitionRegistry::getRuntimeCollectionDefinitions()[$ctype] ?? null;
         if ($definition === null || $definition['collections'] === []) {
             return $processedData;
         }
@@ -87,7 +81,7 @@ final class ContentBlockCollectionProcessor implements DataProcessorInterface
     private function processContentBlockData(ContentBlockData $data, array $processedData): array
     {
         $ctype = (string)$data->getRecordType();
-        $definition = $this->getDefinitions()[$ctype] ?? null;
+        $definition = ContentBlockDefinitionRegistry::getRuntimeCollectionDefinitions()[$ctype] ?? null;
         if ($definition === null || $definition['collections'] === []) {
             return $processedData;
         }
@@ -128,113 +122,11 @@ final class ContentBlockCollectionProcessor implements DataProcessorInterface
         $reflectionProperty->setValue($data, $processed);
     }
 
-    /**
-     * @return array<string, array{collections: array<string, array<string, mixed>>}>
-     */
-    private function getDefinitions(): array
-    {
-        if ($this->definitions !== null) {
-            return $this->definitions;
-        }
 
-        $basePath = GeneralUtility::getFileAbsFileName('EXT:desiderio/ContentBlocks/ContentElements');
-        if ($basePath === '' || !is_dir($basePath)) {
-            $this->definitions = [];
-            return $this->definitions;
-        }
 
-        $definitions = [];
-        $directories = scandir($basePath);
-        if ($directories === false) {
-            $this->definitions = [];
-            return $this->definitions;
-        }
 
-        foreach ($directories as $directory) {
-            if ($directory === '.' || $directory === '..') {
-                continue;
-            }
-            $configPath = $basePath . '/' . $directory . '/config.yaml';
-            if (!is_readable($configPath)) {
-                continue;
-            }
 
-            $config = $this->normalizeStringKeyArray(Yaml::parseFile($configPath));
-            if ($config === null) {
-                continue;
-            }
 
-            $ctype = $this->stringValue($config['typeName'] ?? null);
-            if ($ctype === '') {
-                continue;
-            }
-
-            $definitions[$ctype] = [
-                'collections' => $this->extractCollections($config['fields'] ?? []),
-            ];
-        }
-
-        $this->definitions = $definitions;
-        return $this->definitions;
-    }
-
-    /**
-     * @param mixed $fields
-     * @return array<string, array<string, mixed>>
-     */
-    private function extractCollections(mixed $fields): array
-    {
-        if (!is_array($fields)) {
-            return [];
-        }
-
-        $collections = [];
-        foreach ($fields as $field) {
-            $fieldConfig = $this->normalizeStringKeyArray($field);
-            if ($fieldConfig === null) {
-                continue;
-            }
-
-            $identifier = $this->stringValue($fieldConfig['identifier'] ?? null);
-            if ($identifier === '' || $this->stringValue($fieldConfig['type'] ?? null) !== 'Collection') {
-                continue;
-            }
-
-            $table = $this->stringValue($fieldConfig['table'] ?? null);
-            $collections[$identifier] = [
-                'table' => $table !== '' ? $table : $identifier,
-                'fields' => $this->indexFields($fieldConfig['fields'] ?? []),
-                'collections' => $this->extractCollections($fieldConfig['fields'] ?? []),
-            ];
-        }
-
-        return $collections;
-    }
-
-    /**
-     * @param mixed $fields
-     * @return array<string, array<string, mixed>>
-     */
-    private function indexFields(mixed $fields): array
-    {
-        if (!is_array($fields)) {
-            return [];
-        }
-
-        $indexed = [];
-        foreach ($fields as $field) {
-            $fieldConfig = $this->normalizeStringKeyArray($field);
-            if ($fieldConfig === null) {
-                continue;
-            }
-            $identifier = $this->stringValue($fieldConfig['identifier'] ?? null);
-            if ($identifier !== '') {
-                $indexed[$identifier] = $fieldConfig;
-            }
-        }
-
-        return $indexed;
-    }
 
     /**
      * @param array<string, mixed> $collection
@@ -243,7 +135,7 @@ final class ContentBlockCollectionProcessor implements DataProcessorInterface
     private function loadCollectionItems(int $parentUid, array $collection): array
     {
         $table = $this->stringValue($collection['table'] ?? null);
-        if ($table === '' || !$this->tableHasColumn($table, 'foreign_table_parent_uid')) {
+        if ($table === '' || !$this->databaseSchema->tableHasColumn($table, 'foreign_table_parent_uid')) {
             return [];
         }
 
@@ -259,7 +151,7 @@ final class ContentBlockCollectionProcessor implements DataProcessorInterface
             )
             ->orderBy('sorting', 'ASC');
 
-        if ($this->tableHasColumn($table, 'sys_language_uid')) {
+        if ($this->databaseSchema->tableHasColumn($table, 'sys_language_uid')) {
             $queryBuilder->andWhere(
                 $queryBuilder->expr()->in(
                     'sys_language_uid',
@@ -335,33 +227,5 @@ final class ContentBlockCollectionProcessor implements DataProcessorInterface
     /**
      * @return array<string, array<string, mixed>>
      */
-    private function normalizeStringKeyArrayMap(mixed $value): array
-    {
-        if (!is_array($value)) {
-            return [];
-        }
 
-        $map = [];
-        foreach ($value as $key => $item) {
-            $normalized = $this->normalizeStringKeyArray($item);
-            if (is_string($key) && $normalized !== null) {
-                $map[$key] = $normalized;
-            }
-        }
-
-        return $map;
-    }
-
-    private function tableHasColumn(string $table, string $column): bool
-    {
-        if (!isset($this->tableColumns[$table])) {
-            $columns = [];
-            foreach ($this->connectionPool->getConnectionForTable($table)->createSchemaManager()->listTableColumns($table) as $tableColumn) {
-                $columns[$tableColumn->getName()] = true;
-            }
-            $this->tableColumns[$table] = $columns;
-        }
-
-        return isset($this->tableColumns[$table][$column]);
-    }
 }

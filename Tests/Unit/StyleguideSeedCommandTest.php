@@ -14,6 +14,7 @@ use TYPO3\CMS\Core\Resource\StorageRepository;
 use Webconsulting\Desiderio\Command\SeedStyleguidePagesCommand;
 use Webconsulting\Desiderio\Data\ContentBlockDefinitionRegistry;
 use Webconsulting\Desiderio\Seeding\DatabaseSchemaHelper;
+use Webconsulting\Desiderio\Seeding\StyleguideDemoValueGenerator;
 
 final class StyleguideSeedCommandTest extends TestCase
 {
@@ -529,7 +530,7 @@ final class StyleguideSeedCommandTest extends TestCase
 
         self::assertSame(
             '128',
-            $this->invokeMethod($command, 'buildDefaultFieldValue', [
+            $this->invokeMethod($this->createDemoValueGenerator(), 'buildDefaultFieldValue', [
                 'desiderio_categorycards',
                 'Category Cards Pricing',
                 'count',
@@ -539,7 +540,7 @@ final class StyleguideSeedCommandTest extends TestCase
         );
         self::assertSame(
             '2.4K',
-            $this->invokeMethod($command, 'buildDefaultFieldValue', [
+            $this->invokeMethod($this->createDemoValueGenerator(), 'buildDefaultFieldValue', [
                 'desiderio_ratingdisplay',
                 'Rating Display',
                 'review_count',
@@ -549,7 +550,7 @@ final class StyleguideSeedCommandTest extends TestCase
         );
         self::assertSame(
             '86',
-            $this->invokeMethod($command, 'buildDefaultFieldValue', [
+            $this->invokeMethod($this->createDemoValueGenerator(), 'buildDefaultFieldValue', [
                 'desiderio_statscounter',
                 'Stats Counter',
                 'counter_target',
@@ -559,7 +560,7 @@ final class StyleguideSeedCommandTest extends TestCase
         );
         self::assertSame(
             86,
-            $this->invokeMethod($command, 'buildDefaultFieldValue', [
+            $this->invokeMethod($this->createDemoValueGenerator(), 'buildDefaultFieldValue', [
                 'desiderio_demo',
                 'Demo Element',
                 'total',
@@ -569,7 +570,7 @@ final class StyleguideSeedCommandTest extends TestCase
         );
         self::assertSame(
             'Mara Weiss',
-            $this->invokeMethod($command, 'buildDefaultFieldValue', [
+            $this->invokeMethod($this->createDemoValueGenerator(), 'buildDefaultFieldValue', [
                 'desiderio_demo',
                 'Demo Element',
                 'account_name',
@@ -585,7 +586,7 @@ final class StyleguideSeedCommandTest extends TestCase
 
         self::assertSame(
             'Dauer in min',
-            $this->invokeMethod($command, 'buildDefaultFieldValue', [
+            $this->invokeMethod($this->createDemoValueGenerator(), 'buildDefaultFieldValue', [
                 'desiderio_articlehero',
                 'Article Hero',
                 'reading_time',
@@ -594,7 +595,7 @@ final class StyleguideSeedCommandTest extends TestCase
             ])
         );
 
-        $topic = $this->invokeMethod($command, 'buildDefaultFieldValue', [
+        $topic = $this->invokeMethod($this->createDemoValueGenerator(), 'buildDefaultFieldValue', [
             'desiderio_articlehero',
             'Article Hero',
             'topic',
@@ -637,7 +638,7 @@ final class StyleguideSeedCommandTest extends TestCase
 
         self::assertSame(
             '5min read',
-            $this->invokeMethod($command, 'buildDefaultFieldValue', [
+            $this->invokeMethod($this->createDemoValueGenerator(), 'buildDefaultFieldValue', [
                 'desiderio_blogteasers',
                 'Blog Teasers',
                 'meta',
@@ -653,7 +654,7 @@ final class StyleguideSeedCommandTest extends TestCase
 
         self::assertSame(
             'PHP',
-            $this->invokeMethod($command, 'buildDefaultFieldValue', [
+            $this->invokeMethod($this->createDemoValueGenerator(), 'buildDefaultFieldValue', [
                 'desiderio_codeblock',
                 'Code Block',
                 'language',
@@ -663,7 +664,7 @@ final class StyleguideSeedCommandTest extends TestCase
         );
         self::assertSame(
             'ArticleTeaserRenderer.php',
-            $this->invokeMethod($command, 'buildDefaultFieldValue', [
+            $this->invokeMethod($this->createDemoValueGenerator(), 'buildDefaultFieldValue', [
                 'desiderio_codeblock',
                 'Code Block',
                 'filename',
@@ -672,7 +673,7 @@ final class StyleguideSeedCommandTest extends TestCase
             ])
         );
 
-        $code = $this->invokeMethod($command, 'buildDefaultFieldValue', [
+        $code = $this->invokeMethod($this->createDemoValueGenerator(), 'buildDefaultFieldValue', [
             'desiderio_codeblock',
             'Code Block',
             'code',
@@ -691,7 +692,7 @@ final class StyleguideSeedCommandTest extends TestCase
 
         self::assertSame(
             'Plan',
-            $this->invokeMethod($command, 'buildDefaultFieldValue', [
+            $this->invokeMethod($this->createDemoValueGenerator(), 'buildDefaultFieldValue', [
                 'desiderio_timeline',
                 'Timeline',
                 'step',
@@ -701,7 +702,7 @@ final class StyleguideSeedCommandTest extends TestCase
         );
         self::assertSame(
             'Build',
-            $this->invokeMethod($command, 'buildDefaultFieldValue', [
+            $this->invokeMethod($this->createDemoValueGenerator(), 'buildDefaultFieldValue', [
                 'desiderio_timeline',
                 'Timeline',
                 'step',
@@ -1005,6 +1006,11 @@ final class StyleguideSeedCommandTest extends TestCase
         self::assertSame(2, $items['minItems']);
         self::assertSame(4, $items['maxItems']);
         self::assertSame('desiderio_demo_items', $items['column']);
+    }
+
+    private function createDemoValueGenerator(): StyleguideDemoValueGenerator
+    {
+        return new StyleguideDemoValueGenerator();
     }
 
     private function createCommand(): SeedStyleguidePagesCommand

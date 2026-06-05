@@ -5,6 +5,7 @@
   "description": "Tailwind v4 and shadcn/ui theme build for the Desiderio TYPO3 extension.",
   "scripts": {
     "build:css": "tailwindcss -i Resources/Private/Tailwind/desiderio.css -o Resources/Public/Css/desiderio-tailwind.css --minify",
+    "build:desiderio-css": "node Build/Scripts/build-desiderio-css.mjs",
     "build:prism": "node Build/Scripts/build-prism-lite.mjs",
     "watch:css": "tailwindcss -i Resources/Private/Tailwind/desiderio.css -o Resources/Public/Css/desiderio-tailwind.css --watch",
     "shadcn:info": "shadcn info --json",

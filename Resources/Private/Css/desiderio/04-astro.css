@@ -1,0 +1,102 @@
+/* ------------------------------------------------------------------ */
+/*  Astro Enhancements                                                 */
+/* ------------------------------------------------------------------ */
+
+[data-astro-reveal],
+[data-d-animate] {
+    --astro-reveal-y: 0.75rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    [data-astro-reveal],
+    [data-d-animate] {
+        opacity: 0;
+        transform: translateY(var(--astro-reveal-y));
+        transition:
+            opacity 0.42s ease,
+            transform 0.42s ease;
+    }
+
+    [data-astro-reveal="fade"],
+    [data-d-animate="fade"] {
+        --astro-reveal-y: 0;
+    }
+
+    [data-astro-reveal="slide-up"],
+    [data-d-animate="slide-up"] {
+        --astro-reveal-y: 0.9rem;
+    }
+
+    [data-astro-reveal="slide-down"],
+    [data-d-animate="slide-down"] {
+        --astro-reveal-y: -0.9rem;
+    }
+
+    [data-astro-visible="true"],
+    [data-d-animate].is-visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+[data-astro-tilt] {
+    transform: perspective(900px) rotateX(var(--astro-tilt-x, 0deg)) rotateY(var(--astro-tilt-y, 0deg));
+    transform-style: preserve-3d;
+    transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease,
+        border-color 0.18s ease;
+    will-change: transform;
+}
+
+[data-astro-marquee] {
+    display: flex;
+    overflow: hidden;
+    gap: var(--astro-marquee-gap, 2rem);
+    mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+
+[data-astro-marquee] > * {
+    flex: 0 0 auto;
+    min-width: max-content;
+    animation: d-astro-marquee var(--astro-marquee-duration, 28s) linear infinite;
+}
+
+[data-astro-marquee]:hover > *,
+[data-astro-paused="true"] > * {
+    animation-play-state: paused;
+}
+
+@keyframes d-astro-marquee {
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(calc(-100% - var(--astro-marquee-gap, 2rem)));
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    [data-astro-reveal],
+    [data-d-animate] {
+        opacity: 1;
+        transform: none;
+    }
+
+    [data-astro-tilt] {
+        transform: none;
+        transition: none;
+        will-change: auto;
+    }
+
+    [data-astro-marquee] {
+        overflow: auto;
+        mask-image: none;
+    }
+
+    [data-astro-marquee] > * {
+        animation: none;
+    }
+}
+

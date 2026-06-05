@@ -1,0 +1,120 @@
+/* ------------------------------------------------------------------ */
+/*  Mobile Responsive (Site)                                           */
+/* ------------------------------------------------------------------ */
+
+@media (max-width: 768px) {
+    .desiderio-main--fixed {
+        padding-top: 7rem;
+    }
+
+    .desiderio-header__menu-toggle { display: inline-flex; }
+    .desiderio-header__inner {
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 0.75rem;
+    }
+    .desiderio-header__logo {
+        min-width: 0;
+    }
+    .desiderio-header__wordmark {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+    .desiderio-header__actions {
+        grid-column: 1 / -1;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto auto;
+        align-items: center;
+        justify-content: stretch;
+        width: 100%;
+        min-width: 0;
+        overflow: hidden;
+    }
+    .desiderio-header__search {
+        width: auto;
+        max-width: 100%;
+        min-width: 0;
+    }
+    .desiderio-theme-switch,
+    .desiderio-header__lang {
+        min-width: 0;
+    }
+    .desiderio-header__nav {
+        display: none;
+        grid-column: 1 / -1;
+        position: absolute;
+        top: 100%;
+        left: 0; right: 0;
+        background-color: var(--background);
+        border-bottom: 1px solid var(--border);
+        box-shadow: var(--shadow-lg);
+        padding: 1rem;
+        z-index: 75;
+        overflow: auto;
+        max-height: min(70vh, 34rem);
+    }
+    .desiderio-header__nav.is-open { display: block; }
+    .desiderio-header__nav-list {
+        flex-direction: column;
+        align-items: stretch;
+        min-width: 0;
+    }
+    .desiderio-header__nav-link {
+        width: 100%;
+        padding: 0.75rem;
+        white-space: normal;
+    }
+    .desiderio-header__subnav {
+        position: static;
+        display: grid;
+        border: 0;
+        box-shadow: none;
+        padding: 0.25rem 0 0.5rem 0.75rem;
+        background: transparent;
+    }
+    .desiderio-header__inner { position: relative; }
+    .desiderio-footer__inner {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    .desiderio-footer__link-list,
+    .desiderio-footer__legal-list {
+        justify-content: flex-start;
+    }
+    .desiderio-system-page {
+        padding: 2rem 0 3rem;
+    }
+    .desiderio-system-page__header h1 {
+        font-size: 1.625rem;
+    }
+    .desiderio-consent {
+        inset-inline: 0.75rem;
+        inset-block-end: 0.75rem;
+    }
+    .desiderio-consent__body {
+        align-items: stretch;
+        flex-direction: column;
+    }
+    .desiderio-consent__actions {
+        justify-content: flex-start;
+    }
+}
+
+@media (max-width: 420px) {
+    .desiderio-theme-switch__summary {
+        width: 2rem;
+    }
+
+    .desiderio-header__lang-summary {
+        min-width: 3.75rem;
+        padding-inline: 0.35rem;
+        gap: 0.3rem;
+    }
+
+    .desiderio-header__lang-icon {
+        width: 1.25rem;
+        height: 1.25rem;
+    }
+}
+
+/* =================================================================== */

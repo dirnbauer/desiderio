@@ -1,0 +1,24 @@
+/* ===================================================================
+   Desiderio — TYPO3 v14 Theme
+   Built on shadcn/ui style recipes with Fluid components.
+   =================================================================== */
+
+/* ------------------------------------------------------------------ */
+/*  Layout: Main                                                       */
+/* ------------------------------------------------------------------ */
+
+html,
+body {
+    max-width: 100%;
+    overflow-x: hidden;
+    overflow-x: clip;
+}
+
+.desiderio-main {
+    min-height: calc(100vh - 10rem);
+}
+
+.desiderio-main--fixed {
+    padding-top: 4rem;
+}
+

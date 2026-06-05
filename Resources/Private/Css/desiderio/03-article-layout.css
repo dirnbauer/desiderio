@@ -1,0 +1,18 @@
+/* ------------------------------------------------------------------ */
+/*  Article Layout (Sidebar variant)                                   */
+/* ------------------------------------------------------------------ */
+
+.desiderio-article {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 2rem 0;
+}
+
+@media (min-width: 1024px) {
+    .desiderio-article {
+        grid-template-columns: 1fr 320px;
+        gap: 3rem;
+    }
+}
+

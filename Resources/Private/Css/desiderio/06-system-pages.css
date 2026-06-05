@@ -1,0 +1,148 @@
+/* ------------------------------------------------------------------ */
+/*  System Pages + Consent                                             */
+/* ------------------------------------------------------------------ */
+
+.desiderio-system-page {
+    padding: 3rem 0 4rem;
+}
+
+.desiderio-system-page__header {
+    display: grid;
+    gap: 0.75rem;
+    max-width: 48rem;
+    margin-bottom: 2rem;
+}
+
+.desiderio-system-page__header h1 {
+    margin: 0;
+    color: var(--foreground);
+    font-family: var(--d-font-heading);
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1.12;
+    letter-spacing: 0;
+}
+
+.docs__component-header .typography--h1,
+.docs__welcome-hero .typography--h1,
+.desiderio-system-page__header h1 {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    padding: clamp(0.875rem, 1.8vw, 1.25rem) clamp(1rem, 2.8vw, 1.5rem);
+    overflow-wrap: anywhere;
+    hyphens: auto;
+    text-wrap: balance;
+    background-color: color-mix(in oklch, var(--muted) 54%, var(--background));
+    border-block: 1px solid color-mix(in oklch, var(--border) 78%, transparent);
+}
+
+.desiderio-system-page__header p {
+    margin: 0;
+    color: var(--muted-foreground);
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.desiderio-system-page__content {
+    max-width: 58rem;
+}
+
+.desiderio-system-page__home {
+    margin-top: 2rem;
+}
+
+.desiderio-system-page__home a {
+    color: var(--primary);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+}
+
+.desiderio-consent {
+    position: fixed;
+    inset-inline: 1rem;
+    inset-block-end: 1rem;
+    z-index: 100;
+    display: block;
+}
+
+.desiderio-consent[hidden] {
+    display: none;
+}
+
+.desiderio-consent__body {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    max-width: 64rem;
+    margin-inline: auto;
+    padding: 1rem;
+    color: var(--popover-foreground);
+    background-color: var(--popover);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-lg);
+}
+
+.desiderio-consent__message {
+    margin: 0;
+    color: var(--muted-foreground);
+    font-size: 0.875rem;
+    line-height: 1.5;
+}
+
+.desiderio-consent__actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    flex-shrink: 0;
+}
+
+.desiderio-consent__link,
+.desiderio-consent__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.25rem;
+    border-radius: var(--radius);
+    padding: 0 0.75rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    line-height: 1.2;
+    text-decoration: none;
+}
+
+.desiderio-consent__link {
+    color: var(--muted-foreground);
+}
+
+.desiderio-consent__link:hover {
+    color: var(--foreground);
+}
+
+.desiderio-consent__button {
+    border: 1px solid var(--border);
+    cursor: pointer;
+}
+
+.desiderio-consent__button--secondary {
+    color: var(--foreground);
+    background-color: var(--background);
+}
+
+.desiderio-consent__button--primary {
+    color: var(--primary-foreground);
+    background-color: var(--primary);
+    border-color: var(--primary);
+}
+
+.desiderio-consent__button:focus-visible,
+.desiderio-consent__link:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+}
+

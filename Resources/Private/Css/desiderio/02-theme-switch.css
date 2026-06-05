@@ -1,0 +1,107 @@
+/* ------------------------------------------------------------------ */
+/*  Theme Switch                                                       */
+/* ------------------------------------------------------------------ */
+
+.desiderio-theme-switch {
+    position: relative;
+    flex-shrink: 0;
+}
+
+.desiderio-theme-switch__summary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    height: 2.25rem;
+    color: var(--foreground);
+    background-color: var(--background);
+    cursor: pointer;
+    list-style: none;
+}
+
+.desiderio-theme-switch__summary::-webkit-details-marker {
+    display: none;
+}
+
+.desiderio-theme-switch__summary:hover,
+.desiderio-theme-switch[open] .desiderio-theme-switch__summary {
+    background-color: var(--accent);
+}
+
+.desiderio-theme-switch__summary:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+}
+
+.desiderio-theme-switch__current,
+.desiderio-theme-switch__current-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.desiderio-theme-switch__current-icon[hidden] {
+    display: none;
+}
+
+.desiderio-theme-switch__list {
+    position: absolute;
+    inset-block-start: calc(100% + 0.375rem);
+    inset-inline-end: 0;
+    display: grid;
+    gap: 0.125rem;
+    min-width: 9.5rem;
+    list-style: none;
+    margin: 0;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background-color: var(--popover);
+    padding: 0.375rem;
+    box-shadow: var(--shadow-md);
+    z-index: 80;
+}
+
+.desiderio-theme-switch__option {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+    border: 0;
+    border-radius: calc(var(--radius) - 2px);
+    padding: 0.5rem 0.625rem;
+    color: var(--popover-foreground);
+    background: transparent;
+    cursor: pointer;
+    font-size: 0.75rem;
+    font-weight: 500;
+    text-align: left;
+}
+
+.desiderio-theme-switch__option:hover,
+.desiderio-theme-switch__option:focus-visible,
+.desiderio-theme-switch__option[aria-pressed="true"] {
+    color: var(--foreground);
+    background-color: var(--accent);
+}
+
+.desiderio-theme-switch__option[aria-pressed="true"]::after {
+    content: "";
+    width: 0.375rem;
+    height: 0.375rem;
+    margin-inline-start: auto;
+    border-radius: 999px;
+    background-color: var(--primary);
+}
+
+.desiderio-theme-switch__option:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: -2px;
+}
+
+.desiderio-theme-toggle__sun { display: none; }
+.desiderio-theme-toggle__moon { display: block; }
+.dark .desiderio-theme-toggle__sun { display: block; }
+.dark .desiderio-theme-toggle__moon { display: none; }
+

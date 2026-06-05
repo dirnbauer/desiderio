@@ -27,17 +27,21 @@
                     <f:if condition="{logo.link.url}">
                         <f:then>
                             <d:atom.link href="{logo.link.url}" target="{logo.link.target}" variant="muted" class="logo-cloud__link">
-                                <f:for each="{logo.image}" as="fileReference">
-                                    <f:image image="{fileReference}" maxWidth="520" alt="{logo.name}" class="logo-cloud__image" loading="lazy"/>
-                                </f:for>
+                                <div class="logo-cloud__media">
+                                    <f:for each="{logo.image}" as="fileReference">
+                                        <f:image image="{fileReference}" maxWidth="520" alt="{logo.name}" class="logo-cloud__image" loading="lazy" decoding="async"/>
+                                    </f:for>
+                                </div>
                                 <span class="logo-cloud__name">{logo.name}</span>
                             </d:atom.link>
                         </f:then>
                         <f:else>
                             <div class="logo-cloud__link">
-                                <f:for each="{logo.image}" as="fileReference">
-                                    <f:image image="{fileReference}" maxWidth="520" alt="{logo.name}" class="logo-cloud__image" loading="lazy"/>
-                                </f:for>
+                                <div class="logo-cloud__media">
+                                    <f:for each="{logo.image}" as="fileReference">
+                                        <f:image image="{fileReference}" maxWidth="520" alt="{logo.name}" class="logo-cloud__image" loading="lazy" decoding="async"/>
+                                    </f:for>
+                                </div>
                                 <span class="logo-cloud__name">{logo.name}</span>
                             </div>
                         </f:else>

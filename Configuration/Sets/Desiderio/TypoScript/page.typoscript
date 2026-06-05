@@ -27,15 +27,6 @@ lib.desiderioPageDataProcessing {
   40 = site
   40.as = site
 
-  50 = menu
-  50 {
-    as = footerMenu
-    special = directory
-    special.value.data = site:rootPageId
-    levels = 1
-    titleField = nav_title // title
-  }
-
   60 = menu
   60 {
     if.isTrue = {$desiderio.footer.legalPageIds}

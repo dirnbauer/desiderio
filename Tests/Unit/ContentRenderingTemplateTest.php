@@ -1281,12 +1281,12 @@ final class ContentRenderingTemplateTest extends TestCase
             'Main nav <ul> must carry role="list" for VoiceOver/Safari list semantics.'
         );
 
-        // Footer must share the same preset-aware brand and keep navigational chrome.
+        // Footer must share the same preset-aware brand and keep legal navigation.
         self::assertStringContainsString('desiderio.brand.wordmark', $footerPartial);
         self::assertStringContainsString('desiderio.brand.tagline', $footerPartial);
         self::assertStringContainsString('desiderio-footer__wordmark desiderio-footer__title', $footerPartial);
-        self::assertStringContainsString('desiderio-footer__tagline', $footerPartial);
-        self::assertStringContainsString('a11y.nav.footer', $footerPartial);
+        self::assertStringContainsString('desiderio-footer__meta', $footerPartial);
+        self::assertStringContainsString('desiderio-footer__copyright', $footerPartial);
         self::assertStringContainsString('a11y.nav.legal', $footerPartial);
 
         // Accessibility CSS primitives must be in components.css.

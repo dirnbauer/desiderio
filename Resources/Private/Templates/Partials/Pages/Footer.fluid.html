@@ -8,6 +8,10 @@
 <f:variable name="siteTitle" value="{siteTitle ?: breadcrumb.0.title}"/>
 <f:variable name="brandWordmark" value="{site.configuration.settings.desiderio.brand.wordmark ?: siteTitle}"/>
 <f:variable name="brandTagline" value="{site.configuration.settings.desiderio.brand.tagline}"/>
+<f:variable name="footerAttribution" value="" />
+<f:if condition="{brandTagline}">
+    <f:variable name="footerAttribution" value="{brandTagline -> f:format.trim(characters: '.') -> f:format.case(mode: 'lower')}" />
+</f:if>
 
 <footer class="desiderio-footer">
     <d:layout.container>
@@ -16,30 +20,18 @@
                 <f:link.typolink parameter="{breadcrumb.0.link}" class="desiderio-footer__wordmark desiderio-footer__title">
                     {brandWordmark}
                 </f:link.typolink>
-                <f:if condition="{brandTagline}">
-                    <p class="desiderio-footer__tagline">{brandTagline}</p>
-                </f:if>
+            </div>
+
+            <div class="desiderio-footer__meta">
                 <p class="desiderio-footer__copyright">
                     <f:if condition="{site.configuration.settings.desiderio.footer.copyrightText}">
                         <f:then>{site.configuration.settings.desiderio.footer.copyrightText}</f:then>
-                        <f:else>© <f:format.date date="now" format="Y" /> {brandWordmark}</f:else>
+                        <f:else>
+                            © <f:format.date date="now" format="Y" /> {brandWordmark}<f:if condition="{footerAttribution}"> ({footerAttribution})</f:if>
+                        </f:else>
                     </f:if>
                 </p>
             </div>
-
-            <f:if condition="{footerMenu}">
-                <nav class="desiderio-footer__nav" aria-label="{f:translate(extensionName: 'desiderio', key: 'a11y.nav.footer', default: 'Footer navigation')}">
-                    <ul class="desiderio-footer__link-list" role="list">
-                        <f:for each="{footerMenu}" as="item">
-                            <li>
-                                <f:link.typolink parameter="{item.link}" class="desiderio-footer__link {f:if(condition: '{item.active}', then: 'desiderio-footer__link--active')}" additionalAttributes="{f:if(condition: '{item.active}', then: '{aria-current: \'page\'}')}">
-                                    {item.title}
-                                </f:link.typolink>
-                            </li>
-                        </f:for>
-                    </ul>
-                </nav>
-            </f:if>
 
             <nav class="desiderio-footer__legal" aria-label="{f:translate(extensionName: 'desiderio', key: 'a11y.nav.legal', default: 'Legal navigation')}">
                 <ul class="desiderio-footer__legal-list" role="list">

@@ -77,7 +77,10 @@
         grid-template-columns: 1fr;
         gap: 1.5rem;
     }
-    .desiderio-footer__link-list,
+    .desiderio-footer__meta {
+        justify-content: flex-start;
+        text-align: start;
+    }
     .desiderio-footer__legal-list {
         justify-content: flex-start;
     }

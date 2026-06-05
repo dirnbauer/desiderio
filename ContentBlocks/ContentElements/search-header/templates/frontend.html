@@ -16,7 +16,7 @@
                     <span class="search-header__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span>
                 </f:if>
                 <f:if condition="{data.header}">
-                    <d:atom.typography tag="h2" variant="h2" class="search-header__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
+                    <d:atom.typography tag="h1" variant="h1" class="search-header__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
                 </f:if>
                 <f:if condition="{data.subheadline}">
                     <d:atom.typography variant="lead" class="search-header__description">{data -> f:render.text(field: 'subheadline')}</d:atom.typography>

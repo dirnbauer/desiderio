@@ -238,7 +238,7 @@ final class StarterSiteDefinitions
     {
         return [
             self::page('Search', 'search', 'Find pages, guides, proof, and operational details across the site.', [
-                self::searchHeader('Search ' . $brand, 'Site search', 'Find pages, proof, resources, and operational details from one place.', '/search', 'Search pages, proof, and resources'),
+                self::searchHeader('', '', '', '/search', 'Search pages, proof, and resources'),
             ], 'DesiderioSearch', true),
             self::page('404', '404', 'A useful error page that routes visitors back into high-value content instead of ending the session.', [
                 self::headerSection('This page is not available', '404', 'Route visitors to high-value pages instead of leaving them at a dead end.', 'center'),

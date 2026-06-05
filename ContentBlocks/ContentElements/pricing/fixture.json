@@ -1,85 +1,87 @@
 {
-  "_type": "pricing",
-  "header": "Pricing Section for confident plan comparison",
-  "eyebrow": "Modern import",
-  "subheadline": "Help buyers compare plans with crisp values and direct feature language.",
-  "columns": "3",
-  "plans": [
-    {
-      "name": "Mara Weiss",
-      "price": "$19",
-      "billing_period": "/month",
-      "description": "Keep plan comparison compact across desktop tables and mobile cards.",
-      "features": [
+    "_type": "pricing",
+    "header": "Pricing Section for confident plan comparison",
+    "eyebrow": "Modern import",
+    "subheadline": "Help buyers compare plans with crisp values and direct feature language.",
+    "columns": "3",
+    "plans": [
         {
-          "text": "Clean mobile behavior for dense content"
+            "name": "Mara Weiss",
+            "price": "$19",
+            "billing_period": "/month",
+            "description": "Keep plan comparison compact across desktop tables and mobile cards.",
+            "features": [
+                {
+                    "text": "Text for Pricing: Customer Evidence Hub"
+                },
+                {
+                    "text": "Text for Product Adoption Report 2"
+                },
+                {
+                    "text": "Text for Editor Workflow Upgrade 3"
+                },
+                {
+                    "text": "Text for Service Performance Snapshot 4"
+                }
+            ],
+            "button_text": "Start review",
+            "button_link": "https://ui.shadcn.com/docs/pricing-section",
+            "is_featured": false,
+            "badge_text": "Fluid 5.3"
         },
         {
-          "text": "Chart colors mapped to semantic tokens"
+            "badge_text": "shadcn/ui",
+            "name": "Sofia Berg",
+            "price": "$49",
+            "billing_period": "/month",
+            "description": "Show pricing states with practical labels and scannable benefits.",
+            "features": [
+                {
+                    "text": "Text for Pricing: Customer Evidence Hub"
+                },
+                {
+                    "text": "Text for Product Adoption Report 2"
+                },
+                {
+                    "text": "Text for Editor Workflow Upgrade 3"
+                },
+                {
+                    "text": "Text for Service Performance Snapshot 4"
+                },
+                {
+                    "text": "Text for Reusable Section Blueprint 5"
+                }
+            ],
+            "button_text": "View pattern",
+            "button_link": "https://ui.shadcn.com/docs/pricing-section",
+            "is_featured": true
         },
         {
-          "text": "Production-ready empty and loaded states"
-        },
-        {
-          "text": "Token-aware light and dark states"
+            "name": "Sofia Berg",
+            "price": "$99",
+            "billing_period": "/month",
+            "description": "Show pricing states with practical labels and scannable benefits.",
+            "features": [
+                {
+                    "text": "Text for Pricing: Customer Evidence Hub"
+                },
+                {
+                    "text": "Text for Product Adoption Report 2"
+                },
+                {
+                    "text": "Text for Editor Workflow Upgrade 3"
+                },
+                {
+                    "text": "Text for Service Performance Snapshot 4"
+                },
+                {
+                    "text": "Text for Reusable Section Blueprint 5"
+                }
+            ],
+            "button_text": "View pattern",
+            "button_link": "https://ui.shadcn.com/docs/pricing-section",
+            "is_featured": false,
+            "badge_text": "Responsive by default"
         }
-      ],
-      "button_text": "Start review",
-      "button_link": "https://ui.shadcn.com/docs/pricing-section",
-      "is_featured": false
-    },
-    {
-      "badge_text": "shadcn/ui",
-      "name": "Sofia Berg",
-      "price": "$49",
-      "billing_period": "/month",
-      "description": "Show pricing states with practical labels and scannable benefits.",
-      "features": [
-        {
-          "text": "Clean mobile behavior for dense content"
-        },
-        {
-          "text": "Chart colors mapped to semantic tokens"
-        },
-        {
-          "text": "Production-ready empty and loaded states"
-        },
-        {
-          "text": "Token-aware light and dark states"
-        },
-        {
-          "text": "Accessible keyboard focus patterns"
-        }
-      ],
-      "button_text": "View pattern",
-      "button_link": "https://ui.shadcn.com/docs/pricing-section",
-      "is_featured": true
-    },
-    {
-      "name": "Sofia Berg",
-      "price": "$99",
-      "billing_period": "/month",
-      "description": "Show pricing states with practical labels and scannable benefits.",
-      "features": [
-        {
-          "text": "Clean mobile behavior for dense content"
-        },
-        {
-          "text": "Chart colors mapped to semantic tokens"
-        },
-        {
-          "text": "Production-ready empty and loaded states"
-        },
-        {
-          "text": "Token-aware light and dark states"
-        },
-        {
-          "text": "Accessible keyboard focus patterns"
-        }
-      ],
-      "button_text": "View pattern",
-      "button_link": "https://ui.shadcn.com/docs/pricing-section",
-      "is_featured": false
-    }
-  ]
+    ]
 }

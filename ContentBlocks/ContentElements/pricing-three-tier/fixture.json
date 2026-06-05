@@ -1,83 +1,86 @@
 {
-  "_type": "pricing",
-  "header": "Three Tier Pricing for confident plan comparison",
-  "eyebrow": "Modern import",
-  "subheadline": "Help buyers compare plans with crisp values and direct feature language.",
-  "plans": [
-    {
-      "name": "Lea Fischer",
-      "price": "$19",
-      "billing_period": "/month",
-      "description": "Show pricing states with practical labels and scannable benefits.",
-      "features": [
+    "_type": "pricing",
+    "header": "Simple, transparent pricing",
+    "eyebrow": "Pricing",
+    "subheadline": "Start free, upgrade when you grow. No hidden fees and you can cancel anytime.",
+    "plans": [
         {
-          "text": "Production-ready empty and loaded states"
+            "name": "Starter",
+            "price": "$19",
+            "billing_period": "/month",
+            "description": "For individuals and small side projects.",
+            "features": [
+                {
+                    "text": "Text for Pricing Three Tier: Pattern Library Rollout"
+                },
+                {
+                    "text": "Text for Content Operations Brief 2"
+                },
+                {
+                    "text": "Text for Customer Evidence Hub 3"
+                },
+                {
+                    "text": "Text for Product Adoption Report 4"
+                }
+            ],
+            "button_text": "Start free",
+            "button_link": "https://ui.shadcn.com/docs/three-tier-pricing",
+            "is_recommended": false
         },
         {
-          "text": "Token-aware light and dark states"
+            "name": "Pro",
+            "price": "$49",
+            "billing_period": "/month",
+            "description": "For growing teams that publish every week.",
+            "features": [
+                {
+                    "text": "Text for Pricing Three Tier: Pattern Library Rollout"
+                },
+                {
+                    "text": "Text for Content Operations Brief 2"
+                },
+                {
+                    "text": "Text for Customer Evidence Hub 3"
+                },
+                {
+                    "text": "Text for Product Adoption Report 4"
+                },
+                {
+                    "text": "Text for Editor Workflow Upgrade 5"
+                },
+                {
+                    "text": "Text for Service Performance Snapshot 6"
+                }
+            ],
+            "button_text": "Choose Pro",
+            "button_link": "https://ui.shadcn.com/docs/three-tier-pricing",
+            "is_recommended": true
         },
         {
-          "text": "Accessible keyboard focus patterns"
-        },
-        {
-          "text": "Responsive cards tuned for concise content"
+            "name": "Enterprise",
+            "price": "$99",
+            "billing_period": "/month",
+            "description": "For organisations with security and scale needs.",
+            "features": [
+                {
+                    "text": "Text for Pricing Three Tier: Pattern Library Rollout"
+                },
+                {
+                    "text": "Text for Content Operations Brief 2"
+                },
+                {
+                    "text": "Text for Customer Evidence Hub 3"
+                },
+                {
+                    "text": "Text for Product Adoption Report 4"
+                },
+                {
+                    "text": "Text for Editor Workflow Upgrade 5"
+                }
+            ],
+            "button_text": "Contact sales",
+            "button_link": "https://ui.shadcn.com/docs/three-tier-pricing",
+            "is_recommended": false
         }
-      ],
-      "button_text": "Get the checklist",
-      "button_link": "https://ui.shadcn.com/docs/three-tier-pricing",
-      "is_recommended": false
-    },
-    {
-      "name": "Mara Weiss",
-      "price": "$49",
-      "billing_period": "/month",
-      "description": "Keep plan comparison compact across desktop tables and mobile cards.",
-      "features": [
-        {
-          "text": "Production-ready empty and loaded states"
-        },
-        {
-          "text": "Token-aware light and dark states"
-        },
-        {
-          "text": "Accessible keyboard focus patterns"
-        },
-        {
-          "text": "Responsive cards tuned for concise content"
-        },
-        {
-          "text": "Editor-friendly TYPO3 Content Blocks"
-        }
-      ],
-      "button_text": "Start review",
-      "button_link": "https://ui.shadcn.com/docs/three-tier-pricing",
-      "is_recommended": true
-    },
-    {
-      "name": "Jonas Klein",
-      "price": "$99",
-      "billing_period": "/month",
-      "description": "Help buyers compare plans with crisp values and direct feature language.",
-      "features": [
-        {
-          "text": "Production-ready empty and loaded states"
-        },
-        {
-          "text": "Token-aware light and dark states"
-        },
-        {
-          "text": "Accessible keyboard focus patterns"
-        },
-        {
-          "text": "Responsive cards tuned for concise content"
-        },
-        {
-          "text": "Editor-friendly TYPO3 Content Blocks"
-        }
-      ],
-      "button_text": "Explore flow",
-      "button_link": "https://ui.shadcn.com/docs/three-tier-pricing",
-      "is_recommended": false
-    }
-  ]
+    ]
 }

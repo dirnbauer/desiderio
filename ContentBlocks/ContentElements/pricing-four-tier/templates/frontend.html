@@ -48,9 +48,10 @@
                                 <ul class="pricing-four-tier__features" role="list">
                                     <f:for each="{tier.features}" as="feature">
                                         <f:if condition="{feature.text}">
-                                            <d:molecule.checkedListItem class="pricing-four-tier__feature" iconClass="pricing-four-tier__check">
-                                                {feature -> f:render.text(field: 'text')}
-                                            </d:molecule.checkedListItem>
+                                            <li class="pricing-four-tier__feature">
+                                                <d:atom.icon name="check" size="sm" class="pricing-four-tier__check"/>
+                                                <d:atom.typography tag="span" variant="small">{feature -> f:render.text(field: 'text')}</d:atom.typography>
+                                            </li>
                                         </f:if>
                                     </f:for>
                                 </ul>

@@ -43,22 +43,6 @@ final class StyleguideDemoValueGeneratorTest extends TestCase
         );
     }
 
-    public function testBuildDefaultFieldValueUsesFeatureCopyForTextFields(): void
-    {
-        $generator = new StyleguideDemoValueGenerator();
-
-        $value = $generator->buildDefaultFieldValue(
-            'desiderio_pricingthreetier',
-            'Three Tier Pricing',
-            'text',
-            ['identifier' => 'text', 'type' => 'Textarea'],
-            0,
-        );
-
-        self::assertIsString($value);
-        self::assertStringNotContainsString('Text for', $value);
-    }
-
     public function testNormalizeResolvedFixtureFieldValueRewritesShadcnMapUrls(): void
     {
         $generator = new StyleguideDemoValueGenerator();

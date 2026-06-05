@@ -42,9 +42,10 @@
                             <ul class="pricing-toggle__features" role="list">
                                 <f:for each="{plan.features}" as="feature">
                                     <f:if condition="{feature.text}">
-                                        <d:molecule.checkedListItem class="pricing-toggle__feature" iconClass="pricing-toggle__check">
-                                            {feature -> f:render.text(field: 'text')}
-                                        </d:molecule.checkedListItem>
+                                        <li class="pricing-toggle__feature">
+                                            <d:atom.icon name="check" size="sm" class="pricing-toggle__check"/>
+                                            <span>{feature -> f:render.text(field: 'text')}</span>
+                                        </li>
                                     </f:if>
                                 </f:for>
                             </ul>

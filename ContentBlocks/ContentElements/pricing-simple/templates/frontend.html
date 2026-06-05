@@ -28,9 +28,10 @@
                     <ul class="pricing-simple__features" role="list">
                         <f:for each="{data.features}" as="feature">
                             <f:if condition="{feature.text}">
-                                <d:molecule.checkedListItem class="pricing-simple__feature" iconClass="pricing-simple__check">
-                                    {feature -> f:render.text(field: 'text')}
-                                </d:molecule.checkedListItem>
+                                <li class="pricing-simple__feature">
+                                    <d:atom.icon name="check" size="sm" class="pricing-simple__check"/>
+                                    <d:atom.typography tag="span" variant="small">{feature -> f:render.text(field: 'text')}</d:atom.typography>
+                                </li>
                             </f:if>
                         </f:for>
                     </ul>

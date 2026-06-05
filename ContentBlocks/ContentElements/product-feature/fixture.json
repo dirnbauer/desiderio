@@ -1,25 +1,29 @@
 {
-  "_type": "feature",
-  "header": "Product Feature Pricing for confident plan comparison",
-  "eyebrow": "Modern import",
-  "description": "Help buyers compare plans with crisp values and direct feature language.",
-  "features": [
-    {
-      "text": "Token-aware light and dark states"
-    },
-    {
-      "text": "Accessible keyboard focus patterns"
-    },
-    {
-      "text": "Responsive cards tuned for concise content"
-    },
-    {
-      "text": "Editor-friendly TYPO3 Content Blocks"
-    },
-    {
-      "text": "Modern Unsplash imagery in the import seed"
+    "_type": "feature",
+    "header": "Edit your store without waiting on developers",
+    "eyebrow": "Visual editor",
+    "description": "Drag blocks, swap images, and publish in minutes. Every change stays on-brand and ships to production with one click.",
+    "features": [
+        {
+            "text": "Text for Product Feature: Customer Evidence Hub"
+        },
+        {
+            "text": "Text for Product Adoption Report 2"
+        },
+        {
+            "text": "Text for Editor Workflow Upgrade 3"
+        },
+        {
+            "text": "Text for Service Performance Snapshot 4"
+        }
+    ],
+    "button_text": "Start free trial",
+    "button_link": "https://ui.shadcn.com/",
+    "image": {
+        "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-14.jpg",
+        "title": "Team Member portrait",
+        "alternative": "Portrait photo of Team Member.",
+        "description": "Portrait-style photo from Unsplash collection #25880.",
+        "source": "https://unsplash.com/collections/25880"
     }
-  ],
-  "button_text": "Explore flow",
-  "button_link": "https://ui.shadcn.com/docs/product-feature-pricing"
 }

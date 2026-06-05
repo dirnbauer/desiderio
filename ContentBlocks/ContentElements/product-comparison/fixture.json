@@ -1,64 +1,97 @@
 {
-  "_type": "pricing",
-  "header": "Product Comparison Pricing for confident plan comparison",
-  "eyebrow": "Modern import",
-  "products": [
-    {
-      "name": "Noah Ritter",
-      "price": "$19",
-      "specs": [
+    "_type": "pricing",
+    "header": "Compare models side by side",
+    "eyebrow": "Product comparison",
+    "products": [
         {
-          "text": "Reusable labels, metrics, and actions"
+            "name": "Air 13",
+            "price": "$999",
+            "specs": [
+                {
+                    "text": "Text for Product Comparison: Reusable Section Blueprint"
+                },
+                {
+                    "text": "Text for Launch Readiness Review 2"
+                },
+                {
+                    "text": "Text for Pattern Library Rollout 3"
+                },
+                {
+                    "text": "Text for Content Operations Brief 4"
+                },
+                {
+                    "text": "Text for Customer Evidence Hub 5"
+                }
+            ],
+            "is_recommended": false,
+            "link": "https://ui.shadcn.com/docs",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-14.jpg",
+                "title": "Team Member portrait",
+                "alternative": "Portrait photo of Team Member.",
+                "description": "Portrait-style photo from Unsplash collection #25880.",
+                "source": "https://unsplash.com/collections/25880"
+            }
         },
         {
-          "text": "Clean mobile behavior for dense content"
+            "name": "Pro 14",
+            "price": "$1,599",
+            "specs": [
+                {
+                    "text": "Text for Product Comparison: Reusable Section Blueprint"
+                },
+                {
+                    "text": "Text for Launch Readiness Review 2"
+                },
+                {
+                    "text": "Text for Pattern Library Rollout 3"
+                },
+                {
+                    "text": "Text for Content Operations Brief 4"
+                },
+                {
+                    "text": "Text for Customer Evidence Hub 5"
+                }
+            ],
+            "is_recommended": true,
+            "link": "https://ui.shadcn.com/docs",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-28.jpg",
+                "title": "Team Member portrait",
+                "alternative": "Portrait photo of Team Member.",
+                "description": "Portrait-style photo from Unsplash collection #25880.",
+                "source": "https://unsplash.com/collections/25880"
+            }
         },
         {
-          "text": "Chart colors mapped to semantic tokens"
+            "name": "Pro 16",
+            "price": "$2,499",
+            "specs": [
+                {
+                    "text": "Text for Product Comparison: Reusable Section Blueprint"
+                },
+                {
+                    "text": "Text for Launch Readiness Review 2"
+                },
+                {
+                    "text": "Text for Pattern Library Rollout 3"
+                },
+                {
+                    "text": "Text for Content Operations Brief 4"
+                },
+                {
+                    "text": "Text for Customer Evidence Hub 5"
+                }
+            ],
+            "is_recommended": false,
+            "link": "https://ui.shadcn.com/docs",
+            "image": {
+                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-10.jpg",
+                "title": "Team Member portrait",
+                "alternative": "Portrait photo of Team Member.",
+                "description": "Portrait-style photo from Unsplash collection #25880.",
+                "source": "https://unsplash.com/collections/25880"
+            }
         }
-      ],
-      "is_recommended": false,
-      "link": "https://ui.shadcn.com/docs/product-comparison-pricing"
-    },
-    {
-      "name": "Lea Fischer",
-      "price": "$49",
-      "specs": [
-        {
-          "text": "Reusable labels, metrics, and actions"
-        },
-        {
-          "text": "Clean mobile behavior for dense content"
-        },
-        {
-          "text": "Chart colors mapped to semantic tokens"
-        },
-        {
-          "text": "Production-ready empty and loaded states"
-        }
-      ],
-      "is_recommended": true,
-      "link": "https://ui.shadcn.com/docs/product-comparison-pricing"
-    },
-    {
-      "name": "Mara Weiss",
-      "price": "$99",
-      "specs": [
-        {
-          "text": "Reusable labels, metrics, and actions"
-        },
-        {
-          "text": "Clean mobile behavior for dense content"
-        },
-        {
-          "text": "Chart colors mapped to semantic tokens"
-        },
-        {
-          "text": "Production-ready empty and loaded states"
-        }
-      ],
-      "is_recommended": false,
-      "link": "https://ui.shadcn.com/docs/product-comparison-pricing"
-    }
-  ]
+    ]
 }

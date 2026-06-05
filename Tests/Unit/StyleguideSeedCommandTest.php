@@ -767,12 +767,12 @@ final class StyleguideSeedCommandTest extends TestCase
     public function testTabsFixtureNormalizesInvalidDefaultTabIndex(): void
     {
         $completer = new StyleguideJsonFixtureCompleter();
+        $tabsConfig = \Symfony\Component\Yaml\Yaml::parseFile(
+            __DIR__ . '/../../ContentBlocks/ContentElements/tabs/config.yaml'
+        );
+        self::assertIsArray($tabsConfig);
         $definition = ContentBlockDefinitionRegistry::buildDefinitionFromConfig(
-            ContentBlockDefinitionRegistry::normalizeStringKeyedArray(
-                \Symfony\Component\Yaml\Yaml::parseFile(
-                    __DIR__ . '/../../ContentBlocks/ContentElements/tabs/config.yaml'
-                ) ?: []
-            ),
+            ContentBlockDefinitionRegistry::normalizeStringKeyedArray($tabsConfig),
         );
 
         $completed = $completer->complete(

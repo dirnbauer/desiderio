@@ -4,6 +4,8 @@ includes:
 parameters:
     phpVersion: 80300
     level: max
+    bootstrapFiles:
+        - Build/PhpStanStubs/bootstrap.php
     paths:
         - Classes/
         - Configuration/Icons.php

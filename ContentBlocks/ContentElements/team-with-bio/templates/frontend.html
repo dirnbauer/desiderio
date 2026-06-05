@@ -36,8 +36,10 @@
                             <f:if condition="{member.role}"><p class="team-with-bio__role">{member -> f:render.text(field: 'role')}</p></f:if>
                             <f:if condition="{member.bio}"><p class="team-with-bio__bio">{member -> f:render.text(field: 'bio')}</p></f:if>
                             <f:if condition="{member.profile_link.url}">
-                                <d:atom.button href="{member.profile_link.url}" target="{member.profile_link.target}" variant="outline" size="sm" class="team-with-bio__link">
-                                    <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:team.view_profile">View profile</f:translate><span class="sr-only"> &ndash; {member -> f:render.text(field: 'name')}</span>
+                                <d:atom.button href="{member.profile_link.url}" target="{member.profile_link.target}" variant="default" size="sm" class="team-with-bio__link">
+                                    <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:team.view_profile">View profile</f:translate>
+                                    <span class="team-with-bio__link-icon" data-icon="inline-end" aria-hidden="true"><d:atom.icon name="arrow-right" size="sm"/></span>
+                                    <span class="sr-only"> &ndash; {member -> f:render.text(field: 'name')}</span>
                                 </d:atom.button>
                             </f:if>
                         </div>

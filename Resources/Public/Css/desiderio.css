@@ -257,7 +257,7 @@ body {
 .desiderio-header__search .d-solr-suggest {
     inset-inline-start: auto;
     inset-inline-end: 0;
-    inline-size: min(26rem, calc(100vw - 2rem));
+    inline-size: min(36rem, calc(100vw - 2rem));
 }
 
 .desiderio-header__lang {

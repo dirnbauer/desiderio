@@ -260,15 +260,20 @@ document.addEventListener('DOMContentLoaded', () => {
       const input = form.querySelector('.desiderio-header__search-input');
       if (!toggle || !input) return;
 
-      const open = () => {
+      const hasQuery = () => input.value.trim() !== '';
+
+      const open = ({ focus = true } = {}) => {
         form.classList.remove('desiderio-header__search--collapsed');
         toggle.setAttribute('aria-expanded', 'true');
         input.removeAttribute('tabindex');
-        window.requestAnimationFrame(() => input.focus());
+        if (focus) {
+          window.requestAnimationFrame(() => input.focus());
+        }
       };
 
       const close = () => {
         if (form.classList.contains('desiderio-header__search--collapsed')) return;
+        if (hasQuery()) return;
 
         form.classList.add('desiderio-header__search--collapsed');
         toggle.setAttribute('aria-expanded', 'false');
@@ -277,6 +282,10 @@ document.addEventListener('DOMContentLoaded', () => {
       };
 
       toggle.addEventListener('click', () => open());
+
+      if (hasQuery()) {
+        open({ focus: false });
+      }
 
       document.addEventListener('click', event => {
         if (form.classList.contains('desiderio-header__search--collapsed')) return;

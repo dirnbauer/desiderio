@@ -24,6 +24,7 @@ use TYPO3\CMS\Core\Resource\StorageRepository;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use Webconsulting\Desiderio\Data\ContentBlockDefinitionRegistry;
 use Webconsulting\Desiderio\Data\StarterSiteDefinitions;
+use Webconsulting\Desiderio\Data\StyleguidePortraitAssets;
 use Webconsulting\Desiderio\Seeding\DatabaseSchemaHelper;
 
 /**
@@ -962,8 +963,8 @@ final class SeedStarterSitesCommand extends Command
     private function normalizeCollectionItems(array $items, array $collection): array
     {
         $normalizedItems = [];
-        foreach ($items as $item) {
-            $normalizedItem = $this->normalizeCollectionItem($item, $collection);
+        foreach ($items as $index => $item) {
+            $normalizedItem = $this->normalizeCollectionItem($item, $collection, (int)$index);
             if ($normalizedItem !== []) {
                 $normalizedItems[] = $normalizedItem;
             }
@@ -976,7 +977,7 @@ final class SeedStarterSitesCommand extends Command
      * @param array<string, mixed> $collection
      * @return array<string, mixed>
      */
-    private function normalizeCollectionItem(mixed $item, array $collection): array
+    private function normalizeCollectionItem(mixed $item, array $collection, int $index = 0): array
     {
         if (!is_array($item)) {
             $textField = $this->findPreferredTextField($collection);
@@ -1020,6 +1021,25 @@ final class SeedStarterSitesCommand extends Command
             $normalizedItem[$field] = is_array($value)
                 ? $this->normalizeArrayForScalarField($value)
                 : $this->normalizeFieldValue($value, $fieldConfig);
+        }
+
+        $memberName = $this->stringFromMixed($normalizedItem['name'] ?? $item['name'] ?? '');
+        foreach ($collection['fields'] ?? [] as $fieldName => $fieldConfig) {
+            if (!is_string($fieldName) || !is_array($fieldConfig) || isset($fileReferences[$fieldName])) {
+                continue;
+            }
+            $fieldConfig = ContentBlockDefinitionRegistry::normalizeStringKeyedArray($fieldConfig);
+            if (!$this->isFileField($fieldConfig) || !StyleguidePortraitAssets::isPortraitField($fieldName, $fieldConfig)) {
+                continue;
+            }
+
+            $reference = StyleguidePortraitAssets::fileReferenceForMember($memberName, $index);
+            if ($reference['file'] === '') {
+                continue;
+            }
+
+            $fileReferences[$fieldName] = [$reference];
+            $normalizedItem[$fieldName] = 1;
         }
 
         if ($fileReferences !== []) {

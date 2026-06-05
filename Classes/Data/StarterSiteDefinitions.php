@@ -121,10 +121,10 @@ final class StarterSiteDefinitions
                         ['title' => 'Stay accountable after launch', 'description' => 'Improvements continue through managed reviews instead of vanishing at handoff.', 'icon' => 'shield-check'],
                     ]),
                     self::teamGridMinimal('Client-facing leadership', 'Senior owners are visible before a buyer asks who will actually guide the work.', [
-                        ['name' => 'Mara Stein', 'role' => 'Managing Partner, Advisory'],
-                        ['name' => 'Jonas Feld', 'role' => 'Delivery Principal'],
-                        ['name' => 'Priya Nair', 'role' => 'Technical Director'],
-                        ['name' => 'Elena Vogt', 'role' => 'Client Operations Lead'],
+                        self::teamMember('Mara Stein', 'Managing Partner, Advisory', 0),
+                        self::teamMember('Jonas Feld', 'Delivery Principal', 1),
+                        self::teamMember('Priya Nair', 'Technical Director', 2),
+                        self::teamMember('Elena Vogt', 'Client Operations Lead', 3),
                     ]),
                     self::resourceLibrary('Procurement-ready resources', 'Useful downloads', [
                         ['title' => 'Transformation readiness checklist', 'type_label' => 'Checklist', 'description' => 'Questions buyers should answer before scoping a service program.', 'link' => '#resources'],
@@ -361,7 +361,7 @@ final class StarterSiteDefinitions
     }
 
     /**
-     * @param list<array{name: string, role: string}> $members
+     * @param list<array{name: string, role: string, image?: array{file: string, title: string, alternative: string, description: string, source: string}}> $members
      * @return StarterBlock
      */
     private static function teamGridMinimal(string $header, string $subheadline, array $members): array
@@ -372,6 +372,18 @@ final class StarterSiteDefinitions
             'columns' => '4',
             'members' => $members,
         ]);
+    }
+
+    /**
+     * @return array{name: string, role: string, image: array{file: string, title: string, alternative: string, description: string, source: string}}
+     */
+    private static function teamMember(string $name, string $role, int $portraitIndex): array
+    {
+        return [
+            'name' => $name,
+            'role' => $role,
+            'image' => StyleguidePortraitAssets::fileReferenceForMember($name, $portraitIndex),
+        ];
     }
 
     /**

@@ -23,6 +23,7 @@ use TYPO3\CMS\Core\Resource\StorageRepository;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use Webconsulting\Desiderio\Data\ContentBlockDefinitionRegistry;
 use Webconsulting\Desiderio\Data\StyleguideContentGroups;
+use Webconsulting\Desiderio\Data\StyleguidePortraitAssets;
 use Webconsulting\Desiderio\DataHandling\IconItemsProcessor;
 use Webconsulting\Desiderio\Icon\IconRegistry;
 use Webconsulting\Desiderio\Seeding\DatabaseSchemaHelper;
@@ -906,7 +907,9 @@ final class SeedStyleguidePagesCommand extends Command
         $count = max(1, min(3, $maxItems));
         $assets = $this->isAudioFileField($field, $fieldConfig)
             ? $this->getStyleguideAudioAssets()
-            : $this->getStyleguideImageAssets();
+            : (StyleguidePortraitAssets::isPortraitField($field, $fieldConfig)
+                ? $this->getStyleguidePortraitAssets()
+                : $this->getStyleguideImageAssets());
         $references = [];
 
         for ($offset = 0; $offset < $count; $offset++) {
@@ -1013,6 +1016,30 @@ final class SeedStyleguidePagesCommand extends Command
                 'source' => 'EXT:desiderio/Resources/Public/Styleguide/Audio/editorial-brief.wav',
             ],
         ];
+    }
+
+    /**
+     * @return list<array{file: string, title: string, alt: string, credit: string, source: string}>
+     */
+    private function getStyleguidePortraitAssets(): array
+    {
+        $assets = [];
+        foreach (StyleguidePortraitAssets::teamGridPortraitFiles() as $index => $file) {
+            $reference = StyleguidePortraitAssets::fileReferenceForIndex($index);
+            if ($reference['file'] === '') {
+                continue;
+            }
+
+            $assets[] = [
+                'file' => $reference['file'],
+                'title' => $reference['title'],
+                'alt' => $reference['alternative'],
+                'credit' => $reference['description'],
+                'source' => $reference['source'],
+            ];
+        }
+
+        return $assets !== [] ? $assets : $this->getStyleguideImageAssets();
     }
 
     /**

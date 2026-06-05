@@ -26,7 +26,7 @@
                             </f:for>
                         </f:then>
                         <f:else>
-                            <d:atom.avatar size="xl" class="team-grid-minimal__avatar" fallback="{member.name -> f:format.crop(maxCharacters: 1)}" />
+                            <d:atom.avatar size="xl" class="team-grid-minimal__avatar" fallback="{member.name -> f:format.crop(maxCharacters: 1, append: '')}" />
                         </f:else>
                     </f:if>
                     <h3 class="team-grid-minimal__name">{member -> f:render.text(field: 'name')}</h3>

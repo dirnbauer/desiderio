@@ -30,7 +30,7 @@
 .timeline__item {
     --timeline-marker-column: 3rem;
     --timeline-connector-width: calc(
-        50% + (var(--timeline-marker-column) - 100%) / 2 + var(--d-spacing-xl) + var(--d-spacing-xs)
+        50% + (var(--timeline-marker-column) - 100%) / 2 + var(--d-spacing-xl)
     );
 
     display: grid;
@@ -84,6 +84,7 @@
 .timeline__content {
     grid-column: 3;
     position: relative;
+    z-index: 1;
     overflow: visible;
     border: 1px solid var(--border);
     border-radius: var(--d-radius-lg);
@@ -100,17 +101,18 @@
     content: '';
     position: absolute;
     top: calc(var(--d-spacing-lg) + 0.4375rem);
-    left: calc(var(--d-spacing-xs) * -1);
+    left: calc(var(--d-spacing-xs) * -1 + 1px);
     width: var(--d-spacing-sm);
     height: var(--d-spacing-sm);
     border-left: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
     background: inherit;
     transform: rotate(45deg);
+    z-index: 2;
 }
 .timeline__item:nth-child(even) .timeline__content::before {
     left: auto;
-    right: calc(var(--d-spacing-xs) * -1);
+    right: calc(var(--d-spacing-xs) * -1 + 1px);
     border: 0;
     border-right: 1px solid var(--border);
     border-top: 1px solid var(--border);
@@ -164,7 +166,7 @@
     .timeline__item {
         --timeline-marker-column: 2rem;
         --timeline-connector-width: calc(
-            50% + (var(--timeline-marker-column) - 100%) / 2 + var(--d-spacing-md) + var(--d-spacing-xs)
+            50% + (var(--timeline-marker-column) - 100%) / 2 + var(--d-spacing-md)
         );
 
         grid-template-columns: var(--timeline-marker-column) minmax(0, 1fr);
@@ -201,7 +203,7 @@
     .timeline__content::before,
     .timeline__item:nth-child(even) .timeline__content::before {
         top: calc(var(--d-spacing-md) + 0.375rem);
-        left: calc(var(--d-spacing-xs) * -1);
+        left: calc(var(--d-spacing-xs) * -1 + 1px);
         right: auto;
         border: 0;
         border-left: 1px solid var(--border);

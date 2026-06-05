@@ -45,8 +45,7 @@
     left: calc(var(--feature-timeline-marker-size) / 2);
     width: calc(
         var(--feature-timeline-marker-size) / 2 +
-        var(--feature-timeline-gap) +
-        var(--feature-timeline-chevron-size) / 2
+        var(--feature-timeline-gap)
     );
     height: 1px;
     transform: translateY(-50%);
@@ -89,14 +88,14 @@
     content: '';
     position: absolute;
     top: calc(var(--feature-timeline-marker-size) / 2);
-    left: calc(var(--feature-timeline-chevron-size) / -2);
+    left: calc(var(--feature-timeline-chevron-size) / -2 + 1px);
     width: var(--feature-timeline-chevron-size);
     height: var(--feature-timeline-chevron-size);
     border-left: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
     background: var(--card);
     transform: translateY(-50%) rotate(45deg);
-    z-index: 1;
+    z-index: 2;
 }
 .feature-timeline__title {
     font-weight: 600;

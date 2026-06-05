@@ -109,21 +109,18 @@
 .code-block .token.comment,
 .code-block .token.prolog,
 .code-block .token.doctype,
-.code-block .token.cdata,
-.astro-token--comment {
+.code-block .token.cdata {
     color: var(--d-code-comment);
     font-style: italic;
 }
 
 .code-block .token.punctuation,
-.code-block .token.operator,
-.astro-token--operator {
+.code-block .token.operator {
     color: var(--d-code-operator);
 }
 
 .code-block .token.keyword,
 .code-block .token.atrule,
-.astro-token--keyword,
 .code-block .token.important {
     color: var(--d-code-keyword);
     font-weight: 650;
@@ -131,8 +128,7 @@
 
 .code-block .token.tag,
 .code-block .token.selector,
-.code-block .token.deleted,
-.astro-token--tag {
+.code-block .token.deleted {
     color: var(--d-code-tag);
     font-weight: 650;
 }
@@ -143,22 +139,18 @@
 .code-block .token.builtin,
 .code-block .token.inserted,
 .code-block .token.regex,
-.code-block .token.url,
-.astro-token--string {
+.code-block .token.url {
     color: var(--d-code-string);
 }
 
 .code-block .token.variable,
 .code-block .token.property,
-.code-block .token.attr-name,
-.astro-token--variable,
-.astro-token--attribute {
+.code-block .token.attr-name {
     color: var(--d-code-variable);
 }
 
 .code-block .token.function,
-.code-block .token.class-name,
-.astro-token--function {
+.code-block .token.class-name {
     color: var(--d-code-function);
     font-weight: 600;
 }
@@ -166,9 +158,7 @@
 .code-block .token.number,
 .code-block .token.boolean,
 .code-block .token.constant,
-.code-block .token.symbol,
-.astro-token--number,
-.astro-token--constant {
+.code-block .token.symbol {
     color: var(--d-code-number);
 }
 

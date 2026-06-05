@@ -19,9 +19,6 @@
                 <article class="timeline__item">
                     <div class="timeline__marker" aria-hidden="true">
                         <span class="timeline__dot">{iteration.cycle}</span>
-                        <f:if condition="{iteration.isLast} == 0">
-                            <span class="timeline__line"></span>
-                        </f:if>
                     </div>
                     <d:molecule.card class="timeline__content">
                         <div class="timeline__step">{item -> f:render.text(field: 'step')}</div>

@@ -284,10 +284,9 @@ final class ContentRenderingTemplateTest extends TestCase
         self::assertStringContainsString('languages.php', $prism);
         self::assertStringContainsString('AstroRuntime.prototype.initHighlight', $javascript);
         self::assertStringContainsString('window.Prism.highlight', $javascript);
-        self::assertStringContainsString('function highlightPhp(source)', $javascript);
         self::assertStringContainsString('.code-block .token.keyword', $css);
         self::assertStringContainsString('.code-block .token.string', $css);
-        self::assertStringContainsString('.astro-token--keyword', $css);
+        self::assertStringNotContainsString('.astro-token--keyword', $css);
         self::assertStringNotContainsString('var(--primary)', $css);
         self::assertStringNotContainsString('var(--accent)', $css);
     }
@@ -550,8 +549,6 @@ final class ContentRenderingTemplateTest extends TestCase
         self::assertStringContainsString('gap: 0;', $timelineCss);
         self::assertStringContainsString('.timeline__marker::after', $timelineCss);
         self::assertStringContainsString('width: calc(var(--d-spacing-md) + 0.5625rem);', $timelineCss);
-        self::assertStringContainsString('.timeline__line', $timelineCss);
-        self::assertStringContainsString('display: none;', $timelineCss);
         self::assertStringContainsString('.timeline__content', $timelineCss);
         self::assertStringContainsString('position: relative;', $timelineCss);
         self::assertStringContainsString('border-radius: var(--d-radius-lg);', $timelineCss);

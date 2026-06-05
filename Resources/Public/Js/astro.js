@@ -127,117 +127,7 @@
     return 'plain';
   }
 
-  function tokenSpan(type, value) {
-    return '<span class="astro-token astro-token--' + type + '">' + escapeHtml(value) + '</span>';
-  }
-
-  function highlightWithRules(source, pattern, resolveType) {
-    var output = '';
-    var offset = 0;
-
-    source.replace(pattern, function () {
-      var match = arguments[0];
-      var index = arguments[arguments.length - 2];
-      var groups = Array.prototype.slice.call(arguments, 1, -2);
-      var type = resolveType(groups);
-
-      output += escapeHtml(source.slice(offset, index));
-      output += type ? tokenSpan(type, match) : escapeHtml(match);
-      offset = index + match.length;
-
-      return match;
-    });
-
-    return output + escapeHtml(source.slice(offset));
-  }
-
-  function highlightPhp(source) {
-    var keywords = [
-      'abstract', 'array', 'as', 'bool', 'break', 'case', 'catch', 'class', 'const', 'continue', 'declare',
-      'default', 'echo', 'else', 'elseif', 'extends', 'false', 'final', 'float', 'for', 'foreach', 'function',
-      'if', 'implements', 'int', 'interface', 'match', 'namespace', 'new', 'null', 'private', 'protected',
-      'public', 'readonly', 'return', 'self', 'static', 'string', 'strict_types', 'throw', 'trait', 'true',
-      'try', 'use', 'void', 'while'
-    ].join('|');
-    var pattern = new RegExp(
-      '(<\\?php|\\?>)' +
-      '|(\\/\\*[\\s\\S]*?\\*\\/|\\/\\/[^\\n]*|#[^\\n]*)' +
-      '|(\\$[A-Za-z_][\\w]*)' +
-      "|(\\'(?:\\\\.|[^\\'\\\\])*\\'|\"(?:\\\\.|[^\"\\\\])*\")" +
-      '|\\b(' + keywords + ')\\b' +
-      '|\\b([A-Za-z_][\\w]*)(?=\\s*\\()' +
-      '|\\b(\\d+(?:\\.\\d+)?)\\b' +
-      '|([{}()[\\];,.?:=><+\\-*\\/%&|!]+)',
-      'g'
-    );
-
-    return highlightWithRules(source, pattern, function (groups) {
-      if (groups[0]) return 'tag';
-      if (groups[1]) return 'comment';
-      if (groups[2]) return 'variable';
-      if (groups[3]) return 'string';
-      if (groups[4]) return ['true', 'false', 'null', 'self'].includes(groups[4]) ? 'constant' : 'keyword';
-      if (groups[5]) return 'function';
-      if (groups[6]) return 'number';
-      if (groups[7]) return 'operator';
-      return '';
-    });
-  }
-
-  function highlightJs(source) {
-    var keywords = [
-      'async', 'await', 'break', 'case', 'catch', 'class', 'const', 'continue', 'default', 'else', 'export',
-      'extends', 'false', 'finally', 'for', 'from', 'function', 'if', 'import', 'let', 'new', 'null', 'return',
-      'static', 'super', 'switch', 'this', 'throw', 'true', 'try', 'typeof', 'undefined', 'var', 'while'
-    ].join('|');
-    var pattern = new RegExp(
-      '(\\/\\*[\\s\\S]*?\\*\\/|\\/\\/[^\\n]*)' +
-      "|(`(?:\\\\.|[^`\\\\])*`|\\'(?:\\\\.|[^\\'\\\\])*\\'|\"(?:\\\\.|[^\"\\\\])*\")" +
-      '|\\b(' + keywords + ')\\b' +
-      '|\\b([A-Za-z_$][\\w$]*)(?=\\s*\\()' +
-      '|\\b(\\d+(?:\\.\\d+)?)\\b' +
-      '|([{}()[\\];,.?:=><+\\-*\\/%&|!]+)',
-      'g'
-    );
-
-    return highlightWithRules(source, pattern, function (groups) {
-      if (groups[0]) return 'comment';
-      if (groups[1]) return 'string';
-      if (groups[2]) return ['true', 'false', 'null', 'undefined', 'this'].includes(groups[2]) ? 'constant' : 'keyword';
-      if (groups[3]) return 'function';
-      if (groups[4]) return 'number';
-      if (groups[5]) return 'operator';
-      return '';
-    });
-  }
-
-  function highlightHtml(source) {
-    var pattern = /(<!--[\s\S]*?-->)|(<\/?[A-Za-z][^>\s/]*|\/?>)|(\s+[A-Za-z_:.-]+)(?==)|("(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*')/g;
-
-    return highlightWithRules(source, pattern, function (groups) {
-      if (groups[0]) return 'comment';
-      if (groups[1]) return 'tag';
-      if (groups[2]) return 'attribute';
-      if (groups[3]) return 'string';
-      return '';
-    });
-  }
-
-  function highlightCss(source) {
-    var pattern = /(\/\*[\s\S]*?\*\/)|(--[A-Za-z0-9-]+|[.#]?[A-Za-z_][\w-]*)(?=\s*[:{,])|("(?:\\.|[^"\\])*"|'(?:\\.|[^'\\])*')|(\b\d+(?:\.\d+)?(?:px|rem|em|%|vh|vw)?\b)|([{}()[\];,.?:=><+\-*\/%&|!]+)/g;
-
-    return highlightWithRules(source, pattern, function (groups) {
-      if (groups[0]) return 'comment';
-      if (groups[1]) return groups[1].startsWith('--') ? 'variable' : 'attribute';
-      if (groups[2]) return 'string';
-      if (groups[3]) return 'number';
-      if (groups[4]) return 'operator';
-      return '';
-    });
-  }
-
   function highlightCode(source, language) {
-    // Keep code samples on the local highlighter so syntax colors stay independent from the active shadcn accent preset.
     if (window.Prism && window.Prism.highlight && window.Prism.languages) {
       var prismLanguage = language === 'markup' ? 'html' : language;
       var grammar = window.Prism.languages[prismLanguage] || window.Prism.languages[language];
@@ -245,22 +135,6 @@
       if (grammar) {
         return window.Prism.highlight(source, grammar, prismLanguage);
       }
-    }
-
-    if (language === 'php') {
-      return highlightPhp(source);
-    }
-
-    if (language === 'javascript' || language === 'typescript') {
-      return highlightJs(source);
-    }
-
-    if (language === 'markup') {
-      return highlightHtml(source);
-    }
-
-    if (language === 'css') {
-      return highlightCss(source);
     }
 
     return escapeHtml(source);

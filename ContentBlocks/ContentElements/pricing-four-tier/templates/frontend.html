@@ -10,48 +10,72 @@
         <f:if condition="{data.eyebrow} || {data.header} || {data.subheadline}">
             <header class="pricing-four-tier__intro">
                 <f:if condition="{data.eyebrow}">
-                    <span class="pricing-four-tier__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span>
+                    <d:atom.typography variant="small" class="pricing-four-tier__eyebrow">{data -> f:render.text(field: 'eyebrow')}</d:atom.typography>
                 </f:if>
                 <f:if condition="{data.header}">
-                    <h2 class="pricing-four-tier__headline">{data -> f:render.text(field: 'header')}</h2>
+                    <d:atom.typography tag="h2" variant="h2" class="pricing-four-tier__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
                 </f:if>
                 <f:if condition="{data.subheadline}">
-                    <p class="pricing-four-tier__description">{data -> f:render.text(field: 'subheadline')}</p>
+                    <d:atom.typography variant="muted" class="pricing-four-tier__description">{data -> f:render.text(field: 'subheadline')}</d:atom.typography>
                 </f:if>
             </header>
         </f:if>
 
-        <div class="pricing-four-tier__grid">
-            <f:for each="{data.plans}" as="plan">
-                <article class="pricing-four-tier__plan {f:if(condition: plan.featured, then: 'pricing-four-tier__plan--featured')}">
-                    <f:if condition="{plan.featured}">
-                        <span class="pricing-four-tier__badge">Most popular</span>
-                    </f:if>
-                    <h3 class="pricing-four-tier__title">{plan -> f:render.text(field: 'title')}</h3>
-                    <p class="pricing-four-tier__price">{plan -> f:render.text(field: 'price')}</p>
-                    <f:if condition="{plan.description}">
-                        <p class="pricing-four-tier__plan-desc">{plan -> f:render.text(field: 'description')}</p>
-                    </f:if>
-                    <f:if condition="{plan.features}">
-                        <ul class="pricing-four-tier__features">
-                            <f:for each="{plan.features}" as="feature">
-                                <f:if condition="{feature.text}">
-                                    <li class="pricing-four-tier__feature">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg>
-                                        <span>{feature -> f:render.text(field: 'text')}</span>
-                                    </li>
-                                </f:if>
-                            </f:for>
-                        </ul>
-                    </f:if>
-                    <f:if condition="{plan.button_text} && {plan.button_link.url}">
-                        <f:link.typolink parameter="{plan.button_link}" class="pricing-four-tier__button {f:if(condition: plan.featured, then: 'pricing-four-tier__button--primary', else: 'pricing-four-tier__button--outline')}">
-                            {plan -> f:render.text(field: 'button_text')}
-                        </f:link.typolink>
-                    </f:if>
-                </article>
+        <ul class="pricing-four-tier__grid" role="list">
+            <f:for each="{data.plans}" as="tier" iteration="iter">
+                <li class="pricing-four-tier__item">
+                    <d:molecule.card
+                        class="pricing-four-tier__plan h-full {f:if(condition: tier.featured, then: 'pricing-four-tier__plan--featured ring-2 ring-primary')}"
+                    >
+                        <f:if condition="{tier.featured}">
+                            <div class="pricing-four-tier__ribbon">
+                                <d:atom.badge>
+                                    <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:plan.recommended"/>
+                                </d:atom.badge>
+                            </div>
+                        </f:if>
+
+                        <d:molecule.cardHeader class="pricing-four-tier__header">
+                            <d:atom.typography tag="h3" variant="h4" class="pricing-four-tier__title">{tier -> f:render.text(field: 'title')}</d:atom.typography>
+                            <p class="pricing-four-tier__price">{tier -> f:render.text(field: 'price')}</p>
+                            <f:if condition="{tier.description}">
+                                <d:atom.typography variant="muted" class="pricing-four-tier__plan-desc">{tier -> f:render.text(field: 'description')}</d:atom.typography>
+                            </f:if>
+                        </d:molecule.cardHeader>
+
+                        <f:if condition="{tier.features}">
+                            <d:molecule.cardContent class="pricing-four-tier__content">
+                                <ul class="pricing-four-tier__features" role="list">
+                                    <f:for each="{tier.features}" as="feature">
+                                        <f:if condition="{feature.text}">
+                                            <li class="pricing-four-tier__feature">
+                                                <d:atom.icon name="check" size="sm" class="pricing-four-tier__check" aria-hidden="true"/>
+                                                <d:atom.typography tag="span" variant="small">{feature -> f:render.text(field: 'text')}</d:atom.typography>
+                                            </li>
+                                        </f:if>
+                                    </f:for>
+                                </ul>
+                            </d:molecule.cardContent>
+                        </f:if>
+
+                        <f:if condition="{tier.button_text} && {tier.button_link.url}">
+                            <d:molecule.cardFooter class="pricing-four-tier__footer">
+                                <d:atom.button
+                                    href="{tier.button_link.url}"
+                                    target="{tier.button_link.target}"
+                                    variant="{f:if(condition: tier.featured, then: 'default', else: 'outline')}"
+                                    class="pricing-four-tier__button w-full"
+                                >
+                                    <span>{tier -> f:render.text(field: 'button_text')}</span>
+                                    <span class="d-sr-only"> – {tier.title}</span>
+                                </d:atom.button>
+                            </d:molecule.cardFooter>
+                        </f:if>
+                    </d:molecule.card>
+                </li>
             </f:for>
-        </div>
+        </ul>
     </d:layout.container>
 </d:layout.section>
+
 </html>

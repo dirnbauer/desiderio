@@ -11,7 +11,7 @@
             <div class="navbar-stacked__top">
                 <div class="navbar-stacked__brand">
                     <f:if condition="{data.brand_link.url}">
-                        <f:then><f:link.typolink parameter="{data.brand_link}" class="navbar-stacked__brand-link">{data -> f:render.text(field: 'brand')}</f:link.typolink></f:then>
+                        <f:then><d:atom.link href="{data.brand_link.url}" target="{data.brand_link.target}" variant="default" class="navbar-stacked__brand-link">{data -> f:render.text(field: 'brand')}</d:atom.link></f:then>
                         <f:else><span class="navbar-stacked__brand-link">{data -> f:render.text(field: 'brand')}</span></f:else>
                     </f:if>
                     <f:if condition="{data.tagline}">
@@ -25,7 +25,7 @@
             <div class="navbar-stacked__bottom">
                 <ul class="navbar-stacked__nav">
                     <f:for each="{data.nav_items}" as="item">
-                        <li><f:if condition="{item.link.url}"><f:link.typolink parameter="{item.link}" class="navbar-stacked__link">{item -> f:render.text(field: 'label')}</f:link.typolink></f:if></li>
+                        <li><f:if condition="{item.link.url}"><d:atom.link href="{item.link.url}" target="{item.link.target}" variant="muted" class="navbar-stacked__link">{item -> f:render.text(field: 'label')}</d:atom.link></f:if></li>
                     </f:for>
                 </ul>
             </div>

@@ -13,7 +13,7 @@
                 <f:for each="{data.nav_items}" as="item">
                     <li>
                         <f:if condition="{item.link.url}">
-                            <f:link.typolink parameter="{item.link}" class="navbar-sticky__link">{item -> f:render.text(field: 'label')}</f:link.typolink>
+                            <d:atom.link href="{item.link.url}" target="{item.link.target}" variant="muted" class="navbar-sticky__link">{item -> f:render.text(field: 'label')}</d:atom.link>
                         </f:if>
                     </li>
                 </f:for>

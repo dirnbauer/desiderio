@@ -13,7 +13,7 @@
                     <f:then>
                         <f:if condition="{tab.link.url}">
                             <f:then>
-                                <f:link.typolink parameter="{tab.link}" class="nav-tabs__tab nav-tabs__tab--active" additionalAttributes="{'aria-current': 'page'}">{tab -> f:render.text(field: 'label')}</f:link.typolink>
+                                <d:atom.link href="{tab.link.url}" target="{tab.link.target}" variant="muted" class="nav-tabs__tab nav-tabs__tab--active">{tab -> f:render.text(field: 'label')}</d:atom.link>
                             </f:then>
                             <f:else>
                                 <span class="nav-tabs__tab nav-tabs__tab--active" aria-current="page">{tab -> f:render.text(field: 'label')}</span>
@@ -22,7 +22,7 @@
                     </f:then>
                     <f:else>
                         <f:if condition="{tab.link.url}">
-                            <f:link.typolink parameter="{tab.link}" class="nav-tabs__tab">{tab -> f:render.text(field: 'label')}</f:link.typolink>
+                            <d:atom.link href="{tab.link.url}" target="{tab.link.target}" variant="muted" class="nav-tabs__tab">{tab -> f:render.text(field: 'label')}</d:atom.link>
                         </f:if>
                     </f:else>
                 </f:if>

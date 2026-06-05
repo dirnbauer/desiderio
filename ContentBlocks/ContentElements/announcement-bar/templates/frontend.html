@@ -18,9 +18,9 @@
                 </f:if>
             </p>
             <f:if condition="{data.link_text} && {data.link.url}">
-                <f:link.typolink parameter="{data.link}" class="announcement-bar__link">
+                <d:atom.link href="{data.link.url}" target="{data.link.target}" variant="muted" class="announcement-bar__link">
                     {data -> f:render.text(field: 'link_text')}
-                </f:link.typolink>
+                </d:atom.link>
             </f:if>
         </div>
     </d:layout.container>

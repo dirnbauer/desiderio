@@ -45,9 +45,9 @@
                         </f:if>
                         <f:if condition="{product.link.url}">
                             <f:variable name="productCtaLabel">View {product.name} details</f:variable>
-                            <f:link.typolink parameter="{product.link}" class="product-comparison__button {f:if(condition: product.is_recommended, then: 'product-comparison__button--primary', else: 'product-comparison__button--outline')}" additionalAttributes="{'aria-label': productCtaLabel}">
+                            <d:atom.button href="{product.link.url}" variant="{f:if(condition: product.is_recommended, then: 'default', else: 'outline')}" class="product-comparison__button" target="{product.link.target}">
                                 View details
-                            </f:link.typolink>
+                            </d:atom.button>
                         </f:if>
                     </article>
                 </li>

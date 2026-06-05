@@ -20,7 +20,7 @@
                             <f:else>
                                 <f:if condition="{item.link.url}">
                                     <f:then>
-                                        <f:link.typolink parameter="{item.link}" class="breadcrumb__link focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none" additionalAttributes="{'data-slot': 'breadcrumb-link', 'itemprop': 'item'}"><span itemprop="name">{item -> f:render.text(field: 'label')}</span></f:link.typolink>
+                                        <d:atom.link href="{item.link.url}" target="{item.link.target}" variant="muted" class="breadcrumb__link focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none"><span itemprop="name">{item -> f:render.text(field: 'label')}</span></d:atom.link>
                                     </f:then>
                                     <f:else>
                                         <span class="breadcrumb__current" data-slot="breadcrumb-page" itemprop="name">{item -> f:render.text(field: 'label')}</span>

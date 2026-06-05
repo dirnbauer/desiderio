@@ -10,7 +10,7 @@
         <nav class="navbar-minimal__inner" aria-label="{data.header -> f:or(alternative: 'Minimal navigation')}">
             <div class="navbar-minimal__brand">
                 <f:if condition="{data.brand_link.url}">
-                    <f:then><f:link.typolink parameter="{data.brand_link}" class="navbar-minimal__brand-link">{data -> f:render.text(field: 'brand')}</f:link.typolink></f:then>
+                    <f:then><d:atom.link href="{data.brand_link.url}" target="{data.brand_link.target}" variant="default" class="navbar-minimal__brand-link">{data -> f:render.text(field: 'brand')}</d:atom.link></f:then>
                     <f:else><span class="navbar-minimal__brand-link">{data -> f:render.text(field: 'brand')}</span></f:else>
                 </f:if>
             </div>

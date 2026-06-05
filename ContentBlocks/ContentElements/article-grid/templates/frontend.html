@@ -18,17 +18,17 @@
                     <h3 class="article-grid__title">
                         <f:if condition="{item.link.url}">
                             <f:then>
-                                <f:link.typolink parameter="{item.link}" class="article-grid__title-link">{item -> f:render.text(field: 'title')}</f:link.typolink>
+                                <d:atom.link href="{item.link.url}" target="{item.link.target}" variant="muted" class="article-grid__title-link">{item -> f:render.text(field: 'title')}</d:atom.link>
                             </f:then>
                             <f:else>{item -> f:render.text(field: 'title')}</f:else>
                         </f:if>
                     </h3>
                     <f:if condition="{item.description}"><p class="article-grid__description">{item -> f:render.text(field: 'description')}</p></f:if>
                     <f:if condition="{item.link.url}">
-                        <f:link.typolink parameter="{item.link}" class="article-grid__link" additionalAttributes="{'aria-hidden': 'true', 'tabindex': '-1'}">
+                        <d:atom.link href="{item.link.url}" target="{item.link.target}" variant="muted" class="article-grid__link">
                             <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:read_article" default="Read article"/>
                             <span class="article-grid__link-arrow" aria-hidden="true">&#8594;</span>
-                        </f:link.typolink>
+                        </d:atom.link>
                     </f:if>
                 </d:molecule.card>
             </f:for>

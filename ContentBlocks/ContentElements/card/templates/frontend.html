@@ -26,7 +26,7 @@
                             <f:if condition="{data.header}">
                                 <d:atom.typography tag="h3" variant="h3" class="card__title">
                                     <f:if condition="{data.link}">
-                                        <f:then><f:link.typolink parameter="{data.link}">{data -> f:render.text(field: 'header')}</f:link.typolink></f:then>
+                                        <f:then><d:atom.link href="{data.link.url}" target="{data.link.target}" variant="muted">{data -> f:render.text(field: 'header')}</d:atom.link></f:then>
                                         <f:else>{data -> f:render.text(field: 'header')}</f:else>
                                     </f:if>
                                 </d:atom.typography>
@@ -60,7 +60,7 @@
                         <f:if condition="{data.header}">
                             <d:atom.typography tag="h3" variant="h3" class="card__title">
                                 <f:if condition="{data.link}">
-                                    <f:then><f:link.typolink parameter="{data.link}">{data -> f:render.text(field: 'header')}</f:link.typolink></f:then>
+                                    <f:then><d:atom.link href="{data.link.url}" target="{data.link.target}" variant="muted">{data -> f:render.text(field: 'header')}</d:atom.link></f:then>
                                     <f:else>{data -> f:render.text(field: 'header')}</f:else>
                                 </f:if>
                             </d:atom.typography>
@@ -96,7 +96,7 @@
                             <f:if condition="{data.header}">
                                 <d:atom.typography tag="h3" variant="h3" class="card__title">
                                     <f:if condition="{data.link}">
-                                        <f:then><f:link.typolink parameter="{data.link}">{data -> f:render.text(field: 'header')}</f:link.typolink></f:then>
+                                        <f:then><d:atom.link href="{data.link.url}" target="{data.link.target}" variant="muted">{data -> f:render.text(field: 'header')}</d:atom.link></f:then>
                                         <f:else>{data -> f:render.text(field: 'header')}</f:else>
                                     </f:if>
                                 </d:atom.typography>
@@ -123,7 +123,7 @@
                         <f:if condition="{data.header}">
                             <d:atom.typography tag="h3" variant="h3" class="card__title">
                                 <f:if condition="{data.link}">
-                                    <f:then><f:link.typolink parameter="{data.link}">{data -> f:render.text(field: 'header')}</f:link.typolink></f:then>
+                                    <f:then><d:atom.link href="{data.link.url}" target="{data.link.target}" variant="muted">{data -> f:render.text(field: 'header')}</d:atom.link></f:then>
                                     <f:else>{data -> f:render.text(field: 'header')}</f:else>
                                 </f:if>
                             </d:atom.typography>

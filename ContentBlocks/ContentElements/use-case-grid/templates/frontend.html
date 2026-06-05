@@ -19,7 +19,7 @@
                 <d:molecule.card class="use-case-grid__item" role="listitem">
                     <h3 class="use-case-grid__title">
                         <f:if condition="{item.link.url}">
-                            <f:then><f:link.typolink parameter="{item.link}" class="use-case-grid__link">{item -> f:render.text(field: 'title')}</f:link.typolink></f:then>
+                            <f:then><d:atom.link href="{item.link.url}" target="{item.link.target}" variant="muted" class="use-case-grid__link">{item -> f:render.text(field: 'title')}</d:atom.link></f:then>
                             <f:else>{item -> f:render.text(field: 'title')}</f:else>
                         </f:if>
                     </h3>

@@ -26,12 +26,12 @@
                 <li class="logo-cloud__item">
                     <f:if condition="{logo.link.url}">
                         <f:then>
-                            <f:link.typolink parameter="{logo.link}" class="logo-cloud__link" title="{logo.name}">
+                            <d:atom.link href="{logo.link.url}" target="{logo.link.target}" variant="muted" class="logo-cloud__link">
                                 <f:for each="{logo.image}" as="fileReference">
                                     <f:image image="{fileReference}" maxWidth="520" alt="{logo.name}" class="logo-cloud__image" loading="lazy"/>
                                 </f:for>
                                 <span class="logo-cloud__name">{logo.name}</span>
-                            </f:link.typolink>
+                            </d:atom.link>
                         </f:then>
                         <f:else>
                             <div class="logo-cloud__link">

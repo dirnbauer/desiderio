@@ -31,7 +31,7 @@
                         <f:for each="{data.features}" as="feature">
                             <f:if condition="{feature.text}">
                                 <li class="product-feature__item">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg>
+                                    <d:atom.icon name="check" size="sm" aria-hidden="true"/>
                                     <span>{feature -> f:render.text(field: 'text')}</span>
                                 </li>
                             </f:if>
@@ -39,9 +39,9 @@
                     </ul>
                 </f:if>
                 <f:if condition="{data.button_text} && {data.button_link.url}">
-                    <f:link.typolink parameter="{data.button_link}" class="product-feature__button">
+                    <d:atom.button href="{data.button_link.url}" class="product-feature__button" target="{data.button_link.target}">
                         {data -> f:render.text(field: 'button_text')}
-                    </f:link.typolink>
+                    </d:atom.button>
                 </f:if>
             </div>
         </div>

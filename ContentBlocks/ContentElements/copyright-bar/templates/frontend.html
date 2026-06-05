@@ -16,7 +16,7 @@
                         <f:for each="{data.link_items}" as="item">
                             <li>
                                 <f:if condition="{item.link}">
-                                    <f:then><f:link.typolink parameter="{item.link}" class="copyright-bar__link">{item -> f:render.text(field: 'label')}</f:link.typolink></f:then>
+                                    <f:then><d:atom.link href="{item.link.url}" target="{item.link.target}" variant="muted" class="copyright-bar__link">{item -> f:render.text(field: 'label')}</d:atom.link></f:then>
                                     <f:else><span class="copyright-bar__link copyright-bar__link--static">{item -> f:render.text(field: 'label')}</span></f:else>
                                 </f:if>
                             </li>

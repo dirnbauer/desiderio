@@ -257,10 +257,8 @@ function desiderioInit() {
       lines.push('      {data -> f:render.text(field: \'header\')}');
       lines.push('    </d:atom.typography>');
       lines.push('    <d:atom.typography variant="lead">{data.subheadline}</d:atom.typography>');
-      lines.push('    <d:atom.button variant="default" size="lg">');
-      lines.push('      <f:link.typolink parameter="{data.primary_button_link}">');
-      lines.push('        {data.primary_button_text}');
-      lines.push('      </f:link.typolink>');
+      lines.push('    <d:atom.button href="{data.primary_button_link.url}" target="{data.primary_button_link.target}" variant="default" size="lg">');
+      lines.push('      {data -> f:render.text(field: \'primary_button_text\')}');
       lines.push('    </d:atom.button>');
     } else if (data._type === 'grid') {
       lines.push('    <d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: \'header\')}</d:atom.typography>');

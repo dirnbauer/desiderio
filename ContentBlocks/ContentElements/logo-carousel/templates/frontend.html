@@ -28,11 +28,11 @@
                     <li class="logo-carousel__item">
                         <f:if condition="{logo.link.url}">
                             <f:then>
-                                <f:link.typolink parameter="{logo.link}" class="logo-carousel__link" title="{logo.name}">
+                                <d:atom.link href="{logo.link.url}" target="{logo.link.target}" variant="muted" class="logo-carousel__link">
                                     <f:for each="{logo.image}" as="fileReference">
                                         <f:image image="{fileReference}" maxWidth="260" alt="{logo.name}" class="logo-carousel__image" loading="lazy"/>
                                     </f:for>
-                                </f:link.typolink>
+                                </d:atom.link>
                             </f:then>
                             <f:else>
                                 <f:for each="{logo.image}" as="fileReference">

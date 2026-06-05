@@ -27,7 +27,7 @@
                                 <dd class="contact__list-value-wrap">
                                     <f:if condition="{item.link.url}">
                                         <f:then>
-                                            <f:link.typolink parameter="{item.link}" class="contact__list-value rounded-sm hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-card">{item -> f:render.text(field: 'value')}</f:link.typolink>
+                                            <d:atom.link href="{item.link.url}" target="{item.link.target}" variant="muted" class="contact__list-value rounded-sm hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-card">{item -> f:render.text(field: 'value')}</d:atom.link>
                                         </f:then>
                                         <f:else>
                                             <span class="contact__list-value">{item -> f:render.text(field: 'value')}</span>

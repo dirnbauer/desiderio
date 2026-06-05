@@ -10,13 +10,13 @@
         <f:if condition="{data.eyebrow} || {data.header} || {data.subheadline}">
             <header class="pricing__intro">
                 <f:if condition="{data.eyebrow}">
-                    <p class="pricing__eyebrow">{data -> f:render.text(field: 'eyebrow')}</p>
+                    <d:atom.typography variant="small" class="pricing__eyebrow">{data -> f:render.text(field: 'eyebrow')}</d:atom.typography>
                 </f:if>
                 <f:if condition="{data.header}">
-                    <h2 class="pricing__headline">{data -> f:render.text(field: 'header')}</h2>
+                    <d:atom.typography tag="h2" variant="h2" class="pricing__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
                 </f:if>
                 <f:if condition="{data.subheadline}">
-                    <p class="pricing__description">{data -> f:render.text(field: 'subheadline')}</p>
+                    <d:atom.typography variant="muted" class="pricing__description">{data -> f:render.text(field: 'subheadline')}</d:atom.typography>
                 </f:if>
             </header>
         </f:if>
@@ -24,53 +24,73 @@
         <ul class="pricing__grid pricing__grid--cols-{data.columns -> f:or(alternative: '3')}" role="list">
             <f:for each="{data.plans}" as="tier" iteration="iter">
                 <li class="pricing__item">
-                    <article class="pricing__plan {f:if(condition: tier.is_featured, then: 'pricing__plan--featured')}" aria-labelledby="pricing-{data.uid}-name-{iter.cycle}">
+                    <d:molecule.card
+                        class="pricing__plan h-full {f:if(condition: tier.is_featured, then: 'pricing__plan--featured ring-2 ring-primary')}"
+                    >
                         <f:if condition="{tier.is_featured}">
-                            <span class="pricing__badge">
-                                <f:if condition="{tier.badge_text}">
-                                    <f:then>{tier -> f:render.text(field: 'badge_text')}</f:then>
-                                    <f:else><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:plan.recommended"/></f:else>
-                                </f:if>
-                            </span>
+                            <div class="pricing__ribbon">
+                                <d:atom.badge>
+                                    <f:if condition="{tier.badge_text}">
+                                        <f:then>{tier -> f:render.text(field: 'badge_text')}</f:then>
+                                        <f:else><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:plan.recommended"/></f:else>
+                                    </f:if>
+                                </d:atom.badge>
+                            </div>
                         </f:if>
-                        <div class="pricing__plan-header">
-                            <h3 class="pricing__plan-name" id="pricing-{data.uid}-name-{iter.cycle}">{tier -> f:render.text(field: 'name')}</h3>
+
+                        <d:molecule.cardHeader class="pricing__header">
+                            <d:atom.typography
+                                tag="h3"
+                                variant="h4"
+                                id="pricing-{data.uid}-name-{iter.cycle}"
+                                class="pricing__plan-name"
+                            >
+                                {tier -> f:render.text(field: 'name')}
+                            </d:atom.typography>
                             <p class="pricing__price-row">
                                 <span class="pricing__plan-price">{tier -> f:render.text(field: 'price')}</span>
                                 <f:if condition="{tier.billing_period}">
-                                    <span class="pricing__billing-period">{tier -> f:render.text(field: 'billing_period')}</span>
+                                    <d:atom.typography tag="span" variant="muted" class="pricing__billing-period">{tier -> f:render.text(field: 'billing_period')}</d:atom.typography>
                                 </f:if>
                             </p>
                             <f:if condition="{tier.description}">
-                                <p class="pricing__plan-description">{tier -> f:render.text(field: 'description')}</p>
+                                <d:atom.typography variant="muted" class="pricing__plan-description">{tier -> f:render.text(field: 'description')}</d:atom.typography>
                             </f:if>
-                        </div>
+                        </d:molecule.cardHeader>
 
                         <f:if condition="{tier.features}">
-                            <ul class="pricing__features" role="list">
-                                <f:for each="{tier.features}" as="feature">
-                                    <f:if condition="{feature.text}">
-                                        <li class="pricing__feature">
-                                            <svg class="pricing__check" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg>
-                                            <span>{feature -> f:render.text(field: 'text')}</span>
-                                        </li>
-                                    </f:if>
-                                </f:for>
-                            </ul>
+                            <d:molecule.cardContent class="pricing__content">
+                                <ul class="pricing__features" role="list">
+                                    <f:for each="{tier.features}" as="feature">
+                                        <f:if condition="{feature.text}">
+                                            <li class="pricing__feature">
+                                                <d:atom.icon name="check" size="sm" class="pricing__check" aria-hidden="true"/>
+                                                <d:atom.typography tag="span" variant="small">{feature -> f:render.text(field: 'text')}</d:atom.typography>
+                                            </li>
+                                        </f:if>
+                                    </f:for>
+                                </ul>
+                            </d:molecule.cardContent>
                         </f:if>
 
                         <f:if condition="{tier.button_text} && {tier.button_link.url}">
-                            <f:variable name="planCtaLabel">{tier.button_text} – {tier.name}</f:variable>
-                            <div class="pricing__footer">
-                                <f:link.typolink parameter="{tier.button_link}" class="pricing__button {f:if(condition: tier.is_featured, then: 'pricing__button--primary', else: 'pricing__button--outline')}" additionalAttributes="{'aria-label': planCtaLabel}">
-                                    {tier -> f:render.text(field: 'button_text')}
-                                </f:link.typolink>
-                            </div>
+                            <d:molecule.cardFooter class="pricing__footer">
+                                <d:atom.button
+                                    href="{tier.button_link.url}"
+                                    target="{tier.button_link.target}"
+                                    variant="{f:if(condition: tier.is_featured, then: 'default', else: 'outline')}"
+                                    class="pricing__button w-full"
+                                >
+                                    <span>{tier -> f:render.text(field: 'button_text')}</span>
+                                    <span class="d-sr-only"> – {tier.name}</span>
+                                </d:atom.button>
+                            </d:molecule.cardFooter>
                         </f:if>
-                    </article>
+                    </d:molecule.card>
                 </li>
             </f:for>
         </ul>
     </d:layout.container>
 </d:layout.section>
+
 </html>

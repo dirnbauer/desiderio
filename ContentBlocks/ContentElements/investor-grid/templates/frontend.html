@@ -32,10 +32,10 @@
                     <h3 class="investor-grid__name">{inv -> f:render.text(field: 'name')}</h3>
                     <f:if condition="{inv.type}"><p class="investor-grid__type">{inv -> f:render.text(field: 'type')}</p></f:if>
                     <f:if condition="{inv.link.url}">
-                        <f:link.typolink parameter="{inv.link}" class="investor-grid__link focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none">
+                        <d:atom.link href="{inv.link.url}" target="{inv.link.target}" variant="muted" class="investor-grid__link focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none">
                             <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:investor.visit"/>
                             <span class="sr-only">{inv -> f:render.text(field: 'name')}</span>
-                        </f:link.typolink>
+                        </d:atom.link>
                     </f:if>
                 </div>
             </f:for>

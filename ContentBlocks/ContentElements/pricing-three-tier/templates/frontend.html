@@ -10,53 +10,77 @@
         <f:if condition="{data.eyebrow} || {data.header} || {data.subheadline}">
             <header class="pricing-three-tier__intro">
                 <f:if condition="{data.eyebrow}">
-                    <span class="pricing-three-tier__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span>
+                    <d:atom.typography variant="small" class="pricing-three-tier__eyebrow">{data -> f:render.text(field: 'eyebrow')}</d:atom.typography>
                 </f:if>
                 <f:if condition="{data.header}">
-                    <h2 class="pricing-three-tier__headline">{data -> f:render.text(field: 'header')}</h2>
+                    <d:atom.typography tag="h2" variant="h2" class="pricing-three-tier__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
                 </f:if>
                 <f:if condition="{data.subheadline}">
-                    <p class="pricing-three-tier__description">{data -> f:render.text(field: 'subheadline')}</p>
+                    <d:atom.typography variant="muted" class="pricing-three-tier__description">{data -> f:render.text(field: 'subheadline')}</d:atom.typography>
                 </f:if>
             </header>
         </f:if>
 
-        <div class="pricing-three-tier__grid">
-            <f:for each="{data.plans}" as="plan">
-                <article class="pricing-three-tier__plan {f:if(condition: plan.is_recommended, then: 'pricing-three-tier__plan--recommended')}">
-                    <f:if condition="{plan.is_recommended}">
-                        <span class="pricing-three-tier__badge">Recommended</span>
-                    </f:if>
-                    <h3 class="pricing-three-tier__name">{plan -> f:render.text(field: 'name')}</h3>
-                    <div class="pricing-three-tier__price-row">
-                        <span class="pricing-three-tier__price">{plan -> f:render.text(field: 'price')}</span>
-                        <f:if condition="{plan.billing_period}">
-                            <span class="pricing-three-tier__period">{plan -> f:render.text(field: 'billing_period')}</span>
+        <ul class="pricing-three-tier__grid" role="list">
+            <f:for each="{data.plans}" as="tier" iteration="iter">
+                <li class="pricing-three-tier__item">
+                    <d:molecule.card
+                        class="pricing-three-tier__plan h-full {f:if(condition: tier.is_recommended, then: 'pricing-three-tier__plan--recommended ring-2 ring-primary')}"
+                    >
+                        <f:if condition="{tier.is_recommended}">
+                            <div class="pricing-three-tier__ribbon">
+                                <d:atom.badge>
+                                    <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:plan.recommended"/>
+                                </d:atom.badge>
+                            </div>
                         </f:if>
-                    </div>
-                    <f:if condition="{plan.description}">
-                        <p class="pricing-three-tier__plan-desc">{plan -> f:render.text(field: 'description')}</p>
-                    </f:if>
-                    <f:if condition="{plan.features}">
-                        <ul class="pricing-three-tier__features">
-                            <f:for each="{plan.features}" as="feature">
-                                <f:if condition="{feature.text}">
-                                    <li class="pricing-three-tier__feature">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg>
-                                        <span>{feature -> f:render.text(field: 'text')}</span>
-                                    </li>
+
+                        <d:molecule.cardHeader class="pricing-three-tier__header">
+                            <d:atom.typography tag="h3" variant="h4" class="pricing-three-tier__name">{tier -> f:render.text(field: 'name')}</d:atom.typography>
+                            <p class="pricing-three-tier__price-row">
+                                <span class="pricing-three-tier__price">{tier -> f:render.text(field: 'price')}</span>
+                                <f:if condition="{tier.billing_period}">
+                                    <d:atom.typography tag="span" variant="muted" class="pricing-three-tier__period">{tier -> f:render.text(field: 'billing_period')}</d:atom.typography>
                                 </f:if>
-                            </f:for>
-                        </ul>
-                    </f:if>
-                    <f:if condition="{plan.button_text} && {plan.button_link.url}">
-                        <f:link.typolink parameter="{plan.button_link}" class="pricing-three-tier__button {f:if(condition: plan.is_recommended, then: 'pricing-three-tier__button--primary', else: 'pricing-three-tier__button--outline')}">
-                            {plan -> f:render.text(field: 'button_text')}
-                        </f:link.typolink>
-                    </f:if>
-                </article>
+                            </p>
+                            <f:if condition="{tier.description}">
+                                <d:atom.typography variant="muted" class="pricing-three-tier__plan-desc">{tier -> f:render.text(field: 'description')}</d:atom.typography>
+                            </f:if>
+                        </d:molecule.cardHeader>
+
+                        <f:if condition="{tier.features}">
+                            <d:molecule.cardContent class="pricing-three-tier__content">
+                                <ul class="pricing-three-tier__features" role="list">
+                                    <f:for each="{tier.features}" as="feature">
+                                        <f:if condition="{feature.text}">
+                                            <li class="pricing-three-tier__feature">
+                                                <d:atom.icon name="check" size="sm" class="pricing-three-tier__check" aria-hidden="true"/>
+                                                <d:atom.typography tag="span" variant="small">{feature -> f:render.text(field: 'text')}</d:atom.typography>
+                                            </li>
+                                        </f:if>
+                                    </f:for>
+                                </ul>
+                            </d:molecule.cardContent>
+                        </f:if>
+
+                        <f:if condition="{tier.button_text} && {tier.button_link.url}">
+                            <d:molecule.cardFooter class="pricing-three-tier__footer">
+                                <d:atom.button
+                                    href="{tier.button_link.url}"
+                                    target="{tier.button_link.target}"
+                                    variant="{f:if(condition: tier.is_recommended, then: 'default', else: 'outline')}"
+                                    class="pricing-three-tier__button w-full"
+                                >
+                                    <span>{tier -> f:render.text(field: 'button_text')}</span>
+                                    <span class="d-sr-only"> – {tier.name}</span>
+                                </d:atom.button>
+                            </d:molecule.cardFooter>
+                        </f:if>
+                    </d:molecule.card>
+                </li>
             </f:for>
-        </div>
+        </ul>
     </d:layout.container>
 </d:layout.section>
+
 </html>

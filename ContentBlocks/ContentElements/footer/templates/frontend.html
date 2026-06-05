@@ -22,7 +22,7 @@
                             <li>
                                 <f:if condition="{item.link}">
                                     <f:then>
-                                        <f:link.typolink parameter="{item.link}" class="footer__link">{item -> f:render.text(field: 'label')}</f:link.typolink>
+                                        <d:atom.link href="{item.link.url}" target="{item.link.target}" variant="muted" class="footer__link">{item -> f:render.text(field: 'label')}</d:atom.link>
                                     </f:then>
                                     <f:else>
                                         <span class="footer__link">{item -> f:render.text(field: 'label')}</span>
@@ -41,7 +41,7 @@
                             <li>
                                 <f:if condition="{item.link}">
                                     <f:then>
-                                        <f:link.typolink parameter="{item.link}" class="footer__link">{item -> f:render.text(field: 'label')}</f:link.typolink>
+                                        <d:atom.link href="{item.link.url}" target="{item.link.target}" variant="muted" class="footer__link">{item -> f:render.text(field: 'label')}</d:atom.link>
                                     </f:then>
                                     <f:else>
                                         <span class="footer__link">{item -> f:render.text(field: 'label')}</span>

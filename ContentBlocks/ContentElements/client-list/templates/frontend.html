@@ -34,7 +34,7 @@
                     <div class="client-list__info">
                         <f:if condition="{client.link.url}">
                             <f:then>
-                                <f:link.typolink parameter="{client.link}" class="client-list__name">{client -> f:render.text(field: 'name')}</f:link.typolink>
+                                <d:atom.link href="{client.link.url}" target="{client.link.target}" variant="muted" class="client-list__name">{client -> f:render.text(field: 'name')}</d:atom.link>
                             </f:then>
                             <f:else>
                                 <span class="client-list__name">{client -> f:render.text(field: 'name')}</span>

@@ -35,10 +35,10 @@
                         </f:if>
                         <f:if condition="{item.link.url}">
                             <f:variable name="usageLinkLabel">View {item.title} details</f:variable>
-                            <f:link.typolink parameter="{item.link}" class="pricing-usage__link" additionalAttributes="{'aria-label': usageLinkLabel}">
+                            <d:atom.link href="{item.link.url}" target="{item.link.target}" variant="muted" class="pricing-usage__link">
                                 View details
                                 <svg class="pricing-usage__arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-                            </f:link.typolink>
+                            </d:atom.link>
                         </f:if>
                     </article>
                 </li>

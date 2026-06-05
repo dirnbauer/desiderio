@@ -19,7 +19,7 @@
                     <f:for each="{data.items}" as="item">
                         <li class="feature-checklist__item">
                             <span class="feature-checklist__marker" aria-hidden="true">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                                <d:atom.icon name="check" size="sm" aria-hidden="true"/>
                             </span>
                             <div class="feature-checklist__text">
                                 <h3 class="feature-checklist__title">{item -> f:render.text(field: 'title')}</h3>

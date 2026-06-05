@@ -9,14 +9,14 @@
     <d:layout.container>
         <nav class="navbar-transparent__inner" aria-label="{data.header -> f:or(alternative: 'Transparent navigation')}">
             <f:if condition="{data.brand_link.url}">
-                <f:then><f:link.typolink parameter="{data.brand_link}" class="navbar-transparent__brand navbar-transparent__brand--link">{data -> f:render.text(field: 'brand')}</f:link.typolink></f:then>
+                <f:then><d:atom.link href="{data.brand_link.url}" target="{data.brand_link.target}" variant="muted" class="navbar-transparent__brand navbar-transparent__brand--link">{data -> f:render.text(field: 'brand')}</d:atom.link></f:then>
                 <f:else><span class="navbar-transparent__brand">{data -> f:render.text(field: 'brand')}</span></f:else>
             </f:if>
             <ul class="navbar-transparent__nav" role="list">
                 <f:for each="{data.nav_items}" as="item">
                     <f:if condition="{item.link.url}">
                         <li class="navbar-transparent__item">
-                            <f:link.typolink parameter="{item.link}" class="navbar-transparent__link">{item -> f:render.text(field: 'label')}</f:link.typolink>
+                            <d:atom.link href="{item.link.url}" target="{item.link.target}" variant="muted" class="navbar-transparent__link">{item -> f:render.text(field: 'label')}</d:atom.link>
                         </li>
                     </f:if>
                 </f:for>

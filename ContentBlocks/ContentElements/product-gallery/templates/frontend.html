@@ -111,9 +111,9 @@
                 <f:if condition="{data.cta_text} && {data.cta_link.url} && {data.availability} != 'sold_out'">
                     <d:molecule.cardFooter class="product-gallery__panel-footer">
                         <f:variable name="ctaLabel">{data.cta_text} – {galleryTitle}</f:variable>
-                        <f:link.typolink parameter="{data.cta_link}" class="product-gallery__cta" additionalAttributes="{'aria-label': ctaLabel, 'itemprop': 'url'}">
+                        <d:atom.button href="{data.cta_link.url}" class="product-gallery__cta" target="{data.cta_link.target}">
                             {data -> f:render.text(field: 'cta_text')}
-                        </f:link.typolink>
+                        </d:atom.button>
                     </d:molecule.cardFooter>
                 </f:if>
             </d:molecule.card>

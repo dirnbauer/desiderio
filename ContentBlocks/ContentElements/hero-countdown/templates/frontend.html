@@ -48,9 +48,7 @@
 
             <f:if condition="{data.primary_button_text}">
                 <div class="hero-countdown__actions">
-                    <f:link.typolink parameter="{data.primary_button_link}">
-                        <d:atom.button variant="default" size="lg">{data -> f:render.text(field: 'primary_button_text')}</d:atom.button>
-                    </f:link.typolink>
+                    <d:atom.button href="{data.primary_button_link.url}" target="{data.primary_button_link.target}" variant="default" size="lg">{data -> f:render.text(field: 'primary_button_text')}</d:atom.button>
                 </div>
             </f:if>
         </div>

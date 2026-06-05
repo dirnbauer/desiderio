@@ -324,50 +324,92 @@ final class ContentBlockStructureTest extends TestCase
         }
     }
 
-    public function testAtomComposedPricingContentElements(): void
+    public function testContentElementsDoNotUseTypolinkForButtons(): void
     {
-        $composed = [
-            'card-pricing' => [
-                'd:atom.button',
-                'd:molecule.card',
-                'd:atom.typography',
-            ],
-            'bundle-pricing' => [
-                'd:atom.button',
-                'd:molecule.card',
-                'd:atom.typography',
-                'd:atom.badge',
-            ],
-            'pricing-annual-monthly' => [
-                'd:atom.button',
-                'd:molecule.card',
-                'd:atom.typography',
-                'd:atom.icon',
-            ],
+        $blocks = glob(self::CONTENT_BLOCKS_DIR . '/*', GLOB_ONLYDIR) ?: [];
+
+        foreach ($blocks as $block) {
+            $name = basename($block);
+            $template = (string) file_get_contents("{$block}/templates/frontend.html");
+
+            self::assertDoesNotMatchRegularExpression(
+                '/<f:link\\.typolink\\b[^>]*class="[^"]*__button/',
+                $template,
+                "{$name} must not style f:link.typolink as a button; use d:atom.button instead"
+            );
+            self::assertDoesNotMatchRegularExpression(
+                '/<f:link\\.typolink\\b[^>]*>\\s*<d:atom\\.button\\b/',
+                $template,
+                "{$name} must not wrap d:atom.button in f:link.typolink; pass href/target on the atom"
+            );
+        }
+    }
+
+    public function testContentElementCssDoesNotDefineButtonVariants(): void
+    {
+        $files = glob(self::CONTENT_BLOCKS_DIR . '/*/assets/frontend.css') ?: [];
+
+        foreach ($files as $file) {
+            $css = (string) file_get_contents($file);
+            $slug = basename(dirname(dirname($file)));
+
+            self::assertDoesNotMatchRegularExpression(
+                '/__button--(?:primary|outline|secondary|ghost)/',
+                $css,
+                "{$slug} must not define button color variants in frontend.css; use d:atom.button variants"
+            );
+            self::assertDoesNotMatchRegularExpression(
+                '/__button(?::hover|:focus-visible|:active)\s*\{/',
+                $css,
+                "{$slug} must not override atom button interaction states in frontend.css"
+            );
+        }
+    }
+
+    public function testAtomButtonsDoNotDuplicateTargetAttributes(): void
+    {
+        $templateFiles = glob(self::CONTENT_BLOCKS_DIR . '/*/templates/frontend.html') ?: [];
+
+        foreach ($templateFiles as $templateFile) {
+            $template = (string) file_get_contents($templateFile);
+            $slug = basename(dirname(dirname($templateFile)));
+
+            self::assertDoesNotMatchRegularExpression(
+                '/<d:atom\\.button\\b[^>]*\\btarget="[^"]*"[^>]*\\btarget="/',
+                $template,
+                "{$slug} must not declare duplicate target attributes on d:atom.button"
+            );
+        }
+    }
+
+    public function testPricingContentElementsUseMoleculeCard(): void
+    {
+        $pricingSlugs = [
+            'card-pricing',
+            'bundle-pricing',
+            'pricing-annual-monthly',
+            'pricing-three-tier',
+            'pricing-four-tier',
+            'pricing-two-tier',
+            'pricing',
+            'pricing-simple',
+            'pricing-enterprise',
         ];
 
-        foreach ($composed as $slug => $requiredTags) {
+        foreach ($pricingSlugs as $slug) {
             $templatePath = self::CONTENT_BLOCKS_DIR . "/{$slug}/templates/frontend.html";
             self::assertFileExists($templatePath, "{$slug} frontend template must exist");
             $template = (string) file_get_contents($templatePath);
 
-            foreach ($requiredTags as $tag) {
-                self::assertStringContainsString(
-                    $tag,
-                    $template,
-                    "{$slug} must compose {$tag} instead of duplicating markup or styles"
-                );
-            }
-
-            self::assertStringNotContainsString(
-                '__button--primary',
+            self::assertStringContainsString(
+                'd:molecule.card',
                 $template,
-                "{$slug} must not ship custom primary button BEM modifiers; use d:atom.button variant instead"
+                "{$slug} must compose d:molecule.card for plan shells"
             );
-            self::assertStringNotContainsString(
-                'f:link.typolink',
+            self::assertStringContainsString(
+                'd:atom.button',
                 $template,
-                "{$slug} must use d:atom.button for CTAs instead of f:link.typolink"
+                "{$slug} must compose d:atom.button for pricing CTAs"
             );
         }
     }
@@ -488,6 +530,7 @@ final class ContentBlockStructureTest extends TestCase
 
     public function testTypolinkViewHelpersUseAdditionalAttributesForHtmlAttributes(): void
     {
+        $typolinkCount = 0;
         $templateFiles = glob(self::CONTENT_BLOCKS_DIR . '/*/templates/frontend.html') ?: [];
         foreach ($templateFiles as $templateFile) {
             $lines = file($templateFile, FILE_IGNORE_NEW_LINES) ?: [];
@@ -496,6 +539,7 @@ final class ContentBlockStructureTest extends TestCase
                     continue;
                 }
 
+                ++$typolinkCount;
                 self::assertDoesNotMatchRegularExpression(
                     '/<f:link\\.typolink\\b[^\\n]*(?:\\saria-[a-z0-9_-]+\\s*=|\\srole\\s*=|\\sdata-[a-z0-9_-]+\\s*=|\\srel\\s*=)/i',
                     $line,
@@ -503,6 +547,8 @@ final class ContentBlockStructureTest extends TestCase
                 );
             }
         }
+
+        self::assertSame(0, $typolinkCount, 'frontend templates should use d:atom.button/link instead of f:link.typolink');
     }
 
     public function testSplitViewHelpersUseTagSyntaxForArrayResults(): void

@@ -40,10 +40,10 @@
                     </f:if>
                     <f:if condition="{cert.link.url}">
                         <f:variable name="verifyLabel"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:cta.verify" default="Verify"/></f:variable>
-                        <f:link.typolink parameter="{cert.link}" class="certifications__link" additionalAttributes="{'aria-label': '{verifyLabel}: {cert.name -> f:format.stripTags() -> f:format.trim()}'}">
+                        <d:atom.link href="{cert.link.url}" target="{cert.link.target}" variant="muted" class="certifications__link"> f:format.stripTags() -> f:format.trim()}'}">
                             <span>{verifyLabel}</span>
                             <span class="certifications__link-arrow" aria-hidden="true">&rarr;</span>
-                        </f:link.typolink>
+                        </d:atom.link>
                     </f:if>
                 </li>
             </f:for>

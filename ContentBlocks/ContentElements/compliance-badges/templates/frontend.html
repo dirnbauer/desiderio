@@ -16,12 +16,12 @@
                     <li class="compliance-badges__item">
                         <f:if condition="{item.link}">
                             <f:then>
-                                <f:link.typolink parameter="{item.link}" target="_blank" additionalAttributes="{'rel': 'noopener noreferrer'}" class="compliance-badges__link rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background">
+                                <d:atom.link href="{item.link.url}" variant="muted" class="compliance-badges__link rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background" target="_blank">
                                     <d:atom.badge variant="outline" class="compliance-badges__badge">
                                         <svg class="compliance-badges__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 12 2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
                                         {item -> f:render.text(field: 'label')}
                                     </d:atom.badge>
-                                </f:link.typolink>
+                                </d:atom.link>
                             </f:then>
                             <f:else>
                                 <d:atom.badge variant="outline" class="compliance-badges__badge">

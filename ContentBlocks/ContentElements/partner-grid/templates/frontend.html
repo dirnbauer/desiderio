@@ -35,10 +35,10 @@
                     </f:if>
                     <f:if condition="{item.link.url}">
                         <f:variable name="visitLabel">{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:partner.visit')}</f:variable>
-                        <f:link.typolink parameter="{item.link}" class="partner-grid__link" additionalAttributes="{'aria-label': '{visitLabel}: {item.name -> f:format.stripTags() -> f:format.trim()}'}">
+                        <d:atom.link href="{item.link.url}" target="{item.link.target}" variant="muted" class="partner-grid__link"> f:format.stripTags() -> f:format.trim()}'}">
                             <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:investor.visit"/>
                             <span class="partner-grid__link-arrow" aria-hidden="true">&rarr;</span>
-                        </f:link.typolink>
+                        </d:atom.link>
                     </f:if>
                 </li>
             </f:for>

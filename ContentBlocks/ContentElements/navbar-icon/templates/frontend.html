@@ -10,7 +10,7 @@
         <nav class="navbar-icon__inner" aria-label="{data.header -> f:or(alternative: 'Icon navigation')}">
             <div class="navbar-icon__brand">
                 <f:if condition="{data.brand_link.url}">
-                    <f:then><f:link.typolink parameter="{data.brand_link}" class="navbar-icon__brand-link">{data -> f:render.text(field: 'brand')}</f:link.typolink></f:then>
+                    <f:then><d:atom.link href="{data.brand_link.url}" target="{data.brand_link.target}" variant="default" class="navbar-icon__brand-link">{data -> f:render.text(field: 'brand')}</d:atom.link></f:then>
                     <f:else><span class="navbar-icon__brand-link">{data -> f:render.text(field: 'brand')}</span></f:else>
                 </f:if>
             </div>
@@ -18,10 +18,10 @@
                 <f:for each="{data.nav_items}" as="item">
                     <li>
                         <f:if condition="{item.link.url}">
-                            <f:link.typolink parameter="{item.link}" class="navbar-icon__link" title="{item.label}">
+                            <d:atom.link href="{item.link.url}" target="{item.link.target}" variant="muted" class="navbar-icon__link">
                                 <span class="navbar-icon__icon" aria-hidden="true"><d:atom.icon name="{item.icon}" size="sm"/></span>
                                 <span class="navbar-icon__label">{item -> f:render.text(field: 'label')}</span>
-                            </f:link.typolink>
+                            </d:atom.link>
                         </f:if>
                     </li>
                 </f:for>

@@ -35,10 +35,10 @@
                     </f:if>
                     <f:if condition="{item.link.url}">
                         <f:variable name="exploreLabel">{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:cta.explore')}</f:variable>
-                        <f:link.typolink parameter="{item.link}" class="category-cards__link" additionalAttributes="{'aria-label': '{exploreLabel}: {item.title -> f:format.stripTags() -> f:format.trim()}'}">
+                        <d:atom.link href="{item.link.url}" target="{item.link.target}" variant="muted" class="category-cards__link"> f:format.stripTags() -> f:format.trim()}'}">
                             <span>{exploreLabel}</span>
                             <span class="category-cards__link-arrow" aria-hidden="true">&rarr;</span>
-                        </f:link.typolink>
+                        </d:atom.link>
                     </f:if>
                 </article>
             </f:for>

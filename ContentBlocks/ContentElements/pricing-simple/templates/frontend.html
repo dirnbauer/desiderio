@@ -6,38 +6,51 @@
 <f:asset.css identifier="d-pricing-simple" href="{cb:assetPath()}/frontend.css"/>
 
 <d:layout.section class="pricing-simple">
-    <d:layout.container>
-        <div class="pricing-simple__card">
-            <f:if condition="{data.header}">
-                <h2 class="pricing-simple__headline">{data -> f:render.text(field: 'header')}</h2>
-            </f:if>
-            <div class="pricing-simple__price-row">
-                <span class="pricing-simple__price">{data -> f:render.text(field: 'price')}</span>
-                <f:if condition="{data.billing_period}">
-                    <span class="pricing-simple__period">{data -> f:render.text(field: 'billing_period')}</span>
+    <d:layout.container size="sm">
+        <d:molecule.card class="pricing-simple__card">
+            <d:molecule.cardHeader class="pricing-simple__header">
+                <f:if condition="{data.header}">
+                    <d:atom.typography tag="h2" variant="h2" class="pricing-simple__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
                 </f:if>
-            </div>
-            <f:if condition="{data.description}">
-                <p class="pricing-simple__description">{data -> f:render.text(field: 'description')}</p>
-            </f:if>
+                <p class="pricing-simple__price-row">
+                    <span class="pricing-simple__price">{data -> f:render.text(field: 'price')}</span>
+                    <f:if condition="{data.billing_period}">
+                        <d:atom.typography tag="span" variant="muted" class="pricing-simple__period">{data -> f:render.text(field: 'billing_period')}</d:atom.typography>
+                    </f:if>
+                </p>
+                <f:if condition="{data.description}">
+                    <d:atom.typography variant="muted" class="pricing-simple__description">{data -> f:render.text(field: 'description')}</d:atom.typography>
+                </f:if>
+            </d:molecule.cardHeader>
+
             <f:if condition="{data.features}">
-                <ul class="pricing-simple__features">
-                    <f:for each="{data.features}" as="feature">
-                        <f:if condition="{feature.text}">
-                            <li class="pricing-simple__feature">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg>
-                                <span>{feature -> f:render.text(field: 'text')}</span>
-                            </li>
-                        </f:if>
-                    </f:for>
-                </ul>
+                <d:molecule.cardContent class="pricing-simple__content">
+                    <ul class="pricing-simple__features" role="list">
+                        <f:for each="{data.features}" as="feature">
+                            <f:if condition="{feature.text}">
+                                <li class="pricing-simple__feature">
+                                    <d:atom.icon name="check" size="sm" class="pricing-simple__check" aria-hidden="true"/>
+                                    <d:atom.typography tag="span" variant="small">{feature -> f:render.text(field: 'text')}</d:atom.typography>
+                                </li>
+                            </f:if>
+                        </f:for>
+                    </ul>
+                </d:molecule.cardContent>
             </f:if>
+
             <f:if condition="{data.button_text} && {data.button_link.url}">
-                <f:link.typolink parameter="{data.button_link}" class="pricing-simple__button">
-                    {data -> f:render.text(field: 'button_text')}
-                </f:link.typolink>
+                <d:molecule.cardFooter class="pricing-simple__footer">
+                    <d:atom.button
+                        href="{data.button_link.url}"
+                        target="{data.button_link.target}"
+                        class="pricing-simple__button w-full"
+                    >
+                        {data -> f:render.text(field: 'button_text')}
+                    </d:atom.button>
+                </d:molecule.cardFooter>
             </f:if>
-        </div>
+        </d:molecule.card>
     </d:layout.container>
 </d:layout.section>
+
 </html>

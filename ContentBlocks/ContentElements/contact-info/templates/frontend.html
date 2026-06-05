@@ -21,7 +21,7 @@
                     <h3 class="contact-info__label">{item -> f:render.text(field: 'label')}</h3>
                     <f:if condition="{item.link.url}">
                         <f:then>
-                            <f:link.typolink parameter="{item.link}" class="contact-info__value contact-info__value--link rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-card">{item -> f:render.text(field: 'value')}</f:link.typolink>
+                            <d:atom.link href="{item.link.url}" target="{item.link.target}" variant="muted" class="contact-info__value contact-info__value--link rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-card">{item -> f:render.text(field: 'value')}</d:atom.link>
                         </f:then>
                         <f:else>
                             <p class="contact-info__value">{item -> f:render.text(field: 'value')}</p>

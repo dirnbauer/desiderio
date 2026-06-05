@@ -11,7 +11,7 @@
             <div class="navbar__brand">
                 <f:if condition="{data.brand_link.url}">
                     <f:then>
-                        <f:link.typolink parameter="{data.brand_link}" class="navbar__brand-link">{data -> f:render.text(field: 'brand')}</f:link.typolink>
+                        <d:atom.link href="{data.brand_link.url}" target="{data.brand_link.target}" variant="default" class="navbar__brand-link">{data -> f:render.text(field: 'brand')}</d:atom.link>
                     </f:then>
                     <f:else>
                         <span class="navbar__brand-link">{data -> f:render.text(field: 'brand')}</span>
@@ -25,7 +25,7 @@
                         <li class="navbar__nav-item">
                             <f:if condition="{item.link.url}">
                                 <f:then>
-                                    <f:link.typolink parameter="{item.link}" class="navbar__nav-link">{item -> f:render.text(field: 'label')}</f:link.typolink>
+                                    <d:atom.link href="{item.link.url}" target="{item.link.target}" variant="muted" class="navbar__nav-link">{item -> f:render.text(field: 'label')}</d:atom.link>
                                 </f:then>
                                 <f:else>
                                     <span class="navbar__nav-link">{item -> f:render.text(field: 'label')}</span>

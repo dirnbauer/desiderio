@@ -37,9 +37,9 @@
                             <p class="case-study-grid__result">{item -> f:render.text(field: 'result')}</p>
                         </f:if>
                         <f:if condition="{item.link.url}">
-                            <f:link.typolink parameter="{item.link}" class="case-study-grid__link">
+                            <d:atom.link href="{item.link.url}" target="{item.link.target}" variant="muted" class="case-study-grid__link">
                                 <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:read_case_study" default="Read case study"/><span class="sr-only"> {item -> f:render.text(field: 'client_name')}</span><span aria-hidden="true"> &rarr;</span>
-                            </f:link.typolink>
+                            </d:atom.link>
                         </f:if>
                     </div>
                 </article>

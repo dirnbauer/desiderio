@@ -25,7 +25,7 @@
         <p class="notification__message">{data -> f:render.text(field: 'content')}</p>
         <f:if condition="{data.action_text}">
             <div class="notification__actions">
-                <f:link.typolink parameter="{data.action_link}" class="notification__action">{data -> f:render.text(field: 'action_text')}</f:link.typolink>
+                <d:atom.link href="{data.action_link.url}" target="{data.action_link.target}" variant="muted" class="notification__action">{data -> f:render.text(field: 'action_text')}</d:atom.link>
             </div>
         </f:if>
     </div>

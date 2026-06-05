@@ -16,7 +16,7 @@
             </div>
             <f:if condition="{data.link.url} && {data.link_text}">
                 <div class="content-highlight__actions">
-                    <f:link.typolink parameter="{data.link}" class="content-highlight__cta">{data -> f:render.text(field: 'link_text')}</f:link.typolink>
+                    <d:atom.button href="{data.link.url}" class="content-highlight__cta" target="{data.link.target}">{data -> f:render.text(field: 'link_text')}</d:atom.button>
                 </div>
             </f:if>
         </div>

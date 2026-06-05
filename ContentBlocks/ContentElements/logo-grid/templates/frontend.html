@@ -23,14 +23,14 @@
                 <li class="logo-grid__item">
                     <f:if condition="{logo.link.url}">
                         <f:then>
-                            <f:link.typolink parameter="{logo.link}" class="logo-grid__link" title="{logo.name}">
+                            <d:atom.link href="{logo.link.url}" target="{logo.link.target}" variant="muted" class="logo-grid__link">
                                 <f:for each="{logo.image}" as="fileReference">
                                     <f:image image="{fileReference}" maxWidth="120" alt="{logo.name}" class="logo-grid__image" loading="lazy"/>
                                 </f:for>
                                 <f:if condition="{data.show_names}">
                                     <span class="logo-grid__name">{logo -> f:render.text(field: 'name')}</span>
                                 </f:if>
-                            </f:link.typolink>
+                            </d:atom.link>
                         </f:then>
                         <f:else>
                             <div class="logo-grid__link">

@@ -35,10 +35,10 @@
                             <p class="product-grid__desc">{product -> f:render.text(field: 'description_text')}</p>
                         </f:if>
                         <f:if condition="{product.link.url}">
-                            <f:link.typolink parameter="{product.link}" class="product-grid__link">
+                            <d:atom.link href="{product.link.url}" target="{product.link.target}" variant="muted" class="product-grid__link">
                                 <span>View product<span class="sr-only"> {product.name}</span></span>
                                 <span aria-hidden="true">&rarr;</span>
-                            </f:link.typolink>
+                            </d:atom.link>
                         </f:if>
                     </div>
                 </article>

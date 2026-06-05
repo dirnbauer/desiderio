@@ -25,10 +25,10 @@
                 </f:if>
                 <f:if condition="{data.link.url}">
                     <f:variable name="cardOverlayLinkLabel">{data.header -> f:format.stripTags() -> f:format.trim()}</f:variable>
-                    <f:link.typolink parameter="{data.link}" class="card-overlay__cta" additionalAttributes="{'aria-label': cardOverlayLinkLabel}">
+                    <d:atom.button href="{data.link.url}" class="card-overlay__cta" target="{data.link.target}">
                         <span class="card-overlay__cta-text">{data -> f:render.text(field: 'link_text')}</span>
                         <span class="card-overlay__cta-arrow" aria-hidden="true">&rarr;</span>
-                    </f:link.typolink>
+                    </d:atom.button>
                 </f:if>
             </d:layout.stack>
         </article>

@@ -20,10 +20,10 @@
                 <p class="emergency-contact__phone">
                     <f:if condition="{data.phone_link.url}">
                         <f:then>
-                            <f:link.typolink parameter="{data.phone_link}" class="emergency-contact__number">
+                            <d:atom.link href="{data.phone_link.url}" target="{data.phone_link.target}" variant="muted" class="emergency-contact__number">
                                 <span class="emergency-contact__number-icon" aria-hidden="true"><d:atom.icon name="phone" size="default"/></span>
                                 <span>{data -> f:render.text(field: 'phone')}</span>
-                            </f:link.typolink>
+                            </d:atom.link>
                         </f:then>
                         <f:else>
                             <span class="emergency-contact__number">

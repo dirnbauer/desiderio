@@ -21,14 +21,10 @@
                 <f:if condition="{data.primary_button_text} || {data.secondary_button_text}">
                     <div class="hero-asymmetric__actions">
                         <f:if condition="{data.primary_button_text}">
-                            <f:link.typolink parameter="{data.primary_button_link}">
-                                <d:atom.button variant="default" size="lg">{data -> f:render.text(field: 'primary_button_text')}</d:atom.button>
-                            </f:link.typolink>
+                            <d:atom.button href="{data.primary_button_link.url}" target="{data.primary_button_link.target}" variant="default" size="lg">{data -> f:render.text(field: 'primary_button_text')}</d:atom.button>
                         </f:if>
                         <f:if condition="{data.secondary_button_text}">
-                            <f:link.typolink parameter="{data.secondary_button_link}">
-                                <d:atom.button variant="outline" size="lg">{data -> f:render.text(field: 'secondary_button_text')}</d:atom.button>
-                            </f:link.typolink>
+                            <d:atom.button href="{data.secondary_button_link.url}" target="{data.secondary_button_link.target}" variant="outline" size="lg">{data -> f:render.text(field: 'secondary_button_text')}</d:atom.button>
                         </f:if>
                     </div>
                 </f:if>

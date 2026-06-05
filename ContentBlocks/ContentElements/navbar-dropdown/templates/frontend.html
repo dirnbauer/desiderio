@@ -10,7 +10,7 @@
         <nav class="navbar-dropdown__inner" aria-label="{data.header -> f:or(alternative: 'Dropdown navigation')}">
             <div class="navbar-dropdown__brand">
                 <f:if condition="{data.brand_link.url}">
-                    <f:then><f:link.typolink parameter="{data.brand_link}" class="navbar-dropdown__brand-link">{data -> f:render.text(field: 'brand')}</f:link.typolink></f:then>
+                    <f:then><d:atom.link href="{data.brand_link.url}" target="{data.brand_link.target}" variant="default" class="navbar-dropdown__brand-link">{data -> f:render.text(field: 'brand')}</d:atom.link></f:then>
                     <f:else><span class="navbar-dropdown__brand-link">{data -> f:render.text(field: 'brand')}</span></f:else>
                 </f:if>
             </div>
@@ -18,14 +18,14 @@
                 <f:for each="{data.nav_items}" as="item">
                     <li class="navbar-dropdown__item">
                         <f:if condition="{item.link.url}">
-                            <f:link.typolink parameter="{item.link}" class="navbar-dropdown__link">{item -> f:render.text(field: 'label')}</f:link.typolink>
+                            <d:atom.link href="{item.link.url}" target="{item.link.target}" variant="muted" class="navbar-dropdown__link">{item -> f:render.text(field: 'label')}</d:atom.link>
                         </f:if>
                         <f:if condition="{item.child_1_label} || {item.child_2_label} || {item.child_3_label} || {item.child_4_label}">
                             <ul class="navbar-dropdown__submenu">
-                                <f:if condition="{item.child_1_label}"><li><f:if condition="{item.child_1_link.url}"><f:then><f:link.typolink parameter="{item.child_1_link}" class="navbar-dropdown__sublink">{item -> f:render.text(field: 'child_1_label')}</f:link.typolink></f:then><f:else><span class="navbar-dropdown__sublink">{item -> f:render.text(field: 'child_1_label')}</span></f:else></f:if></li></f:if>
-                                <f:if condition="{item.child_2_label}"><li><f:if condition="{item.child_2_link.url}"><f:then><f:link.typolink parameter="{item.child_2_link}" class="navbar-dropdown__sublink">{item -> f:render.text(field: 'child_2_label')}</f:link.typolink></f:then><f:else><span class="navbar-dropdown__sublink">{item -> f:render.text(field: 'child_2_label')}</span></f:else></f:if></li></f:if>
-                                <f:if condition="{item.child_3_label}"><li><f:if condition="{item.child_3_link.url}"><f:then><f:link.typolink parameter="{item.child_3_link}" class="navbar-dropdown__sublink">{item -> f:render.text(field: 'child_3_label')}</f:link.typolink></f:then><f:else><span class="navbar-dropdown__sublink">{item -> f:render.text(field: 'child_3_label')}</span></f:else></f:if></li></f:if>
-                                <f:if condition="{item.child_4_label}"><li><f:if condition="{item.child_4_link.url}"><f:then><f:link.typolink parameter="{item.child_4_link}" class="navbar-dropdown__sublink">{item -> f:render.text(field: 'child_4_label')}</f:link.typolink></f:then><f:else><span class="navbar-dropdown__sublink">{item -> f:render.text(field: 'child_4_label')}</span></f:else></f:if></li></f:if>
+                                <f:if condition="{item.child_1_label}"><li><f:if condition="{item.child_1_link.url}"><f:then><d:atom.link href="{item.child_1_link.url}" target="{item.child_1_link.target}" variant="muted" class="navbar-dropdown__sublink">{item -> f:render.text(field: 'child_1_label')}</d:atom.link></f:then><f:else><span class="navbar-dropdown__sublink">{item -> f:render.text(field: 'child_1_label')}</span></f:else></f:if></li></f:if>
+                                <f:if condition="{item.child_2_label}"><li><f:if condition="{item.child_2_link.url}"><f:then><d:atom.link href="{item.child_2_link.url}" target="{item.child_2_link.target}" variant="muted" class="navbar-dropdown__sublink">{item -> f:render.text(field: 'child_2_label')}</d:atom.link></f:then><f:else><span class="navbar-dropdown__sublink">{item -> f:render.text(field: 'child_2_label')}</span></f:else></f:if></li></f:if>
+                                <f:if condition="{item.child_3_label}"><li><f:if condition="{item.child_3_link.url}"><f:then><d:atom.link href="{item.child_3_link.url}" target="{item.child_3_link.target}" variant="muted" class="navbar-dropdown__sublink">{item -> f:render.text(field: 'child_3_label')}</d:atom.link></f:then><f:else><span class="navbar-dropdown__sublink">{item -> f:render.text(field: 'child_3_label')}</span></f:else></f:if></li></f:if>
+                                <f:if condition="{item.child_4_label}"><li><f:if condition="{item.child_4_link.url}"><f:then><d:atom.link href="{item.child_4_link.url}" target="{item.child_4_link.target}" variant="muted" class="navbar-dropdown__sublink">{item -> f:render.text(field: 'child_4_label')}</d:atom.link></f:then><f:else><span class="navbar-dropdown__sublink">{item -> f:render.text(field: 'child_4_label')}</span></f:else></f:if></li></f:if>
                             </ul>
                         </f:if>
                     </li>

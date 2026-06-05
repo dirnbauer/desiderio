@@ -24,7 +24,7 @@
                 <nav class="hero-search__categories" aria-label="Popular categories">
                     <f:for each="{data.category_filters}" as="cat">
                         <f:if condition="{cat.link.url}">
-                            <f:link.typolink parameter="{cat.link}" class="hero-search__category">{cat -> f:render.text(field: 'label')}</f:link.typolink>
+                            <d:atom.link href="{cat.link.url}" target="{cat.link.target}" variant="muted" class="hero-search__category">{cat -> f:render.text(field: 'label')}</d:atom.link>
                         </f:if>
                     </f:for>
                 </nav>

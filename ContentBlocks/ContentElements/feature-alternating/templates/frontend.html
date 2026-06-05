@@ -23,9 +23,9 @@
                             <p class="feature-alternating__description">{item -> f:render.text(field: 'description')}</p>
                         </f:if>
                         <f:if condition="{item.link.url}">
-                            <f:link.typolink parameter="{item.link}" class="feature-alternating__link">
+                            <d:atom.link href="{item.link.url}" target="{item.link.target}" variant="muted" class="feature-alternating__link">
                                 <span>Learn more</span><span class="sr-only"> about {item -> f:render.text(field: 'title')}</span><span class="feature-alternating__arrow" aria-hidden="true">&rarr;</span>
-                            </f:link.typolink>
+                            </d:atom.link>
                         </f:if>
                     </div>
                     <f:if condition="{item.image.0}">

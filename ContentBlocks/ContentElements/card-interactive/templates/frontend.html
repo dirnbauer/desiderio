@@ -26,12 +26,12 @@
             </div>
             <div class="card-interactive__footer">
                 <f:if condition="{data.link}">
-                    <f:link.typolink parameter="{data.link}" class="card-interactive__link" additionalAttributes="{'aria-label': data.header}">
+                    <d:atom.link href="{data.link.url}" target="{data.link.target}" variant="muted" class="card-interactive__link">
                         View automation guide
                         <span class="card-interactive__link-icon" aria-hidden="true">
                             <d:atom.icon name="arrow-right" size="sm"/>
                         </span>
-                    </f:link.typolink>
+                    </d:atom.link>
                 </f:if>
             </div>
         </div>

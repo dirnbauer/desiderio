@@ -15,9 +15,9 @@
                     </f:if>
                     <f:if condition="{data.brand_link.url}">
                         <f:then>
-                            <f:link.typolink parameter="{data.brand_link}" class="mega-menu__brand-link">
+                            <d:atom.link href="{data.brand_link.url}" target="{data.brand_link.target}" variant="default" class="mega-menu__brand-link">
                                 <d:atom.typography tag="span" variant="large" class="mega-menu__brand-name">{data -> f:render.text(field: 'brand')}</d:atom.typography>
-                            </f:link.typolink>
+                            </d:atom.link>
                         </f:then>
                         <f:else>
                             <d:atom.typography tag="span" variant="large" class="mega-menu__brand-name">{data -> f:render.text(field: 'brand')}</d:atom.typography>
@@ -61,9 +61,9 @@
                                     <li class="mega-menu__link-item">
                                         <f:if condition="{group.link_1.url}">
                                             <f:then>
-                                                <f:link.typolink parameter="{group.link_1}" class="mega-menu__link">
+                                                <d:atom.link href="{group.link_1.url}" target="{group.link_1.target}" variant="muted" class="mega-menu__link">
                                                     <span class="mega-menu__link-label">{group -> f:render.text(field: 'link_1_label')}</span><f:if condition="{group.link_1.target} == '_blank'"><span class="mega-menu__sr-only"> <f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/mega-menu/language/labels.xlf:external.hint" default="(opens in a new tab)"/></span></f:if><span class="mega-menu__link-arrow" aria-hidden="true">&#8594;</span>
-                                                </f:link.typolink>
+                                                </d:atom.link>
                                             </f:then>
                                             <f:else><span class="mega-menu__link mega-menu__link--static"><span class="mega-menu__link-label">{group -> f:render.text(field: 'link_1_label')}</span></span></f:else>
                                         </f:if>
@@ -73,9 +73,9 @@
                                     <li class="mega-menu__link-item">
                                         <f:if condition="{group.link_2.url}">
                                             <f:then>
-                                                <f:link.typolink parameter="{group.link_2}" class="mega-menu__link">
+                                                <d:atom.link href="{group.link_2.url}" target="{group.link_2.target}" variant="muted" class="mega-menu__link">
                                                     <span class="mega-menu__link-label">{group -> f:render.text(field: 'link_2_label')}</span><f:if condition="{group.link_2.target} == '_blank'"><span class="mega-menu__sr-only"> <f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/mega-menu/language/labels.xlf:external.hint" default="(opens in a new tab)"/></span></f:if><span class="mega-menu__link-arrow" aria-hidden="true">&#8594;</span>
-                                                </f:link.typolink>
+                                                </d:atom.link>
                                             </f:then>
                                             <f:else><span class="mega-menu__link mega-menu__link--static"><span class="mega-menu__link-label">{group -> f:render.text(field: 'link_2_label')}</span></span></f:else>
                                         </f:if>
@@ -85,9 +85,9 @@
                                     <li class="mega-menu__link-item">
                                         <f:if condition="{group.link_3.url}">
                                             <f:then>
-                                                <f:link.typolink parameter="{group.link_3}" class="mega-menu__link">
+                                                <d:atom.link href="{group.link_3.url}" target="{group.link_3.target}" variant="muted" class="mega-menu__link">
                                                     <span class="mega-menu__link-label">{group -> f:render.text(field: 'link_3_label')}</span><f:if condition="{group.link_3.target} == '_blank'"><span class="mega-menu__sr-only"> <f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/mega-menu/language/labels.xlf:external.hint" default="(opens in a new tab)"/></span></f:if><span class="mega-menu__link-arrow" aria-hidden="true">&#8594;</span>
-                                                </f:link.typolink>
+                                                </d:atom.link>
                                             </f:then>
                                             <f:else><span class="mega-menu__link mega-menu__link--static"><span class="mega-menu__link-label">{group -> f:render.text(field: 'link_3_label')}</span></span></f:else>
                                         </f:if>
@@ -97,9 +97,9 @@
                                     <li class="mega-menu__link-item">
                                         <f:if condition="{group.link_4.url}">
                                             <f:then>
-                                                <f:link.typolink parameter="{group.link_4}" class="mega-menu__link">
+                                                <d:atom.link href="{group.link_4.url}" target="{group.link_4.target}" variant="muted" class="mega-menu__link">
                                                     <span class="mega-menu__link-label">{group -> f:render.text(field: 'link_4_label')}</span><f:if condition="{group.link_4.target} == '_blank'"><span class="mega-menu__sr-only"> <f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/mega-menu/language/labels.xlf:external.hint" default="(opens in a new tab)"/></span></f:if><span class="mega-menu__link-arrow" aria-hidden="true">&#8594;</span>
-                                                </f:link.typolink>
+                                                </d:atom.link>
                                             </f:then>
                                             <f:else><span class="mega-menu__link mega-menu__link--static"><span class="mega-menu__link-label">{group -> f:render.text(field: 'link_4_label')}</span></span></f:else>
                                         </f:if>
@@ -109,9 +109,9 @@
                                     <li class="mega-menu__link-item">
                                         <f:if condition="{group.link_5.url}">
                                             <f:then>
-                                                <f:link.typolink parameter="{group.link_5}" class="mega-menu__link">
+                                                <d:atom.link href="{group.link_5.url}" target="{group.link_5.target}" variant="muted" class="mega-menu__link">
                                                     <span class="mega-menu__link-label">{group -> f:render.text(field: 'link_5_label')}</span><f:if condition="{group.link_5.target} == '_blank'"><span class="mega-menu__sr-only"> <f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/mega-menu/language/labels.xlf:external.hint" default="(opens in a new tab)"/></span></f:if><span class="mega-menu__link-arrow" aria-hidden="true">&#8594;</span>
-                                                </f:link.typolink>
+                                                </d:atom.link>
                                             </f:then>
                                             <f:else><span class="mega-menu__link mega-menu__link--static"><span class="mega-menu__link-label">{group -> f:render.text(field: 'link_5_label')}</span></span></f:else>
                                         </f:if>

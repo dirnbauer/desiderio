@@ -38,24 +38,35 @@ Reference implementations
 -------------------------
 
 *   **Gold standard:** ``ContentBlocks/ContentElements/card-pricing/``
-*   **Pilot migrations:** ``bundle-pricing``, ``pricing-annual-monthly``
+*   **Multi-tier pricing:** ``pricing-annual-monthly``, ``pricing-three-tier``
+*   **CTA patterns:** ``ContentBlocks/ContentElements/cta/``
 
-Migration order for pricing family
-----------------------------------
+Migration status
+----------------
+
+All 255 content element frontend templates are migrated to atomic primitives.
+``Build/Scripts/migrate-content-elements-atoms.php`` applies the rules below
+with ``--dry-run`` or ``--write`` and is safe to re-run.
+
+Migration rules (all content elements)
+--------------------------------------
 
 1. Replace ``f:link.typolink`` CTAs with ``<d:atom.button href="…">``
-2. Replace plan/article shells with ``<d:molecule.card>``
+2. Replace plan/article shells with ``<d:molecule.card>`` where appropriate
 3. Replace ``<h2>``/``<p>`` headings with ``<d:atom.typography>``
 4. Replace inline SVG checks with ``<d:atom.icon name="check">``
 5. Replace custom badge spans with ``<d:atom.badge>``
-6. Delete duplicated button/card CSS from ``assets/frontend.css``
-7. Add the slug to ``ContentBlockStructureTest::testAtomComposedContentElements``
-8. Verify in the styleguide pricing group
+6. Replace navigation and text links with ``<d:atom.link>``
+7. Delete duplicated button/card CSS from ``assets/frontend.css``
+8. Run ``Build/Scripts/migrate-content-elements-atoms.php --write`` again after edits; its
+   cleanup pass deduplicates ``target`` attributes and strips leftover ``__button:hover``
+   rules from per-element CSS
+9. Verify in the styleguide at multiple breakpoints
 
 Testing
 -------
 
 *   ``Tests/Unit/ComponentStructureTest.php`` — component inventory
-*   ``Tests/Unit/ContentBlockStructureTest.php`` — token policy + atom composition registry
+*   ``Tests/Unit/ContentBlockStructureTest.php`` — token policy + atom/button/link composition guards
 *   ``Tests/Unit/ContentElementAuditTest.php`` — no hardcoded colors/styles
 *   Manual: Desiderio styleguide → Plans & Pricing group at multiple breakpoints

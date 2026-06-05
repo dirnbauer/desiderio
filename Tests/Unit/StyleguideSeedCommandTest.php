@@ -170,6 +170,43 @@ final class StyleguideSeedCommandTest extends TestCase
         );
     }
 
+    public function testPricingPlanLinkAndRecommendationAliasesAreNormalized(): void
+    {
+        $command = $this->createCommand();
+        $plansCollection = [
+            'table' => 'plans',
+            'minItems' => 1,
+            'maxItems' => null,
+            'fields' => [
+                'name' => ['identifier' => 'name'],
+                'price' => ['identifier' => 'price'],
+                'button_text' => ['identifier' => 'button_text'],
+                'button_link' => ['identifier' => 'button_link', 'type' => 'Link'],
+                'is_recommended' => ['identifier' => 'is_recommended', 'type' => 'Checkbox'],
+            ],
+            'collections' => [],
+        ];
+
+        self::assertSame(
+            [[
+                'name' => 'Growth',
+                'price' => '$49',
+                'button_text' => 'Choose Growth',
+                'button_link' => 'https://example.com/growth',
+                'is_recommended' => 1,
+            ]],
+            $this->invokeMethod($command, 'normalizeCollectionItems', [[
+                [
+                    'name' => 'Growth',
+                    'price' => '$49',
+                    'button' => 'Choose Growth',
+                    'url' => 'https://example.com/growth',
+                    'featured' => true,
+                ],
+            ], $plansCollection])
+        );
+    }
+
     public function testPricingSliderMissingTierFieldsUsePricingDefaults(): void
     {
         $command = $this->createCommand();

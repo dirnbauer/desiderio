@@ -42,10 +42,10 @@
                             <span class="rating-display__count">{rating -> f:render.text(field: 'review_count')}</span>
                         </f:if>
                         <f:if condition="{rating.link.url}">
-                            <f:link.typolink parameter="{rating.link}" class="rating-display__link">
+                            <d:atom.link href="{rating.link.url}" target="{rating.link.target}" variant="muted" class="rating-display__link">
                                 <span aria-hidden="true">View reviews &rarr;</span>
                                 <span class="sr-only">View {rating -> f:render.text(field: 'platform')} reviews</span>
-                            </f:link.typolink>
+                            </d:atom.link>
                         </f:if>
                     </article>
                 </li>

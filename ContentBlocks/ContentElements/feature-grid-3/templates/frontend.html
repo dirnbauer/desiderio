@@ -22,7 +22,7 @@
                     </f:if>
                     <h3 class="feature-grid-3__title">
                         <f:if condition="{item.link.url}">
-                            <f:then><f:link.typolink parameter="{item.link}">{item -> f:render.text(field: 'title')}</f:link.typolink></f:then>
+                            <f:then><d:atom.link href="{item.link.url}" target="{item.link.target}" variant="muted">{item -> f:render.text(field: 'title')}</d:atom.link></f:then>
                             <f:else>{item -> f:render.text(field: 'title')}</f:else>
                         </f:if>
                     </h3>

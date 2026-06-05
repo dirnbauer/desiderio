@@ -14,8 +14,8 @@
                     <f:if condition="{tab.link.url}">
                         <li>
                             <f:if condition="{tab.active}">
-                                <f:then><f:link.typolink parameter="{tab.link}" class="navbar-tabbed__tab navbar-tabbed__tab--active" additionalAttributes="{aria-current: 'page'}">{tab -> f:render.text(field: 'label')}</f:link.typolink></f:then>
-                                <f:else><f:link.typolink parameter="{tab.link}" class="navbar-tabbed__tab">{tab -> f:render.text(field: 'label')}</f:link.typolink></f:else>
+                                <f:then><d:atom.link href="{tab.link.url}" target="{tab.link.target}" variant="muted" class="navbar-tabbed__tab navbar-tabbed__tab--active">{tab -> f:render.text(field: 'label')}</d:atom.link></f:then>
+                                <f:else><d:atom.link href="{tab.link.url}" target="{tab.link.target}" variant="muted" class="navbar-tabbed__tab">{tab -> f:render.text(field: 'label')}</d:atom.link></f:else>
                             </f:if>
                         </li>
                     </f:if>

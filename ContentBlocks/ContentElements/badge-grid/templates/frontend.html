@@ -22,9 +22,9 @@
                 <li class="badge-grid__cell badge-grid__cell--style-{data.variant -> f:or(alternative: 'default')}">
                     <f:if condition="{item.link.url}">
                         <f:then>
-                            <f:link.typolink parameter="{item.link}" class="badge-grid__link rounded-2xl focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/30">
+                            <d:atom.link href="{item.link.url}" target="{item.link.target}" variant="muted" class="badge-grid__link rounded-2xl focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/30">
                                 <d:atom.badge variant="{data.variant -> f:or(alternative: 'default')}" class="badge-grid__badge badge-grid__badge--{item.color -> f:or(alternative: 'default')} h-auto px-3 py-1 text-sm">{item -> f:render.text(field: 'text')}</d:atom.badge>
-                            </f:link.typolink>
+                            </d:atom.link>
                         </f:then>
                         <f:else>
                             <d:atom.badge variant="{data.variant -> f:or(alternative: 'default')}" class="badge-grid__badge badge-grid__badge--{item.color -> f:or(alternative: 'default')} h-auto px-3 py-1 text-sm">{item -> f:render.text(field: 'text')}</d:atom.badge>

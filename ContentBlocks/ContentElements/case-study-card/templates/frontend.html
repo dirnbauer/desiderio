@@ -42,9 +42,9 @@
                 </f:if>
 
                 <f:if condition="{data.link.url}">
-                    <f:link.typolink parameter="{data.link}" class="case-study-card__link">
+                    <d:atom.link href="{data.link.url}" target="{data.link.target}" variant="muted" class="case-study-card__link">
                         <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:read_case_study" default="Read case study"/><span class="sr-only"> {data -> f:render.text(field: 'client_name')}</span><span aria-hidden="true"> &rarr;</span>
-                    </f:link.typolink>
+                    </d:atom.link>
                 </f:if>
             </div>
         </article>

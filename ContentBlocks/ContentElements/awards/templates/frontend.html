@@ -35,7 +35,7 @@
                         <h3 class="awards__title">
                             <f:if condition="{award.link.url}">
                                 <f:then>
-                                    <f:link.typolink parameter="{award.link}" class="awards__title-link">{award -> f:render.text(field: 'title')}</f:link.typolink>
+                                    <d:atom.link href="{award.link.url}" target="{award.link.target}" variant="muted" class="awards__title-link">{award -> f:render.text(field: 'title')}</d:atom.link>
                                 </f:then>
                                 <f:else>{award -> f:render.text(field: 'title')}</f:else>
                             </f:if>

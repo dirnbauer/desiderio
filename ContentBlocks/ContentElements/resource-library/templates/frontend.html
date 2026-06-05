@@ -25,10 +25,10 @@
                             <p class="resource-library__description">{item -> f:render.text(field: 'description')}</p>
                         </f:if>
                         <f:if condition="{item.link.url}">
-                            <f:link.typolink parameter="{item.link}" class="resource-library__link">
+                            <d:atom.link href="{item.link.url}" target="{item.link.target}" variant="muted" class="resource-library__link">
                                 <span aria-hidden="true">Open resource &rarr;</span>
                                 <span class="sr-only">Open {item -> f:render.text(field: 'title')}</span>
-                            </f:link.typolink>
+                            </d:atom.link>
                         </f:if>
                     </d:molecule.card>
                 </li>

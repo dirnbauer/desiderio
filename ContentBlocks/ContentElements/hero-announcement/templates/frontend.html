@@ -10,7 +10,7 @@
                 <div class="hero-announcement__banner">
                     <f:if condition="{data.announcement_link.url}">
                         <f:then>
-                            <f:link.typolink parameter="{data.announcement_link}" class="hero-announcement__banner-link">{data -> f:render.text(field: 'announcement_text')}</f:link.typolink>
+                            <d:atom.link href="{data.announcement_link.url}" target="{data.announcement_link.target}" variant="muted" class="hero-announcement__banner-link">{data -> f:render.text(field: 'announcement_text')}</d:atom.link>
                         </f:then>
                         <f:else><span>{data -> f:render.text(field: 'announcement_text')}</span></f:else>
                     </f:if>

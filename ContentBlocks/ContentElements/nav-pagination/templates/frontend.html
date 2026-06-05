@@ -9,10 +9,10 @@
     <d:layout.container>
         <nav class="nav-pagination__inner" aria-label="{data.header -> f:or(alternative: 'Pagination')}">
             <f:if condition="{data.previous_link.url}">
-                <f:link.typolink parameter="{data.previous_link}" class="nav-pagination__prev nav-pagination__edge" additionalAttributes="{'rel': 'prev'}">
+                <d:atom.link href="{data.previous_link.url}" target="{data.previous_link.target}" variant="muted" class="nav-pagination__prev nav-pagination__edge">
                     <span aria-hidden="true">&#8592;</span>
                     <span>Previous</span>
-                </f:link.typolink>
+                </d:atom.link>
             </f:if>
             <ul class="nav-pagination__list">
                 <f:for each="{data.items}" as="item">
@@ -24,7 +24,7 @@
                             </f:then>
                             <f:else>
                                 <f:if condition="{item.link.url}">
-                                    <f:link.typolink parameter="{item.link}" class="nav-pagination__page" additionalAttributes="{'aria-label': pageLabel}">{item -> f:render.text(field: 'label')}</f:link.typolink>
+                                    <d:atom.link href="{item.link.url}" target="{item.link.target}" variant="muted" class="nav-pagination__page">{item -> f:render.text(field: 'label')}</d:atom.link>
                                 </f:if>
                             </f:else>
                         </f:if>
@@ -32,10 +32,10 @@
                 </f:for>
             </ul>
             <f:if condition="{data.next_link.url}">
-                <f:link.typolink parameter="{data.next_link}" class="nav-pagination__next nav-pagination__edge" additionalAttributes="{'rel': 'next'}">
+                <d:atom.link href="{data.next_link.url}" target="{data.next_link.target}" variant="muted" class="nav-pagination__next nav-pagination__edge">
                     <span>Next</span>
                     <span aria-hidden="true">&#8594;</span>
-                </f:link.typolink>
+                </d:atom.link>
             </f:if>
         </nav>
     </d:layout.container>

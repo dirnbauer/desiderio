@@ -1,6 +1,12 @@
 {
     "_type": "footer",
     "brand": "Northwind",
+    "logo": {
+        "file": "Resources/Public/Styleguide/Logos/Brands/northwind.svg",
+        "title": "Northwind",
+        "alternative": "Northwind logo.",
+        "description": "Dummy brand logo for Northwind demo content."
+    },
     "tagline": "Ship product, design, and code from one source of truth.",
     "link_items": [
         { "label": "Product" },

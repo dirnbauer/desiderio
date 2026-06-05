@@ -326,26 +326,94 @@
     background-color: var(--accent);
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1024px) {
     .desiderio-header__inner {
         grid-template-columns: minmax(0, 1fr) auto;
+        gap: 0.75rem;
+        position: relative;
     }
 
-    .desiderio-header__nav {
-        grid-column: 1 / -1;
-        justify-content: flex-start;
+    .desiderio-header__logo {
+        grid-column: 1;
+        grid-row: 1;
+        min-width: 0;
+    }
+
+    .desiderio-header__wordmark {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .desiderio-header__menu-toggle {
+        display: inline-flex;
+        flex-shrink: 0;
     }
 
     .desiderio-header__actions {
-        grid-column: 1 / -1;
-        justify-self: stretch;
-        justify-content: flex-end;
-        flex-wrap: wrap;
+        grid-column: 2;
+        grid-row: 1;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        min-width: 0;
+        flex-shrink: 0;
+    }
+
+    .desiderio-header__search {
+        max-width: 100%;
+        min-width: 0;
     }
 
     .desiderio-header__search:not(.desiderio-header__search--collapsed) {
-        flex: 1 1 12rem;
         width: auto;
+        flex: 0 1 12rem;
+    }
+
+    .desiderio-theme-switch,
+    .desiderio-header__lang {
+        min-width: 0;
+        flex-shrink: 0;
+    }
+
+    .desiderio-header__nav {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: var(--background);
+        border-bottom: 1px solid var(--border);
+        box-shadow: var(--shadow-lg);
+        padding: 1rem;
+        z-index: 75;
+        overflow: auto;
+        max-height: min(70vh, 34rem);
+    }
+
+    .desiderio-header__nav.is-open {
+        display: block;
+    }
+
+    .desiderio-header__nav-list {
+        flex-direction: column;
+        align-items: stretch;
+        min-width: 0;
+    }
+
+    .desiderio-header__nav-link {
+        width: 100%;
+        padding: 0.75rem;
+        white-space: normal;
+    }
+
+    .desiderio-header__subnav {
+        position: static;
+        display: grid;
+        border: 0;
+        box-shadow: none;
+        padding: 0.25rem 0 0.5rem 0.75rem;
+        background: transparent;
     }
 }
 

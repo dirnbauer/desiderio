@@ -22,10 +22,6 @@
                 <span class="desiderio-header__wordmark desiderio-header__logo-text">{brandWordmark}</span>
             </f:link.typolink>
 
-            <button type="button" class="desiderio-header__menu-toggle btn btn--ghost btn--icon" data-d-menu-toggle data-d-menu-target="#desiderio-main-nav" aria-expanded="false" aria-controls="desiderio-main-nav" aria-label="{f:translate(extensionName: 'desiderio', key: 'a11y.menu.toggle', default: 'Toggle menu')}">
-                <d:atom.icon name="menu" size="sm"/>
-            </button>
-
             <nav id="desiderio-main-nav" class="desiderio-header__nav" data-d-primary-nav aria-label="{f:translate(extensionName: 'desiderio', key: 'a11y.nav.main', default: 'Main navigation')}">
                 <f:if condition="{mainMenu}">
                     <ul class="desiderio-header__nav-list" role="list">
@@ -181,6 +177,10 @@
                         </ul>
                     </details>
                 </f:if>
+
+                <button type="button" class="desiderio-header__menu-toggle btn btn--ghost btn--icon" data-d-menu-toggle data-d-menu-target="#desiderio-main-nav" aria-expanded="false" aria-controls="desiderio-main-nav" aria-label="{f:translate(extensionName: 'desiderio', key: 'a11y.menu.toggle', default: 'Toggle menu')}">
+                    <d:atom.icon name="menu" size="sm"/>
+                </button>
             </div>
         </div>
     </d:layout.container>

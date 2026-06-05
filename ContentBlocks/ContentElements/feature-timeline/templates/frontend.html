@@ -25,9 +25,6 @@
                         <span class="feature-timeline__dot">
                             {item -> f:render.text(field: 'step')}
                         </span>
-                        <f:if condition="{iter.isLast} == 0">
-                            <span class="feature-timeline__line" aria-hidden="true"></span>
-                        </f:if>
                     </div>
                     <div class="feature-timeline__card">
                         <h3 class="feature-timeline__title">{item -> f:render.text(field: 'title')}</h3>

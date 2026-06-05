@@ -37,8 +37,16 @@
 .feature-tabs__description {
     color: var(--muted-foreground);
 }
-.feature-tabs__image {
+.feature-tabs__media {
+    overflow: hidden;
+    aspect-ratio: 16 / 10;
     border-radius: var(--d-radius-lg);
+    border: 1px solid var(--d-border);
+    background: var(--d-muted);
+}
+.feature-tabs__image {
+    display: block;
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
 }

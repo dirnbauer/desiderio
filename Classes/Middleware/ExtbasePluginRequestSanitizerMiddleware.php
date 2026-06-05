@@ -18,17 +18,35 @@ final class ExtbasePluginRequestSanitizerMiddleware implements MiddlewareInterfa
 {
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
-        $queryParams = $this->sanitizeParameterBag($request->getQueryParams());
-        $request = $request->withQueryParams($queryParams);
+        $request = $request->withQueryParams(
+            $this->sanitizeParameterBag($this->normalizeParameterBag($request->getQueryParams()))
+        );
 
         if ($request->getMethod() === 'POST') {
-            $parsedBody = $request->getParsedBody();
-            if (is_array($parsedBody)) {
-                $request = $request->withParsedBody($this->sanitizeParameterBag($parsedBody));
-            }
+            $parsedBody = $this->normalizeParameterBag($request->getParsedBody());
+            $request = $request->withParsedBody($this->sanitizeParameterBag($parsedBody));
         }
 
         return $handler->handle($request);
+    }
+
+    /**
+     * @return array<string, mixed>
+     */
+    private function normalizeParameterBag(mixed $parameters): array
+    {
+        if (!is_array($parameters)) {
+            return [];
+        }
+
+        $normalized = [];
+        foreach ($parameters as $key => $value) {
+            if (is_string($key)) {
+                $normalized[$key] = $value;
+            }
+        }
+
+        return $normalized;
     }
 
     /**
@@ -38,7 +56,7 @@ final class ExtbasePluginRequestSanitizerMiddleware implements MiddlewareInterfa
     private function sanitizeParameterBag(array $parameters): array
     {
         foreach ($parameters as $key => $value) {
-            if (!is_string($key) || !is_array($value) || !$this->isExtbasePluginNamespace($key)) {
+            if (!is_array($value) || !$this->isExtbasePluginNamespace($key)) {
                 continue;
             }
 
@@ -54,21 +72,28 @@ final class ExtbasePluginRequestSanitizerMiddleware implements MiddlewareInterfa
     }
 
     /**
-     * @param array<string, mixed> $arguments
+     * @param array<mixed, mixed> $arguments
      * @return array<string, mixed>
      */
     private function sanitizePluginArguments(array $arguments): array
     {
-        foreach (['controller', 'action'] as $argumentName) {
-            if (!array_key_exists($argumentName, $arguments)) {
-                continue;
-            }
-
-            if (!is_string($arguments[$argumentName]) || $arguments[$argumentName] === '') {
-                unset($arguments[$argumentName]);
+        $sanitized = [];
+        foreach ($arguments as $argumentKey => $argumentValue) {
+            if (is_string($argumentKey)) {
+                $sanitized[$argumentKey] = $argumentValue;
             }
         }
 
-        return $arguments;
+        foreach (['controller', 'action'] as $argumentName) {
+            if (!array_key_exists($argumentName, $sanitized)) {
+                continue;
+            }
+
+            if (!is_string($sanitized[$argumentName]) || $sanitized[$argumentName] === '') {
+                unset($sanitized[$argumentName]);
+            }
+        }
+
+        return $sanitized;
     }
 }

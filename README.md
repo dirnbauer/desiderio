@@ -171,5 +171,3 @@ Full documentation lives in `Documentation/`:
 - `Documentation/Editor/Index.rst`
 - `Documentation/Developer/Index.rst`
 - `Documentation/ShadcnUpgrade.md`
-
-Visual reference images are intentionally not shipped in the documentation. The extension is preset-driven and the output changes by site setting, so static references become stale quickly.

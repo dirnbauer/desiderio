@@ -170,6 +170,33 @@ final class PowermailIntegrationTest extends TestCase
         self::assertStringContainsString('configuration_missing', $friendlyCaptcha);
     }
 
+    public function testPowermailTemplatesDeclareDesiderioComponentNamespaceWhenUsingDViewHelpers(): void
+    {
+        $componentNamespace = 'xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"';
+        $root = __DIR__ . '/../../Resources/Private/Extensions/Powermail';
+        $iterator = new \RecursiveIteratorIterator(
+            new \RecursiveDirectoryIterator($root, \FilesystemIterator::SKIP_DOTS)
+        );
+
+        foreach ($iterator as $fileInfo) {
+            if (!$fileInfo instanceof \SplFileInfo || $fileInfo->getExtension() !== 'html') {
+                continue;
+            }
+
+            $path = $fileInfo->getPathname();
+            $content = (string)file_get_contents($path);
+            if (!str_contains($content, '<d:')) {
+                continue;
+            }
+
+            self::assertStringContainsString(
+                $componentNamespace,
+                $content,
+                $path . ' uses d: components but does not declare the Desiderio component namespace'
+            );
+        }
+    }
+
     public function testPowermailTranslationsAreXliff20InEnglishAndGerman(): void
     {
         foreach (['powermail.xlf', 'de.powermail.xlf'] as $file) {

@@ -6,208 +6,174 @@
 Configuration
 =============
 
+Desiderio is configured through TYPO3 v14 site settings and optional site
+sets. Edit the values in :guilabel:`Site Management > Settings`.
+
 ..  _configuration-site-settings:
 
-Site settings
-=============
-
-Desiderio exposes its design knobs as TYPO3 v14 *site settings*. Edit
-them in *Site Management → Settings* on each site.
+Core site settings
+==================
 
 ..  list-table::
     :header-rows: 1
-    :widths: 32 20 48
+    :widths: 36 24 40
 
     *   - Setting
         - Default
-        - Values
-    *   - ``desiderio.layout.density``
-        - ``comfortable``
-        - ``compact``, ``comfortable``, ``spacious``
-    *   - ``desiderio.layout.container``
-        - ``wide``
-        - ``narrow``, ``wide``, ``full``
-    *   - ``desiderio.layout.radius``
-        - ``preset``
-        - ``preset``, ``none``, ``sm``, ``md``, ``lg``, ``full``
-    *   - ``desiderio.header.style``
-        - ``solid``
-        - ``solid``, ``transparent``, ``glass``, ``sticky``
-    *   - ``desiderio.header.fixedPosition``
-        - ``false``
-        - Boolean. Keeps the site header pinned while scrolling.
-    *   - ``desiderio.footer.style``
-        - ``columns``
-        - ``columns``, ``centered``, ``minimal``, ``mega``
-    *   - ``desiderio.theme.darkModeDefault``
-        - ``system``
-        - ``light``, ``dark``, ``system``
-    *   - ``desiderio.theme.darkModeToggle``
-        - ``true``
-        - Boolean. Renders the header colour-scheme toggle.
+        - Purpose
     *   - ``desiderio.shadcn.preset``
         - ``b6G5977cw``
-        - 5 create presets (``b0``, ``b4hb38Fyj``, ``b3IWPgRwnI``,
-          ``b6G5977cw``, ``b27GcrRo``) plus 10 house presets (``aurora``,
-          ``marine``, ``forest``, ``ember``, ``bloom``, ``lagoon``, ``gold``,
-          ``midnight``, ``blossom``, ``citrus``) and ``custom``. See
-          :ref:`configuration-theme-presets`.
+        - Runtime token preset. Supports five shadcn/create presets, ten
+          house presets, and ``custom``.
     *   - ``desiderio.shadcn.style``
         - ``radix-lyra``
-        - ``radix-vega``, ``radix-nova``, ``radix-maia``,
-          ``radix-lyra``, ``radix-mira``, ``radix-luma``,
-          ``radix-sera``, ``radix-rhea``, ``custom``
+        - Source style metadata from shadcn/create.
     *   - ``desiderio.shadcn.iconLibrary``
         - ``tabler``
-        - ``lucide``, ``tabler``, ``hugeicons``, ``phosphor``,
-          ``remixicon``. Stored content keeps semantic icon keys and the
-          renderer resolves them at runtime.
+        - Runtime icon library. Existing records keep semantic icon keys.
+    *   - ``desiderio.layout.density``
+        - ``comfortable``
+        - ``compact``, ``comfortable``, or ``spacious``.
+    *   - ``desiderio.layout.container``
+        - ``wide``
+        - ``narrow``, ``wide``, or ``full``.
+    *   - ``desiderio.layout.radius``
+        - ``preset``
+        - ``preset``, ``none``, ``sm``, ``md``, ``lg``, or ``full``.
     *   - ``desiderio.typography.fontSans``
         - ``preset``
-        - ``preset``, ``inter``, ``geist``, ``system``, ``serif``
+        - Uses the selected preset font unless overridden.
+    *   - ``desiderio.theme.darkModeDefault``
+        - ``system``
+        - ``light``, ``dark``, or ``system``.
+    *   - ``desiderio.theme.darkModeToggle``
+        - ``true``
+        - Renders the header colour-scheme toggle.
+    *   - ``desiderio.header.style``
+        - ``solid``
+        - ``solid``, ``transparent``, ``glass``, or ``sticky``.
+    *   - ``desiderio.header.fixedPosition``
+        - ``false``
+        - Keeps the header pinned while scrolling.
+    *   - ``desiderio.footer.style``
+        - ``columns``
+        - ``columns``, ``centered``, ``minimal``, or ``mega``.
     *   - ``desiderio.styleguide.enabled``
         - ``false``
-        - Boolean. Enables the Styleguide page template.
-    *   - ``desiderio.forms.friendlyCaptchaTestMode``
-        - ``false``
-        - Boolean. Simulates a successful Friendly Captcha verification for
-          Desiderio and Powermail forms in TYPO3 Development context.
+        - Enables the styleguide page template.
 
-The base setup renders these settings into the ``<body>`` element as
-``data-*`` attributes, including ``data-shadcn-preset``,
-``data-shadcn-style``, ``data-icon-library``, ``data-density``,
-``data-container``, ``data-radius``, ``data-font``,
-``data-header-style``, and ``data-footer-style``.
+The base TypoScript renders these values as ``data-*`` attributes on the
+``<body>`` element. CSS in ``Resources/Public/Css/shadcn-theme.css`` uses
+those attributes to apply the active preset.
 
-Friendly Captcha testing
-========================
+..  _configuration-presets:
 
-Friendly Captcha does not provide a universal token or shared test key for
-submitting protected forms. Production sites need a real Friendly Captcha
-application with a site key and API key configured in *Site Management ->
-Sites -> Friendly Captcha*.
+shadcn presets
+==============
 
-For local form testing, enable ``desiderio.forms.friendlyCaptchaTestMode``.
-During frontend requests Desiderio maps that setting to the Friendly Captcha
-extension's ``friendlycaptcha_skip_dev_validation`` site configuration flag.
-The mapped flag is also exposed on TYPO3's global request, because Friendly
-Captcha's Powermail validator reads its configuration from that request. The
-extension only accepts that flag in TYPO3 Development context, so the setting
-simulates a successful server-side verification without weakening a Production
-context.
+``desiderio.shadcn.preset`` supports:
 
-Automated end-to-end tests can also use Friendly Captcha's header bypass:
-set an environment variable named ``FRIENDLYCAPTCHA_SKIP_HEADER_VALIDATION``
-to a secret string of at least 30 characters and send the same value in the
-``X-FriendlyCaptcha-Skip-Validation`` request header.
+..  code-block:: text
+    :caption: Supported preset ids
 
-..  _configuration-theme-presets:
+    b0, b4hb38Fyj, b3IWPgRwnI, b6G5977cw, b27GcrRo,
+    aurora, marine, forest, ember, bloom, lagoon, gold,
+    midnight, blossom, citrus, custom
 
-Theme presets
-=============
+The create presets are copied from ``https://ui.shadcn.com/create``. The
+house presets reuse the same token model and vary accent, radius,
+typography, density, focus ring, and icon library.
 
-A *theme preset* repaints the whole site — base and accent colour, corner
-radius, fonts, icon family, control density, focus-ring width, and surface
-elevation — at runtime. Choose one in *Site Management → Settings → Theme →
-Theme preset* (the first settings group), save, and reload. The value is rendered onto
-``<body data-shadcn-preset="…">`` and the matching variable block cascades from
-:file:`Resources/Public/Css/shadcn-theme.css`. No rebuild is required, and a
-site keeps its current look until an editor selects a different preset.
+..  _configuration-search:
 
-Five presets are full shadcn/create configurations (``b0``, ``b4hb38Fyj``,
-``b3IWPgRwnI``, ``b6G5977cw``, ``b27GcrRo``). Ten *house* presets — ``aurora``,
-``marine``, ``forest``, ``ember``, ``bloom``, ``lagoon``, ``gold``,
-``midnight``, ``blossom``, ``citrus`` — inherit the neutral base and vary the
-accent colour, radius, fonts, icon family, density, focus-ring width, and
-surface elevation.
-
-..  list-table:: What a preset controls
-    :header-rows: 1
-    :widths: 35 65
-
-    *   - Dimension
-        - Mechanism
-    *   - Base and accent colour
-        - Per-preset ``:root`` / ``.dark`` token block (light and dark)
-    *   - Corner radius
-        - ``--radius`` (atoms use the ``--radius``-following ``rounded-*``)
-    *   - Control density
-        - ``--d-control-h`` / ``--d-control-text`` / ``--d-control-px``
-    *   - Focus-ring width
-        - ``--d-ring-width``
-    *   - Surface elevation
-        - ``--d-surface-shadow``
-    *   - Fonts
-        - ``--d-font-sans`` / ``--d-font-heading`` / ``--d-font-mono``
-    *   - Icon family
-        - ``data-icon-library`` (semantic icon keys resolve at runtime)
-
-The shape tokens are consumed by the generated Fluid atoms, so every component
-reacts to the active preset without per-preset markup. Radio inputs stay
-circular regardless of radius.
-
-Adding a theme
---------------
-
-Add one row to the ``$presets`` table in
-:file:`Build/Scripts/generate-shadcn-presets.php`:
-
-..  code-block:: php
-
-    // id, label, hue, lightAccent, radius, font, icon, density, ring, shadow
-    ['crimson', 'Crimson — red', 25, false, '0.5', 'geist', 'lucide', 'default', '2px', 'sm'],
+Search
+======
 
 ..  list-table::
     :header-rows: 1
-    :widths: 22 78
+    :widths: 36 24 40
 
-    *   - Field
-        - Options
-    *   - ``hue``
-        - ``0``–``360`` oklch hue (≈12 rose, 25 red, 55 orange, 130 lime,
-          160 emerald, 185 teal, 259 blue, 293 violet, 350 pink)
-    *   - ``lightAccent``
-        - ``true`` only for bright accents (amber/lime) that need dark text
-    *   - ``radius``
-        - rem string: ``'0'``, ``'0.5'``, ``'0.75'``, ``'1'``
-    *   - ``font``
-        - ``inter``, ``geist``, ``nunito``, ``jetbrains``
-    *   - ``icon``
-        - ``lucide``, ``tabler``, ``hugeicons``, ``phosphor``, ``remixicon``
-    *   - ``density``
-        - ``compact``, ``default``, ``comfortable``
-    *   - ``ring``
-        - ``'1px'``, ``'2px'``, ``'3px'``
-    *   - ``shadow``
-        - ``none``, ``sm``, ``md``
+    *   - Setting
+        - Default
+        - Purpose
+    *   - ``desiderio.search.enabled``
+        - ``true``
+        - Shows the header search form.
+    *   - ``desiderio.search.targetPageId``
+        - empty
+        - Page uid of the search result page.
+    *   - ``desiderio.search.queryParameter``
+        - ``q``
+        - Query parameter used by the search form.
 
-Then run the generator:
+When ``webconsulting/desiderio-solr`` is enabled, Desiderio also
+registers a JSON suggest page type and shadcn-styled Solr result
+templates.
 
-..  code-block:: bash
+..  _configuration-forms:
 
-    php Build/Scripts/generate-shadcn-presets.php
+Forms
+=====
 
-It inserts the CSS block into :file:`Resources/Public/Css/shadcn-theme.css`
-(idempotent) and prints three snippets to paste into
-:file:`Configuration/Sets/Desiderio/settings.definitions.yaml` (the dropdown
-enum — required), :file:`Build/Scripts/sync-shadcn-fluid-primitives.php` (the
-``$knownPresets`` map), and :file:`Classes/Icon/IconRegistry.php` (the
-``libraryForPreset`` arm). The CSS block and the enum entry are all that is
-strictly required to make a theme selectable. Run ``composer test`` to verify.
+..  list-table::
+    :header-rows: 1
+    :widths: 38 22 40
 
-To reproduce an exact configuration from `ui.shadcn.com/create
-<https://ui.shadcn.com/create>`__, build it there, choose *Get Code*, and paste
-its full ``:root`` / ``.dark`` tokens as a new preset block — the same shape as
-the committed ``b0`` / ``b6G5977cw`` blocks.
+    *   - Setting
+        - Default
+        - Purpose
+    *   - ``desiderio.forms.receiverAddress``
+        - ``hello@example.com``
+        - Default receiver for generated form fixtures.
+    *   - ``desiderio.forms.receiverName``
+        - ``Desiderio``
+        - Receiver name.
+    *   - ``desiderio.forms.senderAddress``
+        - ``no-reply@example.com``
+        - Sender address.
+    *   - ``desiderio.forms.senderName``
+        - ``Desiderio``
+        - Sender name.
+    *   - ``desiderio.forms.friendlyCaptchaTestMode``
+        - ``false``
+        - Simulates successful Friendly Captcha validation in TYPO3
+          Development context.
+    *   - ``desiderio.forms.brevo.enabled``
+        - ``false``
+        - Enables the Brevo contact finisher.
+    *   - ``desiderio.forms.brevo.listIds``
+        - empty
+        - Comma-separated Brevo list ids.
+    *   - ``desiderio.forms.brevo.strict``
+        - ``false``
+        - Fails the form when Brevo synchronization fails.
+    *   - ``desiderio.forms.brevo.trackEvent``
+        - ``false``
+        - Sends a sanitized Brevo event after contact sync.
+    *   - ``desiderio.forms.brevo.eventName``
+        - ``form_submit``
+        - Event name for Brevo tracking.
 
-..  _configuration-backend-layouts:
+Set ``BREVO_API_KEY`` outside the repository when Brevo is enabled.
+
+..  _configuration-friendly-captcha:
+
+Friendly Captcha
+================
+
+Production sites need real Friendly Captcha site and API keys. For local
+development, enable ``desiderio.forms.friendlyCaptchaTestMode`` in TYPO3
+Development context. The request middleware maps that setting to the
+Friendly Captcha skip flag used by TYPO3 Form Framework and Powermail.
+
+..  _configuration-page-layouts:
 
 Backend layouts
 ===============
 
 ..  list-table::
     :header-rows: 1
-    :widths: 30 25 45
+    :widths: 30 30 40
 
     *   - Layout
         - Content areas
@@ -227,16 +193,21 @@ Backend layouts
     *   - ``DesiderioBlog``
         - ``stage``, ``main``, ``sidebar``
         - ``Pages/DesiderioBlog.fluid.html``
-    *   - ``DesiderioExtension``
-        - ``stage``, ``sidebar``, ``main``
-        - ``Pages/DesiderioExtension.fluid.html``
     *   - ``DesiderioNews``
         - ``stage``, ``main``, ``sidebar``
         - ``Pages/DesiderioNews.fluid.html``
+    *   - ``DesiderioExtension``
+        - ``stage``, ``sidebar``, ``main``
+        - ``Pages/DesiderioExtension.fluid.html``
     *   - Fallback
         - ``stage``, ``main``
         - ``Pages/Default.fluid.html``
 
-``DesiderioBlog``, ``DesiderioExtension``, and ``DesiderioNews`` are
-registered by the hidden ``webconsulting/desiderio-shadcnui-templates``
-site set. The theme base lists it as an optional dependency.
+..  _configuration-rss:
+
+Blog RSS headers
+================
+
+The Blog set registers RSS page types with explicit
+``Content-Type: application/rss+xml; charset=utf-8`` headers for recent
+posts, categories, tags, archive, comments, and author feeds.

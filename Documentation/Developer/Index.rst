@@ -2,87 +2,166 @@
 
 ..  _developer:
 
-================
+==============
 For developers
-================
+==============
 
 ..  _developer-architecture:
 
 Architecture
 ============
 
-Three layers. Each composes the layer below and never reaches around
-it::
+Desiderio is intentionally layered:
 
-    ┌────────────────────────────────────────────────────────────┐
-    │ Layer 3 — THEME                                            │
-    │ Page templates · Backend layouts · Header/Footer · Presets │
-    └────────────────────────────────────────────────────────────┘
-                              ▲ renders via PAGEVIEW
-    ┌────────────────────────────────────────────────────────────┐
-    │ Layer 2 — CONTENT ELEMENTS (Content Blocks)                │
-    │ 255 editor-facing elements in 10 wizard groups             │
-    └────────────────────────────────────────────────────────────┘
-                              ▲ mostly composes via <d:…>
-    ┌────────────────────────────────────────────────────────────┐
-    │ Layer 1 — COMPONENTS (Fluid 5)                             │
-    │ 16 atoms · 17 molecules · 4 layouts (typed <f:argument>)   │
-    └────────────────────────────────────────────────────────────┘
+..  code-block:: text
+    :caption: Rendering layers
+
+    Theme layer
+      Page templates, backend layouts, header, footer, site settings
+
+    Content element layer
+      255 Content Blocks with editor-facing fields and fixtures
+
+    Component layer
+      Fluid 5 atoms, molecules, and layouts with typed arguments
+
+The component layer currently contains 16 atoms, 18 molecules, and 4
+layout primitives. Content elements compose those primitives instead of
+hardcoding one-off markup.
+
+..  _developer-sets:
+
+Site sets
+=========
+
+The extension ships separate TYPO3 site sets so optional integrations can
+be enabled only when needed:
+
+..  list-table::
+    :header-rows: 1
+    :widths: 35 65
+
+    *   - Set
+        - Purpose
+    *   - ``webconsulting/desiderio``
+        - Base theme, tokens, TypoScript, page rendering, assets.
+    *   - ``webconsulting/desiderio-content-elements``
+        - Generated Content Block registration.
+    *   - ``webconsulting/desiderio-preset-corporate``
+        - Corporate demo/site preset.
+    *   - ``webconsulting/desiderio-shadcnui-templates``
+        - Shared page templates and backend layouts.
+    *   - ``webconsulting/desiderio-blog``
+        - Blog templates, RSS headers, and Blog TypoScript.
+    *   - ``webconsulting/desiderio-news``
+        - News templates and TypoScript.
+    *   - ``webconsulting/desiderio-powermail``
+        - Powermail templates and shadcn form classes.
+    *   - ``webconsulting/desiderio-solr``
+        - Solr result templates and suggest endpoint.
+
+..  _developer-assets:
+
+Frontend assets
+===============
+
+Desiderio avoids heavy runtime dependencies. The committed frontend
+assets live in ``Resources/Public``:
+
+..  list-table::
+    :header-rows: 1
+    :widths: 30 70
+
+    *   - File
+        - Responsibility
+    *   - ``Css/shadcn-theme.css``
+        - shadcn/create tokens, house presets, dark mode, chart tokens,
+          layout variables, and global component classes.
+    *   - ``Js/desiderio.js``
+        - Generic interactions, Solr suggestions, search controls, and
+          small UI behavior.
+    *   - ``Js/astro.js``
+        - Lightweight progressive behavior for counters, carousels,
+          reveals, countdowns, galleries, and timelines.
+    *   - ``Js/prism-lite.js``
+        - Syntax highlighting for code examples.
+    *   - ``Js/charts.js``
+        - Chart rendering helpers.
+    *   - ``Js/alpine.min.js``
+        - Alpine runtime where existing blocks need it.
+
+..  _developer-shadcn:
+
+shadcn/create sync
+==================
+
+The project uses ``https://ui.shadcn.com/create`` as the visual source of
+truth. React components are not copied into the TYPO3 frontend.
+
+Use ``npm run shadcn:sync-fluid`` when upstream component class contracts
+need to be synchronized into the shared Fluid primitives. Runtime theme
+presets are stored in ``Resources/Public/Css/shadcn-theme.css`` and
+selected with ``desiderio.shadcn.preset``.
+
+..  _developer-integrations:
+
+Extension templates
+===================
+
+Optional extension templates are kept in dedicated folders:
+
+..  list-table::
+    :header-rows: 1
+    :widths: 35 65
+
+    *   - Folder
+        - Contains
+    *   - ``Resources/Private/Extensions/Blog``
+        - Blog templates, layouts, partials, comments, widgets, metadata,
+          author, related posts, and RSS rendering.
+    *   - ``Resources/Private/Extensions/News``
+        - News list/detail templates, image partials, categories, tags,
+          metadata, pagination, and schema-oriented markup.
+    *   - ``Resources/Private/Extensions/Powermail``
+        - Powermail form and field templates with shared shadcn classes.
+    *   - ``Resources/Private/Solr``
+        - Search result templates and partials.
+    *   - ``Resources/Private/Form``
+        - TYPO3 Form Framework form definitions and templates.
 
 ..  _developer-quality-bar:
 
 Quality bar
 ===========
 
-Every PR is gated by the GitHub Actions workflow at
-``.github/workflows/ci.yml``:
+The CI workflow checks Composer validity, dependency security, PHPStan,
+PHPUnit, and the Content Block audit. The audit keeps categories such as
+``template_undeclared_field``, ``hardcoded_inline_style``, and
+``hardcoded_color`` at zero.
 
-*   **PHPStan** runs at ``level: max`` with
-    :doc:`saschaegerer/phpstan-typo3 <t3coreapi:Index>`,
-    ``phpstan-strict-rules``, and ``phpstan-phpunit``. The legacy
-    seed-command type drift is captured in
-    ``phpstan-baseline.neon`` as a documented ratchet target.
-*   **PHPUnit ^11.5** across PHP 8.3 + 8.4 against TYPO3 ^14.3.
-    The local suite currently covers 88 unit tests.
-*   **Content element audit** (``scripts/audit-content-elements.php``)
-    gating ``template_undeclared_field``, ``hardcoded_inline_style``,
-    ``hardcoded_color``, and the other strict categories at zero.
-*   ``composer audit`` with ``abandoned: fail`` and
-    ``composer validate``.
-
-..  _developer-cleanup-loop-reports:
-
-Cleanup-loop reports
-====================
-
-``Documentation/Reports/`` contains the latest audit results from the
-six agentic skills the project runs at every release:
-
-*   ``typo3-conformance.md``
-*   ``typo3-security.md``
-*   ``typo3-workspaces.md``
-*   ``typo3-testing.md``
-*   ``typo3-docs.md``
-*   ``security-audit.md``
-
-Use these as the entry point when changing TCA, Fluid templates, or the
-seed command.
-
-..  _developer-local-development:
-
-Local development
-=================
+Run the local checks before shipping code changes:
 
 ..  code-block:: shell
+    :caption: Local checks
 
-    composer install
-    npm install
-    npm run build:css
-
-    # All checks
+    composer validate
     Build/Scripts/runTests.sh
 
-    # À la carte
+For targeted checks:
+
+..  code-block:: shell
+    :caption: Targeted checks
+
     Build/Scripts/runTests.sh phpstan
     Build/Scripts/runTests.sh phpunit
     Build/Scripts/runTests.sh audit
+
+..  _developer-reports:
+
+Reports
+-------
+
+``Documentation/Reports/`` contains the latest project audit reports for
+TYPO3 conformance, security, workspaces, testing, docs, and broader
+security review. Use those reports as context before changing TCA,
+Fluid, TypoScript, or seed scripts.

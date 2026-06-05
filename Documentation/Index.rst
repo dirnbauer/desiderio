@@ -31,10 +31,14 @@ Desiderio
 
 ----
 
-A self-contained TYPO3 v14.3 LTS theme extension that bundles a
-shadcn/ui-inspired Fluid 5 component library, **255 content elements**,
-backend layouts, page templates, and five swappable visual presets with
-a committed Tailwind v4/shadcn CSS build.
+Desiderio is a TYPO3 v14.3 theme extension with a shadcn/ui-inspired
+Fluid 5 component library, 255 Content Block elements, page templates,
+backend layouts, and runtime theme presets.
+
+The extension does not ship React components. It translates shadcn/create
+tokens, component class contracts, icons, and spacing rules into TYPO3
+site settings, Fluid components, TypoScript, and committed CSS/JavaScript
+assets.
 
 ..  contents:: Table of Contents
     :depth: 2
@@ -47,7 +51,6 @@ a committed Tailwind v4/shadcn CSS build.
 
     Installation/Index
     Editor/Index
-    Screenshots/Index
 
 ..  toctree::
     :maxdepth: 2

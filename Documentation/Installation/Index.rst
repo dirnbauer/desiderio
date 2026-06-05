@@ -6,43 +6,41 @@
 Installation
 ============
 
-Desiderio targets **TYPO3 v14.3 LTS only** and **PHP 8.3 – 8.5**. Older
-TYPO3 branches are not supported.
+Desiderio targets TYPO3 v14.3 and PHP 8.3 or newer. Older TYPO3
+branches are not supported.
 
 ..  rst-class:: bignums
 
 #.  Install with Composer
 
     ..  code-block:: shell
+        :caption: Install the extension
 
         composer require webconsulting/desiderio
         vendor/bin/typo3 extension:setup
         vendor/bin/typo3 cache:flush
 
-    The package pulls in :t3:`typo3/cms-workspaces` ``^14.3`` so
-    editorial draft / preview workflows are available out of the box.
+#.  Enable the base set
 
-#.  Enable the shadcn/ui theme base
+    Open :guilabel:`Site Management > Sites`, edit the target site, and
+    add ``Desiderio Base`` (``webconsulting/desiderio``).
 
-    Open *Site Management → Sites*, edit the target site, and add
-    ``Desiderio Base`` (``webconsulting/desiderio``).
-
-#.  Enable the content-element configuration set
+#.  Enable the content elements
 
     Add ``Desiderio Content Elements``
-    (``webconsulting/desiderio-content-elements``). This aggregate site set
-    depends on the theme base and pulls in the generated Content Block sets.
+    (``webconsulting/desiderio-content-elements``). This set registers
+    the generated Content Blocks and their frontend rendering.
 
-#.  Pick the scenario template
+#.  Pick a site preset
 
-    Add the Corporate scenario template set
-    (``webconsulting/desiderio-preset-corporate``). Switching the scenario
-    template never changes content, markup, or backend layouts — only the
-    presentation.
+    Add ``Desiderio Preset Corporate``
+    (``webconsulting/desiderio-preset-corporate``) for the demo site
+    structure, header, footer, and page templates.
 
-#.  Flush caches and reload the backend
+#.  Flush caches
 
     ..  code-block:: shell
+        :caption: Flush TYPO3 caches
 
         vendor/bin/typo3 cache:flush
 
@@ -51,32 +49,82 @@ TYPO3 branches are not supported.
 Optional integrations
 =====================
 
-Desiderio ships site sets that enable shadcn-styled overrides for
-optional TYPO3 ecosystem extensions:
+Desiderio only activates extension-specific templates when the related
+extension is installed and its site set is enabled.
 
 ..  list-table::
     :header-rows: 1
-    :widths: 35 65
+    :widths: 28 32 40
 
     *   - Extension
-        - Site set wired by Desiderio
-    *   - ``georgringer/news``
-        - ``webconsulting/desiderio-news`` (registers
-          ``Resources/Private/Extensions/News/`` template paths and
-          turns on the **Load more** list mode for ``DesiderioBlog``
-          and ``DesiderioNews`` page layouts).
-    *   - ``apache-solr-for-typo3/solr``
-        - ``webconsulting/desiderio-solr`` registers the working
-          shadcn-styled Solr templates from ``Resources/Private/Solr/``
-          and removes the default Solr frontend assets.
+        - Site set
+        - What is registered
     *   - ``t3g/blog``
-        - ``webconsulting/desiderio-blog`` (registers
-          ``Resources/Private/Extensions/Blog/`` template paths so
-          ``BlogList`` / ``BlogPost`` / ``Post/*`` / ``Widget/*`` /
-          ``Comment/*`` render through shadcn ``<d:…>`` components).
-          Every partial declares Fluid 5.3 typed ``<f:argument>`` for
-          its inputs. For existing Blog page trees, run
-          ``vendor/bin/typo3 desiderio:blog:seed-pages --root=<blog-root-uid>``
-          after enabling the set so root, data-folder, list, translated,
-          and post pages share the Desiderio Blog backend layout. The
-          command exits without changes when ``t3g/blog`` is not loaded.
+        - ``webconsulting/desiderio-blog``
+        - Blog list/detail templates, widgets, comments, RSS content type
+          headers, and Blog page layouts from
+          ``Resources/Private/Extensions/Blog/``.
+    *   - ``georgringer/news``
+        - ``webconsulting/desiderio-news``
+        - News list/detail templates, image rendering, categories, tags,
+          schema-oriented markup, and News page layouts from
+          ``Resources/Private/Extensions/News/``.
+    *   - ``apache-solr-for-typo3/solr``
+        - ``webconsulting/desiderio-solr``
+        - shadcn-styled search result templates, a JSON suggest endpoint,
+          and TypoScript that removes the default Solr frontend assets.
+    *   - ``in2code/powermail``
+        - ``webconsulting/desiderio-powermail``
+        - Powermail templates that use the shared shadcn form primitives,
+          neutral borders, validation states, and Friendly Captcha support.
+    *   - ``studiomitte/friendlycaptcha``
+        - Used by form integrations
+        - Friendly Captcha test-mode mapping for local development. Use
+          real site keys and API keys in production.
+
+..  _installation-blog-seed:
+
+Blog page seeding
+=================
+
+Existing Blog page trees can be normalized with the seed command after
+the Blog extension and Desiderio Blog set are enabled.
+
+..  code-block:: shell
+    :caption: Normalize a Blog page tree
+
+    vendor/bin/typo3 desiderio:blog:seed-pages --root=<blog-root-uid>
+
+The command exits without changes when ``t3g/blog`` is not loaded. It
+updates Blog root, list, detail, translated, and data-folder pages to use
+the Desiderio Blog backend layouts.
+
+..  _installation-assets:
+
+Frontend assets
+===============
+
+The extension ships committed CSS and lightweight JavaScript. The most
+important runtime files are:
+
+..  list-table::
+    :header-rows: 1
+    :widths: 30 70
+
+    *   - Asset
+        - Purpose
+    *   - ``Resources/Public/Css/shadcn-theme.css``
+        - shadcn/create token blocks, house presets, dark mode, and theme
+          variables.
+    *   - ``Resources/Public/Js/desiderio.js``
+        - Generic frontend behavior, search suggestions, interactions,
+          and small UI enhancements.
+    *   - ``Resources/Public/Js/astro.js``
+        - Lightweight behavior for counters, reveal effects, carousels,
+          countdowns, and progressive UI states.
+    *   - ``Resources/Public/Js/prism-lite.js``
+        - Lightweight syntax highlighting for code examples without using
+          accent colours.
+    *   - ``Resources/Public/Js/charts.js``
+        - Accessible chart rendering helpers for Content Block chart
+          elements.

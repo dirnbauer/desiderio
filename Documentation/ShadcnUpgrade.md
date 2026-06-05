@@ -1,302 +1,96 @@
-# shadcn/ui Update Strategy
+# shadcn/create and Fluid synchronization
 
-Desiderio uses shadcn/ui as a design source for TYPO3 Fluid components and
-Content Blocks. React components from the registry are not shipped in the
-frontend.
+Desiderio uses shadcn/create as a design source for TYPO3 Fluid
+components. It does not ship React components in the frontend.
 
-The important rule is simple: shadcn/create preset ids are converted into
-committed CSS tokens and TYPO3 Site Settings. There is no runtime downloader,
-binary switcher, or remote preset fetch in production.
+The current default is the `b6G5977cw` shadcn/create preset with
+`radix-lyra`, olive tokens, square radius, and Tabler icons. Sites can
+switch presets at runtime through TYPO3 site settings.
 
-## Preset Layers
+## Supported presets
 
-People often call two different things "templates":
+The site setting `desiderio.shadcn.preset` supports these values:
 
-1. The Desiderio site preset set,
-   `webconsulting/desiderio-preset-corporate`. This changes broad TYPO3 defaults
-   such as header, footer, density, container width, and layout radius.
-2. shadcn/create preset ids, for example `b4hb38Fyj` or `b6G5977cw`. These
-   change CSS tokens for surfaces, borders, radius, charts, typography, and
-   dark mode.
+- `b0`
+- `b4hb38Fyj`
+- `b3IWPgRwnI`
+- `b6G5977cw`
+- `b27GcrRo`
+- `aurora`
+- `marine`
+- `forest`
+- `ember`
+- `bloom`
+- `lagoon`
+- `gold`
+- `midnight`
+- `blossom`
+- `citrus`
+- `custom`
 
-Switch an already-supported shadcn preset by changing
-`desiderio.shadcn.preset` in **Site Management -> Settings**. The value is
-rendered to `<body data-shadcn-preset="...">`. The visual change only happens
-when `Resources/Public/Css/shadcn-theme.css` contains a matching light and dark
-token block.
+The `desiderio.shadcn.style` setting stores the source style metadata.
+The `desiderio.shadcn.iconLibrary` setting controls icon rendering and
+currently supports Lucide, Tabler, HugeIcons, Phosphor, and Remix Icon.
 
-## Supported shadcn Presets
+## Runtime model
 
-| Preset id | Source style | Notes |
-| --- | --- | --- |
-| `b6G5977cw` | `radix-lyra` | Default Lyra mono olive preset with square radius and amber charts. |
-| `b4hb38Fyj` | `radix-mira` | Olive product system with Nunito Sans. |
-| `b0` | shadcn default | Neutral fallback tokens in `:root` and `.dark`. |
-| `b3IWPgRwnI` | `radix-mira` | Mist dashboard tokens with Geist and JetBrains Mono. |
-| `custom` | custom | Requires a matching custom token block. |
+TYPO3 renders the selected values onto the `<body>` element as data
+attributes. CSS token blocks in `Resources/Public/Css/shadcn-theme.css`
+then control light mode, dark mode, borders, radius, charts, typography,
+focus rings, and surface elevation.
 
-## b6G5977cw Reference
+Content records store semantic icon keys, not library-specific SVG
+names. This keeps existing content stable when a site changes the icon
+library.
 
-The `b6G5977cw` preset was inspected with:
+## Updating a shadcn preset
 
-```bash
-npx shadcn@latest init --template vite --preset b6G5977cw \
-  --cwd /tmp/desiderio-shadcn-b6G5977cw \
-  --name preset-b6G5977cw \
-  --yes --no-monorepo --no-reinstall
-```
+Use this workflow when adding or refreshing a shadcn/create preset:
 
-The generated `components.json` reports:
+1. Inspect the preset in `https://ui.shadcn.com/create`.
+2. Record the preset id, source style, base colour, radius, font, chart
+   tokens, and icon library.
+3. Copy the light `:root` and dark `.dark` token blocks into
+   `Resources/Public/Css/shadcn-theme.css`.
+4. Add the preset id to
+   `Configuration/Sets/Desiderio/settings.definitions.yaml`.
+5. Add or update the icon-library mapping in
+   `Classes/Icon/IconRegistry.php` when needed.
+6. Run `npm run shadcn:sync-fluid` if shared component class contracts
+   changed.
+7. Run the project checks.
 
-| shadcn/create control | Value |
-| --- | --- |
-| Style | `radix-lyra` |
-| Base Color | `olive` |
-| Theme | `stone` token family |
-| Chart Color | amber/yellow chart tokens |
-| Heading | JetBrains Mono through `--font-heading: var(--font-mono)` |
-| Font | JetBrains Mono |
-| Icon Library | `tabler` |
-| Radius | `0` / square |
-| Menu | `default-translucent` |
-| Menu Accent | `subtle` |
+Do not add one-off colours or component-specific style overrides to
+content element templates. If a visual rule belongs to shadcn/ui, move it
+into a shared Fluid component, CSS token, or generated class partial.
 
-![shadcn/create b6G5977cw overview](Images/shadcn-create-b6G5977cw-overview.png)
+## Component ownership
 
-![shadcn/create b6G5977cw sidebar values](Images/shadcn-create-b6G5977cw-sidebar.png)
+Registry-backed primitives are synchronized into Fluid components under
+`Resources/Private/Components`. Buttons, badges, labels, inputs, selects,
+textareas, tabs, accordions, cards, and form classes belong there.
 
-## Switch To b6G5977cw In TYPO3
+Semantic TYPO3 primitives stay local when shadcn/ui does not provide a
+registry contract. Examples include page templates, TYPO3 extension
+partials, Blog widgets, News metadata, Solr results, and Content Block
+composition.
 
-Use these exact steps when the code already contains the `b6G5977cw` token
-block:
+## Media rules
 
-1. Open the TYPO3 backend.
-2. Go to **Site Management -> Settings**.
-3. Select the site that uses the Desiderio set.
-4. Set `desiderio.shadcn.preset` to `b6G5977cw`.
-5. Set `desiderio.shadcn.style` to `radix-lyra` if you want the stored source
-   metadata to match the preset.
-6. Set `desiderio.layout.radius` to `preset` if the shadcn preset should own
-   the radius.
-7. Use `desiderio.layout.radius = none` only when you want to force square
-   corners even after switching to a different preset.
-8. Leave `desiderio.typography.fontSans = preset` if the shadcn preset should
-   own the font.
-9. Choose `desiderio.theme.darkModeDefault` as `light`, `dark`, or `system`.
-10. Save the settings.
-11. Flush TYPO3 caches.
-12. Open a frontend page in light mode.
-13. Open the same page in dark mode.
-14. Check cards, buttons, charts, form fields, borders, and media corners.
-15. Open the Desiderio styleguide page if enabled.
-16. Open the TYPO3 Page/Layout module and check backend previews.
+Content Block image fields must render through TYPO3 Fluid image
+ViewHelpers. Prefer `<f:image>` for markup and `f:uri.image()` for
+processed URLs in JavaScript data attributes. Avoid literal `<img>` tags
+for FAL `FileReference` objects.
 
-If a Desiderio site preset set also sets `desiderio.layout.radius`, that site
-preset intentionally overrides the shadcn radius. Change it back to `preset`
-when you want the selected shadcn preset to control radius again.
+## Verification
 
-## Add A New shadcn/create Preset
+After changing presets or shared primitives, verify:
 
-Use this workflow for ids that are not already in the enum/CSS.
-
-1. Start from a clean or understood git state.
-2. Create a branch or commit the current work before changing tokens.
-3. Copy the shadcn/create preset id from the URL, for example `b6G5977cw`.
-4. Create a scratch directory outside the extension.
-5. Run:
-
-   ```bash
-   npx shadcn@latest create --template astro --preset <id> \
-     --cwd /tmp/desiderio-shadcn-presets \
-     --name preset-<id> \
-     --yes --no-monorepo --no-reinstall
-   ```
-
-   Use `--template vite` instead when you only need to inspect React component
-   class contracts. Use Astro when checking include-file JavaScript or
-   framework-neutral shadcn patterns.
-
-6. Open the generated `components.json`.
-7. Record `style`.
-8. Record `tailwind.baseColor`.
-9. Record `iconLibrary`.
-10. Record `menuColor`.
-11. Record `menuAccent`.
-12. Open the generated Tailwind CSS file, usually `src/index.css`.
-13. Copy every light `:root` token.
-14. Copy every `.dark` token.
-15. Copy font imports and font-family choices.
-16. Add a light block to
-    `Resources/Public/Css/shadcn-theme.css`:
-
-    ```css
-    body[data-shadcn-preset="<id>"] {
-      /* copied light tokens */
-    }
-    ```
-
-17. Add the dark block directly after it:
-
-    ```css
-    .dark body[data-shadcn-preset="<id>"] {
-      /* copied dark tokens */
-    }
-    ```
-
-18. Map upstream font variables to Desiderio variables such as
-    `--d-font-sans`, `--d-font-heading`, and `--d-font-mono`.
-19. Preserve semantic token names such as `--background`, `--foreground`,
-    `--card`, `--primary`, `--border`, `--ring`, and `--chart-1`.
-20. Do not hardcode colors inside Fluid templates.
-21. Do not add React runtime components to the TYPO3 frontend.
-22. Add the new id to `desiderio.shadcn.preset` in
-    `Configuration/Sets/Desiderio/settings.definitions.yaml`.
-23. Add the source style to `desiderio.shadcn.style` if it is new.
-24. Keep `Configuration/Sets/Desiderio/settings.yaml` on the existing default
-    unless the project intentionally changes the global default.
-25. If the preset radius should be respected, set the default or site value of
-    `desiderio.layout.radius` to `preset`.
-26. Add or refresh documentation screenshots under `Documentation/Images/`.
-27. Update `README.md`.
-28. Update this file.
-29. Update tests that assert supported preset ids.
-30. Run `npm run build:css` when Fluid class recipes or Tailwind sources
-    changed.
-31. Run `composer test`.
-32. Run `git diff --check`.
-33. Flush TYPO3 caches.
-34. Verify the frontend in light mode.
-35. Verify the frontend in dark mode.
-36. Verify the styleguide overview.
-37. Verify TYPO3 backend layout previews.
-38. Commit the token/settings/docs changes.
-
-Changing only `settings.yaml` or Site Settings to an unsupported id is not
-enough. TYPO3 will render the body attribute, but no CSS variables will change
-without matching committed token blocks.
-
-## Left-Nav Support Matrix
-
-The shadcn/create left navigation exposes more controls than Desiderio currently
-stores as independent TYPO3 switches. Desiderio supports the full preset as a
-committed preset, but not every left-nav value is an independent runtime setting.
-
-| shadcn/create value | Desiderio support |
-| --- | --- |
-| Style | Stored as `desiderio.shadcn.style`; the sync script accepts `radix-vega`, `radix-nova`, `radix-maia`, `radix-lyra`, `radix-mira`, `radix-luma`, `radix-sera`, and `radix-rhea`. |
-| Base Color | Supported through the selected preset token block. Not an independent TYPO3 setting. |
-| Theme | Supported through the selected preset token block. Not an independent TYPO3 setting. |
-| Chart Color | Supported through `--chart-1` to `--chart-5`. Not an independent TYPO3 setting. |
-| Heading | Supported through preset font tokens and `--d-font-heading`. |
-| Font | Supported through preset font tokens. `desiderio.typography.fontSans` can override it. |
-| Icon Library | Stored as `desiderio.shadcn.iconLibrary`. Content records keep semantic Desiderio icon keys, and rendering resolves them to Lucide, Tabler Icons, HugeIcons, Phosphor Icons, or Remix Icon SVGs at runtime. |
-| Radius | Supported through preset tokens when `desiderio.layout.radius = preset`; otherwise the site radius setting overrides it. |
-| Menu | Partially supported by Desiderio header/site styles. The shadcn `menuColor` value is documented but not yet an independent setting. |
-| Menu Accent | Documented from the preset. Not yet an independent TYPO3 setting. |
-| `--preset <id>` | Supported when the id exists in Site Settings and `shadcn-theme.css`. |
-
-To support every remaining left-nav value as an independent TYPO3 runtime
-switch, add new Site Settings, render them as `<body data-*>` attributes in
-TypoScript, add CSS rules for each value, and update tests/docs. Until then, use
-preset ids for faithful shadcn/create styles.
-
-## Icon Fields
-
-Editor-facing Content Block icon fields must store semantic Desiderio keys such
-as `shield-check`, `rocket`, or `map-pin`. They must not store library-specific
-imports or SVG names. All icon fields use `type: Select`, `renderType:
-selectSingle`, and `Webconsulting\Desiderio\DataHandling\IconItemsProcessor`.
-
-`Classes/Icon/IconRegistry.php` is the source of truth for labels, allowed keys,
-demo values, aliases, and library rendering support. This lets a site change
-`desiderio.shadcn.iconLibrary` from `tabler` to `remixicon` later without
-rewriting existing `tt_content` or collection rows.
-
-## Component Updates
-
-Desiderio has two component ownership modes:
-
-1. Registry-backed primitives are synchronized from
-   `https://ui.shadcn.com/r/styles/{style}/{component}.json` by
-   `Build/Scripts/sync-shadcn-fluid-primitives.php`. Buttons, badges, cards,
-   labels, inputs, selects, textareas, tabs, accordions, and the Powermail
-   shadcn class partial belong here. If a class exists in the selected shadcn
-   style registry item, port it into the shared Fluid primitive or generated
-   Powermail class partial instead of adding one-off classes in content
-   elements.
-2. Local semantic primitives exist where shadcn does not ship a registry
-   component contract. Typography is the main example: the shadcn Typography
-   page is example code, not a shipped component default. Use shadcn tokens,
-   shared CSS, and caller `class` overrides for visual changes; do not copy a
-   docs example such as the `h2` `border-b pb-2` divider into every content
-   element header.
-
-Use `npm run shadcn:info`, `npx shadcn@latest view <component>`,
-`npx shadcn@latest preset decode <id> --json`, or a temporary scratch app to
-inspect upstream class recipes and preset metadata. Port class strings, slots,
-`data-state`, and ARIA behavior into Fluid components under
-`Resources/Private/Components`.
-
-Keep Content Block `config.yaml`, field identifiers, fixtures, and template
-filenames stable unless the content model is intentionally changing.
-
-## Media ViewHelpers
-
-Content Block image fields must render through TYPO3 Fluid image APIs. Prefer
-`<f:image>` for markup and `f:uri.image()` for processed URLs in JavaScript data
-attributes. Do not hand-write literal `<img>` tags for FAL `FileReference`
-objects.
-
-When a ViewHelper-rendered image needs custom `data-*` attributes, use Fluid's
-structured arguments:
-
-```html
-<f:image image="{fileReference}" maxWidth="1440" alt="{item.title}"
-         class="gallery__featured-image"
-         data="{d-gallery-main: 'true'}"/>
-```
-
-This keeps the Visual Editor's image ViewHelper decoration available and avoids
-Fluid treating a `FileReference` as a string while compiling unusual attributes.
-
-## Local Registry
-
-Desiderio ships a local shadcn registry definition in `registry.json`.
-`components.json` exposes it through the `@desiderio` namespace and the build
-output lives under `Resources/Public/ShadcnRegistry`.
-
-Run this after changing theme tokens, TypoScript asset includes, or shared
-runtime JavaScript:
-
-```bash
-npm run registry:build
-```
-
-Registry items describe the shadcn theme contract and shared TYPO3 runtime
-assets. They are not React/Astro runtime components; Fluid remains the renderer.
-
-## JavaScript Includes
-
-Content Blocks should emit data attributes and JSON payload attributes. Shared
-browser behavior belongs in include files such as
-`Resources/Public/Js/charts.js`, registered through TypoScript or TYPO3 asset
-APIs. Avoid inline `<script>` renderers in `templates/frontend.html`.
-
-## Collection Schema Policy
-
-Top-level Content Blocks `Collection` fields should keep `prefixField: true`
-when a block uses root-level `prefixFields: false`. That keeps the root
-`tt_content` columns distinct even when multiple content elements reuse
-generic field identifiers such as `items`.
-
-Prefer the generated one-table-per-collection model. Reusing collection child
-tables is an explicit content-modeling decision for identical stable row
-schemas, not an automatic cleanup based on field names. It can make the schema
-list shorter, but usually does not materially shrink database storage unless
-the database engine's per-table overhead is the real issue.
-
-## Visual QA
-
-Use the Desiderio styleguide page as the all-content-elements overview. Check
-both light and dark mode, and verify that cards, buttons, forms, tabs,
-accordions, tables, and charts use shadcn tokens instead of one-off colors.
+- Light and dark mode.
+- Button, badge, form, card, tab, accordion, and search states.
+- Blog list/detail pages.
+- News list/detail pages.
+- Powermail and TYPO3 Form Framework forms.
+- Solr result and suggest output.
+- Content Block chart, code, image, carousel, and timeline elements.
+- Backend previews and workspace previews.

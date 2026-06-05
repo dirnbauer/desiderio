@@ -1,65 +1,25 @@
 # Desiderio
 
-[![CI](https://github.com/webconsulting/desiderio/actions/workflows/ci.yml/badge.svg)](https://github.com/webconsulting/desiderio/actions/workflows/ci.yml)
-![TYPO3](https://img.shields.io/badge/TYPO3-v14.3%20LTS-orange)
-![PHP](https://img.shields.io/badge/PHP-8.3%20%E2%80%93%208.5-blue)
-![PHPStan](https://img.shields.io/badge/PHPStan-level%20max-brightgreen)
-![Version](https://img.shields.io/badge/version-2.2.0-blue)
+Desiderio is a TYPO3 v14.3 theme extension with a shadcn/ui-inspired Fluid 5 component library, 255 Content Blocks, page templates, optional Blog/News/Solr/Powermail overrides, and a runtime theme system driven by TYPO3 site settings.
 
-A self-contained TYPO3 v14.3 LTS theme extension that bundles a
-[shadcn/ui](https://ui.shadcn.com)-inspired Fluid 5 component library, **255
-content elements**, backend layouts, page templates, and five swappable
-visual presets with a committed Tailwind v4/shadcn CSS build.
+It is built for TYPO3 installations that need a complete editorial and marketing component set without a frontend build step on the target site. The committed assets include the Tailwind v4/shadcn CSS theme, lightweight interaction JavaScript, a small Prism syntax-highlighting bundle, and chart helpers.
 
-**Status:** stable · **Version:** 2.2.0 · **TYPO3:** v14.3 LTS only ·
-**PHP:** 8.3 — 8.5 · **License:** GPL-2.0-or-later
+## Requirements
 
-> Desiderio 2.0 replaces both `webconsulting/desiderio 1.x` and
-> `webconsulting/shadcn2fluid-templates 3.x`. No backward compatibility; clean
-> installs only. See [SPECIFICATION.md](SPECIFICATION.md) and
-> [MIGRATION-PLAN.md](MIGRATION-PLAN.md) for the rewrite rationale.
->
-> The old `shadcn2fluid_*` fixture mapping is not used at runtime or by the
-> styleguide seed. Demo content now lives beside each Content Block in its own
-> `fixture.json`, keyed by the current `desiderio_*` CType generated from the
-> Content Block folder.
+- TYPO3 CMS `^14.3`
+- PHP `^8.3`
+- `friendsoftypo3/content-blocks` `^2.2`
+- Composer-based TYPO3 installation
 
-## Three-layer architecture
+Optional integrations are activated through separate site sets and only apply when the matching extension is installed:
 
-```
-┌──────────────────────────────────────────────────────────┐
-│ Layer 3 — THEME                                          │
-│ Page templates · Backend layouts · Header/Footer · Presets │
-└──────────────────────────────────────────────────────────┘
-                          ▲ renders via PAGEVIEW
-┌──────────────────────────────────────────────────────────┐
-│ Layer 2 — CONTENT ELEMENTS (Content Blocks)              │
-│ 255 editor-facing elements in 10 wizard groups           │
-└──────────────────────────────────────────────────────────┘
-                          ▲ mostly composes via <d:…>
-┌──────────────────────────────────────────────────────────┐
-│ Layer 1 — COMPONENTS (Fluid 5)                           │
-│ 16 atoms · 17 molecules · 4 layouts (typed <f:argument>) │
-└──────────────────────────────────────────────────────────┘
-```
-
-## Screenshots
-
-The screenshots below are captured from the Desiderio styleguide app using the
-committed `b6G5977cw` shadcn/create preset and real Content Block fixture data.
-
-| Light mode | Dark mode |
-| --- | --- |
-| ![Desiderio styleguide overview in light mode](Documentation/Images/desiderio-styleguide-overview-light.png) | ![Desiderio styleguide overview in dark mode](Documentation/Images/desiderio-styleguide-overview-dark.png) |
-| The styleguide overview shows the searchable content element catalog, group navigation, and the first generated cards for the 255 shipped elements. | The same overview in dark mode verifies the token-driven surface, sidebar, badges, cards, and text contrast. |
-| ![Desiderio pricing preview in light mode](Documentation/Images/desiderio-styleguide-preview-light.png) | ![Desiderio pricing preview in dark mode](Documentation/Images/desiderio-styleguide-preview-dark.png) |
-| A selected `Three Tier Pricing` element shows the component inspector with the preview tab, viewport controls, and rendered pricing fixture. | The dark-mode version shows the same element preview after the theme tokens switch, including borders, foreground text, and muted labels. |
+- `georgringer/news`
+- `t3g/blog`
+- `apache-solr-for-typo3/solr`
+- `in2code/powermail`
+- `studiomitte/friendlycaptcha`
 
 ## Installation
-
-Requires TYPO3 14.3 LTS (no v13 fallback) and PHP 8.3 – 8.5. The
-`webconsulting/desiderio` package pulls in `typo3/cms-workspaces ^14.3` so
-draft/preview workflows are available out of the box.
 
 ```bash
 composer require webconsulting/desiderio
@@ -67,530 +27,149 @@ vendor/bin/typo3 extension:setup
 vendor/bin/typo3 cache:flush
 ```
 
-Then enable the shadcn/ui theme base, the content-element configuration set,
-and the Corporate scenario template set:
+Enable the site sets in this order:
 
-1. Site Management → Sites → edit the target site
-2. Add `Desiderio Base` (`webconsulting/desiderio`)
-3. Add `Desiderio Content Elements` (`webconsulting/desiderio-content-elements`)
-4. Add the Corporate scenario template set (see below)
-5. Save and flush caches
+1. `Desiderio Base` (`webconsulting/desiderio`)
+2. `Desiderio Content Elements` (`webconsulting/desiderio-content-elements`)
+3. A scenario package, for example `webconsulting/desiderio-preset-corporate`
+4. Optional integration sets such as Blog, News, Solr, or Powermail
 
-### Tooling baseline
+## What Is Included
 
-| Tool | Version pin | Why |
-| --- | --- | --- |
-| TYPO3 | `^14.3` | LTS, only supported branch — v13 is **not** supported. |
-| PHP | `^8.3` (8.3 – 8.5) | Matches TYPO3 v14.3 LTS support matrix. |
-| Workspaces | `^14.3` | Required, not optional, for editorial preview. |
-| PHPStan | `^2.1`, **level max** | Plus `saschaegerer/phpstan-typo3` and `phpstan-strict-rules`. |
-| PHPUnit | `^11.5` | All 101 unit tests pass via `Build/Scripts/runTests.sh`. |
-| Content Blocks | `^2.2` | Drives every one of the 255 content elements. |
+Desiderio provides three layers:
 
-The content-element configuration set depends on the theme base and exposes a
-single aggregate set for the full Content Blocks catalog. Individual generated
-`desiderio/*` content block set names are hidden from the backend picker to keep
-site setup focused on the Desiderio-level sets.
+- **Components**: 16 atoms, 18 molecules, and 4 layout primitives using typed Fluid arguments.
+- **Content Blocks**: 255 editor-facing content elements grouped for heroes, features, data, conversion, editorial, media, social proof, navigation, forms, and footer patterns.
+- **Theme**: backend layouts, page templates, header/footer templates, CSS variables, JavaScript interactions, and site settings.
 
-## Cursor MCP (optional)
+The current shadcn base is `radix-lyra` with the `b6G5977cw` mono olive preset and Tabler icons. The runtime preset selector also includes four other `ui.shadcn.com/create` presets, ten bundled house presets, and `custom`.
 
-[Cursor](https://cursor.com) can load [MCP](https://modelcontextprotocol.io) servers from a
-project-local `.mcp.json`. **That file is gitignored** so machine-specific URLs and any future
-secrets stay out of the repository.
+## Runtime Theming
 
-1. Copy the example file and adjust it:
+The active look is selected in TYPO3 site settings and rendered as `data-*` attributes on the `<body>` element:
 
-   ```bash
-   cp .mcp.json.example .mcp.json
-   ```
+- `desiderio.shadcn.preset`
+- `desiderio.shadcn.style`
+- `desiderio.shadcn.iconLibrary`
+- `desiderio.layout.density`
+- `desiderio.layout.container`
+- `desiderio.layout.radius`
+- `desiderio.typography.fontSans`
+- `desiderio.theme.darkModeDefault`
+- `desiderio.theme.darkModeToggle`
 
-2. **`shadcn`:** runs the shadcn MCP via `npx shadcn@latest mcp` (useful for UI work aligned with
-   this theme).
+Preset changes repaint colors, radius, density, focus rings, fonts, and icon library behavior at runtime. Stored content uses semantic icon keys, so the icon library can be changed without rewriting records.
 
-3. **`my-typo3-site`:** set `url` to your TYPO3 site’s MCP endpoint (for example
-   `https://<ddev-project-name>.ddev.site/mcp` when a TYPO3 MCP server is mounted under `/mcp`).
-   Remove the entry or leave it out if you do not use server-side MCP.
+## Content Elements
 
-Restart Cursor (or reload the window) after changing `.mcp.json`.
+The content-element set includes, among others:
 
-## Page templates
+- Hero and landing intro sections
+- Feature grids, feature sliders, timelines, tabs, accordions, and comparison blocks
+- Data visualizations with axes, units, legends, multiple colors, and accessible summaries
+- Code examples using a lightweight Prism/Astro highlighter instead of accent-colored pseudo highlighting
+- Testimonial, logo, team, advisor, review, and case-study sections
+- Form, newsletter, download, lead, conversion, and feedback blocks
+- Header, search, navigation, sitemap, and footer sections
 
-| Backend layout                | Content areas              | Page template                         |
-| ----------------------------- | -------------------------- | ------------------------------------- |
-| `DesiderioStartpage`          | `stage`, `main`            | `Pages/DesiderioStartpage.fluid.html` |
-| `DesiderioContentpage`        | `stage`, `main`            | `Pages/DesiderioContentpage.fluid.html` |
-| `DesiderioContentpageSidebar` | `stage`, `main`, `sidebar` | `Pages/DesiderioContentpageSidebar.fluid.html` |
-| `DesiderioStyleguide`         | `main`                     | `Pages/DesiderioStyleguide.fluid.html` |
-| `DesiderioBlog`               | `stage`, `main`, `sidebar` | `Pages/DesiderioBlog.fluid.html` |
-| `DesiderioExtension`          | `stage`, `sidebar`, `main` | `Pages/DesiderioExtension.fluid.html` |
-| `DesiderioNews`               | `stage`, `main`, `sidebar` | `Pages/DesiderioNews.fluid.html` |
-| _(fallback)_                  | `stage`, `main`            | `Pages/Default.fluid.html` |
+Images are rendered through TYPO3 FAL and Content Blocks fields. Media templates use stable aspect-ratio wrappers and `object-fit` rules to avoid stretched images.
 
-Every content area works with the TYPO3 visual editor. Headers and footers
-are static partials, not content areas — the editing surface stays focused
-on the content that matters.
+## Forms
 
-`DesiderioBlog`, `DesiderioExtension`, and `DesiderioNews` are shipped by the
-hidden `webconsulting/desiderio-shadcnui-templates` site set. The theme base
-lists it as an optional dependency, so these shadcn/ui-oriented structures
-are available by default while their PAGEVIEW template root remains isolated
-at `Resources/Private/ShadcnUi/Templates/`.
+Desiderio ships shadcn-styled TYPO3 Form Framework templates and a shared `FormRenderer` molecule. Form controls use neutral theme borders by default and switch to destructive/red styling only for invalid states.
 
-### t3g/blog: full shadcn override
+Supported form features:
 
-The hidden site set `webconsulting/desiderio-blog` (auto-pulled by the theme
-base when [`t3g/blog`](https://extensions.typo3.org/extension/blog/) is
-installed) replaces the upstream Bootstrap markup with **shadcn-only**
-templates: cards, badges, pagination, alerts, and the post / comments /
-widget chrome all render through `<d:atom.…>` / `<d:molecule.…>` /
-`<d:layout.…>` components.
+- TYPO3 Form Framework finishers
+- Friendly Captcha integration and local Development-context test mode
+- Brevo contact synchronization through `BrevoContactFinisher`
+- Sanitized Brevo event tracking
+- DDEV/Mailpit-friendly local mail configuration
+- Styled validation messages and accessible required-field indicators
 
-Every partial under `Resources/Private/Extensions/Blog/Partials/`
-declares its inputs with **Fluid 5.3 typed `<f:argument>`** blocks
-(`type="T3G\AgencyPack\Blog\Domain\Model\Post"`, `type="iterable"`,
-`type="array"`, …). That gives editors and integrators strict typing all
-the way through the override chain.
+Brevo is configured through site settings plus an external API key:
 
-The set is shipped *hidden* from the Site Management picker.
+- `desiderio.forms.brevo.enabled`
+- `desiderio.forms.brevo.listIds`
+- `desiderio.forms.brevo.strict`
+- `desiderio.forms.brevo.trackEvent`
+- `desiderio.forms.brevo.eventName`
+- `BREVO_API_KEY`
 
-For existing Blog page trees, run the layout seeder after enabling the Blog
-set so root, data-folder, list, translated, and post pages use the same
-Desiderio Blog backend layout:
+## Search
+
+The Solr integration set registers shadcn-styled search templates, result cards, facets, suggestions, and a suggest endpoint. The site header search can be enabled through settings and pointed at an existing search result page:
+
+- `desiderio.search.enabled`
+- `desiderio.search.targetPageId`
+- `desiderio.search.queryParameter`
+
+The frontend JavaScript enhances compatible Solr forms with debounced suggestions and keyboard-accessible result options.
+
+## Blog
+
+When `t3g/blog` is installed, `webconsulting/desiderio-blog` adds shadcn-styled Blog template paths. The templates cover list, detail, sidebar widgets, comments, author blocks, related posts, metadata badges, categories, tags, and RSS output headers.
+
+Existing Blog page trees can be aligned with:
 
 ```bash
-vendor/bin/typo3 desiderio:blog:seed-pages --root=15
+vendor/bin/typo3 desiderio:blog:seed-pages --root=<blog-root-uid>
 ```
 
-The command exits without changes when `t3g/blog` is not loaded. Omit
-`--root` to normalize all detected Blog setups.
+The command exits without changes when `t3g/blog` is not loaded.
 
-### News: shadcn-styled list, magazine view, and load-more
+## News
 
-Drop a `News` plugin onto a `DesiderioBlog` or `DesiderioNews` page and the
-list renders as a 3-column shadcn card grid with a `Detail` view that
-includes the `Detail/Opengraph` (Open Graph + Twitter card meta) and
-`Detail/Shariff` partials. Detail, list, and magazine cards use
-`schema.org/NewsArticle` microdata, and the detail view emits JSON-LD through
-`Detail/StructuredData.html` when
-`plugin.tx_news.settings.structuredData.enabled` is on.
+When `georgringer/news` is installed, `webconsulting/desiderio-news` adds shadcn-styled News templates for list and detail views. The templates use available news images, category/tag badges, responsive grids, metadata, and `NewsArticle` structured data.
 
-The list view supports a configurable **"Load more"** mode driven by three
-plugin / TypoScript settings:
+The News set supports the `DesiderioNews` backend layout and progressive load-more list mode.
 
-| Setting | Default | Purpose |
-| --- | --- | --- |
-| `plugin.tx_news.settings.list.useLoadMore` | `0` (auto on `DesiderioBlog` + `DesiderioNews`) | Switch the list partial from server-paginated to progressive load-more. |
-| `plugin.tx_news.settings.list.initialCount` | `6` | How many cards are shown before the button appears. |
-| `plugin.tx_news.settings.list.loadMoreCount` | `3` | The "extra number to be loaded" each click. |
-| `plugin.tx_news.settings.structuredData.enabled` | `{$desiderio.seo.structuredDataEnabled}` | Emit `NewsArticle` JSON-LD in the page header. |
-| `plugin.tx_news.settings.structuredData.publisherName` | `{$desiderio.brand.wordmark}` | Publisher name used in JSON-LD when configured. |
-| `plugin.tx_news.settings.structuredData.publisherLogo` | `{$desiderio.seo.defaultImage}` | Absolute publisher logo URL used in JSON-LD when configured. |
+## Page Templates
 
-The button is rendered with a tiny inline JS asset that hides overflow
-items, reveals `loadMoreCount` more on each click, focuses the first newly
-revealed item for screen readers, and degrades to "show everything" when
-JavaScript is disabled. There is also a `MagazineList.html` template that
-features the first article on top with the rest as the load-more secondary
-grid.
+The extension provides these page templates/backend layouts:
 
-## Scenario Template
+- `DesiderioStartpage`
+- `DesiderioContentpage`
+- `DesiderioContentpageSidebar`
+- `DesiderioStyleguide`
+- `DesiderioBlog`
+- `DesiderioNews`
+- `DesiderioExtension`
+- fallback `Default`
 
-One scenario template site set depends on the theme base. It ships a single CSS
-file and overrides base-set setting defaults. Switching the scenario template
-**never** changes your content, markup, or backend layouts — only the
-presentation.
+The compact page title header is full width, uses a subtle themed background, and inherits the active shadcn preset.
 
-| Set | Character |
-| --- | --- |
-| `webconsulting/desiderio-preset-corporate` | Mainline Corporate |
+## Development
 
-The base set also exposes shadcn/create preset support. The committed theme
-CSS currently supports `b6G5977cw` as the default, plus `b4hb38Fyj`, `b0`,
-and `b3IWPgRwnI` as alternate light/dark token sets.
-
-### Starter site seeding
-
-Use the starter seeder to create a useful Corporate demo site. The starter
-creates one homepage plus at least ten subpages and populates them with real
-Desiderio Content Blocks instead of lorem ipsum.
-
-```bash
-vendor/bin/typo3 desiderio:starter:seed --parent=505 --preset=all
-vendor/bin/typo3 desiderio:starter:seed --parent=505 --preset=corporate
-```
-
-Available preset: `corporate`. `all` is kept as an alias for forwards-compatible
-scripts.
-
-### Switching the scenario template
-
-There are two different switches:
-
-1. **The Desiderio Corporate scenario template set** changes broad TYPO3 theme defaults such as
-   header, footer, density, and layout. Enable or replace
-   `webconsulting/desiderio-preset-corporate` in
-   **Site Management → Sites**.
-2. **shadcn/create preset ids** change the design tokens used by buttons,
-   cards, borders, charts, typography, radius, and dark mode. Change
-   `desiderio.shadcn.preset` in **Site Management → Settings** when the id is
-   already supported by committed CSS.
-
-To switch to `b6G5977cw`:
-
-1. Set `desiderio.shadcn.preset` to `b6G5977cw`.
-2. Set `desiderio.shadcn.style` to `radix-lyra`.
-3. Set `desiderio.layout.radius` to `preset` so the preset can keep its square
-   `--radius: 0` design.
-4. Keep `desiderio.typography.fontSans` on `preset` so JetBrains Mono is used.
-5. Flush TYPO3 caches and check light and dark mode.
-
-Supported shadcn ids can be selected immediately. Unsupported ids need to be
-implemented first:
-
-1. Generate or inspect the shadcn/create preset in a scratch project.
-2. Add `body[data-shadcn-preset="<id>"]` and
-   `.dark body[data-shadcn-preset="<id>"]` token blocks to
-   `Resources/Public/Css/shadcn-theme.css`.
-3. Add the id to `desiderio.shadcn.preset` in
-   `Configuration/Sets/Desiderio/settings.definitions.yaml`.
-4. Optionally make it the default in
-   `Configuration/Sets/Desiderio/settings.yaml`.
-5. Rebuild/check CSS and flush TYPO3 caches.
-
-For shadcn-aware tooling, this repository keeps a valid `components.json`,
-scratch TypeScript aliases, and a local registry. Run:
-
-```bash
-npm run shadcn:info
-npm run registry:build
-```
-
-The generated registry JSON is written to `Resources/Public/ShadcnRegistry`.
-It packages the Desiderio theme token contract and shared runtime include
-assets for other shadcn-capable projects without moving TYPO3 rendering out of
-Fluid.
-
-Fluid primitives are updated from the selected shadcn/create preset with:
-
-```bash
-npm run shadcn:sync-fluid
-```
-
-That command decodes the preset id, updates `components.json` with the matching
-registry style, icon library, and base color, and synchronizes registry-backed
-Fluid primitives and Powermail form class recipes from
-`https://ui.shadcn.com/r/styles/{style}/{name}.json`.
-It also updates the default `desiderio.shadcn.iconLibrary` value so new installs
-render semantic icon fields with the icon family from the selected preset.
-Local semantic primitives, especially Typography, stay token-driven because
-shadcn Typography is example documentation rather than a registry component.
-
-Changing only `settings.yaml` or Site Settings to an unsupported id will write
-the body attribute, but no visual change will happen because no matching token
-block exists.
-
-The shadcn/create left navigation has values that are preset metadata in
-Desiderio, not all independent runtime switches. `Style`, `Base Color`,
-`Theme`, `Chart Color`, `Heading`, `Font`, and `Radius` are represented through
-the committed preset tokens. `Icon Library` is a separate TYPO3 setting that
-renders stable semantic icon keys as Lucide, Tabler Icons, HugeIcons, Phosphor
-Icons, or Remix Icon SVGs. `Menu` and `Menu Accent` are documented from the
-preset, but are not separate TYPO3 switches yet. See
-`Documentation/ShadcnUpgrade.md` for the exact support matrix and step-by-step
-workflow.
-
-## Settings
-
-Every site configures Desiderio through typed settings exposed in
-**Site Management → Settings** (no TypoScript required). The base set
-declares the full schema; presets ship different defaults.
-
-| Setting                              | Values                                               |
-| ------------------------------------ | ---------------------------------------------------- |
-| `desiderio.layout.density`           | `compact`, `comfortable`, `spacious`                 |
-| `desiderio.layout.container`         | `narrow`, `wide`, `full`                             |
-| `desiderio.layout.radius`            | `preset`, `none`, `sm`, `md`, `lg`, `full`           |
-| `desiderio.header.style`             | `solid`, `transparent`, `glass`, `sticky`            |
-| `desiderio.header.fixedPosition`     | `true`, `false`                                      |
-| `desiderio.footer.style`             | `columns`, `centered`, `minimal`, `mega`             |
-| `desiderio.theme.darkModeDefault`    | `light`, `dark`, `system`                            |
-| `desiderio.theme.darkModeToggle`     | `true`, `false`                                      |
-| `desiderio.shadcn.preset`            | 5 create presets (`b0`, `b4hb38Fyj`, `b3IWPgRwnI`, `b6G5977cw`, `b27GcrRo`) + 10 house presets (`aurora`, `marine`, `forest`, `ember`, `bloom`, `lagoon`, `gold`, `midnight`, `blossom`, `citrus`), `custom`. See [Theme presets](#theme-presets). |
-| `desiderio.shadcn.style`             | `radix-vega`…`radix-rhea`, `custom` — advanced/read-only; the preset drives the live look, this is the build-time structural base |
-| `desiderio.shadcn.iconLibrary`       | `lucide`, `tabler`, `hugeicons`, `phosphor`, `remixicon` |
-| `desiderio.typography.fontSans`      | `preset`, `inter`, `geist`, `system`, `serif`        |
-| `desiderio.styleguide.enabled`       | `true`, `false`                                      |
-
-Settings are rendered into `<body data-*>` attributes so hand-written CSS
-can react to them without runtime JavaScript.
-
-Settings are defined in:
-
-- `Configuration/Sets/Desiderio/settings.definitions.yaml` — selectable values
-  in TYPO3 Site Settings.
-- `Configuration/Sets/Desiderio/settings.yaml` — default values shipped by the
-  base set.
-- `Configuration/Sets/Desiderio/setup.typoscript` — renders the values as
-  `<body data-*>` attributes.
-- `Resources/Public/Css/shadcn-theme.css` — committed token blocks for each
-  supported preset (shadcn/create ids and the bundled house presets).
-
-## Theme presets
-
-A **theme preset** repaints the whole site — base and accent colour, corner
-radius, fonts, icon family, control density, focus-ring width, and surface
-elevation — at runtime. Pick one in **Site Management → Settings → Theme →
-Theme preset** (the first settings group), save, and reload. The choice is rendered onto
-`<body data-shadcn-preset="…">` and the matching variable block cascades from
-`Resources/Public/Css/shadcn-theme.css`. No rebuild, no deployment.
-
-Switching is opt-in: a site keeps its current look until an editor selects a
-different preset.
-
-### What a preset controls
-
-| Dimension            | Mechanism                                                       |
-| -------------------- | --------------------------------------------------------------- |
-| Base + accent colour | per-preset `:root` / `.dark` token block (light + dark)         |
-| Corner radius        | `--radius` (atoms use the `--radius`-following `rounded-*`)      |
-| Control density      | `--d-control-h` / `--d-control-text` / `--d-control-px`          |
-| Focus-ring width     | `--d-ring-width`                                                 |
-| Surface elevation    | `--d-surface-shadow`                                             |
-| Fonts                | `--d-font-sans` / `--d-font-heading` / `--d-font-mono`           |
-| Icon family          | `data-icon-library` (semantic icon keys resolve at runtime)     |
-
-The shape tokens are consumed by the generated Fluid atoms (`d-control-h`,
-`rounded-md`, `ring-[var(--d-ring-width)]`, `shadow-[var(--d-surface-shadow)]`),
-so every component reacts to the active preset without per-preset markup. Radio
-inputs stay circular regardless of radius.
-
-### Available presets
-
-Five are full shadcn/create configurations; ten are bundled "house" presets
-that inherit the neutral base and vary accent, radius, fonts, icons, density,
-ring, and shadow:
-
-| Preset                   | Accent  | Character                          |
-| ------------------------ | ------- | ---------------------------------- |
-| `b6G5977cw` *(default)*  | olive   | Flat, compact "Lyra mono"          |
-| `b0`                     | neutral | Default neutral (Nova)             |
-| `b4hb38Fyj`              | olive   | Mira product system                |
-| `b3IWPgRwnI`             | mist    | Mira dashboard                     |
-| `b27GcrRo`               | neutral | Rhea modern neutral                |
-| `aurora`                 | violet  | Rounded, default density           |
-| `marine`                 | blue    | Comfortable, soft shadow           |
-| `forest`                 | emerald | Tight radius, default              |
-| `ember`                  | orange  | Comfortable, elevated              |
-| `bloom`                  | rose    | Pill radius                        |
-| `lagoon`                 | teal    | Compact, flat                      |
-| `gold`                   | amber   | Default                            |
-| `midnight`               | indigo  | Comfortable, elevated              |
-| `blossom`                | pink    | Rounded, soft shadow               |
-| `citrus`                 | lime    | Compact mono, flat                 |
-
-### Adding a theme
-
-Add one row to the `$presets` table in
-`Build/Scripts/generate-shadcn-presets.php`:
-
-```php
-// id, label, hue, lightAccent, radius, font, icon, density, ring, shadow
-['crimson', 'Crimson — red', 25, false, '0.5', 'geist', 'lucide', 'default', '2px', 'sm'],
-```
-
-| Field         | Options                                                           |
-| ------------- | ---------------------------------------------------------------- |
-| `hue`         | `0–360` oklch hue (≈12 rose, 25 red, 55 orange, 130 lime, 160 emerald, 185 teal, 259 blue, 293 violet, 350 pink) |
-| `lightAccent` | `true` only for bright accents (amber/lime) that need dark text  |
-| `radius`      | rem string: `'0'`, `'0.5'`, `'0.75'`, `'1'`, …                   |
-| `font`        | `inter`, `geist`, `nunito`, `jetbrains`                          |
-| `icon`        | `lucide`, `tabler`, `hugeicons`, `phosphor`, `remixicon`         |
-| `density`     | `compact`, `default`, `comfortable`                              |
-| `ring`        | `'1px'`, `'2px'`, `'3px'`                                         |
-| `shadow`      | `none`, `sm`, `md`                                               |
-
-Then run:
-
-```bash
-php Build/Scripts/generate-shadcn-presets.php
-```
-
-It inserts the CSS block into `shadcn-theme.css` (idempotent) and prints three
-snippets to paste into `settings.definitions.yaml` (the dropdown enum —
-required), `sync-shadcn-fluid-primitives.php` (the `$knownPresets` map), and
-`Classes/Icon/IconRegistry.php` (the `libraryForPreset` arm). The CSS block plus
-the enum entry are all that is strictly required to make a theme selectable.
-Finish with `composer test`.
-
-To reproduce an exact configuration from
-[ui.shadcn.com/create](https://ui.shadcn.com/create), build it there, hit **Get
-Code**, and paste its full `:root` / `.dark` tokens as a new preset block — the
-same shape as the committed `b0` / `b6G5977cw` blocks.
-
-## Content elements
-
-255 content blocks, organised in 10 wizard categories. The templates are
-token-driven Fluid templates; 250 of the 255 shipped frontend templates use the
-`<d:…>` Fluid component namespace directly, while the small utility/chart
-exceptions still share the same CSS variables and runtime assets. See
-`ContentBlocks/ContentElements/` for the full list.
-
-The full catalog is exposed through the `webconsulting/desiderio-content-elements`
-site set. This set depends on `webconsulting/desiderio` and lists the individual
-`desiderio/*` block sets as optional dependencies, so installations that expose
-Content Blocks as site sets can add one Desiderio item instead of selecting
-blocks one by one.
-
-Classic TYPO3 Fluid Styled Content elements are overridden from
-`Resources/Private/FluidStyledContent/` and use the same shadcn preset tokens,
-Fluid 5 components, and Tailwind source build as the Content Blocks catalog.
-
-### Collection fields and generated tables
-
-Desiderio keeps `prefixFields: false` at the content-element root so editor
-field names stay readable, but every top-level Content Blocks `Collection`
-field uses `prefixField: true`. That gives each `tt_content` collection count
-its own TCA column, even when many content elements use identifiers such as
-`items`, `links`, or `features`.
-
-The generated default is one child table per collection. This creates more
-tables, but it keeps schemas, labels, migrations, fixtures, and styleguide seed
-logic local to the content element that owns them. Reusing a collection table is
-allowed only as an explicit modeling decision, not automatically because field
-identifiers match.
-
-Reuse a child table only when the child rows are intentionally the same model
-across all parents, for example a simple `label` + `link` list or repeated
-`label` + `value` metric rows. Avoid reuse when schemas can evolve
-independently, when editor labels or validation differ, or when two collection
-fields on the same parent would point at the same child table without a
-separate match field such as Content Blocks `shareAcrossFields`.
-
-The practical benefit is fewer tables and less schema noise. Do not expect a
-large physical database-size reduction unless table overhead in the database
-engine is the actual bottleneck.
-
-Nested collections are supported when each level declares its own stable
-`table`. The styleguide seed command walks those structures recursively and
-writes child rows below the current parent row.
-
-### Media rendering in Content Blocks
-
-Image and media fields must stay on TYPO3 Fluid ViewHelpers. Use `<f:image>`
-for rendered images and `f:uri.image()` when a JavaScript data attribute needs a
-processed image URL. Do not replace a TYPO3 file reference with a literal
-`<img>` tag in `templates/frontend.html`.
-
-Custom attributes on `<f:image>` should use Fluid's structured attribute
-arguments, especially for `data-*` values:
-
-```html
-<f:image image="{fileReference}" maxWidth="1440" alt="{item.title}"
-         class="gallery__featured-image"
-         data="{d-gallery-main: 'true'}"/>
-```
-
-This keeps Visual Editor image decoration active and avoids Fluid trying to
-convert `TYPO3\CMS\Core\Resource\FileReference` objects to strings while
-compiling non-standard ViewHelper attributes.
-
-## Integration templates
-
-The theme base also references hidden optional integration sets for common
-extensions:
-
-| Set | Extension | Template paths |
-| --- | --- | --- |
-| `webconsulting/desiderio-solr` | `apache-solr-for-typo3/solr` | `Resources/Private/Solr/` |
-| `webconsulting/desiderio-news` | `georgringer/news` | `Resources/Private/Extensions/News/` |
-| `webconsulting/desiderio-blog` | `t3g/blog` | `Resources/Private/Extensions/Blog/` |
-
-The Solr, News, and Blog sets are hidden optional dependencies of
-`webconsulting/desiderio`, so sites using the theme base get the Desiderio
-template paths when the matching third-party extension is installed.
-
-## Fluid 5 components
-
-- **Atoms (16):** AspectRatio, Avatar, Badge, Button, Icon, Image, Input,
-  Label, Link, Progress, ScrollArea, Select, Separator, Skeleton, Textarea,
-  Typography
-- **Molecules (17):** Accordion, AccordionItem, Alert, AlertTitle,
-  AlertDescription, Card, CardHeader, CardContent, CardFooter, Table,
-  TableHeader, TableRow, TableCell, Tabs, TabsList, TabsTrigger, TabsContent
-- **Layout (4):** Container, Grid, Section, Stack
-
-Available in any Fluid template via
-`xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"`.
-
-## Frontend Build
-
-Fluid remains server-side rendered, but shadcn/Tailwind utility classes are
-compiled into a committed CSS file:
-
-```bash
-npm install
-npm run build:css
-```
-
-The frontend runtime is plain CSS plus Alpine/vanilla JS for dark mode,
-accordion, tabs, counters, and component interactions.
-
-## Testing & quality
+Install dependencies and run checks:
 
 ```bash
 composer install
 npm install
 npm run build:css
-
-# Unit tests + PHPStan max + content element audit in one command
 Build/Scripts/runTests.sh
-
-# Or à la carte
-Build/Scripts/runTests.sh phpunit
-Build/Scripts/runTests.sh phpstan
-Build/Scripts/runTests.sh audit
 ```
 
-GitHub Actions runs the same matrix on every push and pull request:
+Focused checks:
 
-- **PHPStan** at `level: max` with `phpstan/extension-installer`,
-  `saschaegerer/phpstan-typo3`, `phpstan/phpstan-strict-rules`, and
-  `phpstan/phpstan-phpunit`. The legacy seed-command type drift is
-  documented in `phpstan-baseline.neon` as a ratchet target.
-- **PHPUnit** ^11.5 across PHP 8.3 + 8.4 against TYPO3 ^14.3.
-- **Content element audit** (`scripts/audit-content-elements.php`) gating
-  the strict categories — `template_undeclared_field`,
-  `hardcoded_inline_style`, `hardcoded_color`, etc. — at zero.
-- **`composer audit`** with `abandoned: fail` and **`composer validate`**.
+```bash
+Build/Scripts/runTests.sh phpstan
+Build/Scripts/runTests.sh phpunit
+Build/Scripts/runTests.sh audit
+composer validate
+composer audit --no-dev --abandoned=fail
+```
 
-## Cleanup-loop reports
+The CI workflow runs PHPStan at max level, PHPUnit on supported PHP versions, composer validation/audit, and the strict Content Blocks audit.
 
-Every release cuts a fresh round of agentic-skill audits and stores them
-under `Documentation/Reports/`:
+## Documentation
 
-- `typo3-conformance.md` — code conventions, v14 deprecations, XLIFF
-  hygiene.
-- `typo3-security.md` — TYPO3-specific XSS / CSP / iframe surface.
-- `typo3-workspaces.md` — workspace overlay correctness, seed-command
-  guards.
-- `typo3-testing.md` — coverage estimate, CI parity.
-- `typo3-docs.md` — documentation freshness vs. shipped behaviour.
-- `security-audit.md` — generic OWASP / dependency / supply chain.
+Full documentation lives in `Documentation/`:
 
-Use these as the entry point when you want to know what the codebase
-already expects to handle.
+- `Documentation/Installation/Index.rst`
+- `Documentation/Configuration/Index.rst`
+- `Documentation/Editor/Index.rst`
+- `Documentation/Developer/Index.rst`
+- `Documentation/ShadcnUpgrade.md`
 
-## Contributing
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for the issue, branch, and PR
-workflow. The short form: open a branch off `main`, run
-`Build/Scripts/runTests.sh`, attach the relevant Documentation/Reports/
-findings to your PR.
-
-## Changelog
-
-See [CHANGELOG.md](CHANGELOG.md) for release notes.
-
-## License
-
-[GPL-2.0-or-later](LICENSE).
+Visual reference images are intentionally not shipped in the documentation. The extension is preset-driven and the output changes by site setting, so static references become stale quickly.

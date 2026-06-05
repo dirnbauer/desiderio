@@ -19,7 +19,7 @@
             <f:if condition="{data.company_logo}">
                 <div class="testimonial-featured__logo">
                     <f:for each="{data.company_logo}" as="logo">
-                        <f:image image="{logo}" maxWidth="180" alt="{f:if(condition: logo.alternative, then: logo.alternative, else: data.author_company)}" loading="lazy" decoding="async" class="testimonial-featured__logo-img"/>
+                        <f:image image="{logo}" maxWidth="280" alt="{f:if(condition: logo.alternative, then: logo.alternative, else: data.author_company)}" loading="lazy" decoding="async" class="testimonial-featured__logo-img"/>
                     </f:for>
                 </div>
             </f:if>

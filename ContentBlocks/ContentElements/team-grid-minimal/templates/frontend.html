@@ -20,14 +20,9 @@
                     <f:if condition="{member.image}">
                         <f:then>
                             <f:for each="{member.image}" as="fileReference">
-                                <f:variable name="avatarSrc"><f:uri.image image="{fileReference}" width="192" height="192" cropVariant="default" /></f:variable>
-                                <d:atom.avatar
-                                    size="xl"
-                                    class="team-grid-minimal__avatar"
-                                    src="{avatarSrc -> f:format.trim()}"
-                                    alt="{fileReference.alternative -> f:or(alternative: member.name)}"
-                                    fallback="{member.name -> f:format.crop(maxCharacters: 1)}"
-                                />
+                                <d:atom.avatar size="xl" class="team-grid-minimal__avatar">
+                                    <f:image image="{fileReference}" width="192" height="192" cropVariant="default" alt="{fileReference.alternative -> f:or(alternative: member.name)}" loading="lazy" decoding="async" class="team-grid-minimal__image"/>
+                                </d:atom.avatar>
                             </f:for>
                         </f:then>
                         <f:else>

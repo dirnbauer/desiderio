@@ -52,6 +52,26 @@ body[data-icon-library="remixicon"] .d-icon[data-icon-library="remixicon"] {
   display: block;
 }
 
+.d-checked-list-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  min-width: 0;
+  font-size: var(--d-text-sm, 0.875rem);
+  line-height: 1.45;
+}
+
+.d-checked-list-item__marker {
+  display: inline-flex;
+  flex-shrink: 0;
+  margin-block-start: 0.1em;
+  color: var(--primary);
+}
+
+.d-checked-list-item__text {
+  min-width: 0;
+}
+
 /* ==========================================================================
    1.1 ACCESSIBILITY PRIMITIVES
    Skip link, screen-reader utility, reduced-motion safety net.

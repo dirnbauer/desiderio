@@ -30,10 +30,9 @@
                     <ul class="product-feature__list">
                         <f:for each="{data.features}" as="feature">
                             <f:if condition="{feature.text}">
-                                <li class="product-feature__item">
-                                    <d:atom.icon name="check" size="sm"/>
-                                    <span>{feature -> f:render.text(field: 'text')}</span>
-                                </li>
+                                <d:molecule.checkedListItem class="product-feature__item">
+                                    {feature -> f:render.text(field: 'text')}
+                                </d:molecule.checkedListItem>
                             </f:if>
                         </f:for>
                     </ul>

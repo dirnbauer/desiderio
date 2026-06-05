@@ -10,8 +10,16 @@
 @media (max-width: 768px) {
     .textmedia__grid { grid-template-columns: 1fr; }
 }
-.textmedia__media {
+.textmedia__media-wrapper {
     width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    overflow: hidden;
+}
+.textmedia__media {
+    display: block;
+    width: 100%;
+    max-width: 100%;
     height: auto;
 }
 .textmedia__media--rounded {

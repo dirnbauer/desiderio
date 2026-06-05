@@ -1,0 +1,41 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:formvh="http://typo3.org/ns/TYPO3/CMS/Form/ViewHelpers"
+    xmlns:di="http://typo3.org/ns/Webconsulting/Desiderio/ViewHelpers"
+    xmlns:friendlycaptcha="http://typo3.org/ns/StudioMitte/FriendlyCaptcha/ViewHelpers"
+    data-namespace-typo3-fluid="true"
+>
+
+<formvh:renderRenderable renderable="{element}">
+    <f:variable name="captchaConfiguration" value="{friendlycaptcha:configuration()}" />
+    <f:variable name="friendlyCaptchaTestMode" value="{di:friendlyCaptchaTestModeEnabled()}" />
+
+    <f:if condition="{friendlyCaptchaTestMode}">
+        <f:then>
+            <f:form.hidden property="{element.identifier}" id="{element.uniqueIdentifier}" value="1" />
+        </f:then>
+        <f:else>
+            <f:if condition="{captchaConfiguration.enabled}">
+                <f:then>
+                    <f:asset.script defer="1" async="1" identifier="friendlycaptcha" src="{captchaConfiguration.jsPath}" useNonce="true" />
+                    <f:render partial="Field/Field" arguments="{element: element, doNotShowLabel: 1}" contentAs="elementContent">
+                        <f:form.hidden
+                            property="{element.identifier}"
+                            id="{element.uniqueIdentifier}"
+                            value="1"
+                            additionalAttributes="{formvh:translateElementProperty(element: element, property: 'fluidAdditionalAttributes')}"
+                        />
+                        <div class="frc-captcha" data-sitekey="{captchaConfiguration.siteKey}" {f:if(condition: '{captchaConfiguration.useEuPuzzleEndpoint}', then: 'data-api-endpoint="eu"')}></div>
+                    </f:render>
+                </f:then>
+                <f:else>
+                    <p class="text-sm text-destructive">
+                        <f:translate key="LLL:EXT:friendlycaptcha_official/Resources/Private/Language/locallang.xlf:configuration_missing" />
+                    </p>
+                </f:else>
+            </f:if>
+        </f:else>
+    </f:if>
+</formvh:renderRenderable>
+
+</html>

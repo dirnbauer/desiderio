@@ -18,7 +18,7 @@
 >
     <div class="grid min-w-0 gap-5 {f:if(condition: post.featuredImage, then: 'md:grid-cols-[minmax(12rem,16rem)_minmax(0,1fr)] md:items-start')}">
         <f:if condition="{post.featuredImage}">
-            <blogvh:link.post post="{post}" class="group/media block overflow-hidden rounded-xl bg-muted !no-underline outline-none ring-1 ring-border transition-colors hover:ring-primary/40 focus-visible:ring-3 focus-visible:ring-ring/40" additionalAttributes="{aria-hidden: 'true', tabindex: '-1'}">
+            <blogvh:link.post post="{post}" class="group/media block min-w-0 w-full max-w-full overflow-hidden rounded-xl bg-muted !no-underline outline-none ring-1 ring-border transition-colors hover:ring-primary/40 focus-visible:ring-3 focus-visible:ring-ring/40" additionalAttributes="{aria-hidden: 'true', tabindex: '-1'}">
                 <f:render partial="General/FeaturedImage" arguments="{image: post.featuredImage, settings: settings.lists.featuredImage}" />
             </blogvh:link.post>
         </f:if>

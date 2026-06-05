@@ -60,7 +60,12 @@
 </f:section>
 
 <f:section name="BlogPostPage">
-    <d:layout.grid cols="3" gap="lg">
+    <d:layout.stack gap="lg">
+        <div class="border-b border-border pb-5 md:pb-6">
+            <f:render section="BlogPlugin" arguments="{listType: 'blog_header'}"/>
+        </div>
+
+        <d:layout.grid cols="3" gap="lg">
         <article
             class="md:col-span-2"
             role="main"
@@ -68,8 +73,6 @@
             itemtype="https://schema.org/BlogPosting"
         >
             <d:layout.stack gap="xl">
-                <f:render section="BlogPlugin" arguments="{listType: 'blog_header'}"/>
-
                 <div class="prose max-w-none" itemprop="articleBody">
                     <f:if condition="{content.main}">
                         <f:render.contentArea contentArea="{content.main}"/>
@@ -94,7 +97,8 @@
                 </d:layout.stack>
             </div>
         </aside>
-    </d:layout.grid>
+        </d:layout.grid>
+    </d:layout.stack>
 </f:section>
 
 <f:section name="BlogListHeading">

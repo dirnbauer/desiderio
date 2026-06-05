@@ -546,6 +546,54 @@ main[tabindex]:focus-visible {
   contain: paint;
 }
 
+/* ==========================================================================
+   2.2 Blog media (responsive featured images)
+   ========================================================================== */
+
+.desiderio-blog figure {
+  margin: 0;
+}
+
+.desiderio-blog-media {
+  max-width: 100%;
+}
+
+.desiderio-blog-media--inline .desiderio-blog-media__image {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+
+.desiderio-blog-media--cover {
+  position: relative;
+  display: block;
+  width: 100%;
+  overflow: hidden;
+}
+
+.desiderio-blog-media--card {
+  aspect-ratio: 16 / 10;
+}
+
+.desiderio-blog-media--hero {
+  aspect-ratio: 21 / 9;
+}
+
+.desiderio-blog-media--cover .desiderio-blog-media__image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  object-position: center;
+}
+
+.desiderio-blog-post__media {
+  width: 100%;
+  min-width: 0;
+  max-width: 48rem;
+}
+
 .d-powermail .frc-captcha :where(iframe, div),
 .desiderio-form .frc-captcha :where(iframe, div) {
   max-width: 100%;

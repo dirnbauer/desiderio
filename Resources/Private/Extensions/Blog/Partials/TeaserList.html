@@ -17,7 +17,7 @@
         <f:then>
             <f:switch expression="{listType}">
                 <f:case value="related">
-                    <d:layout.grid cols="3" gap="lg" class="items-start">
+                    <d:layout.grid cols="2" gap="md" class="items-stretch">
                         <f:for each="{posts}" iteration="iterator" as="post">
                             <blogvh:cache post="{post}" />
                             <f:render partial="Teaser/RelatedPost" arguments="{post: post, settings: settings, iterator: iterator}" />

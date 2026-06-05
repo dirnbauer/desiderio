@@ -7,31 +7,34 @@
 <f:layout name="Post" />
 
 <f:section name="Content">
-    <header class="min-w-0 border-b border-border pb-8">
-        <d:layout.stack gap="lg">
-            <f:if condition="{post.featuredImage}">
-                <figure class="overflow-hidden rounded-xl border border-border bg-muted">
-                    <f:render partial="General/FeaturedImage" arguments="{image: post.featuredImage, settings: settings.post.featuredImage, featured: 1}" />
-                </figure>
+    <header class="desiderio-blog-post__intro min-w-0">
+        <d:layout.stack gap="sm" class="max-w-3xl">
+            <d:atom.badge variant="secondary" class="w-fit gap-1">
+                <span data-icon="inline-start" aria-hidden="true"><d:atom.icon name="book-open" size="xs"/></span>
+                <span><f:translate extensionName="Blog" key="pagelayout.label.blogpost" default="Blog post"/></span>
+            </d:atom.badge>
+
+            <d:atom.typography tag="h1" variant="h3" class="text-balance tracking-normal md:text-3xl" itemprop="headline">{post.title}</d:atom.typography>
+
+            <f:if condition="{post.abstract} || {post.description}">
+                <d:atom.typography variant="muted" class="max-w-2xl text-pretty leading-relaxed" itemprop="description">
+                    <f:if condition="{post.abstract}">
+                        <f:then>{post.abstract}</f:then>
+                        <f:else>{post.description}</f:else>
+                    </f:if>
+                </d:atom.typography>
             </f:if>
 
-            <d:layout.stack gap="md" class="max-w-4xl">
-                <d:atom.typography tag="h1" variant="h1" class="text-balance leading-tight" itemprop="headline">{post.title}</d:atom.typography>
-
-                <f:if condition="{post.abstract} || {post.description}">
-                    <d:atom.typography variant="lead" class="max-w-3xl text-pretty leading-8" itemprop="description">
-                        <f:if condition="{post.abstract}">
-                            <f:then>{post.abstract}</f:then>
-                            <f:else>{post.description}</f:else>
-                        </f:if>
-                    </d:atom.typography>
-                </f:if>
-
-                <f:if condition="{settings.meta.postheader.enable}">
-                    <f:render partial="Meta/PostHeader" arguments="{_all}" />
-                </f:if>
-            </d:layout.stack>
+            <f:if condition="{settings.meta.postheader.enable}">
+                <f:render partial="Meta/PostHeader" arguments="{_all}" />
+            </f:if>
         </d:layout.stack>
+
+        <f:if condition="{post.featuredImage}">
+            <div class="desiderio-blog-post__media mt-5 overflow-hidden rounded-lg border border-border bg-muted">
+                <f:render partial="General/FeaturedImage" arguments="{image: post.featuredImage, settings: settings.post.featuredImage, layout: 'inline'}" />
+            </div>
+        </f:if>
     </header>
 </f:section>
 

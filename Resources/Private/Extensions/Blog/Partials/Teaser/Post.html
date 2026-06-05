@@ -18,7 +18,7 @@
 >
     <d:molecule.card class="h-full border-border/80 bg-card transition-colors hover:border-primary/40">
         <f:if condition="{post.featuredImage}">
-            <blogvh:link.post post="{post}" class="block overflow-hidden !no-underline" additionalAttributes="{aria-hidden: 'true', tabindex: '-1'}">
+            <blogvh:link.post post="{post}" class="block min-w-0 w-full max-w-full overflow-hidden !no-underline" additionalAttributes="{aria-hidden: 'true', tabindex: '-1'}">
                 <f:render partial="General/FeaturedImage" arguments="{image: post.featuredImage, settings: settings.teaser.featuredImage}" />
             </blogvh:link.post>
         </f:if>

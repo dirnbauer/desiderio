@@ -7,9 +7,7 @@
 
 <d:layout.stack gap="lg" class="desiderio-form">
     <f:render partial="General/FlashMessages" arguments="{_all}"/>
-    <div class="rounded-lg border border-border bg-background/70 p-4">
-        <formvh:render factoryClass="T3G\AgencyPack\Blog\Domain\Factory\CommentFormFactory" />
-    </div>
+    <formvh:render factoryClass="Webconsulting\Desiderio\Domain\Factory\BlogCommentFormFactory" />
 </d:layout.stack>
 
 </html>

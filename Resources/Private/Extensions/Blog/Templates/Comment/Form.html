@@ -8,37 +8,34 @@
 
 <f:section name="Content">
     <f:if condition="{post} && {settings.comments.active}">
-        <section class="scroll-mt-24" id="postcommentform-{post.uid}" aria-labelledby="postcommentform-{post.uid}-title">
+        <section class="scroll-mt-24 border-t border-border pt-8" id="postcommentform-{post.uid}" aria-labelledby="postcommentform-{post.uid}-title">
             <f:variable name="formName" value="Local" />
             <f:if condition="{settings.comments.disqus.enable}"><f:variable name="formName" value="Disqus" /></f:if>
             <f:if condition="{post.commentsActive}"><f:else><f:variable name="formName" value="Closed" /></f:else></f:if>
 
-            <d:molecule.card class="border-border bg-card">
-                <d:molecule.cardHeader class="border-b border-border/70 pb-4">
-                    <div class="flex items-start gap-3">
-                        <span class="inline-flex size-9 shrink-0 items-center justify-center rounded-md bg-primary/10 text-primary" aria-hidden="true">
-                            <d:atom.icon name="{f:if(condition: settings.comments.disqus.enable, then: 'messages', else: 'send')}" size="sm"/>
-                        </span>
-                        <div class="space-y-1">
-                            <d:atom.typography tag="h2" variant="h3" id="postcommentform-{post.uid}-title">
-                                <f:if condition="{settings.comments.disqus.enable}">
-                                    <f:then><f:translate extensionName="Blog" key="headline.comments">Comments</f:translate></f:then>
-                                    <f:else><f:translate extensionName="Blog" key="headline.commentform">Leave a comment</f:translate></f:else>
-                                </f:if>
-                            </d:atom.typography>
-                            <p class="text-sm leading-6 text-muted-foreground">
-                                <f:if condition="{post.commentsActive}">
-                                    <f:then><f:translate extensionName="Blog" key="commentform.description">Share your perspective on this post.</f:translate></f:then>
-                                    <f:else><f:translate extensionName="Blog" key="message.comments_closed">Comments are closed.</f:translate></f:else>
-                                </f:if>
-                            </p>
-                        </div>
+            <d:layout.stack gap="md">
+                <header class="flex items-start gap-3">
+                    <span class="inline-flex size-9 shrink-0 items-center justify-center rounded-md bg-primary/10 text-primary" aria-hidden="true">
+                        <d:atom.icon name="{f:if(condition: settings.comments.disqus.enable, then: 'messages', else: 'send')}" size="sm"/>
+                    </span>
+                    <div class="space-y-1">
+                        <d:atom.typography tag="h2" variant="h3" id="postcommentform-{post.uid}-title">
+                            <f:if condition="{settings.comments.disqus.enable}">
+                                <f:then><f:translate extensionName="Blog" key="headline.comments">Comments</f:translate></f:then>
+                                <f:else><f:translate extensionName="Blog" key="headline.commentform">Leave a comment</f:translate></f:else>
+                            </f:if>
+                        </d:atom.typography>
+                        <p class="text-sm leading-6 text-muted-foreground">
+                            <f:if condition="{post.commentsActive}">
+                                <f:then><f:translate extensionName="Blog" key="commentform.description">Share your perspective on this post.</f:translate></f:then>
+                                <f:else><f:translate extensionName="Blog" key="message.comments_closed">Comments are closed.</f:translate></f:else>
+                            </f:if>
+                        </p>
                     </div>
-                </d:molecule.cardHeader>
-                <d:molecule.cardContent class="pt-0">
-                    <f:render partial="Comments/Form/{formName}" arguments="{_all}" />
-                </d:molecule.cardContent>
-            </d:molecule.card>
+                </header>
+
+                <f:render partial="Comments/Form/{formName}" arguments="{_all}" />
+            </d:layout.stack>
         </section>
     </f:if>
 </f:section>

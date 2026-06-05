@@ -2,7 +2,7 @@
     border-bottom: 1px solid var(--d-border);
 }
 .header-page__inner {
-    padding-block: var(--d-spacing-8);
+    padding-block: var(--d-spacing-6);
 }
 .header-page--center .header-page__inner {
     text-align: center;
@@ -14,22 +14,22 @@
     font-size: var(--d-text-sm);
     font-weight: 500;
     color: var(--d-primary);
-    margin-bottom: var(--d-spacing-2);
+    margin-bottom: var(--d-spacing-1);
     text-transform: uppercase;
     letter-spacing: 0.05em;
 }
 .header-page__title {
-    font-size: var(--d-text-4xl);
+    font-size: var(--d-text-2xl);
     font-weight: 700;
-    line-height: 1.1;
-    margin-bottom: var(--d-spacing-3);
+    line-height: 1.15;
+    margin-bottom: var(--d-spacing-2);
     text-wrap: balance;
 }
 @media (min-width: 768px) {
-    .header-page__title { font-size: var(--d-text-5xl); }
+    .header-page__title { font-size: var(--d-text-3xl); }
 }
 .header-page__description {
-    font-size: var(--d-text-lg);
+    font-size: var(--d-text-base);
     color: var(--d-muted-foreground);
     max-width: 42rem;
     text-wrap: pretty;
@@ -38,5 +38,5 @@
     margin-inline: auto;
 }
 .header-page__actions {
-    margin-top: var(--d-spacing-4);
+    margin-top: var(--d-spacing-3);
 }

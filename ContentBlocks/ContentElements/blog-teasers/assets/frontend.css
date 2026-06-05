@@ -40,13 +40,17 @@
     .blog-teasers__item:hover { transform: none; }
 }
 
-.blog-teasers__image-wrapper { overflow: hidden; }
-.blog-teasers__image {
-    width: 100%;
-    height: auto;
+.blog-teasers__image-wrapper {
     aspect-ratio: 16 / 9;
-    object-fit: cover;
+    overflow: hidden;
+}
+.blog-teasers__image {
     display: block;
+    width: 100%;
+    height: 100%;
+    max-width: 100%;
+    object-fit: cover;
+    object-position: center;
 }
 
 .blog-teasers__body {

@@ -224,6 +224,9 @@
   .frame :where(img, video, iframe),
   .ce-frame :where(img, video, iframe),
   .prose :where(img, video, iframe) {
+    display: block;
+    max-width: 100%;
+    height: auto;
     border-radius: var(--radius-lg);
   }
 

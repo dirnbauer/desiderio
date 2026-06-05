@@ -8,15 +8,16 @@
 
 <f:section name="Stage">
     <!--TYPO3SEARCH_begin-->
-    <f:if condition="{content.stage}">
-        <d:layout.section spacing="md" class="border-b bg-muted/30">
-            <d:layout.container size="lg" class="max-w-5xl">
-                <div class="max-w-3xl">
+    <d:layout.section spacing="none" class="border-b border-border py-5 md:py-6">
+        <d:layout.container size="xl">
+            <f:render section="BlogPlugin" arguments="{listType: 'blog_header'}"/>
+            <f:if condition="{content.stage}">
+                <div class="mt-4 max-w-3xl">
                     <f:render.contentArea contentArea="{content.stage}"/>
                 </div>
-            </d:layout.container>
-        </d:layout.section>
-    </f:if>
+            </f:if>
+        </d:layout.container>
+    </d:layout.section>
     <!--TYPO3SEARCH_end-->
 </f:section>
 
@@ -48,8 +49,6 @@
 <f:section name="BlogPostContent">
     <article role="main" itemscope="itemscope" itemtype="https://schema.org/BlogPosting">
         <d:layout.stack gap="xl">
-            <f:render section="BlogPlugin" arguments="{listType: 'blog_header'}"/>
-
             <div itemprop="articleBody">
                 <f:if condition="{content.main}">
                     <f:render.contentArea contentArea="{content.main}"/>

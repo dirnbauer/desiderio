@@ -9,7 +9,12 @@
 <f:section name="Main">
     <d:layout.section spacing="md" class="desiderio-blog desiderio-blog--post bg-background">
         <d:layout.container size="xl">
-            <div class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_20rem]">
+            <d:layout.stack gap="lg">
+                <div class="border-b border-border pb-5 md:pb-6">
+                    <f:render section="renderPlugin" arguments="{listType: 'blog_header'}" />
+                </div>
+
+                <div class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_20rem]">
                 <article
                     class="min-w-0"
                     role="main"
@@ -17,7 +22,6 @@
                     itemtype="https://schema.org/BlogPosting"
                 >
                     <d:layout.stack gap="xl">
-                        <f:render section="renderPlugin" arguments="{listType: 'blog_header'}" />
                         <div class="prose max-w-none" itemprop="articleBody">
                             <f:if condition="{blogContentAreas.content}">
                                 <f:render.contentArea contentArea="{blogContentAreas.content}" />
@@ -38,7 +42,8 @@
                         </d:layout.stack>
                     </div>
                 </aside>
-            </div>
+                </div>
+            </d:layout.stack>
         </d:layout.container>
     </d:layout.section>
 </f:section>

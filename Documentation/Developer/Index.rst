@@ -25,9 +25,17 @@ Desiderio is intentionally layered:
     Component layer
       Fluid 5 atoms, molecules, and layouts with typed arguments
 
-The component layer currently contains 16 atoms, 18 molecules, and 4
+The component layer currently contains 17 atoms, 27 molecules, and 4
 layout primitives. Content elements compose those primitives instead of
 hardcoding one-off markup.
+
+See :ref:`developer-atomic-design` for the layer rules, migration order,
+and reference content elements.
+
+..  toctree::
+    :maxdepth: 1
+
+    AtomicDesign
 
 ..  _developer-sets:
 

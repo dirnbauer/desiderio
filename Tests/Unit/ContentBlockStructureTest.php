@@ -324,6 +324,54 @@ final class ContentBlockStructureTest extends TestCase
         }
     }
 
+    public function testAtomComposedPricingContentElements(): void
+    {
+        $composed = [
+            'card-pricing' => [
+                'd:atom.button',
+                'd:molecule.card',
+                'd:atom.typography',
+            ],
+            'bundle-pricing' => [
+                'd:atom.button',
+                'd:molecule.card',
+                'd:atom.typography',
+                'd:atom.badge',
+            ],
+            'pricing-annual-monthly' => [
+                'd:atom.button',
+                'd:molecule.card',
+                'd:atom.typography',
+                'd:atom.icon',
+            ],
+        ];
+
+        foreach ($composed as $slug => $requiredTags) {
+            $templatePath = self::CONTENT_BLOCKS_DIR . "/{$slug}/templates/frontend.html";
+            self::assertFileExists($templatePath, "{$slug} frontend template must exist");
+            $template = (string) file_get_contents($templatePath);
+
+            foreach ($requiredTags as $tag) {
+                self::assertStringContainsString(
+                    $tag,
+                    $template,
+                    "{$slug} must compose {$tag} instead of duplicating markup or styles"
+                );
+            }
+
+            self::assertStringNotContainsString(
+                '__button--primary',
+                $template,
+                "{$slug} must not ship custom primary button BEM modifiers; use d:atom.button variant instead"
+            );
+            self::assertStringNotContainsString(
+                'f:link.typolink',
+                $template,
+                "{$slug} must use d:atom.button for CTAs instead of f:link.typolink"
+            );
+        }
+    }
+
     public function testIconFieldsRenderThroughSharedIconAtom(): void
     {
         $templateFiles = array_merge(

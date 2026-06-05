@@ -10,13 +10,13 @@
         <f:if condition="{data.eyebrow} || {data.header} || {data.subheadline}">
             <header class="pricing-annual-monthly__intro">
                 <f:if condition="{data.eyebrow}">
-                    <p class="pricing-annual-monthly__eyebrow">{data -> f:render.text(field: 'eyebrow')}</p>
+                    <d:atom.typography variant="small" class="pricing-annual-monthly__eyebrow">{data -> f:render.text(field: 'eyebrow')}</d:atom.typography>
                 </f:if>
                 <f:if condition="{data.header}">
-                    <h2 class="pricing-annual-monthly__headline">{data -> f:render.text(field: 'header')}</h2>
+                    <d:atom.typography tag="h2" variant="h2" class="pricing-annual-monthly__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
                 </f:if>
                 <f:if condition="{data.subheadline}">
-                    <p class="pricing-annual-monthly__description">{data -> f:render.text(field: 'subheadline')}</p>
+                    <d:atom.typography variant="muted" class="pricing-annual-monthly__description">{data -> f:render.text(field: 'subheadline')}</d:atom.typography>
                 </f:if>
             </header>
         </f:if>
@@ -24,7 +24,9 @@
         <ul class="pricing-annual-monthly__grid" role="list">
             <f:for each="{data.plans}" as="tier" iteration="iter">
                 <li class="pricing-annual-monthly__item">
-                    <article class="pricing-annual-monthly__plan {f:if(condition: tier.is_featured, then: 'pricing-annual-monthly__plan--featured')}" aria-labelledby="pricing-annual-monthly-{data.uid}-name-{iter.cycle}">
+                    <d:molecule.card
+                        class="pricing-annual-monthly__plan h-full {f:if(condition: tier.is_featured, then: 'pricing-annual-monthly__plan--featured ring-2 ring-primary')}"
+                    >
                         <f:if condition="{tier.is_featured}">
                             <div class="pricing-annual-monthly__ribbon">
                                 <d:atom.badge>
@@ -33,45 +35,68 @@
                             </div>
                         </f:if>
 
-                        <h3 class="pricing-annual-monthly__name" id="pricing-annual-monthly-{data.uid}-name-{iter.cycle}">{tier -> f:render.text(field: 'name')}</h3>
+                        <d:molecule.cardHeader class="pricing-annual-monthly__header">
+                            <d:atom.typography
+                                tag="h3"
+                                variant="h4"
+                                id="pricing-annual-monthly-{data.uid}-name-{iter.cycle}"
+                                class="pricing-annual-monthly__name"
+                            >
+                                {tier -> f:render.text(field: 'name')}
+                            </d:atom.typography>
 
-                        <div class="pricing-annual-monthly__prices">
-                            <p class="pricing-annual-monthly__price-row">
-                                <span class="pricing-annual-monthly__price">{tier -> f:render.text(field: 'monthly_price')}</span>
-                                <span class="pricing-annual-monthly__period"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:per_month"/></span>
-                            </p>
-                            <p class="pricing-annual-monthly__annual">
-                                <span class="pricing-annual-monthly__annual-price">{tier -> f:render.text(field: 'annual_price')}<span class="pricing-annual-monthly__annual-period"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:per_year"/></span></span>
-                                <f:if condition="{tier.savings}">
-                                    <span class="pricing-annual-monthly__savings">
-                                        <d:atom.badge variant="secondary">{tier -> f:render.text(field: 'savings')}</d:atom.badge>
-                                    </span>
-                                </f:if>
-                            </p>
-                        </div>
+                            <div class="pricing-annual-monthly__prices">
+                                <p class="pricing-annual-monthly__price-row">
+                                    <span class="pricing-annual-monthly__price">{tier -> f:render.text(field: 'monthly_price')}</span>
+                                    <d:atom.typography tag="span" variant="muted" class="pricing-annual-monthly__period">
+                                        <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:per_month"/>
+                                    </d:atom.typography>
+                                </p>
+                                <p class="pricing-annual-monthly__annual">
+                                    <d:atom.typography tag="span" variant="muted" class="pricing-annual-monthly__annual-price">
+                                        {tier -> f:render.text(field: 'annual_price')}
+                                        <span class="pricing-annual-monthly__annual-period">
+                                            <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:per_year"/>
+                                        </span>
+                                    </d:atom.typography>
+                                    <f:if condition="{tier.savings}">
+                                        <span class="pricing-annual-monthly__savings">
+                                            <d:atom.badge variant="secondary">{tier -> f:render.text(field: 'savings')}</d:atom.badge>
+                                        </span>
+                                    </f:if>
+                                </p>
+                            </div>
+                        </d:molecule.cardHeader>
 
                         <f:if condition="{tier.features}">
-                            <ul class="pricing-annual-monthly__features" role="list">
-                                <f:for each="{tier.features}" as="feature">
-                                    <f:if condition="{feature.text}">
-                                        <li class="pricing-annual-monthly__feature">
-                                            <svg class="pricing-annual-monthly__check" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M20 6 9 17l-5-5"/></svg>
-                                            <span>{feature -> f:render.text(field: 'text')}</span>
-                                        </li>
-                                    </f:if>
-                                </f:for>
-                            </ul>
+                            <d:molecule.cardContent class="pricing-annual-monthly__content">
+                                <ul class="pricing-annual-monthly__features" role="list">
+                                    <f:for each="{tier.features}" as="feature">
+                                        <f:if condition="{feature.text}">
+                                            <li class="pricing-annual-monthly__feature">
+                                                <d:atom.icon name="check" size="sm" class="pricing-annual-monthly__check" aria-hidden="true"/>
+                                                <d:atom.typography tag="span" variant="small">{feature -> f:render.text(field: 'text')}</d:atom.typography>
+                                            </li>
+                                        </f:if>
+                                    </f:for>
+                                </ul>
+                            </d:molecule.cardContent>
                         </f:if>
 
                         <f:if condition="{tier.button_text} && {tier.button_link.url}">
-                            <f:variable name="planCtaLabel">{tier.button_text} – {tier.name}</f:variable>
-                            <div class="pricing-annual-monthly__footer">
-                                <f:link.typolink parameter="{tier.button_link}" class="pricing-annual-monthly__button {f:if(condition: tier.is_featured, then: 'pricing-annual-monthly__button--primary', else: 'pricing-annual-monthly__button--outline')}" additionalAttributes="{'aria-label': planCtaLabel}">
-                                    {tier -> f:render.text(field: 'button_text')}
-                                </f:link.typolink>
-                            </div>
+                            <d:molecule.cardFooter class="pricing-annual-monthly__footer">
+                                <d:atom.button
+                                    href="{tier.button_link.url}"
+                                    target="{tier.button_link.target}"
+                                    variant="{f:if(condition: tier.is_featured, then: 'default', else: 'outline')}"
+                                    class="pricing-annual-monthly__button w-full"
+                                >
+                                    <span>{tier -> f:render.text(field: 'button_text')}</span>
+                                    <span class="d-sr-only"> – {tier.name}</span>
+                                </d:atom.button>
+                            </d:molecule.cardFooter>
                         </f:if>
-                    </article>
+                    </d:molecule.card>
                 </li>
             </f:for>
         </ul>

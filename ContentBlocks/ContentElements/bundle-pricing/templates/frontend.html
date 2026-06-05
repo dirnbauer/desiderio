@@ -6,48 +6,57 @@
 <f:asset.css identifier="d-bundle-pricing" href="{cb:assetPath()}/frontend.css"/>
 
 <d:layout.section class="bundle-pricing">
-    <d:layout.container>
-        <div class="bundle-pricing__card">
-            <header class="bundle-pricing__header">
+    <d:layout.container size="sm">
+        <d:molecule.card class="bundle-pricing__card">
+            <d:molecule.cardHeader class="bundle-pricing__header">
                 <f:if condition="{data.eyebrow}">
-                    <span class="bundle-pricing__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span>
+                    <d:atom.typography variant="small" class="bundle-pricing__eyebrow">{data -> f:render.text(field: 'eyebrow')}</d:atom.typography>
                 </f:if>
                 <f:if condition="{data.header}">
-                    <h2 class="bundle-pricing__headline">{data -> f:render.text(field: 'header')}</h2>
+                    <d:atom.typography tag="h2" variant="h3" class="bundle-pricing__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
                 </f:if>
                 <f:if condition="{data.description}">
-                    <p class="bundle-pricing__description">{data -> f:render.text(field: 'description')}</p>
+                    <d:atom.typography variant="muted" class="bundle-pricing__description">{data -> f:render.text(field: 'description')}</d:atom.typography>
                 </f:if>
-            </header>
+            </d:molecule.cardHeader>
 
-            <div class="bundle-pricing__items">
-                <f:for each="{data.items}" as="item">
-                    <div class="bundle-pricing__item">
-                        <div class="bundle-pricing__item-info">
-                            <span class="bundle-pricing__item-name">{item -> f:render.text(field: 'name')}</span>
-                            <f:if condition="{item.description_text}">
-                                <span class="bundle-pricing__item-desc">{item -> f:render.text(field: 'description_text')}</span>
+            <d:molecule.cardContent class="bundle-pricing__content">
+                <div class="bundle-pricing__items">
+                    <f:for each="{data.items}" as="item">
+                        <div class="bundle-pricing__item">
+                            <div class="bundle-pricing__item-info">
+                                <d:atom.typography tag="span" variant="small" class="bundle-pricing__item-name font-semibold text-foreground">{item -> f:render.text(field: 'name')}</d:atom.typography>
+                                <f:if condition="{item.description_text}">
+                                    <d:atom.typography variant="muted" class="bundle-pricing__item-desc">{item -> f:render.text(field: 'description_text')}</d:atom.typography>
+                                </f:if>
+                            </div>
+                            <f:if condition="{item.individual_price}">
+                                <d:atom.typography variant="muted" class="bundle-pricing__item-price">{item -> f:render.text(field: 'individual_price')}</d:atom.typography>
                             </f:if>
                         </div>
-                        <f:if condition="{item.individual_price}">
-                            <span class="bundle-pricing__item-price">{item -> f:render.text(field: 'individual_price')}</span>
-                        </f:if>
-                    </div>
-                </f:for>
-            </div>
+                    </f:for>
+                </div>
+            </d:molecule.cardContent>
 
-            <div class="bundle-pricing__footer">
+            <d:molecule.cardFooter class="bundle-pricing__footer">
                 <div class="bundle-pricing__total">
                     <span class="bundle-pricing__bundle-price">{data -> f:render.text(field: 'bundle_price')}</span>
                     <f:if condition="{data.savings_text}">
-                        <span class="bundle-pricing__savings">{data -> f:render.text(field: 'savings_text')}</span>
+                        <d:atom.badge variant="secondary" class="bundle-pricing__savings">{data -> f:render.text(field: 'savings_text')}</d:atom.badge>
                     </f:if>
                 </div>
                 <f:if condition="{data.button_text} && {data.button_link.url}">
-                    <f:link.typolink parameter="{data.button_link}" class="bundle-pricing__button">{data -> f:render.text(field: 'button_text')}</f:link.typolink>
+                    <d:atom.button
+                        href="{data.button_link.url}"
+                        target="{data.button_link.target}"
+                        class="bundle-pricing__button w-full sm:w-auto"
+                    >
+                        {data -> f:render.text(field: 'button_text')}
+                    </d:atom.button>
                 </f:if>
-            </div>
-        </div>
+            </d:molecule.cardFooter>
+        </d:molecule.card>
     </d:layout.container>
 </d:layout.section>
+
 </html>

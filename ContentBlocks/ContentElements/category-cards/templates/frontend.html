@@ -35,8 +35,9 @@
                     </f:if>
                     <f:if condition="{item.link.url}">
                         <f:variable name="exploreLabel">{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:cta.explore')}</f:variable>
-                        <d:atom.link href="{item.link.url}" target="{item.link.target}" variant="muted" class="category-cards__link"> f:format.stripTags() -> f:format.trim()}'}">
+                        <d:atom.link href="{item.link.url}" target="{item.link.target}" variant="muted" class="category-cards__link">
                             <span>{exploreLabel}</span>
+                            <span class="sr-only">: {item -> f:render.text(field: 'title')}</span>
                             <span class="category-cards__link-arrow" aria-hidden="true">&rarr;</span>
                         </d:atom.link>
                     </f:if>

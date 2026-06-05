@@ -760,7 +760,7 @@ final class ContentBlockStructureTest extends TestCase
         $elementCount = 0;
         foreach ($seed['groups'] as $group) {
             self::assertIsArray($group);
-            self::assertArrayHasKey('pageTitle', $group);
+            self::assertArrayHasKey('groupTitle', $group);
             $groupElementCount = count($group['elements'] ?? []);
             self::assertGreaterThanOrEqual(20, $groupElementCount, (string)($group['groupId'] ?? 'group') . ' should seed about 25 elements');
             self::assertLessThanOrEqual(30, $groupElementCount, (string)($group['groupId'] ?? 'group') . ' should seed about 25 elements');

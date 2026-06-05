@@ -7,6 +7,7 @@ namespace Webconsulting\Desiderio\Tests\Unit;
 use PHPUnit\Framework\TestCase;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use Webconsulting\Desiderio\Command\PowermailDemoSeeder;
+use Webconsulting\Desiderio\Seeding\DatabaseSchemaHelper;
 
 final class PowermailIntegrationTest extends TestCase
 {
@@ -187,7 +188,10 @@ final class PowermailIntegrationTest extends TestCase
 
     public function testPowermailDemoSeederDefinesFiveStandardFormsWithFriendlyCaptcha(): void
     {
-        $seeder = new PowermailDemoSeeder($this->createMock(ConnectionPool::class));
+        $seeder = new PowermailDemoSeeder(
+            $this->createMock(ConnectionPool::class),
+            new DatabaseSchemaHelper($this->createMock(ConnectionPool::class)),
+        );
         $forms = $seeder->getDemoForms();
 
         self::assertCount(5, $forms);

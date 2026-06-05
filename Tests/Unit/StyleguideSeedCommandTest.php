@@ -12,9 +12,17 @@ use TYPO3\CMS\Core\Context\WorkspaceAspect;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Resource\StorageRepository;
 use Webconsulting\Desiderio\Command\SeedStyleguidePagesCommand;
+use Webconsulting\Desiderio\Data\ContentBlockDefinitionRegistry;
+use Webconsulting\Desiderio\Seeding\DatabaseSchemaHelper;
 
 final class StyleguideSeedCommandTest extends TestCase
 {
+    protected function tearDown(): void
+    {
+        ContentBlockDefinitionRegistry::resetCache();
+        parent::tearDown();
+    }
+
     public function testCommandUsesConfiguredParentPageAndStyleguideFixtures(): void
     {
         $commandFile = __DIR__ . '/../../Classes/Command/SeedStyleguidePagesCommand.php';
@@ -49,6 +57,7 @@ final class StyleguideSeedCommandTest extends TestCase
             $this->createMock(ConnectionPool::class),
             $context,
             $this->createMock(StorageRepository::class),
+            new DatabaseSchemaHelper($this->createMock(ConnectionPool::class)),
         );
 
         $tester = new CommandTester($command);
@@ -271,7 +280,7 @@ final class StyleguideSeedCommandTest extends TestCase
     public function testCollectionTableNamesAreDerivedUniquelyFromContentBlockDefinitions(): void
     {
         $command = $this->createCommand();
-        $this->setProperty($command, 'contentBlockDefinitions', [
+        ContentBlockDefinitionRegistry::setDefinitionsForTesting([
             'desiderio_footercolumns' => [
                 'fields' => [],
                 'collections' => [
@@ -391,7 +400,7 @@ final class StyleguideSeedCommandTest extends TestCase
     public function testHeaderFixtureIsIgnoredForHeaderlessContentBlocks(): void
     {
         $command = $this->createCommand();
-        $this->setProperty($command, 'contentBlockDefinitions', [
+        ContentBlockDefinitionRegistry::setDefinitionsForTesting([
             'desiderio_contentdivider' => [
                 'fields' => [
                     'variant' => [
@@ -432,7 +441,7 @@ final class StyleguideSeedCommandTest extends TestCase
     public function testInvalidSelectFixtureValuesFallBackToConfiguredDefaults(): void
     {
         $command = $this->createCommand();
-        $this->setProperty($command, 'contentBlockDefinitions', [
+        ContentBlockDefinitionRegistry::setDefinitionsForTesting([
             'desiderio_tabs' => [
                 'fields' => [
                     'variant' => [
@@ -469,7 +478,7 @@ final class StyleguideSeedCommandTest extends TestCase
     public function testDateTimeFixtureValuesAreNormalizedToTimestamps(): void
     {
         $command = $this->createCommand();
-        $this->setProperty($command, 'contentBlockDefinitions', [
+        ContentBlockDefinitionRegistry::setDefinitionsForTesting([
             'desiderio_herocountdown' => [
                 'fields' => [
                     'header' => [
@@ -753,7 +762,7 @@ final class StyleguideSeedCommandTest extends TestCase
     public function testLegacyStatsFixturesAreConvertedToChartDataJson(): void
     {
         $command = $this->createCommand();
-        $this->setProperty($command, 'contentBlockDefinitions', [
+        ContentBlockDefinitionRegistry::setDefinitionsForTesting([
             'desiderio_chart' => [
                 'fields' => [
                     'header' => [
@@ -799,7 +808,7 @@ final class StyleguideSeedCommandTest extends TestCase
     public function testSparseChartFixturesReceiveModernDiagramControls(): void
     {
         $command = $this->createCommand();
-        $this->setProperty($command, 'contentBlockDefinitions', [
+        ContentBlockDefinitionRegistry::setDefinitionsForTesting([
             'desiderio_chart' => [
                 'fields' => [
                     'header' => [
@@ -914,7 +923,7 @@ final class StyleguideSeedCommandTest extends TestCase
     public function testMapEmbedDefaultsUseEmbeddableMapUrl(): void
     {
         $command = $this->createCommand();
-        $this->setProperty($command, 'contentBlockDefinitions', [
+        ContentBlockDefinitionRegistry::setDefinitionsForTesting([
             'desiderio_mapembed' => [
                 'fields' => [
                     'header' => [
@@ -967,7 +976,7 @@ final class StyleguideSeedCommandTest extends TestCase
     {
         $command = $this->createCommand();
 
-        $definition = $this->invokeMethod($command, 'buildContentBlockDefinition', [[
+        $definition = ContentBlockDefinitionRegistry::buildDefinitionFromConfig([
             'name' => 'desiderio/demo',
             'prefixFields' => false,
             'fields' => [
@@ -986,7 +995,7 @@ final class StyleguideSeedCommandTest extends TestCase
                     ],
                 ],
             ],
-        ]]);
+        ]);
         self::assertIsArray($definition);
         $collections = $definition['collections'] ?? null;
         self::assertIsArray($collections);
@@ -1004,6 +1013,7 @@ final class StyleguideSeedCommandTest extends TestCase
             $this->createMock(ConnectionPool::class),
             $this->createMock(Context::class),
             $this->createMock(StorageRepository::class),
+            new DatabaseSchemaHelper($this->createMock(ConnectionPool::class)),
         );
     }
 

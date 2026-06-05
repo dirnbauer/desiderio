@@ -8,6 +8,7 @@ use Doctrine\DBAL\ArrayParameterType;
 use Doctrine\DBAL\ParameterType;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use TYPO3\CMS\Core\Database\ConnectionPool;
+use Webconsulting\Desiderio\Seeding\DatabaseSchemaHelper;
 
 /**
  * Seeds optional powermail demo records for the existing Desiderio styleguide command.
@@ -30,11 +31,9 @@ final class PowermailDemoSeeder
         'tx_powermail_domain_model_field',
     ];
 
-    /** @var array<string, array<string, true>> */
-    private array $tableColumnsCache = [];
-
     public function __construct(
         private readonly ConnectionPool $connectionPool,
+        private readonly DatabaseSchemaHelper $databaseSchema,
     ) {}
 
     public function canSeed(): bool
@@ -64,8 +63,8 @@ final class PowermailDemoSeeder
         }
 
         $forms = $this->getDemoForms();
-        $pageColumns = $this->getColumnNames('pages');
-        $contentColumns = $this->getColumnNames('tt_content');
+        $pageColumns = $this->databaseSchema->getColumnNames('pages');
+        $contentColumns = $this->databaseSchema->getColumnNames('tt_content');
 
         $rootUid = $this->upsertPage(
             $parentPid,
@@ -430,9 +429,9 @@ final class PowermailDemoSeeder
      */
     private function insertPowermailForm(int $storagePid, array $form, int $germanLanguageUid, int $now): array
     {
-        $formColumns = $this->getColumnNames('tx_powermail_domain_model_form');
-        $pageColumns = $this->getColumnNames('tx_powermail_domain_model_page');
-        $fieldColumns = $this->getColumnNames('tx_powermail_domain_model_field');
+        $formColumns = $this->databaseSchema->getColumnNames('tx_powermail_domain_model_form');
+        $pageColumns = $this->databaseSchema->getColumnNames('tx_powermail_domain_model_page');
+        $fieldColumns = $this->databaseSchema->getColumnNames('tx_powermail_domain_model_field');
 
         $formUid = $this->insertRow('tx_powermail_domain_model_form', [
             'pid' => $storagePid,
@@ -673,7 +672,7 @@ final class PowermailDemoSeeder
         bool $navHide = false,
     ): int {
         $existingUid = $this->findExistingPageUid($pid, $slug, $languageUid, $l10nParent, $columns);
-        $row = $this->filterRow([
+        $row = $this->databaseSchema->filterRow([
             'pid' => $pid,
             'title' => $title,
             'doktype' => 1,
@@ -832,7 +831,7 @@ final class PowermailDemoSeeder
      */
     private function softDeleteRows(string $table, string $field, array $values, int $now): void
     {
-        if ($values === [] || !$this->tableHasColumn($table, 'deleted')) {
+        if ($values === [] || !$this->databaseSchema->tableHasColumn($table, 'deleted')) {
             return;
         }
 
@@ -857,7 +856,7 @@ final class PowermailDemoSeeder
     private function insertRow(string $table, array $row, array $columns): int
     {
         $connection = $this->connectionPool->getConnectionForTable($table);
-        $connection->insert($table, $this->filterRow($row, $columns));
+        $connection->insert($table, $this->databaseSchema->filterRow($row, $columns));
 
         return $this->normalizeInteger($connection->lastInsertId());
     }
@@ -894,17 +893,6 @@ final class PowermailDemoSeeder
         return $integers;
     }
 
-    /**
-     * @template TValue
-     * @param array<string, TValue> $row
-     * @param array<string, true> $columns
-     * @return array<string, TValue>
-     */
-    private function filterRow(array $row, array $columns): array
-    {
-        return array_intersect_key($row, $columns);
-    }
-
     private function tableExists(string $table): bool
     {
         try {
@@ -913,28 +901,5 @@ final class PowermailDemoSeeder
         } catch (\Throwable) {
             return false;
         }
-    }
-
-    private function tableHasColumn(string $table, string $column): bool
-    {
-        return isset($this->getColumnNames($table)[$column]);
-    }
-
-    /**
-     * @return array<string, true>
-     */
-    private function getColumnNames(string $table): array
-    {
-        if (isset($this->tableColumnsCache[$table])) {
-            return $this->tableColumnsCache[$table];
-        }
-
-        $columns = [];
-        foreach ($this->connectionPool->getConnectionForTable($table)->createSchemaManager()->listTableColumns($table) as $column) {
-            $columns[$column->getName()] = true;
-        }
-
-        $this->tableColumnsCache[$table] = $columns;
-        return $columns;
     }
 }

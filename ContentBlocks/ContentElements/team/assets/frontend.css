@@ -37,6 +37,18 @@
     text-transform: uppercase;
 }
 
+/* Grid variant — equal-height cards, consistent footer */
+.team__member {
+    height: 100%;
+}
+.team__member > [data-slot="card-content"] {
+    flex: 1 1 auto;
+}
+.team__member > [data-slot="card-footer"] {
+    flex: 0 0 auto;
+    margin-top: auto;
+}
+
 /* Grid variant — card image fills the card top edge (card rounds it) */
 .team__image {
     width: 100%;

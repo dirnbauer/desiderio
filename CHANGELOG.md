@@ -6,7 +6,7 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
-## [2.3.0] — 2026-06-05
+## [2.4.0] — 2026-06-05
 
 ### Added
 
@@ -228,8 +228,9 @@ and `webconsulting/shadcn2fluid-templates 3.x` with a clean rewrite:
 templates, and five swappable visual presets. See `MIGRATION-PLAN.md`
 for the migration notes from the old extensions.
 
+[2.4.0]: https://github.com/webconsulting/desiderio/releases/tag/v2.4.0
 [2.3.0]: https://github.com/webconsulting/desiderio/releases/tag/v2.3.0
 [2.2.0]: https://github.com/webconsulting/desiderio/releases/tag/v2.2.0
 [2.1.0]: https://github.com/webconsulting/desiderio/releases/tag/v2.1.0
 [2.0.0]: https://github.com/webconsulting/desiderio/releases/tag/v2.0.0
-[Unreleased]: https://github.com/webconsulting/desiderio/compare/v2.3.0...HEAD
+[Unreleased]: https://github.com/webconsulting/desiderio/compare/v2.4.0...HEAD

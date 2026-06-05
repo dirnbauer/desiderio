@@ -38,15 +38,20 @@
 }
 
 /* Grid variant — equal-height cards, consistent footer */
+.team__cell {
+    display: flex;
+    min-width: 0;
+}
 .team__member {
-    height: 100%;
+    min-height: 100%;
 }
-.team__member > [data-slot="card-content"] {
-    flex: 1 1 auto;
+.team__content {
+    min-height: 0;
 }
-.team__member > [data-slot="card-footer"] {
-    flex: 0 0 auto;
-    margin-top: auto;
+.team__footer {
+    flex-grow: 0;
+    flex-shrink: 0;
+    justify-content: center;
 }
 
 /* Grid variant — card image fills the card top edge (card rounds it) */

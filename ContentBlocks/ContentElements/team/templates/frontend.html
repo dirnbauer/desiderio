@@ -82,7 +82,8 @@
                 <f:comment>Grid variant (default)</f:comment>
                 <d:layout.grid cols="{data.columns -> f:or(alternative: '3')}" gap="lg" class="team__grid">
                     <f:for each="{data.members}" as="member">
-                        <d:molecule.card class="team__member">
+                        <div class="team__cell">
+                            <d:molecule.card class="team__member h-full w-full">
                             <f:if condition="{member.image}">
                                 <f:for each="{member.image}" as="fileReference">
                                     <f:image image="{fileReference}" maxWidth="640" alt="" loading="lazy" decoding="async" class="team__image"/>
@@ -93,19 +94,20 @@
                                 <p class="team__role">{member -> f:render.text(field: 'role')}</p>
                             </d:molecule.cardHeader>
                             <f:if condition="{member.bio}">
-                                <d:molecule.cardContent>
+                                <d:molecule.cardContent class="team__content grow">
                                     <p class="team__bio">{member -> f:render.text(field: 'bio')}</p>
                                 </d:molecule.cardContent>
                             </f:if>
                             <f:if condition="{member.profile_link.url}">
-                                <d:molecule.cardFooter>
-                                    <d:atom.button href="{member.profile_link.url}" target="{member.profile_link.target}" variant="ghost" size="sm">
+                                <d:molecule.cardFooter class="team__footer mt-auto shrink-0 grow-0">
+                                    <d:atom.button href="{member.profile_link.url}" target="{member.profile_link.target}" variant="ghost" size="sm" class="w-full">
                                         <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:team.view_profile">View profile</f:translate>
                                         <span class="sr-only"> — {member -> f:render.text(field: 'name')}</span>
                                     </d:atom.button>
                                 </d:molecule.cardFooter>
                             </f:if>
-                        </d:molecule.card>
+                            </d:molecule.card>
+                        </div>
                     </f:for>
                 </d:layout.grid>
             </f:defaultCase>

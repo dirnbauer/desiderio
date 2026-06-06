@@ -192,7 +192,7 @@ composer validate
 composer audit --no-dev --abandoned=fail
 ```
 
-The CI workflow runs PHPStan at max level, PHPUnit on supported PHP versions, composer validation/audit, and the strict Content Blocks audit.
+The CI workflow runs PHPStan at max level, PHPUnit on PHP 8.3–8.5, SQLite-backed functional tests, composer validation/audit, and the strict Content Blocks audit.
 
 ## Visual Editor compatibility
 

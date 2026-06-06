@@ -17,7 +17,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php-version: ["8.3", "8.4"]
+        php-version: ["8.3", "8.4", "8.5"]
         typo3-version: ["^14.3"]
     steps:
       - uses: actions/checkout@v5
@@ -56,7 +56,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php-version: ["8.3", "8.4"]
+        php-version: ["8.3", "8.4", "8.5"]
         typo3-version: ["^14.3"]
     steps:
       - uses: actions/checkout@v5
@@ -79,6 +79,28 @@ jobs:
 
       - name: Run content element audit
         run: php scripts/audit-content-elements.php > /tmp/audit.json && head -c 4096 /tmp/audit.json
+
+  functional-tests:
+    name: Functional tests (PHP 8.3 · TYPO3 ^14.3 · SQLite)
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Set up PHP 8.3
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.3"
+          tools: composer:v2
+          coverage: none
+
+      - name: Pin TYPO3 version (^14.3)
+        run: composer require --no-update --no-interaction "typo3/cms-core:^14.3" "typo3/cms-fluid:^14.3" "typo3/cms-workspaces:^14.3" "typo3/cms-form:^14.3"
+
+      - name: Install
+        run: composer update --no-interaction --no-progress --prefer-dist
+
+      - name: Run functional tests
+        run: Build/Scripts/runFunctionalTests.sh
 
   tailwind-bundle:
     name: Tailwind bundle is in sync with templates

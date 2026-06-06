@@ -1,14 +1,14 @@
 # TYPO3 Testing Audit
 
-Date: 2026-05-16
-Target: TYPO3 14.3 LTS only
+Date: 2026-06-06
+Target: release `v2.6.0`, TYPO3 14.3 LTS only
 Status: Green
 
 ## Summary
 
 The extension is gated by PHPStan at `level: max`, PHPUnit 11.5, the
 content-element audit, Composer validation/audit, and Tailwind bundle
-sync. The current local PHPUnit suite contains 101 tests and 28,371
+sync. The current local PHPUnit suite contains 153 tests and 31,799
 assertions.
 
 ## Coverage Added In This Pass
@@ -17,7 +17,7 @@ assertions.
   in an offline workspace.
 - Verified the unit test requiring top-level Content Blocks `Collection` fields
   to enable `prefixField`.
-- Updated docs and README to the current 101-test count.
+- Updated docs and README to the current 153-test count.
 
 ## Verification
 

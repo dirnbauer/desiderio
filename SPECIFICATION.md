@@ -29,8 +29,8 @@ A single TYPO3 v14 extension that ships:
 | Extension key | `desiderio` |
 | PHP namespace | `Webconsulting\Desiderio\` |
 | Fluid prefix | `<d:…>` (global), `<desiderio:…>` (explicit) |
-| Version | `2.0.0` |
-| State | `beta` |
+| Version | `2.6.0` |
+| State | `stable` |
 | Dependencies | `friendsoftypo3/content-blocks ^2.2`, `praetorius/vite-asset-collector ^1.0` |
 
 The old `s2f:` prefix is **gone**. No alias. No deprecation. New installs only.

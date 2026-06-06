@@ -38,7 +38,7 @@ Enable the site sets in this order:
 
 Desiderio provides three layers:
 
-- **Components**: 16 atoms, 18 molecules, and 4 layout primitives using typed Fluid arguments.
+- **Components**: 17 atoms, 28 molecules, and 4 layout primitives (49 typed Fluid components total).
 - **Content Blocks**: 255 editor-facing content elements grouped for heroes, features, data, conversion, editorial, media, social proof, navigation, forms, and footer patterns.
 - **Theme**: backend layouts, page templates, header/footer templates, CSS variables, JavaScript interactions, and site settings.
 
@@ -106,17 +106,33 @@ The Solr integration set registers shadcn-styled search templates, result cards,
 
 The frontend JavaScript enhances compatible Solr forms with debounced suggestions and keyboard-accessible result options.
 
+## Console commands
+
+Desiderio ships Symfony console commands for demo content and integration setup:
+
+| Command | Purpose |
+| --- | --- |
+| `desiderio:styleguide:seed` | Create or update styleguide fixture pages below a parent page. Requires the live workspace; refuses Production without `--allow-production`. |
+| `desiderio:starter:seed` | Create or update the corporate starter site structure and demo content. |
+| `desiderio:blog:seed-pages` | Normalize an existing Blog page tree to Desiderio backend layouts. No-op when `t3g/blog` is not loaded. |
+| `desiderio:news:seed-taxonomy` | Assign default category/tag relations to visible News records that have none. No-op when `georgringer/news` is not loaded. |
+
+Examples:
+
+```bash
+vendor/bin/typo3 desiderio:styleguide:seed --parent=<page-uid>
+vendor/bin/typo3 desiderio:starter:seed
+vendor/bin/typo3 desiderio:blog:seed-pages --root=<blog-root-uid>
+vendor/bin/typo3 desiderio:news:seed-taxonomy --storage-pid=<news-storage-pid>
+```
+
+Seed commands write FAL assets under `fileadmin/desiderio-styleguide/` or `fileadmin/desiderio-starter/`. Re-running a seeder overwrites live-workspace fixture metadata in place.
+
 ## Blog
 
 When `t3g/blog` is installed, `webconsulting/desiderio-blog` adds shadcn-styled Blog template paths. The templates cover list, detail, sidebar widgets, comments, author blocks, related posts, metadata badges, categories, tags, and RSS output headers.
 
-Existing Blog page trees can be aligned with:
-
-```bash
-vendor/bin/typo3 desiderio:blog:seed-pages --root=<blog-root-uid>
-```
-
-The command exits without changes when `t3g/blog` is not loaded.
+Existing Blog page trees can be aligned with `desiderio:blog:seed-pages` (see Console commands above).
 
 ## News
 
@@ -162,6 +178,12 @@ composer audit --no-dev --abandoned=fail
 
 The CI workflow runs PHPStan at max level, PHPUnit on supported PHP versions, composer validation/audit, and the strict Content Blocks audit.
 
+## Visual Editor compatibility
+
+Desiderio registers `ExtbasePluginRequestSanitizerMiddleware` to strip malformed Extbase `controller` / `action` arguments from Visual Editor persistence requests. Without it, News and other Extbase plugins can throw while rendering an edited page.
+
+Content Block media fields should use `<f:image image="{fileReference}">` with structured Fluid `data` arguments so Visual Editor image overlays attach correctly.
+
 ## Documentation
 
 Full documentation lives in `Documentation/`:
@@ -171,3 +193,4 @@ Full documentation lives in `Documentation/`:
 - `Documentation/Editor/Index.rst`
 - `Documentation/Developer/Index.rst`
 - `Documentation/ShadcnUpgrade.md`
+- `Documentation/Reports/code-quality.md` — maintainability review and seed-command decomposition plan

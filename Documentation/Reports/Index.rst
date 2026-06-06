@@ -20,5 +20,7 @@ Current reports:
     behavior.
 *   :file:`typo3-testing.md` — test coverage and CI parity notes.
 *   :file:`typo3-docs.md` — documentation freshness against shipped behavior.
+*   :file:`code-quality.md` — thermo-nuclear maintainability review, seed
+    command decomposition plan, and PR approval bar.
 *   :file:`security-audit.md` — general dependency, supply chain, and OWASP
     review.

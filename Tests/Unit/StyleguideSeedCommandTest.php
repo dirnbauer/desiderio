@@ -41,10 +41,14 @@ final class StyleguideSeedCommandTest extends TestCase
         self::assertStringContainsString("deleteCollectionRowsForParentUids(\$existingContentUids, 'tt_content');", $source);
         self::assertStringContainsString("getPropertyFromAspect('workspace', 'id', 0)", $source);
         self::assertStringContainsString('buildLiveWorkspaceConstraints($queryBuilder, \'tt_content\')', $source);
-        self::assertStringContainsString('buildLiveWorkspaceConstraints($queryBuilder, \'sys_file_reference\')', $source);
+
+        $cleanupSource = (string) file_get_contents(__DIR__ . '/../../Classes/Seeding/CollectionCleanupService.php');
+        self::assertStringContainsString("buildLiveWorkspaceConstraints(\$queryBuilder, 'sys_file_reference')", $cleanupSource);
         self::assertStringContainsString('completeResolvedFixtureData(', $source);
         self::assertStringContainsString('seedFileReferences(', $source);
-        self::assertStringContainsString('Resources/Public/Styleguide/Unsplash', $source);
+
+        $fixtureResolverSource = (string) file_get_contents(__DIR__ . '/../../Classes/Seeding/StyleguideFixtureResolver.php');
+        self::assertStringContainsString('Resources/Public/Styleguide/Unsplash', $fixtureResolverSource);
 
         $tcaOverride = (string)file_get_contents(__DIR__ . '/../../Configuration/TCA/Overrides/tt_content.php');
         self::assertStringNotContainsString('columnsOverrides', $tcaOverride);

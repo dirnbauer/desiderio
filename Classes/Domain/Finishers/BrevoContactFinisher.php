@@ -24,6 +24,7 @@ final class BrevoContactFinisher extends AbstractFinisher
 
     public function __construct(
         private readonly RequestFactory $requestFactory,
+        private readonly BrevoConfigurationResolver $configurationResolver = new BrevoConfigurationResolver(),
     ) {
         $this->defaultOptions = [
             'emailField' => 'email',
@@ -78,49 +79,7 @@ final class BrevoContactFinisher extends AbstractFinisher
      */
     private function resolveConfiguration(): array
     {
-        $site = $this->getCurrentSite();
-        $extensionConfiguration = $this->getExtensionBrevoConfiguration();
-
-        return [
-            'enabled' => $this->resolveBoolean(
-                $this->getRawOption('enabled'),
-                $extensionConfiguration['enabled'] ?? null,
-                $this->getSiteSetting($site, 'desiderio.forms.brevo.enabled'),
-                $this->getEnvironmentValue('BREVO_ENABLED'),
-                false
-            ),
-            'apiKey' => $this->resolveString(
-                $extensionConfiguration['apiKey'] ?? null,
-                $this->getEnvironmentValue('BREVO_API_KEY')
-            ),
-            'listIds' => $this->parseListIds(
-                $this->getRawOption('listIds')
-                    ?? ($extensionConfiguration['listIds'] ?? null)
-                    ?? $this->getSiteSetting($site, 'desiderio.forms.brevo.listIds')
-                    ?? $this->getEnvironmentValue('BREVO_LIST_IDS')
-            ),
-            'strict' => $this->resolveBoolean(
-                $this->getRawOption('strict'),
-                $extensionConfiguration['strict'] ?? null,
-                $this->getSiteSetting($site, 'desiderio.forms.brevo.strict'),
-                $this->getEnvironmentValue('BREVO_STRICT'),
-                false
-            ),
-            'trackEvent' => $this->resolveBoolean(
-                $this->getRawOption('trackEvent'),
-                $extensionConfiguration['trackEvent'] ?? null,
-                $this->getSiteSetting($site, 'desiderio.forms.brevo.trackEvent'),
-                $this->getEnvironmentValue('BREVO_TRACK_EVENT'),
-                true
-            ),
-            'eventName' => $this->sanitizeEventName($this->resolveString(
-                $this->getRawOption('eventName'),
-                $extensionConfiguration['eventName'] ?? null,
-                $this->getSiteSetting($site, 'desiderio.forms.brevo.eventName'),
-                $this->getEnvironmentValue('BREVO_EVENT_NAME'),
-                'desiderio_form_submit'
-            )),
-        ];
+        return $this->configurationResolver->resolve($this->options, $this->getCurrentSite());
     }
 
     /**
@@ -385,14 +344,6 @@ final class BrevoContactFinisher extends AbstractFinisher
         return mb_substr($stringValue, 0, 4000);
     }
 
-    private function sanitizeEventName(string $eventName): string
-    {
-        $eventName = preg_replace('/[^A-Za-z0-9_-]+/', '_', trim($eventName)) ?? '';
-        $eventName = trim($eventName, '_-');
-
-        return $eventName !== '' ? mb_substr($eventName, 0, 255) : 'desiderio_form_submit';
-    }
-
     private function sanitizeEventPropertyName(string $fieldName): string
     {
         $propertyName = preg_replace('/[^A-Za-z0-9_-]+/', '_', trim($fieldName)) ?? '';
@@ -410,7 +361,7 @@ final class BrevoContactFinisher extends AbstractFinisher
 
     private function getBooleanOption(string $optionName, bool $default): bool
     {
-        return $this->resolveBoolean($this->parseOption($optionName), $default);
+        return $this->configurationResolver->resolveBoolean($this->parseOption($optionName), $default);
     }
 
     private function getRawOption(string $optionName): mixed
@@ -439,141 +390,6 @@ final class BrevoContactFinisher extends AbstractFinisher
         }
 
         return '';
-    }
-
-    private function getSiteSetting(?Site $site, string $identifier): mixed
-    {
-        if (!$site instanceof Site || $site->getSettings()->isEmpty()) {
-            return null;
-        }
-
-        return $site->getSettings()->get($identifier, null);
-    }
-
-    /**
-     * @return array<string, mixed>
-     */
-    private function getExtensionBrevoConfiguration(): array
-    {
-        $typo3Configuration = $GLOBALS['TYPO3_CONF_VARS'] ?? [];
-        if (!is_array($typo3Configuration)) {
-            return [];
-        }
-
-        $extensionsConfiguration = $typo3Configuration['EXTENSIONS'] ?? [];
-        if (!is_array($extensionsConfiguration)) {
-            return [];
-        }
-
-        $desiderioConfiguration = $extensionsConfiguration['desiderio'] ?? [];
-        if (!is_array($desiderioConfiguration)) {
-            return [];
-        }
-
-        $configuration = $desiderioConfiguration['brevo'] ?? [];
-        if (!is_array($configuration)) {
-            return [];
-        }
-
-        $filteredConfiguration = [];
-        foreach ($configuration as $key => $value) {
-            if (is_string($key)) {
-                $filteredConfiguration[$key] = $value;
-            }
-        }
-
-        return $filteredConfiguration;
-    }
-
-    private function getEnvironmentValue(string $name): ?string
-    {
-        $value = getenv($name);
-
-        return is_string($value) && $value !== '' ? $value : null;
-    }
-
-    /**
-     * @param mixed ...$candidates
-     */
-    private function resolveString(...$candidates): string
-    {
-        foreach ($candidates as $candidate) {
-            if (is_string($candidate) && trim($candidate) !== '') {
-                return trim($candidate);
-            }
-            if (is_int($candidate) || is_float($candidate)) {
-                return (string)$candidate;
-            }
-        }
-
-        return '';
-    }
-
-    /**
-     * @param mixed ...$candidates
-     */
-    private function resolveBoolean(...$candidates): bool
-    {
-        $default = false;
-        if ($candidates !== []) {
-            $lastCandidate = $candidates[array_key_last($candidates)];
-            if (is_bool($lastCandidate)) {
-                $default = $lastCandidate;
-                array_pop($candidates);
-            }
-        }
-
-        foreach ($candidates as $candidate) {
-            if (is_bool($candidate)) {
-                return $candidate;
-            }
-            if (is_int($candidate)) {
-                return $candidate === 1;
-            }
-            if (is_string($candidate) && trim($candidate) !== '') {
-                $normalized = strtolower(trim($candidate));
-                if (in_array($normalized, ['1', 'true', 'yes', 'on'], true)) {
-                    return true;
-                }
-                if (in_array($normalized, ['0', 'false', 'no', 'off'], true)) {
-                    return false;
-                }
-            }
-        }
-
-        return $default;
-    }
-
-    /**
-     * @return list<int>
-     */
-    private function parseListIds(mixed $value): array
-    {
-        if (is_int($value)) {
-            return $value > 0 ? [$value] : [];
-        }
-
-        if (is_string($value)) {
-            $splitValue = preg_split('/[,\s]+/', trim($value));
-            $value = is_array($splitValue) ? $splitValue : [];
-        }
-
-        if (!is_array($value)) {
-            return [];
-        }
-
-        $listIds = [];
-        foreach ($value as $listId) {
-            if (is_int($listId) && $listId > 0) {
-                $listIds[] = $listId;
-                continue;
-            }
-            if (is_string($listId) && preg_match('/^\d+$/', trim($listId)) === 1) {
-                $listIds[] = (int)$listId;
-            }
-        }
-
-        return array_values(array_unique($listIds));
     }
 
     /**

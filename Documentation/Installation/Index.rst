@@ -82,22 +82,43 @@ extension is installed and its site set is enabled.
         - Friendly Captcha test-mode mapping for local development. Use
           real site keys and API keys in production.
 
-..  _installation-blog-seed:
+..  _installation-seed-commands:
 
-Blog page seeding
-=================
+Seed and setup commands
+=======================
 
-Existing Blog page trees can be normalized with the seed command after
-the Blog extension and Desiderio Blog set are enabled.
+Desiderio ships console commands for demo content and integration setup.
+Run them after the matching site sets are enabled.
+
+..  list-table::
+    :header-rows: 1
+    :widths: 32 68
+
+    *   - Command
+        - Purpose
+    *   - ``desiderio:styleguide:seed``
+        - Create or update styleguide fixture pages below ``--parent``.
+          Requires the live workspace. See :ref:`known-problems-seed-command`.
+    *   - ``desiderio:starter:seed``
+        - Create or update the corporate starter site structure and demo
+          content.
+    *   - ``desiderio:blog:seed-pages``
+        - Normalize Blog page trees to Desiderio backend layouts. No-op
+          when ``t3g/blog`` is not loaded.
+    *   - ``desiderio:news:seed-taxonomy``
+        - Assign default category/tag relations to visible News records
+          without taxonomy. No-op when ``georgringer/news`` is not loaded.
 
 ..  code-block:: shell
-    :caption: Normalize a Blog page tree
+    :caption: Common seed commands
 
+    vendor/bin/typo3 desiderio:styleguide:seed --parent=<page-uid>
+    vendor/bin/typo3 desiderio:starter:seed
     vendor/bin/typo3 desiderio:blog:seed-pages --root=<blog-root-uid>
+    vendor/bin/typo3 desiderio:news:seed-taxonomy --storage-pid=<news-storage-pid>
 
-The command exits without changes when ``t3g/blog`` is not loaded. It
-updates Blog root, list, detail, translated, and data-folder pages to use
-the Desiderio Blog backend layouts.
+The blog command updates Blog root, list, detail, translated, and
+data-folder pages to use the Desiderio Blog backend layouts.
 
 ..  _installation-assets:
 

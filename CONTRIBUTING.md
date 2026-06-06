@@ -47,7 +47,10 @@ intact.
    The `tailwind-bundle` CI job rejects PRs where the committed bundle
    is out of date.
 6. Open a PR against `main`. Reference any
-   `Documentation/Reports/*.md` finding your change addresses.
+   `Documentation/Reports/*.md` finding your change addresses. Read
+   `Documentation/Reports/code-quality.md` before touching seed commands
+   or finishers — do not grow files past 1,000 lines without decomposing
+   into `Classes/Seeding/` services first.
 
 ## Coding standards
 

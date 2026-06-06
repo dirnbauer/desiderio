@@ -2,6 +2,13 @@
 
 declare(strict_types=1);
 
+$targetPath = __DIR__ . '/../../Classes/Command/SeedBlogPagesCommand.php';
+
+$content = <<<'PHP'
+<?php
+
+declare(strict_types=1);
+
 namespace Webconsulting\Desiderio\Command;
 
 use Symfony\Component\Console\Attribute\AsCommand;
@@ -156,3 +163,8 @@ final class SeedBlogPagesCommand extends Command
         return '';
     }
 }
+
+PHP;
+
+file_put_contents($targetPath, $content);
+echo 'Rebuilt blog command to ' . count(file($targetPath)) . " lines\n";

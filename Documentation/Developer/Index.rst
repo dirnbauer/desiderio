@@ -25,9 +25,9 @@ Desiderio is intentionally layered:
     Component layer
       Fluid 5 atoms, molecules, and layouts with typed arguments
 
-The component layer currently contains 17 atoms, 27 molecules, and 4
-layout primitives. Content elements compose those primitives instead of
-hardcoding one-off markup.
+The component layer currently contains 17 atoms, 28 molecules, and 4
+layout primitives (49 typed Fluid components in total). Content elements
+compose those primitives instead of hardcoding one-off markup.
 
 See :ref:`developer-atomic-design` for the layer rules, migration order,
 and reference content elements.
@@ -137,6 +137,133 @@ Optional extension templates are kept in dedicated folders:
     *   - ``Resources/Private/Form``
         - TYPO3 Form Framework form definitions and templates.
 
+..  _developer-console-commands:
+
+Console commands
+================
+
+Desiderio uses Symfony console commands for demo sites and integration
+setup. Commands live in ``Classes/Command/``; shared seeding logic
+belongs in ``Classes/Seeding/`` — not inlined into command classes.
+
+Shared seeding services:
+
+..  list-table::
+    :header-rows: 1
+    :widths: 34 66
+
+    *   - Class
+        - Responsibility
+    *   - ``ExtensionFalSeeder``
+        - Import bundled assets and write ``sys_file_reference`` rows.
+    *   - ``CollectionRecordSeeder``
+        - Insert nested Content Blocks collection rows recursively.
+    *   - ``CollectionCleanupService``
+        - Delete collection rows and file references on live workspace
+          rows only.
+    *   - ``ContentBlockCollectionMap``
+        - Build the parent-table → collection-table lookup from block
+          definitions.
+    *   - ``LiveWorkspaceQueryHelper``
+        - Add ``t3ver_wsid`` / ``t3ver_oid`` constraints to destructive
+          seed queries.
+    *   - ``StyleguideFixtureResolver``
+        - Resolve styleguide YAML fixtures into ``tt_content`` rows,
+          collections, and FAL references.
+    *   - ``StarterContentBuilder``
+        - Build starter-site content inserts from ``StarterSiteDefinitions``
+          block payloads.
+    *   - ``BlogPageTreeSeeder``
+        - Discover EXT:blog setups, apply Desiderio backend layouts, and
+          seed demo posts with categories, tags, authors, and comments.
+    *   - ``FixtureFieldNormalizer``
+        - Shared Content Blocks field normalization (scalars, files,
+          checkboxes, dates) for styleguide and starter seeders.
+
+``BrevoConfigurationResolver`` (under ``Classes/Domain/Finishers/``)
+centralizes Brevo finisher configuration precedence; the finisher itself
+handles HTTP and form value mapping only.
+
+..  list-table::
+    :header-rows: 1
+    :widths: 32 68
+
+    *   - Command
+        - Purpose
+    *   - ``desiderio:styleguide:seed``
+        - Create or update styleguide fixture pages. Requires the live
+          workspace; refuses Production without ``--allow-production``.
+          Writes FAL assets to ``fileadmin/desiderio-styleguide/``.
+    *   - ``desiderio:starter:seed``
+        - Create or update the corporate starter site. Writes FAL assets
+          to ``fileadmin/desiderio-starter/``.
+    *   - ``desiderio:blog:seed-pages``
+        - Normalize Blog page trees to Desiderio backend layouts. No-op
+          when ``t3g/blog`` is not loaded.
+    *   - ``desiderio:news:seed-taxonomy``
+        - Assign default category/tag relations to visible News records
+          without taxonomy. No-op when ``georgringer/news`` is not loaded.
+
+See :ref:`known-problems-seed-command` for workspace and Production
+guards on the styleguide seeder.
+
+..  _developer-middleware:
+
+Request middleware
+==================
+
+``ExtbasePluginRequestSanitizerMiddleware`` sanitizes malformed Extbase
+plugin arguments on incoming requests. Visual Editor persistence can
+send ``controller`` or ``action`` as arrays; Extbase then throws while
+rendering News and other plugins on the edited page. The middleware
+strips invalid values before the frontend stack runs.
+
+Registered in ``Configuration/RequestMiddlewares.php``. Covered by
+``Tests/Unit/ExtbasePluginRequestSanitizerMiddlewareTest.php``.
+
+..  _developer-maintainability:
+
+Maintainability
+===============
+
+The thermo-nuclear code quality review
+(:file:`Documentation/Reports/code-quality.md`) tracks structural debt.
+The primary risk is oversized seed commands:
+
+..  list-table::
+    :header-rows: 1
+    :widths: 45 15 40
+
+    *   - File
+        - Lines
+        - Guidance
+    *   - ``SeedStyleguidePagesCommand.php``
+        - ~610
+        - Thin orchestration shell. Add fixture logic to
+          ``StyleguideFixtureResolver``, not the command.
+    *   - ``SeedStarterSitesCommand.php``
+        - ~810
+        - Thin orchestration shell. Add content-building logic to
+          ``StarterContentBuilder``.
+    *   - ``SeedBlogPagesCommand.php``
+        - ~160
+        - Thin orchestration shell. Add blog tree logic to
+          ``BlogPageTreeSeeder``, not the command.
+    *   - ``BrevoContactFinisher.php``
+        - ~420
+        - Configuration precedence lives in ``BrevoConfigurationResolver``.
+          Extend the resolver, not inline ``resolveBoolean`` chains.
+
+Rules for new PHP in ``Classes/``:
+
+- Do not push any file from under 1,000 lines to over 1,000 lines.
+- Put seeding and fixture normalization in ``Classes/Seeding/``, not in
+  command classes.
+- Reuse ``DatabaseSchemaHelper``, ``StyleguideDemoValueGenerator``, and
+  ``StyleguideCollectionAliasPolicy`` instead of bespoke copies.
+- New code must pass PHPStan at ``level: max`` without extending
+  ``Build/phpstan-baseline.neon``.
+
 ..  _developer-quality-bar:
 
 Quality bar
@@ -170,6 +297,6 @@ Reports
 -------
 
 ``Documentation/Reports/`` contains the latest project audit reports for
-TYPO3 conformance, security, workspaces, testing, docs, and broader
-security review. Use those reports as context before changing TCA,
-Fluid, TypoScript, or seed scripts.
+TYPO3 conformance, security, workspaces, testing, docs, code quality,
+and broader security review. Use those reports as context before changing
+TCA, Fluid, TypoScript, or seed scripts.

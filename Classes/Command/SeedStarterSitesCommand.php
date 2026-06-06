@@ -18,14 +18,15 @@ use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\Expression\CompositeExpression;
 use TYPO3\CMS\Core\Database\Query\QueryBuilder;
-use TYPO3\CMS\Core\Resource\File;
-use TYPO3\CMS\Core\Resource\Folder;
 use TYPO3\CMS\Core\Resource\StorageRepository;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use Webconsulting\Desiderio\Data\ContentBlockDefinitionRegistry;
 use Webconsulting\Desiderio\Data\StarterSiteDefinitions;
-use Webconsulting\Desiderio\Data\StyleguidePortraitAssets;
+use Webconsulting\Desiderio\Seeding\CollectionCleanupService;
+use Webconsulting\Desiderio\Seeding\CollectionRecordSeeder;
+use Webconsulting\Desiderio\Seeding\ContentBlockCollectionMap;
 use Webconsulting\Desiderio\Seeding\DatabaseSchemaHelper;
+use Webconsulting\Desiderio\Seeding\ExtensionFalSeeder;
+use Webconsulting\Desiderio\Seeding\LiveWorkspaceQueryHelper;
+use Webconsulting\Desiderio\Seeding\StarterContentBuilder;
 
 /**
  * @phpstan-import-type StarterSite from StarterSiteDefinitions
@@ -37,8 +38,6 @@ use Webconsulting\Desiderio\Seeding\DatabaseSchemaHelper;
 )]
 final class SeedStarterSitesCommand extends Command
 {
-    private const FILE_REFERENCES_KEY = '__fileReferences';
-    private const NESTED_COLLECTIONS_KEY = '__collections';
     private const STARTER_FAL_FOLDER = 'desiderio-starter';
     private const CONTENT_DELETE_SCOPE_DESIDERIO = 'desiderio';
     private const CONTENT_DELETE_SCOPE_STARTER = 'starter';
@@ -56,13 +55,12 @@ final class SeedStarterSitesCommand extends Command
         'menu_sitemap_pages',
     ];
 
-    /** @var array<string, list<array<string, mixed>>>|null */
-    private ?array $collectionsByParentTable = null;
-
-    /** @var array<string, File> */
-    private array $starterFiles = [];
-
-    private ?Folder $starterFalFolder = null;
+    private ?ExtensionFalSeeder $starterFalSeeder = null;
+    private ?CollectionRecordSeeder $collectionRecordSeeder = null;
+    private ?CollectionCleanupService $collectionCleanupService = null;
+    private ?ContentBlockCollectionMap $contentBlockCollectionMap = null;
+    private ?LiveWorkspaceQueryHelper $liveWorkspaceQueryHelper = null;
+    private ?StarterContentBuilder $starterContentBuilder = null;
 
     public function __construct(
         private readonly ConnectionPool $connectionPool,
@@ -318,7 +316,51 @@ final class SeedStarterSitesCommand extends Command
 
     private function normalizeLastInsertId(int|string|false $lastInsertId): int
     {
-        return is_numeric($lastInsertId) ? (int)$lastInsertId : 0;
+        return CollectionRecordSeeder::normalizeLastInsertId($lastInsertId);
+    }
+
+    private function getLiveWorkspaceQueryHelper(): LiveWorkspaceQueryHelper
+    {
+        return $this->liveWorkspaceQueryHelper ??= new LiveWorkspaceQueryHelper($this->databaseSchema);
+    }
+
+    private function getContentBlockCollectionMap(): ContentBlockCollectionMap
+    {
+        return $this->contentBlockCollectionMap ??= new ContentBlockCollectionMap();
+    }
+
+    private function getStarterFalSeeder(): ExtensionFalSeeder
+    {
+        return $this->starterFalSeeder ??= new ExtensionFalSeeder(
+            $this->connectionPool,
+            $this->storageRepository,
+            $this->databaseSchema,
+            self::STARTER_FAL_FOLDER,
+            1777100241,
+        );
+    }
+
+    private function getCollectionRecordSeeder(): CollectionRecordSeeder
+    {
+        return $this->collectionRecordSeeder ??= new CollectionRecordSeeder(
+            $this->connectionPool,
+            $this->databaseSchema,
+            $this->getStarterFalSeeder(),
+        );
+    }
+
+    private function getCollectionCleanupService(): CollectionCleanupService
+    {
+        return $this->collectionCleanupService ??= new CollectionCleanupService(
+            $this->connectionPool,
+            $this->databaseSchema,
+            $this->getLiveWorkspaceQueryHelper(),
+        );
+    }
+
+    private function getStarterContentBuilder(): StarterContentBuilder
+    {
+        return $this->starterContentBuilder ??= new StarterContentBuilder($this->databaseSchema);
     }
 
     /**
@@ -335,24 +377,6 @@ final class SeedStarterSitesCommand extends Command
         }
 
         return $integers;
-    }
-
-    /**
-     * @param array<string, mixed> $collection
-     */
-    private function getCollectionTable(array $collection): string
-    {
-        $table = $collection['table'] ?? '';
-        return is_string($table) ? $table : '';
-    }
-
-    /**
-     * @param array<string, mixed> $collection
-     */
-    private function getCollectionColumn(array $collection, string $fallback): string
-    {
-        $column = $collection['column'] ?? $fallback;
-        return is_string($column) ? $column : $fallback;
     }
 
     /**
@@ -646,8 +670,8 @@ final class SeedStarterSitesCommand extends Command
             $connection = $this->connectionPool->getConnectionForTable('tt_content');
             $connection->insert('tt_content', $contentData['row']);
             $contentUid = $this->normalizeLastInsertId($connection->lastInsertId());
-            $this->seedFileReferences('tt_content', $contentUid, $pageUid, $now, $contentData['fileReferences']);
-            $this->seedCollectionRecords($contentUid, $pageUid, $now, $contentData['collections']);
+            $this->getStarterFalSeeder()->seedFileReferences('tt_content', $contentUid, $pageUid, $now, $contentData['fileReferences']);
+            $this->getCollectionRecordSeeder()->seed($contentUid, $pageUid, $now, $contentData['collections']);
             $created++;
         }
 
@@ -753,64 +777,11 @@ final class SeedStarterSitesCommand extends Command
      */
     private function deleteCollectionRowsForParentUids(array $parentUids, string $parentTable): void
     {
-        if ($parentUids === []) {
-            return;
-        }
-
-        foreach ($this->getCollectionsByParentTable()[$parentTable] ?? [] as $collection) {
-            $table = $this->getCollectionTable($collection);
-            if ($table === '') {
-                continue;
-            }
-            if (!$this->databaseSchema->tableHasColumn($table, 'foreign_table_parent_uid')) {
-                continue;
-            }
-
-            $collectionUids = $this->findCollectionRowUids($table, $parentUids);
-            $this->deleteCollectionRowsForParentUids($collectionUids, $table);
-            $this->deleteFileReferencesForRecords($table, $collectionUids);
-
-            $queryBuilder = $this->connectionPool->getQueryBuilderForTable($table);
-            $queryBuilder
-                ->delete($table)
-                ->where(
-                    $queryBuilder->expr()->in(
-                        'foreign_table_parent_uid',
-                        $queryBuilder->createNamedParameter($parentUids, ArrayParameterType::INTEGER)
-                    ),
-                    ...$this->buildLiveWorkspaceConstraints($queryBuilder, $table)
-                )
-                ->executeStatement();
-        }
-    }
-
-    /**
-     * @param list<int> $parentUids
-     * @return list<int>
-     */
-    private function findCollectionRowUids(string $table, array $parentUids): array
-    {
-        if ($parentUids === []) {
-            return [];
-        }
-
-        $queryBuilder = $this->connectionPool->getQueryBuilderForTable($table);
-        $queryBuilder->getRestrictions()->removeAll();
-
-        $uids = $queryBuilder
-            ->select('uid')
-            ->from($table)
-            ->where(
-                $queryBuilder->expr()->in(
-                    'foreign_table_parent_uid',
-                    $queryBuilder->createNamedParameter($parentUids, ArrayParameterType::INTEGER)
-                ),
-                ...$this->buildLiveWorkspaceConstraints($queryBuilder, $table)
-            )
-            ->executeQuery()
-            ->fetchFirstColumn();
-
-        return $this->normalizeIntegerList($uids);
+        $this->getCollectionCleanupService()->deleteCollectionRowsForParentUids(
+            $parentUids,
+            $parentTable,
+            $this->getContentBlockCollectionMap()->getCollectionsByParentTable(),
+        );
     }
 
     /**
@@ -818,23 +789,7 @@ final class SeedStarterSitesCommand extends Command
      */
     private function deleteFileReferencesForRecords(string $table, array $recordUids): void
     {
-        if ($recordUids === [] || !$this->databaseSchema->tableHasColumn('sys_file_reference', 'uid_foreign')) {
-            return;
-        }
-
-        $queryBuilder = $this->connectionPool->getQueryBuilderForTable('sys_file_reference');
-        $queryBuilder->getRestrictions()->removeAll();
-        $queryBuilder
-            ->delete('sys_file_reference')
-            ->where(
-                $queryBuilder->expr()->eq('tablenames', $queryBuilder->createNamedParameter($table)),
-                $queryBuilder->expr()->in(
-                    'uid_foreign',
-                    $queryBuilder->createNamedParameter($recordUids, ArrayParameterType::INTEGER)
-                ),
-                ...$this->buildLiveWorkspaceConstraints($queryBuilder, 'sys_file_reference')
-            )
-            ->executeStatement();
+        $this->getCollectionCleanupService()->deleteFileReferencesForRecords($table, $recordUids);
     }
 
     /**
@@ -842,21 +797,7 @@ final class SeedStarterSitesCommand extends Command
      */
     private function buildLiveWorkspaceConstraints(QueryBuilder $queryBuilder, string $table): array
     {
-        $constraints = [];
-        if ($this->databaseSchema->tableHasColumn($table, 't3ver_wsid')) {
-            $constraints[] = $queryBuilder->expr()->eq(
-                't3ver_wsid',
-                $queryBuilder->createNamedParameter(0, ParameterType::INTEGER)
-            );
-        }
-        if ($this->databaseSchema->tableHasColumn($table, 't3ver_oid')) {
-            $constraints[] = $queryBuilder->expr()->eq(
-                't3ver_oid',
-                $queryBuilder->createNamedParameter(0, ParameterType::INTEGER)
-            );
-        }
-
-        return $constraints;
+        return $this->getLiveWorkspaceQueryHelper()->buildLiveWorkspaceConstraints($queryBuilder, $table);
     }
 
     /**
@@ -866,718 +807,6 @@ final class SeedStarterSitesCommand extends Command
      */
     private function buildContentInsert(int $pid, array $block, int $sorting, int $now, array $columns): array
     {
-        $ctype = $block['ctype'];
-        $fixture = ContentBlockDefinitionRegistry::normalizeStringKeyedArray($block['fields']);
-        $row = [
-            'pid' => $pid,
-            'CType' => $ctype,
-            'colPos' => $block['colPos'],
-            'sorting' => $sorting,
-            'hidden' => 0,
-            'sys_language_uid' => 0,
-            'crdate' => $now,
-            'tstamp' => $now,
-        ];
-
-        [$fields, $collections, $fileReferences] = $this->resolveFixtureFields($ctype, $fixture);
-
-        foreach ($fields as $field => $value) {
-            $row[$field] = $value;
-        }
-        foreach ($fileReferences as $field => $references) {
-            $row[$field] = count($references);
-        }
-        foreach ($collections as $field => $collection) {
-            $row[$collection['column'] ?? $field] = count($collection['items']);
-        }
-
-        return [
-            'row' => $this->databaseSchema->filterRow($row, $columns),
-            'collections' => $collections,
-            'fileReferences' => $fileReferences,
-        ];
-    }
-
-    /**
-     * @param array<string, mixed> $fixture
-     * @return array{0: array<string, mixed>, 1: array<string, array{table: string, column: string, items: list<array<string, mixed>>}>, 2: array<string, list<array{file: string, title: string, alternative: string, description: string, source: string}>>}
-     */
-    private function resolveFixtureFields(string $ctype, array $fixture): array
-    {
-        $definition = ContentBlockDefinitionRegistry::getDefinition($ctype);
-        if ($definition === null) {
-            $row = [];
-            foreach ($fixture as $field => $value) {
-                if (!is_array($value)) {
-                    $row[$field] = $this->normalizeScalarValue($value);
-                }
-            }
-
-            return [$row, [], []];
-        }
-
-        $resolvedFields = [];
-        $collections = [];
-        $fileReferences = [];
-
-        foreach ($fixture as $field => $value) {
-            $collection = $definition['collections'][$field] ?? null;
-            if (is_array($collection) && is_array($value)) {
-                $items = $this->normalizeCollectionItems($value, $collection);
-                if ($items !== []) {
-                    $collections[$field] = [
-                        'table' => $this->getCollectionTable($collection),
-                        'column' => $this->getCollectionColumn($collection, $field),
-                        'items' => $items,
-                    ];
-                }
-                continue;
-            }
-
-            $fieldConfig = $definition['fields'][$field] ?? null;
-            if (!is_array($fieldConfig)) {
-                continue;
-            }
-
-            if ($this->isFileField($fieldConfig)) {
-                $references = $this->buildFileReferenceFixturesFromFixtureValue($value);
-                if ($references !== []) {
-                    $fileReferences[$field] = $references;
-                }
-                continue;
-            }
-
-            $resolvedFields[$field] = is_array($value)
-                ? $this->normalizeArrayForScalarField($value)
-                : $this->normalizeFieldValue($value, $fieldConfig);
-        }
-
-        return [$resolvedFields, $collections, $fileReferences];
-    }
-
-    /**
-     * @param array<int|string, mixed> $items
-     * @param array<string, mixed> $collection
-     * @return list<array<string, mixed>>
-     */
-    private function normalizeCollectionItems(array $items, array $collection): array
-    {
-        $normalizedItems = [];
-        foreach ($items as $index => $item) {
-            $normalizedItem = $this->normalizeCollectionItem($item, $collection, (int)$index);
-            if ($normalizedItem !== []) {
-                $normalizedItems[] = $normalizedItem;
-            }
-        }
-
-        return $normalizedItems;
-    }
-
-    /**
-     * @param array<string, mixed> $collection
-     * @return array<string, mixed>
-     */
-    private function normalizeCollectionItem(mixed $item, array $collection, int $index = 0): array
-    {
-        if (!is_array($item)) {
-            $textField = $this->findPreferredTextField($collection);
-            return $textField === null ? [] : [$textField => $this->normalizeScalarValue($item)];
-        }
-
-        $item = ContentBlockDefinitionRegistry::normalizeStringKeyedArray($item);
-        $normalizedItem = [];
-        $fileReferences = [];
-        $nestedCollections = [];
-
-        foreach ($item as $field => $value) {
-            $nestedCollection = $this->getNestedCollection($collection, $field);
-            if ($nestedCollection !== null && is_array($value)) {
-                $items = $this->normalizeCollectionItems($value, $nestedCollection);
-                if ($items !== []) {
-                    $nestedCollections[$field] = [
-                        'table' => $this->getCollectionTable($nestedCollection),
-                        'column' => $this->getCollectionColumn($nestedCollection, $field),
-                        'items' => $items,
-                    ];
-                    $normalizedItem[$field] = count($items);
-                }
-                continue;
-            }
-
-            $fieldConfig = $this->getCollectionFieldConfig($collection, $field);
-            if ($fieldConfig === null) {
-                continue;
-            }
-
-            if ($this->isFileField($fieldConfig)) {
-                $references = $this->buildFileReferenceFixturesFromFixtureValue($value);
-                if ($references !== []) {
-                    $fileReferences[$field] = $references;
-                    $normalizedItem[$field] = count($references);
-                }
-                continue;
-            }
-
-            $normalizedItem[$field] = is_array($value)
-                ? $this->normalizeArrayForScalarField($value)
-                : $this->normalizeFieldValue($value, $fieldConfig);
-        }
-
-        $memberName = $this->stringFromMixed($normalizedItem['name'] ?? $item['name'] ?? '');
-        $collectionFields = $collection['fields'] ?? null;
-        if (!is_array($collectionFields)) {
-            $collectionFields = [];
-        }
-        foreach ($collectionFields as $fieldName => $fieldConfig) {
-            if (!is_string($fieldName) || !is_array($fieldConfig) || isset($fileReferences[$fieldName])) {
-                continue;
-            }
-            $fieldConfig = ContentBlockDefinitionRegistry::normalizeStringKeyedArray($fieldConfig);
-            if (!$this->isFileField($fieldConfig) || !StyleguidePortraitAssets::isPortraitField($fieldName, $fieldConfig)) {
-                continue;
-            }
-
-            $reference = StyleguidePortraitAssets::fileReferenceForMember($memberName, $index);
-            if ($reference['file'] === '') {
-                continue;
-            }
-
-            $fileReferences[$fieldName] = [$reference];
-            $normalizedItem[$fieldName] = 1;
-        }
-
-        if ($fileReferences !== []) {
-            $normalizedItem[self::FILE_REFERENCES_KEY] = $fileReferences;
-        }
-        if ($nestedCollections !== []) {
-            $normalizedItem[self::NESTED_COLLECTIONS_KEY] = $nestedCollections;
-        }
-
-        return $normalizedItem;
-    }
-
-    /**
-     * @param array<string, mixed> $collection
-     */
-    private function findPreferredTextField(array $collection): ?string
-    {
-        foreach (['title', 'label', 'name', 'text', 'value', 'question', 'answer', 'description'] as $field) {
-            if ($this->getCollectionFieldConfig($collection, $field) !== null) {
-                return $field;
-            }
-        }
-
-        return null;
-    }
-
-    /**
-     * @param array<string, mixed> $collection
-     * @return array<string, mixed>|null
-     */
-    private function getCollectionFieldConfig(array $collection, string $field): ?array
-    {
-        $fields = $collection['fields'] ?? null;
-        if (!is_array($fields)) {
-            return null;
-        }
-
-        $fieldConfig = $fields[$field] ?? null;
-        return is_array($fieldConfig) ? ContentBlockDefinitionRegistry::normalizeStringKeyedArray($fieldConfig) : null;
-    }
-
-    /**
-     * @param array<string, mixed> $collection
-     * @return array<string, mixed>|null
-     */
-    private function getNestedCollection(array $collection, string $field): ?array
-    {
-        $collections = $collection['collections'] ?? null;
-        if (!is_array($collections)) {
-            return null;
-        }
-
-        $nestedCollection = $collections[$field] ?? null;
-        return is_array($nestedCollection) ? ContentBlockDefinitionRegistry::normalizeStringKeyedArray($nestedCollection) : null;
-    }
-
-    /**
-     * @param array<string, mixed> $fieldConfig
-     */
-    private function normalizeFieldValue(mixed $value, array $fieldConfig): int|string
-    {
-        $type = is_string($fieldConfig['type'] ?? null) ? $fieldConfig['type'] : '';
-        if ($type === 'Checkbox') {
-            return $this->normalizeBooleanValue($value) ? 1 : 0;
-        }
-        if (in_array($type, ['Date', 'DateTime'], true)) {
-            if ($value instanceof \DateTimeInterface) {
-                return $value->getTimestamp();
-            }
-            if (is_scalar($value)) {
-                $timestamp = strtotime((string)$value);
-                return $timestamp === false ? (string)$value : $timestamp;
-            }
-        }
-
-        return $this->normalizeScalarValue($value);
-    }
-
-    private function normalizeBooleanValue(mixed $value): bool
-    {
-        if (is_bool($value)) {
-            return $value;
-        }
-        if (is_int($value)) {
-            return $value !== 0;
-        }
-        if (is_string($value)) {
-            return !in_array(strtolower(trim($value)), ['', '0', 'false', 'no'], true);
-        }
-
-        return false;
-    }
-
-    /**
-     * @param array<int|string, mixed> $value
-     */
-    private function normalizeArrayForScalarField(array $value): string
-    {
-        if ($value === []) {
-            return '';
-        }
-
-        $scalars = [];
-        foreach ($value as $item) {
-            if (is_scalar($item)) {
-                $scalars[] = trim((string)$item);
-            }
-        }
-
-        return implode("\n", array_filter($scalars, static fn (string $item): bool => $item !== ''));
-    }
-
-    private function normalizeScalarValue(mixed $value): int|string
-    {
-        if (is_bool($value)) {
-            return $value ? 1 : 0;
-        }
-        if (is_int($value)) {
-            return $value;
-        }
-        if (is_float($value)) {
-            return (string)$value;
-        }
-        if ($value === null) {
-            return '';
-        }
-        if (is_string($value)) {
-            return $value;
-        }
-
-        return '';
-    }
-
-    private function stringFromMixed(mixed $value): string
-    {
-        return is_scalar($value) ? trim((string)$value) : '';
-    }
-
-    /**
-     * @param array<string, array{table: string, column?: string, items: list<array<string, mixed>>}> $collections
-     */
-    private function seedCollectionRecords(int $contentUid, int $pageUid, int $now, array $collections): void
-    {
-        foreach ($collections as $collection) {
-            $table = $collection['table'];
-            $columns = $this->databaseSchema->getColumnNames($table);
-            $connection = $this->connectionPool->getConnectionForTable($table);
-
-            foreach ($collection['items'] as $index => $item) {
-                $fileReferences = $this->normalizeFileReferencePayloads($item[self::FILE_REFERENCES_KEY] ?? []);
-                unset($item[self::FILE_REFERENCES_KEY]);
-                $nestedCollections = is_array($item[self::NESTED_COLLECTIONS_KEY] ?? null)
-                    ? $this->normalizeCollectionPayloads($item[self::NESTED_COLLECTIONS_KEY])
-                    : [];
-                unset($item[self::NESTED_COLLECTIONS_KEY]);
-
-                $row = $this->databaseSchema->filterRow([
-                    'pid' => $pageUid,
-                    'sorting' => $index + 1,
-                    'hidden' => 0,
-                    'sys_language_uid' => 0,
-                    'crdate' => $now,
-                    'tstamp' => $now,
-                    'foreign_table_parent_uid' => $contentUid,
-                ] + $item, $columns);
-
-                if (!$this->hasPayloadBeyondSystemFields($row)) {
-                    continue;
-                }
-
-                $connection->insert($table, $row);
-                $collectionRowUid = $this->normalizeLastInsertId($connection->lastInsertId());
-                $this->seedFileReferences($table, $collectionRowUid, $pageUid, $now, $fileReferences);
-                $this->seedCollectionRecords($collectionRowUid, $pageUid, $now, $nestedCollections);
-            }
-        }
-    }
-
-    /**
-     * @param array<mixed, mixed> $collections
-     * @return array<string, array{table: string, column?: string, items: list<array<string, mixed>>}>
-     */
-    private function normalizeCollectionPayloads(array $collections): array
-    {
-        $normalizedCollections = [];
-        foreach ($collections as $field => $collection) {
-            if (!is_string($field) || !is_array($collection)) {
-                continue;
-            }
-            $table = $collection['table'] ?? null;
-            $items = $collection['items'] ?? null;
-            if (!is_string($table) || !is_array($items)) {
-                continue;
-            }
-            $normalizedItems = [];
-            foreach ($items as $item) {
-                if (is_array($item)) {
-                    $normalizedItems[] = ContentBlockDefinitionRegistry::normalizeStringKeyedArray($item);
-                }
-            }
-            $normalizedCollections[$field] = [
-                'table' => $table,
-                'items' => $normalizedItems,
-            ];
-            if (is_string($collection['column'] ?? null)) {
-                $normalizedCollections[$field]['column'] = $collection['column'];
-            }
-        }
-
-        return $normalizedCollections;
-    }
-
-    /**
-     * @return array<string, list<array{file: string, title: string, alternative: string, description: string, source: string}>>
-     */
-    private function normalizeFileReferencePayloads(mixed $payload): array
-    {
-        if (!is_array($payload)) {
-            return [];
-        }
-
-        $normalized = [];
-        foreach ($payload as $fieldName => $references) {
-            if (!is_string($fieldName) || !is_array($references)) {
-                continue;
-            }
-
-            foreach ($references as $reference) {
-                if (!is_array($reference)) {
-                    continue;
-                }
-                $file = $this->stringFromMixed($reference['file'] ?? '');
-                if ($file === '') {
-                    continue;
-                }
-                $normalized[$fieldName][] = [
-                    'file' => $file,
-                    'title' => $this->stringFromMixed($reference['title'] ?? ''),
-                    'alternative' => $this->stringFromMixed($reference['alternative'] ?? ''),
-                    'description' => $this->stringFromMixed($reference['description'] ?? ''),
-                    'source' => $this->stringFromMixed($reference['source'] ?? ''),
-                ];
-            }
-        }
-
-        return $normalized;
-    }
-
-    /**
-     * @param array<string, list<array{file: string, title: string, alternative: string, description: string, source: string}>> $fileReferences
-     */
-    private function seedFileReferences(string $table, int $uid, int $pid, int $now, array $fileReferences): void
-    {
-        if ($fileReferences === []) {
-            return;
-        }
-
-        $columns = $this->databaseSchema->getColumnNames('sys_file_reference');
-        $connection = $this->connectionPool->getConnectionForTable('sys_file_reference');
-
-        foreach ($fileReferences as $fieldName => $references) {
-            foreach ($references as $index => $reference) {
-                $file = $this->ensureStarterFalFile($reference);
-                if ($file === null) {
-                    continue;
-                }
-
-                $connection->insert('sys_file_reference', $this->databaseSchema->filterRow([
-                    'pid' => $pid,
-                    'tstamp' => $now,
-                    'crdate' => $now,
-                    'hidden' => 0,
-                    'deleted' => 0,
-                    'sys_language_uid' => 0,
-                    'uid_local' => $file->getUid(),
-                    'uid_foreign' => $uid,
-                    'tablenames' => $table,
-                    'fieldname' => $fieldName,
-                    'table_local' => 'sys_file',
-                    'sorting' => $index + 1,
-                    'sorting_foreign' => $index + 1,
-                    'title' => $reference['title'],
-                    'alternative' => $reference['alternative'],
-                    'description' => $reference['description'],
-                    'link' => $reference['source'],
-                ], $columns));
-            }
-        }
-    }
-
-    /**
-     * @return list<array{file: string, title: string, alternative: string, description: string, source: string}>
-     */
-    private function buildFileReferenceFixturesFromFixtureValue(mixed $value): array
-    {
-        if ($value === null || $value === '' || $value === []) {
-            return [];
-        }
-
-        $items = [];
-        if (is_string($value)) {
-            $items[] = ['file' => $value];
-        } elseif (is_array($value) && isset($value['file'])) {
-            $items[] = ContentBlockDefinitionRegistry::normalizeStringKeyedArray($value);
-        } elseif (is_array($value)) {
-            foreach ($value as $item) {
-                if (is_string($item)) {
-                    $items[] = ['file' => $item];
-                } elseif (is_array($item) && isset($item['file'])) {
-                    $items[] = ContentBlockDefinitionRegistry::normalizeStringKeyedArray($item);
-                }
-            }
-        }
-
-        $references = [];
-        foreach ($items as $item) {
-            $file = $this->stringFromMixed($item['file'] ?? '');
-            if ($file === '') {
-                continue;
-            }
-            if (str_starts_with($file, 'EXT:desiderio/')) {
-                $file = substr($file, strlen('EXT:desiderio/'));
-            }
-            $title = $this->stringFromMixed($item['title'] ?? '');
-            if ($title === '') {
-                $title = $this->buildReadableFileTitle(pathinfo($file, PATHINFO_FILENAME));
-            }
-            $source = $this->stringFromMixed($item['source'] ?? $item['link'] ?? '');
-            $references[] = [
-                'file' => $file,
-                'title' => $title,
-                'alternative' => $this->stringFromMixed($item['alternative'] ?? $item['alt'] ?? $title),
-                'description' => $this->stringFromMixed($item['description'] ?? $item['credit'] ?? $source),
-                'source' => $source,
-            ];
-        }
-
-        return $references;
-    }
-
-    /**
-     * @param array{file: string, title: string, alternative: string, description: string, source: string} $reference
-     */
-    private function ensureStarterFalFile(array $reference): ?File
-    {
-        $relativeFilePath = $reference['file'];
-        if (isset($this->starterFiles[$relativeFilePath])) {
-            return $this->starterFiles[$relativeFilePath];
-        }
-
-        $sourcePath = GeneralUtility::getFileAbsFileName('EXT:desiderio/' . $relativeFilePath);
-        if ($sourcePath === '' || !is_file($sourcePath)) {
-            return null;
-        }
-
-        $folder = $this->getStarterFalFolder();
-        $fileName = basename($relativeFilePath);
-        $file = $folder->getFile($fileName);
-        if (!$file instanceof File) {
-            $file = $folder->addFile($sourcePath, $fileName);
-        }
-
-        $this->starterFiles[$relativeFilePath] = $file;
-        $this->upsertFileMetadata($file, $reference);
-
-        return $file;
-    }
-
-    private function getStarterFalFolder(): Folder
-    {
-        if ($this->starterFalFolder instanceof Folder) {
-            return $this->starterFalFolder;
-        }
-
-        $storage = $this->storageRepository->getDefaultStorage();
-        if ($storage === null) {
-            throw new \RuntimeException('No default FAL storage is configured for Desiderio starter seeding.', 1777100241);
-        }
-
-        $rootFolder = $storage->getRootLevelFolder(false);
-        $this->starterFalFolder = $rootFolder->hasFolder(self::STARTER_FAL_FOLDER)
-            ? $rootFolder->getSubfolder(self::STARTER_FAL_FOLDER)
-            : $rootFolder->createFolder(self::STARTER_FAL_FOLDER);
-
-        return $this->starterFalFolder;
-    }
-
-    /**
-     * @param array{file: string, title: string, alternative: string, description: string, source: string} $reference
-     */
-    private function upsertFileMetadata(File $file, array $reference): void
-    {
-        $columns = $this->databaseSchema->getColumnNames('sys_file_metadata');
-        if (!isset($columns['file'])) {
-            return;
-        }
-
-        $queryBuilder = $this->connectionPool->getQueryBuilderForTable('sys_file_metadata');
-        $where = [
-            $queryBuilder->expr()->eq('file', $queryBuilder->createNamedParameter($file->getUid())),
-        ];
-        if (isset($columns['sys_language_uid'])) {
-            $where[] = $queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter(0));
-        }
-
-        $existingUid = $queryBuilder
-            ->select('uid')
-            ->from('sys_file_metadata')
-            ->where(...$where)
-            ->setMaxResults(1)
-            ->executeQuery()
-            ->fetchOne();
-
-        $row = $this->databaseSchema->filterRow([
-            'file' => $file->getUid(),
-            'pid' => 0,
-            'tstamp' => time(),
-            'crdate' => time(),
-            'sys_language_uid' => 0,
-            'title' => $reference['title'],
-            'alternative' => $reference['alternative'],
-            'description' => $reference['description'],
-        ], $columns);
-
-        $connection = $this->connectionPool->getConnectionForTable('sys_file_metadata');
-        if (is_numeric($existingUid)) {
-            $connection->update('sys_file_metadata', $row, ['uid' => (int)$existingUid]);
-            return;
-        }
-
-        $connection->insert('sys_file_metadata', $row);
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /**
-     * @return array<string, list<array<string, mixed>>>
-     */
-    private function getCollectionsByParentTable(): array
-    {
-        if ($this->collectionsByParentTable !== null) {
-            return $this->collectionsByParentTable;
-        }
-
-        $map = [];
-        foreach (ContentBlockDefinitionRegistry::getDefinitions() as $definition) {
-            foreach ($definition['collections'] as $collection) {
-                $this->registerCollectionForParentTable('tt_content', $collection, $map);
-            }
-        }
-
-        $this->collectionsByParentTable = $map;
-        return $this->collectionsByParentTable;
-    }
-
-    /**
-     * @param array<string, mixed> $collection
-     * @param array<string, list<array<string, mixed>>> $map
-     */
-    private function registerCollectionForParentTable(string $parentTable, array $collection, array &$map): void
-    {
-        $map[$parentTable][] = $collection;
-        $nestedCollections = $collection['collections'] ?? [];
-        if (!is_array($nestedCollections)) {
-            return;
-        }
-
-        $table = $this->getCollectionTable($collection);
-        if ($table === '') {
-            return;
-        }
-
-        foreach ($nestedCollections as $nestedCollection) {
-            if (is_array($nestedCollection)) {
-                $this->registerCollectionForParentTable($table, ContentBlockDefinitionRegistry::normalizeStringKeyedArray($nestedCollection), $map);
-            }
-        }
-    }
-
-    /**
-     * @param array<string, mixed> $fieldConfig
-     */
-    private function isFileField(array $fieldConfig): bool
-    {
-        return ($fieldConfig['type'] ?? '') === 'File';
-    }
-
-
-
-
-
-
-
-    /**
-     * @param array<string, mixed> $row
-     */
-    private function hasPayloadBeyondSystemFields(array $row): bool
-    {
-        $systemFields = [
-            'pid' => true,
-            'sorting' => true,
-            'hidden' => true,
-            'sys_language_uid' => true,
-            'crdate' => true,
-            'tstamp' => true,
-            'foreign_table_parent_uid' => true,
-        ];
-
-        foreach ($row as $field => $_value) {
-            if (!isset($systemFields[$field])) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    private function buildReadableFileTitle(string $value): string
-    {
-        $value = preg_replace('/[^a-zA-Z0-9]+/', ' ', $value) ?? $value;
-        $value = trim($value);
-
-        return $value !== '' ? ucwords(strtolower($value)) : 'Starter asset';
+        return $this->getStarterContentBuilder()->buildContentInsert($pid, $block, $sorting, $now, $columns);
     }
 }

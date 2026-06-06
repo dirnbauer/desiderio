@@ -1,106 +1,298 @@
 parameters:
 	ignoreErrors:
 		-
+			message: '#^Cannot access offset ''folderUid'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 3
+			path: Classes/Command/SeedBlogPagesCommand.php
+
+		-
+			message: '#^Cannot access offset ''rootUid'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 2
+			path: Classes/Command/SeedBlogPagesCommand.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 3
+			path: Classes/Command/SeedBlogPagesCommand.php
+
+		-
+			message: '#^Cannot cast mixed to string\.$#'
+			identifier: cast.string
+			count: 2
+			path: Classes/Command/SeedBlogPagesCommand.php
+
+		-
+			message: '#^Method Webconsulting\\Desiderio\\Command\\SeedStarterSitesCommand\:\:buildContentInsert\(\) should return array\{row\: array\<string, mixed\>, collections\: array\<string, array\{table\: string, column\: string, items\: list\<array\<string, mixed\>\>\}\>, fileReferences\: array\<string, list\<array\{file\: string, title\: string, alternative\: string, description\: string, source\: string\}\>\>\} but returns array\.$#'
+			identifier: return.type
+			count: 1
+			path: Classes/Command/SeedStarterSitesCommand.php
+
+		-
+			message: '#^Cannot cast mixed to int\.$#'
+			identifier: cast.int
+			count: 4
+			path: Classes/Command/SeedStyleguidePagesCommand.php
+
+		-
+			message: '#^Method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:buildContentInsert\(\) should return array\{row\: array\<string, mixed\>, collections\: array\<string, array\{table\: string, column\: string, items\: list\<array\<string, mixed\>\>\}\>, fileReferences\: array\<string, list\<array\{file\: string, title\: string, alternative\: string, description\: string, source\: string\}\>\>\} but returns array\.$#'
+			identifier: return.type
+			count: 1
+			path: Classes/Command/SeedStyleguidePagesCommand.php
+
+		-
+			message: '#^Method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:buildFileReferenceFixtures\(\) is unused\.$#'
+			identifier: method.unused
+			count: 1
+			path: Classes/Command/SeedStyleguidePagesCommand.php
+
+		-
+			message: '#^Method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:completeResolvedFixtureData\(\) is unused\.$#'
+			identifier: method.unused
+			count: 1
+			path: Classes/Command/SeedStyleguidePagesCommand.php
+
+		-
+			message: '#^Method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:findExistingDesiderioContentUids\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: Classes/Command/SeedStyleguidePagesCommand.php
+
+		-
+			message: '#^Method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:normalizeCollectionItems\(\) is unused\.$#'
+			identifier: method.unused
+			count: 1
+			path: Classes/Command/SeedStyleguidePagesCommand.php
+
+		-
+			message: '#^Method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:resolveCollectionField\(\) is unused\.$#'
+			identifier: method.unused
+			count: 1
+			path: Classes/Command/SeedStyleguidePagesCommand.php
+
+		-
+			message: '#^Method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:resolveFixtureFields\(\) is unused\.$#'
+			identifier: method.unused
+			count: 1
+			path: Classes/Command/SeedStyleguidePagesCommand.php
+
+		-
+			message: '#^Method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:resolveScalarField\(\) is unused\.$#'
+			identifier: method.unused
+			count: 1
+			path: Classes/Command/SeedStyleguidePagesCommand.php
+
+		-
+			message: '#^Parameter \#1 \$parentUids of method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:deleteCollectionRowsForParentUids\(\) expects list\<int\>, non\-empty\-array given\.$#'
+			identifier: argument.type
+			count: 1
+			path: Classes/Command/SeedStyleguidePagesCommand.php
+
+		-
+			message: '#^Parameter \#2 \$recordUids of method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:deleteFileReferencesForRecords\(\) expects list\<int\>, non\-empty\-array given\.$#'
+			identifier: argument.type
+			count: 1
+			path: Classes/Command/SeedStyleguidePagesCommand.php
+
+		-
+			message: '#^Parameter \#1 \$finisherOptions of method Webconsulting\\Desiderio\\Domain\\Finishers\\BrevoConfigurationResolver\:\:resolve\(\) expects array\<string, mixed\>, array given\.$#'
+			identifier: argument.type
+			count: 1
+			path: Classes/Domain/Finishers/BrevoContactFinisher.php
+
+		-
+			message: '#^Method Webconsulting\\Desiderio\\Seeding\\BlogPageTreeSeeder\:\:findBlogSetups\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: Classes/Seeding/BlogPageTreeSeeder.php
+
+		-
+			message: '#^Method Webconsulting\\Desiderio\\Seeding\\StarterContentBuilder\:\:buildContentInsert\(\) has parameter \$block with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: Classes/Seeding/StarterContentBuilder.php
+
+		-
+			message: '#^Method Webconsulting\\Desiderio\\Seeding\\StarterContentBuilder\:\:buildContentInsert\(\) has parameter \$columns with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: Classes/Seeding/StarterContentBuilder.php
+
+		-
+			message: '#^Method Webconsulting\\Desiderio\\Seeding\\StarterContentBuilder\:\:buildContentInsert\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: Classes/Seeding/StarterContentBuilder.php
+
+		-
+			message: '#^Method Webconsulting\\Desiderio\\Seeding\\StarterContentBuilder\:\:getCollectionTable\(\) has parameter \$collection with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: Classes/Seeding/StarterContentBuilder.php
+
+		-
+			message: '#^Parameter \#1 \$array of static method Webconsulting\\Desiderio\\Data\\ContentBlockDefinitionRegistry\:\:normalizeStringKeyedArray\(\) expects array\<mixed\>, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: Classes/Seeding/StarterContentBuilder.php
+
+		-
+			message: '#^Parameter \#1 \$ctype of method Webconsulting\\Desiderio\\Seeding\\StarterContentBuilder\:\:resolveFixtureFields\(\) expects string, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: Classes/Seeding/StarterContentBuilder.php
+
+		-
+			message: '#^Parameter \#2 \$columns of method Webconsulting\\Desiderio\\Seeding\\DatabaseSchemaHelper\:\:filterRow\(\) expects array\<string, true\>, array given\.$#'
+			identifier: argument.type
+			count: 1
+			path: Classes/Seeding/StarterContentBuilder.php
+
+		-
 			message: '#^Cannot access offset ''cells'' on mixed\.$#'
 			identifier: offsetAccess.nonOffsetAccessible
 			count: 3
-			path: Classes/Command/SeedStyleguidePagesCommand.php
+			path: Classes/Seeding/StyleguideFixtureResolver.php
 
 		-
 			message: '#^Cannot access offset ''column_key'' on mixed\.$#'
 			identifier: offsetAccess.nonOffsetAccessible
 			count: 1
-			path: Classes/Command/SeedStyleguidePagesCommand.php
+			path: Classes/Seeding/StyleguideFixtureResolver.php
 
 		-
 			message: '#^Cannot access offset ''description''\|''feature_name''\|''features_list''\|''label''\|''links''\|''name''\|''question''\|''row_data''\|''row_label''\|''text''\|''title''\|''value'' on mixed\.$#'
 			identifier: offsetAccess.nonOffsetAccessible
 			count: 1
-			path: Classes/Command/SeedStyleguidePagesCommand.php
+			path: Classes/Seeding/StyleguideFixtureResolver.php
 
 		-
 			message: '#^Cannot access offset ''feature_name''\|''features''\|''features_list''\|''label''\|''links''\|''name''\|''question''\|''row_data''\|''row_label''\|''text''\|''title''\|''value'' on mixed\.$#'
 			identifier: offsetAccess.nonOffsetAccessible
 			count: 1
-			path: Classes/Command/SeedStyleguidePagesCommand.php
+			path: Classes/Seeding/StyleguideFixtureResolver.php
 
 		-
 			message: '#^Cannot access offset ''row_data'' on mixed\.$#'
 			identifier: offsetAccess.nonOffsetAccessible
 			count: 1
-			path: Classes/Command/SeedStyleguidePagesCommand.php
+			path: Classes/Seeding/StyleguideFixtureResolver.php
 
 		-
 			message: '#^Cannot access offset ''row_label'' on mixed\.$#'
 			identifier: offsetAccess.nonOffsetAccessible
 			count: 1
-			path: Classes/Command/SeedStyleguidePagesCommand.php
+			path: Classes/Seeding/StyleguideFixtureResolver.php
 
 		-
 			message: '#^Cannot access offset ''table'' on mixed\.$#'
 			identifier: offsetAccess.nonOffsetAccessible
 			count: 2
-			path: Classes/Command/SeedStyleguidePagesCommand.php
+			path: Classes/Seeding/StyleguideFixtureResolver.php
 
 		-
 			message: '#^Cannot access offset string on mixed\.$#'
 			identifier: offsetAccess.nonOffsetAccessible
 			count: 6
-			path: Classes/Command/SeedStyleguidePagesCommand.php
-
-		-
-			message: '#^Cannot cast mixed to int\.$#'
-			identifier: cast.int
-			count: 6
-			path: Classes/Command/SeedStyleguidePagesCommand.php
+			path: Classes/Seeding/StyleguideFixtureResolver.php
 
 		-
 			message: '#^Cannot cast mixed to string\.$#'
 			identifier: cast.string
-			count: 12
-			path: Classes/Command/SeedStyleguidePagesCommand.php
+			count: 7
+			path: Classes/Seeding/StyleguideFixtureResolver.php
 
 		-
 			message: '#^Casting to int something that''s already int\.$#'
 			identifier: cast.useless
 			count: 1
-			path: Classes/Command/SeedStyleguidePagesCommand.php
+			path: Classes/Seeding/StyleguideFixtureResolver.php
 
 		-
-			message: '#^Parameter \#1 \$value of method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:normalizeArrayForCollectionField\(\) expects array\<int, mixed\>, array\<mixed, mixed\> given\.$#'
+			message: '#^Method Webconsulting\\Desiderio\\Seeding\\StyleguideFixtureResolver\:\:buildContentInsert\(\) has parameter \$columns with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: Classes/Seeding/StyleguideFixtureResolver.php
+
+		-
+			message: '#^Method Webconsulting\\Desiderio\\Seeding\\StyleguideFixtureResolver\:\:buildContentInsert\(\) has parameter \$fixture with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: Classes/Seeding/StyleguideFixtureResolver.php
+
+		-
+			message: '#^Method Webconsulting\\Desiderio\\Seeding\\StyleguideFixtureResolver\:\:buildContentInsert\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: Classes/Seeding/StyleguideFixtureResolver.php
+
+		-
+			message: '#^Method Webconsulting\\Desiderio\\Seeding\\StyleguideFixtureResolver\:\:findPreferredTextField\(\) has parameter \$collection with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: Classes/Seeding/StyleguideFixtureResolver.php
+
+		-
+			message: '#^Method Webconsulting\\Desiderio\\Seeding\\StyleguideFixtureResolver\:\:normalizeFieldValue\(\) has parameter \$fieldConfig with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: Classes/Seeding/StyleguideFixtureResolver.php
+
+		-
+			message: '#^Parameter \#1 \$collection of method Webconsulting\\Desiderio\\Seeding\\StyleguideFixtureResolver\:\:getCollectionTable\(\) expects array\<string, mixed\>, array given\.$#'
 			identifier: argument.type
 			count: 1
-			path: Classes/Command/SeedStyleguidePagesCommand.php
+			path: Classes/Seeding/StyleguideFixtureResolver.php
 
 		-
-			message: '#^Parameter \#1 \$value of method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:normalizeArrayForScalarField\(\) expects array\<int, mixed\>, array\<mixed, mixed\> given\.$#'
+			message: '#^Parameter \#1 \$value of method Webconsulting\\Desiderio\\Seeding\\StyleguideFixtureResolver\:\:normalizeArrayForCollectionField\(\) expects array\<int, mixed\>, array\<mixed, mixed\> given\.$#'
 			identifier: argument.type
 			count: 1
-			path: Classes/Command/SeedStyleguidePagesCommand.php
+			path: Classes/Seeding/StyleguideFixtureResolver.php
 
 		-
-			message: '#^Parameter \#2 \$collection of method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:normalizeCollectionItems\(\) expects array\<string, mixed\>, mixed given\.$#'
+			message: '#^Parameter \#1 \$value of method Webconsulting\\Desiderio\\Seeding\\StyleguideFixtureResolver\:\:normalizeArrayForScalarField\(\) expects array\<int, mixed\>, array\<mixed, mixed\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: Classes/Seeding/StyleguideFixtureResolver.php
+
+		-
+			message: '#^Parameter \#2 \$collection of method Webconsulting\\Desiderio\\Seeding\\StyleguideFixtureResolver\:\:normalizeCollectionItems\(\) expects array\<string, mixed\>, mixed given\.$#'
 			identifier: argument.type
 			count: 2
-			path: Classes/Command/SeedStyleguidePagesCommand.php
+			path: Classes/Seeding/StyleguideFixtureResolver.php
 
 		-
-			message: '#^Parameter \#2 \$fieldConfig of method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:normalizeFieldValue\(\) expects array\<string, mixed\>, mixed given\.$#'
+			message: '#^Parameter \#2 \$columns of method Webconsulting\\Desiderio\\Seeding\\DatabaseSchemaHelper\:\:filterRow\(\) expects array\<string, true\>, array given\.$#'
+			identifier: argument.type
+			count: 1
+			path: Classes/Seeding/StyleguideFixtureResolver.php
+
+		-
+			message: '#^Parameter \#2 \$fieldConfig of method Webconsulting\\Desiderio\\Seeding\\StyleguideFixtureResolver\:\:normalizeFieldValue\(\) expects array, mixed given\.$#'
 			identifier: argument.type
 			count: 2
-			path: Classes/Command/SeedStyleguidePagesCommand.php
+			path: Classes/Seeding/StyleguideFixtureResolver.php
 
 		-
-			message: '#^Parameter \#2 \$sourceItem of method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:populateFixedLinkSlots\(\) expects array\<string, mixed\>, array\<mixed, mixed\> given\.$#'
+			message: '#^Parameter \#2 \$fieldConfig of method Webconsulting\\Desiderio\\Seeding\\StyleguideFixtureResolver\:\:normalizeSelectValue\(\) expects array\<string, mixed\>, array given\.$#'
 			identifier: argument.type
 			count: 1
-			path: Classes/Command/SeedStyleguidePagesCommand.php
+			path: Classes/Seeding/StyleguideFixtureResolver.php
 
 		-
-			message: '#^Parameter \#5 \$fileReferences of method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:seedFileReferences\(\) expects array\<string, list\<array\{file\: string, title\: string, alternative\: string, description\: string, source\: string\}\>\>, array\<mixed\> given\.$#'
+			message: '#^Parameter \#2 \$fixture of method Webconsulting\\Desiderio\\Seeding\\StyleguideFixtureResolver\:\:resolveFixtureFields\(\) expects array\<string, mixed\>, array given\.$#'
 			identifier: argument.type
 			count: 1
-			path: Classes/Command/SeedStyleguidePagesCommand.php
+			path: Classes/Seeding/StyleguideFixtureResolver.php
+
+		-
+			message: '#^Parameter \#2 \$sourceItem of method Webconsulting\\Desiderio\\Seeding\\StyleguideFixtureResolver\:\:populateFixedLinkSlots\(\) expects array\<string, mixed\>, array\<mixed, mixed\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: Classes/Seeding/StyleguideFixtureResolver.php
 
 		-
 			message: '#^Cannot call method getVariableProvider\(\) on TYPO3Fluid\\Fluid\\Core\\Rendering\\RenderingContextInterface\|null\.$#'

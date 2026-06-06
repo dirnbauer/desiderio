@@ -138,7 +138,7 @@ desiderio/
                           ▲ composes via <d:…>
 ┌──────────────────────────────────────────────────────────┐
 │ Layer 1 — COMPONENTS (Fluid 5)                           │
-│ 16 atoms · 17 molecules · 4 layouts (typed <f:argument>) │
+│ 17 atoms · 28 molecules · 4 layouts (typed <f:argument>) │
 └──────────────────────────────────────────────────────────┘
 ```
 
@@ -306,14 +306,16 @@ Switching presets is always safe — never breaks content.
 
 ## 10. Fluid 5 Components
 
-16 atoms, 17 molecules, 4 layouts (= 37 components). Each component uses typed `<f:argument>` and `<f:slot>`.
+17 atoms, 28 molecules, 4 layouts (= 49 components). Each component uses typed `<f:argument>` and `<f:slot>`. The canonical inventory is enforced by `Tests/Unit/ComponentStructureTest.php`.
 
 ```
-Atom:      AspectRatio Avatar Badge Button Icon Image Input Label
+Atom:      AspectRatio Avatar Badge Button ControlClass Icon Image Input Label
            Link Progress ScrollArea Select Separator Skeleton
            Textarea Typography
 Molecule:  Accordion AccordionItem Alert AlertTitle AlertDescription
            Card CardHeader CardContent CardFooter
+           CheckboxControl CheckedListItem Field FieldGroup FieldLabel FieldLegend
+           FieldSet FormRenderer OptionLabel RadioControl SelectNative
            Table TableHeader TableRow TableCell
            Tabs TabsList TabsTrigger TabsContent
 Layout:    Container Grid Section Stack

@@ -12,13 +12,14 @@ use PHPUnit\Framework\TestCase;
  * once the catalog is in shape; a non-zero count means a regression that
  * needs fixing in source rather than silently growing technical debt.
  *
- * Soft signals (fixture_missing_field, collection_child_seed_gap) are not
- * asserted here because the seed command auto-fills missing fields with
- * sensible defaults — they are useful as a developer report, not a contract.
+ * Fixture completeness signals are also enforced so import fixtures stay
+ * aligned with declared Content Block fields.
  */
 final class ContentElementAuditTest extends TestCase
 {
     private const STRICT_CATEGORIES = [
+        'fixture_missing_field',
+        'collection_child_seed_gap',
         'missing_table_key',
         'fixture_extra_field',
         'template_unused_field',

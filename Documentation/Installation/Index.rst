@@ -88,7 +88,9 @@ Seed and setup commands
 =======================
 
 Desiderio ships console commands for demo content and integration setup.
-Run them after the matching site sets are enabled.
+Commands live in ``Classes/Command/``; shared FAL import, collection
+insert/cleanup, and fixture normalization live in ``Classes/Seeding/``.
+Run the commands after the matching site sets are enabled.
 
 ..  list-table::
     :header-rows: 1

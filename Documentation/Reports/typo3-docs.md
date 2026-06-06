@@ -1,16 +1,27 @@
 # TYPO3 Documentation Audit
 
 Date: 2026-06-06
-Target: TYPO3 14.3 LTS only
+Target: release `v2.6.0`, TYPO3 14.3 LTS only
 Status: Green
 
 ## Summary
 
-README and Documentation now match the current component inventory (49 Fluid
-components), console commands, Visual Editor middleware, and maintainability
-guidance from the thermo-nuclear code quality review.
+README and Documentation match the v2.6.0 seeding decomposition: thin console
+commands, shared `Classes/Seeding/` services, 49 Fluid components, Visual Editor
+middleware, and the refreshed thermo-nuclear code quality review.
 
-## Changes In This Pass
+## Changes In This Pass (v2.6.0)
+
+- `Documentation/Reports/code-quality.md` refreshed for post-decomposition
+  approval (`2.6.0`).
+- README adds `Classes/Seeding/` service table and links to Developer docs
+  and the code-quality report.
+- `Documentation/KnownProblems/Index.rst` PHPStan baseline now references
+  `StyleguideFixtureResolver`, not the former ~2,100-line command.
+- `Documentation/Installation/Index.rst` notes the Command/Seeding split.
+- `CHANGELOG.md` documents v2.6.0 seeding services, middleware, and docs.
+
+## Previous Pass (2026-06-06, pre-release)
 
 - README component counts corrected to 17 atoms, 28 molecules, 4 layouts.
 - README documents all `desiderio:*` seed/setup commands plus FAL output

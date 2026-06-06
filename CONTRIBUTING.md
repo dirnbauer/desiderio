@@ -24,7 +24,7 @@ intact.
    Build/Scripts/runTests.sh
    ```
 
-   That runs PHPStan at `level: max`, the 101 unit tests, the deep
+   That runs PHPStan at `level: max`, the 153 unit tests, the deep
    content element audit, and verifies the Tailwind bundle is in sync.
    CI re-runs the same matrix across PHP 8.3 + 8.4.
 4. If you touched a Content Block, also run:

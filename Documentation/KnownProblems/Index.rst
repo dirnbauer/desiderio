@@ -37,8 +37,8 @@ versioning columns exist, so existing draft overlays are left alone.
 PHPStan baseline
 ================
 
-Legacy type drift in
-``Classes/Command/SeedStyleguidePagesCommand.php`` (a ~2,100-line
-fixture seeder) is captured in ``phpstan-baseline.neon`` as a ratchet
-target. New code in ``Classes/`` must pass at ``level: max`` without
-extending the baseline.
+Legacy type drift in ``Classes/Seeding/StyleguideFixtureResolver.php``
+and related seeding services is captured in ``phpstan-baseline.neon`` as
+a ratchet target. Seed commands are thin orchestration shells; do not
+move fixture logic back into ``Classes/Command/``. New code in
+``Classes/`` must pass at ``level: max`` without extending the baseline.

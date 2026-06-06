@@ -128,6 +128,20 @@ vendor/bin/typo3 desiderio:news:seed-taxonomy --storage-pid=<news-storage-pid>
 
 Seed commands write FAL assets under `fileadmin/desiderio-styleguide/` or `fileadmin/desiderio-starter/`. Re-running a seeder overwrites live-workspace fixture metadata in place.
 
+Commands are thin orchestration shells. Shared seeding logic lives in `Classes/Seeding/`:
+
+| Service | Responsibility |
+| --- | --- |
+| `ExtensionFalSeeder` | FAL import and `sys_file_reference` writes |
+| `CollectionRecordSeeder` | Recursive Content Blocks collection inserts |
+| `CollectionCleanupService` | Live-workspace-scoped collection/FAL cleanup |
+| `StyleguideFixtureResolver` | Styleguide YAML fixture normalization |
+| `StarterContentBuilder` | Starter-site content block payloads |
+| `BlogPageTreeSeeder` | Blog layout alignment and demo post seeding |
+| `FixtureFieldNormalizer` | Shared scalar/file/checkbox/date field normalization |
+
+`BrevoConfigurationResolver` centralizes Brevo finisher configuration precedence. See `Documentation/Developer/Index.rst` and `Documentation/Reports/code-quality.md` for the full service map and maintainability rules.
+
 ## Blog
 
 When `t3g/blog` is installed, `webconsulting/desiderio-blog` adds shadcn-styled Blog template paths. The templates cover list, detail, sidebar widgets, comments, author blocks, related posts, metadata badges, categories, tags, and RSS output headers.
@@ -193,4 +207,4 @@ Full documentation lives in `Documentation/`:
 - `Documentation/Editor/Index.rst`
 - `Documentation/Developer/Index.rst`
 - `Documentation/ShadcnUpgrade.md`
-- `Documentation/Reports/code-quality.md` — maintainability review and seed-command decomposition plan
+- `Documentation/Reports/code-quality.md` — thermo-nuclear maintainability review (v2.6.0)

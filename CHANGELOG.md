@@ -6,6 +6,44 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [2.6.0] — 2026-06-06
+
+### Added
+
+- Shared seeding services under `Classes/Seeding/`:
+  `ExtensionFalSeeder`, `CollectionRecordSeeder`, `CollectionCleanupService`,
+  `ContentBlockCollectionMap`, `LiveWorkspaceQueryHelper`, and
+  `SeedingPayloadKeys`.
+- `StyleguideFixtureResolver`, `StarterContentBuilder`, and
+  `BlogPageTreeSeeder` — extracted fixture, starter, and blog-tree logic from
+  the Symfony seed commands.
+- `FixtureFieldNormalizer` — shared scalar/file/checkbox/date normalization for
+  styleguide and starter seeders.
+- `BrevoConfigurationResolver` — centralizes Brevo finisher configuration
+  precedence (finisher option → extension config → site setting → env).
+- `BlogDemoPostDefinitions` — static demo Blog post payloads for
+  `BlogPageTreeSeeder`.
+- `ExtbasePluginRequestSanitizerMiddleware` — strips malformed Extbase plugin
+  arguments from Visual Editor persistence requests.
+- `Documentation/Reports/code-quality.md` — thermo-nuclear maintainability
+  review and seed-command decomposition record.
+
+### Changed
+
+- `SeedStyleguidePagesCommand` (~612 lines), `SeedStarterSitesCommand`
+  (~812 lines), and `SeedBlogPagesCommand` (~158 lines) are orchestration
+  shells that delegate to `Classes/Seeding/` services.
+- `BrevoContactFinisher` delegates configuration resolution to
+  `BrevoConfigurationResolver`.
+- README, Installation, Developer, and Reports docs describe the seeding
+  service map, all `desiderio:*` commands, and Visual Editor compatibility.
+
+### Fixed
+
+- Visual Editor TypeError when rendering News and other Extbase plugins with
+  malformed `controller` / `action` request arguments.
+- PHPStan type contracts in `ExtbasePluginRequestSanitizerMiddleware`.
+
 ## [2.5.0] — 2026-06-05
 
 ### Added

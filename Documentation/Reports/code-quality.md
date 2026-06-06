@@ -1,18 +1,24 @@
 # Code Quality Review (Thermo-Nuclear)
 
-Date: 2026-06-06 (updated after phase-2 decomposition)
-Target: `main`
-Status: **Phase 4 complete** — shared `FixtureFieldNormalizer` deduplicates starter/styleguide field normalization; blog demo data lives in `BlogDemoPostDefinitions`.
+Date: 2026-06-06 (release `2.6.0` review)
+Target: `v2.6.0` (`7402da09`)
+Status: **Approved for minor release** — seed commands are thin orchestration shells; shared logic lives in `Classes/Seeding/`.
 
 ## Summary
 
-Desiderio's rendering layers (Fluid components → Content Blocks → theme) are cohesive and well guarded by unit tests. Recent extractions (`StyleguideDemoValueGenerator`, `StyleguideCollectionAliasPolicy`) show the right direction. The remaining structural debt is concentrated in three oversized seed commands and one large finisher that mix orchestration with low-level persistence.
+The v2.6.0 decomposition resolves the primary maintainability blockers from the initial thermo-nuclear review. Styleguide, starter, and blog seed commands no longer carry thousand-line fixture implementations. Shared FAL import, collection insert/cleanup, fixture normalization, and Brevo configuration precedence are centralized in dedicated services.
+
+Remaining debt is bounded and documented:
+
+- `PowermailDemoSeeder` (~905 lines) — under the 1k threshold; split only if it grows further.
+- `StyleguideFixtureResolver` (~1,104 lines) — acceptable as a focused fixture engine; do not add unrelated logic.
+- `BlogPageTreeSeeder` (~991 lines) — acceptable; demo payloads moved to `BlogDemoPostDefinitions`.
 
 The bar for approval on future changes:
 
 - no new files crossing 1,000 lines without decomposition
 - no ad-hoc branching bolted onto shared seed/fixture paths
-- prefer extracting seeding services over growing command classes
+- prefer extending `Classes/Seeding/` services over growing command classes
 
 ## Findings (prioritized)
 
@@ -20,169 +26,96 @@ The bar for approval on future changes:
 
 | File | Lines | Verdict |
 | --- | ---: | --- |
-| `Classes/Command/SeedStyleguidePagesCommand.php` | ~612 | **Resolved (phase 2)** — orchestration + page CRUD; fixture logic in `StyleguideFixtureResolver` |
-| `Classes/Command/SeedStarterSitesCommand.php` | ~812 | **Resolved (phase 2)** — orchestration + page CRUD; content building in `StarterContentBuilder` |
-| `Classes/Command/SeedBlogPagesCommand.php` | ~158 | **Resolved (phase 3)** — orchestration only; tree/layout/demo seeding in `BlogPageTreeSeeder` |
-| `Classes/Command/PowermailDemoSeeder.php` | 905 | **High** — nested inside styleguide seeding; own module |
-| `Classes/Domain/Finishers/BrevoContactFinisher.php` | ~419 | **Improved (phase 2)** — configuration cascade moved to `BrevoConfigurationResolver` |
+| `Classes/Command/SeedStyleguidePagesCommand.php` | ~612 | **Resolved** — orchestration + page CRUD; fixtures in `StyleguideFixtureResolver` |
+| `Classes/Command/SeedStarterSitesCommand.php` | ~812 | **Resolved** — orchestration; content in `StarterContentBuilder` |
+| `Classes/Command/SeedBlogPagesCommand.php` | ~158 | **Resolved** — orchestration; tree/demo seeding in `BlogPageTreeSeeder` |
+| `Classes/Command/PowermailDemoSeeder.php` | ~905 | **Watch** — nested in styleguide flow; split if it crosses 1k |
+| `Classes/Seeding/StyleguideFixtureResolver.php` | ~1,104 | **Acceptable** — single-purpose fixture resolver; keep scope tight |
+| `Classes/Seeding/BlogPageTreeSeeder.php` | ~991 | **Acceptable** — blog-specific persistence; demo data externalized |
+| `Classes/Domain/Finishers/BrevoContactFinisher.php` | ~419 | **Resolved** — config in `BrevoConfigurationResolver` |
 
-`SeedStyleguidePagesCommand` alone exposes ~60 private methods spanning page CRUD, workspace constraints, collection normalization, FAL metadata, and fixture completion. That is not a command; it is a seeding subsystem wearing a Symfony attribute.
+No command file crosses 1,000 lines after v2.6.0.
 
-**Preferred code-judo move:** split along natural seams that already exist as partial extractions:
+### 2. Code-judo wins (keep this pattern)
 
-```
-Classes/Seeding/
-  StyleguidePageSeeder.php       # page find/create/update + live-workspace guards
-  StyleguideContentSeeder.php    # tt_content insert + collection/file-reference writes
-  StyleguideFalSeeder.php        # FAL folder, metadata upsert, asset resolution
-  StarterSiteSeeder.php          # corporate starter orchestration (thin command wrapper)
-  BlogPageTreeSeeder.php         # blog layout normalization
-```
+Shared services extracted in phases 1–4:
 
-Commands become orchestration shells (`configure()`, `execute()`, IO) delegating to these services. `DatabaseSchemaHelper`, `StyleguideDemoValueGenerator`, and `StyleguideCollectionAliasPolicy` stay canonical — do not duplicate them in starter/blog seeders.
+| Service | Responsibility |
+| --- | --- |
+| `ExtensionFalSeeder` | FAL import + `sys_file_reference` writes |
+| `CollectionRecordSeeder` | Recursive collection inserts |
+| `CollectionCleanupService` | Live-workspace-scoped cleanup |
+| `ContentBlockCollectionMap` | Collection table index |
+| `LiveWorkspaceQueryHelper` | Workspace constraint helpers |
+| `SeedingPayloadKeys` | `__fileReferences` / `__collections` constants |
+| `StyleguideFixtureResolver` | Styleguide fixture normalization |
+| `StarterContentBuilder` | Starter content block payloads |
+| `BlogPageTreeSeeder` | Blog layout + demo post seeding |
+| `BrevoConfigurationResolver` | Brevo finisher config precedence |
+| `FixtureFieldNormalizer` | Shared scalar/file/checkbox/date normalization |
+| `BlogDemoPostDefinitions` | Static blog demo post fixtures |
 
-### 2. Missed simplification / duplication
-
-`SeedStarterSitesCommand` and `SeedStyleguidePagesCommand` share nearly identical private flows:
-
-- `__fileReferences` / `__collections` payload keys
-- FAL folder bootstrap (`desiderio-styleguide` vs `desiderio-starter`)
-- collection row delete/insert cycles
-- live-workspace query constraints
-
-This is complexity that was **moved** into two files, not **deleted**. A shared `ContentRecordSeeder` (or trait-free service) for collection + FAL writes would remove a whole category of copy-paste drift.
-
-`BrevoConfigurationResolver` (phase 2) now owns the five-source precedence stack (`finisher option → extension config → site setting → env → default`). The finisher delegates HTTP and form mapping only.
+Commands delegate through lazy service getters. PHPUnit reflection tests keep thin command wrappers for fixture APIs used by `StyleguideSeedCommandTest`.
 
 ### 3. Spaghetti / branching growth
 
-No acute spaghetti in the hot rendering path. Middleware and ViewHelpers are appropriately narrow.
+No acute spaghetti in the hot rendering path. Middleware and ViewHelpers remain narrow.
 
-Watch areas:
+Residual watch areas:
 
-- Seed commands accumulate field-type `if` chains (`isFileField`, `normalizeSelectValue`, `normalizeDateTimeFieldValue`, …). These belong in a `FixtureFieldNormalizer` policy class keyed by Content Blocks field type — not inlined in the command.
-- `BrevoContactFinisher` silently skips on missing API key/email. Acceptable for production, but the precedence stack makes "why was sync skipped?" harder to trace than necessary.
+- Styleguide-specific Select/icon normalization stays in `StyleguideFixtureResolver` (correct layer).
+- `PowermailDemoSeeder` still embeds form/page seeding — isolate when it grows past 1k lines.
 
 ### 4. Boundary / abstraction / type contracts
 
 **Good:**
 
-- `ExtbasePluginRequestSanitizerMiddleware` — 99 lines, single responsibility, unit-tested. Correct layer for Visual Editor malformed Extbase arguments.
+- `ExtbasePluginRequestSanitizerMiddleware` — single responsibility, unit-tested.
 - `ComponentStructureTest` — canonical component inventory (17 atoms, 28 molecules, 4 layouts).
-- PHPStan `BrevoConfiguration` array shape on the finisher.
+- `FixtureFieldNormalizer` — deletes duplicate field-type branches between starter and styleguide seeders.
+- `BrevoConfiguration` array shape on the finisher.
 
-**Improve:**
+**Improve (phase 5+):**
 
-- `SeedStyleguidePagesCommand` still carries PHPStan baseline entries (documented in Known Problems). New `Classes/` code must not extend the baseline.
-- Seed commands use `array<string, mixed>` fixture bags extensively. A typed `StyleguideFixture` value object (or per-ctype DTOs generated from `ContentBlockDefinitionRegistry`) would let normalization delete runtime `is_array` guards.
+- Ratchet PHPStan baseline entries out of `StyleguideFixtureResolver` as types tighten.
+- Typed fixture DTOs per Content Block would further reduce `array<string, mixed>` guards.
 
-### 5. Modularity wins (keep doing this)
+### 5. Documentation alignment
 
-- `StyleguideDemoValueGenerator` and `StyleguideCollectionAliasPolicy` extractions in v2.5.0 — correct decomposition.
-- `StarterSiteDefinitions` / `ContentBlockDefinitionRegistry` — data separated from imperative seeding.
-- Seeding helpers colocated under `Classes/Seeding/` — extend this namespace rather than growing commands.
+README, Installation, Developer docs, and this report describe:
 
-### 6. Documentation drift (fixed in this pass)
-
-| Source | Was | Now |
-| --- | --- | --- |
-| `README.md` | 16 atoms, 18 molecules | 17 atoms, 28 molecules, 49 components |
-| `Documentation/Developer/Index.rst` | 27 molecules | 28 molecules |
-| CLI reference | partial (blog seed only) | all four `desiderio:*` commands documented |
-| Visual Editor middleware | undocumented | documented in Developer docs |
+- all four `desiderio:*` console commands
+- `Classes/Seeding/` service map
+- Visual Editor middleware and `<f:image>` convention
+- current component counts (49 Fluid components)
 
 ## Approval bar for future PRs
 
 Do **not** approve when:
 
-- a PR pushes any file from &lt;1,000 to &gt;1,000 lines
-- seed/fixture logic is added inline to an existing 1k+ command instead of a `Classes/Seeding/` service
+- a PR pushes any file from under 1,000 to over 1,000 lines
+- seed/fixture logic is added inline to a command instead of `Classes/Seeding/`
 - feature checks scatter across shared rendering paths
-- a new wrapper/helper duplicates an existing canonical utility
+- a new wrapper duplicates `FixtureFieldNormalizer` or other canonical helpers
 
-**Approve** when behavior is correct **and** the change reduces or holds complexity — especially in seed commands and finishers.
+**Approve** when behavior is correct **and** complexity is reduced or held flat.
 
-## Phase 1 completed (2026-06-06)
+## Release assessment (`2.6.0`)
 
-Extracted shared seeding services under `Classes/Seeding/`:
-
-| Service | Responsibility |
+| Check | Result |
 | --- | --- |
-| `ExtensionFalSeeder` | Import extension assets into `fileadmin/desiderio-*` and write `sys_file_reference` rows |
-| `CollectionRecordSeeder` | Recursive collection insert + nested FAL references |
-| `CollectionCleanupService` | Live-workspace-scoped collection/file-reference cleanup |
-| `ContentBlockCollectionMap` | Collection table index from `ContentBlockDefinitionRegistry` |
-| `LiveWorkspaceQueryHelper` | `t3ver_wsid` / `t3ver_oid` constraints for destructive queries |
-| `SeedingPayloadKeys` | `__fileReferences` / `__collections` payload constants |
+| Structural regression | None found |
+| Missed dramatic simplification | Addressed in phases 1–4 |
+| File-size explosion | None in commands |
+| Spaghetti growth | None in changed hot paths |
+| Tests | PHPUnit 153 tests green |
+| Static analysis | PHPStan `level: max` green (baseline ratchet documented) |
 
-Line counts after wiring:
-
-| File | Before | After |
-| --- | ---: | ---: |
-| `SeedStyleguidePagesCommand.php` | 2,135 | ~1,730 |
-| `SeedStarterSitesCommand.php` | 1,583 | ~1,220 |
-
-PHPUnit (153 tests) and PHPStan remain green.
-
-## Phase 2 completed (2026-06-06)
-
-| Service | Responsibility |
-| --- | --- |
-| `StyleguideFixtureResolver` | Styleguide fixture field normalization, collection aliasing, FAL fixture building |
-| `StarterContentBuilder` | Starter-site content block → `tt_content` row + collection/FAL payloads |
-| `BrevoConfigurationResolver` | Brevo finisher configuration precedence (options → extension → site → env) |
-
-Line counts after wiring:
-
-| File | Before (phase 1) | After (phase 2) |
-| --- | ---: | ---: |
-| `SeedStyleguidePagesCommand.php` | ~1,730 | ~612 |
-| `SeedStarterSitesCommand.php` | ~1,220 | ~812 |
-| `BrevoContactFinisher.php` | 603 | ~419 |
-
-PHPUnit (153 tests) and PHPStan remain green.
-
-## Phase 3 completed (2026-06-06)
-
-| Service | Responsibility |
-| --- | --- |
-| `BlogPageTreeSeeder` | Discover EXT:blog setups, apply backend layouts, seed demo posts/tags/categories/comments |
-
-Line counts after wiring:
-
-| File | Before | After |
-| --- | ---: | ---: |
-| `SeedBlogPagesCommand.php` | 1,204 | ~158 |
-| `BlogPageTreeSeeder.php` | — | ~1,065 |
-
-PHPUnit (153 tests) and PHPStan remain green.
-
-## Phase 4 completed (2026-06-06)
-
-| Service / data | Responsibility |
-| --- | --- |
-| `FixtureFieldNormalizer` | Shared scalar/file/checkbox/date field normalization and FAL fixture building |
-| `BlogDemoPostDefinitions` | Static demo Blog post payloads for `BlogPageTreeSeeder` |
-
-Line counts after wiring:
-
-| File | Before | After |
-| --- | ---: | ---: |
-| `StarterContentBuilder.php` | ~431 | ~313 |
-| `StyleguideFixtureResolver.php` | ~1,199 | ~1,104 |
-| `BlogPageTreeSeeder.php` | ~1,065 | ~991 |
-
-PHPUnit (153 tests) and PHPStan remain green.
-
-## Suggested next refactor (phase 5)
-
-1. Split `PowermailDemoSeeder` if it grows past 1,000 lines (currently ~905).
-2. Move styleguide-specific select/icon normalization into `FixtureFieldNormalizer` only if a third consumer appears.
-3. Ratchet PHPStan baseline entries out of `StyleguideFixtureResolver` as types tighten.
+**Ready to tag `v2.6.0`:** Yes.
 
 ## Verification
 
-- Component inventory: `Tests/Unit/ComponentStructureTest.php` (49 components)
+- Component inventory: `Tests/Unit/ComponentStructureTest.php`
+- Styleguide fixtures: `Tests/Unit/StyleguideSeedCommandTest.php`
 - Middleware: `Tests/Unit/ExtbasePluginRequestSanitizerMiddlewareTest.php`
-- PHPStan: `Build/Scripts/runTests.sh phpstan` (baseline ratchet on styleguide seeder only)
 - Full gate: `Build/Scripts/runTests.sh`

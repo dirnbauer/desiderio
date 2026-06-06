@@ -7,6 +7,7 @@ namespace Webconsulting\Desiderio\Tests\Unit;
 use PHPUnit\Framework\TestCase;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use Webconsulting\Desiderio\Command\PowermailDemoSeeder;
+use Webconsulting\Desiderio\Data\PowermailDemoFormDefinitions;
 use Webconsulting\Desiderio\Seeding\DatabaseSchemaHelper;
 
 final class PowermailIntegrationTest extends TestCase
@@ -237,6 +238,11 @@ final class PowermailIntegrationTest extends TestCase
             }
         }
         self::assertSame(5, $captchaFields);
+        self::assertSame($forms, PowermailDemoFormDefinitions::demoForms());
+
+        $definitionsSource = (string)file_get_contents(__DIR__ . '/../../Classes/Data/PowermailDemoFormDefinitions.php');
+        self::assertStringContainsString("'slug' => 'support'", $definitionsSource);
+        self::assertStringContainsString("'friendlycaptcha'", $definitionsSource);
 
         $source = (string)file_get_contents(__DIR__ . '/../../Classes/Command/PowermailDemoSeeder.php');
         self::assertStringContainsString('office@webconsulting.at', $source);

@@ -9,7 +9,8 @@
 # Usage:
 #   Build/Scripts/runTests.sh                    # PHPStan + PHPUnit + audit + tailwind
 #   Build/Scripts/runTests.sh phpstan            # PHPStan only
-#   Build/Scripts/runTests.sh phpunit            # PHPUnit only
+#   Build/Scripts/runTests.sh phpunit            # PHPUnit unit suite only
+#   Build/Scripts/runFunctionalTests.sh          # TYPO3 functional suite (SQLite)
 #   Build/Scripts/runTests.sh audit              # Content element audit
 #   Build/Scripts/runTests.sh validate           # composer validate + audit
 #   Build/Scripts/runTests.sh tailwind           # Verify Tailwind bundle is in sync

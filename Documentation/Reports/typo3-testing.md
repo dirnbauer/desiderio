@@ -8,21 +8,23 @@ Status: Green
 
 The extension is gated by PHPStan at `level: max`, PHPUnit 11.5, the
 content-element audit, Composer validation/audit, and Tailwind bundle
-sync. The current local PHPUnit suite contains 153 tests and 31,799
-assertions.
+sync. The current local PHPUnit suite contains 153 unit tests and 31,801
+assertions, plus 2 functional tests for `DatabaseSchemaHelper`.
 
 ## Coverage Added In This Pass
 
-- Verified the unit test proving `desiderio:styleguide:seed` refuses to run
-  in an offline workspace.
-- Verified the unit test requiring top-level Content Blocks `Collection` fields
-  to enable `prefixField`.
-- Updated docs and README to the current 153-test count.
+- Added `Build/Scripts/runFunctionalTests.sh` with SQLite-backed TYPO3
+  functional tests for seeding schema helpers.
+- `DatabaseSchemaHelperFunctionalTest` verifies real `pages` table column
+  discovery and `filterRow()` behavior against a bootstrapped TYPO3 instance.
+- Content-element audit now enforces `fixture_missing_field` and
+  `collection_child_seed_gap` at zero.
 
 ## Verification
 
 - `Build/Scripts/runTests.sh phpstan`: passed.
 - `Build/Scripts/runTests.sh phpunit`: passed.
+- `Build/Scripts/runFunctionalTests.sh`: passed.
 - `composer validate --strict --no-check-publish`: passed.
 - `composer audit --no-dev --abandoned=fail`: passed.
 - `Build/Scripts/runTests.sh`: passed.

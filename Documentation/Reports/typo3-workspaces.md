@@ -1,7 +1,7 @@
 # TYPO3 Workspaces Audit
 
-Date: 2026-05-16
-Target: TYPO3 14.3 LTS only
+Date: 2026-06-06
+Target: release `v2.6.0`, TYPO3 14.3 LTS only
 Status: Green with documented FAL limitation
 
 ## Summary
@@ -18,6 +18,8 @@ exist.
 - `ext_emconf.php` depends on `workspaces` `14.3.0-14.99.99`.
 - `SeedStyleguidePagesCommand` reads the TYPO3 `workspace` context
   aspect and returns failure for workspace IDs other than `0`.
+- `CollectionCleanupService` and `LiveWorkspaceQueryHelper` scope
+  destructive seed queries to live workspace rows.
 - Cleanup queries for `tt_content`, Content Blocks collection tables,
   and `sys_file_reference` include `t3ver_wsid = 0` and `t3ver_oid = 0`
   when those columns exist.
@@ -36,5 +38,6 @@ a confidentiality boundary for staged editorial content.
 ## Verification
 
 - `Build/Scripts/runTests.sh phpstan`: passed.
-- `Build/Scripts/runTests.sh phpunit`: 101 tests passed.
+- `Build/Scripts/runTests.sh phpunit`: 153 unit tests passed.
+- `Build/Scripts/runFunctionalTests.sh`: 2 functional tests passed.
 - `Build/Scripts/runTests.sh`: passed.

@@ -1,7 +1,7 @@
 # TYPO3 Conformance Audit
 
-Date: 2026-05-16
-Target: TYPO3 14.3 LTS only
+Date: 2026-06-06
+Target: release `v2.6.0`, TYPO3 14.3 LTS only
 Status: Green
 
 ## Summary
@@ -29,7 +29,7 @@ the latest compatible 14.3 patch line and workspaces remain mandatory.
 ## Changes In This Pass
 
 - Updated Composer lock to TYPO3 14.3.1.
-- Aligned extension version metadata to `2.2.0`.
+- Extension version metadata aligned to `2.6.0`.
 - Verified workspace-safe cleanup in the styleguide seeder and refreshed
   the docs/reports around it.
 - Replaced the obsolete Content Blocks TCA workaround with upstream-supported

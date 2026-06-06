@@ -180,6 +180,9 @@ Shared seeding services:
         - Shared Content Blocks field normalization (scalars, files,
           checkboxes, dates) for styleguide and starter seeders.
 
+Static demo payloads also live under ``Classes/Data/``:
+``BlogDemoPostDefinitions`` and ``PowermailDemoFormDefinitions``.
+
 ``BrevoConfigurationResolver`` (under ``Classes/Domain/Finishers/``)
 centralizes Brevo finisher configuration precedence; the finisher itself
 handles HTTP and form value mapping only.
@@ -290,6 +293,7 @@ For targeted checks:
     Build/Scripts/runTests.sh phpstan
     Build/Scripts/runTests.sh phpunit
     Build/Scripts/runTests.sh audit
+    Build/Scripts/runFunctionalTests.sh
 
 ..  _developer-reports:
 

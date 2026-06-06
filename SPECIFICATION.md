@@ -1,6 +1,6 @@
 # Desiderio v2 — Specification
 
-**Status:** Draft for big-bang rebuild
+**Status:** Stable release track (v2.6.x)
 **Target TYPO3:** `^14.3`
 **Target PHP:** `^8.3`
 **Philosophy:** One extension. No backward compatibility. No legacy cruft. Start clean.

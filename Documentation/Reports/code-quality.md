@@ -10,7 +10,7 @@ The v2.6.0 decomposition resolves the primary maintainability blockers from the 
 
 Remaining debt is bounded and documented:
 
-- `PowermailDemoSeeder` (~905 lines) — under the 1k threshold; split only if it grows further.
+- `PowermailDemoSeeder` (~718 lines) — demo payloads moved to `PowermailDemoFormDefinitions`.
 - `StyleguideFixtureResolver` (~1,104 lines) — acceptable as a focused fixture engine; do not add unrelated logic.
 - `BlogPageTreeSeeder` (~991 lines) — acceptable; demo payloads moved to `BlogDemoPostDefinitions`.
 
@@ -29,7 +29,8 @@ The bar for approval on future changes:
 | `Classes/Command/SeedStyleguidePagesCommand.php` | ~612 | **Resolved** — orchestration + page CRUD; fixtures in `StyleguideFixtureResolver` |
 | `Classes/Command/SeedStarterSitesCommand.php` | ~812 | **Resolved** — orchestration; content in `StarterContentBuilder` |
 | `Classes/Command/SeedBlogPagesCommand.php` | ~158 | **Resolved** — orchestration; tree/demo seeding in `BlogPageTreeSeeder` |
-| `Classes/Command/PowermailDemoSeeder.php` | ~905 | **Watch** — nested in styleguide flow; split if it crosses 1k |
+| `Classes/Command/PowermailDemoSeeder.php` | ~718 | **Resolved** — fixtures in `PowermailDemoFormDefinitions` |
+| `Classes/Data/PowermailDemoFormDefinitions.php` | ~207 | **Acceptable** — static Powermail demo catalogue |
 | `Classes/Seeding/StyleguideFixtureResolver.php` | ~1,104 | **Acceptable** — single-purpose fixture resolver; keep scope tight |
 | `Classes/Seeding/BlogPageTreeSeeder.php` | ~991 | **Acceptable** — blog-specific persistence; demo data externalized |
 | `Classes/Domain/Finishers/BrevoContactFinisher.php` | ~419 | **Resolved** — config in `BrevoConfigurationResolver` |

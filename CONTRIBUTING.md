@@ -22,9 +22,11 @@ intact.
 
    ```bash
    Build/Scripts/runTests.sh
+   Build/Scripts/runFunctionalTests.sh
    ```
 
-   That runs PHPStan at `level: max`, the 153 unit tests, the deep
+   That runs PHPStan at `level: max`, the 153 unit tests, the SQLite-backed
+   functional seeding schema tests, the deep
    content element audit, and verifies the Tailwind bundle is in sync.
    CI re-runs the same matrix across PHP 8.3 + 8.4.
 4. If you touched a Content Block, also run:

@@ -178,6 +178,7 @@ composer install
 npm install
 npm run build:css
 Build/Scripts/runTests.sh
+Build/Scripts/runFunctionalTests.sh
 ```
 
 Focused checks:
@@ -185,6 +186,7 @@ Focused checks:
 ```bash
 Build/Scripts/runTests.sh phpstan
 Build/Scripts/runTests.sh phpunit
+Build/Scripts/runFunctionalTests.sh
 Build/Scripts/runTests.sh audit
 composer validate
 composer audit --no-dev --abandoned=fail

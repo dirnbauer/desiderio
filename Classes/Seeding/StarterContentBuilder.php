@@ -33,6 +33,11 @@ final class StarterContentBuilder
         return is_string($column) ? $column : $fallback;
     }
 
+    /**
+     * @param array{ctype: string, colPos: int, fields: array<string, mixed>} $block
+     * @param array<string, true> $columns
+     * @return array{row: array<string, mixed>, collections: array<string, array{table: string, column: string, items: list<array<string, mixed>>}>, fileReferences: array<string, list<array{file: string, title: string, alternative: string, description: string, source: string}>>}
+     */
     public function buildContentInsert(int $pid, array $block, int $sorting, int $now, array $columns): array
     {
         $ctype = $block['ctype'];

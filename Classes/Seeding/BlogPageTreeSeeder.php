@@ -29,6 +29,9 @@ final class BlogPageTreeSeeder
         private readonly ConnectionPool $connectionPool,
     ) {}
 
+    /**
+     * @return list<array{rootUid: int, folderUid: int}>
+     */
     public function findBlogSetups(?int $rootFilter): array
     {
         $queryBuilder = $this->connectionPool->getQueryBuilderForTable('pages');

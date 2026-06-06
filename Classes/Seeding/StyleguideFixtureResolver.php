@@ -18,6 +18,12 @@ final class StyleguideFixtureResolver
         private readonly StyleguideCollectionAliasPolicy $collectionAliasPolicy,
         private readonly FixtureFieldNormalizer $fieldNormalizer = new FixtureFieldNormalizer(),
     ) {}
+
+    /**
+     * @param array<string, mixed> $fixture
+     * @param array<string, true> $columns
+     * @return array{row: array<string, mixed>, collections: array<string, array{table: string, column: string, items: list<array<string, mixed>>}>, fileReferences: array<string, list<array{file: string, title: string, alternative: string, description: string, source: string}>>}
+     */
     public function buildContentInsert(
         int $pid,
         string $ctype,

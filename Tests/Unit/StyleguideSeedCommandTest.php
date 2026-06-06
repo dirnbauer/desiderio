@@ -13,8 +13,11 @@ use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Resource\StorageRepository;
 use Webconsulting\Desiderio\Command\SeedStyleguidePagesCommand;
 use Webconsulting\Desiderio\Data\ContentBlockDefinitionRegistry;
+use Webconsulting\Desiderio\Seeding\ContentBlockCollectionMap;
 use Webconsulting\Desiderio\Seeding\DatabaseSchemaHelper;
+use Webconsulting\Desiderio\Seeding\StyleguideCollectionAliasPolicy;
 use Webconsulting\Desiderio\Seeding\StyleguideDemoValueGenerator;
+use Webconsulting\Desiderio\Seeding\StyleguideFixtureResolver;
 use Webconsulting\Desiderio\Seeding\StyleguideJsonFixtureCompleter;
 
 final class StyleguideSeedCommandTest extends TestCase
@@ -44,7 +47,7 @@ final class StyleguideSeedCommandTest extends TestCase
 
         $cleanupSource = (string) file_get_contents(__DIR__ . '/../../Classes/Seeding/CollectionCleanupService.php');
         self::assertStringContainsString("buildLiveWorkspaceConstraints(\$queryBuilder, 'sys_file_reference')", $cleanupSource);
-        self::assertStringContainsString('completeResolvedFixtureData(', $source);
+        self::assertStringContainsString('getFixtureResolver()->buildContentInsert(', $source);
         self::assertStringContainsString('seedFileReferences(', $source);
 
         $fixtureResolverSource = (string) file_get_contents(__DIR__ . '/../../Classes/Seeding/StyleguideFixtureResolver.php');
@@ -92,10 +95,10 @@ final class StyleguideSeedCommandTest extends TestCase
             ],
         ];
 
-        self::assertNull($this->invokeMethod($command, 'resolveScalarField', ['columns', $definition['fields']]));
+        self::assertNull($this->invokeMethod($this->createFixtureResolver(), 'resolveScalarField', ['columns', $definition['fields']]));
         self::assertSame(
             'column_items',
-            $this->invokeMethod($command, 'resolveCollectionField', [
+            $this->invokeMethod($this->createFixtureResolver(), 'resolveCollectionField', [
                 'columns',
                 [
                     ['title' => 'Solutions', 'links' => ['Docs', 'API']],
@@ -107,7 +110,7 @@ final class StyleguideSeedCommandTest extends TestCase
             [
                 ['title' => 'Solutions', 'links' => "Docs\nAPI"],
             ],
-            $this->invokeMethod($command, 'normalizeCollectionItems', [
+            $this->invokeMethod($this->createFixtureResolver(), 'normalizeCollectionItems', [
                 [
                     ['title' => 'Solutions', 'links' => ['Docs', 'API']],
                 ],
@@ -161,7 +164,7 @@ final class StyleguideSeedCommandTest extends TestCase
                 'button_text' => 'Start Free Trial',
                 'is_featured' => 1,
             ]],
-            $this->invokeMethod($command, 'normalizeCollectionItems', [[
+            $this->invokeMethod($this->createFixtureResolver(), 'normalizeCollectionItems', [[
                 [
                     'name' => 'Professional',
                     'price' => '$29',
@@ -199,7 +202,7 @@ final class StyleguideSeedCommandTest extends TestCase
                 'button_link' => 'https://example.com/growth',
                 'is_recommended' => 1,
             ]],
-            $this->invokeMethod($command, 'normalizeCollectionItems', [[
+            $this->invokeMethod($this->createFixtureResolver(), 'normalizeCollectionItems', [[
                 [
                     'name' => 'Growth',
                     'price' => '$49',
@@ -233,7 +236,7 @@ final class StyleguideSeedCommandTest extends TestCase
             ],
         ];
 
-        $resolvedFixtureData = $this->invokeMethod($command, 'completeResolvedFixtureData', [
+        $resolvedFixtureData = $this->invokeMethod($this->createFixtureResolver(), 'completeResolvedFixtureData', [
             'desiderio_pricingslider',
             'Slider Pricing',
             $definition,
@@ -308,7 +311,7 @@ final class StyleguideSeedCommandTest extends TestCase
                 ['column_label' => 'Service', 'column_key' => 'service', 'column_align' => 'left'],
                 ['column_label' => 'Last Deploy', 'column_key' => 'last_deploy', 'column_align' => 'left'],
             ],
-            $this->invokeMethod($command, 'normalizeCollectionItems', [['Service', 'Last Deploy'], $collection])
+            $this->invokeMethod($this->createFixtureResolver(), 'normalizeCollectionItems', [['Service', 'Last Deploy'], $collection])
         );
 
         unset($collection['fields']['column_key']);
@@ -316,7 +319,7 @@ final class StyleguideSeedCommandTest extends TestCase
             [
                 ['column_label' => 'Service', 'column_align' => 'left'],
             ],
-            $this->invokeMethod($command, 'normalizeCollectionItems', [['Service'], $collection])
+            $this->invokeMethod($this->createFixtureResolver(), 'normalizeCollectionItems', [['Service'], $collection])
         );
     }
 
@@ -356,7 +359,7 @@ final class StyleguideSeedCommandTest extends TestCase
 
         self::assertSame(
             ['column_items', 'link_items'],
-            $this->invokeMethod($command, 'getCollectionTableNames', [])
+            (new ContentBlockCollectionMap())->getCollectionTableNames()
         );
     }
 
@@ -390,7 +393,7 @@ final class StyleguideSeedCommandTest extends TestCase
             ],
         ];
 
-        $resolvedFixtureData = $this->invokeMethod($command, 'completeResolvedFixtureData', [
+        $resolvedFixtureData = $this->invokeMethod($this->createFixtureResolver(), 'completeResolvedFixtureData', [
             'desiderio_demo',
             'Demo Element',
             $definition,
@@ -460,7 +463,7 @@ final class StyleguideSeedCommandTest extends TestCase
             ],
         ]);
 
-        $result = $this->invokeMethod($command, 'resolveFixtureFields', [
+        $result = $this->invokeMethod($this->createFixtureResolver(), 'resolveFixtureFields', [
             'desiderio_contentdivider',
             [
                 'header' => 'Ready to Get Started?',
@@ -501,7 +504,7 @@ final class StyleguideSeedCommandTest extends TestCase
             ],
         ]);
 
-        [$fields] = $this->invokeMethod($command, 'resolveFixtureFields', [
+        [$fields] = $this->invokeMethod($this->createFixtureResolver(), 'resolveFixtureFields', [
             'desiderio_tabs',
             ['variant' => 'underline'],
             'Tabs',
@@ -509,7 +512,7 @@ final class StyleguideSeedCommandTest extends TestCase
 
         self::assertSame('default', $fields['variant']);
 
-        [$fields] = $this->invokeMethod($command, 'resolveFixtureFields', [
+        [$fields] = $this->invokeMethod($this->createFixtureResolver(), 'resolveFixtureFields', [
             'desiderio_tabs',
             ['variant' => 'line'],
             'Tabs',
@@ -537,7 +540,7 @@ final class StyleguideSeedCommandTest extends TestCase
             ],
         ]);
 
-        $resolvedFixtureData = $this->invokeMethod($command, 'resolveFixtureFields', [
+        $resolvedFixtureData = $this->invokeMethod($this->createFixtureResolver(), 'resolveFixtureFields', [
             'desiderio_herocountdown',
             [
                 'header' => 'Desiderio 2.0 goes live in',
@@ -551,7 +554,7 @@ final class StyleguideSeedCommandTest extends TestCase
 
         self::assertSame(strtotime('2026-07-01T09:00:00+00:00'), $fields['target_date']);
 
-        $resolvedFixtureData = $this->invokeMethod($command, 'resolveFixtureFields', [
+        $resolvedFixtureData = $this->invokeMethod($this->createFixtureResolver(), 'resolveFixtureFields', [
             'desiderio_herocountdown',
             [
                 'header' => 'Desiderio 2.0 goes live in',
@@ -654,7 +657,7 @@ final class StyleguideSeedCommandTest extends TestCase
     {
         $command = $this->createCommand();
 
-        $references = $this->invokeMethod($command, 'buildFileReferenceFixtures', [
+        $references = $this->invokeMethod($this->createFixtureResolver(), 'buildFileReferenceFixtures', [
             'Audio Player-audio_file',
             [
                 'identifier' => 'audio_file',
@@ -852,7 +855,7 @@ final class StyleguideSeedCommandTest extends TestCase
             ],
         ]);
 
-        [$fields] = $this->invokeMethod($command, 'resolveFixtureFields', [
+        [$fields] = $this->invokeMethod($this->createFixtureResolver(), 'resolveFixtureFields', [
             'desiderio_chart',
             [
                 '_type' => 'stats',
@@ -961,7 +964,7 @@ final class StyleguideSeedCommandTest extends TestCase
             ],
         ]);
 
-        $resolvedFixtureData = $this->invokeMethod($command, 'resolveFixtureFields', [
+        $resolvedFixtureData = $this->invokeMethod($this->createFixtureResolver(), 'resolveFixtureFields', [
             'desiderio_chart',
             [
                 '_type' => 'stats',
@@ -1022,7 +1025,7 @@ final class StyleguideSeedCommandTest extends TestCase
             ],
         ]);
 
-        $resolvedFixtureData = $this->invokeMethod($command, 'resolveFixtureFields', [
+        $resolvedFixtureData = $this->invokeMethod($this->createFixtureResolver(), 'resolveFixtureFields', [
             'desiderio_mapembed',
             [
                 '_type' => 'card',
@@ -1084,6 +1087,17 @@ final class StyleguideSeedCommandTest extends TestCase
     private function createDemoValueGenerator(): StyleguideDemoValueGenerator
     {
         return new StyleguideDemoValueGenerator();
+    }
+
+    private function createFixtureResolver(): StyleguideFixtureResolver
+    {
+        $databaseSchema = new DatabaseSchemaHelper($this->createMock(ConnectionPool::class));
+
+        return new StyleguideFixtureResolver(
+            $databaseSchema,
+            new StyleguideDemoValueGenerator(),
+            new StyleguideCollectionAliasPolicy($databaseSchema),
+        );
     }
 
     private function createCommand(): SeedStyleguidePagesCommand

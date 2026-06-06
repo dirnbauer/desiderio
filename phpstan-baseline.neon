@@ -1,34 +1,70 @@
 parameters:
 	ignoreErrors:
 		-
-			message: '#^Cannot access offset ''folderUid'' on mixed\.$#'
-			identifier: offsetAccess.nonOffsetAccessible
-			count: 3
-			path: Classes/Command/SeedBlogPagesCommand.php
-
-		-
-			message: '#^Cannot access offset ''rootUid'' on mixed\.$#'
-			identifier: offsetAccess.nonOffsetAccessible
+			message: '#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\.$#'
+			identifier: foreach.nonIterable
 			count: 2
-			path: Classes/Command/SeedBlogPagesCommand.php
+			path: Classes/Command/PowermailDemoSeeder.php
 
 		-
-			message: '#^Cannot cast mixed to int\.$#'
-			identifier: cast.int
-			count: 3
-			path: Classes/Command/SeedBlogPagesCommand.php
-
-		-
-			message: '#^Cannot cast mixed to string\.$#'
-			identifier: cast.string
+			message: '#^Binary operation "\." between ''desiderio\-powermail…'' and mixed results in an error\.$#'
+			identifier: binaryOp.invalid
 			count: 2
-			path: Classes/Command/SeedBlogPagesCommand.php
+			path: Classes/Command/PowermailDemoSeeder.php
 
 		-
-			message: '#^Method Webconsulting\\Desiderio\\Command\\SeedStarterSitesCommand\:\:buildContentInsert\(\) should return array\{row\: array\<string, mixed\>, collections\: array\<string, array\{table\: string, column\: string, items\: list\<array\<string, mixed\>\>\}\>, fileReferences\: array\<string, list\<array\{file\: string, title\: string, alternative\: string, description\: string, source\: string\}\>\>\} but returns array\.$#'
-			identifier: return.type
+			message: '#^Cannot access offset ''fields'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
 			count: 1
-			path: Classes/Command/SeedStarterSitesCommand.php
+			path: Classes/Command/PowermailDemoSeeder.php
+
+		-
+			message: '#^Method Webconsulting\\Desiderio\\Command\\PowermailDemoSeeder\:\:insertPowermailForm\(\) has parameter \$form with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: Classes/Command/PowermailDemoSeeder.php
+
+		-
+			message: '#^Method Webconsulting\\Desiderio\\Command\\PowermailDemoSeeder\:\:insertPowermailForm\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: Classes/Command/PowermailDemoSeeder.php
+
+		-
+			message: '#^Parameter \#1 \$value of function count expects array\|Countable, mixed given\.$#'
+			identifier: argument.type
+			count: 2
+			path: Classes/Command/PowermailDemoSeeder.php
+
+		-
+			message: '#^Parameter \#3 \$field of method Webconsulting\\Desiderio\\Command\\PowermailDemoSeeder\:\:insertPowermailField\(\) expects array\{type\: string, marker\: string, titleEn\: string, titleDe\: string, mandatory\: bool, validation\: int, sender_email\: bool, sender_name\: bool, \.\.\.\}, mixed given\.$#'
+			identifier: argument.type
+			count: 2
+			path: Classes/Command/PowermailDemoSeeder.php
+
+		-
+			message: '#^Parameter \#3 \$formUid of method Webconsulting\\Desiderio\\Command\\PowermailDemoSeeder\:\:insertPowermailPluginContent\(\) expects int, mixed given\.$#'
+			identifier: argument.type
+			count: 2
+			path: Classes/Command/PowermailDemoSeeder.php
+
+		-
+			message: '#^Parameter \#3 \$page of method Webconsulting\\Desiderio\\Command\\PowermailDemoSeeder\:\:insertPowermailPage\(\) expects array\{titleEn\: string, titleDe\: string, fields\: list\<array\{type\: string, marker\: string, titleEn\: string, titleDe\: string, mandatory\: bool, validation\: int, sender_email\: bool, sender_name\: bool, \.\.\.\}\>\}, mixed given\.$#'
+			identifier: argument.type
+			count: 2
+			path: Classes/Command/PowermailDemoSeeder.php
+
+		-
+			message: '#^Parameter \#5 \$index of method Webconsulting\\Desiderio\\Command\\PowermailDemoSeeder\:\:insertPowermailField\(\) expects int, mixed given\.$#'
+			identifier: argument.type
+			count: 2
+			path: Classes/Command/PowermailDemoSeeder.php
+
+		-
+			message: '#^Parameter \#5 \$index of method Webconsulting\\Desiderio\\Command\\PowermailDemoSeeder\:\:insertPowermailPage\(\) expects int, mixed given\.$#'
+			identifier: argument.type
+			count: 2
+			path: Classes/Command/PowermailDemoSeeder.php
 
 		-
 			message: '#^Cannot cast mixed to int\.$#'
@@ -37,50 +73,8 @@ parameters:
 			path: Classes/Command/SeedStyleguidePagesCommand.php
 
 		-
-			message: '#^Method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:buildContentInsert\(\) should return array\{row\: array\<string, mixed\>, collections\: array\<string, array\{table\: string, column\: string, items\: list\<array\<string, mixed\>\>\}\>, fileReferences\: array\<string, list\<array\{file\: string, title\: string, alternative\: string, description\: string, source\: string\}\>\>\} but returns array\.$#'
-			identifier: return.type
-			count: 1
-			path: Classes/Command/SeedStyleguidePagesCommand.php
-
-		-
-			message: '#^Method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:buildFileReferenceFixtures\(\) is unused\.$#'
-			identifier: method.unused
-			count: 1
-			path: Classes/Command/SeedStyleguidePagesCommand.php
-
-		-
-			message: '#^Method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:completeResolvedFixtureData\(\) is unused\.$#'
-			identifier: method.unused
-			count: 1
-			path: Classes/Command/SeedStyleguidePagesCommand.php
-
-		-
 			message: '#^Method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:findExistingDesiderioContentUids\(\) return type has no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
-			count: 1
-			path: Classes/Command/SeedStyleguidePagesCommand.php
-
-		-
-			message: '#^Method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:normalizeCollectionItems\(\) is unused\.$#'
-			identifier: method.unused
-			count: 1
-			path: Classes/Command/SeedStyleguidePagesCommand.php
-
-		-
-			message: '#^Method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:resolveCollectionField\(\) is unused\.$#'
-			identifier: method.unused
-			count: 1
-			path: Classes/Command/SeedStyleguidePagesCommand.php
-
-		-
-			message: '#^Method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:resolveFixtureFields\(\) is unused\.$#'
-			identifier: method.unused
-			count: 1
-			path: Classes/Command/SeedStyleguidePagesCommand.php
-
-		-
-			message: '#^Method Webconsulting\\Desiderio\\Command\\SeedStyleguidePagesCommand\:\:resolveScalarField\(\) is unused\.$#'
-			identifier: method.unused
 			count: 1
 			path: Classes/Command/SeedStyleguidePagesCommand.php
 
@@ -97,56 +91,32 @@ parameters:
 			path: Classes/Command/SeedStyleguidePagesCommand.php
 
 		-
+			message: '#^Method Webconsulting\\Desiderio\\Data\\PowermailDemoFormDefinitions\:\:demoForms\(\) should return list\<array\{slug\: string, titleEn\: string, titleDe\: string, pageTitleEn\: string, pageTitleDe\: string, introEn\: string, introDe\: string, thankTitleEn\: string, \.\.\.\}\> but returns array\{array\{slug\: ''contact'', titleEn\: ''Contact Form'', titleDe\: ''Kontaktformular'', pageTitleEn\: ''Powermail 01\:…'', pageTitleDe\: ''Powermail 01\:…'', introEn\: ''A standard contact…'', introDe\: ''Ein Standard…'', thankTitleEn\: ''Contact request…'', \.\.\.\}, array\{slug\: ''newsletter'', titleEn\: ''Newsletter Signup'', titleDe\: ''Newsletter Anmeldung'', pageTitleEn\: ''Powermail 02\:…'', pageTitleDe\: ''Powermail 02\:…'', introEn\: ''A compact…'', introDe\: ''Eine kompakte…'', thankTitleEn\: ''Newsletter signup…'', \.\.\.\}, array\{slug\: ''callback'', titleEn\: ''Callback Request'', titleDe\: ''Rueckrufanfrage'', pageTitleEn\: ''Powermail 03\:…'', pageTitleDe\: ''Powermail 03\:…'', introEn\: ''A callback request…'', introDe\: ''Ein Rueckruf…'', thankTitleEn\: ''Callback request…'', \.\.\.\}, array\{slug\: ''appointment'', titleEn\: ''Appointment Request'', titleDe\: ''Terminanfrage'', pageTitleEn\: ''Powermail 04\:…'', pageTitleDe\: ''Powermail 04\:…'', introEn\: ''A two\-step…'', introDe\: ''Ein zweistufiges…'', thankTitleEn\: ''Appointment request…'', \.\.\.\}, array\{slug\: ''support'', titleEn\: ''Support Request'', titleDe\: ''Supportanfrage'', pageTitleEn\: ''Powermail 05\:…'', pageTitleDe\: ''Powermail 05\:…'', introEn\: ''A support request…'', introDe\: ''Ein Supportformular…'', thankTitleEn\: ''Support request…'', \.\.\.\}\}\.$#'
+			identifier: return.type
+			count: 1
+			path: Classes/Data/PowermailDemoFormDefinitions.php
+
+		-
+			message: '#^Method Webconsulting\\Desiderio\\Data\\PowermailDemoFormDefinitions\:\:field\(\) has parameter \$options with no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: Classes/Data/PowermailDemoFormDefinitions.php
+
+		-
+			message: '#^Method Webconsulting\\Desiderio\\Data\\PowermailDemoFormDefinitions\:\:field\(\) return type has no value type specified in iterable type array\.$#'
+			identifier: missingType.iterableValue
+			count: 1
+			path: Classes/Data/PowermailDemoFormDefinitions.php
+
+		-
 			message: '#^Parameter \#1 \$finisherOptions of method Webconsulting\\Desiderio\\Domain\\Finishers\\BrevoConfigurationResolver\:\:resolve\(\) expects array\<string, mixed\>, array given\.$#'
 			identifier: argument.type
 			count: 1
 			path: Classes/Domain/Finishers/BrevoContactFinisher.php
 
 		-
-			message: '#^Method Webconsulting\\Desiderio\\Seeding\\BlogPageTreeSeeder\:\:findBlogSetups\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: Classes/Seeding/BlogPageTreeSeeder.php
-
-		-
-			message: '#^Method Webconsulting\\Desiderio\\Seeding\\StarterContentBuilder\:\:buildContentInsert\(\) has parameter \$block with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: Classes/Seeding/StarterContentBuilder.php
-
-		-
-			message: '#^Method Webconsulting\\Desiderio\\Seeding\\StarterContentBuilder\:\:buildContentInsert\(\) has parameter \$columns with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: Classes/Seeding/StarterContentBuilder.php
-
-		-
-			message: '#^Method Webconsulting\\Desiderio\\Seeding\\StarterContentBuilder\:\:buildContentInsert\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: Classes/Seeding/StarterContentBuilder.php
-
-		-
 			message: '#^Method Webconsulting\\Desiderio\\Seeding\\StarterContentBuilder\:\:getCollectionTable\(\) has parameter \$collection with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
-			count: 1
-			path: Classes/Seeding/StarterContentBuilder.php
-
-		-
-			message: '#^Parameter \#1 \$array of static method Webconsulting\\Desiderio\\Data\\ContentBlockDefinitionRegistry\:\:normalizeStringKeyedArray\(\) expects array\<mixed\>, mixed given\.$#'
-			identifier: argument.type
-			count: 1
-			path: Classes/Seeding/StarterContentBuilder.php
-
-		-
-			message: '#^Parameter \#1 \$ctype of method Webconsulting\\Desiderio\\Seeding\\StarterContentBuilder\:\:resolveFixtureFields\(\) expects string, mixed given\.$#'
-			identifier: argument.type
-			count: 1
-			path: Classes/Seeding/StarterContentBuilder.php
-
-		-
-			message: '#^Parameter \#2 \$columns of method Webconsulting\\Desiderio\\Seeding\\DatabaseSchemaHelper\:\:filterRow\(\) expects array\<string, true\>, array given\.$#'
-			identifier: argument.type
 			count: 1
 			path: Classes/Seeding/StarterContentBuilder.php
 
@@ -211,24 +181,6 @@ parameters:
 			path: Classes/Seeding/StyleguideFixtureResolver.php
 
 		-
-			message: '#^Method Webconsulting\\Desiderio\\Seeding\\StyleguideFixtureResolver\:\:buildContentInsert\(\) has parameter \$columns with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: Classes/Seeding/StyleguideFixtureResolver.php
-
-		-
-			message: '#^Method Webconsulting\\Desiderio\\Seeding\\StyleguideFixtureResolver\:\:buildContentInsert\(\) has parameter \$fixture with no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: Classes/Seeding/StyleguideFixtureResolver.php
-
-		-
-			message: '#^Method Webconsulting\\Desiderio\\Seeding\\StyleguideFixtureResolver\:\:buildContentInsert\(\) return type has no value type specified in iterable type array\.$#'
-			identifier: missingType.iterableValue
-			count: 1
-			path: Classes/Seeding/StyleguideFixtureResolver.php
-
-		-
 			message: '#^Method Webconsulting\\Desiderio\\Seeding\\StyleguideFixtureResolver\:\:findPreferredTextField\(\) has parameter \$collection with no value type specified in iterable type array\.$#'
 			identifier: missingType.iterableValue
 			count: 1
@@ -265,12 +217,6 @@ parameters:
 			path: Classes/Seeding/StyleguideFixtureResolver.php
 
 		-
-			message: '#^Parameter \#2 \$columns of method Webconsulting\\Desiderio\\Seeding\\DatabaseSchemaHelper\:\:filterRow\(\) expects array\<string, true\>, array given\.$#'
-			identifier: argument.type
-			count: 1
-			path: Classes/Seeding/StyleguideFixtureResolver.php
-
-		-
 			message: '#^Parameter \#2 \$fieldConfig of method Webconsulting\\Desiderio\\Seeding\\StyleguideFixtureResolver\:\:normalizeFieldValue\(\) expects array, mixed given\.$#'
 			identifier: argument.type
 			count: 2
@@ -278,12 +224,6 @@ parameters:
 
 		-
 			message: '#^Parameter \#2 \$fieldConfig of method Webconsulting\\Desiderio\\Seeding\\StyleguideFixtureResolver\:\:normalizeSelectValue\(\) expects array\<string, mixed\>, array given\.$#'
-			identifier: argument.type
-			count: 1
-			path: Classes/Seeding/StyleguideFixtureResolver.php
-
-		-
-			message: '#^Parameter \#2 \$fixture of method Webconsulting\\Desiderio\\Seeding\\StyleguideFixtureResolver\:\:resolveFixtureFields\(\) expects array\<string, mixed\>, array given\.$#'
 			identifier: argument.type
 			count: 1
 			path: Classes/Seeding/StyleguideFixtureResolver.php

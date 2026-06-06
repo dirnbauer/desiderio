@@ -524,69 +524,6 @@ final class SeedStyleguidePagesCommand extends Command
     }
 
     /**
-     * @param array<string, mixed> $fixture
-     * @return array{0: array<string, mixed>, 1: array<string, array{table: string, column: string, items: list<array<string, mixed>>}>, 2: array<string, list<array{file: string, title: string, alternative: string, description: string, source: string}>>}
-     */
-    private function resolveFixtureFields(string $ctype, array $fixture, string $name = ''): array
-    {
-        return $this->getFixtureResolver()->resolveFixtureFields($ctype, $fixture, $name);
-    }
-
-    /**
-     * @param array{fields: array<string, array<string, mixed>>, collections: array<string, array<string, mixed>>} $definition
-     * @param array<string, mixed> $resolvedFields
-     * @param array<string, array{table: string, column: string, items: list<array<string, mixed>>}> $collections
-     * @param array<string, mixed> $fixture
-     * @return array{0: array<string, mixed>, 1: array<string, array{table: string, column: string, items: list<array<string, mixed>>}>, 2: array<string, list<array{file: string, title: string, alternative: string, description: string, source: string}>>}
-     */
-    private function completeResolvedFixtureData(
-        string $ctype,
-        string $name,
-        array $definition,
-        array $resolvedFields,
-        array $collections,
-        array $fixture = [],
-    ): array {
-        return $this->getFixtureResolver()->completeResolvedFixtureData($ctype, $name, $definition, $resolvedFields, $collections, $fixture);
-    }
-
-    /**
-     * @param array<string, array<string, mixed>> $fields
-     */
-    private function resolveScalarField(string $field, array $fields): ?string
-    {
-        return $this->getFixtureResolver()->resolveScalarField($field, $fields);
-    }
-
-    /**
-     * @param array<int|string, mixed> $value
-     * @param array{fields: array<string, array<string, mixed>>, collections: array<string, array<string, mixed>>} $definition
-     */
-    private function resolveCollectionField(string $field, array $value, array $definition): ?string
-    {
-        return $this->getFixtureResolver()->resolveCollectionField($field, $value, $definition);
-    }
-
-    /**
-     * @param array<int|string, mixed> $items
-     * @param array<string, mixed> $collection
-     * @return list<array<string, mixed>>
-     */
-    private function normalizeCollectionItems(array $items, array $collection): array
-    {
-        return $this->getFixtureResolver()->normalizeCollectionItems($items, $collection);
-    }
-
-    /**
-     * @param array<string, mixed> $fieldConfig
-     * @return list<array{file: string, title: string, alternative: string, description: string, source: string}>
-     */
-    private function buildFileReferenceFixtures(string $field, array $fieldConfig, int $index): array
-    {
-        return $this->getFixtureResolver()->buildFileReferenceFixtures($field, $fieldConfig, $index);
-    }
-
-    /**
      * @return list<string>
      */
     private function getCollectionTableNames(): array

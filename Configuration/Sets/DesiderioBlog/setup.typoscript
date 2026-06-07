@@ -84,3 +84,13 @@ plugin.tx_blog {
     }
   }
 }
+
+# Blog plugin CTypes render through EXT:blog's EXTBASEPLUGIN renderers (.20).
+# Desiderio's lib.contentElement resolves templateName to uppercamelcase(CType)
+# and would otherwise fall back to Generic, which never renders the plugin body.
+# Map each list plugin CType to a dedicated shadcn template that outputs .20.
+tt_content.blog_posts.templateName = BlogPosts
+tt_content.blog_category.templateName = BlogCategory
+tt_content.blog_tag.templateName = BlogTag
+tt_content.blog_authorposts.templateName = BlogAuthorposts
+tt_content.blog_archive.templateName = BlogArchive

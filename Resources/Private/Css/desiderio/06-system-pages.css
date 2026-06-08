@@ -29,7 +29,9 @@
     display: block;
     box-sizing: border-box;
     width: 100%;
-    padding: clamp(1rem, 2vw, 1.25rem) clamp(1rem, 2.8vw, 1.5rem);
+    padding-block-start: clamp(1rem, 2vw, 1.25rem);
+    padding-block-end: calc(clamp(1rem, 2vw, 1.25rem) - 2px);
+    padding-inline: clamp(1rem, 2.8vw, 1.5rem);
     overflow-wrap: anywhere;
     hyphens: auto;
     text-wrap: balance;
@@ -145,4 +147,3 @@
     outline: 2px solid var(--ring);
     outline-offset: 2px;
 }
-

@@ -8,6 +8,9 @@
     --feature-timeline-marker-size: 3rem;
     --feature-timeline-gap: var(--d-spacing-lg);
     --feature-timeline-chevron-size: var(--d-spacing-sm);
+    --feature-timeline-chevron-inset: 1px;
+    --feature-timeline-connector-target-offset: 1.5px;
+    --feature-timeline-dot-clearance: 0.25rem;
 
     display: flex;
     flex-direction: column;
@@ -42,11 +45,11 @@
     content: '';
     position: absolute;
     top: calc(var(--feature-timeline-marker-size) / 2);
-    left: calc(var(--feature-timeline-marker-size) / 2);
+    left: calc(var(--feature-timeline-marker-size) + var(--feature-timeline-dot-clearance));
     width: calc(
-        var(--feature-timeline-marker-size) / 2 +
         var(--feature-timeline-gap) -
-        7px
+        var(--feature-timeline-dot-clearance) -
+        var(--feature-timeline-connector-target-offset)
     );
     height: 1px;
     transform: translateY(-50%);
@@ -73,7 +76,7 @@
     font-weight: 700;
     font-size: var(--d-text-sm);
     flex-shrink: 0;
-    box-shadow: 0 0 0 0.5rem var(--background);
+    box-shadow: 0 0 0 var(--feature-timeline-dot-clearance) var(--background);
 }
 .feature-timeline__card {
     position: relative;
@@ -89,7 +92,7 @@
     content: '';
     position: absolute;
     top: calc(var(--feature-timeline-marker-size) / 2);
-    left: calc(var(--feature-timeline-chevron-size) / -2 + 1px);
+    left: var(--feature-timeline-chevron-inset);
     width: var(--feature-timeline-chevron-size);
     height: var(--feature-timeline-chevron-size);
     border-left: 1px solid var(--border);

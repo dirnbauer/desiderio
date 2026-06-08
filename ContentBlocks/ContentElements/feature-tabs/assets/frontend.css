@@ -16,30 +16,36 @@
 .feature-tabs__content {
     display: grid;
     grid-template-columns: 1fr;
-    gap: var(--d-spacing-xl);
+    gap: clamp(var(--d-spacing-lg), 4vw, var(--d-spacing-2xl));
     align-items: center;
     text-align: start;
     padding-inline: var(--d-spacing-md);
 }
 @media (min-width: 768px) {
     .feature-tabs__content {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: minmax(18rem, 0.95fr) minmax(0, 1.05fr);
         padding-inline: var(--d-spacing-lg);
     }
 }
 .feature-tabs__copy {
     min-width: 0;
+    max-width: 36rem;
 }
 .feature-tabs__title {
+    font-size: clamp(1.35rem, 1.1rem + 0.7vw, 1.875rem);
     font-weight: 600;
-    margin-block-end: var(--d-spacing-sm);
+    line-height: 1.18;
+    margin-block-end: var(--d-spacing-md);
 }
 .feature-tabs__description {
     color: var(--muted-foreground);
+    font-size: clamp(1rem, 0.95rem + 0.18vw, 1.125rem);
+    line-height: 1.7;
+    margin: 0;
 }
 .feature-tabs__media {
     overflow: hidden;
-    aspect-ratio: 16 / 10;
+    aspect-ratio: 16 / 9;
     border-radius: var(--d-radius-lg);
     border: 1px solid var(--d-border);
     background: var(--d-muted);

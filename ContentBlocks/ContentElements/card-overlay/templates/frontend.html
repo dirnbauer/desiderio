@@ -10,7 +10,7 @@
         <article class="card-overlay card-overlay--{data.overlay_intensity -> f:or(alternative: 'medium')}">
             <f:if condition="{data.image.0}">
                 <div class="card-overlay__media">
-                    <f:image image="{data.image.0}" alt="{data.image.0.alternative -> f:or(alternative: data.header)}" width="960" height="640" loading="lazy" class="card-overlay__image"/>
+                    <f:image image="{data.image.0}" alt="{data.image.0.alternative -> f:or(alternative: data.header)}" maxWidth="1200" loading="lazy" decoding="async" class="card-overlay__image"/>
                 </div>
             </f:if>
             <d:layout.stack gap="sm" class="card-overlay__content">

@@ -28,7 +28,7 @@
                         <f:if condition="{item.image}">
                             <f:then>
                                 <f:for each="{item.image}" as="file">
-                                    <f:image image="{file}" alt="" width="720" height="480" loading="lazy"/>
+                                    <f:image image="{file}" alt="" maxWidth="720" loading="lazy" decoding="async"/>
                                 </f:for>
                             </f:then>
                             <f:else>

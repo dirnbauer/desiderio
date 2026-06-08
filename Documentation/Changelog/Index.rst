@@ -8,10 +8,13 @@ Changelog
 
 The authoritative release notes live in :file:`CHANGELOG.md` at the
 repository root and follow `Keep a Changelog
-<https://keepachangelog.com/>`__. The current release is **2.6.0**.
+<https://keepachangelog.com/>`__. The current release is **2.6.1**.
 
 Highlights:
 
+*   Fluid component and Powermail templates keep Tailwind arbitrary
+    selectors readable in source so generated CSS includes their
+    descendant, direct-child, and ``:has()`` utility rules.
 *   Seed commands are thin orchestration shells; shared FAL, collection,
     and fixture logic lives in ``Classes/Seeding/``.
 *   ``StyleguideFixtureResolver``, ``StarterContentBuilder``, and

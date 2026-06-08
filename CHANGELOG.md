@@ -6,6 +6,24 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [2.6.1] — 2026-06-08
+
+### Fixed
+
+- Fluid component templates and the Powermail shadcn class map now keep
+  Tailwind arbitrary selectors readable in source (`[&_a]`, `[&>svg]`,
+  `has-[>...]`) instead of HTML-entity encoded. Tailwind scans the Fluid source
+  before TYPO3 renders it, so encoded selectors could render in HTML without
+  generating the matching CSS.
+- The generated Tailwind bundle now includes the descendant, direct-child, and
+  `:has()` arbitrary selector utilities used by the Fluid components.
+
+### Changed
+
+- `Build/Scripts/sync-shadcn-fluid-primitives.php` preserves Tailwind selector
+  characters when regenerating Fluid primitives, preventing future shadcn syncs
+  from reintroducing encoded arbitrary selector classes.
+
 ## [2.6.0] — 2026-06-06
 
 ### Added
@@ -289,9 +307,12 @@ and `webconsulting/shadcn2fluid-templates 3.x` with a clean rewrite:
 templates, and five swappable visual presets. See `MIGRATION-PLAN.md`
 for the migration notes from the old extensions.
 
-[2.4.0]: https://github.com/webconsulting/desiderio/releases/tag/v2.4.0
-[2.3.0]: https://github.com/webconsulting/desiderio/releases/tag/v2.3.0
-[2.2.0]: https://github.com/webconsulting/desiderio/releases/tag/v2.2.0
-[2.1.0]: https://github.com/webconsulting/desiderio/releases/tag/v2.1.0
-[2.0.0]: https://github.com/webconsulting/desiderio/releases/tag/v2.0.0
-[Unreleased]: https://github.com/webconsulting/desiderio/compare/v2.4.0...HEAD
+[2.6.1]: https://github.com/dirnbauer/desiderio/releases/tag/v2.6.1
+[2.6.0]: https://github.com/dirnbauer/desiderio/releases/tag/v2.6.0
+[2.5.0]: https://github.com/dirnbauer/desiderio/releases/tag/v2.5.0
+[2.4.0]: https://github.com/dirnbauer/desiderio/releases/tag/v2.4.0
+[2.3.0]: https://github.com/dirnbauer/desiderio/releases/tag/v2.3.0
+[2.2.0]: https://github.com/dirnbauer/desiderio/releases/tag/v2.2.0
+[2.1.0]: https://github.com/dirnbauer/desiderio/releases/tag/v2.1.0
+[2.0.0]: https://github.com/dirnbauer/desiderio/releases/tag/v2.0.0
+[Unreleased]: https://github.com/dirnbauer/desiderio/compare/v2.6.1...HEAD

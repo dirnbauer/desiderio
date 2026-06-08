@@ -1,84 +1,86 @@
 {
   "_type": "pricing",
-  "header": "Pricing Section for confident plan comparison",
-  "eyebrow": "Modern import",
-  "subheadline": "Help buyers compare plans with crisp values and direct feature language.",
+  "header": "Plans for teams shipping better TYPO3 pages",
+  "eyebrow": "Transparent pricing",
+  "subheadline": "Compare the support level, review depth, and implementation help that match your launch plan.",
   "columns": "3",
   "plans": [
     {
-      "name": "Mara Weiss",
+      "badge_text": "Self guided",
+      "name": "Starter",
       "price": "$19",
       "billing_period": "/month",
-      "description": "Keep plan comparison compact across desktop tables and mobile cards.",
+      "description": "For small editorial teams that need polished components and predictable fixtures.",
       "features": [
         {
-          "text": "Clean mobile behavior for dense content"
+          "text": "Full Desiderio content element catalog"
         },
         {
-          "text": "Chart colors mapped to semantic tokens"
+          "text": "Styleguide fixture pages for review"
         },
         {
-          "text": "Production-ready empty and loaded states"
+          "text": "Token-aware light and dark themes"
         },
         {
-          "text": "Token-aware light and dark states"
+          "text": "Documented update workflow"
         }
       ],
-      "button_text": "Start review",
-      "button_link": "https://ui.shadcn.com/docs/pricing-section",
+      "button_text": "Start with Starter",
+      "button_link": "https://example.com/desiderio/pricing/starter",
       "is_featured": false
     },
     {
-      "badge_text": "shadcn/ui",
-      "name": "Sofia Berg",
+      "badge_text": "Most chosen",
+      "name": "Team",
       "price": "$49",
       "billing_period": "/month",
-      "description": "Show pricing states with practical labels and scannable benefits.",
+      "description": "For product and agency teams that want guided launch QA and stronger editorial setup.",
       "features": [
         {
-          "text": "Clean mobile behavior for dense content"
+          "text": "Everything in Starter"
         },
         {
-          "text": "Chart colors mapped to semantic tokens"
+          "text": "Implementation review for key pages"
         },
         {
-          "text": "Production-ready empty and loaded states"
+          "text": "Component usage recommendations"
         },
         {
-          "text": "Token-aware light and dark states"
+          "text": "Fixture and seed script support"
         },
         {
-          "text": "Accessible keyboard focus patterns"
+          "text": "Priority accessibility checks"
         }
       ],
-      "button_text": "View pattern",
-      "button_link": "https://ui.shadcn.com/docs/pricing-section",
+      "button_text": "Choose Team",
+      "button_link": "https://example.com/desiderio/pricing/team",
       "is_featured": true
     },
     {
-      "name": "Sofia Berg",
+      "badge_text": "Scale support",
+      "name": "Enterprise",
       "price": "$99",
       "billing_period": "/month",
-      "description": "Show pricing states with practical labels and scannable benefits.",
+      "description": "For organizations that need rollout planning, governance, and long-running design system support.",
       "features": [
         {
-          "text": "Clean mobile behavior for dense content"
+          "text": "Everything in Team"
         },
         {
-          "text": "Chart colors mapped to semantic tokens"
+          "text": "Multi-site rollout planning"
         },
         {
-          "text": "Production-ready empty and loaded states"
+          "text": "Custom fixture content review"
         },
         {
-          "text": "Token-aware light and dark states"
+          "text": "Quarterly content element audit"
         },
         {
-          "text": "Accessible keyboard focus patterns"
+          "text": "Procurement-ready support package"
         }
       ],
-      "button_text": "View pattern",
-      "button_link": "https://ui.shadcn.com/docs/pricing-section",
+      "button_text": "Talk to sales",
+      "button_link": "https://example.com/desiderio/pricing/enterprise",
       "is_featured": false
     }
   ]

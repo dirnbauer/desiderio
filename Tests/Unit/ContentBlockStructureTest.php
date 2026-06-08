@@ -864,6 +864,22 @@ final class ContentBlockStructureTest extends TestCase
         self::assertSame(self::EXPECTED_COUNT, $elementCount);
     }
 
+    public function testFixtureFillerDryRunUsesProjectRootWhenOnlyOptionIsProvided(): void
+    {
+        $script = dirname(__DIR__, 2) . '/scripts/fill-content-element-fixtures.php';
+        self::assertFileExists($script);
+
+        $output = shell_exec(escapeshellcmd(PHP_BINARY) . ' ' . escapeshellarg($script) . ' --dry-run');
+        self::assertIsString($output);
+
+        $result = json_decode($output, true, 512, JSON_THROW_ON_ERROR);
+        self::assertSame([
+            'dryRun' => true,
+            'updated' => 0,
+            'skipped' => 0,
+        ], $result);
+    }
+
     /**
      * @return list<string>
      */

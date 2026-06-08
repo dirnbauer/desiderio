@@ -18,7 +18,15 @@ use Webconsulting\Desiderio\Data\ContentBlockDefinitionRegistry;
 use Webconsulting\Desiderio\Seeding\StyleguideJsonFixtureCompleter;
 
 $dryRun = in_array('--dry-run', $argv, true);
-$root = rtrim($argv[1] ?? dirname(__DIR__), '/');
+$rootArgument = null;
+foreach (array_slice($argv, 1) as $argument) {
+    if (str_starts_with((string)$argument, '--')) {
+        continue;
+    }
+    $rootArgument = (string)$argument;
+    break;
+}
+$root = rtrim($rootArgument ?? dirname(__DIR__), '/');
 $elementsDir = $root . '/ContentBlocks/ContentElements';
 
 if (!is_dir($elementsDir)) {

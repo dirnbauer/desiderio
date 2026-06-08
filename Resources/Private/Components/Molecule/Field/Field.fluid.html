@@ -10,8 +10,8 @@
 
 <f:variable name="orientationClass">
     <f:switch expression="{orientation}">
-        <f:case value="horizontal">group/field flex w-full gap-2 data-[invalid=true]:text-destructive flex-row items-center has-[&gt;[data-slot=field-content]]:items-start *:data-[slot=field-label]:flex-auto has-[&gt;[data-slot=field-content]]:[&amp;&gt;[role=checkbox],[role=radio]]:mt-px</f:case>
-        <f:defaultCase>group/field flex w-full gap-2 data-[invalid=true]:text-destructive flex-col *:w-full [&amp;&gt;.sr-only]:w-auto</f:defaultCase>
+        <f:case value="horizontal">group/field flex w-full gap-2 data-[invalid=true]:text-destructive flex-row items-center has-[>[data-slot=field-content]]:items-start *:data-[slot=field-label]:flex-auto has-[>[data-slot=field-content]]:[&>[role=checkbox],[role=radio]]:mt-px</f:case>
+        <f:defaultCase>group/field flex w-full gap-2 data-[invalid=true]:text-destructive flex-col *:w-full [&>.sr-only]:w-auto</f:defaultCase>
     </f:switch>
 </f:variable>
 

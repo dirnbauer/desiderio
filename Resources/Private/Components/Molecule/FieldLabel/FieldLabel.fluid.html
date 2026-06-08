@@ -9,7 +9,7 @@
 <f:argument name="title" type="string" optional="{true}" />
 <f:argument name="class" type="string" optional="{true}" default="" />
 
-<label for="{for}" data-slot="field-label" class="flex items-center gap-2 text-xs leading-none select-none group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-[&gt;[data-slot=field]]:rounded-none has-[&gt;[data-slot=field]]:border *:data-[slot=field]:p-2 has-[&gt;[data-slot=field]]:w-full has-[&gt;[data-slot=field]]:flex-col font-medium text-foreground {class}" title="{title}">
+<label for="{for}" data-slot="field-label" class="flex items-center gap-2 text-xs leading-none select-none group-data-[disabled=true]:pointer-events-none group-data-[disabled=true]:opacity-50 peer-disabled:cursor-not-allowed peer-disabled:opacity-50 group/field-label peer/field-label flex w-fit gap-2 leading-snug group-data-[disabled=true]/field:opacity-50 has-[>[data-slot=field]]:rounded-none has-[>[data-slot=field]]:border *:data-[slot=field]:p-2 has-[>[data-slot=field]]:w-full has-[>[data-slot=field]]:flex-col font-medium text-foreground {class}" title="{title}">
     <span class="inline-flex items-baseline gap-1">
         <span><f:slot /></span>
         <f:if condition="{mandatory}">

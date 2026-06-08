@@ -86,10 +86,48 @@ final class ComponentStructureTest extends TestCase
             'has-data-[slot=card-header]:px-0',
             'has-data-[slot=card-content]:px-0',
             'has-data-[slot=card-footer]:px-0',
-            'has-[&gt;img:first-child]:px-0',
+            'has-[>img:first-child]:px-0',
         ] as $class) {
             self::assertStringContainsString($class, $card);
         }
+    }
+
+    public function testTailwindArbitrarySelectorsAreNotHtmlEntityEncoded(): void
+    {
+        $roots = [
+            __DIR__ . '/../../Resources/Private',
+            __DIR__ . '/../../ContentBlocks',
+        ];
+        $invalid = [];
+
+        foreach ($roots as $root) {
+            $files = new \RecursiveIteratorIterator(
+                new \RecursiveDirectoryIterator($root, \FilesystemIterator::SKIP_DOTS)
+            );
+
+            foreach ($files as $file) {
+                if (!$file instanceof \SplFileInfo || !$file->isFile()) {
+                    continue;
+                }
+
+                $path = $file->getPathname();
+                if (!str_ends_with($path, '.html') && !str_ends_with($path, '.fluid.html')) {
+                    continue;
+                }
+
+                $template = (string) file_get_contents($path);
+                if (preg_match_all('/(?:class|value)="[^"\n]*(?:\[&amp;|&amp;&gt;|has-\[&gt;|group-has-\[&gt;)[^"\n]*"/', $template, $matches, PREG_OFFSET_CAPTURE) === false) {
+                    continue;
+                }
+
+                foreach ($matches[0] as $match) {
+                    $line = substr_count(substr($template, 0, $match[1]), "\n") + 1;
+                    $invalid[] = str_replace(__DIR__ . '/../../', '', $path) . ':' . $line;
+                }
+            }
+        }
+
+        self::assertSame([], $invalid);
     }
 
     public function testTypographySupportsStableElementIds(): void

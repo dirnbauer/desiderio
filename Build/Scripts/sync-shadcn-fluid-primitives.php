@@ -1654,12 +1654,22 @@ function normalizeNewlines(string $content): string
 
 function attr(string $value): string
 {
-    return htmlspecialchars($value, ENT_COMPAT | ENT_SUBSTITUTE, 'UTF-8');
+    return keepTailwindSelectorsReadable(
+        htmlspecialchars($value, ENT_COMPAT | ENT_SUBSTITUTE, 'UTF-8')
+    );
 }
 
 function text(string $value): string
 {
-    return htmlspecialchars($value, ENT_NOQUOTES | ENT_SUBSTITUTE, 'UTF-8');
+    return keepTailwindSelectorsReadable(
+        htmlspecialchars($value, ENT_NOQUOTES | ENT_SUBSTITUTE, 'UTF-8')
+    );
+}
+
+function keepTailwindSelectorsReadable(string $value): string
+{
+    // Tailwind scans Fluid source, so encoded arbitrary selectors would not generate CSS.
+    return str_replace(['&amp;', '&gt;'], ['&', '>'], $value);
 }
 
 function fail(string $message): never

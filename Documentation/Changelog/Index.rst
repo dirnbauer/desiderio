@@ -8,7 +8,7 @@ Changelog
 
 The authoritative release notes live in :file:`CHANGELOG.md` at the
 repository root and follow `Keep a Changelog
-<https://keepachangelog.com/>`__. The current release is **2.6.1**.
+<https://keepachangelog.com/>`__. The current release is **2.6.2**.
 
 Highlights:
 

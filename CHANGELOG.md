@@ -6,6 +6,15 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [2.6.2] — 2026-06-08
+
+### Fixed
+
+- Feature timeline connectors now start closer to the numbered markers and meet
+  the card notch more cleanly.
+- Feature tab media/copy spacing and system page panel padding have been
+  tightened for more balanced rendered layouts.
+
 ## [2.6.1] — 2026-06-08
 
 ### Fixed
@@ -307,6 +316,7 @@ and `webconsulting/shadcn2fluid-templates 3.x` with a clean rewrite:
 templates, and five swappable visual presets. See `MIGRATION-PLAN.md`
 for the migration notes from the old extensions.
 
+[2.6.2]: https://github.com/dirnbauer/desiderio/releases/tag/v2.6.2
 [2.6.1]: https://github.com/dirnbauer/desiderio/releases/tag/v2.6.1
 [2.6.0]: https://github.com/dirnbauer/desiderio/releases/tag/v2.6.0
 [2.5.0]: https://github.com/dirnbauer/desiderio/releases/tag/v2.5.0
@@ -315,4 +325,4 @@ for the migration notes from the old extensions.
 [2.2.0]: https://github.com/dirnbauer/desiderio/releases/tag/v2.2.0
 [2.1.0]: https://github.com/dirnbauer/desiderio/releases/tag/v2.1.0
 [2.0.0]: https://github.com/dirnbauer/desiderio/releases/tag/v2.0.0
-[Unreleased]: https://github.com/dirnbauer/desiderio/compare/v2.6.1...HEAD
+[Unreleased]: https://github.com/dirnbauer/desiderio/compare/v2.6.2...HEAD

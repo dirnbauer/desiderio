@@ -28,17 +28,20 @@
     padding: var(--d-spacing-lg);
 }
 
-/* charts.js injects a viewBox'd <svg>; we own the responsive box so it scales down
-   and never overflows the card at narrow widths. */
+/* charts.js injects a viewBox'd <svg>; preserve a readable plot width and let
+   only the figure scroll when the browser is narrower than the chart. */
 .chart-area__figure {
     width: 100%;
     min-width: 0;
+    overflow-x: auto;
+    scrollbar-gutter: stable;
 }
 .chart-area__canvas {
     display: block;
-    width: 100%;
-    max-width: 100%;
+    width: clamp(36rem, 100%, 50rem);
+    max-width: none;
     height: auto;
+    margin-inline: auto;
     aspect-ratio: 64 / 30;
     color: var(--muted-foreground);
     overflow: visible;

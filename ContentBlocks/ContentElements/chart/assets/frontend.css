@@ -18,19 +18,25 @@
     width: min(100%, 64rem);
     margin-inline: auto;
 }
-.chart__figure { width: 100%; min-width: 0; }
+.chart__figure {
+    width: 100%;
+    min-width: 0;
+    overflow-x: auto;
+    scrollbar-gutter: stable;
+}
 .chart__canvas {
     display: block;
-    width: 100%;
-    max-width: 100%;
+    width: clamp(var(--chart-plot-min-width, 36rem), 100%, var(--chart-plot-max-width, 50rem));
+    max-width: none;
     height: auto;
+    margin-inline: auto;
     aspect-ratio: 64 / 30;
     color: var(--muted-foreground);
     overflow: visible;
     --chart-color: var(--chart-1);
 }
-.chart__canvas--small { aspect-ratio: 64 / 20; }
-.chart__canvas--large { aspect-ratio: 64 / 38; }
+.chart__canvas--small { --chart-plot-min-width: 32rem; --chart-plot-max-width: 46rem; aspect-ratio: 64 / 20; }
+.chart__canvas--large { --chart-plot-min-width: 38rem; --chart-plot-max-width: 56rem; aspect-ratio: 64 / 38; }
 .chart__tooltip {
     position: absolute; padding: var(--d-spacing-xs) var(--d-spacing-sm);
     background: var(--popover); color: var(--popover-foreground);

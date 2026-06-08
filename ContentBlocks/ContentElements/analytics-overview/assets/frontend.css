@@ -3,12 +3,14 @@
     background: var(--card); padding: var(--d-spacing-xl);
 }
 .analytics-overview__header { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: var(--d-spacing-sm) var(--d-spacing-md); margin-block-end: var(--d-spacing-lg); }
-.analytics-overview__metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: var(--d-spacing-lg); margin: 0; }
-.analytics-overview__metric { padding: var(--d-spacing-md); border-radius: var(--radius); background: color-mix(in oklch, var(--muted) 20%, transparent); }
-.analytics-overview__metric-label { font-size: var(--d-text-sm); color: var(--muted-foreground); }
-.analytics-overview__metric-value { font-size: var(--d-text-2xl); font-weight: 700; line-height: 1.1; margin: var(--d-spacing-xs) 0 0; }
-.analytics-overview__metric-change { display: inline-flex; align-items: center; gap: 4px; font-size: var(--d-text-sm); font-weight: 500; margin-block-start: var(--d-spacing-xs); }
-.analytics-overview__metric-arrow { display: inline-flex; }
+.analytics-overview__metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr)); gap: var(--d-spacing-lg); margin: 0; }
+.analytics-overview__metric { min-width: 0; padding: var(--d-spacing-md); border-radius: var(--radius); background: color-mix(in oklch, var(--muted) 20%, transparent); }
+.analytics-overview__metric-label { font-size: var(--d-text-sm); color: var(--muted-foreground); overflow-wrap: break-word; }
+.analytics-overview__metric-value { font-size: var(--d-text-2xl); font-weight: 700; line-height: 1.1; margin: var(--d-spacing-xs) 0 0; overflow-wrap: break-word; }
+.analytics-overview__metric-change { display: grid; grid-template-columns: 1.5rem minmax(0, 1fr); align-items: start; column-gap: var(--d-spacing-xs); width: 100%; font-size: var(--d-text-sm); font-weight: 600; line-height: 1.35; margin: var(--d-spacing-sm) 0 0; }
+.analytics-overview__metric-arrow { display: inline-grid; place-items: center; width: 1.5rem; height: 1.5rem; border-radius: 999px; background: color-mix(in oklch, currentColor 12%, transparent); box-shadow: inset 0 0 0 1px color-mix(in oklch, currentColor 26%, transparent); }
+.analytics-overview__metric-arrow svg { display: block; width: 1rem; height: 1rem; }
+.analytics-overview__metric-change-text { min-width: 0; padding-block-start: 0.0625rem; overflow-wrap: break-word; word-break: normal; }
 .analytics-overview__metric-change--up { color: var(--d-success); }
 .analytics-overview__metric-change--down { color: var(--destructive); }
 .analytics-overview__metric-change--neutral { color: var(--muted-foreground); }

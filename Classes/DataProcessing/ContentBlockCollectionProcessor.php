@@ -18,7 +18,6 @@ use Webconsulting\Desiderio\Seeding\DatabaseSchemaHelper;
 
 final class ContentBlockCollectionProcessor implements DataProcessorInterface
 {
-
     public function __construct(
         private readonly ConnectionPool $connectionPool,
         private readonly FileRepository $fileRepository,
@@ -122,12 +121,6 @@ final class ContentBlockCollectionProcessor implements DataProcessorInterface
         $reflectionProperty->setValue($data, $processed);
     }
 
-
-
-
-
-
-
     /**
      * @param array<string, mixed> $collection
      * @return list<ContentBlockData>
@@ -173,7 +166,12 @@ final class ContentBlockCollectionProcessor implements DataProcessorInterface
                 }
                 $type = $this->stringValue($fieldConfig['type'] ?? null);
                 if ($type === 'File') {
-                    $item[$field] = $this->fileRepository->findByRelation($table, $field, $rowUid);
+                    // The column holds the reference count; only resolve file
+                    // references when there is something to load. This avoids
+                    // one sys_file_reference query per row and empty field.
+                    $item[$field] = $this->intValue($row[$field] ?? null) > 0
+                        ? $this->fileRepository->findByRelation($table, $field, $rowUid)
+                        : [];
                 } elseif ($type === 'Link' && isset($item[$field]) && is_scalar($item[$field])) {
                     $item[$field] = new TypolinkParameter((string)$item[$field]);
                 }

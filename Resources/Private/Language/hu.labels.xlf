@@ -1009,5 +1009,35 @@
         <target>Oldal</target>
       </segment>
     </unit>
+    <unit id="pagination.previous">
+      <segment state="final">
+        <source>Previous</source>
+        <target>Előző</target>
+      </segment>
+    </unit>
+    <unit id="pagination.next">
+      <segment state="final">
+        <source>Next</source>
+        <target>Következő</target>
+      </segment>
+    </unit>
+    <unit id="pagination.aria">
+      <segment state="final">
+        <source>Pagination</source>
+        <target>Lapozás</target>
+      </segment>
+    </unit>
+    <unit id="pagination.page">
+      <segment state="final">
+        <source>Page %s</source>
+        <target>%s. oldal</target>
+      </segment>
+    </unit>
+    <unit id="pagination.currentPage">
+      <segment state="final">
+        <source>Page %s, current page</source>
+        <target>%s. oldal, aktuális oldal</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

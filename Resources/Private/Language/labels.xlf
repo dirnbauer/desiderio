@@ -1521,5 +1521,35 @@
         <source>Copyright (c) {year} Desiderio</source>
       </segment>
     </unit>
+    <unit id="pagination.previous">
+      <segment>
+        <source>Previous</source>
+      </segment>
+    </unit>
+    <unit id="pagination.next">
+      <segment>
+        <source>Next</source>
+      </segment>
+    </unit>
+    <unit id="pagination.aria">
+      <segment>
+        <source>Pagination</source>
+      </segment>
+    </unit>
+    <unit id="pagination.page">
+      <segment>
+        <source>Page %s</source>
+      </segment>
+    </unit>
+    <unit id="pagination.currentPage">
+      <segment>
+        <source>Page %s, current page</source>
+      </segment>
+    </unit>
+    <unit id="structuredData.defaultAuthor">
+      <segment>
+        <source>Editorial team</source>
+      </segment>
+    </unit>
   </file>
 </xliff>

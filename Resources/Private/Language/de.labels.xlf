@@ -1825,5 +1825,35 @@
         <target>Copyright (c) {year} Desiderio</target>
       </segment>
     </unit>
+    <unit id="pagination.previous">
+      <segment state="final">
+        <source>Previous</source>
+        <target>Zurück</target>
+      </segment>
+    </unit>
+    <unit id="pagination.next">
+      <segment state="final">
+        <source>Next</source>
+        <target>Weiter</target>
+      </segment>
+    </unit>
+    <unit id="pagination.aria">
+      <segment state="final">
+        <source>Pagination</source>
+        <target>Seitennavigation</target>
+      </segment>
+    </unit>
+    <unit id="pagination.page">
+      <segment state="final">
+        <source>Page %s</source>
+        <target>Seite %s</target>
+      </segment>
+    </unit>
+    <unit id="pagination.currentPage">
+      <segment state="final">
+        <source>Page %s, current page</source>
+        <target>Seite %s, aktuelle Seite</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

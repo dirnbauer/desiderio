@@ -33,8 +33,8 @@
                                 <span><f:translate extensionName="blog" key="pagelayout.section.published">Published</f:translate></span>
                             </dt>
                             <dd class="mt-1 text-muted-foreground">
-                                <time datetime="{f:format.date(format: '%Y-%m-%dT%H:%M:%S-%z', date: post.publishDate)}" itemprop="datepublished">
-                                    {f:format.date(format: '%d.%m.%Y - %H:%M', date: post.publishDate)}
+                                <time datetime="{f:format.date(format: 'c', date: post.publishDate)}" itemprop="datePublished">
+                                    {f:format.date(pattern: 'dd.MM.yyyy - HH:mm', date: post.publishDate)}
                                 </time>
                             </dd>
                         </div>

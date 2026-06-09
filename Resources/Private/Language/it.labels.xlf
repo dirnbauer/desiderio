@@ -1009,5 +1009,35 @@
         <target>Pagina</target>
       </segment>
     </unit>
+    <unit id="pagination.previous">
+      <segment state="final">
+        <source>Previous</source>
+        <target>Precedente</target>
+      </segment>
+    </unit>
+    <unit id="pagination.next">
+      <segment state="final">
+        <source>Next</source>
+        <target>Successivo</target>
+      </segment>
+    </unit>
+    <unit id="pagination.aria">
+      <segment state="final">
+        <source>Pagination</source>
+        <target>Paginazione</target>
+      </segment>
+    </unit>
+    <unit id="pagination.page">
+      <segment state="final">
+        <source>Page %s</source>
+        <target>Pagina %s</target>
+      </segment>
+    </unit>
+    <unit id="pagination.currentPage">
+      <segment state="final">
+        <source>Page %s, current page</source>
+        <target>Pagina %s, pagina corrente</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

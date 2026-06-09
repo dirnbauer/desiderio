@@ -7,20 +7,21 @@
 
 <d:layout.section class="nav-pagination">
     <d:layout.container>
-        <nav class="nav-pagination__inner" aria-label="{data.header -> f:or(alternative: 'Pagination')}">
+        <nav class="nav-pagination__inner" aria-label="{data.header -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:pagination.aria\', default: \'Pagination\')}')}">
             <f:if condition="{data.previous_link.url}">
                 <d:atom.link href="{data.previous_link.url}" target="{data.previous_link.target}" variant="muted" class="nav-pagination__prev nav-pagination__edge">
                     <span aria-hidden="true">&#8592;</span>
-                    <span>Previous</span>
+                    <span><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:pagination.previous" default="Previous"/></span>
                 </d:atom.link>
             </f:if>
             <ul class="nav-pagination__list">
                 <f:for each="{data.items}" as="item">
-                    <f:variable name="pageLabel">Page {item -> f:render.text(field: 'label')}</f:variable>
+                    <f:variable name="pageLabelValue">{item -> f:render.text(field: 'label')}</f:variable>
+                    <f:variable name="pageLabel">{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:pagination.page', arguments: {0: pageLabelValue}, default: 'Page {pageLabelValue}')}</f:variable>
                     <li>
                         <f:if condition="{item.active}">
                             <f:then>
-                                <span class="nav-pagination__page nav-pagination__page--active" aria-current="page" aria-label="{pageLabel}, current page">{item -> f:render.text(field: 'label')}</span>
+                                <span class="nav-pagination__page nav-pagination__page--active" aria-current="page" aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:pagination.currentPage', arguments: {0: pageLabelValue}, default: '{pageLabel}, current page')}">{item -> f:render.text(field: 'label')}</span>
                             </f:then>
                             <f:else>
                                 <f:if condition="{item.link.url}">
@@ -33,7 +34,7 @@
             </ul>
             <f:if condition="{data.next_link.url}">
                 <d:atom.link href="{data.next_link.url}" target="{data.next_link.target}" variant="muted" class="nav-pagination__next nav-pagination__edge">
-                    <span>Next</span>
+                    <span><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:pagination.next" default="Next"/></span>
                     <span aria-hidden="true">&#8594;</span>
                 </d:atom.link>
             </f:if>

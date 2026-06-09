@@ -30,7 +30,7 @@
                     <f:variable name="structuredAuthor">{settings.structuredData.publisherName}</f:variable>
                 </f:then>
                 <f:else>
-                    <f:variable name="structuredAuthor">Editorial team</f:variable>
+                    <f:variable name="structuredAuthor"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:structuredData.defaultAuthor" default="Editorial team"/></f:variable>
                 </f:else>
             </f:if>
         </f:else>

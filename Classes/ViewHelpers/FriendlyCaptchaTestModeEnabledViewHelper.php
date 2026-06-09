@@ -15,10 +15,11 @@ final class FriendlyCaptchaTestModeEnabledViewHelper extends AbstractViewHelper
 
     public function render(): bool
     {
-        $request = $GLOBALS['TYPO3_REQUEST'] ?? null;
-        if (!$request instanceof ServerRequestInterface) {
+        if ($this->renderingContext?->hasAttribute(ServerRequestInterface::class) !== true) {
             return false;
         }
+
+        $request = $this->renderingContext->getAttribute(ServerRequestInterface::class);
 
         $site = $request->getAttribute('site');
         if (!$site instanceof Site) {

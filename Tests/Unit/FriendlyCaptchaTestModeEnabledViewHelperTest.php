@@ -5,37 +5,45 @@ declare(strict_types=1);
 namespace Webconsulting\Desiderio\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
+use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Http\ServerRequest;
 use TYPO3\CMS\Core\Site\Entity\Site;
 use TYPO3\CMS\Core\Site\Entity\SiteSettings;
+use TYPO3Fluid\Fluid\Core\Rendering\RenderingContext;
 use Webconsulting\Desiderio\ViewHelpers\FriendlyCaptchaTestModeEnabledViewHelper;
 
 final class FriendlyCaptchaTestModeEnabledViewHelperTest extends TestCase
 {
-    protected function tearDown(): void
-    {
-        unset($GLOBALS['TYPO3_REQUEST']);
-
-        parent::tearDown();
-    }
-
     public function testRenderReturnsTrueWhenSiteSettingIsEnabled(): void
     {
-        $GLOBALS['TYPO3_REQUEST'] = (new ServerRequest())->withAttribute('site', $this->createSite(true));
-
-        self::assertTrue((new FriendlyCaptchaTestModeEnabledViewHelper())->render());
+        self::assertTrue($this->renderWithSite($this->createSite(true)));
     }
 
     public function testRenderReturnsFalseWhenSiteSettingIsDisabled(): void
     {
-        $GLOBALS['TYPO3_REQUEST'] = (new ServerRequest())->withAttribute('site', $this->createSite(false));
-
-        self::assertFalse((new FriendlyCaptchaTestModeEnabledViewHelper())->render());
+        self::assertFalse($this->renderWithSite($this->createSite(false)));
     }
 
     public function testRenderReturnsFalseWithoutSiteRequest(): void
     {
-        self::assertFalse((new FriendlyCaptchaTestModeEnabledViewHelper())->render());
+        $viewHelper = new FriendlyCaptchaTestModeEnabledViewHelper();
+        $viewHelper->setRenderingContext(new RenderingContext());
+
+        self::assertFalse($viewHelper->render());
+    }
+
+    private function renderWithSite(Site $site): bool
+    {
+        $renderingContext = new RenderingContext();
+        $renderingContext->setAttribute(
+            ServerRequestInterface::class,
+            (new ServerRequest())->withAttribute('site', $site)
+        );
+
+        $viewHelper = new FriendlyCaptchaTestModeEnabledViewHelper();
+        $viewHelper->setRenderingContext($renderingContext);
+
+        return $viewHelper->render();
     }
 
     private function createSite(bool $testMode): Site

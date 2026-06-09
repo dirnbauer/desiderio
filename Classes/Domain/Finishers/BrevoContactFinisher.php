@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Webconsulting\Desiderio\Domain\Finishers;
 
 use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
 use TYPO3\CMS\Core\Http\RequestFactory;
 use TYPO3\CMS\Core\Site\Entity\Site;
 use TYPO3\CMS\Form\Domain\Finishers\AbstractFinisher;
@@ -371,25 +372,26 @@ final class BrevoContactFinisher extends AbstractFinisher
 
     private function getCurrentSite(): ?Site
     {
-        $request = $GLOBALS['TYPO3_REQUEST'] ?? null;
-        $site = is_object($request) && method_exists($request, 'getAttribute')
-            ? $request->getAttribute('site')
-            : null;
+        $site = $this->getCurrentRequest()?->getAttribute('site');
 
         return $site instanceof Site ? $site : null;
     }
 
     private function getCurrentUri(): string
     {
-        $request = $GLOBALS['TYPO3_REQUEST'] ?? null;
-        if (is_object($request) && method_exists($request, 'getUri')) {
-            $uri = $request->getUri();
-            if ($uri instanceof \Stringable) {
-                return $uri->__toString();
-            }
+        return (string)($this->getCurrentRequest()?->getUri() ?? '');
+    }
+
+    private function getCurrentRequest(): ?ServerRequestInterface
+    {
+        $request = $this->finisherContext->getRequest();
+        if ($request instanceof ServerRequestInterface) {
+            return $request;
         }
 
-        return '';
+        $request = $GLOBALS['TYPO3_REQUEST'] ?? null;
+
+        return $request instanceof ServerRequestInterface ? $request : null;
     }
 
     /**

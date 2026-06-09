@@ -112,8 +112,9 @@ function desiderioInit() {
       return;
     }
 
-    // Find the name from nav
-    var navLink = document.querySelector('.docs__nav-link[data-ctype="' + ctype + '"]');
+    // Find the name from nav (CSS.escape guards against selector
+    // metacharacters smuggled in via the location hash)
+    var navLink = document.querySelector('.docs__nav-link[data-ctype="' + CSS.escape(ctype) + '"]');
     var name = navLink ? navLink.dataset.name : ctype.replace('desiderio_', '');
 
     // Update header

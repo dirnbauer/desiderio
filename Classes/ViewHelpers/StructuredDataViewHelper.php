@@ -73,10 +73,16 @@ final class StructuredDataViewHelper extends AbstractViewHelper
             return '';
         }
         if (preg_match('#^https?://#i', $url) === 1) {
-            return $url;
+            return filter_var($url, FILTER_VALIDATE_URL) !== false ? $url : '';
+        }
+        // Only http(s) or scheme-less (relative) URLs may end up in the JSON-LD output.
+        if (preg_match('#^[a-z][a-z0-9+.-]*:#i', $url) === 1) {
+            return '';
         }
 
-        $request = $this->renderingContext?->getAttribute(ServerRequestInterface::class);
+        $request = $this->renderingContext?->hasAttribute(ServerRequestInterface::class) === true
+            ? $this->renderingContext->getAttribute(ServerRequestInterface::class)
+            : null;
         $uri = $request instanceof ServerRequestInterface ? $request->getUri() : null;
         if ($uri === null) {
             return $url;
@@ -104,7 +110,9 @@ final class StructuredDataViewHelper extends AbstractViewHelper
 
     private function nonceAttribute(): string
     {
-        $request = $this->renderingContext?->getAttribute(ServerRequestInterface::class);
+        $request = $this->renderingContext?->hasAttribute(ServerRequestInterface::class) === true
+            ? $this->renderingContext->getAttribute(ServerRequestInterface::class)
+            : null;
         if (!$request instanceof ServerRequestInterface) {
             return '';
         }

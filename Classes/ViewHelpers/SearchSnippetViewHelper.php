@@ -8,6 +8,12 @@ use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
 
 final class SearchSnippetViewHelper extends AbstractViewHelper
 {
+    /**
+     * Upper bound for highlighted terms, keeps the alternation pattern in
+     * termPattern() small even for hostile multi-term search queries.
+     */
+    private const MAX_TERMS = 10;
+
     protected $escapeOutput = false;
 
     public function initializeArguments(): void
@@ -90,7 +96,7 @@ final class SearchSnippetViewHelper extends AbstractViewHelper
 
         usort($terms, static fn(string $left, string $right): int => mb_strlen($right, 'UTF-8') <=> mb_strlen($left, 'UTF-8'));
 
-        return $terms;
+        return array_slice($terms, 0, self::MAX_TERMS);
     }
 
     /**

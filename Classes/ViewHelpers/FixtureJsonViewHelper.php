@@ -35,7 +35,9 @@ final class FixtureJsonViewHelper extends AbstractViewHelper
         }
 
         $nonceAttribute = '';
-        $request = $this->renderingContext?->getAttribute(ServerRequestInterface::class);
+        $request = $this->renderingContext?->hasAttribute(ServerRequestInterface::class) === true
+            ? $this->renderingContext->getAttribute(ServerRequestInterface::class)
+            : null;
         if ($request instanceof ServerRequestInterface) {
             $nonce = $request->getAttribute('nonce');
             if ($nonce instanceof ConsumableNonce) {

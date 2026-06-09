@@ -9,17 +9,15 @@
 <f:argument name="class" type="string" optional="{true}" default="" />
 
 <div
-    x-data="{ open: {f:if(condition: open, then: 'true', else: 'false')} }"
-    x-bind:data-state="open ? 'open' : 'closed'"
+    data-state="{f:if(condition: open, then: 'open', else: 'closed')}"
     class="not-last:border-b {class}"
     data-slot="accordion-item"
     data-d-accordion-item
 >
     <button
         type="button"
-        x-on:click="open = !open"
-        x-bind:aria-expanded="open ? 'true' : 'false'"
-        x-bind:data-state="open ? 'open' : 'closed'"
+        aria-expanded="{f:if(condition: open, then: 'true', else: 'false')}"
+        data-state="{f:if(condition: open, then: 'open', else: 'closed')}"
         class="group/accordion-trigger relative flex flex-1 items-start justify-between rounded-none border border-transparent py-2.5 text-left text-xs font-medium transition-all outline-none hover:underline focus-visible:border-ring focus-visible:ring-1 focus-visible:ring-ring/50 focus-visible:after:border-ring disabled:pointer-events-none disabled:opacity-50 **:data-[slot=accordion-trigger-icon]:ml-auto **:data-[slot=accordion-trigger-icon]:size-4 **:data-[slot=accordion-trigger-icon]:text-muted-foreground"
         data-slot="accordion-trigger"
         data-d-accordion-trigger
@@ -28,9 +26,8 @@
         <svg data-slot="accordion-trigger-icon" class="pointer-events-none shrink-0 transition-transform duration-200 group-aria-expanded/accordion-trigger:rotate-180" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
     </button>
     <div
-        x-show="open"
-        x-collapse
-        x-bind:data-state="open ? 'open' : 'closed'"
+        data-state="{f:if(condition: open, then: 'open', else: 'closed')}"
+        {f:if(condition: open, then: '', else: 'hidden')}
         class="overflow-hidden text-xs data-open:animate-accordion-down data-closed:animate-accordion-up"
         data-slot="accordion-content"
         data-d-accordion-content

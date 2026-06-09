@@ -39,8 +39,8 @@
             <f:for each="{data.items}" as="item" iteration="iter">
                 <div
                     role="tabpanel"
-                    x-show="active === 'tab-{data.uid}-{iter.index}'"
-                    x-bind:data-state="active === 'tab-{data.uid}-{iter.index}' ? 'active' : 'inactive'"
+                    data-state="inactive"
+                    hidden
                     class="tabs__content flex-1 text-xs/relaxed outline-none"
                     data-slot="tabs-content"
                     data-d-tabs-content

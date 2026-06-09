@@ -7,34 +7,35 @@ document.addEventListener('DOMContentLoaded', () => {
   /*  1. Accordion                                                       */
   /* ------------------------------------------------------------------ */
   document.querySelectorAll('[data-d-accordion]').forEach(root => {
-    if (root.hasAttribute('x-data')) return;
+    const single = (root.dataset.type || 'single') === 'single';
 
-    const type = root.dataset.type || 'single';
+    const setOpen = (item, open) => {
+      const state = open ? 'open' : 'closed';
+      item.dataset.state = state;
+      const trigger = item.querySelector('[data-d-accordion-trigger]');
+      const content = item.querySelector('[data-d-accordion-content]');
+      if (trigger) {
+        trigger.setAttribute('aria-expanded', String(open));
+        trigger.dataset.state = state;
+      }
+      if (content) {
+        content.dataset.state = state;
+        content.hidden = !open;
+      }
+    };
 
     root.addEventListener('click', e => {
       const trigger = e.target.closest('[data-d-accordion-trigger]');
-      if (!trigger) return;
-
-      const item = trigger.closest('[data-d-accordion-item]');
-      const content = item?.querySelector('[data-d-accordion-content]');
-      if (!item || !content) return;
+      const item = trigger?.closest('[data-d-accordion-item]');
+      if (!item) return;
 
       const isOpen = trigger.getAttribute('aria-expanded') === 'true';
-
-      // Single mode: close every other item first.
-      if (type === 'single' && !isOpen) {
+      if (single && !isOpen) {
         root.querySelectorAll('[data-d-accordion-item]').forEach(other => {
-          if (other === item) return;
-          other.querySelector('[data-d-accordion-trigger]')?.setAttribute('aria-expanded', 'false');
-          other.querySelector('[data-d-accordion-trigger]')?.classList.remove('accordion__trigger--open');
-          other.querySelector('[data-d-accordion-content]')?.classList.add('accordion__content--hidden');
+          if (other !== item) setOpen(other, false);
         });
       }
-
-      // Toggle the clicked item.
-      trigger.setAttribute('aria-expanded', String(!isOpen));
-      trigger.classList.toggle('accordion__trigger--open', !isOpen);
-      content.classList.toggle('accordion__content--hidden', isOpen);
+      setOpen(item, !isOpen);
     });
   });
 
@@ -42,16 +43,17 @@ document.addEventListener('DOMContentLoaded', () => {
   /*  2. Tabs                                                            */
   /* ------------------------------------------------------------------ */
   document.querySelectorAll('[data-d-tabs]').forEach(root => {
-    if (root.hasAttribute('x-data')) return;
-
     const activate = value => {
       root.querySelectorAll('[data-d-tabs-trigger]').forEach(t => {
         const active = t.dataset.value === value;
-        t.classList.toggle('tabs__trigger--active', active);
         t.setAttribute('aria-selected', String(active));
+        t.dataset.state = active ? 'active' : 'inactive';
+        t.toggleAttribute('data-active', active);
       });
       root.querySelectorAll('[data-d-tabs-content]').forEach(c => {
-        c.classList.toggle('tabs__content--hidden', c.dataset.value !== value);
+        const active = c.dataset.value === value;
+        c.dataset.state = active ? 'active' : 'inactive';
+        c.hidden = !active;
       });
     };
 
@@ -64,6 +66,14 @@ document.addEventListener('DOMContentLoaded', () => {
       const trigger = e.target.closest('[data-d-tabs-trigger]');
       if (trigger) activate(trigger.dataset.value);
     });
+  });
+
+  /* ------------------------------------------------------------------ */
+  /*  2b. Dismissible alerts/notifications                               */
+  /* ------------------------------------------------------------------ */
+  document.addEventListener('click', e => {
+    const button = e.target.closest('[data-d-dismiss]');
+    if (button) button.closest('[data-d-dismissible]')?.remove();
   });
 
   /* ------------------------------------------------------------------ */

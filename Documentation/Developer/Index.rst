@@ -95,8 +95,6 @@ assets live in ``Resources/Public``:
         - Syntax highlighting for code examples.
     *   - ``Js/charts.js``
         - Chart rendering helpers.
-    *   - ``Js/alpine.min.js``
-        - Alpine runtime where existing blocks need it.
 
 ..  _developer-shadcn:
 

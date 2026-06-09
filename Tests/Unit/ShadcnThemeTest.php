@@ -81,7 +81,7 @@ final class ShadcnThemeTest extends TestCase
 
         self::assertStringContainsString('Resources/Public/Css/shadcn-theme.css', $typoScript);
         self::assertStringContainsString('Resources/Public/Css/desiderio-tailwind.css', $typoScript);
-        self::assertStringContainsString('Resources/Public/Js/alpine.min.js', $typoScript);
+        self::assertStringNotContainsString('alpine', strtolower($typoScript));
         self::assertStringContainsString('Resources/Public/Js/astro.js', $typoScript);
         self::assertStringContainsString('Resources/Public/Js/desiderio.js', $typoScript);
         self::assertStringContainsString('Resources/Public/Js/charts.js', $typoScript);

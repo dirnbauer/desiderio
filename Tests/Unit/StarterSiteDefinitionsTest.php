@@ -195,7 +195,7 @@ final class StarterSiteDefinitionsTest extends TestCase
         self::assertStringContainsString("'root-map'", $source);
         self::assertStringContainsString("'replace-content'", $source);
         self::assertStringContainsString('StarterSiteDefinitions::all()', $source);
-        self::assertStringContainsString('findOrCreateStarterPage', $source);
+        self::assertStringContainsString('findExistingPageUid', $source);
     }
 
     /**

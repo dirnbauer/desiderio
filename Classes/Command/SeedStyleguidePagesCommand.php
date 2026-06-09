@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Webconsulting\Desiderio\Command;
 
-use Doctrine\DBAL\ParameterType;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -14,16 +13,15 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Database\ConnectionPool;
-use TYPO3\CMS\Core\Database\Query\QueryBuilder;
 use TYPO3\CMS\Core\Resource\StorageRepository;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 use Webconsulting\Desiderio\Data\StyleguideContentGroups;
 use Webconsulting\Desiderio\Seeding\CollectionCleanupService;
-use Webconsulting\Desiderio\Seeding\CollectionRecordSeeder;
 use Webconsulting\Desiderio\Seeding\ContentBlockCollectionMap;
+use Webconsulting\Desiderio\Seeding\ContentElementSeeder;
 use Webconsulting\Desiderio\Seeding\DatabaseSchemaHelper;
-use Webconsulting\Desiderio\Seeding\ExtensionFalSeeder;
+use Webconsulting\Desiderio\Seeding\DesiderioContentCleaner;
 use Webconsulting\Desiderio\Seeding\LiveWorkspaceQueryHelper;
+use Webconsulting\Desiderio\Seeding\SeedPageUpserter;
 use Webconsulting\Desiderio\Seeding\StyleguideCollectionAliasPolicy;
 use Webconsulting\Desiderio\Seeding\StyleguideDemoValueGenerator;
 use Webconsulting\Desiderio\Seeding\StyleguideFixtureResolver;
@@ -37,14 +35,12 @@ final class SeedStyleguidePagesCommand extends Command
     public const DEFAULT_PARENT_PID = 505;
     private const STYLEGUIDE_FAL_FOLDER = 'desiderio-styleguide';
 
-    private ?LiveWorkspaceQueryHelper $liveWorkspaceQueryHelper = null;
-    private ?ContentBlockCollectionMap $contentBlockCollectionMap = null;
-    private ?ExtensionFalSeeder $styleguideFalSeeder = null;
-    private ?CollectionRecordSeeder $collectionRecordSeeder = null;
-    private ?CollectionCleanupService $collectionCleanupService = null;
+    private readonly StyleguideCollectionAliasPolicy $collectionAliasPolicy;
+    private ?SeedPageUpserter $pageUpserter = null;
+    private ?DesiderioContentCleaner $contentCleaner = null;
+    private ?ContentElementSeeder $contentElementSeeder = null;
     private ?StyleguideFixtureResolver $fixtureResolver = null;
 
-    private readonly StyleguideCollectionAliasPolicy $collectionAliasPolicy;
     public function __construct(
         private readonly ConnectionPool $connectionPool,
         private readonly Context $context,
@@ -163,21 +159,27 @@ final class SeedStyleguidePagesCommand extends Command
         $createdContentElements = 0;
         $now = time();
 
-        foreach ($groups as $index => $group) {
-            $pageUid = $this->findOrCreatePage(
-                $parentPid,
-                (string)$group['groupTitle'],
-                (string)$group['groupId'],
-                ($index + 1) * 256,
-                $now,
-                $pageColumns,
-                $createdPages
-            );
+        $pageUpserter = $this->getPageUpserter();
+        $contentCleaner = $this->getContentCleaner();
+        $contentElementSeeder = $this->getContentElementSeeder();
 
-            $this->markExistingDesiderioContentAsDeleted($pageUid, $now);
+        foreach ($groups as $index => $group) {
+            $title = (string)$group['groupTitle'];
+            $slug = '/desiderio-' . (string)$group['groupId'];
+            $sorting = ($index + 1) * 256;
+
+            $pageUid = $pageUpserter->findExistingPageUid($parentPid, $title, $slug, $pageColumns);
+            if ($pageUid === null) {
+                $pageUid = $pageUpserter->create($parentPid, $title, $slug, $sorting, $now, $pageColumns);
+                $createdPages++;
+            } else {
+                $pageUpserter->update($pageUid, $title, $slug, $sorting, $now, $pageColumns);
+            }
+
+            $contentCleaner->softDeleteSeededContent($pageUid, $now, [], true);
 
             foreach ($group['elements'] as $elementIndex => $element) {
-                $contentData = $this->buildContentInsert(
+                $contentData = $this->getFixtureResolver()->buildContentInsert(
                     $pageUid,
                     (string)$element['ctype'],
                     (string)$element['name'],
@@ -187,11 +189,7 @@ final class SeedStyleguidePagesCommand extends Command
                     $contentColumns
                 );
 
-                $connection = $this->connectionPool->getConnectionForTable('tt_content');
-                $connection->insert('tt_content', $contentData['row']);
-                $contentUid = (int)$connection->lastInsertId();
-                $this->seedFileReferences('tt_content', $contentUid, $pageUid, $now, $contentData['fileReferences']);
-                $this->seedCollectionRecords($contentUid, $pageUid, $now, $contentData['collections']);
+                $contentElementSeeder->insert($pageUid, $now, $contentData);
                 $createdContentElements++;
             }
         }
@@ -221,11 +219,8 @@ final class SeedStyleguidePagesCommand extends Command
 
     private function getPowermailDemoSeeder(): PowermailDemoSeeder
     {
-        if ($this->powermailDemoSeeder === null) {
-            $this->powermailDemoSeeder = GeneralUtility::makeInstance(PowermailDemoSeeder::class);
-        }
-
-        return $this->powermailDemoSeeder;
+        // DI provides the seeder; the fallback only serves direct instantiation in tests.
+        return $this->powermailDemoSeeder ??= new PowermailDemoSeeder($this->connectionPool, $this->databaseSchema);
     }
 
     private function getIntegerInputOption(InputInterface $input, string $name): int
@@ -241,219 +236,38 @@ final class SeedStyleguidePagesCommand extends Command
         return 0;
     }
 
-    /**
-     * @param array<string, true> $columns
-     */
-    private function findOrCreatePage(
-        int $parentPid,
-        string $groupTitle,
-        string $groupId,
-        int $sorting,
-        int $now,
-        array $columns,
-        int &$createdPages,
-    ): int {
-        $title = $groupTitle;
-        $slug = $this->buildStyleguidePageSlug($groupId);
-        $existingPageUid = $this->findExistingStyleguidePageUid($parentPid, $title, $slug, $columns);
-
-        if ($existingPageUid !== null) {
-            $this->updateStyleguidePage($existingPageUid, $title, $slug, $sorting, $now, $columns);
-            return $existingPageUid;
-        }
-
-        $createdPages++;
-        return $this->createStyleguidePage($parentPid, $title, $slug, $sorting, $now, $columns);
-    }
-
-    private function buildStyleguidePageSlug(string $groupId): string
+    private function getPageUpserter(): SeedPageUpserter
     {
-        return '/desiderio-' . $groupId;
-    }
-
-    /**
-     * @param array<string, true> $columns
-     */
-    private function findExistingStyleguidePageUid(int $parentPid, string $title, string $slug, array $columns): ?int
-    {
-        $where = [
-            'pid = :parentPid',
-            'deleted = 0',
-            '(title = :title OR slug = :slug)',
-        ];
-        $parameters = [
-            'parentPid' => $parentPid,
-            'title' => $title,
-            'slug' => $slug,
-        ];
-        $types = [
-            'parentPid' => ParameterType::INTEGER,
-            'title' => ParameterType::STRING,
-            'slug' => ParameterType::STRING,
-        ];
-
-        if (isset($columns['sys_language_uid'])) {
-            $where[] = 'sys_language_uid = :languageUid';
-            $parameters['languageUid'] = 0;
-            $types['languageUid'] = ParameterType::INTEGER;
-        }
-        if (isset($columns['t3ver_wsid'])) {
-            $where[] = 't3ver_wsid = :workspaceId';
-            $parameters['workspaceId'] = 0;
-            $types['workspaceId'] = ParameterType::INTEGER;
-        }
-        if (isset($columns['t3ver_oid'])) {
-            $where[] = 't3ver_oid = :workspaceOriginalUid';
-            $parameters['workspaceOriginalUid'] = 0;
-            $types['workspaceOriginalUid'] = ParameterType::INTEGER;
-        }
-
-        $existingUid = $this->connectionPool
-            ->getConnectionForTable('pages')
-            ->executeQuery(
-                'SELECT uid FROM pages WHERE ' . implode(' AND ', $where) . ' ORDER BY hidden ASC, uid DESC LIMIT 1',
-                $parameters,
-                $types
-            )
-            ->fetchOne();
-
-        if ($existingUid === false) {
-            return null;
-        }
-
-        return (int)$existingUid;
-    }
-
-    /**
-     * @param array<string, true> $columns
-     */
-    private function updateStyleguidePage(
-        int $pageUid,
-        string $title,
-        string $slug,
-        int $sorting,
-        int $now,
-        array $columns,
-    ): void {
-        $this->connectionPool->getConnectionForTable('pages')->update(
-            'pages',
-            $this->databaseSchema->filterRow([
-                'title' => $title,
-                'slug' => $slug,
-                'hidden' => 0,
-                'sorting' => $sorting,
-                'tstamp' => $now,
-            ], $columns),
-            ['uid' => $pageUid]
+        return $this->pageUpserter ??= new SeedPageUpserter(
+            $this->connectionPool,
+            $this->databaseSchema,
+            new LiveWorkspaceQueryHelper($this->databaseSchema),
         );
     }
 
-    /**
-     * @param array<string, true> $columns
-     */
-    private function createStyleguidePage(
-        int $parentPid,
-        string $title,
-        string $slug,
-        int $sorting,
-        int $now,
-        array $columns,
-    ): int {
-        $connection = $this->connectionPool->getConnectionForTable('pages');
-        $connection->insert('pages', $this->databaseSchema->filterRow([
-            'pid' => $parentPid,
-            'title' => $title,
-            'doktype' => 1,
-            'slug' => $slug,
-            'hidden' => 0,
-            'sorting' => $sorting,
-            'crdate' => $now,
-            'tstamp' => $now,
-        ], $columns));
-
-        return (int)$connection->lastInsertId();
-    }
-
-    private function markExistingDesiderioContentAsDeleted(int $pageUid, int $now): void
+    private function getContentCleaner(): DesiderioContentCleaner
     {
-        $existingContentUids = $this->findExistingDesiderioContentUids($pageUid);
-        if ($existingContentUids !== []) {
-            $this->deleteFileReferencesForRecords('tt_content', $existingContentUids);
-            $this->deleteCollectionRowsForParentUids($existingContentUids, 'tt_content');
+        if ($this->contentCleaner === null) {
+            $liveWorkspaceQueryHelper = new LiveWorkspaceQueryHelper($this->databaseSchema);
+            $this->contentCleaner = new DesiderioContentCleaner(
+                $this->connectionPool,
+                $liveWorkspaceQueryHelper,
+                new CollectionCleanupService($this->connectionPool, $this->databaseSchema, $liveWorkspaceQueryHelper),
+                new ContentBlockCollectionMap(),
+            );
         }
-        $this->deleteCollectionRowsForPage($pageUid);
 
-        $queryBuilder = $this->connectionPool->getQueryBuilderForTable('tt_content');
-        $queryBuilder
-            ->update('tt_content')
-            ->set('deleted', (string)1)
-            ->set('tstamp', (string)$now)
-            ->where(
-                $queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($pageUid)),
-                $queryBuilder->expr()->like('CType', $queryBuilder->createNamedParameter('desiderio_%')),
-                ...$this->buildLiveWorkspaceConstraints($queryBuilder, 'tt_content')
-            )
-            ->executeStatement();
+        return $this->contentCleaner;
     }
 
-    private function findExistingDesiderioContentUids(int $pageUid): array
+    private function getContentElementSeeder(): ContentElementSeeder
     {
-        $queryBuilder = $this->connectionPool->getQueryBuilderForTable('tt_content');
-        $queryBuilder->getRestrictions()->removeAll();
-
-        $uids = $queryBuilder
-            ->select('uid')
-            ->from('tt_content')
-            ->where(
-                $queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($pageUid)),
-                $queryBuilder->expr()->like('CType', $queryBuilder->createNamedParameter('desiderio_%')),
-                ...$this->buildLiveWorkspaceConstraints($queryBuilder, 'tt_content')
-            )
-            ->executeQuery()
-            ->fetchFirstColumn();
-
-        return array_map(
-            static fn (mixed $uid): int => (int)$uid,
-            $uids
-        );
-    }
-
-    private function getLiveWorkspaceQueryHelper(): LiveWorkspaceQueryHelper
-    {
-        return $this->liveWorkspaceQueryHelper ??= new LiveWorkspaceQueryHelper($this->databaseSchema);
-    }
-
-    private function getContentBlockCollectionMap(): ContentBlockCollectionMap
-    {
-        return $this->contentBlockCollectionMap ??= new ContentBlockCollectionMap();
-    }
-
-    private function getStyleguideFalSeeder(): ExtensionFalSeeder
-    {
-        return $this->styleguideFalSeeder ??= new ExtensionFalSeeder(
+        return $this->contentElementSeeder ??= new ContentElementSeeder(
             $this->connectionPool,
             $this->storageRepository,
             $this->databaseSchema,
             self::STYLEGUIDE_FAL_FOLDER,
             1777100143,
-        );
-    }
-
-    private function getCollectionRecordSeeder(): CollectionRecordSeeder
-    {
-        return $this->collectionRecordSeeder ??= new CollectionRecordSeeder(
-            $this->connectionPool,
-            $this->databaseSchema,
-            $this->getStyleguideFalSeeder(),
-        );
-    }
-
-    private function getCollectionCleanupService(): CollectionCleanupService
-    {
-        return $this->collectionCleanupService ??= new CollectionCleanupService(
-            $this->connectionPool,
-            $this->databaseSchema,
-            $this->getLiveWorkspaceQueryHelper(),
         );
     }
 
@@ -465,86 +279,4 @@ final class SeedStyleguidePagesCommand extends Command
             $this->collectionAliasPolicy,
         );
     }
-
-    private function deleteCollectionRowsForPage(int $pageUid): void
-    {
-        $this->getCollectionCleanupService()->deleteCollectionRowsForPage(
-            $pageUid,
-            $this->getCollectionTableNames(),
-        );
-    }
-
-    /**
-     * @param list<int> $parentUids
-     */
-    private function deleteCollectionRowsForParentUids(array $parentUids, string $parentTable): void
-    {
-        $this->getCollectionCleanupService()->deleteCollectionRowsForParentUids(
-            $parentUids,
-            $parentTable,
-            $this->getContentBlockCollectionMap()->getCollectionsByParentTable(),
-        );
-    }
-
-    /**
-     * @param list<int> $recordUids
-     */
-    private function deleteFileReferencesForRecords(string $table, array $recordUids): void
-    {
-        $this->getCollectionCleanupService()->deleteFileReferencesForRecords($table, $recordUids);
-    }
-
-    /**
-     * Restrict destructive styleguide cleanup to live rows. TYPO3 stores
-     * workspace versions in the same table, so queries with restrictions
-     * removed must add the live workspace predicates explicitly.
-     *
-     * @return list<string>
-     */
-    private function buildLiveWorkspaceConstraints(QueryBuilder $queryBuilder, string $table): array
-    {
-        return $this->getLiveWorkspaceQueryHelper()->buildLiveWorkspaceConstraints($queryBuilder, $table);
-    }
-
-    /**
-     * @param array<string, mixed> $fixture
-     * @param array<string, true> $columns
-     * @return array{row: array<string, mixed>, collections: array<string, array{table: string, column: string, items: list<array<string, mixed>>}>, fileReferences: array<string, list<array{file: string, title: string, alternative: string, description: string, source: string}>>}
-     */
-    private function buildContentInsert(
-        int $pid,
-        string $ctype,
-        string $name,
-        array $fixture,
-        int $sorting,
-        int $now,
-        array $columns,
-    ): array {
-        return $this->getFixtureResolver()->buildContentInsert($pid, $ctype, $name, $fixture, $sorting, $now, $columns);
-    }
-
-    /**
-     * @return list<string>
-     */
-    private function getCollectionTableNames(): array
-    {
-        return $this->getContentBlockCollectionMap()->getCollectionTableNames();
-    }
-
-    /**
-     * @param array<string, array{table: string, column?: string, items: list<array<string, mixed>>}> $collections
-     */
-    private function seedCollectionRecords(int $contentUid, int $pageUid, int $now, array $collections): void
-    {
-        $this->getCollectionRecordSeeder()->seed($contentUid, $pageUid, $now, $collections);
-    }
-
-    /**
-     * @param array<string, list<array{file: string, title: string, alternative: string, description: string, source: string}>> $fileReferences
-     */
-    private function seedFileReferences(string $table, int $uid, int $pid, int $now, array $fileReferences): void
-    {
-        $this->getStyleguideFalSeeder()->seedFileReferences($table, $uid, $pid, $now, $fileReferences);
-    }
-
 }

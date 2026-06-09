@@ -39,16 +39,21 @@ final class StyleguideSeedCommandTest extends TestCase
         self::assertStringContainsString("'skip-powermail'", $source);
         self::assertStringContainsString('PowermailDemoSeeder', $source);
         self::assertStringContainsString('StyleguideContentGroups::getGroupsWithFixtures()', $source);
-        self::assertStringContainsString("->update('tt_content')", $source);
-        self::assertStringContainsString("'desiderio_%'", $source);
-        self::assertStringContainsString("deleteCollectionRowsForParentUids(\$existingContentUids, 'tt_content');", $source);
         self::assertStringContainsString("getPropertyFromAspect('workspace', 'id', 0)", $source);
-        self::assertStringContainsString('buildLiveWorkspaceConstraints($queryBuilder, \'tt_content\')', $source);
+        self::assertStringContainsString('getFixtureResolver()->buildContentInsert(', $source);
+        self::assertStringContainsString('softDeleteSeededContent(', $source);
+
+        $cleanerSource = (string) file_get_contents(__DIR__ . '/../../Classes/Seeding/DesiderioContentCleaner.php');
+        self::assertStringContainsString("->update('tt_content')", $cleanerSource);
+        self::assertStringContainsString("'desiderio_%'", $cleanerSource);
+        self::assertStringContainsString('deleteCollectionRowsForParentUids(', $cleanerSource);
+        self::assertStringContainsString("buildLiveWorkspaceConstraints(\$queryBuilder, 'tt_content')", $cleanerSource);
 
         $cleanupSource = (string) file_get_contents(__DIR__ . '/../../Classes/Seeding/CollectionCleanupService.php');
         self::assertStringContainsString("buildLiveWorkspaceConstraints(\$queryBuilder, 'sys_file_reference')", $cleanupSource);
-        self::assertStringContainsString('getFixtureResolver()->buildContentInsert(', $source);
-        self::assertStringContainsString('seedFileReferences(', $source);
+
+        $elementSeederSource = (string) file_get_contents(__DIR__ . '/../../Classes/Seeding/ContentElementSeeder.php');
+        self::assertStringContainsString('seedFileReferences(', $elementSeederSource);
 
         $fixtureResolverSource = (string) file_get_contents(__DIR__ . '/../../Classes/Seeding/StyleguideFixtureResolver.php');
         self::assertStringContainsString('Resources/Public/Styleguide/Unsplash', $fixtureResolverSource);

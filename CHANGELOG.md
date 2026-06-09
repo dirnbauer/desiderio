@@ -6,6 +6,55 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Security
+
+- FriendlyCaptcha test mode is now refused (and logged) in the Production
+  application context, so CAPTCHA validation can no longer be disabled on
+  live systems via a site setting.
+- `StructuredDataViewHelper` validates URLs and rejects non-http(s) schemes
+  before emitting JSON-LD.
+- `SearchSnippetViewHelper` caps the number of highlighted search terms to
+  keep hostile multi-term queries from building oversized regex patterns.
+- The styleguide browser escapes location-hash input with `CSS.escape()`
+  before using it in DOM selectors.
+
+### Changed
+
+- The starter and styleguide seeder commands were split into reusable
+  services: `SeedPageUpserter` (find-or-create/update of seeded pages,
+  hiding unmanaged children), `DesiderioContentCleaner` (live-workspace-safe
+  soft-deletion of seeded content including file references and collection
+  rows), and `ContentElementSeeder` (tt_content insert plus file/collection
+  wiring bound to a FAL folder). The commands shrank to option parsing and
+  orchestration (812 → 531 and 546 → 282 lines).
+- CI runs the functional test suite on the same PHP matrix (8.3/8.4/8.5)
+  as the unit tests, with composer caching.
+- New functional test suites cover both seeder commands end to end
+  (dry-run, full seed, idempotent re-run, root-map with hidden unmanaged
+  children, invalid preset) against a real database.
+- Removed the Alpine.js runtime. Accordion, tabs, alert, and notification
+  elements are now driven by the existing vanilla glue code in
+  `desiderio.js` (per the specification: no React/Alpine/Livewire).
+- Blog and countdown templates use ICU date patterns (Fluid 5.3) instead of
+  deprecated strftime formats.
+- Pagination and structured-data strings are translatable via
+  `labels.xlf` (en/de/es/fr/it/hu) instead of being hardcoded.
+- `BlogCommentFormFactory` receives its services via dependency injection
+  and no longer carries a dead pre-v12 compatibility branch.
+- Brevo finisher and FriendlyCaptcha ViewHelper resolve the current request
+  via the form runtime/rendering context instead of `$GLOBALS['TYPO3_REQUEST']`.
+
+### Fixed
+
+- `ExtensionFalSeeder` now imports a temporary copy of bundled assets.
+  Previously `Folder::addFile()` moved the source file, so the first seeder
+  run deleted the original asset from the extension directory.
+
+### Performance
+
+- `ContentBlockCollectionProcessor` skips `sys_file_reference` lookups for
+  empty file fields, removing one query per row and empty field.
+
 ## [2.6.2] — 2026-06-08
 
 ### Fixed

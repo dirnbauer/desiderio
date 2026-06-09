@@ -90,7 +90,21 @@ final class ExtensionFalSeeder
         $fileName = basename($relativeFilePath);
         $file = $folder->getFile($fileName);
         if (!$file instanceof File) {
-            $file = $folder->addFile($sourcePath, $fileName);
+            // Folder::addFile() moves its source. Import a temporary copy so
+            // the extension-bundled asset stays in place.
+            $temporaryPath = GeneralUtility::tempnam('desiderio_seed_');
+            if (!@copy($sourcePath, $temporaryPath)) {
+                @unlink($temporaryPath);
+
+                return null;
+            }
+            try {
+                $file = $folder->addFile($temporaryPath, $fileName);
+            } finally {
+                if (is_file($temporaryPath)) {
+                    @unlink($temporaryPath);
+                }
+            }
         }
 
         $this->importedFiles[$relativeFilePath] = $file;

@@ -8,6 +8,8 @@ services:
     resource: '../Classes/*'
     exclude:
       - '../Classes/ViewHelpers/*'
+      # Composed per seeder command with a FAL folder name, not autowirable.
+      - '../Classes/Seeding/ContentElementSeeder.php'
 
   Webconsulting\Desiderio\ViewHelpers\:
     resource: '../Classes/ViewHelpers/*'

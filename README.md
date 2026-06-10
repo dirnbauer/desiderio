@@ -150,6 +150,34 @@ The content-element set includes, among others:
 
 Images are rendered through TYPO3 FAL and Content Blocks fields. Media templates use stable aspect-ratio wrappers and `object-fit` rules to avoid stretched images.
 
+## Grafting Elements from shadcn Registries (Innesto)
+
+[Innesto](https://github.com/dirnbauer/innesto) is a companion extension that
+grafts components from any [shadcn/ui registry](https://registry.directory/)
+— shadcn/ui, Magic UI, Origin UI, Aceternity UI, … — onto Desiderio as
+additional Content Blocks elements:
+
+```bash
+vendor/bin/typo3 innesto:add magicui/marquee --ai
+```
+
+**Why it works well here:**
+
+- One command fetches the registry item, converts its CSS and theme variables,
+  scaffolds a complete element, and registers it in the New Content Element wizard.
+- Grafted elements use the Desiderio semantic tokens, so they follow the active
+  theme preset and dark mode automatically — no frontend build step.
+- The React→Fluid finishing pass is prompt-assisted (`--ai`) and reproducible.
+
+**What might not work:** React markup and props always need a finishing pass
+(automated or manual); npm/registry dependencies are not resolved; and heavily
+interactive components — comboboxes, command palettes, drag-and-drop — don't
+graft well, since they are state machines rather than documents. Best results
+come from presentational components: marquees, logo clouds, bento grids,
+animated lists.
+
+See the [step-by-step manual with a worked example and screenshots](https://github.com/dirnbauer/innesto/blob/main/Documentation/AddingContentElements.md).
+
 ## Forms
 
 Desiderio ships shadcn-styled TYPO3 Form Framework templates and a shared `FormRenderer` molecule. Form controls use neutral theme borders by default and switch to destructive/red styling only for invalid states.

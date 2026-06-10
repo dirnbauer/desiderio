@@ -80,6 +80,14 @@
                 </div>
 
                 <f:render section="BlogPlugin" arguments="{listType: 'blog_footer'}"/>
+                <f:if condition="{site.configuration.settings.plugin.tx_blog.settings.blogUid}">
+                    <div>
+                        <d:atom.button href="{f:uri.page(pageUid: site.configuration.settings.plugin.tx_blog.settings.blogUid)}" variant="outline">
+                            <span data-icon="inline-start" aria-hidden="true"><d:atom.icon name="arrow-left" size="xs"/></span>
+                            <span><f:translate key="blog.backToOverview" domain="desiderio.labels" default="Back to overview"/></span>
+                        </d:atom.button>
+                    </div>
+                </f:if>
                 <f:render section="BlogPlugin" arguments="{listType: 'blog_authors'}"/>
                 <f:render section="BlogPlugin" arguments="{listType: 'blog_comments'}"/>
                 <f:render section="BlogPlugin" arguments="{listType: 'blog_commentform'}"/>

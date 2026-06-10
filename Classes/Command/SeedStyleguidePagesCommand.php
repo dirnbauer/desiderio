@@ -16,6 +16,7 @@ use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Resource\StorageRepository;
 use Webconsulting\Desiderio\Data\StyleguideContentGroups;
 use Webconsulting\Desiderio\Data\StyleguideShowcasePages;
+use Webconsulting\Desiderio\Seeding\BlogPageTreeSeeder;
 use Webconsulting\Desiderio\Seeding\CollectionCleanupService;
 use Webconsulting\Desiderio\Seeding\ContentBlockCollectionMap;
 use Webconsulting\Desiderio\Seeding\ContentElementSeeder;
@@ -41,8 +42,9 @@ final class SeedStyleguidePagesCommand extends Command
      * Core CTypes additionally cleared on seeder-owned showcase subpages so
      * legacy non-desiderio demo content does not linger next to the seeded
      * blocks. Never applied to the root page, which may hold other content.
+     * The blog plugins cover the seeded category/tag helper pages.
      */
-    private const SHOWCASE_ADDITIONAL_CLEANUP_CTYPES = ['text', 'textmedia', 'html', 'bullets'];
+    private const SHOWCASE_ADDITIONAL_CLEANUP_CTYPES = ['text', 'textmedia', 'html', 'bullets', 'blog_posts', 'blog_category', 'blog_tag'];
 
     /**
      * One house preset per styleguide page so the seeded tree doubles as a
@@ -63,6 +65,7 @@ final class SeedStyleguidePagesCommand extends Command
     ];
 
     private readonly StyleguideCollectionAliasPolicy $collectionAliasPolicy;
+    private ?BlogPageTreeSeeder $blogPageTreeSeeder = null;
     private ?SeedPageUpserter $pageUpserter = null;
     private ?DesiderioContentCleaner $contentCleaner = null;
     private ?ContentElementSeeder $contentElementSeeder = null;
@@ -160,7 +163,13 @@ final class SeedStyleguidePagesCommand extends Command
             return self::FAILURE;
         }
         $groups = StyleguideContentGroups::getGroupsWithFixtures();
+        // With EXT:blog installed the success stories seed as real blog posts
+        // and get hidden category/tag listing pages for their metadata badges.
+        $blogAvailable = $this->isBlogSchemaAvailable();
         $showcasePages = StyleguideShowcasePages::subpages();
+        if ($blogAvailable) {
+            $showcasePages = array_merge($showcasePages, StyleguideShowcasePages::blogSupportPages());
+        }
         $totalElements = array_sum(array_map(
             static fn (array $group): int => count($group['elements']),
             $groups
@@ -266,6 +275,7 @@ final class SeedStyleguidePagesCommand extends Command
         // homepage content on the parent page itself, then subpage content.
         $linkTargets['home'] = $parentPid;
         $showcaseBlocks = [];
+        $blogPostsToRelate = [];
         foreach ($showcasePages as $index => $page) {
             $sorting = ($index + 1) * 16;
             $pageAttributes = [
@@ -273,6 +283,26 @@ final class SeedStyleguidePagesCommand extends Command
                 'abstract' => $page['abstract'],
                 ...$this->buildSeoPageAttributes($page['title'], $page['description']),
             ];
+            if (isset($page['subtitle'])) {
+                $pageAttributes['subtitle'] = $page['subtitle'];
+            }
+            if ($page['hideInNav'] ?? false) {
+                $pageAttributes['nav_hide'] = 1;
+            }
+
+            $blogMeta = $page['blog'] ?? null;
+            if ($blogAvailable && (($page['blogList'] ?? false) || is_array($blogMeta))) {
+                $pageAttributes['backend_layout'] = BlogPageTreeSeeder::DEFAULT_BACKEND_LAYOUT;
+                $pageAttributes['backend_layout_next_level'] = BlogPageTreeSeeder::DEFAULT_BACKEND_LAYOUT;
+            }
+            if ($blogAvailable && is_array($blogMeta)) {
+                $publishDate = $this->getBlogPageTreeSeeder()->timestampFromDate($blogMeta['publishDate']);
+                $pageAttributes['doktype'] = BlogPageTreeSeeder::BLOG_POST_DOKTYPE;
+                $pageAttributes['publish_date'] = $publishDate;
+                $pageAttributes['crdate_month'] = (int)date('n', $publishDate);
+                $pageAttributes['crdate_year'] = (int)date('Y', $publishDate);
+                $pageAttributes['comments_active'] = 1;
+            }
 
             // Child pages (e.g. the success stories) live below their parent
             // showcase page; the parent is defined earlier in the list.
@@ -290,8 +320,32 @@ final class SeedStyleguidePagesCommand extends Command
                 $pageUpserter->update($pageUid, $page['title'], $page['slug'], $sorting, $now, $pageColumns, $pageAttributes);
             }
 
+            if ($blogAvailable && is_array($blogMeta)) {
+                $blogPostsToRelate[] = ['postUid' => $pageUid, 'storagePid' => $pagePid, 'meta' => $blogMeta];
+            }
+
             $linkTargets[ltrim($page['slug'], '/')] = $pageUid;
             $showcaseBlocks[$pageUid] = $page['content'];
+            if ($blogAvailable && ($page['blogList'] ?? false)) {
+                // The list page leads with the paginated post list.
+                array_unshift($showcaseBlocks[$pageUid], ['ctype' => 'blog_posts', 'colPos' => 0, 'fields' => []]);
+            }
+        }
+
+        // Categories and tags live next to the posts on their list page so the
+        // whole blog section stays inside the seeded subtree.
+        foreach ($blogPostsToRelate as $blogPost) {
+            $seeder = $this->getBlogPageTreeSeeder();
+            $categoryUids = $seeder->ensureCategories($blogPost['storagePid'], $blogPost['meta']['categories']);
+            $tagUids = $seeder->ensureTags($blogPost['storagePid'], $blogPost['meta']['tags']);
+            $seeder->replaceCategoryRelations(
+                $blogPost['postUid'],
+                $seeder->mapTitlesToUids($blogPost['meta']['categories'], $categoryUids)
+            );
+            $seeder->replaceTagRelations(
+                $blogPost['postUid'],
+                $seeder->mapTitlesToUids($blogPost['meta']['tags'], $tagUids)
+            );
         }
 
         $showcaseBlocks[$parentPid] = StyleguideShowcasePages::homeContent();
@@ -329,9 +383,15 @@ final class SeedStyleguidePagesCommand extends Command
             );
         }
 
-        $newsSummary = ['pages' => 0, 'records' => 0, 'skipped' => true];
+        $newsSummary = ['pages' => 0, 'records' => 0, 'contentElements' => 0, 'skipped' => true];
         if (!$skipNews) {
-            $newsSummary = $this->getNewsDemoSeeder()->seed($parentPid, $now, $io);
+            $newsSummary = $this->getNewsDemoSeeder()->seed(
+                $parentPid,
+                $now,
+                $io,
+                $this->getStarterContentBuilder(),
+                $this->getContentElementSeeder()
+            );
         }
 
         $io->success(sprintf(
@@ -341,7 +401,7 @@ final class SeedStyleguidePagesCommand extends Command
             $createdContentElements,
             $parentPid,
             $powermailSummary['skipped'] ? '' : sprintf(' Added %d powermail demo forms across %d EN/DE pages.', $powermailSummary['forms'], $powermailSummary['pages']),
-            $newsSummary['skipped'] ? '' : sprintf(' Added %d news demo records across %d news pages.', $newsSummary['records'], $newsSummary['pages'])
+            $newsSummary['skipped'] ? '' : sprintf(' Added %d news demo records (%d article content elements) across %d news pages.', $newsSummary['records'], $newsSummary['contentElements'], $newsSummary['pages'])
         ));
 
         return self::SUCCESS;
@@ -444,6 +504,23 @@ final class SeedStyleguidePagesCommand extends Command
         }
 
         return 0;
+    }
+
+    /**
+     * EXT:blog is optional: the conversion of the success stories into blog
+     * posts only happens when its schema (tag table plus the page columns it
+     * adds) is present.
+     */
+    private function isBlogSchemaAvailable(): bool
+    {
+        return $this->databaseSchema->getColumnNames('tx_blog_domain_model_tag') !== []
+            && $this->databaseSchema->tableHasColumn('pages', 'publish_date')
+            && $this->databaseSchema->tableHasColumn('pages', 'comments_active');
+    }
+
+    private function getBlogPageTreeSeeder(): BlogPageTreeSeeder
+    {
+        return $this->blogPageTreeSeeder ??= new BlogPageTreeSeeder($this->connectionPool);
     }
 
     private function getPageUpserter(): SeedPageUpserter

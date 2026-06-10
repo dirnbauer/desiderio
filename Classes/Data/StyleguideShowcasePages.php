@@ -15,8 +15,15 @@ namespace Webconsulting\Desiderio\Data;
  * slug {{page:home}} resolves to the styleguide root page. Pages with a
  * parentSlug are created below that showcase page instead of the root.
  *
+ * The success stories double as a small t3g/blog section: the parent page is
+ * the blog list (blogList), the stories carry blog metadata (publish date,
+ * categories, tags) and seed as doktype 137 posts when EXT:blog is installed.
+ * Their blog post header renders title, abstract, and metadata badges, so the
+ * story pages deliberately ship without an article hero element.
+ *
  * @phpstan-import-type StarterBlock from StarterSiteDefinitions
- * @phpstan-type ShowcasePage array{title: string, navTitle: string, slug: string, abstract: string, description: string, parentSlug: string|null, content: array<int, StarterBlock>}
+ * @phpstan-type ShowcaseBlogMeta array{publishDate: string, categories: list<string>, tags: list<string>}
+ * @phpstan-type ShowcasePage array{title: string, navTitle: string, slug: string, abstract: string, description: string, parentSlug: string|null, subtitle?: string, blogList?: bool, blog?: ShowcaseBlogMeta, hideInNav?: bool, content: array<int, StarterBlock>}
  */
 final class StyleguideShowcasePages
 {
@@ -275,6 +282,18 @@ final class StyleguideShowcasePages
             self::successStoryAnthropicPage(),
             self::successStorySpacexPage(),
             self::successStoryOpenaiPage(),
+            self::successStoryNasaPage(),
+            self::successStoryNetflixPage(),
+            self::successStoryNintendoPage(),
+            self::successStoryLegoPage(),
+            self::successStoryIkeaPage(),
+            self::successStorySpotifyPage(),
+            self::successStoryStripePage(),
+            self::successStoryDuolingoPage(),
+            self::successStoryWikipediaPage(),
+            self::successStoryRedBullPage(),
+            self::successStoryCernPage(),
+            self::successStoryPixarPage(),
             self::imprintPage(),
             self::privacyPage(),
             self::accessibilityPage(),
@@ -664,44 +683,14 @@ final class StyleguideShowcasePages
             'title' => 'Success stories',
             'navTitle' => 'Success stories',
             'slug' => '/success-stories',
-            'abstract' => 'Three clearly fictional enterprise scenarios that ask one question with a straight face: what would happen if the most ambitious companies on the planet ran their websites on TYPO3 with Desiderio?',
-            'description' => 'What if Anthropic, SpaceX, and OpenAI ran on TYPO3? Three clearly fictional, deliberately fun Desiderio showcase scenarios about multi-brand theming and editor velocity.',
+            'abstract' => 'Fifteen clearly fictional enterprise scenarios that ask one question with a straight face: what would happen if the most ambitious organizations on the planet ran their websites on TYPO3 with Desiderio?',
+            'description' => 'What if Anthropic, SpaceX, OpenAI, NASA, or LEGO ran on TYPO3? Fifteen clearly fictional, deliberately fun Desiderio showcase scenarios about multi-brand theming and editor velocity.',
             'parentSlug' => null,
+            'subtitle' => 'Clearly fictional. Deliberately fun. None of the companies below use Desiderio (yet) — these invented scenarios show how per-page themes, editor previews, and open source would play out at enterprise scale.',
+            'blogList' => true,
+            // The seeder prepends a paginated blog_posts list plugin when
+            // EXT:blog is installed; the highlight stays below the list.
             'content' => [
-                self::block('desiderio_headersection', [
-                    'eyebrow' => 'Clearly fictional. Deliberately fun.',
-                    'header' => 'What if the world\'s most ambitious companies ran on TYPO3?',
-                    'subheadline' => 'None of the companies below use Desiderio (yet). These are invented showcase scenarios — written to demonstrate, with a wink, how per-page themes, editor previews, and open-source alignment would play out at enterprise scale.',
-                    'variant' => 'center',
-                ]),
-                self::block('desiderio_casestudygrid', [
-                    'eyebrow' => 'Three thought experiments',
-                    'header' => 'Pick your favorite alternate universe',
-                    'columns' => '3',
-                    'cases' => [
-                        [
-                            'client_name' => 'Anthropic (fictional scenario)',
-                            'summary' => 'A safety-first AI lab with a research blog that publishes faster than most newsrooms. In our invented universe, Claude\'s makers seed their publication pipeline with one CLI command.',
-                            'result' => '"Research to live in 1h"',
-                            'image' => self::unsplash('customer-engineering.jpg', 'Engineering team at work', 'An engineering team collaborating in front of large screens.'),
-                            'link' => '{{page:success-stories/anthropic}}',
-                        ],
-                        [
-                            'client_name' => 'SpaceX (fictional scenario)',
-                            'summary' => 'Rockets, satellites, and a launch calendar that never sleeps. In this fiction, every mission microsite is a TYPO3 subtree with its own Desiderio preset — Midnight for night launches, obviously.',
-                            'result' => '"1 CMS, 14 missions"',
-                            'image' => self::unsplash('planning-blue-sky.jpg', 'Planning under a blue sky', 'People planning a project outdoors under a clear blue sky.'),
-                            'link' => '{{page:success-stories/spacex}}',
-                        ],
-                        [
-                            'client_name' => 'OpenAI (fictional scenario)',
-                            'summary' => 'Product lines multiplying faster than pricing pages can keep up. Our invented OpenAI web team stops rebuilding and starts re-theming: one content pool, one preset per product family.',
-                            'result' => '"0 rebuilds per launch"',
-                            'image' => self::unsplash('dashboard-neil-fernandez.jpg', 'Analytics dashboard on a screen', 'A laptop showing a product analytics dashboard.'),
-                            'link' => '{{page:success-stories/openai}}',
-                        ],
-                    ],
-                ]),
                 self::block('desiderio_contenthighlight', [
                     'header' => 'Why the joke works',
                     'content' => '<p>Swap the famous logos for your clients and every argument still holds: multi-brand sites from one install via per-page themes, editors who publish without tickets, open-source licensing that survives procurement, and self-hosting for teams that keep their infrastructure close. The companies are fictional guests — the capabilities are shipping today.</p>',
@@ -720,23 +709,18 @@ final class StyleguideShowcasePages
     private static function successStoryAnthropicPage(): array
     {
         return [
-            'title' => 'Anthropic on TYPO3 — a fictional scenario',
+            'title' => 'What if Anthropic ran on TYPO3?',
             'navTitle' => 'Anthropic (fictional)',
             'slug' => '/success-stories/anthropic',
-            'abstract' => 'A clearly fictional showcase scenario: how an AI safety lab like Anthropic would run its research publishing, product pages, and trust center on TYPO3 with Desiderio.',
+            'abstract' => 'A clearly fictional showcase scenario: an AI safety lab publishes interpretability papers, model cards, and policy posts at a pace that breaks most CMS workflows. In this invented universe, the Claude makers solve it the boring way — open-source TYPO3, Desiderio elements, and editors who never wait for a deploy.',
             'description' => 'Fictional showcase: Anthropic\'s research blog on TYPO3 — Desiderio editor previews for fast publishing, per-page themes per product line, and self-hosted open source.',
             'parentSlug' => 'success-stories',
+            'blog' => [
+                'publishDate' => '2026-04-01 09:00:00',
+                'categories' => ['Success stories', 'Fictional scenarios', 'AI & Research'],
+                'tags' => ['Anthropic', 'AI research', 'Editorial workflow', 'Self-hosting'],
+            ],
             'content' => [
-                self::block('desiderio_articlehero', [
-                    'eyebrow' => 'Fictional showcase scenario — invented by the Desiderio team',
-                    'header' => 'What if Anthropic ran on TYPO3?',
-                    'dek' => 'An AI safety lab publishes interpretability papers, model cards, and policy posts at a pace that breaks most CMS workflows. In this invented universe, the Claude makers solve it the boring way: open-source TYPO3, Desiderio elements, and editors who never wait for a deploy.',
-                    'topic' => 'Fiction',
-                    'publish_date' => 'April 1, 2026',
-                    'reading_time' => '4 min read',
-                    'author_name' => 'The Desiderio storytellers',
-                    'cover_image' => self::unsplash('customer-engineering.jpg', 'Research engineering team', 'An engineering team reviewing research output on large displays.'),
-                ]),
                 self::block('desiderio_textmedia', [
                     'header' => 'The imagined setup: research velocity without a web team in the loop',
                     'shadcn_layout' => 'media-right',
@@ -781,23 +765,18 @@ final class StyleguideShowcasePages
     private static function successStorySpacexPage(): array
     {
         return [
-            'title' => 'SpaceX on TYPO3 — a fictional scenario',
+            'title' => 'What if SpaceX ran on TYPO3?',
             'navTitle' => 'SpaceX (fictional)',
             'slug' => '/success-stories/spacex',
-            'abstract' => 'A clearly fictional showcase scenario: how a launch provider like SpaceX would run mission microsites, countdowns, and status dashboards on TYPO3 with Desiderio per-page themes.',
+            'abstract' => 'A clearly fictional showcase scenario: a company that launches rockets weekly cannot wait for a website rebuild between missions. In this invented universe, every mission gets its own TYPO3 subtree, its own Desiderio preset, and a countdown hero that the comms team configures over coffee.',
             'description' => 'Fictional showcase: SpaceX mission microsites on TYPO3 — every launch a Desiderio-themed page subtree with countdown heroes, status boards, and zero rebuilds.',
             'parentSlug' => 'success-stories',
+            'blog' => [
+                'publishDate' => '2026-04-01 10:30:00',
+                'categories' => ['Success stories', 'Fictional scenarios', 'Aerospace'],
+                'tags' => ['SpaceX', 'Mission microsites', 'Per-page themes', 'Countdown hero'],
+            ],
             'content' => [
-                self::block('desiderio_articlehero', [
-                    'eyebrow' => 'Fictional showcase scenario — invented by the Desiderio team',
-                    'header' => 'What if SpaceX ran on TYPO3?',
-                    'dek' => 'A company that launches rockets weekly cannot wait for a website rebuild between missions. In this invented universe, every mission gets its own TYPO3 subtree, its own Desiderio preset, and a countdown hero that the comms team configures over coffee.',
-                    'topic' => 'Fiction',
-                    'publish_date' => 'April 1, 2026',
-                    'reading_time' => '4 min read',
-                    'author_name' => 'The Desiderio storytellers',
-                    'cover_image' => self::unsplash('planning-blue-sky.jpg', 'Mission planning under open sky', 'A team planning outdoors under a wide blue sky.'),
-                ]),
                 self::block('desiderio_textmedia', [
                     'header' => 'The imagined setup: a microsite per mission, a preset per brand',
                     'shadcn_layout' => 'media-left',
@@ -842,23 +821,18 @@ final class StyleguideShowcasePages
     private static function successStoryOpenaiPage(): array
     {
         return [
-            'title' => 'OpenAI on TYPO3 — a fictional scenario',
+            'title' => 'What if OpenAI ran on TYPO3?',
             'navTitle' => 'OpenAI (fictional)',
             'slug' => '/success-stories/openai',
-            'abstract' => 'A clearly fictional showcase scenario: how a fast-shipping AI company like OpenAI would keep product launches, pricing pages, and developer docs on brand with TYPO3 and Desiderio.',
+            'abstract' => 'A clearly fictional showcase scenario: when a company ships a new product line every quarter, the website becomes the slowest model in the lineup. In this invented universe, the web team trades rebuilds for re-theming — one content pool, one Desiderio preset per product family, launch pages assembled before the keynote ends.',
             'description' => 'Fictional showcase: OpenAI product launches on TYPO3 — one Desiderio content pool, a theme preset per product family, and pricing pages editors update themselves.',
             'parentSlug' => 'success-stories',
+            'blog' => [
+                'publishDate' => '2026-04-01 12:00:00',
+                'categories' => ['Success stories', 'Fictional scenarios', 'AI & Research'],
+                'tags' => ['OpenAI', 'Product launches', 'Pricing pages', 'Theme presets'],
+            ],
             'content' => [
-                self::block('desiderio_articlehero', [
-                    'eyebrow' => 'Fictional showcase scenario — invented by the Desiderio team',
-                    'header' => 'What if OpenAI ran on TYPO3?',
-                    'dek' => 'When a company ships a new product line every quarter, the website becomes the slowest model in the lineup. In this invented universe, the web team trades rebuilds for re-theming: one content pool, one Desiderio preset per product family, launch pages assembled before the keynote ends.',
-                    'topic' => 'Fiction',
-                    'publish_date' => 'April 1, 2026',
-                    'reading_time' => '4 min read',
-                    'author_name' => 'The Desiderio storytellers',
-                    'cover_image' => self::unsplash('dashboard-neil-fernandez.jpg', 'Product dashboard on a laptop', 'A laptop screen showing a product analytics dashboard.'),
-                ]),
                 self::block('desiderio_textmedia', [
                     'header' => 'The imagined setup: launch pages at model speed',
                     'shadcn_layout' => 'media-right',
@@ -893,6 +867,609 @@ final class StyleguideShowcasePages
                     'cta_link' => self::REPO_URL,
                     'bg_style' => 'primary',
                 ]),
+            ],
+        ];
+    }
+
+
+    /**
+     * @return ShowcasePage
+     */
+    private static function successStoryNasaPage(): array
+    {
+        return [
+            'title' => 'What if NASA ran on TYPO3?',
+            'navTitle' => 'NASA (fictional)',
+            'slug' => '/success-stories/nasa',
+            'abstract' => 'A clearly fictional showcase scenario: a space agency with six decades of mission pages, press kits, and image archives moves them onto one TYPO3 install — and finally passes its own accessibility mandate.',
+            'description' => 'Fictional showcase: NASA mission archives on TYPO3 — accessible Desiderio elements, one subtree per mission, and editors who publish without a launch window.',
+            'parentSlug' => 'success-stories',
+            'blog' => [
+                'publishDate' => '2026-04-03 09:00:00',
+                'categories' => ['Success stories', 'Fictional scenarios', 'Aerospace'],
+                'tags' => ['NASA', 'Mission archives', 'Accessibility', 'Open data'],
+            ],
+            'content' => [
+                self::block('desiderio_contenthighlight', [
+                    'header' => 'The imagined setup',
+                    'content' => '<p>Sixty years of missions means sixty years of microsites in this scenario — Apollo in archive beige, Artemis in Midnight. Each program is a page subtree with its own preset; timelines, stats, and galleries are stock Desiderio elements with accessible markup the agency\'s own Section 508 auditors sign off without a meeting. The agency is fictional here; the WCAG 2.2-checked contrast on every preset is not.</p>',
+                    'variant' => 'muted',
+                    'alignment' => 'start',
+                    'link' => '{{page:technical-features}}',
+                    'link_text' => 'The real technical facts',
+                ]),
+                self::block('desiderio_featurestats', [
+                    'header' => 'Numbers from a universe next door',
+                    'description' => 'Invented metrics with believable physics — every capability behind them ships in the free package.',
+                    'items' => [
+                        ['value' => '60+', 'label' => 'Mission subtrees migrated', 'description_text' => 'Each program keeps its own era-appropriate theme preset in this fiction.'],
+                        ['value' => '508', 'label' => 'Compliance sections passed', 'description_text' => 'Accessible-by-default elements clear the imagined federal audit on the first run.'],
+                        ['value' => '1 day', 'label' => 'Press kit to live page', 'description_text' => 'Editors compose galleries and stat boards without waiting on contractors.'],
+                        ['value' => '0', 'label' => 'Vendor lock-ins', 'description_text' => 'GPL license and self-hosting keep the imagined procurement office calm.'],
+                    ],
+                ]),
+                self::block('desiderio_quote', [
+                    'header' => '',
+                    'quote_text' => 'We can land a rover on Mars, but updating the mission page used to take longer than the cruise phase. Now the page is live before the dust settles.',
+                    'author' => 'Fictional Web Program Manager',
+                    'role' => 'invented persona — no real NASA statement',
+                    'variant' => 'large',
+                ]),
+            ],
+        ];
+    }
+
+    /**
+     * @return ShowcasePage
+     */
+    private static function successStoryNetflixPage(): array
+    {
+        return [
+            'title' => 'What if Netflix ran on TYPO3?',
+            'navTitle' => 'Netflix (fictional)',
+            'slug' => '/success-stories/netflix',
+            'abstract' => 'A clearly fictional showcase scenario: a streaming giant ships a themed landing page for every original series — from one TYPO3 install, with a preset per show and zero rebuilds between premieres.',
+            'description' => 'Fictional showcase: Netflix series landing pages on TYPO3 — a Desiderio preset per show, countdown heroes for premieres, and editors who ship between episodes.',
+            'parentSlug' => 'success-stories',
+            'blog' => [
+                'publishDate' => '2026-04-07 10:00:00',
+                'categories' => ['Success stories', 'Fictional scenarios', 'Entertainment'],
+                'tags' => ['Netflix', 'Landing pages', 'Theme presets', 'Editor velocity'],
+            ],
+            'content' => [
+                self::block('desiderio_contenthighlight', [
+                    'header' => 'The imagined setup',
+                    'content' => '<p>Every original gets a landing page, and every show has its own mood — in this fiction the dark thriller runs Midnight, the baking show runs Citrus, and both are the same install with a different preset on the subtree. Countdown heroes handle premiere dates, FAQ elements handle spoilers policy, and the imagined marketing team retires its static-site generator. The company is borrowed; the per-subtree theme engine ships today.</p>',
+                    'variant' => 'muted',
+                    'alignment' => 'start',
+                    'link' => '{{page:technical-features}}',
+                    'link_text' => 'The real technical facts',
+                ]),
+                self::block('desiderio_featurestats', [
+                    'header' => 'Numbers from a universe next door',
+                    'description' => 'Invented metrics with believable physics — every capability behind them ships in the free package.',
+                    'items' => [
+                        ['value' => '80', 'label' => 'Series pages, one install', 'description_text' => 'Each landing page carries the show\'s own preset in this scenario.'],
+                        ['value' => '3 h', 'label' => 'Greenlight to teaser page', 'description_text' => 'Hero, trailer embed, countdown — composed from existing elements.'],
+                        ['value' => '0', 'label' => 'Rebuilds between premieres', 'description_text' => 'Presets switch at runtime; the imagined release calendar never waits for CI.'],
+                        ['value' => '2', 'label' => 'Modes shipped by default', 'description_text' => 'Light and dark, both WCAG-checked — binge-friendly at 2 a.m.'],
+                    ],
+                ]),
+                self::block('desiderio_quote', [
+                    'header' => '',
+                    'quote_text' => 'We used to A/B test thumbnails. Now we A/B test theme presets — same content pool, two dropdown choices, done before the credits roll.',
+                    'author' => 'Fictional Director of Title Marketing',
+                    'role' => 'invented persona — no real Netflix statement',
+                    'variant' => 'large',
+                ]),
+            ],
+        ];
+    }
+
+    /**
+     * @return ShowcasePage
+     */
+    private static function successStoryNintendoPage(): array
+    {
+        return [
+            'title' => 'What if Nintendo ran on TYPO3?',
+            'navTitle' => 'Nintendo (fictional)',
+            'slug' => '/success-stories/nintendo',
+            'abstract' => 'A clearly fictional showcase scenario: a games company where every franchise is its own visual world keeps Mario, Zelda, and the hardware store on one TYPO3 install — one preset per universe.',
+            'description' => 'Fictional showcase: Nintendo franchise pages on TYPO3 — a Desiderio brand world per franchise, launch pages from stock elements, and editors who ship at console speed.',
+            'parentSlug' => 'success-stories',
+            'blog' => [
+                'publishDate' => '2026-04-11 09:30:00',
+                'categories' => ['Success stories', 'Fictional scenarios', 'Entertainment'],
+                'tags' => ['Nintendo', 'Product launches', 'Brand worlds', 'Per-page themes'],
+            ],
+            'content' => [
+                self::block('desiderio_contenthighlight', [
+                    'header' => 'The imagined setup',
+                    'content' => '<p>A plumber, a princess, and a console launch share nothing visually — except, in this fiction, a TYPO3 install. Each franchise subtree carries its own preset: warm reds for the platformer, sage greens for the adventure, clean neutrals for hardware. Launch pages assemble from countdown heroes, feature grids, and pricing tables while the imagined legal team admires the GPL license. The franchises are real, the scenario is not, the elements ship today.</p>',
+                    'variant' => 'muted',
+                    'alignment' => 'start',
+                    'link' => '{{page:technical-features}}',
+                    'link_text' => 'The real technical facts',
+                ]),
+                self::block('desiderio_featurestats', [
+                    'header' => 'Numbers from a universe next door',
+                    'description' => 'Invented metrics with believable physics — every capability behind them ships in the free package.',
+                    'items' => [
+                        ['value' => '12', 'label' => 'Franchise brand worlds', 'description_text' => 'One install, twelve visual universes via per-subtree presets in this fiction.'],
+                        ['value' => '4 h', 'label' => 'Direct to launch page', 'description_text' => 'The imagined web team publishes while the presentation still streams.'],
+                        ['value' => '0', 'label' => 'Style sheets hand-written', 'description_text' => 'Every world is a token set, not a fork of the frontend.'],
+                        ['value' => '100%', 'label' => 'Editors in the backend', 'description_text' => 'Backend previews mean nobody publishes a hero blind.'],
+                    ],
+                ]),
+                self::block('desiderio_quote', [
+                    'header' => '',
+                    'quote_text' => 'Each of our worlds has its own physics. It turns out they can still share a CMS — the tokens change, the workflow doesn\'t.',
+                    'author' => 'Fictional Head of Web Worlds',
+                    'role' => 'invented persona — no real Nintendo statement',
+                    'variant' => 'large',
+                ]),
+            ],
+        ];
+    }
+
+    /**
+     * @return ShowcasePage
+     */
+    private static function successStoryLegoPage(): array
+    {
+        return [
+            'title' => 'What if LEGO ran on TYPO3?',
+            'navTitle' => 'LEGO (fictional)',
+            'slug' => '/success-stories/lego',
+            'abstract' => 'A clearly fictional showcase scenario: a brick company that launches themed sets weekly builds its campaign pages the same way it builds everything else — from interchangeable, well-documented parts.',
+            'description' => 'Fictional showcase: LEGO campaign pages on TYPO3 — Desiderio elements as bricks, a preset per product line, and campaign pages clicked together in an afternoon.',
+            'parentSlug' => 'success-stories',
+            'blog' => [
+                'publishDate' => '2026-04-15 11:00:00',
+                'categories' => ['Success stories', 'Fictional scenarios', 'Commerce'],
+                'tags' => ['LEGO', 'Campaign pages', 'Brand worlds', 'Editor velocity'],
+            ],
+            'content' => [
+                self::block('desiderio_contenthighlight', [
+                    'header' => 'The imagined setup',
+                    'content' => '<p>A company that turned interlocking parts into an empire would recognize this scenario instantly: 255 content elements as bricks, typed component contracts as the studs that only fit one way, and a campaign page clicked together in an afternoon. Space sets run Midnight, botanical sets run Forest, and the imagined brand team stops briefing agencies for every seasonal push. The bricks are real and GPL-licensed; the company is on loan for the joke.</p>',
+                    'variant' => 'muted',
+                    'alignment' => 'start',
+                    'link' => '{{page:technical-features}}',
+                    'link_text' => 'The real technical facts',
+                ]),
+                self::block('desiderio_featurestats', [
+                    'header' => 'Numbers from a universe next door',
+                    'description' => 'Invented metrics with believable physics — every capability behind them ships in the free package.',
+                    'items' => [
+                        ['value' => '255', 'label' => 'Bricks in the box', 'description_text' => 'Desiderio\'s element library, reused across every imagined campaign.'],
+                        ['value' => '1', 'label' => 'Afternoon per campaign page', 'description_text' => 'Hero, story sections, product grid — assembled, previewed, published.'],
+                        ['value' => '18', 'label' => 'Product-line worlds', 'description_text' => 'Each line carries its own preset in this fictional setup.'],
+                        ['value' => '0', 'label' => 'Instructions misread', 'description_text' => 'Typed f:argument contracts fail loudly when a brick is used wrong.'],
+                    ],
+                ]),
+                self::block('desiderio_quote', [
+                    'header' => '',
+                    'quote_text' => 'Our motto is \'only the best is good enough\', and our web team\'s motto was \'the rebuild ships next quarter\'. Only one of those survived the migration.',
+                    'author' => 'Fictional Digital Campaigns Lead',
+                    'role' => 'invented persona — no real LEGO statement',
+                    'variant' => 'large',
+                ]),
+            ],
+        ];
+    }
+
+    /**
+     * @return ShowcasePage
+     */
+    private static function successStoryIkeaPage(): array
+    {
+        return [
+            'title' => 'What if IKEA ran on TYPO3?',
+            'navTitle' => 'IKEA (fictional)',
+            'slug' => '/success-stories/ikea',
+            'abstract' => 'A clearly fictional showcase scenario: a furniture giant publishing in dozens of languages flat-packs its catalog pages — same parts everywhere, assembled locally, no agency hotline required.',
+            'description' => 'Fictional showcase: IKEA catalog pages on TYPO3 — multilanguage Desiderio elements, ICU plurals that survive every locale, and country teams who assemble pages themselves.',
+            'parentSlug' => 'success-stories',
+            'blog' => [
+                'publishDate' => '2026-04-19 10:30:00',
+                'categories' => ['Success stories', 'Fictional scenarios', 'Commerce'],
+                'tags' => ['IKEA', 'Multilanguage', 'Catalog pages', 'Editor velocity'],
+            ],
+            'content' => [
+                self::block('desiderio_contenthighlight', [
+                    'header' => 'The imagined setup',
+                    'content' => '<p>Flat-pack logic applied to the web: in this fiction every country site receives the same well-labeled parts — heroes, product grids, FAQ elements — and assembles them in its own language. XLIFF catalogues and ICU MessageFormat keep plurals and dates correct from Sweden to Japan, while the imagined global team ships one update instead of forty. The meatballs are not included; the translation architecture ships in the free package.</p>',
+                    'variant' => 'muted',
+                    'alignment' => 'start',
+                    'link' => '{{page:technical-features}}',
+                    'link_text' => 'The real technical facts',
+                ]),
+                self::block('desiderio_featurestats', [
+                    'header' => 'Numbers from a universe next door',
+                    'description' => 'Invented metrics with believable physics — every capability behind them ships in the free package.',
+                    'items' => [
+                        ['value' => '42', 'label' => 'Country sites, one toolkit', 'description_text' => 'Same elements, locally assembled, in this fictional rollout.'],
+                        ['value' => '100%', 'label' => 'Strings through XLIFF', 'description_text' => 'Screen-reader labels included — no hardcoded copy anywhere.'],
+                        ['value' => '1', 'label' => 'Update for all locales', 'description_text' => 'Element fixes ship once and every market inherits them.'],
+                        ['value' => '0', 'label' => 'Allen keys required', 'description_text' => 'Backend previews replace the instruction sheet.'],
+                    ],
+                ]),
+                self::block('desiderio_quote', [
+                    'header' => '',
+                    'quote_text' => 'Our products ship as parts and instructions. Our website finally does too — and nobody has called the assembly hotline since.',
+                    'author' => 'Fictional Global Web Coordinator',
+                    'role' => 'invented persona — no real IKEA statement',
+                    'variant' => 'large',
+                ]),
+            ],
+        ];
+    }
+
+    /**
+     * @return ShowcasePage
+     */
+    private static function successStorySpotifyPage(): array
+    {
+        return [
+            'title' => 'What if Spotify ran on TYPO3?',
+            'navTitle' => 'Spotify (fictional)',
+            'slug' => '/success-stories/spotify',
+            'abstract' => 'A clearly fictional showcase scenario: a streaming service whose editorial team publishes artist features and year-in-review pages at playlist speed — dark mode first, obviously.',
+            'description' => 'Fictional showcase: Spotify editorial pages on TYPO3 — dark-mode-first Desiderio presets, artist features from stock elements, and a wrapped campaign without a single rebuild.',
+            'parentSlug' => 'success-stories',
+            'blog' => [
+                'publishDate' => '2026-04-23 09:00:00',
+                'categories' => ['Success stories', 'Fictional scenarios', 'Entertainment'],
+                'tags' => ['Spotify', 'Editorial workflow', 'Dark mode', 'Theme presets'],
+            ],
+            'content' => [
+                self::block('desiderio_contenthighlight', [
+                    'header' => 'The imagined setup',
+                    'content' => '<p>An editorial team that ships artist features daily cannot file a ticket per page. In this scenario the music editors compose features from quote blocks, stat boards, and gallery elements — previewed in the backend, published before the song ends. The year-end campaign is a preset switch plus seeded pages, not a three-month engineering project. Dark mode is not an afterthought here; every preset ships both modes with checked contrast.</p>',
+                    'variant' => 'muted',
+                    'alignment' => 'start',
+                    'link' => '{{page:technical-features}}',
+                    'link_text' => 'The real technical facts',
+                ]),
+                self::block('desiderio_featurestats', [
+                    'header' => 'Numbers from a universe next door',
+                    'description' => 'Invented metrics with believable physics — every capability behind them ships in the free package.',
+                    'items' => [
+                        ['value' => '365', 'label' => 'Editorial pages a year', 'description_text' => 'One artist feature per day in this fictional newsroom.'],
+                        ['value' => '2', 'label' => 'Modes, both first-class', 'description_text' => 'Dark mode users get checked contrast, not an inverted afterthought.'],
+                        ['value' => '45 min', 'label' => 'Brief to published feature', 'description_text' => 'Quote, stats, gallery, embed — stock elements all the way down.'],
+                        ['value' => '1', 'label' => 'Preset switch for year-end', 'description_text' => 'The imagined wrapped campaign is a dropdown, not a deploy.'],
+                    ],
+                ]),
+                self::block('desiderio_quote', [
+                    'header' => '',
+                    'quote_text' => 'Our app went dark-mode-first years ago; our CMS pages finally followed. The contrast checker has better ears than our mastering engineers.',
+                    'author' => 'Fictional Editorial Platform Lead',
+                    'role' => 'invented persona — no real Spotify statement',
+                    'variant' => 'large',
+                ]),
+            ],
+        ];
+    }
+
+    /**
+     * @return ShowcasePage
+     */
+    private static function successStoryStripePage(): array
+    {
+        return [
+            'title' => 'What if Stripe ran on TYPO3?',
+            'navTitle' => 'Stripe (fictional)',
+            'slug' => '/success-stories/stripe',
+            'abstract' => 'A clearly fictional showcase scenario: a payments company famous for its documentation discovers that marketing pages can be engineered with the same rigor — typed components, audited templates, zero drift.',
+            'description' => 'Fictional showcase: Stripe marketing pages on TYPO3 — typed Fluid components, pricing tables editors update at announcement speed, and a template audit at zero findings.',
+            'parentSlug' => 'success-stories',
+            'blog' => [
+                'publishDate' => '2026-04-27 11:30:00',
+                'categories' => ['Success stories', 'Fictional scenarios', 'Commerce'],
+                'tags' => ['Stripe', 'Documentation', 'Pricing pages', 'Self-hosting'],
+            ],
+            'content' => [
+                self::block('desiderio_contenthighlight', [
+                    'header' => 'The imagined setup',
+                    'content' => '<p>A company that treats documentation as a product would audit its marketing stack, and in this fiction the audit finds: typed f:argument contracts on every component, an 11-category template check at zero findings, and PHPStan at level max on the PHP underneath. Pricing changes land as editor edits, not deploys — reviewed in a backend preview instead of a pull request. The rigor is real and verifiable in the repository; the customer is invented.</p>',
+                    'variant' => 'muted',
+                    'alignment' => 'start',
+                    'link' => '{{page:technical-features}}',
+                    'link_text' => 'The real technical facts',
+                ]),
+                self::block('desiderio_featurestats', [
+                    'header' => 'Numbers from a universe next door',
+                    'description' => 'Invented metrics with believable physics — every capability behind them ships in the free package.',
+                    'items' => [
+                        ['value' => '0', 'label' => 'Audit findings tolerated', 'description_text' => 'The 11-category template audit gates every commit in the real package.'],
+                        ['value' => '15 min', 'label' => 'Pricing call to live table', 'description_text' => 'The imagined billing team edits tiers like records, because they are.'],
+                        ['value' => '170+', 'label' => 'Tests on the stack', 'description_text' => 'Unit and functional, PHP 8.3 and 8.4 — the one stat here that is not fiction.'],
+                        ['value' => '100%', 'label' => 'Infrastructure in-house', 'description_text' => 'Self-hosted open source clears the fictional compliance review.'],
+                    ],
+                ]),
+                self::block('desiderio_quote', [
+                    'header' => '',
+                    'quote_text' => 'We measure API reliability in nines. Our marketing site used to be measured in apologies — the typed components fixed the gap.',
+                    'author' => 'Fictional Head of Web Infrastructure',
+                    'role' => 'invented persona — no real Stripe statement',
+                    'variant' => 'large',
+                ]),
+            ],
+        ];
+    }
+
+    /**
+     * @return ShowcasePage
+     */
+    private static function successStoryDuolingoPage(): array
+    {
+        return [
+            'title' => 'What if Duolingo ran on TYPO3?',
+            'navTitle' => 'Duolingo (fictional)',
+            'slug' => '/success-stories/duolingo',
+            'abstract' => 'A clearly fictional showcase scenario: a language-learning app that teaches forty languages finally gets a website that speaks all of them — with plurals, dates, and screen-reader labels done right.',
+            'description' => 'Fictional showcase: Duolingo course pages on TYPO3 — ICU MessageFormat for every locale, streak-counter stats from stock elements, and an owl-approved publishing pace.',
+            'parentSlug' => 'success-stories',
+            'blog' => [
+                'publishDate' => '2026-05-01 09:30:00',
+                'categories' => ['Success stories', 'Fictional scenarios', 'Education'],
+                'tags' => ['Duolingo', 'Multilanguage', 'Gamification', 'Editor velocity'],
+            ],
+            'content' => [
+                self::block('desiderio_contenthighlight', [
+                    'header' => 'The imagined setup',
+                    'content' => '<p>Teaching Japanese through Spanish breaks most translation layers, and in this fiction the web team finally stops apologizing for theirs: XLIFF 2.0 catalogues with ICU MessageFormat handle plural rules from Polish to Arabic, and every course page assembles from the same stat boards and timeline elements. The streak counter on the homepage is a stock metric element; the imagined owl is pleased with the daily publishing streak. The localization architecture is the real product here.</p>',
+                    'variant' => 'muted',
+                    'alignment' => 'start',
+                    'link' => '{{page:technical-features}}',
+                    'link_text' => 'The real technical facts',
+                ]),
+                self::block('desiderio_featurestats', [
+                    'header' => 'Numbers from a universe next door',
+                    'description' => 'Invented metrics with believable physics — every capability behind them ships in the free package.',
+                    'items' => [
+                        ['value' => '40+', 'label' => 'Course locales served', 'description_text' => 'Each with correct plurals and date formats in this fictional rollout.'],
+                        ['value' => '100%', 'label' => 'ARIA labels translated', 'description_text' => 'Screen-reader strings ship through the same XLIFF pipeline.'],
+                        ['value' => '365', 'label' => 'Day publishing streak', 'description_text' => 'The imagined content team never misses — the owl is watching.'],
+                        ['value' => '0', 'label' => 'Hardcoded strings found', 'description_text' => 'Every label runs through f:translate, even the celebratory ones.'],
+                    ],
+                ]),
+                self::block('desiderio_quote', [
+                    'header' => '',
+                    'quote_text' => 'We gamified language learning. The CMS gamified itself — the team genuinely competes for the cleanest backend preview.',
+                    'author' => 'Fictional Web Localization Lead',
+                    'role' => 'invented persona — no real Duolingo statement',
+                    'variant' => 'large',
+                ]),
+            ],
+        ];
+    }
+
+    /**
+     * @return ShowcasePage
+     */
+    private static function successStoryWikipediaPage(): array
+    {
+        return [
+            'title' => 'What if Wikipedia ran on TYPO3?',
+            'navTitle' => 'Wikipedia (fictional)',
+            'slug' => '/success-stories/wikipedia',
+            'abstract' => 'A clearly fictional showcase scenario: the free encyclopedia gives its campaign and fundraising pages the same treatment as its articles — open source, accessible, and owned by nobody\'s vendor.',
+            'description' => 'Fictional showcase: Wikipedia campaign pages on TYPO3 — GPL design system on GPL CMS, donation banners editors test themselves, and accessibility as policy, not promise.',
+            'parentSlug' => 'success-stories',
+            'blog' => [
+                'publishDate' => '2026-05-05 10:00:00',
+                'categories' => ['Success stories', 'Fictional scenarios', 'Education'],
+                'tags' => ['Wikipedia', 'Open source', 'Accessibility', 'Self-hosting'],
+            ],
+            'content' => [
+                self::block('desiderio_contenthighlight', [
+                    'header' => 'The imagined setup',
+                    'content' => '<p>An organization that runs on volunteers and GPL licenses would never accept a proprietary design system for its fundraising pages, and in this fiction it does not have to: a GPL component library on a GPL CMS, self-hosted on the foundation\'s own metal. Donation appeals assemble from banner and stat elements with contrast the accessibility policy can cite, and every template is inspectable by the same community that edits the articles. The alignment of licenses is the entire joke — and entirely real.</p>',
+                    'variant' => 'muted',
+                    'alignment' => 'start',
+                    'link' => '{{page:technical-features}}',
+                    'link_text' => 'The real technical facts',
+                ]),
+                self::block('desiderio_featurestats', [
+                    'header' => 'Numbers from a universe next door',
+                    'description' => 'Invented metrics with believable physics — every capability behind them ships in the free package.',
+                    'items' => [
+                        ['value' => '2', 'label' => 'GPL licenses, aligned', 'description_text' => 'CMS and design system share the imagined foundation\'s values out of the box.'],
+                        ['value' => '100%', 'label' => 'Templates publicly auditable', 'description_text' => 'The community reviews Fluid the way it reviews citations.'],
+                        ['value' => '4.5:1', 'label' => 'Contrast, enforced', 'description_text' => 'WCAG ratios are solved by the build, not promised by a styleguide PDF.'],
+                        ['value' => '0', 'label' => 'Vendors in the stack', 'description_text' => 'Self-hosted everything — the fictional procurement page stays a stub.'],
+                    ],
+                ]),
+                self::block('desiderio_quote', [
+                    'header' => '',
+                    'quote_text' => 'Citation needed? The contrast solver ships its own proof. First design system our reviewers accepted without a talk page argument.',
+                    'author' => 'Fictional Movement Web Lead',
+                    'role' => 'invented persona — no real Wikipedia statement',
+                    'variant' => 'large',
+                ]),
+            ],
+        ];
+    }
+
+    /**
+     * @return ShowcasePage
+     */
+    private static function successStoryRedBullPage(): array
+    {
+        return [
+            'title' => 'What if Red Bull ran on TYPO3?',
+            'navTitle' => 'Red Bull (fictional)',
+            'slug' => '/success-stories/red-bull',
+            'abstract' => 'A clearly fictional showcase scenario: an energy-drink empire that is secretly a media company spins up an event microsite per cliff dive, air race, and festival — caffeinated, themed, and on time.',
+            'description' => 'Fictional showcase: Red Bull event microsites on TYPO3 — a Desiderio subtree per event, countdown heroes for every start gate, and campaign pages with wings.',
+            'parentSlug' => 'success-stories',
+            'blog' => [
+                'publishDate' => '2026-05-09 11:00:00',
+                'categories' => ['Success stories', 'Fictional scenarios', 'Sports'],
+                'tags' => ['Red Bull', 'Event microsites', 'Campaign pages', 'Countdown hero'],
+            ],
+            'content' => [
+                self::block('desiderio_contenthighlight', [
+                    'header' => 'The imagined setup',
+                    'content' => '<p>A company that runs more events than some federations needs a microsite assembly line, and in this fiction it gets one: every cliff dive, air race, and music festival is a page subtree with its own preset — Ember for the desert rally, Marine for the regatta. Countdown heroes tick toward start gates, stat boards track qualifying, and the imagined events team launches a site between espresso shots. The wings are marketing; the runtime theme switching is shipping code.</p>',
+                    'variant' => 'muted',
+                    'alignment' => 'start',
+                    'link' => '{{page:technical-features}}',
+                    'link_text' => 'The real technical facts',
+                ]),
+                self::block('desiderio_featurestats', [
+                    'header' => 'Numbers from a universe next door',
+                    'description' => 'Invented metrics with believable physics — every capability behind them ships in the free package.',
+                    'items' => [
+                        ['value' => '30+', 'label' => 'Event microsites a season', 'description_text' => 'One subtree per event in this fictional calendar, all one install.'],
+                        ['value' => '90 min', 'label' => 'Announcement to live site', 'description_text' => 'Countdown hero, schedule timeline, ticket CTA — stock parts.'],
+                        ['value' => '0', 'label' => 'Energy drinks required', 'description_text' => 'Editors publish calmly; the adrenaline stays in the footage.'],
+                        ['value' => '14', 'label' => 'Presets in rotation', 'description_text' => 'Every event genre gets a matching visual world.'],
+                    ],
+                ]),
+                self::block('desiderio_quote', [
+                    'header' => '',
+                    'quote_text' => 'We give athletes wings and gave our web team three CMSes. Now it\'s one install per season and the only thing still freefalling is the cliff diver.',
+                    'author' => 'Fictional Head of Event Digital',
+                    'role' => 'invented persona — no real Red Bull statement',
+                    'variant' => 'large',
+                ]),
+            ],
+        ];
+    }
+
+    /**
+     * @return ShowcasePage
+     */
+    private static function successStoryCernPage(): array
+    {
+        return [
+            'title' => 'What if CERN ran on TYPO3?',
+            'navTitle' => 'CERN (fictional)',
+            'slug' => '/success-stories/cern',
+            'abstract' => 'A clearly fictional showcase scenario: the birthplace of the web upgrades its experiment pages — open-source elements, accessible data tables, and physics results published faster than peer review.',
+            'description' => 'Fictional showcase: CERN experiment pages on TYPO3 — accessible chart elements for collision data, a preset per experiment, and the web back where it was invented.',
+            'parentSlug' => 'success-stories',
+            'blog' => [
+                'publishDate' => '2026-05-13 09:00:00',
+                'categories' => ['Success stories', 'Fictional scenarios', 'Science'],
+                'tags' => ['CERN', 'Research publishing', 'Open data', 'Accessibility'],
+            ],
+            'content' => [
+                self::block('desiderio_contenthighlight', [
+                    'header' => 'The imagined setup',
+                    'content' => '<p>The laboratory that invented the web deserves better than PDF press releases, and in this fiction it publishes like it researches: every experiment is a subtree with its own preset, results land as accessible chart and table elements with real data markup, and outreach pages assemble from timelines and stat boards. Server-rendered pages with no hydration cost feel appropriately fundamental. The physics is real, the scenario is invented, and the web returns home either way.</p>',
+                    'variant' => 'muted',
+                    'alignment' => 'start',
+                    'link' => '{{page:technical-features}}',
+                    'link_text' => 'The real technical facts',
+                ]),
+                self::block('desiderio_featurestats', [
+                    'header' => 'Numbers from a universe next door',
+                    'description' => 'Invented metrics with believable physics — every capability behind them ships in the free package.',
+                    'items' => [
+                        ['value' => '17', 'label' => 'Experiment subtrees', 'description_text' => 'Each collaboration keeps its own visual identity in this fiction.'],
+                        ['value' => '9', 'label' => 'Chart types, accessible', 'description_text' => 'Every visualization ships a screen-reader-friendly data table twin.'],
+                        ['value' => '1 h', 'label' => 'Preprint to outreach page', 'description_text' => 'The imagined comms team publishes before the arXiv listing updates.'],
+                        ['value' => '0', 'label' => 'JS frameworks colliding', 'description_text' => 'Server-rendered Fluid — the only collisions happen in the ring.'],
+                    ],
+                ]),
+                self::block('desiderio_quote', [
+                    'header' => '',
+                    'quote_text' => 'We built the web here and then spent thirty years fighting our own CMS. The standard model has fewer free parameters than our old templates did.',
+                    'author' => 'Fictional Outreach Platform Physicist',
+                    'role' => 'invented persona — no real CERN statement',
+                    'variant' => 'large',
+                ]),
+            ],
+        ];
+    }
+
+    /**
+     * @return ShowcasePage
+     */
+    private static function successStoryPixarPage(): array
+    {
+        return [
+            'title' => 'What if Pixar ran on TYPO3?',
+            'navTitle' => 'Pixar (fictional)',
+            'slug' => '/success-stories/pixar',
+            'abstract' => 'A clearly fictional showcase scenario: a story-first animation studio gives every film its own web world — lamp included — without rendering a single page rebuild.',
+            'description' => 'Fictional showcase: Pixar film pages on TYPO3 — a Desiderio brand world per film, story-driven scroll pages from stock elements, and dark mode for the screening room.',
+            'parentSlug' => 'success-stories',
+            'blog' => [
+                'publishDate' => '2026-05-17 10:30:00',
+                'categories' => ['Success stories', 'Fictional scenarios', 'Entertainment'],
+                'tags' => ['Pixar', 'Story pages', 'Brand worlds', 'Dark mode'],
+            ],
+            'content' => [
+                self::block('desiderio_contenthighlight', [
+                    'header' => 'The imagined setup',
+                    'content' => '<p>A studio that storyboards everything would storyboard its film pages too, and in this fiction the boards map straight to elements: an article hero for the opening shot, alternating textmedia scenes, a stat board for the box office, a quote from the imagined director. Each film subtree carries its own preset — ocean blues, desert ambers, monster pastels — switched at runtime like a scene cut. The lamp hops in real life; the per-page theme engine ships in the package.</p>',
+                    'variant' => 'muted',
+                    'alignment' => 'start',
+                    'link' => '{{page:technical-features}}',
+                    'link_text' => 'The real technical facts',
+                ]),
+                self::block('desiderio_featurestats', [
+                    'header' => 'Numbers from a universe next door',
+                    'description' => 'Invented metrics with believable physics — every capability behind them ships in the free package.',
+                    'items' => [
+                        ['value' => '28', 'label' => 'Film worlds, one install', 'description_text' => 'Every feature keeps its own palette in this fictional archive.'],
+                        ['value' => '1', 'label' => 'Storyboard per page', 'description_text' => 'Scenes map one-to-one onto stock content elements.'],
+                        ['value' => '2', 'label' => 'Modes for the screening room', 'description_text' => 'Dark mode that respects the colorists, light mode for the lobby.'],
+                        ['value' => '0', 'label' => 'Renders re-queued', 'description_text' => 'Pages are server-rendered Fluid — the render farm stays on the movie.'],
+                    ],
+                ]),
+                self::block('desiderio_quote', [
+                    'header' => '',
+                    'quote_text' => 'Story is king here, and our old website was a subplot nobody followed. Now every film page reads like a storyboard — and ships before the trailer drops.',
+                    'author' => 'Fictional Studio Web Producer',
+                    'role' => 'invented persona — no real Pixar statement',
+                    'variant' => 'large',
+                ]),
+            ],
+        ];
+    }
+
+    /**
+     * Helper pages for the success-story blog section. Category and tag badges
+     * on the posts link here (plugin.tx_blog.settings.categoryUid/tagUid), so
+     * these pages only make sense — and only get seeded — when EXT:blog is
+     * installed. They stay out of the navigation.
+     *
+     * @return array<int, ShowcasePage>
+     */
+    public static function blogSupportPages(): array
+    {
+        return [
+            [
+                'title' => 'Category',
+                'navTitle' => 'Category',
+                'slug' => '/success-stories/category',
+                'abstract' => 'Success stories filtered by category.',
+                'description' => 'All fictional Desiderio success stories in a category.',
+                'parentSlug' => 'success-stories',
+                'hideInNav' => true,
+                'content' => [
+                    self::block('blog_category', []),
+                ],
+            ],
+            [
+                'title' => 'Tag',
+                'navTitle' => 'Tag',
+                'slug' => '/success-stories/tag',
+                'abstract' => 'Success stories filtered by tag.',
+                'description' => 'All fictional Desiderio success stories carrying a tag.',
+                'parentSlug' => 'success-stories',
+                'hideInNav' => true,
+                'content' => [
+                    self::block('blog_tag', []),
+                ],
             ],
         ];
     }

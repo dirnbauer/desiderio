@@ -12,7 +12,13 @@ use Webconsulting\Desiderio\Data\BlogDemoPostDefinitions;
 final class BlogPageTreeSeeder
 {
     public const DEFAULT_BACKEND_LAYOUT = 'pagets__DesiderioBlog';
-    private const BLOG_POST_DOKTYPE = 137;
+    public const BLOG_POST_DOKTYPE = 137;
+
+    /**
+     * EXT:blog types sys_category records (Constants::CATEGORY_TYPE_BLOG) and
+     * its repositories only see categories of this record_type.
+     */
+    public const BLOG_CATEGORY_RECORD_TYPE = 100;
 
     private const BLOG_LIST_CTYPES = [
         'blog_posts',
@@ -299,6 +305,7 @@ final class BlogPageTreeSeeder
 
     public function ensureCategory(int $folderUid, string $title): int
     {
+        $slug = $this->slugify($title);
         $queryBuilder = $this->connectionPool->getQueryBuilderForTable('sys_category');
         $queryBuilder->getRestrictions()->removeAll();
 
@@ -314,18 +321,28 @@ final class BlogPageTreeSeeder
             ->executeQuery()
             ->fetchOne();
 
+        $now = time();
+        $connection = $this->connectionPool->getConnectionForTable('sys_category');
         if (is_numeric($uid)) {
+            // Heal categories created without the blog record type or slug —
+            // EXT:blog repositories and the category route enhancer would not
+            // work with them otherwise.
+            $connection->update('sys_category', [
+                'tstamp' => $now,
+                'record_type' => self::BLOG_CATEGORY_RECORD_TYPE,
+                'slug' => $slug,
+            ], ['uid' => (int)$uid]);
             return (int)$uid;
         }
 
-        $now = time();
-        $connection = $this->connectionPool->getConnectionForTable('sys_category');
         $connection->insert('sys_category', [
             'pid' => $folderUid,
             'tstamp' => $now,
             'crdate' => $now,
             'title' => $title,
             'parent' => 0,
+            'record_type' => self::BLOG_CATEGORY_RECORD_TYPE,
+            'slug' => $slug,
             'sorting' => $this->nextSorting('sys_category', $folderUid),
         ]);
 

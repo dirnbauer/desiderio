@@ -308,6 +308,7 @@
 
 .d-solr-result-card__url {
     overflow: hidden;
+    max-width: 100%;
     color: var(--muted-foreground);
     font-size: 0.75rem;
     text-overflow: ellipsis;
@@ -315,6 +316,8 @@
 }
 
 .d-solr-result-card__body {
+    /* min-width: 0 lets the nowrap URL line truncate instead of stretching the card. */
+    min-width: 0;
     display: grid;
     gap: 0.75rem;
     margin-block-start: 1rem;

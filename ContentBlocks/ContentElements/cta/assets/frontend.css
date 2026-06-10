@@ -35,7 +35,9 @@
 @media (min-width: 768px) {
     .cta__banner { padding: var(--d-spacing-3xl) var(--d-spacing-2xl); }
 }
-.cta__subheadline--on-primary { color: color-mix(in oklab, var(--primary-foreground) 85%, transparent); }
+/* Full-strength foreground: the preset solver only guarantees 4.5:1 for the
+   primary pair at 100%, so alpha-muting this lead-size copy can fail WCAG. */
+.cta__subheadline--on-primary { color: var(--primary-foreground); }
 .cta__ghost--on-primary {
     color: var(--primary-foreground);
 }

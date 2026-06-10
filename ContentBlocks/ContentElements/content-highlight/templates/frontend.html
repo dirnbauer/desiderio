@@ -16,7 +16,7 @@
             </div>
             <f:if condition="{data.link.url} && {data.link_text}">
                 <div class="content-highlight__actions">
-                    <d:atom.button href="{data.link.url}" class="content-highlight__cta" target="{data.link.target}">{data -> f:render.text(field: 'link_text')}</d:atom.button>
+                    <d:atom.button href="{data.link.url}" class="content-highlight__cta" target="{data.link.target}" variant="{f:if(condition: '{data.variant} == \'primary\'', then: 'secondary', else: 'default')}">{data -> f:render.text(field: 'link_text')}</d:atom.button>
                 </div>
             </f:if>
         </div>

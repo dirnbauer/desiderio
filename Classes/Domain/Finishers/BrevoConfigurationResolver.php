@@ -7,7 +7,7 @@ namespace Webconsulting\Desiderio\Domain\Finishers;
 use TYPO3\CMS\Core\Site\Entity\Site;
 
 /**
- * @phpstan-type BrevoConfiguration array{enabled: bool, apiKey: string, listIds: list<int>, strict: bool, trackEvent: bool, eventName: string}
+ * @phpstan-type BrevoConfiguration array{enabled: bool, apiKey: string, listIds: list<int>, strict: bool, trackEvent: bool, eventName: string, doubleOptInTemplateId: int, doubleOptInRedirectUrl: string}
  */
 final class BrevoConfigurationResolver
 {
@@ -58,7 +58,31 @@ final class BrevoConfigurationResolver
                 $this->getEnvironmentValue('BREVO_EVENT_NAME'),
                 'desiderio_form_submit'
             )),
+            'doubleOptInTemplateId' => $this->parsePositiveInt(
+                $finisherOptions['doubleOptInTemplateId']
+                    ?? ($extensionConfiguration['doubleOptInTemplateId'] ?? null)
+                    ?? $this->getSiteSetting($site, 'desiderio.forms.brevo.doubleOptInTemplateId')
+                    ?? $this->getEnvironmentValue('BREVO_DOI_TEMPLATE_ID')
+            ),
+            'doubleOptInRedirectUrl' => $this->resolveString(
+                $finisherOptions['doubleOptInRedirectUrl'] ?? null,
+                $extensionConfiguration['doubleOptInRedirectUrl'] ?? null,
+                $this->getSiteSetting($site, 'desiderio.forms.brevo.doubleOptInRedirectUrl'),
+                $this->getEnvironmentValue('BREVO_DOI_REDIRECT_URL')
+            ),
         ];
+    }
+
+    public function parsePositiveInt(mixed $value): int
+    {
+        if (is_int($value)) {
+            return $value > 0 ? $value : 0;
+        }
+        if (is_string($value) && preg_match('/^\d+$/', trim($value)) === 1) {
+            return (int)trim($value);
+        }
+
+        return 0;
     }
 
     /**

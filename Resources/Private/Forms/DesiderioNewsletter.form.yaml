@@ -24,6 +24,9 @@ finishers:
     identifier: BrevoContact
     options:
       emailField: email
+      # Uses the Brevo double opt-in flow when desiderio.forms.brevo.doubleOptInTemplateId
+      # and list ids are configured; falls back to direct contact sync otherwise.
+      doubleOptIn: true
   -
     identifier: Confirmation
     options:

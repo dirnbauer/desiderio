@@ -386,7 +386,14 @@ settings:
 
   desiderio.forms.friendlyCaptchaTestMode:
     label: 'Friendly Captcha test mode'
-    description: 'Simulate successful Friendly Captcha verification for Desiderio and Powermail forms in TYPO3 Development context. Leave disabled on live sites; production still needs a real Friendly Captcha site key and API key.'
+    description: 'Simulate successful Friendly Captcha verification (inert placeholder widget, validation passes). In TYPO3 Development context (e.g. ddev) this is the automatic default and the setting is not needed; enable it for other non-production contexts such as Testing. Production always uses the real captcha.'
+    type: bool
+    default: false
+    category: desiderio.forms
+
+  desiderio.forms.friendlyCaptchaForceReal:
+    label: 'Force real Friendly Captcha in Development'
+    description: 'Development context bypasses the captcha by default so forms work without keys on ddev. Enable this to force the real Friendly Captcha widget and validation even in Development — e.g. to test real site/API keys locally. Wins over the automatic bypass and over test mode.'
     type: bool
     default: false
     category: desiderio.forms
@@ -424,4 +431,18 @@ settings:
     description: 'Custom event name used for successful form submissions. Brevo allows letters, numbers, hyphens, and underscores.'
     type: string
     default: desiderio_form_submit
+    category: desiderio.forms
+
+  desiderio.forms.brevo.doubleOptInTemplateId:
+    label: 'Brevo double opt-in template id'
+    description: 'Id of the Brevo DOI email template. When set (together with list ids), newsletter signups use the Brevo double opt-in flow: the contact only joins the list after confirming the email. Empty disables DOI and contacts are created directly.'
+    type: string
+    default: ''
+    category: desiderio.forms
+
+  desiderio.forms.brevo.doubleOptInRedirectUrl:
+    label: 'Brevo double opt-in redirect URL'
+    description: 'Absolute URL the subscriber lands on after confirming the double opt-in email. Optional; the Brevo template default applies when empty.'
+    type: string
+    default: ''
     category: desiderio.forms

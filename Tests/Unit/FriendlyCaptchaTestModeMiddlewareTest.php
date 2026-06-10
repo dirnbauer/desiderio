@@ -99,6 +99,76 @@ final class FriendlyCaptchaTestModeMiddlewareTest extends TestCase
         self::assertSame($request, $GLOBALS['TYPO3_REQUEST']);
     }
 
+    public function testDevelopmentContextBypassesCaptchaWithoutAnySetting(): void
+    {
+        $site = $this->createSite(false);
+        $request = (new ServerRequest())->withAttribute('site', $site);
+        $GLOBALS['TYPO3_REQUEST'] = $request;
+
+        $handler = new class implements RequestHandlerInterface {
+            public ?ServerRequestInterface $request = null;
+
+            public function handle(ServerRequestInterface $request): ResponseInterface
+            {
+                $this->request = $request;
+
+                return new Response();
+            }
+        };
+
+        (new FriendlyCaptchaTestModeMiddleware(new NullLogger(), new ApplicationContext('Development')))->process($request, $handler);
+
+        self::assertInstanceOf(ServerRequestInterface::class, $handler->request);
+        self::assertTrue($this->requestSiteConfiguration($handler->request)['friendlycaptcha_skip_dev_validation'] ?? false);
+    }
+
+    public function testForceRealSettingKeepsCaptchaActiveInDevelopment(): void
+    {
+        $site = $this->createSite(false, true);
+        $request = (new ServerRequest())->withAttribute('site', $site);
+        $GLOBALS['TYPO3_REQUEST'] = $request;
+
+        $handler = new class implements RequestHandlerInterface {
+            public ?ServerRequestInterface $request = null;
+
+            public function handle(ServerRequestInterface $request): ResponseInterface
+            {
+                $this->request = $request;
+
+                return new Response();
+            }
+        };
+
+        (new FriendlyCaptchaTestModeMiddleware(new NullLogger(), new ApplicationContext('Development')))->process($request, $handler);
+
+        self::assertInstanceOf(ServerRequestInterface::class, $handler->request);
+        self::assertFalse($this->requestSiteConfiguration($handler->request)['friendlycaptcha_skip_dev_validation'] ?? false);
+        self::assertSame($request, $GLOBALS['TYPO3_REQUEST']);
+    }
+
+    public function testForceRealSettingWinsOverTestModeSetting(): void
+    {
+        $site = $this->createSite(true, true);
+        $request = (new ServerRequest())->withAttribute('site', $site);
+        $GLOBALS['TYPO3_REQUEST'] = $request;
+
+        $handler = new class implements RequestHandlerInterface {
+            public ?ServerRequestInterface $request = null;
+
+            public function handle(ServerRequestInterface $request): ResponseInterface
+            {
+                $this->request = $request;
+
+                return new Response();
+            }
+        };
+
+        (new FriendlyCaptchaTestModeMiddleware(new NullLogger(), new ApplicationContext('Testing')))->process($request, $handler);
+
+        self::assertInstanceOf(ServerRequestInterface::class, $handler->request);
+        self::assertFalse($this->requestSiteConfiguration($handler->request)['friendlycaptcha_skip_dev_validation'] ?? false);
+    }
+
     /**
      * @return array<string, mixed>
      */
@@ -117,7 +187,7 @@ final class FriendlyCaptchaTestModeMiddlewareTest extends TestCase
         return $configuration;
     }
 
-    private function createSite(bool $testMode): Site
+    private function createSite(bool $testMode, bool $forceReal = false): Site
     {
         return new Site(
             'test',
@@ -137,6 +207,7 @@ final class FriendlyCaptchaTestModeMiddlewareTest extends TestCase
                 'desiderio' => [
                     'forms' => [
                         'friendlyCaptchaTestMode' => $testMode,
+                        'friendlyCaptchaForceReal' => $forceReal,
                     ],
                 ],
             ])

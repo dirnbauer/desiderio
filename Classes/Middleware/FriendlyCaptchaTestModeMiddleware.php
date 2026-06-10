@@ -12,11 +12,11 @@ use Psr\Log\LoggerInterface;
 use TYPO3\CMS\Core\Core\ApplicationContext;
 use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Site\Entity\Site;
+use Webconsulting\Desiderio\Utility\FriendlyCaptchaBypass;
 use Webconsulting\Desiderio\Utility\SiteSettingsBoolean;
 
 final class FriendlyCaptchaTestModeMiddleware implements MiddlewareInterface
 {
-    private const SETTING_IDENTIFIER = 'desiderio.forms.friendlyCaptchaTestMode';
     private const FRIENDLY_CAPTCHA_SKIP_KEY = 'friendlycaptcha_skip_dev_validation';
 
     public function __construct(
@@ -27,7 +27,7 @@ final class FriendlyCaptchaTestModeMiddleware implements MiddlewareInterface
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
         $site = $request->getAttribute('site');
-        if (!$site instanceof Site || !SiteSettingsBoolean::isEnabled($site, self::SETTING_IDENTIFIER)) {
+        if (!$site instanceof Site) {
             return $handler->handle($request);
         }
 
@@ -35,11 +35,17 @@ final class FriendlyCaptchaTestModeMiddleware implements MiddlewareInterface
         // even if the site setting is enabled by mistake.
         $context = $this->applicationContext ?? Environment::getContext();
         if ($context->isProduction()) {
-            $this->logger->warning(
-                'FriendlyCaptcha test mode is enabled via site settings but ignored in Production context.',
-                ['site' => $site->getIdentifier(), 'setting' => self::SETTING_IDENTIFIER]
-            );
+            if (SiteSettingsBoolean::isEnabled($site, FriendlyCaptchaBypass::TEST_MODE_SETTING)) {
+                $this->logger->warning(
+                    'FriendlyCaptcha test mode is enabled via site settings but ignored in Production context.',
+                    ['site' => $site->getIdentifier(), 'setting' => FriendlyCaptchaBypass::TEST_MODE_SETTING]
+                );
+            }
 
+            return $handler->handle($request);
+        }
+
+        if (!FriendlyCaptchaBypass::isEnabled($site, $context)) {
             return $handler->handle($request);
         }
 

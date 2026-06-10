@@ -13,11 +13,12 @@ use TYPO3\CMS\Form\Domain\Finishers\Exception\FinisherException;
 use Webconsulting\Desiderio\Utility\DesiderioFormIdentifier;
 
 /**
- * @phpstan-type BrevoConfiguration array{enabled: bool, apiKey: string, listIds: list<int>, strict: bool, trackEvent: bool, eventName: string}
+ * @phpstan-type BrevoConfiguration array{enabled: bool, apiKey: string, listIds: list<int>, strict: bool, trackEvent: bool, eventName: string, doubleOptInTemplateId: int, doubleOptInRedirectUrl: string}
  */
 final class BrevoContactFinisher extends AbstractFinisher
 {
     private const CONTACT_ENDPOINT = 'https://api.brevo.com/v3/contacts';
+    private const DOUBLE_OPT_IN_ENDPOINT = 'https://api.brevo.com/v3/contacts/doubleOptinConfirmation';
     private const EVENT_ENDPOINT = 'https://api.brevo.com/v3/events';
     private const SKIPPED_FIELDS = [
         'friendlycaptcha' => true,
@@ -33,6 +34,7 @@ final class BrevoContactFinisher extends AbstractFinisher
             'eventName' => 'desiderio_form_submit',
             'trackEvent' => true,
             'updateEnabled' => true,
+            'doubleOptIn' => false,
         ];
     }
 
@@ -89,6 +91,12 @@ final class BrevoContactFinisher extends AbstractFinisher
      */
     private function syncContact(array $configuration, string $email, array $contactAttributes, string $formIdentifier): void
     {
+        if ($this->shouldUseDoubleOptIn($configuration, $email, $formIdentifier)) {
+            $this->createDoubleOptInContact($configuration, $email, $contactAttributes, $formIdentifier);
+
+            return;
+        }
+
         $payload = [
             'updateEnabled' => $this->getBooleanOption('updateEnabled', true),
         ];
@@ -114,6 +122,75 @@ final class BrevoContactFinisher extends AbstractFinisher
                 ['formIdentifier' => $formIdentifier, 'statusCode' => $statusCode],
                 $configuration['strict'],
                 1762361001
+            );
+        }
+    }
+
+    /**
+     * Brevo double opt-in requires an email, a DOI email template, and at least
+     * one target list. When any of these is missing the finisher falls back to
+     * the plain contact sync so submissions are never lost.
+     *
+     * @param BrevoConfiguration $configuration
+     */
+    private function shouldUseDoubleOptIn(array $configuration, string $email, string $formIdentifier): bool
+    {
+        if (!$this->getBooleanOption('doubleOptIn', false)) {
+            return false;
+        }
+        if ($email === '') {
+            return false;
+        }
+        if ($configuration['doubleOptInTemplateId'] <= 0) {
+            $this->logDebug(
+                'Brevo double opt-in requested but no DOI template id is configured; falling back to direct contact sync.',
+                ['formIdentifier' => $formIdentifier]
+            );
+
+            return false;
+        }
+        if ($configuration['listIds'] === []) {
+            $this->logDebug(
+                'Brevo double opt-in requested but no list ids are configured; falling back to direct contact sync.',
+                ['formIdentifier' => $formIdentifier]
+            );
+
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * @param BrevoConfiguration $configuration
+     * @param array<string, string|int|float|bool|list<string>> $contactAttributes
+     */
+    private function createDoubleOptInContact(array $configuration, string $email, array $contactAttributes, string $formIdentifier): void
+    {
+        $payload = [
+            'email' => $email,
+            'templateId' => $configuration['doubleOptInTemplateId'],
+            'includeListIds' => $configuration['listIds'],
+        ];
+        if ($contactAttributes !== []) {
+            $payload['attributes'] = $contactAttributes;
+        }
+        if ($configuration['doubleOptInRedirectUrl'] !== '') {
+            $payload['redirectionUrl'] = $configuration['doubleOptInRedirectUrl'];
+        }
+
+        $response = $this->sendRequest(self::DOUBLE_OPT_IN_ENDPOINT, $payload, $configuration, $formIdentifier, 'double-opt-in');
+        if (!$response instanceof ResponseInterface) {
+            return;
+        }
+
+        $statusCode = $response->getStatusCode();
+        if ($statusCode < 200 || $statusCode >= 300) {
+            $this->failOrLog(
+                'Brevo double opt-in returned a non-success response.',
+                ['formIdentifier' => $formIdentifier, 'statusCode' => $statusCode],
+                $configuration['strict'],
+                1762361004
             );
         }
     }

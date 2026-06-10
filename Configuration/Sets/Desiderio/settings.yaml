@@ -57,6 +57,7 @@ desiderio:
     senderAddress: no-reply@example.com
     senderName: Website forms
     friendlyCaptchaTestMode: false
+    friendlyCaptchaForceReal: false
     brevo:
       enabled: false
       listIds: ''

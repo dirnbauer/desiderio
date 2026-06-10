@@ -270,6 +270,10 @@ composer audit --no-dev --abandoned=fail
 
 The CI workflow runs PHPStan at max level, PHPUnit on PHP 8.3–8.5, SQLite-backed functional tests, composer validation/audit, and the strict Content Blocks audit.
 
+### CSS cascade layers
+
+The Tailwind v4 entry point (`Resources/Private/Tailwind/desiderio.css`) uses native CSS cascade layers (`theme, base, components, utilities`). Element defaults go in `@layer base`, shared component classes in `@layer components` (so utility classes can override them), and custom utilities are declared with `@utility` — never `@layer utilities`, which is Tailwind v3 syntax. The per-feature stylesheets in `Resources/Private/Css/desiderio/` stay **unlayered** on purpose: unlayered CSS always beats layered CSS, so they override Tailwind without specificity hacks. Details in `Documentation/Developer/Index.rst` (section "CSS cascade layers").
+
 ## Visual Editor compatibility
 
 Desiderio registers `ExtbasePluginRequestSanitizerMiddleware` to strip malformed Extbase `controller` / `action` arguments from Visual Editor persistence requests. Without it, News and other Extbase plugins can throw while rendering an edited page.

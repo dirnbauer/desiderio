@@ -805,8 +805,12 @@ body {
   --d-danger-text: color-mix(in oklch, var(--d-danger), var(--foreground) 30%);
   /* Same idea for brand-colored text on primary tints (e.g. search-result
      highlights on bg-primary/10): presets whose primary sits near the 4.5:1
-     boundary on white drop below it on the tint without the pull. */
-  --d-primary-text: color-mix(in oklch, var(--primary), var(--foreground) 35%);
+     boundary on white drop below it on the tint without the pull. Mixed
+     towards an explicitly hue-less black (white in dark mode, see below) —
+     mixing towards var(--foreground) would rotate the brand hue, because a
+     color specified in oklch keeps its hue in interpolation even at chroma 0
+     (only *converted* achromatic colors get the powerless-hue treatment). */
+  --d-primary-text: color-mix(in oklch, var(--primary), oklch(0 0 none) 35%);
   --d-overlay-foreground: var(--primary-foreground);
   --d-radius-sm: calc(var(--radius) * 0.6);
   --d-radius-md: calc(var(--radius) * 0.8);
@@ -842,4 +846,11 @@ body {
   --d-text-4xl: 2.25rem;
   --d-text-5xl: 3rem;
   --d-text-6xl: 3.75rem;
+}
+
+/* Dark scheme pulls brand text towards white instead of black. Declared on
+   body (not in the html-level .dark block) so the mix resolves against the
+   preset's --primary, which the body[data-shadcn-preset] blocks override. */
+.dark body {
+  --d-primary-text: color-mix(in oklch, var(--primary), oklch(1 0 none) 35%);
 }

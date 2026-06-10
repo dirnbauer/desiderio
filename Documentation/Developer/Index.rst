@@ -96,6 +96,60 @@ assets live in ``Resources/Public``:
     *   - ``Js/charts.js``
         - Chart rendering helpers.
 
+..  _developer-css-layers:
+
+CSS cascade layers
+==================
+
+The Tailwind v4 entry point
+:file:`Resources/Private/Tailwind/desiderio.css` uses native CSS cascade
+layers. ``@import "tailwindcss"`` declares the layer order ``theme, base,
+components, utilities`` as real ``@layer`` rules in the browser — not the
+build-time ``@layer`` directives Tailwind v3 used. The compiled output is
+committed to :file:`Resources/Public/Css/desiderio-tailwind.css` via
+``npm run build:css``.
+
+The layering conventions are:
+
+..  list-table::
+    :header-rows: 1
+    :widths: 30 70
+
+    *   - Bucket
+        - Contents and rules
+    *   - ``@layer base``
+        - Element defaults only: global border/outline colors, ``html``
+          font stack, ``body`` background and foreground tokens.
+    *   - ``@layer components``
+        - Shared component classes such as ``.frame``, ``.ce-frame``,
+          ``.desiderio-section``, and card surface defaults. Utility
+          classes always win against this layer because ``utilities``
+          comes later in the layer order — that is intentional and lets
+          content elements override component defaults per instance.
+    *   - ``@utility``
+        - Custom utilities (``d-control-h``, ``d-control-text``,
+          ``d-control-px``). Never write ``@layer utilities { ... }`` in
+          Tailwind v4; ``@utility`` is the replacement and additionally
+          makes the class variant-aware (``hover:``, ``md:``, ...).
+    *   - Unlayered CSS
+        - The per-feature stylesheets in
+          :file:`Resources/Private/Css/desiderio/` (header, footer, Solr,
+          content frames, presets, ...) deliberately use **no**
+          ``@layer`` at all.
+
+The unlayered files are a feature, not an omission: under native cascade
+layers, unlayered CSS always beats layered CSS regardless of specificity.
+That is what lets the feature stylesheets reliably override Tailwind
+utilities and component styles without specificity hacks or
+``!important``. Do not wrap them in ``@layer components`` — utility
+classes would suddenly win against them and break existing overrides.
+
+When adding styles, pick the bucket by intent: element default →
+``@layer base``; reusable, utility-overridable class →
+``@layer components``; new variant-aware utility → ``@utility``; feature
+or preset styling that must win over Tailwind → an unlayered file in
+:file:`Resources/Private/Css/desiderio/`.
+
 ..  _developer-shadcn:
 
 ui.shadcn.com/create sync

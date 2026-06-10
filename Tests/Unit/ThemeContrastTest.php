@@ -60,12 +60,13 @@ final class ThemeContrastTest extends TestCase
                 }
 
                 // Search-result highlight (.results-highlight): --d-primary-text
-                // (primary pulled 35% towards the foreground, mixed in oklch) on
-                // bg-primary/10 (primary/20 in dark), alpha-composited over the card.
-                if (isset($variables['primary'], $variables['foreground'])) {
+                // (primary pulled 35% towards a hue-less black, white in dark mode)
+                // on bg-primary/10 (primary/20 in dark), composited over the card.
+                if (isset($variables['primary'])) {
                     $surface = $variables['card'] ?? $variables['background'] ?? null;
                     if ($surface !== null) {
-                        $text = $this->oklchToSrgb(...$this->mixOklch($variables['primary'], $variables['foreground'], 0.35));
+                        $target = [$mode === 'dark' ? 1.0 : 0.0, 0.0, $variables['primary'][2]];
+                        $text = $this->oklchToSrgb(...$this->mixOklch($variables['primary'], $target, 0.35));
                         $tint = $this->compositeSrgb(
                             $this->oklchToSrgb(...$variables['primary']),
                             $mode === 'dark' ? 0.2 : 0.1,
@@ -109,9 +110,9 @@ final class ThemeContrastTest extends TestCase
 
     /**
      * color-mix(in oklch, $base, $other $weight): linear on lightness and
-     * chroma, shortest arc on hue. An achromatic color's hue (chroma 0) is
-     * powerless per CSS Color 4 and treated as missing, so the other color's
-     * hue carries through unrotated.
+     * chroma, shortest arc on hue. Note: a color *specified* in oklch keeps
+     * its hue in interpolation even at chroma 0 — pass the carried hue in
+     * $other explicitly when modelling a hue-less (`none`) mix target.
      *
      * @param array{float, float, float} $base
      * @param array{float, float, float} $other
@@ -119,19 +120,12 @@ final class ThemeContrastTest extends TestCase
      */
     private function mixOklch(array $base, array $other, float $weight): array
     {
-        if ($other[1] === 0.0) {
-            $hue = $base[2];
-        } elseif ($base[1] === 0.0) {
-            $hue = $other[2];
-        } else {
-            $hueDelta = fmod($other[2] - $base[2] + 540.0, 360.0) - 180.0;
-            $hue = fmod($base[2] + $hueDelta * $weight + 360.0, 360.0);
-        }
+        $hueDelta = fmod($other[2] - $base[2] + 540.0, 360.0) - 180.0;
 
         return [
             $base[0] + ($other[0] - $base[0]) * $weight,
             $base[1] + ($other[1] - $base[1]) * $weight,
-            $hue,
+            fmod($base[2] + $hueDelta * $weight + 360.0, 360.0),
         ];
     }
 

@@ -1,0 +1,7 @@
+
+/* Eyebrow badges sit directly on the page background; secondary fill alone
+   nearly vanishes in dark mode (pill vs page ~1.7:1). A scheme-neutral edge
+   keeps the pill readable in light and dark without touching the atom. */
+.desiderio-section [data-slot="badge"][data-variant="secondary"] {
+    border-color: color-mix(in oklch, var(--foreground) 22%, transparent);
+}

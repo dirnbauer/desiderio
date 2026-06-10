@@ -20,12 +20,14 @@
     list-style: none;
     position: relative;
 }
-.feature-timeline__list::before {
+/* Connector drawn per item so the line ends exactly at the last marker
+   instead of running on to the bottom of the (taller) last card. */
+.feature-timeline__item:not(:last-child)::after {
     content: '';
     position: absolute;
     left: calc(var(--feature-timeline-marker-size) / 2);
     top: calc(var(--feature-timeline-marker-size) / 2);
-    bottom: calc(var(--feature-timeline-marker-size) / 2);
+    bottom: calc(var(--feature-timeline-marker-size) / -2);
     width: 1px;
     transform: translateX(-50%);
     background: var(--border);

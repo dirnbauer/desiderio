@@ -17,5 +17,25 @@ const css = manifest
   .join('\n\n')
   .concat('\n');
 
-writeFileSync(outputPath, css);
-console.log(`Built ${outputPath} from ${manifest.length} partials.`);
+/**
+ * Conservative dependency-free minification: strips comments and collapses
+ * structural whitespace. Quoted strings (content:, url()) survive because the
+ * transforms only touch whitespace adjacent to syntax characters; the CSS
+ * partials do not use multi-word quoted strings with significant spacing
+ * around braces/colons.
+ */
+function minifyCss(input) {
+  return input
+    .replace(/\/\*[\s\S]*?\*\//g, '')
+    .replace(/\s+/g, ' ')
+    // Only braces, semicolons, and commas — ':' must stay untouched because
+    // descendant selectors like ".frame :where(h2)" change meaning when the
+    // space is removed.
+    .replace(/\s*([{};,])\s*/g, '$1')
+    .replace(/;}/g, '}')
+    .trim()
+    .concat('\n');
+}
+
+writeFileSync(outputPath, minifyCss(css));
+console.log(`Built ${outputPath} (minified) from ${manifest.length} partials.`);

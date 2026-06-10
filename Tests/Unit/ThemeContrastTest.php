@@ -58,6 +58,25 @@ final class ThemeContrastTest extends TestCase
                         $failures[] = sprintf('%s/%s %s on %s = %.2f (< %.1f)', $preset, $mode, $foreground, $background, $ratio, $minimum);
                     }
                 }
+
+                // Search-result highlight (.results-highlight): --d-primary-text
+                // (primary pulled 35% towards the foreground, mixed in oklch) on
+                // bg-primary/10 (primary/20 in dark), alpha-composited over the card.
+                if (isset($variables['primary'], $variables['foreground'])) {
+                    $surface = $variables['card'] ?? $variables['background'] ?? null;
+                    if ($surface !== null) {
+                        $text = $this->oklchToSrgb(...$this->mixOklch($variables['primary'], $variables['foreground'], 0.35));
+                        $tint = $this->compositeSrgb(
+                            $this->oklchToSrgb(...$variables['primary']),
+                            $mode === 'dark' ? 0.2 : 0.1,
+                            $this->oklchToSrgb(...$surface)
+                        );
+                        $ratio = $this->contrast($text, $tint);
+                        if ($ratio < self::TEXT_MINIMUM) {
+                            $failures[] = sprintf('%s/%s d-primary-text on primary tint = %.2f (< %.1f)', $preset, $mode, $ratio, self::TEXT_MINIMUM);
+                        }
+                    }
+                }
             }
         }
 
@@ -86,6 +105,42 @@ final class ThemeContrastTest extends TestCase
         }
 
         return $variables;
+    }
+
+    /**
+     * color-mix(in oklch, $base, $other $weight): linear on lightness and
+     * chroma, shortest arc on hue — matching the CSS resolution.
+     *
+     * @param array{float, float, float} $base
+     * @param array{float, float, float} $other
+     * @return array{float, float, float}
+     */
+    private function mixOklch(array $base, array $other, float $weight): array
+    {
+        $hueDelta = fmod($other[2] - $base[2] + 540.0, 360.0) - 180.0;
+
+        return [
+            $base[0] + ($other[0] - $base[0]) * $weight,
+            $base[1] + ($other[1] - $base[1]) * $weight,
+            fmod($base[2] + $hueDelta * $weight + 360.0, 360.0),
+        ];
+    }
+
+    /**
+     * Simple alpha compositing on gamma-encoded sRGB, as the browser blends
+     * an oklch(... / alpha) background over the surface beneath it.
+     *
+     * @param array{float, float, float} $foreground
+     * @param array{float, float, float} $background
+     * @return array{float, float, float}
+     */
+    private function compositeSrgb(array $foreground, float $alpha, array $background): array
+    {
+        return [
+            $foreground[0] * $alpha + $background[0] * (1 - $alpha),
+            $foreground[1] * $alpha + $background[1] * (1 - $alpha),
+            $foreground[2] * $alpha + $background[2] * (1 - $alpha),
+        ];
     }
 
     /**

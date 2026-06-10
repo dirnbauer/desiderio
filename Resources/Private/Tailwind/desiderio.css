@@ -282,7 +282,10 @@
   }
 
   .results-highlight {
-    @apply inline box-decoration-clone rounded-md bg-primary/10 px-1 py-0.5 font-medium text-primary ring-1 ring-primary/20;
+    @apply inline box-decoration-clone rounded-md bg-primary/10 px-1 py-0.5 font-medium ring-1 ring-primary/20;
+    /* Not text-primary: 14px text on the primary tint needs the contrast-safe
+       mix (see --d-primary-text in shadcn-theme.css). */
+    color: var(--d-primary-text, var(--primary));
   }
 
   .dark .results-highlight {

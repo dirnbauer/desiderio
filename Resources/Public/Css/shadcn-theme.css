@@ -803,6 +803,10 @@ body {
   --d-success-text: color-mix(in oklch, var(--d-success), var(--foreground) 30%);
   --d-warning-text: color-mix(in oklch, var(--d-warning), var(--foreground) 30%);
   --d-danger-text: color-mix(in oklch, var(--d-danger), var(--foreground) 30%);
+  /* Same idea for brand-colored text on primary tints (e.g. search-result
+     highlights on bg-primary/10): presets whose primary sits near the 4.5:1
+     boundary on white drop below it on the tint without the pull. */
+  --d-primary-text: color-mix(in oklch, var(--primary), var(--foreground) 35%);
   --d-overlay-foreground: var(--primary-foreground);
   --d-radius-sm: calc(var(--radius) * 0.6);
   --d-radius-md: calc(var(--radius) * 0.8);

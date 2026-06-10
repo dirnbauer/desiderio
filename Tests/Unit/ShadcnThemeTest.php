@@ -348,10 +348,12 @@ final class ShadcnThemeTest extends TestCase
     {
         $css = (string) file_get_contents(__DIR__ . '/../../Resources/Public/Css/desiderio.css');
 
-        self::assertStringContainsString('.d-solr-suggest :where(a, a *)', $css);
-        self::assertStringContainsString('#tx-solr-facets-in-use :where(a, a *)', $css);
-        self::assertStringContainsString('#tx-solr-sorting :where(a, a *, summary, summary *)', $css);
-        self::assertStringContainsString('text-decoration-line: none;', $css);
+        // The bundle is minified at build time (build-desiderio-css.mjs):
+        // whitespace around commas and trailing semicolons are collapsed.
+        self::assertStringContainsString('.d-solr-suggest :where(a,a *)', $css);
+        self::assertStringContainsString('#tx-solr-facets-in-use :where(a,a *)', $css);
+        self::assertStringContainsString('#tx-solr-sorting :where(a,a *,summary,summary *)', $css);
+        self::assertStringContainsString('text-decoration-line: none', $css);
     }
 
     public function testStyleguidePageListsEveryElementOverview(): void

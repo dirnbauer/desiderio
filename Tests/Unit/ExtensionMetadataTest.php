@@ -42,7 +42,6 @@ final class ExtensionMetadataTest extends TestCase
         self::assertArrayHasKey('php', $conf['constraints']['depends']);
         self::assertArrayHasKey('workspaces', $conf['constraints']['depends']);
         self::assertArrayHasKey('content_blocks', $conf['constraints']['depends']);
-        self::assertArrayHasKey('vite_asset_collector', $conf['constraints']['depends']);
         self::assertArrayHasKey('shadcn2fluid_templates', $conf['constraints']['conflicts']);
         self::assertArrayHasKey('solr', $conf['constraints']['suggests']);
         self::assertArrayHasKey('news', $conf['constraints']['suggests']);

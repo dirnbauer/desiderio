@@ -429,7 +429,7 @@ parameters:
 		-
 			message: '#^Cannot access offset ''constraints'' on mixed\.$#'
 			identifier: offsetAccess.nonOffsetAccessible
-			count: 8
+			count: 7
 			path: Tests/Unit/ExtensionMetadataTest.php
 
 		-

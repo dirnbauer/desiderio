@@ -55,7 +55,7 @@
                     <div class="review-carousel__reviewer">
                         <f:if condition="{review.reviewer_image}">
                             <f:for each="{review.reviewer_image}" as="fileReference">
-                                <f:image image="{fileReference}" width="96c" height="96c" alt="" loading="lazy" class="review-carousel__avatar"/>
+                                <f:image image="{fileReference}" width="96c" height="96c" alt="" loading="lazy" class="review-carousel__avatar" additionalAttributes="{srcset: '{f:uri.image(image: fileReference, width: \'96c\', height: \'96c\')} 1x, {f:uri.image(image: fileReference, width: \'192c\', height: \'192c\')} 2x'}" decoding="async"/>
                             </f:for>
                         </f:if>
                         <div class="review-carousel__meta">

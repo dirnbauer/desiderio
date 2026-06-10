@@ -20,7 +20,7 @@
                 </f:if>
                 <f:if condition="{data.image}">
                     <f:for each="{data.image}" as="fileReference">
-                        <f:image image="{fileReference}" maxWidth="480" alt="{f:if(condition: fileReference.alternative, then: fileReference.alternative, else: '{data.header}')}" class="demo-request__image"/>
+                        <f:image image="{fileReference}" maxWidth="480" alt="{f:if(condition: fileReference.alternative, then: fileReference.alternative, else: '{data.header}')}" class="demo-request__image" loading="lazy" decoding="async"/>
                     </f:for>
                 </f:if>
             </div>

@@ -17,7 +17,7 @@
             <f:for each="{data.sections}" as="section">
                 <div class="navbar-sidebar__section">
                     <f:if condition="{section.title}">
-                        <h3 class="navbar-sidebar__section-title">{section -> f:render.text(field: 'title')}</h3>
+                        <h2 class="navbar-sidebar__section-title">{section -> f:render.text(field: 'title')}</h2>
                     </f:if>
                     <ul class="navbar-sidebar__list">
                         <f:if condition="{section.link_1_label}"><li><f:if condition="{section.link_1.url}"><f:then><d:atom.link href="{section.link_1.url}" target="{section.link_1.target}" variant="muted" class="navbar-sidebar__link">{section -> f:render.text(field: 'link_1_label')}</d:atom.link></f:then><f:else><span class="navbar-sidebar__link">{section -> f:render.text(field: 'link_1_label')}</span></f:else></f:if></li></f:if>

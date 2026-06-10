@@ -34,11 +34,14 @@
 .alert--destructive .alert__icon { color: var(--destructive); }
 .alert__content { flex: 1; min-width: 0; }
 .alert__title { margin: 0 0 0.125rem; font-size: var(--d-text-base); font-weight: 650; line-height: 1.35; }
+/* Body copy stays on the foreground token: the variant backgrounds are
+   tinted, and muted-foreground drops below 4.5:1 on them in dark mode.
+   Only the icon (and border) carry the variant tint. */
 .alert__description {
     max-width: 68ch;
     font-size: var(--d-text-sm);
     line-height: 1.5;
-    color: var(--muted-foreground);
+    color: var(--foreground);
 }
 .alert__description > *:first-child { margin-top: 0; }
 .alert__description > *:last-child { margin-bottom: 0; }

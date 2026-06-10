@@ -15,7 +15,7 @@
     <d:layout.container>
         <header class="header-banner__inner">
             <f:if condition="{data.header}">
-                <h1 class="header-banner__title">{data -> f:render.text(field: 'header')}</h1>
+                <h2 class="header-banner__title">{data -> f:render.text(field: 'header')}</h2>
             </f:if>
             <f:if condition="{data.subheadline}">
                 <p class="header-banner__description">{data -> f:render.text(field: 'subheadline')}</p>

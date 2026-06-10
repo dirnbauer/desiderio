@@ -58,14 +58,20 @@ body {
     flex-shrink: 0;
 }
 
+/*
+ * Brand mark: dot inside a ring (mirrors Resources/Public/Icons/favicon.svg).
+ * The ring mixes from --foreground so it adapts to both schemes (dark ring on
+ * light, light ring on dark); the dot keeps the preset accent and carries a
+ * subtle foreground outline so it never sinks into a dark background.
+ */
 .desiderio-header__brand-mark {
     display: inline-grid;
     place-items: center;
     width: 2rem;
     height: 2rem;
     flex: 0 0 auto;
-    border: 0;
-    border-radius: 0;
+    border: 0.1875rem solid color-mix(in oklch, var(--foreground) 85%, transparent);
+    border-radius: 999px;
     background: transparent;
     box-shadow: none;
 }
@@ -75,7 +81,7 @@ body {
     height: 0.75rem;
     border-radius: 999px;
     background: var(--primary);
-    box-shadow: 0 0 0 0.375rem color-mix(in oklch, var(--primary) 16%, transparent);
+    box-shadow: 0 0 0 1px color-mix(in oklch, var(--foreground) 25%, transparent);
 }
 
 .desiderio-header__wordmark {
@@ -2574,13 +2580,15 @@ article[itemtype="https://schema.org/BlogPosting"] [itemprop="articleBody"] .ce-
     width: 2.25rem; height: 2.25rem; display: flex; align-items: center; justify-content: center;
     font-size: var(--d-text-sm); font-weight: 700; flex-shrink: 0;
     border-radius: 50%;
-    background: var(--chart-1);
-    color: var(--foreground);
+    background: var(--secondary);
+    color: var(--secondary-foreground);
+    border: 1px solid var(--border);
 }
-.leaderboard__item:nth-child(1) .leaderboard__rank { background: var(--chart-5); color: var(--primary-foreground); }
-.leaderboard__item:nth-child(2) .leaderboard__rank { background: var(--chart-4); color: var(--primary-foreground); }
-.leaderboard__item:nth-child(3) .leaderboard__rank { background: var(--chart-3); color: var(--primary-foreground); }
-.leaderboard__item:nth-child(4) .leaderboard__rank { background: var(--chart-2); color: var(--primary-foreground); }
+.leaderboard__item:first-child .leaderboard__rank {
+    background: var(--primary);
+    color: var(--primary-foreground);
+    border-color: var(--primary);
+}
 .leaderboard__avatar {
     width: 3.5rem; height: 3.5rem; flex-shrink: 0;
     display: flex; align-items: center; justify-content: center;
@@ -2624,4 +2632,79 @@ article[itemtype="https://schema.org/BlogPosting"] [itemprop="articleBody"] .ce-
     .pricing-annual-monthly__plan
 ) {
     overflow: visible;
+}
+
+/* ------------------------------------------------------------------ */
+/*  Lightbox — opt-in image enlargement via a shared native <dialog>   */
+/*  Trigger: <button class="d-lightbox" data-d-lightbox …> wrapping an */
+/*  image. The dialog itself is created on demand by desiderio.js.     */
+/* ------------------------------------------------------------------ */
+
+.d-lightbox {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: inherit;
+    line-height: 0;
+    cursor: zoom-in;
+    border-radius: inherit;
+}
+.d-lightbox:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+}
+
+.d-lightbox-dialog {
+    position: fixed;
+    inset: 0;
+    margin: auto;
+    width: fit-content;
+    max-width: min(96vw, 90rem);
+    max-height: 94vh;
+    padding: 0.5rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg, var(--radius));
+    background: var(--background);
+    color: var(--foreground);
+    box-shadow: var(--shadow-lg, var(--d-surface-shadow, none));
+}
+.d-lightbox-dialog::backdrop {
+    background: color-mix(in oklch, black 80%, transparent);
+}
+
+.d-lightbox-dialog__img {
+    display: block;
+    max-width: 100%;
+    max-height: calc(94vh - 2rem);
+    width: auto;
+    height: auto;
+    margin: auto;
+    border-radius: calc(var(--radius-lg, var(--radius)) - 0.25rem);
+}
+
+.d-lightbox-dialog__close {
+    position: absolute;
+    inset-block-start: 1rem;
+    inset-inline-end: 1rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md, var(--radius));
+    background: color-mix(in oklch, var(--background) 85%, transparent);
+    color: var(--foreground);
+    cursor: pointer;
+    line-height: 0;
+}
+.d-lightbox-dialog__close:hover {
+    background: var(--muted);
+}
+.d-lightbox-dialog__close:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
 }

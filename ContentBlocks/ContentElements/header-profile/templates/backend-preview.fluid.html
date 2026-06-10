@@ -45,7 +45,7 @@
             </div>
         </f:if>
         <f:if condition="{data.avatar}">
-            <div class="d-ce-preview__thumbs" aria-label="Avatar">
+            <div class="d-ce-preview__thumbs" role="group" aria-label="Avatar">
                 <f:for each="{data.avatar}" as="file">
                     <f:if condition="{file.publicUrl}">
                         <img src="{file.publicUrl}" alt="{file.alternative}" class="d-ce-preview__thumb" loading="lazy" />

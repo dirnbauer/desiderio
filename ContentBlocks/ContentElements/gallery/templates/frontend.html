@@ -19,7 +19,12 @@
                 <f:for each="{data.items}" as="item" iteration="galleryIteration">
                     <f:if condition="{galleryIteration.isFirst}">
                         <f:for each="{item.image}" as="fileReference">
-                            <f:image image="{fileReference}" maxWidth="1440" alt="{fileReference.alternative -> f:or(alternative: item.title)}" class="gallery__featured-image" data="{d-gallery-main: 'true'}"/>
+                            <button type="button" class="d-lightbox" data-d-lightbox
+                                    data-d-lightbox-src="{f:uri.image(image: fileReference, maxWidth: 2880)}"
+                                    data-d-lightbox-close="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:aria.dismiss', default: 'Dismiss this notice')}"
+                                    aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:lightbox.open', default: 'Show image in full size')}">
+                                <f:image image="{fileReference}" maxWidth="1440" alt="{fileReference.alternative -> f:or(alternative: item.title)}" class="gallery__featured-image" data="{d-gallery-main: 'true'}" loading="lazy" decoding="async"/>
+                            </button>
                             <f:variable name="featuredCredit" value="{fileReference.description}"/>
                         </f:for>
                         <figcaption class="gallery__featured-caption">
@@ -40,12 +45,13 @@
                                 class="gallery__thumb"
                                 data-d-gallery-thumb
                                 data-large-src="{f:uri.image(image: fileReference, maxWidth: 1440)}"
+                                data-large-src-2x="{f:uri.image(image: fileReference, maxWidth: 2880)}"
                                 data-thumb-title="{item.title}"
                                 data-thumb-description="{item.description}"
                                 data-thumb-credit="{fileReference.description}"
                                 data-thumb-alt="{fileReference.alternative -> f:or(alternative: item.title)}"
                                 data-thumb-link="{item.link.url}"
-                                aria-selected="{f:if(condition: galleryIteration.isFirst, then: 'true', else: 'false')}">
+                                aria-current="{f:if(condition: galleryIteration.isFirst, then: 'true', else: 'false')}">
                             <f:image image="{fileReference}" maxWidth="480" alt="{fileReference.alternative -> f:or(alternative: item.title)}" loading="lazy" decoding="async" class="gallery__thumb-image"/>
                             <f:if condition="{item.title}">
                                 <span class="gallery__thumb-label">{item -> f:render.text(field: 'title')}</span>

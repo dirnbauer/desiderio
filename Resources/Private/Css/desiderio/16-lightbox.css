@@ -1,0 +1,74 @@
+/* ------------------------------------------------------------------ */
+/*  Lightbox — opt-in image enlargement via a shared native <dialog>   */
+/*  Trigger: <button class="d-lightbox" data-d-lightbox …> wrapping an */
+/*  image. The dialog itself is created on demand by desiderio.js.     */
+/* ------------------------------------------------------------------ */
+
+.d-lightbox {
+    display: block;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: inherit;
+    line-height: 0;
+    cursor: zoom-in;
+    border-radius: inherit;
+}
+.d-lightbox:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+}
+
+.d-lightbox-dialog {
+    position: fixed;
+    inset: 0;
+    margin: auto;
+    width: fit-content;
+    max-width: min(96vw, 90rem);
+    max-height: 94vh;
+    padding: 0.5rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg, var(--radius));
+    background: var(--background);
+    color: var(--foreground);
+    box-shadow: var(--shadow-lg, var(--d-surface-shadow, none));
+}
+.d-lightbox-dialog::backdrop {
+    background: color-mix(in oklch, black 80%, transparent);
+}
+
+.d-lightbox-dialog__img {
+    display: block;
+    max-width: 100%;
+    max-height: calc(94vh - 2rem);
+    width: auto;
+    height: auto;
+    margin: auto;
+    border-radius: calc(var(--radius-lg, var(--radius)) - 0.25rem);
+}
+
+.d-lightbox-dialog__close {
+    position: absolute;
+    inset-block-start: 1rem;
+    inset-inline-end: 1rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    padding: 0;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md, var(--radius));
+    background: color-mix(in oklch, var(--background) 85%, transparent);
+    color: var(--foreground);
+    cursor: pointer;
+    line-height: 0;
+}
+.d-lightbox-dialog__close:hover {
+    background: var(--muted);
+}
+.d-lightbox-dialog__close:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+}

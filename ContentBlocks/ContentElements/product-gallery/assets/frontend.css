@@ -68,7 +68,7 @@
     border-color: var(--ring);
     box-shadow: 0 0 0 2px var(--background), 0 0 0 4px var(--ring);
 }
-.product-gallery__thumb[aria-selected="true"],
+.product-gallery__thumb[aria-current="true"],
 .product-gallery__thumb--active {
     border-color: var(--ring);
     box-shadow: 0 0 0 1px var(--ring);
@@ -175,3 +175,6 @@
         transform: none;
     }
 }
+
+/* The destructive badge tint needs a darker text shade for 12px WCAG contrast. */
+[data-slot="badge"].product-gallery__save { color: var(--d-danger-text); }

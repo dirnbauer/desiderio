@@ -9,7 +9,7 @@
     <d:layout.container>
         <header class="hero-dual-cta__header">
             <f:if condition="{data.header}">
-                <d:atom.typography tag="h1" variant="h1" class="hero-dual-cta__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
+                <d:atom.typography tag="h2" variant="h1" class="hero-dual-cta__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
             </f:if>
             <f:if condition="{data.subheadline}">
                 <d:atom.typography variant="lead" class="hero-dual-cta__subheadline">{data -> f:render.text(field: 'subheadline')}</d:atom.typography>
@@ -19,7 +19,7 @@
             <d:molecule.card class="hero-dual-cta__card">
                 <d:molecule.cardContent class="hero-dual-cta__card-body">
                     <f:if condition="{data.left_title}">
-                        <d:atom.typography tag="h2" variant="h3" class="hero-dual-cta__card-title">{data -> f:render.text(field: 'left_title')}</d:atom.typography>
+                        <d:atom.typography tag="h3" variant="h3" class="hero-dual-cta__card-title">{data -> f:render.text(field: 'left_title')}</d:atom.typography>
                     </f:if>
                     <f:if condition="{data.left_description}">
                         <p class="hero-dual-cta__card-desc">{data -> f:render.text(field: 'left_description')}</p>
@@ -32,7 +32,7 @@
             <d:molecule.card class="hero-dual-cta__card">
                 <d:molecule.cardContent class="hero-dual-cta__card-body">
                     <f:if condition="{data.right_title}">
-                        <d:atom.typography tag="h2" variant="h3" class="hero-dual-cta__card-title">{data -> f:render.text(field: 'right_title')}</d:atom.typography>
+                        <d:atom.typography tag="h3" variant="h3" class="hero-dual-cta__card-title">{data -> f:render.text(field: 'right_title')}</d:atom.typography>
                     </f:if>
                     <f:if condition="{data.right_description}">
                         <p class="hero-dual-cta__card-desc">{data -> f:render.text(field: 'right_description')}</p>

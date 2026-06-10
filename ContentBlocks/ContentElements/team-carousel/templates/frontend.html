@@ -24,7 +24,7 @@
                         <f:if condition="{member.image}">
                             <div class="team-carousel__media">
                                 <f:for each="{member.image}" as="fileReference">
-                                    <f:image image="{fileReference}" width="640" height="640" cropVariant="default" alt="" loading="lazy" decoding="async" class="team-carousel__image"/>
+                                    <f:image image="{fileReference}" width="640" height="640" cropVariant="default" alt="" loading="lazy" decoding="async" class="team-carousel__image" additionalAttributes="{srcset: '{f:uri.image(image: fileReference, width: \'640\', height: \'640\')} 1x, {f:uri.image(image: fileReference, width: \'1280\', height: \'1280\')} 2x'}"/>
                                 </f:for>
                             </div>
                         </f:if>
@@ -34,7 +34,7 @@
                         </d:molecule.cardHeader>
                         <f:if condition="{member.profile_link.url}">
                             <d:molecule.cardFooter class="team-carousel__footer">
-                                <d:atom.button href="{member.profile_link.url}" target="{member.profile_link.target}" variant="ghost" size="sm">
+                                <d:atom.button href="{member.profile_link.url}" target="{member.profile_link.target}" variant="secondary" size="sm">
                                     <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:team.view_profile">View profile</f:translate>
                                     <span class="sr-only"> — {member -> f:render.text(field: 'name')}</span>
                                 </d:atom.button>

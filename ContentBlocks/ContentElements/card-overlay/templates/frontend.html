@@ -18,7 +18,7 @@
                     <d:atom.badge variant="secondary" class="card-overlay__eyebrow w-fit">{data -> f:render.text(field: 'eyebrow')}</d:atom.badge>
                 </f:if>
                 <f:if condition="{data.header}">
-                    <d:atom.typography tag="h3" variant="h3" class="card-overlay__title">{data -> f:render.text(field: 'header')}</d:atom.typography>
+                    <d:atom.typography tag="h2" variant="h3" class="card-overlay__title">{data -> f:render.text(field: 'header')}</d:atom.typography>
                 </f:if>
                 <f:if condition="{data.description}">
                     <d:atom.typography tag="p" variant="p" class="card-overlay__description">{data -> f:render.text(field: 'description')}</d:atom.typography>

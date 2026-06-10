@@ -39,7 +39,7 @@
             </div>
         </f:if>
         <f:if condition="{data.logo}">
-            <div class="d-ce-preview__thumbs" aria-label="Logo">
+            <div class="d-ce-preview__thumbs" role="group" aria-label="Logo">
                 <f:for each="{data.logo}" as="file">
                     <f:if condition="{file.publicUrl}">
                         <img src="{file.publicUrl}" alt="{file.alternative}" class="d-ce-preview__thumb" loading="lazy" />

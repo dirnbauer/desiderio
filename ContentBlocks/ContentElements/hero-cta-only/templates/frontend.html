@@ -9,7 +9,7 @@
     <d:layout.container>
         <div class="hero-cta-only__content">
             <f:if condition="{data.header}">
-                <d:atom.typography tag="h1" variant="h2" class="hero-cta-only__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
+                <d:atom.typography tag="h2" variant="h2" class="hero-cta-only__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
             </f:if>
             <f:if condition="{data.primary_button_text} || {data.secondary_button_text}">
                 <div class="hero-cta-only__actions">

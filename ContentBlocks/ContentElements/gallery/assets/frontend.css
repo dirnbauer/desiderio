@@ -89,7 +89,7 @@
 .gallery__thumb:hover {
     transform: translateY(-1px);
 }
-.gallery__thumb[aria-selected="true"] {
+.gallery__thumb[aria-current="true"] {
     border-color: var(--border);
     box-shadow: none;
 }

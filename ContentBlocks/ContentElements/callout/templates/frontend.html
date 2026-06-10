@@ -9,7 +9,7 @@
     <d:layout.container>
         <div class="callout callout--{data.variant -> f:or(alternative: 'info')}" role="note">
             <f:if condition="{data.header}">
-                <h3 class="callout__title">{data -> f:render.text(field: 'header')}</h3>
+                <h2 class="callout__title">{data -> f:render.text(field: 'header')}</h2>
             </f:if>
             <div class="callout__content">
                 {data -> f:render.text(field: 'content')}

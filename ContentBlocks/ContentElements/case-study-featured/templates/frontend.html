@@ -18,7 +18,7 @@
             <f:if condition="{data.image}">
                 <div class="case-study-featured__media">
                     <f:for each="{data.image}" as="fileReference">
-                        <f:image image="{fileReference}" maxWidth="800" alt="{f:if(condition: fileReference.alternative, then: fileReference.alternative, else: '{data.client_name} case study')}" class="case-study-featured__image"/>
+                        <f:image image="{fileReference}" maxWidth="800" alt="{f:if(condition: fileReference.alternative, then: fileReference.alternative, else: '{data.client_name} case study')}" class="case-study-featured__image" loading="lazy" decoding="async"/>
                     </f:for>
                 </div>
             </f:if>
@@ -27,7 +27,7 @@
                 <f:if condition="{data.client_logo}">
                     <div class="case-study-featured__logo">
                         <f:for each="{data.client_logo}" as="fileReference">
-                            <f:image image="{fileReference}" maxWidth="200" alt="{f:if(condition: fileReference.alternative, then: fileReference.alternative, else: '{data.client_name} logo')}" class="case-study-featured__logo-image"/>
+                            <f:image image="{fileReference}" maxWidth="200" alt="{f:if(condition: fileReference.alternative, then: fileReference.alternative, else: '{data.client_name} logo')}" class="case-study-featured__logo-image" loading="lazy" decoding="async"/>
                         </f:for>
                     </div>
                 </f:if>

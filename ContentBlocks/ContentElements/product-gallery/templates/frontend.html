@@ -16,7 +16,12 @@
                     <f:for each="{data.images}" as="fileReference" iteration="iter">
                         <f:if condition="{iter.isFirst}">
                             <div class="product-gallery__stage">
-                                <f:image image="{fileReference}" maxWidth="720" alt="{fileReference.alternative -> f:or(alternative: galleryTitle)}" itemprop="image" class="product-gallery__stage-image" data="{d-gallery-main: 'true'}"/>
+                                <button type="button" class="d-lightbox" data-d-lightbox
+                                        data-d-lightbox-src="{f:uri.image(image: fileReference, maxWidth: 1440)}"
+                                        data-d-lightbox-close="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:aria.dismiss', default: 'Dismiss this notice')}"
+                                        aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:lightbox.open', default: 'Show image in full size')}">
+                                    <f:image image="{fileReference}" maxWidth="720" alt="{fileReference.alternative -> f:or(alternative: galleryTitle)}" itemprop="image" class="product-gallery__stage-image" data="{d-gallery-main: 'true'}" loading="lazy" decoding="async"/>
+                                </button>
                             </div>
                         </f:if>
                     </f:for>
@@ -29,10 +34,11 @@
                                             class="product-gallery__thumb"
                                             data-d-gallery-thumb
                                             data-large-src="{f:uri.image(image: fileReference, maxWidth: 720)}"
+                                            data-large-src-2x="{f:uri.image(image: fileReference, maxWidth: 1440)}"
                                             data-thumb-alt="{fileReference.alternative -> f:or(alternative: '{galleryTitle} {iter.cycle}')}"
-                                            aria-selected="{f:if(condition: iter.isFirst, then: 'true', else: 'false')}"
+                                            aria-current="{f:if(condition: iter.isFirst, then: 'true', else: 'false')}"
                                             aria-label="{galleryTitle} {iter.cycle}">
-                                        <f:image image="{fileReference}" width="160" height="100" cropVariant="default" alt="" class="product-gallery__thumb-img" loading="lazy" decoding="async"/>
+                                        <f:image image="{fileReference}" width="160" height="100" cropVariant="default" alt="" class="product-gallery__thumb-img" loading="lazy" decoding="async" additionalAttributes="{srcset: '{f:uri.image(image: fileReference, width: \'160\', height: \'100\')} 1x, {f:uri.image(image: fileReference, width: \'320\', height: \'200\')} 2x'}"/>
                                     </button>
                                 </li>
                             </f:for>

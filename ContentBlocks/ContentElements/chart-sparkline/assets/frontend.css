@@ -46,7 +46,8 @@
     border-radius: 9999px;
     border: 1px solid var(--border);
     background: var(--secondary);
-    color: var(--secondary-foreground);
+    /* 12px text on the secondary tint: pull towards the foreground for WCAG contrast. */
+    color: color-mix(in oklch, var(--secondary-foreground), var(--foreground) 35%);
     font-variant-numeric: tabular-nums;
     white-space: nowrap;
 }
@@ -55,11 +56,11 @@
 }
 .chart-sparkline__badge--up {
     border-color: color-mix(in oklab, var(--d-success) 35%, var(--border));
-    color: var(--d-success);
+    color: var(--d-success-text);
 }
 .chart-sparkline__badge--down {
     border-color: color-mix(in oklab, var(--destructive) 35%, var(--border));
-    color: var(--destructive);
+    color: var(--d-danger-text);
 }
 
 /* charts.js injects a viewBox'd <svg>; we own the responsive box so the line scales to the

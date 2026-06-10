@@ -9,7 +9,7 @@
     <d:layout.container>
         <div class="hero-minimal__content">
             <f:if condition="{data.header}">
-                <d:atom.typography tag="h1" variant="h1" class="hero-minimal__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
+                <d:atom.typography tag="h2" variant="h1" class="hero-minimal__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
             </f:if>
             <f:if condition="{data.subheadline}">
                 <p class="hero-minimal__subheadline">{data -> f:render.text(field: 'subheadline')}</p>

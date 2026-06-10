@@ -27,7 +27,7 @@
             </div>
         </f:if>
         <f:if condition="{data.audio_file}">
-            <div class="d-ce-preview__thumbs" aria-label="Audio File">
+            <div class="d-ce-preview__thumbs" role="group" aria-label="Audio File">
                 <f:for each="{data.audio_file}" as="file">
                     <f:if condition="{file.publicUrl}">
                         <img src="{file.publicUrl}" alt="{file.alternative}" class="d-ce-preview__thumb" loading="lazy" />

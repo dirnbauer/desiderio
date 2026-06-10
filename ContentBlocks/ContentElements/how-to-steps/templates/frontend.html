@@ -29,7 +29,7 @@
                             </f:if>
                             <f:if condition="{item.image.0}">
                                 <div class="how-to-steps__media">
-                                    <f:image image="{item.image.0}" alt="{item.title}" maxWidth="640" class="how-to-steps__image" itemprop="image"/>
+                                    <f:image image="{item.image.0}" alt="{item.title}" maxWidth="640" class="how-to-steps__image" itemprop="image" loading="lazy" decoding="async"/>
                                 </div>
                             </f:if>
                         </div>

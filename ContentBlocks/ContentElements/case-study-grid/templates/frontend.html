@@ -24,7 +24,7 @@
                     <f:if condition="{item.image}">
                         <div class="case-study-grid__media">
                             <f:for each="{item.image}" as="fileReference">
-                                <f:image image="{fileReference}" maxWidth="480" alt="{f:if(condition: fileReference.alternative, then: fileReference.alternative, else: '{item.client_name} case study')}" class="case-study-grid__image"/>
+                                <f:image image="{fileReference}" maxWidth="480" alt="{f:if(condition: fileReference.alternative, then: fileReference.alternative, else: '{item.client_name} case study')}" class="case-study-grid__image" loading="lazy" decoding="async"/>
                             </f:for>
                         </div>
                     </f:if>

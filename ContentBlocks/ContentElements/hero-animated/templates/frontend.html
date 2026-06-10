@@ -12,7 +12,7 @@
                 <d:atom.badge variant="secondary">{data -> f:render.text(field: 'badge_text')}</d:atom.badge>
             </f:if>
             <f:if condition="{data.header}">
-                <d:atom.typography tag="h1" variant="h1" class="hero-animated__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
+                <d:atom.typography tag="h2" variant="h1" class="hero-animated__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
             </f:if>
             <f:if condition="{data.subheadline}">
                 <d:atom.typography variant="lead" class="hero-animated__subheadline">{data -> f:render.text(field: 'subheadline')}</d:atom.typography>

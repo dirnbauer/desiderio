@@ -32,7 +32,7 @@
                         </div>
                         <f:if condition="{item.image.0}">
                             <div class="feature-tabs__media">
-                                <f:image image="{item.image.0}" alt="{item.image.0.alternative}" maxWidth="800" class="feature-tabs__image"/>
+                                <f:image image="{item.image.0}" alt="{item.image.0.alternative}" maxWidth="800" class="feature-tabs__image" loading="lazy" decoding="async"/>
                             </div>
                         </f:if>
                     </div>

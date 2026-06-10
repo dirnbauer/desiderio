@@ -26,7 +26,7 @@
                         <figcaption class="testimonial-grid__author">
                             <f:if condition="{item.author_image}">
                                 <f:for each="{item.author_image}" as="fileReference">
-                                    <f:image image="{fileReference}" width="48" height="48" alt="" loading="lazy" decoding="async" class="testimonial-grid__avatar"/>
+                                    <f:image image="{fileReference}" width="48" height="48" alt="" loading="lazy" decoding="async" class="testimonial-grid__avatar" additionalAttributes="{srcset: '{f:uri.image(image: fileReference, width: \'48\', height: \'48\')} 1x, {f:uri.image(image: fileReference, width: \'96\', height: \'96\')} 2x'}"/>
                                 </f:for>
                             </f:if>
                             <div class="testimonial-grid__meta">

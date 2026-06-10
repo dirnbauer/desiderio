@@ -13,7 +13,7 @@
                     <f:if condition="{data.badge}">
                         <span class="product-card__badge">{data -> f:render.text(field: 'badge')}</span>
                     </f:if>
-                    <f:image image="{data.image.0}" maxWidth="480" loading="lazy" alt="{data.image.0.alternative -> f:or(alternative: data.header)}" class="product-card__image"/>
+                    <f:image image="{data.image.0}" maxWidth="480" loading="lazy" alt="{data.image.0.alternative -> f:or(alternative: data.header)}" class="product-card__image" decoding="async"/>
                 </div>
             </f:if>
             <div class="product-card__body">

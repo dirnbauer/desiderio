@@ -52,7 +52,7 @@
                 <f:if condition="{data.image}">
                     <div class="pricing-enterprise__media">
                         <f:for each="{data.image}" as="fileReference">
-                            <f:image image="{fileReference}" maxWidth="480" alt="" class="pricing-enterprise__image"/>
+                            <f:image image="{fileReference}" maxWidth="480" alt="" class="pricing-enterprise__image" loading="lazy" decoding="async"/>
                         </f:for>
                     </div>
                 </f:if>

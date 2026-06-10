@@ -25,7 +25,7 @@
                         <f:if condition="{rating.logo}">
                             <div class="rating-display__logo">
                                 <f:for each="{rating.logo}" as="fileReference">
-                                    <f:image image="{fileReference}" maxWidth="240" alt="{rating.platform}" loading="lazy" class="rating-display__logo-img"/>
+                                    <f:image image="{fileReference}" maxWidth="240" alt="{rating.platform}" loading="lazy" class="rating-display__logo-img" decoding="async"/>
                                 </f:for>
                             </div>
                         </f:if>

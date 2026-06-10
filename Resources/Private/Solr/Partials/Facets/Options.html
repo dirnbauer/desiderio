@@ -17,7 +17,8 @@
             <li class="facet-option {f:if(condition:'!({iteration.index} < {facetOptionLimit})', then:' tx-solr-facet-hidden')}" data-facet-item-value="{option.value}">
                 <a class="facet solr-ajaxified d-solr-suggest__option {f:if(condition: option.selected, then: 'is-active')}" href="{s:uri.facet.addFacetItem(facet: facet, facetItem: option)}">
                     <span class="d-solr-suggest__term">{option.label}</span>
-                    <span class="d-solr-suggest__count" aria-label="{f:translate(key: 'solr.resultCount.aria', domain: 'desiderio.labels', arguments: {count: option.documentCount})}">{option.documentCount}</span>
+                    <span class="d-solr-suggest__count" aria-hidden="true">{option.documentCount}</span>
+                    <span class="sr-only">{f:translate(key: 'solr.resultCount.aria', domain: 'desiderio.labels', arguments: {count: option.documentCount})}</span>
                 </a>
             </li>
         </f:for>

@@ -15,7 +15,7 @@
                         <f:if condition="{data.card_image}">
                             <div class="card__image">
                                 <f:for each="{data.card_image}" as="file">
-                                    <f:image image="{file}" alt="{file.alternative}" width="600"/>
+                                    <f:image image="{file}" alt="{file.alternative}" width="600" additionalAttributes="{srcset: '{f:uri.image(image: file, width: \'600\')} 1x, {f:uri.image(image: file, width: \'1200\')} 2x'}" loading="lazy" decoding="async"/>
                                 </f:for>
                             </div>
                         </f:if>
@@ -24,7 +24,7 @@
                                 <d:atom.badge variant="secondary" class="card__badge">{data -> f:render.text(field: 'badge_text')}</d:atom.badge>
                             </f:if>
                             <f:if condition="{data.header}">
-                                <d:atom.typography tag="h3" variant="h3" class="card__title">
+                                <d:atom.typography tag="h2" variant="h3" class="card__title">
                                     <f:if condition="{data.link}">
                                         <f:then><d:atom.link href="{data.link.url}" target="{data.link.target}" variant="muted">{data -> f:render.text(field: 'header')}</d:atom.link></f:then>
                                         <f:else>{data -> f:render.text(field: 'header')}</f:else>
@@ -49,7 +49,7 @@
                     <f:if condition="{data.card_image}">
                         <div class="card__image">
                             <f:for each="{data.card_image}" as="file">
-                                <f:image image="{file}" alt="{file.alternative}" width="800"/>
+                                <f:image image="{file}" alt="{file.alternative}" width="800" additionalAttributes="{srcset: '{f:uri.image(image: file, width: \'800\')} 1x, {f:uri.image(image: file, width: \'1600\')} 2x'}" loading="lazy" decoding="async"/>
                             </f:for>
                         </div>
                     </f:if>
@@ -58,7 +58,7 @@
                             <d:atom.badge variant="secondary" class="card__badge">{data -> f:render.text(field: 'badge_text')}</d:atom.badge>
                         </f:if>
                         <f:if condition="{data.header}">
-                            <d:atom.typography tag="h3" variant="h3" class="card__title">
+                            <d:atom.typography tag="h2" variant="h3" class="card__title">
                                 <f:if condition="{data.link}">
                                     <f:then><d:atom.link href="{data.link.url}" target="{data.link.target}" variant="muted">{data -> f:render.text(field: 'header')}</d:atom.link></f:then>
                                     <f:else>{data -> f:render.text(field: 'header')}</f:else>
@@ -84,7 +84,7 @@
                     <f:if condition="{data.card_image}">
                         <div class="card__image card__image--bg">
                             <f:for each="{data.card_image}" as="file">
-                                <f:image image="{file}" alt="{file.alternative}" width="800"/>
+                                <f:image image="{file}" alt="{file.alternative}" width="800" additionalAttributes="{srcset: '{f:uri.image(image: file, width: \'800\')} 1x, {f:uri.image(image: file, width: \'1600\')} 2x'}" loading="lazy" decoding="async"/>
                             </f:for>
                         </div>
                     </f:if>
@@ -94,7 +94,7 @@
                                 <d:atom.badge variant="secondary" class="card__badge">{data -> f:render.text(field: 'badge_text')}</d:atom.badge>
                             </f:if>
                             <f:if condition="{data.header}">
-                                <d:atom.typography tag="h3" variant="h3" class="card__title">
+                                <d:atom.typography tag="h2" variant="h3" class="card__title">
                                     <f:if condition="{data.link}">
                                         <f:then><d:atom.link href="{data.link.url}" target="{data.link.target}" variant="muted">{data -> f:render.text(field: 'header')}</d:atom.link></f:then>
                                         <f:else>{data -> f:render.text(field: 'header')}</f:else>
@@ -121,7 +121,7 @@
                             <d:atom.badge variant="secondary" class="card__badge">{data -> f:render.text(field: 'badge_text')}</d:atom.badge>
                         </f:if>
                         <f:if condition="{data.header}">
-                            <d:atom.typography tag="h3" variant="h3" class="card__title">
+                            <d:atom.typography tag="h2" variant="h3" class="card__title">
                                 <f:if condition="{data.link}">
                                     <f:then><d:atom.link href="{data.link.url}" target="{data.link.target}" variant="muted">{data -> f:render.text(field: 'header')}</d:atom.link></f:then>
                                     <f:else>{data -> f:render.text(field: 'header')}</f:else>

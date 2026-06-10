@@ -39,7 +39,7 @@
             </div>
         </f:if>
         <f:if condition="{data.video_file}">
-            <div class="d-ce-preview__thumbs" aria-label="Video File">
+            <div class="d-ce-preview__thumbs" role="group" aria-label="Video File">
                 <f:for each="{data.video_file}" as="file">
                     <f:if condition="{file.publicUrl}">
                         <img src="{file.publicUrl}" alt="{file.alternative}" class="d-ce-preview__thumb" loading="lazy" />
@@ -48,7 +48,7 @@
             </div>
         </f:if>
         <f:if condition="{data.poster}">
-            <div class="d-ce-preview__thumbs" aria-label="Poster">
+            <div class="d-ce-preview__thumbs" role="group" aria-label="Poster">
                 <f:for each="{data.poster}" as="file">
                     <f:if condition="{file.publicUrl}">
                         <img src="{file.publicUrl}" alt="{file.alternative}" class="d-ce-preview__thumb" loading="lazy" />

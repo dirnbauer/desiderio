@@ -19,7 +19,7 @@
                 <d:molecule.card class="feature-bento__item feature-bento__item--{item.size -> f:or(alternative: 'small')}">
                     <f:if condition="{item.image.0}">
                         <div class="feature-bento__bg">
-                            <f:image image="{item.image.0}" alt="" maxWidth="800" class="feature-bento__bg-image"/>
+                            <f:image image="{item.image.0}" alt="" maxWidth="800" class="feature-bento__bg-image" loading="lazy" decoding="async"/>
                         </div>
                     </f:if>
                     <div class="feature-bento__content">

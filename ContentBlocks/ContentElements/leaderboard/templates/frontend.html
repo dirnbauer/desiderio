@@ -33,7 +33,7 @@
                                     <f:if condition="{item.image}">
                                         <f:then>
                                             <f:for each="{item.image}" as="file">
-                                                <f:image image="{file}" alt="" width="96" height="96" loading="lazy" decoding="async"/>
+                                                <f:image image="{file}" alt="" width="96" height="96" loading="lazy" decoding="async" additionalAttributes="{srcset: '{f:uri.image(image: file, width: \'96\', height: \'96\')} 1x, {f:uri.image(image: file, width: \'192\', height: \'192\')} 2x'}"/>
                                             </f:for>
                                         </f:then>
                                         <f:else>

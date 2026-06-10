@@ -29,7 +29,7 @@
             <div class="testimonial-featured__author">
                 <f:if condition="{data.author_image}">
                     <f:for each="{data.author_image}" as="fileReference">
-                        <f:image image="{fileReference}" width="64" height="64" alt="" loading="lazy" decoding="async" class="testimonial-featured__avatar"/>
+                        <f:image image="{fileReference}" width="64" height="64" alt="" loading="lazy" decoding="async" class="testimonial-featured__avatar" additionalAttributes="{srcset: '{f:uri.image(image: fileReference, width: \'64\', height: \'64\')} 1x, {f:uri.image(image: fileReference, width: \'128\', height: \'128\')} 2x'}"/>
                     </f:for>
                 </f:if>
                 <div>

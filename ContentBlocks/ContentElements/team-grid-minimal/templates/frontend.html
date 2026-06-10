@@ -21,7 +21,7 @@
                         <f:then>
                             <f:for each="{member.image}" as="fileReference">
                                 <d:atom.avatar size="xl" class="team-grid-minimal__avatar">
-                                    <f:image image="{fileReference}" width="192" height="192" cropVariant="default" alt="{fileReference.alternative -> f:or(alternative: member.name)}" loading="lazy" decoding="async" class="team-grid-minimal__image"/>
+                                    <f:image image="{fileReference}" width="192" height="192" cropVariant="default" alt="{fileReference.alternative -> f:or(alternative: member.name)}" loading="lazy" decoding="async" class="team-grid-minimal__image" additionalAttributes="{srcset: '{f:uri.image(image: fileReference, width: \'192\', height: \'192\')} 1x, {f:uri.image(image: fileReference, width: \'384\', height: \'384\')} 2x'}"/>
                                 </d:atom.avatar>
                             </f:for>
                         </f:then>

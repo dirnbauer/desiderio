@@ -26,7 +26,12 @@
                                 <f:if condition="{item.slide_image}">
                                     <div class="card__image-wrapper">
                                         <f:for each="{item.slide_image}" as="image">
-                                            <f:image image="{image}" alt="{item.slide_title}" maxWidth="640" class="card__image"/>
+                                            <button type="button" class="d-lightbox" data-d-lightbox
+                                                    data-d-lightbox-src="{f:uri.image(image: image, maxWidth: 1280)}"
+                                                    data-d-lightbox-close="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:aria.dismiss', default: 'Dismiss this notice')}"
+                                                    aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:lightbox.open', default: 'Show image in full size')}">
+                                                <f:image image="{image}" alt="{item.slide_title}" maxWidth="640" class="card__image" loading="lazy" decoding="async"/>
+                                            </button>
                                         </f:for>
                                     </div>
                                 </f:if>
@@ -63,7 +68,12 @@
                                 <f:if condition="{item.slide_image}">
                                     <div class="content-carousel__image-wrapper">
                                         <f:for each="{item.slide_image}" as="image">
-                                            <f:image image="{image}" alt="{item.slide_title}" maxWidth="960" class="content-carousel__image"/>
+                                            <button type="button" class="d-lightbox" data-d-lightbox
+                                                    data-d-lightbox-src="{f:uri.image(image: image, maxWidth: 1920)}"
+                                                    data-d-lightbox-close="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:aria.dismiss', default: 'Dismiss this notice')}"
+                                                    aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:lightbox.open', default: 'Show image in full size')}">
+                                                <f:image image="{image}" alt="{item.slide_title}" maxWidth="960" class="content-carousel__image" loading="lazy" decoding="async"/>
+                                            </button>
                                         </f:for>
                                     </div>
                                 </f:if>
@@ -126,7 +136,7 @@
                             data-astro-content-carousel-thumb="{iter.index}">
                         <f:if condition="{item.slide_image}">
                             <f:for each="{item.slide_image}" as="image">
-                                <f:image image="{image}" alt="" maxWidth="120" class="content-carousel__thumb-image"/>
+                                <f:image image="{image}" alt="" maxWidth="120" class="content-carousel__thumb-image" loading="lazy" decoding="async"/>
                             </f:for>
                         </f:if>
                     </button>

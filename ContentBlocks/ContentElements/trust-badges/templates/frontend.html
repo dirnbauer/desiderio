@@ -24,7 +24,7 @@
                     <f:if condition="{badge.image}">
                         <span class="trust-badges__icon">
                             <f:for each="{badge.image}" as="fileReference">
-                                <f:image image="{fileReference}" width="240" height="160" alt="" class="trust-badges__icon-img"/>
+                                <f:image image="{fileReference}" width="240" height="160" alt="" class="trust-badges__icon-img" additionalAttributes="{srcset: '{f:uri.image(image: fileReference, width: \'240\', height: \'160\')} 1x, {f:uri.image(image: fileReference, width: \'480\', height: \'320\')} 2x'}" loading="lazy" decoding="async"/>
                             </f:for>
                         </span>
                     </f:if>

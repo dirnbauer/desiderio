@@ -28,7 +28,7 @@
                 <f:if condition="{data.image}">
                     <div class="download-form__preview">
                         <f:for each="{data.image}" as="fileReference">
-                            <f:image image="{fileReference}" maxWidth="400" alt="{f:if(condition: fileReference.alternative, then: fileReference.alternative, else: '{data.resource_title}')}" class="download-form__image"/>
+                            <f:image image="{fileReference}" maxWidth="400" alt="{f:if(condition: fileReference.alternative, then: fileReference.alternative, else: '{data.resource_title}')}" class="download-form__image" loading="lazy" decoding="async"/>
                         </f:for>
                     </div>
                 </f:if>

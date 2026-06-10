@@ -16,7 +16,7 @@
                     </f:if>
                 </div>
             </f:if>
-            <f:if condition="{data.header}"><d:atom.typography tag="h1" variant="h1" class="hero-announcement__headline">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
+            <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h1" class="hero-announcement__headline">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
             <f:if condition="{data.subheadline}"><d:atom.typography variant="lead" class="hero-announcement__subheadline">{data -> f:render.text(field: 'subheadline')}</d:atom.typography></f:if>
             <f:if condition="{data.primary_button_text} || {data.secondary_button_text}">
                 <div class="hero-announcement__actions">

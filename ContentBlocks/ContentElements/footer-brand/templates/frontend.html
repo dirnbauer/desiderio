@@ -13,7 +13,7 @@
                     <f:if condition="{data.logo}">
                         <div class="footer-brand__logo">
                             <f:for each="{data.logo}" as="file">
-                                <f:image image="{file}" alt="{data.brand}" width="72"/>
+                                <f:image image="{file}" alt="{data.brand}" width="72" additionalAttributes="{srcset: '{f:uri.image(image: file, width: \'72\')} 1x, {f:uri.image(image: file, width: \'144\')} 2x'}" loading="lazy" decoding="async"/>
                             </f:for>
                         </div>
                     </f:if>

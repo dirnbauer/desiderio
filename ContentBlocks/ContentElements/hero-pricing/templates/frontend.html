@@ -8,7 +8,7 @@
         <div class="hero-pricing__grid">
             <div class="hero-pricing__content">
                 <f:if condition="{data.header}">
-                    <d:atom.typography tag="h1" variant="h1" class="hero-pricing__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
+                    <d:atom.typography tag="h2" variant="h1" class="hero-pricing__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
                 </f:if>
                 <f:if condition="{data.subheadline}">
                     <d:atom.typography variant="lead" class="hero-pricing__subheadline">{data -> f:render.text(field: 'subheadline')}</d:atom.typography>

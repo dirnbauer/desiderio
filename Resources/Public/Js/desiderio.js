@@ -96,6 +96,14 @@ document.addEventListener('DOMContentLoaded', () => {
       main.src = src;
       main.alt = thumb.dataset.thumbAlt || thumb.dataset.thumbTitle || '';
 
+      // Keep an enclosing lightbox trigger pointing at the active image.
+      // Note: "data-large-src-2x" does not camelize cleanly (digit after
+      // hyphen), so read it via getAttribute.
+      const lightboxWrap = main.closest('[data-d-lightbox]');
+      if (lightboxWrap) {
+        lightboxWrap.dataset.dLightboxSrc = thumb.getAttribute('data-large-src-2x') || src;
+      }
+
       if (title) {
         title.textContent = thumb.dataset.thumbTitle || '';
         title.hidden = title.textContent.trim() === '';
@@ -115,14 +123,14 @@ document.addEventListener('DOMContentLoaded', () => {
         else link.removeAttribute('href');
       }
 
-      thumbs.forEach(item => item.setAttribute('aria-selected', String(item === thumb)));
+      thumbs.forEach(item => item.setAttribute('aria-current', String(item === thumb)));
     };
 
     thumbs.forEach(thumb => {
       thumb.addEventListener('click', () => activate(thumb));
     });
 
-    const selected = thumbs.find(thumb => thumb.getAttribute('aria-selected') === 'true') || thumbs[0];
+    const selected = thumbs.find(thumb => thumb.getAttribute('aria-current') === 'true') || thumbs[0];
     activate(selected);
   });
 
@@ -742,7 +750,6 @@ document.addEventListener('DOMContentLoaded', () => {
     button.classList.toggle('active', active);
     button.dataset.active = active ? 'true' : 'false';
     button.dataset.state = active ? 'active' : 'inactive';
-    button.setAttribute('aria-selected', String(active));
 
     if (active) {
       button.setAttribute('aria-current', 'step');
@@ -928,5 +935,65 @@ document.addEventListener('DOMContentLoaded', () => {
     measure();
     window.addEventListener('scroll', requestMeasure, { passive: true });
     window.addEventListener('resize', requestMeasure, { passive: true });
+  });
+
+  /* ------------------------------------------------------------------ */
+  /*  14. Lightbox (one shared <dialog>, created on demand)              */
+  /* ------------------------------------------------------------------ */
+  let lightbox = null;
+  let lightboxTrigger = null;
+
+  const ensureLightbox = () => {
+    if (lightbox) return lightbox;
+
+    const dialog = document.createElement('dialog');
+    dialog.className = 'd-lightbox-dialog';
+
+    const img = document.createElement('img');
+    img.className = 'd-lightbox-dialog__img';
+    img.decoding = 'async';
+
+    const closeButton = document.createElement('button');
+    closeButton.type = 'button';
+    closeButton.className = 'd-lightbox-dialog__close';
+    closeButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>';
+
+    const closeLabel = document.createElement('span');
+    closeLabel.className = 'sr-only';
+    closeButton.append(closeLabel);
+
+    closeButton.addEventListener('click', () => dialog.close());
+    // Backdrop click: the dialog element itself is only hit outside content.
+    dialog.addEventListener('click', e => {
+      if (e.target === dialog) dialog.close();
+    });
+    dialog.addEventListener('close', () => {
+      img.removeAttribute('src');
+      lightboxTrigger?.focus();
+      lightboxTrigger = null;
+    });
+
+    dialog.append(img, closeButton);
+    document.body.append(dialog);
+
+    lightbox = { dialog, img, closeLabel };
+    return lightbox;
+  };
+
+  document.addEventListener('click', e => {
+    const trigger = e.target.closest('[data-d-lightbox]');
+    if (!trigger) return;
+
+    const innerImg = trigger.querySelector('img');
+    const src = trigger.dataset.dLightboxSrc || innerImg?.currentSrc || innerImg?.src;
+    if (!src) return;
+
+    const { dialog, img, closeLabel } = ensureLightbox();
+    img.src = src;
+    img.alt = innerImg?.alt || '';
+    closeLabel.textContent = trigger.dataset.dLightboxClose || 'Close';
+
+    lightboxTrigger = trigger;
+    dialog.showModal();
   });
 });

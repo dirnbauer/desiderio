@@ -15,7 +15,7 @@
                 </f:if>
             </div>
             <f:if condition="{data.button_text} && {data.button_link.url}">
-                <d:atom.button href="{data.button_link.url}" target="{data.button_link.target}" variant="ghost" size="sm">{data -> f:render.text(field: 'button_text')}</d:atom.button>
+                <d:atom.button href="{data.button_link.url}" target="{data.button_link.target}" variant="secondary" size="sm">{data -> f:render.text(field: 'button_text')}</d:atom.button>
             </f:if>
         </nav>
     </d:layout.container>

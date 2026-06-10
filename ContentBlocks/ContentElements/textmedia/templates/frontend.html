@@ -8,8 +8,13 @@
 <f:section name="media">
     <f:if condition="{data.media.0}">
         <div class="textmedia__media-wrapper">
-            <f:image image="{data.media.0}" alt="{data.media.0.alternative}" maxWidth="{maxWidth}"
-                     class="textmedia__media {f:if(condition: data.media_rounded, then: 'textmedia__media--rounded')}"/>
+            <button type="button" class="d-lightbox" data-d-lightbox
+                    data-d-lightbox-src="{f:uri.image(image: data.media.0, maxWidth: 1920)}"
+                    data-d-lightbox-close="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:aria.dismiss', default: 'Dismiss this notice')}"
+                    aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:lightbox.open', default: 'Show image in full size')}">
+                <f:image image="{data.media.0}" alt="{data.media.0.alternative}" maxWidth="{maxWidth}"
+                         class="textmedia__media {f:if(condition: data.media_rounded, then: 'textmedia__media--rounded')}" loading="lazy" decoding="async"/>
+            </button>
         </div>
     </f:if>
 </f:section>

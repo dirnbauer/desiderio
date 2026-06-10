@@ -26,7 +26,12 @@
             </div>
             <f:if condition="{data.image.0}">
                 <div class="feature-image__media">
-                    <f:image image="{data.image.0}" alt="{data.image.0.alternative -> f:or(alternative: data.header)}" maxWidth="800" loading="lazy" class="feature-image__img"/>
+                    <button type="button" class="d-lightbox" data-d-lightbox
+                            data-d-lightbox-src="{f:uri.image(image: data.image.0, maxWidth: 1600)}"
+                            data-d-lightbox-close="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:aria.dismiss', default: 'Dismiss this notice')}"
+                            aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:lightbox.open', default: 'Show image in full size')}">
+                        <f:image image="{data.image.0}" alt="{data.image.0.alternative -> f:or(alternative: data.header)}" maxWidth="800" loading="lazy" class="feature-image__img" decoding="async"/>
+                    </button>
                 </div>
             </f:if>
         </div>

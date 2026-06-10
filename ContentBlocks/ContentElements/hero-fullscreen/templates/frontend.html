@@ -6,14 +6,14 @@
 <d:layout.section spacing="none" class="hero-fullscreen desiderio-section--on-media">
     <f:if condition="{data.background_image}">
         <f:for each="{data.background_image}" as="image">
-            <f:image image="{image}" class="hero-fullscreen__bg" alt="" loading="eager" fetchpriority="high"/>
+            <f:image image="{image}" class="hero-fullscreen__bg" alt="" loading="eager" fetchpriority="high" decoding="async"/>
         </f:for>
     </f:if>
     <div class="hero-fullscreen__overlay" style="opacity:{data.overlay_opacity -> f:or(alternative: '0.5')}" aria-hidden="true"></div>
     <d:layout.container>
         <div class="hero-fullscreen__content">
             <f:if condition="{data.header}">
-                <d:atom.typography tag="h1" variant="h1" class="hero-fullscreen__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
+                <d:atom.typography tag="h2" variant="h1" class="hero-fullscreen__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
             </f:if>
             <f:if condition="{data.subheadline}">
                 <p class="hero-fullscreen__subheadline">{data -> f:render.text(field: 'subheadline')}</p>

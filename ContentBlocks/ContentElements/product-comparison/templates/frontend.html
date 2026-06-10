@@ -27,7 +27,7 @@
                         </f:if>
                         <f:if condition="{product.image}">
                             <div class="product-comparison__media">
-                                <f:image image="{product.image.0}" maxWidth="320" loading="lazy" alt="{product.image.0.alternative -> f:or(alternative: product.name)}" class="product-comparison__image"/>
+                                <f:image image="{product.image.0}" maxWidth="320" loading="lazy" alt="{product.image.0.alternative -> f:or(alternative: product.name)}" class="product-comparison__image" decoding="async"/>
                             </div>
                         </f:if>
                         <h3 class="product-comparison__name" id="product-comparison-{data.uid}-{iter.cycle}">{product -> f:render.text(field: 'name')}</h3>

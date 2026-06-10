@@ -50,7 +50,7 @@
                 <f:if condition="{data.header} || {data.description}">
                     <figcaption class="chart-pie__header">
                         <f:if condition="{data.header}">
-                            <h3 class="chart-pie__title" data-variant="large">{data -> f:render.text(field: 'header')}</h3>
+                            <h2 class="chart-pie__title" data-variant="large">{data -> f:render.text(field: 'header')}</h2>
                         </f:if>
                         <f:if condition="{data.description}">
                             <p class="chart-pie__description" data-variant="muted">{data -> f:render.text(field: 'description')}</p>

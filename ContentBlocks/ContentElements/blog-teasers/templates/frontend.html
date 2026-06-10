@@ -20,7 +20,7 @@
                     <article class="blog-teasers__item">
                         <f:if condition="{post.image.0}">
                             <div class="blog-teasers__image-wrapper">
-                                <f:image image="{post.image.0}" alt="" maxWidth="960" class="blog-teasers__image"/>
+                                <f:image image="{post.image.0}" alt="" maxWidth="960" class="blog-teasers__image" loading="lazy" decoding="async"/>
                             </div>
                         </f:if>
                         <div class="blog-teasers__body">

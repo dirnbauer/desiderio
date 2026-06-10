@@ -75,7 +75,7 @@
                 <f:if condition="{data.header} || {data.description}">
                     <figcaption class="chart-area__header">
                         <f:if condition="{data.header}">
-                            <h3 class="chart-area__title" data-variant="large">{data -> f:render.text(field: 'header')}</h3>
+                            <h2 class="chart-area__title" data-variant="large">{data -> f:render.text(field: 'header')}</h2>
                         </f:if>
                         <f:if condition="{data.description}">
                             <p class="chart-area__description" data-variant="muted">{data -> f:render.text(field: 'description')}</p>

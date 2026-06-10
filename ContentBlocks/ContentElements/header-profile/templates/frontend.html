@@ -11,13 +11,13 @@
             <f:if condition="{data.avatar}">
                 <div class="header-profile__avatar">
                     <f:for each="{data.avatar}" as="image">
-                        <f:image image="{image}" width="96" height="96" class="header-profile__avatar-img" alt="{data.header}"/>
+                        <f:image image="{image}" width="96" height="96" class="header-profile__avatar-img" alt="{data.header}" additionalAttributes="{srcset: '{f:uri.image(image: image, width: \'96\', height: \'96\')} 1x, {f:uri.image(image: image, width: \'192\', height: \'192\')} 2x'}" loading="lazy" decoding="async"/>
                     </f:for>
                 </div>
             </f:if>
             <div class="header-profile__info">
                 <f:if condition="{data.header}">
-                    <d:atom.typography tag="h1" variant="h2" class="header-profile__name">{data -> f:render.text(field: 'header')}</d:atom.typography>
+                    <d:atom.typography tag="h2" variant="h2" class="header-profile__name">{data -> f:render.text(field: 'header')}</d:atom.typography>
                 </f:if>
                 <f:if condition="{data.role}">
                     <p class="header-profile__role">{data -> f:render.text(field: 'role')}</p>

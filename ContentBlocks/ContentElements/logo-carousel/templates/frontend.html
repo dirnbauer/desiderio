@@ -30,13 +30,13 @@
                             <f:then>
                                 <d:atom.link href="{logo.link.url}" target="{logo.link.target}" variant="muted" class="logo-carousel__link">
                                     <f:for each="{logo.image}" as="fileReference">
-                                        <f:image image="{fileReference}" maxWidth="260" alt="{logo.name}" class="logo-carousel__image" loading="lazy"/>
+                                        <f:image image="{fileReference}" maxWidth="260" alt="{logo.name}" class="logo-carousel__image" loading="lazy" decoding="async"/>
                                     </f:for>
                                 </d:atom.link>
                             </f:then>
                             <f:else>
                                 <f:for each="{logo.image}" as="fileReference">
-                                    <f:image image="{fileReference}" maxWidth="260" alt="{logo.name}" class="logo-carousel__image" loading="lazy"/>
+                                    <f:image image="{fileReference}" maxWidth="260" alt="{logo.name}" class="logo-carousel__image" loading="lazy" decoding="async"/>
                                 </f:for>
                             </f:else>
                         </f:if>
@@ -47,7 +47,7 @@
                 <f:for each="{data.logo_items}" as="logo">
                     <li class="logo-carousel__item">
                         <f:for each="{logo.image}" as="fileReference">
-                            <f:image image="{fileReference}" maxWidth="260" alt="" class="logo-carousel__image" loading="lazy"/>
+                            <f:image image="{fileReference}" maxWidth="260" alt="" class="logo-carousel__image" loading="lazy" decoding="async"/>
                         </f:for>
                     </li>
                 </f:for>

@@ -9,7 +9,7 @@
             <div class="hero-product__content">
                 <f:if condition="{data.badge_text}"><d:atom.badge variant="secondary">{data -> f:render.text(field: 'badge_text')}</d:atom.badge></f:if>
                 <f:if condition="{data.header}">
-                    <d:atom.typography tag="h1" variant="h1" class="hero-product__title">{data -> f:render.text(field: 'header')}</d:atom.typography>
+                    <d:atom.typography tag="h2" variant="h1" class="hero-product__title">{data -> f:render.text(field: 'header')}</d:atom.typography>
                 </f:if>
                 <f:if condition="{data.subheadline}">
                     <d:atom.typography variant="lead" class="hero-product__description">{data -> f:render.text(field: 'subheadline')}</d:atom.typography>
@@ -34,7 +34,7 @@
             <div class="hero-product__media">
                 <f:if condition="{data.product_image}">
                     <f:for each="{data.product_image}" as="image">
-                        <f:image image="{image}" class="hero-product__image" alt="{data.header}"/>
+                        <f:image image="{image}" class="hero-product__image" alt="{data.header}" loading="eager" fetchpriority="high" decoding="async"/>
                     </f:for>
                 </f:if>
             </div>

@@ -14,7 +14,7 @@
                     <p class="hero-video__eyebrow">{data -> f:render.text(field: 'eyebrow')}</p>
                 </f:if>
                 <f:if condition="{data.header}">
-                    <d:atom.typography tag="h1" variant="h1" class="hero-video__headline" itemprop="">
+                    <d:atom.typography tag="h2" variant="h1" class="hero-video__headline" itemprop="">
                         <span id="hero-video-title-{data.uid}">{data -> f:render.text(field: 'header')}</span>
                     </d:atom.typography>
                 </f:if>

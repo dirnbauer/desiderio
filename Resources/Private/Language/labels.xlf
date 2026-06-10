@@ -1693,12 +1693,17 @@
     </unit>
     <unit id="captcha.placeholder.note">
       <segment>
-        <source>Demo mode — verification is skipped.</source>
+        <source>Friendly Captcha is disabled in this environment (Development context or test mode) — verification passes automatically.</source>
       </segment>
     </unit>
     <unit id="aria.dismiss">
       <segment>
         <source>Dismiss this notice</source>
+      </segment>
+    </unit>
+    <unit id="lightbox.open">
+      <segment>
+        <source>Show image in full size</source>
       </segment>
     </unit>
     <unit id="carousel.aria.slides">

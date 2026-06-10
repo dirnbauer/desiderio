@@ -30,7 +30,7 @@
             </div>
             <f:if condition="{data.image.0}">
                 <div class="feature-accordion__media">
-                    <f:image image="{data.image.0}" alt="{data.image.0.alternative}" maxWidth="640" class="feature-accordion__image"/>
+                    <f:image image="{data.image.0}" alt="{data.image.0.alternative}" maxWidth="640" class="feature-accordion__image" loading="lazy" decoding="async"/>
                 </div>
             </f:if>
         </div>

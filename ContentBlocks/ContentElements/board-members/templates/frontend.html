@@ -21,7 +21,7 @@
                         <f:then>
                             <figure class="board-members__image-wrapper">
                                 <f:for each="{member.image}" as="fileReference">
-                                    <f:image image="{fileReference}" width="720c" height="960c" alt="" loading="lazy" decoding="async" class="board-members__image"/>
+                                    <f:image image="{fileReference}" width="720c" height="960c" alt="" loading="lazy" decoding="async" class="board-members__image" additionalAttributes="{srcset: '{f:uri.image(image: fileReference, width: \'720c\', height: \'960c\')} 1x, {f:uri.image(image: fileReference, width: \'1440c\', height: \'1920c\')} 2x'}"/>
                                     <f:if condition="{fileReference.description}">
                                         <figcaption class="board-members__credit">{fileReference.description}</figcaption>
                                     </f:if>

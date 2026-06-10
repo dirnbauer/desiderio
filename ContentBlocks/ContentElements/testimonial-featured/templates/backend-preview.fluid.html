@@ -45,7 +45,7 @@
             </div>
         </f:if>
         <f:if condition="{data.author_image}">
-            <div class="d-ce-preview__thumbs" aria-label="Author Image">
+            <div class="d-ce-preview__thumbs" role="group" aria-label="Author Image">
                 <f:for each="{data.author_image}" as="file">
                     <f:if condition="{file.publicUrl}">
                         <img src="{file.publicUrl}" alt="{file.alternative}" class="d-ce-preview__thumb" loading="lazy" />
@@ -54,7 +54,7 @@
             </div>
         </f:if>
         <f:if condition="{data.company_logo}">
-            <div class="d-ce-preview__thumbs" aria-label="Company Logo">
+            <div class="d-ce-preview__thumbs" role="group" aria-label="Company Logo">
                 <f:for each="{data.company_logo}" as="file">
                     <f:if condition="{file.publicUrl}">
                         <img src="{file.publicUrl}" alt="{file.alternative}" class="d-ce-preview__thumb" loading="lazy" />
@@ -63,7 +63,7 @@
             </div>
         </f:if>
         <f:if condition="{data.background_image}">
-            <div class="d-ce-preview__thumbs" aria-label="Background Image">
+            <div class="d-ce-preview__thumbs" role="group" aria-label="Background Image">
                 <f:for each="{data.background_image}" as="file">
                     <f:if condition="{file.publicUrl}">
                         <img src="{file.publicUrl}" alt="{file.alternative}" class="d-ce-preview__thumb" loading="lazy" />

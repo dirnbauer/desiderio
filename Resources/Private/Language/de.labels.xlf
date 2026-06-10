@@ -2019,14 +2019,20 @@
     </unit>
     <unit id="captcha.placeholder.note">
       <segment state="final">
-        <source>Demo mode — verification is skipped.</source>
-        <target>Demomodus — Verifizierung wird übersprungen.</target>
+        <source>Friendly Captcha is disabled in this environment (Development context or test mode) — verification passes automatically.</source>
+        <target>Friendly Captcha ist in dieser Umgebung deaktiviert (Development-Kontext oder Testmodus) — die Verifizierung gilt automatisch als bestanden.</target>
       </segment>
     </unit>
     <unit id="aria.dismiss">
       <segment state="final">
         <source>Dismiss this notice</source>
         <target>Hinweis schließen</target>
+      </segment>
+    </unit>
+    <unit id="lightbox.open">
+      <segment state="final">
+        <source>Show image in full size</source>
+        <target>Bild in voller Größe anzeigen</target>
       </segment>
     </unit>
     <unit id="carousel.aria.slides">

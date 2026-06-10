@@ -104,6 +104,24 @@
   function normalizeLanguage(language, source) {
     var normalized = String(language || '').toLowerCase().replace(/[^a-z0-9+#-]/g, '');
 
+    // Explicit TYPO3 labels first: Fluid templates start with "<" and
+    // would otherwise be swallowed by the markup source heuristics below.
+    if (normalized.includes('fluid')) {
+      return 'fluid';
+    }
+
+    if (normalized.includes('tsconfig')) {
+      return 'tsconfig';
+    }
+
+    if (normalized.includes('typoscript')) {
+      return 'typoscript';
+    }
+
+    if (normalized.includes('yaml') || normalized === 'yml') {
+      return 'yaml';
+    }
+
     if (normalized.includes('php') || source.includes('<?php')) {
       return 'php';
     }

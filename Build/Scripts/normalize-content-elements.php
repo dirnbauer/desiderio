@@ -675,7 +675,7 @@ function backendPreviewTemplate(string $title, array $config): string
     foreach ($fileFields as $field) {
         $identifier = (string)$field['identifier'];
         $lines[] = '        <f:if condition="{data.' . $identifier . '}">';
-        $lines[] = '            <div class="d-ce-preview__thumbs" aria-label="' . xml(readableIdentifier($identifier)) . '">';
+        $lines[] = '            <div class="d-ce-preview__thumbs" role="group" aria-label="' . xml(readableIdentifier($identifier)) . '">';
         $lines[] = '                <f:for each="{data.' . $identifier . '}" as="file">';
         $lines[] = '                    <f:if condition="{file.publicUrl}">';
         $lines[] = '                        <img src="{file.publicUrl}" alt="{file.alternative}" class="d-ce-preview__thumb" loading="lazy" />';

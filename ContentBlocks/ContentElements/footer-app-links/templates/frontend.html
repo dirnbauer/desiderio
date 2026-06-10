@@ -33,7 +33,7 @@
             <f:if condition="{data.qr_image}">
                 <div class="footer-app-links__qr">
                     <f:for each="{data.qr_image}" as="file">
-                        <f:image image="{file}" alt="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:footer.qr.alt', default: 'Scan the QR code to download the app')}" width="120"/>
+                        <f:image image="{file}" alt="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:footer.qr.alt', default: 'Scan the QR code to download the app')}" width="120" additionalAttributes="{srcset: '{f:uri.image(image: file, width: \'120\')} 1x, {f:uri.image(image: file, width: \'240\')} 2x'}" loading="lazy" decoding="async"/>
                     </f:for>
                 </div>
             </f:if>

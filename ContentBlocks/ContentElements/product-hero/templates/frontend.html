@@ -13,7 +13,7 @@
                     <span class="product-hero__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span>
                 </f:if>
                 <f:if condition="{data.header}">
-                    <h1 class="product-hero__headline">{data -> f:render.text(field: 'header')}</h1>
+                    <h2 class="product-hero__headline">{data -> f:render.text(field: 'header')}</h2>
                 </f:if>
                 <f:if condition="{data.description}">
                     <p class="product-hero__description">{data -> f:render.text(field: 'description')}</p>

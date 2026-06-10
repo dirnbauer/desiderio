@@ -7,7 +7,7 @@
     <d:layout.container>
         <div class="hero-search__content">
             <f:if condition="{data.header}">
-                <d:atom.typography tag="h1" variant="h1" class="hero-search__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
+                <d:atom.typography tag="h2" variant="h1" class="hero-search__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
             </f:if>
             <f:if condition="{data.subheadline}">
                 <d:atom.typography variant="lead" class="hero-search__subheadline">{data -> f:render.text(field: 'subheadline')}</d:atom.typography>

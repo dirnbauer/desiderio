@@ -20,7 +20,7 @@
     <span class="notification__icon" aria-hidden="true"><d:atom.icon name="{notificationIcon -> f:format.trim()}" size="sm"/></span>
     <div class="notification__body">
         <f:if condition="{data.header}">
-            <h4 class="notification__title">{data -> f:render.text(field: 'header')}</h4>
+            <h2 class="notification__title">{data -> f:render.text(field: 'header')}</h2>
         </f:if>
         <p class="notification__message">{data -> f:render.text(field: 'content')}</p>
         <f:if condition="{data.action_text}">

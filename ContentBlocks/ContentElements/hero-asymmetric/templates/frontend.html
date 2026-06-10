@@ -13,7 +13,7 @@
                     <d:atom.badge variant="secondary" class="hero-asymmetric__badge">{data -> f:render.text(field: 'badge_text')}</d:atom.badge>
                 </f:if>
                 <f:if condition="{data.header}">
-                    <d:atom.typography tag="h1" variant="h1" class="hero-asymmetric__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
+                    <d:atom.typography tag="h2" variant="h1" class="hero-asymmetric__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
                 </f:if>
                 <f:if condition="{data.subheadline}">
                     <d:atom.typography variant="lead" class="hero-asymmetric__subheadline">{data -> f:render.text(field: 'subheadline')}</d:atom.typography>
@@ -39,7 +39,8 @@
                                  class="hero-asymmetric__image"
                                  alt="{image.alternative -> f:or(alternative: data.header)}"
                                  maxWidth="960"
-                                 loading="lazy"
+                                 loading="eager"
+                                 fetchpriority="high"
                                  decoding="async"/>
                     </f:for>
                 </f:if>

@@ -20,7 +20,7 @@
                     <f:if condition="{advisor.image}">
                         <f:then>
                             <f:for each="{advisor.image}" as="fileReference">
-                                <f:image image="{fileReference}" width="160c" height="160c" alt="" loading="lazy" decoding="async" class="advisor-grid__avatar"/>
+                                <f:image image="{fileReference}" width="160c" height="160c" alt="" loading="lazy" decoding="async" class="advisor-grid__avatar" additionalAttributes="{srcset: '{f:uri.image(image: fileReference, width: \'160c\', height: \'160c\')} 1x, {f:uri.image(image: fileReference, width: \'320c\', height: \'320c\')} 2x'}"/>
                             </f:for>
                         </f:then>
                         <f:else>

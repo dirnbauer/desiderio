@@ -45,7 +45,7 @@
             </div>
         </f:if>
         <f:if condition="{data.client_logo}">
-            <div class="d-ce-preview__thumbs" aria-label="Client Logo">
+            <div class="d-ce-preview__thumbs" role="group" aria-label="Client Logo">
                 <f:for each="{data.client_logo}" as="file">
                     <f:if condition="{file.publicUrl}">
                         <img src="{file.publicUrl}" alt="{file.alternative}" class="d-ce-preview__thumb" loading="lazy" />
@@ -54,7 +54,7 @@
             </div>
         </f:if>
         <f:if condition="{data.image}">
-            <div class="d-ce-preview__thumbs" aria-label="Image">
+            <div class="d-ce-preview__thumbs" role="group" aria-label="Image">
                 <f:for each="{data.image}" as="file">
                     <f:if condition="{file.publicUrl}">
                         <img src="{file.publicUrl}" alt="{file.alternative}" class="d-ce-preview__thumb" loading="lazy" />

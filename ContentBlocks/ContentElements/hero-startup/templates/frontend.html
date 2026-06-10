@@ -8,7 +8,7 @@
         <div class="hero-startup__content">
             <f:if condition="{data.badge_text}"><d:atom.badge variant="secondary">{data -> f:render.text(field: 'badge_text')}</d:atom.badge></f:if>
             <f:if condition="{data.header}">
-                <d:atom.typography tag="h1" variant="h1" class="hero-startup__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
+                <d:atom.typography tag="h2" variant="h1" class="hero-startup__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
             </f:if>
             <f:if condition="{data.subheadline}">
                 <d:atom.typography variant="lead" class="hero-startup__subheadline">{data -> f:render.text(field: 'subheadline')}</d:atom.typography>
@@ -21,7 +21,7 @@
                     <f:if condition="{data.avatars}">
                         <div class="hero-startup__avatars" aria-hidden="true">
                             <f:for each="{data.avatars}" as="avatar">
-                                <f:image image="{avatar}" width="32" height="32" class="hero-startup__avatar" alt=""/>
+                                <f:image image="{avatar}" width="32" height="32" class="hero-startup__avatar" alt="" additionalAttributes="{srcset: '{f:uri.image(image: avatar, width: \'32\', height: \'32\')} 1x, {f:uri.image(image: avatar, width: \'64\', height: \'64\')} 2x'}" loading="lazy" decoding="async"/>
                             </f:for>
                         </div>
                     </f:if>

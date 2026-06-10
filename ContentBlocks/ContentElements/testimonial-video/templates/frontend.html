@@ -16,7 +16,7 @@
                 <div class="testimonial-video__embed">
                     <f:if condition="{data.poster_image}">
                         <f:for each="{data.poster_image}" as="poster">
-                            <f:image image="{poster}" maxWidth="960" alt="" class="testimonial-video__poster"/>
+                            <f:image image="{poster}" maxWidth="960" alt="" class="testimonial-video__poster" loading="lazy" decoding="async"/>
                         </f:for>
                     </f:if>
                     <iframe src="{data.video_url}" allowfullscreen loading="lazy"

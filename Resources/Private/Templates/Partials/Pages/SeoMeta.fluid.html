@@ -32,8 +32,14 @@
 <f:page.meta property="og:type">website</f:page.meta>
 <f:page.meta property="og:url">{f:uri.page(absolute: 1)}</f:page.meta>
 <f:page.meta property="robots">{robots}</f:page.meta>
-<f:page.meta property="twitter:card">{f:if(condition: site.configuration.settings.desiderio.seo.defaultImage, then: 'summary_large_image', else: 'summary')}</f:page.meta>
 
+<f:comment>
+    twitter:card lives in setup.typoscript (page.meta) next to the site-wide
+    og:image/twitter:image fallback: the TypoScript set always guarantees a
+    sharing image, so summary_large_image is the correct card type. A custom
+    desiderio.seo.defaultImage setting still overrides the fallback image here
+    because Fluid-set meta tags take precedence over TypoScript ones.
+</f:comment>
 <f:if condition="{site.configuration.settings.desiderio.seo.defaultImage}">
     <f:page.meta property="og:image">{site.configuration.settings.desiderio.seo.defaultImage}</f:page.meta>
     <f:page.meta property="twitter:image">{site.configuration.settings.desiderio.seo.defaultImage}</f:page.meta>

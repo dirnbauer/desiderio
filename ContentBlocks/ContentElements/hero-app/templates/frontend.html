@@ -8,7 +8,7 @@
         <div class="hero-app__grid">
             <div class="hero-app__content">
                 <f:if condition="{data.badge_text}"><d:atom.badge variant="secondary">{data -> f:render.text(field: 'badge_text')}</d:atom.badge></f:if>
-                <f:if condition="{data.header}"><d:atom.typography tag="h1" variant="h1" class="hero-app__headline">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
+                <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h1" class="hero-app__headline">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
                 <f:if condition="{data.subheadline}"><d:atom.typography variant="lead" class="hero-app__subheadline">{data -> f:render.text(field: 'subheadline')}</d:atom.typography></f:if>
                 <f:if condition="{data.primary_button_text} || {data.secondary_button_text}">
                     <div class="hero-app__actions">
@@ -25,7 +25,7 @@
                 <div class="hero-app__phone-frame">
                     <f:if condition="{data.app_image}">
                         <f:for each="{data.app_image}" as="image">
-                            <f:image image="{image}" class="hero-app__screenshot" alt="{data.header}"/>
+                            <f:image image="{image}" class="hero-app__screenshot" alt="{data.header}" loading="eager" fetchpriority="high" decoding="async"/>
                         </f:for>
                     </f:if>
                 </div>

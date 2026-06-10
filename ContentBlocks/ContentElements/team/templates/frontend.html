@@ -25,7 +25,7 @@
                                 <f:then>
                                     <f:for each="{member.image}" as="fileReference">
                                         <d:atom.avatar size="xl" class="team__list-avatar">
-                                            <f:image image="{fileReference}" width="96c" height="96c" cropVariant="default" alt="" loading="lazy" decoding="async" class="team__avatar-image"/>
+                                            <f:image image="{fileReference}" width="96c" height="96c" cropVariant="default" alt="" loading="lazy" decoding="async" class="team__avatar-image" additionalAttributes="{srcset: '{f:uri.image(image: fileReference, width: \'96c\', height: \'96c\')} 1x, {f:uri.image(image: fileReference, width: \'192c\', height: \'192c\')} 2x'}"/>
                                         </d:atom.avatar>
                                     </f:for>
                                 </f:then>
@@ -61,7 +61,7 @@
                                 <f:then>
                                     <f:for each="{member.image}" as="fileReference">
                                         <d:atom.avatar size="xl" class="team__minimal-avatar">
-                                            <f:image image="{fileReference}" width="96c" height="96c" cropVariant="default" alt="" loading="lazy" decoding="async" class="team__avatar-image"/>
+                                            <f:image image="{fileReference}" width="96c" height="96c" cropVariant="default" alt="" loading="lazy" decoding="async" class="team__avatar-image" additionalAttributes="{srcset: '{f:uri.image(image: fileReference, width: \'96c\', height: \'96c\')} 1x, {f:uri.image(image: fileReference, width: \'192c\', height: \'192c\')} 2x'}"/>
                                         </d:atom.avatar>
                                     </f:for>
                                 </f:then>
@@ -105,7 +105,7 @@
                             </f:if>
                             <f:if condition="{member.profile_link.url}">
                                 <d:molecule.cardFooter class="team__footer mt-auto shrink-0 grow-0">
-                                    <d:atom.button href="{member.profile_link.url}" target="{member.profile_link.target}" variant="ghost" size="sm" class="w-full">
+                                    <d:atom.button href="{member.profile_link.url}" target="{member.profile_link.target}" variant="secondary" size="sm" class="w-full">
                                         <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:team.view_profile">View profile</f:translate>
                                         <span class="sr-only"> — {member -> f:render.text(field: 'name')}</span>
                                     </d:atom.button>

@@ -769,6 +769,12 @@
         <target>Affichage des résultats pour « {query} ».</target>
       </segment>
     </unit>
+    <unit id="solr.noResultsHint">
+      <segment state="final">
+        <source>Try a different or more general search term.</source>
+        <target>Essayez un terme de recherche différent ou plus général.</target>
+      </segment>
+    </unit>
     <unit id="solr.resultsSearchedFor">
       <segment state="final">
         <source>Searched for "{query}".</source>

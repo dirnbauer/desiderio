@@ -64,6 +64,21 @@
                     </p>
                 </f:if>
 
+                <f:if condition="{resultSet.allResultCount} == 0">
+                    <f:if condition="{resultSet.isAutoCorrected}">
+                        <f:else>
+                            <div class="d-solr-status-card d-solr-no-results" role="status" data-slot="card">
+                                <strong class="block font-semibold">
+                                    <f:translate key="solr.noResultsNothingFound" domain="desiderio.labels" arguments="{query: resultSet.usedQuery.rawSearchTerm}">Nothing found for "{query}".</f:translate>
+                                </strong>
+                                <span class="text-muted-foreground">
+                                    <f:translate key="solr.noResultsHint" domain="desiderio.labels">Try a different or more general search term.</f:translate>
+                                </span>
+                            </div>
+                        </f:else>
+                    </f:if>
+                </f:if>
+
                 <f:if condition="{resultSet.allResultCount}">
                     <p>
                         <f:translate key="solr.resultsFound" domain="desiderio.labels" arguments="{count: resultSet.allResultCount}">Found {count} results.</f:translate>

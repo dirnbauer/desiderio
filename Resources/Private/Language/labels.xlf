@@ -1206,6 +1206,11 @@
         <source>Showing results for &quot;{query}&quot;.</source>
       </segment>
     </unit>
+    <unit id="solr.noResultsHint">
+      <segment>
+        <source>Try a different or more general search term.</source>
+      </segment>
+    </unit>
     <unit id="solr.resultsSearchedFor">
       <segment>
         <source>Searched for &quot;{query}&quot;.</source>

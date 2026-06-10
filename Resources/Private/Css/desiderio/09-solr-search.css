@@ -156,7 +156,11 @@
 }
 
 .d-solr-command__submit:hover {
-    background: color-mix(in oklch, var(--primary) 84%, var(--background));
+    /* Alpha mix (= hover:bg-primary/80): lighter over the light page, darker
+       over the dark one, and — unlike mixing towards var(--background) —
+       hue-safe: an oklch-specified achromatic color keeps its hue 0 in
+       color-mix and would rotate the brand hue towards blue. */
+    background: color-mix(in oklch, var(--primary) 80%, transparent);
 }
 
 .d-solr-command__submit:active {

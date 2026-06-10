@@ -218,7 +218,9 @@
   .ce-frame :where(a:hover),
   .ce-bodytext :where(a:hover),
   .prose :where(a:hover) {
-    color: color-mix(in oklch, var(--primary) 80%, var(--foreground));
+    /* Not a mix towards var(--foreground): its oklch hue 0 would rotate the
+       brand hue. --d-primary-text is the hue-safe, scheme-aware pull. */
+    color: var(--d-primary-text, var(--primary));
   }
 
   .frame :where(img, video, iframe),

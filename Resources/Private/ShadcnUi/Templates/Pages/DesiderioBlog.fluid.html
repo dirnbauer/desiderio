@@ -24,7 +24,14 @@
     <!--TYPO3SEARCH_begin-->
     <d:layout.section spacing="sm">
         <d:layout.container size="xl">
-            <f:if condition="({page.pageRecord.pid} == {site.configuration.settings.plugin.tx_blog.settings.storagePid}) || ({page.pageRecord.doktype} == 137 && {page.pageRecord.pid} > 0)">
+            <f:comment>
+                A blog post is its own doktype-137 page (BlogPageTreeSeeder::BLOG_POST_DOKTYPE).
+                Detect posts by doktype alone: testing "pid == storagePid" also matched the
+                Category/Tag helper folders that sit next to the posts under the storage folder,
+                so they rendered the post chrome (header/footer/authors/comments/relatedposts)
+                with no post in context and emitted "no matching post" configuration errors.
+            </f:comment>
+            <f:if condition="{page.pageRecord.doktype} == 137">
                 <f:then>
                     <f:render section="BlogPostPage" arguments="{_all}"/>
                 </f:then>
@@ -110,7 +117,7 @@
 </f:section>
 
 <f:section name="BlogListHeading">
-    <f:if condition="({page.pageRecord.pid} != {site.configuration.settings.plugin.tx_blog.settings.storagePid}) && !({page.pageRecord.doktype} == 137 && {page.pageRecord.pid} > 0)">
+    <f:if condition="{page.pageRecord.doktype} != 137">
         <header class="max-w-3xl">
             <d:layout.stack gap="sm">
                 <d:atom.badge variant="secondary">Blog</d:atom.badge>

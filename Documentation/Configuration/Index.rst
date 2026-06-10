@@ -84,6 +84,19 @@ The create presets are copied from ``https://ui.shadcn.com/create``. The
 house presets reuse the same token model and vary accent, radius,
 typography, density, focus ring, and icon library.
 
+..  _configuration-presets-per-page:
+
+Per-page preset override
+------------------------
+
+Every page record offers :guilabel:`Theme preset (this page and subpages)`
+in the :guilabel:`Appearance` tab (``pages.tx_desiderio_shadcn_preset``).
+A non-empty value wins over the site setting for that page and is inherited
+by all subpages (TypoScript ``levelfield:-1, tx_desiderio_shadcn_preset,
+slide``). Leave the field empty to fall back to the parent page or
+``desiderio.shadcn.preset``. The styleguide seeder uses this field to give
+each demo chapter its own theme.
+
 ..  _configuration-search:
 
 Search
@@ -153,18 +166,80 @@ Forms
     *   - ``desiderio.forms.brevo.eventName``
         - ``form_submit``
         - Event name for Brevo tracking.
+    *   - ``desiderio.forms.brevo.doubleOptInTemplateId``
+        - empty
+        - Brevo DOI email template id; enables double opt-in for the
+          newsletter form when set together with list ids.
+    *   - ``desiderio.forms.brevo.doubleOptInRedirectUrl``
+        - empty
+        - URL shown after the subscriber confirms the DOI email.
 
 Set ``BREVO_API_KEY`` outside the repository when Brevo is enabled.
+
+Newsletter registration via Brevo
+---------------------------------
+
+The bundled ``DesiderioNewsletter`` form (rendered by the
+``newsletter-signup``, ``newsletter-inline``, and ``footer-newsletter``
+elements) carries the ``BrevoContact`` finisher with ``doubleOptIn: true``.
+With ``desiderio.forms.brevo.enabled``, ``BREVO_API_KEY``, list ids, and a
+DOI template id in place, signups go through Brevo's double opt-in flow
+(``POST /v3/contacts/doubleOptinConfirmation``): the contact only joins the
+configured lists after confirming the email. Without a DOI template the
+finisher falls back to the direct contact sync, so signups are never lost.
 
 ..  _configuration-friendly-captcha:
 
 Friendly Captcha
 ================
 
-Production sites need real Friendly Captcha site and API keys. For local
-development, enable ``desiderio.forms.friendlyCaptchaTestMode`` in TYPO3
-Development context. The request middleware maps that setting to the
+Desiderio integrates with the ``studiomitte/friendlycaptcha`` extension.
+For TYPO3 14, install the maintained fork from
+`github.com/dirnbauer/friendlycaptcha-typo3
+<https://github.com/dirnbauer/friendlycaptcha-typo3>`__:
+
+..  code-block:: json
+    :caption: composer.json (root project)
+
+    {
+        "repositories": [
+            { "type": "vcs", "url": "https://github.com/dirnbauer/friendlycaptcha-typo3.git" }
+        ]
+    }
+
+..  code-block:: bash
+
+    composer require "studiomitte/friendlycaptcha:^14.0@dev"
+
+When the extension is installed and configured, the real Friendly Captcha
+widget renders and validates as usual — Desiderio never removes it, it only
+overrides the rendering in the two situations below.
+
+Production sites need real Friendly Captcha site and API keys. Outside of
+production the bypass works like this:
+
+*   **Development context (ddev):** the captcha is bypassed automatically —
+    forms work out of the box without keys. No setting needed.
+*   ``desiderio.forms.friendlyCaptchaForceReal``: forces the real widget and
+    validation even in Development, e.g. to test real keys on a ddev site.
+    Wins over the automatic bypass and over test mode.
+*   ``desiderio.forms.friendlyCaptchaTestMode``: explicit bypass for other
+    non-production contexts (e.g. Testing).
+*   **Production:** the real captcha always runs; a test-mode setting left
+    on by mistake is ignored and logged.
+
+While bypassed, the forms render a decorative, inert verification widget
+(a disabled button that does nothing) instead of the real puzzle, and
+validation always passes. The request middleware maps the bypass to the
 Friendly Captcha skip flag used by TYPO3 Form Framework and Powermail.
+
+When ``studiomitte/friendlycaptcha`` is not installed at all, Desiderio
+registers a fallback form setup
+(:file:`Configuration/Yaml/FriendlyCaptchaFallbackFormSetup.yaml`): the
+``Friendlycaptcha`` element of the bundled forms then renders the same
+placeholder widget and its validator always passes, so demo forms keep
+working without the extension. Install and configure the real extension
+before collecting production traffic.
 
 ..  _configuration-page-layouts:
 

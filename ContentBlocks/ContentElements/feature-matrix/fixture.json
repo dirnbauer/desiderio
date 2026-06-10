@@ -1,34 +1,34 @@
 {
     "_type": "table",
-    "eyebrow": "Compare plans",
-    "header": "Starter vs Pro at a glance",
-    "left_label": "Starter",
-    "right_label": "Pro",
+    "eyebrow": "Comparison",
+    "header": "DIY templates vs. Desiderio Pro",
+    "left_label": "DIY templates",
+    "right_label": "Desiderio Pro",
     "rows": [
         {
-            "label": "Content blocks",
-            "left_value": "25",
-            "right_value": "Unlimited"
+            "label": "Time to first page",
+            "left_value": "Weeks of template development",
+            "right_value": "Installed before lunch"
         },
         {
-            "label": "Editor seats",
-            "left_value": "3",
-            "right_value": "Unlimited"
+            "label": "Budget",
+            "left_value": "A dev team's weeks, every project",
+            "right_value": "€490/year — or €49/month"
         },
         {
-            "label": "Live preview",
-            "left_value": "Included",
-            "right_value": "Included"
+            "label": "Theme change",
+            "left_value": "Rebuild and redeploy",
+            "right_value": "Runtime switch, 15 presets"
         },
         {
-            "label": "Custom themes",
-            "left_value": "1",
-            "right_value": "Unlimited"
+            "label": "Support",
+            "left_value": "Your own backlog",
+            "right_value": "Priority email, 2-day response"
         },
         {
-            "label": "Priority support",
-            "left_value": "Email",
-            "right_value": "24/7 chat"
+            "label": "TYPO3 LTS upgrades",
+            "left_value": "Re-budgeted every cycle",
+            "right_value": "Guaranteed compatibility updates"
         }
     ]
 }

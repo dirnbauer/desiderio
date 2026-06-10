@@ -1,29 +1,29 @@
 {
     "_type": "pricing",
-    "eyebrow": "Usage pricing",
-    "header": "Pay only for what you use",
-    "description": "Volume pricing scales down as you grow. The more API calls you make, the less you pay per call.",
-    "unit_label": "API calls",
+    "eyebrow": "Creator Care",
+    "header": "The creators' hours, on retainer",
+    "description": "Creator Care is €490 per month for 4 development hours — exactly €122.50 an hour with the people who built Desiderio, including priority fixes, security monitoring, and LTS upgrade planning. Need more capacity? Stack retainers; the math stays flat.",
+    "unit_label": "Creator dev hours / month",
     "tiers": [
         {
-            "label": "Starter",
-            "up_to": "100,000",
-            "price_per_unit": "$0.0010"
+            "label": "Creator Care",
+            "up_to": "4",
+            "price_per_unit": "€490 / month"
         },
         {
-            "label": "Growth",
-            "up_to": "1,000,000",
-            "price_per_unit": "$0.0006"
+            "label": "Creator Care ×2",
+            "up_to": "8",
+            "price_per_unit": "€980 / month"
         },
         {
-            "label": "Scale",
-            "up_to": "10,000,000",
-            "price_per_unit": "$0.0003"
+            "label": "Creator Care ×3",
+            "up_to": "12",
+            "price_per_unit": "€1,470 / month"
         },
         {
-            "label": "Enterprise",
+            "label": "Beyond",
             "up_to": "Unlimited",
-            "price_per_unit": "Custom"
+            "price_per_unit": "Talk to the team"
         }
     ]
 }

@@ -1,16 +1,16 @@
 {
     "_type": "form",
     "eyebrow": "Live demo",
-    "header": "See Desiderio running on your stack",
-    "description": "Book a 30-minute walkthrough with a solutions engineer. We map the content blocks to your pages and answer migration questions live, with no slides.",
+    "header": "See Desiderio live — driven by a maintainer",
+    "description": "A 30-minute walkthrough with one of the people who built it. We seed the full styleguide on a TYPO3 14 instance, click through all 10 element groups and the Visual Editor, and answer your migration and pricing questions on the spot.",
     "submit_text": "Book my demo",
-    "reassurance": "30-minute call. No sales pitch, no commitment.",
+    "reassurance": "30 minutes, no commitment — bring your hardest questions.",
     "form_action": "https://example.com/desiderio/form_action_1",
     "image": {
-        "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-14.jpg",
-        "title": "Team Member portrait",
-        "alternative": "Portrait photo of Team Member.",
-        "description": "Portrait-style photo from Unsplash collection #25880.",
-        "source": "https://unsplash.com/collections/25880"
+        "file": "Resources/Public/Styleguide/Backend/backend-content-wizard.png",
+        "title": "Desiderio new-content wizard",
+        "alternative": "TYPO3 new content element wizard listing all 10 Desiderio element groups.",
+        "description": "Screenshot of the TYPO3 backend with Desiderio installed.",
+        "source": "https://github.com/dirnbauer/desiderio"
     }
 }

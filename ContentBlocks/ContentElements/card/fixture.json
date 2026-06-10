@@ -1,18 +1,18 @@
 {
     "_type": "card",
     "variant": "default",
-    "badge_text": "New",
-    "header": "Cohort retention report",
-    "description": "See how each signup cohort sticks around, with weekly retention curves you can filter by plan and channel.",
-    "link": "https://ui.shadcn.com/docs/components/card",
-    "button_text": "View report",
-    "button_link": "https://ui.shadcn.com/docs/components/card",
+    "badge_text": "New in 2.6",
+    "header": "One site, fifteen looks — per page",
+    "description": "Give any page subtree its own shadcn theme straight from the page properties. The preset inherits down the rootline and switches at runtime — your campaign goes Midnight while the rest of the site stays on brand. No rebuild, ever.",
+    "link": "https://github.com/dirnbauer/desiderio",
+    "button_text": "See it in the backend",
+    "button_link": "https://github.com/dirnbauer/desiderio",
     "card_image": {
-        "file": "Resources/Public/Styleguide/Unsplash/dashboard-neil-fernandez.jpg",
-        "title": "Dark product dashboard",
-        "alternative": "A laptop displaying a dark modern dashboard interface.",
-        "description": "Copyright/credit: Photo by Neil Fernandez on Unsplash. Used as seeded demo imagery.",
-        "source": "https://unsplash.com/photos/a-modern-laptop-displaying-a-dark-themed-dashboard-6-0ajRI1cgs"
+        "file": "Resources/Public/Styleguide/Backend/backend-page-properties-theme.png",
+        "title": "Desiderio per-page theme preset field",
+        "alternative": "TYPO3 page properties showing the Desiderio theme preset select field.",
+        "description": "Screenshot of the TYPO3 backend with Desiderio installed.",
+        "source": "https://github.com/dirnbauer/desiderio"
     },
     "image_position": "left"
 }

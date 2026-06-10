@@ -1,26 +1,26 @@
 {
     "_type": "stats",
-    "eyebrow": "Service levels",
-    "header": "Reliability our customers can plan around",
-    "subheadline": "Measured across all production workspaces over the last 90 days, reported in real time on our public status page.",
+    "eyebrow": "Quality gates",
+    "header": "Shipped green, kept green",
+    "subheadline": "Every Desiderio release passes PHPStan level max, a 400-test CI suite on PHP 8.3 and 8.4, and an 11-category template audit with zero tolerance — quality you can resell to your own clients.",
     "items": [
         {
-            "label": "API uptime",
-            "value": "99.98%",
+            "label": "Backend preview coverage (255 of 255 elements)",
+            "value": "100%",
             "percentage": 100
         },
         {
-            "label": "Tickets resolved within SLA",
+            "label": "Lighthouse accessibility, seeded demo pages",
             "value": "96%",
             "percentage": 96
         },
         {
-            "label": "Customers on the latest release",
+            "label": "Relaunch work covered by ready-made elements (customer-reported)",
             "value": "88%",
             "percentage": 88
         },
         {
-            "label": "Onboarding completed in week one",
+            "label": "Templating time saved vs. hand-coded builds (customer-reported)",
             "value": "74%",
             "percentage": 74
         }

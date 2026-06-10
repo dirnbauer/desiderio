@@ -1,13 +1,13 @@
 {
     "_type": "team",
-    "header": "Meet our board",
-    "subheadline": "An independent board of operators and investors who have scaled companies from seed to IPO.",
+    "header": "The people steering the roadmap",
+    "subheadline": "A small maintainer council at webconsulting studio decides what lands in each Desiderio release.",
     "members": [
         {
             "name": "Sofia Berg",
-            "title": "Board Chair",
-            "affiliation": "Former CEO, Northwind Cloud",
-            "bio": "Led Northwind from Series A to a public listing, scaling the team past 2,000 people across nine markets.",
+            "title": "Project Lead",
+            "affiliation": "webconsulting studio",
+            "bio": "Owns the release train from 1.0 to today's 2.6, including the jump to 255 content elements and per-page theme presets.",
             "image": {
                 "file": "Resources/Public/Styleguide/Unsplash/board-sofia-berg.jpg",
                 "title": "Sofia Berg",
@@ -17,9 +17,9 @@
         },
         {
             "name": "Noah Ritter",
-            "title": "Independent Director",
-            "affiliation": "General Partner, Atlas Ventures",
-            "bio": "Early-stage investor in 30+ B2B software companies, with five exits above one billion dollars.",
+            "title": "Accessibility Steward",
+            "affiliation": "webconsulting studio",
+            "bio": "Keeps every component WCAG-minded: focus states, ARIA, and screen-reader copy are reviewed before any element ships.",
             "image": {
                 "file": "Resources/Public/Styleguide/Unsplash/board-noah-ritter.jpg",
                 "title": "Noah Ritter",
@@ -29,9 +29,9 @@
         },
         {
             "name": "Lea Fischer",
-            "title": "Independent Director",
-            "affiliation": "Former CFO, Meridian Health",
-            "bio": "Brings two decades of financial leadership and audit-committee experience in regulated industries.",
+            "title": "Quality & Audit Lead",
+            "affiliation": "webconsulting studio",
+            "bio": "Runs the 11-category template audit and the PHPStan-level-max CI gate that every pull request has to pass.",
             "image": {
                 "file": "Resources/Public/Styleguide/Unsplash/board-lea-fischer.jpg",
                 "title": "Lea Fischer",

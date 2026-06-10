@@ -1,15 +1,15 @@
 {
     "_type": "footer",
-    "header": "Take Northwind with you",
-    "description": "Track work, approve releases, and reply to your team from iOS and Android.",
-    "copyright": "\u00a9 2026 Northwind Labs, Inc. All rights reserved.",
-    "appstore_link": "https://example.com/desiderio/appstore_link_1",
-    "playstore_link": "https://example.com/desiderio/playstore_link_1",
+    "header": "Get the package",
+    "description": "There is no native app — Desiderio lives in your TYPO3 install. One Composer command installs all 255 elements free under GPL-2.0, one more seeds the full styleguide. Store badges and QR code are demo placeholders.",
+    "copyright": "© 2026 webconsulting studio. Desiderio is GPL-2.0 licensed.",
+    "appstore_link": "https://github.com/dirnbauer/desiderio",
+    "playstore_link": "https://typo3.org",
     "qr_image": {
-        "file": "Resources/Public/Styleguide/Unsplash/office-turquo-cabbit.jpg",
-        "title": "Modern office atrium",
-        "alternative": "A modern multi-level office atrium with glass railings and warm light.",
-        "description": "Copyright/credit: Photo by Turquo Cabbit on Unsplash. Used as seeded demo imagery.",
-        "source": "https://unsplash.com/photos/modern-office-building-interior-with-multiple-floors-QkGDA4Q4Vdk"
+        "file": "Resources/Public/Styleguide/Backend/backend-content-wizard.png",
+        "title": "Desiderio content wizard",
+        "alternative": "TYPO3 new-content wizard listing all 10 Desiderio element groups. Demo placeholder shown in the QR code slot.",
+        "description": "Screenshot of the TYPO3 backend with Desiderio installed, used as a demo placeholder for the QR code slot.",
+        "source": "https://github.com/dirnbauer/desiderio"
     }
 }

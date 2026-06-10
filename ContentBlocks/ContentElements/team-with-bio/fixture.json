@@ -1,13 +1,13 @@
 {
     "_type": "team",
     "eyebrow": "Our team",
-    "header": "The people behind your launch",
-    "subheadline": "A senior, cross-functional team that ships accessible, fast interfaces and stays close to your roadmap.",
+    "header": "The team that ships Desiderio",
+    "subheadline": "Four people, four facets of the kit: components, themes, accessibility, and TYPO3 integrations.",
     "members": [
         {
             "name": "Lea Fischer",
-            "role": "Product Design Lead",
-            "bio": "Leads research and design systems. Turns messy requirements into calm, testable interfaces teams can ship with confidence.",
+            "role": "Theme Designer",
+            "bio": "Designed the ten house presets, Aurora through Citrus, and the OKLCH token scale that keeps dark mode honest in every one of them.",
             "image": {
                 "file": "Resources/Public/Styleguide/Unsplash/team-lea-fischer.jpg",
                 "title": "Lea Fischer",
@@ -21,8 +21,8 @@
         },
         {
             "name": "Mara Weiss",
-            "role": "Frontend Engineer",
-            "bio": "Builds component libraries and performance budgets. Obsessed with sub-second loads and keyboard-first interaction patterns.",
+            "role": "Fluid Components Engineer",
+            "bio": "Built most of the 17 atoms and 28 molecules. Keeps the component API small so 255 elements can share one vocabulary.",
             "image": {
                 "file": "Resources/Public/Styleguide/Unsplash/team-mara-weiss.jpg",
                 "title": "Mara Weiss",
@@ -36,8 +36,8 @@
         },
         {
             "name": "Noah Ritter",
-            "role": "Accessibility Reviewer",
-            "bio": "Audits every release against WCAG 2.2 AA. Pairs with engineers so fixes land before launch, not after.",
+            "role": "Accessibility Engineer",
+            "bio": "Runs the template audit and screen-reader checks. Pairs with engineers so fixes land before an element ships, not after.",
             "image": {
                 "file": "Resources/Public/Styleguide/Unsplash/team-noah-ritter.jpg",
                 "title": "Noah Ritter",
@@ -51,8 +51,8 @@
         },
         {
             "name": "Jonas Klein",
-            "role": "Customer Success",
-            "bio": "Onboards new teams and runs quarterly reviews. Closes the loop between customer feedback and the product roadmap.",
+            "role": "TYPO3 Integrator",
+            "bio": "Maintains the News, Solr, Powermail, and blog integrations plus the one-command seeder that builds this styleguide.",
             "image": {
                 "file": "Resources/Public/Styleguide/Unsplash/team-jonas-klein.jpg",
                 "title": "Jonas Klein",

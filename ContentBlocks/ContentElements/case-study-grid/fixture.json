@@ -1,44 +1,44 @@
 {
     "_type": "grid",
     "eyebrow": "Case studies",
-    "header": "Proof from teams like yours",
+    "header": "Relaunches carried by Desiderio",
     "columns": "3",
     "cases": [
         {
-            "client_name": "Walmart",
-            "summary": "Unified store rollout planning across 4,600 locations on one live inventory view.",
-            "result": "9x faster planning",
+            "client_name": "Atlas Manufacturing",
+            "summary": "Booked installation & setup (€890) and went from kickoff to launch in three weeks — roughly three weeks faster than their last hand-coded relaunch, as the team reports it. Zero custom content types written.",
+            "result": "3x faster build",
             "image": {
-                "file": "Resources/Public/Styleguide/Unsplash/customer-enterprise.jpg",
-                "title": "Retail distribution center",
-                "alternative": "A large retail distribution facility with loading bays.",
-                "description": "Unsplash image used as demo case study cover photography."
+                "file": "Resources/Public/Styleguide/Frontend/frontend-hero-lagoon.png",
+                "title": "Desiderio hero page in the Lagoon preset",
+                "alternative": "Desiderio frontend hero page rendered in the Lagoon theme preset.",
+                "description": "Screenshot of a Desiderio frontend page from the seeded styleguide."
             },
-            "link": "https://www.example.com/case-studies/walmart"
+            "link": "https://github.com/dirnbauer/desiderio"
         },
         {
-            "client_name": "Amazon",
-            "summary": "Connected fulfillment telemetry to one operations dashboard for same-day routing decisions.",
-            "result": "40% fewer delays",
+            "client_name": "Lumen Health",
+            "summary": "Shipped a WCAG-minded patient portal on audit-clean templates and built-in dark mode — Lighthouse accessibility hit 96 on launch day. A custom brand preset from the creators (from €1,990) carries the identity.",
+            "result": "0 a11y blockers",
             "image": {
-                "file": "Resources/Public/Styleguide/Unsplash/customer-engineering.jpg",
-                "title": "Operations team workspace",
-                "alternative": "An operations team working with technical tools at a desk.",
-                "description": "Unsplash image used as demo case study cover photography."
+                "file": "Resources/Public/Styleguide/Frontend/frontend-pricing-midnight-dark.png",
+                "title": "Desiderio dark-mode page in the Midnight preset",
+                "alternative": "Desiderio frontend page rendered in the dark Midnight theme preset.",
+                "description": "Screenshot of a Desiderio frontend page from the seeded styleguide."
             },
-            "link": "https://www.example.com/case-studies/amazon"
+            "link": "https://github.com/dirnbauer/desiderio"
         },
         {
-            "client_name": "UnitedHealth Group",
-            "summary": "Wired clinic dashboards to the data warehouse so every site sees the same numbers.",
-            "result": "70% less reporting time",
+            "client_name": "Vertex Financial",
+            "summary": "Rolled out dark mode and a denser layout through site settings alone — OKLCH tokens kept every dashboard readable — then moved to managed hosting at €99/month: updates, daily backups, EU datacenter.",
+            "result": "1 sprint to launch",
             "image": {
-                "file": "Resources/Public/Styleguide/Unsplash/customer-data-team.jpg",
-                "title": "Healthcare analytics team",
-                "alternative": "A healthcare analytics team reviewing results on a laptop.",
-                "description": "Unsplash image used as demo case study cover photography."
+                "file": "Resources/Public/Styleguide/Frontend/frontend-dashboards-forest.png",
+                "title": "Desiderio dashboard page in the Forest preset",
+                "alternative": "Dashboard-style Desiderio frontend page rendered in the Forest theme preset.",
+                "description": "Screenshot of a Desiderio frontend page from the seeded styleguide."
             },
-            "link": "https://www.example.com/case-studies/unitedhealth"
+            "link": "https://github.com/dirnbauer/desiderio"
         }
     ]
 }

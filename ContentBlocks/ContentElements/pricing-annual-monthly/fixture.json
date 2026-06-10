@@ -1,83 +1,83 @@
 {
-  "_type": "pricing",
-  "header": "Annual Monthly Pricing for confident plan comparison",
-  "eyebrow": "Plan comparison",
-  "subheadline": "Help buyers compare plans with crisp values and direct feature language.",
-  "plans": [
-    {
-      "name": "Noah Ritter",
-      "monthly_price": "$19",
-      "annual_price": "$19",
-      "savings": "Save 20%",
-      "features": [
+    "_type": "pricing",
+    "header": "Two months free when you pay yearly",
+    "eyebrow": "Annual or monthly",
+    "subheadline": "Same package either way: all 255 elements under GPL-2.0. Yearly billing on Pro and Agency knocks two months off — €490 instead of €588, €1,490 instead of €1,788.",
+    "plans": [
         {
-          "text": "Chart colors mapped to semantic tokens"
+            "name": "Community",
+            "monthly_price": "€0",
+            "annual_price": "€0",
+            "savings": "Free forever",
+            "features": [
+                {
+                    "text": "All 255 content elements, GPL-2.0"
+                },
+                {
+                    "text": "15 theme presets + per-page themes"
+                },
+                {
+                    "text": "One-command styleguide seeding"
+                },
+                {
+                    "text": "Community support on GitHub"
+                }
+            ],
+            "button_text": "Install for free",
+            "button_link": "https://github.com/dirnbauer/desiderio",
+            "is_featured": false
         },
         {
-          "text": "Production-ready empty and loaded states"
+            "name": "Pro",
+            "monthly_price": "€49",
+            "annual_price": "€490",
+            "savings": "2 months free",
+            "features": [
+                {
+                    "text": "Everything in Community"
+                },
+                {
+                    "text": "Priority email support, 2-day response"
+                },
+                {
+                    "text": "Guaranteed LTS compatibility updates"
+                },
+                {
+                    "text": "Early access to drops and preset packs"
+                },
+                {
+                    "text": "Minor-version upgrade assistance"
+                }
+            ],
+            "button_text": "Go Pro",
+            "button_link": "https://github.com/dirnbauer/desiderio",
+            "is_featured": true
         },
         {
-          "text": "Token-aware light and dark states"
-        },
-        {
-          "text": "Accessible keyboard focus patterns"
+            "name": "Agency",
+            "monthly_price": "€149",
+            "annual_price": "€1,490",
+            "savings": "2 months free",
+            "features": [
+                {
+                    "text": "Everything in Pro, unlimited projects"
+                },
+                {
+                    "text": "4-hour priority response"
+                },
+                {
+                    "text": "Quarterly editor onboarding session"
+                },
+                {
+                    "text": "Custom preset review by the creators"
+                },
+                {
+                    "text": "Direct line to the maintainers"
+                }
+            ],
+            "button_text": "Choose Agency",
+            "button_link": "https://github.com/dirnbauer/desiderio",
+            "is_featured": false
         }
-      ],
-      "button_text": "Compare states",
-      "button_link": "https://ui.shadcn.com/docs/annual-monthly-pricing",
-      "is_featured": false
-    },
-    {
-      "name": "Lea Fischer",
-      "monthly_price": "$49",
-      "annual_price": "$49",
-      "savings": "Save 20%",
-      "features": [
-        {
-          "text": "Chart colors mapped to semantic tokens"
-        },
-        {
-          "text": "Production-ready empty and loaded states"
-        },
-        {
-          "text": "Token-aware light and dark states"
-        },
-        {
-          "text": "Accessible keyboard focus patterns"
-        },
-        {
-          "text": "Responsive cards tuned for concise content"
-        }
-      ],
-      "button_text": "Get the checklist",
-      "button_link": "https://ui.shadcn.com/docs/annual-monthly-pricing",
-      "is_featured": true
-    },
-    {
-      "name": "Mara Weiss",
-      "monthly_price": "$99",
-      "annual_price": "$99",
-      "savings": "Save 20%",
-      "features": [
-        {
-          "text": "Chart colors mapped to semantic tokens"
-        },
-        {
-          "text": "Production-ready empty and loaded states"
-        },
-        {
-          "text": "Token-aware light and dark states"
-        },
-        {
-          "text": "Accessible keyboard focus patterns"
-        },
-        {
-          "text": "Responsive cards tuned for concise content"
-        }
-      ],
-      "button_text": "Start review",
-      "button_link": "https://ui.shadcn.com/docs/annual-monthly-pricing",
-      "is_featured": false
-    }
-  ]
+    ]
 }

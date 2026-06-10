@@ -1,16 +1,16 @@
 {
     "_type": "card",
-    "eyebrow": "Customer story",
-    "header": "How Northwind cut onboarding time by 60%",
-    "description": "A full-bleed photo with a focused headline and a single call to action, built to stop the scroll and earn the click.",
-    "link_text": "Read the case study",
+    "eyebrow": "Editor experience",
+    "header": "Your editors will actually enjoy the page module",
+    "description": "All 255 Desiderio content elements ship with a real backend preview — editors see the page taking shape as they build it, not a stack of gray placeholder boxes. That's onboarding measured in minutes, not days.",
+    "link_text": "Explore the backend previews",
     "overlay_intensity": "medium",
     "image": {
-        "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-14.jpg",
-        "title": "Team Member portrait",
-        "alternative": "Portrait photo of Team Member.",
-        "description": "Portrait-style photo from Unsplash collection #25880.",
-        "source": "https://unsplash.com/collections/25880"
+        "file": "Resources/Public/Styleguide/Backend/backend-page-module-hero.png",
+        "title": "Desiderio page module preview",
+        "alternative": "TYPO3 page module showing rich backend previews of Desiderio content elements.",
+        "description": "Screenshot of the TYPO3 backend with Desiderio installed.",
+        "source": "https://github.com/dirnbauer/desiderio"
     },
-    "link": "https://example.com/desiderio/link_1"
+    "link": "https://github.com/dirnbauer/desiderio"
 }

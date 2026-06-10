@@ -1,43 +1,43 @@
 {
     "_type": "grid",
-    "header": "Built for the way modern teams ship",
-    "subheadline": "Three pillars that take you from raw data to confident decisions, without the spreadsheet sprawl.",
+    "header": "Three backend upgrades your editors will notice on day one",
+    "subheadline": "Real screenshots from an installed backend — this is what working with TYPO3 looks like once Desiderio is in.",
     "items": [
         {
-            "title": "Connect every source in minutes",
-            "description": "Plug into your warehouse, CRM, and ad platforms with prebuilt connectors. Data syncs automatically, so analysts spend their time on answers instead of exports.",
+            "title": "See the page before it renders",
+            "description": "Every one of the 255 elements ships a backend preview built on Content Blocks 2.2. The page module reads like the live page, so editors stop publishing blind — and stop pinging developers to ask which block is which.",
             "image": {
-                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-14.jpg",
-                "title": "Team Member portrait",
-                "alternative": "Portrait photo of Team Member.",
-                "description": "Portrait-style photo from Unsplash collection #25880.",
-                "source": "https://unsplash.com/collections/25880"
+                "file": "Resources/Public/Styleguide/Backend/backend-page-module-hero.png",
+                "title": "Desiderio page module previews",
+                "alternative": "TYPO3 page module showing Desiderio content elements with rendered backend previews.",
+                "description": "Screenshot of the TYPO3 backend with Desiderio installed.",
+                "source": "https://github.com/dirnbauer/desiderio"
             },
-            "link": "https://example.com/desiderio/link_1"
+            "link": "https://github.com/dirnbauer/desiderio"
         },
         {
-            "title": "Model once, reuse everywhere",
-            "description": "Define your core metrics in a shared semantic layer. Every chart, alert, and report draws from the same definitions, so revenue always means revenue.",
+            "title": "Restyle the site without a deployment",
+            "description": "Preset, dark mode, density, radius, container width, and fonts live in the site settings module. A brand refresh becomes an editor task instead of a development ticket — done before the kickoff call ends.",
             "image": {
-                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-28.jpg",
-                "title": "Team Member portrait",
-                "alternative": "Portrait photo of Team Member.",
-                "description": "Portrait-style photo from Unsplash collection #25880.",
-                "source": "https://unsplash.com/collections/25880"
+                "file": "Resources/Public/Styleguide/Backend/backend-site-settings-theme.png",
+                "title": "Desiderio theme site settings",
+                "alternative": "TYPO3 site settings showing the Desiderio theme category with preset and appearance options.",
+                "description": "Screenshot of the TYPO3 backend with Desiderio installed.",
+                "source": "https://github.com/dirnbauer/desiderio"
             },
-            "link": "https://example.com/desiderio/link_2"
+            "link": "https://github.com/dirnbauer/desiderio"
         },
         {
-            "title": "Share insights people actually open",
-            "description": "Push dashboards to Slack, email, or a public link with one click. Stakeholders see the numbers in the tools they already live in, updated in real time.",
+            "title": "Give every campaign its own look",
+            "description": "A theme preset field in page properties overrides the site default and inherits down the rootline. One install runs a different look per campaign, brand, or section — multi-brand without multi-site overhead.",
             "image": {
-                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-10.jpg",
-                "title": "Team Member portrait",
-                "alternative": "Portrait photo of Team Member.",
-                "description": "Portrait-style photo from Unsplash collection #25880.",
-                "source": "https://unsplash.com/collections/25880"
+                "file": "Resources/Public/Styleguide/Backend/backend-page-properties-theme.png",
+                "title": "Per-page theme preset field",
+                "alternative": "TYPO3 page properties with the Desiderio theme preset selector.",
+                "description": "Screenshot of the TYPO3 backend with Desiderio installed.",
+                "source": "https://github.com/dirnbauer/desiderio"
             },
-            "link": "https://example.com/desiderio/link_3"
+            "link": "https://github.com/dirnbauer/desiderio"
         }
     ]
 }

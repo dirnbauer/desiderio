@@ -1,26 +1,26 @@
 {
     "_type": "nav",
-    "header": "Checkout progress",
+    "header": "Install free → pick a theme → go Pro when you scale",
     "variant": "numbered",
     "step_items": [
         {
-            "label": "Your cart",
-            "link": "https://ui.shadcn.com/docs?step=cart",
+            "label": "Install free via Composer",
+            "link": "https://example.com/desiderio/docs?step=install",
             "status": "completed"
         },
         {
-            "label": "Shipping",
-            "link": "https://ui.shadcn.com/docs?step=shipping",
+            "label": "Seed 255 demo elements",
+            "link": "https://example.com/desiderio/docs?step=seed",
             "status": "completed"
         },
         {
-            "label": "Payment",
-            "link": "https://ui.shadcn.com/docs?step=payment",
+            "label": "Pick one of 15 theme presets",
+            "link": "https://example.com/desiderio/docs?step=theme",
             "status": "current"
         },
         {
-            "label": "Review order",
-            "link": "https://example.com/desiderio/link_4",
+            "label": "Go Pro when you scale",
+            "link": "https://example.com/desiderio/docs?step=publish",
             "status": "pending"
         }
     ]

@@ -1,27 +1,27 @@
 {
     "_type": "list",
-    "header": "Content block glossary",
+    "header": "Speak Desiderio in five terms",
     "shadcn_layout": "inline",
     "items": [
         {
-            "term": "Content element",
-            "definition": "A single, reusable block an editor places on a page — a hero, a pricing table, an FAQ. Each ships its own schema, template, and preview."
+            "term": "Preset",
+            "definition": "A complete shadcn theme — OKLCH color tokens, radius, and typography. Desiderio ships 15, switchable sitewide or per page subtree at runtime. A redesign in a dropdown."
         },
         {
-            "term": "Fixture",
-            "definition": "The demo content that seeds an element in the styleguide so editors see realistic copy, not empty fields, before they write their own."
+            "term": "Atom",
+            "definition": "The smallest Fluid 5 component, like d:atom.button or d:atom.badge. 17 atoms combine into 28 molecules and 4 layout primitives — consistency by construction."
+        },
+        {
+            "term": "Content Block",
+            "definition": "A TYPO3 Content Blocks 2.2 element with its own schema, template, and backend preview. Desiderio bundles 255 of them in 10 groups, ready before your kickoff meeting."
+        },
+        {
+            "term": "Density",
+            "definition": "A site setting that scales spacing across every element — compact for data-heavy sites, relaxed for editorial ones — without touching a single template."
         },
         {
             "term": "Semantic token",
-            "definition": "A theme variable like bg-background or text-muted-foreground. Switching the preset re-skins every element at once — no template edits."
-        },
-        {
-            "term": "Collection",
-            "definition": "A repeatable group of fields inside an element, such as the rows of this glossary. Each row stores in its own database table."
-        },
-        {
-            "term": "Backend preview",
-            "definition": "The compact summary shown in the page module so editors recognise a block at a glance without opening it."
+            "definition": "A theme variable like background or muted-foreground. Elements only reference tokens, so switching the preset re-skins everything at once. The secret behind the one-click reskin."
         }
     ]
 }

@@ -1,35 +1,35 @@
 {
     "_type": "list",
-    "header": "Timeline for polished editorial systems",
-    "subheadline": "Turns editorial material into a polished reading surface with compact hierarchy, clear affordances, and shadcn token rhythm. This timeline example includes realistic content for browser review.",
+    "header": "The road to Desiderio 2.6",
+    "subheadline": "Every release made the next TYPO3 project faster to ship — from the Fluid 5 rewrite to per-page theme presets in the current 2.6 line.",
     "items": [
         {
-            "step": "Plan",
-            "title": "Map the editorial flow",
-            "content": "Gives content teams practical copy, useful metadata, and responsive density that works across long-form pages and compact previews.",
-            "link_text": "Review brief",
-            "link": "https://example.com/desiderio/editorial-brief"
+            "step": "v2.0",
+            "title": "Fluid 5 component library",
+            "content": "The big rewrite: 49 strict Fluid 5 components — 17 atoms, 28 molecules, 4 layout primitives — became the foundation under every content element. Consistency stopped being a code-review hope and became architecture.",
+            "link_text": "Release notes",
+            "link": "https://github.com/dirnbauer/desiderio"
         },
         {
-            "step": "Build",
-            "title": "Shape the reusable sections",
-            "content": "Keeps stories, resources, and supporting media calm, scannable, and ready for production review.",
-            "link_text": "Get the checklist",
-            "link": "https://example.com/desiderio/timeline-playbook"
+            "step": "v2.3",
+            "title": "Ten house theme presets",
+            "content": "Aurora, Marine, Forest, Ember, Bloom, Lagoon, Gold, Midnight, Blossom, and Citrus joined the five ui.shadcn.com presets — fifteen complete designs on OKLCH tokens with dark mode, ready to ship.",
+            "link_text": "Browse presets",
+            "link": "https://ui.shadcn.com"
         },
         {
-            "step": "Review",
-            "title": "Check spacing and hierarchy",
-            "content": "Turns editorial material into a polished reading surface with compact hierarchy, clear affordances, and shadcn token rhythm.",
-            "link_text": "Compare states",
-            "link": "https://example.com/desiderio/review-states"
+            "step": "v2.5",
+            "title": "Seeder services",
+            "content": "The styleguide and starter seeders became dedicated services — workspaces-safe, idempotent, and covered by functional tests. A full demo site became a one-command habit.",
+            "link_text": "Seeding guide",
+            "link": "https://github.com/dirnbauer/desiderio"
         },
         {
-            "step": "Publish",
-            "title": "Hand off a ready pattern",
-            "content": "Packages the timeline with realistic labels, content, and actions so browser review reflects a production page.",
-            "link_text": "View pattern",
-            "link": "https://example.com/desiderio/timeline-pattern"
+            "step": "v2.6",
+            "title": "Per-page theme presets",
+            "content": "The release that changes theming in TYPO3: any page subtree can run its own preset, inherited down the rootline and switched at runtime. The seeded styleguide shows off a different theme on every chapter page.",
+            "link_text": "What's new",
+            "link": "https://github.com/dirnbauer/desiderio"
         }
     ]
 }

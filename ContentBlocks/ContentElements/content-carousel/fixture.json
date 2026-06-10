@@ -1,116 +1,116 @@
 {
     "_type": "grid",
     "variant": "cards",
-    "header": "Stories from the studio",
+    "header": "See Desiderio in action",
     "autoplay_interval": 5000,
     "show_navigation": 1,
     "show_pagination": 1,
     "items": [
         {
-            "slide_title": "Rebuilding checkout in six weeks",
-            "slide_description": "How a focused design sprint cut cart abandonment by 23% for a Vienna retailer.",
+            "slide_title": "Edit your site right on the page",
+            "slide_description": "The Visual Editor turns the frontend into the editing surface — click any Desiderio element and change it inline. Editors stop guessing what 'save' will look like.",
             "slide_link": "t3://page?uid=1",
             "slide_image": {
-                "file": "Resources/Public/Styleguide/Unsplash/office-turquo-cabbit.jpg",
-                "title": "Modern office atrium",
-                "alternative": "A modern multi-level office atrium with glass railings and warm light.",
-                "description": "Copyright/credit: Photo by Turquo Cabbit on Unsplash. Used as seeded demo imagery.",
-                "source": "https://unsplash.com/photos/modern-office-building-interior-with-multiple-floors-QkGDA4Q4Vdk"
+                "file": "Resources/Public/Styleguide/Backend/backend-visual-editor.png",
+                "title": "Editing in the Desiderio Visual Editor",
+                "alternative": "TYPO3 Visual Editor with inline editing of a Desiderio content element on the page.",
+                "description": "Screenshot of the TYPO3 backend with Desiderio installed.",
+                "source": "https://github.com/dirnbauer/desiderio"
             }
         },
         {
-            "slide_title": "A design system that scales",
-            "slide_description": "Shipping 40+ reusable components let three product teams move in parallel.",
+            "slide_title": "A launch-ready frontend out of the box",
+            "slide_description": "This is the seeded demo site on the Lagoon preset — not a mockup, a real TYPO3 frontend you get minutes after composer require.",
             "slide_link": "t3://page?uid=1",
             "slide_image": {
-                "file": "Resources/Public/Styleguide/Unsplash/laptop-glenn-carstens-peters.jpg",
-                "title": "Planning on a laptop",
-                "alternative": "Hands using a laptop while planning work on a wooden desk.",
-                "description": "Copyright/credit: Photo by Glenn Carstens-Peters on Unsplash. Used as seeded demo imagery.",
-                "source": "https://unsplash.com/photos/person-using-macbook-pro-npxXWgQ33ZQ"
+                "file": "Resources/Public/Styleguide/Frontend/frontend-hero-lagoon.png",
+                "title": "Desiderio frontend on the Lagoon preset",
+                "alternative": "Desiderio demo site hero page rendered in the light Lagoon theme preset.",
+                "description": "Frontend screenshot of a TYPO3 site built with Desiderio.",
+                "source": "https://github.com/dirnbauer/desiderio"
             }
         },
         {
-            "slide_title": "From prototype to launch",
-            "slide_description": "Turning a weekend concept into a funded product with 5,000 early sign-ups.",
+            "slide_title": "Dark mode on every preset",
+            "slide_description": "OKLCH tokens give each of the 15 presets a matching dark scheme with WCAG 2.2-checked contrast — here's the pricing page on Midnight, no overrides involved.",
             "slide_link": "t3://page?uid=1",
             "slide_image": {
-                "file": "Resources/Public/Styleguide/Unsplash/workspace-marvin-meyer.jpg",
-                "title": "Collaborative workspace",
-                "alternative": "People working together around laptops in a collaborative workspace.",
-                "description": "Copyright/credit: Photo by Marvin Meyer on Unsplash. Used as seeded demo imagery.",
-                "source": "https://unsplash.com/photos/people-sitting-down-near-table-with-assorted-laptop-computers-SYTO3xs06fU"
+                "file": "Resources/Public/Styleguide/Frontend/frontend-pricing-midnight-dark.png",
+                "title": "Desiderio pricing page in dark Midnight preset",
+                "alternative": "Desiderio demo pricing page rendered in the dark Midnight theme preset.",
+                "description": "Frontend screenshot of a TYPO3 site built with Desiderio.",
+                "source": "https://github.com/dirnbauer/desiderio"
             }
         },
         {
-            "slide_title": "Accessibility, built in",
-            "slide_description": "Meeting WCAG 2.2 AA from day one, verified with real assistive-tech testing.",
+            "slide_title": "Previews for all 255 elements",
+            "slide_description": "Every Desiderio Content Block renders a real preview in the page module, so editors recognise blocks at a glance — no gray placeholder boxes, ever.",
             "slide_image": {
-                "file": "Resources/Public/Styleguide/Unsplash/workspace-marvin-meyer.jpg",
-                "title": "Collaborative workspace",
-                "alternative": "People working together around laptops in a collaborative workspace.",
-                "description": "Copyright/credit: Photo by Marvin Meyer on Unsplash. Used as seeded demo imagery.",
-                "source": "https://unsplash.com/photos/people-sitting-down-near-table-with-assorted-laptop-computers-SYTO3xs06fU"
+                "file": "Resources/Public/Styleguide/Backend/backend-page-module-hero.png",
+                "title": "Desiderio page module previews",
+                "alternative": "TYPO3 page module showing Desiderio content elements with rendered backend previews.",
+                "description": "Screenshot of the TYPO3 backend with Desiderio installed.",
+                "source": "https://github.com/dirnbauer/desiderio"
             },
             "slide_link": "https://example.com/desiderio/slide_link_4"
         },
         {
-            "slide_title": "Sharper onboarding metrics",
-            "slide_description": "A lean activation flow helped new accounts reach their first useful dashboard in minutes.",
+            "slide_title": "Ten element groups in the wizard",
+            "slide_description": "Hero, Features, Pricing, Data, Trust, Team, Navigation, Footers, Content, and Conversion — 255 elements, all one click away in the new-content wizard.",
             "slide_image": {
-                "file": "Resources/Public/Styleguide/Unsplash/laptop-mimi-thian.jpg",
-                "title": "Laptop work session",
-                "alternative": "A laptop open on a person's lap during a focused work session.",
-                "description": "Copyright/credit: Photo by Mimi Thian on Unsplash. Used as seeded demo imagery.",
-                "source": "https://unsplash.com/photos/macbook-on-womans-lap-i5cd_SlY8XY"
+                "file": "Resources/Public/Styleguide/Backend/backend-content-wizard.png",
+                "title": "Desiderio new content element wizard",
+                "alternative": "TYPO3 new content element wizard listing all ten Desiderio element groups.",
+                "description": "Screenshot of the TYPO3 backend with Desiderio installed.",
+                "source": "https://github.com/dirnbauer/desiderio"
             },
             "slide_link": "https://example.com/desiderio/slide_link_5"
         },
         {
-            "slide_title": "Editorial tools for launch day",
-            "slide_description": "Editors shipped campaign pages without developer handoffs, while previews stayed production-accurate.",
+            "slide_title": "Reskin the whole site from site settings",
+            "slide_description": "Pick one of 15 shadcn presets, density, radius, and fonts in site settings — the entire frontend repaints at runtime. No build pipeline was harmed.",
             "slide_image": {
-                "file": "Resources/Public/Styleguide/Unsplash/customer-enterprise.jpg",
-                "title": "Enterprise customer workspace",
-                "alternative": "A large retail distribution facility with loading bays.",
-                "description": "Unsplash image used as demo cover photography.",
-                "source": "https://unsplash.com/"
+                "file": "Resources/Public/Styleguide/Backend/backend-site-settings-theme.png",
+                "title": "Desiderio site settings theme category",
+                "alternative": "TYPO3 site settings module showing the Desiderio theme category with preset and typography options.",
+                "description": "Screenshot of the TYPO3 backend with Desiderio installed.",
+                "source": "https://github.com/dirnbauer/desiderio"
             },
             "slide_link": "https://example.com/desiderio/slide_link_6"
         },
         {
-            "slide_title": "Search that feels immediate",
-            "slide_description": "Filtered result pages now keep context, surface useful facets, and recover gracefully from empty states.",
+            "slide_title": "Per-page theme presets — new in 2.6",
+            "slide_description": "Any page subtree can run its own preset, inherited down the rootline. Campaign in Midnight, corporate site on Aurora, one installation.",
             "slide_image": {
-                "file": "Resources/Public/Styleguide/Unsplash/dashboard-neil-fernandez.jpg",
-                "title": "Dark product dashboard",
-                "alternative": "A laptop displaying a dark modern dashboard interface.",
-                "description": "Copyright/credit: Photo by Neil Fernandez on Unsplash. Used as seeded demo imagery.",
-                "source": "https://unsplash.com/photos/a-modern-laptop-displaying-a-dark-themed-dashboard-6-0ajRI1cgs"
+                "file": "Resources/Public/Styleguide/Backend/backend-page-properties-theme.png",
+                "title": "Desiderio per-page theme preset field",
+                "alternative": "TYPO3 page properties form showing the Desiderio theme preset selector for a single page.",
+                "description": "Screenshot of the TYPO3 backend with Desiderio installed.",
+                "source": "https://github.com/dirnbauer/desiderio"
             },
             "slide_link": "https://example.com/desiderio/slide_link_7"
         },
         {
-            "slide_title": "A calmer support workspace",
-            "slide_description": "Shared queues, reusable answers, and clear escalation paths reduced daily review time.",
+            "slide_title": "Eight ready-made forms",
+            "slide_description": "Contact, booking, callback, and more ship as TYPO3 Form Framework definitions, with optional Friendly Captcha and Brevo double-opt-in finishers.",
             "slide_image": {
-                "file": "Resources/Public/Styleguide/Unsplash/dashboard-neil-fernandez.jpg",
-                "title": "Dark product dashboard",
-                "alternative": "A laptop displaying a dark modern dashboard interface.",
-                "description": "Copyright/credit: Photo by Neil Fernandez on Unsplash. Used as seeded demo imagery.",
-                "source": "https://unsplash.com/photos/a-modern-laptop-displaying-a-dark-themed-dashboard-6-0ajRI1cgs"
+                "file": "Resources/Public/Styleguide/Backend/backend-forms-module.png",
+                "title": "Desiderio forms module",
+                "alternative": "TYPO3 forms module listing the eight form definitions bundled with Desiderio.",
+                "description": "Screenshot of the TYPO3 backend with Desiderio installed.",
+                "source": "https://github.com/dirnbauer/desiderio"
             },
             "slide_link": "https://example.com/desiderio/slide_link_8"
         },
         {
-            "slide_title": "Performance budget recovered",
-            "slide_description": "Image, script, and layout cleanup brought the product site back under its target Core Web Vitals budget.",
+            "slide_title": "Dashboards your data team will envy",
+            "slide_description": "32 data and dashboard elements — charts, KPIs, tables — all token-themed, here on the Forest preset. Reports that match your brand without a single CSS line.",
             "slide_image": {
-                "file": "Resources/Public/Styleguide/Unsplash/office-turquo-cabbit.jpg",
-                "title": "Modern office atrium",
-                "alternative": "A modern multi-level office atrium with glass railings and warm light.",
-                "description": "Copyright/credit: Photo by Turquo Cabbit on Unsplash. Used as seeded demo imagery.",
-                "source": "https://unsplash.com/photos/modern-office-building-interior-with-multiple-floors-QkGDA4Q4Vdk"
+                "file": "Resources/Public/Styleguide/Frontend/frontend-dashboards-forest.png",
+                "title": "Desiderio dashboards page on the Forest preset",
+                "alternative": "Desiderio demo dashboards page with charts rendered in the Forest theme preset.",
+                "description": "Frontend screenshot of a TYPO3 site built with Desiderio.",
+                "source": "https://github.com/dirnbauer/desiderio"
             },
             "slide_link": "https://example.com/desiderio/slide_link_9"
         }

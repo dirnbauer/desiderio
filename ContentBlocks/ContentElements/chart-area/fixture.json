@@ -1,11 +1,11 @@
 {
     "_type": "stats",
-    "header": "Monthly recurring revenue",
-    "description": "Net MRR across the trailing eight months, after new, expansion and churned revenue. The fill highlights the cumulative growth trend.",
-    "points": "Oct | 182\nNov | 205\nDec | 231\nJan | 248\nFeb | 279\nMar | 312\nApr | 358\nMay | 401",
-    "unit": "k USD",
-    "series_name": "Net monthly recurring revenue",
-    "chart_data": "[{\"label\":\"Oct\",\"value\":182},{\"label\":\"Nov\",\"value\":205},{\"label\":\"Dec\",\"value\":231},{\"label\":\"Jan\",\"value\":248},{\"label\":\"Feb\",\"value\":279},{\"label\":\"Mar\",\"value\":312},{\"label\":\"Apr\",\"value\":358},{\"label\":\"May\",\"value\":401}]",
+    "header": "255 elements and counting",
+    "description": "Every release adds ready-made content elements you never have to build yourself. From 140 in v1.9 to 255 today — and your composer update gets all of them, free under GPL-2.0.",
+    "points": "v1.9 | 140\nv2.0 | 162\nv2.1 | 178\nv2.2 | 196\nv2.3 | 214\nv2.4 | 228\nv2.5 | 241\nv2.6 | 255",
+    "unit": "elements",
+    "series_name": "Ready-made content elements",
+    "chart_data": "[{\"label\":\"v1.9\",\"value\":140},{\"label\":\"v2.0\",\"value\":162},{\"label\":\"v2.1\",\"value\":178},{\"label\":\"v2.2\",\"value\":196},{\"label\":\"v2.3\",\"value\":214},{\"label\":\"v2.4\",\"value\":228},{\"label\":\"v2.5\",\"value\":241},{\"label\":\"v2.6\",\"value\":255}]",
     "color_variant": "primary",
     "fill_opacity": "strong"
 }

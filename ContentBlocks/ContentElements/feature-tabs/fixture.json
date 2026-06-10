@@ -1,54 +1,54 @@
 {
     "_type": "list",
-    "header": "One workspace for the whole content lifecycle",
-    "subheadline": "Plan, build, and ship pages without leaving the editor your team already knows.",
+    "header": "Run the whole site from the TYPO3 backend",
+    "subheadline": "Four backend views, one install — compose, edit inline, theme, and override without a single line of code.",
     "items": [
         {
-            "tab_label": "Plan",
-            "title": "Map every page before you build it",
-            "description": "Draft structure, assign owners, and track status in a shared board. Editors see what is in progress and what is ready to publish, so nothing stalls in review.",
+            "tab_label": "Compose",
+            "title": "Pick from ten element groups",
+            "description": "The new-content wizard organizes all 255 Desiderio elements into ten curated groups. Editors find the right hero, pricing table, or footer in seconds instead of scrolling a flat list.",
             "image": {
-                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-14.jpg",
-                "title": "Team Member portrait",
-                "alternative": "Portrait photo of Team Member.",
-                "description": "Portrait-style photo from Unsplash collection #25880.",
-                "source": "https://unsplash.com/collections/25880"
+                "file": "Resources/Public/Styleguide/Backend/backend-content-wizard.png",
+                "title": "Desiderio content wizard",
+                "alternative": "TYPO3 new-content wizard listing all ten Desiderio element groups.",
+                "description": "Screenshot of the TYPO3 backend with Desiderio installed.",
+                "source": "https://github.com/dirnbauer/desiderio"
             }
         },
         {
-            "tab_label": "Build",
-            "title": "Compose pages from reusable blocks",
-            "description": "Drag pre-approved content blocks into place and edit copy inline. Brand tokens keep every layout on-style, so non-designers ship pages that look designed.",
+            "tab_label": "Edit",
+            "title": "Edit inline in the Visual Editor",
+            "description": "The Visual Editor renders the real page with the live theme and lets editors type straight into it. What they see while editing is exactly what visitors get — no preview round-trips, no surprises.",
             "image": {
-                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-28.jpg",
-                "title": "Team Member portrait",
-                "alternative": "Portrait photo of Team Member.",
-                "description": "Portrait-style photo from Unsplash collection #25880.",
-                "source": "https://unsplash.com/collections/25880"
+                "file": "Resources/Public/Styleguide/Backend/backend-visual-editor.png",
+                "title": "Editing in the Desiderio Visual Editor",
+                "alternative": "TYPO3 Visual Editor showing a Desiderio page being edited inline with live preview.",
+                "description": "Screenshot of inline editing in the Visual Editor with Desiderio installed.",
+                "source": "https://github.com/dirnbauer/desiderio"
             }
         },
         {
-            "tab_label": "Publish",
-            "title": "Ship to production in one click",
-            "description": "Preview on real breakpoints, schedule the go-live, and roll back instantly if needed. Versioning keeps a full history of every change you make.",
+            "tab_label": "Theme",
+            "title": "Restyle the site from settings",
+            "description": "Theme preset, dark mode, density, radius, and fonts live in the site settings module. Switching presets repaints every element from OKLCH tokens — no rebuild, no deployment window.",
             "image": {
-                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-10.jpg",
-                "title": "Team Member portrait",
-                "alternative": "Portrait photo of Team Member.",
-                "description": "Portrait-style photo from Unsplash collection #25880.",
-                "source": "https://unsplash.com/collections/25880"
+                "file": "Resources/Public/Styleguide/Backend/backend-site-settings-theme.png",
+                "title": "Desiderio theme site settings",
+                "alternative": "TYPO3 site settings showing the Desiderio theme category with preset and appearance options.",
+                "description": "Screenshot of the TYPO3 backend with Desiderio installed.",
+                "source": "https://github.com/dirnbauer/desiderio"
             }
         },
         {
-            "tab_label": "Measure",
-            "title": "See what each page earns",
-            "description": "Built-in analytics tie traffic and conversions back to the blocks on the page, so you double down on the layouts that actually move the numbers.",
+            "tab_label": "Override",
+            "title": "Theme a single subtree differently",
+            "description": "A preset field in page properties overrides the site default and inherits down the rootline. Campaign pages, brand sections, or styleguide chapters each get their own look in one install.",
             "image": {
-                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-08.jpg",
-                "title": "Team Member portrait",
-                "alternative": "Portrait photo of Team Member.",
-                "description": "Portrait-style photo from Unsplash collection #25880.",
-                "source": "https://unsplash.com/collections/25880"
+                "file": "Resources/Public/Styleguide/Backend/backend-page-properties-theme.png",
+                "title": "Per-page theme preset field",
+                "alternative": "TYPO3 page properties with the Desiderio theme preset selector.",
+                "description": "Screenshot of the TYPO3 backend with Desiderio installed.",
+                "source": "https://github.com/dirnbauer/desiderio"
             }
         }
     ]

@@ -1,32 +1,32 @@
 {
     "_type": "list",
-    "header": "Pricing questions, answered",
-    "eyebrow": "Billing FAQ",
-    "subheadline": "The things teams ask most before they pick a plan. Still unsure? Talk to our team.",
+    "header": "Pricing, answered straight",
+    "eyebrow": "Pricing FAQ",
+    "subheadline": "The short version: the core is free forever, and what you pay for is the creators' time and guarantees. Details below.",
     "question_items": [
         {
-            "question": "Can I change plans later?",
-            "answer": "Yes. Upgrade or downgrade anytime from your billing settings. Upgrades take effect immediately and we prorate the difference; downgrades apply at the start of your next billing cycle, so you keep paid features until then."
+            "question": "Is there a free version?",
+            "answer": "Yes — and it is not a trial. Community is GPL-2.0 forever: all 255 content elements, 49 Fluid components, and 15 theme presets, on as many sites as you like, full source on GitHub. The paid tiers add the creators' time and guarantees, never features."
         },
         {
-            "question": "What happens when my free trial ends?",
-            "answer": "Your trial runs for 14 days with no credit card required. When it ends, pick a plan to keep your data and continue. If you do nothing, your workspace pauses but your content stays safe for 30 days."
+            "question": "What does Pro add?",
+            "answer": "Pro is €49/month or €490/year per project and buys certainty: priority email support with a 2-day response, guaranteed TYPO3 LTS compatibility updates, early access to new element drops and preset packs, and minor-version upgrade assistance. It is the tier most teams pick."
         },
         {
-            "question": "Do you offer annual billing?",
-            "answer": "Yes. Switch to annual and save two months compared to paying monthly. You can move between monthly and annual at any time, and we apply the credit from unused days to your next invoice."
+            "question": "Monthly or yearly?",
+            "answer": "Your call. Monthly keeps you flexible; yearly gets you 2 months free — Pro is €490 instead of €588, Agency €1,490 instead of €1,788. Founding customers take another 20% off the first year with code DESIDERIO20."
         },
         {
-            "question": "Are there any setup or hidden fees?",
-            "answer": "No setup fees and no surprises. The price you see is what you pay, taxes shown at checkout. Overages are opt-in, so you are never charged for going over a limit without approving it first."
+            "question": "What does installation cost?",
+            "answer": "€890, one-time, done by the creators: Composer setup, site configuration, theme preset, and a handover you can build on the same day. Add the half-day editor workshop for €690 — or book both with a Pro year inside the €1,790 Launch bundle and save €280."
         },
         {
-            "question": "What payment methods do you accept?",
-            "answer": "We accept all major credit cards and, on annual plans, payment by invoice and bank transfer. Enterprise customers can pay by purchase order with net-30 terms. All payments are processed securely through Stripe."
+            "question": "Do you host?",
+            "answer": "Yes. Managed TYPO3 hosting is €99/month and includes updates, daily backups, monitoring, and an EU datacenter. Hosting Business at €179/month adds a staging environment, a 99.9% SLA, and CDN — your site is run by the people who built the software it runs on."
         },
         {
-            "question": "Can I get a refund?",
-            "answer": "Yes. If you are not happy within 30 days of your first paid invoice, contact support for a full refund, no questions asked. Cancel anytime and you will not be billed for the next cycle."
+            "question": "Can we get custom elements?",
+            "answer": "Absolutely — it is what we do best. Custom content element development starts at €390 per element, built by the creators to the same audit rules as the stock 255, backend preview included. For ongoing capacity, Creator Care adds 4 dev hours every month for €490."
         }
     ]
 }

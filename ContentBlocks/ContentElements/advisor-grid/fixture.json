@@ -1,12 +1,12 @@
 {
     "_type": "team",
-    "header": "Backed by operators who have done it before",
-    "subheadline": "Our advisors guide product, security, and go-to-market decisions every quarter.",
+    "header": "Advised by design-system practitioners",
+    "subheadline": "Practitioners who review Desiderio's components, tokens, and accessibility decisions before every release.",
     "advisors": [
         {
             "name": "Noah Ritter",
-            "expertise": "Accessibility & inclusive design",
-            "company": "Former Lead, GOV.UK Design System",
+            "expertise": "Accessibility & inclusive markup",
+            "company": "WCAG auditor, public-sector web",
             "image": {
                 "file": "Resources/Public/Styleguide/Unsplash/advisor-noah-ritter.jpg",
                 "title": "Noah Ritter",
@@ -16,8 +16,8 @@
         },
         {
             "name": "Lea Fischer",
-            "expertise": "Product & growth",
-            "company": "VP Product, Contentful",
+            "expertise": "Design tokens & theming",
+            "company": "Independent design systems consultant",
             "image": {
                 "file": "Resources/Public/Styleguide/Unsplash/advisor-lea-fischer.jpg",
                 "title": "Lea Fischer",
@@ -27,8 +27,8 @@
         },
         {
             "name": "Mara Weiss",
-            "expertise": "Security & compliance",
-            "company": "CISO, Stripe (EU)",
+            "expertise": "Frontend security & CSP",
+            "company": "Security reviewer, OSS projects",
             "image": {
                 "file": "Resources/Public/Styleguide/Unsplash/advisor-mara-weiss.jpg",
                 "title": "Mara Weiss",
@@ -38,8 +38,8 @@
         },
         {
             "name": "Jonas Klein",
-            "expertise": "Enterprise go-to-market",
-            "company": "Partner, Point Nine Capital",
+            "expertise": "TYPO3 ecosystem & extensions",
+            "company": "Longtime TYPO3 community contributor",
             "image": {
                 "file": "Resources/Public/Styleguide/Unsplash/advisor-jonas-klein.jpg",
                 "title": "Jonas Klein",

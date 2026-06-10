@@ -1,32 +1,32 @@
 {
     "_type": "stats",
-    "header": "Performance this month",
-    "period_label": "Last 30 days",
+    "header": "What a relaunch on Desiderio looks like",
+    "period_label": "First 30 days after switching",
     "items": [
         {
-            "label": "Visitors",
-            "value": "48,920",
-            "change": "+12.4% vs last month",
+            "label": "Lighthouse performance",
+            "value": "98",
+            "change": "+3 pts since relaunch",
             "trend": "up"
         },
         {
-            "label": "Conversion rate",
-            "value": "3.8%",
-            "change": "+0.6 pts",
+            "label": "Accessibility score",
+            "value": "100",
+            "change": "+2 pts",
             "trend": "up"
         },
         {
-            "label": "Avg. order value",
-            "value": "€86.40",
-            "change": "-2.1% vs last month",
+            "label": "CSS payload",
+            "value": "38.4 KB",
+            "change": "-4.2% and shrinking",
             "trend": "down"
         },
         {
-            "label": "Bounce rate",
-            "value": "41.2%",
-            "change": "No change",
+            "label": "Cumulative layout shift",
+            "value": "0.01",
+            "change": "Rock steady",
             "trend": "neutral"
         }
     ],
-    "summary": "Traffic and conversion are both up month over month. Order value dipped slightly after the spring promotion ended, so revenue stayed flat."
+    "summary": "Demo numbers from the seeded Desiderio styleguide — and the kind of scores the kit is built to deliver: Tailwind v4 token pruning keeps the CSS payload tiny while performance and accessibility climb instead of eroding."
 }

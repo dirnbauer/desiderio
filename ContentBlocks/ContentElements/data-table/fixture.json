@@ -1,83 +1,83 @@
 {
     "_type": "table",
-    "header": "Integration sync status",
+    "header": "Quality you can put in a table",
     "show_header_row": true,
     "column_definitions": [
         {
-            "column_label": "Service",
+            "column_label": "Group",
             "column_align": "left"
         },
         {
-            "column_label": "Status",
+            "column_label": "Elements",
             "column_align": "left"
         },
         {
-            "column_label": "Last sync",
+            "column_label": "Backend previews",
             "column_align": "left"
         },
         {
-            "column_label": "Uptime",
+            "column_label": "Audit findings",
             "column_align": "right"
         }
     ],
     "rows": [
         {
-            "row_label": "Salesforce",
+            "row_label": "Features",
             "cells": [
                 {
-                    "value": "98%"
+                    "value": "41"
                 },
                 {
-                    "value": "24K"
+                    "value": "All elements"
                 },
                 {
-                    "value": "4.9"
+                    "value": "0"
                 }
             ]
         },
         {
-            "row_label": "HubSpot",
+            "row_label": "Data & Dashboards",
             "cells": [
                 {
-                    "value": "98%"
+                    "value": "32"
                 },
                 {
-                    "value": "24K"
+                    "value": "All elements"
                 },
                 {
-                    "value": "4.9"
+                    "value": "0"
                 }
             ]
         },
         {
-            "row_label": "Stripe",
+            "row_label": "Hero",
             "cells": [
                 {
-                    "value": "98%"
+                    "value": "28"
                 },
                 {
-                    "value": "24K"
+                    "value": "All elements"
                 },
                 {
-                    "value": "4.9"
+                    "value": "0"
                 }
             ]
         },
         {
-            "row_label": "Slack",
+            "row_label": "Leads & Conversion",
             "cells": [
                 {
-                    "value": "98%"
+                    "value": "26"
                 },
                 {
-                    "value": "24K"
+                    "value": "All elements"
                 },
                 {
-                    "value": "4.9"
+                    "value": "0"
                 }
             ]
         }
     ],
     "show_caption": true,
-    "caption_text": "Sync health for the last 24 hours. Times shown in your local timezone."
+    "caption_text": "Four of Desiderio's ten element groups. Every one of the 255 elements ships with a backend preview and passes the 11-category template audit — that zero column is the whole point."
 }

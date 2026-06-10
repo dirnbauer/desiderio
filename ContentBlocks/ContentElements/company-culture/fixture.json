@@ -1,40 +1,40 @@
 {
     "_type": "grid",
-    "eyebrow": "Life at Desiderio",
-    "header": "How we work together",
-    "subheadline": "Three principles shape every decision, from how we plan sprints to how we onboard new hires.",
+    "eyebrow": "Life at webconsulting studio",
+    "header": "How we build Desiderio",
+    "subheadline": "Three habits shape every release, from the first atom sketch to the seeded styleguide.",
     "items": [
         {
-            "title": "Remote-first by default",
-            "description": "Work from anywhere in our core hours. We document decisions in writing so no one is blocked by a time zone.",
+            "title": "Open source by default",
+            "description": "Everything ships GPL-2.0 on GitHub — components, presets, and the seeder. Issues and pull requests drive the roadmap.",
             "image": {
-                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-14.jpg",
-                "title": "Team Member portrait",
-                "alternative": "Portrait photo of Team Member.",
-                "description": "Portrait-style photo from Unsplash collection #25880.",
-                "source": "https://unsplash.com/collections/25880"
+                "file": "Resources/Public/Styleguide/Unsplash/customer-workshop.jpg",
+                "title": "Team workshop",
+                "alternative": "Colleagues discussing work around a shared table.",
+                "description": "Workshop photo from Unsplash.",
+                "source": "https://unsplash.com"
             }
         },
         {
-            "title": "Ship, then refine",
-            "description": "Small releases over big launches. We trust teammates to deploy on day one and learn from real usage.",
+            "title": "Audit before merge",
+            "description": "An 11-category template audit with zero tolerance: no inline styles, no hardcoded colors, every element checked in CI.",
             "image": {
-                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-28.jpg",
-                "title": "Team Member portrait",
-                "alternative": "Portrait photo of Team Member.",
-                "description": "Portrait-style photo from Unsplash collection #25880.",
-                "source": "https://unsplash.com/collections/25880"
+                "file": "Resources/Public/Styleguide/Unsplash/office-e-vos.jpg",
+                "title": "Studio office",
+                "alternative": "A bright office space with desks and screens.",
+                "description": "Office photo from Unsplash by E. Vos.",
+                "source": "https://unsplash.com"
             }
         },
         {
-            "title": "Grow on the clock",
-            "description": "Every engineer gets a yearly learning budget and one focused day each week for deep work and side projects.",
+            "title": "Editors are users too",
+            "description": "All 255 content elements get a real backend preview, so TYPO3 editors see what they ship — not gray placeholder boxes.",
             "image": {
-                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-10.jpg",
-                "title": "Team Member portrait",
-                "alternative": "Portrait photo of Team Member.",
-                "description": "Portrait-style photo from Unsplash collection #25880.",
-                "source": "https://unsplash.com/collections/25880"
+                "file": "Resources/Public/Styleguide/Unsplash/whiteboard-vitaly-gariev.jpg",
+                "title": "Whiteboard session",
+                "alternative": "Two people sketching interface ideas on a whiteboard.",
+                "description": "Collaboration photo from Unsplash by Vitaly Gariev.",
+                "source": "https://unsplash.com"
             }
         }
     ]

@@ -1,6 +1,6 @@
 {
     "_type": "section",
-    "header": "Scheduled maintenance on Sunday",
-    "content": "<p>The dashboard will be offline from 02:00 to 04:00 UTC on Sunday for a planned upgrade. Exports and API access resume automatically once it completes.</p>",
+    "header": "Upgrading to Desiderio 2.6 takes minutes, not weekends",
+    "content": "<p>Desiderio 2.6 requires TYPO3 14.3+ and PHP 8.3+. Update the package, flush all caches, re-run <em>desiderio:styleguide:seed</em> — the seeder is idempotent, so your demo content updates in place. Rather have the creators handle it? Pro includes minor-version upgrade assistance.</p>",
     "variant": "warning"
 }

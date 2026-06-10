@@ -1,87 +1,87 @@
 {
-  "_type": "pricing",
-  "header": "Plans for teams shipping better TYPO3 pages",
-  "eyebrow": "Transparent pricing",
-  "subheadline": "Compare the support level, review depth, and implementation help that match your launch plan.",
-  "columns": "3",
-  "plans": [
-    {
-      "badge_text": "Self guided",
-      "name": "Starter",
-      "price": "$19",
-      "billing_period": "/month",
-      "description": "For small editorial teams that need polished components and predictable fixtures.",
-      "features": [
+    "_type": "pricing",
+    "header": "Free forever. Faster with the creators behind it.",
+    "eyebrow": "Plans & pricing",
+    "subheadline": "Every tier ships the same complete package: all 255 elements, GPL-2.0, no feature gates. Pro and Agency add the creators' time — guaranteed updates, priority answers, early access. Pay yearly and get 2 months free.",
+    "columns": "3",
+    "plans": [
         {
-          "text": "Full Desiderio content element catalog"
+            "badge_text": "Open source",
+            "name": "Community",
+            "price": "€0",
+            "billing_period": "forever",
+            "description": "The complete kit: 255 content elements, 49 Fluid components, and 15 theme presets — yours with one Composer command.",
+            "features": [
+                {
+                    "text": "Every element with backend previews"
+                },
+                {
+                    "text": "Runtime theme switching, no rebuild"
+                },
+                {
+                    "text": "Dark mode + WCAG 2.2-checked contrast"
+                },
+                {
+                    "text": "Community support on GitHub"
+                }
+            ],
+            "button_text": "Install via Composer",
+            "button_link": "https://github.com/dirnbauer/desiderio",
+            "is_featured": false
         },
         {
-          "text": "Styleguide fixture pages for review"
+            "badge_text": "Recommended",
+            "name": "Pro",
+            "price": "€49",
+            "billing_period": "/month — or €490/year (2 months free)",
+            "description": "For teams shipping client sites who want guarantees instead of guesswork. The creators keep your build current.",
+            "features": [
+                {
+                    "text": "Everything in Community"
+                },
+                {
+                    "text": "Priority email support, 2-day response"
+                },
+                {
+                    "text": "Guaranteed TYPO3 LTS compatibility updates"
+                },
+                {
+                    "text": "Early access to element drops and preset packs"
+                },
+                {
+                    "text": "Minor-version upgrade assistance"
+                }
+            ],
+            "button_text": "Go Pro",
+            "button_link": "https://github.com/dirnbauer/desiderio",
+            "is_featured": true
         },
         {
-          "text": "Token-aware light and dark themes"
-        },
-        {
-          "text": "Documented update workflow"
+            "badge_text": "Unlimited projects",
+            "name": "Agency",
+            "price": "€149",
+            "billing_period": "/month — or €1,490/year (2 months free)",
+            "description": "Everything in Pro across unlimited projects, plus a direct line to the people who built all 255 elements.",
+            "features": [
+                {
+                    "text": "Everything in Pro, unlimited projects"
+                },
+                {
+                    "text": "4-hour priority response"
+                },
+                {
+                    "text": "Quarterly editor onboarding session"
+                },
+                {
+                    "text": "Custom preset review by the creators"
+                },
+                {
+                    "text": "Direct line to the maintainers"
+                }
+            ],
+            "button_text": "Choose Agency",
+            "button_link": "https://github.com/dirnbauer/desiderio",
+            "is_featured": false
         }
-      ],
-      "button_text": "Start with Starter",
-      "button_link": "https://example.com/desiderio/pricing/starter",
-      "is_featured": false
-    },
-    {
-      "badge_text": "Most chosen",
-      "name": "Team",
-      "price": "$49",
-      "billing_period": "/month",
-      "description": "For product and agency teams that want guided launch QA and stronger editorial setup.",
-      "features": [
-        {
-          "text": "Everything in Starter"
-        },
-        {
-          "text": "Implementation review for key pages"
-        },
-        {
-          "text": "Component usage recommendations"
-        },
-        {
-          "text": "Fixture and seed script support"
-        },
-        {
-          "text": "Priority accessibility checks"
-        }
-      ],
-      "button_text": "Choose Team",
-      "button_link": "https://example.com/desiderio/pricing/team",
-      "is_featured": true
-    },
-    {
-      "badge_text": "Scale support",
-      "name": "Enterprise",
-      "price": "$99",
-      "billing_period": "/month",
-      "description": "For organizations that need rollout planning, governance, and long-running design system support.",
-      "features": [
-        {
-          "text": "Everything in Team"
-        },
-        {
-          "text": "Multi-site rollout planning"
-        },
-        {
-          "text": "Custom fixture content review"
-        },
-        {
-          "text": "Quarterly content element audit"
-        },
-        {
-          "text": "Procurement-ready support package"
-        }
-      ],
-      "button_text": "Talk to sales",
-      "button_link": "https://example.com/desiderio/pricing/enterprise",
-      "is_featured": false
-    }
-  ]
+    ]
 }

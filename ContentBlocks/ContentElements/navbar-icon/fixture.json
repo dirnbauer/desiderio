@@ -1,15 +1,35 @@
 {
     "_type": "nav",
     "header": "Primary",
-    "brand": "Studio Atlas",
-    "brand_link": "https://example.com/desiderio",
+    "brand": "Desiderio",
+    "brand_link": "https://github.com/dirnbauer/desiderio",
     "nav_items": [
-        { "label": "Product", "icon": "sparkles", "link": "https://example.com/desiderio/product" },
-        { "label": "Solutions", "icon": "briefcase", "link": "https://example.com/desiderio/solutions" },
-        { "label": "Pricing", "icon": "chart", "link": "https://example.com/desiderio/pricing" },
-        { "label": "Docs", "icon": "book-open", "link": "https://example.com/desiderio/docs" },
-        { "label": "Support", "icon": "shield-check", "link": "https://example.com/desiderio/support" }
+        {
+            "label": "Components",
+            "icon": "sparkles",
+            "link": "https://example.com/desiderio/components"
+        },
+        {
+            "label": "Integrations",
+            "icon": "briefcase",
+            "link": "https://example.com/desiderio/integrations"
+        },
+        {
+            "label": "Dashboards",
+            "icon": "chart",
+            "link": "https://example.com/desiderio/content-elements/data"
+        },
+        {
+            "label": "Docs",
+            "icon": "book-open",
+            "link": "https://example.com/desiderio/docs"
+        },
+        {
+            "label": "Accessibility",
+            "icon": "shield-check",
+            "link": "https://example.com/desiderio/accessibility"
+        }
     ],
-    "button_text": "Start free trial",
-    "button_link": "https://example.com/desiderio/signup"
+    "button_text": "Start free",
+    "button_link": "https://github.com/dirnbauer/desiderio"
 }

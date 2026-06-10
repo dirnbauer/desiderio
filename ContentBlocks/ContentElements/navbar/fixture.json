@@ -2,16 +2,28 @@
     "_type": "nav",
     "header": "Primary",
     "shadcn_layout": "full-width",
-    "brand": "Studio Atlas",
-    "brand_link": "https://ui.shadcn.com/",
+    "brand": "Desiderio",
+    "brand_link": "https://github.com/dirnbauer/desiderio",
     "nav_items": [
-        { "label": "Product", "link": "https://ui.shadcn.com/docs" },
-        { "label": "Solutions", "link": "https://ui.shadcn.com/docs/components" },
-        { "label": "Pricing", "link": "https://ui.shadcn.com/docs/installation" },
-        { "label": "Docs", "link": "https://ui.shadcn.com/docs/components/navigation-menu" }
+        {
+            "label": "Components",
+            "link": "https://ui.shadcn.com/docs/components"
+        },
+        {
+            "label": "Content Elements",
+            "link": "https://example.com/desiderio/content-elements"
+        },
+        {
+            "label": "Themes",
+            "link": "https://ui.shadcn.com/create"
+        },
+        {
+            "label": "Docs",
+            "link": "https://example.com/desiderio/docs"
+        }
     ],
-    "secondary_button_text": "Sign in",
-    "secondary_button_link": "https://ui.shadcn.com/login",
-    "primary_button_text": "Start free trial",
-    "primary_button_link": "https://ui.shadcn.com/docs/installation"
+    "secondary_button_text": "Pricing",
+    "secondary_button_link": "https://example.com/desiderio/pricing",
+    "primary_button_text": "Start free",
+    "primary_button_link": "https://github.com/dirnbauer/desiderio"
 }

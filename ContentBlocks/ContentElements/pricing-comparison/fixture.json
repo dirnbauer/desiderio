@@ -1,117 +1,117 @@
 {
     "_type": "pricing",
-    "eyebrow": "Compare plans",
-    "header": "Find the plan that fits your team",
+    "eyebrow": "Compare tiers",
+    "header": "Every feature free. Every guarantee priced.",
     "plans": [
         {
-            "name": "Starter",
-            "price": "Free"
+            "name": "Community",
+            "price": "€0 forever"
         },
         {
             "name": "Pro",
-            "price": "$29/mo"
+            "price": "€49/mo · €490/yr"
         },
         {
-            "name": "Enterprise",
-            "price": "Custom"
+            "name": "Agency",
+            "price": "€149/mo · €1,490/yr"
         }
     ],
     "pricing_feature_items": [
         {
-            "feature_name": "Active projects",
+            "feature_name": "All 255 elements + 15 presets",
             "tier_values": [
                 {
-                    "value": "98%"
+                    "value": "Included"
                 },
                 {
-                    "value": "24K"
+                    "value": "Included"
                 },
                 {
-                    "value": "4.9"
+                    "value": "Included"
                 }
             ]
         },
         {
-            "feature_name": "Media storage",
+            "feature_name": "Projects covered",
             "tier_values": [
                 {
-                    "value": "98%"
+                    "value": "Unlimited (GPL)"
                 },
                 {
-                    "value": "24K"
+                    "value": "1 project"
                 },
                 {
-                    "value": "4.9"
+                    "value": "Unlimited"
                 }
             ]
         },
         {
-            "feature_name": "Team members",
+            "feature_name": "Support",
             "tier_values": [
                 {
-                    "value": "98%"
+                    "value": "GitHub community"
                 },
                 {
-                    "value": "24K"
+                    "value": "Priority email, 2-day"
                 },
                 {
-                    "value": "4.9"
+                    "value": "Priority, 4-hour"
                 }
             ]
         },
         {
-            "feature_name": "Advanced analytics",
+            "feature_name": "LTS compatibility updates",
             "tier_values": [
                 {
-                    "value": "98%"
+                    "value": "Self-managed"
                 },
                 {
-                    "value": "24K"
+                    "value": "Guaranteed"
                 },
                 {
-                    "value": "4.9"
+                    "value": "Guaranteed"
                 }
             ]
         },
         {
-            "feature_name": "SSO and SCIM",
+            "feature_name": "Early access to drops & preset packs",
             "tier_values": [
                 {
-                    "value": "98%"
+                    "value": "—"
                 },
                 {
-                    "value": "24K"
+                    "value": "Included"
                 },
                 {
-                    "value": "4.9"
+                    "value": "Included"
                 }
             ]
         },
         {
-            "feature_name": "Priority support",
+            "feature_name": "Editor onboarding & preset review",
             "tier_values": [
                 {
-                    "value": "98%"
+                    "value": "—"
                 },
                 {
-                    "value": "24K"
+                    "value": "—"
                 },
                 {
-                    "value": "4.9"
+                    "value": "Quarterly session + preset review"
                 }
             ]
         },
         {
-            "feature_name": "Uptime SLA",
+            "feature_name": "Creator services (install €890, elements from €390)",
             "tier_values": [
                 {
-                    "value": "98%"
+                    "value": "Bookable"
                 },
                 {
-                    "value": "24K"
+                    "value": "Bookable"
                 },
                 {
-                    "value": "4.9"
+                    "value": "Bookable + direct maintainer line"
                 }
             ]
         }

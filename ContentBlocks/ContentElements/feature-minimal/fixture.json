@@ -1,23 +1,23 @@
 {
     "_type": "grid",
-    "header": "Built for editors and developers",
-    "subheadline": "A small, opinionated toolkit that keeps content fast to edit and consistent to maintain.",
+    "header": "The boring details that save you money later",
+    "subheadline": "Unglamorous decisions, made once by us, that keep a Desiderio site fast to edit and cheap to maintain for years.",
     "items": [
         {
-            "title": "Side-by-side live preview",
-            "description_text": "See every field change render instantly, no separate preview tab."
+            "title": "Semantic markup",
+            "description_text": "Landmarks, heading order, and lean HTML in every element template."
         },
         {
-            "title": "One source of truth for styling",
-            "description_text": "Design tokens drive colour, spacing, and radius across all blocks."
+            "title": "BEM component CSS",
+            "description_text": "Predictable class names, zero inline styles — enforced by the audit."
         },
         {
-            "title": "Accessible defaults",
-            "description_text": "Landmarks, heading order, and focus states ship with each element."
+            "title": "Container queries",
+            "description_text": "Elements respond to their column, not just the viewport width."
         },
         {
-            "title": "Clean, semantic markup",
-            "description_text": "Output stays valid and lightweight, with no framework lock-in."
+            "title": "No frontend framework",
+            "description_text": "Vanilla JavaScript glue only — nothing extra to upgrade, ever."
         }
     ]
 }

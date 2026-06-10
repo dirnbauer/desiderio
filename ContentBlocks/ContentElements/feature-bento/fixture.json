@@ -1,66 +1,66 @@
 {
     "_type": "grid",
-    "header": "One platform, every workflow covered",
-    "subheadline": "From first sync to board-ready report, each piece is built to work together out of the box.",
+    "header": "One install. This is what you get.",
+    "subheadline": "Real screenshots, zero mockups — every tile shows Desiderio working in a seeded TYPO3 site, from inline editing to a phone-perfect frontend.",
     "items": [
         {
-            "title": "Unified data warehouse",
-            "description": "Every source lands in one governed store, so your team queries a single source of truth instead of stitching exports together.",
+            "title": "Edit the page on the page",
+            "description": "The Visual Editor lets editors work directly on the rendered page with the live theme applied — click, type, publish. No preview round-trips.",
             "size": "wide",
             "image": {
-                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-14.jpg",
-                "title": "Team Member portrait",
-                "alternative": "Portrait photo of Team Member.",
-                "description": "Portrait-style photo from Unsplash collection #25880.",
-                "source": "https://unsplash.com/collections/25880"
+                "file": "Resources/Public/Styleguide/Backend/backend-visual-editor.png",
+                "title": "Editing in the Desiderio Visual Editor",
+                "alternative": "TYPO3 Visual Editor showing a Desiderio page being edited inline with live preview.",
+                "description": "Screenshot of inline editing in the Visual Editor with Desiderio installed.",
+                "source": "https://github.com/dirnbauer/desiderio"
             }
         },
         {
-            "title": "SOC 2 Type II secure",
-            "description": "Encryption at rest and in transit, SSO, and full audit logs keep security and legal teams comfortable.",
+            "title": "Flawless on every phone",
+            "description": "Container queries and responsive tokens keep all 255 elements sharp at 390px — this is the Ember preset on a real mobile viewport.",
             "size": "tall",
             "image": {
-                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-28.jpg",
-                "title": "Team Member portrait",
-                "alternative": "Portrait photo of Team Member.",
-                "description": "Portrait-style photo from Unsplash collection #25880.",
-                "source": "https://unsplash.com/collections/25880"
+                "file": "Resources/Public/Styleguide/Frontend/frontend-features-ember-mobile.png",
+                "title": "Desiderio features page on mobile in the Ember preset",
+                "alternative": "Tall mobile screenshot of a Desiderio features page rendered in the Ember theme preset.",
+                "description": "Mobile-viewport screenshot of a live Desiderio frontend page.",
+                "source": "https://github.com/dirnbauer/desiderio"
             }
         },
         {
-            "title": "Sub-second queries",
-            "description": "A columnar engine returns answers on billions of rows before your coffee cools.",
+            "title": "One wizard, ten groups",
+            "description": "The new-content wizard sorts all 255 elements into ten curated groups — the right block is seconds away.",
             "size": "small",
             "image": {
-                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-10.jpg",
-                "title": "Team Member portrait",
-                "alternative": "Portrait photo of Team Member.",
-                "description": "Portrait-style photo from Unsplash collection #25880.",
-                "source": "https://unsplash.com/collections/25880"
+                "file": "Resources/Public/Styleguide/Backend/backend-content-wizard.png",
+                "title": "Desiderio content wizard",
+                "alternative": "TYPO3 new-content wizard listing all ten Desiderio element groups.",
+                "description": "Screenshot of the TYPO3 backend with Desiderio installed.",
+                "source": "https://github.com/dirnbauer/desiderio"
             }
         },
         {
-            "title": "Alerts that reach people",
-            "description": "Route anomalies straight to Slack or email the moment a metric moves.",
+            "title": "8 ready-made forms",
+            "description": "Contact, quote, and newsletter forms ship prebuilt, with a Friendly Captcha fallback included.",
             "size": "small",
             "image": {
-                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-08.jpg",
-                "title": "Team Member portrait",
-                "alternative": "Portrait photo of Team Member.",
-                "description": "Portrait-style photo from Unsplash collection #25880.",
-                "source": "https://unsplash.com/collections/25880"
+                "file": "Resources/Public/Styleguide/Backend/backend-forms-module.png",
+                "title": "Bundled Desiderio forms",
+                "alternative": "TYPO3 forms module listing the eight ready-made Desiderio forms.",
+                "description": "Screenshot of the TYPO3 backend with Desiderio installed.",
+                "source": "https://github.com/dirnbauer/desiderio"
             }
         },
         {
-            "title": "No-code report builder",
-            "description": "Drag, drop, and publish a polished dashboard without writing a line of SQL.",
+            "title": "Theme settings for editors",
+            "description": "Preset, dark mode, density, radius, and fonts live in site settings — a full restyle without a deployment, by the person who asked for it.",
             "size": "wide",
             "image": {
-                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-21.jpg",
-                "title": "Team Member portrait",
-                "alternative": "Portrait photo of Team Member.",
-                "description": "Portrait-style photo from Unsplash collection #25880.",
-                "source": "https://unsplash.com/collections/25880"
+                "file": "Resources/Public/Styleguide/Backend/backend-site-settings-theme.png",
+                "title": "Desiderio theme site settings",
+                "alternative": "TYPO3 site settings showing the Desiderio theme category with preset and appearance options.",
+                "description": "Screenshot of the TYPO3 backend with Desiderio installed.",
+                "source": "https://github.com/dirnbauer/desiderio"
             }
         }
     ]

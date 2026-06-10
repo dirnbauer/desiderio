@@ -1,56 +1,56 @@
 {
     "_type": "grid",
-    "eyebrow": "Compliance",
-    "header": "Audited, certified, and independently verified",
-    "subheadline": "Security and privacy standards our platform is held to, reviewed annually by accredited third parties.",
+    "eyebrow": "Quality",
+    "header": "Open source you can audit yourself",
+    "subheadline": "No paid badges, no logos for rent — every engineering claim below is verifiable in the public GPL repository before you spend a single cent.",
     "certifications": [
         {
-            "name": "SOC 2 Type II",
-            "issuer": "AICPA",
-            "badge_image": {
-                "file": "Resources/Public/Styleguide/Unsplash/compliance-soc2-dashboard.jpg",
-                "title": "Security operations dashboard",
-                "alternative": "Security operations dashboard on a screen.",
-                "description": "Unsplash image used as demo compliance media."
-            },
-            "description": "Controls for security, availability, and confidentiality, audited over a 12-month window.",
-            "link": "https://www.aicpa-cima.com/topic/audit-assurance/audit-and-assurance-greater-than-soc-2"
-        },
-        {
-            "name": "ISO/IEC 27001",
-            "issuer": "BSI Group",
-            "badge_image": {
-                "file": "Resources/Public/Styleguide/Unsplash/compliance-iso-security.jpg",
-                "title": "Security review workspace",
-                "alternative": "A security review workspace with documents and technology.",
-                "description": "Unsplash image used as demo compliance media."
-            },
-            "description": "Certified information security management system covering people, process, and technology.",
-            "link": "https://www.iso.org/standard/27001"
-        },
-        {
-            "name": "GDPR Ready",
-            "issuer": "EU 2016/679",
+            "name": "GPL-2.0 License",
+            "issuer": "Open source",
             "badge_image": {
                 "file": "Resources/Public/Styleguide/Unsplash/compliance-gdpr-laptop.jpg",
-                "title": "Privacy workflow on laptop",
-                "alternative": "A laptop used for privacy and data workflow work.",
-                "description": "Unsplash image used as demo compliance media."
+                "title": "Open source development workspace",
+                "alternative": "A laptop used for open source development work.",
+                "description": "Unsplash image used as demo badge media."
             },
-            "description": "Data processing agreements, EU data residency, and a documented right-to-erasure workflow.",
-            "link": "https://gdpr.eu/"
+            "description": "Free to use, modify, and redistribute — all 255 elements ship full source with every Composer install, forever.",
+            "link": "https://github.com/dirnbauer/desiderio"
         },
         {
-            "name": "HIPAA Compliant",
-            "issuer": "U.S. HHS",
+            "name": "PHPStan Level Max",
+            "issuer": "Static analysis",
+            "badge_image": {
+                "file": "Resources/Public/Styleguide/Unsplash/compliance-soc2-dashboard.jpg",
+                "title": "Code analysis dashboard",
+                "alternative": "A monitoring dashboard representing automated code analysis.",
+                "description": "Unsplash image used as demo badge media."
+            },
+            "description": "The entire codebase passes PHPStan's strictest level on every commit, with no baseline excuses.",
+            "link": "https://github.com/dirnbauer/desiderio"
+        },
+        {
+            "name": "CI on PHP 8.3 & 8.4",
+            "issuer": "GitHub Actions",
+            "badge_image": {
+                "file": "Resources/Public/Styleguide/Unsplash/compliance-iso-security.jpg",
+                "title": "Continuous integration review",
+                "alternative": "A review workspace with documents representing CI checks.",
+                "description": "Unsplash image used as demo badge media."
+            },
+            "description": "A 400-test suite of unit and functional tests runs across the full PHP matrix before any release is tagged.",
+            "link": "https://github.com/dirnbauer/desiderio"
+        },
+        {
+            "name": "11-Category Template Audit",
+            "issuer": "Desiderio toolchain",
             "badge_image": {
                 "file": "Resources/Public/Styleguide/Unsplash/compliance-hipaa-health.jpg",
-                "title": "Healthcare data workflow",
-                "alternative": "Healthcare professionals reviewing digital data.",
-                "description": "Unsplash image used as demo compliance media."
+                "title": "Template audit session",
+                "alternative": "People reviewing automated checks on a screen.",
+                "description": "Unsplash image used as demo badge media."
             },
-            "description": "Safeguards and signed BAAs for handling protected health information at rest and in transit.",
-            "link": "https://www.hhs.gov/hipaa/for-professionals/security/index.html"
+            "description": "Zero tolerance for inline styles and hardcoded colors across all 255 content elements.",
+            "link": "https://github.com/dirnbauer/desiderio"
         }
     ]
 }

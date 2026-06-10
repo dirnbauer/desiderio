@@ -1,27 +1,27 @@
 {
     "_type": "grid",
-    "header": "Built for teams that ship every day",
-    "subheadline": "The essentials are included from day one, so you can start without a setup project.",
+    "header": "On by default. Off your to-do list.",
+    "subheadline": "Dark mode, icons, modern CSS, and accessibility are not projects you plan — they're defaults you inherit the moment Desiderio is installed.",
     "items": [
         {
-            "icon": "zap",
-            "title": "Fast by default",
-            "description_text": "Pages load in under a second worldwide."
+            "icon": "moon",
+            "title": "Dark mode built in",
+            "description_text": "Light, dark, and auto from one token set — no second stylesheet, ever."
         },
         {
-            "icon": "globe",
-            "title": "Works everywhere",
-            "description_text": "Hosted across three regions for low latency."
+            "icon": "star",
+            "title": "5 icon libraries",
+            "description_text": "Lucide, Tabler, HugeIcons, Phosphor, or Remix Icon — swap with one setting."
+        },
+        {
+            "icon": "zap",
+            "title": "Tailwind v4 + OKLCH",
+            "description_text": "Modern color tokens and container queries, prewired and production-ready."
         },
         {
             "icon": "shield-check",
-            "title": "Secure by design",
-            "description_text": "SOC 2 controls and encryption on every plan."
-        },
-        {
-            "icon": "users",
-            "title": "Made for teams",
-            "description_text": "Roles, comments, and shared workspaces built in."
+            "title": "WCAG 2.2-checked",
+            "description_text": "Landmarks, focus states, and checked contrast on every preset."
         }
     ]
 }

@@ -1,16 +1,16 @@
 {
     "_type": "nav",
     "header": "Dr. Lena Hoffmann",
-    "role": "VP of Engineering, Platform",
-    "bio": "Leads the 40-person platform team building the infrastructure behind every Desiderio release. Twelve years shipping developer tools, two open-source maintainerships, and a soft spot for fast feedback loops.",
+    "role": "Core maintainer, Desiderio",
+    "bio": "Maintains the 49 Fluid 5 components and the 11-category audit that keeps every Desiderio release free of inline styles and hardcoded colors. Twelve years of TYPO3 work, two open-source maintainerships — and one of the people who personally answers your Pro support tickets.",
     "avatar": {
         "file": "Resources/Public/Styleguide/Unsplash/portrait-lena-hoffmann.jpg",
         "title": "Dr. Lena Hoffmann",
         "alternative": "Portrait photo of Dr. Lena Hoffmann.",
         "description": "Portrait photo for the header profile."
     },
-    "primary_button_text": "Read her work",
+    "primary_button_text": "Read her commits",
     "secondary_button_text": "Connect on LinkedIn",
-    "primary_button_link": "https://example.com/desiderio/primary_button_link_1",
+    "primary_button_link": "https://github.com/dirnbauer/desiderio",
     "secondary_button_link": "https://example.com/desiderio/secondary_button_link_1"
 }

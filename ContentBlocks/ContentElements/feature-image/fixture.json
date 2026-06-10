@@ -1,16 +1,16 @@
 {
     "_type": "grid",
-    "eyebrow": "Live preview",
-    "header": "Edit content and see the result instantly",
-    "description": "Change any field in the backend form and the frontend updates side by side. No save-and-reload loop, so your team ships pages in minutes instead of afternoons.",
+    "eyebrow": "Visual Editor",
+    "header": "Edit the page right on the page",
+    "description": "The Visual Editor turns the TYPO3 backend into the site itself: editors click into a headline, type, and watch the live theme respond instantly. Combined with page-module previews for all 255 elements, nobody on your team ever publishes blind again.",
     "image_position": "right",
-    "link": "https://ui.shadcn.com/docs",
-    "link_text": "Explore the editor",
+    "link": "https://github.com/dirnbauer/desiderio",
+    "link_text": "See the Visual Editor",
     "image": {
-        "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-14.jpg",
-        "title": "Team Member portrait",
-        "alternative": "Portrait photo of Team Member.",
-        "description": "Portrait-style photo from Unsplash collection #25880.",
-        "source": "https://unsplash.com/collections/25880"
+        "file": "Resources/Public/Styleguide/Backend/backend-visual-editor.png",
+        "title": "Editing in the Desiderio Visual Editor",
+        "alternative": "TYPO3 Visual Editor showing a Desiderio page being edited inline with live preview.",
+        "description": "Screenshot of inline editing in the Visual Editor with Desiderio installed.",
+        "source": "https://github.com/dirnbauer/desiderio"
     }
 }

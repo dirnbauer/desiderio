@@ -1,30 +1,30 @@
 {
     "_type": "hero",
-    "header": "Noise-cancelling headphones, tuned for focus",
-    "subheadline": "40 hours of battery, adaptive ANC, and studio-grade drivers. Built for deep work and long flights.",
-    "badge_text": "New release",
-    "price": "$249",
-    "primary_button_text": "Add to cart",
+    "header": "Edit your site where your visitors see it",
+    "subheadline": "The Visual Editor puts editing on the rendered page itself — click a headline, type, publish. Backed by 255 elements with live page-module previews, built on Content Blocks 2.2 and Tailwind v4 for TYPO3 14.3+.",
+    "badge_text": "v2.6",
+    "price": "Free",
+    "primary_button_text": "Start free",
     "feature_items": [
         {
-            "label": "40-hour battery, fast USB-C charging"
+            "label": "Inline editing in the Visual Editor"
         },
         {
-            "label": "Adaptive noise cancellation"
+            "label": "255 elements with live backend previews"
         },
         {
-            "label": "Multipoint Bluetooth 5.3"
+            "label": "15 theme presets, switched at runtime"
         },
         {
-            "label": "Free 2-year warranty"
+            "label": "Pro support from €49/month when you need it"
         }
     ],
     "product_image": {
-        "file": "Resources/Public/Styleguide/Unsplash/customer-enterprise.jpg",
-        "title": "Enterprise customer workspace",
-        "alternative": "A large retail distribution facility with loading bays.",
-        "description": "Unsplash image used as demo cover photography.",
-        "source": "https://unsplash.com/"
+        "file": "Resources/Public/Styleguide/Backend/backend-visual-editor.png",
+        "title": "Editing a page in the Desiderio Visual Editor",
+        "alternative": "TYPO3 Visual Editor showing a Desiderio page being edited inline with live preview.",
+        "description": "Screenshot of inline editing in the Visual Editor with Desiderio installed.",
+        "source": "https://github.com/dirnbauer/desiderio"
     },
-    "primary_button_link": "https://example.com/desiderio/primary_button_link_1"
+    "primary_button_link": "https://github.com/dirnbauer/desiderio"
 }

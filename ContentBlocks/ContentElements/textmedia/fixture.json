@@ -1,17 +1,17 @@
 {
     "_type": "section",
-    "header": "Built for the work you do every day",
+    "header": "Edit your site where your visitors see it",
     "shadcn_layout": "media-right",
-    "subheadline": "One workspace that keeps planning, building, and reviewing in the same place.",
-    "content": "<p>Stop switching between five tools to ship one project. Briefs, tasks, files, and approvals live side by side, so the next step is always obvious and nothing waits in someone's inbox.</p><ul><li>Plan work and assign owners in seconds</li><li>Review changes inline, no email threads</li><li>See real progress on one live dashboard</li></ul>",
+    "subheadline": "With Visual Editor support, Desiderio turns the frontend itself into the editing surface.",
+    "content": "<p>Click any of the 255 elements right on the page and change it inline — no module-hopping, no preview-tab roulette. What your editors see is literally what ships.</p><ul><li>Inline editing across all 255 themed elements</li><li>Backend previews in the page module as the fallback</li><li>One seeder command for a full demo site to practice on</li></ul>",
     "media_rounded": 1,
-    "button_text": "Start free trial",
-    "button_link": "https://ui.shadcn.com/docs",
+    "button_text": "View on GitHub",
+    "button_link": "https://github.com/dirnbauer/desiderio",
     "media": {
-        "file": "Resources/Public/Styleguide/Unsplash/workspace-marvin-meyer.jpg",
-        "title": "Collaborative workspace",
-        "alternative": "People working together around laptops in a collaborative workspace.",
-        "description": "Copyright/credit: Photo by Marvin Meyer on Unsplash. Used as seeded demo imagery.",
-        "source": "https://unsplash.com/photos/people-sitting-down-near-table-with-assorted-laptop-computers-SYTO3xs06fU"
+        "file": "Resources/Public/Styleguide/Backend/backend-visual-editor.png",
+        "title": "Editing in the Desiderio Visual Editor",
+        "alternative": "TYPO3 Visual Editor with inline editing of a Desiderio content element on the page.",
+        "description": "Screenshot of the TYPO3 backend with Desiderio installed.",
+        "source": "https://github.com/dirnbauer/desiderio"
     }
 }

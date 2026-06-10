@@ -1,33 +1,33 @@
 {
     "_type": "list",
-    "header": "What's new",
+    "header": "What's new in Desiderio",
     "items": [
         {
-            "version": "v2.4.0",
+            "version": "v2.6.0",
             "date": "2026-05-28",
-            "title": "Saved views and bulk actions",
-            "description": "<p>Save any filtered table as a named view and share it with your team. Select multiple rows to archive, tag, or export in one step.</p>",
+            "title": "Per-page theme presets — the release that changes theming in TYPO3",
+            "description": "<p>Any page subtree can now run its own shadcn theme preset, inherited down the rootline and switched at runtime. Campaign pages in Midnight, the rest of the site on Aurora — the seeded styleguide flaunts a different theme on every chapter page.</p>",
             "tag": "new"
         },
         {
-            "version": "v2.3.2",
+            "version": "v2.5.2",
             "date": "2026-05-14",
-            "title": "Faster dashboard loads",
-            "description": "<p>Dashboards with 50+ widgets now render up to 3x faster thanks to incremental data fetching and cached aggregates.</p>",
+            "title": "Seeder services: a full demo site, rebuilt anytime",
+            "description": "<p>The styleguide and starter seeders are now dedicated services with functional test coverage. Still one command, still workspaces-safe and idempotent — run it after every upgrade and your demo content refreshes in place.</p>",
             "tag": "improvement"
         },
         {
-            "version": "v2.3.1",
+            "version": "v2.5.1",
             "date": "2026-05-06",
-            "title": "CSV export encoding fix",
-            "description": "<p>Resolved an issue where exported CSV files dropped UTF-8 characters in non-Latin locales. Re-exports now preserve every character.</p>",
+            "title": "Friendly Captcha placeholder fallback",
+            "description": "<p>Forms using Friendly Captcha now render a clean demo placeholder when no site key is configured — seeded demo sites look polished out of the box, never broken.</p>",
             "tag": "fix"
         },
         {
-            "version": "v2.3.0",
+            "version": "v2.4.0",
             "date": "2026-04-22",
-            "title": "New webhooks API",
-            "description": "<p>Subscribe to record events over HTTPS. The legacy polling endpoint <code>/v1/events</code> is deprecated and will be removed on 1 August 2026.</p>",
+            "title": "Fluid 5 strict components, zero runtime baggage",
+            "description": "<p>All 49 components moved to strict Fluid 5 ViewHelpers under the <code>d:</code> namespace, and the Alpine.js runtime was dropped for lean vanilla glue code. Faster pages, stricter templates — update custom templates before upgrading.</p>",
             "tag": "breaking"
         }
     ]

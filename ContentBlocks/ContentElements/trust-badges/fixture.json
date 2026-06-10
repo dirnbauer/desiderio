@@ -1,56 +1,56 @@
 {
     "_type": "grid",
-    "header": "Enterprise-grade security and compliance",
-    "subheadline": "Independently audited and certified, so your data is protected by design.",
+    "header": "Trust built into the codebase",
+    "subheadline": "No badges for sale here — every claim below is verifiable in the public GPL repository, guarded by a 400-test CI suite.",
     "badge_items": [
         {
-            "label": "SOC 2 Type II",
-            "description_text": "Audited annually by an independent firm",
+            "label": "PHPStan level max",
+            "description_text": "Strictest static analysis on every commit",
             "image": {
                 "file": "Resources/Public/Styleguide/Unsplash/compliance-soc2-dashboard.jpg",
-                "title": "Security dashboard",
-                "alternative": "A security operations dashboard used for compliance monitoring.",
-                "description": "Compliance-themed photo from Unsplash."
+                "title": "Code analysis dashboard",
+                "alternative": "A monitoring dashboard representing static code analysis.",
+                "description": "Unsplash photo used as demo badge imagery."
             }
         },
         {
-            "label": "GDPR compliant",
-            "description_text": "EU data residency and processing controls",
+            "label": "GPL-2.0 licensed",
+            "description_text": "Free to use, modify, and redistribute",
             "image": {
                 "file": "Resources/Public/Styleguide/Unsplash/compliance-gdpr-laptop.jpg",
-                "title": "Privacy controls",
-                "alternative": "A laptop workspace representing data privacy and processing controls.",
-                "description": "Compliance-themed photo from Unsplash."
+                "title": "Open source workspace",
+                "alternative": "A laptop workspace representing open source development.",
+                "description": "Unsplash photo used as demo badge imagery."
             }
         },
         {
-            "label": "ISO 27001",
-            "description_text": "Certified information security management",
+            "label": "11-category audit",
+            "description_text": "Zero inline styles, zero hardcoded colors",
             "image": {
                 "file": "Resources/Public/Styleguide/Unsplash/compliance-iso-security.jpg",
-                "title": "Information security",
-                "alternative": "A security-focused workspace representing information security management.",
-                "description": "Compliance-themed photo from Unsplash."
+                "title": "Template audit workspace",
+                "alternative": "A documentation workspace representing template audits.",
+                "description": "Unsplash photo used as demo badge imagery."
             }
         },
         {
-            "label": "256-bit encryption",
-            "description_text": "Data encrypted in transit and at rest",
+            "label": "WCAG-minded markup",
+            "description_text": "Semantic HTML and focus states by default",
             "image": {
                 "file": "Resources/Public/Styleguide/Unsplash/client-vertex-financial.jpg",
-                "title": "Encrypted systems",
-                "alternative": "A secure digital workspace representing encrypted systems.",
-                "description": "Compliance-themed photo from Unsplash."
+                "title": "Accessible interface work",
+                "alternative": "A digital workspace representing accessible interface work.",
+                "description": "Unsplash photo used as demo badge imagery."
             }
         },
         {
-            "label": "99.9% uptime SLA",
-            "description_text": "Backed by a financially guaranteed contract",
+            "label": "CI on PHP 8.3 / 8.4",
+            "description_text": "400 unit and functional tests on every release",
             "image": {
                 "file": "Resources/Public/Styleguide/Unsplash/customer-enterprise.jpg",
-                "title": "Reliable infrastructure",
-                "alternative": "An enterprise operations setting representing reliable service infrastructure.",
-                "description": "Compliance-themed photo from Unsplash."
+                "title": "Continuous integration",
+                "alternative": "An enterprise operations setting representing continuous testing infrastructure.",
+                "description": "Unsplash photo used as demo badge imagery."
             }
         }
     ]

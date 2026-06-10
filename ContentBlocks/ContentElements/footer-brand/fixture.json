@@ -1,35 +1,35 @@
 {
     "_type": "footer",
-    "brand": "Northwind",
+    "brand": "Desiderio",
     "logo": {
         "file": "Resources/Public/Styleguide/Logos/Brands/northwind.svg",
-        "title": "Northwind",
-        "alternative": "Northwind logo.",
-        "description": "Dummy brand logo for Northwind demo content."
+        "title": "Demo brand logo",
+        "alternative": "Placeholder brand logo.",
+        "description": "Dummy logo asset used as seeded demo imagery — swap in your own brand mark."
     },
-    "tagline": "Ship product, design, and code from one source of truth.",
+    "tagline": "Desiderio — shadcn-quality content elements for TYPO3, free forever under GPL-2.0.",
     "link_items": [
         {
-            "label": "Product",
-            "link": "https://example.com/desiderio/link_1"
+            "label": "Components",
+            "link": "https://github.com/dirnbauer/desiderio"
         },
         {
-            "label": "Pricing",
-            "link": "https://example.com/desiderio/link_2"
+            "label": "Themes",
+            "link": "https://ui.shadcn.com/create"
         },
         {
             "label": "Docs",
-            "link": "https://example.com/desiderio/link_3"
+            "link": "https://github.com/dirnbauer/desiderio"
         },
         {
             "label": "Privacy",
             "link": "https://example.com/desiderio/link_4"
         },
         {
-            "label": "Terms",
+            "label": "Imprint",
             "link": "https://example.com/desiderio/link_5"
         }
     ],
-    "copyright": "\u00a9 2026 Northwind Labs, Inc. All rights reserved.",
-    "header": "Footer Brand: Editor Workflow Upgrade"
+    "copyright": "© 2026 webconsulting studio. Desiderio is GPL-2.0 licensed.",
+    "header": "Footer Brand: Desiderio docs site"
 }

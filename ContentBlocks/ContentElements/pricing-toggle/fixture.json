@@ -1,74 +1,74 @@
 {
-  "_type": "pricing",
-  "header": "Toggle Pricing for confident plan comparison",
-  "eyebrow": "Modern import",
-  "subheadline": "Help buyers compare plans with crisp values and direct feature language.",
-  "plans": [
-    {
-      "title": "Toggle Pricing for confident plan comparison",
-      "monthly_price": "$19",
-      "yearly_price": "$190",
-      "description": "Show pricing states with practical labels and scannable benefits.",
-      "features": [
+    "_type": "pricing",
+    "header": "Monthly flexibility, or two months free",
+    "eyebrow": "Monthly · Yearly",
+    "subheadline": "Pick a cadence, keep the same complete package. Pay yearly and Pro is €490 instead of €588, Agency €1,490 instead of €1,788 — 2 months free, every year.",
+    "plans": [
         {
-          "text": "Token-aware light and dark states"
+            "title": "Community",
+            "monthly_price": "€0",
+            "yearly_price": "€0",
+            "description": "The full kit, self-served: every element, preset, and icon library.",
+            "features": [
+                {
+                    "text": "255 elements, 49 components"
+                },
+                {
+                    "text": "Dark mode and OKLCH tokens"
+                },
+                {
+                    "text": "Community support on GitHub"
+                }
+            ],
+            "button_text": "Install for free",
+            "button_link": "https://github.com/dirnbauer/desiderio"
         },
         {
-          "text": "Accessible keyboard focus patterns"
+            "title": "Pro",
+            "monthly_price": "€49",
+            "yearly_price": "€490",
+            "description": "Priority support and guaranteed updates from the creators — the recommended tier.",
+            "features": [
+                {
+                    "text": "Priority email support, 2-day response"
+                },
+                {
+                    "text": "Guaranteed LTS compatibility updates"
+                },
+                {
+                    "text": "Early access to new element drops"
+                },
+                {
+                    "text": "Minor-version upgrade assistance"
+                }
+            ],
+            "button_text": "Go Pro",
+            "button_link": "https://github.com/dirnbauer/desiderio"
         },
         {
-          "text": "Responsive cards tuned for concise content"
+            "title": "Agency",
+            "monthly_price": "€149",
+            "yearly_price": "€1,490",
+            "description": "Everything in Pro for unlimited projects, with the maintainers on speed dial.",
+            "features": [
+                {
+                    "text": "Everything in Pro, unlimited projects"
+                },
+                {
+                    "text": "4-hour priority response"
+                },
+                {
+                    "text": "Quarterly editor onboarding session"
+                },
+                {
+                    "text": "Custom preset review by the creators"
+                },
+                {
+                    "text": "Direct line to the maintainers"
+                }
+            ],
+            "button_text": "Choose Agency",
+            "button_link": "https://github.com/dirnbauer/desiderio"
         }
-      ],
-      "button_text": "Get the checklist",
-      "button_link": "https://ui.shadcn.com/docs/toggle-pricing"
-    },
-    {
-      "title": "Toggle Pricing for confident plan comparison",
-      "monthly_price": "$49",
-      "yearly_price": "$490",
-      "description": "Keep plan comparison compact across desktop tables and mobile cards.",
-      "features": [
-        {
-          "text": "Token-aware light and dark states"
-        },
-        {
-          "text": "Accessible keyboard focus patterns"
-        },
-        {
-          "text": "Responsive cards tuned for concise content"
-        },
-        {
-          "text": "Editor-friendly TYPO3 Content Blocks"
-        }
-      ],
-      "button_text": "Start review",
-      "button_link": "https://ui.shadcn.com/docs/toggle-pricing"
-    },
-    {
-      "title": "Toggle Pricing for confident plan comparison",
-      "monthly_price": "$99",
-      "yearly_price": "$990",
-      "description": "Help buyers compare plans with crisp values and direct feature language.",
-      "features": [
-        {
-          "text": "Token-aware light and dark states"
-        },
-        {
-          "text": "Accessible keyboard focus patterns"
-        },
-        {
-          "text": "Responsive cards tuned for concise content"
-        },
-        {
-          "text": "Editor-friendly TYPO3 Content Blocks"
-        },
-        {
-          "text": "Modern Unsplash imagery in the import seed"
-        }
-      ],
-      "button_text": "Explore flow",
-      "button_link": "https://ui.shadcn.com/docs/toggle-pricing"
-    }
-  ]
+    ]
 }

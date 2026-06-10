@@ -1,11 +1,23 @@
 {
     "_type": "nav",
     "header": "Utility",
-    "left_text": "Free shipping on orders over $50",
+    "left_text": "Desiderio 2.6 · 255 elements for TYPO3 14 · free forever core",
     "link_items": [
-        { "label": "Track order", "link": "/orders/track" },
-        { "label": "Store locator", "link": "/stores" },
-        { "label": "Help center", "link": "/help" },
-        { "label": "Sign in", "link": "/account/login" }
+        {
+            "label": "English (EN)",
+            "link": "/en"
+        },
+        {
+            "label": "Dark mode",
+            "link": "/theme/dark"
+        },
+        {
+            "label": "typo3.org",
+            "link": "https://typo3.org"
+        },
+        {
+            "label": "GitHub",
+            "link": "https://github.com/dirnbauer/desiderio"
+        }
     ]
 }

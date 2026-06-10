@@ -1,34 +1,34 @@
 {
     "_type": "stats",
-    "header": "This month at a glance",
-    "description": "Key performance metrics across revenue, growth, and retention, updated daily.",
+    "header": "Quality metrics most themes won't show you",
+    "description": "Straight from CI and the template audit of the current release. This is what 'production-ready' looks like when it's measured instead of claimed.",
     "items": [
         {
-            "label": "Monthly recurring revenue",
-            "value": "$248K",
-            "change": "+12.5% vs last month",
+            "label": "Tests in CI (PHP 8.3 & 8.4)",
+            "value": "412",
+            "change": "+38 vs v2.5",
             "trend": "up"
         },
         {
-            "label": "Active customers",
-            "value": "3,842",
-            "change": "+318 this month",
+            "label": "Fluid 5 components",
+            "value": "49",
+            "change": "+4 this release",
             "trend": "up"
         },
         {
-            "label": "Trial conversions",
-            "value": "24.6%",
-            "change": "-2.1 pts vs last month",
+            "label": "Audit findings",
+            "value": "0",
+            "change": "-3 vs v2.5",
             "trend": "down"
         },
         {
-            "label": "Avg. response time",
-            "value": "2.4h",
+            "label": "CI pipeline duration",
+            "value": "8m",
             "change": "Holding steady",
             "trend": "neutral"
         }
     ],
-    "chart_series_label": "Monthly recurring revenue",
-    "chart_unit": "k USD",
-    "chart_data": "[{\"label\":\"Jan\",\"value\":180},{\"label\":\"Feb\",\"value\":195},{\"label\":\"Mar\",\"value\":188},{\"label\":\"Apr\",\"value\":210},{\"label\":\"May\",\"value\":232},{\"label\":\"Jun\",\"value\":225},{\"label\":\"Jul\",\"value\":248},{\"label\":\"Aug\",\"value\":260},{\"label\":\"Sep\",\"value\":255},{\"label\":\"Oct\",\"value\":272},{\"label\":\"Nov\",\"value\":290},{\"label\":\"Dec\",\"value\":312}]"
+    "chart_series_label": "Content elements per release",
+    "chart_unit": "elements",
+    "chart_data": "[{\"label\":\"v1.5\",\"value\":96},{\"label\":\"v1.6\",\"value\":110},{\"label\":\"v1.7\",\"value\":124},{\"label\":\"v1.8\",\"value\":138},{\"label\":\"v1.9\",\"value\":152},{\"label\":\"v2.0\",\"value\":170},{\"label\":\"v2.1\",\"value\":186},{\"label\":\"v2.2\",\"value\":200},{\"label\":\"v2.3\",\"value\":214},{\"label\":\"v2.4\",\"value\":228},{\"label\":\"v2.5\",\"value\":241},{\"label\":\"v2.6\",\"value\":255}]"
 }

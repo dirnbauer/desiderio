@@ -1,26 +1,26 @@
 {
     "_type": "hero",
-    "header": "One plan, every feature, no surprises",
-    "subheadline": "Built for teams of 5 to 50. Start free, upgrade when you ship, and cancel in two clicks.",
-    "price": "$29",
-    "price_period": "user / month",
-    "button_text": "Start free trial",
+    "header": "Start free. Go Pro when speed starts paying for itself.",
+    "subheadline": "All 255 elements ship in every tier — Community is €0 forever under GPL-2.0. Pro at €49/month (€490/year, recommended) adds priority support and guaranteed LTS updates; Agency at €149/month (€1,490/year) covers unlimited projects with a direct line to the maintainers.",
+    "price": "€0",
+    "price_period": "forever — Pro from €49/month",
+    "button_text": "Start free",
     "feature_items": [
         {
-            "label": "Unlimited projects and members"
+            "label": "All 255 elements in every tier, even Community"
         },
         {
-            "label": "Advanced analytics dashboard"
+            "label": "Pro: priority support, 2-day response, LTS guarantees"
         },
         {
-            "label": "SSO and audit logs"
+            "label": "Pro: early access to new element drops and preset packs"
         },
         {
-            "label": "Priority support, 4-hour reply"
+            "label": "Agency: unlimited projects, 4-hour priority response"
         },
         {
-            "label": "99.9% uptime SLA"
+            "label": "Pay yearly and get 2 months free (€490 / €1,490)"
         }
     ],
-    "button_link": "https://example.com/desiderio/button_link_1"
+    "button_link": "https://github.com/dirnbauer/desiderio"
 }

@@ -1,13 +1,25 @@
 {
     "_type": "nav",
     "header": "Primary",
-    "brand": "Studio Atlas",
+    "brand": "Desiderio",
     "nav_items": [
-        { "label": "Product", "link": "https://example.com/desiderio/product" },
-        { "label": "Solutions", "link": "https://example.com/desiderio/solutions" },
-        { "label": "Pricing", "link": "https://example.com/desiderio/pricing" },
-        { "label": "Docs", "link": "https://example.com/desiderio/docs" }
+        {
+            "label": "Components",
+            "link": "https://example.com/desiderio/components"
+        },
+        {
+            "label": "Pricing",
+            "link": "https://example.com/desiderio/pricing"
+        },
+        {
+            "label": "Themes",
+            "link": "https://example.com/desiderio/themes"
+        },
+        {
+            "label": "Docs",
+            "link": "https://example.com/desiderio/docs"
+        }
     ],
-    "button_text": "Start free trial",
-    "button_link": "https://example.com/desiderio/signup"
+    "button_text": "Start free",
+    "button_link": "https://github.com/dirnbauer/desiderio"
 }

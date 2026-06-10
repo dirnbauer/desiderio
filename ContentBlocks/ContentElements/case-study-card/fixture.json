@@ -1,21 +1,21 @@
 {
     "_type": "card",
     "header": "Customer story",
-    "client_name": "Walmart",
+    "client_name": "Northwind Logistics",
     "client_logo": {
-        "file": "Resources/Public/Styleguide/Logos/Fortune500/walmart.svg",
-        "title": "Walmart logo",
-        "alternative": "Walmart company logo.",
-        "description": "Fortune 500 #1 company logo for demo customer content."
+        "file": "Resources/Public/Styleguide/Logos/Brands/northwind-logistics.svg",
+        "title": "Northwind Logistics logo",
+        "alternative": "Northwind Logistics demo brand logo.",
+        "description": "Fictional demo brand from the Desiderio styleguide."
     },
-    "summary": "After rolling out our platform across regional distribution centers, Walmart cut store-assortment planning from days to hours and aligned 4,600 locations on one live inventory view.",
-    "result_value": "9x",
-    "result_label": "faster rollout planning",
+    "summary": "Northwind relaunched 14 country sites on one Agency plan (€149/month, unlimited projects): all 255 ready-made elements, a theme preset per market on a shared install, and quarterly editor onboarding from the maintainers. Not a single custom content type was written.",
+    "result_value": "3x",
+    "result_label": "faster relaunch delivery",
     "image": {
-        "file": "Resources/Public/Styleguide/Unsplash/customer-enterprise.jpg",
-        "title": "Retail distribution center",
-        "alternative": "A large retail distribution facility with loading bays.",
-        "description": "Unsplash image used as demo case study cover photography."
+        "file": "Resources/Public/Styleguide/Frontend/frontend-dashboards-forest.png",
+        "title": "Desiderio dashboard page in the Forest preset",
+        "alternative": "Dashboard-style Desiderio frontend page rendered in the Forest theme preset.",
+        "description": "Screenshot of a Desiderio frontend page from the seeded styleguide."
     },
-    "link": "https://www.example.com/case-studies/walmart"
+    "link": "https://github.com/dirnbauer/desiderio"
 }

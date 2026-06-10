@@ -1,26 +1,26 @@
 {
     "_type": "section",
-    "header": "One workspace for content and design",
-    "description": "Editors write, developers theme, and everyone sees the same result. No more handoff guesswork between teams.",
+    "header": "Editors write. The theme does the design.",
+    "description": "Desiderio moves every styling decision into site settings — so editors restyle the site themselves, developers stop fielding color-change tickets, and the brand never drifts.",
     "items": [
         {
-            "title": "Edit with confidence",
-            "description_text": "Guided fields and live preview mean every change is visible before it ships."
+            "title": "Theme without deploys",
+            "description_text": "Preset, density, radius, container width, and fonts are editor-facing site settings."
         },
         {
-            "title": "Stay on brand automatically",
-            "description_text": "Shared tokens keep colour, spacing, and type consistent across every page."
+            "title": "On brand, automatically",
+            "description_text": "OKLCH design tokens drive every component, so nothing drifts off palette."
         },
         {
-            "title": "Ship without bottlenecks",
-            "description_text": "Reusable blocks let teams build new pages in minutes, not sprints."
+            "title": "Dark mode included",
+            "description_text": "Light, dark, and auto flip from the same token set — no second stylesheet."
         }
     ],
     "image": {
-        "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-14.jpg",
-        "title": "Team Member portrait",
-        "alternative": "Portrait photo of Team Member.",
-        "description": "Portrait-style photo from Unsplash collection #25880.",
-        "source": "https://unsplash.com/collections/25880"
+        "file": "Resources/Public/Styleguide/Backend/backend-site-settings-theme.png",
+        "title": "Desiderio theme site settings",
+        "alternative": "TYPO3 site settings showing the Desiderio theme category with preset and appearance options.",
+        "description": "Screenshot of the TYPO3 backend with Desiderio installed.",
+        "source": "https://github.com/dirnbauer/desiderio"
     }
 }

@@ -1,68 +1,68 @@
 {
     "_type": "pricing",
-    "header": "Pick the plan that fits your team",
-    "eyebrow": "Pricing",
-    "subheadline": "Start free and upgrade as you grow. Every plan includes unlimited pages and a 14-day trial of paid features.",
+    "header": "From free core to the creators on retainer",
+    "eyebrow": "Pick your level",
+    "subheadline": "Three license tiers plus a standing retainer with the people who built all 255 elements. Yearly billing on Pro and Agency means 2 months free.",
     "plans": [
         {
-            "title": "Free",
-            "price": "$0",
-            "description": "For trying things out and solo side projects.",
+            "title": "Community",
+            "price": "€0",
+            "description": "The complete open source kit, self-served and free forever.",
             "features": [
-                { "text": "1 editor seat" },
-                { "text": "Up to 3 projects" },
-                { "text": "Community support" },
-                { "text": "1 GB asset storage" }
+                { "text": "255 elements in 10 groups" },
+                { "text": "Backend previews for every element" },
+                { "text": "One-command demo seeding" },
+                { "text": "Community support on GitHub" }
             ],
-            "button_text": "Start free",
-            "button_link": "https://ui.shadcn.com/docs/four-tier-pricing",
-            "featured": false
-        },
-        {
-            "title": "Starter",
-            "price": "$19",
-            "description": "For freelancers shipping client sites.",
-            "features": [
-                { "text": "3 editor seats" },
-                { "text": "Unlimited projects" },
-                { "text": "Email support" },
-                { "text": "25 GB asset storage" },
-                { "text": "Custom domains" }
-            ],
-            "button_text": "Choose Starter",
-            "button_link": "https://ui.shadcn.com/docs/four-tier-pricing",
+            "button_text": "Install for free",
+            "button_link": "https://github.com/dirnbauer/desiderio",
             "featured": false
         },
         {
             "title": "Pro",
-            "price": "$49",
-            "description": "For growing teams that publish weekly.",
+            "price": "€49/mo",
+            "description": "Per project — €490/year with 2 months free. The recommended tier.",
             "features": [
-                { "text": "10 editor seats" },
-                { "text": "Unlimited projects" },
-                { "text": "Priority support" },
-                { "text": "100 GB asset storage" },
-                { "text": "Roles and permissions" },
-                { "text": "Scheduled publishing" }
+                { "text": "Everything in Community" },
+                { "text": "Priority email support, 2-day response" },
+                { "text": "Guaranteed LTS compatibility updates" },
+                { "text": "Early access to drops and preset packs" },
+                { "text": "Minor-version upgrade assistance" }
             ],
-            "button_text": "Choose Pro",
-            "button_link": "https://ui.shadcn.com/docs/four-tier-pricing",
+            "button_text": "Go Pro",
+            "button_link": "https://github.com/dirnbauer/desiderio",
             "featured": true
         },
         {
-            "title": "Business",
-            "price": "$99",
-            "description": "For organisations with compliance needs.",
+            "title": "Agency",
+            "price": "€149/mo",
+            "description": "Unlimited projects — €1,490/year with 2 months free.",
             "features": [
-                { "text": "Unlimited seats" },
-                { "text": "SSO and audit logs" },
-                { "text": "Dedicated success manager" },
-                { "text": "500 GB asset storage" },
-                { "text": "99.9% uptime SLA" },
-                { "text": "Advanced security controls" }
+                { "text": "Everything in Pro, unlimited projects" },
+                { "text": "4-hour priority response" },
+                { "text": "Quarterly editor onboarding session" },
+                { "text": "Custom preset review by the creators" },
+                { "text": "Direct line to the maintainers" },
+                { "text": "One plan for every client site" }
             ],
-            "button_text": "Choose Business",
-            "button_link": "https://ui.shadcn.com/docs/four-tier-pricing",
+            "button_text": "Choose Agency",
+            "button_link": "https://github.com/dirnbauer/desiderio",
+            "featured": false
+        },
+        {
+            "title": "Creator Care",
+            "price": "€490/mo",
+            "description": "With the creators: a standing retainer from the team that built Desiderio.",
+            "features": [
+                { "text": "4 development hours every month" },
+                { "text": "Priority fixes from the maintainers" },
+                { "text": "Security monitoring" },
+                { "text": "LTS upgrade planning" },
+                { "text": "Built by the people behind all 255 elements" },
+                { "text": "Pairs with Community, Pro, or Agency" }
+            ],
+            "button_text": "Book Creator Care",
+            "button_link": "https://github.com/dirnbauer/desiderio",
             "featured": false
         }
     ]

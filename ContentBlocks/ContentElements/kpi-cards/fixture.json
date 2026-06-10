@@ -1,32 +1,32 @@
 {
     "_type": "stats",
-    "eyebrow": "This quarter",
-    "header": "Key metrics at a glance",
-    "subheadline": "Live numbers from our Q2 board review, updated every morning from the data warehouse.",
+    "eyebrow": "Version 2.6",
+    "header": "Everything you'd build by hand, already counted",
+    "subheadline": "The headline numbers of the kit, straight from the current release — and every one of them is included in the free GPL core.",
     "columns": "4",
     "items": [
         {
-            "value": "$1.4M",
-            "label": "Monthly recurring revenue",
-            "detail_text": "Up 18% from last quarter",
+            "value": "255",
+            "label": "Content elements",
+            "detail_text": "10 groups, all with backend previews",
             "trend": "positive"
         },
         {
-            "value": "2,840",
-            "label": "Active workspaces",
-            "detail_text": "Net new 312 this month",
+            "value": "49",
+            "label": "Fluid 5 components",
+            "detail_text": "17 atoms, 28 molecules, 4 layouts",
             "trend": "positive"
         },
         {
-            "value": "99.98%",
-            "label": "Uptime",
-            "detail_text": "Within our enterprise SLA",
+            "value": "15",
+            "label": "Theme presets",
+            "detail_text": "Runtime-switchable, dark mode included",
             "trend": "neutral"
         },
         {
-            "value": "3.1%",
-            "label": "Monthly churn",
-            "detail_text": "Above our 2.5% target",
+            "value": "7",
+            "label": "Open issues",
+            "detail_text": "Triaged weekly — nothing festers",
             "trend": "caution"
         }
     ]

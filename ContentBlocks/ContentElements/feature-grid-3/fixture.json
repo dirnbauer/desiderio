@@ -1,25 +1,25 @@
 {
     "_type": "grid",
-    "header": "Everything your team needs to move faster",
-    "subheadline": "One workspace for planning, building, and shipping, so nothing slips between tools.",
+    "header": "Everything a relaunch needs, already built",
+    "subheadline": "Content elements, component library, and a full theme layer in one composer package — the parts agencies usually rebuild from scratch, every single project.",
     "items": [
         {
+            "icon": "book-open",
+            "title": "255 content elements",
+            "description": "Heroes, features, pricing, dashboards, footers — ten curated groups so your next page is assembled, not developed. Every element with a backend preview.",
+            "link": "https://github.com/dirnbauer/desiderio"
+        },
+        {
             "icon": "zap",
-            "title": "Automate busywork",
-            "description": "Trigger workflows on any event and let routine handoffs run themselves, no scripts required.",
-            "link": "https://example.com/desiderio/link_1"
+            "title": "49 Fluid 5 components",
+            "description": "17 atoms, 28 molecules, and 4 layout primitives keep your custom templates as polished as the bundled ones — one design language everywhere.",
+            "link": "https://github.com/dirnbauer/desiderio"
         },
         {
-            "icon": "chart-no-axes-combined",
-            "title": "See what's working",
-            "description": "Live dashboards turn raw activity into the three numbers your team checks every morning.",
-            "link": "https://example.com/desiderio/link_2"
-        },
-        {
-            "icon": "shield-check",
-            "title": "Ship with confidence",
-            "description": "SOC 2 controls, granular permissions, and audit logs keep every release secure and traceable.",
-            "link": "https://example.com/desiderio/link_3"
+            "icon": "sparkles",
+            "title": "15 theme presets",
+            "description": "A redesign without a budget: switch from Aurora to Midnight at runtime and the whole site repaints — no rebuild, no deployment, no invoice.",
+            "link": "https://ui.shadcn.com"
         }
     ]
 }

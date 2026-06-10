@@ -1,39 +1,39 @@
 {
     "_type": "table",
-    "header": "Table Content for polished editorial systems",
-    "caption": "Accessible pattern comparison for Table Content",
+    "header": "255 elements in 10 groups — pick your starting point",
+    "caption": "A sample of Desiderio element groups with their element counts",
     "column_items": [
         {
-            "label": "Reusable Content Blocks"
+            "label": "Element group"
         },
         {
-            "label": "Responsive QA content"
+            "label": "Elements"
         },
         {
-            "label": "Token-based chart colors"
+            "label": "Typical blocks"
         },
         {
-            "label": "Editorial workflow"
+            "label": "Good for"
         }
     ],
     "rows": [
         {
-            "col1": "Content elements",
-            "col2": "Mobile and desktop checks",
-            "col3": "Theme-aware palettes",
-            "col4": "Editor-ready publishing"
+            "col1": "Content & Editorial",
+            "col2": "25 elements",
+            "col3": "FAQ, Timeline, Code Block, Gallery",
+            "col4": "Articles, guides, and documentation that read beautifully"
         },
         {
-            "col1": "Fixture data",
-            "col2": "Balanced row lengths",
-            "col3": "Accessible contrast",
-            "col4": "Reviewable preview states"
+            "col1": "Data & Dashboards",
+            "col2": "32 elements",
+            "col3": "Charts, Data Table, Counter, Stats",
+            "col4": "Reports and KPI overviews in your brand colors — via tokens, not CSS"
         },
         {
-            "col1": "Fluid templates",
-            "col2": "Responsive table layout",
-            "col3": "Reusable CSS tokens",
-            "col4": "Clean seeded examples"
+            "col1": "Hero & Landing Intros",
+            "col2": "25 elements",
+            "col3": "Hero, Article Hero, CTA variants",
+            "col4": "Campaign starts and landing pages that convert from day one"
         }
     ]
 }

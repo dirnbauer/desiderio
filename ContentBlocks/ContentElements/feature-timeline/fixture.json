@@ -1,27 +1,27 @@
 {
     "_type": "list",
-    "header": "From sign-up to first published page",
-    "subheadline": "A guided four-step onboarding that gets new teams live in their first week.",
+    "header": "From composer require to client demo in four steps",
+    "subheadline": "One command each — or skip the whole list and let the creators install it for you (€890, done right the first time).",
     "items": [
         {
             "step": "1",
-            "title": "Connect your site",
-            "description": "Point Desiderio at your domain and import existing pages. No code changes and nothing to install on your server."
+            "title": "Install the package",
+            "description": "Run composer require webconsulting/desiderio on TYPO3 14.3+ with PHP 8.3+. GPL-2.0 — nothing to license, nothing to negotiate."
         },
         {
             "step": "2",
-            "title": "Pick a starter theme",
-            "description": "Choose a preset and adjust brand colours, fonts, and spacing once. Every block inherits the look automatically."
+            "title": "Add the site set",
+            "description": "Include the Desiderio site set and the theme settings — preset, dark mode, density, radius, fonts — appear in your site configuration."
         },
         {
             "step": "3",
-            "title": "Build with content blocks",
-            "description": "Assemble pages from ready-made sections, edit copy inline, and preview on real breakpoints before you ship."
+            "title": "Seed the styleguide",
+            "description": "desiderio:styleguide:seed creates a complete demo site with all 255 elements — idempotent and workspaces-safe, so re-running is always safe."
         },
         {
             "step": "4",
-            "title": "Publish and measure",
-            "description": "Go live in one click, then watch traffic and conversions per page so you know what to improve next."
+            "title": "Pick your look",
+            "description": "Every styleguide chapter runs a different theme preset via the per-page override — browse all 15, pick yours, and you're demo-ready."
         }
     ]
 }

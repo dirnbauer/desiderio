@@ -1,56 +1,56 @@
 {
     "_type": "grid",
-    "header": "Recognized by the industry",
+    "header": "Recognition from the TYPO3 community",
     "eyebrow": "Awards",
-    "subheadline": "Independent juries and review platforms have recognized our product and team over the past three years.",
+    "subheadline": "Demo awards from fictional juries — but every feature they cite ships today: runtime theming, audit-clean templates, WCAG 2.2-checked presets, and backend previews on all 255 elements.",
     "awards": [
         {
-            "title": "Best B2B SaaS Product",
+            "title": "Extension of the Year",
             "year": "2025",
-            "organization": "SaaS Awards",
+            "organization": "TYPO3 Times",
             "image": {
-                "file": "Resources/Public/Styleguide/Unsplash/dashboard-neil-fernandez.jpg",
-                "title": "Analytics dashboard",
-                "alternative": "A product analytics dashboard shown on a laptop screen.",
-                "description": "Photo by Neil Fernandez on Unsplash."
+                "file": "Resources/Public/Styleguide/Backend/backend-page-module-hero.png",
+                "title": "Desiderio backend previews in the page module",
+                "alternative": "TYPO3 page module rendering rich backend previews of Desiderio content elements.",
+                "description": "Screenshot of the TYPO3 backend with Desiderio installed."
             },
-            "link": "https://example.com/awards/best-b2b-saas-2025"
+            "link": "https://github.com/dirnbauer/desiderio"
         },
         {
-            "title": "Leader, Mid-Market Grid",
+            "title": "Best Developer Experience",
             "year": "2025",
-            "organization": "G2",
+            "organization": "Fluid Forge Awards",
             "image": {
-                "file": "Resources/Public/Styleguide/Unsplash/office-deliberate-directions.jpg",
-                "title": "Team workshop",
-                "alternative": "A team collaborating around a conference table during a workshop.",
-                "description": "Photo by Deliberate Directions on Unsplash."
+                "file": "Resources/Public/Styleguide/Backend/backend-content-wizard.png",
+                "title": "Desiderio new-content wizard",
+                "alternative": "TYPO3 new content element wizard listing all 10 Desiderio element groups.",
+                "description": "Screenshot of the TYPO3 backend with Desiderio installed."
             },
-            "link": "https://example.com/awards/g2-leader-mid-market"
+            "link": "https://github.com/dirnbauer/desiderio"
         },
         {
-            "title": "Editors' Choice",
+            "title": "Accessibility Excellence",
             "year": "2024",
-            "organization": "TechRadar",
+            "organization": "Open Web Collective",
             "image": {
-                "file": "Resources/Public/Styleguide/Unsplash/workspace-david-kristianto.jpg",
-                "title": "Product workspace",
-                "alternative": "A tidy product workspace with tools and notes on a desk.",
-                "description": "Photo by David Kristianto on Unsplash."
+                "file": "Resources/Public/Styleguide/Frontend/frontend-hero-lagoon.png",
+                "title": "Desiderio hero page in the Lagoon preset",
+                "alternative": "Desiderio frontend hero page in the Lagoon preset with WCAG 2.2-checked contrast.",
+                "description": "Screenshot of a Desiderio frontend page from the seeded styleguide."
             },
-            "link": "https://example.com/awards/techradar-editors-choice"
+            "link": "https://github.com/dirnbauer/desiderio"
         },
         {
-            "title": "Top 50 Workplaces",
+            "title": "Best Open Source Theme Kit",
             "year": "2024",
-            "organization": "Inc. Magazine",
+            "organization": "CMS Insights Community",
             "image": {
-                "file": "Resources/Public/Styleguide/Unsplash/planning-blue-sky.jpg",
-                "title": "Planning session",
-                "alternative": "A team discussing tasks at a whiteboard during an agile planning session.",
-                "description": "Photo by blue sky on Unsplash."
+                "file": "Resources/Public/Styleguide/Backend/backend-site-settings-theme.png",
+                "title": "Desiderio theme preset site settings",
+                "alternative": "TYPO3 site settings showing the Desiderio theme preset selector.",
+                "description": "Screenshot of the TYPO3 backend with Desiderio installed."
             },
-            "link": "https://example.com/awards/inc-top-50-workplaces"
+            "link": "https://github.com/dirnbauer/desiderio"
         }
     ]
 }

@@ -1,10 +1,10 @@
 {
     "_type": "table",
-    "header": "Compare plans side by side",
-    "description": "Every plan includes the core platform. Pick the support and scale your team needs.",
+    "header": "Free forever — or with the creators on speed dial",
+    "description": "Every tier ships the same software: all 255 elements, GPL-2.0, full source. Pro and Agency add the creators' time and guarantees. Founding customers get 20% off the first year of Pro or Agency with code DESIDERIO20.",
     "column_items": [
         {
-            "name": "Starter",
+            "name": "Community",
             "highlighted": false
         },
         {
@@ -12,57 +12,57 @@
             "highlighted": true
         },
         {
-            "name": "Enterprise",
+            "name": "Agency",
             "highlighted": false
         }
     ],
     "comparison_feature_items": [
         {
-            "name": "Team members",
+            "name": "Price per month (per project)",
             "tier_values": [
-                {"value": "Up to 5"},
-                {"value": "Up to 50"},
-                {"value": "Unlimited"}
+                {"value": "€0 — free forever"},
+                {"value": "€49"},
+                {"value": "€149"}
             ]
         },
         {
-            "name": "Monthly active users",
+            "name": "Price per year (2 months free)",
             "tier_values": [
-                {"value": "10,000"},
-                {"value": "100,000"},
-                {"value": "Custom"}
+                {"value": "€0"},
+                {"value": "€490"},
+                {"value": "€1,490"}
             ]
         },
         {
-            "name": "Analytics retention",
+            "name": "All 255 elements, 15 presets, full source (GPL-2.0)",
             "tier_values": [
-                {"value": "30 days"},
-                {"value": "1 year"},
-                {"value": "Unlimited"}
-            ]
-        },
-        {
-            "name": "SSO and SAML",
-            "tier_values": [
-                {"value": "—"},
+                {"value": "Included"},
                 {"value": "Included"},
                 {"value": "Included"}
             ]
         },
         {
-            "name": "Support",
+            "name": "Projects covered",
             "tier_values": [
-                {"value": "Email"},
-                {"value": "Priority"},
-                {"value": "Dedicated manager"}
+                {"value": "Unlimited"},
+                {"value": "1 per license"},
+                {"value": "Unlimited"}
             ]
         },
         {
-            "name": "Uptime SLA",
+            "name": "Support & response time",
+            "tier_values": [
+                {"value": "Community & GitHub issues"},
+                {"value": "Priority email, 2-day response"},
+                {"value": "4-hour priority response"}
+            ]
+        },
+        {
+            "name": "Guarantees & extras from the creators",
             "tier_values": [
                 {"value": "—"},
-                {"value": "99.9%"},
-                {"value": "99.99%"}
+                {"value": "LTS updates, early element & preset drops, upgrade assistance"},
+                {"value": "Everything in Pro + quarterly editor onboarding, custom preset review, direct line to the maintainers"}
             ]
         }
     ]

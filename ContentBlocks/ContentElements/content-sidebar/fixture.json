@@ -1,7 +1,7 @@
 {
     "_type": "section",
-    "header": "How we run accessible launches",
-    "content": "<p>Every site we ship starts from the same baseline: semantic landmarks, a strict heading order, and visible focus on every interactive element. That foundation means an audit rarely turns up surprises late in the build.</p><p>We test with a keyboard first and a screen reader second, then run automated checks in CI so regressions never reach production. The result is a site that works for everyone and passes WCAG 2.2 AA without a last-minute scramble.</p>",
-    "sidebar_content": "<p><strong>On this page</strong></p><ul><li>Baseline standards</li><li>Testing workflow</li><li>CI guardrails</li></ul><p>Questions? Email <a href=\"mailto:hello@example.com\">hello@example.com</a>.</p>",
+    "header": "Pass your accessibility review before it starts",
+    "content": "<p>Every element in the library starts from the same baseline: semantic landmarks, a strict heading order, and visible focus on every interactive control. Alt-text fields are part of each image schema, so editors are prompted for descriptions instead of retrofitting them under deadline pressure.</p><p>An 11-category template audit runs in CI with zero tolerance — no inline styles, no hardcoded colors — and the WCAG-minded markup is verified across all 255 elements on every change, with WCAG 2.2-checked contrast on all 15 presets. Your project starts from an accessible baseline instead of paying for one shortly before launch.</p>",
+    "sidebar_content": "<p><strong>On this page</strong></p><ul><li>Markup baseline</li><li>Editor prompts</li><li>Audit and CI guardrails</li></ul><p>Questions? Open an issue on <a href=\"https://github.com/dirnbauer/desiderio\">GitHub</a>.</p>",
     "sidebar_position": "right"
 }

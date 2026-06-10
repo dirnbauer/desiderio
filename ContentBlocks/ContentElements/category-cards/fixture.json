@@ -1,32 +1,32 @@
 {
     "_type": "grid",
-    "eyebrow": "Plans",
-    "header": "Pick the plan that fits your team",
-    "subheadline": "Compare what each tier includes, then upgrade when you outgrow it. Every plan ships with SSO and a 14-day trial.",
+    "eyebrow": "Everything around Desiderio",
+    "header": "Pick what you buy. The software stays free.",
+    "subheadline": "Four ways to work with the creators — from a €0 license to the team that built all 255 elements running your site for you.",
     "columns": "3",
     "items": [
         {
-            "title": "Starter",
-            "count": "$0/mo",
-            "description": "For solo builders shipping their first project. Up to 3 seats and 5 GB storage.",
+            "title": "Licenses",
+            "count": "from €0",
+            "description": "Community is free forever under GPL-2.0. Pro (€49/mo) and Agency (€149/mo) add guarantees, priority support, and early access — yearly billing saves 2 months.",
             "link": "t3://page?uid=1"
         },
         {
-            "title": "Team",
-            "count": "$29/seat",
-            "description": "For growing teams that need roles, audit logs, and priority email support.",
+            "title": "Setup & adaptation",
+            "count": "from €390",
+            "description": "Installation for €890, brand-adapted theme presets from €1,990, custom elements from €390 — set up by the people who built it. Ship in days, not weeks.",
             "link": "t3://page?uid=1"
         },
         {
-            "title": "Business",
-            "count": "$79/seat",
-            "description": "For scaling orgs needing SAML SSO, SOC 2 reports, and a 99.9% uptime SLA.",
+            "title": "Hosting",
+            "count": "from €99/mo",
+            "description": "Managed TYPO3 hosting with updates, daily backups, and monitoring in an EU datacenter. Business at €179/mo adds staging, a 99.9% SLA, and CDN.",
             "link": "t3://page?uid=1"
         },
         {
-            "title": "Enterprise",
-            "count": "Custom",
-            "description": "For regulated companies that need data residency, SCIM, and a dedicated CSM.",
+            "title": "Care retainer",
+            "count": "€490/mo",
+            "description": "Creator Care: 4 dev hours every month, priority fixes, security monitoring, and LTS upgrade planning — straight from the maintainers.",
             "link": "t3://page?uid=1"
         }
     ]

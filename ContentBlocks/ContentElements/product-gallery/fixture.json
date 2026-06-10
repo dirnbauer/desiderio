@@ -1,45 +1,45 @@
 {
     "_type": "section",
-    "header": "Aster Lounge Chair",
-    "caption": "Solid oak frame with a wool-blend seat. Shown in Fog Grey; also available in Clay and Forest.",
-    "price": "$1,290",
-    "compare_at_price": "$1,540",
+    "header": "Desiderio Agency — every project, covered",
+    "caption": "One yearly license for unlimited projects, with the creators a message away: 4-hour priority response, quarterly editor onboarding, and a custom preset review. Pay yearly and save €298 versus monthly billing.",
+    "price": "€1,490",
+    "compare_at_price": "€1,788",
     "availability": "limited",
     "highlights": [
         {
-            "text": "Free white-glove delivery within 3-5 business days"
+            "text": "Everything in Pro for unlimited projects — guaranteed updates, early access, priority answers"
         },
         {
-            "text": "10-year frame warranty, 2-year upholstery warranty"
+            "text": "Direct line to the maintainers with a 4-hour priority response"
         },
         {
-            "text": "100-night home trial with free returns"
+            "text": "Founding customers: 20% off the first year with code DESIDERIO20"
         }
     ],
-    "cta_text": "Add to cart",
+    "cta_text": "Choose Agency",
     "columns": "5",
     "images": [
         {
-            "file": "Resources/Public/Styleguide/Unsplash/laptop-mimi-thian.jpg",
-            "title": "Laptop work session",
-            "alternative": "A laptop open on a person's lap during a focused work session.",
-            "description": "Copyright/credit: Photo by Mimi Thian on Unsplash. Used as seeded demo imagery.",
-            "source": "https://unsplash.com/photos/macbook-on-womans-lap-i5cd_SlY8XY"
+            "file": "Resources/Public/Styleguide/Backend/backend-visual-editor.png",
+            "title": "Editing in the Desiderio Visual Editor",
+            "alternative": "Desiderio Visual Editor with a content element being edited inline in the live page preview.",
+            "description": "Screenshot of the Desiderio Visual Editor in TYPO3.",
+            "source": "https://github.com/dirnbauer/desiderio"
         },
         {
-            "file": "Resources/Public/Styleguide/Unsplash/laptop-mimi-thian.jpg",
-            "title": "Laptop work session",
-            "alternative": "A laptop open on a person's lap during a focused work session.",
-            "description": "Copyright/credit: Photo by Mimi Thian on Unsplash. Used as seeded demo imagery.",
-            "source": "https://unsplash.com/photos/macbook-on-womans-lap-i5cd_SlY8XY"
+            "file": "Resources/Public/Styleguide/Frontend/frontend-hero-lagoon.png",
+            "title": "Desiderio frontend, Lagoon preset",
+            "alternative": "Desiderio demo site hero page rendered with the light Lagoon theme preset.",
+            "description": "Frontend screenshot of a Desiderio demo site.",
+            "source": "https://github.com/dirnbauer/desiderio"
         },
         {
-            "file": "Resources/Public/Styleguide/Unsplash/customer-enterprise.jpg",
-            "title": "Enterprise customer workspace",
-            "alternative": "A large retail distribution facility with loading bays.",
-            "description": "Unsplash image used as demo cover photography.",
-            "source": "https://unsplash.com/"
+            "file": "Resources/Public/Styleguide/Frontend/frontend-pricing-midnight-dark.png",
+            "title": "Dark mode pricing page, Midnight preset",
+            "alternative": "Desiderio pricing page rendered in dark mode with the Midnight theme preset.",
+            "description": "Frontend screenshot of a Desiderio demo site in dark mode.",
+            "source": "https://github.com/dirnbauer/desiderio"
         }
     ],
-    "cta_link": "https://example.com/desiderio/cta_link_1"
+    "cta_link": "https://github.com/dirnbauer/desiderio"
 }

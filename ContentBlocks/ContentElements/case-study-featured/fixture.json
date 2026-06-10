@@ -1,26 +1,26 @@
 {
     "_type": "section",
     "eyebrow": "Featured case study",
-    "header": "How Apple unified global launch reporting",
-    "client_name": "Apple",
+    "header": "How Northwind Group runs five brands on one TYPO3 install",
+    "client_name": "Northwind Group",
     "client_logo": {
-        "file": "Resources/Public/Styleguide/Logos/Fortune500/apple.svg",
-        "title": "Apple logo",
-        "alternative": "Apple company logo.",
-        "description": "Fortune 500 #4 company logo for demo customer content."
+        "file": "Resources/Public/Styleguide/Logos/Brands/northwind.svg",
+        "title": "Northwind Group logo",
+        "alternative": "Northwind Group demo brand logo.",
+        "description": "Fictional demo brand from the Desiderio styleguide."
     },
-    "description": "Apple's operations teams spent two days a week reconciling launch metrics across regions. We replaced that with live dashboards wired straight to their planning systems. Within a quarter, reporting dropped from 16 hours to under 5, and every market now sees the same numbers in real time.",
+    "description": "Northwind's agency consolidated five brand sites into a single TYPO3 14 install. Each subtree carries its own Desiderio theme preset — Marine for logistics, Gold for the holding, Bloom for the careers portal — inherited down the rootline through one page property. The creators handled installation & setup (€890) and reviewed the custom presets through the Agency plan; the whole relaunch shipped in six weeks. One component library, five visual identities, zero rebuilds when a brand changes its look.",
     "image": {
-        "file": "Resources/Public/Styleguide/Unsplash/laptop-mimi-thian.jpg",
-        "title": "Product team reviewing dashboards",
-        "alternative": "A product team reviewing analytics on a laptop.",
-        "description": "Unsplash image used as demo case study cover photography."
+        "file": "Resources/Public/Styleguide/Backend/backend-page-properties-theme.png",
+        "title": "Desiderio per-page theme preset field",
+        "alternative": "TYPO3 page properties showing the Desiderio theme preset selector for a page subtree.",
+        "description": "Screenshot of the TYPO3 backend with Desiderio installed."
     },
     "metrics": [
-        { "value": "70%", "label": "faster reporting" },
-        { "value": "16h to 5h", "label": "weekly time saved" },
-        { "value": "24", "label": "regions onboarded" },
-        { "value": "99.9%", "label": "data uptime" }
+        { "value": "5", "label": "brand sites on one install" },
+        { "value": "15", "label": "theme presets to pick from" },
+        { "value": "0", "label": "rebuilds for theme changes" },
+        { "value": "255", "label": "elements shared across brands" }
     ],
-    "link": "https://www.example.com/case-studies/apple"
+    "link": "https://github.com/dirnbauer/desiderio"
 }

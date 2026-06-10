@@ -1,55 +1,55 @@
 {
-  "_type": "pricing",
-  "header": "Two Tier Pricing for confident plan comparison",
-  "eyebrow": "Modern import",
-  "subheadline": "Help buyers compare plans with crisp values and direct feature language.",
-  "plans": [
-    {
-      "title": "Two Tier Pricing for confident plan comparison",
-      "price": "$19",
-      "description": "Help buyers compare plans with crisp values and direct feature language.",
-      "features": [
+    "_type": "pricing",
+    "header": "Pro for your project. Agency for all of them.",
+    "eyebrow": "Pro vs Agency",
+    "subheadline": "Both tiers run the same free, GPL-2.0 core with all 255 elements. The question is how much of the creators' time you want on your side — and on how many projects.",
+    "plans": [
         {
-          "text": "Accessible keyboard focus patterns"
+            "title": "Pro",
+            "price": "€49/month · €490/year",
+            "description": "Per project. Priority answers, guaranteed updates, early access — the recommended tier.",
+            "features": [
+                {
+                    "text": "Priority email support, 2-day response"
+                },
+                {
+                    "text": "Guaranteed LTS compatibility updates"
+                },
+                {
+                    "text": "Early access to element drops and preset packs"
+                },
+                {
+                    "text": "Minor-version upgrade assistance"
+                }
+            ],
+            "button_text": "Go Pro",
+            "button_link": "https://github.com/dirnbauer/desiderio",
+            "featured": true
         },
         {
-          "text": "Responsive cards tuned for concise content"
-        },
-        {
-          "text": "Editor-friendly TYPO3 Content Blocks"
-        },
-        {
-          "text": "Modern Unsplash imagery in the import seed"
+            "title": "Agency",
+            "price": "€149/month · €1,490/year",
+            "description": "Everything in Pro for unlimited projects, plus the fastest line to the maintainers.",
+            "features": [
+                {
+                    "text": "Everything in Pro, unlimited projects"
+                },
+                {
+                    "text": "4-hour priority response"
+                },
+                {
+                    "text": "Quarterly editor onboarding session"
+                },
+                {
+                    "text": "Custom preset review by the creators"
+                },
+                {
+                    "text": "Direct line to the maintainers"
+                }
+            ],
+            "button_text": "Choose Agency",
+            "button_link": "https://github.com/dirnbauer/desiderio",
+            "featured": false
         }
-      ],
-      "button_text": "Compare states",
-      "button_link": "https://ui.shadcn.com/docs/two-tier-pricing",
-      "featured": false
-    },
-    {
-      "title": "Two Tier Pricing for confident plan comparison",
-      "price": "$49",
-      "description": "Show pricing states with practical labels and scannable benefits.",
-      "features": [
-        {
-          "text": "Accessible keyboard focus patterns"
-        },
-        {
-          "text": "Responsive cards tuned for concise content"
-        },
-        {
-          "text": "Editor-friendly TYPO3 Content Blocks"
-        },
-        {
-          "text": "Modern Unsplash imagery in the import seed"
-        },
-        {
-          "text": "Compact shadcn spacing and borders"
-        }
-      ],
-      "button_text": "Get the checklist",
-      "button_link": "https://ui.shadcn.com/docs/two-tier-pricing",
-      "featured": true
-    }
-  ]
+    ]
 }

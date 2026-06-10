@@ -1,15 +1,15 @@
 {
     "_type": "team",
     "eyebrow": "Our team",
-    "header": "The people behind every release",
-    "subheadline": "A small, senior team across design, engineering, and support \u2014 most of us have shipped accessible products for a decade or more.",
+    "header": "The people behind every Desiderio release",
+    "subheadline": "A small, senior team at webconsulting studio — design, engineering, and accessibility under one roof. The same people answer your Pro support tickets and run the managed hosting.",
     "variant": "grid",
     "columns": "3",
     "members": [
         {
             "name": "Lea Fischer",
-            "role": "Head of Product Design",
-            "bio": "Leads design systems and accessibility. Previously shaped the GOV.UK component library.",
+            "role": "Design System Lead",
+            "bio": "Owns the 49-component library and the token scale that keeps all 15 presets consistent — including the custom presets we design for client brands.",
             "image": {
                 "file": "Resources/Public/Styleguide/Unsplash/team-lea-fischer.jpg",
                 "title": "Lea Fischer",
@@ -20,8 +20,8 @@
         },
         {
             "name": "Mara Weiss",
-            "role": "Lead Frontend Engineer",
-            "bio": "Owns our component architecture and ships the design system to production weekly.",
+            "role": "Fluid Components Engineer",
+            "bio": "Built the atoms and molecules behind all 255 content elements, and runs the LTS upgrades for managed-hosting customers.",
             "image": {
                 "file": "Resources/Public/Styleguide/Unsplash/team-mara-weiss.jpg",
                 "title": "Mara Weiss",
@@ -32,8 +32,8 @@
         },
         {
             "name": "Noah Ritter",
-            "role": "Accessibility Lead",
-            "bio": "Audits every release against WCAG 2.2 AA and runs our screen-reader testing.",
+            "role": "Accessibility Engineer",
+            "bio": "Reviews every element for WCAG-minded markup — the contrast checks behind all 15 presets are his, and they survive every theme switch.",
             "image": {
                 "file": "Resources/Public/Styleguide/Unsplash/team-noah-ritter.jpg",
                 "title": "Noah Ritter",

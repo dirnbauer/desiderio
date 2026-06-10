@@ -1,27 +1,27 @@
 {
     "_type": "list",
-    "header": "Milestones that shaped us",
-    "subheadline": "A few moments from idea to a platform trusted by teams in 40 countries.",
+    "header": "Milestones that shaped Desiderio",
+    "subheadline": "A few moments from the first prototype to a 255-element kit for TYPO3 14.",
     "milestones": [
         {
-            "year": "2017",
-            "title": "Idea on a whiteboard",
-            "description": "Two founders quit their jobs and shipped the first working build in eight weeks."
-        },
-        {
-            "year": "2019",
-            "title": "First 1,000 customers",
-            "description": "Hit profitability without outside funding and grew the team to twelve people."
-        },
-        {
-            "year": "2021",
-            "title": "Series A, $12M",
-            "description": "Raised our first round to open European data centers and double engineering."
-        },
-        {
             "year": "2024",
-            "title": "Teams in 40 countries",
-            "description": "Crossed eight figures in recurring revenue and passed SOC 2 Type II."
+            "title": "Ten content element groups",
+            "description": "Hero, Features, Pricing and seven more groups gave editors a complete page-building vocabulary."
+        },
+        {
+            "year": "2025",
+            "title": "Zero-tolerance template audit",
+            "description": "An 11-category audit went into CI: no inline styles, no hardcoded colors, no exceptions."
+        },
+        {
+            "year": "2025",
+            "title": "Five icon libraries",
+            "description": "Lucide, Tabler, HugeIcons, Phosphor, and Remix Icon became switchable behind stable semantic icon keys."
+        },
+        {
+            "year": "2026",
+            "title": "255 elements, one command",
+            "description": "The seeder now builds the whole styleguide with desiderio:styleguide:seed — workspaces-safe and idempotent."
         }
     ]
 }

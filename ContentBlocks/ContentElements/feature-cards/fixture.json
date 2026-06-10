@@ -1,32 +1,32 @@
 {
     "_type": "grid",
-    "eyebrow": "Why teams switch",
-    "header": "Everything you need to act on your data",
-    "subheadline": "Powerful where it counts, simple everywhere else. Set up in an afternoon, not a quarter.",
+    "eyebrow": "Under the hood",
+    "header": "The engineering your code review will approve of",
+    "subheadline": "Opinionated where it pays off, standard TYPO3 everywhere else — Desiderio is the rare kit that impresses developers and editors alike.",
     "items": [
         {
-            "title": "Live dashboards",
-            "description": "Watch metrics update in real time and drill into any number with a single click."
+            "title": "Content Blocks 2.2",
+            "description": "Every element is a declarative content block — fields, template, and backend preview in one tidy folder."
         },
         {
-            "title": "Smart alerts",
-            "description": "Get pinged in Slack the moment revenue dips or sign-ups spike past your threshold."
+            "title": "OKLCH design tokens",
+            "description": "Tailwind v4 semantic tokens drive every color, so theme presets repaint the site consistently — nothing ever drifts off palette."
         },
         {
-            "title": "Self-serve reports",
-            "description": "Let every team answer their own questions without filing a ticket to data."
+            "title": "Container queries",
+            "description": "Elements adapt to the column they sit in, not just the viewport — drop them into any layout and they behave."
         },
         {
-            "title": "Granular permissions",
-            "description": "Share the right numbers with the right people and keep sensitive data locked down."
+            "title": "BEM component CSS",
+            "description": "Predictable class names per element, with zero inline styles enforced by the template audit. Overrides stay surgical."
         },
         {
-            "title": "150+ integrations",
-            "description": "Connect your warehouse, CRM, and ad accounts in minutes with prebuilt connectors."
+            "title": "Fluid 5 components",
+            "description": "49 typed components — atoms, molecules, layouts — keep your custom templates as terse as the bundled ones."
         },
         {
-            "title": "Version history",
-            "description": "Roll back any dashboard or metric change and see exactly who edited what, when."
+            "title": "Workspaces-safe seeding",
+            "description": "Demo commands are idempotent and respect workspaces — re-run them anytime, duplicate nothing."
         }
     ]
 }

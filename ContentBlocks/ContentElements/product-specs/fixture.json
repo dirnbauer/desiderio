@@ -1,47 +1,47 @@
 {
     "_type": "table",
     "eyebrow": "Tech specs",
-    "header": "Aria 3 at a glance",
-    "description": "Everything that ships in the box, measured and verified.",
+    "header": "Desiderio at a glance",
+    "description": "The hard numbers behind the package — and what each tier costs. Everything below ships in the free Community core; Pro and Agency add the creators' guarantees on top.",
     "specs": [
         {
-            "label": "Driver",
-            "value": "40 mm dynamic, titanium-coated"
+            "label": "Platform",
+            "value": "TYPO3 14.3+, PHP 8.3+"
         },
         {
-            "label": "Battery life",
-            "value": "40 hours (ANC on), 60 hours (ANC off)"
+            "label": "Content elements",
+            "value": "255 in 10 groups, backend previews for all"
         },
         {
-            "label": "Quick charge",
-            "value": "5 min = 4 hours playback"
+            "label": "Components",
+            "value": "49 Fluid 5: 17 atoms, 28 molecules, 4 layout primitives"
         },
         {
-            "label": "Bluetooth",
-            "value": "5.4, multipoint to 2 devices"
+            "label": "Theme presets",
+            "value": "15 shadcn presets + custom, switchable at runtime, per-page themes"
         },
         {
-            "label": "Noise cancelling",
-            "value": "Adaptive hybrid, up to 30 dB"
+            "label": "Icon libraries",
+            "value": "5 (Lucide, Tabler, HugeIcons, Phosphor, Remix Icon)"
         },
         {
-            "label": "Weight",
-            "value": "248 g"
+            "label": "Styling",
+            "value": "Tailwind v4, OKLCH tokens, dark mode, WCAG 2.2-checked contrast"
         },
         {
-            "label": "Connectivity",
-            "value": "USB-C, 3.5 mm, LDAC / aptX"
+            "label": "Foundation",
+            "value": "TYPO3 Content Blocks 2.2"
         },
         {
-            "label": "Warranty",
-            "value": "2 years, parts and labour"
+            "label": "Tiers",
+            "value": "Community €0 forever (GPL-2.0) · Pro €49/mo or €490/yr · Agency €149/mo or €1,490/yr"
         }
     ],
     "image": {
-        "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-14.jpg",
-        "title": "Team Member portrait",
-        "alternative": "Portrait photo of Team Member.",
-        "description": "Portrait-style photo from Unsplash collection #25880.",
-        "source": "https://unsplash.com/collections/25880"
+        "file": "Resources/Public/Styleguide/Backend/backend-site-settings-theme.png",
+        "title": "Desiderio theme site settings",
+        "alternative": "TYPO3 site settings panel with the Desiderio theme preset category open.",
+        "description": "Screenshot of the TYPO3 backend with Desiderio installed.",
+        "source": "https://github.com/dirnbauer/desiderio"
     }
 }

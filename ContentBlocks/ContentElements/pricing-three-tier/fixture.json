@@ -1,83 +1,83 @@
 {
-  "_type": "pricing",
-  "header": "Three Tier Pricing for confident plan comparison",
-  "eyebrow": "Modern import",
-  "subheadline": "Help buyers compare plans with crisp values and direct feature language.",
-  "plans": [
-    {
-      "name": "Lea Fischer",
-      "price": "$19",
-      "billing_period": "/month",
-      "description": "Show pricing states with practical labels and scannable benefits.",
-      "features": [
+    "_type": "pricing",
+    "header": "One free core. Three speeds to ship at.",
+    "eyebrow": "Pricing",
+    "subheadline": "The software is identical in every tier — GPL-2.0, all 255 elements. Pro and Agency buy you the creators' guarantees. Yearly billing means 2 months free.",
+    "plans": [
         {
-          "text": "Production-ready empty and loaded states"
+            "name": "Community",
+            "price": "€0",
+            "billing_period": "/forever",
+            "description": "Self-serve the complete open source kit. No license keys, no feature gates.",
+            "features": [
+                {
+                    "text": "255 elements with backend previews"
+                },
+                {
+                    "text": "15 theme presets, runtime switching"
+                },
+                {
+                    "text": "One-command styleguide seeding"
+                },
+                {
+                    "text": "Community support on GitHub"
+                }
+            ],
+            "button_text": "Install for free",
+            "button_link": "https://github.com/dirnbauer/desiderio",
+            "is_recommended": false
         },
         {
-          "text": "Token-aware light and dark states"
+            "name": "Pro",
+            "price": "€49",
+            "billing_period": "/month · €490/year",
+            "description": "Priority answers and guaranteed updates from the creators — the tier most teams pick.",
+            "features": [
+                {
+                    "text": "Everything in Community"
+                },
+                {
+                    "text": "Priority email support, 2-day response"
+                },
+                {
+                    "text": "Guaranteed LTS compatibility updates"
+                },
+                {
+                    "text": "Early access to element drops and preset packs"
+                },
+                {
+                    "text": "Minor-version upgrade assistance"
+                }
+            ],
+            "button_text": "Go Pro",
+            "button_link": "https://github.com/dirnbauer/desiderio",
+            "is_recommended": true
         },
         {
-          "text": "Accessible keyboard focus patterns"
-        },
-        {
-          "text": "Responsive cards tuned for concise content"
+            "name": "Agency",
+            "price": "€149",
+            "billing_period": "/month · €1,490/year",
+            "description": "Pro for unlimited projects — with the fastest line to the maintainers.",
+            "features": [
+                {
+                    "text": "Everything in Pro, unlimited projects"
+                },
+                {
+                    "text": "4-hour priority response"
+                },
+                {
+                    "text": "Quarterly editor onboarding session"
+                },
+                {
+                    "text": "Custom preset review by the creators"
+                },
+                {
+                    "text": "Direct line to the maintainers"
+                }
+            ],
+            "button_text": "Choose Agency",
+            "button_link": "https://github.com/dirnbauer/desiderio",
+            "is_recommended": false
         }
-      ],
-      "button_text": "Get the checklist",
-      "button_link": "https://ui.shadcn.com/docs/three-tier-pricing",
-      "is_recommended": false
-    },
-    {
-      "name": "Mara Weiss",
-      "price": "$49",
-      "billing_period": "/month",
-      "description": "Keep plan comparison compact across desktop tables and mobile cards.",
-      "features": [
-        {
-          "text": "Production-ready empty and loaded states"
-        },
-        {
-          "text": "Token-aware light and dark states"
-        },
-        {
-          "text": "Accessible keyboard focus patterns"
-        },
-        {
-          "text": "Responsive cards tuned for concise content"
-        },
-        {
-          "text": "Editor-friendly TYPO3 Content Blocks"
-        }
-      ],
-      "button_text": "Start review",
-      "button_link": "https://ui.shadcn.com/docs/three-tier-pricing",
-      "is_recommended": true
-    },
-    {
-      "name": "Jonas Klein",
-      "price": "$99",
-      "billing_period": "/month",
-      "description": "Help buyers compare plans with crisp values and direct feature language.",
-      "features": [
-        {
-          "text": "Production-ready empty and loaded states"
-        },
-        {
-          "text": "Token-aware light and dark states"
-        },
-        {
-          "text": "Accessible keyboard focus patterns"
-        },
-        {
-          "text": "Responsive cards tuned for concise content"
-        },
-        {
-          "text": "Editor-friendly TYPO3 Content Blocks"
-        }
-      ],
-      "button_text": "Explore flow",
-      "button_link": "https://ui.shadcn.com/docs/three-tier-pricing",
-      "is_recommended": false
-    }
-  ]
+    ]
 }

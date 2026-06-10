@@ -1,41 +1,41 @@
 {
     "_type": "pricing",
-    "header": "Enterprise plans built for scale and security",
-    "eyebrow": "Enterprise",
-    "description": "Custom pricing for teams over 500 seats. Get dedicated support, advanced security controls, and a migration plan tailored to your stack.",
+    "header": "Agency tier, plus everything tailored",
+    "eyebrow": "For large rollouts",
+    "description": "Run Desiderio across every brand and market you own. The Agency tier — €149/month or €1,490/year — covers unlimited projects with a 4-hour priority response and a direct line to the maintainers. On top, the creators deliver tailored services: installation, brand-adapted theme presets, custom elements, LTS upgrades, and managed hosting. Tell us where you want to be — we set it up for you.",
     "features": [
         {
-            "text": "SSO and SCIM user provisioning"
+            "text": "Agency license for unlimited projects"
         },
         {
-            "text": "99.99% uptime SLA, signed"
+            "text": "4-hour priority response, direct maintainer line"
         },
         {
-            "text": "Dedicated customer success manager"
+            "text": "Quarterly editor onboarding sessions"
         },
         {
-            "text": "SOC 2 Type II and HIPAA compliance"
+            "text": "Installation & setup by the creators — €890"
         },
         {
-            "text": "Unlimited seats and workspaces"
+            "text": "Brand adaptation / custom preset — from €1,990"
         },
         {
-            "text": "Audit logs and data residency controls"
+            "text": "Custom content elements — from €390 each"
         },
         {
-            "text": "Priority support with 1-hour response"
+            "text": "TYPO3 LTS upgrades — from €2,400"
         },
         {
-            "text": "Custom onboarding and migration"
+            "text": "Managed hosting from €99/month, EU datacenter"
         }
     ],
-    "contact_text": "Talk to sales",
-    "contact_link": "https://ui.shadcn.com/docs/enterprise-pricing",
+    "contact_text": "Talk to the team",
+    "contact_link": "https://github.com/dirnbauer/desiderio",
     "image": {
-        "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-14.jpg",
-        "title": "Team Member portrait",
-        "alternative": "Portrait photo of Team Member.",
-        "description": "Portrait-style photo from Unsplash collection #25880.",
-        "source": "https://unsplash.com/collections/25880"
+        "file": "Resources/Public/Styleguide/Unsplash/workspace-marvin-meyer.jpg",
+        "title": "Rollout planning session",
+        "alternative": "Team collaborating around laptops while planning a multi-site rollout.",
+        "description": "Copyright/credit: Photo by Marvin Meyer on Unsplash. Used as seeded demo imagery.",
+        "source": "https://unsplash.com/photos/people-sitting-down-near-table-with-assorted-laptop-computers-SYTO3xs06fU"
     }
 }

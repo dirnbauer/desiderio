@@ -1,25 +1,25 @@
 {
     "_type": "stats",
-    "header": "Trusted by teams that ship fast",
+    "header": "The numbers behind never starting from scratch",
     "columns": "3",
     "items": [
         {
-            "target_value": 12000,
-            "suffix": "+",
-            "label": "Sites in production",
+            "target_value": 255,
+            "suffix": "",
+            "label": "Ready-made content elements, free under GPL-2.0",
             "prefix": ""
         },
         {
-            "target_value": 99.9,
+            "target_value": 100,
             "suffix": "%",
-            "label": "Uptime, last 12 months",
+            "label": "Backend preview coverage — every element, no exceptions",
             "prefix": ""
         },
         {
-            "target_value": 40,
-            "prefix": "\u2212",
-            "suffix": "h",
-            "label": "Build time per page"
+            "target_value": 15,
+            "prefix": "",
+            "suffix": "+",
+            "label": "Theme presets bundled — plus your own custom brand"
         }
     ]
 }

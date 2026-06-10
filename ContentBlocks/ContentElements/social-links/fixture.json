@@ -1,12 +1,32 @@
 {
     "_type": "conversion",
-    "header": "Follow along",
-    "description_text": "Product updates, behind-the-scenes notes, and the occasional hot take — pick your channel.",
+    "header": "Follow Desiderio",
+    "description_text": "Preset drops, release announcements, and backend screenshots straight from the Vienna studio — pick your channel and never miss an element drop.",
     "link_items": [
-        { "icon": "brand-linkedin", "platform": "LinkedIn", "url": "https://www.linkedin.com/company/example" },
-        { "icon": "brand-github", "platform": "GitHub", "url": "https://github.com/example" },
-        { "icon": "brand-youtube", "platform": "YouTube", "url": "https://www.youtube.com/@example" },
-        { "icon": "brand-x", "platform": "X", "url": "https://x.com/example" },
-        { "icon": "brand-instagram", "platform": "Instagram", "url": "https://www.instagram.com/example" }
+        {
+            "icon": "brand-linkedin",
+            "platform": "LinkedIn",
+            "url": "https://www.linkedin.com/company/example"
+        },
+        {
+            "icon": "brand-github",
+            "platform": "GitHub",
+            "url": "https://github.com/dirnbauer/desiderio"
+        },
+        {
+            "icon": "brand-youtube",
+            "platform": "YouTube",
+            "url": "https://www.youtube.com/@example"
+        },
+        {
+            "icon": "brand-x",
+            "platform": "X",
+            "url": "https://x.com/example"
+        },
+        {
+            "icon": "brand-instagram",
+            "platform": "Instagram",
+            "url": "https://www.instagram.com/example"
+        }
     ]
 }

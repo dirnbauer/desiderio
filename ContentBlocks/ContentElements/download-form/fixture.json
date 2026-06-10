@@ -1,16 +1,16 @@
 {
     "_type": "form",
-    "header": "Ship accessible content blocks faster",
-    "description": "A practical checklist for content editors: heading order, focus states, alt text, and the copy lengths that keep a page scannable. Built from the WCAG and NN/g guidance behind this library.",
-    "resource_title": "The 24-point content block QA checklist (PDF)",
-    "button_text": "Email me the checklist",
+    "header": "Get the pricing & services one-pager (PDF)",
+    "description": "Every number on one page: Community free forever, Pro €49/month, Agency €149/month, plus the creators' services — installation €890, brand adaptation from €1,990, managed hosting from €99/month. Made for forwarding to whoever signs the budget.",
+    "resource_title": "Desiderio pricing & services one-pager (PDF)",
+    "button_text": "Email me the PDF",
     "reassurance": "Free PDF. One email, unsubscribe anytime.",
     "form_action": "https://example.com/desiderio/form_action_1",
     "image": {
-        "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-14.jpg",
-        "title": "Team Member portrait",
-        "alternative": "Portrait photo of Team Member.",
-        "description": "Portrait-style photo from Unsplash collection #25880.",
-        "source": "https://unsplash.com/collections/25880"
+        "file": "Resources/Public/Styleguide/Frontend/frontend-pricing-midnight-dark.png",
+        "title": "Desiderio pricing page in the Midnight preset",
+        "alternative": "Desiderio pricing page rendered in the dark Midnight theme preset.",
+        "description": "Screenshot of a Desiderio frontend page from the seeded styleguide.",
+        "source": "https://github.com/dirnbauer/desiderio"
     }
 }

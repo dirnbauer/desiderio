@@ -1,9 +1,9 @@
 {
-    "header": "Recurring revenue by plan, last four quarters",
-    "description": "Quarterly recurring revenue split across the Starter, Team, and Enterprise tiers. Each bar shows the total for the quarter and how it breaks down by plan.",
-    "series_labels": "Starter, Team, Enterprise",
-    "chart_data": "Q1 2025 | 42 | 68 | 55\nQ2 2025 | 48 | 74 | 71\nQ3 2025 | 51 | 83 | 94\nQ4 2025 | 58 | 91 | 118",
-    "unit": "k EUR",
+    "header": "Every release ships more than the last one promised",
+    "description": "New elements, improvements, and fixes per Desiderio release. Notice the fixes column shrinking while everything else grows — that's what a maturing codebase looks like.",
+    "series_labels": "New elements, Improvements, Fixes",
+    "chart_data": "v2.3 | 12 | 18 | 9\nv2.4 | 16 | 22 | 7\nv2.5 | 9 | 27 | 5\nv2.6 | 14 | 31 | 3",
+    "unit": "changes",
     "palette": "brand",
     "show_legend": 1
 }

@@ -1,30 +1,30 @@
 {
     "_type": "list",
-    "header": "Everything your team needs, one click away",
-    "subheadline": "Expand any capability to see how it fits your workflow. No demo call required.",
+    "header": "Open the box. It's all in there.",
+    "subheadline": "Expand any capability to see what it does for your team. Everything below ships in the package — even in the free Community tier.",
     "items": [
         {
-            "title": "Real-time dashboards",
-            "content": "Live metrics update the moment data lands. Build a board in minutes with drag-and-drop tiles, then share a link your whole team can read without a login."
+            "title": "Backend previews for all 255 elements",
+            "content": "Every content element renders a real preview in the TYPO3 page module. Editors recognize a hero, a pricing table, or a logo wall at a glance — no more guessing from gray record titles, no more publish-and-pray."
         },
         {
-            "title": "Automated reports",
-            "content": "Schedule branded PDF or Slack summaries daily, weekly, or monthly. Stakeholders get the numbers on time, so you stop rebuilding the same recap every Monday."
+            "title": "15 runtime-switchable theme presets",
+            "content": "Five presets from ui.shadcn.com/create plus ten house presets, from Aurora to Midnight. Pick one in site settings and the whole site repaints instantly — a redesign that costs a dropdown click, not a developer sprint."
         },
         {
-            "title": "Role-based access",
-            "content": "Invite teammates with viewer, editor, or admin roles. Sensitive revenue data stays visible only to the people who need it, audited on every change."
+            "title": "Five switchable icon libraries",
+            "content": "Lucide, Tabler, HugeIcons, Phosphor, and Remix Icon behind stable semantic keys. Change the entire site's icon style with one setting — every element keeps its icons, no content edits required."
         },
         {
-            "title": "150+ native integrations",
-            "content": "Connect HubSpot, Stripe, Google Analytics, and Postgres in a few clicks. No CSV exports, no engineering tickets, no glue code to maintain."
+            "title": "Optional integrations",
+            "content": "Ready-made styling for News, Powermail, Apache Solr, and the TYPO3 blog, plus 8 Form Framework forms with a Friendly Captcha fallback and a Brevo double-opt-in newsletter finisher. Your whole stack, one design language."
         }
     ],
     "image": {
-        "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-14.jpg",
-        "title": "Team Member portrait",
-        "alternative": "Portrait photo of Team Member.",
-        "description": "Portrait-style photo from Unsplash collection #25880.",
-        "source": "https://unsplash.com/collections/25880"
+        "file": "Resources/Public/Styleguide/Backend/backend-content-wizard.png",
+        "title": "Desiderio content wizard",
+        "alternative": "TYPO3 new-content wizard listing all ten Desiderio element groups.",
+        "description": "Screenshot of the TYPO3 backend with Desiderio installed.",
+        "source": "https://github.com/dirnbauer/desiderio"
     }
 }

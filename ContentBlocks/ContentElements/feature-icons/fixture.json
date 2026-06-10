@@ -1,27 +1,27 @@
 {
     "_type": "grid",
-    "header": "Why teams choose us",
+    "header": "Four reasons developers say yes",
     "columns": "4",
     "items": [
         {
             "icon": "rocket",
-            "title": "Live in minutes",
-            "description_text": "Import your data and launch the same day."
+            "title": "Demo site in minutes",
+            "description_text": "composer require, seed, done — show the client today."
         },
         {
             "icon": "lock",
-            "title": "Private by default",
-            "description_text": "Your data is encrypted and never sold."
+            "title": "GPL-2.0, free forever",
+            "description_text": "No license fees, no lock-in — full source on GitHub."
         },
         {
             "icon": "users",
-            "title": "Built for teams",
-            "description_text": "Shared workspaces with roles and permissions."
+            "title": "Editors stop filing tickets",
+            "description_text": "Previews and guided fields on all 255 elements."
         },
         {
             "icon": "heart",
-            "title": "Support you'll love",
-            "description_text": "Real people answer in minutes, not days."
+            "title": "Seriously maintained",
+            "description_text": "PHPStan max, 400 tests, CI on PHP 8.3 and 8.4."
         }
     ]
 }

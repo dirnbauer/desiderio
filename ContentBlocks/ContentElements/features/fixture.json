@@ -1,45 +1,45 @@
 {
     "_type": "grid",
-    "header": "Everything you need to ship pages faster",
-    "subheadline": "A complete content toolkit for product and marketing teams, built on accessible, on-brand components.",
+    "header": "The design system TYPO3 has been waiting for",
+    "subheadline": "255 content elements, 49 Fluid components, and a full theme layer — accessible, token-driven, and beautiful by default. Built once, so you never have to.",
     "columns": "3",
     "variant": "card",
     "feature_items": [
         {
             "icon_name": "book-open",
-            "title": "Reusable content blocks",
-            "description": "Assemble pages from pre-approved sections so every layout stays consistent and on-brand.",
-            "link": "https://example.com/features/content-blocks"
+            "title": "255 ready-made elements",
+            "description": "Assemble pages from ten curated groups — every layout consistent, no custom templates, no design drift.",
+            "link": "https://github.com/dirnbauer/desiderio"
         },
         {
             "icon_name": "settings",
-            "title": "Brand tokens built in",
-            "description": "Set colours, fonts, and spacing once. Every block updates automatically across the whole site.",
-            "link": "https://example.com/desiderio/link_2"
+            "title": "Theming editors control",
+            "description": "Preset, dark mode, density, radius, and fonts live in site settings — a restyle is a dropdown, not a deployment.",
+            "link": "https://github.com/dirnbauer/desiderio"
         },
         {
             "icon_name": "zap",
-            "title": "Fast by default",
-            "description": "Optimised markup and lazy-loaded media keep Core Web Vitals green without manual tuning.",
-            "link": "https://example.com/desiderio/link_3"
+            "title": "Tailwind v4 pipeline",
+            "description": "OKLCH tokens and container queries compile to lean static CSS — no runtime framework to ship or upgrade.",
+            "link": "https://github.com/dirnbauer/desiderio"
         },
         {
             "icon_name": "shield-check",
             "title": "Accessible out of the box",
-            "description": "Semantic landmarks, keyboard support, and visible focus ship with every component you place.",
-            "link": "https://example.com/desiderio/link_4"
+            "description": "Semantic landmarks, keyboard support, and WCAG 2.2-checked contrast ship with every component you place.",
+            "link": "https://github.com/dirnbauer/desiderio"
         },
         {
             "icon_name": "users",
-            "title": "Built for teams",
-            "description": "Draft, review, and publish with roles and permissions that keep edits safe and traceable.",
-            "link": "https://example.com/desiderio/link_5"
+            "title": "Editors who love their CMS",
+            "description": "Backend previews, guided forms, and Visual Editor inline editing keep every edit safe, visible, and on-brand.",
+            "link": "https://github.com/dirnbauer/desiderio"
         },
         {
             "icon_name": "chart-no-axes-combined",
-            "title": "Insight on every page",
-            "description": "See traffic and conversions per section so you can double down on what actually performs.",
-            "link": "https://example.com/desiderio/link_6"
+            "title": "Quality you can verify",
+            "description": "PHPStan level max, a 400-test CI, and an 11-category template audit guard every one of the 255 elements.",
+            "link": "https://github.com/dirnbauer/desiderio"
         }
     ]
 }

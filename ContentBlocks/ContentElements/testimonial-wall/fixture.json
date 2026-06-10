@@ -1,78 +1,78 @@
 {
     "_type": "grid",
-    "eyebrow": "Loved by teams",
-    "header": "What 2,000+ teams say after switching",
-    "subheadline": "Real results from operations, support, and product leads who run their week on the platform.",
+    "eyebrow": "Community voices",
+    "header": "What TYPO3 teams say after switching to Desiderio",
+    "subheadline": "Developers, integrators, and editors on what they bought — free Community installs, Pro and Agency plans, workshops, and Creator Care — and what it paid back.",
     "testimonials": [
         {
-            "quote": "We replaced three tools and a weekly status meeting. Our launch reviews now take 20 minutes instead of two hours.",
+            "quote": "We started on the free Community tier — all 255 elements, no license keys — and switched the client's site from Forest to Midnight during the review call. The 'can we see it in blue?' deploy loop is gone for good.",
             "author_name": "Mara Lindqvist",
-            "author_title": "VP Operations, Halcyon Studios",
+            "author_title": "TYPO3 Lead Developer, Halcyon Studios",
             "author_image": {
-                "file": "Resources/Public/Styleguide/Unsplash/workspace-marvin-meyer.jpg",
-                "title": "Collaborative workspace",
-                "alternative": "People working together around laptops in a collaborative workspace.",
-                "description": "Copyright/credit: Photo by Marvin Meyer on Unsplash. Used as seeded demo imagery.",
-                "source": "https://unsplash.com/photos/people-sitting-down-near-table-with-assorted-laptop-computers-SYTO3xs06fU"
-            }
-        },
-        {
-            "quote": "Support ticket backlog dropped 64% in the first quarter. The shared inbox and automations did most of the work for us, and onboarding a new agent now takes a single afternoon.",
-            "author_name": "Daniel Okoro",
-            "author_title": "Head of Customer Success, Brightwell",
-            "author_image": {
-                "file": "Resources/Public/Styleguide/Unsplash/workspace-marvin-meyer.jpg",
-                "title": "Collaborative workspace",
-                "alternative": "People working together around laptops in a collaborative workspace.",
-                "description": "Copyright/credit: Photo by Marvin Meyer on Unsplash. Used as seeded demo imagery.",
-                "source": "https://unsplash.com/photos/people-sitting-down-near-table-with-assorted-laptop-computers-SYTO3xs06fU"
-            }
-        },
-        {
-            "quote": "Setup took an afternoon, not the two-week migration we budgeted for.",
-            "author_name": "Yuki Tanaka",
-            "author_title": "Operations Lead, Meridian Labs",
-            "author_image": {
-                "file": "Resources/Public/Styleguide/Unsplash/workspace-marvin-meyer.jpg",
-                "title": "Collaborative workspace",
-                "alternative": "People working together around laptops in a collaborative workspace.",
-                "description": "Copyright/credit: Photo by Marvin Meyer on Unsplash. Used as seeded demo imagery.",
-                "source": "https://unsplash.com/photos/people-sitting-down-near-table-with-assorted-laptop-computers-SYTO3xs06fU"
-            }
-        },
-        {
-            "quote": "Our managers finally trust the numbers. Live dashboards killed the Friday spreadsheet ritual, and forecasting is now a five-minute conversation instead of a half-day export.",
-            "author_name": "Priya Raman",
-            "author_title": "Director of Analytics, Northpeak",
-            "author_image": {
-                "file": "Resources/Public/Styleguide/Unsplash/office-turquo-cabbit.jpg",
-                "title": "Modern office atrium",
-                "alternative": "A modern multi-level office atrium with glass railings and warm light.",
-                "description": "Copyright/credit: Photo by Turquo Cabbit on Unsplash. Used as seeded demo imagery.",
-                "source": "https://unsplash.com/photos/modern-office-building-interior-with-multiple-floors-QkGDA4Q4Vdk"
-            }
-        },
-        {
-            "quote": "Adoption hit 90% in two weeks with zero formal training. The interface just makes sense.",
-            "author_name": "Tom Berger",
-            "author_title": "Engineering Manager, Cobalt",
-            "author_image": {
-                "file": "Resources/Public/Styleguide/Unsplash/customer-enterprise.jpg",
-                "title": "Enterprise customer workspace",
-                "alternative": "A large retail distribution facility with loading bays.",
-                "description": "Unsplash image used as demo cover photography.",
+                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-01.jpg",
+                "title": "Portrait of Mara Lindqvist",
+                "alternative": "Portrait of Mara Lindqvist.",
+                "description": "Unsplash portrait used as demo customer imagery.",
                 "source": "https://unsplash.com/"
             }
         },
         {
-            "quote": "We onboarded 40 new clients last month without adding headcount. The templates and permission controls let us scale the same playbook to every account without anything slipping.",
-            "author_name": "Sofia Marchetti",
-            "author_title": "Partner, Vantage Consulting",
+            "quote": "One Agency plan at €149/month covers all eleven of our client installs. Per-page presets carried the multi-brand relaunch — we retired a whole second codebase — and the 4-hour priority line means I stopped padding every estimate with risk buffer.",
+            "author_name": "Daniel Okoro",
+            "author_title": "Head of Web, Brightwell Agency",
             "author_image": {
-                "file": "Resources/Public/Styleguide/Unsplash/customer-enterprise.jpg",
-                "title": "Enterprise customer workspace",
-                "alternative": "A large retail distribution facility with loading bays.",
-                "description": "Unsplash image used as demo cover photography.",
+                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-02.jpg",
+                "title": "Portrait of Daniel Okoro",
+                "alternative": "Portrait of Daniel Okoro.",
+                "description": "Unsplash portrait used as demo customer imagery.",
+                "source": "https://unsplash.com/"
+            }
+        },
+        {
+            "quote": "Setup took an afternoon: composer require, seed the styleguide, done. €0 spent.",
+            "author_name": "Yuki Tanaka",
+            "author_title": "TYPO3 Integrator, Meridian Labs",
+            "author_image": {
+                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-03.jpg",
+                "title": "Portrait of Yuki Tanaka",
+                "alternative": "Portrait of Yuki Tanaka.",
+                "description": "Unsplash portrait used as demo customer imagery.",
+                "source": "https://unsplash.com/"
+            }
+        },
+        {
+            "quote": "The 11-category audit is ruthless — no inline styles, no hardcoded colors — and that discipline is exactly why our handovers stopped hurting. We added Creator Care at €490/month for the security monitoring; sleeping well turns out to be cheap at that price.",
+            "author_name": "Priya Raman",
+            "author_title": "Frontend Lead, Northpeak",
+            "author_image": {
+                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-04.jpg",
+                "title": "Portrait of Priya Raman",
+                "alternative": "Portrait of Priya Raman.",
+                "description": "Unsplash portrait used as demo customer imagery.",
+                "source": "https://unsplash.com/"
+            }
+        },
+        {
+            "quote": "We put our editors through the €690 onboarding workshop and hit 90% adoption in two weeks. Backend previews on all 255 elements just make sense — best training money we've spent.",
+            "author_name": "Tom Berger",
+            "author_title": "Engineering Manager, Cobalt Digital",
+            "author_image": {
+                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-05.jpg",
+                "title": "Portrait of Tom Berger",
+                "alternative": "Portrait of Tom Berger.",
+                "description": "Unsplash portrait used as demo customer imagery.",
+                "source": "https://unsplash.com/"
+            }
+        },
+        {
+            "quote": "We onboarded 40 client editors last month without adding headcount. Pro at €49/month per project keeps every install current with upgrade assistance, and the content wizard's 10 element groups let every account follow the same playbook.",
+            "author_name": "Sofia Marchetti",
+            "author_title": "Partner, Vantage Webconsulting",
+            "author_image": {
+                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-06.jpg",
+                "title": "Portrait of Sofia Marchetti",
+                "alternative": "Portrait of Sofia Marchetti.",
+                "description": "Unsplash portrait used as demo customer imagery.",
                 "source": "https://unsplash.com/"
             }
         }

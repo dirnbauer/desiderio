@@ -1,82 +1,82 @@
 {
-  "_type": "pricing",
-  "header": "Product Comparison Pricing for confident plan comparison",
-  "eyebrow": "Modern import",
-  "products": [
-    {
-      "name": "Noah Ritter",
-      "image": {
-        "file": "Resources/Public/Styleguide/Unsplash/board-noah-ritter.jpg",
-        "title": "Noah Ritter",
-        "alternative": "Portrait photo of Noah Ritter.",
-        "description": "Portrait-style photo from Unsplash."
-      },
-      "price": "$19",
-      "specs": [
+    "_type": "pricing",
+    "header": "Community, Pro, or Agency?",
+    "eyebrow": "Choose your tier",
+    "products": [
         {
-          "text": "Reusable labels, metrics, and actions"
+            "name": "Community",
+            "image": {
+                "file": "Resources/Public/Styleguide/Backend/backend-page-module-hero.png",
+                "title": "Desiderio page module preview",
+                "alternative": "TYPO3 page module showing Desiderio content elements with visual backend previews.",
+                "description": "Screenshot of the TYPO3 backend with Desiderio installed."
+            },
+            "price": "€0 forever",
+            "specs": [
+                {
+                    "text": "All 255 elements, GPL-2.0, full source on GitHub"
+                },
+                {
+                    "text": "15 theme presets, dark mode, WCAG 2.2-checked"
+                },
+                {
+                    "text": "Community support on GitHub"
+                }
+            ],
+            "is_recommended": false,
+            "link": "https://github.com/dirnbauer/desiderio"
         },
         {
-          "text": "Clean mobile behavior for dense content"
+            "name": "Pro",
+            "image": {
+                "file": "Resources/Public/Styleguide/Backend/backend-visual-editor.png",
+                "title": "Editing in the Desiderio Visual Editor",
+                "alternative": "Desiderio Visual Editor with a content element being edited inline in the live page preview.",
+                "description": "Screenshot of the Desiderio Visual Editor in TYPO3."
+            },
+            "price": "€49/mo · €490/yr",
+            "specs": [
+                {
+                    "text": "Everything in Community, per project"
+                },
+                {
+                    "text": "Priority email support, 2-day response"
+                },
+                {
+                    "text": "Guaranteed LTS compatibility updates"
+                },
+                {
+                    "text": "Early access to drops and preset packs"
+                }
+            ],
+            "is_recommended": true,
+            "link": "https://github.com/dirnbauer/desiderio"
         },
         {
-          "text": "Chart colors mapped to semantic tokens"
+            "name": "Agency",
+            "image": {
+                "file": "Resources/Public/Styleguide/Backend/backend-site-settings-theme.png",
+                "title": "Desiderio theme site settings",
+                "alternative": "TYPO3 site settings panel with the Desiderio theme preset category open.",
+                "description": "Screenshot of the TYPO3 backend with Desiderio installed."
+            },
+            "price": "€149/mo · €1,490/yr",
+            "specs": [
+                {
+                    "text": "Everything in Pro, unlimited projects"
+                },
+                {
+                    "text": "4-hour priority response"
+                },
+                {
+                    "text": "Quarterly editor onboarding session"
+                },
+                {
+                    "text": "Direct line to the maintainers"
+                }
+            ],
+            "is_recommended": false,
+            "link": "https://github.com/dirnbauer/desiderio"
         }
-      ],
-      "is_recommended": false,
-      "link": "https://ui.shadcn.com/docs/product-comparison-pricing"
-    },
-    {
-      "name": "Lea Fischer",
-      "image": {
-        "file": "Resources/Public/Styleguide/Unsplash/board-lea-fischer.jpg",
-        "title": "Lea Fischer",
-        "alternative": "Portrait photo of Lea Fischer.",
-        "description": "Portrait-style photo from Unsplash."
-      },
-      "price": "$49",
-      "specs": [
-        {
-          "text": "Reusable labels, metrics, and actions"
-        },
-        {
-          "text": "Clean mobile behavior for dense content"
-        },
-        {
-          "text": "Chart colors mapped to semantic tokens"
-        },
-        {
-          "text": "Production-ready empty and loaded states"
-        }
-      ],
-      "is_recommended": true,
-      "link": "https://ui.shadcn.com/docs/product-comparison-pricing"
-    },
-    {
-      "name": "Mara Weiss",
-      "image": {
-        "file": "Resources/Public/Styleguide/Unsplash/team-mara-weiss.jpg",
-        "title": "Mara Weiss",
-        "alternative": "Portrait photo of Mara Weiss.",
-        "description": "Portrait-style photo from Unsplash."
-      },
-      "price": "$99",
-      "specs": [
-        {
-          "text": "Reusable labels, metrics, and actions"
-        },
-        {
-          "text": "Clean mobile behavior for dense content"
-        },
-        {
-          "text": "Chart colors mapped to semantic tokens"
-        },
-        {
-          "text": "Production-ready empty and loaded states"
-        }
-      ],
-      "is_recommended": false,
-      "link": "https://ui.shadcn.com/docs/product-comparison-pricing"
-    }
-  ]
+    ]
 }

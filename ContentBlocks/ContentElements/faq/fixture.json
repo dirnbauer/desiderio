@@ -1,31 +1,31 @@
 {
     "_type": "list",
     "header": "Frequently asked questions",
-    "subheadline": "Everything teams ask before building pages with the Desiderio content blocks.",
+    "subheadline": "Everything teams ask before adopting Desiderio — including the one about money.",
     "items": [
         {
-            "question": "Do I need to write code to use these blocks?",
-            "answer": "No. Every block is a configurable content element in the TYPO3 page module. Editors fill in fields like headline, image, and button, and the block renders with the correct markup and styling. Developers only step in to add a brand new block type."
+            "question": "Is Desiderio really free?",
+            "answer": "Yes — the Community tier is €0 forever. GPL-2.0, all 255 content elements, full source on GitHub, community support. No license key, no feature gate, no trial clock. The paid tiers buy you the creators' time and guarantees, never withheld features."
         },
         {
-            "question": "How do I change the look of every block at once?",
-            "answer": "Switch the shadcn preset. Colours, radius, and typography come from semantic tokens, so re-skinning the theme restyles all blocks together. You never edit individual templates to change the palette, which keeps the design consistent."
+            "question": "What does Pro add for €49/month?",
+            "answer": "Pro (€49/month or €490/year — two months free) adds priority email support with a 2-day response, guaranteed LTS compatibility updates, early access to new element drops and preset packs, and minor-version upgrade assistance. Agencies running many projects take the Agency tier: €149/month for unlimited projects, 4-hour priority response, and a direct line to the maintainers."
         },
         {
-            "question": "Are the blocks accessible out of the box?",
-            "answer": "Yes. Each block ships with semantic landmarks, a correct heading order, visible focus states, and alt-text fields. The library follows WCAG 2.2 AA, so you start from an accessible baseline instead of retrofitting it later."
+            "question": "Can the creators host and run our site?",
+            "answer": "Yes. Managed TYPO3 hosting starts at €99/month — updates, daily backups, monitoring, EU datacenter. Hosting Business (€179/month) adds staging, a 99.9% SLA, and CDN. The people who built the theme layer keep it running; hard to get closer to the source than that."
         },
         {
-            "question": "Will the layouts work on mobile?",
-            "answer": "Every block is mobile-first and responsive. Grids collapse to a single column, type scales down, and nothing overflows at narrow widths. You can preview each block at any screen size before publishing."
+            "question": "What if we need an element that doesn't exist yet?",
+            "answer": "The creators build custom content elements from €390 per element — schema, template, backend preview, and the same token-based theming as the other 255, so it passes the audit and survives every preset switch. Brand-adapted theme presets start at €1,990."
         },
         {
-            "question": "Can I translate the content?",
-            "answer": "Yes. Blocks use standard TYPO3 localisation, so each language gets its own translated content while sharing one layout. Editor labels live in XLIFF files, which makes the backend translatable too."
+            "question": "Can I switch themes later without redoing content?",
+            "answer": "Yes. The 15 shadcn presets only change design tokens and CSS, never stored content. Switch the sitewide preset — or give a single page subtree its own — at any point, and every headline, image, and link stays exactly as entered. Redesigns stop being migrations."
         },
         {
-            "question": "What happens to my content if I switch themes?",
-            "answer": "Your content is safe. Themes only change tokens and CSS, never the fields you filled in. Switching presets re-skins the page, but every headline, image, and link you entered stays exactly where it was."
+            "question": "Is it accessible?",
+            "answer": "Accessibility is built into the markup: semantic landmarks, correct heading order, visible focus states, required alt-text fields, and WCAG 2.2-checked contrast on every preset. An 11-category template audit with zero tolerance runs in CI, so regressions are caught before release — not by your users."
         }
     ]
 }

@@ -1,36 +1,36 @@
 {
     "_type": "pricing",
-    "header": "Pay only for what you use",
-    "eyebrow": "Usage-based pricing",
-    "subheadline": "No tiers, no minimums. Metered by the second and billed at the end of each month.",
+    "header": "The creators, on demand",
+    "eyebrow": "Pay as you grow",
+    "subheadline": "Need more than the catalog? Book the team that built all 255 elements. Fixed rates, no surprises — and Creator Care turns their help into a monthly habit.",
     "items": [
         {
-            "title": "API requests",
-            "rate": "$0.20",
-            "unit": "1,000 calls",
-            "description": "First 100,000 calls each month are free.",
-            "link": "https://ui.shadcn.com/docs"
+            "title": "Custom elements",
+            "rate": "from €390",
+            "unit": "element",
+            "description": "A new Content Blocks element, built by the creators to the same audit rules as the other 255.",
+            "link": "https://github.com/dirnbauer/desiderio"
         },
         {
-            "title": "Compute",
-            "rate": "$0.04",
-            "unit": "GB-hour",
-            "description": "Auto-scaling containers, billed per second of runtime.",
-            "link": "https://ui.shadcn.com/docs"
+            "title": "Creator Care",
+            "rate": "€490",
+            "unit": "month",
+            "description": "4 dev hours, priority fixes, security monitoring, and LTS upgrade planning — every month.",
+            "link": "https://github.com/dirnbauer/desiderio"
         },
         {
-            "title": "Storage",
-            "rate": "$0.02",
-            "unit": "GB / month",
-            "description": "Encrypted object storage with no egress fees.",
-            "link": "https://ui.shadcn.com/docs"
+            "title": "Editor workshop",
+            "rate": "€690",
+            "unit": "half-day",
+            "description": "Remote onboarding that turns your editors loose on previews, the wizard, and per-page themes.",
+            "link": "https://github.com/dirnbauer/desiderio"
         },
         {
-            "title": "Bandwidth",
-            "rate": "$0.09",
-            "unit": "GB transferred",
-            "description": "Global CDN delivery from 30+ edge regions.",
-            "link": "https://ui.shadcn.com/docs"
+            "title": "LTS upgrade",
+            "rate": "from €2,400",
+            "unit": "upgrade",
+            "description": "The creators move your site to the next TYPO3 LTS — planned, executed, regression-checked.",
+            "link": "https://github.com/dirnbauer/desiderio"
         }
     ]
 }

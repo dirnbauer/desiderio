@@ -1,49 +1,49 @@
 {
     "_type": "grid",
-    "header": "Backed by investors who scale category leaders",
-    "subheadline": "We raised our Series B in 2024 from funds that have built developer tools used by millions.",
+    "header": "A logo grid for your backers or sponsors",
+    "subheadline": "Desiderio itself is free and GPL-licensed — this element demonstrates how investor or sponsor logos render. All entries are seeded demo data.",
     "investors": [
         {
             "name": "Accel",
-            "type": "Series B lead",
+            "type": "Demo logo",
             "logo": {
                 "file": "Resources/Public/Styleguide/Logos/Investors/accel.svg",
                 "title": "Accel",
                 "alternative": "Accel logo.",
-                "description": "Investor logo."
+                "description": "Seeded demo logo, not a real sponsorship."
             },
             "link": "https://www.accel.com/"
         },
         {
             "name": "Point Nine",
-            "type": "Seed lead",
+            "type": "Demo logo",
             "logo": {
                 "file": "Resources/Public/Styleguide/Logos/Investors/point-nine.svg",
                 "title": "Point Nine",
                 "alternative": "Point Nine logo.",
-                "description": "Investor logo."
+                "description": "Seeded demo logo, not a real sponsorship."
             },
             "link": "https://www.pointnine.com/"
         },
         {
             "name": "Sequoia",
-            "type": "Series A lead",
+            "type": "Demo logo",
             "logo": {
                 "file": "Resources/Public/Styleguide/Logos/Investors/sequoia.svg",
                 "title": "Sequoia",
                 "alternative": "Sequoia logo.",
-                "description": "Investor logo."
+                "description": "Seeded demo logo, not a real sponsorship."
             },
             "link": "https://www.sequoiacap.com/"
         },
         {
             "name": "Y Combinator",
-            "type": "S22 batch",
+            "type": "Demo logo",
             "logo": {
                 "file": "Resources/Public/Styleguide/Logos/Investors/y-combinator.svg",
                 "title": "Y Combinator",
                 "alternative": "Y Combinator logo.",
-                "description": "Investor logo."
+                "description": "Seeded demo logo, not a real sponsorship."
             },
             "link": "https://www.ycombinator.com/"
         }

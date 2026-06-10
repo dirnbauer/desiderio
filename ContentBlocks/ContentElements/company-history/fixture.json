@@ -1,27 +1,27 @@
 {
     "_type": "list",
-    "header": "Our journey so far",
-    "subheadline": "From a two-person prototype to a platform trusted by 400+ teams worldwide.",
+    "header": "The Desiderio release story",
+    "subheadline": "From a handful of Fluid templates to 255 content elements with their own theme engine.",
     "events": [
         {
-            "year": "2018",
-            "title": "Founded in a garage",
-            "description": "Two engineers shipped the first prototype and signed five design partners in the first month."
-        },
-        {
-            "year": "2020",
-            "title": "Series A and 50 customers",
-            "description": "Raised $8M to grow the team and launched our self-serve plan to a public waitlist."
-        },
-        {
-            "year": "2022",
-            "title": "Global data centers",
-            "description": "Opened regions in the EU and Asia, cutting median response times by 40% for international users."
-        },
-        {
             "year": "2024",
-            "title": "400+ teams onboard",
-            "description": "Crossed eight figures in annual recurring revenue and shipped our enterprise security suite."
+            "title": "First public release",
+            "description": "Desiderio 1.0 brought shadcn-inspired styling to TYPO3 Content Blocks, with backend previews from day one."
+        },
+        {
+            "year": "2025",
+            "title": "49 Fluid 5 components",
+            "description": "The component layer landed: 17 atoms, 28 molecules, and 4 layout primitives shared across every element."
+        },
+        {
+            "year": "2025",
+            "title": "15 theme presets",
+            "description": "Ten house presets from Aurora to Citrus joined the five shadcn styles — switching repaints the site at runtime."
+        },
+        {
+            "year": "2026",
+            "title": "Per-page presets in 2.6",
+            "description": "Any page subtree can now run its own theme, inherited down the rootline. The styleguide shows one per chapter."
         }
     ]
 }

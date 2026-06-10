@@ -1,22 +1,22 @@
 {
     "_type": "list",
-    "eyebrow": "Why teams choose Desiderio",
-    "header": "Everything you need to ship content faster",
-    "subheadline": "The building blocks that make editorial work faster, safer, and on-brand.",
+    "eyebrow": "Theme layer",
+    "header": "15 presets = a redesign without a budget",
+    "subheadline": "Desiderio treats the look of your site as data editors can change, not code developers must redeploy. The next rebrand is a dropdown away.",
     "items": [
         {
-            "title": "Reusable content blocks",
-            "description": "Compose pages from a shared catalog so editors stay consistent without touching code.",
+            "title": "15 shadcn presets",
+            "description": "Five presets from ui.shadcn.com/create plus ten house presets, from Aurora to Citrus — each with WCAG 2.2-checked contrast.",
             "icon": "globe"
         },
         {
-            "title": "Token-driven theming",
-            "description": "Switch the entire look with a shadcn preset \u2014 every element re-skins from semantic tokens.",
+            "title": "Per-page overrides",
+            "description": "Every campaign gets its own look: set a preset once in page properties and the whole subtree inherits it down the rootline.",
             "icon": "map-pin"
         },
         {
-            "title": "Accessible by default",
-            "description": "Keyboard focus, semantic landmarks, and screen-reader labels ship with every block.",
+            "title": "Runtime switching",
+            "description": "Change the preset and the whole site repaints from OKLCH tokens — no Tailwind rebuild, no deployment, no waiting.",
             "icon": "sparkles"
         }
     ],

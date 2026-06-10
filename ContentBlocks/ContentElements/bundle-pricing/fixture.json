@@ -1,27 +1,27 @@
 {
     "_type": "pricing",
-    "eyebrow": "Complete bundle",
-    "header": "Everything you need, one price",
-    "description": "Buy the full Growth suite together and save versus paying per tool.",
-    "bundle_price": "$49/mo",
-    "savings_text": "Save 38%",
+    "eyebrow": "Launch bundle",
+    "header": "Ship in days, not weeks — one booking covers it",
+    "description": "Pro license, installation by the creators, and a half-day editor workshop, bundled. Booked separately that is €2,070; the Launch bundle is €1,790 — you save €280 and go live with the people who built all 255 elements setting it up for you.",
+    "bundle_price": "€1,790",
+    "savings_text": "Save €280",
     "items": [
         {
-            "name": "Analytics dashboard",
-            "individual_price": "$29/mo",
-            "description_text": "Real-time funnels and retention reports"
+            "name": "Pro license, first year",
+            "individual_price": "€490",
+            "description_text": "Priority support, guaranteed LTS updates, and early access for 12 months"
         },
         {
-            "name": "A/B testing suite",
-            "individual_price": "$24/mo",
-            "description_text": "Unlimited experiments, instant rollout"
+            "name": "Installation & setup",
+            "individual_price": "€890",
+            "description_text": "The creators install, configure, and theme Desiderio on your TYPO3 site"
         },
         {
-            "name": "Email automation",
-            "individual_price": "$26/mo",
-            "description_text": "Behavioral triggers and drip campaigns"
+            "name": "Editor onboarding workshop",
+            "individual_price": "€690",
+            "description_text": "Half-day remote session covering previews, the wizard, and per-page themes"
         }
     ],
-    "button_text": "Get the bundle",
-    "button_link": "https://ui.shadcn.com/docs"
+    "button_text": "Book the Launch bundle",
+    "button_link": "https://github.com/dirnbauer/desiderio"
 }

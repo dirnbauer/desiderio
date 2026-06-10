@@ -772,13 +772,13 @@ final class StyleguideSeedCommandTest extends TestCase
         );
 
         self::assertIsArray($fixture);
-        self::assertSame('Accessible pattern comparison for Table Content', $fixture['caption'] ?? null);
+        self::assertSame('A sample of Desiderio element groups with their element counts', $fixture['caption'] ?? null);
         self::assertSame(
             [
-                ['label' => 'Reusable Content Blocks'],
-                ['label' => 'Responsive QA content'],
-                ['label' => 'Token-based chart colors'],
-                ['label' => 'Editorial workflow'],
+                ['label' => 'Element group'],
+                ['label' => 'Elements'],
+                ['label' => 'Typical blocks'],
+                ['label' => 'Good for'],
             ],
             $fixture['column_items'] ?? null
         );

@@ -1,16 +1,16 @@
 {
     "_type": "hero",
-    "header": "Your release timeline, now in your pocket",
-    "subheadline": "Track deploys, approve changelogs, and ping your team from anywhere with the Desiderio mobile app for iOS and Android.",
-    "badge_text": "iOS & Android",
-    "primary_button_text": "Download the app",
-    "secondary_button_text": "See features",
+    "header": "Your editors will love the backend again",
+    "subheadline": "Open the Visual Editor and edit the page right on the page — real content, real theme, instant feedback. All 255 elements render live previews, so nobody publishes blind ever again.",
+    "badge_text": "Visual Editor",
+    "primary_button_text": "Start free",
+    "secondary_button_text": "See the editing experience",
     "app_image": {
-        "file": "Resources/Public/Styleguide/Unsplash/laptop-glenn-carstens-peters.jpg",
-        "title": "Planning on a laptop",
-        "alternative": "Hands using a laptop while planning work on a wooden desk.",
-        "description": "Copyright/credit: Photo by Glenn Carstens-Peters on Unsplash. Used as seeded demo imagery.",
-        "source": "https://unsplash.com/photos/person-using-macbook-pro-npxXWgQ33ZQ"
+        "file": "Resources/Public/Styleguide/Backend/backend-visual-editor.png",
+        "title": "Editing a page in the Desiderio Visual Editor",
+        "alternative": "TYPO3 Visual Editor showing a Desiderio page being edited inline with live preview.",
+        "description": "Screenshot of inline editing in the Visual Editor with Desiderio installed.",
+        "source": "https://github.com/dirnbauer/desiderio"
     },
     "primary_button_link": "https://example.com/desiderio/primary_button_link_1",
     "secondary_button_link": "https://example.com/desiderio/secondary_button_link_1"

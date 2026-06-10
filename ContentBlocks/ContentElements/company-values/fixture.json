@@ -1,23 +1,23 @@
 {
     "_type": "grid",
     "eyebrow": "What we stand for",
-    "header": "The values we hire and lead by",
-    "subheadline": "Three principles that guide how we build the product and treat each other.",
+    "header": "The values behind every Desiderio release",
+    "subheadline": "Three principles that decide what gets merged — and what gets sent back.",
     "value_items": [
         {
             "icon": "users",
-            "title": "Customers first",
-            "description": "Every decision starts with the people who use our product. We talk to them weekly and ship what they actually need."
+            "title": "Editors first",
+            "description": "If a TYPO3 editor cannot understand an element from its backend preview, it is not done. All 255 elements preview before they ship."
         },
         {
             "icon": "shield-check",
-            "title": "Default to trust",
-            "description": "We give ownership early, share context openly, and assume good intent. Autonomy beats approval chains."
+            "title": "Accessible by default",
+            "description": "WCAG-minded markup is the baseline, not a feature flag. Focus states, ARIA, and contrast survive every one of the 15 theme presets."
         },
         {
             "icon": "lightning",
-            "title": "Ship to learn",
-            "description": "Small bets in days, not big bets in quarters. We'd rather learn from a rough launch than polish in private."
+            "title": "No rebuilds",
+            "description": "Themes, density, radius, and dark mode are runtime decisions. Switching a preset repaints the whole site without touching a build pipeline."
         }
     ]
 }

@@ -1,25 +1,25 @@
 {
     "_type": "grid",
-    "header": "Latest from the engineering blog",
+    "header": "Latest from the Desiderio blog",
     "eyebrow": "Insights",
     "items": [
         {
+            "category": "Theming",
+            "title": "Why we stopped hand-building TYPO3 templates",
+            "description": "Every project used to start with three weeks of template work. Now it starts with composer require — here's the math that convinced us, and what we do with the time instead.",
+            "link": "https://example.com/blog/per-page-theme-presets"
+        },
+        {
             "category": "Architecture",
-            "title": "How we cut p95 latency by 40% with edge caching",
-            "description": "A walkthrough of the cache keys, invalidation rules, and rollout that trimmed our slowest responses across three regions.",
-            "link": "https://example.com/blog/edge-caching-latency"
+            "title": "49 components that make 255 elements feel like one design",
+            "description": "17 atoms, 28 molecules, 4 layout primitives. The architecture decision that keeps a quarter-thousand content elements perfectly consistent — and your custom ones too.",
+            "link": "https://example.com/blog/fluid-component-architecture"
         },
         {
-            "category": "Engineering culture",
-            "title": "Shipping on Fridays: how our review process changed",
-            "description": "Smaller pull requests, async approvals, and a stricter test gate let the team release safely at the end of the week.",
-            "link": "https://example.com/blog/shipping-on-fridays"
-        },
-        {
-            "category": "Security",
-            "title": "Rotating secrets without a single second of downtime",
-            "description": "The dual-credential pattern we use to roll API keys and database passwords while traffic keeps flowing.",
-            "link": "https://example.com/blog/zero-downtime-secret-rotation"
+            "category": "Accessibility",
+            "title": "Accessible by default, audited on every commit",
+            "description": "Semantic landmarks, visible focus states, WCAG 2.2-checked contrast on all 15 presets, and an 11-category template audit with zero tolerance. Pass your next a11y review before it starts.",
+            "link": "https://example.com/blog/accessibility-by-default"
         }
     ]
 }

@@ -1,32 +1,32 @@
 {
     "_type": "pricing",
-    "header": "Pro",
-    "description": "For growing teams that need advanced controls, deeper reporting, and priority support.",
-    "price": "$29",
-    "billing_period": "per user / month",
+    "header": "Creator Care",
+    "description": "Desiderio is free under GPL-2.0, forever. Creator Care puts the people who built all 255 elements on your team — every month, without hiring.",
+    "price": "€490",
+    "billing_period": "per month",
     "feature_items": [
         {
-            "text": "Unlimited projects and content blocks",
+            "text": "4 development hours from the creators, every month",
             "included": 1
         },
         {
-            "text": "Role-based access with a full audit log",
+            "text": "Priority fixes — your issues jump the queue",
             "included": 1
         },
         {
-            "text": "Scheduled publishing and approval workflows",
+            "text": "Security monitoring for core, extensions, and Desiderio",
             "included": 1
         },
         {
-            "text": "Priority email and live chat support",
+            "text": "TYPO3 LTS upgrade planning, so no release surprises you",
             "included": 1
         },
         {
-            "text": "Dedicated customer success manager",
+            "text": "Editor onboarding workshop (book the half-day remote session for €690)",
             "included": 0
         }
     ],
-    "button_text": "Start free trial",
-    "button_link": "https://example.com/signup?plan=pro",
+    "button_text": "Start Creator Care",
+    "button_link": "https://example.com/desiderio/services?plan=creator-care",
     "highlighted": 1
 }

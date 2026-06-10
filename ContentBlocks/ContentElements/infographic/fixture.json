@@ -1,55 +1,55 @@
 {
     "_type": "stats",
-    "header": "How Desiderio turns code into changelogs",
-    "description": "Four steps from a merged pull request to a published, on-brand release note.",
+    "header": "From composer require to a themed site — in one sitting",
+    "description": "Four steps stand between you and a fully seeded, themed TYPO3 site. No configuration files, no license keys — and if you'd rather not lift a finger, the creators install and set it up for €890.",
     "shadcn_layout": "horizontal",
     "items": [
         {
             "number": "1",
-            "title": "Merge",
-            "description": "A pull request lands and Desiderio captures it with its labels and author.",
+            "title": "Install",
+            "description": "composer require webconsulting/desiderio on any TYPO3 14.3+ site with PHP 8.3+. That single command brings all 255 elements, 49 components, and the theme layer.",
             "image": {
-                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-14.jpg",
-                "title": "Team Member portrait",
-                "alternative": "Portrait photo of Team Member.",
-                "description": "Portrait-style photo from Unsplash collection #25880.",
-                "source": "https://unsplash.com/collections/25880"
+                "file": "Resources/Public/Styleguide/Unsplash/laptop-glenn-carstens-peters.jpg",
+                "title": "Developer laptop with code",
+                "alternative": "Hands typing on a laptop keyboard during development work.",
+                "description": "Copyright/credit: Photo by Glenn Carstens-Peters on Unsplash. Used as seeded demo imagery.",
+                "source": "https://unsplash.com/@glenncarstenspeters"
             }
         },
         {
             "number": "2",
-            "title": "Draft",
-            "description": "AI groups the changes and writes a plain-language summary you can edit.",
+            "title": "Seed",
+            "description": "Run desiderio:styleguide:seed once and a complete demo site appears — idempotent, workspaces-safe, with all 255 elements filled with realistic content.",
             "image": {
-                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-28.jpg",
-                "title": "Team Member portrait",
-                "alternative": "Portrait photo of Team Member.",
-                "description": "Portrait-style photo from Unsplash collection #25880.",
-                "source": "https://unsplash.com/collections/25880"
+                "file": "Resources/Public/Styleguide/Backend/backend-page-module-hero.png",
+                "title": "Desiderio page module preview",
+                "alternative": "TYPO3 page module showing seeded Desiderio content elements with backend previews.",
+                "description": "Screenshot of the TYPO3 backend with Desiderio installed.",
+                "source": "https://github.com/dirnbauer/desiderio"
             }
         },
         {
             "number": "3",
-            "title": "Brand",
-            "description": "Apply your colors, logo, and templates so every release looks consistent.",
+            "title": "Theme",
+            "description": "Pick one of 15 shadcn presets in site settings — or a different one per page subtree — and the whole site repaints at runtime. Dark mode comes along for free.",
             "image": {
-                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-10.jpg",
-                "title": "Team Member portrait",
-                "alternative": "Portrait photo of Team Member.",
-                "description": "Portrait-style photo from Unsplash collection #25880.",
-                "source": "https://unsplash.com/collections/25880"
+                "file": "Resources/Public/Styleguide/Backend/backend-site-settings-theme.png",
+                "title": "Desiderio theme site settings",
+                "alternative": "TYPO3 site settings module showing the Desiderio theme preset options.",
+                "description": "Screenshot of the TYPO3 backend with Desiderio installed.",
+                "source": "https://github.com/dirnbauer/desiderio"
             }
         },
         {
             "number": "4",
-            "title": "Publish",
-            "description": "Ship to your page, widget, and email subscribers in a single click.",
+            "title": "Create",
+            "description": "Editors compose pages from 255 previewed elements — or edit content right on the page with the Visual Editor. No training course required.",
             "image": {
-                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-08.jpg",
-                "title": "Team Member portrait",
-                "alternative": "Portrait photo of Team Member.",
-                "description": "Portrait-style photo from Unsplash collection #25880.",
-                "source": "https://unsplash.com/collections/25880"
+                "file": "Resources/Public/Styleguide/Backend/backend-visual-editor.png",
+                "title": "Editing in the Desiderio Visual Editor",
+                "alternative": "TYPO3 Visual Editor with inline editing of a Desiderio content element on the page.",
+                "description": "Screenshot of the TYPO3 backend with Desiderio installed.",
+                "source": "https://github.com/dirnbauer/desiderio"
             }
         }
     ]

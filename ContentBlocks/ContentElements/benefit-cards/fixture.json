@@ -1,45 +1,45 @@
 {
     "_type": "grid",
-    "header": "Everything you need to ship with confidence",
-    "eyebrow": "Why teams switch",
-    "subheadline": "One platform that replaces five tools, so your team stops stitching workflows together and starts shipping.",
+    "header": "What you stop paying for when Desiderio moves in",
+    "eyebrow": "Package overview",
+    "subheadline": "One GPL package replaces the template scaffold, the component library, and the demo content of a typical relaunch — weeks of dev time, gone from the estimate.",
     "columns": "3",
     "items": [
         {
             "icon": "zap",
-            "title": "Launch in minutes",
-            "description": "Connect your stack and go live the same afternoon. No migration project, no professional-services contract.",
+            "title": "Demo site in one command",
+            "description": "desiderio:styleguide:seed builds a complete, browsable demo site — idempotent, workspaces-safe, and ready to show a client the same afternoon.",
             "link": "t3://page?uid=1"
         },
         {
             "icon": "shield-check",
-            "title": "Enterprise-grade security",
-            "description": "SOC 2 Type II, SSO, and granular roles keep security and compliance teams comfortable from day one.",
-            "link": "https://example.com/desiderio/link_2"
+            "title": "Quality enforced, not hoped for",
+            "description": "An 11-category zero-tolerance audit keeps all 255 elements clean: no inline styles, no hardcoded colors, ever.",
+            "link": "https://github.com/dirnbauer/desiderio"
         },
         {
             "icon": "chart",
-            "title": "Decisions backed by data",
-            "description": "Live dashboards turn raw events into the three metrics your team actually acts on each week.",
-            "link": "https://example.com/desiderio/link_3"
+            "title": "PHPStan max + 400 tests",
+            "description": "Static analysis at the strictest level and a 400-test CI across PHP 8.3 and 8.4 — the code review you didn't have to schedule.",
+            "link": "https://github.com/dirnbauer/desiderio"
         },
         {
             "icon": "users",
-            "title": "Built for collaboration",
-            "description": "Shared workspaces, comments, and audit trails keep design, product, and engineering on the same page.",
-            "link": "https://example.com/desiderio/link_4"
+            "title": "Editors who stop filing tickets",
+            "description": "Backend previews for every element and guided Content Blocks forms mean non-developers ship landing pages on their own.",
+            "link": "https://github.com/dirnbauer/desiderio"
         },
         {
             "icon": "clock",
-            "title": "Hours back every week",
-            "description": "Automations handle the repetitive busywork, freeing roughly 40 hours per person each month.",
-            "link": "https://example.com/desiderio/link_5"
+            "title": "Redesigns in minutes",
+            "description": "Switch between 15 shadcn theme presets and the site repaints instantly — every campaign gets its own look without a deployment window.",
+            "link": "https://github.com/dirnbauer/desiderio"
         },
         {
             "icon": "globe",
-            "title": "Fast everywhere",
-            "description": "Content is served from 200+ edge locations, so every customer loads in under 100 milliseconds.",
-            "link": "https://example.com/desiderio/link_6"
+            "title": "5 icon libraries, one switch",
+            "description": "Swap Lucide for Tabler, HugeIcons, Phosphor, or Remix Icon sitewide — stable semantic keys keep every element's content untouched.",
+            "link": "https://github.com/dirnbauer/desiderio"
         }
     ]
 }

@@ -1,16 +1,16 @@
 {
     "_type": "grid",
-    "header": "How we work, in three steps",
+    "header": "From composer require to a themed site in 30 minutes",
     "columns": "3",
     "items": [
         {
-            "content": "<p><strong>Discover.</strong> We start with a short workshop to map your goals, users, and constraints. You leave with a clear scope and a fixed timeline before a single line of code is written.</p>"
+            "content": "<p><strong>Install.</strong> Add <em>webconsulting/desiderio</em> to a TYPO3 14.3 project with Composer. One package registers 255 Content Blocks elements, 49 Fluid 5 components, and the theme layer — GPL-licensed, no key, no signup, no catch.</p>"
         },
         {
-            "content": "<p><strong>Design &amp; build.</strong> Working in weekly sprints, we ship reviewable increments you can test with real users. Nothing is hidden until launch day, so feedback shapes the product as it grows.</p>"
+            "content": "<p><strong>Seed.</strong> Run <em>desiderio:styleguide:seed</em> and a complete demo site appears in one command. Workspaces-safe and idempotent, so you can re-run it after every upgrade without duplicates — your sandbox stays pristine forever.</p>"
         },
         {
-            "content": "<p><strong>Launch &amp; support.</strong> We handle deployment, accessibility checks, and handover docs. After go-live you get 30 days of priority support to settle any rough edges.</p>"
+            "content": "<p><strong>Theme.</strong> Pick one of 15 shadcn presets in site settings, or give individual page subtrees their own. Colors, radius, and typography update everywhere at runtime — the redesign that used to be a quarter is now a click.</p>"
         }
     ]
 }

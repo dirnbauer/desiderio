@@ -1,48 +1,48 @@
 {
     "_type": "hero",
-    "header": "One workflow, every release update",
-    "subheadline": "See how teams use Desiderio to turn shipped code into customer-ready changelogs, in-app notes, and email digests.",
+    "header": "From first edit to finished site — in three slides",
+    "subheadline": "Edit inline in the Visual Editor, publish a polished light theme, flip to dark without touching a line of CSS. One package does all three.",
     "slides": [
         {
-            "title": "Turn shipped work into release notes",
-            "lead": "Desiderio reads merged pull requests and turns them into customer-ready updates.",
-            "description": "Review the suggested changelog, adjust the tone, and publish a clean release note without rebuilding the same summary for every channel.",
+            "title": "Edit the page on the page",
+            "lead": "The Visual Editor turns the TYPO3 backend into the site itself — click, type, done.",
+            "description": "Editors work directly on the rendered page with the live theme applied. No guessing from gray records, no preview round-trips — what they see is what ships.",
             "image": {
-                "file": "Resources/Public/Styleguide/Unsplash/planning-blue-sky.jpg",
-                "title": "Release planning session",
-                "alt": "A team discussing tasks at a whiteboard during an agile planning session.",
-                "credit": "Copyright/credit: Photo by blue sky on Unsplash. Used as seeded demo imagery.",
-                "source": "https://unsplash.com/photos/four-men-gathered-around-a-whiteboard-with-sticky-notes-MLWk6FFWURU"
+                "file": "Resources/Public/Styleguide/Backend/backend-visual-editor.png",
+                "title": "Editing in the Desiderio Visual Editor",
+                "alt": "TYPO3 Visual Editor with a Desiderio page being edited inline.",
+                "credit": "Screenshot of the Visual Editor with Desiderio installed.",
+                "source": "https://github.com/dirnbauer/desiderio"
             },
-            "button_text": "See it in action",
+            "button_text": "See the editor",
             "button_link": "t3://page?uid=1"
         },
         {
-            "title": "Publish to every channel at once",
-            "lead": "One approved update can feed your changelog, product UI, and email digest.",
-            "description": "Keep message, timing, and links consistent while editors choose exactly where each release update should appear.",
+            "title": "Publish design-system polish",
+            "lead": "The rendered site looks like a design agency built it — because a design system did.",
+            "description": "Every one of the 255 elements draws from the same OKLCH tokens, so headlines, cards, and buttons stay perfectly on palette. This is the Lagoon preset, untouched.",
             "image": {
-                "file": "Resources/Public/Styleguide/Unsplash/dashboard-neil-fernandez.jpg",
-                "title": "Product publishing dashboard",
-                "alt": "A laptop displaying a dark modern dashboard interface.",
-                "credit": "Copyright/credit: Photo by Neil Fernandez on Unsplash. Used as seeded demo imagery.",
-                "source": "https://unsplash.com/photos/a-modern-laptop-displaying-a-dark-themed-dashboard-6-0ajRI1cgs"
+                "file": "Resources/Public/Styleguide/Frontend/frontend-hero-lagoon.png",
+                "title": "Desiderio frontend in the Lagoon preset",
+                "alt": "Rendered Desiderio frontend hero page in the light Lagoon theme preset.",
+                "credit": "Screenshot of a live Desiderio frontend page.",
+                "source": "https://github.com/dirnbauer/desiderio"
             },
-            "button_text": "Explore channels",
+            "button_text": "Browse the styleguide",
             "button_link": "t3://page?uid=1"
         },
         {
-            "title": "Keep the same voice every release",
-            "lead": "Reusable brand rules keep automated drafts from sounding generic.",
-            "description": "Base every note on your approved examples, glossary, and product language so customer communication stays clear and familiar.",
+            "title": "Dark mode, already done",
+            "lead": "Light and dark live in the same token set — flip the switch and every element follows.",
+            "description": "No second stylesheet, no forgotten corners: the Midnight preset renders this pricing page in WCAG 2.2-checked contrast, straight out of the box.",
             "image": {
-                "file": "Resources/Public/Styleguide/Unsplash/office-deliberate-directions.jpg",
-                "title": "Editorial workspace",
-                "alt": "A bright modern office with glass walls, teal accents, and clean work areas.",
-                "credit": "Copyright/credit: Photo by Deliberate Directions on Unsplash. Used as seeded demo imagery.",
-                "source": "https://unsplash.com/photos/modern-office-space-with-glass-walls-and-light-decor-wlHBYkK2y4k"
+                "file": "Resources/Public/Styleguide/Frontend/frontend-pricing-midnight-dark.png",
+                "title": "Desiderio pricing page in the dark Midnight preset",
+                "alt": "Rendered Desiderio pricing page in the dark Midnight theme preset.",
+                "credit": "Screenshot of a live Desiderio frontend page in dark mode.",
+                "source": "https://github.com/dirnbauer/desiderio"
             },
-            "button_text": "Read the docs",
+            "button_text": "Start free",
             "button_link": "t3://page?uid=1"
         }
     ]

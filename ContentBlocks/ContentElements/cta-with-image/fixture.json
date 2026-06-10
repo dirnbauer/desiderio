@@ -1,15 +1,15 @@
 {
     "_type": "hero",
-    "header": "See your content blocks in the live preview",
-    "description": "Edit a field and watch the frontend update instantly, side by side with the backend form.",
-    "cta_text": "Try the preview",
-    "cta_link": "https://ui.shadcn.com/docs",
+    "header": "Edit your pages right where they live",
+    "description": "Desiderio's Visual Editor turns the frontend into the editing surface — click any of the 255 elements and write inline. Editors stop guessing, reviews stop dragging, and the backend round-trip disappears.",
+    "cta_text": "See the Visual Editor",
+    "cta_link": "https://github.com/dirnbauer/desiderio",
     "image_position": "right",
     "image": {
-        "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-14.jpg",
-        "title": "Team Member portrait",
-        "alternative": "Portrait photo of Team Member.",
-        "description": "Portrait-style photo from Unsplash collection #25880.",
-        "source": "https://unsplash.com/collections/25880"
+        "file": "Resources/Public/Styleguide/Backend/backend-visual-editor.png",
+        "title": "Editing inline in the Desiderio Visual Editor",
+        "alternative": "Desiderio Visual Editor with inline editing active on a content element in the frontend.",
+        "description": "Screenshot of the Desiderio Visual Editor in TYPO3.",
+        "source": "https://github.com/dirnbauer/desiderio"
     }
 }

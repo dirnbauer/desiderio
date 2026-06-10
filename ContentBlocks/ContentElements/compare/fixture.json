@@ -1,27 +1,27 @@
 {
     "_type": "comparison",
     "eyebrow": "Build vs buy",
-    "header": "Why teams switch to us",
-    "subheadline": "See what changes when you stop maintaining a homegrown stack and adopt a platform built for it.",
-    "left_title": "Building it in-house",
-    "left_description": "A do-it-yourself stack works until it doesn't. The hidden cost is the engineering time it quietly eats every quarter.",
+    "header": "Build it yourself vs. buy Desiderio Pro",
+    "subheadline": "Hand-building 255 elements is months of senior developer budget. Desiderio Pro is €49/month — do the math once and never do the templating again.",
+    "left_title": "Build it yourself",
+    "left_description": "Every relaunch starts from zero: templates, backend previews, accessibility, dark mode — months of senior time, and the maintenance is yours forever.",
     "left_points": [
-        {"text": "Months of setup before launch"},
-        {"text": "Two engineers tied up on maintenance"},
-        {"text": "You own every security patch"},
-        {"text": "Scaling means re-architecting"}
+        {"text": "Weeks of templating before editors see a single page"},
+        {"text": "Backend previews and dark mode rarely get built at all"},
+        {"text": "Every accessibility and upgrade fix lands on your team"},
+        {"text": "Each new brand or theme means another build and deploy"}
     ],
-    "left_button_text": "See the full breakdown",
-    "left_button_link": "https://ui.shadcn.com/docs/compare",
+    "left_button_text": "Compare the math",
+    "left_button_link": "https://github.com/dirnbauer/desiderio",
     "right_badge": "Recommended",
-    "right_title": "Switching to our platform",
-    "right_description": "Ship the same outcome in days, then let our team handle uptime, security, and scale while yours builds product.",
+    "right_title": "Buy Desiderio Pro",
+    "right_description": "€49/month, or €490/year with 2 months free: all 255 audited elements plus priority support, guaranteed LTS updates, and early element drops from the creators.",
     "right_points": [
-        {"text": "Live in under a week"},
-        {"text": "99.99% uptime, fully managed"},
-        {"text": "SOC 2 Type II out of the box"},
-        {"text": "Scales to millions of users"}
+        {"text": "255 previewed elements on day one — start free, upgrade anytime"},
+        {"text": "15 runtime presets; ~3 weeks saved per relaunch (customer-reported)"},
+        {"text": "Priority email support with 2-day response"},
+        {"text": "Guaranteed LTS compatibility updates from the maintainers"}
     ],
-    "right_button_text": "Start free trial",
-    "right_button_link": "https://ui.shadcn.com/docs/compare"
+    "right_button_text": "Go Pro for €49/month",
+    "right_button_link": "https://github.com/dirnbauer/desiderio"
 }

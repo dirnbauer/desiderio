@@ -1,45 +1,45 @@
 {
     "_type": "footer",
-    "header": "Explore the site",
+    "header": "Explore the Desiderio styleguide",
     "columns": "4",
     "groups": [
         {
-            "title": "Product",
+            "title": "Chapters 1–5",
             "pages": [
-                { "label": "Features overview", "link": "/product/features" },
-                { "label": "Integrations", "link": "/product/integrations" },
-                { "label": "Pricing", "link": "/pricing" },
-                { "label": "Changelog", "link": "/changelog" },
-                { "label": "Roadmap", "link": "/roadmap" }
+                { "label": "Hero & Landing Intros", "link": "/product/features" },
+                { "label": "Features & Benefits", "link": "/product/integrations" },
+                { "label": "Plans & Pricing", "link": "/pricing" },
+                { "label": "Data & Dashboards", "link": "/changelog" },
+                { "label": "Trust & Social Proof", "link": "/roadmap" }
             ]
         },
         {
-            "title": "Solutions",
+            "title": "Chapters 6–9",
             "pages": [
-                { "label": "For startups", "link": "/solutions/startups" },
-                { "label": "For agencies", "link": "/solutions/agencies" },
-                { "label": "For enterprise", "link": "/solutions/enterprise" },
-                { "label": "Customer stories", "link": "/customers" }
+                { "label": "People & Team", "link": "/solutions/startups" },
+                { "label": "Navigation & Wayfinding", "link": "/solutions/agencies" },
+                { "label": "Footers & Utility Areas", "link": "/solutions/enterprise" },
+                { "label": "Content & Editorial", "link": "/customers" }
             ]
         },
         {
-            "title": "Resources",
+            "title": "Chapter 10 & theming",
             "pages": [
-                { "label": "Documentation", "link": "/docs" },
-                { "label": "Help center", "link": "/help" },
-                { "label": "Blog", "link": "/blog" },
-                { "label": "API reference", "link": "/docs/api" },
-                { "label": "System status", "link": "https://status.example.com" }
+                { "label": "Leads & Conversion", "link": "/docs" },
+                { "label": "15 theme presets", "link": "/help" },
+                { "label": "Per-page themes", "link": "/blog" },
+                { "label": "5 icon libraries", "link": "/docs/api" },
+                { "label": "Dark mode", "link": "https://status.example.com" }
             ]
         },
         {
-            "title": "Company",
+            "title": "Project",
             "pages": [
-                { "label": "About us", "link": "/about" },
-                { "label": "Careers", "link": "/careers" },
-                { "label": "Contact", "link": "/contact" },
+                { "label": "GitHub repository", "link": "https://github.com/dirnbauer/desiderio" },
+                { "label": "TYPO3.org", "link": "https://typo3.org" },
+                { "label": "shadcn/ui", "link": "https://ui.shadcn.com" },
                 { "label": "Privacy policy", "link": "/legal/privacy" },
-                { "label": "Terms of service", "link": "/legal/terms" }
+                { "label": "Imprint", "link": "/legal/terms" }
             ]
         }
     ]

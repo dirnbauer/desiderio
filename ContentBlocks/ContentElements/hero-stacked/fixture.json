@@ -1,16 +1,16 @@
 {
     "_type": "hero",
-    "header": "Analytics your whole team can read",
-    "subheadline": "Replace ten dashboards with one clear view. See traffic, revenue, and retention update in real time.",
-    "badge_text": "Now in public beta",
-    "primary_button_text": "Start free trial",
-    "secondary_button_text": "Watch 2-min demo",
+    "header": "One dropdown in page properties. A whole new website.",
+    "subheadline": "The per-page theme preset overrides the site default and inherits down the rootline — campaign sections, sub-brands, and microsites each get their own look from a single TYPO3 install. Every chapter of this styleguide proves it.",
+    "badge_text": "New in 2.6",
+    "primary_button_text": "Start free",
+    "secondary_button_text": "Read the docs",
     "hero_image": {
-        "file": "Resources/Public/Styleguide/Unsplash/office-turquo-cabbit.jpg",
-        "title": "Modern office atrium",
-        "alternative": "A modern multi-level office atrium with glass railings and warm light.",
-        "description": "Copyright/credit: Photo by Turquo Cabbit on Unsplash. Used as seeded demo imagery.",
-        "source": "https://unsplash.com/photos/modern-office-building-interior-with-multiple-floors-QkGDA4Q4Vdk"
+        "file": "Resources/Public/Styleguide/Backend/backend-page-properties-theme.png",
+        "title": "Per-page theme preset field",
+        "alternative": "TYPO3 page properties showing the Desiderio per-page theme preset selector.",
+        "description": "Screenshot of the TYPO3 backend with Desiderio installed.",
+        "source": "https://github.com/dirnbauer/desiderio"
     },
     "primary_button_link": "https://example.com/desiderio/primary_button_link_1",
     "secondary_button_link": "https://example.com/desiderio/secondary_button_link_1"

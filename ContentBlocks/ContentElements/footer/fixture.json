@@ -1,29 +1,29 @@
 {
     "_type": "footer",
-    "header": "Site footer",
+    "header": "Desiderio site footer",
     "shadcn_layout": "two-columns",
-    "brand": "Northwind",
-    "description": "The workspace where product, design, and engineering ship together. Built for teams that move fast without breaking trust.",
+    "brand": "Desiderio",
+    "description": "shadcn-style content elements for TYPO3 — 255 ready-made elements, 49 Fluid 5 components, and 15 theme presets that repaint the whole site at runtime. Free forever under GPL-2.0; Pro support from €49/month when you want the creators on call.",
     "footer_links": [
         {
-            "label": "Product",
-            "link": "https://example.com/desiderio/link_1"
+            "label": "Components",
+            "link": "https://github.com/dirnbauer/desiderio"
         },
         {
-            "label": "Pricing",
-            "link": "https://example.com/desiderio/link_2"
+            "label": "Themes",
+            "link": "https://ui.shadcn.com/create"
         },
         {
-            "label": "Customers",
-            "link": "https://example.com/desiderio/link_3"
-        },
-        {
-            "label": "Changelog",
-            "link": "https://example.com/desiderio/link_4"
+            "label": "Integrations",
+            "link": "https://github.com/dirnbauer/desiderio"
         },
         {
             "label": "Docs",
-            "link": "https://example.com/desiderio/link_5"
+            "link": "https://github.com/dirnbauer/desiderio"
+        },
+        {
+            "label": "Community",
+            "link": "https://typo3.org"
         }
     ],
     "utility_links": [
@@ -36,13 +36,13 @@
             "link": "https://example.com/desiderio/link_2"
         },
         {
-            "label": "Security",
+            "label": "Imprint",
             "link": "https://example.com/desiderio/link_3"
         },
         {
-            "label": "Status",
-            "link": "https://example.com/desiderio/link_4"
+            "label": "GitHub",
+            "link": "https://github.com/dirnbauer/desiderio"
         }
     ],
-    "copyright": "\u00a9 2026 Northwind Labs, Inc. All rights reserved."
+    "copyright": "© 2026 webconsulting studio. Desiderio is GPL-2.0 licensed."
 }

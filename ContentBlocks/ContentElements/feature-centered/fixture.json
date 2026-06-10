@@ -1,23 +1,23 @@
 {
     "_type": "section",
-    "eyebrow": "Built for trust",
-    "header": "Security and reliability you can count on",
-    "subheadline": "The guarantees that let enterprise teams move sensitive data without second-guessing.",
+    "eyebrow": "Quality gates",
+    "header": "Three gates between every release and your production site",
+    "subheadline": "No Desiderio version ships until static analysis, the template audit, and the full test suite all pass — your safety net, maintained by us.",
     "items": [
         {
             "icon": "shield-check",
-            "title": "SOC 2 Type II certified",
-            "description": "Independently audited controls protect your data end to end, every single day."
+            "title": "PHPStan level max",
+            "description": "The entire codebase is statically analyzed at the strictest level on every single change."
         },
         {
             "icon": "lock",
-            "title": "Encryption everywhere",
-            "description": "Your data is encrypted at rest and in transit with industry-standard AES-256."
+            "title": "11-category template audit",
+            "description": "Zero tolerance for inline styles or hardcoded colors across all 255 element templates."
         },
         {
             "icon": "clock",
-            "title": "99.99% uptime SLA",
-            "description": "A globally redundant platform keeps your dashboards available around the clock."
+            "title": "400 tests on PHP 8.3 and 8.4",
+            "description": "Unit and functional PHPUnit suites run against both PHP versions before every merge."
         }
     ]
 }

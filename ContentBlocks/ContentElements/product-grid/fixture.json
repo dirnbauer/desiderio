@@ -1,85 +1,85 @@
 {
     "_type": "grid",
-    "eyebrow": "New arrivals",
-    "header": "Shop the spring collection",
+    "eyebrow": "Services from the creators",
+    "header": "The people who built it, working on your site",
     "columns": "3",
     "products": [
         {
-            "name": "Aster Lounge Chair",
-            "price": "$420",
-            "description_text": "Solid oak frame with a wool-blend seat.",
-            "link": "https://ui.shadcn.com/",
+            "name": "Installation & setup",
+            "price": "€890",
+            "description_text": "The creators install, configure, and theme Desiderio for you — ship in days, not weeks.",
+            "link": "https://github.com/dirnbauer/desiderio",
             "image": {
-                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-14.jpg",
-                "title": "Team Member portrait",
-                "alternative": "Portrait photo of Team Member.",
-                "description": "Portrait-style photo from Unsplash collection #25880.",
-                "source": "https://unsplash.com/collections/25880"
+                "file": "Resources/Public/Styleguide/Backend/backend-page-module-hero.png",
+                "title": "Desiderio page module preview",
+                "alternative": "TYPO3 page module showing Desiderio content elements with visual backend previews.",
+                "description": "Screenshot of the TYPO3 backend with Desiderio installed.",
+                "source": "https://github.com/dirnbauer/desiderio"
             }
         },
         {
-            "name": "Maple Side Table",
-            "price": "$185",
-            "description_text": "Hand-finished maple with a hidden drawer.",
-            "link": "https://ui.shadcn.com/",
+            "name": "Brand adaptation",
+            "price": "from €1,990",
+            "description_text": "A custom theme preset matched to your brand — WCAG 2.2-checked like the stock 15.",
+            "link": "https://github.com/dirnbauer/desiderio",
             "image": {
-                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-28.jpg",
-                "title": "Team Member portrait",
-                "alternative": "Portrait photo of Team Member.",
-                "description": "Portrait-style photo from Unsplash collection #25880.",
-                "source": "https://unsplash.com/collections/25880"
+                "file": "Resources/Public/Styleguide/Backend/backend-site-settings-theme.png",
+                "title": "Desiderio theme site settings",
+                "alternative": "TYPO3 site settings panel with the Desiderio theme preset category open.",
+                "description": "Screenshot of the TYPO3 backend with Desiderio installed.",
+                "source": "https://github.com/dirnbauer/desiderio"
             }
         },
         {
-            "name": "Linen Floor Lamp",
-            "price": "$240",
-            "description_text": "Warm dimmable light under a linen shade.",
-            "link": "https://ui.shadcn.com/",
+            "name": "Custom element development",
+            "price": "from €390",
+            "description_text": "Per element: new Content Blocks built to the same audit rules as the stock 255.",
+            "link": "https://github.com/dirnbauer/desiderio",
             "image": {
-                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-10.jpg",
-                "title": "Team Member portrait",
-                "alternative": "Portrait photo of Team Member.",
-                "description": "Portrait-style photo from Unsplash collection #25880.",
-                "source": "https://unsplash.com/collections/25880"
+                "file": "Resources/Public/Styleguide/Backend/backend-content-wizard.png",
+                "title": "Desiderio new-content wizard",
+                "alternative": "TYPO3 new-content wizard listing all ten Desiderio element groups.",
+                "description": "Screenshot of the TYPO3 backend with Desiderio installed.",
+                "source": "https://github.com/dirnbauer/desiderio"
             }
         },
         {
-            "name": "Terra Ceramic Vase",
-            "price": "$58",
-            "description_text": "Matte stoneware thrown by hand in Porto.",
-            "link": "https://ui.shadcn.com/",
+            "name": "Editor onboarding workshop",
+            "price": "€690",
+            "description_text": "Half-day remote session: previews, the wizard, the Visual Editor, per-page themes.",
+            "link": "https://github.com/dirnbauer/desiderio",
             "image": {
-                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-08.jpg",
-                "title": "Team Member portrait",
-                "alternative": "Portrait photo of Team Member.",
-                "description": "Portrait-style photo from Unsplash collection #25880.",
-                "source": "https://unsplash.com/collections/25880"
+                "file": "Resources/Public/Styleguide/Backend/backend-visual-editor.png",
+                "title": "Editing in the Desiderio Visual Editor",
+                "alternative": "Desiderio Visual Editor with a content element being edited inline in the live page preview.",
+                "description": "Screenshot of the Desiderio Visual Editor in TYPO3.",
+                "source": "https://github.com/dirnbauer/desiderio"
             }
         },
         {
-            "name": "Drift Wool Throw",
-            "price": "$95",
-            "description_text": "Heavyweight merino, woven in Donegal.",
-            "link": "https://ui.shadcn.com/",
+            "name": "TYPO3 LTS upgrade",
+            "price": "from €2,400",
+            "description_text": "Planned, executed, and regression-checked by the maintainers themselves.",
+            "link": "https://github.com/dirnbauer/desiderio",
             "image": {
-                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-21.jpg",
-                "title": "Team Member portrait",
-                "alternative": "Portrait photo of Team Member.",
-                "description": "Portrait-style photo from Unsplash collection #25880.",
-                "source": "https://unsplash.com/collections/25880"
+                "file": "Resources/Public/Styleguide/Frontend/frontend-hero-lagoon.png",
+                "title": "Desiderio frontend, Lagoon preset",
+                "alternative": "Desiderio demo site running on the current TYPO3 LTS with the Lagoon theme preset.",
+                "description": "Frontend screenshot of a Desiderio demo site.",
+                "source": "https://github.com/dirnbauer/desiderio"
             }
         },
         {
-            "name": "Harbor Wall Clock",
-            "price": "$72",
-            "description_text": "Silent quartz movement, brushed-steel face.",
-            "link": "https://ui.shadcn.com/",
+            "name": "Managed TYPO3 hosting",
+            "price": "€99/mo",
+            "description_text": "Updates, daily backups, monitoring, EU datacenter. Business at €179/mo adds staging, 99.9% SLA, CDN.",
+            "link": "https://github.com/dirnbauer/desiderio",
             "image": {
-                "file": "Resources/Public/Styleguide/Unsplash/People/team-grid-03.jpg",
-                "title": "Team Member portrait",
-                "alternative": "Portrait photo of Team Member.",
-                "description": "Portrait-style photo from Unsplash collection #25880.",
-                "source": "https://unsplash.com/collections/25880"
+                "file": "Resources/Public/Styleguide/Frontend/frontend-dashboards-forest.png",
+                "title": "Desiderio dashboards page, Forest preset",
+                "alternative": "Desiderio demo site with monitoring-style dashboard charts in the Forest theme preset.",
+                "description": "Frontend screenshot of a Desiderio demo site.",
+                "source": "https://github.com/dirnbauer/desiderio"
             }
         }
     ]

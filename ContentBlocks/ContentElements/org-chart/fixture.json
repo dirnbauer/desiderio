@@ -1,39 +1,39 @@
 {
     "_type": "team",
-    "header": "How we are organized",
-    "subheadline": "A flat structure built around small, cross-functional teams that ship independently.",
+    "header": "How the Desiderio team is organized",
+    "subheadline": "A flat structure at webconsulting studio: small teams that own components, themes, and integrations end to end.",
     "levels": [
         {
             "level_label": "Leadership",
             "people": [
                 {
                     "name": "Elena Vogt",
-                    "role": "Chief Executive Officer"
+                    "role": "Studio Lead"
                 },
                 {
                     "name": "Jonas Klein",
-                    "role": "Frontend Engineer"
+                    "role": "Design System Lead"
                 },
                 {
                     "name": "Sofia Berg",
-                    "role": "Customer Success"
+                    "role": "Head of Quality"
                 }
             ]
         },
         {
-            "level_label": "Department leads",
+            "level_label": "Area leads",
             "people": [
                 {
                     "name": "Marcus Reinhardt",
-                    "role": "VP Engineering"
+                    "role": "Components Lead"
                 },
                 {
                     "name": "Priya Anand",
-                    "role": "VP Product"
+                    "role": "Themes & Tokens Lead"
                 },
                 {
                     "name": "Tobias Lindqvist",
-                    "role": "VP Revenue"
+                    "role": "Integrations Lead"
                 }
             ]
         },
@@ -41,20 +41,20 @@
             "level_label": "Teams",
             "people": [
                 {
-                    "name": "Platform",
-                    "role": "8 engineers"
+                    "name": "Components",
+                    "role": "5 engineers"
                 },
                 {
-                    "name": "Growth",
-                    "role": "6 people"
+                    "name": "Themes",
+                    "role": "3 designers"
                 },
                 {
-                    "name": "Design",
-                    "role": "4 designers"
+                    "name": "Integrations",
+                    "role": "4 engineers"
                 },
                 {
-                    "name": "Customer Success",
-                    "role": "7 people"
+                    "name": "Docs & QA",
+                    "role": "4 people"
                 }
             ]
         }

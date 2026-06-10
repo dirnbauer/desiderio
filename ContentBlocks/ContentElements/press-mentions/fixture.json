@@ -1,7 +1,7 @@
 {
     "_type": "grid",
-    "eyebrow": "In the press",
-    "header": "What the press is saying",
+    "eyebrow": "Demo press wall",
+    "header": "Press mentions, seeded as demo content",
     "mentions": [
         {
             "publication": "TechCrunch",
@@ -9,9 +9,9 @@
                 "file": "Resources/Public/Styleguide/Logos/Press/techcrunch.svg",
                 "title": "TechCrunch press logo",
                 "alternative": "TechCrunch press logo.",
-                "description": "Press publication logo."
+                "description": "Press publication logo used as demo data."
             },
-            "quote": "One of the fastest-growing developer tools we have tracked this year, with adoption doubling every quarter.",
+            "quote": "An open-source kit that gives TYPO3 a real design system: 255 elements, 15 runtime themes, and backend previews editors actually trust.",
             "date": "March 2025",
             "link": "https://techcrunch.com/"
         },
@@ -21,9 +21,9 @@
                 "file": "Resources/Public/Styleguide/Logos/Press/forbes.svg",
                 "title": "Forbes press logo",
                 "alternative": "Forbes press logo.",
-                "description": "Press publication logo."
+                "description": "Press publication logo used as demo data."
             },
-            "quote": "A rare product that makes a genuinely complex workflow feel effortless for non-technical teams.",
+            "quote": "Per-page theme presets quietly solve multi-brand publishing — one install, any number of visual identities.",
             "date": "January 2025",
             "link": "https://www.forbes.com/"
         },
@@ -33,9 +33,9 @@
                 "file": "Resources/Public/Styleguide/Logos/Press/the-verge.svg",
                 "title": "The Verge press logo",
                 "alternative": "The Verge press logo.",
-                "description": "Press publication logo."
+                "description": "Press publication logo used as demo data."
             },
-            "quote": "The onboarding is so smooth that most teams ship their first integration in under an hour.",
+            "quote": "Runtime theme switching without a rebuild is the kind of trick site builders promise; this one just ships it.",
             "date": "November 2024",
             "link": "https://www.theverge.com/"
         }

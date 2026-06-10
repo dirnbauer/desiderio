@@ -1,14 +1,26 @@
 {
     "_type": "nav",
     "header": "Primary",
-    "brand": "Northwind Studio",
+    "brand": "Desiderio",
     "brand_link": "t3://page?uid=1",
     "nav_items": [
-        { "label": "Product", "link": "t3://page?uid=1" },
-        { "label": "Features", "link": "t3://page?uid=1" },
-        { "label": "Pricing", "link": "t3://page?uid=1" },
-        { "label": "Docs", "link": "https://ui.shadcn.com/docs" }
+        {
+            "label": "Components",
+            "link": "t3://page?uid=1"
+        },
+        {
+            "label": "Themes",
+            "link": "t3://page?uid=1"
+        },
+        {
+            "label": "Pricing",
+            "link": "t3://page?uid=1"
+        },
+        {
+            "label": "Docs",
+            "link": "https://ui.shadcn.com/docs"
+        }
     ],
-    "button_text": "Start free trial",
+    "button_text": "Start free",
     "button_link": "t3://page?uid=1"
 }

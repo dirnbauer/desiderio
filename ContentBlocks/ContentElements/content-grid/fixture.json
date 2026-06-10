@@ -1,22 +1,22 @@
 {
     "_type": "grid",
-    "header": "Everything you need to ship faster",
+    "header": "Three layers. One package. Zero template projects.",
     "columns": "3",
     "items": [
         {
-            "title": "Component library",
-            "content": "Forty production-ready blocks you can drop into any page and restyle with a single token swap.",
-            "link": "https://example.com/docs/components"
+            "title": "255 content elements",
+            "content": "Ten groups of production-ready Content Blocks — from heroes to footers — each with a backend preview and seeded demo content. The work you'd normally budget weeks for is already done.",
+            "link": "https://github.com/dirnbauer/desiderio"
         },
         {
-            "title": "Accessibility built in",
-            "content": "Semantic markup, keyboard support, and visible focus ship by default — no retrofitting later.",
-            "link": "https://example.com/docs/accessibility"
+            "title": "49 Fluid 5 components",
+            "content": "17 atoms, 28 molecules, and 4 layout primitives like d:atom.button and d:layout.section keep markup consistent everywhere — including the custom elements you build on top.",
+            "link": "https://github.com/dirnbauer/desiderio"
         },
         {
-            "title": "Theme presets",
-            "content": "Switch the entire look from one preset without touching a line of template code.",
-            "link": "https://example.com/docs/theming"
+            "title": "15 theme presets",
+            "content": "Five shadcn/ui presets plus ten house designs, all with dark mode and WCAG 2.2-checked contrast. Switch sitewide or per page subtree — at runtime, no rebuild.",
+            "link": "https://ui.shadcn.com"
         }
     ]
 }

@@ -1,27 +1,27 @@
 {
     "_type": "stats",
-    "header": "System status",
+    "header": "Desiderio project status — nothing to hide",
     "overall_status": "degraded",
     "items": [
         {
-            "name": "API & SDK",
+            "name": "Template audit",
             "status": "operational",
-            "detail": "All endpoints responding normally"
+            "detail": "0 findings across 255 content elements"
         },
         {
-            "name": "Web dashboard",
+            "name": "CI pipeline (PHP 8.3 & 8.4)",
             "status": "operational",
-            "detail": "No issues reported"
+            "detail": "All 400+ unit and functional tests green"
         },
         {
-            "name": "Webhooks & integrations",
+            "name": "Styleguide demo site",
             "status": "degraded",
-            "detail": "Delivery delays of up to 5 minutes"
+            "detail": "Reseed in progress, previews may lag briefly"
         },
         {
-            "name": "Background jobs",
+            "name": "Documentation build",
             "status": "maintenance",
-            "detail": "Scheduled upgrade until 14:00 UTC"
+            "detail": "Scheduled rendering until 14:00 UTC"
         }
     ]
 }

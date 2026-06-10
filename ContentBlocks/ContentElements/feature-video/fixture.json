@@ -1,8 +1,8 @@
 {
     "_type": "grid",
     "eyebrow": "Product tour",
-    "header": "See Desiderio build a page in two minutes",
-    "description": "Watch an editor go from a blank page to a published, on-brand layout without writing a line of code.",
+    "header": "From first edit to a polished page — watch it happen",
+    "description": "A short tour of the Desiderio workflow: pick an element from the wizard, edit it inline in the Visual Editor, then switch the theme preset and watch the whole site repaint at runtime. This is what 'installed before lunch' looks like.",
     "video_url": "https://www.youtube.com/embed/aqz-KE-bpKQ",
     "video_file": {
         "file": "Resources/Public/Styleguide/Unsplash/office-turquo-cabbit.jpg",
@@ -12,10 +12,10 @@
         "source": "https://unsplash.com/photos/modern-office-building-interior-with-multiple-floors-QkGDA4Q4Vdk"
     },
     "poster": {
-        "file": "Resources/Public/Styleguide/Unsplash/laptop-mimi-thian.jpg",
-        "title": "Laptop work session",
-        "alternative": "A laptop open on a person's lap during a focused work session.",
-        "description": "Copyright/credit: Photo by Mimi Thian on Unsplash. Used as seeded demo imagery.",
-        "source": "https://unsplash.com/photos/macbook-on-womans-lap-i5cd_SlY8XY"
+        "file": "Resources/Public/Styleguide/Frontend/frontend-hero-lagoon.png",
+        "title": "Desiderio frontend in the Lagoon preset",
+        "alternative": "Rendered Desiderio frontend hero page in the light Lagoon theme preset.",
+        "description": "Screenshot of a live Desiderio frontend page, used as the video poster.",
+        "source": "https://github.com/dirnbauer/desiderio"
     }
 }

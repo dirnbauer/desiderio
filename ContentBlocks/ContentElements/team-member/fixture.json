@@ -7,8 +7,8 @@
         "alternative": "Portrait photo of Lea Fischer.",
         "description": "Portrait photo for the team member profile."
     },
-    "role": "Head of Product Design",
-    "bio": "Lea leads design and accessibility, turning research into interfaces people can actually use. Before joining, she spent six years on the GOV.UK Design System, where her team rebuilt core components to meet WCAG 2.2 AA without slowing delivery. She now runs our weekly design critique and mentors the wider product team on inclusive patterns.",
+    "role": "Theme Designer, Desiderio",
+    "bio": "Lea designed the ten house presets — from Aurora to Citrus — that ship alongside the five shadcn styles. She defined Desiderio's OKLCH token scale so dark mode, density, and radius settings hold up in every theme, and she drove the per-page preset feature in 2.6 that lets each styleguide chapter run its own look. She also reviews every new component for token-only styling before it merges.",
     "email": "lea.fischer@example.com",
     "phone": "+1 (555) 012-3456",
     "social_links": [
@@ -21,8 +21,8 @@
             "url": "https://mastodon.social/@example"
         },
         {
-            "platform": "Platform for Editor Workflow Upgrade 3",
-            "url": "https://example.com/desiderio/url_3"
+            "platform": "GitHub",
+            "url": "https://github.com/dirnbauer/desiderio"
         }
     ]
 }

@@ -1,22 +1,22 @@
 {
     "_type": "list",
-    "header": "Tabs for polished editorial systems",
+    "header": "Three reasons teams switch to Desiderio",
     "variant": "default",
     "default_tab": 0,
     "items": [
         {
-            "tab_label": "Sleek shadcn spacing",
-            "tab_content": "Organize related topics into focused panels so visitors compare options without leaving the page. The first tab stays selected by default, and spacing stays aligned with the rest of your editorial layout.",
+            "tab_label": "Theming",
+            "tab_content": "Fifteen shadcn presets repaint your whole site at runtime — per-page presets give any subtree its own look, and dark mode with WCAG 2.2-checked contrast is built into every preset. A redesign in a click.",
             "tab_icon": "sparkles"
         },
         {
-            "tab_label": "Responsive QA",
-            "tab_content": "Preview how tab labels wrap, how icons align, and how panel copy scales on smaller breakpoints. Each seeded panel carries enough text to judge line length, hierarchy, and the gap between the tab list and body content.",
+            "tab_label": "Quality",
+            "tab_content": "PHPStan at level max, 400-test CI on PHP 8.3 and 8.4, and an 11-category template audit with zero tolerance for inline styles or hardcoded colors. Quality you can verify, not just believe.",
             "tab_icon": "shield-check"
         },
         {
-            "tab_label": "Editorial workflow",
-            "tab_content": "Give editors realistic labels, icons, and body copy so previews feel publish-ready. The tabs element should read like a finished section, not a placeholder, which makes spacing and default-state checks faster during QA.",
+            "tab_label": "Editor experience",
+            "tab_content": "All 255 elements are TYPO3 Content Blocks with real backend previews, sorted into ten wizard groups. One seeder command fills the styleguide with realistic content — editors never face a blank page.",
             "tab_icon": "book-open"
         }
     ]

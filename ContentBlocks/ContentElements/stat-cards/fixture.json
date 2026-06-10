@@ -1,29 +1,29 @@
 {
     "_type": "stats",
-    "header": "This month at a glance",
+    "header": "The whole kit, four numbers",
     "columns": "4",
     "items": [
         {
-            "label": "Monthly recurring revenue",
-            "value": "$48.2K",
-            "change": "+12.5% vs last month",
+            "label": "Content elements",
+            "value": "255",
+            "change": "+27 since v2.4",
             "trend": "up"
         },
         {
-            "label": "Active customers",
-            "value": "2,418",
-            "change": "+186 net new",
+            "label": "Theme presets",
+            "value": "15",
+            "change": "+10 house presets",
             "trend": "up"
         },
         {
-            "label": "Churn rate",
-            "value": "1.8%",
-            "change": "-0.4 pts",
+            "label": "Audit findings",
+            "value": "0",
+            "change": "-3 vs v2.5",
             "trend": "down"
         },
         {
-            "label": "Avg. response time",
-            "value": "2h 14m",
+            "label": "Icon libraries",
+            "value": "5",
             "change": "No change",
             "trend": "neutral"
         }

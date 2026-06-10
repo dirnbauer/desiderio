@@ -1,22 +1,22 @@
 {
     "_type": "team",
-    "header": "Organized by the work, not the org chart",
-    "subheadline": "Four cross-functional teams own their roadmaps end to end \u2014 from first sketch to production support.",
+    "header": "Organized around the design system",
+    "subheadline": "Three small teams at webconsulting studio own Desiderio end to end — from token design to the seeded styleguide.",
     "department_items": [
         {
-            "name": "Product & Design",
+            "name": "Design System",
             "members": [
                 {
                     "name": "Lea Fischer",
-                    "role": "Head of Design"
+                    "role": "Design System Lead"
                 },
                 {
                     "name": "Tomas Varga",
-                    "role": "Product Manager"
+                    "role": "Theme Designer"
                 },
                 {
                     "name": "Amelie Roux",
-                    "role": "UX Researcher"
+                    "role": "Token & Dark Mode Designer"
                 }
             ]
         },
@@ -25,32 +25,32 @@
             "members": [
                 {
                     "name": "Mara Weiss",
-                    "role": "Engineering Lead"
+                    "role": "Fluid Components Engineer"
                 },
                 {
                     "name": "Daniel Okafor",
-                    "role": "Backend Engineer"
+                    "role": "TYPO3 Integrator"
                 },
                 {
                     "name": "Sven Lindqvist",
-                    "role": "Frontend Engineer"
+                    "role": "Seeder & CLI Engineer"
                 }
             ]
         },
         {
-            "name": "Customer Success",
+            "name": "Quality & Docs",
             "members": [
                 {
                     "name": "Priya Nair",
-                    "role": "Success Lead"
+                    "role": "Docs & DX"
                 },
                 {
                     "name": "Jonas Klein",
-                    "role": "Onboarding Specialist"
+                    "role": "Accessibility Engineer"
                 },
                 {
                     "name": "Sofia Berg",
-                    "role": "Customer Success"
+                    "role": "Template Audit Lead"
                 }
             ]
         }

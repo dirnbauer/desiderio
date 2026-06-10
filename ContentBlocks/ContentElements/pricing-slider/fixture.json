@@ -1,29 +1,29 @@
 {
     "_type": "pricing",
-    "header": "Pay only for what you send",
-    "eyebrow": "Usage pricing",
-    "description": "Slide to match your monthly volume. Every tier includes the full API, webhooks, and 24/7 monitoring.",
-    "unit_label": "API requests / mo",
+    "header": "Custom elements, priced like clockwork",
+    "eyebrow": "Element estimator",
+    "description": "Slide to the number of custom content elements your project needs. Each one is built by the creators from €390, passes the same audit as the stock 255, and ships with a backend preview. Need standing capacity instead? Creator Care adds 4 dev hours a month for €490.",
+    "unit_label": "Custom elements",
     "tiers": [
         {
-            "volume": "Up to 50K",
-            "price": "$0",
-            "included_features": "Free forever"
+            "volume": "1",
+            "price": "from €390",
+            "included_features": "One audit-clean element, backend preview included"
         },
         {
-            "volume": "500K",
-            "price": "$49",
-            "included_features": "Email support"
+            "volume": "3",
+            "price": "from €1,170",
+            "included_features": "A small family: card, list, and detail variants"
         },
         {
-            "volume": "2M",
-            "price": "$149",
-            "included_features": "Priority support"
+            "volume": "5",
+            "price": "from €1,950",
+            "included_features": "A full custom group in your content wizard"
         },
         {
-            "volume": "10M",
-            "price": "$399",
-            "included_features": "Dedicated support + SLA"
+            "volume": "10",
+            "price": "from €3,900",
+            "included_features": "Your own element library, built by the creators"
         }
     ]
 }

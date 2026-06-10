@@ -60,23 +60,115 @@ $shadowTokens = [
     'md' => 'var(--shadow-md)',
 ];
 
+// --------------------------------------------------------------------------
+// WCAG 2.2 contrast solver. OKLCH lightness is perceptual, but WCAG contrast
+// works on sRGB relative luminance, which shifts with hue and chroma — a
+// violet and an emerald at the same OKLCH L have very different ratios
+// against white. Lightness is therefore solved per hue so every preset meets
+// 4.5:1 for text on the accent and 3:1 for the accent against the page
+// background, in both color schemes.
+// --------------------------------------------------------------------------
+
+/** @return array{float, float, float} Gamma-encoded sRGB, clamped to gamut. */
+function oklchToSrgb(float $L, float $C, float $H): array
+{
+    $hr = deg2rad($H);
+    $a = $C * cos($hr);
+    $b = $C * sin($hr);
+    $l_ = $L + 0.3963377774 * $a + 0.2158037573 * $b;
+    $m_ = $L - 0.1055613458 * $a - 0.0638541728 * $b;
+    $s_ = $L - 0.0894841775 * $a - 1.2914855480 * $b;
+    $l = $l_ ** 3;
+    $m = $m_ ** 3;
+    $s = $s_ ** 3;
+    $r = +4.0767416621 * $l - 3.3077115913 * $m + 0.2309699292 * $s;
+    $g = -1.2684380046 * $l + 2.6097574011 * $m - 0.3413193965 * $s;
+    $bl = -0.0041960863 * $l - 0.7034186147 * $m + 1.7076147010 * $s;
+    $gam = static function (float $c): float {
+        $c = max(0.0, min(1.0, $c));
+
+        return $c <= 0.0031308 ? 12.92 * $c : 1.055 * $c ** (1 / 2.4) - 0.055;
+    };
+
+    return [$gam($r), $gam($g), $gam($bl)];
+}
+
+/** @param array{float, float, float} $rgb */
+function relativeLuminance(array $rgb): float
+{
+    $lin = static fn (float $c): float => $c <= 0.04045 ? $c / 12.92 : (($c + 0.055) / 1.055) ** 2.4;
+
+    return 0.2126 * $lin($rgb[0]) + 0.7152 * $lin($rgb[1]) + 0.0722 * $lin($rgb[2]);
+}
+
+/**
+ * @param array{float, float, float} $a
+ * @param array{float, float, float} $b
+ */
+function contrastRatio(array $a, array $b): float
+{
+    $l1 = relativeLuminance($a);
+    $l2 = relativeLuminance($b);
+    if ($l1 < $l2) {
+        [$l1, $l2] = [$l2, $l1];
+    }
+
+    return ($l1 + 0.05) / ($l2 + 0.05);
+}
+
+/**
+ * Largest accent lightness in [$min, $max] whose contrast against $reference
+ * still meets $target. Contrast against a LIGHTER reference shrinks as L
+ * grows, so the boundary is found by bisection from above.
+ *
+ * @param array{float, float, float} $reference
+ */
+function solveMaxLightness(float $min, float $max, float $chroma, int $hue, array $reference, float $target): float
+{
+    for ($i = 0; $i < 40; $i++) {
+        $mid = ($min + $max) / 2;
+        if (contrastRatio(oklchToSrgb($mid, $chroma, (float)$hue), $reference) >= $target) {
+            $min = $mid;
+        } else {
+            $max = $mid;
+        }
+    }
+
+    return round($min, 3);
+}
+
 /**
  * @return array{light: array<string,string>, dark: array<string,string>}
  */
 function accentTokens(int $hue, bool $lightAccent): array
 {
     $h = (string) $hue;
+    // Solver targets carry a small margin above the WCAG 2.2 minima
+    // (4.5:1 text, 3:1 non-text) to absorb browser gamut-mapping drift.
+    $textTarget = 4.55;
+    $uiTarget = 3.05;
+    $whiteFg = oklchToSrgb(0.985, 0.0, 0.0);
+    $lightBg = oklchToSrgb(1.0, 0.0, 0.0);
+
     if ($lightAccent) {
-        // Bright accents (amber/lime) need a dark foreground for contrast.
-        $lp = "oklch(0.82 0.16 {$h})";
-        $lpFg = "oklch(0.27 0.05 {$h})";
+        // Bright accents (amber/lime): dark text on the accent. The light-mode
+        // accent must also hold 3:1 against the white page background.
+        $lpL = solveMaxLightness(0.4, 0.9, 0.16, $hue, $lightBg, $uiTarget);
+        $lp = "oklch({$lpL} 0.16 {$h})";
+        $lpFgL = solveMaxLightness(0.1, 0.45, 0.05, $hue, oklchToSrgb($lpL, 0.16, (float)$hue), $textTarget);
+        $lpFg = "oklch({$lpFgL} 0.05 {$h})";
         $dp = "oklch(0.84 0.17 {$h})";
-        $dpFg = "oklch(0.26 0.05 {$h})";
+        $dpFgL = solveMaxLightness(0.1, 0.45, 0.05, $hue, oklchToSrgb(0.84, 0.17, (float)$hue), $textTarget);
+        $dpFg = "oklch({$dpFgL} 0.05 {$h})";
     } else {
-        $lp = "oklch(0.55 0.2 {$h})";
+        // Saturated accents: white text in light mode (solve the accent), a
+        // brighter accent with dark text in dark mode (shadcn convention).
+        $lpL = solveMaxLightness(0.3, 0.65, 0.2, $hue, $whiteFg, $textTarget);
+        $lp = "oklch({$lpL} 0.2 {$h})";
         $lpFg = 'oklch(0.985 0 0)';
         $dp = "oklch(0.66 0.18 {$h})";
-        $dpFg = 'oklch(0.985 0 0)';
+        $dpFgL = solveMaxLightness(0.1, 0.4, 0.035, $hue, oklchToSrgb(0.66, 0.18, (float)$hue), $textTarget);
+        $dpFg = "oklch({$dpFgL} 0.035 {$h})";
     }
 
     return [
@@ -110,8 +202,32 @@ $enumLines = [];
 $mapLines = [];
 $iconLines = [];
 
+$contrastFailures = [];
+$parseOklch = static function (string $value): array {
+    preg_match('/oklch\(([\d.]+)\s+([\d.]+)\s+([\d.]+)\)/', $value, $m);
+
+    return oklchToSrgb((float)$m[1], (float)$m[2], (float)$m[3]);
+};
+
 foreach ($presets as [$id, $label, $hue, $lightAccent, $radius, $fontKey, $icon, $density, $ringWidth, $shadow]) {
     $tokens = accentTokens($hue, $lightAccent);
+
+    // WCAG 2.2 verification: text on accent 4.5:1, accent on page background 3:1.
+    foreach (['light' => oklchToSrgb(1.0, 0.0, 0.0), 'dark' => oklchToSrgb(0.145, 0.0, 0.0)] as $mode => $background) {
+        $primary = $parseOklch($tokens[$mode]['--primary']);
+        $primaryFg = $parseOklch($tokens[$mode]['--primary-foreground']);
+        $accent = $parseOklch($tokens[$mode]['--accent']);
+        $accentFg = $parseOklch($tokens[$mode]['--accent-foreground']);
+        foreach ([
+            ['primary-foreground/primary', contrastRatio($primaryFg, $primary), 4.5],
+            ['accent-foreground/accent', contrastRatio($accentFg, $accent), 4.5],
+            ['primary/background', contrastRatio($primary, $background), 3.0],
+        ] as [$pair, $ratio, $minimum]) {
+            if ($ratio < $minimum) {
+                $contrastFailures[] = sprintf('%s/%s %s = %.2f (< %.1f)', $id, $mode, $pair, $ratio, $minimum);
+            }
+        }
+    }
 
     // Light block: accent + radius + fonts + density + focus-ring + elevation.
     $css .= "\nbody[data-shadcn-preset=\"{$id}\"] {\n";
@@ -146,6 +262,11 @@ foreach ($presets as [$id, $label, $hue, $lightAccent, $radius, $fontKey, $icon,
 }
 
 $css .= "\n/* === END Desiderio house presets === */\n";
+
+if ($contrastFailures !== []) {
+    fwrite(STDERR, "WCAG contrast verification failed:\n" . implode("\n", $contrastFailures) . "\n");
+    exit(1);
+}
 
 // Idempotent insert/replace into shadcn-theme.css, before the [data-font] override section.
 $theme = (string) file_get_contents($themePath);

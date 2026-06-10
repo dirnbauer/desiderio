@@ -86,7 +86,9 @@ final class ShadcnThemeTest extends TestCase
         self::assertStringContainsString('Resources/Public/Js/desiderio.js', $typoScript);
         self::assertStringContainsString('Resources/Public/Js/charts.js', $typoScript);
         self::assertStringContainsString('Resources/Public/Js/styleguide.js', $typoScript);
-        self::assertStringContainsString('data-shadcn-preset="{$desiderio.shadcn.preset}"', $typoScript);
+        self::assertStringContainsString('data-shadcn-preset="', $typoScript);
+        self::assertStringContainsString('levelfield:-1, tx_desiderio_shadcn_preset, slide', $typoScript);
+        self::assertStringContainsString('ifEmpty = {$desiderio.shadcn.preset}', $typoScript);
         self::assertStringContainsString('data-shadcn-style="{$desiderio.shadcn.style}"', $typoScript);
         self::assertStringContainsString('data-icon-library="{$desiderio.shadcn.iconLibrary}"', $typoScript);
     }
@@ -194,7 +196,9 @@ final class ShadcnThemeTest extends TestCase
         }
 
         // House presets re-theme the accent and radius; the mono preset is also compact.
-        self::assertStringContainsString('--primary: oklch(0.55 0.2 293)', $themeCss);
+        // The exact lightness is solved per hue for WCAG 2.2 contrast, so only
+        // chroma and hue are pinned here.
+        self::assertMatchesRegularExpression('/--primary: oklch\([\d.]+ 0\.2 293\)/', $themeCss);
         self::assertMatchesRegularExpression('/body\[data-shadcn-preset="citrus"\][^}]*--d-control-h: 2rem;/s', $themeCss);
 
         // House presets also vary density, focus-ring width, and surface elevation.

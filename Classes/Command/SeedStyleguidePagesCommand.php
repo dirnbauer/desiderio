@@ -15,6 +15,7 @@ use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Resource\StorageRepository;
 use Webconsulting\Desiderio\Data\StyleguideContentGroups;
+use Webconsulting\Desiderio\Data\StyleguideShowcasePages;
 use Webconsulting\Desiderio\Seeding\CollectionCleanupService;
 use Webconsulting\Desiderio\Seeding\ContentBlockCollectionMap;
 use Webconsulting\Desiderio\Seeding\ContentElementSeeder;
@@ -22,6 +23,7 @@ use Webconsulting\Desiderio\Seeding\DatabaseSchemaHelper;
 use Webconsulting\Desiderio\Seeding\DesiderioContentCleaner;
 use Webconsulting\Desiderio\Seeding\LiveWorkspaceQueryHelper;
 use Webconsulting\Desiderio\Seeding\SeedPageUpserter;
+use Webconsulting\Desiderio\Seeding\StarterContentBuilder;
 use Webconsulting\Desiderio\Seeding\StyleguideCollectionAliasPolicy;
 use Webconsulting\Desiderio\Seeding\StyleguideDemoValueGenerator;
 use Webconsulting\Desiderio\Seeding\StyleguideFixtureResolver;
@@ -58,6 +60,7 @@ final class SeedStyleguidePagesCommand extends Command
     private ?DesiderioContentCleaner $contentCleaner = null;
     private ?ContentElementSeeder $contentElementSeeder = null;
     private ?StyleguideFixtureResolver $fixtureResolver = null;
+    private ?StarterContentBuilder $starterContentBuilder = null;
 
     public function __construct(
         private readonly ConnectionPool $connectionPool,
@@ -142,14 +145,19 @@ final class SeedStyleguidePagesCommand extends Command
             return self::FAILURE;
         }
         $groups = StyleguideContentGroups::getGroupsWithFixtures();
+        $showcasePages = StyleguideShowcasePages::subpages();
         $totalElements = array_sum(array_map(
             static fn (array $group): int => count($group['elements']),
             $groups
-        ));
+        )) + StyleguideShowcasePages::contentElementCount();
 
         if ($dryRun) {
             $io->title('Desiderio styleguide seed dry run');
             $listing = [];
+            $listing[] = sprintf('Homepage (on parent page): %d marketing elements', count(StyleguideShowcasePages::homeContent()));
+            foreach ($showcasePages as $page) {
+                $listing[] = sprintf('%s: %d elements', $page['title'], count($page['content']));
+            }
             foreach ($groups as $index => $group) {
                 $listing[] = sprintf(
                     '%s: %d elements — theme "%s"',
@@ -168,7 +176,7 @@ final class SeedStyleguidePagesCommand extends Command
             }
             $io->success(sprintf(
                 'Would create or update %d styleguide pages and %d content elements below page uid %d%s.',
-                count($groups),
+                count($groups) + count($showcasePages),
                 $totalElements,
                 $parentPid,
                 $skipPowermail ? '' : sprintf(', plus %d powermail demo forms with EN/DE pages if powermail tables are available', count($this->getPowermailDemoSeeder()->getDemoForms()))
@@ -187,6 +195,8 @@ final class SeedStyleguidePagesCommand extends Command
         $contentCleaner = $this->getContentCleaner();
         $contentElementSeeder = $this->getContentElementSeeder();
 
+        $linkTargets = [];
+
         foreach ($groups as $index => $group) {
             $title = (string)$group['groupTitle'];
             $slug = '/desiderio-' . (string)$group['groupId'];
@@ -202,6 +212,8 @@ final class SeedStyleguidePagesCommand extends Command
                 $pageUpserter->update($pageUid, $title, $slug, $sorting, $now, $pageColumns, $pageAttributes);
             }
 
+            $linkTargets['chapter-' . (string)$group['groupId']] = $pageUid;
+
             $contentCleaner->softDeleteSeededContent($pageUid, $now, [], true);
 
             foreach ($group['elements'] as $elementIndex => $element) {
@@ -211,6 +223,44 @@ final class SeedStyleguidePagesCommand extends Command
                     (string)$element['name'],
                     $element['fixture'],
                     ($elementIndex + 1) * 256,
+                    $now,
+                    $contentColumns
+                );
+
+                $contentElementSeeder->insert($pageUid, $now, $contentData);
+                $createdContentElements++;
+            }
+        }
+
+        // Marketing showcase: subpages first (so internal links resolve), then
+        // homepage content on the parent page itself, then subpage content.
+        $showcaseBlocks = [];
+        foreach ($showcasePages as $index => $page) {
+            $sorting = ($index + 1) * 16;
+            $pageAttributes = ['nav_title' => $page['navTitle'], 'abstract' => $page['abstract']];
+
+            $pageUid = $pageUpserter->findExistingPageUid($parentPid, $page['title'], $page['slug'], $pageColumns);
+            if ($pageUid === null) {
+                $pageUid = $pageUpserter->create($parentPid, $page['title'], $page['slug'], $sorting, $now, $pageColumns, $pageAttributes);
+                $createdPages++;
+            } else {
+                $pageUpserter->update($pageUid, $page['title'], $page['slug'], $sorting, $now, $pageColumns, $pageAttributes);
+            }
+
+            $linkTargets[ltrim($page['slug'], '/')] = $pageUid;
+            $showcaseBlocks[$pageUid] = $page['content'];
+        }
+
+        $showcaseBlocks[$parentPid] = StyleguideShowcasePages::homeContent();
+
+        foreach ($showcaseBlocks as $pageUid => $blocks) {
+            $contentCleaner->softDeleteSeededContent($pageUid, $now, [], true);
+            foreach ($blocks as $blockIndex => $block) {
+                $block = $this->substituteLinkPlaceholders($block, $linkTargets);
+                $contentData = $this->getStarterContentBuilder()->buildContentInsert(
+                    $pageUid,
+                    $block,
+                    ($blockIndex + 1) * 256,
                     $now,
                     $contentColumns
                 );
@@ -233,7 +283,7 @@ final class SeedStyleguidePagesCommand extends Command
 
         $io->success(sprintf(
             'Created or updated %d styleguide pages (%d new) and inserted %d Desiderio content elements below page uid %d%s.',
-            count($groups),
+            count($groups) + count($showcasePages),
             $createdPages,
             $createdContentElements,
             $parentPid,
@@ -246,6 +296,57 @@ final class SeedStyleguidePagesCommand extends Command
     private function presetForPageIndex(int $index): string
     {
         return self::STYLEGUIDE_PAGE_PRESETS[$index % count(self::STYLEGUIDE_PAGE_PRESETS)];
+    }
+
+    /**
+     * Replaces {{page:<slug>}} placeholders in showcase block fields with
+     * t3://page links once the target pages exist.
+     *
+     * @param array{ctype: string, colPos: int, fields: array<string, mixed>} $block
+     * @param array<string, int> $linkTargets
+     * @return array{ctype: string, colPos: int, fields: array<string, mixed>}
+     */
+    private function substituteLinkPlaceholders(array $block, array $linkTargets): array
+    {
+        $fields = [];
+        foreach ($this->substituteLinkPlaceholdersInValue($block['fields'], $linkTargets) as $key => $value) {
+            if (is_string($key)) {
+                $fields[$key] = $value;
+            }
+        }
+        $block['fields'] = $fields;
+
+        return $block;
+    }
+
+    /**
+     * @param array<array-key, mixed> $values
+     * @param array<string, int> $linkTargets
+     * @return array<array-key, mixed>
+     */
+    private function substituteLinkPlaceholdersInValue(array $values, array $linkTargets): array
+    {
+        foreach ($values as $key => $value) {
+            if (is_array($value)) {
+                $values[$key] = $this->substituteLinkPlaceholdersInValue($value, $linkTargets);
+                continue;
+            }
+            if (!is_string($value) || !str_starts_with($value, '{{page:')) {
+                continue;
+            }
+
+            $slug = substr($value, 7, -2);
+            $values[$key] = isset($linkTargets[$slug])
+                ? 't3://page?uid=' . $linkTargets[$slug]
+                : 'https://github.com/dirnbauer/desiderio';
+        }
+
+        return $values;
+    }
+
+    private function getStarterContentBuilder(): StarterContentBuilder
+    {
+        return $this->starterContentBuilder ??= new StarterContentBuilder($this->databaseSchema);
     }
 
     private function getPowermailDemoSeeder(): PowermailDemoSeeder

@@ -9,6 +9,7 @@ use Symfony\Component\Console\Tester\CommandTester;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 use Webconsulting\Desiderio\Command\SeedStyleguidePagesCommand;
 use Webconsulting\Desiderio\Data\StyleguideContentGroups;
+use Webconsulting\Desiderio\Data\StyleguideShowcasePages;
 
 final class SeedStyleguidePagesCommandFunctionalTest extends FunctionalTestCase
 {
@@ -43,13 +44,14 @@ final class SeedStyleguidePagesCommandFunctionalTest extends FunctionalTestCase
         $expectedElements = array_sum(array_map(
             static fn (array $group): int => count($group['elements']),
             $groups
-        ));
+        )) + StyleguideShowcasePages::contentElementCount();
+        $expectedPages = count($groups) + count(StyleguideShowcasePages::subpages());
 
         $tester = $this->createCommandTester();
         $exitCode = $tester->execute(['--parent' => '1', '--skip-powermail' => true]);
 
         self::assertSame(Command::SUCCESS, $exitCode, $tester->getDisplay());
-        self::assertSame(count($groups), $this->countRows('pages', 'pid = 1 AND deleted = 0'));
+        self::assertSame($expectedPages, $this->countRows('pages', 'pid = 1 AND deleted = 0'));
         self::assertSame(
             $expectedElements,
             $this->countRows('tt_content', "deleted = 0 AND CType LIKE 'desiderio_%'")
@@ -68,9 +70,11 @@ final class SeedStyleguidePagesCommandFunctionalTest extends FunctionalTestCase
         $tester = $this->createCommandTester();
         self::assertSame(Command::SUCCESS, $tester->execute(['--parent' => '1', '--skip-powermail' => true]), $tester->getDisplay());
 
+        // Only the element chapter pages carry a theme preset; the showcase
+        // pages (slug without the /desiderio- prefix) inherit the site setting.
         $presets = $this->getConnectionPool()
             ->getConnectionForTable('pages')
-            ->executeQuery('SELECT tx_desiderio_shadcn_preset FROM pages WHERE pid = 1 AND deleted = 0 ORDER BY sorting')
+            ->executeQuery("SELECT tx_desiderio_shadcn_preset FROM pages WHERE pid = 1 AND deleted = 0 AND slug LIKE '/desiderio-%' ORDER BY sorting")
             ->fetchFirstColumn();
 
         self::assertCount(count($groups), $presets);
@@ -91,7 +95,8 @@ final class SeedStyleguidePagesCommandFunctionalTest extends FunctionalTestCase
         $expectedElements = array_sum(array_map(
             static fn (array $group): int => count($group['elements']),
             $groups
-        ));
+        )) + StyleguideShowcasePages::contentElementCount();
+        $expectedPages = count($groups) + count(StyleguideShowcasePages::subpages());
 
         $firstRun = $this->createCommandTester();
         self::assertSame(Command::SUCCESS, $firstRun->execute(['--parent' => '1', '--skip-powermail' => true]));
@@ -100,7 +105,7 @@ final class SeedStyleguidePagesCommandFunctionalTest extends FunctionalTestCase
         self::assertSame(Command::SUCCESS, $secondRun->execute(['--parent' => '1', '--skip-powermail' => true]));
 
         self::assertStringContainsString('(0 new)', $secondRun->getDisplay());
-        self::assertSame(count($groups), $this->countRows('pages', 'pid = 1 AND deleted = 0'));
+        self::assertSame($expectedPages, $this->countRows('pages', 'pid = 1 AND deleted = 0'));
         // The previous generation is soft-deleted, the live set stays constant.
         self::assertSame(
             $expectedElements,

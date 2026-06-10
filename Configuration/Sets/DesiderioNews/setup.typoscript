@@ -9,6 +9,9 @@ plugin.tx_news {
     cssFile >
     detailPid = {$news.pages.detail}
     defaultDetailPid = {$news.pages.detail}
+    listPid = {$news.pages.list}
+    # Renders the "Back to overview" button on the detail template.
+    backPid = {$news.pages.list}
 
     list {
       # Progressive "Load more" on news/blog list views.
@@ -16,6 +19,10 @@ plugin.tx_news {
       useLoadMore = {$desiderio.news.useLoadMore}
       initialCount = 6
       loadMoreCount = 3
+
+      paginate {
+        itemsPerPage = 8
+      }
     }
 
     structuredData {
@@ -138,3 +145,11 @@ tt_content.news_taglist {
   20 =< lib.desiderioNewsTagList
   variables.content =< lib.desiderioNewsTagList
 }
+
+# Single-page news: the styleguide seeder puts only the news_pi1 plugin on
+# /news — the Extbase route enhancer carries News::detail in the tx_news_pi1
+# namespace, so the same plugin renders the article when the URL holds a
+# news argument and the list otherwise. Article URLs stay short
+# (/news/<slug>) with no dedicated detail subpage. The header section steps
+# aside on detail views so the article heading leads the page content.
+tt_content.desiderio_headersection.stdWrap.if.isFalse.data = GP:tx_news_pi1|news

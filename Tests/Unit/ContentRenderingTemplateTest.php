@@ -251,7 +251,9 @@ final class ContentRenderingTemplateTest extends TestCase
         self::assertStringContainsString('.desiderio-form textarea.is-invalid', $css);
         self::assertStringContainsString('border-color: var(--destructive);', $css);
         self::assertStringContainsString('.desiderio-form .invalid-feedback::before', $css);
-        self::assertStringContainsString('content: "!";', $css);
+        // The "!" marker is drawn with background layers instead of a text
+        // glyph so it stays centered regardless of the preset font's metrics.
+        self::assertStringContainsString('background-image: linear-gradient(currentColor, currentColor),', $css);
     }
 
     public function testCounterTemplatesAreConnectedToSharedRuntime(): void
@@ -975,6 +977,36 @@ final class ContentRenderingTemplateTest extends TestCase
 
             $sidebarTemplate = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Presets/' . $presetDirectory . '/Templates/Pages/DesiderioContentpageSidebar.fluid.html');
             self::assertStringContainsString('content: content.sidebar', $sidebarTemplate);
+        }
+    }
+
+    public function testNewsDetailViewLeadsWithTheArticleHeading(): void
+    {
+        $pageTypoScript = (string) file_get_contents(__DIR__ . '/../../Configuration/Sets/Desiderio/TypoScript/page.typoscript');
+        $newsTypoScript = (string) file_get_contents(__DIR__ . '/../../Configuration/Sets/DesiderioNews/setup.typoscript');
+
+        // PAGEVIEW exposes the routed news argument so page templates know a
+        // detail view is rendering.
+        self::assertStringContainsString('variables.newsDetailUid = TEXT', $pageTypoScript);
+        self::assertStringContainsString('data = GP:tx_news_pi1|news', $pageTypoScript);
+
+        // The seeded demo header section steps aside on detail views; this must
+        // stay stdWrap.if — FLUIDTEMPLATE silently ignores a top-level if.
+        self::assertStringContainsString(
+            'tt_content.desiderio_headersection.stdWrap.if.isFalse.data = GP:tx_news_pi1|news',
+            $newsTypoScript,
+        );
+
+        // Corporate content pages drop their page-title band on detail views so
+        // the article h1 is the page heading instead of the page title.
+        foreach (['DesiderioContentpage', 'DesiderioContentpageSidebar'] as $templateName) {
+            $template = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Presets/Corporate/Templates/Pages/' . $templateName . '.fluid.html');
+            $guardPosition = strpos($template, '<f:if condition="!{newsDetailUid}">');
+            $introPosition = strpos($template, 'desiderio-corporate-template__intro');
+
+            self::assertIsInt($guardPosition, $templateName . ' must guard its intro band against news detail views');
+            self::assertIsInt($introPosition);
+            self::assertLessThan($introPosition, $guardPosition, $templateName . ' must open the newsDetailUid guard before the intro band');
         }
     }
 

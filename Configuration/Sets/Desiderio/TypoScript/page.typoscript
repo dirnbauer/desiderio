@@ -43,4 +43,15 @@ lib.fluidPage = PAGEVIEW
 lib.fluidPage {
   paths.10 = EXT:desiderio/Resources/Private/Templates/
   dataProcessing < lib.desiderioPageDataProcessing
+
+  # uid of the news article when a detail view renders on this page (the
+  # Extbase route enhancer carries it in the tx_news_pi1 namespace; 0
+  # otherwise). Page templates with their own page-title band check it and
+  # stand down, so the article's h1 leads the document instead of the page
+  # title.
+  variables.newsDetailUid = TEXT
+  variables.newsDetailUid {
+    data = GP:tx_news_pi1|news
+    intval = 1
+  }
 }

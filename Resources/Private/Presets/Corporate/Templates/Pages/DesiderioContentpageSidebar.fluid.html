@@ -32,13 +32,15 @@
 <f:section name="Main">
     <div class="desiderio-corporate-template desiderio-corporate-sidebar">
         <d:layout.container size="xl" class="desiderio-corporate-template__container">
-            <header class="desiderio-corporate-template__intro">
-                <f:if condition="{sectionEyebrow}">
-                    <p class="desiderio-corporate-template__eyebrow">{sectionEyebrow}</p>
-                </f:if>
-                <h1 class="desiderio-corporate-template__title">{page.pageRecord.title}</h1>
-                <p class="desiderio-corporate-template__lede">{pageLede}</p>
-            </header>
+            <f:if condition="!{newsDetailUid}">
+                <header class="desiderio-corporate-template__intro">
+                    <f:if condition="{sectionEyebrow}">
+                        <p class="desiderio-corporate-template__eyebrow">{sectionEyebrow}</p>
+                    </f:if>
+                    <h1 class="desiderio-corporate-template__title">{page.pageRecord.title}</h1>
+                    <p class="desiderio-corporate-template__lede">{pageLede}</p>
+                </header>
+            </f:if>
             <div class="desiderio-corporate-sidebar__layout">
                 <div class="desiderio-corporate-template__content">
                     <f:render partial="Presets/ContentArea" arguments="{content: content.main}"/>

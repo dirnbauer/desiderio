@@ -1,0 +1,7 @@
+settings:
+  news.pages.list:
+    label: 'News list page'
+    description: 'Page with the news list plugin. Used for the back-to-overview button on detail pages and as listPid for category/tag links.'
+    type: page
+    default: 0
+    category: news.pages

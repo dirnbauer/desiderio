@@ -14,7 +14,9 @@
     eyebrow is used so the kicker never echoes the page title or the site root.
     Title is a real H1 for correct heading order; the lede falls back to a
     measured intro when the abstract is empty, mirroring the system pages so the
-    masthead is never a lone H1 over a rule.
+    masthead is never a lone H1 over a rule. When a news article renders on
+    this page (newsDetailUid set), the whole intro stands down so the
+    article's own H1 leads instead of the page title.
 </f:comment>
 
 <f:variable name="rootlineDepth" value="{breadcrumb -> f:count()}"/>
@@ -35,13 +37,15 @@
 <f:section name="Main">
     <div class="desiderio-corporate-template">
         <d:layout.container size="xl" class="desiderio-corporate-template__container">
-            <header class="desiderio-corporate-template__intro">
-                <f:if condition="{sectionEyebrow}">
-                    <p class="desiderio-corporate-template__eyebrow">{sectionEyebrow}</p>
-                </f:if>
-                <h1 class="desiderio-corporate-template__title">{page.pageRecord.title}</h1>
-                <p class="desiderio-corporate-template__lede">{pageLede}</p>
-            </header>
+            <f:if condition="!{newsDetailUid}">
+                <header class="desiderio-corporate-template__intro">
+                    <f:if condition="{sectionEyebrow}">
+                        <p class="desiderio-corporate-template__eyebrow">{sectionEyebrow}</p>
+                    </f:if>
+                    <h1 class="desiderio-corporate-template__title">{page.pageRecord.title}</h1>
+                    <p class="desiderio-corporate-template__lede">{pageLede}</p>
+                </header>
+            </f:if>
 
             <div class="desiderio-corporate-template__content">
                 <f:render partial="Presets/ContentArea" arguments="{content: content.main}"/>

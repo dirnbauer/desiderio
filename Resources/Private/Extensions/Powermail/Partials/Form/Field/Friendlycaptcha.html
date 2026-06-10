@@ -18,15 +18,15 @@
         <d:molecule.field class="powermail_fieldwrap_{field.marker} {field.css}">
             <f:render partial="Form/FieldLabel" arguments="{field: field}" />
             <f:form.hidden property="{field.marker}" value="1" id="powermail_field_{field.marker}" respectSubmittedDataValue="false" />
-            <div class="frc-captcha frc-captcha--placeholder flex w-fit items-center gap-3 rounded-md border border-input bg-muted px-3 py-2">
-                <button type="button" disabled class="inline-flex items-center gap-2 rounded-md border border-input bg-background px-3 py-1.5 text-sm font-medium text-foreground shadow-xs">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-primary" aria-hidden="true" focusable="false">
+            <div class="frc-captcha frc-captcha--placeholder flex w-fit max-w-full flex-wrap items-center gap-x-3 gap-y-1 rounded-md border border-input bg-muted px-3 py-2">
+                <button type="button" disabled class="inline-flex shrink-0 items-center gap-2 whitespace-nowrap rounded-md border border-input bg-background px-3 py-1.5 text-sm font-medium text-foreground shadow-xs">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="shrink-0 text-primary" aria-hidden="true" focusable="false">
                         <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1 1 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/>
                         <path d="m9 12 2 2 4-4"/>
                     </svg>
                     <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:captcha.placeholder.button" />
                 </button>
-                <span class="text-xs text-muted-foreground">
+                <span class="min-w-0 text-xs leading-snug text-muted-foreground">
                     <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:captcha.placeholder.note" />
                 </span>
             </div>

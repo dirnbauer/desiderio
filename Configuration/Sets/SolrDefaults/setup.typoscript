@@ -44,7 +44,8 @@ plugin.tx_solr.search.faceting {
   }
 }
 
+# EXT:solr 12+ ships jQuery-free vanilla controllers; only the facet
+# show-more/filter controller is needed (suggest is desiderio's own).
 page.includeJSFooterlibs {
-  solr-jquery = EXT:solr/Resources/Public/JavaScript/JQuery/jquery.min.js
   solr-options = EXT:solr/Resources/Public/JavaScript/facet_options_controller.js
 }

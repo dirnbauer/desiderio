@@ -501,10 +501,6 @@ document.addEventListener('DOMContentLoaded', () => {
     disableLegacySuggest() {
       this.input.classList.remove('tx-solr-suggest', 'tx-solr-suggest-focus');
 
-      if (window.jQuery?.fn?.devbridgeAutocomplete && window.jQuery(this.input).data('autocomplete')) {
-        window.jQuery(this.input).devbridgeAutocomplete('dispose');
-      }
-
       document
         .querySelectorAll('.autocomplete-suggestions.tx-solr-autosuggest, .tx-solr-autosuggest')
         .forEach(element => element.remove());

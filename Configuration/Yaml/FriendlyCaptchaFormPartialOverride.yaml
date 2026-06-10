@@ -1,0 +1,19 @@
+# Registered when studiomitte/friendlycaptcha IS installed (see
+# ext_localconf.php). Overrides only the rendering partial of the
+# Friendlycaptcha form element so TYPO3 Form Framework forms inside content
+# elements honour the Desiderio bypass: in Development context (ddev) or test
+# mode the inert placeholder renders with an environment note instead of the
+# real widget (which would fail without a valid site key). Element and
+# validator definitions stay untouched — the real captcha still validates
+# whenever the bypass is off.
+TYPO3:
+  CMS:
+    Form:
+      prototypes:
+        standard:
+          formElementsDefinition:
+            Form:
+              renderingOptions:
+                partialRootPaths:
+                  # Must outrank friendlycaptcha's partialRootPaths key 1689150041921 (highest wins).
+                  1789150041921: 'EXT:desiderio/Resources/Private/FormCaptchaOverride/Partials'

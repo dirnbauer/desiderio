@@ -64,6 +64,37 @@ final class FriendlyCaptchaFallbackTest extends TestCase
         return $data;
     }
 
+    public function testExtLocalconfRegistersPartialOverrideWhenExtensionIsInstalled(): void
+    {
+        $extLocalconf = (string)file_get_contents(__DIR__ . '/../../ext_localconf.php');
+
+        self::assertStringContainsString(
+            'plugin.tx_form.settings.yamlConfigurations.1777100144 = EXT:desiderio/Configuration/Yaml/FriendlyCaptchaFormPartialOverride.yaml',
+            $extLocalconf
+        );
+
+        $override = Yaml::parseFile(__DIR__ . '/../../Configuration/Yaml/FriendlyCaptchaFormPartialOverride.yaml');
+        self::assertIsArray($override);
+        $prototype = self::assertArrayPath($override, 'TYPO3', 'CMS', 'Form', 'prototypes', 'standard');
+        $partialRootPaths = self::assertArrayPath($prototype, 'formElementsDefinition', 'Form', 'renderingOptions', 'partialRootPaths');
+        self::assertContains('EXT:desiderio/Resources/Private/FormCaptchaOverride/Partials', $partialRootPaths);
+        // Rendering override only — element/validator definitions stay with friendlycaptcha.
+        $elementDefinitions = self::assertArrayPath($prototype, 'formElementsDefinition');
+        self::assertArrayNotHasKey('Friendlycaptcha', $elementDefinitions);
+        self::assertArrayNotHasKey('validatorsDefinition', $prototype);
+    }
+
+    public function testOverridePartialBranchesBetweenBypassAndRealWidget(): void
+    {
+        $partial = (string)file_get_contents(__DIR__ . '/../../Resources/Private/FormCaptchaOverride/Partials/Friendlycaptcha.html');
+
+        self::assertStringContainsString(self::PLACEHOLDER_MARKER, $partial);
+        self::assertStringContainsString('<button type="button" disabled', $partial);
+        self::assertStringContainsString('di:friendlyCaptchaTestModeEnabled', $partial);
+        self::assertStringContainsString('friendlycaptcha:configuration()', $partial);
+        self::assertStringContainsString('data-sitekey="{captchaConfiguration.siteKey}"', $partial);
+    }
+
     public function testFallbackValidatorAcceptsAnyValue(): void
     {
         $validator = new FriendlyCaptchaFallbackValidator();

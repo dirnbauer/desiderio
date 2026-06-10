@@ -765,6 +765,15 @@ final class StyleguideFixtureResolver
                 if ($normalized === self::FIELD_SKIP) {
                     continue;
                 }
+                $fieldConfig = $this->getCollectionFieldConfig($collection, $resolvedField);
+                if (is_array($normalized) && $fieldConfig !== null && $this->isFileField($fieldConfig)) {
+                    // Keep explicit file fixtures (file/title/alternative/…) in their
+                    // array shape: completeCollectionItem() turns them into
+                    // sys_file_reference rows. normalizeFieldValue() would collapse
+                    // the array to '' and silently fall back to the demo image pool.
+                    $normalizedItem[$resolvedField] = $normalized;
+                    continue;
+                }
                 $normalizedItem[$resolvedField] = isset($collection['fields'][$resolvedField])
                     ? $this->normalizeFieldValue($normalized, $collection['fields'][$resolvedField])
                     : $normalized;

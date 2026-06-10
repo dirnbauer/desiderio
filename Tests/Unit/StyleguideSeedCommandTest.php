@@ -124,6 +124,38 @@ final class StyleguideSeedCommandTest extends TestCase
         );
     }
 
+    public function testCollectionItemFileFixturesKeepTheirArrayShape(): void
+    {
+        $collection = [
+            'table' => 'press_mentions_mentions',
+            'fields' => [
+                'publication' => ['type' => 'Text'],
+                'logo' => ['type' => 'File'],
+            ],
+        ];
+        $logo = [
+            'file' => 'Resources/Public/Styleguide/Logos/Press/techcrunch.svg',
+            'title' => 'TechCrunch press logo',
+            'alternative' => 'TechCrunch press logo.',
+            'description' => 'Press publication logo used as demo data.',
+        ];
+
+        $normalized = $this->invokeMethod($this->createFixtureResolver(), 'normalizeCollectionItems', [
+            [
+                ['publication' => 'TechCrunch', 'logo' => $logo],
+            ],
+            $collection,
+        ]);
+
+        // The explicit file fixture must survive normalization as an array;
+        // collapsing it to '' silently replaces it with demo pool images.
+        self::assertIsArray($normalized);
+        $firstItem = $normalized[0] ?? null;
+        self::assertIsArray($firstItem);
+        self::assertSame('TechCrunch', $firstItem['publication'] ?? null);
+        self::assertSame($logo, $firstItem['logo'] ?? null);
+    }
+
     public function testPricingPlanAliasesAreNormalizedForCollectionRows(): void
     {
         $command = $this->createCommand();

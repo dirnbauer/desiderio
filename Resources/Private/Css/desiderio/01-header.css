@@ -34,14 +34,20 @@
     flex-shrink: 0;
 }
 
+/*
+ * Brand mark: dot inside a ring (mirrors Resources/Public/Icons/favicon.svg).
+ * The ring mixes from --foreground so it adapts to both schemes (dark ring on
+ * light, light ring on dark); the dot keeps the preset accent and carries a
+ * subtle foreground outline so it never sinks into a dark background.
+ */
 .desiderio-header__brand-mark {
     display: inline-grid;
     place-items: center;
     width: 2rem;
     height: 2rem;
     flex: 0 0 auto;
-    border: 0;
-    border-radius: 0;
+    border: 0.1875rem solid color-mix(in oklch, var(--foreground) 85%, transparent);
+    border-radius: 999px;
     background: transparent;
     box-shadow: none;
 }
@@ -51,7 +57,7 @@
     height: 0.75rem;
     border-radius: 999px;
     background: var(--primary);
-    box-shadow: 0 0 0 0.375rem color-mix(in oklch, var(--primary) 16%, transparent);
+    box-shadow: 0 0 0 1px color-mix(in oklch, var(--foreground) 25%, transparent);
 }
 
 .desiderio-header__wordmark {

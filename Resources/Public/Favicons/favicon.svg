@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!--
+    Desiderio brand mark: green dot inside a ring.
+    The ring follows the browser colour scheme (dark-on-light, light-on-dark);
+    the dot uses the matching Forest primary (oklch 0.513/0.66 0.2/0.18 158).
+  -->
+  <style>
+    .ring { stroke: #0a0a0a; }
+    .dot { fill: #008534; }
+    @media (prefers-color-scheme: dark) {
+      .ring { stroke: #fafafa; }
+      .dot { fill: #00b165; }
+    }
+  </style>
+  <circle class="ring" cx="32" cy="32" r="26" fill="none" stroke-width="6"/>
+  <circle class="dot" cx="32" cy="32" r="12"/>
+</svg>

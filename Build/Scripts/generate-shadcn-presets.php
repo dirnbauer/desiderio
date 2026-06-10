@@ -209,18 +209,42 @@ $parseOklch = static function (string $value): array {
     return oklchToSrgb((float)$m[1], (float)$m[2], (float)$m[3]);
 };
 
+// Neutral base surfaces every house preset inherits from :root / .dark in
+// shadcn-theme.css (kept in sync manually — the generator never writes them).
+// Muted text is verified against all surfaces it is rendered on.
+$baseSurfaces = [
+    'light' => [
+        'background' => oklchToSrgb(1.0, 0.0, 0.0),
+        'card' => oklchToSrgb(1.0, 0.0, 0.0),
+        'muted' => oklchToSrgb(0.97, 0.0, 0.0),
+        'muted-foreground' => oklchToSrgb(0.542, 0.0, 0.0),
+    ],
+    'dark' => [
+        'background' => oklchToSrgb(0.145, 0.0, 0.0),
+        'card' => oklchToSrgb(0.205, 0.0, 0.0),
+        'muted' => oklchToSrgb(0.269, 0.0, 0.0),
+        'muted-foreground' => oklchToSrgb(0.708, 0.0, 0.0),
+    ],
+];
+
 foreach ($presets as [$id, $label, $hue, $lightAccent, $radius, $fontKey, $icon, $density, $ringWidth, $shadow]) {
     $tokens = accentTokens($hue, $lightAccent);
 
-    // WCAG 2.2 verification: text on accent 4.5:1, accent on page background 3:1.
-    foreach (['light' => oklchToSrgb(1.0, 0.0, 0.0), 'dark' => oklchToSrgb(0.145, 0.0, 0.0)] as $mode => $background) {
+    // WCAG 2.2 verification: text on accent 4.5:1, muted text on its surfaces
+    // 4.5:1, accent on page background 3:1.
+    foreach ($baseSurfaces as $mode => $surfaces) {
+        $background = $surfaces['background'];
         $primary = $parseOklch($tokens[$mode]['--primary']);
         $primaryFg = $parseOklch($tokens[$mode]['--primary-foreground']);
         $accent = $parseOklch($tokens[$mode]['--accent']);
         $accentFg = $parseOklch($tokens[$mode]['--accent-foreground']);
+        $mutedFg = $surfaces['muted-foreground'];
         foreach ([
             ['primary-foreground/primary', contrastRatio($primaryFg, $primary), 4.5],
             ['accent-foreground/accent', contrastRatio($accentFg, $accent), 4.5],
+            ['muted-foreground/background', contrastRatio($mutedFg, $background), 4.5],
+            ['muted-foreground/card', contrastRatio($mutedFg, $surfaces['card']), 4.5],
+            ['muted-foreground/muted', contrastRatio($mutedFg, $surfaces['muted']), 4.5],
             ['primary/background', contrastRatio($primary, $background), 3.0],
         ] as [$pair, $ratio, $minimum]) {
             if ($ratio < $minimum) {

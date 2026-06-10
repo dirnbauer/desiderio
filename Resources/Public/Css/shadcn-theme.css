@@ -24,7 +24,7 @@
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
+  --muted-foreground: oklch(0.542 0 0);
   --accent: oklch(0.97 0 0);
   --accent-foreground: oklch(0.205 0 0);
   --destructive: oklch(0.577 0.245 27.325);
@@ -135,7 +135,7 @@ body[data-shadcn-preset="b4hb38Fyj"] {
   --secondary: oklch(0.967 0.001 286.375);
   --secondary-foreground: oklch(0.21 0.006 285.885);
   --muted: oklch(0.966 0.005 106.5);
-  --muted-foreground: oklch(0.58 0.031 107.3);
+  --muted-foreground: oklch(0.538 0.031 107.3);
   --accent: oklch(0.966 0.005 106.5);
   --accent-foreground: oklch(0.228 0.013 107.4);
   --destructive: oklch(0.577 0.245 27.325);
@@ -206,7 +206,7 @@ body[data-shadcn-preset="b3IWPgRwnI"] {
   --secondary: oklch(0.967 0.001 286.375);
   --secondary-foreground: oklch(0.21 0.006 285.885);
   --muted: oklch(0.963 0.002 197.1);
-  --muted-foreground: oklch(0.56 0.021 213.5);
+  --muted-foreground: oklch(0.535 0.021 213.5);
   --accent: oklch(0.963 0.002 197.1);
   --accent-foreground: oklch(0.218 0.008 223.9);
   --destructive: oklch(0.577 0.245 27.325);
@@ -277,7 +277,7 @@ body[data-shadcn-preset="b6G5977cw"] {
   --secondary: oklch(0.966 0.005 106.5);
   --secondary-foreground: oklch(0.228 0.013 107.4);
   --muted: oklch(0.966 0.005 106.5);
-  --muted-foreground: oklch(0.58 0.031 107.3);
+  --muted-foreground: oklch(0.538 0.031 107.3);
   --accent: oklch(0.966 0.005 106.5);
   --accent-foreground: oklch(0.228 0.013 107.4);
   --destructive: oklch(0.577 0.245 27.325);
@@ -356,7 +356,7 @@ body[data-shadcn-preset="b27GcrRo"] {
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
   --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
+  --muted-foreground: oklch(0.542 0 0);
   --accent: oklch(0.97 0 0);
   --accent-foreground: oklch(0.205 0 0);
   --destructive: oklch(0.577 0.245 27.325);
@@ -796,6 +796,13 @@ body {
   --d-warning-muted: color-mix(in oklch, var(--chart-4) 14%, var(--background));
   --d-danger: var(--destructive);
   --d-danger-muted: color-mix(in oklch, var(--destructive) 10%, var(--background));
+  /* Text-on-muted variants: status colors pulled towards the foreground so small
+     (12px) text on the *-muted tints clears the WCAG 4.5:1 contrast threshold
+     in light and dark presets alike. */
+  --d-info-text: color-mix(in oklch, var(--d-info), var(--foreground) 30%);
+  --d-success-text: color-mix(in oklch, var(--d-success), var(--foreground) 30%);
+  --d-warning-text: color-mix(in oklch, var(--d-warning), var(--foreground) 30%);
+  --d-danger-text: color-mix(in oklch, var(--d-danger), var(--foreground) 30%);
   --d-overlay-foreground: var(--primary-foreground);
   --d-radius-sm: calc(var(--radius) * 0.6);
   --d-radius-md: calc(var(--radius) * 0.8);

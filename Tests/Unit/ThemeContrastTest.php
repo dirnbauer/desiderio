@@ -8,8 +8,9 @@ use PHPUnit\Framework\TestCase;
 
 /**
  * WCAG 2.2 contrast guard for every shadcn preset, light and dark:
- * text on the accent needs 4.5:1, the accent against the page background 3:1.
- * Lightness is solved per hue in Build/Scripts/generate-shadcn-presets.php;
+ * text on the accent needs 4.5:1, muted text on every surface it is rendered
+ * on (background, card, muted) 4.5:1, the accent against the page background
+ * 3:1. Lightness is solved per hue in Build/Scripts/generate-shadcn-presets.php;
  * this test keeps manual edits and upstream create-preset updates honest.
  */
 final class ThemeContrastTest extends TestCase
@@ -41,6 +42,9 @@ final class ThemeContrastTest extends TestCase
                 foreach ([
                     ['primary-foreground', 'primary', self::TEXT_MINIMUM],
                     ['accent-foreground', 'accent', self::TEXT_MINIMUM],
+                    ['muted-foreground', 'background', self::TEXT_MINIMUM],
+                    ['muted-foreground', 'card', self::TEXT_MINIMUM],
+                    ['muted-foreground', 'muted', self::TEXT_MINIMUM],
                     ['primary', 'background', self::UI_MINIMUM],
                 ] as [$foreground, $background, $minimum]) {
                     if (!isset($variables[$foreground], $variables[$background])) {

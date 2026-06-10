@@ -1,5 +1,17 @@
 @import './TypoScript/*.typoscript'
 
+# Friendly Captcha form setup. Site sets do not include global TypoScript from
+# ext_localconf, so the registration lives here. With the extension installed
+# only the rendering partial is overridden (bypass-aware placeholder in
+# Development context/test mode, real widget otherwise); without it the full
+# fallback keeps the bundled forms working (placeholder element + always-
+# passing validator). extensionLoaded() comes from DesiderioConditionProvider.
+[extensionLoaded("friendlycaptcha_official")]
+plugin.tx_form.settings.yamlConfigurations.1777100144 = EXT:desiderio/Configuration/Yaml/FriendlyCaptchaFormPartialOverride.yaml
+[ELSE]
+plugin.tx_form.settings.yamlConfigurations.1777100143 = EXT:desiderio/Configuration/Yaml/FriendlyCaptchaFallbackFormSetup.yaml
+[END]
+
 lib.desiderioFormRenderer = USER
 lib.desiderioFormRenderer {
   userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
@@ -43,6 +55,30 @@ lib.desiderioFormRenderer.newsletter.settings.persistenceIdentifier = EXT:deside
 page = PAGE
 
 page {
+  # Scheme-adaptive SVG brand mark (dark ring on light, light ring on dark).
+  shortcutIcon = EXT:desiderio/Resources/Public/Favicons/favicon.svg
+
+  # PNG fallbacks: 32px favicon + 180px apple-touch-icon. shortcutIcon emits a
+  # single <link>, so the rest goes through headerData; IMG_RESOURCE resolves
+  # the EXT: paths to the published _assets URLs.
+  headerData.2620 = COA
+  headerData.2620 {
+    10 = TEXT
+    10.value = <link rel="icon" type="image/png" sizes="32x32" href="
+
+    20 = IMG_RESOURCE
+    20.file = EXT:desiderio/Resources/Public/Favicons/favicon-32.png
+
+    30 = TEXT
+    30.value = "><link rel="apple-touch-icon" sizes="180x180" href="
+
+    40 = IMG_RESOURCE
+    40.file = EXT:desiderio/Resources/Public/Favicons/favicon-180.png
+
+    50 = TEXT
+    50.value = ">
+  }
+
   includeCSS {
     desiderioTheme = EXT:desiderio/Resources/Public/Css/shadcn-theme.css
     desiderioTheme.media = all
@@ -72,6 +108,34 @@ page {
 
     desiderioStyleguide = EXT:desiderio/Resources/Public/Js/styleguide.js
     desiderioStyleguide.defer = 1
+  }
+
+  # Site-wide sharing-image fallback: pages without an own og_image /
+  # twitter_image still get a card image. EXT:seo's per-page fields take
+  # precedence when set. The meta description stays page-level only (seeded
+  # per page by desiderio:styleguide:seed) — no site-wide description here.
+  meta {
+    og:image.attribute = property
+    og:image.cObject = IMG_RESOURCE
+    og:image.cObject {
+      file = EXT:desiderio/Resources/Public/Styleguide/Frontend/frontend-hero-lagoon.png
+      stdWrap.typolink {
+        parameter.data = current
+        forceAbsoluteUrl = 1
+        returnLast = url
+      }
+    }
+
+    twitter:card = summary_large_image
+    twitter:image.cObject = IMG_RESOURCE
+    twitter:image.cObject {
+      file = EXT:desiderio/Resources/Public/Styleguide/Frontend/frontend-hero-lagoon.png
+      stdWrap.typolink {
+        parameter.data = current
+        forceAbsoluteUrl = 1
+        returnLast = url
+      }
+    }
   }
 
   # data-shadcn-preset honours a per-page override (pages.tx_desiderio_shadcn_preset,

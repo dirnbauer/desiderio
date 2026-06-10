@@ -5,7 +5,7 @@
 
 <f:asset.css identifier="d-header-section" href="{cb:assetPath()}/frontend.css"/>
 
-<d:layout.section class="header-section header-section--{data.variant -> f:or(alternative: 'center')}">
+<d:layout.section spacing="md" class="header-section header-section--{data.variant -> f:or(alternative: 'center')}">
     <d:layout.container>
         <header class="header-section__inner">
             <f:if condition="{data.eyebrow}">

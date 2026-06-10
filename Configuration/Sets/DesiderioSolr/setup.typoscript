@@ -1,3 +1,8 @@
+# EXT:solr's page indexer refuses to index a rendered page unless
+# config.index_enable is set; without it queue items stay pending forever
+# (the sub-request answers HTTP 200 with success=false, so no error is logged).
+config.index_enable = 1
+
 plugin.tx_solr.index.queue.pages {
   allowedPageTypes = 1,7,137,138
   additionalWhereClause = (doktype IN(1,137,138) OR (doktype=7 AND mount_pid_ol=0)) AND no_search = 0

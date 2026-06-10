@@ -115,6 +115,7 @@ final class PowermailDemoSeeder
 
         $createdPages = 2;
         $createdForms = 0;
+        $overviewEntries = [];
         foreach ($forms as $index => $form) {
             $sorting = ($index + 1) * 512;
             $formUids = $this->insertPowermailForm($storagePid, $form, $germanLanguageUid, $now);
@@ -224,9 +225,60 @@ final class PowermailDemoSeeder
                 $germanLanguageUid,
                 $thankContentUid
             );
+
+            $overviewEntries[] = [
+                'pageUid' => $formPageUid,
+                'titleEn' => (string)$form['pageTitleEn'],
+                'titleDe' => (string)$form['pageTitleDe'],
+                'introEn' => (string)$form['introEn'],
+                'introDe' => (string)$form['introDe'],
+            ];
         }
 
+        // Overview on the lab root page: one linked entry per shadcn-styled
+        // powermail template, so the lab page doubles as a template index.
+        $overviewUid = $this->insertTextContent(
+            $rootUid,
+            'The five powermail templates at a glance',
+            $this->buildOverviewBody($overviewEntries, false),
+            384,
+            $now,
+            $contentColumns
+        );
+        $this->insertTextContent(
+            $rootTranslationUid,
+            'Die fuenf Powermail-Vorlagen im Ueberblick',
+            $this->buildOverviewBody($overviewEntries, true),
+            384,
+            $now,
+            $contentColumns,
+            $germanLanguageUid,
+            $overviewUid
+        );
+
         return ['pages' => $createdPages, 'forms' => $createdForms, 'skipped' => false];
+    }
+
+    /**
+     * @param list<array{pageUid: int, titleEn: string, titleDe: string, introEn: string, introDe: string}> $entries
+     */
+    private function buildOverviewBody(array $entries, bool $german): string
+    {
+        $items = '';
+        foreach ($entries as $entry) {
+            $items .= sprintf(
+                '<li><p><strong><a href="t3://page?uid=%d">%s</a></strong><br>%s</p></li>',
+                $entry['pageUid'],
+                htmlspecialchars($german ? $entry['titleDe'] : $entry['titleEn']),
+                htmlspecialchars($german ? $entry['introDe'] : $entry['introEn'])
+            );
+        }
+
+        $note = $german
+            ? '<p>Jede Vorlage rendert mit den shadcn-Feldpartials von Desiderio, nutzt Friendly Captcha und leitet nach dem Absenden auf eine eigene Danke-Unterseite weiter.</p>'
+            : '<p>Every template renders with the Desiderio shadcn field partials, uses Friendly Captcha, and redirects to its own thank-you subpage after submit.</p>';
+
+        return $note . '<ul>' . $items . '</ul>';
     }
 
     /**

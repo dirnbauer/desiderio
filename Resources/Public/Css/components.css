@@ -462,22 +462,25 @@ main[tabindex]:focus-visible {
   display: none;
 }
 
+/* The "!" is drawn with background layers (bar + dot) instead of a text
+   glyph: glyph centering depends on the active preset font's metrics and
+   drifts off-center inside the circle. */
 .desiderio-form .invalid-feedback::before {
-  display: inline-flex;
+  display: inline-block;
   grid-column: 1;
   grid-row: 1;
-  align-items: center;
-  justify-content: center;
   width: 0.875rem;
   height: 0.875rem;
   margin-block-start: 0.0625rem;
   border: 1px solid color-mix(in oklch, var(--destructive) 45%, transparent);
   border-radius: 9999px;
   color: var(--destructive);
-  font-size: 0.625rem;
-  font-weight: 700;
-  line-height: 1;
-  content: "!";
+  background-image: linear-gradient(currentColor, currentColor),
+    linear-gradient(currentColor, currentColor);
+  background-repeat: no-repeat;
+  background-size: 0.125rem 0.3125rem, 0.125rem 0.125rem;
+  background-position: center 0.125rem, center 0.5rem;
+  content: "";
 }
 
 .desiderio-form .form-text {
@@ -641,22 +644,23 @@ main[tabindex]:focus-visible {
   margin-block-start: 0;
 }
 
+/* Same background-drawn "!" as .invalid-feedback::before — see note there. */
 .d-powermail .powermail-errors-list::before {
-  display: inline-flex;
+  display: inline-block;
   grid-column: 1;
   grid-row: 1;
-  align-items: center;
-  justify-content: center;
   width: 0.875rem;
   height: 0.875rem;
   margin-block-start: 0.0625rem;
   border: 1px solid color-mix(in oklch, var(--destructive) 45%, transparent);
   border-radius: 9999px;
   color: var(--destructive);
-  font-size: 0.625rem;
-  font-weight: 700;
-  line-height: 1;
-  content: "!";
+  background-image: linear-gradient(currentColor, currentColor),
+    linear-gradient(currentColor, currentColor);
+  background-repeat: no-repeat;
+  background-size: 0.125rem 0.3125rem, 0.125rem 0.125rem;
+  background-position: center 0.125rem, center 0.5rem;
+  content: "";
 }
 
 .d-powermail .powermail-errors-list li {

@@ -141,7 +141,9 @@ final class PowermailIntegrationTest extends TestCase
         self::assertStringContainsString('border-color: var(--destructive);', $componentsCss);
         self::assertStringContainsString('accent-color: var(--foreground);', $componentsCss);
         self::assertStringContainsString('.d-powermail .powermail-errors-list', $componentsCss);
-        self::assertStringContainsString('content: "!";', $componentsCss);
+        // The "!" marker is drawn with background layers instead of a text
+        // glyph so it stays centered regardless of the preset font's metrics.
+        self::assertStringContainsString('background-image: linear-gradient(currentColor, currentColor),', $componentsCss);
 
         $flashMessages = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/Powermail/Partials/Misc/FlashMessages.html');
         self::assertStringContainsString('as="flashMessages"', $flashMessages);

@@ -109,7 +109,9 @@ final class ThemeContrastTest extends TestCase
 
     /**
      * color-mix(in oklch, $base, $other $weight): linear on lightness and
-     * chroma, shortest arc on hue — matching the CSS resolution.
+     * chroma, shortest arc on hue. An achromatic color's hue (chroma 0) is
+     * powerless per CSS Color 4 and treated as missing, so the other color's
+     * hue carries through unrotated.
      *
      * @param array{float, float, float} $base
      * @param array{float, float, float} $other
@@ -117,12 +119,19 @@ final class ThemeContrastTest extends TestCase
      */
     private function mixOklch(array $base, array $other, float $weight): array
     {
-        $hueDelta = fmod($other[2] - $base[2] + 540.0, 360.0) - 180.0;
+        if ($other[1] === 0.0) {
+            $hue = $base[2];
+        } elseif ($base[1] === 0.0) {
+            $hue = $other[2];
+        } else {
+            $hueDelta = fmod($other[2] - $base[2] + 540.0, 360.0) - 180.0;
+            $hue = fmod($base[2] + $hueDelta * $weight + 360.0, 360.0);
+        }
 
         return [
             $base[0] + ($other[0] - $base[0]) * $weight,
             $base[1] + ($other[1] - $base[1]) * $weight,
-            fmod($base[2] + $hueDelta * $weight + 360.0, 360.0),
+            $hue,
         ];
     }
 

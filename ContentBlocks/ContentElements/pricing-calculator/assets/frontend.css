@@ -4,3 +4,9 @@
 .pricing-calculator__description { color: var(--muted-foreground); max-width: 40rem; margin-inline: auto; }
 .pricing-calculator__body { max-width: 42rem; margin-inline: auto; }
 .pricing-calculator__num { font-variant-numeric: tabular-nums; }
+
+/* Heading-to-teaser rhythm: consistent gap inside the intro block. */
+.pricing-calculator__intro {
+    display: grid;
+    gap: var(--d-spacing-sm);
+}

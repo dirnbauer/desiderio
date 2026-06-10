@@ -42,3 +42,9 @@
     object-fit: contain;
 }
 .logo-grid__name { font-size: var(--d-text-base, 1rem); color: var(--foreground); font-weight: 600; text-align: center; }
+
+/* Heading-to-teaser rhythm: consistent gap inside the intro block. */
+.logo-grid__intro {
+    display: grid;
+    gap: var(--d-spacing-sm);
+}

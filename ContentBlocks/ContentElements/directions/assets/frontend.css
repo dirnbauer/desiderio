@@ -37,3 +37,9 @@
 @media (max-width: 768px) {
     .directions__list { grid-template-columns: 1fr; }
 }
+
+/* Heading-to-teaser rhythm: consistent gap inside the intro block. */
+.directions__intro {
+    display: grid;
+    gap: var(--d-spacing-sm);
+}

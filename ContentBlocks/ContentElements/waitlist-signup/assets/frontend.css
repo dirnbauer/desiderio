@@ -70,3 +70,9 @@
         width: 100%;
     }
 }
+
+/* Heading-to-teaser rhythm: consistent gap inside the intro block. */
+.waitlist-signup__intro {
+    display: grid;
+    gap: var(--d-spacing-sm);
+}

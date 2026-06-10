@@ -13,3 +13,9 @@
 .product-specs__value { font-weight: 500; }
 .product-specs__table tr:nth-child(even) { background: color-mix(in oklch, var(--muted) 30%, transparent); }
 .product-specs__image { width: 100%; border-radius: var(--radius); }
+
+/* Heading-to-teaser rhythm: consistent gap inside the intro block. */
+.product-specs__intro {
+    display: grid;
+    gap: var(--d-spacing-sm);
+}

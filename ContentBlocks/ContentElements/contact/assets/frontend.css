@@ -36,3 +36,9 @@
     background: transparent;
 }
 .contact__actions { margin-block-start: var(--d-spacing-sm); }
+
+/* Heading-to-teaser rhythm: consistent gap inside the intro block. */
+.contact__intro {
+    display: grid;
+    gap: var(--d-spacing-sm);
+}

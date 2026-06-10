@@ -12,3 +12,9 @@
 @media (prefers-reduced-motion: reduce) { .pricing-faq__question::after { transition: none; } }
 .pricing-faq__answer { padding-block-end: var(--d-spacing-md); }
 .pricing-faq__answer p { color: var(--muted-foreground); line-height: 1.6; }
+
+/* Heading-to-teaser rhythm: consistent gap inside the intro block. */
+.pricing-faq__intro {
+    display: grid;
+    gap: var(--d-spacing-sm);
+}

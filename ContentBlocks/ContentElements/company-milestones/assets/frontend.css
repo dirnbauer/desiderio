@@ -43,3 +43,9 @@
     color: var(--muted-foreground);
     text-wrap: pretty;
 }
+
+/* Heading-to-teaser rhythm: consistent gap inside the intro block. */
+.company-milestones__intro {
+    display: grid;
+    gap: var(--d-spacing-sm);
+}

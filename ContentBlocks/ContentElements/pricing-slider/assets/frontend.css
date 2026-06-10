@@ -12,3 +12,9 @@
 .pricing-slider__volume { font-size: var(--d-text-sm); font-weight: 600; }
 .pricing-slider__price { font-size: var(--d-text-2xl); font-weight: 800; color: var(--primary); }
 .pricing-slider__features { font-size: var(--d-text-xs); color: var(--muted-foreground); }
+
+/* Heading-to-teaser rhythm: consistent gap inside the intro block. */
+.pricing-slider__intro {
+    display: grid;
+    gap: var(--d-spacing-sm);
+}

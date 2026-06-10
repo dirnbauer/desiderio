@@ -110,3 +110,8 @@
 
 @media (max-width: 1080px) { .pricing-four-tier__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 768px) { .pricing-four-tier__grid { grid-template-columns: 1fr; max-width: 24rem; margin-inline: auto; } }
+/* Heading-to-teaser rhythm: consistent gap inside the intro block. */
+.pricing-four-tier__intro {
+    display: grid;
+    gap: var(--d-spacing-sm);
+}

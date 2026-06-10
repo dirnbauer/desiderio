@@ -40,3 +40,9 @@
     color: var(--muted-foreground);
     font-size: var(--d-text-sm);
 }
+
+/* Heading-to-teaser rhythm: consistent gap inside the intro block. */
+.feature-centered__intro {
+    display: grid;
+    gap: var(--d-spacing-sm);
+}

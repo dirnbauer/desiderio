@@ -51,3 +51,9 @@
     outline: 2px solid var(--ring);
     outline-offset: 2px;
 }
+
+/* Heading-to-teaser rhythm: consistent gap inside the intro block. */
+.resource-library__intro {
+    display: grid;
+    gap: var(--d-spacing-sm);
+}

@@ -42,3 +42,9 @@
 @media (max-width: 768px) {
     .career-listing__job { flex-direction: column; align-items: flex-start; gap: var(--d-spacing-sm); }
 }
+
+/* Heading-to-teaser rhythm: consistent gap inside the intro block. */
+.career-listing__intro {
+    display: grid;
+    gap: var(--d-spacing-sm);
+}

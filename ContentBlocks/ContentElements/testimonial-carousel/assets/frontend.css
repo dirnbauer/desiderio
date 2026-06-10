@@ -109,3 +109,9 @@
     .testimonial-carousel__track .hero-carousel__nav,
     .testimonial-carousel__track .hero-carousel__dot { transition: none; }
 }
+
+/* Heading-to-teaser rhythm: consistent gap inside the intro block. */
+.testimonial-carousel__intro {
+    display: grid;
+    gap: var(--d-spacing-sm);
+}

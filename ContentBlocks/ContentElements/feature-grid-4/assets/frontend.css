@@ -51,3 +51,9 @@
     margin: var(--d-spacing-xs) auto 0;
     max-width: 26ch;
 }
+
+/* Heading-to-teaser rhythm: consistent gap inside the intro block. */
+.feature-grid-4__intro {
+    display: grid;
+    gap: var(--d-spacing-sm);
+}

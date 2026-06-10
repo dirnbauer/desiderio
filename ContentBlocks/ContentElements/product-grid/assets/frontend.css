@@ -24,3 +24,9 @@
   .product-grid__image { transition: none; }
   .product-grid__card:hover .product-grid__image { transform: none; }
 }
+
+/* Heading-to-teaser rhythm: consistent gap inside the intro block. */
+.product-grid__intro {
+    display: grid;
+    gap: var(--d-spacing-sm);
+}

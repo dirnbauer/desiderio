@@ -210,3 +210,9 @@
         border-bottom: 1px solid var(--border);
     }
 }
+
+/* Heading-to-teaser rhythm: consistent gap inside the intro block. */
+.timeline__intro {
+    display: grid;
+    gap: var(--d-spacing-sm);
+}

@@ -107,3 +107,9 @@
     line-height: 1.55;
     max-width: 36ch;
 }
+
+/* Heading-to-teaser rhythm: consistent gap inside the intro block. */
+.feature-carousel__intro {
+    display: grid;
+    gap: var(--d-spacing-sm);
+}

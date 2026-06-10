@@ -98,3 +98,9 @@
     }
     .stats-bar__item[data-astro-reveal] { opacity: 1; transform: none; transition: none; }
 }
+
+/* Heading-to-teaser rhythm: consistent gap inside the intro block. */
+.stats-bar__intro {
+    display: grid;
+    gap: var(--d-spacing-sm);
+}

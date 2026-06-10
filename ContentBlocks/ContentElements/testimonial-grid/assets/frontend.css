@@ -35,3 +35,9 @@
 .testimonial-grid__meta { min-width: 0; }
 .testimonial-grid__name { font-weight: 600; font-style: normal; display: block; }
 .testimonial-grid__role { font-size: var(--d-text-sm); color: var(--muted-foreground); }
+
+/* Heading-to-teaser rhythm: consistent gap inside the intro block. */
+.testimonial-grid__intro {
+    display: grid;
+    gap: var(--d-spacing-sm);
+}

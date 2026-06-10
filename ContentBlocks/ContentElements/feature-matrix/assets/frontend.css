@@ -13,3 +13,9 @@
 .feature-matrix__value {
     text-align: center;
 }
+
+/* Heading-to-teaser rhythm: consistent gap inside the intro block. */
+.feature-matrix__intro {
+    display: grid;
+    gap: var(--d-spacing-sm);
+}

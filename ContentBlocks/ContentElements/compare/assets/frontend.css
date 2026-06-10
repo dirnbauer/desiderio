@@ -17,3 +17,9 @@
 .compare__points--con .compare__point::before { content: "\2715" / ""; color: var(--muted-foreground); }
 .compare__actions { margin-block-start: auto; padding-block-start: var(--d-spacing-lg); }
 .compare__actions .compare__button { width: 100%; }
+
+/* Heading-to-teaser rhythm: consistent gap inside the intro block. */
+.compare__intro {
+    display: grid;
+    gap: var(--d-spacing-sm);
+}

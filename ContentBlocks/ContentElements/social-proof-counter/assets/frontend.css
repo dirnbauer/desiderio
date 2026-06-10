@@ -11,3 +11,9 @@
 .social-proof-counter__icon { display: inline-flex; color: var(--primary); margin-block-end: var(--d-spacing-xs); }
 .social-proof-counter__value { order: 1; margin: 0; font-size: var(--d-text-3xl); font-weight: 800; color: var(--foreground); line-height: 1.1; }
 .social-proof-counter__label { order: 2; margin: 0; font-size: var(--d-text-sm); color: var(--muted-foreground); }
+
+/* Heading-to-teaser rhythm: consistent gap inside the intro block. */
+.social-proof-counter__intro {
+    display: grid;
+    gap: var(--d-spacing-sm);
+}

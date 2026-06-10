@@ -49,3 +49,9 @@
 .org-chart__card { height: 100%; text-align: center; }
 .org-chart__name { font-weight: 600; font-size: var(--d-text-sm); margin: 0; overflow-wrap: anywhere; }
 .org-chart__role { font-size: var(--d-text-xs); color: var(--muted-foreground); margin-block-start: var(--d-spacing-2xs); }
+
+/* Heading-to-teaser rhythm: consistent gap inside the intro block. */
+.org-chart__intro {
+    display: grid;
+    gap: var(--d-spacing-sm);
+}

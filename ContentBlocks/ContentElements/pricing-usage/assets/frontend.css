@@ -18,3 +18,9 @@
 @media (prefers-reduced-motion: reduce) {
     .pricing-usage__arrow { transition: none; }
 }
+
+/* Heading-to-teaser rhythm: consistent gap inside the intro block. */
+.pricing-usage__intro {
+    display: grid;
+    gap: var(--d-spacing-sm);
+}

@@ -72,3 +72,9 @@
 @media (prefers-reduced-motion: reduce) {
     .article-grid__link-arrow { transition: none; }
 }
+
+/* Heading-to-teaser rhythm: consistent gap inside the intro block. */
+.article-grid__intro {
+    display: grid;
+    gap: var(--d-spacing-sm);
+}

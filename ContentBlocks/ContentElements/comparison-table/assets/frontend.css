@@ -47,3 +47,9 @@
 .comparison-table__table tbody tr:hover th {
     background: color-mix(in oklch, var(--muted) 20%, transparent);
 }
+
+/* Heading-to-teaser rhythm: consistent gap inside the intro block. */
+.comparison-table__intro {
+    display: grid;
+    gap: var(--d-spacing-sm);
+}

@@ -103,3 +103,9 @@
         grid-template-columns: repeat(4, minmax(0, 1fr));
     }
 }
+
+/* Heading-to-teaser rhythm: consistent gap inside the intro block. */
+.awards__intro {
+    display: grid;
+    gap: var(--d-spacing-sm);
+}

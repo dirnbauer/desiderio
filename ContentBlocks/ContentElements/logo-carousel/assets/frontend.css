@@ -68,3 +68,9 @@
     .logo-carousel__slide-group { animation: none; }
     .logo-carousel__slide-group[aria-hidden="true"] { display: none; }
 }
+
+/* Heading-to-teaser rhythm: consistent gap inside the intro block. */
+.logo-carousel__intro {
+    display: grid;
+    gap: var(--d-spacing-sm);
+}

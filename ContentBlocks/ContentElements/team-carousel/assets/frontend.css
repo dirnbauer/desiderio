@@ -81,3 +81,9 @@
         scroll-behavior: auto;
     }
 }
+
+/* Heading-to-teaser rhythm: consistent gap inside the intro block. */
+.team-carousel__intro {
+    display: grid;
+    gap: var(--d-spacing-sm);
+}

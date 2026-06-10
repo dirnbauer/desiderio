@@ -109,3 +109,8 @@
 }
 
 @media (max-width: 768px) { .pricing-two-tier__grid { grid-template-columns: 1fr; max-width: 24rem; margin-inline: auto; } }
+/* Heading-to-teaser rhythm: consistent gap inside the intro block. */
+.pricing-two-tier__intro {
+    display: grid;
+    gap: var(--d-spacing-sm);
+}

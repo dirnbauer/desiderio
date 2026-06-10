@@ -36,3 +36,9 @@
     margin-block-start: var(--d-spacing-2xs);
     text-wrap: pretty;
 }
+
+/* Heading-to-teaser rhythm: consistent gap inside the intro block. */
+.company-stats__intro {
+    display: grid;
+    gap: var(--d-spacing-sm);
+}

@@ -130,3 +130,9 @@
 .pricing-annual-monthly__button {
     justify-content: center;
 }
+
+/* Heading-to-teaser rhythm: consistent gap inside the intro block. */
+.pricing-annual-monthly__intro {
+    display: grid;
+    gap: var(--d-spacing-sm);
+}

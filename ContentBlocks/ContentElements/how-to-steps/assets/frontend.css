@@ -44,3 +44,9 @@
     height: auto;
     margin-top: var(--d-spacing-sm);
 }
+
+/* Heading-to-teaser rhythm: consistent gap inside the intro block. */
+.how-to-steps__intro {
+    display: grid;
+    gap: var(--d-spacing-sm);
+}

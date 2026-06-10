@@ -38,3 +38,9 @@
     color: var(--muted-foreground);
     margin-block-start: var(--d-spacing-2xs);
 }
+
+/* Heading-to-teaser rhythm: consistent gap inside the intro block. */
+.company-history__intro {
+    display: grid;
+    gap: var(--d-spacing-sm);
+}

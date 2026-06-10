@@ -230,3 +230,9 @@
     .content-carousel__dot,
     .content-carousel__thumb { transition: none; }
 }
+
+/* Heading-to-teaser rhythm: consistent gap inside the intro block. */
+.content-carousel__intro {
+    display: grid;
+    gap: var(--d-spacing-sm);
+}

@@ -102,3 +102,9 @@
     .review-carousel__track .hero-carousel__nav,
     .review-carousel__track .hero-carousel__dot { transition: none; }
 }
+
+/* Heading-to-teaser rhythm: consistent gap inside the intro block. */
+.review-carousel__intro {
+    display: grid;
+    gap: var(--d-spacing-sm);
+}

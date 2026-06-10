@@ -36,3 +36,9 @@ a.client-list__name:hover { color: var(--primary); }
         height: 3.5rem;
     }
 }
+
+/* Heading-to-teaser rhythm: consistent gap inside the intro block. */
+.client-list__intro {
+    display: grid;
+    gap: var(--d-spacing-sm);
+}

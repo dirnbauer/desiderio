@@ -48,3 +48,9 @@
 }
 .office-locations__link:hover { color: var(--foreground); text-decoration: underline; }
 .office-locations__map-icon { display: inline-flex; }
+
+/* Heading-to-teaser rhythm: consistent gap inside the intro block. */
+.office-locations__intro {
+    display: grid;
+    gap: var(--d-spacing-sm);
+}

@@ -29,3 +29,9 @@
 .feature-numbered__title {
     margin-block-end: var(--d-spacing-xs);
 }
+
+/* Heading-to-teaser rhythm: consistent gap inside the intro block. */
+.feature-numbered__intro {
+    display: grid;
+    gap: var(--d-spacing-sm);
+}

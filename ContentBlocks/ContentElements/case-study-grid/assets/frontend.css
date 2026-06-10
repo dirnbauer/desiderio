@@ -22,3 +22,9 @@
     .case-study-grid__image { transition: none; }
     .case-study-grid__card:hover .case-study-grid__image { transform: none; }
 }
+
+/* Heading-to-teaser rhythm: consistent gap inside the intro block. */
+.case-study-grid__intro {
+    display: grid;
+    gap: var(--d-spacing-sm);
+}

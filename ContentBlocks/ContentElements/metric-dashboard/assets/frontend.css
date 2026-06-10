@@ -43,3 +43,9 @@
     background: var(--primary);
 }
 .metric-dashboard__legend-unit { color: var(--foreground); }
+
+/* Heading-to-teaser rhythm: consistent gap inside the intro block. */
+.metric-dashboard__intro {
+    display: grid;
+    gap: var(--d-spacing-sm);
+}

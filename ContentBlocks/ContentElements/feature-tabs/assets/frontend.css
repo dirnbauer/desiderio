@@ -56,3 +56,9 @@
     height: 100%;
     object-fit: cover;
 }
+
+/* Heading-to-teaser rhythm: consistent gap inside the intro block. */
+.feature-tabs__intro {
+    display: grid;
+    gap: var(--d-spacing-sm);
+}

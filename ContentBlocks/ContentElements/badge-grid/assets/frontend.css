@@ -30,3 +30,9 @@
 [data-slot="badge"][data-variant="outline"].badge-grid__badge--green { border-color: var(--d-success); color: var(--d-success); background-color: transparent; }
 [data-slot="badge"][data-variant="outline"].badge-grid__badge--red { border-color: var(--destructive); color: var(--destructive); background-color: transparent; }
 [data-slot="badge"][data-variant="outline"].badge-grid__badge--yellow { border-color: var(--d-warning); color: var(--d-warning); background-color: transparent; }
+
+/* Heading-to-teaser rhythm: consistent gap inside the intro block. */
+.badge-grid__intro {
+    display: grid;
+    gap: var(--d-spacing-sm);
+}

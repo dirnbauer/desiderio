@@ -124,3 +124,9 @@
         padding: var(--d-spacing-md);
     }
 }
+
+/* Heading-to-teaser rhythm: consistent gap inside the intro block. */
+.feature-timeline__intro {
+    display: grid;
+    gap: var(--d-spacing-sm);
+}

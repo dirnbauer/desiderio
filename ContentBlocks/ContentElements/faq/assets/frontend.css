@@ -58,3 +58,9 @@ details[open] > .faq__question > .faq__chevron {
         transition: none;
     }
 }
+
+/* Heading-to-teaser rhythm: consistent gap inside the intro block. */
+.faq__intro {
+    display: grid;
+    gap: var(--d-spacing-sm);
+}

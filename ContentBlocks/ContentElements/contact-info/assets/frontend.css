@@ -55,3 +55,9 @@
 .contact-info__value--link:hover {
     text-decoration: underline;
 }
+
+/* Heading-to-teaser rhythm: consistent gap inside the intro block. */
+.contact-info__intro {
+    display: grid;
+    gap: var(--d-spacing-sm);
+}

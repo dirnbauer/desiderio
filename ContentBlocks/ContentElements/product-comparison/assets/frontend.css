@@ -13,3 +13,9 @@
 .product-comparison__specs { list-style: none; padding: 0; margin-block-start: var(--d-spacing-md); margin-block-end: var(--d-spacing-lg); display: flex; flex-direction: column; gap: var(--d-spacing-xs); text-align: start; width: 100%; flex: 1; }
 .product-comparison__spec { font-size: var(--d-text-sm); padding: var(--d-spacing-xs) 0; border-block-end: 1px solid var(--border); }
 .product-comparison__button { width: 100%; text-align: center; justify-content: center; margin-block-start: auto; }
+
+/* Heading-to-teaser rhythm: consistent gap inside the intro block. */
+.product-comparison__intro {
+    display: grid;
+    gap: var(--d-spacing-sm);
+}

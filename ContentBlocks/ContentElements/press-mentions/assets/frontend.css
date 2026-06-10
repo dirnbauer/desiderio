@@ -47,3 +47,9 @@
 .press-mentions__date { font-size: var(--d-text-xs); color: var(--muted-foreground); }
 .press-mentions__link { font-size: var(--d-text-sm); font-weight: 500; color: var(--primary); text-decoration: none; }
 .press-mentions__link:hover { text-decoration: underline; }
+
+/* Heading-to-teaser rhythm: consistent gap inside the intro block. */
+.press-mentions__intro {
+    display: grid;
+    gap: var(--d-spacing-sm);
+}

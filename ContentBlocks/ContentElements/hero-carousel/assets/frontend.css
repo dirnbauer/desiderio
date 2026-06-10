@@ -116,3 +116,9 @@
         gap: var(--d-spacing-12);
     }
 }
+
+/* Heading-to-teaser rhythm: consistent gap inside the intro block. */
+.hero-carousel__intro {
+    display: grid;
+    gap: var(--d-spacing-sm);
+}

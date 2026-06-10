@@ -28,3 +28,9 @@
     .category-cards__link-arrow { transition: none; }
     .category-cards__link:hover .category-cards__link-arrow { transform: none; }
 }
+
+/* Heading-to-teaser rhythm: consistent gap inside the intro block. */
+.category-cards__intro {
+    display: grid;
+    gap: var(--d-spacing-sm);
+}

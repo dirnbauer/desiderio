@@ -18,3 +18,9 @@
     height: 100%;
     border: 0;
 }
+
+/* Heading-to-teaser rhythm: consistent gap inside the intro block. */
+.map-embed__intro {
+    display: grid;
+    gap: var(--d-spacing-sm);
+}

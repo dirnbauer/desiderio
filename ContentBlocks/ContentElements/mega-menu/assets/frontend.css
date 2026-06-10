@@ -179,3 +179,9 @@
         transition: none;
     }
 }
+
+/* Heading-to-teaser rhythm: consistent gap inside the intro block. */
+.mega-menu__intro {
+    display: grid;
+    gap: var(--d-spacing-sm);
+}

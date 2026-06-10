@@ -62,3 +62,9 @@
     border-block-start: 1px solid var(--border);
 }
 .newsletter-signup__check { display: inline-flex; color: var(--primary); margin-block-start: 0.1rem; }
+
+/* Heading-to-teaser rhythm: consistent gap inside the intro block. */
+.newsletter-signup__intro {
+    display: grid;
+    gap: var(--d-spacing-sm);
+}

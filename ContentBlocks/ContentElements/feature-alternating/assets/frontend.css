@@ -64,3 +64,9 @@
     .feature-alternating__arrow { transition: none; }
     .feature-alternating__link:hover .feature-alternating__arrow { transform: none; }
 }
+
+/* Heading-to-teaser rhythm: consistent gap inside the intro block. */
+.feature-alternating__intro {
+    display: grid;
+    gap: var(--d-spacing-sm);
+}

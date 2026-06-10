@@ -16,3 +16,9 @@
 .pricing-toggle__feature { display: flex; align-items: flex-start; gap: 0.5rem; font-size: var(--d-text-sm); }
 .pricing-toggle__check { flex-shrink: 0; color: var(--primary); margin-block-start: 0.125rem; }
 .pricing-toggle__button { text-align: center; justify-content: center; margin-block-start: auto; }
+
+/* Heading-to-teaser rhythm: consistent gap inside the intro block. */
+.pricing-toggle__intro {
+    display: grid;
+    gap: var(--d-spacing-sm);
+}

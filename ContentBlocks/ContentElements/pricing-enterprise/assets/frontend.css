@@ -19,7 +19,19 @@
 .pricing-enterprise__content {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     min-width: 0;
+}
+
+/* Clear vertical rhythm between header copy, feature list, and CTA.
+   The card sub-components ship with padding-top: 0, which made the list
+   and footer sit flush against the previous block. */
+.pricing-enterprise__card .pricing-enterprise__content-body {
+    padding-block-start: var(--d-spacing-md);
+}
+
+.pricing-enterprise__card .pricing-enterprise__footer {
+    padding-block-start: var(--d-spacing-lg);
 }
 
 .pricing-enterprise__eyebrow {
@@ -35,7 +47,7 @@
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: var(--d-spacing-xs);
+    gap: var(--d-spacing-sm);
 }
 
 .pricing-enterprise__feature {
@@ -51,16 +63,23 @@
     margin-block-start: 0.125rem;
 }
 
-.pricing-enterprise__footer {
-    margin-block-start: auto;
-}
-
 .pricing-enterprise__media {
     min-width: 0;
+    display: flex;
+    align-items: center;
+    padding: 0 var(--d-spacing-lg) var(--d-spacing-lg);
+}
+
+@media (min-width: 768px) {
+    .pricing-enterprise__media {
+        padding: var(--d-spacing-lg) var(--d-spacing-lg) var(--d-spacing-lg) 0;
+    }
 }
 
 .pricing-enterprise__image {
+    display: block;
     width: 100%;
-    height: auto;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
     border-radius: var(--radius);
 }

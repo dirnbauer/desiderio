@@ -29,7 +29,7 @@
                         </div>
                     </f:if>
                     <f:if condition="{mention.quote}">
-                        <blockquote class="press-mentions__quote">&ldquo;{mention -> f:render.text(field: 'quote')}&rdquo;</blockquote>
+                        <blockquote class="press-mentions__quote">{mention -> f:render.text(field: 'quote')}</blockquote>
                     </f:if>
                     <div class="press-mentions__meta">
                         <span class="press-mentions__publication">{mention -> f:render.text(field: 'publication')}</span>

@@ -19,11 +19,14 @@
                 <article class="board-members__card">
                     <f:if condition="{member.image}">
                         <f:then>
-                            <div class="board-members__image-wrapper">
+                            <figure class="board-members__image-wrapper">
                                 <f:for each="{member.image}" as="fileReference">
-                                    <f:image image="{fileReference}" width="720" height="960" alt="" loading="lazy" decoding="async" class="board-members__image"/>
+                                    <f:image image="{fileReference}" width="720c" height="960c" alt="" loading="lazy" decoding="async" class="board-members__image"/>
+                                    <f:if condition="{fileReference.description}">
+                                        <figcaption class="board-members__credit">{fileReference.description}</figcaption>
+                                    </f:if>
                                 </f:for>
-                            </div>
+                            </figure>
                         </f:then>
                         <f:else>
                             <span class="board-members__image-wrapper board-members__avatar--fallback" aria-hidden="true">{member.name -> f:format.crop(maxCharacters: 1)}</span>

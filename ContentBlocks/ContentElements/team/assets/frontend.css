@@ -56,9 +56,19 @@
 
 /* Grid variant — card image fills the card top edge (card rounds it) */
 .team__image {
+    display: block;
     width: 100%;
     aspect-ratio: 4 / 3;
     object-fit: cover;
+}
+.team__figure {
+    margin: 0;
+}
+/* Photo credit (file description) — small, muted, no impact on equal heights */
+.team__credit {
+    font-size: var(--d-text-xs);
+    color: var(--muted-foreground);
+    padding: var(--d-spacing-2xs) var(--d-spacing-lg) 0;
 }
 
 /* Minimal variant */

@@ -30,7 +30,7 @@
                     <figcaption class="testimonial-wall__author">
                         <f:if condition="{item.author_image}">
                             <f:for each="{item.author_image}" as="fileReference">
-                                <f:image image="{fileReference}" width="40" height="40" alt="" class="testimonial-wall__avatar"/>
+                                <f:image image="{fileReference}" width="80c" height="80c" alt="" loading="lazy" decoding="async" class="testimonial-wall__avatar"/>
                             </f:for>
                         </f:if>
                         <span class="testimonial-wall__author-meta">

@@ -1009,6 +1009,18 @@
         <target>3 Sterne</target>
       </segment>
     </unit>
+    <unit id="item.2_stars">
+      <segment state="final">
+        <source>2 Stars</source>
+        <target>2 Sterne</target>
+      </segment>
+    </unit>
+    <unit id="item.1_stars">
+      <segment state="final">
+        <source>1 Star</source>
+        <target>1 Stern</target>
+      </segment>
+    </unit>
     <unit id="item.basic">
       <segment state="final">
         <source>Basic</source>

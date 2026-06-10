@@ -2,26 +2,44 @@
     margin-block-end: var(--d-spacing-lg);
 }
 .quote {
+    position: relative;
     max-width: 42rem;
     margin-inline: auto;
 }
+/* Decorative opening mark: oversized, low-opacity, anchored behind the
+   first line of the quote — never rendered as a bare line of its own. */
 .quote__mark {
-    display: block;
-    font-size: 3rem;
+    position: absolute;
+    inset-block-start: -0.5rem;
+    inset-inline-start: -0.5rem;
+    font-size: 4.5rem;
     line-height: 1;
     font-weight: 700;
-    color: color-mix(in oklch, var(--primary) 35%, transparent);
-    margin-block-end: var(--d-spacing-xs);
+    color: color-mix(in oklch, var(--primary) 22%, transparent);
+    pointer-events: none;
+    user-select: none;
 }
 .quote--bordered .quote__mark { display: none; }
 .quote--bordered {
     border-left: 4px solid var(--primary);
     padding-left: var(--d-spacing-lg);
 }
+.quote--large {
+    padding-block-start: var(--d-spacing-xl);
+    padding-inline-start: var(--d-spacing-lg);
+}
+.quote--large .quote__mark {
+    font-size: 6rem;
+    inset-block-start: -0.75rem;
+    inset-inline-start: -0.25rem;
+}
 .quote--large .quote__text p {
-    font-size: 1.5rem;
+    font-size: var(--d-text-2xl);
     font-weight: 500;
     line-height: 1.4;
+}
+.quote--large .quote__attribution {
+    margin-top: var(--d-spacing-lg);
 }
 .quote--card {
     border: 1px solid var(--border);
@@ -29,15 +47,26 @@
     padding: var(--d-spacing-xl);
     background: color-mix(in oklch, var(--muted) 30%, transparent);
 }
+.quote--card .quote__mark {
+    inset-block-start: var(--d-spacing-sm);
+    inset-inline-start: var(--d-spacing-md);
+}
+.quote__text {
+    margin: 0;
+}
 .quote__text p {
+    margin: 0;
     font-style: italic;
     color: var(--foreground);
+}
+.quote__text p + p {
+    margin-block-start: var(--d-spacing-sm);
 }
 .quote__attribution {
     margin-top: var(--d-spacing-md);
     display: flex;
     flex-direction: column;
-    gap: var(--d-spacing-xs);
+    gap: var(--d-spacing-2xs);
 }
 .quote__author {
     font-weight: 600;

@@ -39,6 +39,13 @@
     font-size: var(--d-text-xs);
     line-height: 1.55;
 }
+.gallery__credit {
+    display: block;
+    color: var(--muted-foreground);
+    font-size: var(--d-text-xs);
+    line-height: 1.4;
+}
+.gallery__credit[hidden] { display: none; }
 .gallery__featured-link {
     justify-self: start;
     width: fit-content;

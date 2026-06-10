@@ -19,18 +19,21 @@
             <f:for each="{data.members}" as="member">
                 <li>
                     <article class="team-with-bio__member">
-                        <div class="team-with-bio__image-wrapper">
+                        <figure class="team-with-bio__image-wrapper">
                             <f:if condition="{member.image}">
                                 <f:then>
                                     <f:for each="{member.image}" as="fileReference">
                                         <f:image image="{fileReference}" maxWidth="320" alt="" loading="lazy" decoding="async" class="team-with-bio__image"/>
+                                        <f:if condition="{fileReference.description}">
+                                            <figcaption class="team-with-bio__credit">{fileReference.description}</figcaption>
+                                        </f:if>
                                     </f:for>
                                 </f:then>
                                 <f:else>
                                     <span class="team-with-bio__image team-with-bio__image--fallback" aria-hidden="true">{member.name -> f:format.crop(maxCharacters: 1)}</span>
                                 </f:else>
                             </f:if>
-                        </div>
+                        </figure>
                         <div class="team-with-bio__content">
                             <h3 class="team-with-bio__name">{member -> f:render.text(field: 'name')}</h3>
                             <f:if condition="{member.role}"><p class="team-with-bio__role">{member -> f:render.text(field: 'role')}</p></f:if>

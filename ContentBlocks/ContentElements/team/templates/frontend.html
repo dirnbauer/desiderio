@@ -25,7 +25,7 @@
                                 <f:then>
                                     <f:for each="{member.image}" as="fileReference">
                                         <d:atom.avatar size="xl" class="team__list-avatar">
-                                            <f:image image="{fileReference}" width="96" height="96" cropVariant="default" alt="" loading="lazy" decoding="async" class="team__avatar-image"/>
+                                            <f:image image="{fileReference}" width="96c" height="96c" cropVariant="default" alt="" loading="lazy" decoding="async" class="team__avatar-image"/>
                                         </d:atom.avatar>
                                     </f:for>
                                 </f:then>
@@ -61,7 +61,7 @@
                                 <f:then>
                                     <f:for each="{member.image}" as="fileReference">
                                         <d:atom.avatar size="xl" class="team__minimal-avatar">
-                                            <f:image image="{fileReference}" width="96" height="96" cropVariant="default" alt="" loading="lazy" decoding="async" class="team__avatar-image"/>
+                                            <f:image image="{fileReference}" width="96c" height="96c" cropVariant="default" alt="" loading="lazy" decoding="async" class="team__avatar-image"/>
                                         </d:atom.avatar>
                                     </f:for>
                                 </f:then>
@@ -85,9 +85,14 @@
                         <div class="team__cell">
                             <d:molecule.card class="team__member h-full w-full">
                             <f:if condition="{member.image}">
-                                <f:for each="{member.image}" as="fileReference">
-                                    <f:image image="{fileReference}" maxWidth="640" alt="" loading="lazy" decoding="async" class="team__image"/>
-                                </f:for>
+                                <figure class="team__figure">
+                                    <f:for each="{member.image}" as="fileReference">
+                                        <f:image image="{fileReference}" maxWidth="640" alt="" loading="lazy" decoding="async" class="team__image"/>
+                                        <f:if condition="{fileReference.description}">
+                                            <figcaption class="team__credit">{fileReference.description}</figcaption>
+                                        </f:if>
+                                    </f:for>
+                                </figure>
                             </f:if>
                             <d:molecule.cardHeader>
                                 <h3 class="team__name">{member -> f:render.text(field: 'name')}</h3>

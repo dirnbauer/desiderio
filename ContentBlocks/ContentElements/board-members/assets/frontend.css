@@ -19,12 +19,18 @@
     border-radius: var(--radius);
 }
 
-.board-members__image-wrapper { overflow: hidden; }
+.board-members__image-wrapper { overflow: hidden; margin: 0; }
 .board-members__image {
     width: 100%;
     aspect-ratio: 3 / 4;
     object-fit: cover;
+    object-position: center top;
     display: block;
+}
+.board-members__credit {
+    font-size: var(--d-text-xs);
+    color: var(--muted-foreground);
+    padding: var(--d-spacing-2xs) var(--d-spacing-lg) 0;
 }
 .board-members__avatar--fallback {
     display: flex;

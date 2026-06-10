@@ -83,6 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const main = root.querySelector('[data-d-gallery-main]');
     const title = root.querySelector('[data-d-gallery-title]');
     const description = root.querySelector('[data-d-gallery-description]');
+    const credit = root.querySelector('[data-d-gallery-credit]');
     const link = root.querySelector('[data-d-gallery-link]');
     const thumbs = Array.from(root.querySelectorAll('[data-d-gallery-thumb]'));
 
@@ -102,6 +103,10 @@ document.addEventListener('DOMContentLoaded', () => {
       if (description) {
         description.textContent = thumb.dataset.thumbDescription || '';
         description.hidden = description.textContent.trim() === '';
+      }
+      if (credit) {
+        credit.textContent = thumb.dataset.thumbCredit || '';
+        credit.hidden = credit.textContent.trim() === '';
       }
       if (link) {
         const href = thumb.dataset.thumbLink || '';

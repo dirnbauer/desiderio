@@ -19,11 +19,11 @@
                     <p class="product-hero__description">{data -> f:render.text(field: 'description')}</p>
                 </f:if>
                 <f:if condition="{data.price}">
-                    <div class="product-hero__price-row">
+                    <div class="product-hero__price-block">
+                        <span class="product-hero__price">{data -> f:render.text(field: 'price')}</span>
                         <f:if condition="{data.price_note}">
                             <span class="product-hero__price-note">{data -> f:render.text(field: 'price_note')}</span>
                         </f:if>
-                        <span class="product-hero__price">{data -> f:render.text(field: 'price')}</span>
                     </div>
                 </f:if>
                 <f:if condition="{data.button_text} && {data.button_link.url}">

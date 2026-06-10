@@ -3,22 +3,45 @@
 .press-mentions__headline { margin-block-start: var(--d-spacing-xs); }
 .press-mentions__grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr)); gap: var(--d-spacing-lg); }
 .press-mentions__item { padding: var(--d-spacing-lg); border: 1px solid var(--border); border-radius: var(--radius); background: var(--card); display: flex; flex-direction: column; gap: var(--d-spacing-md); }
+/* Fixed-height logo bar — intrinsic aspect ratio preserved, transparent
+   background, no letterboxing. */
 .press-mentions__logo {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    min-height: 4rem;
-    margin-block-end: var(--d-spacing-xs);
+    height: 2.5rem;
+    background: transparent;
 }
 .press-mentions__logo-img {
     display: block;
-    width: min(12rem, 70%);
-    max-height: 4rem;
+    height: 100%;
+    width: auto;
+    max-width: 100%;
     object-fit: contain;
-    filter: none;
-    opacity: 1;
 }
-.press-mentions__quote { font-style: italic; line-height: 1.5; color: var(--foreground); flex: 1; }
+/* One decorative opening quote glyph anchored to the text — never a bare
+   line of its own, no closing orphan mark. */
+.press-mentions__quote {
+    position: relative;
+    margin: 0;
+    padding-inline-start: var(--d-spacing-lg);
+    line-height: 1.6;
+    color: var(--foreground);
+    flex: 1;
+}
+.press-mentions__quote::before {
+    content: "\201C" / "";
+    position: absolute;
+    inset-inline-start: 0;
+    inset-block-start: -0.1em;
+    font-size: var(--d-text-3xl);
+    line-height: 1;
+    font-weight: 700;
+    color: color-mix(in oklch, var(--primary) 50%, transparent);
+    pointer-events: none;
+}
+.press-mentions__quote p { margin: 0; }
+.press-mentions__quote p + p { margin-block-start: var(--d-spacing-xs); }
 .press-mentions__meta { display: flex; justify-content: space-between; align-items: center; }
 .press-mentions__publication { font-weight: 600; font-size: var(--d-text-sm); }
 .press-mentions__date { font-size: var(--d-text-xs); color: var(--muted-foreground); }

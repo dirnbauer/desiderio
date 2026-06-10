@@ -20,7 +20,7 @@
                     <f:if condition="{advisor.image}">
                         <f:then>
                             <f:for each="{advisor.image}" as="fileReference">
-                                <f:image image="{fileReference}" width="160" height="160" alt="" loading="lazy" decoding="async" class="advisor-grid__avatar"/>
+                                <f:image image="{fileReference}" width="160c" height="160c" alt="" loading="lazy" decoding="async" class="advisor-grid__avatar"/>
                             </f:for>
                         </f:then>
                         <f:else>
@@ -31,6 +31,11 @@
                         <h3 class="advisor-grid__name">{advisor -> f:render.text(field: 'name')}</h3>
                         <f:if condition="{advisor.expertise}"><p class="advisor-grid__expertise">{advisor -> f:render.text(field: 'expertise')}</p></f:if>
                         <f:if condition="{advisor.company}"><p class="advisor-grid__company">{advisor -> f:render.text(field: 'company')}</p></f:if>
+                        <f:for each="{advisor.image}" as="fileReference">
+                            <f:if condition="{fileReference.description}">
+                                <p class="advisor-grid__credit">{fileReference.description}</p>
+                            </f:if>
+                        </f:for>
                     </div>
                 </article>
             </f:for>

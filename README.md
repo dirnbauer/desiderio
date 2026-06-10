@@ -60,6 +60,82 @@ The active look is selected in TYPO3 site settings and rendered as `data-*` attr
 
 Preset changes repaint colors, radius, density, focus rings, fonts, and icon library behavior at runtime. Stored content uses semantic icon keys, so the icon library can be changed without rewriting records.
 
+## Icon Fonts
+
+All icon webfonts are **self-hosted inside the package** — no CDN requests, no
+external dependencies, no GDPR exposure. Content icons themselves render as
+inline SVGs (`IconViewHelper` emits one `<svg>` per library; CSS reveals the
+one matching `body[data-icon-library]`), so the webfonts are an additional
+offering for editors and custom markup, loaded per configured library.
+
+### How loading works
+
+The page layout resolves the configured library to a bundled stylesheet:
+
+```html
+<f:asset.css
+    identifier="desiderioIconFont"
+    href="{di:iconFont(library: site.configuration.settings.desiderio.shadcn.iconLibrary)}"
+    priority="1"
+/>
+```
+
+`di:iconFont` calls `IconRegistry::fontStylesheet()`, which maps every
+supported library to `EXT:desiderio/Resources/Public/IconFonts/<library>/<library>.css`.
+Each directory contains exactly three files: the stylesheet (rewritten to a
+single relative `woff2` source), the `woff2` font, and the upstream license.
+
+### Licensing
+
+Every bundled font was license-checked for redistribution inside a
+distributable TYPO3 package (verified June 2026):
+
+| Library | License | Bundled from | Redistribution |
+| --- | --- | --- | --- |
+| Lucide | ISC | `lucide-static` | allowed |
+| Tabler Icons | MIT | `@tabler/icons-webfont` | allowed |
+| Phosphor Icons | MIT | `@phosphor-icons/web` (regular weight) | allowed |
+| Remix Icon | Apache-2.0 | `remixicon` | allowed |
+| HugeIcons | proprietary font / MIT SVG data | generated in-house, see below | official font **forbidden**, own build allowed |
+
+**HugeIcons is the special case.** The official hugeicons webfont (formerly
+loaded from `cdn.hugeicons.com`) must not be redistributed — the
+[license agreement](https://hugeicons.com/license-agreement) explicitly covers
+the free versions and forbids shipping their icon fonts in downloadable
+packages. Their SVG icon *data* (`@hugeicons/core-free-icons`) is MIT,
+however, so Desiderio compiles its own webfont from it:
+
+1. all 6,156 free icons are exported as stroke SVGs from the MIT data,
+2. strokes are outlined into filled paths with `picosvg` (icon fonts cannot
+   render strokes; the venv lives in `var/picosvg-venv`),
+3. `fantasticon` compiles `hugeicons.woff2` + `hugeicons.css` with explicit
+   codepoints in the Unicode Private Use Area (U+E001 ff. — the default
+   numbering would overflow past U+FFFF and silently drop glyphs).
+
+The resulting font is Desiderio's own MIT-licensed build — it is *not* the
+official hugeicons webfont, and `Resources/Public/IconFonts/hugeicons/LICENSE-MIT.txt`
+documents that provenance. Never re-add the hugeicons CDN link or copy their
+official font files into the package; `IconRegistryTest` pins both rules.
+
+### Updating the fonts
+
+```bash
+npm run build:iconfonts       # re-sync Lucide/Tabler/Phosphor/Remix from node_modules
+npm run build:hugeicons-font  # regenerate the HugeIcons font from MIT SVG data
+```
+
+Run these after bumping the corresponding npm packages. The HugeIcons build
+caches its outlining step in `var/hugeicons-font/`; delete that directory to
+force a full rebuild (~10 minutes for all icons).
+
+### Usage
+
+Font classes follow each library's upstream conventions, e.g.
+`<i class="hgi hgi-home-01"></i>` (HugeIcons build), `.icon-*` (Lucide),
+`.ti ti-*` (Tabler), `.ph ph-*` (Phosphor), `.ri-*` (Remix Icon). For content
+elements prefer the semantic `d:icon` component — it stays library-agnostic
+and switches with the preset.
+
 ## Content Elements
 
 The content-element set includes, among others:

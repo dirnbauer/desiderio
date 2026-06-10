@@ -1,6 +1,7 @@
 <html
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
     xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+    xmlns:di="http://typo3.org/ns/Webconsulting/Desiderio/ViewHelpers"
     data-namespace-typo3-fluid="true"
 >
 
@@ -8,15 +9,16 @@
 <f:render partial="Pages/SeoMeta" arguments="{_all}"/>
 <f:render partial="Pages/StructuredData" arguments="{_all}"/>
 <f:comment>
-    Hugeicons stroke font is loaded over a Subresource-Integrity-pinned CDN URL.
-    The hash matches the v1.0.7 build that ships with this Desiderio cut and
-    must be regenerated whenever the icon font is upgraded.
+    The configured icon library's font is self-hosted from
+    Resources/Public/IconFonts (synced via Build/Scripts/sync-icon-fonts.mjs;
+    the hugeicons font is generated in-house from MIT SVG data via
+    Build/Scripts/build-hugeicons-font.mjs — the official hugeicons webfont
+    must not be redistributed). See IconRegistry::fontStylesheet().
 </f:comment>
 <f:asset.css
-    identifier="hugeicons"
-    href="https://cdn.hugeicons.com/font/v1.0.7/hgi-stroke-rounded.css"
+    identifier="desiderioIconFont"
+    href="{di:iconFont(library: site.configuration.settings.desiderio.shadcn.iconLibrary)}"
     priority="1"
-    additionalAttributes="{integrity: 'sha384-cFbB/EdtqpeNNB1pP5EbnLFHFLsvtAW7FxnPaDe5+UDJSb+IPWvP4MRijF6KCFL8', crossorigin: 'anonymous', referrerpolicy: 'no-referrer'}"
 />
 
 <a href="#main-content" class="d-skip-link">

@@ -28,6 +28,21 @@ final class IconRegistry
         return self::isSupportedLibrary($library) ? $library : self::DEFAULT_LIBRARY;
     }
 
+    /**
+     * Self-hosted icon font stylesheet for a library. Lucide, Tabler,
+     * Phosphor and Remix Icon are synced from npm (Build/Scripts/
+     * sync-icon-fonts.mjs). The hugeicons font is generated in-house from
+     * the MIT-licensed @hugeicons/core-free-icons SVG data (Build/Scripts/
+     * build-hugeicons-font.mjs) because the official hugeicons webfont must
+     * not be redistributed per their license agreement.
+     */
+    public static function fontStylesheet(string $library): string
+    {
+        $library = self::normalizeLibrary($library);
+
+        return sprintf('EXT:desiderio/Resources/Public/IconFonts/%1$s/%1$s.css', $library);
+    }
+
     public static function libraryForPreset(string $preset): ?string
     {
         return match ($preset) {

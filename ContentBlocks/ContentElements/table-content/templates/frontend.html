@@ -11,7 +11,7 @@
             <d:atom.typography tag="h2" variant="h2" class="table-content__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
         </f:if>
 
-        <div class="table-content__wrapper">
+        <div class="table-content__wrapper" role="region" tabindex="0" aria-label="{data.header -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:table.aria.region\', default: \'Data table\')}')}">
             <table class="table-content__table">
                 <f:if condition="{data.caption}">
                     <caption class="table-content__caption">{data -> f:render.text(field: 'caption')}</caption>

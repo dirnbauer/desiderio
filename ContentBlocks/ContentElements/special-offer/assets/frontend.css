@@ -10,7 +10,7 @@
 .special-offer__discount { font-size: var(--d-text-4xl); font-weight: 900; color: var(--primary); margin-block-start: var(--d-spacing-sm); line-height: 1.1; }
 .special-offer__headline { margin-block-start: var(--d-spacing-sm); }
 .special-offer__description { max-width: 32rem; margin-inline: auto; margin-block-start: var(--d-spacing-sm); }
-.special-offer__prices { display: flex; align-items: baseline; justify-content: center; gap: var(--d-spacing-md); margin-block: var(--d-spacing-lg) 0; }
+.special-offer__prices { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: center; gap: var(--d-spacing-md); margin-block: var(--d-spacing-lg) 0; }
 .special-offer__original { font-size: var(--d-text-xl); color: var(--muted-foreground); }
 .special-offer__sale { font-size: var(--d-text-3xl); font-weight: 800; color: var(--primary); }
 .special-offer__button { margin-block-start: var(--d-spacing-lg); }

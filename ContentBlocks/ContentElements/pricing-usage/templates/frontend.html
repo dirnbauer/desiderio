@@ -34,9 +34,8 @@
                             <p class="pricing-usage__card-desc">{item -> f:render.text(field: 'description')}</p>
                         </f:if>
                         <f:if condition="{item.link.url}">
-                            <f:variable name="usageLinkLabel">View {item.title} details</f:variable>
                             <d:atom.link href="{item.link.url}" target="{item.link.target}" variant="muted" class="pricing-usage__link">
-                                View details
+                                <span><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:view_details" default="View details"/><span class="sr-only"> – {item.title}</span></span>
                                 <svg class="pricing-usage__arrow" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
                             </d:atom.link>
                         </f:if>

@@ -7,7 +7,7 @@
 
 <d:layout.section class="navbar-sticky" spacing="none">
     <d:layout.container>
-        <nav class="navbar-sticky__inner" aria-label="{data.header -> f:or(alternative: 'Sticky navigation')}">
+        <nav class="navbar-sticky__inner" aria-label="{data.header -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:navbar.sticky.aria\', default: \'Sticky navigation\')}')}">
             <span class="navbar-sticky__brand">{data -> f:render.text(field: 'brand')}</span>
             <ul class="navbar-sticky__nav">
                 <f:for each="{data.nav_items}" as="item">

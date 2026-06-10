@@ -13,6 +13,8 @@
     list-style: none;
 }
 .office-locations__item { height: 100%; }
+.office-locations__details { flex: 1 1 auto; }
+.office-locations__map { margin-block-start: auto; align-self: flex-start; }
 .office-locations__city {
     font-weight: 600;
     font-size: var(--d-text-lg);

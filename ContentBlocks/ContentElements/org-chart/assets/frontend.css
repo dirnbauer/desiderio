@@ -42,9 +42,10 @@
     width: 100%;
 }
 .org-chart__person {
-    min-inline-size: 11rem;
+    min-inline-size: min(11rem, 100%);
+    max-inline-size: 100%;
     flex: 0 1 auto;
 }
 .org-chart__card { height: 100%; text-align: center; }
-.org-chart__name { font-weight: 600; font-size: var(--d-text-sm); margin: 0; }
+.org-chart__name { font-weight: 600; font-size: var(--d-text-sm); margin: 0; overflow-wrap: anywhere; }
 .org-chart__role { font-size: var(--d-text-xs); color: var(--muted-foreground); margin-block-start: var(--d-spacing-2xs); }

@@ -21,10 +21,10 @@
         <dl class="stats-counter__grid stats-counter__grid--cols-{data.columns -> f:or(alternative: '3')}">
             <f:for each="{data.counters}" as="counter">
                 <div class="stats-counter__item" data-astro-reveal="slide-up">
+                    <dt class="stats-counter__label">{counter -> f:render.text(field: 'label')}</dt>
                     <dd class="stats-counter__value">
                         <span data-astro-counter data-astro-target="{counter.counter_target}" data-astro-duration="1400">{counter -> f:render.text(field: 'counter_target')}</span><f:if condition="{counter.suffix}"><span class="stats-counter__suffix">{counter -> f:render.text(field: 'suffix')}</span></f:if>
                     </dd>
-                    <dt class="stats-counter__label">{counter -> f:render.text(field: 'label')}</dt>
                     <f:if condition="{counter.description}">
                         <dd class="stats-counter__description">{counter -> f:render.text(field: 'description')}</dd>
                     </f:if>

@@ -1,1 +1,14 @@
-/* Uses shared shadcn Fluid table components. */
+/* Uses shared shadcn Fluid table components; this file only adds the
+   keyboard-focusable horizontal scroll region around the table. */
+.data-table__region {
+    overflow-x: auto;
+}
+.data-table__region:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+}
+/* The shared table molecule ships its own overflow container; let the
+   focusable region own the scrolling instead so keyboard users can scroll. */
+.data-table__region [data-slot="table-container"] {
+    overflow-x: visible;
+}

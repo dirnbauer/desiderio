@@ -31,7 +31,7 @@
         </f:if>
         <f:if condition="{data.logo_items}">
             <div class="hero-saas__trust">
-                <p class="hero-saas__trust-label" id="hero-saas-trust-{data.uid}">Trusted by teams at</p>
+                <p class="hero-saas__trust-label" id="hero-saas-trust-{data.uid}">{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:trust.label', default: 'Trusted by teams at')}</p>
                 <ul class="hero-saas__logos" aria-labelledby="hero-saas-trust-{data.uid}">
                     <f:for each="{data.logo_items}" as="logo">
                         <li class="hero-saas__logo">{logo -> f:render.text(field: 'name')}</li>

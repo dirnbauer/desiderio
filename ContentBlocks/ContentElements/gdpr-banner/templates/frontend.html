@@ -24,6 +24,7 @@
             </div>
             <f:if condition="{data.cookie_categories}">
                 <fieldset class="gdpr-banner__categories">
+                    <legend class="sr-only"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:consent.categories" default="Cookie categories"/></legend>
                     <f:for each="{data.cookie_categories}" as="cat" iteration="catIteration">
                         <label class="gdpr-banner__category" for="gdpr-cat-{data.uid}-{catIteration.index}">
                             <input type="checkbox"
@@ -41,8 +42,8 @@
                 </fieldset>
             </f:if>
             <div class="gdpr-banner__actions">
-                <d:atom.button type="button" variant="default" size="sm" class="gdpr-banner__action gdpr-banner__action--accept">{data.accept_text -> f:or(alternative: 'Accept all')}</d:atom.button>
-                <d:atom.button type="button" variant="outline" size="sm" class="gdpr-banner__action gdpr-banner__action--save">{data.save_text -> f:or(alternative: 'Save preferences')}</d:atom.button>
+                <d:atom.button type="button" variant="default" size="sm" class="gdpr-banner__action gdpr-banner__action--accept">{data.accept_text -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:consent.acceptAll\', default: \'Accept all\')}')}</d:atom.button>
+                <d:atom.button type="button" variant="outline" size="sm" class="gdpr-banner__action gdpr-banner__action--save">{data.save_text -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:consent.savePreferences\', default: \'Save preferences\')}')}</d:atom.button>
             </div>
         </div>
     </d:layout.container>

@@ -14,7 +14,9 @@
     margin-block-start: var(--d-spacing-md);
 }
 .about-us__image {
+    display: block;
     width: 100%;
+    aspect-ratio: 4 / 3;
     border-radius: var(--radius);
     object-fit: cover;
 }

@@ -26,3 +26,4 @@
     color: var(--muted-foreground); padding: 4px;
 }
 .notification__close:hover { color: var(--foreground); }
+.notification__close:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; border-radius: var(--radius-md); }

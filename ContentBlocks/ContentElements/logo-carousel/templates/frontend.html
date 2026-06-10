@@ -21,7 +21,7 @@
         <div
             class="logo-carousel__track logo-carousel__track--{data.speed -> f:or(alternative: 'normal')}"
             role="group"
-            aria-label="{data.header -> f:or(alternative: 'Trusted by leading teams')}"
+            aria-label="{data.header -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:logoCloud.aria\', default: \'Trusted by leading teams\')}')}"
         >
             <ul class="logo-carousel__slide-group">
                 <f:for each="{data.logo_items}" as="logo">

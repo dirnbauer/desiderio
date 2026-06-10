@@ -117,6 +117,7 @@
                     </div>
                 </f:then>
                 <f:else if="{resultSet.allResultCount}">
+                    <h2 class="sr-only"><f:translate key="solr.results.heading" domain="desiderio.labels">Search results</f:translate></h2>
                     <div class="d-solr-results-toolbar">
                         <f:if condition="{pagination.lastPageNumber} > 1">
                             <f:render partial="Result/Pagination" section="Pagination" arguments="{resultSet: resultSet, pagination: pagination, currentPage: currentPage}"/>

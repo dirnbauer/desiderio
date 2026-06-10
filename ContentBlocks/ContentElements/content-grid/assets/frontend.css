@@ -41,7 +41,9 @@
     display: inline-flex;
     align-items: center;
     gap: 0.25rem;
-    margin-top: var(--d-spacing-sm);
+    margin-block-start: auto;
+    padding-block-start: var(--d-spacing-sm);
+    width: fit-content;
     font-size: var(--d-text-sm);
     font-weight: 500;
     color: var(--primary);

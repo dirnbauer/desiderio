@@ -23,13 +23,13 @@
 
         <div class="pricing-slider__body" data-d-pricing-slider>
             <div class="pricing-slider__control">
-                <input type="range" class="pricing-slider__range" min="0" max="100" step="1" value="0" aria-label="Select pricing tier" data-d-pricing-slider-range/>
+                <input type="range" class="pricing-slider__range" min="0" max="100" step="1" value="0" aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:aria.pricingTier', default: 'Select pricing tier')}" data-d-pricing-slider-range/>
             </div>
 
             <div class="pricing-slider__tiers">
                 <f:for each="{data.tiers}" as="tier" iteration="iter">
                     <div class="pricing-slider__tier {f:if(condition: iter.isFirst, then: 'pricing-slider__tier--active')}" data-d-pricing-slider-tier aria-current="{f:if(condition: iter.isFirst, then: 'true', else: 'false')}">
-                        <span class="pricing-slider__volume">{tier -> f:render.text(field: 'volume')} {data.unit_label -> f:or(alternative: 'requests')}</span>
+                        <span class="pricing-slider__volume">{tier -> f:render.text(field: 'volume')} <f:if condition="{data.unit_label}"><f:then>{data -> f:render.text(field: 'unit_label')}</f:then><f:else><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:calc.requests" default="requests"/></f:else></f:if></span>
                         <span class="pricing-slider__price">{tier -> f:render.text(field: 'price')}</span>
                         <f:if condition="{tier.included_features}">
                             <span class="pricing-slider__features">{tier -> f:render.text(field: 'included_features')}</span>

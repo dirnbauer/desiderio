@@ -42,6 +42,7 @@
 }
 .hero-announcement__actions {
     display: flex;
+    flex-wrap: wrap;
     gap: var(--d-spacing-3);
     justify-content: center;
 }

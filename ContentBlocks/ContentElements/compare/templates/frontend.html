@@ -31,7 +31,7 @@
                     <ul class="compare__points compare__points--con">
                         <f:for each="{data.left_points}" as="point">
                             <f:if condition="{point.text}">
-                                <li class="compare__point">{point -> f:render.text(field: 'text')}</li>
+                                <li class="compare__point"><span class="sr-only"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:feature.notIncluded" default="Not included:"/> </span>{point -> f:render.text(field: 'text')}</li>
                             </f:if>
                         </f:for>
                     </ul>
@@ -55,7 +55,7 @@
                     <ul class="compare__points compare__points--pro">
                         <f:for each="{data.right_points}" as="point">
                             <f:if condition="{point.text}">
-                                <li class="compare__point">{point -> f:render.text(field: 'text')}</li>
+                                <li class="compare__point"><span class="sr-only"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:feature.included" default="Included:"/> </span>{point -> f:render.text(field: 'text')}</li>
                             </f:if>
                         </f:for>
                     </ul>

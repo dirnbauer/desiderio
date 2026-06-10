@@ -11,7 +11,7 @@
             <h2 class="testimonial-video__heading">{data -> f:render.text(field: 'header')}</h2>
         </f:if>
 
-        <figure class="testimonial-video__layout">
+        <div class="testimonial-video__layout">
             <div class="testimonial-video__player">
                 <div class="testimonial-video__embed">
                     <f:if condition="{data.poster_image}">
@@ -31,16 +31,16 @@
                         <p>{data -> f:render.text(field: 'quote')}</p>
                     </blockquote>
                 </f:if>
-                <figcaption class="testimonial-video__author">
+                <div class="testimonial-video__author">
                     <cite class="testimonial-video__name">{data -> f:render.text(field: 'author_name')}</cite>
                     <f:if condition="{data.author_title} || {data.author_company}">
                         <span class="testimonial-video__role">
                             <f:if condition="{data.author_title}">{data -> f:render.text(field: 'author_title')}</f:if><f:if condition="{data.author_title} && {data.author_company}">, </f:if><f:if condition="{data.author_company}">{data -> f:render.text(field: 'author_company')}</f:if>
                         </span>
                     </f:if>
-                </figcaption>
+                </div>
             </div>
-        </figure>
+        </div>
     </d:layout.container>
 </d:layout.section>
 </html>

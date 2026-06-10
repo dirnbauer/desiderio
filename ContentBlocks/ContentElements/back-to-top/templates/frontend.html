@@ -5,7 +5,7 @@
 
 <f:asset.css identifier="d-back-to-top" href="{cb:assetPath()}/frontend.css"/>
 
-<f:variable name="btnLabel">{data.label -> f:or(alternative: 'Back to top')}</f:variable>
+<f:variable name="btnLabel">{data.label -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:backToTop.label\', default: \'Back to top\')}')}</f:variable>
 <f:variable name="btnTitle">{data.header -> f:or(alternative: '{btnLabel}')}</f:variable>
 <f:variable name="btnClass"><d:atom.controlClass slot="buttonOutline" /></f:variable>
 

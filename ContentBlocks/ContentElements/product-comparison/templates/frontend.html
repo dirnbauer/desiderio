@@ -23,7 +23,7 @@
                 <li class="product-comparison__item">
                     <article class="product-comparison__card {f:if(condition: product.is_recommended, then: 'product-comparison__card--recommended')}" aria-labelledby="product-comparison-{data.uid}-{iter.cycle}">
                         <f:if condition="{product.is_recommended}">
-                            <span class="product-comparison__badge">Recommended</span>
+                            <span class="product-comparison__badge"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:plan.recommended" default="Recommended plan"/></span>
                         </f:if>
                         <f:if condition="{product.image}">
                             <div class="product-comparison__media">
@@ -44,9 +44,9 @@
                             </ul>
                         </f:if>
                         <f:if condition="{product.link.url}">
-                            <f:variable name="productCtaLabel">View {product.name} details</f:variable>
                             <d:atom.button href="{product.link.url}" variant="{f:if(condition: product.is_recommended, then: 'default', else: 'outline')}" class="product-comparison__button" target="{product.link.target}">
-                                View details
+                                <span><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:view_details" default="View details"/></span>
+                                <span class="sr-only"> – {product.name}</span>
                             </d:atom.button>
                         </f:if>
                     </article>

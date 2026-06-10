@@ -6,6 +6,10 @@
     border: 1px solid var(--border);
     border-radius: var(--d-radius-lg);
 }
+.table-content__wrapper:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+}
 .table-content__table {
     width: 100%;
     border-collapse: collapse;

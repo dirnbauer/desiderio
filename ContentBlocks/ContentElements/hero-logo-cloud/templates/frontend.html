@@ -24,7 +24,7 @@
             </f:if>
         </div>
         <f:if condition="{data.logo_items}">
-            <ul class="hero-logo-cloud__logos" aria-label="Trusted by leading teams">
+            <ul class="hero-logo-cloud__logos" aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:logoCloud.aria', default: 'Trusted by leading teams')}">
                 <f:for each="{data.logo_items}" as="logo">
                     <li class="hero-logo-cloud__logo">{logo -> f:render.text(field: 'name')}</li>
                 </f:for>

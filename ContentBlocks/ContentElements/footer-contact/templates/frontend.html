@@ -5,7 +5,7 @@
 
 <f:asset.css identifier="d-footer-contact" href="{cb:assetPath()}/frontend.css"/>
 
-<footer class="footer-contact">
+<footer class="footer-contact" aria-label="{data.header -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:footer.aria\', default: \'Footer\')}')}">
     <d:layout.container>
         <div class="footer-contact__inner">
             <f:if condition="{data.header}">

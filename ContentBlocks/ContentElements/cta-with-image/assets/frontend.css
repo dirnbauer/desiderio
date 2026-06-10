@@ -11,6 +11,7 @@
 .cta-with-image__image {
     width: 100%;
     border-radius: var(--radius);
+    aspect-ratio: 16 / 10;
     object-fit: cover;
 }
 .cta-with-image__actions { margin-block-start: var(--d-spacing-lg); }

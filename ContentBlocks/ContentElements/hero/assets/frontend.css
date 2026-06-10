@@ -38,8 +38,11 @@
     padding-block: var(--d-spacing-12);
 }
 .hero__image {
+    display: block;
     width: 100%;
+    aspect-ratio: 16 / 10;
     height: auto;
+    object-fit: cover;
     border-radius: var(--d-radius-lg);
 }
 .hero--background {

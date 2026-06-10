@@ -15,7 +15,7 @@
                     <li class="breadcrumb__item" data-slot="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
                         <f:if condition="{iterator.isLast}">
                             <f:then>
-                                <span class="breadcrumb__current" data-slot="breadcrumb-page" itemprop="name">{item -> f:render.text(field: 'label')}</span>
+                                <span class="breadcrumb__current" data-slot="breadcrumb-page" aria-current="page" itemprop="name">{item -> f:render.text(field: 'label')}</span>
                             </f:then>
                             <f:else>
                                 <f:if condition="{item.link.url}">

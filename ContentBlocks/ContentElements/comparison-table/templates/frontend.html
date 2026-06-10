@@ -17,18 +17,18 @@
                 </f:if>
             </header>
         </f:if>
-        <div class="comparison-table__wrapper" role="region" aria-label="{data.header -> f:or(alternative: 'Comparison table')}" tabindex="0">
+        <div class="comparison-table__wrapper" role="region" aria-label="{data.header -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:table.aria.comparison\', default: \'Comparison table\')}')}" tabindex="0">
             <table class="comparison-table__table">
                 <f:if condition="{data.description}">
                     <caption class="sr-only">{data -> f:render.text(field: 'description')}</caption>
                 </f:if>
                 <thead>
                     <tr>
-                        <th scope="col" class="comparison-table__feature-col">Feature</th>
+                        <th scope="col" class="comparison-table__feature-col">{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:feature', default: 'Feature')}</th>
                         <f:for each="{data.column_items}" as="col">
                             <th scope="col" class="{f:if(condition: col.highlighted, then: 'comparison-table__col--highlighted')}">
                                 {col -> f:render.text(field: 'name')}
-                                <f:if condition="{col.highlighted}"><span class="sr-only"> (recommended)</span></f:if>
+                                <f:if condition="{col.highlighted}"><span class="sr-only"> ({f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:plan.recommended', default: 'Recommended plan')})</span></f:if>
                             </th>
                         </f:for>
                     </tr>

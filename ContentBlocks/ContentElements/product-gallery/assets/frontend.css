@@ -16,7 +16,7 @@
 /* Media column */
 .product-gallery__media { min-width: 0; }
 .product-gallery__stage {
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 16 / 10;
     border-radius: var(--d-radius-lg);
     overflow: hidden;
     background: var(--muted);
@@ -75,7 +75,8 @@
 }
 .product-gallery__thumb-img {
     width: 100%;
-    aspect-ratio: 1;
+    aspect-ratio: 16 / 10;
+    height: auto;
     object-fit: cover;
     display: block;
 }

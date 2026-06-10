@@ -21,7 +21,7 @@
             </header>
         </f:if>
 
-        <ul class="logo-cloud__grid logo-cloud__grid--cols-{data.columns -> f:or(alternative: '5')}" aria-label="{data.header -> f:or(alternative: 'Trusted by leading teams')}">
+        <ul class="logo-cloud__grid logo-cloud__grid--cols-{data.columns -> f:or(alternative: '5')}" aria-label="{data.header -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:logoCloud.aria\', default: \'Trusted by leading teams\')}')}">
             <f:for each="{data.logo_items}" as="logo">
                 <li class="logo-cloud__item">
                     <f:if condition="{logo.link.url}">

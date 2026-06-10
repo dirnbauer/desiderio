@@ -5,7 +5,7 @@
 
 <f:asset.css identifier="d-footer-newsletter" href="{cb:assetPath()}/frontend.css"/>
 
-<footer class="footer-newsletter">
+<footer class="footer-newsletter" aria-label="{data.header -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:footer.aria\', default: \'Footer\')}')}">
     <d:layout.container>
         <div class="footer-newsletter__inner">
             <div class="footer-newsletter__content">

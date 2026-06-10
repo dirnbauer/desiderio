@@ -16,10 +16,16 @@
 }
 .announcement-bar__inner {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
-    gap: var(--d-spacing-4);
+    gap: var(--d-spacing-2) var(--d-spacing-4);
     font-size: var(--d-text-sm);
+}
+.announcement-bar__message {
+    flex-wrap: wrap;
+    justify-content: center;
+    min-width: 0;
 }
 .announcement-bar__message {
     margin: 0;

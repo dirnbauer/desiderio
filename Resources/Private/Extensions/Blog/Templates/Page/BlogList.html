@@ -10,7 +10,7 @@
     <d:layout.section spacing="md" class="desiderio-blog desiderio-blog--list bg-background">
         <d:layout.container size="xl">
             <div class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_20rem]">
-                <main class="min-w-0" aria-label="Blog posts">
+                <main class="min-w-0" aria-label="{f:translate(extensionName: 'desiderio', key: 'blog.list.aria', default: 'Blog posts')}">
                     <d:layout.stack gap="xl">
                         <f:if condition="{blogContentAreas.content}">
                             <f:render.contentArea contentArea="{blogContentAreas.content}" />
@@ -18,7 +18,7 @@
                     </d:layout.stack>
                 </main>
 
-                <aside class="min-w-0 border-t pt-6 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0" aria-label="Blog sidebar">
+                <aside class="min-w-0 border-t pt-6 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0" aria-label="{f:translate(extensionName: 'desiderio', key: 'blog.sidebar.aria', default: 'Blog sidebar')}">
                     <div class="lg:sticky lg:top-24">
                         <d:layout.stack gap="lg" class="lg:max-h-[calc(100dvh-7rem)] lg:overflow-y-auto lg:overscroll-contain lg:pr-3">
                             <f:render section="renderPlugin" arguments="{listType: 'blog_sidebar'}" />

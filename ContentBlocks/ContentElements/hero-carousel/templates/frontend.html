@@ -34,8 +34,7 @@
                      data-astro-carousel-slide
                      role="group"
                      aria-roledescription="{slideLabel}"
-                     aria-label="{iter.cycle} / {iter.total}"
-                     aria-hidden="{f:if(condition: iter.isFirst, then: 'false', else: 'true')}">
+                     aria-label="{iter.cycle} / {iter.total}">
                     <div class="hero-carousel__content">
                         <f:if condition="{slide.title}">
                             <d:atom.typography tag="h2" variant="h2" class="hero-carousel__title">{slide -> f:render.text(field: 'title')}</d:atom.typography>

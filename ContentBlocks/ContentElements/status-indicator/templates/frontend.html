@@ -7,7 +7,7 @@
 
 <d:layout.section class="status-indicator-section">
     <d:layout.container>
-        <section class="status-indicator" aria-label="{f:if(condition: data.header, then: '{data.header}', else: 'Service status')}">
+        <section class="status-indicator" aria-label="{f:if(condition: data.header, then: '{data.header}', else: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:status.aria\', default: \'Service status\')}')}">
             <div class="status-indicator__header">
                 <f:if condition="{data.header}">
                     <d:atom.typography tag="h2" variant="h4" class="status-indicator__title">{data -> f:render.text(field: 'header')}</d:atom.typography>
@@ -16,11 +16,10 @@
                     <span class="status-indicator__dot" aria-hidden="true"></span>
                     <span class="status-indicator__overall-text">
                         <f:switch expression="{data.overall_status}">
-                            <f:case value="operational">All systems operational</f:case>
-                            <f:case value="degraded">Degraded performance</f:case>
-                            <f:case value="outage">Major outage</f:case>
-                            <f:case value="maintenance">Under maintenance</f:case>
-                            <f:defaultCase>All systems operational</f:defaultCase>
+                            <f:case value="degraded">{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:status.overall.degraded', default: 'Degraded performance')}</f:case>
+                            <f:case value="outage">{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:status.overall.outage', default: 'Major outage')}</f:case>
+                            <f:case value="maintenance">{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:status.overall.maintenance', default: 'Under maintenance')}</f:case>
+                            <f:defaultCase>{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:status.overall.operational', default: 'All systems operational')}</f:defaultCase>
                         </f:switch>
                     </span>
                 </p>
@@ -39,11 +38,10 @@
                             <span class="status-indicator__dot" aria-hidden="true"></span>
                             <span class="status-indicator__status-text">
                                 <f:switch expression="{itemStatus}">
-                                    <f:case value="operational">Operational</f:case>
-                                    <f:case value="degraded">Degraded</f:case>
-                                    <f:case value="outage">Outage</f:case>
-                                    <f:case value="maintenance">Maintenance</f:case>
-                                    <f:defaultCase>Operational</f:defaultCase>
+                                    <f:case value="degraded">{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:status.degraded', default: 'Degraded')}</f:case>
+                                    <f:case value="outage">{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:status.outage', default: 'Outage')}</f:case>
+                                    <f:case value="maintenance">{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:status.maintenance', default: 'Maintenance')}</f:case>
+                                    <f:defaultCase>{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:status.operational', default: 'Operational')}</f:defaultCase>
                                 </f:switch>
                             </span>
                         </span>

@@ -50,6 +50,11 @@
     border: 1px solid var(--d-border);
     border-radius: var(--d-radius-lg);
 }
+/* dt precedes dd in the DOM for valid description-list semantics;
+   visually the value stays on top. */
+.hero-stats__stat-value { order: 1; }
+.hero-stats__stat-label { order: 2; }
+.hero-stats__stat-detail { order: 3; }
 .hero-stats__stat-value {
     font-size: var(--d-text-3xl);
     font-weight: 700;

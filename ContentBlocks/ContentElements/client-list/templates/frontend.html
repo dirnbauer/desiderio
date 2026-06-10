@@ -21,7 +21,7 @@
             </header>
         </f:if>
 
-        <ul class="client-list__items" aria-label="{data.header -> f:or(alternative: 'Clients')}">
+        <ul class="client-list__items" aria-label="{data.header -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:clients.aria\', default: \'Clients\')}')}">
             <f:for each="{data.clients}" as="client">
                 <li class="client-list__item">
                     <f:if condition="{client.logo}">

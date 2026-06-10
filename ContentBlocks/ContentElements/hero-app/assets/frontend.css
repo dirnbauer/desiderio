@@ -24,6 +24,7 @@
 }
 .hero-app__actions {
     display: flex;
+    flex-wrap: wrap;
     gap: var(--d-spacing-3);
 }
 .hero-app__device {
@@ -31,16 +32,18 @@
     justify-content: center;
 }
 .hero-app__phone-frame {
-    width: 18rem;
-    max-width: 100%;
+    width: 100%;
+    max-width: 30rem;
     border: 3px solid var(--d-border);
-    border-radius: 2rem;
+    border-radius: var(--d-radius-xl, 1rem);
     overflow: hidden;
     background: var(--d-muted);
-    aspect-ratio: 9 / 19;
+    aspect-ratio: 16 / 10;
 }
 .hero-app__screenshot {
+    display: block;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: top left;
 }

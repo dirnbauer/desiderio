@@ -7,13 +7,13 @@
 
 <d:layout.section class="nav-tabs nav-tabs--{data.variant -> f:or(alternative: 'underline')}">
     <d:layout.container>
-        <nav class="nav-tabs__inner" aria-label="{data.header -> f:or(alternative: 'Section navigation')}">
+        <nav class="nav-tabs__inner" aria-label="{data.header -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:nav_tabs.aria\', default: \'Section navigation\')}')}">
             <f:for each="{data.tabs}" as="tab">
                 <f:if condition="{tab.active}">
                     <f:then>
                         <f:if condition="{tab.link.url}">
                             <f:then>
-                                <d:atom.link href="{tab.link.url}" target="{tab.link.target}" variant="muted" class="nav-tabs__tab nav-tabs__tab--active">{tab -> f:render.text(field: 'label')}</d:atom.link>
+                                <a href="{tab.link.url}" target="{tab.link.target}" aria-current="page" data-slot="link" class="nav-tabs__tab nav-tabs__tab--active">{tab -> f:render.text(field: 'label')}</a>
                             </f:then>
                             <f:else>
                                 <span class="nav-tabs__tab nav-tabs__tab--active" aria-current="page">{tab -> f:render.text(field: 'label')}</span>

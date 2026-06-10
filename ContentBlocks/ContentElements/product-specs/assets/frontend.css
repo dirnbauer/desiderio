@@ -4,7 +4,9 @@
 .product-specs__description { color: var(--muted-foreground); }
 .product-specs__layout { display: grid; grid-template-columns: 1fr 1fr; gap: var(--d-spacing-xl); align-items: start; }
 @media (max-width: 768px) { .product-specs__layout { grid-template-columns: 1fr; } }
+.product-specs__table-wrap { overflow-x: auto; min-width: 0; }
 .product-specs__table { width: 100%; border-collapse: collapse; }
+.product-specs__value { overflow-wrap: anywhere; }
 .product-specs__table th,
 .product-specs__table td { padding: var(--d-spacing-sm) var(--d-spacing-md); border-block-end: 1px solid var(--border); font-size: var(--d-text-sm); text-align: start; }
 .product-specs__label { font-weight: 600; width: 40%; color: var(--muted-foreground); }

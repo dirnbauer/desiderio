@@ -41,6 +41,8 @@
                     role="tabpanel"
                     data-state="inactive"
                     hidden
+                    tabindex="0"
+                    aria-label="{item.tab_label -> f:format.stripTags() -> f:format.trim()}"
                     class="tabs__content flex-1 text-xs/relaxed outline-none"
                     data-slot="tabs-content"
                     data-d-tabs-content

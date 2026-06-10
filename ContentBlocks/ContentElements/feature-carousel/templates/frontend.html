@@ -7,7 +7,7 @@
 
 <d:layout.section class="feature-carousel">
     <d:layout.container>
-        <div class="feature-carousel__viewport" data-d-feature-carousel role="region" aria-label="{data.header -> f:or(alternative: 'Feature highlights')}">
+        <div class="feature-carousel__viewport" data-d-feature-carousel role="region" aria-label="{data.header -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:carousel.region\', default: \'Highlights carousel\')}')}">
             <f:if condition="{data.header}">
                 <header class="feature-carousel__intro">
                     <d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography>
@@ -15,7 +15,7 @@
                 </header>
             </f:if>
 
-            <ul class="feature-carousel__track" tabindex="0" role="group" aria-label="Feature slides, scrollable">
+            <ul class="feature-carousel__track" tabindex="0" role="group" aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:carousel.aria.featureSlides', default: 'Feature slides, scrollable')}">
                 <f:for each="{data.items}" as="item">
                     <li class="feature-carousel__cell">
                         <d:molecule.card class="feature-carousel__slide">

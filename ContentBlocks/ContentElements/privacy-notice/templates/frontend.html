@@ -12,7 +12,7 @@
                 <h2 class="privacy-notice__title" id="privacy-notice-{data.uid}-title">{data -> f:render.text(field: 'header')}</h2>
             </f:if>
             <f:if condition="{data.last_updated}">
-                <p class="privacy-notice__updated">Last updated: <time>{data -> f:render.text(field: 'last_updated')}</time></p>
+                <p class="privacy-notice__updated"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:terms_summary.last_updated" default="Last updated"/>: <time>{data -> f:render.text(field: 'last_updated')}</time></p>
             </f:if>
             <f:if condition="{data.intro}">
                 <p class="privacy-notice__intro">{data -> f:render.text(field: 'intro')}</p>

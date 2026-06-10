@@ -23,7 +23,7 @@
 .contact__list-item { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--d-spacing-sm); padding: var(--d-spacing-xs) 0; border-bottom: 1px solid var(--border); }
 .contact__list-label { font-size: var(--d-text-sm); color: var(--muted-foreground); }
 .contact__list-value-wrap { margin: 0; text-align: right; }
-.contact__list-value { font-size: var(--d-text-sm); font-weight: 500; text-decoration: none; color: inherit; }
+.contact__list-value { font-size: var(--d-text-sm); font-weight: 500; text-decoration: none; color: inherit; overflow-wrap: anywhere; }
 .contact__form-title { font-weight: 600; margin-block-end: var(--d-spacing-md); }
 .contact__field-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--d-spacing-md); }
 .contact__field { display: flex; flex-direction: column; gap: 4px; margin-block-end: var(--d-spacing-md); }

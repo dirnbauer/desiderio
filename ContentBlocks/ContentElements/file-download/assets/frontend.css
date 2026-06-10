@@ -9,6 +9,7 @@
 }
 .file-download__item {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     gap: var(--d-spacing-md);
 }

@@ -92,6 +92,14 @@ body {
 
 .desiderio-header__logo:hover { opacity: 0.8; }
 
+.desiderio-header__logo:focus-visible,
+.desiderio-header__nav-link:focus-visible,
+.desiderio-header__subnav-link:focus-visible,
+.desiderio-header__lang-link:focus-visible {
+    outline: var(--d-ring-width, 2px) solid var(--ring);
+    outline-offset: 2px;
+}
+
 .desiderio-header__menu-toggle { display: none; }
 
 .desiderio-header__nav {
@@ -164,7 +172,8 @@ body {
     z-index: 60;
 }
 
-.desiderio-header__nav-item:hover .desiderio-header__subnav { display: block; }
+.desiderio-header__nav-item:hover .desiderio-header__subnav,
+.desiderio-header__nav-item:focus-within .desiderio-header__subnav { display: block; }
 
 .desiderio-header__subnav-link {
     display: block;
@@ -258,6 +267,12 @@ body {
     inset-inline-start: auto;
     inset-inline-end: 0;
     inline-size: min(48rem, calc(100vw - 2rem));
+}
+
+.desiderio-header__lang-nav {
+    display: flex;
+    min-width: 0;
+    flex-shrink: 0;
 }
 
 .desiderio-header__lang {
@@ -395,6 +410,7 @@ body {
     }
 
     .desiderio-theme-switch,
+    .desiderio-header__lang-nav,
     .desiderio-header__lang {
         min-width: 0;
         flex-shrink: 0;

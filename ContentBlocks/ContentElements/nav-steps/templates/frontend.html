@@ -7,7 +7,7 @@
 
 <d:layout.section class="nav-steps nav-steps--{data.variant -> f:or(alternative: 'numbered')}">
     <d:layout.container>
-        <nav class="nav-steps__inner" aria-label="{data.header -> f:or(alternative: 'Progress steps')}">
+        <nav class="nav-steps__inner" aria-label="{data.header -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:nav_steps.aria\', default: \'Progress steps\')}')}">
             <ol class="nav-steps__list">
                 <f:for each="{data.step_items}" as="step" iteration="iterator">
                     <f:variable name="stepStatus">{step.status -> f:or(alternative: 'pending')}</f:variable>
@@ -20,10 +20,10 @@
                         </span>
                         <f:if condition="{step.link.url}">
                             <f:then>
-                                <d:atom.link href="{step.link.url}" target="{step.link.target}" variant="muted" class="nav-steps__label nav-steps__link">{step -> f:render.text(field: 'label')}<f:if condition="{stepStatus} == 'completed'"><span class="sr-only"> (completed)</span></f:if><f:if condition="{stepStatus} == 'current'"><span class="sr-only"> (current step)</span></f:if></d:atom.link>
+                                <d:atom.link href="{step.link.url}" target="{step.link.target}" variant="muted" class="nav-steps__label nav-steps__link">{step -> f:render.text(field: 'label')}<f:if condition="{stepStatus} == 'completed'"><span class="sr-only"> <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:nav_steps.completed" default="(completed)"/></span></f:if><f:if condition="{stepStatus} == 'current'"><span class="sr-only"> <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:nav_steps.current" default="(current step)"/></span></f:if></d:atom.link>
                             </f:then>
                             <f:else>
-                                <span class="nav-steps__label">{step -> f:render.text(field: 'label')}<f:if condition="{stepStatus} == 'current'"><span class="sr-only"> (current step)</span></f:if></span>
+                                <span class="nav-steps__label">{step -> f:render.text(field: 'label')}<f:if condition="{stepStatus} == 'current'"><span class="sr-only"> <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:nav_steps.current" default="(current step)"/></span></f:if></span>
                             </f:else>
                         </f:if>
                     </li>

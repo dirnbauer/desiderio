@@ -23,4 +23,4 @@
     font-size: var(--d-text-sm);
     color: var(--muted-foreground);
 }
-.cta-split__actions { margin-block-start: var(--d-spacing-lg); }
+.cta-split__actions { margin-block-start: auto; padding-block-start: var(--d-spacing-lg); }

@@ -109,6 +109,24 @@
         <target>{count, plural, one {ein Beitrag} other {# Beiträge}}</target>
       </segment>
     </unit>
+    <unit id="blog.list.aria">
+      <segment>
+        <source>Blog posts</source>
+        <target>Blogbeiträge</target>
+      </segment>
+    </unit>
+    <unit id="blog.sidebar.aria">
+      <segment>
+        <source>Blog sidebar</source>
+        <target>Blog-Seitenleiste</target>
+      </segment>
+    </unit>
+    <unit id="news.prevNext.aria">
+      <segment>
+        <source>Previous and next article</source>
+        <target>Vorheriger und nächster Artikel</target>
+      </segment>
+    </unit>
     <unit id="blog.comments.count">
       <segment>
         <source>{count, plural, =0 {0 comments} one {# comment} other {# comments}}</source>

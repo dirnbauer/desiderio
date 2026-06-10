@@ -5,7 +5,7 @@
 
 <f:asset.css identifier="d-video-embed" href="{cb:assetPath()}/frontend.css"/>
 
-<f:variable name="videoTitle"><f:if condition="{data.caption}"><f:then>{data.caption}</f:then><f:else>{data.header -> f:or(alternative: 'Embedded video')}</f:else></f:if></f:variable>
+<f:variable name="videoTitle"><f:if condition="{data.caption}"><f:then>{data.caption}</f:then><f:else>{data.header -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:video.fallback\', default: \'Embedded video\')}')}</f:else></f:if></f:variable>
 
 <d:layout.section class="video-embed">
     <d:layout.container size="lg">

@@ -32,6 +32,11 @@
     flex-direction: column;
     margin: 0;
 }
+/* dt precedes dd in the DOM for valid description-list semantics;
+   visually the value stays on top. */
+.feature-stats__value { order: 1; }
+.feature-stats__label { order: 2; }
+.feature-stats__detail { order: 3; }
 .feature-stats__value {
     font-size: 2.5rem;
     font-weight: 800;

@@ -8,7 +8,8 @@
 <d:layout.section class="emergency-contact">
     <d:layout.container>
         <f:variable name="emergencyId" value="emergency-contact-{data.uid}"/>
-        <div class="emergency-contact__card" role="region" aria-labelledby="{f:if(condition: data.header, then: emergencyId, else: '')}" aria-label="{f:if(condition: data.header, then: '', else: 'Emergency contact')}">
+        <f:variable name="regionLabel"><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/emergency-contact/language/labels.xlf:region.label" default="Emergency contact"/></f:variable>
+        <div class="emergency-contact__card" role="region" aria-labelledby="{f:if(condition: data.header, then: emergencyId, else: '')}" aria-label="{f:if(condition: data.header, then: '', else: regionLabel)}">
             <f:if condition="{data.header}">
                 <h2 class="emergency-contact__headline" id="{emergencyId}">
                     <span class="emergency-contact__headline-icon" aria-hidden="true"><d:atom.icon name="alert-triangle" size="default"/></span>

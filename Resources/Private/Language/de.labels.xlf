@@ -367,6 +367,78 @@
         <target>Price per unit</target>
       </segment>
     </unit>
+    <unit id="calc.units">
+      <segment state="final">
+        <source>units</source>
+        <target>Einheiten</target>
+      </segment>
+    </unit>
+    <unit id="calc.requests">
+      <segment state="final">
+        <source>requests</source>
+        <target>Anfragen</target>
+      </segment>
+    </unit>
+    <unit id="order.subtotal">
+      <segment state="final">
+        <source>Subtotal</source>
+        <target>Zwischensumme</target>
+      </segment>
+    </unit>
+    <unit id="order.total">
+      <segment state="final">
+        <source>Total</source>
+        <target>Gesamt</target>
+      </segment>
+    </unit>
+    <unit id="view_details">
+      <segment state="final">
+        <source>View details</source>
+        <target>Details ansehen</target>
+      </segment>
+    </unit>
+    <unit id="view_product">
+      <segment state="final">
+        <source>View product</source>
+        <target>Produkt ansehen</target>
+      </segment>
+    </unit>
+    <unit id="view_reviews">
+      <segment state="final">
+        <source>View reviews</source>
+        <target>Bewertungen ansehen</target>
+      </segment>
+    </unit>
+    <unit id="view_reviews.sr">
+      <segment state="final">
+        <source>View %s reviews</source>
+        <target>Bewertungen auf %s ansehen</target>
+      </segment>
+    </unit>
+    <unit id="aria.price">
+      <segment state="final">
+        <source>Price:</source>
+        <target>Preis:</target>
+      </segment>
+    </unit>
+    <unit id="aria.price_original">
+      <segment state="final">
+        <source>Original price:</source>
+        <target>Ursprünglicher Preis:</target>
+      </segment>
+    </unit>
+    <unit id="rating.sr.average">
+      <segment state="final">
+        <source>Average rating %s out of 5</source>
+        <target>Durchschnittliche Bewertung %s von 5</target>
+      </segment>
+    </unit>
+    <unit id="rating.sr.rated">
+      <segment state="final">
+        <source>Rated %s out of 5</source>
+        <target>Bewertet mit %s von 5</target>
+      </segment>
+    </unit>
     <unit id="apply">
       <segment state="final">
         <source>Apply</source>
@@ -419,6 +491,36 @@
       <segment state="final">
         <source>Read full case study</source>
         <target>Read full case study</target>
+      </segment>
+    </unit>
+    <unit id="case_study">
+      <segment state="final">
+        <source>Case study</source>
+        <target>Case Study</target>
+      </segment>
+    </unit>
+    <unit id="cta.explore">
+      <segment state="final">
+        <source>Explore</source>
+        <target>Entdecken</target>
+      </segment>
+    </unit>
+    <unit id="cta.verify">
+      <segment state="final">
+        <source>Verify</source>
+        <target>Verifizieren</target>
+      </segment>
+    </unit>
+    <unit id="clients.aria">
+      <segment state="final">
+        <source>Clients</source>
+        <target>Kunden</target>
+      </segment>
+    </unit>
+    <unit id="logoGrid.aria">
+      <segment state="final">
+        <source>Our partners</source>
+        <target>Unsere Partner</target>
       </segment>
     </unit>
     <unit id="read_full_terms">
@@ -1429,6 +1531,36 @@
         <target>Paginierung der Suchergebnisse</target>
       </segment>
     </unit>
+    <unit id="solr.pagination.previous">
+      <segment state="final">
+        <source>Go to previous page</source>
+        <target>Zur vorherigen Seite</target>
+      </segment>
+    </unit>
+    <unit id="solr.pagination.next">
+      <segment state="final">
+        <source>Go to next page</source>
+        <target>Zur nächsten Seite</target>
+      </segment>
+    </unit>
+    <unit id="solr.pagination.page">
+      <segment state="final">
+        <source>Go to page {page}</source>
+        <target>Zu Seite {page}</target>
+      </segment>
+    </unit>
+    <unit id="solr.facets.remove">
+      <segment state="final">
+        <source>Remove filter</source>
+        <target>Filter entfernen</target>
+      </segment>
+    </unit>
+    <unit id="solr.results.heading">
+      <segment state="final">
+        <source>Search results</source>
+        <target>Suchergebnisse</target>
+      </segment>
+    </unit>
     <unit id="solr.resultCount.aria">
       <segment state="final">
         <source>{count, plural, one {# result} other {# results}}</source>
@@ -1469,12 +1601,6 @@
       <segment state="final">
         <source>Legal and utility links</source>
         <target>Legal and utility links</target>
-      </segment>
-    </unit>
-    <unit id="footer.links.aria">
-      <segment state="final">
-        <source>Footer links</source>
-        <target>Footer links</target>
       </segment>
     </unit>
     <unit id="footer.qr.alt">
@@ -1853,6 +1979,510 @@
       <segment state="final">
         <source>Page %s, current page</source>
         <target>Seite %s, aktuelle Seite</target>
+      </segment>
+    </unit>
+    <unit id="pages.shadcnPreset">
+      <segment state="final">
+        <source>Theme preset (this page and subpages)</source>
+        <target>Theme-Preset (diese Seite und Unterseiten)</target>
+      </segment>
+    </unit>
+    <unit id="pages.shadcnPreset.description">
+      <segment state="final">
+        <source>Overrides the site-wide shadcn theme preset for this page and everything below it. Leave empty to inherit from the parent page or the site setting.</source>
+        <target>Überschreibt das seitenweite shadcn-Theme-Preset für diese Seite und alle Unterseiten. Leer lassen, um von der übergeordneten Seite oder der Site-Einstellung zu erben.</target>
+      </segment>
+    </unit>
+    <unit id="pages.shadcnPreset.inherit">
+      <segment state="final">
+        <source>Inherit (parent page or site setting)</source>
+        <target>Erben (übergeordnete Seite oder Site-Einstellung)</target>
+      </segment>
+    </unit>
+    <unit id="captcha.placeholder.button">
+      <segment state="final">
+        <source>Protected against spam</source>
+        <target>Spam-geschützt</target>
+      </segment>
+    </unit>
+    <unit id="captcha.placeholder.note">
+      <segment state="final">
+        <source>Demo mode — verification is skipped.</source>
+        <target>Demomodus — Verifizierung wird übersprungen.</target>
+      </segment>
+    </unit>
+    <unit id="aria.dismiss">
+      <segment state="final">
+        <source>Dismiss this notice</source>
+        <target>Hinweis schließen</target>
+      </segment>
+    </unit>
+    <unit id="carousel.aria.slides">
+      <segment state="final">
+        <source>Slides, scrollable</source>
+        <target>Folien, scrollbar</target>
+      </segment>
+    </unit>
+    <unit id="carousel.aria.previous">
+      <segment state="final">
+        <source>Previous slide</source>
+        <target>Vorherige Folie</target>
+      </segment>
+    </unit>
+    <unit id="carousel.aria.next">
+      <segment state="final">
+        <source>Next slide</source>
+        <target>Nächste Folie</target>
+      </segment>
+    </unit>
+    <unit id="carousel.aria.choose">
+      <segment state="final">
+        <source>Choose slide to display</source>
+        <target>Folie zur Anzeige auswählen</target>
+      </segment>
+    </unit>
+    <unit id="carousel.aria.featureSlides">
+      <segment state="final">
+        <source>Feature slides, scrollable</source>
+        <target>Feature-Folien, scrollbar</target>
+      </segment>
+    </unit>
+    <unit id="footer.links.aria">
+      <segment state="final">
+        <source>Footer links</source>
+        <target>Footer-Links</target>
+      </segment>
+    </unit>
+    <unit id="social.aria">
+      <segment state="final">
+        <source>Social media</source>
+        <target>Soziale Medien</target>
+      </segment>
+    </unit>
+    <unit id="logoCloud.aria">
+      <segment state="final">
+        <source>Trusted by leading teams</source>
+        <target>Von führenden Teams genutzt</target>
+      </segment>
+    </unit>
+    <unit id="search.categories.aria">
+      <segment state="final">
+        <source>Popular categories</source>
+        <target>Beliebte Kategorien</target>
+      </segment>
+    </unit>
+    <unit id="aria.pricingTier">
+      <segment state="final">
+        <source>Select pricing tier</source>
+        <target>Preisstufe auswählen</target>
+      </segment>
+    </unit>
+    <unit id="navbar.dropdown.aria">
+      <segment state="final">
+        <source>Dropdown navigation</source>
+        <target>Dropdown-Navigation</target>
+      </segment>
+    </unit>
+    <unit id="a11y.reportBarrier">
+      <segment state="final">
+        <source>Report an accessibility barrier</source>
+        <target>Barriere melden</target>
+      </segment>
+    </unit>
+    <unit id="trend.down">
+      <segment state="final">
+        <source>Trending down:</source>
+        <target>Tendenz fallend:</target>
+      </segment>
+    </unit>
+    <unit id="metric.chart.aria">
+      <segment state="final">
+        <source>%s trend over time</source>
+        <target>%s – Trend im Zeitverlauf</target>
+      </segment>
+    </unit>
+    <unit id="metric.series.fallback">
+      <segment state="final">
+        <source>Monthly recurring revenue</source>
+        <target>Monatlich wiederkehrender Umsatz</target>
+      </segment>
+    </unit>
+    <unit id="metric.unit.fallback">
+      <segment state="final">
+        <source>k USD</source>
+        <target>Tsd. USD</target>
+      </segment>
+    </unit>
+    <unit id="table.aria.region">
+      <segment state="final">
+        <source>Data table</source>
+        <target>Datentabelle</target>
+      </segment>
+    </unit>
+    <unit id="progress.aria">
+      <segment state="final">
+        <source>Progress</source>
+        <target>Fortschritt</target>
+      </segment>
+    </unit>
+    <unit id="status.aria">
+      <segment state="final">
+        <source>Service status</source>
+        <target>Dienststatus</target>
+      </segment>
+    </unit>
+    <unit id="status.overall.operational">
+      <segment state="final">
+        <source>All systems operational</source>
+        <target>Alle Systeme betriebsbereit</target>
+      </segment>
+    </unit>
+    <unit id="status.overall.degraded">
+      <segment state="final">
+        <source>Degraded performance</source>
+        <target>Eingeschränkte Leistung</target>
+      </segment>
+    </unit>
+    <unit id="status.overall.outage">
+      <segment state="final">
+        <source>Major outage</source>
+        <target>Größerer Ausfall</target>
+      </segment>
+    </unit>
+    <unit id="status.overall.maintenance">
+      <segment state="final">
+        <source>Under maintenance</source>
+        <target>Wartungsarbeiten</target>
+      </segment>
+    </unit>
+    <unit id="status.operational">
+      <segment state="final">
+        <source>Operational</source>
+        <target>Betriebsbereit</target>
+      </segment>
+    </unit>
+    <unit id="status.degraded">
+      <segment state="final">
+        <source>Degraded</source>
+        <target>Eingeschränkt</target>
+      </segment>
+    </unit>
+    <unit id="status.outage">
+      <segment state="final">
+        <source>Outage</source>
+        <target>Ausfall</target>
+      </segment>
+    </unit>
+    <unit id="status.maintenance">
+      <segment state="final">
+        <source>Maintenance</source>
+        <target>Wartung</target>
+      </segment>
+    </unit>
+    <unit id="table.aria.comparison">
+      <segment state="final">
+        <source>Comparison table</source>
+        <target>Vergleichstabelle</target>
+      </segment>
+    </unit>
+    <unit id="trust.label">
+      <segment state="final">
+        <source>Trusted by teams at</source>
+        <target>Im Einsatz bei Teams von</target>
+      </segment>
+    </unit>
+    <unit id="breadcrumb.aria">
+      <segment state="final">
+        <source>Breadcrumb</source>
+        <target>Brotkrümelnavigation</target>
+      </segment>
+    </unit>
+    <unit id="navbar.centered.aria">
+      <segment state="final">
+        <source>Centered navigation</source>
+        <target>Zentrierte Navigation</target>
+      </segment>
+    </unit>
+    <unit id="navbar.icon.aria">
+      <segment state="final">
+        <source>Icon navigation</source>
+        <target>Icon-Navigation</target>
+      </segment>
+    </unit>
+    <unit id="navbar.main.aria">
+      <segment state="final">
+        <source>Main navigation</source>
+        <target>Hauptnavigation</target>
+      </segment>
+    </unit>
+    <unit id="navbar.minimal.aria">
+      <segment state="final">
+        <source>Minimal navigation</source>
+        <target>Minimale Navigation</target>
+      </segment>
+    </unit>
+    <unit id="navbar.mobile.aria">
+      <segment state="final">
+        <source>Mobile navigation</source>
+        <target>Mobile Navigation</target>
+      </segment>
+    </unit>
+    <unit id="navbar.mobile.open">
+      <segment state="final">
+        <source>Open menu</source>
+        <target>Menü öffnen</target>
+      </segment>
+    </unit>
+    <unit id="navbar.sidebar.aria">
+      <segment state="final">
+        <source>Sidebar navigation</source>
+        <target>Seitenleisten-Navigation</target>
+      </segment>
+    </unit>
+    <unit id="navbar.split.aria">
+      <segment state="final">
+        <source>Split navigation</source>
+        <target>Geteilte Navigation</target>
+      </segment>
+    </unit>
+    <unit id="navbar.stacked.aria">
+      <segment state="final">
+        <source>Stacked navigation</source>
+        <target>Gestapelte Navigation</target>
+      </segment>
+    </unit>
+    <unit id="navbar.sticky.aria">
+      <segment state="final">
+        <source>Sticky navigation</source>
+        <target>Fixierte Navigation</target>
+      </segment>
+    </unit>
+    <unit id="navbar.tabbed.aria">
+      <segment state="final">
+        <source>Tabbed navigation</source>
+        <target>Tab-Navigation</target>
+      </segment>
+    </unit>
+    <unit id="navbar.transparent.aria">
+      <segment state="final">
+        <source>Transparent navigation</source>
+        <target>Transparente Navigation</target>
+      </segment>
+    </unit>
+    <unit id="nav_steps.aria">
+      <segment state="final">
+        <source>Progress steps</source>
+        <target>Fortschrittsschritte</target>
+      </segment>
+    </unit>
+    <unit id="nav_steps.completed">
+      <segment state="final">
+        <source>(completed)</source>
+        <target>(abgeschlossen)</target>
+      </segment>
+    </unit>
+    <unit id="nav_steps.current">
+      <segment state="final">
+        <source>(current step)</source>
+        <target>(aktueller Schritt)</target>
+      </segment>
+    </unit>
+    <unit id="nav_tabs.aria">
+      <segment state="final">
+        <source>Section navigation</source>
+        <target>Abschnittsnavigation</target>
+      </segment>
+    </unit>
+    <unit id="nav_toc.aria">
+      <segment state="final">
+        <source>Table of contents</source>
+        <target>Inhaltsverzeichnis</target>
+      </segment>
+    </unit>
+    <unit id="utility_bar.aria">
+      <segment state="final">
+        <source>Utility navigation</source>
+        <target>Service-Navigation</target>
+      </segment>
+    </unit>
+    <unit id="footer.aria">
+      <segment state="final">
+        <source>Footer</source>
+        <target>Fußzeile</target>
+      </segment>
+    </unit>
+    <unit id="backToTop.label">
+      <segment state="final">
+        <source>Back to top</source>
+        <target>Nach oben</target>
+      </segment>
+    </unit>
+    <unit id="a11y.conformance">
+      <segment state="final">
+        <source>WCAG 2.1 Level</source>
+        <target>WCAG 2.1 Level</target>
+      </segment>
+    </unit>
+    <unit id="a11y.contactIntro">
+      <segment state="final">
+        <source>Email</source>
+        <target>Schreiben Sie an</target>
+      </segment>
+    </unit>
+    <unit id="a11y.contactResponse">
+      <segment state="final">
+        <source>We will respond within five working days.</source>
+        <target>Wir antworten innerhalb von fünf Werktagen.</target>
+      </segment>
+    </unit>
+    <unit id="consent.acceptAll">
+      <segment state="final">
+        <source>Accept all</source>
+        <target>Alle akzeptieren</target>
+      </segment>
+    </unit>
+    <unit id="consent.decline">
+      <segment state="final">
+        <source>Decline</source>
+        <target>Ablehnen</target>
+      </segment>
+    </unit>
+    <unit id="consent.managePreferences">
+      <segment state="final">
+        <source>Manage preferences</source>
+        <target>Einstellungen verwalten</target>
+      </segment>
+    </unit>
+    <unit id="consent.savePreferences">
+      <segment state="final">
+        <source>Save preferences</source>
+        <target>Auswahl speichern</target>
+      </segment>
+    </unit>
+    <unit id="consent.categories">
+      <segment state="final">
+        <source>Cookie categories</source>
+        <target>Cookie-Kategorien</target>
+      </segment>
+    </unit>
+    <unit id="imprint.company">
+      <segment state="final">
+        <source>Company</source>
+        <target>Unternehmen</target>
+      </segment>
+    </unit>
+    <unit id="imprint.contact">
+      <segment state="final">
+        <source>Contact</source>
+        <target>Kontakt</target>
+      </segment>
+    </unit>
+    <unit id="imprint.legal">
+      <segment state="final">
+        <source>Legal</source>
+        <target>Rechtliches</target>
+      </segment>
+    </unit>
+    <unit id="imprint.vat">
+      <segment state="final">
+        <source>VAT</source>
+        <target>USt-IdNr.</target>
+      </segment>
+    </unit>
+    <unit id="social.profile">
+      <segment state="final">
+        <source>Social profile</source>
+        <target>Social-Media-Profil</target>
+      </segment>
+    </unit>
+    <unit id="social.newTab">
+      <segment state="final">
+        <source>(opens in a new tab)</source>
+        <target>(öffnet in einem neuen Tab)</target>
+      </segment>
+    </unit>
+    <unit id="directions.to">
+      <segment state="final">
+        <source>Directions to %s</source>
+        <target>Anfahrt: %s</target>
+      </segment>
+    </unit>
+    <unit id="learn_more">
+      <segment state="final">
+        <source>Learn more</source>
+        <target>Mehr erfahren</target>
+      </segment>
+    </unit>
+    <unit id="plan.free">
+      <segment state="final">
+        <source>Free</source>
+        <target>Kostenlos</target>
+      </segment>
+    </unit>
+    <unit id="plan.pro">
+      <segment state="final">
+        <source>Pro</source>
+        <target>Pro</target>
+      </segment>
+    </unit>
+    <unit id="card.viewGuide">
+      <segment state="final">
+        <source>View automation guide</source>
+        <target>Automatisierungs-Guide ansehen</target>
+      </segment>
+    </unit>
+    <unit id="plan.a">
+      <segment state="final">
+        <source>Plan A</source>
+        <target>Plan A</target>
+      </segment>
+    </unit>
+    <unit id="plan.b">
+      <segment state="final">
+        <source>Plan B</source>
+        <target>Plan B</target>
+      </segment>
+    </unit>
+    <unit id="code.aria">
+      <segment state="final">
+        <source>Code sample</source>
+        <target>Codebeispiel</target>
+      </segment>
+    </unit>
+    <unit id="carousel.aria.collection">
+      <segment state="final">
+        <source>Content collection</source>
+        <target>Inhaltssammlung</target>
+      </segment>
+    </unit>
+    <unit id="carousel.goto.numbered">
+      <segment state="final">
+        <source>Go to slide %1$s of %2$s</source>
+        <target>Zu Folie %1$s von %2$s wechseln</target>
+      </segment>
+    </unit>
+    <unit id="carousel.status">
+      <segment state="final">
+        <source>Slide %1$s of %2$s</source>
+        <target>Folie %1$s von %2$s</target>
+      </segment>
+    </unit>
+    <unit id="resource.open">
+      <segment state="final">
+        <source>Open resource</source>
+        <target>Ressource öffnen</target>
+      </segment>
+    </unit>
+    <unit id="resource.open.named">
+      <segment state="final">
+        <source>Open %s</source>
+        <target>%s öffnen</target>
+      </segment>
+    </unit>
+    <unit id="video.fallback">
+      <segment state="final">
+        <source>Embedded video</source>
+        <target>Eingebettetes Video</target>
       </segment>
     </unit>
   </file>

@@ -14,8 +14,8 @@
         <dl class="stats-inline__row {f:if(condition: data.show_separator, then: 'stats-inline__row--separated')}">
             <f:for each="{data.stats}" as="stat">
                 <div class="stats-inline__item">
-                    <dd class="stats-inline__value">{stat -> f:render.text(field: 'value')}</dd>
                     <dt class="stats-inline__label">{stat -> f:render.text(field: 'label')}</dt>
+                    <dd class="stats-inline__value">{stat -> f:render.text(field: 'value')}</dd>
                 </div>
             </f:for>
         </dl>

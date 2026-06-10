@@ -17,7 +17,8 @@
 .gallery__featured-image {
     width: 100%;
     display: block;
-    aspect-ratio: 16/9;
+    /* 16:10 matches the backend screenshot sources so they are never cropped misleadingly. */
+    aspect-ratio: 16/10;
     object-fit: cover;
 }
 .gallery__featured-caption {
@@ -88,7 +89,7 @@
 .gallery__thumb-image {
     width: 100%;
     display: block;
-    aspect-ratio: 4/3;
+    aspect-ratio: 16/10;
     object-fit: cover;
     border-radius: calc(var(--radius-md) - 2px);
 }

@@ -13,5 +13,17 @@
         <target>Use when the gdpr banner should close the page with service, legal, or contact context.</target>
       </segment>
     </unit>
+    <unit id="aria_label">
+      <segment state="final">
+        <source>Cookie consent</source>
+        <target>Consenso ai cookie</target>
+      </segment>
+    </unit>
+    <unit id="privacy_link_text">
+      <segment state="final">
+        <source>Privacy policy</source>
+        <target>Informativa sulla privacy</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

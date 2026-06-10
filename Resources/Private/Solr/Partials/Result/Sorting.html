@@ -22,7 +22,7 @@
                     <f:else>
                         <f:if condition="{sorting.selected}">
                             <f:then>
-                                <a class="solr-ajaxified flex items-center justify-between gap-3 rounded-lg bg-muted px-3 py-2 text-sm font-medium text-foreground transition-colors hover:bg-muted focus-visible:bg-muted focus-visible:outline-hidden focus-visible:ring-3 focus-visible:ring-ring active:bg-muted" href="{s:uri.sorting.setSorting(sortingName: sorting.name, sortingDirection: sorting.oppositeDirection)}">
+                                <a class="solr-ajaxified flex items-center justify-between gap-3 rounded-lg bg-muted px-3 py-2 text-sm font-medium text-foreground transition-colors hover:bg-muted focus-visible:bg-muted focus-visible:outline-hidden focus-visible:ring-3 focus-visible:ring-ring active:bg-muted" href="{s:uri.sorting.setSorting(sortingName: sorting.name, sortingDirection: sorting.oppositeDirection)}" aria-current="true">
                                     <span>{sorting.label}</span>
                                     <span aria-hidden="true">{f:if(condition: '{sorting.isAscDirection}', then: 'asc', else: 'desc')}</span>
                                 </a>

@@ -12,12 +12,12 @@
         <ul role="list" class="flex flex-wrap items-center gap-1">
             <f:if condition="{pagination.previousPageNumber}">
                 <li>
-                    <a class="solr-ajaxified inline-flex h-8 items-center justify-center rounded-lg border border-border bg-background px-3 text-sm font-medium text-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-hidden focus-visible:ring-3 focus-visible:ring-ring active:translate-y-px" href="{s:uri.paginate.resultPage(page: pagination.previousPageNumber)}">&laquo;</a>
+                    <a class="solr-ajaxified inline-flex h-8 items-center justify-center rounded-lg border border-border bg-background px-3 text-sm font-medium text-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-hidden focus-visible:ring-3 focus-visible:ring-ring active:translate-y-px" href="{s:uri.paginate.resultPage(page: pagination.previousPageNumber)}" rel="prev" aria-label="{f:translate(key: 'solr.pagination.previous', domain: 'desiderio.labels', default: 'Go to previous page')}"><span aria-hidden="true">&laquo;</span></a>
                 </li>
             </f:if>
 
             <f:if condition="{pagination.hasLessPages}">
-                <li><span class="inline-flex h-8 items-center px-2 text-sm text-muted-foreground">...</span></li>
+                <li><span class="inline-flex h-8 items-center px-2 text-sm text-muted-foreground" aria-hidden="true">&#8230;</span></li>
             </f:if>
 
             <f:for each="{pagination.allPageNumbers}" as="page">
@@ -29,10 +29,10 @@
                         <li>
                             <f:if condition="{page} > 1">
                                 <f:then>
-                                    <a class="solr-ajaxified inline-flex h-8 min-w-8 items-center justify-center rounded-lg border border-border bg-background px-3 text-sm font-medium text-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-hidden focus-visible:ring-3 focus-visible:ring-ring active:translate-y-px" href="{s:uri.paginate.resultPage(page: page)}">{page}</a>
+                                    <a class="solr-ajaxified inline-flex h-8 min-w-8 items-center justify-center rounded-lg border border-border bg-background px-3 text-sm font-medium text-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-hidden focus-visible:ring-3 focus-visible:ring-ring active:translate-y-px" href="{s:uri.paginate.resultPage(page: page)}" aria-label="{f:translate(key: 'solr.pagination.page', domain: 'desiderio.labels', arguments: {page: page}, default: 'Go to page {page}')}">{page}</a>
                                 </f:then>
                                 <f:else>
-                                    <a class="solr-ajaxified inline-flex h-8 min-w-8 items-center justify-center rounded-lg border border-border bg-background px-3 text-sm font-medium text-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-hidden focus-visible:ring-3 focus-visible:ring-ring active:translate-y-px" href="{s:uri.paginate.resultPage()}">{page}</a>
+                                    <a class="solr-ajaxified inline-flex h-8 min-w-8 items-center justify-center rounded-lg border border-border bg-background px-3 text-sm font-medium text-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-hidden focus-visible:ring-3 focus-visible:ring-ring active:translate-y-px" href="{s:uri.paginate.resultPage()}" aria-label="{f:translate(key: 'solr.pagination.page', domain: 'desiderio.labels', arguments: {page: page}, default: 'Go to page {page}')}">{page}</a>
                                 </f:else>
                             </f:if>
                         </li>
@@ -41,12 +41,12 @@
             </f:for>
 
             <f:if condition="{pagination.hasMorePages}">
-                <li><span class="inline-flex h-8 items-center px-2 text-sm text-muted-foreground">...</span></li>
+                <li><span class="inline-flex h-8 items-center px-2 text-sm text-muted-foreground" aria-hidden="true">&#8230;</span></li>
             </f:if>
 
             <f:if condition="{pagination.nextPageNumber}">
                 <li>
-                    <a class="solr-ajaxified inline-flex h-8 items-center justify-center rounded-lg border border-border bg-background px-3 text-sm font-medium text-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-hidden focus-visible:ring-3 focus-visible:ring-ring active:translate-y-px" href="{s:uri.paginate.resultPage(page: pagination.nextPageNumber)}">&raquo;</a>
+                    <a class="solr-ajaxified inline-flex h-8 items-center justify-center rounded-lg border border-border bg-background px-3 text-sm font-medium text-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-hidden focus-visible:ring-3 focus-visible:ring-ring active:translate-y-px" href="{s:uri.paginate.resultPage(page: pagination.nextPageNumber)}" rel="next" aria-label="{f:translate(key: 'solr.pagination.next', domain: 'desiderio.labels', default: 'Go to next page')}"><span aria-hidden="true">&raquo;</span></a>
                 </li>
             </f:if>
         </ul>

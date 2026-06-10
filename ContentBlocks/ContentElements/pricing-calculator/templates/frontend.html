@@ -37,7 +37,7 @@
                     <f:for each="{data.tiers}" as="tier">
                         <d:molecule.tableRow>
                             <d:molecule.tableCell class="font-medium text-foreground">{tier -> f:render.text(field: 'label')}</d:molecule.tableCell>
-                            <d:molecule.tableCell class="text-left pricing-calculator__num">{tier -> f:render.text(field: 'up_to')} {data.unit_label -> f:or(alternative: 'units')}</d:molecule.tableCell>
+                            <d:molecule.tableCell class="text-left pricing-calculator__num">{tier -> f:render.text(field: 'up_to')} <f:if condition="{data.unit_label}"><f:then>{data -> f:render.text(field: 'unit_label')}</f:then><f:else><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:calc.units" default="units"/></f:else></f:if></d:molecule.tableCell>
                             <d:molecule.tableCell class="text-right pricing-calculator__num">{tier -> f:render.text(field: 'price_per_unit')}</d:molecule.tableCell>
                         </d:molecule.tableRow>
                     </f:for>

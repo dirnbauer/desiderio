@@ -5,14 +5,14 @@
 
 <f:asset.css identifier="d-footer-social" href="{cb:assetPath()}/frontend.css"/>
 
-<footer class="footer-social" aria-label="{data.header -> f:or(alternative: 'Footer')}">
+<footer class="footer-social" aria-label="{data.header -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:footer.aria\', default: \'Footer\')}')}">
     <d:layout.container>
         <div class="footer-social__inner">
             <f:if condition="{data.brand}">
                 <h2 class="footer-social__brand">{data -> f:render.text(field: 'brand')}</h2>
             </f:if>
             <f:if condition="{data.items}">
-                <nav class="footer-social__icons" aria-label="Social media">
+                <nav class="footer-social__icons" aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:social.aria', default: 'Social media')}">
                     <f:for each="{data.items}" as="item">
                         <d:atom.link href="{item.link.url}" variant="muted" class="footer-social__icon" target="_blank">
                             <f:switch expression="{item.platform_name}">
@@ -31,9 +31,9 @@
                                     <f:case value="linkedin">LinkedIn</f:case>
                                     <f:case value="youtube">YouTube</f:case>
                                     <f:case value="github">GitHub</f:case>
-                                    <f:defaultCase>Social profile</f:defaultCase>
+                                    <f:defaultCase><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:social.profile" default="Social profile"/></f:defaultCase>
                                 </f:switch>
-                                (opens in a new tab)
+                                <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:social.newTab" default="(opens in a new tab)"/>
                             </span>
                         </d:atom.link>
                     </f:for>

@@ -17,6 +17,8 @@
     color: var(--muted-foreground);
     font-size: var(--d-text-sm);
     line-height: 1.7;
+    min-width: 0;
+    overflow-wrap: break-word;
 }
 .content-columns__col > *:first-child { margin-top: 0; }
 .content-columns__col > *:last-child { margin-bottom: 0; }

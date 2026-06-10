@@ -52,6 +52,10 @@
         linear-gradient(to left, color-mix(in oklch, var(--card) 96%, var(--background)), transparent 1rem) right / 2rem 100% no-repeat,
         var(--card);
 }
+.code-block__pre:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: -2px;
+}
 .code-block__code {
     display: block;
     min-width: 100%;

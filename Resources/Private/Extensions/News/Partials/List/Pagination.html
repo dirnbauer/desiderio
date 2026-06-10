@@ -8,12 +8,14 @@
 <f:argument name="paginator" type="object" optional="true"/>
 <f:argument name="actionName" type="string" optional="true"/>
 
-<f:if condition="{pagination.allPageNumbers -> f:count()} > 1">
-    <nav class="news-pagination" aria-label="{f:translate(extensionName: 'desiderio', key: 'pagination.aria.label', arguments: '{totalPages: \'{pagination.allPageNumbers -> f:count()}\'}', default: 'Pagination')}">
+<f:variable name="totalPages" value="{pagination.allPageNumbers -> f:count()}"/>
+
+<f:if condition="{totalPages} > 1">
+    <nav class="news-pagination" aria-label="{f:translate(extensionName: 'desiderio', key: 'pagination.aria.label', arguments: '{totalPages: \'{totalPages}\'}', default: 'Pagination')}">
         <ul class="f3-widget-paginator flex flex-wrap gap-1" role="list">
             <f:if condition="{pagination.previousPageNumber} && {pagination.previousPageNumber} >= {pagination.firstPageNumber}">
                 <li>
-                    <a href="{f:uri.action(action: actionName, arguments: {currentPage: pagination.previousPageNumber}, addQueryString: 'untrusted')}" title="{f:translate(key: 'pagination.previous')}" class="inline-flex h-8 items-center gap-1.5 rounded-md border border-border bg-background px-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50">
+                    <a href="{f:uri.action(action: actionName, arguments: {currentPage: pagination.previousPageNumber}, addQueryString: 'untrusted')}" rel="prev" aria-label="{f:translate(extensionName: 'desiderio', key: 'pagination.aria.previous', default: 'Go to previous page')}" class="inline-flex h-8 items-center gap-1.5 rounded-md border border-border bg-background px-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50">
                         <span data-icon="inline-start" aria-hidden="true"><d:atom.icon name="chevron-left" size="xs"/></span>
                         <span>{f:translate(key: 'widget.pagination.previous', extensionName: 'fluid')}</span>
                     </a>
@@ -21,29 +23,29 @@
             </f:if>
 
             <f:if condition="{pagination.hasLessPages}">
-                <li><span class="inline-flex size-8 items-center justify-center text-sm text-muted-foreground">...</span></li>
+                <li><span class="inline-flex size-8 items-center justify-center text-sm text-muted-foreground" aria-hidden="true">&#8230;</span></li>
             </f:if>
 
             <f:for each="{pagination.allPageNumbers}" as="page">
                 <f:if condition="{page} == {paginator.currentPageNumber}">
                     <f:then>
-                        <li><span class="inline-flex size-8 items-center justify-center rounded-lg bg-primary text-sm font-medium text-primary-foreground" aria-current="page">{page}</span></li>
+                        <li><span class="inline-flex size-8 items-center justify-center rounded-md bg-primary text-sm font-medium text-primary-foreground" aria-current="page">{page}</span></li>
                     </f:then>
                     <f:else>
                         <li>
-                            <a href="{f:uri.action(action: actionName, arguments: {currentPage: page}, addQueryString: 'untrusted')}" class="inline-flex size-8 items-center justify-center rounded-lg border border-border text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground">{page}</a>
+                            <a href="{f:uri.action(action: actionName, arguments: {currentPage: page}, addQueryString: 'untrusted')}" aria-label="{f:translate(extensionName: 'desiderio', key: 'pagination.aria.goToPage', arguments: '{page: \'{page}\', totalPages: \'{totalPages}\'}')}" class="inline-flex size-8 items-center justify-center rounded-md border border-border text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50">{page}</a>
                         </li>
                     </f:else>
                 </f:if>
             </f:for>
 
             <f:if condition="{pagination.hasMorePages}">
-                <li><span class="inline-flex size-8 items-center justify-center text-sm text-muted-foreground">...</span></li>
+                <li><span class="inline-flex size-8 items-center justify-center text-sm text-muted-foreground" aria-hidden="true">&#8230;</span></li>
             </f:if>
 
             <f:if condition="{pagination.nextPageNumber} && {pagination.nextPageNumber} <= {pagination.lastPageNumber}">
                 <li>
-                    <a href="{f:uri.action(action: actionName, arguments: {currentPage: pagination.nextPageNumber}, addQueryString: 'untrusted')}" title="{f:translate(key: 'pagination.next')}" class="inline-flex h-8 items-center gap-1.5 rounded-md border border-border bg-background px-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50">
+                    <a href="{f:uri.action(action: actionName, arguments: {currentPage: pagination.nextPageNumber}, addQueryString: 'untrusted')}" rel="next" aria-label="{f:translate(extensionName: 'desiderio', key: 'pagination.aria.next', default: 'Go to next page')}" class="inline-flex h-8 items-center gap-1.5 rounded-md border border-border bg-background px-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/50">
                         <span>{f:translate(key: 'widget.pagination.next', extensionName: 'fluid')}</span>
                         <span data-icon="inline-end" aria-hidden="true"><d:atom.icon name="chevron-right" size="xs"/></span>
                     </a>

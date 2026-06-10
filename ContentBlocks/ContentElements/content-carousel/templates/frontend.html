@@ -13,11 +13,13 @@
             </header>
         </f:if>
 
+        <f:variable name="slideCount" value="{data.items -> f:count()}"/>
+
         <f:if condition="{data.variant} == 'cards'">
             <f:then>
                 <div class="content-carousel__viewport content-carousel__viewport--cards"
                      role="region"
-                     aria-label="{data.header -> f:or(alternative: 'Content collection')}">
+                     aria-label="{data.header -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:carousel.aria.collection\', default: \'Content collection\')}')}">
                     <div class="content-carousel__track" role="list">
                         <f:for each="{data.items}" as="item">
                             <d:molecule.card class="content-carousel__slide card" role="listitem" size="sm">
@@ -50,12 +52,12 @@
                 <div class="content-carousel__viewport"
                      role="region"
                      aria-roledescription="carousel"
-                     aria-label="{data.header -> f:or(alternative: 'Content carousel')}"
+                     aria-label="{data.header -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:carousel.region\', default: \'Highlights carousel\')}')}"
                      data-astro-content-carousel
                      data-astro-content-carousel-autoplay="{f:if(condition: '{data.variant} == {s:}autoplay{s:}', then: 'true', else: 'false')}"
                      data-astro-content-carousel-interval="{data.autoplay_interval -> f:or(alternative: '5000')}">
 
-                    <div class="content-carousel__track" tabindex="0" role="group" aria-label="Slides, scrollable" data-astro-content-carousel-track>
+                    <div class="content-carousel__track" tabindex="0" role="group" aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:carousel.aria.slides', default: 'Slides, scrollable')}" data-astro-content-carousel-track>
                         <f:for each="{data.items}" as="item" iteration="iter">
                             <div class="content-carousel__slide{f:if(condition: iter.isFirst, then: ' content-carousel__slide--active')}">
                                 <f:if condition="{item.slide_image}">
@@ -86,21 +88,21 @@
 
                     <f:if condition="{data.show_navigation}">
                         <div class="content-carousel__navigation">
-                            <button class="content-carousel__nav content-carousel__prev" type="button" aria-label="Previous slide" data-astro-content-carousel-prev>
+                            <button class="content-carousel__nav content-carousel__prev" type="button" aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:carousel.aria.previous', default: 'Previous slide')}" data-astro-content-carousel-prev>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
                             </button>
-                            <button class="content-carousel__nav content-carousel__next" type="button" aria-label="Next slide" data-astro-content-carousel-next>
+                            <button class="content-carousel__nav content-carousel__next" type="button" aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:carousel.aria.next', default: 'Next slide')}" data-astro-content-carousel-next>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
                             </button>
                         </div>
                     </f:if>
 
                     <f:if condition="{data.show_pagination}">
-                        <div class="content-carousel__pagination" role="group" aria-label="Choose slide to display">
+                        <div class="content-carousel__pagination" role="group" aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:carousel.aria.choose', default: 'Choose slide to display')}">
                             <f:for each="{data.items}" as="item" iteration="iter">
                                 <button class="content-carousel__dot{f:if(condition: iter.isFirst, then: ' content-carousel__dot--active')}"
                                         type="button"
-                                        aria-label="Go to slide {iter.cycle} of {data.items -> f:count()}"
+                                        aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:carousel.goto.numbered', arguments: {0: iter.cycle, 1: slideCount}, default: 'Go to slide {iter.cycle} of {slideCount}')}"
                                         aria-current="{f:if(condition: iter.isFirst, then: 'true', else: 'false')}"
                                         data-astro-content-carousel-dot="{iter.index}"></button>
                             </f:for>
@@ -108,18 +110,18 @@
                     </f:if>
 
                     <p class="content-carousel__status" aria-live="polite" data-astro-content-carousel-status>
-                        Slide 1 of {data.items -> f:count()}
+                        {f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:carousel.status', arguments: {0: 1, 1: slideCount}, default: 'Slide 1 of {slideCount}')}
                     </p>
                 </div>
             </f:else>
         </f:if>
 
         <f:if condition="{data.variant} == 'thumbnails'">
-            <div class="content-carousel__thumbnails" role="group" aria-label="Choose slide to display">
+            <div class="content-carousel__thumbnails" role="group" aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:carousel.aria.choose', default: 'Choose slide to display')}">
                 <f:for each="{data.items}" as="item" iteration="iter">
                     <button class="content-carousel__thumb{f:if(condition: iter.isFirst, then: ' content-carousel__thumb--active')}"
                             type="button"
-                            aria-label="Go to slide {iter.cycle} of {data.items -> f:count()}"
+                            aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:carousel.goto.numbered', arguments: {0: iter.cycle, 1: slideCount}, default: 'Go to slide {iter.cycle} of {slideCount}')}"
                             aria-current="{f:if(condition: iter.isFirst, then: 'true', else: 'false')}"
                             data-astro-content-carousel-thumb="{iter.index}">
                         <f:if condition="{item.slide_image}">

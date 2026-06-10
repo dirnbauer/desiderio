@@ -13,5 +13,17 @@
         <target>Einsetzen, wenn das Element DSGVO Banner Serviceinformationen, Rechtliches oder Kontaktwege abschließen soll.</target>
       </segment>
     </unit>
+    <unit id="aria_label">
+      <segment state="final">
+        <source>Cookie consent</source>
+        <target>Cookie-Einwilligung</target>
+      </segment>
+    </unit>
+    <unit id="privacy_link_text">
+      <segment state="final">
+        <source>Privacy policy</source>
+        <target>Datenschutzerklärung</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

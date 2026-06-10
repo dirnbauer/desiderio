@@ -1,6 +1,7 @@
 .back-to-top {
     position: fixed; z-index: 100;
-    display: inline-flex; align-items: center; gap: var(--d-spacing-xs);
+    display: inline-flex; align-items: center; justify-content: center; gap: var(--d-spacing-xs);
+    min-inline-size: 2.75rem; min-block-size: 2.75rem;
     padding: var(--d-spacing-sm);
     border: 1px solid var(--border); border-radius: var(--radius);
     background: var(--card); color: var(--foreground);

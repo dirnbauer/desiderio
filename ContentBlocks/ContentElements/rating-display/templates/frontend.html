@@ -25,7 +25,7 @@
                         <f:if condition="{rating.logo}">
                             <div class="rating-display__logo">
                                 <f:for each="{rating.logo}" as="fileReference">
-                                    <f:image image="{fileReference}" maxWidth="240" alt="{rating.platform} logo" loading="lazy" class="rating-display__logo-img"/>
+                                    <f:image image="{fileReference}" maxWidth="240" alt="{rating.platform}" loading="lazy" class="rating-display__logo-img"/>
                                 </f:for>
                             </div>
                         </f:if>
@@ -43,8 +43,8 @@
                         </f:if>
                         <f:if condition="{rating.link.url}">
                             <d:atom.link href="{rating.link.url}" target="{rating.link.target}" variant="muted" class="rating-display__link">
-                                <span aria-hidden="true">View reviews &rarr;</span>
-                                <span class="sr-only">View {rating -> f:render.text(field: 'platform')} reviews</span>
+                                <span aria-hidden="true"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:view_reviews" default="View reviews"/> &rarr;</span>
+                                <span class="sr-only"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:view_reviews.sr" arguments="{0: rating.platform}">View {rating.platform} reviews</f:translate></span>
                             </d:atom.link>
                         </f:if>
                     </article>

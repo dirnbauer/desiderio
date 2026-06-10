@@ -35,9 +35,9 @@
                             </span>
                             <span class="sr-only">
                                 <f:switch expression="{metricTrend}">
-                                    <f:case value="up">Trending up:</f:case>
-                                    <f:case value="down">Trending down:</f:case>
-                                    <f:defaultCase>No change:</f:defaultCase>
+                                    <f:case value="up">{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:trend.positive', default: 'Trending up:')}</f:case>
+                                    <f:case value="down">{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:trend.down', default: 'Trending down:')}</f:case>
+                                    <f:defaultCase>{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:trend.neutral', default: 'Holding steady:')}</f:defaultCase>
                                 </f:switch>
                             </span>
                             <span class="metric-dashboard__change-text">{item -> f:render.text(field: 'change')}</span>
@@ -48,14 +48,15 @@
         </dl>
 
         <f:if condition="{data.chart_data}">
-            <f:variable name="chartSeriesLabel">{data.chart_series_label -> f:or(alternative: 'Monthly recurring revenue')}</f:variable>
-            <f:variable name="chartUnit">{data.chart_unit -> f:or(alternative: 'k USD')}</f:variable>
+            <f:variable name="chartSeriesLabel">{data.chart_series_label -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:metric.series.fallback\', default: \'Monthly recurring revenue\')}')}</f:variable>
+            <f:variable name="chartUnit">{data.chart_unit -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:metric.unit.fallback\', default: \'k USD\')}')}</f:variable>
             <div class="metric-dashboard__chart"
                  data-chart-data="{data.chart_data -> f:format.htmlspecialchars()}"
                  data-chart-series-label="{chartSeriesLabel -> f:format.htmlspecialchars()}"
                  data-chart-unit="{chartUnit -> f:format.htmlspecialchars()}"
                  data-chart-id="metric-dash-{data.uid}">
-                <svg class="metric-dashboard__sparkline" id="metric-dash-{data.uid}" role="img" aria-label="{data.header -> f:or(alternative: 'Key metrics')} trend over time"></svg>
+                <f:variable name="chartAriaSubject">{data.header -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:stats.aria\', default: \'Key statistics\')}')}</f:variable>
+                <svg class="metric-dashboard__sparkline" id="metric-dash-{data.uid}" role="img" aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:metric.chart.aria', arguments: {0: chartAriaSubject}, default: '{chartAriaSubject} trend over time')}"></svg>
                 <div class="metric-dashboard__legend" aria-hidden="true">
                     <span class="metric-dashboard__legend-marker"></span>
                     <span>{chartSeriesLabel}</span>

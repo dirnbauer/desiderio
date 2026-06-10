@@ -53,9 +53,12 @@
     transform: translateX(0.2rem);
 }
 .feature-alternating__image {
+    display: block;
     border-radius: var(--d-radius-lg);
     width: 100%;
+    aspect-ratio: 16 / 10;
     height: auto;
+    object-fit: cover;
 }
 @media (prefers-reduced-motion: reduce) {
     .feature-alternating__arrow { transition: none; }

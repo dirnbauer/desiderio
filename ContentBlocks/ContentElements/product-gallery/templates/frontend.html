@@ -32,7 +32,7 @@
                                             data-thumb-alt="{fileReference.alternative -> f:or(alternative: '{galleryTitle} {iter.cycle}')}"
                                             aria-selected="{f:if(condition: iter.isFirst, then: 'true', else: 'false')}"
                                             aria-label="{galleryTitle} {iter.cycle}">
-                                        <f:image image="{fileReference}" width="160" height="160" cropVariant="default" alt="" class="product-gallery__thumb-img" loading="lazy" decoding="async"/>
+                                        <f:image image="{fileReference}" width="160" height="100" cropVariant="default" alt="" class="product-gallery__thumb-img" loading="lazy" decoding="async"/>
                                     </button>
                                 </li>
                             </f:for>
@@ -110,7 +110,6 @@
 
                 <f:if condition="{data.cta_text} && {data.cta_link.url} && {data.availability} != 'sold_out'">
                     <d:molecule.cardFooter class="product-gallery__panel-footer">
-                        <f:variable name="ctaLabel">{data.cta_text} – {galleryTitle}</f:variable>
                         <d:atom.button href="{data.cta_link.url}" class="product-gallery__cta" target="{data.cta_link.target}">
                             {data -> f:render.text(field: 'cta_text')}
                         </d:atom.button>

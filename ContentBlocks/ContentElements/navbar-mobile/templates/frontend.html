@@ -5,23 +5,24 @@
 
 <f:asset.css identifier="d-navbar-mobile" href="{cb:assetPath()}/frontend.css"/>
 
-<f:variable name="toggleLabel">Open menu</f:variable>
+<f:variable name="toggleLabel"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:navbar.mobile.open" default="Open menu"/></f:variable>
+<f:variable name="menuId" value="navbar-mobile-menu-{data.uid}"/>
 
 <d:layout.section class="navbar-mobile">
     <d:layout.container>
-        <nav class="navbar-mobile__inner" aria-label="{data.header -> f:or(alternative: 'Mobile navigation')}">
+        <nav class="navbar-mobile__inner" aria-label="{data.header -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:navbar.mobile.aria\', default: \'Mobile navigation\')}')}">
             <div class="navbar-mobile__brand">
                 <f:if condition="{data.brand_link.url}">
                     <f:then><d:atom.link href="{data.brand_link.url}" target="{data.brand_link.target}" variant="default" class="navbar-mobile__brand-link">{data -> f:render.text(field: 'brand')}</d:atom.link></f:then>
                     <f:else><span class="navbar-mobile__brand-link">{data -> f:render.text(field: 'brand')}</span></f:else>
                 </f:if>
             </div>
-            <button class="navbar-mobile__toggle" type="button" aria-expanded="false" aria-controls="navbar-mobile-menu" aria-label="{toggleLabel}" data-d-menu-toggle data-d-menu-target="#navbar-mobile-menu">
+            <button class="navbar-mobile__toggle" type="button" aria-expanded="false" aria-controls="{menuId}" aria-label="{toggleLabel}" data-d-menu-toggle data-d-menu-target="#{menuId}">
                 <span class="navbar-mobile__toggle-bar" aria-hidden="true"></span>
                 <span class="navbar-mobile__toggle-bar" aria-hidden="true"></span>
                 <span class="navbar-mobile__toggle-bar" aria-hidden="true"></span>
             </button>
-            <div class="navbar-mobile__menu is-hidden" id="navbar-mobile-menu">
+            <div class="navbar-mobile__menu is-hidden" id="{menuId}">
                 <ul class="navbar-mobile__nav">
                     <f:for each="{data.nav_items}" as="item">
                         <li>

@@ -33,9 +33,9 @@
                                 </span>
                                 <span class="sr-only">
                                     <f:switch expression="{item.trend}">
-                                        <f:case value="up">Trending up:</f:case>
-                                        <f:case value="down">Trending down:</f:case>
-                                        <f:defaultCase>No change:</f:defaultCase>
+                                        <f:case value="up">{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:trend.positive', default: 'Trending up:')}</f:case>
+                                        <f:case value="down">{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:trend.down', default: 'Trending down:')}</f:case>
+                                        <f:defaultCase>{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:trend.neutral', default: 'Holding steady:')}</f:defaultCase>
                                     </f:switch>
                                 </span>
                                 <span class="analytics-overview__metric-change-text">{item -> f:render.text(field: 'change')}</span>

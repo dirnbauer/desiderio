@@ -14,7 +14,7 @@
 
         <div class="testimonial__card {f:if(condition: '{data.variant} == \'card\'', then: 'testimonial__card--bordered')}">
             <f:if condition="{ratingInt} > 0">
-                <div class="testimonial__rating" role="img" aria-label="Rated {ratingInt} out of 5">
+                <div class="testimonial__rating" role="img" aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:rating.sr.rated', arguments: {0: ratingInt}, default: 'Rated {ratingInt} out of 5')}">
                     <f:for each="{0: 1, 1: 2, 2: 3, 3: 4, 4: 5}" as="star">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
                              fill="{f:if(condition: '{star} <= {ratingInt}', then: 'currentColor', else: 'none')}"

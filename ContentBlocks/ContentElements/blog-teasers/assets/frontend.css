@@ -41,7 +41,8 @@
 }
 
 .blog-teasers__image-wrapper {
-    aspect-ratio: 16 / 9;
+    /* 16:10 matches the backend screenshot sources so they are never cropped misleadingly. */
+    aspect-ratio: 16 / 10;
     overflow: hidden;
 }
 .blog-teasers__image {

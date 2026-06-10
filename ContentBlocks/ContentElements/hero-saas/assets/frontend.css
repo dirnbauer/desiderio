@@ -28,8 +28,11 @@
     margin-bottom: var(--d-spacing-10);
 }
 .hero-saas__dashboard {
+    display: block;
     width: 100%;
+    aspect-ratio: 16 / 10;
     height: auto;
+    object-fit: cover;
     border-radius: var(--d-radius-xl);
     border: 1px solid var(--d-border);
     box-shadow: var(--d-shadow-xl);

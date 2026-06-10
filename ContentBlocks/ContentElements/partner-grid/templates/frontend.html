@@ -34,7 +34,6 @@
                         <d:atom.badge variant="secondary" class="partner-grid__kind">{item -> f:render.text(field: 'kind')}</d:atom.badge>
                     </f:if>
                     <f:if condition="{item.link.url}">
-                        <f:variable name="visitLabel">{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:partner.visit')}</f:variable>
                         <d:atom.link href="{item.link.url}" target="{item.link.target}" variant="muted" class="partner-grid__link">
                             <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:investor.visit"/>
                             <span class="sr-only">: {item -> f:render.text(field: 'name')}</span>

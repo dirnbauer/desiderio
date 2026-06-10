@@ -12,8 +12,8 @@
 .compare__points { list-style: none; padding: 0; margin-block-start: var(--d-spacing-md); display: flex; flex-direction: column; gap: var(--d-spacing-sm); }
 .compare__point { display: flex; align-items: flex-start; gap: 0.5rem; }
 .compare__point::before { flex: none; font-weight: 700; line-height: 1.5; }
-.compare__points--pro .compare__point::before { content: "\2713"; color: var(--primary); }
+.compare__points--pro .compare__point::before { content: "\2713" / ""; color: var(--primary); }
 .compare__points--con .compare__point { color: var(--muted-foreground); }
-.compare__points--con .compare__point::before { content: "\2715"; color: var(--muted-foreground); }
+.compare__points--con .compare__point::before { content: "\2715" / ""; color: var(--muted-foreground); }
 .compare__actions { margin-block-start: auto; padding-block-start: var(--d-spacing-lg); }
 .compare__actions .compare__button { width: 100%; }

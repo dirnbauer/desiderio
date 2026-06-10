@@ -31,7 +31,7 @@
             <f:if condition="{settings.detail.showPrevNext}">
                 <n:simplePrevNext pidList="{newsItem.pid}" news="{newsItem}" as="paginated" sortField="datetime">
                     <f:if condition="{paginated}">
-                        <nav class="grid gap-3 sm:grid-cols-2" aria-label="News pagination">
+                        <nav class="grid gap-3 sm:grid-cols-2" aria-label="{f:translate(extensionName: 'desiderio', key: 'news.prevNext.aria', default: 'Previous and next article')}">
                             <f:if condition="{paginated.prev}">
                                 <f:link.action action="detail" controller="News" extensionName="News" pluginName="Pi1" pageUid="{settings.detailPid}" arguments="{news: paginated.prev}" class="group/prev rounded-xl border border-border bg-card px-4 py-3 text-sm text-muted-foreground !no-underline transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/40">
                                     <span class="flex items-center gap-2 text-xs font-medium uppercase tracking-normal">

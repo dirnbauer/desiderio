@@ -27,7 +27,10 @@
     margin-block-start: var(--d-spacing-xs);
 }
 .feature-split__image {
+    display: block;
     border-radius: var(--d-radius-lg);
     width: 100%;
+    aspect-ratio: 16 / 10;
     height: auto;
+    object-fit: cover;
 }

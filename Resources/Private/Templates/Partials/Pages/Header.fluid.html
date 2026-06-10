@@ -7,6 +7,7 @@
 <f:variable name="siteTitle" value="{site.configuration.websiteTitle ?: site.identifier}"/>
 <f:variable name="siteTitle" value="{siteTitle ?: breadcrumb.0.title}"/>
 <f:variable name="brandWordmark" value="{site.configuration.settings.desiderio.brand.wordmark ?: siteTitle}"/>
+<f:variable name="themeDefault" value="{site.configuration.settings.desiderio.theme.darkModeDefault ?: 'system'}"/>
 <f:variable name="searchAction" value="{breadcrumb.0.link}"/>
 <f:if condition="{site.configuration.settings.desiderio.search.targetPageId}">
     <f:variable name="searchAction" value="{f:uri.page(pageUid: site.configuration.settings.desiderio.search.targetPageId)}"/>
@@ -64,7 +65,7 @@
                         data-suggest-param="tx_solr[queryString]"
                         data-suggest-min-chars="2"
                         data-suggest-max-items="7"
-                        data-suggest-header="{f:translate(extensionName: 'desiderio', key: 'solr.suggest.header', default: 'Top results')}"
+                        data-suggest-header="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:solr.suggest.header', default: 'Top results')}"
                     >
                         <label class="d-sr-only" for="desiderio-header-search">
                             <f:translate extensionName="desiderio" key="search.label">Search</f:translate>
@@ -79,9 +80,9 @@
                                 autocomplete="off"
                                 tabindex="-1"
                                 data-d-solr-suggest
-                                data-d-solr-type-label-pages="{f:translate(extensionName: 'desiderio', key: 'solr.contentType.pages', default: 'Pages')}"
-                                data-d-solr-type-label-news="{f:translate(extensionName: 'desiderio', key: 'solr.contentType.news', default: 'News')}"
-                                data-d-solr-type-label-addresses="{f:translate(extensionName: 'desiderio', key: 'solr.contentType.addresses', default: 'Addresses')}"
+                                data-d-solr-type-label-pages="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:solr.contentType.pages', default: 'Pages')}"
+                                data-d-solr-type-label-news="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:solr.contentType.news', default: 'News')}"
+                                data-d-solr-type-label-addresses="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:solr.contentType.addresses', default: 'Addresses')}"
                             />
                             <button class="desiderio-header__search-submit btn btn--ghost btn--icon" type="submit" aria-label="{f:translate(extensionName: 'desiderio', key: 'search.submit', default: 'Search')}" title="{f:translate(extensionName: 'desiderio', key: 'search.submit', default: 'Search')}">
                                 <d:atom.icon name="search" size="sm"/>
@@ -111,37 +112,35 @@
                         data-d-theme-label-dark="{f:translate(extensionName: 'desiderio', key: 'theme.dark', default: 'Dark')}"
                         data-d-theme-label-system="{f:translate(extensionName: 'desiderio', key: 'theme.system', default: 'System')}"
                     >
-                        <summary class="desiderio-theme-switch__summary" data-d-theme-summary aria-label="{f:translate(extensionName: 'desiderio', key: 'a11y.theme.switch', default: 'Colour scheme')}" title="{f:translate(extensionName: 'desiderio', key: 'a11y.theme.switch', default: 'Colour scheme')}">
+                        <summary class="desiderio-theme-switch__summary" data-d-theme-summary aria-label="{f:translate(extensionName: 'desiderio', key: 'a11y.theme.switch', default: 'Colour scheme')}: {f:translate(extensionName: 'desiderio', key: 'theme.{themeDefault}', default: 'System')}" title="{f:translate(extensionName: 'desiderio', key: 'a11y.theme.switch', default: 'Colour scheme')}: {f:translate(extensionName: 'desiderio', key: 'theme.{themeDefault}', default: 'System')}">
                             <span class="desiderio-theme-switch__current" aria-hidden="true">
-                                <span class="desiderio-theme-switch__current-icon" data-d-theme-current-icon="light" hidden>
+                                <span class="desiderio-theme-switch__current-icon" data-d-theme-current-icon="light"{f:if(condition: '{themeDefault} != \'light\'', then: ' hidden')}>
                                     <d:atom.icon name="sun" size="sm"/>
                                 </span>
-                                <span class="desiderio-theme-switch__current-icon" data-d-theme-current-icon="dark" hidden>
+                                <span class="desiderio-theme-switch__current-icon" data-d-theme-current-icon="dark"{f:if(condition: '{themeDefault} != \'dark\'', then: ' hidden')}>
                                     <d:atom.icon name="moon" size="sm"/>
                                 </span>
-                                <span class="desiderio-theme-switch__current-icon" data-d-theme-current-icon="system">
+                                <span class="desiderio-theme-switch__current-icon" data-d-theme-current-icon="system"{f:if(condition: '{themeDefault} != \'system\'', then: ' hidden')}>
                                     <d:atom.icon name="monitor" size="sm"/>
                                 </span>
                             </span>
-                            <span class="d-sr-only" data-d-theme-current-label>
-                                <f:translate extensionName="desiderio" key="theme.system">System</f:translate>
-                            </span>
+                            <span class="d-sr-only" data-d-theme-current-label>{f:translate(extensionName: 'desiderio', key: 'theme.{themeDefault}', default: 'System')}</span>
                         </summary>
                         <ul class="desiderio-theme-switch__list" role="list" aria-label="{f:translate(extensionName: 'desiderio', key: 'a11y.theme.switch', default: 'Colour scheme')}">
                             <li>
-                                <button type="button" class="desiderio-theme-switch__option" data-d-theme-option="light" aria-pressed="false">
+                                <button type="button" class="desiderio-theme-switch__option" data-d-theme-option="light" aria-pressed="{f:if(condition: '{themeDefault} == \'light\'', then: 'true', else: 'false')}">
                                     <d:atom.icon name="sun" size="sm"/>
                                     <span><f:translate extensionName="desiderio" key="theme.light">Light</f:translate></span>
                                 </button>
                             </li>
                             <li>
-                                <button type="button" class="desiderio-theme-switch__option" data-d-theme-option="dark" aria-pressed="false">
+                                <button type="button" class="desiderio-theme-switch__option" data-d-theme-option="dark" aria-pressed="{f:if(condition: '{themeDefault} == \'dark\'', then: 'true', else: 'false')}">
                                     <d:atom.icon name="moon" size="sm"/>
                                     <span><f:translate extensionName="desiderio" key="theme.dark">Dark</f:translate></span>
                                 </button>
                             </li>
                             <li>
-                                <button type="button" class="desiderio-theme-switch__option" data-d-theme-option="system" aria-pressed="false">
+                                <button type="button" class="desiderio-theme-switch__option" data-d-theme-option="system" aria-pressed="{f:if(condition: '{themeDefault} == \'system\'', then: 'true', else: 'false')}">
                                     <d:atom.icon name="monitor" size="sm"/>
                                     <span><f:translate extensionName="desiderio" key="theme.system">System</f:translate></span>
                                 </button>
@@ -151,31 +150,38 @@
                 </f:if>
 
                 <f:if condition="{languageNavigation}">
-                    <details class="desiderio-header__lang">
-                        <summary class="desiderio-header__lang-summary" aria-label="{f:translate(extensionName: 'desiderio', key: 'a11y.nav.language', default: 'Language')}">
-                            <span class="desiderio-header__lang-current">
+                    <nav class="desiderio-header__lang-nav" aria-label="{f:translate(extensionName: 'desiderio', key: 'a11y.nav.language', default: 'Language')}">
+                        <details class="desiderio-header__lang" data-d-close-on-outside>
+                            <summary class="desiderio-header__lang-summary" title="{f:translate(extensionName: 'desiderio', key: 'a11y.nav.language', default: 'Language')}">
+                                <span class="d-sr-only"><f:translate extensionName="desiderio" key="a11y.nav.language">Language</f:translate>: </span>
+                                <span class="desiderio-header__lang-current">
+                                    <f:for each="{languageNavigation}" as="lang">
+                                        <f:if condition="{lang.active}">
+                                            <span lang="{lang.twoLetterIsoCode -> f:or(alternative: lang.hreflang)}">{lang.twoLetterIsoCode -> f:or(alternative: lang.navigationTitle)}</span>
+                                        </f:if>
+                                    </f:for>
+                                </span>
+                                <span class="desiderio-header__lang-chevron" aria-hidden="true">
+                                    <d:atom.icon name="chevron-down" size="xs"/>
+                                </span>
+                            </summary>
+                            <ul class="desiderio-header__lang-list" role="list">
                                 <f:for each="{languageNavigation}" as="lang">
-                                    <f:if condition="{lang.active}">
-                                        <span lang="{lang.twoLetterIsoCode -> f:or(alternative: lang.hreflang)}">{lang.twoLetterIsoCode -> f:or(alternative: lang.navigationTitle)}</span>
+                                    <f:if condition="{lang.available}">
+                                        <li>
+                                            <f:variable name="langLinkAttributes" value="{hreflang: lang.hreflang}"/>
+                                            <f:if condition="{lang.active}">
+                                                <f:variable name="langLinkAttributes" value="{hreflang: lang.hreflang, 'aria-current': 'true'}"/>
+                                            </f:if>
+                                            <f:link.typolink parameter="{lang.link}" class="desiderio-header__lang-link {f:if(condition: '{lang.active}', then: 'desiderio-header__lang-link--active')}" additionalAttributes="{langLinkAttributes}" title="{lang.title}">
+                                                <span lang="{lang.twoLetterIsoCode -> f:or(alternative: lang.hreflang)}">{lang.navigationTitle}</span>
+                                            </f:link.typolink>
+                                        </li>
                                     </f:if>
                                 </f:for>
-                            </span>
-                            <span class="desiderio-header__lang-chevron" aria-hidden="true">
-                                <d:atom.icon name="chevron-down" size="xs"/>
-                            </span>
-                        </summary>
-                        <ul class="desiderio-header__lang-list" role="list">
-                            <f:for each="{languageNavigation}" as="lang">
-                                <f:if condition="{lang.available}">
-                                    <li>
-                                        <f:link.typolink parameter="{lang.link}" class="desiderio-header__lang-link {f:if(condition: '{lang.active}', then: 'desiderio-header__lang-link--active')}" additionalAttributes="{hreflang: '{lang.hreflang}'}" title="{lang.title}">
-                                            <span lang="{lang.twoLetterIsoCode -> f:or(alternative: lang.hreflang)}">{lang.navigationTitle}</span>
-                                        </f:link.typolink>
-                                    </li>
-                                </f:if>
-                            </f:for>
-                        </ul>
-                    </details>
+                            </ul>
+                        </details>
+                    </nav>
                 </f:if>
 
                 <button type="button" class="desiderio-header__menu-toggle btn btn--ghost btn--icon" data-d-menu-toggle data-d-menu-target="#desiderio-main-nav" aria-expanded="false" aria-controls="desiderio-main-nav" aria-label="{f:translate(extensionName: 'desiderio', key: 'a11y.menu.toggle', default: 'Toggle menu')}">

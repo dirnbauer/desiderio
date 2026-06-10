@@ -13,8 +13,8 @@
     align-items: baseline;
     justify-content: center;
     gap: 0.25rem;
-    margin-block-start: var(--d-spacing-md);
     margin: 0;
+    margin-block-start: var(--d-spacing-md);
 }
 
 .pricing-simple__price {

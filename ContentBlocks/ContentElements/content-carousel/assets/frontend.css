@@ -76,7 +76,8 @@
 .card__image {
     width: 100%;
     height: auto;
-    aspect-ratio: 16/9;
+    /* 16:10 matches the backend screenshot sources so they are never cropped misleadingly. */
+    aspect-ratio: 16/10;
     object-fit: cover;
     display: block;
 }
@@ -85,7 +86,7 @@
     padding: var(--d-spacing-md);
 }
 .content-carousel--cards .card__image {
-    aspect-ratio: 16/7;
+    aspect-ratio: 16/10;
 }
 .content-carousel--cards .card__body {
     display: grid;

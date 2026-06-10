@@ -31,7 +31,7 @@
                 </f:for>
             </figure>
 
-            <div class="gallery__thumbs gallery__thumbs--cols-{data.columns -> f:or(alternative: '3')}" role="list">
+            <div class="gallery__thumbs gallery__thumbs--cols-{data.columns -> f:or(alternative: '3')}">
                 <f:for each="{data.items}" as="item" iteration="galleryIteration">
                     <f:for each="{item.image}" as="fileReference">
                         <button type="button"
@@ -42,8 +42,7 @@
                                 data-thumb-description="{item.description}"
                                 data-thumb-alt="{fileReference.alternative -> f:or(alternative: item.title)}"
                                 data-thumb-link="{item.link.url}"
-                                aria-selected="{f:if(condition: galleryIteration.isFirst, then: 'true', else: 'false')}"
-                                role="listitem">
+                                aria-selected="{f:if(condition: galleryIteration.isFirst, then: 'true', else: 'false')}">
                             <f:image image="{fileReference}" maxWidth="480" alt="{fileReference.alternative -> f:or(alternative: item.title)}" loading="lazy" decoding="async" class="gallery__thumb-image"/>
                             <f:if condition="{item.title}">
                                 <span class="gallery__thumb-label">{item -> f:render.text(field: 'title')}</span>

@@ -5,12 +5,12 @@
 
 <f:asset.css identifier="d-footer-minimal" href="{cb:assetPath()}/frontend.css"/>
 
-<footer class="footer-minimal" aria-label="{data.header -> f:or(alternative: 'Footer')}">
+<footer class="footer-minimal" aria-label="{data.header -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:footer.aria\', default: \'Footer\')}')}">
     <d:layout.container>
         <div class="footer-minimal__inner">
             <p class="footer-minimal__copyright">{data -> f:render.text(field: 'copyright')}</p>
             <f:if condition="{data.link_items}">
-                <nav aria-label="Footer links">
+                <nav aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:footer.links.aria', default: 'Footer links')}">
                     <ul class="footer-minimal__links">
                         <f:for each="{data.link_items}" as="item">
                             <li>

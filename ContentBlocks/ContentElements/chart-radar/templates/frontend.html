@@ -67,9 +67,9 @@
                     <p class="chart-radar__legend-title">
                         <f:if condition="{seriesName}">
                             <f:then>{seriesName}</f:then>
-                            <f:else>Customer rating profile</f:else>
+                            <f:else><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-radar/language/labels.xlf:table.score"/></f:else>
                         </f:if>
-                        <span>0–5 scale</span>
+                        <span><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-radar/language/labels.xlf:table.scale"/></span>
                     </p>
                     <ul class="chart-radar__legend" role="list">
                         <f:for each="{rows}" as="row">

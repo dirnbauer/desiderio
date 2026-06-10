@@ -11,7 +11,8 @@
         <f:if condition="{data.header}">
             <p class="nav-toc__title" id="{tocTitleId}">{data -> f:render.text(field: 'header')}</p>
         </f:if>
-        <nav class="nav-toc__nav" aria-labelledby="{f:if(condition: data.header, then: tocTitleId)}" aria-label="{f:if(condition: data.header, else: 'Table of contents')}">
+        <f:variable name="tocLabel"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:nav_toc.aria" default="Table of contents"/></f:variable>
+        <nav class="nav-toc__nav" aria-labelledby="{f:if(condition: data.header, then: tocTitleId)}" aria-label="{f:if(condition: data.header, else: tocLabel)}">
             <ul class="nav-toc__list">
                 <f:for each="{data.items}" as="item">
                     <li class="nav-toc__item nav-toc__item--{item.level -> f:or(alternative: 'h2')}">

@@ -24,7 +24,7 @@
                         </f:if>
                         <f:if condition="{item.link.url}">
                             <d:atom.link href="{item.link.url}" target="{item.link.target}" variant="muted" class="feature-alternating__link">
-                                <span>Learn more</span><span class="sr-only"> about {item -> f:render.text(field: 'title')}</span><span class="feature-alternating__arrow" aria-hidden="true">&rarr;</span>
+                                <span>{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:learn_more', default: 'Learn more')}</span><span class="sr-only">: {item -> f:render.text(field: 'title')}</span><span class="feature-alternating__arrow" aria-hidden="true">&rarr;</span>
                             </d:atom.link>
                         </f:if>
                     </div>

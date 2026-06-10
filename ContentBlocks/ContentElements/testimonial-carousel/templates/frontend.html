@@ -39,7 +39,7 @@
                          aria-label="{iter.cycle} / {iter.total}"
                          aria-hidden="{f:if(condition: iter.isFirst, then: 'false', else: 'true')}">
                     <f:if condition="{item.rating} > 0">
-                        <div class="testimonial-carousel__rating" role="img" aria-label="Rated {item.rating} out of 5">
+                        <div class="testimonial-carousel__rating" role="img" aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:rating.sr.rated', arguments: {0: item.rating}, default: 'Rated {item.rating} out of 5')}">
                             <f:for each="{0: 1, 1: 2, 2: 3, 3: 4, 4: 5}" as="star">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
                                      fill="{f:if(condition: '{star} <= {item.rating}', then: 'currentColor', else: 'none')}"

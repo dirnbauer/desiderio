@@ -56,8 +56,11 @@
     overflow-wrap: anywhere;
 }
 .hero-product__image {
+    display: block;
     width: 100%;
+    aspect-ratio: 16 / 10;
     height: auto;
+    object-fit: cover;
     border-radius: var(--d-radius-lg);
 }
 @media (max-width: 640px) {

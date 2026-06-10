@@ -21,8 +21,8 @@
             <dl class="feature-stats__grid">
                 <f:for each="{data.items}" as="item">
                     <div class="feature-stats__item" data-astro-reveal="slide-up">
-                        <dd class="feature-stats__value" data-astro-counter>{item -> f:render.text(field: 'value')}</dd>
                         <dt class="feature-stats__label">{item -> f:render.text(field: 'label')}</dt>
+                        <dd class="feature-stats__value" data-astro-counter>{item -> f:render.text(field: 'value')}</dd>
                         <f:if condition="{item.description_text}">
                             <dd class="feature-stats__detail">{item -> f:render.text(field: 'description_text')}</dd>
                         </f:if>

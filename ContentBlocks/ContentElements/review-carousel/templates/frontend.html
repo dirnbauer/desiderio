@@ -47,7 +47,7 @@
                             </svg>
                         </f:for>
                     </div>
-                    <span class="sr-only">Rated {review.rating -> f:or(alternative: '5')} out of 5</span>
+                    <span class="sr-only"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:rating.sr.rated" arguments="{0: '{review.rating -> f:or(alternative: \'5\')}'}">Rated {review.rating -> f:or(alternative: '5')} out of 5</f:translate></span>
                     <f:if condition="{review.title}">
                         <h3 class="review-carousel__title">{review -> f:render.text(field: 'title')}</h3>
                     </f:if>

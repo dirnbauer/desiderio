@@ -29,10 +29,10 @@
                         <div class="pricing-toggle__prices">
                             <p class="pricing-toggle__price">
                                 <span class="pricing-toggle__amount">{plan -> f:render.text(field: 'monthly_price')}</span>
-                                <span class="pricing-toggle__period">/mo</span>
+                                <span class="pricing-toggle__period"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:per_month" default="/month"/></span>
                             </p>
                             <f:if condition="{plan.yearly_price}">
-                                <p class="pricing-toggle__price-alt">or {plan -> f:render.text(field: 'yearly_price')} billed yearly</p>
+                                <p class="pricing-toggle__price-alt">{plan -> f:render.text(field: 'yearly_price')} <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:billed_annually" default="billed annually"/></p>
                             </f:if>
                         </div>
                         <f:if condition="{plan.description}">
@@ -50,7 +50,6 @@
                             </ul>
                         </f:if>
                         <f:if condition="{plan.button_text} && {plan.button_link.url}">
-                            <f:variable name="planCtaLabel">{plan.button_text} – {plan.title}</f:variable>
                             <d:atom.button href="{plan.button_link.url}" class="pricing-toggle__button" target="{plan.button_link.target}">
                                 {plan -> f:render.text(field: 'button_text')}
                             </d:atom.button>

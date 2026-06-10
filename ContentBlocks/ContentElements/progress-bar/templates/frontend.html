@@ -34,6 +34,7 @@
                  aria-valuemin="0"
                  aria-valuemax="100"
                  aria-labelledby="{f:if(condition: data.header, then: labelId)}"
+                 aria-label="{f:if(condition: '!{data.header}', then: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:progress.aria\', default: \'Progress\')}')}"
                  aria-valuetext="{pct}%">
                 <f:variable name="fillClass" value="progress-bar__fill progress-bar__fill--{data.color -> f:or(alternative: 'primary')}{f:if(condition: '{data.variant} == {s:}striped{s:}', then: ' progress-bar__fill--striped')}"/>
                 <div class="{fillClass}" style="inline-size: {pct}%"></div>

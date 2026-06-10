@@ -22,17 +22,16 @@
                 </f:if>
                 <p class="product-card__price-row">
                     <span class="product-card__price">
-                        <span class="sr-only">Price: </span>{data -> f:render.text(field: 'price')}
+                        <span class="sr-only"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:aria.price" default="Price:"/> </span>{data -> f:render.text(field: 'price')}
                     </span>
                     <f:if condition="{data.original_price}">
-                        <s class="product-card__original-price"><span class="sr-only">Original price: </span>{data -> f:render.text(field: 'original_price')}</s>
+                        <s class="product-card__original-price"><span class="sr-only"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:aria.price_original" default="Original price:"/> </span>{data -> f:render.text(field: 'original_price')}</s>
                     </f:if>
                 </p>
                 <f:if condition="{data.description}">
                     <p class="product-card__description">{data -> f:render.text(field: 'description')}</p>
                 </f:if>
                 <f:if condition="{data.button_text} && {data.button_link.url}">
-                    <f:variable name="cardCtaLabel">{data.button_text} – {data.header}</f:variable>
                     <d:atom.button href="{data.button_link.url}" class="product-card__button" target="{data.button_link.target}">
                         {data -> f:render.text(field: 'button_text')}
                     </d:atom.button>

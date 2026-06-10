@@ -20,8 +20,9 @@
     display: block;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     object-position: center;
+    padding: var(--d-spacing-2xs);
 }
 .client-list__info { display: flex; flex-direction: column; gap: 0.125rem; }
 .client-list__name { font-weight: 600; text-decoration: none; color: var(--foreground); }

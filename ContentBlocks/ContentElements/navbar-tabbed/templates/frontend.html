@@ -7,14 +7,14 @@
 
 <d:layout.section class="navbar-tabbed" spacing="none">
     <d:layout.container>
-        <nav class="navbar-tabbed__inner" aria-label="{data.header -> f:or(alternative: 'Tabbed navigation')}">
+        <nav class="navbar-tabbed__inner" aria-label="{data.header -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:navbar.tabbed.aria\', default: \'Tabbed navigation\')}')}">
             <span class="navbar-tabbed__brand">{data -> f:render.text(field: 'brand')}</span>
             <ul class="navbar-tabbed__tabs">
                 <f:for each="{data.tabs}" as="tab">
                     <f:if condition="{tab.link.url}">
                         <li>
                             <f:if condition="{tab.active}">
-                                <f:then><d:atom.link href="{tab.link.url}" target="{tab.link.target}" variant="muted" class="navbar-tabbed__tab navbar-tabbed__tab--active">{tab -> f:render.text(field: 'label')}</d:atom.link></f:then>
+                                <f:then><a href="{tab.link.url}" target="{tab.link.target}" aria-current="page" data-slot="link" class="navbar-tabbed__tab navbar-tabbed__tab--active">{tab -> f:render.text(field: 'label')}</a></f:then>
                                 <f:else><d:atom.link href="{tab.link.url}" target="{tab.link.target}" variant="muted" class="navbar-tabbed__tab">{tab -> f:render.text(field: 'label')}</d:atom.link></f:else>
                             </f:if>
                         </li>

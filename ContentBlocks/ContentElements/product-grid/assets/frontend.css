@@ -7,16 +7,16 @@
 .product-grid__items--cols-4 { grid-template-columns: repeat(4, 1fr); }
 @media (max-width: 768px) { .product-grid__items { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 480px) { .product-grid__items { grid-template-columns: 1fr; } }
-.product-grid__card { border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; transition: border-color 0.2s; }
+.product-grid__card { border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; transition: border-color 0.2s; display: flex; flex-direction: column; }
 .product-grid__card:hover { border-color: var(--primary); }
-.product-grid__media { aspect-ratio: 1; overflow: hidden; background: var(--muted); }
+.product-grid__media { aspect-ratio: 16 / 10; overflow: hidden; background: var(--muted); flex-shrink: 0; }
 .product-grid__image { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
 .product-grid__card:hover .product-grid__image { transform: scale(1.05); }
-.product-grid__body { padding: var(--d-spacing-md); }
+.product-grid__body { padding: var(--d-spacing-md); display: flex; flex-direction: column; flex: 1 1 auto; align-items: flex-start; }
 .product-grid__name { font-weight: 600; }
 .product-grid__price { font-weight: 700; color: var(--primary); display: block; margin-block-start: 0.25rem; }
 .product-grid__desc { font-size: var(--d-text-sm); color: var(--muted-foreground); margin-block-start: var(--d-spacing-xs); }
-.product-grid__link { font-size: var(--d-text-sm); font-weight: 500; color: var(--primary); text-decoration: none; display: inline-flex; align-items: center; gap: 0.25rem; margin-block-start: var(--d-spacing-sm); border-radius: var(--radius); }
+.product-grid__link { font-size: var(--d-text-sm); font-weight: 500; color: var(--primary); text-decoration: none; display: inline-flex; align-items: center; gap: 0.25rem; margin-block-start: auto; padding-block-start: var(--d-spacing-sm); border-radius: var(--radius); }
 .product-grid__link:hover { text-decoration: underline; }
 .product-grid__link:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
 @media (prefers-reduced-motion: reduce) {

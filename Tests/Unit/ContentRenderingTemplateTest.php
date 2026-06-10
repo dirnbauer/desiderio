@@ -474,7 +474,11 @@ final class ContentRenderingTemplateTest extends TestCase
 
         $middleware = (string)file_get_contents(__DIR__ . '/../../Classes/Middleware/FriendlyCaptchaTestModeMiddleware.php');
         $middlewareRegistration = (string)file_get_contents(__DIR__ . '/../../Configuration/RequestMiddlewares.php');
-        self::assertStringContainsString('desiderio.forms.friendlyCaptchaTestMode', $middleware);
+        $bypass = (string)file_get_contents(__DIR__ . '/../../Classes/Utility/FriendlyCaptchaBypass.php');
+        // The setting identifiers live in the shared bypass utility; the middleware delegates to it.
+        self::assertStringContainsString('FriendlyCaptchaBypass', $middleware);
+        self::assertStringContainsString('desiderio.forms.friendlyCaptchaTestMode', $bypass);
+        self::assertStringContainsString('desiderio.forms.friendlyCaptchaForceReal', $bypass);
         self::assertStringContainsString('friendlycaptcha_skip_dev_validation', $middleware);
         self::assertStringContainsString('webconsulting/desiderio-friendlycaptcha-test-mode', $middlewareRegistration);
 
@@ -1266,7 +1270,11 @@ final class ContentRenderingTemplateTest extends TestCase
         self::assertStringContainsString('desiderio-header__logo-text', $headerPartial);
         self::assertStringContainsString('aria-controls="desiderio-main-nav"', $headerPartial);
         self::assertStringContainsString("aria-current: \\'page\\'", $headerPartial, 'Active nav links must declare aria-current="page" via additionalAttributes.');
-        self::assertStringContainsString('aria-pressed="false"', $headerPartial);
+        self::assertMatchesRegularExpression(
+            '/aria-pressed="\{f:if\(condition: \'\{themeDefault\} == /',
+            $headerPartial,
+            'Theme options must derive their initial aria-pressed state from the configured default colour scheme.'
+        );
         self::assertStringContainsString('data-d-theme-switch', $headerPartial);
         self::assertStringContainsString('theme.system', $headerPartial);
         self::assertStringContainsString('<d:atom.icon', $headerPartial);

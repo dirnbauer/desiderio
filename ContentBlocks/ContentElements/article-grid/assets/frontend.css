@@ -43,8 +43,14 @@
     color: var(--muted-foreground);
     font-size: var(--d-text-sm);
     margin-block-end: var(--d-spacing-sm);
+    overflow-wrap: break-word;
+}
+.article-grid__item {
+    height: 100%;
 }
 .article-grid__link {
+    margin-block-start: auto;
+    width: fit-content;
     display: inline-flex;
     align-items: center;
     gap: var(--d-spacing-1);

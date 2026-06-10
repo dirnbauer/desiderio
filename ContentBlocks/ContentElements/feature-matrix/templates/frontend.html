@@ -20,8 +20,8 @@
                         <d:molecule.tableCell header="{true}">
                             <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:feature"/>
                         </d:molecule.tableCell>
-                        <d:molecule.tableCell header="{true}" class="feature-matrix__value">{data.left_label -> f:or(alternative: 'Plan A')}</d:molecule.tableCell>
-                        <d:molecule.tableCell header="{true}" class="feature-matrix__value">{data.right_label -> f:or(alternative: 'Plan B')}</d:molecule.tableCell>
+                        <d:molecule.tableCell header="{true}" class="feature-matrix__value">{data.left_label -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:plan.a\', default: \'Plan A\')}')}</d:molecule.tableCell>
+                        <d:molecule.tableCell header="{true}" class="feature-matrix__value">{data.right_label -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:plan.b\', default: \'Plan B\')}')}</d:molecule.tableCell>
                     </d:molecule.tableRow>
                 </d:molecule.tableHeader>
                 <tbody data-slot="table-body" class="[&_tr:last-child]:border-0">

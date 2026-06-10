@@ -36,7 +36,7 @@
                         </f:if>
                         <f:if condition="{product.link.url}">
                             <d:atom.link href="{product.link.url}" target="{product.link.target}" variant="muted" class="product-grid__link">
-                                <span>View product<span class="sr-only"> {product.name}</span></span>
+                                <span><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:view_product" default="View product"/><span class="sr-only"> – {product.name}</span></span>
                                 <span aria-hidden="true">&rarr;</span>
                             </d:atom.link>
                         </f:if>

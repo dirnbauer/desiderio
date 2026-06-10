@@ -67,18 +67,18 @@ body {
 .desiderio-header__brand-mark {
     display: inline-grid;
     place-items: center;
-    width: 2rem;
-    height: 2rem;
+    width: 1.625rem;
+    height: 1.625rem;
     flex: 0 0 auto;
-    border: 0.1875rem solid color-mix(in oklch, var(--foreground) 85%, transparent);
+    border: 0.15625rem solid color-mix(in oklch, var(--foreground) 85%, transparent);
     border-radius: 999px;
     background: transparent;
     box-shadow: none;
 }
 
 .desiderio-header__brand-mark-inner {
-    width: 0.75rem;
-    height: 0.75rem;
+    width: 0.625rem;
+    height: 0.625rem;
     border-radius: 999px;
     background: var(--primary);
     box-shadow: 0 0 0 1px color-mix(in oklch, var(--foreground) 25%, transparent);

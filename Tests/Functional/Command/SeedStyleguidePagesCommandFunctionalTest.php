@@ -61,6 +61,30 @@ final class SeedStyleguidePagesCommandFunctionalTest extends FunctionalTestCase
         );
     }
 
+    public function testSeedAssignsADistinctThemePresetPerPage(): void
+    {
+        $groups = StyleguideContentGroups::getGroupsWithFixtures();
+
+        $tester = $this->createCommandTester();
+        self::assertSame(Command::SUCCESS, $tester->execute(['--parent' => '1', '--skip-powermail' => true]), $tester->getDisplay());
+
+        $presets = $this->getConnectionPool()
+            ->getConnectionForTable('pages')
+            ->executeQuery('SELECT tx_desiderio_shadcn_preset FROM pages WHERE pid = 1 AND deleted = 0 ORDER BY sorting')
+            ->fetchFirstColumn();
+
+        self::assertCount(count($groups), $presets);
+        $presetStrings = [];
+        foreach ($presets as $preset) {
+            self::assertIsString($preset);
+            self::assertNotSame('', $preset, 'Every styleguide page must carry a theme preset.');
+            $presetStrings[] = $preset;
+        }
+        // Up to ten pages every preset is unique; afterwards the cycle repeats.
+        $expectedDistinct = min(count($presetStrings), 10);
+        self::assertCount($expectedDistinct, array_unique(array_slice($presetStrings, 0, 10)));
+    }
+
     public function testReseedingIsIdempotentForPagesAndLiveContent(): void
     {
         $groups = StyleguideContentGroups::getGroupsWithFixtures();

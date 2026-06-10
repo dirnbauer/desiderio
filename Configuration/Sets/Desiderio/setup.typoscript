@@ -74,9 +74,23 @@ page {
     desiderioStyleguide.defer = 1
   }
 
-  bodyTagCObject = TEXT
-  bodyTagCObject.value = <body data-theme="{$desiderio.theme.darkModeDefault}" data-shadcn-preset="{$desiderio.shadcn.preset}" data-shadcn-style="{$desiderio.shadcn.style}" data-icon-library="{$desiderio.shadcn.iconLibrary}" data-density="{$desiderio.layout.density}" data-container="{$desiderio.layout.container}" data-radius="{$desiderio.layout.radius}" data-font="{$desiderio.typography.fontSans}" data-header-style="{$desiderio.header.style}" data-footer-style="{$desiderio.footer.style}">
-  bodyTagCObject.insertData = 1
+  # data-shadcn-preset honours a per-page override (pages.tx_desiderio_shadcn_preset,
+  # inherited down the rootline via levelfield slide) before the site setting.
+  bodyTagCObject = COA
+  bodyTagCObject {
+    10 = TEXT
+    10.value = <body data-theme="{$desiderio.theme.darkModeDefault}" data-shadcn-preset="
+
+    20 = TEXT
+    20 {
+      data = levelfield:-1, tx_desiderio_shadcn_preset, slide
+      htmlSpecialChars = 1
+      ifEmpty = {$desiderio.shadcn.preset}
+    }
+
+    30 = TEXT
+    30.value = " data-shadcn-style="{$desiderio.shadcn.style}" data-icon-library="{$desiderio.shadcn.iconLibrary}" data-density="{$desiderio.layout.density}" data-container="{$desiderio.layout.container}" data-radius="{$desiderio.layout.radius}" data-font="{$desiderio.typography.fontSans}" data-header-style="{$desiderio.header.style}" data-footer-style="{$desiderio.footer.style}">
+  }
 
   10 >
   10 =< lib.fluidPage

@@ -35,6 +35,24 @@ final class SeedStyleguidePagesCommand extends Command
     public const DEFAULT_PARENT_PID = 505;
     private const STYLEGUIDE_FAL_FOLDER = 'desiderio-styleguide';
 
+    /**
+     * One house preset per styleguide page so the seeded tree doubles as a
+     * live theme showcase. Applied via pages.tx_desiderio_shadcn_preset and
+     * picked up by the body tag TypoScript (levelfield slide).
+     */
+    private const STYLEGUIDE_PAGE_PRESETS = [
+        'aurora',
+        'marine',
+        'forest',
+        'ember',
+        'bloom',
+        'lagoon',
+        'gold',
+        'midnight',
+        'blossom',
+        'citrus',
+    ];
+
     private readonly StyleguideCollectionAliasPolicy $collectionAliasPolicy;
     private ?SeedPageUpserter $pageUpserter = null;
     private ?DesiderioContentCleaner $contentCleaner = null;
@@ -131,10 +149,16 @@ final class SeedStyleguidePagesCommand extends Command
 
         if ($dryRun) {
             $io->title('Desiderio styleguide seed dry run');
-            $io->listing(array_map(
-                static fn (array $group): string => sprintf('%s: %d elements', $group['groupTitle'], count($group['elements'])),
-                $groups
-            ));
+            $listing = [];
+            foreach ($groups as $index => $group) {
+                $listing[] = sprintf(
+                    '%s: %d elements — theme "%s"',
+                    $group['groupTitle'],
+                    count($group['elements']),
+                    $this->presetForPageIndex($index)
+                );
+            }
+            $io->listing($listing);
             if (!$skipPowermail) {
                 $powermailForms = $this->getPowermailDemoSeeder()->getDemoForms();
                 $io->listing(array_map(
@@ -168,12 +192,14 @@ final class SeedStyleguidePagesCommand extends Command
             $slug = '/desiderio-' . (string)$group['groupId'];
             $sorting = ($index + 1) * 256;
 
+            $pageAttributes = ['tx_desiderio_shadcn_preset' => $this->presetForPageIndex($index)];
+
             $pageUid = $pageUpserter->findExistingPageUid($parentPid, $title, $slug, $pageColumns);
             if ($pageUid === null) {
-                $pageUid = $pageUpserter->create($parentPid, $title, $slug, $sorting, $now, $pageColumns);
+                $pageUid = $pageUpserter->create($parentPid, $title, $slug, $sorting, $now, $pageColumns, $pageAttributes);
                 $createdPages++;
             } else {
-                $pageUpserter->update($pageUid, $title, $slug, $sorting, $now, $pageColumns);
+                $pageUpserter->update($pageUid, $title, $slug, $sorting, $now, $pageColumns, $pageAttributes);
             }
 
             $contentCleaner->softDeleteSeededContent($pageUid, $now, [], true);
@@ -215,6 +241,11 @@ final class SeedStyleguidePagesCommand extends Command
         ));
 
         return self::SUCCESS;
+    }
+
+    private function presetForPageIndex(int $index): string
+    {
+        return self::STYLEGUIDE_PAGE_PRESETS[$index % count(self::STYLEGUIDE_PAGE_PRESETS)];
     }
 
     private function getPowermailDemoSeeder(): PowermailDemoSeeder

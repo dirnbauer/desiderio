@@ -5,4 +5,19 @@
 
 <f:layout name="Pages/Default"/>
 
+<f:comment>
+    Startpages have no visible masthead: the stage hero carries the visual
+    headline (as an h2 like every other content element), so a screen-reader
+    only h1 with the page title keeps exactly one h1 per page.
+</f:comment>
+
+<f:section name="Stage">
+    <h1 class="sr-only">{page.pageRecord.title}</h1>
+    <!--TYPO3SEARCH_begin-->
+    <f:if condition="{content.stage}">
+        <f:render.contentArea contentArea="{content.stage}"/>
+    </f:if>
+    <!--TYPO3SEARCH_end-->
+</f:section>
+
 </html>

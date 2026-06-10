@@ -23,11 +23,11 @@ Core site settings
         - Purpose
     *   - ``desiderio.shadcn.preset``
         - ``b6G5977cw``
-        - Runtime token preset. Supports five shadcn/create presets, ten
+        - Runtime token preset. Supports five ui.shadcn.com/create presets, ten
           house presets, and ``custom``.
     *   - ``desiderio.shadcn.style``
         - ``radix-lyra``
-        - Source style metadata from shadcn/create.
+        - Source style metadata from the create page on ui.shadcn.com.
     *   - ``desiderio.shadcn.iconLibrary``
         - ``tabler``
         - Runtime icon library. Existing records keep semantic icon keys.

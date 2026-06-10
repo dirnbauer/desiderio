@@ -137,7 +137,7 @@ important runtime files are:
     *   - Asset
         - Purpose
     *   - ``Resources/Public/Css/shadcn-theme.css``
-        - shadcn/create token blocks, house presets, dark mode, and theme
+        - ui.shadcn.com/create token blocks, house presets, dark mode, and theme
           variables.
     *   - ``Resources/Public/Js/desiderio.js``
         - Generic frontend behavior, search suggestions, interactions,

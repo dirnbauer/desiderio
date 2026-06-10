@@ -272,7 +272,7 @@ settings:
   # --------------------------------------------------------------- Theme
   desiderio.shadcn.preset:
     label: 'Theme preset'
-    description: 'The site theme. Switching this repaints the whole site — colours, corner radius, and control density — at runtime through the data-shadcn-preset body attribute, with no rebuild. Values are shadcn/create preset ids plus the bundled house presets. Run npm run shadcn:sync-fluid only to also adopt a different structural style recipe (focus ring, transitions, base classes).'
+    description: 'The site theme. Switching this repaints the whole site — colours, corner radius, and control density — at runtime through the data-shadcn-preset body attribute, with no rebuild. Values are preset ids from the create page on ui.shadcn.com plus the bundled house presets. Run npm run shadcn:sync-fluid only to also adopt a different structural style recipe (focus ring, transitions, base classes).'
     type: string
     enum:
       b4hb38Fyj: 'b4hb38Fyj — Olive product system'

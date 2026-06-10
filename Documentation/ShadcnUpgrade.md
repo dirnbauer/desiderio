@@ -1,9 +1,9 @@
-# shadcn/create and Fluid synchronization
+# ui.shadcn.com/create and Fluid synchronization
 
-Desiderio uses shadcn/create as a design source for TYPO3 Fluid
+Desiderio uses the create page on ui.shadcn.com as a design source for TYPO3 Fluid
 components. It does not ship React components in the frontend.
 
-The current default is the `b6G5977cw` shadcn/create preset with
+The current default is the `b6G5977cw` preset from ui.shadcn.com/create with
 `radix-lyra`, olive tokens, square radius, and Tabler icons. Sites can
 switch presets at runtime through TYPO3 site settings.
 
@@ -45,7 +45,7 @@ library.
 
 ## Updating a shadcn preset
 
-Use this workflow when adding or refreshing a shadcn/create preset:
+Use this workflow when adding or refreshing a preset from the create page on ui.shadcn.com:
 
 1. Inspect the preset in `https://ui.shadcn.com/create`.
 2. Record the preset id, source style, base colour, radius, font, chart

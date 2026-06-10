@@ -134,9 +134,7 @@ final class StarterSiteDefinitionsTest extends TestCase
         ];
 
         $bannedTemplateContent = [
-            'page.pageRecord.title',
             'page.pageRecord.abstract',
-            '<h1',
             '<dl',
             'd:atom.button',
             'corporate.start.',
@@ -148,6 +146,12 @@ final class StarterSiteDefinitionsTest extends TestCase
 
             self::assertSame(1, substr_count($template, 'content.main'), $slug . ' startpage must render the main content area exactly once');
             self::assertStringContainsString('content.stage', $template, $slug . ' startpage must expose the stage content area');
+            self::assertSame(
+                1,
+                substr_count($template, '<h1 class="sr-only">{page.pageRecord.title}</h1>'),
+                $slug . ' startpage must render exactly one screen-reader-only h1 band title (heroes render h2)'
+            );
+            self::assertSame(1, substr_count($template, '<h1'), $slug . ' startpage must not render additional h1 elements');
 
             foreach ($bannedTemplateContent as $needle) {
                 self::assertStringNotContainsString($needle, $template, $slug . ' startpage must not hard-code page content: ' . $needle);

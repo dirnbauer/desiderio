@@ -7,13 +7,16 @@ namespace Webconsulting\Desiderio\Data;
 /**
  * Marketing showcase seeded by desiderio:styleguide:seed in addition to the
  * element chapters: managed homepage content on the styleguide root page plus
- * four subpages (technical deep dive and one page per target audience).
+ * subpages (technical deep dive, one page per target audience, legal demo
+ * pages, a 404 page, a GEO explainer, and fictional success stories).
  *
  * Internal links use the placeholder syntax {{page:<slug>}}; the seeder
- * replaces them with t3://page?uid=N once the target pages exist.
+ * replaces them with t3://page?uid=N once the target pages exist. The special
+ * slug {{page:home}} resolves to the styleguide root page. Pages with a
+ * parentSlug are created below that showcase page instead of the root.
  *
  * @phpstan-import-type StarterBlock from StarterSiteDefinitions
- * @phpstan-type ShowcasePage array{title: string, navTitle: string, slug: string, abstract: string, content: array<int, StarterBlock>}
+ * @phpstan-type ShowcasePage array{title: string, navTitle: string, slug: string, abstract: string, description: string, parentSlug: string|null, content: array<int, StarterBlock>}
  */
 final class StyleguideShowcasePages
 {
@@ -41,21 +44,21 @@ final class StyleguideShowcasePages
                 'overlay_opacity' => '0.5',
             ]),
 
-            // ----------------------------------------------------- shadcn/create
+            // ------------------------------------- the create page on ui.shadcn.com
             self::block('desiderio_headersection', [
                 'eyebrow' => 'The principle behind the whole project',
                 'header' => 'From ui.shadcn.com/create to a live TYPO3 theme',
-                'subheadline' => 'Desiderio is built on one radical idea: you should design your site where the best design tooling lives — and run it where your content lives. Pick a design on shadcn/create. Paste one preset code into TYPO3. Done.',
+                'subheadline' => 'Desiderio is built on one radical idea: you should design your site where the best design tooling lives — and run it where your content lives. Pick a design on the create page on ui.shadcn.com. Paste one preset code into TYPO3. Done.',
                 'variant' => 'center',
             ]),
             self::block('desiderio_featurealternating', [
                 'header' => 'Three steps. No build pipeline. No agency invoice.',
-                'subheadline' => 'shadcn/create is the official theme designer of the shadcn/ui ecosystem. Desiderio mirrors its token model one to one — which makes it your TYPO3 theme editor.',
+                'subheadline' => 'The create page on ui.shadcn.com is the official theme designer of the shadcn/ui ecosystem. Desiderio mirrors its token model one to one — which makes it your TYPO3 theme editor.',
                 'items' => [
                     [
                         'title' => '1 · Design on ui.shadcn.com/create',
-                        'description' => 'On shadcn/create you compose a complete design system in the browser: base color and neutral palette, font pairing, border radius, and one of eight structural style recipes — Vega, Nova, Maia, Lyra, Mira, Luma, Sera, or Rhea — that define focus rings, transitions, and control shapes. Every choice compiles down to design tokens, and the whole result exports as one small preset code.',
-                        'image' => self::screenshot('backend-site-settings-theme.png', 'Theme settings in the TYPO3 backend', 'TYPO3 site settings showing the Desiderio theme preset selection.'),
+                        'description' => 'On the shadcn/ui create page you compose a complete design system in the browser: base color and neutral palette, font pairing, border radius, and one of eight structural style recipes — Vega, Nova, Maia, Lyra, Mira, Luma, Sera, or Rhea — that define focus rings, transitions, and control shapes. Every choice compiles down to design tokens, and the whole result exports as one small preset code.',
+                        'image' => self::screenshot('frontend-shadcn-create.png', 'The create page on ui.shadcn.com', 'The shadcn/ui create page on ui.shadcn.com with palette, font, and style recipe controls.', 'Screenshot of the shadcn/ui create page, the theme designer Desiderio imports presets from.'),
                         'link' => self::CREATE_URL,
                     ],
                     [
@@ -72,14 +75,37 @@ final class StyleguideShowcasePages
                     ],
                 ],
             ]),
+            self::block('desiderio_quote', [
+                'header' => 'Why shadcn/ui, in their own words',
+                'quote_text' => 'A set of beautifully designed components that you can customize, extend, and build on. Open Source. Open Code.',
+                'author' => 'shadcn/ui',
+                'role' => 'ui.shadcn.com',
+                'variant' => 'large',
+            ]),
             self::block('desiderio_howtosteps', [
                 'header' => 'Your first themed site in four commands',
                 'description' => 'This is the whole onboarding. No starter kit purchase, no license key, no setup wizard with nine screens.',
                 'items' => [
-                    ['title' => 'composer require webconsulting/desiderio', 'content' => 'One package brings the elements, the components, and the theme layer. TYPO3 14.3+, PHP 8.3+, done.'],
-                    ['title' => 'vendor/bin/typo3 desiderio:styleguide:seed', 'content' => 'Seeds 255 living examples — this very site — so you evaluate with real content instead of an empty page tree.'],
-                    ['title' => 'Pick a theme preset', 'content' => 'Choose one of 15 presets in the site settings, or design your own on ui.shadcn.com/create and paste the code.'],
-                    ['title' => 'Publish', 'content' => 'Editors build pages from the wizard, preview every element in the backend, and edit inline in the Visual Editor.'],
+                    [
+                        'title' => 'composer require webconsulting/desiderio',
+                        'content' => 'One package brings the elements, the components, and the theme layer. TYPO3 14.3+, PHP 8.3+, done.',
+                        'image' => self::unsplash('desk-logan-weaver.jpg', 'Developer desk during installation', 'A tidy developer desk with a laptop, where a single composer command installs Desiderio.'),
+                    ],
+                    [
+                        'title' => 'vendor/bin/typo3 desiderio:styleguide:seed',
+                        'content' => 'Seeds 255 living examples — this very site — so you evaluate with real content instead of an empty page tree.',
+                        'image' => self::screenshot('backend-page-module-hero.png', 'Seeded page in the TYPO3 page module', 'TYPO3 page module showing a seeded Desiderio hero element with backend preview.'),
+                    ],
+                    [
+                        'title' => 'Pick a theme preset',
+                        'content' => 'Choose one of 15 presets in the site settings, or design your own on the create page on ui.shadcn.com and paste the code.',
+                        'image' => self::screenshot('backend-site-settings-theme.png', 'Theme preset in the TYPO3 site settings', 'TYPO3 site settings with the Desiderio theme preset dropdown opened.'),
+                    ],
+                    [
+                        'title' => 'Publish',
+                        'content' => 'Editors build pages from the wizard, preview every element in the backend, and edit inline in the Visual Editor.',
+                        'image' => self::screenshot('frontend-hero-lagoon.png', 'Published Desiderio frontend', 'The published Desiderio demo site rendered in the Lagoon theme preset.'),
+                    ],
                 ],
             ]),
 
@@ -170,7 +196,7 @@ final class StyleguideShowcasePages
                 'eyebrow' => 'The advantages, in one list',
                 'header' => 'Why teams pick Desiderio over building it themselves',
                 'items' => [
-                    ['title' => 'A redesign without the redesign budget', 'description_text' => '15 presets plus your own shadcn/create designs, switchable at runtime — per site or per page subtree.'],
+                    ['title' => 'A redesign without the redesign budget', 'description_text' => '15 presets plus your own designs from the create page on ui.shadcn.com, switchable at runtime — per site or per page subtree.'],
                     ['title' => 'Editors who stop opening tickets', 'description_text' => 'Backend previews for all 255 elements, inline editing via Visual Editor, and a wizard organized in ten clear groups.'],
                     ['title' => 'Accessibility you can show the auditor', 'description_text' => 'WCAG 2.2-checked contrast on every preset (enforced by the build), landmarks, focus rings, and translated screen-reader labels.'],
                     ['title' => 'Quality that is measured, not promised', 'description_text' => 'PHPStan at level max, 170+ unit and functional tests on PHP 8.3/8.4, and an 11-category template audit at zero findings.'],
@@ -244,6 +270,15 @@ final class StyleguideShowcasePages
             self::agencyPage(),
             self::inhousePage(),
             self::freelancerPage(),
+            self::geoAiSearchPage(),
+            self::successStoriesPage(),
+            self::successStoryAnthropicPage(),
+            self::successStorySpacexPage(),
+            self::successStoryOpenaiPage(),
+            self::imprintPage(),
+            self::privacyPage(),
+            self::accessibilityPage(),
+            self::notFoundPage(),
         ];
     }
 
@@ -267,20 +302,20 @@ final class StyleguideShowcasePages
             'navTitle' => 'Tech facts',
             'slug' => '/technical-features',
             'abstract' => 'Every main technical feature of Desiderio in one engineering-grade list: Fluid 5.3 components, ICU translations, theme engine, CSS architecture, integrations, and the quality pipeline.',
+            'description' => 'Desiderio under the hood: Fluid 5.3 typed components, a runtime OKLCH theme engine, Content Blocks 2.2, and a PHPStan-max quality pipeline — all verifiable on GitHub.',
+            'parentSlug' => null,
             'content' => [
-                self::block('desiderio_headerpage', [
+                self::block('desiderio_headersection', [
                     'eyebrow' => 'For the people who read changelogs',
-                    'header' => 'Technical features',
-                    'subheadline' => 'The marketing said "magic". This page says how. Every claim below is verifiable in the public repository.',
+                    'header' => 'Every claim, verifiable in the repository',
+                    'subheadline' => 'The marketing said "magic". This page says how. Every claim below is verifiable in the public repository on GitHub.',
                     'variant' => 'center',
-                    'button_text' => 'Read the source',
-                    'button_link' => self::REPO_URL,
                 ]),
                 self::block('desiderio_contentgrid', [
                     'header' => 'The three pillars',
                     'columns' => '3',
                     'items' => [
-                        ['title' => 'Fluid 5.3 component system', 'content' => '49 components with typed f:argument contracts and f:slot composition, registered as the d: namespace via a ComponentCollection. Wrong argument types fail loudly at render time — your templates get an API, not a convention.', 'link' => ''],
+                        ['title' => 'Fluid 5.3 component system', 'content' => '49 components with typed f:argument contracts and f:slot composition, registered as the d: namespace via a ComponentCollection. Wrong argument types fail loudly at render time — your templates get an API, not a convention.', 'link' => self::REPO_URL],
                         ['title' => 'Runtime theme engine', 'content' => '15 shadcn presets as pure OKLCH token sets on body[data-shadcn-preset], switchable per site and per page subtree without any rebuild. A contrast solver guarantees WCAG 2.2 ratios on every preset, in light and dark mode.', 'link' => ''],
                         ['title' => 'Measured quality pipeline', 'content' => 'PHPStan level max, 170+ unit and functional tests across PHP 8.3/8.4, an 11-category template audit with zero tolerance, and a CI job that fails when the Tailwind bundle drifts from the templates.', 'link' => ''],
                     ],
@@ -306,7 +341,7 @@ final class StyleguideShowcasePages
                         ],
                         [
                             'title' => 'Theme engine — OKLCH tokens, per-page presets, solved contrast',
-                            'content' => 'Five shadcn/create presets and ten generated house presets define accent, radius, typography, density, focus-ring width, and elevation as OKLCH custom properties. The generator solves accent lightness per hue against WCAG 2.2 targets (4.5:1 text, 3:1 UI) and refuses to emit failing CSS; a unit test re-checks the shipped bundle. Per-page presets inherit down the rootline via TypoScript levelfield slide. Dark mode, five icon libraries, and density/radius/font settings are runtime switches.',
+                            'content' => 'Five presets from the create page on ui.shadcn.com and ten generated house presets define accent, radius, typography, density, focus-ring width, and elevation as OKLCH custom properties. The generator solves accent lightness per hue against WCAG 2.2 targets (4.5:1 text, 3:1 UI) and refuses to emit failing CSS; a unit test re-checks the shipped bundle. Per-page presets inherit down the rootline via TypoScript levelfield slide. Dark mode, five icon libraries, and density/radius/font settings are runtime switches.',
                             'open_by_default' => 0,
                         ],
                         [
@@ -369,20 +404,20 @@ final class StyleguideShowcasePages
             'navTitle' => 'For agencies',
             'slug' => '/for-agencies',
             'abstract' => 'Why TYPO3 agencies quote less, deliver faster, and win more pitches with Desiderio: reusable elements, live theme demos, multi-brand per-page themes, and an Agency tier with a direct line to the maintainers.',
+            'description' => 'Win TYPO3 pitches with live theme demos and 255 finished elements. Desiderio deletes template hours from every fixed-price quote — Agency tier from €149/month.',
+            'parentSlug' => null,
             'content' => [
-                self::block('desiderio_headerpage', [
+                self::block('desiderio_headersection', [
                     'eyebrow' => 'Target group 1 — agencies & integrators',
                     'header' => 'Win the pitch. Keep the margin.',
-                    'subheadline' => 'Every fixed-price TYPO3 project has the same enemy: template hours. Desiderio deletes them.',
+                    'subheadline' => 'Every fixed-price TYPO3 project has the same enemy: template hours. Desiderio deletes them. Agency tier: €149/month, unlimited projects.',
                     'variant' => 'center',
-                    'button_text' => 'See Agency pricing',
-                    'button_link' => self::REPO_URL,
                 ]),
                 self::block('desiderio_textmedia', [
                     'header' => 'Demo three designs in the kickoff meeting',
                     'shadcn_layout' => 'media-right',
                     'subheadline' => 'Your new sales superpower',
-                    'content' => 'Switch theme presets live while the client watches. Lagoon for the calm corporate look, Midnight for the product launch, their own shadcn/create design for the brand pitch — same content, three designs, zero preparation. Then set a different preset per page subtree and run every sub-brand from one install. Multi-brand used to be a budget line; now it is a dropdown.',
+                    'content' => 'Switch theme presets live while the client watches. Lagoon for the calm corporate look, Midnight for the product launch, their own design from the shadcn/ui create page for the brand pitch — same content, three designs, zero preparation. Then set a different preset per page subtree and run every sub-brand from one install. Multi-brand used to be a budget line; now it is a dropdown.',
                     'media_rounded' => 1,
                     'button_text' => 'How theming works',
                     'button_link' => '{{page:technical-features}}',
@@ -431,14 +466,14 @@ final class StyleguideShowcasePages
             'navTitle' => 'For in-house teams',
             'slug' => '/for-inhouse-teams',
             'abstract' => 'Why in-house teams ship campaigns without dev tickets: editor previews, per-campaign themes, brand governance through tokens, managed hosting, and Pro support with guaranteed LTS updates.',
+            'description' => 'Ship campaign pages without dev tickets: backend previews for all 255 Desiderio elements, per-campaign themes, and brand governance enforced by design tokens.',
+            'parentSlug' => null,
             'content' => [
-                self::block('desiderio_headerpage', [
+                self::block('desiderio_headersection', [
                     'eyebrow' => 'Target group 2 — in-house teams',
                     'header' => 'Ship the campaign. Skip the ticket queue.',
                     'subheadline' => 'Your developers built the site once. With Desiderio, marketing runs it every day after — on brand, on time, without touching code.',
                     'variant' => 'center',
-                    'button_text' => 'See what editors see',
-                    'button_link' => '{{page:chapter-hero}}',
                 ]),
                 self::block('desiderio_textmedia', [
                     'header' => 'The backend your editors keep asking for',
@@ -456,7 +491,7 @@ final class StyleguideShowcasePages
                     'subheadline' => 'Fewer handoffs, faster campaigns, calmer compliance reviews.',
                     'columns' => '2',
                     'items' => [
-                        ['icon' => 'rocket', 'title' => 'Campaign pages in hours', 'description' => 'Compose from finished elements with live previews. The dev queue is for features again, not for landing pages.', 'link' => ''],
+                        ['icon' => 'rocket', 'title' => 'Campaign pages in hours', 'description' => 'Compose from finished elements with live previews. The dev queue is for features again, not for landing pages.', 'link' => '{{page:chapter-hero}}'],
                         ['icon' => 'globe', 'title' => 'Brand governance built in', 'description' => 'Design tokens enforce the palette, typography, and spacing everywhere. Per-page themes are curated freedom — not chaos.', 'link' => ''],
                         ['icon' => 'shield-check', 'title' => 'Accessibility for the audit', 'description' => 'WCAG 2.2-checked contrast on every theme, translated screen-reader labels, semantic markup. Bring the report to legal with confidence.', 'link' => ''],
                         ['icon' => 'clock', 'title' => 'Run it without running servers', 'description' => 'Managed hosting from €99/month (Business €179 with staging and 99.9% SLA) and the Creator Care retainer at €490/month keep updates, backups, and LTS upgrades off your plate.', 'link' => ''],
@@ -493,14 +528,14 @@ final class StyleguideShowcasePages
             'navTitle' => 'For freelancers',
             'slug' => '/for-freelancers',
             'abstract' => 'Why solo developers deliver agency-grade TYPO3 sites with Desiderio: a complete free design system, quality pipeline included, fixed-price projects that stay profitable, and Pro support as the safety net.',
+            'description' => 'Agency-grade TYPO3 sites from a studio of one: Desiderio gives freelancers a complete free design system, 255 elements, and a CI-grade quality pipeline for €0.',
+            'parentSlug' => null,
             'content' => [
-                self::block('desiderio_headerpage', [
+                self::block('desiderio_headersection', [
                     'eyebrow' => 'Target group 3 — freelancers & solo devs',
                     'header' => 'Look like a team of ten. Bill like one.',
                     'subheadline' => 'A complete design system, 255 elements, and a CI-grade quality pipeline — for exactly €0. Your one-person studio just got an unfair advantage.',
                     'variant' => 'center',
-                    'button_text' => 'Install free today',
-                    'button_link' => self::REPO_URL,
                 ]),
                 self::block('desiderio_textmedia', [
                     'header' => 'Fixed-price projects that stay profitable',
@@ -546,6 +581,510 @@ final class StyleguideShowcasePages
     }
 
     /**
+     * @return ShowcasePage
+     */
+    private static function geoAiSearchPage(): array
+    {
+        return [
+            'title' => 'GEO — visibility in AI search',
+            'navTitle' => 'GEO & AI search',
+            'slug' => '/geo-ai-search',
+            'abstract' => 'An honest look at Generative Engine Optimization for Desiderio sites: what AI Overviews and assistant citations change, where the real chances are, where the risks lie, and what the package gives you out of the box.',
+            'description' => 'GEO without the hype: how Desiderio\'s semantic markup, heading discipline, FAQ elements, and meta support prepare a TYPO3 site for AI Overviews and assistant citations.',
+            'parentSlug' => null,
+            'content' => [
+                self::block('desiderio_headersection', [
+                    'eyebrow' => 'SEO, meet GEO',
+                    'header' => 'When the search result is an answer, not a link',
+                    'subheadline' => 'Google AI Overviews, ChatGPT, and Perplexity increasingly answer queries directly and cite the pages they pulled from. Generative Engine Optimization (GEO) is the craft of being the page that gets pulled — and this is what it means for a Desiderio site, without the snake oil.',
+                    'variant' => 'center',
+                ]),
+                self::block('desiderio_contenthighlight', [
+                    'header' => 'What actually changed',
+                    'content' => '<p>AI Overviews and assistant answers sit above the classic result list, and they are volatile: SEO practitioners such as Lily Ray have documented repeatedly how often Google changes which queries trigger an overview and which sources it cites. Nobody can promise you a citation. What you can control is extraction-friendliness: machines quote pages whose structure makes the answer easy to lift — clear headings, semantic markup, fast responses, and self-contained passages that answer one question each.</p>',
+                    'variant' => 'muted',
+                    'alignment' => 'center',
+                    'link' => '',
+                    'link_text' => '',
+                ]),
+                self::block('desiderio_featurecards', [
+                    'eyebrow' => 'The chances',
+                    'header' => 'Why structured sites win in generative search',
+                    'subheadline' => 'Everything that helps an LLM extract your content is a property of markup and performance — exactly the layer Desiderio controls.',
+                    'items' => [
+                        ['title' => 'Semantic HTML, by construction', 'description' => 'Landmarks, native elements, and one logical heading hierarchy per page are baked into all 255 elements. Extractors do not have to guess where the answer starts.'],
+                        ['title' => 'Question-shaped content elements', 'description' => 'FAQ, accordion, how-to steps, and definition lists map one to one onto the question-answering format generative engines assemble their responses from.'],
+                        ['title' => 'Clean metadata out of the box', 'description' => 'Meta descriptions, Open Graph, and Twitter cards per page, plus schema-friendly markup — the signals engines use to title and attribute their citations.'],
+                        ['title' => 'Fast, static pages', 'description' => 'No client-side rendering between a crawler and your content: server-rendered Fluid, static CSS tokens, no JS framework. What the bot fetches is what the user reads.'],
+                    ],
+                ]),
+                self::block('desiderio_accordion', [
+                    'header' => 'The honest part: risks and open questions',
+                    'allow_multiple' => 1,
+                    'items' => [
+                        [
+                            'title' => 'Zero-click loss is real',
+                            'content' => 'When the answer appears in the overview, fewer people click through — publishers across industries report falling click-through rates on queries with AI answers. Plan for it: make the pages that do get visited convert better, and treat newsletters, communities, and direct traffic as first-class channels.',
+                            'open_by_default' => 1,
+                        ],
+                        [
+                            'title' => 'Attribution is uncertain',
+                            'content' => 'Assistants cite inconsistently, sometimes paraphrase without a link, and analytics tools are still learning to separate AI referrals from the rest. Measure what you can (referral domains like chatgpt.com and perplexity.ai), and be skeptical of anyone selling guaranteed AI rankings.',
+                            'open_by_default' => 0,
+                        ],
+                        [
+                            'title' => 'AI Overviews are volatile',
+                            'content' => 'Which queries trigger an overview changes constantly — industry analyses, including Lily Ray\'s ongoing coverage of AI Overview volatility, show large swings within weeks. Build for durable extraction quality instead of chasing individual snapshots.',
+                            'open_by_default' => 0,
+                        ],
+                        [
+                            'title' => 'What Desiderio gives you out of the box',
+                            'content' => 'Semantic landmark markup and heading discipline in every element, per-page meta and Open Graph support, FAQ and how-to elements for question-shaped content, translated screen-reader labels that double as machine-readable structure, and server-rendered performance. GEO-readiness as a side effect of doing HTML properly.',
+                            'open_by_default' => 0,
+                        ],
+                    ],
+                ]),
+                self::block('desiderio_ctabanner', [
+                    'header' => 'Build pages machines can quote and humans enjoy',
+                    'description' => 'The same markup discipline that earns citations earns accessibility audits and Core Web Vitals. Install Desiderio for free and get all three.',
+                    'cta_text' => 'Get Desiderio on GitHub',
+                    'cta_link' => self::REPO_URL,
+                    'bg_style' => 'primary',
+                ]),
+            ],
+        ];
+    }
+
+    /**
+     * @return ShowcasePage
+     */
+    private static function successStoriesPage(): array
+    {
+        return [
+            'title' => 'Success stories',
+            'navTitle' => 'Success stories',
+            'slug' => '/success-stories',
+            'abstract' => 'Three clearly fictional enterprise scenarios that ask one question with a straight face: what would happen if the most ambitious companies on the planet ran their websites on TYPO3 with Desiderio?',
+            'description' => 'What if Anthropic, SpaceX, and OpenAI ran on TYPO3? Three clearly fictional, deliberately fun Desiderio showcase scenarios about multi-brand theming and editor velocity.',
+            'parentSlug' => null,
+            'content' => [
+                self::block('desiderio_headersection', [
+                    'eyebrow' => 'Clearly fictional. Deliberately fun.',
+                    'header' => 'What if the world\'s most ambitious companies ran on TYPO3?',
+                    'subheadline' => 'None of the companies below use Desiderio (yet). These are invented showcase scenarios — written to demonstrate, with a wink, how per-page themes, editor previews, and open-source alignment would play out at enterprise scale.',
+                    'variant' => 'center',
+                ]),
+                self::block('desiderio_casestudygrid', [
+                    'eyebrow' => 'Three thought experiments',
+                    'header' => 'Pick your favorite alternate universe',
+                    'columns' => '3',
+                    'cases' => [
+                        [
+                            'client_name' => 'Anthropic (fictional scenario)',
+                            'summary' => 'A safety-first AI lab with a research blog that publishes faster than most newsrooms. In our invented universe, Claude\'s makers seed their publication pipeline with one CLI command.',
+                            'result' => '"Research to live in 1h"',
+                            'image' => self::unsplash('customer-engineering.jpg', 'Engineering team at work', 'An engineering team collaborating in front of large screens.'),
+                            'link' => '{{page:success-stories/anthropic}}',
+                        ],
+                        [
+                            'client_name' => 'SpaceX (fictional scenario)',
+                            'summary' => 'Rockets, satellites, and a launch calendar that never sleeps. In this fiction, every mission microsite is a TYPO3 subtree with its own Desiderio preset — Midnight for night launches, obviously.',
+                            'result' => '"1 CMS, 14 missions"',
+                            'image' => self::unsplash('planning-blue-sky.jpg', 'Planning under a blue sky', 'People planning a project outdoors under a clear blue sky.'),
+                            'link' => '{{page:success-stories/spacex}}',
+                        ],
+                        [
+                            'client_name' => 'OpenAI (fictional scenario)',
+                            'summary' => 'Product lines multiplying faster than pricing pages can keep up. Our invented OpenAI web team stops rebuilding and starts re-theming: one content pool, one preset per product family.',
+                            'result' => '"0 rebuilds per launch"',
+                            'image' => self::unsplash('dashboard-neil-fernandez.jpg', 'Analytics dashboard on a screen', 'A laptop showing a product analytics dashboard.'),
+                            'link' => '{{page:success-stories/openai}}',
+                        ],
+                    ],
+                ]),
+                self::block('desiderio_contenthighlight', [
+                    'header' => 'Why the joke works',
+                    'content' => '<p>Swap the famous logos for your clients and every argument still holds: multi-brand sites from one install via per-page themes, editors who publish without tickets, open-source licensing that survives procurement, and self-hosting for teams that keep their infrastructure close. The companies are fictional guests — the capabilities are shipping today.</p>',
+                    'variant' => 'muted',
+                    'alignment' => 'center',
+                    'link' => self::REPO_URL,
+                    'link_text' => 'See the real package',
+                ]),
+            ],
+        ];
+    }
+
+    /**
+     * @return ShowcasePage
+     */
+    private static function successStoryAnthropicPage(): array
+    {
+        return [
+            'title' => 'Anthropic on TYPO3 — a fictional scenario',
+            'navTitle' => 'Anthropic (fictional)',
+            'slug' => '/success-stories/anthropic',
+            'abstract' => 'A clearly fictional showcase scenario: how an AI safety lab like Anthropic would run its research publishing, product pages, and trust center on TYPO3 with Desiderio.',
+            'description' => 'Fictional showcase: Anthropic\'s research blog on TYPO3 — Desiderio editor previews for fast publishing, per-page themes per product line, and self-hosted open source.',
+            'parentSlug' => 'success-stories',
+            'content' => [
+                self::block('desiderio_articlehero', [
+                    'eyebrow' => 'Fictional showcase scenario — invented by the Desiderio team',
+                    'header' => 'What if Anthropic ran on TYPO3?',
+                    'dek' => 'An AI safety lab publishes interpretability papers, model cards, and policy posts at a pace that breaks most CMS workflows. In this invented universe, the Claude makers solve it the boring way: open-source TYPO3, Desiderio elements, and editors who never wait for a deploy.',
+                    'topic' => 'Fiction',
+                    'publish_date' => 'April 1, 2026',
+                    'reading_time' => '4 min read',
+                    'author_name' => 'The Desiderio storytellers',
+                    'cover_image' => self::unsplash('customer-engineering.jpg', 'Research engineering team', 'An engineering team reviewing research output on large displays.'),
+                ]),
+                self::block('desiderio_textmedia', [
+                    'header' => 'The imagined setup: research velocity without a web team in the loop',
+                    'shadcn_layout' => 'media-right',
+                    'subheadline' => 'Why our fictional Anthropic picks TYPO3 + Desiderio',
+                    'content' => 'In this scenario the lab\'s researchers write, and the CMS keeps up: every paper lands as an article hero plus FAQ plus chart elements, previewed in the backend before anyone hits publish. The safety team gets its own page subtree in a calm Lagoon preset; product pages for Claude run Midnight. Open weights, open source — a GPL design system matches the culture, and self-hosting keeps infrastructure under the lab\'s own keys. Every claim about the fictional company is invented; every capability mentioned ships in Desiderio today.',
+                    'media_rounded' => 1,
+                    'button_text' => 'The real technical facts',
+                    'button_link' => '{{page:technical-features}}',
+                    'media' => self::screenshot('backend-visual-editor.png', 'Inline editing in the Visual Editor', 'TYPO3 Visual Editor editing a Desiderio element inline.'),
+                ]),
+                self::block('desiderio_featurestats', [
+                    'header' => 'Numbers from a universe next door',
+                    'description' => 'Invented metrics, plausible physics: what a research-heavy site gains when publishing stops depending on deployments.',
+                    'items' => [
+                        ['value' => '57 min', 'label' => 'Paper to published page', 'description_text' => 'Fictional median — article hero, key-findings FAQ, and charts composed from existing elements.'],
+                        ['value' => '3', 'label' => 'Brand worlds, one install', 'description_text' => 'Research, product, and policy subtrees each carry their own theme preset in this scenario.'],
+                        ['value' => '0', 'label' => 'Deploys per publication', 'description_text' => 'Editors compose and publish; the imagined web platform team reviews tokens, not tickets.'],
+                        ['value' => '100%', 'label' => 'Self-hosted', 'description_text' => 'Open-source CMS, open-source design system, infrastructure under the lab\'s own control.'],
+                    ],
+                ]),
+                self::block('desiderio_quote', [
+                    'header' => '',
+                    'quote_text' => 'We interpret neural networks for a living. Our CMS should not be the most mysterious system in the building — with the token layer, at least the website is fully interpretable.',
+                    'author' => 'Fictional Head of Web Platform',
+                    'role' => 'invented persona — no real Anthropic statement',
+                    'variant' => 'large',
+                ]),
+                self::block('desiderio_ctabanner', [
+                    'header' => 'Your research team is real. The workflow can be too.',
+                    'description' => 'Everything in this story except the company ships in the free package: article elements, per-page themes, backend previews, one-command seeding.',
+                    'cta_text' => 'Install Desiderio for free',
+                    'cta_link' => self::REPO_URL,
+                    'bg_style' => 'primary',
+                ]),
+            ],
+        ];
+    }
+
+    /**
+     * @return ShowcasePage
+     */
+    private static function successStorySpacexPage(): array
+    {
+        return [
+            'title' => 'SpaceX on TYPO3 — a fictional scenario',
+            'navTitle' => 'SpaceX (fictional)',
+            'slug' => '/success-stories/spacex',
+            'abstract' => 'A clearly fictional showcase scenario: how a launch provider like SpaceX would run mission microsites, countdowns, and status dashboards on TYPO3 with Desiderio per-page themes.',
+            'description' => 'Fictional showcase: SpaceX mission microsites on TYPO3 — every launch a Desiderio-themed page subtree with countdown heroes, status boards, and zero rebuilds.',
+            'parentSlug' => 'success-stories',
+            'content' => [
+                self::block('desiderio_articlehero', [
+                    'eyebrow' => 'Fictional showcase scenario — invented by the Desiderio team',
+                    'header' => 'What if SpaceX ran on TYPO3?',
+                    'dek' => 'A company that launches rockets weekly cannot wait for a website rebuild between missions. In this invented universe, every mission gets its own TYPO3 subtree, its own Desiderio preset, and a countdown hero that the comms team configures over coffee.',
+                    'topic' => 'Fiction',
+                    'publish_date' => 'April 1, 2026',
+                    'reading_time' => '4 min read',
+                    'author_name' => 'The Desiderio storytellers',
+                    'cover_image' => self::unsplash('planning-blue-sky.jpg', 'Mission planning under open sky', 'A team planning outdoors under a wide blue sky.'),
+                ]),
+                self::block('desiderio_textmedia', [
+                    'header' => 'The imagined setup: a microsite per mission, a preset per brand',
+                    'shadcn_layout' => 'media-left',
+                    'subheadline' => 'Why our fictional SpaceX picks TYPO3 + Desiderio',
+                    'content' => 'Starship in Ember, crewed flights in Marine, night launches in Midnight — in this scenario each mission microsite is a page subtree that inherits its own theme preset, while the content pool, the editors, and the install stay singular. Countdown heroes handle T-minus, stats elements track the booster fleet, and the status board element mirrors range weather. When a launch scrubs, an editor reschedules the countdown — nobody redeploys anything. The company is fiction; the per-page theme engine, countdown and dashboard elements are stock Desiderio.',
+                    'media_rounded' => 1,
+                    'button_text' => 'See per-page themes explained',
+                    'button_link' => '{{page:technical-features}}',
+                    'media' => self::screenshot('frontend-pricing-midnight-dark.png', 'Dark Midnight preset page', 'A Desiderio page rendered in the dark Midnight theme preset.'),
+                ]),
+                self::block('desiderio_featurestats', [
+                    'header' => 'Telemetry from the alternate timeline',
+                    'description' => 'Made-up numbers with believable trajectories: what launch-cadence publishing looks like when the CMS is not the bottleneck.',
+                    'items' => [
+                        ['value' => '14', 'label' => 'Mission microsites live', 'description_text' => 'One TYPO3 install, fourteen themed subtrees in this fictional fleet.'],
+                        ['value' => '45 min', 'label' => 'Scrub to rescheduled site', 'description_text' => 'Countdown retargeted, status board updated, hero re-published — editors only.'],
+                        ['value' => '0', 'label' => 'Rebuilds between launches', 'description_text' => 'Theme presets switch at runtime; the imagined launch tempo never waits for CI.'],
+                        ['value' => '99.9%', 'label' => 'Uptime target met', 'description_text' => 'Server-rendered pages with no JS framework survive every fictional traffic spike.'],
+                    ],
+                ]),
+                self::block('desiderio_quote', [
+                    'header' => '',
+                    'quote_text' => 'We reuse boosters because rebuilding them for every flight would be absurd. Rebuilding the website for every mission was the same absurdity — so we stopped.',
+                    'author' => 'Fictional Director of Mission Communications',
+                    'role' => 'invented persona — no real SpaceX statement',
+                    'variant' => 'large',
+                ]),
+                self::block('desiderio_ctabanner', [
+                    'header' => 'Launch cadence for your content team',
+                    'description' => 'Countdown heroes, status boards, per-subtree themes, and a seeder that builds the whole demo in one command — all in the free core.',
+                    'cta_text' => 'Start your countdown on GitHub',
+                    'cta_link' => self::REPO_URL,
+                    'bg_style' => 'primary',
+                ]),
+            ],
+        ];
+    }
+
+    /**
+     * @return ShowcasePage
+     */
+    private static function successStoryOpenaiPage(): array
+    {
+        return [
+            'title' => 'OpenAI on TYPO3 — a fictional scenario',
+            'navTitle' => 'OpenAI (fictional)',
+            'slug' => '/success-stories/openai',
+            'abstract' => 'A clearly fictional showcase scenario: how a fast-shipping AI company like OpenAI would keep product launches, pricing pages, and developer docs on brand with TYPO3 and Desiderio.',
+            'description' => 'Fictional showcase: OpenAI product launches on TYPO3 — one Desiderio content pool, a theme preset per product family, and pricing pages editors update themselves.',
+            'parentSlug' => 'success-stories',
+            'content' => [
+                self::block('desiderio_articlehero', [
+                    'eyebrow' => 'Fictional showcase scenario — invented by the Desiderio team',
+                    'header' => 'What if OpenAI ran on TYPO3?',
+                    'dek' => 'When a company ships a new product line every quarter, the website becomes the slowest model in the lineup. In this invented universe, the web team trades rebuilds for re-theming: one content pool, one Desiderio preset per product family, launch pages assembled before the keynote ends.',
+                    'topic' => 'Fiction',
+                    'publish_date' => 'April 1, 2026',
+                    'reading_time' => '4 min read',
+                    'author_name' => 'The Desiderio storytellers',
+                    'cover_image' => self::unsplash('dashboard-neil-fernandez.jpg', 'Product dashboard on a laptop', 'A laptop screen showing a product analytics dashboard.'),
+                ]),
+                self::block('desiderio_textmedia', [
+                    'header' => 'The imagined setup: launch pages at model speed',
+                    'shadcn_layout' => 'media-right',
+                    'subheadline' => 'Why our fictional OpenAI picks TYPO3 + Desiderio',
+                    'content' => 'Each product family runs its own preset in this scenario — a calm neutral for the platform, something warmer for consumer apps — inherited down each page subtree from a single install. Pricing tables, comparison matrices, and usage calculators are stock Desiderio elements, so the imagined marketing team updates tiers minutes after a pricing call instead of filing a ticket. And when procurement asks about vendor lock-in, the answer is a GPL license and a composer.json. The company is borrowed for the story; the elements and the theme engine are real.',
+                    'media_rounded' => 1,
+                    'button_text' => 'Browse the pricing elements',
+                    'button_link' => '{{page:chapter-pricing}}',
+                    'media' => self::screenshot('backend-site-settings-theme.png', 'Theme preset selection in site settings', 'TYPO3 site settings with the Desiderio theme preset dropdown.'),
+                ]),
+                self::block('desiderio_featurestats', [
+                    'header' => 'Benchmarks nobody ran, in a universe nobody visited',
+                    'description' => 'Invented but plausible: what shipping velocity looks like when the website re-themes instead of rebuilding.',
+                    'items' => [
+                        ['value' => '6', 'label' => 'Product families, one install', 'description_text' => 'Each with its own preset and page subtree in this fictional setup.'],
+                        ['value' => '2 h', 'label' => 'Keynote to live launch page', 'description_text' => 'Hero, feature grid, pricing table, FAQ — composed from existing elements.'],
+                        ['value' => '0', 'label' => 'Rebuilds per product launch', 'description_text' => 'Runtime token switching makes the imagined design refresh a dropdown choice.'],
+                        ['value' => '255', 'label' => 'Elements on the shelf', 'description_text' => 'The one number in this story that is not fictional.'],
+                    ],
+                ]),
+                self::block('desiderio_quote', [
+                    'header' => '',
+                    'quote_text' => 'We benchmark everything, so we benchmarked our website workflow. Re-theming beat rebuilding on every metric — tokens per launch went to zero, in the good way.',
+                    'author' => 'Fictional Head of Web Experience',
+                    'role' => 'invented persona — no real OpenAI statement',
+                    'variant' => 'large',
+                ]),
+                self::block('desiderio_ctabanner', [
+                    'header' => 'Ship your next launch page the fictional-OpenAI way',
+                    'description' => 'Pricing tables, comparison matrices, heroes, and FAQs — finished, themed, and free. The only thing we cannot ship is the keynote.',
+                    'cta_text' => 'Get the free package',
+                    'cta_link' => self::REPO_URL,
+                    'bg_style' => 'primary',
+                ]),
+            ],
+        ];
+    }
+
+    /**
+     * @return ShowcasePage
+     */
+    private static function imprintPage(): array
+    {
+        return [
+            'title' => 'Imprint',
+            'navTitle' => 'Imprint',
+            'slug' => '/imprint',
+            'abstract' => 'Demo imprint page seeded by the Desiderio styleguide: the desiderio_imprint element filled with clearly fictional placeholder data, plus a note on replacing it before go-live.',
+            'description' => 'Demo imprint built with the Desiderio imprint content element — fictional placeholder company data showing the legal-page structure for TYPO3 sites.',
+            'parentSlug' => null,
+            'content' => [
+                self::block('desiderio_imprint', [
+                    'header' => 'Imprint (demo data)',
+                    'company_name' => 'webconsulting studio GmbH (fictional demo company)',
+                    'address' => "Lindengasse 12\n1070 Vienna\nAustria",
+                    'contact_email' => 'legal@webconsulting.example',
+                    'contact_phone' => '+43 1 555 0182',
+                    'registry_info' => "Commercial register: FN 000000x (demo data)\nCommercial Court of Vienna",
+                    'vat_id' => 'ATU00000000',
+                    'additional_info' => '<p>Responsible for content under §25 MedienG: Mara Lindqvist, Managing Director (fictional). Every value on this page is seeded placeholder data from the Desiderio styleguide.</p>',
+                ]),
+                self::block('desiderio_contenthighlight', [
+                    'header' => 'This is a demo placeholder',
+                    'content' => '<p>The desiderio_imprint element gives your legal page a finished, token-themed structure — but the law cares about the content. Replace the fictional company, register, and contact data above with your real details (and have them reviewed) before this page goes anywhere near production.</p>',
+                    'variant' => 'muted',
+                    'alignment' => 'center',
+                    'link' => '',
+                    'link_text' => '',
+                ]),
+            ],
+        ];
+    }
+
+    /**
+     * @return ShowcasePage
+     */
+    private static function privacyPage(): array
+    {
+        return [
+            'title' => 'Privacy notice',
+            'navTitle' => 'Privacy',
+            'slug' => '/privacy',
+            'abstract' => 'Demo privacy page seeded by the Desiderio styleguide: a GDPR-style notice built with desiderio_privacynotice plus a working desiderio_datarequestform — all clearly placeholder content.',
+            'description' => 'Demo GDPR-style privacy notice built with Desiderio elements, including a styled data-request form — placeholder structure to replace with your reviewed policy.',
+            'parentSlug' => null,
+            'content' => [
+                self::block('desiderio_privacynotice', [
+                    'header' => 'Privacy notice (demo)',
+                    'intro' => 'Seeded demo notice for the fictional webconsulting studio site. It demonstrates the structure of a GDPR-style privacy page with the desiderio_privacynotice element — replace every section with your own reviewed text before go-live.',
+                    'last_updated' => '12 May 2026',
+                    'sections' => [
+                        ['title' => 'What we collect', 'content' => '<p>This demo site collects nothing. A real deployment would describe here which personal data you process: contact details from forms, technical data such as IP addresses, and any analytics identifiers.</p>'],
+                        ['title' => 'Why we process it', 'content' => '<p>List your purposes and legal bases per GDPR Art. 6 — contract fulfilment, legitimate interest, consent — one plain-language paragraph per purpose, no legalese required by the element.</p>'],
+                        ['title' => 'Cookies and consent', 'content' => '<p>Desiderio ships consent-aware banners (GDPR banner, cookie banner elements); document here which categories exist and how visitors change their choice later.</p>'],
+                        ['title' => 'Your rights', 'content' => '<p>Access, rectification, erasure, portability, objection. The data-request form below shows how Desiderio lets visitors exercise these rights without writing an email.</p>'],
+                    ],
+                ]),
+                self::block('desiderio_datarequestform', [
+                    'header' => 'Exercise your data rights (demo form)',
+                    'description' => 'This is the desiderio_datarequestform element: a styled GDPR request form your visitors can use for access, export, or deletion requests. On this demo page it submits nowhere.',
+                    'request_types' => [
+                        ['label' => 'Access my data (Art. 15)', 'value' => 'access'],
+                        ['label' => 'Export my data (Art. 20)', 'value' => 'export'],
+                        ['label' => 'Delete my data (Art. 17)', 'value' => 'deletion'],
+                        ['label' => 'Correct my data (Art. 16)', 'value' => 'rectification'],
+                    ],
+                    'privacy_text' => 'Demo placeholder: in production, explain here how request data is handled and within which deadline you respond (30 days under GDPR).',
+                    'submit_text' => 'Send demo request',
+                ]),
+            ],
+        ];
+    }
+
+    /**
+     * @return ShowcasePage
+     */
+    private static function accessibilityPage(): array
+    {
+        return [
+            'title' => 'Accessibility statement',
+            'navTitle' => 'Accessibility',
+            'slug' => '/accessibility',
+            'abstract' => 'Demo accessibility statement seeded by the Desiderio styleguide, plus an engineering note on what the package contributes: a WCAG 2.2 contrast solver, translated ARIA labels, and audited templates.',
+            'description' => 'Demo accessibility statement with Desiderio\'s a11y engineering explained: WCAG 2.2 contrast solving on every theme, translated screen-reader labels, audited markup.',
+            'parentSlug' => null,
+            'content' => [
+                self::block('desiderio_accessibilitystatement', [
+                    'header' => 'Accessibility statement (demo)',
+                    'conformance_level' => 'aa',
+                    'content' => '<p>This demo statement ships with the Desiderio styleguide as a template — replace it with your own audited statement before go-live. Desiderio content elements are engineered against WCAG 2.2 Level AA.</p><h3>What the markup gives you</h3><ul><li>Every interactive component is keyboard reachable, with visible focus states on buttons, links, and form fields.</li><li>Semantic landmarks, native elements, and a logical heading order come baked into all 255 elements.</li><li>Image fields carry alternative-text inputs; decorative SVG icons are hidden from screen readers.</li><li>An 11-category template audit keeps inline styles and hardcoded colors out of every release.</li></ul><h3>What remains your job</h3><p>Editor-entered content, embedded media, and uploaded documents still need human review. This demo template does not replace a real conformance audit of your site.</p>',
+                    'contact_email' => 'accessibility@desiderio.example',
+                    'last_updated' => '12 May 2026',
+                ]),
+                self::block('desiderio_contenthighlight', [
+                    'header' => 'How Desiderio engineers accessibility, not just claims it',
+                    'content' => '<p>Three mechanisms do the heavy lifting. First, a <strong>WCAG 2.2 contrast solver</strong>: the theme generator solves accent lightness per hue against 4.5:1 text and 3:1 UI targets and refuses to emit failing CSS — and a unit test re-checks the shipped bundle for every preset, in light and dark mode. Second, <strong>translated assistive text</strong>: screen-reader labels, carousel controls, dismiss buttons, and pagination run through XLIFF catalogues, so ARIA speaks your visitor\'s language. Third, <strong>audits in CI</strong>: an 11-category template audit at zero tolerance plus 170+ tests keep landmarks, focus states, and heading order from regressing release after release.</p>',
+                    'variant' => 'muted',
+                    'alignment' => 'left',
+                    'link' => '{{page:technical-features}}',
+                    'link_text' => 'More engineering facts',
+                ]),
+            ],
+        ];
+    }
+
+    /**
+     * @return ShowcasePage
+     */
+    private static function notFoundPage(): array
+    {
+        return [
+            'title' => 'Page not found',
+            'navTitle' => '404',
+            'slug' => '/404',
+            'abstract' => 'The 404 page of the Desiderio styleguide: a short apology, a sitemap of the main sections, and a way back home — built entirely from Desiderio content elements.',
+            'description' => 'Page not found — but 255 Desiderio content elements are exactly where they should be. Jump to the styleguide chapters, audience pages, or back to the homepage.',
+            'parentSlug' => null,
+            'content' => [
+                self::block('desiderio_headersection', [
+                    'eyebrow' => 'Error 404',
+                    'header' => 'This page took the day off',
+                    'subheadline' => 'The address you opened does not exist (anymore). The good news: everything worth seeing is one click away — and yes, even this error page is built from seeded Desiderio elements.',
+                    'variant' => 'center',
+                ]),
+                self::block('desiderio_contenthighlight', [
+                    'header' => 'What probably happened',
+                    'content' => '<p>A mistyped address, an outdated bookmark, or a link to content that moved when this styleguide was reseeded. Use the map below, or head straight back to the homepage.</p>',
+                    'variant' => 'muted',
+                    'alignment' => 'center',
+                    'link' => '{{page:home}}',
+                    'link_text' => 'Back to the homepage',
+                ]),
+                self::block('desiderio_sitemapgrid', [
+                    'header' => 'Find your way from here',
+                    'columns' => '4',
+                    'groups' => [
+                        [
+                            'title' => 'Start here',
+                            'pages' => [
+                                ['label' => 'Homepage', 'link' => '{{page:home}}'],
+                                ['label' => 'Technical features', 'link' => '{{page:technical-features}}'],
+                                ['label' => 'GEO & AI search', 'link' => '{{page:geo-ai-search}}'],
+                                ['label' => 'Success stories', 'link' => '{{page:success-stories}}'],
+                            ],
+                        ],
+                        [
+                            'title' => 'For your team',
+                            'pages' => [
+                                ['label' => 'Agencies & integrators', 'link' => '{{page:for-agencies}}'],
+                                ['label' => 'In-house teams', 'link' => '{{page:for-inhouse-teams}}'],
+                                ['label' => 'Freelancers & solo devs', 'link' => '{{page:for-freelancers}}'],
+                            ],
+                        ],
+                        [
+                            'title' => 'Element chapters',
+                            'pages' => [
+                                ['label' => 'Hero & Landing Intros', 'link' => '{{page:chapter-hero}}'],
+                                ['label' => 'Features & Benefits', 'link' => '{{page:chapter-features}}'],
+                                ['label' => 'Plans & Pricing', 'link' => '{{page:chapter-pricing}}'],
+                                ['label' => 'Data & Dashboards', 'link' => '{{page:chapter-data}}'],
+                                ['label' => 'Trust & Social Proof', 'link' => '{{page:chapter-social-proof}}'],
+                            ],
+                        ],
+                        [
+                            'title' => 'Legal & project',
+                            'pages' => [
+                                ['label' => 'Imprint', 'link' => '{{page:imprint}}'],
+                                ['label' => 'Privacy notice', 'link' => '{{page:privacy}}'],
+                                ['label' => 'Accessibility', 'link' => '{{page:accessibility}}'],
+                                ['label' => 'GitHub repository', 'link' => self::REPO_URL],
+                            ],
+                        ],
+                    ],
+                ]),
+                self::block('desiderio_ctabanner', [
+                    'header' => 'Nothing here — everything there',
+                    'description' => 'The homepage has the whole story: 255 elements, 15 themes, and the one command that seeded this site (404 page included).',
+                    'cta_text' => 'Take me home',
+                    'cta_link' => '{{page:home}}',
+                    'bg_style' => 'primary',
+                ]),
+            ],
+        ];
+    }
+
+    /**
      * @param array<string, mixed> $fields
      * @return StarterBlock
      */
@@ -561,7 +1100,7 @@ final class StyleguideShowcasePages
     /**
      * @return array{file: string, title: string, alternative: string, description: string, source: string}
      */
-    private static function screenshot(string $filename, string $title, string $alternative): array
+    private static function screenshot(string $filename, string $title, string $alternative, string $description = 'Screenshot of a TYPO3 14 installation with Desiderio.'): array
     {
         $folder = str_starts_with($filename, 'frontend-') ? 'Frontend' : 'Backend';
 
@@ -569,8 +1108,22 @@ final class StyleguideShowcasePages
             'file' => 'Resources/Public/Styleguide/' . $folder . '/' . $filename,
             'title' => $title,
             'alternative' => $alternative,
-            'description' => 'Screenshot of a TYPO3 14 installation with Desiderio.',
+            'description' => $description,
             'source' => self::REPO_URL,
+        ];
+    }
+
+    /**
+     * @return array{file: string, title: string, alternative: string, description: string, source: string}
+     */
+    private static function unsplash(string $filename, string $title, string $alternative): array
+    {
+        return [
+            'file' => 'Resources/Public/Styleguide/Unsplash/' . $filename,
+            'title' => $title,
+            'alternative' => $alternative,
+            'description' => 'Photo from the seeded Unsplash demo collection.',
+            'source' => 'https://unsplash.com/collections/25880',
         ];
     }
 

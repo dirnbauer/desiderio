@@ -83,7 +83,7 @@ assets live in ``Resources/Public``:
     *   - File
         - Responsibility
     *   - ``Css/shadcn-theme.css``
-        - shadcn/create tokens, house presets, dark mode, chart tokens,
+        - ui.shadcn.com/create tokens, house presets, dark mode, chart tokens,
           layout variables, and global component classes.
     *   - ``Js/desiderio.js``
         - Generic interactions, Solr suggestions, search controls, and
@@ -98,8 +98,8 @@ assets live in ``Resources/Public``:
 
 ..  _developer-shadcn:
 
-shadcn/create sync
-==================
+ui.shadcn.com/create sync
+=========================
 
 The project uses ``https://ui.shadcn.com/create`` as the visual source of
 truth. React components are not copied into the TYPO3 frontend.
@@ -211,7 +211,7 @@ guards on the styleguide seeder.
 ..  _developer-middleware:
 
 Request middleware
-==================
+======================
 
 ``ExtbasePluginRequestSanitizerMiddleware`` sanitizes malformed Extbase
 plugin arguments on incoming requests. Visual Editor persistence can

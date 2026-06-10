@@ -38,6 +38,13 @@ final class SeedStyleguidePagesCommand extends Command
     private const STYLEGUIDE_FAL_FOLDER = 'desiderio-styleguide';
 
     /**
+     * Core CTypes additionally cleared on seeder-owned showcase subpages so
+     * legacy non-desiderio demo content does not linger next to the seeded
+     * blocks. Never applied to the root page, which may hold other content.
+     */
+    private const SHOWCASE_ADDITIONAL_CLEANUP_CTYPES = ['text', 'textmedia', 'html', 'bullets'];
+
+    /**
      * One house preset per styleguide page so the seeded tree doubles as a
      * live theme showcase. Applied via pages.tx_desiderio_shadcn_preset and
      * picked up by the body tag TypoScript (levelfield slide).
@@ -68,6 +75,7 @@ final class SeedStyleguidePagesCommand extends Command
         private readonly StorageRepository $storageRepository,
         private readonly DatabaseSchemaHelper $databaseSchema,
         private ?PowermailDemoSeeder $powermailDemoSeeder = null,
+        private ?NewsDemoSeeder $newsDemoSeeder = null,
         private readonly StyleguideDemoValueGenerator $demoValueGenerator = new StyleguideDemoValueGenerator(),
         ?StyleguideCollectionAliasPolicy $collectionAliasPolicy = null,
     ) {
@@ -104,6 +112,12 @@ final class SeedStyleguidePagesCommand extends Command
                 'Do not create the optional powermail demo form pages, even when powermail is installed.'
             )
             ->addOption(
+                'skip-news',
+                null,
+                InputOption::VALUE_NONE,
+                'Do not create the optional news demo section, even when georgringer/news is installed.'
+            )
+            ->addOption(
                 'powermail-storage-pid',
                 null,
                 InputOption::VALUE_REQUIRED,
@@ -126,6 +140,7 @@ final class SeedStyleguidePagesCommand extends Command
         $dryRun = (bool)$input->getOption('dry-run');
         $allowProduction = (bool)$input->getOption('allow-production');
         $skipPowermail = (bool)$input->getOption('skip-powermail');
+        $skipNews = (bool)$input->getOption('skip-news');
         $powermailStoragePid = $this->getIntegerInputOption($input, 'powermail-storage-pid');
         $powermailGermanLanguageUid = $this->getIntegerInputOption($input, 'powermail-german-language');
 
@@ -174,6 +189,12 @@ final class SeedStyleguidePagesCommand extends Command
                     $powermailForms
                 ));
             }
+            if (!$skipNews) {
+                $io->listing(array_map(
+                    static fn (array $news): string => sprintf('News demo: %s', $news['title']),
+                    $this->getNewsDemoSeeder()->getDemoNews()
+                ));
+            }
             $io->success(sprintf(
                 'Would create or update %d styleguide pages and %d content elements below page uid %d%s.',
                 count($groups) + count($showcasePages),
@@ -202,7 +223,16 @@ final class SeedStyleguidePagesCommand extends Command
             $slug = '/desiderio-' . (string)$group['groupId'];
             $sorting = ($index + 1) * 256;
 
-            $pageAttributes = ['tx_desiderio_shadcn_preset' => $this->presetForPageIndex($index)];
+            $preset = $this->presetForPageIndex($index);
+            $pageAttributes = [
+                'tx_desiderio_shadcn_preset' => $preset,
+                ...$this->buildSeoPageAttributes($title, sprintf(
+                    '%s: %d Desiderio content elements for TYPO3 14 with live demo content — rendered in the "%s" theme preset of the shadcn/ui design system.',
+                    $title,
+                    count($group['elements']),
+                    ucfirst($preset)
+                )),
+            ];
 
             $pageUid = $pageUpserter->findExistingPageUid($parentPid, $title, $slug, $pageColumns);
             if ($pageUid === null) {
@@ -234,14 +264,27 @@ final class SeedStyleguidePagesCommand extends Command
 
         // Marketing showcase: subpages first (so internal links resolve), then
         // homepage content on the parent page itself, then subpage content.
+        $linkTargets['home'] = $parentPid;
         $showcaseBlocks = [];
         foreach ($showcasePages as $index => $page) {
             $sorting = ($index + 1) * 16;
-            $pageAttributes = ['nav_title' => $page['navTitle'], 'abstract' => $page['abstract']];
+            $pageAttributes = [
+                'nav_title' => $page['navTitle'],
+                'abstract' => $page['abstract'],
+                ...$this->buildSeoPageAttributes($page['title'], $page['description']),
+            ];
 
-            $pageUid = $pageUpserter->findExistingPageUid($parentPid, $page['title'], $page['slug'], $pageColumns);
+            // Child pages (e.g. the success stories) live below their parent
+            // showcase page; the parent is defined earlier in the list.
+            $pagePid = $parentPid;
+            $parentSlug = $page['parentSlug'] ?? null;
+            if (is_string($parentSlug) && isset($linkTargets[$parentSlug])) {
+                $pagePid = $linkTargets[$parentSlug];
+            }
+
+            $pageUid = $pageUpserter->findExistingPageUid($pagePid, $page['title'], $page['slug'], $pageColumns);
             if ($pageUid === null) {
-                $pageUid = $pageUpserter->create($parentPid, $page['title'], $page['slug'], $sorting, $now, $pageColumns, $pageAttributes);
+                $pageUid = $pageUpserter->create($pagePid, $page['title'], $page['slug'], $sorting, $now, $pageColumns, $pageAttributes);
                 $createdPages++;
             } else {
                 $pageUpserter->update($pageUid, $page['title'], $page['slug'], $sorting, $now, $pageColumns, $pageAttributes);
@@ -254,7 +297,12 @@ final class SeedStyleguidePagesCommand extends Command
         $showcaseBlocks[$parentPid] = StyleguideShowcasePages::homeContent();
 
         foreach ($showcaseBlocks as $pageUid => $blocks) {
-            $contentCleaner->softDeleteSeededContent($pageUid, $now, [], true);
+            // Showcase subpages are fully seeder-owned: clear leftover core
+            // demo content (e.g. legacy text/textmedia articles) as well. The
+            // root page may carry other site content, so it only gets the
+            // regular desiderio_% cleanup.
+            $additionalCTypes = $pageUid === $parentPid ? [] : self::SHOWCASE_ADDITIONAL_CLEANUP_CTYPES;
+            $contentCleaner->softDeleteSeededContent($pageUid, $now, $additionalCTypes, true);
             foreach ($blocks as $blockIndex => $block) {
                 $block = $this->substituteLinkPlaceholders($block, $linkTargets);
                 $contentData = $this->getStarterContentBuilder()->buildContentInsert(
@@ -281,13 +329,19 @@ final class SeedStyleguidePagesCommand extends Command
             );
         }
 
+        $newsSummary = ['pages' => 0, 'records' => 0, 'skipped' => true];
+        if (!$skipNews) {
+            $newsSummary = $this->getNewsDemoSeeder()->seed($parentPid, $now, $io);
+        }
+
         $io->success(sprintf(
-            'Created or updated %d styleguide pages (%d new) and inserted %d Desiderio content elements below page uid %d%s.',
+            'Created or updated %d styleguide pages (%d new) and inserted %d Desiderio content elements below page uid %d%s%s.',
             count($groups) + count($showcasePages),
             $createdPages,
             $createdContentElements,
             $parentPid,
-            $powermailSummary['skipped'] ? '' : sprintf(' Added %d powermail demo forms across %d EN/DE pages.', $powermailSummary['forms'], $powermailSummary['pages'])
+            $powermailSummary['skipped'] ? '' : sprintf(' Added %d powermail demo forms across %d EN/DE pages.', $powermailSummary['forms'], $powermailSummary['pages']),
+            $newsSummary['skipped'] ? '' : sprintf(' Added %d news demo records across %d news pages.', $newsSummary['records'], $newsSummary['pages'])
         ));
 
         return self::SUCCESS;
@@ -296,6 +350,24 @@ final class SeedStyleguidePagesCommand extends Command
     private function presetForPageIndex(int $index): string
     {
         return self::STYLEGUIDE_PAGE_PRESETS[$index % count(self::STYLEGUIDE_PAGE_PRESETS)];
+    }
+
+    /**
+     * SEO meta columns for a seeded page. The columns ship with EXT:seo;
+     * SeedPageUpserter filters unknown columns, so this stays safe on
+     * installations without the seo system extension.
+     *
+     * @return array<string, string>
+     */
+    private function buildSeoPageAttributes(string $title, string $description): array
+    {
+        return [
+            'description' => $description,
+            'og_title' => $title,
+            'og_description' => $description,
+            'twitter_title' => $title,
+            'twitter_description' => $description,
+        ];
     }
 
     /**
@@ -353,6 +425,12 @@ final class SeedStyleguidePagesCommand extends Command
     {
         // DI provides the seeder; the fallback only serves direct instantiation in tests.
         return $this->powermailDemoSeeder ??= new PowermailDemoSeeder($this->connectionPool, $this->databaseSchema);
+    }
+
+    private function getNewsDemoSeeder(): NewsDemoSeeder
+    {
+        // DI provides the seeder; the fallback only serves direct instantiation in tests.
+        return $this->newsDemoSeeder ??= new NewsDemoSeeder($this->connectionPool, $this->databaseSchema);
     }
 
     private function getIntegerInputOption(InputInterface $input, string $name): int

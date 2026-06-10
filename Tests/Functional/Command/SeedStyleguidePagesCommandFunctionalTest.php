@@ -45,13 +45,16 @@ final class SeedStyleguidePagesCommandFunctionalTest extends FunctionalTestCase
             static fn (array $group): int => count($group['elements']),
             $groups
         )) + StyleguideShowcasePages::contentElementCount();
+        $expectedTopLevelPages = count($groups) + $this->countTopLevelShowcasePages();
         $expectedPages = count($groups) + count(StyleguideShowcasePages::subpages());
 
         $tester = $this->createCommandTester();
-        $exitCode = $tester->execute(['--parent' => '1', '--skip-powermail' => true]);
+        $exitCode = $tester->execute(['--parent' => '1', '--skip-powermail' => true, '--skip-news' => true]);
 
         self::assertSame(Command::SUCCESS, $exitCode, $tester->getDisplay());
-        self::assertSame($expectedPages, $this->countRows('pages', 'pid = 1 AND deleted = 0'));
+        self::assertSame($expectedTopLevelPages, $this->countRows('pages', 'pid = 1 AND deleted = 0'));
+        // Showcase pages with a parentSlug (success stories) live one level deeper.
+        self::assertSame($expectedPages, $this->countRows('pages', 'uid <> 1 AND deleted = 0'));
         self::assertSame(
             $expectedElements,
             $this->countRows('tt_content', "deleted = 0 AND CType LIKE 'desiderio_%'")
@@ -96,16 +99,18 @@ final class SeedStyleguidePagesCommandFunctionalTest extends FunctionalTestCase
             static fn (array $group): int => count($group['elements']),
             $groups
         )) + StyleguideShowcasePages::contentElementCount();
+        $expectedTopLevelPages = count($groups) + $this->countTopLevelShowcasePages();
         $expectedPages = count($groups) + count(StyleguideShowcasePages::subpages());
 
         $firstRun = $this->createCommandTester();
-        self::assertSame(Command::SUCCESS, $firstRun->execute(['--parent' => '1', '--skip-powermail' => true]));
+        self::assertSame(Command::SUCCESS, $firstRun->execute(['--parent' => '1', '--skip-powermail' => true, '--skip-news' => true]));
 
         $secondRun = $this->createCommandTester();
-        self::assertSame(Command::SUCCESS, $secondRun->execute(['--parent' => '1', '--skip-powermail' => true]));
+        self::assertSame(Command::SUCCESS, $secondRun->execute(['--parent' => '1', '--skip-powermail' => true, '--skip-news' => true]));
 
         self::assertStringContainsString('(0 new)', $secondRun->getDisplay());
-        self::assertSame($expectedPages, $this->countRows('pages', 'pid = 1 AND deleted = 0'));
+        self::assertSame($expectedTopLevelPages, $this->countRows('pages', 'pid = 1 AND deleted = 0'));
+        self::assertSame($expectedPages, $this->countRows('pages', 'uid <> 1 AND deleted = 0'));
         // The previous generation is soft-deleted, the live set stays constant.
         self::assertSame(
             $expectedElements,
@@ -115,6 +120,14 @@ final class SeedStyleguidePagesCommandFunctionalTest extends FunctionalTestCase
             $expectedElements,
             $this->countRows('tt_content', "deleted = 1 AND CType LIKE 'desiderio_%'")
         );
+    }
+
+    private function countTopLevelShowcasePages(): int
+    {
+        return count(array_filter(
+            StyleguideShowcasePages::subpages(),
+            static fn (array $page): bool => ($page['parentSlug'] ?? null) === null
+        ));
     }
 
     private function createCommandTester(): CommandTester

@@ -38,6 +38,9 @@ final class StyleguideSeedCommandTest extends TestCase
         self::assertStringContainsString("->addOption(\n                'dry-run'", $source);
         self::assertStringContainsString("'skip-powermail'", $source);
         self::assertStringContainsString('PowermailDemoSeeder', $source);
+        self::assertStringContainsString("'skip-news'", $source);
+        self::assertStringContainsString('NewsDemoSeeder', $source);
+        self::assertStringContainsString('buildSeoPageAttributes', $source);
         self::assertStringContainsString('StyleguideContentGroups::getGroupsWithFixtures()', $source);
         self::assertStringContainsString("getPropertyFromAspect('workspace', 'id', 0)", $source);
         self::assertStringContainsString('getFixtureResolver()->buildContentInsert(', $source);
@@ -804,7 +807,7 @@ final class StyleguideSeedCommandTest extends TestCase
         );
 
         self::assertIsArray($fixture);
-        self::assertSame('A sample of Desiderio element groups with their element counts', $fixture['caption'] ?? null);
+        self::assertSame('All ten Desiderio element groups with their element counts', $fixture['caption'] ?? null);
         self::assertSame(
             [
                 ['label' => 'Element group'],
@@ -814,6 +817,10 @@ final class StyleguideSeedCommandTest extends TestCase
             ],
             $fixture['column_items'] ?? null
         );
+
+        $rows = $fixture['rows'] ?? null;
+        self::assertIsArray($rows);
+        self::assertCount(10, $rows, 'The table fixture must list all ten element groups.');
     }
 
     public function testTabsFixtureProvidesTabContentForEveryPanel(): void

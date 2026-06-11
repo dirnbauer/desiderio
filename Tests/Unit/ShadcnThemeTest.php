@@ -109,7 +109,11 @@ final class ShadcnThemeTest extends TestCase
         self::assertStringContainsString('.dark body[data-shadcn-preset="b3IWPgRwnI"]', $themeCss);
         self::assertStringContainsString('body[data-shadcn-preset="b6G5977cw"]', $themeCss);
         self::assertStringContainsString('.dark body[data-shadcn-preset="b6G5977cw"]', $themeCss);
-        self::assertStringContainsString('--radius: 0;', $themeCss);
+        // Create presets carry their own radius; b6G5977cw follows the
+        // shadcn/create default (0.625rem) — a plain "--radius: 0;" square
+        // override was upstream drift and must not return.
+        self::assertStringContainsString('--radius: 0.45rem;', $themeCss);
+        self::assertStringNotContainsString('--radius: 0;', $themeCss);
         self::assertStringContainsString('JetBrains Mono Variable', $themeCss);
         self::assertStringContainsString('Nunito Sans Variable', $themeCss);
         self::assertStringContainsString('--d-font-sans', $themeCss);

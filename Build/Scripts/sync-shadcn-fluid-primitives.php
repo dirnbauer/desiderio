@@ -533,6 +533,7 @@ function renderTypography(string $header): string
         . '    <f:case value="h3"><h3 data-slot="typography" data-variant="{variant}" class="{combinedClass -> f:format.trim()}" id="{id}" itemprop="{itemprop}"><f:slot /></h3></f:case>' . "\n"
         . '    <f:case value="h4"><h4 data-slot="typography" data-variant="{variant}" class="{combinedClass -> f:format.trim()}" id="{id}" itemprop="{itemprop}"><f:slot /></h4></f:case>' . "\n"
         . '    <f:case value="span"><span data-slot="typography" data-variant="{variant}" class="{combinedClass -> f:format.trim()}" id="{id}" itemprop="{itemprop}"><f:slot /></span></f:case>' . "\n"
+        . '    <f:case value="div"><div data-slot="typography" data-variant="{variant}" class="{combinedClass -> f:format.trim()}" id="{id}" itemprop="{itemprop}"><f:slot /></div></f:case>' . "\n"
         . '    <f:defaultCase><p data-slot="typography" data-variant="{variant}" class="{combinedClass -> f:format.trim()}" id="{id}" itemprop="{itemprop}"><f:slot /></p></f:defaultCase>' . "\n"
         . '</f:switch>' . "\n";
 }

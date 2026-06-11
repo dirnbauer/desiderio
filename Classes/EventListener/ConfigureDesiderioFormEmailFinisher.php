@@ -93,7 +93,7 @@ final class ConfigureDesiderioFormEmailFinisher
 
         $variables = is_array($options['variables'] ?? null) ? $options['variables'] : [];
         $variables['sourcePageTitle'] = $this->getSourcePageTitle($request);
-        $variables['sourcePageUrl'] = (string)$request->getUri();
+        $variables['sourcePageUrl'] = $this->getSourcePageUrl($request);
         $options['variables'] = $variables;
 
         return $options;
@@ -115,6 +115,19 @@ final class ConfigureDesiderioFormEmailFinisher
         $normalizedPaths[100] = $path;
 
         return $normalizedPaths;
+    }
+
+    /**
+     * The mail should reference the page, not the POST round trip: the raw
+     * request URI carries tx_form_formframework[action/controller] and cHash,
+     * which triples the link length and means nothing to the reader.
+     */
+    private function getSourcePageUrl(ServerRequestInterface $request): string
+    {
+        $uri = $request->getUri();
+        parse_str($uri->getQuery(), $queryParams);
+        unset($queryParams['tx_form_formframework'], $queryParams['cHash']);
+        return (string)$uri->withQuery(http_build_query($queryParams));
     }
 
     private function getSourcePageTitle(ServerRequestInterface $request): string

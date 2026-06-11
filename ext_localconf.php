@@ -13,6 +13,23 @@ defined('TYPO3') or die();
 // Configuration/Sets/Desiderio/. Page TSconfig is auto-loaded from
 // Configuration/page.tsconfig in TYPO3 14.
 
+// Powermail double-opt-in and disclaimer mails link with the record uid and a
+// sha256 hash in the route path; the appended ?cHash= adds ~70 characters and
+// breaks the link whenever the cHash salt changes. The hash already authorizes
+// the request, so exclude the powermail params from cacheHash calculation —
+// the same hardening powermail documents for opt-in links.
+if (ExtensionManagementUtility::isLoaded('powermail')) {
+    $GLOBALS['TYPO3_CONF_VARS']['FE']['cacheHash']['excludedParameters'] = array_values(array_unique(array_merge(
+        $GLOBALS['TYPO3_CONF_VARS']['FE']['cacheHash']['excludedParameters'] ?? [],
+        [
+            'tx_powermail_pi1[hash]',
+            'tx_powermail_pi1[mail]',
+            'tx_powermail_pi1[action]',
+            'tx_powermail_pi1[controller]',
+        ]
+    )));
+}
+
 // The bundled Desiderio forms declare a "Friendlycaptcha" element. When
 // studiomitte/friendlycaptcha is not installed, map that element to an inert
 // placeholder widget and an always-passing validator so the forms keep

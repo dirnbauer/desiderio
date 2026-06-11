@@ -159,3 +159,100 @@ page {
   10 >
   10 =< lib.fluidPage
 }
+
+# RTE rendering for f:format.html / f:render.text on enableRichtext fields.
+# fluid-styled-content is only an optional dependency of this set, so define
+# lib.parseFunc / lib.parseFunc_RTE here (mirroring fluid_styled_content) to
+# keep t3:// link resolution working when FSC is not installed.
+lib.parseFunc {
+  makelinks = 1
+  makelinks {
+    http.keep = path
+    http.extTarget = _blank
+    mailto.keep = path
+  }
+  tags {
+    a = TEXT
+    a {
+      current = 1
+      typolink {
+        parameter.data = parameters:href
+        title.data = parameters:title
+        ATagParams.data = parameters:allParams
+        target.data = parameters:target
+        extTarget = _blank
+        extTarget.override.data = parameters:target
+      }
+    }
+  }
+  allowTags = a, abbr, acronym, address, article, aside, b, bdo, big, blockquote, br, caption, center, cite, code, col, colgroup, dd, del, dfn, dl, div, dt, em, figure, font, footer, header, h1, h2, h3, h4, h5, h6, hr, i, img, ins, kbd, label, li, link, meta, nav, ol, p, pre, q, s, samp, sdfield, section, small, span, strike, strong, sub, sup, table, thead, tbody, tfoot, td, th, tr, title, tt, u, ul, var
+  denyTags = *
+  sword = <span class="ce-sword">|</span>
+  constants = 1
+  nonTypoTagStdWrap.HTMLparser = 1
+  nonTypoTagStdWrap.HTMLparser {
+    keepNonMatchedTags = 1
+    htmlSpecialChars = 2
+  }
+}
+
+lib.parseFunc_RTE < lib.parseFunc
+lib.parseFunc_RTE {
+  externalBlocks = article, aside, blockquote, div, dd, dl, footer, header, nav, ol, section, table, ul, pre
+  externalBlocks {
+    ol {
+      stripNL = 1
+      stdWrap.parseFunc = < lib.parseFunc
+    }
+    ul {
+      stripNL = 1
+      stdWrap.parseFunc = < lib.parseFunc
+    }
+    pre {
+      stdWrap.parseFunc < lib.parseFunc
+    }
+    table {
+      stripNL = 1
+      stdWrap {
+        HTMLparser = 1
+        HTMLparser {
+          tags.table.fixAttrib.class {
+            default = contenttable
+            always = 1
+            list = contenttable
+          }
+          keepNonMatchedTags = 1
+        }
+      }
+      HTMLtableCells = 1
+      HTMLtableCells {
+        addChr10BetweenParagraphs = 1
+        default.stdWrap.parseFunc =< lib.parseFunc_RTE
+      }
+    }
+    div {
+      stripNL = 1
+      callRecursive = 1
+    }
+    article < .div
+    aside < .article
+    blockquote < .article
+    dd < .article
+    dl < .article
+    footer < .article
+    header < .article
+    nav < .article
+    section < .article
+  }
+  nonTypoTagStdWrap.encapsLines {
+    encapsTagList = div, p, pre, h1, h2, h3, h4, h5, h6, hr, dt
+    remapTag.DIV = P
+    nonWrappedTag = P
+    innerStdWrap_all.ifBlank = &nbsp;
+  }
+  nonTypoTagStdWrap.HTMLparser = 1
+  nonTypoTagStdWrap.HTMLparser {
+    keepNonMatchedTags = 1
+    htmlSpecialChars = 2
+  }
+}

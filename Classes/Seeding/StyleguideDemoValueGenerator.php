@@ -6,6 +6,7 @@ namespace Webconsulting\Desiderio\Seeding;
 
 use Webconsulting\Desiderio\DataHandling\IconItemsProcessor;
 use Webconsulting\Desiderio\Icon\IconRegistry;
+use Webconsulting\Desiderio\Rte\RteHtmlConverter;
 
 /**
  * Generates deterministic demo field values for styleguide seed fixtures.
@@ -81,7 +82,7 @@ final class StyleguideDemoValueGenerator
         $configuredType = $fieldConfig['type'] ?? 'Textarea';
         $type = is_scalar($configuredType) ? (string)$configuredType : 'Textarea';
 
-        return match ($type) {
+        $value = match ($type) {
             'Checkbox' => 1,
             'Date' => $this->buildDefaultDateTimestamp($index),
             'DateTime' => $this->buildDefaultDateTimeTimestamp($index),
@@ -91,6 +92,18 @@ final class StyleguideDemoValueGenerator
             'Select' => $this->buildDefaultSelectValue($fieldConfig),
             default => $this->buildDefaultTextValue($ctype, $name, $field, $index),
         };
+
+        // enableRichtext fields store RTE HTML; wrap plain fallback copy so
+        // seeded records match what CKEditor would save.
+        if (($fieldConfig['enableRichtext'] ?? false) === true
+            && is_string($value)
+            && $value !== ''
+            && !RteHtmlConverter::looksLikeHtml($value)
+        ) {
+            $value = RteHtmlConverter::convert($value);
+        }
+
+        return $value;
     }
 
     /**

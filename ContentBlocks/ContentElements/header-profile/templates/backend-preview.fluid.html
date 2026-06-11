@@ -41,7 +41,7 @@
         <f:if condition="{data.bio}">
             <div class="d-ce-preview__field">
                 <span class="d-ce-preview__label">Bio</span>
-                <span class="d-ce-preview__value">{data.bio -> f:format.stripTags() -> f:format.htmlspecialchars()}</span>
+                <span class="d-ce-preview__value">{data.bio -> f:format.stripTags() -> f:format.htmlentitiesDecode() -> f:format.htmlspecialchars()}</span>
             </div>
         </f:if>
         <f:if condition="{data.avatar}">

@@ -45,7 +45,7 @@
                     <f:for each="{data.plans}" as="item">
                         <li>
                             <f:if condition="{item.badge_text}"><span>{item.badge_text -> f:format.stripTags() -> f:format.htmlspecialchars()}</span></f:if>
-                            <f:if condition="{item.description}"><span>{item.description -> f:format.stripTags() -> f:format.htmlspecialchars()}</span></f:if>
+                            <f:if condition="{item.description}"><span>{item.description -> f:format.stripTags() -> f:format.htmlentitiesDecode() -> f:format.htmlspecialchars()}</span></f:if>
                             <f:if condition="{item.price}"><span>{item.price -> f:format.stripTags() -> f:format.htmlspecialchars()}</span></f:if>
                         </li>
                     </f:for>

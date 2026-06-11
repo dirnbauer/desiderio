@@ -45,7 +45,7 @@
                                     </f:if>
                                 </f:for>
                             </f:if>
-                            <f:if condition="{item.slide_description}"><span>{item.slide_description -> f:format.stripTags() -> f:format.htmlspecialchars()}</span></f:if>
+                            <f:if condition="{item.slide_description}"><span>{item.slide_description -> f:format.stripTags() -> f:format.htmlentitiesDecode() -> f:format.htmlspecialchars()}</span></f:if>
                             <f:if condition="{item.slide_title}"><span>{item.slide_title -> f:format.stripTags() -> f:format.htmlspecialchars()}</span></f:if>
                         </li>
                     </f:for>

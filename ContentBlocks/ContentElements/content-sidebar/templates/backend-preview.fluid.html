@@ -23,13 +23,13 @@
         <f:if condition="{data.content}">
             <div class="d-ce-preview__field">
                 <span class="d-ce-preview__label">Content</span>
-                <span class="d-ce-preview__value">{data.content -> f:format.stripTags() -> f:format.htmlspecialchars()}</span>
+                <span class="d-ce-preview__value">{data.content -> f:format.stripTags() -> f:format.htmlentitiesDecode() -> f:format.htmlspecialchars()}</span>
             </div>
         </f:if>
         <f:if condition="{data.sidebar_content}">
             <div class="d-ce-preview__field">
                 <span class="d-ce-preview__label">Sidebar Content</span>
-                <span class="d-ce-preview__value">{data.sidebar_content -> f:format.stripTags() -> f:format.htmlspecialchars()}</span>
+                <span class="d-ce-preview__value">{data.sidebar_content -> f:format.stripTags() -> f:format.htmlentitiesDecode() -> f:format.htmlspecialchars()}</span>
             </div>
         </f:if>
         <f:if condition="{data.sidebar_position}">

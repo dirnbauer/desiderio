@@ -23,7 +23,7 @@
         <f:if condition="{data.description}">
             <div class="d-ce-preview__field">
                 <span class="d-ce-preview__label">Description</span>
-                <span class="d-ce-preview__value">{data.description -> f:format.stripTags() -> f:format.htmlspecialchars()}</span>
+                <span class="d-ce-preview__value">{data.description -> f:format.stripTags() -> f:format.htmlentitiesDecode() -> f:format.htmlspecialchars()}</span>
             </div>
         </f:if>
         <f:if condition="{data.items}">
@@ -39,7 +39,7 @@
                                     </f:if>
                                 </f:for>
                             </f:if>
-                            <f:if condition="{item.content}"><span>{item.content -> f:format.stripTags() -> f:format.htmlspecialchars()}</span></f:if>
+                            <f:if condition="{item.content}"><span>{item.content -> f:format.stripTags() -> f:format.htmlentitiesDecode() -> f:format.htmlspecialchars()}</span></f:if>
                             <f:if condition="{item.title}"><span>{item.title -> f:format.stripTags() -> f:format.htmlspecialchars()}</span></f:if>
                         </li>
                     </f:for>

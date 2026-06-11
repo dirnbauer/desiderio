@@ -39,7 +39,7 @@
                                     </f:if>
                                 </f:for>
                             </f:if>
-                            <f:if condition="{item.description}"><span>{item.description -> f:format.stripTags() -> f:format.htmlspecialchars()}</span></f:if>
+                            <f:if condition="{item.description}"><span>{item.description -> f:format.stripTags() -> f:format.htmlentitiesDecode() -> f:format.htmlspecialchars()}</span></f:if>
                             <f:if condition="{item.title}"><span>{item.title -> f:format.stripTags() -> f:format.htmlspecialchars()}</span></f:if>
                             <f:if condition="{item.size}"><span>{item.size -> f:format.stripTags() -> f:format.htmlspecialchars()}</span></f:if>
                         </li>

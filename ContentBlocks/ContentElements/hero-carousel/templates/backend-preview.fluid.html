@@ -40,7 +40,7 @@
                                 </f:for>
                             </f:if>
                             <f:if condition="{item.lead}"><span>{item.lead -> f:format.stripTags() -> f:format.htmlspecialchars()}</span></f:if>
-                            <f:if condition="{item.description}"><span>{item.description -> f:format.stripTags() -> f:format.htmlspecialchars()}</span></f:if>
+                            <f:if condition="{item.description}"><span>{item.description -> f:format.stripTags() -> f:format.htmlentitiesDecode() -> f:format.htmlspecialchars()}</span></f:if>
                             <f:if condition="{item.button_text}"><span>{item.button_text -> f:format.stripTags() -> f:format.htmlspecialchars()}</span></f:if>
                         </li>
                     </f:for>

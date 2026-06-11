@@ -38,7 +38,7 @@
                 <ul class="d-ce-preview__list">
                     <f:for each="{data.perks}" as="item">
                         <li>
-                            <f:if condition="{item.description}"><span>{item.description -> f:format.stripTags() -> f:format.htmlspecialchars()}</span></f:if>
+                            <f:if condition="{item.description}"><span>{item.description -> f:format.stripTags() -> f:format.htmlentitiesDecode() -> f:format.htmlspecialchars()}</span></f:if>
                             <f:if condition="{item.icon}"><span class="d-ce-preview__icon" aria-hidden="true"><d:atom.icon name="{item.icon}" size="sm"/></span></f:if>
                             <f:if condition="{item.title}"><span>{item.title -> f:format.stripTags() -> f:format.htmlspecialchars()}</span></f:if>
                         </li>

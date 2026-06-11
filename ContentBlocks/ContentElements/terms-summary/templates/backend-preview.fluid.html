@@ -23,7 +23,7 @@
         <f:if condition="{data.intro}">
             <div class="d-ce-preview__field">
                 <span class="d-ce-preview__label">Intro</span>
-                <span class="d-ce-preview__value">{data.intro -> f:format.stripTags() -> f:format.htmlspecialchars()}</span>
+                <span class="d-ce-preview__value">{data.intro -> f:format.stripTags() -> f:format.htmlentitiesDecode() -> f:format.htmlspecialchars()}</span>
             </div>
         </f:if>
         <f:if condition="{data.last_updated}">
@@ -38,7 +38,7 @@
                 <ul class="d-ce-preview__list">
                     <f:for each="{data.items}" as="item">
                         <li>
-                            <f:if condition="{item.summary}"><span>{item.summary -> f:format.stripTags() -> f:format.htmlspecialchars()}</span></f:if>
+                            <f:if condition="{item.summary}"><span>{item.summary -> f:format.stripTags() -> f:format.htmlentitiesDecode() -> f:format.htmlspecialchars()}</span></f:if>
                             <f:if condition="{item.title}"><span>{item.title -> f:format.stripTags() -> f:format.htmlspecialchars()}</span></f:if>
                         </li>
                     </f:for>

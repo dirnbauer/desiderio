@@ -35,7 +35,7 @@
         <f:if condition="{data.body}">
             <div class="d-ce-preview__field">
                 <span class="d-ce-preview__label">Body</span>
-                <span class="d-ce-preview__value">{data.body -> f:format.stripTags() -> f:format.htmlspecialchars()}</span>
+                <span class="d-ce-preview__value">{data.body -> f:format.stripTags() -> f:format.htmlentitiesDecode() -> f:format.htmlspecialchars()}</span>
             </div>
         </f:if>
         <f:if condition="{data.image}">

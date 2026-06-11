@@ -26,7 +26,7 @@
                 <ul class="d-ce-preview__list">
                     <f:for each="{data.items}" as="item">
                         <li>
-                            <f:if condition="{item.description}"><span>{item.description -> f:format.stripTags() -> f:format.htmlspecialchars()}</span></f:if>
+                            <f:if condition="{item.description}"><span>{item.description -> f:format.stripTags() -> f:format.htmlentitiesDecode() -> f:format.htmlspecialchars()}</span></f:if>
                             <f:if condition="{item.date}"><span>{item.date -> f:format.stripTags() -> f:format.htmlspecialchars()}</span></f:if>
                             <f:if condition="{item.version}"><span>{item.version -> f:format.stripTags() -> f:format.htmlspecialchars()}</span></f:if>
                         </li>

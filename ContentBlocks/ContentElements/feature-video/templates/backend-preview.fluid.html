@@ -29,7 +29,7 @@
         <f:if condition="{data.description}">
             <div class="d-ce-preview__field">
                 <span class="d-ce-preview__label">Description</span>
-                <span class="d-ce-preview__value">{data.description -> f:format.stripTags() -> f:format.htmlspecialchars()}</span>
+                <span class="d-ce-preview__value">{data.description -> f:format.stripTags() -> f:format.htmlentitiesDecode() -> f:format.htmlspecialchars()}</span>
             </div>
         </f:if>
         <f:if condition="{data.video_url}">

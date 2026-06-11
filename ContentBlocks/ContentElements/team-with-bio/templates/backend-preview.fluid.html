@@ -47,7 +47,7 @@
                             </f:if>
                             <f:if condition="{item.name}"><span>{item.name -> f:format.stripTags() -> f:format.htmlspecialchars()}</span></f:if>
                             <f:if condition="{item.role}"><span>{item.role -> f:format.stripTags() -> f:format.htmlspecialchars()}</span></f:if>
-                            <f:if condition="{item.bio}"><span>{item.bio -> f:format.stripTags() -> f:format.htmlspecialchars()}</span></f:if>
+                            <f:if condition="{item.bio}"><span>{item.bio -> f:format.stripTags() -> f:format.htmlentitiesDecode() -> f:format.htmlspecialchars()}</span></f:if>
                         </li>
                     </f:for>
                 </ul>

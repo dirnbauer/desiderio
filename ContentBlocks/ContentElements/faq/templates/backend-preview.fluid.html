@@ -33,7 +33,7 @@
                     <f:for each="{data.items}" as="item">
                         <li>
                             <f:if condition="{item.question}"><span>{item.question -> f:format.stripTags() -> f:format.htmlspecialchars()}</span></f:if>
-                            <f:if condition="{item.answer}"><span>{item.answer -> f:format.stripTags() -> f:format.htmlspecialchars()}</span></f:if>
+                            <f:if condition="{item.answer}"><span>{item.answer -> f:format.stripTags() -> f:format.htmlentitiesDecode() -> f:format.htmlspecialchars()}</span></f:if>
                         </li>
                     </f:for>
                 </ul>

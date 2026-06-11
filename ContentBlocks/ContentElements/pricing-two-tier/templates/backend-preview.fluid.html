@@ -38,7 +38,7 @@
                 <ul class="d-ce-preview__list">
                     <f:for each="{data.plans}" as="item">
                         <li>
-                            <f:if condition="{item.description}"><span>{item.description -> f:format.stripTags() -> f:format.htmlspecialchars()}</span></f:if>
+                            <f:if condition="{item.description}"><span>{item.description -> f:format.stripTags() -> f:format.htmlentitiesDecode() -> f:format.htmlspecialchars()}</span></f:if>
                             <f:if condition="{item.price}"><span>{item.price -> f:format.stripTags() -> f:format.htmlspecialchars()}</span></f:if>
                             <f:if condition="{item.button_text}"><span>{item.button_text -> f:format.stripTags() -> f:format.htmlspecialchars()}</span></f:if>
                         </li>

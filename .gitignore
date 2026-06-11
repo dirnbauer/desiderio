@@ -11,3 +11,6 @@ public/
 !Resources/Public/ShadcnRegistry/
 !Resources/Public/ShadcnRegistry/**
 .mcp.json
+
+# Local backup archives (created before large refactors)
+backup-*.tar.gz

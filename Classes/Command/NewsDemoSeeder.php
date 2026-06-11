@@ -404,7 +404,9 @@ final class NewsDemoSeeder
         return [
             $this->block('desiderio_contenthighlight', [
                 'header' => 'At a glance',
-                'content' => '<p>' . $news['teaser'] . '</p>',
+                // First body paragraph, not the teaser — the article header
+                // already renders the teaser directly above this highlight.
+                'content' => substr($news['bodytext'], 0, ((int)strpos($news['bodytext'], '</p>')) + 4),
                 'variant' => 'muted',
                 'alignment' => 'start',
                 'link' => self::REPO_URL,

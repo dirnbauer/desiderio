@@ -4,6 +4,16 @@
 
 # Keep EverythingOn's Solr features enabled without dumping raw debug output into the frontend response.
 plugin.tx_solr.logging.debugOutput = 0
+# EverythingOn also enables debugQuery/echoParams on every Solr request and logs the full
+# query + response payload per request — ~1.3s extra per suggest keystroke. Keep both off.
+plugin.tx_solr.enableDebugMode = 0
+plugin.tx_solr.logging.query {
+  filters = 0
+  searchWords = 0
+  queryString = 0
+  rawPost = 0
+  rawGet = 0
+}
 plugin.tx_solr.logging.indexing.queue {
   tt_news >
   news = 1

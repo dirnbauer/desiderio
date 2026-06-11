@@ -1045,5 +1045,35 @@
         <target>Página %s, página actual</target>
       </segment>
     </unit>
+    <unit id="rte.abbreviation.button">
+      <segment state="final">
+        <source>Abbreviation</source>
+        <target>Abreviatura</target>
+      </segment>
+    </unit>
+    <unit id="rte.abbreviation.field.abbreviation">
+      <segment state="final">
+        <source>Abbreviation</source>
+        <target>Abreviatura</target>
+      </segment>
+    </unit>
+    <unit id="rte.abbreviation.field.title">
+      <segment state="final">
+        <source>Full term (title attribute)</source>
+        <target>Término completo (atributo title)</target>
+      </segment>
+    </unit>
+    <unit id="rte.abbreviation.header.insert">
+      <segment state="final">
+        <source>Insert abbreviation</source>
+        <target>Insertar abreviatura</target>
+      </segment>
+    </unit>
+    <unit id="rte.abbreviation.header.edit">
+      <segment state="final">
+        <source>Edit abbreviation</source>
+        <target>Editar abreviatura</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

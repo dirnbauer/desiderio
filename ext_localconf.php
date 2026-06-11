@@ -13,6 +13,11 @@ defined('TYPO3') or die();
 // Configuration/Sets/Desiderio/. Page TSconfig is auto-loaded from
 // Configuration/page.tsconfig in TYPO3 14.
 
+// Desiderio RTE preset: Default toolbar plus textPartLanguage (span lang) and
+// the custom abbreviation plugin (abbr title). Assigned per field via
+// richtextConfiguration: desiderio in the Content Block config.yaml files.
+$GLOBALS['TYPO3_CONF_VARS']['RTE']['Presets']['desiderio'] = 'EXT:desiderio/Configuration/RTE/Desiderio.yaml';
+
 // Powermail double-opt-in and disclaimer mails link with the record uid and a
 // sha256 hash in the route path; the appended ?cHash= adds ~70 characters and
 // breaks the link whenever the cHash salt changes. The hash already authorizes

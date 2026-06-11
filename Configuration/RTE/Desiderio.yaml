@@ -1,0 +1,68 @@
+# Desiderio RTE preset — default for all Desiderio content element RTE fields
+# (registered in ext_localconf.php, activated via Configuration/page.tsconfig).
+#
+# Based on EXT:rte_ckeditor Default.yaml, extended with:
+#   - textPartLanguage: assigns <span lang="…" dir="…"> to text parts (a11y)
+#   - abbreviation:     custom plugin inserting <abbr title="…"> (a11y)
+# DB processing already permits abbr/span and the title/lang/dir attributes
+# via the imported Processing.yaml.
+imports:
+    - { resource: 'EXT:rte_ckeditor/Configuration/RTE/Processing.yaml' }
+    - { resource: 'EXT:rte_ckeditor/Configuration/RTE/Editor/Base.yaml' }
+    - { resource: 'EXT:rte_ckeditor/Configuration/RTE/Editor/Plugins.yaml' }
+
+editor:
+  config:
+    importModules:
+      - { module: '@ckeditor/ckeditor5-language', exports: ['TextPartLanguage'] }
+      - { module: '@webconsulting/desiderio/Rte/abbreviation-plugin.js', exports: ['Abbreviation'] }
+
+    # Labels live in XLIFF 2.0 catalogs (Resources/Private/Language/labels.xlf
+    # + locale targets); TYPO3 resolves the LLL: references to the backend
+    # user's language before the config reaches CKEditor.
+    abbreviation:
+      buttonLabel: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:rte.abbreviation.button'
+      abbreviationFieldLabel: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:rte.abbreviation.field.abbreviation'
+      titleFieldLabel: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:rte.abbreviation.field.title'
+      insertHeaderLabel: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:rte.abbreviation.header.insert'
+      editHeaderLabel: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:rte.abbreviation.header.edit'
+
+    language:
+      textPartLanguage:
+        - { title: 'Deutsch', languageCode: 'de' }
+        - { title: 'English', languageCode: 'en' }
+        - { title: 'Français', languageCode: 'fr' }
+        - { title: 'Italiano', languageCode: 'it' }
+        - { title: 'Español', languageCode: 'es' }
+
+    toolbar:
+      items:
+        - style
+        - heading
+        - '|'
+        - bold
+        - italic
+        - subscript
+        - superscript
+        - softhyphen
+        - '|'
+        - textPartLanguage
+        - abbreviation
+        - '|'
+        - bulletedList
+        - numberedList
+        - blockQuote
+        - alignment
+        - '|'
+        - findAndReplace
+        - link
+        - '|'
+        - removeFormat
+        - undo
+        - redo
+        - '|'
+        - insertTable
+        - specialCharacters
+        - horizontalLine
+        - '|'
+        - sourceEditing

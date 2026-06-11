@@ -1005,6 +1005,16 @@ document.addEventListener('DOMContentLoaded', () => {
     if ((form.method || '').toLowerCase() !== 'post') return;
     if (event.defaultPrevented) return;
 
+    // Inside the TYPO3 visual editor canvas a native form POST is rejected
+    // by its persistence middleware (it only accepts its own JSON saves)
+    // and the exception page replaces the editing canvas — and a real
+    // submission mid-edit would send mails and discard unsaved changes.
+    if (document.querySelector('ve-editable-rich-text, ve-editable-text, img[data-veedit]')) {
+      event.preventDefault();
+      console.info('[desiderio] form submission blocked inside the visual editor');
+      return;
+    }
+
     if (form.dataset.dSubmitting === 'true') {
       event.preventDefault();
       return;

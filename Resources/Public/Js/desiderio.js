@@ -992,4 +992,46 @@ document.addEventListener('DOMContentLoaded', () => {
     lightboxTrigger = trigger;
     dialog.showModal();
   });
+
+  /* ------------------------------------------------------------------ */
+  /*  15. Double-submit guard for POST forms                             */
+  /* ------------------------------------------------------------------ */
+  const submitButtonsOf = form =>
+    form.querySelectorAll('button[type="submit"], button:not([type]), input[type="submit"]');
+
+  document.addEventListener('submit', event => {
+    const form = event.target;
+    if (!(form instanceof HTMLFormElement)) return;
+    if ((form.method || '').toLowerCase() !== 'post') return;
+    if (event.defaultPrevented) return;
+
+    if (form.dataset.dSubmitting === 'true') {
+      event.preventDefault();
+      return;
+    }
+    form.dataset.dSubmitting = 'true';
+
+    // Disable after the browser has serialized the form data for this
+    // submission — disabling synchronously would drop the trigger button's
+    // name/value pair from the payload.
+    window.setTimeout(() => {
+      submitButtonsOf(form).forEach(button => {
+        button.disabled = true;
+        button.setAttribute('aria-disabled', 'true');
+      });
+    }, 0);
+  });
+
+  // bfcache restore (back button) revives the page with the guard still
+  // armed — reset it so the form can be submitted again.
+  window.addEventListener('pageshow', event => {
+    if (!event.persisted) return;
+    document.querySelectorAll('form[data-d-submitting="true"]').forEach(form => {
+      delete form.dataset.dSubmitting;
+      submitButtonsOf(form).forEach(button => {
+        button.disabled = false;
+        button.removeAttribute('aria-disabled');
+      });
+    });
+  });
 });

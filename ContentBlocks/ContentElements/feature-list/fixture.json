@@ -6,17 +6,17 @@
     "items": [
         {
             "title": "15 shadcn presets",
-            "description": "Five presets from ui.shadcn.com/create plus ten house presets, from Aurora to Citrus — each with WCAG 2.2-checked contrast.",
+            "description": "<p>Five presets from <a href=\"https://ui.shadcn.com/create\">ui.shadcn.com/create</a> plus ten house presets, from Aurora to Citrus — each with <strong>WCAG 2.2-checked</strong> contrast.</p>",
             "icon": "globe"
         },
         {
             "title": "Per-page overrides",
-            "description": "Every campaign gets its own look: set a preset once in page properties and the whole subtree inherits it down the rootline.",
+            "description": "<p>Every campaign gets its own look: set a preset once in page properties and the whole subtree inherits it down the rootline.</p>",
             "icon": "map-pin"
         },
         {
             "title": "Runtime switching",
-            "description": "Change the preset and the whole site repaints from OKLCH tokens — no Tailwind rebuild, no deployment, no waiting.",
+            "description": "<p>Change the preset and the whole site repaints from OKLCH tokens — no <a href=\"https://tailwindcss.com\">Tailwind</a> rebuild, no deployment, no waiting.</p>",
             "icon": "sparkles"
         }
     ],

@@ -1,18 +1,36 @@
 {
     "_type": "stats",
     "header": "Teams keep hitting the seed command",
-    "description": "One command — desiderio:styleguide:seed — builds a complete, themed demo site. Here's how often it ran across the trailing six months. Demo data, real habit-forming.",
+    "description": "<p>One command — <strong>desiderio:styleguide:seed</strong> — builds a complete, themed demo site. Here's how often it ran across the trailing six months. Demo data, real habit-forming.</p>",
     "chart_data": "[{\"label\":\"Jan\",\"value\":820},{\"label\":\"Feb\",\"value\":910},{\"label\":\"Mar\",\"value\":1040},{\"label\":\"Apr\",\"value\":1180},{\"label\":\"May\",\"value\":1325},{\"label\":\"Jun\",\"value\":1560}]",
     "series_name": "Seed runs",
     "value_unit": "seed runs",
     "data_summary": "Monthly seed runs grew from 820 in January to 1,560 in June 2026 — up 90% in six months, with the steepest climb right after per-page theme presets shipped in v2.6.",
     "data_points": [
-        { "point_label": "Jan", "point_value": "820" },
-        { "point_label": "Feb", "point_value": "910" },
-        { "point_label": "Mar", "point_value": "1040" },
-        { "point_label": "Apr", "point_value": "1180" },
-        { "point_label": "May", "point_value": "1325" },
-        { "point_label": "Jun", "point_value": "1560" }
+        {
+            "point_label": "Jan",
+            "point_value": "820"
+        },
+        {
+            "point_label": "Feb",
+            "point_value": "910"
+        },
+        {
+            "point_label": "Mar",
+            "point_value": "1040"
+        },
+        {
+            "point_label": "Apr",
+            "point_value": "1180"
+        },
+        {
+            "point_label": "May",
+            "point_value": "1325"
+        },
+        {
+            "point_label": "Jun",
+            "point_value": "1560"
+        }
     ],
     "chart_type": "area",
     "color_variant": "primary",

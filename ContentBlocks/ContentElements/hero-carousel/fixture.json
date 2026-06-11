@@ -6,7 +6,7 @@
         {
             "title": "Edit the page on the page",
             "lead": "The Visual Editor turns the TYPO3 backend into the site itself — click, type, done.",
-            "description": "Editors work directly on the rendered page with the live theme applied. No guessing from gray records, no preview round-trips — what they see is what ships.",
+            "description": "<p>Editors work directly on the rendered page with the live theme applied. No guessing from gray records, no preview round-trips — what they see is what ships.</p>",
             "image": {
                 "file": "Resources/Public/Styleguide/Backend/backend-visual-editor.png",
                 "title": "Editing in the Desiderio Visual Editor",
@@ -20,7 +20,7 @@
         {
             "title": "Publish design-system polish",
             "lead": "The rendered site looks like a design agency built it — because a design system did.",
-            "description": "Every one of the 255 elements draws from the same OKLCH tokens, so headlines, cards, and buttons stay perfectly on palette. This is the Lagoon preset, untouched.",
+            "description": "<p>Every one of the 255 elements draws from the same <strong>OKLCH tokens</strong>, so headlines, cards, and buttons stay perfectly on palette. This is the Lagoon preset, untouched.</p>",
             "image": {
                 "file": "Resources/Public/Styleguide/Frontend/frontend-hero-lagoon.png",
                 "title": "Desiderio frontend in the Lagoon preset",
@@ -34,7 +34,7 @@
         {
             "title": "Dark mode, already done",
             "lead": "Light and dark live in the same token set — flip the switch and every element follows.",
-            "description": "No second stylesheet, no forgotten corners: the Midnight preset renders this pricing page in WCAG 2.2-checked contrast, straight out of the box.",
+            "description": "<p>No second stylesheet, no forgotten corners: the <strong>Midnight preset</strong> renders this pricing page in WCAG 2.2-checked contrast, straight out of the box.</p>",
             "image": {
                 "file": "Resources/Public/Styleguide/Frontend/frontend-pricing-midnight-dark.png",
                 "title": "Desiderio pricing page in the dark Midnight preset",

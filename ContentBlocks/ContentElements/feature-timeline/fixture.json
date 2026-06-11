@@ -6,22 +6,22 @@
         {
             "step": "1",
             "title": "Install the package",
-            "description": "Run composer require webconsulting/desiderio on TYPO3 14.3+ with PHP 8.3+. GPL-2.0 — nothing to license, nothing to negotiate."
+            "description": "<p>Run composer require webconsulting/desiderio on <a href=\"https://typo3.org\">TYPO3 14.3+</a> with PHP 8.3+. GPL-2.0 — nothing to license, nothing to negotiate.</p>"
         },
         {
             "step": "2",
             "title": "Add the site set",
-            "description": "Include the Desiderio site set and the theme settings — preset, dark mode, density, radius, fonts — appear in your site configuration."
+            "description": "<p>Include the Desiderio site set and the theme settings — preset, dark mode, density, radius, fonts — appear in your site configuration.</p>"
         },
         {
             "step": "3",
             "title": "Seed the styleguide",
-            "description": "desiderio:styleguide:seed creates a complete demo site with all 255 elements — idempotent and workspaces-safe, so re-running is always safe."
+            "description": "<p>desiderio:styleguide:seed creates a <strong>complete demo site</strong> with all 255 elements — idempotent and workspaces-safe, so re-running is always safe.</p>"
         },
         {
             "step": "4",
             "title": "Pick your look",
-            "description": "Every styleguide chapter runs a different theme preset via the per-page override — browse all 15, pick yours, and you're demo-ready."
+            "description": "<p>Every styleguide chapter runs a different theme preset via the <strong>per-page override</strong> — browse all 15, pick yours, and you're demo-ready.</p>"
         }
     ]
 }

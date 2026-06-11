@@ -7,17 +7,17 @@
         {
             "icon": "shield-check",
             "title": "PHPStan level max",
-            "description": "The entire codebase is statically analyzed at the strictest level on every single change."
+            "description": "<p>The entire codebase is statically analyzed at the strictest level on every single change.</p>"
         },
         {
             "icon": "lock",
             "title": "11-category template audit",
-            "description": "Zero tolerance for inline styles or hardcoded colors across all 255 element templates."
+            "description": "<p><strong>Zero tolerance</strong> for inline styles or hardcoded colors across all 255 element templates.</p>"
         },
         {
             "icon": "clock",
             "title": "400 tests on PHP 8.3 and 8.4",
-            "description": "Unit and functional PHPUnit suites run against both PHP versions before every merge."
+            "description": "<p>Unit and functional PHPUnit suites run against both PHP versions before every merge.</p>"
         }
     ]
 }

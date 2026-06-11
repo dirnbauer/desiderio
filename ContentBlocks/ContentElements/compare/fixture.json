@@ -4,23 +4,39 @@
     "header": "Build it yourself vs. buy Desiderio Pro",
     "subheadline": "Hand-building 255 elements is months of senior developer budget. Desiderio Pro is €49/month — do the math once and never do the templating again.",
     "left_title": "Build it yourself",
-    "left_description": "Every relaunch starts from zero: templates, backend previews, accessibility, dark mode — months of senior time, and the maintenance is yours forever.",
+    "left_description": "<p>Every relaunch starts from zero: templates, backend previews, accessibility, dark mode — months of senior time, and the maintenance is yours forever.</p>",
     "left_points": [
-        {"text": "Weeks of templating before editors see a single page"},
-        {"text": "Backend previews and dark mode rarely get built at all"},
-        {"text": "Every accessibility and upgrade fix lands on your team"},
-        {"text": "Each new brand or theme means another build and deploy"}
+        {
+            "text": "Weeks of templating before editors see a single page"
+        },
+        {
+            "text": "Backend previews and dark mode rarely get built at all"
+        },
+        {
+            "text": "Every accessibility and upgrade fix lands on your team"
+        },
+        {
+            "text": "Each new brand or theme means another build and deploy"
+        }
     ],
     "left_button_text": "Compare the math",
     "left_button_link": "https://github.com/dirnbauer/desiderio",
     "right_badge": "Recommended",
     "right_title": "Buy Desiderio Pro",
-    "right_description": "€49/month, or €490/year with 2 months free: all 255 audited elements plus priority support, guaranteed LTS updates, and early element drops from the creators.",
+    "right_description": "<p><strong>€49/month</strong>, or €490/year with 2 months free: all 255 audited elements plus priority support, guaranteed LTS updates, and early element drops from the creators.</p>",
     "right_points": [
-        {"text": "255 previewed elements on day one — start free, upgrade anytime"},
-        {"text": "15 runtime presets; ~3 weeks saved per relaunch (customer-reported)"},
-        {"text": "Priority email support with 2-day response"},
-        {"text": "Guaranteed LTS compatibility updates from the maintainers"}
+        {
+            "text": "255 previewed elements on day one — start free, upgrade anytime"
+        },
+        {
+            "text": "15 runtime presets; ~3 weeks saved per relaunch (customer-reported)"
+        },
+        {
+            "text": "Priority email support with 2-day response"
+        },
+        {
+            "text": "Guaranteed LTS compatibility updates from the maintainers"
+        }
     ],
     "right_button_text": "Go Pro for €49/month",
     "right_button_link": "https://github.com/dirnbauer/desiderio"

@@ -7,13 +7,13 @@
     "brand_tagline": "shadcn/ui components and themes for TYPO3 14",
     "brand_link": "t3://page?uid=1",
     "intro_title": "255 elements. 10 groups. One theme contract.",
-    "intro_text": "Browse every content element group, the integrations, and the docs — then start free and go Pro when you scale. Everything here is themed by the same shadcn token contract.",
+    "intro_text": "<p>Browse every content element group, the integrations, and the docs — then <strong>start free</strong> and go Pro when you scale. Everything here is themed by the same <a href=\"https://ui.shadcn.com\">shadcn</a> token contract.</p>",
     "primary_button_text": "Start free",
     "primary_button_link": "t3://page?uid=1",
     "menu_groups": [
         {
             "title": "Content Elements",
-            "description": "The first five of ten element groups.",
+            "description": "<p>The first five of ten element groups.</p>",
             "link_1_label": "Hero",
             "link_1": "t3://page?uid=1",
             "link_2_label": "Features",
@@ -27,7 +27,7 @@
         },
         {
             "title": "More elements",
-            "description": "The other five groups in the kit.",
+            "description": "<p>The other five groups in the kit.</p>",
             "link_1_label": "People & Team",
             "link_1": "t3://page?uid=1",
             "link_2_label": "Navigation",
@@ -41,7 +41,7 @@
         },
         {
             "title": "Integrations",
-            "description": "Optional extras, styled to match.",
+            "description": "<p>Optional extras, styled to match.</p>",
             "link_1_label": "News & Blog",
             "link_1": "t3://page?uid=1",
             "link_2_label": "Powermail",
@@ -55,7 +55,7 @@
         },
         {
             "title": "Project",
-            "description": "Made by webconsulting studio, GPL-2.0.",
+            "description": "<p>Made by webconsulting studio, <a href=\"https://www.gnu.org/licenses/old-licenses/gpl-2.0.html\">GPL-2.0</a>.</p>",
             "link_1_label": "Docs",
             "link_1": "t3://page?uid=1",
             "link_2_label": "Styleguide",

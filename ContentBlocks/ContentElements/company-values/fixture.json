@@ -7,17 +7,17 @@
         {
             "icon": "users",
             "title": "Editors first",
-            "description": "If a TYPO3 editor cannot understand an element from its backend preview, it is not done. All 255 elements preview before they ship."
+            "description": "<p>If a <a href=\"https://typo3.org\">TYPO3</a> editor cannot understand an element from its <strong>backend preview</strong>, it is not done. All 255 elements preview before they ship.</p>"
         },
         {
             "icon": "shield-check",
             "title": "Accessible by default",
-            "description": "WCAG-minded markup is the baseline, not a feature flag. Focus states, ARIA, and contrast survive every one of the 15 theme presets."
+            "description": "<p>WCAG-minded markup is the baseline, not a feature flag. Focus states, ARIA, and contrast survive every one of the 15 theme presets.</p>"
         },
         {
             "icon": "lightning",
             "title": "No rebuilds",
-            "description": "Themes, density, radius, and dark mode are runtime decisions. Switching a preset repaints the whole site without touching a build pipeline."
+            "description": "<p>Themes, density, radius, and dark mode are <strong>runtime decisions</strong>. Switching a preset repaints the whole site without touching a build pipeline.</p>"
         }
     ]
 }

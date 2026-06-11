@@ -9,7 +9,7 @@
         "alternative": "Northwind Group demo brand logo.",
         "description": "Fictional demo brand from the Desiderio styleguide."
     },
-    "description": "Northwind's agency consolidated five brand sites into a single TYPO3 14 install. Each subtree carries its own Desiderio theme preset — Marine for logistics, Gold for the holding, Bloom for the careers portal — inherited down the rootline through one page property. The creators handled installation & setup (€890) and reviewed the custom presets through the Agency plan; the whole relaunch shipped in six weeks. One component library, five visual identities, zero rebuilds when a brand changes its look.",
+    "description": "<p>Northwind's agency consolidated five brand sites into a single <a href=\"https://typo3.org\">TYPO3 14</a> install. Each subtree carries its own Desiderio theme preset — Marine for logistics, Gold for the holding, Bloom for the careers portal — inherited down the rootline through one page property. The creators handled installation &amp; setup (€890) and reviewed the custom presets through the <strong>Agency plan</strong>; the whole relaunch shipped in six weeks.<br />One component library, five visual identities, <strong>zero rebuilds</strong> when a brand changes its look.</p>",
     "image": {
         "file": "Resources/Public/Styleguide/Backend/backend-page-properties-theme.png",
         "title": "Desiderio per-page theme preset field",
@@ -17,10 +17,22 @@
         "description": "Screenshot of the TYPO3 backend with Desiderio installed."
     },
     "metrics": [
-        { "value": "5", "label": "brand sites on one install" },
-        { "value": "15", "label": "theme presets to pick from" },
-        { "value": "0", "label": "rebuilds for theme changes" },
-        { "value": "255", "label": "elements shared across brands" }
+        {
+            "value": "5",
+            "label": "brand sites on one install"
+        },
+        {
+            "value": "15",
+            "label": "theme presets to pick from"
+        },
+        {
+            "value": "0",
+            "label": "rebuilds for theme changes"
+        },
+        {
+            "value": "255",
+            "label": "elements shared across brands"
+        }
     ],
     "link": "https://github.com/dirnbauer/desiderio"
 }

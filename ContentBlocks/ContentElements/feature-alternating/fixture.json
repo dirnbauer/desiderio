@@ -5,7 +5,7 @@
     "items": [
         {
             "title": "See the page before it renders",
-            "description": "Every one of the 255 elements ships a backend preview built on Content Blocks 2.2. The page module reads like the live page, so editors stop publishing blind — and stop pinging developers to ask which block is which.",
+            "description": "<p>Every one of the 255 elements ships a backend preview built on <strong>Content Blocks 2.2</strong>. The page module reads like the live page, so editors stop publishing blind — and stop pinging developers to ask which block is which.</p>",
             "image": {
                 "file": "Resources/Public/Styleguide/Backend/backend-page-module-hero.png",
                 "title": "Desiderio page module previews",
@@ -17,7 +17,7 @@
         },
         {
             "title": "Restyle the site without a deployment",
-            "description": "Preset, dark mode, density, radius, container width, and fonts live in the site settings module. A brand refresh becomes an editor task instead of a development ticket — done before the kickoff call ends.",
+            "description": "<p>Preset, dark mode, density, radius, container width, and fonts live in the site settings module. A brand refresh becomes an editor task instead of a development ticket — done before the kickoff call ends.</p>",
             "image": {
                 "file": "Resources/Public/Styleguide/Backend/backend-site-settings-theme.png",
                 "title": "Desiderio theme site settings",
@@ -29,7 +29,7 @@
         },
         {
             "title": "Give every campaign its own look",
-            "description": "A theme preset field in page properties overrides the site default and inherits down the rootline. One install runs a different look per campaign, brand, or section — multi-brand without multi-site overhead.",
+            "description": "<p>A <strong>theme preset field</strong> in page properties overrides the site default and inherits down the rootline. One install runs a different look per campaign, brand, or section — multi-brand without multi-site overhead.</p>",
             "image": {
                 "file": "Resources/Public/Styleguide/Backend/backend-page-properties-theme.png",
                 "title": "Per-page theme preset field",

@@ -6,7 +6,7 @@
         {
             "tab_label": "Compose",
             "title": "Pick from ten element groups",
-            "description": "The new-content wizard organizes all 255 Desiderio elements into ten curated groups. Editors find the right hero, pricing table, or footer in seconds instead of scrolling a flat list.",
+            "description": "<p>The new-content wizard organizes all 255 Desiderio elements into <strong>ten curated groups</strong>. Editors find the right hero, pricing table, or footer in seconds instead of scrolling a flat list.</p>",
             "image": {
                 "file": "Resources/Public/Styleguide/Backend/backend-content-wizard.png",
                 "title": "Desiderio content wizard",
@@ -18,7 +18,7 @@
         {
             "tab_label": "Edit",
             "title": "Edit inline in the Visual Editor",
-            "description": "The Visual Editor renders the real page with the live theme and lets editors type straight into it. What they see while editing is exactly what visitors get — no preview round-trips, no surprises.",
+            "description": "<p>The <strong>Visual Editor</strong> renders the real page with the live theme and lets editors type straight into it. What they see while editing is exactly what visitors get — no preview round-trips, no surprises.</p>",
             "image": {
                 "file": "Resources/Public/Styleguide/Backend/backend-visual-editor.png",
                 "title": "Editing in the Desiderio Visual Editor",
@@ -30,7 +30,7 @@
         {
             "tab_label": "Theme",
             "title": "Restyle the site from settings",
-            "description": "Theme preset, dark mode, density, radius, and fonts live in the site settings module. Switching presets repaints every element from OKLCH tokens — no rebuild, no deployment window.",
+            "description": "<p>Theme preset, dark mode, density, radius, and fonts live in the site settings module. Switching presets repaints every element from OKLCH tokens — no rebuild, no deployment window.</p>",
             "image": {
                 "file": "Resources/Public/Styleguide/Backend/backend-site-settings-theme.png",
                 "title": "Desiderio theme site settings",
@@ -42,7 +42,7 @@
         {
             "tab_label": "Override",
             "title": "Theme a single subtree differently",
-            "description": "A preset field in page properties overrides the site default and inherits down the rootline. Campaign pages, brand sections, or styleguide chapters each get their own look in one install.",
+            "description": "<p>A preset field in page properties overrides the site default and inherits down the rootline. Campaign pages, brand sections, or styleguide chapters each get their own look in one install.</p>",
             "image": {
                 "file": "Resources/Public/Styleguide/Backend/backend-page-properties-theme.png",
                 "title": "Per-page theme preset field",

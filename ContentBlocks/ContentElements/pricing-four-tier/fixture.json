@@ -7,12 +7,20 @@
         {
             "title": "Community",
             "price": "€0",
-            "description": "The complete open source kit, self-served and free forever.",
+            "description": "<p>The complete open source kit, self-served and <strong>free forever</strong>.</p>",
             "features": [
-                { "text": "255 elements in 10 groups" },
-                { "text": "Backend previews for every element" },
-                { "text": "One-command demo seeding" },
-                { "text": "Community support on GitHub" }
+                {
+                    "text": "255 elements in 10 groups"
+                },
+                {
+                    "text": "Backend previews for every element"
+                },
+                {
+                    "text": "One-command demo seeding"
+                },
+                {
+                    "text": "Community support on GitHub"
+                }
             ],
             "button_text": "Install for free",
             "button_link": "https://github.com/dirnbauer/desiderio",
@@ -21,13 +29,23 @@
         {
             "title": "Pro",
             "price": "€49/mo",
-            "description": "Per project — €490/year with 2 months free. The recommended tier.",
+            "description": "<p>Per project — €490/year with 2 months free. The recommended tier.</p>",
             "features": [
-                { "text": "Everything in Community" },
-                { "text": "Priority email support, 2-day response" },
-                { "text": "Guaranteed LTS compatibility updates" },
-                { "text": "Early access to drops and preset packs" },
-                { "text": "Minor-version upgrade assistance" }
+                {
+                    "text": "Everything in Community"
+                },
+                {
+                    "text": "Priority email support, 2-day response"
+                },
+                {
+                    "text": "Guaranteed LTS compatibility updates"
+                },
+                {
+                    "text": "Early access to drops and preset packs"
+                },
+                {
+                    "text": "Minor-version upgrade assistance"
+                }
             ],
             "button_text": "Go Pro",
             "button_link": "https://github.com/dirnbauer/desiderio",
@@ -36,14 +54,26 @@
         {
             "title": "Agency",
             "price": "€149/mo",
-            "description": "Unlimited projects — €1,490/year with 2 months free.",
+            "description": "<p>Unlimited projects — <strong>€1,490/year</strong> with 2 months free.</p>",
             "features": [
-                { "text": "Everything in Pro, unlimited projects" },
-                { "text": "4-hour priority response" },
-                { "text": "Quarterly editor onboarding session" },
-                { "text": "Custom preset review by the creators" },
-                { "text": "Direct line to the maintainers" },
-                { "text": "One plan for every client site" }
+                {
+                    "text": "Everything in Pro, unlimited projects"
+                },
+                {
+                    "text": "4-hour priority response"
+                },
+                {
+                    "text": "Quarterly editor onboarding session"
+                },
+                {
+                    "text": "Custom preset review by the creators"
+                },
+                {
+                    "text": "Direct line to the maintainers"
+                },
+                {
+                    "text": "One plan for every client site"
+                }
             ],
             "button_text": "Choose Agency",
             "button_link": "https://github.com/dirnbauer/desiderio",
@@ -52,14 +82,26 @@
         {
             "title": "Creator Care",
             "price": "€490/mo",
-            "description": "With the creators: a standing retainer from the team that built Desiderio.",
+            "description": "<p>With the creators: a <strong>standing retainer</strong> from the team that built Desiderio.</p>",
             "features": [
-                { "text": "4 development hours every month" },
-                { "text": "Priority fixes from the maintainers" },
-                { "text": "Security monitoring" },
-                { "text": "LTS upgrade planning" },
-                { "text": "Built by the people behind all 255 elements" },
-                { "text": "Pairs with Community, Pro, or Agency" }
+                {
+                    "text": "4 development hours every month"
+                },
+                {
+                    "text": "Priority fixes from the maintainers"
+                },
+                {
+                    "text": "Security monitoring"
+                },
+                {
+                    "text": "LTS upgrade planning"
+                },
+                {
+                    "text": "Built by the people behind all 255 elements"
+                },
+                {
+                    "text": "Pairs with Community, Pro, or Agency"
+                }
             ],
             "button_text": "Book Creator Care",
             "button_link": "https://github.com/dirnbauer/desiderio",

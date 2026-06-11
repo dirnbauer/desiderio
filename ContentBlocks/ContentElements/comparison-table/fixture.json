@@ -1,7 +1,7 @@
 {
     "_type": "table",
     "header": "Free forever — or with the creators on speed dial",
-    "description": "Every tier ships the same software: all 255 elements, GPL-2.0, full source. Pro and Agency add the creators' time and guarantees. Founding customers get 20% off the first year of Pro or Agency with code DESIDERIO20.",
+    "description": "<p>Every tier ships the same software: all 255 elements, GPL-2.0, full source. Pro and Agency add the creators' time and guarantees. Founding customers get <strong>20% off</strong> the first year of Pro or Agency with code DESIDERIO20.</p>",
     "column_items": [
         {
             "name": "Community",
@@ -20,49 +20,85 @@
         {
             "name": "Price per month (per project)",
             "tier_values": [
-                {"value": "€0 — free forever"},
-                {"value": "€49"},
-                {"value": "€149"}
+                {
+                    "value": "€0 — free forever"
+                },
+                {
+                    "value": "€49"
+                },
+                {
+                    "value": "€149"
+                }
             ]
         },
         {
             "name": "Price per year (2 months free)",
             "tier_values": [
-                {"value": "€0"},
-                {"value": "€490"},
-                {"value": "€1,490"}
+                {
+                    "value": "€0"
+                },
+                {
+                    "value": "€490"
+                },
+                {
+                    "value": "€1,490"
+                }
             ]
         },
         {
             "name": "All 255 elements, 15 presets, full source (GPL-2.0)",
             "tier_values": [
-                {"value": "Included"},
-                {"value": "Included"},
-                {"value": "Included"}
+                {
+                    "value": "Included"
+                },
+                {
+                    "value": "Included"
+                },
+                {
+                    "value": "Included"
+                }
             ]
         },
         {
             "name": "Projects covered",
             "tier_values": [
-                {"value": "Unlimited"},
-                {"value": "1 per license"},
-                {"value": "Unlimited"}
+                {
+                    "value": "Unlimited"
+                },
+                {
+                    "value": "1 per license"
+                },
+                {
+                    "value": "Unlimited"
+                }
             ]
         },
         {
             "name": "Support & response time",
             "tier_values": [
-                {"value": "Community & GitHub issues"},
-                {"value": "Priority email, 2-day response"},
-                {"value": "4-hour priority response"}
+                {
+                    "value": "Community & GitHub issues"
+                },
+                {
+                    "value": "Priority email, 2-day response"
+                },
+                {
+                    "value": "4-hour priority response"
+                }
             ]
         },
         {
             "name": "Guarantees & extras from the creators",
             "tier_values": [
-                {"value": "—"},
-                {"value": "LTS updates, early element & preset drops, upgrade assistance"},
-                {"value": "Everything in Pro + quarterly editor onboarding, custom preset review, direct line to the maintainers"}
+                {
+                    "value": "—"
+                },
+                {
+                    "value": "LTS updates, early element & preset drops, upgrade assistance"
+                },
+                {
+                    "value": "Everything in Pro + quarterly editor onboarding, custom preset review, direct line to the maintainers"
+                }
             ]
         }
     ]

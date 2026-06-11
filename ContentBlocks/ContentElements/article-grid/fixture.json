@@ -6,19 +6,19 @@
         {
             "category": "Theming",
             "title": "Why we stopped hand-building TYPO3 templates",
-            "description": "Every project used to start with three weeks of template work. Now it starts with composer require — here's the math that convinced us, and what we do with the time instead.",
+            "description": "<p>Every project used to start with <strong>three weeks</strong> of template work. Now it starts with <a href=\"https://packagist.org\">composer require</a> — here's the math that convinced us, and what we do with the time instead.</p>",
             "link": "https://example.com/blog/per-page-theme-presets"
         },
         {
             "category": "Architecture",
             "title": "49 components that make 255 elements feel like one design",
-            "description": "17 atoms, 28 molecules, 4 layout primitives. The architecture decision that keeps a quarter-thousand content elements perfectly consistent — and your custom ones too.",
+            "description": "<p>17 atoms, 28 molecules, 4 layout primitives. The architecture decision that keeps a quarter-thousand content elements <strong>perfectly consistent</strong> — and your custom ones too.</p>",
             "link": "https://example.com/blog/fluid-component-architecture"
         },
         {
             "category": "Accessibility",
             "title": "Accessible by default, audited on every commit",
-            "description": "Semantic landmarks, visible focus states, WCAG 2.2-checked contrast on all 15 presets, and an 11-category template audit with zero tolerance. Pass your next a11y review before it starts.",
+            "description": "<p>Semantic landmarks, visible focus states, <strong>WCAG 2.2-checked contrast</strong> on all 15 presets, and an 11-category template audit with zero tolerance. Pass your next a11y review before it starts.</p>",
             "link": "https://example.com/blog/accessibility-by-default"
         }
     ]

@@ -8,7 +8,7 @@
     "items": [
         {
             "slide_title": "Edit your site right on the page",
-            "slide_description": "The Visual Editor turns the frontend into the editing surface — click any Desiderio element and change it inline. Editors stop guessing what 'save' will look like.",
+            "slide_description": "<p>The <strong>Visual Editor</strong> turns the frontend into the editing surface — click any Desiderio element and change it inline. Editors stop guessing what 'save' will look like.</p>",
             "slide_link": "t3://page?uid=1",
             "slide_image": {
                 "file": "Resources/Public/Styleguide/Backend/backend-visual-editor.png",
@@ -20,7 +20,7 @@
         },
         {
             "slide_title": "A launch-ready frontend out of the box",
-            "slide_description": "This is the seeded demo site on the Lagoon preset — not a mockup, a real TYPO3 frontend you get minutes after composer require.",
+            "slide_description": "<p>This is the seeded demo site on the <strong>Lagoon preset</strong> — not a mockup, a real TYPO3 frontend you get minutes after <a href=\"https://packagist.org\">composer</a> require.</p>",
             "slide_link": "t3://page?uid=1",
             "slide_image": {
                 "file": "Resources/Public/Styleguide/Frontend/frontend-hero-lagoon.png",
@@ -32,7 +32,7 @@
         },
         {
             "slide_title": "Dark mode on every preset",
-            "slide_description": "OKLCH tokens give each of the 15 presets a matching dark scheme with WCAG 2.2-checked contrast — here's the pricing page on Midnight, no overrides involved.",
+            "slide_description": "<p><strong>OKLCH tokens</strong> give each of the 15 presets a matching dark scheme with WCAG 2.2-checked contrast — here's the pricing page on Midnight, no overrides involved.</p>",
             "slide_link": "t3://page?uid=1",
             "slide_image": {
                 "file": "Resources/Public/Styleguide/Frontend/frontend-pricing-midnight-dark.png",
@@ -44,7 +44,7 @@
         },
         {
             "slide_title": "Previews for all 255 elements",
-            "slide_description": "Every Desiderio Content Block renders a real preview in the page module, so editors recognise blocks at a glance — no gray placeholder boxes, ever.",
+            "slide_description": "<p>Every Desiderio Content Block renders a <strong>real preview</strong> in the page module, so editors recognise blocks at a glance — no gray placeholder boxes, ever.</p>",
             "slide_image": {
                 "file": "Resources/Public/Styleguide/Backend/backend-page-module-hero.png",
                 "title": "Desiderio page module previews",
@@ -56,7 +56,7 @@
         },
         {
             "slide_title": "Ten element groups in the wizard",
-            "slide_description": "Hero, Features, Pricing, Data, Trust, Team, Navigation, Footers, Content, and Conversion — 255 elements, all one click away in the new-content wizard.",
+            "slide_description": "<p>Hero, Features, Pricing, Data, Trust, Team, Navigation, Footers, Content, and Conversion — <strong>255 elements</strong>, all one click away in the new-content wizard.</p>",
             "slide_image": {
                 "file": "Resources/Public/Styleguide/Backend/backend-content-wizard.png",
                 "title": "Desiderio new content element wizard",
@@ -68,7 +68,7 @@
         },
         {
             "slide_title": "Reskin the whole site from site settings",
-            "slide_description": "Pick one of 15 shadcn presets, density, radius, and fonts in site settings — the entire frontend repaints at runtime. No build pipeline was harmed.",
+            "slide_description": "<p>Pick one of <strong>15 shadcn presets</strong>, density, radius, and fonts in site settings — the entire frontend repaints at runtime. No build pipeline was harmed.</p>",
             "slide_image": {
                 "file": "Resources/Public/Styleguide/Backend/backend-site-settings-theme.png",
                 "title": "Desiderio site settings theme category",
@@ -80,7 +80,7 @@
         },
         {
             "slide_title": "Per-page theme presets — new in 2.6",
-            "slide_description": "Any page subtree can run its own preset, inherited down the rootline. Campaign in Midnight, corporate site on Aurora, one installation.",
+            "slide_description": "<p>Any page subtree can run its own preset, inherited down the rootline. Campaign in Midnight, corporate site on Aurora, one installation.</p>",
             "slide_image": {
                 "file": "Resources/Public/Styleguide/Backend/backend-page-properties-theme.png",
                 "title": "Desiderio per-page theme preset field",
@@ -92,7 +92,7 @@
         },
         {
             "slide_title": "Eight ready-made forms",
-            "slide_description": "Contact, booking, callback, and more ship as TYPO3 Form Framework definitions, with optional Friendly Captcha and Brevo double-opt-in finishers.",
+            "slide_description": "<p>Contact, booking, callback, and more ship as <a href=\"https://typo3.org\">TYPO3</a> Form Framework definitions, with optional Friendly Captcha and Brevo double-opt-in finishers.</p>",
             "slide_image": {
                 "file": "Resources/Public/Styleguide/Backend/backend-forms-module.png",
                 "title": "Desiderio forms module",
@@ -104,7 +104,7 @@
         },
         {
             "slide_title": "Dashboards your data team will envy",
-            "slide_description": "32 data and dashboard elements — charts, KPIs, tables — all token-themed, here on the Forest preset. Reports that match your brand without a single CSS line.",
+            "slide_description": "<p>32 data and dashboard elements — charts, KPIs, tables — all token-themed, here on the <strong>Forest preset</strong>. Reports that match your brand without a single CSS line.</p>",
             "slide_image": {
                 "file": "Resources/Public/Styleguide/Frontend/frontend-dashboards-forest.png",
                 "title": "Desiderio dashboards page on the Forest preset",

@@ -1,0 +1,689 @@
+{
+    "generated_by": "scripts/convert-textarea-to-rte.php",
+    "fields": [
+        {
+            "table": "tt_content",
+            "column": "description",
+            "ctype": "desiderio_aboutus",
+            "element": "about-us"
+        },
+        {
+            "table": "tt_content",
+            "column": "summary",
+            "ctype": "desiderio_analyticsoverview",
+            "element": "analytics-overview"
+        },
+        {
+            "table": "article_grid_items",
+            "column": "description",
+            "ctype": null,
+            "element": "article-grid"
+        },
+        {
+            "table": "tt_content",
+            "column": "description",
+            "ctype": "desiderio_audioplayer",
+            "element": "audio-player"
+        },
+        {
+            "table": "tt_content",
+            "column": "description",
+            "ctype": "desiderio_badgegrid",
+            "element": "badge-grid"
+        },
+        {
+            "table": "benefit_cards_items",
+            "column": "description",
+            "ctype": null,
+            "element": "benefit-cards"
+        },
+        {
+            "table": "blog_teasers_posts",
+            "column": "excerpt",
+            "ctype": null,
+            "element": "blog-teasers"
+        },
+        {
+            "table": "board_members_members",
+            "column": "bio",
+            "ctype": null,
+            "element": "board-members"
+        },
+        {
+            "table": "tt_content",
+            "column": "description",
+            "ctype": "desiderio_bookingform",
+            "element": "booking-form"
+        },
+        {
+            "table": "tt_content",
+            "column": "body",
+            "ctype": "desiderio_brandstory",
+            "element": "brand-story"
+        },
+        {
+            "table": "tt_content",
+            "column": "description",
+            "ctype": "desiderio_bundlepricing",
+            "element": "bundle-pricing"
+        },
+        {
+            "table": "tt_content",
+            "column": "description",
+            "ctype": "desiderio_callbackrequest",
+            "element": "callback-request"
+        },
+        {
+            "table": "tt_content",
+            "column": "description",
+            "ctype": "desiderio_card",
+            "element": "card"
+        },
+        {
+            "table": "tt_content",
+            "column": "description",
+            "ctype": "desiderio_cardinteractive",
+            "element": "card-interactive"
+        },
+        {
+            "table": "tt_content",
+            "column": "description",
+            "ctype": "desiderio_cardoverlay",
+            "element": "card-overlay"
+        },
+        {
+            "table": "tt_content",
+            "column": "description",
+            "ctype": "desiderio_cardpricing",
+            "element": "card-pricing"
+        },
+        {
+            "table": "tt_content",
+            "column": "summary",
+            "ctype": "desiderio_casestudycard",
+            "element": "case-study-card"
+        },
+        {
+            "table": "tt_content",
+            "column": "description",
+            "ctype": "desiderio_casestudyfeatured",
+            "element": "case-study-featured"
+        },
+        {
+            "table": "case_study_grid_cases",
+            "column": "summary",
+            "ctype": null,
+            "element": "case-study-grid"
+        },
+        {
+            "table": "category_cards_items",
+            "column": "description",
+            "ctype": null,
+            "element": "category-cards"
+        },
+        {
+            "table": "certifications_certifications",
+            "column": "description",
+            "ctype": null,
+            "element": "certifications"
+        },
+        {
+            "table": "tt_content",
+            "column": "description",
+            "ctype": "desiderio_chart",
+            "element": "chart"
+        },
+        {
+            "table": "tt_content",
+            "column": "description",
+            "ctype": "desiderio_chartarea",
+            "element": "chart-area"
+        },
+        {
+            "table": "tt_content",
+            "column": "description",
+            "ctype": "desiderio_chartbar",
+            "element": "chart-bar"
+        },
+        {
+            "table": "tt_content",
+            "column": "description",
+            "ctype": "desiderio_chartdonut",
+            "element": "chart-donut"
+        },
+        {
+            "table": "tt_content",
+            "column": "description",
+            "ctype": "desiderio_chartheatmap",
+            "element": "chart-heatmap"
+        },
+        {
+            "table": "tt_content",
+            "column": "description",
+            "ctype": "desiderio_chartline",
+            "element": "chart-line"
+        },
+        {
+            "table": "tt_content",
+            "column": "description",
+            "ctype": "desiderio_chartpie",
+            "element": "chart-pie"
+        },
+        {
+            "table": "tt_content",
+            "column": "description",
+            "ctype": "desiderio_chartradar",
+            "element": "chart-radar"
+        },
+        {
+            "table": "tt_content",
+            "column": "description",
+            "ctype": "desiderio_chartsparkline",
+            "element": "chart-sparkline"
+        },
+        {
+            "table": "tt_content",
+            "column": "description",
+            "ctype": "desiderio_chartstackedbar",
+            "element": "chart-stacked-bar"
+        },
+        {
+            "table": "company_culture_items",
+            "column": "description",
+            "ctype": null,
+            "element": "company-culture"
+        },
+        {
+            "table": "company_history_events",
+            "column": "description",
+            "ctype": null,
+            "element": "company-history"
+        },
+        {
+            "table": "company_milestones_milestones",
+            "column": "description",
+            "ctype": null,
+            "element": "company-milestones"
+        },
+        {
+            "table": "company_perks_perks",
+            "column": "description",
+            "ctype": null,
+            "element": "company-perks"
+        },
+        {
+            "table": "company_values_value_items",
+            "column": "description",
+            "ctype": null,
+            "element": "company-values"
+        },
+        {
+            "table": "tt_content",
+            "column": "left_description",
+            "ctype": "desiderio_compare",
+            "element": "compare"
+        },
+        {
+            "table": "tt_content",
+            "column": "right_description",
+            "ctype": "desiderio_compare",
+            "element": "compare"
+        },
+        {
+            "table": "tt_content",
+            "column": "description",
+            "ctype": "desiderio_comparisontable",
+            "element": "comparison-table"
+        },
+        {
+            "table": "tt_content",
+            "column": "description",
+            "ctype": "desiderio_contactsplit",
+            "element": "contact-split"
+        },
+        {
+            "table": "content_carousel_items",
+            "column": "slide_description",
+            "ctype": null,
+            "element": "content-carousel"
+        },
+        {
+            "table": "tt_content",
+            "column": "description",
+            "ctype": "desiderio_ctabanner",
+            "element": "cta-banner"
+        },
+        {
+            "table": "tt_content",
+            "column": "description",
+            "ctype": "desiderio_ctacard",
+            "element": "cta-card"
+        },
+        {
+            "table": "tt_content",
+            "column": "description",
+            "ctype": "desiderio_ctagradient",
+            "element": "cta-gradient"
+        },
+        {
+            "table": "tt_content",
+            "column": "left_description",
+            "ctype": "desiderio_ctasplit",
+            "element": "cta-split"
+        },
+        {
+            "table": "tt_content",
+            "column": "right_description",
+            "ctype": "desiderio_ctasplit",
+            "element": "cta-split"
+        },
+        {
+            "table": "tt_content",
+            "column": "description",
+            "ctype": "desiderio_ctawithimage",
+            "element": "cta-with-image"
+        },
+        {
+            "table": "tt_content",
+            "column": "description",
+            "ctype": "desiderio_datarequestform",
+            "element": "data-request-form"
+        },
+        {
+            "table": "tt_content",
+            "column": "description",
+            "ctype": "desiderio_demorequest",
+            "element": "demo-request"
+        },
+        {
+            "table": "directions_routes",
+            "column": "description",
+            "ctype": null,
+            "element": "directions"
+        },
+        {
+            "table": "tt_content",
+            "column": "description",
+            "ctype": "desiderio_downloadform",
+            "element": "download-form"
+        },
+        {
+            "table": "feature_alternating_items",
+            "column": "description",
+            "ctype": null,
+            "element": "feature-alternating"
+        },
+        {
+            "table": "feature_bento_items",
+            "column": "description",
+            "ctype": null,
+            "element": "feature-bento"
+        },
+        {
+            "table": "feature_cards_items",
+            "column": "description",
+            "ctype": null,
+            "element": "feature-cards"
+        },
+        {
+            "table": "feature_carousel_items",
+            "column": "description",
+            "ctype": null,
+            "element": "feature-carousel"
+        },
+        {
+            "table": "feature_centered_items",
+            "column": "description",
+            "ctype": null,
+            "element": "feature-centered"
+        },
+        {
+            "table": "feature_grid_3_items",
+            "column": "description",
+            "ctype": null,
+            "element": "feature-grid-3"
+        },
+        {
+            "table": "tt_content",
+            "column": "description",
+            "ctype": "desiderio_featurehighlight",
+            "element": "feature-highlight"
+        },
+        {
+            "table": "tt_content",
+            "column": "description",
+            "ctype": "desiderio_featureimage",
+            "element": "feature-image"
+        },
+        {
+            "table": "feature_list_items",
+            "column": "description",
+            "ctype": null,
+            "element": "feature-list"
+        },
+        {
+            "table": "feature_numbered_items",
+            "column": "description",
+            "ctype": null,
+            "element": "feature-numbered"
+        },
+        {
+            "table": "tt_content",
+            "column": "description",
+            "ctype": "desiderio_featuresplit",
+            "element": "feature-split"
+        },
+        {
+            "table": "feature_tabs_items",
+            "column": "description",
+            "ctype": null,
+            "element": "feature-tabs"
+        },
+        {
+            "table": "feature_timeline_items",
+            "column": "description",
+            "ctype": null,
+            "element": "feature-timeline"
+        },
+        {
+            "table": "tt_content",
+            "column": "description",
+            "ctype": "desiderio_featurevideo",
+            "element": "feature-video"
+        },
+        {
+            "table": "features_feature_items",
+            "column": "description",
+            "ctype": null,
+            "element": "features"
+        },
+        {
+            "table": "tt_content",
+            "column": "description",
+            "ctype": "desiderio_feedbackform",
+            "element": "feedback-form"
+        },
+        {
+            "table": "tt_content",
+            "column": "description",
+            "ctype": "desiderio_footer",
+            "element": "footer"
+        },
+        {
+            "table": "tt_content",
+            "column": "description",
+            "ctype": "desiderio_footerapplinks",
+            "element": "footer-app-links"
+        },
+        {
+            "table": "tt_content",
+            "column": "description",
+            "ctype": "desiderio_footercolumns",
+            "element": "footer-columns"
+        },
+        {
+            "table": "tt_content",
+            "column": "description",
+            "ctype": "desiderio_footerdark",
+            "element": "footer-dark"
+        },
+        {
+            "table": "tt_content",
+            "column": "description",
+            "ctype": "desiderio_footermega",
+            "element": "footer-mega"
+        },
+        {
+            "table": "tt_content",
+            "column": "description",
+            "ctype": "desiderio_footernewsletter",
+            "element": "footer-newsletter"
+        },
+        {
+            "table": "tt_content",
+            "column": "description",
+            "ctype": "desiderio_footersplit",
+            "element": "footer-split"
+        },
+        {
+            "table": "tt_content",
+            "column": "bio",
+            "ctype": "desiderio_headerprofile",
+            "element": "header-profile"
+        },
+        {
+            "table": "hero_carousel_slides",
+            "column": "description",
+            "ctype": null,
+            "element": "hero-carousel"
+        },
+        {
+            "table": "tt_content",
+            "column": "left_description",
+            "ctype": "desiderio_herodualcta",
+            "element": "hero-dual-cta"
+        },
+        {
+            "table": "tt_content",
+            "column": "right_description",
+            "ctype": "desiderio_herodualcta",
+            "element": "hero-dual-cta"
+        },
+        {
+            "table": "tt_content",
+            "column": "video_description",
+            "ctype": "desiderio_herovideo",
+            "element": "hero-video"
+        },
+        {
+            "table": "tt_content",
+            "column": "description",
+            "ctype": "desiderio_howtosteps",
+            "element": "how-to-steps"
+        },
+        {
+            "table": "tt_content",
+            "column": "description",
+            "ctype": "desiderio_jobcard",
+            "element": "job-card"
+        },
+        {
+            "table": "tt_content",
+            "column": "description",
+            "ctype": "desiderio_leaderboard",
+            "element": "leaderboard"
+        },
+        {
+            "table": "tt_content",
+            "column": "intro_text",
+            "ctype": "desiderio_megamenu",
+            "element": "mega-menu"
+        },
+        {
+            "table": "mega_menu_menu_groups",
+            "column": "description",
+            "ctype": null,
+            "element": "mega-menu"
+        },
+        {
+            "table": "tt_content",
+            "column": "description",
+            "ctype": "desiderio_metricdashboard",
+            "element": "metric-dashboard"
+        },
+        {
+            "table": "tt_content",
+            "column": "content",
+            "ctype": "desiderio_notification",
+            "element": "notification"
+        },
+        {
+            "table": "pricing_plans",
+            "column": "description",
+            "ctype": null,
+            "element": "pricing"
+        },
+        {
+            "table": "tt_content",
+            "column": "description",
+            "ctype": "desiderio_pricingcalculator",
+            "element": "pricing-calculator"
+        },
+        {
+            "table": "tt_content",
+            "column": "description",
+            "ctype": "desiderio_pricingenterprise",
+            "element": "pricing-enterprise"
+        },
+        {
+            "table": "pricing_faq_question_items",
+            "column": "answer",
+            "ctype": null,
+            "element": "pricing-faq"
+        },
+        {
+            "table": "pricing_four_tier_plans",
+            "column": "description",
+            "ctype": null,
+            "element": "pricing-four-tier"
+        },
+        {
+            "table": "tt_content",
+            "column": "description",
+            "ctype": "desiderio_pricingsimple",
+            "element": "pricing-simple"
+        },
+        {
+            "table": "tt_content",
+            "column": "description",
+            "ctype": "desiderio_pricingslider",
+            "element": "pricing-slider"
+        },
+        {
+            "table": "pricing_three_tier_plans",
+            "column": "description",
+            "ctype": null,
+            "element": "pricing-three-tier"
+        },
+        {
+            "table": "pricing_toggle_plans",
+            "column": "description",
+            "ctype": null,
+            "element": "pricing-toggle"
+        },
+        {
+            "table": "pricing_two_tier_plans",
+            "column": "description",
+            "ctype": null,
+            "element": "pricing-two-tier"
+        },
+        {
+            "table": "pricing_usage_items",
+            "column": "description",
+            "ctype": null,
+            "element": "pricing-usage"
+        },
+        {
+            "table": "tt_content",
+            "column": "intro",
+            "ctype": "desiderio_privacynotice",
+            "element": "privacy-notice"
+        },
+        {
+            "table": "tt_content",
+            "column": "description",
+            "ctype": "desiderio_productcard",
+            "element": "product-card"
+        },
+        {
+            "table": "tt_content",
+            "column": "description",
+            "ctype": "desiderio_productfeature",
+            "element": "product-feature"
+        },
+        {
+            "table": "tt_content",
+            "column": "description",
+            "ctype": "desiderio_producthero",
+            "element": "product-hero"
+        },
+        {
+            "table": "tt_content",
+            "column": "description",
+            "ctype": "desiderio_productspecs",
+            "element": "product-specs"
+        },
+        {
+            "table": "resource_library_items",
+            "column": "description",
+            "ctype": null,
+            "element": "resource-library"
+        },
+        {
+            "table": "tt_content",
+            "column": "description",
+            "ctype": "desiderio_specialoffer",
+            "element": "special-offer"
+        },
+        {
+            "table": "stats_stats",
+            "column": "description",
+            "ctype": null,
+            "element": "stats"
+        },
+        {
+            "table": "stats_counter_counters",
+            "column": "description",
+            "ctype": null,
+            "element": "stats-counter"
+        },
+        {
+            "table": "team_members",
+            "column": "bio",
+            "ctype": null,
+            "element": "team"
+        },
+        {
+            "table": "tt_content",
+            "column": "description",
+            "ctype": "desiderio_teamcta",
+            "element": "team-cta"
+        },
+        {
+            "table": "tt_content",
+            "column": "bio",
+            "ctype": "desiderio_teammember",
+            "element": "team-member"
+        },
+        {
+            "table": "team_with_bio_members",
+            "column": "bio",
+            "ctype": null,
+            "element": "team-with-bio"
+        },
+        {
+            "table": "tt_content",
+            "column": "intro",
+            "ctype": "desiderio_termssummary",
+            "element": "terms-summary"
+        },
+        {
+            "table": "terms_summary_items",
+            "column": "summary",
+            "ctype": null,
+            "element": "terms-summary"
+        },
+        {
+            "table": "use_case_grid_items",
+            "column": "description",
+            "ctype": null,
+            "element": "use-case-grid"
+        },
+        {
+            "table": "tt_content",
+            "column": "description",
+            "ctype": "desiderio_waitlistsignup",
+            "element": "waitlist-signup"
+        }
+    ]
+}

@@ -35,7 +35,7 @@
                                 </f:if>
                             </d:atom.typography>
                             <f:if condition="{post.excerpt}">
-                                <p class="blog-teasers__excerpt">{post -> f:render.text(field: 'excerpt')}</p>
+                                <div class="blog-teasers__excerpt d-richtext">{post -> f:render.text(field: 'excerpt')}</div>
                             </f:if>
                         </div>
                     </article>

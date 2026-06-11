@@ -22,7 +22,7 @@
                         <d:atom.typography tag="h3" variant="h3" class="hero-dual-cta__card-title">{data -> f:render.text(field: 'left_title')}</d:atom.typography>
                     </f:if>
                     <f:if condition="{data.left_description}">
-                        <p class="hero-dual-cta__card-desc">{data -> f:render.text(field: 'left_description')}</p>
+                        <div class="hero-dual-cta__card-desc d-richtext">{data -> f:render.text(field: 'left_description')}</div>
                     </f:if>
                     <f:if condition="{data.left_button_text}">
                         <d:atom.button href="{data.left_button_link.url}" target="{data.left_button_link.target}" variant="default" size="lg">{data -> f:render.text(field: 'left_button_text')}</d:atom.button>
@@ -35,7 +35,7 @@
                         <d:atom.typography tag="h3" variant="h3" class="hero-dual-cta__card-title">{data -> f:render.text(field: 'right_title')}</d:atom.typography>
                     </f:if>
                     <f:if condition="{data.right_description}">
-                        <p class="hero-dual-cta__card-desc">{data -> f:render.text(field: 'right_description')}</p>
+                        <div class="hero-dual-cta__card-desc d-richtext">{data -> f:render.text(field: 'right_description')}</div>
                     </f:if>
                     <f:if condition="{data.right_button_text}">
                         <d:atom.button href="{data.right_button_link.url}" target="{data.right_button_link.target}" variant="outline" size="lg">{data -> f:render.text(field: 'right_button_text')}</d:atom.button>

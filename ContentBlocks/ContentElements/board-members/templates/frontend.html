@@ -36,7 +36,7 @@
                         <d:atom.typography tag="h3" variant="large" class="board-members__name">{member -> f:render.text(field: 'name')}</d:atom.typography>
                         <f:if condition="{member.title}"><p class="board-members__title">{member -> f:render.text(field: 'title')}</p></f:if>
                         <f:if condition="{member.affiliation}"><p class="board-members__affiliation">{member -> f:render.text(field: 'affiliation')}</p></f:if>
-                        <f:if condition="{member.bio}"><p class="board-members__bio">{member -> f:render.text(field: 'bio')}</p></f:if>
+                        <f:if condition="{member.bio}"><div class="board-members__bio d-richtext">{member -> f:render.text(field: 'bio')}</div></f:if>
                     </div>
                 </article>
             </f:for>

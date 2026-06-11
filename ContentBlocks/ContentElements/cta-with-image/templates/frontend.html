@@ -10,7 +10,7 @@
         <div class="cta-with-image__layout">
             <div class="cta-with-image__content">
                 <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
-                <f:if condition="{data.description}"><d:atom.typography variant="lead" class="mt-4">{data -> f:render.text(field: 'description')}</d:atom.typography></f:if>
+                <f:if condition="{data.description}"><d:atom.typography tag="div" variant="lead" class="mt-4 d-richtext">{data -> f:render.text(field: 'description')}</d:atom.typography></f:if>
                 <f:if condition="{data.cta_text} && {data.cta_link.url}">
                     <div class="cta-with-image__actions">
                         <d:atom.button href="{data.cta_link.url}" target="{data.cta_link.target}" size="lg">{data -> f:render.text(field: 'cta_text')}</d:atom.button>

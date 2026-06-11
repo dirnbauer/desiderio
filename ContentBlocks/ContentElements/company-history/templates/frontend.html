@@ -20,7 +20,7 @@
                     <span class="company-history__year">{event -> f:render.text(field: 'year')}</span>
                     <div class="company-history__body">
                         <h3 class="company-history__title">{event -> f:render.text(field: 'title')}</h3>
-                        <f:if condition="{event.description}"><p class="company-history__description">{event -> f:render.text(field: 'description')}</p></f:if>
+                        <f:if condition="{event.description}"><div class="company-history__description d-richtext">{event -> f:render.text(field: 'description')}</div></f:if>
                     </div>
                 </li>
             </f:for>

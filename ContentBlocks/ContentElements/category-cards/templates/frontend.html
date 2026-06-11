@@ -31,7 +31,7 @@
                         </f:if>
                     </div>
                     <f:if condition="{item.description}">
-                        <p class="category-cards__card-desc">{item -> f:render.text(field: 'description')}</p>
+                        <div class="category-cards__card-desc d-richtext">{item -> f:render.text(field: 'description')}</div>
                     </f:if>
                     <f:if condition="{item.link.url}">
                         <f:variable name="exploreLabel">{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:cta.explore', default: 'Explore')}</f:variable>

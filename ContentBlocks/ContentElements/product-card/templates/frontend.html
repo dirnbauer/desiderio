@@ -29,7 +29,7 @@
                     </f:if>
                 </p>
                 <f:if condition="{data.description}">
-                    <p class="product-card__description">{data -> f:render.text(field: 'description')}</p>
+                    <div class="product-card__description d-richtext">{data -> f:render.text(field: 'description')}</div>
                 </f:if>
                 <f:if condition="{data.button_text} && {data.button_link.url}">
                     <d:atom.button href="{data.button_link.url}" class="product-card__button" target="{data.button_link.target}">

@@ -21,7 +21,7 @@
             </f:if>
 
             <f:if condition="{data.description}">
-                <d:atom.typography variant="muted" class="special-offer__description">{data -> f:render.text(field: 'description')}</d:atom.typography>
+                <d:atom.typography tag="div" variant="muted" class="special-offer__description d-richtext">{data -> f:render.text(field: 'description')}</d:atom.typography>
             </f:if>
 
             <f:if condition="{data.original_price} || {data.sale_price}">

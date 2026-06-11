@@ -42,6 +42,8 @@ fields:
       -
         identifier: description
         type: Textarea
+        enableRichtext: true
+        richtextConfiguration: desiderio
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:content_description'
         rows: 3
       -

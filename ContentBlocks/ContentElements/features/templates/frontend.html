@@ -36,7 +36,7 @@
                             </f:if>
                         </h3>
                         <f:if condition="{feature.description}">
-                            <p class="features__description">{feature -> f:render.text(field: 'description')}</p>
+                            <div class="features__description d-richtext">{feature -> f:render.text(field: 'description')}</div>
                         </f:if>
                     </div>
                 </div>

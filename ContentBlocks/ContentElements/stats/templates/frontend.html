@@ -28,7 +28,7 @@
                     <dt class="stats__label">{stat -> f:render.text(field: 'label')}</dt>
                     <dd class="stats__value" data-astro-counter>{stat -> f:render.text(field: 'value')}</dd>
                     <f:if condition="{stat.description}">
-                        <dd class="stats__item-description">{stat -> f:render.text(field: 'description')}</dd>
+                        <dd class="stats__item-description d-richtext">{stat -> f:render.text(field: 'description')}</dd>
                     </f:if>
                 </div>
             </f:for>

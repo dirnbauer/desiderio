@@ -29,7 +29,7 @@
                     <div class="feature-timeline__card">
                         <h3 class="feature-timeline__title">{item -> f:render.text(field: 'title')}</h3>
                         <f:if condition="{item.description}">
-                            <p class="feature-timeline__description">{item -> f:render.text(field: 'description')}</p>
+                            <div class="feature-timeline__description d-richtext">{item -> f:render.text(field: 'description')}</div>
                         </f:if>
                     </div>
                 </li>

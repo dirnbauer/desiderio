@@ -26,7 +26,7 @@
                 <details class="pricing-faq__item">
                     <summary class="pricing-faq__question">{item -> f:render.text(field: 'question')}</summary>
                     <div class="pricing-faq__answer">
-                        <p>{item -> f:render.text(field: 'answer')}</p>
+                        <div class="d-richtext">{item -> f:render.text(field: 'answer')}</div>
                     </div>
                 </details>
             </f:for>

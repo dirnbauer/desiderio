@@ -12,7 +12,7 @@
                 <h2 class="data-request-form__title">{data -> f:render.text(field: 'header')}</h2>
             </f:if>
             <f:if condition="{data.description}">
-                <p class="data-request-form__description">{data -> f:render.text(field: 'description')}</p>
+                <div class="data-request-form__description d-richtext">{data -> f:render.text(field: 'description')}</div>
             </f:if>
 <f:comment>Legacy editor fields kept for migrated records; TYPO3 Form Framework owns rendering and submit behavior. {data.request_types}{data.submit_text}</f:comment>
 

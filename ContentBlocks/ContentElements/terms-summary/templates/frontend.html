@@ -16,14 +16,14 @@
                     <p class="terms-summary__updated"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:terms_summary.last_updated">Last updated</f:translate>: <time>{data -> f:render.text(field: 'last_updated')}</time></p>
                 </f:if>
                 <f:if condition="{data.intro}">
-                    <p class="terms-summary__intro">{data -> f:render.text(field: 'intro')}</p>
+                    <div class="terms-summary__intro d-richtext">{data -> f:render.text(field: 'intro')}</div>
                 </f:if>
             </header>
             <dl class="terms-summary__list">
                 <f:for each="{data.items}" as="item">
                     <div class="terms-summary__item">
                         <dt class="terms-summary__item-title">{item -> f:render.text(field: 'title')}</dt>
-                        <dd class="terms-summary__item-text">{item -> f:render.text(field: 'summary')}</dd>
+                        <dd class="terms-summary__item-text d-richtext">{item -> f:render.text(field: 'summary')}</dd>
                     </div>
                 </f:for>
             </dl>

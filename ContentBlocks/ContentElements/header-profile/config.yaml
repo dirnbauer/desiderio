@@ -22,6 +22,8 @@ fields:
   -
     identifier: bio
     type: Textarea
+    enableRichtext: true
+    richtextConfiguration: desiderio
     label: Bio
     rows: 3
     description: 'One or two sentences of context'

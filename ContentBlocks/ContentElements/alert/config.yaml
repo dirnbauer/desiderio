@@ -41,6 +41,7 @@ fields:
     type: Textarea
     label: 'Alert Description'
     enableRichtext: true
+    richtextConfiguration: desiderio
     rows: 3
     required: true
   -

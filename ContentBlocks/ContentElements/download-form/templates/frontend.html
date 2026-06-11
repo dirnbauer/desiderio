@@ -10,7 +10,7 @@
         <div class="download-form__layout">
             <div class="download-form__content">
                 <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
-                <f:if condition="{data.description}"><d:atom.typography variant="muted" class="download-form__description">{data -> f:render.text(field: 'description')}</d:atom.typography></f:if>
+                <f:if condition="{data.description}"><d:atom.typography tag="div" variant="muted" class="download-form__description d-richtext">{data -> f:render.text(field: 'description')}</d:atom.typography></f:if>
                 <f:if condition="{data.resource_title}">
                     <p class="download-form__resource">
                         <span class="download-form__resource-icon" aria-hidden="true"><d:atom.icon name="download" size="sm"/></span>

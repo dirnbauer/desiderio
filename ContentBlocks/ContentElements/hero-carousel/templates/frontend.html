@@ -43,7 +43,7 @@
                             <d:atom.typography variant="lead" class="hero-carousel__lead">{slide -> f:render.text(field: 'lead')}</d:atom.typography>
                         </f:if>
                         <f:if condition="{slide.description}">
-                            <d:atom.typography class="hero-carousel__description">{slide -> f:render.text(field: 'description')}</d:atom.typography>
+                            <d:atom.typography tag="div" class="hero-carousel__description d-richtext">{slide -> f:render.text(field: 'description')}</d:atom.typography>
                         </f:if>
                         <f:if condition="{slide.button_text}">
                             <d:atom.button href="{slide.button_link.url}" target="{slide.button_link.target}" variant="default" size="lg">{slide -> f:render.text(field: 'button_text')}</d:atom.button>

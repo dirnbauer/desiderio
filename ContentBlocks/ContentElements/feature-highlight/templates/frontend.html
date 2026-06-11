@@ -12,7 +12,7 @@
                 <f:if condition="{data.eyebrow}"><span class="feature-highlight__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span></f:if>
                 <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
                 <f:if condition="{data.description}">
-                    <d:atom.typography class="feature-highlight__description">{data -> f:render.text(field: 'description')}</d:atom.typography>
+                    <d:atom.typography tag="div" class="feature-highlight__description d-richtext">{data -> f:render.text(field: 'description')}</d:atom.typography>
                 </f:if>
                 <f:if condition="{data.link.url} && {data.link_text}">
                     <div class="feature-highlight__actions">

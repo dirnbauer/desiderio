@@ -39,7 +39,7 @@
                                 <h3 class="team__name">{member -> f:render.text(field: 'name')}</h3>
                                 <p class="team__role">{member -> f:render.text(field: 'role')}</p>
                                 <f:if condition="{member.bio}">
-                                    <p class="team__bio">{member -> f:render.text(field: 'bio')}</p>
+                                    <div class="team__bio d-richtext">{member -> f:render.text(field: 'bio')}</div>
                                 </f:if>
                             </div>
                             <f:if condition="{member.profile_link.url}">
@@ -100,7 +100,7 @@
                             </d:molecule.cardHeader>
                             <f:if condition="{member.bio}">
                                 <d:molecule.cardContent class="team__content grow">
-                                    <p class="team__bio">{member -> f:render.text(field: 'bio')}</p>
+                                    <div class="team__bio d-richtext">{member -> f:render.text(field: 'bio')}</div>
                                 </d:molecule.cardContent>
                             </f:if>
                             <f:if condition="{member.profile_link.url}">

@@ -22,7 +22,7 @@
                         <f:if condition="{value.icon}"><span class="company-values__icon" aria-hidden="true"><d:atom.icon name="{value.icon}" size="md"/></span></f:if>
                         <h3 class="company-values__title">{value -> f:render.text(field: 'title')}</h3>
                     </div>
-                    <f:if condition="{value.description}"><p class="company-values__description">{value -> f:render.text(field: 'description')}</p></f:if>
+                    <f:if condition="{value.description}"><div class="company-values__description d-richtext">{value -> f:render.text(field: 'description')}</div></f:if>
                 </d:molecule.card>
             </f:for>
         </div>

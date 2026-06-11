@@ -69,7 +69,7 @@
                             <h2 class="chart-sparkline__title" data-variant="large">{data -> f:render.text(field: 'header')}</h2>
                         </f:if>
                         <f:if condition="{data.description}">
-                            <p class="chart-sparkline__description" data-variant="muted">{data -> f:render.text(field: 'description')}</p>
+                            <div class="chart-sparkline__description d-richtext" data-variant="muted">{data -> f:render.text(field: 'description')}</div>
                         </f:if>
                     </div>
                     <f:if condition="{badge}">

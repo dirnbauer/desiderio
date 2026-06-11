@@ -18,7 +18,7 @@
                             <d:atom.typography tag="h2" variant="h2" class="pricing-enterprise__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
                         </f:if>
                         <f:if condition="{data.description}">
-                            <d:atom.typography variant="muted" class="pricing-enterprise__description">{data -> f:render.text(field: 'description')}</d:atom.typography>
+                            <d:atom.typography tag="div" variant="muted" class="pricing-enterprise__description d-richtext">{data -> f:render.text(field: 'description')}</d:atom.typography>
                         </f:if>
                     </d:molecule.cardHeader>
 

@@ -43,4 +43,5 @@ fields:
         type: Textarea
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:content'
         enableRichtext: true
+        richtextConfiguration: desiderio
         rows: 4

@@ -16,6 +16,8 @@ fields:
   -
     identifier: intro
     type: Textarea
+    enableRichtext: true
+    richtextConfiguration: desiderio
     label: Introduction
     rows: 3
   -
@@ -35,6 +37,8 @@ fields:
       -
         identifier: summary
         type: Textarea
+        enableRichtext: true
+        richtextConfiguration: desiderio
         label: Summary
         rows: 3
   -

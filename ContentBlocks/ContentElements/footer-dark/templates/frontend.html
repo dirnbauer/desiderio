@@ -13,7 +13,7 @@
                     <h2 class="footer-dark__title">{data -> f:render.text(field: 'brand')}</h2>
                 </f:if>
                 <f:if condition="{data.description}">
-                    <p class="footer-dark__description">{data -> f:render.text(field: 'description')}</p>
+                    <div class="footer-dark__description d-richtext">{data -> f:render.text(field: 'description')}</div>
                 </f:if>
             </div>
             <f:for each="{data.column_items}" as="col">

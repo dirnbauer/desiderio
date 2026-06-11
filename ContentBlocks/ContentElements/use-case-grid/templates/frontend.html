@@ -23,7 +23,7 @@
                             <f:else>{item -> f:render.text(field: 'title')}</f:else>
                         </f:if>
                     </h3>
-                    <p class="use-case-grid__description">{item -> f:render.text(field: 'description')}</p>
+                    <div class="use-case-grid__description d-richtext">{item -> f:render.text(field: 'description')}</div>
                 </d:molecule.card>
             </f:for>
         </div>

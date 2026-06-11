@@ -46,7 +46,7 @@
                             </d:atom.typography>
                             <p class="pricing-two-tier__price">{tier -> f:render.text(field: 'price')}</p>
                             <f:if condition="{tier.description}">
-                                <d:atom.typography variant="muted" class="pricing-two-tier__plan-desc">{tier -> f:render.text(field: 'description')}</d:atom.typography>
+                                <d:atom.typography tag="div" variant="muted" class="pricing-two-tier__plan-desc d-richtext">{tier -> f:render.text(field: 'description')}</d:atom.typography>
                             </f:if>
                         </d:molecule.cardHeader>
 

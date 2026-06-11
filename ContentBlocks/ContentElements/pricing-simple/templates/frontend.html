@@ -19,7 +19,7 @@
                     </f:if>
                 </p>
                 <f:if condition="{data.description}">
-                    <d:atom.typography variant="muted" class="pricing-simple__description">{data -> f:render.text(field: 'description')}</d:atom.typography>
+                    <d:atom.typography tag="div" variant="muted" class="pricing-simple__description d-richtext">{data -> f:render.text(field: 'description')}</d:atom.typography>
                 </f:if>
             </d:molecule.cardHeader>
 

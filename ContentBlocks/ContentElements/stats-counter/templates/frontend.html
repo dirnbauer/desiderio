@@ -26,7 +26,7 @@
                         <span data-astro-counter data-astro-target="{counter.counter_target}" data-astro-duration="1400">{counter -> f:render.text(field: 'counter_target')}</span><f:if condition="{counter.suffix}"><span class="stats-counter__suffix">{counter -> f:render.text(field: 'suffix')}</span></f:if>
                     </dd>
                     <f:if condition="{counter.description}">
-                        <dd class="stats-counter__description">{counter -> f:render.text(field: 'description')}</dd>
+                        <dd class="stats-counter__description d-richtext">{counter -> f:render.text(field: 'description')}</dd>
                     </f:if>
                 </div>
             </f:for>

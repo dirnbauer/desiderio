@@ -11,7 +11,7 @@
             <div class="footer__brand">
                 <d:atom.typography tag="h2" variant="large" class="footer__title">{data -> f:render.text(field: 'brand')}</d:atom.typography>
                 <f:if condition="{data.description}">
-                    <p class="footer__description">{data -> f:render.text(field: 'description')}</p>
+                    <div class="footer__description d-richtext">{data -> f:render.text(field: 'description')}</div>
                 </f:if>
             </div>
 

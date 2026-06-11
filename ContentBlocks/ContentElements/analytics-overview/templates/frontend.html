@@ -47,7 +47,7 @@
 
             <f:if condition="{data.summary}">
                 <div class="analytics-overview__summary">
-                    <p>{data -> f:render.text(field: 'summary')}</p>
+                    <div class="d-richtext">{data -> f:render.text(field: 'summary')}</div>
                 </div>
             </f:if>
         </div>

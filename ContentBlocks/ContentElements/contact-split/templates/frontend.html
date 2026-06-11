@@ -10,7 +10,7 @@
         <div class="contact-split__layout">
             <div class="contact-split__content">
                 <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
-                <f:if condition="{data.description}"><d:atom.typography variant="muted">{data -> f:render.text(field: 'description')}</d:atom.typography></f:if>
+                <f:if condition="{data.description}"><d:atom.typography tag="div" variant="muted" class="d-richtext">{data -> f:render.text(field: 'description')}</d:atom.typography></f:if>
 <f:comment>Legacy editor fields kept for migrated records; TYPO3 Form Framework owns rendering and submit behavior. {data.form_action}{data.submit_text}</f:comment>
 
                 <d:molecule.formRenderer persistenceIdentifier="EXT:desiderio/Resources/Private/Forms/DesiderioContact.form.yaml" class="contact-split__form"/>

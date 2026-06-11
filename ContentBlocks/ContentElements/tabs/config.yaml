@@ -52,6 +52,7 @@ fields:
         type: Textarea
         label: 'Tab Content'
         enableRichtext: true
+        richtextConfiguration: desiderio
         rows: 6
         required: true
       -

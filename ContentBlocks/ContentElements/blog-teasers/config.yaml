@@ -65,6 +65,8 @@ fields:
       -
         identifier: excerpt
         type: Textarea
+        enableRichtext: true
+        richtextConfiguration: desiderio
         label: Excerpt
         rows: 3
       -

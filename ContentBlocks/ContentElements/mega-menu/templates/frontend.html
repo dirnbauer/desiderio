@@ -44,7 +44,7 @@
                             <d:atom.typography tag="h2" variant="large" class="mega-menu__intro-title">{data -> f:render.text(field: 'intro_title')}</d:atom.typography>
                         </f:if>
                         <f:if condition="{data.intro_text}">
-                            <d:atom.typography tag="p" variant="muted" class="mega-menu__intro-text">{data -> f:render.text(field: 'intro_text')}</d:atom.typography>
+                            <d:atom.typography tag="div" variant="muted" class="mega-menu__intro-text d-richtext">{data -> f:render.text(field: 'intro_text')}</d:atom.typography>
                         </f:if>
                     </aside>
                 </f:if>
@@ -54,7 +54,7 @@
                         <section class="mega-menu__group">
                             <d:atom.typography tag="h3" variant="small" class="mega-menu__group-title" id="mega-menu-{data.uid}-{groupIter.cycle}">{group -> f:render.text(field: 'title')}</d:atom.typography>
                             <f:if condition="{group.description}">
-                                <d:atom.typography tag="p" variant="muted" class="mega-menu__group-desc">{group -> f:render.text(field: 'description')}</d:atom.typography>
+                                <d:atom.typography tag="div" variant="muted" class="mega-menu__group-desc d-richtext">{group -> f:render.text(field: 'description')}</d:atom.typography>
                             </f:if>
                             <ul class="mega-menu__links" aria-labelledby="mega-menu-{data.uid}-{groupIter.cycle}">
                                 <f:if condition="{group.link_1_label}">

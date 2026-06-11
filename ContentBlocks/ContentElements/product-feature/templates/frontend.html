@@ -24,7 +24,7 @@
                     <h2 class="product-feature__headline">{data -> f:render.text(field: 'header')}</h2>
                 </f:if>
                 <f:if condition="{data.description}">
-                    <p class="product-feature__description">{data -> f:render.text(field: 'description')}</p>
+                    <div class="product-feature__description d-richtext">{data -> f:render.text(field: 'description')}</div>
                 </f:if>
                 <f:if condition="{data.features}">
                     <ul class="product-feature__list">

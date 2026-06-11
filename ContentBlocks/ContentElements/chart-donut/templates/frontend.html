@@ -31,7 +31,7 @@
                 <figcaption class="chart-donut__header">
                     <d:atom.typography tag="h2" variant="large" class="chart-donut__title">{donutTitle}</d:atom.typography>
                     <f:if condition="{data.description}">
-                        <p class="chart-donut__description" data-variant="muted">{data -> f:render.text(field: 'description')}</p>
+                        <div class="chart-donut__description d-richtext" data-variant="muted">{data -> f:render.text(field: 'description')}</div>
                     </f:if>
                 </figcaption>
 

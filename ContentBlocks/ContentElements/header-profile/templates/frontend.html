@@ -23,7 +23,7 @@
                     <p class="header-profile__role">{data -> f:render.text(field: 'role')}</p>
                 </f:if>
                 <f:if condition="{data.bio}">
-                    <p class="header-profile__bio">{data -> f:render.text(field: 'bio')}</p>
+                    <div class="header-profile__bio d-richtext">{data -> f:render.text(field: 'bio')}</div>
                 </f:if>
                 <f:if condition="{data.primary_button_text} || {data.secondary_button_text}">
                     <div class="header-profile__actions">

@@ -36,7 +36,7 @@
                         <p class="certifications__issuer">{cert -> f:render.text(field: 'issuer')}</p>
                     </f:if>
                     <f:if condition="{cert.description}">
-                        <p class="certifications__cert-description">{cert -> f:render.text(field: 'description')}</p>
+                        <div class="certifications__cert-description d-richtext">{cert -> f:render.text(field: 'description')}</div>
                     </f:if>
                     <f:if condition="{cert.link.url}">
                         <f:variable name="verifyLabel"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:cta.verify" default="Verify"/></f:variable>

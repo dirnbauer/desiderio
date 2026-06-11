@@ -69,7 +69,7 @@
                             <h2 class="chart__title">{data -> f:render.text(field: 'header')}</h2>
                         </f:if>
                         <f:if condition="{data.description}">
-                            <p class="chart__description">{data -> f:render.text(field: 'description')}</p>
+                            <div class="chart__description d-richtext">{data -> f:render.text(field: 'description')}</div>
                         </f:if>
                     </figcaption>
                 </f:if>

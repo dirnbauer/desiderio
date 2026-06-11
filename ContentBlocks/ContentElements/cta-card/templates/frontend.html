@@ -20,7 +20,7 @@
             </f:if>
             <f:if condition="{data.description}">
                 <d:molecule.cardContent class="cta-card__content">
-                    <d:atom.typography variant="lead" class="cta-card__description">{data -> f:render.text(field: 'description')}</d:atom.typography>
+                    <d:atom.typography tag="div" variant="lead" class="cta-card__description d-richtext">{data -> f:render.text(field: 'description')}</d:atom.typography>
                 </d:molecule.cardContent>
             </f:if>
             <f:if condition="{data.cta_text} && {data.cta_link.url}">

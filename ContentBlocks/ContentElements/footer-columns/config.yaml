@@ -21,6 +21,8 @@ fields:
   -
     identifier: description
     type: Textarea
+    enableRichtext: true
+    richtextConfiguration: desiderio
     label: 'Brand Description'
     rows: 3
   -

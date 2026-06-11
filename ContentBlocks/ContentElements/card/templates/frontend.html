@@ -32,7 +32,7 @@
                                 </d:atom.typography>
                             </f:if>
                             <f:if condition="{data.description}">
-                                <d:atom.typography variant="muted" class="card__description">{data -> f:render.text(field: 'description')}</d:atom.typography>
+                                <d:atom.typography tag="div" variant="muted" class="card__description d-richtext">{data -> f:render.text(field: 'description')}</d:atom.typography>
                             </f:if>
                             <f:if condition="{data.button_text} && {data.button_link.url}">
                                 <div class="card__actions">
@@ -68,7 +68,7 @@
                     </div>
                     <div class="card__content">
                         <f:if condition="{data.description}">
-                            <d:atom.typography variant="muted" class="card__description">{data -> f:render.text(field: 'description')}</d:atom.typography>
+                            <d:atom.typography tag="div" variant="muted" class="card__description d-richtext">{data -> f:render.text(field: 'description')}</d:atom.typography>
                         </f:if>
                     </div>
                     <f:if condition="{data.button_text} && {data.button_link.url}">
@@ -102,7 +102,7 @@
                                 </d:atom.typography>
                             </f:if>
                             <f:if condition="{data.description}">
-                                <d:atom.typography variant="muted" class="card__description">{data -> f:render.text(field: 'description')}</d:atom.typography>
+                                <d:atom.typography tag="div" variant="muted" class="card__description d-richtext">{data -> f:render.text(field: 'description')}</d:atom.typography>
                             </f:if>
                             <f:if condition="{data.button_text} && {data.button_link.url}">
                                 <div class="card__actions">
@@ -131,7 +131,7 @@
                     </div>
                     <div class="card__content">
                         <f:if condition="{data.description}">
-                            <d:atom.typography variant="muted" class="card__description">{data -> f:render.text(field: 'description')}</d:atom.typography>
+                            <d:atom.typography tag="div" variant="muted" class="card__description d-richtext">{data -> f:render.text(field: 'description')}</d:atom.typography>
                         </f:if>
                     </div>
                     <f:if condition="{data.button_text} && {data.button_link.url}">

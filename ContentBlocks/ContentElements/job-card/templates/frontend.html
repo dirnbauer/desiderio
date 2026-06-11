@@ -23,7 +23,7 @@
             </d:molecule.cardHeader>
             <f:if condition="{data.description}">
                 <d:molecule.cardContent>
-                    <p class="job-card__description">{data -> f:render.text(field: 'description')}</p>
+                    <div class="job-card__description d-richtext">{data -> f:render.text(field: 'description')}</div>
                 </d:molecule.cardContent>
             </f:if>
             <f:if condition="{data.apply_link.url}">

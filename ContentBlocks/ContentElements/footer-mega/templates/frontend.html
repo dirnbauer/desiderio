@@ -13,7 +13,7 @@
                     <h2 class="footer-mega__title">{data -> f:render.text(field: 'brand')}</h2>
                 </f:if>
                 <f:if condition="{data.description}">
-                    <p class="footer-mega__description">{data -> f:render.text(field: 'description')}</p>
+                    <div class="footer-mega__description d-richtext">{data -> f:render.text(field: 'description')}</div>
                 </f:if>
                 <f:if condition="{data.newsletter_label}">
                     <div class="footer-mega__newsletter">

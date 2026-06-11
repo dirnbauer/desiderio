@@ -31,6 +31,8 @@ fields:
   -
     identifier: video_description
     type: Textarea
+    enableRichtext: true
+    richtextConfiguration: desiderio
     label: 'Video Description'
     rows: 2
   -

@@ -22,7 +22,7 @@
                 </f:if>
 
                 <f:if condition="{data.description}">
-                    <d:atom.typography variant="muted" class="card-pricing__description">{data -> f:render.text(field: 'description')}</d:atom.typography>
+                    <d:atom.typography tag="div" variant="muted" class="card-pricing__description d-richtext">{data -> f:render.text(field: 'description')}</d:atom.typography>
                 </f:if>
 
                 <p class="card-pricing__price">

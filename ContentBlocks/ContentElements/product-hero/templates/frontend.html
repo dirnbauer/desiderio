@@ -16,7 +16,7 @@
                     <h2 class="product-hero__headline">{data -> f:render.text(field: 'header')}</h2>
                 </f:if>
                 <f:if condition="{data.description}">
-                    <p class="product-hero__description">{data -> f:render.text(field: 'description')}</p>
+                    <div class="product-hero__description d-richtext">{data -> f:render.text(field: 'description')}</div>
                 </f:if>
                 <f:if condition="{data.price}">
                     <div class="product-hero__price-block">

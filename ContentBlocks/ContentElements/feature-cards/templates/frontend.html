@@ -19,7 +19,7 @@
                 <d:molecule.card class="feature-cards__item">
                     <d:atom.typography tag="h3" variant="large" class="feature-cards__title">{item -> f:render.text(field: 'title')}</d:atom.typography>
                     <f:if condition="{item.description}">
-                        <p class="feature-cards__description">{item -> f:render.text(field: 'description')}</p>
+                        <div class="feature-cards__description d-richtext">{item -> f:render.text(field: 'description')}</div>
                     </f:if>
                 </d:molecule.card>
             </f:for>

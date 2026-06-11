@@ -36,7 +36,7 @@
                             </f:if>
                         </div>
                         <f:if condition="{plan.description}">
-                            <p class="pricing-toggle__plan-desc">{plan -> f:render.text(field: 'description')}</p>
+                            <div class="pricing-toggle__plan-desc d-richtext">{plan -> f:render.text(field: 'description')}</div>
                         </f:if>
                         <f:if condition="{plan.features}">
                             <ul class="pricing-toggle__features" role="list">

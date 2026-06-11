@@ -51,5 +51,7 @@ fields:
       -
         identifier: bio
         type: Textarea
+        enableRichtext: true
+        richtextConfiguration: desiderio
         label: 'Short Bio'
         rows: 2

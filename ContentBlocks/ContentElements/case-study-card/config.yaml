@@ -28,6 +28,8 @@ fields:
   -
     identifier: summary
     type: Textarea
+    enableRichtext: true
+    richtextConfiguration: desiderio
     label: Summary
     rows: 3
     required: true

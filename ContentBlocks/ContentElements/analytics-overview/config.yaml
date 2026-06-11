@@ -63,5 +63,7 @@ fields:
   -
     identifier: summary
     type: Textarea
+    enableRichtext: true
+    richtextConfiguration: desiderio
     label: 'Summary Text'
     rows: 3

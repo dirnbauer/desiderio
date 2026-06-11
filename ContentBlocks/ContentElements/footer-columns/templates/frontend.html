@@ -13,7 +13,7 @@
                     <d:atom.typography tag="h2" variant="large" class="footer-columns__title">{data -> f:render.text(field: 'brand')}</d:atom.typography>
                 </f:if>
                 <f:if condition="{data.description}">
-                    <p class="footer-columns__description">{data -> f:render.text(field: 'description')}</p>
+                    <div class="footer-columns__description d-richtext">{data -> f:render.text(field: 'description')}</div>
                 </f:if>
             </div>
             <f:for each="{data.column_items}" as="col">

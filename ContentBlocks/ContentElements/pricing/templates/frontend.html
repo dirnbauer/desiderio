@@ -54,7 +54,7 @@
                                 </f:if>
                             </p>
                             <f:if condition="{tier.description}">
-                                <d:atom.typography variant="muted" class="pricing__plan-description">{tier -> f:render.text(field: 'description')}</d:atom.typography>
+                                <d:atom.typography tag="div" variant="muted" class="pricing__plan-description d-richtext">{tier -> f:render.text(field: 'description')}</d:atom.typography>
                             </f:if>
                         </d:molecule.cardHeader>
 

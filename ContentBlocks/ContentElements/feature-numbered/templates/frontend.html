@@ -20,7 +20,7 @@
                     <span class="feature-numbered__number" aria-hidden="true">{f:format.padding(padLength: 2, padString: '0')}{iter.cycle}</span>
                     <d:atom.typography tag="h3" variant="large" class="feature-numbered__title">{item -> f:render.text(field: 'title')}</d:atom.typography>
                     <f:if condition="{item.description}">
-                        <d:atom.typography variant="muted" class="feature-numbered__description">{item -> f:render.text(field: 'description')}</d:atom.typography>
+                        <d:atom.typography tag="div" variant="muted" class="feature-numbered__description d-richtext">{item -> f:render.text(field: 'description')}</d:atom.typography>
                     </f:if>
                 </li>
             </f:for>

@@ -13,7 +13,7 @@
                     <h2 class="comparison-table__headline">{data -> f:render.text(field: 'header')}</h2>
                 </f:if>
                 <f:if condition="{data.description}">
-                    <p class="comparison-table__description">{data -> f:render.text(field: 'description')}</p>
+                    <div class="comparison-table__description d-richtext">{data -> f:render.text(field: 'description')}</div>
                 </f:if>
             </header>
         </f:if>

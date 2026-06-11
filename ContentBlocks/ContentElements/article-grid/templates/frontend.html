@@ -23,7 +23,7 @@
                             <f:else>{item -> f:render.text(field: 'title')}</f:else>
                         </f:if>
                     </h3>
-                    <f:if condition="{item.description}"><p class="article-grid__description">{item -> f:render.text(field: 'description')}</p></f:if>
+                    <f:if condition="{item.description}"><div class="article-grid__description d-richtext">{item -> f:render.text(field: 'description')}</div></f:if>
                     <f:if condition="{item.link.url}">
                         <d:atom.link href="{item.link.url}" target="{item.link.target}" variant="muted" class="article-grid__link">
                             <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:read_article" default="Read article"/>

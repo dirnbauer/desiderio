@@ -22,7 +22,7 @@
                             <span class="directions__icon" aria-hidden="true"><d:atom.icon name="map-pin" size="lg"/></span>
                             <span>{route -> f:render.text(field: 'mode')}</span>
                         </h3>
-                        <p class="directions__description">{route -> f:render.text(field: 'description')}</p>
+                        <div class="directions__description d-richtext">{route -> f:render.text(field: 'description')}</div>
                     </d:molecule.card>
                 </li>
             </f:for>

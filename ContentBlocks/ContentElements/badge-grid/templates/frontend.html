@@ -13,7 +13,7 @@
                     <d:atom.typography tag="h2" variant="h2" class="badge-grid__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
                 </f:if>
                 <f:if condition="{data.description}">
-                    <d:atom.typography variant="lead" class="badge-grid__description">{data -> f:render.text(field: 'description')}</d:atom.typography>
+                    <d:atom.typography tag="div" variant="lead" class="badge-grid__description d-richtext">{data -> f:render.text(field: 'description')}</d:atom.typography>
                 </f:if>
             </header>
         </f:if>

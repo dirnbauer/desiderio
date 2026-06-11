@@ -24,7 +24,7 @@
                         </f:else>
                     </f:if>
                     <h3 class="company-milestones__title">{ms -> f:render.text(field: 'title')}</h3>
-                    <f:if condition="{ms.description}"><p class="company-milestones__description">{ms -> f:render.text(field: 'description')}</p></f:if>
+                    <f:if condition="{ms.description}"><div class="company-milestones__description d-richtext">{ms -> f:render.text(field: 'description')}</div></f:if>
                 </li>
             </f:for>
         </ol>

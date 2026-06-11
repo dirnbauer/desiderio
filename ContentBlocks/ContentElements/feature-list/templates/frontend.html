@@ -22,7 +22,7 @@
                     <div class="feature-list__copy">
                         <h3 class="feature-list__title">{item -> f:render.text(field: 'title')}</h3>
                         <f:if condition="{item.description}">
-                            <p class="feature-list__description">{item -> f:render.text(field: 'description')}</p>
+                            <div class="feature-list__description d-richtext">{item -> f:render.text(field: 'description')}</div>
                         </f:if>
                     </div>
                 </d:molecule.card>

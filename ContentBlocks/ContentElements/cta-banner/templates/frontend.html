@@ -9,7 +9,7 @@
     <d:layout.container>
         <div class="cta-banner__content">
             <f:if condition="{data.header}"><h2 class="cta-banner__headline">{data -> f:render.text(field: 'header')}</h2></f:if>
-            <f:if condition="{data.description}"><p class="cta-banner__description">{data -> f:render.text(field: 'description')}</p></f:if>
+            <f:if condition="{data.description}"><div class="cta-banner__description d-richtext">{data -> f:render.text(field: 'description')}</div></f:if>
             <f:if condition="{data.cta_text} && {data.cta_link.url}">
                 <d:atom.button href="{data.cta_link.url}" target="{data.cta_link.target}" variant="secondary" size="lg">{data -> f:render.text(field: 'cta_text')}</d:atom.button>
             </f:if>

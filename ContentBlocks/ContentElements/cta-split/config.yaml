@@ -21,6 +21,8 @@ fields:
   -
     identifier: left_description
     type: Textarea
+    enableRichtext: true
+    richtextConfiguration: desiderio
     label: 'Left Description'
     rows: 2
   -
@@ -40,6 +42,8 @@ fields:
   -
     identifier: right_description
     type: Textarea
+    enableRichtext: true
+    richtextConfiguration: desiderio
     label: 'Right Description'
     rows: 2
   -

@@ -11,7 +11,7 @@
             <div class="demo-request__content">
                 <f:if condition="{data.eyebrow}"><span class="demo-request__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span></f:if>
                 <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2" class="demo-request__title">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
-                <f:if condition="{data.description}"><d:atom.typography variant="muted" class="demo-request__description">{data -> f:render.text(field: 'description')}</d:atom.typography></f:if>
+                <f:if condition="{data.description}"><d:atom.typography tag="div" variant="muted" class="demo-request__description d-richtext">{data -> f:render.text(field: 'description')}</d:atom.typography></f:if>
                 <f:if condition="{data.reassurance}">
                     <p class="demo-request__reassurance">
                         <span class="demo-request__reassurance-icon" aria-hidden="true"><d:atom.icon name="check-circle" size="sm"/></span>

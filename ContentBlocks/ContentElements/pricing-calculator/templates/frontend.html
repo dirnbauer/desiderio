@@ -16,7 +16,7 @@
                     <h2 class="pricing-calculator__headline">{data -> f:render.text(field: 'header')}</h2>
                 </f:if>
                 <f:if condition="{data.description}">
-                    <p class="pricing-calculator__description">{data -> f:render.text(field: 'description')}</p>
+                    <div class="pricing-calculator__description d-richtext">{data -> f:render.text(field: 'description')}</div>
                 </f:if>
             </header>
         </f:if>

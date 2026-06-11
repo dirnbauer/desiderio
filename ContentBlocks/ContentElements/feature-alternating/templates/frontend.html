@@ -20,7 +20,7 @@
                     <div class="feature-alternating__copy">
                         <d:atom.typography tag="h3" variant="h3" class="feature-alternating__title">{item -> f:render.text(field: 'title')}</d:atom.typography>
                         <f:if condition="{item.description}">
-                            <p class="feature-alternating__description">{item -> f:render.text(field: 'description')}</p>
+                            <div class="feature-alternating__description d-richtext">{item -> f:render.text(field: 'description')}</div>
                         </f:if>
                         <f:if condition="{item.link.url}">
                             <d:atom.link href="{item.link.url}" target="{item.link.target}" variant="muted" class="feature-alternating__link">

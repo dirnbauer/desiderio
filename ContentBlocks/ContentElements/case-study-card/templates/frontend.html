@@ -30,7 +30,7 @@
                 </f:if>
                 <span class="case-study-card__eyebrow"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:case_study" default="Case study"/></span>
                 <h3 class="case-study-card__client">{data -> f:render.text(field: 'client_name')}</h3>
-                <p class="case-study-card__summary">{data -> f:render.text(field: 'summary')}</p>
+                <div class="case-study-card__summary d-richtext">{data -> f:render.text(field: 'summary')}</div>
 
                 <f:if condition="{data.result_value}">
                     <p class="case-study-card__result">

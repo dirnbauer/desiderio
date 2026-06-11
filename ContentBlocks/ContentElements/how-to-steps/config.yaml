@@ -16,6 +16,8 @@ fields:
   -
     identifier: description
     type: Textarea
+    enableRichtext: true
+    richtextConfiguration: desiderio
     label: Introduction
     rows: 3
   -
@@ -37,6 +39,7 @@ fields:
         type: Textarea
         label: 'Step Instructions'
         enableRichtext: true
+        richtextConfiguration: desiderio
         rows: 4
       -
         identifier: image

@@ -31,7 +31,7 @@
                     <div class="case-study-grid__body">
                         <h3 class="case-study-grid__client">{item -> f:render.text(field: 'client_name')}</h3>
                         <f:if condition="{item.summary}">
-                            <p class="case-study-grid__summary">{item -> f:render.text(field: 'summary')}</p>
+                            <div class="case-study-grid__summary d-richtext">{item -> f:render.text(field: 'summary')}</div>
                         </f:if>
                         <f:if condition="{item.result}">
                             <p class="case-study-grid__result">{item -> f:render.text(field: 'result')}</p>

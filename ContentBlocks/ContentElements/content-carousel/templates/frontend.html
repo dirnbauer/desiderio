@@ -45,7 +45,7 @@
                                         </h3>
                                     </f:if>
                                     <f:if condition="{item.slide_description}">
-                                        <p class="card__description">{item -> f:render.text(field: 'slide_description')}</p>
+                                        <div class="card__description d-richtext">{item -> f:render.text(field: 'slide_description')}</div>
                                     </f:if>
                                 </div>
                             </d:molecule.card>
@@ -88,7 +88,7 @@
                                             </h3>
                                         </f:if>
                                         <f:if condition="{item.slide_description}">
-                                            <p class="content-carousel__description">{item -> f:render.text(field: 'slide_description')}</p>
+                                            <div class="content-carousel__description d-richtext">{item -> f:render.text(field: 'slide_description')}</div>
                                         </f:if>
                                     </div>
                                 </f:if>

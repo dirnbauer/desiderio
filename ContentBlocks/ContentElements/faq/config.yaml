@@ -37,5 +37,6 @@ fields:
         type: Textarea
         label: Answer
         enableRichtext: true
+        richtextConfiguration: desiderio
         rows: 4
         required: true

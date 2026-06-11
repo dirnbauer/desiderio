@@ -22,7 +22,7 @@
         <f:if condition="{data.header}">
             <h2 class="notification__title">{data -> f:render.text(field: 'header')}</h2>
         </f:if>
-        <p class="notification__message">{data -> f:render.text(field: 'content')}</p>
+        <div class="notification__message d-richtext">{data -> f:render.text(field: 'content')}</div>
         <f:if condition="{data.action_text}">
             <div class="notification__actions">
                 <d:atom.link href="{data.action_link.url}" target="{data.action_link.target}" variant="muted" class="notification__action">{data -> f:render.text(field: 'action_text')}</d:atom.link>

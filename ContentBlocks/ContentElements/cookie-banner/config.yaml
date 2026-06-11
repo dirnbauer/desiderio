@@ -19,6 +19,7 @@ fields:
     label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/cookie-banner/language/labels.xlf:field.content'
     description: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/cookie-banner/language/labels.xlf:field.content.description'
     enableRichtext: true
+    richtextConfiguration: desiderio
     rows: 3
     required: true
   -

@@ -56,6 +56,8 @@ fields:
       -
         identifier: slide_description
         type: Textarea
+        enableRichtext: true
+        richtextConfiguration: desiderio
         rows: 3
         label: 'Slide Description'
       -

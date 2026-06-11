@@ -31,7 +31,7 @@
                             <span class="pricing-usage__unit">/ {item -> f:render.text(field: 'unit')}</span>
                         </p>
                         <f:if condition="{item.description}">
-                            <p class="pricing-usage__card-desc">{item -> f:render.text(field: 'description')}</p>
+                            <div class="pricing-usage__card-desc d-richtext">{item -> f:render.text(field: 'description')}</div>
                         </f:if>
                         <f:if condition="{item.link.url}">
                             <d:atom.link href="{item.link.url}" target="{item.link.target}" variant="muted" class="pricing-usage__link">

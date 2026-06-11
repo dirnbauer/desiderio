@@ -25,7 +25,7 @@
             <article class="compare__panel">
                 <h3 class="compare__title">{data -> f:render.text(field: 'left_title')}</h3>
                 <f:if condition="{data.left_description}">
-                    <p class="compare__panel-description">{data -> f:render.text(field: 'left_description')}</p>
+                    <div class="compare__panel-description d-richtext">{data -> f:render.text(field: 'left_description')}</div>
                 </f:if>
                 <f:if condition="{data.left_points}">
                     <ul class="compare__points compare__points--con">
@@ -49,7 +49,7 @@
                 </f:if>
                 <h3 class="compare__title">{data -> f:render.text(field: 'right_title')}</h3>
                 <f:if condition="{data.right_description}">
-                    <p class="compare__panel-description">{data -> f:render.text(field: 'right_description')}</p>
+                    <div class="compare__panel-description d-richtext">{data -> f:render.text(field: 'right_description')}</div>
                 </f:if>
                 <f:if condition="{data.right_points}">
                     <ul class="compare__points compare__points--pro">

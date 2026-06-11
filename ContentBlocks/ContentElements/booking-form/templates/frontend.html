@@ -10,7 +10,7 @@
         <d:molecule.card class="booking-form__card">
             <header class="booking-form__intro">
                 <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h3" class="booking-form__title">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
-                <f:if condition="{data.description}"><d:atom.typography variant="muted" class="booking-form__description">{data -> f:render.text(field: 'description')}</d:atom.typography></f:if>
+                <f:if condition="{data.description}"><d:atom.typography tag="div" variant="muted" class="booking-form__description d-richtext">{data -> f:render.text(field: 'description')}</d:atom.typography></f:if>
                 <f:if condition="{data.reassurance}">
                     <p class="booking-form__reassurance">
                         <span class="booking-form__reassurance-icon" aria-hidden="true"><d:atom.icon name="check-circle" size="sm"/></span>

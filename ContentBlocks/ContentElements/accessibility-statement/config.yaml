@@ -34,6 +34,7 @@ fields:
     type: Textarea
     label: 'Statement Content'
     enableRichtext: true
+    richtextConfiguration: desiderio
     rows: 8
     required: true
   -

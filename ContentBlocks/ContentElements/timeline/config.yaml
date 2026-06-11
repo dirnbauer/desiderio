@@ -44,6 +44,7 @@ fields:
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:content'
         rows: 4
         enableRichtext: true
+        richtextConfiguration: desiderio
       -
         identifier: link_text
         type: Textarea

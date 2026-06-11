@@ -15,7 +15,7 @@
                 <p class="privacy-notice__updated"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:terms_summary.last_updated" default="Last updated"/>: <time>{data -> f:render.text(field: 'last_updated')}</time></p>
             </f:if>
             <f:if condition="{data.intro}">
-                <p class="privacy-notice__intro">{data -> f:render.text(field: 'intro')}</p>
+                <div class="privacy-notice__intro d-richtext">{data -> f:render.text(field: 'intro')}</div>
             </f:if>
             <f:if condition="{data.sections}">
                 <div class="privacy-notice__sections">

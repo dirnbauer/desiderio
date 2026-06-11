@@ -53,7 +53,7 @@
                             <d:atom.typography variant="large" class="hero-video__panel-title">{data -> f:render.text(field: 'video_title')}</d:atom.typography>
                         </f:if>
                         <f:if condition="{data.video_description}">
-                            <d:atom.typography variant="muted" class="hero-video__panel-copy">{data -> f:render.text(field: 'video_description')}</d:atom.typography>
+                            <d:atom.typography tag="div" variant="muted" class="hero-video__panel-copy d-richtext">{data -> f:render.text(field: 'video_description')}</d:atom.typography>
                         </f:if>
                     </figcaption>
                 </f:if>

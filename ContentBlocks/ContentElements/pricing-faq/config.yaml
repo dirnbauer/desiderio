@@ -40,6 +40,8 @@ fields:
       -
         identifier: answer
         type: Textarea
+        enableRichtext: true
+        richtextConfiguration: desiderio
         label: Answer
         rows: 3
         required: true

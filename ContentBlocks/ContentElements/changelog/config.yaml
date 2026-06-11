@@ -42,6 +42,7 @@ fields:
         type: Textarea
         label: 'Release Notes'
         enableRichtext: true
+        richtextConfiguration: desiderio
         rows: 4
       -
         identifier: tag

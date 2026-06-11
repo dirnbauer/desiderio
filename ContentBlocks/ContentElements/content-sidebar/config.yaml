@@ -18,12 +18,14 @@ fields:
     type: Textarea
     label: 'Main Content'
     enableRichtext: true
+    richtextConfiguration: desiderio
     rows: 8
   -
     identifier: sidebar_content
     type: Textarea
     label: 'Sidebar Content'
     enableRichtext: true
+    richtextConfiguration: desiderio
     rows: 6
   -
     identifier: sidebar_position

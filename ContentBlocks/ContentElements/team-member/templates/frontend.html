@@ -19,7 +19,7 @@
                 <div class="team-member__body">
                     <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
                     <f:if condition="{data.role}"><p class="team-member__role">{data -> f:render.text(field: 'role')}</p></f:if>
-                    <f:if condition="{data.bio}"><p class="team-member__bio">{data -> f:render.text(field: 'bio')}</p></f:if>
+                    <f:if condition="{data.bio}"><div class="team-member__bio d-richtext">{data -> f:render.text(field: 'bio')}</div></f:if>
                     <f:if condition="{data.email} || {data.phone}">
                         <dl class="team-member__contact">
                             <f:if condition="{data.email}">

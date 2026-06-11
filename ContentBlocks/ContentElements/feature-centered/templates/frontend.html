@@ -23,7 +23,7 @@
                     </f:if>
                     <d:atom.typography tag="h3" variant="h4" class="feature-centered__title">{item -> f:render.text(field: 'title')}</d:atom.typography>
                     <f:if condition="{item.description}">
-                        <p class="feature-centered__description">{item -> f:render.text(field: 'description')}</p>
+                        <div class="feature-centered__description d-richtext">{item -> f:render.text(field: 'description')}</div>
                     </f:if>
                 </div>
             </f:for>

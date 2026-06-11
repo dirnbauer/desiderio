@@ -15,7 +15,7 @@
                 <f:if condition="{data.header}">
                     <d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography>
                 </f:if>
-                <f:if condition="{data.description}"><d:atom.typography variant="muted">{data -> f:render.text(field: 'description')}</d:atom.typography></f:if>
+                <f:if condition="{data.description}"><d:atom.typography tag="div" variant="muted" class="d-richtext">{data -> f:render.text(field: 'description')}</d:atom.typography></f:if>
             </header>
         </f:if>
 

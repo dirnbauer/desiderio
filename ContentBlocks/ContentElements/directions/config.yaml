@@ -35,5 +35,7 @@ fields:
       -
         identifier: description
         type: Textarea
+        enableRichtext: true
+        richtextConfiguration: desiderio
         label: Directions
         rows: 3

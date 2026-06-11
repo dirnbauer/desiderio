@@ -14,7 +14,7 @@
                         <d:atom.typography tag="h2" variant="h3" class="leaderboard__title">{data -> f:render.text(field: 'header')}</d:atom.typography>
                     </f:if>
                     <f:if condition="{data.description}">
-                        <p class="leaderboard__description">{data -> f:render.text(field: 'description')}</p>
+                        <div class="leaderboard__description d-richtext">{data -> f:render.text(field: 'description')}</div>
                     </f:if>
                 </div>
             </f:if>

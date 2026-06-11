@@ -16,6 +16,8 @@ fields:
   -
     identifier: content
     type: Textarea
+    enableRichtext: true
+    richtextConfiguration: desiderio
     label: Message
     rows: 3
     required: true

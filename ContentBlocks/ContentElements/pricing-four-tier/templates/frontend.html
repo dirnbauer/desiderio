@@ -39,7 +39,7 @@
                             <d:atom.typography tag="h3" variant="h4" class="pricing-four-tier__title">{tier -> f:render.text(field: 'title')}</d:atom.typography>
                             <p class="pricing-four-tier__price">{tier -> f:render.text(field: 'price')}</p>
                             <f:if condition="{tier.description}">
-                                <d:atom.typography variant="muted" class="pricing-four-tier__plan-desc">{tier -> f:render.text(field: 'description')}</d:atom.typography>
+                                <d:atom.typography tag="div" variant="muted" class="pricing-four-tier__plan-desc d-richtext">{tier -> f:render.text(field: 'description')}</d:atom.typography>
                             </f:if>
                         </d:molecule.cardHeader>
 

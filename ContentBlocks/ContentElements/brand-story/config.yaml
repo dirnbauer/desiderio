@@ -26,6 +26,8 @@ fields:
   -
     identifier: body
     type: Textarea
+    enableRichtext: true
+    richtextConfiguration: desiderio
     label: 'Body Text'
     rows: 6
   -

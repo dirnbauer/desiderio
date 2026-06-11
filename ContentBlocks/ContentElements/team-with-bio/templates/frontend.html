@@ -37,7 +37,7 @@
                         <div class="team-with-bio__content">
                             <h3 class="team-with-bio__name">{member -> f:render.text(field: 'name')}</h3>
                             <f:if condition="{member.role}"><p class="team-with-bio__role">{member -> f:render.text(field: 'role')}</p></f:if>
-                            <f:if condition="{member.bio}"><p class="team-with-bio__bio">{member -> f:render.text(field: 'bio')}</p></f:if>
+                            <f:if condition="{member.bio}"><div class="team-with-bio__bio d-richtext">{member -> f:render.text(field: 'bio')}</div></f:if>
                             <f:if condition="{member.profile_link.url}">
                                 <d:atom.button href="{member.profile_link.url}" target="{member.profile_link.target}" variant="default" size="sm" class="team-with-bio__link">
                                     <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:team.view_profile">View profile</f:translate>

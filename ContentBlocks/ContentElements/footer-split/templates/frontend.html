@@ -16,7 +16,7 @@
                     <h2 class="footer-split__brand">{data -> f:render.text(field: 'brand')}</h2>
                 </f:if>
                 <f:if condition="{data.description}">
-                    <p class="footer-split__description">{data -> f:render.text(field: 'description')}</p>
+                    <div class="footer-split__description d-richtext">{data -> f:render.text(field: 'description')}</div>
                 </f:if>
                 <f:if condition="{data.copyright}">
                     <p class="footer-split__copyright">{data -> f:render.text(field: 'copyright')}</p>

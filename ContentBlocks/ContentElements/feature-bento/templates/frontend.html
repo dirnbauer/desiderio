@@ -25,7 +25,7 @@
                     <div class="feature-bento__content">
                         <d:atom.typography tag="h3" variant="large" class="feature-bento__title">{item -> f:render.text(field: 'title')}</d:atom.typography>
                         <f:if condition="{item.description}">
-                            <p class="feature-bento__description">{item -> f:render.text(field: 'description')}</p>
+                            <div class="feature-bento__description d-richtext">{item -> f:render.text(field: 'description')}</div>
                         </f:if>
                     </div>
                 </d:molecule.card>

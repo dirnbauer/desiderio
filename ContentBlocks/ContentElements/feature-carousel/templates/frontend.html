@@ -29,7 +29,7 @@
                                 </f:if>
                             </d:atom.typography>
                             <f:if condition="{item.description}">
-                                <p class="feature-carousel__description">{item -> f:render.text(field: 'description')}</p>
+                                <div class="feature-carousel__description d-richtext">{item -> f:render.text(field: 'description')}</div>
                             </f:if>
                         </d:molecule.card>
                     </li>

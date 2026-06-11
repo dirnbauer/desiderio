@@ -33,6 +33,8 @@ fields:
   -
     identifier: description
     type: Textarea
+    enableRichtext: true
+    richtextConfiguration: desiderio
     label: 'Case Study Description'
     rows: 4
     required: true

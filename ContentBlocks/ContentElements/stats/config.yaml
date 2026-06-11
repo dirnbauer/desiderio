@@ -64,6 +64,8 @@ fields:
       -
         identifier: description
         type: Textarea
+        enableRichtext: true
+        richtextConfiguration: desiderio
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:stat_description'
         description: 'Optional one line that anchors the number to who or where.'
         rows: 2

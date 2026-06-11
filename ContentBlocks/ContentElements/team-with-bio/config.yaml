@@ -51,6 +51,8 @@ fields:
       -
         identifier: bio
         type: Textarea
+        enableRichtext: true
+        richtextConfiguration: desiderio
         label: Biography
         rows: 4
       -

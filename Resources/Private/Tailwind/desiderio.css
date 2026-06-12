@@ -190,7 +190,7 @@
   .frame :where(h1, h2, h3, h4, h5, h6),
   .ce-frame :where(h1, h2, h3, h4, h5, h6),
   .ce-bodytext :where(h1, h2, h3, h4, h5, h6),
-  .prose :where(h1, h2, h3, h4, h5, h6) {
+  .prose :where(h1, h2, h3, h4, h5, h6):not(:where(.desiderio-section *, .not-prose, .not-prose *)) {
     color: var(--foreground);
     font-family: var(--font-heading);
     font-weight: 600;
@@ -200,24 +200,27 @@
   .frame :where(p, li, figcaption),
   .ce-frame :where(p, li, figcaption),
   .ce-bodytext :where(p, li, figcaption),
-  .prose :where(p, li, figcaption) {
+  .prose :where(p, li, figcaption):not(:where(.desiderio-section *, .not-prose, .not-prose *)) {
     color: var(--muted-foreground);
     line-height: 1.7;
   }
 
-  .frame :where(a),
-  .ce-frame :where(a),
-  .ce-bodytext :where(a),
-  .prose :where(a) {
+  /* Anchor styling is for running text only — shadcn buttons render as <a>
+     too and must keep their own contract (no underline, no color repaint).
+     .not-prose is the generic escape hatch for embedded UI. */
+  .frame :where(a:not([data-slot='button'], .not-prose, .not-prose *)),
+  .ce-frame :where(a:not([data-slot='button'], .not-prose, .not-prose *)),
+  .ce-bodytext :where(a:not([data-slot='button'], .not-prose, .not-prose *)),
+  .prose :where(a:not([data-slot='button'])):not(:where(.desiderio-section *, .not-prose, .not-prose *)) {
     color: var(--primary);
     text-decoration-line: underline;
     text-underline-offset: 0.25rem;
   }
 
-  .frame :where(a:hover),
-  .ce-frame :where(a:hover),
-  .ce-bodytext :where(a:hover),
-  .prose :where(a:hover) {
+  .frame :where(a:hover:not([data-slot='button'], .not-prose, .not-prose *)),
+  .ce-frame :where(a:hover:not([data-slot='button'], .not-prose, .not-prose *)),
+  .ce-bodytext :where(a:hover:not([data-slot='button'], .not-prose, .not-prose *)),
+  .prose :where(a:hover:not([data-slot='button'])):not(:where(.desiderio-section *, .not-prose, .not-prose *)) {
     /* Not a mix towards var(--foreground): its oklch hue 0 would rotate the
        brand hue. --d-primary-text is the hue-safe, scheme-aware pull. */
     color: var(--d-primary-text, var(--primary));
@@ -225,7 +228,7 @@
 
   .frame :where(img, video, iframe),
   .ce-frame :where(img, video, iframe),
-  .prose :where(img, video, iframe) {
+  .prose :where(img, video, iframe):not(:where(.desiderio-section *, .not-prose, .not-prose *)) {
     display: block;
     max-width: 100%;
     height: auto;
@@ -234,7 +237,7 @@
 
   .frame :where(blockquote),
   .ce-frame :where(blockquote),
-  .prose :where(blockquote) {
+  .prose :where(blockquote):not(:where(.desiderio-section *, .not-prose, .not-prose *)) {
     border-inline-start: 2px solid var(--border);
     color: var(--foreground);
     padding-inline-start: 1rem;
@@ -242,7 +245,7 @@
 
   .frame :where(table),
   .ce-frame :where(table),
-  .prose :where(table) {
+  .prose :where(table):not(:where(.desiderio-section *, .not-prose, .not-prose *)) {
     width: 100%;
     caption-side: bottom;
     border-collapse: collapse;
@@ -251,7 +254,7 @@
 
   .frame :where(th),
   .ce-frame :where(th),
-  .prose :where(th) {
+  .prose :where(th):not(:where(.desiderio-section *, .not-prose, .not-prose *)) {
     color: var(--foreground);
     font-weight: 500;
     text-align: start;
@@ -259,7 +262,7 @@
 
   .frame :where(th, td),
   .ce-frame :where(th, td),
-  .prose :where(th, td) {
+  .prose :where(th, td):not(:where(.desiderio-section *, .not-prose, .not-prose *)) {
     border-block-end: 1px solid var(--border);
     padding: 0.5rem;
   }
@@ -308,4 +311,18 @@
   #tx-solr-facets-in-use :where(a:hover, a:focus, a:focus-visible, a:active) {
     text-decoration-line: none;
   }
+}
+
+/* Unlayered on purpose: the container's px-4 utility would win against any
+   @layer rule. Content elements rendered inside an article body already sit
+   in the page container — their own container padding would double-indent
+   the copy against the article header. Start stays flush with the post
+   title; the end side keeps breathing room toward the sidebar. Painted
+   bands (cta-banner variants) get the full inline padding back so copy
+   never touches the band edge. */
+.prose :where(.desiderio-section > .desiderio-container) {
+  padding-inline: 0 2rem;
+}
+.prose :where(.cta-banner--primary, .cta-banner--muted, .cta-banner--dark) > .desiderio-container {
+  padding-inline: var(--d-spacing-2xl, 3rem);
 }

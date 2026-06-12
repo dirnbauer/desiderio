@@ -1,0 +1,18 @@
+categories:
+  elementLibrary:
+    label: 'Element Library'
+
+settings:
+  elementLibrary.storagePid:
+    label: 'Element Library storage folder'
+    description: 'Page uid of the "Element Library" sysfolder created by desiderio:library:seed. Only records below this folder are renderable through the preview page type and listed by the element library endpoint.'
+    category: elementLibrary
+    type: int
+    default: 0
+
+  elementLibrary.previewTypeNum:
+    label: 'Preview page type number'
+    description: 'typeNum of the standalone single-element rendering used for picker previews.'
+    category: elementLibrary
+    type: int
+    default: 1777200001

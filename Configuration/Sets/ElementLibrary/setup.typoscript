@@ -1,0 +1,39 @@
+# Standalone single-element rendering for element library previews.
+# Inherits the Desiderio PAGE shell assets (theme CSS, component JS, body
+# tag with theme preset) but renders exactly ONE tt_content record from the
+# Element Library storage folder - no header, navigation or footer.
+#
+# URL shape: /?type={$elementLibrary.previewTypeNum}&elPreview=<uid>&cHash=...
+# The cHash signs the parameters; pidInList limits rendering to seeded
+# library records, so arbitrary content cannot be rendered through this type.
+elementLibraryPreview = PAGE
+elementLibraryPreview {
+  typeNum = {$elementLibrary.previewTypeNum}
+
+  config {
+    index_enable = 0
+    debug = 0
+  }
+
+  meta.robots = noindex,nofollow
+
+  shortcutIcon < page.shortcutIcon
+  includeCSS < page.includeCSS
+  includeJSFooter < page.includeJSFooter
+  bodyTagCObject < page.bodyTagCObject
+
+  headerData.2630 = TEXT
+  headerData.2630.value = <style>body{padding:1.5rem;background:transparent}</style>
+
+  10 = CONTENT
+  10 {
+    table = tt_content
+    select {
+      pidInList = {$elementLibrary.storagePid}
+      uidInList.data = GP:elPreview
+      uidInList.intval = 1
+      languageField = sys_language_uid
+      max = 1
+    }
+  }
+}

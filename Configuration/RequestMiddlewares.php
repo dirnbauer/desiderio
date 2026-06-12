@@ -22,5 +22,15 @@ return [
                 'typo3/cms-frontend/page-resolver',
             ],
         ],
+        'webconsulting/desiderio-element-library' => [
+            'target' => \Webconsulting\Desiderio\Middleware\ElementLibraryMiddleware::class,
+            'after' => [
+                'typo3/cms-frontend/site',
+                'typo3/cms-frontend/backend-user-authentication',
+            ],
+            'before' => [
+                'typo3/cms-frontend/page-resolver',
+            ],
+        ],
     ],
 ];

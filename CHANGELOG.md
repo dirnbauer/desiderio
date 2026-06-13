@@ -6,6 +6,13 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [2.9.5] — 2026-06-13
+
+_Consolidated notes for the 2.9.x line. The changelog and the `version`
+fields in `ext_emconf.php` / `composer.json` were not updated between
+2.6.2 and the same-day 2.9.x tags (v2.7.0–v2.9.4); this release reconciles
+both and resumes per-release versioning._
+
 ### Security
 
 - FriendlyCaptcha test mode is now refused (and logged) in the Production
@@ -46,6 +53,12 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Fixed
 
+- Content elements that paint a section band
+  (`content-highlight--muted` / `--primary` / `--bordered`) no longer
+  render their copy flush against the left edge inside blog/article
+  (`.prose`) bodies. The inline-padding exemption that previously covered
+  only `cta-banner` bands now also includes the content-highlight
+  variants, so banded copy keeps symmetric insets.
 - `ExtensionFalSeeder` now imports a temporary copy of bundled assets.
   Previously `Folder::addFile()` moved the source file, so the first seeder
   run deleted the original asset from the extension directory.

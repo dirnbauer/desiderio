@@ -48,6 +48,9 @@ categories:
   desiderio.forms:
     label: 'Forms'
     parent: desiderio
+  desiderio.elementLibrary:
+    label: 'Element Library'
+    parent: desiderio
 
 settings:
   # --------------------------------------------------------------- Brand
@@ -453,3 +456,22 @@ settings:
     type: string
     default: ''
     category: desiderio.forms
+
+  # ------------------------------------------------------- Element Library
+  # Visual-editor element picker: the storage folder seeded by
+  # desiderio:library:seed and the typeNum used to render single-element
+  # previews. The picker endpoint (ElementLibraryMiddleware) and the
+  # elementLibraryPreview PAGE in setup.typoscript read these.
+  elementLibrary.storagePid:
+    label: 'Element Library storage folder'
+    description: 'Page uid of the "Element Library" sysfolder created by desiderio:library:seed. Only records below this folder are renderable through the preview page type and listed by the element library endpoint.'
+    category: desiderio.elementLibrary
+    type: int
+    default: 0
+
+  elementLibrary.previewTypeNum:
+    label: 'Element Library preview page type'
+    description: 'typeNum of the standalone single-element rendering used for visual picker previews.'
+    category: desiderio.elementLibrary
+    type: int
+    default: 1777200001

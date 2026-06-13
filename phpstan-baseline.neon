@@ -73,7 +73,7 @@ parameters:
 			path: Classes/Command/SeedStyleguidePagesCommand.php
 
 		-
-			message: '#^Method Webconsulting\\Desiderio\\Data\\PowermailDemoFormDefinitions\:\:demoForms\(\) should return list\<array\{slug\: string, titleEn\: string, titleDe\: string, pageTitleEn\: string, pageTitleDe\: string, introEn\: string, introDe\: string, thankTitleEn\: string, \.\.\.\}\> but returns array\{array\{slug\: ''contact'', titleEn\: ''Contact Form'', titleDe\: ''Kontaktformular'', pageTitleEn\: ''Powermail 01\:…'', pageTitleDe\: ''Powermail 01\:…'', introEn\: ''A standard contact…'', introDe\: ''Ein Standard…'', thankTitleEn\: ''Contact request…'', \.\.\.\}, array\{slug\: ''newsletter'', titleEn\: ''Newsletter Signup'', titleDe\: ''Newsletter Anmeldung'', pageTitleEn\: ''Powermail 02\:…'', pageTitleDe\: ''Powermail 02\:…'', introEn\: ''A compact…'', introDe\: ''Eine kompakte…'', thankTitleEn\: ''Newsletter signup…'', \.\.\.\}, array\{slug\: ''callback'', titleEn\: ''Callback Request'', titleDe\: ''Rueckrufanfrage'', pageTitleEn\: ''Powermail 03\:…'', pageTitleDe\: ''Powermail 03\:…'', introEn\: ''A callback request…'', introDe\: ''Ein Rueckruf…'', thankTitleEn\: ''Callback request…'', \.\.\.\}, array\{slug\: ''appointment'', titleEn\: ''Appointment Request'', titleDe\: ''Terminanfrage'', pageTitleEn\: ''Powermail 04\:…'', pageTitleDe\: ''Powermail 04\:…'', introEn\: ''A two\-step…'', introDe\: ''Ein zweistufiges…'', thankTitleEn\: ''Appointment request…'', \.\.\.\}, array\{slug\: ''support'', titleEn\: ''Support Request'', titleDe\: ''Supportanfrage'', pageTitleEn\: ''Powermail 05\:…'', pageTitleDe\: ''Powermail 05\:…'', introEn\: ''A support request…'', introDe\: ''Ein Supportformular…'', thankTitleEn\: ''Support request…'', \.\.\.\}\}\.$#'
+			message: '#^Method Webconsulting\\Desiderio\\Data\\PowermailDemoFormDefinitions\:\:demoForms\(\) should return list\<array\{slug\: string, titleEn\: string, titleDe\: string, pageTitleEn\: string, pageTitleDe\: string, introEn\: string, introDe\: string, thankTitleEn\: string, \.\.\.\}\> but returns array\{array\{slug\: ''contact'', titleEn\: ''Contact Form'', titleDe\: ''Kontaktformular'', pageTitleEn\: ''Powermail 01\:…'', pageTitleDe\: ''Powermail 01\:…'', introEn\: ''A standard contact…'', introDe\: ''Ein Standard…'', thankTitleEn\: ''Contact request…'', \.\.\.\}, array\{slug\: ''newsletter'', titleEn\: ''Newsletter Signup'', titleDe\: ''Newsletter Anmeldung'', pageTitleEn\: ''Powermail 02\:…'', pageTitleDe\: ''Powermail 02\:…'', introEn\: ''A compact…'', introDe\: ''Eine kompakte…'', thankTitleEn\: ''Newsletter signup…'', \.\.\.\}, array\{slug\: ''callback'', titleEn\: ''Callback Request'', titleDe\: ''Rueckrufanfrage'', pageTitleEn\: ''Powermail 03\:…'', pageTitleDe\: ''Powermail 03\:…'', introEn\: ''A callback request…'', introDe\: ''Ein Rueckruf…'', thankTitleEn\: ''Callback request…'', \.\.\.\}, array\{slug\: ''appointment'', titleEn\: ''Appointment Request'', titleDe\: ''Terminanfrage'', pageTitleEn\: ''Powermail 04\:…'', pageTitleDe\: ''Powermail 04\:…'', introEn\: ''A two\-step…'', introDe\: ''Ein zweistufiges…'', thankTitleEn\: ''Appointment request…'', \.\.\.\}, array\{slug\: ''support'', titleEn\: ''Support Request'', titleDe\: ''Supportanfrage'', pageTitleEn\: ''Powermail 05\:…'', pageTitleDe\: ''Powermail 05\:…'', introEn\: ''A support request…'', introDe\: ''Ein Supportformular…'', thankTitleEn\: ''Support request…'', \.\.\.\}, array\{slug\: ''project'', titleEn\: ''Project Request'', titleDe\: ''Projektanfrage'', pageTitleEn\: ''Powermail 06\:…'', pageTitleDe\: ''Powermail 06\:…'', introEn\: ''A four\-step project…'', introDe\: ''Ein vierstufiger…'', thankTitleEn\: ''Project request…'', \.\.\.\}\}\.$#'
 			identifier: return.type
 			count: 1
 			path: Classes/Data/PowermailDemoFormDefinitions.php
@@ -611,3 +611,51 @@ parameters:
 			identifier: variable.implicitArray
 			count: 1
 			path: ext_emconf.php
+
+		-
+			message: '#^Cannot access offset ''FE'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 2
+			path: ext_localconf.php
+
+		-
+			message: '#^Cannot access offset ''Presets'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: ext_localconf.php
+
+		-
+			message: '#^Cannot access offset ''RTE'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: ext_localconf.php
+
+		-
+			message: '#^Cannot access offset ''cacheHash'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 2
+			path: ext_localconf.php
+
+		-
+			message: '#^Cannot access offset ''desiderio'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: ext_localconf.php
+
+		-
+			message: '#^Cannot access offset ''excludedParameters'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 2
+			path: ext_localconf.php
+
+		-
+			message: '#^Parameter \#1 \$array of function array_unique expects an array of values castable to string, array\<mixed, mixed\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: ext_localconf.php
+
+		-
+			message: '#^Parameter \#1 \.\.\.\$arrays of function array_merge expects array, mixed given\.$#'
+			identifier: argument.type
+			count: 1
+			path: ext_localconf.php

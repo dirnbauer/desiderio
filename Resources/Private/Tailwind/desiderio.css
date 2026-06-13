@@ -325,11 +325,14 @@
    in the page container — their own container padding would double-indent
    the copy against the article header. Start stays flush with the post
    title; the end side keeps breathing room toward the sidebar. Painted
-   bands (cta-banner variants) get the full inline padding back so copy
-   never touches the band edge. */
+   bands (cta-banner and content-highlight variants) get the full inline
+   padding back so copy never touches the band edge. */
 .prose :where(.desiderio-section > .desiderio-container) {
   padding-inline: 0 2rem;
 }
-.prose :where(.cta-banner--primary, .cta-banner--muted, .cta-banner--dark) > .desiderio-container {
+.prose :where(
+  .cta-banner--primary, .cta-banner--muted, .cta-banner--dark,
+  .content-highlight--primary, .content-highlight--muted, .content-highlight--bordered
+) > .desiderio-container {
   padding-inline: var(--d-spacing-2xl, 3rem);
 }

@@ -20,7 +20,7 @@
 <f:variable name="buttonDefaultClass"><d:atom.controlClass slot="buttonDefault" /></f:variable>
 
 <f:section name="main">
-    <d:layout.container size="md" class="mt-8 max-w-2xl">
+    <div class="mt-8 w-full max-w-2xl">
         <d:molecule.card class="{cardCompactClass -> f:format.trim()} p-4">
             <d:molecule.cardHeader class="border-b">
                 <f:slot>
@@ -65,7 +65,7 @@
                 </f:form>
             </d:molecule.cardFooter>
         </d:molecule.card>
-    </d:layout.container>
+    </div>
 </f:section>
 
 <f:section name="HiddenFields">

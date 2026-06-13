@@ -19,7 +19,7 @@
         <f:render partial="Misc/FlashMessages" arguments="{_all}" />
     </f:alias>
 
-    <d:layout.container size="md" class="mt-8 max-w-2xl">
+    <div class="mt-8 w-full max-w-2xl">
         <div data-powermail-form="{mail.form.uid}">
         <d:molecule.card class="{cardCompactClass -> f:format.trim()}" role="region">
             <d:molecule.cardContent>
@@ -39,6 +39,6 @@
             </d:molecule.cardContent>
         </d:molecule.card>
         </div>
-    </d:layout.container>
+    </div>
 </f:section>
 </html>

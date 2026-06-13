@@ -24,7 +24,7 @@
             <f:variable name="cardHeaderClass"><d:atom.controlClass slot="cardHeaderBordered" /></f:variable>
             <f:variable name="cardTitleClass"><d:atom.controlClass slot="cardTitle" /></f:variable>
             <f:variable name="cardDescriptionClass"><d:atom.controlClass slot="cardDescription" /></f:variable>
-            <d:layout.container size="md" class="mt-8 w-full max-w-2xl">
+            <div class="mt-8 w-full max-w-2xl">
                 <f:form
                     action="{action}"
                     section="c{ttContentData.uid}"
@@ -50,9 +50,12 @@
                         <f:variable name="tabsListClass"><d:atom.controlClass slot="tabsList" /></f:variable>
                         <f:variable name="tabsTriggerClass"><d:atom.controlClass slot="tabsTrigger" /></f:variable>
                         <f:variable name="stepIndexClass"><d:atom.controlClass slot="stepIndex" /></f:variable>
-                        <nav class="{tabsListClass -> f:format.trim()} w-full grid gap-2 sm:grid-flow-col sm:auto-cols-fr" data-variant="default" aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/powermail.xlf:powermail.multistep.label')}">
+                        <!-- One horizontal row on every viewport: below sm the inactive
+                             steps collapse to number chips (labels stay sr-only for AT)
+                             and only the active step shows its label. -->
+                        <nav class="{tabsListClass -> f:format.trim()} flex w-full items-stretch gap-1 sm:gap-2" data-variant="default" aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/powermail.xlf:powermail.multistep.label')}">
                             <f:for each="{form.pages}" as="page" iteration="iterationPages">
-                                <button class="{tabsTriggerClass -> f:format.trim()} w-full"
+                                <button class="{tabsTriggerClass -> f:format.trim()} group/steptab min-w-0 flex-none max-sm:data-[active=true]:flex-1 sm:flex-1"
                                         type="button"
                                         data-active="{f:if(condition: iterationPages.isFirst, then: 'true', else: 'false')}"
                                         data-state="{f:if(condition: iterationPages.isFirst, then: 'active', else: 'inactive')}"
@@ -61,8 +64,12 @@
                                         data-powermail-morestep-current="{iterationPages.index}"
                                         data-powermail-morestep-show="{iterationPages.index}"
                                         aria-current="{f:if(condition: iterationPages.isFirst, then: 'step', else: 'false')}">
-                                    <span class="{stepIndexClass -> f:format.trim()}">{iterationPages.cycle}</span>
-                                    {page.title}
+                                    <!-- pointer-events-none: powermail's MoreStepForm reads its
+                                         data attributes from event.target — a click landing on an
+                                         inner span would resolve to no target step, hide every
+                                         fieldset and skip validation. Keep the button the target. -->
+                                    <span class="{stepIndexClass -> f:format.trim()} pointer-events-none">{iterationPages.cycle}</span>
+                                    <span class="pointer-events-none min-w-0 truncate max-sm:sr-only max-sm:group-data-[active=true]/steptab:not-sr-only">{page.title}</span>
                                 </button>
                             </f:for>
                         </nav>
@@ -77,7 +84,7 @@
                     <f:form.hidden name="mail[form]" value="{form.uid}" class="powermail_form_uid" respectSubmittedDataValue="false" />
                     <f:render partial="Misc/HoneyPod" arguments="{form: form}" />
                 </f:form>
-            </d:layout.container>
+            </div>
         </f:then>
         <f:else>
             <f:variable name="alertClass"><d:atom.controlClass slot="alertDestructive" /></f:variable>

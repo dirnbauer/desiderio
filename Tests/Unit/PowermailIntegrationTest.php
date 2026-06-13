@@ -71,7 +71,11 @@ final class PowermailIntegrationTest extends TestCase
 
         $form = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/Powermail/Templates/Form/Form.html');
         self::assertStringContainsString('Webconsulting/Desiderio/Components/ComponentCollection', $form);
-        self::assertStringContainsString('<d:layout.container', $form);
+        // Forms align flush-left inside the element container: a nested
+        // d:layout.container would re-centre them (the atom always carries
+        // mx-auto), so the form wrapper is a plain width-capped div.
+        self::assertStringNotContainsString('<d:layout.container', $form);
+        self::assertStringContainsString('<div class="mt-8 w-full max-w-2xl">', $form);
         self::assertStringContainsString('<d:molecule.cardContent', $form);
         self::assertStringContainsString('<d:atom.controlClass slot="card"', $form);
         self::assertStringContainsString('data-slot="card-header"', $form);
@@ -213,7 +217,7 @@ final class PowermailIntegrationTest extends TestCase
         }
     }
 
-    public function testPowermailDemoSeederDefinesFiveStandardFormsWithFriendlyCaptcha(): void
+    public function testPowermailDemoSeederDefinesSixStandardFormsWithFriendlyCaptcha(): void
     {
         $seeder = new PowermailDemoSeeder(
             $this->createMock(ConnectionPool::class),
@@ -221,13 +225,16 @@ final class PowermailIntegrationTest extends TestCase
         );
         $forms = $seeder->getDemoForms();
 
-        self::assertCount(5, $forms);
-        self::assertSame(['contact', 'newsletter', 'callback', 'appointment', 'support'], array_column($forms, 'slug'));
+        self::assertCount(6, $forms);
+        self::assertSame(['contact', 'newsletter', 'callback', 'appointment', 'support', 'project'], array_column($forms, 'slug'));
         self::assertFalse($forms[0]['moresteps']);
         self::assertFalse($forms[2]['moresteps']);
         self::assertTrue($forms[3]['moresteps']);
         self::assertIsArray($forms[4]['pages']);
         self::assertCount(2, $forms[4]['pages']);
+        // The project request wizard exercises the full multi-step range.
+        self::assertTrue($forms[5]['moresteps']);
+        self::assertCount(4, $forms[5]['pages']);
 
         $captchaFields = 0;
         foreach ($forms as $form) {
@@ -239,7 +246,7 @@ final class PowermailIntegrationTest extends TestCase
                 }
             }
         }
-        self::assertSame(5, $captchaFields);
+        self::assertSame(6, $captchaFields);
         self::assertSame($forms, PowermailDemoFormDefinitions::demoForms());
 
         $definitionsSource = (string)file_get_contents(__DIR__ . '/../../Classes/Data/PowermailDemoFormDefinitions.php');

@@ -48,6 +48,17 @@ plugin.tx_powermail {
         htmlForLabels = 1
         showOnlyFilledValues = 1
       }
+
+      validation {
+        # Multi-step forms: the Next button and the step tabs only switch
+        # to another step when the visible (current) fieldset validates —
+        # mandatory fields must be filled before moving on. The Previous
+        # button stays unguarded. Read by data-powermail-morestep-validate
+        # in the Desiderio Form/Page partial and Form template.
+        morestep {
+          fieldset = 1
+        }
+      }
     }
   }
 }

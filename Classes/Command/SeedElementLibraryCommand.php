@@ -20,11 +20,11 @@ use Webconsulting\Desiderio\Library\PreviewWarmer;
 use Webconsulting\Desiderio\Seeding\CollectionCleanupService;
 use Webconsulting\Desiderio\Seeding\DatabaseSchemaHelper;
 use Webconsulting\Desiderio\Seeding\ElementCatalogDefinitions;
+use Webconsulting\Desiderio\Seeding\ElementLibraryValueGenerator;
 use Webconsulting\Desiderio\Seeding\LibraryElementUpserter;
 use Webconsulting\Desiderio\Seeding\LiveWorkspaceQueryHelper;
 use Webconsulting\Desiderio\Seeding\SeedPageUpserter;
 use Webconsulting\Desiderio\Seeding\StyleguideCollectionAliasPolicy;
-use Webconsulting\Desiderio\Seeding\StyleguideDemoValueGenerator;
 use Webconsulting\Desiderio\Seeding\StyleguideFixtureResolver;
 
 #[AsCommand(
@@ -104,7 +104,7 @@ final class SeedElementLibraryCommand extends Command
             $this->databaseSchema,
             new StyleguideFixtureResolver(
                 $this->databaseSchema,
-                new StyleguideDemoValueGenerator(),
+                new ElementLibraryValueGenerator(),
                 new StyleguideCollectionAliasPolicy($this->databaseSchema)
             ),
             new CollectionCleanupService($this->connectionPool, $this->databaseSchema, $this->liveWorkspaceQueryHelper),

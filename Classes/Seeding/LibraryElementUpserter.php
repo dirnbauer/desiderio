@@ -16,9 +16,11 @@ use Webconsulting\Desiderio\Data\ContentBlockDefinitionRegistry;
  * URLs reference, it must stay stable across re-runs); their collection
  * children and file references are rebuilt.
  *
- * Desiderio elements seed from their fixture.json through the styleguide
- * fixture resolver; Innesto elements have no fixtures, their definition is
- * built from config.yaml and the demo value generator fills all fields.
+ * Both Desiderio and Innesto elements are filled by the (neutral) demo value
+ * generator rather than their fixture.json: the picker preview must read like a
+ * believable, generic example the editor can keep or edit, not a slide that
+ * promotes the design system. Desiderio definitions come from the registry,
+ * Innesto definitions are built from their config.yaml.
  */
 final class LibraryElementUpserter
 {
@@ -121,11 +123,15 @@ final class LibraryElementUpserter
     private function buildContentData(int $pid, array $element, int $sorting, int $now, array $columns): array
     {
         if ($element['hostExtension'] === 'desiderio') {
+            // Empty fixture on purpose: the resolver completes every field from
+            // the registry definition with the neutral demo value generator, so
+            // the library record carries generic example content instead of the
+            // promotional copy that ships in each element's fixture.json.
             return $this->fixtureResolver->buildContentInsert(
                 $pid,
                 $element['cType'],
                 $element['name'],
-                $element['fixture'],
+                [],
                 $sorting,
                 $now,
                 $columns

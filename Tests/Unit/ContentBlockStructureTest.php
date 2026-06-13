@@ -142,14 +142,16 @@ final class ContentBlockStructureTest extends TestCase
             self::assertStringContainsString('<xliff version="2.0"', $english, "{$name} must use TYPO3 XLIFF 2.0 for English labels");
             self::assertStringContainsString('srcLang="en"', $english, "{$name} must declare English as source language");
             self::assertMatchesRegularExpression('/<unit id="title">\\s*<segment>\\s*<source>[^<]+<\\/source>/s', $english, "{$name} needs an English title");
-            self::assertMatchesRegularExpression('/<unit id="description">\\s*<segment>\\s*<source>Use when [^<]+<\\/source>/s', $english, "{$name} needs a concise English use-case description");
+            self::assertMatchesRegularExpression('/<unit id="description">\\s*<segment>\\s*<source>[A-Z][^<]+\\.<\\/source>/s', $english, "{$name} needs a concise imperative English use-case description");
+            self::assertDoesNotMatchRegularExpression('/<unit id="description">\\s*<segment>\\s*<source>Use when /s', $english, "{$name} English description must be imperative, not a 'Use when …' sentence");
             self::assertStringNotContainsString('A shadcn/ui styled TYPO3 content element', $english, "{$name} still uses the old generic English description");
             self::assertStringNotContainsString('Editors can manage', $english, "{$name} still describes editor fields instead of usage");
 
             self::assertStringContainsString('<xliff version="2.0"', $german, "{$name} must use TYPO3 XLIFF 2.0 for German labels");
             self::assertStringContainsString('trgLang="de"', $german, "{$name} must declare German as target language");
             self::assertMatchesRegularExpression('/<unit id="title">\\s*<segment state="final">\\s*<source>[^<]+<\\/source>\\s*<target>[^<]+<\\/target>/s', $german, "{$name} needs a German title target");
-            self::assertMatchesRegularExpression('/<unit id="description">\\s*<segment state="final">\\s*<source>Use when [^<]+<\\/source>\\s*<target>Einsetzen, wenn [^<]+<\\/target>/s', $german, "{$name} needs a concise German use-case description");
+            self::assertMatchesRegularExpression('/<unit id="description">\\s*<segment state="final">\\s*<source>[A-Z][^<]+\\.<\\/source>\\s*<target>\\p{Lu}[^<]+\\.<\\/target>/su', $german, "{$name} needs a concise imperative German use-case description");
+            self::assertStringNotContainsString('<target>Einsetzen, wenn ', $german, "{$name} German description must be imperative, not an 'Einsetzen, wenn …' sentence");
             self::assertStringNotContainsString('Redakteure pflegen', $german, "{$name} still describes editor fields instead of usage");
         }
     }
@@ -172,7 +174,8 @@ final class ContentBlockStructureTest extends TestCase
                 self::fail("{$name} duplicates the title used by {$titles[$title]}");
             }
             self::assertStringNotContainsString('A shadcn/ui styled TYPO3 content element', $description, "{$name} still uses a generic description");
-            self::assertStringStartsWith('Use when ', $description, "{$name} description should explain when to use the element");
+            self::assertMatchesRegularExpression('/^[A-Z].*\\.$/su', $description, "{$name} description should be a concise imperative phrase: capitalized and ending with a period");
+            self::assertFalse(str_starts_with($description, 'Use when '), "{$name} description must be imperative, not a 'Use when …' sentence");
             self::assertStringNotContainsString('give one focused content task', $description, "{$name} still uses the generic fallback description");
             self::assertLessThanOrEqual(150, strlen($description), "{$name} description should stay short enough for the wizard");
             if (isset($descriptions[$description])) {

@@ -471,7 +471,10 @@ main[tabindex]:focus-visible {
   grid-row: 1;
   width: 0.875rem;
   height: 0.875rem;
-  margin-block-start: 0.0625rem;
+  /* Centre the circle on the first text line whatever --d-text-xs
+     resolves to: half the difference between the 1.4 line box and the
+     14px icon. A fixed margin drifts when the token changes. */
+  margin-block-start: calc((1.4em - 0.875rem) / 2);
   border: 1px solid color-mix(in oklch, var(--destructive) 45%, transparent);
   border-radius: 9999px;
   color: var(--destructive);
@@ -651,7 +654,8 @@ main[tabindex]:focus-visible {
   grid-row: 1;
   width: 0.875rem;
   height: 0.875rem;
-  margin-block-start: 0.0625rem;
+  /* Centre on the first text line — see .invalid-feedback::before. */
+  margin-block-start: calc((1.4em - 0.875rem) / 2);
   border: 1px solid color-mix(in oklch, var(--destructive) 45%, transparent);
   border-radius: 9999px;
   color: var(--destructive);

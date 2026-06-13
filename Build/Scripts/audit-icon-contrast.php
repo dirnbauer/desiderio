@@ -14,7 +14,7 @@ foreach ($iconFiles as $file) {
     $lower = strtolower($svg);
 
     assertContains($svg, 'icon-root', $relative, 'is missing the icon-root class', $errors);
-    assertContains($svg, 'color:var(--icon-color-primary,currentColor)', $relative, 'must use the TYPO3 primary icon variable without a hard-coded fallback', $errors);
+    assertContains($svg, 'color-scheme:light dark', $relative, 'must declare color-scheme:light dark on .icon-root so currentColor resolves to a scheme-aware system color when the icon is rendered as an <img> in backend dark mode', $errors);
     assertContains($svg, '--icon-color-accent', $relative, 'is missing the TYPO3 accent icon variable', $errors);
     assertContains($svg, 'currentColor', $relative, 'does not preserve currentColor inheritance', $errors);
 

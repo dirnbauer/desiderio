@@ -236,7 +236,7 @@ final class ContentBlockStructureTest extends TestCase
             self::assertStringContainsString('<title>', $icon, "{$name} icon should name the element for SVG consumers");
             self::assertStringContainsString('icon-root', $icon, "{$name} icon should declare the adaptive icon root class");
             self::assertStringContainsString('currentColor', $icon, "{$name} icon should inherit backend icon color");
-            self::assertStringContainsString('color:var(--icon-color-primary,currentColor)', $icon, "{$name} icon should expose the TYPO3 primary icon variable without fixed fallbacks");
+            self::assertStringContainsString('color-scheme:light dark', $icon, "{$name} icon should declare color-scheme:light dark so currentColor stays scheme-aware when rendered as an <img> in backend dark mode");
             self::assertStringContainsString('--icon-color-accent', $icon, "{$name} icon should expose the TYPO3 accent variable");
             self::assertStringContainsString('icon-signature', $icon, "{$name} icon should include a visible per-element signature mark");
             self::assertDoesNotMatchRegularExpression('/#[0-9a-fA-F]{3,8}\b/', $icon, "{$name} icon must not hard-code color fallbacks");
@@ -261,7 +261,7 @@ final class ContentBlockStructureTest extends TestCase
             $lower = strtolower($icon);
 
             self::assertStringContainsString('icon-root', $icon, "{$relative} should declare the adaptive icon root class");
-            self::assertStringContainsString('color:var(--icon-color-primary,currentColor)', $icon, "{$relative} should expose the TYPO3 primary icon variable without fixed fallbacks");
+            self::assertStringContainsString('color-scheme:light dark', $icon, "{$relative} should declare color-scheme:light dark so currentColor stays scheme-aware when rendered as an <img> in backend dark mode");
             self::assertStringContainsString('--icon-color-accent', $icon, "{$relative} should expose the TYPO3 accent variable");
             self::assertStringContainsString('currentColor', $icon, "{$relative} should preserve currentColor inheritance");
             self::assertDoesNotMatchRegularExpression('/#[0-9a-fA-F]{3,8}\b/', $icon, "{$relative} must not hard-code color fallbacks");

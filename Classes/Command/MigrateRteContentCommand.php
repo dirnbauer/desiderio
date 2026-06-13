@@ -55,7 +55,8 @@ final class MigrateRteContentCommand extends Command
         $io = new SymfonyStyle($input, $output);
         $apply = (bool)$input->getOption('apply');
 
-        $manifestPath = (string)$input->getOption('manifest');
+        $manifestOption = $input->getOption('manifest');
+        $manifestPath = is_string($manifestOption) ? $manifestOption : '';
         $absolutePath = str_starts_with($manifestPath, 'EXT:')
             ? GeneralUtility::getFileAbsFileName($manifestPath)
             : $manifestPath;
@@ -64,7 +65,7 @@ final class MigrateRteContentCommand extends Command
             return Command::FAILURE;
         }
         $manifest = json_decode((string)file_get_contents($absolutePath), true);
-        $fields = $manifest['fields'] ?? null;
+        $fields = is_array($manifest) ? ($manifest['fields'] ?? null) : null;
         if (!is_array($fields) || $fields === []) {
             $io->warning('Manifest contains no fields, nothing to do.');
             return Command::SUCCESS;
@@ -74,6 +75,9 @@ final class MigrateRteContentCommand extends Command
         $skippedHtml = 0;
 
         foreach ($fields as $entry) {
+            if (!is_array($entry)) {
+                continue;
+            }
             $table = $entry['table'] ?? null;
             $column = $entry['column'] ?? null;
             $ctype = $entry['ctype'] ?? null;
@@ -107,7 +111,13 @@ final class MigrateRteContentCommand extends Command
             }
 
             foreach ($rows as $row) {
-                $value = (string)$row[$column];
+                $rawValue = $row[$column] ?? null;
+                if (!is_string($rawValue)) {
+                    continue;
+                }
+                $value = $rawValue;
+                $uidRaw = $row['uid'] ?? 0;
+                $uid = is_scalar($uidRaw) ? (int)$uidRaw : 0;
                 if (RteHtmlConverter::looksLikeHtml($value)) {
                     $skippedHtml++;
                     if ($output->isVerbose()) {
@@ -115,7 +125,7 @@ final class MigrateRteContentCommand extends Command
                             '  skip (already HTML) %s.%s uid=%d',
                             $table,
                             $column,
-                            (int)$row['uid'],
+                            $uid,
                         ));
                     }
                     continue;
@@ -126,10 +136,10 @@ final class MigrateRteContentCommand extends Command
                 }
                 $converted++;
                 if ($output->isVerbose()) {
-                    $io->writeln(sprintf('  convert %s.%s uid=%d', $table, $column, (int)$row['uid']));
+                    $io->writeln(sprintf('  convert %s.%s uid=%d', $table, $column, $uid));
                 }
                 if ($apply) {
-                    $connection->update($table, [$column => $html], ['uid' => (int)$row['uid']]);
+                    $connection->update($table, [$column => $html], ['uid' => $uid]);
                 }
             }
         }

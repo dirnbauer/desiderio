@@ -26,7 +26,10 @@ final class RteHtmlConverter
         if ($value === '') {
             return '';
         }
-        $paragraphs = preg_split('/\n{2,}/', $value) ?: [];
+        $paragraphs = preg_split('/\n{2,}/', $value);
+        if ($paragraphs === false) {
+            $paragraphs = [];
+        }
         $html = [];
         foreach ($paragraphs as $paragraph) {
             $paragraph = trim($paragraph);

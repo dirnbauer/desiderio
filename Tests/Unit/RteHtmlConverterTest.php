@@ -10,6 +10,9 @@ use Webconsulting\Desiderio\Rte\RteHtmlConverter;
 
 final class RteHtmlConverterTest extends TestCase
 {
+    /**
+     * @return array<string, array{0: string, 1: string}>
+     */
     public static function plainTextProvider(): array
     {
         return [

@@ -11,7 +11,7 @@
     <d:layout.section spacing="none" class="border-b border-border py-5 md:py-6">
         <d:layout.container size="xl">
             <f:render section="BlogPlugin" arguments="{listType: 'blog_header'}"/>
-            <f:if condition="{content.stage}">
+            <f:if condition="{content.stage.records}">
                 <div class="mt-4 max-w-3xl">
                     <f:render.contentArea contentArea="{content.stage}"/>
                 </div>

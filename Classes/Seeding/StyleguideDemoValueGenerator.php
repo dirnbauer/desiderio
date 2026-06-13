@@ -10,65 +10,126 @@ use Webconsulting\Desiderio\Rte\RteHtmlConverter;
 
 /**
  * Generates deterministic demo field values for styleguide seed fixtures.
+ *
+ * The demo vocabulary (badges, copy, people, …) is exposed through protected
+ * provider methods so a subclass can swap it without touching the field-type
+ * heuristics. {@see ElementLibraryValueGenerator} uses this to produce neutral,
+ * non-promotional examples for the element library picker.
  */
-final class StyleguideDemoValueGenerator
+class StyleguideDemoValueGenerator
 {
     public const FIELD_SKIP = '__skip__';
 
-    private const DEMO_BADGES = [
-        'shadcn/ui',
-        'TYPO3 Form Framework',
-        'Fluid 5.3',
-        'A11y checked',
-        'Responsive by default',
-        'Editor-ready',
-    ];
-    private const DEMO_BUTTON_LABELS = [
-        'View pattern',
-        'Open preview',
-        'Compare states',
-        'Get checklist',
-        'Start conversation',
-    ];
-    private const DEMO_COPY = [
-        'Lead with the decision visitors need to make, then support it with compact proof and a clear next step.',
-        'Keep the surface calm, scannable, and token-driven so editors can reuse it across real TYPO3 pages.',
-        'Balance short copy, responsive spacing, and accessible controls so mobile stacks stay intentional.',
-        'Pair concrete product context with restrained shadcn surfaces, visible focus states, and useful media.',
-        'Use specific labels, realistic numbers, and TYPO3-native form handling so the preview feels publish-ready.',
-    ];
-    private const DEMO_FEATURES = [
-        'Theme-aware states',
-        'Keyboard focus built in',
-        'Reusable Content Blocks',
-        'Responsive editorial density',
-        'Token-based chart colors',
-        'Curated demo media',
-        'TYPO3 Form finishers',
-    ];
-    private const DEMO_LINK_LABELS = ['Overview', 'Components', 'Examples', 'Pricing', 'Contact'];
-    private const DEMO_PEOPLE = [
-        ['Mara Weiss', 'Product Design Lead', 'Northstar Labs'],
-        ['Jonas Klein', 'Frontend Engineer', 'Studio Atlas'],
-        ['Sofia Berg', 'Customer Success', 'Helio Systems'],
-        ['Noah Ritter', 'Content Architect', 'Vienna Digital'],
-        ['Lea Fischer', 'Accessibility Reviewer', 'Signal Bureau'],
-    ];
-    private const DEMO_SUBJECTS = [
-        'Launch Readiness Review',
-        'Pattern Library Rollout',
-        'Content Operations Brief',
-        'Customer Evidence Hub',
-        'Product Adoption Report',
-        'Editor Workflow Upgrade',
-        'Service Performance Snapshot',
-        'Reusable Section Blueprint',
-    ];
-    private const DEMO_TAB_PANEL_COPY = [
-        'Organize related topics into focused panels so visitors compare options without leaving the page. The first tab stays selected by default, and spacing stays aligned with the rest of your editorial layout.',
-        'Preview how tab labels wrap, how icons align, and how panel copy scales on smaller breakpoints. Each seeded panel carries enough text to judge line length, hierarchy, and the gap between the tab list and body content.',
-        'Give editors realistic labels, icons, and body copy so previews feel publish-ready. The tabs element should read like a finished section, not a placeholder, which makes spacing and default-state checks faster during QA.',
-    ];
+    /** @return list<string> */
+    protected function demoBadges(): array
+    {
+        return [
+            'shadcn/ui',
+            'TYPO3 Form Framework',
+            'Fluid 5.3',
+            'A11y checked',
+            'Responsive by default',
+            'Editor-ready',
+        ];
+    }
+
+    /** @return list<string> */
+    protected function demoButtonLabels(): array
+    {
+        return [
+            'View pattern',
+            'Open preview',
+            'Compare states',
+            'Get checklist',
+            'Start conversation',
+        ];
+    }
+
+    /** @return list<string> */
+    protected function demoCopy(): array
+    {
+        return [
+            'Lead with the decision visitors need to make, then support it with compact proof and a clear next step.',
+            'Keep the surface calm, scannable, and token-driven so editors can reuse it across real TYPO3 pages.',
+            'Balance short copy, responsive spacing, and accessible controls so mobile stacks stay intentional.',
+            'Pair concrete product context with restrained shadcn surfaces, visible focus states, and useful media.',
+            'Use specific labels, realistic numbers, and TYPO3-native form handling so the preview feels publish-ready.',
+        ];
+    }
+
+    /** @return list<string> */
+    protected function demoFeatures(): array
+    {
+        return [
+            'Theme-aware states',
+            'Keyboard focus built in',
+            'Reusable Content Blocks',
+            'Responsive editorial density',
+            'Token-based chart colors',
+            'Curated demo media',
+            'TYPO3 Form finishers',
+        ];
+    }
+
+    /** @return list<string> */
+    protected function demoLinkLabels(): array
+    {
+        return ['Overview', 'Components', 'Examples', 'Pricing', 'Contact'];
+    }
+
+    /** @return list<array{0: string, 1: string, 2: string}> */
+    protected function demoPeople(): array
+    {
+        return [
+            ['Mara Weiss', 'Product Design Lead', 'Northstar Labs'],
+            ['Jonas Klein', 'Frontend Engineer', 'Studio Atlas'],
+            ['Sofia Berg', 'Customer Success', 'Helio Systems'],
+            ['Noah Ritter', 'Content Architect', 'Vienna Digital'],
+            ['Lea Fischer', 'Accessibility Reviewer', 'Signal Bureau'],
+        ];
+    }
+
+    /** @return list<string> */
+    protected function demoSubjects(): array
+    {
+        return [
+            'Launch Readiness Review',
+            'Pattern Library Rollout',
+            'Content Operations Brief',
+            'Customer Evidence Hub',
+            'Product Adoption Report',
+            'Editor Workflow Upgrade',
+            'Service Performance Snapshot',
+            'Reusable Section Blueprint',
+        ];
+    }
+
+    /** @return list<string> */
+    protected function demoTabPanelCopy(): array
+    {
+        return [
+            'Organize related topics into focused panels so visitors compare options without leaving the page. The first tab stays selected by default, and spacing stays aligned with the rest of your editorial layout.',
+            'Preview how tab labels wrap, how icons align, and how panel copy scales on smaller breakpoints. Each seeded panel carries enough text to judge line length, hierarchy, and the gap between the tab list and body content.',
+            'Give editors realistic labels, icons, and body copy so previews feel publish-ready. The tabs element should read like a finished section, not a placeholder, which makes spacing and default-state checks faster during QA.',
+        ];
+    }
+
+    /** @return list<string> */
+    protected function demoTopics(): array
+    {
+        return ['Artikel Hero', 'Content Strategy', 'Editorial Systems', 'Launch Notes', 'Customer Stories'];
+    }
+
+    protected function demoRowData(int $index): string
+    {
+        return ['Components|Ready|98%', 'Tokens|Synced|24', 'A11y|Passing|AA'][$index % 3];
+    }
+
+    protected function demoTierValues(): string
+    {
+        return 'Included,Token based,Priority review';
+    }
+
     /**
      * @param array<string, mixed> $fieldConfig
      */
@@ -285,7 +346,8 @@ final class StyleguideDemoValueGenerator
         $subject = $this->buildDemoSubject($name, $index);
         $elementLabel = $this->buildReadableLabel($name);
         $fieldLabel = $this->buildReadableLabel($field);
-        $person = self::DEMO_PEOPLE[$index % count(self::DEMO_PEOPLE)];
+        $people = $this->demoPeople();
+        $person = $people[$index % count($people)];
 
         return match (true) {
             preg_match('/^(?:link|child)(\d+)label$/', $normalizedField, $matches) === 1 => $this->getDefaultLinkLabel((int)$matches[1]),
@@ -296,7 +358,7 @@ final class StyleguideDemoValueGenerator
             str_contains($normalizedField, 'authortitle') || str_contains($normalizedField, 'jobtitle') || str_contains($normalizedField, 'role') || str_contains($normalizedField, 'position') => $person[1],
             str_contains($normalizedField, 'subheadline') => $this->buildDefaultDemoCopy($elementLabel, $fieldLabel, $index),
             $normalizedField === 'header' || str_contains($normalizedField, 'headline') || str_contains($normalizedField, 'title') => $subject,
-            str_contains($normalizedField, 'eyebrow') || str_contains($normalizedField, 'badge') || str_contains($normalizedField, 'kicker') || str_contains($normalizedField, 'status') => $this->pickDemoString(self::DEMO_BADGES, $name . '-' . $field, $index),
+            str_contains($normalizedField, 'eyebrow') || str_contains($normalizedField, 'badge') || str_contains($normalizedField, 'kicker') || str_contains($normalizedField, 'status') => $this->pickDemoString($this->demoBadges(), $name . '-' . $field, $index),
             str_contains($normalizedField, 'url') || str_contains($normalizedField, 'href') => $this->buildDefaultUrlTextValue($ctype, $field, $index),
             str_contains($normalizedField, 'alt') || str_contains($normalizedField, 'alternative') => 'Accessible demo image for ' . $subject . '.',
             str_contains($normalizedField, 'copyright') => 'Images are credited on their Unsplash file references.',
@@ -307,24 +369,24 @@ final class StyleguideDemoValueGenerator
             $normalizedField === 'prefix' => '',
             $normalizedField === 'suffix' => $this->buildDefaultMetricSuffix($ctype, $index),
             $normalizedField === 'step' => ['Plan', 'Build', 'Review', 'Publish'][$index % 4],
-            $normalizedField === 'topic' || str_contains($normalizedField, 'topic') => $this->pickDemoString(['Artikel Hero', 'Content Strategy', 'Editorial Systems', 'Launch Notes', 'Customer Stories'], $name . '-' . $field, $index),
+            $normalizedField === 'topic' || str_contains($normalizedField, 'topic') => $this->pickDemoString($this->demoTopics(), $name . '-' . $field, $index),
             str_contains($normalizedField, 'readingtime') || (str_contains($normalizedField, 'reading') && str_contains($normalizedField, 'time')) => 'Dauer in min',
             $normalizedField === 'meta' => '5min read',
             $normalizedField === 'language' => 'PHP',
             $normalizedField === 'filename' => 'ArticleTeaserRenderer.php',
             $normalizedField === 'code' => $this->buildDefaultCodeBlockValue(),
             str_contains($normalizedField, 'ctatext') || str_contains($normalizedField, 'buttontext') || str_contains($normalizedField, 'submittext') => $this->buildDefaultButtonText($normalizedField, $elementLabel),
-            str_contains($normalizedField, 'linktext') => $this->pickDemoString(self::DEMO_BUTTON_LABELS, $name . '-' . $field, $index),
+            str_contains($normalizedField, 'linktext') => $this->pickDemoString($this->demoButtonLabels(), $name . '-' . $field, $index),
             str_contains($normalizedField, 'placeholder') => 'name@example.com',
-            $normalizedField === 'text' => $this->pickDemoString(self::DEMO_FEATURES, $name . '-' . $field, $index),
+            $normalizedField === 'text' => $this->pickDemoString($this->demoFeatures(), $name . '-' . $field, $index),
             $normalizedField === 'unitlabel' => $this->buildDefaultUnitLabel($ctype),
             $normalizedField === 'volume' => $this->buildDefaultVolumeLabel($index),
-            str_contains($normalizedField, 'feature') || str_contains($normalizedField, 'points') || str_contains($normalizedField, 'specs') => $this->buildDefaultList(self::DEMO_FEATURES, $name . '-' . $field, $index),
-            str_contains($normalizedField, 'links') || str_contains($normalizedField, 'pages') || str_contains($normalizedField, 'children') => implode("\n", self::DEMO_LINK_LABELS),
+            str_contains($normalizedField, 'feature') || str_contains($normalizedField, 'points') || str_contains($normalizedField, 'specs') => $this->buildDefaultList($this->demoFeatures(), $name . '-' . $field, $index),
+            str_contains($normalizedField, 'links') || str_contains($normalizedField, 'pages') || str_contains($normalizedField, 'children') => implode("\n", $this->demoLinkLabels()),
             str_contains($normalizedField, 'members') || str_contains($normalizedField, 'people') => $this->buildDefaultPeopleList(),
             $normalizedField === 'chartdata' || (str_contains($normalizedField, 'chart') && str_contains($normalizedField, 'data')) => $this->buildDefaultChartData($index),
-            str_contains($normalizedField, 'rowdata') => ['Components|Ready|98%', 'Tokens|Synced|24', 'A11y|Passing|AA'][$index % 3],
-            str_contains($normalizedField, 'tiervalues') => 'Included,Token based,Priority review',
+            str_contains($normalizedField, 'rowdata') => $this->demoRowData($index),
+            str_contains($normalizedField, 'tiervalues') => $this->demoTierValues(),
             str_contains($normalizedField, 'columnkey') => $this->buildColumnKey($subject . ' ' . ($index + 1)),
             str_contains($normalizedField, 'columnlabel') => $fieldLabel . ' ' . ($index + 1),
             str_contains($normalizedField, 'align') => 'left',
@@ -338,7 +400,7 @@ final class StyleguideDemoValueGenerator
             str_contains($normalizedField, 'trend') => ['positive', 'stable', 'up'][$index % 3],
             $this->fieldIdentifierContainsAnyWord($field, ['count', 'counter', 'total', 'quantity', 'qty']) => ['128', '2.4K', '86', '12'][$index % 4],
             str_contains($normalizedField, 'value') || str_contains($normalizedField, 'metric') => ['98%', '24K', '4.9', '12 ms', 'AA'][$index % 5],
-            str_contains($normalizedField, 'label') => $this->pickDemoString(self::DEMO_FEATURES, $name . '-' . $field, $index),
+            str_contains($normalizedField, 'label') => $this->pickDemoString($this->demoFeatures(), $name . '-' . $field, $index),
             str_contains($normalizedField, 'price') => '$' . [19, 49, 99, 249][$index % 4],
             str_contains($normalizedField, 'period') || str_contains($normalizedField, 'billing') => '/month',
             str_contains($normalizedField, 'size') => '2.4 MB',
@@ -457,14 +519,17 @@ PHP;
 
     public function buildDefaultDemoCopy(string $elementLabel, string $fieldLabel, int $index): string
     {
-        $copy = self::DEMO_COPY[$index % count(self::DEMO_COPY)];
+        $copy = $this->demoCopy();
+        $line = $copy[$index % count($copy)];
 
-        return sprintf('%s Built for the %s pattern.', $copy, strtolower($elementLabel));
+        return sprintf('%s Built for the %s pattern.', $line, strtolower($elementLabel));
     }
 
     public function buildDefaultTabPanelCopy(int $index): string
     {
-        return self::DEMO_TAB_PANEL_COPY[$index % count(self::DEMO_TAB_PANEL_COPY)];
+        $copy = $this->demoTabPanelCopy();
+
+        return $copy[$index % count($copy)];
     }
 
     public function buildDefaultQuote(string $elementLabel): string
@@ -484,7 +549,7 @@ PHP;
             return 'View details';
         }
 
-        return $this->pickDemoString(self::DEMO_BUTTON_LABELS, $elementLabel . '-' . $normalizedField, 0);
+        return $this->pickDemoString($this->demoButtonLabels(), $elementLabel . '-' . $normalizedField, 0);
     }
 
     public function buildDefaultUnitLabel(string $ctype): string
@@ -521,7 +586,9 @@ PHP;
 
     public function getDefaultLinkLabel(int $slot): string
     {
-        return self::DEMO_LINK_LABELS[max(0, min(count(self::DEMO_LINK_LABELS) - 1, $slot - 1))];
+        $labels = $this->demoLinkLabels();
+
+        return $labels[max(0, min(count($labels) - 1, $slot - 1))];
     }
 
     public function buildDemoUrl(string $label): string
@@ -537,7 +604,7 @@ PHP;
     public function buildDemoSubject(string $name, int $index): string
     {
         $label = $this->buildReadableLabel($name);
-        $subject = $this->pickDemoString(self::DEMO_SUBJECTS, $name, $index);
+        $subject = $this->pickDemoString($this->demoSubjects(), $name, $index);
 
         if ($index > 0) {
             return $subject . ' ' . ($index + 1);
@@ -575,7 +642,7 @@ PHP;
     {
         return implode("\n", array_map(
             static fn (array $person): string => $person[0] . '|' . $person[1] . '|' . $person[2],
-            array_slice(self::DEMO_PEOPLE, 0, 3)
+            array_slice($this->demoPeople(), 0, 3)
         ));
     }
 

@@ -122,6 +122,13 @@ settings:
     default: false
     category: desiderio.header
 
+  desiderio.header.breadcrumb:
+    label: 'Show breadcrumb navigation'
+    description: 'Render a breadcrumb trail below the site header on every page. Long trails collapse to home, an ellipsis, and the last two pages.'
+    type: bool
+    default: true
+    category: desiderio.header
+
   # --------------------------------------------------------------- Footer
   desiderio.footer.style:
     label: 'Footer style'

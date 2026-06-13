@@ -36,6 +36,14 @@
 </f:render>
 
 <main id="main-content" tabindex="-1" class="desiderio-main {f:if(condition: '{site.configuration.settings.desiderio.header.fixedPosition}', then: 'desiderio-main--fixed')}">
+    <f:comment>
+        Breadcrumb leads the content flow so the trail sits directly above
+        the page's opening heading; the homepage (rootline depth 1) gets none.
+    </f:comment>
+    <f:variable name="rootlineDepth" value="{breadcrumb -> f:count()}"/>
+    <f:if condition="{site.configuration.settings.desiderio.header.breadcrumb} && {rootlineDepth} > 1">
+        <f:render partial="Pages/Breadcrumb" arguments="{_all}"/>
+    </f:if>
     <f:render section="Main" optional="true">
         <!--TYPO3SEARCH_begin-->
         <f:if condition="{content.main}">

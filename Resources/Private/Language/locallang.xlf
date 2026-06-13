@@ -136,6 +136,26 @@
         <source>Home</source>
       </segment>
     </unit>
+    <unit id="a11y.nav.breadcrumb">
+      <segment>
+        <source>Breadcrumb</source>
+      </segment>
+    </unit>
+    <unit id="a11y.nav.breadcrumb.more">
+      <segment>
+        <source>More pages</source>
+      </segment>
+    </unit>
+    <unit id="a11y.nav.submenu">
+      <segment>
+        <source>Submenu of {title}</source>
+      </segment>
+    </unit>
+    <unit id="nav.more">
+      <segment>
+        <source>More</source>
+      </segment>
+    </unit>
     <unit id="a11y.nav.language">
       <segment>
         <source>Language</source>

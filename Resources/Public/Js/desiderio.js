@@ -260,15 +260,171 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  document.querySelectorAll('[data-d-primary-nav]').forEach(nav => {
-    const active = nav.querySelector('[aria-current="page"], .desiderio-header__nav-link--active');
-    if (!active || nav.scrollWidth <= nav.clientWidth) return;
+  /* ------------------------------------------------------------------ */
+  /*  6b. Primary nav submenu disclosure                                 */
+  /* ------------------------------------------------------------------ */
+  // Submenus open via their chevron button (APG disclosure navigation);
+  // mouse users on the horizontal layout also get hover-open. Escape and
+  // outside clicks dismiss (WCAG 1.4.13), focusout keeps only the submenu
+  // the keyboard is actually in open.
+  const navHoverMedia = window.matchMedia('(hover: hover) and (min-width: 1025px)');
 
-    const navRect = nav.getBoundingClientRect();
-    const activeRect = active.getBoundingClientRect();
-    const activeOffset = activeRect.left - navRect.left + nav.scrollLeft;
-    const offset = activeOffset - Math.max((nav.clientWidth - activeRect.width) / 2, 0);
-    nav.scrollTo({ left: Math.max(offset, 0), behavior: 'auto' });
+  document.querySelectorAll('[data-d-primary-nav]').forEach(nav => {
+    const items = [...nav.querySelectorAll('[data-d-nav-sub]')];
+    if (items.length === 0) return;
+    nav.dataset.dNavReady = 'true';
+
+    const setOpen = (item, open) => {
+      item.classList.toggle('is-open', open);
+      item.querySelector('[data-d-subnav-toggle]')?.setAttribute('aria-expanded', String(open));
+    };
+    // Items can nest (Priority+ moves submenu items into the "More" panel),
+    // so keeping one branch open means sparing the exception's ancestors and
+    // descendants, not just the exception itself.
+    const closeAll = except => items.forEach(item => {
+      if (item === except) return;
+      if (except && (item.contains(except) || except.contains(item))) return;
+      setOpen(item, false);
+    });
+
+    items.forEach(item => {
+      const toggle = item.querySelector('[data-d-subnav-toggle]');
+      if (!toggle) return;
+
+      toggle.addEventListener('click', () => {
+        const open = !item.classList.contains('is-open');
+        closeAll(item);
+        setOpen(item, open);
+      });
+
+      // Hover-open stays off for items nested inside the "More" panel —
+      // there the submenu expands inline and should only follow clicks.
+      const nested = () => item.parentElement?.closest('[data-d-nav-sub]') !== null;
+
+      let hoverTimer = null;
+      item.addEventListener('pointerenter', event => {
+        if (event.pointerType !== 'mouse' || !navHoverMedia.matches || nested()) return;
+        window.clearTimeout(hoverTimer);
+        hoverTimer = window.setTimeout(() => {
+          closeAll(item);
+          setOpen(item, true);
+        }, 60);
+      });
+      item.addEventListener('pointerleave', event => {
+        if (event.pointerType !== 'mouse' || !navHoverMedia.matches || nested()) return;
+        window.clearTimeout(hoverTimer);
+        hoverTimer = window.setTimeout(() => setOpen(item, false), 140);
+      });
+
+      item.addEventListener('focusout', () => {
+        window.requestAnimationFrame(() => {
+          if (!item.contains(document.activeElement)) setOpen(item, false);
+        });
+      });
+    });
+
+    document.addEventListener('click', event => {
+      if (!nav.contains(event.target)) closeAll();
+    });
+
+    document.addEventListener('keydown', event => {
+      if (event.key !== 'Escape') return;
+      const openItems = items.filter(item => item.classList.contains('is-open'));
+      if (openItems.length === 0) return;
+      // Innermost open item holding focus first (items are in document
+      // order, so for nested branches the deepest match comes last).
+      const focused = openItems.filter(item => item.contains(document.activeElement)).pop();
+      const open = focused || openItems[0];
+      setOpen(open, false);
+      if (focused) open.querySelector('[data-d-subnav-toggle]')?.focus();
+    });
+  });
+
+  /* ------------------------------------------------------------------ */
+  /*  6c. Priority+ overflow (one-row desktop nav)                       */
+  /* ------------------------------------------------------------------ */
+  // Keeps the horizontal nav on a single row: items that do not fit move
+  // into the trailing "More" disclosure (already wired by section 6b).
+  // Mobile/tablet (<= 1024px) restores everything into the burger panel.
+  const navDesktopMedia = window.matchMedia('(min-width: 1025px)');
+
+  document.querySelectorAll('[data-d-primary-nav]').forEach(nav => {
+    const list = nav.querySelector('.desiderio-header__nav-list');
+    const moreItem = nav.querySelector('[data-d-nav-more]');
+    const moreList = nav.querySelector('[data-d-nav-more-list]');
+    if (!list || !moreItem || !moreList) return;
+
+    const navItems = [...list.children].filter(li => li !== moreItem);
+    if (navItems.length === 0) return;
+
+    const GAP = parseFloat(getComputedStyle(list).columnGap) || 4;
+    let widths = [];
+    let moreWidth = 0;
+    let visibleCount = -1;
+
+    const restoreAll = () => {
+      navItems.forEach(li => list.insertBefore(li, moreItem));
+      moreItem.hidden = true;
+      visibleCount = navItems.length;
+    };
+
+    // Item widths only change with content/fonts, not viewport width, so
+    // measure once per font state with everything laid out in the row.
+    const measure = () => {
+      restoreAll();
+      delete nav.dataset.dNavPriority;
+      widths = navItems.map(li => li.getBoundingClientRect().width);
+      moreItem.hidden = false;
+      moreWidth = moreItem.getBoundingClientRect().width;
+      moreItem.hidden = true;
+      visibleCount = -1;
+    };
+
+    const update = () => {
+      if (!navDesktopMedia.matches) {
+        if (visibleCount !== navItems.length) restoreAll();
+        delete nav.dataset.dNavPriority;
+        return;
+      }
+
+      const available = nav.clientWidth;
+      const fitsAll = widths.reduce((sum, w) => sum + w, 0) + GAP * (navItems.length - 1) <= available;
+      let next = navItems.length;
+      if (!fitsAll) {
+        let used = moreWidth;
+        next = 0;
+        while (next < navItems.length && used + widths[next] + GAP * (next + 1) <= available) {
+          used += widths[next];
+          next += 1;
+        }
+      }
+      if (next === visibleCount) return;
+
+      restoreAll();
+      if (next < navItems.length) {
+        navItems.slice(next).forEach(li => moreList.append(li));
+        moreItem.hidden = false;
+        nav.dataset.dNavPriority = 'true';
+      } else {
+        delete nav.dataset.dNavPriority;
+      }
+      visibleCount = next;
+    };
+
+    measure();
+    update();
+
+    let resizeFrame = null;
+    let lastNavWidth = nav.clientWidth;
+    const onResize = () => {
+      if (nav.clientWidth === lastNavWidth) return;
+      lastNavWidth = nav.clientWidth;
+      window.cancelAnimationFrame(resizeFrame);
+      resizeFrame = window.requestAnimationFrame(update);
+    };
+    new ResizeObserver(onResize).observe(nav);
+    navDesktopMedia.addEventListener?.('change', () => { measure(); update(); });
+    document.fonts?.ready?.then(() => { measure(); update(); });
   });
 
   /* ------------------------------------------------------------------ */
@@ -807,22 +963,19 @@ document.addEventListener('DOMContentLoaded', () => {
       const form = trigger.closest('form');
       if (!form?.classList?.contains('powermail_morestep')) return;
 
-      const validateVisibleFields = ['true', '1'].includes(trigger.getAttribute('data-powermail-morestep-validate'));
-      if (
-        validateVisibleFields
-        && form.powermailFormValidation
-        && !form.powermailFormValidation.validateVisibleFields()
-      ) {
-        syncPowermailMultistep(form);
-        return;
-      }
+      // Powermail's own MoreStepForm handler has already validated the
+      // step (data-powermail-morestep-validate) and switched the visible
+      // fieldset by now. Re-validating here would hit the NEWLY shown
+      // step's untouched fields and pin the form to it via the error
+      // snap — only mirror the tab state for whatever step powermail
+      // decided to show. The error snap stays load-time-only, for
+      // server-rendered submits that come back with errors.
+      const fieldsets = getPowermailFieldsets(form);
+      const activeIndex = getVisiblePowermailIndex(fieldsets);
 
-      const targetIndex = Number(trigger.dataset.powermailMorestepShow);
-      if (Number.isInteger(targetIndex)) {
-        showPowermailFieldset(getPowermailFieldsets(form), targetIndex);
-      }
-
-      syncPowermailMultistep(form);
+      form.querySelectorAll('[data-powermail-morestep-current]').forEach(button => {
+        setPowermailStepState(button, Number(button.dataset.powermailMorestepCurrent) === activeIndex);
+      });
     });
   });
 

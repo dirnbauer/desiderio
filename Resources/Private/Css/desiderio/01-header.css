@@ -84,38 +84,46 @@
 
 .desiderio-header__menu-toggle { display: none; }
 
+/*
+ * Primary nav follows the shadcn/ui navigation-menu recipe: ghost triggers
+ * with a rotating chevron and a popover panel per item. Submenus are
+ * disclosure widgets (button + aria-expanded, JS section 6b); the
+ * :hover/:focus-within fallback below only applies while JS has not
+ * initialised so submenu links stay reachable without it.
+ */
 .desiderio-header__nav {
     flex: 1;
     display: flex;
     justify-content: flex-start;
     min-width: 0;
     max-width: none;
-    overflow-x: auto;
-    overscroll-behavior-inline: contain;
-    scrollbar-width: none;
-}
-
-.desiderio-header__nav::-webkit-scrollbar {
-    display: none;
 }
 
 .desiderio-header__nav-list {
     display: flex;
-    flex-wrap: nowrap;
+    /* Many menu points wrap to a second row instead of clipping. */
+    flex-wrap: wrap;
     align-items: center;
     justify-content: flex-start;
-    gap: 0.125rem 0.375rem;
+    gap: 0.125rem 0.25rem;
     list-style: none;
     margin: 0;
     padding: 0;
-    min-width: min-content;
+    min-width: 0;
 }
 
 .desiderio-header__nav-item { position: relative; }
 
+.desiderio-header__nav-trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.125rem;
+}
+
 .desiderio-header__nav-link {
     display: inline-flex;
     align-items: center;
+    min-height: 2.25rem;
     padding: 0.375rem 0.625rem;
     font-size: 0.8125rem;
     line-height: 1.25;
@@ -138,28 +146,88 @@
     background-color: var(--accent);
 }
 
+/* Chevron disclosure button: 28px hit area (WCAG 2.5.8 needs >= 24px). */
+.desiderio-header__subnav-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.75rem;
+    height: 1.75rem;
+    flex: 0 0 auto;
+    border: 0;
+    padding: 0;
+    background: transparent;
+    color: var(--muted-foreground);
+    border-radius: calc(var(--radius) - 2px);
+    cursor: pointer;
+    transition: color 0.15s, background-color 0.15s;
+}
+
+.desiderio-header__subnav-toggle:hover {
+    color: var(--foreground);
+    background-color: var(--accent);
+}
+
+.desiderio-header__subnav-toggle:focus-visible {
+    outline: var(--d-ring-width, 2px) solid var(--ring);
+    outline-offset: 2px;
+}
+
+.desiderio-header__subnav-chevron {
+    transition: transform 0.2s ease;
+}
+
+.desiderio-header__nav-item.is-open > .desiderio-header__nav-trigger .desiderio-header__subnav-chevron {
+    transform: rotate(180deg);
+}
+
+.desiderio-header__nav-item.is-open > .desiderio-header__nav-trigger .desiderio-header__subnav-toggle {
+    color: var(--foreground);
+    background-color: var(--accent);
+}
+
 .desiderio-header__subnav {
     display: none;
     position: absolute;
-    top: 100%;
+    top: calc(100% + 0.25rem);
     left: 0;
-    min-width: 12rem;
-    padding: 0.5rem;
+    min-width: 13rem;
+    padding: 0.375rem;
     list-style: none;
     margin: 0;
     background-color: var(--popover);
+    color: var(--popover-foreground);
     border: 1px solid var(--border);
     border-radius: var(--radius);
     box-shadow: var(--shadow-md);
     z-index: 60;
 }
 
-.desiderio-header__nav-item:hover .desiderio-header__subnav,
-.desiderio-header__nav-item:focus-within .desiderio-header__subnav { display: block; }
+.desiderio-header__nav-item.is-open > .desiderio-header__subnav { display: grid; }
+
+/* No-JS fallback only — JS marks the nav ready and takes over. */
+.desiderio-header__nav:not([data-d-nav-ready]) .desiderio-header__nav-item:is(:hover, :focus-within) .desiderio-header__subnav { display: grid; }
+
+@media (prefers-reduced-motion: no-preference) {
+    .desiderio-header__nav-item.is-open > .desiderio-header__subnav {
+        animation: desiderio-subnav-in 0.15s ease;
+    }
+
+    @keyframes desiderio-subnav-in {
+        from {
+            opacity: 0;
+            transform: translateY(-0.25rem);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+}
 
 .desiderio-header__subnav-link {
     display: block;
-    padding: 0.375rem 0.75rem;
+    padding: 0.5rem 0.75rem;
     font-size: 0.875rem;
     color: var(--muted-foreground);
     text-decoration: none;
@@ -170,6 +238,110 @@
 .desiderio-header__subnav-link:hover {
     color: var(--foreground);
     background-color: var(--accent);
+}
+
+.desiderio-header__subnav-link--active,
+.desiderio-header__subnav-link--active:hover {
+    color: var(--accent-foreground);
+    background-color: var(--accent);
+}
+
+/*
+ * Priority+ (JS section 6c): while active the row must not wrap — overflow
+ * items live in the "More" disclosure instead.
+ */
+.desiderio-header__nav[data-d-nav-priority] .desiderio-header__nav-list {
+    flex-wrap: nowrap;
+}
+
+/* The "More" trigger is a real <button>; undo UA chrome, keep nav-link look. */
+.desiderio-header__more-toggle {
+    gap: 0.25rem;
+    border: 0;
+    background: transparent;
+    font: inherit;
+    cursor: pointer;
+}
+
+.desiderio-header__more-toggle:focus-visible {
+    outline: var(--d-ring-width, 2px) solid var(--ring);
+    outline-offset: 2px;
+}
+
+.desiderio-header__nav-item--more.is-open > .desiderio-header__nav-trigger .desiderio-header__more-toggle {
+    color: var(--foreground);
+    background-color: var(--accent);
+}
+
+/* The "More" item sits at the row's end; anchor its panel to the right edge
+   and keep it scrollable inside the viewport when it holds many items.
+   The scrollbar is a slim, rounded, scheme-coloured thumb on a quiet track. */
+.desiderio-header__nav-item--more > .desiderio-header__subnav {
+    left: auto;
+    right: 0;
+    max-height: min(70vh, 36rem);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+}
+
+/* WebKit/Blink: custom always-visible slim bar (setting the standard
+   scrollbar-* properties there would disable these pseudo-elements and
+   fall back to the auto-hiding macOS overlay bar). */
+.desiderio-header__nav-item--more > .desiderio-header__subnav::-webkit-scrollbar {
+    width: 0.375rem;
+}
+
+.desiderio-header__nav-item--more > .desiderio-header__subnav::-webkit-scrollbar-track {
+    background: transparent;
+    margin-block: 0.5rem;
+}
+
+.desiderio-header__nav-item--more > .desiderio-header__subnav::-webkit-scrollbar-thumb {
+    background-color: color-mix(in oklch, var(--primary) 55%, transparent);
+    border-radius: 999px;
+}
+
+.desiderio-header__nav-item--more > .desiderio-header__subnav::-webkit-scrollbar-thumb:hover {
+    background-color: color-mix(in oklch, var(--primary) 80%, transparent);
+}
+
+/* Firefox: thin native bar in the scheme colour. */
+@supports (-moz-appearance: none) {
+    .desiderio-header__nav-item--more > .desiderio-header__subnav {
+        scrollbar-width: thin;
+        scrollbar-color: color-mix(in oklch, var(--primary) 55%, transparent) transparent;
+    }
+
+    .desiderio-header__nav-item--more > .desiderio-header__subnav:hover {
+        scrollbar-color: color-mix(in oklch, var(--primary) 80%, transparent) transparent;
+    }
+}
+
+/*
+ * Menu items moved into the "More" panel render as rows; their own
+ * submenus expand inline (like the mobile panel) instead of stacking
+ * popovers.
+ */
+[data-d-nav-more-list] .desiderio-header__nav-trigger {
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+
+[data-d-nav-more-list] .desiderio-header__nav-link {
+    flex: 1;
+    width: 100%;
+    white-space: normal;
+    padding: 0.5rem 0.75rem;
+}
+
+[data-d-nav-more-list] .desiderio-header__subnav {
+    position: static;
+    border: 0;
+    box-shadow: none;
+    background: transparent;
+    min-width: 0;
+    padding: 0 0 0.25rem 0.75rem;
 }
 
 .desiderio-header__actions {
@@ -423,19 +595,42 @@
         min-width: 0;
     }
 
+    .desiderio-header__nav-trigger {
+        display: flex;
+        width: 100%;
+        align-items: center;
+    }
+
+    .desiderio-header__nav-trigger .desiderio-header__nav-link {
+        flex: 1;
+    }
+
     .desiderio-header__nav-link {
         width: 100%;
         padding: 0.75rem;
         white-space: normal;
     }
 
+    .desiderio-header__subnav-toggle {
+        width: 2.75rem;
+        height: 2.75rem;
+    }
+
     .desiderio-header__subnav {
         position: static;
-        display: grid;
         border: 0;
         box-shadow: none;
         padding: 0.25rem 0 0.5rem 0.75rem;
         background: transparent;
+    }
+
+    .desiderio-header__subnav-link {
+        padding: 0.75rem;
+    }
+
+    /* Priority+ never applies in the burger panel. */
+    .desiderio-header__nav-item--more {
+        display: none;
     }
 }
 

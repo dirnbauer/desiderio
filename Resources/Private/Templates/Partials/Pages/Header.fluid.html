@@ -26,29 +26,75 @@
             <nav id="desiderio-main-nav" class="desiderio-header__nav" data-d-primary-nav aria-label="{f:translate(extensionName: 'desiderio', key: 'a11y.nav.main', default: 'Main navigation')}">
                 <f:if condition="{mainMenu}">
                     <ul class="desiderio-header__nav-list" role="list">
-                        <f:for each="{mainMenu}" as="item">
-                            <li class="desiderio-header__nav-item">
-                                <f:link.typolink
-                                    parameter="{item.link}"
-                                    class="desiderio-header__nav-link {f:if(condition: '{item.active}', then: 'desiderio-header__nav-link--active')}"
-                                    additionalAttributes="{f:if(condition: '{item.active}', then: '{aria-current: \'page\'}')}"
-                                >
-                                    {item.title}
-                                </f:link.typolink>
-
-                                <f:if condition="{item.hasSubpages}">
-                                    <ul class="desiderio-header__subnav" role="list" aria-label="{item.title}">
-                                        <f:for each="{item.children}" as="subitem">
-                                            <li>
-                                                <f:link.typolink parameter="{subitem.link}" class="desiderio-header__subnav-link" additionalAttributes="{f:if(condition: '{subitem.active}', then: '{aria-current: \'page\'}')}">
-                                                    {subitem.title}
-                                                </f:link.typolink>
-                                            </li>
-                                        </f:for>
-                                    </ul>
+                        <f:for each="{mainMenu}" as="item" iteration="navIteration">
+                            <li class="desiderio-header__nav-item" {f:if(condition: item.children, then: 'data-d-nav-sub')}>
+                                <f:if condition="{item.children}">
+                                    <f:then>
+                                        <span class="desiderio-header__nav-trigger">
+                                            <f:link.typolink
+                                                parameter="{item.link}"
+                                                class="desiderio-header__nav-link {f:if(condition: '{item.active}', then: 'desiderio-header__nav-link--active')}"
+                                                additionalAttributes="{f:if(condition: '{item.current}', then: '{aria-current: \'page\'}')}"
+                                            >
+                                                {item.title}
+                                            </f:link.typolink>
+                                            <button
+                                                type="button"
+                                                class="desiderio-header__subnav-toggle"
+                                                data-d-subnav-toggle
+                                                aria-expanded="false"
+                                                aria-controls="desiderio-subnav-{navIteration.cycle}"
+                                                aria-label="{f:translate(extensionName: 'desiderio', key: 'a11y.nav.submenu', arguments: {title: item.title}, default: 'Submenu')}"
+                                            >
+                                                <d:atom.icon name="chevron-down" size="xs" class="desiderio-header__subnav-chevron"/>
+                                            </button>
+                                        </span>
+                                        <ul id="desiderio-subnav-{navIteration.cycle}" class="desiderio-header__subnav" role="list">
+                                            <f:for each="{item.children}" as="subitem">
+                                                <li>
+                                                    <f:link.typolink
+                                                        parameter="{subitem.link}"
+                                                        class="desiderio-header__subnav-link {f:if(condition: '{subitem.active}', then: 'desiderio-header__subnav-link--active')}"
+                                                        additionalAttributes="{f:if(condition: '{subitem.current}', then: '{aria-current: \'page\'}')}"
+                                                    >
+                                                        {subitem.title}
+                                                    </f:link.typolink>
+                                                </li>
+                                            </f:for>
+                                        </ul>
+                                    </f:then>
+                                    <f:else>
+                                        <f:link.typolink
+                                            parameter="{item.link}"
+                                            class="desiderio-header__nav-link {f:if(condition: '{item.active}', then: 'desiderio-header__nav-link--active')}"
+                                            additionalAttributes="{f:if(condition: '{item.current}', then: '{aria-current: \'page\'}')}"
+                                        >
+                                            {item.title}
+                                        </f:link.typolink>
+                                    </f:else>
                                 </f:if>
                             </li>
                         </f:for>
+                        <f:comment>
+                            Priority+ overflow: JS (desiderio.js section 6c) moves
+                            menu items that do not fit one row into this disclosure;
+                            it stays hidden while everything fits or on mobile.
+                        </f:comment>
+                        <li class="desiderio-header__nav-item desiderio-header__nav-item--more" data-d-nav-sub data-d-nav-more hidden>
+                            <span class="desiderio-header__nav-trigger">
+                                <button
+                                    type="button"
+                                    class="desiderio-header__nav-link desiderio-header__more-toggle"
+                                    data-d-subnav-toggle
+                                    aria-expanded="false"
+                                    aria-controls="desiderio-subnav-more"
+                                >
+                                    <f:translate extensionName="desiderio" key="nav.more">More</f:translate>
+                                    <d:atom.icon name="chevron-down" size="xs" class="desiderio-header__subnav-chevron"/>
+                                </button>
+                            </span>
+                            <ul id="desiderio-subnav-more" class="desiderio-header__subnav" role="list" data-d-nav-more-list></ul>
+                        </li>
                     </ul>
                 </f:if>
             </nav>

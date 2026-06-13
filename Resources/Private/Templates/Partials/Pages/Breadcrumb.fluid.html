@@ -1,0 +1,55 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:comment>
+    Rootline breadcrumb following the shadcn/ui breadcrumb recipe. Long
+    trails collapse to home / … / parent / current page; the current page
+    is plain text with aria-current, never a link. The home crumb is the
+    house icon with a translated text alternative.
+</f:comment>
+<f:variable name="crumbCount" value="{breadcrumb -> f:count()}"/>
+<f:variable name="tailStart" value="{crumbCount - 2}"/>
+
+<div class="desiderio-breadcrumb">
+    <d:layout.container>
+        <nav aria-label="{f:translate(extensionName: 'desiderio', key: 'a11y.nav.breadcrumb', default: 'Breadcrumb')}" data-slot="breadcrumb">
+            <ol class="desiderio-breadcrumb__list" data-slot="breadcrumb-list">
+                <f:for each="{breadcrumb}" as="crumb" iteration="crumbIteration">
+                    <f:if condition="{crumbCount} <= 4 || {crumbIteration.isFirst} || {crumbIteration.index} >= {tailStart}">
+                        <li class="desiderio-breadcrumb__item" data-slot="breadcrumb-item">
+                            <f:variable name="crumbLabel" value="{crumb.title}"/>
+                            <f:if condition="{crumbIteration.isFirst}">
+                                <f:variable name="crumbLabel" value="{f:translate(extensionName: 'desiderio', key: 'a11y.nav.home', default: 'Home')}"/>
+                            </f:if>
+                            <f:if condition="{crumbIteration.isLast}">
+                                <f:then>
+                                    <span class="desiderio-breadcrumb__page" data-slot="breadcrumb-page" aria-current="page">{crumbLabel}</span>
+                                </f:then>
+                                <f:else>
+                                    <f:link.typolink parameter="{crumb.link}" class="desiderio-breadcrumb__link">{crumbLabel}</f:link.typolink>
+                                </f:else>
+                            </f:if>
+                        </li>
+                        <f:if condition="!{crumbIteration.isLast}">
+                            <li class="desiderio-breadcrumb__separator" data-slot="breadcrumb-separator" role="presentation" aria-hidden="true">/</li>
+                        </f:if>
+                    </f:if>
+                    <f:if condition="{crumbCount} > 4 && {crumbIteration.index} == 1">
+                        <li class="desiderio-breadcrumb__item" data-slot="breadcrumb-item">
+                            <span class="desiderio-breadcrumb__ellipsis" data-slot="breadcrumb-ellipsis">
+                                <d:atom.icon name="ellipsis" size="sm"/>
+                                <span class="d-sr-only"><f:translate extensionName="desiderio" key="a11y.nav.breadcrumb.more">More pages</f:translate></span>
+                            </span>
+                        </li>
+                        <li class="desiderio-breadcrumb__separator" data-slot="breadcrumb-separator" role="presentation" aria-hidden="true">/</li>
+                    </f:if>
+                </f:for>
+            </ol>
+        </nav>
+    </d:layout.container>
+</div>
+
+</html>

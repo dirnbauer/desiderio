@@ -121,6 +121,12 @@
     margin-block-start: var(--d-section-y, 3rem);
   }
 
+  /* The page breadcrumb leads the content flow — the element after it is
+     still the visual start of the page. */
+  .desiderio-breadcrumb + .ce-frame {
+    margin-block-start: 0;
+  }
+
   .desiderio-section {
     position: relative;
     isolation: isolate;
@@ -128,7 +134,8 @@
     border-block-start: 1px solid color-mix(in oklch, var(--border) 72%, transparent);
   }
 
-  .desiderio-section:first-child {
+  .desiderio-section:first-child,
+  .desiderio-breadcrumb + .desiderio-section {
     border-block-start: 0;
   }
 

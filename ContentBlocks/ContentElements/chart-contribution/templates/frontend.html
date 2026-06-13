@@ -98,7 +98,7 @@
                     <div class="chart-contribution__actions">
                         <d:atom.button href="{data.primary_button_link.url}" target="{data.primary_button_link.target}" class="chart-contribution__btn" size="lg">
                             {data -> f:render.text(field: 'primary_button_text')}
-                        </d:atom.button>
+                        </d:atom.button>{data -> f:render.link(field: 'primary_button_link')}
                     </div>
                 </f:if>
             </div>

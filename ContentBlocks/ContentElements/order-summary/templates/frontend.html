@@ -49,7 +49,7 @@
                 <d:atom.button href="{data.button_link.url}" target="{data.button_link.target}" variant="default" class="order-summary__button">
                     <span>{data -> f:render.text(field: 'button_text')}</span>
                     <span class="order-summary__button-icon" aria-hidden="true"><d:atom.icon name="check" size="sm"/></span>
-                </d:atom.button>
+                </d:atom.button>{data -> f:render.link(field: 'button_link')}
             </f:if>
         </d:molecule.card>
     </d:layout.container>

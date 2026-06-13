@@ -19,7 +19,7 @@
                 <f:if condition="{data.left_description}"><div class="cta-split__description d-richtext">{data -> f:render.text(field: 'left_description')}</div></f:if>
                 <f:if condition="{data.left_button_text} && {data.left_button_link.url}">
                     <div class="cta-split__actions">
-                        <d:atom.button href="{data.left_button_link.url}" target="{data.left_button_link.target}">{data -> f:render.text(field: 'left_button_text')}</d:atom.button>
+                        <d:atom.button href="{data.left_button_link.url}" target="{data.left_button_link.target}">{data -> f:render.text(field: 'left_button_text')}</d:atom.button>{data -> f:render.link(field: 'left_button_link')}
                     </div>
                 </f:if>
             </d:molecule.card>
@@ -29,7 +29,7 @@
                 <f:if condition="{data.right_description}"><div class="cta-split__description d-richtext">{data -> f:render.text(field: 'right_description')}</div></f:if>
                 <f:if condition="{data.right_button_text} && {data.right_button_link.url}">
                     <div class="cta-split__actions">
-                        <d:atom.button href="{data.right_button_link.url}" target="{data.right_button_link.target}" variant="outline">{data -> f:render.text(field: 'right_button_text')}</d:atom.button>
+                        <d:atom.button href="{data.right_button_link.url}" target="{data.right_button_link.target}" variant="outline">{data -> f:render.text(field: 'right_button_text')}</d:atom.button>{data -> f:render.link(field: 'right_button_link')}
                     </div>
                 </f:if>
             </d:molecule.card>

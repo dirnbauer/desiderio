@@ -14,10 +14,10 @@
             <f:if condition="{data.primary_button_text} || {data.secondary_button_text}">
                 <div class="hero-cta-only__actions">
                     <f:if condition="{data.primary_button_text}">
-                        <d:atom.button href="{data.primary_button_link.url}" target="{data.primary_button_link.target}" variant="default" size="lg">{data -> f:render.text(field: 'primary_button_text')}</d:atom.button>
+                        <d:atom.button href="{data.primary_button_link.url}" target="{data.primary_button_link.target}" variant="default" size="lg">{data -> f:render.text(field: 'primary_button_text')}</d:atom.button>{data -> f:render.link(field: 'primary_button_link')}
                     </f:if>
                     <f:if condition="{data.secondary_button_text}">
-                        <d:atom.button href="{data.secondary_button_link.url}" target="{data.secondary_button_link.target}" variant="outline" size="lg">{data -> f:render.text(field: 'secondary_button_text')}</d:atom.button>
+                        <d:atom.button href="{data.secondary_button_link.url}" target="{data.secondary_button_link.target}" variant="outline" size="lg">{data -> f:render.text(field: 'secondary_button_text')}</d:atom.button>{data -> f:render.link(field: 'secondary_button_link')}
                     </f:if>
                 </div>
             </f:if>

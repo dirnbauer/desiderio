@@ -40,7 +40,7 @@
                 <f:if condition="{data.button_text} && {data.button_link.url}">
                     <d:atom.button href="{data.button_link.url}" class="product-feature__button" target="{data.button_link.target}">
                         {data -> f:render.text(field: 'button_text')}
-                    </d:atom.button>
+                    </d:atom.button>{data -> f:render.link(field: 'button_link')}
                 </f:if>
             </div>
         </div>

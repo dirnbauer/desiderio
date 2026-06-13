@@ -44,7 +44,7 @@
                                 class="pricing-enterprise__button"
                             >
                                 {data -> f:render.text(field: 'contact_text')}
-                            </d:atom.button>
+                            </d:atom.button>{data -> f:render.link(field: 'contact_link')}
                         </d:molecule.cardFooter>
                     </f:if>
                 </div>

@@ -25,7 +25,7 @@
             </f:if>
             <f:if condition="{data.cta_text} && {data.cta_link.url}">
                 <d:molecule.cardFooter class="cta-card__footer">
-                    <d:atom.button href="{data.cta_link.url}" target="{data.cta_link.target}" size="lg">{data -> f:render.text(field: 'cta_text')}</d:atom.button>
+                    <d:atom.button href="{data.cta_link.url}" target="{data.cta_link.target}" size="lg">{data -> f:render.text(field: 'cta_text')}</d:atom.button>{data -> f:render.link(field: 'cta_link')}
                 </d:molecule.cardFooter>
             </f:if>
         </d:molecule.card>

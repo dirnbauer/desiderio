@@ -52,7 +52,7 @@
                         class="bundle-pricing__button w-full sm:w-auto"
                     >
                         {data -> f:render.text(field: 'button_text')}
-                    </d:atom.button>
+                    </d:atom.button>{data -> f:render.link(field: 'button_link')}
                 </f:if>
             </d:molecule.cardFooter>
         </d:molecule.card>

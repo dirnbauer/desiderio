@@ -25,7 +25,7 @@
                         <div class="hero-dual-cta__card-desc d-richtext">{data -> f:render.text(field: 'left_description')}</div>
                     </f:if>
                     <f:if condition="{data.left_button_text}">
-                        <d:atom.button href="{data.left_button_link.url}" target="{data.left_button_link.target}" variant="default" size="lg">{data -> f:render.text(field: 'left_button_text')}</d:atom.button>
+                        <d:atom.button href="{data.left_button_link.url}" target="{data.left_button_link.target}" variant="default" size="lg">{data -> f:render.text(field: 'left_button_text')}</d:atom.button>{data -> f:render.link(field: 'left_button_link')}
                     </f:if>
                 </d:molecule.cardContent>
             </d:molecule.card>
@@ -38,7 +38,7 @@
                         <div class="hero-dual-cta__card-desc d-richtext">{data -> f:render.text(field: 'right_description')}</div>
                     </f:if>
                     <f:if condition="{data.right_button_text}">
-                        <d:atom.button href="{data.right_button_link.url}" target="{data.right_button_link.target}" variant="outline" size="lg">{data -> f:render.text(field: 'right_button_text')}</d:atom.button>
+                        <d:atom.button href="{data.right_button_link.url}" target="{data.right_button_link.target}" variant="outline" size="lg">{data -> f:render.text(field: 'right_button_text')}</d:atom.button>{data -> f:render.link(field: 'right_button_link')}
                     </f:if>
                 </d:molecule.cardContent>
             </d:molecule.card>

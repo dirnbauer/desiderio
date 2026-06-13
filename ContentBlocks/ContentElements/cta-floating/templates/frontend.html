@@ -28,7 +28,7 @@
             <f:if condition="{data.cta_text} && {data.cta_link.url}">
                 <d:atom.button href="{data.cta_link.url}" target="{data.cta_link.target}" size="lg" class="cta-floating__action shrink-0">
                     {data -> f:render.text(field: 'cta_text')}<f:if condition="{data.cta_link.target} == '_blank'"><span class="sr-only"> <f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/cta-floating/language/labels.xlf:link.newTab" default="(opens in a new tab)"/></span></f:if>
-                </d:atom.button>
+                </d:atom.button>{data -> f:render.link(field: 'cta_link')}
             </f:if>
         </div>
     </d:layout.container>

@@ -16,7 +16,7 @@
             </f:if>
             <f:if condition="{data.button_text} && {data.button_link.url}">
                 <div class="hero-minimal__actions">
-                    <d:atom.button href="{data.button_link.url}" target="{data.button_link.target}" size="lg">{data -> f:render.text(field: 'button_text')}</d:atom.button>
+                    <d:atom.button href="{data.button_link.url}" target="{data.button_link.target}" size="lg">{data -> f:render.text(field: 'button_text')}</d:atom.button>{data -> f:render.link(field: 'button_link')}
                 </div>
             </f:if>
         </div>

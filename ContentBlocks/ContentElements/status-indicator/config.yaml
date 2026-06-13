@@ -1,7 +1,7 @@
 name: desiderio/status-indicator
 typeName: desiderio_statusindicator
 title: 'Status Indicator Data View'
-description: 'Report an overall system state plus per-service operational, degraded, outage, or maintenance statuses like a status page.'
+description: 'Signal a live state with a colored dot and label.'
 group: data
 prefixFields: false
 basics:

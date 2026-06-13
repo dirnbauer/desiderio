@@ -1,7 +1,7 @@
 name: desiderio/order-summary
 typeName: desiderio_ordersummary
 title: 'Order Summary Pricing'
-description: 'Itemize a cart or quote with quantities, subtotal, discount, and final total before the checkout button.'
+description: 'Itemize line items, totals, and taxes before checkout.'
 group: pricing
 prefixFields: false
 basics:

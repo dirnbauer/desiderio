@@ -1,7 +1,7 @@
 name: desiderio/stat-cards
 typeName: desiderio_statcards
 title: 'Stat Cards Data View'
-description: 'Put each figure on its own card with label and trend.'
+description: 'A responsive grid that places each metric on its own card showing a counting-up value, a label, and an optional change figure with an up, down, or neutral trend arrow. Use it on dashboards or reporting pages to compare several KPIs side by side. Fields per card are label, value, change delta, and trend direction, plus a selectable 2, 3, or 4 column layout.'
 group: data
 prefixFields: false
 basics:

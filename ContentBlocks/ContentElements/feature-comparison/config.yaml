@@ -1,7 +1,7 @@
 name: desiderio/feature-comparison
 typeName: desiderio_featurecomparison
-title: 'Comparison Feature Section'
-description: 'Compare options side by side, row by row.'
+title: 'Feature Comparison Table'
+description: 'A two-column comparison table that lists features row by row and marks each as included with a check-mark or excluded with a dash. Use it to contrast two plans, tiers, or options side by side, for example Free versus Pro on a pricing page. Set the left and right column titles, then add comparison rows, each with a feature name and a supported toggle per side.'
 group: features
 prefixFields: false
 basics:

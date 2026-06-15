@@ -3,14 +3,14 @@
   <file id="stats-bar">
     <unit id="title">
       <segment state="final">
-        <source>Bar Stats</source>
-        <target>Balken Kennzahlen</target>
+        <source>Bar Stats Progress</source>
+        <target>Balken-Statistiken</target>
       </segment>
     </unit>
     <unit id="description">
       <segment state="final">
-        <source>Pack a few headline figures into one slim bar.</source>
-        <target>Wenige Eckdaten in einer schlanken Zahlen-Leiste bündeln.</target>
+        <source>A stacked list of metrics where each row shows a label and value above a horizontal progress bar filled to a set percentage. Use it to visualize proportions, completion, or benchmark scores where the relative fill communicates more than the number alone. Each item holds a label, display value, and a 0 to 100 bar percentage, with an optional eyebrow, headline, and sub-headline intro.</source>
+        <target>Eine gestapelte Liste von Kennzahlen, bei der jede Zeile ein Label und einen Wert ueber einem horizontalen Fortschrittsbalken zeigt, der auf einen festgelegten Prozentwert gefuellt ist. Setze sie ein, um Anteile, Fortschritt oder Benchmark-Werte zu visualisieren, wo die Fuellung mehr aussagt als die Zahl allein. Jeder Eintrag enthaelt Label, Anzeigewert und einen Balkenwert von 0 bis 100, mit optionalem Eyebrow, Headline und Subheadline.</target>
       </segment>
     </unit>
   </file>

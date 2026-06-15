@@ -3,14 +3,14 @@
   <file id="order-summary">
     <unit id="title">
       <segment state="final">
-        <source>Order Summary Pricing</source>
-        <target>Order Summary Preis</target>
+        <source>Order Summary</source>
+        <target>Bestellübersicht</target>
       </segment>
     </unit>
     <unit id="description">
       <segment state="final">
-        <source>Itemize line items, totals, and taxes before checkout.</source>
-        <target>Posten, Steuern und Gesamtsumme vor dem Checkout auflisten.</target>
+        <source>A checkout card that itemizes line items with totals, an optional discount row, and a proceed button. Use it on a cart, checkout, or pricing-confirmation page to show buyers exactly what they are paying before they commit. Add a heading, line items each with name, optional quantity, and a formatted price, plus subtotal, an optional discount label and value, the required total, and a checkout button text and link.</source>
+        <target>Eine Checkout-Karte, die Positionen mit Summen, einer optionalen Rabattzeile und einem Weiter-Button aufschlüsselt. Setzen Sie sie auf einer Warenkorb-, Checkout- oder Preisbestätigungsseite ein, um Käufern vor dem Abschluss genau zu zeigen, was sie zahlen. Hinterlegt werden eine Überschrift, Positionen mit Name, optionaler Menge und formatiertem Preis sowie Zwischensumme, optionaler Rabattbezeichnung und -wert, die erforderliche Gesamtsumme und Text und Link der Checkout-Schaltfläche.</target>
       </segment>
     </unit>
   </file>

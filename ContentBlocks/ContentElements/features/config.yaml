@@ -1,7 +1,7 @@
 name: desiderio/features
 typeName: desiderio_features
-title: Features
-description: 'Outline core features in a flexible default section.'
+title: 'Features Grid'
+description: 'A responsive grid of feature cards, each combining an icon, title, rich-text description, and optional link. Use it on homepages or product pages to present core capabilities or selling points at a glance. Key fields are the headline, sub-headline, a column count (2, 3 or 4), a layout style (icon on top, icon left, or card), and the feature items with semantic icon, title, description, and link.'
 group: features
 prefixFields: false
 basics:

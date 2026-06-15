@@ -1,7 +1,7 @@
 name: desiderio/cta-minimal
 typeName: desiderio_ctaminimal
 title: 'Minimal Call to Action'
-description: 'Show a stripped-back prompt with just text and a link.'
+description: 'A stripped-back conversion prompt rendering a heading, a short muted line of supporting text, and a single arrow-suffixed text link. Use it inline within content or near the end of a section where a heavy button block would feel too loud. Key fields are the headline, the one-line description, and the link text paired with its target link.'
 group: conversion
 prefixFields: false
 basics:

@@ -4,13 +4,13 @@
     <unit id="title">
       <segment state="final">
         <source>Radar Chart</source>
-        <target>Radar Diagramm</target>
+        <target>Radar-Chart</target>
       </segment>
     </unit>
     <unit id="description">
       <segment state="final">
-        <source>Compare several dimensions on spokes of a single shape.</source>
-        <target>Mehrere Dimensionen auf den Achsen einer Form vergleichen.</target>
+        <source>A radar (spider) chart that plots several scored dimensions on the spokes of one filled shape, with an accessible legend and screen-reader data table alongside. Use it to compare strengths across criteria such as skills, product attributes or maturity areas at a glance. Key fields are the heading and rich-text description, the Dimension | Score axes list (0–5 scale), an optional series name, the chart-data JSON the plot is drawn from, and a fill-opacity choice.</source>
+        <target>Ein Radar- bzw. Spinnennetz-Diagramm, das mehrere bewertete Dimensionen auf den Speichen einer einzelnen gefüllten Fläche darstellt, ergänzt um eine barrierefreie Legende und eine Datentabelle für Screenreader. Geeignet, um Stärken über Kriterien wie Kompetenzen, Produkteigenschaften oder Reifegrade auf einen Blick zu vergleichen. Wichtige Felder sind die Überschrift und die Rich-Text-Beschreibung, die Achsenliste „Dimension | Wert“ (Skala 0–5), ein optionaler Serienname, das Chart-Daten-JSON, aus dem die Fläche gezeichnet wird, sowie die Wahl der Füll-Deckkraft.</target>
       </segment>
     </unit>
   </file>

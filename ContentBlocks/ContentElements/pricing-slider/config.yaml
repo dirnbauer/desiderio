@@ -1,7 +1,7 @@
 name: desiderio/pricing-slider
 typeName: desiderio_pricingslider
-title: 'Slider Pricing'
-description: 'Adjust the price live by dragging a usage slider.'
+title: 'Pricing Slider'
+description: 'An interactive pricing block with a draggable range slider that highlights the matching volume tier and its price as visitors move it. Use it on pricing pages for usage- or volume-based products where cost scales with consumption. Key fields are the eyebrow, headline, rich-text description, a unit label (e.g. requests), and volume tiers each holding a volume, price, and included features.'
 group: pricing
 prefixFields: false
 basics:

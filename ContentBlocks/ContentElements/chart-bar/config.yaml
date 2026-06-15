@@ -1,7 +1,7 @@
 name: desiderio/chart-bar
 typeName: desiderio_chartbar
 title: 'Bar Chart'
-description: 'Compare categories or rankings with vertical bars.'
+description: 'A bar chart that compares categories or rankings as vertical or horizontal bars, with a summary stats row (top, total, lowest, top share) and a hidden data table. Use it on reports or landing pages to rank items or contrast values side by side. Key inputs are the label-and-value bars list, a unit, a series name, JSON chart data, plus orientation, color variant, and a grid toggle.'
 group: data
 prefixFields: false
 basics:

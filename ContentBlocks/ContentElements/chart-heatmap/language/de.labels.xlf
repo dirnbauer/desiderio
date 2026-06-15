@@ -4,13 +4,13 @@
     <unit id="title">
       <segment state="final">
         <source>Heatmap Chart</source>
-        <target>Heatmap Diagramm</target>
+        <target>Heatmap-Diagramm</target>
       </segment>
     </unit>
     <unit id="description">
       <segment state="final">
-        <source>Reveal intensity across two dimensions with a color matrix.</source>
-        <target>Intensität über zwei Dimensionen als Farbmatrix sichtbar machen.</target>
+        <source>A color-coded matrix that reveals intensity across two dimensions, with rows and columns shaded by value and backed by an accessible data table. Use it to spot patterns such as activity by day and hour or performance across categories. Key inputs are the comma-separated column labels, the per-row series (row label plus its values), an optional unit, and the JSON chart data that paints the grid.</source>
+        <target>Eine farbcodierte Matrix, die Intensität über zwei Dimensionen sichtbar macht, deren Zeilen und Spalten nach Wert eingefärbt sind und durch eine barrierefreie Datentabelle gestützt werden. Nutzen Sie sie, um Muster wie Aktivität nach Tag und Stunde oder Leistung über Kategorien zu erkennen. Wichtige Eingaben sind die kommagetrennten Spaltenbeschriftungen, die Zeilen-Serie (Zeilen-Label samt Werten), eine optionale Einheit und die JSON-Diagrammdaten, die das Raster zeichnen.</target>
       </segment>
     </unit>
     <unit id="field.col_labels">

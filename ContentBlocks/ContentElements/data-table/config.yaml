@@ -1,7 +1,7 @@
 name: desiderio/data-table
 typeName: desiderio_datatable
 title: 'Data Table'
-description: 'Hold structured rows and columns of precise data.'
+description: 'A structured table that arranges precise data into defined columns and rows, with an optional header row, per-column alignment, optional row labels, and a caption. Use it for specifications, comparisons, pricing breakdowns, or any tabular figures that need clean alignment. Key fields are the heading, the column definitions with their alignment, the rows of cells with optional row labels, and the toggleable caption text.'
 group: data
 prefixFields: false
 basics:

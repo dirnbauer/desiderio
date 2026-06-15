@@ -1,7 +1,7 @@
 name: desiderio/order-summary
 typeName: desiderio_ordersummary
-title: 'Order Summary Pricing'
-description: 'Itemize line items, totals, and taxes before checkout.'
+title: 'Order Summary'
+description: 'A checkout card that itemizes line items with totals, an optional discount row, and a proceed button. Use it on a cart, checkout, or pricing-confirmation page to show buyers exactly what they are paying before they commit. Add a heading, line items each with name, optional quantity, and a formatted price, plus subtotal, an optional discount label and value, the required total, and a checkout button text and link.'
 group: pricing
 prefixFields: false
 basics:

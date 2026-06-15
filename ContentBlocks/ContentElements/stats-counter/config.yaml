@@ -1,7 +1,7 @@
 name: desiderio/stats-counter
 typeName: desiderio_statscounter
 title: 'Counter Stats'
-description: 'Animate numbers ticking up to grab attention.'
+description: 'A grid of metrics whose numbers animate ticking up to a target value to draw the eye on scroll. Use it in a results or achievements section where animated figures grab attention and feel dynamic. Each counter holds a target value, an optional suffix such as plus, percent, or K, a label, and an optional rich-text description, shown in a 3 or 4 column layout with an eyebrow and headline.'
 group: social-proof
 prefixFields: false
 basics:

@@ -3,12 +3,12 @@
   <file id="gdpr-banner">
     <unit id="title">
       <segment>
-        <source>GDPR Banner</source>
+        <source>GDPR Consent Banner</source>
       </segment>
     </unit>
     <unit id="description">
       <segment>
-        <source>Show a GDPR consent banner with granular choices.</source>
+        <source>A cookie-consent banner with a message, per-category opt-in checkboxes, and accept and save-preferences buttons. Place it sitewide to capture granular GDPR consent before non-essential cookies load. Key fields are an optional title, the rich-text banner message, a collection of cookie categories (each with name, description, and a required toggle), the accept and save button labels, and a privacy-policy link.</source>
       </segment>
     </unit>
     <unit id="aria_label">

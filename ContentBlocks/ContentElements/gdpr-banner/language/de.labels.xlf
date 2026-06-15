@@ -3,14 +3,14 @@
   <file id="gdpr-banner">
     <unit id="title">
       <segment state="final">
-        <source>GDPR Banner</source>
-        <target>DSGVO Banner</target>
+        <source>GDPR Consent Banner</source>
+        <target>DSGVO-Banner</target>
       </segment>
     </unit>
     <unit id="description">
       <segment state="final">
-        <source>Show a GDPR consent banner with granular choices.</source>
-        <target>DSGVO-Einwilligungsbanner mit granularen Optionen anzeigen.</target>
+        <source>A cookie-consent banner with a message, per-category opt-in checkboxes, and accept and save-preferences buttons. Place it sitewide to capture granular GDPR consent before non-essential cookies load. Key fields are an optional title, the rich-text banner message, a collection of cookie categories (each with name, description, and a required toggle), the accept and save button labels, and a privacy-policy link.</source>
+        <target>Ein Cookie-Consent-Banner mit Hinweistext, kategorieweisen Opt-in-Checkboxen sowie Buttons zum Akzeptieren und zum Speichern der Auswahl. Auf der gesamten Website einsetzbar, um eine granulare DSGVO-Einwilligung einzuholen, bevor nicht notwendige Cookies geladen werden. Wichtige Felder sind ein optionaler Titel, die Rich-Text-Banner-Nachricht, eine Sammlung von Cookie-Kategorien (mit Name, Beschreibung und Pflicht-Schalter), die Beschriftungen der Akzeptieren- und Speichern-Buttons sowie ein Datenschutz-Link.</target>
       </segment>
     </unit>
     <unit id="aria_label">

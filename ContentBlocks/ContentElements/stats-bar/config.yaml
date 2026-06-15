@@ -1,7 +1,7 @@
 name: desiderio/stats-bar
 typeName: desiderio_statsbar
-title: 'Bar Stats'
-description: 'Pack a few headline figures into one slim bar.'
+title: 'Bar Stats Progress'
+description: 'A stacked list of metrics where each row shows a label and value above a horizontal progress bar filled to a set percentage. Use it to visualize proportions, completion, or benchmark scores where the relative fill communicates more than the number alone. Each item holds a label, display value, and a 0 to 100 bar percentage, with an optional eyebrow, headline, and sub-headline intro.'
 group: social-proof
 prefixFields: false
 basics:

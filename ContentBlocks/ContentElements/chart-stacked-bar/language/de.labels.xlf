@@ -9,8 +9,8 @@
     </unit>
     <unit id="description">
       <segment state="final">
-        <source>Compare totals and their parts in stacked bars.</source>
-        <target>Summen und ihre Bestandteile in gestapelten Balken vergleichen.</target>
+        <source>A stacked bar chart that breaks each category's total into coloured segments per series, with a named legend, palette options and a screen-reader table carrying row totals and a grand total. Use it to compare totals and their composition across categories such as revenue by channel or budget by department. Key fields are the comma-separated series labels, the Category | value | value chart-data rows, an optional unit, a colour palette, and a legend toggle.</source>
+        <target>Ein gestapeltes Balkendiagramm, das die Summe jeder Kategorie in farbige Segmente je Serie zerlegt, mit benannter Legende, Paletten-Optionen und einer Screenreader-Tabelle samt Zeilen- und Gesamtsummen. Geeignet, um Summen und ihre Zusammensetzung über Kategorien hinweg zu vergleichen, etwa Umsatz nach Kanal oder Budget nach Abteilung. Wichtige Felder sind die kommagetrennten Serienbezeichnungen, die Chart-Daten-Zeilen „Kategorie | Wert | Wert“, eine optionale Einheit, eine Farbpalette sowie ein Schalter für die Legende.</target>
       </segment>
     </unit>
     <unit id="field.series_labels">

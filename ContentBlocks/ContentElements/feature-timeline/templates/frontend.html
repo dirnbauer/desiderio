@@ -22,9 +22,7 @@
             <f:for each="{data.items}" as="item" iteration="iter">
                 <li class="feature-timeline__item">
                     <div class="feature-timeline__marker">
-                        <span class="feature-timeline__dot">
-                            {item -> f:render.text(field: 'step')}
-                        </span>
+                        <span class="feature-timeline__dot">{item -> f:render.text(field: 'step')}</span>
                     </div>
                     <div class="feature-timeline__card">
                         <h3 class="feature-timeline__title">{item -> f:render.text(field: 'title')}</h3>

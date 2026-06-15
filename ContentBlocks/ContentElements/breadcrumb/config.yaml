@@ -1,7 +1,7 @@
 name: desiderio/breadcrumb
 typeName: desiderio_breadcrumb
-title: Breadcrumb
-description: 'Show the page''s place in the hierarchy with one-click parents.'
+title: 'Breadcrumb Trail'
+description: 'A horizontal navigation trail of clickable parent links separated by slashes, with the current page shown as plain text. Place it near the top of deeper pages so visitors can see their position in the site hierarchy and jump back up. Each item in the list holds a label and an optional link, and the markup adds schema.org BreadcrumbList data for search engines.'
 group: navigation
 prefixFields: false
 basics:

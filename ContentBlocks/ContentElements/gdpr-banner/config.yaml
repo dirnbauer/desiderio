@@ -1,7 +1,7 @@
 name: desiderio/gdpr-banner
 typeName: desiderio_gdprbanner
-title: 'GDPR Banner'
-description: 'Show a GDPR consent banner with granular choices.'
+title: 'GDPR Consent Banner'
+description: 'A cookie-consent banner with a message, per-category opt-in checkboxes, and accept and save-preferences buttons. Place it sitewide to capture granular GDPR consent before non-essential cookies load. Key fields are an optional title, the rich-text banner message, a collection of cookie categories (each with name, description, and a required toggle), the accept and save button labels, and a privacy-policy link.'
 group: footer
 prefixFields: false
 basics:

@@ -3,14 +3,14 @@
   <file id="breadcrumb">
     <unit id="title">
       <segment state="final">
-        <source>Breadcrumb</source>
+        <source>Breadcrumb Trail</source>
         <target>Breadcrumb</target>
       </segment>
     </unit>
     <unit id="description">
       <segment state="final">
-        <source>Show the page's place in the hierarchy with one-click parents.</source>
-        <target>Position der Seite in der Hierarchie zeigen, Eltern per Klick erreichbar.</target>
+        <source>A horizontal navigation trail of clickable parent links separated by slashes, with the current page shown as plain text. Place it near the top of deeper pages so visitors can see their position in the site hierarchy and jump back up. Each item in the list holds a label and an optional link, and the markup adds schema.org BreadcrumbList data for search engines.</source>
+        <target>Ein horizontaler Navigationspfad aus anklickbaren übergeordneten Links, durch Schrägstriche getrennt, wobei die aktuelle Seite als reiner Text erscheint. Platzieren Sie ihn oben auf tieferliegenden Seiten, damit Besucher ihre Position in der Seitenhierarchie erkennen und zurückspringen können. Jeder Eintrag enthält eine Beschriftung und einen optionalen Link, und das Markup ergänzt schema.org-BreadcrumbList-Daten für Suchmaschinen.</target>
       </segment>
     </unit>
     <unit id="breadcrumb.aria">

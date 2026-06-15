@@ -3,14 +3,14 @@
   <file id="chart-sparkline">
     <unit id="title">
       <segment state="final">
-        <source>Sparkline Chart</source>
-        <target>Sparkline Diagramm</target>
+        <source>Sparkline KPI Card</source>
+        <target>Sparkline-KPI-Karte</target>
       </segment>
     </unit>
     <unit id="description">
       <segment state="final">
-        <source>Tuck a tiny inline trend line into a KPI card.</source>
-        <target>Eine winzige Inline-Trendlinie in eine KPI-Karte einbetten.</target>
+        <source>A compact KPI card pairing a single metric with a tiny inline trend line and an optional change badge, backed by a screen-reader table of every period and value. Use it in dashboards or stat sections to show a key figure and its recent direction without a full chart. Key fields are the series label, unit, the Period | Value data points, the chart-data JSON, the trend badge text, and a colour variant.</source>
+        <target>Eine kompakte KPI-Karte, die eine einzelne Kennzahl mit einer winzigen Inline-Trendlinie und einem optionalen Veränderungs-Badge kombiniert, hinterlegt mit einer Datentabelle für Screenreader, die jede Periode und jeden Wert auflistet. Ideal in Dashboards oder Kennzahlen-Bereichen, um eine zentrale Zahl und ihre jüngste Entwicklung ohne vollständiges Diagramm zu zeigen. Wichtige Felder sind die Serienbezeichnung, die Einheit, die Datenpunkte „Periode | Wert“, das Chart-Daten-JSON, der Text des Trend-Badges sowie eine Farbvariante.</target>
       </segment>
     </unit>
     <unit id="field.series_label">

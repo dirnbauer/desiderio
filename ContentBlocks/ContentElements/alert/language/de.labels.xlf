@@ -3,14 +3,14 @@
   <file id="alert">
     <unit id="title">
       <segment state="final">
-        <source>Alert Data View</source>
-        <target>Hinweis Daten View</target>
+        <source>Inline Alert Notice</source>
+        <target>Inline-Hinweisbox</target>
       </segment>
     </unit>
     <unit id="description">
       <segment state="final">
-        <source>Flag an important notice inline, without a full section.</source>
-        <target>Wichtige Hinweise oder Warnungen inline hervorheben.</target>
+        <source>A compact, color-coded notice box that flags an important message inline without taking a full section. Use it within content to surface warnings, errors, tips, or confirmations. Fields include an optional heading, a required rich-text description, an alert type (default, destructive, info, success, warning), an optional icon, and a toggle for a dismiss close button.</source>
+        <target>Eine kompakte, farblich codierte Hinweisbox, die eine wichtige Meldung inline hervorhebt, ohne einen ganzen Abschnitt zu beanspruchen. Geeignet innerhalb von Inhalten, um Warnungen, Fehler, Tipps oder Bestätigungen sichtbar zu machen. Felder sind eine optionale Überschrift, eine erforderliche Rich-Text-Beschreibung, ein Hinweistyp (Standard, kritisch, Info, Erfolg, Warnung), ein optionales Icon und ein Schalter für eine Schließen-Schaltfläche.</target>
       </segment>
     </unit>
   </file>

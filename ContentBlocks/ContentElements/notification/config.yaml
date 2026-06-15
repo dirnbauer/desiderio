@@ -1,7 +1,7 @@
 name: desiderio/notification
 typeName: desiderio_notification
-title: 'Notification Data View'
-description: 'Show a dismissible toast-style message in context.'
+title: 'Notification'
+description: 'A dismissible, toast-style notice with a colored variant, matching icon, and optional inline action link. Use it inline within page content to flag status, success, a warning, or an error to visitors. Configure the message body (rich text), an optional heading, the type (info, success, warning, or error) which sets color, icon, and screen-reader urgency, an action button text and link, and whether it can be dismissed.'
 group: data
 prefixFields: false
 basics:

@@ -1,7 +1,7 @@
 name: desiderio/chart-heatmap
 typeName: desiderio_chartheatmap
 title: 'Heatmap Chart'
-description: 'Reveal intensity across two dimensions with a color matrix.'
+description: 'A color-coded matrix that reveals intensity across two dimensions, with rows and columns shaded by value and backed by an accessible data table. Use it to spot patterns such as activity by day and hour or performance across categories. Key inputs are the comma-separated column labels, the per-row series (row label plus its values), an optional unit, and the JSON chart data that paints the grid.'
 group: data
 prefixFields: false
 basics:

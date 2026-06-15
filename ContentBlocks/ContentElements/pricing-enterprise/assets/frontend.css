@@ -32,6 +32,9 @@
 
 .pricing-enterprise__card .pricing-enterprise__footer {
     padding-block-start: var(--d-spacing-lg);
+    /* the shared CardFooter molecule ships a "border-t" divider; this enterprise
+       tier reads cleaner without a line above the CTA, so drop that top border */
+    border-block-start: 0;
 }
 
 .pricing-enterprise__eyebrow {

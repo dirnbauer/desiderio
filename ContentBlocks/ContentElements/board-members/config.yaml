@@ -1,7 +1,7 @@
 name: desiderio/board-members
 typeName: desiderio_boardmembers
 title: 'Board Members'
-description: 'Showcase board members with names, titles and photos.'
+description: 'A three-column grid of profile cards, each showing a portrait photo (with an initial fallback) alongside a name, title, affiliation and short bio. Use it on an about or governance page to introduce a board, committee or leadership team. Key fields: heading and subheadline intro, plus per-member portrait, name, title, affiliation and rich-text short bio.'
 group: team
 prefixFields: false
 basics:

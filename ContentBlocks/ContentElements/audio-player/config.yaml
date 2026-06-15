@@ -1,7 +1,7 @@
 name: desiderio/audio-player
 typeName: desiderio_audioplayer
 title: 'Audio Player'
-description: 'Embed an audio track with title and playback controls.'
+description: 'A card containing a native HTML audio player with playback controls, shown above an optional title and rich-text description. Use it to publish a podcast episode, interview or any audio clip directly on the page. Key fields: heading, rich-text description, the required audio file and a checkbox to expose a direct download link.'
 group: content
 prefixFields: false
 basics:

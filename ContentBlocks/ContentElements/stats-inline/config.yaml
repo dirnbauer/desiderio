@@ -1,7 +1,7 @@
 name: desiderio/stats-inline
 typeName: desiderio_statsinline
-title: 'Inline Stats'
-description: 'Drop a couple of figures inline within running text.'
+title: 'Inline Stats Row'
+description: 'A slim single-row strip that lines up a few value-and-label pairs side by side, optionally divided by separators. Use it within or beneath running text to drop in a couple of supporting figures without breaking the reading flow. Each stat holds a value and a label, requires at least two entries, and a checkbox toggles the separators between items, with an optional headline above.'
 group: social-proof
 prefixFields: false
 basics:

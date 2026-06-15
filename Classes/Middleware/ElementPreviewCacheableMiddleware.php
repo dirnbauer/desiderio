@@ -35,8 +35,13 @@ final class ElementPreviewCacheableMiddleware implements MiddlewareInterface
     {
         if (isset($request->getQueryParams()['elPreview'])) {
             $backendUser = $GLOBALS['BE_USER'] ?? null;
-            if ($backendUser instanceof BackendUserAuthentication && is_array($backendUser->uc)) {
-                $backendUser->uc['AdminPanel']['display_top'] = false;
+            if ($backendUser instanceof BackendUserAuthentication) {
+                $adminPanel = $backendUser->uc['AdminPanel'] ?? [];
+                if (!is_array($adminPanel)) {
+                    $adminPanel = [];
+                }
+                $adminPanel['display_top'] = false;
+                $backendUser->uc['AdminPanel'] = $adminPanel;
             }
         }
 

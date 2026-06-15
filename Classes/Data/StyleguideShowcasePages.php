@@ -1676,8 +1676,7 @@ final class StyleguideShowcasePages
     }
 
     /**
-     * @param array<string, mixed> $fields
-     * @return StarterBlock
+     * @return ShowcasePage
      */
     private static function featuresOverviewPage(): array
     {
@@ -1747,6 +1746,9 @@ final class StyleguideShowcasePages
         ];
     }
 
+    /**
+     * @return ShowcasePage
+     */
     private static function featureRecordsListPage(): array
     {
         return [
@@ -1818,6 +1820,9 @@ composer require webconsulting/records-list-types:^1.0.3
         ];
     }
 
+    /**
+     * @return ShowcasePage
+     */
     private static function featureMcpServerPage(): array
     {
         return [
@@ -1888,6 +1893,9 @@ vendor/bin/typo3 extension:activate mcp_server
         ];
     }
 
+    /**
+     * @return ShowcasePage
+     */
     private static function featureEasyWorkspacePage(): array
     {
         return [
@@ -1959,6 +1967,9 @@ vendor/bin/typo3 cache:flush',
         ];
     }
 
+    /**
+     * @return ShowcasePage
+     */
     private static function featureBlogPage(): array
     {
         return [
@@ -2025,6 +2036,9 @@ vendor/bin/typo3 cache:flush',
         ];
     }
 
+    /**
+     * @return ShowcasePage
+     */
     private static function featureDesiderioPage(): array
     {
         return [
@@ -2101,6 +2115,9 @@ vendor/bin/typo3 innesto:add magicui/marquee --ai',
         ];
     }
 
+    /**
+     * @return ShowcasePage
+     */
     private static function featureSolrPage(): array
     {
         return [
@@ -2172,6 +2189,9 @@ vendor/bin/typo3 innesto:add magicui/marquee --ai',
         ];
     }
 
+    /**
+     * @return ShowcasePage
+     */
     private static function featureWorkosPage(): array
     {
         return [
@@ -2233,6 +2253,9 @@ vendor/bin/typo3 innesto:add magicui/marquee --ai',
         ];
     }
 
+    /**
+     * @return ShowcasePage
+     */
     private static function featurePowermailPage(): array
     {
         return [
@@ -2309,6 +2332,9 @@ vendor/bin/typo3 desiderio:styleguide:seed',
         ];
     }
 
+    /**
+     * @return ShowcasePage
+     */
     private static function featureX402PaywallPage(): array
     {
         return [
@@ -2376,6 +2402,9 @@ vendor/bin/typo3 desiderio:styleguide:seed',
         ];
     }
 
+    /**
+     * @return ShowcasePage
+     */
     private static function featureApiCapabilityBridgePage(): array
     {
         return [
@@ -2448,6 +2477,9 @@ vendor/bin/typo3 database:updateschema
         ];
     }
 
+    /**
+     * @return ShowcasePage
+     */
     private static function featureAgentationPage(): array
     {
         return [
@@ -2515,6 +2547,9 @@ vendor/bin/typo3 database:updateschema
         ];
     }
 
+    /**
+     * @return ShowcasePage
+     */
     private static function featureSgApicorePage(): array
     {
         return [
@@ -2585,6 +2620,9 @@ vendor/bin/typo3 extension:activate sg_apicore
         ];
     }
 
+    /**
+     * @return ShowcasePage
+     */
     private static function featureSkillflowPage(): array
     {
         return [
@@ -2658,6 +2696,10 @@ ddev exec vendor/bin/typo3 skillflow:sync
         ];
     }
 
+    /**
+     * @param array<string, mixed> $fields
+     * @return StarterBlock
+     */
     private static function block(string $ctype, array $fields, int $colPos = 0): array
     {
         return [

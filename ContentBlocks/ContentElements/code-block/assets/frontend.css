@@ -3,21 +3,22 @@
 }
 .code-block {
     /*
-     * Subtle syntax palette: a named base hue mixed *toward* --foreground so
-     * each token keeps real colour yet stays readable on the card in both
-     * schemes (the mix follows the scheme's foreground — darker on light,
-     * lighter on dark). Named colours are used on purpose: the element audit
+     * Syntax palette: rich-but-muted named hues, kept mostly at full strength
+     * (only a ~12% nudge toward --foreground for micro-contrast on the card).
+     * Light mode uses darker, saturated bases (rebeccapurple/teal/firebrick)
+     * that read clearly on the near-white card; the dark block below swaps in
+     * lighter bases. Named colours are used on purpose: the element audit
      * forbids raw oklch()/hex/rgb()/hsl() literals but allows color-mix and
      * colour keywords, and the hues stay constant across theme presets.
      * Comments and operators stay neutral grey so the colour reads as accents.
      */
     --d-code-comment: color-mix(in oklch, var(--muted-foreground) 78%, transparent);
-    --d-code-keyword: color-mix(in oklch, mediumpurple 58%, var(--foreground));
-    --d-code-tag: color-mix(in oklch, cadetblue 58%, var(--foreground));
-    --d-code-string: color-mix(in oklch, seagreen 58%, var(--foreground));
-    --d-code-variable: color-mix(in oklch, indianred 56%, var(--foreground));
-    --d-code-function: color-mix(in oklch, steelblue 60%, var(--foreground));
-    --d-code-number: color-mix(in oklch, darkgoldenrod 62%, var(--foreground));
+    --d-code-keyword: color-mix(in oklch, rebeccapurple 90%, var(--foreground));
+    --d-code-tag: color-mix(in oklch, teal 86%, var(--foreground));
+    --d-code-string: color-mix(in oklch, seagreen 88%, var(--foreground));
+    --d-code-variable: color-mix(in oklch, firebrick 86%, var(--foreground));
+    --d-code-function: color-mix(in oklch, steelblue 88%, var(--foreground));
+    --d-code-number: color-mix(in oklch, darkgoldenrod 90%, var(--foreground));
     --d-code-operator: color-mix(in oklch, var(--muted-foreground) 86%, var(--foreground));
     border: 1px solid var(--border);
     border-radius: var(--radius);
@@ -29,12 +30,12 @@
 .dark .code-block,
 [data-theme="dark"] .code-block {
     --d-code-comment: color-mix(in oklch, var(--muted-foreground) 86%, transparent);
-    --d-code-keyword: color-mix(in oklch, var(--foreground) 88%, var(--muted-foreground));
-    --d-code-tag: color-mix(in oklch, var(--foreground) 82%, var(--muted-foreground));
-    --d-code-string: color-mix(in oklch, var(--foreground) 76%, var(--muted-foreground));
-    --d-code-variable: color-mix(in oklch, var(--foreground) 80%, var(--muted-foreground));
-    --d-code-function: color-mix(in oklch, var(--foreground) 84%, var(--muted-foreground));
-    --d-code-number: color-mix(in oklch, var(--foreground) 78%, var(--muted-foreground));
+    --d-code-keyword: color-mix(in oklch, mediumpurple 80%, var(--foreground));
+    --d-code-tag: color-mix(in oklch, cadetblue 82%, var(--foreground));
+    --d-code-string: color-mix(in oklch, mediumseagreen 82%, var(--foreground));
+    --d-code-variable: color-mix(in oklch, indianred 84%, var(--foreground));
+    --d-code-function: color-mix(in oklch, cornflowerblue 86%, var(--foreground));
+    --d-code-number: color-mix(in oklch, goldenrod 84%, var(--foreground));
     --d-code-operator: color-mix(in oklch, var(--muted-foreground) 88%, var(--foreground));
 }
 .code-block__header {

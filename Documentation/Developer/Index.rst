@@ -36,6 +36,7 @@ and reference content elements.
     :maxdepth: 1
 
     AtomicDesign
+    AddingContentElements
 
 ..  _developer-sets:
 

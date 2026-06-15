@@ -1,0 +1,1280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en">
+  <file id="desiderio_library_short" original="EXT:desiderio/Resources/Private/Language/library_short.xlf">
+    <unit id="desiderio_aboutus">
+      <segment>
+        <source>A **two-column company introduction** pairing text with a supporting image. Ideal for an *about* or careers page to present who you are and invite the next step.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_accessibilitystatement">
+      <segment>
+        <source>A structured block that publishes your site's **accessibility conformance status** and a feedback channel. Use it in the footer or on a legal page to meet *disclosure obligations*.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_accordion">
+      <segment>
+        <source>A stack of **expandable panels** that reveal their content on click. Ideal for *FAQs* or detailed sections when you want to keep the page compact.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_advisorgrid">
+      <segment>
+        <source>A **three-column card grid** presenting advisors or mentors with portraits. Use it on an about, board, or startup page to lend *credibility* through notable backers.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_alert">
+      <segment>
+        <source>A compact, **color-coded notice box** that flags an important message inline. Use it to surface *warnings, errors, tips, or confirmations* within content.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_analyticsoverview">
+      <segment>
+        <source>A card showing several **headline metrics** side by side, each with a value and colored *trend arrow*. Ideal for a dashboard or report to compare key numbers at a glance.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_announcementbar">
+      <segment>
+        <source>A slim, **full-width bar** at the top of the page for a single short message. Ideal to promote an *offer, notice, or deadline* so every visitor sees it immediately.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_articlegrid">
+      <segment>
+        <source>A **responsive grid of article cards** with category, linked title, and short teaser. Use it on a *blog, news, or resources page* to present multiple posts in a scannable layout.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_articlehero">
+      <segment>
+        <source>A **bold lead-article hero** with a large headline, summary, byline, and a cover image that opens in a lightbox. Use it at the *top of a feature article* to draw readers in.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_audioplayer">
+      <segment>
+        <source>A card with a **native audio player** plus playback controls, title, and description. Use it to publish a *podcast episode, interview*, or audio clip directly on the page.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_awards">
+      <segment>
+        <source>A **grid of awards** shown as badges or logos, each with title, awarding organization, and year. Ideal for an about or portfolio page to build *credibility through recognition*.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_backtotop">
+      <segment>
+        <source>A **floating button** with an upward chevron that scrolls the visitor back to the top. Place it on *long pages or articles* to ease navigation back to the start.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_badgegrid">
+      <segment>
+        <source>A scannable **grid of small badges or tags**, optionally linked and individually colored. Use it to display *skills, topics, or categories* compactly on a page.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_benefitcards">
+      <segment>
+        <source>A two- or three-column **grid of cards** pairing an icon, title, and description per benefit. Use it on a *landing or product page* to spell out concrete customer benefits clearly.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_blogteasers">
+      <segment>
+        <source>A two- or three-column **grid of post teasers** with image, category, title, and excerpt linking to the article. Ideal for a *homepage or blog overview* to preview recent posts.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_boardmembers">
+      <segment>
+        <source>A **three-column grid of profile cards** with portrait, name, title and short bio. Ideal on **about or governance pages** to introduce a board, committee or leadership team.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_bookingform">
+      <segment>
+        <source>A boxed **appointment-request card** with an intro and an embedded **TYPO3 form** for booking details. For service, scheduling or contact pages where visitors reserve a slot.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_brandstory">
+      <segment>
+        <source>A **two-column narrative block** pairing flowing text with a supporting image to tell your brand's origin and values. For **About or company pages** that build identity and connection.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_breadcrumb">
+      <segment>
+        <source>A **horizontal navigation trail** of linked parent pages with the current page as plain text. Shows visitors their **position in the site hierarchy**; the markup adds schema.org data for search engines.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_bundlepricing">
+      <segment>
+        <source>A **pricing card** presenting several individual products as one **combined-price package** with savings highlighted. For offer or pricing pages to upsell a multi-item deal over single purchases.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_callbackrequest">
+      <segment>
+        <source>A **compact card** with an embedded **TYPO3 form** for visitors to request a callback. For contact or lead-capture pages where a phone conversation is the goal.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_callout">
+      <segment>
+        <source>A boxed, **color-coded message** that highlights a notice, warning or tip. For **articles or documentation** to draw attention to important asides.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_card">
+      <segment>
+        <source>A **flexible content card** in default, horizontal, with-image and overlay variants for headings, text and images. Anywhere you need a **scannable, self-contained block**, typically repeated across a grid.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_cardinteractive">
+      <segment>
+        <source>A single **card with hover and click states**, an icon and optional badge on top, plus a linked **call-to-action**. For feature or resource grids where each card invites a click-through.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_cardoverlay">
+      <segment>
+        <source>A **full-bleed image card** with text and a button over the picture and an adjustable dark overlay. As an eye-catching **promo or feature tile** on landing and campaign pages.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_cardpricing">
+      <segment>
+        <source>A single **pricing plan card** with title, price and billing period plus a **checklist** of included or excluded features. For pricing or product pages at the point of decision, often alongside other plans.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_careerlisting">
+      <segment>
+        <source>A **list of open positions**, each row showing role, department, location, employment type and an **apply button**. For careers or jobs pages so candidates can scan vacancies and apply directly.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_casestudycard">
+      <segment>
+        <source>A **compact card** that teases one **customer success story** with cover image, client name, summary and a highlighted result figure. For landing or reference pages that link through to the full case study.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_casestudyfeatured">
+      <segment>
+        <source>A **spotlight block** presenting one flagship **case study** with a large hero image, client name, detailed description and up to four key metrics. As a centerpiece on a homepage or proof page for your most compelling result.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_casestudygrid">
+      <segment>
+        <source>A **two- or three-column grid** of several **case studies**, each card showing cover image, client name, short summary and a key result. For references or portfolio pages to browse multiple success stories at a glance.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_categorycards">
+      <segment>
+        <source>A grid of **category cards** that guide buyers into priced or themed sections. Ideal as a **navigational entry point** on shop, pricing, or directory pages.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_certifications">
+      <segment>
+        <source>A grid of **certifications and standards** with badge, name, and issuing body. Signals **credibility** on about, trust, or compliance pages.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_changelog">
+      <segment>
+        <source>A dated, ordered **release history** shown as a chronological timeline with version, date, and a colored tag. Ideal for **release-notes** and product-update pages.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_chart">
+      <segment>
+        <source>A **versatile data chart** rendering label/value points as an area, line, or bar graph, with summary stats and a screen-reader table. Visualizes **time series or category comparisons** in reports or product pages.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_chartarea">
+      <segment>
+        <source>An **area chart** that draws one time series as a line with a shaded fill, plus summary stats and an accessible data table. Shows a **metric's trend** over time in reports or dashboards.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_chartbar">
+      <segment>
+        <source>A **bar chart** that compares categories or rankings as vertical or horizontal bars, with a summary stats row. Ideal to **rank items** or contrast values side by side.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_chartcontribution">
+      <segment>
+        <source>A **GitHub-style activity chart** mapping a metric across many time points as bars, framed by stat blocks and a CTA button. Visualizes **ongoing activity** such as commits or engagement.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_chartdonut">
+      <segment>
+        <source>A **donut chart** showing parts of a whole as a ring with a headline figure in the center, plus legend and accessible data table. Breaks a **total** into a few proportional shares.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_chartheatmap">
+      <segment>
+        <source>A **color-coded matrix** revealing intensity across two dimensions, backed by an accessible data table. Spots **patterns** such as activity by day and hour.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_chartline">
+      <segment>
+        <source>A **line chart** tracking a metric over time as a connected line, with optional legend, smoothing, and an accessible data table. Shows a **continuous trend** across periods.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_chartpie">
+      <segment>
+        <source>A **pie chart** splitting a whole into a few slices adding up to 100 percent, with legend and accessible data table. Ideal for a simple **proportional breakdown**.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_chartradar">
+      <segment>
+        <source>A **radar (spider) chart** plotting several scored dimensions on one filled shape, with legend and screen-reader table. Compares **strengths** across criteria like skills or maturity areas.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_chartsparkline">
+      <segment>
+        <source>A compact **KPI card** pairing one metric with a tiny inline trend line and an optional change badge, backed by a screen-reader table. Shows a **key figure** and its recent direction in dashboards.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_chartstackedbar">
+      <segment>
+        <source>A **stacked bar chart** breaking each category's total into colored segments per series, with legend and screen-reader table. Compares **totals and their composition**, such as revenue by channel.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_clientlist">
+      <segment>
+        <source>A tidy **list of clients or partners** with name, logo, industry, and website link. Serves as **social proof** on homepages, about pages, or pitch pages.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_codeblock">
+      <segment>
+        <source>A **styled code block** that shows source code or technical snippets in a scrollable, focusable panel prepared for *syntax highlighting*. Ideal for documentation, tutorials or developer-facing pages.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_companyculture">
+      <segment>
+        <source>A **grid of culture highlight cards** combining an image with a title and description. Conveys on **about, careers or team pages** how the team works and what it values.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_companyhistory">
+      <segment>
+        <source>A **vertical timeline** of milestone events with year, title and optional description. Traces the organisation's journey chronologically on **about or company pages**.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_companymilestones">
+      <segment>
+        <source>An **ordered timeline** listing dated company achievements as numbered grid entries. Shows on **About or company-history pages** how the organization has grown over time.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_companyperks">
+      <segment>
+        <source>A **grid of cards** presenting employee benefits and perks, each with icon, title and description. Makes your offer attractive to candidates on **careers or recruiting pages**.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_companystats">
+      <segment>
+        <source>A grid of key figures shown as bold, **animated count-up numbers**, each with a label and optional description. Proves growth, scale or results at a glance on **About or landing pages**.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_companyvalues">
+      <segment>
+        <source>A **grid of cards** spelling out the company's guiding principles, each with icon, title and description. Conveys mission and character on **About or culture pages**.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_compare">
+      <segment>
+        <source>A **two-panel layout** placing two options side by side, with the right panel accented as the *preferred choice*. Contrasts plans, products or before-and-after scenarios to steer the decision.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_comparisontable">
+      <segment>
+        <source>A **scrollable, accessible table** that compares options column by column and feature by feature. Ideal for **pricing or product pages** so visitors can weigh tiers or packages in detail.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_compliancebadges">
+      <segment>
+        <source>A **horizontal row of outlined badges** with checkmark seal icons for certifications, standards and trust marks. Placed in the **footer or near conversion points**, it reinforces credibility and compliance.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_contact">
+      <segment>
+        <source>A **card-based contact layout** with an info panel beside a message form. For a main **contact page** where visitors need both your details and a way to write you.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_contactinfo">
+      <segment>
+        <source>A **grid of cards** listing contact details such as address, phone and email as a quick reference. Suited to **contact or footer pages** so visitors can reach you at a glance.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_contactsplit">
+      <segment>
+        <source>A **two-column block** placing a working contact form next to a side image and intro copy. Ideal for **contact or landing pages**; the form is rendered by the *TYPO3 Form Framework*.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_contentcarousel">
+      <segment>
+        <source>A **rotating carousel** cycling through image slides with optional title, description and link. Showcases highlights, projects or visuals in limited space, with *style, autoplay and navigation options*.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_contentcolumns">
+      <segment>
+        <source>A block that splits **rich-text copy into two or three balanced columns**. For longer editorial text, listings or notes that read better divided across the page width.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_contentdivider">
+      <segment>
+        <source>A **slim separator** that adds visual breathing room between editorial sections. Breaks up a long page or signals a *transition* without adding a full content block.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_contentgrid">
+      <segment>
+        <source>An even **grid of cards** with title, rich text and optional link. Presents *features, services or related entries* in a tidy two- or three-column layout.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_contenthighlight">
+      <segment>
+        <source>An **emphasized block** that lifts one passage onto a distinct background. Highlights a *key statement, offer or announcement* and optionally adds a call to action.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_contentsidebar">
+      <segment>
+        <source>A **two-column layout** pairing a wide main column with a narrow sidebar card. Ideal for *articles or guides* where notes and context belong beside the main copy.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_cookiebanner">
+      <segment>
+        <source>A dismissible **consent region** that overlays the page on arrival to collect *cookie preferences*. Place it site-wide so first-time visitors can act before browsing.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_copyrightbar">
+      <segment>
+        <source>A **slim single-line bar** for the bottom of the page, pairing a copyright notice with *legal links* such as imprint, privacy and terms.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_counter">
+      <segment>
+        <source>An **animated statistics grid** where each number counts up as it scrolls into view. Showcases *key metrics, milestones or results* on landing and about pages.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_cta">
+      <segment>
+        <source>A flexible **conversion block** with four layouts (centered, split, banner, minimal) that prompts **one clear next step**. Perfect for page ends or mid-content breaks built from a headline and button.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_ctabanner">
+      <segment>
+        <source>A **full-width call-to-action banner** pairing a short message with one prominent button. Drives a single *conversion goal* mid-page or before the footer.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_ctacard">
+      <segment>
+        <source>A contained **CTA card** with header, body and footer button. Highlights an *offer* within a content column without spanning the full width.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_ctafloating">
+      <segment>
+        <source>A **sticky CTA bar** that docks to the viewport edge and stays in view while scrolling. Keeps an *offer or signup* permanently reachable across a long page.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_ctagradient">
+      <segment>
+        <source>A standout **CTA card on a bold gradient background** that draws maximum attention. Ideal as an *eye-catching conversion block* where a plain banner would blend in.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_ctainline">
+      <segment>
+        <source>A **compact inline CTA bar** that slots into the content flow as an aside. Nudges readers toward an action *mid-article* without a full-width interruption.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_ctaminimal">
+      <segment>
+        <source>A **stripped-back conversion prompt** with a heading, muted supporting line and a single arrow-suffixed text link. Ideal *inline or near a section's end*, where a heavy button block would feel too loud.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_ctasplit">
+      <segment>
+        <source>A **two-column conversion block** with two side-by-side cards, each with its title, description and button. Offers visitors *two distinct next steps*, such as contacting sales versus starting a trial.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_ctawithimage">
+      <segment>
+        <source>A **conversion section with a supporting image** to the left or right, paired with headline, body and button. Ideal on *landing or feature pages*, where a visual makes the offer more concrete.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_datarequestform">
+      <segment>
+        <source>A **privacy-focused block** pairing a heading and description with a TYPO3 form so visitors can request, export, or delete their **personal data**. Ideal for the footer or a GDPR page.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_datatable">
+      <segment>
+        <source>A **structured table** with an optional header row, per-column alignment, and a caption. For **specs, comparisons, or pricing breakdowns** that need clean alignment.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_definitionlist">
+      <segment>
+        <source>A **semantic definition list** pairing each term with its definition, rendered stacked, inline, or as a grid. Ideal for **glossaries, FAQs, or spec sheets**.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_demorequest">
+      <segment>
+        <source>A **two-column lead-capture block** placing a headline, description, and side image next to a TYPO3 form. For landing pages to convert visitors asking for a **product demo**.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_directions">
+      <segment>
+        <source>A list of **route cards** marked with a map-pin icon, explaining how to reach a location by different **modes of transport**. Ideal for contact, location, or event pages.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_downloadform">
+      <segment>
+        <source>A **two-column lead-capture block** pairing a preview card with a TYPO3 form to **gate a file behind a short sign-up**. Ideal for resource or landing pages.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_emergencycontact">
+      <segment>
+        <source>A compact, highlighted **notice card with an alert icon** that surfaces an **urgent hotline** or important warning. For contact, support, or service pages.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_faq">
+      <segment>
+        <source>An **accordion** of expandable question-and-answer pairs, marked up with **FAQPage schema** for rich search results. Answers recurring questions on support, product, or pricing pages.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_featureaccordion">
+      <segment>
+        <source>A **two-column feature section** pairing collapsible feature rows with a **supporting image**. For landing or product pages to present features compactly and expand details on demand.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_featurealternating">
+      <segment>
+        <source>A sequence of **feature rows** that **alternate text and image left and right** down the page. For product or marketing pages to walk through several features in a story-like flow.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_featurebento">
+      <segment>
+        <source>A **bento-box grid** of feature cards in mixed sizes, each with an optional background image for an **asymmetric layout**. Spotlights features with varying emphasis.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_featurecards">
+      <segment>
+        <source>A tidy **grid of equal-sized cards** that presents each feature with **consistent weight**. For a balanced overview of several capabilities at a glance.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_featurecarousel">
+      <segment>
+        <source>A horizontally scrollable **carousel of feature cards**, each in its own slide. Ideal for **many features** that visitors swipe through one at a time.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_featurecentered">
+      <segment>
+        <source>A **center-aligned feature block** that stacks a large icon, title, and description down the middle per entry. For a **calm, focused** presentation of a few key capabilities rather than a busy grid.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_featurechecklist">
+      <segment>
+        <source>A vertical **check-mark list** inside a card showing at a glance what's included. Ideal for **plan benefits or product capabilities** on pricing and feature pages.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_featurecomparison">
+      <segment>
+        <source>A **two-column comparison table** that marks features row by row as included or not. Use it to contrast two **plans or options**, for example Free versus Pro.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_featuregrid3">
+      <segment>
+        <source>A balanced **three-column grid** of feature cards with icon, title and description. The standard **feature overview** for three roughly equal capabilities.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_featuregrid4">
+      <segment>
+        <source>A dense **four-column grid** that packs many smaller features into a compact layout, each tile with icon, title and short line. Ideal for **scannable feature lists** without long text.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_featurehighlight">
+      <segment>
+        <source>A **two-column highlight banner** pairing a single feature's copy with an image on a colored background. Spotlights one **standout feature or offer** with a call to action.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_featureicons">
+      <segment>
+        <source>An **icon-led feature grid** in 3, 4 or 6 columns, with a large icon above each title and short description. Ideal for **benefit overviews** that speed up scanning.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_featureimage">
+      <segment>
+        <source>A **two-column feature block** pairing copy with one large, lightbox-zoomable image. Ideal for spotlighting a **single capability** on landing or product pages.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_featurelist">
+      <segment>
+        <source>A **vertical list of feature cards**, each with icon, title and description. For feature or product pages, presenting several capabilities in a **clean, scannable** rundown.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_featurematrix">
+      <segment>
+        <source>A **comparison table** mapping feature rows against two value columns. For pricing or product pages, contrasting two **plans or options** across several criteria.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_featureminimal">
+      <segment>
+        <source>A **pared-back, text-only feature list** with generous whitespace and no icons. For **editorial or design-led pages** where features should read quietly.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_featurenumbered">
+      <segment>
+        <source>An ordered feature list shown as **numbered steps** with zero-padded counters (01, 02, 03). For **how-it-works or onboarding pages** where features follow a clear sequence.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_features">
+      <segment>
+        <source>A responsive **grid of feature cards** with icon, title, description, and optional link. Presents **core capabilities** on homepages or product pages at a glance.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_featuresplit">
+      <segment>
+        <source>A **two-column block** with prose and a feature point list beside a side image. For product or solution pages to **explain a topic** and reinforce it with a visual.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_featurestats">
+      <segment>
+        <source>A grid of two to four **key metrics**, each with a large animated counter. For landing or about pages to surface **headline numbers** like uptime or growth.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_featuretabs">
+      <segment>
+        <source>An **interactive tabbed block** whose panels each pair copy with an image. For product or feature pages to group **related capabilities** explorable one tab at a time.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_featuretimeline">
+      <segment>
+        <source>A **vertical, numbered timeline** tracing features or steps in chronological order. Ideal for walking visitors through a **process, roadmap, or onboarding** journey.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_featurevideo">
+      <segment>
+        <source>A **feature block built around an embedded video**, with eyebrow, headline, and rich-text copy above the player. Ideal on landing or product pages to demonstrate a feature *through motion*.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_feedbackform">
+      <segment>
+        <source>A card-wrapped **feedback form** rendered through the **TYPO3 Form Framework**, introduced by a headline and rich-text copy. Collects opinions, ratings, or survey responses.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_filedownload">
+      <segment>
+        <source>A **list of downloadable files** as cards with icon, title, description, file size, and download button. Offers **PDFs, brochures, or assets** on resource or press pages.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_footer">
+      <segment>
+        <source>A **page-closing footer** with brand name, description, and grouped link lists. Bundles **navigation, legal, and contact details** at the bottom of any page.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_footerapplinks">
+      <segment>
+        <source>A **footer that promotes a mobile app** with **App Store and Google Play buttons** and an optional QR code. Drives store installs at the bottom of a landing page or app site.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_footerbrand">
+      <segment>
+        <source>A **footer anchored by logo, brand name, and tagline**, paired with a column of navigation links. Reinforces **identity** as a closing footer while offering quick links.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_footercentered">
+      <segment>
+        <source>A **compact, centered footer** stacking brand name, inline links, and copyright on a single axis. Suits **simple or minimal pages** that want a slim, balanced footer.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_footercolumns">
+      <segment>
+        <source>A **footer with tidy multi-column link lists** beside a brand block. Organizes navigation, legal, and resource links into **clear groups** on content-rich pages.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_footercontact">
+      <segment>
+        <source>A **footer surfacing key contact details** as an icon-prefixed list. Ideal at the bottom of pages where visitors need to **reach or visit you**, such as service or location pages.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_footerdark">
+      <segment>
+        <source>A **footer on a dark, high-contrast background** with a brand block and grouped link navigation. Anchors pages with a **bold, modern look** while keeping links legible.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_footermega">
+      <segment>
+        <source>An **expansive footer** with a brand block, inline **newsletter form**, and many grouped link columns. Ideal for large sites needing a *sitemap-style* footer plus a signup prompt.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_footerminimal">
+      <segment>
+        <source>A **stripped-back footer** with only a copyright line and a single row of inline links. For simple or landing pages where only **the essentials** are needed.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_footernewsletter">
+      <segment>
+        <source>A **footer with a newsletter signup form** and short intro to capture **email subscriptions**. Ideal where growing your mailing list is the primary goal.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_footersocial">
+      <segment>
+        <source>A **compact footer** showcasing your **social media profiles** as a row of accessible icon links. Keeps brand presence and follow buttons visible at the bottom of any page.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_footersplit">
+      <segment>
+        <source>A **two-column footer** with brand block and copyright on the left, a stacked link list on the right. Separates **identity from navigation** in a balanced, editorial layout.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_founderquote">
+      <segment>
+        <source>A **highlighted quote card** pairing a personal statement with portrait and attribution. Ideal for **about or team pages** to add a credible, human voice.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_gallery">
+      <segment>
+        <source>An **interactive image gallery** with a large featured image, clickable thumbnails, and lightbox zoom. For **portfolio, product, or event pages** to browse a set of visuals.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_gdprbanner">
+      <segment>
+        <source>A **cookie-consent banner** with message, per-category opt-in checkboxes, and accept or save buttons. Captures **granular GDPR consent** sitewide before non-essential cookies load.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_headerbanner">
+      <segment>
+        <source>A **wide page-opening banner** with optional background image, large headline, and call-to-action button. Introduces the topic with impact atop **landing or campaign pages**.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_headerpage">
+      <segment>
+        <source>A **clean page-title header** with eyebrow label, heading, intro, and an optional button. Establishes **title and context** at the top of a content page.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_headerprofile">
+      <segment>
+        <source>A **person-focused header** with avatar, name, role, short bio, and two action buttons. For **team, author, or speaker pages** to present an individual.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_headersection">
+      <segment>
+        <source>A **compact section heading** with eyebrow label, title, and short intro. Breaks page content between blocks into **clearly titled sections**.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_hero">
+      <segment>
+        <source>A full-width **opening banner** with a large headline and prominent **CTA buttons**, in centered, split, background-image, or gradient variants. Place it at the top to communicate the core message and drive the first click.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_heroanimated">
+      <segment>
+        <source>A **full-width page opener** whose headline animates into view, with subheadline and up to two CTA buttons. Sets the mood *with motion* atop a **landing or campaign page**.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_heroannouncement">
+      <segment>
+        <source>A **page opener led by a slim banner** highlighting news, a launch, or an update above the headline. Surfaces a **timely message** before the pitch.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_heroapp">
+      <segment>
+        <source>A **two-column opener** pairing your pitch with a **phone-frame mockup** of the app. Shows the interface alongside download prompts atop an app landing page.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_heroasymmetric">
+      <segment>
+        <source>An **off-center hero** with text and image in an unbalanced grid for a *dynamic, modern* look. For landing pages wanting **visual energy** and a supporting image.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_herocarousel">
+      <segment>
+        <source>A **rotating hero banner** cycling through several full slides with previous, next, and dot controls. Carries **multiple key messages or campaigns** at the top of a page.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_herocountdown">
+      <segment>
+        <source>A **centered hero with a live timer** counting down days, hours, minutes, and seconds to a set date. Builds **urgency** atop a launch, sale, or event page.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_heroctaonly">
+      <segment>
+        <source>A **stripped-back hero** focusing the page on a headline and one prominent action, with no image. Pushes visitors toward a **single decision** as a mid-page or closing band.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_herodualcta">
+      <segment>
+        <source>A hero that splits into **two side-by-side cards**, each with its own action. Ideal when you must serve **two audiences or goals** at once, such as sign up versus contact sales.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_heroform">
+      <segment>
+        <source>A hero with an **inline form** directly beneath the message, rendered via the TYPO3 Form Framework. For landing or campaign pages where **capturing a lead** is the primary goal.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_herofullscreen">
+      <segment>
+        <source>A **viewport-filling hero** with an edge-to-edge background image, darkening overlay, and centered message. A **high-impact opener** for homepages or campaigns needing a strong visual first impression.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_herogradient">
+      <segment>
+        <source>A hero with a bold **color-gradient background** from two theme tokens, holding a centered headline and call-to-action. For an **on-brand, image-free** page opener with energy but no photography.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_heroillustration">
+      <segment>
+        <source>A **two-column hero** pairing text with a **custom illustration** beside it. For product, service, or feature pages where a drawn visual explains the idea better than a photo.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_herologocloud">
+      <segment>
+        <source>A hero backing its message with a row of **customer or partner logos** as a trust strip. At the top of homepages or landing pages to build instant credibility through **social proof**.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_herominimal">
+      <segment>
+        <source>A **pared-back, centered hero** with just a headline, one supporting line, and a single button. For a **distraction-free opener** that drives toward one action.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_heroparallax">
+      <segment>
+        <source>A hero whose background image **scrolls at a different speed** to create a sense of **depth**, plus overlay and fade-in reveal. An immersive opener for storytelling or brand pages.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_heropricing">
+      <segment>
+        <source>A **two-column hero** placing the message next to a **price card** with amount, period, feature checklist, and call-to-action. At the top of pricing pages to bring cost and decision together above the fold.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_heroproduct">
+      <segment>
+        <source>A **two-column hero** pairing product copy with a large **product shot**. At the top of a product or e-commerce page to spotlight a **single item** and drive purchase intent.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_herosaas">
+      <segment>
+        <source>A centered hero pitching a software product with a **dashboard screenshot** and **trust logos**. For SaaS landing pages, to convert visitors with a clear value statement and proof.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_herosearch">
+      <segment>
+        <source>A hero built around a prominent **search bar** as the page's entry point. For a homepage, portal, or catalog where **finding content** is the primary action.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_herostacked">
+      <segment>
+        <source>A simple hero stacking headline, text, actions, and an optional image **vertically in one centered column**. A **versatile default hero** for landing or campaign pages.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_herostartup">
+      <segment>
+        <source>An energetic hero pairing a punchy pitch with a **waitlist sign-up form** and social-proof row. For launch or pre-launch pages, to capture early **email sign-ups**.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_herostats">
+      <segment>
+        <source>A **two-column hero** pairing intro copy with a grid of up to four **animated counter cards**. Near the top of a page, to back up your message with quick, scannable **proof points**.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_herotestimonial">
+      <segment>
+        <source>A two-column **hero** placing intro copy beside a featured **customer-quote card**. Use it at the top of a page to build instant trust through a real voice.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_herovideo">
+      <segment>
+        <source>A two-column **hero** pairing intro copy with an embedded **video panel**. Use it to lead a page with a demo, trailer, or explainer that draws visitors in.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_howtosteps">
+      <segment>
+        <source>A **numbered instructional list** with **Schema.org HowTo markup**, each step showing its title and details. Use it on guide, tutorial, or onboarding pages to walk readers through a task in clear sequence.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_imprint">
+      <segment>
+        <source>A structured **legal-notice block** laying out company, contact, and legal details with clickable email and phone links. Use it in the footer to meet **statutory disclosure requirements**.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_infographic">
+      <segment>
+        <source>A horizontal or vertical **sequence of numbered steps**, each pairing an icon or image with a title and short description into a **visual story**. Use it on process or explainer pages to present a workflow at a glance.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_investorgrid">
+      <segment>
+        <source>A four-column **logo grid** presenting backers and **investors** with name, optional funding round, and link. Use it on about or fundraising pages to build credibility by showcasing who supports the business.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_jobcard">
+      <segment>
+        <source>A single **card** highlighting one **open role** with employment-type badge, title, department, location, and an apply button. Use it on careers pages to feature a vacancy with a clear application path.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_kpicards">
+      <segment>
+        <source>A responsive grid of **KPI cards**, each showing a big **metric value** with a trend arrow, label, and optional detail text. Use it on dashboards or reports to present key figures as compact, comparable cards.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_leaderboard">
+      <segment>
+        <source>A **ranked list** shown top to bottom, each row combining a rank number, avatar, name, and **score value**. Use it on community, gaming, or results pages to rank participants by performance.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_legaldisclaimer">
+      <segment>
+        <source>A compact, **aside-styled** block for a short **legal disclaimer** with an optional heading. Place it in the footer or below contractual content to state liability limits and caveats.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_legallinks">
+      <segment>
+        <source>A horizontal **navigation row** listing legal pages such as privacy, terms, and imprint, with a configurable separator. Use it in the **footer** for quick access to mandatory legal pages.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_logocarousel">
+      <segment>
+        <source>A continuously scrolling **strip of client and partner logos** that loops in a single track. Use it as a **social-proof band** on a homepage or landing page without taking much vertical space.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_logocloud">
+      <segment>
+        <source>A loose, airy **grid** that scatters many **partner logos** across an adjustable number of columns. Use it as a trust section to display a large set of brands in a relaxed, open layout.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_logogrid">
+      <segment>
+        <source>A clean, evenly aligned **grid** arranging **client logos** in uniform cells. Use it as a structured trust section where consistent sizing and tidy alignment matter.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_mapembed">
+      <segment>
+        <source>An **embedded interactive map** in a responsive iframe with optional location text. Ideal for a **contact or location page** so visitors can easily find your premises.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_megamenu">
+      <segment>
+        <source>A **multi-column dropdown panel** that groups many links under titled sections, with a brand header and CTA button. A **navigation hub** for sites with deep structure.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_metricdashboard">
+      <segment>
+        <source>An overview panel of several **metric tiles** with value, label, and trend, plus an optional line chart. For **results, investor, or KPI pages**.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_missionstatement">
+      <segment>
+        <source>A focused **quote block** presenting the company mission as one strong, centered statement. For **About, company, or culture pages**.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_navbar">
+      <segment>
+        <source>A horizontal **navigation bar** with brand name, inline menu links, and up to two *call-to-action buttons*. Place it atop a landing page or microsite for persistent wayfinding and a clear next step.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_navbarcentered">
+      <segment>
+        <source>A **header bar with a centered brand name**, surrounded by navigation links and an optional action button. A balanced, symmetrical **site header** for landing pages.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_navbardropdown">
+      <segment>
+        <source>A **header bar with expandable top-level items** revealing nested sub-page links in dropdowns. For sites with deeper structures needing **grouped sub-navigation**.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_navbaricon">
+      <segment>
+        <source>A **header bar pairing each link with a small icon** for faster scanning. For **app-style or product headers** where icons aid recognition.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_navbarminimal">
+      <segment>
+        <source>A pared-back **navigation bar** with only a brand wordmark and a single **CTA button**. For landing pages or focused layouts with a clean header.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_navbarmobile">
+      <segment>
+        <source>A **navigation bar with a hamburger toggle** that opens links in a drawer menu. For **mobile-first headers** where screen space is tight.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_navbarsidebar">
+      <segment>
+        <source>A **vertical navigation panel** rendered as a side column beside the main content. For **documentation, dashboards, or section-heavy pages** with grouped links.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_navbarsplit">
+      <segment>
+        <source>A **symmetrical navigation bar** with link groups to the left and right of a **centered brand**. For a balanced, classic header that frames the logo.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_navbarstacked">
+      <segment>
+        <source>A **two-row navigation bar** with brand and tagline on top and the menu links below. Ideal for *editorial or brand-led* headers that need room for a slogan above the navigation.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_navbarsticky">
+      <segment>
+        <source>A horizontal navigation bar that stays **pinned to the top** while scrolling. Ideal for long pages where the menu and *call-to-action* must stay reachable at all times.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_navbartabbed">
+      <segment>
+        <source>A navigation bar showing its links as a row of **tab-style buttons** with the active tab highlighted. Suited to section switching or *app-like interfaces* where the current view should stay visible.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_navbartransparent">
+      <segment>
+        <source>A **see-through navigation bar** that floats over a hero or full-width background image. Ideal at the top of *image-led landing pages* where the header should blend into the visual.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_navpagination">
+      <segment>
+        <source>A horizontal **pager** with numbered links flanked by previous and next arrows. Under **long lists, archives, or search results** to move through pages in sequence.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_navsteps">
+      <segment>
+        <source>A numbered **progress indicator** for an ordered sequence of steps, each marked pending, current, or completed. For **checkouts, wizards, or onboarding flows**.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_navtabs">
+      <segment>
+        <source>A horizontal **tab bar** linking to separate content sections, with the active tab highlighted. To **switch between related views** such as details, specs, and reviews.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_navtoc">
+      <segment>
+        <source>A compact **table of contents** sidebar listing sections as anchor links. On **long articles, documentation, or guides** for quick in-page jump navigation.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_newsletterinline">
+      <segment>
+        <source>A slim, **single-bar newsletter sign-up strip** that sits inline between content sections. Captures subscribers *mid-page* without interrupting the reading flow.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_newslettersignup">
+      <segment>
+        <source>A full **newsletter sign-up section** pairing a form card with optional *benefit bullets* alongside. A standalone block to grow your mailing list and sell the value of subscribing.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_notification">
+      <segment>
+        <source>A **dismissible, toast-style notice** with a colored variant, icon, and optional action link. Use it *inline within page content* to flag status, success, a warning, or an error.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_officehours">
+      <segment>
+        <source>A card listing **opening times** as a clean day-and-hours table. Place it on a *contact, location, or footer page* so visitors instantly know when you are open.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_officelocations">
+      <segment>
+        <source>A **grid of location cards** showing city, optional address, phone, email, and a directions button. Use it on a *contact or about page* to make multiple offices or branches reachable.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_ordersummary">
+      <segment>
+        <source>A **checkout card** that itemizes line items with totals, an optional discount row, and a proceed button. Use it on a *cart or checkout page* to show buyers exactly what they pay before committing.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_orgchart">
+      <segment>
+        <source>An **org chart** that stacks people into horizontal tiers, each a name-and-role card. Use it on an *about, team, or company page* to visualize your reporting structure and hierarchy.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_partnergrid">
+      <segment>
+        <source>A **logo grid** that showcases partners and collaborators in a tidy, uniform layout. Use it on *about, partnership, or ecosystem pages* to signal trusted relationships at a glance.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_pressmentions">
+      <segment>
+        <source>A **grid of press mentions** with outlet logos and short pull-quotes. Place it on homepage, about, or PR pages to build *credibility through earned press*.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_pricing">
+      <segment>
+        <source>A **flexible pricing section** that lays out plan cards in a selectable **two-, three-, or four-column grid** with the featured plan highlighted. Ideal for a classic comparison of several plans.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_pricingannualmonthly">
+      <segment>
+        <source>A grid of **pricing cards** showing each plan's monthly and annual price side by side with a *savings badge*. Use it on pricing pages where buyers weigh monthly payment against an annual commitment.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_pricingcalculator">
+      <segment>
+        <source>A **volume pricing table** that lays out per-unit rates across quantity tiers so visitors can gauge cost at their scale. Ideal for pricing pages of **usage- or seat-based products**.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_pricingcomparison">
+      <segment>
+        <source>A **feature comparison matrix** that aligns two to four plans as columns against feature rows. Use it on pricing pages so buyers can compare what each plan includes *at a glance*.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_pricingenterprise">
+      <segment>
+        <source>A wide card that pitches a **custom enterprise plan** and routes prospects **to sales** rather than a fixed price. Ideal for capturing large or bespoke deals that need a conversation.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_pricingfaq">
+      <segment>
+        <source>A collapsible **accordion** for common **pricing and billing questions** that removes buying friction. Place it below pricing tables to handle objections before checkout.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_pricingfourtier">
+      <segment>
+        <source>A row of **four pricing cards** side by side with one highlighted as *recommended*. Use it when you offer four distinct tiers and want to steer buyers toward a featured option.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_pricingsimple">
+      <segment>
+        <source>A minimal **single-plan card** showing one price in a clean, centered layout. Ideal for landing or product pages when you offer **just one plan** and want a focused ask.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_pricingslider">
+      <segment>
+        <source>An interactive pricing block with a **draggable slider** that highlights the matching volume tier and its price. Ideal for **usage- or volume-based products** where cost scales with consumption.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_pricingthreetier">
+      <segment>
+        <source>A row of **three plan cards** with the recommended one highlighted by a ring and badge. Anchors visitors toward a preferred middle plan in a classic **good-better-best layout**.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_pricingtoggle">
+      <segment>
+        <source>A grid of plan cards pairing a **monthly price with a yearly price**. Use it when you bill on **two cycles** and want visitors to compare monthly versus annual cost.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_pricingtwotier">
+      <segment>
+        <source>**Two plan cards** side by side in a clear *either-or layout*, with the featured one marked by a ring and badge. Ideal when you offer exactly two plans.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_pricingusage">
+      <segment>
+        <source>A grid of cards each showing a **per-unit, pay-as-you-go rate**. Ideal for metered or consumption-based products where customers pay only for what they use.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_privacynotice">
+      <segment>
+        <source>A **privacy notice block** with an intro and expandable accordion sections summarizing how visitor data is collected and used. Ideal for the **footer or a legal page** as a structured overview.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_productcard">
+      <segment>
+        <source>A compact **product card** with image, price, and a **buy button**. Ideal for shop, landing, or pricing pages to feature an individual item with a clear call to action.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_productcomparison">
+      <segment>
+        <source>A grid of **two or three product cards** that contrasts their specs *at a glance*. Helps visitors on pricing or product pages weigh options and pick a plan.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_productfeature">
+      <segment>
+        <source>A **two-column spotlight** pairing a product image with key benefits and a **call to action**. Ideal on landing or product pages to make a persuasive case for a single offer.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_productgallery">
+      <segment>
+        <source>A **product detail layout** with a thumbnail gallery and lightbox next to a **buy panel** showing price and stock status. For shop detail pages where shoppers browse several photos before purchasing.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_productgrid">
+      <segment>
+        <source>A **multi-column grid** listing many priced products as compact cards. For shop, catalog, or pricing overview pages where visitors **browse and compare** several items.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_producthero">
+      <segment>
+        <source>A **bold full-width hero** with a large product image beside a headline, price, and **buy button**. Use at the top of a product or landing page for a strong first impression.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_productreviews">
+      <segment>
+        <source>A **reviews block** with an overall star summary above a list of individual customer reviews. Adds **social proof** and trust on product or pricing pages before purchase.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_productspecs">
+      <segment>
+        <source>A **technical specs table** of label-and-value rows with an optional product image. On product detail pages to lay out concrete details that help buyers **compare**.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_progressbar">
+      <segment>
+        <source>A **horizontal bar** that fills to show **progress** toward a goal as a percentage. For dashboards, fundraising or campaign pages; style, color, and percentage readout are selectable.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_quote">
+      <segment>
+        <source>A single **highlighted quotation** set in a blockquote with a large quote mark and optional attribution. Breaks up long text or spotlights a *customer testimonial*.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_ratingdisplay">
+      <segment>
+        <source>A **grid of cards** surfacing your average star ratings across multiple **review platforms**. Builds credibility on landing or product pages by aggregating third-party scores.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_resourcelibrary">
+      <segment>
+        <source>A **card grid** collecting downloads and links such as guides or whitepapers into a **browsable library**. For resource hubs or knowledge-base pages.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_reviewcarousel">
+      <segment>
+        <source>A **slider** that cycles through customer reviews one at a time with previous, next and dot controls. Presents **social proof** compactly in testimonial sections without a long scrolling list.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_searchheader">
+      <segment>
+        <source>A **header band** built around a prominent **search field** with icon, input and submit button. At the top of search, help-center or knowledge-base pages to put finding content front and center.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_sitemapgrid">
+      <segment>
+        <source>A **multi-column footer block** that lays out grouped page links as a navigable **sitemap**. Gives a structured overview of every section in the footer.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_sociallinks">
+      <segment>
+        <source>A **compact navigation row** routing visitors to your external **social media profiles**. For footers, contact pages or about sections to connect your audience with your channels.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_socialproofcounter">
+      <segment>
+        <source>A **compact proof row** that displays headline **figures** as a definition list, with an optional intro headline above. Use near a sign-up or hero section to reinforce trust with numbers.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_specialoffer">
+      <segment>
+        <source>A centered **promotional banner** pairing a struck-through original price, a sale price, and a bold **discount badge**. Pushes limited-time deals on landing or pricing pages and creates urgency.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_statcards">
+      <segment>
+        <source>A responsive grid placing each **metric** on its own card with a counting value, label, and optional **trend arrow**. Ideal on dashboards to compare several KPIs side by side.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_stats">
+      <segment>
+        <source>A full-width section presenting key **metrics** in a column grid, each with a large counting figure and label. Serves as a standalone **proof or impact block** on a homepage or about page.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_statsbar">
+      <segment>
+        <source>A stacked list of **metrics** where each row shows a label and value above a filled **progress bar**. Visualizes proportions, completion, or benchmark scores where the fill says more than the number.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_statscounter">
+      <segment>
+        <source>A grid of **metrics** whose numbers **animate ticking up** to a target value on scroll. Ideal in a results or achievements section where animated figures grab attention.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_statsinline">
+      <segment>
+        <source>A slim **single-row strip** lining up a few value-and-label pairs, optionally divided by separators. Drops **supporting figures** into or beneath running text without breaking the reading flow.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_statusindicator">
+      <segment>
+        <source>A **service status board** pairing an overall state line with a list of individual services, each marked by a colored dot and status word. Signals on a status or uptime page whether systems are **operational, degraded, or down**.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_tablecontent">
+      <segment>
+        <source>A responsive, scrollable **data table** with a heading, optional caption, column headers, and rows. Ideal on feature, pricing, or spec pages to compare **options side by side**.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_tabs">
+      <segment>
+        <source>An interactive **tab group** that switches between multiple rich-text panels behind labeled tabs. Organizes related content like product details, FAQs, or instructions **compactly**.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_team">
+      <segment>
+        <source>A **team showcase** with photos, names and roles, as a card grid, list, or minimal avatar layout. Ideal for *about* or careers pages to put faces to your organization and build trust.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_teamcarousel">
+      <segment>
+        <source>A horizontally swipeable **carousel** of team-member cards with portrait, name, role, and optional profile link. Ideal on about or team pages to present **many people compactly**.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_teamcta">
+      <segment>
+        <source>A highlighted **card** with an optional background image pairing a heading and message with a **hiring CTA**. Invites visitors on team or careers pages to view open roles.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_teamdepartment">
+      <segment>
+        <source>A structured layout grouping team members into **named departments**, each a grid of compact name-and-role cards. Ideal on about or org pages to show a **larger team organized by unit**.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_teamgridminimal">
+      <segment>
+        <source>A clean, photo-forward **grid** of team members, each a circular avatar with name and role. Suits team or about pages for a **tidy overview** without bios or links.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_teammember">
+      <segment>
+        <source>A detailed **single-person card** pairing a portrait, name, role, **rich-text biography**, and contact details. Ideal on a profile or about page to highlight one individual in depth.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_teamwithbio">
+      <segment>
+        <source>A vertical **list of team members**, each with a portrait beside name, role, **short bio**, and optional profile link. Suits pages where each person deserves a few sentences of context, not just a photo.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_termssummary">
+      <segment>
+        <source>A **plain-language summary** that condenses lengthy terms of service into titled key points. Use it in the footer or on *legal pages* to give a quick overview before the full document.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_testimonial">
+      <segment>
+        <source>A **single customer quote** as a simple quote, bordered card, or large display variant. Use it inline to reinforce a claim with one *focused, credible endorsement* where it matters.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_testimonialcarousel">
+      <segment>
+        <source>A rotating **carousel** that cycles through customer quotes one slide at a time, with controls and dot navigation. Use it on landing or product pages to present *social proof* in a compact space.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_testimonialfeatured">
+      <segment>
+        <source>A **single standout quote** enlarged into a full-width hero block, optionally over a background image. Ideal to lead a page with one *high-impact endorsement* from a marquee customer.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_testimonialgrid">
+      <segment>
+        <source>An **even two- or three-column grid** displaying many customer quotes as uniform cards. Use it on homepages or reviews pages to surface a broad body of *social proof* at a glance.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_testimonialvideo">
+      <segment>
+        <source>A two-part layout pairing an **embedded YouTube or Vimeo video** with a pull quote and author details. Use it when a customer's *spoken endorsement* is more convincing than text alone.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_testimonialwall">
+      <segment>
+        <source>A **dense masonry-style wall** that packs many quote cards into a staggered, magazine-like layout. Use it to convey *social proof at scale* on a reviews or customers page.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_textmedia">
+      <segment>
+        <source>A **two-column block** pairing a rich-text column with a single image or video that opens in a *lightbox*. Use it on content pages to explain a topic alongside a supporting visual.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_timeline">
+      <segment>
+        <source>A **vertical, numbered list of cards** laying out steps or milestones in sequence. Use it on *process, history, or roadmap pages* to walk visitors through events in order.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_trustbadges">
+      <segment>
+        <source>A **horizontal row of badge tiles**, each with a logo, label and short description. Use it near *checkout or calls to action* to reassure visitors with security, payment, or guarantee marks.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_usecasegrid">
+      <segment>
+        <source>A **responsive grid of cards** presenting real-world *use cases* side by side. Use it on feature or solution pages to show the different ways your product solves problems.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_utilitybar">
+      <segment>
+        <source>A **thin top bar** with short text on the left and small utility links on the right. Use it above the main header for *secondary items* like login, language switch, or contact.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_videoembed">
+      <segment>
+        <source>A **responsive video figure** embedding a YouTube/Vimeo iframe or an uploaded video file. Use it on content pages to present a *demo or explainer* in a fixed aspect ratio.</source>
+      </segment>
+    </unit>
+    <unit id="desiderio_waitlistsignup">
+      <segment>
+        <source>A **centered card** that builds anticipation and *collects sign-ups* via a TYPO3 Form Framework form. Use it on launch or pre-release landing pages to gather interested visitors before go-live.</source>
+      </segment>
+    </unit>
+  </file>
+</xliff>

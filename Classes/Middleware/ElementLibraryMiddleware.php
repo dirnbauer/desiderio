@@ -78,11 +78,18 @@ final class ElementLibraryMiddleware implements MiddlewareInterface
         foreach ($this->elementCatalog->getElements() as $element) {
             $demoUid = $seededRecords[$element['cType']] ?? 0;
             $localized = $this->elementCatalog->localizeElement($element, $languageService);
+            // Short, scannable card blurb (with **bold**/*italic* emphasis), keyed
+            // by cType in a per-host catalog file. The full description stays the
+            // "description" above and is shown in the enlarged preview; cards show
+            // this shorter one. Falls back to the full text when none is authored.
+            $shortFile = 'LLL:EXT:' . $element['hostExtension'] . '/Resources/Private/Language/library_short.xlf:';
+            $shortDescription = $languageService->sL($shortFile . $element['cType']);
             $elements[] = [
                 'cType' => $element['cType'],
                 'name' => $element['name'],
                 'title' => $localized['title'],
                 'description' => $localized['description'],
+                'shortDescription' => $shortDescription !== '' ? $shortDescription : $localized['description'],
                 'group' => $element['group'],
                 'source' => $element['hostExtension'],
                 'demoUid' => $demoUid,

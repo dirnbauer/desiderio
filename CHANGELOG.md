@@ -6,6 +6,39 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [2.10.0] — 2026-06-15
+
+### Added
+
+- Code-block syntax highlighting now auto-detects the snippet language,
+  understands bash/shell, and paints each token group with a subtle
+  multi-hue palette that stays readable in light and dark across every
+  theme preset (named colours mixed toward `--foreground`, so the element
+  audit's no-raw-colour rule still holds).
+- Element-library previews are cacheable inside an authenticated edit
+  session: a middleware turns the admin panel off for `?elPreview`
+  requests so each preview renders from — and is served by — the standard
+  page cache instead of `no_cache`. Picker cards also gained short
+  German/English blurbs.
+- New "Features" showcase section seeded by the styleguide seeder — a
+  `/features` hub plus 13 verbose per-extension subpages — together with
+  backend-module and frontend screenshots.
+
+### Changed
+
+- All 255 content-element titles and descriptions were enriched in German
+  and English; timeline and pricing fixtures corrected.
+- Added a developer manual on adding a shadcn block as a content element.
+
+### Fixed
+
+- Visual editor: dropped the testimonial card shadow and skipped the astro
+  count-up animation while editing.
+- Typed the showcase page builders (`StyleguideShowcasePages::block()` and
+  the `featureXxxPage()` / `featuresOverviewPage()` builders) and the
+  element-preview middleware's `uc` access so PHPStan passes cleanly
+  (47 errors resolved).
+
 ## [2.9.5] — 2026-06-13
 
 _Consolidated notes for the 2.9.x line. The changelog and the `version`

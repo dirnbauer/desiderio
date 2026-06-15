@@ -233,6 +233,14 @@
   };
 
   AstroRuntime.prototype.initCounters = function (scope) {
+    // In the TYPO3 Visual Editor the stat values are inline-editable. The count-up
+    // animation overwrites the element's content (setCounterText sets textContent),
+    // which destroys the editable wrapper and makes the numbers uneditable. Skip
+    // the counter entirely while editing; the live frontend is unaffected.
+    if (window.veInfo) {
+      return;
+    }
+
     var elements = scope.querySelectorAll('[data-astro-counter], [data-d-counter]');
 
     if (!elements.length) {

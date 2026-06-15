@@ -1,5 +1,10 @@
 .testimonial__heading { margin-block-end: var(--d-spacing-lg); }
 .testimonial__card--bordered { border: 1px solid var(--border); border-radius: var(--radius); padding: var(--d-spacing-lg); }
+/* The generic ".desiderio-section :where(.card, …, .testimonial__card)" rule in
+   desiderio-tailwind.css gives every card a shadow-sm; on the testimonial that
+   shadow's bottom edge reads as a stray horizontal line. The testimonial only
+   ever wants a border (on the card variant), never a shadow - so drop it. */
+.testimonial .testimonial__card { box-shadow: none; }
 .testimonial__rating { display: flex; gap: 0.25rem; margin-block-end: var(--d-spacing-sm); }
 .testimonial__star { color: var(--muted-foreground); }
 .testimonial__star--filled { color: var(--primary); }

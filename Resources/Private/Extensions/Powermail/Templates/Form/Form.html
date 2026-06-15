@@ -39,8 +39,7 @@
                         <header data-slot="card-header" class="{cardHeaderClass -> f:format.trim()}">
                             <h2 data-slot="card-title" class="{cardTitleClass -> f:format.trim()}">{form.title}</h2>
                             <p data-slot="card-description" class="{cardDescriptionClass -> f:format.trim()}">
-                                <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/powermail.xlf:powermail.form.requiredHint" arguments="{requiredCount: 1}" />
-                            </p>
+                                <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/powermail.xlf:powermail.form.requiredHint.lead" /> (<span class="text-destructive">*</span>) <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/powermail.xlf:powermail.form.requiredHint.trail" />
                         </header>
                     </f:if>
 
@@ -68,7 +67,7 @@
                                          data attributes from event.target — a click landing on an
                                          inner span would resolve to no target step, hide every
                                          fieldset and skip validation. Keep the button the target. -->
-                                    <span class="{stepIndexClass -> f:format.trim()} pointer-events-none">{iterationPages.cycle}</span>
+                                    <span class="{stepIndexClass -> f:format.trim()} pm-step-num pointer-events-none">{iterationPages.cycle}</span>
                                     <span class="pointer-events-none min-w-0 truncate max-sm:sr-only max-sm:group-data-[active=true]/steptab:not-sr-only">{page.title}</span>
                                 </button>
                             </f:for>

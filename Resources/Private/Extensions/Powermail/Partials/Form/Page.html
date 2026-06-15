@@ -40,7 +40,7 @@
     </d:molecule.fieldGroup>
 
     <f:if condition="{settings.main.moresteps}">
-        <div class="flex items-center justify-between gap-2 border-t border-border pt-4">
+        <div class="mt-8 flex items-center justify-between gap-2 border-t border-border pt-4">
             <f:if condition="!{iterationPages.isFirst}">
                 <button type="button" class="{buttonOutlineClass -> f:format.trim()}" data-powermail-morestep-show="{iterationPages.index - 1}" data-powermail-morestep-previous>
                     <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/powermail.xlf:powermail.multistep.previous" />

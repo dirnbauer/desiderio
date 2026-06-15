@@ -113,6 +113,7 @@
     css: 'css', scss: 'css',
     yaml: 'yaml', yml: 'yaml',
     html: 'markup', htm: 'markup', xml: 'markup', svg: 'markup',
+    sh: 'bash', bash: 'bash', zsh: 'bash',
     fluid: 'fluid',
     typoscript: 'typoscript', tsconfig: 'tsconfig'
   };
@@ -125,9 +126,10 @@
     css: 'css',
     php: 'php',
     yaml: 'yaml',
-    xml: 'markup'
+    xml: 'markup',
+    bash: 'bash'
   };
-  var AUTO_SUBSET = ['javascript', 'typescript', 'css', 'php', 'yaml', 'xml'];
+  var AUTO_SUBSET = ['javascript', 'typescript', 'css', 'php', 'yaml', 'xml', 'bash'];
   var AUTO_MIN_LENGTH = 12; // too little code to guess reliably
   var AUTO_MIN_RELEVANCE = 5; // hljs scores below this are effectively a coin flip
 
@@ -153,6 +155,10 @@
 
     if (normalized.includes('yaml') || normalized === 'yml') {
       return 'yaml';
+    }
+
+    if (normalized.includes('bash') || normalized.includes('shell') || normalized === 'sh' || normalized === 'zsh' || normalized.includes('console') || normalized.includes('terminal')) {
+      return 'bash';
     }
 
     if (normalized.includes('php')) {

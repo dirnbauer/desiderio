@@ -14,7 +14,7 @@ const root = dirname(dirname(dirname(fileURLToPath(import.meta.url))));
 
 // Keep in sync with the Prism grammars in build-prism-lite.mjs and the
 // HLJS_TO_PRISM map in Resources/Public/Js/astro.js.
-const languages = ['javascript', 'typescript', 'css', 'php', 'yaml', 'xml'];
+const languages = ['javascript', 'typescript', 'css', 'php', 'yaml', 'xml', 'bash'];
 
 const entry = [
   "import hljs from '@highlightjs/cdn-assets/es/core.min.js';",

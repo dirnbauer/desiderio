@@ -13,6 +13,7 @@ const components = [
   'prism-markup-templating.min.js',
   'prism-php.min.js',
   'prism-yaml.min.js',
+  'prism-bash.min.js',
 ];
 
 const sourceDir = join(root, 'node_modules', 'prismjs', 'components');

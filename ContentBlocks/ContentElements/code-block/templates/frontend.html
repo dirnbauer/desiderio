@@ -17,7 +17,7 @@
                     <span class="code-block__filename">{data -> f:render.text(field: 'filename')}</span>
                 </div>
             </f:if>
-            <pre class="code-block__pre" tabindex="0" role="region" aria-label="{data.filename -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:code.aria\', default: \'Code sample\')}')}"><code id="code-block-{data.uid}" class="code-block__code" data-astro-highlight data-astro-language="{data.language}">{data.code -> f:format.htmlspecialchars()}</code></pre>
+            <pre class="code-block__pre" tabindex="0" role="region" aria-label="{data.filename -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:code.aria\', default: \'Code sample\')}')}"><code id="code-block-{data.uid}" class="code-block__code" data-astro-highlight data-astro-language="{data.language}" data-astro-filename="{data.filename}">{data.code -> f:format.htmlspecialchars()}</code></pre>
         </div>
     </d:layout.container>
 </d:layout.section>

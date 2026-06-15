@@ -11,6 +11,10 @@
   var reduceMotionQuery = '(prefers-reduced-motion: reduce)';
   var coarsePointerQuery = '(pointer: coarse)';
 
+  // Captured at load (not inside async callbacks, where it is null) so the lazy
+  // highlight.js detector can resolve its sibling hljs-lite.js URL.
+  var astroScript = document.currentScript;
+
   function supports(selector) {
     return typeof selector === 'string' && selector.trim() !== '';
   }
@@ -101,11 +105,40 @@
     });
   }
 
-  function normalizeLanguage(language, source) {
-    var normalized = String(language || '').toLowerCase().replace(/[^a-z0-9+#-]/g, '');
+  // Filename extension -> language id understood by highlightCode().
+  var EXTENSION_LANGUAGE_MAP = {
+    js: 'javascript', mjs: 'javascript', cjs: 'javascript', jsx: 'javascript',
+    ts: 'typescript', tsx: 'typescript',
+    php: 'php', phtml: 'php',
+    css: 'css', scss: 'css',
+    yaml: 'yaml', yml: 'yaml',
+    html: 'markup', htm: 'markup', xml: 'markup', svg: 'markup',
+    fluid: 'fluid',
+    typoscript: 'typoscript', tsconfig: 'tsconfig'
+  };
 
-    // Explicit TYPO3 labels first: Fluid templates start with "<" and
-    // would otherwise be swallowed by the markup source heuristics below.
+  // highlight.js (lazy autodetect) language ids -> the Prism grammars we ship.
+  // Keep in sync with build-hljs-lite.mjs and build-prism-lite.mjs.
+  var HLJS_TO_PRISM = {
+    javascript: 'javascript',
+    typescript: 'typescript',
+    css: 'css',
+    php: 'php',
+    yaml: 'yaml',
+    xml: 'markup'
+  };
+  var AUTO_SUBSET = ['javascript', 'typescript', 'css', 'php', 'yaml', 'xml'];
+  var AUTO_MIN_LENGTH = 12; // too little code to guess reliably
+  var AUTO_MIN_RELEVANCE = 5; // hljs scores below this are effectively a coin flip
+
+  // Tier 1: an explicit language label set by the editor.
+  function languageFromLabel(label) {
+    var normalized = String(label || '').toLowerCase().replace(/[^a-z0-9+#-]/g, '');
+
+    if (!normalized) {
+      return '';
+    }
+
     if (normalized.includes('fluid')) {
       return 'fluid';
     }
@@ -122,7 +155,7 @@
       return 'yaml';
     }
 
-    if (normalized.includes('php') || source.includes('<?php')) {
+    if (normalized.includes('php')) {
       return 'php';
     }
 
@@ -134,7 +167,7 @@
       return 'javascript';
     }
 
-    if (normalized.includes('html') || normalized.includes('xml') || source.trim().startsWith('<')) {
+    if (normalized.includes('html') || normalized.includes('xml')) {
       return 'markup';
     }
 
@@ -142,7 +175,55 @@
       return 'css';
     }
 
-    return 'plain';
+    return '';
+  }
+
+  // Tier 2: derive the language from the filename extension (test.js -> javascript).
+  function languageFromFilename(filename) {
+    var name = String(filename || '').trim().toLowerCase().split(/[\\/]/).pop();
+    var dot = name.lastIndexOf('.');
+
+    if (dot <= 0) {
+      return ''; // no extension, or a dotfile like ".gitignore"
+    }
+
+    return EXTENSION_LANGUAGE_MAP[name.slice(dot + 1)] || '';
+  }
+
+  // Tier 2.5: cheap content sniff for the two unambiguous markers.
+  function languageFromSource(source) {
+    if (source.includes('<?php')) {
+      return 'php';
+    }
+
+    if (source.trim().charAt(0) === '<') {
+      return 'markup';
+    }
+
+    return '';
+  }
+
+  // Resolve label -> filename -> cheap sniff. Returns 'plain' when nothing
+  // matched, leaving the lazy autodetect (tier 3) to the caller.
+  function resolveLanguage(label, filename, source) {
+    var language = languageFromLabel(label);
+
+    if (language) {
+      return language;
+    }
+
+    language = languageFromFilename(filename);
+
+    if (language) {
+      // A .html file carrying ViewHelper tags is almost certainly Fluid.
+      if (language === 'markup' && /<[fd]:/.test(source)) {
+        return 'fluid';
+      }
+
+      return language;
+    }
+
+    return languageFromSource(source) || 'plain';
   }
 
   function highlightCode(source, language) {
@@ -156,6 +237,71 @@
     }
 
     return escapeHtml(source);
+  }
+
+  var hljsLoader = null;
+
+  // Lazy-load the highlight.js detector bundle that sits next to this file. It
+  // is only fetched the first time a code block needs autodetection.
+  function ensureHljs() {
+    if (window.hljs) {
+      return Promise.resolve(window.hljs);
+    }
+
+    if (hljsLoader) {
+      return hljsLoader;
+    }
+
+    var base = (astroScript && astroScript.src) || '';
+    var url = base ? base.replace(/[^/]+$/, 'hljs-lite.js') : '';
+
+    if (!url) {
+      return Promise.resolve(null);
+    }
+
+    hljsLoader = new Promise(function (resolve) {
+      var script = document.createElement('script');
+      script.src = url;
+      script.async = true;
+      script.onload = function () {
+        resolve(window.hljs || null);
+      };
+      script.onerror = function () {
+        resolve(null);
+      };
+      document.head.appendChild(script);
+    });
+
+    return hljsLoader;
+  }
+
+  // Tier 3: statistically guess the language among the grammars Prism can
+  // render, then re-highlight in place. Runs only when no label/filename hit.
+  function autoDetectAndHighlight(element, source) {
+    if (!window.Promise || !source || source.trim().length < AUTO_MIN_LENGTH) {
+      return;
+    }
+
+    ensureHljs().then(function (hljs) {
+      if (!hljs || !hljs.highlightAuto) {
+        return;
+      }
+
+      var result = hljs.highlightAuto(source, AUTO_SUBSET);
+
+      if (!result || !result.language || (result.relevance || 0) < AUTO_MIN_RELEVANCE) {
+        return;
+      }
+
+      var prismLanguage = HLJS_TO_PRISM[result.language];
+
+      if (!prismLanguage) {
+        return;
+      }
+
+      element.dataset.astroLanguageNormalized = prismLanguage;
+      element.innerHTML = highlightCode(source, prismLanguage);
+    });
   }
 
   function AstroRuntime() {
@@ -327,12 +473,21 @@
       }
 
       var source = element.dataset.astroSource || element.textContent || '';
-      var language = normalizeLanguage(element.dataset.astroLanguage || element.className, source);
+      var language = resolveLanguage(element.dataset.astroLanguage, element.dataset.astroFilename, source);
 
       element.dataset.astroSource = source;
+      element.dataset[readyAttr] = [element.dataset[readyAttr], 'highlight'].filter(Boolean).join(' ');
+
+      if (language === 'plain') {
+        // Show escaped code immediately, then try a lazy autodetect upgrade.
+        element.dataset.astroLanguageNormalized = 'plain';
+        element.innerHTML = escapeHtml(source);
+        autoDetectAndHighlight(element, source);
+        return;
+      }
+
       element.dataset.astroLanguageNormalized = language;
       element.innerHTML = highlightCode(source, language);
-      element.dataset[readyAttr] = [element.dataset[readyAttr], 'highlight'].filter(Boolean).join(' ');
     });
   };
 

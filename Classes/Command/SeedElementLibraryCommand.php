@@ -147,7 +147,9 @@ final class SeedElementLibraryCommand extends Command
 
         if (!(bool)$input->getOption('no-warm')) {
             $io->section('Warming preview cache');
-            $result = $this->previewWarmer->warm($folderUid);
+            // Warm every site that shows this folder in its picker (each renders
+            // the previews from its own base), not just the folder-owning site.
+            $result = $this->previewWarmer->warm($folderUid, $this->previewWarmer->getSitesForLibraryFolder($folderUid));
             $io->writeln(sprintf('%d previews warmed, %d failed', $result['warmed'], count($result['failed'])));
             foreach (array_slice($result['failed'], 0, 10) as $failure) {
                 $io->warning($failure);

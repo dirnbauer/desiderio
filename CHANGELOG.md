@@ -6,6 +6,27 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [2.11.0] — 2026-06-16
+
+### Changed
+
+- **`desiderio:library:warm` now warms every site that shows the picker, not
+  just the folder-owning site.** Each site renders the element previews from
+  its own base (and cHash), so a library folder shared by several sites — or a
+  site whose `elementLibrary.storagePid` differs from the folder's owner — left
+  the picker's preview thumbnails cold on the bases that were never requested.
+  - `--folder=<uid>` now warms that folder for **all** sites whose
+    `elementLibrary.storagePid` points at it (resolved from live site settings,
+    the same source the picker uses), each from its own base.
+  - `--folder` is now **optional**: with no folder, the command warms **every**
+    site's configured library, grouped by folder.
+  - New `--site=<identifier>` option restricts warming to one site.
+  - Output now reports a per-site breakdown (base, warmed, failed).
+  - `desiderio:library:seed` likewise warms every site sharing the seeded
+    folder after a seed (skip with `--no-warm`).
+  - `PreviewWarmer` gains `getSitesForLibraryFolder()` and
+    `getConfiguredLibraries()`; `warm()` takes an optional list of sites.
+
 ## [2.10.1] — 2026-06-16
 
 ### Performance

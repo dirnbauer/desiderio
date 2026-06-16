@@ -397,6 +397,45 @@ localization cache.
     cache and pre-rendered by ``desiderio:library:warm``. This catalog cache
     only covers the list/JSON metadata, not the preview iframes.
 
+Warming preview thumbnails
+--------------------------
+
+Each preview thumbnail is a standalone frontend request, page-cached per URL.
+Crucially, **the URL includes the requesting site's base and cHash**, so the
+same library record warmed for one site is a cache miss for another. A library
+folder is commonly shared by several sites (each with a different base), and a
+site's ``elementLibrary.storagePid`` may even differ from the folder's owning
+site — so warming a single base leaves the picker's thumbnails cold everywhere
+else.
+
+``desiderio:library:warm`` therefore warms **every site that shows the
+picker**, resolved from the live site settings (the same source the picker
+reads):
+
+..  list-table::
+    :header-rows: 1
+    :widths: 40 60
+
+    *   - Invocation
+        - Warms
+    *   - ``desiderio:library:warm``
+        - Every site's configured library, grouped by folder.
+    *   - ``desiderio:library:warm --folder=<uid>``
+        - That folder, for **every** site whose ``elementLibrary.storagePid``
+          points at it — each from its own base.
+    *   - ``desiderio:library:warm --site=<identifier>``
+        - Only that site's library (optionally combined with ``--folder``).
+
+Use ``-v`` for a per-record log and ``-vv`` to include the URLs. The command
+reports a per-site ``warmed`` / ``failed`` breakdown. ``desiderio:library:seed``
+runs the same multi-site warm after seeding (unless ``--no-warm`` is given).
+
+..  note::
+
+    A normal "flush all caches" clears the page cache, so the thumbnails go
+    cold again and re-render lazily on first view (four at a time). Re-run the
+    warm command after a full flush if you want them instant.
+
 ..  _developer-maintainability:
 
 Maintainability

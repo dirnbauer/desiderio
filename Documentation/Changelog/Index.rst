@@ -8,10 +8,13 @@ Changelog
 
 The authoritative release notes live in :file:`CHANGELOG.md` at the
 repository root and follow `Keep a Changelog
-<https://keepachangelog.com/>`__. The current release is **2.10.1**.
+<https://keepachangelog.com/>`__. The current release is **2.11.0**.
 
 Highlights:
 
+*   ``desiderio:library:warm`` warms the picker preview thumbnails for every
+    site that shows them (per-site base), with ``--folder`` and ``--site``
+    options. See :ref:`developer-element-library`.
 *   The element library picker (``?elementLibrary=1``) caches its catalog in
     the ``desiderio_library`` cache instead of parsing ~255 ``config.yaml``
     files on every open. See :ref:`developer-element-library`.

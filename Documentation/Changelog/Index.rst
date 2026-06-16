@@ -8,21 +8,21 @@ Changelog
 
 The authoritative release notes live in :file:`CHANGELOG.md` at the
 repository root and follow `Keep a Changelog
-<https://keepachangelog.com/>`__. The current release is **2.6.2**.
+<https://keepachangelog.com/>`__. The current release is **2.10.1**.
 
 Highlights:
 
-*   Fluid component and Powermail templates keep Tailwind arbitrary
-    selectors readable in source so generated CSS includes their
-    descendant, direct-child, and ``:has()`` utility rules.
+*   The element library picker (``?elementLibrary=1``) caches its catalog in
+    the ``desiderio_library`` cache instead of parsing ~255 ``config.yaml``
+    files on every open. See :ref:`developer-element-library`.
+*   The ``code-block`` element gains content- and filename-aware syntax
+    highlighting with a highlight.js-lite autodetect fallback.
+*   ``ExtbasePluginRequestSanitizerMiddleware`` fixes Visual Editor
+    rendering for News and other Extbase plugins.
 *   Seed commands are thin orchestration shells; shared FAL, collection,
     and fixture logic lives in ``Classes/Seeding/``.
 *   ``StyleguideFixtureResolver``, ``StarterContentBuilder``, and
     ``BlogPageTreeSeeder`` replace thousand-line command implementations.
-*   ``FixtureFieldNormalizer`` and ``BrevoConfigurationResolver`` remove
-    duplicated field and finisher configuration branches.
-*   ``ExtbasePluginRequestSanitizerMiddleware`` fixes Visual Editor
-    rendering for News and other Extbase plugins.
 *   Thermo-nuclear maintainability review recorded in
     :file:`Documentation/Reports/code-quality.md`.
 

@@ -6,6 +6,34 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [2.10.1] — 2026-06-16
+
+### Performance
+
+- **Element library picker catalog is now cached.** The frontend element
+  picker endpoint (`?elementLibrary=1`, served by `ElementLibraryMiddleware`)
+  rebuilt its whole catalog on every open by parsing one `config.yaml` per
+  Content Block (~255 files) through Symfony's pure-PHP YAML parser **and**
+  reading + JSON-decoding one `fixture.json` per element — fixtures that the
+  endpoint never used (they are seeder-only). That work (~115 ms per open,
+  more under load) ran uncached on every picker open.
+  - `ElementCatalog::getElementMetadata()` is a new lightweight catalog view
+    (cType, name, host extension, title, description, group, and a
+    precomputed icon URL — no parsed config, no fixture) used by the picker
+    endpoint. Its result is stored in a new `desiderio_library` cache
+    (`SimpleFileBackend`, group `system`).
+  - The cache key fingerprints every `config.yaml`'s path and mtime, so
+    adding, editing, or removing a Content Block self-invalidates the entry
+    with no manual flush. “Flush all caches” also clears it.
+  - Cache reads and writes are best-effort: any cache failure (not
+    registered, unwritable directory, …) falls back to an uncached build, so
+    a cache problem can only ever slow the picker, never break it.
+  - `ElementCatalog::getElements()` (full records with parsed config and
+    fixture) is unchanged and still used by the seeder commands.
+  - Measured locally: cold build ~115 ms → warm cache hit ~2.5 ms (~50×) for
+    274 catalog elements. See `Documentation/Developer/Index.rst`, section
+    “Element library catalog cache”.
+
 ## [2.10.0] — 2026-06-15
 
 ### Added

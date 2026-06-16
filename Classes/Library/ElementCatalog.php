@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Webconsulting\Desiderio\Library;
 
 use Symfony\Component\Yaml\Yaml;
+use TYPO3\CMS\Core\Cache\CacheManager;
 use TYPO3\CMS\Core\Localization\LanguageService;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -18,15 +19,41 @@ use TYPO3\CMS\Core\Utility\PathUtility;
  * Title and description come from each element's config.yaml and are
  * localized through the element's language/labels.xlf when a translation
  * for the requested language exists.
+ *
+ * Two views exist on the same catalog:
+ *  - getElements() returns the FULL records (parsed config + demo fixture) and
+ *    is only used by the CLI seeder, where parsing every file is acceptable.
+ *  - getElementMetadata() returns the LIGHT records the frontend picker needs
+ *    (title/description/group/icon, no config, no fixture) and is persistently
+ *    cached, because building it parses ~255 config.yaml files and that ran on
+ *    every picker open. See getElementMetadata() for the cache/invalidation.
  */
 final class ElementCatalog
 {
     private const HOST_EXTENSIONS = ['desiderio', 'innesto'];
 
+    /**
+     * Cache holding the built picker metadata. Registered in ext_localconf.php
+     * (group "system"), so a normal "flush all caches" clears it; the cache key
+     * additionally fingerprints every config.yaml mtime, so edits self-invalidate.
+     */
+    private const METADATA_CACHE_IDENTIFIER = 'desiderio_library';
+
     /** @var list<array{cType: string, name: string, hostExtension: string, title: string, description: string, group: string, config: array<string, mixed>, fixture: array<string, mixed>}>|null */
     private ?array $elements = null;
 
+    /** @var list<array{cType: string, name: string, hostExtension: string, title: string, description: string, group: string, iconUrl: string}>|null */
+    private ?array $metadata = null;
+
+    public function __construct(
+        private readonly CacheManager $cacheManager,
+    ) {}
+
     /**
+     * Full catalog records including the parsed config and demo fixture. Used by
+     * the seeder; reads two files per element, so do not call it on a hot path -
+     * the frontend picker uses getElementMetadata() instead.
+     *
      * @return list<array{cType: string, name: string, hostExtension: string, title: string, description: string, group: string, config: array<string, mixed>, fixture: array<string, mixed>}>
      */
     public function getElements(): array
@@ -36,66 +63,91 @@ final class ElementCatalog
         }
 
         $elements = [];
-        foreach (self::HOST_EXTENSIONS as $hostExtension) {
-            if (!ExtensionManagementUtility::isLoaded($hostExtension)) {
-                continue;
-            }
-            $basePath = GeneralUtility::getFileAbsFileName('EXT:' . $hostExtension . '/ContentBlocks/ContentElements');
-            if ($basePath === '' || !is_dir($basePath)) {
-                continue;
-            }
-            $directories = scandir($basePath);
-            if ($directories === false) {
-                continue;
-            }
-            foreach ($directories as $directory) {
-                if ($directory === '.' || $directory === '..') {
-                    continue;
-                }
-                $configPath = $basePath . '/' . $directory . '/config.yaml';
-                if (!is_readable($configPath)) {
-                    continue;
-                }
-                $config = Yaml::parseFile($configPath);
-                if (!is_array($config)) {
-                    continue;
-                }
-                /** @var array<string, mixed> $config */
-                $configuredTypeName = $config['typeName'] ?? null;
-                $cType = is_string($configuredTypeName) && $configuredTypeName !== ''
-                    ? $configuredTypeName
-                    : $hostExtension . '_' . str_replace('-', '', $directory);
+        foreach ($this->scanContentElementConfigs() as $entry) {
+            $config = $entry['config'];
 
-                $fixture = [];
-                $fixturePath = $basePath . '/' . $directory . '/fixture.json';
-                if (is_readable($fixturePath)) {
-                    $decoded = json_decode((string)file_get_contents($fixturePath), true);
-                    if (is_array($decoded)) {
-                        /** @var array<string, mixed> $decoded */
-                        $fixture = $decoded;
-                    }
+            $fixture = [];
+            $fixturePath = dirname($entry['configPath']) . '/fixture.json';
+            if (is_readable($fixturePath)) {
+                $decoded = json_decode((string)file_get_contents($fixturePath), true);
+                if (is_array($decoded)) {
+                    /** @var array<string, mixed> $decoded */
+                    $fixture = $decoded;
                 }
-
-                $title = $config['title'] ?? null;
-                $description = $config['description'] ?? null;
-                $group = $config['group'] ?? null;
-                $elements[] = [
-                    'cType' => $cType,
-                    'name' => $directory,
-                    'hostExtension' => $hostExtension,
-                    'title' => is_string($title) && $title !== '' ? $title : $directory,
-                    'description' => is_string($description) ? $description : '',
-                    'group' => is_string($group) && $group !== '' ? $group : 'default',
-                    'config' => $config,
-                    'fixture' => $fixture,
-                ];
             }
+
+            $title = $config['title'] ?? null;
+            $description = $config['description'] ?? null;
+            $group = $config['group'] ?? null;
+            $elements[] = [
+                'cType' => $this->resolveCType($entry['hostExtension'], $entry['name'], $config),
+                'name' => $entry['name'],
+                'hostExtension' => $entry['hostExtension'],
+                'title' => is_string($title) && $title !== '' ? $title : $entry['name'],
+                'description' => is_string($description) ? $description : '',
+                'group' => is_string($group) && $group !== '' ? $group : 'default',
+                'config' => $config,
+                'fixture' => $fixture,
+            ];
         }
 
         usort($elements, static fn(array $a, array $b): int => strcasecmp($a['title'], $b['title']));
 
         $this->elements = $elements;
         return $elements;
+    }
+
+    /**
+     * Lightweight catalog metadata for the frontend element picker: one entry
+     * per element with title/description/group/icon, but WITHOUT the parsed
+     * config or demo fixture (which only the seeder needs and which made the
+     * per-request build read ~255 extra JSON files for nothing).
+     *
+     * Persistently cached: building this list parses ~255 config.yaml files,
+     * which dominated the picker endpoint's response time when it ran on every
+     * open. The cache key fingerprints every config.yaml's path + mtime, so
+     * adding, removing or editing an element rebuilds it automatically; a normal
+     * "flush all caches" (cache group "system") also clears it.
+     *
+     * @return list<array{cType: string, name: string, hostExtension: string, title: string, description: string, group: string, iconUrl: string}>
+     */
+    public function getElementMetadata(): array
+    {
+        if ($this->metadata !== null) {
+            return $this->metadata;
+        }
+
+        // A cache misconfiguration (not registered, missing table, unwritable
+        // dir, …) must only ever slow the picker, never break it: read and write
+        // are best-effort, and a cache failure falls through to an uncached build.
+        // buildMetadata() runs outside the try so its own errors still surface.
+        $cache = null;
+        $cacheKey = '';
+        try {
+            $cache = $this->cacheManager->getCache(self::METADATA_CACHE_IDENTIFIER);
+            $cacheKey = 'metadata-' . $this->computeFingerprint();
+            $cached = $cache->get($cacheKey);
+            if (is_array($cached)) {
+                /** @var list<array{cType: string, name: string, hostExtension: string, title: string, description: string, group: string, iconUrl: string}> $cached */
+                return $this->metadata = $cached;
+            }
+        } catch (\Throwable) {
+            $cache = null;
+        }
+
+        $metadata = $this->buildMetadata();
+
+        if ($cache !== null) {
+            try {
+                // lifetime 0 = keep until the cache group is flushed; the
+                // fingerprint key already self-invalidates on any config change.
+                $cache->set($cacheKey, $metadata, [], 0);
+            } catch (\Throwable) {
+                // best-effort write; serving uncached this once is fine
+            }
+        }
+
+        return $this->metadata = $metadata;
     }
 
     /**
@@ -140,7 +192,135 @@ final class ElementCatalog
      */
     public function getIconWebPath(array $element): string
     {
-        $publicPath = 'EXT:' . $element['hostExtension'] . '/Resources/Public/ContentBlocks/' . $element['name'] . '/icon.svg';
+        return $this->resolveIconWebPath($element['hostExtension'], $element['name']);
+    }
+
+    /**
+     * Scans the content element directories of every loaded host extension and
+     * parses each config.yaml. This is the expensive step (YAML parsing) shared
+     * by both catalog views; callers add what they need (fixture, icon, …).
+     *
+     * @return list<array{name: string, hostExtension: string, configPath: string, config: array<string, mixed>}>
+     */
+    private function scanContentElementConfigs(): array
+    {
+        $entries = [];
+        foreach (self::HOST_EXTENSIONS as $hostExtension) {
+            if (!ExtensionManagementUtility::isLoaded($hostExtension)) {
+                continue;
+            }
+            $basePath = GeneralUtility::getFileAbsFileName('EXT:' . $hostExtension . '/ContentBlocks/ContentElements');
+            if ($basePath === '' || !is_dir($basePath)) {
+                continue;
+            }
+            $directories = scandir($basePath);
+            if ($directories === false) {
+                continue;
+            }
+            foreach ($directories as $directory) {
+                if ($directory === '.' || $directory === '..') {
+                    continue;
+                }
+                $configPath = $basePath . '/' . $directory . '/config.yaml';
+                if (!is_readable($configPath)) {
+                    continue;
+                }
+                $config = Yaml::parseFile($configPath);
+                if (!is_array($config)) {
+                    continue;
+                }
+                /** @var array<string, mixed> $config */
+                $entries[] = [
+                    'name' => $directory,
+                    'hostExtension' => $hostExtension,
+                    'configPath' => $configPath,
+                    'config' => $config,
+                ];
+            }
+        }
+        return $entries;
+    }
+
+    /**
+     * Builds the lightweight picker metadata (no config, no fixture) from the
+     * parsed configs. Sorted by the default-language title, matching getElements().
+     *
+     * @return list<array{cType: string, name: string, hostExtension: string, title: string, description: string, group: string, iconUrl: string}>
+     */
+    private function buildMetadata(): array
+    {
+        $metadata = [];
+        foreach ($this->scanContentElementConfigs() as $entry) {
+            $config = $entry['config'];
+            $title = $config['title'] ?? null;
+            $description = $config['description'] ?? null;
+            $group = $config['group'] ?? null;
+            $metadata[] = [
+                'cType' => $this->resolveCType($entry['hostExtension'], $entry['name'], $config),
+                'name' => $entry['name'],
+                'hostExtension' => $entry['hostExtension'],
+                'title' => is_string($title) && $title !== '' ? $title : $entry['name'],
+                'description' => is_string($description) ? $description : '',
+                'group' => is_string($group) && $group !== '' ? $group : 'default',
+                'iconUrl' => $this->resolveIconWebPath($entry['hostExtension'], $entry['name']),
+            ];
+        }
+
+        usort($metadata, static fn(array $a, array $b): int => strcasecmp($a['title'], $b['title']));
+
+        return $metadata;
+    }
+
+    /**
+     * Cheap content-of-the-catalog fingerprint: every config.yaml's path + mtime.
+     * Only stats files (no YAML parsing), so it is fast to recompute on a cache
+     * hit; the result keys the metadata cache so any edit/add/remove of an
+     * element rebuilds the metadata without a manual flush.
+     */
+    private function computeFingerprint(): string
+    {
+        $parts = [];
+        foreach (self::HOST_EXTENSIONS as $hostExtension) {
+            if (!ExtensionManagementUtility::isLoaded($hostExtension)) {
+                continue;
+            }
+            $basePath = GeneralUtility::getFileAbsFileName('EXT:' . $hostExtension . '/ContentBlocks/ContentElements');
+            if ($basePath === '' || !is_dir($basePath)) {
+                continue;
+            }
+            $directories = scandir($basePath);
+            if ($directories === false) {
+                continue;
+            }
+            foreach ($directories as $directory) {
+                if ($directory === '.' || $directory === '..') {
+                    continue;
+                }
+                $configPath = $basePath . '/' . $directory . '/config.yaml';
+                $mtime = @filemtime($configPath);
+                if ($mtime !== false) {
+                    $parts[] = $configPath . ':' . $mtime;
+                }
+            }
+        }
+        sort($parts);
+        return md5(implode('|', $parts));
+    }
+
+    /**
+     * @param array<string, mixed> $config
+     */
+    private function resolveCType(string $hostExtension, string $directory, array $config): string
+    {
+        $configuredTypeName = $config['typeName'] ?? null;
+        return is_string($configuredTypeName) && $configuredTypeName !== ''
+            ? $configuredTypeName
+            : $hostExtension . '_' . str_replace('-', '', $directory);
+    }
+
+    private function resolveIconWebPath(string $hostExtension, string $name): string
+    {
+        $publicPath = 'EXT:' . $hostExtension . '/Resources/Public/ContentBlocks/' . $name . '/icon.svg';
         if (!is_file(GeneralUtility::getFileAbsFileName($publicPath))) {
             return '';
         }

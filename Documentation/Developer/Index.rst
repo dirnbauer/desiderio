@@ -277,6 +277,126 @@ strips invalid values before the frontend stack runs.
 Registered in ``Configuration/RequestMiddlewares.php``. Covered by
 ``Tests/Unit/ExtbasePluginRequestSanitizerMiddlewareTest.php``.
 
+..  _developer-element-library:
+
+Element library catalog cache
+=============================
+
+The visual element picker (the "Add content" panel that lists every content
+element with a rendered preview) is filled by a single frontend request,
+``?elementLibrary=1``, handled by ``ElementLibraryMiddleware``. That endpoint
+returns the full catalog as JSON: one entry per content element with its
+localized title and description, category, seeded demo ``uid``, icon, and a
+cache-hash-signed preview URL.
+
+The problem it solves
+---------------------
+
+Building that catalog means reading the on-disk Content Blocks definitions.
+``ElementCatalog`` scans the ``ContentBlocks/ContentElements`` directory of
+every loaded host extension (``desiderio`` and, when installed, ``innesto``)
+and, for each element, parses its ``config.yaml`` and reads its
+``fixture.json``. With ~255 elements that is ~255 YAML parses through
+Symfony's pure-PHP parser plus ~255 JSON file reads on **every** picker open.
+The demo fixtures are only needed by the seeder, never by the picker, so half
+of that I/O was pure waste. Measured locally this was ~115 ms of work per
+open (worse under a small PHP-FPM pool), paid again on every open because
+nothing was cached.
+
+Two catalog views
+-----------------
+
+``ElementCatalog`` now exposes two views over the same scan, so the hot path
+only does the work it needs:
+
+..  list-table::
+    :header-rows: 1
+    :widths: 34 66
+
+    *   - Method
+        - Use
+    *   - ``getElementMetadata()``
+        - Lightweight, **cached** view for the picker endpoint: cType, name,
+          host extension, title, description, group, and a precomputed icon
+          web path. No parsed ``config``, no ``fixture``.
+    *   - ``getElements()``
+        - Full, uncached view for the seeder commands: same metadata **plus**
+          the parsed ``config`` array and the demo ``fixture``. Unchanged; the
+          seeder is a cold CLI path where parsing every file is acceptable.
+
+Both share a private ``scanContentElementConfigs()`` step (directory scan plus
+``config.yaml`` parse); only ``getElements()`` additionally reads the fixture.
+
+The cache
+---------
+
+``getElementMetadata()`` stores its built list in a dedicated cache,
+registered in :file:`ext_localconf.php`:
+
+..  code-block:: php
+    :caption: ext_localconf.php — element library catalog cache
+
+    $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['desiderio_library'] ??= [
+        'frontend' => \TYPO3\CMS\Core\Cache\Frontend\VariableFrontend::class,
+        'backend' => \TYPO3\CMS\Core\Cache\Backend\SimpleFileBackend::class,
+        'groups' => ['system'],
+    ];
+
+``SimpleFileBackend`` is deliberate: it needs no database table, so a fresh
+deploy of the extension works without a schema migration, and reads are a
+single file ``unserialize`` rather than a database round trip. The ``??=``
+keeps any project-level override of the same identifier intact.
+
+Invalidation
+------------
+
+The cache entry key is ``metadata-<fingerprint>``, where the fingerprint is an
+MD5 of every ``config.yaml``'s path and modification time. Recomputing it only
+stats files (no YAML parsing), so a cache hit is cheap. Two things therefore
+invalidate the catalog:
+
+..  list-table::
+    :header-rows: 1
+    :widths: 34 66
+
+    *   - Trigger
+        - Effect
+    *   - Add, edit, or remove a content element
+        - A ``config.yaml`` mtime changes, the fingerprint changes, the key
+          changes, and the next open rebuilds automatically — no flush needed.
+    *   - Flush all caches
+        - The ``system`` cache group is cleared, dropping the stored entry.
+
+..  note::
+
+    The cache group ``system`` is **not** cleared by the frontend-only "flush
+    frontend caches" action, so normal editing (which flushes page caches)
+    leaves the catalog cached. Adding a content element is a developer action
+    that changes a ``config.yaml`` on disk, which the fingerprint already
+    detects.
+
+Resilience and measured effect
+------------------------------
+
+Reading and writing the cache is best-effort: ``getElementMetadata()`` builds
+the metadata outside the ``try`` block and catches any cache error (cache not
+registered, an unwritable cache directory, …), degrading to an uncached build.
+A cache problem can therefore only ever slow the picker, never break it; a
+genuine build error still surfaces.
+
+After the first build, opening the picker drops from ~115 ms of catalog work
+to a ~2.5 ms cache hit (~50× faster) for 274 catalog elements. Localization
+(``labels.xlf`` / ``library_short.xlf`` lookups, which depend on the backend
+user's language) stays per-request and is served from TYPO3's own
+localization cache.
+
+..  tip::
+
+    The rendered **preview** thumbnails inside the picker are a separate
+    concern: each is a standalone frontend request stored in the standard page
+    cache and pre-rendered by ``desiderio:library:warm``. This catalog cache
+    only covers the list/JSON metadata, not the preview iframes.
+
 ..  _developer-maintainability:
 
 Maintainability

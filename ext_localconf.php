@@ -9,6 +9,20 @@ defined('TYPO3') or die();
 // The extensionLoaded("<key>") TypoScript condition used by the site set is
 // registered via Configuration/ExpressionLanguage.php (TYPO3 v12+ mechanism).
 
+// Element library catalog cache. The frontend element picker (?elementLibrary=1)
+// builds its catalog by parsing one config.yaml per Content Block (~255 files);
+// that parse dominated the endpoint's response time when it ran on every open.
+// ElementCatalog::getElementMetadata() caches the built metadata here, keyed by a
+// fingerprint of every config.yaml's mtime, so it rebuilds only when an element
+// changes. Group "system" -> a normal "flush all caches" also clears it.
+// SimpleFileBackend: no DB table to migrate (works on a fresh deploy without a
+// schema update), fast reads, and group "system" flushing wipes the cache dir.
+$GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['desiderio_library'] ??= [
+    'frontend' => \TYPO3\CMS\Core\Cache\Frontend\VariableFrontend::class,
+    'backend' => \TYPO3\CMS\Core\Cache\Backend\SimpleFileBackend::class,
+    'groups' => ['system'],
+];
+
 // CSS, JS and all frontend configuration is provided via the site set in
 // Configuration/Sets/Desiderio/. Page TSconfig is auto-loaded from
 // Configuration/page.tsconfig in TYPO3 14.

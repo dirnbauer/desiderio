@@ -74,8 +74,12 @@ final class ElementLibraryMiddleware implements MiddlewareInterface
 
         $seededRecords = $this->previewWarmer->getSeededRecords($storagePid);
 
+        // Light, persistently cached catalog: no config/fixture parsing per
+        // request (the seeder-only data) - just the fields the picker renders.
+        $catalog = $this->elementCatalog->getElementMetadata();
+
         $elements = [];
-        foreach ($this->elementCatalog->getElements() as $element) {
+        foreach ($catalog as $element) {
             $demoUid = $seededRecords[$element['cType']] ?? 0;
             $localized = $this->elementCatalog->localizeElement($element, $languageService);
             // Short, scannable card blurb (with **bold**/*italic* emphasis), keyed
@@ -94,13 +98,13 @@ final class ElementLibraryMiddleware implements MiddlewareInterface
                 'source' => $element['hostExtension'],
                 'demoUid' => $demoUid,
                 'previewUrl' => $demoUid > 0 ? $this->previewUrlBuilder->build($site, $demoUid) : '',
-                'iconUrl' => $this->elementCatalog->getIconWebPath($element),
+                'iconUrl' => $element['iconUrl'],
             ];
         }
 
         return new JsonResponse(
             [
-                'categories' => $this->elementCatalog->getCategories($this->elementCatalog->getElements()),
+                'categories' => $this->elementCatalog->getCategories($catalog),
                 'elements' => $elements,
             ],
             200,

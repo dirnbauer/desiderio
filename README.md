@@ -308,6 +308,8 @@ Desiderio registers `ExtbasePluginRequestSanitizerMiddleware` to strip malformed
 
 Content Block media fields should use `<f:image image="{fileReference}">` with structured Fluid `data` arguments so Visual Editor image overlays attach correctly.
 
+The element picker ("Add content" panel) is filled by the `?elementLibrary=1` endpoint, which lists every content element. Its catalog is built from the on-disk Content Blocks definitions and **cached** (`desiderio_library`, `SimpleFileBackend`): opening the picker no longer re-parses ~255 `config.yaml` files each time. The cache key fingerprints every `config.yaml` mtime, so adding or editing an element self-invalidates it; "flush all caches" also clears it. Details in `Documentation/Developer/Index.rst` (section "Element library catalog cache").
+
 ## Documentation
 
 Full documentation lives in `Documentation/`:

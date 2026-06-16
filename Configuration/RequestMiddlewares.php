@@ -33,8 +33,10 @@ return [
             ],
         ],
         // Render element-library previews cacheable even inside an authenticated
-        // edit session: turn the admin panel off for elPreview requests before
-        // EXT:adminpanel's initiator so the preview is not flagged no_cache.
+        // edit session: for elPreview requests turn the admin panel off (before
+        // EXT:adminpanel's initiator) and pin the workspace to live (before
+        // EXT:workspaces' preview), so the preview is not flagged no_cache and is
+        // served from the warmed live page cache.
         'webconsulting/desiderio-element-preview-cacheable' => [
             'target' => \Webconsulting\Desiderio\Middleware\ElementPreviewCacheableMiddleware::class,
             'after' => [
@@ -42,6 +44,7 @@ return [
             ],
             'before' => [
                 'typo3/cms-adminpanel/initiator',
+                'typo3/cms-workspaces/preview',
             ],
         ],
     ],

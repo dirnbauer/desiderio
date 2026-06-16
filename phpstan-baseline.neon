@@ -631,13 +631,37 @@ parameters:
 			path: ext_localconf.php
 
 		-
+			message: '#^Cannot access offset ''SYS'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: ext_localconf.php
+
+		-
+			message: '#^Cannot access offset ''cacheConfigurations'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: ext_localconf.php
+
+		-
 			message: '#^Cannot access offset ''cacheHash'' on mixed\.$#'
 			identifier: offsetAccess.nonOffsetAccessible
 			count: 2
 			path: ext_localconf.php
 
 		-
+			message: '#^Cannot access offset ''caching'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: ext_localconf.php
+
+		-
 			message: '#^Cannot access offset ''desiderio'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: ext_localconf.php
+
+		-
+			message: '#^Cannot access offset ''desiderio_library'' on mixed\.$#'
 			identifier: offsetAccess.nonOffsetAccessible
 			count: 1
 			path: ext_localconf.php

@@ -6,6 +6,22 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Fixed
+
+- Element-library picker previews are now served from the warmed page cache
+  even when the editor is working inside a workspace. The preview iframes
+  carry the backend session, so inside a workspace they rendered as a
+  workspace preview — which never reads the live page cache — and re-rendered
+  on every open (~1.1 s each, throttled four at a time, so a picker reload
+  took ~16 s and thumbnails flickered in and out). `ElementPreviewCacheableMiddleware`
+  now pins `?elPreview` requests to the live workspace (the Context workspace
+  aspect and the backend user's temporary workspace) before EXT:workspaces'
+  preview middleware reads the offline state, so previews hit the same cache
+  `desiderio:library:warm` fills regardless of which workspace the editor is in.
+- `WarmElementPreviewsCommand` no longer casts the raw `--folder` option
+  (mixed) straight to string, and the `desiderio_library` cache registration's
+  `$GLOBALS` writes are baselined, so PHPStan (level max) is green again.
+
 ## [2.11.0] — 2026-06-16
 
 ### Changed

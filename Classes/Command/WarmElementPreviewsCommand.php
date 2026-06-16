@@ -60,10 +60,11 @@ final class WarmElementPreviewsCommand extends Command
         }
         $jobs = array_values(array_filter($jobs, static fn(array $job): bool => $job['sites'] !== []));
         if ($jobs === []) {
+            $folderOption = $input->getOption('folder');
             if ($siteFilter === null) {
                 $io->error('No site configures an element library (elementLibrary.storagePid).');
-            } elseif ($input->getOption('folder') !== null) {
-                $io->error(sprintf('Site "%s" does not use element library folder %s.', $siteFilter, (string)$input->getOption('folder')));
+            } elseif ($folderOption !== null) {
+                $io->error(sprintf('Site "%s" does not use element library folder %s.', $siteFilter, is_scalar($folderOption) ? (string)$folderOption : ''));
             } else {
                 $io->error(sprintf('No element library is configured for site "%s".', $siteFilter));
             }

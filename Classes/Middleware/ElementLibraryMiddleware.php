@@ -14,6 +14,7 @@ use TYPO3\CMS\Core\Http\JsonResponse;
 use TYPO3\CMS\Core\Localization\LanguageServiceFactory;
 use TYPO3\CMS\Core\Site\Entity\Site;
 use Webconsulting\Desiderio\Library\ElementCatalog;
+use Webconsulting\Desiderio\Library\ElementSearchService;
 use Webconsulting\Desiderio\Library\PreviewUrlBuilder;
 use Webconsulting\Desiderio\Library\PreviewWarmer;
 
@@ -33,6 +34,7 @@ final class ElementLibraryMiddleware implements MiddlewareInterface
         private readonly Context $context,
         private readonly FormProtectionFactory $formProtectionFactory,
         private readonly ElementCatalog $elementCatalog,
+        private readonly ElementSearchService $elementSearchService,
         private readonly PreviewUrlBuilder $previewUrlBuilder,
         private readonly PreviewWarmer $previewWarmer,
         private readonly LanguageServiceFactory $languageServiceFactory,
@@ -40,7 +42,10 @@ final class ElementLibraryMiddleware implements MiddlewareInterface
 
     public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
     {
-        if (!isset($request->getQueryParams()['elementLibrary'])) {
+        $queryParams = $request->getQueryParams();
+        $isList = isset($queryParams['elementLibrary']);
+        $isSearch = isset($queryParams['elementLibrarySearch']);
+        if (!$isList && !$isSearch) {
             return $handler->handle($request);
         }
 
@@ -52,6 +57,24 @@ final class ElementLibraryMiddleware implements MiddlewareInterface
             || !$this->formProtectionFactory->createForType('backend')->validateToken($token, 'visual_editor', 'save')
         ) {
             return new JsonResponse(['error' => 'Invalid or missing request token'], 403);
+        }
+
+        $backendUser = $GLOBALS['BE_USER'] ?? null;
+        $languageService = $backendUser instanceof \TYPO3\CMS\Core\Authentication\AbstractUserAuthentication
+            ? $this->languageServiceFactory->createFromUserPreferences($backendUser)
+            : $this->languageServiceFactory->create('default');
+
+        // Typo-tolerant search + suggestions. The panel already holds the whole
+        // catalog, so we only return a ranked cType list (+ suggest / did-you-mean)
+        // and it reorders the items it has. Needs no site/storage, just the catalog.
+        if ($isSearch) {
+            $query = (string)$queryParams['elementLibrarySearch'];
+            $langKey = is_array($backendUser?->user) ? (string)($backendUser->user['lang'] ?? 'default') : 'default';
+            return new JsonResponse(
+                $this->elementSearchService->search($query, $languageService, $langKey),
+                200,
+                ['Cache-Control' => 'private, no-store'],
+            );
         }
 
         $site = $request->getAttribute('site');
@@ -66,11 +89,6 @@ final class ElementLibraryMiddleware implements MiddlewareInterface
                 404
             );
         }
-
-        $backendUser = $GLOBALS['BE_USER'] ?? null;
-        $languageService = $backendUser instanceof \TYPO3\CMS\Core\Authentication\AbstractUserAuthentication
-            ? $this->languageServiceFactory->createFromUserPreferences($backendUser)
-            : $this->languageServiceFactory->create('default');
 
         $seededRecords = $this->previewWarmer->getSeededRecords($storagePid);
 
@@ -88,12 +106,18 @@ final class ElementLibraryMiddleware implements MiddlewareInterface
             // this shorter one. Falls back to the full text when none is authored.
             $shortFile = 'LLL:EXT:' . $element['hostExtension'] . '/Resources/Private/Language/library_short.xlf:';
             $shortDescription = $languageService->sL($shortFile . $element['cType']);
+            // Keyword chips: cards show the first ~10 (ranked); the detail view
+            // shows keywords + synonyms. Both also feed the client-side search
+            // fallback when the PHP search endpoint is unreachable.
+            $kw = $this->elementCatalog->localizeKeywords($element, $languageService);
             $elements[] = [
                 'cType' => $element['cType'],
                 'name' => $element['name'],
                 'title' => $localized['title'],
                 'description' => $localized['description'],
                 'shortDescription' => $shortDescription !== '' ? $shortDescription : $localized['description'],
+                'keywords' => $kw['keywords'],
+                'synonyms' => $kw['synonyms'],
                 'group' => $element['group'],
                 'source' => $element['hostExtension'],
                 'demoUid' => $demoUid,

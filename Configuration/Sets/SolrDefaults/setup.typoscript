@@ -36,7 +36,7 @@ plugin.tx_solr.search.faceting {
       partialName = Options
       minimumCount = 0
       keepAllOptionsOnSelection = 1
-      manualSortOrder = pages,tx_news_domain_model_news
+      manualSortOrder = pages,tx_news_domain_model_news,tx_skillflow_skill
       renderingInstruction = CASE
       renderingInstruction {
         key.field = optionValue
@@ -49,6 +49,9 @@ plugin.tx_solr.search.faceting {
 
         tx_news_domain_model_news = TEXT
         tx_news_domain_model_news.value = News
+
+        tx_skillflow_skill = TEXT
+        tx_skillflow_skill.data = LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:solr.contentType.skills
       }
     }
   }

@@ -605,6 +605,7 @@ document.addEventListener('DOMContentLoaded', () => {
     pages: input.dataset.dSolrTypeLabelPages || 'Pages',
     tx_news_domain_model_news: input.dataset.dSolrTypeLabelNews || 'News',
     tt_address: input.dataset.dSolrTypeLabelAddresses || 'Addresses',
+    tx_skillflow_skill: input.dataset.dSolrTypeLabelSkills || 'Skills',
   });
 
   class DesiderioSolrSuggest {

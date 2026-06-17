@@ -170,6 +170,37 @@ final class ElementCatalog
     }
 
     /**
+     * Localized search/display keywords for one catalog element. The keyword file
+     * mirrors library_short.xlf (XLIFF 2.0, unit id = cType), but its value packs
+     * two delimited groups: "primary || synonyms", each a " | "-separated list.
+     * The first ~10 primary terms are shown on the card (ranked, most important
+     * first); the synonyms are extra search terms shown only in the detail view.
+     * Returns empty lists when an element has no authored keywords.
+     *
+     * @param array{cType: string, hostExtension: string} $element
+     * @return array{keywords: list<string>, synonyms: list<string>}
+     */
+    public function localizeKeywords(array $element, LanguageService $languageService): array
+    {
+        $file = 'LLL:EXT:' . $element['hostExtension'] . '/Resources/Private/Language/library_keywords.xlf:';
+        $raw = $languageService->sL($file . $element['cType']);
+        if ($raw === '') {
+            return ['keywords' => [], 'synonyms' => []];
+        }
+        [$primary, $synonyms] = array_pad(explode(' || ', $raw, 2), 2, '');
+        $split = static function (string $value): array {
+            if (trim($value) === '') {
+                return [];
+            }
+            return array_values(array_filter(
+                array_map('trim', explode(' | ', $value)),
+                static fn(string $term): bool => $term !== '',
+            ));
+        };
+        return ['keywords' => $split($primary), 'synonyms' => $split($synonyms)];
+    }
+
+    /**
      * @param list<array{group: string}> $elements
      * @return list<string>
      */
@@ -304,6 +335,32 @@ final class ElementCatalog
             }
         }
         sort($parts);
+        return md5(implode('|', $parts));
+    }
+
+    /**
+     * Fingerprint for the per-language search index cache: the catalog config
+     * fingerprint plus every library_keywords.xlf path + mtime. Editing a keyword
+     * file (not just a config.yaml) thus self-invalidates the cached search index,
+     * exactly as computeFingerprint() does for the picker metadata.
+     */
+    public function getSearchFingerprint(): string
+    {
+        $parts = [$this->computeFingerprint()];
+        foreach (self::HOST_EXTENSIONS as $hostExtension) {
+            if (!ExtensionManagementUtility::isLoaded($hostExtension)) {
+                continue;
+            }
+            foreach (['library_keywords.xlf', 'de.library_keywords.xlf'] as $file) {
+                $path = GeneralUtility::getFileAbsFileName(
+                    'EXT:' . $hostExtension . '/Resources/Private/Language/' . $file,
+                );
+                $mtime = @filemtime($path);
+                if ($mtime !== false) {
+                    $parts[] = $path . ':' . $mtime;
+                }
+            }
+        }
         return md5(implode('|', $parts));
     }
 

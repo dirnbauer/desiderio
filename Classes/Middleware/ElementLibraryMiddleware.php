@@ -68,8 +68,13 @@ final class ElementLibraryMiddleware implements MiddlewareInterface
         // catalog, so we only return a ranked cType list (+ suggest / did-you-mean)
         // and it reorders the items it has. Needs no site/storage, just the catalog.
         if ($isSearch) {
-            $query = (string)$queryParams['elementLibrarySearch'];
-            $langKey = is_array($backendUser?->user) ? (string)($backendUser->user['lang'] ?? 'default') : 'default';
+            $rawQuery = $queryParams['elementLibrarySearch'] ?? '';
+            $query = is_string($rawQuery) ? $rawQuery : '';
+            $langKey = 'default';
+            if ($backendUser instanceof \TYPO3\CMS\Core\Authentication\AbstractUserAuthentication && is_array($backendUser->user)) {
+                $lang = $backendUser->user['lang'] ?? null;
+                $langKey = is_string($lang) && $lang !== '' ? $lang : 'default';
+            }
             return new JsonResponse(
                 $this->elementSearchService->search($query, $languageService, $langKey),
                 200,

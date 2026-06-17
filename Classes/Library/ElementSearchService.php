@@ -24,8 +24,12 @@ final class ElementSearchService
 {
     private const CACHE_IDENTIFIER = 'desiderio_library';
 
-    /** Matches below this score are dropped (a single weak fuzzy hit ~ 1.7). */
-    private const SCORE_FLOOR = 0.5;
+    /**
+     * Matches below this score are dropped. Kept low on purpose so the search
+     * favours recall: a single solid hit on a low-weight field (e.g. a word that
+     * only appears in the description) or a fuzzy near-miss still surfaces.
+     */
+    private const SCORE_FLOOR = 0.3;
 
     /** Field weights: title beats keyword beats synonym beats group beats prose. */
     private const WEIGHT_TITLE = 10;
@@ -88,7 +92,7 @@ final class ElementSearchService
                 $best = 0.0;
                 $bestSolid = false;
                 $lq = strlen($queryToken);
-                $maxEdits = $lq <= 3 ? 0 : ($lq <= 7 ? 1 : 2);
+                $maxEdits = $lq <= 3 ? 0 : ($lq <= 6 ? 1 : 2);
 
                 foreach ($tokens as $token => $weight) {
                     $token = (string)$token;
@@ -131,8 +135,11 @@ final class ElementSearchService
                 continue;
             }
 
-            // Reward covering ALL query words far above matching just one.
-            $coverage = ($matched / count($queryTokens)) ** 1.5;
+            // Reward covering more of the query, but give partial matches real
+            // credit instead of crushing them: a strong hit on one word of a
+            // multi-word query (e.g. "hero" in "blue hero") should still surface,
+            // just ranked below an element that matches every word.
+            $coverage = 0.5 + 0.5 * ($matched / count($queryTokens));
             $score *= $coverage;
             if ($titleHit) {
                 $score *= 1.25;
@@ -143,7 +150,8 @@ final class ElementSearchService
         }
 
         uasort($matches, static function (array $a, array $b): int {
-            return $b['score'] <=> $a['score'] ?: strcasecmp($a['title'], $b['title']);
+            $byScore = $b['score'] <=> $a['score'];
+            return $byScore !== 0 ? $byScore : strcasecmp($a['title'], $b['title']);
         });
 
         $result = [];

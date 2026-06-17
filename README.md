@@ -312,6 +312,8 @@ The element picker ("Add content" panel) is filled by the `?elementLibrary=1` en
 
 The preview thumbnails inside the picker are page-cached per site base. Warm them with `vendor/bin/typo3 desiderio:library:warm` — with no arguments it warms every site's library; `--folder=<uid>` warms one folder across all sites that use it; `--site=<id>` restricts to one site. Details in `Documentation/Developer/Index.rst` (sections "Element library catalog cache" and "Warming preview thumbnails").
 
+The picker's search box is **typo-tolerant** and runs server-side (`?elementLibrarySearch=<term>`): a small "Solr without Solr" — a cached, weighted token index over each element's title, keywords, synonyms, group and description, with `levenshtein()`-based fuzzy matching that corrects typos, plus autocomplete and "did you mean" suggestions. It is pure PHP, with no external search service or library. See `Documentation/Developer/Index.rst` (section "Element library search").
+
 ## Documentation
 
 Full documentation lives in `Documentation/`:

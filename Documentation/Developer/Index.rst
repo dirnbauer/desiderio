@@ -436,6 +436,122 @@ runs the same multi-site warm after seeding (unless ``--no-warm`` is given).
     cold again and re-render lazily on first view (four at a time). Re-run the
     warm command after a full flush if you want them instant.
 
+..  _developer-element-library-search:
+
+Element library search
+======================
+
+The picker's search box is **typo-tolerant** and runs entirely server-side, yet
+needs no external search service. The whole catalog (~255 elements) is already in
+the browser, so the endpoint returns only a *ranked list of cTypes* and the panel
+reorders the cards it already holds. It is a deliberately small "Solr without
+Solr", implemented in ``Webconsulting\Desiderio\Library\ElementSearchService``
+and reached through ``ElementLibraryMiddleware`` at ``?elementLibrarySearch=<term>``
+(the same authenticated, backend-token-protected request as ``?elementLibrary=1``).
+
+No external dependency
+----------------------
+
+The only fuzzy primitive is PHP's built-in ``levenshtein()`` (a core string
+function). Matching also uses ``str_starts_with()`` / ``str_contains()`` and
+``iconv()`` for accent folding. There is no Composer search package, no Solr, no
+index server.
+
+The weighted token index
+------------------------
+
+For each element the service tokenizes several fields and remembers, per token,
+the *highest* field weight under which it appears:
+
+..  list-table::
+    :header-rows: 1
+
+    *   - Field
+        - Weight
+    *   - Title
+        - 10
+    *   - Keyword
+        - 6
+    *   - Synonym
+        - 3
+    *   - Group
+        - 2
+    *   - Description
+        - 1
+
+Tokenizing lowercases the text, folds German umlauts (``ä → ae`` …) and
+transliterates remaining diacritics to ASCII **before** any byte-based
+``levenshtein()`` / ``strlen()`` runs, drops a short EN+DE stop-word list, and
+splits on non-alphanumerics. The keyword and synonym sets come from
+:file:`Resources/Private/Language/library_keywords.xlf` (plus its ``de.``
+variant), so editors can broaden what an element matches without touching code.
+
+Scoring a query
+---------------
+
+Every query token is compared against every element token, and the best hit
+counts:
+
+..  list-table::
+    :header-rows: 1
+
+    *   - Match
+        - Contribution
+    *   - exact
+        - ``weight × 1.0``
+    *   - prefix (token starts with the query)
+        - ``weight × 0.85``
+    *   - substring (query ≥ 3 chars)
+        - ``weight × 0.55``
+    *   - fuzzy (Levenshtein within budget)
+        - ``weight × (0.7 − 0.18 × distance)``
+
+The Levenshtein edit budget grows with query length (0 edits up to 3 chars,
+1 edit up to 6, 2 edits beyond) and is gated by a length pre-filter, so only
+plausibly-close tokens are ever compared.
+
+The per-element score is the sum of its token contributions, then:
+
+*   multiplied by a **coverage** factor ``0.5 + 0.5 × (matched ÷ query words)`` —
+    matching every query word ranks highest, but a strong hit on one word of a
+    multi-word query still surfaces;
+*   boosted ``× 1.25`` when a query word hit the title;
+*   dropped if it stays below the **score floor** (``0.3``).
+
+Matches are sorted by score, ties broken alphabetically by title.
+
+..  note::
+
+    The score floor and coverage factor are tuned for **recall** — the picker is
+    a browse-and-discover surface, so showing one extra near-match beats hiding a
+    relevant element. Both knobs only ever *add* matches; neither can reorder a
+    full-coverage hit below a partial one.
+
+Suggestions and "did you mean"
+------------------------------
+
+Alongside the ranked matches the endpoint returns:
+
+*   **autocomplete** completions for the last (partial) query word — vocabulary
+    tokens it prefixes, or that are within one edit, ranked prefix-before-fuzzy
+    then by field weight;
+*   a **"did you mean"** rewrite when a query word matched nothing solid (only
+    fuzzily, or not at all): each such word is swapped for its closest vocabulary
+    token.
+
+Caching and fallback
+--------------------
+
+The per-language weighted index is built once and stored in the same
+``desiderio_library`` cache as the catalog (``SimpleFileBackend``, group
+``system``). Its key includes the keyword-file fingerprint, so editing a keyword
+self-invalidates it; "flush all caches" clears it too. Cache reads and writes are
+best-effort — a cache failure only ever slows a search, never breaks it.
+
+While the first request is in flight, or whenever the endpoint is unreachable, the
+panel falls back to a pure client-side substring filter over the catalog it
+already holds, so the search box always does *something*.
+
 ..  _developer-maintainability:
 
 Maintainability

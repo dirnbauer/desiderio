@@ -52,3 +52,29 @@ ExtensionManagementUtility::addFieldsToPalette(
     'tx_desiderio_shadcn_preset',
     'after:backend_layout_next_level',
 );
+
+// Per-page control for the automatic page-title <h1> rendered by the page
+// templates (Pages/PageTitle partial). The heading is visible by default;
+// enabling this renders it screen-reader-only, for pages whose first content
+// element (a hero or header) already shows the title and would otherwise
+// duplicate the heading.
+$GLOBALS['TCA']['pages']['columns']['tx_desiderio_h1_sronly'] = [
+    'exclude' => true,
+    'label' => 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:pages.h1SrOnly',
+    'description' => 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:pages.h1SrOnly.description',
+    'config' => [
+        'type' => 'check',
+        'renderType' => 'checkboxToggle',
+        'default' => 0,
+        'items' => [
+            ['label' => 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:pages.h1SrOnly.toggle'],
+        ],
+    ],
+];
+
+ExtensionManagementUtility::addFieldsToPalette(
+    'pages',
+    'title',
+    'tx_desiderio_h1_sronly',
+    'after:title',
+);

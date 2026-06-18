@@ -2023,6 +2023,24 @@
         <target>Erben (übergeordnete Seite oder Site-Einstellung)</target>
       </segment>
     </unit>
+    <unit id="pages.h1SrOnly">
+      <segment state="final">
+        <source>Page-title heading for screen readers only</source>
+        <target>Seitentitel-Überschrift nur für Screenreader</target>
+      </segment>
+    </unit>
+    <unit id="pages.h1SrOnly.toggle">
+      <segment state="final">
+        <source>Hide the page-title heading visually</source>
+        <target>Seitentitel-Überschrift visuell ausblenden</target>
+      </segment>
+    </unit>
+    <unit id="pages.h1SrOnly.description">
+      <segment state="final">
+        <source>The page templates render one h1 with the page title. By default it is visible above the content. Enable this to render it for screen readers only (sr-only) — use it on pages whose first content element (a hero or header) already shows the title, so the heading is not duplicated.</source>
+        <target>Die Seitentemplates rendern eine h1 mit dem Seitentitel. Standardmäßig ist sie oberhalb des Inhalts sichtbar. Aktivieren, um sie nur für Screenreader auszugeben (sr-only) – sinnvoll auf Seiten, deren erstes Inhaltselement (ein Hero oder Header) den Titel bereits anzeigt, damit die Überschrift nicht doppelt erscheint.</target>
+      </segment>
+    </unit>
     <unit id="captcha.placeholder.button">
       <segment state="final">
         <source>Protected against spam</source>

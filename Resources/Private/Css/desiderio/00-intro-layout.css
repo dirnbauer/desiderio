@@ -22,3 +22,19 @@ body {
     padding-top: 4rem;
 }
 
+/* ------------------------------------------------------------------ */
+/*  Layout: Page title                                                 */
+/* ------------------------------------------------------------------ */
+
+/* The single page-level <h1> rendered by the Pages/PageTitle partial.
+   Visible by default, sitting between the breadcrumb and the first
+   content section. The screen-reader-only variant (flagged per page via
+   tx_desiderio_h1_sronly) uses .sr-only and needs no rules here. */
+.desiderio-page-title {
+    padding: 2rem 0 0.5rem;
+}
+
+.desiderio-page-title__heading {
+    margin: 0;
+}
+

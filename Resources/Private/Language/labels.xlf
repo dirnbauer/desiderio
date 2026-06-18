@@ -1696,6 +1696,21 @@
         <source>Inherit (parent page or site setting)</source>
       </segment>
     </unit>
+    <unit id="pages.h1SrOnly">
+      <segment>
+        <source>Page-title heading for screen readers only</source>
+      </segment>
+    </unit>
+    <unit id="pages.h1SrOnly.toggle">
+      <segment>
+        <source>Hide the page-title heading visually</source>
+      </segment>
+    </unit>
+    <unit id="pages.h1SrOnly.description">
+      <segment>
+        <source>The page templates render one h1 with the page title. By default it is visible above the content. Enable this to render it for screen readers only (sr-only) — use it on pages whose first content element (a hero or header) already shows the title, so the heading is not duplicated.</source>
+      </segment>
+    </unit>
     <unit id="captcha.placeholder.button">
       <segment>
         <source>Protected against spam</source>

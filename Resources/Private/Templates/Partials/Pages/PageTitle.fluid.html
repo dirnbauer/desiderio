@@ -1,0 +1,32 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:comment>
+    The single page-level h1: it carries the page title and is the one real h1
+    per document. Visible by default; rendered screen-reader-only when the page
+    flags tx_desiderio_h1_sronly. Enable that flag on pages whose first content
+    element (a hero or header) already shows the title — e.g. the home page — so
+    the heading is not duplicated visually. Stands down entirely on a news
+    detail view, where the article supplies its own h1 (newsDetailUid).
+    Expects {page} and {newsDetailUid} (pass arguments="{_all}").
+</f:comment>
+
+<f:if condition="!{newsDetailUid}">
+    <f:if condition="{page.pageRecord.tx_desiderio_h1_sronly}">
+        <f:then>
+            <h1 class="sr-only">{page.pageRecord.title}</h1>
+        </f:then>
+        <f:else>
+            <d:layout.container>
+                <header class="desiderio-page-title">
+                    <d:atom.typography tag="h1" variant="h1" class="desiderio-page-title__heading">{page.pageRecord.title}</d:atom.typography>
+                </header>
+            </d:layout.container>
+        </f:else>
+    </f:if>
+</f:if>
+
+</html>

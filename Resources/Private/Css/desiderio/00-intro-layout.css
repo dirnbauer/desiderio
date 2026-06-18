@@ -31,7 +31,7 @@ body {
    content section. The screen-reader-only variant (flagged per page via
    tx_desiderio_h1_sronly) uses .sr-only and needs no rules here. */
 .desiderio-page-title {
-    padding: 2rem 0 0.5rem;
+    padding: 2rem 0 2rem;
 }
 
 .desiderio-page-title__heading {
@@ -44,5 +44,23 @@ body {
     .desiderio-page-title__heading {
         font-size: 2.5rem;
     }
+}
+
+/* Short accent rule beneath the title, in the theme accent (same token as the
+   header-section eyebrow) so it tracks the active shadcn preset. */
+.desiderio-page-title__rule {
+    display: block;
+    width: 3.5rem;
+    height: 0.25rem;
+    margin-top: 0.875rem;
+    background: var(--d-primary);
+    border-radius: 2px;
+}
+
+/* The page title sits between the breadcrumb and the first content section.
+   Keep that section's full-width top divider, but give the content a little
+   extra breathing room below the line. */
+.desiderio-page-title-container + .desiderio-section {
+    padding-block-start: 4rem;
 }
 

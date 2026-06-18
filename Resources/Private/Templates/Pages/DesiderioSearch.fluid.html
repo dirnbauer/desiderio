@@ -7,21 +7,17 @@
 <f:layout name="Pages/Default"/>
 
 <f:section name="Main">
+    <f:comment>
+        The search shell renders only the Solr plugin (form + facets + results)
+        into content.main, so it has no leading heading of its own. Use the
+        shared Pages/PageTitle partial for the single page-level h1 — same as
+        every other page template — instead of a search-specific heading. The
+        title comes from the page record, already translated per language
+        (Search / Suche / 搜索 / Keresés). Sits above the search markers so the
+        heading is not indexed as body content.
+    </f:comment>
+    <f:render partial="Pages/PageTitle" arguments="{_all}"/>
     <d:layout.container>
-        <f:comment>
-            Page-level h1 for the search results page. The default search shell
-            renders only the Solr plugin (form + facets + results) into
-            content.main, leaving the document without a leading heading. The
-            page record title is already translated per language
-            (Search / Suche / 搜索 / Keresés), so it is the right multilingual
-            source — no extra XLIFF needed. Sits above the search markers so the
-            heading is not indexed as body content.
-        </f:comment>
-        <f:if condition="{page.pageRecord.title}">
-            <header class="d-search-page__intro mb-8 lg:mb-10">
-                <d:atom.typography tag="h1" variant="h1" class="d-search-page__title">{page.pageRecord.title}</d:atom.typography>
-            </header>
-        </f:if>
         <!--TYPO3SEARCH_begin-->
         <f:if condition="{content.main}">
             <f:render.contentArea contentArea="{content.main}"/>

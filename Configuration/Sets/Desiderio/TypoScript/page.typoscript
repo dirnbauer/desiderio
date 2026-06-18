@@ -14,6 +14,11 @@ lib.desiderioPageDataProcessing {
   20 {
     special = rootline
     as = breadcrumb
+    # Keep the current page in the trail even when it is flagged
+    # "hide in menu" (nav_hide), e.g. the Search page. Without this the
+    # rootline menu drops the nav_hidden leaf, the trail collapses to just
+    # "Home", and the layout suppresses a single-item breadcrumb.
+    includeNotInMenu = 1
     titleField = nav_title // title
     dataProcessing.10 = record-transformation
   }

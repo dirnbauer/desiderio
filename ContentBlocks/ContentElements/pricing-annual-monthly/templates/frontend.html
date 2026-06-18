@@ -92,7 +92,7 @@
                                 >
                                     <span>{tier -> f:render.text(field: 'button_text')}</span>
                                     <span class="d-sr-only"> – {tier.name}</span>
-                                </d:atom.button>
+                                </d:atom.button>{tier -> f:render.link(field: 'button_link')}
                             </d:molecule.cardFooter>
                         </f:if>
                     </d:molecule.card>

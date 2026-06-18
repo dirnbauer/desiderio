@@ -1,6 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" class="icon-root">
-  <title>Notification Data View icon</title>
-  <style>.icon-root{color-scheme:light dark}.accent{stroke:var(--icon-color-accent,currentColor);fill:none}.accent-fill,.no-stroke{stroke:none;fill:var(--icon-color-accent,currentColor)}</style>
-  <path d="M8 2.75 13.5 12H2.5z"/><path d="M8 6v2.5"/><circle cx="8" cy="10.5" r=".55" class="accent-fill"/>
-  <g class="icon-signature"><circle cx="13.45" cy="2.25" r=".24" class="accent-fill"/><circle cx="13.45" cy="3.65" r=".24" class="accent-fill"/><circle cx="12.75" cy="6.45" r=".24" class="accent-fill"/><path d="M12.05 6.9l1.65 1.15" class="accent"/><path d="M12.15 8.35l1 .95" class="accent"/></g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" class="icon-root"><title>Notification icon</title><style>.icon-root{color-scheme:light dark}.s{fill:currentColor}.sd{fill:currentColor;opacity:.22}.a{fill:var(--icon-color-accent,#ff8700)}</style><path class="sd" d="M7.04 3.1a1.1 1.1 0 0 1 1.92 0l4.66 8.3A1.1 1.1 0 0 1 12.66 13H3.34a1.1 1.1 0 0 1-.96-1.6z"/><rect class="s" x="7.3" y="5.9" width="1.4" height="3.1" rx=".7"/><circle class="a" cx="8" cy="10.8" r=".95"/></svg>

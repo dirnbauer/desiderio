@@ -1,6 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" class="icon-root">
-  <title>Minimal Call to Action icon</title>
-  <style>.icon-root{color-scheme:light dark}.accent{stroke:var(--icon-color-accent,currentColor);fill:none}.accent-fill,.no-stroke{stroke:none;fill:var(--icon-color-accent,currentColor)}</style>
-  <path d="M4.25 6.25h6.5"/><path d="M5.25 9.75h4"/><path d="m10 8 2 1.5-2 1.5" class="accent"/>
-  <g class="icon-signature"><circle cx="12.05" cy="2.25" r=".24" class="accent-fill"/><circle cx="13.45" cy="2.25" r=".24" class="accent-fill"/><circle cx="13.45" cy="5.05" r=".24" class="accent-fill"/><path d="M12.05 7.75h1.65" class="accent"/><path d="M13.2 8.4v.9" class="accent"/></g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" class="icon-root"><title>Minimal Call to Action icon</title><style>.icon-root{color-scheme:light dark}.s{fill:currentColor}.sd{fill:currentColor;opacity:.22}.a{fill:var(--icon-color-accent,#ff8700)}</style><rect class="s" x="3" y="5.4" width="7.2" height="1.5" rx=".75"/><rect class="s" x="3" y="8.1" width="4.4" height="1.3" rx=".65" opacity=".55"/><path class="a" d="M8.7 7.5h3v-1l2.2 1.85-2.2 1.85v-1h-3z"/></svg>

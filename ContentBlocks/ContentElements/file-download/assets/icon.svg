@@ -1,6 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" class="icon-root">
-  <title>File Download icon</title>
-  <style>.icon-root{color-scheme:light dark}.accent{stroke:var(--icon-color-accent,currentColor);fill:none}.accent-fill,.no-stroke{stroke:none;fill:var(--icon-color-accent,currentColor)}</style>
-  <path d="M4 2.75h5.25L12 5.5v7.75H4z"/><path d="M9.25 2.75V5.5H12"/><path d="M5.75 7.5h4.5M5.75 9.75h3" class="accent"/>
-  <g class="icon-signature"><circle cx="13.45" cy="2.25" r=".24" class="accent-fill"/><circle cx="12.05" cy="3.65" r=".24" class="accent-fill"/><circle cx="13.45" cy="3.65" r=".24" class="accent-fill"/><circle cx="12.05" cy="5.05" r=".24" class="accent-fill"/><circle cx="13.45" cy="5.05" r=".24" class="accent-fill"/><path d="M12.05 6.9l1.65 1.15" class="accent"/><path d="M13.15 8.35l-1 .95" class="accent"/></g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" class="icon-root"><title>File Download List icon</title><style>.icon-root{color-scheme:light dark}.s{fill:currentColor}.sd{fill:currentColor;opacity:.22}.a{fill:var(--icon-color-accent,#ff8700)}</style><path class="sd" d="M4 2.4h4.7l3.3 3.3v7.9H4z" /><rect class="s" x="5.6" y="6.5" width="4.8" height="1.2" rx=".6" opacity=".55"/><rect class="s" x="5.6" y="8.6" width="3.4" height="1.2" rx=".6" opacity=".55"/><path class="a" d="M11.1 9.3v2.6h1.5l-2.25 2.5L8.1 11.9h1.5V9.3z"/></svg>

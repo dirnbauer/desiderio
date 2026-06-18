@@ -1,6 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" class="icon-root">
-  <title>Minimal Hero icon</title>
-  <style>.icon-root{color-scheme:light dark}.accent{stroke:var(--icon-color-accent,currentColor);fill:none}.accent-fill,.no-stroke{stroke:none;fill:var(--icon-color-accent,currentColor)}</style>
-  <path d="M4.25 5.25h7.5"/><path d="M5.5 8h5"/><path d="M6.75 10.75h2.5" class="accent"/>
-  <g class="icon-signature"><circle cx="12.75" cy="6.45" r=".24" class="accent-fill"/><path d="M13.7 6.9l-1.65 1.15" class="accent"/><path d="M12.15 8.35l1 .95" class="accent"/></g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" class="icon-root"><title>Minimal Hero icon</title><style>.icon-root{color-scheme:light dark}.s{fill:currentColor}.sd{fill:currentColor;opacity:.22}.a{fill:var(--icon-color-accent,#ff8700)}</style><rect class="sd" x="3.4" y="4.5" width="9.2" height="2.1" rx="1.05"/><rect class="s" x="4.6" y="7.7" width="6.8" height="1.4" rx=".7" opacity=".55"/><rect class="a" x="5.9" y="10.4" width="4.2" height="2.2" rx="1.1"/></svg>

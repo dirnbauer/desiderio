@@ -1,6 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" class="icon-root">
-  <title>Comparison Pricing icon</title>
-  <style>.icon-root{color-scheme:light dark}.accent{stroke:var(--icon-color-accent,currentColor);fill:none}.accent-fill,.no-stroke{stroke:none;fill:var(--icon-color-accent,currentColor)}</style>
-  <rect x="3" y="3" width="4" height="10" rx="1.2"/><rect x="9" y="3" width="4" height="10" rx="1.2" class="accent"/><path d="m4.4 8 1 1 1.6-2M10.4 8h1.8"/>
-  <g class="icon-signature"><circle cx="13.45" cy="2.25" r=".24" class="accent-fill"/><path d="M12.05 6.9h1.65" class="accent"/><path d="M13.15 8.35l-1 .95" class="accent"/></g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" class="icon-root"><title>Plan Comparison Matrix icon</title><style>.icon-root{color-scheme:light dark}.s{fill:currentColor}.sd{fill:currentColor;opacity:.22}.a{fill:var(--icon-color-accent,#ff8700)}</style><rect class="sd" x="2.6" y="2.8" width="4.6" height="10.4" rx="1.2"/><rect class="sd" x="8.8" y="2.8" width="4.6" height="10.4" rx="1.2"/><rect class="s" x="3.5" y="9.3" width="2.8" height="1.2" rx=".6" opacity=".55"/><rect class="s" x="3.5" y="11.2" width="2.8" height="1.2" rx=".6" opacity=".55"/><path class="a" d="M9.5 7.6l1.4 1.4 2.1-2.6-1-.8-1.2 1.5-.5-.5z"/></svg>

@@ -1,6 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round" class="icon-root">
-  <title>Organization Chart icon</title>
-  <style>.icon-root{color-scheme:light dark}.accent{stroke:var(--icon-color-accent,currentColor);fill:none}.accent-fill,.no-stroke{stroke:none;fill:var(--icon-color-accent,currentColor)}</style>
-  <rect x="3" y="3.5" width="10" height="9" rx="2"/><path d="M5.25 10.75V8.5"/><path d="M8 10.75V5.75" class="accent"/><path d="M10.75 10.75V7.25"/><path d="M5 12h6"/>
-  <g class="icon-signature"><circle cx="13.45" cy="2.25" r=".24" class="accent-fill"/><path d="M12.05 7.75h1.65" class="accent"/><circle cx="12.75" cy="8.85" r=".2" class="accent-fill"/></g>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="none" class="icon-root"><title>Organization Chart icon</title><style>.icon-root{color-scheme:light dark}.s{fill:currentColor}.sd{fill:currentColor;opacity:.22}.a{fill:var(--icon-color-accent,#ff8700)}</style><rect class="s" x="2.6" y="9.8" width="3.4" height="2.8" rx=".8" opacity=".55"/><rect class="s" x="6.3" y="9.8" width="3.4" height="2.8" rx=".8" opacity=".55"/><rect class="s" x="10" y="9.8" width="3.4" height="2.8" rx=".8" opacity=".55"/><path class="sd" d="M4.3 8.4V7.3h7.4v1.1h1V6.3H4.3v2.1z"/><rect class="a" x="5.9" y="2.7" width="4.2" height="3" rx=".9"/></svg>

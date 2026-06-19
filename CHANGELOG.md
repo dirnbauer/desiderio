@@ -17,6 +17,15 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
   prefixed `desiderio-` so they don't collide with the styleguide originals
   when that extension is active.
 
+### Changed
+
+- EXT:styleguide's own example forms ("simpleform", "All fields") are now
+  hidden from the Form module so editors only see the curated Desiderio forms.
+  `ext_localconf.php` adds the styleguide set (`typo3/styleguide-form-set`) to
+  EXT:form's `disabledSets`, which skips it in the TYPO3 v14 `FormYamlCollector`
+  without deactivating the styleguide extension itself. Guarded on styleguide
+  being loaded, so it is a no-op otherwise.
+
 ### Fixed
 
 - Element-library picker previews are now served from the warmed page cache

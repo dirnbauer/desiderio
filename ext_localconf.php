@@ -66,3 +66,14 @@ plugin.tx_form.settings.yamlConfigurations.1777100144 = EXT:desiderio/Configurat
 module.tx_form.settings.yamlConfigurations.1777100144 = EXT:desiderio/Configuration/Yaml/FriendlyCaptchaFormPartialOverride.yaml
 ');
 }
+
+// Hide EXT:styleguide's example forms ("simpleform", "All fields") from the
+// Form module so editors only see the curated Desiderio forms. The styleguide
+// auto-registers its form set via Configuration/Form/Styleguide/config.yaml
+// (TYPO3 v14 FormYamlCollector); EXT:form's "disabledSets" API skips a set by
+// its declared config.yaml "name" without deactivating the styleguide
+// extension itself. The Desiderio copies (desiderio-simpleform,
+// desiderio-allfields) remain available.
+if (ExtensionManagementUtility::isLoaded('styleguide')) {
+    $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['form']['disabledSets'][] = 'typo3/styleguide-form-set';
+}

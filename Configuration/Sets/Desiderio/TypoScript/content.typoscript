@@ -1,13 +1,13 @@
 # Content element rendering
 lib.contentElement = FLUIDTEMPLATE
 lib.contentElement {
-  # Legacy Desiderio templates remain as fallback; the FluidStyledContent path
-  # owns the classic TYPO3 CTypes and follows the same shadcn/Fluid 5 recipe as Content Blocks.
+  # The FluidStyledContent path owns the classic TYPO3 CTypes and follows the same
+  # shadcn/Fluid 5 recipe as Content Blocks. The retired legacy Templates/Content/
+  # set has been removed; the .10 layout/partial paths still serve shared page/preset partials.
   layoutRootPaths.10 = EXT:desiderio/Resources/Private/Templates/Layouts/
   layoutRootPaths.200 = EXT:desiderio/Resources/Private/FluidStyledContent/Layouts/
   partialRootPaths.10 = EXT:desiderio/Resources/Private/Templates/Partials/
   partialRootPaths.200 = EXT:desiderio/Resources/Private/FluidStyledContent/Partials/
-  templateRootPaths.10 = EXT:desiderio/Resources/Private/Templates/Content/
   templateRootPaths.200 = EXT:desiderio/Resources/Private/FluidStyledContent/Templates/
 
   templateName >

@@ -346,6 +346,25 @@
     margin: 1rem 0;
 }
 
+/* Links inside a colored frame must clear 4.5:1 on the box surface, not reuse
+   the page-level --primary that collides with the same-family/neutral tint. */
+.ce-frame--bg-10 .link,
+.ce-frame--bg-80 .link,
+.ce-frame--bg-10 .ce-bodytext a,
+.ce-frame--bg-80 .ce-bodytext a {
+    color: var(--d-link-on-muted);
+}
+
+/* The dark frame already forces light body text via color:var(--background);
+   links must follow it (kept legible by their underline), not jump back to
+   --primary which fails on the dark surface. */
+.ce-frame--bg-100 .link,
+.ce-frame--bg-100 .ce-bodytext a {
+    color: var(--background);
+    text-decoration-line: underline;
+    text-underline-offset: 3px;
+}
+
 /* ---- Footer — minimal single line ---- */
 .desiderio-footer {
     border-top: none;

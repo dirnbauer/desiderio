@@ -14,7 +14,7 @@
             </div>
             <f:if condition="{data.cta_text} && {data.cta_link.url}">
                 <div class="cta-banner__action">
-                    <d:atom.button href="{data.cta_link.url}" target="{data.cta_link.target}" variant="secondary" size="lg"><d:atom.icon name="brand-github" size="sm" />{data -> f:render.text(field: 'cta_text')}</d:atom.button>{data -> f:render.link(field: 'cta_link')}
+                    <d:atom.button href="{data.cta_link.url}" target="{data.cta_link.target}" variant="{f:if(condition: '{data.bg_style} == \'muted\'', then: 'default', else: 'secondary')}" size="lg"><d:atom.icon name="brand-github" size="sm" />{data -> f:render.text(field: 'cta_text')}</d:atom.button>{data -> f:render.link(field: 'cta_link')}
                 </div>
             </f:if>
         </div>

@@ -76,6 +76,20 @@ final class ThemeContrastTest extends TestCase
                         if ($ratio < self::TEXT_MINIMUM) {
                             $failures[] = sprintf('%s/%s d-primary-text on primary tint = %.2f (< %.1f)', $preset, $mode, $ratio, self::TEXT_MINIMUM);
                         }
+
+                        // --d-link-on-muted (= the same primary-text pull) colors
+                        // links inside the .ce-frame--bg-10/80 boxes, which are the
+                        // solid --muted / --secondary surfaces. Guard those at 4.5:1
+                        // so a brand-colored link never collides with its box.
+                        foreach (['muted', 'secondary'] as $linkSurface) {
+                            if (!isset($variables[$linkSurface])) {
+                                continue;
+                            }
+                            $ratio = $this->contrast($text, $this->oklchToSrgb(...$variables[$linkSurface]));
+                            if ($ratio < self::TEXT_MINIMUM) {
+                                $failures[] = sprintf('%s/%s d-link-on-muted on %s = %.2f (< %.1f)', $preset, $mode, $linkSurface, $ratio, self::TEXT_MINIMUM);
+                            }
+                        }
                     }
                 }
             }

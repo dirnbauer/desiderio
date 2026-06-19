@@ -811,6 +811,13 @@ body {
      color specified in oklch keeps its hue in interpolation even at chroma 0
      (only *converted* achromatic colors get the powerless-hue treatment). */
   --d-primary-text: color-mix(in oklch, var(--primary), oklch(0 0 none) 35%);
+  /* Brand-colored links sitting inside a same-family or neutral box surface
+     (.ce-frame--bg-10/80, accent cards): the raw --primary often lands near the
+     3:1 UI floor on those tints, below the 4.5:1 text minimum. Reuse the
+     hue-preserving primary-text pull so links stay on-brand and legible; the
+     underline carries the non-color affordance. Resolves per preset and per
+     scheme via --d-primary-text (dark mode pulls towards white instead). */
+  --d-link-on-muted: var(--d-primary-text);
   --d-overlay-foreground: var(--primary-foreground);
   --d-radius-sm: calc(var(--radius) * 0.6);
   --d-radius-md: calc(var(--radius) * 0.8);

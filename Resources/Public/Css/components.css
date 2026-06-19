@@ -195,6 +195,18 @@ main[tabindex]:focus-visible {
   background-color: color-mix(in oklch, var(--secondary) 80%, transparent);
 }
 
+/* Secondary buttons fill with --secondary, which is identical to --muted and
+   only a hair off the page/box surface — fill alone can render them invisible
+   (a secondary button on a bg-secondary section, or a muted CTA box). Give every
+   secondary button a visible --border edge so it never depends on fill. Covers
+   both the BEM button and the d:atom.button primitive; where a colored section
+   deliberately repaints the button (07-content-frames.css) its higher
+   specificity still wins. */
+.btn--secondary,
+[data-slot="button"][data-variant="secondary"] {
+  border-color: var(--border);
+}
+
 .btn--outline {
   background-color: transparent;
   border-color: var(--input);

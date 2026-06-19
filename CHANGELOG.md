@@ -6,6 +6,17 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Added
+
+- Two demo form definitions ported from EXT:styleguide so the desiderio site
+  ships ready-made examples for the Form module: `desiderio-simpleform`
+  ("Desiderio simple form", a two-page contact form) and `desiderio-allfields`
+  ("Desiderio all fields", a four-page tour of every form element). They live
+  in `Resources/Private/Forms/` and are picked up by the existing
+  `Configuration/Form/Desiderio/config.yaml` extension path. Identifiers are
+  prefixed `desiderio-` so they don't collide with the styleguide originals
+  when that extension is active.
+
 ### Fixed
 
 - Element-library picker previews are now served from the warmed page cache

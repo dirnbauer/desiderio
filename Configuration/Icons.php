@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 use TYPO3\CMS\Core\Imaging\IconProvider\SvgIconProvider;
 
-return [
+$icons = [
     // ==============================================
     // Hero Variant Icons
     // ==============================================
@@ -61,3 +61,29 @@ return [
         'source' => 'EXT:desiderio/Resources/Public/Icons/Variants/alert-destructive.svg',
     ],
 ];
+
+// ==============================================
+// Core Content Element Icons
+// ==============================================
+// Custom v14 line-art icons for the classic TYPO3 core content elements, so
+// they match Desiderio's Content Blocks in the New Content Element Wizard, the
+// page module and the visual-editor picker. Identifier: desiderio-ce-<slug>,
+// file: Resources/Public/Icons/ContentElements/core-<slug>.svg. Wired to each
+// CType in Configuration/TCA/Overrides/tt_content.php from CoreContentElements.
+foreach ([
+    'header', 'text', 'textpic', 'textmedia', 'image',
+    'bullets', 'table', 'uploads',
+    'divider', 'html', 'shortcut',
+    'menu-pages', 'menu-subpages', 'menu-sitemap', 'menu-sitemap-pages',
+    'menu-section', 'menu-section-pages', 'menu-abstract',
+    'menu-recently-updated', 'menu-related',
+    'menu-categorized-pages', 'menu-categorized-content',
+    'form', 'login', 'powermail',
+] as $coreIconSlug) {
+    $icons['desiderio-ce-' . $coreIconSlug] = [
+        'provider' => SvgIconProvider::class,
+        'source' => 'EXT:desiderio/Resources/Public/Icons/ContentElements/core-' . $coreIconSlug . '.svg',
+    ];
+}
+
+return $icons;

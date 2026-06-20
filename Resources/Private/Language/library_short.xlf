@@ -1276,5 +1276,81 @@
         <source>A **centered card** that builds anticipation and *collects sign-ups* via a TYPO3 Form Framework form. Use it on launch or pre-release landing pages to gather interested visitors before go-live.</source>
       </segment>
     </unit>
+    <!-- TYPO3 core content elements (native CTypes), keyed by bare cType. -->
+    <unit id="header">
+      <segment><source>A **standalone heading** with optional subtitle and no body text. Use it to *label or separate* the sections that follow.</source></segment>
+    </unit>
+    <unit id="text">
+      <segment><source>A **rich-text element** with heading and formatted body copy. The *everyday* building block for words on a page.</source></segment>
+    </unit>
+    <unit id="textpic">
+      <segment><source>Body copy with **images wrapped around it** — position, columns and lightbox per element. The *classic illustrated* paragraph.</source></segment>
+    </unit>
+    <unit id="textmedia">
+      <segment><source>Text wrapped around **images, video and audio** with the same layout options. For a *mixed-media* paragraph.</source></segment>
+    </unit>
+    <unit id="image">
+      <segment><source>A **column grid of images** with captions and lightbox, no body text. Ideal for a *photo gallery* or screenshots.</source></segment>
+    </unit>
+    <unit id="bullets">
+      <segment><source>A **single bullet list** — one line per item. For short, *scannable* lists of features or takeaways.</source></segment>
+    </unit>
+    <unit id="table">
+      <segment><source>A **simple data table** with optional header row, caption and delimiter. For specs, *comparisons* or schedules.</source></segment>
+    </unit>
+    <unit id="uploads">
+      <segment><source>A **download list** of files with optional type, size and thumbnail. For *PDFs, brochures* and datasheets.</source></segment>
+    </unit>
+    <unit id="div">
+      <segment><source>A **horizontal divider** between content elements. *Breaks* a long column into clear sections.</source></segment>
+    </unit>
+    <unit id="html">
+      <segment><source>Outputs **raw, unprocessed HTML** for embeds and custom markup. For *trusted editors* only.</source></segment>
+    </unit>
+    <unit id="shortcut">
+      <segment><source>**Embeds existing content** elements instead of copying them. *Reuse* one maintained block across pages.</source></segment>
+    </unit>
+    <unit id="menu_pages">
+      <segment><source>A menu linking to **hand-picked pages**. For a *curated* sub-navigation or "see also" block.</source></segment>
+    </unit>
+    <unit id="menu_subpages">
+      <segment><source>An **auto-updating menu of subpages** of the pages you select. For a *self-maintaining* section navigation.</source></segment>
+    </unit>
+    <unit id="menu_sitemap">
+      <segment><source>An **expanded multi-level sitemap** of the whole site. For a *classic HTML sitemap* page.</source></segment>
+    </unit>
+    <unit id="menu_sitemap_pages">
+      <segment><source>An **expanded sitemap of selected branches**, not the whole site. To *map specific sections* in full.</source></segment>
+    </unit>
+    <unit id="menu_section">
+      <segment><source>An **in-page jump list** built from content marked for section menus. A *table of contents* to anchors on the page.</source></segment>
+    </unit>
+    <unit id="menu_section_pages">
+      <segment><source>Subpages of selected pages **plus their section anchors** as sub-items. For a *deep* page + section navigation.</source></segment>
+    </unit>
+    <unit id="menu_abstract">
+      <segment><source>A menu of subpages showing each page's **title and abstract**. A *teaser-style* index that previews each link.</source></segment>
+    </unit>
+    <unit id="menu_recently_updated">
+      <segment><source>A menu of the **most recently changed pages**, newest first. For a *"what's new"* block.</source></segment>
+    </unit>
+    <unit id="menu_related_pages">
+      <segment><source>An automatic menu of pages that **share keywords** with this one. A *"related content"* block.</source></segment>
+    </unit>
+    <unit id="menu_categorized_pages">
+      <segment><source>A menu of **all pages in the categories** you choose. A *category-driven* index that auto-updates.</source></segment>
+    </unit>
+    <unit id="menu_categorized_content">
+      <segment><source>A menu of **content elements in chosen categories**, from across the site. Surfaces *tagged content* in one place.</source></segment>
+    </unit>
+    <unit id="form_formframework">
+      <segment><source>An **interactive form** from the TYPO3 Form Framework. For *contact, registration* or survey forms.</source></segment>
+    </unit>
+    <unit id="felogin_login">
+      <segment><source>A **login/logout form** that password-protects pages for *authorised users* and groups.</source></segment>
+    </unit>
+    <unit id="powermail_pi1">
+      <segment><source>A **Powermail form** with fields, steps and email finishers. For *richer contact* and marketing forms.</source></segment>
+    </unit>
   </file>
 </xliff>

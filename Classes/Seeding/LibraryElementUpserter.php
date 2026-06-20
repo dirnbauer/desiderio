@@ -122,6 +122,22 @@ final class LibraryElementUpserter
      */
     private function buildContentData(int $pid, array $element, int $sorting, int $now, array $columns): array
     {
+        if ($element['hostExtension'] === \Webconsulting\Desiderio\Library\CoreContentElements::HOST) {
+            // Native CType: there is no registry definition or config.yaml, so the
+            // resolver's null-definition path maps the manifest fixture straight
+            // into native tt_content columns (and FAL refs). Unlike Content Blocks
+            // we DO pass the fixture, so the preview carries real example content.
+            return $this->fixtureResolver->buildContentInsert(
+                $pid,
+                $element['cType'],
+                $element['name'],
+                $element['fixture'],
+                $sorting,
+                $now,
+                $columns
+            );
+        }
+
         if ($element['hostExtension'] === 'desiderio') {
             // Empty fixture on purpose: the resolver completes every field from
             // the registry definition with the neutral demo value generator, so

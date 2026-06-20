@@ -41,10 +41,9 @@ final class SeedStyleguidePagesCommandFunctionalTest extends FunctionalTestCase
     public function testSeedCreatesStyleguidePagesAndContentElements(): void
     {
         $groups = StyleguideContentGroups::getGroupsWithFixtures();
-        $expectedElements = array_sum(array_map(
-            static fn (array $group): int => count($group['elements']),
-            $groups
-        )) + StyleguideShowcasePages::contentElementCount();
+        $expectedDesiderioElements = $this->countDesiderioGroupElements($groups)
+            + StyleguideShowcasePages::contentElementCount();
+        $expectedCoreElements = $this->countCoreGroupElements($groups);
         $expectedTopLevelPages = count($groups) + $this->countTopLevelShowcasePages();
         $expectedPages = count($groups) + count(StyleguideShowcasePages::subpages());
 
@@ -56,12 +55,14 @@ final class SeedStyleguidePagesCommandFunctionalTest extends FunctionalTestCase
         // Showcase pages with a parentSlug (success stories) live one level deeper.
         self::assertSame($expectedPages, $this->countRows('pages', 'uid <> 1 AND deleted = 0'));
         self::assertSame(
-            $expectedElements,
+            $expectedDesiderioElements,
             $this->countRows('tt_content', "deleted = 0 AND CType LIKE 'desiderio_%'")
         );
-        // Styleguide pages must only carry Desiderio content elements.
+        // The "TYPO3 Core Elements" page carries the native CTypes (text, table,
+        // menu_*, …) — they are seeded on purpose, not stray content.
+        self::assertGreaterThan(0, $expectedCoreElements);
         self::assertSame(
-            0,
+            $expectedCoreElements,
             $this->countRows('tt_content', "deleted = 0 AND CType NOT LIKE 'desiderio_%'")
         );
     }
@@ -95,10 +96,9 @@ final class SeedStyleguidePagesCommandFunctionalTest extends FunctionalTestCase
     public function testReseedingIsIdempotentForPagesAndLiveContent(): void
     {
         $groups = StyleguideContentGroups::getGroupsWithFixtures();
-        $expectedElements = array_sum(array_map(
-            static fn (array $group): int => count($group['elements']),
-            $groups
-        )) + StyleguideShowcasePages::contentElementCount();
+        $expectedDesiderioElements = $this->countDesiderioGroupElements($groups)
+            + StyleguideShowcasePages::contentElementCount();
+        $expectedCoreElements = $this->countCoreGroupElements($groups);
         $expectedTopLevelPages = count($groups) + $this->countTopLevelShowcasePages();
         $expectedPages = count($groups) + count(StyleguideShowcasePages::subpages());
 
@@ -113,13 +113,52 @@ final class SeedStyleguidePagesCommandFunctionalTest extends FunctionalTestCase
         self::assertSame($expectedPages, $this->countRows('pages', 'uid <> 1 AND deleted = 0'));
         // The previous generation is soft-deleted, the live set stays constant.
         self::assertSame(
-            $expectedElements,
+            $expectedDesiderioElements,
             $this->countRows('tt_content', "deleted = 0 AND CType LIKE 'desiderio_%'")
         );
         self::assertSame(
-            $expectedElements,
+            $expectedDesiderioElements,
             $this->countRows('tt_content', "deleted = 1 AND CType LIKE 'desiderio_%'")
         );
+        // Native core elements re-seed idempotently too: one live generation,
+        // one soft-deleted (the explicit core-CType cleanup on the core page).
+        self::assertSame(
+            $expectedCoreElements,
+            $this->countRows('tt_content', "deleted = 0 AND CType NOT LIKE 'desiderio_%'")
+        );
+        self::assertSame(
+            $expectedCoreElements,
+            $this->countRows('tt_content', "deleted = 1 AND CType NOT LIKE 'desiderio_%'")
+        );
+    }
+
+    /**
+     * @param list<array{groupId: string, elements: list<array<string, mixed>>}> $groups
+     */
+    private function countCoreGroupElements(array $groups): int
+    {
+        foreach ($groups as $group) {
+            if ($group['groupId'] === 'core') {
+                return count($group['elements']);
+            }
+        }
+
+        return 0;
+    }
+
+    /**
+     * @param list<array{groupId: string, elements: list<array<string, mixed>>}> $groups
+     */
+    private function countDesiderioGroupElements(array $groups): int
+    {
+        $count = 0;
+        foreach ($groups as $group) {
+            if ($group['groupId'] !== 'core') {
+                $count += count($group['elements']);
+            }
+        }
+
+        return $count;
     }
 
     private function countTopLevelShowcasePages(): int

@@ -15,6 +15,7 @@ use TYPO3\CMS\Core\Core\Environment;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Resource\StorageRepository;
 use Webconsulting\Desiderio\Data\StyleguideContentGroups;
+use Webconsulting\Desiderio\Library\CoreContentElements;
 use Webconsulting\Desiderio\Data\StyleguideShowcasePages;
 use Webconsulting\Desiderio\Seeding\BlogPageTreeSeeder;
 use Webconsulting\Desiderio\Seeding\CollectionCleanupService;
@@ -253,7 +254,11 @@ final class SeedStyleguidePagesCommand extends Command
 
             $linkTargets['chapter-' . (string)$group['groupId']] = $pageUid;
 
-            $contentCleaner->softDeleteSeededContent($pageUid, $now, [], true);
+            // The core-elements page seeds native CTypes (text, table, menu_*, …),
+            // which the default cleaner (desiderio_% only) would not soft-delete on
+            // a re-seed — pass them explicitly so re-runs stay idempotent.
+            $additionalCleanupCTypes = (string)$group['groupId'] === 'core' ? CoreContentElements::cTypes() : [];
+            $contentCleaner->softDeleteSeededContent($pageUid, $now, $additionalCleanupCTypes, true);
 
             foreach ($group['elements'] as $elementIndex => $element) {
                 $contentData = $this->getFixtureResolver()->buildContentInsert(

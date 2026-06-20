@@ -1276,5 +1276,81 @@
         <source>waitlist signup | waitlist | signup form | early access | join waitlist | email signup | pre launch | lead capture | subscribe form | coming soon || wait list | registration form | sign up | notify me | get early access | beta signup | launch signup | opt in form | email capture | interest list | reserve spot | pre release signup | join the list | subscription form | newsletter signup | access request | preregistration | form framework | count signups | early bird signup</source>
       </segment>
     </unit>
+    <!-- TYPO3 core content elements (native CTypes), keyed by bare cType. -->
+    <unit id="header">
+      <segment><source>header | heading | title | section title | headline | h1 | h2 | subheading | label | section header || heading only | standalone heading | section label | page heading | title element | subtitle | header element | h3 | h4 | caption heading | overline | kicker | section divider title | header block | titles</source></segment>
+    </unit>
+    <unit id="text">
+      <segment><source>text | rich text | paragraph | body text | content | regular text | wysiwyg | rte | copy | article || text element | text block | formatted text | text and header | plain text | written content | prose | text only | bodytext | editor | rich text editor | text content | word content | paragraph text | text field</source></segment>
+    </unit>
+    <unit id="textpic">
+      <segment><source>text and images | text image | image text | illustrated text | photo | picture | text with image | image columns | wrap | gallery text || textpic | images beside text | text and picture | image and text | photos | figure | text photo | picture text | image wrap | column images | text with photos | media text | illustrated paragraph | image content | text media</source></segment>
+    </unit>
+    <unit id="textmedia">
+      <segment><source>text and media | media | video | audio | text video | text with media | mixed media | image video | media columns | embed || textmedia | text and video | media gallery | video text | audio text | media element | text with video | multimedia | media wrap | film | movie | media content | rich media | media paragraph | video embed</source></segment>
+    </unit>
+    <unit id="image">
+      <segment><source>images | image gallery | photos | gallery | pictures | image grid | photo grid | images only | screenshots | columns || image element | picture gallery | photo gallery | image columns | grid of images | photo set | image collection | gallery grid | lightbox | captions | logos | image rows | picture grid | visual gallery | photo wall</source></segment>
+    </unit>
+    <unit id="bullets">
+      <segment><source>bullet list | list | bullets | bulleted list | unordered list | points | checklist | items | list items | ul || bullet points | simple list | dot list | bulleted | itemized list | feature list | scannable list | list element | takeaways | numbered list | ordered list | line list | key points | list block | enumerate</source></segment>
+    </unit>
+    <unit id="table">
+      <segment><source>table | data table | grid | rows and columns | spreadsheet | comparison table | tabular | matrix | cells | csv || simple table | html table | data grid | table element | comparison grid | spec table | schedule table | pricing table | columns rows | tabular data | table block | datasheet | structured data | grid table</source></segment>
+    </unit>
+    <unit id="uploads">
+      <segment><source>file links | downloads | files | file list | download list | attachments | documents | pdf | file download | media || uploads | file downloads | downloadable files | document list | attachment list | brochures | datasheets | download links | file collection | document downloads | get the file | resources | files for download | download element</source></segment>
+    </unit>
+    <unit id="div">
+      <segment><source>divider | separator | horizontal rule | hr | line | spacer | section break | rule | break | spacing || visual divider | content divider | horizontal line | dividing line | separator line | space | gap | section separator | thematic break | divider element | horizontal divider | split | partition | divider line</source></segment>
+    </unit>
+    <unit id="html">
+      <segment><source>html | plain html | raw html | code | embed | custom code | markup | snippet | iframe | script || html element | raw code | custom html | html block | embed code | third party embed | source code | inline html | unprocessed html | code block | widget embed | html snippet | manual html | code element</source></segment>
+    </unit>
+    <unit id="shortcut">
+      <segment><source>insert records | shortcut | reference | reuse content | embed content | record | include | insert content | shared content | reference element || insert record | content reference | reuse element | embed record | shared block | mirror content | linked content | reference content | include element | content shortcut | reusable content | record include | embed element | duplicate free</source></segment>
+    </unit>
+    <unit id="menu_pages">
+      <segment><source>menu selected pages | menu | navigation | page links | links | menu of pages | sub navigation | page menu | curated menu | nav || selected pages menu | page list menu | link list | custom menu | chosen pages | manual menu | navigation block | page navigation | see also | related links menu | hand picked menu | section menu | sitemap links | menu element</source></segment>
+    </unit>
+    <unit id="menu_subpages">
+      <segment><source>menu subpages | subpages | child pages | submenu | directory menu | auto menu | section navigation | nested pages | page tree menu | navigation || subpages menu | menu of subpages | children menu | sub navigation | directory navigation | automatic menu | tree menu | descendant pages | subpage list | section menu | nested navigation | child page menu | auto navigation</source></segment>
+    </unit>
+    <unit id="menu_sitemap">
+      <segment><source>sitemap | site map | menu sitemap | tree | site tree | all pages | expanded menu | navigation tree | html sitemap | overview || full sitemap | page tree | multilevel menu | nested menu | complete menu | site overview | all subpages | sitemap menu | expanded navigation | hierarchical menu | whole site menu | tree navigation | page overview</source></segment>
+    </unit>
+    <unit id="menu_sitemap_pages">
+      <segment><source>sitemaps of selected pages | branch sitemap | section sitemap | expanded menu | selected pages tree | subtree menu | multilevel menu | scoped sitemap | navigation tree | all subpages || sitemap selected pages | partial sitemap | section tree | nested menu of pages | expanded section menu | branch tree | selected branches | subpages sitemap | hierarchical section menu | tree of selected pages | section overview</source></segment>
+    </unit>
+    <unit id="menu_section">
+      <segment><source>section index | section menu | in page menu | jump links | anchor menu | table of contents | toc | on page navigation | page sections | anchors || section index menu | content index | jump to section | anchor links | page anchors | in-page navigation | section links | content sections menu | scroll menu | same page links | section navigation</source></segment>
+    </unit>
+    <unit id="menu_section_pages">
+      <segment><source>section index of selected pages | subpages with sections | deep menu | page and section menu | nested anchors | section subpages | expanded section menu | navigation | jump links | subpages || section index subpages | pages with anchors | deep navigation | subpage sections | section and page menu | nested section menu | anchors per page | detailed menu | two level section menu | sections of subpages</source></segment>
+    </unit>
+    <unit id="menu_abstract">
+      <segment><source>abstracts | menu abstracts | subpages with abstracts | teaser menu | description menu | page summaries | annotated menu | excerpt menu | abstract list | navigation || menu with abstracts | abstract menu | pages with descriptions | summary menu | teaser index | annotated links | preview menu | subpage abstracts | descriptive menu | page teasers | menu with summaries</source></segment>
+    </unit>
+    <unit id="menu_recently_updated">
+      <segment><source>recently updated pages | recent pages | latest updates | whats new | newest pages | recently changed | updated pages | fresh content | recent changes | menu || recently updated menu | latest pages | new content menu | recent updates | updated content | last modified | newest content | what is new | recent activity | fresh pages menu | latest changes</source></segment>
+    </unit>
+    <unit id="menu_related_pages">
+      <segment><source>related pages | related content | you might also like | keyword menu | similar pages | suggested pages | related links | recommendations | relevant pages | menu || related pages menu | keyword related | similar content | see also | recommended pages | content suggestions | related articles | relevant links | by keywords | related navigation | more like this</source></segment>
+    </unit>
+    <unit id="menu_categorized_pages">
+      <segment><source>categorized pages | category menu | pages by category | category index | tagged pages | category pages | filtered pages | category navigation | taxonomy | menu || categorized pages menu | pages in category | category listing | by category | tag menu | category based menu | classified pages | category links | grouped pages | topic pages | category page list</source></segment>
+    </unit>
+    <unit id="menu_categorized_content">
+      <segment><source>categorized content | content by category | category content | tagged content | content elements by category | category index | filtered content | taxonomy | content menu | menu || categorized content menu | content in category | by category content | tag content menu | classified content | category based content | grouped content | topic content | content listing | category elements</source></segment>
+    </unit>
+    <unit id="form_formframework">
+      <segment><source>form | contact form | form framework | input form | fields | submit | registration form | survey | enquiry | email form || web form | online form | form element | form plugin | data form | contact us | signup form | feedback form | application form | form fields | message form | form builder | interactive form</source></segment>
+    </unit>
+    <unit id="felogin_login">
+      <segment><source>login form | login | logout | sign in | felogin | members | password protect | authentication | user login | access || frontend login | login element | sign in form | member login | restricted access | user authentication | log in | account login | secure area | protected pages | login plugin | credentials</source></segment>
+    </unit>
+    <unit id="powermail_pi1">
+      <segment><source>powermail | form | contact form | powermail form | mail form | fields | submit | survey | multi step form | email form || marketing form | online form | form plugin | conditional form | enquiry form | contact us | signup form | feedback form | mail | form steps | powermail plugin | data form | interactive form</source></segment>
+    </unit>
   </file>
 </xliff>

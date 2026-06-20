@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:2.0" version="2.0" srcLang="en" trgLang="de">
+  <file id="desiderio_library_core" original="EXT:desiderio/Resources/Private/Language/library_core.xlf">
+    <unit id="header.title">
+      <segment state="final"><source>Header</source><target>Überschrift</target></segment>
+    </unit>
+    <unit id="header.description">
+      <segment state="final"><source>A standalone heading element with no body text — just a title and optional subheading you can size from H1 to H5. Use it to label or separate the sections that follow, or to drop in a styled heading where a full text element would be too much.</source><target>Ein eigenständiges Überschriften-Element ohne Fließtext – nur ein Titel und optional eine Unterüberschrift, die Sie von H1 bis H5 dimensionieren können. Ideal, um die folgenden Abschnitte zu beschriften oder zu trennen, oder um eine gestaltete Überschrift einzufügen, wo ein vollständiges Textelement zu viel wäre.</target></segment>
+    </unit>
+
+    <unit id="text.title">
+      <segment state="final"><source>Text</source><target>Text</target></segment>
+    </unit>
+    <unit id="text.description">
+      <segment state="final"><source>The everyday rich-text element: a heading plus formatted body copy with paragraphs, lists, links and inline emphasis. Reach for it whenever you need words on the page and nothing more — it is the most-used content element in TYPO3.</source><target>Das alltägliche Rich-Text-Element: eine Überschrift plus formatierter Fließtext mit Absätzen, Listen, Links und Hervorhebungen. Greifen Sie dazu, wann immer Sie einfach Text auf der Seite brauchen – es ist das meistgenutzte Inhaltselement in TYPO3.</target></segment>
+    </unit>
+
+    <unit id="textpic.title">
+      <segment state="final"><source>Text &amp; Images</source><target>Text &amp; Bilder</target></segment>
+    </unit>
+    <unit id="textpic.description">
+      <segment state="final"><source>A text element with one or more images wrapped beside or around the copy. Control image position (left, right, above, below), the number of columns and click-to-enlarge behaviour. Use it for the classic illustrated paragraph.</source><target>Ein Textelement mit einem oder mehreren Bildern, die neben oder um den Text fließen. Steuern Sie Bildposition (links, rechts, oben, unten), Spaltenanzahl und Klick-zum-Vergrößern. Ideal für den klassischen illustrierten Absatz.</target></segment>
+    </unit>
+
+    <unit id="textmedia.title">
+      <segment state="final"><source>Text &amp; Media</source><target>Text &amp; Medien</target></segment>
+    </unit>
+    <unit id="textmedia.description">
+      <segment state="final"><source>Like Text &amp; Images, but the media column also accepts video and audio next to images, with the same layout, gallery and link options. Use it when a paragraph needs an embedded video or a mixed-media gallery.</source><target>Wie Text &amp; Bilder, aber die Medienspalte nimmt neben Bildern auch Video und Audio auf – mit denselben Layout-, Galerie- und Link-Optionen. Ideal, wenn ein Absatz ein eingebettetes Video oder eine gemischte Mediengalerie braucht.</target></segment>
+    </unit>
+
+    <unit id="image.title">
+      <segment state="final"><source>Images Only</source><target>Nur Bilder</target></segment>
+    </unit>
+    <unit id="image.description">
+      <segment state="final"><source>One or more images arranged in a grid of columns with optional captions and click-to-enlarge — no body text. Use it for a photo gallery, screenshots, logos or any set of pictures that should stand on their own.</source><target>Ein oder mehrere Bilder in einem Spaltenraster mit optionalen Bildunterschriften und Klick-zum-Vergrößern – ohne Fließtext. Ideal für eine Fotogalerie, Screenshots, Logos oder jede Bildsammlung, die für sich steht.</target></segment>
+    </unit>
+
+    <unit id="bullets.title">
+      <segment state="final"><source>Bullet List</source><target>Aufzählungsliste</target></segment>
+    </unit>
+    <unit id="bullets.description">
+      <segment state="final"><source>A simple bullet list where every line of the body becomes one list item. Use it for short, scannable lists of features, steps or takeaways where rich formatting per item isn't needed.</source><target>Eine einfache Aufzählungsliste, bei der jede Zeile des Textes zu einem Listenpunkt wird. Ideal für kurze, überfliegbare Listen von Funktionen, Schritten oder Kernaussagen, wenn pro Punkt keine reiche Formatierung nötig ist.</target></segment>
+    </unit>
+
+    <unit id="table.title">
+      <segment state="final"><source>Table</source><target>Tabelle</target></segment>
+    </unit>
+    <unit id="table.description">
+      <segment state="final"><source>A simple data table you fill in a grid editor, with an optional header row or column, caption and delimiter. Use it for specs, comparisons, schedules or any tabular data — it stays responsive and accessible on the frontend.</source><target>Eine einfache Datentabelle, die Sie in einem Raster-Editor befüllen, mit optionaler Kopfzeile oder -spalte, Beschriftung und Trennzeichen. Ideal für Spezifikationen, Vergleiche, Zeitpläne oder beliebige tabellarische Daten – im Frontend bleibt sie responsiv und barrierefrei.</target></segment>
+    </unit>
+
+    <unit id="uploads.title">
+      <segment state="final"><source>File Links</source><target>Datei-Links</target></segment>
+    </unit>
+    <unit id="uploads.description">
+      <segment state="final"><source>A download list that turns attached files (or a file collection) into links, optionally showing file type, size and a preview thumbnail. Use it to offer PDFs, brochures, datasheets or any documents for download.</source><target>Eine Download-Liste, die angehängte Dateien (oder eine Dateisammlung) in Links verwandelt – optional mit Dateityp, Größe und Vorschaubild. Ideal, um PDFs, Broschüren, Datenblätter oder beliebige Dokumente zum Download anzubieten.</target></segment>
+    </unit>
+
+    <unit id="div.title">
+      <segment state="final"><source>Divider</source><target>Trenner</target></segment>
+    </unit>
+    <unit id="div.description">
+      <segment state="final"><source>A visual divider that inserts a horizontal line or spacing between content elements. Use it to break a long column into clear sections without adding a heading or text.</source><target>Ein visueller Trenner, der eine horizontale Linie oder Abstand zwischen Inhaltselementen einfügt. Ideal, um eine lange Spalte in klare Abschnitte zu gliedern, ohne Überschrift oder Text hinzuzufügen.</target></segment>
+    </unit>
+
+    <unit id="html.title">
+      <segment state="final"><source>Plain HTML</source><target>Reines HTML</target></segment>
+    </unit>
+    <unit id="html.description">
+      <segment state="final"><source>An element that outputs raw HTML exactly as you enter it, without processing. Use it for third-party embeds, custom markup or snippets that need to bypass the rich-text editor — for trusted editors only.</source><target>Ein Element, das reines HTML genau so ausgibt, wie Sie es eingeben, ohne Verarbeitung. Ideal für Drittanbieter-Einbettungen, eigenes Markup oder Snippets, die den Rich-Text-Editor umgehen müssen – nur für vertrauenswürdige Redakteure.</target></segment>
+    </unit>
+
+    <unit id="shortcut.title">
+      <segment state="final"><source>Insert Records</source><target>Datensätze einfügen</target></segment>
+    </unit>
+    <unit id="shortcut.description">
+      <segment state="final"><source>Embeds existing content elements (or other records) into this position instead of duplicating them. Use it to reuse one maintained block — a call to action, contact box or note — across several pages from a single source.</source><target>Bettet vorhandene Inhaltselemente (oder andere Datensätze) an dieser Stelle ein, statt sie zu duplizieren. Ideal, um einen gepflegten Block – einen Call-to-Action, eine Kontaktbox oder einen Hinweis – aus einer einzigen Quelle auf mehreren Seiten wiederzuverwenden.</target></segment>
+    </unit>
+
+    <unit id="menu_pages.title">
+      <segment state="final"><source>Menu: Selected Pages</source><target>Menü: Ausgewählte Seiten</target></segment>
+    </unit>
+    <unit id="menu_pages.description">
+      <segment state="final"><source>A navigation menu that links to a list of pages you pick by hand. Use it for a curated set of links — a sub-navigation, a "see also" block or a hand-built section menu.</source><target>Ein Navigationsmenü, das auf eine Liste manuell ausgewählter Seiten verlinkt. Ideal für eine kuratierte Linksammlung – eine Unternavigation, einen „Siehe auch“-Block oder ein handgebautes Abschnittsmenü.</target></segment>
+    </unit>
+
+    <unit id="menu_subpages.title">
+      <segment state="final"><source>Menu: Subpages</source><target>Menü: Unterseiten</target></segment>
+    </unit>
+    <unit id="menu_subpages.description">
+      <segment state="final"><source>A menu that automatically lists the subpages of the pages you select, so it updates itself as the page tree changes. Use it for an auto-maintained section or directory navigation.</source><target>Ein Menü, das automatisch die Unterseiten der ausgewählten Seiten auflistet und sich so bei Änderungen im Seitenbaum selbst aktualisiert. Ideal für eine automatisch gepflegte Abschnitts- oder Verzeichnisnavigation.</target></segment>
+    </unit>
+
+    <unit id="menu_sitemap.title">
+      <segment state="final"><source>Menu: Sitemap</source><target>Menü: Sitemap</target></segment>
+    </unit>
+    <unit id="menu_sitemap.description">
+      <segment state="final"><source>An expanded, multi-level menu of all subpages of the current site — a classic HTML sitemap. Use it on a sitemap page to give visitors and crawlers a full overview of the page tree.</source><target>Ein aufgeklapptes, mehrstufiges Menü aller Unterseiten der aktuellen Website – eine klassische HTML-Sitemap. Ideal für eine Sitemap-Seite, um Besuchern und Crawlern einen vollständigen Überblick über den Seitenbaum zu geben.</target></segment>
+    </unit>
+
+    <unit id="menu_sitemap_pages.title">
+      <segment state="final"><source>Menu: Sitemaps of Selected Pages</source><target>Menü: Sitemaps ausgewählter Seiten</target></segment>
+    </unit>
+    <unit id="menu_sitemap_pages.description">
+      <segment state="final"><source>An expanded, multi-level menu of all subpages beneath the pages you select — a sitemap scoped to specific branches rather than the whole site. Use it to map out one or more sections in full.</source><target>Ein aufgeklapptes, mehrstufiges Menü aller Unterseiten unterhalb der ausgewählten Seiten – eine Sitemap, die auf bestimmte Äste statt die ganze Website begrenzt ist. Ideal, um einen oder mehrere Bereiche vollständig abzubilden.</target></segment>
+    </unit>
+
+    <unit id="menu_section.title">
+      <segment state="final"><source>Menu: Section Index</source><target>Menü: Bereichsverzeichnis</target></segment>
+    </unit>
+    <unit id="menu_section.description">
+      <segment state="final"><source>A menu built from the content elements on a page that are marked "index for section menus" — an in-page jump list. Use it as a table of contents that links to anchors within the same page.</source><target>Ein Menü aus den Inhaltselementen einer Seite, die als „Index für Bereichsmenüs“ markiert sind – eine seiteninterne Sprungliste. Ideal als Inhaltsverzeichnis, das auf Anker innerhalb derselben Seite verlinkt.</target></segment>
+    </unit>
+
+    <unit id="menu_section_pages.title">
+      <segment state="final"><source>Menu: Section Index of Selected Pages</source><target>Menü: Bereichsverzeichnis ausgewählter Seiten</target></segment>
+    </unit>
+    <unit id="menu_section_pages.description">
+      <segment state="final"><source>A menu of the subpages of the pages you select, including each subpage's section-index content as sub-items. Use it for a deep navigation that surfaces both pages and their in-page sections.</source><target>Ein Menü der Unterseiten ausgewählter Seiten, das den Bereichsverzeichnis-Inhalt jeder Unterseite als Unterpunkte einbezieht. Ideal für eine tiefe Navigation, die sowohl Seiten als auch ihre seiteninternen Abschnitte zeigt.</target></segment>
+    </unit>
+
+    <unit id="menu_abstract.title">
+      <segment state="final"><source>Menu: Abstracts</source><target>Menü: Kurzfassungen</target></segment>
+    </unit>
+    <unit id="menu_abstract.description">
+      <segment state="final"><source>A menu of the subpages of selected pages that shows each page's title together with its abstract or description text. Use it as a teaser-style index that previews where each link leads.</source><target>Ein Menü der Unterseiten ausgewählter Seiten, das neben dem Titel jeder Seite auch deren Kurzfassung oder Beschreibungstext zeigt. Ideal als Teaser-Index, der vorab zeigt, wohin jeder Link führt.</target></segment>
+    </unit>
+
+    <unit id="menu_recently_updated.title">
+      <segment state="final"><source>Menu: Recently Updated</source><target>Menü: Kürzlich aktualisiert</target></segment>
+    </unit>
+    <unit id="menu_recently_updated.description">
+      <segment state="final"><source>A menu that lists the most recently changed pages, newest first. Use it to surface fresh content — a "what's new" block or a sidebar of recent updates.</source><target>Ein Menü, das die zuletzt geänderten Seiten auflistet, die neuesten zuerst. Ideal, um frische Inhalte hervorzuheben – einen „Was ist neu“-Block oder eine Seitenleiste mit aktuellen Aktualisierungen.</target></segment>
+    </unit>
+
+    <unit id="menu_related_pages.title">
+      <segment state="final"><source>Menu: Related Pages</source><target>Menü: Verwandte Seiten</target></segment>
+    </unit>
+    <unit id="menu_related_pages.description">
+      <segment state="final"><source>A menu that automatically links to pages sharing keywords with the current page. Use it as a "related content" or "you might also like" block driven by each page's keywords.</source><target>Ein Menü, das automatisch auf Seiten verlinkt, die Schlüsselwörter mit der aktuellen Seite teilen. Ideal als „Verwandte Inhalte“- oder „Das könnte Sie auch interessieren“-Block, gesteuert über die Schlüsselwörter jeder Seite.</target></segment>
+    </unit>
+
+    <unit id="menu_categorized_pages.title">
+      <segment state="final"><source>Menu: Categorized Pages</source><target>Menü: Kategorisierte Seiten</target></segment>
+    </unit>
+    <unit id="menu_categorized_pages.description">
+      <segment state="final"><source>A menu that lists all pages assigned to the categories you choose. Use it to build a category-driven index — for example all pages tagged "News" or "Products" — that updates automatically.</source><target>Ein Menü, das alle Seiten auflistet, die den gewählten Kategorien zugeordnet sind. Ideal, um einen kategoriegesteuerten Index aufzubauen – etwa alle mit „News“ oder „Produkte“ verschlagworteten Seiten – der sich automatisch aktualisiert.</target></segment>
+    </unit>
+
+    <unit id="menu_categorized_content.title">
+      <segment state="final"><source>Menu: Categorized Content</source><target>Menü: Kategorisierter Inhalt</target></segment>
+    </unit>
+    <unit id="menu_categorized_content.description">
+      <segment state="final"><source>A menu that collects content elements assigned to the categories you choose, from across the site. Use it to surface tagged content blocks — like all elements categorized "Downloads" — in one place.</source><target>Ein Menü, das Inhaltselemente sammelt, die den gewählten Kategorien zugeordnet sind – seitenübergreifend. Ideal, um verschlagwortete Inhaltsblöcke – etwa alle als „Downloads“ kategorisierten Elemente – an einer Stelle zu bündeln.</target></segment>
+    </unit>
+
+    <unit id="form_formframework.title">
+      <segment state="final"><source>Form</source><target>Formular</target></segment>
+    </unit>
+    <unit id="form_formframework.description">
+      <segment state="final"><source>An interactive form built with TYPO3's Form Framework: pick a form definition and the element renders its fields, validation and confirmation. Use it for contact, registration or survey forms that submit data and send notifications.</source><target>Ein interaktives Formular auf Basis des TYPO3 Form Frameworks: Sie wählen eine Formulardefinition, und das Element rendert deren Felder, Validierung und Bestätigung. Ideal für Kontakt-, Registrierungs- oder Umfrageformulare, die Daten übermitteln und Benachrichtigungen versenden.</target></segment>
+    </unit>
+
+    <unit id="felogin_login.title">
+      <segment state="final"><source>Login Form</source><target>Login-Formular</target></segment>
+    </unit>
+    <unit id="felogin_login.description">
+      <segment state="final"><source>A login and logout form that password-protects pages, granting access only to authorised website users and groups. Use it on a members' area or intranet entry page to authenticate frontend users.</source><target>Ein Login- und Logout-Formular, das Seiten mit Passwort schützt und nur autorisierten Website-Benutzern und -Gruppen Zugang gewährt. Ideal für einen Mitgliederbereich oder die Intranet-Einstiegsseite zur Authentifizierung von Frontend-Benutzern.</target></segment>
+    </unit>
+
+    <unit id="powermail_pi1.title">
+      <segment state="final"><source>Form (Powermail)</source><target>Formular (Powermail)</target></segment>
+    </unit>
+    <unit id="powermail_pi1.description">
+      <segment state="final"><source>An interactive form built with Powermail: select a configured form and the element renders its fields, multi-step pages, validation and email finishers. Use it for richer marketing and contact forms with conditional fields and reporting.</source><target>Ein interaktives Formular auf Basis von Powermail: Sie wählen ein konfiguriertes Formular, und das Element rendert dessen Felder, mehrstufige Seiten, Validierung und E-Mail-Finisher. Ideal für reichhaltigere Marketing- und Kontaktformulare mit bedingten Feldern und Auswertung.</target></segment>
+    </unit>
+  </file>
+</xliff>

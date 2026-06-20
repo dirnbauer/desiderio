@@ -1531,5 +1531,81 @@
         <target>Eine **zentrierte Karte**, die Vorfreude aufbaut und über ein TYPO3-Formular *Anmeldungen sammelt*. Setzen Sie sie auf Launch- oder Pre-Release-Landingpages ein, um Interessenten vor dem Go-live zu erfassen.</target>
       </segment>
     </unit>
+    <!-- TYPO3 core content elements (native CTypes), keyed by bare cType. -->
+    <unit id="header">
+      <segment state="final"><source>A **standalone heading** with optional subtitle and no body text. Use it to *label or separate* the sections that follow.</source><target>Eine **eigenständige Überschrift** mit optionalem Untertitel und ohne Fließtext. Ideal, um die folgenden Abschnitte zu *beschriften oder zu trennen*.</target></segment>
+    </unit>
+    <unit id="text">
+      <segment state="final"><source>A **rich-text element** with heading and formatted body copy. The *everyday* building block for words on a page.</source><target>Ein **Rich-Text-Element** mit Überschrift und formatiertem Fließtext. Der *alltägliche* Baustein für Text auf der Seite.</target></segment>
+    </unit>
+    <unit id="textpic">
+      <segment state="final"><source>Body copy with **images wrapped around it** — position, columns and lightbox per element. The *classic illustrated* paragraph.</source><target>Fließtext mit **umfließenden Bildern** – Position, Spalten und Lightbox je Element. Der *klassische illustrierte* Absatz.</target></segment>
+    </unit>
+    <unit id="textmedia">
+      <segment state="final"><source>Text wrapped around **images, video and audio** with the same layout options. For a *mixed-media* paragraph.</source><target>Text, der **Bilder, Video und Audio** umfließt – mit denselben Layout-Optionen. Für einen *gemischten Medien*-Absatz.</target></segment>
+    </unit>
+    <unit id="image">
+      <segment state="final"><source>A **column grid of images** with captions and lightbox, no body text. Ideal for a *photo gallery* or screenshots.</source><target>Ein **Spaltenraster aus Bildern** mit Bildunterschriften und Lightbox, ohne Text. Ideal für eine *Fotogalerie* oder Screenshots.</target></segment>
+    </unit>
+    <unit id="bullets">
+      <segment state="final"><source>A **single bullet list** — one line per item. For short, *scannable* lists of features or takeaways.</source><target>Eine **einfache Aufzählungsliste** – eine Zeile pro Punkt. Für kurze, *überfliegbare* Listen von Funktionen oder Kernaussagen.</target></segment>
+    </unit>
+    <unit id="table">
+      <segment state="final"><source>A **simple data table** with optional header row, caption and delimiter. For specs, *comparisons* or schedules.</source><target>Eine **einfache Datentabelle** mit optionaler Kopfzeile, Beschriftung und Trennzeichen. Für Spezifikationen, *Vergleiche* oder Zeitpläne.</target></segment>
+    </unit>
+    <unit id="uploads">
+      <segment state="final"><source>A **download list** of files with optional type, size and thumbnail. For *PDFs, brochures* and datasheets.</source><target>Eine **Download-Liste** von Dateien mit optionalem Typ, Größe und Vorschaubild. Für *PDFs, Broschüren* und Datenblätter.</target></segment>
+    </unit>
+    <unit id="div">
+      <segment state="final"><source>A **horizontal divider** between content elements. *Breaks* a long column into clear sections.</source><target>Ein **horizontaler Trenner** zwischen Inhaltselementen. *Gliedert* eine lange Spalte in klare Abschnitte.</target></segment>
+    </unit>
+    <unit id="html">
+      <segment state="final"><source>Outputs **raw, unprocessed HTML** for embeds and custom markup. For *trusted editors* only.</source><target>Gibt **reines, unverarbeitetes HTML** für Einbettungen und eigenes Markup aus. Nur für *vertrauenswürdige Redakteure*.</target></segment>
+    </unit>
+    <unit id="shortcut">
+      <segment state="final"><source>**Embeds existing content** elements instead of copying them. *Reuse* one maintained block across pages.</source><target>**Bettet vorhandene Inhalte** ein, statt sie zu kopieren. *Wiederverwendung* eines gepflegten Blocks auf mehreren Seiten.</target></segment>
+    </unit>
+    <unit id="menu_pages">
+      <segment state="final"><source>A menu linking to **hand-picked pages**. For a *curated* sub-navigation or "see also" block.</source><target>Ein Menü mit **handverlesenen Seiten**. Für eine *kuratierte* Unternavigation oder einen „Siehe auch“-Block.</target></segment>
+    </unit>
+    <unit id="menu_subpages">
+      <segment state="final"><source>An **auto-updating menu of subpages** of the pages you select. For a *self-maintaining* section navigation.</source><target>Ein **automatisches Menü der Unterseiten** ausgewählter Seiten. Für eine *selbstpflegende* Abschnittsnavigation.</target></segment>
+    </unit>
+    <unit id="menu_sitemap">
+      <segment state="final"><source>An **expanded multi-level sitemap** of the whole site. For a *classic HTML sitemap* page.</source><target>Eine **aufgeklappte, mehrstufige Sitemap** der gesamten Website. Für eine *klassische HTML-Sitemap*-Seite.</target></segment>
+    </unit>
+    <unit id="menu_sitemap_pages">
+      <segment state="final"><source>An **expanded sitemap of selected branches**, not the whole site. To *map specific sections* in full.</source><target>Eine **aufgeklappte Sitemap ausgewählter Äste**, nicht der ganzen Website. Um *bestimmte Bereiche* vollständig abzubilden.</target></segment>
+    </unit>
+    <unit id="menu_section">
+      <segment state="final"><source>An **in-page jump list** built from content marked for section menus. A *table of contents* to anchors on the page.</source><target>Eine **seiteninterne Sprungliste** aus Inhalten, die für Bereichsmenüs markiert sind. Ein *Inhaltsverzeichnis* zu Ankern auf der Seite.</target></segment>
+    </unit>
+    <unit id="menu_section_pages">
+      <segment state="final"><source>Subpages of selected pages **plus their section anchors** as sub-items. For a *deep* page + section navigation.</source><target>Unterseiten ausgewählter Seiten **plus deren Abschnittsanker** als Unterpunkte. Für eine *tiefe* Seiten- und Abschnittsnavigation.</target></segment>
+    </unit>
+    <unit id="menu_abstract">
+      <segment state="final"><source>A menu of subpages showing each page's **title and abstract**. A *teaser-style* index that previews each link.</source><target>Ein Menü der Unterseiten mit **Titel und Kurzfassung** jeder Seite. Ein *Teaser-Index*, der jeden Link vorab zeigt.</target></segment>
+    </unit>
+    <unit id="menu_recently_updated">
+      <segment state="final"><source>A menu of the **most recently changed pages**, newest first. For a *"what's new"* block.</source><target>Ein Menü der **zuletzt geänderten Seiten**, die neuesten zuerst. Für einen *„Was ist neu“*-Block.</target></segment>
+    </unit>
+    <unit id="menu_related_pages">
+      <segment state="final"><source>An automatic menu of pages that **share keywords** with this one. A *"related content"* block.</source><target>Ein automatisches Menü von Seiten mit **gleichen Schlüsselwörtern**. Ein *„Verwandte Inhalte“*-Block.</target></segment>
+    </unit>
+    <unit id="menu_categorized_pages">
+      <segment state="final"><source>A menu of **all pages in the categories** you choose. A *category-driven* index that auto-updates.</source><target>Ein Menü **aller Seiten der gewählten Kategorien**. Ein *kategoriegesteuerter* Index, der sich selbst aktualisiert.</target></segment>
+    </unit>
+    <unit id="menu_categorized_content">
+      <segment state="final"><source>A menu of **content elements in chosen categories**, from across the site. Surfaces *tagged content* in one place.</source><target>Ein Menü von **Inhaltselementen der gewählten Kategorien**, seitenübergreifend. Bündelt *verschlagwortete Inhalte* an einer Stelle.</target></segment>
+    </unit>
+    <unit id="form_formframework">
+      <segment state="final"><source>An **interactive form** from the TYPO3 Form Framework. For *contact, registration* or survey forms.</source><target>Ein **interaktives Formular** aus dem TYPO3 Form Framework. Für *Kontakt-, Registrierungs-* oder Umfrageformulare.</target></segment>
+    </unit>
+    <unit id="felogin_login">
+      <segment state="final"><source>A **login/logout form** that password-protects pages for *authorised users* and groups.</source><target>Ein **Login/Logout-Formular**, das Seiten für *autorisierte Benutzer* und Gruppen mit Passwort schützt.</target></segment>
+    </unit>
+    <unit id="powermail_pi1">
+      <segment state="final"><source>A **Powermail form** with fields, steps and email finishers. For *richer contact* and marketing forms.</source><target>Ein **Powermail-Formular** mit Feldern, Schritten und E-Mail-Finishern. Für *reichhaltigere Kontakt-* und Marketingformulare.</target></segment>
+    </unit>
   </file>
 </xliff>

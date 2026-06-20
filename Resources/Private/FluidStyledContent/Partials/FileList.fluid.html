@@ -26,6 +26,14 @@
                             <f:if condition="{file.description}">
                                 <span class="ce-fsc-files__description">{file.description}</span>
                             </f:if>
+                            <span class="ce-fsc-files__meta">
+                                <f:if condition="{file.extension}">
+                                    <span class="ce-fsc-files__type">{file.extension}</span>
+                                </f:if>
+                                <f:if condition="{file.size}">
+                                    <span class="ce-fsc-files__size"><f:format.bytes decimals="0">{file.size}</f:format.bytes></span>
+                                </f:if>
+                            </span>
                         </span>
                     </a>
                 </dc:molecule.cardContent>

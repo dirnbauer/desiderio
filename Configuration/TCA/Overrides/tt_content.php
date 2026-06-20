@@ -27,3 +27,10 @@ foreach ([
     );
     $position = 'after:' . $group;
 }
+
+// The classic TYPO3 core content elements get Desiderio's custom v14 icons and
+// richer descriptions (wizard + page module) from CoreContentElements. That is
+// applied in \Webconsulting\Desiderio\EventListener\CoreContentElementIcons on
+// AfterTcaCompilationEvent — NOT here — because some CType items (e.g. felogin's
+// "login") are registered by extensions that load after Desiderio, so a static
+// override at this point would silently miss them.

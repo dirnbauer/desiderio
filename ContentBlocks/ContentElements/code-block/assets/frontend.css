@@ -8,7 +8,7 @@
      * Light mode uses darker, saturated bases (rebeccapurple/teal/firebrick)
      * that read clearly on the near-white card; the dark block below swaps in
      * lighter bases. Named colours are used on purpose: the element audit
-     * forbids raw oklch()/hex/rgb()/hsl() literals but allows color-mix and
+     * forbids raw functional or hex color literals but allows color-mix and
      * colour keywords, and the hues stay constant across theme presets.
      * Comments and operators stay neutral grey so the colour reads as accents.
      */

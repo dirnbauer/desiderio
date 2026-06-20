@@ -1,7 +1,7 @@
 name: desiderio/status-indicator
 typeName: desiderio_statusindicator
 title: 'Status Indicator Data View'
-description: 'A service status board that pairs an overall state line with a list of individual services, each marked by a colored dot and a status word. Use it on a status or uptime page to signal at a glance whether systems are operational, degraded, in outage, or under maintenance. An overall status selector sets the summary, and each service has a name, a status state, and an optional status detail.'
+description: 'Place the Status Indicator Data View content element as a focused page section.'
 group: data
 prefixFields: false
 basics:

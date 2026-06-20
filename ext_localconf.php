@@ -75,5 +75,29 @@ module.tx_form.settings.yamlConfigurations.1777100144 = EXT:desiderio/Configurat
 // extension itself. The Desiderio copies (desiderio-simpleform,
 // desiderio-allfields) remain available.
 if (ExtensionManagementUtility::isLoaded('styleguide')) {
-    $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['form']['disabledSets'][] = 'typo3/styleguide-form-set';
+    $typo3Configuration = $GLOBALS['TYPO3_CONF_VARS'] ?? [];
+    if (!is_array($typo3Configuration)) {
+        $typo3Configuration = [];
+    }
+
+    $extensionConfiguration = $typo3Configuration['EXTENSIONS'] ?? [];
+    if (!is_array($extensionConfiguration)) {
+        $extensionConfiguration = [];
+    }
+
+    $formConfiguration = $extensionConfiguration['form'] ?? [];
+    if (!is_array($formConfiguration)) {
+        $formConfiguration = [];
+    }
+
+    $disabledSets = $formConfiguration['disabledSets'] ?? [];
+    if (!is_array($disabledSets)) {
+        $disabledSets = [];
+    }
+
+    $disabledSets[] = 'typo3/styleguide-form-set';
+    $formConfiguration['disabledSets'] = $disabledSets;
+    $extensionConfiguration['form'] = $formConfiguration;
+    $typo3Configuration['EXTENSIONS'] = $extensionConfiguration;
+    $GLOBALS['TYPO3_CONF_VARS'] = $typo3Configuration;
 }

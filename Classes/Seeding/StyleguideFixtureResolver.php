@@ -12,6 +12,15 @@ final class StyleguideFixtureResolver
 {
     public const FIELD_SKIP = '__skip__';
 
+    /**
+     * Native tt_content FAL columns. For core CTypes (no Content Block
+     * definition) an array fixture value on one of these is turned into real
+     * sys_file_reference rows instead of being dropped.
+     *
+     * @var list<string>
+     */
+    private const NATIVE_FILE_COLUMNS = ['assets', 'image', 'media'];
+
     public function __construct(
         private readonly DatabaseSchemaHelper $databaseSchema,
         private readonly StyleguideDemoValueGenerator $demoValueGenerator,
@@ -73,15 +82,31 @@ final class StyleguideFixtureResolver
     {
         $definition = ContentBlockDefinitionRegistry::getDefinition($ctype);
         if ($definition === null) {
+            // Native CType (core content element): copy scalar fixture keys
+            // straight into their tt_content columns; route the known native FAL
+            // columns (assets/image/media) to real file references; drop any other
+            // nested structure we can't map without a definition.
             $row = [];
+            $fileReferences = [];
             foreach ($fixture as $field => $value) {
-                if ($field === '_type' || $field === 'CType' || $field === 'ctype' || is_array($value)) {
+                $field = (string)$field;
+                if ($field === '_type' || $field === 'CType' || $field === 'ctype') {
                     continue;
                 }
-                $row[(string)$field] = $this->normalizeScalarValue($value);
+                if (in_array($field, self::NATIVE_FILE_COLUMNS, true)) {
+                    $references = $this->buildFileReferenceFixturesFromFixtureValue($value, []);
+                    if ($references !== []) {
+                        $fileReferences[$field] = $references;
+                    }
+                    continue;
+                }
+                if (is_array($value)) {
+                    continue;
+                }
+                $row[$field] = $this->normalizeScalarValue($value);
             }
 
-            return [$row, [], []];
+            return [$row, [], $fileReferences];
         }
 
         $resolvedFields = [];

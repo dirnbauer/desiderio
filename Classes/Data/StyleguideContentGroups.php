@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Webconsulting\Desiderio\Data;
 
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use Webconsulting\Desiderio\Library\CoreContentElements;
 
 /**
  * Static list of Desiderio content element groups for the styleguide page.
@@ -32,6 +33,22 @@ final class StyleguideContentGroups
 
         /** @var list<array{groupId: string, groupTitle: string, elements: list<array{name: string, ctype: string}>}> $groups */
         $groups = self::loadJson('EXT:desiderio/Resources/Private/Data/styleguide-content-groups.json');
+
+        // The classic TYPO3 core content elements get their own styleguide page,
+        // derived from the single CoreContentElements manifest (plugins excluded:
+        // they need a configured form/flexform and Powermail has its own seeder).
+        $coreElements = array_map(
+            static fn (array $element): array => ['name' => $element['name'], 'ctype' => $element['cType']],
+            CoreContentElements::styleguideElements(),
+        );
+        if ($coreElements !== []) {
+            $groups[] = [
+                'groupId' => 'core',
+                'groupTitle' => 'TYPO3 Core Elements',
+                'elements' => $coreElements,
+            ];
+        }
+
         self::$cache = $groups;
         return self::$cache;
     }
@@ -67,7 +84,13 @@ final class StyleguideContentGroups
             return self::$fixtureCache;
         }
 
-        self::$fixtureCache = self::loadFixturesFromContentBlocks();
+        $fixtures = self::loadFixturesFromContentBlocks();
+        // Native core elements carry their fixture in the PHP manifest, keyed by
+        // the bare core cType (e.g. "bullets", "textmedia").
+        foreach (CoreContentElements::styleguideElements() as $element) {
+            $fixtures[$element['cType']] = $element['fixture'];
+        }
+        self::$fixtureCache = $fixtures;
         return self::$fixtureCache;
     }
 

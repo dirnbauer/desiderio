@@ -39,7 +39,7 @@
                         <header data-slot="card-header" class="{cardHeaderClass -> f:format.trim()}">
                             <h2 data-slot="card-title" class="{cardTitleClass -> f:format.trim()}">{form.title}</h2>
                             <p data-slot="card-description" class="{cardDescriptionClass -> f:format.trim()}">
-                                <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/powermail.xlf:powermail.form.requiredHint.lead" /> (<span class="text-destructive">*</span>) <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/powermail.xlf:powermail.form.requiredHint.trail" />
+                                <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/powermail.xlf:powermail.form.requiredHint" arguments="{requiredCount: 2}" />
                         </header>
                     </f:if>
 

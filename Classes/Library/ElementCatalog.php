@@ -91,6 +91,19 @@ final class ElementCatalog
             ];
         }
 
+        foreach (CoreContentElements::available() as $core) {
+            $elements[] = [
+                'cType' => $core['cType'],
+                'name' => $core['name'],
+                'hostExtension' => CoreContentElements::HOST,
+                'title' => $core['name'],
+                'description' => '',
+                'group' => $core['group'],
+                'config' => [],
+                'fixture' => $core['fixture'],
+            ];
+        }
+
         usort($elements, static fn(array $a, array $b): int => strcasecmp($a['title'], $b['title']));
 
         $this->elements = $elements;
@@ -153,11 +166,24 @@ final class ElementCatalog
     /**
      * Localized title/description for one catalog element.
      *
-     * @param array{name: string, hostExtension: string, title: string, description: string} $element
+     * @param array{cType: string, name: string, hostExtension: string, title: string, description: string} $element
      * @return array{title: string, description: string}
      */
     public function localizeElement(array $element, LanguageService $languageService): array
     {
+        // Core (native) elements have no Content Block labels.xlf; their title and
+        // description live in the shared library_core.xlf, keyed by bare cType.
+        if ($element['hostExtension'] === CoreContentElements::HOST) {
+            $coreFile = 'LLL:EXT:desiderio/Resources/Private/Language/library_core.xlf:';
+            $title = $languageService->sL($coreFile . $element['cType'] . '.title');
+            $description = $languageService->sL($coreFile . $element['cType'] . '.description');
+
+            return [
+                'title' => $title !== '' ? $title : $element['title'],
+                'description' => $description !== '' ? $description : $element['description'],
+            ];
+        }
+
         $labelsFile = 'LLL:EXT:' . $element['hostExtension'] . '/ContentBlocks/ContentElements/'
             . $element['name'] . '/language/labels.xlf:';
         $title = $languageService->sL($labelsFile . 'title');
@@ -182,7 +208,12 @@ final class ElementCatalog
      */
     public function localizeKeywords(array $element, LanguageService $languageService): array
     {
-        $file = 'LLL:EXT:' . $element['hostExtension'] . '/Resources/Private/Language/library_keywords.xlf:';
+        // Core elements carry no own extension; their keyword units live in
+        // Desiderio's library_keywords.xlf, keyed by the bare core cType.
+        $hostExtension = $element['hostExtension'] === CoreContentElements::HOST
+            ? 'desiderio'
+            : $element['hostExtension'];
+        $file = 'LLL:EXT:' . $hostExtension . '/Resources/Private/Language/library_keywords.xlf:';
         $raw = $languageService->sL($file . $element['cType']);
         if ($raw === '') {
             return ['keywords' => [], 'synonyms' => []];
@@ -297,6 +328,18 @@ final class ElementCatalog
             ];
         }
 
+        foreach (CoreContentElements::available() as $core) {
+            $metadata[] = [
+                'cType' => $core['cType'],
+                'name' => $core['name'],
+                'hostExtension' => CoreContentElements::HOST,
+                'title' => $core['name'],
+                'description' => '',
+                'group' => $core['group'],
+                'iconUrl' => $this->resolveCoreIconWebPath($core['iconSlug']),
+            ];
+        }
+
         usort($metadata, static fn(array $a, array $b): int => strcasecmp($a['title'], $b['title']));
 
         return $metadata;
@@ -332,6 +375,19 @@ final class ElementCatalog
                 if ($mtime !== false) {
                     $parts[] = $configPath . ':' . $mtime;
                 }
+            }
+        }
+        // Core elements are defined in PHP + library_core.xlf, not config.yaml, so
+        // include their mtimes too — editing a core definition or its labels must
+        // self-invalidate the cached picker metadata just like a Content Block edit.
+        foreach ([
+            'EXT:desiderio/Classes/Library/CoreContentElements.php',
+            'EXT:desiderio/Resources/Private/Language/library_core.xlf',
+            'EXT:desiderio/Resources/Private/Language/de.library_core.xlf',
+        ] as $corePath) {
+            $mtime = @filemtime(GeneralUtility::getFileAbsFileName($corePath));
+            if ($mtime !== false) {
+                $parts[] = $corePath . ':' . $mtime;
             }
         }
         sort($parts);
@@ -378,6 +434,24 @@ final class ElementCatalog
     private function resolveIconWebPath(string $hostExtension, string $name): string
     {
         $publicPath = 'EXT:' . $hostExtension . '/Resources/Public/ContentBlocks/' . $name . '/icon.svg';
+        if (!is_file(GeneralUtility::getFileAbsFileName($publicPath))) {
+            return '';
+        }
+        try {
+            return PathUtility::getPublicResourceWebPath($publicPath);
+        } catch (\Throwable) {
+            return '';
+        }
+    }
+
+    /**
+     * Web path of a core element's Desiderio-shipped wizard icon
+     * (Resources/Public/Icons/ContentElements/core-<slug>.svg). Mirrors
+     * resolveIconWebPath() but for the icons we author for native CTypes.
+     */
+    private function resolveCoreIconWebPath(string $iconSlug): string
+    {
+        $publicPath = 'EXT:desiderio/Resources/Public/Icons/ContentElements/core-' . $iconSlug . '.svg';
         if (!is_file(GeneralUtility::getFileAbsFileName($publicPath))) {
             return '';
         }

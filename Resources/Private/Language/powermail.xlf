@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xliff version="2.0" xmlns="urn:oasis:names:tc:xliff:document:2.0" srcLang="en">
   <file id="desiderio-powermail">
-    <unit id="powermail.form.requiredHint.lead">
-      <segment><source>Fields marked with an asterisk</source></segment>
-    </unit>
-    <unit id="powermail.form.requiredHint.trail">
-      <segment><source>are required.</source></segment>
+    <unit id="powermail.form.requiredHint">
+      <segment><source>{requiredCount, plural, one {Fields marked with an asterisk (*) are required.} other {Fields marked with an asterisk (*) are required.}}</source></segment>
     </unit>
     <unit id="powermail.multistep.label">
       <segment><source>Form steps</source></segment>

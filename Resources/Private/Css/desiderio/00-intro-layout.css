@@ -28,8 +28,7 @@ body {
 
 /* The single page-level <h1> rendered by the Pages/PageTitle partial.
    Visible by default, sitting between the breadcrumb and the first
-   content section. The screen-reader-only variant (flagged per page via
-   tx_desiderio_h1_sronly) uses .sr-only and needs no rules here. */
+   content section. The screen-reader-only variant uses .sr-only. */
 .desiderio-page-title {
     padding: 2rem 0 2rem;
 }

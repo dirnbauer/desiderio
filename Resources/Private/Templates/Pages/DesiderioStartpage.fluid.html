@@ -6,14 +6,13 @@
 <f:layout name="Pages/Default"/>
 
 <f:comment>
-    The stage hero carries the visual headline (an h2 like every other content
-    element). The single page-level h1 with the page title comes from the
-    Pages/PageTitle partial: enable tx_desiderio_h1_sronly on the home page so
-    it renders screen-reader-only and does not duplicate the hero heading.
+    Startpages have no visible masthead: the stage hero carries the visual
+    headline (as an h2 like every other content element), so a screen-reader
+    only h1 with the page title keeps exactly one h1 per page.
 </f:comment>
 
 <f:section name="Stage">
-    <f:render partial="Pages/PageTitle" arguments="{_all}"/>
+    <h1 class="sr-only">{page.pageRecord.title}</h1>
     <!--TYPO3SEARCH_begin-->
     <f:if condition="{content.stage}">
         <f:render.contentArea contentArea="{content.stage}"/>

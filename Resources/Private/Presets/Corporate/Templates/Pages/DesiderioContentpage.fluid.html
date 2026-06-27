@@ -30,10 +30,6 @@
 </f:if>
 <f:variable name="pageLede" value="{page.pageRecord.abstract -> f:or(alternative: '{f:translate(extensionName: \'desiderio\', key: \'corporate.page.lede\', default: \'A clear, structured look at what we do here and how it helps your organisation move forward.\')}')}"/>
 
-<f:section name="Stage">
-    <f:render partial="Presets/Stage" arguments="{content: content.stage, class: 'desiderio-corporate-template__stage', containerSize: 'xl', innerClass: 'desiderio-corporate-template__stage-inner'}"/>
-</f:section>
-
 <f:section name="Main">
     <div class="desiderio-corporate-template">
         <d:layout.container size="xl" class="desiderio-corporate-template__container">

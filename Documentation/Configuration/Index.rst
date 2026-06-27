@@ -254,28 +254,28 @@ Backend layouts
         - Content areas
         - Page template
     *   - ``DesiderioStartpage``
-        - ``stage``, ``main``
+        - ``main``
         - ``Pages/DesiderioStartpage.fluid.html``
     *   - ``DesiderioContentpage``
-        - ``stage``, ``main``
+        - ``main``
         - ``Pages/DesiderioContentpage.fluid.html``
     *   - ``DesiderioContentpageSidebar``
-        - ``stage``, ``main``, ``sidebar``
+        - ``main``, ``sidebar``
         - ``Pages/DesiderioContentpageSidebar.fluid.html``
     *   - ``DesiderioStyleguide``
         - ``main``
         - ``Pages/DesiderioStyleguide.fluid.html``
     *   - ``DesiderioBlog``
-        - ``stage``, ``main``, ``sidebar``
+        - ``main``, ``sidebar``
         - ``Pages/DesiderioBlog.fluid.html``
     *   - ``DesiderioNews``
-        - ``stage``, ``main``, ``sidebar``
+        - ``main``, ``sidebar``
         - ``Pages/DesiderioNews.fluid.html``
     *   - ``DesiderioExtension``
-        - ``stage``, ``sidebar``, ``main``
+        - ``sidebar``, ``main``
         - ``Pages/DesiderioExtension.fluid.html``
     *   - Fallback
-        - ``stage``, ``main``
+        - ``main``
         - ``Pages/Default.fluid.html``
 
 ..  _configuration-rss:

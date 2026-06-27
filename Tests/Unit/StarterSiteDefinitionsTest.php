@@ -145,7 +145,7 @@ final class StarterSiteDefinitionsTest extends TestCase
             $template = (string)file_get_contents($path);
 
             self::assertSame(1, substr_count($template, 'content.main'), $slug . ' startpage must render the main content area exactly once');
-            self::assertStringContainsString('content.stage', $template, $slug . ' startpage must expose the stage content area');
+            self::assertStringNotContainsString('content.stage', $template, $slug . ' startpage must not render the removed stage content area');
             self::assertSame(
                 1,
                 substr_count($template, '<h1 class="sr-only">{page.pageRecord.title}</h1>'),

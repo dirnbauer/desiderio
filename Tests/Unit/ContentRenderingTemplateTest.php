@@ -917,7 +917,6 @@ final class ContentRenderingTemplateTest extends TestCase
         ];
         $sharedPartials = [
             'ContentArea' => 'contentArea="{content}"',
-            'Stage' => 'contentArea="{content}"',
             'SystemHeader' => '<f:argument name="summaryTag"',
         ];
         $templateNames = [
@@ -1067,7 +1066,7 @@ final class ContentRenderingTemplateTest extends TestCase
             self::assertStringContainsString('<d:layout.section', $template);
             self::assertStringContainsString('<d:layout.container', $template);
             self::assertStringContainsString('<d:layout.stack', $template);
-            self::assertStringContainsString('contentArea="{content.stage}"', $template);
+            self::assertStringNotContainsString('content.stage', $template);
             self::assertStringContainsString('contentArea="{content.main}"', $template);
             self::assertStringContainsString('contentArea="{content.sidebar}"', $template);
         }

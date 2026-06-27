@@ -26,7 +26,7 @@
                             <f:if condition="{di:fileIsImage(extension: file.extension)}">
                                 <f:then>
                                     <span class="ce-fsc-files__media ce-fsc-files__media--thumbnail" data-slot="attachment-media" aria-hidden="true">
-                                        <f:image image="{file}" width="64" height="64" alt="" loading="lazy" decoding="async" class="ce-fsc-files__thumbnail"/>
+                                        <f:image image="{file}" width="112c" height="112c" alt="" loading="lazy" decoding="async" class="ce-fsc-files__thumbnail ce-fsc-files__thumbnail--{file.extension}"/>
                                     </span>
                                 </f:then>
                                 <f:else>

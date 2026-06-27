@@ -32,6 +32,9 @@ final class UploadsFileListTemplateTest extends TestCase
         self::assertStringContainsString('<f:case value="2">', $partial);
         self::assertStringContainsString('di:fileIconName(extension: file.extension)', $partial);
         self::assertStringContainsString('di:fileIsImage(extension: file.extension)', $partial);
+        self::assertStringContainsString('width="112c" height="112c"', $partial);
+        self::assertStringContainsString('ce-fsc-files__thumbnail--{file.extension}', $partial);
+        self::assertStringNotContainsString('width="64" height="64"', $partial);
     }
 
     public function testFileListPartialUsesShadcnAttachmentSlots(): void
@@ -58,6 +61,9 @@ final class UploadsFileListTemplateTest extends TestCase
         self::assertStringContainsString('.ce-fsc-files__list', $css);
         self::assertStringContainsString('.ce-fsc-files__item', $css);
         self::assertStringContainsString('.ce-fsc-files__media--thumbnail', $css);
+        self::assertStringContainsString('box-sizing: border-box', $css);
+        self::assertStringContainsString('object-position: center', $css);
+        self::assertStringContainsString('.ce-fsc-files__thumbnail--svg', $css);
         self::assertStringContainsString('.ce-fsc-files__item--type-0', $css);
         self::assertStringContainsString('.ce-fsc-files__trigger', $css);
         self::assertStringNotContainsString('.ce-fsc-files__content', $css);

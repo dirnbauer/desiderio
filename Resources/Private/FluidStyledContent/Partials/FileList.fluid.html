@@ -13,81 +13,99 @@
 
 <f:if condition="{files}">
     <f:variable name="fileCount" value="{files -> f:count()}"/>
-    <div class="ce-fsc-files" data-slot="list">
-        <p class="ce-fsc-files__summary">
+    <div class="ce-fsc-files" data-slot="attachment-group" data-uploads-type="{uploadsType}">
+        <p class="ce-fsc-files__summary" data-slot="attachment-group-label">
             <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:fsc.download_count" arguments="{count: fileCount}"/>
         </p>
-        <f:for each="{files}" as="file">
-            <dc:molecule.card class="ce-fsc-files__item" size="sm">
-                <dc:molecule.cardContent class="ce-fsc-files__content">
-                    <a href="{file.publicUrl}" class="ce-fsc-files__link ce-fsc-files__link--type-{uploadsType}" download>
-                        <f:if condition="{uploadsType} != 0">
-                            <f:if condition="{uploadsType} == 2">
+        <div class="ce-fsc-files__list">
+            <f:for each="{files}" as="file">
+                <div class="ce-fsc-files__item ce-fsc-files__item--type-{uploadsType}" data-slot="attachment" data-state="done" data-size="default" data-orientation="horizontal">
+                    <f:switch expression="{uploadsType}">
+                        <f:case value="0"></f:case>
+                        <f:case value="2">
+                            <f:if condition="{di:fileIsImage(extension: file.extension)}">
                                 <f:then>
-                                    <f:if condition="{di:fileIsImage(extension: file.extension)}">
-                                        <f:then>
-                                            <span class="ce-fsc-files__icon ce-fsc-files__icon--thumbnail" aria-hidden="true">
-                                                <f:image image="{file}" width="48" height="48" alt="" loading="lazy" decoding="async" class="ce-fsc-files__thumbnail"/>
-                                            </span>
-                                        </f:then>
-                                        <f:else>
-                                            <span class="ce-fsc-files__icon" aria-hidden="true">
-                                                <dc:atom.icon name="{di:fileIconName(extension: file.extension)}" size="sm"/>
-                                            </span>
-                                        </f:else>
-                                    </f:if>
+                                    <span class="ce-fsc-files__media ce-fsc-files__media--thumbnail" data-slot="attachment-media" aria-hidden="true">
+                                        <f:image image="{file}" width="64" height="64" alt="" loading="lazy" decoding="async" class="ce-fsc-files__thumbnail"/>
+                                    </span>
                                 </f:then>
                                 <f:else>
-                                    <span class="ce-fsc-files__icon" aria-hidden="true">
+                                    <span class="ce-fsc-files__media" data-slot="attachment-media" aria-hidden="true">
                                         <dc:atom.icon name="{di:fileIconName(extension: file.extension)}" size="sm"/>
                                     </span>
                                 </f:else>
                             </f:if>
-                        </f:if>
-                        <span class="ce-fsc-files__body">
-                            <span class="ce-fsc-files__title">
-                                <f:if condition="{file.title}">
-                                    <f:then>{file.title}</f:then>
-                                    <f:else>{file.name}</f:else>
-                                </f:if>
+                        </f:case>
+                        <f:defaultCase>
+                            <span class="ce-fsc-files__media" data-slot="attachment-media" aria-hidden="true">
+                                <dc:atom.icon name="{di:fileIconName(extension: file.extension)}" size="sm"/>
                             </span>
-                            <f:if condition="{displayDescription}">
-                                <f:if condition="{file.description}">
-                                    <span class="ce-fsc-files__description">{file.description}</span>
-                                </f:if>
+                        </f:defaultCase>
+                    </f:switch>
+                    <span class="ce-fsc-files__body" data-slot="attachment-content">
+                        <span class="ce-fsc-files__title" data-slot="attachment-title">
+                            <f:if condition="{file.title}">
+                                <f:then>{file.title}</f:then>
+                                <f:else>{file.name}</f:else>
                             </f:if>
-                            <f:if condition="{uploadsType} != 0">
-                                <f:then>
-                                    <span class="ce-fsc-files__meta">
-                                        <f:if condition="{file.extension}">
-                                            <span class="ce-fsc-files__type">{file.extension}</span>
-                                        </f:if>
+                        </span>
+                        <f:if condition="{displayDescription}">
+                            <f:if condition="{file.description}">
+                                <span class="ce-fsc-files__description" data-slot="attachment-description">{file.description}</span>
+                            </f:if>
+                        </f:if>
+                        <f:if condition="{uploadsType} != 0">
+                            <f:then>
+                                <f:if condition="{file.extension}">
+                                    <f:then>
+                                        <span class="ce-fsc-files__meta" data-slot="attachment-metadata">
+                                            <dc:atom.badge variant="outline" class="ce-fsc-files__type">{file.extension}</dc:atom.badge>
+                                            <f:if condition="{displayFileSize}">
+                                                <f:if condition="{file.size}">
+                                                    <span class="ce-fsc-files__size"><f:format.bytes decimals="0">{file.size}</f:format.bytes></span>
+                                                </f:if>
+                                            </f:if>
+                                        </span>
+                                    </f:then>
+                                    <f:else>
                                         <f:if condition="{displayFileSize}">
                                             <f:if condition="{file.size}">
-                                                <span class="ce-fsc-files__size"><f:format.bytes decimals="0">{file.size}</f:format.bytes></span>
+                                                <span class="ce-fsc-files__meta" data-slot="attachment-metadata">
+                                                    <span class="ce-fsc-files__size"><f:format.bytes decimals="0">{file.size}</f:format.bytes></span>
+                                                </span>
                                             </f:if>
                                         </f:if>
-                                    </span>
-                                </f:then>
-                                <f:else>
-                                    <f:if condition="{displayFileSize}">
-                                        <f:if condition="{file.size}">
-                                            <span class="ce-fsc-files__meta">
-                                                <span class="ce-fsc-files__size"><f:format.bytes decimals="0">{file.size}</f:format.bytes></span>
-                                            </span>
-                                        </f:if>
+                                    </f:else>
+                                </f:if>
+                            </f:then>
+                            <f:else>
+                                <f:if condition="{displayFileSize}">
+                                    <f:if condition="{file.size}">
+                                        <span class="ce-fsc-files__meta" data-slot="attachment-metadata">
+                                            <span class="ce-fsc-files__size"><f:format.bytes decimals="0">{file.size}</f:format.bytes></span>
+                                        </span>
                                     </f:if>
-                                </f:else>
-                            </f:if>
-                        </span>
-                        <span class="ce-fsc-files__action">
-                            <span><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:download_file"/></span>
+                                </f:if>
+                            </f:else>
+                        </f:if>
+                    </span>
+                    <span class="ce-fsc-files__actions" data-slot="attachment-actions" aria-hidden="true">
+                        <span class="ce-fsc-files__action" data-slot="attachment-action">
                             <dc:atom.icon name="download" size="sm"/>
                         </span>
+                    </span>
+                    <a href="{file.publicUrl}" class="ce-fsc-files__trigger" data-slot="attachment-trigger" download>
+                        <span class="ce-fsc-files__sr">
+                            <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:download_file"/>
+                            <f:if condition="{file.title}">
+                                <f:then>{file.title}</f:then>
+                                <f:else>{file.name}</f:else>
+                            </f:if>
+                        </span>
                     </a>
-                </dc:molecule.cardContent>
-            </dc:molecule.card>
-        </f:for>
+                </div>
+            </f:for>
+        </div>
     </div>
 </f:if>
 

@@ -323,6 +323,56 @@ final class IconRegistry
                 'group' => 'Content',
                 'paths' => '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/>',
             ],
+            'file-text' => [
+                'label' => 'Text File',
+                'group' => 'Content',
+                'paths' => '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h6"/>',
+            ],
+            'file-pdf' => [
+                'label' => 'PDF File',
+                'group' => 'Content',
+                'paths' => '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><text x="7" y="17" fill="currentColor" stroke="none" font-size="5" font-family="Arial, sans-serif" font-weight="700">PDF</text>',
+            ],
+            'file-word' => [
+                'label' => 'Document File',
+                'group' => 'Content',
+                'paths' => '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h5"/>',
+            ],
+            'file-spreadsheet' => [
+                'label' => 'Spreadsheet File',
+                'group' => 'Content',
+                'paths' => '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 12h8"/><path d="M8 16h8"/><path d="M11 12v7"/><path d="M16 12v7"/>',
+            ],
+            'file-presentation' => [
+                'label' => 'Presentation File',
+                'group' => 'Content',
+                'paths' => '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8v5H8z"/><path d="m12 18-2 2"/><path d="m12 18 2 2"/>',
+            ],
+            'file-image' => [
+                'label' => 'Image File',
+                'group' => 'Content',
+                'paths' => '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><circle cx="10" cy="13" r="1"/><path d="m8 18 2.5-3 2 2 1.5-1.5 2 2.5"/>',
+            ],
+            'file-video' => [
+                'label' => 'Video File',
+                'group' => 'Content',
+                'paths' => '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="m10 13 5 3-5 3z"/>',
+            ],
+            'file-audio' => [
+                'label' => 'Audio File',
+                'group' => 'Content',
+                'paths' => '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M10 18v-6l5-1v6"/><circle cx="9" cy="18" r="1"/><circle cx="14" cy="17" r="1"/>',
+            ],
+            'file-archive' => [
+                'label' => 'Archive File',
+                'group' => 'Content',
+                'paths' => '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M10 12h4"/><path d="M10 15h4"/><path d="M10 18h4"/>',
+            ],
+            'file-code' => [
+                'label' => 'Code File',
+                'group' => 'Content',
+                'paths' => '<path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="m10 13-2 2 2 2"/><path d="m14 13 2 2-2 2"/>',
+            ],
             'folder' => [
                 'label' => 'Folder',
                 'group' => 'Content',

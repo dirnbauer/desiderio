@@ -64,6 +64,10 @@ final class UploadsFileListTemplateTest extends TestCase
         self::assertStringContainsString('box-sizing: border-box', $css);
         self::assertStringContainsString('object-position: center', $css);
         self::assertStringContainsString('.ce-fsc-files__thumbnail--svg', $css);
+        self::assertStringContainsString('.ce-fsc-files__type', $css);
+        self::assertStringContainsString('min-width: 2.25rem', $css);
+        self::assertStringContainsString('background-color: color-mix(in oklch, var(--muted) 72%, var(--background))', $css);
+        self::assertStringContainsString('.ce-fsc-files__item:hover .ce-fsc-files__type', $css);
         self::assertStringContainsString('.ce-fsc-files__item--type-0', $css);
         self::assertStringContainsString('.ce-fsc-files__trigger', $css);
         self::assertStringNotContainsString('.ce-fsc-files__content', $css);

@@ -6,6 +6,21 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [2.13.0] — 2026-07-04
+
+### Changed
+
+- Testimonials are stored inline again. The experimental `desiderio/testimonial-pool`
+  RecordType added in 2.12.0 is removed: it was the only RecordType in the
+  catalog, its table name (`desiderio_testimonial`) clashed with the base
+  `testimonial` element's CType, and every other element already keeps its
+  repeating content in an inline Collection. `testimonial-grid` and
+  `testimonial-carousel` return to their own `testimonial_grid_testimonials`
+  / `testimonial_carousel_testimonials` collections; the Relation-field
+  support in the definition registry and seeders is removed. Editors see no
+  change to the fields; the shared `desiderio_testimonial` pool table is no
+  longer created.
+
 ## [2.12.0] — 2026-07-04
 
 ### Added

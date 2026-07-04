@@ -39,7 +39,7 @@ final class ElementCatalogDefinitions
     private function collect(string $parentTable, array $collections, array &$map): void
     {
         foreach ($collections as $collection) {
-            if (!is_array($collection) || ($collection['relation'] ?? false) === true) {
+            if (!is_array($collection)) {
                 continue;
             }
             $collectionConfig = ContentBlockDefinitionRegistry::normalizeStringKeyedArray($collection);

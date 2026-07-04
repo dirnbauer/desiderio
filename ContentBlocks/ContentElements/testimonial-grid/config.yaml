@@ -33,7 +33,32 @@ fields:
     default: '3'
   -
     identifier: testimonials
-    type: Relation
-    allowed: desiderio_testimonial
+    type: Collection
+    table: testimonial_grid_testimonials
+    prefixField: true
     label: Testimonials
-    minitems: 1
+    minItems: 1
+    fields:
+      -
+        identifier: quote
+        type: Textarea
+        label: Quote
+        rows: 3
+        required: true
+      -
+        identifier: author_name
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:author_name'
+        required: true
+      -
+        identifier: author_title
+        type: Textarea
+        rows: 1
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:author_title'
+      -
+        identifier: author_image
+        type: File
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:author_photo'
+        allowed: common-image-types
+        maxitems: 1

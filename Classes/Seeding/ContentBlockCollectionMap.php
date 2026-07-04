@@ -59,7 +59,7 @@ final class ContentBlockCollectionMap
     private function collectCollectionTableNames(array $collections, array &$tables): void
     {
         foreach ($collections as $collection) {
-            if (!is_array($collection) || ($collection['relation'] ?? false) === true) {
+            if (!is_array($collection)) {
                 continue;
             }
             $table = $collection['table'] ?? null;
@@ -80,7 +80,7 @@ final class ContentBlockCollectionMap
     private function collectCollectionsByParentTable(string $parentTable, array $collections, array &$map): void
     {
         foreach ($collections as $collection) {
-            if (!is_array($collection) || ($collection['relation'] ?? false) === true) {
+            if (!is_array($collection)) {
                 continue;
             }
 

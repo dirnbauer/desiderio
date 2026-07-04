@@ -104,9 +104,6 @@ final class StarterContentBuilder
                         'column' => $this->getCollectionColumn($collection, $field),
                         'items' => $items,
                     ];
-                    if (($collection['relation'] ?? false) === true) {
-                        $collections[$field]['relation'] = true;
-                    }
                 }
                 continue;
             }

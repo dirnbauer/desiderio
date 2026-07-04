@@ -16,15 +16,11 @@ final class CollectionRecordSeeder
     ) {}
 
     /**
-     * @param array<string, array{table: string, column?: string, items: list<array<string, mixed>>, relation?: bool}> $collections
+     * @param array<string, array{table: string, column?: string, items: list<array<string, mixed>>}> $collections
      */
-    public function seed(int $contentUid, int $pageUid, int $now, array $collections, string $parentTable = 'tt_content'): void
+    public function seed(int $contentUid, int $pageUid, int $now, array $collections): void
     {
         foreach ($collections as $collection) {
-            if (($collection['relation'] ?? false) === true) {
-                $this->seedRelationPool($contentUid, $pageUid, $now, $collection, $parentTable);
-                continue;
-            }
             $table = $collection['table'];
             $columns = $this->databaseSchema->getColumnNames($table);
             $connection = $this->connectionPool->getConnectionForTable($table);
@@ -58,92 +54,9 @@ final class CollectionRecordSeeder
                 $connection->insert($table, $row);
                 $collectionRowUid = self::normalizeLastInsertId($connection->lastInsertId());
                 $this->falSeeder->seedFileReferences($table, $collectionRowUid, $pageUid, $now, $fileReferences);
-                $this->seed($collectionRowUid, $pageUid, $now, $nestedCollections, $table);
+                $this->seed($collectionRowUid, $pageUid, $now, $nestedCollections);
             }
         }
-    }
-
-    /**
-     * Shared record pool (Relation field): pool rows carry no parent pointer.
-     * Identical rows are reused across elements and across re-runs, and the
-     * parent record's column receives the uid CSV the TCA group field expects.
-     *
-     * @param array{table: string, column?: string, items: list<array<string, mixed>>} $collection
-     */
-    private function seedRelationPool(int $contentUid, int $pageUid, int $now, array $collection, string $parentTable): void
-    {
-        $table = $collection['table'];
-        $column = $collection['column'] ?? null;
-        if ($contentUid <= 0 || !is_string($column) || $column === '') {
-            return;
-        }
-
-        $columns = $this->databaseSchema->getColumnNames($table);
-        $connection = $this->connectionPool->getConnectionForTable($table);
-        $uids = [];
-
-        foreach ($collection['items'] as $index => $item) {
-            if ($item === []) {
-                continue;
-            }
-
-            $fileReferences = self::normalizeFileReferencePayloads($item[SeedingPayloadKeys::FILE_REFERENCES] ?? []);
-            unset($item[SeedingPayloadKeys::FILE_REFERENCES], $item[SeedingPayloadKeys::NESTED_COLLECTIONS]);
-
-            $payload = $this->databaseSchema->filterRow($item, $columns);
-            unset($payload['pid'], $payload['uid'], $payload['sorting']);
-            if ($payload === []) {
-                continue;
-            }
-
-            $uid = $this->findExistingPoolRecordUid($table, $payload);
-            if ($uid === null) {
-                $row = $this->databaseSchema->filterRow([
-                    'pid' => $pageUid,
-                    'sorting' => $index + 1,
-                    'hidden' => 0,
-                    'sys_language_uid' => 0,
-                    'crdate' => $now,
-                    'tstamp' => $now,
-                ] + $item, $columns);
-                if (!self::hasPayloadBeyondSystemFields($row)) {
-                    continue;
-                }
-                $connection->insert($table, $row);
-                $uid = self::normalizeLastInsertId($connection->lastInsertId());
-                $this->falSeeder->seedFileReferences($table, $uid, $pageUid, $now, $fileReferences);
-            }
-
-            if ($uid > 0 && !in_array($uid, $uids, true)) {
-                $uids[] = $uid;
-            }
-        }
-
-        if ($uids !== []) {
-            $this->connectionPool
-                ->getConnectionForTable($parentTable)
-                ->update($parentTable, [$column => implode(',', $uids)], ['uid' => $contentUid]);
-        }
-    }
-
-    /**
-     * @param array<string, mixed> $payload
-     */
-    private function findExistingPoolRecordUid(string $table, array $payload): ?int
-    {
-        $queryBuilder = $this->connectionPool->getQueryBuilderForTable($table);
-        $queryBuilder->select('uid')->from($table);
-        foreach ($payload as $field => $value) {
-            if (!is_scalar($value)) {
-                return null;
-            }
-            $queryBuilder->andWhere(
-                $queryBuilder->expr()->eq($field, $queryBuilder->createNamedParameter((string)$value))
-            );
-        }
-        $uid = $queryBuilder->setMaxResults(1)->executeQuery()->fetchOne();
-
-        return is_numeric($uid) ? (int)$uid : null;
     }
 
     /**
@@ -178,9 +91,6 @@ final class CollectionRecordSeeder
 
             if (is_string($collection['column'] ?? null)) {
                 $normalizedCollections[$field]['column'] = $collection['column'];
-            }
-            if (($collection['relation'] ?? false) === true) {
-                $normalizedCollections[$field]['relation'] = true;
             }
         }
 

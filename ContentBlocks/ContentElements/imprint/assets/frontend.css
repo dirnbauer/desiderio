@@ -8,7 +8,7 @@
 .imprint__company { font-weight: 600; }
 .imprint__lines { white-space: pre-line; }
 .imprint__link {
-    color: var(--d-primary);
+    color: var(--d-link, var(--primary));
     text-decoration: none;
     border-radius: var(--d-radius-sm);
 }

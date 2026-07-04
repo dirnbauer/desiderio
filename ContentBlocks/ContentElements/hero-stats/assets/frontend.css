@@ -14,7 +14,7 @@
 .hero-stats__eyebrow {
     font-size: var(--d-text-sm);
     font-weight: 500;
-    color: var(--d-primary);
+    color: var(--d-link, var(--primary));
     text-transform: uppercase;
     letter-spacing: 0.05em;
     margin: 0 0 var(--d-spacing-3);

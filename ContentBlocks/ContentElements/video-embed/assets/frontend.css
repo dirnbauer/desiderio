@@ -32,7 +32,7 @@
 .video-embed__native--4-3 { aspect-ratio: 4 / 3; }
 .video-embed__native--1-1 { aspect-ratio: 1 / 1; }
 .video-embed__fallback {
-    color: var(--d-primary);
+    color: var(--d-link, var(--primary));
     text-underline-offset: 4px;
 }
 .video-embed__fallback:focus-visible {

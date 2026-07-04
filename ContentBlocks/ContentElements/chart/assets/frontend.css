@@ -106,9 +106,9 @@
     align-self: center;
     color: var(--muted-foreground);
 }
-.chart__stat--up .chart__stat-value,
+.chart__stat--up .chart__stat-value { color: var(--d-success-text); }
 .chart__stat--up .chart__trend-icon { color: var(--d-success); }
-.chart__stat--down .chart__stat-value,
+.chart__stat--down .chart__stat-value { color: var(--d-danger-text); }
 .chart__stat--down .chart__trend-icon { color: var(--destructive); }
 
 .chart__value-label {

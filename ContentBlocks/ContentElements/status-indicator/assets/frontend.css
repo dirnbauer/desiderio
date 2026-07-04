@@ -13,10 +13,10 @@
 .status-indicator__dot--degraded .status-indicator__dot { background: var(--d-warning); }
 .status-indicator__dot--outage .status-indicator__dot { background: var(--destructive); }
 .status-indicator__dot--maintenance .status-indicator__dot { background: var(--d-info); }
-.status-indicator__dot--operational .status-indicator__status-text { color: var(--d-success); }
-.status-indicator__dot--degraded .status-indicator__status-text { color: var(--d-warning); }
-.status-indicator__dot--outage .status-indicator__status-text { color: var(--destructive); }
-.status-indicator__dot--maintenance .status-indicator__status-text { color: var(--d-info); }
+.status-indicator__dot--operational .status-indicator__status-text { color: var(--d-success-text); }
+.status-indicator__dot--degraded .status-indicator__status-text { color: var(--d-warning-text); }
+.status-indicator__dot--outage .status-indicator__status-text { color: var(--d-danger-text); }
+.status-indicator__dot--maintenance .status-indicator__status-text { color: var(--d-info-text); }
 .status-indicator__list { list-style: none; padding: 0; margin: 0; }
 .status-indicator__item {
     display: flex; justify-content: space-between; align-items: center; gap: var(--d-spacing-md);

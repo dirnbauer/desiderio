@@ -34,8 +34,8 @@
     line-height: 1.1;
 }
 .kpi-cards__trend { display: inline-flex; flex-shrink: 0; }
-.kpi-cards__item--positive .kpi-cards__value { color: var(--d-success); }
+.kpi-cards__item--positive .kpi-cards__value { color: var(--d-success-text); }
 .kpi-cards__item--neutral .kpi-cards__value { color: var(--muted-foreground); }
-.kpi-cards__item--caution .kpi-cards__value { color: var(--d-warning); }
+.kpi-cards__item--caution .kpi-cards__value { color: var(--d-warning-text); }
 .kpi-cards__label { font-size: var(--d-text-base); font-weight: 600; margin-block-start: var(--d-spacing-xs); color: var(--foreground); }
 .kpi-cards__detail { font-size: var(--d-text-sm); color: var(--muted-foreground); margin-block-start: var(--d-spacing-xs); }

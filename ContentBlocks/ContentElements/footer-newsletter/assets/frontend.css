@@ -29,7 +29,7 @@
     color: var(--foreground);
 }
 .footer-newsletter__form-wrapper .required {
-    color: var(--destructive);
+    color: var(--d-danger-text);
 }
 .footer-newsletter__form-wrapper .form-control {
     width: 100%;

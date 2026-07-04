@@ -136,6 +136,45 @@ final class ThemeContrastTest extends TestCase
                         $failures[] = sprintf('%s/%s d-link-on-muted on %s = %.2f (< %.1f)', $preset, $mode, $linkSurface, $ratio, self::TEXT_MINIMUM);
                     }
                 }
+
+                // Semantic status text tokens (--d-{info,success,warning,danger}-text):
+                // status colors pulled towards the foreground so small status text
+                // (stat changes, KPI values, status indicators, alert titles/bodies,
+                // form errors) clears 4.5:1 on the plain background/card AND on its
+                // own *-muted tint. The pull weight is solved per source: success
+                // (--chart-2) and warning (--chart-4) need 42%, info (--primary) and
+                // danger (--destructive) 30%. Keep these in sync with the token
+                // definitions in shadcn-theme.css and the *-muted tint weights.
+                foreach ([
+                    ['info', 'primary', 0.30, 0.10],
+                    ['success', 'chart-2', 0.42, 0.12],
+                    ['warning', 'chart-4', 0.42, 0.14],
+                    ['danger', 'destructive', 0.30, 0.10],
+                ] as [$name, $source, $pull, $tintWeight]) {
+                    if (!isset($variables[$source])) {
+                        continue;
+                    }
+                    $statusText = $this->oklchToSrgb(...$this->mixOklch($variables[$source], $variables['foreground'], $pull));
+                    $surfaces = ['background' => $variables['background'] ?? null, 'card' => $variables['card'] ?? null];
+                    foreach ($surfaces as $surfaceName => $surfaceColor) {
+                        if ($surfaceColor === null) {
+                            continue;
+                        }
+                        $ratio = $this->contrast($statusText, $this->oklchToSrgb(...$surfaceColor));
+                        if ($ratio < self::TEXT_MINIMUM) {
+                            $failures[] = sprintf('%s/%s d-%s-text on %s = %.2f (< %.1f)', $preset, $mode, $name, $surfaceName, $ratio, self::TEXT_MINIMUM);
+                        }
+                    }
+                    // On its own *-muted tint (source composited at tintWeight over background).
+                    $bg = $variables['background'] ?? $variables['card'] ?? null;
+                    if ($bg !== null) {
+                        $mutedTint = $this->compositeSrgb($this->oklchToSrgb(...$variables[$source]), $tintWeight, $this->oklchToSrgb(...$bg));
+                        $ratio = $this->contrast($statusText, $mutedTint);
+                        if ($ratio < self::TEXT_MINIMUM) {
+                            $failures[] = sprintf('%s/%s d-%s-text on %s-muted = %.2f (< %.1f)', $preset, $mode, $name, $name, $ratio, self::TEXT_MINIMUM);
+                        }
+                    }
+                }
             }
         }
 

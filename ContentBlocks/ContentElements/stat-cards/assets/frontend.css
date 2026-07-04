@@ -21,6 +21,6 @@
     font-size: var(--d-text-sm); font-weight: 500;
 }
 .stat-cards__arrow { flex: none; }
-.stat-cards__change--up { color: var(--d-success); }
-.stat-cards__change--down { color: var(--destructive); }
+.stat-cards__change--up { color: var(--d-success-text); }
+.stat-cards__change--down { color: var(--d-danger-text); }
 .stat-cards__change--neutral { color: var(--muted-foreground); }

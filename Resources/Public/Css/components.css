@@ -300,7 +300,7 @@ main[tabindex]:focus-visible {
 }
 
 .desiderio-form .required {
-  color: var(--destructive);
+  color: var(--d-danger-text);
   margin-inline-start: 0.125rem;
 }
 
@@ -467,7 +467,7 @@ main[tabindex]:focus-visible {
   width: 100%;
   margin: 0.375rem 0 0;
   padding: 0;
-  color: var(--destructive);
+  color: var(--d-danger-text);
   font-size: var(--d-text-xs, 0.75rem);
   line-height: 1.4;
 }
@@ -680,7 +680,7 @@ main[tabindex]:focus-visible {
   width: 100%;
   margin: 0.375rem 0 0;
   padding: 0;
-  color: var(--destructive);
+  color: var(--d-danger-text);
   font-size: var(--d-text-xs, 0.75rem);
   line-height: 1.4;
   list-style: none;
@@ -1234,41 +1234,41 @@ main[tabindex]:focus-visible {
 
 .alert--destructive {
   border-color: var(--destructive);
-  color: var(--destructive);
+  color: var(--d-danger-text);
 }
 
 .alert--destructive .alert__title {
-  color: var(--destructive);
+  color: var(--d-danger-text);
 }
 
 .alert--info {
   border-color: var(--d-info);
   background-color: var(--d-info-muted);
-  color: var(--d-info);
+  color: var(--d-info-text);
 }
 
 .alert--info .alert__title {
-  color: var(--d-info);
+  color: var(--d-info-text);
 }
 
 .alert--success {
   border-color: var(--d-success);
   background-color: var(--d-success-muted);
-  color: var(--d-success);
+  color: var(--d-success-text);
 }
 
 .alert--success .alert__title {
-  color: var(--d-success);
+  color: var(--d-success-text);
 }
 
 .alert--warning {
   border-color: var(--d-warning);
   background-color: var(--d-warning-muted);
-  color: var(--d-warning);
+  color: var(--d-warning-text);
 }
 
 .alert--warning .alert__title {
-  color: var(--d-warning);
+  color: var(--d-warning-text);
 }
 
 /* ==========================================================================

@@ -105,9 +105,9 @@
     align-self: center;
     color: var(--muted-foreground);
 }
-.chart-area__stat--up .chart-area__stat-value,
+.chart-area__stat--up .chart-area__stat-value { color: var(--d-success-text); }
 .chart-area__stat--up .chart-area__trend-icon { color: var(--d-success); }
-.chart-area__stat--down .chart-area__stat-value,
+.chart-area__stat--down .chart-area__stat-value { color: var(--d-danger-text); }
 .chart-area__stat--down .chart-area__trend-icon { color: var(--destructive); }
 
 /* Colour choice remaps the chart token the line/fill (charts.js) reads, so one editor

@@ -837,11 +837,16 @@ body {
   --d-danger: var(--destructive);
   --d-danger-muted: color-mix(in oklch, var(--destructive) 10%, var(--background));
   /* Text-on-muted variants: status colors pulled towards the foreground so small
-     (12px) text on the *-muted tints clears the WCAG 4.5:1 contrast threshold
-     in light and dark presets alike. */
+     (12px) text on the *-muted tints (and plain background/card) clears the
+     WCAG 4.5:1 contrast threshold in light and dark presets alike. The pull
+     weight is solved per source hue: success (--chart-2) and warning
+     (--chart-4) need 42% — 30% left b6's amber success at 4.10 and every
+     preset's dark warning near 3.8 — while info (--primary) and danger
+     (--destructive) already clear it at 30%. Verified >=4.9:1 worst case
+     across all 15 presets, both schemes. */
   --d-info-text: color-mix(in oklch, var(--d-info), var(--foreground) 30%);
-  --d-success-text: color-mix(in oklch, var(--d-success), var(--foreground) 30%);
-  --d-warning-text: color-mix(in oklch, var(--d-warning), var(--foreground) 30%);
+  --d-success-text: color-mix(in oklch, var(--d-success), var(--foreground) 42%);
+  --d-warning-text: color-mix(in oklch, var(--d-warning), var(--foreground) 42%);
   --d-danger-text: color-mix(in oklch, var(--d-danger), var(--foreground) 30%);
   /* Same idea for brand-colored text on primary tints (e.g. search-result
      highlights on bg-primary/10): presets whose primary sits near the 4.5:1

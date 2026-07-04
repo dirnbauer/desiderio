@@ -15,8 +15,8 @@
 .metric-dashboard__change { display: inline-flex; align-items: center; gap: 0.25rem; font-size: var(--d-text-sm, 0.875rem); font-weight: 500; margin-block-start: var(--d-spacing-xs, 0.5rem); }
 .metric-dashboard__trend-icon { display: inline-flex; align-items: center; }
 .metric-dashboard__trend-icon svg { width: 0.875rem; height: 0.875rem; }
-.metric-dashboard__change--up { color: var(--d-success, var(--chart-2)); }
-.metric-dashboard__change--down { color: var(--destructive); }
+.metric-dashboard__change--up { color: var(--d-success-text); }
+.metric-dashboard__change--down { color: var(--d-danger-text); }
 .metric-dashboard__change--neutral { color: var(--muted-foreground); }
 .metric-dashboard__chart {
     margin-block-start: var(--d-spacing-lg, 1.5rem);

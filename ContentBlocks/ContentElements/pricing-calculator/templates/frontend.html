@@ -13,7 +13,7 @@
                     <span class="pricing-calculator__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span>
                 </f:if>
                 <f:if condition="{data.header}">
-                    <h2 class="pricing-calculator__headline">{data -> f:render.text(field: 'header')}</h2>
+                    <d:atom.typography tag="h2" variant="h2" class="pricing-calculator__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
                 </f:if>
                 <f:if condition="{data.description}">
                     <div class="pricing-calculator__description d-richtext">{data -> f:render.text(field: 'description')}</div>
@@ -28,17 +28,17 @@
                 </caption>
                 <d:molecule.tableHeader>
                     <d:molecule.tableRow>
-                        <d:molecule.tableCell header="{true}" class="text-left"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:calc.tier"/></d:molecule.tableCell>
-                        <d:molecule.tableCell header="{true}" class="text-left"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:calc.up_to"/></d:molecule.tableCell>
-                        <d:molecule.tableCell header="{true}" class="text-right"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:calc.price_per"/></d:molecule.tableCell>
+                        <d:molecule.tableCell header="{true}" class="pricing-calculator__cell pricing-calculator__cell--start"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:calc.tier"/></d:molecule.tableCell>
+                        <d:molecule.tableCell header="{true}" class="pricing-calculator__cell pricing-calculator__cell--start"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:calc.up_to"/></d:molecule.tableCell>
+                        <d:molecule.tableCell header="{true}" class="pricing-calculator__cell pricing-calculator__cell--end"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:calc.price_per"/></d:molecule.tableCell>
                     </d:molecule.tableRow>
                 </d:molecule.tableHeader>
                 <tbody>
                     <f:for each="{data.tiers}" as="tier">
                         <d:molecule.tableRow>
-                            <d:molecule.tableCell class="font-medium text-foreground">{tier -> f:render.text(field: 'label')}</d:molecule.tableCell>
-                            <d:molecule.tableCell class="text-left pricing-calculator__num">{tier -> f:render.text(field: 'up_to')} <f:if condition="{data.unit_label}"><f:then>{data -> f:render.text(field: 'unit_label')}</f:then><f:else><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:calc.units" default="units"/></f:else></f:if></d:molecule.tableCell>
-                            <d:molecule.tableCell class="text-right pricing-calculator__num">{tier -> f:render.text(field: 'price_per_unit')}</d:molecule.tableCell>
+                            <d:molecule.tableCell class="pricing-calculator__tier">{tier -> f:render.text(field: 'label')}</d:molecule.tableCell>
+                            <d:molecule.tableCell class="pricing-calculator__cell pricing-calculator__cell--start pricing-calculator__num">{tier -> f:render.text(field: 'up_to')} <f:if condition="{data.unit_label}"><f:then>{data -> f:render.text(field: 'unit_label')}</f:then><f:else><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:calc.units" default="units"/></f:else></f:if></d:molecule.tableCell>
+                            <d:molecule.tableCell class="pricing-calculator__cell pricing-calculator__cell--end pricing-calculator__num">{tier -> f:render.text(field: 'price_per_unit')}</d:molecule.tableCell>
                         </d:molecule.tableRow>
                     </f:for>
                 </tbody>

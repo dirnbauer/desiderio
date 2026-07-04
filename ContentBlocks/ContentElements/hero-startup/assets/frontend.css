@@ -64,17 +64,22 @@
 }
 .hero-startup__avatars {
     display: flex;
+    align-items: center;
 }
 .hero-startup__avatar {
     width: 2rem;
     height: 2rem;
-    border-radius: 50%;
+    flex: 0 0 auto;
+    aspect-ratio: 1;
+    border-radius: var(--d-radius-full);
     border: 2px solid var(--d-background);
-    margin-left: -0.5rem;
+    background-color: var(--muted);
+    box-shadow: var(--d-shadow-xs);
+    margin-inline-start: calc(var(--d-spacing-2) * -1);
     object-fit: cover;
 }
 .hero-startup__avatar:first-child {
-    margin-left: 0;
+    margin-inline-start: 0;
 }
 .hero-startup__proof-text {
     font-size: var(--d-text-sm);

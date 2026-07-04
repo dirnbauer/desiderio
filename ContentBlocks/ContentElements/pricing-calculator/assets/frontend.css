@@ -4,6 +4,13 @@
 .pricing-calculator__description { color: var(--muted-foreground); max-width: 40rem; margin-inline: auto; }
 .pricing-calculator__body { max-width: 42rem; margin-inline: auto; }
 .pricing-calculator__num { font-variant-numeric: tabular-nums; }
+.pricing-calculator__tier { font-weight: 500; color: var(--foreground); }
+.pricing-calculator__cell--start { text-align: left; }
+.pricing-calculator__cell--end { text-align: right; }
+.pricing-calculator__body thead [data-slot="table-head"] { color: var(--card-foreground); }
+.pricing-calculator__body tbody tr:nth-child(even) { background-color: color-mix(in oklab, var(--muted) 40%, transparent); }
+.pricing-calculator__body tbody tr { transition: background-color 0.15s ease; }
+@media (prefers-reduced-motion: reduce) { .pricing-calculator__body tbody tr { transition: none; } }
 
 /* Heading-to-teaser rhythm: consistent gap inside the intro block. */
 .pricing-calculator__intro {

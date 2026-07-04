@@ -42,7 +42,7 @@
     display: flex;
     align-items: center;
     min-height: 3rem;
-    padding: 0.625rem 0.75rem 0.625rem 1rem;
+    padding: 0.625rem var(--d-spacing-sm) 0.625rem var(--d-spacing-md);
     border-bottom: 1px solid var(--border);
     background: color-mix(in oklch, var(--muted) 62%, var(--card));
 }
@@ -69,7 +69,7 @@
 .code-block__code {
     display: block;
     min-width: 100%;
-    padding: 1rem;
+    padding: var(--d-spacing-md);
     color: var(--foreground);
     font-family: var(--font-mono);
     font-size: var(--d-text-sm);

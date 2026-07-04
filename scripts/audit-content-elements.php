@@ -34,6 +34,14 @@ declare(strict_types=1);
  *      hardcoded_color            Raw #hex, oklch(), rgb(), or hsl() in
  *                                 element CSS / templates outside the
  *                                 `var(--token, fallback)` icon contract.
+ *      commented_only_field       Top-level field whose only template
+ *                                 reference sits inside <f:comment> — dead
+ *                                 at render time. (`useExistingField: header`
+ *                                 is exempt: it may stay as backend label.)
+ *      inline_edit_gap            Text/Textarea field printed as raw
+ *                                 {data.x}/{alias.x} in content position and
+ *                                 never wrapped with f:render.text — the
+ *                                 Visual Editor cannot inline-edit it.
  *
  * Usage:
  *   php scripts/audit-content-elements.php
@@ -131,6 +139,128 @@ function extractTemplateVarRefs(string $tpl): array
     return $refs;
 }
 
+function stripFluidComments(string $tpl): string
+{
+    $out = preg_replace('/<f:comment\b[^>]*>.*?<\/f:comment>/s', '', $tpl) ?? $tpl;
+    return preg_replace('/<f:comment\b[^>]*\/>/', '', $out) ?? $out;
+}
+
+/**
+ * Map f:for loop aliases to their canonical field path, e.g.
+ * as="item" over {data.items} → item => 'items'; nested loops over
+ * {group.pages} resolve through the outer alias (group.pages → 'groups.pages').
+ */
+function buildLoopAliasMap(string $tpl): array
+{
+    $map = [];
+    if (!preg_match_all('/<f:for\b[^>]*>/', $tpl, $tags)) {
+        return $map;
+    }
+    $raw = [];
+    foreach ($tags[0] as $tag) {
+        if (preg_match('/\beach="\{([a-zA-Z][a-zA-Z0-9_]*)\.([a-zA-Z_][a-zA-Z0-9_.]*)\}"/', $tag, $em)
+            && preg_match('/\bas="([a-zA-Z][a-zA-Z0-9_]*)"/', $tag, $am)) {
+            $raw[] = ['base' => $em[1], 'path' => $em[2], 'as' => $am[1]];
+        }
+    }
+    // Iterate so aliases defined by outer loops resolve inner ones.
+    for ($pass = 0; $pass < 3; $pass++) {
+        foreach ($raw as $r) {
+            if ($r['base'] === 'data') {
+                $map[$r['as']] = $r['path'];
+            } elseif (isset($map[$r['base']])) {
+                $map[$r['as']] = $map[$r['base']] . '.' . $r['path'];
+            }
+        }
+    }
+    return $map;
+}
+
+/** Canonical field keys wrapped anywhere via `-> f:render.text(field: ...)`. */
+function collectRenderTextFields(string $tpl, array $aliasMap): array
+{
+    $wrapped = [];
+    if (preg_match_all("/f:render\.text\s*\(\s*field:\s*['\"]([a-zA-Z_][a-zA-Z0-9_]*)['\"]/", $tpl, $m, PREG_OFFSET_CAPTURE | PREG_SET_ORDER)) {
+        foreach ($m as $hit) {
+            $field = $hit[1][0];
+            $offset = (int)$hit[0][1];
+            $window = substr($tpl, max(0, $offset - 80), min(80, $offset));
+            $alias = 'data';
+            if (preg_match('/\b([a-zA-Z][a-zA-Z0-9_]*)\s*->\s*$/', $window, $am)) {
+                $alias = $am[1];
+            }
+            if ($alias === 'data') {
+                $wrapped[$field] = true;
+            } elseif (isset($aliasMap[$alias])) {
+                $wrapped[$aliasMap[$alias] . '.' . $field] = true;
+            }
+        }
+    }
+    return $wrapped;
+}
+
+/** True when the offset sits inside a tag (attribute position), not element content. */
+function isAttributePosition(string $tpl, int $offset): bool
+{
+    // Mask Fluid's "->" so the arrow's ">" is not mistaken for a tag close.
+    $head = str_replace('->', '__', substr($tpl, 0, $offset));
+    $lt = strrpos($head, '<');
+    $gt = strrpos($head, '>');
+    return $lt !== false && ($gt === false || $lt > $gt);
+}
+
+/**
+ * Text/Textarea fields printed raw in content position while never being
+ * wrapped with f:render.text anywhere in the (comment-stripped) template.
+ * Returns canonical field key => occurrence count.
+ */
+function findInlineEditGaps(string $tplLive, array $defs): array
+{
+    $stripped = preg_replace('/<script\b[^>]*>.*?<\/script>/s', '', $tplLive) ?? $tplLive;
+    $stripped = preg_replace('/<style\b[^>]*>.*?<\/style>/s', '', $stripped) ?? $stripped;
+    // f:variable tag content is a capture, not display output — a wrapper there
+    // would leak editable markup into the variable value.
+    $stripped = preg_replace('/<f:variable\b[^>]*>.*?<\/f:variable>/s', '', $stripped) ?? $stripped;
+    $stripped = preg_replace('/<!--.*?-->/s', '', $stripped) ?? $stripped;
+    $aliasMap = buildLoopAliasMap($stripped);
+    $wrapped = collectRenderTextFields($stripped, $aliasMap);
+
+    $textLike = [];
+    foreach ($defs as $key => $def) {
+        $type = $def['type'] ?? '';
+        if (in_array($type, ['Text', 'Textarea'], true)) {
+            $textLike[$key] = true;
+            continue;
+        }
+        $leaf = str_contains($key, '.') ? substr($key, (int)strrpos($key, '.') + 1) : $key;
+        if (!empty($def['useExistingField']) && in_array($leaf, ['header', 'subheader', 'bodytext'], true)) {
+            $textLike[$key] = true;
+        }
+    }
+
+    $gaps = [];
+    if (preg_match_all('/\{([a-zA-Z][a-zA-Z0-9_]*)\.([a-zA-Z_][a-zA-Z0-9_]*)((?:\s*->[^}]*)?)\}/', $stripped, $m, PREG_SET_ORDER | PREG_OFFSET_CAPTURE)) {
+        foreach ($m as $hit) {
+            $base = $hit[1][0];
+            $field = $hit[2][0];
+            $chain = $hit[3][0];
+            $offset = (int)$hit[0][1];
+            if ($base === 'data') {
+                $key = $field;
+            } elseif (isset($aliasMap[$base])) {
+                $key = $aliasMap[$base] . '.' . $field;
+            } else {
+                continue;
+            }
+            if (!isset($textLike[$key]) || isset($wrapped[$key])) continue;
+            if (str_contains($chain, 'f:render.text')) continue;
+            if (isAttributePosition($stripped, $offset)) continue;
+            $gaps[$key] = ($gaps[$key] ?? 0) + 1;
+        }
+    }
+    return $gaps;
+}
+
 function findVariantBranches(string $tpl): array
 {
     $branches = [];
@@ -146,6 +276,21 @@ function findVariantBranches(string $tpl): array
     return $branches;
 }
 
+/**
+ * Intentionally unwrapped text outputs, keyed "<element>:<field>". These sit
+ * inside formatting ViewHelpers (f:format.number etc.) or feed chart data
+ * where an edit-mode wrapper would corrupt the rendered value; the fields
+ * stay editable through the backend form / VE field chooser instead.
+ */
+const INLINE_EDIT_ALLOWLIST = [
+    // Rendered through f:format.number and mirrored into the chart drawing —
+    // an edit-mode wrapper would corrupt the formatted value.
+    'chart:data_points.point_value',
+    // sr-only label; the same value doubles as the input's placeholder
+    // attribute, so there is no visible text output to edit inline.
+    'hero-search:placeholder',
+];
+
 $problems = [];
 $summary = [
     'total' => 0,
@@ -160,6 +305,8 @@ $summary = [
     'missing_default_select' => 0,
     'hardcoded_color' => 0,
     'no_template_at_all' => 0,
+    'commented_only_field' => 0,
+    'inline_edit_gap' => 0,
 ];
 
 foreach (scandir($elementsDir) as $entry) {
@@ -189,6 +336,8 @@ foreach (scandir($elementsDir) as $entry) {
     }
     $tpl = (string)file_get_contents($tplPath);
     $refs = extractTemplateVarRefs($tpl);
+    $tplLive = stripFluidComments($tpl);
+    $refsLive = extractTemplateVarRefs($tplLive);
 
     foreach ($defs as $key => $def) {
         if (($def['type'] ?? '') === 'Collection' && !str_contains($key, '.') && empty($def['table'])) {
@@ -248,6 +397,22 @@ foreach (scandir($elementsDir) as $entry) {
             $problems[$entry][] = ['type' => 'template_undeclared_field', 'field' => $field];
             $summary['template_undeclared_field']++;
         }
+    }
+
+    foreach ($topDefs as $key => $def) {
+        $type = $def['type'] ?? '';
+        if (in_array($type, ['Tab', 'Linebreak', 'Palette'], true)) continue;
+        if (!empty($def['useExistingField']) && in_array($key, ['CType', 'sys_language_uid', 'header'], true)) continue;
+        if (isset($refs['data'][$key]) && !isset($refsLive['data'][$key])) {
+            $problems[$entry][] = ['type' => 'commented_only_field', 'field' => $key, 'fieldType' => $type];
+            $summary['commented_only_field']++;
+        }
+    }
+
+    foreach (findInlineEditGaps($tplLive, $defs) as $key => $count) {
+        if (in_array("$entry:$key", INLINE_EDIT_ALLOWLIST, true)) continue;
+        $problems[$entry][] = ['type' => 'inline_edit_gap', 'field' => $key, 'occurrences' => $count];
+        $summary['inline_edit_gap']++;
     }
 
     if (isset($topDefs['variant'])) {

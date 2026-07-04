@@ -9,10 +9,9 @@
     <d:layout.container>
         <div class="newsletter-inline__bar">
             <div class="newsletter-inline__text">
-                <f:if condition="{data.header}"><h2 class="newsletter-inline__headline">{data -> f:render.text(field: 'header')}</h2></f:if>
-                <f:if condition="{data.description_text}"><p class="newsletter-inline__description">{data -> f:render.text(field: 'description_text')}</p></f:if>
+                <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h4" class="newsletter-inline__headline">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
+                <f:if condition="{data.description_text}"><d:atom.typography variant="muted" class="newsletter-inline__description">{data -> f:render.text(field: 'description_text')}</d:atom.typography></f:if>
             </div>
-<f:comment>Legacy editor fields kept for migrated records; TYPO3 Form Framework owns rendering and submit behavior. {data.form_action}{data.placeholder}{data.button_text}</f:comment>
 
             <d:molecule.formRenderer persistenceIdentifier="EXT:desiderio/Resources/Private/Forms/DesiderioNewsletter.form.yaml" class="newsletter-inline__form"/>
         </div>

@@ -29,6 +29,8 @@ final class ContentElementAuditTest extends TestCase
         'missing_default_select',
         'hardcoded_color',
         'no_template_at_all',
+        'commented_only_field',
+        'inline_edit_gap',
     ];
 
     public function testStrictAuditCategoriesAreClean(): void

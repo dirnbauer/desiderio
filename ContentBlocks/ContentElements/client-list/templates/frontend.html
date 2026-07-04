@@ -10,7 +10,7 @@
         <f:if condition="{data.eyebrow} || {data.header} || {data.subheadline}">
             <header class="client-list__intro">
                 <f:if condition="{data.eyebrow}">
-                    <span class="client-list__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span>
+                    <d:atom.typography tag="span" variant="small" class="client-list__eyebrow">{data -> f:render.text(field: 'eyebrow')}</d:atom.typography>
                 </f:if>
                 <f:if condition="{data.header}">
                     <h2 class="client-list__headline">{data -> f:render.text(field: 'header')}</h2>

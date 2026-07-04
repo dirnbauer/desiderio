@@ -18,8 +18,8 @@
                 <thead>
                     <tr class="feature-comparison__head">
                         <th scope="col" class="feature-comparison__feature-col">{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:feature', default: 'Feature')}</th>
-                        <th scope="col" class="feature-comparison__check-col">{data.left_title -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:plan.free\', default: \'Free\')}')}</th>
-                        <th scope="col" class="feature-comparison__check-col">{data.right_title -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:plan.pro\', default: \'Pro\')}')}</th>
+                        <th scope="col" class="feature-comparison__check-col"><f:if condition="{data.left_title}"><f:then>{data -> f:render.text(field: 'left_title')}</f:then><f:else><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:plan.free" default="Free"/></f:else></f:if></th>
+                        <th scope="col" class="feature-comparison__check-col"><f:if condition="{data.right_title}"><f:then>{data -> f:render.text(field: 'right_title')}</f:then><f:else><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:plan.pro" default="Pro"/></f:else></f:if></th>
                     </tr>
                 </thead>
                 <tbody>

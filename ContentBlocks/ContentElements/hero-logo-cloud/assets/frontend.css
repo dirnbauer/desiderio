@@ -10,11 +10,11 @@
 .hero-logo-cloud__eyebrow {
     display: block;
     font-size: var(--d-text-sm);
-    font-weight: 500;
+    font-weight: 600;
     color: var(--primary);
     text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: var(--d-spacing-2);
+    letter-spacing: 0.08em;
+    margin-bottom: var(--d-spacing-3);
 }
 .hero-logo-cloud .hero-logo-cloud__headline {
     font-size: var(--d-text-4xl);
@@ -39,7 +39,7 @@
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    gap: var(--d-spacing-4);
+    gap: var(--d-spacing-3) var(--d-spacing-4);
     margin: 0;
     padding: 0;
     list-style: none;
@@ -50,7 +50,13 @@
     font-weight: 500;
     color: var(--muted-foreground);
     background: var(--muted);
+    border: 1px solid transparent;
     border-radius: var(--d-radius-full);
+    transition: color 0.15s ease, border-color 0.15s ease;
+}
+.hero-logo-cloud__logo:hover {
+    color: var(--foreground);
+    border-color: var(--border);
 }
 @media (min-width: 768px) {
     .hero-logo-cloud .hero-logo-cloud__headline {
@@ -60,6 +66,11 @@
         font-size: var(--d-text-xl);
     }
     .hero-logo-cloud__logos {
-        gap: var(--d-spacing-6);
+        gap: var(--d-spacing-4) var(--d-spacing-6);
+    }
+}
+@media (prefers-reduced-motion: reduce) {
+    .hero-logo-cloud__logo {
+        transition: none;
     }
 }

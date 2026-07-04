@@ -21,18 +21,6 @@ fields:
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
     rows: 2
   -
-    identifier: placeholder
-    type: Textarea
-    rows: 1
-    label: 'Input Placeholder'
-    default: 'Enter your email'
-  -
-    identifier: button_text
-    type: Textarea
-    rows: 1
-    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:button_text'
-    default: Subscribe
-  -
     identifier: privacy_notice
     type: Textarea
     rows: 1

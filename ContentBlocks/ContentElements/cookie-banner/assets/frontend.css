@@ -38,7 +38,7 @@
     gap: var(--d-spacing-xs);
     font-size: var(--d-text-sm);
     font-weight: 600;
-    margin-block-end: 4px;
+    margin-block-end: var(--d-spacing-2xs);
 }
 
 .cookie-banner__title-icon {

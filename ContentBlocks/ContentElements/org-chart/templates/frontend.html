@@ -18,7 +18,7 @@
             <f:for each="{data.levels}" as="level" iteration="levelIter">
                 <div class="org-chart__level {f:if(condition: levelIter.isFirst, then: 'org-chart__level--root')}">
                     <f:if condition="{level.level_label}">
-                        <d:atom.badge variant="secondary" class="org-chart__level-label">{level -> f:render.text(field: 'level_label')}</d:atom.badge>
+                        <d:atom.badge variant="{f:if(condition: levelIter.isFirst, then: 'default', else: 'secondary')}" class="org-chart__level-label">{level -> f:render.text(field: 'level_label')}</d:atom.badge>
                     </f:if>
                     <ul class="org-chart__row" role="list">
                         <f:for each="{level.people}" as="person">

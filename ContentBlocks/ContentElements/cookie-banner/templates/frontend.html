@@ -29,11 +29,11 @@
             <div class="cookie-banner__actions">
                 <d:atom.button type="button" variant="default" size="sm" class="cookie-banner__action">
                     <span data-icon="inline-start" aria-hidden="true"><d:atom.icon name="check" size="sm"/></span>
-                    <span>{data.accept_text -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:consent.acceptAll\', default: \'Accept all\')}')}</span>
+                    <span><f:if condition="{data.accept_text}"><f:then>{data -> f:render.text(field: 'accept_text')}</f:then><f:else><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:consent.acceptAll" default="Accept all"/></f:else></f:if></span>
                 </d:atom.button>
-                <d:atom.button type="button" variant="outline" size="sm" class="cookie-banner__action">{data.decline_text -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:consent.decline\', default: \'Decline\')}')}</d:atom.button>
+                <d:atom.button type="button" variant="outline" size="sm" class="cookie-banner__action"><f:if condition="{data.decline_text}"><f:then>{data -> f:render.text(field: 'decline_text')}</f:then><f:else><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:consent.decline" default="Decline"/></f:else></f:if></d:atom.button>
                 <f:if condition="{data.settings_link}">
-                    <d:atom.link href="{data.settings_link.url}" target="{data.settings_link.target}" variant="muted" class="cookie-banner__settings-link">{data.settings_text -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:consent.managePreferences\', default: \'Manage preferences\')}')}</d:atom.link>
+                    <d:atom.link href="{data.settings_link.url}" target="{data.settings_link.target}" variant="muted" class="cookie-banner__settings-link"><f:if condition="{data.settings_text}"><f:then>{data -> f:render.text(field: 'settings_text')}</f:then><f:else><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:consent.managePreferences" default="Manage preferences"/></f:else></f:if></d:atom.link>
                 </f:if>
             </div>
         </div>

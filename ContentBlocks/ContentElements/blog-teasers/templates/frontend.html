@@ -30,7 +30,7 @@
                             </div>
                             <d:atom.typography tag="h3" variant="large" class="blog-teasers__title">
                                 <f:if condition="{post.link.url}">
-                                    <f:then><d:atom.link href="{post.link.url}" target="{post.link.target}" variant="muted" class="blog-teasers__title-link rounded-sm focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/30">{post -> f:render.text(field: 'title')}</d:atom.link></f:then>
+                                    <f:then><d:atom.link href="{post.link.url}" target="{post.link.target}" variant="muted" class="blog-teasers__title-link focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/30">{post -> f:render.text(field: 'title')}</d:atom.link></f:then>
                                     <f:else>{post -> f:render.text(field: 'title')}</f:else>
                                 </f:if>
                             </d:atom.typography>

@@ -4,7 +4,7 @@
 .stat-cards__grid--cols-3 { grid-template-columns: repeat(3, 1fr); }
 .stat-cards__grid--cols-4 { grid-template-columns: repeat(4, 1fr); }
 @media (max-width: 768px) { .stat-cards__grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 420px) { .stat-cards__grid { grid-template-columns: 1fr; } }
+@media (max-width: 480px) { .stat-cards__grid { grid-template-columns: 1fr; } }
 .stat-cards__item {
     padding: var(--d-spacing-lg);
     border: 1px solid var(--border);

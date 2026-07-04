@@ -8,7 +8,7 @@
     align-items: center;
     justify-content: space-between;
     gap: var(--d-spacing-2) var(--d-spacing-4);
-    padding-block: var(--d-spacing-2);
+    padding-block: var(--d-spacing-3);
     font-size: var(--d-text-xs);
 }
 .utility-bar__text {
@@ -19,16 +19,20 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: var(--d-spacing-2) var(--d-spacing-4);
+    gap: var(--d-spacing-1) var(--d-spacing-2);
+    /* Compensate the last link's inline padding so text stays flush with the container edge. */
+    margin-inline-end: calc(-1 * var(--d-spacing-2));
 }
 .utility-bar__link {
     color: var(--d-muted-foreground);
     text-decoration: none;
+    padding: var(--d-spacing-1) var(--d-spacing-2);
     border-radius: var(--d-radius-sm);
-    transition: color 0.15s;
+    transition: color 0.15s, background-color 0.15s;
 }
 .utility-bar__link:hover {
     color: var(--d-foreground);
+    background: color-mix(in oklab, var(--d-foreground) 6%, transparent);
 }
 .utility-bar__link:focus-visible {
     outline: 2px solid var(--d-ring);

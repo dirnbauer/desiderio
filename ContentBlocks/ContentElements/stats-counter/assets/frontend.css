@@ -5,7 +5,7 @@
 .stats-counter__grid--cols-3 { grid-template-columns: repeat(3, 1fr); }
 .stats-counter__grid--cols-4 { grid-template-columns: repeat(4, 1fr); }
 @media (max-width: 768px) { .stats-counter__grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 420px) { .stats-counter__grid { grid-template-columns: 1fr; } }
+@media (max-width: 480px) { .stats-counter__grid { grid-template-columns: 1fr; } }
 .stats-counter__item { display: flex; flex-direction: column; text-align: center; padding: var(--d-spacing-lg); margin: 0; }
 .stats-counter__value { order: 1; font-size: var(--d-text-4xl); font-weight: 800; color: var(--primary); display: block; line-height: 1.1; margin: 0; font-variant-numeric: tabular-nums; }
 .stats-counter__suffix { font-size: 0.7em; }

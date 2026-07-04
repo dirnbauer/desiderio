@@ -21,7 +21,7 @@
 }
 .article-hero__dek {
     color: var(--muted-foreground);
-    font-size: 1.125rem;
+    font-size: var(--d-text-lg);
     margin-block-end: var(--d-spacing-md);
 }
 .article-hero__meta {

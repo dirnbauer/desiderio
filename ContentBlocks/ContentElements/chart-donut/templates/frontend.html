@@ -44,8 +44,8 @@
                          aria-describedby="chart-donut-summary-{data.uid}">
                         <f:if condition="{centreValue} || {centreLabel}">
                             <p class="chart-donut__center-fallback" aria-hidden="true">
-                                <f:if condition="{centreValue}"><span class="chart-donut__center-value">{data.center_value}</span></f:if>
-                                <f:if condition="{centreLabel}"><span class="chart-donut__center-label">{data.center_label}</span></f:if>
+                                <f:if condition="{centreValue}"><span class="chart-donut__center-value">{data -> f:render.text(field: 'center_value')}</span></f:if>
+                                <f:if condition="{centreLabel}"><span class="chart-donut__center-label">{data -> f:render.text(field: 'center_label')}</span></f:if>
                             </p>
                         </f:if>
                     </div>

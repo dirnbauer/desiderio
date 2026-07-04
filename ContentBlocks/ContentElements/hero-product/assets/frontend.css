@@ -74,6 +74,6 @@
     }
 
     .hero-product__price {
-        font-size: 1.5rem;
+        font-size: var(--d-text-2xl);
     }
 }

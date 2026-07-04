@@ -21,10 +21,10 @@
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: var(--d-spacing-lg);
 }
-@media (max-width: 900px) {
+@media (max-width: 1024px) {
     .company-perks__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
-@media (max-width: 560px) {
+@media (max-width: 640px) {
     .company-perks__grid { grid-template-columns: minmax(0, 1fr); }
 }
 .company-perks__item {

@@ -133,6 +133,9 @@ final class StyleguideFixtureResolver
                             'column' => $collectionColumn,
                             'items' => $items,
                         ];
+                        if (($definition['collections'][$collectionField]['relation'] ?? false) === true) {
+                            $collections[$collectionField]['relation'] = true;
+                        }
                     }
                     continue;
                 }
@@ -225,6 +228,9 @@ final class StyleguideFixtureResolver
                     'column' => $collectionColumn,
                     'items' => $items,
                 ];
+                if (($collection['relation'] ?? false) === true) {
+                    $collections[$field]['relation'] = true;
+                }
             }
         }
 

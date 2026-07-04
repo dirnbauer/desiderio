@@ -817,12 +817,6 @@
         <target>Platzhaltertext</target>
       </segment>
     </unit>
-    <unit id="submit_text">
-      <segment state="final">
-        <source>Submit Text</source>
-        <target>Absenden-Text</target>
-      </segment>
-    </unit>
     <unit id="consent_text">
       <segment state="final">
         <source>Consent Text</source>
@@ -1763,12 +1757,6 @@
       <segment state="final">
         <source>Video testimonial from %s</source>
         <target>Video testimonial from %s</target>
-      </segment>
-    </unit>
-    <unit id="show_rating">
-      <segment state="final">
-        <source>Show rating field</source>
-        <target>Show rating field</target>
       </segment>
     </unit>
     <unit id="page_groups">

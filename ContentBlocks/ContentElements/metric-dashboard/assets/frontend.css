@@ -3,7 +3,7 @@
 .metric-dashboard__description { font-size: var(--d-text-sm, 0.875rem); color: var(--muted-foreground); margin-block-start: var(--d-spacing-xs, 0.5rem); max-width: 42rem; }
 .metric-dashboard__grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--d-spacing-md, 1rem); margin: 0; }
 @media (max-width: 768px) { .metric-dashboard__grid { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 420px) { .metric-dashboard__grid { grid-template-columns: 1fr; } }
+@media (max-width: 480px) { .metric-dashboard__grid { grid-template-columns: 1fr; } }
 .metric-dashboard__card {
     padding: var(--d-spacing-lg, 1.5rem);
     border: 1px solid var(--border); border-radius: var(--radius, 0.625rem);

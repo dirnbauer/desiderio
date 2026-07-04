@@ -160,7 +160,7 @@
         max-width: 42rem;
     }
     .timeline__list::before {
-        left: 1rem;
+        left: var(--d-spacing-md);
         transform: none;
     }
     .timeline__item {

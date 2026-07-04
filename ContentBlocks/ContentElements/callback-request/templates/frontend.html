@@ -10,7 +10,6 @@
         <d:molecule.card class="callback-request__card">
             <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
             <f:if condition="{data.description}"><d:atom.typography tag="div" variant="muted" class="d-richtext">{data -> f:render.text(field: 'description')}</d:atom.typography></f:if>
-<f:comment>Legacy editor fields kept for migrated records; TYPO3 Form Framework owns rendering and submit behavior. {data.form_action}{data.button_text}</f:comment>
 
             <d:molecule.formRenderer persistenceIdentifier="EXT:desiderio/Resources/Private/Forms/DesiderioCallback.form.yaml" class="callback-request__form"/>
         </d:molecule.card>

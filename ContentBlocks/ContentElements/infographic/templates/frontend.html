@@ -24,7 +24,7 @@
             <f:for each="{data.items}" as="item" iteration="iter">
                 <li class="infographic__step">
                     <figure class="infographic__visual">
-                        <span class="infographic__number" aria-hidden="true">{item.number -> f:or(alternative: iter.cycle)}</span>
+                        <span class="infographic__number" aria-hidden="true"><f:if condition="{item.number}"><f:then>{item -> f:render.text(field: 'number')}</f:then><f:else>{iter.cycle}</f:else></f:if></span>
                         <f:if condition="{item.image}">
                             <f:then>
                                 <f:for each="{item.image}" as="file">

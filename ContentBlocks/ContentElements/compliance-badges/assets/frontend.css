@@ -6,14 +6,19 @@
 .compliance-badges--center .compliance-badges__list { justify-content: center; }
 .compliance-badges--right .compliance-badges__list { justify-content: flex-end; }
 .compliance-badges__item { display: inline-flex; }
-.compliance-badges__link { display: inline-flex; text-decoration: none; color: inherit; }
+.compliance-badges__link { display: inline-flex; text-decoration: none; color: inherit; border-radius: calc(var(--radius) * 0.8); }
+.compliance-badges__link:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--background), 0 0 0 4px var(--ring); }
 .compliance-badges__badge {
-    min-height: 2.25rem;
+    min-height: var(--d-control-h);
     gap: var(--d-spacing-xs);
     padding: var(--d-spacing-xs) var(--d-spacing-sm);
     font-size: var(--d-text-sm);
     color: var(--foreground);
     background: var(--card);
+    transition: transform 150ms ease, background-color 150ms ease;
+}
+.compliance-badges__item:hover .compliance-badges__badge {
+    transform: scale(1.04);
 }
 .compliance-badges__link:hover .compliance-badges__badge {
     background: var(--muted);
@@ -23,4 +28,8 @@
     height: 1rem;
     color: var(--primary);
     flex: 0 0 auto;
+}
+@media (prefers-reduced-motion: reduce) {
+    .compliance-badges__badge { transition: none; }
+    .compliance-badges__item:hover .compliance-badges__badge { transform: none; }
 }

@@ -16,7 +16,9 @@
 
         <div class="feature-bento__grid">
             <f:for each="{data.items}" as="item">
-                <d:molecule.card class="feature-bento__item feature-bento__item--{item.size -> f:or(alternative: 'small')}">
+                <f:variable name="bentoCardSize" value="sm"/>
+                <f:if condition="{item.size} == 'wide' || {item.size} == 'tall'"><f:variable name="bentoCardSize" value="default"/></f:if>
+                <d:molecule.card size="{bentoCardSize}" class="feature-bento__item feature-bento__item--{item.size -> f:or(alternative: 'small')}">
                     <f:if condition="{item.image.0}">
                         <div class="feature-bento__bg">
                             <f:image image="{item.image.0}" alt="" maxWidth="800" class="feature-bento__bg-image" loading="lazy" decoding="async"/>

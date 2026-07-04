@@ -13,12 +13,29 @@
 .team-department__group:last-child {
     margin-block-end: 0;
 }
+/* Section divider rhythm between department groups. */
+.team-department__group + .team-department__group {
+    border-block-start: 1px solid var(--border);
+    padding-block-start: var(--d-spacing-xl);
+}
 .team-department__dept-name {
+    position: relative;
     font-size: var(--d-text-lg);
     font-weight: 600;
     margin-block-end: var(--d-spacing-md);
     padding-block-end: var(--d-spacing-xs);
     border-bottom: 1px solid var(--border);
+}
+/* Short primary accent on the department header underline. */
+.team-department__dept-name::after {
+    content: "";
+    position: absolute;
+    inset-inline-start: 0;
+    inset-block-end: -1px;
+    inline-size: var(--d-spacing-10);
+    block-size: 2px;
+    background: var(--primary);
+    border-radius: var(--d-radius-full);
 }
 .team-department__content {
     text-align: center;
@@ -30,6 +47,7 @@
 .team-department__role {
     font-size: var(--d-text-xs);
     color: var(--muted-foreground);
+    margin-block-start: var(--d-spacing-2xs);
 }
 
 /* Heading-to-teaser rhythm: consistent gap inside the intro block. */

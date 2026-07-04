@@ -56,7 +56,7 @@
 .pricing-enterprise__feature {
     display: flex;
     align-items: flex-start;
-    gap: 0.5rem;
+    gap: var(--d-spacing-xs);
     min-width: 0;
 }
 

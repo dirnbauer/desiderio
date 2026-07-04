@@ -8,7 +8,7 @@
 <d:layout.section class="changelog-section">
     <d:layout.container size="md">
         <f:if condition="{data.header}">
-            <h2 class="changelog__headline">{data -> f:render.text(field: 'header')}</h2>
+            <d:atom.typography tag="h2" variant="h2" class="changelog__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
         </f:if>
         <ol class="changelog__list" role="list">
             <f:for each="{data.items}" as="item">

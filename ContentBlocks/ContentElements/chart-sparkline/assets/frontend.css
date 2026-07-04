@@ -42,7 +42,7 @@
     flex-shrink: 0;
     font-size: var(--d-text-xs);
     font-weight: 600;
-    padding: 0.25rem 0.65rem;
+    padding: var(--d-spacing-2xs) 0.65rem;
     border-radius: 9999px;
     border: 1px solid var(--border);
     background: var(--secondary);
@@ -50,6 +50,18 @@
     color: color-mix(in oklch, var(--secondary-foreground), var(--foreground) 35%);
     font-variant-numeric: tabular-nums;
     white-space: nowrap;
+    transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+}
+/* Announce the trend badge with a gentle entrance so a changed trend direction is noticed;
+   colour/border transitions above cover in-place trend swaps (e.g. visual-editor edits). */
+@keyframes chart-sparkline-badge-in {
+    from { opacity: 0; transform: translateY(-3px) scale(0.95); }
+    to { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: no-preference) {
+    .chart-sparkline__badge {
+        animation: chart-sparkline-badge-in 480ms cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
 }
 .chart-sparkline__badge-icon {
     display: inline-flex;
@@ -83,6 +95,20 @@
     font-size: 0.6rem;
     font-weight: 600;
     font-variant-numeric: tabular-nums;
+}
+
+/* Hover emphasis on the injected line/area (charts.js draws no per-point tooltip markup for the
+   sparkline, so this CSS-only treatment is the inspection affordance): the stroke thickens and
+   the area fill deepens while the pointer is over the plot. */
+.chart-sparkline__svg polyline,
+.chart-sparkline__svg polygon {
+    transition: stroke-width 0.2s ease, opacity 0.2s ease;
+}
+.chart-sparkline__plot:hover .chart-sparkline__svg polyline {
+    stroke-width: 3;
+}
+.chart-sparkline__plot:hover .chart-sparkline__svg polygon {
+    opacity: 0.2;
 }
 
 /* Single-series sparkline colour, sourced from the shadcn chart palette only. The editor's

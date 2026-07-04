@@ -11,16 +11,12 @@
     min-width: 0;
     max-width: 68rem;
 }
+/* Type comes from d:atom.typography (h4 / muted); only rhythm lives here. */
 .newsletter-inline__headline {
     margin: 0;
-    font-size: var(--d-text-xl);
-    font-weight: 600;
-    color: var(--d-foreground);
 }
 .newsletter-inline__description {
     margin: var(--d-spacing-xs) 0 0;
-    font-size: var(--d-text-sm);
-    color: var(--d-muted-foreground);
 }
 .newsletter-inline__form {
     width: min(100%, 28rem);
@@ -50,6 +46,14 @@
 .newsletter-inline__form .btn-primary {
     min-height: 2.5rem;
 }
+.newsletter-inline__form input:hover {
+    border-color: color-mix(in oklab, var(--d-ring) 45%, transparent);
+}
+.newsletter-inline__form input:focus-visible {
+    outline: var(--d-ring-width, 2px) solid var(--d-ring);
+    outline-offset: 2px;
+    border-color: var(--d-ring);
+}
 .newsletter-inline__form form > div:has(.frc-captcha) {
     grid-column: 1 / -1;
     grid-row: 2;
@@ -69,7 +73,7 @@
         justify-self: stretch;
     }
 }
-@media (max-width: 520px) {
+@media (max-width: 480px) {
     .newsletter-inline__bar {
         padding: var(--d-spacing-lg);
     }

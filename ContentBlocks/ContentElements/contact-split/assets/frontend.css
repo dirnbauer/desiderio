@@ -13,18 +13,14 @@
     gap: var(--d-spacing-md);
     margin-block-start: var(--d-spacing-lg);
 }
-.contact-split__field { display: flex; flex-direction: column; gap: 4px; }
-.contact-split__label { font-size: var(--d-text-sm); font-weight: 500; }
-.contact-split__input, .contact-split__textarea {
-    padding: var(--d-spacing-xs) var(--d-spacing-sm);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    font-size: var(--d-text-sm);
-    background: transparent;
-}
+/* Form fields delegate to the shared TYPO3 Form Framework bridge
+   (.desiderio-form in components.css), which is token-driven
+   (--input, --radius, --ring); no element-level control styling here. */
 .contact-split__image {
+    display: block;
     width: 100%;
     border-radius: var(--radius);
+    border: 1px solid var(--border);
     object-fit: cover;
 }
 

@@ -5,7 +5,8 @@
 
 <f:asset.css identifier="d-team" href="{cb:assetPath()}/frontend.css"/>
 
-<d:layout.section class="team team--{data.variant -> f:or(alternative: 'grid')}">
+<f:variable name="teamVariant" value="{data.variant -> f:or(alternative: 'grid')}"/>
+<d:layout.section class="team team--{teamVariant}">
     <d:layout.container>
         <f:if condition="{data.eyebrow} || {data.header} || {data.subheadline}">
             <header class="team__intro">
@@ -83,7 +84,7 @@
                 <d:layout.grid cols="{data.columns -> f:or(alternative: '3')}" gap="lg" class="team__grid">
                     <f:for each="{data.members}" as="member">
                         <div class="team__cell">
-                            <d:molecule.card class="team__member h-full w-full">
+                            <d:molecule.card class="team__member">
                             <f:if condition="{member.image}">
                                 <figure class="team__figure">
                                     <f:for each="{member.image}" as="fileReference">
@@ -105,7 +106,7 @@
                             </f:if>
                             <f:if condition="{member.profile_link.url}">
                                 <d:molecule.cardFooter class="team__footer mt-auto shrink-0 grow-0">
-                                    <d:atom.button href="{member.profile_link.url}" target="{member.profile_link.target}" variant="secondary" size="sm" class="w-full">
+                                    <d:atom.button href="{member.profile_link.url}" target="{member.profile_link.target}" variant="secondary" size="sm" class="team__footer-action">
                                         <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:team.view_profile">View profile</f:translate>
                                         <span class="sr-only"> — {member -> f:render.text(field: 'name')}</span>
                                     </d:atom.button>

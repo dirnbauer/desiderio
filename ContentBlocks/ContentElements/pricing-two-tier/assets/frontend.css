@@ -43,12 +43,20 @@
     position: relative;
     flex: 1;
     min-width: 0;
+    height: 100%;
     overflow: visible;
 }
 
 .pricing-two-tier__plan--featured,
 .pricing-two-tier__plan--recommended {
     z-index: 1;
+}
+
+/* Featured plan emphasis: 2px primary ring composed with the card's
+   surface shadow (replaces the tw ring-2/ring-primary utilities). */
+[data-slot="card"].pricing-two-tier__plan--featured,
+[data-slot="card"].pricing-two-tier__plan--recommended {
+    box-shadow: 0 0 0 2px var(--primary), var(--d-surface-shadow);
 }
 
 .pricing-two-tier__ribbon {
@@ -61,7 +69,7 @@
 .pricing-two-tier__price-row {
     display: flex;
     align-items: baseline;
-    gap: 0.25rem;
+    gap: var(--d-spacing-2xs);
     flex-wrap: wrap;
     margin: 0;
     margin-block-start: var(--d-spacing-sm);
@@ -90,7 +98,7 @@
 .pricing-two-tier__feature {
     display: flex;
     align-items: flex-start;
-    gap: 0.5rem;
+    gap: var(--d-spacing-xs);
     min-width: 0;
 }
 
@@ -106,6 +114,7 @@
 
 .pricing-two-tier__button {
     justify-content: center;
+    width: 100%;
 }
 
 @media (max-width: 768px) { .pricing-two-tier__grid { grid-template-columns: 1fr; max-width: 24rem; margin-inline: auto; } }

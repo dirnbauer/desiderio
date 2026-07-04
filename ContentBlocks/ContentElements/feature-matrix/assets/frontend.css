@@ -13,6 +13,33 @@
 .feature-matrix__value {
     text-align: center;
 }
+/* Header cells mirror the shared table-head primitive's look. */
+.feature-matrix__head {
+    height: 2.5rem;
+    padding-inline: var(--d-spacing-xs);
+    vertical-align: middle;
+    font-weight: 500;
+    color: var(--foreground);
+}
+.feature-matrix__head--left {
+    text-align: left;
+}
+/* Breathing room between rows: lift the block padding of every body cell
+   above the primitive's compact default. */
+.feature-matrix__table tbody :is(th, td) {
+    padding-block: var(--d-spacing-sm);
+}
+.feature-matrix__table tbody tr {
+    transition: background-color 0.15s ease;
+}
+.feature-matrix__table tbody tr:hover {
+    background-color: color-mix(in oklab, var(--muted) 60%, transparent);
+}
+@media (prefers-reduced-motion: reduce) {
+    .feature-matrix__table tbody tr {
+        transition: none;
+    }
+}
 
 /* Heading-to-teaser rhythm: consistent gap inside the intro block. */
 .feature-matrix__intro {

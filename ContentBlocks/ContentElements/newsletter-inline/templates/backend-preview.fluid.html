@@ -26,18 +26,6 @@
                 <span class="d-ce-preview__value">{data.description_text -> f:format.stripTags() -> f:format.htmlspecialchars()}</span>
             </div>
         </f:if>
-        <f:if condition="{data.button_text}">
-            <div class="d-ce-preview__field">
-                <span class="d-ce-preview__label">Button Text</span>
-                <span class="d-ce-preview__value">{data.button_text -> f:format.stripTags() -> f:format.htmlspecialchars()}</span>
-            </div>
-        </f:if>
-        <f:if condition="{data.placeholder}">
-            <div class="d-ce-preview__field">
-                <span class="d-ce-preview__label">Placeholder</span>
-                <span class="d-ce-preview__value">{data.placeholder -> f:format.stripTags() -> f:format.htmlspecialchars()}</span>
-            </div>
-        </f:if>
     </div>
 </f:section>
 

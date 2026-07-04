@@ -2,20 +2,5 @@
     "_type": "form",
     "header": "Request access to your personal data",
     "description": "<p>Demo GDPR request form for the fictional webconsulting studio site. Tell us which records you need and we will respond within 30 days, as required under GDPR.</p>",
-    "request_types": [
-        {
-            "label": "Export my data",
-            "value": "export"
-        },
-        {
-            "label": "Correct my data",
-            "value": "rectify"
-        },
-        {
-            "label": "Delete my account",
-            "value": "erasure"
-        }
-    ],
-    "privacy_text": "We only use these details to verify your identity and process your request. This is seeded demo content — connect it to one of the 8 bundled Form Framework definitions for production use.",
-    "submit_text": "Submit request"
+    "privacy_text": "We only use these details to verify your identity and process your request. This is seeded demo content — connect it to one of the 8 bundled Form Framework definitions for production use."
 }

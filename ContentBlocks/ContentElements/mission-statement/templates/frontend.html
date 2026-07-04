@@ -8,10 +8,10 @@
 <d:layout.section class="mission-statement">
     <d:layout.container>
         <div class="mission-statement__content">
-            <f:if condition="{data.eyebrow}"><span class="mission-statement__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span></f:if>
+            <f:if condition="{data.eyebrow}"><d:atom.typography tag="span" variant="small" class="mission-statement__eyebrow">{data -> f:render.text(field: 'eyebrow')}</d:atom.typography></f:if>
             <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
-            <f:if condition="{data.statement}"><blockquote class="mission-statement__quote">{data -> f:render.text(field: 'statement')}</blockquote></f:if>
-            <f:if condition="{data.attribution}"><cite class="mission-statement__attribution">{data -> f:render.text(field: 'attribution')}</cite></f:if>
+            <f:if condition="{data.statement}"><blockquote class="mission-statement__quote"><d:atom.typography tag="p" variant="lead" class="mission-statement__quote-text">{data -> f:render.text(field: 'statement')}</d:atom.typography></blockquote></f:if>
+            <f:if condition="{data.attribution}"><cite class="mission-statement__attribution"><d:atom.typography tag="span" variant="muted">{data -> f:render.text(field: 'attribution')}</d:atom.typography></cite></f:if>
         </div>
     </d:layout.container>
 </d:layout.section>

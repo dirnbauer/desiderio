@@ -1,26 +1,28 @@
-.map-embed__intro { margin-block-end: var(--d-spacing-lg, 1.5rem); }
+/* Heading-to-address rhythm: consistent gap inside the intro block. */
+.map-embed__intro {
+    display: grid;
+    gap: var(--d-spacing-sm);
+}
 .map-embed__address {
     font-size: var(--d-text-sm, 0.875rem);
     color: var(--muted-foreground);
     font-style: normal;
     line-height: 1.5;
     white-space: pre-line;
-    margin-block-start: var(--d-spacing-xs, 0.5rem);
 }
 .map-embed__frame {
     overflow: hidden;
     border-radius: var(--radius, 0.625rem);
     border: 1px solid var(--border);
+    box-shadow: var(--d-shadow-sm);
+}
+.map-embed__intro + .map-embed__frame {
+    margin-block-start: var(--d-spacing-lg);
 }
 .map-embed__iframe {
     display: block;
     width: 100%;
     height: 100%;
     border: 0;
-}
-
-/* Heading-to-teaser rhythm: consistent gap inside the intro block. */
-.map-embed__intro {
-    display: grid;
-    gap: var(--d-spacing-sm);
+    border-radius: inherit;
 }

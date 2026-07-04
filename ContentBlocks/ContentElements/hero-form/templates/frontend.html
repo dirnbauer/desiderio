@@ -17,7 +17,6 @@
             <f:if condition="{data.subheadline}">
                 <d:atom.typography variant="lead" class="hero-form__subheadline">{data -> f:render.text(field: 'subheadline')}</d:atom.typography>
             </f:if>
-<f:comment>Legacy editor fields kept for migrated records; TYPO3 Form Framework owns rendering and submit behavior. {data.form_action}{data.input_placeholder}{data.button_text}</f:comment>
 
             <d:molecule.formRenderer persistenceIdentifier="EXT:desiderio/Resources/Private/Forms/DesiderioNewsletter.form.yaml" class="hero-form__form"/>
             <f:if condition="{data.privacy_notice}">

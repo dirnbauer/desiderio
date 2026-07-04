@@ -16,6 +16,10 @@
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     scroll-padding: var(--d-spacing-md);
+    scroll-behavior: smooth;
+    /* Keep horizontal swipes inside the track instead of triggering
+       browser back/forward navigation gestures. */
+    overscroll-behavior-x: contain;
     -webkit-overflow-scrolling: touch;
     padding-block-end: 0;
     scrollbar-width: none;
@@ -28,6 +32,11 @@
     outline-offset: 4px;
     border-radius: var(--d-radius-md);
 }
+@media (prefers-reduced-motion: reduce) {
+    .feature-carousel__track {
+        scroll-behavior: auto;
+    }
+}
 .feature-carousel__scroll {
     display: flex;
     justify-content: center;
@@ -38,18 +47,19 @@
 }
 .feature-carousel__scroll-track {
     position: relative;
-    width: 4.5rem;
-    height: 2px;
-    border-radius: 999px;
+    width: 5rem;
+    /* Slightly taller bar so touch users can read scroll progress. */
+    height: 0.25rem;
+    border-radius: var(--d-radius-full);
     background: var(--muted);
 }
 .feature-carousel__scroll-thumb {
     position: absolute;
     inset-block: 0;
     inset-inline-start: 0;
-    width: 1.25rem;
-    border-radius: 999px;
-    background: color-mix(in oklch, var(--accent-foreground) 36%, var(--accent));
+    width: 1.5rem;
+    border-radius: var(--d-radius-full);
+    background: color-mix(in oklab, var(--accent-foreground) 36%, var(--accent));
     transition: transform 0.15s ease;
 }
 @media (prefers-reduced-motion: reduce) {
@@ -75,6 +85,8 @@
 @media (max-width: 768px) {
     .feature-carousel__cell {
         flex: 0 0 calc(85% - var(--d-spacing-md));
+        /* One card per swipe on touch: never fling past a snap point. */
+        scroll-snap-stop: always;
     }
 }
 .feature-carousel__icon {

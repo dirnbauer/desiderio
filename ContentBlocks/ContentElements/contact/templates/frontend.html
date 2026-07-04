@@ -27,7 +27,7 @@
                                 <dd class="contact__list-value-wrap">
                                     <f:if condition="{item.link.url}">
                                         <f:then>
-                                            <d:atom.link href="{item.link.url}" target="{item.link.target}" variant="muted" class="contact__list-value rounded-sm hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-card">{item -> f:render.text(field: 'value')}</d:atom.link>
+                                            <d:atom.link href="{item.link.url}" target="{item.link.target}" variant="muted" class="contact__list-value">{item -> f:render.text(field: 'value')}</d:atom.link>
                                         </f:then>
                                         <f:else>
                                             <span class="contact__list-value">{item -> f:render.text(field: 'value')}</span>
@@ -42,7 +42,6 @@
 
             <d:molecule.card class="contact__form-card">
                 <f:if condition="{data.form_title}"><h3 class="contact__form-title">{data -> f:render.text(field: 'form_title')}</h3></f:if>
-<f:comment>Legacy editor fields kept for migrated records; TYPO3 Form Framework owns rendering and submit behavior. {data.form_action}</f:comment>
 
                 <d:molecule.formRenderer persistenceIdentifier="EXT:desiderio/Resources/Private/Forms/DesiderioContact.form.yaml" class="contact__form"/>
             </d:molecule.card>

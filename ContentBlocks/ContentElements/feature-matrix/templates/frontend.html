@@ -17,17 +17,17 @@
             <d:molecule.table class="feature-matrix__table">
                 <d:molecule.tableHeader>
                     <d:molecule.tableRow>
-                        <d:molecule.tableCell header="{true}">
+                        <th scope="col" data-slot="table-head" class="feature-matrix__head feature-matrix__head--left">
                             <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:feature"/>
-                        </d:molecule.tableCell>
-                        <d:molecule.tableCell header="{true}" class="feature-matrix__value">{data.left_label -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:plan.a\', default: \'Plan A\')}')}</d:molecule.tableCell>
-                        <d:molecule.tableCell header="{true}" class="feature-matrix__value">{data.right_label -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:plan.b\', default: \'Plan B\')}')}</d:molecule.tableCell>
+                        </th>
+                        <th scope="col" data-slot="table-head" class="feature-matrix__head feature-matrix__value"><f:if condition="{data.left_label}"><f:then>{data -> f:render.text(field: 'left_label')}</f:then><f:else><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:plan.a" default="Plan A"/></f:else></f:if></th>
+                        <th scope="col" data-slot="table-head" class="feature-matrix__head feature-matrix__value"><f:if condition="{data.right_label}"><f:then>{data -> f:render.text(field: 'right_label')}</f:then><f:else><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:plan.b" default="Plan B"/></f:else></f:if></th>
                     </d:molecule.tableRow>
                 </d:molecule.tableHeader>
                 <tbody data-slot="table-body" class="[&_tr:last-child]:border-0">
                     <f:for each="{data.rows}" as="row">
                         <d:molecule.tableRow>
-                            <th scope="row" data-slot="table-head" class="h-10 px-2 text-left align-middle font-medium text-foreground">{row -> f:render.text(field: 'label')}</th>
+                            <th scope="row" data-slot="table-head" class="feature-matrix__head feature-matrix__head--left">{row -> f:render.text(field: 'label')}</th>
                             <d:molecule.tableCell class="feature-matrix__value">{row -> f:render.text(field: 'left_value')}</d:molecule.tableCell>
                             <d:molecule.tableCell class="feature-matrix__value">{row -> f:render.text(field: 'right_value')}</d:molecule.tableCell>
                         </d:molecule.tableRow>

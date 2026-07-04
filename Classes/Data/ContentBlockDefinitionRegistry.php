@@ -24,6 +24,13 @@ final class ContentBlockDefinitionRegistry
     private static ?array $runtimeCollectionDefinitions = null;
 
     /**
+     * Record type definitions keyed by their table name.
+     *
+     * @var array<string, array{table: string, fields: array<string, array<string, mixed>>}>|null
+     */
+    private static ?array $recordTypeDefinitions = null;
+
+    /**
      * @param array<string, array{fields: array<string, array<string, mixed>>, collections: array<string, array<string, mixed>>}> $definitions
      */
     public static function setDefinitionsForTesting(array $definitions): void
@@ -36,6 +43,7 @@ final class ContentBlockDefinitionRegistry
     {
         self::$definitions = null;
         self::$runtimeCollectionDefinitions = null;
+        self::$recordTypeDefinitions = null;
     }
 
     /**
@@ -154,6 +162,31 @@ final class ContentBlockDefinitionRegistry
             }
 
             $identifier = $field['identifier'];
+            if (($field['type'] ?? '') === 'Relation') {
+                $pool = self::getRecordTypeDefinitionByTable(
+                    is_string($field['allowed'] ?? null) ? $field['allowed'] : ''
+                );
+                if ($pool !== null) {
+                    // Shared record pool: expose the relation as a collection-shaped
+                    // definition (pool table + pool fields) so fixture resolution and
+                    // demo completion reuse the collection machinery. The `relation`
+                    // flag makes the seeder store a uid CSV on the parent column and
+                    // reuse existing pool records instead of inserting children.
+                    $definition['collections'][$identifier] = [
+                        'table' => $pool['table'],
+                        'column' => self::resolveRootFieldStorageIdentifier($config, $field, $identifier),
+                        'fields' => $pool['fields'],
+                        'collections' => [],
+                        'minItems' => self::getConfiguredInteger($field, 'minitems')
+                            ?? self::getConfiguredInteger($field, 'minItems')
+                            ?? 1,
+                        'maxItems' => self::getConfiguredInteger($field, 'maxitems')
+                            ?? self::getConfiguredInteger($field, 'maxItems'),
+                        'relation' => true,
+                    ];
+                    continue;
+                }
+            }
             if (($field['type'] ?? '') !== 'Collection') {
                 $definition['fields'][$identifier] = $field;
                 continue;
@@ -167,6 +200,68 @@ final class ContentBlockDefinitionRegistry
         }
 
         return $definition;
+    }
+
+    /**
+     * @return array{table: string, fields: array<string, array<string, mixed>>}|null
+     */
+    public static function getRecordTypeDefinitionByTable(string $table): ?array
+    {
+        if ($table === '') {
+            return null;
+        }
+        return self::getRecordTypeDefinitions()[$table] ?? null;
+    }
+
+    /**
+     * @return array<string, array{table: string, fields: array<string, array<string, mixed>>}>
+     */
+    private static function getRecordTypeDefinitions(): array
+    {
+        if (self::$recordTypeDefinitions !== null) {
+            return self::$recordTypeDefinitions;
+        }
+
+        $definitions = [];
+        // Resolved relative to this file so the loader also works in
+        // standalone CLI scripts that run without a booted TYPO3
+        // (e.g. scripts/fill-content-element-fixtures.php).
+        $basePath = dirname(__DIR__, 2) . '/ContentBlocks/RecordTypes';
+        $directories = is_dir($basePath) ? scandir($basePath) : false;
+        foreach ($directories === false ? [] : $directories as $directory) {
+            if ($directory === '.' || $directory === '..') {
+                continue;
+            }
+            $configPath = $basePath . '/' . $directory . '/config.yaml';
+            if (!is_readable($configPath)) {
+                continue;
+            }
+            $config = Yaml::parseFile($configPath);
+            if (!is_array($config)) {
+                continue;
+            }
+            $config = self::normalizeStringKeyedArray($config);
+            $table = is_string($config['table'] ?? null) ? $config['table'] : '';
+            if ($table === '') {
+                continue;
+            }
+
+            $fields = [];
+            foreach (is_array($config['fields'] ?? null) ? $config['fields'] : [] as $field) {
+                if (!is_array($field)) {
+                    continue;
+                }
+                $field = self::normalizeStringKeyedArray($field);
+                $identifier = $field['identifier'] ?? null;
+                if (is_string($identifier) && $identifier !== '' && ($field['type'] ?? '') !== 'Collection') {
+                    $fields[$identifier] = $field;
+                }
+            }
+            $definitions[$table] = ['table' => $table, 'fields' => $fields];
+        }
+
+        self::$recordTypeDefinitions = $definitions;
+        return $definitions;
     }
 
     /**
@@ -222,6 +317,11 @@ final class ContentBlockDefinitionRegistry
     {
         $mapped = [];
         foreach ($collections as $identifier => $collection) {
+            if (($collection['relation'] ?? false) === true) {
+                // Relation pools resolve natively through Content Blocks; the
+                // frontend collection fallback must not touch them.
+                continue;
+            }
             $nestedCollections = $collection['collections'] ?? [];
             if (!is_array($nestedCollections)) {
                 $nestedCollections = [];

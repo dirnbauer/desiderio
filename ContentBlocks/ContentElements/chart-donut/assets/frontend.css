@@ -57,7 +57,7 @@
 }
 .chart-donut__svg .chart-donut__center-label {
     fill: var(--muted-foreground);
-    font-size: 0.875rem;
+    font-size: var(--d-text-sm);
 }
 
 .chart-donut__canvas:has(.chart-donut__svg) .chart-donut__center-fallback {

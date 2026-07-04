@@ -13,7 +13,7 @@
                     <span class="pricing-comparison__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span>
                 </f:if>
                 <f:if condition="{data.header}">
-                    <h2 class="pricing-comparison__headline">{data -> f:render.text(field: 'header')}</h2>
+                    <d:atom.typography tag="h2" variant="h2" class="pricing-comparison__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>
                 </f:if>
             </header>
         </f:if>
@@ -21,9 +21,9 @@
         <d:molecule.table class="pricing-comparison__table">
             <d:molecule.tableHeader>
                 <d:molecule.tableRow>
-                    <th scope="col" data-slot="table-head" class="h-10 px-2 text-left align-middle font-medium text-foreground pricing-comparison__feature-col"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:feature"/></th>
+                    <th scope="col" data-slot="table-head" class="pricing-comparison__feature-col"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:feature"/></th>
                     <f:for each="{data.plans}" as="plan">
-                        <th scope="col" data-slot="table-head" class="h-10 px-2 text-center align-middle font-medium text-foreground pricing-comparison__plan-col">
+                        <th scope="col" data-slot="table-head" class="pricing-comparison__plan-col">
                             <span class="pricing-comparison__plan-name">{plan -> f:render.text(field: 'name')}</span>
                             <f:if condition="{plan.price}">
                                 <span class="pricing-comparison__plan-price">{plan -> f:render.text(field: 'price')}</span>
@@ -35,9 +35,9 @@
             <tbody>
                 <f:for each="{data.pricing_feature_items}" as="row">
                     <d:molecule.tableRow>
-                        <th scope="row" data-slot="table-head" class="h-10 px-2 text-left align-middle font-medium text-foreground pricing-comparison__feature-name">{row -> f:render.text(field: 'feature_name')}</th>
+                        <th scope="row" data-slot="table-head" class="pricing-comparison__feature-name">{row -> f:render.text(field: 'feature_name')}</th>
                         <f:for each="{row.tier_values}" as="val">
-                            <d:molecule.tableCell class="text-center pricing-comparison__cell">{val -> f:render.text(field: 'value')}</d:molecule.tableCell>
+                            <d:molecule.tableCell class="pricing-comparison__cell">{val -> f:render.text(field: 'value')}</d:molecule.tableCell>
                         </f:for>
                     </d:molecule.tableRow>
                 </f:for>

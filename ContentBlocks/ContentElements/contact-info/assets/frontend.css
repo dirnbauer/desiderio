@@ -51,9 +51,14 @@
     color: var(--primary);
     font-weight: 500;
     text-decoration: none;
+    border-radius: calc(var(--radius) * 0.6);
 }
 .contact-info__value--link:hover {
     text-decoration: underline;
+}
+.contact-info__value--link:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--card), 0 0 0 4px var(--ring);
 }
 
 /* Heading-to-teaser rhythm: consistent gap inside the intro block. */

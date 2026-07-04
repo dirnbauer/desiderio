@@ -12,16 +12,18 @@
 }
 .definition-list__term {
     font-weight: 600;
+    line-height: 1.4;
     margin-block-end: var(--d-spacing-xs);
 }
 .definition-list__definition {
     color: var(--muted-foreground);
     font-size: var(--d-text-sm);
-    line-height: 1.6;
+    line-height: 1.65;
     margin: 0;
 }
 
-/* Inline: term in a fixed column, definition beside it — scans as a table. */
+/* Inline: term in a fixed column, definition beside it — scans as a table.
+   Zebra-striped rows replace the divider borders for readability. */
 .definition-list--inline {
     max-width: 52rem;
 }
@@ -30,6 +32,14 @@
     grid-template-columns: 12rem 1fr;
     gap: var(--d-spacing-md) var(--d-spacing-xl);
     align-items: baseline;
+    padding: var(--d-spacing-sm) var(--d-spacing-md);
+    border-radius: var(--d-radius-sm);
+}
+.definition-list--inline .definition-list__entry:nth-child(odd) {
+    background: color-mix(in oklab, var(--muted) 60%, transparent);
+}
+.definition-list--inline .definition-list__entry + .definition-list__entry {
+    border-top: 0;
 }
 .definition-list--inline .definition-list__term {
     margin-block-end: 0;
@@ -46,9 +56,8 @@
     padding: var(--d-spacing-lg);
     border: 1px solid var(--border);
     border-radius: var(--d-radius-md);
-}
-.definition-list--grid .definition-list__entry + .definition-list__entry {
-    border-top: 1px solid var(--border);
+    background: var(--card);
+    box-shadow: var(--d-shadow-xs);
 }
 
 @media (max-width: 768px) {

@@ -8,11 +8,13 @@
 .changelog__entry:last-child { border-bottom: none; }
 .changelog__meta { display: flex; align-items: center; gap: var(--d-spacing-sm); flex-wrap: wrap; margin-block-end: var(--d-spacing-xs); }
 .changelog__version { font-weight: 700; font-size: var(--d-text-sm); font-family: var(--d-font-mono); }
-.changelog__date { font-size: var(--d-text-sm); color: var(--muted-foreground); }
+.changelog__date { font-size: var(--d-text-sm); color: var(--muted-foreground); font-variant-numeric: tabular-nums; }
 .changelog__tag {
-    font-size: var(--d-text-xs); font-weight: 600; padding: 2px 8px;
-    border-radius: 9999px; text-transform: uppercase; letter-spacing: 0.03em;
+    font-size: var(--d-text-xs); font-weight: 600; padding: var(--d-spacing-0-5) var(--d-spacing-xs);
+    border-radius: var(--d-radius-full); text-transform: uppercase; letter-spacing: 0.03em;
+    transition: color 0.15s ease;
 }
+.changelog__tag:hover { color: var(--primary); }
 .changelog__tag--new { background: var(--d-info-muted); color: var(--d-info-text); }
 .changelog__tag--fix { background: var(--d-success-muted); color: var(--d-success-text); }
 .changelog__tag--improvement { background: var(--d-warning-muted); color: var(--d-warning-text); }

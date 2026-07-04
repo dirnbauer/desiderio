@@ -97,7 +97,7 @@
 .chart-bar .chart__tick-label,
 .chart-bar .chart__axis-label {
     fill: currentColor;
-    font-size: 12px;
+    font-size: var(--d-text-xs);
     font-weight: 500;
     letter-spacing: 0;
     opacity: 0.72;

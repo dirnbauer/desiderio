@@ -13,12 +13,17 @@
     display: block;
     margin-block-end: var(--d-spacing-sm);
 }
+/* Aspect-ratio wrapper: shared 16/9 token so embed and native player
+   reserve identical space before media loads (no layout shift). */
+.feature-video__player {
+    --feature-video-ratio: 16 / 9;
+}
 .feature-video__embed {
     position: relative;
-    padding-bottom: 56.25%;
-    height: 0;
+    aspect-ratio: var(--feature-video-ratio);
     overflow: hidden;
     border-radius: var(--d-radius-lg);
+    border: 1px solid var(--border);
     background: var(--muted);
 }
 .feature-video__embed iframe {
@@ -28,9 +33,19 @@
     height: 100%;
 }
 .feature-video__native {
+    display: block;
     width: 100%;
+    aspect-ratio: var(--feature-video-ratio);
+    object-fit: contain;
     border-radius: var(--d-radius-lg);
+    border: 1px solid var(--border);
     background: var(--muted);
+}
+/* Focus-visible ring: iframes and the native player are keyboard-focusable. */
+.feature-video__embed:has(:focus-visible),
+.feature-video__native:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
 }
 
 /* Heading-to-teaser rhythm: consistent gap inside the intro block. */

@@ -32,7 +32,7 @@
                                         <f:image image="{fileReference}" maxWidth="520" alt="{logo.name}" class="logo-cloud__image logo-cloud__image--{fileReference.originalFile.nameWithoutExtension -> f:format.case(mode: 'lower')}" loading="lazy" decoding="async"/>
                                     </f:for>
                                 </div>
-                                <span class="logo-cloud__name">{logo.name}</span>
+                                <span class="logo-cloud__name">{logo -> f:render.text(field: 'name')}</span>
                             </d:atom.link>
                         </f:then>
                         <f:else>
@@ -42,7 +42,7 @@
                                         <f:image image="{fileReference}" maxWidth="520" alt="{logo.name}" class="logo-cloud__image logo-cloud__image--{fileReference.originalFile.nameWithoutExtension -> f:format.case(mode: 'lower')}" loading="lazy" decoding="async"/>
                                     </f:for>
                                 </div>
-                                <span class="logo-cloud__name">{logo.name}</span>
+                                <span class="logo-cloud__name">{logo -> f:render.text(field: 'name')}</span>
                             </div>
                         </f:else>
                     </f:if>

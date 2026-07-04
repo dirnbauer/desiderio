@@ -37,7 +37,7 @@ Rules
 Reference implementations
 -------------------------
 
-*   **Gold standard:** ``ContentBlocks/ContentElements/card-pricing/``
+*   **Gold standard:** ``ContentBlocks/ContentElements/pricing-simple/``
 *   **Multi-tier pricing:** ``pricing-annual-monthly``, ``pricing-three-tier``
 *   **CTA patterns:** ``ContentBlocks/ContentElements/cta/``
 

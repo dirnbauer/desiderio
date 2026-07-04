@@ -63,7 +63,7 @@
     justify-content: center;
     min-width: 2.5rem;
     height: 2.5rem;
-    padding-inline: 0.75rem;
+    padding-inline: var(--d-spacing-sm);
     border-radius: var(--d-radius-full);
     background: var(--primary);
     color: var(--primary-foreground);

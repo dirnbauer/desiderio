@@ -42,8 +42,8 @@
                 </fieldset>
             </f:if>
             <div class="gdpr-banner__actions">
-                <d:atom.button type="button" variant="default" size="sm" class="gdpr-banner__action gdpr-banner__action--accept">{data.accept_text -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:consent.acceptAll\', default: \'Accept all\')}')}</d:atom.button>
-                <d:atom.button type="button" variant="outline" size="sm" class="gdpr-banner__action gdpr-banner__action--save">{data.save_text -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:consent.savePreferences\', default: \'Save preferences\')}')}</d:atom.button>
+                <d:atom.button type="button" variant="default" size="sm" class="gdpr-banner__action gdpr-banner__action--accept"><f:if condition="{data.accept_text}"><f:then>{data -> f:render.text(field: 'accept_text')}</f:then><f:else><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:consent.acceptAll" default="Accept all"/></f:else></f:if></d:atom.button>
+                <d:atom.button type="button" variant="outline" size="sm" class="gdpr-banner__action gdpr-banner__action--save"><f:if condition="{data.save_text}"><f:then>{data -> f:render.text(field: 'save_text')}</f:then><f:else><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:consent.savePreferences" default="Save preferences"/></f:else></f:if></d:atom.button>
             </div>
         </div>
     </d:layout.container>

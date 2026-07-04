@@ -50,9 +50,16 @@
     aspect-ratio: 1 / 1;
     overflow: visible;
 }
+/* Grid scale labels charts.js paints: axis captions get a steadier weight/tracking so they
+   read as UI labels, value badges lift off the web with a soft shadow. */
 .chart-radar__label {
     font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
     fill: var(--muted-foreground);
+}
+.chart-radar__value-badge {
+    filter: drop-shadow(0 1px 2px color-mix(in oklab, var(--foreground) 14%, transparent));
 }
 .chart-radar__value-bg {
     fill: var(--card);
@@ -101,8 +108,8 @@
     border-radius: calc(var(--radius) - 2px);
     background: var(--muted);
     color: var(--muted-foreground);
-    padding: 0.125rem 0.5rem;
-    font-size: 0.75rem;
+    padding: 0.125rem var(--d-spacing-xs);
+    font-size: var(--d-text-xs);
     font-weight: 600;
 }
 .chart-radar__legend {
@@ -121,9 +128,31 @@
     align-items: baseline;
     gap: 0.375rem;
     min-width: 0;
+    border: 1px solid transparent;
     border-radius: calc(var(--radius) - 2px);
     background: color-mix(in oklch, var(--muted) 55%, transparent);
-    padding: 0.25rem 0.5rem;
+    padding: var(--d-spacing-2xs) var(--d-spacing-xs);
+    transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+/* Swatch dot ties each legend entry to the plotted series colour. */
+.chart-radar__legend-item::before {
+    content: "";
+    flex: none;
+    align-self: center;
+    width: 0.5rem;
+    height: 0.5rem;
+    border-radius: var(--d-radius-full);
+    background: var(--chart-color, var(--chart-1));
+}
+/* Clear hover/focus feedback so the legend entry being read stands out from its neighbours. */
+.chart-radar__legend-item:hover,
+.chart-radar__legend-item:focus-within {
+    background: color-mix(in oklch, var(--muted) 90%, transparent);
+    border-color: var(--border);
+}
+.chart-radar__legend-item:focus-within {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
 }
 .chart-radar__legend-label {
     color: var(--foreground);

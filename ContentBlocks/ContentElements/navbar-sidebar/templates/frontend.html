@@ -30,7 +30,7 @@
             </f:for>
         </nav>
         <f:if condition="{data.footer_text}">
-            <div class="navbar-sidebar__footer"><p>{data -> f:render.text(field: 'footer_text')}</p></div>
+            <div class="navbar-sidebar__footer"><d:atom.typography variant="muted" class="navbar-sidebar__footer-text">{data -> f:render.text(field: 'footer_text')}</d:atom.typography></div>
         </f:if>
     </aside>
 </d:layout.section>

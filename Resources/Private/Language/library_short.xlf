@@ -126,11 +126,6 @@
         <source>A **full-bleed image card** with text and a button over the picture and an adjustable dark overlay. As an eye-catching **promo or feature tile** on landing and campaign pages.</source>
       </segment>
     </unit>
-    <unit id="desiderio_cardpricing">
-      <segment>
-        <source>A single **pricing plan card** with title, price and billing period plus a **checklist** of included or excluded features. For pricing or product pages at the point of decision, often alongside other plans.</source>
-      </segment>
-    </unit>
     <unit id="desiderio_careerlisting">
       <segment>
         <source>A **list of open positions**, each row showing role, department, location, employment type and an **apply button**. For careers or jobs pages so candidates can scan vacancies and apply directly.</source>
@@ -251,11 +246,6 @@
         <source>A **grid of cards** presenting employee benefits and perks, each with icon, title and description. Makes your offer attractive to candidates on **careers or recruiting pages**.</source>
       </segment>
     </unit>
-    <unit id="desiderio_companystats">
-      <segment>
-        <source>A grid of key figures shown as bold, **animated count-up numbers**, each with a label and optional description. Proves growth, scale or results at a glance on **About or landing pages**.</source>
-      </segment>
-    </unit>
     <unit id="desiderio_companyvalues">
       <segment>
         <source>A **grid of cards** spelling out the company's guiding principles, each with icon, title and description. Conveys mission and character on **About or culture pages**.</source>
@@ -324,11 +314,6 @@
     <unit id="desiderio_cookiebanner">
       <segment>
         <source>A dismissible **consent region** that overlays the page on arrival to collect *cookie preferences*. Place it site-wide so first-time visitors can act before browsing.</source>
-      </segment>
-    </unit>
-    <unit id="desiderio_copyrightbar">
-      <segment>
-        <source>A **slim single-line bar** for the bottom of the page, pairing a copyright notice with *legal links* such as imprint, privacy and terms.</source>
       </segment>
     </unit>
     <unit id="desiderio_counter">
@@ -561,11 +546,6 @@
         <source>A **footer anchored by logo, brand name, and tagline**, paired with a column of navigation links. Reinforces **identity** as a closing footer while offering quick links.</source>
       </segment>
     </unit>
-    <unit id="desiderio_footercentered">
-      <segment>
-        <source>A **compact, centered footer** stacking brand name, inline links, and copyright on a single axis. Suits **simple or minimal pages** that want a slim, balanced footer.</source>
-      </segment>
-    </unit>
     <unit id="desiderio_footercolumns">
       <segment>
         <source>A **footer with tidy multi-column link lists** beside a brand block. Organizes navigation, legal, and resource links into **clear groups** on content-rich pages.</source>
@@ -646,11 +626,6 @@
         <source>A full-width **opening banner** with a large headline and prominent **CTA buttons**, in centered, split, background-image, or gradient variants. Place it at the top to communicate the core message and drive the first click.</source>
       </segment>
     </unit>
-    <unit id="desiderio_heroanimated">
-      <segment>
-        <source>A **full-width page opener** whose headline animates into view, with subheadline and up to two CTA buttons. Sets the mood *with motion* atop a **landing or campaign page**.</source>
-      </segment>
-    </unit>
     <unit id="desiderio_heroannouncement">
       <segment>
         <source>A **page opener led by a slim banner** highlighting news, a launch, or an update above the headline. Surfaces a **timely message** before the pitch.</source>
@@ -676,11 +651,6 @@
         <source>A **centered hero with a live timer** counting down days, hours, minutes, and seconds to a set date. Builds **urgency** atop a launch, sale, or event page.</source>
       </segment>
     </unit>
-    <unit id="desiderio_heroctaonly">
-      <segment>
-        <source>A **stripped-back hero** focusing the page on a headline and one prominent action, with no image. Pushes visitors toward a **single decision** as a mid-page or closing band.</source>
-      </segment>
-    </unit>
     <unit id="desiderio_herodualcta">
       <segment>
         <source>A hero that splits into **two side-by-side cards**, each with its own action. Ideal when you must serve **two audiences or goals** at once, such as sign up versus contact sales.</source>
@@ -689,16 +659,6 @@
     <unit id="desiderio_heroform">
       <segment>
         <source>A hero with an **inline form** directly beneath the message, rendered via the TYPO3 Form Framework. For landing or campaign pages where **capturing a lead** is the primary goal.</source>
-      </segment>
-    </unit>
-    <unit id="desiderio_herofullscreen">
-      <segment>
-        <source>A **viewport-filling hero** with an edge-to-edge background image, darkening overlay, and centered message. A **high-impact opener** for homepages or campaigns needing a strong visual first impression.</source>
-      </segment>
-    </unit>
-    <unit id="desiderio_herogradient">
-      <segment>
-        <source>A hero with a bold **color-gradient background** from two theme tokens, holding a centered headline and call-to-action. For an **on-brand, image-free** page opener with energy but no photography.</source>
       </segment>
     </unit>
     <unit id="desiderio_heroillustration">
@@ -866,11 +826,6 @@
         <source>A **header bar pairing each link with a small icon** for faster scanning. For **app-style or product headers** where icons aid recognition.</source>
       </segment>
     </unit>
-    <unit id="desiderio_navbarminimal">
-      <segment>
-        <source>A pared-back **navigation bar** with only a brand wordmark and a single **CTA button**. For landing pages or focused layouts with a clean header.</source>
-      </segment>
-    </unit>
     <unit id="desiderio_navbarmobile">
       <segment>
         <source>A **navigation bar with a hamburger toggle** that opens links in a drawer menu. For **mobile-first headers** where screen space is tight.</source>
@@ -889,11 +844,6 @@
     <unit id="desiderio_navbarstacked">
       <segment>
         <source>A **two-row navigation bar** with brand and tagline on top and the menu links below. Ideal for *editorial or brand-led* headers that need room for a slogan above the navigation.</source>
-      </segment>
-    </unit>
-    <unit id="desiderio_navbarsticky">
-      <segment>
-        <source>A horizontal navigation bar that stays **pinned to the top** while scrolling. Ideal for long pages where the menu and *call-to-action* must stay reachable at all times.</source>
       </segment>
     </unit>
     <unit id="desiderio_navbartabbed">
@@ -1159,11 +1109,6 @@
     <unit id="desiderio_statusindicator">
       <segment>
         <source>A **service status board** pairing an overall state line with a list of individual services, each marked by a colored dot and status word. Signals on a status or uptime page whether systems are **operational, degraded, or down**.</source>
-      </segment>
-    </unit>
-    <unit id="desiderio_tablecontent">
-      <segment>
-        <source>A responsive, scrollable **data table** with a heading, optional caption, column headers, and rows. Ideal on feature, pricing, or spec pages to compare **options side by side**.</source>
       </segment>
     </unit>
     <unit id="desiderio_tabs">

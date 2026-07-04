@@ -23,7 +23,7 @@
                             <f:if condition="{loc.address}">
                                 <p class="office-locations__address">
                                     <span class="office-locations__icon" aria-hidden="true"><d:atom.icon name="map-pin" size="sm"/></span>
-                                    <span class="office-locations__lines">{loc.address -> f:format.nl2br()}</span>
+                                    <span class="office-locations__lines">{loc -> f:render.text(field: 'address')}</span>
                                 </p>
                             </f:if>
                             <f:if condition="{loc.phone}">

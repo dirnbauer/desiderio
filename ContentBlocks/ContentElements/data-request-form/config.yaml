@@ -21,31 +21,7 @@ fields:
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
     rows: 3
   -
-    identifier: request_types
-    type: Collection
-    table: data_request_form_request_types
-    prefixField: true
-    label: 'Request Types'
-    fields:
-      -
-        identifier: label
-        type: Textarea
-        rows: 1
-        label: 'Request Type Label'
-        required: true
-      -
-        identifier: value
-        type: Textarea
-        rows: 1
-        label: 'Form Value'
-  -
     identifier: privacy_text
     type: Textarea
     label: 'Privacy Notice Text'
     rows: 2
-  -
-    identifier: submit_text
-    type: Textarea
-    rows: 1
-    label: 'Submit Button Text'
-    default: 'Submit Request'

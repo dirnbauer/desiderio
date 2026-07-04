@@ -231,7 +231,6 @@ $manualTitles = [
     'cta-with-image' => 'Image Call to Action',
     'faq' => 'FAQ',
     'gdpr-banner' => 'GDPR Banner',
-    'hero-cta-only' => 'Call to Action Hero',
     'hero-dual-cta' => 'Dual Call to Action Hero',
     'hero-logo-cloud' => 'Logo Cloud Hero',
     'how-to-steps' => 'How-to Steps',
@@ -1110,7 +1109,7 @@ function iconShapeFor(string $slug, string $group, string $title): string
     if ($slug === 'navbar' || str_starts_with($slug, 'navbar-') || str_starts_with($slug, 'nav-') || in_array($slug, ['announcement-bar', 'breadcrumb', 'header-banner', 'header-page', 'header-profile', 'header-section', 'mega-menu', 'search-header', 'sitemap-grid', 'utility-bar'], true)) {
         return navigationIconShape($slug);
     }
-    if ($slug === 'footer' || str_starts_with($slug, 'footer-') || in_array($slug, ['copyright-bar', 'legal-links'], true)) {
+    if ($slug === 'footer' || str_starts_with($slug, 'footer-') || in_array($slug, ['legal-links'], true)) {
         return footerIconShape($slug);
     }
     if ($slug === 'pricing' || str_starts_with($slug, 'pricing-') || containsAny($keywords, ['pricing', 'plan', 'billing', 'bundle', 'order summary'])) {
@@ -1192,17 +1191,13 @@ function iconShapeFor(string $slug, string $group, string $title): string
 function heroIconShape(string $slug): string
 {
     return match ($slug) {
-        'hero-animated' => '<rect x="2.75" y="3.25" width="10.5" height="9.5" rx="2"/><path d="M5 8c1.2-2 2.5 2 3.7 0s2.2-1.4 3 .2" class="accent"/><path d="M5 5.75h3.75"/>',
         'hero-announcement' => '<rect x="2.75" y="4" width="10.5" height="8" rx="2"/><path d="M5 8h3.25"/><path d="m9 6.75 3-1.25v5L9 9.25z" class="accent"/>',
         'hero-app' => '<rect x="5" y="2.75" width="6" height="10.5" rx="1.75"/><path d="M6.75 5.25h2.5M6.75 7.5h2.5"/><circle cx="8" cy="11.25" r=".45" class="accent-fill"/>',
         'hero-asymmetric' => '<path d="M2.75 3.25h10.5v9.5H2.75z"/><path d="M2.75 12.75 10.5 3.25"/><path d="M5 5.25h2.2M9.6 10.5h1.9" class="accent"/>',
         'hero-carousel' => '<rect x="2.75" y="4.25" width="4.5" height="7.5" rx="1.4"/><rect x="7.25" y="3.25" width="6" height="9.5" rx="1.4" class="accent"/><path d="M4 8h.1M11.8 8h.1"/>',
         'hero-countdown' => '<rect x="2.75" y="3.25" width="10.5" height="9.5" rx="2"/><circle cx="8" cy="8.25" r="2.7" class="accent"/><path d="M8 8.25V6.5M8 8.25l1.35.8"/>',
-        'hero-cta-only' => '<rect x="3" y="5" width="10" height="6" rx="3"/><path d="M5.5 8h4.25"/><path d="m9.5 6.6 1.8 1.4-1.8 1.4" class="accent"/>',
         'hero-dual-cta' => '<rect x="2.75" y="4" width="10.5" height="8" rx="2"/><rect x="4.5" y="8.5" width="3" height="1.6" rx=".8" class="accent"/><rect x="8.5" y="8.5" width="3" height="1.6" rx=".8"/><path d="M5 6.25h6"/>',
         'hero-form' => '<rect x="3" y="3.25" width="10" height="9.5" rx="2"/><path d="M5 5.75h3.25"/><rect x="5" y="7.5" width="6" height="1.4" rx=".7" class="accent"/><rect x="5" y="10" width="4" height="1.4" rx=".7"/>',
-        'hero-fullscreen' => '<rect x="3" y="3" width="10" height="10" rx="2"/><path d="M5.25 6V5.25H6M10 5.25h.75V6M10.75 10v.75H10M6 10.75h-.75V10" class="accent"/>',
-        'hero-gradient' => '<rect x="2.75" y="3.25" width="10.5" height="9.5" rx="2"/><path d="M3.5 11.75 12.5 3.8M5 11.75l7.5-6.1M7 11.75l5.5-4.3" class="accent"/>',
         'hero-illustration' => '<rect x="2.75" y="3.25" width="10.5" height="9.5" rx="2"/><path d="m4.75 10 2-2 1.5 1.5 1-1 2 2.5"/><circle cx="10.75" cy="5.75" r="1" class="accent"/>',
         'hero-logo-cloud' => '<rect x="3" y="4" width="3" height="2" rx=".7"/><rect x="8" y="4" width="5" height="2" rx=".7" class="accent"/><rect x="4.5" y="8.5" width="3.5" height="2" rx=".7" class="accent"/><rect x="9.5" y="8.5" width="2.5" height="2" rx=".7"/>',
         'hero-minimal' => '<path d="M4.25 5.25h7.5"/><path d="M5.5 8h5"/><path d="M6.75 10.75h2.5" class="accent"/>',
@@ -1237,12 +1232,10 @@ function navigationIconShape(string $slug): string
         'navbar-centered' => '<path d="M3 5h10"/><path d="M5.5 8h5" class="accent"/><path d="M3 11h10"/>',
         'navbar-dropdown' => '<path d="M3 5h10"/><rect x="5" y="7" width="6" height="5" rx="1.25" class="accent"/><path d="m7 9 1 1 1-1"/>',
         'navbar-icon' => '<circle cx="4" cy="5" r="1"/><circle cx="8" cy="5" r="1" class="accent"/><circle cx="12" cy="5" r="1"/><path d="M3 10.5h10"/>',
-        'navbar-minimal' => '<path d="M4.5 5.25h7"/><path d="M5.75 8h4.5" class="accent"/><path d="M6.75 10.75h2.5"/>',
         'navbar-mobile' => '<rect x="5" y="2.75" width="6" height="10.5" rx="1.75"/><path d="M6.75 6h2.5M6.75 8h2.5M6.75 10h2.5" class="accent"/>',
         'navbar-sidebar' => '<rect x="3" y="3" width="10" height="10" rx="2"/><path d="M6.5 3v10"/><path d="M4.5 5.5h.1M4.5 8h.1M4.5 10.5h.1" class="accent"/>',
         'navbar-split' => '<path d="M3 5h4"/><path d="M9 5h4"/><path d="M3 10.5h4M9 10.5h4" class="accent"/><circle cx="8" cy="7.75" r="1.15"/>',
         'navbar-stacked' => '<rect x="3.5" y="3.5" width="9" height="2.25" rx="1"/><rect x="3.5" y="6.85" width="9" height="2.25" rx="1" class="accent"/><rect x="3.5" y="10.2" width="9" height="2.25" rx="1"/>',
-        'navbar-sticky' => '<rect x="3" y="3.25" width="10" height="9.5" rx="2"/><path d="M3 5.75h10"/><path d="m8 6 1.5 2.25H6.5z" class="accent"/>',
         'navbar-transparent' => '<rect x="3" y="4" width="10" height="8" rx="2" stroke-dasharray="1.2 1.2"/><path d="M5 7h6M5 9.5h4" class="accent"/>',
         'search-header' => '<rect x="3" y="4" width="10" height="8" rx="2"/><circle cx="7.25" cy="8" r="2.1"/><path d="m8.75 9.5 2 2" class="accent"/>',
         'sitemap-grid' => '<rect x="6.5" y="2.75" width="3" height="2.2" rx=".7"/><rect x="3" y="10.5" width="3" height="2.2" rx=".7"/><rect x="10" y="10.5" width="3" height="2.2" rx=".7"/><path d="M8 5v2.5M4.5 10.5V7.5h7v3" class="accent"/>',
@@ -1256,7 +1249,6 @@ function footerIconShape(string $slug): string
     return match ($slug) {
         'footer-app-links' => '<rect x="4.5" y="3" width="7" height="10" rx="1.75"/><path d="M6.25 5.5h3.5M6.25 8h3.5"/><path d="M6.5 11h3" class="accent"/>',
         'footer-brand' => '<rect x="3" y="4" width="10" height="8" rx="2"/><path d="m6.75 6.25 1.25-1 1.25 1v3.5l-1.25 1-1.25-1z" class="accent"/><path d="M4.75 11.75h6.5"/>',
-        'footer-centered' => '<path d="M4 5.25h8"/><path d="M5.25 8h5.5" class="accent"/><path d="M3.25 11h9.5"/>',
         'footer-columns' => '<rect x="3" y="4" width="10" height="8" rx="1.5"/><path d="M6.35 4v8M9.65 4v8"/><path d="M4.5 6.5h.9M7.55 6.5h.9M10.7 6.5h.9" class="accent"/>',
         'footer-contact' => '<rect x="3" y="4.5" width="10" height="7" rx="1.5"/><path d="m3.8 5.25 4.2 3.2 4.2-3.2"/><circle cx="11.25" cy="11.25" r="1.25" class="accent"/>',
         'footer-dark' => '<rect x="3" y="4" width="10" height="8" rx="2"/><path d="M10.5 5.5a3.2 3.2 0 1 0 0 5.1 4 4 0 1 1 0-5.1z" class="accent"/>',
@@ -1265,7 +1257,6 @@ function footerIconShape(string $slug): string
         'footer-newsletter' => '<rect x="3" y="4.25" width="10" height="7.5" rx="1.5"/><path d="m3.75 5 4.25 3.25L12.25 5"/><path d="M5 10.5h6" class="accent"/>',
         'footer-social' => '<circle cx="4.5" cy="8" r="1.25"/><circle cx="8" cy="8" r="1.25" class="accent"/><circle cx="11.5" cy="8" r="1.25"/><path d="M5.75 8h1M9.25 8h1"/>',
         'footer-split' => '<rect x="3" y="4" width="10" height="8" rx="1.5"/><path d="M8 4v8"/><path d="M4.75 7h1.75M9.5 7h1.75M4.75 9.5h1.25" class="accent"/>',
-        'copyright-bar' => '<rect x="3" y="5" width="10" height="6" rx="1.5"/><circle cx="6.25" cy="8" r="1.4"/><path d="M6.9 7.4c-.55-.45-1.5-.1-1.5.6s.95 1.05 1.5.6" class="accent"/><path d="M9 8h2.25"/>',
         'legal-links' => '<rect x="4" y="3" width="8" height="10" rx="1.4"/><path d="M6 6h4M6 8.5h4M6 11h2.5" class="accent"/>',
         default => '<rect x="3" y="3.5" width="10" height="9" rx="2"/><path d="M5 6h6"/><path d="M5 8.25h3"/><rect x="5" y="10.25" width="6" height="1.25" rx=".625" class="accent-fill"/>',
     };
@@ -1275,7 +1266,6 @@ function pricingIconShape(string $slug): string
 {
     return match ($slug) {
         'bundle-pricing' => '<path d="M4 5.5 8 3l4 2.5v5L8 13l-4-2.5z"/><path d="M4 5.5 8 8l4-2.5M8 8v5" class="accent"/>',
-        'card-pricing' => '<rect x="3.5" y="3" width="9" height="10" rx="2"/><path d="M5.5 6h5M5.5 8.5h3"/><circle cx="10.5" cy="10.5" r="1.25" class="accent"/>',
         'order-summary' => '<rect x="4" y="3" width="8" height="10" rx="1.4"/><path d="M6 6h4M6 8.25h3M6 10.5h2"/><path d="M10.5 10.5h.1" class="accent"/>',
         'pricing-annual-monthly', 'pricing-toggle' => '<rect x="3" y="4.25" width="10" height="7.5" rx="3.75"/><circle cx="6.75" cy="8" r="2" class="accent"/><path d="M9.5 8h1.5"/>',
         'pricing-calculator' => '<rect x="4" y="2.75" width="8" height="10.5" rx="1.75"/><path d="M5.75 5.25h4.5"/><path d="M6 8h.1M8 8h.1M10 8h.1M6 10.5h.1M8 10.5h.1"/><path d="M10 10.5h.1" class="accent"/>',
@@ -1332,7 +1322,7 @@ function dataIconShape(string $slug): string
         'chart-pie' => '<path d="M8 3.5v4.75h4.75A4.75 4.75 0 1 1 8 3.5z"/><path d="M8 3.5a4.75 4.75 0 0 1 4.75 4.75H8z" class="accent"/>',
         'chart-radar' => '<path d="M8 3.25 12.25 6v4L8 12.75 3.75 10V6z"/><path d="M8 3.25v9.5M3.75 6l8.5 4M12.25 6l-8.5 4" class="accent"/><path d="m8 5.75 2.2 1.4v2L8 10.25 5.8 9.15v-2z"/>',
         'chart-stacked-bar' => '<path d="M3.5 12.5h9"/><rect x="4" y="7" width="1.75" height="5.5" rx=".5"/><path d="M4 9.5h1.75" class="accent"/><rect x="7.1" y="4.5" width="1.75" height="8" rx=".5" class="accent"/><rect x="10.2" y="6" width="1.75" height="6.5" rx=".5"/>',
-        'data-table', 'table-content' => '<rect x="3" y="3.5" width="10" height="9" rx="1.5"/><path d="M3 6.5h10M3 9.5h10M6.5 3.5v9"/><path d="M10 3.5v9" class="accent"/>',
+        'data-table' => '<rect x="3" y="3.5" width="10" height="9" rx="1.5"/><path d="M3 6.5h10M3 9.5h10M6.5 3.5v9"/><path d="M10 3.5v9" class="accent"/>',
         'infographic' => '<circle cx="5.25" cy="5.25" r="2"/><path d="M9 4.25h3M9 6.25h2"/><path d="M4 10.75h8M4 12.75h5" class="accent"/>',
         'leaderboard' => '<rect x="3" y="7" width="2.5" height="5.5" rx=".8"/><rect x="6.75" y="4.5" width="2.5" height="8" rx=".8" class="accent"/><rect x="10.5" y="6" width="2.5" height="6.5" rx=".8"/><path d="M8 2.5v2"/>',
         'metric-dashboard' => '<rect x="3" y="3" width="10" height="10" rx="2"/><path d="M5 6h2.5M5 9h1.5"/><path d="M9 10.5a2.5 2.5 0 0 1 4 0" class="accent"/>',

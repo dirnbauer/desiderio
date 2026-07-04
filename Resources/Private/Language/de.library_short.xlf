@@ -151,12 +151,6 @@
         <target>Eine **randlose Bildkarte** mit Text und Button über dem Motiv und einstellbarem dunklem Overlay. Als auffällige **Promo- oder Feature-Kachel** auf Landing- und Kampagnenseiten.</target>
       </segment>
     </unit>
-    <unit id="desiderio_cardpricing">
-      <segment state="final">
-        <source>A single **pricing plan card** with title, price and billing period plus a **checklist** of included or excluded features. For pricing or product pages at the point of decision, often alongside other plans.</source>
-        <target>Eine einzelne **Preisplan-Karte** mit Plantitel, Preis samt Abrechnungszeitraum und **Merkmalsliste** enthaltener oder ausgeschlossener Leistungen. Für Preis- oder Produktseiten am Entscheidungspunkt, oft neben weiteren Plänen.</target>
-      </segment>
-    </unit>
     <unit id="desiderio_careerlisting">
       <segment state="final">
         <source>A **list of open positions**, each row showing role, department, location, employment type and an **apply button**. For careers or jobs pages so candidates can scan vacancies and apply directly.</source>
@@ -301,12 +295,6 @@
         <target>Ein **Raster aus Karten** mit Mitarbeitervorteilen und Benefits, je mit Icon, Titel und Beschreibung. Macht das Angebot auf **Karriere- oder Recruiting-Seiten** für Bewerber attraktiv.</target>
       </segment>
     </unit>
-    <unit id="desiderio_companystats">
-      <segment state="final">
-        <source>A grid of key figures shown as bold, **animated count-up numbers**, each with a label and optional description. Proves growth, scale or results at a glance on **About or landing pages**.</source>
-        <target>Ein Raster mit Kennzahlen als große, **animiert hochzählende Zahlen**, je mit Bezeichnung und optionaler Beschreibung. Belegt auf **Über-uns- oder Landingpages** Wachstum, Größe oder Ergebnisse auf einen Blick.</target>
-      </segment>
-    </unit>
     <unit id="desiderio_companyvalues">
       <segment state="final">
         <source>A **grid of cards** spelling out the company's guiding principles, each with icon, title and description. Conveys mission and character on **About or culture pages**.</source>
@@ -389,12 +377,6 @@
       <segment state="final">
         <source>A dismissible **consent region** that overlays the page on arrival to collect *cookie preferences*. Place it site-wide so first-time visitors can act before browsing.</source>
         <target>Eine schliessbare **Consent-Region**, die sich beim Seitenaufruf einblendet und *Cookie-Praeferenzen* abfragt. Seitenweit einbinden, damit Erstbesucher vor dem Stoebern entscheiden.</target>
-      </segment>
-    </unit>
-    <unit id="desiderio_copyrightbar">
-      <segment state="final">
-        <source>A **slim single-line bar** for the bottom of the page, pairing a copyright notice with *legal links* such as imprint, privacy and terms.</source>
-        <target>Eine **schmale, einzeilige Leiste** fuer den unteren Seitenrand mit Copyright-Hinweis und *rechtlichen Links* wie Impressum, Datenschutz und AGB.</target>
       </segment>
     </unit>
     <unit id="desiderio_counter">
@@ -673,12 +655,6 @@
         <target>Ein **Footer mit Logo, Markenname und Slogan**, ergaenzt um eine Spalte mit Navigationslinks. Staerkt als abschliessender Footer die **Identitaet** und bietet zugleich schnelle Links.</target>
       </segment>
     </unit>
-    <unit id="desiderio_footercentered">
-      <segment state="final">
-        <source>A **compact, centered footer** stacking brand name, inline links, and copyright on a single axis. Suits **simple or minimal pages** that want a slim, balanced footer.</source>
-        <target>Ein **kompakter, zentrierter Footer**, der Markenname, Inline-Links und Copyright auf einer Achse stapelt. Passt zu **schlichten oder minimalistischen Seiten**.</target>
-      </segment>
-    </unit>
     <unit id="desiderio_footercolumns">
       <segment state="final">
         <source>A **footer with tidy multi-column link lists** beside a brand block. Organizes navigation, legal, and resource links into **clear groups** on content-rich pages.</source>
@@ -775,12 +751,6 @@
         <target>Ein seitenbreites **Eröffnungsbanner** mit großer Überschrift und auffälligen **CTA-Buttons**, wählbar als zentrierte, geteilte, Hintergrundbild- oder Verlaufsvariante. Vermittelt ganz oben die Kernbotschaft und löst den ersten Klick aus.</target>
       </segment>
     </unit>
-    <unit id="desiderio_heroanimated">
-      <segment state="final">
-        <source>A **full-width page opener** whose headline animates into view, with subheadline and up to two CTA buttons. Sets the mood *with motion* atop a **landing or campaign page**.</source>
-        <target>Ein **seitenbreiter Aufmacher** mit animiert eingeblendeter Überschrift, Unterüberschrift und bis zu zwei CTA-Buttons. Erzeugt oben auf einer **Landing- oder Kampagnenseite** Stimmung *mit Bewegung*.</target>
-      </segment>
-    </unit>
     <unit id="desiderio_heroannouncement">
       <segment state="final">
         <source>A **page opener led by a slim banner** highlighting news, a launch, or an update above the headline. Surfaces a **timely message** before the pitch.</source>
@@ -811,12 +781,6 @@
         <target>Ein **zentrierter Hero mit Live-Timer**, der Tage, Stunden, Minuten und Sekunden bis zu einem festgelegten Datum herunterzählt. Baut oben auf einer Launch-, Sale- oder Event-Seite **Dringlichkeit** auf.</target>
       </segment>
     </unit>
-    <unit id="desiderio_heroctaonly">
-      <segment state="final">
-        <source>A **stripped-back hero** focusing the page on a headline and one prominent action, with no image. Pushes visitors toward a **single decision** as a mid-page or closing band.</source>
-        <target>Ein **reduzierter Hero**, der die Seite ohne Bild auf eine Überschrift und eine prägnante Aktion konzentriert. Führt als Band in der Seitenmitte oder zum Abschluss zu einer **einzigen Entscheidung**.</target>
-      </segment>
-    </unit>
     <unit id="desiderio_herodualcta">
       <segment state="final">
         <source>A hero that splits into **two side-by-side cards**, each with its own action. Ideal when you must serve **two audiences or goals** at once, such as sign up versus contact sales.</source>
@@ -827,18 +791,6 @@
       <segment state="final">
         <source>A hero with an **inline form** directly beneath the message, rendered via the TYPO3 Form Framework. For landing or campaign pages where **capturing a lead** is the primary goal.</source>
         <target>Ein Hero mit **eingebettetem Formular** direkt unter der Botschaft, gerendert über das TYPO3-Formular-Framework. Für Landing- oder Kampagnenseiten, auf denen das **Gewinnen eines Leads** im Vordergrund steht.</target>
-      </segment>
-    </unit>
-    <unit id="desiderio_herofullscreen">
-      <segment state="final">
-        <source>A **viewport-filling hero** with an edge-to-edge background image, darkening overlay, and centered message. A **high-impact opener** for homepages or campaigns needing a strong visual first impression.</source>
-        <target>Ein **bildschirmfüllender Hero** mit randlosem Hintergrundbild, abdunkelndem Overlay und zentrierter Botschaft. Ein **wirkungsstarker Einstieg** für Startseiten oder Kampagnen, die einen starken visuellen Eindruck brauchen.</target>
-      </segment>
-    </unit>
-    <unit id="desiderio_herogradient">
-      <segment state="final">
-        <source>A hero with a bold **color-gradient background** from two theme tokens, holding a centered headline and call-to-action. For an **on-brand, image-free** page opener with energy but no photography.</source>
-        <target>Ein Hero mit kräftigem **Farbverlauf-Hintergrund** aus zwei Theme-Tokens, mit zentrierter Überschrift und Call-to-Action. Für einen **markengerechten, bildlosen** Seiteneinstieg mit Dynamik ohne Foto.</target>
       </segment>
     </unit>
     <unit id="desiderio_heroillustration">
@@ -1039,12 +991,6 @@
         <target>Eine **Kopfleiste, bei der jeder Link eine Beschriftung mit Icon** kombiniert, um schnelleres Erfassen zu ermöglichen. Für **App-artige oder Produkt-Kopfzeilen**.</target>
       </segment>
     </unit>
-    <unit id="desiderio_navbarminimal">
-      <segment state="final">
-        <source>A pared-back **navigation bar** with only a brand wordmark and a single **CTA button**. For landing pages or focused layouts with a clean header.</source>
-        <target>Eine stark **reduzierte Navigationsleiste** mit nur einem Markennamen und einem einzigen **CTA-Button**. Für Landingpages oder fokussierte Layouts mit aufgeräumtem Kopfbereich.</target>
-      </segment>
-    </unit>
     <unit id="desiderio_navbarmobile">
       <segment state="final">
         <source>A **navigation bar with a hamburger toggle** that opens links in a drawer menu. For **mobile-first headers** where screen space is tight.</source>
@@ -1067,12 +1013,6 @@
       <segment state="final">
         <source>A **two-row navigation bar** with brand and tagline on top and the menu links below. Ideal for *editorial or brand-led* headers that need room for a slogan above the navigation.</source>
         <target>Eine **zweizeilige Navigationsleiste** mit Marke und Slogan oben und den Menuelinks darunter. Ideal fuer *redaktionelle oder markenbetonte* Kopfbereiche, die ueber der Navigation Platz fuer einen Slogan brauchen.</target>
-      </segment>
-    </unit>
-    <unit id="desiderio_navbarsticky">
-      <segment state="final">
-        <source>A horizontal navigation bar that stays **pinned to the top** while scrolling. Ideal for long pages where the menu and *call-to-action* must stay reachable at all times.</source>
-        <target>Eine horizontale Navigationsleiste, die beim Scrollen **oben angeheftet** bleibt. Ideal fuer lange Seiten, auf denen Menue und *Call-to-Action* jederzeit erreichbar sein sollen.</target>
       </segment>
     </unit>
     <unit id="desiderio_navbartabbed">
@@ -1391,12 +1331,6 @@
       <segment state="final">
         <source>A **service status board** pairing an overall state line with a list of individual services, each marked by a colored dot and status word. Signals on a status or uptime page whether systems are **operational, degraded, or down**.</source>
         <target>Eine **Service-Statustafel**, die eine Gesamtstatuszeile mit einer Liste einzelner Dienste verbindet, jeder mit farbigem Punkt und Statuswort. Signalisiert auf einer Status- oder Uptime-Seite, ob Systeme **betriebsbereit, eingeschraenkt oder ausgefallen** sind.</target>
-      </segment>
-    </unit>
-    <unit id="desiderio_tablecontent">
-      <segment state="final">
-        <source>A responsive, scrollable **data table** with a heading, optional caption, column headers, and rows. Ideal on feature, pricing, or spec pages to compare **options side by side**.</source>
-        <target>Eine responsive, scrollbare **Datentabelle** mit Ueberschrift, optionaler Beschriftung, Spaltenkoepfen und Zeilen. Ideal auf Feature-, Preis- oder Spezifikationsseiten, um **Optionen direkt nebeneinander** zu vergleichen.</target>
       </segment>
     </unit>
     <unit id="desiderio_tabs">

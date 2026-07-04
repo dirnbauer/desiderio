@@ -21,21 +21,18 @@
 .contact__info-text { font-size: var(--d-text-sm); color: var(--muted-foreground); }
 .contact__list { padding: 0; margin: var(--d-spacing-md) 0 0; }
 .contact__list-item { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--d-spacing-sm); padding: var(--d-spacing-xs) 0; border-bottom: 1px solid var(--border); }
+.contact__list-item:last-child { border-bottom: 0; }
 .contact__list-label { font-size: var(--d-text-sm); color: var(--muted-foreground); }
 .contact__list-value-wrap { margin: 0; text-align: right; }
 .contact__list-value { font-size: var(--d-text-sm); font-weight: 500; text-decoration: none; color: inherit; overflow-wrap: anywhere; }
+a.contact__list-value { transition: color 150ms ease; border-radius: calc(var(--radius) * 0.6); }
+a.contact__list-value:hover { color: var(--foreground); text-decoration: underline; text-underline-offset: 2px; }
+a.contact__list-value:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--card), 0 0 0 4px var(--ring); }
 .contact__form-title { font-weight: 600; margin-block-end: var(--d-spacing-md); }
-.contact__field-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--d-spacing-md); }
-.contact__field { display: flex; flex-direction: column; gap: 4px; margin-block-end: var(--d-spacing-md); }
-.contact__label { font-size: var(--d-text-sm); font-weight: 500; }
-.contact__input, .contact__textarea {
-    padding: var(--d-spacing-xs) var(--d-spacing-sm);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    font-size: var(--d-text-sm);
-    background: transparent;
-}
-.contact__actions { margin-block-start: var(--d-spacing-sm); }
+
+/* Form fields delegate to the shared TYPO3 Form Framework bridge
+   (.desiderio-form in components.css), which is token-driven
+   (--input, --radius, --ring); no element-level control styling here. */
 
 /* Heading-to-teaser rhythm: consistent gap inside the intro block. */
 .contact__intro {

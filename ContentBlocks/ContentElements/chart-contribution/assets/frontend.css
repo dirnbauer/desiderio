@@ -38,7 +38,7 @@
     flex-shrink: 0;
     font-size: var(--d-text-xs);
     font-weight: 600;
-    padding: 0.35rem 0.75rem;
+    padding: 0.35rem var(--d-spacing-sm);
     border-radius: 9999px;
     border: 1px solid var(--border);
     background: var(--secondary);
@@ -84,18 +84,20 @@
     min-width: 0;
 }
 .chart-contribution__stat-label {
-    font-size: 0.65rem;
+    font-size: var(--d-text-xs);
     font-weight: 600;
     letter-spacing: 0.06em;
     text-transform: uppercase;
     color: var(--muted-foreground);
-    margin: 0 0 0.35rem;
+    margin: 0 0 var(--d-spacing-2xs);
 }
 .chart-contribution__stat-value {
-    font-size: var(--d-text-lg);
-    font-weight: 600;
+    font-size: var(--d-text-2xl);
+    font-weight: 700;
+    line-height: 1.2;
+    font-variant-numeric: tabular-nums;
     color: var(--card-foreground);
-    margin: 0 0 0.25rem;
+    margin: 0 0 var(--d-spacing-2xs);
 }
 .chart-contribution__stat-detail {
     font-size: var(--d-text-sm);
@@ -108,4 +110,20 @@
 }
 .chart-contribution__btn {
     width: 100%;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.chart-contribution__btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--d-shadow-md);
+}
+.chart-contribution__btn:active {
+    transform: translateY(0);
+}
+@media (prefers-reduced-motion: reduce) {
+    .chart-contribution__btn,
+    .chart-contribution__btn:hover,
+    .chart-contribution__btn:active {
+        transition: none;
+        transform: none;
+    }
 }

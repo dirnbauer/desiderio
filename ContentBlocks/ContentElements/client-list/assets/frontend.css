@@ -14,6 +14,7 @@
     border: 1px solid var(--border);
     border-radius: var(--radius);
     background: var(--muted);
+    box-shadow: var(--d-shadow-2xs);
 }
 .client-list__image,
 .client-list__logo-img {
@@ -25,8 +26,9 @@
     padding: var(--d-spacing-2xs);
 }
 .client-list__info { display: flex; flex-direction: column; gap: 0.125rem; }
-.client-list__name { font-weight: 600; text-decoration: none; color: var(--foreground); }
+.client-list__name { font-weight: 600; text-decoration: none; color: var(--foreground); transition: color 0.15s ease; }
 a.client-list__name:hover { color: var(--primary); }
+a.client-list__name:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; border-radius: var(--d-radius-sm); }
 .client-list__industry { font-size: var(--d-text-sm); color: var(--muted-foreground); }
 
 @media (max-width: 640px) {

@@ -27,7 +27,7 @@
 }
 .feature-list__icon {
     flex-shrink: 0;
-    font-size: 1.25rem;
+    font-size: var(--d-text-xl);
     color: var(--primary);
 }
 .feature-list__title {

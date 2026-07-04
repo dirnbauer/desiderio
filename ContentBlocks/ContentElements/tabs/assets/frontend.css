@@ -8,3 +8,41 @@
     font-size: var(--d-text-base, 1rem);
     line-height: 1.6;
 }
+
+/* Panel fills the tabs flex container; focus handled on the triggers. */
+.tabs-section .tabs__content {
+    flex: 1;
+    outline: none;
+}
+
+/* Visible focus ring for keyboard navigation on tab triggers. */
+.tabs-section [data-d-tabs-trigger]:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+}
+
+/* Animated underline for the line/underline variant: the trigger's
+   ::after indicator grows from the center on activation. */
+.tabs-section [data-d-tabs-list][data-variant="line"] [data-d-tabs-trigger]::after {
+    background: var(--primary);
+    opacity: 0;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+.tabs-section [data-d-tabs-list][data-variant="line"] [data-d-tabs-trigger][data-state="active"]::after {
+    opacity: 1;
+    transform: scaleX(1);
+}
+@media (prefers-reduced-motion: reduce) {
+    .tabs-section [data-d-tabs-list][data-variant="line"] [data-d-tabs-trigger]::after {
+        transition: none;
+    }
+}
+
+/* Optical baseline alignment for icon + label triggers. */
+.tabs-section [data-d-tabs-trigger] [data-icon="inline-start"] {
+    display: inline-flex;
+    align-items: center;
+    transform: translateY(0.5px);
+}

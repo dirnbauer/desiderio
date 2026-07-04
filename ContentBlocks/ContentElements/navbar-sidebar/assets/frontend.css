@@ -13,10 +13,7 @@
     font-size: var(--d-text-lg);
     color: var(--d-foreground);
     text-decoration: none;
-}
-.navbar-sidebar__brand-link:focus-visible {
-    outline: 2px solid var(--d-ring);
-    outline-offset: 2px;
+    border-radius: var(--d-radius-sm);
 }
 .navbar-sidebar__nav {
     flex: 1;
@@ -33,6 +30,8 @@
     letter-spacing: 0.05em;
     color: var(--d-muted-foreground);
     margin-bottom: var(--d-spacing-2);
+    padding-inline-start: var(--d-spacing-3);
+    border-inline-start: 2px solid var(--d-border);
 }
 .navbar-sidebar__list {
     list-style: none;
@@ -55,17 +54,22 @@
     background: var(--d-accent);
     color: var(--d-foreground);
 }
+/* One shared focus ring for every interactive item in the sidebar. */
+.navbar-sidebar__brand-link:focus-visible,
 .navbar-sidebar__link:focus-visible {
-    outline: 2px solid var(--d-ring);
+    outline: var(--d-ring-width, 2px) solid var(--d-ring);
     outline-offset: 2px;
+}
+.navbar-sidebar__link:focus-visible {
     color: var(--d-foreground);
 }
 .navbar-sidebar__footer {
     margin-top: auto;
     padding-top: var(--d-spacing-4);
     border-top: 1px solid var(--d-border);
-    font-size: var(--d-text-xs);
-    color: var(--d-muted-foreground);
+}
+.navbar-sidebar__footer-text {
+    margin: 0;
 }
 @media (min-width: 48rem) {
     .navbar-sidebar__panel {

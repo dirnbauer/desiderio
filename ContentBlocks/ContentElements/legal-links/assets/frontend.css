@@ -7,6 +7,11 @@
 .legal-links--slash .legal-links__item + .legal-links__item::before { content: '/' / ''; }
 .legal-links--none .legal-links__item + .legal-links__item::before { content: none; margin: 0; }
 .legal-links--none .legal-links__list { gap: var(--d-spacing-md); }
-.legal-links__link { font-size: var(--d-text-xs); color: var(--muted-foreground); text-decoration: none; border-radius: var(--d-radius-sm); }
-.legal-links__link:hover { color: var(--foreground); text-decoration: underline; }
+.legal-links__link { display: inline-block; font-size: var(--d-text-xs); color: var(--muted-foreground); text-decoration: none; border-radius: var(--d-radius-sm); transition: color 0.15s ease, transform 0.15s ease; }
+.legal-links__link:hover { color: var(--foreground); text-decoration: underline; transform: translateY(-1px); }
+.legal-links__link:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
 .legal-links__label { font-size: var(--d-text-xs); color: var(--muted-foreground); }
+@media (prefers-reduced-motion: reduce) {
+    .legal-links__link { transition: none; }
+    .legal-links__link:hover { transform: none; }
+}

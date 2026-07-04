@@ -72,7 +72,7 @@
 .chart-pie__legend-item {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
+    gap: var(--d-spacing-xs);
     min-width: 0;
 }
 .chart-pie__legend-swatch {

@@ -20,10 +20,10 @@
     grid-template-columns: repeat(3, 1fr);
     gap: var(--d-spacing-lg);
 }
-@media (max-width: 900px) {
+@media (max-width: 1024px) {
     .feature-cards__grid { grid-template-columns: repeat(2, 1fr); }
 }
-@media (max-width: 560px) {
+@media (max-width: 640px) {
     .feature-cards__grid { grid-template-columns: 1fr; }
 }
 .feature-cards__title {

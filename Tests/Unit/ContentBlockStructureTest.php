@@ -11,8 +11,35 @@ use Webconsulting\Desiderio\Icon\IconRegistry;
 
 final class ContentBlockStructureTest extends TestCase
 {
-    private const EXPECTED_COUNT = 255;
+    private const EXPECTED_COUNT = 244;
     private const CONTENT_BLOCKS_DIR = __DIR__ . '/../../ContentBlocks/ContentElements';
+    private const RECORD_TYPES_DIR = __DIR__ . '/../../ContentBlocks/RecordTypes';
+
+    /**
+     * Field identifiers of the RecordType stored in the given table.
+     *
+     * @return list<string>
+     */
+    private function loadRecordTypeFields(string $table): array
+    {
+        $configFiles = glob(self::RECORD_TYPES_DIR . '/*/config.yaml');
+        foreach ($configFiles === false ? [] : $configFiles as $configFile) {
+            $config = Yaml::parseFile($configFile);
+            if (!is_array($config) || ($config['table'] ?? null) !== $table) {
+                continue;
+            }
+            $fields = [];
+            $configFields = $config['fields'] ?? null;
+            foreach (is_array($configFields) ? $configFields : [] as $field) {
+                if (is_array($field) && is_string($field['identifier'] ?? null)) {
+                    $fields[] = $field['identifier'];
+                }
+            }
+            return $fields;
+        }
+
+        return [];
+    }
 
     public function testExpectedNumberOfContentBlocks(): void
     {
@@ -388,7 +415,6 @@ final class ContentBlockStructureTest extends TestCase
     public function testPricingContentElementsUseMoleculeCard(): void
     {
         $pricingSlugs = [
-            'card-pricing',
             'bundle-pricing',
             'pricing-annual-monthly',
             'pricing-three-tier',
@@ -622,6 +648,17 @@ final class ContentBlockStructureTest extends TestCase
                         $nestedFields[$identifier][(string)$child['identifier']] = true;
                     }
                 }
+
+                // Relation fields loop over a shared record pool: their nested
+                // fields are declared by the RecordType, not the element.
+                if (is_array($field)
+                    && ($field['type'] ?? null) === 'Relation'
+                    && is_string($field['allowed'] ?? null)
+                ) {
+                    foreach ($this->loadRecordTypeFields($field['allowed']) as $poolField) {
+                        $nestedFields[$identifier][$poolField] = true;
+                    }
+                }
             }
 
             $usedTopFields = [];
@@ -644,7 +681,11 @@ final class ContentBlockStructureTest extends TestCase
                     continue;
                 }
 
-                self::assertSame('Collection', $fieldTypes[$field] ?? null, "{$name}.{$field} is looped in Fluid but is not a Collection");
+                self::assertContains(
+                    $fieldTypes[$field] ?? null,
+                    ['Collection', 'Relation'],
+                    "{$name}.{$field} is looped in Fluid but is neither a Collection nor a Relation"
+                );
 
                 $usedNestedFields = [];
                 preg_match_all('/' . preg_quote($variable, '/') . '\.([A-Za-z_][A-Za-z0-9_]*)/', $templateForFields, $nestedMatches);
@@ -662,11 +703,15 @@ final class ContentBlockStructureTest extends TestCase
                     array_values(array_diff(array_keys($usedNestedFields), array_keys($nestedFields[$field] ?? []))),
                     "{$name}.{$field} renders nested fields that are not declared"
                 );
-                self::assertSame(
-                    [],
-                    array_values(array_diff(array_keys($nestedFields[$field] ?? []), array_keys($usedNestedFields))),
-                    "{$name}.{$field} has declared nested fields that are not rendered"
-                );
+                if (($fieldTypes[$field] ?? null) !== 'Relation') {
+                    // A shared record pool may carry fields an individual
+                    // element deliberately does not render.
+                    self::assertSame(
+                        [],
+                        array_values(array_diff(array_keys($nestedFields[$field] ?? []), array_keys($usedNestedFields))),
+                        "{$name}.{$field} has declared nested fields that are not rendered"
+                    );
+                }
             }
 
             self::assertSame(

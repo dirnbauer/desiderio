@@ -33,7 +33,7 @@
                     </svg>
                     <input class="search-header__input" id="{inputId}" type="search" name="q" placeholder="{data.placeholder -> f:or(alternative: labelText)}" autocomplete="off"/>
                 </div>
-                <d:atom.button type="submit" size="lg" class="search-header__submit">{data.button_text -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:solr.search.label\')}')}</d:atom.button>
+                <d:atom.button type="submit" size="lg" class="search-header__submit"><f:if condition="{data.button_text}"><f:then>{data -> f:render.text(field: 'button_text')}</f:then><f:else><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:solr.search.label"/></f:else></f:if></d:atom.button>
             </form>
         </div>
     </d:layout.container>

@@ -797,32 +797,6 @@ final class StyleguideSeedCommandTest extends TestCase
         );
     }
 
-    public function testTableContentFixtureProvidesFourColumnHeaders(): void
-    {
-        $fixture = json_decode(
-            (string)file_get_contents(__DIR__ . '/../../ContentBlocks/ContentElements/table-content/fixture.json'),
-            true,
-            512,
-            JSON_THROW_ON_ERROR
-        );
-
-        self::assertIsArray($fixture);
-        self::assertSame('All ten Desiderio element groups with their element counts', $fixture['caption'] ?? null);
-        self::assertSame(
-            [
-                ['label' => 'Element group'],
-                ['label' => 'Elements'],
-                ['label' => 'Typical blocks'],
-                ['label' => 'Good for'],
-            ],
-            $fixture['column_items'] ?? null
-        );
-
-        $rows = $fixture['rows'] ?? null;
-        self::assertIsArray($rows);
-        self::assertCount(10, $rows, 'The table fixture must list all ten element groups.');
-    }
-
     public function testTabsFixtureProvidesTabContentForEveryPanel(): void
     {
         $fixture = json_decode(

@@ -91,6 +91,21 @@
     color: var(--card-foreground);
     padding: var(--d-spacing-lg);
     box-shadow: var(--d-surface-shadow, var(--d-shadow-sm, none));
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+/* Focus-visible ring: keyboard focus on anything inside an item (richtext
+   links) rings its card and highlights the step marker. */
+.feature-timeline__item:has(:focus-visible) .feature-timeline__card {
+    border-color: var(--ring);
+    box-shadow: 0 0 0 var(--d-ring-width, 2px) color-mix(in oklab, var(--ring) 50%, transparent);
+}
+.feature-timeline__item:has(:focus-visible) .feature-timeline__dot::after {
+    border-inline-start-color: var(--ring);
+}
+.feature-timeline__description a:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+    border-radius: var(--d-radius-sm);
 }
 /* the chevron belongs to the marker (the number) and points across to its card,
    instead of being a tail hanging off the card's left edge */

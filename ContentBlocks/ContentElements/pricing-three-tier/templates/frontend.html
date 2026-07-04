@@ -25,7 +25,7 @@
             <f:for each="{data.plans}" as="tier" iteration="iter">
                 <li class="pricing-three-tier__item">
                     <d:molecule.card
-                        class="pricing-three-tier__plan h-full {f:if(condition: tier.is_recommended, then: 'pricing-three-tier__plan--recommended ring-2 ring-primary')}"
+                        class="pricing-three-tier__plan {f:if(condition: tier.is_recommended, then: 'pricing-three-tier__plan--recommended')}"
                     >
                         <f:if condition="{tier.is_recommended}">
                             <div class="pricing-three-tier__ribbon">
@@ -68,7 +68,7 @@
                                     href="{tier.button_link.url}"
                                     target="{tier.button_link.target}"
                                     variant="{f:if(condition: tier.is_recommended, then: 'default', else: 'outline')}"
-                                    class="pricing-three-tier__button w-full"
+                                    class="pricing-three-tier__button"
                                 >
                                     <span>{tier -> f:render.text(field: 'button_text')}</span>
                                     <span class="d-sr-only"> – {tier.name}</span>

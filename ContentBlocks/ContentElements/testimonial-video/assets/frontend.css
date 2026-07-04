@@ -3,9 +3,37 @@
 @media (max-width: 768px) { .testimonial-video__layout { grid-template-columns: 1fr; } }
 .testimonial-video__embed { position: relative; padding-block-end: 56.25%; height: 0; overflow: hidden; border-radius: var(--d-radius-lg); background: var(--muted); }
 .testimonial-video__poster { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.testimonial-video__embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.testimonial-video__embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; z-index: 2; }
 .testimonial-video__embed iframe:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
-.testimonial-video__quote { margin: 0 0 var(--d-spacing-lg); font-size: var(--d-text-xl); font-style: italic; line-height: 1.6; color: var(--foreground); }
+/* Play-button overlay: shown over the poster while the lazy iframe loads; the loaded player (z-index 2) covers it. */
+.testimonial-video__embed::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    width: 4rem;
+    height: 4rem;
+    border-radius: var(--d-radius-full);
+    background: color-mix(in oklab, var(--primary) 92%, transparent);
+    box-shadow: var(--d-shadow-md);
+    z-index: 1;
+    pointer-events: none;
+}
+.testimonial-video__embed::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -35% -50%;
+    width: 1.375rem;
+    height: 1.5rem;
+    background: var(--primary-foreground);
+    clip-path: polygon(0 0, 100% 50%, 0 100%);
+    z-index: 1;
+    pointer-events: none;
+}
+.testimonial-video__quote { margin: 0 0 var(--d-spacing-lg); padding: var(--d-spacing-md) var(--d-spacing-lg); background: var(--muted); border-inline-start: 3px solid var(--primary); border-radius: 0 var(--d-radius-md) var(--d-radius-md) 0; font-size: var(--d-text-xl); font-style: italic; line-height: 1.6; color: var(--foreground); }
 .testimonial-video__quote p { margin: 0; }
 .testimonial-video__author { border-block-start: 1px solid var(--border); padding-block-start: var(--d-spacing-md); }
 .testimonial-video__name { font-weight: 600; font-style: normal; display: block; font-size: var(--d-text-base); }

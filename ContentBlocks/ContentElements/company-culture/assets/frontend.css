@@ -18,17 +18,23 @@
     .company-culture__grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 640px) {
-    .company-culture__grid { grid-template-columns: 1fr; }
+    /* Single column: a taller row gap keeps the stacked image+text cards from visually merging. */
+    .company-culture__grid { grid-template-columns: 1fr; gap: var(--d-spacing-xl); }
 }
 .company-culture__image-wrapper {
     overflow: hidden;
     border-radius: var(--radius);
     margin-block-end: var(--d-spacing-sm);
+    background: var(--muted);
+    box-shadow: var(--d-shadow-2xs);
 }
 .company-culture__image {
+    display: block;
     width: 100%;
     aspect-ratio: 4/3;
     object-fit: cover;
+    /* Rounded on the image itself too, so corners stay soft while lazy-loading paints. */
+    border-radius: inherit;
 }
 .company-culture__title {
     font-weight: 600;

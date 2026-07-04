@@ -15,7 +15,7 @@
                         <f:else><span class="navbar-stacked__brand-link">{data -> f:render.text(field: 'brand')}</span></f:else>
                     </f:if>
                     <f:if condition="{data.tagline}">
-                        <span class="navbar-stacked__tagline">{data -> f:render.text(field: 'tagline')}</span>
+                        <d:atom.typography tag="span" variant="muted" class="navbar-stacked__tagline">{data -> f:render.text(field: 'tagline')}</d:atom.typography>
                     </f:if>
                 </div>
                 <f:if condition="{data.button_text} && {data.button_link.url}">

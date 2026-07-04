@@ -25,7 +25,7 @@
             <f:for each="{data.plans}" as="tier" iteration="iter">
                 <li class="pricing-annual-monthly__item">
                     <d:molecule.card
-                        class="pricing-annual-monthly__plan h-full {f:if(condition: tier.is_featured, then: 'pricing-annual-monthly__plan--featured ring-2 ring-primary')}"
+                        class="pricing-annual-monthly__plan {f:if(condition: tier.is_featured, then: 'pricing-annual-monthly__plan--featured')}"
                     >
                         <f:if condition="{tier.is_featured}">
                             <div class="pricing-annual-monthly__ribbon">
@@ -88,7 +88,7 @@
                                     href="{tier.button_link.url}"
                                     target="{tier.button_link.target}"
                                     variant="{f:if(condition: tier.is_featured, then: 'default', else: 'outline')}"
-                                    class="pricing-annual-monthly__button w-full"
+                                    class="pricing-annual-monthly__button"
                                 >
                                     <span>{tier -> f:render.text(field: 'button_text')}</span>
                                     <span class="d-sr-only"> – {tier.name}</span>

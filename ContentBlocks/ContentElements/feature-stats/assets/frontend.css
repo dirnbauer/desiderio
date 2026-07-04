@@ -31,6 +31,12 @@
     display: flex;
     flex-direction: column;
     margin: 0;
+    padding-inline-start: var(--d-spacing-md);
+    border-inline-start: 2px solid var(--border);
+    transition: border-color 0.2s ease;
+}
+.feature-stats__item:hover {
+    border-inline-start-color: var(--primary);
 }
 /* dt precedes dd in the DOM for valid description-list semantics;
    visually the value stays on top. */
@@ -38,18 +44,28 @@
 .feature-stats__label { order: 2; }
 .feature-stats__detail { order: 3; }
 .feature-stats__value {
-    font-size: 2.5rem;
+    font-size: var(--d-text-4xl);
     font-weight: 800;
     line-height: 1;
     color: var(--primary);
     margin: 0;
 }
+/* Animation-ready value: data-astro-counter counts digits up after reveal.
+   Tabular figures keep the box width stable so the grid never jitters
+   mid-animation; min-height reserves the line before JS kicks in. */
+.feature-stats__value[data-astro-counter] {
+    font-variant-numeric: tabular-nums;
+    min-height: 1em;
+}
 .feature-stats__label {
+    font-size: var(--d-text-sm);
     font-weight: 600;
+    color: var(--foreground);
     margin: var(--d-spacing-xs) 0 0;
 }
 .feature-stats__detail {
     color: var(--muted-foreground);
     font-size: var(--d-text-sm);
+    line-height: 1.5;
     margin: var(--d-spacing-xs) 0 0;
 }

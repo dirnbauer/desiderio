@@ -27,6 +27,7 @@
     .benefit-cards__grid { grid-template-columns: 1fr; }
 }
 .benefit-cards__cell { display: flex; }
+.benefit-cards__item { height: 100%; }
 
 .benefit-cards__icon {
     display: inline-flex;
@@ -42,6 +43,7 @@
 .benefit-cards__title {
     margin-block-end: var(--d-spacing-xs);
 }
+.benefit-cards__title-link { border-radius: var(--radius-sm); }
 .benefit-cards__title a { color: inherit; text-decoration: none; }
 .benefit-cards__title a:hover { color: var(--primary); }
 .benefit-cards__description {

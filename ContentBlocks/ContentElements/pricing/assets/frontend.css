@@ -46,12 +46,17 @@
     position: relative;
     flex: 1;
     min-width: 0;
+    height: 100%;
     overflow: visible;
 }
 
 .pricing__plan--featured,
 .pricing__plan--recommended {
     z-index: 1;
+}
+
+.pricing__plan--featured {
+    box-shadow: 0 0 0 2px var(--primary), var(--d-surface-shadow);
 }
 
 .pricing__ribbon {
@@ -64,7 +69,7 @@
 .pricing__price-row {
     display: flex;
     align-items: baseline;
-    gap: 0.25rem;
+    gap: var(--d-spacing-2xs);
     flex-wrap: wrap;
     margin: 0;
     margin-block-start: var(--d-spacing-sm);
@@ -93,7 +98,7 @@
 .pricing__feature {
     display: flex;
     align-items: flex-start;
-    gap: 0.5rem;
+    gap: var(--d-spacing-xs);
     min-width: 0;
 }
 
@@ -108,10 +113,11 @@
 }
 
 .pricing__button {
+    width: 100%;
     justify-content: center;
 }
 
-@media (max-width: 1080px) { .pricing__grid--cols-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 1024px) { .pricing__grid--cols-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 768px) { .pricing__grid, .pricing__grid--cols-2, .pricing__grid--cols-3, .pricing__grid--cols-4 { grid-template-columns: 1fr; } }
 /* Heading-to-teaser rhythm: consistent gap inside the intro block. */
 .pricing__intro {

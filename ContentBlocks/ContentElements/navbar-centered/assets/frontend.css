@@ -10,6 +10,12 @@
     font-weight: 600;
     font-size: var(--d-text-lg);
     color: var(--d-foreground);
+    border-radius: var(--d-radius-sm);
+}
+.navbar-centered__brand:focus-visible,
+.navbar-centered__brand:focus-within {
+    outline: 2px solid var(--d-ring);
+    outline-offset: 2px;
 }
 .navbar-centered__nav {
     display: flex;
@@ -32,11 +38,19 @@
 }
 .navbar-centered__link:hover {
     color: var(--d-foreground);
+    background: color-mix(in oklab, var(--d-muted) 60%, transparent);
 }
 .navbar-centered__link:focus-visible {
     outline: 2px solid var(--d-ring);
     outline-offset: 2px;
     color: var(--d-foreground);
+}
+@media (max-width: 47.9375rem) {
+    .navbar-centered__inner {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
 }
 @media (min-width: 48rem) {
     .navbar-centered__inner {

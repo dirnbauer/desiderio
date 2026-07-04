@@ -26,13 +26,3 @@ fields:
     label: 'Side Image'
     allowed: common-image-types
     maxitems: 1
-  -
-    identifier: form_action
-    type: Link
-    label: 'Form Action URL'
-  -
-    identifier: submit_text
-    type: Textarea
-    rows: 1
-    label: 'Submit Button Text'
-    default: 'Send message'

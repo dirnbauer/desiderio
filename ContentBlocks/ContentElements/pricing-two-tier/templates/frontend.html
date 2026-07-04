@@ -25,7 +25,7 @@
             <f:for each="{data.plans}" as="tier" iteration="iter">
                 <li class="pricing-two-tier__item">
                     <d:molecule.card
-                        class="pricing-two-tier__plan h-full {f:if(condition: tier.featured, then: 'pricing-two-tier__plan--featured ring-2 ring-primary')}"
+                        class="pricing-two-tier__plan {f:if(condition: tier.featured, then: 'pricing-two-tier__plan--featured')}"
                     >
                         <f:if condition="{tier.featured}">
                             <div class="pricing-two-tier__ribbon">
@@ -70,7 +70,7 @@
                                     href="{tier.button_link.url}"
                                     target="{tier.button_link.target}"
                                     variant="{f:if(condition: tier.featured, then: 'default', else: 'outline')}"
-                                    class="pricing-two-tier__button w-full"
+                                    class="pricing-two-tier__button"
                                 >
                                     <span>{tier -> f:render.text(field: 'button_text')}</span>
                                     <span class="d-sr-only"> – {tier.title}</span>

@@ -18,7 +18,7 @@
 .navbar-mobile__toggle {
     display: flex;
     flex-direction: column;
-    gap: 4px;
+    gap: var(--d-spacing-2xs);
     padding: var(--d-spacing-2);
     background: none;
     border: 1px solid var(--d-border);

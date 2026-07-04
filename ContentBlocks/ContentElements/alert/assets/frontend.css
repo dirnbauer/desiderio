@@ -1,5 +1,5 @@
 .desiderio-section.alert-section {
-    padding-block: 2rem;
+    padding-block: var(--d-spacing-xl);
 }
 
 .alert {
@@ -8,7 +8,7 @@
     grid-template-columns: auto minmax(0, 1fr) auto;
     align-items: center;
     gap: var(--d-spacing-md);
-    padding: 1rem 1.25rem;
+    padding: var(--d-spacing-md) 1.25rem;
     border: 1px solid color-mix(in oklch, var(--border) 42%, transparent);
     border-radius: var(--radius-lg);
     background: color-mix(in oklch, var(--muted) 42%, var(--card));
@@ -65,7 +65,7 @@
 .alert__close:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
 @media (max-width: 640px) {
     .desiderio-section.alert-section {
-        padding-block: 1.5rem;
+        padding-block: var(--d-spacing-lg);
     }
 
     .alert {

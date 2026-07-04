@@ -1,4 +1,5 @@
 .nav-toc__panel {
+    --nav-toc-indent: var(--d-spacing-6);
     position: sticky;
     top: var(--d-spacing-6);
     padding: var(--d-spacing-4);
@@ -31,6 +32,9 @@
 }
 a.nav-toc__link:hover {
     color: var(--d-foreground);
+    text-decoration: underline;
+    text-decoration-color: color-mix(in oklab, var(--d-foreground) 45%, transparent);
+    text-underline-offset: 0.2em;
 }
 .nav-toc__link:focus-visible {
     outline: 2px solid var(--d-ring);
@@ -40,7 +44,7 @@ a.nav-toc__link:hover {
     cursor: default;
 }
 .nav-toc__item--h3 .nav-toc__link {
-    padding-inline-start: var(--d-spacing-6);
+    padding-inline-start: var(--nav-toc-indent, var(--d-spacing-6));
     font-size: var(--d-text-xs);
 }
 @media (prefers-reduced-motion: reduce) {

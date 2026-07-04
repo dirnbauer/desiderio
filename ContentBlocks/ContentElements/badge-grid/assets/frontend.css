@@ -13,6 +13,15 @@
 .badge-grid__link { display: inline-flex; transition: opacity 0.15s ease; }
 .badge-grid__link:hover { opacity: 0.85; }
 
+/* Chip sizing: relaxes the atom's compact defaults (h-5 px-2 py-0.5 text-xs).
+   Scoped via [data-slot=badge] so it wins over the atom's single utility classes. */
+.badge-grid__badge[data-slot="badge"] {
+    height: auto;
+    padding-inline: var(--d-spacing-sm);
+    padding-block: var(--d-spacing-2xs);
+    font-size: var(--d-text-sm);
+}
+
 /*
  * Optional per-item colour accents. The base chip (shape, focus ring, default /
  * outline / secondary palettes) is owned by the <d:atom.badge> primitive; these

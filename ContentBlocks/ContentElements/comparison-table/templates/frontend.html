@@ -36,9 +36,9 @@
                 <tbody>
                     <f:for each="{data.comparison_feature_items}" as="feature">
                         <tr>
-                            <th scope="row" class="comparison-table__feature-name">{feature.name}</th>
+                            <th scope="row" class="comparison-table__feature-name">{feature -> f:render.text(field: 'name')}</th>
                             <f:for each="{feature.tier_values}" as="value">
-                                <td class="comparison-table__cell">{value.value}</td>
+                                <td class="comparison-table__cell">{value -> f:render.text(field: 'value')}</td>
                             </f:for>
                         </tr>
                     </f:for>

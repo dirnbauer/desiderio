@@ -14,7 +14,6 @@
             <f:if condition="{data.description}">
                 <div class="data-request-form__description d-richtext">{data -> f:render.text(field: 'description')}</div>
             </f:if>
-<f:comment>Legacy editor fields kept for migrated records; TYPO3 Form Framework owns rendering and submit behavior. {data.request_types}{data.submit_text}</f:comment>
 
             <d:molecule.formRenderer persistenceIdentifier="EXT:desiderio/Resources/Private/Forms/DesiderioDataRequest.form.yaml" class="data-request-form__form"/>
             <f:if condition="{data.privacy_text}">

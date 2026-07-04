@@ -40,7 +40,7 @@
 .content-grid__link {
     display: inline-flex;
     align-items: center;
-    gap: 0.25rem;
+    gap: var(--d-spacing-2xs);
     margin-block-start: auto;
     padding-block-start: var(--d-spacing-sm);
     width: fit-content;

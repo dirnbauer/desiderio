@@ -26,23 +26,3 @@ fields:
     rows: 1
     label: 'Reassurance Microcopy'
     description: 'Short trust line shown under the heading, e.g. "30-minute call. No commitment."'
-  -
-    identifier: form_action
-    type: Link
-    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:form_action'
-  -
-    identifier: submit_text
-    type: Textarea
-    rows: 1
-    label: 'Submit Button Text'
-    default: 'Book appointment'
-  -
-    identifier: show_phone
-    type: Checkbox
-    label: 'Show Phone Field'
-    default: 1
-  -
-    identifier: show_date
-    type: Checkbox
-    label: 'Show Date Field'
-    default: 1

@@ -1,33 +1,32 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
-      xmlns:cb="http://typo3.org/ns/TYPO3/CMS/ContentBlocks/ViewHelpers"
       xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
       data-namespace-typo3-fluid="true">
 
-<f:asset.css identifier="d-card-overlay" href="{cb:assetPath()}/frontend.css"/>
-
-<d:layout.section class="card-overlay-section">
+<d:layout.section>
     <d:layout.container>
-        <article class="card-overlay card-overlay--{data.overlay_intensity -> f:or(alternative: 'medium')}">
+        <article data-slot="card" class="group relative flex min-h-[22rem] items-end overflow-hidden rounded-xl bg-card text-card-foreground shadow-[var(--d-surface-shadow)] ring-1 ring-foreground/10 md:min-h-[30rem]">
             <f:if condition="{data.image.0}">
-                <div class="card-overlay__media">
-                    <f:image image="{data.image.0}" alt="{data.image.0.alternative -> f:or(alternative: data.header)}" maxWidth="1200" loading="lazy" decoding="async" class="card-overlay__image"/>
-                </div>
+                <f:image image="{data.image.0}" alt="{data.image.0.alternative -> f:or(alternative: data.header)}" maxWidth="1600" loading="lazy" decoding="async" class="absolute inset-0 h-full w-full border-0 object-cover shadow-none"/>
             </f:if>
-            <d:layout.stack gap="sm" class="card-overlay__content">
+            <f:switch expression="{data.overlay_intensity}">
+                <f:case value="light"><div class="absolute inset-0 z-10 bg-gradient-to-tr from-foreground/75 via-foreground/35 to-foreground/0" aria-hidden="true"></div></f:case>
+                <f:case value="strong"><div class="absolute inset-0 z-10 bg-gradient-to-tr from-foreground via-foreground/80 to-foreground/20" aria-hidden="true"></div></f:case>
+                <f:defaultCase><div class="absolute inset-0 z-10 bg-gradient-to-tr from-foreground/95 via-foreground/65 to-foreground/5" aria-hidden="true"></div></f:defaultCase>
+            </f:switch>
+            <d:layout.stack gap="sm" class="relative z-20 max-w-2xl p-6 text-background sm:p-8 lg:p-10">
                 <f:if condition="{data.eyebrow}">
-                    <d:atom.badge variant="secondary" class="card-overlay__eyebrow w-fit">{data -> f:render.text(field: 'eyebrow')}</d:atom.badge>
+                    <d:atom.badge variant="secondary" class="w-fit">{data -> f:render.text(field: 'eyebrow')}</d:atom.badge>
                 </f:if>
                 <f:if condition="{data.header}">
-                    <d:atom.typography tag="h2" variant="h3" class="card-overlay__title">{data -> f:render.text(field: 'header')}</d:atom.typography>
+                    <d:atom.typography tag="h2" variant="h2" class="max-w-xl text-background">{data -> f:render.text(field: 'header')}</d:atom.typography>
                 </f:if>
                 <f:if condition="{data.description}">
-                    <d:atom.typography tag="div" variant="p" class="card-overlay__description d-richtext">{data -> f:render.text(field: 'description')}</d:atom.typography>
+                    <d:atom.typography tag="div" variant="p" class="max-w-xl text-base/7 text-background/90 [&_a]:text-inherit [&_a]:underline [&_a]:underline-offset-2 [&_p]:m-0 [&_strong]:font-semibold">{data -> f:render.text(field: 'description')}</d:atom.typography>
                 </f:if>
                 <f:if condition="{data.link.url}">
-                    <f:variable name="cardOverlayLinkLabel">{data.header -> f:format.stripTags() -> f:format.trim()}</f:variable>
-                    <d:atom.button href="{data.link.url}" class="card-overlay__cta" target="{data.link.target}">
-                        <span class="card-overlay__cta-text">{data -> f:render.text(field: 'link_text')}</span>
-                        <span class="card-overlay__cta-arrow" aria-hidden="true">&rarr;</span>
+                    <d:atom.button href="{data.link.url}" target="{data.link.target}" size="lg" class="mt-2">
+                        <span>{data -> f:render.text(field: 'link_text')}</span>
+                        <span aria-hidden="true">&rarr;</span>
                     </d:atom.button>
                 </f:if>
             </d:layout.stack>

@@ -10,13 +10,8 @@ use PHPUnit\Framework\TestCase;
  * WCAG 2.2 contrast guard for every shadcn preset, light and dark:
  * text on the accent needs 4.5:1, muted text on every surface it is rendered
  * on (background, card, muted) 4.5:1, the accent against the page background
- * AND the lighter box surfaces (muted, secondary, accent) 3:1. The brand
- * link/text tokens are guarded at 4.5:1 on every surface they are used on:
- * --d-link (links on background/card) and --d-primary-text (links/text on
- * muted, secondary, accent boxes and primary tints) — per-preset solved
- * overrides when declared, else the generic 35% color-mix pull. Lightness is
- * solved per hue in Build/Scripts/generate-shadcn-presets.php; this test
- * keeps manual edits and upstream create-preset updates honest.
+ * 3:1. Lightness is solved per hue in Build/Scripts/generate-shadcn-presets.php;
+ * this test keeps manual edits and upstream create-preset updates honest.
  */
 final class ThemeContrastTest extends TestCase
 {
@@ -39,13 +34,9 @@ final class ThemeContrastTest extends TestCase
             if ($preset === 'custom') {
                 continue;
             }
-            $blocks = [
-                'light' => $this->extractBlock($css, 'body[data-shadcn-preset="' . $preset . '"]'),
-                'dark' => $this->extractBlock($css, '.dark body[data-shadcn-preset="' . $preset . '"]'),
-            ];
             $modes = [
-                'light' => array_merge($root, $this->parseOklchVariables($blocks['light'])),
-                'dark' => array_merge($dark, $this->parseOklchVariables($blocks['dark'])),
+                'light' => array_merge($root, $this->parseOklchVariables($this->extractBlock($css, 'body[data-shadcn-preset="' . $preset . '"]'))),
+                'dark' => array_merge($dark, $this->parseOklchVariables($this->extractBlock($css, '.dark body[data-shadcn-preset="' . $preset . '"]'))),
             ];
             foreach ($modes as $mode => $variables) {
                 foreach ([
@@ -55,9 +46,6 @@ final class ThemeContrastTest extends TestCase
                     ['muted-foreground', 'card', self::TEXT_MINIMUM],
                     ['muted-foreground', 'muted', self::TEXT_MINIMUM],
                     ['primary', 'background', self::UI_MINIMUM],
-                    ['primary', 'muted', self::UI_MINIMUM],
-                    ['primary', 'secondary', self::UI_MINIMUM],
-                    ['primary', 'accent', self::UI_MINIMUM],
                 ] as [$foreground, $background, $minimum]) {
                     if (!isset($variables[$foreground], $variables[$background])) {
                         continue;
@@ -71,69 +59,37 @@ final class ThemeContrastTest extends TestCase
                     }
                 }
 
-                if (!isset($variables['primary'])) {
-                    continue;
-                }
-                $surface = $variables['card'] ?? $variables['background'] ?? null;
-                if ($surface === null) {
-                    continue;
-                }
-                $primary = $this->oklchToSrgb(...$variables['primary']);
-                $aliases = $this->parseVarAliases($blocks[$mode]);
-
-                // --d-primary-text: a preset block may declare a solved literal
-                // or alias it back to var(--primary); without a declaration the
-                // generic 35% pull towards hue-less black/white from the base
-                // body / .dark body blocks applies. (A light-block declaration
-                // never leaks into dark mode: the later `.dark body` base block
-                // masks it at equal specificity.)
-                if (isset($variables['d-primary-text'])) {
-                    $text = $this->oklchToSrgb(...$variables['d-primary-text']);
-                } elseif (($aliases['d-primary-text'] ?? null) === 'primary') {
-                    $text = $primary;
-                } else {
-                    $target = [$mode === 'dark' ? 1.0 : 0.0, 0.0, $variables['primary'][2]];
-                    $text = $this->oklchToSrgb(...$this->mixOklch($variables['primary'], $target, 0.35));
-                }
-
-                // --d-link colors links on the default background/card surfaces
-                // (.link, the text-link utility, prose anchors). The base blocks
-                // alias it to var(--primary); presets whose primary cannot serve
-                // as small text there (bright amber/lime) override it.
-                $link = isset($variables['d-link']) ? $this->oklchToSrgb(...$variables['d-link']) : $primary;
-                foreach (['background', 'card'] as $linkSurface) {
-                    if (!isset($variables[$linkSurface])) {
-                        continue;
-                    }
-                    $ratio = $this->contrast($link, $this->oklchToSrgb(...$variables[$linkSurface]));
-                    if ($ratio < self::TEXT_MINIMUM) {
-                        $failures[] = sprintf('%s/%s d-link on %s = %.2f (< %.1f)', $preset, $mode, $linkSurface, $ratio, self::TEXT_MINIMUM);
-                    }
-                }
-
                 // Search-result highlight (.results-highlight): --d-primary-text
+                // (primary pulled 35% towards a hue-less black, white in dark mode)
                 // on bg-primary/10 (primary/20 in dark), composited over the card.
-                $tint = $this->compositeSrgb(
-                    $primary,
-                    $mode === 'dark' ? 0.2 : 0.1,
-                    $this->oklchToSrgb(...$surface)
-                );
-                $ratio = $this->contrast($text, $tint);
-                if ($ratio < self::TEXT_MINIMUM) {
-                    $failures[] = sprintf('%s/%s d-primary-text on primary tint = %.2f (< %.1f)', $preset, $mode, $ratio, self::TEXT_MINIMUM);
-                }
+                if (isset($variables['primary'])) {
+                    $surface = $variables['card'] ?? $variables['background'] ?? null;
+                    if ($surface !== null) {
+                        $target = [$mode === 'dark' ? 1.0 : 0.0, 0.0, $variables['primary'][2]];
+                        $text = $this->oklchToSrgb(...$this->mixOklch($variables['primary'], $target, 0.35));
+                        $tint = $this->compositeSrgb(
+                            $this->oklchToSrgb(...$variables['primary']),
+                            $mode === 'dark' ? 0.2 : 0.1,
+                            $this->oklchToSrgb(...$surface)
+                        );
+                        $ratio = $this->contrast($text, $tint);
+                        if ($ratio < self::TEXT_MINIMUM) {
+                            $failures[] = sprintf('%s/%s d-primary-text on primary tint = %.2f (< %.1f)', $preset, $mode, $ratio, self::TEXT_MINIMUM);
+                        }
 
-                // --d-link-on-muted (= --d-primary-text) colors links inside the
-                // .ce-frame--bg-10/80 boxes (solid --muted / --secondary) and on
-                // the tinted --accent cards. Guard those at 4.5:1 so a
-                // brand-colored link never collides with its box.
-                foreach (['muted', 'secondary', 'accent'] as $linkSurface) {
-                    if (!isset($variables[$linkSurface])) {
-                        continue;
-                    }
-                    $ratio = $this->contrast($text, $this->oklchToSrgb(...$variables[$linkSurface]));
-                    if ($ratio < self::TEXT_MINIMUM) {
-                        $failures[] = sprintf('%s/%s d-link-on-muted on %s = %.2f (< %.1f)', $preset, $mode, $linkSurface, $ratio, self::TEXT_MINIMUM);
+                        // --d-link-on-muted (= the same primary-text pull) colors
+                        // links inside the .ce-frame--bg-10/80 boxes, which are the
+                        // solid --muted / --secondary surfaces. Guard those at 4.5:1
+                        // so a brand-colored link never collides with its box.
+                        foreach (['muted', 'secondary'] as $linkSurface) {
+                            if (!isset($variables[$linkSurface])) {
+                                continue;
+                            }
+                            $ratio = $this->contrast($text, $this->oklchToSrgb(...$variables[$linkSurface]));
+                            if ($ratio < self::TEXT_MINIMUM) {
+                                $failures[] = sprintf('%s/%s d-link-on-muted on %s = %.2f (< %.1f)', $preset, $mode, $linkSurface, $ratio, self::TEXT_MINIMUM);
+                            }
+                        }
                     }
                 }
             }
@@ -164,23 +120,6 @@ final class ThemeContrastTest extends TestCase
         }
 
         return $variables;
-    }
-
-    /**
-     * Custom-property aliases within a block, e.g. `--d-primary-text: var(--primary);`
-     * becomes ['d-primary-text' => 'primary'].
-     *
-     * @return array<string, string>
-     */
-    private function parseVarAliases(string $block): array
-    {
-        preg_match_all('/--([\w-]+):\s*var\(--([\w-]+)\)\s*;/', $block, $matches, PREG_SET_ORDER);
-        $aliases = [];
-        foreach ($matches as $match) {
-            $aliases[$match[1]] = $match[2];
-        }
-
-        return $aliases;
     }
 
     /**

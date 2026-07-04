@@ -6,8 +6,24 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [2.12.0] — 2026-07-04
+
 ### Added
 
+- Shared record pool for testimonials: the new `desiderio/testimonial-pool`
+  RecordType (table `desiderio_testimonial`) is referenced from
+  `testimonial-grid` and `testimonial-carousel` via `type: Relation` fields.
+  The seeders upsert pool records by natural key and store a uid CSV on the
+  parent column, so identical testimonials are stored once, reused across
+  elements, and reseeding stays idempotent. Rendering uses Content Blocks'
+  native relation resolution; the custom collection processor and cleanup
+  service skip pool tables via their `foreign_table_parent_uid` guards.
+- Two new strict audit categories in `scripts/audit-content-elements.php`:
+  `commented_only_field` (a field whose only template reference sits inside
+  `<f:comment>` — dead at render time) and `inline_edit_gap` (a Text/Textarea
+  printed raw instead of through `f:render.text`, so the visual editor cannot
+  inline-edit it). A documented `INLINE_EDIT_ALLOWLIST` covers the two
+  intentional exceptions.
 - Two demo form definitions ported from EXT:styleguide so the desiderio site
   ships ready-made examples for the Form module: `desiderio-simpleform`
   ("Desiderio simple form", a two-page contact form) and `desiderio-allfields`
@@ -19,6 +35,30 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ### Changed
 
+- **The content element catalog shrank from 255 to 244.** Eleven elements that
+  were fully covered by a sibling's existing variant were removed:
+  navbar-sticky, navbar-minimal, footer-centered, copyright-bar,
+  hero-animated, hero-cta-only, hero-fullscreen, hero-gradient, card-pricing,
+  table-content and company-stats — including their set registrations,
+  `user.tsconfig` entries, library catalog texts, seed data and RTE manifest
+  rows.
+- 34 dead legacy Form Framework fields (`form_action`, `submit_text`,
+  `placeholder`, …) were removed from 14 form elements together with the
+  decoy `f:comment` references that had kept them invisible to the audit;
+  the TYPO3 Form Framework owns those forms end to end.
+- Every editor-visible text output is now wrapped with `f:render.text`
+  (19 remaining gaps closed), so inline editing works across the catalog;
+  translated fallbacks moved to explicit `f:if`/`f:else` branches.
+- Design consistency pass across all elements: spacing and font-size
+  literals now use the `--d-spacing-*`/`--d-text-*` scales, Tailwind utility
+  classes in templates were replaced with BEM classes and token CSS, and
+  media-query breakpoints were normalized to 480/640/768/1024px (exact
+  complement boundaries like `max-width: 639px` are kept on purpose).
+  51 below-par elements received an additional shadcn-token polish.
+- Brand links and brand-colored text meet WCAG 2.2 on every surface: each
+  preset ships hue-solved `--d-link` and `--d-primary-text` overrides, all
+  element link styles use `var(--d-link, var(--primary))`, and
+  `ThemeContrastTest` guards the combinations per preset and color scheme.
 - EXT:styleguide's own example forms ("simpleform", "All fields") are now
   hidden from the Form module so editors only see the curated Desiderio forms.
   `ext_localconf.php` adds the styleguide set (`typo3/styleguide-form-set`) to

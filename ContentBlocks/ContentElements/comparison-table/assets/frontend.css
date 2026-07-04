@@ -40,7 +40,7 @@
     background: color-mix(in oklch, var(--primary) 8%, transparent);
 }
 .comparison-table__table thead th.comparison-table__col--highlighted {
-    color: var(--primary);
+    color: var(--d-link-on-muted, var(--primary));
     box-shadow: inset 0 2px 0 0 var(--primary);
 }
 .comparison-table__table tbody tr:hover td,
@@ -62,4 +62,4 @@
 .d-richtext ul { list-style: disc; }
 .d-richtext ol { list-style: decimal; }
 .d-richtext li { margin-block-end: var(--d-spacing-2xs); }
-.d-richtext a { color: var(--primary); text-decoration: underline; text-underline-offset: 2px; }
+.d-richtext a { color: var(--d-link, var(--primary)); text-decoration: underline; text-underline-offset: 2px; }

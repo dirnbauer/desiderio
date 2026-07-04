@@ -31,7 +31,7 @@
                     <f:format.date format="{settings.comments.date.format}">{comment.crdate}</f:format.date>
                 </time>
             </header>
-            <div class="prose prose-sm max-w-none text-muted-foreground prose-p:my-2 prose-a:text-primary" itemprop="text">
+            <div class="prose prose-sm max-w-none text-muted-foreground prose-p:my-2" itemprop="text">
                 <blogvh:format.nl2p>{comment.comment}</blogvh:format.nl2p>
             </div>
         </d:layout.stack>
@@ -40,7 +40,7 @@
     <f:section name="CommentUrl">
         <f:if condition="{comment.url} && {settings.comments.features.urls}">
             <f:then>
-                <f:link.external uri="{comment.url}" target="_blank" rel="external nofollow noopener" class="rounded-sm !no-underline hover:text-primary focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/40"><span itemprop="name">{content}</span></f:link.external>
+                <f:link.external uri="{comment.url}" target="_blank" rel="external nofollow noopener" class="rounded-sm !no-underline hover:text-link focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/40"><span itemprop="name">{content}</span></f:link.external>
             </f:then>
             <f:else><span itemprop="name">{content}</span></f:else>
         </f:if>

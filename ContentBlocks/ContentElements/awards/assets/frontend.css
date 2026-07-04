@@ -8,7 +8,7 @@
 .awards__eyebrow {
     font-size: var(--d-text-sm);
     font-weight: 600;
-    color: var(--primary);
+    color: var(--d-link, var(--primary));
     letter-spacing: 0.05em;
     text-transform: uppercase;
 }
@@ -81,7 +81,7 @@
 }
 
 .awards__title-link:hover {
-    color: var(--primary);
+    color: var(--d-link, var(--primary));
     text-decoration: underline;
     text-underline-offset: 2px;
 }

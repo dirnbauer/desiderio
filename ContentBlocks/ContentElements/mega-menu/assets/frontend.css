@@ -194,4 +194,4 @@
 .d-richtext ul { list-style: disc; }
 .d-richtext ol { list-style: decimal; }
 .d-richtext li { margin-block-end: var(--d-spacing-2xs); }
-.d-richtext a { color: var(--primary); text-decoration: underline; text-underline-offset: 2px; }
+.d-richtext a { color: var(--d-link-on-muted, var(--primary)); text-decoration: underline; text-underline-offset: 2px; }

@@ -70,7 +70,7 @@
     letter-spacing: 0.04em;
     margin-block-end: var(--d-spacing-sm);
 }
-.blog-teasers__category { font-weight: 700; color: var(--primary); }
+.blog-teasers__category { font-weight: 700; color: var(--d-link, var(--primary)); }
 .blog-teasers__meta { color: var(--muted-foreground); }
 
 .blog-teasers__title {
@@ -80,7 +80,7 @@
 }
 .blog-teasers__title-link { border-radius: var(--radius-sm); }
 .blog-teasers__title a { color: inherit; text-decoration: none; }
-.blog-teasers__title a:hover { color: var(--primary); }
+.blog-teasers__title a:hover { color: var(--d-link, var(--primary)); }
 
 .blog-teasers__excerpt {
     color: var(--muted-foreground);
@@ -104,4 +104,4 @@
 .d-richtext ul { list-style: disc; }
 .d-richtext ol { list-style: decimal; }
 .d-richtext li { margin-block-end: var(--d-spacing-2xs); }
-.d-richtext a { color: var(--primary); text-decoration: underline; text-underline-offset: 2px; }
+.d-richtext a { color: var(--d-link, var(--primary)); text-decoration: underline; text-underline-offset: 2px; }

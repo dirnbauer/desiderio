@@ -24,7 +24,7 @@
 .order-summary__row { display: flex; justify-content: space-between; gap: var(--d-spacing-md); font-size: var(--d-text-sm); color: var(--muted-foreground); }
 .order-summary__row dt { margin: 0; }
 .order-summary__row dd { margin: 0; white-space: nowrap; }
-.order-summary__row--discount { color: var(--primary); }
+.order-summary__row--discount { color: var(--d-link, var(--primary)); }
 .order-summary__row--total {
     font-size: var(--d-text-lg);
     font-weight: 700;

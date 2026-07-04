@@ -1,5 +1,5 @@
 .stats-counter__intro { text-align: center; margin-block-end: var(--d-spacing-xl); }
-.stats-counter__eyebrow { font-size: var(--d-text-sm); text-transform: uppercase; letter-spacing: 0.05em; color: var(--primary); font-weight: 600; margin: 0; }
+.stats-counter__eyebrow { font-size: var(--d-text-sm); text-transform: uppercase; letter-spacing: 0.05em; color: var(--d-link, var(--primary)); font-weight: 600; margin: 0; }
 .stats-counter__headline { margin-block-start: var(--d-spacing-xs); }
 .stats-counter__grid { display: grid; gap: var(--d-spacing-lg); margin: 0; }
 .stats-counter__grid--cols-3 { grid-template-columns: repeat(3, 1fr); }
@@ -32,4 +32,4 @@
 .d-richtext ul { list-style: disc; }
 .d-richtext ol { list-style: decimal; }
 .d-richtext li { margin-block-end: var(--d-spacing-2xs); }
-.d-richtext a { color: var(--primary); text-decoration: underline; text-underline-offset: 2px; }
+.d-richtext a { color: var(--d-link, var(--primary)); text-decoration: underline; text-underline-offset: 2px; }

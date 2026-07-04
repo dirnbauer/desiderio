@@ -59,7 +59,7 @@
                     <p>
                         <f:translate key="solr.didYouMean" domain="desiderio.labels">Did you mean</f:translate>
                         <f:for each="{resultSet.spellCheckingSuggestions}" as="suggestion">
-                            <f:link.page additionalParams="{q: suggestion.suggestion}" class="font-medium text-primary underline underline-offset-4">{suggestion.suggestion}</f:link.page>
+                            <f:link.page additionalParams="{q: suggestion.suggestion}" class="font-medium text-link underline underline-offset-4">{suggestion.suggestion}</f:link.page>
                         </f:for>?
                     </p>
                 </f:if>

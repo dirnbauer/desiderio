@@ -7,7 +7,7 @@
     flex-direction: column;
     gap: var(--d-spacing-sm);
 }
-.kpi-cards__eyebrow { font-size: var(--d-text-sm); text-transform: uppercase; letter-spacing: 0.05em; color: var(--primary); font-weight: 600; }
+.kpi-cards__eyebrow { font-size: var(--d-text-sm); text-transform: uppercase; letter-spacing: 0.05em; color: var(--d-link, var(--primary)); font-weight: 600; }
 .kpi-cards__description { color: var(--muted-foreground); }
 .kpi-cards__grid { display: grid; gap: var(--d-spacing-lg); grid-template-columns: 1fr; }
 @media (min-width: 640px) {

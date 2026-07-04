@@ -12,7 +12,7 @@
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    color: var(--primary);
+    color: var(--d-link, var(--primary));
 }
 .team-with-bio__list {
     list-style: none;
@@ -57,7 +57,7 @@
 .team-with-bio__name { font-weight: 600; font-size: var(--d-text-lg); line-height: 1.3; }
 .team-with-bio__role {
     font-size: var(--d-text-sm);
-    color: var(--primary);
+    color: var(--d-link, var(--primary));
     font-weight: 500;
     margin-block-start: 2px;
 }
@@ -133,4 +133,4 @@
 .d-richtext ul { list-style: disc; }
 .d-richtext ol { list-style: decimal; }
 .d-richtext li { margin-block-end: var(--d-spacing-2xs); }
-.d-richtext a { color: var(--primary); text-decoration: underline; text-underline-offset: 2px; }
+.d-richtext a { color: var(--d-link, var(--primary)); text-decoration: underline; text-underline-offset: 2px; }

@@ -27,7 +27,7 @@
 .case-study-card__result { margin: var(--d-spacing-lg) 0 0; padding: var(--d-spacing-md); background: var(--muted); border-radius: var(--radius); display: inline-flex; align-items: baseline; gap: var(--d-spacing-sm); align-self: flex-start; }
 .case-study-card__result-value { font-size: var(--d-text-2xl); font-weight: 800; color: var(--primary); line-height: 1.1; }
 .case-study-card__result-label { font-size: var(--d-text-sm); color: var(--muted-foreground); }
-.case-study-card__link { display: inline-block; margin-block-start: var(--d-spacing-md); font-weight: 500; color: var(--primary); text-decoration: none; border-radius: var(--radius); }
+.case-study-card__link { display: inline-block; margin-block-start: var(--d-spacing-md); font-weight: 500; color: var(--d-link, var(--primary)); text-decoration: none; border-radius: var(--radius); }
 .case-study-card__link:hover { text-decoration: underline; }
 .case-study-card__link:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
 
@@ -39,4 +39,4 @@
 .d-richtext ul { list-style: disc; }
 .d-richtext ol { list-style: decimal; }
 .d-richtext li { margin-block-end: var(--d-spacing-2xs); }
-.d-richtext a { color: var(--primary); text-decoration: underline; text-underline-offset: 2px; }
+.d-richtext a { color: var(--d-link, var(--primary)); text-decoration: underline; text-underline-offset: 2px; }

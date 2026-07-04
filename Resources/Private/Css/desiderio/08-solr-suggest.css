@@ -131,7 +131,8 @@
 }
 
 .d-solr-suggest__mark {
-    color: var(--primary);
+    /* Small bold match text on the popover surface — needs the link-safe ink. */
+    color: var(--d-link, var(--primary));
     background: transparent;
     font-weight: 700;
 }

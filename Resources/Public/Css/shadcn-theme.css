@@ -158,6 +158,9 @@ body[data-shadcn-preset="b4hb38Fyj"] {
   --sidebar-ring: oklch(0.737 0.021 106.9);
   --d-font-sans: "Nunito Sans Variable", ui-sans-serif, system-ui, sans-serif;
   --d-font-heading: var(--d-font-sans);
+  /* The teal primary already clears 4.5:1 on the muted/secondary/accent boxes,
+     so brand links there keep the full primary instead of the 35% pull. */
+  --d-primary-text: var(--primary);
 }
 
 .dark body[data-shadcn-preset="b4hb38Fyj"] {
@@ -167,8 +170,13 @@ body[data-shadcn-preset="b4hb38Fyj"] {
   --card-foreground: oklch(0.988 0.003 106.5);
   --popover: oklch(0.228 0.013 107.4);
   --popover-foreground: oklch(0.988 0.003 106.5);
-  --primary: oklch(0.475 0.078 188.216);
-  --primary-foreground: oklch(0.984 0.014 180.72);
+  /* Upstream's deep teal (0.475 0.078 188.216 / near-white text) sat at 2.2:1
+     against the muted boxes and 3.05:1 as text on the page background. Flipped
+     to the bright-accent-with-dark-text convention using the preset's own dark
+     sidebar-primary pair, which upstream already solved for exactly that role. */
+  --primary: oklch(0.704 0.14 182.503);
+  --primary-foreground: oklch(0.277 0.046 192.524);
+  --d-primary-text: var(--primary);
   --secondary: oklch(0.274 0.006 286.033);
   --secondary-foreground: oklch(0.985 0 0);
   --muted: oklch(0.286 0.016 107.4);
@@ -229,6 +237,9 @@ body[data-shadcn-preset="b3IWPgRwnI"] {
   --sidebar-ring: oklch(0.723 0.014 214.4);
   --d-font-sans: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
   --d-font-heading: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  /* The blue primary already clears 4.5:1 on the muted/secondary/accent boxes,
+     so brand links there keep the full primary instead of the 35% pull. */
+  --d-primary-text: var(--primary);
 }
 
 .dark body[data-shadcn-preset="b3IWPgRwnI"] {
@@ -238,8 +249,13 @@ body[data-shadcn-preset="b3IWPgRwnI"] {
   --card-foreground: oklch(0.987 0.002 197.1);
   --popover: oklch(0.218 0.008 223.9);
   --popover-foreground: oklch(0.987 0.002 197.1);
-  --primary: oklch(0.48 0.11 240.79);
-  --primary-foreground: oklch(0.977 0.013 236.62);
+  /* Upstream's deep blue (0.48 0.11 240.79 / near-white text) sat at 2.3:1
+     against the muted boxes and 3.06:1 as text on the page background. Flipped
+     to the bright-accent-with-dark-text convention using the preset's own dark
+     sidebar-primary pair, which upstream already solved for exactly that role. */
+  --primary: oklch(0.685 0.169 237.323);
+  --primary-foreground: oklch(0.293 0.066 243.157);
+  --d-primary-text: var(--primary);
   --secondary: oklch(0.274 0.006 286.033);
   --secondary-foreground: oklch(0.985 0 0);
   --muted: oklch(0.275 0.011 216.9);
@@ -426,6 +442,7 @@ body[data-shadcn-preset="aurora"] {
   --sidebar-primary-foreground: oklch(0.985 0 0);
   --sidebar-ring: oklch(0.576 0.2 293);
   --chart-1: oklch(0.576 0.2 293);
+  --d-primary-text: oklch(0.55 0.2 293);
   --radius: 0.625rem;
   --d-font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
   --d-font-heading: var(--d-font-sans);
@@ -444,6 +461,7 @@ body[data-shadcn-preset="aurora"] {
   --sidebar-primary-foreground: oklch(0.272 0.035 293);
   --sidebar-ring: oklch(0.66 0.18 293);
   --chart-1: oklch(0.66 0.18 293);
+  --d-primary-text: oklch(0.71 0.167 293);
 }
 
 body[data-shadcn-preset="marine"] {
@@ -456,6 +474,7 @@ body[data-shadcn-preset="marine"] {
   --sidebar-primary-foreground: oklch(0.985 0 0);
   --sidebar-ring: oklch(0.562 0.2 259);
   --chart-1: oklch(0.562 0.2 259);
+  --d-primary-text: oklch(0.538 0.2 259);
   --radius: 0.5rem;
   --d-font-sans: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
   --d-font-heading: var(--d-font-sans);
@@ -478,6 +497,7 @@ body[data-shadcn-preset="marine"] {
   --sidebar-primary-foreground: oklch(0.284 0.035 259);
   --sidebar-ring: oklch(0.66 0.18 259);
   --chart-1: oklch(0.66 0.18 259);
+  --d-primary-text: oklch(0.701 0.157 259);
 }
 
 body[data-shadcn-preset="forest"] {
@@ -490,6 +510,7 @@ body[data-shadcn-preset="forest"] {
   --sidebar-primary-foreground: oklch(0.985 0 0);
   --sidebar-ring: oklch(0.513 0.2 158);
   --chart-1: oklch(0.513 0.2 158);
+  --d-primary-text: oklch(0.519 0.121 158);
   --radius: 0.375rem;
   --d-font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
   --d-font-heading: var(--d-font-sans);
@@ -508,6 +529,7 @@ body[data-shadcn-preset="forest"] {
   --sidebar-primary-foreground: oklch(0.315 0.035 158);
   --sidebar-ring: oklch(0.66 0.18 158);
   --chart-1: oklch(0.66 0.18 158);
+  --d-primary-text: oklch(0.685 0.16 158);
 }
 
 body[data-shadcn-preset="ember"] {
@@ -520,6 +542,7 @@ body[data-shadcn-preset="ember"] {
   --sidebar-primary-foreground: oklch(0.985 0 0);
   --sidebar-ring: oklch(0.57 0.2 55);
   --chart-1: oklch(0.57 0.2 55);
+  --d-primary-text: oklch(0.54 0.133 55);
   --radius: 0.75rem;
   --d-font-sans: "Nunito Sans Variable", ui-sans-serif, system-ui, sans-serif;
   --d-font-heading: var(--d-font-sans);
@@ -542,6 +565,7 @@ body[data-shadcn-preset="ember"] {
   --sidebar-primary-foreground: oklch(0.275 0.035 55);
   --sidebar-ring: oklch(0.66 0.18 55);
   --chart-1: oklch(0.66 0.18 55);
+  --d-primary-text: oklch(0.71 0.175 55);
 }
 
 body[data-shadcn-preset="bloom"] {
@@ -554,6 +578,7 @@ body[data-shadcn-preset="bloom"] {
   --sidebar-primary-foreground: oklch(0.985 0 0);
   --sidebar-ring: oklch(0.581 0.2 12);
   --chart-1: oklch(0.581 0.2 12);
+  --d-primary-text: oklch(0.552 0.2 12);
   --radius: 1rem;
   --d-font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
   --d-font-heading: var(--d-font-sans);
@@ -572,6 +597,7 @@ body[data-shadcn-preset="bloom"] {
   --sidebar-primary-foreground: oklch(0.266 0.035 12);
   --sidebar-ring: oklch(0.66 0.18 12);
   --chart-1: oklch(0.66 0.18 12);
+  --d-primary-text: oklch(0.716 0.18 12);
 }
 
 body[data-shadcn-preset="lagoon"] {
@@ -584,6 +610,7 @@ body[data-shadcn-preset="lagoon"] {
   --sidebar-primary-foreground: oklch(0.985 0 0);
   --sidebar-ring: oklch(0.497 0.2 185);
   --chart-1: oklch(0.497 0.2 185);
+  --d-primary-text: oklch(0.522 0.091 185);
   --radius: 0.5rem;
   --d-font-sans: "Geist Variable", ui-sans-serif, system-ui, sans-serif;
   --d-font-heading: var(--d-font-sans);
@@ -606,18 +633,21 @@ body[data-shadcn-preset="lagoon"] {
   --sidebar-primary-foreground: oklch(0.33 0.035 185);
   --sidebar-ring: oklch(0.66 0.18 185);
   --chart-1: oklch(0.66 0.18 185);
+  --d-primary-text: oklch(0.689 0.121 185);
 }
 
 body[data-shadcn-preset="gold"] {
-  --primary: oklch(0.667 0.16 85);
-  --primary-foreground: oklch(0.296 0.05 85);
+  --primary: oklch(0.629 0.16 85);
+  --primary-foreground: oklch(0.249 0.05 85);
   --accent: oklch(0.95 0.03 85);
   --accent-foreground: oklch(0.32 0.07 85);
-  --ring: oklch(0.667 0.16 85);
-  --sidebar-primary: oklch(0.667 0.16 85);
-  --sidebar-primary-foreground: oklch(0.296 0.05 85);
-  --sidebar-ring: oklch(0.667 0.16 85);
-  --chart-1: oklch(0.667 0.16 85);
+  --ring: oklch(0.629 0.16 85);
+  --sidebar-primary: oklch(0.629 0.16 85);
+  --sidebar-primary-foreground: oklch(0.249 0.05 85);
+  --sidebar-ring: oklch(0.629 0.16 85);
+  --chart-1: oklch(0.629 0.16 85);
+  --d-primary-text: oklch(0.533 0.109 85);
+  --d-link: oklch(0.533 0.109 85);
   --radius: 0.375rem;
   --d-font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
   --d-font-heading: var(--d-font-sans);
@@ -636,6 +666,8 @@ body[data-shadcn-preset="gold"] {
   --sidebar-primary-foreground: oklch(0.448 0.05 85);
   --sidebar-ring: oklch(0.84 0.17 85);
   --chart-1: oklch(0.84 0.17 85);
+  --d-primary-text: var(--primary);
+  --d-link: var(--primary);
 }
 
 body[data-shadcn-preset="midnight"] {
@@ -648,6 +680,7 @@ body[data-shadcn-preset="midnight"] {
   --sidebar-primary-foreground: oklch(0.985 0 0);
   --sidebar-ring: oklch(0.57 0.2 275);
   --chart-1: oklch(0.57 0.2 275);
+  --d-primary-text: oklch(0.544 0.2 275);
   --radius: 0.625rem;
   --d-font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
   --d-font-heading: var(--d-font-sans);
@@ -670,6 +703,7 @@ body[data-shadcn-preset="midnight"] {
   --sidebar-primary-foreground: oklch(0.278 0.035 275);
   --sidebar-ring: oklch(0.66 0.18 275);
   --chart-1: oklch(0.66 0.18 275);
+  --d-primary-text: oklch(0.705 0.154 275);
 }
 
 body[data-shadcn-preset="blossom"] {
@@ -682,6 +716,7 @@ body[data-shadcn-preset="blossom"] {
   --sidebar-primary-foreground: oklch(0.985 0 0);
   --sidebar-ring: oklch(0.582 0.2 350);
   --chart-1: oklch(0.582 0.2 350);
+  --d-primary-text: oklch(0.554 0.2 350);
   --radius: 0.75rem;
   --d-font-sans: "Nunito Sans Variable", ui-sans-serif, system-ui, sans-serif;
   --d-font-heading: var(--d-font-sans);
@@ -700,18 +735,21 @@ body[data-shadcn-preset="blossom"] {
   --sidebar-primary-foreground: oklch(0.265 0.035 350);
   --sidebar-ring: oklch(0.66 0.18 350);
   --chart-1: oklch(0.66 0.18 350);
+  --d-primary-text: oklch(0.716 0.18 350);
 }
 
 body[data-shadcn-preset="citrus"] {
-  --primary: oklch(0.653 0.16 130);
-  --primary-foreground: oklch(0.291 0.05 130);
+  --primary: oklch(0.618 0.16 130);
+  --primary-foreground: oklch(0.248 0.05 130);
   --accent: oklch(0.95 0.03 130);
   --accent-foreground: oklch(0.32 0.07 130);
-  --ring: oklch(0.653 0.16 130);
-  --sidebar-primary: oklch(0.653 0.16 130);
-  --sidebar-primary-foreground: oklch(0.291 0.05 130);
-  --sidebar-ring: oklch(0.653 0.16 130);
-  --chart-1: oklch(0.653 0.16 130);
+  --ring: oklch(0.618 0.16 130);
+  --sidebar-primary: oklch(0.618 0.16 130);
+  --sidebar-primary-foreground: oklch(0.248 0.05 130);
+  --sidebar-ring: oklch(0.618 0.16 130);
+  --chart-1: oklch(0.618 0.16 130);
+  --d-primary-text: oklch(0.522 0.14 130);
+  --d-link: oklch(0.522 0.14 130);
   --radius: 0.3rem;
   --d-font-sans: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   --d-font-heading: var(--d-font-sans);
@@ -734,6 +772,8 @@ body[data-shadcn-preset="citrus"] {
   --sidebar-primary-foreground: oklch(0.45 0.05 130);
   --sidebar-ring: oklch(0.84 0.17 130);
   --chart-1: oklch(0.84 0.17 130);
+  --d-primary-text: var(--primary);
+  --d-link: var(--primary);
 }
 
 /* === END Desiderio house presets === */
@@ -818,6 +858,10 @@ body {
      underline carries the non-color affordance. Resolves per preset and per
      scheme via --d-primary-text (dark mode pulls towards white instead). */
   --d-link-on-muted: var(--d-primary-text);
+  /* Brand links/text on the default background/card surfaces (.link, the
+     text-link utility). Presets whose primary cannot serve as small text
+     there (bright amber/lime) override this with a solved darker ink. */
+  --d-link: var(--primary);
   --d-overlay-foreground: var(--primary-foreground);
   --d-radius-sm: calc(var(--radius) * 0.6);
   --d-radius-md: calc(var(--radius) * 0.8);
@@ -857,7 +901,12 @@ body {
 
 /* Dark scheme pulls brand text towards white instead of black. Declared on
    body (not in the html-level .dark block) so the mix resolves against the
-   preset's --primary, which the body[data-shadcn-preset] blocks override. */
+   preset's --primary, which the body[data-shadcn-preset] blocks override.
+   --d-link and --d-primary-text are re-declared here so a light-mode literal
+   from a body[data-shadcn-preset] block (same specificity, earlier in the
+   file) never leaks into dark mode; the .dark body[data-shadcn-preset]
+   blocks then re-override both where a solved dark value exists. */
 .dark body {
   --d-primary-text: color-mix(in oklch, var(--primary), oklch(1 0 none) 35%);
+  --d-link: var(--primary);
 }

@@ -8,7 +8,7 @@
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    color: var(--primary);
+    color: var(--d-link, var(--primary));
     margin-block-end: var(--d-spacing-2xs);
 }
 .career-listing__jobs {

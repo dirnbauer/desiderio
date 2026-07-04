@@ -20,7 +20,7 @@
 }
 
 .content-grid__title-link:hover {
-    color: var(--primary);
+    color: var(--d-link, var(--primary));
 }
 
 .content-grid__title-link:focus-visible {
@@ -46,7 +46,7 @@
     width: fit-content;
     font-size: var(--d-text-sm);
     font-weight: 500;
-    color: var(--primary);
+    color: var(--d-link, var(--primary));
     text-decoration: none;
 }
 

@@ -118,7 +118,7 @@
     font-weight: 500;
 }
 .product-gallery__availability-icon { flex-shrink: 0; }
-.product-gallery__availability--in-stock { color: var(--primary); }
+.product-gallery__availability--in-stock { color: var(--d-link, var(--primary)); }
 .product-gallery__availability--limited,
 .product-gallery__availability--preorder { color: var(--foreground); }
 .product-gallery__availability--sold-out { color: var(--muted-foreground); }

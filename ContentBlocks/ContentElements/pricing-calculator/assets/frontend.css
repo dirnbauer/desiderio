@@ -1,5 +1,5 @@
 .pricing-calculator__intro { text-align: center; margin-block-end: var(--d-spacing-xl); }
-.pricing-calculator__eyebrow { font-size: var(--d-text-sm); text-transform: uppercase; letter-spacing: 0.05em; color: var(--primary); font-weight: 600; }
+.pricing-calculator__eyebrow { font-size: var(--d-text-sm); text-transform: uppercase; letter-spacing: 0.05em; color: var(--d-link, var(--primary)); font-weight: 600; }
 .pricing-calculator__headline { margin-block-start: var(--d-spacing-xs); }
 .pricing-calculator__description { color: var(--muted-foreground); max-width: 40rem; margin-inline: auto; }
 .pricing-calculator__body { max-width: 42rem; margin-inline: auto; }
@@ -26,4 +26,4 @@
 .d-richtext ul { list-style: disc; }
 .d-richtext ol { list-style: decimal; }
 .d-richtext li { margin-block-end: var(--d-spacing-2xs); }
-.d-richtext a { color: var(--primary); text-decoration: underline; text-underline-offset: 2px; }
+.d-richtext a { color: var(--d-link, var(--primary)); text-decoration: underline; text-underline-offset: 2px; }

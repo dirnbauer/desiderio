@@ -18,7 +18,7 @@
                     <ul role="list" class="flex flex-col gap-2" data-blog-archive-type="year" data-archive-type="year">
                         <f:for each="{years}" key="year" as="months">
                             <li class="rounded-lg border border-border/70 bg-background/60 p-2" data-blog-archive-year="{year}">
-                                <blogvh:link.archive year="{year}" title="{year}" class="flex items-center justify-between gap-3 rounded-md px-2 py-1.5 text-sm font-medium text-foreground !no-underline transition-colors hover:bg-muted hover:text-primary focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/40">
+                                <blogvh:link.archive year="{year}" title="{year}" class="flex items-center justify-between gap-3 rounded-md px-2 py-1.5 text-sm font-medium text-foreground !no-underline transition-colors hover:bg-muted hover:text-link focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/40">
                                     <span class="inline-flex items-center gap-2">
                                         <span class="inline-flex size-6 items-center justify-center rounded-md bg-muted text-muted-foreground" aria-hidden="true"><d:atom.icon name="calendar" size="xs"/></span>
                                         <span>{year}</span>
@@ -66,7 +66,7 @@
 
 <f:section name="Month">
     <li data-blog-archive-year="{year}" data-blog-archive-month="{month.month}">
-        <blogvh:link.archive year="{year}" month="{month.month}" title="{f:format.date(format: '{settings.widgets.archive.monthDateFormat} {settings.widgets.archive.yearDateFormat}', date: month.timestamp)}" class="flex items-center justify-between gap-3 rounded-md px-2 py-1.5 text-sm text-muted-foreground !no-underline transition-colors hover:bg-muted hover:text-primary focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/40">
+        <blogvh:link.archive year="{year}" month="{month.month}" title="{f:format.date(format: '{settings.widgets.archive.monthDateFormat} {settings.widgets.archive.yearDateFormat}', date: month.timestamp)}" class="flex items-center justify-between gap-3 rounded-md px-2 py-1.5 text-sm text-muted-foreground !no-underline transition-colors hover:bg-muted hover:text-link focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/40">
             <span>
                 <f:if condition="{settings.widgets.archive.groupByYear} == 1">
                     <f:then>{f:format.date(format: '{settings.widgets.archive.monthDateFormat}', date: month.timestamp)}</f:then>

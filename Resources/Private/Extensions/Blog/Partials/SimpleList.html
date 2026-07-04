@@ -12,7 +12,7 @@
         <li class="rounded-lg border border-border bg-card px-3 py-2 transition-colors hover:bg-muted">
             <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
                 <time class="text-xs text-muted-foreground" datetime="{f:format.date(format: 'c', date: post.publishDate)}">{f:format.date(format: '{settings.lists.posts.dateFormat}', date: post.publishDate)}</time>
-                <blogvh:link.post post="{post}" class="font-medium text-foreground !no-underline outline-none transition-colors hover:text-primary focus-visible:ring-3 focus-visible:ring-ring/40">
+                <blogvh:link.post post="{post}" class="font-medium text-foreground !no-underline outline-none transition-colors hover:text-link focus-visible:ring-3 focus-visible:ring-ring/40">
                     {post.title}
                 </blogvh:link.post>
             </div>

@@ -1,5 +1,5 @@
 .client-list__intro { margin-block-end: var(--d-spacing-xl); }
-.client-list__eyebrow { font-size: var(--d-text-sm); text-transform: uppercase; letter-spacing: 0.05em; color: var(--primary); font-weight: 600; }
+.client-list__eyebrow { font-size: var(--d-text-sm); text-transform: uppercase; letter-spacing: 0.05em; color: var(--d-link, var(--primary)); font-weight: 600; }
 .client-list__headline { margin-block-start: var(--d-spacing-xs); }
 .client-list__description { color: var(--muted-foreground); max-width: 40rem; }
 .client-list__items { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; }
@@ -27,7 +27,7 @@
 }
 .client-list__info { display: flex; flex-direction: column; gap: 0.125rem; }
 .client-list__name { font-weight: 600; text-decoration: none; color: var(--foreground); transition: color 0.15s ease; }
-a.client-list__name:hover { color: var(--primary); }
+a.client-list__name:hover { color: var(--d-link, var(--primary)); }
 a.client-list__name:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; border-radius: var(--d-radius-sm); }
 .client-list__industry { font-size: var(--d-text-sm); color: var(--muted-foreground); }
 

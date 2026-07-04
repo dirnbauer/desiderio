@@ -14,7 +14,7 @@
     border-radius: var(--d-radius-full); text-transform: uppercase; letter-spacing: 0.03em;
     transition: color 0.15s ease;
 }
-.changelog__tag:hover { color: var(--primary); }
+.changelog__tag:hover { color: var(--d-link-on-muted, var(--primary)); }
 .changelog__tag--new { background: var(--d-info-muted); color: var(--d-info-text); }
 .changelog__tag--fix { background: var(--d-success-muted); color: var(--d-success-text); }
 .changelog__tag--improvement { background: var(--d-warning-muted); color: var(--d-warning-text); }

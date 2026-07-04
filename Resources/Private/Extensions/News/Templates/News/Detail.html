@@ -38,7 +38,7 @@
                                         <d:atom.icon name="chevron-left" size="xs"/>
                                         <f:translate key="paginate_previous" />
                                     </span>
-                                    <span class="mt-1 block font-medium text-foreground group-hover/prev:text-primary">{paginated.prev.title}</span>
+                                    <span class="mt-1 block font-medium text-foreground group-hover/prev:text-link">{paginated.prev.title}</span>
                                 </f:link.action>
                             </f:if>
                             <f:if condition="{paginated.next}">
@@ -47,7 +47,7 @@
                                         <f:translate key="paginate_next" />
                                         <d:atom.icon name="chevron-right" size="xs"/>
                                     </span>
-                                    <span class="mt-1 block font-medium text-foreground group-hover/next:text-primary">{paginated.next.title}</span>
+                                    <span class="mt-1 block font-medium text-foreground group-hover/next:text-link">{paginated.next.title}</span>
                                 </f:link.action>
                             </f:if>
                         </nav>
@@ -133,7 +133,7 @@
                                 <ul role="list" class="divide-y divide-border text-sm">
                                     <f:for each="{newsItem.allRelatedSorted}" as="related">
                                         <li class="grid gap-1 py-2">
-                                            <f:link.action action="detail" controller="News" extensionName="News" pluginName="Pi1" pageUid="{settings.detailPid}" arguments="{news: related}" title="{related.title}" class="font-medium text-foreground !no-underline underline-offset-4 hover:text-primary hover:underline">{related.title}</f:link.action>
+                                            <f:link.action action="detail" controller="News" extensionName="News" pluginName="Pi1" pageUid="{settings.detailPid}" arguments="{news: related}" title="{related.title}" class="font-medium text-foreground !no-underline underline-offset-4 hover:text-link hover:underline">{related.title}</f:link.action>
                                             <span class="text-muted-foreground"><f:format.date format="{f:translate(key: 'dateFormat')}">{related.datetime}</f:format.date></span>
                                         </li>
                                     </f:for>
@@ -154,7 +154,7 @@
                                 <ul role="list" class="divide-y divide-border text-sm">
                                     <f:for each="{newsItem.relatedFiles}" as="relatedFile">
                                         <li class="grid gap-1 py-2">
-                                            <a href="{relatedFile.originalResource.publicUrl -> f:format.htmlspecialchars()}" target="_blank" rel="noopener noreferrer" class="font-medium text-foreground underline-offset-4 hover:text-primary hover:underline">
+                                            <a href="{relatedFile.originalResource.publicUrl -> f:format.htmlspecialchars()}" target="_blank" rel="noopener noreferrer" class="font-medium text-foreground underline-offset-4 hover:text-link hover:underline">
                                                 {f:if(condition: relatedFile.originalResource.title, then: relatedFile.originalResource.title, else: relatedFile.originalResource.name)}
                                             </a>
                                             <span class="text-muted-foreground">{relatedFile.originalResource.size -> f:format.bytes()}</span>
@@ -177,7 +177,7 @@
                                 <ul role="list" class="divide-y divide-border text-sm">
                                     <f:for each="{newsItem.relatedLinks}" as="relatedLink">
                                         <li class="grid gap-1 py-2">
-                                            <f:link.typolink parameter="{relatedLink.uri}" title="{relatedLink.title}" target="{n:targetLink(link: relatedLink.uri)}" class="font-medium text-foreground underline-offset-4 hover:text-primary hover:underline">{f:if(condition: relatedLink.title, then: relatedLink.title, else: relatedLink.uri)}</f:link.typolink>
+                                            <f:link.typolink parameter="{relatedLink.uri}" title="{relatedLink.title}" target="{n:targetLink(link: relatedLink.uri)}" class="font-medium text-foreground underline-offset-4 hover:text-link hover:underline">{f:if(condition: relatedLink.title, then: relatedLink.title, else: relatedLink.uri)}</f:link.typolink>
                                             <f:if condition="{relatedLink.description}"><span class="text-muted-foreground">{relatedLink.description}</span></f:if>
                                         </li>
                                     </f:for>

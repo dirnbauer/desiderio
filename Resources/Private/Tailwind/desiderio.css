@@ -30,6 +30,11 @@
   --color-popover-foreground: var(--popover-foreground);
   --color-primary: var(--primary);
   --color-primary-foreground: var(--primary-foreground);
+  /* Brand link ink: --primary, except where a preset overrides --d-link with a
+     solved darker/brighter value so small text on background/card holds 4.5:1
+     (bright amber/lime primaries). Use text-link instead of text-primary for
+     running text and links; keep text-primary for decorative icons/chips. */
+  --color-link: var(--d-link, var(--primary));
   --color-secondary: var(--secondary);
   --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);
@@ -219,7 +224,9 @@
   .ce-frame :where(a:not([data-slot='button'], .not-prose, .not-prose *)),
   .ce-bodytext :where(a:not([data-slot='button'], .not-prose, .not-prose *)),
   .prose :where(a:not([data-slot='button'])):not(:where(.desiderio-section *, .not-prose, .not-prose *)) {
-    color: var(--primary);
+    /* --d-link, not raw --primary: presets with a bright accent (amber/lime)
+       override it with a solved ink so small link text holds 4.5:1. */
+    color: var(--d-link, var(--primary));
     text-decoration-line: underline;
     text-underline-offset: 0.25rem;
   }

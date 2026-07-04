@@ -11,7 +11,7 @@
     padding: var(--d-spacing-2xs) var(--d-spacing-xs);
     border-radius: var(--radius);
     font-weight: 600;
-    color: var(--primary);
+    color: var(--d-link, var(--primary));
     text-decoration: none;
     font-size: var(--d-text-base);
     transition: opacity 0.15s ease;

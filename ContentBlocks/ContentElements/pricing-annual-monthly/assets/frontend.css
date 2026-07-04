@@ -6,7 +6,7 @@
 .pricing-annual-monthly__eyebrow {
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    color: var(--primary);
+    color: var(--d-link, var(--primary));
     font-weight: 600;
 }
 

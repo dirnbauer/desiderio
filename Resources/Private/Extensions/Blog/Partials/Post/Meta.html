@@ -10,7 +10,7 @@
 
 <div class="flex flex-wrap items-center gap-x-3 gap-y-2 text-xs text-muted-foreground">
     <span class="entry-date">
-        <blogvh:link.post post="{post}" rel="bookmark" class="text-muted-foreground !no-underline transition-colors hover:text-primary">
+        <blogvh:link.post post="{post}" rel="bookmark" class="text-muted-foreground !no-underline transition-colors hover:text-link">
             <time datetime="{f:format.date(format: 'c', date: post.publishDate)}" itemprop="datePublished">{f:format.date(format: '{settings.lists.posts.dateFormat}', date: post.publishDate)}</time>
         </blogvh:link.post>
     </span>
@@ -40,14 +40,14 @@
                 <span aria-hidden="true">·</span>
                 <meta itemprop="commentCount" content="{commentCount}"/>
                 <span>
-                    <blogvh:link.post post="{post}" section="comments" class="text-muted-foreground !no-underline transition-colors hover:text-primary">
+                    <blogvh:link.post post="{post}" section="comments" class="text-muted-foreground !no-underline transition-colors hover:text-link">
                         <f:translate extensionName="desiderio" key="blog.comments.count" arguments="{count: commentCount}">{commentCount} comments</f:translate>
                     </blogvh:link.post>
                 </span>
             </f:alias>
         </f:then>
         <f:else>
-            <blogvh:link.post post="{post}" section="disqus_thread" data="{disqus-identifier: '{settings.comments.disqus.shortname}:post:{post.uid}'}" class="text-muted-foreground !no-underline transition-colors hover:text-primary">
+            <blogvh:link.post post="{post}" section="disqus_thread" data="{disqus-identifier: '{settings.comments.disqus.shortname}:post:{post.uid}'}" class="text-muted-foreground !no-underline transition-colors hover:text-link">
                 <f:translate extensionName="desiderio" key="blog.comments.count" arguments="{count: 0}">0 comments</f:translate>
             </blogvh:link.post>
         </f:else>

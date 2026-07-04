@@ -48,7 +48,7 @@
     overflow-wrap: anywhere;
 }
 .contact-info__value--link {
-    color: var(--primary);
+    color: var(--d-link, var(--primary));
     font-weight: 500;
     text-decoration: none;
     border-radius: calc(var(--radius) * 0.6);

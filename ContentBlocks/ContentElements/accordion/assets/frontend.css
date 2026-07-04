@@ -57,4 +57,4 @@ details[open] > .accordion__trigger > .accordion__icon {
 }
 .accordion__content > *:first-child { margin-top: 0; }
 .accordion__content > *:last-child { margin-bottom: 0; }
-.accordion__content a { color: var(--primary); text-decoration: underline; text-underline-offset: 2px; }
+.accordion__content a { color: var(--d-link, var(--primary)); text-decoration: underline; text-underline-offset: 2px; }

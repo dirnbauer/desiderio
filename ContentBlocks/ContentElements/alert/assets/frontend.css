@@ -45,7 +45,7 @@
 }
 .alert__description > *:first-child { margin-top: 0; }
 .alert__description > *:last-child { margin-bottom: 0; }
-.alert__description a { color: var(--primary); text-decoration: underline; text-underline-offset: 2px; }
+.alert__description a { color: var(--d-link-on-muted, var(--primary)); text-decoration: underline; text-underline-offset: 2px; }
 .alert__close {
     display: inline-flex;
     align-items: center;

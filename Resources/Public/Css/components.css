@@ -239,7 +239,9 @@ main[tabindex]:focus-visible {
 
 .btn--link {
   background-color: transparent;
-  color: var(--primary);
+  /* --d-link, not raw --primary: presets with a bright accent (amber/lime)
+     override it with a solved ink so small link text holds 4.5:1. */
+  color: var(--d-link, var(--primary));
   text-decoration: underline;
   text-underline-offset: 4px;
   height: auto;
@@ -1161,7 +1163,9 @@ main[tabindex]:focus-visible {
    ========================================================================== */
 
 .link {
-  color: var(--primary);
+  /* --d-link, not raw --primary: presets with a bright accent (amber/lime)
+     override it with a solved ink so small link text holds 4.5:1. */
+  color: var(--d-link, var(--primary));
   text-decoration: underline;
   text-underline-offset: 4px;
   font-weight: 500;
@@ -1170,7 +1174,12 @@ main[tabindex]:focus-visible {
 }
 
 .link:hover {
-  color: color-mix(in oklch, var(--primary) 80%, transparent);
+  /* Never fade towards transparent: 80% over a light surface dropped hover
+     text below 4.5:1. --d-primary-text is the hue-safe, scheme-aware pull
+     (mixing towards var(--foreground) would rotate the brand hue); the
+     thicker underline keeps a hover affordance where the two tokens match. */
+  color: var(--d-primary-text, var(--primary));
+  text-decoration-thickness: 2px;
 }
 
 .link--muted {

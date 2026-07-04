@@ -19,7 +19,7 @@
 .notification__actions { margin-block-start: var(--d-spacing-sm); }
 .notification__action {
     font-size: var(--d-text-sm); font-weight: 500; text-decoration: underline;
-    color: var(--primary);
+    color: var(--d-link, var(--primary));
 }
 .notification__close {
     flex-shrink: 0; background: none; border: none; cursor: pointer;
@@ -36,4 +36,4 @@
 .d-richtext ul { list-style: disc; }
 .d-richtext ol { list-style: decimal; }
 .d-richtext li { margin-block-end: var(--d-spacing-2xs); }
-.d-richtext a { color: var(--primary); text-decoration: underline; text-underline-offset: 2px; }
+.d-richtext a { color: var(--d-link, var(--primary)); text-decoration: underline; text-underline-offset: 2px; }

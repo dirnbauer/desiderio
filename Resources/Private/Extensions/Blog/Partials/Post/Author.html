@@ -35,7 +35,7 @@
                         </f:if>
                     </div>
                     <f:if condition="{author.bio}">
-                        <div class="prose prose-sm max-w-none text-muted-foreground prose-a:text-primary" itemprop="description"><f:format.html>{author.bio}</f:format.html></div>
+                        <div class="prose prose-sm max-w-none text-muted-foreground" itemprop="description"><f:format.html>{author.bio}</f:format.html></div>
                     </f:if>
                     <div class="flex flex-wrap items-center gap-2">
                         <f:if condition="{author.website} || {author.twitter} || {author.linkedin} || {author.xing} || {author.instagram}">
@@ -58,7 +58,7 @@
                             </ul>
                         </f:if>
                         <f:if condition="{author.detailsPage} || {settings.authorUid}">
-                            <blogvh:link.author author="{author}" class="inline-flex h-7 items-center gap-1 rounded-md text-sm font-medium text-primary !no-underline transition-colors hover:text-primary focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/40">
+                            <blogvh:link.author author="{author}" class="inline-flex h-7 items-center gap-1 rounded-md text-sm font-medium text-link !no-underline transition-colors hover:text-link focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/40">
                                 <span><f:translate extensionName="Blog" key="author.more.posts">More posts by this author</f:translate></span>
                                 <span data-icon="inline-end" aria-hidden="true"><d:atom.icon name="arrow-right" size="xs"/></span>
                             </blogvh:link.author>
@@ -71,7 +71,7 @@
 
     <f:section name="ProfileLink">
         <f:if condition="{author.detailsPage} || {settings.authorUid}">
-            <f:then><blogvh:link.author rel="author" author="{author}" class="rounded-sm text-foreground !no-underline hover:text-primary focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/40"><span itemprop="name">{content}</span></blogvh:link.author></f:then>
+            <f:then><blogvh:link.author rel="author" author="{author}" class="rounded-sm text-foreground !no-underline hover:text-link focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/40"><span itemprop="name">{content}</span></blogvh:link.author></f:then>
             <f:else><span itemprop="name">{content}</span></f:else>
         </f:if>
     </f:section>

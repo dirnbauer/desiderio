@@ -47,7 +47,7 @@
     min-inline-size: 0;
 }
 .cta-floating__eyebrow {
-    color: var(--primary);
+    color: var(--d-link, var(--primary));
     text-transform: uppercase;
     letter-spacing: 0.06em;
     font-size: var(--d-text-xs);

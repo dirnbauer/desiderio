@@ -35,7 +35,9 @@
 .frame :where(a:not([data-slot="button"])),
 .ce-frame :where(a:not([data-slot="button"])),
 .desiderio-content-element :where(a:not([data-slot="button"])) {
-    color: var(--primary);
+    /* --d-link, not raw --primary: presets with a bright accent (amber/lime)
+       override it with a solved ink so small link text holds 4.5:1. */
+    color: var(--d-link, var(--primary));
     text-decoration-line: underline;
     text-underline-offset: 0.25rem;
 }

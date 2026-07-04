@@ -1,5 +1,5 @@
 .pricing-usage__intro { text-align: center; margin-block-end: var(--d-spacing-xl); }
-.pricing-usage__eyebrow { font-size: var(--d-text-sm); text-transform: uppercase; letter-spacing: 0.05em; color: var(--primary); font-weight: 600; margin: 0; }
+.pricing-usage__eyebrow { font-size: var(--d-text-sm); text-transform: uppercase; letter-spacing: 0.05em; color: var(--d-link, var(--primary)); font-weight: 600; margin: 0; }
 .pricing-usage__headline { margin-block-start: var(--d-spacing-xs); text-wrap: balance; }
 .pricing-usage__description { color: var(--muted-foreground); max-width: 40rem; margin-inline: auto; margin-block-start: var(--d-spacing-sm); text-wrap: pretty; }
 .pricing-usage__grid { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr)); gap: var(--d-spacing-lg); align-items: stretch; }
@@ -10,7 +10,7 @@
 .pricing-usage__rate { font-size: var(--d-text-2xl); font-weight: 800; color: var(--primary); }
 .pricing-usage__unit { font-size: var(--d-text-sm); color: var(--muted-foreground); }
 .pricing-usage__card-desc { font-size: var(--d-text-sm); color: var(--muted-foreground); margin-block-start: var(--d-spacing-xs); flex: 1; }
-.pricing-usage__link { display: inline-flex; align-items: center; gap: 0.25rem; font-size: var(--d-text-sm); font-weight: 500; color: var(--primary); text-decoration: none; margin-block-start: var(--d-spacing-md); align-self: flex-start; border-radius: var(--radius); }
+.pricing-usage__link { display: inline-flex; align-items: center; gap: 0.25rem; font-size: var(--d-text-sm); font-weight: 500; color: var(--d-link, var(--primary)); text-decoration: none; margin-block-start: var(--d-spacing-md); align-self: flex-start; border-radius: var(--radius); }
 .pricing-usage__link:hover { text-decoration: underline; }
 .pricing-usage__link:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
 .pricing-usage__arrow { transition: transform 0.2s; }
@@ -33,4 +33,4 @@
 .d-richtext ul { list-style: disc; }
 .d-richtext ol { list-style: decimal; }
 .d-richtext li { margin-block-end: var(--d-spacing-2xs); }
-.d-richtext a { color: var(--primary); text-decoration: underline; text-underline-offset: 2px; }
+.d-richtext a { color: var(--d-link, var(--primary)); text-decoration: underline; text-underline-offset: 2px; }

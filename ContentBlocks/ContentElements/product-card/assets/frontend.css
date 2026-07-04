@@ -6,7 +6,7 @@
 .product-card__body { padding: var(--d-spacing-lg); }
 .product-card__title { font-size: var(--d-text-lg); font-weight: 700; }
 .product-card__price-row { display: flex; align-items: baseline; gap: var(--d-spacing-sm); margin: var(--d-spacing-xs) 0 0; }
-.product-card__price { font-size: var(--d-text-xl); font-weight: 800; color: var(--primary); }
+.product-card__price { font-size: var(--d-text-xl); font-weight: 800; color: var(--d-link, var(--primary)); }
 .product-card__original-price { font-size: var(--d-text-sm); color: var(--muted-foreground); text-decoration: line-through; }
 .product-card__description { font-size: var(--d-text-sm); color: var(--muted-foreground); margin-block-start: var(--d-spacing-sm); text-wrap: pretty; }
 .product-card__button { text-align: center; margin-block-start: var(--d-spacing-md); }
@@ -23,4 +23,4 @@
 .d-richtext ul { list-style: disc; }
 .d-richtext ol { list-style: decimal; }
 .d-richtext li { margin-block-end: var(--d-spacing-2xs); }
-.d-richtext a { color: var(--primary); text-decoration: underline; text-underline-offset: 2px; }
+.d-richtext a { color: var(--d-link, var(--primary)); text-decoration: underline; text-underline-offset: 2px; }

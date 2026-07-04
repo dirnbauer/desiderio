@@ -55,7 +55,7 @@
 }
 
 .desiderio-system-page__home a {
-    color: var(--primary);
+    color: var(--d-link, var(--primary));
     font-weight: 600;
     text-decoration: underline;
     text-underline-offset: 0.2em;

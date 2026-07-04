@@ -24,7 +24,7 @@
 .content-columns__col > *:last-child { margin-bottom: 0; }
 .content-columns__col strong { color: var(--foreground); font-weight: 600; }
 .content-columns__col a {
-    color: var(--primary);
+    color: var(--d-link, var(--primary));
     text-decoration: underline;
     text-underline-offset: 2px;
     border-radius: var(--radius-sm, 0.25rem);

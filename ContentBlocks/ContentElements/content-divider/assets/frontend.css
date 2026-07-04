@@ -56,5 +56,5 @@
 }
 
 .content-divider--color-primary .content-divider__label {
-    color: var(--primary);
+    color: var(--d-link, var(--primary));
 }

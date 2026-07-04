@@ -14,7 +14,7 @@
     <d:molecule.cardHeader class="border-b border-border/70 pb-3">
         <div class="flex items-center justify-between gap-3">
             <h2 class="text-lg font-semibold text-foreground" itemprop="name">
-                <blogvh:link.archive year="{year}" title="{year}" class="!no-underline outline-none transition-colors hover:text-primary focus-visible:ring-3 focus-visible:ring-ring/40">{year}</blogvh:link.archive>
+                <blogvh:link.archive year="{year}" title="{year}" class="!no-underline outline-none transition-colors hover:text-link focus-visible:ring-3 focus-visible:ring-ring/40">{year}</blogvh:link.archive>
             </h2>
             <span class="inline-flex size-8 items-center justify-center rounded-md bg-muted text-muted-foreground" aria-hidden="true">
                 <d:atom.icon name="calendar" size="sm"/>
@@ -25,7 +25,7 @@
         <ul role="list" class="divide-y divide-border/70 text-sm">
             <f:for each="{months}" as="month">
                 <li class="flex items-center justify-between gap-3 py-3" data-blog-archive-year="{year}" data-blog-archive-month="{month.month}">
-                    <blogvh:link.archive year="{year}" month="{month.month}" title="{f:format.date(format: '{settings.archive.monthDateFormat} {settings.archive.yearDateFormat}', date: month.timestamp)}" class="font-medium text-foreground !no-underline outline-none transition-colors hover:text-primary focus-visible:ring-3 focus-visible:ring-ring/40">
+                    <blogvh:link.archive year="{year}" month="{month.month}" title="{f:format.date(format: '{settings.archive.monthDateFormat} {settings.archive.yearDateFormat}', date: month.timestamp)}" class="font-medium text-foreground !no-underline outline-none transition-colors hover:text-link focus-visible:ring-3 focus-visible:ring-ring/40">
                         {f:format.date(format: '{settings.archive.monthDateFormat}', date: month.timestamp)}
                     </blogvh:link.archive>
                     <f:if condition="{settings.archive.showCounter} == 1">

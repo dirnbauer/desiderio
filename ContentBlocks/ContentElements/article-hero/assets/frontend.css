@@ -9,7 +9,7 @@
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    color: var(--primary);
+    color: var(--d-link, var(--primary));
     display: block;
     margin-block-end: var(--d-spacing-sm);
 }

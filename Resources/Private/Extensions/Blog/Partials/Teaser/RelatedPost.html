@@ -42,7 +42,7 @@
                 </f:if>
 
                 <d:atom.typography tag="h3" variant="h4" class="text-balance leading-snug tracking-normal" itemprop="headline">
-                    <blogvh:link.post post="{post}" class="rounded-md text-foreground !no-underline outline-none transition-colors hover:text-primary focus-visible:ring-3 focus-visible:ring-ring/40">
+                    <blogvh:link.post post="{post}" class="rounded-md text-foreground !no-underline outline-none transition-colors hover:text-link focus-visible:ring-3 focus-visible:ring-ring/40">
                         {post.title}
                     </blogvh:link.post>
                 </d:atom.typography>
@@ -64,7 +64,7 @@
             </f:if>
 
             <div class="mt-auto pt-1">
-                <blogvh:link.post post="{post}" class="group/readmore inline-flex min-h-9 items-center gap-1.5 rounded-md text-sm font-medium text-primary !no-underline outline-none transition-colors hover:text-primary focus-visible:ring-3 focus-visible:ring-ring/40">
+                <blogvh:link.post post="{post}" class="group/readmore inline-flex min-h-9 items-center gap-1.5 rounded-md text-sm font-medium text-link !no-underline outline-none transition-colors hover:text-link focus-visible:ring-3 focus-visible:ring-ring/40">
                     <span><f:translate extensionName="Blog" key="read_more" default="Read more"/></span>
                     <span class="inline-flex size-4 items-center justify-center transition-transform duration-200 group-hover/readmore:translate-x-0.5" data-icon="inline-end" aria-hidden="true"><d:atom.icon name="arrow-right" size="xs"/></span>
                 </blogvh:link.post>

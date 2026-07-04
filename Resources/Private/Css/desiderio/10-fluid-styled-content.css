@@ -44,7 +44,7 @@ article[itemtype="https://schema.org/BlogPosting"] [itemprop="articleBody"] .ce-
 }
 
 .ce-fsc__heading-link:hover {
-    color: var(--primary);
+    color: var(--d-link, var(--primary));
 }
 
 .ce-fsc__subheadline {

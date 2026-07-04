@@ -84,7 +84,7 @@
     padding-block-start: var(--d-spacing-sm);
     font-size: var(--d-text-sm);
     font-weight: 500;
-    color: var(--primary);
+    color: var(--d-link, var(--primary));
     text-decoration: none;
     border-radius: var(--d-radius-sm);
 }

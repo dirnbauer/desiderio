@@ -11,7 +11,7 @@
     display: block;
     font-size: var(--d-text-sm);
     font-weight: 600;
-    color: var(--primary);
+    color: var(--d-link, var(--primary));
     text-transform: uppercase;
     letter-spacing: 0.08em;
     margin-bottom: var(--d-spacing-3);

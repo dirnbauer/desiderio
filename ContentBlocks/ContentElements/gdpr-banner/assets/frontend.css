@@ -9,7 +9,7 @@
 .gdpr-banner__message { font-size: var(--d-text-sm); color: var(--muted-foreground); line-height: 1.55; }
 .gdpr-banner__message > *:first-child { margin-top: 0; }
 .gdpr-banner__message > *:last-child { margin-bottom: 0; }
-.gdpr-banner__privacy-link { display: inline-block; margin-block-start: var(--d-spacing-xs); font-size: var(--d-text-sm); color: var(--primary); text-decoration: underline; text-underline-offset: 3px; border-radius: var(--radius-sm); }
+.gdpr-banner__privacy-link { display: inline-block; margin-block-start: var(--d-spacing-xs); font-size: var(--d-text-sm); color: var(--d-link, var(--primary)); text-decoration: underline; text-underline-offset: 3px; border-radius: var(--radius-sm); }
 .gdpr-banner__privacy-link:hover { text-decoration: none; }
 .gdpr-banner__privacy-link:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
 .gdpr-banner__categories { display: flex; flex-wrap: wrap; gap: var(--d-spacing-sm); margin: 0; padding: 0; border: 0; }

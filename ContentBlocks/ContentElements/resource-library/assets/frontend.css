@@ -8,7 +8,7 @@
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    color: var(--primary);
+    color: var(--d-link, var(--primary));
     margin-block-end: var(--d-spacing-xs);
 }
 .resource-library__grid {
@@ -42,7 +42,7 @@
     margin-block-start: auto;
     font-size: var(--d-text-sm);
     font-weight: 500;
-    color: var(--primary);
+    color: var(--d-link, var(--primary));
     text-decoration: none;
     border-radius: var(--radius);
 }
@@ -66,4 +66,4 @@
 .d-richtext ul { list-style: disc; }
 .d-richtext ol { list-style: decimal; }
 .d-richtext li { margin-block-end: var(--d-spacing-2xs); }
-.d-richtext a { color: var(--primary); text-decoration: underline; text-underline-offset: 2px; }
+.d-richtext a { color: var(--d-link, var(--primary)); text-decoration: underline; text-underline-offset: 2px; }

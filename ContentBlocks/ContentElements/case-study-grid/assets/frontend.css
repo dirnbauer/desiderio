@@ -1,5 +1,5 @@
 .case-study-grid__intro { text-align: center; margin-block-end: var(--d-spacing-xl); }
-.case-study-grid__eyebrow { font-size: var(--d-text-sm); text-transform: uppercase; letter-spacing: 0.05em; color: var(--primary); font-weight: 600; margin: 0; }
+.case-study-grid__eyebrow { font-size: var(--d-text-sm); text-transform: uppercase; letter-spacing: 0.05em; color: var(--d-link, var(--primary)); font-weight: 600; margin: 0; }
 .case-study-grid__headline { margin-block-start: var(--d-spacing-xs); text-wrap: balance; }
 .case-study-grid__items { display: grid; gap: var(--d-spacing-lg); }
 .case-study-grid__items--cols-2 { grid-template-columns: repeat(2, 1fr); }
@@ -13,8 +13,8 @@
 .case-study-grid__body { padding: var(--d-spacing-lg); flex: 1; display: flex; flex-direction: column; }
 .case-study-grid__client { font-size: var(--d-text-lg); font-weight: 700; line-height: 1.25; }
 .case-study-grid__summary { color: var(--muted-foreground); margin-block-start: var(--d-spacing-xs); flex: 1; line-height: 1.6; }
-.case-study-grid__result { display: inline-block; font-weight: 700; color: var(--primary); margin: var(--d-spacing-sm) 0 0; }
-.case-study-grid__link { display: inline-block; font-weight: 500; color: var(--primary); text-decoration: none; margin-block-start: var(--d-spacing-sm); border-radius: var(--radius); }
+.case-study-grid__result { display: inline-block; font-weight: 700; color: var(--d-link, var(--primary)); margin: var(--d-spacing-sm) 0 0; }
+.case-study-grid__link { display: inline-block; font-weight: 500; color: var(--d-link, var(--primary)); text-decoration: none; margin-block-start: var(--d-spacing-sm); border-radius: var(--radius); }
 .case-study-grid__link:hover { text-decoration: underline; }
 .case-study-grid__link:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
 
@@ -37,4 +37,4 @@
 .d-richtext ul { list-style: disc; }
 .d-richtext ol { list-style: decimal; }
 .d-richtext li { margin-block-end: var(--d-spacing-2xs); }
-.d-richtext a { color: var(--primary); text-decoration: underline; text-underline-offset: 2px; }
+.d-richtext a { color: var(--d-link, var(--primary)); text-decoration: underline; text-underline-offset: 2px; }

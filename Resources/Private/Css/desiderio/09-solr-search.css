@@ -307,7 +307,7 @@
 }
 
 .d-solr-result-card__title a:hover {
-    color: var(--primary);
+    color: var(--d-link, var(--primary));
 }
 
 .d-solr-result-card__url {

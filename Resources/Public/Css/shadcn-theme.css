@@ -862,7 +862,11 @@ body {
      text-link utility). Presets whose primary cannot serve as small text
      there (bright amber/lime) override this with a solved darker ink. */
   --d-link: var(--primary);
-  --d-overlay-foreground: var(--primary-foreground);
+  /* Ink for text on --foreground-based image scrims (card-overlay, parallax
+     heroes): --background is the exact inverse of the scrim color in every
+     preset and scheme. NOT --primary-foreground — that is dark in the bright
+     amber/lime presets and vanishes on a dark scrim. */
+  --d-overlay-foreground: var(--background);
   --d-radius-sm: calc(var(--radius) * 0.6);
   --d-radius-md: calc(var(--radius) * 0.8);
   --d-radius-lg: var(--radius);

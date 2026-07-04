@@ -47,15 +47,15 @@
     z-index: 2;
     width: 100%;
     padding: var(--d-spacing-lg);
-    color: var(--primary-foreground);
+    color: var(--d-overlay-foreground, var(--background));
 }
 
 @media (min-width: 768px) {
     .card-overlay__content { padding: var(--d-spacing-xl); }
 }
 
-.card-overlay__title { color: var(--primary-foreground); text-wrap: balance; }
-.card-overlay__description { color: var(--primary-foreground); opacity: 0.9; max-width: 48ch; text-wrap: pretty; }
+.card-overlay__title { color: var(--d-overlay-foreground, var(--background)); text-wrap: balance; }
+.card-overlay__description { color: var(--d-overlay-foreground, var(--background)); opacity: 0.9; max-width: 48ch; text-wrap: pretty; }
 
 .card-overlay__cta {
     display: inline-flex;
@@ -64,7 +64,7 @@
     margin-block-start: var(--d-spacing-xs);
     font-size: var(--d-text-sm);
     font-weight: 600;
-    color: var(--primary-foreground);
+    color: var(--d-overlay-foreground, var(--background));
     text-decoration: none;
     border-radius: var(--radius);
 }
@@ -100,3 +100,6 @@
 .d-richtext ol { list-style: decimal; }
 .d-richtext li { margin-block-end: var(--d-spacing-2xs); }
 .d-richtext a { color: var(--primary); text-decoration: underline; text-underline-offset: 2px; }
+/* Overlay description links sit on the dark image scrim, not a page surface —
+   inherit the overlay ink; the underline carries the affordance. */
+.card-overlay .d-richtext a { color: inherit; }

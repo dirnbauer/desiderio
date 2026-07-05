@@ -25,5 +25,6 @@
             value="{vh:misc.prefillField(field: field, mail: mail)}" />
         <di:icon name="chevron-down" size="sm" class="{selectIconClass -> f:format.trim()}" />
     </d:molecule.selectNative>
+    <f:render partial="Misc/FieldError" arguments="{field: field, settings: settings}" />
 </d:molecule.field>
 </html>

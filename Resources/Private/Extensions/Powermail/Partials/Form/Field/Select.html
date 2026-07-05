@@ -42,10 +42,6 @@
             </d:molecule.selectNative>
         </f:else>
     </f:if>
-    <f:if condition="{field.multiselect}">
-        <f:if condition="{settings.validation.client}">
-            <div class="powermail_field_error_container_{field.marker} text-xs text-destructive"></div>
-        </f:if>
-    </f:if>
+    <f:render partial="Misc/FieldError" arguments="{field: field, settings: settings}" />
 </d:molecule.field>
 </html>

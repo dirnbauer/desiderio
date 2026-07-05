@@ -1,5 +1,6 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" xmlns:vh="http://typo3.org/ns/In2code/Powermail/ViewHelpers" xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection" data-namespace-typo3-fluid="true">
 <f:argument name="field" type="object" />
+<f:argument name="settings" type="array" optional="{true}" />
 <f:argument name="mail" type="object" optional="{true}" />
 
 <f:variable name="inputClass"><d:atom.controlClass slot="input" /></f:variable>
@@ -7,5 +8,6 @@
 <d:molecule.field class="powermail_fieldwrap_{field.marker} {field.css}">
     <f:render partial="Form/FieldLabel" arguments="{field: field}" />
     <f:form.textfield property="{field.marker}" value="{vh:misc.prefillField(field: field, mail: mail)}" class="{inputClass -> f:format.trim()}" id="powermail_field_{field.marker}" />
+    <f:render partial="Misc/FieldError" arguments="{field: field, settings: settings}" />
 </d:molecule.field>
 </html>

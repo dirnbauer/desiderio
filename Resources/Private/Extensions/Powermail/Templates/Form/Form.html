@@ -46,10 +46,22 @@
 
                     <f:render partial="Misc/FormError" arguments="{_all}" />
 
+                    <div class="d-powermail-client-errors hidden mb-6" data-powermail-error-summary hidden role="alert" aria-live="assertive" aria-atomic="true" tabindex="-1">
+                        <h3 class="mb-2 font-medium text-destructive" data-powermail-error-summary-title>
+                            <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/powermail.xlf:powermail.validation.summary.title" />
+                        </h3>
+                        <p class="mb-3 text-sm text-muted-foreground" data-powermail-error-summary-description>
+                            <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/powermail.xlf:powermail.validation.summary.description" />
+                        </p>
+                        <ol class="list-decimal space-y-1 ps-4 text-sm" data-powermail-error-summary-list></ol>
+                    </div>
+
                     <f:if condition="{settings.main.moresteps}">
                         <f:variable name="tabsListClass"><d:atom.controlClass slot="tabsList" /></f:variable>
                         <f:variable name="tabsTriggerClass"><d:atom.controlClass slot="tabsTrigger" /></f:variable>
                         <f:variable name="stepIndexClass"><d:atom.controlClass slot="stepIndex" /></f:variable>
+                        <f:variable name="stepCount">{form.pages -> f:count()}</f:variable>
+                        <f:variable name="currentStepSuffix"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/powermail.xlf:powermail.multistep.currentSuffix" /></f:variable>
                         <!-- One horizontal row on every viewport: below sm the inactive
                              steps collapse to number chips (labels stay sr-only for AT)
                              and only the active step shows its label. -->
@@ -63,6 +75,10 @@
                                         data-powermail-fieldset="{page.uid}"
                                         data-powermail-morestep-current="{iterationPages.index}"
                                         data-powermail-morestep-show="{iterationPages.index}"
+                                        data-powermail-step-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/powermail.xlf:powermail.multistep.stepLabel', arguments: {0: iterationPages.cycle, 1: stepCount, 2: page.title})}"
+                                        data-powermail-step-current-suffix="{currentStepSuffix}"
+                                        aria-controls="powermail_fieldset_{page.uid}"
+                                        aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/powermail.xlf:powermail.multistep.stepLabel', arguments: {0: iterationPages.cycle, 1: stepCount, 2: page.title})}{f:if(condition: iterationPages.isFirst, then: currentStepSuffix, else: '')}"
                                         aria-current="{f:if(condition: iterationPages.isFirst, then: 'step', else: 'false')}">
                                     <!-- pointer-events-none: powermail's MoreStepForm reads its
                                          data attributes from event.target — a click landing on an

@@ -18,5 +18,6 @@
             id="powermail_field_{field.marker}" />
         <vh:validation.captcha field="{field}" alt="captcha" class="{captchaImageClass -> f:format.trim()}" id="powermail_captchaimage" />
     </div>
+    <f:render partial="Misc/FieldError" arguments="{field: field, settings: settings}" />
 </d:molecule.field>
 </html>

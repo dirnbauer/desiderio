@@ -17,5 +17,6 @@
         autocomplete="{vh:string.autocomplete(field: field)}"
         additionalAttributes="{vh:validation.validationDataAttribute(field: field)}"
         class="{textareaClass -> f:format.trim()} {vh:validation.errorClass(field: field, class: 'border-destructive ring-1 ring-destructive/20')}" />
+    <f:render partial="Misc/FieldError" arguments="{field: field, settings: settings}" />
 </d:molecule.field>
 </html>

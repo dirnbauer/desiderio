@@ -41,8 +41,6 @@
             </div>
         </f:for>
     </div>
-    <f:if condition="{settings.validation.client}">
-        <div class="powermail_field_error_container_{field.marker} text-xs text-destructive"></div>
-    </f:if>
+    <f:render partial="Misc/FieldError" arguments="{field: field, settings: settings}" />
 </d:molecule.fieldSet>
 </html>

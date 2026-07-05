@@ -18,7 +18,7 @@ use Webconsulting\Desiderio\Data\PowermailDemoFormDefinitions;
  * Desiderio remains installable without in2code/powermail.
  *
  * @phpstan-type DemoOption array{0: string, 1: string, 2: string}
- * @phpstan-type DemoField array{type: string, marker: string, titleEn: string, titleDe: string, mandatory: bool, validation: int, sender_email: bool, sender_name: bool, placeholderEn: string, placeholderDe: string, prefill: string, options: list<DemoOption>, textEn: string, textDe: string}
+ * @phpstan-type DemoField array{type: string, marker: string, titleEn: string, titleDe: string, mandatory: bool, validation: int, sender_email: bool, sender_name: bool, placeholderEn: string, placeholderDe: string, prefill: string, options: list<DemoOption>, textEn: string, textDe: string, autocompleteToken: string, autocompleteSection: string, autocompleteType: string, autocompletePurpose: string}
  * @phpstan-type DemoPage array{titleEn: string, titleDe: string, fields: list<DemoField>}
  * @phpstan-type DemoForm array{slug: string, titleEn: string, titleDe: string, pageTitleEn: string, pageTitleDe: string, introEn: string, introDe: string, thankTitleEn: string, thankTitleDe: string, thankBodyEn: string, thankBodyDe: string, moresteps: bool, pages: list<DemoPage>}
  */
@@ -392,6 +392,10 @@ final class PowermailDemoSeeder
             'sender_name' => (int)(bool)$field['sender_name'],
             'placeholder' => $translated ? $field['placeholderDe'] : $field['placeholderEn'],
             'prefill_value' => $field['prefill'],
+            'autocomplete_token' => $field['autocompleteToken'],
+            'autocomplete_section' => $field['autocompleteSection'],
+            'autocomplete_type' => $field['autocompleteType'],
+            'autocomplete_purpose' => $field['autocompletePurpose'],
             'settings' => $this->buildOptionSettings($field['options'], $translated),
             'text' => $translated ? $field['textDe'] : $field['textEn'],
             'css' => '',

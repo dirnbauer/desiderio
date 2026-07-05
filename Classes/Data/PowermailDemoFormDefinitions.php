@@ -8,12 +8,19 @@ namespace Webconsulting\Desiderio\Data;
  * Static Powermail demo form fixtures for {@see \Webconsulting\Desiderio\Command\PowermailDemoSeeder}.
  *
  * @phpstan-type DemoOption array{0: string, 1: string, 2: string}
- * @phpstan-type DemoField array{type: string, marker: string, titleEn: string, titleDe: string, mandatory: bool, validation: int, sender_email: bool, sender_name: bool, placeholderEn: string, placeholderDe: string, prefill: string, options: list<DemoOption>, textEn: string, textDe: string}
+ * @phpstan-type DemoField array{type: string, marker: string, titleEn: string, titleDe: string, mandatory: bool, validation: int, sender_email: bool, sender_name: bool, placeholderEn: string, placeholderDe: string, prefill: string, options: list<DemoOption>, textEn: string, textDe: string, autocompleteToken: string, autocompleteSection: string, autocompleteType: string, autocompletePurpose: string}
  * @phpstan-type DemoPage array{titleEn: string, titleDe: string, fields: list<DemoField>}
  * @phpstan-type DemoForm array{slug: string, titleEn: string, titleDe: string, pageTitleEn: string, pageTitleDe: string, introEn: string, introDe: string, thankTitleEn: string, thankTitleDe: string, thankBodyEn: string, thankBodyDe: string, moresteps: bool, pages: list<DemoPage>}
  */
 final class PowermailDemoFormDefinitions
 {
+    private const AUTOCOMPLETE_TOKENS_BY_MARKER = [
+        'name' => 'name',
+        'email' => 'email',
+        'phone' => 'tel',
+        'company' => 'organization',
+    ];
+
     /**
      * @return list<DemoForm>
      */
@@ -260,6 +267,10 @@ final class PowermailDemoFormDefinitions
             'options' => [],
             'textEn' => '',
             'textDe' => '',
+            'autocompleteToken' => self::AUTOCOMPLETE_TOKENS_BY_MARKER[$marker] ?? '',
+            'autocompleteSection' => '',
+            'autocompleteType' => '',
+            'autocompletePurpose' => '',
         ];
     }
 }

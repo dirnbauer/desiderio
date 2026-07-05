@@ -30,6 +30,7 @@
                     <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:captcha.placeholder.note" />
                 </span>
             </div>
+            <f:render partial="Misc/FieldError" arguments="{field: field, settings: settings}" />
         </d:molecule.field>
     </f:then>
     <f:else>
@@ -47,6 +48,7 @@
                     </p>
                 </f:else>
             </f:if>
+            <f:render partial="Misc/FieldError" arguments="{field: field, settings: settings}" />
         </d:molecule.field>
     </f:else>
 </f:if>

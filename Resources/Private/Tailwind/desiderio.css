@@ -401,10 +401,9 @@
 }
 
 .d-powermail .d-powermail-step[data-active="true"] {
-  border-color: color-mix(in oklch, var(--border) 82%, transparent);
   background: var(--background);
   color: var(--foreground);
-  box-shadow: var(--shadow-xs);
+  box-shadow: var(--shadow-sm);
 }
 
 .d-powermail .d-powermail-step .pm-step-num {
@@ -424,7 +423,36 @@
   border-color: var(--primary);
   background: var(--primary);
   color: var(--primary-foreground);
-  box-shadow: 0 0 0 2px color-mix(in oklch, var(--primary) 18%, transparent);
+  box-shadow: none;
+}
+
+.d-powermail .d-powermail-client-errors {
+  border: 1px solid color-mix(in oklch, var(--destructive) 36%, var(--border));
+  border-radius: var(--radius);
+  background: color-mix(in oklch, var(--destructive) 5%, var(--background));
+  padding: 1rem;
+}
+
+.d-powermail .d-powermail-client-errors a {
+  color: var(--foreground);
+  text-decoration-thickness: 1px;
+}
+
+.d-powermail :where([data-powermail-field-error]:empty) {
+  display: none;
+}
+
+.d-powermail :where([class*="powermail_field_error_container_"]:not([data-powermail-field-error])) {
+  display: none;
+}
+
+.d-powermail :where(.powermail-errors-list, [data-powermail-error]) {
+  display: none !important;
+}
+
+.d-powermail :where([data-powermail-field-error]:not(:empty)) {
+  margin-top: 0.5rem;
+  color: var(--destructive);
 }
 
 /* Unlayered on purpose: the container's px-4 utility would win against any

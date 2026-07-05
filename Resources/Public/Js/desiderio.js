@@ -898,24 +898,20 @@ document.addEventListener('DOMContentLoaded', () => {
     '[aria-invalid="1"]',
     '[class*="powermail_field_error_container_"]:not(:empty)',
   ].join(',');
-
-  const setPowermailStepState = (button, active) => {
-    button.classList.toggle('active', active);
-    button.dataset.active = active ? 'true' : 'false';
-    button.dataset.state = active ? 'active' : 'inactive';
-
-    if (active) {
-      button.setAttribute('aria-current', 'step');
-    } else {
-      button.removeAttribute('aria-current');
-    }
+  const powermailControlSelector = [
+    'input:not([type="hidden"]):not([type="submit"]):not([type="button"]):not([type="reset"])',
+    'select',
+    'textarea',
+  ].join(',');
+  const powermailAutocompleteByMarker = {
+    name: 'name',
+    email: 'email',
+    phone: 'tel',
+    company: 'organization',
   };
+  const powermailErrorFallback = 'Please check this field.';
 
   const getPowermailFieldsets = form => Array.from(form.querySelectorAll('.powermail_fieldset'));
-
-  const getPowermailErrorIndex = fieldsets => fieldsets.findIndex(fieldset => (
-    fieldset.querySelector(powermailErrorSelector) !== null
-  ));
 
   const getVisiblePowermailIndex = fieldsets => {
     const visibleIndex = fieldsets.findIndex(fieldset => (
@@ -930,6 +926,308 @@ document.addEventListener('DOMContentLoaded', () => {
       fieldset.style.display = index === activeIndex ? '' : 'none';
     });
   };
+
+  const setPowermailStepState = (button, active) => {
+    button.classList.toggle('active', active);
+    button.dataset.active = active ? 'true' : 'false';
+    button.dataset.state = active ? 'active' : 'inactive';
+
+    if (active) {
+      button.setAttribute('aria-current', 'step');
+    } else {
+      button.removeAttribute('aria-current');
+    }
+
+    if (button.dataset.powermailStepLabel) {
+      button.setAttribute(
+        'aria-label',
+        `${button.dataset.powermailStepLabel}${active ? (button.dataset.powermailStepCurrentSuffix || '') : ''}`,
+      );
+    }
+  };
+
+  const getPowermailFieldWrapper = control => control.closest('[class*="powermail_fieldwrap_"]');
+
+  const getPowermailMarkerFromWrapper = wrapper => {
+    if (!wrapper) return '';
+
+    const markerClass = Array.from(wrapper.classList).find(className => (
+      className.startsWith('powermail_fieldwrap_')
+      && !className.startsWith('powermail_fieldwrap_type_')
+    ));
+
+    return markerClass ? markerClass.replace('powermail_fieldwrap_', '') : '';
+  };
+
+  const getPowermailMarkerFromControl = control => {
+    const wrapperMarker = getPowermailMarkerFromWrapper(getPowermailFieldWrapper(control));
+    if (wrapperMarker) return wrapperMarker;
+
+    const idMatch = control.id?.match(/^powermail_field_(.+?)(?:_\d+)?$/);
+    return idMatch ? idMatch[1] : '';
+  };
+
+  const getPowermailErrorContainer = (field, create = true) => {
+    const { marker, wrapper } = field;
+    if (!marker || !wrapper) return null;
+
+    const byData = wrapper.querySelector(`[data-powermail-field-error="${marker}"]`);
+    if (byData) return byData;
+
+    const byId = wrapper.querySelector(`#powermail_field_error_${marker}`);
+    if (byId) return byId;
+
+    const byClass = wrapper.querySelector(`.powermail_field_error_container_${marker}`);
+    if (byClass) return byClass;
+
+    if (!create) return null;
+
+    const container = document.createElement('div');
+    container.id = `powermail_field_error_${marker}`;
+    container.className = `powermail_field_error_container_${marker} text-xs text-destructive`;
+    container.dataset.powermailFieldError = marker;
+    container.setAttribute('aria-live', 'polite');
+    wrapper.appendChild(container);
+
+    return container;
+  };
+
+  const addDescribedBy = (control, id) => {
+    if (!id) return;
+
+    const describedBy = new Set((control.getAttribute('aria-describedby') || '').split(/\s+/).filter(Boolean));
+    describedBy.add(id);
+    control.setAttribute('aria-describedby', Array.from(describedBy).join(' '));
+  };
+
+  const getPowermailFields = form => {
+    const fieldsByMarker = new Map();
+
+    form.querySelectorAll(powermailControlSelector).forEach(control => {
+      if (control.disabled) return;
+
+      const marker = getPowermailMarkerFromControl(control);
+      const wrapper = getPowermailFieldWrapper(control);
+      if (!marker || !wrapper) return;
+
+      if (!fieldsByMarker.has(marker)) {
+        fieldsByMarker.set(marker, {
+          marker,
+          wrapper,
+          controls: [],
+          fieldset: control.closest('.powermail_fieldset'),
+        });
+      }
+
+      fieldsByMarker.get(marker).controls.push(control);
+    });
+
+    return Array.from(fieldsByMarker.values());
+  };
+
+  const applyPowermailAutocomplete = form => {
+    getPowermailFields(form).forEach(field => {
+      const autocomplete = powermailAutocompleteByMarker[field.marker];
+      if (!autocomplete) return;
+
+      field.controls.forEach(control => {
+        if (control.matches('select, textarea, input')) {
+          const currentValue = control.getAttribute('autocomplete');
+          if (currentValue === null || currentValue === '') {
+            control.setAttribute('autocomplete', autocomplete);
+          }
+        }
+      });
+    });
+  };
+
+  const getPowermailValidationScope = form => {
+    if (form.dataset.powermailA11yValidateScope === 'all') return 'all';
+    if (form.dataset.powermailA11yValidateScope) return form.dataset.powermailA11yValidateScope;
+
+    return '';
+  };
+
+  const shouldValidatePowermailField = (form, field) => {
+    const scope = getPowermailValidationScope(form);
+    if (scope === 'all') return true;
+    if (scope) return field.fieldset?.id === scope;
+    if (!form.classList.contains('powermail_morestep')) return form.dataset.powermailA11yValidated === 'true';
+
+    return false;
+  };
+
+  const getPowermailFieldMessage = field => {
+    const errorContainer = getPowermailErrorContainer(field, false);
+    const containerText = errorContainer?.textContent?.replace(/\s+/g, ' ').trim();
+    if (containerText) return containerText;
+
+    const control = field.controls.find(item => item.validationMessage) || field.controls[0];
+    return control?.dataset?.powermailRequiredMessage
+      || control?.dataset?.powermailErrorMessage
+      || control?.validationMessage
+      || powermailErrorFallback;
+  };
+
+  const getPowermailFieldLabel = field => {
+    const label = field.wrapper.querySelector('[data-slot="field-label"], [data-slot="field-legend"], label, legend');
+    const labelText = label?.textContent?.replace(/\*/g, '').replace(/\s+/g, ' ').trim();
+
+    return labelText || field.controls[0]?.getAttribute('name') || field.marker;
+  };
+
+  const isPowermailFieldRequired = field => (
+    field.controls.some(control => (
+      control.required
+      || control.dataset.powermailRequired === 'true'
+      || control.getAttribute('aria-required') === 'true'
+    ))
+  );
+
+  const isPowermailFieldEmpty = field => {
+    const firstControl = field.controls[0];
+    if (!firstControl) return false;
+
+    if (firstControl.type === 'checkbox' || firstControl.type === 'radio') {
+      return !field.controls.some(control => control.checked);
+    }
+
+    if (firstControl.type === 'file') {
+      return !field.controls.some(control => control.files?.length > 0);
+    }
+
+    return !field.controls.some(control => String(control.value || '').trim() !== '');
+  };
+
+  const hasPowermailRenderedError = field => {
+    const errorContainer = getPowermailErrorContainer(field, false);
+    return field.wrapper.querySelector(powermailErrorSelector) !== null
+      || Boolean(errorContainer?.textContent?.trim());
+  };
+
+  const isPowermailFieldInvalid = (form, field) => {
+    if (hasPowermailRenderedError(field)) return true;
+    if (!shouldValidatePowermailField(form, field)) return false;
+    if (isPowermailFieldRequired(field) && isPowermailFieldEmpty(field)) return true;
+
+    return field.controls.some(control => control.validity && !control.validity.valid);
+  };
+
+  const syncPowermailFieldAccessibility = form => {
+    const invalidFields = [];
+
+    getPowermailFields(form).forEach(field => {
+      const errorContainer = getPowermailErrorContainer(field);
+      const invalid = isPowermailFieldInvalid(form, field);
+
+      if (errorContainer) {
+        field.controls.forEach(control => addDescribedBy(control, errorContainer.id));
+      }
+
+      field.controls.forEach(control => {
+        if (invalid) {
+          control.setAttribute('aria-invalid', 'true');
+        } else {
+          control.removeAttribute('aria-invalid');
+        }
+      });
+
+      if (invalid) {
+        if (errorContainer && !errorContainer.textContent.trim()) {
+          errorContainer.textContent = getPowermailFieldMessage(field);
+        }
+
+        invalidFields.push({
+          field,
+          label: getPowermailFieldLabel(field),
+          message: getPowermailFieldMessage(field),
+          control: field.controls.find(control => control.id) || field.controls[0],
+        });
+      } else if (errorContainer) {
+        errorContainer.textContent = '';
+      }
+    });
+
+    return invalidFields;
+  };
+
+  const syncPowermailDocumentTitle = (form, hasErrors) => {
+    if (!document.title) return;
+    if (!form.dataset.powermailOriginalTitle) {
+      form.dataset.powermailOriginalTitle = document.title;
+    }
+
+    if (hasErrors) {
+      if (!document.title.startsWith('Error: ')) {
+        document.title = `Error: ${form.dataset.powermailOriginalTitle}`;
+      }
+      return;
+    }
+
+    if (document.title.startsWith('Error: ')) {
+      document.title = form.dataset.powermailOriginalTitle;
+    }
+  };
+
+  const renderPowermailErrorSummary = (form, invalidFields, focusSummary = false) => {
+    const summary = form.querySelector('[data-powermail-error-summary]');
+    const list = summary?.querySelector('[data-powermail-error-summary-list]');
+    if (!summary || !list) {
+      syncPowermailDocumentTitle(form, invalidFields.length > 0);
+      return;
+    }
+
+    list.textContent = '';
+
+    invalidFields.forEach(({ field, label, message, control }) => {
+      const item = document.createElement('li');
+      const link = document.createElement('a');
+      const targetId = control.id || `powermail_field_${field.marker}`;
+
+      link.href = `#${targetId}`;
+      link.className = 'underline underline-offset-4';
+      link.textContent = `${label}: ${message}`;
+      link.addEventListener('click', event => {
+        event.preventDefault();
+
+        const fieldsets = getPowermailFieldsets(form);
+        const index = fieldsets.indexOf(field.fieldset);
+        if (index >= 0) {
+          showPowermailFieldset(fieldsets, index);
+          form.querySelectorAll('[data-powermail-morestep-current]').forEach(button => {
+            setPowermailStepState(button, Number(button.dataset.powermailMorestepCurrent) === index);
+          });
+        }
+
+        control.focus({ preventScroll: false });
+      });
+
+      item.appendChild(link);
+      list.appendChild(item);
+    });
+
+    const hasErrors = invalidFields.length > 0;
+    summary.hidden = !hasErrors;
+    summary.classList.toggle('hidden', !hasErrors);
+    syncPowermailDocumentTitle(form, hasErrors);
+
+    if (hasErrors && focusSummary) {
+      summary.focus({ preventScroll: true });
+      summary.scrollIntoView({ block: 'nearest' });
+    }
+  };
+
+  const syncPowermailA11y = (form, focusSummary = false) => {
+    applyPowermailAutocomplete(form);
+    const invalidFields = syncPowermailFieldAccessibility(form);
+    renderPowermailErrorSummary(form, invalidFields, focusSummary);
+
+    return invalidFields;
+  };
+
+  const getPowermailErrorIndex = fieldsets => fieldsets.findIndex(fieldset => (
+    fieldset.querySelector(powermailErrorSelector) !== null
+  ));
 
   const syncPowermailMultistep = form => {
     if (!form?.classList?.contains('powermail_morestep')) return;
@@ -947,21 +1245,33 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   };
 
-  const initPowermailMultistep = (scope = document) => {
-    scope.querySelectorAll('form.powermail_morestep').forEach(syncPowermailMultistep);
+  const initPowermailForms = (scope = document) => {
+    scope.querySelectorAll('form').forEach(form => {
+      if (!form.classList.contains('powermail_morestep') && !form.querySelector('.powermail_fieldset, [class*="powermail_fieldwrap_"]')) return;
+
+      syncPowermailMultistep(form);
+      syncPowermailA11y(form);
+    });
   };
 
-  initPowermailMultistep();
-  window.setTimeout(() => initPowermailMultistep(), 0);
-  window.setTimeout(() => initPowermailMultistep(), 100);
-  window.addEventListener('load', () => initPowermailMultistep(), { once: true });
+  initPowermailForms();
+  window.setTimeout(() => initPowermailForms(), 0);
+  window.setTimeout(() => initPowermailForms(), 100);
+  window.addEventListener('load', () => initPowermailForms(), { once: true });
 
   document.addEventListener('click', event => {
     const trigger = event.target.closest('[data-powermail-morestep-show]');
     if (!trigger) return;
 
+    const form = trigger.closest('form');
+    if (form && trigger.hasAttribute('data-powermail-morestep-validate')) {
+      const fieldsets = getPowermailFieldsets(form);
+      const activeFieldset = fieldsets[getVisiblePowermailIndex(fieldsets)];
+      form.dataset.powermailA11yValidated = 'true';
+      form.dataset.powermailA11yValidateScope = activeFieldset?.id || '';
+    }
+
     window.requestAnimationFrame(() => {
-      const form = trigger.closest('form');
       if (!form?.classList?.contains('powermail_morestep')) return;
 
       // Powermail's own MoreStepForm handler has already validated the
@@ -977,7 +1287,39 @@ document.addEventListener('DOMContentLoaded', () => {
       form.querySelectorAll('[data-powermail-morestep-current]').forEach(button => {
         setPowermailStepState(button, Number(button.dataset.powermailMorestepCurrent) === activeIndex);
       });
+
+      window.setTimeout(() => {
+        syncPowermailA11y(form, trigger.hasAttribute('data-powermail-morestep-validate'));
+      }, 0);
     });
+  });
+
+  document.addEventListener('invalid', event => {
+    const form = event.target?.closest?.('form');
+    if (!form) return;
+
+    form.dataset.powermailA11yValidated = 'true';
+    form.dataset.powermailA11yValidateScope = 'all';
+    window.setTimeout(() => syncPowermailA11y(form, true), 0);
+  }, true);
+
+  document.addEventListener('submit', event => {
+    const form = event.target;
+    if (!(form instanceof HTMLFormElement)) return;
+    if (!form.querySelector('.powermail_fieldset, [class*="powermail_fieldwrap_"]')) return;
+
+    form.dataset.powermailA11yValidated = 'true';
+    form.dataset.powermailA11yValidateScope = 'all';
+    window.setTimeout(() => syncPowermailA11y(form, true), 0);
+  }, true);
+
+  ['input', 'change'].forEach(eventName => {
+    document.addEventListener(eventName, event => {
+      const form = event.target?.closest?.('form');
+      if (!form || !form.querySelector('.powermail_fieldset, [class*="powermail_fieldwrap_"]')) return;
+
+      window.setTimeout(() => syncPowermailA11y(form), 0);
+    }, true);
   });
 
   if (document.body) {
@@ -985,13 +1327,13 @@ document.addEventListener('DOMContentLoaded', () => {
       const addedPowermailMarkup = records.some(record => Array.from(record.addedNodes).some(node => (
         node.nodeType === Node.ELEMENT_NODE
         && (
-          node.matches?.('form.powermail_morestep')
-          || node.querySelector?.('form.powermail_morestep')
+          node.matches?.('form, .powermail_fieldset, [class*="powermail_fieldwrap_"]')
+          || node.querySelector?.('form, .powermail_fieldset, [class*="powermail_fieldwrap_"]')
         )
       )));
 
       if (addedPowermailMarkup) {
-        window.setTimeout(() => initPowermailMultistep(), 0);
+        window.setTimeout(() => initPowermailForms(), 0);
       }
     });
 

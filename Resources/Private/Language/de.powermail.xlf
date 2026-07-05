@@ -13,6 +13,12 @@
     <unit id="powermail.multistep.label">
       <segment state="final"><source>Form steps</source><target>Formularschritte</target></segment>
     </unit>
+    <unit id="powermail.multistep.stepLabel">
+      <segment state="final"><source>Step %1$s of %2$s: %3$s</source><target>Schritt %1$s von %2$s: %3$s</target></segment>
+    </unit>
+    <unit id="powermail.multistep.currentSuffix">
+      <segment state="final"><source>, current</source><target>, aktuell</target></segment>
+    </unit>
     <unit id="powermail.multistep.previous">
       <segment state="final"><source>Previous</source><target>Zurueck</target></segment>
     </unit>
@@ -30,6 +36,15 @@
     </unit>
     <unit id="powermail.confirmation.back">
       <segment state="final"><source>Back</source><target>Zurueck</target></segment>
+    </unit>
+    <unit id="powermail.validation.summary.title">
+      <segment state="final"><source>Please check the highlighted fields</source><target>Bitte pruefen Sie die markierten Felder</target></segment>
+    </unit>
+    <unit id="powermail.validation.summary.description">
+      <segment state="final"><source>The form contains fields that need attention.</source><target>Das Formular enthaelt Felder, die geprueft werden muessen.</target></segment>
+    </unit>
+    <unit id="powermail.validation.fieldFallback">
+      <segment state="final"><source>Please check this field.</source><target>Bitte pruefen Sie dieses Feld.</target></segment>
     </unit>
   </file>
 </xliff>

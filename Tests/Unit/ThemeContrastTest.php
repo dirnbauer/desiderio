@@ -9,8 +9,8 @@ use PHPUnit\Framework\TestCase;
 /**
  * WCAG 2.2 contrast guard for every shadcn preset, light and dark:
  * text on the accent needs 4.5:1, muted text on every surface it is rendered
- * on (background, card, muted) 4.5:1, the accent against the page background
- * AND the lighter box surfaces (muted, secondary, accent) 3:1. The brand
+ * on (background, card, muted, secondary, accent) 4.5:1, raw --primary as
+ * text on every surface generated elements use it on 4.5:1. The brand
  * link/text tokens are guarded at 4.5:1 on every surface they are used on:
  * --d-link (links on background/card) and --d-primary-text (links/text on
  * muted, secondary, accent boxes and primary tints) — per-preset solved
@@ -31,7 +31,7 @@ final class ThemeContrastTest extends TestCase
         $dark = $this->parseOklchVariables($this->extractBlock($css, '.dark'));
 
         preg_match_all('/data-shadcn-preset="(\w+)"/', $css, $matches);
-        $presets = array_values(array_unique($matches[1]));
+        $presets = array_values(array_unique(array_merge(['b0'], $matches[1])));
         self::assertNotEmpty($presets);
 
         $failures = [];
@@ -40,8 +40,8 @@ final class ThemeContrastTest extends TestCase
                 continue;
             }
             $blocks = [
-                'light' => $this->extractBlock($css, 'body[data-shadcn-preset="' . $preset . '"]'),
-                'dark' => $this->extractBlock($css, '.dark body[data-shadcn-preset="' . $preset . '"]'),
+                'light' => $preset === 'b0' ? '' : $this->extractBlock($css, 'body[data-shadcn-preset="' . $preset . '"]'),
+                'dark' => $preset === 'b0' ? '' : $this->extractBlock($css, '.dark body[data-shadcn-preset="' . $preset . '"]'),
             ];
             $modes = [
                 'light' => array_merge($root, $this->parseOklchVariables($blocks['light'])),
@@ -54,10 +54,13 @@ final class ThemeContrastTest extends TestCase
                     ['muted-foreground', 'background', self::TEXT_MINIMUM],
                     ['muted-foreground', 'card', self::TEXT_MINIMUM],
                     ['muted-foreground', 'muted', self::TEXT_MINIMUM],
-                    ['primary', 'background', self::UI_MINIMUM],
-                    ['primary', 'muted', self::UI_MINIMUM],
-                    ['primary', 'secondary', self::UI_MINIMUM],
-                    ['primary', 'accent', self::UI_MINIMUM],
+                    ['muted-foreground', 'secondary', self::TEXT_MINIMUM],
+                    ['muted-foreground', 'accent', self::TEXT_MINIMUM],
+                    ['primary', 'background', self::TEXT_MINIMUM],
+                    ['primary', 'card', self::TEXT_MINIMUM],
+                    ['primary', 'muted', self::TEXT_MINIMUM],
+                    ['primary', 'secondary', self::TEXT_MINIMUM],
+                    ['primary', 'accent', self::TEXT_MINIMUM],
                 ] as [$foreground, $background, $minimum]) {
                     if (!isset($variables[$foreground], $variables[$background])) {
                         continue;
@@ -111,16 +114,38 @@ final class ThemeContrastTest extends TestCase
                     }
                 }
 
-                // Search-result highlight (.results-highlight): --d-primary-text
-                // on bg-primary/10 (primary/20 in dark), composited over the card.
+                // Search-result highlight (.results-highlight) and generated
+                // badges use both alpha-like primary tints and explicit
+                // color-mix(in oklch, primary N%, card) tints. Guard raw
+                // --primary and --d-primary-text against both.
                 $tint = $this->compositeSrgb(
                     $primary,
                     $mode === 'dark' ? 0.2 : 0.1,
                     $this->oklchToSrgb(...$surface)
                 );
+                $ratio = $this->contrast($primary, $tint);
+                if ($ratio < self::TEXT_MINIMUM) {
+                    $failures[] = sprintf('%s/%s primary on primary tint = %.2f (< %.1f)', $preset, $mode, $ratio, self::TEXT_MINIMUM);
+                }
+
                 $ratio = $this->contrast($text, $tint);
                 if ($ratio < self::TEXT_MINIMUM) {
                     $failures[] = sprintf('%s/%s d-primary-text on primary tint = %.2f (< %.1f)', $preset, $mode, $ratio, self::TEXT_MINIMUM);
+                }
+
+                $oklchTint = $this->oklchToSrgb(...$this->mixOklch(
+                    $variables['primary'],
+                    $surface,
+                    $mode === 'dark' ? 0.8 : 0.9
+                ));
+                $ratio = $this->contrast($primary, $oklchTint);
+                if ($ratio < self::TEXT_MINIMUM) {
+                    $failures[] = sprintf('%s/%s primary on primary oklch tint = %.2f (< %.1f)', $preset, $mode, $ratio, self::TEXT_MINIMUM);
+                }
+
+                $ratio = $this->contrast($text, $oklchTint);
+                if ($ratio < self::TEXT_MINIMUM) {
+                    $failures[] = sprintf('%s/%s d-primary-text on primary oklch tint = %.2f (< %.1f)', $preset, $mode, $ratio, self::TEXT_MINIMUM);
                 }
 
                 // --d-link-on-muted (= --d-primary-text) colors links inside the

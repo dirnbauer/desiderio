@@ -140,6 +140,24 @@ function compositeSrgb(array $foreground, float $alpha, array $background): arra
     ];
 }
 
+/**
+ * color-mix(in oklch, $base (1 - $otherWeight), $other $otherWeight).
+ *
+ * @param array{float, float, float} $base
+ * @param array{float, float, float} $other
+ * @return array{float, float, float}
+ */
+function mixOklch(array $base, array $other, float $otherWeight): array
+{
+    $hueDelta = fmod($other[2] - $base[2] + 540.0, 360.0) - 180.0;
+
+    return [
+        $base[0] + ($other[0] - $base[0]) * $otherWeight,
+        $base[1] + ($other[1] - $base[1]) * $otherWeight,
+        fmod($base[2] + $hueDelta * $otherWeight + 360.0, 360.0),
+    ];
+}
+
 /** True when oklch(L C H) converts to sRGB without any channel clamping. */
 function inSrgbGamut(float $L, float $C, float $H): bool
 {
@@ -273,6 +291,82 @@ function solveMaxLightness(float $min, float $max, float $chroma, int $hue, arra
 }
 
 /**
+ * Primary is used by generated elements as text too, not only as a button/UI
+ * fill. Solve the light-mode primary against every light surface it can sit
+ * on, including alpha-composited and OKLCH-mixed primary tints used by badges
+ * and highlights.
+ *
+ * @param array<array{float, float, float}> $references
+ * @param array{float, float, float} $tintSurface
+ * @param array{float, float, float} $tintSurfaceOklch
+ */
+function solveLightPrimaryLightness(float $min, float $max, float $chroma, int $hue, array $references, array $tintSurface, array $tintSurfaceOklch, float $tintAlpha, float $target): float
+{
+    $meets = static function (float $L) use ($chroma, $hue, $references, $tintSurface, $tintSurfaceOklch, $tintAlpha, $target): bool {
+        $rgb = oklchToSrgb($L, $chroma, (float)$hue);
+        foreach ($references as $reference) {
+            if (contrastRatio($rgb, $reference) < $target) {
+                return false;
+            }
+        }
+        if (contrastRatio($rgb, compositeSrgb($rgb, $tintAlpha, $tintSurface)) < $target) {
+            return false;
+        }
+        $mixedTint = oklchToSrgb(...mixOklch([$L, $chroma, (float)$hue], $tintSurfaceOklch, 1 - $tintAlpha));
+
+        return contrastRatio($rgb, $mixedTint) >= $target;
+    };
+
+    for ($i = 0; $i < 40; $i++) {
+        $mid = ($min + $max) / 2;
+        if ($meets($mid)) {
+            $min = $mid;
+        } else {
+            $max = $mid;
+        }
+    }
+
+    return round($min, 3);
+}
+
+/**
+ * Dark-mode counterpart: contrast against dark references grows as primary
+ * lightness increases, so solve for the lowest accessible lightness.
+ *
+ * @param array<array{float, float, float}> $references
+ * @param array{float, float, float} $tintSurface
+ * @param array{float, float, float} $tintSurfaceOklch
+ */
+function solveDarkPrimaryLightness(float $min, float $max, float $chroma, int $hue, array $references, array $tintSurface, array $tintSurfaceOklch, float $tintAlpha, float $target): float
+{
+    $meets = static function (float $L) use ($chroma, $hue, $references, $tintSurface, $tintSurfaceOklch, $tintAlpha, $target): bool {
+        $rgb = oklchToSrgb($L, $chroma, (float)$hue);
+        foreach ($references as $reference) {
+            if (contrastRatio($rgb, $reference) < $target) {
+                return false;
+            }
+        }
+        if (contrastRatio($rgb, compositeSrgb($rgb, $tintAlpha, $tintSurface)) < $target) {
+            return false;
+        }
+        $mixedTint = oklchToSrgb(...mixOklch([$L, $chroma, (float)$hue], $tintSurfaceOklch, 1 - $tintAlpha));
+
+        return contrastRatio($rgb, $mixedTint) >= $target;
+    };
+
+    for ($i = 0; $i < 40; $i++) {
+        $mid = ($min + $max) / 2;
+        if ($meets($mid)) {
+            $max = $mid;
+        } else {
+            $min = $mid;
+        }
+    }
+
+    return round($max, 3);
+}
+
+/**
  * @return array{light: array<string,string>, dark: array<string,string>}
  */
 function accentTokens(int $hue, bool $lightAccent): array
@@ -281,44 +375,37 @@ function accentTokens(int $hue, bool $lightAccent): array
     // Solver targets carry a small margin above the WCAG 2.2 minima
     // (4.5:1 text, 3:1 non-text) to absorb browser gamut-mapping drift.
     $textTarget = 4.55;
-    $uiTarget = 3.05;
-    $whiteFg = oklchToSrgb(0.985, 0.0, 0.0);
 
     // Neutral base surfaces the presets inherit, plus the preset's own tinted
-    // accent surface — the strictest light surface the brand color must hold
-    // 3:1 (UI) and, as link text, 4.5:1 against.
-    $lightAccentSurface = oklchToSrgb(0.95, 0.03, (float)$hue);
+    // accent surface. Primary is intentionally solved as text-safe on these
+    // surfaces because many generated elements use raw --primary for metric
+    // values, labels, and badges, not only as a button fill.
+    $lightAccentSurface = oklchToSrgb(0.97, 0.02, (float)$hue);
     $lightMuted = oklchToSrgb(0.97, 0.0, 0.0);
     $darkAccentSurface = oklchToSrgb(0.33, 0.045, (float)$hue);
     $darkMuted = oklchToSrgb(0.269, 0.0, 0.0);
     $darkCard = oklchToSrgb(0.205, 0.0, 0.0);
     $lightCard = oklchToSrgb(1.0, 0.0, 0.0);
+    $lightCardOklch = [1.0, 0.0, 0.0];
+    $darkCardOklch = [0.205, 0.0, 0.0];
+
+    $lpC = $lightAccent ? 0.16 : 0.2;
+    $dpC = $lightAccent ? 0.17 : 0.18;
+    $lpL = solveLightPrimaryLightness(0.3, 0.9, $lpC, $hue, [$lightCard, $lightMuted, $lightAccentSurface], $lightCard, $lightCardOklch, 0.1, $textTarget);
+    $dpL = solveDarkPrimaryLightness(0.5, 0.95, $dpC, $hue, [$darkCard, $darkMuted, $darkAccentSurface], $darkCard, $darkCardOklch, 0.2, $textTarget);
+    $lp = sprintf('oklch(%s %s %s)', (string)$lpL, (string)$lpC, $h);
+    $dp = sprintf('oklch(%s %s %s)', (string)$dpL, (string)$dpC, $h);
+    $lpFg = 'oklch(0.985 0 0)';
 
     if ($lightAccent) {
-        // Bright accents (amber/lime): dark text on the accent. The light-mode
-        // accent must hold the 3:1 UI floor on every light surface it sits on;
-        // its own tinted accent box (0.95) is the strictest, so solve there.
-        $lpL = solveMaxLightness(0.4, 0.9, 0.16, $hue, $lightAccentSurface, $uiTarget);
-        $lpC = 0.16;
-        $lp = "oklch({$lpL} 0.16 {$h})";
-        $lpFgL = solveMaxLightness(0.1, 0.45, 0.05, $hue, oklchToSrgb($lpL, 0.16, (float)$hue), $textTarget);
-        $lpFg = "oklch({$lpFgL} 0.05 {$h})";
-        $dpL = 0.84;
-        $dpC = 0.17;
-        $dp = "oklch(0.84 0.17 {$h})";
-        $dpFgL = solveMaxLightness(0.1, 0.45, 0.05, $hue, oklchToSrgb(0.84, 0.17, (float)$hue), $textTarget);
+        // Amber/lime keep a slightly lower chroma cap to avoid clipping while
+        // still using the same text-safe primary contract as every preset.
+        $dpFgL = solveMaxLightness(0.1, 0.45, 0.05, $hue, oklchToSrgb($dpL, $dpC, (float)$hue), $textTarget);
         $dpFg = "oklch({$dpFgL} 0.05 {$h})";
     } else {
-        // Saturated accents: white text in light mode (solve the accent), a
-        // brighter accent with dark text in dark mode (shadcn convention).
-        $lpL = solveMaxLightness(0.3, 0.65, 0.2, $hue, $whiteFg, $textTarget);
-        $lpC = 0.2;
-        $lp = "oklch({$lpL} 0.2 {$h})";
-        $lpFg = 'oklch(0.985 0 0)';
-        $dpL = 0.66;
-        $dpC = 0.18;
-        $dp = "oklch(0.66 0.18 {$h})";
-        $dpFgL = solveMaxLightness(0.1, 0.4, 0.035, $hue, oklchToSrgb(0.66, 0.18, (float)$hue), $textTarget);
+        // Saturated accents: white text in light mode, a brighter accent with
+        // dark text in dark mode (shadcn convention).
+        $dpFgL = solveMaxLightness(0.1, 0.4, 0.035, $hue, oklchToSrgb($dpL, $dpC, (float)$hue), $textTarget);
         $dpFg = "oklch({$dpFgL} 0.035 {$h})";
     }
 
@@ -362,7 +449,7 @@ function accentTokens(int $hue, bool $lightAccent): array
     $light = [
         '--primary' => $lp,
         '--primary-foreground' => $lpFg,
-        '--accent' => "oklch(0.95 0.03 {$h})",
+        '--accent' => "oklch(0.97 0.02 {$h})",
         '--accent-foreground' => "oklch(0.32 0.07 {$h})",
         '--ring' => $lp,
         '--sidebar-primary' => $lp,
@@ -408,10 +495,13 @@ $mapLines = [];
 $iconLines = [];
 
 $contrastFailures = [];
-$parseOklch = static function (string $value): array {
+$parseOklchValues = static function (string $value): array {
     preg_match('/oklch\(([\d.]+)\s+([\d.]+)\s+([\d.]+)\)/', $value, $m);
 
-    return oklchToSrgb((float)$m[1], (float)$m[2], (float)$m[3]);
+    return [(float)$m[1], (float)$m[2], (float)$m[3]];
+};
+$parseOklch = static function (string $value) use ($parseOklchValues): array {
+    return oklchToSrgb(...$parseOklchValues($value));
 };
 
 // Neutral base surfaces every house preset inherits from :root / .dark in
@@ -438,8 +528,8 @@ foreach ($presets as [$id, $label, $hue, $lightAccent, $radius, $fontKey, $icon,
     $tokens = accentTokens($hue, $lightAccent);
 
     // WCAG 2.2 verification: text on accent 4.5:1, muted text on its surfaces
-    // 4.5:1, the accent 3:1 (UI floor) on every surface it sits on, and the
-    // solved brand link/text tokens 4.5:1 on theirs.
+    // 4.5:1, raw --primary as text 4.5:1 on the surfaces generated elements
+    // use, and the solved brand link/text tokens 4.5:1 on theirs.
     foreach ($baseSurfaces as $mode => $surfaces) {
         $background = $surfaces['background'];
         $primary = $parseOklch($tokens[$mode]['--primary']);
@@ -449,24 +539,33 @@ foreach ($presets as [$id, $label, $hue, $lightAccent, $radius, $fontKey, $icon,
         $mutedFg = $surfaces['muted-foreground'];
         $resolve = static fn (string $value): array => $value === 'var(--primary)' ? $primary : $parseOklch($value);
         $primaryText = $resolve($tokens[$mode]['--d-primary-text']);
+        $primaryOklch = $parseOklchValues($tokens[$mode]['--primary']);
+        $cardOklch = $mode === 'dark' ? [0.205, 0.0, 0.0] : [1.0, 0.0, 0.0];
         $link = isset($tokens[$mode]['--d-link']) ? $resolve($tokens[$mode]['--d-link']) : $primary;
         $tint = $mode === 'dark'
             ? compositeSrgb($primary, 0.2, $surfaces['card'])
             : compositeSrgb($primary, 0.1, $surfaces['card']);
+        $mixedTint = oklchToSrgb(...mixOklch($primaryOklch, $cardOklch, $mode === 'dark' ? 0.8 : 0.9));
         foreach ([
             ['primary-foreground/primary', contrastRatio($primaryFg, $primary), 4.5],
             ['accent-foreground/accent', contrastRatio($accentFg, $accent), 4.5],
             ['muted-foreground/background', contrastRatio($mutedFg, $background), 4.5],
             ['muted-foreground/card', contrastRatio($mutedFg, $surfaces['card']), 4.5],
             ['muted-foreground/muted', contrastRatio($mutedFg, $surfaces['muted']), 4.5],
-            ['primary/background', contrastRatio($primary, $background), 3.0],
-            ['primary/muted', contrastRatio($primary, $surfaces['muted']), 3.0],
-            ['primary/secondary', contrastRatio($primary, $surfaces['secondary']), 3.0],
-            ['primary/accent', contrastRatio($primary, $accent), 3.0],
+            ['muted-foreground/secondary', contrastRatio($mutedFg, $surfaces['secondary']), 4.5],
+            ['muted-foreground/accent', contrastRatio($mutedFg, $accent), 4.5],
+            ['primary/background', contrastRatio($primary, $background), 4.5],
+            ['primary/card', contrastRatio($primary, $surfaces['card']), 4.5],
+            ['primary/muted', contrastRatio($primary, $surfaces['muted']), 4.5],
+            ['primary/secondary', contrastRatio($primary, $surfaces['secondary']), 4.5],
+            ['primary/accent', contrastRatio($primary, $accent), 4.5],
+            ['primary/primary-tint', contrastRatio($primary, $tint), 4.5],
+            ['primary/primary-oklch-tint', contrastRatio($primary, $mixedTint), 4.5],
             ['d-primary-text/muted', contrastRatio($primaryText, $surfaces['muted']), 4.5],
             ['d-primary-text/secondary', contrastRatio($primaryText, $surfaces['secondary']), 4.5],
             ['d-primary-text/accent', contrastRatio($primaryText, $accent), 4.5],
             ['d-primary-text/primary-tint', contrastRatio($primaryText, $tint), 4.5],
+            ['d-primary-text/primary-oklch-tint', contrastRatio($primaryText, $mixedTint), 4.5],
             ['d-link/background', contrastRatio($link, $background), 4.5],
             ['d-link/card', contrastRatio($link, $surfaces['card']), 4.5],
         ] as [$pair, $ratio, $minimum]) {

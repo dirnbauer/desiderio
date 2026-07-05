@@ -61,7 +61,7 @@
 .desiderio-breadcrumb__separator {
     display: inline-flex;
     align-items: center;
-    color: color-mix(in oklch, var(--muted-foreground) 70%, transparent);
+    color: var(--muted-foreground);
     user-select: none;
 }
 

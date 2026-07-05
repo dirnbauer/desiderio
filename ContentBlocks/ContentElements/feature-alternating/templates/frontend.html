@@ -23,7 +23,7 @@
                             <div class="feature-alternating__description d-richtext">{item -> f:render.text(field: 'description')}</div>
                         </f:if>
                         <f:if condition="{item.link.url}">
-                            <d:atom.link href="{item.link.url}" target="{item.link.target}" variant="muted" class="feature-alternating__link">
+                            <d:atom.link href="{f:uri.typolink(parameter: item.link.url)}" target="{item.link.target}" variant="muted" class="feature-alternating__link">
                                 <span>{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:learn_more', default: 'Learn more')}</span><span class="sr-only">: {item -> f:render.text(field: 'title')}</span><span class="feature-alternating__arrow" aria-hidden="true">&rarr;</span>
                             </d:atom.link>
                         </f:if>

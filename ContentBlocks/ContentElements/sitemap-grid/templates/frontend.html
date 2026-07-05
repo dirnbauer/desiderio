@@ -21,7 +21,7 @@
                                 <li class="sitemap-grid__item">
                                     <f:if condition="{page.link.url}">
                                         <f:then>
-                                            <d:atom.link href="{page.link.url}" target="{page.link.target}" variant="muted" class="sitemap-grid__link">{page -> f:render.text(field: 'label')}</d:atom.link>
+                                            <d:atom.link href="{f:uri.typolink(parameter: page.link.url)}" target="{page.link.target}" variant="muted" class="sitemap-grid__link">{page -> f:render.text(field: 'label')}</d:atom.link>
                                         </f:then>
                                         <f:else>
                                             <span class="sitemap-grid__link sitemap-grid__link--static">{page -> f:render.text(field: 'label')}</span>

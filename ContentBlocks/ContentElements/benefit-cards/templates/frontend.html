@@ -24,7 +24,7 @@
                         </f:if>
                         <d:atom.typography tag="h3" variant="large" class="benefit-cards__title">
                             <f:if condition="{item.link.url}">
-                                <f:then><d:atom.link href="{item.link.url}" target="{item.link.target}" variant="muted" class="benefit-cards__title-link focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/30">{item -> f:render.text(field: 'title')}</d:atom.link></f:then>
+                                <f:then><d:atom.link href="{f:uri.typolink(parameter: item.link.url)}" target="{item.link.target}" variant="muted" class="benefit-cards__title-link focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/30">{item -> f:render.text(field: 'title')}</d:atom.link></f:then>
                                 <f:else>{item -> f:render.text(field: 'title')}</f:else>
                             </f:if>
                         </d:atom.typography>

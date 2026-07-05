@@ -8,8 +8,7 @@
     --feature-timeline-marker-size: 3rem;
     --feature-timeline-gap: var(--d-spacing-lg);
     --feature-timeline-chevron-size: var(--d-spacing-sm);
-    --feature-timeline-chevron-inset: 1px;
-    --feature-timeline-connector-target-offset: 1.5px;
+    --feature-timeline-connector-target-offset: calc(var(--feature-timeline-chevron-size) / 2 + 1px);
     --feature-timeline-dot-clearance: 0.25rem;
 
     display: flex;
@@ -93,34 +92,34 @@
     box-shadow: var(--d-surface-shadow, var(--d-shadow-sm, none));
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
+.feature-timeline__card::before {
+    content: '';
+    position: absolute;
+    top: calc(var(--feature-timeline-marker-size) / 2);
+    left: calc(var(--feature-timeline-chevron-size) / -2 + 1px);
+    width: var(--feature-timeline-chevron-size);
+    height: var(--feature-timeline-chevron-size);
+    border-left: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: var(--card);
+    transform: translateY(-50%) rotate(45deg);
+    z-index: 2;
+    transition: border-color 0.2s ease;
+}
 /* Focus-visible ring: keyboard focus on anything inside an item (richtext
    links) rings its card and highlights the step marker. */
 .feature-timeline__item:has(:focus-visible) .feature-timeline__card {
     border-color: var(--ring);
     box-shadow: 0 0 0 var(--d-ring-width, 2px) color-mix(in oklab, var(--ring) 50%, transparent);
 }
-.feature-timeline__item:has(:focus-visible) .feature-timeline__dot::after {
-    border-inline-start-color: var(--ring);
+.feature-timeline__item:has(:focus-visible) .feature-timeline__card::before {
+    border-left-color: var(--ring);
+    border-bottom-color: var(--ring);
 }
 .feature-timeline__description a:focus-visible {
     outline: 2px solid var(--ring);
     outline-offset: 2px;
     border-radius: var(--d-radius-sm);
-}
-/* the chevron belongs to the marker (the number) and points across to its card,
-   instead of being a tail hanging off the card's left edge */
-.feature-timeline__dot::after {
-    content: '';
-    position: absolute;
-    left: calc(100% - 1px);
-    top: 50%;
-    transform: translateY(-50%);
-    width: 0;
-    height: 0;
-    border-block: 6px solid transparent;
-    border-inline-start: 7px solid var(--primary);
-    pointer-events: none;
-    z-index: 2;
 }
 .feature-timeline__title {
     font-weight: 600;

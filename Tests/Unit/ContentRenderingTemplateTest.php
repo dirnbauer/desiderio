@@ -563,6 +563,28 @@ final class ContentRenderingTemplateTest extends TestCase
         self::assertStringContainsString('padding: var(--d-spacing-lg);', $timelineCss);
     }
 
+    public function testFeatureTimelineKeepsNumberedMarkersAndNeutralCardChevron(): void
+    {
+        $template = (string)file_get_contents(__DIR__ . '/../../ContentBlocks/ContentElements/feature-timeline/templates/frontend.html');
+        $css = (string)file_get_contents(__DIR__ . '/../../ContentBlocks/ContentElements/feature-timeline/assets/frontend.css');
+        $fixture = json_decode(
+            (string)file_get_contents(__DIR__ . '/../../ContentBlocks/ContentElements/feature-timeline/fixture.json'),
+            true,
+            512,
+            JSON_THROW_ON_ERROR
+        );
+
+        self::assertStringContainsString('class="feature-timeline__dot"', $template);
+        self::assertStringContainsString("f:render.text(field: 'step')", $template);
+        self::assertSame(['1', '2', '3', '4'], array_column($fixture['items'] ?? [], 'step'));
+
+        self::assertStringContainsString('.feature-timeline__card::before', $css);
+        self::assertStringContainsString('background: var(--card);', $css);
+        self::assertStringContainsString('border-left: 1px solid var(--border);', $css);
+        self::assertStringNotContainsString('.feature-timeline__dot::after', $css);
+        self::assertStringNotContainsString('border-inline-start: 7px solid var(--primary);', $css);
+    }
+
     public function testExtensionIntegrationSiteSetsAreBundledWithBaseSet(): void
     {
         $baseSet = Yaml::parseFile(__DIR__ . '/../../Configuration/Sets/Desiderio/config.yaml');

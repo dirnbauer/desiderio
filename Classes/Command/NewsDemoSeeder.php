@@ -356,7 +356,7 @@ final class NewsDemoSeeder
     private function buildArticleBlocks(int $newsIndex, array $news): array
     {
         $statsPool = [
-            ['value' => '255', 'label' => 'Content elements', 'description_text' => 'Every one with a backend preview, demo fixture, and audited markup.'],
+            ['value' => '244', 'label' => 'Content elements', 'description_text' => 'Every one with a backend preview, demo fixture, and audited markup.'],
             ['value' => '15', 'label' => 'Theme presets', 'description_text' => 'Switchable at runtime, per site or per page subtree.'],
             ['value' => '170+', 'label' => 'Automated tests', 'description_text' => 'Unit and functional, on PHP 8.3 and 8.4.'],
             ['value' => '49', 'label' => 'Fluid components', 'description_text' => 'Typed f:argument contracts on every atom and molecule.'],

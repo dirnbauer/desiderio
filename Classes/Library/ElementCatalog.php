@@ -25,7 +25,7 @@ use TYPO3\CMS\Core\Utility\PathUtility;
  *    is only used by the CLI seeder, where parsing every file is acceptable.
  *  - getElementMetadata() returns the LIGHT records the frontend picker needs
  *    (title/description/group/icon, no config, no fixture) and is persistently
- *    cached, because building it parses ~255 config.yaml files and that ran on
+ *    cached, because building it parses ~244 config.yaml files and that ran on
  *    every picker open. See getElementMetadata() for the cache/invalidation.
  */
 final class ElementCatalog
@@ -114,9 +114,9 @@ final class ElementCatalog
      * Lightweight catalog metadata for the frontend element picker: one entry
      * per element with title/description/group/icon, but WITHOUT the parsed
      * config or demo fixture (which only the seeder needs and which made the
-     * per-request build read ~255 extra JSON files for nothing).
+     * per-request build read ~244 extra JSON files for nothing).
      *
-     * Persistently cached: building this list parses ~255 config.yaml files,
+     * Persistently cached: building this list parses ~244 config.yaml files,
      * which dominated the picker endpoint's response time when it ran on every
      * open. The cache key fingerprints every config.yaml's path + mtime, so
      * adding, removing or editing an element rebuilds it automatically; a normal

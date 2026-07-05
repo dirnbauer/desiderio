@@ -21,7 +21,6 @@ use PHPUnit\Framework\TestCase;
 final class ThemeContrastTest extends TestCase
 {
     private const TEXT_MINIMUM = 4.5;
-    private const UI_MINIMUM = 3.0;
 
     public function testEveryPresetMeetsWcagContrastInBothColorSchemes(): void
     {

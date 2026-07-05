@@ -128,24 +128,24 @@ final class SeedStyleguidePagesCommandBlogFunctionalTest extends FunctionalTestC
 
         $allCategories = [];
         $allTags = [];
-        $anthropic = null;
+        $aiLabStory = null;
         foreach ($this->blogShowcasePages() as $page) {
             $allCategories = array_merge($allCategories, $page['blog']['categories']);
             $allTags = array_merge($allTags, $page['blog']['tags']);
-            if ($page['slug'] === '/success-stories/anthropic') {
-                $anthropic = $page;
+            if ($page['slug'] === '/success-stories/an-ai-lab') {
+                $aiLabStory = $page;
             }
         }
-        self::assertIsArray($anthropic);
+        self::assertIsArray($aiLabStory);
         self::assertSame(count(array_unique($allCategories)), $this->countRows('sys_category', 'deleted = 0'));
         self::assertSame(count(array_unique($allTags)), $this->countRows('tx_blog_domain_model_tag', 'deleted = 0'));
 
-        $post = $this->fetchPageBySlug('/success-stories/anthropic');
-        self::assertSame(count($anthropic['blog']['categories']), $this->countRows('sys_category_record_mm', sprintf(
+        $post = $this->fetchPageBySlug('/success-stories/an-ai-lab');
+        self::assertSame(count($aiLabStory['blog']['categories']), $this->countRows('sys_category_record_mm', sprintf(
             "uid_foreign = %d AND tablenames = 'pages' AND fieldname = 'categories'",
             $this->intValue($post, 'uid')
         )));
-        self::assertSame(count($anthropic['blog']['tags']), $this->countRows('tx_blog_tag_pages_mm', 'uid_local = ' . $this->intValue($post, 'uid')));
+        self::assertSame(count($aiLabStory['blog']['tags']), $this->countRows('tx_blog_tag_pages_mm', 'uid_local = ' . $this->intValue($post, 'uid')));
         // Helper pages and the list keep exactly one live plugin element each.
         self::assertSame(3, $this->countRows('tt_content', "deleted = 0 AND CType IN ('blog_posts', 'blog_category', 'blog_tag')"));
     }

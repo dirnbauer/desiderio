@@ -574,9 +574,13 @@ final class ContentRenderingTemplateTest extends TestCase
             JSON_THROW_ON_ERROR
         );
 
+        self::assertIsArray($fixture);
+        $items = $fixture['items'] ?? [];
+        self::assertIsArray($items);
+
         self::assertStringContainsString('class="feature-timeline__dot"', $template);
         self::assertStringContainsString("f:render.text(field: 'step')", $template);
-        self::assertSame(['1', '2', '3', '4'], array_column($fixture['items'] ?? [], 'step'));
+        self::assertSame(['1', '2', '3', '4'], array_column($items, 'step'));
 
         self::assertStringContainsString('.feature-timeline__card::before', $css);
         self::assertStringContainsString('background: var(--card);', $css);

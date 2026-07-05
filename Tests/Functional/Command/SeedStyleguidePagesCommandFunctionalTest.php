@@ -42,7 +42,8 @@ final class SeedStyleguidePagesCommandFunctionalTest extends FunctionalTestCase
     {
         $groups = StyleguideContentGroups::getGroupsWithFixtures();
         $expectedDesiderioElements = $this->countDesiderioGroupElements($groups)
-            + StyleguideShowcasePages::contentElementCount();
+            + StyleguideShowcasePages::contentElementCount()
+            + $this->countChapterFramingElements($groups);
         $expectedCoreElements = $this->countCoreGroupElements($groups);
         $expectedTopLevelPages = count($groups) + $this->countTopLevelShowcasePages();
         $expectedPages = count($groups) + count(StyleguideShowcasePages::subpages());
@@ -97,7 +98,8 @@ final class SeedStyleguidePagesCommandFunctionalTest extends FunctionalTestCase
     {
         $groups = StyleguideContentGroups::getGroupsWithFixtures();
         $expectedDesiderioElements = $this->countDesiderioGroupElements($groups)
-            + StyleguideShowcasePages::contentElementCount();
+            + StyleguideShowcasePages::contentElementCount()
+            + $this->countChapterFramingElements($groups);
         $expectedCoreElements = $this->countCoreGroupElements($groups);
         $expectedTopLevelPages = count($groups) + $this->countTopLevelShowcasePages();
         $expectedPages = count($groups) + count(StyleguideShowcasePages::subpages());
@@ -155,6 +157,27 @@ final class SeedStyleguidePagesCommandFunctionalTest extends FunctionalTestCase
         foreach ($groups as $group) {
             if ($group['groupId'] !== 'core') {
                 $count += count($group['elements']);
+            }
+        }
+
+        return $count;
+    }
+
+    /**
+     * Mirrors the seeder: every chapter page gets a benefit-led intro
+     * (desiderio_headersection) and a closing CTA where the group defines one.
+     *
+     * @param list<array{groupId: string|int}> $groups
+     */
+    private function countChapterFramingElements(array $groups): int
+    {
+        $count = 0;
+        foreach ($groups as $group) {
+            if (StyleguideContentGroups::chapterIntro((string)$group['groupId']) !== null) {
+                $count++;
+            }
+            if (StyleguideContentGroups::chapterCta((string)$group['groupId']) !== null) {
+                $count++;
             }
         }
 

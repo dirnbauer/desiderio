@@ -22,7 +22,7 @@
 <f:section name="content">
     <div class="textmedia__content">
         <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
-        <f:if condition="{data.subheadline}"><d:atom.typography variant="muted">{data -> f:render.text(field: 'subheadline')}</d:atom.typography></f:if>
+        <f:if condition="{data.subheadline}"><d:atom.typography variant="lead">{data -> f:render.text(field: 'subheadline')}</d:atom.typography></f:if>
         <f:if condition="{data.content}">
             <div class="textmedia__richtext">{data -> f:render.text(field: 'content')}</div>
         </f:if>

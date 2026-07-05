@@ -4,7 +4,7 @@
     gap: var(--d-spacing-xl);
     align-items: center;
 }
-.textmedia__content [data-variant="h2"] + [data-variant="muted"] {
+.textmedia__content [data-variant="h2"] + [data-variant="lead"] {
     margin-block-start: var(--d-spacing-sm);
 }
 @media (max-width: 768px) {

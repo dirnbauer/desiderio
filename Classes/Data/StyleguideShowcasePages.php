@@ -395,9 +395,23 @@ final class StyleguideShowcasePages
                     'header' => 'The three pillars',
                     'columns' => '3',
                     'items' => [
-                        ['title' => 'Fluid 5.3 component system', 'content' => '49 components with typed f:argument contracts and f:slot composition, registered as the d: namespace via a ComponentCollection. Wrong argument types fail loudly at render time — your templates get an API, not a convention.', 'link' => self::REPO_URL],
-                        ['title' => 'Runtime theme engine', 'content' => '15 shadcn presets as pure OKLCH token sets on body[data-shadcn-preset], switchable per site and per page subtree without any rebuild. A contrast solver guarantees WCAG 2.2 ratios on every preset, in light and dark mode.', 'link' => ''],
-                        ['title' => 'Measured quality pipeline', 'content' => 'PHPStan level max, 170+ unit and functional tests across PHP 8.3/8.4, an 11-category template audit with zero tolerance, and a CI job that fails when the Tailwind bundle drifts from the templates.', 'link' => ''],
+                        ['title' => 'Fluid 5.3 component system', 'content' => 'Forty-nine typed Fluid 5.3 components make up the d: namespace, registered through a ComponentCollection. Each one declares its arguments with f:argument contracts and composes through f:slot, so the wrong type fails loudly at render — never silently in production. Your templates get a real API, not a naming convention everyone has to remember.', 'link' => self::REPO_URL],
+                        ['title' => 'Runtime theme engine', 'content' => 'Fifteen shadcn presets, each a pure set of OKLCH design tokens on body[data-shadcn-preset], switch per site and per page subtree with no rebuild and no deployment. A contrast solver computes every palette to satisfy WCAG 2.2 in both light and dark mode — and refuses to emit CSS that would fail.', 'link' => ''],
+                        ['title' => 'Measured quality pipeline', 'content' => 'Nothing here is promised, everything is enforced: PHPStan at level max, 170+ unit and functional tests on PHP 8.3 and 8.4, an eleven-category template audit at zero tolerance, and a CI job that fails the build the moment the Tailwind bundle drifts from the templates.', 'link' => ''],
+                    ],
+                ]),
+                self::block('desiderio_headersection', [
+                    'eyebrow' => 'Credit where it is due',
+                    'header' => 'Two upstream projects made all of this possible',
+                    'subheadline' => 'Almost nothing on this page is our invention. Desiderio is a design system layered onto two remarkable pieces of TYPO3 engineering — and the people behind them have earned a direct thank-you.',
+                    'variant' => 'center',
+                ]),
+                self::block('desiderio_contentgrid', [
+                    'header' => 'Standing on excellent foundations',
+                    'columns' => '2',
+                    'items' => [
+                        ['title' => 'Fluid 5 — thank you, Simon Praetorius', 'content' => 'Every one of the 49 Desiderio components is built on Fluid, and it is a genuine pleasure to work with. Simon Praetorius turned Fluid into a modern, component-based template engine where the (var-)typing is excellent: arguments are declared, checked, and the wrong type fails at render instead of in production. A fantastic template engine — we simply painted a design system on top of it.', 'link' => 'https://github.com/s2b'],
+                        ['title' => 'Content Blocks — thank you, Nikita Hovratov', 'content' => 'All 244 Desiderio elements are Content Blocks, and describing one is a joy. Nikita Hovratov built a fantastic way to explain a content element to TYPO3 — a single declarative schema, automatic database columns, a backend preview — and it works flawlessly. It let us ship 244 elements instead of hand-writing TCA for each. Great work, and thank you.', 'link' => 'https://github.com/nhovratov'],
                     ],
                 ]),
                 self::block('desiderio_accordion', [

@@ -9,8 +9,8 @@
     </unit>
     <unit id="description">
       <segment state="final">
-        <source>Place the Code Block content element as a focused page section.</source>
-        <target>Platzieren Sie das Inhaltselement &quot;Code Block&quot; als fokussierten Seitenabschnitt.</target>
+        <source>Renders source code in a scrollable, keyboard-focusable panel with an optional filename header and language label, syntax-highlighted on the frontend (language detected from the label, filename extension, or the code itself). Use it for: code samples, terminal commands, configuration snippets, API examples, or log excerpts in technical documents and tutorials. Prefer 'Plain HTML' to execute markup rather than display it; use 'Text' with inline code for short in-sentence snippets.</source>
+        <target>Rendert Quellcode in einem scrollbaren, per Tastatur fokussierbaren Panel mit optionaler Dateinamen-Kopfzeile und Sprachlabel; die Syntaxhervorhebung erfolgt im Frontend (Sprache aus Label, Dateiendung oder dem Code selbst erkannt). Geeignet für: Codebeispiele, Terminalbefehle, Konfigurationsausschnitte, API-Beispiele oder Log-Auszüge in technischen Dokumenten und Tutorials. 'Plain HTML' wählen, um Markup auszuführen statt anzuzeigen; 'Text' mit Inline-Code für kurze Schnipsel im Fließtext.</target>
       </segment>
     </unit>
   </file>

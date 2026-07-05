@@ -1,7 +1,7 @@
 name: desiderio/company-milestones
 typeName: desiderio_companymilestones
 title: 'Company Milestones'
-description: 'Place the Company Milestones content element as a focused page section.'
+description: 'Renders an ordered grid of milestone entries, each showing a year (or an automatic running number), a title, and an optional rich-text description. Use it for: lists of dated achievements and highlights — awards won, funding rounds, expansion steps, growth records that read as discrete accomplishments rather than a flowing story. Prefer ''Company History Timeline'' for a chronological narrative on a vertical line; ''Counter Stats'' for headline numbers instead of events.'
 group: team
 prefixFields: false
 basics:

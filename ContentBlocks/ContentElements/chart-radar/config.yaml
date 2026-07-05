@@ -1,7 +1,7 @@
 name: desiderio/chart-radar
 typeName: desiderio_chartradar
 title: 'Radar Chart'
-description: 'Place the Radar Chart content element as a focused page section.'
+description: 'Renders a JavaScript-drawn radar (spider) chart from ''dimension | score'' lines on a 0–5 scale, with an optional series name, adjustable fill opacity, a visible score legend, and a screen-reader data table. Use it for: multi-criteria assessments in a document — skill or competency profiles, maturity models, product evaluations, self-assessment scores across dimensions. Prefer ''Bar Chart'' for plain category comparisons; use ''Stat Cards Data View'' when each score should stand alone as a metric.'
 group: data
 prefixFields: false
 basics:

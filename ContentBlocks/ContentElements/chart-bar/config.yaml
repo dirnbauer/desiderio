@@ -1,7 +1,7 @@
 name: desiderio/chart-bar
 typeName: desiderio_chartbar
 title: 'Bar Chart'
-description: 'Place the Bar Chart content element as a focused page section.'
+description: 'Renders categories as vertical or horizontal bars from ''Label | Value'' rows, with color variant, a summary stats row (top category, total, lowest, top share), and a hidden accessible data table. Use it for: category comparisons and rankings — sales by region, results by department, survey answer counts, top-10 lists. Prefer ''Stacked Bar Chart'' to split totals into series segments, ''Pie Chart'' for shares of a whole, ''Area Chart'' for trends over time.'
 group: data
 prefixFields: false
 basics:

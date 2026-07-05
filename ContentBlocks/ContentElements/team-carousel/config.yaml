@@ -1,7 +1,7 @@
 name: desiderio/team-carousel
 typeName: desiderio_teamcarousel
 title: 'Team Carousel'
-description: 'Place the Team Carousel content element as a focused page section.'
+description: 'Renders an optional intro (eyebrow badge, heading, subheadline) above a horizontally scrollable track of team-member cards, each with a square portrait, name, optional role, and a view-profile button. Use it for: large teams where a grid would grow too long, people sections meant to be swiped on mobile, staff overviews with many similar entries. Prefer ''Team Section'' for a static grid or list; use ''Content Carousel'' for generic image slides.'
 group: team
 prefixFields: false
 basics:

@@ -1,7 +1,7 @@
 name: desiderio/testimonial-video
 typeName: desiderio_testimonialvideo
 title: 'Video Testimonial'
-description: 'Place the Video Testimonial content element as a focused page section.'
+description: 'Renders an embedded YouTube or Vimeo video (with optional poster image) beside a pull quote and the author''s name, title, and company. Use it for: filmed customer stories, recorded interview endorsements, case-study videos accompanied by a short quote. Requires a video embed URL. Prefer ''Video Embed'' for plain videos without endorsement framing; use ''Single Testimonial'' when only text quotes are available.'
 group: social-proof
 prefixFields: false
 basics:

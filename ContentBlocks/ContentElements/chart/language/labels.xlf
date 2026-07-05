@@ -8,7 +8,7 @@
     </unit>
     <unit id="description">
       <segment>
-        <source>Place the Data Chart content element as a focused page section.</source>
+        <source>Renders one data series as an area, line, or bar graph (vertical or horizontal) from JSON data, with color, grid, legend, fill and height options, computed summary stats (first, latest, peak, net change), and a screen-reader data table. Use it for: any single-series statistic — monthly revenue, visitor trends, survey results, category totals. Prefer 'Area Chart', 'Line Chart', or 'Bar Chart' for simpler dedicated setups; 'Pie Chart' for shares of a whole.</source>
       </segment>
     </unit>
     <unit id="chart.aria_fallback">

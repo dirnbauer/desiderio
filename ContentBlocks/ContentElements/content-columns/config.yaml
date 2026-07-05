@@ -1,7 +1,7 @@
 name: desiderio/content-columns
 typeName: desiderio_contentcolumns
 title: 'Content Columns'
-description: 'Place the Content Columns content element as a focused page section.'
+description: 'Renders an optional heading above two or three balanced columns, each column holding its own required rich-text block (paragraphs, lists, links). Use it for: long flowing body copy that reads better split across the page, parallel text sections without card framing, multi-part notes, terms excerpts or newspaper-style editorial text. Prefer ''Content Grid'' when items need titles, cards and links; ''Split Text & Media'' when text should sit beside an image.'
 group: content
 prefixFields: false
 basics:

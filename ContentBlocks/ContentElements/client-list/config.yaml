@@ -1,7 +1,7 @@
 name: desiderio/client-list
 typeName: desiderio_clientlist
 title: 'Client List'
-description: 'Place the Client List content element as a focused page section.'
+description: 'Renders an intro (eyebrow, heading, subheadline) above a list of client entries, each with an optional logo, a name that links to the client''s website, and an industry label. Use it for: named customer or partner rosters in a document — reference lists, ''trusted by'' sections, portfolios naming clients with their sectors. Prefer ''Logo Grid'' or ''Logo Carousel'' when only logos matter; ''Case Study Grid'' when each customer has its own story.'
 group: social-proof
 prefixFields: false
 basics:

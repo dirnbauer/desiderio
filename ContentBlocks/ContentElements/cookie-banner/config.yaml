@@ -1,7 +1,7 @@
 name: desiderio/cookie-banner
 typeName: desiderio_cookiebanner
 title: 'Cookie Consent Banner'
-description: 'Place the Cookie Consent Banner content element as a focused page section.'
+description: 'A dismissible consent region docked to the top or bottom of the viewport, showing a heading with shield icon, a rich-text consent message, accept and decline buttons with editable labels, and an optional manage-preferences link. Use it for: cookie and tracking consent notices, ''we use cookies'' texts, privacy opt-in prompts shown on arrival. Prefer ''GDPR Consent Banner'' when visitors must opt in per cookie category; this element offers a simple accept-or-decline choice.'
 group: footer
 prefixFields: false
 basics:

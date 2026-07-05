@@ -1,7 +1,7 @@
 name: desiderio/leaderboard
 typeName: desiderio_leaderboard
 title: 'Leaderboard'
-description: 'Place the Leaderboard content element as a focused page section.'
+description: 'Renders a ranked ordered list where each row combines an optional rank number, an avatar (external URL, uploaded file, or initial fallback), name, optional subtitle, and a required score value, under a heading and rich-text intro. Use it for: rankings and standings, competition or tournament results, top contributors or sellers, high-score tables. Prefer ''Data Table'' for multi-column tabular data; ''Stat Cards Data View'' for unranked standalone metrics.'
 group: data
 prefixFields: false
 basics:

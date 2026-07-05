@@ -1,7 +1,7 @@
 name: desiderio/search-header
 typeName: desiderio_searchheader
-title: 'Search Header'
-description: 'Place the Search Header content element as a focused page section.'
+title: 'Search Page Header'
+description: 'Renders a page-top band with eyebrow, large headline and subheadline above a search form: an icon-decorated input named q with configurable placeholder and a submit button, sent via GET to a selectable target page. Use it for: the head of search-result, help-center, documentation or knowledge-base pages where finding content is the main task. Prefer ''Search Hero'' for a homepage or portal opener built around search; this element tops a dedicated search page.'
 group: navigation
 prefixFields: false
 basics:

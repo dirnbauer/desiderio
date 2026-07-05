@@ -1,7 +1,7 @@
 name: desiderio/pricing-slider
 typeName: desiderio_pricingslider
 title: 'Pricing Slider'
-description: 'Place the Pricing Slider content element as a focused page section.'
+description: 'Renders an interactive block: an intro (eyebrow, heading, description) above a draggable range slider whose position highlights the matching volume tier card with volume, price, and included features. Use it for: volume- or usage-tier price tables in source documents (''up to 10,000 requests: $49''), tiered API or metered pricing where readers explore cost by quantity. Prefer ''Pricing Tier Table'' for a static per-unit rate table; ''Usage-Based Pricing'' for flat pay-as-you-go rate cards.'
 group: pricing
 prefixFields: false
 basics:

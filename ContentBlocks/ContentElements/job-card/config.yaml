@@ -1,7 +1,7 @@
 name: desiderio/job-card
 typeName: desiderio_jobcard
 title: 'Job Card'
-description: 'Place the Job Card content element as a focused page section.'
+description: 'Renders a single card for one vacancy: employment-type badge, job title, department and location meta line, rich-text role description, and a prominent apply button. Use it for: a single job posting, a featured or urgent vacancy pulled from a document, a role spotlight on a team or careers page. Prefer ''Career Listing'' when the source lists several open positions; ''Team Hiring CTA'' for a general we-are-hiring prompt.'
 group: team
 prefixFields: false
 basics:

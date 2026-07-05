@@ -1,7 +1,7 @@
 name: desiderio/product-gallery
 typeName: desiderio_productgallery
 title: 'Product Gallery Buy Panel'
-description: 'Place the Product Gallery Buy Panel content element as a focused page section.'
+description: 'Renders a product detail layout: a thumbnail gallery with lightbox-zoomable main image (up to eight photos) next to a buy panel with title, price, optional struck-through compare-at price with sale badge, availability status (in stock, limited, pre-order, sold out), highlights list and CTA button, with Schema.org Product markup. Use it for: full product detail content with several photos and stock information. Prefer ''Image Gallery'' for non-shop photo sets; ''Single Product Card'' for a compact teaser.'
 group: pricing
 prefixFields: false
 basics:

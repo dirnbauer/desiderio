@@ -1,7 +1,7 @@
 name: desiderio/product-specs
 typeName: desiderio_productspecs
 title: 'Product Specs Table'
-description: 'Place the Product Specs Table content element as a focused page section.'
+description: 'Renders a two-column section with an accessible table of label-and-value specification rows beside an optional product image, introduced by eyebrow, heading and rich-text description. Use it for: technical data sheets, dimensions, weights, materials, system requirements - any key-value attribute list describing one product. Prefer ''Data Table'' for multi-column tabular data; ''Definition List'' for term-definition pairs outside a product context; ''Product Comparison Grid'' to contrast several products.'
 group: pricing
 prefixFields: false
 basics:

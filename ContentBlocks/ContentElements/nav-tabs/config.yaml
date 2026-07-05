@@ -1,7 +1,7 @@
 name: desiderio/nav-tabs
 typeName: desiderio_navtabs
 title: 'Tabs Navigation'
-description: 'Place the Tabs Navigation content element as a focused page section.'
+description: 'Renders a horizontal row of tab-styled links in underline, pill, or boxed variants; each tab has a label and link, and one can be flagged active with aria-current. The tabs link to other pages or sections rather than toggling panels. Use it for: switching between sibling views — details, specs, reviews — category filters, or sub-navigation. Prefer ''Tabbed Content Panels'' when the tab content lives inside the element, ''Tabbed Navigation Bar'' for a site header.'
 group: navigation
 prefixFields: false
 basics:

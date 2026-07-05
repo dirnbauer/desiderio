@@ -1,7 +1,7 @@
 name: desiderio/navbar-centered
 typeName: desiderio_navbarcentered
 title: 'Centered Navigation Bar'
-description: 'Place the Centered Navigation Bar content element as a focused page section.'
+description: 'Renders a slim header bar with the brand text on the left, a centered row of menu links in the middle, and one optional action button on the right; on small screens everything stacks centered. Use it for: minimal landing-page or microsite headers with a single call to action. Prefer ''Navigation Bar'' when you need two CTA buttons or layout variants, ''Split Navigation Bar'' for link groups flanking a centered brand.'
 group: navigation
 prefixFields: false
 basics:

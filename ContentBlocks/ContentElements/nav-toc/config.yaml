@@ -1,7 +1,7 @@
 name: desiderio/nav-toc
 typeName: desiderio_navtoc
 title: 'Table of Contents Navigation'
-description: 'Guide long pages with a compact table of contents that links readers to section anchors for quick in-page navigation.'
+description: 'Renders a compact sidebar panel with a table of contents: each item has a label, a manually entered anchor ID, and an h2/h3 level that controls indentation, beneath an optional panel title. Use it for: long articles, documentation, legal texts, guides, whitepapers — any source document with many headings readers should jump between. Anchors are maintained by hand; prefer ''Menu: Section Index'' to generate the list automatically from page content.'
 group: navigation
 prefixFields: false
 basics:

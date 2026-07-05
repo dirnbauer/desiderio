@@ -1,7 +1,7 @@
 name: desiderio/article-grid
 typeName: desiderio_articlegrid
 title: 'Article Grid'
-description: 'Place the Article Grid content element as a focused page section.'
+description: 'Renders a responsive grid of text-only article cards, each with a category label, a title (linked when a URL is set), a short rich-text teaser, and a ''Read article'' arrow link, under an optional eyebrow and heading. Use it for: hand-curated post lists, news overviews, further-reading or related-articles sections, press release lists without images. Prefer ''Blog Teasers'' when each post has a teaser image, ''Resource Library'' for downloads and guides.'
 group: content
 prefixFields: false
 basics:

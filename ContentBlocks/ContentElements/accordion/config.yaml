@@ -1,7 +1,7 @@
 name: desiderio/accordion
 typeName: desiderio_accordion
 title: 'Accordion'
-description: 'Place the Accordion content element as a focused page section.'
+description: 'Renders a stack of native details/summary panels, each with a title and rich-text body; panels open exclusively or several at once, and single items can start expanded. Use it for: long content that should collapse — help topics, glossary entries, terms sections, product details, step-by-step explanations. Prefer ''FAQ Accordion'' for question-answer pairs (it adds FAQPage schema); prefer ''Tabbed Content Panels'' for a few parallel alternatives.'
 group: content
 prefixFields: false
 basics:

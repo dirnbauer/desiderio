@@ -1,7 +1,7 @@
 name: desiderio/hero-announcement
 typeName: desiderio_heroannouncement
 title: 'Announcement Hero'
-description: 'Place the Announcement Hero content element as a focused page section.'
+description: 'Renders a centered page opener with a slim announcement strip (short text, optionally linked) above the headline, subheadline, and up to two CTA buttons. Use it for: openers where a fresh news item precedes the pitch — product launches, release notes (''New in 2.0''), funding or event news atop a landing page. Prefer ''Announcement Bar'' for a standalone site-wide strip; plain ''Hero Section'' when there is no timely message.'
 group: hero
 prefixFields: false
 basics:

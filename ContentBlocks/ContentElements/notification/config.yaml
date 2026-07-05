@@ -1,7 +1,7 @@
 name: desiderio/notification
 typeName: desiderio_notification
 title: 'Notification'
-description: 'Place the Notification content element as a focused page section.'
+description: 'Renders a toast-style notice box with a colored variant (info, success, warning, or error), matching icon, optional title, rich-text message, optional action link, and an optional dismiss button; warnings and errors announce as alerts to screen readers. Use it for: maintenance or downtime notices, status and confirmation messages, deprecation or policy warnings in a document. Prefer ''Inline Alert Notice'' for a simpler non-dismissible box; ''Announcement Bar'' for a page-top message.'
 group: data
 prefixFields: false
 basics:

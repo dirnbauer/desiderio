@@ -8,7 +8,7 @@
     </unit>
     <unit id="description">
       <segment>
-        <source>Place the Heatmap Chart content element as a focused page section.</source>
+        <source>Renders a color-coded intensity matrix drawn by JavaScript from comma-separated column labels and 'row label | values' lines, plus a screen-reader data table with every row, column and unit. Use it for: two-dimensional value grids in a document — activity by weekday and hour, usage per team and month, risk matrices, feature adoption by segment. Prefer 'Contribution Chart' for one metric over a long time span; use 'Data Table' when exact numbers must stay visible.</source>
       </segment>
     </unit>
     <unit id="field.col_labels">

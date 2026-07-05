@@ -9,8 +9,8 @@
     </unit>
     <unit id="description">
       <segment state="final">
-        <source>Place the Metric Dashboard content element as a focused page section.</source>
-        <target>Platzieren Sie das Inhaltselement &quot;Metric Dashboard&quot; als fokussierten Seitenabschnitt.</target>
+        <source>Renders a dashboard panel of metric tiles — each with label, value, optional change text, and an up, down, or neutral trend icon — plus an optional line chart fed from a JSON array with series label and unit. Use it for: KPI overviews, quarterly or annual results, growth and revenue figures, investor updates. Prefer 'KPI Cards' for metric tiles without a chart, 'Line Chart' for a chart alone.</source>
+        <target>Rendert ein Dashboard-Panel aus Kennzahlen-Kacheln — je mit Beschriftung, Wert, optionalem Veränderungstext und Trend-Symbol (steigend, fallend, neutral) — plus optionalem Liniendiagramm aus einem JSON-Array mit Serienlabel und Einheit. Geeignet für: KPI-Übersichten, Quartals- oder Jahreszahlen, Wachstums- und Umsatzkennzahlen, Investoren-Updates. 'KPI Cards' eignet sich für Kacheln ohne Diagramm, 'Line Chart' für ein reines Diagramm.</target>
       </segment>
     </unit>
   </file>

@@ -1,7 +1,7 @@
 name: desiderio/advisor-grid
 typeName: desiderio_advisorgrid
 title: 'Advisor Grid'
-description: 'Place the Advisor Grid content element as a focused page section.'
+description: 'Renders a three-column grid of cards, each with a round portrait (or initial fallback), name, area of expertise, and company, beneath an optional heading and subheadline. Use it for: advisory-board lists, mentor or expert rosters, scientific committees — people identified by name plus expertise and affiliation without biographies. Prefer ''Board Members'' when short bios exist, ''Team Section'' for employees, ''Investor Grid'' for backer logos and funding rounds.'
 group: team
 prefixFields: false
 basics:

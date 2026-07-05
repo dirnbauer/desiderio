@@ -39,7 +39,9 @@ final class ContentBlockStructureTest extends TestCase
             'cta-with-image' => 'Image Call to Action',
             'hero-logo-cloud' => 'Logo Cloud Hero',
             'nav-toc' => 'Table of Contents Navigation',
-            'textmedia' => 'Text & Media',
+            // Renamed from 'Text & Media': it duplicated the classic core
+            // textmedia element's title in English and German.
+            'textmedia' => 'Split Text & Media',
         ];
 
         foreach ($expectedTitles as $slug => $expectedTitle) {
@@ -177,7 +179,12 @@ final class ContentBlockStructureTest extends TestCase
             self::assertMatchesRegularExpression('/^[A-Z].*\\.$/su', $description, "{$name} description should be a concise imperative phrase: capitalized and ending with a period");
             self::assertFalse(str_starts_with($description, 'Use when '), "{$name} description must be imperative, not a 'Use when …' sentence");
             self::assertStringNotContainsString('give one focused content task', $description, "{$name} still uses the generic fallback description");
-            self::assertLessThanOrEqual(150, strlen($description), "{$name} description should stay short enough for the wizard");
+            // Descriptions are written LLM-first (what source content maps to
+            // the element, and when to prefer a sibling) so agents selecting
+            // elements through the TYPO3 MCP can choose correctly; the core
+            // elements in the same wizard carry equally long descriptions.
+            self::assertGreaterThanOrEqual(100, strlen($description), "{$name} description should carry enough signal for element selection");
+            self::assertLessThanOrEqual(650, strlen($description), "{$name} description should stay scannable");
             if (isset($descriptions[$description])) {
                 self::fail("{$name} duplicates the description used by {$descriptions[$description]}");
             }

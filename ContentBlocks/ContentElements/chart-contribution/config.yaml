@@ -1,7 +1,7 @@
 name: desiderio/chart-contribution
 typeName: desiderio_chartcontribution
 title: 'Contribution Chart'
-description: 'Place the Contribution Chart content element as a focused page section.'
+description: 'Renders a GitHub-style activity chart: JS draws one bar per time point from a label/value collection (minimum two points), framed by heading, subheadline, badge, two stat blocks and an optional CTA button; a hidden table carries the exact numbers. Use it for: dense activity histories — commits per week, posts per month, engagement or usage across many periods. Prefer ''Heatmap Chart'' for a two-dimensional intensity matrix and ''Bar Chart'' for a handful of categories.'
 group: data
 prefixFields: false
 basics:

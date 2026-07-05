@@ -1,7 +1,7 @@
 name: desiderio/stats-counter
 typeName: desiderio_statscounter
 title: 'Counter Stats'
-description: 'Place the Counter Stats content element as a focused page section.'
+description: 'Renders an optional eyebrow and heading above a three- or four-column grid of counters; each shows a label, a number animating from zero to its target on scroll with an optional suffix (+, %, K), and an optional rich-text description. Use it for: achievement and milestone numbers, customer or download counts, results sections where animated figures grab attention. Prefer ''Stats Section'' when stats need a subheadline and per-stat context; ''Animated Stat Counter'' is a close sibling.'
 group: social-proof
 prefixFields: false
 basics:

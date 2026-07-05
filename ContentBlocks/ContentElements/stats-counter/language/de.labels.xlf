@@ -4,13 +4,13 @@
     <unit id="title">
       <segment state="final">
         <source>Counter Stats</source>
-        <target>Counter Stats</target>
+        <target>Zähler-Statistiken</target>
       </segment>
     </unit>
     <unit id="description">
       <segment state="final">
-        <source>Place the Counter Stats content element as a focused page section.</source>
-        <target>Platzieren Sie das Inhaltselement &quot;Counter Stats&quot; als fokussierten Seitenabschnitt.</target>
+        <source>Renders an optional eyebrow and heading above a three- or four-column grid of counters; each shows a label, a number animating from zero to its target on scroll with an optional suffix (+, %, K), and an optional rich-text description. Use it for: achievement and milestone numbers, customer or download counts, results sections where animated figures grab attention. Prefer 'Stats Section' when stats need a subheadline and per-stat context; 'Animated Stat Counter' is a close sibling.</source>
+        <target>Rendert optional Eyebrow und Überschrift über einem Raster mit drei oder vier Spalten; jede Kennzahl zeigt ein Label, eine Zahl, die beim Scrollen animiert von null auf den Zielwert hochzählt, ein optionales Suffix (+, %, K) und eine optionale Rich-Text-Beschreibung. Geeignet für: Erfolgs- und Meilensteinzahlen, Kunden- oder Downloadzahlen, Ergebnisbereiche, in denen animierte Zahlen Aufmerksamkeit erzeugen sollen. 'Stats Section' bevorzugen, wenn Subheadline und Kontext je Kennzahl gebraucht werden; 'Animated Stat Counter' ist ein enges Geschwisterelement.</target>
       </segment>
     </unit>
   </file>

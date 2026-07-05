@@ -9,8 +9,8 @@
     </unit>
     <unit id="description">
       <segment state="final">
-        <source>Place the Tabs Navigation content element as a focused page section.</source>
-        <target>Platzieren Sie das Inhaltselement &quot;Tabs Navigation&quot; als fokussierten Seitenabschnitt.</target>
+        <source>Renders a horizontal row of tab-styled links in underline, pill, or boxed variants; each tab has a label and link, and one can be flagged active with aria-current. The tabs link to other pages or sections rather than toggling panels. Use it for: switching between sibling views — details, specs, reviews — category filters, or sub-navigation. Prefer 'Tabbed Content Panels' when the tab content lives inside the element, 'Tabbed Navigation Bar' for a site header.</source>
+        <target>Rendert eine horizontale Reihe tab-förmiger Links in den Varianten Unterstrich, Pill oder Boxed; jeder Tab hat Beschriftung und Link, einer lässt sich als aktiv markieren (aria-current). Die Tabs verlinken auf andere Seiten oder Bereiche, statt Panels umzuschalten. Geeignet für: Wechsel zwischen gleichrangigen Ansichten — Details, technische Daten, Bewertungen — Kategoriefilter oder Unternavigation. 'Tabbed Content Panels' eignet sich, wenn der Tab-Inhalt im Element selbst liegt, 'Tabbed Navigation Bar' als Seitenkopf.</target>
       </segment>
     </unit>
   </file>

@@ -1,7 +1,7 @@
 name: desiderio/stat-cards
 typeName: desiderio_statcards
 title: 'Stat Cards Data View'
-description: 'Place the Stat Cards Data View content element as a focused page section.'
+description: 'Renders a responsive two- to four-column grid of cards, each holding one metric as a counting value with label plus an optional change figure and up/down trend arrow. Use it for: KPI summaries, quarterly or annual report highlights, dashboard-style figures with period-over-period deltas, performance overviews. Prefer ''KPI Cards'' for similar trend tiles, ''Stats Section'' for marketing proof numbers without deltas, and ''Sparkline KPI Card'' when a mini trend line matters.'
 group: data
 prefixFields: false
 basics:

@@ -1,7 +1,7 @@
 name: desiderio/article-hero
 typeName: desiderio_articlehero
 title: 'Article Hero'
-description: 'Place the Article Hero content element as a focused page section.'
+description: 'Renders the article lead as an h1 headline with optional eyebrow, summary (dek), a meta row of topic, publish date, and reading time, an author name, and a lightbox-zoomable cover image. Use it for: the opening of a single article, blog post, press release, or magazine feature — title plus byline and date from the source document. The only element rendering an h1; prefer ''Hero Section'' for landing pages, ''Page Header'' for plain page titles.'
 group: content
 prefixFields: false
 basics:

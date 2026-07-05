@@ -9,8 +9,8 @@
     </unit>
     <unit id="description">
       <segment state="final">
-        <source>Place the Stacked Bar Chart content element as a focused page section.</source>
-        <target>Platzieren Sie das Inhaltselement &quot;Stacked Bar Chart&quot; als fokussierten Seitenabschnitt.</target>
+        <source>Renders a JavaScript-drawn stacked bar chart from comma-separated series names and 'category | value | value' rows, with a named color legend, four palettes, and a screen-reader table including row and grand totals. Use it for: totals broken into components across categories — revenue by product line per year, headcount by department per location, traffic by channel per month. Prefer 'Bar Chart' for single-series comparisons; 'Pie Chart' or 'Donut Chart' show one composition without category comparison.</source>
+        <target>Rendert ein per JavaScript gezeichnetes gestapeltes Balkendiagramm aus kommagetrennten Seriennamen und 'Kategorie | Wert | Wert'-Zeilen, mit benannter Farblegende, vier Paletten und einer Screenreader-Tabelle inklusive Zeilen- und Gesamtsummen. Geeignet für: Summen, die je Kategorie in Bestandteile zerfallen — Umsatz nach Produktlinie pro Jahr, Mitarbeitende nach Abteilung pro Standort, Traffic nach Kanal pro Monat. 'Balkendiagramm' für einreihige Vergleiche; 'Kreisdiagramm' oder 'Donut-Diagramm' zeigen eine einzelne Zusammensetzung ohne Kategorievergleich.</target>
       </segment>
     </unit>
     <unit id="field.series_labels">

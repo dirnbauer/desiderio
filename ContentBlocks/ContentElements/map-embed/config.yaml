@@ -1,7 +1,7 @@
 name: desiderio/map-embed
 typeName: desiderio_mapembed
 title: 'Map Embed'
-description: 'Place the Map Embed content element as a focused page section.'
+description: 'Embeds an interactive map from a Google Maps or OpenStreetMap embed URL in a responsive iframe with configurable pixel height, optionally introduced by a heading and a postal address block. Use it for: ''how to find us'' sections, office, store, or venue locations, event directions — any address in a source document that should appear as a map. Prefer ''Directions Routes'' for written travel instructions, ''Office Locations'' for several branches as cards.'
 group: conversion
 prefixFields: false
 basics:

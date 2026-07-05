@@ -1,7 +1,7 @@
 name: desiderio/footer-newsletter
 typeName: desiderio_footernewsletter
 title: 'Newsletter Footer'
-description: 'Place the Newsletter Footer content element as a focused page section.'
+description: 'Renders a footer that pairs a heading and rich-text intro with an embedded newsletter signup form (TYPO3 Form Framework), an optional privacy note beneath the form, and a copyright line. Use it for: subscribe prompts, mailing-list invitations, and stay-updated sections that close a page. Prefer ''Newsletter Signup'' or ''Newsletter Inline'' for mid-page capture; ''Mega Footer'' when link columns must accompany the form.'
 group: footer
 prefixFields: false
 basics:

@@ -1,7 +1,7 @@
 name: desiderio/product-card
 typeName: desiderio_productcard
 title: 'Single Product Card'
-description: 'Place the Single Product Card content element as a focused page section.'
+description: 'Renders one compact product card: image with optional status badge (New, Sale), title, price with optional struck-through original price, short rich-text description, and a buy button. Use it for: a single product mention with price in the source — one featured item, a promoted article with discount, a merch spotlight. Prefer ''Product Grid Listing'' for several products, ''Product Gallery Buy Panel'' for detail pages with multiple photos, and ''Shop Product Hero'' as a page opener.'
 group: pricing
 prefixFields: false
 basics:

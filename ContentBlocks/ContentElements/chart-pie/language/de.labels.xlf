@@ -9,8 +9,8 @@
     </unit>
     <unit id="description">
       <segment state="final">
-        <source>Place the Pie Chart content element as a focused page section.</source>
-        <target>Platzieren Sie das Inhaltselement &quot;Pie Chart&quot; als fokussierten Seitenabschnitt.</target>
+        <source>Renders a JavaScript-drawn pie chart from 'label | value' segment lines, with an optional legend, four color palettes, three sizes, and a screen-reader table that computes each slice's share and the total. Use it for: simple proportional splits that sum to a whole — market share, budget allocation, respondent demographics, traffic sources. Prefer 'Donut Chart' to spotlight one headline figure in the center; 'Stacked Bar Chart' when composition must be compared across several categories.</source>
+        <target>Rendert ein per JavaScript gezeichnetes Kreisdiagramm aus 'Label | Wert'-Zeilen, mit optionaler Legende, vier Farbpaletten, drei Größen und einer Screenreader-Tabelle, die den Anteil je Segment und die Gesamtsumme berechnet. Geeignet für: einfache proportionale Aufteilungen, die sich zu einem Ganzen summieren — Marktanteile, Budgetaufteilung, Befragten-Demografie, Besucherquellen. 'Donut-Diagramm' wählen, um eine Kennzahl in der Mitte hervorzuheben; 'Gestapeltes Balkendiagramm', wenn Zusammensetzungen über mehrere Kategorien verglichen werden.</target>
       </segment>
     </unit>
     <unit id="field.segments">

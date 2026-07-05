@@ -1,7 +1,7 @@
 name: desiderio/nav-pagination
 typeName: desiderio_navpagination
 title: 'Pagination Navigation'
-description: 'Place the Pagination Navigation content element as a focused page section.'
+description: 'Renders a horizontal pager: an editor-maintained list of numbered page links, one flagged active with aria-current, flanked by optional previous and next arrow links. Use it for: splitting long listings, archives, galleries, or multi-part articles across hand-linked pages — the numbers are static links, not auto-generated. Prefer ''Steps Navigation'' for ordered wizard progress, ''Tabs Navigation'' to switch between sibling views.'
 group: navigation
 prefixFields: false
 basics:

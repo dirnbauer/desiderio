@@ -1,7 +1,7 @@
 name: desiderio/office-hours
 typeName: desiderio_officehours
 title: 'Office Hours'
-description: 'Place the Office Hours content element as a focused page section.'
+description: 'Renders a card with a clock icon, heading, short description, and a clean definition-list table of day rows, each pairing a day label with an hours value (enter ''Closed'' for non-opening days). Use it for: opening hours tables, business or consultation hours, ''Mon-Fri 9:00-17:00'' listings from contact pages or footers. Prefer ''Contact Info'' for address, phone, and email cards; ''Office Locations'' for multiple branches.'
 group: conversion
 prefixFields: false
 basics:

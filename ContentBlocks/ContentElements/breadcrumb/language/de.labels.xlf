@@ -9,8 +9,8 @@
     </unit>
     <unit id="description">
       <segment state="final">
-        <source>Place the Breadcrumb Trail content element as a focused page section.</source>
-        <target>Platzieren Sie das Inhaltselement &quot;Breadcrumb Trail&quot; als fokussierten Seitenabschnitt.</target>
+        <source>Renders a horizontal breadcrumb navigation from a manually maintained list of entries, each with label and optional link; the last entry shows as the plain-text current page, with schema.org BreadcrumbList markup and an accessible nav label. Use it for: orientation on deep subpages, hierarchical paths like Home &gt; Section &gt; Page. Prefer 'Steps Navigation' for progress through a process, 'Table of Contents Navigation' for in-page anchors.</source>
+        <target>Rendert eine horizontale Breadcrumb-Navigation aus manuell gepflegten Einträgen mit Label und optionalem Link; der letzte Eintrag erscheint als unverlinkte aktuelle Seite, ergänzt um schema.org-BreadcrumbList-Markup und ein zugängliches Nav-Label. Geeignet für: Orientierung auf tiefen Unterseiten, hierarchische Pfade wie Start &gt; Bereich &gt; Seite. Für Fortschritt in einem Prozess besser 'Steps Navigation', für Sprungmarken innerhalb der Seite 'Table of Contents Navigation'.</target>
       </segment>
     </unit>
     <unit id="breadcrumb.aria">

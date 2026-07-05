@@ -9,175 +9,175 @@
       <segment><source>Header</source></segment>
     </unit>
     <unit id="header.description">
-      <segment><source>A standalone heading element with no body text — just a title and optional subheading you can size from H1 to H5. Use it to label or separate the sections that follow, or to drop in a styled heading where a full text element would be too much.</source></segment>
+      <segment><source>A standalone heading element with no body text — just a title and optional subheading you can size from H1 to H5. Use it to label or separate the sections that follow, or to drop in a styled heading where a full text element would be too much. Use it for: bare chapter or section titles in a source document. Prefer 'Section Header' when an eyebrow label and intro line are wanted.</source></segment>
     </unit>
 
     <unit id="text.title">
       <segment><source>Text</source></segment>
     </unit>
     <unit id="text.description">
-      <segment><source>The everyday rich-text element: a heading plus formatted body copy with paragraphs, lists, links and inline emphasis. Reach for it whenever you need words on the page and nothing more — it is the most-used content element in TYPO3.</source></segment>
+      <segment><source>The everyday rich-text element: a heading plus formatted body copy with paragraphs, lists, links and inline emphasis. Reach for it whenever you need words on the page and nothing more — it is the most-used content element in TYPO3. Use it for: running body copy from a source — article paragraphs, service descriptions, legal text, any words-only section. Prefer 'Text with Images' as soon as pictures accompany the copy.</source></segment>
     </unit>
 
     <unit id="textpic.title">
-      <segment><source>Text &amp; Images</source></segment>
+      <segment><source>Text with Images</source></segment>
     </unit>
     <unit id="textpic.description">
-      <segment><source>A text element with one or more images wrapped beside or around the copy. Control image position (left, right, above, below), the number of columns and click-to-enlarge behaviour. Use it for the classic illustrated paragraph.</source></segment>
+      <segment><source>A text element with one or more images wrapped beside or around the copy. Control image position (left, right, above, below), the number of columns and click-to-enlarge behaviour. Use it for: the classic illustrated paragraph — article sections with supporting photos, figures or product shots. Prefer 'Text with Video &amp; Media' when video or audio joins the pictures; choose 'Split Text &amp; Media' for a designed two-column layout with lightbox.</source></segment>
     </unit>
 
     <unit id="textmedia.title">
-      <segment><source>Text &amp; Media</source></segment>
+      <segment><source>Text with Video &amp; Media</source></segment>
     </unit>
     <unit id="textmedia.description">
-      <segment><source>Like Text &amp; Images, but the media column also accepts video and audio next to images, with the same layout, gallery and link options. Use it when a paragraph needs an embedded video or a mixed-media gallery.</source></segment>
+      <segment><source>Like Text &amp; Images, but the media column also accepts video and audio next to images, with the same layout, gallery and link options. Use it for: paragraphs that need an embedded video, tutorials with screencasts, or a mixed image-and-video gallery. Prefer 'Video Embed' when there is no body copy; 'Split Text &amp; Media' is the designed two-column alternative.</source></segment>
     </unit>
 
     <unit id="image.title">
       <segment><source>Images Only</source></segment>
     </unit>
     <unit id="image.description">
-      <segment><source>One or more images arranged in a grid of columns with optional captions and click-to-enlarge — no body text. Use it for a photo gallery, screenshots, logos or any set of pictures that should stand on their own.</source></segment>
+      <segment><source>One or more images arranged in a grid of columns with optional captions and click-to-enlarge — no body text. Use it for: photo galleries, screenshot series, team or event photos — any set of pictures in a source that stands without copy. Prefer 'Image Gallery' for a featured image with clickable thumbnails and lightbox, or 'Logo Grid' for partner logos.</source></segment>
     </unit>
 
     <unit id="bullets.title">
       <segment><source>Bullet List</source></segment>
     </unit>
     <unit id="bullets.description">
-      <segment><source>A simple bullet list where every line of the body becomes one list item. Use it for short, scannable lists of features, steps or takeaways where rich formatting per item isn't needed.</source></segment>
+      <segment><source>A simple bullet list where every line of the body becomes one list item. Use it for: short, scannable lists pulled from a source — feature lists, agendas, requirements, pros and cons, quick facts — where rich formatting per item isn't needed. Prefer 'Text' when items need links or inline formatting; 'Feature Checklist' shows check-marked plan benefits.</source></segment>
     </unit>
 
     <unit id="table.title">
       <segment><source>Table</source></segment>
     </unit>
     <unit id="table.description">
-      <segment><source>A simple data table you fill in a grid editor, with an optional header row or column, caption and delimiter. Use it for specs, comparisons, schedules or any tabular data — it stays responsive and accessible on the frontend.</source></segment>
+      <segment><source>A simple data table you fill in a grid editor, with an optional header row or column, caption and delimiter. Use it for: opening hours, price lists, timetables, technical data — anything that appears as rows and columns in a source; it stays responsive and accessible on the frontend. Prefer 'Comparison Table' for feature-by-feature product comparisons, or 'Office Hours' for a dedicated day-and-hours card.</source></segment>
     </unit>
 
     <unit id="uploads.title">
       <segment><source>File Links</source></segment>
     </unit>
     <unit id="uploads.description">
-      <segment><source>A download list that turns attached files (or a file collection) into links, optionally showing file type, size and a preview thumbnail. Use it to offer PDFs, brochures, datasheets or any documents for download.</source></segment>
+      <segment><source>A download list that turns attached files (or a file collection) into links, optionally showing file type, size and a preview thumbnail. Use it for: download sections in a source — PDFs, brochures, whitepapers, reports, manuals, application forms, press kits. Prefer 'File Download List' for card-style downloads with descriptions, or 'Resource Library' for a browsable grid of guides.</source></segment>
     </unit>
 
     <unit id="div.title">
       <segment><source>Divider</source></segment>
     </unit>
     <unit id="div.description">
-      <segment><source>A visual divider that inserts a horizontal line or spacing between content elements. Use it to break a long column into clear sections without adding a heading or text.</source></segment>
+      <segment><source>A visual divider that inserts a horizontal line or spacing between content elements. Use it to break a long column into clear sections without adding a heading or text. Use it for: horizontal rules or deliberate pauses between topics in a source layout. Prefer 'Content Divider' for a styled separator with spacing options.</source></segment>
     </unit>
 
     <unit id="html.title">
       <segment><source>Plain HTML</source></segment>
     </unit>
     <unit id="html.description">
-      <segment><source>An element that outputs raw HTML exactly as you enter it, without processing. Use it for third-party embeds, custom markup or snippets that need to bypass the rich-text editor — for trusted editors only.</source></segment>
+      <segment><source>An element that outputs raw HTML exactly as you enter it, without processing. Use it for third-party embeds, custom markup or snippets that need to bypass the rich-text editor — for trusted editors only. Use it for: embed snippets carried over verbatim from a source — maps, booking widgets, tracking pixels, custom iframes. Prefer 'Code Block' to display source code as visible, highlighted content rather than executing it.</source></segment>
     </unit>
 
     <unit id="shortcut.title">
       <segment><source>Insert Records</source></segment>
     </unit>
     <unit id="shortcut.description">
-      <segment><source>Embeds existing content elements (or other records) into this position instead of duplicating them. Use it to reuse one maintained block — a call to action, contact box or note — across several pages from a single source.</source></segment>
+      <segment><source>Embeds existing content elements (or other records) into this position instead of duplicating them. Use it to reuse one maintained block — a call to action, contact box or note — across several pages from a single source. Use it for: blocks that repeat identically on many pages of a source site — shared CTAs, legal notices, contact boxes maintained once.</source></segment>
     </unit>
 
     <unit id="menu_pages.title">
       <segment><source>Menu: Selected Pages</source></segment>
     </unit>
     <unit id="menu_pages.description">
-      <segment><source>A navigation menu that links to a list of pages you pick by hand. Use it for a curated set of links — a sub-navigation, a "see also" block or a hand-built section menu.</source></segment>
+      <segment><source>A navigation menu that links to a list of pages you pick by hand. Use it for a curated set of links — a sub-navigation, a "see also" block or a hand-built section menu. Use it for: quick-link boxes, further-reading lists, hand-picked page collections in a source. Prefer 'Menu: Subpages' when the list should follow the page tree automatically.</source></segment>
     </unit>
 
     <unit id="menu_subpages.title">
       <segment><source>Menu: Subpages</source></segment>
     </unit>
     <unit id="menu_subpages.description">
-      <segment><source>A menu that automatically lists the subpages of the pages you select, so it updates itself as the page tree changes. Use it for an auto-maintained section or directory navigation.</source></segment>
+      <segment><source>A menu that automatically lists the subpages of the pages you select, so it updates itself as the page tree changes. Use it for an auto-maintained section or directory navigation. Use it for: overview pages that list everything in a section — directory or department indexes. Prefer 'Menu: Selected Pages' for a hand-picked list; 'Menu: Abstracts' when each link needs a teaser text.</source></segment>
     </unit>
 
     <unit id="menu_sitemap.title">
       <segment><source>Menu: Sitemap</source></segment>
     </unit>
     <unit id="menu_sitemap.description">
-      <segment><source>An expanded, multi-level menu of all subpages of the current site — a classic HTML sitemap. Use it on a sitemap page to give visitors and crawlers a full overview of the page tree.</source></segment>
+      <segment><source>An expanded, multi-level menu of all subpages of the current site — a classic HTML sitemap. Use it on a sitemap page to give visitors and crawlers a full overview of the page tree. Use it for: a dedicated sitemap page or a full site index in a source. Prefer 'Menu: Sitemaps of Selected Pages' to map only specific branches.</source></segment>
     </unit>
 
     <unit id="menu_sitemap_pages.title">
       <segment><source>Menu: Sitemaps of Selected Pages</source></segment>
     </unit>
     <unit id="menu_sitemap_pages.description">
-      <segment><source>An expanded, multi-level menu of all subpages beneath the pages you select — a sitemap scoped to specific branches rather than the whole site. Use it to map out one or more sections in full.</source></segment>
+      <segment><source>An expanded, multi-level menu of all subpages beneath the pages you select — a sitemap scoped to specific branches rather than the whole site. Use it to map out one or more sections in full. Use it for: complete overviews of a handbook, documentation area, or product branch in a source.</source></segment>
     </unit>
 
     <unit id="menu_section.title">
       <segment><source>Menu: Section Index</source></segment>
     </unit>
     <unit id="menu_section.description">
-      <segment><source>A menu built from the content elements on a page that are marked "index for section menus" — an in-page jump list. Use it as a table of contents that links to anchors within the same page.</source></segment>
+      <segment><source>A menu built from the content elements on a page that are marked "index for section menus" — an in-page jump list. Use it as a table of contents that links to anchors within the same page. Use it for: long single-page documents whose sections need anchor navigation — guides, reports, terms pages. Prefer 'Table of Contents Navigation' for a styled sidebar version.</source></segment>
     </unit>
 
     <unit id="menu_section_pages.title">
       <segment><source>Menu: Section Index of Selected Pages</source></segment>
     </unit>
     <unit id="menu_section_pages.description">
-      <segment><source>A menu of the subpages of the pages you select, including each subpage's section-index content as sub-items. Use it for a deep navigation that surfaces both pages and their in-page sections.</source></segment>
+      <segment><source>A menu of the subpages of the pages you select, including each subpage's section-index content as sub-items. Use it for a deep navigation that surfaces both pages and their in-page sections. Use it for: multi-page documentation or manuals where chapters and their in-page sections should both be linked.</source></segment>
     </unit>
 
     <unit id="menu_abstract.title">
       <segment><source>Menu: Abstracts</source></segment>
     </unit>
     <unit id="menu_abstract.description">
-      <segment><source>A menu of the subpages of selected pages that shows each page's title together with its abstract or description text. Use it as a teaser-style index that previews where each link leads.</source></segment>
+      <segment><source>A menu of the subpages of selected pages that shows each page's title together with its abstract or description text. Use it as a teaser-style index that previews where each link leads. Use it for: overview pages where each link carries a summary paragraph in the source — service or resource indexes. Prefer 'Menu: Subpages' for a plain link list without teasers.</source></segment>
     </unit>
 
     <unit id="menu_recently_updated.title">
       <segment><source>Menu: Recently Updated</source></segment>
     </unit>
     <unit id="menu_recently_updated.description">
-      <segment><source>A menu that lists the most recently changed pages, newest first. Use it to surface fresh content — a "what's new" block or a sidebar of recent updates.</source></segment>
+      <segment><source>A menu that lists the most recently changed pages, newest first. Use it to surface fresh content — a "what's new" block or a sidebar of recent updates. Use it for: "what's new" sections, sidebars of latest changes, freshness signals in a source site.</source></segment>
     </unit>
 
     <unit id="menu_related_pages.title">
       <segment><source>Menu: Related Pages</source></segment>
     </unit>
     <unit id="menu_related_pages.description">
-      <segment><source>A menu that automatically links to pages sharing keywords with the current page. Use it as a "related content" or "you might also like" block driven by each page's keywords.</source></segment>
+      <segment><source>A menu that automatically links to pages sharing keywords with the current page. Use it as a "related content" or "you might also like" block driven by each page's keywords. Use it for: "related content" or "read next" blocks at the end of source articles.</source></segment>
     </unit>
 
     <unit id="menu_categorized_pages.title">
       <segment><source>Menu: Categorized Pages</source></segment>
     </unit>
     <unit id="menu_categorized_pages.description">
-      <segment><source>A menu that lists all pages assigned to the categories you choose. Use it to build a category-driven index — for example all pages tagged "News" or "Products" — that updates automatically.</source></segment>
+      <segment><source>A menu that lists all pages assigned to the categories you choose. Use it to build a category-driven index — for example all pages tagged "News" or "Products" — that updates automatically. Use it for: topic index or tag archive pages that list everything on a subject. Prefer 'Menu: Categorized Content' to collect individual content elements instead of pages.</source></segment>
     </unit>
 
     <unit id="menu_categorized_content.title">
       <segment><source>Menu: Categorized Content</source></segment>
     </unit>
     <unit id="menu_categorized_content.description">
-      <segment><source>A menu that collects content elements assigned to the categories you choose, from across the site. Use it to surface tagged content blocks — like all elements categorized "Downloads" — in one place.</source></segment>
+      <segment><source>A menu that collects content elements assigned to the categories you choose, from across the site. Use it to surface tagged content blocks — like all elements categorized "Downloads" — in one place. Use it for: aggregated tagged blocks — every download, notice or snippet on a topic gathered site-wide. Prefer 'Menu: Categorized Pages' when whole pages, not elements, should be listed.</source></segment>
     </unit>
 
     <unit id="form_formframework.title">
       <segment><source>Form</source></segment>
     </unit>
     <unit id="form_formframework.description">
-      <segment><source>An interactive form built with TYPO3's Form Framework: pick a form definition and the element renders its fields, validation and confirmation. Use it for contact, registration or survey forms that submit data and send notifications.</source></segment>
+      <segment><source>An interactive form built with TYPO3's Form Framework: pick a form definition and the element renders its fields, validation and confirmation. Use it for: contact sections, registration, booking, quote-request or survey forms found in a source that submit data and send notifications. Prefer 'Form (Powermail)' for multi-step forms with conditional fields; 'Contact Form Block' pairs a form with an info panel.</source></segment>
     </unit>
 
     <unit id="felogin_login.title">
       <segment><source>Login Form</source></segment>
     </unit>
     <unit id="felogin_login.description">
-      <segment><source>A login and logout form that password-protects pages, granting access only to authorised website users and groups. Use it on a members' area or intranet entry page to authenticate frontend users.</source></segment>
+      <segment><source>A login and logout form that password-protects pages, granting access only to authorised website users and groups. Use it on a members' area or intranet entry page to authenticate frontend users. Use it for: members' areas, intranet entrances, customer portals, protected download sections found in a source.</source></segment>
     </unit>
 
     <unit id="powermail_pi1.title">
       <segment><source>Form (Powermail)</source></segment>
     </unit>
     <unit id="powermail_pi1.description">
-      <segment><source>An interactive form built with Powermail: select a configured form and the element renders its fields, multi-step pages, validation and email finishers. Use it for richer marketing and contact forms with conditional fields and reporting.</source></segment>
+      <segment><source>An interactive form built with Powermail: select a configured form and the element renders its fields, multi-step pages, validation and email finishers. Use it for: application, booking or event-registration forms, multi-step surveys, and marketing forms with conditional fields and reporting found in a source. Prefer the plain 'Form' element for simple contact or enquiry forms.</source></segment>
     </unit>
   </file>
 </xliff>

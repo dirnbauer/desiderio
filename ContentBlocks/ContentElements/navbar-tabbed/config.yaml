@@ -1,7 +1,7 @@
 name: desiderio/navbar-tabbed
 typeName: desiderio_navbartabbed
 title: 'Tabbed Navigation Bar'
-description: 'Place the Tabbed Navigation Bar content element as a focused page section.'
+description: 'Renders a navigation bar with a brand name and menu links styled as a row of tab buttons, one of which can be flagged active and is highlighted with aria-current; an optional call-to-action button sits at the end. Use it for: section or view switchers, app-like page navigation, category links where the current page must stay visible. Prefer ''Tabbed Content Panels'' when content switches in place; this element links to separate pages.'
 group: navigation
 prefixFields: false
 basics:

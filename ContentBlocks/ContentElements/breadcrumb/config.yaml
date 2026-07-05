@@ -1,7 +1,7 @@
 name: desiderio/breadcrumb
 typeName: desiderio_breadcrumb
 title: 'Breadcrumb Trail'
-description: 'Place the Breadcrumb Trail content element as a focused page section.'
+description: 'Renders a horizontal breadcrumb navigation from a manually maintained list of entries, each with label and optional link; the last entry shows as the plain-text current page, with schema.org BreadcrumbList markup and an accessible nav label. Use it for: orientation on deep subpages, hierarchical paths like Home > Section > Page. Prefer ''Steps Navigation'' for progress through a process, ''Table of Contents Navigation'' for in-page anchors.'
 group: navigation
 prefixFields: false
 basics:

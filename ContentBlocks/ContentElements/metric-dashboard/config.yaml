@@ -1,7 +1,7 @@
 name: desiderio/metric-dashboard
 typeName: desiderio_metricdashboard
 title: 'Metric Dashboard'
-description: 'Place the Metric Dashboard content element as a focused page section.'
+description: 'Renders a dashboard panel of metric tiles — each with label, value, optional change text, and an up, down, or neutral trend icon — plus an optional line chart fed from a JSON array with series label and unit. Use it for: KPI overviews, quarterly or annual results, growth and revenue figures, investor updates. Prefer ''KPI Cards'' for metric tiles without a chart, ''Line Chart'' for a chart alone.'
 group: data
 prefixFields: false
 basics:

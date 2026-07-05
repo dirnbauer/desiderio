@@ -1,7 +1,7 @@
 name: desiderio/chart-area
 typeName: desiderio_chartarea
 title: 'Area Chart'
-description: 'Place the Area Chart content element as a focused page section.'
+description: 'Renders one time series as a JS-drawn area chart (line with shaded fill, adjustable opacity and color), plus computed summary stats (first, latest, peak, net change) and a hidden accessible data table from ''Period | Value'' rows. Use it for: metrics tracked over time — revenue growth, user numbers, traffic per month. Prefer ''Line Chart'' for an unfilled line, ''Bar Chart'' for category comparisons, and ''Data Chart'' when the chart type should stay switchable.'
 group: data
 prefixFields: false
 basics:

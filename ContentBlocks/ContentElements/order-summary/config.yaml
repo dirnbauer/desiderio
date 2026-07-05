@@ -1,7 +1,7 @@
 name: desiderio/order-summary
 typeName: desiderio_ordersummary
 title: 'Order Summary'
-description: 'Place the Order Summary content element as a focused page section.'
+description: 'A single checkout card that lists line items with name, optional quantity, and price, followed by a totals list with subtotal, an optional discount row, a bold total, and a proceed-to-checkout button. Use it for: order recaps, cart or basket summaries, itemized cost breakdowns, offer or invoice-style totals in a source document. Prefer ''Pricing Section'' for selling plans; use ''Data Table'' for general tabular data that is not a bill.'
 group: pricing
 prefixFields: false
 basics:

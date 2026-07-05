@@ -4,13 +4,13 @@
     <unit id="title">
       <segment state="final">
         <source>Notification</source>
-        <target>Notification</target>
+        <target>Benachrichtigung</target>
       </segment>
     </unit>
     <unit id="description">
       <segment state="final">
-        <source>Place the Notification content element as a focused page section.</source>
-        <target>Platzieren Sie das Inhaltselement &quot;Notification&quot; als fokussierten Seitenabschnitt.</target>
+        <source>Renders a toast-style notice box with a colored variant (info, success, warning, or error), matching icon, optional title, rich-text message, optional action link, and an optional dismiss button; warnings and errors announce as alerts to screen readers. Use it for: maintenance or downtime notices, status and confirmation messages, deprecation or policy warnings in a document. Prefer 'Inline Alert Notice' for a simpler non-dismissible box; 'Announcement Bar' for a page-top message.</source>
+        <target>Rendert eine Hinweisbox im Toast-Stil mit farblicher Variante (Info, Erfolg, Warnung oder Fehler), passendem Icon, optionalem Titel, Rich-Text-Meldung, optionalem Aktionslink und ausblendbarem Schließen-Button; Warnungen und Fehler werden Screenreadern als Alert angekündigt. Geeignet für: Wartungs- oder Ausfallhinweise, Status- und Bestätigungsmeldungen, Warnungen zu Änderungen oder Richtlinien im Dokument. Für eine einfachere, nicht ausblendbare Box besser die 'Inline-Hinweisbox'; für Meldungen am Seitenanfang die 'Ankündigungsleiste'.</target>
       </segment>
     </unit>
   </file>

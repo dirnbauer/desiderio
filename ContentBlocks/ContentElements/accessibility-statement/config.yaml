@@ -1,7 +1,7 @@
 name: desiderio/accessibility-statement
 typeName: desiderio_accessibilitystatement
 title: 'Accessibility Statement'
-description: 'Place the Accessibility Statement content element as a focused page section.'
+description: 'Renders a legal-style section with heading, a WCAG 2.1 conformance-level badge (A, AA, or AAA), a rich-text statement body, an optional last-updated date, and a feedback channel with a linked contact email. Use it for: accessibility statements, WCAG or EAA/BITV conformance declarations, barrier-reporting contact sections found in legal source documents. Prefer ''Imprint'' for company legal notices and ''Privacy Notice'' for data-protection text.'
 group: footer
 prefixFields: false
 basics:

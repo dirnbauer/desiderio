@@ -9,8 +9,8 @@
     </unit>
     <unit id="description">
       <segment state="final">
-        <source>Place the Area Chart content element as a focused page section.</source>
-        <target>Platzieren Sie das Inhaltselement &quot;Area Chart&quot; als fokussierten Seitenabschnitt.</target>
+        <source>Renders one time series as a JS-drawn area chart (line with shaded fill, adjustable opacity and color), plus computed summary stats (first, latest, peak, net change) and a hidden accessible data table from 'Period | Value' rows. Use it for: metrics tracked over time — revenue growth, user numbers, traffic per month. Prefer 'Line Chart' for an unfilled line, 'Bar Chart' for category comparisons, and 'Data Chart' when the chart type should stay switchable.</source>
+        <target>Rendert eine Zeitreihe als per JavaScript gezeichnetes Flächendiagramm (Linie mit schattierter Füllung, einstellbarer Deckkraft und Farbe), samt berechneten Eckdaten (Startwert, letzter Wert, Spitze, Nettoveränderung) und einer versteckten barrierefreien Datentabelle aus 'Zeitraum | Wert'-Zeilen. Geeignet für: Kennzahlen im Zeitverlauf — Umsatzentwicklung, Nutzerzahlen, Traffic pro Monat. 'Line Chart' für eine ungefüllte Linie, 'Bar Chart' für Kategorievergleiche, 'Data Chart' wenn der Diagrammtyp umschaltbar bleiben soll.</target>
       </segment>
     </unit>
   </file>

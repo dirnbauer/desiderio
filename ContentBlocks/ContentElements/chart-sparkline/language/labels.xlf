@@ -8,7 +8,7 @@
     </unit>
     <unit id="description">
       <segment>
-        <source>Place the Sparkline KPI Card content element as a focused page section.</source>
+        <source>Renders a compact KPI card: heading and description beside a trend badge whose arrow turns up, down, or flat from the data automatically, above a tiny JavaScript-drawn sparkline and a screen-reader table of 'period | value' points. Use it for: a single key figure with recent movement — monthly recurring revenue, signups, uptime, support volume from a report. Prefer 'KPI Cards' for several metrics in a grid; 'Line Chart' for a full-size trend with axes.</source>
       </segment>
     </unit>
     <unit id="field.series_label">

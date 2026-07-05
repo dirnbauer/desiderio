@@ -9,8 +9,8 @@
     </unit>
     <unit id="description">
       <segment state="final">
-        <source>Place the Status Indicator Data View content element as a focused page section.</source>
-        <target>Platzieren Sie das Inhaltselement &quot;Status Indicator Data View&quot; als fokussierten Seitenabschnitt.</target>
+        <source>Renders a service status board: an overall state line with a colored dot (operational, degraded, outage, maintenance) above a list of individual services, each with its own dot, status word, and optional detail note. Use it for: system status or uptime pages, IT service health overviews, availability listings for APIs, hosting, or platform components. Prefer 'Inline Alert Notice' for a one-off incident message; this element shows persistent per-service state.</source>
+        <target>Rendert eine Service-Statustafel: eine Gesamtstatuszeile mit farbigem Punkt (betriebsbereit, eingeschränkt, Ausfall, Wartung) über einer Liste einzelner Dienste, jeder mit eigenem Punkt, Statuswort und optionaler Detailnotiz. Geeignet für: Status- oder Uptime-Seiten, IT-Service-Übersichten, Verfügbarkeitslisten für APIs, Hosting oder Plattformkomponenten. Für eine einmalige Störungsmeldung 'Inline Alert Notice' bevorzugen — dieses Element zeigt dauerhaften Status je Dienst.</target>
       </segment>
     </unit>
   </file>

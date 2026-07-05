@@ -1,7 +1,7 @@
 name: desiderio/gdpr-banner
 typeName: desiderio_gdprbanner
 title: 'GDPR Consent Banner'
-description: 'Place the GDPR Consent Banner content element as a focused page section.'
+description: 'Renders a consent region with a heading, rich-text message, a checkbox list of cookie categories (each with name, description, and a required flag), Accept-all and Save-preferences buttons, plus a privacy policy link. Use it for: cookie consent copy, consent category lists (essential, analytics, marketing), tracking opt-in text from privacy or legal documents. Prefer ''Cookie Consent Banner'' for a simple dismissible notice without per-category checkboxes; use ''Privacy Notice'' for full policy summaries.'
 group: footer
 prefixFields: false
 basics:

@@ -1,7 +1,7 @@
 name: desiderio/code-block
 typeName: desiderio_codeblock
 title: 'Code Block'
-description: 'Place the Code Block content element as a focused page section.'
+description: 'Renders source code in a scrollable, keyboard-focusable panel with an optional filename header and language label, syntax-highlighted on the frontend (language detected from the label, filename extension, or the code itself). Use it for: code samples, terminal commands, configuration snippets, API examples, or log excerpts in technical documents and tutorials. Prefer ''Plain HTML'' to execute markup rather than display it; use ''Text'' with inline code for short in-sentence snippets.'
 group: content
 prefixFields: false
 basics:

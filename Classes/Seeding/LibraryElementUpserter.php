@@ -69,6 +69,7 @@ final class LibraryElementUpserter
             $connection->insert('tt_content', $contentData['row']);
             $contentUid = CollectionRecordSeeder::normalizeLastInsertId($connection->lastInsertId());
             $this->seedChildren($contentUid, $folderPid, $now, $contentData);
+            $this->removeDuplicateVisibleRows($folderPid, $element['cType'], $contentUid, $now);
             return ['created', $contentUid];
         }
 
@@ -84,8 +85,65 @@ final class LibraryElementUpserter
         unset($row['pid'], $row['crdate']);
         $this->connectionPool->getConnectionForTable('tt_content')->update('tt_content', $row, ['uid' => $existingUid]);
         $this->seedChildren($existingUid, $folderPid, $now, $contentData);
+        $this->removeDuplicateVisibleRows($folderPid, $element['cType'], $existingUid, $now);
 
         return ['updated', $existingUid];
+    }
+
+    /**
+     * The library guarantee is exactly ONE visible record per CType: stray
+     * visible duplicates (e.g. rows copied into the folder by hand) would
+     * otherwise survive every reseed, because the upsert only ever touches
+     * the lowest uid. Hidden rows are deliberately spared — they are parked
+     * work-in-progress, invisible to the picker and the preview warmer.
+     */
+    private function removeDuplicateVisibleRows(int $folderPid, string $cType, int $keepUid, int $now): void
+    {
+        $queryBuilder = $this->connectionPool->getQueryBuilderForTable('tt_content');
+        $rows = $queryBuilder
+            ->select('uid')
+            ->from('tt_content')
+            ->where(
+                $queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($folderPid, ParameterType::INTEGER)),
+                $queryBuilder->expr()->eq('CType', $queryBuilder->createNamedParameter($cType)),
+                $queryBuilder->expr()->neq('uid', $queryBuilder->createNamedParameter($keepUid, ParameterType::INTEGER)),
+                $queryBuilder->expr()->eq('deleted', $queryBuilder->createNamedParameter(0, ParameterType::INTEGER)),
+                $queryBuilder->expr()->eq('hidden', $queryBuilder->createNamedParameter(0, ParameterType::INTEGER)),
+                $queryBuilder->expr()->eq('sys_language_uid', $queryBuilder->createNamedParameter(0, ParameterType::INTEGER)),
+                $queryBuilder->expr()->eq('t3ver_wsid', $queryBuilder->createNamedParameter(0, ParameterType::INTEGER))
+            )
+            ->executeQuery()
+            ->fetchFirstColumn();
+
+        $duplicateUids = [];
+        foreach ($rows as $uid) {
+            if (is_numeric($uid)) {
+                $duplicateUids[] = (int)$uid;
+            }
+        }
+        if ($duplicateUids === []) {
+            return;
+        }
+
+        $this->collectionCleanupService->deleteFileReferencesForRecords('tt_content', $duplicateUids);
+        $this->collectionCleanupService->deleteCollectionRowsForParentUids(
+            $duplicateUids,
+            'tt_content',
+            $this->getCollectionsByParentTable()
+        );
+
+        $update = $this->connectionPool->getQueryBuilderForTable('tt_content');
+        $update
+            ->update('tt_content')
+            ->set('deleted', (string)1)
+            ->set('tstamp', (string)$now)
+            ->where(
+                $update->expr()->in(
+                    'uid',
+                    $update->createNamedParameter($duplicateUids, \Doctrine\DBAL\ArrayParameterType::INTEGER)
+                )
+            )
+            ->executeStatement();
     }
 
     /**

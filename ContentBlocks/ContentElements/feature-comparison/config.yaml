@@ -1,7 +1,7 @@
 name: desiderio/feature-comparison
 typeName: desiderio_featurecomparison
 title: 'Feature Comparison Table'
-description: 'Place the Feature Comparison Table content element as a focused page section.'
+description: 'Renders an accessible table with a feature column and two option columns (defaults Free and Pro); each row marks a feature as included with a check or excluded with a dash — boolean values only, no text cells. Use it for: yes/no availability lists contrasting exactly two plans, editions, or product variants. Prefer ''Feature Comparison Matrix'' when cells hold text values like limits or quotas; ''Plan Comparison Matrix'' for up to four pricing plans.'
 group: features
 prefixFields: false
 basics:

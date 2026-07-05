@@ -4,13 +4,13 @@
     <unit id="title">
       <segment state="final">
         <source>Back to Top Button</source>
-        <target>Zurueck-nach-oben-Button</target>
+        <target>Zurück-nach-oben-Button</target>
       </segment>
     </unit>
     <unit id="description">
       <segment state="final">
-        <source>Place the Back to Top Button content element as a focused page section.</source>
-        <target>Platzieren Sie das Inhaltselement &quot;Back to Top Button&quot; als fokussierten Seitenabschnitt.</target>
+        <source>Renders a floating, initially hidden button with an up chevron that appears after roughly 300px of scrolling and returns the visitor to the page top; the label text is optional and the position selectable (bottom right, left, or center). Use it for: long documents, one-page sites, or article pages built from lengthy sources — it maps to no document content and is added as a usability aid. Prefer 'Table of Contents Navigation' for links to sections.</source>
+        <target>Rendert einen schwebenden, anfangs verborgenen Button mit Chevron nach oben, der nach etwa 300 Pixel Scrollen erscheint und zurück zum Seitenanfang führt; Beschriftung optional, Position wählbar (unten rechts, links oder mittig). Geeignet für: lange Dokumente, One-Pager oder Artikelseiten aus umfangreichen Quellen — er entspricht keinem Dokumentinhalt, sondern dient der Bedienbarkeit. Für Sprungmarken zu Abschnitten besser 'Table of Contents Navigation' verwenden.</target>
       </segment>
     </unit>
   </file>

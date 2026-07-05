@@ -1,7 +1,7 @@
 name: desiderio/contact
 typeName: desiderio_contact
 title: 'Contact Form Block'
-description: 'Place the Contact Form Block content element as a focused page section.'
+description: 'Renders an intro (eyebrow, heading, subheadline) above two cards: an info panel with title, text and a label/value contact list with optional links (phone, email), beside a form card embedding the Desiderio contact form via the TYPO3 Form Framework. Use it for: a main contact page combining reachability details — address, phone, email — with a send-us-a-message form. Prefer ''Contact Info'' when no form is needed; ''Contact Split Form'' when a photo should sit beside the form.'
 group: conversion
 prefixFields: false
 basics:

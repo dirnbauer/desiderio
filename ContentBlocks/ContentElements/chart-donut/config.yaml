@@ -1,7 +1,7 @@
 name: desiderio/chart-donut
 typeName: desiderio_chartdonut
 title: 'Donut Chart'
-description: 'Place the Donut Chart content element as a focused page section.'
+description: 'Renders a JavaScript-drawn donut ring from two to five labelled value segments, with an optional headline figure and label in the center, a color-keyed legend, and a hidden accessible data table. Use it for: part-of-whole breakdowns — budget splits, revenue by segment, market share, portfolio allocation, survey answer distribution — especially when one headline total belongs in the center. Prefer ''Pie Chart'' when no center figure is needed; ''Stacked Bar Chart'' compares composition across categories.'
 group: data
 prefixFields: false
 basics:

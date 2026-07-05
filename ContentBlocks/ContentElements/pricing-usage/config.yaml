@@ -1,7 +1,7 @@
 name: desiderio/pricing-usage
 typeName: desiderio_pricingusage
 title: 'Usage-Based Pricing'
-description: 'Place the Usage-Based Pricing content element as a focused page section.'
+description: 'Renders an intro plus a grid of rate cards, each showing a title, a per-unit rate (''$0.10 / request''), an optional description, and a details link. Use it for: pay-as-you-go price lists, metered billing rates (per GB, per API call, per user, per transaction), fee schedules with unit prices. Prefer ''Pricing Slider'' when readers should explore volume tiers interactively; ''Pricing Tier Table'' for quantity-tier rate tables.'
 group: pricing
 prefixFields: false
 basics:

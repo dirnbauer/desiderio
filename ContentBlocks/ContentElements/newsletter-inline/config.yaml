@@ -1,7 +1,7 @@
 name: desiderio/newsletter-inline
 typeName: desiderio_newsletterinline
 title: 'Newsletter Inline'
-description: 'Place the Newsletter Inline content element as a focused page section.'
+description: 'Renders a slim single-row strip with a headline, a short description, and an embedded newsletter subscription form (a single email field with submit button) side by side. Use it for: brief ''subscribe to our newsletter'' prompts between content sections, mid-article signup lines, short email opt-in sentences in a document. Prefer ''Newsletter Signup'' for a full section with benefit bullets; ''Newsletter Footer'' when the signup belongs at the page bottom.'
 group: conversion
 prefixFields: false
 basics:

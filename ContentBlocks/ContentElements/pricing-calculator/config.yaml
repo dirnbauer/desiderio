@@ -1,7 +1,7 @@
 name: desiderio/pricing-calculator
 typeName: desiderio_pricingcalculator
 title: 'Pricing Tier Table'
-description: 'Place the Pricing Tier Table content element as a focused page section.'
+description: 'A static volume-pricing table with one row per quantity tier — optional tier label, an up-to quantity paired with a configurable unit such as users or API calls, and the price per unit — introduced by an eyebrow, headline, and rich-text description. Use it for: graduated or volume price lists, per-seat and usage rate schedules, quantity-discount tables. Prefer ''Pricing Slider'' for an interactive tier picker; use ''Usage-Based Pricing'' for per-unit rate cards without quantity brackets.'
 group: pricing
 prefixFields: false
 basics:

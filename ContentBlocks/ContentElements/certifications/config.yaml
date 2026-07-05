@@ -1,7 +1,7 @@
 name: desiderio/certifications
 typeName: desiderio_certifications
 title: 'Certifications'
-description: 'Place the Certifications content element as a focused page section.'
+description: 'Renders an intro (eyebrow, heading, subheadline) above a grid of certification entries, each with badge image, certification name, issuing body, short rich-text description, and an optional ''Verify'' link. Use it for: ISO/SOC/GDPR certification lists, quality seals, memberships and accreditations found on trust or compliance pages. Prefer ''Compliance Badges'' for a slim badge row without descriptions, ''Awards'' for prizes with year, and ''Trust Badges'' for generic logo tiles.'
 group: social-proof
 prefixFields: false
 basics:

@@ -9,8 +9,8 @@
     </unit>
     <unit id="description">
       <segment state="final">
-        <source>Place the Steps Navigation content element as a focused page section.</source>
-        <target>Platzieren Sie das Inhaltselement &quot;Steps Navigation&quot; als fokussierten Seitenabschnitt.</target>
+        <source>Renders a numbered or dot-style progress indicator as an ordered list of at least two steps, each labeled, optionally linked, and marked pending, current, or completed — completed steps show a checkmark, the current one gets aria-current. Use it for: checkout progress, application and registration wizards, onboarding stages, multi-part form flows. Prefer 'How-to Steps' or 'Numbered Feature Steps' when each step carries explanatory content; this element shows progress state only.</source>
+        <target>Rendert eine nummerierte oder Punkt-Fortschrittsanzeige als geordnete Liste von mindestens zwei Schritten, je beschriftet, optional verlinkt und als ausstehend, aktuell oder abgeschlossen markiert — abgeschlossene Schritte zeigen ein Häkchen, der aktuelle erhält aria-current. Geeignet für: Checkout-Fortschritt, Bewerbungs- und Registrierungsassistenten, Onboarding-Stufen, mehrteilige Formularstrecken. 'How-to Steps' oder 'Numbered Feature Steps' eignen sich, wenn jeder Schritt erklärenden Inhalt trägt; dieses Element zeigt nur den Fortschrittsstatus.</target>
       </segment>
     </unit>
   </file>

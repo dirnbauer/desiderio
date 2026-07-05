@@ -1,7 +1,7 @@
 name: desiderio/feature-checklist
 typeName: desiderio_featurechecklist
 title: 'Feature Checklist'
-description: 'Place the Feature Checklist content element as a focused page section.'
+description: 'Renders one card containing a vertical list where every item gets a check-mark icon, a bold title, and an optional one-line description. Use it for: ''what''s included'' lists, plan benefits, deliverables, scope-of-service bullets, package contents, or requirement lists found in offers and pricing documents. Prefer ''Feature Comparison Table'' to contrast two plans row by row; use ''Numbered Feature Steps'' when item order matters.'
 group: features
 prefixFields: false
 basics:

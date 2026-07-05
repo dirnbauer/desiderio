@@ -1,7 +1,7 @@
 name: desiderio/timeline
 typeName: desiderio_timeline
 title: 'Timeline'
-description: 'Place the Timeline content element as a focused page section.'
+description: 'Renders a vertical timeline of numbered marker dots, each item a card with a step or date label, title, rich-text description, and optional link. Use it for: process descriptions, project phases, application or onboarding steps, dated event sequences, roadmaps. Prefer ''Company History Timeline'' for founding-to-today company milestones, ''How-to Steps'' for instructions with HowTo schema, and ''Numbered Feature Steps'' for feature walkthroughs.'
 group: content
 prefixFields: false
 basics:

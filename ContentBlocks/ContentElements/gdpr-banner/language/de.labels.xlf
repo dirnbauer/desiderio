@@ -9,8 +9,8 @@
     </unit>
     <unit id="description">
       <segment state="final">
-        <source>Place the GDPR Consent Banner content element as a focused page section.</source>
-        <target>Platzieren Sie das Inhaltselement &quot;GDPR Consent Banner&quot; als fokussierten Seitenabschnitt.</target>
+        <source>Renders a consent region with a heading, rich-text message, a checkbox list of cookie categories (each with name, description, and a required flag), Accept-all and Save-preferences buttons, plus a privacy policy link. Use it for: cookie consent copy, consent category lists (essential, analytics, marketing), tracking opt-in text from privacy or legal documents. Prefer 'Cookie Consent Banner' for a simple dismissible notice without per-category checkboxes; use 'Privacy Notice' for full policy summaries.</source>
+        <target>Rendert einen Einwilligungsbereich mit Überschrift, Rich-Text-Hinweis, einer Checkbox-Liste von Cookie-Kategorien (jeweils Name, Beschreibung und Pflicht-Kennzeichnung), Buttons für 'Alle akzeptieren' und 'Auswahl speichern' sowie einem Link zur Datenschutzerklärung. Geeignet für: Cookie-Einwilligungstexte, Kategorienlisten wie notwendig, Statistik und Marketing sowie Tracking-Opt-in-Passagen aus Datenschutzdokumenten. Für einen einfachen Hinweis ohne Kategorien-Checkboxen 'Cookie Consent Banner' wählen, für Richtlinien-Zusammenfassungen 'Privacy Notice'.</target>
       </segment>
     </unit>
     <unit id="aria_label">

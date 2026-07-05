@@ -1,7 +1,7 @@
 name: desiderio/feature-grid-4
 typeName: desiderio_featuregrid4
 title: '4-Column Feature Grid'
-description: 'Place the 4-Column Feature Grid content element as a focused page section.'
+description: 'Renders a dense four-column grid of open tiles (no card frames), each with an icon, a title, and one short plain-text line (minimum four items). Use it for: long, scannable feature inventories — small capabilities, integrations, or spec highlights listed without full sentences. Prefer ''3-Column Feature Grid'' when descriptions are longer rich text or need links; ''Icon Feature Grid'' when the column count should be switchable between 3, 4, and 6.'
 group: features
 prefixFields: false
 basics:

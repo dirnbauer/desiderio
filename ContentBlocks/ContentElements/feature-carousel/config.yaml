@@ -1,7 +1,7 @@
 name: desiderio/feature-carousel
 typeName: desiderio_featurecarousel
 title: 'Feature Carousel Slider'
-description: 'Place the Feature Carousel Slider content element as a focused page section.'
+description: 'Renders a horizontally scrollable carousel of feature cards with a custom scroll indicator; each slide holds an optional icon, linked title, and rich-text description (minimum three slides). Use it for: long lists of features, services, or modules that would overflow a grid — visitors swipe through one card at a time. Prefer ''3-Column Feature Grid'' when a few features should stay visible at once; use ''Content Carousel'' for rotating image slides.'
 group: features
 prefixFields: false
 basics:

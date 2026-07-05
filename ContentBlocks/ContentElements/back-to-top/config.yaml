@@ -1,7 +1,7 @@
 name: desiderio/back-to-top
 typeName: desiderio_backtotop
 title: 'Back to Top Button'
-description: 'Place the Back to Top Button content element as a focused page section.'
+description: 'Renders a floating, initially hidden button with an up chevron that appears after roughly 300px of scrolling and returns the visitor to the page top; the label text is optional and the position selectable (bottom right, left, or center). Use it for: long documents, one-page sites, or article pages built from lengthy sources — it maps to no document content and is added as a usability aid. Prefer ''Table of Contents Navigation'' for links to sections.'
 group: footer
 prefixFields: false
 basics:

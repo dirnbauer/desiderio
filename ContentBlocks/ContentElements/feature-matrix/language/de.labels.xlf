@@ -9,8 +9,8 @@
     </unit>
     <unit id="description">
       <segment state="final">
-        <source>Place the Feature Comparison Matrix content element as a focused page section.</source>
-        <target>Platzieren Sie das Inhaltselement &quot;Feature Comparison Matrix&quot; als fokussierten Seitenabschnitt.</target>
+        <source>Renders a card-framed table mapping feature rows against two labeled value columns (defaults Plan A and Plan B); each cell holds free text such as limits, quotas, or counts. Use it for: spec and plan comparisons with textual values — storage sizes, user counts, support levels. Prefer 'Feature Comparison Table' when cells are plain yes/no checkmarks; 'Plan Comparison Matrix' for pricing pages with up to four plans; 'Product Specs Table' for one product's label-value specs.</source>
+        <target>Rendert eine Tabelle im Kartenrahmen, die Feature-Zeilen zwei beschrifteten Wertspalten gegenüberstellt (Standard: Plan A und Plan B); jede Zelle enthält freien Text wie Limits, Kontingente oder Anzahlen. Geeignet für: Spezifikations- und Tarifvergleiche mit Textwerten — Speichergrößen, Nutzerzahlen, Support-Level. Bevorzugen Sie die 'Feature-Vergleichstabelle', wenn Zellen nur Ja/Nein-Häkchen sind; 'Plan Comparison Matrix' für Preisseiten mit bis zu vier Tarifen; 'Product Specs Table' für Label-Wert-Spezifikationen eines Produkts.</target>
       </segment>
     </unit>
   </file>

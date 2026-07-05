@@ -1,7 +1,7 @@
 name: desiderio/chart-stacked-bar
 typeName: desiderio_chartstackedbar
 title: 'Stacked Bar Chart'
-description: 'Place the Stacked Bar Chart content element as a focused page section.'
+description: 'Renders a JavaScript-drawn stacked bar chart from comma-separated series names and ''category | value | value'' rows, with a named color legend, four palettes, and a screen-reader table including row and grand totals. Use it for: totals broken into components across categories — revenue by product line per year, headcount by department per location, traffic by channel per month. Prefer ''Bar Chart'' for single-series comparisons; ''Pie Chart'' or ''Donut Chart'' show one composition without category comparison.'
 group: data
 prefixFields: false
 basics:

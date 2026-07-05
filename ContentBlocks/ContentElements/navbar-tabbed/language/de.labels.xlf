@@ -9,8 +9,8 @@
     </unit>
     <unit id="description">
       <segment state="final">
-        <source>Place the Tabbed Navigation Bar content element as a focused page section.</source>
-        <target>Platzieren Sie das Inhaltselement &quot;Tabbed Navigation Bar&quot; als fokussierten Seitenabschnitt.</target>
+        <source>Renders a navigation bar with a brand name and menu links styled as a row of tab buttons, one of which can be flagged active and is highlighted with aria-current; an optional call-to-action button sits at the end. Use it for: section or view switchers, app-like page navigation, category links where the current page must stay visible. Prefer 'Tabbed Content Panels' when content switches in place; this element links to separate pages.</source>
+        <target>Rendert eine Navigationsleiste mit Markennamen und Menülinks als Reihe tabartiger Buttons, von denen einer als aktiv markiert und mit aria-current hervorgehoben werden kann; am Ende sitzt ein optionaler Call-to-Action-Button. Geeignet für: Bereichs- oder Ansichtswechsel, app-ähnliche Seitennavigation, Kategorielinks, bei denen die aktuelle Seite sichtbar bleiben soll. Wechselt der Inhalt an Ort und Stelle, besser 'Tab-Inhaltsbereiche'; dieses Element verlinkt auf eigene Seiten.</target>
       </segment>
     </unit>
   </file>

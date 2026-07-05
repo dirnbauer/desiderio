@@ -3,14 +3,14 @@
   <file id="search-header">
     <unit id="title">
       <segment state="final">
-        <source>Search Header</source>
-        <target>Such-Header</target>
+        <source>Search Page Header</source>
+        <target>Suchseiten-Header</target>
       </segment>
     </unit>
     <unit id="description">
       <segment state="final">
-        <source>Place the Search Header content element as a focused page section.</source>
-        <target>Platzieren Sie das Inhaltselement &quot;Search Header&quot; als fokussierten Seitenabschnitt.</target>
+        <source>Renders a page-top band with eyebrow, large headline and subheadline above a search form: an icon-decorated input named q with configurable placeholder and a submit button, sent via GET to a selectable target page. Use it for: the head of search-result, help-center, documentation or knowledge-base pages where finding content is the main task. Prefer 'Search Hero' for a homepage or portal opener built around search; this element tops a dedicated search page.</source>
+        <target>Rendert ein Kopfband mit Eyebrow, großer Überschrift und Subheadline über einem Suchformular: Eingabefeld mit Such-Icon, konfigurierbarem Platzhalter und Parameter q sowie Absenden-Button, per GET an eine wählbare Zielseite gesendet. Geeignet für: den Kopf von Suchergebnis-, Hilfe-, Dokumentations- oder Wissensdatenbank-Seiten, auf denen das Finden im Mittelpunkt steht. 'Search Hero' eignet sich als Startseiten- oder Portal-Einstieg rund um die Suche; dieses Element steht am Kopf einer dedizierten Suchseite.</target>
       </segment>
     </unit>
   </file>

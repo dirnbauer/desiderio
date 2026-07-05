@@ -1,7 +1,7 @@
 name: desiderio/contact-split
 typeName: desiderio_contactsplit
 title: 'Contact Split Form'
-description: 'Place the Contact Split Form content element as a focused page section.'
+description: 'Renders a two-column layout: heading, rich-text intro and the embedded Desiderio contact form (TYPO3 Form Framework) on the left, one large side image on the right. Use it for: contact or landing sections pairing a short welcoming pitch with a message form and a photo — office shot, team portrait, storefront. Prefer ''Contact Form Block'' when structured details (address, phone, email) must appear beside the form; ''Contact Info'' when no form is needed.'
 group: conversion
 prefixFields: false
 basics:

@@ -1,7 +1,7 @@
 name: desiderio/career-listing
 typeName: desiderio_careerlisting
 title: 'Career Listing'
-description: 'Place the Career Listing content element as a focused page section.'
+description: 'Renders an intro (eyebrow, heading, subheadline) above a row list of job openings, each with title, department, location, an employment-type badge, and an outline Apply button linking to the application. Use it for: job vacancy lists, open-position sections, ''join our team'' listings extracted from careers pages or HR documents. Prefer ''Job Card'' to spotlight a single role; use ''Team Hiring CTA'' for a general hiring banner without concrete positions.'
 group: team
 prefixFields: false
 basics:

@@ -1,7 +1,7 @@
 name: desiderio/legal-links
 typeName: desiderio_legallinks
 title: 'Legal Links Row'
-description: 'Place the Legal Links Row content element as a focused page section.'
+description: 'Renders a horizontal navigation row of legal page links, each with a label and link target, joined by a configurable separator (dot, pipe, slash, or none) and carrying an accessible aria label. Use it for: footer link rows to privacy policy, terms, imprint, and cookie policy found at the bottom of source sites. Prefer ''Minimal Footer'' when a copyright line is also needed; ''Site Footer'' for a full footer.'
 group: footer
 prefixFields: false
 basics:

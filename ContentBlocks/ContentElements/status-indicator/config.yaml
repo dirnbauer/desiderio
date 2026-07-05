@@ -1,7 +1,7 @@
 name: desiderio/status-indicator
 typeName: desiderio_statusindicator
 title: 'Status Indicator Data View'
-description: 'Place the Status Indicator Data View content element as a focused page section.'
+description: 'Renders a service status board: an overall state line with a colored dot (operational, degraded, outage, maintenance) above a list of individual services, each with its own dot, status word, and optional detail note. Use it for: system status or uptime pages, IT service health overviews, availability listings for APIs, hosting, or platform components. Prefer ''Inline Alert Notice'' for a one-off incident message; this element shows persistent per-service state.'
 group: data
 prefixFields: false
 basics:

@@ -1,7 +1,7 @@
 name: desiderio/resource-library
 typeName: desiderio_resourcelibrary
 title: 'Resource Library'
-description: 'Place the Resource Library content element as a focused page section.'
+description: 'Renders a card grid introduced by eyebrow and heading, each card carrying a type badge such as Guide or Whitepaper, a title, a short rich-text description and an open-resource link. Use it for: download and link collections - whitepapers, guides, ebooks, templates or documentation hubs listed in a source document. Prefer ''File Download List'' when items are attached files with size and download button; ''Article Grid'' for editorial posts.'
 group: content
 prefixFields: false
 basics:

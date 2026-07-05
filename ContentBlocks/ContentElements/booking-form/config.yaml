@@ -1,7 +1,7 @@
 name: desiderio/booking-form
 typeName: desiderio_bookingform
 title: 'Booking Form'
-description: 'Place the Booking Form content element as a focused page section.'
+description: 'Renders a boxed card with heading, rich-text description, a reassurance line with check icon (e.g. ''30-minute call, no commitment''), and an embedded TYPO3 booking form below. Use it for: appointment and consultation booking sections, ''schedule a call'' offers, reservation requests on service, scheduling, or contact pages. Prefer ''Callback Request'' when visitors only leave a phone number, ''Demo Request'' for a two-column product-demo pitch.'
 group: conversion
 prefixFields: false
 basics:

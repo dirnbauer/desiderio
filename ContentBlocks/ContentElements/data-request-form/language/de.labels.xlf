@@ -9,8 +9,8 @@
     </unit>
     <unit id="description">
       <segment state="final">
-        <source>Place the Data Request Form content element as a focused page section.</source>
-        <target>Platzieren Sie das Inhaltselement &quot;Data Request Form&quot; als fokussierten Seitenabschnitt.</target>
+        <source>A privacy block rendering a heading, rich-text intro, a fixed embedded TYPO3 data-request form, and an optional privacy note beneath it. Use it for: GDPR subject-access sections, passages like 'request, export, or delete your data' in privacy policies, data-rights and compliance contact sections. Prefer 'Contact Form Block' for general enquiries; use 'Privacy Notice' for policy text without a form.</source>
+        <target>Ein Datenschutz-Block mit Überschrift, Rich-Text-Einleitung, fest eingebettetem TYPO3-Formular für Datenanfragen und optionalem Datenschutzhinweis darunter. Geeignet für: DSGVO-Auskunftsbereiche, Passagen wie 'Daten anfordern, exportieren oder löschen' in Datenschutzerklärungen, Abschnitte zu Betroffenenrechten und Compliance-Kontakt. Für allgemeine Anfragen besser 'Contact Form Block'; für reine Richtlinientexte ohne Formular 'Privacy Notice'.</target>
       </segment>
     </unit>
   </file>

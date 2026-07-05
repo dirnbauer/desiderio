@@ -8,8 +8,8 @@ namespace Webconsulting\Desiderio\Data;
  * Marketing showcase seeded by desiderio:styleguide:seed in addition to the
  * element chapters: managed homepage content on the styleguide root page plus
  * subpages (technical deep dive, a target groups overview with one subpage
- * per target audience, legal demo pages, a 404 page, a GEO explainer, and
- * illustrative success stories).
+ * per target audience, legal demo pages, a 404 page, a GEO explainer, an
+ * agentic TYPO3 v14 strategy page, and illustrative success stories).
  *
  * Internal links use the placeholder syntax {{page:<slug>}}; the seeder
  * replaces them with t3://page?uid=N once the target pages exist. The special
@@ -339,6 +339,7 @@ final class StyleguideShowcasePages
             self::inhousePage(),
             self::freelancerPage(),
             self::geoAiSearchPage(),
+            self::typo3V14StrategyPage(),
             self::successStoriesPage(),
             self::successStoryAiLabPage(),
             self::successStorySpaceCompanyPage(),
@@ -846,6 +847,175 @@ final class StyleguideShowcasePages
                     'cta_link' => self::REPO_URL,
                     'bg_style' => 'primary',
                 ]),
+            ],
+        ];
+    }
+
+    /**
+     * @return ShowcasePage
+     */
+    private static function typo3V14StrategyPage(): array
+    {
+        return [
+            'title' => 'TYPO3 v14 Agentic Strategy',
+            'navTitle' => 'TYPO3 v14 Strategy',
+            'slug' => '/typo3-v14-strategy',
+            'abstract' => 'A concrete TYPO3 v14 agentic CMS blueprint from the webconsulting lab: 50 MCP tools, shadcn-styled content, APIs, workspaces, Skillflow, Agentation, x402 and governance patterns that are already visible today.',
+            'description' => 'The results of webconsulting TYPO3 v14 strategy work: a sellable agentic CMS operating model built from real lab pieces, 50 MCP tools and TYPO3 governance strengths.',
+            'parentSlug' => null,
+            'content' => [
+                self::v14StrategyTextmedia(
+                    'From research to a sellable platform',
+                    'media-above',
+                    'This is the lab result: a sellable operating model, not a trend slide.',
+                    '<p>This page condenses the TYPO3 v14 strategy work already proven in the lab: Desiderio, MCP Server, sg_apicore, Skillflow, Agentation, x402, Solr, Powermail, WorkOS, workspaces and shadcn UI patterns tested against real pages, records, files, language overlays and cache behavior.</p><ul><li><strong>Already running</strong> - a TYPO3 stack that agents can inspect, write to and review through governed tools.</li><li><strong>Already concrete</strong> - the current MCP registry exposes 50 tools, including content, page-tree, file, Solr and x402 operations.</li><li><strong>Already sellable</strong> - every chapter maps to something a client can understand: speed, control, lower delivery cost and safer automation.</li></ul><p>The cool part is that TYPO3 does not need to pretend it is a toy AI app. Its historic strengths - permissions, records, workspaces, localization, extensibility and auditability - become exactly the strengths an agentic CMS needs.</p>',
+                    self::mcpStrategyImage('00-header-040fd12070c71dad.png', 'TYPO3 v14 Strategy - Built for Humans. Built for Agents.', 'Header banner of the TYPO3 v14 strategy infographic with the TYPO3 logo, the claim Built for Humans. Built for Agents. and an illustration of a person next to a friendly robot.')
+                ),
+                self::v14StrategyTextmedia(
+                    '1. Dual-audience design',
+                    'media-right',
+                    'One source now serves editors, APIs and agents.',
+                    '<p>TYPO3 already has the hard foundation: governed content, page trees, records, file references, translations and workspaces. Desiderio adds typed, semantic Content Blocks on top, so the same element can look polished in the browser and stay clean enough for APIs, search systems and AI assistants.</p><ul><li><strong>Cool now</strong> - backend previews and frontend markup come from the same element definition.</li><li><strong>Cool for buyers</strong> - one editorial workflow can feed websites, headless views, AI search and copilots.</li><li><strong>Cool for teams</strong> - accessibility, semantic HTML and structured content improve human UX and machine extraction at the same time.</li></ul><p>This is the strongest v14 story: stop building a human website first and a machine interface later. Build one governed content surface that works for both from day one.</p>',
+                    self::mcpStrategyImage('01-dual-audience-ea773c20f3cb7b79.png', '1. Dual-Audience Design', 'Infographic tile for Dual-Audience Design showing a human and an agent receiving the same governed content.')
+                ),
+                self::v14StrategyTextmedia(
+                    '2. Identity management for agents',
+                    'media-left',
+                    'No shared admin logins. Every agent needs an owner, scope and trail.',
+                    '<p>Agentic CMS work only becomes enterprise-ready when every automated action has an identity. TYPO3 already understands users, groups, permissions, workspaces and backend access; the lab adds MCP clients, API tokens and enterprise login patterns that point toward a real delegated-agent model.</p><ul><li><strong>Already here</strong> - backend permissions, workspace ownership, API tokens and WorkOS-style enterprise identity surfaces.</li><li><strong>What v14 should formalize</strong> - agent users, scoped credentials, expiry, consent records and per-tool authorization.</li><li><strong>Why it sells</strong> - a client can approve a translation agent or SEO agent without handing over the whole backend.</li></ul><p>The business value is simple: automation can move faster because authority is explicit. Security stops being the blocker and becomes the reason TYPO3 is credible.</p>',
+                    self::mcpStrategyImage('02-identity-agents-51d4f28518613703.png', '2. Identity Management for Agents', 'Infographic tile showing a delegation chain from human user to delegated agent to scoped token.')
+                ),
+                self::v14StrategyTextmedia(
+                    '3. MCP: the right tools, not every endpoint',
+                    'media-right',
+                    'The live lab has 50 registered MCP tools - governed, named and inspectable.',
+                    '<p>The strategy is not to expose every TYPO3 endpoint and hope an LLM behaves. The lab proves the better pattern: a deliberate MCP toolbox with narrow operations for pages, content, records, files, tables, workspaces, site settings, Solr, payments and diagnostics.</p><ul><li><strong>Current count</strong> - 50 registered tools in this lab, from <code>GetPageTree</code> and <code>ContentAudit</code> to <code>SolrIndexQueue</code> and <code>x402_stats</code>.</li><li><strong>Cool detail</strong> - each tool has a job name, input contract and output shape an agent can reason about.</li><li><strong>Sales point</strong> - clients buy a controlled operating surface, not a vague chat box wired to production.</li></ul><p>The number matters less than the discipline: tools should be useful enough to ship work and small enough to govern. That is where TYPO3 can beat generic automation platforms.</p>',
+                    self::mcpStrategyImage('03-mcp-tools-e43229657f07b220.png', '3. MCP: The Right Tools', 'Infographic tile showing MCP tool groups for content, pages, records, files, routing, i18n, cache, audit and extension APIs.')
+                ),
+                self::v14StrategyTextmedia(
+                    '4. Agentic skills',
+                    'media-left',
+                    'Turn senior TYPO3 delivery into reusable, versioned workflows.',
+                    '<p>Prompts are not a process. Skills are. The lab already shows how TYPO3 know-how can become reusable instructions: create a landing page, review accessibility, rewrite metadata, check a workspace, import content, prepare translations or validate a launch.</p><ul><li><strong>Already here</strong> - Skillflow manages SKILL.md-style instructions as TYPO3 records, syncs them from repositories and makes them searchable.</li><li><strong>Cool detail</strong> - skills can be assigned to workspace stages so review becomes part of the editorial pipeline.</li><li><strong>Why it sells</strong> - agencies can package their best delivery practice instead of depending on whoever remembers the checklist.</li></ul><p>This is the product layer above AI tooling: not one-off answers, but repeatable TYPO3 work that gets better over time.</p>',
+                    self::mcpStrategyImage('04-agentic-skills-d21a14294b126bf0.png', '4. Agentic Skills', 'Infographic tile showing reusable agentic skill cards for TYPO3 workflows.')
+                ),
+                self::v14StrategyTextmedia(
+                    '5. LLM-agnostic libraries',
+                    'media-right',
+                    'Use the best model for the job without rewiring the CMS.',
+                    '<p>The model market will keep moving. TYPO3 projects need an architecture that can move with it: shared interfaces for generation, embeddings, tool use, logging, cost metadata and provider configuration, instead of hard-coding one vendor into every feature.</p><ul><li><strong>Already in the lab</strong> - an LLM abstraction direction, MCP tool execution, secret handling and provider-aware experiments.</li><li><strong>Cool detail</strong> - premium models can handle high-value content while cheaper or local models handle bulk enrichment and sensitive workflows.</li><li><strong>Buyer benefit</strong> - procurement keeps leverage on price, data residency and compliance because the CMS integration stays stable.</li></ul><p>The sellable message is freedom: TYPO3 owns the workflow; models are replaceable engines behind it.</p>',
+                    self::mcpStrategyImage('05-llm-agnostic-4b2e25648deec4e8.png', '5. LLM-Agnostic Libraries', 'Infographic tile showing one LLM interface connected to multiple model providers.')
+                ),
+                self::v14StrategyTextmedia(
+                    '6. Token billing and usage economics',
+                    'media-left',
+                    'AI becomes a product when usage is visible, priced and capped.',
+                    '<p>Every serious AI feature creates variable cost. The lab already has the mindset and pieces for commercial control: x402 payment flows, usage-oriented tools, transaction stats and a platform pattern where costly operations are measured instead of hidden.</p><ul><li><strong>Already here</strong> - x402 page and API gating, payment statistics and MCP tools for paid-content visibility.</li><li><strong>What v14 can add</strong> - token metering per user, model, task, workspace and customer account.</li><li><strong>Why it sells</strong> - agencies can price AI-assisted translation, enrichment, QA and migration as visible services.</li></ul><p>This turns AI from an unpredictable cost center into a managed revenue line. Buyers understand budgets; they do not want a mystery invoice from a model provider.</p>',
+                    self::mcpStrategyImage('06-token-billing-fc5c97b63682b72b.png', '6. Billing with Stripe Token Billing', 'Infographic tile showing a token-usage gauge flowing into a payment invoice.')
+                ),
+                self::v14StrategyTextmedia(
+                    '7. CLI: deterministic, agent-friendly and powerful',
+                    'media-above',
+                    'Agents trust commands that validate input and return stable output.',
+                    '<p>Browser automation is fragile. Deterministic TYPO3 commands are not. The lab already uses CLI surfaces for seeding, diagnostics and MCP inspection; the MCP tool list itself can be exported as JSON and counted without touching the backend UI.</p><ul><li><strong>Already here</strong> - commands for styleguide seeding, MCP tool inspection, Solr indexing, Skillflow sync and operational checks.</li><li><strong>Cool detail</strong> - JSON output, clear exit codes and idempotent operations make agent work reviewable by humans.</li><li><strong>v14 opportunity</strong> - promote CLI as an official automation surface for content, schema, cache, workspace and health operations.</li></ul><p>This is not glamorous, but it is what makes autonomous work reliable. A command that can be repeated, logged and rolled back is a product feature.</p>',
+                    self::mcpStrategyImage('07-cli-e79455439522c612.png', '7. CLI: Agent-Friendly. Deterministic. Powerful.', 'Wide infographic tile listing TYPO3 CLI tools and stable JSON output for agent operations.')
+                ),
+                self::v14StrategyTextmedia(
+                    '8. Backend: headless by design',
+                    'media-right',
+                    'Editors keep the UI. Agents get the same backend as programmable operations.',
+                    '<p>The TYPO3 backend should remain the place where editors understand and control the site. The v14 shift is underneath it: page trees, content elements, files, forms, workspaces and records need typed operations that do not depend on screen scraping.</p><ul><li><strong>Already here</strong> - Content Blocks, backend previews, Visual Editor support, workspaces and command-oriented extension surfaces.</li><li><strong>Cool detail</strong> - Agentation can point at a real page element and carry selector-level feedback into an AI workflow.</li><li><strong>Buyer benefit</strong> - human approval and programmable delivery can share the same content model.</li></ul><p>That is the difference between AI bolted onto a CMS and a CMS ready for agentic operations. The UI stays useful because the platform below it becomes stronger.</p>',
+                    self::mcpStrategyImage('08-headless-backend-6ead5cf56fa2e576.png', '8. Backend: Headless by Design', 'Infographic tile contrasting manual backend clicks with programmable TYPO3 command surfaces.')
+                ),
+                self::v14StrategyTextmedia(
+                    '9. APIs like tRPC, built for PHP realities',
+                    'media-left',
+                    'One typed procedure can serve PHP, JavaScript, REST, MCP and external clients.',
+                    '<p>The lab already has the core idea in sg_apicore: define operations with attributes, generate OpenAPI documentation, enforce scopes and expose selected capabilities through structured interfaces. The v14 strategy takes that pattern seriously.</p><ul><li><strong>Already here</strong> - attribute-driven routes, OpenAPI docs, token/session auth, scopes and auto-CRUD resources.</li><li><strong>Cool detail</strong> - the same business operation can be documented for developers and exposed safely to agents.</li><li><strong>Why it sells</strong> - fewer duplicate controllers, fewer inconsistent integrations and less hidden logic in backend modules.</li></ul><p>TYPO3 does not need to become a Node app to learn from tRPC. It needs one contract for an operation and several safe ways to call it.</p>',
+                    self::mcpStrategyImage('09-apis-trpc-php-815ad6f55fea2180.png', '9. APIs like tRPC - in PHP', 'Infographic tile showing one typed PHP procedure contract serving multiple clients.')
+                ),
+                self::v14StrategyTextmedia(
+                    '10. Simple interfaces for AI work',
+                    'media-right',
+                    'Point at the issue. Capture the context. Let the agent work with precision.',
+                    '<p>The best AI interface for CMS work is often not a chat field. It is a visual annotation on the actual page: this headline is weak, this spacing is off, this component needs alt text, this legal block must not change.</p><ul><li><strong>Already here</strong> - Agentation captures page-element feedback with selector and context for tools such as Claude Code, Cursor or MCP agents.</li><li><strong>Cool detail</strong> - the system can carry DOM context, styles, page URL and human intent together.</li><li><strong>Buyer benefit</strong> - editors stay in the page, while technical agents receive the exact context they need to act.</li></ul><p>This removes the worst part of AI collaboration: explaining where the problem is. TYPO3 can turn editorial feedback into executable context.</p>',
+                    self::mcpStrategyImage('10-simple-interfaces-0e471a0fd9f6dd61.png', '10. Simple Interfaces for AI Work', 'Infographic tile showing in-page annotation feeding a coding agent with selector and file-path context.')
+                ),
+                self::v14StrategyTextmedia(
+                    '11. MCP-based chatbot and editorial assistant',
+                    'media-above',
+                    'Chat is useful when it calls the same governed tools as everything else.',
+                    '<p>A CMS assistant becomes serious when it is not a parallel system. The lab has MCP chat bridge work and a real MCP toolbox, so chat can become one interface to the same page, content, file, workspace and diagnostic tools used by other agents.</p><ul><li><strong>Already here</strong> - MCP tools for reading pages, importing content, writing records, attaching media and reviewing workspaces.</li><li><strong>Cool detail</strong> - an editor can ask for a summary or draft while the platform still respects permissions and preview workflows.</li><li><strong>Why it sells</strong> - chat feels fast, but governance stays in TYPO3 instead of disappearing into a black-box assistant.</li></ul><p>The assistant should not be magic. It should be a friendly command surface over a controlled CMS operating layer.</p>',
+                    self::mcpStrategyImage('11-chatbot-mcp-4226de5eda91f447.png', '11. Chatbot on MCP Basis', 'Wide infographic tile showing a backend chat assistant using the same governed MCP tools.')
+                ),
+                self::v14StrategyTextmedia(
+                    '12. AI-optimized codebase',
+                    'media-left',
+                    'Code that agents can understand is code teams can maintain.',
+                    '<p>The Desiderio codebase already demonstrates the discipline v14 needs: typed Fluid components, focused data classes, Content Block definitions, tests, predictable templates and shadcn-style design tokens. That makes the system easier for humans and LLMs to inspect.</p><ul><li><strong>Already here</strong> - typed template arguments, reusable components, unit tests, accessibility checks and deterministic seed data.</li><li><strong>Cool detail</strong> - the element library is structured enough for agents to select the right block instead of guessing from screenshots.</li><li><strong>Buyer benefit</strong> - cleaner architecture lowers the cost of upgrades, automation and future feature work.</li></ul><p>The strategic point is blunt: messy extensions can be prompted. Clear extensions can be operated, tested and sold.</p>',
+                    self::mcpStrategyImage('12-ai-optimized-codebase-278c6cf04c8e47a5.png', '12. AI-Optimized Codebase', 'Infographic tile showing maintainable TYPO3 code architecture for humans and LLM agents.')
+                ),
+                self::v14StrategyTextmedia(
+                    'Installed in this lab: the TYPO3 AI stack already running',
+                    'media-right',
+                    'This is not hypothetical: the pieces are already visible in the lab.',
+                    '<p>The lab already combines the pieces a serious agentic TYPO3 story needs: the Desiderio design system, content and media operations, MCP tools, API capability patterns, Skillflow, Agentation, x402 payment flows, search, forms, enterprise auth concepts and workspace-based review.</p><ul><li><strong>Demo value</strong> - clients can see real content, real backend modules and real operations instead of abstract architecture diagrams.</li><li><strong>Implementation value</strong> - the stack uses TYPO3 concepts: pages, records, Content Blocks, FAL, site settings and workspaces.</li><li><strong>Roadmap value</strong> - what is already installed makes the v14 platform direction concrete enough to sell and refine.</li></ul><p>This matters commercially. Buyers do not need another AI keynote. They need to see which parts can be installed, governed, extended and connected to actual editorial work.</p>',
+                    self::mcpStrategyImage('v14-13-installed-stack-source-d2f467651a18dbc9.png', 'Installed TYPO3 AI lab stack', 'Installed TYPO3 AI lab stack with LLM, MCP, vault and monitoring modules.')
+                ),
+                self::v14StrategyTextmedia(
+                    'The full MCP toolbox',
+                    'media-above',
+                    '50 registered tools prove the operating surface is real.',
+                    '<p>The current lab registry exposes 50 MCP tools. They cover the daily operating lanes TYPO3 projects actually need: pages, content, records, file handling, table schemas, language-aware imports, site settings, workspaces, logs, Solr, paid content and x402 payments.</p><ul><li><strong>Content lane</strong> - <code>GetPage</code>, <code>GetPageTree</code>, <code>ImportContent</code>, <code>BulkWrite</code>, <code>AttachImage</code> and <code>RenderRecord</code>.</li><li><strong>Operations lane</strong> - <code>WorkspaceReview</code>, <code>PublishWorkspace</code>, <code>RollbackWorkspace</code>, <code>GetSystemLog</code>, <code>SafeCli</code> and <code>SolrIndexQueue</code>.</li><li><strong>Commercial lane</strong> - <code>GetPaidContent</code>, <code>GetPaymentStats</code>, <code>x402_stats</code>, <code>x402_transactions</code> and related probe tools.</li></ul><p>The cool part is not the raw count. It is that TYPO3 work becomes a named toolbox: inspectable, permissionable and teachable to agents.</p>',
+                    self::mcpStrategyImage('03-mcp-tools-4116d4d295facb21.png', 'MCP: The Right Tools', 'Infographic tile for the full MCP toolbox with TYPO3 operation groups.')
+                ),
+                self::v14StrategyTextmedia(
+                    'How the MCP stays secure',
+                    'media-above',
+                    'Powerful tools need deliberate fences, not wishful thinking.',
+                    '<p>The MCP surface can create pages, write records, upload files and affect caches, so it must be treated like an operations interface. The lab keeps that security stance explicit: authentication, scoped credentials, local and staging rules, file boundaries and human approval for risky work.</p><ul><li><strong>Already sensible</strong> - file tooling is designed around FAL and controlled storage, not arbitrary server paths.</li><li><strong>Governance pattern</strong> - read tools, write tools, publish tools and payment tools deserve different scopes and review rules.</li><li><strong>Buyer confidence</strong> - webconsulting can define which tools are allowed in local dev, staging, production and managed operations.</li></ul><p>This is where TYPO3 has a natural advantage: it already thinks in permissions, records and workflows. MCP should amplify that discipline, not bypass it.</p>'
+                ),
+                self::v14StrategyTextmedia(
+                    'Conclusion: the v14 platform webconsulting would sell',
+                    'media-above',
+                    'TYPO3 can become the governed operating system for content and agents.',
+                    '<p>The v14 platform webconsulting would sell is not a CMS with a few AI buttons. It is a governed operating layer where editors, APIs and agents work from the same content model, with clear permissions, structured tools, workspace review and measurable economics.</p><ul><li><strong>For agencies</strong> - strategy, implementation, migration and managed AI operations become billable packages.</li><li><strong>For enterprises</strong> - automation arrives without throwing away governance, compliance and editorial accountability.</li><li><strong>For TYPO3</strong> - the platform competes in the agentic era by leaning into what it has always done well.</li></ul><p>The cool thing is the fit: agentic CMS work needs exactly the boring-serious infrastructure TYPO3 already has. v14 can turn that into a modern growth story.</p>',
+                    self::mcpStrategyImage('13-conclusion-e109a181d64e15ef.png', 'Conclusion', 'Infographic conclusion strip about TYPO3 v14 as one platform for people and agents.')
+                ),
+                self::v14StrategyTextmedia(
+                    '13. AgentOps: traces, evals and rollback',
+                    'media-right',
+                    'Autonomy needs traces, evals, cost visibility and rollback.',
+                    '<p>A production CMS cannot trust an agent because one demo looked good. Every meaningful run needs evidence: prompt, retrieved context, selected tool, input payload, output, changed records, cost, reviewer, result and rollback path.</p><ul><li><strong>Already available signals</strong> - TYPO3 logs, workspace history, DataHandler records, MCP tool outputs, x402/payment stats and Skillflow run reports.</li><li><strong>Cool v14 layer</strong> - turn those signals into an AgentOps dashboard with traces, eval sets and regression checks.</li><li><strong>Buyer benefit</strong> - teams can prove where automation saves time, where it fails and which tasks are safe to scale.</li></ul><p>This is the difference between demo automation and managed automation. The platform should know what happened, why it happened and how to undo it.</p>',
+                    self::mcpStrategyImage('14-agentops-source-dd06b2ff43dcd398.png', 'AgentOps control room', 'Agent operations control room with evaluation checkpoints, traces, cost meters and approval signals.')
+                ),
+                self::v14StrategyTextmedia(
+                    '14. Context fabric: trusted knowledge, not random retrieval',
+                    'media-right',
+                    'TYPO3 already holds the knowledge agents need. Package it safely.',
+                    '<p>TYPO3 installations are full of useful context: page trees, records, TCA schemas, file metadata, redirects, language overlays, access rules, forms, extension settings and editorial history. The v14 opportunity is to turn that into a permission-aware context fabric.</p><ul><li><strong>Already here</strong> - structured records, FAL metadata, Solr indexing, table schemas, page routing and workspace overlays.</li><li><strong>Cool detail</strong> - agents can receive source-backed context instead of random retrieval snippets.</li><li><strong>Buyer benefit</strong> - legacy TYPO3 knowledge becomes reusable AI infrastructure, not tribal memory trapped in old projects.</li></ul><p>The quality of agent work depends on context quality. TYPO3 can make context trustworthy because it already knows where content lives, who may see it and how it relates.</p>',
+                    self::mcpStrategyImage('15-context-fabric-source-3e3720be00f77da1.png', 'Context fabric knowledge graph', 'Permission-aware context fabric connecting CMS pages, records, files, vector search, provenance and access controls.')
+                ),
+                self::v14StrategyTextmedia(
+                    '15. Governance: policy, consent and human review',
+                    'media-right',
+                    'Let agents move fast inside explicit boundaries.',
+                    '<p>Identity answers who may act. Governance answers when the system may act without a person, when it must ask, and what proof is required before publication. TYPO3 already has workspaces, review flows, permissions, language controls and audit-friendly records to build on.</p><ul><li><strong>Already strong</strong> - workspace review, page permissions, backend roles, content history and controlled publishing.</li><li><strong>Cool v14 layer</strong> - policy rules for legal pages, brand tone, accessibility, customer data, language quality and production-risk tiers.</li><li><strong>Buyer benefit</strong> - a well-governed installation can automate more, not less, because the boundaries are explicit.</li></ul><p>This is the part buyers will care about after the first AI excitement fades. Speed is easy to promise; controlled speed is what enterprises buy.</p>',
+                    self::mcpStrategyImage('16-governance-source-04c1d1026572f360.png', 'Governance approval gates', 'Human governance workflow with risk tiers, approval gates, policy cards and audit trail controls.')
+                ),
+                self::v14StrategyTextmedia(
+                    '16. Durable runtime: jobs that survive real life',
+                    'media-right',
+                    'Real agent work needs state, queues, retries, approvals and handoffs.',
+                    '<p>Useful agent tasks rarely finish in one chat reply. They import files, enrich records, wait for approval, retry failed services, create workspace previews, pause for legal review and resume after feedback. TYPO3 v14 needs a durable runtime for that work.</p><ul><li><strong>Already useful pieces</strong> - CLI commands, Scheduler patterns, workspace previews, Skillflow run records and DataHandler-backed changes.</li><li><strong>Cool v14 layer</strong> - every job should expose owner, state, queue, affected records, retry policy, cost and next action.</li><li><strong>Buyer benefit</strong> - migrations, launches, localization and bulk QA become managed workflows instead of fragile prompt sessions.</li></ul><p>The platform wins when long-running work can survive real life: failures, waiting, humans, approvals and Monday morning handoffs.</p>',
+                    self::mcpStrategyImage('17-durable-runtime-source-620da710d6dd8b1f.png', 'Durable agent runtime', 'Durable agent runtime with queues, retries, workflow lanes, state hub and handoff stations.')
+                ),
+                self::v14StrategyTextmedia(
+                    'Readiness check for TYPO3 v14+',
+                    'media-right',
+                    'Use these questions to qualify a real agentic CMS project.',
+                    '<p>A TYPO3 installation is ready for agentic work when it can answer these questions without hand-waving:</p><ul><li>Which agent changed which record, with which permission, and why?</li><li>Can a failed content operation be rolled back or replayed safely?</li><li>Does the agent receive context that is current, scoped and source-backed?</li><li>Can humans review high-risk changes before publication?</li><li>Are AI costs visible enough to price, cap and report?</li><li>Can long-running work pause, resume and hand off between people and systems?</li></ul><p>The cool part is that TYPO3 already has many of the primitives: records, roles, workspaces, files, logs, scheduler patterns and extension APIs. The v14 opportunity is to connect them into one operating model and sell it as controlled automation, not AI decoration.</p>'
+                ),
             ],
         ];
     }
@@ -2907,6 +3077,40 @@ ddev exec vendor/bin/typo3 skillflow:sync
                     'bg_style' => 'primary',
                 ]),
             ],
+        ];
+    }
+
+    /**
+     * @return StarterBlock
+     */
+    private static function v14StrategyTextmedia(string $header, string $layout, string $subheadline, string $content, ?array $media = null): array
+    {
+        $fields = [
+            'header' => $header,
+            'shadcn_layout' => $layout,
+            'subheadline' => $subheadline,
+            'content' => $content,
+            'media_rounded' => 1,
+        ];
+
+        if ($media !== null) {
+            $fields['media'] = $media;
+        }
+
+        return self::block('desiderio_textmedia', $fields);
+    }
+
+    /**
+     * @return array{file: string, title: string, alternative: string, description: string, source: string}
+     */
+    private static function mcpStrategyImage(string $filename, string $title, string $alternative): array
+    {
+        return [
+            'file' => 'Resources/Public/Styleguide/Mcp/' . $filename,
+            'title' => $title,
+            'alternative' => $alternative,
+            'description' => 'Generated visual for the TYPO3 v14 agentic strategy page.',
+            'source' => self::REPO_URL,
         ];
     }
 

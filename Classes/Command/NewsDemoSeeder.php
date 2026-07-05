@@ -77,8 +77,8 @@ final class NewsDemoSeeder
             ],
             [
                 'title' => 'The 255th content element has shipped',
-                'teaser' => 'Ten groups, 255 elements, zero gaps: the library that started as a hero section now covers everything from KPI dashboards to GDPR request forms.',
-                'bodytext' => '<p>With the latest additions the Desiderio library reaches 255 content elements across ten curated groups — every one with a backend preview, a demo fixture, and audited markup. The new-content wizard sorts them into plain-language groups, and the styleguide seeder builds a living example of each in seconds.</p><p>Still counted in the repository, still all in the free tier.</p>',
+                'teaser' => 'Ten groups, 244 elements, zero gaps: the library that started as a hero section now covers everything from KPI dashboards to GDPR request forms.',
+                'bodytext' => '<p>With the latest additions the Desiderio library reaches 244 content elements across ten curated groups — every one with a backend preview, a demo fixture, and audited markup. The new-content wizard sorts them into plain-language groups, and the styleguide seeder builds a living example of each in seconds.</p><p>Still counted in the repository, still all in the free tier.</p>',
                 'daysAgo' => 24,
                 'istopnews' => false,
             ],
@@ -154,7 +154,7 @@ final class NewsDemoSeeder
             ],
             [
                 'title' => 'The template audit: eleven categories, zero tolerance',
-                'teaser' => 'Hardcoded colors, missing ARIA, broken heading order — an 11-category audit runs across all 255 elements on every commit and fails the build on findings.',
+                'teaser' => 'Hardcoded colors, missing ARIA, broken heading order — an 11-category audit runs across all 244 elements on every commit and fails the build on findings.',
                 'bodytext' => '<p>Quality that is promised decays; quality that is measured survives. The template audit checks tokens-only styling, accessibility patterns, heading discipline, and translation coverage across the whole library.</p><p>The current finding count is zero, and CI keeps it there.</p>',
                 'daysAgo' => 37,
                 'istopnews' => false,

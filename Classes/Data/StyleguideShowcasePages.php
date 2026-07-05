@@ -40,7 +40,7 @@ final class StyleguideShowcasePages
                 'variant' => 'split',
                 'badge_text' => 'shadcn/ui for TYPO3 14',
                 'header' => 'The TYPO3 design system your editors will brag about',
-                'subheadline' => 'Desiderio puts 255 shadcn-styled content elements, 49 typed Fluid components, and 15 runtime-switchable themes into one composer package. Install it before lunch. Re-theme it before the coffee gets cold.',
+                'subheadline' => 'Desiderio puts 244 shadcn-styled content elements, 49 typed Fluid components, and 15 runtime-switchable themes into one composer package. Install it before lunch. Re-theme it before the coffee gets cold.',
                 'primary_button_text' => 'Start free — €0 forever',
                 'primary_button_link' => self::REPO_URL,
                 'primary_button_variant' => 'default',
@@ -100,7 +100,7 @@ final class StyleguideShowcasePages
                     ],
                     [
                         'title' => 'vendor/bin/typo3 desiderio:styleguide:seed',
-                        'content' => 'Seeds 255 living examples — this very site — so you evaluate with real content instead of an empty page tree.',
+                        'content' => 'Seeds 244 living examples — this very site — so you evaluate with real content instead of an empty page tree.',
                         'image' => self::screenshot('backend-page-module-hero.png', 'Seeded page in the TYPO3 page module', 'TYPO3 page module showing a seeded Desiderio hero element with backend preview.'),
                     ],
                     [
@@ -129,9 +129,9 @@ final class StyleguideShowcasePages
                 'subheadline' => 'Every layer is a real, typed Fluid 5 component in the d: namespace — not a naming convention, an enforced API.',
                 'items' => [
                     ['title' => '17 atoms', 'description' => 'Button, Badge, Input, Icon, Avatar, Typography and friends. Each one token-only: change a preset and every atom follows. Typed f:argument contracts catch wrong usage at render time, not in production.'],
-                    ['title' => '28 molecules', 'description' => 'Card, Accordion, Tabs, Table, Alert, form fields — atoms composed into reusable patterns with slots. Your custom elements get the same building blocks the 255 shipped ones use.'],
+                    ['title' => '28 molecules', 'description' => 'Card, Accordion, Tabs, Table, Alert, form fields — atoms composed into reusable patterns with slots. Your custom elements get the same building blocks the 244 shipped ones use.'],
                     ['title' => '4 layout primitives', 'description' => 'Section, Container, Grid, Stack carry spacing, density, and container queries. Consistent rhythm across every element without a single hand-written margin.'],
-                    ['title' => '255 organisms', 'description' => 'The content elements themselves: heroes, pricing tables, dashboards, footers. Built exclusively from the layers below — which is why an 11-category audit can verify all of them, on every commit.'],
+                    ['title' => '244 organisms', 'description' => 'The content elements themselves: heroes, pricing tables, dashboards, footers. Built exclusively from the layers below — which is why an 11-category audit can verify all of them, on every commit.'],
                 ],
             ]),
 
@@ -142,15 +142,15 @@ final class StyleguideShowcasePages
                 'items' => [
                     ['value' => '0', 'label' => 'Rebuilds for a redesign', 'description_text' => 'Theme switching is pure CSS tokens at runtime. No Tailwind rebuild, no deployment, no release window.'],
                     ['value' => '100%', 'label' => 'Static CSS, no JS framework', 'description_text' => 'No React, no Vue runtime in the frontend. Charts render server-side with a slim vanilla enhancement layer.'],
-                    ['value' => '1', 'label' => 'Command to a full demo site', 'description_text' => 'The seeder builds 255 living examples in seconds — workspaces-safe and idempotent, run it as often as you like.'],
+                    ['value' => '1', 'label' => 'Command to a full demo site', 'description_text' => 'The seeder builds 244 living examples in seconds — workspaces-safe and idempotent, run it as often as you like.'],
                     ['value' => '30', 'label' => 'Minutes from install to themed', 'description_text' => 'Composer install, seed, pick a preset, publish. Or book the creators and skip even that: installation service €890.'],
                 ],
             ]),
 
-            // ----------------------------------------------------- 255 elements
+            // ----------------------------------------------------- 244 elements
             self::block('desiderio_headersection', [
                 'eyebrow' => 'The library',
-                'header' => '255 content elements. Ready to use. Today.',
+                'header' => '244 content elements. Ready to use. Today.',
                 'subheadline' => 'Not a UI kit you still have to assemble — finished, editor-friendly content elements with backend previews, demo fixtures, and accessibility built in.',
                 'variant' => 'center',
             ]),
@@ -159,12 +159,12 @@ final class StyleguideShowcasePages
                 'header' => 'Whatever the page needs, the wizard already has it',
                 'subheadline' => 'Every element appears in the new-content wizard with a real preview — browse the chapters of this styleguide to see all of them live, each chapter in its own theme.',
                 'items' => [
-                    ['title' => '25 heroes & landing intros', 'description' => 'Split, animated, countdown, video, stats, product — the first screen of every campaign, ready in minutes.'],
+                    ['title' => '21 heroes & landing intros', 'description' => 'Split, animated, countdown, video, stats, product — the first screen of every campaign, ready in minutes.'],
                     ['title' => '25 feature & benefit blocks', 'description' => 'Grids, bento layouts, comparisons, timelines, tabs. Explain any product without briefing a designer.'],
                     ['title' => '25 pricing & product elements', 'description' => 'Tier tables, calculators, sliders, order summaries — monetization patterns that usually cost a sprint.'],
-                    ['title' => '32 data & dashboard elements', 'description' => 'Nine chart types, KPI cards, changelogs, status boards — all server-rendered with accessible data tables.'],
+                    ['title' => '29 data & dashboard elements', 'description' => 'Nine chart types, KPI cards, changelogs, status boards — all server-rendered with accessible data tables.'],
                     ['title' => '49 trust & people elements', 'description' => 'Testimonials, case studies, logo walls, team grids — social proof in every shape your sales team can dream up.'],
-                    ['title' => '99 more for everything else', 'description' => 'Navigation, footers, legal, forms, editorial content. The unglamorous 80% of every site — already done.'],
+                    ['title' => '95 more for everything else', 'description' => 'Navigation, footers, legal, forms, editorial content. The unglamorous 80% of every site — already done.'],
                 ],
             ]),
 
@@ -182,7 +182,7 @@ final class StyleguideShowcasePages
                 'items' => [
                     [
                         'title' => 'TYPO3 agencies & integrators',
-                        'description' => 'Quote less, deliver more. 255 finished elements and per-page themes turn every fixed-price project into margin — and every client review into a yes.',
+                        'description' => 'Quote less, deliver more. 244 finished elements and per-page themes turn every fixed-price project into margin — and every client review into a yes.',
                         'link' => '{{page:for-agencies}}',
                     ],
                     [
@@ -204,7 +204,7 @@ final class StyleguideShowcasePages
                 'header' => 'Why teams pick Desiderio over building it themselves',
                 'items' => [
                     ['title' => 'A redesign without the redesign budget', 'description_text' => '15 presets plus your own designs from the create page on ui.shadcn.com, switchable at runtime — per site or per page subtree.'],
-                    ['title' => 'Editors who stop opening tickets', 'description_text' => 'Backend previews for all 255 elements, inline editing via Visual Editor, and a wizard organized in ten clear groups.'],
+                    ['title' => 'Editors who stop opening tickets', 'description_text' => 'Backend previews for all 244 elements, inline editing via Visual Editor, and a wizard organized in ten clear groups.'],
                     ['title' => 'Accessibility you can show the auditor', 'description_text' => 'WCAG 2.2-checked contrast on every preset (enforced by the build), landmarks, focus rings, and translated screen-reader labels.'],
                     ['title' => 'Quality that is measured, not promised', 'description_text' => 'PHPStan at level max, 170+ unit and functional tests on PHP 8.3/8.4, and an 11-category template audit at zero findings.'],
                     ['title' => 'Integrations already wired', 'description_text' => 'News, Powermail, Solr, Blog, Form Framework with 8 ready forms, Friendly Captcha with a dev-friendly bypass, Brevo double opt-in.'],
@@ -238,9 +238,9 @@ final class StyleguideShowcasePages
             self::block('desiderio_pricingthreetier', [
                 'eyebrow' => 'Pricing',
                 'header' => 'Free forever. Faster with the creators.',
-                'subheadline' => 'The package is GPL and complete at €0. Pro and Agency buy guarantees, priority, and the people who built all 255 elements. Yearly billing adds two months free — and code DESIDERIO20 takes 20% off the first year.',
+                'subheadline' => 'The package is GPL and complete at €0. Pro and Agency buy guarantees, priority, and the people who built all 244 elements. Yearly billing adds two months free — and code DESIDERIO20 takes 20% off the first year.',
                 'plans' => [
-                    ['name' => 'Community', 'price' => '€0', 'billing_period' => 'forever', 'description' => 'The full package under GPL-2.0 — all elements, all themes, all integrations.', 'features' => ['All 255 content elements', '15 theme presets + per-page themes', 'One-command demo seeding', 'Community support on GitHub'], 'is_recommended' => false, 'button_text' => 'Install for free', 'button_link' => self::REPO_URL],
+                    ['name' => 'Community', 'price' => '€0', 'billing_period' => 'forever', 'description' => 'The full package under GPL-2.0 — all elements, all themes, all integrations.', 'features' => ['All 244 content elements', '15 theme presets + per-page themes', 'One-command demo seeding', 'Community support on GitHub'], 'is_recommended' => false, 'button_text' => 'Install for free', 'button_link' => self::REPO_URL],
                     ['name' => 'Pro', 'price' => '€49', 'billing_period' => 'per month · €490/year', 'description' => 'For teams shipping client or production sites on a deadline.', 'features' => ['Priority email support, 2-day response', 'Guaranteed LTS compatibility updates', 'Early access to element & preset drops', 'Minor-version upgrade assistance'], 'is_recommended' => true, 'button_text' => 'Go Pro', 'button_link' => self::REPO_URL],
                     ['name' => 'Agency', 'price' => '€149', 'billing_period' => 'per month · €1,490/year', 'description' => 'Unlimited projects and a direct line to the maintainers.', 'features' => ['Everything in Pro, unlimited projects', '4-hour priority response', 'Quarterly editor onboarding session', 'Custom preset review by the creators'], 'is_recommended' => false, 'button_text' => 'Choose Agency', 'button_link' => self::REPO_URL],
                 ],
@@ -259,7 +259,7 @@ final class StyleguideShowcasePages
             ]),
             self::block('desiderio_ctabanner', [
                 'header' => 'Your next TYPO3 site could look like this one',
-                'description' => 'This whole demo — homepage, ten themed chapters, 255 elements — was seeded with one command. Install Desiderio for free, or have the creators set it up for €890.',
+                'description' => 'This whole demo — homepage, ten themed chapters, 244 elements — was seeded with one command. Install Desiderio for free, or have the creators set it up for €890.',
                 'cta_text' => 'Get Desiderio on GitHub',
                 'cta_link' => self::REPO_URL,
                 'bg_style' => 'primary',
@@ -369,7 +369,7 @@ final class StyleguideShowcasePages
                         ],
                         [
                             'title' => 'Content Blocks 2.2 — schema-first elements with previews',
-                            'content' => '<p>All 255 elements are TYPO3 Content Blocks.</p><ul><li><strong>Declarative schemas</strong> — config.yaml with automatic database columns.</li><li><strong>Backend previews</strong> — and collection child records with explicit table mappings.</li><li><strong>Seed-ready</strong> — per-element demo fixtures build this whole styleguide in one command.</li></ul>',
+                            'content' => '<p>All 244 elements are TYPO3 Content Blocks.</p><ul><li><strong>Declarative schemas</strong> — config.yaml with automatic database columns.</li><li><strong>Backend previews</strong> — and collection child records with explicit table mappings.</li><li><strong>Seed-ready</strong> — per-element demo fixtures build this whole styleguide in one command.</li></ul>',
                             'open_by_default' => 0,
                         ],
                         [
@@ -411,8 +411,8 @@ final class StyleguideShowcasePages
                     'items' => [
                         ['term' => 'Preset', 'definition' => 'A complete design decision set — colors, radius, fonts, density — expressed as OKLCH tokens and switchable at runtime. Created on ui.shadcn.com/create or shipped as one of ten house designs.'],
                         ['term' => 'Token', 'definition' => 'A named CSS custom property (e.g. --primary, --radius) that every component consumes. Change the token, change the system.'],
-                        ['term' => 'Atom / Molecule / Layout primitive', 'definition' => 'The three Fluid 5 component layers (17 + 28 + 4) that all 255 content elements are built from — typed, slotted, token-only.'],
-                        ['term' => 'Content Block', 'definition' => 'A TYPO3 content element defined by a declarative schema with automatic database columns and a backend preview. Desiderio ships 255 of them.'],
+                        ['term' => 'Atom / Molecule / Layout primitive', 'definition' => 'The three Fluid 5 component layers (17 + 28 + 4) that all 244 content elements are built from — typed, slotted, token-only.'],
+                        ['term' => 'Content Block', 'definition' => 'A TYPO3 content element defined by a declarative schema with automatic database columns and a backend preview. Desiderio ships 244 of them.'],
                         ['term' => 'ICU MessageFormat', 'definition' => 'The localization syntax behind plurals and date patterns, used so "1 result" and "12 results" are both grammatically correct in every shipped language.'],
                     ],
                 ]),
@@ -437,7 +437,7 @@ final class StyleguideShowcasePages
             'navTitle' => 'For agencies',
             'slug' => '/for-agencies',
             'abstract' => 'Why TYPO3 agencies quote less, deliver faster, and win more pitches with Desiderio: reusable elements, live theme demos, multi-brand per-page themes, and an Agency tier with a direct line to the maintainers.',
-            'description' => 'Win TYPO3 pitches with live theme demos and 255 finished elements. Desiderio deletes template hours from every fixed-price quote — Agency tier from €149/month.',
+            'description' => 'Win TYPO3 pitches with live theme demos and 244 finished elements. Desiderio deletes template hours from every fixed-price quote — Agency tier from €149/month.',
             'parentSlug' => null,
             'content' => [
                 self::block('desiderio_headersection', [
@@ -462,7 +462,7 @@ final class StyleguideShowcasePages
                     'subheadline' => 'Less unbillable groundwork, more billable strategy.',
                     'columns' => '2',
                     'items' => [
-                        ['icon' => 'zap', 'title' => 'Quote with confidence', 'description' => '255 finished, audited elements mean your estimate covers content modeling and integration — not weeks of template construction.', 'link' => ''],
+                        ['icon' => 'zap', 'title' => 'Quote with confidence', 'description' => '244 finished, audited elements mean your estimate covers content modeling and integration — not weeks of template construction.', 'link' => ''],
                         ['icon' => 'users', 'title' => 'Hand over without fear', 'description' => 'Editors get previews, a clean wizard, and inline editing. Your support inbox notices the difference in week one.', 'link' => ''],
                         ['icon' => 'sparkles', 'title' => 'White-label adaptation', 'description' => 'Need a fully custom preset for a flagship client? Brand adaptation from €1,990, custom elements from €390 — built by the creators, delivered as your work.', 'link' => ''],
                         ['icon' => 'shield-check', 'title' => 'A direct line when it matters', 'description' => 'The Agency tier (€149/month or €1,490/year, unlimited projects) includes 4-hour priority response and quarterly editor onboarding for your clients.', 'link' => ''],
@@ -499,7 +499,7 @@ final class StyleguideShowcasePages
             'navTitle' => 'For in-house teams',
             'slug' => '/for-inhouse-teams',
             'abstract' => 'Why in-house teams ship campaigns without dev tickets: editor previews, per-campaign themes, brand governance through tokens, managed hosting, and Pro support with guaranteed LTS updates.',
-            'description' => 'Ship campaign pages without dev tickets: backend previews for all 255 Desiderio elements, per-campaign themes, and brand governance enforced by design tokens.',
+            'description' => 'Ship campaign pages without dev tickets: backend previews for all 244 Desiderio elements, per-campaign themes, and brand governance enforced by design tokens.',
             'parentSlug' => null,
             'content' => [
                 self::block('desiderio_headersection', [
@@ -512,7 +512,7 @@ final class StyleguideShowcasePages
                     'header' => 'The backend your editors keep asking for',
                     'shadcn_layout' => 'media-left',
                     'subheadline' => 'Editing, with eyes open',
-                    'content' => '<p>The backend your editors keep asking for — everything visible, nothing published blind.</p><ul><li><strong>Real previews</strong> — all 255 elements preview in the page module.</li><li><strong>Plain-language wizard</strong> — elements sorted into ten clear groups.</li><li><strong>Inline editing</strong> — the Visual Editor changes text right on the page.</li><li><strong>Per-campaign themes</strong> — a preset per page tree, while tokens make off-brand colours impossible.</li></ul>',
+                    'content' => '<p>The backend your editors keep asking for — everything visible, nothing published blind.</p><ul><li><strong>Real previews</strong> — all 244 elements preview in the page module.</li><li><strong>Plain-language wizard</strong> — elements sorted into ten clear groups.</li><li><strong>Inline editing</strong> — the Visual Editor changes text right on the page.</li><li><strong>Per-campaign themes</strong> — a preset per page tree, while tokens make off-brand colours impossible.</li></ul>',
                     'media_rounded' => 1,
                     'button_text' => 'Technical details',
                     'button_link' => '{{page:technical-features}}',
@@ -561,20 +561,20 @@ final class StyleguideShowcasePages
             'navTitle' => 'For freelancers',
             'slug' => '/for-freelancers',
             'abstract' => 'Why solo developers deliver agency-grade TYPO3 sites with Desiderio: a complete free design system, quality pipeline included, fixed-price projects that stay profitable, and Pro support as the safety net.',
-            'description' => 'Agency-grade TYPO3 sites from a studio of one: Desiderio gives freelancers a complete free design system, 255 elements, and a CI-grade quality pipeline for €0.',
+            'description' => 'Agency-grade TYPO3 sites from a studio of one: Desiderio gives freelancers a complete free design system, 244 elements, and a CI-grade quality pipeline for €0.',
             'parentSlug' => null,
             'content' => [
                 self::block('desiderio_headersection', [
                     'eyebrow' => 'Target group 3 — freelancers & solo devs',
                     'header' => 'Look like a team of ten. Bill like one.',
-                    'subheadline' => 'A complete design system, 255 elements, and a CI-grade quality pipeline — for exactly €0. Your one-person studio just got an unfair advantage.',
+                    'subheadline' => 'A complete design system, 244 elements, and a CI-grade quality pipeline — for exactly €0. Your one-person studio just got an unfair advantage.',
                     'variant' => 'center',
                 ]),
                 self::block('desiderio_textmedia', [
                     'header' => 'Fixed-price projects that stay profitable',
                     'shadcn_layout' => 'media-right',
                     'subheadline' => 'The solo math',
-                    'content' => '<p><strong>The design-and-template phase is what kills a fixed-price quote</strong> — open-ended, opinion-driven, unbillable when it overruns. Desiderio closes it.</p><ul><li><strong>Pick a preset</strong> — or let the client choose on ui.shadcn.com/create.</li><li><strong>Seed the demo</strong> — then walk the client through 255 real elements, not wireframes.</li><li><strong>Afternoon, not weeks</strong> — three weeks of template work becomes an afternoon of content modelling.</li></ul>',
+                    'content' => '<p><strong>The design-and-template phase is what kills a fixed-price quote</strong> — open-ended, opinion-driven, unbillable when it overruns. Desiderio closes it.</p><ul><li><strong>Pick a preset</strong> — or let the client choose on ui.shadcn.com/create.</li><li><strong>Seed the demo</strong> — then walk the client through 244 real elements, not wireframes.</li><li><strong>Afternoon, not weeks</strong> — three weeks of template work becomes an afternoon of content modelling.</li></ul>',
                     'media_rounded' => 1,
                     'button_text' => 'See the element library',
                     'button_link' => '{{page:chapter-hero}}',
@@ -645,7 +645,7 @@ final class StyleguideShowcasePages
                     'header' => 'Why structured sites win in generative search',
                     'subheadline' => 'Everything that helps an LLM extract your content is a property of markup and performance — exactly the layer Desiderio controls.',
                     'items' => [
-                        ['title' => 'Semantic HTML, by construction', 'description' => 'Landmarks, native elements, and one logical heading hierarchy per page are baked into all 255 elements. Extractors do not have to guess where the answer starts.'],
+                        ['title' => 'Semantic HTML, by construction', 'description' => 'Landmarks, native elements, and one logical heading hierarchy per page are baked into all 244 elements. Extractors do not have to guess where the answer starts.'],
                         ['title' => 'Question-shaped content elements', 'description' => 'FAQ, accordion, how-to steps, and definition lists map one to one onto the question-answering format generative engines assemble their responses from.'],
                         ['title' => 'Clean metadata out of the box', 'description' => 'Meta descriptions, Open Graph, and Twitter cards per page, plus schema-friendly markup — the signals engines use to title and attribute their citations.'],
                         ['title' => 'Fast, static pages', 'description' => 'No client-side rendering between a crawler and your content: server-rendered Fluid, static CSS tokens, no JS framework. What the bot fetches is what the user reads.'],
@@ -864,7 +864,7 @@ final class StyleguideShowcasePages
                         ['value' => '6', 'label' => 'Product families, one install', 'description_text' => 'Each with its own preset and page subtree in this fictional setup.'],
                         ['value' => '2 h', 'label' => 'Keynote to live launch page', 'description_text' => 'Hero, feature grid, pricing table, FAQ — composed from existing elements.'],
                         ['value' => '0', 'label' => 'Rebuilds per product launch', 'description_text' => 'Runtime token switching makes the imagined design refresh a dropdown choice.'],
-                        ['value' => '255', 'label' => 'Elements on the shelf', 'description_text' => 'The one number in this story that is not fictional.'],
+                        ['value' => '244', 'label' => 'Elements on the shelf', 'description_text' => 'The one number in this story that is not fictional.'],
                     ],
                 ]),
                 self::block('desiderio_quote', [
@@ -1047,7 +1047,7 @@ final class StyleguideShowcasePages
             'content' => [
                 self::block('desiderio_contenthighlight', [
                     'header' => 'The imagined setup',
-                    'content' => '<p>A company built on interlocking parts would recognise this instantly: <strong>255 elements as bricks.</strong></p><ul><li><strong>Studs that only fit one way</strong> — typed component contracts.</li><li><strong>Clicked together</strong> — a campaign page assembled in an afternoon.</li><li><strong>A preset per range</strong> — space sets run Midnight, botanical sets run Forest.</li></ul><p>The bricks are real and GPL-licensed; the company is on loan for the joke.</p>',
+                    'content' => '<p>A company built on interlocking parts would recognise this instantly: <strong>244 elements as bricks.</strong></p><ul><li><strong>Studs that only fit one way</strong> — typed component contracts.</li><li><strong>Clicked together</strong> — a campaign page assembled in an afternoon.</li><li><strong>A preset per range</strong> — space sets run Midnight, botanical sets run Forest.</li></ul><p>The bricks are real and GPL-licensed; the company is on loan for the joke.</p>',
                     'variant' => 'muted',
                     'alignment' => 'start',
                     'link' => '{{page:technical-features}}',
@@ -1057,7 +1057,7 @@ final class StyleguideShowcasePages
                     'header' => 'Numbers from a universe next door',
                     'description' => 'Invented metrics with believable physics — every capability behind them ships in the free package.',
                     'items' => [
-                        ['value' => '255', 'label' => 'Bricks in the box', 'description_text' => 'Desiderio\'s element library, reused across every imagined campaign.'],
+                        ['value' => '244', 'label' => 'Bricks in the box', 'description_text' => 'Desiderio\'s element library, reused across every imagined campaign.'],
                         ['value' => '1', 'label' => 'Afternoon per campaign page', 'description_text' => 'Hero, story sections, product grid — assembled, previewed, published.'],
                         ['value' => '18', 'label' => 'Product-line worlds', 'description_text' => 'Each line carries its own preset in this fictional setup.'],
                         ['value' => '0', 'label' => 'Instructions misread', 'description_text' => 'Typed f:argument contracts fail loudly when a brick is used wrong.'],
@@ -1579,7 +1579,7 @@ final class StyleguideShowcasePages
                 self::block('desiderio_accessibilitystatement', [
                     'header' => 'Accessibility statement (demo)',
                     'conformance_level' => 'aa',
-                    'content' => '<p>This demo statement ships with the Desiderio styleguide as a template — replace it with your own audited statement before go-live. Desiderio content elements are engineered against WCAG 2.2 Level AA.</p><h3>What the markup gives you</h3><ul><li>Every interactive component is keyboard reachable, with visible focus states on buttons, links, and form fields.</li><li>Semantic landmarks, native elements, and a logical heading order come baked into all 255 elements.</li><li>Image fields carry alternative-text inputs; decorative SVG icons are hidden from screen readers.</li><li>An 11-category template audit keeps inline styles and hardcoded colors out of every release.</li></ul><h3>What remains your job</h3><p>Editor-entered content, embedded media, and uploaded documents still need human review. This demo template does not replace a real conformance audit of your site.</p>',
+                    'content' => '<p>This demo statement ships with the Desiderio styleguide as a template — replace it with your own audited statement before go-live. Desiderio content elements are engineered against WCAG 2.2 Level AA.</p><h3>What the markup gives you</h3><ul><li>Every interactive component is keyboard reachable, with visible focus states on buttons, links, and form fields.</li><li>Semantic landmarks, native elements, and a logical heading order come baked into all 244 elements.</li><li>Image fields carry alternative-text inputs; decorative SVG icons are hidden from screen readers.</li><li>An 11-category template audit keeps inline styles and hardcoded colors out of every release.</li></ul><h3>What remains your job</h3><p>Editor-entered content, embedded media, and uploaded documents still need human review. This demo template does not replace a real conformance audit of your site.</p>',
                     'contact_email' => 'accessibility@desiderio.example',
                     'last_updated' => '12 May 2026',
                 ]),
@@ -1605,7 +1605,7 @@ final class StyleguideShowcasePages
             'navTitle' => '404',
             'slug' => '/404',
             'abstract' => 'The 404 page of the Desiderio styleguide: a short apology, a sitemap of the main sections, and a way back home — built entirely from Desiderio content elements.',
-            'description' => 'Page not found — but 255 Desiderio content elements are exactly where they should be. Jump to the styleguide chapters, audience pages, or back to the homepage.',
+            'description' => 'Page not found — but 244 Desiderio content elements are exactly where they should be. Jump to the styleguide chapters, audience pages, or back to the homepage.',
             'parentSlug' => null,
             'content' => [
                 self::block('desiderio_headersection', [
@@ -1666,7 +1666,7 @@ final class StyleguideShowcasePages
                 ]),
                 self::block('desiderio_ctabanner', [
                     'header' => 'Nothing here — everything there',
-                    'description' => 'The homepage has the whole story: 255 elements, 15 themes, and the one command that seeded this site (404 page included).',
+                    'description' => 'The homepage has the whole story: 244 elements, 15 themes, and the one command that seeded this site (404 page included).',
                     'cta_text' => 'Take me home',
                     'cta_link' => '{{page:home}}',
                     'bg_style' => 'primary',
@@ -1691,7 +1691,7 @@ final class StyleguideShowcasePages
                 self::block('desiderio_headersection', [
                     'eyebrow' => 'Ecosystem',
                     'header' => 'Desiderio is more than the design system',
-                    'subheadline' => '255 content elements were only the start. Around them sits an ecosystem of TYPO3 14 extensions — backend record views, one-click workspaces, a blog, enterprise search, enterprise SSO, accessible forms, stablecoin paywalls, and an agent-ready API layer. Same theme. Same security model. Same core concepts. Pick a card to go deeper.',
+                    'subheadline' => '244 content elements were only the start. Around them sits an ecosystem of TYPO3 14 extensions — backend record views, one-click workspaces, a blog, enterprise search, enterprise SSO, accessible forms, stablecoin paywalls, and an agent-ready API layer. Same theme. Same security model. Same core concepts. Pick a card to go deeper.',
                     'variant' => 'center',
                 ]),
                 self::block('desiderio_textmedia', [
@@ -1713,7 +1713,7 @@ final class StyleguideShowcasePages
                         ['icon' => 'settings', 'title' => 'MCP Server', 'description' => 'Gives AI assistants a clean, workspace-safe MCP surface over your pages, records, files, and editorial workflow — 44 bundled tools, every one mirrored on the TYPO3 CLI.', 'link' => '{{page:features/mcp-server}}'],
                         ['icon' => 'send', 'title' => 'Easy Workspace', 'description' => 'Turns workspace publishing into one button: editors review the page\'s pending changes, tick what to ship, and publish it together with every related record.', 'link' => '{{page:features/easy-workspace}}'],
                         ['icon' => 'book-open', 'title' => 'Blog', 'description' => 'A full publishing platform built entirely on core concepts — posts are pages, bodies are content elements, and workspaces stage everything, with no proprietary blog table.', 'link' => '{{page:features/blog}}'],
-                        ['icon' => 'sparkles', 'title' => 'Desiderio + Innesto', 'description' => 'The design system itself: 255 content elements from 49 typed Fluid 5 components, runtime theming from site settings, and Innesto to graft shadcn registry components as new elements.', 'link' => '{{page:features/desiderio}}'],
+                        ['icon' => 'sparkles', 'title' => 'Desiderio + Innesto', 'description' => 'The design system itself: 244 content elements from 49 typed Fluid 5 components, runtime theming from site settings, and Innesto to graft shadcn registry components as new elements.', 'link' => '{{page:features/desiderio}}'],
                         ['icon' => 'search', 'title' => 'Solr Search', 'description' => 'Apache Solr\'s enterprise search speed, wrapped in shadcn components — results, facets, sorting, suggest, and accessible numbered pagination all inherit your active theme, light and dark.', 'link' => '{{page:features/solr}}'],
                         ['icon' => 'lock', 'title' => 'WorkOS Auth', 'description' => 'Enterprise single sign-on for both the TYPO3 frontend and backend, plus self-service B2B team management — one extension, two login surfaces, full AuthKit feature set.', 'link' => '{{page:features/workos}}'],
                         ['icon' => 'file', 'title' => 'Powermail Lab', 'description' => 'Editor-friendly, accessible multi-step forms in a complete shadcn design system, with Friendly Captcha bot protection that never phones home and a context-aware development bypass.', 'link' => '{{page:features/powermail}}'],
@@ -2045,21 +2045,21 @@ vendor/bin/typo3 cache:flush',
             'title' => 'Features: Desiderio + Innesto for TYPO3',
             'navTitle' => 'Desiderio + Innesto',
             'slug' => '/features/desiderio',
-            'abstract' => 'Desiderio is a complete TYPO3 design system: 255 ready-to-use content elements built from 49 typed Fluid 5 components, a runtime theming layer driven by TYPO3 site settings, and open extensibility via Innesto—which grafts shadcn/ui registry components as new elements without a frontend build step on your site.',
-            'description' => '255 shadcn/ui-styled content elements for TYPO3 14.3, extensible via Innesto. Runtime theming, Content Blocks 2.2, typed Fluid 5 components—all GPL-2.0.',
+            'abstract' => 'Desiderio is a complete TYPO3 design system: 244 ready-to-use content elements built from 49 typed Fluid 5 components, a runtime theming layer driven by TYPO3 site settings, and open extensibility via Innesto—which grafts shadcn/ui registry components as new elements without a frontend build step on your site.',
+            'description' => '244 shadcn/ui-styled content elements for TYPO3 14.3, extensible via Innesto. Runtime theming, Content Blocks 2.2, typed Fluid 5 components—all GPL-2.0.',
             'parentSlug' => 'features',
             'content' => [
                 self::block('desiderio_headersection', [
                     'eyebrow' => 'Theme + Design System',
-                    'header' => '255 elements. Extensible. Themed at runtime.',
-                    'subheadline' => 'Desiderio brings a complete shadcn/ui-inspired design system to TYPO3 v14.3+: 255 finished content elements, 49 atomic Fluid 5 components, and an extensibility layer (Innesto) that grafts components from shadcn registries as new Content Blocks in one command.',
+                    'header' => '244 elements. Extensible. Themed at runtime.',
+                    'subheadline' => 'Desiderio brings a complete shadcn/ui-inspired design system to TYPO3 v14.3+: 244 finished content elements, 49 atomic Fluid 5 components, and an extensibility layer (Innesto) that grafts components from shadcn registries as new Content Blocks in one command.',
                     'variant' => 'center',
                 ]),
                 self::block('desiderio_textmedia', [
                     'header' => 'What is Desiderio + Innesto',
                     'shadcn_layout' => 'media-right',
                     'subheadline' => 'A complete, open-source design system for TYPO3 that you can extend in minutes.',
-                    'content' => '<p><strong>Desiderio</strong> is a complete, working editorial system for TYPO3 v14.3+ — not a template kit you still have to build.</p><ul><li><strong>255 elements, no build step</strong> — page templates, optional Blog/News/Solr/Powermail overrides, and seeded demo content.</li><li><strong>Extensible via Innesto</strong> — graft a component from any shadcn registry (shadcn/ui, Magic UI, blocks.so) as a new Content Block.</li><li><strong>Yours to keep</strong> — both are free and open-source under GPL-2.0-or-later.</li></ul>',
+                    'content' => '<p><strong>Desiderio</strong> is a complete, working editorial system for TYPO3 v14.3+ — not a template kit you still have to build.</p><ul><li><strong>244 elements, no build step</strong> — page templates, optional Blog/News/Solr/Powermail overrides, and seeded demo content.</li><li><strong>Extensible via Innesto</strong> — graft a component from any shadcn registry (shadcn/ui, Magic UI, blocks.so) as a new Content Block.</li><li><strong>Yours to keep</strong> — both are free and open-source under GPL-2.0-or-later.</li></ul>',
                     'media_rounded' => 1,
                     'button_text' => 'Get Desiderio on GitHub',
                     'button_link' => 'https://github.com/dirnbauer/desiderio',
@@ -2070,9 +2070,9 @@ vendor/bin/typo3 cache:flush',
                     'eyebrow' => 'Theme + Design System',
                     'columns' => '2',
                     'items' => [
-                        ['icon' => 'zap', 'title' => '255 elements, zero build step', 'description' => 'Every content element—heroes, pricing tables, testimonials, forms, charts, footers—ships finished and ready to use. No template work, no design system assembly. Commit to TYPO3, enable the site sets, and editors start composing pages right away.', 'link' => ''],
+                        ['icon' => 'zap', 'title' => '244 elements, zero build step', 'description' => 'Every content element—heroes, pricing tables, testimonials, forms, charts, footers—ships finished and ready to use. No template work, no design system assembly. Commit to TYPO3, enable the site sets, and editors start composing pages right away.', 'link' => ''],
                         ['icon' => 'sparkles', 'title' => 'Runtime-switchable theme presets', 'description' => 'Pick a design on ui.shadcn.com/create, paste the preset into TYPO3 site settings, and the whole site repaints—colors, radius, density, focus rings, fonts—without a rebuild. Fifteen presets are bundled (five from the shadcn create page plus ten house designs), switchable per site or per page subtree. Multiple icon libraries ship in the box.', 'link' => ''],
-                        ['icon' => 'menu', 'title' => 'Atomic components, typed contracts', 'description' => '17 atoms (button, badge, input, avatar), 28 molecules (card, accordion, form field), and 4 layout primitives compose into all 255 elements. Each is a Fluid 5 component with typed f:argument contracts, so a single audit can verify every element and CI can reject any template that breaks the API.', 'link' => ''],
+                        ['icon' => 'menu', 'title' => 'Atomic components, typed contracts', 'description' => '17 atoms (button, badge, input, avatar), 28 molecules (card, accordion, form field), and 4 layout primitives compose into all 244 elements. Each is a Fluid 5 component with typed f:argument contracts, so a single audit can verify every element and CI can reject any template that breaks the API.', 'link' => ''],
                         ['icon' => 'monitor', 'title' => 'Extend it. In minutes. With AI.', 'description' => 'Innesto grafts a shadcn registry component as a new Content Block in one command. The CLI fetches the JSON schema, converts the styling to semantic tokens, and scaffolds the element; the optional --ai flag finishes the React-to-Fluid conversion. Your custom element inherits the active Desiderio preset automatically.', 'link' => ''],
                     ],
                 ]),
@@ -2080,13 +2080,13 @@ vendor/bin/typo3 cache:flush',
                     'header' => 'Exactly what it does',
                     'allow_multiple' => 1,
                     'items' => [
-                        ['title' => '49 typed Fluid 5 components in atomic layers', 'content' => '<p>The component system follows atomic design at the Fluid 5 level.</p><ul><li><strong>17 atoms</strong> — button, badge, input, icon, avatar, link, image, label (<code>d:atom</code>).</li><li><strong>28 molecules</strong> — card, accordion, table, alert, form controls (<code>d:molecule</code>).</li><li><strong>4 layout primitives</strong> — under <code>d:layout</code>.</li><li><strong>Typed contracts</strong> — every component declares <code>f:argument</code> types: an enforced API, not a convention.</li></ul><p>All 255 elements build from these layers, so one audit can verify every element.</p>', 'open_by_default' => 1],
-                        ['title' => '255 finished content elements across ten categories', 'content' => '<p>255 editor-facing elements, grouped into clear categories.</p><ul><li><strong>Marketing</strong> — heroes, feature blocks, pricing, trust and social proof.</li><li><strong>Data</strong> — dashboard elements with chart helpers.</li><li><strong>Structure</strong> — navigation, footers, legal pages, forms, editorial content.</li></ul><p>Each appears in the New Content Element wizard with a backend preview — production-styled and themed by the active preset, never a wireframe.</p>', 'open_by_default' => 0],
+                        ['title' => '49 typed Fluid 5 components in atomic layers', 'content' => '<p>The component system follows atomic design at the Fluid 5 level.</p><ul><li><strong>17 atoms</strong> — button, badge, input, icon, avatar, link, image, label (<code>d:atom</code>).</li><li><strong>28 molecules</strong> — card, accordion, table, alert, form controls (<code>d:molecule</code>).</li><li><strong>4 layout primitives</strong> — under <code>d:layout</code>.</li><li><strong>Typed contracts</strong> — every component declares <code>f:argument</code> types: an enforced API, not a convention.</li></ul><p>All 244 elements build from these layers, so one audit can verify every element.</p>', 'open_by_default' => 1],
+                        ['title' => '244 finished content elements across ten categories', 'content' => '<p>244 editor-facing elements, grouped into clear categories.</p><ul><li><strong>Marketing</strong> — heroes, feature blocks, pricing, trust and social proof.</li><li><strong>Data</strong> — dashboard elements with chart helpers.</li><li><strong>Structure</strong> — navigation, footers, legal pages, forms, editorial content.</li></ul><p>Each appears in the New Content Element wizard with a backend preview — production-styled and themed by the active preset, never a wireframe.</p>', 'open_by_default' => 0],
                         ['title' => 'Runtime theme presets driven by TYPO3 site settings', 'content' => '<p>Theming is pure CSS tokens applied at runtime, chosen in TYPO3 site settings.</p><ul><li><strong>Repaint, no rebuild</strong> — a preset change updates colours, radius, density, focus rings, and fonts instantly.</li><li><strong>15 presets bundled</strong> — five from ui.shadcn.com/create, ten house designs, plus a custom slot.</li><li><strong>Per subtree</strong> — run separate campaigns or brands in their own theme from one install.</li><li><strong>Icon-agnostic</strong> — semantic icon keys let the library change without rewriting records.</li></ul>', 'open_by_default' => 0],
                         ['title' => 'Innesto: graft shadcn registry components as Content Blocks', 'content' => '<p>Innesto makes Desiderio extensible — no frontend build step on your site.</p><ul><li><strong>One command</strong> — <code>innesto:add &lt;component&gt;</code> fetches the JSON, converts styling to tokens, and scaffolds the element.</li><li><strong>Any registry</strong> — shadcn/ui, Magic UI, blocks.so, or anything that publishes JSON.</li><li><strong>Finishing pass</strong> — translate markup to Fluid and model props by hand, or let <code>--ai</code> do it.</li><li><strong>On-theme</strong> — every graft uses the active Desiderio preset automatically.</li></ul><p>Presentational components like marquees, logo clouds, and bento grids are the natural fit.</p>', 'open_by_default' => 0],
-                        ['title' => 'Content Blocks 2.2: schema-first elements with backend previews', 'content' => '<p>All 255 elements are Content Blocks (friendsoftypo3/content-blocks ^2.2), not traditional plugins.</p><ul><li><strong>Declarative schemas</strong> — <code>config.yaml</code> with automatic database columns.</li><li><strong>Backend previews</strong> — editors see the element before publishing.</li><li><strong>Explicit child tables</strong> — collection records map to named tables, no guessing.</li><li><strong>Portable</strong> — export an element with its records; the schema handles table creation elsewhere.</li></ul>', 'open_by_default' => 0],
+                        ['title' => 'Content Blocks 2.2: schema-first elements with backend previews', 'content' => '<p>All 244 elements are Content Blocks (friendsoftypo3/content-blocks ^2.2), not traditional plugins.</p><ul><li><strong>Declarative schemas</strong> — <code>config.yaml</code> with automatic database columns.</li><li><strong>Backend previews</strong> — editors see the element before publishing.</li><li><strong>Explicit child tables</strong> — collection records map to named tables, no guessing.</li><li><strong>Portable</strong> — export an element with its records; the schema handles table creation elsewhere.</li></ul>', 'open_by_default' => 0],
                         ['title' => 'Integrations: News, Blog, Solr, and Powermail with Brevo + Friendly Captcha', 'content' => '<p>The extensions you already run get the same shadcn treatment, via opt-in site sets.</p><ul><li><strong>Auto-activating</strong> — templates for georgringer/news, t3g/blog, Solr, and in2code/powermail switch on when installed.</li><li><strong>Forms</strong> — Form Framework templates with Friendly Captcha and a Brevo double-opt-in finisher.</li><li><strong>Theme follows</strong> — switch the preset and news lists, search results, and forms switch with it.</li></ul>', 'open_by_default' => 0],
-                        ['title' => 'Seeding and CLI for idempotent demo content', 'content' => '<p>Symfony console commands automate the heavy lifting.</p><ul><li><strong>styleguide:seed</strong> — builds the full 255-element demo site from YAML, idempotent and live-safe.</li><li><strong>starter:seed</strong> — a corporate starter site structure with demo content.</li><li><strong>blog:seed-pages</strong> — normalises an existing Blog tree to Desiderio layouts.</li><li><strong>Guard rails</strong> — seeders refuse to run in a workspace or in Production without <code>--allow-production</code>.</li></ul>', 'open_by_default' => 0],
+                        ['title' => 'Seeding and CLI for idempotent demo content', 'content' => '<p>Symfony console commands automate the heavy lifting.</p><ul><li><strong>styleguide:seed</strong> — builds the full 244-element demo site from YAML, idempotent and live-safe.</li><li><strong>starter:seed</strong> — a corporate starter site structure with demo content.</li><li><strong>blog:seed-pages</strong> — normalises an existing Blog tree to Desiderio layouts.</li><li><strong>Guard rails</strong> — seeders refuse to run in a workspace or in Production without <code>--allow-production</code>.</li></ul>', 'open_by_default' => 0],
                     ],
                 ]),
                 self::block('desiderio_codeblock', [
@@ -2097,7 +2097,7 @@ vendor/bin/typo3 cache:flush',
 vendor/bin/typo3 extension:setup
 vendor/bin/typo3 cache:flush
 
-# Optional: seed the demo site with all 255 elements under page 1
+# Optional: seed the demo site with all 244 elements under page 1
 vendor/bin/typo3 desiderio:styleguide:seed --parent=1
 
 # Optional: graft a shadcn registry component as a new Content Block
@@ -2106,7 +2106,7 @@ vendor/bin/typo3 innesto:add magicui/marquee --ai',
                 ]),
                 self::block('desiderio_ctabanner', [
                     'header' => 'Ready to extend your TYPO3 site?',
-                    'description' => 'Desiderio is free and open-source under GPL-2.0-or-later. You get all 255 elements, the fifteen bundled theme presets, the optional Blog, News, Solr, and Powermail integration sets, and the seeding tools—no license gate, no build step on your site. Innesto is open-source too, so extending Desiderio costs nothing but a command.',
+                    'description' => 'Desiderio is free and open-source under GPL-2.0-or-later. You get all 244 elements, the fifteen bundled theme presets, the optional Blog, News, Solr, and Powermail integration sets, and the seeding tools—no license gate, no build step on your site. Innesto is open-source too, so extending Desiderio costs nothing but a command.',
                     'cta_text' => 'Install for free, or explore GitHub',
                     'cta_link' => 'https://github.com/dirnbauer/desiderio',
                     'bg_style' => 'primary',

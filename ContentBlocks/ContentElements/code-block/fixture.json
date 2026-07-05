@@ -3,5 +3,5 @@
     "header": "Two commands. That's the whole installation.",
     "language": "Bash",
     "filename": "terminal",
-    "code": "# Require the package (TYPO3 14.3+, PHP 8.3+) — free, GPL-2.0, no license key\ncomposer require webconsulting/desiderio\n\n# Seed the full styleguide: 255 elements across 10 groups,\n# each chapter page running its own theme preset\nvendor/bin/typo3 desiderio:styleguide:seed\n\n# Optional: a lean starter page tree instead\nvendor/bin/typo3 desiderio:starter:seed\n"
+    "code": "# Require the package (TYPO3 14.3+, PHP 8.3+) — free, GPL-2.0, no license key\ncomposer require webconsulting/desiderio\n\n# Seed the full styleguide: 244 elements across 10 groups,\n# each chapter page running its own theme preset\nvendor/bin/typo3 desiderio:styleguide:seed\n\n# Optional: a lean starter page tree instead\nvendor/bin/typo3 desiderio:starter:seed\n"
 }

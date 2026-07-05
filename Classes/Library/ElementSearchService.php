@@ -13,7 +13,7 @@ use TYPO3\CMS\Core\Localization\LanguageService;
  * Levenshtein fuzzy matching that corrects simple typos, and Solr-style
  * autocomplete + "did you mean" suggestions.
  *
- * The whole catalog (~255 elements) is already shipped to the browser once, so
+ * The whole catalog (~244 elements) is already shipped to the browser once, so
  * this endpoint returns just a RANKED list of cTypes (+ suggestions); the panel
  * reorders the items it already has. No external service, no per-element file
  * read on the hot path: the per-language index is persistently cached in the

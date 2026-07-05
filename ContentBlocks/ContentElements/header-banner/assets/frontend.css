@@ -48,7 +48,9 @@
 }
 .header-banner__description {
     font-size: var(--d-text-lg);
-    opacity: 0.85;
+    /* No opacity fade: on the primary variant the foreground token sits at
+       ~4.55:1 with zero headroom, so 0.85 dropped it to ~3.5:1. The size
+       difference against the display title carries the hierarchy. */
     margin-bottom: var(--d-spacing-6);
     text-wrap: pretty;
 }

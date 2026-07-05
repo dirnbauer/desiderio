@@ -12,13 +12,13 @@
      * colour keywords, and the hues stay constant across theme presets.
      * Comments and operators stay neutral grey so the colour reads as accents.
      */
-    --d-code-comment: color-mix(in oklch, var(--muted-foreground) 78%, transparent);
+    --d-code-comment: var(--muted-foreground);
     --d-code-keyword: color-mix(in oklch, rebeccapurple 90%, var(--foreground));
     --d-code-tag: color-mix(in oklch, teal 86%, var(--foreground));
     --d-code-string: color-mix(in oklch, seagreen 88%, var(--foreground));
     --d-code-variable: color-mix(in oklch, firebrick 86%, var(--foreground));
     --d-code-function: color-mix(in oklch, steelblue 88%, var(--foreground));
-    --d-code-number: color-mix(in oklch, darkgoldenrod 90%, var(--foreground));
+    --d-code-number: color-mix(in oklch, darkgoldenrod 82%, var(--foreground));
     --d-code-operator: color-mix(in oklch, var(--muted-foreground) 86%, var(--foreground));
     border: 1px solid var(--border);
     border-radius: var(--radius);
@@ -29,7 +29,7 @@
 
 .dark .code-block,
 [data-theme="dark"] .code-block {
-    --d-code-comment: color-mix(in oklch, var(--muted-foreground) 86%, transparent);
+    --d-code-comment: var(--muted-foreground);
     --d-code-keyword: color-mix(in oklch, mediumpurple 80%, var(--foreground));
     --d-code-tag: color-mix(in oklch, cadetblue 82%, var(--foreground));
     --d-code-string: color-mix(in oklch, mediumseagreen 82%, var(--foreground));

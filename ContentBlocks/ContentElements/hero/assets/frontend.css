@@ -49,7 +49,9 @@
     min-height: 60vh;
     display: flex;
     align-items: center;
-    color: var(--d-primary-foreground);
+    /* Ink for the --d-foreground scrim under the bg image — NOT primary-foreground,
+       which is dark in the amber/lime presets and vanishes on the dark scrim. */
+    color: var(--d-overlay-foreground, var(--background));
 }
 .hero__bg-image {
     position: absolute;

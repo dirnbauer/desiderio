@@ -91,7 +91,8 @@
 }
 .chart-sparkline .chart__axis-label,
 .chart-sparkline .chart__tick-label {
-    fill: currentColor;
+    /* Not currentColor: the sparkline svg color IS the chart hue. */
+    fill: var(--muted-foreground);
     font-size: 0.6rem;
     font-weight: 600;
     font-variant-numeric: tabular-nums;

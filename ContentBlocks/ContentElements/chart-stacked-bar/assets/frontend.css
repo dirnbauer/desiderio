@@ -117,7 +117,14 @@
 .chart-stacked-bar__segment-label {
     font-size: 0.52rem;
     font-weight: 700;
+    /* Halo technique: glyph in --background with a --foreground stroke behind it
+       (paint-order) stays legible on every --chart-N segment fill in every
+       preset and scheme. */
     fill: var(--background);
+    stroke: var(--foreground);
+    stroke-width: 2.25px;
+    stroke-linejoin: round;
+    paint-order: stroke;
     font-variant-numeric: tabular-nums;
     pointer-events: none;
 }

@@ -33,7 +33,7 @@
     margin-block-end: var(--d-spacing-sm);
 }
 .feature-highlight--primary .feature-highlight__eyebrow {
-    color: color-mix(in oklch, var(--primary-foreground) 70%, transparent);
+    color: var(--primary-foreground);
 }
 .feature-highlight__description {
     margin-block: var(--d-spacing-md);

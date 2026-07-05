@@ -14,9 +14,9 @@
     color: var(--d-link, var(--primary));
     text-decoration: none;
     font-size: var(--d-text-base);
-    transition: opacity 0.15s ease;
+    transition: color 0.15s ease;
 }
-.cta-minimal__link:hover { opacity: 0.8; }
+.cta-minimal__link:hover { color: var(--d-primary-text, var(--primary)); text-decoration: underline; text-underline-offset: 4px; }
 .cta-minimal__link:focus-visible {
     outline: 2px solid var(--ring);
     outline-offset: 2px;

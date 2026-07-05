@@ -92,25 +92,27 @@
     background: var(--muted);
     color: var(--muted-foreground);
 }
-.chart-heatmap__cell--1 {
-    background: var(--chart-1);
-    color: var(--primary-foreground);
-}
-.chart-heatmap__cell--2 {
-    background: var(--chart-2);
-    color: var(--primary-foreground);
-}
-.chart-heatmap__cell--3 {
-    background: var(--chart-3);
-    color: var(--primary-foreground);
-}
-.chart-heatmap__cell--4 {
-    background: var(--chart-4);
-    color: var(--primary-foreground);
-}
-.chart-heatmap__cell--5 {
-    background: var(--chart-5);
-    color: var(--primary-foreground);
+.chart-heatmap__cell--1 { background: var(--chart-1); }
+.chart-heatmap__cell--2 { background: var(--chart-2); }
+.chart-heatmap__cell--3 { background: var(--chart-3); }
+.chart-heatmap__cell--4 { background: var(--chart-4); }
+.chart-heatmap__cell--5 { background: var(--chart-5); }
+/* The value sits in a near-card chip (charts.js wraps it in a span), so the
+   number stays >=4.5:1 with --foreground on every --chart-N fill — the ramp
+   hues range from pastel to saturated depending on the preset, so no single
+   ink can be legible directly on the fills. Composite worst case: 85% card
+   over the brightest/darkest chart hue keeps foreground text >=5:1 in both
+   schemes. Cell --0 keeps plain muted styling (no chip needed on --muted). */
+.chart-heatmap__cell--1 .chart-heatmap__value,
+.chart-heatmap__cell--2 .chart-heatmap__value,
+.chart-heatmap__cell--3 .chart-heatmap__value,
+.chart-heatmap__cell--4 .chart-heatmap__value,
+.chart-heatmap__cell--5 .chart-heatmap__value {
+    display: inline-block;
+    padding: 0 0.3em;
+    border-radius: calc(var(--radius) * 0.5);
+    background: color-mix(in oklch, var(--card) 85%, transparent);
+    color: var(--foreground);
 }
 
 @media (max-width: 640px) {

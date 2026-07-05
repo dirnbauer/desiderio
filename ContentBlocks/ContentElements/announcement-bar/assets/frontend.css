@@ -32,13 +32,15 @@
     gap: var(--d-spacing-xs);
     min-width: 0;
 }
-/* Muted supporting text per variant: token-mixed foreground on coloured bars,
-   plain muted-foreground on the transparent outline bar. */
+/* Supporting text per variant. On the primary bar the foreground token has
+   no contrast headroom (fg/primary is solved to ~4.55:1), so ANY alpha fade
+   drops it below 4.5:1 — keep it solid and let the smaller font size carry
+   the de-emphasis. Same treatment on the accent bar for consistency. */
 .announcement-bar--default .announcement-bar__supporting {
-    color: color-mix(in oklab, var(--d-primary-foreground) 80%, transparent);
+    color: var(--d-primary-foreground);
 }
 .announcement-bar--accent .announcement-bar__supporting {
-    color: color-mix(in oklab, var(--d-accent-foreground) 80%, transparent);
+    color: var(--d-accent-foreground);
 }
 .announcement-bar--outline .announcement-bar__supporting {
     color: var(--d-muted-foreground);

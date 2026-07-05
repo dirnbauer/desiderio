@@ -335,7 +335,6 @@
           y: height - 10,
           'text-anchor': 'middle',
           fill: 'currentColor',
-          opacity: '0.72',
           class: 'chart__tick-label'
         });
         label.textContent = row.label;
@@ -406,7 +405,6 @@
           x: padX,
           y: y + rowH * 0.9,
           fill: 'currentColor',
-          opacity: '0.72',
           class: 'chart__tick-label'
         });
         label.textContent = row.label;
@@ -449,7 +447,6 @@
         y: height - 12,
         'text-anchor': 'middle',
         fill: 'currentColor',
-        opacity: '0.72',
         class: 'chart__tick-label'
       });
       label.textContent = row.label;
@@ -725,7 +722,6 @@
             x: padX,
             y: y + rowH * 0.82,
             fill: 'currentColor',
-            opacity: '0.72',
             class: 'chart__tick-label'
           });
           label.textContent = row.label;
@@ -759,7 +755,6 @@
           y: height - 14,
           'text-anchor': 'middle',
           fill: 'currentColor',
-          opacity: '0.72',
           class: 'chart__tick-label'
         });
         label.textContent = row.label;
@@ -830,8 +825,7 @@
             y: (cy + 154 * Math.sin(mid)).toFixed(2),
             'text-anchor': 'middle',
             'dominant-baseline': 'middle',
-            fill: 'currentColor',
-            opacity: '0.78'
+            fill: 'currentColor'
           });
           label.textContent = row.label;
           svg.appendChild(label);
@@ -1172,7 +1166,10 @@
         cols.forEach(function (_, colIndex) {
           var value = values[rowIndex] && values[rowIndex][colIndex] != null ? Number(values[rowIndex][colIndex]) : 0;
           var bucket = Math.max(0, Math.min(5, Math.round(((value - vmin) / span) * 5)));
-          var cell = htmlElement('div', 'chart-heatmap__cell chart-heatmap__cell--' + bucket, String(value));
+          var cell = htmlElement('div', 'chart-heatmap__cell chart-heatmap__cell--' + bucket);
+          // Value sits in its own chip so it stays legible on every --chart-N
+          // fill in every preset (the fills vary from pastel to saturated).
+          cell.appendChild(htmlElement('span', 'chart-heatmap__value', String(value)));
           cell.title = rowLabel + ' / ' + cols[colIndex] + ': ' + value;
           wrap.appendChild(cell);
         });

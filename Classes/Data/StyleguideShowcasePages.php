@@ -51,6 +51,21 @@ final class StyleguideShowcasePages
                 'overlay_opacity' => '0.5',
             ]),
 
+            // ------------------------------------------------- the problem
+            self::block('desiderio_featurecards', [
+                'eyebrow' => 'The problem Desiderio solves',
+                'header' => 'Running a TYPO3 site in 2026 shouldn\'t hurt this much',
+                'subheadline' => 'Six things that slow every CMS team down — and the specific answer Desiderio ships for each. Written for the people who feel them: editors, developers, and whoever signs the invoice.',
+                'items' => [
+                    ['title' => 'Every layout change is a developer ticket', 'description' => 'Editors build finished pages from a ten-group wizard, with a real backend preview for all 244 elements and inline editing in the Visual Editor — the dev queue goes back to being about features, not landing pages.'],
+                    ['title' => 'One edit and the whole layout breaks', 'description' => 'Every element is assembled from typed Fluid components on one token contract. Spacing, colour and type come from the design system, so off-brand pages and broken grids are impossible to create by accident.'],
+                    ['title' => 'Your stack is fifteen plugins holding hands', 'description' => 'Desiderio is one Composer package. News, Solr, Blog, Powermail and the Form Framework all render through the same shadcn-styled templates — one design system, one security model, one thing to update.'],
+                    ['title' => 'A redesign means a rebuild', 'description' => 'Theming is pure OKLCH tokens switched at runtime: zero rebuilds, no Node or Vite pipeline. Repaint the whole site, or just one page tree, from site settings — no deployment, no cache anxiety.'],
+                    ['title' => 'The accessibility audit is coming — the EAA is now law', 'description' => 'WCAG 2.2 contrast is enforced by the build, markup is semantic with proper landmarks, and screen-reader labels are translated. You bring the report to legal instead of retrofitting 244 elements by hand.'],
+                    ['title' => 'AI search quotes everyone but you', 'description' => 'Semantic HTML, question-shaped elements (FAQ, how-to, definition lists) and clean per-page metadata make your content extraction-friendly for AI Overviews, ChatGPT and Perplexity — GEO as a side effect of doing HTML properly.'],
+                ],
+            ]),
+
             // ------------------------------------- the create page on ui.shadcn.com
             self::block('desiderio_headersection', [
                 'eyebrow' => 'The principle behind the whole project',
@@ -168,6 +183,35 @@ final class StyleguideShowcasePages
                 ],
             ]),
 
+            // ------------------------------------------------------------ forms
+            self::block('desiderio_featurecards', [
+                'eyebrow' => 'Forms',
+                'header' => 'Real forms, without the form-building',
+                'subheadline' => 'Drop in a styled block — Contact, Newsletter, Demo, Booking, Callback or a gated Download — and the form inside is a genuine TYPO3 Form Framework definition. Eight ready-to-use forms, each with server-side validation, a Brevo CRM finisher, privacy-friendly Friendly Captcha, and a built-in GDPR data-request form. No form plugin to buy, no markup to hand-build.',
+                'items' => [
+                    ['title' => 'On brand in seconds', 'description' => 'Pick a form block and it already matches your active theme preset. No styling drift, no ticket to a developer, no third-party form widget breaking your design.'],
+                    ['title' => 'Leads land in your CRM', 'description' => 'Every submission syncs to Brevo through the built-in finisher — with double opt-in on the newsletter — so there is no manual export, and marketing owns the funnel.'],
+                    ['title' => 'GDPR-credible out of the box', 'description' => 'Privacy-friendly Friendly Captcha (no tracking cookies) plus a ready-made data-request form for exports, deletions and corrections. Consent copy stays editable per block.'],
+                    ['title' => 'It is genuinely ext:form', 'description' => 'Standard Form Framework YAML: core validators, finishers, multi-step pages, file uploads and PSR-14 events. Nothing proprietary to learn or maintain.'],
+                    ['title' => 'Behaviour and design, cleanly split', 'description' => 'The form YAML owns validation and finishers; the Content Block owns markup and CSS. Restyle a form without touching its logic, or change fields without touching a template.'],
+                    ['title' => 'Less to attack, less to break', 'description' => 'Validation, CSRF, honeypot and secure email finishers come from TYPO3 core, not hand-rolled code — a far smaller attack surface than a bespoke form plugin.'],
+                ],
+            ]),
+
+            // ---------------------------------------------------------- gallery
+            self::block('desiderio_gallery', [
+                'header' => 'Five elements worth the detour',
+                'subheadline' => '244 elements is a lot to scroll — so start with these five. Real screenshots from this very site, captured live. Click any to open its category and see it in motion.',
+                'columns' => '3',
+                'items' => [
+                    ['title' => 'Parallax Hero', 'description' => 'A scroll-driven hero — the most cinematic first impression in the set, and one of 21 hero layouts.', 'link' => '{{page:chapter-hero}}', 'image' => self::screenshot('frontend-gallery-parallax-hero.png', 'Parallax Hero element', 'Desiderio Parallax Hero content element rendered with the Forest theme preset.')],
+                    ['title' => 'Bento Feature Grid', 'description' => 'Mixed-size cards in the bento layout every modern product site wants, from the 25-strong features group.', 'link' => '{{page:chapter-features}}', 'image' => self::screenshot('frontend-gallery-bento-features.png', 'Bento Feature Grid element', 'Desiderio Bento Feature Grid content element with mixed-size feature tiles.')],
+                    ['title' => 'Toggle Pricing', 'description' => 'Monthly and annual pricing with a highlighted plan — the block that quietly closes deals.', 'link' => '{{page:chapter-pricing}}', 'image' => self::screenshot('frontend-gallery-toggle-pricing.png', 'Toggle Pricing element', 'Desiderio Toggle Pricing content element with a monthly and yearly billing switch.')],
+                    ['title' => 'Testimonial Wall', 'description' => 'A dense masonry wall of quotes: social proof you take in at a glance.', 'link' => '{{page:chapter-social-proof}}', 'image' => self::screenshot('frontend-gallery-testimonial-wall.png', 'Testimonial Wall element', 'Desiderio Testimonial Wall content element showing a masonry grid of customer quotes.')],
+                    ['title' => 'Demo Request — a real ext:form', 'description' => 'A styled lead-capture section that renders a genuine TYPO3 form, where the gallery meets the forms story.', 'link' => '{{page:chapter-conversion}}', 'image' => self::screenshot('frontend-gallery-demo-request.png', 'Demo Request element', 'Desiderio Demo Request content element rendering a real TYPO3 Form Framework form.')],
+                ],
+            ]),
+
             // ----------------------------------------------------- target groups
             self::block('desiderio_headersection', [
                 'eyebrow' => 'Who it is for',
@@ -274,6 +318,7 @@ final class StyleguideShowcasePages
     {
         return [
             self::technicalFeaturesPage(),
+            self::contentTypesHubPage(),
             self::featuresOverviewPage(),
             self::featureRecordsListPage(),
             self::featureMcpServerPage(),
@@ -468,6 +513,21 @@ final class StyleguideShowcasePages
                         ['icon' => 'shield-check', 'title' => 'A direct line when it matters', 'description' => 'The Agency tier (€149/month or €1,490/year, unlimited projects) includes 4-hour priority response and quarterly editor onboarding for your clients.', 'link' => ''],
                     ],
                 ]),
+                self::block('desiderio_pricingsimple', [
+                    'header' => 'Recommended: the Agency plan',
+                    'price' => '€149',
+                    'billing_period' => '/month · €1,490/year — two months free',
+                    'description' => 'Start free under GPL-2.0 and move to Agency when the second client signs. Unlimited projects on one licence, a 4-hour response SLA, and the maintainers on call when a launch is on the line.',
+                    'features' => [
+                        ['text' => 'Unlimited client projects on a single licence'],
+                        ['text' => '4-hour priority response + quarterly editor onboarding for your clients'],
+                        ['text' => 'White-label: ship a custom shadcn preset as your own work'],
+                        ['text' => 'Custom preset review by the creators before you hand over'],
+                        ['text' => 'Add-ons on demand — brand adaptation from €1,990, custom elements from €390'],
+                    ],
+                    'button_text' => 'Compare all plans',
+                    'button_link' => '{{page:chapter-pricing}}',
+                ]),
                 self::block('desiderio_testimonial', [
                     'variant' => 'large',
                     'quote' => 'We demoed three themes in the kickoff by switching presets live. The client signed that afternoon — and the project closed 30% under our usual template budget.',
@@ -530,6 +590,21 @@ final class StyleguideShowcasePages
                         ['icon' => 'clock', 'title' => 'Run it without running servers', 'description' => 'Managed hosting from €99/month (Business €179 with staging and 99.9% SLA) and the Creator Care retainer at €490/month keep updates, backups, and LTS upgrades off your plate.', 'link' => ''],
                     ],
                 ]),
+                self::block('desiderio_pricingsimple', [
+                    'header' => 'Recommended: Pro + Creator Care',
+                    'price' => '€49',
+                    'billing_period' => '/month · €490/year — plus Creator Care from €490/month',
+                    'description' => 'For marketing teams running a site developers already built. Pro keeps you on guaranteed LTS updates; add Creator Care so the people who built Desiderio handle updates, backups and upgrades while you ship campaigns.',
+                    'features' => [
+                        ['text' => 'Priority support (2-day response) + guaranteed LTS compatibility updates'],
+                        ['text' => 'Creator Care retainer from €490/month — updates, security, LTS upgrade planning'],
+                        ['text' => 'Optional managed hosting from €99/month — EU datacenter, daily backups, monitoring'],
+                        ['text' => 'Editor onboarding workshop (€690) to make the whole team self-sufficient'],
+                        ['text' => 'Runs on the free GPL core — no feature gates, no licence keys'],
+                    ],
+                    'button_text' => 'Compare all plans',
+                    'button_link' => '{{page:chapter-pricing}}',
+                ]),
                 self::block('desiderio_testimonial', [
                     'variant' => 'large',
                     'quote' => 'Our editors build campaign pages themselves now. The backend previews mean nobody publishes blind anymore — and our brand team finally sleeps at night.',
@@ -591,6 +666,21 @@ final class StyleguideShowcasePages
                         ['icon' => 'zap', 'title' => 'Demos that close deals', 'description' => 'Seed the styleguide on a throwaway ddev site and send the prospect a link. A living demo beats a PDF offer every single time.', 'link' => ''],
                         ['icon' => 'users', 'title' => 'Backup when you need it', 'description' => 'Pro at €49/month is your safety net: 2-day support from the maintainers, guaranteed LTS updates, early access to new drops. Custom elements from €390 when a client wants the impossible.', 'link' => ''],
                     ],
+                ]),
+                self::block('desiderio_pricingsimple', [
+                    'header' => 'Start on Community. €0, forever.',
+                    'price' => '€0',
+                    'billing_period' => 'forever · GPL-2.0, all 244 elements',
+                    'description' => 'The complete design system — 244 elements, 49 typed Fluid components, 15 themes and the full CI-grade quality pipeline — free under GPL-2.0. When a client needs a guarantee, Pro at €49/month is your safety net.',
+                    'features' => [
+                        ['text' => 'All 244 content elements + 49 typed Fluid components, free forever'],
+                        ['text' => 'The CI-grade quality pipeline (PHPStan max, 170+ tests) at no cost'],
+                        ['text' => 'No licence keys, no feature gates — self-host anywhere'],
+                        ['text' => 'Add Pro (€49/month) only when a client wants an SLA'],
+                        ['text' => 'Custom elements from €390 when a brief needs something new'],
+                    ],
+                    'button_text' => 'Get started free',
+                    'button_link' => self::REPO_URL,
                 ]),
                 self::block('desiderio_testimonial', [
                     'variant' => 'large',
@@ -1669,6 +1759,57 @@ final class StyleguideShowcasePages
                     'description' => 'The homepage has the whole story: 244 elements, 15 themes, and the one command that seeded this site (404 page included).',
                     'cta_text' => 'Take me home',
                     'cta_link' => '{{page:home}}',
+                    'bg_style' => 'primary',
+                ]),
+            ],
+        ];
+    }
+
+    /**
+     * The content-types hub: a catalog of the ten element chapters with counts,
+     * one-line benefits, and links into each live chapter.
+     *
+     * @return ShowcasePage
+     */
+    private static function contentTypesHubPage(): array
+    {
+        return [
+            'title' => 'Content types',
+            'navTitle' => 'Content types',
+            'slug' => '/content-types',
+            'abstract' => 'All 244 Desiderio content elements in ten groups — every one finished, audited and editor-ready, with a backend preview, demo content and accessibility built in.',
+            'description' => '244 content elements in ten groups: heroes, navigation, editorial, features, pricing, trust, team, data, conversion and footers. Browse each group live, rendered in its own theme preset.',
+            'parentSlug' => null,
+            'content' => [
+                self::block('desiderio_headersection', [
+                    'eyebrow' => 'Content types',
+                    'header' => '244 elements. Ten groups. One design system.',
+                    'subheadline' => 'Every element is finished, audited and editor-ready — with a backend preview, demo content and accessibility built into each. Browse by what you need to build.',
+                    'variant' => 'left',
+                ]),
+                self::block('desiderio_benefitcards', [
+                    'eyebrow' => 'The catalog',
+                    'header' => 'Browse by what you are building',
+                    'subheadline' => 'Ten groups, 244 elements — every one finished, audited and ready to drop in. Open a group to see it live.',
+                    'columns' => '3',
+                    'items' => [
+                        ['icon' => 'sparkles', 'title' => 'Hero & Landing Intros', 'description' => '21 heroes — split, video, countdown, stats. Make the first impression land.', 'link' => '{{page:chapter-hero}}'],
+                        ['icon' => 'menu', 'title' => 'Navigation & Wayfinding', 'description' => '23 navbars, mega-menus and breadcrumbs that get people where they are going.', 'link' => '{{page:chapter-navigation}}'],
+                        ['icon' => 'book-open', 'title' => 'Content & Editorial', 'description' => '24 ways to lay out an article — text, media, quotes, tabs, timelines.', 'link' => '{{page:chapter-content}}'],
+                        ['icon' => 'blocks', 'title' => 'Features & Benefits', 'description' => '25 grids, bento layouts and comparisons to explain what you do.', 'link' => '{{page:chapter-features}}'],
+                        ['icon' => 'tag', 'title' => 'Plans & Pricing', 'description' => '25 pricing tables, toggles and calculators — the blocks that close.', 'link' => '{{page:chapter-pricing}}'],
+                        ['icon' => 'shield-check', 'title' => 'Trust & Social Proof', 'description' => '25 testimonial walls, logo clouds and case studies.', 'link' => '{{page:chapter-social-proof}}'],
+                        ['icon' => 'users', 'title' => 'People & Team', 'description' => '24 team grids, org charts and founder stories.', 'link' => '{{page:chapter-team}}'],
+                        ['icon' => 'chart', 'title' => 'Data & Dashboards', 'description' => '29 KPI cards, charts and status boards, with nine chart types.', 'link' => '{{page:chapter-data}}'],
+                        ['icon' => 'send', 'title' => 'Leads & Conversion', 'description' => '25 forms, CTAs and lead magnets — each form a real ext:form.', 'link' => '{{page:chapter-conversion}}'],
+                        ['icon' => 'layers', 'title' => 'Footers & Utility Areas', 'description' => '23 footers, cookie banners and legal blocks — the unglamorous 80%.', 'link' => '{{page:chapter-footer}}'],
+                    ],
+                ]),
+                self::block('desiderio_ctabanner', [
+                    'header' => 'Every one of these ships in the free package',
+                    'description' => '244 elements, 15 themes and all integrations — GPL-2.0, no feature gates. Install it and start building today.',
+                    'cta_text' => 'Get Desiderio free',
+                    'cta_link' => self::REPO_URL,
                     'bg_style' => 'primary',
                 ]),
             ],

@@ -260,6 +260,22 @@ final class SeedStyleguidePagesCommand extends Command
             $additionalCleanupCTypes = (string)$group['groupId'] === 'core' ? CoreContentElements::cTypes() : [];
             $contentCleaner->softDeleteSeededContent($pageUid, $now, $additionalCleanupCTypes, true);
 
+            // Benefit-led chapter intro above the element demos (sorting 128
+            // slots it before the first demo at 256).
+            $chapterIntro = StyleguideContentGroups::chapterIntro((string)$group['groupId']);
+            if ($chapterIntro !== null) {
+                $contentElementSeeder->insert($pageUid, $now, $this->getFixtureResolver()->buildContentInsert(
+                    $pageUid,
+                    'desiderio_headersection',
+                    'Chapter intro',
+                    $chapterIntro,
+                    128,
+                    $now,
+                    $contentColumns
+                ));
+                $createdContentElements++;
+            }
+
             foreach ($group['elements'] as $elementIndex => $element) {
                 $contentData = $this->getFixtureResolver()->buildContentInsert(
                     $pageUid,
@@ -272,6 +288,21 @@ final class SeedStyleguidePagesCommand extends Command
                 );
 
                 $contentElementSeeder->insert($pageUid, $now, $contentData);
+                $createdContentElements++;
+            }
+
+            // Closing conversion banner below the demos.
+            $chapterCta = StyleguideContentGroups::chapterCta((string)$group['groupId']);
+            if ($chapterCta !== null) {
+                $contentElementSeeder->insert($pageUid, $now, $this->getFixtureResolver()->buildContentInsert(
+                    $pageUid,
+                    'desiderio_ctabanner',
+                    'Chapter CTA',
+                    $chapterCta,
+                    (count($group['elements']) + 1) * 256 + 128,
+                    $now,
+                    $contentColumns
+                ));
                 $createdContentElements++;
             }
         }

@@ -319,7 +319,7 @@ final class ContentRenderingTemplateTest extends TestCase
         self::assertStringNotContainsString('<d:molecule.tabsContent', $template);
     }
 
-    public function testIntroHeadingSpacingOnlyAppliesWhenMutedTextFollows(): void
+    public function testIntroHeadingSpacingOnlyAppliesWhenIntroTextFollows(): void
     {
         $timelineCss = (string)file_get_contents(__DIR__ . '/../../ContentBlocks/ContentElements/timeline/assets/frontend.css');
         $textmediaCss = (string)file_get_contents(__DIR__ . '/../../ContentBlocks/ContentElements/textmedia/assets/frontend.css');
@@ -330,7 +330,7 @@ final class ContentRenderingTemplateTest extends TestCase
         );
         self::assertStringContainsString('margin-block-start: var(--d-spacing-sm);', $timelineCss);
         self::assertStringContainsString(
-            '.textmedia__content [data-variant="h2"] + [data-variant="muted"]',
+            '.textmedia__content [data-variant="h2"] + [data-variant="lead"]',
             $textmediaCss
         );
         self::assertStringContainsString('margin-block-start: var(--d-spacing-sm);', $textmediaCss);

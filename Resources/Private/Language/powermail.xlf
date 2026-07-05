@@ -4,6 +4,12 @@
     <unit id="powermail.form.requiredHint">
       <segment><source>{requiredCount, plural, one {Fields marked with an asterisk (*) are required.} other {Fields marked with an asterisk (*) are required.}}</source></segment>
     </unit>
+    <unit id="powermail.form.requiredHint.before">
+      <segment><source>Fields marked with an asterisk (</source></segment>
+    </unit>
+    <unit id="powermail.form.requiredHint.after">
+      <segment><source>) are required.</source></segment>
+    </unit>
     <unit id="powermail.multistep.label">
       <segment><source>Form steps</source></segment>
     </unit>

@@ -7,8 +7,9 @@ namespace Webconsulting\Desiderio\Data;
 /**
  * Marketing showcase seeded by desiderio:styleguide:seed in addition to the
  * element chapters: managed homepage content on the styleguide root page plus
- * subpages (technical deep dive, one page per target audience, legal demo
- * pages, a 404 page, a GEO explainer, and illustrative success stories).
+ * subpages (technical deep dive, a target groups overview with one subpage
+ * per target audience, legal demo pages, a 404 page, a GEO explainer, and
+ * illustrative success stories).
  *
  * Internal links use the placeholder syntax {{page:<slug>}}; the seeder
  * replaces them with t3://page?uid=N once the target pages exist. The special
@@ -227,17 +228,17 @@ final class StyleguideShowcasePages
                     [
                         'title' => 'TYPO3 agencies & integrators',
                         'description' => 'Quote less, deliver more. 244 finished elements and per-page themes turn every fixed-price project into margin — and every client review into a yes.',
-                        'link' => '{{page:for-agencies}}',
+                        'link' => '{{page:target-groups/for-agencies}}',
                     ],
                     [
                         'title' => 'In-house marketing & product teams',
                         'description' => 'Ship campaigns without filing a dev ticket. Editors compose pages from previews, switch themes per campaign, and stay on brand automatically.',
-                        'link' => '{{page:for-inhouse-teams}}',
+                        'link' => '{{page:target-groups/for-inhouse-teams}}',
                     ],
                     [
                         'title' => 'Freelancers & solo developers',
                         'description' => 'Look like a team of ten. A complete design system, quality pipeline included, for €0 — so your one-person studio ships agency-grade sites.',
-                        'link' => '{{page:for-freelancers}}',
+                        'link' => '{{page:target-groups/for-freelancers}}',
                     ],
                 ],
             ]),
@@ -333,6 +334,7 @@ final class StyleguideShowcasePages
             self::featureAgentationPage(),
             self::featureSgApicorePage(),
             self::featureSkillflowPage(),
+            self::targetGroupsPage(),
             self::agencyPage(),
             self::inhousePage(),
             self::freelancerPage(),
@@ -473,6 +475,62 @@ final class StyleguideShowcasePages
     }
 
     /**
+     * Overview page above the three audience pages: one condensed pitch per
+     * target group, each linking to the full story on its subpage.
+     *
+     * @return ShowcasePage
+     */
+    private static function targetGroupsPage(): array
+    {
+        return [
+            'title' => 'Target groups',
+            'navTitle' => 'Target groups',
+            'slug' => '/target-groups',
+            'abstract' => 'Desiderio is built for three kinds of TYPO3 teams: agencies & integrators, in-house marketing & product teams, and freelancers & solo developers. This overview tells the short version of each story and links to the full pitch.',
+            'description' => 'Agencies, in-house teams, freelancers: the three target groups Desiderio is built for — each story in short form, the full pitch one click away.',
+            'parentSlug' => null,
+            'content' => [
+                self::block('desiderio_headersection', [
+                    'eyebrow' => 'Target groups',
+                    'header' => 'Built for three kinds of TYPO3 teams',
+                    'subheadline' => 'Agencies win pitches with it, in-house teams ship campaigns with it, freelancers scale with it. Here is the short version of each story — the full pitch is one click further.',
+                    'variant' => 'center',
+                ]),
+                self::block('desiderio_textmedia', [
+                    'header' => 'Win the pitch. Keep the margin.',
+                    'shadcn_layout' => 'media-right',
+                    'subheadline' => 'Agencies & integrators',
+                    'content' => '<p><strong>Every fixed-price TYPO3 project has the same enemy: template hours — Desiderio deletes them.</strong> 244 finished, audited elements mean your quote covers content modeling and integration, not weeks of template construction.</p><p>Demo three theme presets live in the kickoff meeting, run every sub-brand from one install, and hand over a backend your clients\' editors actually enjoy. The Agency tier (€149/month, unlimited projects) adds a 4-hour priority line to the maintainers.</p>',
+                    'media_rounded' => 1,
+                    'button_text' => 'The full agency story',
+                    'button_link' => '{{page:target-groups/for-agencies}}',
+                    'media' => self::screenshot('backend-site-settings-theme.png', 'Theme switching in site settings', 'TYPO3 site settings with the Desiderio theme preset dropdown.'),
+                ]),
+                self::block('desiderio_textmedia', [
+                    'header' => 'Ship the campaign. Skip the ticket queue.',
+                    'shadcn_layout' => 'media-left',
+                    'subheadline' => 'In-house marketing & product teams',
+                    'content' => '<p><strong>Your developers built the site once. With Desiderio, marketing runs it every day after.</strong> Backend previews for all 244 elements, a plain-language wizard, and inline editing in the Visual Editor turn campaign pages into an afternoon task — not a dev ticket.</p><p>Design tokens keep every page on brand, per-campaign themes stay curated freedom, and WCAG 2.2-checked contrast keeps the accessibility audit calm. Managed hosting from €99/month takes the servers off your plate.</p>',
+                    'media_rounded' => 1,
+                    'button_text' => 'The full in-house story',
+                    'button_link' => '{{page:target-groups/for-inhouse-teams}}',
+                    'media' => self::screenshot('backend-visual-editor.png', 'Inline editing in the Visual Editor', 'TYPO3 Visual Editor editing a Desiderio hero element inline.'),
+                ]),
+                self::block('desiderio_textmedia', [
+                    'header' => 'Look like a team of ten. Bill like one.',
+                    'shadcn_layout' => 'media-right',
+                    'subheadline' => 'Freelancers & solo developers',
+                    'content' => '<p><strong>A complete design system, 244 elements, and a CI-grade quality pipeline — for exactly €0.</strong> The open-ended design-and-template phase that kills fixed-price quotes becomes an afternoon of content modelling.</p><p>Seed the styleguide on a throwaway ddev site and send the prospect a link: a living demo beats a PDF offer every single time. Pro at €49/month is the safety net when the client list grows.</p>',
+                    'media_rounded' => 1,
+                    'button_text' => 'The full freelancer story',
+                    'button_link' => '{{page:target-groups/for-freelancers}}',
+                    'media' => self::screenshot('frontend-hero-lagoon.png', 'A seeded Desiderio frontend', 'Desiderio styleguide frontend in the Lagoon theme preset.'),
+                ]),
+            ],
+        ];
+    }
+
+    /**
      * @return ShowcasePage
      */
     private static function agencyPage(): array
@@ -480,10 +538,10 @@ final class StyleguideShowcasePages
         return [
             'title' => 'For agencies & integrators',
             'navTitle' => 'For agencies',
-            'slug' => '/for-agencies',
+            'slug' => '/target-groups/for-agencies',
             'abstract' => 'Why TYPO3 agencies quote less, deliver faster, and win more pitches with Desiderio: reusable elements, live theme demos, multi-brand per-page themes, and an Agency tier with a direct line to the maintainers.',
             'description' => 'Win TYPO3 pitches with live theme demos and 244 finished elements. Desiderio deletes template hours from every fixed-price quote — Agency tier from €149/month.',
-            'parentSlug' => null,
+            'parentSlug' => 'target-groups',
             'content' => [
                 self::block('desiderio_headersection', [
                     'eyebrow' => 'Target group 1 — agencies & integrators',
@@ -557,10 +615,10 @@ final class StyleguideShowcasePages
         return [
             'title' => 'For in-house marketing & product teams',
             'navTitle' => 'For in-house teams',
-            'slug' => '/for-inhouse-teams',
+            'slug' => '/target-groups/for-inhouse-teams',
             'abstract' => 'Why in-house teams ship campaigns without dev tickets: editor previews, per-campaign themes, brand governance through tokens, managed hosting, and Pro support with guaranteed LTS updates.',
             'description' => 'Ship campaign pages without dev tickets: backend previews for all 244 Desiderio elements, per-campaign themes, and brand governance enforced by design tokens.',
-            'parentSlug' => null,
+            'parentSlug' => 'target-groups',
             'content' => [
                 self::block('desiderio_headersection', [
                     'eyebrow' => 'Target group 2 — in-house teams',
@@ -634,10 +692,10 @@ final class StyleguideShowcasePages
         return [
             'title' => 'For freelancers & solo developers',
             'navTitle' => 'For freelancers',
-            'slug' => '/for-freelancers',
+            'slug' => '/target-groups/for-freelancers',
             'abstract' => 'Why solo developers deliver agency-grade TYPO3 sites with Desiderio: a complete free design system, quality pipeline included, fixed-price projects that stay profitable, and Pro support as the safety net.',
             'description' => 'Agency-grade TYPO3 sites from a studio of one: Desiderio gives freelancers a complete free design system, 244 elements, and a CI-grade quality pipeline for €0.',
-            'parentSlug' => null,
+            'parentSlug' => 'target-groups',
             'content' => [
                 self::block('desiderio_headersection', [
                     'eyebrow' => 'Target group 3 — freelancers & solo devs',
@@ -1728,9 +1786,10 @@ final class StyleguideShowcasePages
                         [
                             'title' => 'For your team',
                             'pages' => [
-                                ['label' => 'Agencies & integrators', 'link' => '{{page:for-agencies}}'],
-                                ['label' => 'In-house teams', 'link' => '{{page:for-inhouse-teams}}'],
-                                ['label' => 'Freelancers & solo devs', 'link' => '{{page:for-freelancers}}'],
+                                ['label' => 'Target groups overview', 'link' => '{{page:target-groups}}'],
+                                ['label' => 'Agencies & integrators', 'link' => '{{page:target-groups/for-agencies}}'],
+                                ['label' => 'In-house teams', 'link' => '{{page:target-groups/for-inhouse-teams}}'],
+                                ['label' => 'Freelancers & solo devs', 'link' => '{{page:target-groups/for-freelancers}}'],
                             ],
                         ],
                         [

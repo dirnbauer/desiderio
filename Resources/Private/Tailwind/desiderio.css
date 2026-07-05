@@ -13,7 +13,11 @@
 @source "../ShadcnUi";
 @source "../FluidStyledContent";
 @source "../../Public/Js";
-@source "../../../ContentBlocks";
+/* Only the Fluid templates carry markup classes. Scanning the whole
+   ContentBlocks tree would treat words in config.yaml descriptions and
+   XLF keyword catalogs (grid, table, flex, ...) as class candidates and
+   bloat the bundle with dead utilities. */
+@source "../../../ContentBlocks/ContentElements/*/templates";
 
 @custom-variant dark (&:is(.dark *));
 

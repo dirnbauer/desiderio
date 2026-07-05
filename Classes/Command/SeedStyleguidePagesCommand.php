@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Webconsulting\Desiderio\Command;
 
+use Doctrine\DBAL\ArrayParameterType;
+use Doctrine\DBAL\ParameterType;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -63,6 +65,97 @@ final class SeedStyleguidePagesCommand extends Command
         'midnight',
         'blossom',
         'citrus',
+    ];
+
+    private const CONTENT_TYPES_PAGE_TITLE = 'Content types';
+    private const CONTENT_TYPES_PAGE_NAV_TITLE = 'Content types';
+    private const CONTENT_TYPES_PAGE_SLUG = '/content-types';
+    private const CONTENT_TYPES_PAGE_SORTING = 258;
+
+    /**
+     * Canonical public content-type chapters, in the same order as the cleaned
+     * live tree below /content-types. TYPO3 core elements are deliberately not
+     * part of this public menu.
+     */
+    private const CONTENT_TYPE_GROUP_SLUGS = [
+        'hero' => 'hero-landing-intros',
+        'navigation' => 'navigation-wayfinding',
+        'content' => 'content-editorial',
+        'features' => 'features-benefits',
+        'pricing' => 'plans-pricing',
+        'social-proof' => 'trust-social-proof',
+        'team' => 'people-team',
+        'data' => 'data-dashboards',
+        'conversion' => 'leads-conversion',
+        'footer' => 'footers-utility-areas',
+    ];
+
+    private const CONTENT_TYPE_GROUP_PRESETS = [
+        'hero' => 'lagoon',
+        'navigation' => 'gold',
+        'content' => 'aurora',
+        'features' => 'ember',
+        'pricing' => 'midnight',
+        'social-proof' => 'blossom',
+        'team' => 'citrus',
+        'data' => 'b27GcrRo',
+        'conversion' => 'marine',
+        'footer' => 'bloom',
+    ];
+
+    private const LEGACY_ROOT_PAGE_SLUGS = [
+        '/desiderio-content',
+        '/desiderio-conversion',
+        '/desiderio-data',
+        '/desiderio-features',
+        '/desiderio-footer',
+        '/desiderio-hero',
+        '/desiderio-navigation',
+        '/desiderio-pricing',
+        '/desiderio-social-proof',
+        '/desiderio-team',
+        '/desiderio-core',
+        '/for-agencies',
+        '/for-inhouse-teams',
+        '/for-freelancers',
+    ];
+
+    /**
+     * @var list<array{title: string, slug: string, parentTarget: string, linkTarget: string, header: string, bodytext: string}>
+     */
+    private const CONTENT_TYPE_SUPPORT_PAGES = [
+        [
+            'title' => 'Wayfinding patterns',
+            'slug' => '/content-types/navigation-wayfinding/wayfinding-patterns',
+            'parentTarget' => 'chapter-navigation',
+            'linkTarget' => 'content-types/navigation-wayfinding/wayfinding-patterns',
+            'header' => 'Breadcrumb demo - level 1 of 4',
+            'bodytext' => '<p>This subtree demonstrates the page-level breadcrumb. The trail above currently has <strong>three crumbs</strong> (home icon, parent chapter, this page) - short trails render in full.</p><p>Go one level deeper: <a href="{{page:content-types/navigation-wayfinding/wayfinding-patterns/breadcrumb-trails}}">Breadcrumb trails</a>.</p>',
+        ],
+        [
+            'title' => 'Breadcrumb trails',
+            'slug' => '/content-types/navigation-wayfinding/wayfinding-patterns/breadcrumb-trails',
+            'parentTarget' => 'content-types/navigation-wayfinding/wayfinding-patterns',
+            'linkTarget' => 'content-types/navigation-wayfinding/wayfinding-patterns/breadcrumb-trails',
+            'header' => 'Breadcrumb demo - level 2 of 4',
+            'bodytext' => '<p>The trail above now has <strong>four crumbs</strong> - the longest trail that still renders without truncation.</p><p>Go one level deeper: <a href="{{page:content-types/navigation-wayfinding/wayfinding-patterns/breadcrumb-trails/truncation-behaviour}}">Truncation behaviour</a>.</p>',
+        ],
+        [
+            'title' => 'Truncation behaviour',
+            'slug' => '/content-types/navigation-wayfinding/wayfinding-patterns/breadcrumb-trails/truncation-behaviour',
+            'parentTarget' => 'content-types/navigation-wayfinding/wayfinding-patterns/breadcrumb-trails',
+            'linkTarget' => 'content-types/navigation-wayfinding/wayfinding-patterns/breadcrumb-trails/truncation-behaviour',
+            'header' => 'Breadcrumb demo - level 3 of 4',
+            'bodytext' => '<p>Five crumbs exceed the limit, so the trail above collapses for the first time: <strong>home icon / &hellip; / parent / current page</strong>. The ellipsis carries a translated screen-reader label (&ldquo;More pages&rdquo; / &ldquo;Weitere Seiten&rdquo;), and the current page is plain text, never a link.</p><p>Go one level deeper: <a href="{{page:content-types/navigation-wayfinding/wayfinding-patterns/breadcrumb-trails/truncation-behaviour/deeply-nested-example}}">Deeply nested example</a>.</p>',
+        ],
+        [
+            'title' => 'Deeply nested example',
+            'slug' => '/content-types/navigation-wayfinding/wayfinding-patterns/breadcrumb-trails/truncation-behaviour/deeply-nested-example',
+            'parentTarget' => 'content-types/navigation-wayfinding/wayfinding-patterns/breadcrumb-trails/truncation-behaviour',
+            'linkTarget' => 'content-types/navigation-wayfinding/wayfinding-patterns/breadcrumb-trails/truncation-behaviour/deeply-nested-example',
+            'header' => 'Breadcrumb demo - level 4 of 4',
+            'bodytext' => '<p>The deepest page of the demo: the rootline has <strong>six crumbs</strong>, and the ellipsis now hides three ancestors at once. However deep the tree grows, the trail stays at four rendered items: home icon, ellipsis, parent, current page.</p>',
+        ],
     ];
 
     private readonly StyleguideCollectionAliasPolicy $collectionAliasPolicy;
@@ -163,7 +256,7 @@ final class SeedStyleguidePagesCommand extends Command
 
             return self::FAILURE;
         }
-        $groups = StyleguideContentGroups::getGroupsWithFixtures();
+        $groups = $this->contentTypeGroups(StyleguideContentGroups::getGroupsWithFixtures());
         // With EXT:blog installed the success stories seed as real blog posts
         // and get hidden category/tag listing pages for their metadata badges.
         $blogAvailable = $this->isBlogSchemaAvailable();
@@ -174,12 +267,13 @@ final class SeedStyleguidePagesCommand extends Command
         $totalElements = array_sum(array_map(
             static fn (array $group): int => count($group['elements']),
             $groups
-        )) + StyleguideShowcasePages::contentElementCount();
+        )) + $this->countChapterFramingElements($groups) + count(self::CONTENT_TYPE_SUPPORT_PAGES) + StyleguideShowcasePages::contentElementCount();
 
         if ($dryRun) {
             $io->title('Desiderio styleguide seed dry run');
             $listing = [];
             $listing[] = sprintf('Homepage (on parent page): %d marketing elements', count(StyleguideShowcasePages::homeContent()));
+            $listing[] = sprintf('%s overview: %d content-type chapters', self::CONTENT_TYPES_PAGE_TITLE, count($groups));
             foreach ($showcasePages as $page) {
                 $listing[] = sprintf('%s: %d elements', $page['title'], count($page['content']));
             }
@@ -188,8 +282,11 @@ final class SeedStyleguidePagesCommand extends Command
                     '%s: %d elements — theme "%s"',
                     $group['groupTitle'],
                     count($group['elements']),
-                    $this->presetForPageIndex($index)
+                    $this->presetForContentTypeGroup((string)$group['groupId'], $index)
                 );
+            }
+            foreach (self::CONTENT_TYPE_SUPPORT_PAGES as $page) {
+                $listing[] = sprintf('%s: 1 breadcrumb demo element', $page['title']);
             }
             $io->listing($listing);
             if (!$skipPowermail) {
@@ -207,7 +304,7 @@ final class SeedStyleguidePagesCommand extends Command
             }
             $io->success(sprintf(
                 'Would create or update %d styleguide pages and %d content elements below page uid %d%s.',
-                count($groups) + count($showcasePages),
+                count($groups) + count(self::CONTENT_TYPE_SUPPORT_PAGES) + count($showcasePages),
                 $totalElements,
                 $parentPid,
                 $skipPowermail ? '' : sprintf(', plus %d powermail demo forms with EN/DE pages if powermail tables are available', count($this->getPowermailDemoSeeder()->getDemoForms()))
@@ -228,12 +325,50 @@ final class SeedStyleguidePagesCommand extends Command
 
         $linkTargets = [];
 
+        $contentTypesPageAttributes = [
+            'nav_title' => self::CONTENT_TYPES_PAGE_NAV_TITLE,
+            ...$this->buildSeoPageAttributes(
+                self::CONTENT_TYPES_PAGE_TITLE,
+                'Browse Desiderio content types by chapter: heroes, navigation, editorial content, features, pricing, trust, people, data, conversion, and footer patterns.'
+            ),
+        ];
+        $contentTypesPageUid = $pageUpserter->findExistingPageUid(
+            $parentPid,
+            self::CONTENT_TYPES_PAGE_TITLE,
+            self::CONTENT_TYPES_PAGE_SLUG,
+            $pageColumns
+        );
+        if ($contentTypesPageUid === null) {
+            $contentTypesPageUid = $pageUpserter->create(
+                $parentPid,
+                self::CONTENT_TYPES_PAGE_TITLE,
+                self::CONTENT_TYPES_PAGE_SLUG,
+                self::CONTENT_TYPES_PAGE_SORTING,
+                $now,
+                $pageColumns,
+                $contentTypesPageAttributes
+            );
+            $createdPages++;
+        } else {
+            $pageUpserter->update(
+                $contentTypesPageUid,
+                self::CONTENT_TYPES_PAGE_TITLE,
+                self::CONTENT_TYPES_PAGE_SLUG,
+                self::CONTENT_TYPES_PAGE_SORTING,
+                $now,
+                $pageColumns,
+                $contentTypesPageAttributes
+            );
+        }
+        $linkTargets['content-types'] = $contentTypesPageUid;
+
         foreach ($groups as $index => $group) {
             $title = (string)$group['groupTitle'];
-            $slug = '/desiderio-' . (string)$group['groupId'];
+            $groupId = (string)$group['groupId'];
+            $slug = $this->contentTypeSlugForGroup($groupId);
             $sorting = ($index + 1) * 256;
 
-            $preset = $this->presetForPageIndex($index);
+            $preset = $this->presetForContentTypeGroup($groupId, $index);
             $pageAttributes = [
                 'tx_desiderio_shadcn_preset' => $preset,
                 ...$this->buildSeoPageAttributes($title, sprintf(
@@ -244,25 +379,21 @@ final class SeedStyleguidePagesCommand extends Command
                 )),
             ];
 
-            $pageUid = $pageUpserter->findExistingPageUid($parentPid, $title, $slug, $pageColumns);
+            $pageUid = $pageUpserter->findExistingPageUid($contentTypesPageUid, $title, $slug, $pageColumns);
             if ($pageUid === null) {
-                $pageUid = $pageUpserter->create($parentPid, $title, $slug, $sorting, $now, $pageColumns, $pageAttributes);
+                $pageUid = $pageUpserter->create($contentTypesPageUid, $title, $slug, $sorting, $now, $pageColumns, $pageAttributes);
                 $createdPages++;
             } else {
                 $pageUpserter->update($pageUid, $title, $slug, $sorting, $now, $pageColumns, $pageAttributes);
             }
 
-            $linkTargets['chapter-' . (string)$group['groupId']] = $pageUid;
+            $linkTargets['chapter-' . $groupId] = $pageUid;
 
-            // The core-elements page seeds native CTypes (text, table, menu_*, …),
-            // which the default cleaner (desiderio_% only) would not soft-delete on
-            // a re-seed — pass them explicitly so re-runs stay idempotent.
-            $additionalCleanupCTypes = (string)$group['groupId'] === 'core' ? CoreContentElements::cTypes() : [];
-            $contentCleaner->softDeleteSeededContent($pageUid, $now, $additionalCleanupCTypes, true);
+            $contentCleaner->softDeleteSeededContent($pageUid, $now, [], true);
 
             // Benefit-led chapter intro above the element demos (sorting 128
             // slots it before the first demo at 256).
-            $chapterIntro = StyleguideContentGroups::chapterIntro((string)$group['groupId']);
+            $chapterIntro = StyleguideContentGroups::chapterIntro($groupId);
             if ($chapterIntro !== null) {
                 $contentElementSeeder->insert($pageUid, $now, $this->getFixtureResolver()->buildContentInsert(
                     $pageUid,
@@ -292,7 +423,7 @@ final class SeedStyleguidePagesCommand extends Command
             }
 
             // Closing conversion banner below the demos.
-            $chapterCta = StyleguideContentGroups::chapterCta((string)$group['groupId']);
+            $chapterCta = StyleguideContentGroups::chapterCta($groupId);
             if ($chapterCta !== null) {
                 $contentElementSeeder->insert($pageUid, $now, $this->getFixtureResolver()->buildContentInsert(
                     $pageUid,
@@ -307,13 +438,25 @@ final class SeedStyleguidePagesCommand extends Command
             }
         }
 
+        $supportPageBlocks = $this->seedContentTypeSupportPages(
+            $contentTypesPageUid,
+            $linkTargets,
+            $pageColumns,
+            $pageUpserter,
+            $now,
+            $createdPages
+        );
+        $deletedLegacyPages = 0;
+
         // Marketing showcase: subpages first (so internal links resolve), then
         // homepage content on the parent page itself, then subpage content.
         $linkTargets['home'] = $parentPid;
         $showcaseBlocks = [];
         $blogPostsToRelate = [];
         foreach ($showcasePages as $index => $page) {
-            $sorting = ($index + 1) * 16;
+            $sorting = $page['slug'] === self::CONTENT_TYPES_PAGE_SLUG
+                ? self::CONTENT_TYPES_PAGE_SORTING
+                : ($index + 1) * 16;
             $pageAttributes = [
                 'nav_title' => $page['navTitle'],
                 'abstract' => $page['abstract'],
@@ -368,6 +511,8 @@ final class SeedStyleguidePagesCommand extends Command
             }
         }
 
+        $deletedLegacyPages = $this->softDeleteLegacyRootPages($parentPid, self::LEGACY_ROOT_PAGE_SLUGS, $now, $pageColumns, $contentCleaner);
+
         // Categories and tags live next to the posts on their list page so the
         // whole blog section stays inside the seeded subtree.
         foreach ($blogPostsToRelate as $blogPost) {
@@ -385,6 +530,23 @@ final class SeedStyleguidePagesCommand extends Command
         }
 
         $showcaseBlocks[$parentPid] = StyleguideShowcasePages::homeContent();
+
+        foreach ($supportPageBlocks as $pageUid => $blocks) {
+            $contentCleaner->softDeleteSeededContent($pageUid, $now, ['text'], true);
+            foreach ($blocks as $blockIndex => $block) {
+                $block = $this->substituteLinkPlaceholders($block, $linkTargets);
+                $contentData = $this->getStarterContentBuilder()->buildContentInsert(
+                    $pageUid,
+                    $block,
+                    ($blockIndex + 1) * 256,
+                    $now,
+                    $contentColumns
+                );
+
+                $contentElementSeeder->insert($pageUid, $now, $contentData);
+                $createdContentElements++;
+            }
+        }
 
         foreach ($showcaseBlocks as $pageUid => $blocks) {
             // Showcase subpages are fully seeder-owned: clear leftover core
@@ -431,21 +593,174 @@ final class SeedStyleguidePagesCommand extends Command
         }
 
         $io->success(sprintf(
-            'Created or updated %d styleguide pages (%d new) and inserted %d Desiderio content elements below page uid %d%s%s.',
-            count($groups) + count($showcasePages),
+            'Created or updated %d styleguide pages (%d new) and inserted %d content elements below page uid %d%s%s%s.',
+            count($groups) + count(self::CONTENT_TYPE_SUPPORT_PAGES) + count($showcasePages),
             $createdPages,
             $createdContentElements,
             $parentPid,
             $powermailSummary['skipped'] ? '' : sprintf(' Added %d powermail demo forms across %d EN/DE pages.', $powermailSummary['forms'], $powermailSummary['pages']),
-            $newsSummary['skipped'] ? '' : sprintf(' Added %d news demo records (%d article content elements) across %d news pages.', $newsSummary['records'], $newsSummary['contentElements'], $newsSummary['pages'])
+            $newsSummary['skipped'] ? '' : sprintf(' Added %d news demo records (%d article content elements) across %d news pages.', $newsSummary['records'], $newsSummary['contentElements'], $newsSummary['pages']),
+            $deletedLegacyPages > 0 ? sprintf(' Deleted %d legacy root pages.', $deletedLegacyPages) : ''
         ));
 
         return self::SUCCESS;
     }
 
+    /**
+     * @param list<array{groupId: string, groupTitle: string, elements: list<array{name: string, ctype: string, fixture: array<string, mixed>}>}> $groups
+     * @return list<array{groupId: string, groupTitle: string, elements: list<array{name: string, ctype: string, fixture: array<string, mixed>}>}>
+     */
+    private function contentTypeGroups(array $groups): array
+    {
+        $groupsById = [];
+        foreach ($groups as $group) {
+            $groupId = (string)$group['groupId'];
+            if (isset(self::CONTENT_TYPE_GROUP_SLUGS[$groupId])) {
+                $groupsById[$groupId] = $group;
+            }
+        }
+
+        $orderedGroups = [];
+        foreach (array_keys(self::CONTENT_TYPE_GROUP_SLUGS) as $groupId) {
+            if (isset($groupsById[$groupId])) {
+                $orderedGroups[] = $groupsById[$groupId];
+            }
+        }
+
+        return $orderedGroups;
+    }
+
+    /**
+     * @param list<array{groupId: string, elements: list<array<string, mixed>>}> $groups
+     */
+    private function countChapterFramingElements(array $groups): int
+    {
+        $count = 0;
+        foreach ($groups as $group) {
+            $groupId = (string)$group['groupId'];
+            if (StyleguideContentGroups::chapterIntro($groupId) !== null) {
+                $count++;
+            }
+            if (StyleguideContentGroups::chapterCta($groupId) !== null) {
+                $count++;
+            }
+        }
+
+        return $count;
+    }
+
+    private function contentTypeSlugForGroup(string $groupId): string
+    {
+        return self::CONTENT_TYPES_PAGE_SLUG . '/' . self::CONTENT_TYPE_GROUP_SLUGS[$groupId];
+    }
+
+    private function presetForContentTypeGroup(string $groupId, int $fallbackIndex): string
+    {
+        return self::CONTENT_TYPE_GROUP_PRESETS[$groupId] ?? $this->presetForPageIndex($fallbackIndex);
+    }
+
     private function presetForPageIndex(int $index): string
     {
         return self::STYLEGUIDE_PAGE_PRESETS[$index % count(self::STYLEGUIDE_PAGE_PRESETS)];
+    }
+
+    /**
+     * @param array<string, int> $linkTargets
+     * @param array<string, true> $pageColumns
+     * @param int $createdPages
+     * @return array<int, list<array{ctype: string, colPos: int, fields: array<string, mixed>}>>
+     */
+    private function seedContentTypeSupportPages(
+        int $contentTypesPageUid,
+        array &$linkTargets,
+        array $pageColumns,
+        SeedPageUpserter $pageUpserter,
+        int $now,
+        int &$createdPages,
+    ): array {
+        $blocksByPageUid = [];
+        foreach (self::CONTENT_TYPE_SUPPORT_PAGES as $page) {
+            $pagePid = $linkTargets[$page['parentTarget']] ?? $contentTypesPageUid;
+            $pageUid = $pageUpserter->findExistingPageUid($pagePid, $page['title'], $page['slug'], $pageColumns);
+            $pageAttributes = $this->buildSeoPageAttributes(
+                $page['title'],
+                sprintf('Breadcrumb support page for the Desiderio %s chapter.', self::CONTENT_TYPES_PAGE_TITLE)
+            );
+            if ($pageUid === null) {
+                $pageUid = $pageUpserter->create($pagePid, $page['title'], $page['slug'], 256, $now, $pageColumns, $pageAttributes);
+                $createdPages++;
+            } else {
+                $pageUpserter->update($pageUid, $page['title'], $page['slug'], 256, $now, $pageColumns, $pageAttributes);
+            }
+
+            $linkTargets[$page['linkTarget']] = $pageUid;
+            $blocksByPageUid[$pageUid] = [[
+                'ctype' => 'text',
+                'colPos' => 0,
+                'fields' => [
+                    'header' => $page['header'],
+                    'bodytext' => $page['bodytext'],
+                ],
+            ]];
+        }
+
+        return $blocksByPageUid;
+    }
+
+    /**
+     * @param list<string> $slugs
+     * @param array<string, true> $pageColumns
+     */
+    private function softDeleteLegacyRootPages(
+        int $parentPid,
+        array $slugs,
+        int $now,
+        array $pageColumns,
+        DesiderioContentCleaner $contentCleaner,
+    ): int {
+        if ($slugs === []) {
+            return 0;
+        }
+
+        $queryBuilder = $this->connectionPool->getQueryBuilderForTable('pages');
+        $queryBuilder->getRestrictions()->removeAll();
+        $rows = $queryBuilder
+            ->select('uid', 'slug')
+            ->from('pages')
+            ->where(
+                $queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($parentPid, ParameterType::INTEGER)),
+                $queryBuilder->expr()->eq('deleted', $queryBuilder->createNamedParameter(0, ParameterType::INTEGER)),
+                $queryBuilder->expr()->in('slug', $queryBuilder->createNamedParameter($slugs, ArrayParameterType::STRING)),
+                ...(new LiveWorkspaceQueryHelper($this->databaseSchema))->buildLiveWorkspaceConstraints($queryBuilder, 'pages')
+            )
+            ->executeQuery()
+            ->fetchAllAssociative();
+
+        $deleted = 0;
+        $connection = $this->connectionPool->getConnectionForTable('pages');
+        foreach ($rows as $row) {
+            $pageUid = is_numeric($row['uid'] ?? null) ? (int)$row['uid'] : 0;
+            if ($pageUid <= 0) {
+                continue;
+            }
+
+            $legacySlug = is_string($row['slug'] ?? null) ? $row['slug'] : '';
+            $additionalCleanupCTypes = $legacySlug === '/desiderio-core'
+                ? array_values(array_unique([...CoreContentElements::cTypes(), ...self::SHOWCASE_ADDITIONAL_CLEANUP_CTYPES]))
+                : self::SHOWCASE_ADDITIONAL_CLEANUP_CTYPES;
+            $contentCleaner->softDeleteSeededContent($pageUid, $now, $additionalCleanupCTypes, true);
+            $connection->update(
+                'pages',
+                $this->databaseSchema->filterRow([
+                    'deleted' => 1,
+                    'tstamp' => $now,
+                ], $pageColumns),
+                ['uid' => $pageUid]
+            );
+            $deleted++;
+        }
+
+        return $deleted;
     }
 
     /**
@@ -499,14 +814,17 @@ final class SeedStyleguidePagesCommand extends Command
                 $values[$key] = $this->substituteLinkPlaceholdersInValue($value, $linkTargets);
                 continue;
             }
-            if (!is_string($value) || !str_starts_with($value, '{{page:')) {
+            if (!is_string($value) || !str_contains($value, '{{page:')) {
                 continue;
             }
 
-            $slug = substr($value, 7, -2);
-            $values[$key] = isset($linkTargets[$slug])
-                ? 't3://page?uid=' . $linkTargets[$slug]
-                : 'https://github.com/dirnbauer/desiderio';
+            $values[$key] = (string)preg_replace_callback(
+                '/\{\{page:([^}]+)\}\}/',
+                static fn (array $matches): string => isset($linkTargets[$matches[1]])
+                    ? 't3://page?uid=' . $linkTargets[$matches[1]]
+                    : 'https://github.com/dirnbauer/desiderio',
+                $value
+            );
         }
 
         return $values;

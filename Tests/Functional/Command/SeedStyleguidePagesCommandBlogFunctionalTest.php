@@ -20,6 +20,21 @@ use Webconsulting\Desiderio\Seeding\BlogPageTreeSeeder;
  */
 final class SeedStyleguidePagesCommandBlogFunctionalTest extends FunctionalTestCase
 {
+    private const CONTENT_TYPE_GROUP_IDS = [
+        'hero',
+        'navigation',
+        'content',
+        'features',
+        'pricing',
+        'social-proof',
+        'team',
+        'data',
+        'conversion',
+        'footer',
+    ];
+
+    private const CONTENT_TYPE_SUPPORT_PAGE_COUNT = 4;
+
     protected array $coreExtensionsToLoad = [
         'form',
         'workspaces',
@@ -121,7 +136,8 @@ final class SeedStyleguidePagesCommandBlogFunctionalTest extends FunctionalTestC
         self::assertSame(Command::SUCCESS, $secondRun->execute(['--parent' => '1', '--skip-powermail' => true, '--skip-news' => true]));
         self::assertStringContainsString('(0 new)', $secondRun->getDisplay());
 
-        $expectedPages = count(StyleguideContentGroups::getGroupsWithFixtures())
+        $expectedPages = count($this->seededContentTypeGroups(StyleguideContentGroups::getGroupsWithFixtures()))
+            + self::CONTENT_TYPE_SUPPORT_PAGE_COUNT
             + count(StyleguideShowcasePages::subpages())
             + count(StyleguideShowcasePages::blogSupportPages());
         self::assertSame($expectedPages, $this->countRows('pages', 'uid <> 1 AND deleted = 0'));
@@ -163,6 +179,27 @@ final class SeedStyleguidePagesCommandBlogFunctionalTest extends FunctionalTestC
         }
 
         return $pages;
+    }
+
+    /**
+     * @param list<array{groupId: string, groupTitle: string, elements: list<array<string, mixed>>}> $groups
+     * @return list<array{groupId: string, groupTitle: string, elements: list<array<string, mixed>>}>
+     */
+    private function seededContentTypeGroups(array $groups): array
+    {
+        $groupsById = [];
+        foreach ($groups as $group) {
+            $groupsById[(string)$group['groupId']] = $group;
+        }
+
+        $seededGroups = [];
+        foreach (self::CONTENT_TYPE_GROUP_IDS as $groupId) {
+            if (isset($groupsById[$groupId])) {
+                $seededGroups[] = $groupsById[$groupId];
+            }
+        }
+
+        return $seededGroups;
     }
 
     /**

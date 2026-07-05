@@ -83,6 +83,37 @@ final class StyleguideSeedCommandTest extends TestCase
         self::assertStringContainsString('Refusing to seed inside workspace #42', $tester->getDisplay());
     }
 
+    public function testPagePlaceholdersAreReplacedInsideRichText(): void
+    {
+        $block = [
+            'ctype' => 'text',
+            'colPos' => 0,
+            'fields' => [
+                'bodytext' => '<p><a href="{{page:content-types/navigation-wayfinding}}">Navigation</a></p>',
+                'button_link' => '{{page:chapter-hero}}',
+                'fallback_link' => '{{page:missing}}',
+            ],
+        ];
+
+        $resolved = $this->invokeMethod($this->createCommand(), 'substituteLinkPlaceholders', [
+            $block,
+            [
+                'content-types/navigation-wayfinding' => 670,
+                'chapter-hero' => 669,
+            ],
+        ]);
+
+        self::assertIsArray($resolved);
+        $fields = $resolved['fields'] ?? null;
+        self::assertIsArray($fields);
+        self::assertSame(
+            '<p><a href="t3://page?uid=670">Navigation</a></p>',
+            $fields['bodytext'] ?? null
+        );
+        self::assertSame('t3://page?uid=669', $fields['button_link'] ?? null);
+        self::assertSame('https://github.com/dirnbauer/desiderio', $fields['fallback_link'] ?? null);
+    }
+
     public function testLegacyColumnsFixtureIsResolvedToCollectionData(): void
     {
         $command = $this->createCommand();

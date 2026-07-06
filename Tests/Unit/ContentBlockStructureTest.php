@@ -68,6 +68,10 @@ final class ContentBlockStructureTest extends TestCase
             'LLL:EXT:desiderio/ContentBlocks/ContentElements/quote/language/labels.xlf:field.variant',
             $variantField['label'] ?? null
         );
+        self::assertTrue(
+            $variantField['prefixField'] ?? false,
+            'Quote must use an isolated variant column so shared tt_content.variant items cannot leak into the backend dropdown.'
+        );
 
         $englishLabels = (string) file_get_contents(self::CONTENT_BLOCKS_DIR . '/quote/language/labels.xlf');
         $germanLabels = (string) file_get_contents(self::CONTENT_BLOCKS_DIR . '/quote/language/de.labels.xlf');

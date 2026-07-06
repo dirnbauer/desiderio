@@ -101,7 +101,7 @@ final class ContentBlockSelectItemOverrides
                     continue;
                 }
 
-                $fieldName = $this->getStaticSelectFieldName($field);
+                $fieldName = $this->getStaticSelectFieldName($configuration, $field);
                 if ($fieldName === null) {
                     continue;
                 }
@@ -114,9 +114,10 @@ final class ContentBlockSelectItemOverrides
     }
 
     /**
+     * @param array<mixed, mixed> $configuration
      * @param array<mixed, mixed> $field
      */
-    private function getStaticSelectFieldName(array $field): ?string
+    private function getStaticSelectFieldName(array $configuration, array $field): ?string
     {
         $identifier = $field['identifier'] ?? null;
         if (($field['type'] ?? null) !== 'Select'
@@ -125,6 +126,13 @@ final class ContentBlockSelectItemOverrides
             || !isset($field['items'])
             || !is_array($field['items'])
         ) {
+            return null;
+        }
+
+        $prefixEnabled = array_key_exists('prefixField', $field)
+            ? (bool)$field['prefixField']
+            : (bool)($configuration['prefixFields'] ?? true);
+        if ($prefixEnabled) {
             return null;
         }
 

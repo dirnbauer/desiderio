@@ -65,4 +65,24 @@ final class ContentBlockSelectItemOverridesTest extends TestCase
             $exactItemsProcessor['parameters']['items'] ?? null
         );
     }
+
+    public function testPrefixedSelectFieldsDoNotNeedSharedColumnOverrides(): void
+    {
+        $listener = new ContentBlockSelectItemOverrides();
+        $method = new \ReflectionMethod($listener, 'getStaticSelectFieldName');
+
+        self::assertNull($method->invoke($listener, [
+            'prefixFields' => false,
+        ], [
+            'identifier' => 'variant',
+            'type' => 'Select',
+            'prefixField' => true,
+            'items' => [
+                [
+                    'label' => 'Mit Rahmen',
+                    'value' => 'bordered',
+                ],
+            ],
+        ]));
+    }
 }

@@ -32,6 +32,7 @@ fields:
   -
     identifier: variant
     type: Select
+    prefixField: true
     renderType: selectSingle
     label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/quote/language/labels.xlf:field.variant'
     items:

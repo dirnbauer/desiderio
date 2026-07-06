@@ -35,8 +35,11 @@
 }
 .hero-form__form .form-element-email {
     display: grid;
+    grid-column: 1;
+    grid-row: 1;
     gap: var(--d-spacing-2);
     margin: 0;
+    min-width: 0;
 }
 .hero-form__form .form-label {
     justify-self: start;
@@ -44,13 +47,22 @@
 }
 .hero-form__form .actions,
 .hero-form__form .form-navigation {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: end;
     margin: 0;
 }
-.hero-form__form form > div:has(.frc-captcha) {
+.hero-form__form form > .frc-captcha,
+.hero-form__form form > .form-element:has(.frc-captcha),
+.hero-form__form form > div:not(.form-element):has(> .frc-captcha) {
     grid-column: 1 / -1;
+    grid-row: 2;
+    justify-self: stretch;
+    width: 100%;
     margin-top: var(--d-spacing-1);
 }
-.hero-form__form form > div:has(.frc-captcha) > label {
+.hero-form__form form > .form-element:has(.frc-captcha) > label,
+.hero-form__form form > div:not(.form-element):has(> .frc-captcha) > label {
     display: none;
 }
 .hero-form__privacy {
@@ -62,6 +74,15 @@
     .hero-form__form form {
         grid-template-columns: 1fr;
         align-items: stretch;
+    }
+    .hero-form__form .form-element-email,
+    .hero-form__form .actions,
+    .hero-form__form .form-navigation,
+    .hero-form__form form > .frc-captcha,
+    .hero-form__form form > .form-element:has(.frc-captcha),
+    .hero-form__form form > div:not(.form-element):has(> .frc-captcha) {
+        grid-column: 1;
+        grid-row: auto;
     }
     .hero-form__form .btn-primary {
         width: 100%;

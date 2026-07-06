@@ -40,6 +40,11 @@ final class FriendlyCaptchaFallbackTest extends TestCase
             \TYPO3\CMS\Form\Domain\Model\FormElements\GenericFormElement::class,
             $element['implementationClassName'] ?? null
         );
+        self::assertSame(
+            'form-element form-element-friendlycaptcha mb-3',
+            $element['properties']['containerClassAttribute'] ?? null
+        );
+        self::assertSame('form-label', $element['properties']['labelClassAttribute'] ?? null);
 
         $partialRootPaths = self::assertArrayPath($prototype, 'formElementsDefinition', 'Form', 'renderingOptions', 'partialRootPaths');
         self::assertContains('EXT:desiderio/Resources/Private/Form/Partials', $partialRootPaths);
@@ -90,6 +95,7 @@ final class FriendlyCaptchaFallbackTest extends TestCase
 
         self::assertStringContainsString(self::PLACEHOLDER_MARKER, $partial);
         self::assertStringContainsString('<button type="button" disabled', $partial);
+        self::assertStringContainsString('partial="Field/Field"', $partial);
         self::assertStringContainsString('di:friendlyCaptchaTestModeEnabled', $partial);
         self::assertStringContainsString('friendlycaptcha:configuration()', $partial);
         self::assertStringContainsString('data-sitekey="{captchaConfiguration.siteKey}"', $partial);
@@ -110,6 +116,7 @@ final class FriendlyCaptchaFallbackTest extends TestCase
 
         self::assertStringContainsString(self::PLACEHOLDER_MARKER, $partial);
         self::assertStringContainsString('<button type="button" disabled', $partial);
+        self::assertStringContainsString('partial="Field/Field"', $partial);
         self::assertStringContainsString(self::BUTTON_LABEL_KEY, $partial);
         self::assertStringContainsString('f:form.hidden', $partial);
         // The button is decorative: no JavaScript hooks of any kind.
@@ -131,5 +138,18 @@ final class FriendlyCaptchaFallbackTest extends TestCase
             self::assertStringContainsString('<button type="button" disabled', $template);
             self::assertStringContainsString(self::BUTTON_LABEL_KEY, $template);
         }
+        self::assertStringContainsString('partial="Field/Field"', $blog);
+    }
+
+    public function testPlaceholderCssWrapsLongDevelopmentModeMessage(): void
+    {
+        $componentsCss = (string)file_get_contents(__DIR__ . '/../../Resources/Public/Css/components.css');
+        $waitlistCss = (string)file_get_contents(__DIR__ . '/../../ContentBlocks/ContentElements/waitlist-signup/assets/frontend.css');
+
+        self::assertStringContainsString('.desiderio-form .frc-captcha--placeholder', $componentsCss);
+        self::assertStringContainsString('grid-template-columns: auto minmax(0, 1fr);', $componentsCss);
+        self::assertStringContainsString('overflow-wrap: anywhere;', $componentsCss);
+        self::assertStringContainsString('.waitlist-signup__form form > .frc-captcha', $waitlistCss);
+        self::assertStringContainsString('grid-row: 2;', $waitlistCss);
     }
 }

@@ -31,8 +31,11 @@
 }
 .hero-startup__form .form-element-email {
     display: grid;
+    grid-column: 1;
+    grid-row: 1;
     gap: var(--d-spacing-2);
     margin: 0;
+    min-width: 0;
 }
 .hero-startup__form .form-label {
     justify-self: start;
@@ -43,16 +46,25 @@
 }
 .hero-startup__form .actions,
 .hero-startup__form .form-navigation {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: end;
     margin: 0;
 }
 .hero-startup__form .btn-primary {
     min-height: var(--d-control-height, 2.5rem);
 }
-.hero-startup__form form > div:has(.frc-captcha) {
+.hero-startup__form form > .frc-captcha,
+.hero-startup__form form > .form-element:has(.frc-captcha),
+.hero-startup__form form > div:not(.form-element):has(> .frc-captcha) {
     grid-column: 1 / -1;
+    grid-row: 2;
+    justify-self: stretch;
+    width: 100%;
     margin-top: var(--d-spacing-1);
 }
-.hero-startup__form form > div:has(.frc-captcha) > label {
+.hero-startup__form form > .form-element:has(.frc-captcha) > label,
+.hero-startup__form form > div:not(.form-element):has(> .frc-captcha) > label {
     display: none;
 }
 .hero-startup__proof {
@@ -89,6 +101,15 @@
     .hero-startup__form form {
         grid-template-columns: 1fr;
         align-items: stretch;
+    }
+    .hero-startup__form .form-element-email,
+    .hero-startup__form .actions,
+    .hero-startup__form .form-navigation,
+    .hero-startup__form form > .frc-captcha,
+    .hero-startup__form form > .form-element:has(.frc-captcha),
+    .hero-startup__form form > div:not(.form-element):has(> .frc-captcha) {
+        grid-column: 1;
+        grid-row: auto;
     }
     .hero-startup__form .btn-primary {
         width: 100%;

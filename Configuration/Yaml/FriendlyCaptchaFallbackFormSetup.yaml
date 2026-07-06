@@ -14,6 +14,9 @@ TYPO3:
                   1777100143: 'EXT:desiderio/Resources/Private/Form/Partials'
             Friendlycaptcha:
               implementationClassName: 'TYPO3\CMS\Form\Domain\Model\FormElements\GenericFormElement'
+              properties:
+                containerClassAttribute: 'form-element form-element-friendlycaptcha mb-3'
+                labelClassAttribute: 'form-label'
               formEditor:
                 label: 'Friendly Captcha (placeholder)'
                 group: custom

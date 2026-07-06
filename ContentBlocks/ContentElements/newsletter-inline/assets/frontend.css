@@ -54,11 +54,16 @@
     outline-offset: 2px;
     border-color: var(--d-ring);
 }
-.newsletter-inline__form form > div:has(.frc-captcha) {
+.newsletter-inline__form form > .frc-captcha,
+.newsletter-inline__form form > .form-element:has(.frc-captcha),
+.newsletter-inline__form form > div:not(.form-element):has(> .frc-captcha) {
     grid-column: 1 / -1;
     grid-row: 2;
+    justify-self: stretch;
+    width: 100%;
 }
-.newsletter-inline__form form > div:has(.frc-captcha) > label {
+.newsletter-inline__form form > .form-element:has(.frc-captcha) > label,
+.newsletter-inline__form form > div:not(.form-element):has(> .frc-captcha) > label {
     font-size: var(--d-text-xs);
     color: var(--muted-foreground);
 }
@@ -84,5 +89,14 @@
     .newsletter-inline__form .form-navigation,
     .newsletter-inline__form .btn-primary {
         width: 100%;
+    }
+    .newsletter-inline__form .form-element-email,
+    .newsletter-inline__form .actions,
+    .newsletter-inline__form .form-navigation,
+    .newsletter-inline__form form > .frc-captcha,
+    .newsletter-inline__form form > .form-element:has(.frc-captcha),
+    .newsletter-inline__form form > div:not(.form-element):has(> .frc-captcha) {
+        grid-column: 1;
+        grid-row: auto;
     }
 }

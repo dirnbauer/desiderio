@@ -608,11 +608,41 @@ main[tabindex]:focus-visible {
 
 .d-powermail .frc-captcha,
 .desiderio-form .frc-captcha {
+  box-sizing: border-box;
+  min-width: 0;
   max-width: 100%;
   border-radius: var(--radius);
   overflow: hidden;
   background-clip: padding-box;
   contain: paint;
+}
+
+.d-powermail .frc-captcha--placeholder,
+.desiderio-form .frc-captcha--placeholder {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 0.25rem 0.75rem;
+  width: min(100%, 36rem);
+}
+
+.d-powermail .frc-captcha--placeholder > button,
+.desiderio-form .frc-captcha--placeholder > button {
+  max-width: 100%;
+  justify-self: start;
+}
+
+.d-powermail .frc-captcha--placeholder > span,
+.desiderio-form .frc-captcha--placeholder > span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 30rem) {
+  .d-powermail .frc-captcha--placeholder,
+  .desiderio-form .frc-captcha--placeholder {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 
 /* ==========================================================================

@@ -269,9 +269,11 @@ foreach ($blocks as $block) {
     $description = descriptionFor($slug, $title, $group, $config, 'en');
     $germanTitle = germanTitle($title, $germanWords);
     $germanDescription = descriptionFor($slug, $germanTitle, $group, $config, 'de');
+    $keywords = keywordsFor($slug, $title, $group, $description);
 
     $config['title'] = $title;
     $config['description'] = $description;
+    $config = moveKeyAfter($config, 'keywords', $keywords, 'group');
 
     $basics = $config['basics'] ?? [];
     if (!is_array($basics)) {
@@ -298,6 +300,7 @@ foreach ($blocks as $block) {
     $groups[$group][] = [
         'name' => $title,
         'ctype' => $typeName,
+        'keywords' => $keywords,
     ];
 }
 
@@ -310,6 +313,7 @@ foreach ($groupMeta as $groupId => $meta) {
         $seedElements[] = [
             'name' => $element['name'],
             'ctype' => $element['ctype'],
+            'keywords' => $element['keywords'],
         ];
     }
 
@@ -519,6 +523,82 @@ function purposeSentence(string $slug, string $title, string $group, string $lan
 function plainTitle(string $title): string
 {
     return trim($title, " \t\n\r\0\x0B'\"");
+}
+
+/**
+ * @return list<string>
+ */
+function keywordsFor(string $slug, string $title, string $group, string $description): array
+{
+    $terms = [];
+    $add = static function (string $term) use (&$terms): void {
+        $term = trim(strtolower(str_replace(['_', '-'], ' ', $term)));
+        $term = (string)preg_replace('/\s+/', ' ', $term);
+        if ($term === '' || isset($terms[$term])) {
+            return;
+        }
+        $terms[$term] = true;
+    };
+
+    $add($title);
+    $add($slug);
+    if ($group !== '' && $group !== 'default') {
+        $add($group);
+    }
+
+    foreach (keywordHintsForContext(keywordContext($slug . ' ' . $group . ' ' . $title . ' ' . $description)) as $hint) {
+        $add($hint);
+    }
+
+    return array_slice(array_keys($terms), 0, 10);
+}
+
+/**
+ * @return list<string>
+ */
+function keywordHintsForContext(string $context): array
+{
+    $hints = [];
+
+    foreach ([
+        [hasAnyTerm($context, ['accordion', 'faq']), ['faq', 'accordion', 'questions', 'expandable']],
+        [hasAnyTerm($context, ['alert', 'notification', 'callout', 'status', 'emergency']), ['notice', 'alert', 'message', 'status']],
+        [hasAnyTerm($context, ['analytics', 'kpi', 'metric', 'stat', 'stats', 'counter', 'leaderboard', 'dashboard']), ['stats', 'metrics', 'kpi', 'dashboard']],
+        [hasAnyTerm($context, ['bar chart', 'stacked bar']), ['bar chart', 'comparison', 'data']],
+        [hasAnyTerm($context, ['line chart', 'area chart', 'sparkline']), ['trend', 'chart', 'data']],
+        [hasAnyTerm($context, ['donut chart', 'pie chart']), ['chart', 'segments', 'data']],
+        [hasAnyTerm($context, ['heatmap', 'radar', 'contribution chart']), ['chart', 'patterns', 'comparison']],
+        [hasAnyTerm($context, ['chart', 'infographic']), ['chart', 'data visualization']],
+        [hasAnyTerm($context, ['blog', 'article', 'teaser']), ['articles', 'blog', 'editorial', 'teasers']],
+        [hasAnyTerm($context, ['table', 'comparison', 'compare', 'toc']), ['table', 'comparison', 'structured content']],
+        [hasAnyTerm($context, ['cta', 'call to action']), ['cta', 'call to action', 'conversion']],
+        [hasAnyTerm($context, ['form', 'signup', 'request', 'booking', 'contact', 'waitlist', 'newsletter', 'demo', 'callback', 'download form', 'data request']), ['form', 'lead capture', 'request']],
+        [hasAnyTerm($context, ['pricing', 'plan', 'billing', 'bundle', 'calculator', 'order summary']), ['pricing', 'plans', 'billing']],
+        [hasAnyTerm($context, ['testimonial', 'review', 'reviews', 'quote', 'rating', 'award', 'awards', 'trust', 'client', 'customer', 'logo', 'partner', 'certification', 'press', 'case study']), ['social proof', 'trust', 'customers']],
+        [hasAnyTerm($context, ['navigation', 'navbar', 'menu', 'breadcrumb', 'pagination', 'tabs', 'steps', 'search', 'back to top', 'utility bar', 'announcement bar']), ['navigation', 'wayfinding', 'menu']],
+        [hasAnyTerm($context, ['footer', 'copyright', 'legal', 'privacy', 'cookie', 'gdpr', 'accessibility', 'imprint', 'terms', 'compliance']), ['footer', 'legal', 'compliance']],
+        [hasAnyTerm($context, ['hero']), ['hero', 'landing', 'headline']],
+        [hasAnyTerm($context, ['feature', 'features', 'benefit', 'benefits', 'service', 'services', 'product', 'products', 'use case']), ['features', 'benefits', 'product']],
+        [hasAnyTerm($context, ['gallery', 'image']), ['gallery', 'images', 'media']],
+        [hasAnyTerm($context, ['video', 'audio', 'media', 'embed', 'map']), ['media', 'embed', 'content']],
+        [hasAnyTerm($context, ['timeline', 'milestone', 'history', 'process', 'how to', 'onboarding', 'progress', 'changelog']), ['timeline', 'process', 'steps']],
+        [hasAnyTerm($context, ['card', 'grid', 'list', 'library', 'sitemap', 'category', 'carousel']), ['cards', 'grid', 'collection']],
+        [hasAnyTerm($context, ['code block']), ['code', 'snippet', 'technical']],
+        [hasAnyTerm($context, ['file download']), ['download', 'files', 'resources']],
+        [hasAnyTerm($context, ['content columns', 'content highlight', 'content sidebar']), ['content', 'editorial', 'layout']],
+        [hasAnyTerm($context, ['divider']), ['divider', 'separator', 'section break']],
+        [hasAnyTerm($context, ['social links']), ['social links', 'profiles', 'external links']],
+        [hasAnyTerm($context, ['directions', 'office hours']), ['location', 'directions', 'visit planning']],
+    ] as [$condition, $terms]) {
+        if (!$condition) {
+            continue;
+        }
+        foreach ($terms as $term) {
+            $hints[] = $term;
+        }
+    }
+
+    return $hints;
 }
 
 function keywordContext(string $value): string

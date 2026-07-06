@@ -24,9 +24,10 @@ use TYPO3\CMS\Core\Utility\PathUtility;
  *  - getElements() returns the FULL records (parsed config + demo fixture) and
  *    is only used by the CLI seeder, where parsing every file is acceptable.
  *  - getElementMetadata() returns the LIGHT records the frontend picker needs
- *    (title/description/group/icon, no config, no fixture) and is persistently
- *    cached, because building it parses ~244 config.yaml files and that ran on
- *    every picker open. See getElementMetadata() for the cache/invalidation.
+ *    (title/description/group/icon/config keywords, no config, no fixture) and
+ *    is persistently cached, because building it parses ~244 config.yaml files
+ *    and that ran on every picker open. See getElementMetadata() for the
+ *    cache/invalidation.
  */
 final class ElementCatalog
 {
@@ -38,11 +39,13 @@ final class ElementCatalog
      * additionally fingerprints every config.yaml mtime, so edits self-invalidate.
      */
     private const METADATA_CACHE_IDENTIFIER = 'desiderio_library';
+    private const METADATA_CACHE_VERSION = 'metadata-v2';
+    private const SEARCH_FINGERPRINT_VERSION = 'config-keywords-v1';
 
-    /** @var list<array{cType: string, name: string, hostExtension: string, title: string, description: string, group: string, config: array<string, mixed>, fixture: array<string, mixed>}>|null */
+    /** @var list<array{cType: string, name: string, hostExtension: string, title: string, description: string, group: string, keywords: list<string>, config: array<string, mixed>, fixture: array<string, mixed>}>|null */
     private ?array $elements = null;
 
-    /** @var list<array{cType: string, name: string, hostExtension: string, title: string, description: string, group: string, iconUrl: string}>|null */
+    /** @var list<array{cType: string, name: string, hostExtension: string, title: string, description: string, group: string, keywords: list<string>, iconUrl: string}>|null */
     private ?array $metadata = null;
 
     public function __construct(
@@ -54,7 +57,7 @@ final class ElementCatalog
      * the seeder; reads two files per element, so do not call it on a hot path -
      * the frontend picker uses getElementMetadata() instead.
      *
-     * @return list<array{cType: string, name: string, hostExtension: string, title: string, description: string, group: string, config: array<string, mixed>, fixture: array<string, mixed>}>
+     * @return list<array{cType: string, name: string, hostExtension: string, title: string, description: string, group: string, keywords: list<string>, config: array<string, mixed>, fixture: array<string, mixed>}>
      */
     public function getElements(): array
     {
@@ -86,6 +89,7 @@ final class ElementCatalog
                 'title' => is_string($title) && $title !== '' ? $title : $entry['name'],
                 'description' => is_string($description) ? $description : '',
                 'group' => is_string($group) && $group !== '' ? $group : 'default',
+                'keywords' => $this->normalizeStringList($config['keywords'] ?? []),
                 'config' => $config,
                 'fixture' => $fixture,
             ];
@@ -99,6 +103,7 @@ final class ElementCatalog
                 'title' => $core['name'],
                 'description' => '',
                 'group' => $core['group'],
+                'keywords' => [],
                 'config' => [],
                 'fixture' => $core['fixture'],
             ];
@@ -112,9 +117,9 @@ final class ElementCatalog
 
     /**
      * Lightweight catalog metadata for the frontend element picker: one entry
-     * per element with title/description/group/icon, but WITHOUT the parsed
-     * config or demo fixture (which only the seeder needs and which made the
-     * per-request build read ~244 extra JSON files for nothing).
+     * per element with title/description/group/icon and config keywords, but
+     * WITHOUT the parsed config or demo fixture (which only the seeder needs and
+     * which made the per-request build read ~244 extra JSON files for nothing).
      *
      * Persistently cached: building this list parses ~244 config.yaml files,
      * which dominated the picker endpoint's response time when it ran on every
@@ -122,7 +127,7 @@ final class ElementCatalog
      * adding, removing or editing an element rebuilds it automatically; a normal
      * "flush all caches" (cache group "system") also clears it.
      *
-     * @return list<array{cType: string, name: string, hostExtension: string, title: string, description: string, group: string, iconUrl: string}>
+     * @return list<array{cType: string, name: string, hostExtension: string, title: string, description: string, group: string, keywords: list<string>, iconUrl: string}>
      */
     public function getElementMetadata(): array
     {
@@ -138,10 +143,10 @@ final class ElementCatalog
         $cacheKey = '';
         try {
             $cache = $this->cacheManager->getCache(self::METADATA_CACHE_IDENTIFIER);
-            $cacheKey = 'metadata-' . $this->computeFingerprint();
+            $cacheKey = self::METADATA_CACHE_VERSION . '-' . $this->computeFingerprint();
             $cached = $cache->get($cacheKey);
             if (is_array($cached)) {
-                /** @var list<array{cType: string, name: string, hostExtension: string, title: string, description: string, group: string, iconUrl: string}> $cached */
+                /** @var list<array{cType: string, name: string, hostExtension: string, title: string, description: string, group: string, keywords: list<string>, iconUrl: string}> $cached */
                 return $this->metadata = $cached;
             }
         } catch (\Throwable) {
@@ -201,9 +206,10 @@ final class ElementCatalog
      * two delimited groups: "primary || synonyms", each a " | "-separated list.
      * The first ~10 primary terms are shown on the card (ranked, most important
      * first); the synonyms are extra search terms shown only in the detail view.
-     * Returns empty lists when an element has no authored keywords.
+     * Falls back to config.yaml keywords or, for older external Content Blocks,
+     * derived keywords when an element has no authored XLF keyword unit.
      *
-     * @param array{cType: string, hostExtension: string} $element
+     * @param array{cType: string, hostExtension: string, name?: string, title?: string, description?: string, group?: string, keywords?: list<string>} $element
      * @return array{keywords: list<string>, synonyms: list<string>}
      */
     public function localizeKeywords(array $element, LanguageService $languageService): array
@@ -216,7 +222,10 @@ final class ElementCatalog
         $file = 'LLL:EXT:' . $hostExtension . '/Resources/Private/Language/library_keywords.xlf:';
         $raw = $languageService->sL($file . $element['cType']);
         if ($raw === '') {
-            return ['keywords' => [], 'synonyms' => []];
+            return [
+                'keywords' => $this->fallbackKeywords($element),
+                'synonyms' => [],
+            ];
         }
         [$primary, $synonyms] = array_pad(explode(' || ', $raw, 2), 2, '');
         $split = static function (string $value): array {
@@ -307,7 +316,7 @@ final class ElementCatalog
      * Builds the lightweight picker metadata (no config, no fixture) from the
      * parsed configs. Sorted by the default-language title, matching getElements().
      *
-     * @return list<array{cType: string, name: string, hostExtension: string, title: string, description: string, group: string, iconUrl: string}>
+     * @return list<array{cType: string, name: string, hostExtension: string, title: string, description: string, group: string, keywords: list<string>, iconUrl: string}>
      */
     private function buildMetadata(): array
     {
@@ -324,6 +333,7 @@ final class ElementCatalog
                 'title' => is_string($title) && $title !== '' ? $title : $entry['name'],
                 'description' => is_string($description) ? $description : '',
                 'group' => is_string($group) && $group !== '' ? $group : 'default',
+                'keywords' => $this->normalizeStringList($config['keywords'] ?? []),
                 'iconUrl' => $this->resolveIconWebPath($entry['hostExtension'], $entry['name']),
             ];
         }
@@ -336,6 +346,7 @@ final class ElementCatalog
                 'title' => $core['name'],
                 'description' => '',
                 'group' => $core['group'],
+                'keywords' => [],
                 'iconUrl' => $this->resolveCoreIconWebPath($core['iconSlug']),
             ];
         }
@@ -402,7 +413,7 @@ final class ElementCatalog
      */
     public function getSearchFingerprint(): string
     {
-        $parts = [$this->computeFingerprint()];
+        $parts = [self::SEARCH_FINGERPRINT_VERSION, $this->computeFingerprint()];
         foreach (self::HOST_EXTENSIONS as $hostExtension) {
             if (!ExtensionManagementUtility::isLoaded($hostExtension)) {
                 continue;
@@ -429,6 +440,109 @@ final class ElementCatalog
         return is_string($configuredTypeName) && $configuredTypeName !== ''
             ? $configuredTypeName
             : $hostExtension . '_' . str_replace('-', '', $directory);
+    }
+
+    /**
+     * @param array{cType: string, name?: string, title?: string, description?: string, group?: string, keywords?: list<string>} $element
+     * @return list<string>
+     */
+    private function fallbackKeywords(array $element): array
+    {
+        $keywords = $this->normalizeStringList($element['keywords'] ?? []);
+        if ($keywords !== []) {
+            return $keywords;
+        }
+
+        $terms = [];
+        $add = static function (string $term) use (&$terms): void {
+            $term = trim(strtolower(str_replace(['_', '-'], ' ', $term)));
+            $term = (string)preg_replace('/\s+/', ' ', $term);
+            if ($term === '' || isset($terms[$term])) {
+                return;
+            }
+            $terms[$term] = true;
+        };
+
+        $title = $element['title'] ?? '';
+        $add($title);
+
+        $cType = $element['cType'];
+        $identifier = $element['name'] ?? (string)preg_replace('/^[a-z0-9]+_/', '', $cType);
+        $add($identifier);
+
+        $group = $element['group'] ?? '';
+        if ($group !== '' && $group !== 'default') {
+            $add($group);
+        }
+
+        $description = $element['description'] ?? '';
+        $context = strtolower(implode(' ', array_filter([
+            $title,
+            $description,
+            $cType,
+            $group,
+        ], static fn(string $value): bool => $value !== '')));
+
+        foreach ($this->keywordHintsForContext($context) as $hint) {
+            $add($hint);
+        }
+
+        return array_slice(array_keys($terms), 0, 10);
+    }
+
+    /**
+     * @return list<string>
+     */
+    private function keywordHintsForContext(string $context): array
+    {
+        $hints = [];
+
+        foreach ([
+            [str_contains($context, 'case stud'), ['case studies', 'customer success', 'social proof', 'metrics']],
+            [str_contains($context, 'marquee'), ['marquee', 'ticker', 'scrolling', 'motion']],
+            [str_contains($context, 'orbit'), ['orbiting circles', 'radial', 'animation', 'motion']],
+            [str_contains($context, 'terminal'), ['terminal', 'console', 'command line', 'code']],
+            [str_contains($context, 'stats') || str_contains($context, 'metric'), ['stats', 'metrics', 'kpi']],
+            [str_contains($context, 'dashboard'), ['dashboard', 'overview']],
+            [str_contains($context, 'progress'), ['progress', 'percentage', 'target']],
+            [str_contains($context, 'usage'), ['usage', 'limits', 'resources']],
+            [str_contains($context, 'breakdown'), ['breakdown', 'comparison']],
+            [str_contains($context, 'badge'), ['badges', 'status']],
+            [str_contains($context, 'link'), ['links', 'navigation']],
+            [str_contains($context, 'trend'), ['trend', 'change']],
+            [str_contains($context, 'area chart'), ['area chart', 'chart', 'data']],
+            [str_contains($context, 'chart'), ['chart', 'data visualization']],
+            [str_contains($context, 'card'), ['cards', 'grid']],
+            [str_contains($context, 'border'), ['borders', 'comparison']],
+        ] as [$condition, $terms]) {
+            if (!$condition) {
+                continue;
+            }
+            foreach ($terms as $term) {
+                $hints[] = $term;
+            }
+        }
+
+        return $hints;
+    }
+
+    /**
+     * @param mixed $value
+     * @return list<string>
+     */
+    private function normalizeStringList(mixed $value): array
+    {
+        if (!is_array($value)) {
+            return [];
+        }
+
+        return array_values(array_filter(
+            array_map(
+                static fn(mixed $item): string => is_string($item) ? trim($item) : '',
+                $value,
+            ),
+            static fn(string $item): bool => $item !== '',
+        ));
     }
 
     private function resolveIconWebPath(string $hostExtension, string $name): string

@@ -128,8 +128,10 @@ final class SeedElementLibraryCommand extends Command
 
         $removed = $upserter->removeObsolete($folderUid, array_column($elements, 'cType'), $now);
 
-        // Drop stale cached previews so warming re-renders current content
+        // Drop stale cached previews and picker metadata/search indexes so
+        // warming and the next picker open both see the freshly seeded catalog.
         $this->cacheManager->getCache('pages')->flush();
+        $this->cacheManager->getCache('desiderio_library')->flush();
 
         $io->section('Element library seed result');
         $io->writeln(sprintf(

@@ -159,4 +159,20 @@ final class ElementCatalogCoreElementsTest extends FunctionalTestCase
         self::assertNotEmpty($keywords['synonyms'], 'Core elements must expose synonyms');
         self::assertContains('bullet list', array_map('strtolower', $keywords['keywords']));
     }
+
+    public function testConfigKeywordsAreUsedWhenLocalizedKeywordUnitIsMissing(): void
+    {
+        $catalog = $this->get(ElementCatalog::class);
+        self::assertInstanceOf(ElementCatalog::class, $catalog);
+        $language = $this->get(LanguageServiceFactory::class)->create('default');
+
+        $keywords = $catalog->localizeKeywords([
+            'cType' => 'desiderio_missing_keyword_unit',
+            'hostExtension' => 'desiderio',
+            'keywords' => ['marquee', 'ticker', 'animated pills'],
+        ], $language);
+
+        self::assertSame(['marquee', 'ticker', 'animated pills'], $keywords['keywords']);
+        self::assertSame([], $keywords['synonyms']);
+    }
 }

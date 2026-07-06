@@ -263,9 +263,12 @@ final class PowermailIntegrationTest extends TestCase
 
         $source = (string)file_get_contents(__DIR__ . '/../../Classes/Command/PowermailDemoSeeder.php');
         self::assertStringContainsString('office@webconsulting.at', $source);
+        self::assertStringContainsString('Six seeded powermail pages', $source);
         self::assertStringContainsString("'/desiderio-powermail/' . \$form['slug'] . '/thank-you'", $source);
         self::assertStringContainsString("'nav_hide' => (int)\$navHide", $source);
+        self::assertStringContainsString("'header_layout' => 100", $source);
         self::assertStringContainsString("'mandatory_text' => \$field['mandatory'] ? (", $source);
+        self::assertStringNotContainsString('$introUid = $this->insertTextContent', $source);
         self::assertStringContainsString('$this->hidePages($ownedPageUids, $now, $pageColumns);', $source);
     }
 }

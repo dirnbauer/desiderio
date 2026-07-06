@@ -98,7 +98,7 @@ final class PowermailDemoSeeder
         $this->insertTextContent(
             $rootUid,
             'Powermail form patterns',
-            'Five seeded powermail pages cover common website form patterns. Each form uses Friendly Captcha, office@webconsulting.at as sender and receiver, and a hidden child thank-you page.',
+            'Six seeded powermail pages cover common website form patterns. Each form uses Friendly Captcha, office@webconsulting.at as sender and receiver, and a hidden child thank-you page.',
             256,
             $now,
             $contentColumns
@@ -106,7 +106,7 @@ final class PowermailDemoSeeder
         $this->insertTextContent(
             $rootTranslationUid,
             'Powermail Formularmuster',
-            'Fuenf automatisch angelegte Powermail-Seiten decken typische Website-Formulare ab. Jedes Formular nutzt Friendly Captcha, office@webconsulting.at als Absender und Empfaenger sowie eine ausgeblendete Danke-Unterseite.',
+            'Sechs automatisch angelegte Powermail-Seiten decken typische Website-Formulare ab. Jedes Formular nutzt Friendly Captcha, office@webconsulting.at als Absender und Empfaenger sowie eine ausgeblendete Danke-Unterseite.',
             256,
             $now,
             $contentColumns,
@@ -162,25 +162,6 @@ final class PowermailDemoSeeder
                 true
             );
             $createdPages += 2;
-
-            $introUid = $this->insertTextContent(
-                $formPageUid,
-                $form['pageTitleEn'],
-                $form['introEn'],
-                256,
-                $now,
-                $contentColumns
-            );
-            $this->insertTextContent(
-                $formPageTranslationUid,
-                $form['pageTitleDe'],
-                $form['introDe'],
-                256,
-                $now,
-                $contentColumns,
-                $germanLanguageUid,
-                $introUid
-            );
 
             $pluginUid = $this->insertPowermailPluginContent(
                 $formPageUid,
@@ -239,7 +220,7 @@ final class PowermailDemoSeeder
         // powermail template, so the lab page doubles as a template index.
         $overviewUid = $this->insertTextContent(
             $rootUid,
-            'The five powermail templates at a glance',
+            'The six powermail templates at a glance',
             $this->buildOverviewBody($overviewEntries, false),
             384,
             $now,
@@ -247,7 +228,7 @@ final class PowermailDemoSeeder
         );
         $this->insertTextContent(
             $rootTranslationUid,
-            'Die fuenf Powermail-Vorlagen im Ueberblick',
+            'Die sechs Powermail-Vorlagen im Ueberblick',
             $this->buildOverviewBody($overviewEntries, true),
             384,
             $now,
@@ -474,6 +455,7 @@ final class PowermailDemoSeeder
             'pid' => $pid,
             'CType' => 'powermail_pi1',
             'header' => $header,
+            'header_layout' => 100,
             'pi_flexform' => $this->buildPowermailFlexform($formUid, $storagePid, $thankPid, $moresteps),
             'colPos' => 0,
             'sorting' => $sorting,

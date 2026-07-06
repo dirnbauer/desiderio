@@ -10,6 +10,7 @@
 
 .pricing-simple__price-row {
     display: flex;
+    flex-wrap: wrap;
     align-items: baseline;
     justify-content: center;
     gap: var(--d-spacing-2xs);
@@ -21,6 +22,8 @@
     font-size: var(--d-text-4xl);
     font-weight: 800;
     line-height: 1.1;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .pricing-simple__content {

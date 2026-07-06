@@ -89,6 +89,7 @@ final class PowermailIntegrationTest extends TestCase
         self::assertStringContainsString('data-powermail-message-required', $form);
         self::assertStringContainsString('data-powermail-error-summary-mode="{settings.validation.errorSummary.mode}"', $form);
         self::assertStringContainsString('data-powermail-error-focus="{settings.validation.errorSummary.focus}"', $form);
+        self::assertStringContainsString('novalidate="novalidate"', $form);
         self::assertStringContainsString('data-powermail-error-summary hidden role="alert"', $form);
         self::assertStringNotContainsString('aria-live="assertive"', $form);
 
@@ -104,12 +105,15 @@ final class PowermailIntegrationTest extends TestCase
 
         $input = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/Powermail/Partials/Form/Field/Input.html');
         $fieldLabel = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/Powermail/Partials/Form/FieldLabel.html');
-        self::assertStringContainsString('<d:molecule.field', $input);
+        self::assertStringContainsString('<d:molecule.field role=""', $input);
         self::assertStringContainsString('<d:atom.controlClass slot="input"', $input);
         self::assertStringContainsString('border-destructive ring-1 ring-destructive/20', $input);
         self::assertStringNotContainsString('powermail_input', $input);
         self::assertStringContainsString('<d:molecule.fieldLabel', $fieldLabel);
         self::assertStringNotContainsString('ms-1 text-destructive', $fieldLabel);
+
+        $fieldComponent = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Components/Molecule/Field/Field.fluid.html');
+        self::assertStringContainsString('{f:if(condition: role, then: \'role="{role}"\')}', $fieldComponent);
 
         $select = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/Powermail/Partials/Form/Field/Select.html');
         self::assertStringContainsString('<d:molecule.selectNative', $select);
@@ -163,15 +167,12 @@ final class PowermailIntegrationTest extends TestCase
         self::assertStringContainsString('border-color: var(--destructive);', $componentsCss);
         self::assertStringContainsString('accent-color: var(--foreground);', $componentsCss);
         self::assertStringContainsString('.d-powermail .powermail-errors-list', $componentsCss);
-        // The "!" marker is drawn with background layers instead of a text
-        // glyph so it stays centered regardless of the preset font's metrics.
-        self::assertStringContainsString('background-image: linear-gradient(currentColor, currentColor),', $componentsCss);
+        self::assertStringNotContainsString('.d-powermail .powermail-errors-list::before', $componentsCss);
 
         $tailwindCss = (string)file_get_contents(__DIR__ . '/../../Resources/Public/Css/desiderio-tailwind.css');
         self::assertStringContainsString('.d-powermail .d-powermail-field-error-list', $tailwindCss);
         self::assertStringContainsString('.d-powermail .d-powermail-field-error-stack', $tailwindCss);
-        self::assertStringContainsString('.d-powermail .d-powermail-field-error-icon', $tailwindCss);
-        self::assertStringContainsString('background-image:linear-gradient(currentColor,currentColor),linear-gradient(currentColor,currentColor)', $tailwindCss);
+        self::assertStringNotContainsString('.d-powermail .d-powermail-field-error-icon', $tailwindCss);
 
         $flashMessages = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/Powermail/Partials/Misc/FlashMessages.html');
         self::assertStringContainsString('as="flashMessages"', $flashMessages);
@@ -193,7 +194,14 @@ final class PowermailIntegrationTest extends TestCase
         self::assertStringContainsString("form.dataset.powermailA11ySubmitted = 'true';", $javascript);
         self::assertStringContainsString("message.className = 'd-powermail-field-error-message';", $javascript);
         self::assertStringContainsString("list.className = 'd-powermail-field-error-list';", $javascript);
-        self::assertStringContainsString("icon.className = 'd-powermail-field-error-icon';", $javascript);
+        self::assertStringNotContainsString("d-powermail-field-error-icon", $javascript);
+        self::assertStringContainsString("container.setAttribute('role', 'alert');", $javascript);
+        self::assertStringContainsString("container.removeAttribute('role');", $javascript);
+        self::assertStringContainsString("field.wrapper.dataset.invalid = 'true';", $javascript);
+        self::assertStringContainsString('delete field.wrapper.dataset.invalid;', $javascript);
+        self::assertStringContainsString("shouldFocusServerErrors ? { delay: 300, behavior: 'smooth' } : {}", $javascript);
+        self::assertStringContainsString('const refreshedInvalidFields = syncPowermailA11y(form);', $javascript);
+        self::assertStringContainsString('event.preventDefault();', $javascript);
         self::assertStringContainsString('dataset.powermailMorestepCurrent', $javascript);
         self::assertStringContainsString('link.textContent = label;', $javascript);
         self::assertStringContainsString("messageList.className = 'mt-1 list-disc space-y-1 ps-4 text-muted-foreground';", $javascript);

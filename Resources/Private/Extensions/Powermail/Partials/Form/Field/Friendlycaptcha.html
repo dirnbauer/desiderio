@@ -15,7 +15,7 @@
 
 <f:if condition="{friendlyCaptchaTestMode}">
     <f:then>
-        <d:molecule.field class="powermail_fieldwrap_{field.marker} {field.css}">
+        <d:molecule.field role="" class="powermail_fieldwrap_{field.marker} {field.css}">
             <f:render partial="Form/FieldLabel" arguments="{field: field}" />
             <f:form.hidden property="{field.marker}" value="1" id="powermail_field_{field.marker}" respectSubmittedDataValue="false" />
             <div class="frc-captcha frc-captcha--placeholder flex w-fit max-w-full flex-wrap items-center gap-x-3 gap-y-1 rounded-md border border-input bg-muted px-3 py-2">
@@ -34,7 +34,7 @@
         </d:molecule.field>
     </f:then>
     <f:else>
-        <d:molecule.field class="powermail_fieldwrap_{field.marker} {field.css}">
+        <d:molecule.field role="" class="powermail_fieldwrap_{field.marker} {field.css}">
             <f:render partial="Form/FieldLabel" arguments="{field: field}" />
             <f:form.hidden property="{field.marker}" value="1" id="powermail_field_{field.marker}" respectSubmittedDataValue="false" />
             <f:if condition="{captchaConfiguration.enabled}">

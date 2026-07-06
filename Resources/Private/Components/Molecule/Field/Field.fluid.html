@@ -15,6 +15,6 @@
     </f:switch>
 </f:variable>
 
-<div role="{role}" data-slot="field" data-orientation="{orientation}" class="{orientationClass -> f:format.trim()} {class}">
+<div {f:if(condition: role, then: 'role="{role}"')} data-slot="field" data-orientation="{orientation}" class="{orientationClass -> f:format.trim()} {class}">
     <f:slot />
 </div>

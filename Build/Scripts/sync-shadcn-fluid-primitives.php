@@ -821,7 +821,7 @@ function renderField(array $recipes, string $header): string
         . sprintf('        <f:defaultCase>%s</f:defaultCase>', text($classes['field'])) . "\n"
         . '    </f:switch>' . "\n"
         . '</f:variable>' . "\n\n"
-        . '<div role="{role}" data-slot="field" data-orientation="{orientation}" class="{orientationClass -> f:format.trim()} {class}">' . "\n"
+        . '<div {f:if(condition: role, then: \'role="{role}"\')} data-slot="field" data-orientation="{orientation}" class="{orientationClass -> f:format.trim()} {class}">' . "\n"
         . '    <f:slot />' . "\n"
         . '</div>' . "\n";
 }

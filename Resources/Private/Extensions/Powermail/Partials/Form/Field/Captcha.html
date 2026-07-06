@@ -7,7 +7,7 @@
 <f:variable name="inputClass"><d:atom.controlClass slot="input" /></f:variable>
 <f:variable name="captchaImageClass"><d:atom.controlClass slot="captchaImage" /></f:variable>
 
-<d:molecule.field class="powermail_fieldwrap_{field.marker} {field.css} space-y-2">
+<d:molecule.field role="" class="powermail_fieldwrap_{field.marker} {field.css} space-y-2">
     <f:render partial="Form/FieldLabel" arguments="{field: field}" />
     <div class="{panelClass -> f:format.trim()}">
         <f:form.textfield

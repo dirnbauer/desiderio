@@ -1203,15 +1203,15 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!container) return;
 
     container.textContent = '';
-    if (messages.length === 0) return;
+    if (messages.length === 0) {
+      container.removeAttribute('role');
+      return;
+    }
+
+    container.setAttribute('role', 'alert');
 
     const stack = document.createElement('div');
     stack.className = 'd-powermail-field-error-stack';
-
-    const icon = document.createElement('span');
-    icon.className = 'd-powermail-field-error-icon';
-    icon.setAttribute('aria-hidden', 'true');
-    stack.appendChild(icon);
 
     const body = document.createElement('div');
     body.className = 'd-powermail-field-error-body';
@@ -1298,12 +1298,28 @@ document.addEventListener('DOMContentLoaded', () => {
     );
   };
 
-  const focusPowermailFirstInvalidControl = invalidFields => {
+  const focusPowermailFirstInvalidControl = (invalidFields, options = {}) => {
     const firstInvalidControl = invalidFields.find(({ control }) => control)?.control;
     if (!firstInvalidControl) return;
 
-    firstInvalidControl.focus({ preventScroll: true });
-    firstInvalidControl.scrollIntoView({ block: 'center', inline: 'nearest' });
+    const focus = () => {
+      if (!document.contains(firstInvalidControl)) return;
+
+      firstInvalidControl.focus({ preventScroll: true });
+      firstInvalidControl.scrollIntoView({
+        behavior: options.behavior || 'auto',
+        block: 'center',
+        inline: 'nearest',
+      });
+    };
+
+    const delay = Number(options.delay || 0);
+    if (delay > 0) {
+      window.setTimeout(focus, delay);
+      return;
+    }
+
+    focus();
   };
 
   const isPowermailFieldInvalid = (form, field) => {
@@ -1320,6 +1336,12 @@ document.addEventListener('DOMContentLoaded', () => {
     getPowermailFields(form).forEach(field => {
       const errorContainer = getPowermailErrorContainer(field);
       const invalid = isPowermailFieldInvalid(form, field);
+
+      if (invalid) {
+        field.wrapper.dataset.invalid = 'true';
+      } else {
+        delete field.wrapper.dataset.invalid;
+      }
 
       field.controls.forEach(control => {
         if (invalid) {
@@ -1429,12 +1451,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
     renderPowermailErrorSummary(form, invalidFields);
 
+    const shouldFocusServerErrors = (
+      options.focusServerErrors
+      && hasServerErrors
+      && form.dataset.powermailServerErrorsFocused !== 'true'
+    );
+
+    if (shouldFocusServerErrors) {
+      form.dataset.powermailServerErrorsFocused = 'true';
+    }
+
     if (
       invalidFields.length > 0
       && getPowermailErrorFocusMode(form) === 'first-error'
-      && (options.focusFirstError || (options.focusServerErrors && hasServerErrors))
+      && (options.focusFirstError || shouldFocusServerErrors)
     ) {
-      focusPowermailFirstInvalidControl(invalidFields);
+      focusPowermailFirstInvalidControl(
+        invalidFields,
+        shouldFocusServerErrors ? { delay: 300, behavior: 'smooth' } : {},
+      );
     }
 
     return invalidFields;
@@ -1514,7 +1549,9 @@ document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('invalid', event => {
     const form = event.target?.closest?.('form');
     if (!form) return;
+    if (!form.querySelector('.powermail_fieldset, [class*="powermail_fieldwrap_"]')) return;
 
+    event.preventDefault();
     form.dataset.powermailA11yValidated = 'true';
     form.dataset.powermailA11ySubmitted = 'true';
     form.dataset.powermailA11yValidateScope = 'all';
@@ -1529,7 +1566,17 @@ document.addEventListener('DOMContentLoaded', () => {
     form.dataset.powermailA11yValidated = 'true';
     form.dataset.powermailA11ySubmitted = 'true';
     form.dataset.powermailA11yValidateScope = 'all';
-    window.setTimeout(() => syncPowermailA11y(form, { focusFirstError: true }), 0);
+    const invalidFields = syncPowermailA11y(form);
+    if (invalidFields.length === 0) return;
+
+    event.preventDefault();
+    window.setTimeout(() => {
+      const refreshedInvalidFields = syncPowermailA11y(form);
+      focusPowermailFirstInvalidControl(
+        refreshedInvalidFields.length > 0 ? refreshedInvalidFields : invalidFields,
+        { behavior: 'smooth' },
+      );
+    }, 0);
   }, true);
 
   ['input', 'change'].forEach(eventName => {

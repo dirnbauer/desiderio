@@ -589,7 +589,7 @@ final class StyleguideShowcasePages
                 self::block('desiderio_pricingsimple', [
                     'header' => 'The Agency plan, in agency math',
                     'price' => '€149',
-                    'billing_period' => '/month · €1,490/year (≈ €124/month, two months free)',
+                    'billing_period' => '/month · €1,490/year ≈ €124/month',
                     'description' => 'Hand-building a client-ready element set costs 60–100 dev-hours per project — €4,500 to €7,500 at a €75/h internal cost. Desiderio cuts that to a preset and a brand pass. At eight projects a year the licence works out to €186 per project, so it pays for itself the first afternoon it saves.',
                     'features' => [
                         ['text' => 'Unlimited client projects — at 8 a year the licence costs €186 per project'],
@@ -665,8 +665,8 @@ final class StyleguideShowcasePages
                 ]),
                 self::block('desiderio_pricingsimple', [
                     'header' => 'Pro + Creator Care, in CFO math',
-                    'price' => '€49',
-                    'billing_period' => '/month Pro · Creator Care €490/month · hosting €99/month = €638 all-in',
+                    'price' => '€638',
+                    'billing_period' => '/month all-in — Pro €49 + Creator Care €490 + hosting €99',
                     'description' => 'One agency-built landing page costs €1,200–2,400 (10–20 hours at €120/h) and waits in a queue. With Desiderio your editors ship it the same day. At two campaign pages a month that is €2,400–4,800 you no longer buy — and the complete stack costs less than a single one of those pages.',
                     'features' => [
                         ['text' => 'Break-even: the full €638/month stack pays for itself with the first campaign page each month'],
@@ -743,7 +743,7 @@ final class StyleguideShowcasePages
                 self::block('desiderio_pricingsimple', [
                     'header' => 'Community + Pro, in freelancer math',
                     'price' => '€0',
-                    'billing_period' => 'forever · GPL-2.0 — Pro safety net €49/month when a client wants an SLA',
+                    'billing_period' => 'forever · GPL-2.0',
                     'description' => 'Rebuilding this library yourself — 244 audited, accessible elements at 2–3 hours each — is 600+ hours nobody pays for. On a €10,000 fixed-price site the template phase shrinks from ~80 to ~20 hours: about €5,400 of margin back in your pocket at €90/h. Pro costs €588 a year — six and a half billable hours.',
                     'features' => [
                         ['text' => '€0 forever: all 244 elements + 49 components — a €55,000 library at freelance rates'],

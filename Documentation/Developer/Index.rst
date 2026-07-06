@@ -151,6 +151,95 @@ When adding styles, pick the bucket by intent: element default →
 or preset styling that must win over Tailwind → an unlayered file in
 :file:`Resources/Private/Css/desiderio/`.
 
+..  _developer-css-bundles:
+
+The two compiled CSS bundles
+----------------------------
+
+Two committed stylesheets are generated from sources; keep the
+distinction in mind when editing frontend code:
+
+..  list-table::
+    :header-rows: 1
+    :widths: 35 25 40
+
+    *   - Bundle
+        - Built by
+        - Source
+    *   - :file:`Resources/Public/Css/desiderio-tailwind.css`
+        - ``npm run build:css``
+        - The Tailwind v4 entry point plus every utility class that
+          Tailwind discovers by scanning templates, components, and
+          Content Blocks via ``@source``.
+    *   - :file:`Resources/Public/Css/desiderio.css`
+        - ``npm run build:desiderio-css``
+        - A plain concatenation of the unlayered feature partials in
+          :file:`Resources/Private/Css/desiderio/` (ordered by
+          :file:`manifest.txt`), minified.
+
+Editing a template can silently change which utility classes the
+Tailwind bundle must contain. Editing a partial only changes
+``desiderio.css``. The ``pre-commit`` hook below guards the first case —
+the one that is easy to forget.
+
+..  _developer-git-hooks:
+
+Git hooks and the Tailwind build guard
+======================================
+
+The repository ships its own git hooks under :file:`Build/Hooks/` so the
+staleness guard travels with the checkout instead of living in each
+developer's private :file:`.git/hooks/`. Enable them once per clone:
+
+..  code-block:: shell
+    :caption: One-time setup
+
+    Build/Scripts/setup-hooks.sh
+
+That script points git at the committed hooks by setting
+``core.hooksPath = Build/Hooks`` (and marks the scripts executable). It is
+idempotent and safe to re-run.
+
+Because ``core.hooksPath`` *replaces* :file:`.git/hooks/` wholesale, the
+standard Git LFS hooks have to live in :file:`Build/Hooks/` too — that is
+all ``pre-push``, ``post-checkout``, ``post-commit``, and ``post-merge``
+are: thin ``git lfs`` shims. The only project-specific hook is
+``pre-commit``.
+
+The ``pre-commit`` hook keeps the Tailwind bundle honest:
+
+#.  It inspects the **staged** files. If none touch a path that can add or
+    remove utility classes — :file:`Resources/Private/Tailwind/`,
+    :file:`Resources/Private/Components/`, :file:`Resources/Private/Templates/`,
+    :file:`Resources/Private/Extensions/`, :file:`Resources/Private/ShadcnUi/`,
+    :file:`Resources/Private/FluidStyledContent/`, :file:`Resources/Private/Solr/`,
+    :file:`Resources/Public/Js/`, or :file:`ContentBlocks/` — it exits
+    immediately. Commits that only touch PHP, tests, or docs pay nothing.
+#.  Otherwise it runs :file:`Build/Scripts/check-tailwind-built.sh`, which
+    hashes :file:`Resources/Public/Css/desiderio-tailwind.css`, re-runs
+    ``npm run build:css``, and re-hashes.
+#.  **Identical hashes** → the committed bundle already matches the
+    sources → the commit proceeds (you will see
+    ``OK: … is in sync with Tailwind sources``).
+#.  **Different hashes** → a template introduced classes the committed
+    bundle is missing → the commit is **rejected**. The script has already
+    rebuilt the bundle locally; stage it and re-commit:
+
+    ..  code-block:: shell
+
+        npm run build:css
+        git add Resources/Public/Css/desiderio-tailwind.css
+
+Without the rebuild the pushed CSS would be missing utility classes the
+new templates rely on, and layout, spacing, card, or font styles silently
+disappear in the frontend with no error.
+
+The same :file:`check-tailwind-built.sh` runs from three call sites — the
+``pre-commit`` hook, :file:`Build/Scripts/runTests.sh`, and the
+``tailwind-bundle`` CI job — so a stale bundle is caught locally, in a
+full test run, and in CI. :file:`CONTRIBUTING.md` documents the same steps
+from the contributor's angle.
+
 ..  _developer-shadcn:
 
 ui.shadcn.com/create sync

@@ -125,9 +125,9 @@ final class NewsDemoSeeder
                 'istopnews' => false,
             ],
             [
-                'title' => 'Powermail, restyled: five demo flows seeded',
-                'teaser' => 'All powermail field types wear the Desiderio form partials, and the seeder ships five complete demo forms with thank-you flows in English and German.',
-                'bodytext' => '<p>The powermail integration restyles every field type with the same form partials the Form Framework bridge uses, so mixed installations look consistent.</p><p>Five seeded demo forms — contact to multi-step — double as living documentation, captcha included.</p>',
+                'title' => 'Powermail, restyled: six demo flows seeded',
+                'teaser' => 'All powermail field types wear the Desiderio form partials, and the seeder ships six complete demo forms with thank-you flows in English and German.',
+                'bodytext' => '<p>The powermail integration restyles every field type with the same form partials the Form Framework bridge uses, so mixed installations look consistent.</p><p>Six seeded demo forms — contact to multi-step — double as living documentation, captcha included.</p>',
                 'daysAgo' => 21,
                 'istopnews' => false,
             ],

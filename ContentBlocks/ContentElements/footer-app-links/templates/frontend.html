@@ -17,13 +17,13 @@
                 </f:if>
                 <div class="footer-app-links__buttons">
                     <f:if condition="{data.appstore_link}">
-                        <d:atom.button href="{data.appstore_link.url}" class="footer-app-links__button" target="{data.appstore_link.target}">
+                        <d:atom.button href="{f:uri.typolink(parameter: data.appstore_link.url)}" class="footer-app-links__button" target="{data.appstore_link.target}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M12 20.94c1.5 0 2.75 1.06 4 1.06 3 0 6-8 6-12.22A4.91 4.91 0 0 0 17 5c-2.22 0-4 1.44-5 2-1-.56-2.78-2-5-2a4.9 4.9 0 0 0-5 4.78C2 14 5 22 8 22c1.25 0 2.5-1.06 4-1.06Z"/><path d="M10 2c1 .5 2 2 2 5"/></svg>
                             App Store
                         </d:atom.button>{data -> f:render.link(field: 'appstore_link')}
                     </f:if>
                     <f:if condition="{data.playstore_link}">
-                        <d:atom.button href="{data.playstore_link.url}" class="footer-app-links__button" target="{data.playstore_link.target}">
+                        <d:atom.button href="{f:uri.typolink(parameter: data.playstore_link.url)}" class="footer-app-links__button" target="{data.playstore_link.target}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><polygon points="5 3 19 12 5 21 5 3"/></svg>
                             Google Play
                         </d:atom.button>{data -> f:render.link(field: 'playstore_link')}

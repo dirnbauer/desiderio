@@ -11,7 +11,7 @@
             <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>
             <f:if condition="{data.description_text}"><d:atom.typography variant="muted">{data -> f:render.text(field: 'description_text')}</d:atom.typography></f:if>
             <f:if condition="{data.cta_text} && {data.cta_link.url}">
-                <d:atom.link href="{data.cta_link.url}" target="{data.cta_link.target}" variant="muted" class="cta-minimal__link">{data -> f:render.text(field: 'cta_text')}
+                <d:atom.link href="{f:uri.typolink(parameter: data.cta_link.url)}" target="{data.cta_link.target}" variant="muted" class="cta-minimal__link">{data -> f:render.text(field: 'cta_text')}
                     <span class="cta-minimal__arrow" aria-hidden="true">&rarr;</span></d:atom.link>
             </f:if>
         </div>

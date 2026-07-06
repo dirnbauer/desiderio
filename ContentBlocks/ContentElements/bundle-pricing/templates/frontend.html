@@ -47,7 +47,7 @@
                 </div>
                 <f:if condition="{data.button_text} && {data.button_link.url}">
                     <d:atom.button
-                        href="{data.button_link.url}"
+                        href="{f:uri.typolink(parameter: data.button_link.url)}"
                         target="{data.button_link.target}"
                         class="bundle-pricing__button"
                     >

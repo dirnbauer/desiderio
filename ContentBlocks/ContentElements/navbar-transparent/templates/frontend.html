@@ -9,20 +9,20 @@
     <d:layout.container>
         <nav class="navbar-transparent__inner" aria-label="{data.header -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:navbar.transparent.aria\', default: \'Transparent navigation\')}')}">
             <f:if condition="{data.brand_link.url}">
-                <f:then><d:atom.link href="{data.brand_link.url}" target="{data.brand_link.target}" variant="muted" class="navbar-transparent__brand navbar-transparent__brand--link">{data -> f:render.text(field: 'brand')}</d:atom.link></f:then>
+                <f:then><d:atom.link href="{f:uri.typolink(parameter: data.brand_link.url)}" target="{data.brand_link.target}" variant="muted" class="navbar-transparent__brand navbar-transparent__brand--link">{data -> f:render.text(field: 'brand')}</d:atom.link></f:then>
                 <f:else><span class="navbar-transparent__brand">{data -> f:render.text(field: 'brand')}</span></f:else>
             </f:if>
             <ul class="navbar-transparent__nav" role="list">
                 <f:for each="{data.nav_items}" as="item">
                     <f:if condition="{item.link.url}">
                         <li class="navbar-transparent__item">
-                            <d:atom.link href="{item.link.url}" target="{item.link.target}" variant="muted" class="navbar-transparent__link">{item -> f:render.text(field: 'label')}</d:atom.link>
+                            <d:atom.link href="{f:uri.typolink(parameter: item.link.url)}" target="{item.link.target}" variant="muted" class="navbar-transparent__link">{item -> f:render.text(field: 'label')}</d:atom.link>
                         </li>
                     </f:if>
                 </f:for>
             </ul>
             <f:if condition="{data.button_text} && {data.button_link.url}">
-                <d:atom.button href="{data.button_link.url}" target="{data.button_link.target}" variant="outline" size="sm" class="navbar-transparent__cta">{data -> f:render.text(field: 'button_text')}</d:atom.button>{data -> f:render.link(field: 'button_link')}
+                <d:atom.button href="{f:uri.typolink(parameter: data.button_link.url)}" target="{data.button_link.target}" variant="outline" size="sm" class="navbar-transparent__cta">{data -> f:render.text(field: 'button_text')}</d:atom.button>{data -> f:render.link(field: 'button_link')}
             </f:if>
         </nav>
     </d:layout.container>

@@ -12,7 +12,7 @@
             <f:for each="{data.link_items}" as="item">
                 <li class="legal-links__item">
                     <f:if condition="{item.link}">
-                        <f:then><d:atom.link href="{item.link.url}" target="{item.link.target}" variant="muted" class="legal-links__link">{item -> f:render.text(field: 'label')}</d:atom.link></f:then>
+                        <f:then><d:atom.link href="{f:uri.typolink(parameter: item.link.url)}" target="{item.link.target}" variant="muted" class="legal-links__link">{item -> f:render.text(field: 'label')}</d:atom.link></f:then>
                         <f:else><span class="legal-links__label">{item -> f:render.text(field: 'label')}</span></f:else>
                     </f:if>
                 </li>

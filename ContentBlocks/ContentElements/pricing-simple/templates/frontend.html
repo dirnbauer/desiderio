@@ -40,7 +40,7 @@
             <f:if condition="{data.button_text} && {data.button_link.url}">
                 <d:molecule.cardFooter class="pricing-simple__footer">
                     <d:atom.button
-                        href="{data.button_link.url}"
+                        href="{f:uri.typolink(parameter: data.button_link.url)}"
                         target="{data.button_link.target}"
                         class="pricing-simple__button"
                     >

@@ -28,7 +28,7 @@
             </f:if>
             <f:if condition="{data.apply_link.url}">
                 <d:molecule.cardFooter class="job-card__footer">
-                    <d:atom.button href="{data.apply_link.url}" target="{data.apply_link.target}" size="lg" class="job-card__apply">
+                    <d:atom.button href="{f:uri.typolink(parameter: data.apply_link.url)}" target="{data.apply_link.target}" size="lg" class="job-card__apply">
                         <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:job.apply"/><span class="sr-only"> {data -> f:render.text(field: 'header')}</span>
                     </d:atom.button>{data -> f:render.link(field: 'apply_link')}
                 </d:molecule.cardFooter>

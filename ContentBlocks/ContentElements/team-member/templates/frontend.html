@@ -41,7 +41,7 @@
                             <f:for each="{data.social_links}" as="item">
                                 <f:if condition="{item.url.url}">
                                     <li>
-                                        <d:atom.link href="{item.url.url}" target="{item.url.target}" variant="muted" class="team-member__social-link">{item -> f:render.text(field: 'platform')}</d:atom.link>
+                                        <d:atom.link href="{f:uri.typolink(parameter: item.url.url)}" target="{item.url.target}" variant="muted" class="team-member__social-link">{item -> f:render.text(field: 'platform')}</d:atom.link>
                                     </li>
                                 </f:if>
                             </f:for>

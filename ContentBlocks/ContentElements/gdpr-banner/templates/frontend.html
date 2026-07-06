@@ -19,7 +19,7 @@
                     {data -> f:render.text(field: 'content')}
                 </div>
                 <f:if condition="{data.privacy_link}">
-                    <d:atom.link href="{data.privacy_link.url}" target="{data.privacy_link.target}" variant="muted" class="gdpr-banner__privacy-link">{privacyLinkText}</d:atom.link>
+                    <d:atom.link href="{f:uri.typolink(parameter: data.privacy_link.url)}" target="{data.privacy_link.target}" variant="muted" class="gdpr-banner__privacy-link">{privacyLinkText}</d:atom.link>
                 </f:if>
             </div>
             <f:if condition="{data.cookie_categories}">

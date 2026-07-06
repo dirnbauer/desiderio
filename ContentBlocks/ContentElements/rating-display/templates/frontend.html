@@ -42,7 +42,7 @@
                             <span class="rating-display__count">{rating -> f:render.text(field: 'review_count')}</span>
                         </f:if>
                         <f:if condition="{rating.link.url}">
-                            <d:atom.link href="{rating.link.url}" target="{rating.link.target}" variant="muted" class="rating-display__link">
+                            <d:atom.link href="{f:uri.typolink(parameter: rating.link.url)}" target="{rating.link.target}" variant="muted" class="rating-display__link">
                                 <span aria-hidden="true"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:view_reviews" default="View reviews"/> &rarr;</span>
                                 <span class="sr-only"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:view_reviews.sr" arguments="{0: rating.platform}">View {rating.platform} reviews</f:translate></span>
                             </d:atom.link>

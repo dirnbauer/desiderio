@@ -29,7 +29,7 @@
             </dl>
             <f:if condition="{data.full_terms_link}">
                 <div class="terms-summary__footer">
-                    <d:atom.link href="{data.full_terms_link.url}" target="{data.full_terms_link.target}" variant="muted" class="terms-summary__link">
+                    <d:atom.link href="{f:uri.typolink(parameter: data.full_terms_link.url)}" target="{data.full_terms_link.target}" variant="muted" class="terms-summary__link">
                         <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:read_full_terms">Read full terms</f:translate>
                         <span aria-hidden="true"> &rarr;</span>
                     </d:atom.link>

@@ -44,7 +44,7 @@
                             </ul>
                         </f:if>
                         <f:if condition="{product.link.url}">
-                            <d:atom.button href="{product.link.url}" variant="{f:if(condition: product.is_recommended, then: 'default', else: 'outline')}" class="product-comparison__button" target="{product.link.target}">
+                            <d:atom.button href="{f:uri.typolink(parameter: product.link.url)}" variant="{f:if(condition: product.is_recommended, then: 'default', else: 'outline')}" class="product-comparison__button" target="{product.link.target}">
                                 <span><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:view_details" default="View details"/></span>
                                 <span class="sr-only"> – {product.name}</span>
                             </d:atom.button>

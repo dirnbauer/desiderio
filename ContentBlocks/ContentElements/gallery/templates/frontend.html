@@ -32,7 +32,7 @@
                             <span class="gallery__description" data-d-gallery-description<f:if condition="{item.description}"><f:else> hidden</f:else></f:if>>{item -> f:render.text(field: 'description')}</span>
                             <span class="gallery__credit" data-d-gallery-credit<f:if condition="{featuredCredit}"><f:else> hidden</f:else></f:if>>{featuredCredit}</span>
                             <f:variable name="viewLabel">{f:translate(key: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/gallery/language/labels.xlf:view_image', default: 'View image')}</f:variable>
-                            <a class="gallery__featured-link" data-d-gallery-link href="{item.link.url}"<f:if condition="{item.link.url}"><f:else> hidden</f:else></f:if>>{viewLabel}</a>
+                            <a class="gallery__featured-link" data-d-gallery-link href="{f:uri.typolink(parameter: item.link.url)}"<f:if condition="{item.link.url}"><f:else> hidden</f:else></f:if>>{viewLabel}</a>
                         </figcaption>
                     </f:if>
                 </f:for>
@@ -50,7 +50,7 @@
                                 data-thumb-description="{item.description}"
                                 data-thumb-credit="{fileReference.description}"
                                 data-thumb-alt="{fileReference.alternative -> f:or(alternative: item.title)}"
-                                data-thumb-link="{item.link.url}"
+                                data-thumb-link="{f:uri.typolink(parameter: item.link.url)}"
                                 aria-current="{f:if(condition: galleryIteration.isFirst, then: 'true', else: 'false')}">
                             <f:image image="{fileReference}" maxWidth="480" alt="{fileReference.alternative -> f:or(alternative: item.title)}" loading="lazy" decoding="async" class="gallery__thumb-image"/>
                             <f:if condition="{item.title}">

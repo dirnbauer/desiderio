@@ -13,7 +13,7 @@
                 <f:if condition="{data.description_text}"><p class="cta-inline__description">{data -> f:render.text(field: 'description_text')}</p></f:if>
             </div>
             <f:if condition="{data.cta_text} && {data.cta_link.url}">
-                <d:atom.button href="{data.cta_link.url}" target="{data.cta_link.target}" class="cta-inline__action shrink-0">{data -> f:render.text(field: 'cta_text')}</d:atom.button>{data -> f:render.link(field: 'cta_link')}
+                <d:atom.button href="{f:uri.typolink(parameter: data.cta_link.url)}" target="{data.cta_link.target}" class="cta-inline__action shrink-0">{data -> f:render.text(field: 'cta_text')}</d:atom.button>{data -> f:render.link(field: 'cta_link')}
             </f:if>
         </aside>
     </d:layout.container>

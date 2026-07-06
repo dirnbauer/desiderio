@@ -15,7 +15,7 @@
                         <f:for each="{data.link_items}" as="item">
                             <li>
                                 <f:if condition="{item.link}">
-                                    <f:then><d:atom.link href="{item.link.url}" target="{item.link.target}" variant="muted" class="footer-minimal__link">{item -> f:render.text(field: 'label')}</d:atom.link></f:then>
+                                    <f:then><d:atom.link href="{f:uri.typolink(parameter: item.link.url)}" target="{item.link.target}" variant="muted" class="footer-minimal__link">{item -> f:render.text(field: 'label')}</d:atom.link></f:then>
                                     <f:else><span class="footer-minimal__link">{item -> f:render.text(field: 'label')}</span></f:else>
                                 </f:if>
                             </li>

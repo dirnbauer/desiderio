@@ -40,7 +40,7 @@
                             </f:if>
                         </address>
                         <f:if condition="{loc.map_link.url}">
-                            <d:atom.button href="{loc.map_link.url}" target="{loc.map_link.target}" variant="outline" size="sm" class="office-locations__map">
+                            <d:atom.button href="{f:uri.typolink(parameter: loc.map_link.url)}" target="{loc.map_link.target}" variant="outline" size="sm" class="office-locations__map">
                                 <span class="office-locations__map-icon" aria-hidden="true"><d:atom.icon name="map-pin" size="sm"/></span>
                                 <span>{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:directions.to', arguments: {0: loc.city}, default: 'Directions to {loc.city}')}</span>
                             </d:atom.button>

@@ -31,6 +31,7 @@ final class ContentElementAuditTest extends TestCase
         'no_template_at_all',
         'commented_only_field',
         'inline_edit_gap',
+        'raw_link_field_href',
     ];
 
     public function testStrictAuditCategoriesAreClean(): void

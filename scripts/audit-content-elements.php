@@ -42,6 +42,14 @@ declare(strict_types=1);
  *                                 {data.x}/{alias.x} in content position and
  *                                 never wrapped with f:render.text — the
  *                                 Visual Editor cannot inline-edit it.
+ *      raw_link_field_href        A Content Blocks Link field's ->url printed
+ *                                 raw in an output attribute (href/action/
+ *                                 data-*) instead of resolved via
+ *                                 f:uri.typolink — the v14 Record API hands
+ *                                 templates the raw typolink (t3://page?uid=N),
+ *                                 so internal links render dead. File-field
+ *                                 .url (a real path) and f:if condition guards
+ *                                 are exempt.
  *
  * Usage:
  *   php scripts/audit-content-elements.php
@@ -210,6 +218,46 @@ function isAttributePosition(string $tpl, int $offset): bool
 }
 
 /**
+ * Content Blocks Link fields whose ->url is emitted RAW in an output attribute
+ * (href, action, data-*) instead of being resolved via f:uri.typolink. The v14
+ * Record API hands templates the raw typolink parameter (t3://page?uid=N), so
+ * internal page links render as dead t3:// hrefs. File fields are excluded
+ * (their ->url is a real public path); f:if condition guards on the raw .url
+ * stay (the attribute name 'condition' is skipped). Accessors resolve through
+ * the loop alias map so collection subfields (item.link → items.link) classify.
+ *
+ * @param array<string, array<string, mixed>> $defs     collectFieldDefs() output
+ * @param array<string, string>               $aliasMap buildLoopAliasMap() output
+ * @return list<array{attr: string, field: string}>
+ */
+function findRawLinkFieldHrefs(string $tpl, array $defs, array $aliasMap): array
+{
+    $hits = [];
+    if (!preg_match_all('/([a-zA-Z][a-zA-Z0-9_-]*)="\{([a-zA-Z][a-zA-Z0-9_.]*)\.url\}"/', $tpl, $ms, PREG_SET_ORDER)) {
+        return $hits;
+    }
+    foreach ($ms as $m) {
+        [, $attr, $accessor] = $m;
+        if ($attr === 'condition') continue;
+        $parts = explode('.', $accessor);
+        $alias = array_shift($parts);
+        $fieldPath = implode('.', $parts);
+        if ($fieldPath === '') continue;
+        if ($alias === 'data') {
+            $canonical = $fieldPath;
+        } elseif (isset($aliasMap[$alias])) {
+            $canonical = $aliasMap[$alias] . '.' . $fieldPath;
+        } else {
+            continue;
+        }
+        if (($defs[$canonical]['type'] ?? null) === 'Link') {
+            $hits[] = ['attr' => $attr, 'field' => $canonical];
+        }
+    }
+    return $hits;
+}
+
+/**
  * Text/Textarea fields printed raw in content position while never being
  * wrapped with f:render.text anywhere in the (comment-stripped) template.
  * Returns canonical field key => occurrence count.
@@ -307,6 +355,7 @@ $summary = [
     'no_template_at_all' => 0,
     'commented_only_field' => 0,
     'inline_edit_gap' => 0,
+    'raw_link_field_href' => 0,
 ];
 
 foreach (scandir($elementsDir) as $entry) {
@@ -413,6 +462,12 @@ foreach (scandir($elementsDir) as $entry) {
         if (in_array("$entry:$key", INLINE_EDIT_ALLOWLIST, true)) continue;
         $problems[$entry][] = ['type' => 'inline_edit_gap', 'field' => $key, 'occurrences' => $count];
         $summary['inline_edit_gap']++;
+    }
+
+    $linkAliasMap = buildLoopAliasMap($tplLive);
+    foreach (findRawLinkFieldHrefs($tplLive, $defs, $linkAliasMap) as $hit) {
+        $problems[$entry][] = ['type' => 'raw_link_field_href', 'field' => $hit['field'], 'attr' => $hit['attr']];
+        $summary['raw_link_field_href']++;
     }
 
     if (isset($topDefs['variant'])) {

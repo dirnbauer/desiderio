@@ -27,7 +27,7 @@
                         </div>
                     </div>
                     <f:if condition="{job.apply_link.url}">
-                        <d:atom.button href="{job.apply_link.url}" target="{job.apply_link.target}" variant="outline" size="sm" class="career-listing__apply">
+                        <d:atom.button href="{f:uri.typolink(parameter: job.apply_link.url)}" target="{job.apply_link.target}" variant="outline" size="sm" class="career-listing__apply">
                             <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:apply" default="Apply"/><span class="sr-only"> {job -> f:render.text(field: 'title')}</span>
                         </d:atom.button>
                     </f:if>

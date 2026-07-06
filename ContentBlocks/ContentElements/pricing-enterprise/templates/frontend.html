@@ -39,7 +39,7 @@
                     <f:if condition="{data.contact_text} && {data.contact_link.url}">
                         <d:molecule.cardFooter class="pricing-enterprise__footer">
                             <d:atom.button
-                                href="{data.contact_link.url}"
+                                href="{f:uri.typolink(parameter: data.contact_link.url)}"
                                 target="{data.contact_link.target}"
                                 class="pricing-enterprise__button"
                             >

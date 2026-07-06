@@ -18,7 +18,7 @@
                 <nav class="utility-bar__nav" aria-label="{data.header -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:utility_bar.aria\', default: \'Utility navigation\')}')}">
                     <f:for each="{data.link_items}" as="item">
                         <f:if condition="{item.link.url}">
-                            <d:atom.link href="{item.link.url}" target="{item.link.target}" variant="muted" class="utility-bar__link">{item -> f:render.text(field: 'label')}</d:atom.link>
+                            <d:atom.link href="{f:uri.typolink(parameter: item.link.url)}" target="{item.link.target}" variant="muted" class="utility-bar__link">{item -> f:render.text(field: 'label')}</d:atom.link>
                         </f:if>
                     </f:for>
                 </nav>

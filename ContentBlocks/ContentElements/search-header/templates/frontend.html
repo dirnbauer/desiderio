@@ -24,7 +24,7 @@
             </header>
         </f:if>
         <div class="search-header__body">
-            <form class="search-header__form" action="{data.form_action.url}" method="get" role="search" aria-labelledby="{inputId}-label">
+            <form class="search-header__form" action="{f:uri.typolink(parameter: data.form_action.url)}" method="get" role="search" aria-labelledby="{inputId}-label">
                 <label id="{inputId}-label" class="sr-only" for="{inputId}">{labelText}</label>
                 <div class="search-header__field">
                     <svg class="search-header__icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">

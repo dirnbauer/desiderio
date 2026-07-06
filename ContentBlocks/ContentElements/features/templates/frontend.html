@@ -28,7 +28,7 @@
                         <h3 class="features__title">
                             <f:if condition="{feature.link.url}">
                                 <f:then>
-                                    <d:atom.link href="{feature.link.url}" target="{feature.link.target}" variant="muted">{feature -> f:render.text(field: 'title')}</d:atom.link>
+                                    <d:atom.link href="{f:uri.typolink(parameter: feature.link.url)}" target="{feature.link.target}" variant="muted">{feature -> f:render.text(field: 'title')}</d:atom.link>
                                 </f:then>
                                 <f:else>
                                     {feature -> f:render.text(field: 'title')}

@@ -26,7 +26,7 @@
             </div>
             <div class="card-interactive__footer">
                 <f:if condition="{data.link}">
-                    <d:atom.link href="{data.link.url}" target="{data.link.target}" variant="muted" class="card-interactive__link">
+                    <d:atom.link href="{f:uri.typolink(parameter: data.link.url)}" target="{data.link.target}" variant="muted" class="card-interactive__link">
                         {f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:card.viewGuide', default: 'View automation guide')}
                         <span class="card-interactive__link-icon" aria-hidden="true">
                             <d:atom.icon name="arrow-right" size="sm"/>

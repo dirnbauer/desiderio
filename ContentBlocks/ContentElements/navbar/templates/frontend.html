@@ -11,7 +11,7 @@
             <div class="navbar__brand">
                 <f:if condition="{data.brand_link.url}">
                     <f:then>
-                        <d:atom.link href="{data.brand_link.url}" target="{data.brand_link.target}" variant="default" class="navbar__brand-link">{data -> f:render.text(field: 'brand')}</d:atom.link>
+                        <d:atom.link href="{f:uri.typolink(parameter: data.brand_link.url)}" target="{data.brand_link.target}" variant="default" class="navbar__brand-link">{data -> f:render.text(field: 'brand')}</d:atom.link>
                     </f:then>
                     <f:else>
                         <span class="navbar__brand-link">{data -> f:render.text(field: 'brand')}</span>
@@ -25,7 +25,7 @@
                         <li class="navbar__nav-item">
                             <f:if condition="{item.link.url}">
                                 <f:then>
-                                    <d:atom.link href="{item.link.url}" target="{item.link.target}" variant="muted" class="navbar__nav-link">{item -> f:render.text(field: 'label')}</d:atom.link>
+                                    <d:atom.link href="{f:uri.typolink(parameter: item.link.url)}" target="{item.link.target}" variant="muted" class="navbar__nav-link">{item -> f:render.text(field: 'label')}</d:atom.link>
                                 </f:then>
                                 <f:else>
                                     <span class="navbar__nav-link">{item -> f:render.text(field: 'label')}</span>
@@ -38,10 +38,10 @@
 
             <div class="navbar__actions">
                 <f:if condition="{data.secondary_button_text} && {data.secondary_button_link.url}">
-                    <d:atom.button href="{data.secondary_button_link.url}" target="{data.secondary_button_link.target}" variant="secondary">{data -> f:render.text(field: 'secondary_button_text')}</d:atom.button>{data -> f:render.link(field: 'secondary_button_link')}
+                    <d:atom.button href="{f:uri.typolink(parameter: data.secondary_button_link.url)}" target="{data.secondary_button_link.target}" variant="secondary">{data -> f:render.text(field: 'secondary_button_text')}</d:atom.button>{data -> f:render.link(field: 'secondary_button_link')}
                 </f:if>
                 <f:if condition="{data.primary_button_text} && {data.primary_button_link.url}">
-                    <d:atom.button href="{data.primary_button_link.url}" target="{data.primary_button_link.target}" size="sm">{data -> f:render.text(field: 'primary_button_text')}</d:atom.button>{data -> f:render.link(field: 'primary_button_link')}
+                    <d:atom.button href="{f:uri.typolink(parameter: data.primary_button_link.url)}" target="{data.primary_button_link.target}" size="sm">{data -> f:render.text(field: 'primary_button_text')}</d:atom.button>{data -> f:render.link(field: 'primary_button_link')}
                 </f:if>
             </div>
         </nav>

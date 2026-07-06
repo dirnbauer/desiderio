@@ -38,7 +38,7 @@
                         </f:if>
                     </div>
                     <f:if condition="{mention.link.url}">
-                        <d:atom.link href="{mention.link.url}" target="{mention.link.target}" variant="muted" class="press-mentions__link focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none">
+                        <d:atom.link href="{f:uri.typolink(parameter: mention.link.url)}" target="{mention.link.target}" variant="muted" class="press-mentions__link focus-visible:ring-2 focus-visible:ring-ring focus-visible:outline-none">
                             <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:read_article"/>
                             <span aria-hidden="true">&rarr;</span>
                             <span class="sr-only">{mention -> f:render.text(field: 'publication')}</span>

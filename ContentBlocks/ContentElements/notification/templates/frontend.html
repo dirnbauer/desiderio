@@ -25,7 +25,7 @@
         <div class="notification__message d-richtext">{data -> f:render.text(field: 'content')}</div>
         <f:if condition="{data.action_text}">
             <div class="notification__actions">
-                <d:atom.link href="{data.action_link.url}" target="{data.action_link.target}" variant="muted" class="notification__action">{data -> f:render.text(field: 'action_text')}</d:atom.link>
+                <d:atom.link href="{f:uri.typolink(parameter: data.action_link.url)}" target="{data.action_link.target}" variant="muted" class="notification__action">{data -> f:render.text(field: 'action_text')}</d:atom.link>
             </div>
         </f:if>
     </div>

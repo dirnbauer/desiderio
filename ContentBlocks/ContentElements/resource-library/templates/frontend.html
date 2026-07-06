@@ -25,7 +25,7 @@
                             <div class="resource-library__description d-richtext">{item -> f:render.text(field: 'description')}</div>
                         </f:if>
                         <f:if condition="{item.link.url}">
-                            <d:atom.link href="{item.link.url}" target="{item.link.target}" variant="muted" class="resource-library__link">
+                            <d:atom.link href="{f:uri.typolink(parameter: item.link.url)}" target="{item.link.target}" variant="muted" class="resource-library__link">
                                 <span aria-hidden="true">{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:resource.open', default: 'Open resource')} &rarr;</span>
                                 <span class="sr-only">{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:resource.open.named', arguments: {0: item.title}, default: 'Open {item.title}')}</span>
                             </d:atom.link>

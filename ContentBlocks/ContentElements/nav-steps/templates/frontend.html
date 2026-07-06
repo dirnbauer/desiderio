@@ -20,7 +20,7 @@
                         </span>
                         <f:if condition="{step.link.url}">
                             <f:then>
-                                <d:atom.link href="{step.link.url}" target="{step.link.target}" variant="muted" class="nav-steps__label nav-steps__link">{step -> f:render.text(field: 'label')}<f:if condition="{stepStatus} == 'completed'"><span class="sr-only"> <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:nav_steps.completed" default="(completed)"/></span></f:if><f:if condition="{stepStatus} == 'current'"><span class="sr-only"> <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:nav_steps.current" default="(current step)"/></span></f:if></d:atom.link>
+                                <d:atom.link href="{f:uri.typolink(parameter: step.link.url)}" target="{step.link.target}" variant="muted" class="nav-steps__label nav-steps__link">{step -> f:render.text(field: 'label')}<f:if condition="{stepStatus} == 'completed'"><span class="sr-only"> <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:nav_steps.completed" default="(completed)"/></span></f:if><f:if condition="{stepStatus} == 'current'"><span class="sr-only"> <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:nav_steps.current" default="(current step)"/></span></f:if></d:atom.link>
                             </f:then>
                             <f:else>
                                 <span class="nav-steps__label">{step -> f:render.text(field: 'label')}<f:if condition="{stepStatus} == 'current'"><span class="sr-only"> <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:nav_steps.current" default="(current step)"/></span></f:if></span>

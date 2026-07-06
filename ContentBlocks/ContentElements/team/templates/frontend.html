@@ -44,7 +44,7 @@
                                 </f:if>
                             </div>
                             <f:if condition="{member.profile_link.url}">
-                                <d:atom.button href="{member.profile_link.url}" target="{member.profile_link.target}" variant="outline" size="sm" class="team__list-action">
+                                <d:atom.button href="{f:uri.typolink(parameter: member.profile_link.url)}" target="{member.profile_link.target}" variant="outline" size="sm" class="team__list-action">
                                     <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:team.view_profile">View profile</f:translate>
                                     <span class="sr-only"> — {member -> f:render.text(field: 'name')}</span>
                                 </d:atom.button>
@@ -106,7 +106,7 @@
                             </f:if>
                             <f:if condition="{member.profile_link.url}">
                                 <d:molecule.cardFooter class="team__footer mt-auto shrink-0 grow-0">
-                                    <d:atom.button href="{member.profile_link.url}" target="{member.profile_link.target}" variant="secondary" size="sm" class="team__footer-action">
+                                    <d:atom.button href="{f:uri.typolink(parameter: member.profile_link.url)}" target="{member.profile_link.target}" variant="secondary" size="sm" class="team__footer-action">
                                         <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:team.view_profile">View profile</f:translate>
                                         <span class="sr-only"> — {member -> f:render.text(field: 'name')}</span>
                                     </d:atom.button>

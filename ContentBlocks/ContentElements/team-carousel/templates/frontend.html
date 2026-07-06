@@ -34,7 +34,7 @@
                         </d:molecule.cardHeader>
                         <f:if condition="{member.profile_link.url}">
                             <d:molecule.cardFooter class="team-carousel__footer">
-                                <d:atom.button href="{member.profile_link.url}" target="{member.profile_link.target}" variant="secondary" size="sm">
+                                <d:atom.button href="{f:uri.typolink(parameter: member.profile_link.url)}" target="{member.profile_link.target}" variant="secondary" size="sm">
                                     <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:team.view_profile">View profile</f:translate>
                                     <span class="sr-only"> — {member -> f:render.text(field: 'name')}</span>
                                 </d:atom.button>

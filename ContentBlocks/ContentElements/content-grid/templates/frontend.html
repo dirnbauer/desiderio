@@ -18,7 +18,7 @@
                         <h3 class="content-grid__title">
                             <f:if condition="{item.link.url}">
                                 <f:then>
-                                    <d:atom.link href="{item.link.url}" target="{item.link.target}" variant="muted" class="content-grid__title-link">{item -> f:render.text(field: 'title')}</d:atom.link>
+                                    <d:atom.link href="{f:uri.typolink(parameter: item.link.url)}" target="{item.link.target}" variant="muted" class="content-grid__title-link">{item -> f:render.text(field: 'title')}</d:atom.link>
                                 </f:then>
                                 <f:else>{item -> f:render.text(field: 'title')}</f:else>
                             </f:if>
@@ -28,7 +28,7 @@
                         <div class="content-grid__content">{item -> f:render.text(field: 'content')}</div>
                     </f:if>
                     <f:if condition="{item.link.url}">
-                        <d:atom.link href="{item.link.url}" target="{item.link.target}" variant="muted" class="content-grid__link">
+                        <d:atom.link href="{f:uri.typolink(parameter: item.link.url)}" target="{item.link.target}" variant="muted" class="content-grid__link">
                             <f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/content-grid/language/labels.xlf:read_more" default="Read more"/>
                             <span class="content-grid__link-arrow" aria-hidden="true">&#8594;</span>
                         </d:atom.link>

@@ -27,7 +27,7 @@
                                 <dd class="contact__list-value-wrap">
                                     <f:if condition="{item.link.url}">
                                         <f:then>
-                                            <d:atom.link href="{item.link.url}" target="{item.link.target}" variant="muted" class="contact__list-value">{item -> f:render.text(field: 'value')}</d:atom.link>
+                                            <d:atom.link href="{f:uri.typolink(parameter: item.link.url)}" target="{item.link.target}" variant="muted" class="contact__list-value">{item -> f:render.text(field: 'value')}</d:atom.link>
                                         </f:then>
                                         <f:else>
                                             <span class="contact__list-value">{item -> f:render.text(field: 'value')}</span>

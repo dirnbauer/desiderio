@@ -46,7 +46,7 @@
                             <d:atom.typography tag="div" class="hero-carousel__description d-richtext">{slide -> f:render.text(field: 'description')}</d:atom.typography>
                         </f:if>
                         <f:if condition="{slide.button_text}">
-                            <d:atom.button href="{slide.button_link.url}" target="{slide.button_link.target}" variant="default" size="lg">{slide -> f:render.text(field: 'button_text')}</d:atom.button>
+                            <d:atom.button href="{f:uri.typolink(parameter: slide.button_link.url)}" target="{slide.button_link.target}" variant="default" size="lg">{slide -> f:render.text(field: 'button_text')}</d:atom.button>
                         </f:if>
                     </div>
                     <f:if condition="{slide.image}">

@@ -12,7 +12,7 @@
             <f:if condition="{data.subheadline}">
                 <d:atom.typography variant="lead" class="hero-search__subheadline">{data -> f:render.text(field: 'subheadline')}</d:atom.typography>
             </f:if>
-            <form class="hero-search__form" action="{data.form_action.url}" method="get" role="search">
+            <form class="hero-search__form" action="{f:uri.typolink(parameter: data.form_action.url)}" method="get" role="search">
                 <label class="sr-only" for="hero-search-input-{data.uid}">{data.placeholder -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:solr.search.label\', default: \'Search\')}')}</label>
                 <input type="search" id="hero-search-input-{data.uid}" name="q" placeholder="{data.placeholder -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:solr.search.label\', default: \'Search\')}')}" class="hero-search__input"/>
                 <d:atom.button type="submit" size="lg">
@@ -24,7 +24,7 @@
                 <nav class="hero-search__categories" aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:search.categories.aria', default: 'Popular categories')}">
                     <f:for each="{data.category_filters}" as="cat">
                         <f:if condition="{cat.link.url}">
-                            <d:atom.link href="{cat.link.url}" target="{cat.link.target}" variant="muted" class="hero-search__category">{cat -> f:render.text(field: 'label')}</d:atom.link>
+                            <d:atom.link href="{f:uri.typolink(parameter: cat.link.url)}" target="{cat.link.target}" variant="muted" class="hero-search__category">{cat -> f:render.text(field: 'label')}</d:atom.link>
                         </f:if>
                     </f:for>
                 </nav>

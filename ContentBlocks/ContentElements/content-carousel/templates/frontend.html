@@ -39,7 +39,7 @@
                                     <f:if condition="{item.slide_title}">
                                         <h3 class="card__title">
                                             <f:if condition="{item.slide_link.url}">
-                                                <f:then><d:atom.link href="{item.slide_link.url}" target="{item.slide_link.target}" variant="muted">{item -> f:render.text(field: 'slide_title')}</d:atom.link></f:then>
+                                                <f:then><d:atom.link href="{f:uri.typolink(parameter: item.slide_link.url)}" target="{item.slide_link.target}" variant="muted">{item -> f:render.text(field: 'slide_title')}</d:atom.link></f:then>
                                                 <f:else>{item -> f:render.text(field: 'slide_title')}</f:else>
                                             </f:if>
                                         </h3>
@@ -82,7 +82,7 @@
                                         <f:if condition="{item.slide_title}">
                                             <h3 class="content-carousel__title">
                                                 <f:if condition="{item.slide_link.url}">
-                                                    <f:then><d:atom.link href="{item.slide_link.url}" target="{item.slide_link.target}" variant="muted">{item -> f:render.text(field: 'slide_title')}</d:atom.link></f:then>
+                                                    <f:then><d:atom.link href="{f:uri.typolink(parameter: item.slide_link.url)}" target="{item.slide_link.target}" variant="muted">{item -> f:render.text(field: 'slide_title')}</d:atom.link></f:then>
                                                     <f:else>{item -> f:render.text(field: 'slide_title')}</f:else>
                                                 </f:if>
                                             </h3>

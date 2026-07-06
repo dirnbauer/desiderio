@@ -20,7 +20,7 @@
                 </f:if>
                 <f:if condition="{data.link.url} && {data.link_text}">
                     <div class="feature-image__actions">
-                        <d:atom.button href="{data.link.url}" target="{data.link.target}" size="lg">{data -> f:render.text(field: 'link_text')}</d:atom.button>
+                        <d:atom.button href="{f:uri.typolink(parameter: data.link.url)}" target="{data.link.target}" size="lg">{data -> f:render.text(field: 'link_text')}</d:atom.button>
                     </div>
                 </f:if>
             </div>

@@ -30,7 +30,7 @@
                         </f:if>
                         <f:if condition="{item.link.url} && {item.link_text}">
                             <div class="timeline__actions">
-                                <d:atom.link href="{item.link.url}" target="{item.link.target}" variant="muted" class="timeline__link">{item -> f:render.text(field: 'link_text')}</d:atom.link>
+                                <d:atom.link href="{f:uri.typolink(parameter: item.link.url)}" target="{item.link.target}" variant="muted" class="timeline__link">{item -> f:render.text(field: 'link_text')}</d:atom.link>
                             </div>
                         </f:if>
                     </d:molecule.card>

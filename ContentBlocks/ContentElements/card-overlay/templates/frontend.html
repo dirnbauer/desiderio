@@ -24,7 +24,7 @@
                     <d:atom.typography tag="div" variant="p" class="max-w-xl text-base/7 text-background/90 [&_a]:text-inherit [&_a]:underline [&_a]:underline-offset-2 [&_p]:m-0 [&_strong]:font-semibold">{data -> f:render.text(field: 'description')}</d:atom.typography>
                 </f:if>
                 <f:if condition="{data.link.url}">
-                    <d:atom.button href="{data.link.url}" target="{data.link.target}" size="lg" class="mt-2">
+                    <d:atom.button href="{f:uri.typolink(parameter: data.link.url)}" target="{data.link.target}" size="lg" class="mt-2">
                         <span>{data -> f:render.text(field: 'link_text')}</span>
                         <span aria-hidden="true">&rarr;</span>
                     </d:atom.button>

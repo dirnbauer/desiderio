@@ -16,7 +16,7 @@
                     <li class="compliance-badges__item">
                         <f:if condition="{item.link}">
                             <f:then>
-                                <d:atom.link href="{item.link.url}" variant="muted" class="compliance-badges__link" target="_blank">
+                                <d:atom.link href="{f:uri.typolink(parameter: item.link.url)}" variant="muted" class="compliance-badges__link" target="_blank">
                                     <d:atom.badge variant="outline" class="compliance-badges__badge">
                                         <d:atom.icon name="check-circle" size="sm" class="compliance-badges__icon"/>
                                         {item -> f:render.text(field: 'label')}

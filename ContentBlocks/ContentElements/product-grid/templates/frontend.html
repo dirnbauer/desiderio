@@ -35,7 +35,7 @@
                             <p class="product-grid__desc">{product -> f:render.text(field: 'description_text')}</p>
                         </f:if>
                         <f:if condition="{product.link.url}">
-                            <d:atom.link href="{product.link.url}" target="{product.link.target}" variant="muted" class="product-grid__link">
+                            <d:atom.link href="{f:uri.typolink(parameter: product.link.url)}" target="{product.link.target}" variant="muted" class="product-grid__link">
                                 <span><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:view_product" default="View product"/><span class="sr-only"> – {product.name}</span></span>
                                 <span aria-hidden="true">&rarr;</span>
                             </d:atom.link>

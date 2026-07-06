@@ -14,15 +14,15 @@
                     <f:if condition="{tab.link.url}">
                         <li>
                             <f:if condition="{tab.active}">
-                                <f:then><a href="{tab.link.url}" target="{tab.link.target}" aria-current="page" data-slot="link" class="navbar-tabbed__tab navbar-tabbed__tab--active">{tab -> f:render.text(field: 'label')}</a></f:then>
-                                <f:else><d:atom.link href="{tab.link.url}" target="{tab.link.target}" variant="muted" class="navbar-tabbed__tab">{tab -> f:render.text(field: 'label')}</d:atom.link></f:else>
+                                <f:then><a href="{f:uri.typolink(parameter: tab.link.url)}" target="{tab.link.target}" aria-current="page" data-slot="link" class="navbar-tabbed__tab navbar-tabbed__tab--active">{tab -> f:render.text(field: 'label')}</a></f:then>
+                                <f:else><d:atom.link href="{f:uri.typolink(parameter: tab.link.url)}" target="{tab.link.target}" variant="muted" class="navbar-tabbed__tab">{tab -> f:render.text(field: 'label')}</d:atom.link></f:else>
                             </f:if>
                         </li>
                     </f:if>
                 </f:for>
             </ul>
             <f:if condition="{data.button_text} && {data.button_link.url}">
-                <d:atom.button href="{data.button_link.url}" target="{data.button_link.target}" size="sm">{data -> f:render.text(field: 'button_text')}</d:atom.button>{data -> f:render.link(field: 'button_link')}
+                <d:atom.button href="{f:uri.typolink(parameter: data.button_link.url)}" target="{data.button_link.target}" size="sm">{data -> f:render.text(field: 'button_text')}</d:atom.button>{data -> f:render.link(field: 'button_link')}
             </f:if>
         </nav>
     </d:layout.container>

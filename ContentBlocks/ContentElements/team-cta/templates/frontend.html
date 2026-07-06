@@ -23,7 +23,7 @@
                 <f:if condition="{data.description}"><d:atom.typography tag="div" variant="lead" class="team-cta__description d-richtext">{data -> f:render.text(field: 'description')}</d:atom.typography></f:if>
                 <f:if condition="{data.cta_text} && {data.cta_link.url}">
                     <div class="team-cta__actions">
-                        <d:atom.button href="{data.cta_link.url}" target="{data.cta_link.target}" size="lg">{data -> f:render.text(field: 'cta_text')}</d:atom.button>{data -> f:render.link(field: 'cta_link')}
+                        <d:atom.button href="{f:uri.typolink(parameter: data.cta_link.url)}" target="{data.cta_link.target}" size="lg">{data -> f:render.text(field: 'cta_text')}</d:atom.button>{data -> f:render.link(field: 'cta_link')}
                     </div>
                 </f:if>
             </div>

@@ -67,7 +67,7 @@
                         <f:if condition="{tier.button_text} && {tier.button_link.url}">
                             <d:molecule.cardFooter class="pricing-two-tier__footer">
                                 <d:atom.button
-                                    href="{tier.button_link.url}"
+                                    href="{f:uri.typolink(parameter: tier.button_link.url)}"
                                     target="{tier.button_link.target}"
                                     variant="{f:if(condition: tier.featured, then: 'default', else: 'outline')}"
                                     class="pricing-two-tier__button"

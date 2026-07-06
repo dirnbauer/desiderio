@@ -23,7 +23,7 @@
                 <li class="logo-grid__item">
                     <f:if condition="{logo.link.url}">
                         <f:then>
-                            <d:atom.link href="{logo.link.url}" target="{logo.link.target}" variant="muted" class="logo-grid__link">
+                            <d:atom.link href="{f:uri.typolink(parameter: logo.link.url)}" target="{logo.link.target}" variant="muted" class="logo-grid__link">
                                 <f:for each="{logo.image}" as="fileReference">
                                     <f:image image="{fileReference}" maxWidth="120" alt="{logo.name}" class="logo-grid__image" loading="lazy" decoding="async"/>
                                 </f:for>

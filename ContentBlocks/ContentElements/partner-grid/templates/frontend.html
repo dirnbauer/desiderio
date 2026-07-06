@@ -34,7 +34,7 @@
                         <d:atom.badge variant="secondary" class="partner-grid__kind">{item -> f:render.text(field: 'kind')}</d:atom.badge>
                     </f:if>
                     <f:if condition="{item.link.url}">
-                        <d:atom.link href="{item.link.url}" target="{item.link.target}" variant="muted" class="partner-grid__link">
+                        <d:atom.link href="{f:uri.typolink(parameter: item.link.url)}" target="{item.link.target}" variant="muted" class="partner-grid__link">
                             <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:investor.visit"/>
                             <span class="sr-only">: {item -> f:render.text(field: 'name')}</span>
                             <span class="partner-grid__link-arrow" aria-hidden="true">&rarr;</span>

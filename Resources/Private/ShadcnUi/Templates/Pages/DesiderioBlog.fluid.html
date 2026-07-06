@@ -32,7 +32,7 @@
 
 <f:section name="BlogListPage">
     <d:layout.grid cols="3" gap="lg">
-        <d:layout.stack gap="xl" class="md:col-span-2">
+        <d:layout.stack gap="xl" class="md:col-span-2 desiderio-blog-list__content">
             <f:render section="BlogListHeading" arguments="{_all}"/>
             <f:if condition="{content.main}">
                 <f:render.contentArea contentArea="{content.main}"/>

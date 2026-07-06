@@ -15,6 +15,20 @@ article[itemtype="https://schema.org/BlogPosting"] [itemprop="articleBody"] .ce-
     padding-inline: 0;
 }
 
+/* Blog list column: content elements (e.g. the blog_posts plugin) sit inside
+   the page container + grid column already, so they must not re-inset
+   themselves with their own section/container frame. Drop the frame's block
+   padding and the container inset so they render flush — full column width,
+   left-aligned with the bare list heading above them. */
+.desiderio-blog-list__content .ce-fsc.ce-frame {
+    padding-block: 0;
+}
+
+.desiderio-blog-list__content .ce-fsc > .desiderio-container {
+    max-width: none;
+    padding-inline: 0;
+}
+
 .ce-fsc__intro,
 .ce-fsc-text,
 .ce-fsc-header,

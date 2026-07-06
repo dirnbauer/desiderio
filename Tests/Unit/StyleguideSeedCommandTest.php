@@ -603,6 +603,47 @@ final class StyleguideSeedCommandTest extends TestCase
         self::assertSame('line', $fields['variant']);
     }
 
+    public function testPrefixedScalarFieldsAreSeededIntoStorageColumns(): void
+    {
+        $command = $this->createCommand();
+        ContentBlockDefinitionRegistry::setDefinitionsForTesting([
+            'desiderio_headersection' => ContentBlockDefinitionRegistry::buildDefinitionFromConfig([
+                'name' => 'desiderio/header-section',
+                'prefixFields' => false,
+                'fields' => [
+                    [
+                        'identifier' => 'header',
+                        'useExistingField' => true,
+                        'type' => 'Textarea',
+                    ],
+                    [
+                        'identifier' => 'variant',
+                        'prefixField' => true,
+                        'type' => 'Select',
+                        'items' => [
+                            ['label' => 'Left', 'value' => 'left'],
+                            ['label' => 'Center', 'value' => 'center'],
+                        ],
+                        'default' => 'center',
+                    ],
+                ],
+            ]),
+        ]);
+
+        [$fields] = $this->invokeMethod($this->createFixtureResolver(), 'resolveFixtureFields', [
+            'desiderio_headersection',
+            [
+                'header' => 'Pricing',
+                'variant' => 'left',
+            ],
+            'Section Header',
+        ]);
+
+        self::assertSame('Pricing', $fields['header']);
+        self::assertArrayNotHasKey('variant', $fields);
+        self::assertSame('left', $fields['desiderio_headersection_variant']);
+    }
+
     public function testDateTimeFixtureValuesAreNormalizedToTimestamps(): void
     {
         $command = $this->createCommand();
@@ -626,7 +667,7 @@ final class StyleguideSeedCommandTest extends TestCase
             'desiderio_herocountdown',
             [
                 'header' => 'Desiderio 2.0 goes live in',
-                'target_date' => '2026-07-01T09:00:00+00:00',
+                'target_date' => '2026-08-06T09:00:00+00:00',
             ],
             'Countdown Hero',
         ]);
@@ -634,13 +675,13 @@ final class StyleguideSeedCommandTest extends TestCase
         $fields = $resolvedFixtureData[0] ?? null;
         self::assertIsArray($fields);
 
-        self::assertSame(strtotime('2026-07-01T09:00:00+00:00'), $fields['target_date']);
+        self::assertSame(strtotime('2026-08-06T09:00:00+00:00'), $fields['target_date']);
 
         $resolvedFixtureData = $this->invokeMethod($this->createFixtureResolver(), 'resolveFixtureFields', [
             'desiderio_herocountdown',
             [
                 'header' => 'Desiderio 2.0 goes live in',
-                'target_date' => '1782896400',
+                'target_date' => '1786006800',
             ],
             'Countdown Hero',
         ]);
@@ -648,7 +689,7 @@ final class StyleguideSeedCommandTest extends TestCase
         $fields = $resolvedFixtureData[0] ?? null;
         self::assertIsArray($fields);
 
-        self::assertSame(1782896400, $fields['target_date']);
+        self::assertSame(1786006800, $fields['target_date']);
     }
 
     public function testCountFieldsReceiveCompactSeedValues(): void

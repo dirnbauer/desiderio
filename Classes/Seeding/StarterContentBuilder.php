@@ -113,15 +113,16 @@ final class StarterContentBuilder
                 continue;
             }
 
+            $storageField = $this->resolveFieldStorageIdentifier($field, $fieldConfig);
             if ($this->isFileField($fieldConfig)) {
                 $references = $this->buildFileReferenceFixturesFromFixtureValue($value);
                 if ($references !== []) {
-                    $fileReferences[$field] = $references;
+                    $fileReferences[$storageField] = $references;
                 }
                 continue;
             }
 
-            $resolvedFields[$field] = is_array($value)
+            $resolvedFields[$storageField] = is_array($value)
                 ? $this->normalizeArrayForScalarField($value)
                 : $this->normalizeFieldValue($value, $fieldConfig);
         }
@@ -314,5 +315,14 @@ final class StarterContentBuilder
     public function isFileField(array $fieldConfig): bool
     {
         return $this->fieldNormalizer->isFileField($fieldConfig);
+    }
+
+    /**
+     * @param array<string, mixed> $fieldConfig
+     */
+    private function resolveFieldStorageIdentifier(string $field, array $fieldConfig): string
+    {
+        $storageIdentifier = $fieldConfig['storageIdentifier'] ?? null;
+        return is_string($storageIdentifier) && $storageIdentifier !== '' ? $storageIdentifier : $field;
     }
 }

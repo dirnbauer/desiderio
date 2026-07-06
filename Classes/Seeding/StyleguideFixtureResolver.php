@@ -228,7 +228,50 @@ final class StyleguideFixtureResolver
             }
         }
 
-        return [$resolvedFields, $collections, $fileReferences];
+        return [
+            $this->mapResolvedFieldsToStorageIdentifiers($resolvedFields, $definition['fields']),
+            $collections,
+            $this->mapFileReferencesToStorageIdentifiers($fileReferences, $definition['fields']),
+        ];
+    }
+
+    /**
+     * @param array<string, mixed> $resolvedFields
+     * @param array<string, array<string, mixed>> $fieldDefinitions
+     * @return array<string, mixed>
+     */
+    private function mapResolvedFieldsToStorageIdentifiers(array $resolvedFields, array $fieldDefinitions): array
+    {
+        $mappedFields = [];
+        foreach ($resolvedFields as $field => $value) {
+            $field = (string)$field;
+            $mappedFields[$this->resolveFieldStorageIdentifier($field, $fieldDefinitions[$field] ?? [])] = $value;
+        }
+        return $mappedFields;
+    }
+
+    /**
+     * @param array<string, list<array{file: string, title: string, alternative: string, description: string, source: string}>> $fileReferences
+     * @param array<string, array<string, mixed>> $fieldDefinitions
+     * @return array<string, list<array{file: string, title: string, alternative: string, description: string, source: string}>>
+     */
+    private function mapFileReferencesToStorageIdentifiers(array $fileReferences, array $fieldDefinitions): array
+    {
+        $mappedReferences = [];
+        foreach ($fileReferences as $field => $references) {
+            $field = (string)$field;
+            $mappedReferences[$this->resolveFieldStorageIdentifier($field, $fieldDefinitions[$field] ?? [])] = $references;
+        }
+        return $mappedReferences;
+    }
+
+    /**
+     * @param array<string, mixed> $fieldConfig
+     */
+    private function resolveFieldStorageIdentifier(string $field, array $fieldConfig): string
+    {
+        $storageIdentifier = $fieldConfig['storageIdentifier'] ?? null;
+        return is_string($storageIdentifier) && $storageIdentifier !== '' ? $storageIdentifier : $field;
     }
 
     /**

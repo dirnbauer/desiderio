@@ -155,6 +155,7 @@ final class ContentBlockDefinitionRegistry
 
             $identifier = $field['identifier'];
             if (($field['type'] ?? '') !== 'Collection') {
+                $field['storageIdentifier'] = self::resolveRootFieldStorageIdentifier($config, $field, $identifier);
                 $definition['fields'][$identifier] = $field;
                 continue;
             }

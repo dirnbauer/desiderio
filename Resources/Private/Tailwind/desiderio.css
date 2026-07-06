@@ -258,7 +258,9 @@
   .prose :where(blockquote):not(:where(.desiderio-section *, .not-prose, .not-prose *)) {
     border-inline-start: 2px solid var(--border);
     color: var(--foreground);
-    padding-inline-start: 1rem;
+    font-style: italic;
+    margin-block-start: 1.5rem;
+    padding-inline-start: 1.5rem;
   }
 
   .frame :where(table),

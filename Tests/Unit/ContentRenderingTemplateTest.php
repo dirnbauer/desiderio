@@ -122,6 +122,10 @@ final class ContentRenderingTemplateTest extends TestCase
         self::assertStringContainsString('dc:layout.section', $layout);
         self::assertStringContainsString('dc:atom.typography', $header);
         self::assertStringContainsString('@source "../FluidStyledContent";', $tailwind);
+        self::assertStringContainsString('.prose :where(blockquote)', $tailwind);
+        self::assertStringContainsString('font-style: italic;', $tailwind);
+        self::assertStringContainsString('margin-block-start: 1.5rem;', $tailwind);
+        self::assertStringContainsString('padding-inline-start: 1.5rem;', $tailwind);
         self::assertStringContainsString('templateRootPath: EXT:desiderio/Resources/Private/FluidStyledContent/Templates/', $settings);
     }
 

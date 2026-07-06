@@ -462,7 +462,7 @@ final class NewsDemoSeeder
                 'quote_text' => 'Demo content should make the same promises as the documentation — and then keep them in front of your eyes.',
                 'author' => 'Desiderio maintainers',
                 'role' => 'why these articles exist',
-                'variant' => 'default',
+                'variant' => 'bordered',
             ]),
             $this->block('desiderio_ctabanner', [
                 'header' => 'Ship your next site on the free core',

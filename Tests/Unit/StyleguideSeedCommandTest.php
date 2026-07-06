@@ -66,6 +66,17 @@ final class StyleguideSeedCommandTest extends TestCase
         self::assertStringNotContainsString('Yaml::parseFile', $tcaOverride);
     }
 
+    public function testNewsDemoQuoteSeedsUseSupportedQuoteVariants(): void
+    {
+        $source = (string) file_get_contents(__DIR__ . '/../../Classes/Command/NewsDemoSeeder.php');
+        preg_match_all("/\\\$this->block\\('desiderio_quote', \\[(.*?)\\]\\)/s", $source, $matches);
+
+        self::assertNotEmpty($matches[1]);
+        foreach ($matches[1] as $quoteSeed) {
+            self::assertStringNotContainsString("'variant' => 'default'", $quoteSeed);
+        }
+    }
+
     public function testCommandRefusesToSeedInOfflineWorkspace(): void
     {
         $context = new Context();

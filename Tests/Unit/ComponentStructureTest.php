@@ -136,6 +136,8 @@ final class ComponentStructureTest extends TestCase
 
         self::assertStringContainsString('<f:argument name="id" type="string" optional="{true}" />', $typography);
         self::assertStringContainsString('id="{id}"', $typography);
+        self::assertStringContainsString('<f:case value="blockquote"><blockquote', $typography);
+        self::assertStringContainsString('mt-6 border-l-2 pl-6 italic', $typography);
     }
 
     public function testFluidPrimitiveRecipesAreGeneratedFromConfiguredShadcnPreset(): void

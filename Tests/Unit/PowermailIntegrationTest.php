@@ -26,6 +26,9 @@ final class PowermailIntegrationTest extends TestCase
         self::assertStringContainsString('plugin.tx_powermail', $setup);
         self::assertStringContainsString('office@webconsulting.at', $setup);
         self::assertStringContainsString('htmlForHtmlFields = 1', $setup);
+        self::assertStringContainsString('errorSummary {', $setup);
+        self::assertStringContainsString('mode = off', $setup);
+        self::assertStringContainsString('focus = first-error', $setup);
         self::assertStringContainsString('tt_content.powermail_pi1', $setup);
         self::assertStringContainsString('templateName = PowermailPi1', $setup);
         self::assertStringContainsString('20 = EXTBASEPLUGIN', $setup);
@@ -84,10 +87,20 @@ final class PowermailIntegrationTest extends TestCase
         self::assertStringContainsString('data-state="{f:if(condition: iterationPages.isFirst', $form);
         self::assertStringContainsString('aria-current="{f:if(condition: iterationPages.isFirst', $form);
         self::assertStringContainsString('data-powermail-message-required', $form);
+        self::assertStringContainsString('data-powermail-error-summary-mode="{settings.validation.errorSummary.mode}"', $form);
+        self::assertStringContainsString('data-powermail-error-focus="{settings.validation.errorSummary.focus}"', $form);
+        self::assertStringContainsString('data-powermail-error-summary hidden role="alert"', $form);
+        self::assertStringNotContainsString('aria-live="assertive"', $form);
 
         $fieldError = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/Powermail/Partials/Misc/FieldError.html');
-        self::assertStringContainsString('text-muted-foreground', $fieldError);
-        self::assertStringNotContainsString('text-xs text-destructive', $fieldError);
+        self::assertStringContainsString('data-powermail-field-error="{field.marker}"', $fieldError);
+        self::assertStringNotContainsString('text-muted-foreground', $fieldError);
+        self::assertStringNotContainsString('aria-live', $fieldError);
+
+        $formError = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/Powermail/Partials/Misc/FormError.html');
+        self::assertStringContainsString('data-powermail-server-error-summary', $formError);
+        self::assertStringContainsString('role="alert"', $formError);
+        self::assertStringNotContainsString('aria-live=', $formError);
 
         $input = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/Powermail/Partials/Form/Field/Input.html');
         $fieldLabel = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/Powermail/Partials/Form/FieldLabel.html');
@@ -154,6 +167,12 @@ final class PowermailIntegrationTest extends TestCase
         // glyph so it stays centered regardless of the preset font's metrics.
         self::assertStringContainsString('background-image: linear-gradient(currentColor, currentColor),', $componentsCss);
 
+        $tailwindCss = (string)file_get_contents(__DIR__ . '/../../Resources/Public/Css/desiderio-tailwind.css');
+        self::assertStringContainsString('.d-powermail .d-powermail-field-error-list', $tailwindCss);
+        self::assertStringContainsString('.d-powermail .d-powermail-field-error-stack', $tailwindCss);
+        self::assertStringContainsString('.d-powermail .d-powermail-field-error-icon', $tailwindCss);
+        self::assertStringContainsString('background-image:linear-gradient(currentColor,currentColor),linear-gradient(currentColor,currentColor)', $tailwindCss);
+
         $flashMessages = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/Powermail/Partials/Misc/FlashMessages.html');
         self::assertStringContainsString('as="flashMessages"', $flashMessages);
         self::assertStringNotContainsString('<f:flashMessages queueIdentifier="extbase.flashmessages.tx_powermail_pi1" class=', $flashMessages);
@@ -170,6 +189,11 @@ final class PowermailIntegrationTest extends TestCase
         $javascript = (string)file_get_contents(__DIR__ . '/../../Resources/Public/Js/desiderio.js');
         self::assertStringContainsString('Powermail multi-step state', $javascript);
         self::assertStringContainsString('powermailErrorSelector', $javascript);
+        self::assertStringContainsString('focusPowermailFirstInvalidControl', $javascript);
+        self::assertStringContainsString("form.dataset.powermailA11ySubmitted = 'true';", $javascript);
+        self::assertStringContainsString("message.className = 'd-powermail-field-error-message';", $javascript);
+        self::assertStringContainsString("list.className = 'd-powermail-field-error-list';", $javascript);
+        self::assertStringContainsString("icon.className = 'd-powermail-field-error-icon';", $javascript);
         self::assertStringContainsString('dataset.powermailMorestepCurrent', $javascript);
         self::assertStringContainsString('link.textContent = label;', $javascript);
         self::assertStringContainsString("messageList.className = 'mt-1 list-disc space-y-1 ps-4 text-muted-foreground';", $javascript);

@@ -38,6 +38,8 @@
                     data-powermail-message-integer="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/powermail.xlf:powermail.validation.integer')}"
                     data-powermail-message-min="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/powermail.xlf:powermail.validation.min')}"
                     data-powermail-message-max="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/powermail.xlf:powermail.validation.max')}"
+                    data-powermail-error-summary-mode="{settings.validation.errorSummary.mode}"
+                    data-powermail-error-focus="{settings.validation.errorSummary.focus}"
                     class="{form.css} {vh:misc.morestepClass(activate: settings.main.moresteps)} {formCardClass -> f:format.trim()}">
 
                     <f:if condition="{form.css} != 'nolabel'">
@@ -49,9 +51,11 @@
                         </header>
                     </f:if>
 
-                    <f:render partial="Misc/FormError" arguments="{_all}" />
+                    <f:if condition="{settings.validation.errorSummary.mode} != 'off'">
+                        <f:render partial="Misc/FormError" arguments="{_all}" />
+                    </f:if>
 
-                    <div class="d-powermail-client-errors hidden mb-6" data-powermail-error-summary hidden role="alert" aria-live="assertive" aria-atomic="true" tabindex="-1">
+                    <div class="d-powermail-client-errors hidden mb-6" data-powermail-error-summary hidden role="alert">
                         <h3 class="mb-2 font-medium text-destructive" data-powermail-error-summary-title>
                             <f:translate key="LLL:EXT:desiderio/Resources/Private/Language/powermail.xlf:powermail.validation.summary.title" />
                         </h3>

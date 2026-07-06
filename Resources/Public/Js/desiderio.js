@@ -990,10 +990,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const container = document.createElement('div');
     container.id = `powermail_field_error_${marker}`;
-    container.className = `powermail_field_error_container_${marker} text-xs text-muted-foreground`;
-    container.style.color = 'var(--muted-foreground)';
+    container.className = `powermail_field_error_container_${marker}`;
     container.dataset.powermailFieldError = marker;
-    container.setAttribute('aria-live', 'polite');
     wrapper.appendChild(container);
 
     return container;
@@ -1010,6 +1008,21 @@ document.addEventListener('DOMContentLoaded', () => {
     }));
     describedBy.add(id);
     control.setAttribute('aria-describedby', Array.from(describedBy).join(' '));
+  };
+
+  const removeDescribedBy = (control, id) => {
+    if (!id) return;
+
+    const describedBy = (control.getAttribute('aria-describedby') || '')
+      .split(/\s+/)
+      .filter(existingId => existingId && existingId !== id);
+
+    if (describedBy.length > 0) {
+      control.setAttribute('aria-describedby', describedBy.join(' '));
+      return;
+    }
+
+    control.removeAttribute('aria-describedby');
   };
 
   const getPowermailFields = form => {
@@ -1105,7 +1118,7 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const getPowermailRenderedMessages = field => uniquePowermailMessages(
-    Array.from(field.wrapper.querySelectorAll('.powermail-errors-list li, [data-powermail-error] li'))
+    Array.from(field.wrapper.querySelectorAll('.powermail_field_error, .powermail-errors-list:not(.d-powermail-field-error-list) li, [data-powermail-error] li'))
       .map(item => item.textContent),
   );
 
@@ -1190,19 +1203,37 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!container) return;
 
     container.textContent = '';
-    if (messages.length <= 1) {
-      container.textContent = messages[0] || '';
-      return;
+    if (messages.length === 0) return;
+
+    const stack = document.createElement('div');
+    stack.className = 'd-powermail-field-error-stack';
+
+    const icon = document.createElement('span');
+    icon.className = 'd-powermail-field-error-icon';
+    icon.setAttribute('aria-hidden', 'true');
+    stack.appendChild(icon);
+
+    const body = document.createElement('div');
+    body.className = 'd-powermail-field-error-body';
+
+    if (messages.length === 1) {
+      const message = document.createElement('p');
+      message.className = 'd-powermail-field-error-message';
+      message.textContent = messages[0];
+      body.appendChild(message);
+    } else {
+      const list = document.createElement('ul');
+      list.className = 'd-powermail-field-error-list';
+      messages.forEach(text => {
+        const item = document.createElement('li');
+        item.textContent = text;
+        list.appendChild(item);
+      });
+      body.appendChild(list);
     }
 
-    const list = document.createElement('ul');
-    list.className = 'list-disc space-y-1 ps-4';
-    messages.forEach(message => {
-      const item = document.createElement('li');
-      item.textContent = message;
-      list.appendChild(item);
-    });
-    container.appendChild(list);
+    stack.appendChild(body);
+    container.appendChild(stack);
   };
 
   const getPowermailFieldLabel = field => {
@@ -1239,6 +1270,42 @@ document.addEventListener('DOMContentLoaded', () => {
     return field.wrapper.querySelector(powermailErrorSelector) !== null;
   };
 
+  const getPowermailErrorSummaryMode = form => (
+    String(form.dataset.powermailErrorSummaryMode || 'after-submit').trim().toLowerCase()
+  );
+
+  const getPowermailErrorFocusMode = form => (
+    String(form.dataset.powermailErrorFocus || 'first-error').trim().toLowerCase()
+  );
+
+  const isPowermailErrorSummaryDisabled = form => (
+    ['off', 'false', '0', 'none'].includes(getPowermailErrorSummaryMode(form))
+  );
+
+  const hasPowermailServerSummary = form => (
+    form.querySelector('[data-powermail-server-error-summary]') !== null
+  );
+
+  const shouldShowPowermailErrorSummary = (form, invalidFields) => {
+    if (invalidFields.length === 0 || isPowermailErrorSummaryDisabled(form)) return false;
+
+    const mode = getPowermailErrorSummaryMode(form);
+    if (['always', 'true', '1', 'on'].includes(mode)) return true;
+
+    return (
+      form.dataset.powermailA11ySubmitted === 'true'
+      || invalidFields.some(({ field }) => hasPowermailRenderedError(field))
+    );
+  };
+
+  const focusPowermailFirstInvalidControl = invalidFields => {
+    const firstInvalidControl = invalidFields.find(({ control }) => control)?.control;
+    if (!firstInvalidControl) return;
+
+    firstInvalidControl.focus({ preventScroll: true });
+    firstInvalidControl.scrollIntoView({ block: 'center', inline: 'nearest' });
+  };
+
   const isPowermailFieldInvalid = (form, field) => {
     if (hasPowermailRenderedError(field)) return true;
     if (!shouldValidatePowermailField(form, field)) return false;
@@ -1254,14 +1321,12 @@ document.addEventListener('DOMContentLoaded', () => {
       const errorContainer = getPowermailErrorContainer(field);
       const invalid = isPowermailFieldInvalid(form, field);
 
-      if (errorContainer) {
-        field.controls.forEach(control => addDescribedBy(control, errorContainer.id));
-      }
-
       field.controls.forEach(control => {
         if (invalid) {
+          if (errorContainer) addDescribedBy(control, errorContainer.id);
           control.setAttribute('aria-invalid', 'true');
         } else {
+          if (errorContainer) removeDescribedBy(control, errorContainer.id);
           control.removeAttribute('aria-invalid');
         }
       });
@@ -1302,15 +1367,22 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
-  const renderPowermailErrorSummary = (form, invalidFields, focusSummary = false) => {
+  const renderPowermailErrorSummary = (form, invalidFields) => {
     const summary = form.querySelector('[data-powermail-error-summary]');
     const list = summary?.querySelector('[data-powermail-error-summary-list]');
+    const hasErrors = invalidFields.length > 0;
+    const shouldShow = !hasPowermailServerSummary(form) && shouldShowPowermailErrorSummary(form, invalidFields);
+
     if (!summary || !list) {
-      syncPowermailDocumentTitle(form, invalidFields.length > 0);
+      syncPowermailDocumentTitle(form, hasErrors);
       return;
     }
 
     list.textContent = '';
+    summary.hidden = !shouldShow;
+    summary.classList.toggle('hidden', !shouldShow);
+    syncPowermailDocumentTitle(form, hasErrors);
+    if (!shouldShow) return;
 
     invalidFields.forEach(({ field, label, messages, control }) => {
       const item = document.createElement('li');
@@ -1348,22 +1420,22 @@ document.addEventListener('DOMContentLoaded', () => {
       }
       list.appendChild(item);
     });
-
-    const hasErrors = invalidFields.length > 0;
-    summary.hidden = !hasErrors;
-    summary.classList.toggle('hidden', !hasErrors);
-    syncPowermailDocumentTitle(form, hasErrors);
-
-    if (hasErrors && focusSummary) {
-      summary.focus({ preventScroll: true });
-      summary.scrollIntoView({ block: 'nearest' });
-    }
   };
 
-  const syncPowermailA11y = (form, focusSummary = false) => {
+  const syncPowermailA11y = (form, options = {}) => {
     applyPowermailAutocomplete(form);
     const invalidFields = syncPowermailFieldAccessibility(form);
-    renderPowermailErrorSummary(form, invalidFields, focusSummary);
+    const hasServerErrors = invalidFields.some(({ field }) => hasPowermailRenderedError(field));
+
+    renderPowermailErrorSummary(form, invalidFields);
+
+    if (
+      invalidFields.length > 0
+      && getPowermailErrorFocusMode(form) === 'first-error'
+      && (options.focusFirstError || (options.focusServerErrors && hasServerErrors))
+    ) {
+      focusPowermailFirstInvalidControl(invalidFields);
+    }
 
     return invalidFields;
   };
@@ -1393,7 +1465,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!form.classList.contains('powermail_morestep') && !form.querySelector('.powermail_fieldset, [class*="powermail_fieldwrap_"]')) return;
 
       syncPowermailMultistep(form);
-      syncPowermailA11y(form);
+      syncPowermailA11y(form, { focusServerErrors: true });
     });
   };
 
@@ -1432,7 +1504,9 @@ document.addEventListener('DOMContentLoaded', () => {
       });
 
       window.setTimeout(() => {
-        syncPowermailA11y(form, trigger.hasAttribute('data-powermail-morestep-validate'));
+        syncPowermailA11y(form, {
+          focusFirstError: trigger.hasAttribute('data-powermail-morestep-validate'),
+        });
       }, 0);
     });
   });
@@ -1442,8 +1516,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!form) return;
 
     form.dataset.powermailA11yValidated = 'true';
+    form.dataset.powermailA11ySubmitted = 'true';
     form.dataset.powermailA11yValidateScope = 'all';
-    window.setTimeout(() => syncPowermailA11y(form, true), 0);
+    window.setTimeout(() => syncPowermailA11y(form, { focusFirstError: true }), 0);
   }, true);
 
   document.addEventListener('submit', event => {
@@ -1452,8 +1527,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!form.querySelector('.powermail_fieldset, [class*="powermail_fieldwrap_"]')) return;
 
     form.dataset.powermailA11yValidated = 'true';
+    form.dataset.powermailA11ySubmitted = 'true';
     form.dataset.powermailA11yValidateScope = 'all';
-    window.setTimeout(() => syncPowermailA11y(form, true), 0);
+    window.setTimeout(() => syncPowermailA11y(form, { focusFirstError: true }), 0);
   }, true);
 
   ['input', 'change'].forEach(eventName => {

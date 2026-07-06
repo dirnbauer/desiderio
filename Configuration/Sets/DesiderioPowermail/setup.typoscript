@@ -50,6 +50,16 @@ plugin.tx_powermail {
       }
 
       validation {
+        # Error overview modes:
+        # after-submit = show the overview only when submit/server validation
+        #                produced errors.
+        # always       = show whenever client/server errors are present.
+        # off          = keep inline errors only.
+        errorSummary {
+          mode = off
+          focus = first-error
+        }
+
         # Multi-step forms: the Next button and the step tabs only switch
         # to another step when the visible (current) fieldset validates —
         # mandatory fields must be filled before moving on. The Previous

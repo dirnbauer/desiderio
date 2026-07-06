@@ -10,7 +10,7 @@
 
 <f:form.validationResults>
     <f:if condition="{validationResults.flattenedErrors}">
-        <nav class="mb-6 {alertDestructiveClass -> f:format.trim()}" aria-label="{f:translate(key: 'validationerror_container_label', extensionName: 'Powermail')}" role="alert" aria-live="assertive" aria-atomic="true" tabindex="-1">
+        <nav class="mb-6 {alertDestructiveClass -> f:format.trim()}" aria-label="{f:translate(key: 'validationerror_container_label', extensionName: 'Powermail')}" role="alert" data-powermail-server-error-summary>
             <h3 class="mb-2 font-medium text-destructive"><f:translate key="validationerror_title" extensionName="Powermail" /></h3>
             <ol class="list-decimal space-y-1 ps-4">
                 <f:for each="{validationResults.flattenedErrors}" as="errors">

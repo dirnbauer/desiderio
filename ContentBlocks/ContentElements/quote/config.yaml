@@ -33,7 +33,7 @@ fields:
     identifier: variant
     type: Select
     renderType: selectSingle
-    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:style'
+    label: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/quote/language/labels.xlf:field.variant'
     items:
       -
         label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.bordered'

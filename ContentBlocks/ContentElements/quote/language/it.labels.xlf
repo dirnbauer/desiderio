@@ -7,6 +7,12 @@
         <target>Quote</target>
       </segment>
     </unit>
+    <unit id="field.variant">
+      <segment state="final">
+        <source>Variant</source>
+        <target>Variante</target>
+      </segment>
+    </unit>
     <unit id="description">
       <segment state="final">
         <source>Spotlight a testimonial or quote as a trust signal.</source>

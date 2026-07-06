@@ -7,6 +7,12 @@
         <target>Zitat</target>
       </segment>
     </unit>
+    <unit id="field.variant">
+      <segment state="final">
+        <source>Variant</source>
+        <target>Variante</target>
+      </segment>
+    </unit>
     <unit id="description">
       <segment state="final">
         <source>Renders one quotation as a semantic blockquote inside a figure with a large decorative quote mark, optional author and role attribution, and bordered, large or card style variants. Use it for: pull quotes, notable statements, press or book citations, single memorable lines lifted from body text. Prefer 'Single Testimonial' for customer voices, 'Founder Quote' when a portrait belongs to the statement, and 'Mission Statement' for the company mission.</source>

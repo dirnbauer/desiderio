@@ -50,6 +50,33 @@ final class ContentBlockStructureTest extends TestCase
         }
     }
 
+    public function testQuoteVariantFieldUsesDedicatedBackendLabel(): void
+    {
+        $config = Yaml::parseFile(self::CONTENT_BLOCKS_DIR . '/quote/config.yaml');
+        self::assertIsArray($config);
+
+        $variantField = null;
+        foreach ($config['fields'] ?? [] as $field) {
+            if (is_array($field) && ($field['identifier'] ?? null) === 'variant') {
+                $variantField = $field;
+                break;
+            }
+        }
+
+        self::assertIsArray($variantField);
+        self::assertSame(
+            'LLL:EXT:desiderio/ContentBlocks/ContentElements/quote/language/labels.xlf:field.variant',
+            $variantField['label'] ?? null
+        );
+
+        $englishLabels = (string) file_get_contents(self::CONTENT_BLOCKS_DIR . '/quote/language/labels.xlf');
+        $germanLabels = (string) file_get_contents(self::CONTENT_BLOCKS_DIR . '/quote/language/de.labels.xlf');
+        self::assertStringContainsString('<unit id="field.variant">', $englishLabels);
+        self::assertStringContainsString('<source>Variant</source>', $englishLabels);
+        self::assertStringContainsString('<unit id="field.variant">', $germanLabels);
+        self::assertStringContainsString('<target>Variante</target>', $germanLabels);
+    }
+
     public function testEveryContentBlockUsesDesiderioVendor(): void
     {
         $blocks = glob(self::CONTENT_BLOCKS_DIR . '/*', GLOB_ONLYDIR) ?: [];

@@ -8,7 +8,7 @@ namespace Webconsulting\Desiderio\Data;
  * Static Powermail demo form fixtures for {@see \Webconsulting\Desiderio\Command\PowermailDemoSeeder}.
  *
  * @phpstan-type DemoOption array{0: string, 1: string, 2: string}
- * @phpstan-type DemoField array{type: string, marker: string, titleEn: string, titleDe: string, mandatory: bool, validation: int, sender_email: bool, sender_name: bool, placeholderEn: string, placeholderDe: string, prefill: string, options: list<DemoOption>, textEn: string, textDe: string, autocompleteToken: string, autocompleteSection: string, autocompleteType: string, autocompletePurpose: string}
+ * @phpstan-type DemoField array{type: string, marker: string, titleEn: string, titleDe: string, mandatory: bool, validation: int, validationConfiguration: string, sender_email: bool, sender_name: bool, placeholderEn: string, placeholderDe: string, prefill: string, options: list<DemoOption>, textEn: string, textDe: string, autocompleteToken: string, autocompleteSection: string, autocompleteType: string, autocompletePurpose: string}
  * @phpstan-type DemoPage array{titleEn: string, titleDe: string, fields: list<DemoField>}
  * @phpstan-type DemoForm array{slug: string, titleEn: string, titleDe: string, pageTitleEn: string, pageTitleDe: string, introEn: string, introDe: string, thankTitleEn: string, thankTitleDe: string, thankBodyEn: string, thankBodyDe: string, moresteps: bool, pages: list<DemoPage>}
  */
@@ -48,6 +48,7 @@ final class PowermailDemoFormDefinitions
                             self::field('input', 'name', 'Name', 'Name', ['mandatory' => true, 'sender_name' => true]),
                             self::field('input', 'email', 'Email', 'E-Mail', ['mandatory' => true, 'validation' => 1, 'sender_email' => true, 'placeholderEn' => 'you@example.com', 'placeholderDe' => 'sie@example.com']),
                             self::field('input', 'phone', 'Phone', 'Telefon', ['mandatory' => true, 'placeholderEn' => '+43 ...', 'placeholderDe' => '+43 ...']),
+                            self::field('input', 'team_size', 'Team size', 'Teamgröße', ['mandatory' => true, 'validation' => 6, 'validationConfiguration' => '5', 'placeholderEn' => '5', 'placeholderDe' => '5']),
                             self::field('select', 'topic', 'Topic', 'Thema', ['mandatory' => true, 'options' => [['General inquiry', 'Allgemeine Anfrage', 'general'], ['Sales', 'Vertrieb', 'sales'], ['Support', 'Support', 'support']]]),
                             self::field('textarea', 'message', 'Message', 'Nachricht', ['mandatory' => true, 'placeholderEn' => 'How can we help?', 'placeholderDe' => 'Wie koennen wir helfen?']),
                             self::field('friendlycaptcha', 'friendlycaptcha', 'Spam protection', 'Spam-Schutz'),
@@ -259,6 +260,7 @@ final class PowermailDemoFormDefinitions
             'titleDe' => $titleDe,
             'mandatory' => false,
             'validation' => 0,
+            'validationConfiguration' => '',
             'sender_email' => false,
             'sender_name' => false,
             'placeholderEn' => '',

@@ -33,6 +33,10 @@
                     autocomplete="{form.autocompleteToken}"
                     additionalAttributes="{vh:validation.enableJavascriptValidationAndAjax(form: form)}"
                     addQueryString="{settings.misc.addQueryString}"
+                    data-powermail-message-number="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/powermail.xlf:powermail.validation.number')}"
+                    data-powermail-message-integer="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/powermail.xlf:powermail.validation.integer')}"
+                    data-powermail-message-min="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/powermail.xlf:powermail.validation.min')}"
+                    data-powermail-message-max="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/powermail.xlf:powermail.validation.max')}"
                     class="{form.css} {vh:misc.morestepClass(activate: settings.main.moresteps)} {formCardClass -> f:format.trim()}">
 
                     <f:if condition="{form.css} != 'nolabel'">

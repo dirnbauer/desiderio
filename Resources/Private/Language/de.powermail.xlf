@@ -46,5 +46,17 @@
     <unit id="powermail.validation.fieldFallback">
       <segment state="final"><source>Please check this field.</source><target>Bitte prüfen Sie dieses Feld.</target></segment>
     </unit>
+    <unit id="powermail.validation.number">
+      <segment state="final"><source>Enter a number.</source><target>Geben Sie eine Zahl ein.</target></segment>
+    </unit>
+    <unit id="powermail.validation.integer">
+      <segment state="final"><source>Enter a whole number.</source><target>Geben Sie eine ganze Zahl ein.</target></segment>
+    </unit>
+    <unit id="powermail.validation.min">
+      <segment state="final"><source>Enter a value of at least %s.</source><target>Geben Sie mindestens %s ein.</target></segment>
+    </unit>
+    <unit id="powermail.validation.max">
+      <segment state="final"><source>Enter a value of at most %s.</source><target>Geben Sie höchstens %s ein.</target></segment>
+    </unit>
   </file>
 </xliff>

@@ -894,9 +894,8 @@ document.addEventListener('DOMContentLoaded', () => {
     '.border-destructive',
     '.parsley-error',
     '.powermail_field_error',
-    '[aria-invalid="true"]',
-    '[aria-invalid="1"]',
-    '[class*="powermail_field_error_container_"]:not(:empty)',
+    '.powermail-errors-list.filled',
+    '[data-powermail-error]',
   ].join(',');
   const powermailControlSelector = [
     'input:not([type="hidden"]):not([type="submit"]):not([type="button"]):not([type="reset"])',
@@ -910,6 +909,12 @@ document.addEventListener('DOMContentLoaded', () => {
     company: 'organization',
   };
   const powermailErrorFallback = 'Please check this field.';
+  const powermailMessageFallbacks = {
+    number: 'Enter a number.',
+    integer: 'Enter a whole number.',
+    min: 'Enter a value of at least %s.',
+    max: 'Enter a value of at most %s.',
+  };
 
   const getPowermailFieldsets = form => Array.from(form.querySelectorAll('.powermail_fieldset'));
 
@@ -995,7 +1000,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const addDescribedBy = (control, id) => {
     if (!id) return;
 
-    const describedBy = new Set((control.getAttribute('aria-describedby') || '').split(/\s+/).filter(Boolean));
+    const describedBy = new Set((control.getAttribute('aria-describedby') || '').split(/\s+/).filter(existingId => {
+      if (!existingId) return false;
+
+      const describedElement = document.getElementById(existingId);
+      return !describedElement?.matches?.('.powermail-errors-list, [data-powermail-error]');
+    }));
     describedBy.add(id);
     control.setAttribute('aria-describedby', Array.from(describedBy).join(' '));
   };
@@ -1057,16 +1067,126 @@ document.addEventListener('DOMContentLoaded', () => {
     return false;
   };
 
-  const getPowermailFieldMessage = field => {
-    const errorContainer = getPowermailErrorContainer(field, false);
-    const containerText = errorContainer?.textContent?.replace(/\s+/g, ' ').trim();
-    if (containerText) return containerText;
+  const uniquePowermailMessages = messages => Array.from(new Set(
+    messages.map(message => String(message || '').replace(/\s+/g, ' ').trim()).filter(Boolean),
+  ));
+
+  const getPowermailMessageTemplate = (form, key) => {
+    const datasetKey = `powermailMessage${key.charAt(0).toUpperCase()}${key.slice(1)}`;
+    return form.dataset[datasetKey] || powermailMessageFallbacks[key] || powermailErrorFallback;
+  };
+
+  const formatPowermailMessage = (message, value) => (
+    String(message || powermailErrorFallback)
+      .replace(/%s/g, String(value))
+      .replace(/\{value\}/g, String(value))
+  );
+
+  const getPowermailConstraintValue = (control, attribute, dataAttribute) => (
+    control.getAttribute(attribute) || control.getAttribute(dataAttribute) || ''
+  );
+
+  const hasPowermailNumericValue = value => value !== '' && Number.isFinite(Number(value));
+
+  const hasPowermailIntegerConstraint = control => {
+    if (control.getAttribute('data-powermail-type') === 'integer') return true;
+    if (control.getAttribute('type') !== 'number') return false;
+
+    const step = control.getAttribute('step');
+    return step === null || step === '' || step === '1';
+  };
+
+  const getPowermailRenderedMessages = field => uniquePowermailMessages(
+    Array.from(field.wrapper.querySelectorAll('.powermail-errors-list li, [data-powermail-error] li'))
+      .map(item => item.textContent),
+  );
+
+  const getPowermailControlMessages = (form, control) => {
+    const messages = [];
+    const value = String(control.value || '').trim();
+    const validity = control.validity;
+    const required = control.required
+      || control.dataset.powermailRequired === 'true'
+      || control.getAttribute('aria-required') === 'true';
+
+    if (required && value === '') {
+      messages.push(control.dataset.powermailRequiredMessage || control.validationMessage);
+      return uniquePowermailMessages(messages);
+    }
+
+    if (value === '') return messages;
+
+    const numericValue = Number(value);
+    const hasNumericValue = hasPowermailNumericValue(value);
+    const min = getPowermailConstraintValue(control, 'min', 'data-powermail-min');
+    const max = getPowermailConstraintValue(control, 'max', 'data-powermail-max');
+
+    if ((validity?.badInput || control.getAttribute('data-powermail-type') === 'integer') && !hasNumericValue) {
+      messages.push(getPowermailMessageTemplate(form, 'number'));
+    }
+
+    if (
+      hasPowermailIntegerConstraint(control)
+      && hasNumericValue
+      && (!Number.isInteger(numericValue) || validity?.stepMismatch)
+    ) {
+      messages.push(getPowermailMessageTemplate(form, 'integer'));
+    }
+
+    if (min !== '' && hasNumericValue && numericValue < Number(min)) {
+      messages.push(formatPowermailMessage(getPowermailMessageTemplate(form, 'min'), min));
+    }
+
+    if (max !== '' && hasNumericValue && numericValue > Number(max)) {
+      messages.push(formatPowermailMessage(getPowermailMessageTemplate(form, 'max'), max));
+    }
+
+    if ((validity?.typeMismatch || validity?.patternMismatch) && control.dataset.powermailErrorMessage) {
+      messages.push(control.dataset.powermailErrorMessage);
+    }
+
+    if (messages.length === 0 && validity && !validity.valid && control.validationMessage) {
+      messages.push(control.validationMessage);
+    }
+
+    return uniquePowermailMessages(messages);
+  };
+
+  const getPowermailFieldMessages = (form, field) => {
+    const constraintMessages = uniquePowermailMessages(
+      field.controls.flatMap(control => getPowermailControlMessages(form, control)),
+    );
+    if (constraintMessages.length > 0) return constraintMessages;
+
+    const renderedMessages = getPowermailRenderedMessages(field);
+    if (renderedMessages.length > 0) return renderedMessages;
 
     const control = field.controls.find(item => item.validationMessage) || field.controls[0];
-    return control?.dataset?.powermailRequiredMessage
+    return uniquePowermailMessages([
+      control?.dataset?.powermailRequiredMessage
       || control?.dataset?.powermailErrorMessage
       || control?.validationMessage
-      || powermailErrorFallback;
+      || powermailErrorFallback,
+    ]);
+  };
+
+  const renderPowermailFieldMessages = (container, messages) => {
+    if (!container) return;
+
+    container.textContent = '';
+    if (messages.length <= 1) {
+      container.textContent = messages[0] || '';
+      return;
+    }
+
+    const list = document.createElement('ul');
+    list.className = 'list-disc space-y-1 ps-4';
+    messages.forEach(message => {
+      const item = document.createElement('li');
+      item.textContent = message;
+      list.appendChild(item);
+    });
+    container.appendChild(list);
   };
 
   const getPowermailFieldLabel = field => {
@@ -1100,9 +1220,7 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   const hasPowermailRenderedError = field => {
-    const errorContainer = getPowermailErrorContainer(field, false);
-    return field.wrapper.querySelector(powermailErrorSelector) !== null
-      || Boolean(errorContainer?.textContent?.trim());
+    return field.wrapper.querySelector(powermailErrorSelector) !== null;
   };
 
   const isPowermailFieldInvalid = (form, field) => {
@@ -1133,18 +1251,17 @@ document.addEventListener('DOMContentLoaded', () => {
       });
 
       if (invalid) {
-        if (errorContainer && !errorContainer.textContent.trim()) {
-          errorContainer.textContent = getPowermailFieldMessage(field);
-        }
+        const messages = getPowermailFieldMessages(form, field);
+        renderPowermailFieldMessages(errorContainer, messages);
 
         invalidFields.push({
           field,
           label: getPowermailFieldLabel(field),
-          message: getPowermailFieldMessage(field),
+          messages,
           control: field.controls.find(control => control.id) || field.controls[0],
         });
       } else if (errorContainer) {
-        errorContainer.textContent = '';
+        renderPowermailFieldMessages(errorContainer, []);
       }
     });
 
@@ -1179,14 +1296,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     list.textContent = '';
 
-    invalidFields.forEach(({ field, label, message, control }) => {
+    invalidFields.forEach(({ field, label, messages, control }) => {
       const item = document.createElement('li');
       const link = document.createElement('a');
       const targetId = control.id || `powermail_field_${field.marker}`;
 
       link.href = `#${targetId}`;
       link.className = 'underline underline-offset-4';
-      link.textContent = `${label}: ${message}`;
+      link.textContent = messages.length > 1 ? label : `${label}: ${messages[0] || powermailErrorFallback}`;
       link.addEventListener('click', event => {
         event.preventDefault();
 
@@ -1203,6 +1320,16 @@ document.addEventListener('DOMContentLoaded', () => {
       });
 
       item.appendChild(link);
+      if (messages.length > 1) {
+        const messageList = document.createElement('ul');
+        messageList.className = 'mt-1 list-disc space-y-1 ps-4';
+        messages.forEach(message => {
+          const messageItem = document.createElement('li');
+          messageItem.textContent = message;
+          messageList.appendChild(messageItem);
+        });
+        item.appendChild(messageList);
+      }
       list.appendChild(item);
     });
 

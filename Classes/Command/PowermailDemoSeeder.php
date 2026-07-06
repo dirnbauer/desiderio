@@ -387,6 +387,7 @@ final class PowermailDemoSeeder
             'marker' => $field['marker'],
             'own_marker_select' => 1,
             'mandatory' => (int)(bool)$field['mandatory'],
+            'mandatory_text' => $field['mandatory'] ? ($translated ? 'Bitte füllen Sie dieses Feld aus.' : 'Please complete this field.') : '',
             'validation' => $field['validation'],
             'validation_configuration' => $field['validationConfiguration'],
             'sender_email' => (int)(bool)$field['sender_email'],

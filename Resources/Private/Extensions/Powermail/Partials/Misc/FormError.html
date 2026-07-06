@@ -24,12 +24,21 @@
                                 <f:else>
                                     <f:if condition="{singleError.arguments.marker}">
                                         <a class="underline underline-offset-4" href="#powermail_field_{singleError.arguments.marker}">
-                                            <vh:getter.getFieldPropertyFromMarkerAndForm marker="{singleError.arguments.marker}" form="{form}" property="title" />:
-                                            <f:if condition="{vh:getter.getFieldPropertyFromMarkerAndForm(marker: singleError.arguments.marker, form: form, property: 'mandatory_text')} !== ''">
-                                                <f:then>{vh:getter.getFieldPropertyFromMarkerAndForm(marker: singleError.arguments.marker, form: form, property: 'mandatory_text')}</f:then>
-                                                <f:else><f:translate key="validationerror_{singleError.message}" extensionName="Powermail">{singleError.message}</f:translate></f:else>
-                                            </f:if>
+                                            <vh:getter.getFieldPropertyFromMarkerAndForm marker="{singleError.arguments.marker}" form="{form}" property="title" />
                                         </a>
+                                        <ul class="mt-1 list-disc space-y-1 ps-4 text-muted-foreground">
+                                            <li>
+                                                <f:if condition="{vh:getter.getFieldPropertyFromMarkerAndForm(marker: singleError.arguments.marker, form: form, property: 'mandatory_text')} !== ''">
+                                                    <f:then>{vh:getter.getFieldPropertyFromMarkerAndForm(marker: singleError.arguments.marker, form: form, property: 'mandatory_text')}</f:then>
+                                                    <f:else>
+                                                        <f:if condition="{singleError.message} == 'mandatory'">
+                                                            <f:then><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/powermail.xlf:powermail.validation.required" /></f:then>
+                                                            <f:else><f:translate key="validationerror_{singleError.message}" extensionName="Powermail">{singleError.message}</f:translate></f:else>
+                                                        </f:if>
+                                                    </f:else>
+                                                </f:if>
+                                            </li>
+                                        </ul>
                                     </f:if>
                                 </f:else>
                             </f:if>

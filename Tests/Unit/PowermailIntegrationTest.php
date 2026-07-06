@@ -83,6 +83,11 @@ final class PowermailIntegrationTest extends TestCase
         self::assertStringContainsString('data-powermail-morestep-show', $form);
         self::assertStringContainsString('data-state="{f:if(condition: iterationPages.isFirst', $form);
         self::assertStringContainsString('aria-current="{f:if(condition: iterationPages.isFirst', $form);
+        self::assertStringContainsString('data-powermail-message-required', $form);
+
+        $fieldError = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/Powermail/Partials/Misc/FieldError.html');
+        self::assertStringContainsString('text-muted-foreground', $fieldError);
+        self::assertStringNotContainsString('text-xs text-destructive', $fieldError);
 
         $input = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/Powermail/Partials/Form/Field/Input.html');
         $fieldLabel = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/Powermail/Partials/Form/FieldLabel.html');
@@ -166,6 +171,8 @@ final class PowermailIntegrationTest extends TestCase
         self::assertStringContainsString('Powermail multi-step state', $javascript);
         self::assertStringContainsString('powermailErrorSelector', $javascript);
         self::assertStringContainsString('dataset.powermailMorestepCurrent', $javascript);
+        self::assertStringContainsString('link.textContent = label;', $javascript);
+        self::assertStringContainsString("messageList.className = 'mt-1 list-disc space-y-1 ps-4 text-muted-foreground';", $javascript);
         self::assertStringContainsString('MutationObserver', $javascript);
 
         $friendlyCaptcha = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/Powermail/Partials/Form/Field/Friendlycaptcha.html');
@@ -213,6 +220,7 @@ final class PowermailIntegrationTest extends TestCase
             self::assertNotFalse($xml);
             self::assertSame('2.0', (string)$xml['version']);
             self::assertStringContainsString('powermail.form.requiredHint', (string)file_get_contents($path));
+            self::assertStringContainsString('powermail.validation.required', (string)file_get_contents($path));
             self::assertStringContainsString('plural,', (string)file_get_contents($path));
         }
     }
@@ -257,6 +265,7 @@ final class PowermailIntegrationTest extends TestCase
         self::assertStringContainsString('office@webconsulting.at', $source);
         self::assertStringContainsString("'/desiderio-powermail/' . \$form['slug'] . '/thank-you'", $source);
         self::assertStringContainsString("'nav_hide' => (int)\$navHide", $source);
+        self::assertStringContainsString("'mandatory_text' => \$field['mandatory'] ? (", $source);
         self::assertStringContainsString('$this->hidePages($ownedPageUids, $now, $pageColumns);', $source);
     }
 }

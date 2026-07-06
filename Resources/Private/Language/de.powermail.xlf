@@ -46,6 +46,9 @@
     <unit id="powermail.validation.fieldFallback">
       <segment state="final"><source>Please check this field.</source><target>Bitte prüfen Sie dieses Feld.</target></segment>
     </unit>
+    <unit id="powermail.validation.required">
+      <segment state="final"><source>Please complete this field.</source><target>Bitte füllen Sie dieses Feld aus.</target></segment>
+    </unit>
     <unit id="powermail.validation.number">
       <segment state="final"><source>Enter a number.</source><target>Geben Sie eine Zahl ein.</target></segment>
     </unit>

@@ -910,6 +910,7 @@ document.addEventListener('DOMContentLoaded', () => {
   };
   const powermailErrorFallback = 'Please check this field.';
   const powermailMessageFallbacks = {
+    required: 'Please complete this field.',
     number: 'Enter a number.',
     integer: 'Enter a whole number.',
     min: 'Enter a value of at least %s.',
@@ -989,7 +990,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const container = document.createElement('div');
     container.id = `powermail_field_error_${marker}`;
-    container.className = `powermail_field_error_container_${marker} text-xs text-destructive`;
+    container.className = `powermail_field_error_container_${marker} text-xs text-muted-foreground`;
+    container.style.color = 'var(--muted-foreground)';
     container.dataset.powermailFieldError = marker;
     container.setAttribute('aria-live', 'polite');
     wrapper.appendChild(container);
@@ -1082,6 +1084,12 @@ document.addEventListener('DOMContentLoaded', () => {
       .replace(/\{value\}/g, String(value))
   );
 
+  const getPowermailRequiredMessage = (form, control) => (
+    getPowermailMessageTemplate(form, 'required')
+    || control.dataset.powermailRequiredMessage
+    || control.validationMessage
+  );
+
   const getPowermailConstraintValue = (control, attribute, dataAttribute) => (
     control.getAttribute(attribute) || control.getAttribute(dataAttribute) || ''
   );
@@ -1110,7 +1118,7 @@ document.addEventListener('DOMContentLoaded', () => {
       || control.getAttribute('aria-required') === 'true';
 
     if (required && value === '') {
-      messages.push(control.dataset.powermailRequiredMessage || control.validationMessage);
+      messages.push(getPowermailRequiredMessage(form, control));
       return uniquePowermailMessages(messages);
     }
 
@@ -1162,11 +1170,19 @@ document.addEventListener('DOMContentLoaded', () => {
     if (renderedMessages.length > 0) return renderedMessages;
 
     const control = field.controls.find(item => item.validationMessage) || field.controls[0];
+    const required = control && (
+      control.required
+      || control.dataset.powermailRequired === 'true'
+      || control.getAttribute('aria-required') === 'true'
+    );
+
     return uniquePowermailMessages([
-      control?.dataset?.powermailRequiredMessage
-      || control?.dataset?.powermailErrorMessage
-      || control?.validationMessage
-      || powermailErrorFallback,
+      required
+        ? getPowermailRequiredMessage(form, control)
+        : control?.dataset?.powermailRequiredMessage
+          || control?.dataset?.powermailErrorMessage
+          || control?.validationMessage
+          || powermailErrorFallback,
     ]);
   };
 
@@ -1303,7 +1319,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
       link.href = `#${targetId}`;
       link.className = 'underline underline-offset-4';
-      link.textContent = messages.length > 1 ? label : `${label}: ${messages[0] || powermailErrorFallback}`;
+      link.textContent = label;
       link.addEventListener('click', event => {
         event.preventDefault();
 
@@ -1320,9 +1336,9 @@ document.addEventListener('DOMContentLoaded', () => {
       });
 
       item.appendChild(link);
-      if (messages.length > 1) {
+      if (messages.length > 0) {
         const messageList = document.createElement('ul');
-        messageList.className = 'mt-1 list-disc space-y-1 ps-4';
+        messageList.className = 'mt-1 list-disc space-y-1 ps-4 text-muted-foreground';
         messages.forEach(message => {
           const messageItem = document.createElement('li');
           messageItem.textContent = message;

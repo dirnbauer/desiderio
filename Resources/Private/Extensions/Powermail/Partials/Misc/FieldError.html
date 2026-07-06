@@ -3,6 +3,6 @@
 <f:argument name="settings" type="array" optional="{true}" />
 
 <f:if condition="{settings.validation.client}">
-    <div id="powermail_field_error_{field.marker}" class="powermail_field_error_container_{field.marker} text-xs text-destructive" data-powermail-field-error="{field.marker}" aria-live="polite"></div>
+    <div id="powermail_field_error_{field.marker}" class="powermail_field_error_container_{field.marker} text-xs text-muted-foreground" style="color: var(--muted-foreground)" data-powermail-field-error="{field.marker}" aria-live="polite"></div>
 </f:if>
 </html>

@@ -996,12 +996,23 @@ final class StyleguideShowcasePages
                     '<p>The lab already combines the pieces a serious agentic TYPO3 story needs: the Desiderio design system, content and media operations, MCP tools, API capability patterns, Skillflow, Agentation, x402 payment flows, search, forms, enterprise auth concepts and workspace-based review — with the AI layer resting on Netresearch\'s nr_llm, nr_mcp_agent, nr_vault and t3_cowriter. The newest wave widens the story from tools to protocols and channels: <strong>Agent Nexus</strong> (A2UI, AG-UI, A2A, UCP and AP2 playgrounds plus frontend plugins), <strong>OpenTag Bridge</strong> (steer TYPO3 from Slack with approvals and an audit ledger), <strong>Flue</strong> (a durable agent runtime with TYPO3 as control plane), a capability manifest, a DOCX media editor, modern Records views and a Vercel deployment starter.</p><ul><li><strong>Demo value</strong> - clients can see real content, real backend modules and real operations instead of abstract architecture diagrams.</li><li><strong>Implementation value</strong> - the stack uses TYPO3 concepts: pages, records, Content Blocks, FAL, site settings and workspaces.</li><li><strong>Roadmap value</strong> - what is already installed makes the v14 platform direction concrete enough to sell and refine.</li></ul><p>This matters commercially. Buyers do not need another AI keynote. They need to see which parts can be installed, governed, extended and connected to actual editorial work.</p>',
                     self::mcpStrategyImage('v14-13-installed-stack-source-d2f467651a18dbc9.png', 'Installed TYPO3 AI lab stack', 'Installed TYPO3 AI lab stack with LLM, MCP, vault and monitoring modules.')
                 ),
-                self::v14StrategyTextmedia(
-                    'Built on Netresearch\'s AI foundation',
-                    'media-above',
-                    'Credit where it is due — four open-source extensions carry the AI layer.',
-                    '<p>The AI layer of this lab runs on four open-source extensions by Netresearch DTT GmbH - proper, workspace-aware TYPO3 code instead of a SaaS bolted on the side: <strong>nr_llm</strong> (the shared LLM foundation), <strong>nr_mcp_agent</strong> (the backend assistant), <strong>nr_vault</strong> (encrypted secrets) and <strong>t3_cowriter</strong> (an AI writing partner for editors). Thank you.</p>'
-                ),
+                self::block('desiderio_headersection', [
+                    'eyebrow' => 'Credit where it is due',
+                    'header' => 'The whole AI layer is Netresearch — thank you',
+                    'subheadline' => 'None of the agentic story above would run without the AI foundation Netresearch DTT GmbH publishes for TYPO3. We use their extensions because they are excellent: a shared LLM layer, a backend agent, an encrypted vault and an AI cowriter — proper, workspace-aware TYPO3 code, not a SaaS bolted on the side.',
+                    'variant' => 'center',
+                ]),
+                self::block('desiderio_benefitcards', [
+                    'header' => 'Four Netresearch extensions doing the heavy lifting',
+                    'eyebrow' => 'Netresearch DTT GmbH',
+                    'columns' => '2',
+                    'items' => [
+                        ['icon' => 'sparkles', 'title' => 'nr_llm — the shared AI foundation', 'description' => 'Centralized provider management, encrypted API keys, and ready-to-use services for chat, translation, vision, and embeddings. This is the LLM-agnostic layer pillar 5 asks for — already installed and running. Thank you, Netresearch.', 'link' => 'https://github.com/netresearch/t3x-nr-llm'],
+                        ['icon' => 'message-circle', 'title' => 'nr_mcp_agent — backend AI assistant', 'description' => 'An AI chat assistant inside the TYPO3 backend, built on nr_llm and the MCP server. It calls the same governed tools every other agent uses, so chat never becomes a parallel, ungoverned system.', 'link' => 'https://github.com/dirnbauer/t3x-nr-mcp-agent'],
+                        ['icon' => 'lock', 'title' => 'nr_vault — secrets, done properly', 'description' => 'Secure secrets management with envelope encryption, access control, and audit logging. Provider credentials and tokens stay encrypted at rest instead of sitting in a plain configuration file.', 'link' => 'https://github.com/netresearch/t3x-nr-vault'],
+                        ['icon' => 'file', 'title' => 't3_cowriter — an AI writing partner', 'description' => 'A digital assistant that helps editors write content directly on the page — the friendly, human-facing end of the same AI foundation, putting editorial help exactly where the work happens.', 'link' => 'https://github.com/netresearch/t3x-cowriter'],
+                    ],
+                ]),
                 self::v14StrategyTextmedia(
                     'The full MCP toolbox',
                     'media-above',

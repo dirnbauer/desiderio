@@ -6,6 +6,23 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Changed
+
+- Content overhaul — attribution sweep across the seeded styleguide. Every
+  external extension and library Desiderio builds on now gets a direct
+  thank-you, and **Netresearch's AI suite is featured throughout the agentic
+  story**. New credit sections on the ecosystem (`/features`),
+  technical-features, TYPO3 v14 strategy, and Skills pages name and link
+  Netresearch DTT GmbH's `nr_llm` (shared LLM foundation), `nr_mcp_agent`
+  (backend AI assistant), `nr_vault` (encrypted secrets), and `t3_cowriter`
+  (AI cowriter) — the four extensions the lab actually runs — alongside
+  in2code (Powermail), Georg Ringer (News), TYPO3 GmbH (Blog), dkd Internet
+  Service GmbH (Apache Solr for TYPO3), Studio Mitte (Friendly Captcha), the
+  friends of TYPO3 Visual Editor and Content Blocks teams, shadcn/ui,
+  Tailwind, Prism, Alpine.js, and the bundled font and icon sets. The demo
+  news seeder gained matching upstream-author credits. Content only — no
+  schema, count, or behaviour changes.
+
 ## [2.13.0] — 2026-07-04
 
 ### Changed

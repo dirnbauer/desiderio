@@ -92,21 +92,21 @@ final class NewsDemoSeeder
             [
                 'title' => 'Solr search templates: facets, suggest, zero layout shift',
                 'teaser' => 'The shadcn-styled Apache Solr UI ships complete: results, options facet, sorting, per-page switcher, and a header suggest dropdown that never shifts the layout.',
-                'bodytext' => '<p>Search is the page visitors judge hardest, so the Solr template set covers all of it: result cards with stable truncation, an accessible facet sidebar, sort and per-page controls, and a suggest dropdown in the header that reserves its own space.</p><p>Every piece follows the active theme preset, including dark mode, with no extra styling work.</p>',
+                'bodytext' => '<p>Search is the page visitors judge hardest, so the Solr template set covers all of it: result cards with stable truncation, an accessible facet sidebar, sort and per-page controls, and a suggest dropdown in the header that reserves its own space.</p><p>Every piece follows the active theme preset, including dark mode, with no extra styling work. The search engine underneath is Apache Solr for TYPO3 — thank you to dkd Internet Service GmbH and the TYPO3-Solr team.</p>',
                 'daysAgo' => 5,
                 'istopnews' => false,
             ],
             [
                 'title' => 'Visual Editor inline editing works across the whole library',
                 'teaser' => 'Every Desiderio content element can be edited inline with TYPO3\'s Visual Editor — click the text on the page, type, done.',
-                'bodytext' => '<p>The Visual Editor integration maps editable fields on all elements, so editors fix typos where they see them instead of hunting through backend forms.</p><p>Structured fields like collection items still open the full record for safety; plain text edits stay on the page.</p>',
+                'bodytext' => '<p>The Visual Editor integration maps editable fields on all elements, so editors fix typos where they see them instead of hunting through backend forms.</p><p>Structured fields like collection items still open the full record for safety; plain text edits stay on the page. The inline editing is powered by the community Visual Editor — thank you to the friends of TYPO3 maintainers.</p>',
                 'daysAgo' => 7,
                 'istopnews' => false,
             ],
             [
                 'title' => 'Blog integration: t3g/blog posts in shadcn clothes',
                 'teaser' => 'Post lists, metadata badges, sidebar widgets, comments, and a captcha-protected comment form — the t3g/blog overrides are complete and dark-mode ready.',
-                'bodytext' => '<p>The blog template set styles the full t3g/blog surface: paginated post lists, category and tag badges near the title, a sticky sidebar with recent posts and tag cloud, and a comment form wired to Friendly Captcha.</p><p>The demo styleguide ships fifteen seeded fictional success stories to show it off.</p>',
+                'bodytext' => '<p>The blog template set styles the full t3g/blog surface: paginated post lists, category and tag badges near the title, a sticky sidebar with recent posts and tag cloud, and a comment form wired to Friendly Captcha.</p><p>The demo styleguide ships fifteen seeded fictional success stories to show it off. The Blog Extension itself comes from TYPO3 GmbH — thank you.</p>',
                 'daysAgo' => 11,
                 'istopnews' => true,
             ],
@@ -127,7 +127,7 @@ final class NewsDemoSeeder
             [
                 'title' => 'Powermail, restyled: six demo flows seeded',
                 'teaser' => 'All powermail field types wear the Desiderio form partials, and the seeder ships six complete demo forms with thank-you flows in English and German.',
-                'bodytext' => '<p>The powermail integration restyles every field type with the same form partials the Form Framework bridge uses, so mixed installations look consistent.</p><p>Six seeded demo forms — contact to multi-step — double as living documentation, captcha included.</p>',
+                'bodytext' => '<p>The powermail integration restyles every field type with the same form partials the Form Framework bridge uses, so mixed installations look consistent.</p><p>Six seeded demo forms — contact to multi-step — double as living documentation, captcha included. Powermail itself is by in2code, and the Friendly Captcha extension by Studio Mitte — thank you both.</p>',
                 'daysAgo' => 21,
                 'istopnews' => false,
             ],

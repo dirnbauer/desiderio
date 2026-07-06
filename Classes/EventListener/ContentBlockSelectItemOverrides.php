@@ -8,6 +8,7 @@ use Symfony\Component\Yaml\Yaml;
 use TYPO3\CMS\Core\Attribute\AsEventListener;
 use TYPO3\CMS\Core\Configuration\Event\AfterTcaCompilationEvent;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+use Webconsulting\Desiderio\DataHandling\ContentBlockSelectItemsProcessor;
 
 /**
  * Content Blocks intentionally stores many fields in shared tt_content columns
@@ -17,6 +18,8 @@ use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
  */
 final class ContentBlockSelectItemOverrides
 {
+    private const EXACT_ITEMS_PROCESSOR_KEY = 0;
+
     #[AsEventListener('desiderio/content-block-select-item-overrides')]
     public function __invoke(AfterTcaCompilationEvent $event): void
     {
@@ -143,6 +146,7 @@ final class ContentBlockSelectItemOverrides
 
         $override['config'] = $this->copyKnownKeys($field, [
             'items',
+            'itemsProcessors',
             'default',
             'renderType',
             'itemGroups',
@@ -153,8 +157,45 @@ final class ContentBlockSelectItemOverrides
             'fieldInformation',
             'fieldWizard',
         ]);
+        if (isset($field['items']) && is_array($field['items'])) {
+            $override['config'] = $this->addExactItemsProcessor(
+                $override['config'],
+                $field['items']
+            );
+        }
 
         return $override;
+    }
+
+    /**
+     * FormEngine applies columnsOverrides with array_replace_recursive(), which
+     * keeps numeric items from the shared base column when an override has fewer
+     * values. Reset the runtime collection so each CType gets the exact YAML list.
+     *
+     * @param array<string, mixed> $config
+     * @param array<int, array<mixed, mixed>> $items
+     * @return array<string, mixed>
+     */
+    private function addExactItemsProcessor(array $config, array $items): array
+    {
+        $itemsProcessors = $config['itemsProcessors'] ?? [];
+        $itemsProcessors = is_array($itemsProcessors) ? $itemsProcessors : [];
+
+        $processorKey = self::EXACT_ITEMS_PROCESSOR_KEY;
+        while (array_key_exists($processorKey, $itemsProcessors)) {
+            --$processorKey;
+        }
+
+        $itemsProcessors[$processorKey] = [
+            'class' => ContentBlockSelectItemsProcessor::class,
+            'parameters' => [
+                'items' => array_values($items),
+            ],
+        ];
+
+        $config['itemsProcessors'] = $itemsProcessors;
+
+        return $config;
     }
 
     /**

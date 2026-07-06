@@ -37,7 +37,7 @@ parameters:
 			path: Classes/Command/PowermailDemoSeeder.php
 
 		-
-			message: '#^Parameter \#3 \$field of method Webconsulting\\Desiderio\\Command\\PowermailDemoSeeder\:\:insertPowermailField\(\) expects array\{type\: string, marker\: string, titleEn\: string, titleDe\: string, mandatory\: bool, validation\: int, sender_email\: bool, sender_name\: bool, \.\.\.\}, mixed given\.$#'
+			message: '#^Parameter \#3 \$field of method Webconsulting\\Desiderio\\Command\\PowermailDemoSeeder\:\:insertPowermailField\(\) expects array\{type\: string, marker\: string, titleEn\: string, titleDe\: string, mandatory\: bool, validation\: int, validationConfiguration\: string, sender_email\: bool, \.\.\.\}, mixed given\.$#'
 			identifier: argument.type
 			count: 2
 			path: Classes/Command/PowermailDemoSeeder.php
@@ -49,7 +49,7 @@ parameters:
 			path: Classes/Command/PowermailDemoSeeder.php
 
 		-
-			message: '#^Parameter \#3 \$page of method Webconsulting\\Desiderio\\Command\\PowermailDemoSeeder\:\:insertPowermailPage\(\) expects array\{titleEn\: string, titleDe\: string, fields\: list\<array\{type\: string, marker\: string, titleEn\: string, titleDe\: string, mandatory\: bool, validation\: int, sender_email\: bool, sender_name\: bool, \.\.\.\}\>\}, mixed given\.$#'
+			message: '#^Parameter \#3 \$page of method Webconsulting\\Desiderio\\Command\\PowermailDemoSeeder\:\:insertPowermailPage\(\) expects array\{titleEn\: string, titleDe\: string, fields\: list\<array\{type\: string, marker\: string, titleEn\: string, titleDe\: string, mandatory\: bool, validation\: int, validationConfiguration\: string, sender_email\: bool, \.\.\.\}\>\}, mixed given\.$#'
 			identifier: argument.type
 			count: 2
 			path: Classes/Command/PowermailDemoSeeder.php
@@ -95,6 +95,12 @@ parameters:
 			identifier: argument.type
 			count: 1
 			path: Classes/Domain/Finishers/BrevoContactFinisher.php
+
+		-
+			message: '#^Parameter \#2 \$items of method Webconsulting\\Desiderio\\EventListener\\ContentBlockSelectItemOverrides\:\:addExactItemsProcessor\(\) expects array\<int, array\<mixed\>\>, array\<mixed, mixed\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: Classes/EventListener/ContentBlockSelectItemOverrides.php
 
 		-
 			message: '#^Method Webconsulting\\Desiderio\\Seeding\\StarterContentBuilder\:\:getCollectionTable\(\) has parameter \$collection with no value type specified in iterable type array\.$#'
@@ -229,9 +235,15 @@ parameters:
 			path: Tests/Unit/ComponentStructureTest.php
 
 		-
+			message: '#^Cannot access offset ''items'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: Tests/Unit/ContentBlockSelectItemOverridesTest.php
+
+		-
 			message: '#^Argument of an invalid type mixed supplied for foreach, only iterables are supported\.$#'
 			identifier: foreach.nonIterable
-			count: 6
+			count: 7
 			path: Tests/Unit/ContentBlockStructureTest.php
 
 		-
@@ -547,15 +559,33 @@ parameters:
 			path: Tests/Unit/ExtensionMetadataTest.php
 
 		-
+			message: '#^Cannot access offset ''containerClassAttribute'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: Tests/Unit/FriendlyCaptchaFallbackTest.php
+
+		-
+			message: '#^Cannot access offset ''labelClassAttribute'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 1
+			path: Tests/Unit/FriendlyCaptchaFallbackTest.php
+
+		-
 			message: '#^Call to static method PHPUnit\\Framework\\Assert\:\:assertSame\(\) with 505 and 505 will always evaluate to true\.$#'
 			identifier: staticMethod.alreadyNarrowedType
 			count: 1
 			path: Tests/Unit/StyleguideSeedCommandTest.php
 
 		-
-			message: '#^Cannot access offset ''header'' on mixed\.$#'
+			message: '#^Cannot access offset ''desiderio_headersection_variant'' on mixed\.$#'
 			identifier: offsetAccess.nonOffsetAccessible
 			count: 1
+			path: Tests/Unit/StyleguideSeedCommandTest.php
+
+		-
+			message: '#^Cannot access offset ''header'' on mixed\.$#'
+			identifier: offsetAccess.nonOffsetAccessible
+			count: 2
 			path: Tests/Unit/StyleguideSeedCommandTest.php
 
 		-
@@ -585,13 +615,19 @@ parameters:
 		-
 			message: '#^Cannot use array destructuring on mixed\.$#'
 			identifier: offsetAccess.nonArray
-			count: 3
+			count: 4
 			path: Tests/Unit/StyleguideSeedCommandTest.php
 
 		-
 			message: '#^Parameter \#2 \$array of static method PHPUnit\\Framework\\Assert\:\:assertArrayHasKey\(\) expects array\<mixed\>\|ArrayAccess\<\(int\|string\), mixed\>, mixed given\.$#'
 			identifier: argument.type
 			count: 2
+			path: Tests/Unit/StyleguideSeedCommandTest.php
+
+		-
+			message: '#^Parameter \#2 \$array of static method PHPUnit\\Framework\\Assert\:\:assertArrayNotHasKey\(\) expects array\<mixed\>\|ArrayAccess\<\(int\|string\), mixed\>, mixed given\.$#'
+			identifier: argument.type
+			count: 1
 			path: Tests/Unit/StyleguideSeedCommandTest.php
 
 		-

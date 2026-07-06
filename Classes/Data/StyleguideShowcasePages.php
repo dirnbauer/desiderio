@@ -3105,6 +3105,7 @@ ddev exec vendor/bin/typo3 skillflow:sync
     }
 
     /**
+     * @param array{file: string, title: string, alternative: string, description: string, source: string}|null $media
      * @return StarterBlock
      */
     private static function v14StrategyTextmedia(string $header, string $layout, string $subheadline, string $content, ?array $media = null): array

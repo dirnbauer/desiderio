@@ -49,7 +49,7 @@ final class PowermailDemoFormDefinitions
                             self::field('input', 'email', 'Email', 'E-Mail', ['mandatory' => true, 'validation' => 1, 'sender_email' => true, 'placeholderEn' => 'you@example.com', 'placeholderDe' => 'sie@example.com']),
                             self::field('input', 'phone', 'Phone', 'Telefon', ['mandatory' => true, 'placeholderEn' => '+43 ...', 'placeholderDe' => '+43 ...']),
                             self::field('input', 'team_size', 'Team size', 'Teamgröße', ['mandatory' => true, 'validation' => 6, 'validationConfiguration' => '5', 'placeholderEn' => '5', 'placeholderDe' => '5']),
-                            self::field('select', 'topic', 'Topic', 'Thema', ['mandatory' => true, 'options' => [['General inquiry', 'Allgemeine Anfrage', 'general'], ['Sales', 'Vertrieb', 'sales'], ['Support', 'Support', 'support']]]),
+                            self::field('select', 'topic', 'Topic', 'Thema', ['mandatory' => true, 'options' => [['Please select', 'Bitte auswählen', ''], ['General inquiry', 'Allgemeine Anfrage', 'general'], ['Sales', 'Vertrieb', 'sales'], ['Support', 'Support', 'support']]]),
                             self::field('textarea', 'message', 'Message', 'Nachricht', ['mandatory' => true, 'placeholderEn' => 'How can we help?', 'placeholderDe' => 'Wie koennen wir helfen?']),
                             self::field('friendlycaptcha', 'friendlycaptcha', 'Spam protection', 'Spam-Schutz'),
                             self::field('submit', 'submit', 'Send request', 'Anfrage senden'),

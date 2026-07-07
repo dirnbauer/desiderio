@@ -195,7 +195,12 @@ final class PowermailIntegrationTest extends TestCase
         self::assertStringContainsString("message.className = 'd-powermail-field-error-message';", $javascript);
         self::assertStringContainsString("list.className = 'd-powermail-field-error-list';", $javascript);
         self::assertStringNotContainsString("d-powermail-field-error-icon", $javascript);
-        self::assertStringContainsString("container.setAttribute('role', 'alert');", $javascript);
+        self::assertStringContainsString('powermailGeneratedErrorSelector', $javascript);
+        self::assertStringContainsString("trim().replace(',', '.')", $javascript);
+        self::assertStringContainsString('removePowermailGeneratedErrors(field);', $javascript);
+        self::assertStringContainsString("control.setAttribute('aria-errormessage', errorContainer.id);", $javascript);
+        self::assertStringContainsString("control.removeAttribute('aria-errormessage');", $javascript);
+        self::assertStringNotContainsString("container.setAttribute('role', 'alert');", $javascript);
         self::assertStringContainsString("container.removeAttribute('role');", $javascript);
         self::assertStringContainsString("field.wrapper.dataset.invalid = 'true';", $javascript);
         self::assertStringContainsString('delete field.wrapper.dataset.invalid;', $javascript);
@@ -292,6 +297,7 @@ final class PowermailIntegrationTest extends TestCase
         $definitionsSource = (string)file_get_contents(__DIR__ . '/../../Classes/Data/PowermailDemoFormDefinitions.php');
         self::assertStringContainsString("'slug' => 'support'", $definitionsSource);
         self::assertStringContainsString("'friendlycaptcha'", $definitionsSource);
+        self::assertStringContainsString("['Please select', 'Bitte auswählen', '']", $definitionsSource);
 
         $source = (string)file_get_contents(__DIR__ . '/../../Classes/Command/PowermailDemoSeeder.php');
         self::assertStringContainsString('office@webconsulting.at', $source);

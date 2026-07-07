@@ -897,6 +897,10 @@ document.addEventListener('DOMContentLoaded', () => {
     '.powermail-errors-list.filled',
     '[data-powermail-error]',
   ].join(',');
+  const powermailGeneratedErrorSelector = [
+    '.powermail-errors-list:not(.d-powermail-field-error-list)',
+    '[data-powermail-error]',
+  ].join(',');
   const powermailControlSelector = [
     'input:not([type="hidden"]):not([type="submit"]):not([type="button"]):not([type="reset"])',
     'select',
@@ -997,32 +1001,37 @@ document.addEventListener('DOMContentLoaded', () => {
     return container;
   };
 
-  const addDescribedBy = (control, id) => {
-    if (!id) return;
-
-    const describedBy = new Set((control.getAttribute('aria-describedby') || '').split(/\s+/).filter(existingId => {
+  const getPowermailDescribedByIds = (control, removeId = '') => (
+    (control.getAttribute('aria-describedby') || '').split(/\s+/).filter(existingId => {
       if (!existingId) return false;
+      if (existingId === removeId) return false;
 
       const describedElement = document.getElementById(existingId);
-      return !describedElement?.matches?.('.powermail-errors-list, [data-powermail-error]');
-    }));
-    describedBy.add(id);
-    control.setAttribute('aria-describedby', Array.from(describedBy).join(' '));
-  };
+      return Boolean(describedElement) && !describedElement.matches(powermailGeneratedErrorSelector);
+    })
+  );
 
-  const removeDescribedBy = (control, id) => {
-    if (!id) return;
-
-    const describedBy = (control.getAttribute('aria-describedby') || '')
-      .split(/\s+/)
-      .filter(existingId => existingId && existingId !== id);
-
+  const setPowermailDescribedByIds = (control, describedBy) => {
     if (describedBy.length > 0) {
       control.setAttribute('aria-describedby', describedBy.join(' '));
       return;
     }
 
     control.removeAttribute('aria-describedby');
+  };
+
+  const addDescribedBy = (control, id) => {
+    if (!id) return;
+
+    const describedBy = new Set(getPowermailDescribedByIds(control));
+    describedBy.add(id);
+    setPowermailDescribedByIds(control, Array.from(describedBy));
+  };
+
+  const removeDescribedBy = (control, id) => {
+    if (!id) return;
+
+    setPowermailDescribedByIds(control, getPowermailDescribedByIds(control, id));
   };
 
   const getPowermailFields = form => {
@@ -1107,7 +1116,9 @@ document.addEventListener('DOMContentLoaded', () => {
     control.getAttribute(attribute) || control.getAttribute(dataAttribute) || ''
   );
 
-  const hasPowermailNumericValue = value => value !== '' && Number.isFinite(Number(value));
+  const getPowermailNumericValue = value => Number(String(value || '').trim().replace(',', '.'));
+
+  const hasPowermailNumericValue = value => value !== '' && Number.isFinite(getPowermailNumericValue(value));
 
   const hasPowermailIntegerConstraint = control => {
     if (control.getAttribute('data-powermail-type') === 'integer') return true;
@@ -1117,10 +1128,19 @@ document.addEventListener('DOMContentLoaded', () => {
     return step === null || step === '' || step === '1';
   };
 
+  const getPowermailGeneratedErrorElements = field => Array.from(
+    field.wrapper.querySelectorAll(powermailGeneratedErrorSelector),
+  ).filter(element => !element.closest('[data-powermail-field-error]'));
+
   const getPowermailRenderedMessages = field => uniquePowermailMessages(
-    Array.from(field.wrapper.querySelectorAll('.powermail_field_error, .powermail-errors-list:not(.d-powermail-field-error-list) li, [data-powermail-error] li'))
+    getPowermailGeneratedErrorElements(field)
+      .flatMap(element => Array.from(element.matches('li') ? [element] : element.querySelectorAll('li')))
       .map(item => item.textContent),
   );
+
+  const removePowermailGeneratedErrors = field => {
+    getPowermailGeneratedErrorElements(field).forEach(element => element.remove());
+  };
 
   const getPowermailControlMessages = (form, control) => {
     const messages = [];
@@ -1130,14 +1150,14 @@ document.addEventListener('DOMContentLoaded', () => {
       || control.dataset.powermailRequired === 'true'
       || control.getAttribute('aria-required') === 'true';
 
-    if (required && value === '') {
+    if (required && value === '' && !validity?.badInput) {
       messages.push(getPowermailRequiredMessage(form, control));
       return uniquePowermailMessages(messages);
     }
 
-    if (value === '') return messages;
+    if (value === '' && !validity?.badInput) return messages;
 
-    const numericValue = Number(value);
+    const numericValue = getPowermailNumericValue(value);
     const hasNumericValue = hasPowermailNumericValue(value);
     const min = getPowermailConstraintValue(control, 'min', 'data-powermail-min');
     const max = getPowermailConstraintValue(control, 'max', 'data-powermail-max');
@@ -1208,7 +1228,7 @@ document.addEventListener('DOMContentLoaded', () => {
       return;
     }
 
-    container.setAttribute('role', 'alert');
+    container.removeAttribute('role');
 
     const stack = document.createElement('div');
     stack.className = 'd-powermail-field-error-stack';
@@ -1336,6 +1356,9 @@ document.addEventListener('DOMContentLoaded', () => {
     getPowermailFields(form).forEach(field => {
       const errorContainer = getPowermailErrorContainer(field);
       const invalid = isPowermailFieldInvalid(form, field);
+      const messages = invalid ? getPowermailFieldMessages(form, field) : [];
+
+      removePowermailGeneratedErrors(field);
 
       if (invalid) {
         field.wrapper.dataset.invalid = 'true';
@@ -1347,14 +1370,17 @@ document.addEventListener('DOMContentLoaded', () => {
         if (invalid) {
           if (errorContainer) addDescribedBy(control, errorContainer.id);
           control.setAttribute('aria-invalid', 'true');
+          if (errorContainer) {
+            control.setAttribute('aria-errormessage', errorContainer.id);
+          }
         } else {
           if (errorContainer) removeDescribedBy(control, errorContainer.id);
           control.removeAttribute('aria-invalid');
+          control.removeAttribute('aria-errormessage');
         }
       });
 
       if (invalid) {
-        const messages = getPowermailFieldMessages(form, field);
         renderPowermailFieldMessages(errorContainer, messages);
 
         invalidFields.push({

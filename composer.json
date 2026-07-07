@@ -19,12 +19,13 @@
     "minimum-stability": "stable",
     "prefer-stable": true,
     "suggest": {
-        "friendsoftypo3/visual-editor": "Optional. Inline visual editing when templates use f:render.text for text fields.",
-        "georgringer/news": "Optional. Drives the shadcn-styled News templates and the DesiderioNews backend layout.",
-        "in2code/powermail": "Optional. Drives the shadcn-styled Powermail templates and demo form seeder.",
-        "studiomitte/friendlycaptcha": "Optional. Protects the bundled TYPO3 Form Framework and Powermail lab forms with Friendly Captcha. For TYPO3 14 install the fork: add the VCS repository https://github.com/dirnbauer/friendlycaptcha-typo3 and require studiomitte/friendlycaptcha:^14.0@dev. Without it the captcha element renders an inert placeholder and validation passes.",
-        "apache-solr-for-typo3/solr": "Optional. Drives the shadcn-styled Solr search templates.",
-        "t3g/blog": "Optional. Drives the shadcn-styled t3g/blog overrides shipped under webconsulting/desiderio-blog."
+        "friendsoftypo3/visual-editor": "Optional. Inline visual editing when templates use f:render.text for text fields. Thank you to the friends of TYPO3 maintainers.",
+        "georgringer/news": "Optional. Drives the shadcn-styled News templates and the DesiderioNews backend layout. Thank you, Georg Ringer.",
+        "in2code/powermail": "Optional. Drives the shadcn-styled Powermail templates and demo form seeder. Thank you, in2code.",
+        "studiomitte/friendlycaptcha": "Optional. Protects the bundled TYPO3 Form Framework and Powermail lab forms with Friendly Captcha. For TYPO3 14 install the fork: add the VCS repository https://github.com/dirnbauer/friendlycaptcha-typo3 and require studiomitte/friendlycaptcha:^14.0@dev. Without it the captcha element renders an inert placeholder and validation passes. Thank you, Studio Mitte.",
+        "apache-solr-for-typo3/solr": "Optional. Drives the shadcn-styled Solr search templates. Thank you to dkd Internet Service GmbH and the TYPO3-Solr team.",
+        "t3g/blog": "Optional. Drives the shadcn-styled t3g/blog overrides shipped under webconsulting/desiderio-blog. Thank you, TYPO3 GmbH.",
+        "netresearch/nr-llm": "Optional. Netresearch's AI foundation for TYPO3 — the shared LLM provider layer behind the agentic features shown in the styleguide, alongside nr-mcp-agent, nr-vault and t3-cowriter. Thank you, Netresearch DTT GmbH."
     },
     "autoload": {
         "psr-4": {

@@ -6,7 +6,7 @@
     "items": [
         {
             "title": "Open source by default",
-            "description": "<p>Everything ships <strong>GPL-2.0</strong> on <a href=\"https://github.com\">GitHub</a> — components, presets, and the seeder. Issues and pull requests drive the roadmap.</p>",
+            "description": "<p>Everything ships <strong>GPL-2.0-or-later</strong> on <a href=\"https://github.com\">GitHub</a> — components, presets, and the seeder. Issues and pull requests drive the roadmap.</p>",
             "image": {
                 "file": "Resources/Public/Styleguide/Unsplash/customer-workshop.jpg",
                 "title": "Team workshop",
@@ -17,7 +17,7 @@
         },
         {
             "title": "Audit before merge",
-            "description": "<p>An <strong>11-category template audit</strong> with zero tolerance: no inline styles, no hardcoded colors, every element checked in CI.</p>",
+            "description": "<p>An <strong>automated template audit</strong> with zero tolerance: no inline styles, no hardcoded colors, every element checked in CI.</p>",
             "image": {
                 "file": "Resources/Public/Styleguide/Unsplash/office-e-vos.jpg",
                 "title": "Studio office",

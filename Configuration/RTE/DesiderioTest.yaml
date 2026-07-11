@@ -1,0 +1,4 @@
+# Backward-compatible alias for styleguide pages seeded before the complete
+# feature set moved into the normal Desiderio production preset.
+imports:
+  - { resource: 'EXT:desiderio/Configuration/RTE/Desiderio.yaml' }

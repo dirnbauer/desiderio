@@ -8,6 +8,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Tester\CommandTester;
 use TYPO3\TestingFramework\Core\Functional\FunctionalTestCase;
 use Webconsulting\Desiderio\Command\SeedStyleguidePagesCommand;
+use Webconsulting\Desiderio\Data\RteCombinationFixtures;
 use Webconsulting\Desiderio\Data\StyleguideContentGroups;
 use Webconsulting\Desiderio\Data\StyleguideShowcasePages;
 
@@ -92,11 +93,12 @@ final class SeedStyleguidePagesCommandFunctionalTest extends FunctionalTestCase
     {
         $groups = $this->seededContentTypeGroups(StyleguideContentGroups::getGroupsWithFixtures());
         $expectedDesiderioElements = $this->countGroupElements($groups)
-            + StyleguideShowcasePages::contentElementCount()
+            + $this->countShowcaseElements('desiderio_', true)
             + $this->countChapterFramingElements($groups);
-        $expectedSupportElements = count(self::CONTENT_TYPE_SUPPORT_PAGE_SLUGS);
+        $expectedSupportElements = count(self::CONTENT_TYPE_SUPPORT_PAGE_SLUGS)
+            + $this->countShowcaseElements('text');
         $expectedTopLevelPages = $this->countTopLevelShowcasePages();
-        $expectedPages = count($groups) + $expectedSupportElements + count(StyleguideShowcasePages::subpages());
+        $expectedPages = count($groups) + count(self::CONTENT_TYPE_SUPPORT_PAGE_SLUGS) + count(StyleguideShowcasePages::subpages());
 
         $tester = $this->createCommandTester();
         $exitCode = $tester->execute(['--parent' => '1', '--skip-powermail' => true, '--skip-news' => true]);
@@ -104,13 +106,25 @@ final class SeedStyleguidePagesCommandFunctionalTest extends FunctionalTestCase
         self::assertSame(Command::SUCCESS, $exitCode, $tester->getDisplay());
         self::assertSame($expectedTopLevelPages, $this->countRows('pages', 'pid = 1 AND deleted = 0'));
         self::assertSame($expectedPages, $this->countRows('pages', 'uid <> 1 AND deleted = 0'));
+        $contentTypesUid = $this->intValue($this->fetchPageBySlug('/content-types'), 'uid');
         self::assertSame(
-            array_keys(self::CONTENT_TYPE_PRESETS_BY_SLUG),
-            $this->fetchChildSlugs($this->intValue($this->fetchPageBySlug('/content-types'), 'uid'))
+            ['/content-types/rte-combinations', ...array_keys(self::CONTENT_TYPE_PRESETS_BY_SLUG)],
+            $this->fetchChildSlugs($contentTypesUid)
         );
         foreach (self::CONTENT_TYPE_SUPPORT_PAGE_SLUGS as $slug) {
             self::assertSame(1, $this->countRows('pages', "deleted = 0 AND slug = '" . $slug . "'"), $slug);
         }
+        $rtePage = $this->fetchPageBySlug('/content-types/rte-combinations');
+        $rtePageUid = $this->intValue($rtePage, 'uid');
+        self::assertSame($contentTypesUid, $this->intValue($rtePage, 'pid'));
+        self::assertSame('RTE.config.tt_content.bodytext.types.text.preset = desiderio', $rtePage['TSconfig']);
+        $rteContent = $this->getConnectionPool()
+            ->getConnectionForTable('tt_content')
+            ->executeQuery('SELECT CType, bodytext FROM tt_content WHERE pid = ? AND deleted = 0', [$rtePageUid])
+            ->fetchAssociative();
+        self::assertIsArray($rteContent);
+        self::assertSame('text', $rteContent['CType']);
+        self::assertSame(RteCombinationFixtures::bodytext(), $rteContent['bodytext']);
         self::assertSame(
             $expectedDesiderioElements,
             $this->countRows('tt_content', "deleted = 0 AND CType LIKE 'desiderio_%'")
@@ -131,8 +145,8 @@ final class SeedStyleguidePagesCommandFunctionalTest extends FunctionalTestCase
         $presetsBySlug = $this->getConnectionPool()
             ->getConnectionForTable('pages')
             ->executeQuery(
-                'SELECT slug, tx_desiderio_shadcn_preset FROM pages WHERE pid = ? AND deleted = 0 ORDER BY sorting',
-                [$contentTypesUid]
+                'SELECT slug, tx_desiderio_shadcn_preset FROM pages WHERE pid = ? AND deleted = 0 AND slug <> ? ORDER BY sorting',
+                [$contentTypesUid, '/content-types/rte-combinations']
             )
             ->fetchAllKeyValue();
 
@@ -143,11 +157,12 @@ final class SeedStyleguidePagesCommandFunctionalTest extends FunctionalTestCase
     {
         $groups = $this->seededContentTypeGroups(StyleguideContentGroups::getGroupsWithFixtures());
         $expectedDesiderioElements = $this->countGroupElements($groups)
-            + StyleguideShowcasePages::contentElementCount()
+            + $this->countShowcaseElements('desiderio_', true)
             + $this->countChapterFramingElements($groups);
-        $expectedSupportElements = count(self::CONTENT_TYPE_SUPPORT_PAGE_SLUGS);
+        $expectedSupportElements = count(self::CONTENT_TYPE_SUPPORT_PAGE_SLUGS)
+            + $this->countShowcaseElements('text');
         $expectedTopLevelPages = $this->countTopLevelShowcasePages();
-        $expectedPages = count($groups) + $expectedSupportElements + count(StyleguideShowcasePages::subpages());
+        $expectedPages = count($groups) + count(self::CONTENT_TYPE_SUPPORT_PAGE_SLUGS) + count(StyleguideShowcasePages::subpages());
 
         $firstRun = $this->createCommandTester();
         self::assertSame(Command::SUCCESS, $firstRun->execute(['--parent' => '1', '--skip-powermail' => true, '--skip-news' => true]));
@@ -214,6 +229,24 @@ final class SeedStyleguidePagesCommandFunctionalTest extends FunctionalTestCase
         $count = 0;
         foreach ($groups as $group) {
             $count += count($group['elements']);
+        }
+
+        return $count;
+    }
+
+    private function countShowcaseElements(string $ctype, bool $prefix = false): int
+    {
+        $blocks = StyleguideShowcasePages::homeContent();
+        foreach (StyleguideShowcasePages::subpages() as $page) {
+            array_push($blocks, ...$page['content']);
+        }
+
+        $count = 0;
+        foreach ($blocks as $block) {
+            $blockCtype = $block['ctype'];
+            if (($prefix && str_starts_with($blockCtype, $ctype)) || (!$prefix && $blockCtype === $ctype)) {
+                $count++;
+            }
         }
 
         return $count;

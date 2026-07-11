@@ -12,7 +12,7 @@ Desiderio follows atomic design with these Fluid layers:
     Layouts     Section, Container, Grid, Stack
     Atoms       Button, Typography, Badge, Icon, Input, …
     Molecules   Card, Field, Alert, Tabs, Table, …
-    Organisms   Content Blocks (255 CE templates)
+    Organisms   244 Desiderio Content Block templates
     Templates   Page shells, extension overrides
 
 Rules
@@ -44,7 +44,7 @@ Reference implementations
 Migration status
 ----------------
 
-All 255 content element frontend templates are migrated to atomic primitives.
+All 244 Desiderio Content Block frontend templates are migrated to atomic primitives.
 ``Build/Scripts/migrate-content-elements-atoms.php`` applies the rules below
 with ``--dry-run`` or ``--write`` and is safe to re-run.
 

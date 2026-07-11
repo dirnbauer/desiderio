@@ -119,29 +119,29 @@
                         </div>
                     </f:if>
 
+                    <f:if condition="{data.variant} == 'thumbnails'">
+                        <div class="content-carousel__thumbnails" role="group" aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:carousel.aria.choose', default: 'Choose slide to display')}">
+                            <f:for each="{data.items}" as="item" iteration="iter">
+                                <button class="content-carousel__thumb{f:if(condition: iter.isFirst, then: ' content-carousel__thumb--active')}"
+                                        type="button"
+                                        aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:carousel.goto.numbered', arguments: {0: iter.cycle, 1: slideCount}, default: 'Go to slide {iter.cycle} of {slideCount}')}"
+                                        aria-current="{f:if(condition: iter.isFirst, then: 'true', else: 'false')}"
+                                        data-astro-content-carousel-thumb="{iter.index}">
+                                    <f:if condition="{item.slide_image}">
+                                        <f:for each="{item.slide_image}" as="image">
+                                            <f:image image="{image}" alt="" maxWidth="120" class="content-carousel__thumb-image" loading="lazy" decoding="async"/>
+                                        </f:for>
+                                    </f:if>
+                                </button>
+                            </f:for>
+                        </div>
+                    </f:if>
+
                     <p class="content-carousel__status" aria-live="polite" data-astro-content-carousel-status>
                         {f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:carousel.status', arguments: {0: 1, 1: slideCount}, default: 'Slide 1 of {slideCount}')}
                     </p>
                 </div>
             </f:else>
-        </f:if>
-
-        <f:if condition="{data.variant} == 'thumbnails'">
-            <div class="content-carousel__thumbnails" role="group" aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:carousel.aria.choose', default: 'Choose slide to display')}">
-                <f:for each="{data.items}" as="item" iteration="iter">
-                    <button class="content-carousel__thumb{f:if(condition: iter.isFirst, then: ' content-carousel__thumb--active')}"
-                            type="button"
-                            aria-label="{f:translate(key: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:carousel.goto.numbered', arguments: {0: iter.cycle, 1: slideCount}, default: 'Go to slide {iter.cycle} of {slideCount}')}"
-                            aria-current="{f:if(condition: iter.isFirst, then: 'true', else: 'false')}"
-                            data-astro-content-carousel-thumb="{iter.index}">
-                        <f:if condition="{item.slide_image}">
-                            <f:for each="{item.slide_image}" as="image">
-                                <f:image image="{image}" alt="" maxWidth="120" class="content-carousel__thumb-image" loading="lazy" decoding="async"/>
-                            </f:for>
-                        </f:if>
-                    </button>
-                </f:for>
-            </div>
         </f:if>
     </d:layout.container>
 </d:layout.section>

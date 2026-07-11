@@ -19,12 +19,27 @@
         <d:molecule.tabs defaultValue="tab-{data.uid}-0" class="feature-tabs__tabs">
             <d:molecule.tabsList class="feature-tabs__list">
                 <f:for each="{data.items}" as="item" iteration="iter">
-                    <d:molecule.tabsTrigger value="tab-{data.uid}-{iter.index}">{item -> f:render.text(field: 'tab_label')}</d:molecule.tabsTrigger>
+                    <f:variable name="triggerId" value="feature-tab-{data.uid}-{iter.index}" />
+                    <f:variable name="panelId" value="feature-tabpanel-{data.uid}-{iter.index}" />
+                    <d:molecule.tabsTrigger
+                        value="tab-{data.uid}-{iter.index}"
+                        id="{triggerId}"
+                        controls="{panelId}"
+                        active="{iter.isFirst}"
+                    >{item -> f:render.text(field: 'tab_label')}</d:molecule.tabsTrigger>
                 </f:for>
             </d:molecule.tabsList>
 
             <f:for each="{data.items}" as="item" iteration="iter">
-                <d:molecule.tabsContent value="tab-{data.uid}-{iter.index}" class="feature-tabs__panel">
+                <f:variable name="triggerId" value="feature-tab-{data.uid}-{iter.index}" />
+                <f:variable name="panelId" value="feature-tabpanel-{data.uid}-{iter.index}" />
+                <d:molecule.tabsContent
+                    value="tab-{data.uid}-{iter.index}"
+                    id="{panelId}"
+                    labelledBy="{triggerId}"
+                    active="{iter.isFirst}"
+                    class="feature-tabs__panel"
+                >
                     <div class="feature-tabs__content">
                         <div class="feature-tabs__copy">
                             <f:if condition="{item.title}"><h3 class="feature-tabs__title">{item -> f:render.text(field: 'title')}</h3></f:if>

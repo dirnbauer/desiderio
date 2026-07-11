@@ -13,5 +13,11 @@
         <target>Zeigt eine optionale Überschrift über einem zwei- oder dreispaltigen Kartenraster; jede Karte hat optionalen Titel (verlinkt, wenn ein Link gesetzt ist), Rich-Text-Inhalt und einen Mehr-erfahren-Pfeillink. Geeignet für: Leistungsübersichten, Angebotslisten, Teaser zu verwandten Themen, Programm-Zusammenfassungen — kurze betitelte Textblöcke mit optionalen Zielen. Für icon-geführte Feature-Listen besser '3-Column Feature Grid', für Blogbeiträge 'Article Grid', für Fließtext ohne Karten 'Content Columns'.</target>
       </segment>
     </unit>
+    <unit id="read_more">
+      <segment state="final">
+        <source>Read more</source>
+        <target>Weiterlesen</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

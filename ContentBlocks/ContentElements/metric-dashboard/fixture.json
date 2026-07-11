@@ -4,7 +4,7 @@
     "description": "<p>Straight from CI and the template audit of the current release. This is what 'production-ready' looks like when it's measured instead of claimed.</p>",
     "items": [
         {
-            "label": "Tests in CI (PHP 8.3 & 8.4)",
+            "label": "Tests across supported PHP versions",
             "value": "412",
             "change": "+38 vs v2.5",
             "trend": "up"

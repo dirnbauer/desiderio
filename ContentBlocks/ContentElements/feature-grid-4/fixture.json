@@ -1,7 +1,7 @@
 {
     "_type": "grid",
     "header": "On by default. Off your to-do list.",
-    "subheadline": "Dark mode, icons, modern CSS, and accessibility are not projects you plan — they're defaults you inherit the moment Desiderio is installed.",
+    "subheadline": "Dark mode, icons, modern CSS, and accessibility foundations arrive with the system; project-level content and testing remain part of launch.",
     "items": [
         {
             "icon": "moon",
@@ -20,8 +20,8 @@
         },
         {
             "icon": "shield-check",
-            "title": "WCAG 2.2-checked",
-            "description_text": "Landmarks, focus states, and checked contrast on every preset."
+            "title": "WCAG 2.2 contrast checks",
+            "description_text": "Theme-token contrast is tested across every preset; final page conformance still depends on content and integrations."
         }
     ]
 }

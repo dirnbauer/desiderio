@@ -32,7 +32,7 @@ Desiderio
 ----
 
 Desiderio is a TYPO3 v14.3 theme extension with a shadcn/ui-inspired
-Fluid 5 component library, 255 Content Block elements, page templates,
+Fluid 5 component library, 244 Desiderio Content Blocks, page templates,
 backend layouts, and runtime theme presets.
 
 The extension does not ship React components. It translates ui.shadcn.com/create

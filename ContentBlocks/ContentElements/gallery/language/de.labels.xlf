@@ -13,5 +13,11 @@
         <target>Rendert eine interaktive Galerie: großes Hauptbild mit Lightbox-Zoom über einem Vorschauraster mit zwei bis vier Spalten; ein Klick auf ein Vorschaubild tauscht Hauptbild und Bildunterschrift (Titel, Beschreibung, Bildnachweis, optionaler Link). Geeignet für: Fotosammlungen — Eventfotos, Projekt- oder Portfolioaufnahmen, Rundgänge, Produktbilder. Für ein einfaches statisches Bildraster eher 'Images Only', für rotierende Slides 'Content Carousel', auf Produktdetailseiten 'Product Gallery Buy Panel'.</target>
       </segment>
     </unit>
+    <unit id="view_image">
+      <segment state="final">
+        <source>View image</source>
+        <target>Bild ansehen</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

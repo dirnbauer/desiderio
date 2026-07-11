@@ -1,7 +1,7 @@
 {
     "_type": "grid",
     "header": "Trust built into the codebase",
-    "subheadline": "No badges for sale here — every claim below is verifiable in the public GPL repository, guarded by a 400-test CI suite.",
+    "subheadline": "No badges for sale here — every claim below is verifiable in the public GPL repository, guarded by PHPStan, PHPUnit, and automated template checks.",
     "badge_items": [
         {
             "label": "PHPStan level max",
@@ -14,7 +14,7 @@
             }
         },
         {
-            "label": "GPL-2.0 licensed",
+            "label": "GPL-2.0-or-later licensed",
             "description_text": "Free to use, modify, and redistribute",
             "image": {
                 "file": "Resources/Public/Styleguide/Unsplash/compliance-gdpr-laptop.jpg",
@@ -24,7 +24,7 @@
             }
         },
         {
-            "label": "11-category audit",
+            "label": "Automated template audit",
             "description_text": "Zero inline styles, zero hardcoded colors",
             "image": {
                 "file": "Resources/Public/Styleguide/Unsplash/compliance-iso-security.jpg",
@@ -44,8 +44,8 @@
             }
         },
         {
-            "label": "CI on PHP 8.3 / 8.4",
-            "description_text": "400 unit and functional tests on every release",
+            "label": "CI on supported PHP versions",
+            "description_text": "Unit and functional tests on every release",
             "image": {
                 "file": "Resources/Public/Styleguide/Unsplash/customer-enterprise.jpg",
                 "title": "Continuous integration",

@@ -8,7 +8,7 @@
 <f:variable name="ariaLabelFallback">{f:translate(key: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/gdpr-banner/language/labels.xlf:aria_label', default: 'Cookie consent')}</f:variable>
 <f:variable name="privacyLinkText">{f:translate(key: 'LLL:EXT:desiderio/ContentBlocks/ContentElements/gdpr-banner/language/labels.xlf:privacy_link_text', default: 'Privacy policy')}</f:variable>
 
-<div class="gdpr-banner" role="region" aria-label="{data.header -> f:or(alternative: '{ariaLabelFallback}')}" data-gdpr-banner="true">
+<div class="gdpr-banner" hidden role="region" aria-label="{data.header -> f:or(alternative: '{ariaLabelFallback}')}" data-gdpr-banner="true">
     <d:layout.container>
         <div class="gdpr-banner__inner">
             <div class="gdpr-banner__content">
@@ -30,6 +30,7 @@
                             <input type="checkbox"
                                    id="gdpr-cat-{data.uid}-{catIteration.index}"
                                    class="gdpr-banner__checkbox"
+                                   data-d-consent-category="{catIteration.index}"
                                    {f:if(condition: cat.required, then: 'checked disabled')}/>
                             <span class="gdpr-banner__cat-text">
                                 <span class="gdpr-banner__cat-name">{cat -> f:render.text(field: 'name')}</span>

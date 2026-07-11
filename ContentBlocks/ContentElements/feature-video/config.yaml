@@ -37,6 +37,12 @@ fields:
     allowed: common-media-types
     maxitems: 1
   -
+    identifier: captions_file
+    type: File
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:video_captions'
+    allowed: vtt
+    maxitems: 1
+  -
     identifier: poster
     type: File
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:poster_image'

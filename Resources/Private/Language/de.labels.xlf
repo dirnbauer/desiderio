@@ -1741,6 +1741,18 @@
         <target>Video file</target>
       </segment>
     </unit>
+    <unit id="video_captions">
+      <segment state="final">
+        <source>Captions file (WebVTT)</source>
+        <target>Untertiteldatei (WebVTT)</target>
+      </segment>
+    </unit>
+    <unit id="video_download">
+      <segment state="final">
+        <source>Download the video</source>
+        <target>Video herunterladen</target>
+      </segment>
+    </unit>
     <unit id="poster_image">
       <segment state="final">
         <source>Poster image</source>
@@ -2361,8 +2373,8 @@
     </unit>
     <unit id="a11y.conformance">
       <segment state="final">
-        <source>WCAG 2.1 Level</source>
-        <target>WCAG 2.1 Level</target>
+        <source>WCAG 2.2 Level</source>
+        <target>WCAG 2.2-Stufe</target>
       </segment>
     </unit>
     <unit id="a11y.contactIntro">
@@ -2555,6 +2567,48 @@
       <segment state="final">
         <source>Edit abbreviation</source>
         <target>Abkürzung bearbeiten</target>
+      </segment>
+    </unit>
+    <unit id="color_field">
+      <segment state="final">
+        <source>Color</source>
+        <target>Farbe</target>
+      </segment>
+    </unit>
+    <unit id="shadcn_layout">
+      <segment state="final">
+        <source>Layout</source>
+        <target>Layout</target>
+      </segment>
+    </unit>
+    <unit id="tagline">
+      <segment state="final">
+        <source>Tagline</source>
+        <target>Slogan</target>
+      </segment>
+    </unit>
+    <unit id="changelog.tag.new">
+      <segment state="final">
+        <source>New</source>
+        <target>Neu</target>
+      </segment>
+    </unit>
+    <unit id="changelog.tag.fix">
+      <segment state="final">
+        <source>Fix</source>
+        <target>Fehlerbehebung</target>
+      </segment>
+    </unit>
+    <unit id="changelog.tag.improvement">
+      <segment state="final">
+        <source>Improvement</source>
+        <target>Verbesserung</target>
+      </segment>
+    </unit>
+    <unit id="changelog.tag.breaking">
+      <segment state="final">
+        <source>Breaking change</source>
+        <target>Inkompatible Änderung</target>
       </segment>
     </unit>
   </file>

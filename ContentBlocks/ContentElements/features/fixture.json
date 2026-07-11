@@ -1,7 +1,7 @@
 {
     "_type": "grid",
     "header": "The design system TYPO3 has been waiting for",
-    "subheadline": "244 content elements, 49 Fluid components, and a full theme layer — accessible, token-driven, and beautiful by default. Built once, so you never have to.",
+    "subheadline": "244 content elements, 49 Fluid components, and a full theme layer — semantic, token-driven, and polished by default. Built once, so you can focus on the page.",
     "columns": "3",
     "variant": "card",
     "feature_items": [
@@ -25,8 +25,8 @@
         },
         {
             "icon_name": "shield-check",
-            "title": "Accessible out of the box",
-            "description": "<p>Semantic landmarks, keyboard support, and <a href=\"https://www.w3.org/TR/WCAG22/\">WCAG 2.2-checked</a> contrast ship with every component you place.</p>",
+            "title": "Accessibility-minded foundations",
+            "description": "<p>Shared semantic structures, keyboard patterns, and <a href=\"https://www.w3.org/TR/WCAG22/\">WCAG 2.2 contrast checks</a> give each component a strong starting point. Verify final pages with real content and integrations.</p>",
             "link": "https://github.com/dirnbauer/desiderio"
         },
         {
@@ -38,7 +38,7 @@
         {
             "icon_name": "chart-no-axes-combined",
             "title": "Quality you can verify",
-            "description": "<p><strong>PHPStan level max</strong>, a 400-test CI, and an 11-category template audit guard every one of the 244 elements.</p>",
+            "description": "<p><strong>PHPStan at level max</strong>, PHPUnit, and an automated template audit guard every one of the 244 elements.</p>",
             "link": "https://github.com/dirnbauer/desiderio"
         }
     ]

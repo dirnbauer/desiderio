@@ -73,7 +73,7 @@
     }
 }
 .content-carousel__image,
-.card__image {
+.content-carousel .card__image {
     width: 100%;
     height: auto;
     /* 16:10 matches the backend screenshot sources so they are never cropped misleadingly. */
@@ -82,7 +82,7 @@
     display: block;
 }
 .content-carousel__body,
-.card__body {
+.content-carousel .card__body {
     padding: var(--d-spacing-md);
 }
 .content-carousel--cards .card__image {
@@ -94,24 +94,24 @@
     padding: var(--d-spacing-sm);
 }
 .content-carousel__title,
-.card__title { font-weight: 600; margin-block-end: var(--d-spacing-xs); }
+.content-carousel .card__title { font-weight: 600; margin-block-end: var(--d-spacing-xs); }
 .content-carousel--cards .card__title {
     margin-block-end: 0;
     font-size: var(--d-text-lg);
     line-height: 1.2;
 }
 .content-carousel__title a,
-.card__title a { color: inherit; text-decoration: none; }
+.content-carousel .card__title a { color: inherit; text-decoration: none; }
 .content-carousel__title a:hover,
-.card__title a:hover { color: var(--accent-foreground); }
+.content-carousel .card__title a:hover { color: var(--accent-foreground); }
 .content-carousel__title a:focus-visible,
-.card__title a:focus-visible {
+.content-carousel .card__title a:focus-visible {
     outline: 2px solid var(--ring);
     outline-offset: 2px;
     border-radius: var(--radius-sm, 0.25rem);
 }
 .content-carousel__description,
-.card__description {
+.content-carousel .card__description {
     color: var(--muted-foreground);
     font-size: var(--d-text-sm);
     margin: 0;
@@ -162,17 +162,26 @@
     margin-block-start: var(--d-spacing-md);
 }
 .content-carousel__dot {
-    inline-size: 0.5rem;
-    block-size: 0.5rem;
+    display: inline-grid;
+    place-items: center;
+    inline-size: 1.75rem;
+    block-size: 1.75rem;
     padding: 0;
     border: 0;
     border-radius: 9999px;
-    background: var(--border);
+    background: transparent;
     cursor: pointer;
-    transition: background-color 0.15s ease;
 }
-.content-carousel__dot--active,
-.content-carousel__dot[aria-current="true"] {
+.content-carousel__dot::before {
+    content: "";
+    inline-size: 0.5rem;
+    block-size: 0.5rem;
+    border-radius: inherit;
+    background: var(--border);
+    transition: inline-size 0.15s ease, background-color 0.15s ease;
+}
+.content-carousel__dot--active::before,
+.content-carousel__dot[aria-current="true"]::before {
     background: var(--primary);
     inline-size: 1.25rem;
 }

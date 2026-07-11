@@ -6,7 +6,7 @@
 Adding content elements from a shadcn block
 ===========================================
 
-Desiderio ships 255 Content Block elements, but the shadcn/ui ecosystem keeps
+Desiderio ships 244 Desiderio Content Blocks, but the shadcn/ui ecosystem keeps
 producing new ones — marquees, bento grids, animated terminals, globes. This
 page is the complete, screenshot-by-screenshot manual for grafting one of those
 components onto a Desiderio site as a first-class content element.
@@ -22,9 +22,10 @@ This walkthrough follows the exact graft that produced the shipped
 `Magic UI terminal <https://magicui.design/docs/components/terminal>`__: an
 animated terminal that types out commands and output line by line.
 
-..  figure:: /Images/terminal-frontend.png
+..  figure:: /Images/TerminalFrontendLive.png
     :alt: The finished Terminal element rendering on the frontend
-    :class: with-shadow
+    :zoom: lightbox
+    :class: with-border with-shadow
 
     The finished graft on the frontend — themed entirely through the active
     preset's card, border, and primary tokens.
@@ -206,6 +207,15 @@ identifiers like ``items`` silently share one table across elements. And never
 name a child field ``label``: that identifier is reserved by Content Blocks and
 breaks the generated table — use ``title`` (or here, ``text``).
 
+..  figure:: /Images/TerminalContentBlockConfig.png
+    :alt: Complete Terminal Content Blocks YAML with fields and collection table
+    :zoom: lightbox
+    :class: with-border with-shadow
+
+    The complete Content Blocks configuration. The explicit
+    ``innesto_terminal_lines`` table keeps the repeatable lines isolated from
+    collections owned by other elements.
+
 Translate the markup to Fluid
 -----------------------------
 
@@ -231,6 +241,15 @@ Collection; the "wait for the previous line" sequencing becomes a per-line
 State-free motion (the typewriter, the staggered reveal) becomes CSS. Real state
 (toggles, tabs) would go to Alpine.js ``x-data`` — never an inline ``<script>``.
 The ``animate`` toggle simply adds an ``--static`` modifier class.
+
+..  figure:: /Images/TerminalFluidTemplate.png
+    :alt: Complete Fluid template rendering the Terminal Content Block fields
+    :zoom: lightbox
+    :class: with-border with-shadow
+
+    The complete Fluid template maps editor fields to semantic markup and the
+    shared Desiderio layout components. The source view is soft-wrapped in the
+    screenshot so the long collection-rendering line remains readable.
 
 Port the styles onto tokens
 ---------------------------
@@ -279,6 +298,14 @@ A ``templates/backend-preview.fluid.html`` modeled on the Desiderio previews
 ``EXT:desiderio/Resources/Public/Css/content-preview.css``) gives editors a
 real preview card in the page module.
 
+..  figure:: /Images/TerminalBackendPreview.png
+    :alt: TYPO3 page module showing the Terminal backend preview
+    :zoom: lightbox
+    :class: with-border with-shadow
+
+    The backend preview identifies ``innesto/terminal``, its record UID, the
+    heading, line count, speed, and window title without opening the form.
+
 ..  _developer-adding-step4:
 
 Step 4 — Activate and seed
@@ -314,33 +341,21 @@ and description taken from the registry item:
 
 ..  figure:: /Images/terminal-wizard.png
     :alt: The New Content Element wizard, filtered to "terminal"
-    :class: with-shadow
+    :zoom: lightbox
+    :class: with-border with-shadow
 
     The grafted Terminal in the New Content Element wizard.
 
 The edit form shows the fields exactly as modeled — heading, window title, and
 the Lines collection:
 
-..  figure:: /Images/terminal-edit-form.png
-    :alt: Top of the Terminal edit form
-    :class: with-shadow
+..  figure:: /Images/TerminalBackendEditForm.png
+    :alt: Terminal edit form with heading, window title, and eight line records
+    :zoom: lightbox
+    :class: with-border with-shadow
 
     The Terminal edit form: resolved type, heading, window title, and the Lines
     collection.
-
-..  figure:: /Images/terminal-edit-lines.png
-    :alt: The Lines collection in the Terminal edit form
-    :class: with-shadow
-
-    Each line is a collection row with a *Line type* select and the line text.
-
-The page module renders the backend preview card:
-
-..  figure:: /Images/terminal-page-module.png
-    :alt: The Terminal backend preview card in the page module
-    :class: with-shadow
-
-    The backend preview summarizes the record at a glance.
 
 ..  _developer-adding-step6:
 

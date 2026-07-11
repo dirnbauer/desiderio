@@ -10,6 +10,18 @@ use Webconsulting\Desiderio\Icon\IconRegistry;
 
 final class ContentRenderingTemplateTest extends TestCase
 {
+    public function testPageTitleUsesShadcnTypographyAndSeparator(): void
+    {
+        $template = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Templates/Partials/Pages/PageTitle.fluid.html');
+        $layoutCss = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Css/desiderio/00-intro-layout.css');
+
+        self::assertStringContainsString('tag="h1" variant="h2"', $template);
+        self::assertStringContainsString('class="max-w-4xl text-balance md:text-4xl"', $template);
+        self::assertStringContainsString('<d:atom.separator />', $template);
+        self::assertStringNotContainsString('desiderio-page-title__rule', $template . $layoutCss);
+        self::assertStringNotContainsString('desiderio-page-title__heading', $template . $layoutCss);
+    }
+
     public function testCoreContentTemplatesRequiredByTypoScriptConventionExist(): void
     {
         $templateDirectory = __DIR__ . '/../../Resources/Private/FluidStyledContent/Templates';
@@ -312,15 +324,121 @@ final class ContentRenderingTemplateTest extends TestCase
         self::assertStringContainsString('animateChart(svg)', $javascript);
     }
 
-    public function testTabsTemplateRendersCollectionPanelContentInline(): void
+    public function testContentCarouselThumbnailControlsStayInsideTheRuntimeRoot(): void
+    {
+        $template = (string) file_get_contents(__DIR__ . '/../../ContentBlocks/ContentElements/content-carousel/templates/frontend.html');
+
+        $rootPosition = strpos($template, 'data-astro-content-carousel');
+        $thumbnailPosition = strpos($template, 'data-astro-content-carousel-thumb');
+        $statusPosition = strpos($template, 'data-astro-content-carousel-status');
+
+        self::assertIsInt($rootPosition);
+        self::assertIsInt($thumbnailPosition);
+        self::assertIsInt($statusPosition);
+        self::assertGreaterThan($rootPosition, $thumbnailPosition);
+        self::assertLessThan($statusPosition, $thumbnailPosition);
+    }
+
+    public function testCarouselDotsHaveAccessibleHitAreasWithoutLeakingCardStyles(): void
+    {
+        $contentCss = (string) file_get_contents(__DIR__ . '/../../ContentBlocks/ContentElements/content-carousel/assets/frontend.css');
+        $heroCss = (string) file_get_contents(__DIR__ . '/../../ContentBlocks/ContentElements/hero-carousel/assets/frontend.css');
+        $testimonialCss = (string) file_get_contents(__DIR__ . '/../../ContentBlocks/ContentElements/testimonial-carousel/assets/frontend.css');
+
+        self::assertStringContainsString('.content-carousel .card__image', $contentCss);
+        self::assertDoesNotMatchRegularExpression('/(?m)^\.card__(?:image|body|title|description)\b/', $contentCss);
+        self::assertMatchesRegularExpression('/\.content-carousel__dot\s*\{[^}]*inline-size:\s*1\.75rem;[^}]*block-size:\s*1\.75rem;/s', $contentCss);
+        self::assertMatchesRegularExpression('/\.hero-carousel__dot\s*\{[^}]*width:\s*1\.75rem;[^}]*height:\s*1\.75rem;/s', $heroCss);
+        self::assertMatchesRegularExpression('/\.testimonial-carousel__track \.hero-carousel__dot\s*\{[^}]*width:\s*1\.75rem;[^}]*height:\s*1\.75rem;/s', $testimonialCss);
+    }
+
+    public function testConsentContentBlocksUseTheSharedConsentRuntime(): void
+    {
+        $cookieTemplate = (string) file_get_contents(__DIR__ . '/../../ContentBlocks/ContentElements/cookie-banner/templates/frontend.html');
+        $gdprTemplate = (string) file_get_contents(__DIR__ . '/../../ContentBlocks/ContentElements/gdpr-banner/templates/frontend.html');
+        $javascript = (string) file_get_contents(__DIR__ . '/../../Resources/Public/Js/desiderio.js');
+
+        self::assertStringContainsString('<div class="cookie-banner', $cookieTemplate);
+        self::assertStringContainsString('     hidden', $cookieTemplate);
+        self::assertStringContainsString('cookie-banner__action--accept', $cookieTemplate);
+        self::assertStringContainsString('cookie-banner__action--decline', $cookieTemplate);
+        self::assertStringContainsString('<div class="gdpr-banner" hidden', $gdprTemplate);
+        self::assertStringContainsString('data-d-consent-category="{catIteration.index}"', $gdprTemplate);
+        self::assertStringContainsString("'[data-d-consent], [data-cookie-banner], [data-gdpr-banner]'", $javascript);
+        self::assertStringContainsString("const preferencesKey = 'd-consent-preferences'", $javascript);
+        self::assertStringContainsString("new CustomEvent('desiderio:consent-change'", $javascript);
+        self::assertStringContainsString("candidate.matches('[data-cookie-banner], [data-gdpr-banner]')", $javascript);
+    }
+
+    public function testVideoFixtureFallbacksReferencePlayableVideoAssets(): void
+    {
+        foreach (['feature-video', 'video-embed'] as $contentElement) {
+            $fixturePath = __DIR__ . '/../../ContentBlocks/ContentElements/' . $contentElement . '/fixture.json';
+            $fixture = json_decode((string) file_get_contents($fixturePath), true, 512, JSON_THROW_ON_ERROR);
+            self::assertIsArray($fixture);
+
+            $videoFile = $fixture['video_file'] ?? null;
+            self::assertIsArray($videoFile, "{$contentElement} must provide a video fallback fixture");
+            $relativePath = $videoFile['file'] ?? null;
+            self::assertIsString($relativePath);
+            self::assertContains(strtolower(pathinfo($relativePath, PATHINFO_EXTENSION)), ['mp4', 'webm', 'ogv']);
+            self::assertFileExists(__DIR__ . '/../../' . $relativePath);
+        }
+    }
+
+    public function testTabsTemplateConnectsTriggersToPanelsThroughSharedComponents(): void
     {
         $template = (string) file_get_contents(__DIR__ . '/../../ContentBlocks/ContentElements/tabs/templates/frontend.html');
+        $trigger = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Components/Molecule/TabsTrigger/TabsTrigger.fluid.html');
+        $content = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Components/Molecule/TabsContent/TabsContent.fluid.html');
 
-        self::assertStringContainsString('data-d-tabs-content', $template);
-        self::assertStringContainsString('data-value="tab-{data.uid}-{iter.index}"', $template);
+        self::assertStringContainsString('id="{triggerId}"', $template);
+        self::assertStringContainsString('controls="{panelId}"', $template);
+        self::assertStringContainsString('id="{panelId}"', $template);
+        self::assertStringContainsString('labelledBy="{triggerId}"', $template);
         self::assertStringContainsString("{item -> f:render.text(field: 'tab_content')}", $template);
-        self::assertStringContainsString('{data.items.0.tab_content}', $template);
-        self::assertStringNotContainsString('<d:molecule.tabsContent', $template);
+        self::assertStringContainsString('<d:molecule.tabsContent', $template);
+        self::assertStringNotContainsString('{data.items.0.tab_content}', $template);
+        self::assertStringContainsString('id="{id}"', $trigger);
+        self::assertStringContainsString('aria-controls="{controls}"', $trigger);
+        self::assertStringContainsString('id="{id}"', $content);
+        self::assertStringContainsString('aria-labelledby="{labelledBy}"', $content);
+    }
+
+    public function testFeatureTabsAlsoConnectsTriggersToPanels(): void
+    {
+        $template = (string) file_get_contents(__DIR__ . '/../../ContentBlocks/ContentElements/feature-tabs/templates/frontend.html');
+
+        self::assertStringContainsString('id="{triggerId}"', $template);
+        self::assertStringContainsString('controls="{panelId}"', $template);
+        self::assertStringContainsString('id="{panelId}"', $template);
+        self::assertStringContainsString('labelledBy="{triggerId}"', $template);
+        self::assertStringContainsString('active="{iter.isFirst}"', $template);
+    }
+
+    public function testTabsRuntimeUsesRovingFocusAndStandardKeyboardNavigation(): void
+    {
+        $javascript = (string) file_get_contents(__DIR__ . '/../../Resources/Public/Js/desiderio.js');
+
+        self::assertStringContainsString('t.tabIndex = active ? 0 : -1', $javascript);
+        self::assertStringContainsString("root.addEventListener('keydown'", $javascript);
+        self::assertStringContainsString("event.key === 'ArrowLeft'", $javascript);
+        self::assertStringContainsString("event.key === 'ArrowRight'", $javascript);
+        self::assertStringContainsString("event.key === 'Home'", $javascript);
+        self::assertStringContainsString("event.key === 'End'", $javascript);
+        self::assertStringContainsString('nextTrigger.focus()', $javascript);
+        self::assertStringContainsString("element.closest('[data-d-tabs]') === root", $javascript);
+        self::assertStringContainsString("orientation !== 'vertical' && event.key === 'ArrowLeft'", $javascript);
+        self::assertStringContainsString("orientation === 'vertical' && event.key === 'ArrowUp'", $javascript);
+    }
+
+    public function testTabsListSupportsNarrowViewportScrolling(): void
+    {
+        $tabsList = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Components/Molecule/TabsList/TabsList.fluid.html');
+
+        self::assertStringContainsString('max-w-full', $tabsList);
+        self::assertStringContainsString('overflow-x-auto', $tabsList);
+        self::assertStringContainsString('overscroll-x-contain', $tabsList);
     }
 
     public function testIntroHeadingSpacingOnlyAppliesWhenIntroTextFollows(): void

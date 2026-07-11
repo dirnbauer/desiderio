@@ -11,5 +11,15 @@
         <source>Renders a two-column footer: brand name, rich-text description, and copyright on the left, a stacked list of navigation links on the right. Use it for: footer content pairing a short company blurb with one flat link list — no grouped columns. Prefer 'Multi-Column Link Footer' when links split into several titled groups; 'Minimal Footer' when there is no brand blurb.</source>
       </segment>
     </unit>
+    <unit id="footer_label">
+      <segment>
+        <source>Footer</source>
+      </segment>
+    </unit>
+    <unit id="nav_label">
+      <segment>
+        <source>Footer links</source>
+      </segment>
+    </unit>
   </file>
 </xliff>

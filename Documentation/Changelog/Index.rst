@@ -16,8 +16,8 @@ Highlights:
     site that shows them (per-site base), with ``--folder`` and ``--site``
     options. See :ref:`developer-element-library`.
 *   The element library picker (``?elementLibrary=1``) caches its catalog in
-    the ``desiderio_library`` cache instead of parsing ~255 ``config.yaml``
-    files on every open. See :ref:`developer-element-library`.
+    the ``desiderio_library`` cache instead of parsing 244 Desiderio Content Block
+    ``config.yaml`` files on every open. See :ref:`developer-element-library`.
 *   The ``code-block`` element gains content- and filename-aware syntax
     highlighting with a highlight.js-lite autodetect fallback.
 *   ``ExtbasePluginRequestSanitizerMiddleware`` fixes Visual Editor

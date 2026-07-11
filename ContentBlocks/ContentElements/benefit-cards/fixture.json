@@ -14,13 +14,13 @@
         {
             "icon": "shield-check",
             "title": "Quality enforced, not hoped for",
-            "description": "<p>An 11-category zero-tolerance audit keeps all <strong>244 elements</strong> clean: no inline styles, no hardcoded colors, ever.</p>",
+            "description": "<p>An automated zero-tolerance template audit keeps all <strong>244 elements</strong> clean: no inline styles, no hardcoded colors, ever.</p>",
             "link": "https://github.com/dirnbauer/desiderio"
         },
         {
             "icon": "chart",
-            "title": "PHPStan max + 400 tests",
-            "description": "<p>Static analysis at the strictest level and a <strong>400-test CI</strong> across PHP 8.3 and 8.4 — the code review you didn't have to schedule.</p>",
+            "title": "PHPStan max + PHPUnit",
+            "description": "<p>PHPStan at level max and an automated PHPUnit suite run across every supported PHP version — the code review you didn't have to schedule.</p>",
             "link": "https://github.com/dirnbauer/desiderio"
         },
         {

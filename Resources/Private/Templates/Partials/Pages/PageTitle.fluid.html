@@ -21,10 +21,10 @@
         </f:then>
         <f:else>
             <d:layout.container class="desiderio-page-title-container">
-                <header class="desiderio-page-title">
-                    <d:atom.typography tag="h1" variant="h1" class="desiderio-page-title__heading">{page.pageRecord.title}</d:atom.typography>
-                    <span class="desiderio-page-title__rule" aria-hidden="true"></span>
+                <header class="py-8 md:py-10" data-slot="page-header">
+                    <d:atom.typography tag="h1" variant="h2" class="max-w-4xl text-balance md:text-4xl">{page.pageRecord.title}</d:atom.typography>
                 </header>
+                <d:atom.separator />
             </d:layout.container>
         </f:else>
     </f:if>

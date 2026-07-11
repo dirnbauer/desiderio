@@ -66,8 +66,367 @@ article[itemtype="https://schema.org/BlogPosting"] [itemprop="articleBody"] .ce-
 }
 
 .ce-fsc__richtext {
+    --d-rte-flow-space: var(--d-spacing-md, 1rem);
+    --d-rte-heading-space: var(--d-spacing-2xl, 3rem);
     max-width: 68rem;
     color: var(--foreground);
+    font-size: var(--d-text-base, 1rem);
+    line-height: 1.7;
+    overflow-wrap: anywhere;
+}
+
+.ce-fsc__richtext > * {
+    margin-block: 0;
+}
+
+.ce-fsc__richtext > * + * {
+    margin-block-start: var(--d-rte-flow-space);
+}
+
+/* Destination-based flow rules cover every block adjacency without an
+   unmaintainable p+ol / ol+p / ul+h2 selector matrix. */
+.ce-fsc__richtext > * + :where(h1, h2) {
+    margin-block-start: var(--d-rte-heading-space);
+}
+
+.ce-fsc__richtext > * + h3 {
+    margin-block-start: var(--d-spacing-xl, 2rem);
+}
+
+.ce-fsc__richtext > * + :where(h4, h5, h6) {
+    margin-block-start: var(--d-spacing-lg, 1.5rem);
+}
+
+.ce-fsc__richtext > :where(h1, h2, h3, h4, h5, h6)
+    + :where(h1, h2, h3, h4, h5, h6) {
+    margin-block-start: var(--d-spacing-sm, 0.75rem);
+}
+
+.ce-fsc__richtext > h1 + h1,
+.ce-fsc__richtext > h2 + h2,
+.ce-fsc__richtext > h3 + h3,
+.ce-fsc__richtext > h4 + h4,
+.ce-fsc__richtext > h5 + h5,
+.ce-fsc__richtext > h6 + h6,
+.ce-fsc__richtext > blockquote + blockquote {
+    margin-block-start: var(--d-spacing-lg, 1.5rem);
+}
+
+.ce-fsc__richtext > :where(h1, h2, h3, h4, h5, h6)
+    + :where(p, ul, ol, blockquote, pre, table, dl, figure) {
+    margin-block-start: var(--d-spacing-sm, 0.75rem);
+}
+
+.ce-fsc__richtext > :where(h1, h2, h3, h4, h5, h6) {
+    color: var(--foreground);
+    font-family: var(--d-font-heading, var(--font-heading));
+    font-weight: 650;
+    line-height: 1.2;
+    letter-spacing: -0.015em;
+    text-wrap: balance;
+}
+
+.ce-fsc__richtext > h1 {
+    font-size: clamp(var(--d-text-3xl, 1.875rem), 1.5rem + 1.5vw, var(--d-text-5xl, 3rem));
+    font-weight: 700;
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+}
+
+.ce-fsc__richtext > h2 {
+    font-size: clamp(var(--d-text-2xl, 1.5rem), 1.25rem + 1vw, var(--d-text-4xl, 2.25rem));
+    line-height: 1.12;
+    letter-spacing: -0.025em;
+}
+
+.ce-fsc__richtext > h3 {
+    font-size: clamp(var(--d-text-xl, 1.25rem), 1.1rem + 0.7vw, var(--d-text-3xl, 1.875rem));
+    line-height: 1.18;
+}
+
+.ce-fsc__richtext > h4 {
+    font-size: clamp(var(--d-text-lg, 1.125rem), 1rem + 0.45vw, var(--d-text-2xl, 1.5rem));
+}
+
+.ce-fsc__richtext > h5 {
+    font-size: clamp(var(--d-text-base, 1rem), 0.95rem + 0.25vw, var(--d-text-xl, 1.25rem));
+}
+
+.ce-fsc__richtext > h6 {
+    font-size: var(--d-text-base, 1rem);
+    letter-spacing: 0.035em;
+    text-transform: uppercase;
+}
+
+.ce-fsc__richtext > p,
+.ce-fsc__richtext > :where(ul, ol),
+.ce-fsc__richtext > blockquote {
+    color: var(--muted-foreground);
+}
+
+.ce-fsc__richtext > p.lead {
+    color: var(--foreground);
+    font-size: clamp(var(--d-text-lg, 1.125rem), 1.05rem + 0.35vw, var(--d-text-xl, 1.25rem));
+    line-height: 1.65;
+}
+
+.ce-fsc__richtext :where(ul, ol) {
+    padding-inline-start: clamp(1.35rem, 4vw, 1.85rem);
+}
+
+.ce-fsc__richtext ul {
+    list-style: disc;
+}
+
+.ce-fsc__richtext ol {
+    list-style: decimal;
+}
+
+.ce-fsc__richtext ul ul {
+    list-style: circle;
+}
+
+.ce-fsc__richtext ul ul ul {
+    list-style: square;
+}
+
+.ce-fsc__richtext ol ol {
+    list-style: lower-alpha;
+}
+
+.ce-fsc__richtext ol ol ol {
+    list-style: lower-roman;
+}
+
+.ce-fsc__richtext li + li,
+.ce-fsc__richtext li > :where(ul, ol) {
+    margin-block-start: var(--d-spacing-xs, 0.5rem);
+}
+
+.ce-fsc__richtext li::marker {
+    color: var(--d-primary-text, var(--primary));
+    font-weight: 650;
+}
+
+.ce-fsc__richtext > blockquote {
+    border: 0;
+    border-inline-start: 0.25rem solid color-mix(in oklch, var(--primary) 68%, var(--border));
+    border-radius: 0 var(--radius) var(--radius) 0;
+    background: color-mix(in oklch, var(--muted) 62%, transparent);
+    padding: var(--d-spacing-md, 1rem) var(--d-spacing-lg, 1.5rem);
+    color: var(--foreground);
+    font-style: normal;
+}
+
+.ce-fsc__richtext > blockquote > * {
+    margin-block: 0;
+    color: inherit;
+}
+
+.ce-fsc__richtext > blockquote > * + * {
+    margin-block-start: var(--d-spacing-sm, 0.75rem);
+}
+
+.ce-fsc__richtext blockquote cite {
+    display: block;
+    color: var(--muted-foreground);
+    font-size: var(--d-text-sm, 0.875rem);
+    font-style: normal;
+}
+
+.ce-fsc__richtext blockquote cite::before {
+    content: "— ";
+}
+
+.ce-fsc__richtext > pre {
+    max-width: 100%;
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--muted);
+    color: var(--foreground);
+    padding: var(--d-spacing-md, 1rem);
+    font-family: var(--font-mono, monospace);
+    font-size: var(--d-text-sm, 0.875rem);
+    line-height: 1.65;
+    tab-size: 2;
+    white-space: pre;
+}
+
+.ce-fsc__richtext :where(code, kbd, samp) {
+    border: 1px solid color-mix(in oklch, var(--border) 86%, transparent);
+    border-radius: calc(var(--radius) - 0.25rem);
+    background: var(--muted);
+    color: var(--foreground);
+    padding: 0.08em 0.32em;
+    font-family: var(--font-mono, monospace);
+    font-size: 0.9em;
+}
+
+.ce-fsc__richtext kbd {
+    box-shadow: 0 1px 0 color-mix(in oklch, var(--foreground) 20%, transparent);
+    white-space: nowrap;
+}
+
+.ce-fsc__richtext pre :where(code, samp) {
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    color: inherit;
+    padding: 0;
+    font-size: inherit;
+}
+
+.ce-fsc__richtext > hr {
+    width: 100%;
+    border: 0;
+    border-block-start: 1px solid var(--border);
+    margin-block-start: var(--d-spacing-xl, 2rem);
+}
+
+.ce-fsc__richtext > table {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--background);
+    border-collapse: collapse;
+    font-size: var(--d-text-sm, 0.875rem);
+    white-space: nowrap;
+}
+
+.ce-fsc__richtext :where(th, td) {
+    border-block-end: 1px solid var(--border);
+    padding: var(--d-spacing-sm, 0.75rem) var(--d-spacing-md, 1rem);
+    text-align: start;
+}
+
+.ce-fsc__richtext th {
+    background: var(--muted);
+    color: var(--foreground);
+    font-weight: 650;
+}
+
+.ce-fsc__richtext tr:last-child td {
+    border-block-end: 0;
+}
+
+.ce-fsc__richtext > dl {
+    display: grid;
+    grid-template-columns: minmax(8rem, 0.35fr) minmax(0, 1fr);
+    gap: var(--d-spacing-sm, 0.75rem) var(--d-spacing-lg, 1.5rem);
+}
+
+.ce-fsc__richtext dt {
+    color: var(--foreground);
+    font-weight: 650;
+}
+
+.ce-fsc__richtext dd {
+    margin: 0;
+    color: var(--muted-foreground);
+}
+
+.ce-fsc__richtext > figure {
+    max-width: 100%;
+}
+
+.ce-fsc__richtext figcaption {
+    margin-block-start: var(--d-spacing-xs, 0.5rem);
+    color: var(--muted-foreground);
+    font-size: var(--d-text-sm, 0.875rem);
+    line-height: 1.5;
+}
+
+.ce-fsc__richtext strong {
+    color: var(--foreground);
+    font-weight: 700;
+}
+
+.ce-fsc__richtext :where(em, cite, q) {
+    font-style: italic;
+}
+
+.ce-fsc__richtext mark {
+    border-radius: 0.2em;
+    background: color-mix(in oklch, var(--primary) 18%, transparent);
+    color: var(--foreground);
+    padding-inline: 0.18em;
+}
+
+.ce-fsc__richtext abbr[title] {
+    text-decoration: underline dotted;
+    text-decoration-thickness: 0.08em;
+    text-underline-offset: 0.2em;
+    cursor: help;
+}
+
+.ce-fsc__richtext :where(sub, sup) {
+    position: relative;
+    font-size: 0.75em;
+    line-height: 0;
+    vertical-align: baseline;
+}
+
+.ce-fsc__richtext sup {
+    inset-block-start: -0.45em;
+}
+
+.ce-fsc__richtext sub {
+    inset-block-end: -0.2em;
+}
+
+.ce-fsc__richtext small {
+    font-size: 0.82em;
+    line-height: inherit;
+}
+
+.ce-fsc__richtext .text-muted {
+    color: var(--muted-foreground);
+}
+
+.ce-fsc__richtext :where(del, s) {
+    text-decoration-thickness: 0.08em;
+}
+
+.ce-fsc__richtext :where(ins, u) {
+    text-decoration-line: underline;
+    text-decoration-thickness: 0.08em;
+    text-underline-offset: 0.18em;
+}
+
+.ce-fsc__richtext a {
+    text-decoration-thickness: 0.08em;
+    transition: color 0.15s ease, text-decoration-color 0.15s ease;
+}
+
+.ce-fsc__richtext a:hover {
+    color: var(--d-primary-text, var(--primary));
+    text-decoration-color: currentColor;
+}
+
+.ce-fsc__richtext a:focus-visible {
+    border-radius: 0.15rem;
+    outline: 2px solid var(--ring);
+    outline-offset: 0.2rem;
+}
+
+.ce-fsc__richtext .text-start {
+    text-align: start;
+}
+
+.ce-fsc__richtext .text-center {
+    text-align: center;
+}
+
+.ce-fsc__richtext .text-end {
+    text-align: end;
+}
+
+.ce-fsc__richtext .text-justify {
+    text-align: justify;
 }
 
 .ce-fsc__richtext > :first-child,
@@ -78,6 +437,25 @@ article[itemtype="https://schema.org/BlogPosting"] [itemprop="articleBody"] .ce-
 .ce-fsc__richtext > :last-child,
 .ce-fsc-html__body > :last-child {
     margin-bottom: 0;
+}
+
+@media (max-width: 640px) {
+    .ce-fsc__richtext {
+        --d-rte-heading-space: var(--d-spacing-xl, 2rem);
+    }
+
+    .ce-fsc__richtext > blockquote {
+        padding: var(--d-spacing-sm, 0.75rem) var(--d-spacing-md, 1rem);
+    }
+
+    .ce-fsc__richtext > dl {
+        grid-template-columns: 1fr;
+        gap: var(--d-spacing-xs, 0.5rem);
+    }
+
+    .ce-fsc__richtext dd + dt {
+        margin-block-start: var(--d-spacing-sm, 0.75rem);
+    }
 }
 
 .ce-fsc-textmedia {

@@ -1033,14 +1033,19 @@ function renderTabsList(array $recipe, string $header): string
         'default' => $recipe['listVariants']['default'] ?? '',
         'line' => $recipe['listVariants']['line'] ?? '',
     ];
+    $listBase = normalizeClass(
+        removeClassTokens($recipe['listBase'], ['justify-center'])
+        . ' max-w-full justify-start overflow-x-auto overscroll-x-contain'
+    );
 
     return $header
         . '<f:argument name="class" type="string" optional="{true}" default="" />' . "\n"
         . '<f:argument name="variant" type="string" optional="{true}" default="default" />' . "\n\n"
-        . sprintf('<f:variable name="base" value="%s" />', attr($recipe['listBase'])) . "\n\n"
+        . '<f:argument name="orientation" type="string" optional="{true}" default="horizontal" />' . "\n\n"
+        . sprintf('<f:variable name="base" value="%s" />', attr($listBase)) . "\n\n"
         . renderSwitch('variant', $listRecipe)
         . "\n"
-        . '<div role="tablist" data-slot="tabs-list" data-variant="{variant}" class="{base} {variantClass -> f:format.trim()} {class}" data-d-tabs-list>' . "\n"
+        . '<div role="tablist" aria-orientation="{orientation}" data-slot="tabs-list" data-variant="{variant}" class="{base} {variantClass -> f:format.trim()} {class}" data-d-tabs-list>' . "\n"
         . '    <f:slot />' . "\n"
         . '</div>' . "\n";
 }
@@ -1049,16 +1054,23 @@ function renderTabsTrigger(array $recipe, string $header): string
 {
     return $header
         . '<f:argument name="value" type="string" />' . "\n"
+        . '<f:argument name="id" type="string" />' . "\n"
+        . '<f:argument name="controls" type="string" />' . "\n"
+        . '<f:argument name="active" type="bool" optional="{true}" default="{false}" />' . "\n"
         . '<f:argument name="class" type="string" optional="{true}" default="" />' . "\n\n"
         . '<button' . "\n"
         . '    type="button"' . "\n"
         . '    role="tab"' . "\n"
-        . '    aria-selected="false"' . "\n"
-        . '    data-state="inactive"' . "\n"
+        . '    id="{id}"' . "\n"
+        . '    aria-controls="{controls}"' . "\n"
+        . '    aria-selected="{f:if(condition: active, then: \'true\', else: \'false\')}"' . "\n"
+        . '    tabindex="{f:if(condition: active, then: \'0\', else: \'-1\')}"' . "\n"
+        . '    data-state="{f:if(condition: active, then: \'active\', else: \'inactive\')}"' . "\n"
         . sprintf('    class="%s {class}"', attr($recipe['trigger'])) . "\n"
         . '    data-slot="tabs-trigger"' . "\n"
         . '    data-d-tabs-trigger' . "\n"
         . '    data-value="{value}"' . "\n"
+        . '    {f:if(condition: active, then: \'data-active\')}' . "\n"
         . '>' . "\n"
         . '    <f:slot />' . "\n"
         . '</button>' . "\n";
@@ -1068,11 +1080,17 @@ function renderTabsContent(array $recipe, string $header): string
 {
     return $header
         . '<f:argument name="value" type="string" />' . "\n"
+        . '<f:argument name="id" type="string" />' . "\n"
+        . '<f:argument name="labelledBy" type="string" />' . "\n"
+        . '<f:argument name="active" type="bool" optional="{true}" default="{false}" />' . "\n"
         . '<f:argument name="class" type="string" optional="{true}" default="" />' . "\n\n"
         . '<div' . "\n"
         . '    role="tabpanel"' . "\n"
-        . '    data-state="inactive"' . "\n"
-        . '    hidden' . "\n"
+        . '    id="{id}"' . "\n"
+        . '    aria-labelledby="{labelledBy}"' . "\n"
+        . '    data-state="{f:if(condition: active, then: \'active\', else: \'inactive\')}"' . "\n"
+        . '    {f:if(condition: active, then: \'\', else: \'hidden\')}' . "\n"
+        . '    tabindex="0"' . "\n"
         . sprintf('    class="%s {class}"', attr($recipe['content'])) . "\n"
         . '    data-slot="tabs-content"' . "\n"
         . '    data-d-tabs-content' . "\n"

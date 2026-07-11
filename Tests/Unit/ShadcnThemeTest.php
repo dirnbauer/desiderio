@@ -366,12 +366,15 @@ final class ShadcnThemeTest extends TestCase
     public function testStyleguidePageListsEveryElementOverview(): void
     {
         $template = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Templates/Pages/DesiderioStyleguide.fluid.html');
+        $contentBlockConfigs = glob(__DIR__ . '/../../ContentBlocks/ContentElements/*/config.yaml');
+        self::assertIsArray($contentBlockConfigs);
+        $contentBlockCount = count($contentBlockConfigs);
 
         self::assertStringContainsString('All content elements', $template);
         self::assertStringContainsString('docs__overview-card', $template);
         self::assertStringContainsString('d:styleguideFixtureSummary', $template);
-        self::assertStringContainsString('255 production-ready content elements', $template);
-        self::assertStringNotContainsString('250 production-ready content elements', $template);
+        self::assertStringContainsString("{$contentBlockCount} production-ready Desiderio Content Blocks", $template);
+        self::assertStringNotContainsString('255 production-ready content elements', $template);
     }
 
     /**

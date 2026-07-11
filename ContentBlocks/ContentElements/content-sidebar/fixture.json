@@ -1,7 +1,7 @@
 {
     "_type": "section",
-    "header": "Pass your accessibility review before it starts",
-    "content": "<p>Every element in the library starts from the same baseline: semantic landmarks, a strict heading order, and visible focus on every interactive control. Alt-text fields are part of each image schema, so editors are prompted for descriptions instead of retrofitting them under deadline pressure.</p><p>An 11-category template audit runs in CI with zero tolerance — no inline styles, no hardcoded colors — and the WCAG-minded markup is verified across all 244 elements on every change, with WCAG 2.2-checked contrast on all 15 presets. Your project starts from an accessible baseline instead of paying for one shortly before launch.</p>",
+    "header": "Start your accessibility review from stronger foundations",
+    "content": "<p>Desiderio provides shared semantic structures, visible focus styles for its interaction patterns, and alternative-text fields for image content. Editors remain responsible for meaningful alternatives, a logical page-level heading hierarchy, and clear content.</p><p>Automated template checks reject inline styles and hardcoded colors, while contrast tests cover every theme preset in light and dark modes. Those checks help catch regressions; final WCAG 2.2 conformance still depends on your configuration, extensions, content, and testing with real users and assistive technology.</p>",
     "sidebar_content": "<p><strong>On this page</strong></p><ul><li>Markup baseline</li><li>Editor prompts</li><li>Audit and CI guardrails</li></ul><p>Questions? Open an issue on <a href=\"https://github.com/dirnbauer/desiderio\">GitHub</a>.</p>",
     "sidebar_position": "right"
 }

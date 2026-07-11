@@ -1,12 +1,12 @@
 {
     "_type": "section",
-    "header": "Hear the creators walk through Desiderio 2.6",
-    "description": "<p>Twenty minutes with the maintainers on the release that changes theming in <a href=\"https://typo3.org\">TYPO3</a>: <strong>per-page presets</strong>, the new seeder services, and five switchable icon libraries. If you build TYPO3 sites for a living, this is your commute well spent.</p>",
+    "header": "Audio player example",
+    "description": "<p>A short generated audio sample used to demonstrate playback and download controls. Replace the file, title, description, and source before publishing.</p>",
     "show_download": true,
     "audio_file": {
         "file": "Resources/Public/Styleguide/Audio/editorial-brief.wav",
-        "title": "Desiderio release walkthrough audio",
-        "alternative": "Short generated audio tone standing in for the Desiderio release walkthrough recording.",
+        "title": "Generated audio sample",
+        "alternative": "Short generated audio tone used to demonstrate native playback and download controls.",
         "description": "Generated demo audio for Desiderio styleguide seeding.",
         "source": "EXT:desiderio/Resources/Public/Styleguide/Audio/editorial-brief.wav"
     }

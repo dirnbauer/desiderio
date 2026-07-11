@@ -465,6 +465,9 @@ final class SeedStyleguidePagesCommand extends Command
             if (isset($page['subtitle'])) {
                 $pageAttributes['subtitle'] = $page['subtitle'];
             }
+            if (isset($page['pageTsConfig'])) {
+                $pageAttributes['TSconfig'] = $page['pageTsConfig'];
+            }
             if ($page['hideInNav'] ?? false) {
                 $pageAttributes['nav_hide'] = 1;
             }

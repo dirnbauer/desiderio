@@ -20,7 +20,7 @@ Desiderio is intentionally layered:
       Page templates, backend layouts, header, footer, site settings
 
     Content element layer
-      255 Content Blocks with editor-facing fields and fixtures
+      244 Desiderio Content Blocks with editor-facing fields and fixtures
 
     Component layer
       Fluid 5 atoms, molecules, and layouts with typed arguments
@@ -385,8 +385,9 @@ Building that catalog means reading the on-disk Content Blocks definitions.
 ``ElementCatalog`` scans the ``ContentBlocks/ContentElements`` directory of
 every loaded host extension (``desiderio`` and, when installed, ``innesto``)
 and, for each element, parses its ``config.yaml`` and reads its
-``fixture.json``. With ~255 elements that is ~255 YAML parses through
-Symfony's pure-PHP parser plus ~255 JSON file reads on **every** picker open.
+``fixture.json``. With 244 Desiderio Content Block definitions (plus any installed Innesto
+blocks), that starts at 244 YAML parses through Symfony's pure-PHP parser plus
+244 JSON file reads on **every** picker open.
 The demo fixtures are only needed by the seeder, never by the picker, so half
 of that I/O was pure waste. Measured locally this was ~115 ms of work per
 open (worse under a small PHP-FPM pool), paid again on every open because
@@ -531,8 +532,9 @@ Element library search
 ======================
 
 The picker's search box is **typo-tolerant** and runs entirely server-side, yet
-needs no external search service. The whole catalog (~255 elements) is already in
-the browser, so the endpoint returns only a *ranked list of cTypes* and the panel
+needs no external search service. The browser already holds the 244 Desiderio
+Content Blocks, the available native TYPO3 entries, and any Innesto additions,
+so the endpoint returns only a *ranked list of cTypes* and the panel
 reorders the cards it already holds. It is a deliberately small "Solr without
 Solr", implemented in ``Webconsulting\Desiderio\Library\ElementSearchService``
 and reached through ``ElementLibraryMiddleware`` at ``?elementLibrarySearch=<term>``

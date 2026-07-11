@@ -5,12 +5,18 @@
   Control shape is tokenized (radius via --radius, height/text/padding via --d-control-*, focus ring via --d-ring-width, card elevation via --d-surface-shadow), so shape switches per preset.
 </f:comment>
 <f:argument name="value" type="string" />
+<f:argument name="id" type="string" />
+<f:argument name="labelledBy" type="string" />
+<f:argument name="active" type="bool" optional="{true}" default="{false}" />
 <f:argument name="class" type="string" optional="{true}" default="" />
 
 <div
     role="tabpanel"
-    data-state="inactive"
-    hidden
+    id="{id}"
+    aria-labelledby="{labelledBy}"
+    data-state="{f:if(condition: active, then: 'active', else: 'inactive')}"
+    {f:if(condition: active, then: '', else: 'hidden')}
+    tabindex="0"
     class="flex-1 text-xs/relaxed outline-none {class}"
     data-slot="tabs-content"
     data-d-tabs-content

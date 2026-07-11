@@ -11,13 +11,13 @@
         },
         {
             "icon": "lock",
-            "title": "11-category template audit",
+            "title": "Automated template audit",
             "description": "<p><strong>Zero tolerance</strong> for inline styles or hardcoded colors across all 244 element templates.</p>"
         },
         {
             "icon": "clock",
-            "title": "400 tests on PHP 8.3 and 8.4",
-            "description": "<p>Unit and functional PHPUnit suites run against both PHP versions before every merge.</p>"
+            "title": "PHPStan and PHPUnit across supported PHP versions",
+            "description": "<p>Unit and functional test suites run across every supported PHP version before every merge.</p>"
         }
     ]
 }

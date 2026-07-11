@@ -26,40 +26,10 @@ body {
 /*  Layout: Page title                                                 */
 /* ------------------------------------------------------------------ */
 
-/* The single page-level <h1> rendered by the Pages/PageTitle partial.
-   Visible by default, sitting between the breadcrumb and the first
-   content section. The screen-reader-only variant uses .sr-only. */
-.desiderio-page-title {
-    padding: 2rem 0 2rem;
-}
-
-.desiderio-page-title__heading {
-    margin: 0;
-    font-size: 2rem;
-    line-height: 1.15;
-}
-
-@media (min-width: 1024px) {
-    .desiderio-page-title__heading {
-        font-size: 2.5rem;
-    }
-}
-
-/* Short accent rule beneath the title, in the theme accent (same token as the
-   header-section eyebrow) so it tracks the active shadcn preset. */
-.desiderio-page-title__rule {
-    display: block;
-    width: 3.5rem;
-    height: 0.25rem;
-    margin-top: 0.875rem;
-    background: var(--d-primary);
-    border-radius: 2px;
-}
-
-/* The page title sits between the breadcrumb and the first content section.
-   Keep that section's full-width top divider, but give the content a little
-   extra breathing room below the line. */
+/* Page-title visuals are composed from the shadcn Typography and Separator
+   primitives in Pages/PageTitle. The separator replaces the following
+   section's own top border while preserving its content spacing. */
 .desiderio-page-title-container + .desiderio-section {
+    border-block-start: 0;
     padding-block-start: 4rem;
 }
-

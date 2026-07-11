@@ -23,6 +23,28 @@ $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['desiderio_
     'groups' => ['system'],
 ];
 
+// WebVTT caption files are valid FAL text assets, but TYPO3's default text
+// extension allow-list currently contains SRT only. Keep existing project
+// additions and register VTT so seeded feature videos can import captions.
+$desiderioSystemConfiguration = $GLOBALS['TYPO3_CONF_VARS']['SYS'] ?? [];
+if (!is_array($desiderioSystemConfiguration)) {
+    $desiderioSystemConfiguration = [];
+}
+$desiderioTextFileExtensionList = $desiderioSystemConfiguration['textfile_ext'] ?? '';
+if (!is_string($desiderioTextFileExtensionList)) {
+    $desiderioTextFileExtensionList = '';
+}
+$desiderioTextFileExtensions = array_filter(array_map(
+    'trim',
+    explode(',', $desiderioTextFileExtensionList)
+), static fn (string $extension): bool => $extension !== '');
+$desiderioTextFileExtensions[] = 'vtt';
+$desiderioSystemConfiguration['textfile_ext'] = implode(
+    ',',
+    array_values(array_unique($desiderioTextFileExtensions))
+);
+$GLOBALS['TYPO3_CONF_VARS']['SYS'] = $desiderioSystemConfiguration;
+
 // CSS, JS and all frontend configuration is provided via the site set in
 // Configuration/Sets/Desiderio/. Page TSconfig is auto-loaded from
 // Configuration/page.tsconfig in TYPO3 14.
@@ -30,7 +52,21 @@ $GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['desiderio_
 // Desiderio RTE preset: Default toolbar plus textPartLanguage (span lang) and
 // the custom abbreviation plugin (abbr title). Assigned per field via
 // richtextConfiguration: desiderio in the Content Block config.yaml files.
-$GLOBALS['TYPO3_CONF_VARS']['RTE']['Presets']['desiderio'] = 'EXT:desiderio/Configuration/RTE/Desiderio.yaml';
+$desiderioRteConfiguration = $GLOBALS['TYPO3_CONF_VARS']['RTE'] ?? [];
+if (!is_array($desiderioRteConfiguration)) {
+    $desiderioRteConfiguration = [];
+}
+$desiderioRtePresets = $desiderioRteConfiguration['Presets'] ?? [];
+if (!is_array($desiderioRtePresets)) {
+    $desiderioRtePresets = [];
+}
+$desiderioRtePresets['desiderio'] = 'EXT:desiderio/Configuration/RTE/Desiderio.yaml';
+
+// Backward-compatible alias for RTE styleguide pages seeded before the normal
+// Desiderio preset gained the complete heading and semantic-style feature set.
+$desiderioRtePresets['desiderio_test'] = 'EXT:desiderio/Configuration/RTE/DesiderioTest.yaml';
+$desiderioRteConfiguration['Presets'] = $desiderioRtePresets;
+$GLOBALS['TYPO3_CONF_VARS']['RTE'] = $desiderioRteConfiguration;
 
 // Powermail double-opt-in and disclaimer mails link with the record uid and a
 // sha256 hash in the route path; the appended ?cHash= adds ~70 characters and

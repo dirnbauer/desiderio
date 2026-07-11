@@ -13,7 +13,7 @@
                     <d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography>
                 </f:if>
                 <div class="a11y-statement__meta">
-                    <d:atom.badge variant="secondary"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:a11y.conformance" default="WCAG 2.1 Level"/> {data.conformance_level -> f:format.case(mode: 'upper') -> f:or(alternative: 'AA')}</d:atom.badge>
+                    <d:atom.badge variant="secondary"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:a11y.conformance" default="WCAG 2.2 Level"/> {data.conformance_level -> f:format.case(mode: 'upper') -> f:or(alternative: 'AA')}</d:atom.badge>
                     <f:if condition="{data.last_updated}">
                         <span class="a11y-statement__updated"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:terms_summary.last_updated" default="Last updated"/>: {data -> f:render.text(field: 'last_updated')}</span>
                     </f:if>

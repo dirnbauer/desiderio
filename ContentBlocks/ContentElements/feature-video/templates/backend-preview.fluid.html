@@ -39,10 +39,21 @@
             </div>
         </f:if>
         <f:if condition="{data.video_file}">
-            <div class="d-ce-preview__thumbs" role="group" aria-label="Video File">
+            <div class="d-ce-preview__field">
+                <span class="d-ce-preview__label">Video file</span>
                 <f:for each="{data.video_file}" as="file">
                     <f:if condition="{file.publicUrl}">
-                        <img src="{file.publicUrl}" alt="{file.alternative}" class="d-ce-preview__thumb" loading="lazy" />
+                        <a class="d-ce-preview__value" href="{file.publicUrl}">{file.name -> f:format.htmlspecialchars()}</a>
+                    </f:if>
+                </f:for>
+            </div>
+        </f:if>
+        <f:if condition="{data.captions_file}">
+            <div class="d-ce-preview__field">
+                <span class="d-ce-preview__label">Captions</span>
+                <f:for each="{data.captions_file}" as="file">
+                    <f:if condition="{file.publicUrl}">
+                        <a class="d-ce-preview__value" href="{file.publicUrl}">{file.name -> f:format.htmlspecialchars()}</a>
                     </f:if>
                 </f:for>
             </div>

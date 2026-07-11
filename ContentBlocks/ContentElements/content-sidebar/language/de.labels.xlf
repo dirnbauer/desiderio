@@ -13,5 +13,11 @@
         <target>Ein zweispaltiges Layout aus breiter Rich-Text-Hauptspalte und schmaler Sidebar-Karte; die Sidebar lässt sich links oder rechts platzieren, eine Überschrift ist optional. Geeignet für: Artikeltexte mit Randnotizen, Anleitungen mit Fakten- oder Kontaktbox, Serviceseiten mit weiterführenden Links — überall dort, wo Kontext neben dem Haupttext stehen soll. Ist die zweite Spalte ein Bild, besser 'Split Text &amp; Media'; 'Content Columns' teilt einen Text in gleichwertige Spalten.</target>
       </segment>
     </unit>
+    <unit id="sidebar_label">
+      <segment state="final">
+        <source>Related information</source>
+        <target>Verwandte Informationen</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

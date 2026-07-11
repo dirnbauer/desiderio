@@ -27,7 +27,15 @@
         <d:molecule.tabs defaultValue="tab-{data.uid}-{defaultTabIndex}">
             <d:molecule.tabsList variant="{tabsVariant -> f:format.trim()}">
                 <f:for each="{data.items}" as="item" iteration="iter">
-                    <d:molecule.tabsTrigger value="tab-{data.uid}-{iter.index}">
+                    <f:variable name="tabValue" value="tab-{data.uid}-{iter.index}" />
+                    <f:variable name="triggerId" value="tab-{data.uid}-{iter.index}" />
+                    <f:variable name="panelId" value="tabpanel-{data.uid}-{iter.index}" />
+                    <d:molecule.tabsTrigger
+                        value="{tabValue}"
+                        id="{triggerId}"
+                        controls="{panelId}"
+                        active="{f:if(condition: '{iter.index} == {defaultTabIndex}', then: 1, else: 0)}"
+                    >
                         <f:if condition="{item.tab_icon}">
                             <span data-icon="inline-start" aria-hidden="true"><d:atom.icon name="{item.tab_icon}" size="sm"/></span>
                         </f:if>
@@ -37,22 +45,18 @@
             </d:molecule.tabsList>
 
             <f:for each="{data.items}" as="item" iteration="iter">
-                <div
-                    role="tabpanel"
-                    data-state="inactive"
-                    hidden
-                    tabindex="0"
-                    aria-label="{item.tab_label -> f:format.stripTags() -> f:format.trim()}"
+                <f:variable name="tabValue" value="tab-{data.uid}-{iter.index}" />
+                <f:variable name="triggerId" value="tab-{data.uid}-{iter.index}" />
+                <f:variable name="panelId" value="tabpanel-{data.uid}-{iter.index}" />
+                <d:molecule.tabsContent
+                    value="{tabValue}"
+                    id="{panelId}"
+                    labelledBy="{triggerId}"
+                    active="{f:if(condition: '{iter.index} == {defaultTabIndex}', then: 1, else: 0)}"
                     class="tabs__content"
-                    data-slot="tabs-content"
-                    data-d-tabs-content
-                    data-value="tab-{data.uid}-{iter.index}"
                 >
-                    <f:if condition="{item.tab_content}">
-                        <f:then>{item -> f:render.text(field: 'tab_content')}</f:then>
-                        <f:else><f:format.html>{data.items.0.tab_content}</f:format.html></f:else>
-                    </f:if>
-                </div>
+                    {item -> f:render.text(field: 'tab_content')}
+                </d:molecule.tabsContent>
             </f:for>
         </d:molecule.tabs>
     </d:layout.container>

@@ -6,10 +6,14 @@
 For editors
 ===========
 
-Desiderio provides 255 editor-facing content elements. They are built as
-TYPO3 Content Blocks and render through shared Fluid components, so form
+Desiderio provides 244 editor-facing Desiderio Content Blocks. They render
+through shared Fluid components, so form
 fields, buttons, cards, badges, icons, charts, images, and dark mode use
 one visual system.
+
+The element picker can also promote native TYPO3 content elements when their
+owning extensions are loaded. Those native entries are not part of the 244
+Desiderio Content Block count.
 
 ..  _editor-content-elements:
 

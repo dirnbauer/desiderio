@@ -1,11 +1,9 @@
 # Desiderio RTE preset — default for all Desiderio content element RTE fields
-# (registered in ext_localconf.php, activated via Configuration/page.tsconfig).
+# (registered in ext_localconf.php and selected by richtextConfiguration).
 #
-# Based on EXT:rte_ckeditor Default.yaml, extended with:
-#   - textPartLanguage: assigns <span lang="…" dir="…"> to text parts (a11y)
-#   - abbreviation:     custom plugin inserting <abbr title="…"> (a11y)
-# DB processing already permits abbr/span and the title/lang/dir attributes
-# via the imported Processing.yaml.
+# Based on EXT:rte_ckeditor Default.yaml, extended with the complete Desiderio
+# editorial vocabulary. The normal production preset and the RTE combination
+# styleguide therefore exercise the same heading, inline and semantic markup.
 imports:
     - { resource: 'EXT:rte_ckeditor/Configuration/RTE/Processing.yaml' }
     - { resource: 'EXT:rte_ckeditor/Configuration/RTE/Editor/Base.yaml' }
@@ -14,8 +12,15 @@ imports:
 editor:
   config:
     importModules:
+      - { module: '@ckeditor/ckeditor5-basic-styles', exports: ['Code'] }
       - { module: '@ckeditor/ckeditor5-language', exports: ['TextPartLanguage'] }
       - { module: '@webconsulting/desiderio/Rte/abbreviation-plugin.js', exports: ['Abbreviation'] }
+
+    # CKEditor's hidden Strikethrough plugin consumes <del> and serializes it
+    # as <s>. Desiderio instead exposes semantic deleted text through the
+    # class-bearing Style definition below, so edit/save keeps the <del> tag.
+    removeImportModules:
+      - { module: '@ckeditor/ckeditor5-basic-styles', exports: ['Strikethrough'] }
 
     # Labels live in XLIFF 2.0 catalogs (Resources/Private/Language/labels.xlf
     # + locale targets); TYPO3 resolves the LLL: references to the backend
@@ -35,6 +40,61 @@ editor:
         - { title: 'Italiano', languageCode: 'it' }
         - { title: 'Español', languageCode: 'es' }
 
+    heading:
+      options:
+        - { model: 'paragraph', title: 'Paragraph' }
+        - { model: 'heading1', view: 'h1', title: 'Heading 1' }
+        - { model: 'heading2', view: 'h2', title: 'Heading 2' }
+        - { model: 'heading3', view: 'h3', title: 'Heading 3' }
+        - { model: 'heading4', view: 'h4', title: 'Heading 4' }
+        - { model: 'heading5', view: 'h5', title: 'Heading 5' }
+        - { model: 'heading6', view: 'h6', title: 'Heading 6' }
+        - { model: 'formatted', view: 'pre', title: 'Pre-formatted text' }
+
+    # CKEditor 5's Style command adds/removes classes. Every semantic style
+    # therefore has a stable class instead of relying on a classless entry,
+    # which would appear in the dropdown but could not be applied.
+    style:
+      definitions:
+        - { name: 'Lead', element: 'p', classes: ['lead'] }
+        - { name: 'Small print', element: 'small', classes: ['rte-small'] }
+        - { name: 'Muted', element: 'span', classes: ['text-muted'] }
+        - { name: 'Highlight', element: 'mark', classes: ['rte-highlight'] }
+        - { name: 'Keyboard input', element: 'kbd', classes: ['rte-keyboard'] }
+        - { name: 'Sample output', element: 'samp', classes: ['rte-sample'] }
+        - { name: 'Citation', element: 'cite', classes: ['rte-citation'] }
+        - { name: 'Deleted text', element: 'del', classes: ['rte-deleted'] }
+        - { name: 'Inserted text', element: 'ins', classes: ['rte-inserted'] }
+
+    # Preserve semantic elements when editors switch to source mode or open
+    # pre-existing content that does not yet carry the Style dropdown class.
+    htmlSupport:
+      allow:
+        - { name: 'small' }
+        - { name: 'mark' }
+        - { name: 'kbd' }
+        - { name: 'samp' }
+        - { name: 'cite' }
+        - { name: 'del' }
+        - { name: 'ins' }
+
+    alignment:
+      options:
+        - { name: 'left', className: 'text-start' }
+        - { name: 'center', className: 'text-center' }
+        - { name: 'right', className: 'text-end' }
+        - { name: 'justify', className: 'text-justify' }
+
+    table:
+      defaultHeadings: { rows: 1 }
+      contentToolbar:
+        - tableColumn
+        - tableRow
+        - mergeTableCells
+        - tableProperties
+        - tableCellProperties
+        - toggleTableCaption
+
     toolbar:
       items:
         - style
@@ -42,6 +102,7 @@ editor:
         - '|'
         - bold
         - italic
+        - code
         - subscript
         - superscript
         - softhyphen

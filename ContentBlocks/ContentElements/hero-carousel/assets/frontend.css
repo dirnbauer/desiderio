@@ -93,16 +93,25 @@
     gap: var(--d-spacing-2);
 }
 .hero-carousel__dot {
-    width: 0.625rem;
-    height: 0.625rem;
+    display: inline-grid;
+    place-items: center;
+    width: 1.75rem;
+    height: 1.75rem;
     padding: 0;
     border: 0;
     border-radius: var(--d-radius-full);
-    background: var(--d-border);
+    background: transparent;
     cursor: pointer;
+}
+.hero-carousel__dot::before {
+    content: "";
+    width: 0.625rem;
+    height: 0.625rem;
+    border-radius: inherit;
+    background: var(--d-border);
     transition: background-color 0.15s ease;
 }
-.hero-carousel__dot[aria-selected="true"] {
+.hero-carousel__dot[aria-selected="true"]::before {
     background: var(--d-primary);
 }
 .hero-carousel__dot:focus-visible {

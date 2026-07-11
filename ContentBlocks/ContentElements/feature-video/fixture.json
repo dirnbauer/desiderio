@@ -1,21 +1,28 @@
 {
     "_type": "grid",
-    "eyebrow": "Product tour",
-    "header": "From first edit to a polished page — watch it happen",
-    "description": "<p>A short tour of the Desiderio workflow: pick an element from the wizard, edit it inline in the Visual Editor, then switch the theme preset and watch the whole site repaint at runtime.<br />This is what '<strong>installed before lunch</strong>' looks like.</p>",
+    "eyebrow": "Video example",
+    "header": "Show a product story with video",
+    "description": "<p>This seeded example renders an embedded sample video with supporting copy. Replace both before publishing; the uploaded-video and poster fields are used only when no embed URL is set.</p>",
     "video_url": "https://www.youtube.com/embed/aqz-KE-bpKQ",
     "video_file": {
-        "file": "Resources/Public/Styleguide/Unsplash/office-turquo-cabbit.jpg",
-        "title": "Modern office atrium",
-        "alternative": "A modern multi-level office atrium with glass railings and warm light.",
-        "description": "Copyright/credit: Photo by Turquo Cabbit on Unsplash. Used as seeded demo imagery.",
-        "source": "https://unsplash.com/photos/modern-office-building-interior-with-multiple-floors-QkGDA4Q4Vdk"
+        "file": "Resources/Public/Styleguide/Video/desiderio-demo.mp4",
+        "title": "Generated Desiderio demo clip",
+        "alternative": "Short motion clip of a Desiderio page in the TYPO3 Visual Editor.",
+        "description": "Generated from the seeded Desiderio Visual Editor screenshot for video fallback testing.",
+        "source": "EXT:desiderio/Resources/Public/Styleguide/Video/desiderio-demo.mp4"
+    },
+    "captions_file": {
+        "file": "Resources/Public/Styleguide/Video/desiderio-feature-video.en.vtt",
+        "title": "English captions for the Desiderio feature video",
+        "alternative": "",
+        "description": "English WebVTT captions for the narrated Desiderio feature video.",
+        "source": "EXT:desiderio/Resources/Public/Styleguide/Video/desiderio-feature-video.en.vtt"
     },
     "poster": {
-        "file": "Resources/Public/Styleguide/Frontend/frontend-hero-lagoon.png",
-        "title": "Desiderio frontend in the Lagoon preset",
-        "alternative": "Rendered Desiderio frontend hero page in the light Lagoon theme preset.",
-        "description": "Screenshot of a live Desiderio frontend page, used as the video poster.",
+        "file": "Resources/Public/Styleguide/Backend/backend-visual-editor.png",
+        "title": "Desiderio Visual Editor",
+        "alternative": "TYPO3 Visual Editor with a Desiderio page open for inline editing.",
+        "description": "Screenshot of the Desiderio Visual Editor, used as the video poster.",
         "source": "https://github.com/dirnbauer/desiderio"
     }
 }

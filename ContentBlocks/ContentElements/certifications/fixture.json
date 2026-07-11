@@ -5,7 +5,7 @@
     "subheadline": "No paid badges, no logos for rent — every engineering claim below is verifiable in the public GPL repository before you spend a single cent.",
     "certifications": [
         {
-            "name": "GPL-2.0 License",
+            "name": "GPL-2.0-or-later License",
             "issuer": "Open source",
             "badge_image": {
                 "file": "Resources/Public/Styleguide/Unsplash/compliance-gdpr-laptop.jpg",
@@ -29,7 +29,7 @@
             "link": "https://github.com/dirnbauer/desiderio"
         },
         {
-            "name": "CI on PHP 8.3 & 8.4",
+            "name": "CI across supported PHP versions",
             "issuer": "GitHub Actions",
             "badge_image": {
                 "file": "Resources/Public/Styleguide/Unsplash/compliance-iso-security.jpg",
@@ -37,7 +37,7 @@
                 "alternative": "A review workspace with documents representing CI checks.",
                 "description": "Unsplash image used as demo badge media."
             },
-            "description": "<p>A <strong>400-test suite</strong> of unit and functional tests runs across the full PHP matrix before any release is tagged.</p>",
+            "description": "<p>Automated <strong>unit and functional tests</strong> run across the full supported PHP matrix before any release is tagged.</p>",
             "link": "https://github.com/dirnbauer/desiderio"
         },
         {

@@ -1,6 +1,6 @@
 # Desiderio
 
-Desiderio is a TYPO3 v14.3 theme extension with a shadcn/ui-inspired Fluid 5 component library, 255 Content Blocks, page templates, optional Blog/News/Solr/Powermail overrides, and a runtime theme system driven by TYPO3 site settings.
+Desiderio is a TYPO3 v14.3 theme extension with a shadcn/ui-inspired Fluid 5 component library, 244 Desiderio Content Blocks, page templates, optional Blog/News/Solr/Powermail overrides, and a runtime theme system driven by TYPO3 site settings.
 
 It is built for TYPO3 installations that need a complete editorial and marketing component set without a frontend build step on the target site. The committed assets include the Tailwind v4/shadcn CSS theme, lightweight interaction JavaScript, a small Prism syntax-highlighting bundle, and chart helpers.
 
@@ -39,7 +39,7 @@ Enable the site sets in this order:
 Desiderio provides three layers:
 
 - **Components**: 17 atoms, 28 molecules, and 4 layout primitives (49 typed Fluid components total).
-- **Content Blocks**: 255 editor-facing content elements grouped for heroes, features, data, conversion, editorial, media, social proof, navigation, forms, and footer patterns.
+- **Content Blocks**: 244 editor-facing Desiderio Content Blocks grouped for heroes, features, data, conversion, editorial, media, social proof, navigation, forms, and footer patterns.
 - **Theme**: backend layouts, page templates, header/footer templates, CSS variables, JavaScript interactions, and site settings.
 
 The current shadcn base is `radix-lyra` with the `b6G5977cw` mono olive preset and Tabler icons. The runtime preset selector also includes four other `ui.shadcn.com/create` presets, ten bundled house presets, and `custom`.
@@ -308,7 +308,7 @@ Desiderio registers `ExtbasePluginRequestSanitizerMiddleware` to strip malformed
 
 Content Block media fields should use `<f:image image="{fileReference}">` with structured Fluid `data` arguments so Visual Editor image overlays attach correctly.
 
-The element picker ("Add content" panel) is filled by the `?elementLibrary=1` endpoint, which lists every content element. Its catalog is built from the on-disk Content Blocks definitions and **cached** (`desiderio_library`, `SimpleFileBackend`): opening the picker no longer re-parses ~255 `config.yaml` files each time. The cache key fingerprints every `config.yaml` mtime, so adding or editing an element self-invalidates it; "flush all caches" also clears it.
+The element picker ("Add content" panel) is filled by the `?elementLibrary=1` endpoint. It includes the 244 Desiderio Content Blocks, promotes native TYPO3 elements when their owning extensions are loaded, and can include blocks contributed by Innesto. Its catalog is built from the on-disk Content Blocks definitions and **cached** (`desiderio_library`, `SimpleFileBackend`): opening the picker no longer re-parses all 244 Desiderio `config.yaml` files each time. The cache key fingerprints every `config.yaml` mtime, so adding or editing an element self-invalidates it; "flush all caches" also clears it.
 
 The preview thumbnails inside the picker are page-cached per site base. Warm them with `vendor/bin/typo3 desiderio:library:warm` — with no arguments it warms every site's library; `--folder=<uid>` warms one folder across all sites that use it; `--site=<id>` restricts to one site. Details in `Documentation/Developer/Index.rst` (sections "Element library catalog cache" and "Warming preview thumbnails").
 

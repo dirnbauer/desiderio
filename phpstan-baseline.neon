@@ -655,12 +655,6 @@ parameters:
 			path: ext_localconf.php
 
 		-
-			message: '#^Cannot access offset ''Presets'' on mixed\.$#'
-			identifier: offsetAccess.nonOffsetAccessible
-			count: 1
-			path: ext_localconf.php
-
-		-
 			message: '#^Cannot access offset ''RTE'' on mixed\.$#'
 			identifier: offsetAccess.nonOffsetAccessible
 			count: 1
@@ -686,12 +680,6 @@ parameters:
 
 		-
 			message: '#^Cannot access offset ''caching'' on mixed\.$#'
-			identifier: offsetAccess.nonOffsetAccessible
-			count: 1
-			path: ext_localconf.php
-
-		-
-			message: '#^Cannot access offset ''desiderio'' on mixed\.$#'
 			identifier: offsetAccess.nonOffsetAccessible
 			count: 1
 			path: ext_localconf.php

@@ -43,28 +43,65 @@ document.addEventListener('DOMContentLoaded', () => {
   /*  2. Tabs                                                            */
   /* ------------------------------------------------------------------ */
   document.querySelectorAll('[data-d-tabs]').forEach(root => {
+    const belongsToRoot = element => element.closest('[data-d-tabs]') === root;
+    const triggers = Array.from(root.querySelectorAll('[data-d-tabs-trigger]')).filter(belongsToRoot);
+    const panels = Array.from(root.querySelectorAll('[data-d-tabs-content]')).filter(belongsToRoot);
+    if (triggers.length === 0) return;
+
     const activate = value => {
-      root.querySelectorAll('[data-d-tabs-trigger]').forEach(t => {
+      triggers.forEach(t => {
         const active = t.dataset.value === value;
         t.setAttribute('aria-selected', String(active));
+        t.tabIndex = active ? 0 : -1;
         t.dataset.state = active ? 'active' : 'inactive';
         t.toggleAttribute('data-active', active);
       });
-      root.querySelectorAll('[data-d-tabs-content]').forEach(c => {
+      panels.forEach(c => {
         const active = c.dataset.value === value;
         c.dataset.state = active ? 'active' : 'inactive';
         c.hidden = !active;
       });
     };
 
-    // Set initial tab.
-    const defaultVal = root.dataset.default
-      || root.querySelector('[data-d-tabs-trigger]')?.dataset.value;
-    if (defaultVal) activate(defaultVal);
+    // Honour a valid configured default and safely fall back to the first tab.
+    const defaultTrigger = triggers.find(trigger => trigger.dataset.value === root.dataset.default)
+      || triggers.find(trigger => trigger.getAttribute('aria-selected') === 'true')
+      || triggers[0];
+    activate(defaultTrigger.dataset.value);
 
     root.addEventListener('click', e => {
       const trigger = e.target.closest('[data-d-tabs-trigger]');
-      if (trigger) activate(trigger.dataset.value);
+      if (trigger && belongsToRoot(trigger)) activate(trigger.dataset.value);
+    });
+
+    root.addEventListener('keydown', event => {
+      const trigger = event.target.closest('[data-d-tabs-trigger]');
+      if (!trigger || !belongsToRoot(trigger)) return;
+
+      const currentIndex = triggers.indexOf(trigger);
+      if (currentIndex < 0) return;
+
+      const orientation = root.dataset.orientation || 'horizontal';
+      let nextIndex = null;
+
+      if (event.key === 'Home') {
+        nextIndex = 0;
+      } else if (event.key === 'End') {
+        nextIndex = triggers.length - 1;
+      } else if ((orientation === 'vertical' && event.key === 'ArrowUp')
+        || (orientation !== 'vertical' && event.key === 'ArrowLeft')) {
+        nextIndex = (currentIndex - 1 + triggers.length) % triggers.length;
+      } else if ((orientation === 'vertical' && event.key === 'ArrowDown')
+        || (orientation !== 'vertical' && event.key === 'ArrowRight')) {
+        nextIndex = (currentIndex + 1) % triggers.length;
+      }
+
+      if (nextIndex === null) return;
+
+      event.preventDefault();
+      const nextTrigger = triggers[nextIndex];
+      activate(nextTrigger.dataset.value);
+      nextTrigger.focus();
     });
   });
 
@@ -486,25 +523,64 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ------------------------------------------------------------------ */
   /*  7. Consent                                                        */
   /* ------------------------------------------------------------------ */
-  document.querySelectorAll('[data-d-consent]').forEach(banner => {
+  const consentBanners = Array.from(document.querySelectorAll(
+    '[data-d-consent], [data-cookie-banner], [data-gdpr-banner]',
+  ));
+  if (consentBanners.length > 0) {
     const key = 'd-consent';
+    const preferencesKey = 'd-consent-preferences';
     const stored = localStorage.getItem(key);
+
+    consentBanners.forEach(candidate => { candidate.hidden = true; });
+
     if (stored === 'accepted' || stored === 'declined') {
       body.dataset.consent = stored;
-      return;
+    } else {
+      // A configured Content Block takes precedence over the site-wide fallback.
+      const banner = consentBanners.find(candidate => (
+        candidate.matches('[data-cookie-banner], [data-gdpr-banner]')
+      )) || consentBanners[0];
+      const categoryInputs = Array.from(banner.querySelectorAll('[data-d-consent-category]'));
+      banner.hidden = false;
+
+      const preferences = () => categoryInputs.map(input => ({
+        id: input.dataset.dConsentCategory,
+        allowed: input.checked || input.disabled,
+        required: input.disabled,
+      }));
+
+      const choose = (status, selectedPreferences = []) => {
+        localStorage.setItem(key, status);
+        if (selectedPreferences.length > 0) {
+          localStorage.setItem(preferencesKey, JSON.stringify(selectedPreferences));
+        } else {
+          localStorage.removeItem(preferencesKey);
+        }
+        body.dataset.consent = status;
+        consentBanners.forEach(candidate => { candidate.hidden = true; });
+        window.dispatchEvent(new CustomEvent('desiderio:consent-change', {
+          detail: { status, preferences: selectedPreferences },
+        }));
+      };
+
+      const accept = banner.querySelector('[data-d-consent-accept], .cookie-banner__action--accept, .gdpr-banner__action--accept');
+      const decline = banner.querySelector('[data-d-consent-decline], .cookie-banner__action--decline');
+      const save = banner.querySelector('.gdpr-banner__action--save');
+
+      accept?.addEventListener('click', () => {
+        categoryInputs.forEach(input => { input.checked = true; });
+        choose('accepted', preferences());
+      });
+      decline?.addEventListener('click', () => choose('declined'));
+      save?.addEventListener('click', () => {
+        const selectedPreferences = preferences();
+        const optionalAllowed = selectedPreferences.some(preference => (
+          !preference.required && preference.allowed
+        ));
+        choose(optionalAllowed ? 'accepted' : 'declined', selectedPreferences);
+      });
     }
-
-    banner.hidden = false;
-
-    const choose = value => {
-      localStorage.setItem(key, value);
-      body.dataset.consent = value;
-      banner.hidden = true;
-    };
-
-    banner.querySelector('[data-d-consent-accept]')?.addEventListener('click', () => choose('accepted'));
-    banner.querySelector('[data-d-consent-decline]')?.addEventListener('click', () => choose('declined'));
-  });
+  }
 
   /* ------------------------------------------------------------------ */
   /*  8. Back to top                                                     */

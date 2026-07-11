@@ -13,5 +13,17 @@
         <target>Rendert einen zweispaltigen Footer: links Markenname, Rich-Text-Beschreibung und Copyright, rechts eine gestapelte Liste von Navigationslinks. Geeignet für: Footer-Inhalte, die einen kurzen Unternehmenstext mit einer einzelnen flachen Linkliste kombinieren — ohne gruppierte Spalten. Teilen sich die Links in mehrere betitelte Gruppen, besser der 'Footer mit Linkspalten'; ohne Markentext genügt der 'Minimale Footer'.</target>
       </segment>
     </unit>
+    <unit id="footer_label">
+      <segment state="final">
+        <source>Footer</source>
+        <target>Fußzeile</target>
+      </segment>
+    </unit>
+    <unit id="nav_label">
+      <segment state="final">
+        <source>Footer links</source>
+        <target>Links in der Fußzeile</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

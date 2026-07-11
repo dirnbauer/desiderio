@@ -1456,6 +1456,16 @@
         <source>Video file</source>
       </segment>
     </unit>
+    <unit id="video_captions">
+      <segment>
+        <source>Captions file (WebVTT)</source>
+      </segment>
+    </unit>
+    <unit id="video_download">
+      <segment>
+        <source>Download the video</source>
+      </segment>
+    </unit>
     <unit id="poster_image">
       <segment>
         <source>Poster image</source>
@@ -1973,7 +1983,7 @@
     </unit>
     <unit id="a11y.conformance">
       <segment>
-        <source>WCAG 2.1 Level</source>
+        <source>WCAG 2.2 Level</source>
       </segment>
     </unit>
     <unit id="a11y.contactIntro">
@@ -2134,6 +2144,41 @@
     <unit id="rte.abbreviation.header.edit">
       <segment>
         <source>Edit abbreviation</source>
+      </segment>
+    </unit>
+    <unit id="color_field">
+      <segment>
+        <source>Color</source>
+      </segment>
+    </unit>
+    <unit id="shadcn_layout">
+      <segment>
+        <source>Layout</source>
+      </segment>
+    </unit>
+    <unit id="tagline">
+      <segment>
+        <source>Tagline</source>
+      </segment>
+    </unit>
+    <unit id="changelog.tag.new">
+      <segment>
+        <source>New</source>
+      </segment>
+    </unit>
+    <unit id="changelog.tag.fix">
+      <segment>
+        <source>Fix</source>
+      </segment>
+    </unit>
+    <unit id="changelog.tag.improvement">
+      <segment>
+        <source>Improvement</source>
+      </segment>
+    </unit>
+    <unit id="changelog.tag.breaking">
+      <segment>
+        <source>Breaking change</source>
       </segment>
     </unit>
   </file>

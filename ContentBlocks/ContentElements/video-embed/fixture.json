@@ -1,14 +1,14 @@
 {
     "_type": "card",
-    "header": "Watch Desiderio 2.6 do its thing",
+    "header": "Responsive video embed example",
     "video_url": "https://player.vimeo.com/video/76979871",
-    "caption": "Demo placeholder video. The real walkthrough shows per-page theme presets switching live, the content wizard with all ten groups, and a full demo site seeded in one command.",
+    "caption": "Sample Vimeo video used to demonstrate a responsive 16:9 player and caption. Replace the URL and caption before publishing; an uploaded video is used only when the embed URL is empty.",
     "aspect_ratio": "16-9",
     "video_file": {
-        "file": "Resources/Public/Styleguide/Unsplash/office-turquo-cabbit.jpg",
-        "title": "Modern office atrium",
-        "alternative": "A modern multi-level office atrium with glass railings and warm light.",
-        "description": "Copyright/credit: Photo by Turquo Cabbit on Unsplash. Used as seeded demo imagery.",
-        "source": "https://unsplash.com/photos/modern-office-building-interior-with-multiple-floors-QkGDA4Q4Vdk"
+        "file": "Resources/Public/Styleguide/Video/desiderio-demo.mp4",
+        "title": "Generated Desiderio demo clip",
+        "alternative": "Short motion clip of a Desiderio page in the TYPO3 Visual Editor.",
+        "description": "Generated from the seeded Desiderio Visual Editor screenshot for video fallback testing.",
+        "source": "EXT:desiderio/Resources/Public/Styleguide/Video/desiderio-demo.mp4"
     }
 }

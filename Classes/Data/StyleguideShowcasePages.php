@@ -24,7 +24,7 @@ namespace Webconsulting\Desiderio\Data;
  *
  * @phpstan-import-type StarterBlock from StarterSiteDefinitions
  * @phpstan-type ShowcaseBlogMeta array{publishDate: string, categories: list<string>, tags: list<string>}
- * @phpstan-type ShowcasePage array{title: string, navTitle: string, slug: string, abstract: string, description: string, parentSlug: string|null, subtitle?: string, blogList?: bool, blog?: ShowcaseBlogMeta, hideInNav?: bool, content: array<int, StarterBlock>}
+ * @phpstan-type ShowcasePage array{title: string, navTitle: string, slug: string, abstract: string, description: string, parentSlug: string|null, subtitle?: string, pageTsConfig?: string, blogList?: bool, blog?: ShowcaseBlogMeta, hideInNav?: bool, content: array<int, StarterBlock>}
  */
 final class StyleguideShowcasePages
 {
@@ -320,6 +320,7 @@ final class StyleguideShowcasePages
         return [
             self::technicalFeaturesPage(),
             self::contentTypesHubPage(),
+            self::rteCombinationsPage(),
             self::featuresOverviewPage(),
             self::featureRecordsListPage(),
             self::featureMcpServerPage(),
@@ -371,6 +372,31 @@ final class StyleguideShowcasePages
         }
 
         return $count;
+    }
+
+    /**
+     * @return ShowcasePage
+     */
+    private static function rteCombinationsPage(): array
+    {
+        return [
+            'title' => 'RTE combinations',
+            'navTitle' => 'RTE combinations',
+            'slug' => '/content-types/rte-combinations',
+            'abstract' => 'A deterministic 100-block TYPO3 rich-text stress page covering every ordered adjacency across paragraphs, headings, lists, and quotations, plus inline editor styles.',
+            'description' => 'Visual regression fixture for Desiderio rich text: 100 reproducible blocks cover all ordered p, h1-h5, ul, ol, and blockquote combinations with short, long, linked, bold, italic, and semantic inline content.',
+            'parentSlug' => 'content-types',
+            'pageTsConfig' => 'RTE.config.tt_content.bodytext.types.text.preset = desiderio',
+            'hideInNav' => true,
+            'content' => [
+                self::block('text', [
+                    'header' => '100-block adjacency matrix',
+                    'header_layout' => 2,
+                    'subheader' => 'Every ordered pairing of the nine primary block types occurs at least once. The order is fixed so screenshots remain comparable between releases.',
+                    'bodytext' => RteCombinationFixtures::bodytext(),
+                ]),
+            ],
+        ];
     }
 
     /**
@@ -2205,8 +2231,13 @@ final class StyleguideShowcasePages
                     'media_rounded' => 1,
                     'button_text' => 'View on GitHub',
                     'button_link' => 'https://github.com/dirnbauer/desiderio',
-                    'media' => self::screenshot('feature-overview.png', 'The Desiderio ecosystem at a glance', 'TYPO3 14 backend showing the Desiderio design system alongside the Records, Workspaces, Skills, and API Core modules of the wider ecosystem.'),
+                    'media' => self::screenshot('feature-overview.png', 'TYPO3 backend context for the Desiderio ecosystem', 'TYPO3 14 About dashboard with the backend module navigation visible. The ecosystem relationships described on this page are not shown in the screenshot.'),
                 ]),
+                self::featureVideoBlock(
+                    'overview',
+                    'The Desiderio ecosystem, explained',
+                    'See how Desiderio coordinates editing, publishing, search, authentication, forms, payments, and agent capabilities around TYPO3 core concepts. Module highlights and their connecting labels are composed explanations; no backend action is executed in the video.'
+                ),
                 self::block('desiderio_benefitcards', [
                     'header' => 'One ecosystem, many capabilities',
                     'eyebrow' => 'Ecosystem',
@@ -2298,8 +2329,13 @@ final class StyleguideShowcasePages
                     'media_rounded' => 1,
                     'button_text' => 'View on GitHub',
                     'button_link' => 'https://github.com/dirnbauer/typo3-records-list-types',
-                    'media' => self::screenshot('feature-records-list.png', 'Records module with Grid and Teaser views in action', 'TYPO3 backend Records module showing three view mode buttons in the header and a grid of record cards below with thumbnails, field values, and action buttons.'),
+                    'media' => self::screenshot('feature-records-list.png', 'TYPO3 Records module in list view', 'TYPO3 backend Records module showing a News storage folder, list rows, field values, and record actions. Grid, Compact, Teaser, filters, and workspace overlays are not visible in this screenshot.'),
                 ]),
+                self::featureVideoBlock(
+                    'records-list',
+                    'Records List Types in action',
+                    'See how Grid, Compact, Teaser, and custom views make TYPO3 records easier to scan, filter, and reorder while workspace states stay visible. Focus frames and reordering cues are composed demonstrations; no record is changed in the video.'
+                ),
                 self::block('desiderio_benefitcards', [
                     'header' => 'Why it matters',
                     'eyebrow' => 'Backend module enhancement',
@@ -2372,8 +2408,13 @@ composer require webconsulting/records-list-types:^1.0.3
                     'media_rounded' => 1,
                     'button_text' => 'View on GitHub',
                     'button_link' => 'https://github.com/dirnbauer/typo3-mcp-server',
-                    'media' => self::screenshot('feature-mcp-server.png', 'MCP Server backend module', 'TYPO3 User menu showing the MCP Server module with endpoint URL, OAuth discovery links, health checks, and token management interface.'),
+                    'media' => self::screenshot('feature-mcp-server.png', 'MCP Server backend module', 'TYPO3 MCP Server connection setup showing the remote server URL, local Cursor configuration, stdio command, and active OAuth token controls.'),
                 ]),
+                self::featureVideoBlock(
+                    'mcp-server',
+                    'A governed MCP surface for TYPO3',
+                    'See the endpoint, OAuth discovery, TCA-aware tools, workspace-first writes, and matching TYPO3 CLI surface. Connection and tool-flow states are composed explanations; no remote client connects and no content write is executed.'
+                ),
                 self::block('desiderio_benefitcards', [
                     'header' => 'Why it matters',
                     'eyebrow' => 'AI & Automation',
@@ -2445,8 +2486,13 @@ vendor/bin/typo3 extension:activate mcp_server
                     'media_rounded' => 1,
                     'button_text' => 'View on GitHub',
                     'button_link' => 'https://github.com/dirnbauer/typo3-webcon-easy-workspace',
-                    'media' => self::screenshot('feature-easy-workspace.png', 'Pending changes review panel', 'TYPO3 backend with Easy Workspace toolbar dropdown showing pending page and content-element changes with publish and discard options per row.'),
+                    'media' => self::screenshot('feature-easy-workspace.png', 'Pending changes review panel', 'TYPO3 Easy Workspace staging review module showing two affected records, selectable rows, state chips, the selected count, and publishing controls.'),
                 ]),
+                self::featureVideoBlock(
+                    'easy-workspace',
+                    'Confident workspace publishing',
+                    'See how editors reach a focused queue from the TYPO3 toolbar, review related records, and choose what should publish together. Selection and publishing states are composed demonstrations; no workspace record is published or discarded.'
+                ),
                 self::block('desiderio_benefitcards', [
                     'header' => 'Why it matters',
                     'eyebrow' => 'Backend extension',
@@ -2521,6 +2567,11 @@ vendor/bin/typo3 cache:flush',
                     'button_link' => 'https://github.com/TYPO3GmbH/blog',
                     'media' => self::screenshot('feature-blog.png', 'Blog post edit in the page module with workspace overlay', 'A blog post edit screen in the TYPO3 page module, showing the post title in the page header along with metadata badges for publish date, categories, tags, and author.'),
                 ]),
+                self::featureVideoBlock(
+                    'blog',
+                    'A blog built on TYPO3 core',
+                    'See how posts remain pages, articles use ordinary content elements and layouts, and editorial metadata stays visible in the page module. Highlights and workspace states are composed explanations; no post is staged or published.'
+                ),
                 self::block('desiderio_benefitcards', [
                     'header' => 'Why it matters',
                     'eyebrow' => 'Extensions',
@@ -2588,7 +2639,30 @@ vendor/bin/typo3 cache:flush',
                     'media_rounded' => 1,
                     'button_text' => 'Get Desiderio on GitHub',
                     'button_link' => 'https://github.com/dirnbauer/desiderio',
-                    'media' => self::screenshot('feature-desiderio.png', 'Desiderio in the TYPO3 Visual Editor', 'The TYPO3 Visual Editor showing a Desiderio hero element selected for inline editing, with the frontend rendering visible on the right side of the screen.'),
+                    'media' => self::screenshot('feature-desiderio.png', 'Desiderio in the TYPO3 Visual Editor', 'The TYPO3 Visual Editor showing a Desiderio page and its frontend rendering inside the editor workspace.'),
+                ]),
+                self::block('desiderio_featurevideo', [
+                    'eyebrow' => 'Narrated feature tour',
+                    'header' => 'Desiderio + Innesto in 27 seconds',
+                    'description' => '<p>See how Desiderio combines 244 ready-to-use elements, 49 typed Fluid components, fifteen runtime presets, and an Innesto path from compatible registry JSON to a TYPO3 Content Block. Theme changes and the Innesto command are composed demonstrations; no production write is executed in the video.</p>',
+                    'video_file' => self::styleguideVideoAsset(
+                        'desiderio-feature-video.mp4',
+                        'Desiderio and Innesto narrated feature tour',
+                        'A narrated motion-design tour of the Desiderio design system and Innesto workflow.',
+                        'Generated product explainer using verified Desiderio feature-page claims and a cropped TYPO3 Visual Editor screenshot.'
+                    ),
+                    'captions_file' => self::styleguideVideoAsset(
+                        'desiderio-feature-video.en.vtt',
+                        'English captions for the Desiderio feature tour',
+                        '',
+                        'English WebVTT captions for the narrated Desiderio and Innesto feature tour.'
+                    ),
+                    'poster' => self::styleguideVideoAsset(
+                        'desiderio-feature-video-poster.webp',
+                        'Desiderio and Innesto feature-video poster',
+                        'The Desiderio target mark above the title Desiderio plus Innesto.',
+                        'Poster frame generated from the closing brand resolution of the Desiderio feature video.'
+                    ),
                 ]),
                 self::block('desiderio_benefitcards', [
                     'header' => 'Why it matters',
@@ -2667,8 +2741,13 @@ vendor/bin/typo3 innesto:add magicui/marquee --ai',
                     'media_rounded' => 1,
                     'button_text' => 'View on GitHub',
                     'button_link' => 'https://github.com/TYPO3-Solr/ext-solr',
-                    'media' => self::screenshot('feature-solr.png', 'Solr search results page in the Lagoon theme preset', 'Search results page showing a numbered pagination toolbar, result cards with title, URL and snippet excerpt, a per-page switcher dropdown, and a facets sidebar, all in the Lagoon theme palette with proper contrast and spacing.'),
+                    'media' => self::screenshot('feature-solr.png', 'Apache Solr Index Queue in TYPO3', 'TYPO3 backend Solr Index Queue showing index status counts and initialization controls. The themed frontend results, facets, sorting, and pagination described on this page are composed in the accompanying video rather than captured here.'),
                 ]),
+                self::featureVideoBlock(
+                    'solr',
+                    'Theme-aware Solr search',
+                    'See how Desiderio presents Solr results, facets, sorting, per-page controls, and accessible numbered pagination through the active theme. Filter and result transitions are composed states; no live query or performance measurement is shown.'
+                ),
                 self::block('desiderio_benefitcards', [
                     'header' => 'Why it matters',
                     'eyebrow' => 'Integration',
@@ -2741,8 +2820,13 @@ vendor/bin/typo3 innesto:add magicui/marquee --ai',
                     'media_rounded' => 1,
                     'button_text' => 'View on GitHub',
                     'button_link' => 'https://github.com/dirnbauer/workos',
-                    'media' => self::screenshot('feature-workos.png', 'Backend WorkOS Login and Frontend Login Plugin', 'Left: TYPO3 backend login page with a WorkOS tab showing \'Continue with WorkOS\', social buttons, and a magic auth email field. Right: A frontend page with the WorkOS Login card showing email + password form, magic auth option, social buttons, and a sign-up link.'),
+                    'media' => self::screenshot('feature-workos.png', 'WorkOS-protected TYPO3 MCP configuration', 'TYPO3 MCP Server configuration showing WorkOS protection, endpoint settings, a placeholder AuthKit domain, and the current Development and anonymous state. Login and organization interfaces are not visible in this screenshot.'),
                 ]),
+                self::featureVideoBlock(
+                    'workos',
+                    'One identity across TYPO3',
+                    'See the frontend and backend login surfaces alongside the supported authentication and organization features. This is a composed tour of the shipped interfaces; it does not open an external WorkOS tenant, submit credentials, or complete a sign-in.'
+                ),
                 self::block('desiderio_benefitcards', [
                     'header' => 'Why it matters',
                     'eyebrow' => 'Authentication & SSO',
@@ -2805,8 +2889,13 @@ vendor/bin/typo3 innesto:add magicui/marquee --ai',
                     'media_rounded' => 1,
                     'button_text' => 'View on GitHub',
                     'button_link' => 'https://github.com/dirnbauer/powermail',
-                    'media' => self::screenshot('feature-powermail.png', 'Powermail multi-step form in the Visual Editor', 'TYPO3 backend showing a Powermail form definition with multiple pages and a field list, styled with Desiderio shadcn components.'),
+                    'media' => self::screenshot('feature-powermail.png', 'Powermail form overview in TYPO3', 'TYPO3 Powermail form overview listing six forms, their language, usage count, and available actions. The form builder, multi-step frontend, validation, and captcha states are not visible in this screenshot.'),
                 ]),
+                self::featureVideoBlock(
+                    'powermail',
+                    'Powermail, themed and protected',
+                    'See editors define form pages, fields, and validation while Desiderio supplies themed controls, multi-step states, and Friendly Captcha integration. Form and validation states are composed; no form is submitted and no captcha token is exchanged.'
+                ),
                 self::block('desiderio_benefitcards', [
                     'header' => 'Why it matters',
                     'eyebrow' => 'Extension Integration',
@@ -2886,6 +2975,11 @@ vendor/bin/typo3 desiderio:styleguide:seed',
                     'button_link' => 'https://github.com/dirnbauer/typo3-x402-paywall',
                     'media' => self::screenshot('feature-x402-paywall-backend-dashboard.png', 'x402 Paywall Backend Dashboard', 'TYPO3 backend showing x402 paywall dashboard with revenue cards, top monetized pages list, and recent transactions table.'),
                 ]),
+                self::featureVideoBlock(
+                    'x402-paywall',
+                    'HTTP 402 content gating in TYPO3',
+                    'See how editors price pages and API routes, how middleware returns payment terms, and how the dashboard reports transactions. The payment flow and dashboard update are simulated; no wallet connects and no test or live payment is made.'
+                ),
                 self::block('desiderio_benefitcards', [
                     'header' => 'Why it matters',
                     'eyebrow' => 'Monetization & Payments',
@@ -2954,8 +3048,13 @@ vendor/bin/typo3 desiderio:styleguide:seed',
                     'media_rounded' => 1,
                     'button_text' => 'View on GitHub',
                     'button_link' => 'https://github.com/dirnbauer/typo3-abilities',
-                    'media' => self::screenshot('feature-abilities.png', 'The abilities registry in the TYPO3 Desktop Editor', 'The TYPO3 Desktop Editor\'s Abilities panel listing the registry: news, pages, content and workspace abilities with risk tiers, scopes, side effects and their MCP tool names.'),
+                    'media' => self::screenshot('feature-abilities.png', 'API token records in the TYPO3 backend', 'TYPO3 backend record list showing one API token record named news external read. The Abilities registry, typed contracts, projections, policy pipeline, and traces are composed in the accompanying video rather than captured here.'),
                 ]),
+                self::featureVideoBlock(
+                    'typo3-abilities',
+                    'One registry, governed everywhere',
+                    'See one typed ability project into MCP, CLI, REST, and desktop surfaces through the same policy-first execution pipeline. Approval and outcome states are composed explanations; no high-risk ability is executed.'
+                ),
                 self::block('desiderio_benefitcards', [
                     'header' => 'Why it matters',
                     'eyebrow' => 'API & Integration',
@@ -3042,8 +3141,13 @@ final class CreateArticleAbility extends AbstractAbility
                     'media_rounded' => 1,
                     'button_text' => 'View on GitHub',
                     'button_link' => 'https://github.com/dirnbauer/typo3-agentation',
-                    'media' => self::screenshot('feature-agentation.png', 'Agentation feedback panel in the TYPO3 frontend', 'A TYPO3 frontend page showing the Agentation toolbar on the right side with visual annotation controls and a list of stored annotations.'),
+                    'media' => self::screenshot('feature-agentation.png', 'Agentation configuration and status module', 'TYPO3 Agentation backend module showing MCP configuration, environment gates, supported destinations, and a status in which the API key and sync endpoint are unavailable. No successful annotation sync is shown.'),
                 ]),
+                self::featureVideoBlock(
+                    'agentation',
+                    'Visual context for coding agents',
+                    'See how a precise annotation carries its selector, computed styles, and page context through TYPO3\'s same-origin MCP proxy. Annotation and sync states are composed; no live coding-agent change is applied, and the server API key remains outside browser storage.'
+                ),
                 self::block('desiderio_benefitcards', [
                     'header' => 'Why it matters',
                     'eyebrow' => 'Developer tools',
@@ -3112,8 +3216,13 @@ final class CreateArticleAbility extends AbstractAbility
                     'media_rounded' => 1,
                     'button_text' => 'View on GitHub',
                     'button_link' => 'https://github.com/dirnbauer/sg_apicore',
-                    'media' => self::screenshot('feature-sg-apicore.png', 'OpenAPI Swagger UI with auto-generated endpoint documentation', 'Swagger UI showing the /api/public/v1/docs/ui interface with a list of auto-registered endpoints, request/response models, and inline test execution'),
+                    'media' => self::screenshot('feature-sg-apicore.png', 'Registered APIs and versions', 'TYPO3 sg_apicore backend module showing registered API identifiers, versions, authentication modes, base paths, and available actions. Swagger UI and endpoint execution are not visible in this screenshot.'),
                 ]),
+                self::featureVideoBlock(
+                    'sg-apicore',
+                    'From PHP attributes to governed APIs',
+                    'See controller attributes become versioned routes, OpenAPI documentation, scoped authentication, workspace-aware CRUD, and selected MCP tools. Method, request, and routing states are composed; no endpoint is called and no record is written.'
+                ),
                 self::block('desiderio_benefitcards', [
                     'header' => 'Why it matters',
                     'eyebrow' => 'Backend API',
@@ -3185,8 +3294,13 @@ vendor/bin/typo3 extension:activate sg_apicore
                     'media_rounded' => 1,
                     'button_text' => 'See on GitHub',
                     'button_link' => 'https://github.com/dirnbauer/skillflow',
-                    'media' => self::screenshot('feature-skillflow.png', 'Skills module list with Solr search and facets', 'TYPO3 backend Content > Skills module showing a searchable list of skills with Solr facet filters and the Skills detail editor with SKILL.md structure visible.'),
+                    'media' => self::screenshot('feature-skillflow.png', 'Skillflow manual-run panel', 'TYPO3 Content > Skills module showing an ab-testing skill, its engine and instructions, the Development guard, and a No page selected state. No skill run or automatic content change is shown.'),
                 ]),
+                self::featureVideoBlock(
+                    'skillflow',
+                    'Editorial QA inside the workflow',
+                    'See SKILL.md imports, Solr-backed discovery, workspace-stage reviews, and stored run reports inside TYPO3. Import, workflow, and report states are composed; suggestions are never auto-applied and no content is changed.'
+                ),
                 self::block('desiderio_benefitcards', [
                     'header' => 'Why it matters',
                     'eyebrow' => 'Workspace Automation',
@@ -3289,6 +3403,36 @@ ddev exec vendor/bin/typo3 skillflow:sync
     }
 
     /**
+     * @return StarterBlock
+     */
+    private static function featureVideoBlock(string $assetSlug, string $header, string $description): array
+    {
+        return self::block('desiderio_featurevideo', [
+            'eyebrow' => 'Narrated feature tour',
+            'header' => $header,
+            'description' => '<p>' . $description . '</p>',
+            'video_file' => self::styleguideVideoAsset(
+                $assetSlug . '-feature-video.mp4',
+                $header . ' narrated feature tour',
+                'A narrated product tour for ' . $header . '.',
+                'Generated product explainer using verified page claims, the page\'s current source image, and clearly labelled composed states.'
+            ),
+            'captions_file' => self::styleguideVideoAsset(
+                $assetSlug . '-feature-video.en.vtt',
+                'English captions for ' . $header,
+                '',
+                'English WebVTT captions for the narrated feature tour.'
+            ),
+            'poster' => self::styleguideVideoAsset(
+                $assetSlug . '-feature-video-poster.webp',
+                $header . ' feature-video poster',
+                'Poster frame for ' . $header . '.',
+                'Poster frame generated from the narrated feature tour.'
+            ),
+        ]);
+    }
+
+    /**
      * @return array{file: string, title: string, alternative: string, description: string, source: string}
      */
     private static function screenshot(string $filename, string $title, string $alternative, string $description = 'Screenshot of a TYPO3 14 installation with Desiderio.'): array
@@ -3297,6 +3441,20 @@ ddev exec vendor/bin/typo3 skillflow:sync
 
         return [
             'file' => 'Resources/Public/Styleguide/' . $folder . '/' . $filename,
+            'title' => $title,
+            'alternative' => $alternative,
+            'description' => $description,
+            'source' => self::REPO_URL,
+        ];
+    }
+
+    /**
+     * @return array{file: string, title: string, alternative: string, description: string, source: string}
+     */
+    private static function styleguideVideoAsset(string $filename, string $title, string $alternative, string $description): array
+    {
+        return [
+            'file' => 'Resources/Public/Styleguide/Video/' . $filename,
             'title' => $title,
             'alternative' => $alternative,
             'description' => $description,

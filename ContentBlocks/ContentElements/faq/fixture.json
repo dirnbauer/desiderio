@@ -5,7 +5,7 @@
     "items": [
         {
             "question": "Is Desiderio really free?",
-            "answer": "Yes — the Community tier is €0 forever. GPL-2.0, all 244 content elements, full source on GitHub, community support. No license key, no feature gate, no trial clock. The paid tiers buy you the creators' time and guarantees, never withheld features."
+            "answer": "Yes — the Community tier is €0 forever. GPL-2.0-or-later, all 244 content elements, full source on GitHub, community support. No license key, no feature gate, no trial clock. The paid tiers buy you the creators' time and guarantees, never withheld features."
         },
         {
             "question": "What does Pro add for €49/month?",
@@ -25,7 +25,7 @@
         },
         {
             "question": "Is it accessible?",
-            "answer": "Accessibility is built into the markup: semantic landmarks, correct heading order, visible focus states, required alt-text fields, and WCAG 2.2-checked contrast on every preset. An 11-category template audit with zero tolerance runs in CI, so regressions are caught before release — not by your users."
+            "answer": "Desiderio provides accessibility-minded foundations: semantic structures, visible focus styles in shared interactions, alternative-text fields, and tested theme-token contrast. Final WCAG 2.2 conformance depends on your content, configuration, extensions, and human testing. Automated checks catch structural and colour regressions, but they do not replace a site audit."
         }
     ]
 }

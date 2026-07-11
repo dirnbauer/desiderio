@@ -1,7 +1,7 @@
 {
     "_type": "form",
     "header": "Your privacy choices",
-    "content": "Demo consent banner from the Desiderio styleguide for the fictional webconsulting studio site. Choose which cookie categories to allow — connect it to your consent management tool before go-live.",
+    "content": "This styleguide example stores the categories you select in the browser. Connect its consent-change event to your consent manager before go-live so optional scripts remain blocked until they are allowed.",
     "cookie_categories": [
         {
             "name": "Essential",

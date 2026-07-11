@@ -1,6 +1,6 @@
 {
     "_type": "section",
-    "header": "Upgrading to Desiderio 2.6 takes minutes, not weekends",
-    "content": "<p>Desiderio 2.6 requires TYPO3 14.3+ and PHP 8.3+. Update the package, flush all caches, re-run <em>desiderio:styleguide:seed</em> — the seeder is idempotent, so your demo content updates in place. Rather have the creators handle it? Pro includes minor-version upgrade assistance.</p>",
+    "header": "Updating Desiderio takes minutes, not weekends",
+    "content": "<p>Desiderio requires TYPO3 14.3+ and PHP 8.3+. Update the package, flush all caches, re-run <em>desiderio:styleguide:seed</em> — the seeder is idempotent, so your demo content updates in place. Rather have the creators handle it? Pro includes minor-version upgrade assistance.</p>",
     "variant": "warning"
 }

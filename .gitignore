@@ -14,3 +14,7 @@ public/
 
 # Local backup archives (created before large refactors)
 backup-*.tar.gz
+
+# Local feature-video production workspace (captures, renders, and QA output).
+# Published assets live in Resources/Public/Styleguide/Video/ instead.
+Build/Videos/

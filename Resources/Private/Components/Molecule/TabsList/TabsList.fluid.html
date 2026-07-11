@@ -7,7 +7,9 @@
 <f:argument name="class" type="string" optional="{true}" default="" />
 <f:argument name="variant" type="string" optional="{true}" default="default" />
 
-<f:variable name="base" value="group/tabs-list inline-flex w-fit items-center justify-center rounded-md p-[3px] text-muted-foreground group-data-horizontal/tabs:h-8 group-data-vertical/tabs:h-fit group-data-vertical/tabs:flex-col data-[variant=line]:rounded-md" />
+<f:argument name="orientation" type="string" optional="{true}" default="horizontal" />
+
+<f:variable name="base" value="group/tabs-list inline-flex w-fit items-center rounded-md p-[3px] text-muted-foreground group-data-horizontal/tabs:h-8 group-data-vertical/tabs:h-fit group-data-vertical/tabs:flex-col data-[variant=line]:rounded-md max-w-full justify-start overflow-x-auto overscroll-x-contain" />
 
 <f:variable name="variantClass">
     <f:switch expression="{variant}">
@@ -16,6 +18,6 @@
     </f:switch>
 </f:variable>
 
-<div role="tablist" data-slot="tabs-list" data-variant="{variant}" class="{base} {variantClass -> f:format.trim()} {class}" data-d-tabs-list>
+<div role="tablist" aria-orientation="{orientation}" data-slot="tabs-list" data-variant="{variant}" class="{base} {variantClass -> f:format.trim()} {class}" data-d-tabs-list>
     <f:slot />
 </div>

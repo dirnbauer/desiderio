@@ -6,6 +6,8 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [2.13.1] — 2026-07-12
+
 ### Fixed
 
 - Content Block collections now use Content Blocks' native relation resolution

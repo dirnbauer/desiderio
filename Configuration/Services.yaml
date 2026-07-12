@@ -16,10 +16,5 @@ services:
     tags:
       - name: fluid.viewhelper
 
-  Webconsulting\Desiderio\DataProcessing\ContentBlockCollectionProcessor:
-    tags:
-      - name: data.processor
-        identifier: desiderio-content-block-collections
-
   Webconsulting\Desiderio\Domain\Factory\BlogCommentFormFactory:
     public: true

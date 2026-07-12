@@ -6,6 +6,12 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Fixed
+
+- Content Block collections now use Content Blocks' native relation resolution
+  instead of Desiderio's custom collection query. Workspace previews no longer
+  render both the live and draft versions of inline collection items.
+
 ### Changed
 
 - Content overhaul — attribution sweep across the seeded styleguide. Every

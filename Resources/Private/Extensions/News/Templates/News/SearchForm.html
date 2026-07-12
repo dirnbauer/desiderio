@@ -21,15 +21,15 @@
                     <fieldset class="grid gap-4 md:grid-cols-[minmax(0,1fr)_auto] md:items-end">
                         <div class="grid gap-2">
                             <d:atom.label for="news-subject"><f:translate key="search-subject" /></d:atom.label>
-                            <f:form.textfield id="news-subject" property="subject" class="d-control-h w-full min-w-0 rounded-md border border-input bg-transparent d-control-px py-1 d-control-text text-foreground outline-none placeholder:text-muted-foreground transition-colors focus-visible:border-ring focus-visible:ring-[var(--d-ring-width)] focus-visible:ring-ring/50 dark:bg-input/30"/>
+                            <f:form.textfield id="news-subject" property="subject" class="d-control-h w-full min-w-0 rounded-md border border-input bg-transparent d-control-px py-1 d-control-text text-foreground outline-none placeholder:text-muted-foreground transition-colors focus-visible:border-ring focus-visible:ring-(length:--d-ring-width) focus-visible:ring-ring/50 dark:bg-input/30"/>
                         </div>
                         <div class="grid gap-2">
                             <d:atom.label for="news-minimumDate"><f:translate key="search-minimumDate" /></d:atom.label>
-                            <f:form.textfield id="news-minimumDate" property="minimumDate" type="date" class="d-control-h w-full min-w-0 rounded-md border border-input bg-transparent d-control-px py-1 d-control-text text-foreground outline-none transition-colors focus-visible:border-ring focus-visible:ring-[var(--d-ring-width)] focus-visible:ring-ring/50 dark:bg-input/30"/>
+                            <f:form.textfield id="news-minimumDate" property="minimumDate" type="date" class="d-control-h w-full min-w-0 rounded-md border border-input bg-transparent d-control-px py-1 d-control-text text-foreground outline-none transition-colors focus-visible:border-ring focus-visible:ring-(length:--d-ring-width) focus-visible:ring-ring/50 dark:bg-input/30"/>
                         </div>
                         <div class="grid gap-2">
                             <d:atom.label for="news-maximumDate"><f:translate key="search-maximumDate" /></d:atom.label>
-                            <f:form.textfield id="news-maximumDate" property="maximumDate" type="date" class="d-control-h w-full min-w-0 rounded-md border border-input bg-transparent d-control-px py-1 d-control-text text-foreground outline-none transition-colors focus-visible:border-ring focus-visible:ring-[var(--d-ring-width)] focus-visible:ring-ring/50 dark:bg-input/30"/>
+                            <f:form.textfield id="news-maximumDate" property="maximumDate" type="date" class="d-control-h w-full min-w-0 rounded-md border border-input bg-transparent d-control-px py-1 d-control-text text-foreground outline-none transition-colors focus-visible:border-ring focus-visible:ring-(length:--d-ring-width) focus-visible:ring-ring/50 dark:bg-input/30"/>
                         </div>
                         <d:atom.button type="submit">
                             <span data-icon="inline-start" aria-hidden="true"><d:atom.icon name="search" size="xs"/></span>

@@ -1238,10 +1238,10 @@ function applyShapeTokens(string $class, ?string $radiusKind, bool $density, boo
 
     // Focus-ring width literals -> preset-switchable token (ring colour is kept).
     $ringMap = [
-        'ring-1' => 'ring-[var(--d-ring-width)]',
-        'ring-2' => 'ring-[var(--d-ring-width)]',
-        'ring-3' => 'ring-[var(--d-ring-width)]',
-        'ring-[3px]' => 'ring-[var(--d-ring-width)]',
+        'ring-1' => 'ring-(length:--d-ring-width)',
+        'ring-2' => 'ring-(length:--d-ring-width)',
+        'ring-3' => 'ring-(length:--d-ring-width)',
+        'ring-[3px]' => 'ring-(length:--d-ring-width)',
     ];
 
     $tokens = preg_split('/\s+/', trim($class)) ?: [];

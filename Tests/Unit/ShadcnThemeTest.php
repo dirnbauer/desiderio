@@ -160,7 +160,7 @@ final class ShadcnThemeTest extends TestCase
         self::assertStringContainsString('rounded-full', $shadcnClass);
 
         // Focus-ring width and card elevation are tokenized too.
-        self::assertStringContainsString('ring-[var(--d-ring-width)]', $input);
+        self::assertStringContainsString('ring-(length:--d-ring-width)', $input);
         $card = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Components/Molecule/Card/Card.fluid.html');
         self::assertStringContainsString('shadow-[var(--d-surface-shadow)]', $card);
         self::assertStringContainsString('--d-ring-width: 3px;', $themeCss);

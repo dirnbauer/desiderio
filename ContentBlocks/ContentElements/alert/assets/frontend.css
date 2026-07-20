@@ -10,7 +10,7 @@
     gap: var(--d-spacing-md);
     padding: var(--d-spacing-md) 1.25rem;
     border: 1px solid color-mix(in oklch, var(--border) 42%, transparent);
-    border-radius: var(--radius-lg);
+    border-radius: var(--d-radius-lg);
     background: color-mix(in oklch, var(--muted) 42%, var(--card));
 }
 .alert--info { background: color-mix(in oklch, var(--d-info-muted) 34%, var(--card)); }
@@ -24,7 +24,7 @@
     width: 2.25rem;
     height: 2.25rem;
     flex-shrink: 0;
-    border-radius: var(--radius-md);
+    border-radius: var(--d-radius-md);
     background: var(--background);
     box-shadow: inset 0 0 0 1px color-mix(in oklch, var(--border) 72%, transparent);
 }
@@ -58,7 +58,7 @@
     cursor: pointer;
     color: var(--muted-foreground);
     padding: 0;
-    border-radius: var(--radius-md);
+    border-radius: var(--d-radius-md);
     line-height: 0;
 }
 .alert__close:hover { color: var(--foreground); background: color-mix(in oklch, var(--muted) 72%, transparent); }

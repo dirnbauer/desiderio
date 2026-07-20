@@ -35,7 +35,7 @@
     color: var(--sidebar-foreground);
     background: var(--sidebar);
     border: 1px solid var(--sidebar-border);
-    border-radius: min(var(--radius-4xl, calc(var(--radius) * 2.6)), 24px);
+    border-radius: min(calc(var(--radius) * 2.6), 24px);
     box-shadow: var(--shadow-lg);
 }
 
@@ -72,7 +72,7 @@
     color: var(--card-foreground);
     background: var(--card);
     border: 1px solid var(--border);
-    border-radius: min(var(--radius-4xl, calc(var(--radius) * 2.6)), 24px);
+    border-radius: min(calc(var(--radius) * 2.6), 24px);
     box-shadow: var(--shadow-sm);
 }
 
@@ -93,7 +93,7 @@
     color: var(--foreground);
     background: var(--background);
     border: 1px solid var(--border);
-    border-radius: min(var(--radius-3xl, calc(var(--radius) * 2.2)), 20px);
+    border-radius: min(calc(var(--radius) * 2.2), 20px);
 }
 
 @supports (color: color-mix(in oklch, black, white)) {
@@ -147,7 +147,7 @@
     color: var(--primary-foreground);
     background: var(--primary);
     border: 1px solid transparent;
-    border-radius: min(var(--radius-2xl, calc(var(--radius) * 1.8)), 16px);
+    border-radius: min(calc(var(--radius) * 1.8), 16px);
     font-size: 0.875rem;
     font-weight: 500;
     line-height: 1;
@@ -341,7 +341,7 @@
     color: var(--card-foreground);
     background: var(--background);
     border: 1px solid var(--border);
-    border-radius: min(var(--radius-2xl, calc(var(--radius) * 1.8)), 16px);
+    border-radius: min(calc(var(--radius) * 1.8), 16px);
 }
 
 .d-solr-result-card__file-list {
@@ -374,7 +374,7 @@
     color: var(--foreground);
     background: var(--background);
     border: 1px solid var(--border);
-    border-radius: min(var(--radius-2xl, calc(var(--radius) * 1.8)), 16px);
+    border-radius: min(calc(var(--radius) * 1.8), 16px);
     font-size: 0.875rem;
 }
 

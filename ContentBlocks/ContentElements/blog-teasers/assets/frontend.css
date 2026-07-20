@@ -78,7 +78,7 @@
     text-wrap: balance;
     margin-block-end: var(--d-spacing-xs);
 }
-.blog-teasers__title-link { border-radius: var(--radius-sm); }
+.blog-teasers__title-link { border-radius: var(--d-radius-sm); }
 .blog-teasers__title a { color: inherit; text-decoration: none; }
 .blog-teasers__title a:hover { color: var(--d-link, var(--primary)); }
 

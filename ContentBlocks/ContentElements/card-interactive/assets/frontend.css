@@ -3,7 +3,7 @@
     gap: var(--d-spacing-lg);
     padding: var(--d-spacing-lg);
     border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
+    border-radius: var(--d-radius-lg);
     background: var(--card);
     color: var(--card-foreground);
     box-shadow: var(--shadow-sm);
@@ -27,7 +27,7 @@
     align-items: center;
     min-height: 1.5rem;
     padding: 0.125rem 0.625rem;
-    border-radius: var(--radius-full);
+    border-radius: var(--d-radius-full);
     background: var(--primary);
     color: var(--primary-foreground);
     font-size: var(--d-text-xs);
@@ -42,7 +42,7 @@
     width: 3rem;
     height: 3rem;
     flex: none;
-    border-radius: var(--radius-lg);
+    border-radius: var(--d-radius-lg);
     background: color-mix(in oklch, var(--primary) 10%, var(--background));
     color: var(--primary);
     box-shadow: inset 0 0 0 1px color-mix(in oklch, var(--primary) 16%, transparent);
@@ -81,7 +81,7 @@
     gap: var(--d-spacing-xs);
     min-height: 2.5rem;
     padding: var(--d-spacing-xs) 0.875rem;
-    border-radius: var(--radius-md);
+    border-radius: var(--d-radius-md);
     background: var(--primary);
     color: var(--primary-foreground);
     font-size: var(--d-text-sm);

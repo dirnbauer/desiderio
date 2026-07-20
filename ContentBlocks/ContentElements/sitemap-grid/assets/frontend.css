@@ -7,7 +7,7 @@
 .sitemap-grid__group-title { text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted-foreground); margin-block-end: var(--d-spacing-sm); line-height: 1.5; border-inline-start: 2px solid var(--primary); padding-inline-start: var(--d-spacing-sm); }
 .sitemap-grid__links { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: var(--d-spacing-xs); }
 .sitemap-grid__item { margin: 0; }
-.sitemap-grid__link { display: inline-block; font-size: var(--d-text-sm); color: var(--muted-foreground); text-decoration: none; border-radius: var(--radius-sm); transition: color 0.15s ease; text-underline-offset: 3px; }
+.sitemap-grid__link { display: inline-block; font-size: var(--d-text-sm); color: var(--muted-foreground); text-decoration: none; border-radius: var(--d-radius-sm); transition: color 0.15s ease; text-underline-offset: 3px; }
 .sitemap-grid__link:hover { color: var(--foreground); text-decoration: underline; text-decoration-color: color-mix(in oklab, var(--foreground) 40%, transparent); }
 .sitemap-grid__link:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; color: var(--foreground); }
 .sitemap-grid__link--static { color: var(--muted-foreground); }

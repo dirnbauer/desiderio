@@ -9,7 +9,7 @@
 .gallery__featured {
     margin: 0;
     border: 1px solid var(--border);
-    border-radius: var(--radius-md);
+    border-radius: var(--d-radius-md);
     background: var(--card);
     box-shadow: var(--shadow-sm);
     overflow: hidden;
@@ -55,7 +55,7 @@
     color: var(--d-link, var(--primary));
     text-underline-offset: 3px;
     text-decoration: none;
-    border-radius: var(--radius-sm);
+    border-radius: var(--d-radius-sm);
 }
 .gallery__featured-link:hover { text-decoration: underline; }
 .gallery__featured-link:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; }
@@ -73,7 +73,7 @@
     min-width: 0;
     padding: var(--d-spacing-xs);
     border: 1px solid var(--border);
-    border-radius: var(--radius-md);
+    border-radius: var(--d-radius-md);
     background: var(--card);
     color: var(--foreground);
     text-align: start;
@@ -98,7 +98,7 @@
     display: block;
     aspect-ratio: 16/10;
     object-fit: cover;
-    border-radius: calc(var(--radius-md) - 2px);
+    border-radius: calc(var(--d-radius-md) - 2px);
 }
 .gallery__thumb-label {
     min-height: 2.5em;

@@ -46,7 +46,7 @@
     padding: var(--d-spacing-lg);
     list-style: none;
     border: 0;
-    border-radius: var(--radius-xl);
+    border-radius: var(--d-radius-xl);
     background: var(--card);
     color: var(--card-foreground);
     box-shadow: 0 0 0 1px color-mix(in oklch, var(--foreground) 10%, transparent), var(--d-surface-shadow);

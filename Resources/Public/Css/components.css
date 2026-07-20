@@ -381,7 +381,10 @@ main[tabindex]:focus-visible {
   height: var(--d-control-h, 2.25rem);
   min-height: var(--d-control-h, 2.25rem);
   border: 1px solid transparent;
-  border-radius: var(--radius-md, var(--radius));
+  /* --d-radius-md, never Tailwind's --radius-md: the Tailwind theme vars
+     resolve against :root's --radius, so body[data-radius] overrides can't
+     reach them. The --d-radius-* scale is declared on body and re-cascades. */
+  border-radius: var(--d-radius-md);
   background-clip: padding-box;
   padding-inline: var(--d-control-px, 0.75rem);
   padding-block: 0;

@@ -250,7 +250,7 @@
     display: block;
     max-width: 100%;
     height: auto;
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius);
   }
 
   .frame :where(blockquote),
@@ -291,7 +291,7 @@
   .ce-frame :where(input:not(.d-shadcn-control), textarea:not(.d-shadcn-control), select:not(.d-shadcn-control)),
   .desiderio-content-element :where(input:not(.d-shadcn-control), textarea:not(.d-shadcn-control), select:not(.d-shadcn-control)) {
     min-height: 2rem;
-    border-radius: var(--radius-lg);
+    border-radius: var(--radius);
     border: 1px solid var(--input);
     background: transparent;
     color: var(--foreground);

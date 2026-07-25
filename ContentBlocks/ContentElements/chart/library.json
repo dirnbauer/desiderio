@@ -1,0 +1,37 @@
+{
+    "header": "Funnel reports built by customers each month",
+    "description": "<p>New funnel reports created across all workspaces, January to June 2026. The jump in April follows the template gallery, which cut the median build from 18 minutes to under 5.</p>",
+    "chart_data": "[{\"label\": \"Jan\", \"value\": 1420}, {\"label\": \"Feb\", \"value\": 1580}, {\"label\": \"Mar\", \"value\": 1735}, {\"label\": \"Apr\", \"value\": 2260}, {\"label\": \"May\", \"value\": 2410}, {\"label\": \"Jun\", \"value\": 2680}]",
+    "series_name": "Funnel reports created",
+    "value_unit": "reports",
+    "data_summary": "Funnel reports created per month rose from 1,420 in January 2026 to 2,680 in June, an increase of 88.7%, with the sharpest jump in April after the template gallery opened.",
+    "data_points": [
+        {
+            "point_label": "Jan",
+            "point_value": "1420"
+        },
+        {
+            "point_label": "Feb",
+            "point_value": "1580"
+        },
+        {
+            "point_label": "Mar",
+            "point_value": "1735"
+        },
+        {
+            "point_label": "Apr",
+            "point_value": "2260"
+        },
+        {
+            "point_label": "May",
+            "point_value": "2410"
+        },
+        {
+            "point_label": "Jun",
+            "point_value": "2680"
+        }
+    ],
+    "chart_type": "area",
+    "color_variant": "primary",
+    "chart_height": "medium"
+}

@@ -1,0 +1,41 @@
+{
+    "header": "Spot freight bookings against a fixed weekly slot",
+    "eyebrow": "Choosing a service",
+    "subheadline": "Both options move the same pallet on the same network. The difference shows up in what you pay in week 46, and in whether a trailer position is already reserved when your production plan changes on a Tuesday afternoon.",
+    "left_title": "Spot booking, load by load",
+    "left_description": "<p>You call the depot when a load is ready and take whatever capacity is free that day. Rates follow the market, so a Vienna to Rotterdam pallet ranges from EUR 96 in February to EUR 174 in peak weeks.</p>",
+    "left_points": [
+        {
+            "text": "Rate quoted per load, valid 48 hours"
+        },
+        {
+            "text": "Capacity subject to availability in peak weeks"
+        },
+        {
+            "text": "Booking cut-off at 14:00 the day before"
+        },
+        {
+            "text": "Tracking events forwarded by email"
+        }
+    ],
+    "right_badge": "Most-used option",
+    "right_title": "Fixed weekly linehaul slot",
+    "right_description": "<p>A reserved trailer position on a scheduled departure, priced for twelve months. Vienna to Rotterdam sits at EUR 118 per euro pallet, and the slot stays yours whether you fill it in week 7 or week 46.</p>",
+    "right_points": [
+        {
+            "text": "EUR 118 per euro pallet, fixed for 12 months"
+        },
+        {
+            "text": "Trailer position reserved on every departure"
+        },
+        {
+            "text": "Booking cut-off at 18:00 on departure day"
+        },
+        {
+            "text": "Live tracking events in the shipper portal"
+        },
+        {
+            "text": "Named depot contact and a 24/7 escalation line"
+        }
+    ]
+}

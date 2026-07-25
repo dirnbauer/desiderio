@@ -1,0 +1,5 @@
+{
+    "header": "Raw events older than 90 days move to cold storage",
+    "variant": "warning",
+    "description": "<p>From 1 August 2026, raw event payloads on the Starter plan are archived after 90 days. Aggregated funnel and cohort results stay queryable for the full retention window. Export anything else from Streams before the cut-off.</p>"
+}

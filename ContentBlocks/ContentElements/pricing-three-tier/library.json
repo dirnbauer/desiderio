@@ -1,0 +1,79 @@
+{
+    "header": "Sandbox to Scale, priced by monthly pages",
+    "eyebrow": "Plans",
+    "subheadline": "Sandbox gives 500 pages a month and asks for no card. Build and Scale add throughput, an uptime commitment and faster support, while keeping the same request and response shapes as the sandbox key you started with.",
+    "plans": [
+        {
+            "name": "Sandbox",
+            "price": "EUR 0",
+            "billing_period": "per month",
+            "description": "<p>500 pages a month for prototypes, returning the same payload as production.</p>",
+            "features": [
+                {
+                    "text": "500 pages a month, no card required"
+                },
+                {
+                    "text": "2 requests per second"
+                },
+                {
+                    "text": "Community forum support"
+                }
+            ],
+            "is_recommended": false,
+            "button_text": "Get a sandbox key"
+        },
+        {
+            "name": "Build",
+            "price": "EUR 49",
+            "billing_period": "per month",
+            "description": "<p>5,000 pages a month for one production workload, EUR 0.010 per page after that.</p>",
+            "features": [
+                {
+                    "text": "5,000 pages a month included"
+                },
+                {
+                    "text": "25 requests per second, burst to 60"
+                },
+                {
+                    "text": "All extraction and classification endpoints"
+                },
+                {
+                    "text": "Spend cap set per workspace"
+                },
+                {
+                    "text": "Email support, next business day"
+                }
+            ],
+            "is_recommended": false,
+            "button_text": "Start on Build"
+        },
+        {
+            "name": "Scale",
+            "price": "EUR 249",
+            "billing_period": "per month",
+            "description": "<p>35,000 pages a month, EUR 0.007 after that, with failover between two regions.</p>",
+            "features": [
+                {
+                    "text": "35,000 pages a month included"
+                },
+                {
+                    "text": "EUR 0.007 for every page after that"
+                },
+                {
+                    "text": "100 requests per second, burst to 250"
+                },
+                {
+                    "text": "99.9% uptime commitment"
+                },
+                {
+                    "text": "Failover between Frankfurt and Dublin"
+                },
+                {
+                    "text": "Support answered within 4 hours, 24/5"
+                }
+            ],
+            "is_recommended": true,
+            "button_text": "Move to Scale"
+        }
+    ]
+}

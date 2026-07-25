@@ -1,0 +1,67 @@
+{
+    "header": "Ingest limits and retention for each plan",
+    "column_definitions": [
+        {
+            "column_label": "Plan",
+            "column_align": "left"
+        },
+        {
+            "column_label": "Events per month",
+            "column_align": "left"
+        },
+        {
+            "column_label": "Raw retention",
+            "column_align": "left"
+        },
+        {
+            "column_label": "Price per month",
+            "column_align": "right"
+        }
+    ],
+    "rows": [
+        {
+            "row_label": "Starter",
+            "cells": [
+                {
+                    "value": "1 million"
+                },
+                {
+                    "value": "6 months"
+                },
+                {
+                    "value": "EUR 49"
+                }
+            ]
+        },
+        {
+            "row_label": "Growth",
+            "cells": [
+                {
+                    "value": "10 million"
+                },
+                {
+                    "value": "24 months"
+                },
+                {
+                    "value": "EUR 249"
+                }
+            ]
+        },
+        {
+            "row_label": "Scale",
+            "cells": [
+                {
+                    "value": "50 million"
+                },
+                {
+                    "value": "36 months"
+                },
+                {
+                    "value": "EUR 890"
+                }
+            ]
+        }
+    ],
+    "show_caption": 1,
+    "caption_text": "Volume beyond the included events is billed at EUR 0.35 per 100,000 on every plan. Annual billing takes two months off the yearly total."
+}

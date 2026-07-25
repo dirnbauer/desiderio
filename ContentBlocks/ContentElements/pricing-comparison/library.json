@@ -1,0 +1,75 @@
+{
+    "header": "Rate limits and support, plan by plan",
+    "eyebrow": "Compare plans",
+    "plans": [
+        {
+            "name": "Sandbox",
+            "price": "EUR 0"
+        },
+        {
+            "name": "Build",
+            "price": "EUR 49 per month"
+        },
+        {
+            "name": "Scale",
+            "price": "EUR 249 per month"
+        },
+        {
+            "name": "Enterprise",
+            "price": "From EUR 1,900 per month"
+        }
+    ],
+    "pricing_feature_items": [
+        {
+            "feature_name": "Pages included each month",
+            "tier_values": [
+                {
+                    "value": "500"
+                },
+                {
+                    "value": "5,000"
+                },
+                {
+                    "value": "35,000"
+                },
+                {
+                    "value": "Committed volume"
+                }
+            ]
+        },
+        {
+            "feature_name": "Requests per second",
+            "tier_values": [
+                {
+                    "value": "2"
+                },
+                {
+                    "value": "25, burst to 60"
+                },
+                {
+                    "value": "100, burst to 250"
+                },
+                {
+                    "value": "Agreed per contract"
+                }
+            ]
+        },
+        {
+            "feature_name": "Support response",
+            "tier_values": [
+                {
+                    "value": "Community forum"
+                },
+                {
+                    "value": "Next business day"
+                },
+                {
+                    "value": "4 hours, 24/5"
+                },
+                {
+                    "value": "1 hour, 24/7"
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,10 @@
+{
+    "header": "Where last month's 4.1 billion events came from",
+    "description": "<p>Ingest split by source for June 2026, across all 1,840 workspaces. Server-side traffic keeps climbing as teams move revenue events out of the browser and into their own backends.</p>",
+    "segments": "Web SDK | 2140\nMobile SDK | 980\nServer API | 720\nWarehouse Sync | 260",
+    "unit": "million events",
+    "chart_data": "[{\"label\": \"Web SDK\", \"value\": 2140}, {\"label\": \"Mobile SDK\", \"value\": 980}, {\"label\": \"Server API\", \"value\": 720}, {\"label\": \"Warehouse Sync\", \"value\": 260}]",
+    "show_legend": 1,
+    "palette": "brand",
+    "chart_size": "medium"
+}

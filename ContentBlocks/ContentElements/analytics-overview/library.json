@@ -1,0 +1,25 @@
+{
+    "header": "The 30-day view your Monday standup starts with",
+    "period_label": "1-30 June 2026",
+    "items": [
+        {
+            "label": "Events ingested",
+            "value": "4.1 bn",
+            "change": "+11.6% vs May",
+            "trend": "up"
+        },
+        {
+            "label": "Median dashboard query",
+            "value": "1.9 s",
+            "change": "-0.4 s vs May",
+            "trend": "down"
+        },
+        {
+            "label": "Workspaces sending data",
+            "value": "1,840",
+            "change": "+119 net new",
+            "trend": "up"
+        }
+    ],
+    "summary": "<p>June was the first full month on the Frankfurt ingest cluster. Volume grew faster than query time, so dashboards got quicker while the pipeline carried 430 million more events than May.</p>"
+}

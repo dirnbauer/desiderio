@@ -1,0 +1,38 @@
+{
+    "header": "Crew plan and Dispatch plan, limit by limit",
+    "eyebrow": "Plan limits",
+    "left_label": "Crew",
+    "right_label": "Dispatch",
+    "rows": [
+        {
+            "label": "Price per technician",
+            "left_value": "EUR 29 per month",
+            "right_value": "EUR 49 per month"
+        },
+        {
+            "label": "Technicians included",
+            "left_value": "Up to 10",
+            "right_value": "Up to 250"
+        },
+        {
+            "label": "Offline cache",
+            "left_value": "24 hours",
+            "right_value": "7 days"
+        },
+        {
+            "label": "Accounting export",
+            "left_value": "CSV only",
+            "right_value": "DATEV, BMD, Sage 50"
+        },
+        {
+            "label": "Support response",
+            "left_value": "Next business day",
+            "right_value": "Two business hours"
+        },
+        {
+            "label": "Customer portal",
+            "left_value": "Not included",
+            "right_value": "Included"
+        }
+    ]
+}

@@ -1,0 +1,62 @@
+{
+    "header": "What each plan includes before you talk to sales",
+    "description": "<p>All three plans run the same ingest pipeline and the same query engine. What changes is how many events you may send, how long raw payloads stay queryable (6, 24 or 36 months), and who picks up the phone.</p>",
+    "column_items": [
+        {
+            "name": "Starter",
+            "highlighted": false
+        },
+        {
+            "name": "Growth",
+            "highlighted": true
+        },
+        {
+            "name": "Scale",
+            "highlighted": false
+        }
+    ],
+    "comparison_feature_items": [
+        {
+            "name": "Price per month, billed annually",
+            "tier_values": [
+                {
+                    "value": "EUR 49"
+                },
+                {
+                    "value": "EUR 249"
+                },
+                {
+                    "value": "EUR 890"
+                }
+            ]
+        },
+        {
+            "name": "Events included per month",
+            "tier_values": [
+                {
+                    "value": "1 million"
+                },
+                {
+                    "value": "10 million"
+                },
+                {
+                    "value": "50 million"
+                }
+            ]
+        },
+        {
+            "name": "Support response time",
+            "tier_values": [
+                {
+                    "value": "2 business days"
+                },
+                {
+                    "value": "8 hours, business days"
+                },
+                {
+                    "value": "1 hour, around the clock"
+                }
+            ]
+        }
+    ]
+}

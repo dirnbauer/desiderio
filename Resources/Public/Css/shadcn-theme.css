@@ -31,7 +31,7 @@
   --destructive-foreground: oklch(1 0 0);
   --border: oklch(0.922 0 0);
   --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
+  --ring: oklch(0.660 0 0); /* was 0.708 = 2.59:1 on white; WCAG 2.4.11 wants 3:1 */
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
@@ -95,7 +95,10 @@
   --muted-foreground: oklch(0.708 0 0);
   --accent: oklch(0.269 0 0);
   --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
+  /* L lowered from shadcn's 0.704: white --destructive-foreground on that
+     surface is 2.89:1, and .btn--destructive / .badge--destructive both
+     paint label text with it. 0.58 keeps the hue and clears 4.5:1. */
+  --destructive: oklch(0.58 0.2 22.216);
   --destructive-foreground: oklch(1 0 0);
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
@@ -141,7 +144,7 @@ body[data-shadcn-preset="b4hb38Fyj"] {
   --destructive: oklch(0.577 0.245 27.325);
   --border: oklch(0.93 0.007 106.5);
   --input: oklch(0.93 0.007 106.5);
-  --ring: oklch(0.737 0.021 106.9);
+  --ring: oklch(0.655 0.021 106.9); /* was 0.737 = 2.32:1 on white; WCAG 2.4.11 wants 3:1 */
   --chart-1: oklch(0.808 0.114 19.571);
   --chart-2: oklch(0.637 0.237 25.331);
   --chart-3: oklch(0.577 0.245 27.325);
@@ -183,7 +186,7 @@ body[data-shadcn-preset="b4hb38Fyj"] {
   --muted-foreground: oklch(0.737 0.021 106.9);
   --accent: oklch(0.286 0.016 107.4);
   --accent-foreground: oklch(0.988 0.003 106.5);
-  --destructive: oklch(0.704 0.191 22.216);
+  --destructive: oklch(0.58 0.2 22.216); /* was 0.704: white label text was 2.89:1 */
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
   --ring: oklch(0.58 0.031 107.3);
@@ -220,7 +223,7 @@ body[data-shadcn-preset="b3IWPgRwnI"] {
   --destructive: oklch(0.577 0.245 27.325);
   --border: oklch(0.925 0.005 214.3);
   --input: oklch(0.925 0.005 214.3);
-  --ring: oklch(0.723 0.014 214.4);
+  --ring: oklch(0.655 0.014 214.4); /* was 0.723 = 2.44:1 on white; WCAG 2.4.11 wants 3:1 */
   --chart-1: oklch(0.808 0.114 19.571);
   --chart-2: oklch(0.637 0.237 25.331);
   --chart-3: oklch(0.577 0.245 27.325);
@@ -262,7 +265,7 @@ body[data-shadcn-preset="b3IWPgRwnI"] {
   --muted-foreground: oklch(0.723 0.014 214.4);
   --accent: oklch(0.275 0.011 216.9);
   --accent-foreground: oklch(0.987 0.002 197.1);
-  --destructive: oklch(0.704 0.191 22.216);
+  --destructive: oklch(0.58 0.2 22.216); /* was 0.704: white label text was 2.89:1 */
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
   --ring: oklch(0.56 0.021 213.5);
@@ -299,7 +302,7 @@ body[data-shadcn-preset="b6G5977cw"] {
   --destructive: oklch(0.577 0.245 27.325);
   --border: oklch(0.93 0.007 106.5);
   --input: oklch(0.93 0.007 106.5);
-  --ring: oklch(0.737 0.021 106.9);
+  --ring: oklch(0.655 0.021 106.9); /* was 0.737 = 2.32:1 on white; WCAG 2.4.11 wants 3:1 */
   --chart-1: oklch(0.905 0.182 98.111);
   --chart-2: oklch(0.795 0.184 86.047);
   --chart-3: oklch(0.681 0.162 75.834);
@@ -341,7 +344,7 @@ body[data-shadcn-preset="b6G5977cw"] {
   --muted-foreground: oklch(0.737 0.021 106.9);
   --accent: oklch(0.286 0.016 107.4);
   --accent-foreground: oklch(0.988 0.003 106.5);
-  --destructive: oklch(0.704 0.191 22.216);
+  --destructive: oklch(0.58 0.2 22.216); /* was 0.704: white label text was 2.89:1 */
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
   --ring: oklch(0.58 0.031 107.3);
@@ -378,7 +381,7 @@ body[data-shadcn-preset="b27GcrRo"] {
   --destructive: oklch(0.577 0.245 27.325);
   --border: oklch(0.922 0 0);
   --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
+  --ring: oklch(0.660 0 0); /* was 0.708 = 2.59:1 on white; WCAG 2.4.11 wants 3:1 */
   --chart-1: oklch(0.87 0 0);
   --chart-2: oklch(0.556 0 0);
   --chart-3: oklch(0.439 0 0);
@@ -410,7 +413,7 @@ body[data-shadcn-preset="b27GcrRo"] {
   --muted-foreground: oklch(0.708 0 0);
   --accent: oklch(0.269 0 0);
   --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
+  --destructive: oklch(0.58 0.2 22.216); /* was 0.704: white label text was 2.89:1 */
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 15%);
   --ring: oklch(0.556 0 0);

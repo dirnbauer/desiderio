@@ -21,12 +21,26 @@ final class StyleguideFixtureResolver
      */
     private const NATIVE_FILE_COLUMNS = ['assets', 'image', 'media'];
 
+    /**
+     * Set only by the element library seeder. When present, file fields are
+     * resolved by semantic role instead of by hashing the field name into one
+     * shared photo pool - see LibraryImageAssetProvider for why. Left null for
+     * the styleguide, whose fixtures name their own files anyway and whose
+     * output must not change.
+     */
+    private ?LibraryImageAssetProvider $imageAssetProvider = null;
+
     public function __construct(
         private readonly DatabaseSchemaHelper $databaseSchema,
         private readonly StyleguideDemoValueGenerator $demoValueGenerator,
         private readonly StyleguideCollectionAliasPolicy $collectionAliasPolicy,
         private readonly FixtureFieldNormalizer $fieldNormalizer = new FixtureFieldNormalizer(),
     ) {}
+
+    public function useRoleBasedImageAssets(): void
+    {
+        $this->imageAssetProvider = new LibraryImageAssetProvider($this);
+    }
 
     /**
      * @param array<string, mixed> $fixture
@@ -401,6 +415,11 @@ final class StyleguideFixtureResolver
             ?? ContentBlockDefinitionRegistry::getConfiguredInteger($fieldConfig, 'maxItems')
             ?? 1;
         $count = max(1, min(3, $maxItems));
+
+        if ($this->imageAssetProvider !== null) {
+            return $this->imageAssetProvider->references($field, $fieldConfig, $index, $count);
+        }
+
         $assets = $this->isAudioFileField($field, $fieldConfig)
             ? $this->getStyleguideAudioAssets()
             : (StyleguidePortraitAssets::isPortraitField($field, $fieldConfig)

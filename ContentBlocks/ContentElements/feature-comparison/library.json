@@ -1,0 +1,32 @@
+{
+    "header": "Paper job sheets against a live dispatch board",
+    "left_title": "Paper job sheets",
+    "right_title": "Vertex Dispatch",
+    "items": [
+        {
+            "feature": "Customer signs off on completion",
+            "left_supported": 1,
+            "right_supported": 1
+        },
+        {
+            "feature": "Works with no mobile coverage on site",
+            "left_supported": 1,
+            "right_supported": 1
+        },
+        {
+            "feature": "Full asset history available at the call",
+            "left_supported": 0,
+            "right_supported": 1
+        },
+        {
+            "feature": "SLA breach warning 30 minutes ahead",
+            "left_supported": 0,
+            "right_supported": 1
+        },
+        {
+            "feature": "Parts used posted to van stock automatically",
+            "left_supported": 0,
+            "right_supported": 1
+        }
+    ]
+}

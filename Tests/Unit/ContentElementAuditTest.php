@@ -32,6 +32,13 @@ final class ContentElementAuditTest extends TestCase
         'commented_only_field',
         'inline_edit_gap',
         'raw_link_field_href',
+        // CSS hygiene. All four are at zero today, so gating them costs nothing
+        // and stops a whole class of theming/responsive regressions at review
+        // time instead of at screenshot-review time.
+        'css_nonstandard_breakpoint',
+        'css_hardcoded_dark_selector',
+        'css_raw_font_family',
+        'css_fixed_width_overflow',
     ];
 
     public function testStrictAuditCategoriesAreClean(): void

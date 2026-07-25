@@ -1,0 +1,11 @@
+{
+    "header": "Median dashboard query time, six months running",
+    "description": "<p>Median time to first paint for a saved dashboard, January to June 2026. The drop in March is the columnar rewrite of the query layer; everything after that is index tuning.</p>",
+    "series_label": "Median query time",
+    "unit": "seconds",
+    "data_points": "Jan | 4.8\nFeb | 4.5\nMar | 3.1\nApr | 2.6\nMay | 2.2\nJun | 1.9",
+    "chart_data": "[{\"label\": \"Jan\", \"value\": 4.8}, {\"label\": \"Feb\", \"value\": 4.5}, {\"label\": \"Mar\", \"value\": 3.1}, {\"label\": \"Apr\", \"value\": 2.6}, {\"label\": \"May\", \"value\": 2.2}, {\"label\": \"Jun\", \"value\": 1.9}]",
+    "color_variant": "green",
+    "show_dots": 1,
+    "smooth": 1
+}

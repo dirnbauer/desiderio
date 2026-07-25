@@ -109,15 +109,21 @@ final class SeedElementLibraryCommand extends Command
             $pageUpserter->update($folderUid, self::FOLDER_TITLE, self::FOLDER_SLUG, 999000, $now, $pageColumns, $folderAttributes);
         }
 
+        // Role-based media: the library preview is copied into real pages, so a
+        // video field must get a video and a logo field must get a logo. The
+        // styleguide keeps the hash-over-one-pool behaviour.
+        $fixtureResolver = new StyleguideFixtureResolver(
+            $this->databaseSchema,
+            new ElementLibraryValueGenerator(),
+            new StyleguideCollectionAliasPolicy($this->databaseSchema)
+        );
+        $fixtureResolver->useRoleBasedImageAssets();
+
         $upserter = new LibraryElementUpserter(
             $this->connectionPool,
             $this->storageRepository,
             $this->databaseSchema,
-            new StyleguideFixtureResolver(
-                $this->databaseSchema,
-                new ElementLibraryValueGenerator(),
-                new StyleguideCollectionAliasPolicy($this->databaseSchema)
-            ),
+            $fixtureResolver,
             new CollectionCleanupService($this->connectionPool, $this->databaseSchema, $this->liveWorkspaceQueryHelper),
             new ElementCatalogDefinitions($this->elementCatalog),
         );

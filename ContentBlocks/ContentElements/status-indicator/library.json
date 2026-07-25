@@ -1,0 +1,21 @@
+{
+    "header": "Live state of every ingest and query service",
+    "overall_status": "degraded",
+    "items": [
+        {
+            "name": "Event ingest, Frankfurt",
+            "status": "operational",
+            "detail": "p95 lag 12 s, no backlog"
+        },
+        {
+            "name": "Query API",
+            "status": "operational",
+            "detail": "1.9 s median across saved dashboards"
+        },
+        {
+            "name": "Warehouse Sync",
+            "status": "degraded",
+            "detail": "Exports running about 40 minutes behind schedule"
+        }
+    ]
+}

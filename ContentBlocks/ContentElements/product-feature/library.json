@@ -1,0 +1,23 @@
+{
+    "header": "Mask personal data before it reaches storage",
+    "eyebrow": "Redaction add-on",
+    "description": "<p>Redaction runs inside the same request as extraction, so the copy written to your bucket already has names, IBANs and card numbers masked. The unmasked original never leaves the processing region.</p>",
+    "features": [
+        {
+            "text": "Masks 24 entity types, including IBAN and tax IDs"
+        },
+        {
+            "text": "One audit entry per document, retained seven years"
+        },
+        {
+            "text": "Custom patterns supplied as regular expressions"
+        },
+        {
+            "text": "Runs in the extraction call, EUR 0.006 per page"
+        },
+        {
+            "text": "Processed in Frankfurt under a signed DPA"
+        }
+    ],
+    "button_text": "Read the redaction guide"
+}

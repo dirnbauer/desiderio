@@ -1,0 +1,71 @@
+{
+    "header": "Pay yearly for the same pages, save two months",
+    "eyebrow": "Monthly or yearly",
+    "subheadline": "Yearly billing charges ten months up front and leaves the page allowance exactly where it was. A workspace that moves from monthly to yearly mid-term keeps its unused days as credit against the new term.",
+    "plans": [
+        {
+            "name": "Build",
+            "monthly_price": "EUR 49",
+            "annual_price": "EUR 490 per year",
+            "savings": "Save EUR 98",
+            "features": [
+                {
+                    "text": "5,000 pages a month included"
+                },
+                {
+                    "text": "EUR 0.010 for every page after that"
+                },
+                {
+                    "text": "25 requests per second, burst to 60"
+                }
+            ],
+            "button_text": "Start on Build"
+        },
+        {
+            "name": "Scale",
+            "monthly_price": "EUR 249",
+            "annual_price": "EUR 2,490 per year",
+            "savings": "Save EUR 498",
+            "features": [
+                {
+                    "text": "35,000 pages a month included"
+                },
+                {
+                    "text": "EUR 0.007 for every page after that"
+                },
+                {
+                    "text": "100 requests per second, burst to 250"
+                },
+                {
+                    "text": "99.9% uptime commitment"
+                },
+                {
+                    "text": "Support answered within 4 hours, 24/5"
+                }
+            ],
+            "is_featured": true,
+            "button_text": "Move to Scale"
+        },
+        {
+            "name": "Enterprise",
+            "monthly_price": "From EUR 1,900",
+            "annual_price": "From EUR 19,000 per year",
+            "savings": "Save two months",
+            "features": [
+                {
+                    "text": "Committed volume from 250,000 pages"
+                },
+                {
+                    "text": "EUR 0.004 per page, invoiced quarterly"
+                },
+                {
+                    "text": "Frankfurt, Dublin or your own VPC"
+                },
+                {
+                    "text": "Support answered within 1 hour, 24/7"
+                }
+            ],
+            "button_text": "Talk to sales"
+        }
+    ]
+}

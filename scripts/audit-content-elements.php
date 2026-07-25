@@ -356,6 +356,13 @@ $summary = [
     'commented_only_field' => 0,
     'inline_edit_gap' => 0,
     'raw_link_field_href' => 0,
+    'css_nonstandard_breakpoint' => 0,
+    'css_hardcoded_dark_selector' => 0,
+    'css_raw_font_family' => 0,
+    'css_fixed_width_overflow' => 0,
+    // Advisory: reported so the visual sweep knows which elements to eyeball
+    // at 390px, never gated (a single-column stack legitimately needs no query).
+    'css_no_responsive_rule' => 0,
 ];
 
 foreach (scandir($elementsDir) as $entry) {
@@ -525,6 +532,78 @@ foreach (scandir($elementsDir) as $entry) {
                 $problems[$entry][] = ['type' => 'hardcoded_color', 'file' => basename($f), 'value' => $hit];
                 $summary['hardcoded_color']++;
             }
+        }
+    }
+
+    // --- Element CSS hygiene -------------------------------------------------
+    // These four catch whole classes of theming and responsive bugs that would
+    // otherwise only surface as a screenshot someone has to eyeball, and each
+    // is currently at zero, so gating them is free.
+    $cssPath = "$dir/assets/frontend.css";
+    if (is_file($cssPath)) {
+        $css = (string)file_get_contents($cssPath);
+
+        // Breakpoints were normalised to 480/640/768/1024 (see CHANGELOG 2.x).
+        // A one-off width means one element reflows where its neighbours do not,
+        // which reads as a bug in the page rather than in the element.
+        $allowedBreakpoints = [480, 640, 768, 1024];
+        if (preg_match_all('/@media[^{]*?\(\s*(?:min|max)-width\s*:\s*([0-9.]+)(px|rem)/i', $css, $bm, PREG_SET_ORDER)) {
+            foreach ($bm as $match) {
+                $pixels = (float)$match[1] * (strtolower($match[2]) === 'rem' ? 16 : 1);
+                // Exact complements are deliberate and count as normalised in
+                // both directions: `max-width: 639px` complements
+                // `min-width: 640px`, and `min-width: 769px` complements
+                // `max-width: 768px`.
+                $rounded = (int)round($pixels);
+                $normalized = in_array($rounded, $allowedBreakpoints, true)
+                    || in_array($rounded + 1, $allowedBreakpoints, true)
+                    || in_array($rounded - 1, $allowedBreakpoints, true);
+                if (!$normalized) {
+                    $problems[$entry][] = ['type' => 'css_nonstandard_breakpoint', 'value' => $match[1] . $match[2]];
+                    $summary['css_nonstandard_breakpoint']++;
+                }
+            }
+        }
+
+        // Dark mode is a `.dark` class toggled by desiderio.js from a stored
+        // preference. A prefers-color-scheme block ignores that toggle, so the
+        // element would stay light while the rest of the page went dark.
+        if (preg_match('/prefers-color-scheme/i', $css)) {
+            $problems[$entry][] = ['type' => 'css_hardcoded_dark_selector', 'file' => 'frontend.css'];
+            $summary['css_hardcoded_dark_selector']++;
+        }
+
+        // A literal font-family defeats the per-preset font swap: presets ship
+        // four different families through --d-font-*.
+        if (preg_match_all('/font-family\s*:\s*([^;]+);/i', $css, $fm, PREG_SET_ORDER)) {
+            foreach ($fm as $match) {
+                if (!str_contains($match[1], 'var(--')) {
+                    $problems[$entry][] = ['type' => 'css_raw_font_family', 'value' => trim($match[1])];
+                    $summary['css_raw_font_family']++;
+                }
+            }
+        }
+
+        // A fixed width wider than the narrowest content box (375px viewport
+        // minus the body's 16px gutters) overflows the smallest phone unless it
+        // is capped. Media-query preludes are stripped first: without that, the
+        // 71 `max-width: 768px` conditions in the catalog would all read as
+        // declarations.
+        $declarationsOnly = (string)preg_replace('/@media[^{]*/', '', $css);
+        if (preg_match_all('/(?<![a-z-])(?:min-)?width\s*:\s*([0-9.]+)px/i', $declarationsOnly, $wm, PREG_SET_ORDER)) {
+            foreach ($wm as $match) {
+                if ((float)$match[1] > 343 && !preg_match('/max-width\s*:\s*100%/i', $css)) {
+                    $problems[$entry][] = ['type' => 'css_fixed_width_overflow', 'value' => $match[1] . 'px'];
+                    $summary['css_fixed_width_overflow']++;
+                }
+            }
+        }
+
+        // Advisory, never gated: an element with no media query at all is not
+        // wrong (a single-column stack needs none), but it IS the right list of
+        // elements for a human to eyeball at 390px.
+        if (!preg_match('/@media[^{]*\((?:min|max)-width/i', $css)) {
+            $summary['css_no_responsive_rule']++;
         }
     }
 }

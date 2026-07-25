@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Desiderio visual QA</title>
+<style>
+  :root { color-scheme: light dark; --bg: #fff; --fg: #18181b; --muted: #71717a; --line: #e4e4e7; --bad: #b91c1c; --good: #15803d; }
+  @media (prefers-color-scheme: dark) { :root { --bg: #09090b; --fg: #fafafa; --muted: #a1a1aa; --line: #27272a; --bad: #f87171; --good: #4ade80; } }
+  body { margin: 0; padding: 2rem clamp(1rem, 4vw, 3rem); background: var(--bg); color: var(--fg);
+         font: 14px/1.55 ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; }
+  h1 { font-size: 1.5rem; margin: 0 0 .25rem; }
+  h2 { font-size: 1.05rem; margin: 2.5rem 0 .75rem; }
+  .verdict { display: inline-block; padding: .35rem .7rem; border-radius: .4rem; font-weight: 600; }
+  .verdict.pass { background: color-mix(in oklab, var(--good) 18%, transparent); color: var(--good); }
+  .verdict.fail { background: color-mix(in oklab, var(--bad) 18%, transparent); color: var(--bad); }
+  .muted { color: var(--muted); font-size: .85em; }
+  table { border-collapse: collapse; width: 100%; margin-top: .5rem; }
+  th, td { text-align: left; padding: .45rem .6rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-weight: 600; font-size: .8rem; text-transform: uppercase; letter-spacing: .04em; color: var(--muted); }
+  td.n { text-align: right; font-variant-numeric: tabular-nums; }
+  code { font: 12px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace; word-break: break-all; }
+  .scroll { overflow-x: auto; }
+  ul.clean { columns: 4 12rem; list-style: none; padding: 0; font-size: .85rem; }
+  a { color: inherit; }
+</style></head><body>
+<h1>Desiderio visual QA</h1>
+<p class="muted">21 elements &middot; 126 renders &middot;
+  <span class="verdict pass">0 findings across 0 elements</span></p>
+
+<h2>By check &mdash; fix these first</h2>
+<p class="muted">One rule usually explains many elements. Start at the top.</p>
+<div class="scroll"><table><thead><tr><th>Check</th><th class="n">Count</th></tr></thead><tbody><tr><td colspan="2">None</td></tr></tbody></table></div>
+
+<h2>Findings</h2>
+<div class="scroll"><table><thead><tr><th>Check</th><th>Element</th><th>Selector</th><th>Detail</th><th>Scopes</th><th></th></tr></thead>
+<tbody><tr><td colspan="6">None</td></tr></tbody></table></div>
+
+<h2>Clean (21)</h2>
+<ul class="clean"><li><a href="https://webconsulting-typo3-lab.ddev.site/?type=1777200001&amp;elPreview=35061&amp;cHash=94e2b00667e94eecd8537e1a9d0969d1674612a308715b6d5f6578858fd02e70" target="_blank" rel="noreferrer">desiderio_heroapp</a></li><li><a href="https://webconsulting-typo3-lab.ddev.site/?type=1777200001&amp;elPreview=35059&amp;cHash=66a800dae6e4aad749a18ab14e31a91e8716cacf613855780961fe4343cb1393" target="_blank" rel="noreferrer">desiderio_heroannouncement</a></li><li><a href="https://webconsulting-typo3-lab.ddev.site/?type=1777200001&amp;elPreview=35095&amp;cHash=4c8a8009eb81340eeb4a35cf3ec871a0c45605b2913b1b9098877f48b86fab79" target="_blank" rel="noreferrer">desiderio_herocarousel</a></li><li><a href="https://webconsulting-typo3-lab.ddev.site/?type=1777200001&amp;elPreview=35066&amp;cHash=0b772ad829c9f1a8f5bd9102a9f81243bb47b658c8ad8900b0889d8291be579d" target="_blank" rel="noreferrer">desiderio_heroasymmetric</a></li><li><a href="https://webconsulting-typo3-lab.ddev.site/?type=1777200001&amp;elPreview=35151&amp;cHash=ed56fe0def52ba2378b50e52abe881fa7a12bbf123a099865c9eb1c05c95dbd0" target="_blank" rel="noreferrer">desiderio_herodualcta</a></li><li><a href="https://webconsulting-typo3-lab.ddev.site/?type=1777200001&amp;elPreview=35137&amp;cHash=306ca3655a13be9ffca47247c3bb2930b1727fbefded971efd15e3c7fcdce6f4" target="_blank" rel="noreferrer">desiderio_herocountdown</a></li><li><a href="https://webconsulting-typo3-lab.ddev.site/?type=1777200001&amp;elPreview=35177&amp;cHash=f318144cdd4c8728dec7a03a4d49b9e2d09b847609e5e1307f9c8529f47584f3" target="_blank" rel="noreferrer">desiderio_hero</a></li><li><a href="https://webconsulting-typo3-lab.ddev.site/?type=1777200001&amp;elPreview=35182&amp;cHash=c292ce3a6e48c65bc33b4bc22dfd679dac0e2f15fb30b8f199ddc3947482ff1e" target="_blank" rel="noreferrer">desiderio_heroillustration</a></li><li><a href="https://webconsulting-typo3-lab.ddev.site/?type=1777200001&amp;elPreview=35162&amp;cHash=28736d4cd5a0783bae9af24395a98c83d72466fce2b0864d805854d07372acf7" target="_blank" rel="noreferrer">desiderio_heroform</a></li><li><a href="https://webconsulting-typo3-lab.ddev.site/?type=1777200001&amp;elPreview=35199&amp;cHash=94a126b8f3e998cf2e8c0554f0ac8d61ef9a760be0981cfcc90e1a8802015869" target="_blank" rel="noreferrer">desiderio_herologocloud</a></li><li><a href="https://webconsulting-typo3-lab.ddev.site/?type=1777200001&amp;elPreview=35228&amp;cHash=e4bdcf8ee7bda34f9d85b9195018dc576ffe2c1937ff5afda988422b5ad95cfe" target="_blank" rel="noreferrer">desiderio_heroparallax</a></li><li><a href="https://webconsulting-typo3-lab.ddev.site/?type=1777200001&amp;elPreview=35211&amp;cHash=2616297c05e88a44716b504752cf1546a1af439d9bbf79c92098ebf373f89746" target="_blank" rel="noreferrer">desiderio_herominimal</a></li><li><a href="https://webconsulting-typo3-lab.ddev.site/?type=1777200001&amp;elPreview=35232&amp;cHash=db0e9e135bb7f40bfb6b6ddf30f3237e9e2da99c3beca1e744c177147afd66cf" target="_blank" rel="noreferrer">desiderio_heropricing</a></li><li><a href="https://webconsulting-typo3-lab.ddev.site/?type=1777200001&amp;elPreview=35250&amp;cHash=8625b7b840c2ff48164dd1b3121611ec22080c9e23554a4077954c502a062ff0" target="_blank" rel="noreferrer">desiderio_herosaas</a></li><li><a href="https://webconsulting-typo3-lab.ddev.site/?type=1777200001&amp;elPreview=35240&amp;cHash=35e2f7f1ab5e573cd2f702a2cb2057ebfda9dae6b32ae779f59b70f0ec48a8a6" target="_blank" rel="noreferrer">desiderio_heroproduct</a></li><li><a href="https://webconsulting-typo3-lab.ddev.site/?type=1777200001&amp;elPreview=35267&amp;cHash=4e9eadb1714994879e6b5e976dd14e169962869b9733f0d2559ce997ab90c5a6" target="_blank" rel="noreferrer">desiderio_herostacked</a></li><li><a href="https://webconsulting-typo3-lab.ddev.site/?type=1777200001&amp;elPreview=35269&amp;cHash=180465b6bc4ff78767129ce4cccb0f65012379b75c46ce387665e10fc9906e17" target="_blank" rel="noreferrer">desiderio_herostartup</a></li><li><a href="https://webconsulting-typo3-lab.ddev.site/?type=1777200001&amp;elPreview=35252&amp;cHash=705669be20cb75c5af683e41553a304bdce79548a7bcac263f0c37a0e8563541" target="_blank" rel="noreferrer">desiderio_herosearch</a></li><li><a href="https://webconsulting-typo3-lab.ddev.site/?type=1777200001&amp;elPreview=35273&amp;cHash=36ca9f726ba48feb38eea57c918a291ef8cea0e8504bd2d4ce2375bca555849f" target="_blank" rel="noreferrer">desiderio_herostats</a></li><li><a href="https://webconsulting-typo3-lab.ddev.site/?type=1777200001&amp;elPreview=35301&amp;cHash=4597657b4a53f7357cf26f0294111073b9acaef04b66f761743e73cb84486f9a" target="_blank" rel="noreferrer">desiderio_herotestimonial</a></li><li><a href="https://webconsulting-typo3-lab.ddev.site/?type=1777200001&amp;elPreview=35315&amp;cHash=95f3330c4fe9a33bc87f43e537a905d78bb2e5f8884d601cdbbf2fd8c5f93051" target="_blank" rel="noreferrer">desiderio_herovideo</a></li></ul>
+</body></html>

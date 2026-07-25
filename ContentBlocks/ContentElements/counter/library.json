@@ -1,0 +1,20 @@
+{
+    "header": "The scale the ingest pipeline runs at today",
+    "columns": "3",
+    "items": [
+        {
+            "target_value": 4100,
+            "suffix": "M",
+            "label": "Events ingested in June 2026"
+        },
+        {
+            "target_value": 1840,
+            "label": "Workspaces sending live data"
+        },
+        {
+            "target_value": 12,
+            "suffix": "s",
+            "label": "p95 lag from SDK call to queryable"
+        }
+    ]
+}

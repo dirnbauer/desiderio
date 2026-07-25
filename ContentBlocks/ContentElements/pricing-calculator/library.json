@@ -1,0 +1,23 @@
+{
+    "header": "The per page rate falls as volume grows",
+    "eyebrow": "Volume rates",
+    "description": "<p>Tiers apply inside a calendar month and no one has to ask for them. A workspace that sends 120,000 pages pays the first 10,000 at the standard rate, the next 90,000 at the growth rate and the remainder at the volume rate.</p>",
+    "unit_label": "pages",
+    "tiers": [
+        {
+            "up_to": "10,000",
+            "price_per_unit": "EUR 0.010",
+            "label": "Standard"
+        },
+        {
+            "up_to": "100,000",
+            "price_per_unit": "EUR 0.007",
+            "label": "Growth"
+        },
+        {
+            "up_to": "1,000,000",
+            "price_per_unit": "EUR 0.005",
+            "label": "Volume"
+        }
+    ]
+}

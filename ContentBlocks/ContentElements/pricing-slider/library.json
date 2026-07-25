@@ -1,0 +1,23 @@
+{
+    "header": "Move the slider to the volume you really send",
+    "eyebrow": "Usage estimate",
+    "description": "<p>Figures below assume extraction only. Classification and redaction meter separately, and the monthly invoice never rises above the spend cap set on the workspace, whatever the traffic does.</p>",
+    "unit_label": "pages per month",
+    "tiers": [
+        {
+            "volume": "10,000",
+            "price": "EUR 99 per month",
+            "included_features": "Standard rate, 25 requests per second, Frankfurt region"
+        },
+        {
+            "volume": "50,000",
+            "price": "EUR 379 per month",
+            "included_features": "Growth rate, 100 requests per second, 99.9% uptime commitment"
+        },
+        {
+            "volume": "250,000",
+            "price": "EUR 1,450 per month",
+            "included_features": "Volume rate, 4-hour support, failover between Frankfurt and Dublin"
+        }
+    ]
+}

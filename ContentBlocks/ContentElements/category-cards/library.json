@@ -1,0 +1,23 @@
+{
+    "header": "Pick the endpoint that matches the document",
+    "eyebrow": "Rate cards",
+    "subheadline": "Every endpoint meters per page and no endpoint carries a monthly minimum on Sandbox. Rates step down on their own once a workspace passes 100,000 pages inside a calendar month, and the usage ledger names the tier you are billed at.",
+    "columns": "3",
+    "items": [
+        {
+            "title": "Extraction",
+            "count": "6 endpoints",
+            "description": "<p>Invoices, delivery notes, contracts and forms come back as typed JSON with a confidence score per field. EUR 0.012 per page.</p>"
+        },
+        {
+            "title": "Classification",
+            "count": "3 endpoints",
+            "description": "<p>Sorts a mixed inbox into the right queue before extraction runs, using 40 built-in types or your own labels. EUR 0.004 per page.</p>"
+        },
+        {
+            "title": "Redaction",
+            "count": "4 endpoints",
+            "description": "<p>Names, IBANs and card numbers masked in the stored copy, with one audit entry per document. EUR 0.006 per page.</p>"
+        }
+    ]
+}

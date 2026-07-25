@@ -1,0 +1,25 @@
+{
+    "header": "What each endpoint costs per page",
+    "eyebrow": "Metered rates",
+    "subheadline": "Metering runs per page and per endpoint, so a document that is classified, split and then extracted shows up as three lines on the invoice. The rates below hold until a workspace crosses 100,000 pages in a month.",
+    "items": [
+        {
+            "title": "Field extraction",
+            "rate": "EUR 0.012",
+            "unit": "per page",
+            "description": "<p>Invoices, delivery notes and forms returned as typed JSON with a confidence score on every field.</p>"
+        },
+        {
+            "title": "Document classification",
+            "rate": "EUR 0.004",
+            "unit": "per page",
+            "description": "<p>Sorts a mixed inbox into 40 built-in document types, or into labels you define, before extraction runs.</p>"
+        },
+        {
+            "title": "PII redaction",
+            "rate": "EUR 0.006",
+            "unit": "per page",
+            "description": "<p>Names, IBANs and card numbers masked in the stored file, with an audit entry written per document.</p>"
+        }
+    ]
+}

@@ -1,0 +1,26 @@
+{
+    "eyebrow": "Q2 2026",
+    "header": "The numbers the exec dashboard opens with",
+    "subheadline": "After the Frankfurt cluster went live, the board asked for one screen that answers three questions: is the platform growing, is it holding up under the volume, and what does it cost to keep a workspace happy.",
+    "columns": "3",
+    "items": [
+        {
+            "value": "EUR 612k",
+            "label": "Monthly recurring revenue",
+            "detail_text": "Up EUR 41k on May with no change to list prices",
+            "trend": "positive"
+        },
+        {
+            "value": "1.9 s",
+            "label": "Median dashboard query",
+            "detail_text": "Down from 4.8 s in January after the query rewrite",
+            "trend": "positive"
+        },
+        {
+            "value": "3.1%",
+            "label": "Monthly logo churn",
+            "detail_text": "Concentrated in Starter workspaces under 20 seats",
+            "trend": "caution"
+        }
+    ]
+}

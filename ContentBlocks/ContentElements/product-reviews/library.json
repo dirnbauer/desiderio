@@ -1,0 +1,28 @@
+{
+    "header": "How teams rate the API after a year in production",
+    "average_score": "4.6",
+    "total_reviews": "182 reviews from workspaces on Build and Scale",
+    "reviews": [
+        {
+            "author": "Marta Kovač, platform lead at Kestrel Logistics",
+            "rating": "5",
+            "title": "Delivery notes stopped being a data entry job",
+            "review_text": "We moved 240,000 pages a month onto Scale in March 2024. Line items come back clean enough that the two people who used to type them now maintain the mapping rules instead. The spend cap keeps finance calm.",
+            "date": "3 weeks ago"
+        },
+        {
+            "author": "Jonas Weber, engineering manager at Nordwind Insurance",
+            "rating": "4",
+            "title": "Accurate, once we paid for the handwriting model",
+            "review_text": "Typed claim forms were right from the first afternoon. Handwritten fields only worked after we added the EUR 149 model, which nobody mentioned at signup. Support answered inside four hours every time we asked.",
+            "date": "2 months ago"
+        },
+        {
+            "author": "Elena Marsh, CTO at Fenwick Health",
+            "rating": "5",
+            "title": "Redaction made the audit a short conversation",
+            "review_text": "Masking happens in the same call as extraction, so nothing unmasked ever lands in our bucket. Our auditor asked for the seven-year log and we exported it in an afternoon. Worth EUR 0.006 a page on its own.",
+            "date": "4 months ago"
+        }
+    ]
+}

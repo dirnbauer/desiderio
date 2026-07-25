@@ -1,0 +1,11 @@
+{
+    "header": "Which reports teams open on a normal weekday",
+    "description": "<p>Average opens per weekday across all workspaces in June 2026. Funnels stay the front door, and session replay now outranks the shared dashboards it was built to support.</p>",
+    "bars": "Funnels | 4820\nRetention cohorts | 3140\nSession replay | 2260\nShared dashboards | 1980\nWarehouse queries | 1150",
+    "unit": "opens per day",
+    "series_name": "Average weekday opens",
+    "chart_data": "[{\"label\": \"Funnels\", \"value\": 4820}, {\"label\": \"Retention cohorts\", \"value\": 3140}, {\"label\": \"Session replay\", \"value\": 2260}, {\"label\": \"Shared dashboards\", \"value\": 1980}, {\"label\": \"Warehouse queries\", \"value\": 1150}]",
+    "orientation": "horizontal",
+    "color_variant": "primary",
+    "show_grid": 1
+}

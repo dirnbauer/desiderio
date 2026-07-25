@@ -1,0 +1,26 @@
+{
+    "header": "The tools your technicians open every morning",
+    "columns": "4",
+    "items": [
+        {
+            "icon": "rocket",
+            "title": "Today's route",
+            "description_text": "The day's calls in driving order, with the first address already loaded into navigation."
+        },
+        {
+            "icon": "users",
+            "title": "Crew chat",
+            "description_text": "Per-job threads, so a second technician is briefed without a phone call from a plant room."
+        },
+        {
+            "icon": "lock",
+            "title": "Site access notes",
+            "description_text": "Key codes, gate contacts and permit rules, held per site and shown only to assigned crews."
+        },
+        {
+            "icon": "heart",
+            "title": "Customer preferences",
+            "description_text": "Standing instructions per site, from parking rules to which caretaker signs the job sheet."
+        }
+    ]
+}

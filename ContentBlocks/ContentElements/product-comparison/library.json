@@ -1,0 +1,72 @@
+{
+    "header": "Hosted, on-site or fully air-gapped",
+    "eyebrow": "Deployment options",
+    "products": [
+        {
+            "name": "Lumen Cloud",
+            "price": "From EUR 49 per month",
+            "specs": [
+                {
+                    "text": "Frankfurt and Dublin regions"
+                },
+                {
+                    "text": "100 requests per second on Scale"
+                },
+                {
+                    "text": "Model updates applied every Tuesday"
+                },
+                {
+                    "text": "No hardware to buy or rack"
+                }
+            ],
+            "is_recommended": true
+        },
+        {
+            "name": "Lumen Edge 200",
+            "price": "EUR 8,400",
+            "specs": [
+                {
+                    "text": "1U appliance, 12 pages per second"
+                },
+                {
+                    "text": "Runs in your rack, documents never leave"
+                },
+                {
+                    "text": "Signed model updates you approve first"
+                },
+                {
+                    "text": "Three-year hardware warranty"
+                },
+                {
+                    "text": "Sold with a EUR 1,400 yearly support contract"
+                }
+            ],
+            "is_recommended": false
+        },
+        {
+            "name": "Lumen Edge 400",
+            "price": "EUR 15,900",
+            "specs": [
+                {
+                    "text": "2U appliance, 34 pages per second"
+                },
+                {
+                    "text": "Runs fully air-gapped, updates by signed bundle"
+                },
+                {
+                    "text": "Redundant power, hot-swap drives"
+                },
+                {
+                    "text": "Two units cluster without a load balancer"
+                },
+                {
+                    "text": "Three-year hardware warranty"
+                },
+                {
+                    "text": "Sold with a EUR 2,600 yearly support contract"
+                }
+            ],
+            "is_recommended": false
+        }
+    ]
+}

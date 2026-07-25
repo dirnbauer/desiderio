@@ -1,0 +1,21 @@
+{
+    "header": "From first SDK call to your first funnel report",
+    "description": "Most teams have a working funnel on the day they sign up. There is no data model to design first: send events with the names you already use in product reviews, and the platform sorts out the rest.",
+    "items": [
+        {
+            "number": "1",
+            "title": "Send one event",
+            "description": "Drop in the JavaScript or mobile SDK, call track once, and watch it arrive in the live stream within 12 seconds."
+        },
+        {
+            "number": "2",
+            "title": "Name what matters",
+            "description": "Mark the four or five events that make up a signup or a checkout. Nothing else needs labelling before you can query."
+        },
+        {
+            "number": "3",
+            "title": "Build the funnel",
+            "description": "Pick the steps in order, set the conversion window, read the drop-off. Median build time in new workspaces is under 5 minutes."
+        }
+    ]
+}

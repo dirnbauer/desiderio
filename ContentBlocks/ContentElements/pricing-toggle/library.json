@@ -1,0 +1,70 @@
+{
+    "header": "Monthly rates with the yearly price beside them",
+    "eyebrow": "Billing period",
+    "subheadline": "Yearly billing is ten months paid up front. Page allowances, request ceilings and support terms are identical either way, and a workspace may switch once per term without forfeiting pages it has already paid for.",
+    "plans": [
+        {
+            "title": "Build",
+            "monthly_price": "EUR 49",
+            "yearly_price": "EUR 490",
+            "description": "<p>5,000 pages a month for one production workload, EUR 0.010 per page after that.</p>",
+            "features": [
+                {
+                    "text": "5,000 pages a month included"
+                },
+                {
+                    "text": "25 requests per second, burst to 60"
+                },
+                {
+                    "text": "Email support, next business day"
+                }
+            ],
+            "button_text": "Start on Build"
+        },
+        {
+            "title": "Scale",
+            "monthly_price": "EUR 249",
+            "yearly_price": "EUR 2,490",
+            "description": "<p>35,000 pages a month with a 99.9% uptime commitment and failover to Dublin.</p>",
+            "features": [
+                {
+                    "text": "35,000 pages a month included"
+                },
+                {
+                    "text": "EUR 0.007 for every page after that"
+                },
+                {
+                    "text": "100 requests per second, burst to 250"
+                },
+                {
+                    "text": "99.9% uptime commitment"
+                },
+                {
+                    "text": "Support answered within 4 hours, 24/5"
+                }
+            ],
+            "button_text": "Move to Scale"
+        },
+        {
+            "title": "Enterprise",
+            "monthly_price": "EUR 1,900",
+            "yearly_price": "EUR 19,000",
+            "description": "<p>Committed volume from 250,000 pages a month at EUR 0.004 per page.</p>",
+            "features": [
+                {
+                    "text": "Committed volume, quarterly invoice"
+                },
+                {
+                    "text": "Frankfurt, Dublin or your own VPC"
+                },
+                {
+                    "text": "99.95% uptime commitment"
+                },
+                {
+                    "text": "Support answered within 1 hour, 24/7"
+                }
+            ],
+            "button_text": "Talk to sales"
+        }
+    ]
+}

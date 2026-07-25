@@ -1,0 +1,18 @@
+{
+    "header": "Where your spindle sits in the rebuild queue",
+    "variant": "numbered",
+    "step_items": [
+        {
+            "label": "Goods-in inspection",
+            "status": "completed"
+        },
+        {
+            "label": "Bearing replacement",
+            "status": "current"
+        },
+        {
+            "label": "Run-out test and release",
+            "status": "pending"
+        }
+    ]
+}

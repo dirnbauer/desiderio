@@ -1,0 +1,19 @@
+{
+    "header": "Limits and formats the extraction API accepts",
+    "eyebrow": "Technical data",
+    "description": "<p>Figures describe the hosted service on the Scale plan. Edge appliances run the same models, with throughput bound by the hardware in your rack rather than by a request ceiling.</p>",
+    "specs": [
+        {
+            "label": "Input formats",
+            "value": "PDF, TIFF, PNG, JPEG and DOCX"
+        },
+        {
+            "label": "Maximum request",
+            "value": "80 MB, up to 300 pages per call"
+        },
+        {
+            "label": "Median response",
+            "value": "1.4 s per page, 3.1 s at the 95th percentile"
+        }
+    ]
+}

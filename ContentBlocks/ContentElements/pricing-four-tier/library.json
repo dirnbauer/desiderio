@@ -1,0 +1,97 @@
+{
+    "header": "From a first API key to committed volume",
+    "eyebrow": "Four plans",
+    "subheadline": "Plans differ in throughput, in support and in where the data sits. All four reach the same endpoints with the same request and response shapes, so moving up a tier is a billing change rather than a rewrite of the integration you already shipped.",
+    "plans": [
+        {
+            "title": "Sandbox",
+            "price": "EUR 0",
+            "description": "<p>500 pages a month for prototypes, returning the same payload as production.</p>",
+            "features": [
+                {
+                    "text": "500 pages a month, no card required"
+                },
+                {
+                    "text": "2 requests per second"
+                },
+                {
+                    "text": "Community forum support"
+                }
+            ],
+            "featured": false,
+            "button_text": "Get a sandbox key"
+        },
+        {
+            "title": "Build",
+            "price": "EUR 49",
+            "description": "<p>One production workload, 5,000 pages a month, EUR 0.010 for every page after that.</p>",
+            "features": [
+                {
+                    "text": "5,000 pages a month included"
+                },
+                {
+                    "text": "25 requests per second, burst to 60"
+                },
+                {
+                    "text": "Spend cap set per workspace"
+                },
+                {
+                    "text": "Email support, next business day"
+                }
+            ],
+            "featured": false,
+            "button_text": "Start on Build"
+        },
+        {
+            "title": "Scale",
+            "price": "EUR 249",
+            "description": "<p>35,000 pages a month with an uptime commitment and a four-hour support clock.</p>",
+            "features": [
+                {
+                    "text": "35,000 pages a month included"
+                },
+                {
+                    "text": "EUR 0.007 for every page after that"
+                },
+                {
+                    "text": "100 requests per second, burst to 250"
+                },
+                {
+                    "text": "99.9% uptime commitment"
+                },
+                {
+                    "text": "Support answered within 4 hours, 24/5"
+                }
+            ],
+            "featured": true,
+            "button_text": "Move to Scale"
+        },
+        {
+            "title": "Enterprise",
+            "price": "From EUR 1,900",
+            "description": "<p>Committed volume from 250,000 pages a month, deployed where your auditors want it.</p>",
+            "features": [
+                {
+                    "text": "Committed volume from 250,000 pages"
+                },
+                {
+                    "text": "EUR 0.004 per page, invoiced quarterly"
+                },
+                {
+                    "text": "Frankfurt, Dublin or your own VPC"
+                },
+                {
+                    "text": "99.95% uptime commitment"
+                },
+                {
+                    "text": "Support answered within 1 hour, 24/7"
+                },
+                {
+                    "text": "Named solutions engineer from day one"
+                }
+            ],
+            "featured": false,
+            "button_text": "Talk to sales"
+        }
+    ]
+}

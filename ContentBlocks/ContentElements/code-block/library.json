@@ -1,0 +1,6 @@
+{
+    "header": "Fetching a paper's metadata from the archive",
+    "language": "Bash",
+    "filename": "terminal",
+    "code": "# Every published paper is reachable by its DOI\ncurl -s https://api.northstarlabs.example/v2/papers/10.48711/nsq.2026.0142 \\\n  -H \"Authorization: Bearer $LODESTAR_TOKEN\" \\\n  | jq '.title, .issue, .licence, .open_access_from'\n\n# \"Sampling bias in longitudinal field studies\"\n# \"Quarterly 2026/2\"\n# \"CC BY-NC 4.0\"\n# \"2027-05-14\"\n"
+}

@@ -1,0 +1,7 @@
+{
+    "header": "Scheduled maintenance on the Frankfurt region",
+    "content": "<p>On Sunday 12 July, 02:00 to 04:00 CEST, queries against the Frankfurt cluster fail over to Dublin. Ingest keeps running throughout, and dashboards may take a few seconds longer to load while the switch is in place.</p>",
+    "variant": "warning",
+    "action_text": "Check the status page",
+    "dismissible": 1
+}

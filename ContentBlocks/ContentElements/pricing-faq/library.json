@@ -1,0 +1,19 @@
+{
+    "header": "Billing questions engineers ask before signing",
+    "eyebrow": "Billing FAQ",
+    "subheadline": "Answers cover metering, overages and what happens when a batch dies halfway through. Anything not listed lives in the billing reference, and a written answer to a support ticket arrives the next business day.",
+    "question_items": [
+        {
+            "question": "What counts as a page?",
+            "answer": "<p>One side of a document sent to an endpoint. A 12-page PDF posted to the extraction endpoint counts as 12 pages, whether or not every page returns fields. Blank pages detected during splitting are not billed.</p>"
+        },
+        {
+            "question": "Are failed requests billed?",
+            "answer": "<p>No. Anything answered with a 4xx or 5xx status is excluded from metering, and pages from a batch that stops mid-run are credited back inside the same billing period without a support ticket.</p>"
+        },
+        {
+            "question": "What happens once the included pages run out?",
+            "answer": "<p>Extra pages bill at the plan rate: EUR 0.010 on Build, EUR 0.007 on Scale. The spend cap on the workspace stops processing at the ceiling you set instead of letting the invoice keep climbing.</p>"
+        }
+    ]
+}

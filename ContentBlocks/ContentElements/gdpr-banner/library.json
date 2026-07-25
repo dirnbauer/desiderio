@@ -1,0 +1,23 @@
+{
+    "header": "Choose which cookies the portal may set",
+    "content": "<p>The customer portal needs one cookie to keep you signed in. Everything beyond that is your decision: we count which technical documents get opened, and the plant tour videos load a player that sets cookies of its own. Choose per category below and change it later from the footer.</p>",
+    "cookie_categories": [
+        {
+            "name": "Sign-in and configurator",
+            "description_text": "Keeps your session and your parts configurator selection for twelve hours.",
+            "required": true
+        },
+        {
+            "name": "Document analytics",
+            "description_text": "Counts which drawings and certificates are downloaded. Hosted on our own servers in Graz, no third party involved.",
+            "required": false
+        },
+        {
+            "name": "Plant tour videos",
+            "description_text": "Loads the embedded player, which sets its own cookies once you press play.",
+            "required": false
+        }
+    ],
+    "accept_text": "Accept all",
+    "save_text": "Save my choice"
+}

@@ -1,0 +1,26 @@
+{
+    "header": "What shipped in the platform this quarter",
+    "items": [
+        {
+            "version": "4.5.0",
+            "date": "24 June 2026",
+            "title": "Funnels can branch on any event property",
+            "description": "<p>A funnel step can now split on a property instead of forcing one path: compare card and invoice checkouts side by side without building two reports. Existing funnels keep their current behaviour.</p>",
+            "tag": "new"
+        },
+        {
+            "version": "4.4.2",
+            "date": "13 May 2026",
+            "title": "Cohort exports past 5 million rows no longer time out",
+            "description": "<p>Retention exports above roughly 5 million rows failed after 300 seconds. They now stream to a signed download link and finish in the background. Brannen Health reported this one.</p>",
+            "tag": "fix"
+        },
+        {
+            "version": "4.3.0",
+            "date": "18 March 2026",
+            "title": "The v1 track endpoint has been retired",
+            "description": "<p>Events posted to the old /v1/track path are rejected from this release. Move to /v2/events, which takes the same payload plus a workspace key in the header. SDKs from 3.0 upwards already use it.</p>",
+            "tag": "breaking"
+        }
+    ]
+}

@@ -1,0 +1,84 @@
+{
+    "header": "Plans that bill for pages, not for seats",
+    "eyebrow": "Pricing",
+    "subheadline": "Every plan opens all endpoints to an unlimited number of team members. What changes between them is the monthly page allowance, the request ceiling and the support commitment standing behind it when something breaks in production.",
+    "columns": "3",
+    "plans": [
+        {
+            "name": "Build",
+            "price": "EUR 49",
+            "billing_period": "per month",
+            "description": "<p>One production workload with 5,000 pages a month, then EUR 0.010 per page.</p>",
+            "features": [
+                {
+                    "text": "5,000 pages a month included"
+                },
+                {
+                    "text": "25 requests per second, burst to 60"
+                },
+                {
+                    "text": "Spend cap set per workspace"
+                },
+                {
+                    "text": "Email support, next business day"
+                }
+            ],
+            "is_featured": false,
+            "button_text": "Start on Build"
+        },
+        {
+            "badge_text": "Most chosen",
+            "name": "Scale",
+            "price": "EUR 249",
+            "billing_period": "per month",
+            "description": "<p>35,000 pages a month, EUR 0.007 after that, with an uptime commitment in writing.</p>",
+            "features": [
+                {
+                    "text": "35,000 pages a month included"
+                },
+                {
+                    "text": "EUR 0.007 for every page after that"
+                },
+                {
+                    "text": "100 requests per second, burst to 250"
+                },
+                {
+                    "text": "99.9% uptime commitment"
+                },
+                {
+                    "text": "Failover between Frankfurt and Dublin"
+                },
+                {
+                    "text": "Support answered within 4 hours, 24/5"
+                }
+            ],
+            "is_featured": true,
+            "button_text": "Move to Scale"
+        },
+        {
+            "name": "Enterprise",
+            "price": "From EUR 1,900",
+            "billing_period": "per month",
+            "description": "<p>Committed volume from 250,000 pages a month, hosted wherever your auditors need it.</p>",
+            "features": [
+                {
+                    "text": "Committed volume from 250,000 pages"
+                },
+                {
+                    "text": "EUR 0.004 per page, invoiced quarterly"
+                },
+                {
+                    "text": "Frankfurt, Dublin or your own VPC"
+                },
+                {
+                    "text": "SOC 2 Type II report and a signed DPA"
+                },
+                {
+                    "text": "Support answered within 1 hour, 24/7"
+                }
+            ],
+            "is_featured": false,
+            "button_text": "Talk to sales"
+        }
+    ]
+}

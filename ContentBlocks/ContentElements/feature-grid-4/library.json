@@ -1,0 +1,22 @@
+{
+    "header": "Integrations that keep the back office in sync",
+    "subheadline": "Nine connections ship as standard and need no middleware. These four are the ones a finance team asks about in the first meeting, and each runs on a schedule you set rather than on a manual export.",
+    "items": [
+        {
+            "title": "DATEV",
+            "description_text": "Job sheets, parts and hours posted as bookable entries, with cost centres per contract."
+        },
+        {
+            "title": "BMD NTCS",
+            "description_text": "Nightly transfer of closed work orders, credit notes and technician time records."
+        },
+        {
+            "title": "Microsoft Entra ID",
+            "description_text": "Single sign-on, and automatic deactivation when a technician leaves the payroll system."
+        },
+        {
+            "title": "Sage 50",
+            "description_text": "Draft invoices raised from signed job sheets, with your own numbering ranges preserved."
+        }
+    ]
+}

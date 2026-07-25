@@ -71,6 +71,19 @@ final class ElementLibraryValueGenerator extends StyleguideDemoValueGenerator
         return ['Home', 'Features', 'Pricing', 'About', 'Contact'];
     }
 
+    /**
+     * The element library's demo cast.
+     *
+     * ORDER AND SIZE ARE A CONTRACT. Names are picked with `$index % count()`
+     * and LibraryImageAssetProvider indexes the portrait pool with the same
+     * modulus, so entry N here must correspond to `lib-portrait-<N+1>-*` in
+     * Resources/Public/Styleguide/Library. Adding, removing or reordering a
+     * person without regenerating that portrait puts the wrong face next to
+     * the name. LibraryCastPortraitsTest enforces the pairing.
+     *
+     * Twelve entries because that covers the largest team/testimonial
+     * collection any element renders without a face repeating on one page.
+     */
     protected function demoPeople(): array
     {
         return [
@@ -79,6 +92,13 @@ final class ElementLibraryValueGenerator extends StyleguideDemoValueGenerator
             ['Sophie Lambert', 'Founder', 'Atlas Studio'],
             ['Thomas Berger', 'IT Director', 'Meridian Group'],
             ['Elena Rossi', 'Product Manager', 'Lumen Labs'],
+            ['Marcus Feld', 'Head of Support', 'Brightpath'],
+            ['Priya Raman', 'Data Lead', 'Lumen Labs'],
+            ['Jonas Weber', 'Solutions Architect', 'Meridian Group'],
+            ['Clara Fontaine', 'Content Strategist', 'Atlas Studio'],
+            ['Tobias Lang', 'Finance Director', 'Northwind Co.'],
+            ['Nadia Ben Salah', 'Customer Success Lead', 'Brightpath'],
+            ['Erik Sandberg', 'Engineering Manager', 'Lumen Labs'],
         ];
     }
 

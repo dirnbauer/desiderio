@@ -1,0 +1,27 @@
+{
+    "header": "Revenue and usage on one panel for the board",
+    "description": "<p>The quarterly pack the board sees. What came in, what it costs to serve, and how the ingest pipeline behaved while monthly volume grew by a third to 4.1 billion events. Every figure here is read live rather than pasted from a spreadsheet.</p>",
+    "items": [
+        {
+            "label": "Monthly recurring revenue",
+            "value": "EUR 612,000",
+            "change": "+7.2% vs May",
+            "trend": "up"
+        },
+        {
+            "label": "Net revenue retention",
+            "value": "114%",
+            "change": "+3 pts vs Q1",
+            "trend": "up"
+        },
+        {
+            "label": "Cost to serve one workspace",
+            "value": "EUR 38",
+            "change": "-EUR 4 vs Q1",
+            "trend": "down"
+        }
+    ],
+    "chart_series_label": "Monthly recurring revenue",
+    "chart_unit": "k EUR",
+    "chart_data": "[{\"label\": \"Jan\", \"value\": 448}, {\"label\": \"Feb\", \"value\": 471}, {\"label\": \"Mar\", \"value\": 503}, {\"label\": \"Apr\", \"value\": 542}, {\"label\": \"May\", \"value\": 571}, {\"label\": \"Jun\", \"value\": 612}]"
+}

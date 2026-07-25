@@ -1,0 +1,25 @@
+{
+    "header": "Three things a first document pipeline needs",
+    "eyebrow": "Launch bundle",
+    "bundle_price": "EUR 1,990",
+    "savings_text": "Save EUR 490",
+    "description": "<p>The Build plan for a year, table extraction, and two days of migration work, ordered together. Bought one at a time the same three come to EUR 2,480.</p>",
+    "items": [
+        {
+            "name": "Build plan, 12 months",
+            "individual_price": "EUR 490",
+            "description_text": "5,000 pages a month included, EUR 0.010 for every page after that, support answered next business day."
+        },
+        {
+            "name": "Table extraction add-on, 12 months",
+            "individual_price": "EUR 790",
+            "description_text": "Column headers, line items and totals returned as JSON from scanned tables instead of loose text."
+        },
+        {
+            "name": "Migration review, two days",
+            "individual_price": "EUR 1,200",
+            "description_text": "An engineer maps your current templates to endpoints and hands back a working extraction schema."
+        }
+    ],
+    "button_text": "Order the launch bundle"
+}

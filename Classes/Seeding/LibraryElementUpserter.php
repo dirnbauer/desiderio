@@ -16,11 +16,14 @@ use Webconsulting\Desiderio\Data\ContentBlockDefinitionRegistry;
  * URLs reference, it must stay stable across re-runs); their collection
  * children and file references are rebuilt.
  *
- * Both Desiderio and Innesto elements are filled by the (neutral) demo value
- * generator rather than their fixture.json: the picker preview must read like a
- * believable, generic example the editor can keep or edit, not a slide that
- * promotes the design system. Desiderio definitions come from the registry,
- * Innesto definitions are built from their config.yaml.
+ * Content comes from the element's own library.json, never from its
+ * fixture.json: the picker preview has to read like a believable page the
+ * editor could keep, not a slide that promotes the design system (which is
+ * exactly what the styleguide fixture is for). Whatever library.json leaves
+ * out is completed by the neutral demo value generator, so an element without
+ * one still seeds a full record. Desiderio definitions come from the registry,
+ * Innesto definitions are built from their config.yaml; Innesto has no
+ * library.json support yet and stays on the generator.
  */
 final class LibraryElementUpserter
 {
@@ -55,7 +58,7 @@ final class LibraryElementUpserter
     }
 
     /**
-     * @param array{cType: string, name: string, hostExtension: string, config: array<string, mixed>, fixture: array<string, mixed>} $element
+     * @param array{cType: string, name: string, hostExtension: string, config: array<string, mixed>, fixture: array<string, mixed>, libraryFixture?: array<string, mixed>} $element
      * @return array{0: 'created'|'updated', 1: int} status and tt_content uid
      */
     public function upsert(int $folderPid, array $element, int $sorting, int $now): array
@@ -174,7 +177,7 @@ final class LibraryElementUpserter
     }
 
     /**
-     * @param array{cType: string, name: string, hostExtension: string, config: array<string, mixed>, fixture: array<string, mixed>} $element
+     * @param array{cType: string, name: string, hostExtension: string, config: array<string, mixed>, fixture: array<string, mixed>, libraryFixture?: array<string, mixed>} $element
      * @param array<string, true> $columns
      * @return array{row: array<string, mixed>, collections: array<string, array{table: string, column?: string, items: list<array<string, mixed>>}>, fileReferences: array<string, list<array{file: string, title: string, alternative: string, description: string, source: string}>>}
      */
@@ -197,15 +200,17 @@ final class LibraryElementUpserter
         }
 
         if ($element['hostExtension'] === 'desiderio') {
-            // Empty fixture on purpose: the resolver completes every field from
-            // the registry definition with the neutral demo value generator, so
-            // the library record carries generic example content instead of the
-            // promotional copy that ships in each element's fixture.json.
+            // library.json, NOT fixture.json: the styleguide fixture sells
+            // Desiderio itself, while the library record has to look like an
+            // editor's own page. A partial or missing payload is fine - the
+            // resolver completes every absent field from the registry
+            // definition with the neutral demo value generator, so an element
+            // without a library.json behaves exactly as it did before.
             return $this->fixtureResolver->buildContentInsert(
                 $pid,
                 $element['cType'],
                 $element['name'],
-                [],
+                $element['libraryFixture'] ?? [],
                 $sorting,
                 $now,
                 $columns

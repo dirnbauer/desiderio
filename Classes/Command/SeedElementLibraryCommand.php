@@ -54,6 +54,7 @@ final class SeedElementLibraryCommand extends Command
     {
         $this
             ->addOption('parent', null, InputOption::VALUE_REQUIRED, 'Site root page uid the Element Library sysfolder is created below.')
+            ->addOption('locale', null, InputOption::VALUE_REQUIRED, 'Language key of the demo content to seed, e.g. "de". Prefers each element\'s library.<locale>.json over library.json. The records are still written as language 0 - this picks the source language of a folder, it does not create translations.')
             ->addOption('no-warm', null, InputOption::VALUE_NONE, 'Skip warming the preview page cache after seeding.')
             ->addOption('allow-production', null, InputOption::VALUE_NONE, 'Run even when Application Context is Production.');
     }
@@ -79,10 +80,20 @@ final class SeedElementLibraryCommand extends Command
             return self::FAILURE;
         }
 
-        $elements = $this->elementCatalog->getElements();
+        $localeOption = $input->getOption('locale');
+        $locale = is_string($localeOption) ? trim($localeOption) : '';
+        if ($locale !== '' && preg_match('/^[A-Za-z]{2}(-[A-Za-z]{2})?$/', $locale) !== 1) {
+            $io->error(sprintf('--locale must be a language key such as "de" or "pt-br", got "%s".', $locale));
+            return self::FAILURE;
+        }
+
+        $elements = $this->elementCatalog->getElements($locale);
         if ($elements === []) {
             $io->error('No content elements found (is desiderio set up correctly?).');
             return self::FAILURE;
+        }
+        if ($locale !== '') {
+            $io->writeln(sprintf('Seeding demo content from library.%s.json (falling back to library.json).', strtolower($locale)));
         }
 
         $now = time();

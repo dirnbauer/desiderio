@@ -42,8 +42,8 @@ final class ElementCatalog
     private const METADATA_CACHE_VERSION = 'metadata-v2';
     private const SEARCH_FINGERPRINT_VERSION = 'config-keywords-v1';
 
-    /** @var list<array{cType: string, name: string, hostExtension: string, title: string, description: string, group: string, keywords: list<string>, config: array<string, mixed>, fixture: array<string, mixed>}>|null */
-    private ?array $elements = null;
+    /** @var array<string, list<array{cType: string, name: string, hostExtension: string, title: string, description: string, group: string, keywords: list<string>, config: array<string, mixed>, fixture: array<string, mixed>, libraryFixture: array<string, mixed>}>> keyed by locale ('' = source language) */
+    private array $elements = [];
 
     /** @var list<array{cType: string, name: string, hostExtension: string, title: string, description: string, group: string, keywords: list<string>, iconUrl: string}>|null */
     private ?array $metadata = null;
@@ -53,30 +53,47 @@ final class ElementCatalog
     ) {}
 
     /**
-     * Full catalog records including the parsed config and demo fixture. Used by
-     * the seeder; reads two files per element, so do not call it on a hot path -
-     * the frontend picker uses getElementMetadata() instead.
+     * Full catalog records including the parsed config, the styleguide fixture
+     * and the element library's own demo content. Used by the seeder; reads
+     * three files per element, so do not call it on a hot path - the frontend
+     * picker uses getElementMetadata() instead.
      *
-     * @return list<array{cType: string, name: string, hostExtension: string, title: string, description: string, group: string, keywords: list<string>, config: array<string, mixed>, fixture: array<string, mixed>}>
+     * `fixture` is the styleguide payload (fixture.json): Desiderio's own
+     * marketing copy, used to build the styleguide and starter sites.
+     * `libraryFixture` is the element library payload (library.json): the demo
+     * content an editor sees in the picker and copies into their page. The two
+     * have different jobs and are deliberately separate files.
+     *
+     * @param string $locale Optional language key ('de', 'es', …). When set, a
+     *                       `library.<locale>.json` is preferred over
+     *                       `library.json`; missing files fall back to the
+     *                       source language. Only the library payload is
+     *                       localised - the styleguide fixture is not.
+     * @return list<array{cType: string, name: string, hostExtension: string, title: string, description: string, group: string, keywords: list<string>, config: array<string, mixed>, fixture: array<string, mixed>, libraryFixture: array<string, mixed>}>
      */
-    public function getElements(): array
+    public function getElements(string $locale = ''): array
     {
-        if ($this->elements !== null) {
-            return $this->elements;
+        $locale = $this->normalizeLocale($locale);
+        if (isset($this->elements[$locale])) {
+            return $this->elements[$locale];
         }
 
         $elements = [];
         foreach ($this->scanContentElementConfigs() as $entry) {
             $config = $entry['config'];
+            $directory = dirname($entry['configPath']);
 
-            $fixture = [];
-            $fixturePath = dirname($entry['configPath']) . '/fixture.json';
-            if (is_readable($fixturePath)) {
-                $decoded = json_decode((string)file_get_contents($fixturePath), true);
-                if (is_array($decoded)) {
-                    /** @var array<string, mixed> $decoded */
-                    $fixture = $decoded;
-                }
+            $fixture = $this->readJsonFile($directory . '/fixture.json');
+
+            // Prefer the localised library payload, fall back to the source
+            // language. A partial payload is fine: StyleguideFixtureResolver
+            // completes every absent or empty field from the demo generator.
+            $libraryFixture = [];
+            if ($locale !== '') {
+                $libraryFixture = $this->readJsonFile($directory . '/library.' . $locale . '.json');
+            }
+            if ($libraryFixture === []) {
+                $libraryFixture = $this->readJsonFile($directory . '/library.json');
             }
 
             $title = $config['title'] ?? null;
@@ -92,6 +109,7 @@ final class ElementCatalog
                 'keywords' => $this->normalizeStringList($config['keywords'] ?? []),
                 'config' => $config,
                 'fixture' => $fixture,
+                'libraryFixture' => $libraryFixture,
             ];
         }
 
@@ -106,13 +124,41 @@ final class ElementCatalog
                 'keywords' => [],
                 'config' => [],
                 'fixture' => $core['fixture'],
+                // Native CTypes seed from their manifest fixture, which already
+                // carries purpose-written demo content.
+                'libraryFixture' => [],
             ];
         }
 
         usort($elements, static fn(array $a, array $b): int => strcasecmp($a['title'], $b['title']));
 
-        $this->elements = $elements;
+        $this->elements[$locale] = $elements;
         return $elements;
+    }
+
+    /**
+     * A locale key names a `library.<locale>.json` sibling, so keep it to the
+     * shape TYPO3 language keys use and reject anything that could escape the
+     * element directory.
+     */
+    private function normalizeLocale(string $locale): string
+    {
+        $locale = strtolower(trim($locale));
+        return preg_match('/^[a-z]{2}(-[a-z]{2})?$/', $locale) === 1 ? $locale : '';
+    }
+
+    /** @return array<string, mixed> */
+    private function readJsonFile(string $path): array
+    {
+        if (!is_readable($path)) {
+            return [];
+        }
+        $decoded = json_decode((string)file_get_contents($path), true);
+        if (!is_array($decoded)) {
+            return [];
+        }
+        /** @var array<string, mixed> $decoded */
+        return $decoded;
     }
 
     /**

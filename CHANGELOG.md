@@ -6,6 +6,73 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [2.14.0] — 2026-07-25
+
+### Added
+
+- **Per-element demo content for the element library.** Every content element
+  now ships a `library.json` (and a German `library.de.json`) next to its
+  `fixture.json`. The two are deliberately separate: `fixture.json` is the
+  styleguide's content and sells Desiderio itself, while `library.json` has to
+  look like a page the editor could keep. Payloads may be partial — anything
+  omitted is completed by the demo value generator as before.
+- `desiderio:library:seed --locale=de` seeds a folder from the German source
+  copy, with an unconditional per-element fallback to English. This picks the
+  source language of a folder; records are still written as language 0.
+- `desiderio:library:urls` prints the signed preview URL of every library
+  record, so visual-QA tooling never has to reimplement cHash generation.
+- `Build/Scripts/audit-theme-contrast.php` proves 420 WCAG token pairs across
+  all 14 presets and both schemes analytically (OKLCH → sRGB, including
+  `color-mix`), which makes "check every colour scheme" a one-second check
+  instead of a screenshot sweep.
+- `Build/VisualQa/` renders every element at 390/768/1440 in light and dark and
+  asserts overflow, text clipping, empty renders, text overlap, broken images,
+  video sources that are not videos, console errors and axe colour-contrast.
+- Four CSS hygiene checks in the element audit, gated at zero: non-standard
+  breakpoints, `prefers-color-scheme` blocks (which would ignore the `.dark`
+  toggle), raw `font-family` (which would defeat the preset font swap), and
+  fixed widths that overflow a 375px phone.
+- 49 demo assets under `Resources/Public/Styleguide/Library/`, generated from
+  the committed prompt manifest `Build/Data/library-image-prompts.json`.
+
+### Changed
+
+- **Element library media is chosen by semantic role, not by hashing the field
+  name.** `LibraryImageAssetProvider` maps a field to video / audio / captions /
+  portrait / logo / badge / QR / product-UI / illustration / hero / editorial /
+  document and picks within that role. Roles with no sane substitute return
+  nothing rather than a wrong-format file. The styleguide seeder is untouched.
+- The demo cast is 12 people, indexed with the same modulus as the portrait
+  pool, so the face always belongs to the name.
+- `resolveFixtureFields()` and `buildContentInsert()` accept an optional
+  definition, letting a foreign host extension (innesto) hand in the one it
+  built from its own `config.yaml`. Its elements can now carry authored demo
+  content instead of falling back to the generator.
+- `demoSubjects()` no longer returns eight interchangeable slogans. Those were
+  the reason the picker was unreadable — the same headline appeared on dozens
+  of unrelated elements.
+
+### Fixed
+
+- White `--destructive-foreground` on `--destructive` measured **2.89:1** in
+  dark mode in every preset, and `.btn--destructive` / `.badge--destructive`
+  both paint label text with it.
+- `--ring` measured **2.32–2.59:1** on white in the four imported shadcn
+  presets, below the 3:1 WCAG 2.4.11 focus-indicator minimum.
+- `feature-numbered`'s step numeral was `color-mix(--primary 25%, transparent)`,
+  which composites to **1.7:1** in both schemes — the only sequence cue a
+  sighted reader gets.
+- A field declared `common-media-types` and labelled "Image or Video" resolved
+  to video and was handed an `.mp4` that its template rendered inside an
+  `<img>`. `allowed` now only settles the role when it excludes images.
+- `leaderboard`'s optional `avatar_url` takes precedence over the uploaded
+  portrait and was filled with a fabricated `example.com` URL, so it both 404'd
+  and hid the real image.
+- Generated asset credits are no longer emitted: they land in
+  `sys_file_reference.description`, which templates render as a visible
+  caption. Unsplash assets keep their attribution.
+
+
 ## [2.13.1] — 2026-07-12
 
 ### Fixed

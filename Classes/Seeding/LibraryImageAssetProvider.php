@@ -113,21 +113,44 @@ final class LibraryImageAssetProvider
             $lastSegment = strrchr($field, '.');
             $leaf = $lastSegment === false ? $field : substr($lastSegment, 1);
         }
-        $haystack = strtolower($leaf . ' ' . $label . ' ' . $allowed);
+        $allowed = strtolower($allowed);
 
-        // `allowed` is authoritative when it names a non-image family: a field
-        // that accepts video types IS a video field whatever it is called.
-        if (str_contains($allowed, 'video')) {
+        // `allowed` only settles the role when it EXCLUDES images. A field
+        // declared `common-media-types` accepts both, and `textmedia.media`
+        // ("Image or Video") is rendered by an <img> in the image branch of its
+        // template - handing it an .mp4 produced a literally broken image. When
+        // either is acceptable, an image is the safe demo: it always renders.
+        $excludesImages = $allowed !== '' && !str_contains($allowed, 'image') && !str_contains($allowed, 'common-media');
+        if ($excludesImages && str_contains($allowed, 'video')) {
             return 'video';
         }
-        if (str_contains($allowed, 'audio')) {
+        if ($excludesImages && str_contains($allowed, 'audio')) {
             return 'audio';
         }
+
+        // The label is deliberately excluded from the haystack for the same
+        // reason: labels like "Image or Video" name every accepted format, so
+        // matching them makes an either-or field resolve to the riskier one.
+        $haystack = strtolower($leaf) . ' ' . ($excludesImages ? $allowed : '');
 
         foreach (self::ROLE_RULES as $rule) {
             foreach ($rule['needles'] as $needle) {
                 if (str_contains($haystack, $needle)) {
                     return $rule['role'];
+                }
+            }
+        }
+
+        // A generically named `image` inside a people collection is a portrait.
+        // The leaf alone cannot know this - team-grid, advisor-grid and
+        // board-members all just call it `image` - so for this one case the
+        // surrounding path is the evidence. `$field` arrives from the resolver
+        // as "<element>-<collection>-<field>", which carries it.
+        if (in_array($leaf, ['image', 'photo', 'picture'], true)) {
+            $context = strtolower($field);
+            foreach (['member', 'people', 'person', 'team', 'advisor', 'investor', 'speaker', 'author', 'staff', 'employee', 'testimonial', 'quote'] as $needle) {
+                if (str_contains($context, $needle)) {
+                    return 'portrait';
                 }
             }
         }
@@ -161,24 +184,24 @@ final class LibraryImageAssetProvider
     private function buildPools(): array
     {
         return [
-            'video' => $this->mediaPool('Video', '*-feature-video.mp4', 'Feature video', 'Short product feature video used as demo media.'),
-            'poster' => $this->mediaPool('Video', '*-feature-video-poster.webp', 'Video poster frame', 'Poster frame shown before a demo video plays.'),
-            'captions' => $this->mediaPool('Video', '*-feature-video.en.vtt', 'English captions', 'WebVTT caption track for the demo feature video.'),
+            'video' => $this->mediaPool('Video', '*-feature-video.mp4', 'Feature video'),
+            'poster' => $this->mediaPool('Video', '*-feature-video-poster.webp', 'Video poster frame'),
+            'captions' => $this->mediaPool('Video', '*-feature-video.en.vtt', 'English captions'),
             'audio' => $this->fallbackAssets->getStyleguideAudioAssets(),
             // Cast portraits ONLY, never mixed with the generic Unsplash pool:
             // the pool is indexed with the same modulus as the demo cast, so
             // adding overflow faces would silently desynchronise name and face
             // for every collection item past the twelfth.
             'portrait' => $this->castPortraitPool(),
-            'logo' => $this->libraryPool('logo', 'Partner logo', 'Wordmark of a fictional partner company.'),
-            'badge' => $this->libraryPool('badge', 'Certification badge', 'Certification seal for a fictional standard.'),
-            'qr' => $this->libraryPool('qr', 'QR code', 'Scannable QR code pointing at the demo landing page.'),
-            'illustration' => $this->libraryPool('illustration', 'Illustration', 'Editorial illustration used as demo artwork.'),
-            'hero' => $this->libraryPool('hero', 'Hero image', 'Wide editorial photo with space for a headline.'),
+            'logo' => $this->libraryPool('logo', 'Partner logo'),
+            'badge' => $this->libraryPool('badge', 'Certification badge'),
+            'qr' => $this->libraryPool('qr', 'QR code'),
+            'illustration' => $this->libraryPool('illustration', 'Illustration'),
+            'hero' => $this->libraryPool('hero', 'Hero image'),
             'product-ui' => $this->productUiPool(),
-            'document' => $this->libraryPool('doc', 'Demo document', 'Placeholder PDF used as a download example.'),
+            'document' => $this->libraryPool('doc', 'Demo document'),
             'editorial' => array_merge(
-                $this->libraryPool('editorial', 'Editorial photo', 'Editorial photo used as demo media.'),
+                $this->libraryPool('editorial', 'Editorial photo'),
                 $this->fallbackAssets->getStyleguideImageAssets(),
             ),
         ];
@@ -194,7 +217,7 @@ final class LibraryImageAssetProvider
      */
     private function castPortraitPool(): array
     {
-        $pool = $this->libraryPool('portrait', 'Portrait', 'Portrait of a fictional demo persona.');
+        $pool = $this->libraryPool('portrait', 'Portrait');
 
         return $pool !== [] ? $pool : $this->fallbackAssets->getStyleguidePortraitAssets();
     }
@@ -208,28 +231,27 @@ final class LibraryImageAssetProvider
      */
     private function productUiPool(): array
     {
-        return $this->mediaPool(
-            'Frontend',
-            'frontend-*.png',
-            'Product interface',
-            'Screenshot of a rendered frontend, used as a product UI example.'
-        );
+        return $this->mediaPool('Frontend', 'frontend-*.png', 'Product interface');
     }
 
     /**
      * @return list<array{file: string, title: string, alt: string, credit: string, source: string}>
      */
-    private function libraryPool(string $rolePrefix, string $title, string $credit): array
+    private function libraryPool(string $rolePrefix, string $title): array
     {
-        return $this->globPool(self::LIBRARY, 'lib-' . $rolePrefix . '-*', $title, $credit, '');
+        // No credit: it is written to sys_file_reference.description, which the
+        // templates render as a visible caption. These assets are generated for
+        // this package and need no attribution, so anything here would show up
+        // under every image as text the editor did not write.
+        return $this->globPool(self::LIBRARY, 'lib-' . $rolePrefix . '-*', $title, '', '');
     }
 
     /**
      * @return list<array{file: string, title: string, alt: string, credit: string, source: string}>
      */
-    private function mediaPool(string $subdirectory, string $pattern, string $title, string $credit): array
+    private function mediaPool(string $subdirectory, string $pattern, string $title): array
     {
-        return $this->globPool(self::STYLEGUIDE . '/' . $subdirectory, $pattern, $title, $credit, '');
+        return $this->globPool(self::STYLEGUIDE . '/' . $subdirectory, $pattern, $title, '', '');
     }
 
     /**

@@ -183,4 +183,30 @@ final class ElementLibraryValueGenerator extends StyleguideDemoValueGenerator
     {
         return $this->pickDemoString($this->demoSubjects(), $name, $index);
     }
+
+    /**
+     * A fabricated `https://example.com/…` URL is worse than nothing when the
+     * template pipes it straight into an `<img src>`: leaderboard's optional
+     * `avatar_url` takes precedence over the uploaded portrait, so the invented
+     * URL both 404s and hides the real image. Leaving these image-URL fields
+     * empty lets the template fall through to the file it was given.
+     *
+     * Only image-shaped URL fields are suppressed. A demo link still gets a
+     * placeholder href, because an empty link renders as unclickable text and
+     * that hides a different thing.
+     */
+    public function buildDefaultLinkValue(string $field, int $index): string
+    {
+        $normalized = $this->normalizeIdentifier($field);
+        $isImageUrl = str_contains($normalized, 'url') && (
+            str_contains($normalized, 'avatar')
+            || str_contains($normalized, 'image')
+            || str_contains($normalized, 'photo')
+            || str_contains($normalized, 'portrait')
+            || str_contains($normalized, 'logo')
+            || str_contains($normalized, 'thumbnail')
+        );
+
+        return $isImageUrl ? '' : parent::buildDefaultLinkValue($field, $index);
+    }
 }

@@ -22,7 +22,15 @@
     display: block;
     font-size: var(--d-text-4xl);
     font-weight: 800;
-    color: color-mix(in oklch, var(--primary) 25%, transparent);
+    /* Was color-mix(… var(--primary) 25%, transparent), which composites to
+       1.7:1 on both the light and dark background — the step number was a ghost
+       and unreadable for anyone with reduced contrast sensitivity. It is
+       aria-hidden inside an <ol>, so assistive tech never needed it, but it is
+       the ONLY sequence cue a sighted reader gets. --muted-foreground is the
+       token for de-emphasised text and clears 4.5:1 in every preset and mode
+       (Build/Scripts/audit-theme-contrast.php proves it), so the numeral stays
+       visually secondary while actually being legible. */
+    color: var(--muted-foreground);
     line-height: 1;
     margin-block-end: var(--d-spacing-sm);
 }

@@ -32,12 +32,26 @@ const IN_PAGE = () => {
      */
     const isVisuallyHidden = (element) => {
         for (let node = element; node && node !== document.body; node = node.parentElement) {
-            if (node.classList?.contains('sr-only') || node.classList?.contains('visually-hidden')) return true;
             if (node.hasAttribute?.('hidden') || node.getAttribute?.('aria-hidden') === 'true') return true;
             const style = getComputedStyle(node);
             if (style.display === 'none' || style.visibility === 'hidden' || style.opacity === '0') return true;
-            // The clip/clip-path 1px trick used by every sr-only implementation.
-            if (style.clipPath !== 'none' && node.getBoundingClientRect().width <= 2) return true;
+
+            // Detect the screen-reader-only PATTERN, not a class name. This
+            // catalog spells it `d-sr-only`, `innesto-stats-badges__sr-only`
+            // and `feature-comparison__sr`, so matching on `.sr-only` missed
+            // almost all of them and every such span reported as clipped text.
+            // The pattern is what is actually diagnostic: a ~1px box that
+            // clips, or the absolute/-9999px variant.
+            const rect = node.getBoundingClientRect();
+            // `clip: rect(0, 0, 0, 0)` hides the element outright, whatever its
+            // box measures. chart-stacked-bar's legend heading is exactly this
+            // and a media query pads it to 32x1 below 768px, so a size-based
+            // test alone reported it as clipped text.
+            if (/rect\(0(px)?(,\s*0(px)?){3}\)/.test(style.clip.replace(/\s+/g, ' '))) return true;
+            const clipped = style.clipPath !== 'none' || style.clip !== 'auto';
+            if (clipped && (rect.width <= 2 || rect.height <= 2)) return true;
+            if (style.position === 'absolute' && (parseFloat(style.left) < -999 || parseFloat(style.top) < -999)) return true;
+            if (rect.width <= 1 && rect.height <= 1 && style.overflow === 'hidden') return true;
         }
         return false;
     };
@@ -85,7 +99,12 @@ const IN_PAGE = () => {
     const rootRect = root.getBoundingClientRect();
     if (rootRect.height < 8) {
         add('empty-render', describe(root), `height ${Math.round(rootRect.height)}px`);
-    } else if ((root.innerText ?? '').trim() === '' && root.querySelectorAll('img,svg,video,canvas').length === 0) {
+    } else if (
+        (root.innerText ?? '').trim() === ''
+        // A separator element is text-free and media-free by definition, so
+        // `<hr>` and role="separator" count as content here.
+        && root.querySelectorAll('img,svg,video,canvas,hr,[role="separator"],iframe,audio').length === 0
+    ) {
         add('empty-render', describe(root), 'no text and no media');
     }
 

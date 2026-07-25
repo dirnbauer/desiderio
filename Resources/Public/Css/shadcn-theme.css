@@ -835,6 +835,19 @@ body {
   --d-warning-muted: color-mix(in oklch, var(--chart-4) 14%, var(--background));
   --d-danger: var(--destructive);
   --d-danger-muted: color-mix(in oklch, var(--destructive) 10%, var(--background));
+  /* Drawn height every wide (cartesian) chart plot settles at, so a page that
+     stacks several of them reads as one family rather than a pile of different
+     sizes. Matches the radial charts' 360px so radar and pie sit in the same
+     band.
+
+     A chart plot must cap its size with max-WIDTH, never max-height:
+         aspect-ratio: <viewBox w> / <viewBox h>;
+         max-width: calc(var(--d-chart-plot-height) * <w> / <h>);
+     A max-height on an aspect-ratio box breaks the ratio, and the SVG's default
+     `xMidYMid meet` then scales the drawing to the short side and centres it —
+     which is how the sparkline ended up drawing 403px wide inside a 1166px box
+     with 763px of dead space. */
+  --d-chart-plot-height: 23.5rem;
   /* Text-on-muted variants: status colors pulled towards the foreground so small
      (12px) text on the *-muted tints (and plain background/card) clears the
      WCAG 4.5:1 contrast threshold in light and dark presets alike. The pull

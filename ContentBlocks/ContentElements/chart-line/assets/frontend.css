@@ -28,10 +28,12 @@
 .chart-line__canvas {
     display: block;
     width: 100%;
-    max-width: 100%;
     height: auto;
     aspect-ratio: 64 / 30;
-    max-height: 320px;
+    /* Capped by width, not height: a max-height overrides the aspect-ratio and
+       the SVG then centres its drawing inside the too-wide box. */
+    max-width: calc(var(--d-chart-plot-height) * 64 / 30);
+    margin-inline: auto;
     color: var(--muted-foreground);
 }
 .chart-line .chart__axis-label {

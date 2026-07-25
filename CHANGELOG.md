@@ -6,6 +6,35 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [3.0.1] — 2026-07-25
+
+### Fixed
+
+- **Chart plots were stranded inside oversized boxes.** A `max-height` on an
+  `aspect-ratio` box overrides the ratio, and the SVG's default
+  `xMidYMid meet` then scales the drawing to the short side and centres it. On
+  a Data & Dashboards page that left `chart-sparkline` drawing 403px wide
+  inside a 1166px box (763px of dead space), `chart-line` 483px short and
+  `chart-stacked-bar` 391px short. All three now cap with `max-width` derived
+  from the viewBox aspect, so the box always equals the artwork. Dead space
+  across every chart on the page is now zero.
+- `chart-sparkline` drew into a bespoke 420×150 viewBox. Because SVG font sizes
+  are user units that scale with the viewBox, giving it a full-height box
+  rendered its axis labels at 2.5×. It now uses the same 640×300 geometry as
+  `chart-area` and `chart-line`, so its plot and its type match the neighbouring
+  charts exactly (802×376, 15px labels).
+- `chart-stacked-bar` declared `aspect-ratio: 16 / 9` while its viewBox is
+  720×390, and its axis labels used a bespoke `0.6rem` that rendered around 9px.
+  Both now follow the real viewBox and the shared type token.
+
+### Added
+
+- `--d-chart-plot-height`, the drawn height every wide chart settles at, so a
+  page stacking several of them reads as one family. Chart plots must cap with
+  `max-width: calc(var(--d-chart-plot-height) * <vbW> / <vbH>)` — never
+  `max-height`, which is what broke the aspect ratio in the first place.
+
+
 ## [3.0.0] — 2026-07-25
 
 ### Changed (BREAKING)

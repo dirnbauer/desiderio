@@ -610,12 +610,17 @@
       });
       if (!svg || !values.length) return;
 
+      // Same drawing geometry as chart-area/chart-line. Font sizes inside an
+      // SVG are user units, so they scale with the viewBox: the old bespoke
+      // 420x150 box rendered its labels at 2.5x once the plot was given a
+      // full-height box. Sharing the standard 640x300 geometry keeps the type
+      // at the same scale as every other cartesian chart on the page.
       drawLineChart(svg, values, {
-        width: 420,
-        height: 150,
-        padX: 72,
-        padY: 18,
-        bottom: 34,
+        width: 640,
+        height: 300,
+        padX: 90,
+        padY: 30,
+        bottom: 44,
         yAxis: true,
         yTickCount: 4,
         unit: root.getAttribute('data-chart-unit') || '',

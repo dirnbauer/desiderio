@@ -84,8 +84,13 @@
 .chart-sparkline__svg {
     display: block;
     width: 100%;
-    max-width: 100%;
-    height: 9rem;
+    /* charts.js draws into the shared 640x300 chart viewBox. Sizing by height
+       alone left the drawing marooned at 403px inside a 1166px box; capping by
+       WIDTH keeps the box equal to the artwork at every width. */
+    aspect-ratio: 64 / 30;
+    max-width: calc(var(--d-chart-plot-height) * 64 / 30);
+    height: auto;
+    margin-inline: auto;
     color: var(--chart-color, var(--chart-1));
     overflow: visible;
 }
@@ -93,7 +98,10 @@
 .chart-sparkline .chart__tick-label {
     /* Not currentColor: the sparkline svg color IS the chart hue. */
     fill: var(--muted-foreground);
-    font-size: 0.6rem;
+    /* Token, not a bespoke 0.6rem: these are user units scaled by the viewBox,
+       so matching chart-area's value is what makes the labels the same visual
+       size as the neighbouring charts. */
+    font-size: var(--d-text-xs);
     font-weight: 600;
     font-variant-numeric: tabular-nums;
 }

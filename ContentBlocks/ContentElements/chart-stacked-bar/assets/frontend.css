@@ -94,15 +94,20 @@
     display: block;
     width: 100%;
     height: auto;
-    aspect-ratio: 16 / 9;
-    min-height: 240px;
-    max-height: 420px;
+    /* 720/390 is the actual viewBox; the previous 16/9 was close but wrong, and
+       the max-height then broke the ratio outright. */
+    aspect-ratio: 720 / 390;
+    max-width: calc(var(--d-chart-plot-height) * 720 / 390);
+    margin-inline: auto;
     color: var(--muted-foreground);
     overflow: visible;
 }
 .chart-stacked-bar__tick,
 .chart-stacked-bar__axis-label {
-    font-size: 0.6rem;
+    /* User units, scaled by the viewBox. The shared token renders these at the
+       same visual size as every other chart's axis labels instead of the ~9px
+       the bespoke 0.6rem produced. */
+    font-size: var(--d-text-xs);
     font-weight: 600;
     fill: currentColor;
     font-variant-numeric: tabular-nums;

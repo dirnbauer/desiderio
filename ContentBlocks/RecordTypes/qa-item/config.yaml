@@ -1,0 +1,24 @@
+# Shared child table for collections whose field definitions are identical.
+# Consumers reference it with `foreign_table: desiderio_qa_item` plus
+# shareAcrossTables/shareAcrossFields; their own `fields:` would be inert.
+# Generated from faq by Build/Scripts/derive-collection-merge-map.php.
+# Used by: faq, pricing-faq
+name: desiderio/qa-item
+table: desiderio_qa_item
+prefixFields: false
+labelField: question
+fields:
+  -
+    identifier: question
+    type: Textarea
+    rows: 1
+    label: Question
+    required: true
+  -
+    identifier: answer
+    type: Textarea
+    label: Answer
+    enableRichtext: true
+    richtextConfiguration: desiderio
+    rows: 4
+    required: true

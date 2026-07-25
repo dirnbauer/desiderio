@@ -70,6 +70,14 @@ intact.
   child tables automatically by generic identifiers such as `items`; reuse a
   table only when the child rows are deliberately the same model and the TCA
   matching rules stay unambiguous.
+- Sharing a child table means `foreign_table:` pointing at a Record Type in
+  `ContentBlocks/RecordTypes/`, plus BOTH `shareAcrossTables: true` and
+  `shareAcrossFields: true` on every sharer — omit one and each sharer's
+  children appear in the others, silently. The Record Type must set
+  `prefixFields: false` so its columns keep their plain names, and a sharing
+  Collection must not keep its own `fields:` (they are inert). The audit gates
+  all of this; `Documentation/Developer/CollectionTableConsolidation.md`
+  explains why only 12 of the 23 candidate groups qualified.
 - Content Block image fields render through `<f:image>` or `f:uri.image()`.
   Pass custom `data-*` attributes through structured Fluid arguments such as
   `data="{d-gallery-main: 'true'}"`; do not hand-write literal `<img>` tags for

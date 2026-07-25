@@ -509,7 +509,68 @@ final class ContentBlockStructureTest extends TestCase
             }
         }
 
-        self::assertSame(17, $iconFieldCount);
+        // Shared record types hold icon fields too, and they are just as much
+        // part of the catalog as the ones still declared inline.
+        $recordTypePaths = glob(__DIR__ . '/../../ContentBlocks/RecordTypes/*/config.yaml');
+        foreach ($recordTypePaths === false ? [] : $recordTypePaths as $recordTypePath) {
+            $recordType = Yaml::parseFile($recordTypePath);
+            self::assertIsArray($recordType);
+            $recordTypeFields = $recordType['fields'] ?? [];
+            self::assertIsArray($recordTypeFields);
+
+            foreach (self::collectIconFieldConfigs($recordTypeFields) as $path => $field) {
+                $iconFieldCount++;
+                $label = basename(dirname($recordTypePath)) . " {$path}";
+                self::assertSame('Select', $field['type'] ?? null, "{$label} must use a select field");
+                $processors = $field['itemsProcessors'] ?? [];
+                self::assertIsArray($processors, "{$label} must define item processors");
+                $processor = $processors[10] ?? [];
+                self::assertIsArray($processor, "{$label} must define icon item processor 10");
+                self::assertSame(IconItemsProcessor::class, $processor['class'] ?? null, "{$label} must use the shared icon item processor");
+            }
+        }
+
+        // 14, not the historical 17: five icon-field definitions across
+        // benefit-cards, feature-carousel, feature-grid-3, feature-grid-4 and
+        // feature-icons collapsed into two shared record types
+        // (desiderio_icon_card_link, desiderio_icon_lead). 17 - 5 + 2 = 14.
+        self::assertSame(14, $iconFieldCount);
+    }
+
+    /**
+     * Field list of a shared record type, keyed by its table.
+     *
+     * @return list<array<string, mixed>>
+     */
+    private static function recordTypeFields(string $table): array
+    {
+        /** @var array<string, list<array<string, mixed>>>|null $byTable */
+        static $byTable = null;
+        if ($byTable === null) {
+            $byTable = [];
+            $paths = glob(__DIR__ . '/../../ContentBlocks/RecordTypes/*/config.yaml');
+            foreach ($paths === false ? [] : $paths as $path) {
+                $config = Yaml::parseFile($path);
+                if (!is_array($config) || !is_string($config['table'] ?? null)) {
+                    continue;
+                }
+                $fields = $config['fields'] ?? [];
+                $normalized = [];
+                foreach (is_array($fields) ? $fields : [] as $field) {
+                    if (!is_array($field)) {
+                        continue;
+                    }
+                    $stringKeyed = [];
+                    foreach ($field as $key => $value) {
+                        $stringKeyed[(string)$key] = $value;
+                    }
+                    $normalized[] = $stringKeyed;
+                }
+                $byTable[$config['table']] = $normalized;
+            }
+        }
+
+        return $byTable[$table] ?? [];
     }
 
     public function testFixtureIconValuesUseIconNames(): void
@@ -654,7 +715,15 @@ final class ContentBlockStructureTest extends TestCase
                 $identifier = (string)$field['identifier'];
                 $fieldTypes[$identifier] = $field['type'] ?? (($field['useExistingField'] ?? false) ? 'Existing' : null);
 
-                foreach (($field['fields'] ?? []) as $child) {
+                // A collection using `foreign_table:` declares its children in
+                // the shared record type, so that is where they must be read
+                // from — its own `fields:` is inert and normally absent.
+                $foreignTable = is_array($field) ? ($field['foreign_table'] ?? null) : null;
+                $children = $field['fields'] ?? [];
+                if (!is_array($children) || ($children === [] && is_string($foreignTable))) {
+                    $children = is_string($foreignTable) ? self::recordTypeFields($foreignTable) : [];
+                }
+                foreach ($children as $child) {
                     if (isset($child['identifier'])) {
                         $nestedFields[$identifier][(string)$child['identifier']] = true;
                     }

@@ -23,24 +23,12 @@ fields:
   -
     identifier: sections
     type: Collection
-    table: privacy_notice_sections
+    foreign_table: desiderio_title_content
+    shareAcrossTables: true
+    shareAcrossFields: true
     prefixField: true
     label: Sections
     minItems: 1
-    fields:
-      -
-        identifier: title
-        type: Textarea
-        rows: 1
-        label: 'Section Title'
-        required: true
-      -
-        identifier: content
-        type: Textarea
-        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:content'
-        enableRichtext: true
-        richtextConfiguration: desiderio
-        rows: 4
   -
     identifier: last_updated
     type: Textarea

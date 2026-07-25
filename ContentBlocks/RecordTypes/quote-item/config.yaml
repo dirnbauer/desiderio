@@ -1,0 +1,33 @@
+# Shared child table for collections whose field definitions are identical.
+# Consumers reference it with `foreign_table: desiderio_quote_item` plus
+# shareAcrossTables/shareAcrossFields; their own `fields:` would be inert.
+# Generated from testimonial-grid by Build/Scripts/derive-collection-merge-map.php.
+# Used by: testimonial-grid, testimonial-wall
+name: desiderio/quote-item
+table: desiderio_quote_item
+prefixFields: false
+labelField: quote
+fields:
+  -
+    identifier: quote
+    type: Textarea
+    label: Quote
+    rows: 3
+    required: true
+  -
+    identifier: author_name
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:author_name'
+    required: true
+  -
+    identifier: author_title
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:author_title'
+  -
+    identifier: author_image
+    type: File
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:author_photo'
+    allowed: common-image-types
+    maxitems: 1

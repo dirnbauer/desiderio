@@ -1,0 +1,43 @@
+# Shared child table for collections whose field definitions are identical.
+# Consumers reference it with `foreign_table: desiderio_metric_item` plus
+# shareAcrossTables/shareAcrossFields; their own `fields:` would be inert.
+# Generated from analytics-overview by Build/Scripts/derive-collection-merge-map.php.
+# Used by: analytics-overview, metric-dashboard, stat-cards
+name: desiderio/metric-item
+table: desiderio_metric_item
+prefixFields: false
+labelField: label
+fields:
+  -
+    identifier: label
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:label_field'
+    required: true
+  -
+    identifier: value
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:value'
+    required: true
+  -
+    identifier: change
+    type: Textarea
+    rows: 1
+    label: Change
+  -
+    identifier: trend
+    type: Select
+    renderType: selectSingle
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:trend'
+    items:
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.up'
+        value: up
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.down'
+        value: down
+      -
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:item.neutral'
+        value: neutral
+    default: neutral

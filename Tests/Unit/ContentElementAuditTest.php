@@ -39,6 +39,10 @@ final class ContentElementAuditTest extends TestCase
         'css_hardcoded_dark_selector',
         'css_raw_font_family',
         'css_fixed_width_overflow',
+        // Shared collection record types: both are silent-failure modes, so
+        // they belong in the zero-tolerance list rather than a report.
+        'shared_collection_missing_flag',
+        'shared_collection_inert_fields',
     ];
 
     public function testStrictAuditCategoriesAreClean(): void

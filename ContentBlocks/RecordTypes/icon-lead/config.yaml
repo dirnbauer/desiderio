@@ -1,0 +1,30 @@
+# Shared child table for collections whose field definitions are identical.
+# Consumers reference it with `foreign_table: desiderio_icon_lead` plus
+# shareAcrossTables/shareAcrossFields; their own `fields:` would be inert.
+# Generated from feature-grid-4 by Build/Scripts/derive-collection-merge-map.php.
+# Used by: feature-grid-4, feature-icons
+name: desiderio/icon-lead
+table: desiderio_icon_lead
+prefixFields: false
+labelField: icon
+fields:
+  -
+    identifier: icon
+    type: Select
+    renderType: selectSingle
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:icon_emoji'
+    description: 'Semantic icon key rendered through the active shadcn icon library.'
+    itemsProcessors:
+      10:
+        class: Webconsulting\Desiderio\DataHandling\IconItemsProcessor
+  -
+    identifier: title
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:title'
+    required: true
+  -
+    identifier: description_text
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:short_description'

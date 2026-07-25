@@ -26,22 +26,9 @@ fields:
   -
     identifier: question_items
     type: Collection
-    table: pricing_faq_question_items
+    foreign_table: desiderio_qa_item
+    shareAcrossTables: true
+    shareAcrossFields: true
     prefixField: true
     label: Questions
     minItems: 1
-    fields:
-      -
-        identifier: question
-        type: Textarea
-        rows: 1
-        label: Question
-        required: true
-      -
-        identifier: answer
-        type: Textarea
-        enableRichtext: true
-        richtextConfiguration: desiderio
-        label: Answer
-        rows: 3
-        required: true

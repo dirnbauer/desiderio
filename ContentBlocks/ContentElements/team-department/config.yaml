@@ -36,20 +36,10 @@ fields:
       -
         identifier: members
         type: Collection
-        table: team_department_members
+        foreign_table: desiderio_person_min
+        shareAcrossTables: true
+        shareAcrossFields: true
         label: Members
         labelField: name
         minItems: 1
         maxItems: 12
-        fields:
-          -
-            identifier: name
-            type: Textarea
-            rows: 1
-            label: 'Member Name'
-            required: true
-          -
-            identifier: role
-            type: Textarea
-            rows: 1
-            label: Role

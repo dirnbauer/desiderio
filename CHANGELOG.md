@@ -6,6 +6,79 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [3.0.0] — 2026-07-25
+
+### Changed (BREAKING)
+
+- **29 collection child tables are now 12 shared record types.** Collections
+  whose child field definitions were byte-identical point at a Record Type in
+  `ContentBlocks/RecordTypes/` via `foreign_table:` +
+  `shareAcrossTables`/`shareAcrossFields` instead of owning a table each.
+  Existing installations MUST run the upgrade wizard:
+
+      vendor/bin/typo3 upgrade:run desiderioSharedCollectionTables
+
+  The wizard only INSERTs. Source tables are left in place — rename them to
+  `zzz_deleted_<table>` once you are satisfied, and drop them later. Every
+  (old table, old uid) → new uid pair is recorded in
+  `tx_desiderio_collection_uid_map`, which makes the move auditable, reversible
+  and re-runnable.
+
+  Scope was set by measurement, not by column names: grouping tables by SQL
+  columns suggests 83 are mergeable, but `foreign_table:` makes each sharer's
+  own `fields:` inert, so only collections with identical field DEFINITIONS
+  qualify. 11 groups covering 54 tables diverge behaviourally — in 10 of them on
+  a single `required` flag — and were deliberately left alone. See
+  `Documentation/Developer/CollectionTableConsolidation.md`.
+
+  Templates, fixtures and `library.json` are unaffected: field identifiers and
+  the `tt_content` counter columns are unchanged by construction.
+
+      desiderio_icon_card_link  ← benefit_cards_items, feature_carousel_items, feature_grid_3_items
+      desiderio_label_value     ← case_study_featured_metrics, product_specs_specs, stats_inline_stats
+      desiderio_logo_item       ← logo_carousel_logo_items, logo_cloud_logo_items, logo_grid_logo_items
+      desiderio_metric_item     ← analytics_overview_items, metric_dashboard_items, stat_cards_items
+      desiderio_nav_item        ← nav_pagination_items, nav_tabs_tabs, navbar_tabbed_tabs
+      desiderio_icon_lead       ← feature_grid_4_items, feature_icons_items
+      desiderio_label_item      ← hero_pricing_feature_items, hero_product_feature_items
+      desiderio_name_item       ← hero_logo_cloud_logo_items, hero_saas_logo_items
+      desiderio_person_min      ← org_chart_people, team_department_members
+      desiderio_qa_item         ← faq_items, pricing_faq_question_items
+      desiderio_quote_item      ← testimonial_grid_testimonials, testimonial_wall_testimonials
+      desiderio_title_content   ← feature_accordion_items, privacy_notice_sections
+
+### Fixed
+
+- **`CollectionCleanupService` could delete a sibling collection's rows.** It
+  filtered children on `foreign_table_parent_uid` alone; on a shared table two
+  fields of one record produce rows with the same parent uid, so reseeding one
+  field would have taken the other's content with it. It now also matches
+  `tablenames` and `fieldname`, and deletes by the uids it resolved rather than
+  re-running the predicate, so lookup and delete cannot drift apart. Latent
+  before this release; a data-loss bug the moment any table is shared.
+- `ContentBlockDefinitionRegistry` resolves `foreign_table:` to the record
+  type's field list. Without it every seeder saw an empty child definition and
+  would have silently seeded nothing. It also no longer needs a booted TYPO3 to
+  build a definition from config.
+- `CollectionRecordSeeder` writes `tablenames`/`fieldname`, taking a nested
+  collection's identifier from its payload key — nested collections carry no
+  explicit `column`, and without the fallback their rows were written with an
+  empty `fieldname` that the TCA cannot match and no cleanup can find. Writing
+  an empty `fieldname` into a shared table is now a hard error.
+
+### Added
+
+- `Build/Scripts/derive-collection-merge-map.php` derives the consolidation map
+  from the configs, and `Build/Data/collection-merge-map.json` freezes it.
+- `Build/Scripts/verify-collection-merge.php` proves zero loss by comparing a
+  multiset of per-row payload hashes (payload, parent, language, sorting)
+  before and after, plus file-reference resolvability. Run `compare` before any
+  reseed. Reference run: 722 rows, 90 file references, PASS.
+- `Tests/Unit/SharedCollectionRecordTypeTest` and two audit categories
+  (`shared_collection_missing_flag`, `shared_collection_inert_fields`), gated at
+  zero, covering the silent failure modes of table sharing.
+
+
 ## [2.14.0] — 2026-07-25
 
 ### Added

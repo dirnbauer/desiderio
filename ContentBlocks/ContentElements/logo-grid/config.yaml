@@ -42,25 +42,9 @@ fields:
   -
     identifier: logo_items
     type: Collection
-    table: logo_grid_logo_items
+    foreign_table: desiderio_logo_item
+    shareAcrossTables: true
+    shareAcrossFields: true
     prefixField: true
     label: Logos
     minItems: 1
-    fields:
-      -
-        identifier: image
-        type: File
-        label: 'Logo Image'
-        allowed: common-image-types
-        maxitems: 1
-        required: true
-      -
-        identifier: name
-        type: Textarea
-        rows: 1
-        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:company_name'
-        required: true
-      -
-        identifier: link
-        type: Link
-        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:optional_link'

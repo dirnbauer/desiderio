@@ -35,12 +35,8 @@ fields:
   -
     identifier: logo_items
     type: Collection
-    table: hero_logo_cloud_logo_items
+    foreign_table: desiderio_name_item
+    shareAcrossTables: true
+    shareAcrossFields: true
     prefixField: true
     label: Logos
-    fields:
-      -
-        identifier: name
-        type: Textarea
-        rows: 1
-        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:name'

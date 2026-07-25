@@ -28,23 +28,12 @@ fields:
   -
     identifier: specs
     type: Collection
-    table: product_specs_specs
+    foreign_table: desiderio_label_value
+    shareAcrossTables: true
+    shareAcrossFields: true
     prefixField: true
     label: Specifications
     minItems: 1
-    fields:
-      -
-        identifier: label
-        type: Textarea
-        rows: 1
-        label: 'Spec Label'
-        required: true
-      -
-        identifier: value
-        type: Textarea
-        rows: 1
-        label: 'Spec Value'
-        required: true
   -
     identifier: image
     type: File

@@ -21,22 +21,9 @@ fields:
   -
     identifier: items
     type: Collection
-    table: faq_items
+    foreign_table: desiderio_qa_item
+    shareAcrossTables: true
+    shareAcrossFields: true
     prefixField: true
     label: Questions
     minItems: 1
-    fields:
-      -
-        identifier: question
-        type: Textarea
-        rows: 1
-        label: Question
-        required: true
-      -
-        identifier: answer
-        type: Textarea
-        label: Answer
-        enableRichtext: true
-        richtextConfiguration: desiderio
-        rows: 4
-        required: true

@@ -1,0 +1,15 @@
+# Shared child table for collections whose field definitions are identical.
+# Consumers reference it with `foreign_table: desiderio_name_item` plus
+# shareAcrossTables/shareAcrossFields; their own `fields:` would be inert.
+# Generated from hero-logo-cloud by Build/Scripts/derive-collection-merge-map.php.
+# Used by: hero-logo-cloud, hero-saas
+name: desiderio/name-item
+table: desiderio_name_item
+prefixFields: false
+labelField: name
+fields:
+  -
+    identifier: name
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:name'

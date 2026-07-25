@@ -27,21 +27,9 @@ fields:
   -
     identifier: items
     type: Collection
-    table: feature_accordion_items
+    foreign_table: desiderio_title_content
+    shareAcrossTables: true
+    shareAcrossFields: true
     prefixField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:features'
     minItems: 1
-    fields:
-      -
-        identifier: title
-        type: Textarea
-        rows: 1
-        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:title'
-        required: true
-      -
-        identifier: content
-        type: Textarea
-        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:content'
-        enableRichtext: true
-        richtextConfiguration: desiderio
-        rows: 4

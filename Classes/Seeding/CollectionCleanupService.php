@@ -34,19 +34,32 @@ final class CollectionCleanupService
                 continue;
             }
 
-            $collectionUids = $this->findCollectionRowUids($table, $parentUids);
+            // `column` IS the Content Blocks uniqueIdentifier, which is what
+            // lands in the shared table's `fieldname`. On a shared table this
+            // is what separates one collection's rows from a sibling's on the
+            // very same parent record; without it, reseeding one field deletes
+            // the other's content.
+            $fieldName = is_string($collection['column'] ?? null) ? $collection['column'] : null;
+
+            $collectionUids = $this->findCollectionRowUids($table, $parentUids, $parentTable, $fieldName);
             $this->deleteCollectionRowsForParentUids($collectionUids, $table, $collectionsByParentTable);
             $this->deleteFileReferencesForRecords($table, $collectionUids);
 
+            if ($collectionUids === []) {
+                continue;
+            }
+
+            // Delete by the uids just resolved rather than re-running the
+            // parent predicate: the lookup above is the single place that knows
+            // how ownership is decided, so the two cannot drift apart.
             $queryBuilder = $this->connectionPool->getQueryBuilderForTable($table);
             $queryBuilder
                 ->delete($table)
                 ->where(
                     $queryBuilder->expr()->in(
-                        'foreign_table_parent_uid',
-                        $queryBuilder->createNamedParameter($parentUids, ArrayParameterType::INTEGER)
-                    ),
-                    ...$this->liveWorkspaceQueryHelper->buildLiveWorkspaceConstraints($queryBuilder, $table)
+                        'uid',
+                        $queryBuilder->createNamedParameter($collectionUids, ArrayParameterType::INTEGER)
+                    )
                 )
                 ->executeStatement();
         }
@@ -104,7 +117,7 @@ final class CollectionCleanupService
      * @param list<int> $parentUids
      * @return list<int>
      */
-    public function findCollectionRowUids(string $table, array $parentUids): array
+    public function findCollectionRowUids(string $table, array $parentUids, ?string $parentTable = null, ?string $fieldName = null): array
     {
         if ($parentUids === []) {
             return [];
@@ -121,12 +134,44 @@ final class CollectionCleanupService
                     'foreign_table_parent_uid',
                     $queryBuilder->createNamedParameter($parentUids, ArrayParameterType::INTEGER)
                 ),
+                ...$this->buildOwnershipConstraints($queryBuilder, $table, $parentTable, $fieldName),
                 ...$this->liveWorkspaceQueryHelper->buildLiveWorkspaceConstraints($queryBuilder, $table)
             )
             ->executeQuery()
             ->fetchFirstColumn();
 
         return self::normalizeIntegerList($uids);
+    }
+
+    /**
+     * Narrows a child lookup to the collection field that actually owns the row.
+     *
+     * On a table used by exactly one collection, `foreign_table_parent_uid`
+     * alone identifies the children. On a table SHARED between collections
+     * (`shareAcrossTables` / `shareAcrossFields`) it does not: two fields on the
+     * same parent record produce rows with the same parent uid, so reseeding
+     * one field would delete the other field's rows. `tablenames` and
+     * `fieldname` are the columns Content Blocks adds for exactly this, and
+     * they are only applied when the table actually has them — unshared tables
+     * keep the original behaviour.
+     *
+     * @return list<\TYPO3\CMS\Core\Database\Query\Expression\CompositeExpression|string>
+     */
+    private function buildOwnershipConstraints(
+        \TYPO3\CMS\Core\Database\Query\QueryBuilder $queryBuilder,
+        string $table,
+        ?string $parentTable,
+        ?string $fieldName,
+    ): array {
+        $constraints = [];
+        if ($parentTable !== null && $parentTable !== '' && $this->databaseSchema->tableHasColumn($table, 'tablenames')) {
+            $constraints[] = $queryBuilder->expr()->eq('tablenames', $queryBuilder->createNamedParameter($parentTable));
+        }
+        if ($fieldName !== null && $fieldName !== '' && $this->databaseSchema->tableHasColumn($table, 'fieldname')) {
+            $constraints[] = $queryBuilder->expr()->eq('fieldname', $queryBuilder->createNamedParameter($fieldName));
+        }
+
+        return $constraints;
     }
 
     /**

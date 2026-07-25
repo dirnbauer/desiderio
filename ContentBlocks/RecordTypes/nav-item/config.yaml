@@ -1,0 +1,23 @@
+# Shared child table for collections whose field definitions are identical.
+# Consumers reference it with `foreign_table: desiderio_nav_item` plus
+# shareAcrossTables/shareAcrossFields; their own `fields:` would be inert.
+# Generated from nav-pagination by Build/Scripts/derive-collection-merge-map.php.
+# Used by: nav-pagination, nav-tabs, navbar-tabbed
+name: desiderio/nav-item
+table: desiderio_nav_item
+prefixFields: false
+labelField: label
+fields:
+  -
+    identifier: label
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:label_field'
+  -
+    identifier: link
+    type: Link
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:link'
+  -
+    identifier: active
+    type: Checkbox
+    label: Active

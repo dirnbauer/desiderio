@@ -31,15 +31,11 @@ fields:
   -
     identifier: feature_items
     type: Collection
-    table: hero_pricing_feature_items
+    foreign_table: desiderio_label_item
+    shareAcrossTables: true
+    shareAcrossFields: true
     prefixField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:features'
-    fields:
-      -
-        identifier: label
-        type: Textarea
-        rows: 1
-        label: Feature
   -
     identifier: button_text
     type: Textarea

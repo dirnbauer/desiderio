@@ -1,0 +1,21 @@
+# Shared child table for collections whose field definitions are identical.
+# Consumers reference it with `foreign_table: desiderio_person_min` plus
+# shareAcrossTables/shareAcrossFields; their own `fields:` would be inert.
+# Generated from org-chart by Build/Scripts/derive-collection-merge-map.php.
+# Used by: org-chart, team-department
+name: desiderio/person-min
+table: desiderio_person_min
+prefixFields: false
+labelField: name
+fields:
+  -
+    identifier: name
+    type: Textarea
+    rows: 1
+    label: Name
+    required: true
+  -
+    identifier: role
+    type: Textarea
+    rows: 1
+    label: Role

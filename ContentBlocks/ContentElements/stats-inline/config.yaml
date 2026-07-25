@@ -21,20 +21,9 @@ fields:
   -
     identifier: stats
     type: Collection
-    table: stats_inline_stats
+    foreign_table: desiderio_label_value
+    shareAcrossTables: true
+    shareAcrossFields: true
     prefixField: true
     label: Stats
     minItems: 2
-    fields:
-      -
-        identifier: value
-        type: Textarea
-        rows: 1
-        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:value'
-        required: true
-      -
-        identifier: label
-        type: Textarea
-        rows: 1
-        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:label_field'
-        required: true

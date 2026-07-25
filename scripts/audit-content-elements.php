@@ -12,9 +12,19 @@ declare(strict_types=1);
  *    f:render.text(field: '...') with context-aware data/alias detection.
  *  - Cross-check the catalog against these standards:
  *
- *      missing_table_key          Collection field without an explicit `table:`
- *                                 → unrelated elements silently share an
- *                                 auto-derived table; renames lose data.
+ *      missing_table_key          Collection field with neither `table:` nor
+ *                                 `foreign_table:` → unrelated elements
+ *                                 silently share an auto-derived table and
+ *                                 renames lose data.
+ *      shared_collection_missing_flag
+ *                                 `foreign_table:` without both
+ *                                 shareAcrossTables and shareAcrossFields →
+ *                                 every sharer's children show up in every
+ *                                 other sharer's element.
+ *      shared_collection_inert_fields
+ *                                 `fields:` under a `foreign_table:`
+ *                                 collection. The record type's definition
+ *                                 wins, so these are dead config.
  *      fixture_missing_field      Configured field not in fixture.json.
  *                                 (Soft: SeedStyleguidePagesCommand fills with
  *                                 a default. Useful to spot demo-content gaps.)
@@ -343,6 +353,8 @@ $problems = [];
 $summary = [
     'total' => 0,
     'missing_table_key' => 0,
+    'shared_collection_missing_flag' => 0,
+    'shared_collection_inert_fields' => 0,
     'fixture_missing_field' => 0,
     'fixture_extra_field' => 0,
     'collection_child_seed_gap' => 0,
@@ -396,9 +408,29 @@ foreach (scandir($elementsDir) as $entry) {
     $refsLive = extractTemplateVarRefs($tplLive);
 
     foreach ($defs as $key => $def) {
-        if (($def['type'] ?? '') === 'Collection' && !str_contains($key, '.') && empty($def['table'])) {
+        if (($def['type'] ?? '') !== 'Collection' || str_contains($key, '.')) {
+            continue;
+        }
+
+        $sharesTable = !empty($def['foreign_table']);
+        if (empty($def['table']) && !$sharesTable) {
             $problems[$entry][] = ['type' => 'missing_table_key', 'field' => $key];
             $summary['missing_table_key']++;
+        }
+
+        // Content Blocks requires BOTH flags on every sharer. With one missing
+        // the children are matched too loosely and appear in each sharer's
+        // element — silently, with no error anywhere.
+        if ($sharesTable && (empty($def['shareAcrossTables']) || empty($def['shareAcrossFields']))) {
+            $problems[$entry][] = ['type' => 'shared_collection_missing_flag', 'field' => $key];
+            $summary['shared_collection_missing_flag']++;
+        }
+
+        // `fields:` under a `foreign_table:` collection is inert — the record
+        // type's definition wins — so leaving it is a trap for whoever edits it.
+        if ($sharesTable && !empty($def['fields'])) {
+            $problems[$entry][] = ['type' => 'shared_collection_inert_fields', 'field' => $key];
+            $summary['shared_collection_inert_fields']++;
         }
     }
 

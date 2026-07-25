@@ -21,28 +21,9 @@ fields:
   -
     identifier: items
     type: Collection
-    table: feature_grid_4_items
+    foreign_table: desiderio_icon_lead
+    shareAcrossTables: true
+    shareAcrossFields: true
     prefixField: true
     label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:features'
     minItems: 4
-    fields:
-      -
-        identifier: icon
-        type: Select
-        renderType: selectSingle
-        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:icon_emoji'
-        description: 'Semantic icon key rendered through the active shadcn icon library.'
-        itemsProcessors:
-          10:
-            class: Webconsulting\Desiderio\DataHandling\IconItemsProcessor
-      -
-        identifier: title
-        type: Textarea
-        rows: 1
-        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:title'
-        required: true
-      -
-        identifier: description_text
-        type: Textarea
-        rows: 1
-        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:short_description'

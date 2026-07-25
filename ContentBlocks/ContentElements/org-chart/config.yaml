@@ -37,20 +37,10 @@ fields:
       -
         identifier: people
         type: Collection
-        table: org_chart_people
+        foreign_table: desiderio_person_min
+        shareAcrossTables: true
+        shareAcrossFields: true
         label: People
         labelField: name
         minItems: 1
         maxItems: 12
-        fields:
-          -
-            identifier: name
-            type: Textarea
-            rows: 1
-            label: Name
-            required: true
-          -
-            identifier: role
-            type: Textarea
-            rows: 1
-            label: Role

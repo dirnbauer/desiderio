@@ -1,0 +1,23 @@
+# Shared child table for collections whose field definitions are identical.
+# Consumers reference it with `foreign_table: desiderio_title_content` plus
+# shareAcrossTables/shareAcrossFields; their own `fields:` would be inert.
+# Generated from feature-accordion by Build/Scripts/derive-collection-merge-map.php.
+# Used by: feature-accordion, privacy-notice
+name: desiderio/title-content
+table: desiderio_title_content
+prefixFields: false
+labelField: title
+fields:
+  -
+    identifier: title
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:title'
+    required: true
+  -
+    identifier: content
+    type: Textarea
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:content'
+    enableRichtext: true
+    richtextConfiguration: desiderio
+    rows: 4

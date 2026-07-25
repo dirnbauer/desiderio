@@ -17,13 +17,38 @@ final class CollectionRecordSeeder
 
     /**
      * @param array<string, array{table: string, column?: string, items: list<array<string, mixed>>}> $collections
+     * @param string $parentTable Table the rows hang off. Only meaningful for a
+     *                            SHARED child table, where `foreign_table_parent_uid`
+     *                            alone no longer identifies the owner.
      */
-    public function seed(int $contentUid, int $pageUid, int $now, array $collections): void
+    public function seed(int $contentUid, int $pageUid, int $now, array $collections, string $parentTable = 'tt_content'): void
     {
         foreach ($collections as $collection) {
             $table = $collection['table'];
             $columns = $this->databaseSchema->getColumnNames($table);
             $connection = $this->connectionPool->getConnectionForTable($table);
+
+            // On a shared table Content Blocks matches children by
+            // (tablenames, fieldname, foreign_table_parent_uid). Writing only
+            // the parent uid would make every sharer's rows indistinguishable,
+            // so they would all show up in every element that uses the table.
+            // filterRow() drops both keys on unshared tables, which have
+            // neither column.
+            $ownership = [];
+            if ($this->databaseSchema->tableHasColumn($table, 'tablenames')) {
+                $ownership['tablenames'] = $parentTable;
+            }
+            if ($this->databaseSchema->tableHasColumn($table, 'fieldname') && is_string($collection['column'] ?? null)) {
+                $ownership['fieldname'] = $collection['column'];
+            }
+            if (isset($ownership['fieldname']) && $ownership['fieldname'] === '') {
+                // An empty fieldname on a shared table is unrecoverable: the
+                // TCA cannot match the row and no cleanup can find it again.
+                throw new \RuntimeException(
+                    sprintf('Refusing to seed into shared table %s without a fieldname.', $table),
+                    1784982001
+                );
+            }
 
             foreach ($collection['items'] as $index => $item) {
                 if ($item === []) {
@@ -45,7 +70,7 @@ final class CollectionRecordSeeder
                     'crdate' => $now,
                     'tstamp' => $now,
                     'foreign_table_parent_uid' => $contentUid,
-                ] + $item, $columns);
+                ] + $ownership + $item, $columns);
 
                 if (!self::hasPayloadBeyondSystemFields($row)) {
                     continue;
@@ -54,7 +79,8 @@ final class CollectionRecordSeeder
                 $connection->insert($table, $row);
                 $collectionRowUid = self::normalizeLastInsertId($connection->lastInsertId());
                 $this->falSeeder->seedFileReferences($table, $collectionRowUid, $pageUid, $now, $fileReferences);
-                $this->seed($collectionRowUid, $pageUid, $now, $nestedCollections);
+                // A nested collection hangs off THIS table, not tt_content.
+                $this->seed($collectionRowUid, $pageUid, $now, $nestedCollections, $table);
             }
         }
     }
@@ -89,9 +115,16 @@ final class CollectionRecordSeeder
                 'items' => $normalizedItems,
             ];
 
-            if (is_string($collection['column'] ?? null)) {
-                $normalizedCollections[$field]['column'] = $collection['column'];
-            }
+            // `column` is the Content Blocks uniqueIdentifier and becomes the
+            // shared table's `fieldname`. Root collections carry it explicitly
+            // (it is the prefixed tt_content column); NESTED collections never
+            // do, because their uniqueIdentifier IS the bare identifier — which
+            // is exactly this array key. Without the fallback, nested rows were
+            // written with an empty fieldname, so the TCA could no longer find
+            // them and the next reseed could not clean them up.
+            $normalizedCollections[$field]['column'] = is_string($collection['column'] ?? null)
+                ? $collection['column']
+                : $field;
         }
 
         return $normalizedCollections;
@@ -146,6 +179,10 @@ final class CollectionRecordSeeder
             'crdate' => true,
             'tstamp' => true,
             'foreign_table_parent_uid' => true,
+            // Ownership columns on a shared table are bookkeeping, never
+            // content: a row carrying only these is still an empty row.
+            'tablenames' => true,
+            'fieldname' => true,
         ];
 
         foreach ($row as $field => $_value) {

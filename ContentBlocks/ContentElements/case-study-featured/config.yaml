@@ -47,24 +47,13 @@ fields:
   -
     identifier: metrics
     type: Collection
-    table: case_study_featured_metrics
+    foreign_table: desiderio_label_value
+    shareAcrossTables: true
+    shareAcrossFields: true
     prefixField: true
     label: 'Key Metrics'
     minItems: 1
     maxItems: 4
-    fields:
-      -
-        identifier: value
-        type: Textarea
-        rows: 1
-        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:value'
-        required: true
-      -
-        identifier: label
-        type: Textarea
-        rows: 1
-        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:label_field'
-        required: true
   -
     identifier: link
     type: Link

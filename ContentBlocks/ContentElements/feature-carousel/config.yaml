@@ -21,34 +21,9 @@ fields:
   -
     identifier: items
     type: Collection
-    table: feature_carousel_items
+    foreign_table: desiderio_icon_card_link
+    shareAcrossTables: true
+    shareAcrossFields: true
     prefixField: true
     label: 'Feature Slides'
     minItems: 3
-    fields:
-      -
-        identifier: icon
-        type: Select
-        renderType: selectSingle
-        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:icon_emoji'
-        description: 'Semantic icon key rendered through the active shadcn icon library.'
-        itemsProcessors:
-          10:
-            class: Webconsulting\Desiderio\DataHandling\IconItemsProcessor
-      -
-        identifier: title
-        type: Textarea
-        rows: 1
-        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:title'
-        required: true
-      -
-        identifier: description
-        type: Textarea
-        enableRichtext: true
-        richtextConfiguration: desiderio
-        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:description'
-        rows: 2
-      -
-        identifier: link
-        type: Link
-        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:link'

@@ -1,0 +1,22 @@
+# Shared child table for collections whose field definitions are identical.
+# Consumers reference it with `foreign_table: desiderio_label_value` plus
+# shareAcrossTables/shareAcrossFields; their own `fields:` would be inert.
+# Generated from case-study-featured by Build/Scripts/derive-collection-merge-map.php.
+# Used by: case-study-featured, product-specs, stats-inline
+name: desiderio/label-value
+table: desiderio_label_value
+prefixFields: false
+labelField: value
+fields:
+  -
+    identifier: value
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:value'
+    required: true
+  -
+    identifier: label
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:label_field'
+    required: true

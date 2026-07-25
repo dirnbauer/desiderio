@@ -1,0 +1,27 @@
+# Shared child table for collections whose field definitions are identical.
+# Consumers reference it with `foreign_table: desiderio_logo_item` plus
+# shareAcrossTables/shareAcrossFields; their own `fields:` would be inert.
+# Generated from logo-carousel by Build/Scripts/derive-collection-merge-map.php.
+# Used by: logo-carousel, logo-cloud, logo-grid
+name: desiderio/logo-item
+table: desiderio_logo_item
+prefixFields: false
+labelField: image
+fields:
+  -
+    identifier: image
+    type: File
+    label: 'Logo Image'
+    allowed: common-image-types
+    maxitems: 1
+    required: true
+  -
+    identifier: name
+    type: Textarea
+    rows: 1
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:company_name'
+    required: true
+  -
+    identifier: link
+    type: Link
+    label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:optional_link'

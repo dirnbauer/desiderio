@@ -36,6 +36,7 @@ final class ContentBlockDefinitionRegistry
     {
         self::$definitions = null;
         self::$runtimeCollectionDefinitions = null;
+        self::$recordTypeFields = null;
     }
 
     /**
@@ -179,9 +180,13 @@ final class ContentBlockDefinitionRegistry
         $childFields = [];
         $childCollections = [];
 
+        // A shared collection declares `foreign_table:` and carries no `fields:`
+        // of its own — the field list lives in the RecordType it points at.
+        // Without this the seeders would see an empty child definition and
+        // silently write rows with no content at all.
         $nestedFields = $field['fields'] ?? [];
-        if (!is_array($nestedFields)) {
-            $nestedFields = [];
+        if (!is_array($nestedFields) || $nestedFields === []) {
+            $nestedFields = self::getRecordTypeFields(self::resolveCollectionTable($field, $fallbackIdentifier));
         }
 
         foreach ($nestedFields as $childField) {
@@ -236,6 +241,58 @@ final class ContentBlockDefinitionRegistry
         }
 
         return $mapped;
+    }
+
+    /**
+     * @param array<string, mixed> $field
+     */
+    /** @var array<string, list<array<string, mixed>>>|null table => fields */
+    private static ?array $recordTypeFields = null;
+
+    /**
+     * Field lists of the shared Record Types, keyed by the table they define.
+     *
+     * These live in ContentBlocks/RecordTypes/ rather than ContentElements/ and
+     * are what a Collection using `foreign_table:` resolves to. Scanned lazily
+     * because most callers never touch a shared collection.
+     *
+     * @return list<array<string, mixed>>
+     */
+    private static function getRecordTypeFields(string $table): array
+    {
+        if (self::$recordTypeFields === null) {
+            self::$recordTypeFields = [];
+            // Resolved from this file, not through GeneralUtility: this method
+            // is reached from buildDefinitionFromConfig(), which is pure and is
+            // called from unit tests with no TYPO3 bootstrap. Going through
+            // EXT: resolution here made the whole registry require a booted
+            // framework.
+            $basePath = dirname(__DIR__, 2) . '/ContentBlocks/RecordTypes';
+            $directories = is_dir($basePath) ? scandir($basePath) : false;
+            foreach ($directories === false ? [] : $directories as $directory) {
+                if ($directory === '.' || $directory === '..') {
+                    continue;
+                }
+                $configPath = $basePath . '/' . $directory . '/config.yaml';
+                if (!is_readable($configPath)) {
+                    continue;
+                }
+                $config = Yaml::parseFile($configPath);
+                if (!is_array($config) || !is_string($config['table'] ?? null)) {
+                    continue;
+                }
+                $fields = $config['fields'] ?? [];
+                $normalized = [];
+                foreach (is_array($fields) ? $fields : [] as $recordField) {
+                    if (is_array($recordField)) {
+                        $normalized[] = self::normalizeStringKeyedArray($recordField);
+                    }
+                }
+                self::$recordTypeFields[$config['table']] = $normalized;
+            }
+        }
+
+        return self::$recordTypeFields[$table] ?? [];
     }
 
     /**

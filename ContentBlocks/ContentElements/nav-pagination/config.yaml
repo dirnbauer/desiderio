@@ -16,24 +16,12 @@ fields:
   -
     identifier: items
     type: Collection
-    table: nav_pagination_items
+    foreign_table: desiderio_nav_item
+    shareAcrossTables: true
+    shareAcrossFields: true
     prefixField: true
     label: Pages
     minItems: 1
-    fields:
-      -
-        identifier: label
-        type: Textarea
-        rows: 1
-        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:label_field'
-      -
-        identifier: link
-        type: Link
-        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:link'
-      -
-        identifier: active
-        type: Checkbox
-        label: Active
   -
     identifier: previous_link
     type: Link

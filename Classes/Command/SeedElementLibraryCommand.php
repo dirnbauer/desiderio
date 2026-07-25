@@ -55,6 +55,7 @@ final class SeedElementLibraryCommand extends Command
         $this
             ->addOption('parent', null, InputOption::VALUE_REQUIRED, 'Site root page uid the Element Library sysfolder is created below.')
             ->addOption('locale', null, InputOption::VALUE_REQUIRED, 'Language key of the demo content to seed, e.g. "de". Prefers each element\'s library.<locale>.json over library.json. The records are still written as language 0 - this picks the source language of a folder, it does not create translations.')
+            ->addOption('hosts', null, InputOption::VALUE_REQUIRED, 'Comma-separated host extensions to seed, e.g. "desiderio,innesto,core" ("core" = native TYPO3 content types). Default: every host. Records of other hosts already in the folder are removed, so this scopes a site\'s library folder to the theme it uses.')
             ->addOption('no-warm', null, InputOption::VALUE_NONE, 'Skip warming the preview page cache after seeding.')
             ->addOption('allow-production', null, InputOption::VALUE_NONE, 'Run even when Application Context is Production.');
     }
@@ -88,6 +89,25 @@ final class SeedElementLibraryCommand extends Command
         }
 
         $elements = $this->elementCatalog->getElements($locale);
+
+        $hostsOption = $input->getOption('hosts');
+        $hosts = is_string($hostsOption) ? $hostsOption : '';
+        $allowedHosts = array_values(array_unique(array_filter(
+            array_map(static fn(string $host): string => strtolower(trim($host)), explode(',', $hosts)),
+            static fn(string $host): bool => $host !== '',
+        )));
+        if ($allowedHosts !== []) {
+            $elements = array_values(array_filter(
+                $elements,
+                static fn(array $element): bool => in_array(strtolower($element['hostExtension']), $allowedHosts, true),
+            ));
+            if ($elements === []) {
+                $io->error(sprintf('No content elements found for host(s) "%s".', implode(', ', $allowedHosts)));
+                return self::FAILURE;
+            }
+            $io->writeln(sprintf('Seeding host(s): %s.', implode(', ', $allowedHosts)));
+        }
+
         if ($elements === []) {
             $io->error('No content elements found (is desiderio set up correctly?).');
             return self::FAILURE;

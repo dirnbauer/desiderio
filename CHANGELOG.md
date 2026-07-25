@@ -6,6 +6,50 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [3.2.0] — 2026-07-25
+
+The element library becomes a service any theme extension can plug into,
+instead of a fixed list of two providers. Desiderio still ships the elements
+and the seeding, previewing and search machinery; a second theme now supplies
+its own elements and its sites list only those.
+
+### Added
+
+- **Provider registration.** An extension joins the element library catalog
+  with one line in its `ext_localconf.php`:
+
+  ```php
+  $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['desiderio']['libraryHostExtensions'][] = 'my_theme';
+  ```
+
+  It then needs only the documented per-element file contract. Registration
+  stays opt-in rather than being derived from the Content Blocks registry:
+  that API is `@internal`, and auto-ingesting every block-shipping extension
+  would fill the picker with elements that carry no demo content, keywords or
+  descriptions. The resolved host list is part of the catalog cache
+  fingerprint, so installing a provider invalidates the cache on its own.
+- **`elementLibrary.hosts`** site setting — a comma-separated list of the hosts
+  a site's picker offers (`"desiderio,innesto,core"`; `core` means the native
+  TYPO3 content types). Empty keeps the previous behaviour of listing every
+  installed provider. Search results, suggestions and "did you mean" are
+  scoped to the same list, so a site never proposes an element it cannot style.
+- **`desiderio:library:seed --hosts=…`** — seeds a site's library folder with
+  the matching subset. Records of other hosts are pruned from that folder as
+  usual, so each site's demo records mirror its own theme.
+
+### Fixed
+
+- **Wizard icons never appeared in the picker.** Content Blocks publishes an
+  element's assets under the block's *vendor* segment
+  (`Resources/Public/ContentBlocks/<vendor>/<element>/`), but the catalog built
+  the path without it, so `is_file()` always missed and every card fell back to
+  its title. Icons now resolve through the vendor segment, with the old path
+  kept as a fallback.
+- **A provider's `library.json` could not reference its own assets.** Every
+  file reference was resolved against `EXT:desiderio/`. A full `EXT:<key>/…`
+  reference is now honoured; bare paths still resolve against Desiderio, which
+  is how all of our own fixtures are written.
+
 ## [3.1.0] — 2026-07-25
 
 ### Added

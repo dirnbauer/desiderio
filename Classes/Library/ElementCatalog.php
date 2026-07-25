@@ -31,6 +31,10 @@ use TYPO3\CMS\Core\Utility\PathUtility;
  */
 final class ElementCatalog
 {
+    /**
+     * Host extensions shipped by us. Further providers register themselves in
+     * their ext_localconf.php; see getHostExtensions().
+     */
     private const HOST_EXTENSIONS = ['desiderio', 'innesto'];
 
     /**
@@ -39,10 +43,10 @@ final class ElementCatalog
      * additionally fingerprints every config.yaml mtime, so edits self-invalidate.
      */
     private const METADATA_CACHE_IDENTIFIER = 'desiderio_library';
-    private const METADATA_CACHE_VERSION = 'metadata-v2';
+    private const METADATA_CACHE_VERSION = 'metadata-v3';
     private const SEARCH_FINGERPRINT_VERSION = 'config-keywords-v1';
 
-    /** @var array<string, list<array{cType: string, name: string, hostExtension: string, title: string, description: string, group: string, keywords: list<string>, config: array<string, mixed>, fixture: array<string, mixed>, libraryFixture: array<string, mixed>}>> keyed by locale ('' = source language) */
+    /** @var array<string, list<array{cType: string, name: string, hostExtension: string, title: string, description: string, group: string, keywords: list<string>, vendor: string, config: array<string, mixed>, fixture: array<string, mixed>, libraryFixture: array<string, mixed>}>> keyed by locale ('' = source language) */
     private array $elements = [];
 
     /** @var list<array{cType: string, name: string, hostExtension: string, title: string, description: string, group: string, keywords: list<string>, iconUrl: string}>|null */
@@ -69,7 +73,7 @@ final class ElementCatalog
      *                       `library.json`; missing files fall back to the
      *                       source language. Only the library payload is
      *                       localised - the styleguide fixture is not.
-     * @return list<array{cType: string, name: string, hostExtension: string, title: string, description: string, group: string, keywords: list<string>, config: array<string, mixed>, fixture: array<string, mixed>, libraryFixture: array<string, mixed>}>
+     * @return list<array{cType: string, name: string, hostExtension: string, title: string, description: string, group: string, keywords: list<string>, vendor: string, config: array<string, mixed>, fixture: array<string, mixed>, libraryFixture: array<string, mixed>}>
      */
     public function getElements(string $locale = ''): array
     {
@@ -107,6 +111,7 @@ final class ElementCatalog
                 'description' => is_string($description) ? $description : '',
                 'group' => is_string($group) && $group !== '' ? $group : 'default',
                 'keywords' => $this->normalizeStringList($config['keywords'] ?? []),
+                'vendor' => $entry['vendor'],
                 'config' => $config,
                 'fixture' => $fixture,
                 'libraryFixture' => $libraryFixture,
@@ -122,6 +127,7 @@ final class ElementCatalog
                 'description' => '',
                 'group' => $core['group'],
                 'keywords' => [],
+                'vendor' => CoreContentElements::HOST,
                 'config' => [],
                 'fixture' => $core['fixture'],
                 // Native CTypes seed from their manifest fixture, which already
@@ -303,13 +309,49 @@ final class ElementCatalog
 
     /**
      * Web path of the published wizard icon (content-blocks publishes each
-     * element's assets to EXT:<host>/Resources/Public/ContentBlocks/<name>).
+     * element's assets to EXT:<host>/Resources/Public/ContentBlocks/<vendor>/<name>).
      *
-     * @param array{name: string, hostExtension: string} $element
+     * @param array{name: string, hostExtension: string, vendor?: string} $element
      */
     public function getIconWebPath(array $element): string
     {
-        return $this->resolveIconWebPath($element['hostExtension'], $element['name']);
+        return $this->resolveIconWebPath(
+            $element['hostExtension'],
+            is_string($element['vendor'] ?? null) ? $element['vendor'] : '',
+            $element['name'],
+        );
+    }
+
+    /**
+     * Every extension whose ContentBlocks/ContentElements directory feeds the
+     * catalog: the ones we ship plus any provider that registered itself with
+     *
+     *   $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['desiderio']['libraryHostExtensions'][] = 'my_ext';
+     *
+     * in its ext_localconf.php. A provider only needs the per-element file
+     * contract (config.yaml with an explicit typeName, library.json, labels.xlf,
+     * assets/icon.svg) — see Documentation/Developer/AddingContentElements.rst.
+     *
+     * Deliberately not derived from the Content Blocks registry: that API is
+     * marked @internal, and auto-ingesting every content-block-shipping
+     * extension would fill the picker with elements that carry no demo content,
+     * keywords or descriptions. Hosting stays opt-in.
+     *
+     * @return list<string>
+     */
+    private function getHostExtensions(): array
+    {
+        $registered = $GLOBALS['TYPO3_CONF_VARS'] ?? null;
+        foreach (['EXTENSIONS', 'desiderio', 'libraryHostExtensions'] as $key) {
+            $registered = is_array($registered) ? ($registered[$key] ?? null) : null;
+        }
+
+        $hosts = array_merge(
+            self::HOST_EXTENSIONS,
+            $this->normalizeStringList(is_array($registered) ? $registered : []),
+        );
+
+        return array_values(array_unique($hosts));
     }
 
     /**
@@ -317,12 +359,12 @@ final class ElementCatalog
      * parses each config.yaml. This is the expensive step (YAML parsing) shared
      * by both catalog views; callers add what they need (fixture, icon, …).
      *
-     * @return list<array{name: string, hostExtension: string, configPath: string, config: array<string, mixed>}>
+     * @return list<array{name: string, hostExtension: string, vendor: string, configPath: string, config: array<string, mixed>}>
      */
     private function scanContentElementConfigs(): array
     {
         $entries = [];
-        foreach (self::HOST_EXTENSIONS as $hostExtension) {
+        foreach ($this->getHostExtensions() as $hostExtension) {
             if (!ExtensionManagementUtility::isLoaded($hostExtension)) {
                 continue;
             }
@@ -350,6 +392,7 @@ final class ElementCatalog
                 $entries[] = [
                     'name' => $directory,
                     'hostExtension' => $hostExtension,
+                    'vendor' => $this->resolveVendor($hostExtension, $config),
                     'configPath' => $configPath,
                     'config' => $config,
                 ];
@@ -380,7 +423,7 @@ final class ElementCatalog
                 'description' => is_string($description) ? $description : '',
                 'group' => is_string($group) && $group !== '' ? $group : 'default',
                 'keywords' => $this->normalizeStringList($config['keywords'] ?? []),
-                'iconUrl' => $this->resolveIconWebPath($entry['hostExtension'], $entry['name']),
+                'iconUrl' => $this->resolveIconWebPath($entry['hostExtension'], $entry['vendor'], $entry['name']),
             ];
         }
 
@@ -410,8 +453,11 @@ final class ElementCatalog
      */
     private function computeFingerprint(): string
     {
-        $parts = [];
-        foreach (self::HOST_EXTENSIONS as $hostExtension) {
+        $hostExtensions = $this->getHostExtensions();
+        // Part of the fingerprint itself: registering or removing a provider
+        // changes the catalog even when no config.yaml mtime moved.
+        $parts = ['hosts:' . implode(',', $hostExtensions)];
+        foreach ($hostExtensions as $hostExtension) {
             if (!ExtensionManagementUtility::isLoaded($hostExtension)) {
                 continue;
             }
@@ -460,7 +506,7 @@ final class ElementCatalog
     public function getSearchFingerprint(): string
     {
         $parts = [self::SEARCH_FINGERPRINT_VERSION, $this->computeFingerprint()];
-        foreach (self::HOST_EXTENSIONS as $hostExtension) {
+        foreach ($this->getHostExtensions() as $hostExtension) {
             if (!ExtensionManagementUtility::isLoaded($hostExtension)) {
                 continue;
             }
@@ -591,17 +637,48 @@ final class ElementCatalog
         ));
     }
 
-    private function resolveIconWebPath(string $hostExtension, string $name): string
+    /**
+     * Content Blocks publishes an element's assets under the block's VENDOR
+     * segment (the part before the slash in config.yaml's `name`), which is not
+     * always the extension key. Fall back to the vendor-less path for exotic
+     * publishing layouts.
+     */
+    private function resolveIconWebPath(string $hostExtension, string $vendor, string $name): string
     {
-        $publicPath = 'EXT:' . $hostExtension . '/Resources/Public/ContentBlocks/' . $name . '/icon.svg';
-        if (!is_file(GeneralUtility::getFileAbsFileName($publicPath))) {
-            return '';
+        $candidates = [];
+        if ($vendor !== '') {
+            $candidates[] = 'EXT:' . $hostExtension . '/Resources/Public/ContentBlocks/' . $vendor . '/' . $name . '/icon.svg';
         }
-        try {
-            return PathUtility::getPublicResourceWebPath($publicPath);
-        } catch (\Throwable) {
-            return '';
+        $candidates[] = 'EXT:' . $hostExtension . '/Resources/Public/ContentBlocks/' . $name . '/icon.svg';
+
+        foreach ($candidates as $publicPath) {
+            if (!is_file(GeneralUtility::getFileAbsFileName($publicPath))) {
+                continue;
+            }
+            try {
+                return PathUtility::getPublicResourceWebPath($publicPath);
+            } catch (\Throwable) {
+                return '';
+            }
         }
+
+        return '';
+    }
+
+    /**
+     * Vendor segment of a Content Block name (`<vendor>/<element>`), used for the
+     * published asset path. Falls back to the extension key, which is what the
+     * blocks we ship use.
+     *
+     * @param array<string, mixed> $config
+     */
+    private function resolveVendor(string $hostExtension, array $config): string
+    {
+        $name = $config['name'] ?? null;
+        if (is_string($name) && str_contains($name, '/')) {
+            return explode('/', $name, 2)[0];
+        }
+        return $hostExtension;
     }
 
     /**

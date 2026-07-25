@@ -475,3 +475,10 @@ settings:
     category: desiderio.elementLibrary
     type: int
     default: 1777200001
+
+  elementLibrary.hosts:
+    label: 'Element Library hosts'
+    description: 'Comma-separated extension keys whose elements this site''s picker lists, e.g. "desiderio,innesto,core" ("core" = native TYPO3 content types). Leave empty to list every installed provider. Set this when more than one theme extension provides elements, so each site offers only the elements it can style. Pass the same list to desiderio:library:seed --hosts so the site''s library folder holds matching demo records.'
+    category: desiderio.elementLibrary
+    type: string
+    default: ''

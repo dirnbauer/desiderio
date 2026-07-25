@@ -81,7 +81,14 @@ final class ExtensionFalSeeder
             return $this->importedFiles[$relativeFilePath];
         }
 
-        $sourcePath = GeneralUtility::getFileAbsFileName('EXT:desiderio/' . $relativeFilePath);
+        // A bare path is relative to Desiderio (how all our own fixtures are
+        // written); a provider extension addresses its own assets with a full
+        // EXT:<its_key>/… reference.
+        $sourcePath = GeneralUtility::getFileAbsFileName(
+            str_starts_with($relativeFilePath, 'EXT:')
+                ? $relativeFilePath
+                : 'EXT:desiderio/' . $relativeFilePath,
+        );
         if ($sourcePath === '' || !is_file($sourcePath)) {
             return null;
         }

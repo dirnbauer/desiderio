@@ -63,10 +63,18 @@ final class ElementSearchService
     /**
      * Ranked search for one query in the given backend-user language.
      *
+     * @param list<string>|null $allowedCTypes Restrict results (and the suggestion
+     *        vocabulary) to these cTypes; null searches the whole catalog. Sites
+     *        pass the cTypes their `elementLibrary.hosts` setting allows, so the
+     *        index stays shared per language instead of one per host combination.
      * @return array{matches: list<array{cType: string, score: float}>, suggestions: list<string>, didYouMean: string|null}
      */
-    public function search(string $query, LanguageService $languageService, string $langKey): array
-    {
+    public function search(
+        string $query,
+        LanguageService $languageService,
+        string $langKey,
+        ?array $allowedCTypes = null,
+    ): array {
         $empty = ['matches' => [], 'suggestions' => [], 'didYouMean' => null];
 
         $queryTokens = $this->tokenize($query);
@@ -75,6 +83,7 @@ final class ElementSearchService
         }
 
         $index = $this->getIndex($languageService, $langKey);
+        $index = $this->restrictIndex($index, $allowedCTypes);
         $vocab = $index['vocab'];
 
         $matches = [];
@@ -273,6 +282,39 @@ final class ElementSearchService
         }
 
         return $index;
+    }
+
+    /**
+     * Narrow a cached index to a set of cTypes, rebuilding the suggestion
+     * vocabulary from the surviving elements so "did you mean" can never name a
+     * term that only exists in a filtered-out element.
+     *
+     * @param array{elements: array<string, array{title: string, tokens: array<string, int>}>, vocab: array<string, int>} $index
+     * @param list<string>|null $allowedCTypes
+     * @return array{elements: array<string, array{title: string, tokens: array<string, int>}>, vocab: array<string, int>}
+     */
+    private function restrictIndex(array $index, ?array $allowedCTypes): array
+    {
+        if ($allowedCTypes === null) {
+            return $index;
+        }
+
+        $allowed = array_fill_keys($allowedCTypes, true);
+        $elements = [];
+        $vocab = [];
+        foreach ($index['elements'] as $cType => $element) {
+            if (!isset($allowed[$cType])) {
+                continue;
+            }
+            $elements[$cType] = $element;
+            foreach ($element['tokens'] as $token => $weight) {
+                if (!isset($vocab[$token]) || $vocab[$token] < $weight) {
+                    $vocab[$token] = $weight;
+                }
+            }
+        }
+
+        return ['elements' => $elements, 'vocab' => $vocab];
     }
 
     /**

@@ -27,6 +27,8 @@ use Webconsulting\Desiderio\Library\PreviewWarmer;
  * Access requires a logged-in backend user AND the visual editor request
  * token (window.veInfo.token, scope visual_editor/save) in X-Request-Token,
  * so the endpoint is only reachable from an authenticated edit session.
+ *
+ * @phpstan-type CatalogEntry array{cType: string, name: string, hostExtension: string, title: string, description: string, group: string, keywords: list<string>, iconUrl: string}
  */
 final class ElementLibraryMiddleware implements MiddlewareInterface
 {
@@ -64,9 +66,20 @@ final class ElementLibraryMiddleware implements MiddlewareInterface
             ? $this->languageServiceFactory->createFromUserPreferences($backendUser)
             : $this->languageServiceFactory->create('default');
 
+        $site = $request->getAttribute('site');
+        if (!$site instanceof Site) {
+            return new JsonResponse(['error' => 'No site resolved for this request'], 404);
+        }
+
+        // A site may restrict its picker to the providers it actually themes
+        // (elementLibrary.hosts, e.g. "desiderio,innesto,core"). Empty = all
+        // hosts, which is the pre-existing behaviour.
+        $allowedHosts = $this->resolveAllowedHosts($site);
+
         // Typo-tolerant search + suggestions. The panel already holds the whole
         // catalog, so we only return a ranked cType list (+ suggest / did-you-mean)
-        // and it reorders the items it has. Needs no site/storage, just the catalog.
+        // and it reorders the items it has. Scoped to the same hosts as the list,
+        // so suggestions never name an element this site cannot insert.
         if ($isSearch) {
             $rawQuery = $queryParams['elementLibrarySearch'] ?? '';
             $query = is_string($rawQuery) ? $rawQuery : '';
@@ -76,16 +89,17 @@ final class ElementLibraryMiddleware implements MiddlewareInterface
                 $langKey = is_string($lang) && $lang !== '' ? $lang : 'default';
             }
             return new JsonResponse(
-                $this->elementSearchService->search($query, $languageService, $langKey),
+                $this->elementSearchService->search(
+                    $query,
+                    $languageService,
+                    $langKey,
+                    $this->allowedCTypes($allowedHosts),
+                ),
                 200,
                 ['Cache-Control' => 'private, no-store'],
             );
         }
 
-        $site = $request->getAttribute('site');
-        if (!$site instanceof Site) {
-            return new JsonResponse(['error' => 'No site resolved for this request'], 404);
-        }
         $configuredStoragePid = $site->getSettings()->get('elementLibrary.storagePid', 0);
         $storagePid = is_numeric($configuredStoragePid) ? (int)$configuredStoragePid : 0;
         if ($storagePid <= 0) {
@@ -99,7 +113,7 @@ final class ElementLibraryMiddleware implements MiddlewareInterface
 
         // Light, persistently cached catalog: no config/fixture parsing per
         // request (the seeder-only data) - just the fields the picker renders.
-        $catalog = $this->elementCatalog->getElementMetadata();
+        $catalog = $this->filterByHosts($this->elementCatalog->getElementMetadata(), $allowedHosts);
 
         $elements = [];
         foreach ($catalog as $element) {
@@ -144,5 +158,65 @@ final class ElementLibraryMiddleware implements MiddlewareInterface
             200,
             ['Cache-Control' => 'private, no-store']
         );
+    }
+
+    /**
+     * Host extensions this site's picker may list, from the site setting
+     * `elementLibrary.hosts` (comma separated, e.g. "desiderio,innesto,core";
+     * "core" means the native TYPO3 content types). An empty setting means
+     * "every host", which is what sites configured before this setting existed
+     * get.
+     *
+     * @return list<string> empty = no restriction
+     */
+    private function resolveAllowedHosts(Site $site): array
+    {
+        $configured = $site->getSettings()->get('elementLibrary.hosts', '');
+        if (!is_string($configured) || trim($configured) === '') {
+            return [];
+        }
+
+        return array_values(array_unique(array_filter(
+            array_map(
+                static fn(string $host): string => strtolower(trim($host)),
+                explode(',', $configured),
+            ),
+            static fn(string $host): bool => $host !== '',
+        )));
+    }
+
+    /**
+     * @param list<CatalogEntry> $catalog
+     * @param list<string> $allowedHosts
+     * @return list<CatalogEntry>
+     */
+    private function filterByHosts(array $catalog, array $allowedHosts): array
+    {
+        if ($allowedHosts === []) {
+            return $catalog;
+        }
+
+        return array_values(array_filter(
+            $catalog,
+            static fn(array $element): bool => in_array(strtolower($element['hostExtension']), $allowedHosts, true),
+        ));
+    }
+
+    /**
+     * cTypes the search may return for this site, or null when unrestricted.
+     *
+     * @param list<string> $allowedHosts
+     * @return list<string>|null
+     */
+    private function allowedCTypes(array $allowedHosts): ?array
+    {
+        if ($allowedHosts === []) {
+            return null;
+        }
+
+        return array_values(array_map(
+            static fn(array $element): string => $element['cType'],
+            $this->filterByHosts($this->elementCatalog->getElementMetadata(), $allowedHosts),
+        ));
     }
 }

@@ -385,7 +385,8 @@ The problem it solves
 
 Building that catalog means reading the on-disk Content Blocks definitions.
 ``ElementCatalog`` scans the ``ContentBlocks/ContentElements`` directory of
-every loaded host extension (``desiderio`` and, when installed, ``innesto``)
+every loaded host extension (``desiderio``, ``innesto`` when installed, and any
+extension that :ref:`registered itself as a provider <element-library-hosts>`)
 and, for each element, parses its ``config.yaml`` and reads its
 ``fixture.json``. With 244 Desiderio Content Block definitions (plus any installed Innesto
 blocks), that starts at 244 YAML parses through Symfony's pure-PHP parser plus
@@ -418,6 +419,54 @@ only does the work it needs:
 
 Both share a private ``scanContentElementConfigs()`` step (directory scan plus
 ``config.yaml`` parse); only ``getElements()`` additionally reads the fixture.
+
+..  _element-library-hosts:
+
+Hosting a second theme's elements
+---------------------------------
+
+The library is a service, not a Desiderio-only feature: any extension can put
+its own Content Blocks into the picker. It registers itself in its
+``ext_localconf.php``:
+
+..  code-block:: php
+    :caption: EXT:my_theme/ext_localconf.php
+
+    $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['desiderio']['libraryHostExtensions'][] = 'my_theme';
+
+Nothing else is required beyond the per-element file contract described in
+:doc:`AddingContentElements` — most importantly an explicit ``typeName:`` in
+every ``config.yaml`` (the catalog derives the cType from it; without it a
+vendor that differs from the extension key produces a cType that does not match
+the registered one), a ``library.json`` for the demo content an editor copies
+in, and ``assets/icon.svg``. Keyword chips and card blurbs come from the
+provider's own ``Resources/Private/Language/library_keywords.xlf`` and
+``library_short.xlf``, keyed by cType.
+
+Registration is deliberately opt-in rather than derived from the Content Blocks
+registry: that registry's API is marked ``@internal``, and ingesting every
+block-shipping extension automatically would fill the picker with elements that
+carry no demo content, keywords or descriptions.
+
+Because a provider's elements are only useful on sites that load its CSS, each
+site declares which hosts its picker offers:
+
+..  code-block:: yaml
+    :caption: config/sites/<site>/settings.yaml
+
+    elementLibrary.hosts: 'desiderio,innesto,core'
+
+``core`` covers the native TYPO3 content types. An empty (or absent) setting
+lists every installed provider, which is what sites configured before this
+setting existed keep doing. The same list belongs on the seed command, so the
+site's library folder holds matching demo records:
+
+..  code-block:: bash
+
+    ddev exec vendor/bin/typo3 desiderio:library:seed --parent=<root> --hosts=my_theme,core
+
+Search, suggestions and "did you mean" honour the same restriction, so a site
+never proposes an element it cannot render.
 
 The cache
 ---------

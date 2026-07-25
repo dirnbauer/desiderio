@@ -219,6 +219,10 @@ final class FixtureFieldNormalizer
             if ($file === '') {
                 continue;
             }
+            // Our own fixtures address assets relative to EXT:desiderio, with or
+            // without the prefix. Any other EXT:<key>/… reference belongs to a
+            // provider extension and is passed through for the FAL seeder to
+            // resolve against that extension.
             if (str_starts_with($file, 'EXT:desiderio/')) {
                 $file = substr($file, strlen('EXT:desiderio/'));
             }

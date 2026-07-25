@@ -7,11 +7,11 @@
 .changelog__entry:first-child { padding-block-start: 0; }
 .changelog__entry:last-child { border-bottom: none; }
 .changelog__meta { display: flex; align-items: center; gap: var(--d-spacing-sm); flex-wrap: wrap; margin-block-end: var(--d-spacing-xs); }
-.changelog__version { font-weight: 700; font-size: var(--d-text-sm); font-family: var(--d-font-mono); }
+.changelog__version { font-weight: var(--d-weight-bold); font-size: var(--d-text-sm); font-family: var(--d-font-mono); }
 .changelog__date { font-size: var(--d-text-sm); color: var(--muted-foreground); font-variant-numeric: tabular-nums; }
 .changelog__tag {
-    font-size: var(--d-text-xs); font-weight: 600; padding: var(--d-spacing-0-5) var(--d-spacing-xs);
-    border-radius: var(--d-radius-full); text-transform: uppercase; letter-spacing: 0.03em;
+    font-size: var(--d-text-xs); font-weight: var(--d-weight-semibold); padding: var(--d-spacing-0-5) var(--d-spacing-xs);
+    border-radius: var(--d-radius-full); text-transform: uppercase; letter-spacing: var(--d-tracking-wide);
     transition: color 0.15s ease;
 }
 .changelog__tag:hover { color: var(--d-link-on-muted, var(--primary)); }
@@ -19,8 +19,18 @@
 .changelog__tag--fix { background: var(--d-success-muted); color: var(--d-success-text); }
 .changelog__tag--improvement { background: var(--d-warning-muted); color: var(--d-warning-text); }
 .changelog__tag--breaking { background: var(--d-danger-muted); color: var(--d-danger-text); }
-.changelog__title { font-size: var(--d-text-base); font-weight: 600; margin-block-start: var(--d-spacing-xs); }
-.changelog__description { font-size: var(--d-text-sm); color: var(--muted-foreground); margin-block-start: var(--d-spacing-xs); line-height: 1.6; }
+.changelog__title { font-size: var(--d-text-base); font-weight: var(--d-weight-semibold); margin-block-start: var(--d-spacing-xs); }
+.changelog__description { font-size: var(--d-text-sm); color: var(--muted-foreground); margin-block-start: var(--d-spacing-xs); line-height: var(--d-leading-relaxed); }
 .changelog__description > *:first-child { margin-top: 0; }
 .changelog__description > *:last-child { margin-bottom: 0; }
 .changelog__description code { font-family: var(--d-font-mono); font-size: 0.85em; background: var(--muted); color: var(--foreground); padding: 0.1rem 0.3rem; border-radius: var(--d-radius-sm); }
+
+/* Document measure: this element is running text read top to bottom, so the
+   whole column is capped the way an article body is — 75ch is the survey's
+   catalog-wide reading width (18-section-anatomy.css). */
+.changelog :where(p, ul, ol, dl, dd) {
+    /* Capped per text node so the measure holds in the PARAGRAPH'S own font —
+       a cap on the root is measured in the root's ch and lets smaller body
+       text run ~86 of its own characters. */
+    max-width: 75ch;
+}

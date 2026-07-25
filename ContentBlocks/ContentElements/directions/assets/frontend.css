@@ -20,7 +20,7 @@
     display: flex;
     align-items: center;
     gap: var(--d-spacing-xs);
-    font-weight: 600;
+    font-weight: var(--d-weight-semibold);
     margin-block-end: var(--d-spacing-xs);
 }
 .directions__icon {
@@ -30,7 +30,7 @@
 .directions__description {
     font-size: var(--d-text-sm);
     color: var(--muted-foreground);
-    line-height: 1.6;
+    line-height: var(--d-leading-relaxed);
     white-space: pre-line;
     margin: 0;
 }

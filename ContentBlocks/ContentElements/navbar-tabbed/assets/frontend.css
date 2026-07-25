@@ -7,7 +7,7 @@
     border-bottom: 1px solid var(--d-border);
 }
 .navbar-tabbed__brand {
-    font-weight: 600;
+    font-weight: var(--d-weight-semibold);
     font-size: var(--d-text-lg);
     color: var(--d-foreground);
 }
@@ -42,7 +42,7 @@
 .navbar-tabbed__tab--active {
     color: var(--d-foreground);
     border-bottom-color: var(--d-primary);
-    font-weight: 500;
+    font-weight: var(--d-weight-medium);
 }
 
 @media (max-width: 768px) {

@@ -21,11 +21,11 @@
 .content-divider__label {
     flex: 0 0 auto;
     font-size: var(--d-text-sm);
-    font-weight: 500;
-    line-height: 1.2;
+    font-weight: var(--d-weight-medium);
+    line-height: var(--d-leading-tight);
     color: var(--muted-foreground);
     white-space: nowrap;
-    letter-spacing: 0.01em;
+    letter-spacing: var(--d-tracking-normal);
 }
 
 .content-divider__rule--decorative .content-divider__line {

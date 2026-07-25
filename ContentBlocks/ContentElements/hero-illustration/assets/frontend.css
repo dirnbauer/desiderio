@@ -7,14 +7,14 @@
 }
 .hero-illustration .hero-illustration__headline {
     font-size: var(--d-text-3xl);
-    font-weight: 700;
-    line-height: 1.1;
+    font-weight: var(--d-weight-bold);
+    line-height: var(--d-leading-tight);
     text-wrap: balance;
     margin-bottom: var(--d-spacing-4);
 }
 .hero-illustration__subheadline {
     font-size: var(--d-text-lg);
-    line-height: 1.6;
+    line-height: var(--d-leading-relaxed);
     color: var(--muted-foreground);
     text-wrap: pretty;
     margin-bottom: var(--d-spacing-6);

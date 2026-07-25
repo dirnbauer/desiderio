@@ -1,17 +1,17 @@
 .compare__intro { text-align: center; max-width: 42rem; margin-inline: auto; margin-block-end: var(--d-spacing-xl); }
-.compare__eyebrow { display: block; font-size: var(--d-text-sm); text-transform: uppercase; letter-spacing: 0.05em; color: var(--d-link, var(--primary)); font-weight: 600; }
-.compare__headline { font-size: var(--d-text-3xl); font-weight: 700; letter-spacing: -0.02em; margin-block-start: var(--d-spacing-xs); text-wrap: balance; }
+.compare__eyebrow { display: block; font-size: var(--d-text-sm); text-transform: uppercase; letter-spacing: var(--d-tracking-wide); color: var(--d-link, var(--primary)); font-weight: var(--d-weight-semibold); }
+.compare__headline { font-size: var(--d-text-3xl); font-weight: var(--d-weight-bold); letter-spacing: var(--d-tracking-tight); margin-block-start: var(--d-spacing-xs); text-wrap: balance; }
 .compare__description { color: var(--muted-foreground); margin-block-start: var(--d-spacing-sm); text-wrap: pretty; }
 .compare__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--d-spacing-lg); align-items: stretch; }
 @media (max-width: 768px) { .compare__grid { grid-template-columns: minmax(0, 1fr); } }
 .compare__panel { display: flex; flex-direction: column; height: 100%; border: 1px solid var(--border); border-radius: var(--radius); padding: var(--d-spacing-lg); background: var(--card); color: var(--card-foreground); }
 .compare__panel--accent { border-color: var(--primary); box-shadow: 0 0 0 1px var(--primary); }
 .compare__badge { margin-block-end: var(--d-spacing-sm); }
-.compare__title { font-size: var(--d-text-xl); font-weight: 700; text-wrap: balance; }
+.compare__title { font-size: var(--d-text-xl); font-weight: var(--d-weight-bold); text-wrap: balance; }
 .compare__panel-description { color: var(--muted-foreground); margin-block-start: var(--d-spacing-xs); text-wrap: pretty; }
 .compare__points { list-style: none; padding: 0; margin-block-start: var(--d-spacing-md); display: flex; flex-direction: column; gap: var(--d-spacing-sm); }
 .compare__point { display: flex; align-items: flex-start; gap: 0.5rem; }
-.compare__point::before { flex: none; font-weight: 700; line-height: 1.5; }
+.compare__point::before { flex: none; font-weight: var(--d-weight-bold); line-height: var(--d-leading-normal); }
 .compare__points--pro .compare__point::before { content: "\2713" / ""; color: var(--d-link, var(--primary)); }
 .compare__points--con .compare__point { color: var(--muted-foreground); }
 .compare__points--con .compare__point::before { content: "\2715" / ""; color: var(--muted-foreground); }

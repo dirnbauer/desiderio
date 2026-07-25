@@ -848,6 +848,14 @@ body {
      which is how the sparkline ended up drawing 403px wide inside a 1166px box
      with 763px of dead space. */
   --d-chart-plot-height: 23.5rem;
+
+  /* Vertical padding of a hero's inner stage. Matches the Section component's
+     desktop default (py-16 md:py-24 -> 6rem), because the survey found all
+     eight heroes padding at 4-5rem — the biggest moment on the page was
+     breathing LESS than an ordinary section. One token so hero presence is a
+     decision, not eight guesses; clamped so small screens do not pay 6rem for
+     a viewport that cannot afford it. */
+  --d-hero-y: clamp(4rem, 6vw + 2rem, 6rem);
   /* Text-on-muted variants: status colors pulled towards the foreground so small
      (12px) text on the *-muted tints (and plain background/card) clears the
      WCAG 4.5:1 contrast threshold in light and dark presets alike. The pull
@@ -910,6 +918,41 @@ body {
   --d-spacing-3xl: 4rem;
   --d-text-xs: 0.75rem;
   --d-text-sm: 0.875rem;
+  /* Leading is a function of SIZE, not of the element.
+     Before these existed, 244 elements between them used 16 different
+     line-heights, and heading-scale text (1.0-1.6) overlapped body-scale text
+     (1.0-1.7) almost completely — the same size breathed differently depending
+     on which element you happened to be looking at. Four steps, chosen so the
+     larger the type the tighter it sets:
+       tight    display and large headings (--d-text-xl and up)
+       snug     small headings, card titles, table headers
+       normal   UI text, dense lists, captions
+       relaxed  body copy and anything long enough to read a paragraph of
+     `line-height: 0` and `1` stay literal: those are layout resets for icons
+     and SVG, not typography. */
+  --d-leading-tight: 1.15;
+  --d-leading-snug: 1.3;
+  --d-leading-normal: 1.5;
+  --d-leading-relaxed: 1.65;
+
+  /* Five weights with defined roles, replacing seven arbitrary numbers.
+     `display` is deliberately separate from `bold`: it is only for numerals
+     that carry the message — prices, metrics, counters — and keeping it named
+     stops it drifting onto ordinary headings. */
+  --d-weight-light: 300;
+  --d-weight-normal: 400;
+  --d-weight-medium: 500;
+  --d-weight-semibold: 600;
+  --d-weight-bold: 700;
+  --d-weight-display: 800;
+
+  /* Tracking. 0.05em is the established uppercase-eyebrow convention (38 uses
+     before this was named); display sizes get a slight negative so large type
+     does not look loose. */
+  --d-tracking-tight: -0.015em;
+  --d-tracking-normal: 0;
+  --d-tracking-wide: 0.05em;
+
   --d-text-base: 1rem;
   --d-text-lg: 1.125rem;
   --d-text-xl: 1.25rem;

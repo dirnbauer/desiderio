@@ -1,7 +1,17 @@
 .legal-disclaimer--boxed { padding: var(--d-spacing-lg); background: color-mix(in oklch, var(--muted) 30%, transparent); border-radius: var(--radius); }
 .legal-disclaimer--bordered { padding: var(--d-spacing-lg); border: 1px solid var(--border); border-radius: var(--radius); }
 .legal-disclaimer__title { margin-block-end: var(--d-spacing-md); color: var(--foreground); }
-.legal-disclaimer__content { font-size: var(--d-text-sm); color: var(--muted-foreground); line-height: 1.7; }
+.legal-disclaimer__content { font-size: var(--d-text-sm); color: var(--muted-foreground); line-height: var(--d-leading-relaxed); }
 .legal-disclaimer__content > *:first-child { margin-top: 0; }
 .legal-disclaimer__content > *:last-child { margin-bottom: 0; }
-.legal-disclaimer__content h3 { font-size: var(--d-text-base); font-weight: 600; color: var(--foreground); margin-block: var(--d-spacing-md) var(--d-spacing-xs); }
+.legal-disclaimer__content h3 { font-size: var(--d-text-base); font-weight: var(--d-weight-semibold); color: var(--foreground); margin-block: var(--d-spacing-md) var(--d-spacing-xs); }
+
+/* Document measure: this element is running text read top to bottom, so the
+   whole column is capped the way an article body is — 75ch is the survey's
+   catalog-wide reading width (18-section-anatomy.css). */
+.legal-disclaimer--boxed :where(p, ul, ol, dl, dd) {
+    /* Capped per text node so the measure holds in the PARAGRAPH'S own font —
+       a cap on the root is measured in the root's ch and lets smaller body
+       text run ~86 of its own characters. */
+    max-width: 75ch;
+}

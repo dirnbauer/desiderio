@@ -6,6 +6,56 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [3.1.0] — 2026-07-25
+
+### Added
+
+- **`Documentation/Developer/DesignPhilosophy.md`** — the design system's
+  conventions, written from measurement rather than taste, with every rule
+  naming the check that enforces it.
+- **Type scale tokens.** `--d-leading-tight/snug/normal/relaxed` (leading is a
+  function of SIZE), `--d-weight-light…display` (`display` is reserved for
+  numerals that carry the message — prices, metrics, counters) and
+  `--d-tracking-tight/normal/wide` (0.05em is the uppercase-eyebrow
+  convention). Before these existed the catalog used 16 distinct line-heights,
+  and heading-scale leadings overlapped body-scale leadings almost completely.
+  692 declarations across 214 elements now use the scale; the audit gates
+  `css_untokenised_typography` at zero (`line-height: 0/1` stay literal — they
+  are layout resets, not typography).
+- **`--d-hero-y`** — one knob for hero vertical presence,
+  `clamp(4rem, 6vw + 2rem, 6rem)`. All eight heroes padded at 4–5rem while
+  ordinary sections breathe 6rem at desktop: the biggest moment on the page
+  had the least air. The catalog's vertical rhythm is now 96/48/24/0.
+- **`18-section-anatomy.css`** — shared, zero-specificity (`:where()`) layout
+  conventions: reading measure capped at 70ch (section intros) / 75ch (rich
+  text, `.ce-bodytext`, content slots, legal documents), and header-unit
+  alignment inherited so eyebrow, heading and subheadline cannot drift apart.
+  The survey found 41 elements running paragraphs to 137ch; the finding count
+  is now zero. Elements rendering outside `.desiderio-section`
+  (footer-newsletter, cookie-banner) are named explicitly; the announcement
+  bar is deliberately exempt (a banner line is full-width by design).
+- **`Build/VisualQa/anatomy.mjs`** — renders all 288 seeded elements and
+  reports padding, alignment, heading-size and reading-width distributions
+  plus outliers. This survey is where the conventions came from; target after
+  any element batch: 0 findings.
+
+### Changed
+
+- Centered section intros put `margin-inline: auto` on their capped paragraph,
+  next to the `text-align: center` it belongs to — a capped block box would
+  otherwise hug the start edge under a centered heading.
+- Document-like elements (imprint, privacy-notice, legal-disclaimer,
+  accessibility-statement, changelog) cap their measure per text node, so it
+  holds in the paragraph's own font.
+- The visual harness ignores console noise from third-party embeds (YouTube's
+  own permissions-policy complaints), which could fail a 2,976-render sweep on
+  one flaky line.
+
+### Fixed
+
+- `special-offer` used `font-weight: 900` (heavier than anything else in the
+  catalog) and a 0.1em eyebrow tracking; both now sit on the scale.
+
 ## [3.0.1] — 2026-07-25
 
 ### Fixed

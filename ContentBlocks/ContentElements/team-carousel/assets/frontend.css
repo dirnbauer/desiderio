@@ -65,7 +65,7 @@
     flex: 1 1 auto;
 }
 .team-carousel__name {
-    font-weight: 600;
+    font-weight: var(--d-weight-semibold);
 }
 .team-carousel__role {
     font-size: var(--d-text-sm);

@@ -21,7 +21,7 @@
 .back-to-top--bottom-right { bottom: var(--d-spacing-lg); right: var(--d-spacing-lg); }
 .back-to-top--bottom-left { bottom: var(--d-spacing-lg); left: var(--d-spacing-lg); }
 .back-to-top--bottom-center { bottom: var(--d-spacing-lg); left: 50%; transform: translateX(-50%); }
-.back-to-top__label { font-size: var(--d-text-sm); font-weight: 500; }
+.back-to-top__label { font-size: var(--d-text-sm); font-weight: var(--d-weight-medium); }
 @media (prefers-reduced-motion: reduce) {
     .back-to-top { transition: none; }
 }

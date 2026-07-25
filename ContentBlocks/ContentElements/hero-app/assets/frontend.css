@@ -12,8 +12,8 @@
 }
 .hero-app__headline {
     font-size: var(--d-text-4xl);
-    font-weight: 700;
-    line-height: 1.1;
+    font-weight: var(--d-weight-bold);
+    line-height: var(--d-leading-tight);
     margin-top: var(--d-spacing-3);
     margin-bottom: var(--d-spacing-4);
 }

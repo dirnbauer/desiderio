@@ -37,6 +37,8 @@ and reference content elements.
 
     AtomicDesign
     AddingContentElements
+    DesignPhilosophy
+    CollectionTableConsolidation
 
 ..  _developer-sets:
 

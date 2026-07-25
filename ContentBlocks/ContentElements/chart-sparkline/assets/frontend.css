@@ -25,8 +25,8 @@
 }
 .chart-sparkline__title {
     font-size: var(--d-text-lg);
-    font-weight: 600;
-    line-height: 1.3;
+    font-weight: var(--d-weight-semibold);
+    line-height: var(--d-leading-snug);
     overflow-wrap: anywhere;
 }
 .chart-sparkline__description {
@@ -41,7 +41,7 @@
     gap: 0.3rem;
     flex-shrink: 0;
     font-size: var(--d-text-xs);
-    font-weight: 600;
+    font-weight: var(--d-weight-semibold);
     padding: var(--d-spacing-2xs) 0.65rem;
     border-radius: 9999px;
     border: 1px solid var(--border);
@@ -102,7 +102,7 @@
        so matching chart-area's value is what makes the labels the same visual
        size as the neighbouring charts. */
     font-size: var(--d-text-xs);
-    font-weight: 600;
+    font-weight: var(--d-weight-semibold);
     font-variant-numeric: tabular-nums;
 }
 

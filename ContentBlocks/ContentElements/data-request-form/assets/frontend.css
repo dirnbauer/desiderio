@@ -1,8 +1,8 @@
 .data-request-form { max-width: 600px; margin-inline: auto; }
-.data-request-form__title { font-size: var(--d-text-xl); font-weight: 700; margin-block-end: var(--d-spacing-xs); }
+.data-request-form__title { font-size: var(--d-text-xl); font-weight: var(--d-weight-bold); margin-block-end: var(--d-spacing-xs); }
 .data-request-form__description { font-size: var(--d-text-sm); color: var(--muted-foreground); margin-block: 0 var(--d-spacing-lg); }
 .data-request-form__form { display: flex; flex-direction: column; gap: var(--d-spacing-md); margin-block-start: var(--d-spacing-md); }
-.data-request-form__label { display: block; font-size: var(--d-text-sm); font-weight: 500; margin-block-end: var(--d-spacing-2xs); }
+.data-request-form__label { display: block; font-size: var(--d-text-sm); font-weight: var(--d-weight-medium); margin-block-end: var(--d-spacing-2xs); }
 .data-request-form__input,
 .data-request-form__select,
 .data-request-form__textarea {
@@ -25,7 +25,7 @@
 .data-request-form__privacy { font-size: var(--d-text-xs); color: var(--muted-foreground); margin-block-start: var(--d-spacing-md); }
 .data-request-form__submit {
     padding: var(--d-spacing-sm) var(--d-spacing-lg); border: none;
-    border-radius: var(--radius); font-size: var(--d-text-sm); font-weight: 500;
+    border-radius: var(--radius); font-size: var(--d-text-sm); font-weight: var(--d-weight-medium);
     background: var(--primary); color: var(--primary-foreground);
     cursor: pointer; align-self: flex-start;
     transition: opacity 150ms ease;

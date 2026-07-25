@@ -6,17 +6,17 @@
 }
 .article-hero__eyebrow {
     font-size: var(--d-text-sm);
-    font-weight: 600;
+    font-weight: var(--d-weight-semibold);
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: var(--d-tracking-wide);
     color: var(--d-link, var(--primary));
     display: block;
     margin-block-end: var(--d-spacing-sm);
 }
 .article-hero__headline {
     font-size: clamp(2rem, 5vw, 3.5rem);
-    font-weight: 800;
-    line-height: 1.1;
+    font-weight: var(--d-weight-display);
+    line-height: var(--d-leading-tight);
     margin-block-end: var(--d-spacing-md);
 }
 .article-hero__dek {
@@ -45,7 +45,7 @@
     margin-top: var(--d-spacing-md);
 }
 .article-hero__author-name {
-    font-weight: 600;
+    font-weight: var(--d-weight-semibold);
 }
 .article-hero__image {
     width: 100%;

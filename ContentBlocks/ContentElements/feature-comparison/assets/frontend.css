@@ -12,13 +12,13 @@
     text-align: left;
 }
 .feature-comparison__head th {
-    font-weight: 600;
+    font-weight: var(--d-weight-semibold);
     border-bottom: 2px solid var(--border);
 }
 .feature-comparison__row th,
 .feature-comparison__row td {
     border-top: 1px solid var(--border);
-    font-weight: 400;
+    font-weight: var(--d-weight-normal);
 }
 .feature-comparison__feature-col,
 .feature-comparison__check-col {
@@ -29,7 +29,7 @@
     width: 50%;
 }
 .feature-comparison__row .feature-comparison__feature-col {
-    font-weight: 500;
+    font-weight: var(--d-weight-medium);
 }
 .feature-comparison__check-col {
     text-align: center;

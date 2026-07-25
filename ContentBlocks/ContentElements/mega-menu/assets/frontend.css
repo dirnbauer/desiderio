@@ -86,7 +86,7 @@
 .mega-menu__group-title {
     color: var(--d-muted-foreground, var(--muted-foreground));
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: var(--d-tracking-wide);
     margin-block-end: var(--d-spacing-3, 0.75rem);
 }
 .mega-menu__group-desc {
@@ -123,7 +123,7 @@
 }
 .mega-menu__link-label {
     font-size: var(--d-text-sm, 0.875rem);
-    font-weight: 500;
+    font-weight: var(--d-weight-medium);
     color: inherit;
 }
 .mega-menu__link-arrow {

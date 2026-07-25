@@ -5,9 +5,9 @@
 
 .pricing-two-tier__eyebrow {
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: var(--d-tracking-wide);
     color: var(--d-link, var(--primary));
-    font-weight: 600;
+    font-weight: var(--d-weight-semibold);
 }
 
 .pricing-two-tier__headline {
@@ -78,8 +78,8 @@
 .pricing-two-tier__price,
 .pricing-two-tier__plan-price {
     font-size: var(--d-text-3xl);
-    font-weight: 800;
-    line-height: 1.1;
+    font-weight: var(--d-weight-display);
+    line-height: var(--d-leading-tight);
 }
 
 .pricing-two-tier__content {

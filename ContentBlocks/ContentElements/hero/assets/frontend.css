@@ -3,7 +3,7 @@
     overflow: hidden;
 }
 .hero--centered {
-    padding-block: var(--d-spacing-16);
+    padding-block: var(--d-hero-y);
 }
 .hero__content--centered {
     text-align: center;
@@ -12,8 +12,8 @@
 }
 .hero__headline {
     font-size: var(--d-text-5xl);
-    font-weight: 700;
-    line-height: 1.1;
+    font-weight: var(--d-weight-bold);
+    line-height: var(--d-leading-tight);
     margin-top: var(--d-spacing-4);
     margin-bottom: var(--d-spacing-4);
 }

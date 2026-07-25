@@ -372,6 +372,7 @@ $summary = [
     'css_hardcoded_dark_selector' => 0,
     'css_raw_font_family' => 0,
     'css_fixed_width_overflow' => 0,
+    'css_untokenised_typography' => 0,
     // Advisory: reported so the visual sweep knows which elements to eyeball
     // at 390px, never gated (a single-column stack legitimately needs no query).
     'css_no_responsive_rule' => 0,
@@ -627,6 +628,29 @@ foreach (scandir($elementsDir) as $entry) {
                 if ((float)$match[1] > 343 && !preg_match('/max-width\s*:\s*100%/i', $css)) {
                     $problems[$entry][] = ['type' => 'css_fixed_width_overflow', 'value' => $match[1] . 'px'];
                     $summary['css_fixed_width_overflow']++;
+                }
+            }
+        }
+
+        // Typography must come from the scale, never from a literal. Leading in
+        // particular: before it was tokenised the catalog used 16 different
+        // line-heights and heading-scale text overlapped body-scale text almost
+        // completely, so the same size breathed differently from element to
+        // element. `0` and `1` stay allowed — those are layout resets for icons
+        // and SVG, not typography.
+        $typography = [
+            'line-height' => '/(?<![a-z-])line-height\s*:\s*([0-9.]+)\s*;/i',
+            'font-weight' => '/(?<![a-z-])font-weight\s*:\s*([0-9]+)\s*;/i',
+            'letter-spacing' => '/(?<![a-z-])letter-spacing\s*:\s*(-?[0-9.]+em)\s*;/i',
+        ];
+        foreach ($typography as $property => $pattern) {
+            if (preg_match_all($pattern, $css, $tm, PREG_SET_ORDER)) {
+                foreach ($tm as $match) {
+                    if ($property === 'line-height' && in_array($match[1], ['0', '1'], true)) {
+                        continue;
+                    }
+                    $problems[$entry][] = ['type' => 'css_untokenised_typography', 'value' => $property . ': ' . $match[1]];
+                    $summary['css_untokenised_typography']++;
                 }
             }
         }

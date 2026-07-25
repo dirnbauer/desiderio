@@ -4,7 +4,7 @@
 .sitemap-grid__grid--cols-4 { grid-template-columns: repeat(4, 1fr); }
 @media (max-width: 768px) { .sitemap-grid__grid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 480px) { .sitemap-grid__grid { grid-template-columns: 1fr; } }
-.sitemap-grid__group-title { text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted-foreground); margin-block-end: var(--d-spacing-sm); line-height: 1.5; border-inline-start: 2px solid var(--primary); padding-inline-start: var(--d-spacing-sm); }
+.sitemap-grid__group-title { text-transform: uppercase; letter-spacing: var(--d-tracking-wide); color: var(--muted-foreground); margin-block-end: var(--d-spacing-sm); line-height: var(--d-leading-normal); border-inline-start: 2px solid var(--primary); padding-inline-start: var(--d-spacing-sm); }
 .sitemap-grid__links { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: var(--d-spacing-xs); }
 .sitemap-grid__item { margin: 0; }
 .sitemap-grid__link { display: inline-block; font-size: var(--d-text-sm); color: var(--muted-foreground); text-decoration: none; border-radius: var(--d-radius-sm); transition: color 0.15s ease; text-underline-offset: 3px; }

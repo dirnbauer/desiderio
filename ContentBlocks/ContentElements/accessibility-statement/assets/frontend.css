@@ -11,9 +11,9 @@
     gap: var(--d-spacing-sm) var(--d-spacing-md);
 }
 .a11y-statement__updated { font-size: var(--d-text-sm); color: var(--muted-foreground); }
-.a11y-statement__content { margin-block-start: var(--d-spacing-lg); font-size: var(--d-text-sm); color: var(--muted-foreground); line-height: 1.7; }
+.a11y-statement__content { margin-block-start: var(--d-spacing-lg); font-size: var(--d-text-sm); color: var(--muted-foreground); line-height: var(--d-leading-relaxed); }
 .a11y-statement__content > *:first-child { margin-top: 0; }
-.a11y-statement__content h3 { font-size: var(--d-text-base); font-weight: 600; color: var(--foreground); margin-block: var(--d-spacing-lg) var(--d-spacing-xs); }
+.a11y-statement__content h3 { font-size: var(--d-text-base); font-weight: var(--d-weight-semibold); color: var(--foreground); margin-block: var(--d-spacing-lg) var(--d-spacing-xs); }
 .a11y-statement__content ul { padding-inline-start: 1.25rem; list-style: disc; }
 .a11y-statement__content li { margin-block-end: var(--d-spacing-xs); }
 .a11y-statement__content a { color: var(--d-link, var(--primary)); text-decoration: underline; text-underline-offset: 2px; }
@@ -26,3 +26,13 @@
 .a11y-statement__contact-label { display: block; margin-block-end: var(--d-spacing-xs); color: var(--foreground); }
 .a11y-statement__contact p { margin: 0; color: var(--muted-foreground); }
 .a11y-statement__contact a { color: var(--d-link, var(--primary)); text-decoration: underline; text-underline-offset: 2px; }
+
+/* Document measure: this element is running text read top to bottom, so the
+   whole column is capped the way an article body is — 75ch is the survey's
+   catalog-wide reading width (18-section-anatomy.css). */
+.a11y-statement :where(p, ul, ol, dl, dd) {
+    /* Capped per text node so the measure holds in the PARAGRAPH'S own font —
+       a cap on the root is measured in the root's ch and lets smaller body
+       text run ~86 of its own characters. */
+    max-width: 75ch;
+}

@@ -49,7 +49,7 @@
 .code-block__filename {
     min-width: 0;
     font-size: var(--d-text-sm);
-    font-weight: 600;
+    font-weight: var(--d-weight-semibold);
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -73,7 +73,7 @@
     color: var(--foreground);
     font-family: var(--font-mono);
     font-size: var(--d-text-sm);
-    line-height: 1.7;
+    line-height: var(--d-leading-relaxed);
     tab-size: 2;
     white-space: pre;
 }
@@ -95,14 +95,14 @@
 .code-block .token.atrule,
 .code-block .token.important {
     color: var(--d-code-keyword);
-    font-weight: 650;
+    font-weight: var(--d-weight-semibold);
 }
 
 .code-block .token.tag,
 .code-block .token.selector,
 .code-block .token.deleted {
     color: var(--d-code-tag);
-    font-weight: 650;
+    font-weight: var(--d-weight-semibold);
 }
 
 .code-block .token.string,
@@ -124,7 +124,7 @@
 .code-block .token.function,
 .code-block .token.class-name {
     color: var(--d-code-function);
-    font-weight: 600;
+    font-weight: var(--d-weight-semibold);
 }
 
 .code-block .token.number,

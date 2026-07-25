@@ -1,5 +1,5 @@
 .hero-logo-cloud {
-    padding-block: var(--d-spacing-16);
+    padding-block: var(--d-hero-y);
 }
 .hero-logo-cloud__content {
     text-align: center;
@@ -10,22 +10,22 @@
 .hero-logo-cloud__eyebrow {
     display: block;
     font-size: var(--d-text-sm);
-    font-weight: 600;
+    font-weight: var(--d-weight-semibold);
     color: var(--d-link, var(--primary));
     text-transform: uppercase;
-    letter-spacing: 0.08em;
+    letter-spacing: var(--d-tracking-wide);
     margin-bottom: var(--d-spacing-3);
 }
 .hero-logo-cloud .hero-logo-cloud__headline {
     font-size: var(--d-text-4xl);
-    font-weight: 700;
-    line-height: 1.1;
+    font-weight: var(--d-weight-bold);
+    line-height: var(--d-leading-tight);
     text-wrap: balance;
     margin-bottom: var(--d-spacing-4);
 }
 .hero-logo-cloud__description {
     font-size: var(--d-text-lg);
-    line-height: 1.6;
+    line-height: var(--d-leading-relaxed);
     color: var(--muted-foreground);
     text-wrap: pretty;
     margin-bottom: var(--d-spacing-6);
@@ -47,7 +47,7 @@
 .hero-logo-cloud__logo {
     padding: var(--d-spacing-2) var(--d-spacing-4);
     font-size: var(--d-text-sm);
-    font-weight: 500;
+    font-weight: var(--d-weight-medium);
     color: var(--muted-foreground);
     background: var(--muted);
     border: 1px solid transparent;

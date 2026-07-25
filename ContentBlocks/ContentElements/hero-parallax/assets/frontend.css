@@ -37,15 +37,15 @@
 }
 .hero-parallax .hero-parallax__headline {
     font-size: var(--d-text-4xl);
-    font-weight: 700;
-    line-height: 1.1;
+    font-weight: var(--d-weight-bold);
+    line-height: var(--d-leading-tight);
     text-wrap: balance;
     margin-top: var(--d-spacing-4);
     margin-bottom: var(--d-spacing-4);
 }
 .hero-parallax__subheadline {
     font-size: var(--d-text-lg);
-    line-height: 1.6;
+    line-height: var(--d-leading-relaxed);
     opacity: 0.9;
     text-wrap: pretty;
     margin-bottom: var(--d-spacing-8);

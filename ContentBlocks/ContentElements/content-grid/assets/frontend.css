@@ -8,8 +8,8 @@
 
 .content-grid__title {
     font-size: var(--d-text-lg);
-    font-weight: 600;
-    line-height: 1.3;
+    font-weight: var(--d-weight-semibold);
+    line-height: var(--d-leading-snug);
     margin-block-end: var(--d-spacing-sm);
 }
 
@@ -31,7 +31,7 @@
 .content-grid__content {
     color: var(--muted-foreground);
     font-size: var(--d-text-sm);
-    line-height: 1.6;
+    line-height: var(--d-leading-relaxed);
 }
 
 .content-grid__content > *:first-child { margin-top: 0; }
@@ -45,7 +45,7 @@
     padding-block-start: var(--d-spacing-sm);
     width: fit-content;
     font-size: var(--d-text-sm);
-    font-weight: 500;
+    font-weight: var(--d-weight-medium);
     color: var(--d-link, var(--primary));
     text-decoration: none;
 }

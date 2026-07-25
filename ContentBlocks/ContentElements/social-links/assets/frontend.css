@@ -19,7 +19,7 @@
     border: 1px solid var(--border);
     border-radius: var(--radius);
     font-size: var(--d-text-sm);
-    font-weight: 500;
+    font-weight: var(--d-weight-medium);
     text-decoration: none;
     color: var(--foreground);
     transition: background 0.15s, border-color 0.15s;

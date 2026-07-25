@@ -22,7 +22,7 @@
     min-width: 0;
 }
 .file-download__title {
-    font-weight: 600;
+    font-weight: var(--d-weight-semibold);
 }
 .file-download__description {
     color: var(--muted-foreground);
@@ -39,7 +39,7 @@
     border: 1px solid var(--border);
     border-radius: var(--d-radius-md);
     font-size: var(--d-text-sm);
-    font-weight: 500;
+    font-weight: var(--d-weight-medium);
     text-decoration: none;
     color: var(--foreground);
 }

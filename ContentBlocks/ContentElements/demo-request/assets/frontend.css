@@ -9,9 +9,9 @@
 }
 .demo-request__eyebrow {
     font-size: var(--d-text-sm);
-    font-weight: 600;
+    font-weight: var(--d-weight-semibold);
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: var(--d-tracking-wide);
     color: var(--d-link, var(--primary));
     display: block;
     margin-block-end: var(--d-spacing-xs);
@@ -25,8 +25,8 @@
     gap: var(--d-spacing-xs);
     margin-block-start: var(--d-spacing-md);
     font-size: var(--d-text-sm);
-    font-weight: 500;
-    line-height: 1.5;
+    font-weight: var(--d-weight-medium);
+    line-height: var(--d-leading-normal);
     color: var(--foreground);
 }
 .demo-request__reassurance-icon {

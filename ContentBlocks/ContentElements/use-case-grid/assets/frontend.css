@@ -8,9 +8,9 @@
     display: block;
     margin-block-end: var(--d-spacing-xs);
     font-size: var(--d-text-sm);
-    font-weight: 600;
+    font-weight: var(--d-weight-semibold);
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: var(--d-tracking-wide);
     color: var(--d-link, var(--primary));
 }
 .use-case-grid__grid {
@@ -26,8 +26,8 @@
 }
 .use-case-grid__title {
     font-size: var(--d-text-lg);
-    font-weight: 600;
-    line-height: 1.4;
+    font-weight: var(--d-weight-semibold);
+    line-height: var(--d-leading-normal);
     margin: 0 0 var(--d-spacing-xs);
 }
 .use-case-grid__link {
@@ -46,7 +46,7 @@
     margin: 0;
     color: var(--muted-foreground);
     font-size: var(--d-text-sm);
-    line-height: 1.6;
+    line-height: var(--d-leading-relaxed);
 }
 
 /* Heading-to-teaser rhythm: consistent gap inside the intro block. */

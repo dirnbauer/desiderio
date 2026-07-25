@@ -32,7 +32,7 @@
 .hero-testimonial__quote {
     margin: 0 0 var(--d-spacing-6);
     font-size: var(--d-text-lg);
-    line-height: 1.6;
+    line-height: var(--d-leading-relaxed);
     color: var(--d-foreground);
 }
 .hero-testimonial__quote p {
@@ -61,7 +61,7 @@
     flex-direction: column;
 }
 .hero-testimonial__author-name {
-    font-weight: 600;
+    font-weight: var(--d-weight-semibold);
     font-size: var(--d-text-sm);
     font-style: normal;
     color: var(--d-foreground);

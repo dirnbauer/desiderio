@@ -20,7 +20,7 @@
     color: var(--d-muted-foreground);
 }
 .hero-countdown__deadline-label {
-    font-weight: 600;
+    font-weight: var(--d-weight-semibold);
     color: var(--d-foreground);
 }
 .hero-countdown__units {
@@ -43,17 +43,17 @@
 .hero-countdown__value {
     font-family: var(--d-font-heading);
     font-size: var(--d-text-3xl);
-    font-weight: 700;
-    line-height: 1.1;
+    font-weight: var(--d-weight-bold);
+    line-height: var(--d-leading-tight);
     font-variant-numeric: tabular-nums;
 }
 .hero-countdown__unit-label {
     margin-top: var(--d-spacing-1);
     font-size: var(--d-text-xs);
-    font-weight: 500;
+    font-weight: var(--d-weight-medium);
     color: var(--d-muted-foreground);
     text-transform: uppercase;
-    letter-spacing: 0.08em;
+    letter-spacing: var(--d-tracking-wide);
 }
 .hero-countdown__actions {
     display: flex;

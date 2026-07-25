@@ -1,0 +1,52 @@
+/* Section anatomy — shared layout conventions every content element inherits,
+   measured from the catalog itself (Build/VisualQa/anatomy.mjs) rather than
+   invented. Everything is wrapped in :where() so it carries ZERO specificity:
+   any element overrides any of it with a single plain class selector.
+
+   Convention 1 — reading measure.
+   Running text stops being comfortable past ~75 characters; the survey found
+   41 elements letting intro or body paragraphs run to 137ch at desktop width.
+   Two shared surfaces cause almost all of it, so both are capped here.
+
+   The cap deliberately sets NO margin-inline. 24 of the offending intros are
+   start-aligned (the capped box belongs at the start edge, which is where a
+   block box already sits) and 14 are centered — those declare
+   `text-align: center` in their own element CSS, and the auto margin that
+   keeps the capped box on the section midline lives NEXT TO that declaration,
+   because the two only make sense together. */
+.desiderio-section :where([class$="__intro"], [class$="__header"], [class$="__head"], [class$="__headline"]) :where(p) {
+    max-width: 70ch;
+}
+.desiderio-section :where(.d-richtext) :where(p, ul, ol, dl) {
+    max-width: 75ch;
+}
+
+/* Convention 2 — the header is a unit.
+   Eyebrow, heading and subheadline share ONE alignment. The survey found four
+   elements centering the heading while the subheadline stayed start-aligned;
+   inheritance through the intro block makes that class of bug structural
+   rather than a per-element promise. */
+.desiderio-section :where([class$="__intro"], [class$="__headline"]) :where(h1, h2, h3, p, div) {
+    text-align: inherit;
+}
+
+/* Long text in component content slots. The survey's second pass found the
+   remaining over-wide paragraphs all inside these wrappers: a callout's
+   message, a tab panel, a review quote, a newsletter blurb. Same 75ch reading
+   measure as rich text; short strings are untouched because max-width never
+   stretches. The announcement bar is deliberately NOT here — a banner line is
+   a single full-width line by design. */
+:where(.desiderio-section, .footer-newsletter, .cookie-banner) :where([class$="__content"], [class$="__description"], [class$="__review-text"], [class$="__privacy"], [class$="__message"], [class$="__body"]) :where(p),
+:where(.desiderio-section, .footer-newsletter, .cookie-banner) :where(p[class$="__content"], p[class$="__description"], p[class$="__review-text"], p[class$="__privacy"], p[class$="__message"]),
+:where(.footer-newsletter, .cookie-banner) :where(div[class$="__description"], div[class$="__content"] > p) {
+    /* footer-newsletter and cookie-banner render OUTSIDE .desiderio-section —
+       one is a <footer>, one a floating consent layer — so they are named
+       here explicitly rather than silently missing the measure. */
+    max-width: 75ch;
+}
+
+/* Classic fluid_styled_content elements (text, textpic, textmedia) render
+   their RTE body as .ce-bodytext with no measure at all. */
+:where(.ce-bodytext) :where(p, ul, ol, dl) {
+    max-width: 75ch;
+}

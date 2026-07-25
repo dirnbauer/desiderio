@@ -78,7 +78,7 @@
     flex-shrink: 0;
     box-shadow: 0 0 0 1px var(--border), var(--shadow-sm);
     font-size: var(--d-text-sm);
-    font-weight: 700;
+    font-weight: var(--d-weight-bold);
     line-height: 1;
 }
 .timeline__content {
@@ -128,19 +128,19 @@
     background: var(--secondary);
     color: var(--secondary-foreground);
     font-size: var(--d-text-sm);
-    font-weight: 600;
+    font-weight: var(--d-weight-semibold);
     margin-block-end: var(--d-spacing-md);
 }
 .timeline__title {
     font-size: var(--d-text-base);
-    font-weight: 600;
-    line-height: 1.4;
+    font-weight: var(--d-weight-semibold);
+    line-height: var(--d-leading-normal);
     margin-block-end: var(--d-spacing-xs);
 }
 .timeline__text {
     color: var(--muted-foreground);
     font-size: var(--d-text-sm);
-    line-height: 1.7;
+    line-height: var(--d-leading-relaxed);
 }
 .timeline__text p {
     margin: 0;
@@ -149,7 +149,7 @@
     margin-block-start: var(--d-spacing-md);
 }
 .timeline__link {
-    font-weight: 500;
+    font-weight: var(--d-weight-medium);
     color: var(--d-link-on-muted, var(--primary));
     font-size: var(--d-text-sm);
     text-decoration-line: underline;
@@ -215,4 +215,13 @@
 .timeline__intro {
     display: grid;
     gap: var(--d-spacing-sm);
+}
+
+/* The intro is centered, so its capped paragraph (18-section-anatomy.css caps
+   intro text at 70ch) must ride the midline too — a capped block box would
+   otherwise hug the start edge under a centered heading. Lives here, next to
+   the alignment decision it belongs to. */
+.timeline__intro > p,
+.timeline__intro :where(p) {
+    margin-inline: auto;
 }

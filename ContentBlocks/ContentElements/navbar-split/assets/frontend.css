@@ -18,7 +18,7 @@
     text-align: center;
 }
 .navbar-split__brand-link {
-    font-weight: 700;
+    font-weight: var(--d-weight-bold);
     font-size: var(--d-text-xl);
     color: var(--d-foreground);
     text-decoration: none;

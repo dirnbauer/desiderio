@@ -7,7 +7,7 @@
     font-size: var(--d-text-sm, 0.875rem);
     color: var(--muted-foreground);
     font-style: normal;
-    line-height: 1.5;
+    line-height: var(--d-leading-normal);
     white-space: pre-line;
 }
 .map-embed__frame {

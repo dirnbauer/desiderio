@@ -7,9 +7,9 @@
 }
 .nav-toc__title {
     font-size: var(--d-text-sm);
-    font-weight: 600;
+    font-weight: var(--d-weight-semibold);
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: var(--d-tracking-wide);
     color: var(--d-foreground);
     margin-bottom: var(--d-spacing-3);
 }

@@ -94,11 +94,11 @@
     padding: var(--d-spacing-sm);
 }
 .content-carousel__title,
-.content-carousel .card__title { font-weight: 600; margin-block-end: var(--d-spacing-xs); }
+.content-carousel .card__title { font-weight: var(--d-weight-semibold); margin-block-end: var(--d-spacing-xs); }
 .content-carousel--cards .card__title {
     margin-block-end: 0;
     font-size: var(--d-text-lg);
-    line-height: 1.2;
+    line-height: var(--d-leading-tight);
 }
 .content-carousel__title a,
 .content-carousel .card__title a { color: inherit; text-decoration: none; }
@@ -118,7 +118,7 @@
 }
 .content-carousel--cards .card__description {
     font-size: var(--d-text-xs);
-    line-height: 1.5;
+    line-height: var(--d-leading-normal);
 }
 
 /* Navigation arrows — shadcn outline / icon button look via semantic tokens */

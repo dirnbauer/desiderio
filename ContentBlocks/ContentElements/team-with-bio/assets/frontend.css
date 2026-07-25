@@ -9,9 +9,9 @@
 }
 .team-with-bio__eyebrow {
     font-size: var(--d-text-sm);
-    font-weight: 600;
+    font-weight: var(--d-weight-semibold);
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: var(--d-tracking-wide);
     color: var(--d-link, var(--primary));
 }
 .team-with-bio__list {
@@ -52,19 +52,19 @@
     background: var(--muted);
     color: var(--muted-foreground);
     font-size: var(--d-text-2xl);
-    font-weight: 600;
+    font-weight: var(--d-weight-semibold);
 }
-.team-with-bio__name { font-weight: 600; font-size: var(--d-text-lg); line-height: 1.3; }
+.team-with-bio__name { font-weight: var(--d-weight-semibold); font-size: var(--d-text-lg); line-height: var(--d-leading-snug); }
 .team-with-bio__role {
     font-size: var(--d-text-sm);
     color: var(--d-link, var(--primary));
-    font-weight: 500;
+    font-weight: var(--d-weight-medium);
     margin-block-start: 2px;
 }
 .team-with-bio__bio {
     font-size: var(--d-text-sm);
     color: var(--muted-foreground);
-    line-height: 1.7;
+    line-height: var(--d-leading-relaxed);
     margin-block-start: var(--d-spacing-sm);
 }
 .team-with-bio__content {
@@ -85,7 +85,7 @@
     background: var(--primary);
     color: var(--primary-foreground);
     font-size: var(--d-text-sm);
-    font-weight: 600;
+    font-weight: var(--d-weight-semibold);
     line-height: 1;
     text-decoration: none;
     box-shadow: var(--shadow-xs);

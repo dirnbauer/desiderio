@@ -5,9 +5,9 @@
 .career-listing__eyebrow {
     display: block;
     font-size: var(--d-text-sm);
-    font-weight: 600;
+    font-weight: var(--d-weight-semibold);
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: var(--d-tracking-wide);
     color: var(--d-link, var(--primary));
     margin-block-end: var(--d-spacing-2xs);
 }
@@ -28,7 +28,7 @@
     padding: var(--d-spacing-md) 0;
     border-bottom: 1px solid var(--border);
 }
-.career-listing__title { font-size: var(--d-text-base); font-weight: 600; }
+.career-listing__title { font-size: var(--d-text-base); font-weight: var(--d-weight-semibold); }
 .career-listing__meta {
     display: flex;
     flex-wrap: wrap;
@@ -47,4 +47,13 @@
 .career-listing__intro {
     display: grid;
     gap: var(--d-spacing-sm);
+}
+
+/* The intro is centered, so its capped paragraph (18-section-anatomy.css caps
+   intro text at 70ch) must ride the midline too — a capped block box would
+   otherwise hug the start edge under a centered heading. Lives here, next to
+   the alignment decision it belongs to. */
+.career-listing__intro > p,
+.career-listing__intro :where(p) {
+    margin-inline: auto;
 }

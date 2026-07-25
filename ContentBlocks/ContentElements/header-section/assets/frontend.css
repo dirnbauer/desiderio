@@ -8,16 +8,16 @@
 .header-section__eyebrow {
     display: block;
     font-size: var(--d-text-sm);
-    font-weight: 500;
+    font-weight: var(--d-weight-medium);
     color: var(--d-link, var(--primary));
     margin-bottom: var(--d-spacing-2);
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: var(--d-tracking-wide);
 }
 .header-section__title {
     font-size: var(--d-text-3xl);
-    font-weight: 700;
-    line-height: 1.2;
+    font-weight: var(--d-weight-bold);
+    line-height: var(--d-leading-tight);
     margin-bottom: var(--d-spacing-3);
 }
 .header-section__subtitle {

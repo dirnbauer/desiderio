@@ -7,9 +7,9 @@
 .company-perks__eyebrow {
     display: block;
     font-size: var(--d-text-sm);
-    font-weight: 600;
+    font-weight: var(--d-weight-semibold);
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: var(--d-tracking-wide);
     color: var(--d-link, var(--primary));
     margin-block-end: var(--d-spacing-xs);
 }
@@ -47,7 +47,7 @@
     grid-row: 1 / span 2;
 }
 .company-perks__title {
-    font-weight: 600;
+    font-weight: var(--d-weight-semibold);
     margin: 0;
     text-wrap: balance;
 }

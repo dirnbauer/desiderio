@@ -28,7 +28,7 @@
 }
 .breadcrumb__current {
     color: var(--d-foreground);
-    font-weight: 400;
+    font-weight: var(--d-weight-normal);
 }
 .breadcrumb__separator {
     color: var(--d-muted-foreground);

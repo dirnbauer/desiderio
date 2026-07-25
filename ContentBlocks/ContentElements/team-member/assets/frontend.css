@@ -23,7 +23,7 @@
 }
 .team-member__bio {
     color: var(--muted-foreground);
-    line-height: 1.7;
+    line-height: var(--d-leading-relaxed);
 }
 
 /* Contact (definition list) */
@@ -40,9 +40,9 @@
 }
 .team-member__contact-label {
     font-size: var(--d-text-xs);
-    font-weight: 600;
+    font-weight: var(--d-weight-semibold);
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: var(--d-tracking-wide);
     color: var(--muted-foreground);
 }
 .team-member__contact-value {

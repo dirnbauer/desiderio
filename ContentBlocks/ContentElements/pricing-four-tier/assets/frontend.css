@@ -5,9 +5,9 @@
 
 .pricing-four-tier__eyebrow {
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: var(--d-tracking-wide);
     color: var(--d-link, var(--primary));
-    font-weight: 600;
+    font-weight: var(--d-weight-semibold);
 }
 
 .pricing-four-tier__headline {
@@ -78,8 +78,8 @@
 .pricing-four-tier__price,
 .pricing-four-tier__plan-price {
     font-size: var(--d-text-3xl);
-    font-weight: 800;
-    line-height: 1.1;
+    font-weight: var(--d-weight-display);
+    line-height: var(--d-leading-tight);
 }
 
 .pricing-four-tier__content {

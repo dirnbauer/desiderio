@@ -21,7 +21,7 @@
 .team-department__dept-name {
     position: relative;
     font-size: var(--d-text-lg);
-    font-weight: 600;
+    font-weight: var(--d-weight-semibold);
     margin-block-end: var(--d-spacing-md);
     padding-block-end: var(--d-spacing-xs);
     border-bottom: 1px solid var(--border);
@@ -41,7 +41,7 @@
     text-align: center;
 }
 .team-department__name {
-    font-weight: 600;
+    font-weight: var(--d-weight-semibold);
     font-size: var(--d-text-sm);
 }
 .team-department__role {

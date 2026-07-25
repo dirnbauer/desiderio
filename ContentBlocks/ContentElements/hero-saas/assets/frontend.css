@@ -1,5 +1,5 @@
 .hero-saas {
-    padding-block: var(--d-spacing-16);
+    padding-block: var(--d-hero-y);
 }
 .hero-saas__content {
     text-align: center;
@@ -57,7 +57,7 @@
 }
 .hero-saas__logo {
     font-size: var(--d-text-sm);
-    font-weight: 600;
+    font-weight: var(--d-weight-semibold);
     color: var(--d-muted-foreground);
     overflow-wrap: anywhere;
 }
@@ -68,7 +68,7 @@
 
     .hero-saas__headline {
         font-size: clamp(2.125rem, 9vw, 2.75rem);
-        line-height: 1.08;
+        line-height: var(--d-leading-tight);
     }
 
     .hero-saas__logos {

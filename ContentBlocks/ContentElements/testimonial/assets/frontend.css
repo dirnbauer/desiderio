@@ -8,15 +8,15 @@
 .testimonial__rating { display: flex; gap: 0.25rem; margin-block-end: var(--d-spacing-sm); }
 .testimonial__star { color: var(--muted-foreground); }
 .testimonial__star--filled { color: var(--primary); }
-.testimonial__quote { font-size: var(--d-text-lg); line-height: 1.6; margin-block-end: var(--d-spacing-md); font-style: italic; }
+.testimonial__quote { font-size: var(--d-text-lg); line-height: var(--d-leading-relaxed); margin-block-end: var(--d-spacing-md); font-style: italic; }
 /* Large variant: generous big-quote layout with a decorative mark anchored
    behind the first line — never a bare line above the text. */
 .testimonial--large .testimonial__quote {
     position: relative;
     font-size: var(--d-text-2xl);
     font-style: normal;
-    font-weight: 500;
-    line-height: 1.45;
+    font-weight: var(--d-weight-medium);
+    line-height: var(--d-leading-normal);
     max-width: 48rem;
     padding-block-start: var(--d-spacing-lg);
     margin-block-end: var(--d-spacing-lg);
@@ -27,7 +27,7 @@
     inset-inline-start: -0.5rem;
     font-size: 6rem;
     line-height: 1;
-    font-weight: 700;
+    font-weight: var(--d-weight-bold);
     color: color-mix(in oklch, var(--primary) 22%, transparent);
     pointer-events: none;
     user-select: none;
@@ -35,5 +35,5 @@
 .testimonial__author { display: flex; align-items: center; gap: var(--d-spacing-sm); }
 .testimonial__avatar { flex-shrink: 0; }
 .testimonial__avatar-image { display: block; width: 3rem; height: 3rem; border-radius: 9999px; object-fit: cover; object-position: center; }
-.testimonial__author-name { font-weight: 600; font-style: normal; display: block; }
+.testimonial__author-name { font-weight: var(--d-weight-semibold); font-style: normal; display: block; }
 .testimonial__author-role { font-size: var(--d-text-sm); color: var(--muted-foreground); }

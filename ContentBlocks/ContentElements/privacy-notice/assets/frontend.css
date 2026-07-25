@@ -1,19 +1,19 @@
 .privacy-notice { max-width: 50rem; margin-inline: auto; }
-.privacy-notice__title { font-size: var(--d-text-xl); font-weight: 700; text-wrap: balance; }
+.privacy-notice__title { font-size: var(--d-text-xl); font-weight: var(--d-weight-bold); text-wrap: balance; }
 .privacy-notice__updated { font-size: var(--d-text-sm); color: var(--muted-foreground); margin-block-start: var(--d-spacing-xs); }
-.privacy-notice__intro { font-size: var(--d-text-sm); color: var(--muted-foreground); margin-block: var(--d-spacing-lg); line-height: 1.7; text-wrap: pretty; }
+.privacy-notice__intro { font-size: var(--d-text-sm); color: var(--muted-foreground); margin-block: var(--d-spacing-lg); line-height: var(--d-leading-relaxed); text-wrap: pretty; }
 .privacy-notice__sections { display: flex; flex-direction: column; }
 .privacy-notice__section { border-block-end: 1px solid var(--border); }
 .privacy-notice__section-title {
     display: flex; align-items: center; justify-content: space-between; gap: var(--d-spacing-sm);
     padding: var(--d-spacing-md) 0; cursor: pointer;
-    font-weight: 600; font-size: var(--d-text-base); list-style: none;
+    font-weight: var(--d-weight-semibold); font-size: var(--d-text-base); list-style: none;
 }
 .privacy-notice__section-title::-webkit-details-marker { display: none; }
 .privacy-notice__section-title:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; border-radius: var(--radius); }
 .privacy-notice__icon { flex-shrink: 0; color: var(--muted-foreground); transition: transform 0.2s; }
 .privacy-notice__section[open] .privacy-notice__icon { transform: rotate(180deg); }
-.privacy-notice__section-content { padding-block-end: var(--d-spacing-md); font-size: var(--d-text-sm); color: var(--muted-foreground); line-height: 1.7; }
+.privacy-notice__section-content { padding-block-end: var(--d-spacing-md); font-size: var(--d-text-sm); color: var(--muted-foreground); line-height: var(--d-leading-relaxed); }
 .privacy-notice__section-content > *:first-child { margin-block-start: 0; }
 .privacy-notice__section-content > *:last-child { margin-block-end: 0; }
 .privacy-notice__section-content a { color: var(--d-link, var(--primary)); }
@@ -36,3 +36,13 @@
 .d-richtext ol { list-style: decimal; }
 .d-richtext li { margin-block-end: var(--d-spacing-2xs); }
 .d-richtext a { color: var(--d-link, var(--primary)); text-decoration: underline; text-underline-offset: 2px; }
+
+/* Document measure: this element is running text read top to bottom, so the
+   whole column is capped the way an article body is — 75ch is the survey's
+   catalog-wide reading width (18-section-anatomy.css). */
+.privacy-notice :where(p, ul, ol, dl, dd) {
+    /* Capped per text node so the measure holds in the PARAGRAPH'S own font —
+       a cap on the root is measured in the root's ch and lets smaller body
+       text run ~86 of its own characters. */
+    max-width: 75ch;
+}

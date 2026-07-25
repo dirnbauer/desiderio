@@ -13,10 +13,10 @@
 }
 .hero-stats__eyebrow {
     font-size: var(--d-text-sm);
-    font-weight: 500;
+    font-weight: var(--d-weight-medium);
     color: var(--d-link, var(--primary));
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: var(--d-tracking-wide);
     margin: 0 0 var(--d-spacing-3);
 }
 .hero-stats__headline {
@@ -57,7 +57,7 @@
 .hero-stats__stat-detail { order: 3; }
 .hero-stats__stat-value {
     font-size: var(--d-text-3xl);
-    font-weight: 700;
+    font-weight: var(--d-weight-bold);
     line-height: 1;
     color: var(--d-foreground);
     margin: 0;
@@ -65,7 +65,7 @@
 }
 .hero-stats__stat-label {
     font-size: var(--d-text-sm);
-    font-weight: 600;
+    font-weight: var(--d-weight-semibold);
     color: var(--d-foreground);
     margin: 0;
 }
@@ -82,7 +82,7 @@
 
     .hero-stats__headline {
         font-size: clamp(2.125rem, 9vw, 2.75rem);
-        line-height: 1.08;
+        line-height: var(--d-leading-tight);
     }
 }
 @media (max-width: 480px) {

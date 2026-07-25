@@ -4,9 +4,9 @@
 }
 .company-culture__eyebrow {
     font-size: var(--d-text-sm);
-    font-weight: 600;
+    font-weight: var(--d-weight-semibold);
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: var(--d-tracking-wide);
     color: var(--d-link, var(--primary));
 }
 .company-culture__grid {
@@ -37,7 +37,7 @@
     border-radius: inherit;
 }
 .company-culture__title {
-    font-weight: 600;
+    font-weight: var(--d-weight-semibold);
     margin-block-end: var(--d-spacing-2xs);
 }
 .company-culture__description {
@@ -60,3 +60,12 @@
 .d-richtext ol { list-style: decimal; }
 .d-richtext li { margin-block-end: var(--d-spacing-2xs); }
 .d-richtext a { color: var(--d-link, var(--primary)); text-decoration: underline; text-underline-offset: 2px; }
+
+/* The intro is centered, so its capped paragraph (18-section-anatomy.css caps
+   intro text at 70ch) must ride the midline too — a capped block box would
+   otherwise hug the start edge under a centered heading. Lives here, next to
+   the alignment decision it belongs to. */
+.company-culture__intro > p,
+.company-culture__intro :where(p) {
+    margin-inline: auto;
+}

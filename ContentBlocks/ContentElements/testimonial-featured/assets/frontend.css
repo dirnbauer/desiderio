@@ -21,9 +21,9 @@
     filter: brightness(0) saturate(0) invert(1);
     opacity: 0.92;
 }
-.testimonial-featured__quote { font-size: var(--d-text-2xl); line-height: 1.5; font-style: italic; margin-block-end: var(--d-spacing-xl); }
+.testimonial-featured__quote { font-size: var(--d-text-2xl); line-height: var(--d-leading-normal); font-style: italic; margin-block-end: var(--d-spacing-xl); }
 @media (max-width: 768px) { .testimonial-featured__quote { font-size: var(--d-text-xl); } }
 .testimonial-featured__author { display: flex; align-items: center; justify-content: center; gap: var(--d-spacing-sm); }
 .testimonial-featured__avatar { width: 4rem; height: 4rem; border-radius: 9999px; object-fit: cover; }
-.testimonial-featured__name { font-weight: 700; font-style: normal; display: block; font-size: var(--d-text-lg); }
+.testimonial-featured__name { font-weight: var(--d-weight-bold); font-style: normal; display: block; font-size: var(--d-text-lg); }
 .testimonial-featured__role { font-size: var(--d-text-sm); color: var(--muted-foreground); }

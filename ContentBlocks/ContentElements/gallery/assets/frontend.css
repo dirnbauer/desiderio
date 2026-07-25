@@ -29,21 +29,21 @@
 }
 .gallery__title {
     display: block;
-    font-weight: 600;
+    font-weight: var(--d-weight-semibold);
     font-size: var(--d-text-sm);
-    line-height: 1.35;
+    line-height: var(--d-leading-snug);
 }
 .gallery__description {
     display: block;
     color: var(--muted-foreground);
     font-size: var(--d-text-xs);
-    line-height: 1.55;
+    line-height: var(--d-leading-normal);
 }
 .gallery__credit {
     display: block;
     color: var(--muted-foreground);
     font-size: var(--d-text-xs);
-    line-height: 1.4;
+    line-height: var(--d-leading-normal);
 }
 .gallery__credit[hidden] { display: none; }
 .gallery__featured-link {
@@ -51,7 +51,7 @@
     width: fit-content;
     margin-block-start: var(--d-spacing-2xs);
     font-size: var(--d-text-sm);
-    font-weight: 500;
+    font-weight: var(--d-weight-medium);
     color: var(--d-link, var(--primary));
     text-underline-offset: 3px;
     text-decoration: none;
@@ -104,8 +104,8 @@
     min-height: 2.5em;
     color: var(--muted-foreground);
     font-size: var(--d-text-xs);
-    font-weight: 500;
-    line-height: 1.25;
+    font-weight: var(--d-weight-medium);
+    line-height: var(--d-leading-snug);
 }
 @media (max-width: 768px) {
     .gallery__thumbs,
@@ -133,4 +133,13 @@
 .gallery__intro {
     display: grid;
     gap: var(--d-spacing-sm);
+}
+
+/* The intro is centered, so its capped paragraph (18-section-anatomy.css caps
+   intro text at 70ch) must ride the midline too — a capped block box would
+   otherwise hug the start edge under a centered heading. Lives here, next to
+   the alignment decision it belongs to. */
+.gallery__intro > p,
+.gallery__intro :where(p) {
+    margin-inline: auto;
 }

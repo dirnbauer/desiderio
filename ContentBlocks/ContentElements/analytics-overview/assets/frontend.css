@@ -6,8 +6,8 @@
 .analytics-overview__metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr)); gap: var(--d-spacing-lg); margin: 0; }
 .analytics-overview__metric { min-width: 0; padding: var(--d-spacing-md); border-radius: var(--radius); background: color-mix(in oklch, var(--muted) 20%, transparent); }
 .analytics-overview__metric-label { font-size: var(--d-text-sm); color: var(--muted-foreground); overflow-wrap: break-word; }
-.analytics-overview__metric-value { font-size: var(--d-text-2xl); font-weight: 700; line-height: 1.1; margin: var(--d-spacing-xs) 0 0; overflow-wrap: break-word; }
-.analytics-overview__metric-change { display: grid; grid-template-columns: 1.25rem minmax(0, 1fr); align-items: start; column-gap: var(--d-spacing-xs); width: 100%; font-size: var(--d-text-sm); font-weight: 600; line-height: 1.35; margin: var(--d-spacing-sm) 0 0; }
+.analytics-overview__metric-value { font-size: var(--d-text-2xl); font-weight: var(--d-weight-bold); line-height: var(--d-leading-tight); margin: var(--d-spacing-xs) 0 0; overflow-wrap: break-word; }
+.analytics-overview__metric-change { display: grid; grid-template-columns: 1.25rem minmax(0, 1fr); align-items: start; column-gap: var(--d-spacing-xs); width: 100%; font-size: var(--d-text-sm); font-weight: var(--d-weight-semibold); line-height: var(--d-leading-snug); margin: var(--d-spacing-sm) 0 0; }
 .analytics-overview__metric-arrow { display: inline-grid; place-items: center; width: 1.25rem; height: 1.25rem; }
 .analytics-overview__metric-arrow svg { display: block; width: 1rem; height: 1rem; }
 .analytics-overview__metric-change-text { min-width: 0; padding-block-start: 0.0625rem; overflow-wrap: break-word; word-break: normal; }

@@ -7,7 +7,7 @@
     padding-block: var(--d-spacing-3);
 }
 .navbar-centered__brand {
-    font-weight: 600;
+    font-weight: var(--d-weight-semibold);
     font-size: var(--d-text-lg);
     color: var(--d-foreground);
     border-radius: var(--d-radius-sm);

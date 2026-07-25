@@ -33,8 +33,8 @@
 .faq__question-text {
     margin: 0;
     font-size: var(--d-text-base);
-    font-weight: 600;
-    line-height: 1.4;
+    font-weight: var(--d-weight-semibold);
+    line-height: var(--d-leading-normal);
 }
 .faq__chevron {
     display: inline-flex;
@@ -49,7 +49,7 @@ details[open] > .faq__question > .faq__chevron {
     padding-block-end: var(--d-spacing-md);
     color: var(--muted-foreground);
     font-size: var(--d-text-sm);
-    line-height: 1.6;
+    line-height: var(--d-leading-relaxed);
 }
 .faq__answer > div > :first-child { margin-block-start: 0; }
 .faq__answer > div > :last-child { margin-block-end: 0; }

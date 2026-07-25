@@ -32,8 +32,8 @@
 }
 .hero-pricing__price {
     font-size: var(--d-text-4xl);
-    font-weight: 700;
-    line-height: 1.1;
+    font-weight: var(--d-weight-bold);
+    line-height: var(--d-leading-tight);
 }
 .hero-pricing__period {
     font-size: var(--d-text-base);

@@ -13,10 +13,10 @@
 }
 .hero-video__eyebrow {
     font-size: var(--d-text-sm);
-    font-weight: 500;
+    font-weight: var(--d-weight-medium);
     color: var(--d-link, var(--primary));
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: var(--d-tracking-wide);
     margin: 0 0 var(--d-spacing-3);
 }
 .hero-video__headline {

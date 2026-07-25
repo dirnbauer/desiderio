@@ -4,9 +4,9 @@
 }
 .newsletter-signup__eyebrow {
     font-size: var(--d-text-sm);
-    font-weight: 600;
+    font-weight: var(--d-weight-semibold);
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: var(--d-tracking-wide);
     color: var(--d-link, var(--primary));
 }
 .newsletter-signup__body {
@@ -28,7 +28,7 @@
     align-items: flex-end;
 }
 .newsletter-signup__field { display: flex; flex-direction: column; gap: 4px; flex: 1; }
-.newsletter-signup__label { font-size: var(--d-text-sm); font-weight: 500; }
+.newsletter-signup__label { font-size: var(--d-text-sm); font-weight: var(--d-weight-medium); }
 .newsletter-signup__input {
     padding: var(--d-spacing-xs) var(--d-spacing-sm);
     border: 1px solid var(--border);
@@ -67,4 +67,13 @@
 .newsletter-signup__intro {
     display: grid;
     gap: var(--d-spacing-sm);
+}
+
+/* The intro is centered, so its capped paragraph (18-section-anatomy.css caps
+   intro text at 70ch) must ride the midline too — a capped block box would
+   otherwise hug the start edge under a centered heading. Lives here, next to
+   the alignment decision it belongs to. */
+.newsletter-signup__intro > p,
+.newsletter-signup__intro :where(p) {
+    margin-inline: auto;
 }

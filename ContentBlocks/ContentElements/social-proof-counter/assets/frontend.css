@@ -1,4 +1,5 @@
-.social-proof-counter__intro { text-align: center; margin-block-end: var(--d-spacing-lg); }
+.social-proof-counter__intro { text-align: center; margin-block-end: var(--d-spacing-lg);
+}
 .social-proof-counter__description { margin-block-start: var(--d-spacing-sm); }
 .social-proof-counter__row { display: flex; flex-wrap: wrap; justify-content: center; gap: var(--d-spacing-xl); margin: 0; }
 .social-proof-counter__row--stacked { flex-direction: column; align-items: center; }
@@ -9,11 +10,20 @@
 }
 .social-proof-counter__item { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 0.25rem; }
 .social-proof-counter__icon { display: inline-flex; color: var(--primary); margin-block-end: var(--d-spacing-xs); }
-.social-proof-counter__value { order: 1; margin: 0; font-size: var(--d-text-3xl); font-weight: 800; color: var(--foreground); line-height: 1.1; }
+.social-proof-counter__value { order: 1; margin: 0; font-size: var(--d-text-3xl); font-weight: var(--d-weight-display); color: var(--foreground); line-height: var(--d-leading-tight); }
 .social-proof-counter__label { order: 2; margin: 0; font-size: var(--d-text-sm); color: var(--muted-foreground); }
 
 /* Heading-to-teaser rhythm: consistent gap inside the intro block. */
 .social-proof-counter__intro {
     display: grid;
     gap: var(--d-spacing-sm);
+}
+
+/* The intro is centered, so its capped paragraph (18-section-anatomy.css caps
+   intro text at 70ch) must ride the midline too — a capped block box would
+   otherwise hug the start edge under a centered heading. Lives here, next to
+   the alignment decision it belongs to. */
+.social-proof-counter__intro > p,
+.social-proof-counter__intro :where(p) {
+    margin-inline: auto;
 }

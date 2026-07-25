@@ -2,10 +2,10 @@
 .imprint__title { margin-block-end: var(--d-spacing-xl); }
 .imprint__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--d-spacing-xl); }
 .imprint__block { display: flex; flex-direction: column; gap: var(--d-spacing-xs); }
-.imprint__label { color: var(--d-muted-foreground); text-transform: uppercase; letter-spacing: 0.05em; }
+.imprint__label { color: var(--d-muted-foreground); text-transform: uppercase; letter-spacing: var(--d-tracking-wide); }
 .imprint__address { font-style: normal; display: flex; flex-direction: column; gap: var(--d-spacing-2xs); }
-.imprint__value { font-size: var(--d-text-sm); line-height: 1.6; margin: 0; }
-.imprint__company { font-weight: 600; }
+.imprint__value { font-size: var(--d-text-sm); line-height: var(--d-leading-relaxed); margin: 0; }
+.imprint__company { font-weight: var(--d-weight-semibold); }
 .imprint__lines { white-space: pre-line; }
 .imprint__link {
     color: var(--d-link, var(--primary));
@@ -23,5 +23,15 @@
     border-top: 1px solid var(--d-border);
     font-size: var(--d-text-sm);
     color: var(--d-muted-foreground);
-    line-height: 1.7;
+    line-height: var(--d-leading-relaxed);
+}
+
+/* Document measure: this element is running text read top to bottom, so the
+   whole column is capped the way an article body is — 75ch is the survey's
+   catalog-wide reading width (18-section-anatomy.css). */
+.imprint :where(p, ul, ol, dl, dd) {
+    /* Capped per text node so the measure holds in the PARAGRAPH'S own font —
+       a cap on the root is measured in the root's ch and lets smaller body
+       text run ~86 of its own characters. */
+    max-width: 75ch;
 }

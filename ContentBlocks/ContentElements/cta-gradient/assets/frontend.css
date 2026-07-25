@@ -17,7 +17,7 @@
 }
 .cta-gradient__headline {
     font-size: var(--d-text-3xl);
-    font-weight: 700;
+    font-weight: var(--d-weight-bold);
     margin-block-end: var(--d-spacing-sm);
 }
 .cta-gradient__description {

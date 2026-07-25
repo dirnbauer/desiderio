@@ -45,7 +45,7 @@
 .feature-stats__detail { order: 3; }
 .feature-stats__value {
     font-size: var(--d-text-4xl);
-    font-weight: 800;
+    font-weight: var(--d-weight-display);
     line-height: 1;
     color: var(--primary);
     margin: 0;
@@ -59,13 +59,13 @@
 }
 .feature-stats__label {
     font-size: var(--d-text-sm);
-    font-weight: 600;
+    font-weight: var(--d-weight-semibold);
     color: var(--foreground);
     margin: var(--d-spacing-xs) 0 0;
 }
 .feature-stats__detail {
     color: var(--muted-foreground);
     font-size: var(--d-text-sm);
-    line-height: 1.5;
+    line-height: var(--d-leading-normal);
     margin: var(--d-spacing-xs) 0 0;
 }

@@ -76,7 +76,7 @@
     justify-content: center;
     text-align: center;
     line-height: 1;
-    font-weight: 700;
+    font-weight: var(--d-weight-bold);
     font-size: var(--d-text-sm);
     flex-shrink: 0;
     box-shadow: 0 0 0 var(--feature-timeline-dot-clearance) var(--background);
@@ -122,15 +122,15 @@
     border-radius: var(--d-radius-sm);
 }
 .feature-timeline__title {
-    font-weight: 600;
+    font-weight: var(--d-weight-semibold);
     font-size: var(--d-text-lg);
-    line-height: 1.2;
+    line-height: var(--d-leading-tight);
     margin: 0 0 var(--d-spacing-xs);
 }
 .feature-timeline__description {
     color: var(--muted-foreground);
     font-size: var(--d-text-sm);
-    line-height: 1.6;
+    line-height: var(--d-leading-relaxed);
     margin: 0;
 }
 

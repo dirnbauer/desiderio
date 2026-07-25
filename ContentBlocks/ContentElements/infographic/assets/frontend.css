@@ -68,7 +68,7 @@
     background: var(--primary);
     color: var(--primary-foreground);
     font-size: var(--d-text-lg);
-    font-weight: 700;
+    font-weight: var(--d-weight-bold);
     line-height: 1;
     box-shadow: 0 0 0 4px var(--card);
 }

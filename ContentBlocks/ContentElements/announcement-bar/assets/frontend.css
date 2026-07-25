@@ -46,7 +46,7 @@
     color: var(--d-muted-foreground);
 }
 .announcement-bar__link {
-    font-weight: 500;
+    font-weight: var(--d-weight-medium);
     text-decoration: underline;
     text-underline-offset: 2px;
     color: inherit;

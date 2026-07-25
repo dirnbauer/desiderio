@@ -41,15 +41,15 @@
     height: 1.625rem;
 }
 .feature-icons__title {
-    font-weight: 600;
+    font-weight: var(--d-weight-semibold);
     font-size: var(--d-text-sm);
-    line-height: 1.35;
+    line-height: var(--d-leading-snug);
     margin: 0;
 }
 .feature-icons__description {
     color: var(--muted-foreground);
     font-size: var(--d-text-xs);
-    line-height: 1.55;
+    line-height: var(--d-leading-normal);
     margin: var(--d-spacing-xs) auto 0;
     max-width: 28ch;
 }

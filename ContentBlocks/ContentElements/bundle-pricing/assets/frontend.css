@@ -12,9 +12,9 @@
 
 .bundle-pricing__eyebrow {
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: var(--d-tracking-wide);
     color: var(--d-link, var(--primary));
-    font-weight: 600;
+    font-weight: var(--d-weight-semibold);
 }
 
 .bundle-pricing__description {
@@ -47,7 +47,7 @@
 
 .bundle-pricing__item-name {
     display: block;
-    font-weight: 600;
+    font-weight: var(--d-weight-semibold);
     color: var(--foreground);
 }
 
@@ -80,8 +80,8 @@
 
 .bundle-pricing__bundle-price {
     font-size: var(--d-text-3xl);
-    font-weight: 800;
-    line-height: 1.1;
+    font-weight: var(--d-weight-display);
+    line-height: var(--d-leading-tight);
 }
 
 .bundle-pricing__button {

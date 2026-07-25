@@ -84,7 +84,7 @@
 /* Decision panel */
 .product-gallery__panel { position: sticky; top: var(--d-spacing-lg); align-self: start; }
 .product-gallery__panel-header { gap: var(--d-spacing-2xs); }
-.product-gallery__save { letter-spacing: 0.04em; text-transform: uppercase; }
+.product-gallery__save { letter-spacing: var(--d-tracking-wide); text-transform: uppercase; }
 .product-gallery__title { margin: 0; }
 .product-gallery__panel-content {
     display: flex;
@@ -100,8 +100,8 @@
 }
 .product-gallery__price {
     font-size: var(--d-text-3xl);
-    font-weight: 800;
-    line-height: 1.1;
+    font-weight: var(--d-weight-display);
+    line-height: var(--d-leading-tight);
     color: var(--foreground);
 }
 .product-gallery__compare {
@@ -115,7 +115,7 @@
     gap: var(--d-spacing-2xs);
     margin: 0;
     font-size: var(--d-text-sm);
-    font-weight: 500;
+    font-weight: var(--d-weight-medium);
 }
 .product-gallery__availability-icon { flex-shrink: 0; }
 .product-gallery__availability--in-stock { color: var(--d-link, var(--primary)); }
@@ -155,7 +155,7 @@
     width: 100%;
     padding: 0.625rem var(--d-spacing-lg);
     border-radius: var(--d-radius-md);
-    font-weight: 600;
+    font-weight: var(--d-weight-semibold);
     text-decoration: none;
     background: var(--primary);
     color: var(--primary-foreground);

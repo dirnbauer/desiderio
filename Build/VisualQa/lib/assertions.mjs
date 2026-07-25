@@ -171,9 +171,13 @@ export function watchPage(page) {
     const errors = [];
     page.on('pageerror', (error) => errors.push({ check: 'js-error', selector: 'page', detail: String(error.message ?? error) }));
     page.on('console', (message) => {
-        if (message.type() === 'error') {
-            errors.push({ check: 'console-error', selector: 'page', detail: message.text().slice(0, 200) });
-        }
+        if (message.type() !== 'error') return;
+        const text = message.text();
+        // Third-party embeds (YouTube et al.) log policy complaints about their
+        // OWN iframe headers; nothing in this repo can fix them and one flaky
+        // line would fail a 2,976-render sweep.
+        if (/Permissions policy violation|third-party cookies|ERR_BLOCKED_BY_CLIENT/i.test(text)) return;
+        errors.push({ check: 'console-error', selector: 'page', detail: text.slice(0, 200) });
     });
     page.on('response', (response) => {
         if (response.status() >= 400) {

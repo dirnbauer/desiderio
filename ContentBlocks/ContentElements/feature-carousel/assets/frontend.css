@@ -116,7 +116,7 @@
     margin: 0;
     color: var(--muted-foreground);
     font-size: var(--d-text-sm);
-    line-height: 1.55;
+    line-height: var(--d-leading-normal);
     max-width: 36ch;
 }
 

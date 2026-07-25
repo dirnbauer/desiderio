@@ -6,7 +6,7 @@
     gap: var(--d-spacing-md);
 }
 .audio-player__title {
-    font-weight: 600;
+    font-weight: var(--d-weight-semibold);
     margin-block-end: var(--d-spacing-xs);
 }
 .audio-player__description {
@@ -23,7 +23,7 @@
     gap: var(--d-spacing-2);
     align-self: flex-start;
     font-size: var(--d-text-sm);
-    font-weight: 500;
+    font-weight: var(--d-weight-medium);
     color: var(--d-link, var(--primary));
     text-decoration: none;
     border-radius: var(--d-radius-sm);

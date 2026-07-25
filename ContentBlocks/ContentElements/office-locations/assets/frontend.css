@@ -16,7 +16,7 @@
 .office-locations__details { flex: 1 1 auto; }
 .office-locations__map { margin-block-start: auto; align-self: flex-start; }
 .office-locations__city {
-    font-weight: 600;
+    font-weight: var(--d-weight-semibold);
     font-size: var(--d-text-lg);
     margin-block-end: var(--d-spacing-sm);
 }
@@ -41,7 +41,7 @@
     color: var(--primary);
     margin-block-start: 0.1rem;
 }
-.office-locations__lines { line-height: 1.45; }
+.office-locations__lines { line-height: var(--d-leading-normal); }
 .office-locations__link {
     color: var(--muted-foreground);
     text-decoration: none;

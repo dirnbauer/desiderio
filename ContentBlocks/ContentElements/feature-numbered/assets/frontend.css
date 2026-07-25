@@ -21,7 +21,7 @@
 .feature-numbered__number {
     display: block;
     font-size: var(--d-text-4xl);
-    font-weight: 800;
+    font-weight: var(--d-weight-display);
     /* Was color-mix(… var(--primary) 25%, transparent), which composites to
        1.7:1 on both the light and dark background — the step number was a ghost
        and unreadable for anyone with reduced contrast sensitivity. It is

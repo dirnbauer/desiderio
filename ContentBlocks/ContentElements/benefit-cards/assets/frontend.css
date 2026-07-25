@@ -6,9 +6,9 @@
 }
 .benefit-cards__eyebrow {
     font-size: var(--d-text-sm);
-    font-weight: 600;
+    font-weight: var(--d-weight-semibold);
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: var(--d-tracking-wide);
     color: var(--d-link, var(--primary));
     margin-block-end: var(--d-spacing-xs);
 }
@@ -49,7 +49,7 @@
 .benefit-cards__description {
     color: var(--muted-foreground);
     font-size: var(--d-text-sm);
-    line-height: 1.6;
+    line-height: var(--d-leading-relaxed);
 }
 
 /* Heading-to-teaser rhythm: consistent gap inside the intro block. */

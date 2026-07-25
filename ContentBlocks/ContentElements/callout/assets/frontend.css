@@ -24,7 +24,7 @@
     border-inline-start-color: var(--border);
 }
 .callout__title {
-    font-weight: 600;
+    font-weight: var(--d-weight-semibold);
     margin-block-end: var(--d-spacing-xs);
 }
 .callout__content {

@@ -18,7 +18,7 @@
     gap: var(--d-spacing-2xs);
 }
 .cta-inline__headline {
-    font-weight: 600;
+    font-weight: var(--d-weight-semibold);
     font-size: var(--d-text-base);
 }
 .cta-inline__description {

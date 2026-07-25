@@ -31,7 +31,7 @@
     background: var(--primary);
     color: var(--primary-foreground);
     font-size: var(--d-text-xs);
-    font-weight: 600;
+    font-weight: var(--d-weight-semibold);
     line-height: 1;
     white-space: nowrap;
 }
@@ -55,15 +55,15 @@
 .card-interactive__title {
     margin: 0;
     font-size: var(--d-text-xl);
-    font-weight: 650;
-    line-height: 1.25;
+    font-weight: var(--d-weight-semibold);
+    line-height: var(--d-leading-snug);
     text-wrap: balance;
 }
 .card-interactive__description {
     margin: 0;
     max-width: 66ch;
     font-size: var(--d-text-sm);
-    line-height: 1.6;
+    line-height: var(--d-leading-relaxed);
     color: var(--muted-foreground);
 }
 .card-interactive__footer {
@@ -85,7 +85,7 @@
     background: var(--primary);
     color: var(--primary-foreground);
     font-size: var(--d-text-sm);
-    font-weight: 600;
+    font-weight: var(--d-weight-semibold);
     line-height: 1;
     text-decoration: none;
 }

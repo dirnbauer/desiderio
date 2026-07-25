@@ -51,7 +51,7 @@
 }
 .hero-product__price {
     font-size: var(--d-text-3xl);
-    font-weight: 700;
+    font-weight: var(--d-weight-bold);
     color: var(--d-foreground);
     overflow-wrap: anywhere;
 }
@@ -70,7 +70,7 @@
 
     .hero-product__title {
         font-size: clamp(2.125rem, 9vw, 2.75rem);
-        line-height: 1.08;
+        line-height: var(--d-leading-tight);
     }
 
     .hero-product__price {

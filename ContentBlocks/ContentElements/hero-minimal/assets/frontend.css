@@ -1,5 +1,5 @@
 .hero-minimal {
-    padding-block: var(--d-spacing-20);
+    padding-block: var(--d-hero-y);
 }
 .hero-minimal__content {
     text-align: center;
@@ -8,15 +8,15 @@
 }
 .hero-minimal .hero-minimal__headline {
     font-size: var(--d-text-4xl);
-    font-weight: 700;
-    line-height: 1.05;
+    font-weight: var(--d-weight-bold);
+    line-height: var(--d-leading-tight);
     text-wrap: balance;
-    letter-spacing: -0.01em;
+    letter-spacing: var(--d-tracking-tight);
     margin-bottom: var(--d-spacing-4);
 }
 .hero-minimal__subheadline {
     font-size: var(--d-text-lg);
-    line-height: 1.6;
+    line-height: var(--d-leading-relaxed);
     color: var(--muted-foreground);
     text-wrap: pretty;
     margin-bottom: var(--d-spacing-8);

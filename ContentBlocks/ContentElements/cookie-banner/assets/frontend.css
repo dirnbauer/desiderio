@@ -37,7 +37,7 @@
     align-items: center;
     gap: var(--d-spacing-xs);
     font-size: var(--d-text-sm);
-    font-weight: 600;
+    font-weight: var(--d-weight-semibold);
     margin-block-end: var(--d-spacing-2xs);
 }
 
@@ -50,7 +50,7 @@
 .cookie-banner__message {
     font-size: var(--d-text-sm);
     color: var(--muted-foreground);
-    line-height: 1.5;
+    line-height: var(--d-leading-normal);
 }
 
 .cookie-banner__message > *:first-child { margin-top: 0; }
@@ -66,7 +66,7 @@
 
 .cookie-banner__settings-link {
     font-size: var(--d-text-sm);
-    font-weight: 500;
+    font-weight: var(--d-weight-medium);
     color: var(--muted-foreground);
     text-decoration: underline;
     text-underline-offset: 2px;

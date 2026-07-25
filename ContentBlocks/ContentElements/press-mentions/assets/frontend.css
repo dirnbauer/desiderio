@@ -1,5 +1,5 @@
 .press-mentions__intro { text-align: center; margin-block-end: var(--d-spacing-xl); }
-.press-mentions__eyebrow { font-size: var(--d-text-sm); text-transform: uppercase; letter-spacing: 0.05em; color: var(--d-link, var(--primary)); font-weight: 600; }
+.press-mentions__eyebrow { font-size: var(--d-text-sm); text-transform: uppercase; letter-spacing: var(--d-tracking-wide); color: var(--d-link, var(--primary)); font-weight: var(--d-weight-semibold); }
 .press-mentions__headline { margin-block-start: var(--d-spacing-xs); }
 .press-mentions__grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr)); gap: var(--d-spacing-lg); }
 .press-mentions__item { padding: var(--d-spacing-lg); border: 1px solid var(--border); border-radius: var(--radius); background: var(--card); display: flex; flex-direction: column; gap: var(--d-spacing-md); }
@@ -25,7 +25,7 @@
     position: relative;
     margin: 0;
     padding-inline-start: var(--d-spacing-lg);
-    line-height: 1.6;
+    line-height: var(--d-leading-relaxed);
     color: var(--foreground);
     flex: 1;
 }
@@ -36,16 +36,16 @@
     inset-block-start: -0.1em;
     font-size: var(--d-text-3xl);
     line-height: 1;
-    font-weight: 700;
+    font-weight: var(--d-weight-bold);
     color: color-mix(in oklch, var(--primary) 50%, transparent);
     pointer-events: none;
 }
 .press-mentions__quote p { margin: 0; }
 .press-mentions__quote p + p { margin-block-start: var(--d-spacing-xs); }
 .press-mentions__meta { display: flex; justify-content: space-between; align-items: center; }
-.press-mentions__publication { font-weight: 600; font-size: var(--d-text-sm); }
+.press-mentions__publication { font-weight: var(--d-weight-semibold); font-size: var(--d-text-sm); }
 .press-mentions__date { font-size: var(--d-text-xs); color: var(--muted-foreground); }
-.press-mentions__link { font-size: var(--d-text-sm); font-weight: 500; color: var(--d-link, var(--primary)); text-decoration: none; }
+.press-mentions__link { font-size: var(--d-text-sm); font-weight: var(--d-weight-medium); color: var(--d-link, var(--primary)); text-decoration: none; }
 .press-mentions__link:hover { text-decoration: underline; }
 
 /* Heading-to-teaser rhythm: consistent gap inside the intro block. */

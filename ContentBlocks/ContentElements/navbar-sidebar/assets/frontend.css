@@ -9,7 +9,7 @@
     padding: var(--d-spacing-4);
 }
 .navbar-sidebar__brand-link {
-    font-weight: 600;
+    font-weight: var(--d-weight-semibold);
     font-size: var(--d-text-lg);
     color: var(--d-foreground);
     text-decoration: none;
@@ -25,9 +25,9 @@
 }
 .navbar-sidebar__section-title {
     font-size: var(--d-text-xs);
-    font-weight: 600;
+    font-weight: var(--d-weight-semibold);
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: var(--d-tracking-wide);
     color: var(--d-muted-foreground);
     margin-bottom: var(--d-spacing-2);
     padding-inline-start: var(--d-spacing-3);

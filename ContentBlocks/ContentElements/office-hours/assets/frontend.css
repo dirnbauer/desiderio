@@ -18,7 +18,7 @@
 }
 .office-hours__row:last-child { border-bottom: none; }
 .office-hours__day {
-    font-weight: 500;
+    font-weight: var(--d-weight-medium);
     font-size: var(--d-text-sm);
 }
 .office-hours__time {

@@ -37,7 +37,7 @@
     height: 1.375rem;
 }
 .contact-info__label {
-    font-weight: 600;
+    font-weight: var(--d-weight-semibold);
     font-size: var(--d-text-sm);
     margin: 0;
 }
@@ -49,7 +49,7 @@
 }
 .contact-info__value--link {
     color: var(--d-link, var(--primary));
-    font-weight: 500;
+    font-weight: var(--d-weight-medium);
     text-decoration: none;
     border-radius: calc(var(--radius) * 0.6);
 }
@@ -65,4 +65,13 @@
 .contact-info__intro {
     display: grid;
     gap: var(--d-spacing-sm);
+}
+
+/* The intro is centered, so its capped paragraph (18-section-anatomy.css caps
+   intro text at 70ch) must ride the midline too — a capped block box would
+   otherwise hug the start edge under a centered heading. Lives here, next to
+   the alignment decision it belongs to. */
+.contact-info__intro > p,
+.contact-info__intro :where(p) {
+    margin-inline: auto;
 }

@@ -5,9 +5,9 @@
 }
 .mission-statement__eyebrow {
     font-size: var(--d-text-sm);
-    font-weight: 600;
+    font-weight: var(--d-weight-semibold);
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: var(--d-tracking-wide);
     color: var(--d-link, var(--primary));
     display: block;
     margin-block-end: var(--d-spacing-sm);
@@ -22,8 +22,8 @@
 }
 .mission-statement__quote-text {
     font-size: var(--d-text-2xl);
-    font-weight: 300;
-    line-height: 1.4;
+    font-weight: var(--d-weight-light);
+    line-height: var(--d-leading-normal);
     color: var(--d-foreground);
     margin: 0;
     text-wrap: balance;

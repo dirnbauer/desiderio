@@ -11,9 +11,9 @@
 }
 .order-summary__line { display: flex; justify-content: space-between; align-items: baseline; gap: var(--d-spacing-md); }
 .order-summary__line-info { display: flex; align-items: baseline; gap: var(--d-spacing-xs); flex-wrap: wrap; min-width: 0; }
-.order-summary__line-name { font-weight: 500; }
+.order-summary__line-name { font-weight: var(--d-weight-medium); }
 .order-summary__line-qty { font-size: var(--d-text-sm); color: var(--muted-foreground); }
-.order-summary__line-price { font-weight: 500; white-space: nowrap; }
+.order-summary__line-price { font-weight: var(--d-weight-medium); white-space: nowrap; }
 .order-summary__totals {
     display: flex;
     flex-direction: column;
@@ -27,7 +27,7 @@
 .order-summary__row--discount { color: var(--d-link, var(--primary)); }
 .order-summary__row--total {
     font-size: var(--d-text-lg);
-    font-weight: 700;
+    font-weight: var(--d-weight-bold);
     color: var(--foreground);
     padding-block-start: var(--d-spacing-sm);
     border-block-start: 1px solid var(--border);

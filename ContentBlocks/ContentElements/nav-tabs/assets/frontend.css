@@ -27,7 +27,7 @@
     flex: 0 0 auto;
     padding: var(--d-spacing-2) var(--d-spacing-4);
     font-size: var(--d-text-sm);
-    font-weight: 500;
+    font-weight: var(--d-weight-medium);
     color: var(--d-muted-foreground);
     text-decoration: none;
     white-space: nowrap;

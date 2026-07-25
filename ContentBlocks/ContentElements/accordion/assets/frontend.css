@@ -31,8 +31,8 @@
 .accordion__title {
     margin: 0;
     font-size: var(--d-text-base);
-    font-weight: 600;
-    line-height: 1.4;
+    font-weight: var(--d-weight-semibold);
+    line-height: var(--d-leading-normal);
     min-width: 0;
     overflow-wrap: anywhere;
 }
@@ -51,7 +51,7 @@ details[open] > .accordion__trigger > .accordion__icon {
     padding-block-end: var(--d-spacing-md);
     color: var(--muted-foreground);
     font-size: var(--d-text-sm);
-    line-height: 1.7;
+    line-height: var(--d-leading-relaxed);
     min-width: 0;
     overflow-wrap: anywhere;
 }

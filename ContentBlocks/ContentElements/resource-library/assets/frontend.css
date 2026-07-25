@@ -5,9 +5,9 @@
 .resource-library__eyebrow {
     display: block;
     font-size: var(--d-text-sm);
-    font-weight: 600;
+    font-weight: var(--d-weight-semibold);
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: var(--d-tracking-wide);
     color: var(--d-link, var(--primary));
     margin-block-end: var(--d-spacing-xs);
 }
@@ -30,18 +30,18 @@
 .resource-library__type { align-self: flex-start; }
 .resource-library__title {
     font-size: var(--d-text-lg);
-    font-weight: 600;
-    line-height: 1.3;
+    font-weight: var(--d-weight-semibold);
+    line-height: var(--d-leading-snug);
 }
 .resource-library__description {
     color: var(--muted-foreground);
     font-size: var(--d-text-sm);
-    line-height: 1.5;
+    line-height: var(--d-leading-normal);
 }
 .resource-library__link {
     margin-block-start: auto;
     font-size: var(--d-text-sm);
-    font-weight: 500;
+    font-weight: var(--d-weight-medium);
     color: var(--d-link, var(--primary));
     text-decoration: none;
     border-radius: var(--radius);

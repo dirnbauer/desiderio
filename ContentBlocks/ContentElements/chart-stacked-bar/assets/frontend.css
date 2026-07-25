@@ -20,8 +20,8 @@
 }
 .chart-stacked-bar__title {
     font-size: var(--d-text-lg);
-    font-weight: 600;
-    line-height: 1.3;
+    font-weight: var(--d-weight-semibold);
+    line-height: var(--d-leading-snug);
 }
 .chart-stacked-bar__description {
     font-size: var(--d-text-sm);
@@ -66,7 +66,7 @@
 }
 .chart-stacked-bar__legend-label {
     color: var(--foreground);
-    font-weight: 600;
+    font-weight: var(--d-weight-semibold);
 }
 .chart-stacked-bar__legend-value {
     color: var(--muted-foreground);
@@ -108,20 +108,20 @@
        same visual size as every other chart's axis labels instead of the ~9px
        the bespoke 0.6rem produced. */
     font-size: var(--d-text-xs);
-    font-weight: 600;
+    font-weight: var(--d-weight-semibold);
     fill: currentColor;
     font-variant-numeric: tabular-nums;
-    letter-spacing: 0;
+    letter-spacing: var(--d-tracking-normal);
 }
 .chart-stacked-bar__total-label {
     font-size: 0.65rem;
-    font-weight: 700;
+    font-weight: var(--d-weight-bold);
     fill: var(--foreground);
     font-variant-numeric: tabular-nums;
 }
 .chart-stacked-bar__segment-label {
     font-size: 0.52rem;
-    font-weight: 700;
+    font-weight: var(--d-weight-bold);
     /* Halo technique: glyph in --background with a --foreground stroke behind it
        (paint-order) stays legible on every --chart-N segment fill in every
        preset and scheme. */

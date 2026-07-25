@@ -13,7 +13,7 @@
     justify-content: center;
     gap: var(--d-spacing-xs);
     font-size: var(--d-text-xl);
-    font-weight: 700;
+    font-weight: var(--d-weight-bold);
     color: var(--destructive);
     margin: 0;
 }
@@ -34,7 +34,7 @@
     align-items: center;
     gap: var(--d-spacing-xs);
     font-size: var(--d-text-3xl);
-    font-weight: 700;
+    font-weight: var(--d-weight-bold);
     color: var(--destructive);
     text-decoration: none;
     border-radius: var(--d-radius-md);

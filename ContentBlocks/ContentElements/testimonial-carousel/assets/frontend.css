@@ -1,5 +1,5 @@
 .testimonial-carousel__intro { text-align: center; margin-block-end: var(--d-spacing-xl); }
-.testimonial-carousel__eyebrow { font-size: var(--d-text-sm); text-transform: uppercase; letter-spacing: 0.05em; color: var(--d-link, var(--primary)); font-weight: 600; }
+.testimonial-carousel__eyebrow { font-size: var(--d-text-sm); text-transform: uppercase; letter-spacing: var(--d-tracking-wide); color: var(--d-link, var(--primary)); font-weight: var(--d-weight-semibold); }
 .testimonial-carousel__headline { margin-block-start: var(--d-spacing-xs); }
 
 .testimonial-carousel__track {
@@ -30,7 +30,7 @@
 .testimonial-carousel__quote {
     margin: 0;
     font-size: var(--d-text-xl);
-    line-height: 1.6;
+    line-height: var(--d-leading-relaxed);
     font-style: italic;
 }
 
@@ -53,7 +53,7 @@
     object-position: center center;
 }
 .testimonial-carousel__meta { text-align: start; }
-.testimonial-carousel__name { font-weight: 600; font-style: normal; display: block; }
+.testimonial-carousel__name { font-weight: var(--d-weight-semibold); font-style: normal; display: block; }
 .testimonial-carousel__role { font-size: var(--d-text-sm); color: var(--muted-foreground); }
 
 /* Controls injected by Resources/Public/Js/astro.js (shared carousel runtime). */

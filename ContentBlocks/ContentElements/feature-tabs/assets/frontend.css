@@ -33,14 +33,14 @@
 }
 .feature-tabs__title {
     font-size: clamp(1.35rem, 1.1rem + 0.7vw, 1.875rem);
-    font-weight: 600;
-    line-height: 1.18;
+    font-weight: var(--d-weight-semibold);
+    line-height: var(--d-leading-tight);
     margin-block-end: var(--d-spacing-md);
 }
 .feature-tabs__description {
     color: var(--muted-foreground);
     font-size: clamp(1rem, 0.95rem + 0.18vw, 1.125rem);
-    line-height: 1.7;
+    line-height: var(--d-leading-relaxed);
     margin: 0;
 }
 .feature-tabs__media {

@@ -30,7 +30,7 @@
 }
 
 .content-sidebar__main {
-    line-height: 1.7;
+    line-height: var(--d-leading-relaxed);
 }
 
 .content-sidebar__main > *:first-child { margin-top: 0; }

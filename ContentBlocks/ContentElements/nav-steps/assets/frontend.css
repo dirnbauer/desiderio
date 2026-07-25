@@ -33,7 +33,7 @@
     height: 2rem;
     border-radius: 50%;
     font-size: var(--d-text-sm);
-    font-weight: 600;
+    font-weight: var(--d-weight-semibold);
     flex-shrink: 0;
     border: 2px solid var(--d-border);
     color: var(--d-muted-foreground);
@@ -50,7 +50,7 @@
 }
 .nav-steps__label {
     font-size: var(--d-text-sm);
-    font-weight: 500;
+    font-weight: var(--d-weight-medium);
     color: var(--d-muted-foreground);
     white-space: nowrap;
     text-decoration: none;

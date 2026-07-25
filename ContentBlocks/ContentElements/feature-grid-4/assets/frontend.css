@@ -39,15 +39,15 @@
     height: 1.625rem;
 }
 .feature-grid-4__title {
-    font-weight: 600;
+    font-weight: var(--d-weight-semibold);
     font-size: var(--d-text-sm);
-    line-height: 1.35;
+    line-height: var(--d-leading-snug);
     margin: 0;
 }
 .feature-grid-4__description {
     color: var(--muted-foreground);
     font-size: var(--d-text-xs);
-    line-height: 1.55;
+    line-height: var(--d-leading-normal);
     margin: var(--d-spacing-xs) auto 0;
     max-width: 26ch;
 }
@@ -56,4 +56,13 @@
 .feature-grid-4__intro {
     display: grid;
     gap: var(--d-spacing-sm);
+}
+
+/* The intro is centered, so its capped paragraph (18-section-anatomy.css caps
+   intro text at 70ch) must ride the midline too — a capped block box would
+   otherwise hug the start edge under a centered heading. Lives here, next to
+   the alignment decision it belongs to. */
+.feature-grid-4__intro > p,
+.feature-grid-4__intro :where(p) {
+    margin-inline: auto;
 }

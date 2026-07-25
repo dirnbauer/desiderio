@@ -4,9 +4,9 @@
 }
 .contact__eyebrow {
     font-size: var(--d-text-sm);
-    font-weight: 600;
+    font-weight: var(--d-weight-semibold);
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: var(--d-tracking-wide);
     color: var(--d-link, var(--primary));
 }
 .contact__grid {
@@ -17,18 +17,18 @@
 @media (max-width: 768px) {
     .contact__grid { grid-template-columns: 1fr; }
 }
-.contact__info-title { font-weight: 600; margin-block-end: var(--d-spacing-sm); }
+.contact__info-title { font-weight: var(--d-weight-semibold); margin-block-end: var(--d-spacing-sm); }
 .contact__info-text { font-size: var(--d-text-sm); color: var(--muted-foreground); }
 .contact__list { padding: 0; margin: var(--d-spacing-md) 0 0; }
 .contact__list-item { display: flex; flex-wrap: wrap; justify-content: space-between; gap: var(--d-spacing-sm); padding: var(--d-spacing-xs) 0; border-bottom: 1px solid var(--border); }
 .contact__list-item:last-child { border-bottom: 0; }
 .contact__list-label { font-size: var(--d-text-sm); color: var(--muted-foreground); }
 .contact__list-value-wrap { margin: 0; text-align: right; }
-.contact__list-value { font-size: var(--d-text-sm); font-weight: 500; text-decoration: none; color: inherit; overflow-wrap: anywhere; }
+.contact__list-value { font-size: var(--d-text-sm); font-weight: var(--d-weight-medium); text-decoration: none; color: inherit; overflow-wrap: anywhere; }
 a.contact__list-value { transition: color 150ms ease; border-radius: calc(var(--radius) * 0.6); }
 a.contact__list-value:hover { color: var(--foreground); text-decoration: underline; text-underline-offset: 2px; }
 a.contact__list-value:focus-visible { outline: none; box-shadow: 0 0 0 2px var(--card), 0 0 0 4px var(--ring); }
-.contact__form-title { font-weight: 600; margin-block-end: var(--d-spacing-md); }
+.contact__form-title { font-weight: var(--d-weight-semibold); margin-block-end: var(--d-spacing-md); }
 
 /* Form fields delegate to the shared TYPO3 Form Framework bridge
    (.desiderio-form in components.css), which is token-driven
@@ -38,4 +38,13 @@ a.contact__list-value:focus-visible { outline: none; box-shadow: 0 0 0 2px var(-
 .contact__intro {
     display: grid;
     gap: var(--d-spacing-sm);
+}
+
+/* The intro is centered, so its capped paragraph (18-section-anatomy.css caps
+   intro text at 70ch) must ride the midline too — a capped block box would
+   otherwise hug the start edge under a centered heading. Lives here, next to
+   the alignment decision it belongs to. */
+.contact__intro > p,
+.contact__intro :where(p) {
+    margin-inline: auto;
 }

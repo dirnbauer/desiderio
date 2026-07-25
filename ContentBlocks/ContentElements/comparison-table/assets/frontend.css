@@ -1,5 +1,5 @@
 .comparison-table__intro { text-align: center; max-width: 42rem; margin-inline: auto; margin-block-end: var(--d-spacing-xl); }
-.comparison-table__headline { font-size: var(--d-text-3xl); font-weight: 700; letter-spacing: -0.02em; text-wrap: balance; }
+.comparison-table__headline { font-size: var(--d-text-3xl); font-weight: var(--d-weight-bold); letter-spacing: var(--d-tracking-tight); text-wrap: balance; }
 .comparison-table__description { color: var(--muted-foreground); margin-block-start: var(--d-spacing-sm); text-wrap: pretty; }
 .comparison-table__wrapper {
     overflow-x: auto;
@@ -26,13 +26,13 @@
 .comparison-table__table tbody tr:last-child th,
 .comparison-table__table tbody tr:last-child td { border-bottom: 0; }
 .comparison-table__table thead th {
-    font-weight: 600;
+    font-weight: var(--d-weight-semibold);
     background: color-mix(in oklch, var(--muted) 35%, transparent);
 }
 .comparison-table__feature-col,
 .comparison-table__feature-name {
     text-align: left;
-    font-weight: 600;
+    font-weight: var(--d-weight-semibold);
     white-space: nowrap;
 }
 .comparison-table__feature-name { color: var(--foreground); }

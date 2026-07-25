@@ -43,6 +43,7 @@ final class ContentElementAuditTest extends TestCase
         // they belong in the zero-tolerance list rather than a report.
         'shared_collection_missing_flag',
         'shared_collection_inert_fields',
+        'css_untokenised_typography',
     ];
 
     public function testStrictAuditCategoriesAreClean(): void

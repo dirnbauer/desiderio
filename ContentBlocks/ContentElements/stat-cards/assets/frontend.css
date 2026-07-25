@@ -14,11 +14,11 @@
 }
 .stat-cards__dl { margin: 0; }
 .stat-cards__label { margin: 0; font-size: var(--d-text-sm); color: var(--muted-foreground); }
-.stat-cards__value { margin: var(--d-spacing-xs) 0 0; font-size: var(--d-text-2xl); font-weight: 700; line-height: 1.1; }
+.stat-cards__value { margin: var(--d-spacing-xs) 0 0; font-size: var(--d-text-2xl); font-weight: var(--d-weight-bold); line-height: var(--d-leading-tight); }
 .stat-cards__change {
     display: inline-flex; align-items: center; gap: 2px;
     margin: var(--d-spacing-xs) 0 0;
-    font-size: var(--d-text-sm); font-weight: 500;
+    font-size: var(--d-text-sm); font-weight: var(--d-weight-medium);
 }
 .stat-cards__arrow { flex: none; }
 .stat-cards__change--up { color: var(--d-success-text); }

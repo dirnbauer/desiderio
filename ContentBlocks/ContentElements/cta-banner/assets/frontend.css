@@ -22,7 +22,7 @@
 }
 .cta-banner__headline {
     font-size: var(--d-text-xl);
-    font-weight: 700;
+    font-weight: var(--d-weight-bold);
 }
 .cta-banner__description {
     font-size: var(--d-text-sm);

@@ -16,13 +16,13 @@
 .content-columns__col {
     color: var(--muted-foreground);
     font-size: var(--d-text-sm);
-    line-height: 1.7;
+    line-height: var(--d-leading-relaxed);
     min-width: 0;
     overflow-wrap: break-word;
 }
 .content-columns__col > *:first-child { margin-top: 0; }
 .content-columns__col > *:last-child { margin-bottom: 0; }
-.content-columns__col strong { color: var(--foreground); font-weight: 600; }
+.content-columns__col strong { color: var(--foreground); font-weight: var(--d-weight-semibold); }
 .content-columns__col a {
     color: var(--d-link, var(--primary));
     text-decoration: underline;

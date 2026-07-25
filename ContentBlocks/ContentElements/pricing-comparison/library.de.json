@@ -1,0 +1,75 @@
+{
+    "header": "Limits und Support im Tarifvergleich",
+    "eyebrow": "Tarife vergleichen",
+    "plans": [
+        {
+            "name": "Sandbox",
+            "price": "EUR 0"
+        },
+        {
+            "name": "Build",
+            "price": "EUR 49 pro Monat"
+        },
+        {
+            "name": "Scale",
+            "price": "EUR 249 pro Monat"
+        },
+        {
+            "name": "Enterprise",
+            "price": "Ab EUR 1.900 pro Monat"
+        }
+    ],
+    "pricing_feature_items": [
+        {
+            "feature_name": "Inkludierte Seiten pro Monat",
+            "tier_values": [
+                {
+                    "value": "500"
+                },
+                {
+                    "value": "5.000"
+                },
+                {
+                    "value": "35.000"
+                },
+                {
+                    "value": "Zugesichertes Volumen"
+                }
+            ]
+        },
+        {
+            "feature_name": "Requests pro Sekunde",
+            "tier_values": [
+                {
+                    "value": "2"
+                },
+                {
+                    "value": "25, Spitzen bis 60"
+                },
+                {
+                    "value": "100, Spitzen bis 250"
+                },
+                {
+                    "value": "Vertraglich vereinbart"
+                }
+            ]
+        },
+        {
+            "feature_name": "Support-Reaktionszeit",
+            "tier_values": [
+                {
+                    "value": "Community-Forum"
+                },
+                {
+                    "value": "Nächster Werktag"
+                },
+                {
+                    "value": "4 Stunden, 24/5"
+                },
+                {
+                    "value": "1 Stunde, 24/7"
+                }
+            ]
+        }
+    ]
+}

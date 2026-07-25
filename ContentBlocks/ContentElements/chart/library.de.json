@@ -1,0 +1,37 @@
+{
+    "header": "Monatlich von Kunden erstellte Funnel-Berichte",
+    "description": "<p>Neu angelegte Funnel-Berichte über alle Workspaces, Januar bis Juni 2026. Der Sprung im April folgt auf die Vorlagengalerie, die die Erstellungsdauer im Median von 18 Minuten auf unter 5 Minuten senkte.</p>",
+    "chart_data": "[{\"label\": \"Jan\", \"value\": 1420}, {\"label\": \"Feb\", \"value\": 1580}, {\"label\": \"Mär\", \"value\": 1735}, {\"label\": \"Apr\", \"value\": 2260}, {\"label\": \"Mai\", \"value\": 2410}, {\"label\": \"Jun\", \"value\": 2680}]",
+    "series_name": "Erstellte Funnel-Berichte",
+    "value_unit": "Berichte",
+    "data_summary": "Die Zahl der monatlich erstellten Funnel-Berichte stieg von 1.420 im Januar 2026 auf 2.680 im Juni, ein Plus von 88,7 %, mit dem stärksten Sprung im April nach dem Start der Vorlagengalerie.",
+    "data_points": [
+        {
+            "point_label": "Jan",
+            "point_value": "1420"
+        },
+        {
+            "point_label": "Feb",
+            "point_value": "1580"
+        },
+        {
+            "point_label": "Mär",
+            "point_value": "1735"
+        },
+        {
+            "point_label": "Apr",
+            "point_value": "2260"
+        },
+        {
+            "point_label": "Mai",
+            "point_value": "2410"
+        },
+        {
+            "point_label": "Jun",
+            "point_value": "2680"
+        }
+    ],
+    "chart_type": "area",
+    "color_variant": "primary",
+    "chart_height": "medium"
+}

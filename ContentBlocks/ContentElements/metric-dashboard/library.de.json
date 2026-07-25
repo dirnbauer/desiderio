@@ -1,0 +1,27 @@
+{
+    "header": "Umsatz und Nutzung auf einem Panel für den Vorstand",
+    "description": "<p>Das Quartalspaket, das der Vorstand sieht: was hereinkam, was der Betrieb kostet und wie sich die Ingest-Pipeline verhielt, während das Monatsvolumen um ein Drittel auf 4,1 Milliarden Events stieg. Jede Zahl wird live gelesen, nicht aus einer Tabelle kopiert.</p>",
+    "items": [
+        {
+            "label": "Monatlich wiederkehrender Umsatz",
+            "value": "EUR 612.000",
+            "change": "+7,2 % ggü. Mai",
+            "trend": "up"
+        },
+        {
+            "label": "Netto-Umsatzbindung",
+            "value": "114 %",
+            "change": "+3 Pkt. ggü. Q1",
+            "trend": "up"
+        },
+        {
+            "label": "Kosten je betreutem Workspace",
+            "value": "EUR 38",
+            "change": "-EUR 4 ggü. Q1",
+            "trend": "down"
+        }
+    ],
+    "chart_series_label": "Monatlich wiederkehrender Umsatz",
+    "chart_unit": "Tsd. EUR",
+    "chart_data": "[{\"label\": \"Jan\", \"value\": 448}, {\"label\": \"Feb\", \"value\": 471}, {\"label\": \"Mär\", \"value\": 503}, {\"label\": \"Apr\", \"value\": 542}, {\"label\": \"Mai\", \"value\": 571}, {\"label\": \"Jun\", \"value\": 612}]"
+}

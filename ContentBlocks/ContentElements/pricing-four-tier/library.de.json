@@ -1,0 +1,97 @@
+{
+    "header": "Vom ersten API-Key zum Mengenvertrag",
+    "eyebrow": "Vier Tarife",
+    "subheadline": "Die Tarife unterscheiden sich in Durchsatz, Support und Datenstandort. Alle vier erreichen dieselben Endpoints mit identischen Request- und Response-Formaten, ein Wechsel nach oben ist also eine Frage der Abrechnung und kein Umbau Ihrer bestehenden Anbindung.",
+    "plans": [
+        {
+            "title": "Sandbox",
+            "price": "EUR 0",
+            "description": "<p>500 Seiten pro Monat für Prototypen, mit derselben Antwort wie in der Produktion.</p>",
+            "features": [
+                {
+                    "text": "500 Seiten pro Monat, ohne Kreditkarte"
+                },
+                {
+                    "text": "2 Requests pro Sekunde"
+                },
+                {
+                    "text": "Support über das Community-Forum"
+                }
+            ],
+            "featured": false,
+            "button_text": "Sandbox-Key holen"
+        },
+        {
+            "title": "Build",
+            "price": "EUR 49",
+            "description": "<p>Eine Produktivanwendung, 5.000 Seiten pro Monat, EUR 0,010 für jede weitere Seite.</p>",
+            "features": [
+                {
+                    "text": "5.000 Seiten pro Monat inklusive"
+                },
+                {
+                    "text": "25 Requests pro Sekunde, Spitzen bis 60"
+                },
+                {
+                    "text": "Kostenlimit je Workspace"
+                },
+                {
+                    "text": "E-Mail-Support, Antwort am nächsten Werktag"
+                }
+            ],
+            "featured": false,
+            "button_text": "Mit Build starten"
+        },
+        {
+            "title": "Scale",
+            "price": "EUR 249",
+            "description": "<p>35.000 Seiten pro Monat mit zugesicherter Verfügbarkeit und vier Stunden Support-Reaktionszeit.</p>",
+            "features": [
+                {
+                    "text": "35.000 Seiten pro Monat inklusive"
+                },
+                {
+                    "text": "EUR 0,007 für jede weitere Seite"
+                },
+                {
+                    "text": "100 Requests pro Sekunde, Spitzen bis 250"
+                },
+                {
+                    "text": "99,9 % Verfügbarkeit zugesichert"
+                },
+                {
+                    "text": "Support-Antwort binnen 4 Stunden, 24/5"
+                }
+            ],
+            "featured": true,
+            "button_text": "Zu Scale wechseln"
+        },
+        {
+            "title": "Enterprise",
+            "price": "Ab EUR 1.900",
+            "description": "<p>Zugesichertes Volumen ab 250.000 Seiten pro Monat, betrieben dort, wo Ihre Auditoren es wünschen.</p>",
+            "features": [
+                {
+                    "text": "Zugesichertes Volumen ab 250.000 Seiten"
+                },
+                {
+                    "text": "EUR 0,004 pro Seite, quartalsweise abgerechnet"
+                },
+                {
+                    "text": "Frankfurt, Dublin oder Ihre eigene VPC"
+                },
+                {
+                    "text": "99,95 % Verfügbarkeit zugesichert"
+                },
+                {
+                    "text": "Support-Antwort binnen 1 Stunde, 24/7"
+                },
+                {
+                    "text": "Fester Solutions Engineer ab dem ersten Tag"
+                }
+            ],
+            "featured": false,
+            "button_text": "Vertrieb kontaktieren"
+        }
+    ]
+}

@@ -1,0 +1,72 @@
+{
+    "header": "Gehostet, im eigenen Rack oder vollständig offline",
+    "eyebrow": "Betriebsmodelle",
+    "products": [
+        {
+            "name": "Lumen Cloud",
+            "price": "Ab EUR 49 pro Monat",
+            "specs": [
+                {
+                    "text": "Regionen Frankfurt und Dublin"
+                },
+                {
+                    "text": "100 Requests pro Sekunde im Scale-Tarif"
+                },
+                {
+                    "text": "Modell-Updates jeden Dienstag eingespielt"
+                },
+                {
+                    "text": "Keine Hardware zu kaufen oder einzubauen"
+                }
+            ],
+            "is_recommended": true
+        },
+        {
+            "name": "Lumen Edge 200",
+            "price": "EUR 8.400",
+            "specs": [
+                {
+                    "text": "1U-Appliance, 12 Seiten pro Sekunde"
+                },
+                {
+                    "text": "Läuft in Ihrem Rack, Dokumente bleiben im Haus"
+                },
+                {
+                    "text": "Signierte Modell-Updates, die Sie vorab freigeben"
+                },
+                {
+                    "text": "Drei Jahre Hardware-Garantie"
+                },
+                {
+                    "text": "Verkauf inklusive Supportvertrag, EUR 1.400 pro Jahr"
+                }
+            ],
+            "is_recommended": false
+        },
+        {
+            "name": "Lumen Edge 400",
+            "price": "EUR 15.900",
+            "specs": [
+                {
+                    "text": "2U-Appliance, 34 Seiten pro Sekunde"
+                },
+                {
+                    "text": "Läuft ohne Netzanbindung, Updates per signiertem Bundle"
+                },
+                {
+                    "text": "Redundante Netzteile, Hot-Swap-Laufwerke"
+                },
+                {
+                    "text": "Zwei Geräte bilden einen Cluster ohne Load Balancer"
+                },
+                {
+                    "text": "Drei Jahre Hardware-Garantie"
+                },
+                {
+                    "text": "Verkauf inklusive Supportvertrag, EUR 2.600 pro Jahr"
+                }
+            ],
+            "is_recommended": false
+        }
+    ]
+}

@@ -1,0 +1,55 @@
+{
+    "header": "Build oder Scale, je nach Monatsvolumen",
+    "eyebrow": "Self-Service-Tarife",
+    "subheadline": "Beide Tarife erreichen jeden Endpoint in beiden Regionen. Der Unterschied liegt im inkludierten Seitenkontingent, in der Request-Obergrenze und darin, wie schnell ein Ticket beantwortet wird, wenn ein Batch um drei Uhr früh stehen bleibt.",
+    "plans": [
+        {
+            "title": "Build",
+            "price": "EUR 49 pro Monat",
+            "description": "<p>5.000 Seiten pro Monat für eine einzelne Produktivanwendung, danach EUR 0,010 pro Seite.</p>",
+            "features": [
+                {
+                    "text": "5.000 Seiten pro Monat inklusive"
+                },
+                {
+                    "text": "25 Requests pro Sekunde, Spitzen bis 60"
+                },
+                {
+                    "text": "Kostenlimit je Workspace"
+                },
+                {
+                    "text": "E-Mail-Support, Antwort am nächsten Werktag"
+                }
+            ],
+            "featured": false,
+            "button_text": "Mit Build starten"
+        },
+        {
+            "title": "Scale",
+            "price": "EUR 249 pro Monat",
+            "description": "<p>35.000 Seiten pro Monat, eine zugesicherte Verfügbarkeit und Support-Reaktionszeiten in Stunden.</p>",
+            "features": [
+                {
+                    "text": "35.000 Seiten pro Monat inklusive"
+                },
+                {
+                    "text": "EUR 0,007 für jede weitere Seite"
+                },
+                {
+                    "text": "100 Requests pro Sekunde, Spitzen bis 250"
+                },
+                {
+                    "text": "99,9 % Verfügbarkeit zugesichert"
+                },
+                {
+                    "text": "Support-Antwort binnen 4 Stunden, 24/5"
+                },
+                {
+                    "text": "Failover zwischen Frankfurt und Dublin"
+                }
+            ],
+            "featured": true,
+            "button_text": "Zu Scale wechseln"
+        }
+    ]
+}

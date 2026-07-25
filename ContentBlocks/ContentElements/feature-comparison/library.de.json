@@ -1,0 +1,32 @@
+{
+    "header": "Arbeitsscheine auf Papier gegen Live-Disposition",
+    "left_title": "Arbeitsscheine auf Papier",
+    "right_title": "Vertex Dispatch",
+    "items": [
+        {
+            "feature": "Kundschaft bestätigt den Abschluss",
+            "left_supported": 1,
+            "right_supported": 1
+        },
+        {
+            "feature": "Funktioniert ohne Mobilfunk vor Ort",
+            "left_supported": 1,
+            "right_supported": 1
+        },
+        {
+            "feature": "Vollständige Anlagenhistorie im Einsatz",
+            "left_supported": 0,
+            "right_supported": 1
+        },
+        {
+            "feature": "SLA-Warnung 30 Minuten im Voraus",
+            "left_supported": 0,
+            "right_supported": 1
+        },
+        {
+            "feature": "Verbrauchte Teile automatisch vom Fahrzeugbestand abgebucht",
+            "left_supported": 0,
+            "right_supported": 1
+        }
+    ]
+}

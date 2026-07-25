@@ -1,0 +1,19 @@
+{
+    "header": "Abrechnungsfragen vor der Vertragsunterschrift",
+    "eyebrow": "FAQ zur Abrechnung",
+    "subheadline": "Die Antworten decken Messung, Mehrverbrauch und den Fall ab, dass ein Batch mitten im Lauf abbricht. Alles Weitere steht in der Abrechnungsreferenz, und eine schriftliche Antwort auf ein Support-Ticket erreicht Sie am nächsten Werktag.",
+    "question_items": [
+        {
+            "question": "Was zählt als Seite?",
+            "answer": "<p>Eine Seite eines Dokuments, das an einen Endpoint geht. Ein PDF mit 12 Seiten am Extraktions-Endpoint zählt als 12 Seiten, unabhängig davon, ob jede Seite Felder zurückgibt. Beim Splitten erkannte Leerseiten werden nicht berechnet.</p>"
+        },
+        {
+            "question": "Werden fehlgeschlagene Requests berechnet?",
+            "answer": "<p>Nein. Alles, was mit einem 4xx- oder 5xx-Status beantwortet wird, fließt nicht in die Messung ein. Seiten aus einem Batch, der mitten im Lauf stoppt, werden innerhalb derselben Abrechnungsperiode gutgeschrieben, ganz ohne Support-Ticket.</p>"
+        },
+        {
+            "question": "Was passiert, wenn die inkludierten Seiten aufgebraucht sind?",
+            "answer": "<p>Weitere Seiten werden zum Tarifsatz berechnet: EUR 0,010 bei Build, EUR 0,007 bei Scale. Das Kostenlimit des Workspace stoppt die Verarbeitung an der von Ihnen gesetzten Obergrenze, statt die Rechnung weiter wachsen zu lassen.</p>"
+        }
+    ]
+}

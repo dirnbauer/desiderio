@@ -1,0 +1,22 @@
+{
+    "header": "Schnittstellen, die Ihr Backoffice synchron halten",
+    "subheadline": "Neun Verbindungen sind standardmäßig dabei und brauchen keine Middleware. Nach diesen vier fragt die Finanzabteilung im ersten Gespräch, und jede läuft nach einem Zeitplan, den Sie festlegen, statt über einen manuellen Export.",
+    "items": [
+        {
+            "title": "DATEV",
+            "description_text": "Arbeitsscheine, Teile und Stunden als buchbare Sätze, mit Kostenstellen je Vertrag."
+        },
+        {
+            "title": "BMD NTCS",
+            "description_text": "Nächtliche Übergabe abgeschlossener Aufträge, Gutschriften und Technikerzeiten."
+        },
+        {
+            "title": "Microsoft Entra ID",
+            "description_text": "Single Sign-on und automatische Deaktivierung, sobald ein Techniker aus der Lohnverrechnung fällt."
+        },
+        {
+            "title": "Sage 50",
+            "description_text": "Rechnungsentwürfe aus unterschriebenen Arbeitsscheinen, unter Beibehaltung Ihrer Nummernkreise."
+        }
+    ]
+}

@@ -1,0 +1,84 @@
+{
+    "header": "Wir rechnen Seiten ab, keine Plätze",
+    "eyebrow": "Preise",
+    "subheadline": "In jedem Tarif stehen alle Endpoints beliebig vielen Teammitgliedern offen. Unterschiedlich sind das monatliche Seitenkontingent, die Request-Obergrenze und die Support-Zusage, die dahintersteht, wenn im Produktivbetrieb etwas ausfällt.",
+    "columns": "3",
+    "plans": [
+        {
+            "name": "Build",
+            "price": "EUR 49",
+            "billing_period": "pro Monat",
+            "description": "<p>Eine Produktivanwendung mit 5.000 Seiten pro Monat, danach EUR 0,010 pro Seite.</p>",
+            "features": [
+                {
+                    "text": "5.000 Seiten pro Monat inklusive"
+                },
+                {
+                    "text": "25 Requests pro Sekunde, Spitzen bis 60"
+                },
+                {
+                    "text": "Kostenlimit je Workspace"
+                },
+                {
+                    "text": "E-Mail-Support, Antwort am nächsten Werktag"
+                }
+            ],
+            "is_featured": false,
+            "button_text": "Mit Build starten"
+        },
+        {
+            "badge_text": "Am häufigsten gewählt",
+            "name": "Scale",
+            "price": "EUR 249",
+            "billing_period": "pro Monat",
+            "description": "<p>35.000 Seiten pro Monat, danach EUR 0,007, mit schriftlich zugesicherter Verfügbarkeit.</p>",
+            "features": [
+                {
+                    "text": "35.000 Seiten pro Monat inklusive"
+                },
+                {
+                    "text": "EUR 0,007 für jede weitere Seite"
+                },
+                {
+                    "text": "100 Requests pro Sekunde, Spitzen bis 250"
+                },
+                {
+                    "text": "99,9 % Verfügbarkeit zugesichert"
+                },
+                {
+                    "text": "Failover zwischen Frankfurt und Dublin"
+                },
+                {
+                    "text": "Support-Antwort binnen 4 Stunden, 24/5"
+                }
+            ],
+            "is_featured": true,
+            "button_text": "Zu Scale wechseln"
+        },
+        {
+            "name": "Enterprise",
+            "price": "Ab EUR 1.900",
+            "billing_period": "pro Monat",
+            "description": "<p>Zugesichertes Volumen ab 250.000 Seiten pro Monat, betrieben dort, wo Ihre Auditoren es verlangen.</p>",
+            "features": [
+                {
+                    "text": "Zugesichertes Volumen ab 250.000 Seiten"
+                },
+                {
+                    "text": "EUR 0,004 pro Seite, quartalsweise abgerechnet"
+                },
+                {
+                    "text": "Frankfurt, Dublin oder Ihre eigene VPC"
+                },
+                {
+                    "text": "SOC-2-Type-II-Bericht und unterzeichneter AVV"
+                },
+                {
+                    "text": "Support-Antwort binnen 1 Stunde, 24/7"
+                }
+            ],
+            "is_featured": false,
+            "button_text": "Vertrieb kontaktieren"
+        }
+    ]
+}

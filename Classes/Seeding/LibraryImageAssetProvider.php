@@ -102,7 +102,18 @@ final class LibraryImageAssetProvider
         $identifier = is_scalar($fieldConfig['identifier'] ?? null) ? (string)$fieldConfig['identifier'] : '';
         $label = is_scalar($fieldConfig['label'] ?? null) ? (string)$fieldConfig['label'] : '';
         $allowed = is_scalar($fieldConfig['allowed'] ?? null) ? (string)$fieldConfig['allowed'] : '';
-        $haystack = strtolower($field . ' ' . $identifier . ' ' . $label . ' ' . $allowed);
+
+        // The LEAF identifier decides the role, never the collection path.
+        // `$field` can arrive as "testimonials.company_logo", and matching the
+        // whole string made the parent collection win: "testimonials" hits the
+        // portrait rule, so a company logo slot was handed a person's face.
+        if ($identifier !== '') {
+            $leaf = $identifier;
+        } else {
+            $lastSegment = strrchr($field, '.');
+            $leaf = $lastSegment === false ? $field : substr($lastSegment, 1);
+        }
+        $haystack = strtolower($leaf . ' ' . $label . ' ' . $allowed);
 
         // `allowed` is authoritative when it names a non-image family: a field
         // that accepts video types IS a video field whatever it is called.

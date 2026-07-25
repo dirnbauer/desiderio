@@ -1,0 +1,26 @@
+{
+    "header": "Was in diesem Quartal ausgeliefert wurde",
+    "items": [
+        {
+            "version": "4.5.0",
+            "date": "24. Juni 2026",
+            "title": "Funnels verzweigen nach jeder Event-Eigenschaft",
+            "description": "<p>Ein Funnel-Schritt kann sich jetzt nach einer Eigenschaft aufteilen, statt einen Pfad zu erzwingen: Vergleichen Sie Karten- und Rechnungs-Checkout nebeneinander, ohne zwei Berichte zu bauen. Bestehende Funnels verhalten sich unverändert.</p>",
+            "tag": "new"
+        },
+        {
+            "version": "4.4.2",
+            "date": "13. Mai 2026",
+            "title": "Kohorten-Exporte über 5 Millionen Zeilen laufen durch",
+            "description": "<p>Retention-Exporte oberhalb von rund 5 Millionen Zeilen brachen nach 300 Sekunden ab. Sie werden nun an einen signierten Download-Link gestreamt und im Hintergrund fertiggestellt. Gemeldet hat das Brannen Health.</p>",
+            "tag": "fix"
+        },
+        {
+            "version": "4.3.0",
+            "date": "18. März 2026",
+            "title": "Der alte Endpunkt /v1/track wurde abgeschaltet",
+            "description": "<p>Events an den alten Pfad /v1/track werden ab diesem Release abgewiesen. Wechseln Sie auf /v2/events – dieselbe Payload, zusätzlich ein Workspace-Key im Header. SDKs ab 3.0 nutzen ihn bereits.</p>",
+            "tag": "breaking"
+        }
+    ]
+}

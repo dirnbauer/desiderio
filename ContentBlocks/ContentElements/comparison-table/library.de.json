@@ -1,0 +1,62 @@
+{
+    "header": "Was jeder Tarif enthält – ohne Vertriebsgespräch",
+    "description": "<p>Alle drei Tarife nutzen dieselbe Ingest-Pipeline und dieselbe Abfrage-Engine. Unterschiedlich sind das erlaubte Eventvolumen, wie lange Rohdaten abfragbar bleiben (6, 24 oder 36 Monate) und wie schnell jemand ans Telefon geht.</p>",
+    "column_items": [
+        {
+            "name": "Starter",
+            "highlighted": false
+        },
+        {
+            "name": "Growth",
+            "highlighted": true
+        },
+        {
+            "name": "Scale",
+            "highlighted": false
+        }
+    ],
+    "comparison_feature_items": [
+        {
+            "name": "Preis pro Monat, jährlich abgerechnet",
+            "tier_values": [
+                {
+                    "value": "EUR 49"
+                },
+                {
+                    "value": "EUR 249"
+                },
+                {
+                    "value": "EUR 890"
+                }
+            ]
+        },
+        {
+            "name": "Inkludierte Events pro Monat",
+            "tier_values": [
+                {
+                    "value": "1 Million"
+                },
+                {
+                    "value": "10 Millionen"
+                },
+                {
+                    "value": "50 Millionen"
+                }
+            ]
+        },
+        {
+            "name": "Reaktionszeit im Support",
+            "tier_values": [
+                {
+                    "value": "2 Werktage"
+                },
+                {
+                    "value": "8 Stunden an Werktagen"
+                },
+                {
+                    "value": "1 Stunde, rund um die Uhr"
+                }
+            ]
+        }
+    ]
+}

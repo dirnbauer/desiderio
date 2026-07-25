@@ -1,0 +1,25 @@
+{
+    "header": "Was jeder Endpoint pro Seite kostet",
+    "eyebrow": "Sätze pro Seite",
+    "subheadline": "Gemessen wird pro Seite und pro Endpoint: Ein Dokument, das klassifiziert, gesplittet und danach extrahiert wird, erscheint als drei Positionen auf der Rechnung. Die folgenden Sätze gelten, bis ein Workspace im Monat 100.000 Seiten überschreitet.",
+    "items": [
+        {
+            "title": "Feldextraktion",
+            "rate": "EUR 0,012",
+            "unit": "pro Seite",
+            "description": "<p>Rechnungen, Lieferscheine und Formulare kommen als typisiertes JSON zurück, mit einem Konfidenzwert für jedes Feld.</p>"
+        },
+        {
+            "title": "Dokumentklassifizierung",
+            "rate": "EUR 0,004",
+            "unit": "pro Seite",
+            "description": "<p>Sortiert einen gemischten Posteingang vor der Extraktion in 40 mitgelieferte Dokumenttypen oder in Labels, die Sie selbst definieren.</p>"
+        },
+        {
+            "title": "Schwärzung personenbezogener Daten",
+            "rate": "EUR 0,006",
+            "unit": "pro Seite",
+            "description": "<p>Namen, IBANs und Kartennummern werden in der gespeicherten Datei maskiert, je Dokument entsteht ein Protokolleintrag.</p>"
+        }
+    ]
+}

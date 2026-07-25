@@ -1,0 +1,19 @@
+{
+    "header": "Grenzwerte und Formate der Extraktions-API",
+    "eyebrow": "Technische Daten",
+    "description": "<p>Die Angaben beschreiben den gehosteten Dienst im Scale-Tarif. Die Edge-Appliances nutzen dieselben Modelle, ihr Durchsatz hängt jedoch von der Hardware in Ihrem Rack ab und nicht von einer Request-Obergrenze.</p>",
+    "specs": [
+        {
+            "label": "Eingabeformate",
+            "value": "PDF, TIFF, PNG, JPEG und DOCX"
+        },
+        {
+            "label": "Maximaler Request",
+            "value": "80 MB, bis zu 300 Seiten pro Aufruf"
+        },
+        {
+            "label": "Mittlere Antwortzeit",
+            "value": "1,4 s pro Seite, 3,1 s im 95. Perzentil"
+        }
+    ]
+}

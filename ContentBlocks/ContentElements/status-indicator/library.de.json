@@ -1,0 +1,21 @@
+{
+    "header": "Aktueller Zustand aller Ingest- und Abfragedienste",
+    "overall_status": "degraded",
+    "items": [
+        {
+            "name": "Event-Ingest, Frankfurt",
+            "status": "operational",
+            "detail": "p95-Latenz 12 s, kein Rückstand"
+        },
+        {
+            "name": "Abfrage-API",
+            "status": "operational",
+            "detail": "1,9 s im Median über gespeicherte Dashboards"
+        },
+        {
+            "name": "Warehouse Sync",
+            "status": "degraded",
+            "detail": "Exporte laufen rund 40 Minuten hinter dem Zeitplan"
+        }
+    ]
+}

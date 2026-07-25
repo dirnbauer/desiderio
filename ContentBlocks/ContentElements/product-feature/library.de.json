@@ -1,0 +1,23 @@
+{
+    "header": "Personendaten maskieren, bevor sie gespeichert werden",
+    "eyebrow": "Maskierungs-Add-on",
+    "description": "<p>Die Schwärzung läuft im selben Request wie die Extraktion. Deshalb sind Namen, IBANs und Kartennummern in der Kopie, die in Ihrem Bucket landet, bereits maskiert. Das unmaskierte Original verlässt die Verarbeitungsregion nie.</p>",
+    "features": [
+        {
+            "text": "Maskiert 24 Entitätstypen, darunter IBAN und Steuernummer"
+        },
+        {
+            "text": "Ein Protokolleintrag je Dokument, sieben Jahre aufbewahrt"
+        },
+        {
+            "text": "Eigene Muster als reguläre Ausdrücke hinterlegbar"
+        },
+        {
+            "text": "Läuft im Extraktionsaufruf mit, EUR 0,006 pro Seite"
+        },
+        {
+            "text": "Verarbeitung in Frankfurt unter unterzeichnetem AVV"
+        }
+    ],
+    "button_text": "Leitfaden zur Schwärzung lesen"
+}

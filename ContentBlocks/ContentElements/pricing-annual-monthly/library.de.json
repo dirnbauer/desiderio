@@ -1,0 +1,71 @@
+{
+    "header": "Jährlich zahlen, gleiche Seiten, zwei Monate sparen",
+    "eyebrow": "Monatlich oder jährlich",
+    "subheadline": "Bei jährlicher Abrechnung zahlen Sie zehn Monate im Voraus, das Seitenkontingent bleibt unverändert. Wechselt ein Workspace mitten in der Laufzeit von monatlich auf jährlich, werden die nicht genutzten Tage als Guthaben auf die neue Laufzeit angerechnet.",
+    "plans": [
+        {
+            "name": "Build",
+            "monthly_price": "EUR 49",
+            "annual_price": "EUR 490 pro Jahr",
+            "savings": "EUR 98 sparen",
+            "features": [
+                {
+                    "text": "5.000 Seiten pro Monat inklusive"
+                },
+                {
+                    "text": "EUR 0,010 für jede weitere Seite"
+                },
+                {
+                    "text": "25 Requests pro Sekunde, Spitzen bis 60"
+                }
+            ],
+            "button_text": "Mit Build starten"
+        },
+        {
+            "name": "Scale",
+            "monthly_price": "EUR 249",
+            "annual_price": "EUR 2.490 pro Jahr",
+            "savings": "EUR 498 sparen",
+            "features": [
+                {
+                    "text": "35.000 Seiten pro Monat inklusive"
+                },
+                {
+                    "text": "EUR 0,007 für jede weitere Seite"
+                },
+                {
+                    "text": "100 Requests pro Sekunde, Spitzen bis 250"
+                },
+                {
+                    "text": "99,9 % Verfügbarkeit zugesichert"
+                },
+                {
+                    "text": "Support-Antwort binnen 4 Stunden, 24/5"
+                }
+            ],
+            "is_featured": true,
+            "button_text": "Zu Scale wechseln"
+        },
+        {
+            "name": "Enterprise",
+            "monthly_price": "Ab EUR 1.900",
+            "annual_price": "Ab EUR 19.000 pro Jahr",
+            "savings": "Zwei Monate sparen",
+            "features": [
+                {
+                    "text": "Zugesichertes Volumen ab 250.000 Seiten"
+                },
+                {
+                    "text": "EUR 0,004 pro Seite, quartalsweise abgerechnet"
+                },
+                {
+                    "text": "Frankfurt, Dublin oder Ihre eigene VPC"
+                },
+                {
+                    "text": "Support-Antwort binnen 1 Stunde, 24/7"
+                }
+            ],
+            "button_text": "Vertrieb kontaktieren"
+        }
+    ]
+}

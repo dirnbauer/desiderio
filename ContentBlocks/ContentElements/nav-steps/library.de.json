@@ -1,0 +1,18 @@
+{
+    "header": "Ihre Spindel im Überholungsablauf",
+    "variant": "numbered",
+    "step_items": [
+        {
+            "label": "Wareneingangsprüfung",
+            "status": "completed"
+        },
+        {
+            "label": "Lagerwechsel",
+            "status": "current"
+        },
+        {
+            "label": "Rundlaufprüfung und Freigabe",
+            "status": "pending"
+        }
+    ]
+}

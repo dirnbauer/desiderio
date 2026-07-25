@@ -1,0 +1,19 @@
+{
+    "header": "Quellen, die Streams ohne eigenen Code liest",
+    "description": "<p>Richten Sie ein SDK auf Ihren Workspace-Key aus, und die Events landen im 95. Perzentil binnen 12 Sekunden in Funnels, Cohorts und Replay. Kein Konnektor einzurichten, kein nächtlicher Batch-Job zu betreuen.</p>",
+    "variant": "secondary",
+    "items": [
+        {
+            "text": "JavaScript SDK",
+            "color": "green"
+        },
+        {
+            "text": "iOS- und Android-SDK",
+            "color": "blue"
+        },
+        {
+            "text": "Serverseitige HTTP-API",
+            "color": "default"
+        }
+    ]
+}

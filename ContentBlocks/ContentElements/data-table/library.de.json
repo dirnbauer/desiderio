@@ -1,0 +1,67 @@
+{
+    "header": "Ingest-Limits und Aufbewahrung je Tarif",
+    "column_definitions": [
+        {
+            "column_label": "Tarif",
+            "column_align": "left"
+        },
+        {
+            "column_label": "Events pro Monat",
+            "column_align": "left"
+        },
+        {
+            "column_label": "Rohdaten-Aufbewahrung",
+            "column_align": "left"
+        },
+        {
+            "column_label": "Preis pro Monat",
+            "column_align": "right"
+        }
+    ],
+    "rows": [
+        {
+            "row_label": "Starter",
+            "cells": [
+                {
+                    "value": "1 Million"
+                },
+                {
+                    "value": "6 Monate"
+                },
+                {
+                    "value": "EUR 49"
+                }
+            ]
+        },
+        {
+            "row_label": "Growth",
+            "cells": [
+                {
+                    "value": "10 Millionen"
+                },
+                {
+                    "value": "24 Monate"
+                },
+                {
+                    "value": "EUR 249"
+                }
+            ]
+        },
+        {
+            "row_label": "Scale",
+            "cells": [
+                {
+                    "value": "50 Millionen"
+                },
+                {
+                    "value": "36 Monate"
+                },
+                {
+                    "value": "EUR 890"
+                }
+            ]
+        }
+    ],
+    "show_caption": 1,
+    "caption_text": "Volumen über die inkludierten Events hinaus wird in jedem Tarif mit EUR 0,35 je 100.000 Events verrechnet. Bei jährlicher Zahlung entfallen zwei Monate der Jahressumme."
+}

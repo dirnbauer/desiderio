@@ -1,0 +1,20 @@
+{
+    "header": "In dieser Größenordnung läuft die Ingest-Pipeline",
+    "columns": "3",
+    "items": [
+        {
+            "target_value": 4100,
+            "suffix": "Mio.",
+            "label": "Erfasste Events im Juni 2026"
+        },
+        {
+            "target_value": 1840,
+            "label": "Workspaces mit Live-Daten"
+        },
+        {
+            "target_value": 12,
+            "suffix": "s",
+            "label": "p95-Latenz vom SDK-Aufruf bis abfragbar"
+        }
+    ]
+}

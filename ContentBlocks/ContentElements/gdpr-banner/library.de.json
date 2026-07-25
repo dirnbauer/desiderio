@@ -1,0 +1,23 @@
+{
+    "header": "Wählen Sie, welche Cookies das Portal setzt",
+    "content": "<p>Das Kundenportal benötigt ein Cookie, um Sie angemeldet zu halten. Alles Weitere entscheiden Sie: Wir zählen, welche technischen Dokumente geöffnet werden, und die Videos der Werksführung laden einen Player, der eigene Cookies setzt. Wählen Sie unten je Kategorie – ändern können Sie das später jederzeit über den Footer.</p>",
+    "cookie_categories": [
+        {
+            "name": "Anmeldung und Konfigurator",
+            "description_text": "Behält Ihre Sitzung und Ihre Auswahl im Teilekonfigurator zwölf Stunden lang.",
+            "required": true
+        },
+        {
+            "name": "Dokument-Auswertung",
+            "description_text": "Zählt, welche Zeichnungen und Zeugnisse heruntergeladen werden. Betrieben auf unseren eigenen Servern in Graz, ohne Beteiligung Dritter.",
+            "required": false
+        },
+        {
+            "name": "Videos der Werksführung",
+            "description_text": "Lädt den eingebetteten Player, der eigene Cookies setzt, sobald Sie auf Wiedergabe drücken.",
+            "required": false
+        }
+    ],
+    "accept_text": "Alle akzeptieren",
+    "save_text": "Auswahl speichern"
+}

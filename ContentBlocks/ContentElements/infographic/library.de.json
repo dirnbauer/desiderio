@@ -1,0 +1,21 @@
+{
+    "header": "Vom ersten SDK-Aufruf zum ersten Funnel-Bericht",
+    "description": "Die meisten Teams haben schon am Tag der Anmeldung einen funktionierenden Funnel. Sie müssen vorher kein Datenmodell entwerfen: Senden Sie Events unter den Namen, die Sie ohnehin im Produkt-Review verwenden – um den Rest kümmert sich die Plattform.",
+    "items": [
+        {
+            "number": "1",
+            "title": "Ein Event senden",
+            "description": "Binden Sie das JavaScript- oder Mobile-SDK ein, rufen Sie track einmal auf und sehen Sie das Event binnen 12 Sekunden im Live-Stream ankommen."
+        },
+        {
+            "number": "2",
+            "title": "Das Wesentliche benennen",
+            "description": "Markieren Sie die vier oder fünf Events, aus denen eine Anmeldung oder ein Checkout besteht. Mehr muss nicht beschriftet sein, bevor Sie abfragen können."
+        },
+        {
+            "number": "3",
+            "title": "Den Funnel bauen",
+            "description": "Schritte der Reihe nach wählen, Konversionsfenster setzen, Abbrüche ablesen. In neuen Workspaces liegt die mediane Bauzeit unter 5 Minuten."
+        }
+    ]
+}

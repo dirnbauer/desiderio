@@ -1,0 +1,11 @@
+{
+    "header": "Median-Abfragezeit für Dashboards, sechs Monate",
+    "description": "<p>Median-Zeit bis zur ersten Darstellung eines gespeicherten Dashboards, Januar bis Juni 2026. Der Einbruch im März ist die spaltenorientierte Neufassung der Abfrageschicht; alles danach ist Feinschliff an den Indizes.</p>",
+    "series_label": "Median-Abfragezeit",
+    "unit": "Sekunden",
+    "data_points": "Jan | 4.8\nFeb | 4.5\nMär | 3.1\nApr | 2.6\nMai | 2.2\nJun | 1.9",
+    "chart_data": "[{\"label\": \"Jan\", \"value\": 4.8}, {\"label\": \"Feb\", \"value\": 4.5}, {\"label\": \"Mär\", \"value\": 3.1}, {\"label\": \"Apr\", \"value\": 2.6}, {\"label\": \"Mai\", \"value\": 2.2}, {\"label\": \"Jun\", \"value\": 1.9}]",
+    "color_variant": "green",
+    "show_dots": 1,
+    "smooth": 1
+}

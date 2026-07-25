@@ -1,0 +1,79 @@
+{
+    "header": "Von Sandbox bis Scale, nach Seiten pro Monat",
+    "eyebrow": "Tarife",
+    "subheadline": "Sandbox umfasst 500 Seiten pro Monat und verlangt keine Kreditkarte. Build und Scale bringen mehr Durchsatz, eine zugesicherte Verfügbarkeit und schnelleren Support, behalten aber dieselben Request- und Response-Formate wie der Sandbox-Key, mit dem Sie begonnen haben.",
+    "plans": [
+        {
+            "name": "Sandbox",
+            "price": "EUR 0",
+            "billing_period": "pro Monat",
+            "description": "<p>500 Seiten pro Monat für Prototypen, mit derselben Antwort wie in der Produktion.</p>",
+            "features": [
+                {
+                    "text": "500 Seiten pro Monat, ohne Kreditkarte"
+                },
+                {
+                    "text": "2 Requests pro Sekunde"
+                },
+                {
+                    "text": "Support über das Community-Forum"
+                }
+            ],
+            "is_recommended": false,
+            "button_text": "Sandbox-Key holen"
+        },
+        {
+            "name": "Build",
+            "price": "EUR 49",
+            "billing_period": "pro Monat",
+            "description": "<p>5.000 Seiten pro Monat für eine Produktivanwendung, danach EUR 0,010 pro Seite.</p>",
+            "features": [
+                {
+                    "text": "5.000 Seiten pro Monat inklusive"
+                },
+                {
+                    "text": "25 Requests pro Sekunde, Spitzen bis 60"
+                },
+                {
+                    "text": "Alle Extraktions- und Klassifizierungs-Endpoints"
+                },
+                {
+                    "text": "Kostenlimit je Workspace"
+                },
+                {
+                    "text": "E-Mail-Support, Antwort am nächsten Werktag"
+                }
+            ],
+            "is_recommended": false,
+            "button_text": "Mit Build starten"
+        },
+        {
+            "name": "Scale",
+            "price": "EUR 249",
+            "billing_period": "pro Monat",
+            "description": "<p>35.000 Seiten pro Monat, danach EUR 0,007, mit Failover zwischen zwei Regionen.</p>",
+            "features": [
+                {
+                    "text": "35.000 Seiten pro Monat inklusive"
+                },
+                {
+                    "text": "EUR 0,007 für jede weitere Seite"
+                },
+                {
+                    "text": "100 Requests pro Sekunde, Spitzen bis 250"
+                },
+                {
+                    "text": "99,9 % Verfügbarkeit zugesichert"
+                },
+                {
+                    "text": "Failover zwischen Frankfurt und Dublin"
+                },
+                {
+                    "text": "Support-Antwort binnen 4 Stunden, 24/5"
+                }
+            ],
+            "is_recommended": true,
+            "button_text": "Zu Scale wechseln"
+        }
+    ]
+}

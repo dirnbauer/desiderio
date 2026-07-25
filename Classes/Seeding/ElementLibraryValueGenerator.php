@@ -102,17 +102,32 @@ final class ElementLibraryValueGenerator extends StyleguideDemoValueGenerator
         ];
     }
 
+    /**
+     * Fallback headings for an element that ships no library.json.
+     *
+     * The eight entries this replaces ("Support that scales with you", "Simple,
+     * powerful, reliable", …) were the whole reason the picker was unreadable:
+     * a shared pool of interchangeable slogans landed on dozens of unrelated
+     * elements and told the editor nothing. These are concrete section headings
+     * instead — still generic enough to suit any element, but each one at least
+     * describes a real kind of page section.
+     *
+     * This is a safety net, not the intended path. Authored demo content lives
+     * in each element's library.json; anything relying on this pool will
+     * eventually collide with a neighbour, which is why
+     * Tests/Unit/LibraryFixtureTest requires every element to have one.
+     */
     protected function demoSubjects(): array
     {
         return [
-            'Everything in one place',
-            'Built for growing teams',
-            'Work smarter, not harder',
-            'Designed around your workflow',
-            'Results you can measure',
-            'Support that scales with you',
-            'Simple, powerful, reliable',
-            'Made for modern teams',
+            'What changed in this release',
+            'How the rollout went, month by month',
+            'The numbers behind the last quarter',
+            'Where teams spend their first week',
+            'Answers to the questions we get most',
+            'What our customers measured afterwards',
+            'A closer look at how it fits together',
+            'Which plan covers which use case',
         ];
     }
 

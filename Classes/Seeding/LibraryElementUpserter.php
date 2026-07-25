@@ -217,42 +217,21 @@ final class LibraryElementUpserter
             );
         }
 
-        // Foreign host extension (innesto): no fixture, definition built from config.yaml
-        $definition = ContentBlockDefinitionRegistry::buildDefinitionFromConfig($element['config']);
-        [$resolvedFields, $collections, $fileReferences] = $this->fixtureResolver->completeResolvedFixtureData(
+        // Foreign host extension (innesto). The definition registry only scans
+        // EXT:desiderio, so build it from the element's own config.yaml and
+        // hand it to the resolver - that way innesto takes exactly the same
+        // authored-content path as desiderio instead of falling back to the
+        // generic vocabulary pool for every field.
+        return $this->fixtureResolver->buildContentInsert(
+            $pid,
             $element['cType'],
             $element['name'],
-            $definition,
-            [],
-            [],
-            $element['fixture']
+            $element['libraryFixture'] ?? [],
+            $sorting,
+            $now,
+            $columns,
+            ContentBlockDefinitionRegistry::buildDefinitionFromConfig($element['config'])
         );
-
-        $row = [
-            'pid' => $pid,
-            'CType' => $element['cType'],
-            'colPos' => 0,
-            'sorting' => $sorting,
-            'hidden' => 0,
-            'sys_language_uid' => 0,
-            'crdate' => $now,
-            'tstamp' => $now,
-        ];
-        foreach ($resolvedFields as $field => $value) {
-            $row[$field] = $value;
-        }
-        foreach ($fileReferences as $field => $references) {
-            $row[$field] = count($references);
-        }
-        foreach ($collections as $field => $collection) {
-            $row[$collection['column'] ?? $field] = count($collection['items']);
-        }
-
-        return [
-            'row' => $this->databaseSchema->filterRow($row, $columns),
-            'collections' => $collections,
-            'fileReferences' => $fileReferences,
-        ];
     }
 
     /**

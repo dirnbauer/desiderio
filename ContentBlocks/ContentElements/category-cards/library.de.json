@@ -1,0 +1,23 @@
+{
+    "header": "Der passende Endpoint für jedes Dokument",
+    "eyebrow": "Preise je Endpoint",
+    "subheadline": "Jeder Endpoint rechnet pro Seite ab, und im Sandbox-Tarif gilt für keinen davon ein Monatsmindestumsatz. Sobald ein Workspace innerhalb eines Kalendermonats 100.000 Seiten überschreitet, greifen die niedrigeren Sätze von selbst, und das Nutzungsprotokoll weist die abgerechnete Stufe aus.",
+    "columns": "3",
+    "items": [
+        {
+            "title": "Extraktion",
+            "count": "6 Endpoints",
+            "description": "<p>Rechnungen, Lieferscheine, Verträge und Formulare kommen als typisiertes JSON zurück, mit einem Konfidenzwert je Feld. EUR 0,012 pro Seite.</p>"
+        },
+        {
+            "title": "Klassifizierung",
+            "count": "3 Endpoints",
+            "description": "<p>Sortiert einen gemischten Posteingang vor der Extraktion in die richtige Warteschlange, über 40 mitgelieferte Typen oder eigene Labels. EUR 0,004 pro Seite.</p>"
+        },
+        {
+            "title": "Schwärzung",
+            "count": "4 Endpoints",
+            "description": "<p>Namen, IBANs und Kartennummern werden in der gespeicherten Kopie maskiert, mit einem Protokolleintrag je Dokument. EUR 0,006 pro Seite.</p>"
+        }
+    ]
+}

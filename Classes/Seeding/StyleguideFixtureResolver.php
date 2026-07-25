@@ -45,6 +45,7 @@ final class StyleguideFixtureResolver
     /**
      * @param array<string, mixed> $fixture
      * @param array<string, true> $columns
+     * @param array{fields: array<string, array<string, mixed>>, collections: array<string, array<string, mixed>>}|null $definition
      * @return array{row: array<string, mixed>, collections: array<string, array{table: string, column: string, items: list<array<string, mixed>>}>, fileReferences: array<string, list<array{file: string, title: string, alternative: string, description: string, source: string}>>}
      */
     public function buildContentInsert(
@@ -55,6 +56,7 @@ final class StyleguideFixtureResolver
         int $sorting,
         int $now,
         array $columns,
+        ?array $definition = null,
     ): array {
         $row = [
             'pid' => $pid,
@@ -67,7 +69,7 @@ final class StyleguideFixtureResolver
             'tstamp' => $now,
         ];
 
-        [$resolvedFields, $collections, $fileReferences] = $this->resolveFixtureFields($ctype, $fixture, $name);
+        [$resolvedFields, $collections, $fileReferences] = $this->resolveFixtureFields($ctype, $fixture, $name, $definition);
 
         foreach ($resolvedFields as $field => $value) {
             $row[$field] = $value;
@@ -90,11 +92,16 @@ final class StyleguideFixtureResolver
 
     /**
      * @param array<string, mixed> $fixture
+     * @param array{fields: array<string, array<string, mixed>>, collections: array<string, array<string, mixed>>}|null $definition
      * @return array{0: array<string, mixed>, 1: array<string, array{table: string, column: string, items: list<array<string, mixed>>}>, 2: array<string, list<array{file: string, title: string, alternative: string, description: string, source: string}>>}
      */
-    public function resolveFixtureFields(string $ctype, array $fixture, string $name = ''): array
+    public function resolveFixtureFields(string $ctype, array $fixture, string $name = '', ?array $definition = null): array
     {
-        $definition = ContentBlockDefinitionRegistry::getDefinition($ctype);
+        // The registry only scans EXT:desiderio, so a foreign host extension
+        // (innesto) has to hand in the definition it built from its own
+        // config.yaml. Without this its elements could never carry authored
+        // demo content and fell back to the generic vocabulary pool.
+        $definition ??= ContentBlockDefinitionRegistry::getDefinition($ctype);
         if ($definition === null) {
             // Native CType (core content element): copy scalar fixture keys
             // straight into their tt_content columns; route the known native FAL

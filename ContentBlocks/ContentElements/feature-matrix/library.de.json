@@ -1,0 +1,38 @@
+{
+    "header": "Tarif Crew und Tarif Dispatch, Limit für Limit",
+    "eyebrow": "Tariflimits",
+    "left_label": "Crew",
+    "right_label": "Dispatch",
+    "rows": [
+        {
+            "label": "Preis pro Techniker",
+            "left_value": "EUR 29 pro Monat",
+            "right_value": "EUR 49 pro Monat"
+        },
+        {
+            "label": "Enthaltene Techniker",
+            "left_value": "Bis zu 10",
+            "right_value": "Bis zu 250"
+        },
+        {
+            "label": "Offline-Speicher",
+            "left_value": "24 Stunden",
+            "right_value": "7 Tage"
+        },
+        {
+            "label": "Buchhaltungsexport",
+            "left_value": "Nur CSV",
+            "right_value": "DATEV, BMD, Sage 50"
+        },
+        {
+            "label": "Reaktionszeit im Support",
+            "left_value": "Nächster Werktag",
+            "right_value": "Zwei Arbeitsstunden"
+        },
+        {
+            "label": "Kundenportal",
+            "left_value": "Nicht enthalten",
+            "right_value": "Enthalten"
+        }
+    ]
+}

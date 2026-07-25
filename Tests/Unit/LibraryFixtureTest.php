@@ -53,6 +53,25 @@ final class LibraryFixtureTest extends TestCase
         'TYPO3',
     ];
 
+    /**
+     * Yaml::parseFile() is typed array<mixed, mixed>; the definition registry
+     * needs string keys, which every config.yaml has by construction.
+     *
+     * @return array<string, mixed>
+     */
+    private function parseConfig(string $path): array
+    {
+        $config = Yaml::parseFile($path);
+        self::assertIsArray($config);
+
+        $normalized = [];
+        foreach ($config as $key => $value) {
+            $normalized[(string)$key] = $value;
+        }
+
+        return $normalized;
+    }
+
     /** @return list<string> */
     private function blockDirectories(): array
     {
@@ -95,9 +114,9 @@ final class LibraryFixtureTest extends TestCase
     {
         $unknown = [];
         foreach ($this->libraryFixtures() as $name => $fixture) {
-            $config = Yaml::parseFile(self::CONTENT_BLOCKS_DIR . '/' . $name . '/config.yaml');
-            self::assertIsArray($config);
-            $definition = ContentBlockDefinitionRegistry::buildDefinitionFromConfig($config);
+            $definition = ContentBlockDefinitionRegistry::buildDefinitionFromConfig(
+                $this->parseConfig(self::CONTENT_BLOCKS_DIR . '/' . $name . '/config.yaml')
+            );
 
             foreach (array_keys($fixture) as $key) {
                 if (str_starts_with((string)$key, '_')) {
@@ -142,8 +161,16 @@ final class LibraryFixtureTest extends TestCase
     {
         $offenders = [];
         foreach ($this->libraryFixtures() as $name => $fixture) {
-            $haystack = json_encode($fixture, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
-            self::assertIsString($haystack);
+            // Values only, never keys. `feature-list` legitimately declares a
+            // field called `shadcn_layout`, and scanning the encoded document
+            // would ban authors from setting a field the element actually has.
+            $values = [];
+            array_walk_recursive($fixture, static function (mixed $value) use (&$values): void {
+                if (is_string($value)) {
+                    $values[] = $value;
+                }
+            });
+            $haystack = implode("\n", $values);
 
             foreach (self::BANNED_SUBSTRINGS as $banned) {
                 if (stripos($haystack, $banned) !== false) {
@@ -190,9 +217,9 @@ final class LibraryFixtureTest extends TestCase
     {
         $invalid = [];
         foreach ($this->libraryFixtures() as $name => $fixture) {
-            $config = Yaml::parseFile(self::CONTENT_BLOCKS_DIR . '/' . $name . '/config.yaml');
-            self::assertIsArray($config);
-            $definition = ContentBlockDefinitionRegistry::buildDefinitionFromConfig($config);
+            $definition = ContentBlockDefinitionRegistry::buildDefinitionFromConfig(
+                $this->parseConfig(self::CONTENT_BLOCKS_DIR . '/' . $name . '/config.yaml')
+            );
 
             foreach ($fixture as $key => $value) {
                 $field = $definition['fields'][(string)$key] ?? null;
@@ -208,7 +235,7 @@ final class LibraryFixtureTest extends TestCase
                     continue;
                 }
 
-                if (str_contains((string)$key, 'icon') && $value !== '' && !IconRegistry::has($value)) {
+                if (str_contains((string)$key, 'icon') && $value !== '' && !in_array($value, IconRegistry::keys(), true)) {
                     $invalid[] = sprintf('%s.%s = "%s" is not a registered icon', $name, $key, $value);
                 }
             }
@@ -221,9 +248,9 @@ final class LibraryFixtureTest extends TestCase
     {
         $overflow = [];
         foreach ($this->libraryFixtures() as $name => $fixture) {
-            $config = Yaml::parseFile(self::CONTENT_BLOCKS_DIR . '/' . $name . '/config.yaml');
-            self::assertIsArray($config);
-            $definition = ContentBlockDefinitionRegistry::buildDefinitionFromConfig($config);
+            $definition = ContentBlockDefinitionRegistry::buildDefinitionFromConfig(
+                $this->parseConfig(self::CONTENT_BLOCKS_DIR . '/' . $name . '/config.yaml')
+            );
 
             foreach ($definition['collections'] as $identifier => $collection) {
                 $items = $fixture[$identifier] ?? null;
@@ -236,6 +263,36 @@ final class LibraryFixtureTest extends TestCase
         }
 
         self::assertSame([], $overflow, implode(' | ', $overflow));
+    }
+
+    /**
+     * Headroom here is genuinely thin — the longest German headline is 56 of 60
+     * characters and the longest eyebrow 23 of 24 — so the next edit in either
+     * language breaks a layout unless something checks. Both languages are
+     * covered because German runs ~15% longer than English and is where this
+     * fails first.
+     */
+    public function testHeadlinesAndEyebrowsStayWithinTheirLayoutBudget(): void
+    {
+        $overLong = [];
+        foreach (['', 'de'] as $locale) {
+            foreach ($this->libraryFixtures($locale) as $name => $fixture) {
+                $label = $name . ($locale === '' ? '' : ' [' . $locale . ']');
+
+                foreach (self::HEADLINE_FIELDS as $field) {
+                    $value = $fixture[$field] ?? null;
+                    if (is_string($value) && mb_strlen($value) > 60) {
+                        $overLong[] = sprintf('%s.%s is %d chars (max 60)', $label, $field, mb_strlen($value));
+                    }
+                }
+                $eyebrow = $fixture['eyebrow'] ?? null;
+                if (is_string($eyebrow) && mb_strlen($eyebrow) > 24) {
+                    $overLong[] = sprintf('%s.eyebrow is %d chars (max 24)', $label, mb_strlen($eyebrow));
+                }
+            }
+        }
+
+        self::assertSame([], $overLong, implode(' | ', $overLong));
     }
 
     public function testGermanVariantsCoverTheSameFieldsAsTheSourceLanguage(): void
@@ -276,7 +333,6 @@ final class LibraryFixtureTest extends TestCase
             }
         });
 
-        /** @var list<string> $files */
         return $files;
     }
 
@@ -309,7 +365,8 @@ final class LibraryFixtureTest extends TestCase
         $people = (new \ReflectionClass($generator))->getMethod('demoPeople')->invoke($generator);
         self::assertIsArray($people);
 
-        $portraits = glob(self::LIBRARY_ASSET_DIR . '/lib-portrait-*') ?: [];
+        $found = glob(self::LIBRARY_ASSET_DIR . '/lib-portrait-*');
+        $portraits = $found === false ? [] : $found;
         natsort($portraits);
         $portraits = array_values($portraits);
 
@@ -324,12 +381,14 @@ final class LibraryFixtureTest extends TestCase
         );
 
         foreach ($people as $index => $person) {
-            $slug = strtolower((string)preg_replace('/[^a-z]+/i', '-', (string)$person[0]));
+            self::assertIsArray($person);
+            $fullName = is_string($person[0] ?? null) ? $person[0] : '';
+            $slug = strtolower((string)preg_replace('/[^a-z]+/i', '-', $fullName));
             $expected = sprintf('lib-portrait-%02d-%s-', $index + 1, $slug);
             self::assertStringStartsWith(
                 $expected,
                 basename($portraits[$index]),
-                sprintf('Portrait %d does not belong to %s.', $index + 1, $person[0])
+                sprintf('Portrait %d does not belong to %s.', $index + 1, $fullName)
             );
         }
     }

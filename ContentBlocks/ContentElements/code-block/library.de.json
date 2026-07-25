@@ -1,0 +1,6 @@
+{
+    "header": "Metadaten eines Beitrags aus dem Archiv abrufen",
+    "language": "Bash",
+    "filename": "terminal",
+    "code": "# Jeder veröffentlichte Beitrag ist über seine DOI erreichbar\ncurl -s https://api.northstarlabs.example/v2/papers/10.48711/nsq.2026.0142 \\\n  -H \"Authorization: Bearer $LODESTAR_TOKEN\" \\\n  | jq '.title, .issue, .licence, .open_access_from'\n\n# \"Stichprobenverzerrung in longitudinalen Feldstudien\"\n# \"Quarterly 2026/2\"\n# \"CC BY-NC 4.0\"\n# \"2027-05-14\"\n"
+}

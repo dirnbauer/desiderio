@@ -1,0 +1,10 @@
+{
+    "header": "Herkunft der 4,1 Mrd. Events des Vormonats",
+    "description": "<p>Ingest-Verteilung nach Quelle für Juni 2026, über alle 1.840 Workspaces. Der Anteil serverseitigen Traffics steigt weiter, weil Teams ihre Umsatz-Events aus dem Browser in die eigenen Backends verlagern.</p>",
+    "segments": "Web SDK | 2140\nMobile SDK | 980\nServer API | 720\nWarehouse Sync | 260",
+    "unit": "Millionen Events",
+    "chart_data": "[{\"label\": \"Web SDK\", \"value\": 2140}, {\"label\": \"Mobile SDK\", \"value\": 980}, {\"label\": \"Server API\", \"value\": 720}, {\"label\": \"Warehouse Sync\", \"value\": 260}]",
+    "show_legend": 1,
+    "palette": "brand",
+    "chart_size": "medium"
+}

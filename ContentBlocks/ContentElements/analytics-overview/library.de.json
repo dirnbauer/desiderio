@@ -1,0 +1,25 @@
+{
+    "header": "Der 30-Tage-Blick für Ihr Montags-Standup",
+    "period_label": "1.–30. Juni 2026",
+    "items": [
+        {
+            "label": "Erfasste Events",
+            "value": "4,1 Mrd.",
+            "change": "+11,6 % ggü. Mai",
+            "trend": "up"
+        },
+        {
+            "label": "Median Dashboard-Abfrage",
+            "value": "1,9 s",
+            "change": "-0,4 s ggü. Mai",
+            "trend": "down"
+        },
+        {
+            "label": "Workspaces mit Datenversand",
+            "value": "1.840",
+            "change": "+119 netto neu",
+            "trend": "up"
+        }
+    ],
+    "summary": "<p>Der Juni war der erste volle Monat auf dem Frankfurter Ingest-Cluster. Das Volumen wuchs schneller als die Abfragezeit: Dashboards wurden schneller, obwohl die Pipeline 430 Millionen Events mehr verarbeitete als im Mai.</p>"
+}

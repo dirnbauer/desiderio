@@ -1,0 +1,11 @@
+{
+    "header": "Welche Berichte Teams an Werktagen öffnen",
+    "description": "<p>Durchschnittliche Aufrufe pro Werktag über alle Workspaces im Juni 2026. Funnels bleiben die Eingangstür, und Session Replay liegt inzwischen vor den geteilten Dashboards, für die es ursprünglich gebaut wurde.</p>",
+    "bars": "Funnels | 4820\nRetention-Kohorten | 3140\nSession Replay | 2260\nGeteilte Dashboards | 1980\nWarehouse-Abfragen | 1150",
+    "unit": "Aufrufe pro Tag",
+    "series_name": "Durchschnittliche Aufrufe werktags",
+    "chart_data": "[{\"label\": \"Funnels\", \"value\": 4820}, {\"label\": \"Retention-Kohorten\", \"value\": 3140}, {\"label\": \"Session Replay\", \"value\": 2260}, {\"label\": \"Geteilte Dashboards\", \"value\": 1980}, {\"label\": \"Warehouse-Abfragen\", \"value\": 1150}]",
+    "orientation": "horizontal",
+    "color_variant": "primary",
+    "show_grid": 1
+}

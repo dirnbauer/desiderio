@@ -1,0 +1,23 @@
+{
+    "header": "Regler auf Ihr tatsächliches Volumen schieben",
+    "eyebrow": "Kostenschätzung",
+    "description": "<p>Die Werte unten gehen von reiner Extraktion aus. Klassifizierung und Schwärzung werden getrennt gemessen, und die Monatsrechnung übersteigt nie das im Workspace gesetzte Kostenlimit, wie stark der Verkehr auch schwankt.</p>",
+    "unit_label": "Seiten pro Monat",
+    "tiers": [
+        {
+            "volume": "10.000",
+            "price": "EUR 99 pro Monat",
+            "included_features": "Standardsatz, 25 Requests pro Sekunde, Region Frankfurt"
+        },
+        {
+            "volume": "50.000",
+            "price": "EUR 379 pro Monat",
+            "included_features": "Wachstumssatz, 100 Requests pro Sekunde, 99,9 % Verfügbarkeit zugesichert"
+        },
+        {
+            "volume": "250.000",
+            "price": "EUR 1.450 pro Monat",
+            "included_features": "Mengensatz, Support binnen 4 Stunden, Failover zwischen Frankfurt und Dublin"
+        }
+    ]
+}

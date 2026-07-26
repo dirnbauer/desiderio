@@ -303,6 +303,20 @@ final class ContentBlockDefinitionRegistry
     }
 
     /**
+     * Extension keys whose ContentElements/ directories make up the registry.
+     *
+     * The same list the element library uses, so an extension that registers
+     * itself as a library host is automatically known here too — one
+     * registration, not three.
+     *
+     * @return list<string>
+     */
+    private static function getContentElementHosts(): array
+    {
+        return ElementCatalog::hostExtensions();
+    }
+
+    /**
      * Every directory that may hold shared RecordTypes.
      *
      * Desiderio's own comes first, and any extension building on this engine
@@ -323,25 +337,14 @@ final class ContentBlockDefinitionRegistry
      *
      * @return list<string>
      */
-    /**
-     * Extension keys whose ContentElements/ directories make up the registry.
-     *
-     * The same list the element library uses, so an extension that registers
-     * itself as a library host is automatically known here too — one
-     * registration, not three.
-     *
-     * @return list<string>
-     */
-    private static function getContentElementHosts(): array
-    {
-        return ElementCatalog::hostExtensions();
-    }
-
     private static function getRecordTypeBasePaths(): array
     {
         $paths = [dirname(__DIR__, 2) . '/ContentBlocks/RecordTypes'];
 
-        $registered = $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['desiderio']['recordTypePaths'] ?? [];
+        $registered = $GLOBALS['TYPO3_CONF_VARS'] ?? null;
+        foreach (['EXTENSIONS', 'desiderio', 'recordTypePaths'] as $key) {
+            $registered = is_array($registered) ? ($registered[$key] ?? null) : null;
+        }
         foreach (is_array($registered) ? $registered : [] as $path) {
             if (is_string($path) && $path !== '') {
                 $paths[] = rtrim($path, '/');

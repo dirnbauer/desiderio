@@ -12,7 +12,7 @@
  */
 
 import { chromium } from 'playwright';
-import { readFileSync, writeFileSync } from 'node:fs';
+import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -93,6 +93,8 @@ console.log(`\n${findings.length} anatomy findings`);
 const byCheck = dist(findings.map((f) => f.check));
 for (const [check, count] of byCheck) console.log(`  ${String(count).padStart(4)}  ${check}`);
 
-writeFileSync(join(HERE, 'report', 'anatomy.json'), JSON.stringify({ rows, findings }, null, 2));
-console.log(`\nDetail: ${join(HERE, 'report', 'anatomy.json')}`);
+const reportDir = join(HERE, 'report');
+mkdirSync(reportDir, { recursive: true });
+writeFileSync(join(reportDir, 'anatomy.json'), JSON.stringify({ rows, findings }, null, 2));
+console.log(`\nDetail: ${join(reportDir, 'anatomy.json')}`);
 process.exitCode = findings.length === 0 ? 0 : 1;

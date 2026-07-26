@@ -1,6 +1,33 @@
-<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:dc="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+    data-namespace-typo3-fluid="true"
+>
 <f:layout name="Default"/>
 <f:section name="Main">
-    <f:render partial="Menu" arguments="{record: record, items: menu}"/>
+    <f:comment>
+        Unlike the page menus, core's processor exposes the matched records as
+        {content} — raw database rows, no {item.link}/{item.title} — so the
+        Menu partial cannot render them. Build the same card grid from the
+        rows; each card links to the record on its page.
+    </f:comment>
+    <div class="ce-fsc-menu">
+        <f:render partial="Header" arguments="{record: record}"/>
+        <f:if condition="{content}">
+            <nav class="ce-fsc-menu__nav" aria-label="{record.header}">
+                <dc:layout.grid cols="3" gap="md" class="ce-fsc-menu__grid">
+                    <f:for each="{content}" as="item">
+                        <dc:molecule.card class="ce-fsc-menu__card">
+                            <dc:molecule.cardContent class="ce-fsc-menu__card-content">
+                                <a href="{f:uri.page(pageUid: item.data.pid, section: 'c{item.data.uid}')}" class="ce-fsc-menu__link">
+                                    <span class="ce-fsc-menu__title">{item.data.header}</span>
+                                </a>
+                            </dc:molecule.cardContent>
+                        </dc:molecule.card>
+                    </f:for>
+                </dc:layout.grid>
+            </nav>
+        </f:if>
+    </div>
 </f:section>
 </html>

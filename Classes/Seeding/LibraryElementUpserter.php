@@ -239,7 +239,7 @@ final class LibraryElementUpserter
      * outside their own row: core inlines selected_categories into the query
      * (an empty selection is IN() — a SQL syntax error) and an unrelated
      * category shows nothing. Give the folder two demo categories, point both
-     * menu records at them, and tag the quote + table demos so the
+     * menu records at them, and tag the table + textmedia demos so the
      * categorized-content menu lists real records. Idempotent; runs after the
      * element loop so the tagged siblings exist regardless of seed order.
      */
@@ -283,7 +283,7 @@ final class LibraryElementUpserter
         }
 
         $taggedUids = self::intColumn($contentConnection->fetchFirstColumn(
-            "SELECT uid FROM tt_content WHERE pid = ? AND CType IN ('quote', 'table') AND deleted = 0",
+            "SELECT uid FROM tt_content WHERE pid = ? AND CType IN ('table', 'textmedia') AND deleted = 0",
             [$folderPid]
         ));
         $mmConnection = $this->connectionPool->getConnectionForTable('sys_category_record_mm');

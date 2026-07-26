@@ -30,6 +30,18 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
   New `DesiderioThemes` backend layout (EN/DE/ES/FR/HU labels); showcase pages
   may now request their own layout via `backendLayout`.
 
+## [3.5.2] — 2026-07-26
+
+### Fixed
+
+- **The categorized-content menu renders its records.** Desiderio's template
+  handed the Menu partial `{menu}`, but core's processor exposes the matched
+  rows as `{content}` — the override had never listed anything. The template
+  now builds the same card grid from the rows, each card linking to the
+  record on its page; the library demo tags the table + textmedia demos (the
+  quote CType assumed before does not exist), so the demo shows a real
+  two-item menu.
+
 ## [3.5.1] — 2026-07-26
 
 ### Fixed

@@ -55,7 +55,7 @@ final class SeedElementLibraryCommand extends Command
         $this
             ->addOption('parent', null, InputOption::VALUE_REQUIRED, 'Site root page uid the Element Library sysfolder is created below.')
             ->addOption('locale', null, InputOption::VALUE_REQUIRED, 'Language key of the demo content to seed, e.g. "de". Prefers each element\'s library.<locale>.json over library.json. The records are still written as language 0 - this picks the source language of a folder, it does not create translations.')
-            ->addOption('hosts', null, InputOption::VALUE_REQUIRED, 'Comma-separated host extensions to seed, e.g. "desiderio,innesto,core" ("core" = native TYPO3 content types). Default: every host. Records of other hosts already in the folder are removed, so this scopes a site\'s library folder to the theme it uses.')
+            ->addOption('hosts', null, InputOption::VALUE_REQUIRED, 'Comma-separated host extensions to seed, e.g. "desiderio,innesto,core" ("core" = native TYPO3 content types). Default: a folder that already has records keeps the hosts it has; a fresh folder gets every host. Records of other hosts already in the folder are removed, so this scopes a site\'s library folder to the theme it uses.')
             ->addOption('no-warm', null, InputOption::VALUE_NONE, 'Skip warming the preview page cache after seeding.')
             ->addOption('allow-production', null, InputOption::VALUE_NONE, 'Run even when Application Context is Production.');
     }
@@ -96,17 +96,6 @@ final class SeedElementLibraryCommand extends Command
             array_map(static fn(string $host): string => strtolower(trim($host)), explode(',', $hosts)),
             static fn(string $host): bool => $host !== '',
         )));
-        if ($allowedHosts !== []) {
-            $elements = array_values(array_filter(
-                $elements,
-                static fn(array $element): bool => in_array(strtolower($element['hostExtension']), $allowedHosts, true),
-            ));
-            if ($elements === []) {
-                $io->error(sprintf('No content elements found for host(s) "%s".', implode(', ', $allowedHosts)));
-                return self::FAILURE;
-            }
-            $io->writeln(sprintf('Seeding host(s): %s.', implode(', ', $allowedHosts)));
-        }
 
         if ($elements === []) {
             $io->error('No content elements found (is desiderio set up correctly?).');
@@ -127,6 +116,33 @@ final class SeedElementLibraryCommand extends Command
             $io->writeln(sprintf('Created sysfolder "%s" (uid %d)', self::FOLDER_TITLE, $folderUid));
         } else {
             $pageUpserter->update($folderUid, self::FOLDER_TITLE, self::FOLDER_SLUG, 999000, $now, $pageColumns, $folderAttributes);
+        }
+
+        // Scope the folder to its theme. An explicit --hosts wins; without it,
+        // a folder that already has records keeps the hosts it has — any host
+        // extension registered later (desiderio_grande did this) would
+        // otherwise silently flood every reseed of every existing folder with
+        // its whole catalog. A fresh folder still gets every host.
+        if ($allowedHosts === []) {
+            $allowedHosts = $this->inferHostsFromFolder($folderUid, $elements);
+            if ($allowedHosts !== []) {
+                $io->writeln(sprintf(
+                    'Keeping the folder\'s existing host scope: %s. Pass --hosts to change it.',
+                    implode(', ', $allowedHosts)
+                ));
+            }
+        } else {
+            $io->writeln(sprintf('Seeding host(s): %s.', implode(', ', $allowedHosts)));
+        }
+        if ($allowedHosts !== []) {
+            $elements = array_values(array_filter(
+                $elements,
+                static fn(array $element): bool => in_array(strtolower($element['hostExtension']), $allowedHosts, true),
+            ));
+            if ($elements === []) {
+                $io->error(sprintf('No content elements found for host(s) "%s".', implode(', ', $allowedHosts)));
+                return self::FAILURE;
+            }
         }
 
         // Role-based media: the library preview is copied into real pages, so a
@@ -197,5 +213,35 @@ final class SeedElementLibraryCommand extends Command
         }
 
         return $errors === [] ? self::SUCCESS : self::FAILURE;
+    }
+
+    /**
+     * The hosts already represented in a folder's live records, in catalog
+     * order. CTypes the catalog no longer knows are ignored — removeObsolete
+     * deals with those. An empty folder infers nothing (returns []).
+     *
+     * @param list<array{cType: string, hostExtension: string}> $elements
+     * @return list<string> lowercase host extension keys
+     */
+    private function inferHostsFromFolder(int $folderUid, array $elements): array
+    {
+        $hostByCType = [];
+        foreach ($elements as $element) {
+            $hostByCType[$element['cType']] = strtolower($element['hostExtension']);
+        }
+
+        $connection = $this->connectionPool->getConnectionForTable('tt_content');
+        $existingCTypes = $connection->fetchFirstColumn(
+            'SELECT DISTINCT CType FROM tt_content WHERE pid = ? AND deleted = 0',
+            [$folderUid]
+        );
+
+        $hosts = [];
+        foreach ($existingCTypes as $cType) {
+            if (is_string($cType) && isset($hostByCType[$cType])) {
+                $hosts[$hostByCType[$cType]] = true;
+            }
+        }
+        return array_keys($hosts);
     }
 }

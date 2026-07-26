@@ -6,6 +6,19 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [3.4.0] — 2026-07-25
+
+### Changed
+
+- **The Layout field returns to the Appearance tab, marked as reserved.**
+  3.3.0 removed it because it rendered nothing; keeping the field visible with
+  an honest in-form description ("Reserved for a future version — currently
+  has no visual effect", EN + DE) preserves stored values and lets a later
+  version give it meaning without any migration. Frame and the space fields
+  remain fully wired and audit-enforced; `layout` is exempt from
+  `appearance_field_unwired` until it gains its mapping.
+
+
 ## [3.3.0] — 2026-07-25
 
 ### Changed

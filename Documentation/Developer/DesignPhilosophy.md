@@ -147,8 +147,10 @@ broken promise. It is replaced by `Desiderio/Appearance`:
   surfaces by `07-content-frames.css`.
 - **Space before/after** adds outer margin on the spacing ramp, keeping core's
   value set (`extra-small…extra-large`) so stored content stays portable.
-- **Layout is gone.** Core's "Layout 1…3" has no meaning in this design
-  system; a dropdown that does nothing does not get shown.
+- **Layout stays visible but is reserved.** Core's "Layout 1…3" has no
+  mapping yet; the field's own description says "reserved for a future
+  version", so the control keeps its promise by stating it. Stored values are
+  preserved, and giving the field meaning later needs no migration.
 - The 17 elements that render no section (footers, floating banners, dividers)
   carry no appearance tab at all, for the same reason.
 - An editor's Frame choice **overrides** a template's background default

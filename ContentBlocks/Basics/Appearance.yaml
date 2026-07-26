@@ -15,12 +15,16 @@
 #   space_after_class       spacing ramp. Core's item list (extra-small …
 #                           extra-large) is kept, so the stored values stay
 #                           portable to any TYPO3 site.
-#   layout               -> deliberately ABSENT. Core's "Layout 1..3" has no
-#                           defined meaning in this design system; showing it
-#                           would recreate the dead control this basic removes.
+#   layout               -> present but RESERVED. It has no visual effect yet;
+#                           its description says so in the form, so an editor
+#                           is never left guessing. Future versions will map it
+#                           to per-element layout variants — keeping the field
+#                           (and its stored values) means that upgrade needs no
+#                           migration.
 #
-# Consumption is enforced: the element audit fails any config using this basic
-# whose template does not pass the fields to <d:layout.section>.
+# Consumption is enforced for frame + spacing: the element audit fails any
+# config using this basic whose template does not pass them to
+# <d:layout.section>. `layout` is exempt until it gains its meaning.
 identifier: Desiderio/Appearance
 fields:
   -
@@ -37,6 +41,10 @@ fields:
     type: Palette
     label: core.form.palettes:content_layout
     fields:
+      -
+        identifier: layout
+        useExistingField: true
+        description: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:appearance.layout.reserved'
       -
         identifier: frame_class
         useExistingField: true

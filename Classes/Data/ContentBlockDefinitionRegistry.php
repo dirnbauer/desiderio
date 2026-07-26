@@ -262,37 +262,68 @@ final class ContentBlockDefinitionRegistry
     {
         if (self::$recordTypeFields === null) {
             self::$recordTypeFields = [];
-            // Resolved from this file, not through GeneralUtility: this method
-            // is reached from buildDefinitionFromConfig(), which is pure and is
-            // called from unit tests with no TYPO3 bootstrap. Going through
-            // EXT: resolution here made the whole registry require a booted
-            // framework.
-            $basePath = dirname(__DIR__, 2) . '/ContentBlocks/RecordTypes';
-            $directories = is_dir($basePath) ? scandir($basePath) : false;
-            foreach ($directories === false ? [] : $directories as $directory) {
-                if ($directory === '.' || $directory === '..') {
-                    continue;
-                }
-                $configPath = $basePath . '/' . $directory . '/config.yaml';
-                if (!is_readable($configPath)) {
-                    continue;
-                }
-                $config = Yaml::parseFile($configPath);
-                if (!is_array($config) || !is_string($config['table'] ?? null)) {
-                    continue;
-                }
-                $fields = $config['fields'] ?? [];
-                $normalized = [];
-                foreach (is_array($fields) ? $fields : [] as $recordField) {
-                    if (is_array($recordField)) {
-                        $normalized[] = self::normalizeStringKeyedArray($recordField);
+            foreach (self::getRecordTypeBasePaths() as $basePath) {
+                $directories = is_dir($basePath) ? scandir($basePath) : false;
+                foreach ($directories === false ? [] : $directories as $directory) {
+                    if ($directory === '.' || $directory === '..') {
+                        continue;
                     }
+                    $configPath = $basePath . '/' . $directory . '/config.yaml';
+                    if (!is_readable($configPath)) {
+                        continue;
+                    }
+                    $config = Yaml::parseFile($configPath);
+                    if (!is_array($config) || !is_string($config['table'] ?? null)) {
+                        continue;
+                    }
+                    $fields = $config['fields'] ?? [];
+                    $normalized = [];
+                    foreach (is_array($fields) ? $fields : [] as $recordField) {
+                        if (is_array($recordField)) {
+                            $normalized[] = self::normalizeStringKeyedArray($recordField);
+                        }
+                    }
+                    self::$recordTypeFields[$config['table']] = $normalized;
                 }
-                self::$recordTypeFields[$config['table']] = $normalized;
             }
         }
 
         return self::$recordTypeFields[$table] ?? [];
+    }
+
+    /**
+     * Every directory that may hold shared RecordTypes.
+     *
+     * Desiderio's own comes first, and any extension building on this engine
+     * adds its own by appending an ABSOLUTE path to
+     * $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['desiderio']['recordTypePaths']
+     * in ext_localconf.php — the same convention as libraryHostExtensions.
+     *
+     * Absolute, not EXT:, on purpose. Paths are resolved from this file rather
+     * than through GeneralUtility because getRecordTypeFields() is reached from
+     * buildDefinitionFromConfig(), which is pure and is called from unit tests
+     * with no TYPO3 bootstrap; EXT: resolution here would make the whole
+     * registry require a booted framework.
+     *
+     * Before this existed, a downstream extension's shared collections resolved
+     * to an empty field list, and the seeders wrote child rows whose file
+     * fields were silently left at 0 — every portrait and logo in a shared
+     * collection came out blank.
+     *
+     * @return list<string>
+     */
+    private static function getRecordTypeBasePaths(): array
+    {
+        $paths = [dirname(__DIR__, 2) . '/ContentBlocks/RecordTypes'];
+
+        $registered = $GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['desiderio']['recordTypePaths'] ?? [];
+        foreach (is_array($registered) ? $registered : [] as $path) {
+            if (is_string($path) && $path !== '') {
+                $paths[] = rtrim($path, '/');
+            }
+        }
+
+        return array_values(array_unique($paths));
     }
 
     /**

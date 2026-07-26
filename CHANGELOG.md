@@ -4,6 +4,27 @@ All notable changes to **webconsulting/desiderio** are documented in this
 file. The format follows [Keep a Changelog](https://keepachangelog.com/)
 and the project adheres to [Semantic Versioning](https://semver.org/).
 
+## [3.7.0] — 2026-07-26
+
+### Fixed
+
+- **Shared RecordTypes are found in downstream extensions.** `getRecordTypeFields()`
+  resolved its search path relative to this package, so a Collection declaring
+  `foreign_table:` in another extension resolved to an empty field list. The
+  seeders then wrote child rows whose File fields were silently left at `0` —
+  every portrait, logo and avatar inside a shared collection came out blank,
+  with no error anywhere. Extensions now add their own directory by appending an
+  absolute path to
+  `$GLOBALS['TYPO3_CONF_VARS']['EXTENSIONS']['desiderio']['recordTypePaths']`,
+  the same convention as `libraryHostExtensions`. Paths stay absolute because
+  the method is pure and is called from unit tests with no TYPO3 bootstrap.
+- **Generated demo values respect a field's `max:`.** A field declaring
+  `max: 24` is a short column, and generated copy is written for readability
+  rather than width, so an INSERT could fail with "Data too long for column"
+  and abort an entire seeding run. Defaults are now cut to fit. This surfaced
+  the moment the fix above made shared RecordType fields visible for the first
+  time.
+
 ## [3.6.0] — 2026-07-26
 
 ### Added

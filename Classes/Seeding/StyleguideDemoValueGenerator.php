@@ -164,6 +164,17 @@ class StyleguideDemoValueGenerator
             $value = RteHtmlConverter::convert($value);
         }
 
+        // A field that declares `max:` is a short column — metric units live in
+        // varchar(24). Generated copy is written for readability, not for a
+        // width limit, so it has to be cut to fit: without this the INSERT dies
+        // with "Data too long for column" and takes the whole seeding run down
+        // with it, which is exactly what happened the first time a shared
+        // RecordType's fields became visible to the generator.
+        $max = $fieldConfig['max'] ?? null;
+        if (is_numeric($max) && (int)$max > 0 && is_string($value) && mb_strlen($value) > (int)$max) {
+            $value = rtrim(mb_substr($value, 0, (int)$max));
+        }
+
         return $value;
     }
 

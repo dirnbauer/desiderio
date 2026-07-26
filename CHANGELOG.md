@@ -6,6 +6,86 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Added
+
+- **A themes page that shows all fifteen presets at once, live.** "What
+  changes if I pick a different preset" is a question a table answers badly
+  and a sample answers immediately. The seeded `/themes` page carries one
+  card per preset — real buttons, badges, fonts and corner radius, painted by
+  that preset's own tokens — followed by a matrix of everything that is not
+  colour: heading, body and code faces, radius, control density, focus-ring
+  width, elevation and icon library.
+
+  This works because `Build/Scripts/build-preset-overview.php` re-scopes every
+  preset from `body[data-shadcn-preset="…"]` to
+  `[data-shadcn-preset-sample="…"]` in a generated
+  `Resources/Public/Css/preset-samples.css`, so a card can carry a preset and
+  fifteen of them can paint themselves on one document. Nothing on the page is
+  a screenshot, and nothing is written by hand: the same script generates the
+  cards and the matrix from `shadcn-theme.css` and `IconRegistry`, so the page
+  cannot describe a preset differently from how the preset renders.
+  `Tests/Unit/PresetOverviewTest.php` fails if the committed artefacts fall
+  behind the stylesheet.
+
+  New `DesiderioThemes` backend layout (EN/DE/ES/FR/HU labels); showcase pages
+  may now request their own layout via `backendLayout`.
+
+## [3.5.0] — 2026-07-26
+
+### Added
+
+- **The browser harnesses run in CI.** `Build/CiApp/` is a disposable TYPO3
+  application — SQLite, no services; `bootstrap.sh` goes from nothing to a
+  seeded element library and `php -S` serves it. The new `browser-qa`
+  workflow boots it on every push and pull request, renders every seeded
+  element and fails on findings: the anatomy survey plus the tier‑1 sweep
+  (base preset, light + dark, 390/768/1440), with the full tier set one
+  `workflow_dispatch` away and the HTML report attached as an artifact.
+  Elements gated on extensions the app does not install (powermail, innesto)
+  are covered by the lab sweep instead.
+- **Spacing is enforced, not aspirational.** The last ~79 margin/padding/gap
+  literals moved onto the `--d-spacing-*` ramp; list-marker indents and one
+  optical baseline nudge became `em`, because they must scale with their
+  font. The new zero-tolerance audit category `css_untokenised_spacing`
+  allows `0`, `auto`, percentages, negative values and `em` — a positive
+  `px`/`rem` literal on a spacing property now fails CI.
+- **`css_static_multicolumn` replaces the `css_no_responsive_rule` advisory.**
+  Classifying all 99 flagged elements showed every one is a single-column
+  stack, an icon-gutter grid or a wrapping flex row — none needs a
+  breakpoint, and the 390 px sweep proves each render. What the advisory was
+  actually for is now sharp enough to gate: two or more content-sized grid
+  tracks (or `column-count ≥ 2`) with no width media query fail CI;
+  `auto-fit`/`auto-fill` grids reflow on their own and are exempt.
+- **The anatomy survey can no longer sleep through a broken render.** A 500
+  delivers a perfectly loadable error page, which used to survey as "no
+  anatomy" and stay green; non-2xx previews are now `render-failed` findings
+  and a non-empty finding list sets the exit code.
+
+### Changed
+
+- **The template dependencies are declared.** The first install without the
+  lab's stack (the CI app) turned up 58 elements failing on `f:render.link`,
+  which only `webconsulting/visual-editor-enhancements` provides (TYPO3 v14
+  core covers `f:render.text`). `composer.json` now requires
+  `friendsoftypo3/visual-editor` `^1.8` and
+  `webconsulting/visual-editor-enhancements` `^0.8 || dev-main`. The latter
+  is distributed via Git, not Packagist — projects installing desiderio add
+  `https://github.com/dirnbauer/typo3-visual-editor-enhancements.git` as a
+  VCS repository.
+- The pie chart's element-library demo shows the **large** variant, matching
+  the size at which the other chart demos present themselves.
+
+### Fixed
+
+- **Destructive text on its own wash meets WCAG AA.** The shadcn registry
+  recipe pairs `text-destructive` with `bg-destructive/10`, which measures
+  4.0:1 in light mode — the sweep's last seven findings, all on the Powermail
+  alert box. `alertDestructive`, `flashDestructive`, `buttonDestructive` and
+  the server error-summary heading now use `--d-danger-text` (the hue pulled
+  30 % toward `--foreground`), applied in the primitive generator so the
+  synced recipes stay reproducible. The full-catalog sweep is at **zero
+  findings** for the first time.
+
 ## [3.4.0] — 2026-07-25
 
 ### Changed

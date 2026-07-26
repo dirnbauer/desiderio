@@ -738,9 +738,9 @@ function composeControlClassMap(array $recipes): array
     $radio = normalizeClass(nativeCheckedClass($recipes['radio']['item']) . ' ' . $controlMarker . ' peer appearance-none size-4! min-h-4!');
 
     return [
-        'alertDestructive' => 'rounded-md border border-destructive/30 bg-destructive/10 p-4 text-sm text-destructive',
+        'alertDestructive' => 'rounded-md border border-destructive/30 bg-destructive/10 p-4 text-sm text-[var(--d-danger-text)]',
         'buttonDefault' => normalizeClass(composeButtonClass($recipes['button'], 'default', 'default') . ' ' . $controlMarker),
-        'buttonDestructive' => normalizeClass(composeButtonClass($recipes['button'], 'destructive', 'default') . ' ' . $controlMarker),
+        'buttonDestructive' => normalizeClass(accessibleDestructiveText(composeButtonClass($recipes['button'], 'destructive', 'default')) . ' ' . $controlMarker),
         'buttonOutline' => normalizeClass(composeButtonClass($recipes['button'], 'outline', 'default') . ' ' . $controlMarker),
         'captchaImage' => 'mt-3 rounded-md border border-border',
         'card' => normalizeClass($recipes['card']['root'] . ' ' . $cardRootCompatibility),
@@ -759,7 +759,7 @@ function composeControlClassMap(array $recipes): array
         'fieldLegend' => 'mb-2 flex w-fit items-center gap-2 text-xs font-medium leading-snug text-foreground',
         'fieldSet' => $recipes['field']['set'],
         'fileInput' => normalizeClass($input . ' h-auto min-h-24 cursor-pointer items-center border-dashed bg-muted/30 px-3 py-3 text-muted-foreground hover:bg-muted/50'),
-        'flashDestructive' => 'rounded-md border border-destructive/30 bg-destructive/10 p-3 text-sm text-destructive',
+        'flashDestructive' => 'rounded-md border border-destructive/30 bg-destructive/10 p-3 text-sm text-[var(--d-danger-text)]',
         'input' => $input,
         'optionLabel' => normalizeClass($fieldHorizontal . ' cursor-pointer items-center gap-3'),
         'optionText' => normalizeClass($recipes['label'] . ' min-w-0 text-foreground'),
@@ -1098,6 +1098,17 @@ function renderTabsContent(array $recipe, string $header): string
         . '>' . "\n"
         . '    <f:slot />' . "\n"
         . '</div>' . "\n";
+}
+
+/**
+ * The registry's destructive button puts text-destructive on bg-destructive/10,
+ * which measures 4.0:1 in light mode (WCAG AA needs 4.5). Swap the standalone
+ * text class for the theme's solved token (--d-danger-text pulls the hue 30%
+ * toward --foreground); every state/aria variant keeps its original class.
+ */
+function accessibleDestructiveText(string $class): string
+{
+    return preg_replace('/(?<![:\-\/\w])text-destructive(?![\/\w-])/', 'text-[var(--d-danger-text)]', $class) ?? $class;
 }
 
 function composeButtonClass(array $recipe, string $variant, string $size): string

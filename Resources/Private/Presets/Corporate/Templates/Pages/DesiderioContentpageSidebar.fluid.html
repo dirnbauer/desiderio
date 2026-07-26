@@ -6,26 +6,26 @@
 
 <f:layout name="Pages/Default"/>
 
-<f:comment>
-    Corporate content page with a supporting sidebar (contacts, downloads,
-    related links). Mirrors the content-page header so heading order, the
-    section eyebrow and the lede fallback stay consistent. The aside is a
-    labelled complementary landmark; its label names the supporting content
-    (contacts and downloads) rather than mislabelling it as navigation.
-</f:comment>
-
-<f:variable name="rootlineDepth" value="{breadcrumb -> f:count()}"/>
-<f:variable name="sectionEyebrow" value="{f:translate(extensionName: 'desiderio', key: 'corporate.page.eyebrow', default: 'Overview')}"/>
-<f:if condition="{rootlineDepth} >= 3">
-    <f:for each="{breadcrumb}" as="crumb" iteration="crumbIteration">
-        <f:if condition="{crumbIteration.cycle} == {rootlineDepth - 1}">
-            <f:variable name="sectionEyebrow" value="{crumb.title}"/>
-        </f:if>
-    </f:for>
-</f:if>
-<f:variable name="pageLede" value="{page.pageRecord.abstract -> f:or(alternative: '{f:translate(extensionName: \'desiderio\', key: \'corporate.page.lede\', default: \'A clear, structured look at what we do here and how it helps your organisation move forward.\')}')}"/>
-
 <f:section name="Main">
+    <f:comment>
+        Corporate content page with a supporting sidebar (contacts, downloads,
+        related links). Mirrors the content-page header so heading order, the
+        section eyebrow and the lede fallback stay consistent. The aside is a
+        labelled complementary landmark; its label names the supporting content
+        (contacts and downloads) rather than mislabelling it as navigation.
+    </f:comment>
+
+    <f:variable name="rootlineDepth" value="{breadcrumb -> f:count()}"/>
+    <f:variable name="sectionEyebrow" value="{f:translate(extensionName: 'desiderio', key: 'corporate.page.eyebrow', default: 'Overview')}"/>
+    <f:if condition="{rootlineDepth} >= 3">
+        <f:for each="{breadcrumb}" as="crumb" iteration="crumbIteration">
+            <f:if condition="{crumbIteration.cycle} == {rootlineDepth - 1}">
+                <f:variable name="sectionEyebrow" value="{crumb.title}"/>
+            </f:if>
+        </f:for>
+    </f:if>
+    <f:variable name="pageLede" value="{page.pageRecord.abstract -> f:or(alternative: '{f:translate(extensionName: \'desiderio\', key: \'corporate.page.lede\', default: \'A clear, structured look at what we do here and how it helps your organisation move forward.\')}')}"/>
+
     <div class="desiderio-corporate-template desiderio-corporate-sidebar">
         <d:layout.container size="xl" class="desiderio-corporate-template__container">
             <f:if condition="!{newsDetailUid}">

@@ -6,15 +6,15 @@
 >
 <f:layout name="Default" />
 
-<f:argument name="settings" type="array" optional="{true}" />
-<f:argument name="mail" type="object" optional="{true}" />
-<f:argument name="powermail_rte" type="string" optional="{true}" />
-<f:argument name="optinActive" type="bool" optional="{true}" default="{false}" />
-
-<f:variable name="flashMessageClass"><d:atom.controlClass slot="flashDestructive" /></f:variable>
-<f:variable name="cardCompactClass"><d:atom.controlClass slot="cardCompact" /></f:variable>
-
 <f:section name="main">
+    <f:argument name="settings" type="array" optional="{true}" />
+    <f:argument name="mail" type="object" optional="{true}" />
+    <f:argument name="powermail_rte" type="string" optional="{true}" />
+    <f:argument name="optinActive" type="bool" optional="{true}" default="{false}" />
+
+    <f:variable name="flashMessageClass"><d:atom.controlClass slot="flashDestructive" /></f:variable>
+    <f:variable name="cardCompactClass"><d:atom.controlClass slot="cardCompact" /></f:variable>
+
     <f:alias map="{flashMessageClass: flashMessageClass}">
         <f:render partial="Misc/FlashMessages" arguments="{_all}" />
     </f:alias>

@@ -6,20 +6,20 @@
 >
 <f:layout name="Default" />
 
-<f:argument name="settings" type="array" optional="{true}" />
-<f:argument name="mail" type="object" optional="{true}" />
-<f:argument name="powermail_all" type="string" optional="{true}" />
-<f:argument name="ttContentData" type="array" optional="{true}" />
-
-<f:variable name="cardCompactClass"><d:atom.controlClass slot="cardCompact" /></f:variable>
-<f:variable name="cardHeaderClass"><d:atom.controlClass slot="cardHeaderBordered" /></f:variable>
-<f:variable name="cardTitleClass"><d:atom.controlClass slot="cardTitle" /></f:variable>
-<f:variable name="cardDescriptionClass"><d:atom.controlClass slot="cardDescription" /></f:variable>
-<f:variable name="panelContentClass"><d:atom.controlClass slot="panelContent" /></f:variable>
-<f:variable name="buttonOutlineClass"><d:atom.controlClass slot="buttonOutline" /></f:variable>
-<f:variable name="buttonDefaultClass"><d:atom.controlClass slot="buttonDefault" /></f:variable>
-
 <f:section name="main">
+    <f:argument name="settings" type="array" optional="{true}" />
+    <f:argument name="mail" type="object" optional="{true}" />
+    <f:argument name="powermail_all" type="string" optional="{true}" />
+    <f:argument name="ttContentData" type="array" optional="{true}" />
+
+    <f:variable name="cardCompactClass"><d:atom.controlClass slot="cardCompact" /></f:variable>
+    <f:variable name="cardHeaderClass"><d:atom.controlClass slot="cardHeaderBordered" /></f:variable>
+    <f:variable name="cardTitleClass"><d:atom.controlClass slot="cardTitle" /></f:variable>
+    <f:variable name="cardDescriptionClass"><d:atom.controlClass slot="cardDescription" /></f:variable>
+    <f:variable name="panelContentClass"><d:atom.controlClass slot="panelContent" /></f:variable>
+    <f:variable name="buttonOutlineClass"><d:atom.controlClass slot="buttonOutline" /></f:variable>
+    <f:variable name="buttonDefaultClass"><d:atom.controlClass slot="buttonDefault" /></f:variable>
+
     <div class="mt-8 w-full max-w-2xl">
         <d:molecule.card class="{cardCompactClass -> f:format.trim()} p-4">
             <d:molecule.cardHeader class="border-b">

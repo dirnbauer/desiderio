@@ -11,10 +11,12 @@
     "require": {
         "php": "^8.3",
         "friendsoftypo3/content-blocks": "^2.2",
+        "friendsoftypo3/visual-editor": "^1.8",
         "typo3/cms-core": "^14.3",
         "typo3/cms-fluid": "^14.3",
         "typo3/cms-form": "^14.3",
-        "typo3/cms-workspaces": "^14.3"
+        "typo3/cms-workspaces": "^14.3",
+        "webconsulting/visual-editor-enhancements": "^0.8 || dev-main"
     },
     "minimum-stability": "stable",
     "prefer-stable": true,

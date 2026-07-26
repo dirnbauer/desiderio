@@ -44,7 +44,13 @@ await Promise.all(Array.from({ length: 6 }, async () => {
         if (!entry) return;
         const page = await context.newPage();
         try {
-            await page.goto(entry.url, { waitUntil: 'load', timeout: 45_000 });
+            const response = await page.goto(entry.url, { waitUntil: 'load', timeout: 45_000 });
+            // A 500 renders a perfectly loadable error page — without this
+            // guard the survey counts it as "no anatomy" and stays green.
+            if (response && !response.ok()) {
+                rows.push({ cType: entry.cType, group: entry.group, error: `HTTP ${response.status()}` });
+                continue;
+            }
             await paintOpaqueBackground(page);
             await settleFonts(page);
             const anatomy = await collectAnatomy(page);
@@ -76,6 +82,9 @@ console.log('header alignment:      ', aligns.map(([v, n]) => `${v}×${n}`).join
 
 const findings = [];
 for (const row of rows) {
+    if (row.error) {
+        findings.push({ cType: row.cType, check: 'render-failed', detail: row.error });
+    }
     for (const check of row.checks ?? []) {
         findings.push({ cType: row.cType, ...check });
     }
@@ -86,3 +95,4 @@ for (const [check, count] of byCheck) console.log(`  ${String(count).padStart(4)
 
 writeFileSync(join(HERE, 'report', 'anatomy.json'), JSON.stringify({ rows, findings }, null, 2));
 console.log(`\nDetail: ${join(HERE, 'report', 'anatomy.json')}`);
+process.exitCode = findings.length === 0 ? 0 : 1;

@@ -1,0 +1,99 @@
+name: Browser QA
+
+# Renders every seeded element in a real browser against a disposable TYPO3
+# (SQLite, php -S — see Build/CiApp/). Two harnesses run:
+#   anatomy.mjs — layout-convention survey, target 0 findings
+#   run.mjs     — overflow/clipping/axe/theme sweep, target 0 findings
+# Push/PR runs tier t1 (base preset, light+dark, 390/768/1440). A manual
+# dispatch can run the full tier set including the preset sweep.
+# Elements gated on extensions this app does not install (powermail, innesto,
+# records-list-types) are absent here; the lab sweep still covers them.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      tier:
+        description: "Sweep tier (t1, t2, t3, all)"
+        default: "all"
+
+concurrency:
+  group: browser-qa-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  browser-qa:
+    name: Anatomy survey + render sweep (SQLite app)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Set up PHP 8.3
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.3"
+          extensions: intl, gd, pdo_sqlite
+          tools: composer:v2
+          coverage: none
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Cache composer dependencies
+        uses: actions/cache@v6
+        with:
+          path: ~/.cache/composer
+          key: ciapp-composer-${{ hashFiles('Build/CiApp/composer.json', 'composer.json') }}
+
+      - name: Install npm dependencies
+        run: npm ci
+
+      - name: Install Playwright Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Boot the QA app (composer install, TYPO3 setup, seed)
+        run: Build/CiApp/bootstrap.sh
+
+      - name: Serve
+        run: |
+          (cd Build/CiApp && TYPO3_CONTEXT=Development PHP_CLI_SERVER_WORKERS=8 \
+            php -d memory_limit=768M -S 127.0.0.1:8080 -t public >/tmp/php-server.log 2>&1 &)
+          for i in $(seq 1 60); do
+            code=$(curl -s -o /dev/null -w '%{http_code}' 'http://127.0.0.1:8080/' || true)
+            [ "$code" = "200" ] && exit 0
+            sleep 1
+          done
+          echo 'server never became ready'
+          tail -50 /tmp/php-server.log
+          exit 1
+
+      - name: Generate preview URLs
+        run: |
+          php -d memory_limit=768M Build/CiApp/vendor/bin/typo3 \
+            desiderio:library:urls --site=main --json > /tmp/ci-urls.json
+          node -e "const d=require('/tmp/ci-urls.json');console.log((Array.isArray(d)?d:d.elements).length,'previews')"
+
+      - name: Anatomy survey (target 0 findings)
+        run: node Build/VisualQa/anatomy.mjs --urls /tmp/ci-urls.json
+
+      - name: Render sweep
+        run: |
+          node Build/VisualQa/run.mjs --urls /tmp/ci-urls.json \
+            --tier ${{ github.event_name == 'workflow_dispatch' && inputs.tier || 't1' }}
+
+      - name: Upload report
+        if: always()
+        uses: actions/upload-artifact@v6
+        with:
+          name: visualqa-report
+          path: Build/VisualQa/report/
+          retention-days: 14

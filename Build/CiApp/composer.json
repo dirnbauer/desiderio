@@ -1,0 +1,47 @@
+{
+    "name": "webconsulting/desiderio-ci-app",
+    "description": "Disposable TYPO3 app that boots this extension for the browser QA harness. SQLite, no services — bootstrap.sh installs, sets TYPO3 up, seeds the element library; php -S serves it.",
+    "license": "GPL-2.0-or-later",
+    "type": "project",
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../..",
+            "options": {
+                "symlink": true,
+                "versions": {
+                    "webconsulting/desiderio": "dev-ci"
+                }
+            }
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/dirnbauer/typo3-visual-editor-enhancements.git"
+        }
+    ],
+    "require": {
+        "php": "^8.3",
+        "typo3/cms-backend": "^14.3",
+        "typo3/cms-extbase": "^14.3",
+        "typo3/cms-filelist": "^14.3",
+        "typo3/cms-fluid-styled-content": "^14.3",
+        "typo3/cms-frontend": "^14.3",
+        "typo3/cms-install": "^14.3",
+        "webconsulting/desiderio": "dev-ci"
+    },
+    "config": {
+        "allow-plugins": {
+            "php-http/discovery": true,
+            "typo3/class-alias-loader": true,
+            "typo3/cms-composer-installers": true
+        },
+        "sort-packages": true
+    },
+    "extra": {
+        "typo3/cms": {
+            "web-dir": "public"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

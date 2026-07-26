@@ -39,7 +39,7 @@
 
 <f:variable name="chartAriaLabel"><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-pie/language/labels.xlf:aria.summary" arguments="{0: chartTitle, 1: segmentCount}">{chartTitle}: pie chart with {segmentCount} segments.</f:translate></f:variable>
 
-<d:layout.section class="chart-pie-section">
+<d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="chart-pie-section">
     <d:layout.container>
         <figure class="chart-pie chart-pie--palette-{palette} chart-pie--{size}"
              data-chart-data="{data.chart_data -> f:format.htmlspecialchars()}"

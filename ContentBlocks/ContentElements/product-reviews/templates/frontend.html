@@ -5,7 +5,7 @@
 
 <f:asset.css identifier="d-product-reviews" href="{cb:assetPath()}/frontend.css"/>
 
-<d:layout.section class="product-reviews">
+<d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="product-reviews">
     <d:layout.container>
         <f:if condition="{data.header}">
             <h2 class="product-reviews__heading">{data -> f:render.text(field: 'header')}</h2>

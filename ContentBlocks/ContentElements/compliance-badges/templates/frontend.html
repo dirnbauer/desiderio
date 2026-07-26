@@ -5,7 +5,7 @@
 
 <f:asset.css identifier="d-compliance-badges" href="{cb:assetPath()}/frontend.css"/>
 
-<d:layout.section class="compliance-badges-section">
+<d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="compliance-badges-section">
     <d:layout.container>
         <div class="compliance-badges compliance-badges--{data.alignment -> f:or(alternative: 'center')}">
             <f:if condition="{data.header}">

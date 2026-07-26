@@ -6,7 +6,7 @@
 <f:asset.css identifier="d-team" href="{cb:assetPath()}/frontend.css"/>
 
 <f:variable name="teamVariant" value="{data.variant -> f:or(alternative: 'grid')}"/>
-<d:layout.section class="team team--{teamVariant}">
+<d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="team team--{teamVariant}">
     <d:layout.container>
         <f:if condition="{data.eyebrow} || {data.header} || {data.subheadline}">
             <header class="team__intro">

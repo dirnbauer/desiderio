@@ -56,7 +56,7 @@
 <f:variable name="chartAriaLabel"><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-sparkline/language/labels.xlf:aria.summary" arguments="{0: chartTitle, 1: seriesLabel, 2: pointCount, 3: firstLabel, 4: lastLabel, 5: latestClause}">{chartTitle}: {seriesLabel} sparkline across {pointCount} points from {firstLabel} to {lastLabel}. The full series follows in the data table.</f:translate></f:variable>
 <f:variable name="valueColumnLabel">{seriesLabel}<f:if condition="{unit}"> ({unit})</f:if></f:variable>
 
-<d:layout.section class="chart-sparkline-section">
+<d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="chart-sparkline-section">
     <d:layout.container>
         <figure class="chart-sparkline chart-sparkline--{colorVariant}"
              data-chart-json="{data.chart_data -> f:format.htmlspecialchars()}"

@@ -5,7 +5,7 @@
 
 <f:asset.css identifier="d-blog-teasers" href="{cb:assetPath()}/frontend.css"/>
 
-<d:layout.section class="blog-teasers">
+<d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="blog-teasers">
     <d:layout.container>
         <f:if condition="{data.header} || {data.subheadline}">
             <header class="blog-teasers__intro">

@@ -5,7 +5,7 @@
 
 <f:asset.css identifier="d-feature-timeline" href="{cb:assetPath()}/frontend.css"/>
 
-<d:layout.section class="feature-timeline">
+<d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="feature-timeline">
     <d:layout.container size="md">
         <f:if condition="{data.header} || {data.subheadline}">
             <header class="feature-timeline__intro">

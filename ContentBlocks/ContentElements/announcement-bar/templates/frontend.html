@@ -5,7 +5,7 @@
 
 <f:asset.css identifier="d-announcement-bar" href="{cb:assetPath()}/frontend.css"/>
 
-<d:layout.section class="announcement-bar announcement-bar--{data.variant -> f:or(alternative: 'default')}">
+<d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="announcement-bar announcement-bar--{data.variant -> f:or(alternative: 'default')}">
     <d:layout.container>
         <f:if condition="{data.header}">
             <h2 class="sr-only">{data -> f:render.text(field: 'header')}</h2>

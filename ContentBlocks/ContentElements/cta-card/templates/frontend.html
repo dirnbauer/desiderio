@@ -5,7 +5,7 @@
 
 <f:asset.css identifier="d-cta-card" href="{cb:assetPath()}/frontend.css"/>
 
-<d:layout.section class="cta-card">
+<d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="cta-card">
     <d:layout.container>
         <d:molecule.card class="cta-card__card">
             <f:if condition="{data.badge} || {data.header}">

@@ -5,7 +5,7 @@
 
 <f:asset.css identifier="d-nav-steps" href="{cb:assetPath()}/frontend.css"/>
 
-<d:layout.section class="nav-steps nav-steps--{data.variant -> f:or(alternative: 'numbered')}">
+<d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="nav-steps nav-steps--{data.variant -> f:or(alternative: 'numbered')}">
     <d:layout.container>
         <nav class="nav-steps__inner" aria-label="{data.header -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:nav_steps.aria\', default: \'Progress steps\')}')}">
             <ol class="nav-steps__list">

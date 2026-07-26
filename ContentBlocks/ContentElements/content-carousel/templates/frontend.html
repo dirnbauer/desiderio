@@ -5,7 +5,7 @@
 
 <f:asset.css identifier="d-content-carousel" href="{cb:assetPath()}/frontend.css"/>
 
-<d:layout.section class="content-carousel content-carousel--{data.variant -> f:or(alternative: 'default')}">
+<d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="content-carousel content-carousel--{data.variant -> f:or(alternative: 'default')}">
     <d:layout.container>
         <f:if condition="{data.header}">
             <header class="content-carousel__intro">

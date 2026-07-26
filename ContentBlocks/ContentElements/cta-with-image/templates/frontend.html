@@ -5,7 +5,7 @@
 
 <f:asset.css identifier="d-cta-with-image" href="{cb:assetPath()}/frontend.css"/>
 
-<d:layout.section class="cta-with-image cta-with-image--{data.image_position -> f:or(alternative: 'right')}">
+<d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="cta-with-image cta-with-image--{data.image_position -> f:or(alternative: 'right')}">
     <d:layout.container>
         <div class="cta-with-image__layout">
             <div class="cta-with-image__content">

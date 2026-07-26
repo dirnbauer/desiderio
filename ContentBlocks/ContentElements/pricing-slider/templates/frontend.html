@@ -5,7 +5,7 @@
 
 <f:asset.css identifier="d-pricing-slider" href="{cb:assetPath()}/frontend.css"/>
 
-<d:layout.section class="pricing-slider">
+<d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="pricing-slider">
     <d:layout.container>
         <f:if condition="{data.eyebrow} || {data.header} || {data.description}">
             <header class="pricing-slider__intro">

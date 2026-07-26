@@ -5,7 +5,7 @@
 
 <f:asset.css identifier="d-navbar-icon" href="{cb:assetPath()}/frontend.css"/>
 
-<d:layout.section class="navbar-icon">
+<d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="navbar-icon">
     <d:layout.container>
         <nav class="navbar-icon__inner" aria-label="{data.header -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:navbar.icon.aria\', default: \'Icon navigation\')}')}">
             <div class="navbar-icon__brand">

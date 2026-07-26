@@ -2,7 +2,7 @@
       xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
       data-namespace-typo3-fluid="true">
 
-<d:layout.section>
+<d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}">
     <d:layout.container>
         <article data-slot="card" class="group relative flex min-h-[22rem] items-end overflow-hidden rounded-xl bg-card text-card-foreground shadow-[var(--d-surface-shadow)] ring-1 ring-foreground/10 md:min-h-[30rem]">
             <f:if condition="{data.image.0}">

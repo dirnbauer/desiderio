@@ -1,12 +1,22 @@
 <f:argument name="class" type="string" optional="{true}" default="" />
 <f:argument name="background" type="string" optional="{true}" default="default" />
+<f:argument name="frame" type="string" optional="{true}" default="" />
+<f:argument name="spaceBefore" type="string" optional="{true}" default="" />
+<f:argument name="spaceAfter" type="string" optional="{true}" default="" />
 <f:argument name="spacing" type="string" optional="{true}" default="default" />
 <f:argument name="id" type="string" optional="{true}" />
 <f:argument name="style" type="string" optional="{true}" default="" />
 <f:argument name="role" type="string" optional="{true}" />
 
+<f:comment>
+    `frame` is the EDITOR'S surface choice (tt_content.frame_class, wired by
+    every element template). It wins over the template's `background` default,
+    so an element may ship an opinion and the editor may still override it.
+    Values map onto the same switch below.
+</f:comment>
+<f:variable name="effectiveBackground">{f:if(condition: '{frame} && {frame} != \'default\'', then: '{frame}', else: '{background}')}</f:variable>
 <f:variable name="bgClass">
-    <f:switch expression="{background}">
+    <f:switch expression="{effectiveBackground}">
         <f:case value="muted">bg-muted</f:case>
         <f:case value="primary">bg-primary text-primary-foreground</f:case>
         <f:case value="secondary">bg-secondary text-secondary-foreground</f:case>
@@ -16,6 +26,15 @@
     </f:switch>
 </f:variable>
 
+<f:comment>
+    Editor spacing (space_before_class / space_after_class, core value set)
+    adds OUTER margin — deliberately distinct from `spacing`, which is the
+    template's inner padding rhythm. Classes defined in 07-content-frames.css.
+</f:comment>
+<f:variable name="spaceClasses">
+    <f:if condition="{spaceBefore}">frame-space-before-{spaceBefore}</f:if>
+    <f:if condition="{spaceAfter}"> frame-space-after-{spaceAfter}</f:if>
+</f:variable>
 <f:variable name="spacingClass">
     <f:switch expression="{spacing}">
         <f:case value="none"></f:case>
@@ -27,6 +46,6 @@
     </f:switch>
 </f:variable>
 
-<section class="desiderio-section {bgClass -> f:format.trim()} {spacingClass -> f:format.trim()} {class}" data-d-section="true" id="{id}" style="{style}" role="{role}">
+<section class="desiderio-section {bgClass -> f:format.trim()} {spacingClass -> f:format.trim()} {spaceClasses -> f:format.trim()} {class}" data-d-section="true" id="{id}" style="{style}" role="{role}">
     <f:slot />
 </section>

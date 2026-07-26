@@ -9,7 +9,7 @@
 <f:variable name="background" value="{data.background_style -> f:or(alternative: 'default')}"/>
 <f:variable name="sectionBg" value="{f:if(condition: '{variant} == \'banner\'', then: 'default', else: background)}"/>
 
-<d:layout.section background="{sectionBg}" class="cta cta--{variant}">
+<d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" background="{sectionBg}" class="cta cta--{variant}">
     <d:layout.container size="lg">
         <f:switch expression="{variant}">
 

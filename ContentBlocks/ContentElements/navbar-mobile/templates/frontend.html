@@ -8,7 +8,7 @@
 <f:variable name="toggleLabel"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:navbar.mobile.open" default="Open menu"/></f:variable>
 <f:variable name="menuId" value="navbar-mobile-menu-{data.uid}"/>
 
-<d:layout.section class="navbar-mobile">
+<d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="navbar-mobile">
     <d:layout.container>
         <nav class="navbar-mobile__inner" aria-label="{data.header -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:navbar.mobile.aria\', default: \'Mobile navigation\')}')}">
             <div class="navbar-mobile__brand">

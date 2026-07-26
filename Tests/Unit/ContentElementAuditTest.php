@@ -44,6 +44,7 @@ final class ContentElementAuditTest extends TestCase
         'shared_collection_missing_flag',
         'shared_collection_inert_fields',
         'css_untokenised_typography',
+        'appearance_field_unwired',
     ];
 
     public function testStrictAuditCategoriesAreClean(): void

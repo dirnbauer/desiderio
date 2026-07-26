@@ -5,7 +5,7 @@
 
 <f:asset.css identifier="d-navbar-tabbed" href="{cb:assetPath()}/frontend.css"/>
 
-<d:layout.section class="navbar-tabbed" spacing="none">
+<d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="navbar-tabbed" spacing="none">
     <d:layout.container>
         <nav class="navbar-tabbed__inner" aria-label="{data.header -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:navbar.tabbed.aria\', default: \'Tabbed navigation\')}')}">
             <span class="navbar-tabbed__brand">{data -> f:render.text(field: 'brand')}</span>

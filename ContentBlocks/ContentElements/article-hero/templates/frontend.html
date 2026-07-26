@@ -5,7 +5,7 @@
 
 <f:asset.css identifier="d-article-hero" href="{cb:assetPath()}/frontend.css"/>
 
-<d:layout.section class="article-hero">
+<d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="article-hero">
     <d:layout.container>
         <div class="article-hero__copy">
             <f:if condition="{data.eyebrow}"><span class="article-hero__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span></f:if>

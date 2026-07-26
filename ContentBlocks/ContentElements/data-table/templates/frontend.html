@@ -5,7 +5,7 @@
 
 <f:asset.css identifier="d-data-table" href="{cb:assetPath()}/frontend.css"/>
 
-<d:layout.section class="data-table-section">
+<d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="data-table-section">
     <d:layout.container>
         <f:if condition="{data.header}">
             <d:atom.typography tag="h2" variant="h2" class="data-table__header">{data -> f:render.text(field: 'header')}</d:atom.typography>

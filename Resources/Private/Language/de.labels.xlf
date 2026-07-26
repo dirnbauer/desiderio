@@ -2611,5 +2611,47 @@
         <target>Inkompatible Änderung</target>
       </segment>
     </unit>
+    <unit id="appearance.frame">
+      <segment state="final">
+        <source>Background</source>
+        <target>Hintergrund</target>
+      </segment>
+    </unit>
+    <unit id="appearance.frame.default">
+      <segment state="final">
+        <source>Page background</source>
+        <target>Seitenhintergrund</target>
+      </segment>
+    </unit>
+    <unit id="appearance.frame.muted">
+      <segment state="final">
+        <source>Muted surface</source>
+        <target>Gedämpfte Fläche</target>
+      </segment>
+    </unit>
+    <unit id="appearance.frame.card">
+      <segment state="final">
+        <source>Card surface</source>
+        <target>Kartenfläche</target>
+      </segment>
+    </unit>
+    <unit id="appearance.frame.accent">
+      <segment state="final">
+        <source>Accent surface</source>
+        <target>Akzentfläche</target>
+      </segment>
+    </unit>
+    <unit id="appearance.frame.primary">
+      <segment state="final">
+        <source>Brand (primary)</source>
+        <target>Markenfarbe (Primär)</target>
+      </segment>
+    </unit>
+    <unit id="appearance.frame.secondary">
+      <segment state="final">
+        <source>Secondary surface</source>
+        <target>Sekundärfläche</target>
+      </segment>
+    </unit>
   </file>
 </xliff>

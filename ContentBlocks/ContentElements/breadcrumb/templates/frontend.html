@@ -7,7 +7,7 @@
 
 <f:variable name="navLabel">{data.header -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:breadcrumb.aria\')}')}</f:variable>
 
-<d:layout.section class="breadcrumb" spacing="sm">
+<d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="breadcrumb" spacing="sm">
     <d:layout.container>
         <nav class="breadcrumb__nav" aria-label="{navLabel -> f:format.stripTags() -> f:format.trim()}" data-slot="breadcrumb">
             <ol class="breadcrumb__list" data-slot="breadcrumb-list" itemscope itemtype="https://schema.org/BreadcrumbList">

@@ -5,7 +5,7 @@
 
 <f:asset.css identifier="d-article-grid" href="{cb:assetPath()}/frontend.css"/>
 
-<d:layout.section class="article-grid">
+<d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="article-grid">
     <d:layout.container>
         <header class="article-grid__intro">
             <f:if condition="{data.eyebrow}"><span class="article-grid__eyebrow">{data -> f:render.text(field: 'eyebrow')}</span></f:if>

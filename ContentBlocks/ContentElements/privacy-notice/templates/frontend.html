@@ -5,7 +5,7 @@
 
 <f:asset.css identifier="d-privacy-notice" href="{cb:assetPath()}/frontend.css"/>
 
-<d:layout.section class="privacy-notice-section">
+<d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="privacy-notice-section">
     <d:layout.container>
         <section class="privacy-notice" aria-labelledby="privacy-notice-{data.uid}-title">
             <f:if condition="{data.header}">

@@ -41,7 +41,7 @@
 <f:variable name="chartAriaLabel"><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-line/language/labels.xlf:aria.label" arguments="{title: chartTitle, series: seriesLabel}">{chartTitle}: line chart of {seriesLabel}</f:translate></f:variable>
 <f:variable name="chartAriaSummary"><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-line/language/labels.xlf:aria.summary" arguments="{title: chartTitle, series: seriesLabel, count: pointCount, first: firstLabel, last: lastLabel}">{chartTitle}: {seriesLabel} trend across {pointCount} points, from {firstLabel} to {lastLabel}.</f:translate></f:variable>
 
-<d:layout.section class="chart-line-section">
+<d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="chart-line-section">
     <d:layout.container>
         <figure class="chart-line chart-line--{data.color_variant -> f:or(alternative: 'primary')}"
              data-chart-data="{data.chart_data -> f:format.htmlspecialchars()}"

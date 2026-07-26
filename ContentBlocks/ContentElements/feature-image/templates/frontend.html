@@ -5,7 +5,7 @@
 
 <f:asset.css identifier="d-feature-image" href="{cb:assetPath()}/frontend.css"/>
 
-<d:layout.section class="feature-image feature-image--{data.image_position -> f:or(alternative: 'right')}">
+<d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="feature-image feature-image--{data.image_position -> f:or(alternative: 'right')}">
     <d:layout.container>
         <div class="feature-image__grid">
             <div class="feature-image__copy">

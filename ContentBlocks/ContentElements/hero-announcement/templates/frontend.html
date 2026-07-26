@@ -3,7 +3,7 @@
       xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
       data-namespace-typo3-fluid="true">
 <f:asset.css identifier="d-hero-announcement" href="{cb:assetPath()}/frontend.css"/>
-<d:layout.section class="hero-announcement">
+<d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="hero-announcement">
     <d:layout.container>
         <div class="hero-announcement__content">
             <f:if condition="{data.announcement_text}">

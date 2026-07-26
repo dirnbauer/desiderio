@@ -94,15 +94,42 @@ final class ContentBlockStructureTest extends TestCase
         }
     }
 
+    /**
+     * Elements rendered through the Section component carry
+     * Desiderio/Appearance (frame + spacing, all consumed by the template —
+     * the audit's appearance_field_unwired enforces that). The 17 utility
+     * elements (footers, floating banners, dividers) render no section, so a
+     * surface or section-margin control would be a dead knob for them; they
+     * deliberately carry NO appearance basic. Core's TYPO3/Appearance is
+     * banned outright: its four controls were consumed by nothing, which is
+     * exactly the situation this arrangement replaced.
+     */
     public function testEveryContentBlockDeclaresSharedTypo3Basics(): void
     {
+        $noSection = [
+            'back-to-top', 'content-divider', 'cookie-banner', 'cta-floating',
+            'footer', 'footer-app-links', 'footer-brand', 'footer-columns',
+            'footer-contact', 'footer-dark', 'footer-mega', 'footer-minimal',
+            'footer-newsletter', 'footer-social', 'footer-split',
+            'gdpr-banner', 'legal-links',
+        ];
+
         $blocks = glob(self::CONTENT_BLOCKS_DIR . '/*', GLOB_ONLYDIR) ?: [];
         foreach ($blocks as $block) {
+            $name = basename($block);
             $config = Yaml::parseFile("{$block}/config.yaml");
             $basics = $config['basics'] ?? [];
-            self::assertIsArray($basics, basename($block) . ' basics must be a list');
-            foreach (['TYPO3/Appearance', 'TYPO3/Links', 'TYPO3/Categories'] as $basic) {
-                self::assertContains($basic, $basics, basename($block) . " must include {$basic}");
+            self::assertIsArray($basics, $name . ' basics must be a list');
+
+            self::assertNotContains('TYPO3/Appearance', $basics, $name . ' must not use the core Appearance basic — its controls render nowhere; use Desiderio/Appearance');
+            foreach (['TYPO3/Links', 'TYPO3/Categories'] as $basic) {
+                self::assertContains($basic, $basics, $name . " must include {$basic}");
+            }
+
+            if (in_array($name, $noSection, true)) {
+                self::assertNotContains('Desiderio/Appearance', $basics, $name . ' renders no section; an appearance tab would be dead controls');
+            } else {
+                self::assertContains('Desiderio/Appearance', $basics, $name . ' must include Desiderio/Appearance');
             }
         }
     }
@@ -730,6 +757,12 @@ final class ContentBlockStructureTest extends TestCase
                 }
             }
 
+            // Provided by the Desiderio/Appearance basic, consumed via
+            // <d:layout.section frame=... spaceBefore=... spaceAfter=...>.
+            foreach (['frame_class', 'space_before_class', 'space_after_class'] as $appearanceField) {
+                $fieldTypes[$appearanceField] = $fieldTypes[$appearanceField] ?? 'Basic';
+            }
+
             $usedTopFields = [];
             preg_match_all('/data\.([A-Za-z_][A-Za-z0-9_]*)/', $templateForFields, $matches);
             foreach ($matches[1] as $field) {
@@ -785,7 +818,10 @@ final class ContentBlockStructureTest extends TestCase
             );
             self::assertSame(
                 [],
-                array_values(array_diff(array_keys($fieldTypes), array_keys($usedTopFields))),
+                array_values(array_filter(
+                    array_diff(array_keys($fieldTypes), array_keys($usedTopFields)),
+                    static fn(string $field): bool => ($fieldTypes[$field] ?? '') !== 'Basic'
+                )),
                 "{$name} has declared top-level fields that are not rendered"
             );
         }

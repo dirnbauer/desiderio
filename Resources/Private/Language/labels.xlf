@@ -2181,5 +2181,40 @@
         <source>Breaking change</source>
       </segment>
     </unit>
+    <unit id="appearance.frame">
+      <segment>
+        <source>Background</source>
+      </segment>
+    </unit>
+    <unit id="appearance.frame.default">
+      <segment>
+        <source>Page background</source>
+      </segment>
+    </unit>
+    <unit id="appearance.frame.muted">
+      <segment>
+        <source>Muted surface</source>
+      </segment>
+    </unit>
+    <unit id="appearance.frame.card">
+      <segment>
+        <source>Card surface</source>
+      </segment>
+    </unit>
+    <unit id="appearance.frame.accent">
+      <segment>
+        <source>Accent surface</source>
+      </segment>
+    </unit>
+    <unit id="appearance.frame.primary">
+      <segment>
+        <source>Brand (primary)</source>
+      </segment>
+    </unit>
+    <unit id="appearance.frame.secondary">
+      <segment>
+        <source>Secondary surface</source>
+      </segment>
+    </unit>
   </file>
 </xliff>

@@ -6,7 +6,7 @@
 <f:asset.css identifier="d-hero-video" href="{cb:assetPath()}/frontend.css"/>
 <f:variable name="videoLabel">{data.video_title -> f:or(alternative: '{data.header}')}</f:variable>
 
-<d:layout.section class="hero-video">
+<d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="hero-video">
     <d:layout.container>
         <div class="hero-video__grid">
             <div class="hero-video__copy">

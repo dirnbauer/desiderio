@@ -5,7 +5,7 @@
 
 <f:asset.css identifier="d-map-embed" href="{cb:assetPath()}/frontend.css"/>
 
-<d:layout.section class="map-embed">
+<d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="map-embed">
     <d:layout.container>
         <f:if condition="{data.header} || {data.address}">
             <header class="map-embed__intro">

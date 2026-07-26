@@ -5,7 +5,7 @@
 
 <f:asset.css identifier="d-pricing-calculator" href="{cb:assetPath()}/frontend.css"/>
 
-<d:layout.section class="pricing-calculator">
+<d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="pricing-calculator">
     <d:layout.container>
         <f:if condition="{data.eyebrow} || {data.header} || {data.description}">
             <header class="pricing-calculator__intro">

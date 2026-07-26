@@ -5,7 +5,7 @@
 
 <f:asset.css identifier="d-status-indicator" href="{cb:assetPath()}/frontend.css"/>
 
-<d:layout.section class="status-indicator-section">
+<d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="status-indicator-section">
     <d:layout.container>
         <section class="status-indicator" aria-label="{f:if(condition: data.header, then: '{data.header}', else: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:status.aria\', default: \'Service status\')}')}">
             <div class="status-indicator__header">

@@ -7,7 +7,7 @@
 
 <f:variable name="regionLabel">{f:if(condition: '{data.header}', then: '{data.header -> f:format.stripTags()}', else: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:team.members_region\')}')}</f:variable>
 
-<d:layout.section class="team-carousel">
+<d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="team-carousel">
     <d:layout.container>
         <f:if condition="{data.eyebrow} || {data.header} || {data.subheadline}">
             <header class="team-carousel__intro">

@@ -184,3 +184,19 @@
     box-shadow: 0 0 0 3px color-mix(in oklch, var(--ring) 50%, transparent);
 }
 
+
+/* Editor spacing (Appearance tab -> space_before_class / space_after_class).
+   OUTER margin on top of the section's own padding rhythm, using core's value
+   set so stored content stays portable, mapped onto the spacing ramp. Margins
+   collapse against a neighbouring section's margin, never against its padding,
+   so these always add exactly what the editor asked for. */
+.frame-space-before-extra-small { margin-block-start: var(--d-spacing-4); }
+.frame-space-before-small { margin-block-start: var(--d-spacing-lg); }
+.frame-space-before-medium { margin-block-start: var(--d-spacing-xl); }
+.frame-space-before-large { margin-block-start: var(--d-spacing-2xl); }
+.frame-space-before-extra-large { margin-block-start: var(--d-spacing-3xl); }
+.frame-space-after-extra-small { margin-block-end: var(--d-spacing-4); }
+.frame-space-after-small { margin-block-end: var(--d-spacing-lg); }
+.frame-space-after-medium { margin-block-end: var(--d-spacing-xl); }
+.frame-space-after-large { margin-block-end: var(--d-spacing-2xl); }
+.frame-space-after-extra-large { margin-block-end: var(--d-spacing-3xl); }

@@ -8,7 +8,7 @@
 <f:variable name="inputId" value="search-header-input-{data.uid}"/>
 <f:variable name="labelText" value="{data.placeholder -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:solr.search.label\')}')}"/>
 
-<d:layout.section class="search-header">
+<d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="search-header">
     <d:layout.container size="md">
         <f:if condition="{data.eyebrow} || {data.header} || {data.subheadline}">
             <header class="search-header__intro">

@@ -5,7 +5,7 @@
 
 <f:asset.css identifier="d-pricing-four-tier" href="{cb:assetPath()}/frontend.css"/>
 
-<d:layout.section class="pricing-four-tier">
+<d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="pricing-four-tier">
     <d:layout.container>
         <f:if condition="{data.eyebrow} || {data.header} || {data.subheadline}">
             <header class="pricing-four-tier__intro">

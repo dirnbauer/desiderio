@@ -6,7 +6,7 @@
 <f:asset.css identifier="d-testimonial" href="{cb:assetPath()}/frontend.css"/>
 <f:variable name="ratingInt" value="{data.rating -> f:format.number(decimals: 0)}"/>
 
-<d:layout.section class="testimonial testimonial--{data.variant}">
+<d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="testimonial testimonial--{data.variant}">
     <d:layout.container>
         <f:if condition="{data.header}">
             <h2 class="testimonial__heading">{data -> f:render.text(field: 'header')}</h2>

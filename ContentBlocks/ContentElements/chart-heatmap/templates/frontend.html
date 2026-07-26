@@ -38,7 +38,7 @@
 
 <f:variable name="chartAriaLabel"><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-heatmap/language/labels.xlf:aria.summary" arguments="{0: chartTitle, 1: rowCount, 2: colCount}">{chartTitle}: heatmap of {rowCount} rows by {colCount} columns.</f:translate></f:variable>
 
-<d:layout.section class="chart-heatmap-section">
+<d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="chart-heatmap-section">
     <d:layout.container>
         <figure class="chart-heatmap"
              data-chart-json="{data.chart_data -> f:format.htmlspecialchars()}"

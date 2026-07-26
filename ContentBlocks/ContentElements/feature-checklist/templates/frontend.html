@@ -5,7 +5,7 @@
 
 <f:asset.css identifier="d-feature-checklist" href="{cb:assetPath()}/frontend.css"/>
 
-<d:layout.section class="feature-checklist">
+<d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="feature-checklist">
     <d:layout.container>
         <f:if condition="{data.eyebrow} || {data.header}">
             <header class="feature-checklist__intro">

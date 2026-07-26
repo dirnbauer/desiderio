@@ -5,7 +5,7 @@
 
 <f:asset.css identifier="d-changelog" href="{cb:assetPath()}/frontend.css"/>
 
-<d:layout.section class="changelog-section">
+<d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="changelog-section">
     <d:layout.container size="md">
         <f:if condition="{data.header}">
             <d:atom.typography tag="h2" variant="h2" class="changelog__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>

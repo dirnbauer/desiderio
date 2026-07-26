@@ -5,7 +5,7 @@
 
 <f:asset.css identifier="d-resource-library" href="{cb:assetPath()}/frontend.css"/>
 
-<d:layout.section class="resource-library">
+<d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="resource-library">
     <d:layout.container>
         <f:if condition="{data.eyebrow} || {data.header}">
             <header class="resource-library__intro">

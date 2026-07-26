@@ -64,7 +64,7 @@
 <f:variable name="chartAriaLabel"><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-area/language/labels.xlf:aria.summary" arguments="{0: chartTitle, 1: pointCount, 2: firstLabel, 3: lastLabel, 4: measuringClause}">{chartTitle}: area chart trending across {pointCount} periods from {firstLabel} to {lastLabel}. The full series follows in the data table.</f:translate></f:variable>
 <f:variable name="valueColumnLabel"><f:if condition="{seriesName}"><f:then>{seriesName}</f:then><f:else><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-area/language/labels.xlf:table.value"/></f:else></f:if><f:if condition="{unit}"> ({unit})</f:if></f:variable>
 
-<d:layout.section class="chart-area-section">
+<d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="chart-area-section">
     <d:layout.container>
         <figure class="chart-area chart-area--{colorVariant}"
              data-chart-data="{data.chart_data -> f:format.htmlspecialchars()}"

@@ -19,7 +19,7 @@
 <f:variable name="centreLabel">{data.center_label -> f:or(alternative: '') -> f:format.stripTags() -> f:format.trim()}</f:variable>
 <f:variable name="chartData"><f:spaceless>[<f:for each="{data.segments}" as="segment" iteration="seg">{"label":"{segment.label -> f:or(alternative: '') -> f:format.stripTags() -> f:format.trim()}","value":{segment.value -> f:or(alternative: '0') -> f:format.trim()}}<f:if condition="!{seg.isLast}">,</f:if></f:for>]</f:spaceless></f:variable>
 
-<d:layout.section class="chart-donut-section">
+<d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="chart-donut-section">
     <d:layout.container size="md">
         <figure class="chart-donut"
              data-ce="chart-donut"

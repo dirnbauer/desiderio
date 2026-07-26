@@ -5,7 +5,7 @@
 
 <f:asset.css identifier="d-mission-statement" href="{cb:assetPath()}/frontend.css"/>
 
-<d:layout.section class="mission-statement">
+<d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="mission-statement">
     <d:layout.container>
         <div class="mission-statement__content">
             <f:if condition="{data.eyebrow}"><d:atom.typography tag="span" variant="small" class="mission-statement__eyebrow">{data -> f:render.text(field: 'eyebrow')}</d:atom.typography></f:if>

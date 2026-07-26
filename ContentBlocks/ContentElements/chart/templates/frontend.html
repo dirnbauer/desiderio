@@ -49,7 +49,7 @@
 <f:if condition="{netChange} > 0"><f:variable name="trendKey">up</f:variable></f:if>
 <f:if condition="{netChange} < 0"><f:variable name="trendKey">down</f:variable></f:if>
 
-<d:layout.section class="chart-section">
+<d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="chart-section">
     <d:layout.container>
         <figure class="chart chart--{data.color_variant -> f:or(alternative: 'primary')}"
              data-chart-type="{chartType}"

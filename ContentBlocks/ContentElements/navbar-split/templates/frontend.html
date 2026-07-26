@@ -5,7 +5,7 @@
 
 <f:asset.css identifier="d-navbar-split" href="{cb:assetPath()}/frontend.css"/>
 
-<d:layout.section class="navbar-split" spacing="none">
+<d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="navbar-split" spacing="none">
     <d:layout.container>
         <nav class="navbar-split__inner" aria-label="{data.header -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:navbar.split.aria\', default: \'Split navigation\')}')}">
             <ul class="navbar-split__left">

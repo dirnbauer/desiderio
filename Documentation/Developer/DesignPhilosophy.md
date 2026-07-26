@@ -134,7 +134,32 @@ because anyone checked screenshots:
   sparkline once drew 403px wide inside a 1166px box). Rule documented at the
   token; measured dead space across the Data & Dashboards page: 0px.
 
-## 6. Structure rules that keep the rest honest
+## 6. Editor controls do what they say
+
+Every control an editor sees must change the output. The core
+`TYPO3/Appearance` basic put four dropdowns (Layout, Frame, Space Before/After)
+into all 244 forms and none of them rendered anywhere — the definition of a
+broken promise. It is replaced by `Desiderio/Appearance`:
+
+- **Frame** is the Section surface picker — page background, muted, card,
+  accent, primary, secondary — the same roles as everywhere else, with
+  foreground pairing handled by the Section component and legibility on tinted
+  surfaces by `07-content-frames.css`.
+- **Space before/after** adds outer margin on the spacing ramp, keeping core's
+  value set (`extra-small…extra-large`) so stored content stays portable.
+- **Layout is gone.** Core's "Layout 1…3" has no meaning in this design
+  system; a dropdown that does nothing does not get shown.
+- The 17 elements that render no section (footers, floating banners, dividers)
+  carry no appearance tab at all, for the same reason.
+- An editor's Frame choice **overrides** a template's background default
+  (only `cta` sets one), so elements may ship an opinion and editors may still
+  have the last word.
+
+Enforced twice: `appearance_field_unwired` (audit, zero-tolerance) fails any
+element whose template does not pass the fields to `<d:layout.section>`, and
+the structure test bans `TYPO3/Appearance` outright.
+
+## 7. Structure rules that keep the rest honest
 
 Long-standing zero-tolerance audit categories, unchanged by this document but
 part of the same philosophy: no inline styles, Select fields have defaults,

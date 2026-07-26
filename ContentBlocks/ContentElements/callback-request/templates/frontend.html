@@ -5,7 +5,7 @@
 
 <f:asset.css identifier="d-callback-request" href="{cb:assetPath()}/frontend.css"/>
 
-<d:layout.section class="callback-request">
+<d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="callback-request">
     <d:layout.container>
         <d:molecule.card class="callback-request__card">
             <f:if condition="{data.header}"><d:atom.typography tag="h2" variant="h2">{data -> f:render.text(field: 'header')}</d:atom.typography></f:if>

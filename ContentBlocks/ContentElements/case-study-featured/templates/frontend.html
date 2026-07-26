@@ -5,7 +5,7 @@
 
 <f:asset.css identifier="d-case-study-featured" href="{cb:assetPath()}/frontend.css"/>
 
-<d:layout.section class="case-study-featured">
+<d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="case-study-featured">
     <d:layout.container>
         <f:if condition="{data.eyebrow}">
             <p class="case-study-featured__eyebrow">{data -> f:render.text(field: 'eyebrow')}</p>

@@ -13,7 +13,7 @@
 
 <f:asset.css identifier="d-tabs" href="{cb:assetPath()}/frontend.css"/>
 
-<d:layout.section class="tabs-section">
+<d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="tabs-section">
     <d:layout.container>
         <f:if condition="{data.header}">
             <d:atom.typography tag="h2" variant="h2" class="tabs-section__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>

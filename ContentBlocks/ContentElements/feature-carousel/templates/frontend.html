@@ -5,7 +5,7 @@
 
 <f:asset.css identifier="d-feature-carousel" href="{cb:assetPath()}/frontend.css"/>
 
-<d:layout.section class="feature-carousel">
+<d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="feature-carousel">
     <d:layout.container>
         <div class="feature-carousel__viewport" data-d-feature-carousel role="region" aria-label="{data.header -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:carousel.region\', default: \'Highlights carousel\')}')}">
             <f:if condition="{data.header}">

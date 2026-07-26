@@ -1,0 +1,62 @@
+# Desiderio's replacement for the TYPO3/Appearance basic.
+#
+# The core basic put four controls (layout, frame_class, space_before_class,
+# space_after_class) into every element's Appearance tab, and none of them did
+# anything: no template read them, so editors changed a dropdown and nothing
+# happened. A control that does nothing is worse than no control.
+#
+# This basic keeps exactly the fields the frontend consumes:
+#   frame_class          -> the Section component's surface system. The item
+#                           list is redefined to the surfaces this design
+#                           system actually has (muted, card, accent, primary,
+#                           secondary) instead of core's FSC-era rulers and
+#                           indents, which have no meaning here.
+#   space_before_class / -> extra margin above/below the section, on the
+#   space_after_class       spacing ramp. Core's item list (extra-small …
+#                           extra-large) is kept, so the stored values stay
+#                           portable to any TYPO3 site.
+#   layout               -> deliberately ABSENT. Core's "Layout 1..3" has no
+#                           defined meaning in this design system; showing it
+#                           would recreate the dead control this basic removes.
+#
+# Consumption is enforced: the element audit fails any config using this basic
+# whose template does not pass the fields to <d:layout.section>.
+identifier: Desiderio/Appearance
+fields:
+  -
+    identifier: desiderio_appearance_tab
+    type: Tab
+    label: core.form.tabs:appearance
+  -
+    # NOT `frames_palette`: tt_content palettes are GLOBAL, and reusing core's
+    # identifier overwrites core's palette for every type that still shows it —
+    # innesto's elements kept core TYPO3/Appearance, their compiled definitions
+    # still declared `layout`, and the record no longer carried it: instant
+    # RecordPropertyNotFoundException on every innesto render.
+    identifier: desiderio_frames_palette
+    type: Palette
+    label: core.form.palettes:content_layout
+    fields:
+      -
+        identifier: frame_class
+        useExistingField: true
+        label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:appearance.frame'
+        items:
+          - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:appearance.frame.default'
+            value: default
+          - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:appearance.frame.muted'
+            value: muted
+          - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:appearance.frame.card'
+            value: card
+          - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:appearance.frame.accent'
+            value: accent
+          - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:appearance.frame.primary'
+            value: primary
+          - label: 'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:appearance.frame.secondary'
+            value: secondary
+      -
+        identifier: space_before_class
+        useExistingField: true
+      -
+        identifier: space_after_class
+        useExistingField: true

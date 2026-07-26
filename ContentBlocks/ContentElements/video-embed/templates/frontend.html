@@ -7,7 +7,7 @@
 
 <f:variable name="videoTitle"><f:if condition="{data.caption}"><f:then>{data.caption}</f:then><f:else>{data.header -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:video.fallback\', default: \'Embedded video\')}')}</f:else></f:if></f:variable>
 
-<d:layout.section class="video-embed">
+<d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="video-embed">
     <d:layout.container size="lg">
         <f:if condition="{data.header}">
             <d:atom.typography tag="h2" variant="h2" class="video-embed__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>

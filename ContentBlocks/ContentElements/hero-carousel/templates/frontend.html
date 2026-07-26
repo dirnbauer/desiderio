@@ -11,7 +11,7 @@
 <f:variable name="dotLabel"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:carousel.goto"/></f:variable>
 <f:variable name="slideLabel"><f:translate key="LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:carousel.slide"/></f:variable>
 
-<d:layout.section class="hero-carousel">
+<d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="hero-carousel">
     <d:layout.container>
         <f:if condition="{data.header} || {data.subheadline}">
             <header class="hero-carousel__intro">

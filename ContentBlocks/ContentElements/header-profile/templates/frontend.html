@@ -5,7 +5,7 @@
 
 <f:asset.css identifier="d-header-profile" href="{cb:assetPath()}/frontend.css"/>
 
-<d:layout.section class="header-profile">
+<d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="header-profile">
     <d:layout.container>
         <header class="header-profile__inner">
             <f:if condition="{data.avatar}">

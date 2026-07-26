@@ -373,6 +373,7 @@ $summary = [
     'css_raw_font_family' => 0,
     'css_fixed_width_overflow' => 0,
     'css_untokenised_typography' => 0,
+    'appearance_field_unwired' => 0,
     // Advisory: reported so the visual sweep knows which elements to eyeball
     // at 390px, never gated (a single-column stack legitimately needs no query).
     'css_no_responsive_rule' => 0,
@@ -387,6 +388,7 @@ foreach (scandir($elementsDir) as $entry) {
 
     $summary['total']++;
     $cfg = parseYamlSimple($cfgPath);
+    $cfgRaw = (string)file_get_contents($cfgPath);
     $defs = collectFieldDefs($cfg['fields'] ?? []);
     $topDefs = [];
     foreach ($defs as $key => $def) {
@@ -481,7 +483,9 @@ foreach (scandir($elementsDir) as $entry) {
     }
 
     foreach ($tplDataRefs as $field => $_) {
-        if (in_array($field, ['uid', 'pid', 'header', 'header_position', 'header_link', 'header_layout', 'subheader', 'CType', 'tx_desiderio'], true)) continue;
+        // frame_class + the space fields come from the Desiderio/Appearance
+        // basic, not the element's own fields: — declared there, consumed here.
+        if (in_array($field, ['uid', 'pid', 'header', 'header_position', 'header_link', 'header_layout', 'subheader', 'CType', 'tx_desiderio', 'frame_class', 'space_before_class', 'space_after_class'], true)) continue;
         if (!isset($topDefs[$field])) {
             $problems[$entry][] = ['type' => 'template_undeclared_field', 'field' => $field];
             $summary['template_undeclared_field']++;
@@ -564,6 +568,19 @@ foreach (scandir($elementsDir) as $entry) {
                 }
                 $problems[$entry][] = ['type' => 'hardcoded_color', 'file' => basename($f), 'value' => $hit];
                 $summary['hardcoded_color']++;
+            }
+        }
+    }
+
+    // The Appearance tab's promise: an element that offers frame_class and the
+    // space fields must actually render them. This whole basic replaced core's
+    // TYPO3/Appearance precisely because four controls sat in every form doing
+    // nothing — this rule keeps that from regressing one element at a time.
+    if (str_contains($cfgRaw, 'Desiderio/Appearance')) {
+        foreach (['frame_class', 'space_before_class', 'space_after_class'] as $appearanceField) {
+            if (!str_contains($tpl, 'data.' . $appearanceField)) {
+                $problems[$entry][] = ['type' => 'appearance_field_unwired', 'field' => $appearanceField];
+                $summary['appearance_field_unwired']++;
             }
         }
     }

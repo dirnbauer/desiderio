@@ -5,7 +5,7 @@
 
 <f:asset.css identifier="d-nav-pagination" href="{cb:assetPath()}/frontend.css"/>
 
-<d:layout.section class="nav-pagination">
+<d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="nav-pagination">
     <d:layout.container>
         <nav class="nav-pagination__inner" aria-label="{data.header -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:pagination.aria\', default: \'Pagination\')}')}">
             <f:if condition="{data.previous_link.url}">

@@ -7,7 +7,7 @@
 
 <f:variable name="galleryTitle">{f:if(condition: data.header, then: '{data.header}', else: '{f:translate(key: \'LLL:EXT:desiderio/ContentBlocks/ContentElements/product-gallery/language/labels.xlf:fallback.title\', default: \'Product\')}')}</f:variable>
 
-<d:layout.section class="product-gallery">
+<d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="product-gallery">
     <d:layout.container>
         <article class="product-gallery__layout" itemscope="itemscope" itemtype="https://schema.org/Product" aria-label="{galleryTitle}">
 

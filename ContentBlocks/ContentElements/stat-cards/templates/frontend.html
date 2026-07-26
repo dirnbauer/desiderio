@@ -5,7 +5,7 @@
 
 <f:asset.css identifier="d-stat-cards" href="{cb:assetPath()}/frontend.css"/>
 
-<d:layout.section class="stat-cards">
+<d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="stat-cards">
     <d:layout.container>
         <f:if condition="{data.header}">
             <d:atom.typography tag="h2" variant="h3" class="stat-cards__headline">{data -> f:render.text(field: 'header')}</d:atom.typography>

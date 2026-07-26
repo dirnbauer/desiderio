@@ -21,7 +21,7 @@
 
 <f:variable name="chartJson"><f:spaceless>[<f:for each="{data.points}" as="point" iteration="pointIter">{"label":<f:format.json value="{point.point_label}"/>,"value":<f:format.json value="{point.point_value}"/>}<f:if condition="!{pointIter.isLast}">,</f:if></f:for>]</f:spaceless></f:variable>
 
-<d:layout.section class="chart-contribution-section">
+<d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="chart-contribution-section">
     <d:layout.container>
         <figure class="chart-contribution"
              data-chart-json="{chartJson -> f:format.htmlspecialchars()}"

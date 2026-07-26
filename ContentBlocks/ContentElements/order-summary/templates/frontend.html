@@ -5,7 +5,7 @@
 
 <f:asset.css identifier="d-order-summary" href="{cb:assetPath()}/frontend.css"/>
 
-<d:layout.section class="order-summary">
+<d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="order-summary">
     <d:layout.container>
         <d:molecule.card class="order-summary__card">
             <f:if condition="{data.header}">

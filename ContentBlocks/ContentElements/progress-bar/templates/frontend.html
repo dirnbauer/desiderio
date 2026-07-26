@@ -10,7 +10,7 @@
 <f:if condition="{pct} < 0"><f:variable name="pct" value="0"/></f:if>
 <f:variable name="labelId" value="d-progress-label-{data.uid}"/>
 
-<d:layout.section class="progress-bar progress-bar--{data.variant -> f:or(alternative: 'default')}">
+<d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="progress-bar progress-bar--{data.variant -> f:or(alternative: 'default')}">
     <d:layout.container size="md">
         <f:if condition="{data.header} && {data.variant} != 'labeled'">
             <d:atom.typography tag="h2" variant="h3" class="progress-bar__headline" id="{labelId}">{data -> f:render.text(field: 'header')}</d:atom.typography>

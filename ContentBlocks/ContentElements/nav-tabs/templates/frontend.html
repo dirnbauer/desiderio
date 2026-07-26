@@ -5,7 +5,7 @@
 
 <f:asset.css identifier="d-nav-tabs" href="{cb:assetPath()}/frontend.css"/>
 
-<d:layout.section class="nav-tabs nav-tabs--{data.variant -> f:or(alternative: 'underline')}">
+<d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="nav-tabs nav-tabs--{data.variant -> f:or(alternative: 'underline')}">
     <d:layout.container>
         <nav class="nav-tabs__inner" aria-label="{data.header -> f:or(alternative: '{f:translate(key: \'LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:nav_tabs.aria\', default: \'Section navigation\')}')}">
             <f:for each="{data.tabs}" as="tab">

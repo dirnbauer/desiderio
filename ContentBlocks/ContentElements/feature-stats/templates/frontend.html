@@ -5,7 +5,7 @@
 
 <f:asset.css identifier="d-feature-stats" href="{cb:assetPath()}/frontend.css"/>
 
-<d:layout.section class="feature-stats">
+<d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="feature-stats">
     <d:layout.container>
         <div class="feature-stats__layout {f:if(condition: '{data.header} || {data.description}', else: 'feature-stats__layout--full')}">
             <f:if condition="{data.header} || {data.description}">

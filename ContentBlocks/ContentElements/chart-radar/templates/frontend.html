@@ -37,7 +37,7 @@
 <f:variable name="chartAriaLabel"><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-radar/language/labels.xlf:aria.summary" arguments="{0: chartTitle, 1: axisCount, 2: measuringClause}">{chartTitle}: radar chart comparing {axisCount} dimensions on a 0–5 scale. The full breakdown follows in the data table.</f:translate></f:variable>
 <f:variable name="scoreColumnLabel"><f:if condition="{seriesName}"><f:then>{seriesName}</f:then><f:else><f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-radar/language/labels.xlf:table.score"/></f:else></f:if> <f:translate key="LLL:EXT:desiderio/ContentBlocks/ContentElements/chart-radar/language/labels.xlf:table.scale"/></f:variable>
 
-<d:layout.section class="chart-radar-section">
+<d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="chart-radar-section">
     <d:layout.container>
         <figure class="chart-radar"
              data-chart-json="{data.chart_data -> f:format.htmlspecialchars()}"

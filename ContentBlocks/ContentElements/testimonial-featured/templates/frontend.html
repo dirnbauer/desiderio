@@ -5,7 +5,7 @@
 
 <f:asset.css identifier="d-testimonial-featured" href="{cb:assetPath()}/frontend.css"/>
 
-<d:layout.section class="testimonial-featured">
+<d:layout.section frame="{data.frame_class}" spaceBefore="{data.space_before_class}" spaceAfter="{data.space_after_class}" class="testimonial-featured">
     <f:if condition="{data.background_image}">
         <f:for each="{data.background_image}" as="bg">
             <div class="testimonial-featured__bg" style="background-image: url('{f:uri.image(image: bg, maxWidth: 1920)}')" aria-hidden="true"></div>

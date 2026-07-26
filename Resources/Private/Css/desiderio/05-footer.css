@@ -20,9 +20,15 @@
     justify-self: start;
 }
 
+/* The copyright is the one part of the bar that can lose a line gracefully, so
+   it is the part allowed to shrink: min-width 0 lets the centre track give way
+   to the legal nav's reserved width instead of squeezing the nav into a ragged
+   second line. */
 .desiderio-footer__meta {
     justify-self: center;
+    min-width: 0;
     text-align: center;
+    text-wrap: balance;
 }
 
 .desiderio-footer__wordmark {
@@ -46,9 +52,18 @@
     line-height: 1.5;
 }
 
+/* Deliberately nowrap while the bar is a row.
+   A wrapping legal nav is what produced the reported footer: "Imprint Privacy"
+   on one line and "Accessibility" ragged underneath, because the 1fr track had
+   less room than the links needed. Keeping the row unbreakable makes its
+   min-content width the track's floor, so the grid takes the space from the
+   copyright — which re-flows centred and reads as a deliberate two-liner. The
+   breakpoint below then owns the real stacking decision instead of leaving it
+   to whichever label happened to run over. Wrapping returns once the bar is
+   stacked and centred (12-mobile-responsive.css), where it is symmetric. */
 .desiderio-footer__legal-list {
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: 0.375rem 1rem;
     list-style: none;
     margin: 0;
@@ -64,6 +79,9 @@
     display: inline-flex;
     align-items: center;
     min-height: 2rem;
+    /* A two-word label ("Cookie settings", "Terms of use") must not break
+       across lines inside the row. */
+    white-space: nowrap;
     color: var(--foreground);
     font-size: 0.8125rem;
     font-weight: 500;

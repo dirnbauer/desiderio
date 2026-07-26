@@ -4,6 +4,24 @@ All notable changes to **webconsulting/desiderio** are documented in this
 file. The format follows [Keep a Changelog](https://keepachangelog.com/)
 and the project adheres to [Semantic Versioning](https://semver.org/).
 
+## [Unreleased]
+
+### Fixed
+
+- **The footer's legal nav can no longer wrap raggedly.** The 1024 px stacking
+  breakpoint was tuned to this site's own strings; it held for three short
+  links and a short copyright and nothing else. Measured on the built site: add
+  two more legal links, or a copyright with an address in it, and "Imprint
+  Privacy" sat on one line with "Accessibility" ragged underneath again — from
+  1025 px up, where no breakpoint was watching. The legal row is now `nowrap`
+  (and each label `white-space: nowrap`) while the bar is a row, so its
+  min-content width becomes the grid track's floor and the copyright — the one
+  part that loses a line gracefully — takes the squeeze instead. Wrapping is
+  restored inside the stacked block, where the nav is centred and an extra line
+  is the right answer rather than a defect. Verified at 1025/1100/1200/1280/1440
+  with five links, a long copyright and German labels: one row, no overflow, in
+  every combination.
+
 ## [3.8.1] — 2026-07-26
 
 ### Fixed

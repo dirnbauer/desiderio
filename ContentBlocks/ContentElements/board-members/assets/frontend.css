@@ -48,7 +48,7 @@
 .board-members__content {
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: var(--d-spacing-0-5);
     padding: var(--d-spacing-lg);
 }
 .board-members__name {

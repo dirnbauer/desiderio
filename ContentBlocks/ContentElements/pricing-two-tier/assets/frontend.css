@@ -25,7 +25,7 @@
 .pricing-two-tier__grid {
     list-style: none;
     padding: 0;
-    padding-block-start: 0.625rem;
+    padding-block-start: var(--d-spacing-sm);
     margin: 0;
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -105,7 +105,7 @@
 .pricing-two-tier__check {
     flex-shrink: 0;
     color: var(--primary);
-    margin-block-start: 0.125rem;
+    margin-block-start: var(--d-spacing-0-5);
 }
 
 .pricing-two-tier__footer {

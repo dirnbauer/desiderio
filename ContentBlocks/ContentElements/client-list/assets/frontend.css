@@ -25,7 +25,7 @@
     object-position: center;
     padding: var(--d-spacing-2xs);
 }
-.client-list__info { display: flex; flex-direction: column; gap: 0.125rem; }
+.client-list__info { display: flex; flex-direction: column; gap: var(--d-spacing-0-5); }
 .client-list__name { font-weight: var(--d-weight-semibold); text-decoration: none; color: var(--foreground); transition: color 0.15s ease; }
 a.client-list__name:hover { color: var(--d-link, var(--primary)); }
 a.client-list__name:focus-visible { outline: 2px solid var(--ring); outline-offset: 2px; border-radius: var(--d-radius-sm); }

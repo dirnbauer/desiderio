@@ -21,7 +21,7 @@
 
 .testimonial-carousel__rating {
     display: inline-flex;
-    gap: 0.125rem;
+    gap: var(--d-spacing-0-5);
     margin-block-end: var(--d-spacing-md);
 }
 .testimonial-carousel__star { color: var(--muted-foreground); }

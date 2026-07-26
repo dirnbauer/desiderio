@@ -49,7 +49,7 @@
 .pricing-simple__check {
     flex-shrink: 0;
     color: var(--primary);
-    margin-block-start: 0.125rem;
+    margin-block-start: var(--d-spacing-0-5);
 }
 
 .pricing-simple__footer {

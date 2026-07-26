@@ -2,7 +2,7 @@
 .footer-contact__title { font-size: var(--d-text-lg); font-weight: var(--d-weight-bold); margin-block-end: var(--d-spacing-lg); }
 .footer-contact__grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--d-spacing-lg); }
 .footer-contact__item { display: flex; align-items: flex-start; gap: var(--d-spacing-sm); }
-.footer-contact__item svg { flex-shrink: 0; color: var(--muted-foreground); margin-top: 2px; }
+.footer-contact__item svg { flex-shrink: 0; color: var(--muted-foreground); margin-top: var(--d-spacing-0-5); }
 .footer-contact__text { font-size: var(--d-text-sm); white-space: pre-line; }
 .footer-contact__link { font-size: var(--d-text-sm); color: var(--d-link, var(--primary)); text-decoration: none; border-radius: var(--d-radius-sm); }
 .footer-contact__link:hover { text-decoration: underline; }

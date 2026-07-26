@@ -38,7 +38,7 @@
 }
 .hero-product__feature-icon {
     flex-shrink: 0;
-    margin-top: 0.125rem;
+    margin-top: var(--d-spacing-0-5);
     color: var(--d-primary);
     width: 1rem;
     height: 1rem;

@@ -26,7 +26,7 @@
     display: inline-flex;
     align-items: center;
     min-height: 1.5rem;
-    padding: 0.125rem 0.625rem;
+    padding: var(--d-spacing-0-5) var(--d-spacing-sm);
     border-radius: var(--d-radius-full);
     background: var(--primary);
     color: var(--primary-foreground);

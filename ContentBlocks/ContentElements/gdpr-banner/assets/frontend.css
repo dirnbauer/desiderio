@@ -15,8 +15,8 @@
 .gdpr-banner__categories { display: flex; flex-wrap: wrap; gap: var(--d-spacing-sm); margin: 0; padding: 0; border: 0; }
 .gdpr-banner__category { display: flex; align-items: flex-start; gap: var(--d-spacing-xs); font-size: var(--d-text-sm); cursor: pointer; padding: var(--d-spacing-xs) var(--d-spacing-sm); border: 1px solid var(--border); border-radius: var(--radius); }
 .gdpr-banner__category:focus-within { border-color: var(--ring); box-shadow: 0 0 0 3px color-mix(in oklch, var(--ring) 18%, transparent); }
-.gdpr-banner__checkbox { margin-top: 2px; accent-color: var(--primary); }
-.gdpr-banner__cat-text { display: flex; flex-direction: column; gap: 2px; }
+.gdpr-banner__checkbox { margin-top: var(--d-spacing-0-5); accent-color: var(--primary); }
+.gdpr-banner__cat-text { display: flex; flex-direction: column; gap: var(--d-spacing-0-5); }
 .gdpr-banner__cat-name { font-weight: var(--d-weight-medium); color: var(--foreground); }
 .gdpr-banner__cat-desc { display: block; font-size: var(--d-text-xs); color: var(--muted-foreground); }
 .gdpr-banner__actions { display: flex; flex-wrap: wrap; gap: var(--d-spacing-xs); }

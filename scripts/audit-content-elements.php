@@ -373,10 +373,11 @@ $summary = [
     'css_raw_font_family' => 0,
     'css_fixed_width_overflow' => 0,
     'css_untokenised_typography' => 0,
+    'css_untokenised_spacing' => 0,
     'appearance_field_unwired' => 0,
     // Advisory: reported so the visual sweep knows which elements to eyeball
     // at 390px, never gated (a single-column stack legitimately needs no query).
-    'css_no_responsive_rule' => 0,
+    'css_static_multicolumn' => 0,
 ];
 
 foreach (scandir($elementsDir) as $entry) {
@@ -672,11 +673,59 @@ foreach (scandir($elementsDir) as $entry) {
             }
         }
 
-        // Advisory, never gated: an element with no media query at all is not
-        // wrong (a single-column stack needs none), but it IS the right list of
-        // elements for a human to eyeball at 390px.
+        // Spacing comes from the ramp. Allowed literals: 0 (reset), auto
+        // (centering), percentages (fluid), negative values (border-overlap
+        // tricks) and em-based values (typographic indents scale with their
+        // font). Positive px/rem literals are what the ramp exists for.
+        $spacingProps = '(?:margin(?:-block|-inline)?(?:-start|-end|-top|-bottom|-left|-right)?|padding(?:-block|-inline)?(?:-start|-end|-top|-bottom|-left|-right)?|gap|row-gap|column-gap)';
+        if (preg_match_all('/(?<![a-zA-Z-])' . $spacingProps . '\s*:\s*([^;{}]+);/', $declarationsOnly, $sm, PREG_SET_ORDER)) {
+            foreach ($sm as $match) {
+                $value = trim($match[1]);
+                if (str_contains($value, 'var(--') || str_contains($value, 'calc(')) {
+                    continue;
+                }
+                foreach (preg_split('/\s+/', $value) as $part) {
+                    if (preg_match('/^([0-9.]+)(rem|px)$/', $part, $unit) === 1 && (float)$unit[1] > 0) {
+                        $problems[$entry][] = ['type' => 'css_untokenised_spacing', 'value' => $value];
+                        $summary['css_untokenised_spacing']++;
+                        break;
+                    }
+                }
+            }
+        }
+
+        // No width media query is not wrong — a single-column stack or an
+        // icon-gutter grid (one fixed track + one flexible track) needs none,
+        // and the 390px browser sweep verifies every element for real. What IS
+        // wrong is a static multi-column layout with no breakpoint: two or more
+        // content-sized tracks (fr / % / auto / minmax with fr) stay side by
+        // side at 390px and squish. auto-fit/auto-fill grids reflow on their
+        // own and are exempt; fixed rem/px gutter tracks don't count as
+        // content columns.
         if (!preg_match('/@media[^{]*\((?:min|max)-width/i', $css)) {
-            $summary['css_no_responsive_rule']++;
+            if (preg_match_all('/grid-template-columns\s*:\s*([^;{}]+);/', $declarationsOnly, $gm, PREG_SET_ORDER)) {
+                foreach ($gm as $match) {
+                    $tracks = trim($match[1]);
+                    if (str_contains($tracks, 'var(--') || str_contains($tracks, 'auto-fit') || str_contains($tracks, 'auto-fill')) {
+                        continue;
+                    }
+                    $contentTracks = 0;
+                    $expanded = preg_replace_callback('/repeat\(\s*(\d+)\s*,\s*([^)]+)\)/', static fn(array $r): string => trim(implode(' ', array_fill(0, (int)$r[1], $r[2]))), $tracks) ?? $tracks;
+                    foreach (preg_split('/\s+(?![^(]*\))/', $expanded) ?: [] as $track) {
+                        if (preg_match('/fr|%|^auto$/', $track) === 1) {
+                            $contentTracks++;
+                        }
+                    }
+                    if ($contentTracks >= 2) {
+                        $problems[$entry][] = ['type' => 'css_static_multicolumn', 'value' => $tracks];
+                        $summary['css_static_multicolumn']++;
+                    }
+                }
+            }
+            if (preg_match('/column-count\s*:\s*([2-9])/', $declarationsOnly) === 1) {
+                $problems[$entry][] = ['type' => 'css_static_multicolumn', 'value' => 'column-count'];
+                $summary['css_static_multicolumn']++;
+            }
         }
     }
 }

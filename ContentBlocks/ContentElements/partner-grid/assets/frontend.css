@@ -79,7 +79,7 @@
 .partner-grid__link {
     display: inline-flex;
     align-items: center;
-    gap: 0.375rem;
+    gap: var(--d-spacing-xs);
     margin-block-start: auto;
     padding-block-start: var(--d-spacing-sm);
     font-size: var(--d-text-sm);

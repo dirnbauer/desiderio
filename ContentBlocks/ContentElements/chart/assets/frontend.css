@@ -88,7 +88,7 @@
 .chart__stat-value {
     display: flex;
     align-items: baseline;
-    gap: 0.35rem;
+    gap: var(--d-spacing-1);
     margin: 0;
     font-size: var(--d-text-lg);
     font-weight: var(--d-weight-semibold);

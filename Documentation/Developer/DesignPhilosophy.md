@@ -87,9 +87,11 @@ page breathed less than an ordinary section**. They now share
 rhythm at desktop and relaxes on small screens. Hero presence is one knob,
 not eight guesses.
 
-Within an element, spacing uses the `--d-spacing-*` ramp. Gap and padding are
-~96% tokenised; margins carry the remaining literals and get cleaned
-opportunistically — new code should not add any.
+Within an element, spacing uses the `--d-spacing-*` ramp — enforced
+(`css_untokenised_spacing`, zero-tolerance). Allowed literals: `0`, `auto`,
+percentages, negative values (border-overlap tricks) and `em` values
+(typographic indents and optical nudges that must scale with their font).
+A positive `px`/`rem` literal on margin, padding or gap fails CI.
 
 ## 4. Layout anatomy: measure, alignment, the header unit
 
@@ -173,7 +175,13 @@ flags set.
 
 Breakpoints come from the shared set (480/640/768/1024, exact complements
 allowed); one-off widths reflow alone and read as bugs
-(`css_nonstandard_breakpoint`).
+(`css_nonstandard_breakpoint`). An element with **no** width media query is
+fine — most are single-column stacks or icon-gutter grids that need none, and
+the 390px browser sweep proves each one. What fails CI is a static
+multi-column layout without a breakpoint: two or more content-sized grid
+tracks, or `column-count ≥ 2`, squish instead of stacking on phones
+(`css_static_multicolumn`, zero-tolerance; `auto-fit`/`auto-fill` grids
+reflow on their own and are exempt).
 
 ## Working on an element — the loop
 

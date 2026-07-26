@@ -36,7 +36,7 @@
 .team-member__contact-item {
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: var(--d-spacing-0-5);
 }
 .team-member__contact-label {
     font-size: var(--d-text-xs);

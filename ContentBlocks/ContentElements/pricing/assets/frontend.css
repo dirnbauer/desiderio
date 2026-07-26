@@ -25,7 +25,7 @@
 .pricing__grid {
     list-style: none;
     padding: 0;
-    padding-block-start: 0.625rem;
+    padding-block-start: var(--d-spacing-sm);
     margin: 0;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
@@ -105,7 +105,7 @@
 .pricing__check {
     flex-shrink: 0;
     color: var(--primary);
-    margin-block-start: 0.125rem;
+    margin-block-start: var(--d-spacing-0-5);
 }
 
 .pricing__footer {

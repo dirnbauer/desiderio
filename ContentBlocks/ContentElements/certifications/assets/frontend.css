@@ -24,7 +24,7 @@
 .certifications__name { font-weight: var(--d-weight-semibold); font-size: var(--d-text-base); }
 .certifications__issuer { font-size: var(--d-text-sm); color: var(--muted-foreground); margin: 0; }
 .certifications__cert-description { font-size: var(--d-text-sm); color: var(--muted-foreground); line-height: var(--d-leading-normal); margin: 0; }
-.certifications__link { display: inline-flex; align-items: center; gap: 0.375rem; margin-block-start: auto; padding-block-start: var(--d-spacing-xs); font-size: var(--d-text-sm); font-weight: var(--d-weight-medium); color: var(--d-link, var(--primary)); text-decoration: none; border-radius: var(--radius); }
+.certifications__link { display: inline-flex; align-items: center; gap: var(--d-spacing-xs); margin-block-start: auto; padding-block-start: var(--d-spacing-xs); font-size: var(--d-text-sm); font-weight: var(--d-weight-medium); color: var(--d-link, var(--primary)); text-decoration: none; border-radius: var(--radius); }
 .certifications__link:hover { text-decoration: underline; }
 .certifications__link-arrow { transition: transform 0.2s ease; }
 .certifications__link:hover .certifications__link-arrow { transform: translateX(0.125rem); }

@@ -38,7 +38,7 @@
 .chart-sparkline__badge {
     display: inline-flex;
     align-items: center;
-    gap: 0.3rem;
+    gap: var(--d-spacing-1);
     flex-shrink: 0;
     font-size: var(--d-text-xs);
     font-weight: var(--d-weight-semibold);

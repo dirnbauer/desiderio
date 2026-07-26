@@ -8,7 +8,7 @@
     .social-proof-counter__row { gap: var(--d-spacing-lg); }
     .social-proof-counter__row--inline .social-proof-counter__item + .social-proof-counter__item { border-inline-start: none; padding-inline-start: 0; }
 }
-.social-proof-counter__item { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 0.25rem; }
+.social-proof-counter__item { display: flex; flex-direction: column; align-items: center; text-align: center; gap: var(--d-spacing-1); }
 .social-proof-counter__icon { display: inline-flex; color: var(--primary); margin-block-end: var(--d-spacing-xs); }
 .social-proof-counter__value { order: 1; margin: 0; font-size: var(--d-text-3xl); font-weight: var(--d-weight-display); color: var(--foreground); line-height: var(--d-leading-tight); }
 .social-proof-counter__label { order: 2; margin: 0; font-size: var(--d-text-sm); color: var(--muted-foreground); }

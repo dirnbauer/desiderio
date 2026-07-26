@@ -6,7 +6,7 @@
     gap: var(--d-spacing-md);
     text-align: start;
 }
-.callback-request__field { display: flex; flex-direction: column; gap: 4px; }
+.callback-request__field { display: flex; flex-direction: column; gap: var(--d-spacing-1); }
 .callback-request__label { font-size: var(--d-text-sm); font-weight: var(--d-weight-medium); }
 .callback-request__input {
     padding: var(--d-spacing-xs) var(--d-spacing-sm);

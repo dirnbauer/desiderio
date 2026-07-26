@@ -56,12 +56,12 @@
 .chart-stacked-bar__legend-item {
     display: inline-flex;
     align-items: center;
-    gap: 0.45rem;
+    gap: var(--d-spacing-xs);
     border: 1px solid var(--border);
     border-radius: 999px;
     background: var(--secondary);
     color: var(--secondary-foreground);
-    padding: 0.35rem 0.7rem;
+    padding: var(--d-spacing-1) var(--d-spacing-sm);
     box-shadow: var(--d-shadow-2xs, none);
 }
 .chart-stacked-bar__legend-label {

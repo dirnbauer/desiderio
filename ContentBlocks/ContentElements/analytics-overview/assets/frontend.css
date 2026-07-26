@@ -10,7 +10,7 @@
 .analytics-overview__metric-change { display: grid; grid-template-columns: 1.25rem minmax(0, 1fr); align-items: start; column-gap: var(--d-spacing-xs); width: 100%; font-size: var(--d-text-sm); font-weight: var(--d-weight-semibold); line-height: var(--d-leading-snug); margin: var(--d-spacing-sm) 0 0; }
 .analytics-overview__metric-arrow { display: inline-grid; place-items: center; width: 1.25rem; height: 1.25rem; }
 .analytics-overview__metric-arrow svg { display: block; width: 1rem; height: 1rem; }
-.analytics-overview__metric-change-text { min-width: 0; padding-block-start: 0.0625rem; overflow-wrap: break-word; word-break: normal; }
+.analytics-overview__metric-change-text { min-width: 0; padding-block-start: 0.0625em; overflow-wrap: break-word; word-break: normal; }
 .analytics-overview__metric-change--up { color: var(--d-success-text); }
 .analytics-overview__metric-change--down { color: var(--d-danger-text); }
 .analytics-overview__metric-change--neutral { color: var(--muted-foreground); }

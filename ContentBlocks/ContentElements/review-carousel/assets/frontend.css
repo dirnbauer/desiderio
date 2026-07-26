@@ -18,7 +18,7 @@
 /* Only the active slide is shown; non-active slides carry aria-hidden="true". */
 .review-carousel__slide[aria-hidden="true"] { display: none; }
 
-.review-carousel__stars { display: flex; gap: 0.125rem; margin-block-end: var(--d-spacing-sm); }
+.review-carousel__stars { display: flex; gap: var(--d-spacing-0-5); margin-block-end: var(--d-spacing-sm); }
 .review-carousel__star { color: var(--muted-foreground); }
 .review-carousel__star--filled { color: var(--primary); }
 

@@ -39,7 +39,7 @@
 .office-locations__icon {
     display: inline-flex;
     color: var(--primary);
-    margin-block-start: 0.1rem;
+    margin-block-start: var(--d-spacing-0-5);
 }
 .office-locations__lines { line-height: var(--d-leading-normal); }
 .office-locations__link {

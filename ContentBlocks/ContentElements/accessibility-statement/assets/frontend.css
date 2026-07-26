@@ -14,7 +14,7 @@
 .a11y-statement__content { margin-block-start: var(--d-spacing-lg); font-size: var(--d-text-sm); color: var(--muted-foreground); line-height: var(--d-leading-relaxed); }
 .a11y-statement__content > *:first-child { margin-top: 0; }
 .a11y-statement__content h3 { font-size: var(--d-text-base); font-weight: var(--d-weight-semibold); color: var(--foreground); margin-block: var(--d-spacing-lg) var(--d-spacing-xs); }
-.a11y-statement__content ul { padding-inline-start: 1.25rem; list-style: disc; }
+.a11y-statement__content ul { padding-inline-start: 1.25em; list-style: disc; }
 .a11y-statement__content li { margin-block-end: var(--d-spacing-xs); }
 .a11y-statement__content a { color: var(--d-link, var(--primary)); text-decoration: underline; text-underline-offset: 2px; }
 .a11y-statement__contact {

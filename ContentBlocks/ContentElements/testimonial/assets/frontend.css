@@ -5,7 +5,7 @@
    shadow's bottom edge reads as a stray horizontal line. The testimonial only
    ever wants a border (on the card variant), never a shadow - so drop it. */
 .testimonial .testimonial__card { box-shadow: none; }
-.testimonial__rating { display: flex; gap: 0.25rem; margin-block-end: var(--d-spacing-sm); }
+.testimonial__rating { display: flex; gap: var(--d-spacing-1); margin-block-end: var(--d-spacing-sm); }
 .testimonial__star { color: var(--muted-foreground); }
 .testimonial__star--filled { color: var(--primary); }
 .testimonial__quote { font-size: var(--d-text-lg); line-height: var(--d-leading-relaxed); margin-block-end: var(--d-spacing-md); font-style: italic; }

@@ -126,7 +126,7 @@
 .chart-radar__legend-item {
     display: flex;
     align-items: baseline;
-    gap: 0.375rem;
+    gap: var(--d-spacing-xs);
     min-width: 0;
     border: 1px solid transparent;
     border-radius: calc(var(--radius) - 2px);

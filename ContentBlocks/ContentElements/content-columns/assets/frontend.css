@@ -34,7 +34,7 @@
     outline-offset: 2px;
 }
 .content-columns__col ul,
-.content-columns__col ol { padding-inline-start: 1.25rem; }
-.content-columns__col li { margin-block: 0.25rem; }
+.content-columns__col ol { padding-inline-start: 1.25em; }
+.content-columns__col li { margin-block: var(--d-spacing-1); }
 .content-columns__col h3,
 .content-columns__col h4 { color: var(--foreground); }

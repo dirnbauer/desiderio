@@ -44,6 +44,8 @@ final class ContentElementAuditTest extends TestCase
         'shared_collection_missing_flag',
         'shared_collection_inert_fields',
         'css_untokenised_typography',
+        'css_untokenised_spacing',
+        'css_static_multicolumn',
         'appearance_field_unwired',
     ];
 

@@ -30,7 +30,7 @@
 .feature-checklist__marker {
     flex-shrink: 0;
     color: var(--primary);
-    margin-top: 0.125rem;
+    margin-top: var(--d-spacing-0-5);
 }
 .feature-checklist__title {
     font-weight: var(--d-weight-semibold);

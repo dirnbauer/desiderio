@@ -7,14 +7,14 @@
 .pricing-toggle__plan { flex: 1; border: 1px solid var(--border); border-radius: var(--radius); padding: var(--d-spacing-lg); display: flex; flex-direction: column; background: var(--card); color: var(--card-foreground); }
 .pricing-toggle__title { font-size: var(--d-text-lg); font-weight: var(--d-weight-bold); }
 .pricing-toggle__prices { margin-block-start: var(--d-spacing-sm); }
-.pricing-toggle__price { display: flex; align-items: baseline; gap: 0.25rem; margin: 0; }
+.pricing-toggle__price { display: flex; align-items: baseline; gap: var(--d-spacing-1); margin: 0; }
 .pricing-toggle__amount { font-size: var(--d-text-3xl); font-weight: var(--d-weight-display); line-height: var(--d-leading-tight); }
 .pricing-toggle__period { font-size: var(--d-text-sm); font-weight: var(--d-weight-normal); color: var(--muted-foreground); }
 .pricing-toggle__price-alt { font-size: var(--d-text-sm); color: var(--muted-foreground); margin-block-start: var(--d-spacing-xs); }
 .pricing-toggle__plan-desc { font-size: var(--d-text-sm); color: var(--muted-foreground); margin-block-start: var(--d-spacing-sm); }
 .pricing-toggle__features { list-style: none; padding: 0; margin-block-start: var(--d-spacing-md); margin-block-end: var(--d-spacing-lg); display: flex; flex-direction: column; gap: var(--d-spacing-xs); flex: 1; }
-.pricing-toggle__feature { display: flex; align-items: flex-start; gap: 0.5rem; font-size: var(--d-text-sm); }
-.pricing-toggle__check { flex-shrink: 0; color: var(--primary); margin-block-start: 0.125rem; }
+.pricing-toggle__feature { display: flex; align-items: flex-start; gap: var(--d-spacing-xs); font-size: var(--d-text-sm); }
+.pricing-toggle__check { flex-shrink: 0; color: var(--primary); margin-block-start: var(--d-spacing-0-5); }
 .pricing-toggle__button { text-align: center; justify-content: center; margin-block-start: auto; }
 
 /* Heading-to-teaser rhythm: consistent gap inside the intro block. */

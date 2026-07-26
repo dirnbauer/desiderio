@@ -144,7 +144,7 @@
 }
 .product-gallery__highlight-icon {
     flex-shrink: 0;
-    margin-block-start: 0.125rem;
+    margin-block-start: var(--d-spacing-0-5);
     color: var(--primary);
 }
 .product-gallery__panel-footer { padding-block-start: 0; }

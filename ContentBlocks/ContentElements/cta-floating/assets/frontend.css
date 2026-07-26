@@ -43,7 +43,7 @@
 .cta-floating__text {
     display: flex;
     flex-direction: column;
-    gap: 2px;
+    gap: var(--d-spacing-0-5);
     min-inline-size: 0;
 }
 .cta-floating__eyebrow {

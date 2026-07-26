@@ -16,7 +16,7 @@
 .stat-cards__label { margin: 0; font-size: var(--d-text-sm); color: var(--muted-foreground); }
 .stat-cards__value { margin: var(--d-spacing-xs) 0 0; font-size: var(--d-text-2xl); font-weight: var(--d-weight-bold); line-height: var(--d-leading-tight); }
 .stat-cards__change {
-    display: inline-flex; align-items: center; gap: 2px;
+    display: inline-flex; align-items: center; gap: var(--d-spacing-0-5);
     margin: var(--d-spacing-xs) 0 0;
     font-size: var(--d-text-sm); font-weight: var(--d-weight-medium);
 }

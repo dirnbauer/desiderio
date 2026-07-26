@@ -39,7 +39,7 @@
     object-fit: contain;
 }
 .rating-display__score { margin: 0; font-size: var(--d-text-3xl); font-weight: var(--d-weight-display); color: var(--foreground); line-height: var(--d-leading-tight); font-variant-numeric: tabular-nums; }
-.rating-display__stars { display: flex; gap: 0.125rem; color: var(--primary); }
+.rating-display__stars { display: flex; gap: var(--d-spacing-0-5); color: var(--primary); }
 .rating-display__platform { margin: 0; font-size: var(--d-text-sm); font-weight: var(--d-weight-semibold); }
 .rating-display__count { font-size: var(--d-text-sm); color: var(--muted-foreground); }
 .rating-display__link {

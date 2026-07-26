@@ -23,7 +23,7 @@
 .changelog__description { font-size: var(--d-text-sm); color: var(--muted-foreground); margin-block-start: var(--d-spacing-xs); line-height: var(--d-leading-relaxed); }
 .changelog__description > *:first-child { margin-top: 0; }
 .changelog__description > *:last-child { margin-bottom: 0; }
-.changelog__description code { font-family: var(--d-font-mono); font-size: 0.85em; background: var(--muted); color: var(--foreground); padding: 0.1rem 0.3rem; border-radius: var(--d-radius-sm); }
+.changelog__description code { font-family: var(--d-font-mono); font-size: 0.85em; background: var(--muted); color: var(--foreground); padding: var(--d-spacing-0-5) var(--d-spacing-1); border-radius: var(--d-radius-sm); }
 
 /* Document measure: this element is running text read top to bottom, so the
    whole column is capped the way an article body is — 75ch is the survey's

@@ -4,6 +4,18 @@ All notable changes to **webconsulting/desiderio** are documented in this
 file. The format follows [Keep a Changelog](https://keepachangelog.com/)
 and the project adheres to [Semantic Versioning](https://semver.org/).
 
+## [3.8.1] — 2026-07-26
+
+### Fixed
+
+- **The corporate preset no longer cancels the footer's responsive stacking.**
+  `preset-corporate.css` re-declared `.desiderio-footer__inner` with the same
+  `1fr auto 1fr` grid the base theme already has; loading after
+  `desiderio.css`, that duplicate silently overrode the 1024 px stacking rule,
+  so sites on the corporate preset kept the ragged three-column footer at
+  every narrow width. Presets style look, not structure — the duplicate is
+  gone.
+
 ## [3.8.0] — 2026-07-26
 
 ### Fixed

@@ -471,6 +471,13 @@ final class SeedStyleguidePagesCommand extends Command
             if ($page['hideInNav'] ?? false) {
                 $pageAttributes['nav_hide'] = 1;
             }
+            // A page that needs its own template says so (the themes page
+            // renders a generated overview above the content area). Only
+            // backend_layout is set, never backend_layout_next_level: the
+            // special template belongs to this page, not to its subtree.
+            if (isset($page['backendLayout'])) {
+                $pageAttributes['backend_layout'] = $page['backendLayout'];
+            }
 
             $blogMeta = $page['blog'] ?? null;
             if ($blogAvailable && (($page['blogList'] ?? false) || is_array($blogMeta))) {

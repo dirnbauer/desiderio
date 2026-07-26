@@ -1,0 +1,187 @@
+/* ------------------------------------------------------------------ */
+/*  Theme preset overview (Pages/DesiderioThemes)                      */
+/* ------------------------------------------------------------------ */
+
+/* Each card carries its own data-shadcn-preset-sample and therefore its own
+   copy of the token set (Resources/Public/Css/preset-samples.css), so it
+   paints itself while the page around it stays in the site's preset. That
+   only holds as long as nothing in here inherits colour, radius or type from
+   the page: every value below is a token, resolved inside the card's scope.
+
+   Two things deliberately do NOT come from the card: the section background
+   and the grid geometry. Those belong to the page, not to the preset. */
+
+.preset-overview__head,
+.preset-matrix__head {
+    margin-bottom: 2.5rem;
+}
+
+.preset-overview__eyebrow {
+    font-size: 0.875rem;
+    font-weight: var(--d-weight-medium);
+    letter-spacing: var(--d-tracking-wide);
+    text-transform: uppercase;
+    color: var(--d-primary-text);
+    margin-bottom: 0.5rem;
+}
+
+.preset-overview__lead {
+    max-width: 70ch;
+}
+
+.preset-grid {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(min(20rem, 100%), 1fr));
+}
+
+/* The card is a window into another preset: its own canvas, its own text
+   colour, its own corner radius and its own elevation — all read from the
+   preset it names. */
+.preset-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.5rem;
+    background-color: var(--background);
+    color: var(--foreground);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--d-surface-shadow);
+    font-family: var(--d-font-sans);
+}
+
+.preset-card__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.5rem 0.75rem;
+}
+
+.preset-card__name {
+    flex: 1 1 auto;
+    margin: 0;
+    font-family: var(--d-font-heading);
+    font-size: var(--d-text-xl);
+    font-weight: var(--d-weight-semibold);
+    line-height: var(--d-leading-snug);
+    letter-spacing: var(--d-tracking-tight);
+}
+
+.preset-card__id {
+    font-family: var(--d-font-mono);
+    font-size: 0.75rem;
+    color: var(--muted-foreground);
+}
+
+/* Hugs its label instead of filling the line the way a stretched flex item
+   would — a badge that spans the card reads as a banner, not as a note. */
+.preset-card__flag {
+    flex: 0 0 auto;
+}
+
+.preset-card__character {
+    margin: 0;
+    font-size: 0.9375rem;
+    line-height: var(--d-leading-relaxed);
+    color: var(--muted-foreground);
+}
+
+.preset-card__swatches {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.preset-card__swatch {
+    width: 2.5rem;
+    height: 2rem;
+    border: 1px solid var(--border);
+    border-radius: calc(var(--radius) * 0.6);
+}
+
+.preset-card__swatch--primary {
+    background-color: var(--primary);
+}
+
+/* The accent, not the page background: in light mode all fifteen pages are
+   white, so a background swatch would be an empty box, while the accent
+   carries the preset's hue as a tint. */
+.preset-card__swatch--accent {
+    background-color: var(--accent);
+}
+
+.preset-card__swatch--muted {
+    background-color: var(--muted);
+}
+
+/* Real controls, not pictures of controls: the same .btn and .badge rules the
+   rest of the site uses, resolving against this card's tokens. They are
+   inert (tabindex="-1", aria-hidden) because they are a specimen — there is
+   nothing to activate. */
+.preset-card__sample {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.preset-card__facts {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.25rem 1rem;
+    margin: 0;
+    margin-top: auto;
+    padding-top: 0.5rem;
+    font-size: 0.8125rem;
+    line-height: var(--d-leading-normal);
+    border-top: 1px solid var(--border);
+}
+
+.preset-card__facts dt {
+    color: var(--muted-foreground);
+}
+
+.preset-card__facts dd {
+    margin: 0;
+}
+
+/* The type facts are set in the face they name — the fastest way to read a
+   font pairing is to look at it. */
+.preset-card__font--heading {
+    font-family: var(--d-font-heading);
+}
+
+.preset-card__font--body {
+    font-family: var(--d-font-sans);
+}
+
+/* ---------------------------------------------------------- the matrix */
+
+.preset-matrix__name {
+    white-space: nowrap;
+    font-weight: var(--d-weight-medium);
+}
+
+/* A dot rather than a swatch column: the row already names the preset, and
+   the colour is there so someone scanning can find the row again. It carries
+   the sample attribute, so it is the preset's real primary. */
+.preset-matrix__dot {
+    display: inline-block;
+    width: 0.75rem;
+    height: 0.75rem;
+    margin-right: 0.5rem;
+    border-radius: 9999px;
+    background-color: var(--primary);
+    border: 1px solid var(--border);
+    vertical-align: -0.1em;
+}
+
+.preset-matrix code {
+    font-family: var(--d-font-mono);
+    font-size: 0.75rem;
+}
+
+.preset-note {
+    margin-top: 1.5rem;
+    max-width: 75ch;
+}

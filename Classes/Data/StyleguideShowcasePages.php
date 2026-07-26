@@ -24,7 +24,7 @@ namespace Webconsulting\Desiderio\Data;
  *
  * @phpstan-import-type StarterBlock from StarterSiteDefinitions
  * @phpstan-type ShowcaseBlogMeta array{publishDate: string, categories: list<string>, tags: list<string>}
- * @phpstan-type ShowcasePage array{title: string, navTitle: string, slug: string, abstract: string, description: string, parentSlug: string|null, subtitle?: string, pageTsConfig?: string, blogList?: bool, blog?: ShowcaseBlogMeta, hideInNav?: bool, content: array<int, StarterBlock>}
+ * @phpstan-type ShowcasePage array{title: string, navTitle: string, slug: string, abstract: string, description: string, parentSlug: string|null, subtitle?: string, pageTsConfig?: string, backendLayout?: string, blogList?: bool, blog?: ShowcaseBlogMeta, hideInNav?: bool, content: array<int, StarterBlock>}
  */
 final class StyleguideShowcasePages
 {
@@ -94,7 +94,7 @@ final class StyleguideShowcasePages
                         'title' => '3 · Give every page tree its own look',
                         'description' => 'Since version 2.6 any page can carry its own preset, inherited down the whole subtree. Campaign microsite in Midnight, product pages in Marine, the blog in Forest — one TYPO3 install, one content pool, as many looks as your marketing calendar demands. This styleguide proves it: every chapter page below runs a different theme.',
                         'image' => self::screenshot('frontend-pricing-midnight-dark.png', 'Dark pricing page in the Midnight preset', 'Desiderio pricing page rendered in the dark Midnight theme preset.'),
-                        'link' => '{{page:chapter-hero}}',
+                        'link' => '{{page:themes}}',
                     ],
                 ],
             ]),
@@ -319,6 +319,7 @@ final class StyleguideShowcasePages
     {
         return [
             self::technicalFeaturesPage(),
+            self::themesPage(),
             self::contentTypesHubPage(),
             self::rteCombinationsPage(),
             self::featuresOverviewPage(),
@@ -372,6 +373,47 @@ final class StyleguideShowcasePages
         }
 
         return $count;
+    }
+
+    /**
+     * The theme presets, each rendered live in its own preset.
+     *
+     * The page body is generated from the compiled preset stylesheet
+     * (Build/Scripts/build-preset-overview.php) and rendered by the
+     * DesiderioThemes backend layout, so the cards and the comparison matrix
+     * cannot drift from the presets. The content elements below it are the
+     * editorial frame around that generated part.
+     *
+     * @return ShowcasePage
+     */
+    private static function themesPage(): array
+    {
+        return [
+            'title' => 'Themes',
+            'navTitle' => 'Themes',
+            'slug' => '/themes',
+            'backendLayout' => 'pagets__DesiderioThemes',
+            'abstract' => 'All fifteen Desiderio theme presets side by side, each card rendered live in the preset it names — colours, fonts, corner radius, control density, focus ring and icon library.',
+            'description' => 'Compare all 15 Desiderio theme presets: live samples of every palette, font pairing, corner radius and control density, switchable per site or per page tree without a rebuild.',
+            'parentSlug' => null,
+            'content' => [
+                self::block('desiderio_contenthighlight', [
+                    'header' => 'Why switching a theme is not a project',
+                    'content' => '<p>A preset is a set of OKLCH design tokens, nothing else. Selecting one writes a single <code>data-shadcn-preset</code> attribute onto the body tag, and every element repaints from the tokens that attribute pulls in — no Tailwind rebuild, no deployment, no touched content record. That is why the cards above can be live: the same tokens, scoped to a card instead of to the page, let fifteen presets render on one document.</p><p>The same field exists on every page. Set <strong>Theme preset</strong> in the page properties and the whole subtree below it follows, so a campaign microsite, a product section and the blog can each carry their own look inside one install and one content pool.</p>',
+                    'variant' => 'muted',
+                    'alignment' => 'left',
+                    'link' => '{{page:technical-features}}',
+                    'link_text' => 'How the theme layer is built',
+                ]),
+                self::block('desiderio_ctabanner', [
+                    'header' => 'None of the fifteen is yours? Design one.',
+                    'description' => 'Compose your own on the create page on ui.shadcn.com — palette, fonts, radius, style recipe — and paste the generated tokens into shadcn-theme.css as the custom preset. Desiderio speaks the same token language, so nothing is lost in translation.',
+                    'cta_text' => 'Open the create page',
+                    'cta_link' => self::CREATE_URL,
+                    'bg_style' => 'primary',
+                ]),
+            ],
+        ];
     }
 
     /**

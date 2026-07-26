@@ -84,6 +84,32 @@ The create presets are copied from ``https://ui.shadcn.com/create``. The
 house presets reuse the same token model and vary accent, radius,
 typography, density, focus ring, and icon library.
 
+..  _configuration-presets-overview-page:
+
+The themes page
+---------------
+
+The styleguide seeder creates a :guilabel:`Themes` page that renders every
+preset as a live sample — real buttons and badges painted by that preset's
+tokens — plus a matrix of the parts that are not colour: fonts, corner
+radius, control density, focus-ring width, elevation, and icon library. It
+is the fastest way to answer "what changes if I pick a different preset".
+
+The page uses the ``DesiderioThemes`` backend layout, and its body is
+generated from the compiled stylesheet:
+
+..  code-block:: bash
+
+    php Build/Scripts/build-preset-overview.php
+
+That writes ``Resources/Public/Css/preset-samples.css`` (each preset
+re-scoped from ``body[data-shadcn-preset]`` to
+``[data-shadcn-preset-sample]``, which is what lets fifteen presets paint
+themselves on one page) and the generated
+``Partials/Pages/PresetOverview.fluid.html``. Re-run it after changing a
+preset; ``Tests/Unit/PresetOverviewTest.php`` fails if the committed
+artefacts and ``shadcn-theme.css`` disagree.
+
 ..  _configuration-presets-per-page:
 
 Per-page preset override

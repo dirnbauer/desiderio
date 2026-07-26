@@ -6,6 +6,43 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [3.3.0] — 2026-07-25
+
+### Changed
+
+- **The Appearance tab now does what it says.** Core's `TYPO3/Appearance`
+  basic put four controls (Layout, Frame, Space Before/After) into all 244
+  element forms, and none of them rendered anywhere — editors changed a
+  dropdown and nothing happened. It is replaced by `Desiderio/Appearance`:
+
+  - **Frame** is the Section surface picker (page background, muted, card,
+    accent, primary, secondary), feeding the Section component's existing
+    surface system with correct foreground pairing. An editor's choice
+    overrides a template's own background default (only `cta` sets one).
+  - **Space before/after** adds outer section margin on the spacing ramp,
+    keeping core's value set (`extra-small…extra-large`) so stored content
+    stays portable. Classes: `frame-space-before-*` / `frame-space-after-*`.
+  - **Layout is gone from the form.** Core's "Layout 1…3" has no meaning in
+    this design system; stored values remain in the database untouched.
+
+  All 227 section-rendering templates pass the fields to
+  `<d:layout.section>`; the 17 utility elements (footers, floating banners,
+  dividers) carry no appearance tab, because a section surface has no meaning
+  there. Guarded twice: the audit's `appearance_field_unwired`
+  (zero-tolerance) fails any element whose template does not consume the
+  fields, and the structure test bans `TYPO3/Appearance` outright.
+
+### Fixed
+
+- The new basic's palette initially reused core's `frames_palette`
+  identifier. tt_content palettes are GLOBAL, so core's palette (with
+  `layout`) was overwritten for every type still using it — all 19
+  EXT:innesto elements threw `RecordPropertyNotFoundException` on render,
+  because their compiled definitions still declared `layout` while the record
+  no longer carried it. The palette is now `desiderio_frames_palette`. Caught
+  by the render sweep before release.
+
+
 ## [3.2.0] — 2026-07-25
 
 The element library becomes a service any theme extension can plug into,

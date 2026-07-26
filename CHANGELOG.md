@@ -30,6 +30,20 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
   New `DesiderioThemes` backend layout (EN/DE/ES/FR/HU labels); showcase pages
   may now request their own layout via `backendLayout`.
 
+## [3.5.1] — 2026-07-26
+
+### Fixed
+
+- **The categorized-menu demos no longer 500 — and neither does the element.**
+  Core's `menu_categorized_content` TypoScript inlines
+  `field:selected_categories` into `IN(|)`; with no categories selected that
+  is `IN()` — a SQL syntax error the moment an editor inserts the element
+  without picking categories. Desiderio's set now skips the query processor
+  when the field is empty (the template renders an empty menu instead). The
+  library seed additionally gives each folder two demo categories, points
+  both categorized-menu records at them and tags the quote + table demos, so
+  the menu demo lists real records instead of nothing.
+
 ## [3.5.0] — 2026-07-26
 
 ### Added

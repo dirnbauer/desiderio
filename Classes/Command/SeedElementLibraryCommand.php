@@ -164,6 +164,7 @@ final class SeedElementLibraryCommand extends Command
         $io->progressFinish();
 
         $removed = $upserter->removeObsolete($folderUid, array_column($elements, 'cType'), $now);
+        $upserter->seedCategoryDemos($folderUid, $now);
 
         // Drop stale cached previews and picker metadata/search indexes so
         // warming and the next picker open both see the freshly seeded catalog.

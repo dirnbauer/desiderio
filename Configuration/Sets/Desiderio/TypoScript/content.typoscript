@@ -155,6 +155,11 @@ tt_content.menu_section =< lib.desiderioMenuSubpages
 tt_content.menu_section_pages =< lib.desiderioMenuSubpages
 tt_content.menu_categorized_pages =< lib.desiderioMenuSelectedPages
 tt_content.menu_categorized_content =< lib.contentElement
+# Core's definition inlines field:selected_categories into "IN(|)" — with no
+# categories selected that becomes IN(), a SQL syntax error, i.e. a 500 the
+# moment an editor inserts the element without picking categories. Skip the
+# query processor instead; the template then renders an empty menu.
+tt_content.menu_categorized_content.dataProcessing.10.if.isTrue.field = selected_categories
 tt_content.menu_recently_updated =< lib.desiderioMenuRecentlyUpdated
 
 tt_content.solr_pi_results =< lib.contentElement

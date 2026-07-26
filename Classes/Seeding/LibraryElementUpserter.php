@@ -235,6 +235,95 @@ final class LibraryElementUpserter
     }
 
     /**
+     * The two categorized-menu demos are the only records whose meaning lives
+     * outside their own row: core inlines selected_categories into the query
+     * (an empty selection is IN() — a SQL syntax error) and an unrelated
+     * category shows nothing. Give the folder two demo categories, point both
+     * menu records at them, and tag the quote + table demos so the
+     * categorized-content menu lists real records. Idempotent; runs after the
+     * element loop so the tagged siblings exist regardless of seed order.
+     */
+    public function seedCategoryDemos(int $folderPid, int $now): void
+    {
+        $contentConnection = $this->connectionPool->getConnectionForTable('tt_content');
+        $menuUids = self::intColumn($contentConnection->fetchFirstColumn(
+            "SELECT uid FROM tt_content WHERE pid = ? AND CType IN ('menu_categorized_pages', 'menu_categorized_content') AND deleted = 0",
+            [$folderPid]
+        ));
+        if ($menuUids === []) {
+            return;
+        }
+
+        $categoryConnection = $this->connectionPool->getConnectionForTable('sys_category');
+        $categoryUids = [];
+        foreach (['Product updates', 'Company news'] as $index => $title) {
+            $existing = $categoryConnection->fetchOne(
+                'SELECT uid FROM sys_category WHERE pid = ? AND title = ? AND deleted = 0',
+                [$folderPid, $title]
+            );
+            if (is_numeric($existing)) {
+                $categoryUids[] = (int)$existing;
+                continue;
+            }
+            $categoryConnection->insert('sys_category', [
+                'pid' => $folderPid,
+                'tstamp' => $now,
+                'crdate' => $now,
+                'sorting' => ($index + 1) * 256,
+                'title' => $title,
+            ]);
+            $categoryUids[] = CollectionRecordSeeder::normalizeLastInsertId($categoryConnection->lastInsertId());
+        }
+
+        foreach ($menuUids as $menuUid) {
+            $contentConnection->update('tt_content', [
+                'selected_categories' => implode(',', $categoryUids),
+                'category_field' => 'categories',
+            ], ['uid' => $menuUid]);
+        }
+
+        $taggedUids = self::intColumn($contentConnection->fetchFirstColumn(
+            "SELECT uid FROM tt_content WHERE pid = ? AND CType IN ('quote', 'table') AND deleted = 0",
+            [$folderPid]
+        ));
+        $mmConnection = $this->connectionPool->getConnectionForTable('sys_category_record_mm');
+        foreach ($taggedUids as $taggedUid) {
+            foreach ($categoryUids as $index => $categoryUid) {
+                $exists = $mmConnection->fetchOne(
+                    "SELECT 1 FROM sys_category_record_mm WHERE uid_local = ? AND uid_foreign = ? AND tablenames = 'tt_content' AND fieldname = 'categories'",
+                    [$categoryUid, $taggedUid]
+                );
+                if ($exists === false) {
+                    $mmConnection->insert('sys_category_record_mm', [
+                        'uid_local' => $categoryUid,
+                        'uid_foreign' => $taggedUid,
+                        'tablenames' => 'tt_content',
+                        'fieldname' => 'categories',
+                        'sorting' => $index + 1,
+                        'sorting_foreign' => $index + 1,
+                    ]);
+                }
+            }
+            $contentConnection->update('tt_content', ['categories' => count($categoryUids)], ['uid' => $taggedUid]);
+        }
+    }
+
+    /**
+     * @param list<mixed> $values
+     * @return list<int>
+     */
+    private static function intColumn(array $values): array
+    {
+        $out = [];
+        foreach ($values as $value) {
+            if (is_numeric($value)) {
+                $out[] = (int)$value;
+            }
+        }
+        return $out;
+    }
+
+    /**
      * @param array{collections: array<string, array{table: string, column?: string, items: list<array<string, mixed>>}>, fileReferences: array<string, list<array{file: string, title: string, alternative: string, description: string, source: string}>>} $contentData
      */
     private function seedChildren(int $contentUid, int $pageUid, int $now, array $contentData): void

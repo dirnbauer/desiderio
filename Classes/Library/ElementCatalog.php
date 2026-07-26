@@ -341,15 +341,31 @@ final class ElementCatalog
      */
     private function getHostExtensions(): array
     {
+        return self::hostExtensions();
+    }
+
+    /**
+     * The host list, reachable without an instance.
+     *
+     * ContentBlockDefinitionRegistry needs the same list to know which
+     * extensions' elements exist at all, and duplicating the lookup is how the
+     * two drift apart.
+     *
+     * @return list<string>
+     */
+    public static function hostExtensions(): array
+    {
         $registered = $GLOBALS['TYPO3_CONF_VARS'] ?? null;
         foreach (['EXTENSIONS', 'desiderio', 'libraryHostExtensions'] as $key) {
             $registered = is_array($registered) ? ($registered[$key] ?? null) : null;
         }
 
-        $hosts = array_merge(
-            self::HOST_EXTENSIONS,
-            $this->normalizeStringList(is_array($registered) ? $registered : []),
-        );
+        $hosts = self::HOST_EXTENSIONS;
+        foreach (is_array($registered) ? $registered : [] as $host) {
+            if (is_string($host) && trim($host) !== '') {
+                $hosts[] = trim($host);
+            }
+        }
 
         return array_values(array_unique($hosts));
     }

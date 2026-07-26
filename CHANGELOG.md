@@ -4,6 +4,22 @@ All notable changes to **webconsulting/desiderio** are documented in this
 file. The format follows [Keep a Changelog](https://keepachangelog.com/)
 and the project adheres to [Semantic Versioning](https://semver.org/).
 
+## [3.8.0] — 2026-07-26
+
+### Fixed
+
+- **The definition registry sees every host's elements, not only this one's.**
+  `getDefinitions()` scanned `EXT:desiderio/ContentBlocks/ContentElements` and
+  nothing else. The seeding cleanup derives its list of collection child tables
+  from those definitions, so a downstream extension's child rows were never
+  deleted: every reseed left the previous run's rows behind, still `deleted=0`,
+  pointing at content elements that no longer existed. One lab install had
+  1,501 live person rows of which 162 were reachable. The registry now scans
+  every host returned by `ElementCatalog::hostExtensions()` — the same list the
+  element library already uses, so registering `libraryHostExtensions` is all a
+  provider needs. Elements from other extensions must declare an explicit
+  `typeName:`; guessing one from a directory name would invent a wrong CType.
+
 ## [3.7.0] — 2026-07-26
 
 ### Fixed

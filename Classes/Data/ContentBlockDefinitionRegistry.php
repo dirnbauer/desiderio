@@ -6,6 +6,7 @@ namespace Webconsulting\Desiderio\Data;
 
 use Symfony\Component\Yaml\Yaml;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use Webconsulting\Desiderio\Library\ElementCatalog;
 
 /**
  * Canonical loader for Content Block YAML definitions.
@@ -57,40 +58,50 @@ final class ContentBlockDefinitionRegistry
             return self::$definitions;
         }
 
-        $basePath = GeneralUtility::getFileAbsFileName('EXT:desiderio/ContentBlocks/ContentElements');
-        if ($basePath === '' || !is_dir($basePath)) {
-            self::$definitions = [];
-            return self::$definitions;
-        }
-
         $definitions = [];
-        $directories = scandir($basePath);
-        if ($directories === false) {
-            self::$definitions = [];
-            return self::$definitions;
-        }
 
-        foreach ($directories as $directory) {
-            if ($directory === '.' || $directory === '..') {
+        // Every host's elements, not only this extension's. The seeding cleanup
+        // derives the list of collection child tables from these definitions,
+        // so an extension missing here has its child rows left behind on every
+        // reseed — they accumulate silently, still "live", attached to content
+        // elements that were deleted long ago.
+        foreach (self::getContentElementHosts() as $extensionKey) {
+            $basePath = GeneralUtility::getFileAbsFileName('EXT:' . $extensionKey . '/ContentBlocks/ContentElements');
+            if ($basePath === '' || !is_dir($basePath)) {
                 continue;
             }
 
-            $configPath = $basePath . '/' . $directory . '/config.yaml';
-            if (!is_readable($configPath)) {
-                continue;
-            }
+            $directories = scandir($basePath);
+            foreach ($directories === false ? [] : $directories as $directory) {
+                if ($directory === '.' || $directory === '..') {
+                    continue;
+                }
 
-            $config = Yaml::parseFile($configPath);
-            if (!is_array($config)) {
-                continue;
-            }
-            $config = self::normalizeStringKeyedArray($config);
+                $configPath = $basePath . '/' . $directory . '/config.yaml';
+                if (!is_readable($configPath)) {
+                    continue;
+                }
 
-            $configuredTypeName = $config['typeName'] ?? null;
-            $typeName = is_string($configuredTypeName) && $configuredTypeName !== ''
-                ? $configuredTypeName
-                : 'desiderio_' . str_replace('-', '', $directory);
-            $definitions[$typeName] = self::buildContentBlockDefinition($config);
+                $config = Yaml::parseFile($configPath);
+                if (!is_array($config)) {
+                    continue;
+                }
+                $config = self::normalizeStringKeyedArray($config);
+
+                $configuredTypeName = $config['typeName'] ?? null;
+                if (is_string($configuredTypeName) && $configuredTypeName !== '') {
+                    $typeName = $configuredTypeName;
+                } elseif ($extensionKey === 'desiderio') {
+                    // Only this extension's own directory names are known to
+                    // follow the desiderio_<name> convention. Guessing a CType
+                    // for someone else's element would invent a wrong key.
+                    $typeName = 'desiderio_' . str_replace('-', '', $directory);
+                } else {
+                    continue;
+                }
+
+                $definitions[$typeName] = self::buildContentBlockDefinition($config);
+            }
         }
 
         self::$definitions = $definitions;
@@ -312,6 +323,20 @@ final class ContentBlockDefinitionRegistry
      *
      * @return list<string>
      */
+    /**
+     * Extension keys whose ContentElements/ directories make up the registry.
+     *
+     * The same list the element library uses, so an extension that registers
+     * itself as a library host is automatically known here too — one
+     * registration, not three.
+     *
+     * @return list<string>
+     */
+    private static function getContentElementHosts(): array
+    {
+        return ElementCatalog::hostExtensions();
+    }
+
     private static function getRecordTypeBasePaths(): array
     {
         $paths = [dirname(__DIR__, 2) . '/ContentBlocks/RecordTypes'];

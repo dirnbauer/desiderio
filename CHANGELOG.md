@@ -4,7 +4,7 @@ All notable changes to **webconsulting/desiderio** are documented in this
 file. The format follows [Keep a Changelog](https://keepachangelog.com/)
 and the project adheres to [Semantic Versioning](https://semver.org/).
 
-## [Unreleased]
+## [3.6.0] — 2026-07-26
 
 ### Added
 
@@ -29,6 +29,20 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
   New `DesiderioThemes` backend layout (EN/DE/ES/FR/HU labels); showcase pages
   may now request their own layout via `backendLayout`.
+
+- **Library folders keep their host scope on reseed.** `desiderio_grande`
+  registering itself as a library host made every plain
+  `desiderio:library:seed` of an existing folder pull in its whole 250-element
+  catalog. Without `--hosts`, the seed now infers the allowed hosts from the
+  records already in the folder (a fresh folder still gets every registered
+  host) — a host extension installed later has to be opted in explicitly.
+
+### Fixed
+
+- **The page footer stacks before it wraps.** The brand / copyright / legal
+  bar is a `1fr auto 1fr` grid that needs roughly 1000 px; between 768 px and
+  that width the legal links wrapped into a ragged second line. The footer
+  now stacks — centered, as one unit — at the shared 1024 px breakpoint.
 
 ## [3.5.2] — 2026-07-26
 

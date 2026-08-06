@@ -22,7 +22,7 @@ use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
  *    Wizard icon + description override).
  *
  * Unlike Content Blocks, these elements are NOT redefined here — they keep their
- * native rendering (Resources/Private/FluidStyledContent/Templates/* + the
+ * native rendering (Resources/Private/ClassicContent/Templates/* + the
  * TypoScript in Configuration/Sets/Desiderio/TypoScript/content.typoscript). We
  * only layer catalog metadata + a native-column preview fixture on top.
  *

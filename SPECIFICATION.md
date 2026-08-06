@@ -358,16 +358,18 @@ Gated by `settings.desiderio.showStyleguide`. Off by default in production.
   - `ComponentStructureTest` — all 37 components have `<f:argument>` definitions
   - `ViewHelpers/*Test` — 3 ViewHelpers covered
 - Static analysis: PHPStan level 8 with small baseline
-- CI: GitHub Actions matrix {PHP 8.3, 8.4} × {TYPO3 14.3}
+- CI: GitHub Actions matrix {PHP 8.4, 8.5} × {TYPO3 14.3}
 
 ---
 
 ## 14. Out of Scope
 
-- No React / Alpine / Livewire
-- No bundler (no Vite bundle, no Webpack)
+- No React, Vue, Svelte or Livewire component runtime. Alpine and small,
+  progressive libraries are allowed when native HTML is insufficient.
+- Vite asset delivery uses `praetorius/vite-asset-collector`; custom manifest
+  readers, dev-server probes and asset ViewHelpers are out of scope.
 - No shadcn CLI dependency at runtime (it may be used manually to regenerate theme tokens into `theme.css`)
-- No fallback for PHP < 8.3 or TYPO3 < 14.3
+- No fallback for PHP < 8.4 or TYPO3 < 14.3
 - No migration path from `s2f:` namespace — fresh installs only
 
 ---

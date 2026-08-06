@@ -7,7 +7,7 @@ Status: Green
 ## Summary
 
 README and Documentation match the v2.6.0 seeding decomposition: thin console
-commands, shared `Classes/Seeding/` services, 49 Fluid components, Visual Editor
+commands, shared `Classes/Seeding/` services, 53 Fluid components, Visual Editor
 middleware, and the refreshed thermo-nuclear code quality review.
 
 ## Changes In This Pass (v2.6.0)
@@ -23,7 +23,7 @@ middleware, and the refreshed thermo-nuclear code quality review.
 
 ## Previous Pass (2026-06-06, pre-release)
 
-- README component counts corrected to 17 atoms, 28 molecules, 4 layouts.
+- README component counts track 17 atoms, 28 molecules, 4 layouts, and 4 organisms.
 - README documents all `desiderio:*` seed/setup commands plus FAL output
   folders and workspace guards.
 - README adds Visual Editor compatibility notes (`ExtbasePluginRequestSanitizerMiddleware`,

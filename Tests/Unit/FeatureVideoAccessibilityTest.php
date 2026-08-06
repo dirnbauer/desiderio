@@ -43,17 +43,10 @@ final class FeatureVideoAccessibilityTest extends TestCase
         self::assertStringNotContainsString('autoplay', $videoTag[0]);
     }
 
-    public function testBundledEnglishCaptionsUseWebVtt(): void
+    public function testNoGeneratedVideoAssetsShipButGenerationToolingRemains(): void
     {
-        $captions = __DIR__ . '/../../Resources/Public/Styleguide/Video/desiderio-feature-video.en.vtt';
-        self::assertFileExists($captions);
-
-        $contents = (string)file_get_contents($captions);
-        self::assertStringStartsWith("WEBVTT\n", $contents);
-        self::assertMatchesRegularExpression(
-            '/00:00:00\.110 --> 00:00:02\.820/',
-            $contents
-        );
-        self::assertStringContainsString('Innesto then turns compatible shadcn', $contents);
+        self::assertDirectoryDoesNotExist(__DIR__ . '/../../Resources/Public/Styleguide/Video');
+        self::assertFileExists(__DIR__ . '/../../Build/Scripts/render-feature-videos.sh');
+        self::assertFileExists(__DIR__ . '/../../Build/Scripts/verify-feature-videos.sh');
     }
 }

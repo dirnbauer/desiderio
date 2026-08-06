@@ -78,14 +78,20 @@ final class ShadcnThemeTest extends TestCase
     public function testTypoScriptIncludesShadcnAssetsAndBodyAttributes(): void
     {
         $typoScript = (string) file_get_contents(__DIR__ . '/../../Configuration/Sets/Desiderio/setup.typoscript');
+        $cssEntry = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Assets/Main.entry.css');
+        $javascriptEntry = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Assets/Components.entry.js');
+        $layout = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Templates/Layouts/Pages/Default.fluid.html');
 
-        self::assertStringContainsString('Resources/Public/Css/shadcn-theme.css', $typoScript);
-        self::assertStringContainsString('Resources/Public/Css/desiderio-tailwind.css', $typoScript);
-        self::assertStringNotContainsString('alpine', strtolower($typoScript));
-        self::assertStringContainsString('Resources/Public/Js/astro.js', $typoScript);
-        self::assertStringContainsString('Resources/Public/Js/desiderio.js', $typoScript);
-        self::assertStringContainsString('Resources/Public/Js/charts.js', $typoScript);
-        self::assertStringContainsString('Resources/Public/Js/styleguide.js', $typoScript);
+        self::assertStringContainsString('../../Public/Css/shadcn-theme.css', $cssEntry);
+        self::assertStringContainsString('../../Public/Css/desiderio-tailwind.css', $cssEntry);
+        self::assertStringContainsString('../../Public/Js/astro.js', $javascriptEntry);
+        self::assertStringContainsString('../../Public/Js/desiderio.js', $javascriptEntry);
+        self::assertStringContainsString('../../Public/Js/charts.js', $javascriptEntry);
+        self::assertStringContainsString('../../Public/Js/styleguide.js', $javascriptEntry);
+        self::assertStringContainsString('vite:asset entry="EXT:desiderio/Resources/Private/Assets/Main.entry.css"', $layout);
+        self::assertStringContainsString('vite:asset entry="EXT:desiderio/Resources/Private/Assets/Components.entry.js"', $layout);
+        self::assertStringNotContainsString('includeCSS', $typoScript);
+        self::assertStringNotContainsString('includeJSFooter', $typoScript);
         self::assertStringContainsString('data-shadcn-preset="', $typoScript);
         self::assertStringContainsString('levelfield:-1, tx_desiderio_shadcn_preset, slide', $typoScript);
         self::assertStringContainsString('ifEmpty = {$desiderio.shadcn.preset}', $typoScript);

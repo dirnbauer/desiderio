@@ -6,7 +6,7 @@
 Installation
 ============
 
-Desiderio targets TYPO3 v14.3 and PHP 8.3 or newer. Older TYPO3
+Desiderio targets TYPO3 v14.3 and PHP 8.4 or newer. Older TYPO3
 branches are not supported.
 
 ..  rst-class:: bignums

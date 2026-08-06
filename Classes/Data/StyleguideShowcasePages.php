@@ -41,7 +41,7 @@ final class StyleguideShowcasePages
                 'variant' => 'split',
                 'badge_text' => 'shadcn/ui for TYPO3 14',
                 'header' => 'The TYPO3 design system your editors will brag about',
-                'subheadline' => 'Desiderio puts 244 shadcn-styled content elements, 49 typed Fluid components, and 15 runtime-switchable themes into one composer package. Install it before lunch. Re-theme it before the coffee gets cold.',
+                'subheadline' => 'Desiderio puts 244 shadcn-styled content elements, 53 typed Fluid components, and 15 runtime-switchable themes into one composer package. Install it before lunch. Re-theme it before the coffee gets cold.',
                 'primary_button_text' => 'Start free — €0 forever',
                 'primary_button_link' => self::REPO_URL,
                 'primary_button_variant' => 'default',
@@ -61,7 +61,7 @@ final class StyleguideShowcasePages
                     ['title' => 'Every layout change is a developer ticket', 'description' => 'Editors build finished pages from a ten-group wizard, with a real backend preview for all 244 elements and inline editing in the Visual Editor — the dev queue goes back to being about features, not landing pages.'],
                     ['title' => 'One edit and the whole layout breaks', 'description' => 'Every element is assembled from typed Fluid components on one token contract. Spacing, colour and type come from the design system, so off-brand pages and broken grids are impossible to create by accident.'],
                     ['title' => 'Your stack is fifteen plugins holding hands', 'description' => 'Desiderio is one Composer package. News, Solr, Blog, Powermail and the Form Framework all render through the same shadcn-styled templates — one design system, one security model, one thing to update.'],
-                    ['title' => 'A redesign means a rebuild', 'description' => 'Theming is pure OKLCH tokens switched at runtime: zero rebuilds, no Node or Vite pipeline. Repaint the whole site, or just one page tree, from site settings — no deployment, no cache anxiety.'],
+                    ['title' => 'A redesign means a rebuild', 'description' => 'Theming is pure OKLCH tokens switched at runtime: zero theme rebuilds. Repaint the whole site, or just one page tree, from site settings — no deployment, no cache anxiety.'],
                     ['title' => 'The accessibility audit is coming — the EAA is now law', 'description' => 'WCAG 2.2 contrast is enforced by the build, markup is semantic with proper landmarks, and screen-reader labels are translated. You bring the report to legal instead of retrofitting 244 elements by hand.'],
                     ['title' => 'AI search quotes everyone but you', 'description' => 'Semantic HTML, question-shaped elements (FAQ, how-to, definition lists) and clean per-page metadata make your content extraction-friendly for AI Overviews, ChatGPT and Perplexity — GEO as a side effect of doing HTML properly.'],
                 ],
@@ -75,7 +75,7 @@ final class StyleguideShowcasePages
                 'variant' => 'center',
             ]),
             self::block('desiderio_featurealternating', [
-                'header' => 'Three steps. No build pipeline. No agency invoice.',
+                'header' => 'Three steps. No theme rebuild. No agency invoice.',
                 'subheadline' => 'The create page on ui.shadcn.com is the official theme designer of the shadcn/ui ecosystem. Desiderio mirrors its token model one to one — which makes it your TYPO3 theme editor.',
                 'items' => [
                     [
@@ -111,7 +111,7 @@ final class StyleguideShowcasePages
                 'items' => [
                     [
                         'title' => 'composer require webconsulting/desiderio',
-                        'content' => 'One package brings the elements, the components, and the theme layer. TYPO3 14.3+, PHP 8.3+, done.',
+                        'content' => 'One package brings the elements, the components, and the theme layer. TYPO3 14.3+, PHP 8.4+, done.',
                         'image' => self::unsplash('desk-logan-weaver.jpg', 'Developer desk during installation', 'A tidy developer desk with a laptop, where a single composer command installs Desiderio.'),
                     ],
                     [
@@ -147,7 +147,8 @@ final class StyleguideShowcasePages
                     ['title' => '17 atoms', 'description' => 'Button, Badge, Input, Icon, Avatar, Typography and friends. Each one token-only: change a preset and every atom follows. Typed f:argument contracts catch wrong usage at render time, not in production.'],
                     ['title' => '28 molecules', 'description' => 'Card, Accordion, Tabs, Table, Alert, form fields — atoms composed into reusable patterns with slots. Your custom elements get the same building blocks the 244 shipped ones use.'],
                     ['title' => '4 layout primitives', 'description' => 'Section, Container, Grid, Stack carry spacing, density, and container queries. Consistent rhythm across every element without a single hand-written margin.'],
-                    ['title' => '244 organisms', 'description' => 'The content elements themselves: heroes, pricing tables, dashboards, footers. Built exclusively from the layers below — which is why an 11-category audit can verify all of them, on every commit.'],
+                    ['title' => '4 site organisms', 'description' => 'Site header, footer, breadcrumb, and page header compose the lower layers behind typed d:organism contracts. Page templates only arrange organisms and content areas.'],
+                    ['title' => '244 content patterns', 'description' => 'The editor-facing heroes, pricing tables, dashboards, and footers build on the same component vocabulary — which is why an 11-category audit can verify all of them, on every commit.'],
                 ],
             ]),
 
@@ -251,7 +252,7 @@ final class StyleguideShowcasePages
                     ['title' => 'A redesign without the redesign budget', 'description_text' => '15 presets plus your own designs from the create page on ui.shadcn.com, switchable at runtime — per site or per page subtree.'],
                     ['title' => 'Editors who stop opening tickets', 'description_text' => 'Backend previews for all 244 elements, inline editing via Visual Editor, and a wizard organized in ten clear groups.'],
                     ['title' => 'Accessibility you can show the auditor', 'description_text' => 'WCAG 2.2-checked contrast on every preset (enforced by the build), landmarks, focus rings, and translated screen-reader labels.'],
-                    ['title' => 'Quality that is measured, not promised', 'description_text' => 'PHPStan at level max, 170+ unit and functional tests on PHP 8.3/8.4, and an 11-category template audit at zero findings.'],
+                    ['title' => 'Quality that is measured, not promised', 'description_text' => 'PHPStan at level max, 170+ unit and functional tests on PHP 8.4/8.5, and an 11-category template audit at zero findings.'],
                     ['title' => 'Integrations already wired', 'description_text' => 'News, Powermail, Solr, Blog, Form Framework with 8 ready forms, Friendly Captcha with a dev-friendly bypass, Brevo double opt-in.'],
                     ['title' => 'Light and dark mode, both first-class', 'description_text' => 'Every preset ships a light and a dark token set with WCAG 2.2-checked contrast. Visitors get their system preference automatically; a header toggle lets them override it.'],
                     ['title' => 'A free core you can bet on', 'description_text' => 'GPL-2.0, full source on GitHub, no feature gates. Paid tiers buy speed and the creators\' time — never basic functionality.'],
@@ -466,7 +467,7 @@ final class StyleguideShowcasePages
                     'items' => [
                         ['title' => 'Fluid 5.3 component system', 'content' => 'Forty-nine typed Fluid 5.3 components make up the d: namespace, registered through a ComponentCollection. Each one declares its arguments with f:argument contracts and composes through f:slot, so the wrong type fails loudly at render — never silently in production. Your templates get a real API, not a naming convention everyone has to remember.', 'link' => self::REPO_URL],
                         ['title' => 'Runtime theme engine', 'content' => 'Fifteen shadcn presets, each a pure set of OKLCH design tokens on body[data-shadcn-preset], switch per site and per page subtree with no rebuild and no deployment. A contrast solver computes every palette to satisfy WCAG 2.2 in both light and dark mode — and refuses to emit CSS that would fail.', 'link' => ''],
-                        ['title' => 'Measured quality pipeline', 'content' => 'Nothing here is promised, everything is enforced: PHPStan at level max, 170+ unit and functional tests on PHP 8.3 and 8.4, an eleven-category template audit at zero tolerance, and a CI job that fails the build the moment the Tailwind bundle drifts from the templates.', 'link' => ''],
+                        ['title' => 'Measured quality pipeline', 'content' => 'Nothing here is promised, everything is enforced: PHPStan at level max, 170+ unit and functional tests on PHP 8.4 and 8.5, an eleven-category template audit at zero tolerance, and a CI job that fails the build the moment the Tailwind bundle drifts from the templates.', 'link' => ''],
                     ],
                 ]),
                 self::block('desiderio_headersection', [
@@ -479,7 +480,7 @@ final class StyleguideShowcasePages
                     'header' => 'Standing on excellent foundations',
                     'columns' => '2',
                     'items' => [
-                        ['title' => 'Fluid 5 — thank you, Simon Praetorius', 'content' => 'Every one of the 49 Desiderio components is built on Fluid, and it is a genuine pleasure to work with. Simon Praetorius turned Fluid into a modern, component-based template engine where the (var-)typing is excellent: arguments are declared, checked, and the wrong type fails at render instead of in production. A fantastic template engine — we simply painted a design system on top of it.', 'link' => 'https://github.com/s2b'],
+                        ['title' => 'Fluid 5 — thank you, Simon Praetorius', 'content' => 'Every one of the 53 Desiderio components is built on Fluid, and it is a genuine pleasure to work with. Simon Praetorius turned Fluid into a modern, component-based template engine where the (var-)typing is excellent: arguments are declared, checked, and the wrong type fails at render instead of in production. A fantastic template engine — we simply painted a design system on top of it.', 'link' => 'https://github.com/s2b'],
                         ['title' => 'Content Blocks — thank you, Nikita Hovratov', 'content' => 'All 244 Desiderio elements are Content Blocks, and describing one is a joy. Nikita Hovratov built a fantastic way to explain a content element to TYPO3 — a single declarative schema, automatic database columns, a backend preview — and it works flawlessly. It let us ship 244 elements instead of hand-writing TCA for each. Great work, and thank you.', 'link' => 'https://github.com/nhovratov'],
                     ],
                 ]),
@@ -545,8 +546,8 @@ final class StyleguideShowcasePages
                             'open_by_default' => 0,
                         ],
                         [
-                            'title' => 'Security & platform — TYPO3 14.3+, PHP 8.3+, CSP-friendly',
-                            'content' => '<p>Security treated as a platform feature on TYPO3 14.3+ / PHP 8.3+.</p><ul><li><strong>Hardened queries</strong> — strict types and QueryBuilder with named parameters.</li><li><strong>CSP-ready</strong> — nonce-aware asset rendering.</li><li><strong>Safe by default</strong> — middleware that logs and refuses the captcha bypass in production; schema-filtered seeder inserts.</li></ul>',
+                            'title' => 'Security & platform — TYPO3 14.3+, PHP 8.4+, CSP-friendly',
+                            'content' => '<p>Security treated as a platform feature on TYPO3 14.3+ / PHP 8.4+.</p><ul><li><strong>Hardened queries</strong> — strict types and QueryBuilder with named parameters.</li><li><strong>CSP-ready</strong> — nonce-aware asset rendering.</li><li><strong>Safe by default</strong> — middleware that logs and refuses the captcha bypass in production; schema-filtered seeder inserts.</li></ul>',
                             'open_by_default' => 0,
                         ],
                     ],
@@ -836,7 +837,7 @@ final class StyleguideShowcasePages
                     'billing_period' => 'forever · GPL-2.0',
                     'description' => 'Rebuilding this library yourself — 244 audited, accessible elements at 2–3 hours each — is 600+ hours nobody pays for. On a €10,000 fixed-price site the template phase shrinks from ~80 to ~20 hours: about €5,400 of margin back in your pocket at €90/h. Pro costs €588 a year — six and a half billable hours.',
                     'features' => [
-                        ['text' => '€0 forever: all 244 elements + 49 components — a €55,000 library at freelance rates'],
+                        ['text' => '€0 forever: all 244 elements + 53 components — a €55,000 library at freelance rates'],
                         ['text' => '~60 hours saved per fixed-price project ≈ €5,400 margin recovered (at €90/h)'],
                         ['text' => 'Pro €49/month = 6.5 billable hours a year, buys 2-day response and guaranteed LTS updates'],
                         ['text' => 'Custom elements from €390 — cheaper than five hours of your own time'],
@@ -1719,7 +1720,7 @@ final class StyleguideShowcasePages
                     'items' => [
                         ['value' => '0', 'label' => 'Audit findings tolerated', 'description_text' => 'The 11-category template audit gates every commit in the real package.'],
                         ['value' => '15 min', 'label' => 'Pricing call to live table', 'description_text' => 'The imagined billing team edits tiers like records, because they are.'],
-                        ['value' => '170+', 'label' => 'Tests on the stack', 'description_text' => 'Unit and functional, PHP 8.3 and 8.4 — the one stat here that is not fiction.'],
+                        ['value' => '170+', 'label' => 'Tests on the stack', 'description_text' => 'Unit and functional, PHP 8.4 and 8.5 — the one stat here that is not fiction.'],
                         ['value' => '100%', 'label' => 'Infrastructure in-house', 'description_text' => 'Self-hosted open source clears the illustrative compliance review.'],
                     ],
                 ]),
@@ -2275,11 +2276,6 @@ final class StyleguideShowcasePages
                     'button_link' => 'https://github.com/dirnbauer/desiderio',
                     'media' => self::screenshot('feature-overview.png', 'TYPO3 backend context for the Desiderio ecosystem', 'TYPO3 14 About dashboard with the backend module navigation visible. The ecosystem relationships described on this page are not shown in the screenshot.'),
                 ]),
-                self::featureVideoBlock(
-                    'overview',
-                    'The Desiderio ecosystem, explained',
-                    'See how Desiderio coordinates editing, publishing, search, authentication, forms, payments, and agent capabilities around TYPO3 core concepts. Module highlights and their connecting labels are composed explanations; no backend action is executed in the video.'
-                ),
                 self::block('desiderio_benefitcards', [
                     'header' => 'One ecosystem, many capabilities',
                     'eyebrow' => 'Ecosystem',
@@ -2289,7 +2285,7 @@ final class StyleguideShowcasePages
                         ['icon' => 'settings', 'title' => 'MCP Server', 'description' => 'Gives AI assistants a clean, workspace-safe MCP surface over your pages, records, files, and editorial workflow — 44 bundled tools, every one mirrored on the TYPO3 CLI.', 'link' => '{{page:features/mcp-server}}'],
                         ['icon' => 'send', 'title' => 'Easy Workspace', 'description' => 'Turns workspace publishing into one button: editors review the page\'s pending changes, tick what to ship, and publish it together with every related record.', 'link' => '{{page:features/easy-workspace}}'],
                         ['icon' => 'book-open', 'title' => 'Blog', 'description' => 'A full publishing platform built entirely on core concepts — posts are pages, bodies are content elements, and workspaces stage everything, with no proprietary blog table.', 'link' => '{{page:features/blog}}'],
-                        ['icon' => 'sparkles', 'title' => 'Desiderio + Innesto', 'description' => 'The design system itself: 244 content elements from 49 typed Fluid 5 components, runtime theming from site settings, and Innesto to graft shadcn registry components as new elements.', 'link' => '{{page:features/desiderio}}'],
+                        ['icon' => 'sparkles', 'title' => 'Desiderio + Innesto', 'description' => 'The design system itself: 244 content elements from 53 typed Fluid 5 components, runtime theming from site settings, and Innesto to graft shadcn registry components as new elements.', 'link' => '{{page:features/desiderio}}'],
                         ['icon' => 'search', 'title' => 'Solr Search', 'description' => 'Apache Solr\'s enterprise search speed, wrapped in shadcn components — results, facets, sorting, suggest, and accessible numbered pagination all inherit your active theme, light and dark.', 'link' => '{{page:features/solr}}'],
                         ['icon' => 'lock', 'title' => 'WorkOS Auth', 'description' => 'Enterprise single sign-on for both the TYPO3 frontend and backend, plus self-service B2B team management — one extension, two login surfaces, full AuthKit feature set.', 'link' => '{{page:features/workos}}'],
                         ['icon' => 'file', 'title' => 'Powermail Lab', 'description' => 'Editor-friendly, accessible multi-step forms in a complete shadcn design system, with Friendly Captcha bot protection that never phones home and a context-aware development bypass.', 'link' => '{{page:features/powermail}}'],
@@ -2308,7 +2304,7 @@ final class StyleguideShowcasePages
                         ['title' => 'One theme switch restyles the whole site', 'content' => '<p>Theming is OKLCH design tokens driven by site settings, switchable per site and subtree without a rebuild.</p><ul><li><strong>Everything opts in</strong> — Solr results, Powermail forms, and blog templates render through the same shadcn presets.</li><li><strong>Light and dark</strong> — change the preset once and both modes follow.</li><li><strong>Site-wide</strong> — search, forms, and articles all change together.</li></ul>', 'open_by_default' => 0],
                         ['title' => 'Workspace-safe from top to bottom', 'content' => '<p>The whole stack uses TYPO3 Workspaces consistently, not ad-hoc \'draft\' flags.</p><ul><li><strong>Record Lists</strong> — overlays every row and colour-codes new, changed, moved, and deleted records.</li><li><strong>Easy Workspace</strong> — publishes a page\'s pending changes with their related records in one click.</li><li><strong>Blog</strong> — stages posts, tags, and authors.</li><li><strong>MCP &amp; API</strong> — stage agent writes by default, keeping live UIDs stable.</li></ul>', 'open_by_default' => 0],
                         ['title' => 'Agent-ready, but on a policy leash', 'content' => '<p>Built for AI agents without handing them the keys.</p><ul><li><strong>Structured tools</strong> — MCP Server, sg_apicore, and the Abilities Registry expose content as machine-readable tools.</li><li><strong>Declared limits</strong> — each declares the subsystems it may touch and defaults network access to the site itself.</li><li><strong>Workspace writes</strong> — agent changes route through workspaces.</li><li><strong>Human-in-the-loop</strong> — Agentation and Skillflow produce suggestions, never silent auto-applied changes.</li></ul>', 'open_by_default' => 0],
-                        ['title' => 'Held to one engineering standard', 'content' => '<p>One stack with one quality bar, not a bag of unrelated plugins.</p><ul><li><strong>Modern target</strong> — TYPO3 14.3 LTS on PHP 8.3+, PHPStan at level max.</li><li><strong>Localised &amp; tested</strong> — English and German XLIFF, with unit and functional suites.</li><li><strong>Security as a feature</strong> — parameterised queries, CSRF-protected actions, redacted secrets, dev-only execution gates.</li></ul>', 'open_by_default' => 0],
+                        ['title' => 'Held to one engineering standard', 'content' => '<p>One stack with one quality bar, not a bag of unrelated plugins.</p><ul><li><strong>Modern target</strong> — TYPO3 14.3 LTS on PHP 8.4+, PHPStan at level max.</li><li><strong>Localised &amp; tested</strong> — English and German XLIFF, with unit and functional suites.</li><li><strong>Security as a feature</strong> — parameterised queries, CSRF-protected actions, redacted secrets, dev-only execution gates.</li></ul>', 'open_by_default' => 0],
                     ],
                 ]),
                 self::block('desiderio_headersection', [
@@ -2373,11 +2369,6 @@ final class StyleguideShowcasePages
                     'button_link' => 'https://github.com/dirnbauer/typo3-records-list-types',
                     'media' => self::screenshot('feature-records-list.png', 'TYPO3 Records module in list view', 'TYPO3 backend Records module showing a News storage folder, list rows, field values, and record actions. Grid, Compact, Teaser, filters, and workspace overlays are not visible in this screenshot.'),
                 ]),
-                self::featureVideoBlock(
-                    'records-list',
-                    'Records List Types in action',
-                    'See how Grid, Compact, Teaser, and custom views make TYPO3 records easier to scan, filter, and reorder while workspace states stay visible. Focus frames and reordering cues are composed demonstrations; no record is changed in the video.'
-                ),
                 self::block('desiderio_benefitcards', [
                     'header' => 'Why it matters',
                     'eyebrow' => 'Backend module enhancement',
@@ -2452,11 +2443,6 @@ composer require webconsulting/records-list-types:^1.0.3
                     'button_link' => 'https://github.com/dirnbauer/typo3-mcp-server',
                     'media' => self::screenshot('feature-mcp-server.png', 'MCP Server backend module', 'TYPO3 MCP Server connection setup showing the remote server URL, local Cursor configuration, stdio command, and active OAuth token controls.'),
                 ]),
-                self::featureVideoBlock(
-                    'mcp-server',
-                    'A governed MCP surface for TYPO3',
-                    'See the endpoint, OAuth discovery, TCA-aware tools, workspace-first writes, and matching TYPO3 CLI surface. Connection and tool-flow states are composed explanations; no remote client connects and no content write is executed.'
-                ),
                 self::block('desiderio_benefitcards', [
                     'header' => 'Why it matters',
                     'eyebrow' => 'AI & Automation',
@@ -2530,11 +2516,6 @@ vendor/bin/typo3 extension:activate mcp_server
                     'button_link' => 'https://github.com/dirnbauer/typo3-webcon-easy-workspace',
                     'media' => self::screenshot('feature-easy-workspace.png', 'Pending changes review panel', 'TYPO3 Easy Workspace staging review module showing two affected records, selectable rows, state chips, the selected count, and publishing controls.'),
                 ]),
-                self::featureVideoBlock(
-                    'easy-workspace',
-                    'Confident workspace publishing',
-                    'See how editors reach a focused queue from the TYPO3 toolbar, review related records, and choose what should publish together. Selection and publishing states are composed demonstrations; no workspace record is published or discarded.'
-                ),
                 self::block('desiderio_benefitcards', [
                     'header' => 'Why it matters',
                     'eyebrow' => 'Backend extension',
@@ -2609,11 +2590,6 @@ vendor/bin/typo3 cache:flush',
                     'button_link' => 'https://github.com/TYPO3GmbH/blog',
                     'media' => self::screenshot('feature-blog.png', 'Blog post edit in the page module with workspace overlay', 'A blog post edit screen in the TYPO3 page module, showing the post title in the page header along with metadata badges for publish date, categories, tags, and author.'),
                 ]),
-                self::featureVideoBlock(
-                    'blog',
-                    'A blog built on TYPO3 core',
-                    'See how posts remain pages, articles use ordinary content elements and layouts, and editorial metadata stays visible in the page module. Highlights and workspace states are composed explanations; no post is staged or published.'
-                ),
                 self::block('desiderio_benefitcards', [
                     'header' => 'Why it matters',
                     'eyebrow' => 'Extensions',
@@ -2663,14 +2639,14 @@ vendor/bin/typo3 cache:flush',
             'title' => 'Features: Desiderio + Innesto for TYPO3',
             'navTitle' => 'Desiderio + Innesto',
             'slug' => '/features/desiderio',
-            'abstract' => 'Desiderio is a complete TYPO3 design system: 244 ready-to-use content elements built from 49 typed Fluid 5 components, a runtime theming layer driven by TYPO3 site settings, and open extensibility via Innesto—which grafts shadcn/ui registry components as new elements without a frontend build step on your site.',
+            'abstract' => 'Desiderio is a complete TYPO3 design system: 244 ready-to-use content elements built from 53 typed Fluid 5 components, a runtime theming layer driven by TYPO3 site settings, and open extensibility via Innesto—which grafts shadcn/ui registry components as new elements without a frontend build step on your site.',
             'description' => '244 shadcn/ui-styled content elements for TYPO3 14.3, extensible via Innesto. Runtime theming, Content Blocks 2.2, typed Fluid 5 components—all GPL-2.0.',
             'parentSlug' => 'features',
             'content' => [
                 self::block('desiderio_headersection', [
                     'eyebrow' => 'Theme + Design System',
                     'header' => '244 elements. Extensible. Themed at runtime.',
-                    'subheadline' => 'Desiderio brings a complete shadcn/ui-inspired design system to TYPO3 v14.3+: 244 finished content elements, 49 atomic Fluid 5 components, and an extensibility layer (Innesto) that grafts components from shadcn registries as new Content Blocks in one command.',
+                    'subheadline' => 'Desiderio brings a complete shadcn/ui-inspired design system to TYPO3 v14.3+: 244 finished content elements, 53 atomic Fluid 5 components, and an extensibility layer (Innesto) that grafts components from shadcn registries as new Content Blocks in one command.',
                     'variant' => 'center',
                 ]),
                 self::block('desiderio_textmedia', [
@@ -2682,29 +2658,6 @@ vendor/bin/typo3 cache:flush',
                     'button_text' => 'Get Desiderio on GitHub',
                     'button_link' => 'https://github.com/dirnbauer/desiderio',
                     'media' => self::screenshot('feature-desiderio.png', 'Desiderio in the TYPO3 Visual Editor', 'The TYPO3 Visual Editor showing a Desiderio page and its frontend rendering inside the editor workspace.'),
-                ]),
-                self::block('desiderio_featurevideo', [
-                    'eyebrow' => 'Narrated feature tour',
-                    'header' => 'Desiderio + Innesto in 27 seconds',
-                    'description' => '<p>See how Desiderio combines 244 ready-to-use elements, 49 typed Fluid components, fifteen runtime presets, and an Innesto path from compatible registry JSON to a TYPO3 Content Block. Theme changes and the Innesto command are composed demonstrations; no production write is executed in the video.</p>',
-                    'video_file' => self::styleguideVideoAsset(
-                        'desiderio-feature-video.mp4',
-                        'Desiderio and Innesto narrated feature tour',
-                        'A narrated motion-design tour of the Desiderio design system and Innesto workflow.',
-                        'Generated product explainer using verified Desiderio feature-page claims and a cropped TYPO3 Visual Editor screenshot.'
-                    ),
-                    'captions_file' => self::styleguideVideoAsset(
-                        'desiderio-feature-video.en.vtt',
-                        'English captions for the Desiderio feature tour',
-                        '',
-                        'English WebVTT captions for the narrated Desiderio and Innesto feature tour.'
-                    ),
-                    'poster' => self::styleguideVideoAsset(
-                        'desiderio-feature-video-poster.webp',
-                        'Desiderio and Innesto feature-video poster',
-                        'The Desiderio target mark above the title Desiderio plus Innesto.',
-                        'Poster frame generated from the closing brand resolution of the Desiderio feature video.'
-                    ),
                 ]),
                 self::block('desiderio_benefitcards', [
                     'header' => 'Why it matters',
@@ -2721,7 +2674,7 @@ vendor/bin/typo3 cache:flush',
                     'header' => 'Exactly what it does',
                     'allow_multiple' => 1,
                     'items' => [
-                        ['title' => '49 typed Fluid 5 components in atomic layers', 'content' => '<p>The component system follows atomic design at the Fluid 5 level.</p><ul><li><strong>17 atoms</strong> — button, badge, input, icon, avatar, link, image, label (<code>d:atom</code>).</li><li><strong>28 molecules</strong> — card, accordion, table, alert, form controls (<code>d:molecule</code>).</li><li><strong>4 layout primitives</strong> — under <code>d:layout</code>.</li><li><strong>Typed contracts</strong> — every component declares <code>f:argument</code> types: an enforced API, not a convention.</li></ul><p>All 244 elements build from these layers, so one audit can verify every element.</p>', 'open_by_default' => 1],
+                        ['title' => '53 typed Fluid 5 components in atomic layers', 'content' => '<p>The component system follows atomic design at the Fluid 5 level.</p><ul><li><strong>17 atoms</strong> — button, badge, input, icon, avatar, link, image, label (<code>d:atom</code>).</li><li><strong>28 molecules</strong> — card, accordion, table, alert, form controls (<code>d:molecule</code>).</li><li><strong>4 layout primitives</strong> — section, container, grid, and stack under <code>d:layout</code>.</li><li><strong>4 site organisms</strong> — header, footer, breadcrumb, and page header under <code>d:organism</code>.</li><li><strong>Typed contracts</strong> — every component declares <code>f:argument</code> types: an enforced API, not a convention.</li></ul><p>All 244 elements build from these layers, so one audit can verify every element.</p>', 'open_by_default' => 1],
                         ['title' => '244 finished content elements across ten categories', 'content' => '<p>244 editor-facing elements, grouped into clear categories.</p><ul><li><strong>Marketing</strong> — heroes, feature blocks, pricing, trust and social proof.</li><li><strong>Data</strong> — dashboard elements with chart helpers.</li><li><strong>Structure</strong> — navigation, footers, legal pages, forms, editorial content.</li></ul><p>Each appears in the New Content Element wizard with a backend preview — production-styled and themed by the active preset, never a wireframe.</p>', 'open_by_default' => 0],
                         ['title' => 'Runtime theme presets driven by TYPO3 site settings', 'content' => '<p>Theming is pure CSS tokens applied at runtime, chosen in TYPO3 site settings.</p><ul><li><strong>Repaint, no rebuild</strong> — a preset change updates colours, radius, density, focus rings, and fonts instantly.</li><li><strong>15 presets bundled</strong> — five from ui.shadcn.com/create, ten house designs, plus a custom slot.</li><li><strong>Per subtree</strong> — run separate campaigns or brands in their own theme from one install.</li><li><strong>Icon-agnostic</strong> — semantic icon keys let the library change without rewriting records.</li></ul>', 'open_by_default' => 0],
                         ['title' => 'Innesto: graft shadcn registry components as Content Blocks', 'content' => '<p>Innesto makes Desiderio extensible — no frontend build step on your site.</p><ul><li><strong>One command</strong> — <code>innesto:add &lt;component&gt;</code> fetches the JSON, converts styling to tokens, and scaffolds the element.</li><li><strong>Any registry</strong> — shadcn/ui, Magic UI, blocks.so, or anything that publishes JSON.</li><li><strong>Finishing pass</strong> — translate markup to Fluid and model props by hand, or let <code>--ai</code> do it.</li><li><strong>On-theme</strong> — every graft uses the active Desiderio preset automatically.</li></ul><p>Presentational components like marquees, logo clouds, and bento grids are the natural fit.</p>', 'open_by_default' => 0],
@@ -2785,11 +2738,6 @@ vendor/bin/typo3 innesto:add magicui/marquee --ai',
                     'button_link' => 'https://github.com/TYPO3-Solr/ext-solr',
                     'media' => self::screenshot('feature-solr.png', 'Apache Solr Index Queue in TYPO3', 'TYPO3 backend Solr Index Queue showing index status counts and initialization controls. The themed frontend results, facets, sorting, and pagination described on this page are composed in the accompanying video rather than captured here.'),
                 ]),
-                self::featureVideoBlock(
-                    'solr',
-                    'Theme-aware Solr search',
-                    'See how Desiderio presents Solr results, facets, sorting, per-page controls, and accessible numbered pagination through the active theme. Filter and result transitions are composed states; no live query or performance measurement is shown.'
-                ),
                 self::block('desiderio_benefitcards', [
                     'header' => 'Why it matters',
                     'eyebrow' => 'Integration',
@@ -2864,11 +2812,6 @@ vendor/bin/typo3 innesto:add magicui/marquee --ai',
                     'button_link' => 'https://github.com/dirnbauer/workos',
                     'media' => self::screenshot('feature-workos.png', 'WorkOS-protected TYPO3 MCP configuration', 'TYPO3 MCP Server configuration showing WorkOS protection, endpoint settings, a placeholder AuthKit domain, and the current Development and anonymous state. Login and organization interfaces are not visible in this screenshot.'),
                 ]),
-                self::featureVideoBlock(
-                    'workos',
-                    'One identity across TYPO3',
-                    'See the frontend and backend login surfaces alongside the supported authentication and organization features. This is a composed tour of the shipped interfaces; it does not open an external WorkOS tenant, submit credentials, or complete a sign-in.'
-                ),
                 self::block('desiderio_benefitcards', [
                     'header' => 'Why it matters',
                     'eyebrow' => 'Authentication & SSO',
@@ -2933,11 +2876,6 @@ vendor/bin/typo3 innesto:add magicui/marquee --ai',
                     'button_link' => 'https://github.com/dirnbauer/powermail',
                     'media' => self::screenshot('feature-powermail.png', 'Powermail form overview in TYPO3', 'TYPO3 Powermail form overview listing six forms, their language, usage count, and available actions. The form builder, multi-step frontend, validation, and captcha states are not visible in this screenshot.'),
                 ]),
-                self::featureVideoBlock(
-                    'powermail',
-                    'Powermail, themed and protected',
-                    'See editors define form pages, fields, and validation while Desiderio supplies themed controls, multi-step states, and Friendly Captcha integration. Form and validation states are composed; no form is submitted and no captcha token is exchanged.'
-                ),
                 self::block('desiderio_benefitcards', [
                     'header' => 'Why it matters',
                     'eyebrow' => 'Extension Integration',
@@ -3017,11 +2955,6 @@ vendor/bin/typo3 desiderio:styleguide:seed',
                     'button_link' => 'https://github.com/dirnbauer/typo3-x402-paywall',
                     'media' => self::screenshot('feature-x402-paywall-backend-dashboard.png', 'x402 Paywall Backend Dashboard', 'TYPO3 backend showing x402 paywall dashboard with revenue cards, top monetized pages list, and recent transactions table.'),
                 ]),
-                self::featureVideoBlock(
-                    'x402-paywall',
-                    'HTTP 402 content gating in TYPO3',
-                    'See how editors price pages and API routes, how middleware returns payment terms, and how the dashboard reports transactions. The payment flow and dashboard update are simulated; no wallet connects and no test or live payment is made.'
-                ),
                 self::block('desiderio_benefitcards', [
                     'header' => 'Why it matters',
                     'eyebrow' => 'Monetization & Payments',
@@ -3092,11 +3025,6 @@ vendor/bin/typo3 desiderio:styleguide:seed',
                     'button_link' => 'https://github.com/dirnbauer/typo3-abilities',
                     'media' => self::screenshot('feature-abilities.png', 'API token records in the TYPO3 backend', 'TYPO3 backend record list showing one API token record named news external read. The Abilities registry, typed contracts, projections, policy pipeline, and traces are composed in the accompanying video rather than captured here.'),
                 ]),
-                self::featureVideoBlock(
-                    'typo3-abilities',
-                    'One registry, governed everywhere',
-                    'See one typed ability project into MCP, CLI, REST, and desktop surfaces through the same policy-first execution pipeline. Approval and outcome states are composed explanations; no high-risk ability is executed.'
-                ),
                 self::block('desiderio_benefitcards', [
                     'header' => 'Why it matters',
                     'eyebrow' => 'API & Integration',
@@ -3185,11 +3113,6 @@ final class CreateArticleAbility extends AbstractAbility
                     'button_link' => 'https://github.com/dirnbauer/typo3-agentation',
                     'media' => self::screenshot('feature-agentation.png', 'Agentation configuration and status module', 'TYPO3 Agentation backend module showing MCP configuration, environment gates, supported destinations, and a status in which the API key and sync endpoint are unavailable. No successful annotation sync is shown.'),
                 ]),
-                self::featureVideoBlock(
-                    'agentation',
-                    'Visual context for coding agents',
-                    'See how a precise annotation carries its selector, computed styles, and page context through TYPO3\'s same-origin MCP proxy. Annotation and sync states are composed; no live coding-agent change is applied, and the server API key remains outside browser storage.'
-                ),
                 self::block('desiderio_benefitcards', [
                     'header' => 'Why it matters',
                     'eyebrow' => 'Developer tools',
@@ -3260,11 +3183,6 @@ final class CreateArticleAbility extends AbstractAbility
                     'button_link' => 'https://github.com/dirnbauer/sg_apicore',
                     'media' => self::screenshot('feature-sg-apicore.png', 'Registered APIs and versions', 'TYPO3 sg_apicore backend module showing registered API identifiers, versions, authentication modes, base paths, and available actions. Swagger UI and endpoint execution are not visible in this screenshot.'),
                 ]),
-                self::featureVideoBlock(
-                    'sg-apicore',
-                    'From PHP attributes to governed APIs',
-                    'See controller attributes become versioned routes, OpenAPI documentation, scoped authentication, workspace-aware CRUD, and selected MCP tools. Method, request, and routing states are composed; no endpoint is called and no record is written.'
-                ),
                 self::block('desiderio_benefitcards', [
                     'header' => 'Why it matters',
                     'eyebrow' => 'Backend API',
@@ -3338,11 +3256,6 @@ vendor/bin/typo3 extension:activate sg_apicore
                     'button_link' => 'https://github.com/dirnbauer/skillflow',
                     'media' => self::screenshot('feature-skillflow.png', 'Skillflow manual-run panel', 'TYPO3 Content > Skills module showing an ab-testing skill, its engine and instructions, the Development guard, and a No page selected state. No skill run or automatic content change is shown.'),
                 ]),
-                self::featureVideoBlock(
-                    'skillflow',
-                    'Editorial QA inside the workflow',
-                    'See SKILL.md imports, Solr-backed discovery, workspace-stage reviews, and stored run reports inside TYPO3. Import, workflow, and report states are composed; suggestions are never auto-applied and no content is changed.'
-                ),
                 self::block('desiderio_benefitcards', [
                     'header' => 'Why it matters',
                     'eyebrow' => 'Workspace Automation',
@@ -3445,36 +3358,6 @@ ddev exec vendor/bin/typo3 skillflow:sync
     }
 
     /**
-     * @return StarterBlock
-     */
-    private static function featureVideoBlock(string $assetSlug, string $header, string $description): array
-    {
-        return self::block('desiderio_featurevideo', [
-            'eyebrow' => 'Narrated feature tour',
-            'header' => $header,
-            'description' => '<p>' . $description . '</p>',
-            'video_file' => self::styleguideVideoAsset(
-                $assetSlug . '-feature-video.mp4',
-                $header . ' narrated feature tour',
-                'A narrated product tour for ' . $header . '.',
-                'Generated product explainer using verified page claims, the page\'s current source image, and clearly labelled composed states.'
-            ),
-            'captions_file' => self::styleguideVideoAsset(
-                $assetSlug . '-feature-video.en.vtt',
-                'English captions for ' . $header,
-                '',
-                'English WebVTT captions for the narrated feature tour.'
-            ),
-            'poster' => self::styleguideVideoAsset(
-                $assetSlug . '-feature-video-poster.webp',
-                $header . ' feature-video poster',
-                'Poster frame for ' . $header . '.',
-                'Poster frame generated from the narrated feature tour.'
-            ),
-        ]);
-    }
-
-    /**
      * @return array{file: string, title: string, alternative: string, description: string, source: string}
      */
     private static function screenshot(string $filename, string $title, string $alternative, string $description = 'Screenshot of a TYPO3 14 installation with Desiderio.'): array
@@ -3490,19 +3373,6 @@ ddev exec vendor/bin/typo3 skillflow:sync
         ];
     }
 
-    /**
-     * @return array{file: string, title: string, alternative: string, description: string, source: string}
-     */
-    private static function styleguideVideoAsset(string $filename, string $title, string $alternative, string $description): array
-    {
-        return [
-            'file' => 'Resources/Public/Styleguide/Video/' . $filename,
-            'title' => $title,
-            'alternative' => $alternative,
-            'description' => $description,
-            'source' => self::REPO_URL,
-        ];
-    }
 
     /**
      * @return array{file: string, title: string, alternative: string, description: string, source: string}

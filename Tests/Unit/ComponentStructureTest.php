@@ -8,7 +8,7 @@ use PHPUnit\Framework\TestCase;
 
 final class ComponentStructureTest extends TestCase
 {
-    private const EXPECTED_TOTAL = 49;
+    private const EXPECTED_TOTAL = 53;
     private const COMPONENTS_DIR = __DIR__ . '/../../Resources/Private/Components';
     private const EXPECTED_ATOMS = [
         'AspectRatio', 'Avatar', 'Badge', 'Button', 'ControlClass', 'Icon', 'Image', 'Input',
@@ -23,17 +23,21 @@ final class ComponentStructureTest extends TestCase
         'Tabs', 'TabsContent', 'TabsList', 'TabsTrigger',
     ];
     private const EXPECTED_LAYOUTS = ['Container', 'Grid', 'Section', 'Stack'];
+    private const EXPECTED_ORGANISMS = ['Breadcrumb', 'PageHeader', 'SiteFooter', 'SiteHeader'];
 
     public function testExpectedNumberOfComponents(): void
     {
         $atoms = glob(self::COMPONENTS_DIR . '/Atom/*', GLOB_ONLYDIR) ?: [];
         $molecules = glob(self::COMPONENTS_DIR . '/Molecule/*', GLOB_ONLYDIR) ?: [];
         $layouts = glob(self::COMPONENTS_DIR . '/Layout/*', GLOB_ONLYDIR) ?: [];
+        $organismDirectories = glob(self::COMPONENTS_DIR . '/Organism/*', GLOB_ONLYDIR);
+        $organisms = is_array($organismDirectories) ? $organismDirectories : [];
 
         self::assertCount(17, $atoms, 'Expected 17 atoms');
         self::assertCount(28, $molecules, 'Expected 28 molecules');
         self::assertCount(4, $layouts, 'Expected 4 layouts');
-        self::assertSame(self::EXPECTED_TOTAL, count($atoms) + count($molecules) + count($layouts));
+        self::assertCount(4, $organisms, 'Expected 4 organisms');
+        self::assertSame(self::EXPECTED_TOTAL, count($atoms) + count($molecules) + count($layouts) + count($organisms));
     }
 
     public function testExpectedAtomsArePresent(): void
@@ -57,12 +61,20 @@ final class ComponentStructureTest extends TestCase
         }
     }
 
+    public function testExpectedOrganismsArePresent(): void
+    {
+        foreach (self::EXPECTED_ORGANISMS as $name) {
+            self::assertFileExists(self::COMPONENTS_DIR . "/Organism/{$name}/{$name}.fluid.html");
+        }
+    }
+
     public function testComponentTemplatesDeclareFluidArgument(): void
     {
         $all = array_merge(
             array_map(fn($n) => "Atom/{$n}", self::EXPECTED_ATOMS),
             array_map(fn($n) => "Molecule/{$n}", self::EXPECTED_MOLECULES),
             array_map(fn($n) => "Layout/{$n}", self::EXPECTED_LAYOUTS),
+            array_map(fn($n) => "Organism/{$n}", self::EXPECTED_ORGANISMS),
         );
         foreach ($all as $path) {
             $name = basename($path);

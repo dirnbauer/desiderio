@@ -1,0 +1,8 @@
+/*
+ * Desiderio's public CSS remains independently reproducible. Vite owns only
+ * delivery, hashing and development-server integration.
+ */
+@import "../../Public/Css/shadcn-theme.css";
+@import "../../Public/Css/desiderio-tailwind.css";
+@import "../../Public/Css/components.css";
+@import "../../Public/Css/desiderio.css";

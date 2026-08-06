@@ -1,0 +1,6 @@
+<f:argument name="site" type="object" />
+<f:argument name="breadcrumb" type="array" />
+<f:argument name="mainMenu" type="array" optional="{true}" />
+<f:argument name="languageNavigation" type="array" optional="{true}" />
+
+<f:render partial="Pages/Header" arguments="{site: site, breadcrumb: breadcrumb, mainMenu: mainMenu, languageNavigation: languageNavigation}"/>

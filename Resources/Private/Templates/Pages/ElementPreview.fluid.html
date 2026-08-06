@@ -1,0 +1,20 @@
+<html
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:di="http://typo3.org/ns/Webconsulting/Desiderio/ViewHelpers"
+    xmlns:vite="http://typo3.org/ns/Praetorius/ViteAssetCollector/ViewHelpers"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:asset.css
+    identifier="desiderioIconFont"
+    href="{di:iconFont(library: site.configuration.settings.desiderio.shadcn.iconLibrary)}"
+    priority="1"
+/>
+<vite:asset entry="EXT:desiderio/Resources/Private/Assets/Main.entry.css"/>
+<vite:asset entry="EXT:desiderio/Resources/Private/Assets/Components.entry.js"/>
+
+<main class="desiderio-element-preview">
+    {content -> f:format.raw()}
+</main>
+
+</html>

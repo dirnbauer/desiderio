@@ -42,7 +42,7 @@ Inside `/path/to/shadcn2fluid-templates`:
 
 ## Phase 2 — Skeleton (new composer identity)
 
-- [ ] Create new `composer.json` (`webconsulting/desiderio` 2.0.0, PHP 8.3, TYPO3 14.3, content-blocks ^2.2, vite-asset-collector ^1.0, no dep on shadcn2fluid-templates)
+- [x] Create `composer.json` (`webconsulting/desiderio` 4.0.0, PHP 8.4, TYPO3 14.3, content-blocks ^2.2, vite-asset-collector ^1.18, no dependency on shadcn2fluid-templates)
 - [ ] Create new `ext_emconf.php` (v2.0.0, beta, no deps on shadcn2fluid_templates)
 - [ ] Create `ext_localconf.php` (comment-only)
 - [ ] Create `phpstan.neon.dist` (level 8, empty baseline)

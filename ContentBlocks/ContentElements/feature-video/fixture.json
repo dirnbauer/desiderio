@@ -2,27 +2,15 @@
     "_type": "grid",
     "eyebrow": "Video example",
     "header": "Show a product story with video",
-    "description": "<p>This seeded example renders an embedded sample video with supporting copy. Replace both before publishing; the uploaded-video and poster fields are used only when no embed URL is set.</p>",
-    "video_url": "https://www.youtube.com/embed/aqz-KE-bpKQ",
-    "video_file": {
-        "file": "Resources/Public/Styleguide/Video/desiderio-demo.mp4",
-        "title": "Generated Desiderio demo clip",
-        "alternative": "Short motion clip of a Desiderio page in the TYPO3 Visual Editor.",
-        "description": "Generated from the seeded Desiderio Visual Editor screenshot for video fallback testing.",
-        "source": "EXT:desiderio/Resources/Public/Styleguide/Video/desiderio-demo.mp4"
-    },
-    "captions_file": {
-        "file": "Resources/Public/Styleguide/Video/desiderio-feature-video.en.vtt",
-        "title": "English captions for the Desiderio feature video",
-        "alternative": "",
-        "description": "English WebVTT captions for the narrated Desiderio feature video.",
-        "source": "EXT:desiderio/Resources/Public/Styleguide/Video/desiderio-feature-video.en.vtt"
-    },
+    "description": "<p>Video elements are opt-in. Add an embed URL or upload a video with captions when a project needs one.</p>",
+    "video_url": "",
+    "video_file": [],
+    "captions_file": [],
     "poster": {
         "file": "Resources/Public/Styleguide/Backend/backend-visual-editor.png",
         "title": "Desiderio Visual Editor",
         "alternative": "TYPO3 Visual Editor with a Desiderio page open for inline editing.",
-        "description": "Screenshot of the Desiderio Visual Editor, used as the video poster.",
+        "description": "Screenshot of the Desiderio Visual Editor, available as an optional video poster.",
         "source": "https://github.com/dirnbauer/desiderio"
     }
 }

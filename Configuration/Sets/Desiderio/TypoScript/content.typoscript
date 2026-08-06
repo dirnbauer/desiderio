@@ -1,14 +1,14 @@
 # Content element rendering
 lib.contentElement = FLUIDTEMPLATE
 lib.contentElement {
-  # The FluidStyledContent path owns the classic TYPO3 CTypes and follows the same
+  # The ClassicContent path owns the classic TYPO3 CTypes and follows the same
   # shadcn/Fluid 5 recipe as Content Blocks. The retired legacy Templates/Content/
   # set has been removed; the .10 layout/partial paths still serve shared page/preset partials.
   layoutRootPaths.10 = EXT:desiderio/Resources/Private/Templates/Layouts/
-  layoutRootPaths.200 = EXT:desiderio/Resources/Private/FluidStyledContent/Layouts/
+  layoutRootPaths.200 = EXT:desiderio/Resources/Private/ClassicContent/Layouts/
   partialRootPaths.10 = EXT:desiderio/Resources/Private/Templates/Partials/
-  partialRootPaths.200 = EXT:desiderio/Resources/Private/FluidStyledContent/Partials/
-  templateRootPaths.200 = EXT:desiderio/Resources/Private/FluidStyledContent/Templates/
+  partialRootPaths.200 = EXT:desiderio/Resources/Private/ClassicContent/Partials/
+  templateRootPaths.200 = EXT:desiderio/Resources/Private/ClassicContent/Templates/
 
   templateName >
   templateName.ifEmpty.cObject = TEXT
@@ -40,7 +40,7 @@ lib.desiderioContentWithTable {
     fieldName = bodytext
     # table_delimiter/table_enclosure store ASCII codes (124 = "|"); they must
     # be converted to the actual character or fgetcsv() rejects the separator.
-    # Mirrors EXT:fluid_styled_content's Table.typoscript, incl. skipping the
+    # Preserves TYPO3's classic table behaviour, including skipping the
     # enclosure entirely when it is 0 ("none").
     fieldDelimiter.char.cObject = TEXT
     fieldDelimiter.char.cObject {

@@ -1,0 +1,29 @@
+<f:argument name="page" type="object" />
+<f:argument name="newsDetailUid" optional="{true}" />
+
+<f:comment>
+    The single page-level h1. Pages whose first authored block already exposes
+    the title can select the screen-reader-only variant. News detail views own
+    their article h1 and therefore suppress this organism entirely.
+</f:comment>
+<f:if condition="!{newsDetailUid}">
+    <f:if condition="{page.pageRecord.tx_desiderio_h1_sronly}">
+        <f:then>
+            <h1 class="sr-only">{page.pageRecord.title}</h1>
+        </f:then>
+        <f:else>
+            <d:layout.container class="desiderio-page-title-container">
+                <header class="desiderio-page-title" data-slot="page-header">
+                    <span class="desiderio-page-title__rail" aria-hidden="true"></span>
+                    <div class="desiderio-page-title__copy">
+                        <f:if condition="{page.pageRecord.subtitle}">
+                            <p class="desiderio-page-title__context">{page.pageRecord.subtitle}</p>
+                        </f:if>
+                        <d:atom.typography tag="h1" variant="h1" class="desiderio-page-title__heading">{page.pageRecord.title}</d:atom.typography>
+                    </div>
+                    <span class="desiderio-page-title__rule" aria-hidden="true"></span>
+                </header>
+            </d:layout.container>
+        </f:else>
+    </f:if>
+</f:if>

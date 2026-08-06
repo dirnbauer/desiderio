@@ -28,6 +28,12 @@ final class StyleguideJsonFixtureCompleter
                 continue;
             }
             $fieldConfig = ContentBlockDefinitionRegistry::normalizeStringKeyedArray($fieldConfig);
+            if ($this->isOptInVideoMediaField($ctype, $field) && array_key_exists($field, $fixture)) {
+                // Empty video sources are intentional. The standard showcase
+                // must not manufacture playable media; editors and the
+                // explicit --include-video seed path can provide it later.
+                continue;
+            }
             if (($fieldConfig['type'] ?? '') === 'File') {
                 if (!$this->hasFileFixtureValue($fixture[$field] ?? null)) {
                     $fixture[$field] = StyleguideDemoAssets::buildFileFixtureValue(
@@ -81,6 +87,12 @@ final class StyleguideJsonFixtureCompleter
         }
 
         return $fixture;
+    }
+
+    private function isOptInVideoMediaField(string $ctype, string $field): bool
+    {
+        return str_contains($this->demoValueGenerator->normalizeIdentifier($ctype), 'video')
+            && in_array($field, ['video_url', 'video_file', 'captions_file'], true);
     }
 
     /**

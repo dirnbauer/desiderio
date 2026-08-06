@@ -79,37 +79,6 @@ page {
     50.value = ">
   }
 
-  includeCSS {
-    desiderioTheme = EXT:desiderio/Resources/Public/Css/shadcn-theme.css
-    desiderioTheme.media = all
-
-    desiderioTailwind = EXT:desiderio/Resources/Public/Css/desiderio-tailwind.css
-    desiderioTailwind.media = all
-
-    desiderioComponents = EXT:desiderio/Resources/Public/Css/components.css
-    desiderioComponents.media = all
-
-    desiderioBase = EXT:desiderio/Resources/Public/Css/desiderio.css
-    desiderioBase.media = all
-  }
-
-  includeJSFooter {
-    desiderioPrism = EXT:desiderio/Resources/Public/Js/prism-lite.js
-    desiderioPrism.defer = 1
-
-    desiderioAstro = EXT:desiderio/Resources/Public/Js/astro.js
-    desiderioAstro.defer = 1
-
-    desiderioComponents = EXT:desiderio/Resources/Public/Js/desiderio.js
-    desiderioComponents.defer = 1
-
-    desiderioCharts = EXT:desiderio/Resources/Public/Js/charts.js
-    desiderioCharts.defer = 1
-
-    desiderioStyleguide = EXT:desiderio/Resources/Public/Js/styleguide.js
-    desiderioStyleguide.defer = 1
-  }
-
   # Site-wide sharing-image fallback: pages without an own og_image /
   # twitter_image still get a card image. EXT:seo's per-page fields take
   # precedence when set. The meta description stays page-level only (seeded
@@ -161,9 +130,8 @@ page {
 }
 
 # RTE rendering for f:format.html / f:render.text on enableRichtext fields.
-# fluid-styled-content is only an optional dependency of this set, so define
-# lib.parseFunc / lib.parseFunc_RTE here (mirroring fluid_styled_content) to
-# keep t3:// link resolution working when FSC is not installed.
+# Desiderio owns classic content rendering, including its rich-text parser.
+# This keeps t3:// link resolution working without fluid_styled_content.
 lib.parseFunc {
   makelinks = 1
   makelinks {
@@ -259,8 +227,8 @@ lib.parseFunc_RTE {
 
 # Standalone single-element rendering for element library previews. Defined
 # here (after `page = PAGE` above) so the `< page.*` copies pick up the theme
-# shell: it inherits the favicon, theme CSS, component JS and the body tag with
-# the active preset, but renders exactly ONE tt_content record from the Element
+# shell: its own Fluid template resolves the official Vite entries and it
+# inherits the favicon plus body tag with the active preset, but renders exactly ONE tt_content record from the Element
 # Library storage folder - no header, navigation or footer.
 #
 # URL shape: /?type={$elementLibrary.previewTypeNum}&elPreview=<uid>&cHash=...
@@ -278,22 +246,24 @@ elementLibraryPreview {
   meta.robots = noindex,nofollow
 
   shortcutIcon < page.shortcutIcon
-  includeCSS < page.includeCSS
-  includeJSFooter < page.includeJSFooter
   bodyTagCObject < page.bodyTagCObject
 
   headerData.2630 = TEXT
   headerData.2630.value = <style>body{padding:1.5rem;background:transparent}</style>
 
-  10 = CONTENT
+  10 = FLUIDTEMPLATE
   10 {
-    table = tt_content
-    select {
-      pidInList = {$elementLibrary.storagePid}
-      uidInList.data = GP:elPreview
-      uidInList.intval = 1
-      languageField = sys_language_uid
-      max = 1
+    template = EXT:desiderio/Resources/Private/Templates/Pages/ElementPreview.fluid.html
+    variables.content = CONTENT
+    variables.content {
+      table = tt_content
+      select {
+        pidInList = {$elementLibrary.storagePid}
+        uidInList.data = GP:elPreview
+        uidInList.intval = 1
+        languageField = sys_language_uid
+        max = 1
+      }
     }
   }
 }

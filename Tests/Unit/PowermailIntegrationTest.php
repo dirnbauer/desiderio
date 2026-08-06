@@ -17,7 +17,7 @@ final class PowermailIntegrationTest extends TestCase
         $config = (string)file_get_contents(__DIR__ . '/../../Configuration/Sets/DesiderioPowermail/config.yaml');
         $setup = (string)file_get_contents(__DIR__ . '/../../Configuration/Sets/DesiderioPowermail/setup.typoscript');
         $baseConfig = (string)file_get_contents(__DIR__ . '/../../Configuration/Sets/Desiderio/config.yaml');
-        $contentTemplate = (string)file_get_contents(__DIR__ . '/../../Resources/Private/FluidStyledContent/Templates/PowermailPi1.fluid.html');
+        $contentTemplate = (string)file_get_contents(__DIR__ . '/../../Resources/Private/ClassicContent/Templates/PowermailPi1.fluid.html');
 
         self::assertStringContainsString('name: webconsulting/desiderio-powermail', $config);
         self::assertMatchesRegularExpression('/dependencies:\s+- webconsulting\/desiderio\s+- in2code\/powermail-main\s+- studiomitte\/friendlycaptcha/s', $config);

@@ -25,10 +25,10 @@ intact.
    Build/Scripts/runFunctionalTests.sh
    ```
 
-   That runs PHPStan at `level: max`, the 153 unit tests, the SQLite-backed
+   That runs PHPStan at `level: max`, the unit tests, the SQLite-backed
    functional seeding schema tests, the deep
    content element audit, and verifies the Tailwind bundle is in sync.
-   CI re-runs the same matrix across PHP 8.3 + 8.4.
+   CI re-runs the same matrix across PHP 8.4 + 8.5.
 4. If you touched a Content Block, also run:
 
    ```bash
@@ -56,7 +56,7 @@ intact.
 
 ## Coding standards
 
-- PHP 8.3+ with `declare(strict_types=1);` on every PHP file (except
+- PHP 8.4+ with `declare(strict_types=1);` on every PHP file (except
   `ext_emconf.php`).
 - Constructor DI for services — no `GeneralUtility::makeInstance()` for
   Symfony-injectable classes.

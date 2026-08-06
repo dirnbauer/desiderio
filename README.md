@@ -2,13 +2,14 @@
 
 Desiderio is a TYPO3 v14.3 theme extension with a shadcn/ui-inspired Fluid 5 component library, 244 Desiderio Content Blocks, page templates, optional Blog/News/Solr/Powermail overrides, and a runtime theme system driven by TYPO3 site settings.
 
-It is built for TYPO3 installations that need a complete editorial and marketing component set without a frontend build step on the target site. The committed assets include the Tailwind v4/shadcn CSS theme, lightweight interaction JavaScript, a small Prism syntax-highlighting bundle, and chart helpers.
+It is built for TYPO3 installations that need a complete editorial and marketing component set without a JavaScript component runtime. The committed assets include the Tailwind v4/shadcn CSS theme, lightweight progressive JavaScript, a small Prism syntax-highlighting bundle, and chart helpers. Asset delivery uses Simon Praetorius' official Vite integration; Desiderio contains no manifest reader or dev-server detection of its own.
 
 ## Requirements
 
 - TYPO3 CMS `^14.3`
-- PHP `^8.3`
+- PHP `^8.4`
 - `friendsoftypo3/content-blocks` `^2.2`
+- `praetorius/vite-asset-collector` `^1.18`
 - Composer-based TYPO3 installation
 
 Optional integrations are activated through separate site sets and only apply when the matching extension is installed:
@@ -38,7 +39,7 @@ Enable the site sets in this order:
 
 Desiderio provides three layers:
 
-- **Components**: 17 atoms, 28 molecules, and 4 layout primitives (49 typed Fluid components total).
+- **Components**: 17 atoms, 28 molecules, 4 layout primitives, and 4 organisms (53 typed Fluid components total).
 - **Content Blocks**: 244 editor-facing Desiderio Content Blocks grouped for heroes, features, data, conversion, editorial, media, social proof, navigation, forms, and footer patterns.
 - **Theme**: backend layouts, page templates, header/footer templates, CSS variables, JavaScript interactions, and site settings.
 
@@ -296,7 +297,7 @@ composer validate
 composer audit --no-dev --abandoned=fail
 ```
 
-The CI workflow runs PHPStan at max level, PHPUnit on PHP 8.3–8.5, SQLite-backed functional tests, composer validation/audit, and the strict Content Blocks audit.
+The CI workflow runs PHPStan at max level, PHPUnit on PHP 8.4–8.5, SQLite-backed functional tests, composer validation/audit, and the strict Content Blocks audit.
 
 ### CSS cascade layers
 

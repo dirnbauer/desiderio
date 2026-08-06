@@ -15,9 +15,10 @@
         }
     ],
     "require": {
-        "php": "^8.3",
+        "php": "^8.4",
         "friendsoftypo3/content-blocks": "^2.2",
         "friendsoftypo3/visual-editor": "^1.8",
+        "praetorius/vite-asset-collector": "^1.18",
         "typo3/cms-core": "^14.3",
         "typo3/cms-fluid": "^14.3",
         "typo3/cms-form": "^14.3",
@@ -77,7 +78,7 @@
             "abandoned": "fail"
         },
         "platform": {
-            "php": "8.3"
+            "php": "8.4"
         },
         "secure-http": true,
         "sort-packages": true

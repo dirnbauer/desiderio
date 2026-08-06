@@ -56,6 +56,7 @@ final class SeedElementLibraryCommand extends Command
             ->addOption('parent', null, InputOption::VALUE_REQUIRED, 'Site root page uid the Element Library sysfolder is created below.')
             ->addOption('locale', null, InputOption::VALUE_REQUIRED, 'Language key of the demo content to seed, e.g. "de". Prefers each element\'s library.<locale>.json over library.json. The records are still written as language 0 - this picks the source language of a folder, it does not create translations.')
             ->addOption('hosts', null, InputOption::VALUE_REQUIRED, 'Comma-separated host extensions to seed, e.g. "desiderio,innesto,core" ("core" = native TYPO3 content types). Default: a folder that already has records keeps the hosts it has; a fresh folder gets every host. Records of other hosts already in the folder are removed, so this scopes a site\'s library folder to the theme it uses.')
+            ->addOption('include-video', null, InputOption::VALUE_NONE, 'Opt in to seeding video content elements. Video components remain installed but are excluded from generated content by default.')
             ->addOption('no-warm', null, InputOption::VALUE_NONE, 'Skip warming the preview page cache after seeding.')
             ->addOption('allow-production', null, InputOption::VALUE_NONE, 'Run even when Application Context is Production.');
     }
@@ -143,6 +144,13 @@ final class SeedElementLibraryCommand extends Command
                 $io->error(sprintf('No content elements found for host(s) "%s".', implode(', ', $allowedHosts)));
                 return self::FAILURE;
             }
+        }
+
+        if (!(bool)$input->getOption('include-video')) {
+            $elements = array_values(array_filter(
+                $elements,
+                static fn(array $element): bool => !str_contains(strtolower($element['cType']), 'video'),
+            ));
         }
 
         // Role-based media: the library preview is copied into real pages, so a

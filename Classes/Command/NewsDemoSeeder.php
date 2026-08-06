@@ -162,7 +162,7 @@ final class NewsDemoSeeder
             [
                 'title' => 'PHPStan level max, and staying there',
                 'teaser' => 'The PHP underneath the elements — seeders, ViewHelpers, commands — analyses clean at PHPStan\'s strictest level with strict rules enabled.',
-                'bodytext' => '<p>Level max with strict rules means no mixed left unchecked and no silent type coercion. The seeding infrastructure, icon registry, and CLI commands all pass.</p><p>Combined with 170+ tests on PHP 8.3 and 8.4, refactoring stays boring — the way it should be.</p>',
+                'bodytext' => '<p>Level max with strict rules means no mixed left unchecked and no silent type coercion. The seeding infrastructure, icon registry, and CLI commands all pass.</p><p>Combined with 170+ tests on PHP 8.4 and 8.5, refactoring stays boring — the way it should be.</p>',
                 'daysAgo' => 41,
                 'istopnews' => false,
             ],
@@ -358,8 +358,8 @@ final class NewsDemoSeeder
         $statsPool = [
             ['value' => '244', 'label' => 'Content elements', 'description_text' => 'Every one with a backend preview, demo fixture, and audited markup.'],
             ['value' => '15', 'label' => 'Theme presets', 'description_text' => 'Switchable at runtime, per site or per page subtree.'],
-            ['value' => '170+', 'label' => 'Automated tests', 'description_text' => 'Unit and functional, on PHP 8.3 and 8.4.'],
-            ['value' => '49', 'label' => 'Fluid components', 'description_text' => 'Typed f:argument contracts on every atom and molecule.'],
+            ['value' => '170+', 'label' => 'Automated tests', 'description_text' => 'Unit and functional, on PHP 8.4 and 8.5.'],
+            ['value' => '53', 'label' => 'Fluid components', 'description_text' => 'Typed f:argument contracts on every atom and molecule.'],
             ['value' => '11', 'label' => 'Audit categories', 'description_text' => 'Template quality is measured on every commit, at zero tolerance.'],
             ['value' => '2', 'label' => 'Color modes', 'description_text' => 'Light and dark ship together, both contrast-checked.'],
             ['value' => '5', 'label' => 'Icon libraries', 'description_text' => 'Swappable site-wide while content keeps stable icon keys.'],

@@ -4,6 +4,26 @@ All notable changes to **webconsulting/desiderio** are documented in this
 file. The format follows [Keep a Changelog](https://keepachangelog.com/)
 and the project adheres to [Semantic Versioning](https://semver.org/).
 
+## [4.0.0] — 2026-08-06
+
+### Changed
+
+- Replaced direct TypoScript asset lists with the official
+  `praetorius/vite-asset-collector` integration and benchmark-compatible Vite
+  entries. No custom manifest reader, dev-server detector or asset ViewHelper
+  is part of Desiderio.
+- Replaced the inherited Fluid Styled Content dependency with Desiderio's own
+  `ClassicContent` TypoScript, Fluid layouts, templates and partials.
+- Raised the runtime floor to PHP 8.4 and the CI matrix to PHP 8.4/8.5.
+- Introduced a typed organism layer for the site header, page header,
+  breadcrumb and footer while keeping independent page and content trees.
+- Made video demos explicitly opt-in. Default seeds create no video content or
+  media; the accessible video Content Blocks and generation tools remain.
+
+### Removed
+
+- Removed all generated demo video files and existing video seed payloads.
+
 ## [3.8.2] — 2026-07-26
 
 ### Fixed

@@ -11,6 +11,26 @@ use Webconsulting\Desiderio\Seeding\StyleguideJsonFixtureCompleter;
 
 final class StyleguideJsonFixtureCompleterTest extends TestCase
 {
+    public function testKeepsExplicitlyEmptyVideoSourcesEmpty(): void
+    {
+        $config = Yaml::parseFile(__DIR__ . '/../../ContentBlocks/ContentElements/feature-video/config.yaml');
+        self::assertIsArray($config);
+
+        $definition = ContentBlockDefinitionRegistry::buildDefinitionFromConfig(
+            ContentBlockDefinitionRegistry::normalizeStringKeyedArray($config),
+        );
+        $completed = (new StyleguideJsonFixtureCompleter())->complete(
+            'desiderio_featurevideo',
+            'feature-video',
+            $definition,
+            ['video_url' => '', 'video_file' => [], 'captions_file' => []],
+        );
+
+        self::assertSame('', $completed['video_url']);
+        self::assertSame([], $completed['video_file']);
+        self::assertSame([], $completed['captions_file']);
+    }
+
     public function testCompletesMissingGalleryItemsAndImageFields(): void
     {
         $config = Yaml::parseFile(__DIR__ . '/../../ContentBlocks/ContentElements/gallery/config.yaml');

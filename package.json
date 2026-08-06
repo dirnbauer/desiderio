@@ -1,9 +1,11 @@
 {
   "name": "desiderio",
   "private": true,
-  "version": "0.0.0",
+  "version": "4.0.0",
   "description": "Tailwind v4 and shadcn/ui theme build for the Desiderio TYPO3 extension.",
   "scripts": {
+    "build": "npm run build:assets",
+    "build:assets": "npm run build:css && npm run build:desiderio-css && npm run build:prism && npm run build:hljs && npm run build:iconfonts",
     "build:css": "tailwindcss -i Resources/Private/Tailwind/desiderio.css -o Resources/Public/Css/desiderio-tailwind.css --minify",
     "build:desiderio-css": "node Build/Scripts/build-desiderio-css.mjs",
     "build:prism": "node Build/Scripts/build-prism-lite.mjs",

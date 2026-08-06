@@ -10,13 +10,13 @@
     <f:comment>
         The search shell renders only the Solr plugin (form + facets + results)
         into content.main, so it has no leading heading of its own. Use the
-        shared Pages/PageTitle partial for the single page-level h1 — same as
+        shared d:organism.pageHeader for the single page-level h1 — same as
         every other page template — instead of a search-specific heading. The
         title comes from the page record, already translated per language
         (Search / Suche / 搜索 / Keresés). Sits above the search markers so the
         heading is not indexed as body content.
     </f:comment>
-    <f:render partial="Pages/PageTitle" arguments="{_all}"/>
+    <d:organism.pageHeader page="{page}" newsDetailUid="{newsDetailUid}"/>
     <d:layout.container>
         <!--TYPO3SEARCH_begin-->
         <f:if condition="{content.main}">

@@ -215,6 +215,12 @@ final class SeedStyleguidePagesCommand extends Command
                 'Do not create the optional news demo section, even when georgringer/news is installed.'
             )
             ->addOption(
+                'include-video',
+                null,
+                InputOption::VALUE_NONE,
+                'Opt in to seeding video content elements. Video components and generation tools remain available.'
+            )
+            ->addOption(
                 'powermail-storage-pid',
                 null,
                 InputOption::VALUE_REQUIRED,
@@ -238,6 +244,7 @@ final class SeedStyleguidePagesCommand extends Command
         $allowProduction = (bool)$input->getOption('allow-production');
         $skipPowermail = (bool)$input->getOption('skip-powermail');
         $skipNews = (bool)$input->getOption('skip-news');
+        $includeVideo = (bool)$input->getOption('include-video');
         $powermailStoragePid = $this->getIntegerInputOption($input, 'powermail-storage-pid');
         $powermailGermanLanguageUid = $this->getIntegerInputOption($input, 'powermail-german-language');
 
@@ -263,6 +270,22 @@ final class SeedStyleguidePagesCommand extends Command
         $showcasePages = StyleguideShowcasePages::subpages();
         if ($blogAvailable) {
             $showcasePages = array_merge($showcasePages, StyleguideShowcasePages::blogSupportPages());
+        }
+        if (!$includeVideo) {
+            foreach ($groups as &$group) {
+                $group['elements'] = array_values(array_filter(
+                    $group['elements'],
+                    static fn(array $element): bool => !str_contains(strtolower((string)$element['ctype']), 'video'),
+                ));
+            }
+            unset($group);
+            foreach ($showcasePages as &$showcasePage) {
+                $showcasePage['content'] = array_values(array_filter(
+                    $showcasePage['content'],
+                    static fn(array $block): bool => !str_contains(strtolower((string)$block['ctype']), 'video'),
+                ));
+            }
+            unset($showcasePage);
         }
         $totalElements = array_sum(array_map(
             static fn (array $group): int => count($group['elements']),

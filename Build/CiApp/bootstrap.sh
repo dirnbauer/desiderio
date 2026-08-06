@@ -29,13 +29,12 @@ fi
 
 # The site must load desiderio's TypoScript (preview page type, element
 # rendering). Setup wrote a bare FSC site; replace it with the known-good
-# config for this disposable app.
+# config for this disposable app. Classic content rendering is owned by
+# Desiderio itself; fluid_styled_content is intentionally not installed.
 cat > config/sites/main/config.yaml <<'YAML'
 base: 'http://127.0.0.1:8080/'
 rootPageId: 1
 dependencies:
-  - typo3/fluid-styled-content
-  - typo3/fluid-styled-content-css
   - webconsulting/desiderio-content-elements
 errorHandling: {  }
 routes: {  }

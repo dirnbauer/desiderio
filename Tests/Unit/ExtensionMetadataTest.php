@@ -17,7 +17,7 @@ final class ExtensionMetadataTest extends TestCase
         self::assertSame('desiderio', $composer['extra']['typo3/cms']['extension-key']);
         self::assertArrayHasKey('Webconsulting\\Desiderio\\', $composer['autoload']['psr-4']);
         self::assertSame('*', $composer['conflict']['webconsulting/shadcn2fluid-templates'] ?? null);
-        self::assertSame('^8.3', $composer['require']['php'] ?? null);
+        self::assertSame('^8.4', $composer['require']['php'] ?? null);
         self::assertSame('^14.3', $composer['require']['typo3/cms-core'] ?? null);
         self::assertSame('^14.3', $composer['require']['typo3/cms-fluid'] ?? null);
     }

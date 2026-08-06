@@ -10,23 +10,25 @@ use Webconsulting\Desiderio\Icon\IconRegistry;
 
 final class ContentRenderingTemplateTest extends TestCase
 {
-    public function testPageTitleUsesShadcnTypographyAndSeparator(): void
+    public function testPageTitleUsesModernShadcnTypographyAndContentTreeRail(): void
     {
-        $template = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Templates/Partials/Pages/PageTitle.fluid.html');
+        $template = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Components/Organism/PageHeader/PageHeader.fluid.html');
         $layoutCss = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Css/desiderio/00-intro-layout.css');
 
-        self::assertStringContainsString('tag="h1" variant="h2"', $template);
-        self::assertStringContainsString('class="max-w-4xl text-balance md:text-4xl"', $template);
-        self::assertStringContainsString('<d:atom.separator />', $template);
-        self::assertStringNotContainsString('desiderio-page-title__rule', $template . $layoutCss);
-        self::assertStringNotContainsString('desiderio-page-title__heading', $template . $layoutCss);
+        self::assertStringContainsString('tag="h1" variant="h1"', $template);
+        self::assertStringContainsString('class="desiderio-page-title__heading"', $template);
+        self::assertStringContainsString('class="desiderio-page-title__rail" aria-hidden="true"', $template);
+        self::assertStringContainsString('class="desiderio-page-title__rule" aria-hidden="true"', $template);
+        self::assertStringContainsString(".desiderio-page-title__heading[data-variant='h1']", $layoutCss);
+        self::assertStringContainsString('var(--primary)', $layoutCss);
+        self::assertStringNotContainsString('<d:atom.separator />', $template);
     }
 
     public function testCoreContentTemplatesRequiredByTypoScriptConventionExist(): void
     {
-        $templateDirectory = __DIR__ . '/../../Resources/Private/FluidStyledContent/Templates';
-        $partialDirectory = __DIR__ . '/../../Resources/Private/FluidStyledContent/Partials';
-        $layoutDirectory = __DIR__ . '/../../Resources/Private/FluidStyledContent/Layouts';
+        $templateDirectory = __DIR__ . '/../../Resources/Private/ClassicContent/Templates';
+        $partialDirectory = __DIR__ . '/../../Resources/Private/ClassicContent/Partials';
+        $layoutDirectory = __DIR__ . '/../../Resources/Private/ClassicContent/Layouts';
         $classicTemplates = [
             'Bullets',
             'Div',
@@ -75,9 +77,9 @@ final class ContentRenderingTemplateTest extends TestCase
 
         self::assertStringContainsString('field = CType', $typoScript);
         self::assertStringContainsString('case = uppercamelcase', $typoScript);
-        self::assertStringContainsString('templateRootPaths.200 = EXT:desiderio/Resources/Private/FluidStyledContent/Templates/', $typoScript);
-        self::assertStringContainsString('partialRootPaths.200 = EXT:desiderio/Resources/Private/FluidStyledContent/Partials/', $typoScript);
-        self::assertStringContainsString('layoutRootPaths.200 = EXT:desiderio/Resources/Private/FluidStyledContent/Layouts/', $typoScript);
+        self::assertStringContainsString('templateRootPaths.200 = EXT:desiderio/Resources/Private/ClassicContent/Templates/', $typoScript);
+        self::assertStringContainsString('partialRootPaths.200 = EXT:desiderio/Resources/Private/ClassicContent/Partials/', $typoScript);
+        self::assertStringContainsString('layoutRootPaths.200 = EXT:desiderio/Resources/Private/ClassicContent/Layouts/', $typoScript);
         self::assertStringContainsString('dataProcessing.1421884800 = record-transformation', $typoScript);
         self::assertStringContainsString('tt_content.default =< lib.contentElement', $typoScript);
         self::assertStringContainsString('tt_content.stdWrap.wrapContentElementsWithVeWrapper = 1', $typoScript);
@@ -99,8 +101,8 @@ final class ContentRenderingTemplateTest extends TestCase
     public function testMenuPagesUsesCoreMenuProcessorAndShadcnStyleClasses(): void
     {
         $typoScript = (string) file_get_contents(__DIR__ . '/../../Configuration/Sets/Desiderio/TypoScript/content.typoscript');
-        $template = (string) file_get_contents(__DIR__ . '/../../Resources/Private/FluidStyledContent/Templates/MenuPages.fluid.html');
-        $partial = (string) file_get_contents(__DIR__ . '/../../Resources/Private/FluidStyledContent/Partials/Menu.fluid.html');
+        $template = (string) file_get_contents(__DIR__ . '/../../Resources/Private/ClassicContent/Templates/MenuPages.fluid.html');
+        $partial = (string) file_get_contents(__DIR__ . '/../../Resources/Private/ClassicContent/Partials/Menu.fluid.html');
         $css = (string) file_get_contents(__DIR__ . '/../../Resources/Public/Css/desiderio.css');
 
         self::assertStringContainsString('tt_content.menu_pages =< lib.desiderioMenuSelectedPages', $typoScript);
@@ -123,31 +125,31 @@ final class ContentRenderingTemplateTest extends TestCase
         }
     }
 
-    public function testFluidStyledContentUsesPresetAwareShadcnSources(): void
+    public function testClassicContentUsesPresetAwareShadcnSources(): void
     {
-        $layout = (string) file_get_contents(__DIR__ . '/../../Resources/Private/FluidStyledContent/Layouts/Default.fluid.html');
-        $header = (string) file_get_contents(__DIR__ . '/../../Resources/Private/FluidStyledContent/Partials/Header.fluid.html');
+        $layout = (string) file_get_contents(__DIR__ . '/../../Resources/Private/ClassicContent/Layouts/Default.fluid.html');
+        $header = (string) file_get_contents(__DIR__ . '/../../Resources/Private/ClassicContent/Partials/Header.fluid.html');
         $tailwind = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Tailwind/desiderio.css');
         $settings = (string) file_get_contents(__DIR__ . '/../../Configuration/Sets/Desiderio/settings.yaml');
 
         self::assertStringContainsString('xmlns:dc="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"', $layout);
         self::assertStringContainsString('dc:layout.section', $layout);
         self::assertStringContainsString('dc:atom.typography', $header);
-        self::assertStringContainsString('@source "../FluidStyledContent";', $tailwind);
+        self::assertStringContainsString('@source "../ClassicContent";', $tailwind);
         self::assertStringContainsString('.prose :where(blockquote)', $tailwind);
         self::assertStringContainsString('font-style: italic;', $tailwind);
         self::assertStringContainsString('margin-block-start: 1.5rem;', $tailwind);
         self::assertStringContainsString('padding-inline-start: 1.5rem;', $tailwind);
-        self::assertStringContainsString('templateRootPath: EXT:desiderio/Resources/Private/FluidStyledContent/Templates/', $settings);
+        self::assertStringContainsString('templateRootPath: EXT:desiderio/Resources/Private/ClassicContent/Templates/', $settings);
     }
 
-    public function testFluidStyledContentMediaTemplatesUseFilesProcessorFileObjects(): void
+    public function testClassicContentMediaTemplatesUseFilesProcessorFileObjects(): void
     {
-        $partial = (string) file_get_contents(__DIR__ . '/../../Resources/Private/FluidStyledContent/Partials/Media.fluid.html');
-        $textmediaTemplate = (string) file_get_contents(__DIR__ . '/../../Resources/Private/FluidStyledContent/Templates/Textmedia.fluid.html');
-        $textpicTemplate = (string) file_get_contents(__DIR__ . '/../../Resources/Private/FluidStyledContent/Templates/Textpic.fluid.html');
-        $imageTemplate = (string) file_get_contents(__DIR__ . '/../../Resources/Private/FluidStyledContent/Templates/Image.fluid.html');
-        $uploadsTemplate = (string) file_get_contents(__DIR__ . '/../../Resources/Private/FluidStyledContent/Templates/Uploads.fluid.html');
+        $partial = (string) file_get_contents(__DIR__ . '/../../Resources/Private/ClassicContent/Partials/Media.fluid.html');
+        $textmediaTemplate = (string) file_get_contents(__DIR__ . '/../../Resources/Private/ClassicContent/Templates/Textmedia.fluid.html');
+        $textpicTemplate = (string) file_get_contents(__DIR__ . '/../../Resources/Private/ClassicContent/Templates/Textpic.fluid.html');
+        $imageTemplate = (string) file_get_contents(__DIR__ . '/../../Resources/Private/ClassicContent/Templates/Image.fluid.html');
+        $uploadsTemplate = (string) file_get_contents(__DIR__ . '/../../Resources/Private/ClassicContent/Templates/Uploads.fluid.html');
 
         self::assertStringContainsString('<f:argument name="files" type="iterable" optional="true"/>', $partial);
         self::assertStringContainsString('<f:argument name="position" type="string" optional="true"/>', $partial);
@@ -291,13 +293,13 @@ final class ContentRenderingTemplateTest extends TestCase
         $template = (string) file_get_contents(__DIR__ . '/../../ContentBlocks/ContentElements/code-block/templates/frontend.html');
         $javascript = (string) file_get_contents(__DIR__ . '/../../Resources/Public/Js/astro.js');
         $css = (string) file_get_contents(__DIR__ . '/../../ContentBlocks/ContentElements/code-block/assets/frontend.css');
-        $setup = (string) file_get_contents(__DIR__ . '/../../Configuration/Sets/Desiderio/setup.typoscript');
+        $viteEntry = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Assets/Components.entry.js');
         $prism = (string) file_get_contents(__DIR__ . '/../../Resources/Public/Js/prism-lite.js');
 
         self::assertStringContainsString('data-astro-highlight', $template);
         self::assertStringContainsString('data-astro-language="{data.language}"', $template);
         self::assertStringNotContainsString('data-astro-copy', $template);
-        self::assertStringContainsString('desiderioPrism = EXT:desiderio/Resources/Public/Js/prism-lite.js', $setup);
+        self::assertStringContainsString('../../Public/Js/prism-lite.js', $viteEntry);
         self::assertStringContainsString('window.Prism.manual = true', $prism);
         self::assertStringContainsString('languages.php', $prism);
         self::assertStringContainsString('AstroRuntime.prototype.initHighlight', $javascript);
@@ -370,19 +372,14 @@ final class ContentRenderingTemplateTest extends TestCase
         self::assertStringContainsString("candidate.matches('[data-cookie-banner], [data-gdpr-banner]')", $javascript);
     }
 
-    public function testVideoFixtureFallbacksReferencePlayableVideoAssets(): void
+    public function testVideoFixturesDoNotSeedPlayableMediaByDefault(): void
     {
-        foreach (['feature-video', 'video-embed'] as $contentElement) {
+        foreach (['feature-video', 'hero-video', 'testimonial-video', 'video-embed'] as $contentElement) {
             $fixturePath = __DIR__ . '/../../ContentBlocks/ContentElements/' . $contentElement . '/fixture.json';
             $fixture = json_decode((string) file_get_contents($fixturePath), true, 512, JSON_THROW_ON_ERROR);
             self::assertIsArray($fixture);
-
-            $videoFile = $fixture['video_file'] ?? null;
-            self::assertIsArray($videoFile, "{$contentElement} must provide a video fallback fixture");
-            $relativePath = $videoFile['file'] ?? null;
-            self::assertIsString($relativePath);
-            self::assertContains(strtolower(pathinfo($relativePath, PATHINFO_EXTENSION)), ['mp4', 'webm', 'ogv']);
-            self::assertFileExists(__DIR__ . '/../../' . $relativePath);
+            self::assertSame('', $fixture['video_url'] ?? '');
+            self::assertSame([], $fixture['video_file'] ?? []);
         }
     }
 
@@ -1383,7 +1380,7 @@ final class ContentRenderingTemplateTest extends TestCase
         }
     }
 
-    public function testNewsAndSolrAndFluidStyledContentPartialsDeclareTypedFluidArguments(): void
+    public function testNewsAndSolrAndClassicContentPartialsDeclareTypedFluidArguments(): void
     {
         $partials = [
             'Resources/Private/Extensions/News/Partials/List/Item.html',
@@ -1407,11 +1404,11 @@ final class ContentRenderingTemplateTest extends TestCase
             'Resources/Private/Solr/Partials/Result/Sorting.html',
             'Resources/Private/Solr/Partials/Result/PerPage.html',
             'Resources/Private/Solr/Partials/Facets/Options.html',
-            'Resources/Private/FluidStyledContent/Partials/Header.fluid.html',
-            'Resources/Private/FluidStyledContent/Partials/RichText.fluid.html',
-            'Resources/Private/FluidStyledContent/Partials/Media.fluid.html',
-            'Resources/Private/FluidStyledContent/Partials/Menu.fluid.html',
-            'Resources/Private/FluidStyledContent/Partials/FileList.fluid.html',
+            'Resources/Private/ClassicContent/Partials/Header.fluid.html',
+            'Resources/Private/ClassicContent/Partials/RichText.fluid.html',
+            'Resources/Private/ClassicContent/Partials/Media.fluid.html',
+            'Resources/Private/ClassicContent/Partials/Menu.fluid.html',
+            'Resources/Private/ClassicContent/Partials/FileList.fluid.html',
             'Resources/Private/Partials/List/Pagination.html',
             'Resources/Private/Partials/Pagination/Pagination.html',
             'Resources/Private/Partials/Pagination.html',

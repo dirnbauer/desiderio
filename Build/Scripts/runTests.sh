@@ -4,7 +4,7 @@
 #
 # Mirrors the .github/workflows/ci.yml jobs so contributors can reproduce CI
 # results locally on their workstation. Picks the newest Homebrew PHP that
-# satisfies the >=8.3 constraint, falls back to whichever `php` is on PATH.
+# satisfies the >=8.4 constraint, falls back to whichever `php` is on PATH.
 #
 # Usage:
 #   Build/Scripts/runTests.sh                    # PHPStan + PHPUnit + audit + tailwind
@@ -26,10 +26,10 @@ usage() {
 }
 
 resolve_php() {
-  for candidate in /opt/homebrew/Cellar/php/*/bin/php /opt/homebrew/Cellar/php@8.5/*/bin/php /opt/homebrew/Cellar/php@8.4/*/bin/php /opt/homebrew/Cellar/php@8.3/*/bin/php; do
+  for candidate in /opt/homebrew/Cellar/php/*/bin/php /opt/homebrew/Cellar/php@8.5/*/bin/php /opt/homebrew/Cellar/php@8.4/*/bin/php; do
     if [[ -x "$candidate" ]]; then
       version="$($candidate -r 'echo PHP_MAJOR_VERSION."".PHP_MINOR_VERSION;')"
-      if [[ "$version" -ge 83 ]]; then
+      if [[ "$version" -ge 84 ]]; then
         echo "$candidate"
         return
       fi

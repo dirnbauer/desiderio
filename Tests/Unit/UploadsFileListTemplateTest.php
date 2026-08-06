@@ -10,7 +10,7 @@ final class UploadsFileListTemplateTest extends TestCase
 {
     public function testUploadsTemplatePassesCoreDisplaySettingsToFileListPartial(): void
     {
-        $template = (string) file_get_contents(__DIR__ . '/../../Resources/Private/FluidStyledContent/Templates/Uploads.fluid.html');
+        $template = (string) file_get_contents(__DIR__ . '/../../Resources/Private/ClassicContent/Templates/Uploads.fluid.html');
 
         self::assertStringContainsString('displayFileSize: record.filelink_size', $template);
         self::assertStringContainsString('displayDescription: record.uploads_description', $template);
@@ -19,7 +19,7 @@ final class UploadsFileListTemplateTest extends TestCase
 
     public function testFileListPartialRespectsCoreDisplaySettings(): void
     {
-        $partial = (string) file_get_contents(__DIR__ . '/../../Resources/Private/FluidStyledContent/Partials/FileList.fluid.html');
+        $partial = (string) file_get_contents(__DIR__ . '/../../Resources/Private/ClassicContent/Partials/FileList.fluid.html');
 
         self::assertStringContainsString('<f:argument name="displayFileSize" type="boolean" optional="true" default="false"/>', $partial);
         self::assertStringContainsString('<f:argument name="displayDescription" type="boolean" optional="true" default="false"/>', $partial);
@@ -39,7 +39,7 @@ final class UploadsFileListTemplateTest extends TestCase
 
     public function testFileListPartialUsesShadcnAttachmentSlots(): void
     {
-        $partial = (string) file_get_contents(__DIR__ . '/../../Resources/Private/FluidStyledContent/Partials/FileList.fluid.html');
+        $partial = (string) file_get_contents(__DIR__ . '/../../Resources/Private/ClassicContent/Partials/FileList.fluid.html');
 
         self::assertStringContainsString('data-slot="attachment-group"', $partial);
         self::assertStringContainsString('data-slot="attachment"', $partial);
@@ -56,7 +56,7 @@ final class UploadsFileListTemplateTest extends TestCase
 
     public function testFileListCssStylesAttachmentGroupInsteadOfCards(): void
     {
-        $css = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Css/desiderio/10-fluid-styled-content.css');
+        $css = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Css/desiderio/10-classic-content.css');
 
         self::assertStringContainsString('.ce-fsc-files__list', $css);
         self::assertStringContainsString('.ce-fsc-files__item', $css);

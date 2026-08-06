@@ -1,5 +1,6 @@
 <html
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
     data-namespace-typo3-fluid="true"
 >
 
@@ -7,12 +8,12 @@
 
 <f:comment>
     Fallback page template. Mirrors DesiderioContentpage: a single page-level h1
-    with the page title (Pages/PageTitle partial — visible by default,
+    with the page title (d:organism.pageHeader — visible by default,
     screen-reader-only when the page flags tx_desiderio_h1_sronly).
 </f:comment>
 
 <f:section name="Main">
-    <f:render partial="Pages/PageTitle" arguments="{_all}"/>
+    <d:organism.pageHeader page="{page}" newsDetailUid="{newsDetailUid}"/>
     <!--TYPO3SEARCH_begin-->
     <f:if condition="{content.main}">
         <f:render.contentArea contentArea="{content.main}"/>

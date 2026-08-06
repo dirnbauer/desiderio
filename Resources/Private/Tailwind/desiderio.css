@@ -11,7 +11,7 @@
 @source "../Templates";
 @source "../Extensions";
 @source "../ShadcnUi";
-@source "../FluidStyledContent";
+@source "../ClassicContent";
 @source "../../Public/Js";
 /* Only the Fluid templates carry markup classes. Scanning the whole
    ContentBlocks tree would treat words in config.yaml descriptions and

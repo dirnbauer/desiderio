@@ -72,7 +72,7 @@ Residual watch areas:
 **Good:**
 
 - `ExtbasePluginRequestSanitizerMiddleware` — single responsibility, unit-tested.
-- `ComponentStructureTest` — canonical component inventory (17 atoms, 28 molecules, 4 layouts).
+- `ComponentStructureTest` — canonical component inventory (17 atoms, 28 molecules, 4 layouts, and 4 organisms, 4 organisms).
 - `FixtureFieldNormalizer` — deletes duplicate field-type branches between starter and styleguide seeders.
 - `BrevoConfiguration` array shape on the finisher.
 
@@ -88,7 +88,7 @@ README, Installation, Developer docs, and this report describe:
 - all four `desiderio:*` console commands
 - `Classes/Seeding/` service map
 - Visual Editor middleware and `<f:image>` convention
-- current component counts (49 Fluid components)
+- current component counts (53 Fluid components)
 
 ## Approval bar for future PRs
 

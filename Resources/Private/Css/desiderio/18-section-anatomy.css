@@ -45,7 +45,7 @@
     max-width: 75ch;
 }
 
-/* Classic fluid_styled_content elements (text, textpic, textmedia) render
+/* Classic TYPO3 content elements (text, textpic, textmedia) render
    their RTE body as .ce-bodytext with no measure at all. */
 :where(.ce-bodytext) :where(p, ul, ol, dl) {
     max-width: 75ch;

@@ -1,14 +1,8 @@
 {
     "_type": "card",
-    "header": "Responsive video embed example",
-    "video_url": "https://player.vimeo.com/video/76979871",
-    "caption": "Sample Vimeo video used to demonstrate a responsive 16:9 player and caption. Replace the URL and caption before publishing; an uploaded video is used only when the embed URL is empty.",
-    "aspect_ratio": "16-9",
-    "video_file": {
-        "file": "Resources/Public/Styleguide/Video/desiderio-demo.mp4",
-        "title": "Generated Desiderio demo clip",
-        "alternative": "Short motion clip of a Desiderio page in the TYPO3 Visual Editor.",
-        "description": "Generated from the seeded Desiderio Visual Editor screenshot for video fallback testing.",
-        "source": "EXT:desiderio/Resources/Public/Styleguide/Video/desiderio-demo.mp4"
-    }
+    "header": "Responsive video embed",
+    "video_url": "",
+    "video_file": [],
+    "caption": "Video elements are opt-in. Add an embed URL or upload an accessible video when needed.",
+    "aspect_ratio": "16-9"
 }

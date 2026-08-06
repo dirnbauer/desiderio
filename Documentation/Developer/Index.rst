@@ -23,10 +23,10 @@ Desiderio is intentionally layered:
       244 Desiderio Content Blocks with editor-facing fields and fixtures
 
     Component layer
-      Fluid 5 atoms, molecules, and layouts with typed arguments
+      Fluid 5 atoms, molecules, layouts, and organisms with typed arguments
 
-The component layer currently contains 17 atoms, 28 molecules, and 4
-layout primitives (49 typed Fluid components in total). Content elements
+The component layer currently contains 17 atoms, 28 molecules, 4 layout
+primitives, and 4 site organisms (53 typed Fluid components in total). Content elements
 compose those primitives instead of hardcoding one-off markup.
 
 See :ref:`developer-atomic-design` for the layer rules, migration order,
@@ -214,7 +214,7 @@ The ``pre-commit`` hook keeps the Tailwind bundle honest:
     remove utility classes — :file:`Resources/Private/Tailwind/`,
     :file:`Resources/Private/Components/`, :file:`Resources/Private/Templates/`,
     :file:`Resources/Private/Extensions/`, :file:`Resources/Private/ShadcnUi/`,
-    :file:`Resources/Private/FluidStyledContent/`, :file:`Resources/Private/Solr/`,
+    :file:`Resources/Private/ClassicContent/`, :file:`Resources/Private/Solr/`,
     :file:`Resources/Public/Js/`, or :file:`ContentBlocks/` — it exits
     immediately. Commits that only touch PHP, tests, or docs pay nothing.
 #.  Otherwise it runs :file:`Build/Scripts/check-tailwind-built.sh`, which

@@ -895,9 +895,9 @@ final class ContentBlockStructureTest extends TestCase
     public function testChartDataTemplatesHaveFrontendRenderer(): void
     {
         $chartScript = (string) file_get_contents(__DIR__ . '/../../Resources/Public/Js/charts.js');
-        $typoScript = (string) file_get_contents(__DIR__ . '/../../Configuration/Sets/Desiderio/setup.typoscript');
+        $viteEntry = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Assets/Components.entry.js');
 
-        self::assertStringContainsString('Resources/Public/Js/charts.js', $typoScript);
+        self::assertStringContainsString('../../Public/Js/charts.js', $viteEntry);
         self::assertStringContainsString('data-chart-data', $chartScript);
         self::assertStringContainsString('data-chart-json', $chartScript);
 

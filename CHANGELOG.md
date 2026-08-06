@@ -11,6 +11,10 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 - Header, breadcrumb and footer Organisms now own their complete Fluid markup.
   Component rendering no longer delegates to page partials whose template
   paths are unavailable inside an isolated Fluid component context.
+- Restored Fluid Styled Content as a runtime and Site Set dependency. TYPO3's
+  complete default Content Element set is available again, Desiderio's
+  `ClassicContent` templates continue to override its themed renderers, and
+  `webconsulting/desiderio-blog-standalone` can resolve `blog/standalone`.
 
 ## [4.0.2] — 2026-08-06
 

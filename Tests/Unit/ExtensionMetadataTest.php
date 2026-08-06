@@ -20,6 +20,7 @@ final class ExtensionMetadataTest extends TestCase
         self::assertSame('^8.4', $composer['require']['php'] ?? null);
         self::assertSame('^14.3', $composer['require']['typo3/cms-core'] ?? null);
         self::assertSame('^14.3', $composer['require']['typo3/cms-fluid'] ?? null);
+        self::assertSame('^14.3', $composer['require']['typo3/cms-fluid-styled-content'] ?? null);
     }
 
     public function testExtEmconfMatchesComposer(): void
@@ -42,6 +43,7 @@ final class ExtensionMetadataTest extends TestCase
         self::assertArrayHasKey('php', $conf['constraints']['depends']);
         self::assertArrayHasKey('workspaces', $conf['constraints']['depends']);
         self::assertArrayHasKey('content_blocks', $conf['constraints']['depends']);
+        self::assertArrayHasKey('fluid_styled_content', $conf['constraints']['depends']);
         self::assertArrayHasKey('shadcn2fluid_templates', $conf['constraints']['conflicts']);
         self::assertArrayHasKey('solr', $conf['constraints']['suggests']);
         self::assertArrayHasKey('news', $conf['constraints']['suggests']);

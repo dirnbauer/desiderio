@@ -1,7 +1,8 @@
 name: webconsulting/desiderio
 label: "Desiderio Base"
 hidden: true
-dependencies: []
+dependencies:
+  - typo3/fluid-styled-content
 optionalDependencies:
   - webconsulting/desiderio-solr
   - webconsulting/desiderio-news

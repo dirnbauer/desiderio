@@ -149,7 +149,12 @@ final class SeedElementLibraryCommand extends Command
         if (!(bool)$input->getOption('include-video')) {
             $elements = array_values(array_filter(
                 $elements,
-                static fn(array $element): bool => !str_contains(strtolower($element['cType']), 'video'),
+                static function (array $element): bool {
+                    $cType = strtolower($element['cType']);
+
+                    return !str_contains($cType, 'video')
+                        && !str_contains($cType, 'featuredemo');
+                },
             ));
         }
 

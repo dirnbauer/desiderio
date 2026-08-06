@@ -56,4 +56,13 @@ final class ElementLibrarySeedCommandTest extends TestCase
         self::assertStringContainsString("addOption('locale'", $source);
         self::assertStringContainsString('getElements($locale)', $source);
     }
+
+    public function testDefaultSeedExcludesEveryPlayableVideoDemoType(): void
+    {
+        $source = (string)file_get_contents(__DIR__ . '/../../Classes/Command/SeedElementLibraryCommand.php');
+
+        self::assertStringContainsString("str_contains(\$cType, 'video')", $source);
+        self::assertStringContainsString("str_contains(\$cType, 'featuredemo')", $source);
+        self::assertStringContainsString("getOption('include-video')", $source);
+    }
 }

@@ -4,6 +4,14 @@ All notable changes to **webconsulting/desiderio** are documented in this
 file. The format follows [Keep a Changelog](https://keepachangelog.com/)
 and the project adheres to [Semantic Versioning](https://semver.org/).
 
+## [4.0.2] — 2026-08-06
+
+### Fixed
+
+- Default element-library seeds now exclude `featuredemo` as well as every
+  `video` CType. Video-capable components remain available behind the explicit
+  `--include-video` option.
+
 ## [4.0.1] — 2026-08-06
 
 ### Fixed

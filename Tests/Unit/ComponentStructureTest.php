@@ -68,6 +68,19 @@ final class ComponentStructureTest extends TestCase
         }
     }
 
+    public function testOrganismsOwnTheirMarkupInsteadOfDelegatingToLegacyPagePartials(): void
+    {
+        foreach (['Breadcrumb', 'SiteFooter', 'SiteHeader'] as $name) {
+            $template = (string) file_get_contents(self::COMPONENTS_DIR . "/Organism/{$name}/{$name}.fluid.html");
+
+            self::assertStringNotContainsString(
+                'partial="Pages/',
+                $template,
+                "{$name} must remain independently renderable in Fluid component context",
+            );
+        }
+    }
+
     public function testComponentTemplatesDeclareFluidArgument(): void
     {
         $all = array_merge(

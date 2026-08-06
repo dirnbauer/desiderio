@@ -4,6 +4,14 @@ All notable changes to **webconsulting/desiderio** are documented in this
 file. The format follows [Keep a Changelog](https://keepachangelog.com/)
 and the project adheres to [Semantic Versioning](https://semver.org/).
 
+## [4.0.3] — 2026-08-06
+
+### Fixed
+
+- Header, breadcrumb and footer Organisms now own their complete Fluid markup.
+  Component rendering no longer delegates to page partials whose template
+  paths are unavailable inside an isolated Fluid component context.
+
 ## [4.0.2] — 2026-08-06
 
 ### Fixed

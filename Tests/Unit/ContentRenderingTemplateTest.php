@@ -1427,8 +1427,8 @@ final class ContentRenderingTemplateTest extends TestCase
     public function testPageLayoutShipsAccessibilityPrimitives(): void
     {
         $defaultLayout = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Templates/Layouts/Pages/Default.fluid.html');
-        $headerPartial = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Templates/Partials/Pages/Header.fluid.html');
-        $footerPartial = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Templates/Partials/Pages/Footer.fluid.html');
+        $headerOrganism = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Components/Organism/SiteHeader/SiteHeader.fluid.html');
+        $footerOrganism = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Components/Organism/SiteFooter/SiteFooter.fluid.html');
         $componentsCss = (string) file_get_contents(__DIR__ . '/../../Resources/Public/Css/components.css');
         $english = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Language/locallang.xlf');
         $german = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Language/de.locallang.xlf');
@@ -1441,36 +1441,38 @@ final class ContentRenderingTemplateTest extends TestCase
         self::assertStringContainsString('a11y.skipToContent', $defaultLayout);
 
         // Header must announce active nav links + interactive controls.
-        self::assertStringContainsString('desiderio.brand.wordmark', $headerPartial);
-        self::assertStringContainsString('desiderio-header__brand-mark', $headerPartial);
-        self::assertStringContainsString('desiderio-header__logo-text', $headerPartial);
-        self::assertStringContainsString('aria-controls="desiderio-main-nav"', $headerPartial);
-        self::assertStringContainsString("aria-current: \\'page\\'", $headerPartial, 'Active nav links must declare aria-current="page" via additionalAttributes.');
+        self::assertStringNotContainsString('partial="Pages/Header"', $headerOrganism);
+        self::assertStringContainsString('desiderio.brand.wordmark', $headerOrganism);
+        self::assertStringContainsString('desiderio-header__brand-mark', $headerOrganism);
+        self::assertStringContainsString('desiderio-header__logo-text', $headerOrganism);
+        self::assertStringContainsString('aria-controls="desiderio-main-nav"', $headerOrganism);
+        self::assertStringContainsString("aria-current: \\'page\\'", $headerOrganism, 'Active nav links must declare aria-current="page" via additionalAttributes.');
         self::assertMatchesRegularExpression(
             '/aria-pressed="\{f:if\(condition: \'\{themeDefault\} == /',
-            $headerPartial,
+            $headerOrganism,
             'Theme options must derive their initial aria-pressed state from the configured default colour scheme.'
         );
-        self::assertStringContainsString('data-d-theme-switch', $headerPartial);
-        self::assertStringContainsString('theme.system', $headerPartial);
-        self::assertStringContainsString('<d:atom.icon', $headerPartial);
-        self::assertStringContainsString('a11y.menu.toggle', $headerPartial);
-        self::assertStringContainsString('a11y.theme.switch', $headerPartial);
-        self::assertStringContainsString('a11y.nav.language', $headerPartial);
-        self::assertStringContainsString('desiderio-header__lang', $headerPartial);
+        self::assertStringContainsString('data-d-theme-switch', $headerOrganism);
+        self::assertStringContainsString('theme.system', $headerOrganism);
+        self::assertStringContainsString('<d:atom.icon', $headerOrganism);
+        self::assertStringContainsString('a11y.menu.toggle', $headerOrganism);
+        self::assertStringContainsString('a11y.theme.switch', $headerOrganism);
+        self::assertStringContainsString('a11y.nav.language', $headerOrganism);
+        self::assertStringContainsString('desiderio-header__lang', $headerOrganism);
         self::assertMatchesRegularExpression(
             '/<ul[^>]*role="list"/',
-            $headerPartial,
+            $headerOrganism,
             'Main nav <ul> must carry role="list" for VoiceOver/Safari list semantics.'
         );
 
         // Footer must share the same preset-aware brand and keep legal navigation.
-        self::assertStringContainsString('desiderio.brand.wordmark', $footerPartial);
-        self::assertStringContainsString('desiderio.brand.tagline', $footerPartial);
-        self::assertStringContainsString('desiderio-footer__wordmark desiderio-footer__title', $footerPartial);
-        self::assertStringContainsString('desiderio-footer__meta', $footerPartial);
-        self::assertStringContainsString('desiderio-footer__copyright', $footerPartial);
-        self::assertStringContainsString('a11y.nav.legal', $footerPartial);
+        self::assertStringNotContainsString('partial="Pages/Footer"', $footerOrganism);
+        self::assertStringContainsString('desiderio.brand.wordmark', $footerOrganism);
+        self::assertStringContainsString('desiderio.brand.tagline', $footerOrganism);
+        self::assertStringContainsString('desiderio-footer__wordmark desiderio-footer__title', $footerOrganism);
+        self::assertStringContainsString('desiderio-footer__meta', $footerOrganism);
+        self::assertStringContainsString('desiderio-footer__copyright', $footerOrganism);
+        self::assertStringContainsString('a11y.nav.legal', $footerOrganism);
 
         // Accessibility CSS primitives must be in components.css.
         self::assertStringContainsString('.d-skip-link', $componentsCss);

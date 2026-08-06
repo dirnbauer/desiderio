@@ -80,6 +80,12 @@ final class ShadcnThemeTest extends TestCase
         $typoScript = (string) file_get_contents(__DIR__ . '/../../Configuration/Sets/Desiderio/setup.typoscript');
         $cssEntry = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Assets/Main.entry.css');
         $javascriptEntry = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Assets/Components.entry.js');
+        $viteEntrypoints = json_decode(
+            (string) file_get_contents(__DIR__ . '/../../Configuration/ViteEntrypoints.json'),
+            true,
+            512,
+            JSON_THROW_ON_ERROR,
+        );
         $layout = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Templates/Layouts/Pages/Default.fluid.html');
 
         self::assertStringContainsString('../../Public/Css/shadcn-theme.css', $cssEntry);
@@ -88,6 +94,10 @@ final class ShadcnThemeTest extends TestCase
         self::assertStringContainsString('../../Public/Js/desiderio.js', $javascriptEntry);
         self::assertStringContainsString('../../Public/Js/charts.js', $javascriptEntry);
         self::assertStringContainsString('../../Public/Js/styleguide.js', $javascriptEntry);
+        self::assertSame([
+            '../Resources/Private/Assets/Main.entry.css',
+            '../Resources/Private/Assets/Components.entry.js',
+        ], $viteEntrypoints);
         self::assertStringContainsString('vite:asset entry="EXT:desiderio/Resources/Private/Assets/Main.entry.css"', $layout);
         self::assertStringContainsString('vite:asset entry="EXT:desiderio/Resources/Private/Assets/Components.entry.js"', $layout);
         self::assertStringNotContainsString('includeCSS', $typoScript);

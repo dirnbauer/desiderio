@@ -4,6 +4,13 @@ All notable changes to **webconsulting/desiderio** are documented in this
 file. The format follows [Keep a Changelog](https://keepachangelog.com/)
 and the project adheres to [Semantic Versioning](https://semver.org/).
 
+## [4.0.1] — 2026-08-06
+
+### Fixed
+
+- Added the official `Configuration/ViteEntrypoints.json` declaration required
+  by `vite-plugin-typo3`, so project builds discover both Desiderio entries.
+
 ## [4.0.0] — 2026-08-06
 
 ### Changed

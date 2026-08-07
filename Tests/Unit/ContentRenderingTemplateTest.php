@@ -10,14 +10,14 @@ use Webconsulting\Desiderio\Icon\IconRegistry;
 
 final class ContentRenderingTemplateTest extends TestCase
 {
-    public function testPageTitleUsesCompactShadcnTypographyAndSeparator(): void
+    public function testPageTitleUsesShadcnH1TypographyAndSeparator(): void
     {
         $template = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Components/Organism/PageHeader/PageHeader.fluid.html');
         $layoutCss = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Css/desiderio/00-intro-layout.css');
 
-        self::assertStringContainsString('tag="h1" variant="h2"', $template);
+        self::assertStringContainsString('tag="h1" variant="h1"', $template);
         self::assertStringContainsString('<f:argument name="newsDetailUid" type="string" optional="{true}" default="" />', $template);
-        self::assertStringContainsString('class="max-w-4xl text-balance md:text-4xl"', $template);
+        self::assertStringContainsString('variant="h1" class="max-w-4xl text-balance"', $template);
         self::assertStringContainsString('<d:atom.separator />', $template);
         self::assertStringNotContainsString('desiderio-page-title__rail', $template);
         self::assertStringNotContainsString('desiderio-page-title__rule', $template);

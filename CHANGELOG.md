@@ -4,6 +4,14 @@ All notable changes to **webconsulting/desiderio** are documented in this
 file. The format follows [Keep a Changelog](https://keepachangelog.com/)
 and the project adheres to [Semantic Versioning](https://semver.org/).
 
+## [4.0.5] — 2026-08-07
+
+### Fixed
+
+- The shared page header now uses the native shadcn H1 typography variant:
+  36 px on compact screens and 48 px on desktop. This keeps inner-page titles
+  clearly hierarchical without restoring the oversized legacy masthead.
+
 ## [4.0.4] — 2026-08-07
 
 ### Changed

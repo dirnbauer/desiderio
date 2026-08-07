@@ -62,5 +62,5 @@ printf 'elementLibrary:\n  storagePid: %s\n' "$FOLDER_UID" > config/sites/main/s
 $TYPO3 cache:flush
 
 echo "Bootstrap done. Serve with:"
-echo "  TYPO3_CONTEXT=Development PHP_CLI_SERVER_WORKERS=8 php -d memory_limit=768M -S 127.0.0.1:8080 -t Build/CiApp/public"
+echo "  TYPO3_CONTEXT=Development php -d memory_limit=768M -S 127.0.0.1:8080 -t Build/CiApp/public"
 echo "Preview URLs: vendor/bin/typo3 desiderio:library:urls --site=main --json"

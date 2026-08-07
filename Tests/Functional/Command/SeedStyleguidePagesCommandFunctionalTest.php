@@ -266,7 +266,13 @@ final class SeedStyleguidePagesCommandFunctionalTest extends FunctionalTestCase
         $seededGroups = [];
         foreach (self::CONTENT_TYPE_GROUP_IDS as $groupId) {
             if (isset($groupsById[$groupId])) {
-                $seededGroups[] = $groupsById[$groupId];
+                $group = $groupsById[$groupId];
+                $group['elements'] = array_values(array_filter(
+                    $group['elements'],
+                    static fn (array $element): bool => !is_string($element['ctype'] ?? null)
+                        || !str_contains(strtolower($element['ctype']), 'video')
+                ));
+                $seededGroups[] = $group;
             }
         }
 

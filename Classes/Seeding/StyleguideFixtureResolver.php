@@ -80,7 +80,7 @@ final class StyleguideFixtureResolver
         }
 
         foreach ($collections as $field => $collection) {
-            $row[$collection['column'] ?? $field] = count($collection['items']);
+            $row[$collection['column']] = count($collection['items']);
         }
 
         return [

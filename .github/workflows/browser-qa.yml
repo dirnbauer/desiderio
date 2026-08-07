@@ -65,7 +65,7 @@ jobs:
 
       - name: Serve
         run: |
-          (cd Build/CiApp && TYPO3_CONTEXT=Development PHP_CLI_SERVER_WORKERS=8 \
+          (cd Build/CiApp && TYPO3_CONTEXT=Development \
             php -d memory_limit=768M -S 127.0.0.1:8080 -t public >/tmp/php-server.log 2>&1 &)
           for i in $(seq 1 60); do
             code=$(curl -s -o /dev/null -w '%{http_code}' 'http://127.0.0.1:8080/' || true)

@@ -17,19 +17,33 @@ defined('TYPO3') or die();
 // changes. Group "system" -> a normal "flush all caches" also clears it.
 // SimpleFileBackend: no DB table to migrate (works on a fresh deploy without a
 // schema update), fast reads, and group "system" flushing wipes the cache dir.
-$GLOBALS['TYPO3_CONF_VARS']['SYS']['caching']['cacheConfigurations']['desiderio_library'] ??= [
+$desiderioTypo3Configuration = $GLOBALS['TYPO3_CONF_VARS'];
+if (!is_array($desiderioTypo3Configuration)) {
+    $desiderioTypo3Configuration = [];
+}
+$desiderioSystemConfiguration = $desiderioTypo3Configuration['SYS'] ?? [];
+if (!is_array($desiderioSystemConfiguration)) {
+    $desiderioSystemConfiguration = [];
+}
+$desiderioCachingConfiguration = $desiderioSystemConfiguration['caching'] ?? [];
+if (!is_array($desiderioCachingConfiguration)) {
+    $desiderioCachingConfiguration = [];
+}
+$desiderioCacheConfigurations = $desiderioCachingConfiguration['cacheConfigurations'] ?? [];
+if (!is_array($desiderioCacheConfigurations)) {
+    $desiderioCacheConfigurations = [];
+}
+$desiderioCacheConfigurations['desiderio_library'] ??= [
     'frontend' => \TYPO3\CMS\Core\Cache\Frontend\VariableFrontend::class,
     'backend' => \TYPO3\CMS\Core\Cache\Backend\SimpleFileBackend::class,
     'groups' => ['system'],
 ];
+$desiderioCachingConfiguration['cacheConfigurations'] = $desiderioCacheConfigurations;
+$desiderioSystemConfiguration['caching'] = $desiderioCachingConfiguration;
 
 // WebVTT caption files are valid FAL text assets, but TYPO3's default text
 // extension allow-list currently contains SRT only. Keep existing project
 // additions and register VTT so seeded feature videos can import captions.
-$desiderioSystemConfiguration = $GLOBALS['TYPO3_CONF_VARS']['SYS'] ?? [];
-if (!is_array($desiderioSystemConfiguration)) {
-    $desiderioSystemConfiguration = [];
-}
 $desiderioTextFileExtensionList = $desiderioSystemConfiguration['textfile_ext'] ?? '';
 if (!is_string($desiderioTextFileExtensionList)) {
     $desiderioTextFileExtensionList = '';
@@ -43,7 +57,8 @@ $desiderioSystemConfiguration['textfile_ext'] = implode(
     ',',
     array_values(array_unique($desiderioTextFileExtensions))
 );
-$GLOBALS['TYPO3_CONF_VARS']['SYS'] = $desiderioSystemConfiguration;
+$desiderioTypo3Configuration['SYS'] = $desiderioSystemConfiguration;
+$GLOBALS['TYPO3_CONF_VARS'] = $desiderioTypo3Configuration;
 
 // CSS, JS and all frontend configuration is provided via the site set in
 // Configuration/Sets/Desiderio/. Page TSconfig is auto-loaded from
@@ -52,7 +67,7 @@ $GLOBALS['TYPO3_CONF_VARS']['SYS'] = $desiderioSystemConfiguration;
 // Desiderio RTE preset: Default toolbar plus textPartLanguage (span lang) and
 // the custom abbreviation plugin (abbr title). Assigned per field via
 // richtextConfiguration: desiderio in the Content Block config.yaml files.
-$desiderioRteConfiguration = $GLOBALS['TYPO3_CONF_VARS']['RTE'] ?? [];
+$desiderioRteConfiguration = $desiderioTypo3Configuration['RTE'] ?? [];
 if (!is_array($desiderioRteConfiguration)) {
     $desiderioRteConfiguration = [];
 }
@@ -66,7 +81,8 @@ $desiderioRtePresets['desiderio'] = 'EXT:desiderio/Configuration/RTE/Desiderio.y
 // Desiderio preset gained the complete heading and semantic-style feature set.
 $desiderioRtePresets['desiderio_test'] = 'EXT:desiderio/Configuration/RTE/DesiderioTest.yaml';
 $desiderioRteConfiguration['Presets'] = $desiderioRtePresets;
-$GLOBALS['TYPO3_CONF_VARS']['RTE'] = $desiderioRteConfiguration;
+$desiderioTypo3Configuration['RTE'] = $desiderioRteConfiguration;
+$GLOBALS['TYPO3_CONF_VARS'] = $desiderioTypo3Configuration;
 
 // Powermail double-opt-in and disclaimer mails link with the record uid and a
 // sha256 hash in the route path; the appended ?cHash= adds ~70 characters and
@@ -74,8 +90,24 @@ $GLOBALS['TYPO3_CONF_VARS']['RTE'] = $desiderioRteConfiguration;
 // the request, so exclude the powermail params from cacheHash calculation —
 // the same hardening powermail documents for opt-in links.
 if (ExtensionManagementUtility::isLoaded('powermail')) {
-    $GLOBALS['TYPO3_CONF_VARS']['FE']['cacheHash']['excludedParameters'] = array_values(array_unique(array_merge(
-        $GLOBALS['TYPO3_CONF_VARS']['FE']['cacheHash']['excludedParameters'] ?? [],
+    $desiderioFrontendConfiguration = $desiderioTypo3Configuration['FE'] ?? [];
+    if (!is_array($desiderioFrontendConfiguration)) {
+        $desiderioFrontendConfiguration = [];
+    }
+    $desiderioCacheHashConfiguration = $desiderioFrontendConfiguration['cacheHash'] ?? [];
+    if (!is_array($desiderioCacheHashConfiguration)) {
+        $desiderioCacheHashConfiguration = [];
+    }
+    $desiderioExcludedParameters = $desiderioCacheHashConfiguration['excludedParameters'] ?? [];
+    if (!is_array($desiderioExcludedParameters)) {
+        $desiderioExcludedParameters = [];
+    }
+    $desiderioExcludedParameters = array_values(array_filter(
+        $desiderioExcludedParameters,
+        static fn (mixed $parameter): bool => is_string($parameter)
+    ));
+    $desiderioCacheHashConfiguration['excludedParameters'] = array_values(array_unique(array_merge(
+        $desiderioExcludedParameters,
         [
             'tx_powermail_pi1[hash]',
             'tx_powermail_pi1[mail]',
@@ -83,6 +115,9 @@ if (ExtensionManagementUtility::isLoaded('powermail')) {
             'tx_powermail_pi1[controller]',
         ]
     )));
+    $desiderioFrontendConfiguration['cacheHash'] = $desiderioCacheHashConfiguration;
+    $desiderioTypo3Configuration['FE'] = $desiderioFrontendConfiguration;
+    $GLOBALS['TYPO3_CONF_VARS'] = $desiderioTypo3Configuration;
 }
 
 // The bundled Desiderio forms declare a "Friendlycaptcha" element. When
@@ -111,10 +146,7 @@ module.tx_form.settings.yamlConfigurations.1777100144 = EXT:desiderio/Configurat
 // extension itself. The Desiderio copies (desiderio-simpleform,
 // desiderio-allfields) remain available.
 if (ExtensionManagementUtility::isLoaded('styleguide')) {
-    $typo3Configuration = $GLOBALS['TYPO3_CONF_VARS'] ?? [];
-    if (!is_array($typo3Configuration)) {
-        $typo3Configuration = [];
-    }
+    $typo3Configuration = $desiderioTypo3Configuration;
 
     $extensionConfiguration = $typo3Configuration['EXTENSIONS'] ?? [];
     if (!is_array($extensionConfiguration)) {

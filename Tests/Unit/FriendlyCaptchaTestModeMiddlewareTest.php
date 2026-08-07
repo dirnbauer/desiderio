@@ -47,7 +47,7 @@ final class FriendlyCaptchaTestModeMiddlewareTest extends TestCase
         self::assertInstanceOf(ServerRequestInterface::class, $handler->request);
         self::assertTrue($this->requestSiteConfiguration($handler->request)['friendlycaptcha_skip_dev_validation'] ?? false);
 
-        self::assertTrue($this->requestSiteConfiguration($GLOBALS['TYPO3_REQUEST'])['friendlycaptcha_skip_dev_validation'] ?? false);
+        self::assertTrue($this->requestSiteConfiguration($this->globalRequest())['friendlycaptcha_skip_dev_validation'] ?? false);
     }
 
     public function testDisabledSiteSettingKeepsFriendlyCaptchaValidationConfigurationUnchanged(): void
@@ -185,6 +185,16 @@ final class FriendlyCaptchaTestModeMiddlewareTest extends TestCase
         }
 
         return $configuration;
+    }
+
+    private function globalRequest(): ServerRequestInterface
+    {
+        $request = $GLOBALS['TYPO3_REQUEST'] ?? null;
+        if (!$request instanceof ServerRequestInterface) {
+            self::fail('The middleware must keep the global TYPO3 request type-safe.');
+        }
+
+        return $request;
     }
 
     private function createSite(bool $testMode, bool $forceReal = false): Site

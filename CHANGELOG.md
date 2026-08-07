@@ -4,6 +4,23 @@ All notable changes to **webconsulting/desiderio** are documented in this
 file. The format follows [Keep a Changelog](https://keepachangelog.com/)
 and the project adheres to [Semantic Versioning](https://semver.org/).
 
+## [4.0.4] — 2026-08-07
+
+### Changed
+
+- Corporate content, sidebar and search pages now reuse the shared atomic
+  PageHeader Organism for one consistent, compact H1 treatment. News detail
+  views continue to suppress the page header in favour of the article H1.
+
+### Fixed
+
+- Restored the standalone element-library preview on TYPO3 14 by configuring
+  its `FLUIDTEMPLATE` through the supported `file` property.
+- Added the disposable TYPO3/Vite browser harness and made it exercise built
+  production assets. The release passes 263 anatomy previews and 1,578
+  responsive, theme and accessibility renders without findings.
+- Restored the PHP 8.4/8.5 unit, functional and PHPStan quality gates.
+
 ## [4.0.3] — 2026-08-06
 
 ### Fixed

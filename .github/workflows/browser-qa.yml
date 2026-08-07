@@ -72,7 +72,9 @@ jobs:
 
       - name: Serve
         run: |
-          (cd Build/CiApp && TYPO3_CONTEXT=Development \
+          # The app is seeded in Development, but the browser must exercise the
+          # built Vite manifest instead of looking for a dev server on :5173.
+          (cd Build/CiApp && TYPO3_CONTEXT=Production \
             php -d memory_limit=768M -d opcache.enable=0 -d opcache.enable_cli=0 \
               -S 127.0.0.1:8080 -t public >/tmp/php-server.log 2>&1 &)
           for i in $(seq 1 60); do

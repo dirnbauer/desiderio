@@ -253,7 +253,7 @@ elementLibraryPreview {
 
   10 = FLUIDTEMPLATE
   10 {
-    template = EXT:desiderio/Resources/Private/Templates/Pages/ElementPreview.fluid.html
+    file = EXT:desiderio/Resources/Private/Templates/Pages/ElementPreview.fluid.html
     variables.content = CONTENT
     variables.content {
       table = tt_content

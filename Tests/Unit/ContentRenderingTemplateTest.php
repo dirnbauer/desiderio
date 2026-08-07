@@ -24,6 +24,22 @@ final class ContentRenderingTemplateTest extends TestCase
         self::assertStringNotContainsString('desiderio-page-title__heading', $layoutCss);
     }
 
+    public function testCorporateInnerPagesReuseTheSharedPageHeader(): void
+    {
+        foreach (['DesiderioContentpage', 'DesiderioContentpageSidebar', 'DesiderioSearch'] as $templateName) {
+            $template = (string) file_get_contents(
+                __DIR__ . '/../../Resources/Private/Presets/Corporate/Templates/Pages/' . $templateName . '.fluid.html',
+            );
+
+            self::assertStringContainsString(
+                '<d:organism.pageHeader page="{page}"',
+                $template,
+                $templateName . ' must render the same breadcrumb-adjacent h1 as other inner pages',
+            );
+            self::assertStringNotContainsString('<h1 class="desiderio-corporate-template__title">', $template);
+        }
+    }
+
     public function testCoreContentTemplatesRequiredByTypoScriptConventionExist(): void
     {
         $templateDirectory = __DIR__ . '/../../Resources/Private/ClassicContent/Templates';
@@ -1141,16 +1157,16 @@ final class ContentRenderingTemplateTest extends TestCase
             $newsTypoScript,
         );
 
-        // Corporate content pages drop their page-title band on detail views so
-        // the article h1 is the page heading instead of the page title.
+        // Corporate content pages pass the routed news argument to the shared
+        // page header, which suppresses itself on detail views so the article h1
+        // is the only page heading.
         foreach (['DesiderioContentpage', 'DesiderioContentpageSidebar'] as $templateName) {
             $template = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Presets/Corporate/Templates/Pages/' . $templateName . '.fluid.html');
-            $guardPosition = strpos($template, '<f:if condition="!{newsDetailUid}">');
-            $introPosition = strpos($template, 'desiderio-corporate-template__intro');
-
-            self::assertIsInt($guardPosition, $templateName . ' must guard its intro band against news detail views');
-            self::assertIsInt($introPosition);
-            self::assertLessThan($introPosition, $guardPosition, $templateName . ' must open the newsDetailUid guard before the intro band');
+            self::assertStringContainsString(
+                '<d:organism.pageHeader page="{page}" newsDetailUid="{newsDetailUid}"/>',
+                $template,
+                $templateName . ' must let the shared page header suppress itself on news detail views',
+            );
         }
     }
 

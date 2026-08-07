@@ -8,40 +8,15 @@
 
 <f:section name="Main">
     <f:comment>
-        Corporate search page. Reuses the same intro masthead as content pages so
-        search does not get a separate system-page header treatment. The results
-        area is a labelled region so the search form/results are announced.
+        Search uses the same breadcrumb-adjacent page header as other inner
+        pages. The results area remains a labelled region.
     </f:comment>
 
-    <f:variable name="rootlineDepth" value="{breadcrumb -> f:count()}"/>
-    <f:variable name="sectionEyebrow" value="{f:translate(extensionName: 'desiderio', key: 'corporate.page.eyebrow', default: 'Overview')}"/>
-    <f:if condition="{rootlineDepth} >= 3">
-        <f:for each="{breadcrumb}" as="crumb" iteration="crumbIteration">
-            <f:if condition="{crumbIteration.cycle} == {rootlineDepth - 1}">
-                <f:variable name="sectionEyebrow" value="{crumb.title}"/>
-            </f:if>
-        </f:for>
-    </f:if>
     <f:variable name="searchResultsLabel"><f:translate key="page.search.results.label" extensionName="desiderio">Search results</f:translate></f:variable>
-    <f:if condition="{page.pageRecord.abstract}">
-        <f:then>
-            <f:variable name="pageLede" value="{page.pageRecord.abstract}"/>
-        </f:then>
-        <f:else>
-            <f:variable name="pageLede"><f:translate key="page.search.intro" extensionName="desiderio">Find solutions, case studies, documentation and the right contact across our site.</f:translate></f:variable>
-        </f:else>
-    </f:if>
+    <d:organism.pageHeader page="{page}"/>
 
     <div class="desiderio-corporate-template">
         <d:layout.container size="xl" class="desiderio-corporate-template__container">
-            <header class="desiderio-corporate-template__intro">
-                <f:if condition="{sectionEyebrow}">
-                    <p class="desiderio-corporate-template__eyebrow">{sectionEyebrow}</p>
-                </f:if>
-                <h1 class="desiderio-corporate-template__title">{page.pageRecord.title}</h1>
-                <p class="desiderio-corporate-template__lede">{pageLede}</p>
-            </header>
-
             <div class="desiderio-corporate-template__content" role="region" aria-label="{searchResultsLabel -> f:format.trim()}">
                 <f:if condition="{content.main}">
                     <f:then>

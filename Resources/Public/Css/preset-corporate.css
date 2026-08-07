@@ -50,6 +50,14 @@
     background: var(--background);
 }
 
+.desiderio-page-title-container + .desiderio-corporate-template {
+    margin-top: 0;
+}
+
+.desiderio-page-title-container + .desiderio-corporate-template > .desiderio-container {
+    padding-block-start: 4rem;
+}
+
 .desiderio-corporate-template__container {
     display: grid;
     gap: clamp(1.5rem, 3vw, 2.5rem);
@@ -372,4 +380,3 @@
     padding: 3rem 0;
     margin-top: 6rem;
 }
-

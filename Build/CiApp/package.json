@@ -1,0 +1,12 @@
+{
+  "name": "@webconsulting/desiderio-ci-app",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "vite build"
+  },
+  "devDependencies": {
+    "vite": "^8.2.0",
+    "vite-plugin-typo3": "^3.0.0"
+  }
+}

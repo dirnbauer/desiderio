@@ -3,7 +3,8 @@
 #   composer install -> TYPO3 setup (SQLite, site "main" on port 8080)
 #   -> extension:setup -> desiderio:library:seed.
 # Idempotent: an existing installation is kept, the seed upserts.
-# Serve afterwards with:  TYPO3_CONTEXT=Development php -S 127.0.0.1:8080 -t Build/CiApp/public
+# Build the Vite manifest afterwards with:  (cd Build/CiApp && npm ci && npm run build)
+# Then serve with:  TYPO3_CONTEXT=Development php -S 127.0.0.1:8080 -t Build/CiApp/public
 set -eu
 cd "$(dirname "$0")"
 
@@ -62,5 +63,6 @@ printf 'elementLibrary:\n  storagePid: %s\n' "$FOLDER_UID" > config/sites/main/s
 $TYPO3 cache:flush
 
 echo "Bootstrap done. Serve with:"
+echo "  (cd Build/CiApp && npm ci && npm run build)"
 echo "  TYPO3_CONTEXT=Development php -d memory_limit=768M -S 127.0.0.1:8080 -t Build/CiApp/public"
 echo "Preview URLs: vendor/bin/typo3 desiderio:library:urls --site=main --json"

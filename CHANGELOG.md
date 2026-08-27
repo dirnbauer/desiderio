@@ -4,6 +4,25 @@ All notable changes to **webconsulting/desiderio** are documented in this
 file. The format follows [Keep a Changelog](https://keepachangelog.com/)
 and the project adheres to [Semantic Versioning](https://semver.org/).
 
+## [4.0.6] — 2026-08-27
+
+### Security
+
+- Raised the TYPO3 runtime floor to 14.3.6 and refreshed the complete Composer
+  dependency graph so the extension cannot install with the superseded core
+  patch levels.
+- Updated the frontend toolchain lockfile to remove the published `nanoid`
+  denial-of-service advisory.
+
+### Changed
+
+- The development integration now tests against the v14-ready Blog 15.0.3
+  release from the maintained fork.
+- Regenerated the checked-in Fluid control primitives from the current pinned
+  shadcn preset recipe, including its improved focus-visible field states.
+- Raised the local functional-test memory limit to 1 GiB for TYPO3's compiled
+  dependency-injection container on the current dependency set.
+
 ## [4.0.5] — 2026-08-07
 
 ### Fixed
@@ -1153,4 +1172,6 @@ for the migration notes from the old extensions.
 [2.2.0]: https://github.com/dirnbauer/desiderio/releases/tag/v2.2.0
 [2.1.0]: https://github.com/dirnbauer/desiderio/releases/tag/v2.1.0
 [2.0.0]: https://github.com/dirnbauer/desiderio/releases/tag/v2.0.0
-[Unreleased]: https://github.com/dirnbauer/desiderio/compare/v2.6.2...HEAD
+[4.0.6]: https://github.com/dirnbauer/desiderio/releases/tag/v4.0.6
+[4.0.5]: https://github.com/dirnbauer/desiderio/releases/tag/v4.0.5
+[Unreleased]: https://github.com/dirnbauer/desiderio/compare/v4.0.6...HEAD

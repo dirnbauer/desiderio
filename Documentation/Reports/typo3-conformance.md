@@ -12,8 +12,8 @@ the latest compatible 14.3 patch line and workspaces remain mandatory.
 
 ## Current Controls
 
-- `composer.json` requires TYPO3 core/fluid/workspaces `^14.3`.
-- `ext_emconf.php` depends on TYPO3/workspaces `14.3.0-14.99.99`.
+- `composer.json` requires TYPO3 core/fluid/workspaces `^14.3.6`.
+- `ext_emconf.php` depends on TYPO3/workspaces `14.3.6-14.99.99`.
 - PHPStan runs at `level: max` with `saschaegerer/phpstan-typo3`,
   strict rules, and PHPUnit rules.
 - Services use constructor injection and `Services.yaml` autowiring.

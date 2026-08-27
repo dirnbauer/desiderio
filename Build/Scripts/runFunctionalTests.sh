@@ -11,4 +11,4 @@ export typo3DatabaseDriver=pdo_sqlite
 export typo3DatabaseName=desiderio_functional
 
 PHP="${PHP:-php}"
-"$PHP" "$ROOT/vendor/bin/phpunit" -c "$ROOT/Build/FunctionalTests.xml" --testdox "$@"
+"$PHP" -d memory_limit=1G "$ROOT/vendor/bin/phpunit" -c "$ROOT/Build/FunctionalTests.xml" --testdox "$@"

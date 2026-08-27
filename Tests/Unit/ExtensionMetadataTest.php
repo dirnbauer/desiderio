@@ -18,8 +18,8 @@ final class ExtensionMetadataTest extends TestCase
         self::assertArrayHasKey('Webconsulting\\Desiderio\\', $composer['autoload']['psr-4']);
         self::assertSame('*', $composer['conflict']['webconsulting/shadcn2fluid-templates'] ?? null);
         self::assertSame('^8.4', $composer['require']['php'] ?? null);
-        self::assertSame('^14.3', $composer['require']['typo3/cms-core'] ?? null);
-        self::assertSame('^14.3', $composer['require']['typo3/cms-fluid'] ?? null);
+        self::assertSame('^14.3.6', $composer['require']['typo3/cms-core'] ?? null);
+        self::assertSame('^14.3.6', $composer['require']['typo3/cms-fluid'] ?? null);
     }
 
     public function testExtEmconfMatchesComposer(): void

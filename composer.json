@@ -12,6 +12,10 @@
         {
             "type": "vcs",
             "url": "https://github.com/dirnbauer/typo3-visual-editor-enhancements.git"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/dirnbauer/blog.git"
         }
     ],
     "require": {
@@ -19,10 +23,10 @@
         "friendsoftypo3/content-blocks": "^2.2",
         "friendsoftypo3/visual-editor": "^1.8",
         "praetorius/vite-asset-collector": "^1.18",
-        "typo3/cms-core": "^14.3",
-        "typo3/cms-fluid": "^14.3",
-        "typo3/cms-form": "^14.3",
-        "typo3/cms-workspaces": "^14.3",
+        "typo3/cms-core": "^14.3.6",
+        "typo3/cms-fluid": "^14.3.6",
+        "typo3/cms-form": "^14.3.6",
+        "typo3/cms-workspaces": "^14.3.6",
         "webconsulting/visual-editor-enhancements": "^0.8 || dev-main"
     },
     "minimum-stability": "stable",
@@ -56,13 +60,13 @@
         "phpstan/phpstan-strict-rules": "^2.0",
         "phpunit/phpunit": "^11.5",
         "saschaegerer/phpstan-typo3": "^3.0",
-        "t3g/blog": "^14.0",
+        "t3g/blog": "^15.0.3",
         "typo3/testing-framework": "^9.0"
     },
     "extra": {
         "typo3/cms": {
             "extension-key": "desiderio",
-            "version": "4.0.5",
+            "version": "4.0.6",
             "Package": {
                 "providesPackages": {}
             }

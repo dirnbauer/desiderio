@@ -10,12 +10,12 @@ $EM_CONF[$_EXTKEY] = [
     'author_email' => '',
     'state' => 'stable',
     'clearCacheOnLoad' => 1,
-    'version' => '4.0.5',
+    'version' => '4.0.6',
     'constraints' => [
         'depends' => [
             'php' => '8.4.0-8.5.99',
-            'typo3' => '14.3.0-14.99.99',
-            'workspaces' => '14.3.0-14.99.99',
+            'typo3' => '14.3.6-14.99.99',
+            'workspaces' => '14.3.6-14.99.99',
             'content_blocks' => '2.2.0-2.99.99',
         ],
         'conflicts' => [

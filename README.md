@@ -6,7 +6,7 @@ It is built for TYPO3 installations that need a complete editorial and marketing
 
 ## Requirements
 
-- TYPO3 CMS `^14.3`
+- TYPO3 CMS `^14.3.6`
 - PHP `^8.4`
 - `friendsoftypo3/content-blocks` `^2.2`
 - `praetorius/vite-asset-collector` `^1.18`

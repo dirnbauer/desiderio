@@ -6,7 +6,7 @@ Status: Green with documented FAL limitation
 
 ## Summary
 
-Desiderio requires `typo3/cms-workspaces ^14.3` and keeps the
+Desiderio requires `typo3/cms-workspaces ^14.3.6` and keeps the
 styleguide seeder out of offline workspaces. The seeder writes fixture
 records to the live workspace only, and destructive cleanup queries now
 add explicit live workspace predicates when TYPO3 versioning columns
@@ -14,8 +14,8 @@ exist.
 
 ## Current Controls
 
-- `composer.json` requires `typo3/cms-workspaces ^14.3`.
-- `ext_emconf.php` depends on `workspaces` `14.3.0-14.99.99`.
+- `composer.json` requires `typo3/cms-workspaces ^14.3.6`.
+- `ext_emconf.php` depends on `workspaces` `14.3.6-14.99.99`.
 - `SeedStyleguidePagesCommand` reads the TYPO3 `workspace` context
   aspect and returns failure for workspace IDs other than `0`.
 - `CollectionCleanupService` and `LiveWorkspaceQueryHelper` scope

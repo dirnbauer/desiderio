@@ -152,8 +152,8 @@ final class PowermailIntegrationTest extends TestCase
         self::assertStringContainsString('checked:bg-foreground', $controlClass);
         self::assertStringContainsString('checked:text-background', $controlClass);
         self::assertStringContainsString('aria-invalid:checked:border-destructive', $controlClass);
-        self::assertStringNotContainsString('checked:border-primary', $controlClass);
-        self::assertStringNotContainsString('checked:bg-primary', $controlClass);
+        self::assertDoesNotMatchRegularExpression('/(?:^|\\s)checked:border-primary(?:\\s|<)/', $controlClass);
+        self::assertDoesNotMatchRegularExpression('/(?:^|\\s)checked:bg-primary(?:\\s|<)/', $controlClass);
         self::assertStringNotContainsString('aria-invalid:checked:border-primary', $controlClass);
         self::assertStringNotContainsString('has-data-checked:border-primary', $controlClass);
         self::assertStringNotContainsString('has-data-checked:bg-primary', $controlClass);

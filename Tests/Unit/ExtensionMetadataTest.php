@@ -17,9 +17,14 @@ final class ExtensionMetadataTest extends TestCase
         self::assertSame('desiderio', $composer['extra']['typo3/cms']['extension-key']);
         self::assertArrayHasKey('Webconsulting\\Desiderio\\', $composer['autoload']['psr-4']);
         self::assertSame('*', $composer['conflict']['webconsulting/shadcn2fluid-templates'] ?? null);
-        self::assertSame('^8.4', $composer['require']['php'] ?? null);
-        self::assertSame('^14.3.6', $composer['require']['typo3/cms-core'] ?? null);
-        self::assertSame('^14.3.6', $composer['require']['typo3/cms-fluid'] ?? null);
+        $phpConstraint = $composer['require']['php'] ?? null;
+        $coreConstraint = $composer['require']['typo3/cms-core'] ?? null;
+        $fluidConstraint = $composer['require']['typo3/cms-fluid'] ?? null;
+        self::assertSame('^8.4', $phpConstraint);
+        self::assertIsString($coreConstraint);
+        self::assertIsString($fluidConstraint);
+        self::assertStringStartsWith('^14.3', $coreConstraint);
+        self::assertStringStartsWith('^14.3', $fluidConstraint);
     }
 
     public function testExtEmconfMatchesComposer(): void

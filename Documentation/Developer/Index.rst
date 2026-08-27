@@ -359,11 +359,12 @@ guards on the styleguide seeder.
 Request middleware
 ======================
 
-``ExtbasePluginRequestSanitizerMiddleware`` sanitizes malformed Extbase
-plugin arguments on incoming requests. Visual Editor persistence can
-send ``controller`` or ``action`` as arrays; Extbase then throws while
-rendering News and other plugins on the edited page. The middleware
-strips invalid values before the frontend stack runs.
+``ExtbasePluginRequestSanitizerMiddleware`` removes non-string or empty
+Extbase ``controller`` and ``action`` values from frontend query and POST
+arguments. Visual Editor persistence can otherwise leave those arguments
+malformed; Extbase then throws while rendering News and other plugins on the
+edited page. The middleware strips the invalid values before the frontend
+stack runs.
 
 Registered in ``Configuration/RequestMiddlewares.php``. Covered by
 ``Tests/Unit/ExtbasePluginRequestSanitizerMiddlewareTest.php``.
@@ -533,21 +534,23 @@ localization cache.
 
 ..  tip::
 
-    The rendered **preview** thumbnails inside the picker are a separate
-    concern: each is a standalone frontend request stored in the standard page
-    cache and pre-rendered by ``desiderio:library:warm``. This catalog cache
-    only covers the list/JSON metadata, not the preview iframes.
+    The picker previews are rendered frontend documents loaded in iframes, not
+    generated image thumbnails. Each iframe source is a standalone frontend
+    request stored in the standard page cache and pre-rendered by
+    ``desiderio:library:warm``. This catalog cache only covers the list/JSON
+    metadata, not the iframe documents.
 
-Warming preview thumbnails
---------------------------
+Warming rendered iframe previews
+--------------------------------
 
-Each preview thumbnail is a standalone frontend request, page-cached per URL.
-Crucially, **the URL includes the requesting site's base and cHash**, so the
-same library record warmed for one site is a cache miss for another. A library
-folder is commonly shared by several sites (each with a different base), and a
-site's ``elementLibrary.storagePid`` may even differ from the folder's owning
-site — so warming a single base leaves the picker's thumbnails cold everywhere
-else.
+Each iframe source renders one seeded ``tt_content`` record through a dedicated
+``PAGE`` type. Its HTML response is stored in TYPO3's standard page cache per
+URL. Crucially, **the URL includes the requesting site's base and cHash**, so
+the same library record warmed for one site is a cache miss for another. A
+library folder is commonly shared by several sites (each with a different
+base), and a site's ``elementLibrary.storagePid`` may even differ from the
+folder's owning site — so warming a single base leaves the picker previews cold
+everywhere else.
 
 ``desiderio:library:warm`` therefore warms **every site that shows the
 picker**, resolved from the live site settings (the same source the picker
@@ -573,9 +576,10 @@ runs the same multi-site warm after seeding (unless ``--no-warm`` is given).
 
 ..  note::
 
-    A normal "flush all caches" clears the page cache, so the thumbnails go
-    cold again and re-render lazily on first view (four at a time). Re-run the
-    warm command after a full flush if you want them instant.
+    A normal "flush all caches" clears the page cache, so the iframe documents
+    go cold again and re-render lazily on first view (four at a time). Re-run
+    the warm command after a full flush if you want the previews to appear
+    immediately.
 
 ..  _developer-element-library-search:
 

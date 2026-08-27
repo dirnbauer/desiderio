@@ -12,8 +12,8 @@ repository root and follow `Keep a Changelog
 
 Highlights:
 
-*   ``desiderio:library:warm`` warms the picker preview thumbnails for every
-    site that shows them (per-site base), with ``--folder`` and ``--site``
+*   ``desiderio:library:warm`` warms the picker's rendered iframe previews for
+    every site that shows them (per-site base), with ``--folder`` and ``--site``
     options. See :ref:`developer-element-library`.
 *   The element library picker (``?elementLibrary=1``) caches its catalog in
     the ``desiderio_library`` cache instead of parsing 244 Desiderio Content Block

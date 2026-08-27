@@ -717,7 +717,7 @@ its own elements and its sites list only those.
   just the folder-owning site.** Each site renders the element previews from
   its own base (and cHash), so a library folder shared by several sites — or a
   site whose `elementLibrary.storagePid` differs from the folder's owner — left
-  the picker's preview thumbnails cold on the bases that were never requested.
+  the picker's iframe previews cold on the bases that were never requested.
   - `--folder=<uid>` now warms that folder for **all** sites whose
     `elementLibrary.storagePid` points at it (resolved from live site settings,
     the same source the picker uses), each from its own base.

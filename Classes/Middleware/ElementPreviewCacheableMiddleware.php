@@ -30,7 +30,7 @@ use TYPO3\CMS\Core\Context\WorkspaceAspect;
  *
  * 2. Workspace. If the editor is working inside a workspace, the frontend renders
  *    that workspace's preview, which never reads from the live page cache (draft
- *    content must not be served from it) - so the warmed live thumbnails are never
+ *    content must not be served from it) - so the warmed live previews are never
  *    hit and every preview re-renders at full cost. The element-library demo
  *    records live in the LIVE workspace and are never workspace-specific, so for
  *    elPreview requests we pin the rendering to live (0): reset the Context

@@ -18,8 +18,8 @@ use TYPO3\CMS\Core\Resource\StorageRepository;
 use Webconsulting\Desiderio\Library\ElementCatalog;
 use Webconsulting\Desiderio\Library\PreviewWarmer;
 use Webconsulting\Desiderio\Seeding\CollectionCleanupService;
+use Webconsulting\Desiderio\Seeding\ContentBlockCollectionMap;
 use Webconsulting\Desiderio\Seeding\DatabaseSchemaHelper;
-use Webconsulting\Desiderio\Seeding\ElementCatalogDefinitions;
 use Webconsulting\Desiderio\Seeding\ElementLibraryValueGenerator;
 use Webconsulting\Desiderio\Seeding\LibraryElementUpserter;
 use Webconsulting\Desiderio\Seeding\LiveWorkspaceQueryHelper;
@@ -174,7 +174,7 @@ final class SeedElementLibraryCommand extends Command
             $this->databaseSchema,
             $fixtureResolver,
             new CollectionCleanupService($this->connectionPool, $this->databaseSchema, $this->liveWorkspaceQueryHelper),
-            new ElementCatalogDefinitions($this->elementCatalog),
+            new ContentBlockCollectionMap(),
         );
 
         $created = 0;

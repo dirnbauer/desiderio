@@ -9,6 +9,7 @@ It is built for TYPO3 installations that need a complete editorial and marketing
 - TYPO3 CMS `^14.3.6`
 - PHP `^8.4`
 - `friendsoftypo3/content-blocks` `^2.2`
+- `friendsoftypo3/visual-editor` `^1.8` and the Visual Editor enhancements package
 - `praetorius/vite-asset-collector` `^1.18`
 - Composer-based TYPO3 installation
 
@@ -221,6 +222,10 @@ Desiderio ships Symfony console commands for demo content and integration setup:
 | `desiderio:starter:seed` | Create or update the corporate starter site structure and demo content. |
 | `desiderio:blog:seed-pages` | Normalize an existing Blog page tree to Desiderio backend layouts. No-op when `t3g/blog` is not loaded. |
 | `desiderio:news:seed-taxonomy` | Assign default category/tag relations to visible News records that have none. No-op when `georgringer/news` is not loaded. |
+| `desiderio:library:seed` | Create or update the element library records used by visual pickers. |
+| `desiderio:library:urls` | List isolated element preview URLs, optionally as JSON. |
+| `desiderio:library:warm` | Warm rendered element previews in the TYPO3 page cache. |
+| `desiderio:migrate-rte-content` | Report legacy plain-text fields that need RTE markup; `--apply` writes the conversion. |
 
 Examples:
 
@@ -245,7 +250,7 @@ Commands are thin orchestration shells. Shared seeding logic lives in `Classes/S
 | `BlogPageTreeSeeder` | Blog layout alignment and demo post seeding |
 | `FixtureFieldNormalizer` | Shared scalar/file/checkbox/date field normalization |
 
-`BrevoConfigurationResolver` centralizes Brevo finisher configuration precedence. See `Documentation/Developer/Index.rst` and `Documentation/Reports/code-quality.md` for the full service map and maintainability rules.
+`BrevoConfigurationResolver` centralizes Brevo finisher configuration precedence. See the [developer manual](Documentation/Developer/Index.rst) for the service map and maintainability rules.
 
 ## Blog
 
@@ -276,30 +281,56 @@ The compact page title header is full width, uses a subtle themed background, an
 
 ## Development
 
-Install dependencies and run checks:
+DDEV provides the supported PHP 8.4 and Node.js 24 environment. Start the
+local TYPO3 application, install dependencies, and build both package assets
+and the application manifest:
 
 ```bash
-composer install
-npm install
-npm run build:css
-Build/Scripts/runTests.sh
-Build/Scripts/runFunctionalTests.sh
+ddev start
+ddev exec composer install
+ddev exec npm ci
+ddev exec npm run build:assets
+ddev exec Build/CiApp/bootstrap.sh
+ddev exec -d /var/www/html/Build/CiApp npm ci
+ddev exec -d /var/www/html/Build/CiApp npm run build
+ddev launch
 ```
 
-Focused checks:
+The disposable SQLite application lives in `Build/CiApp`. Its bootstrap seeds
+the element library and selects the DDEV site URL automatically. Its Vite build
+clears TYPO3 caches so repeated builds keep asset URLs valid.
+
+Run the complete quality gate:
 
 ```bash
-Build/Scripts/runTests.sh phpstan
-Build/Scripts/runTests.sh phpunit
-Build/Scripts/runFunctionalTests.sh
-Build/Scripts/runTests.sh audit
-composer validate
-composer audit --no-dev --abandoned=fail
+ddev exec Build/Scripts/runTests.sh
 ```
 
-The CI workflow runs PHPStan at max level, PHPUnit on PHP 8.4–8.5, SQLite-backed functional tests, composer validation/audit, and the strict Content Blocks audit.
+Focused checks accept either a positional suite name or `-s`:
+
+```bash
+ddev exec Build/Scripts/runTests.sh -s phpstan
+ddev exec Build/Scripts/runTests.sh phpunit
+ddev exec Build/Scripts/runTests.sh -s functional
+ddev exec Build/Scripts/runTests.sh -s audit
+ddev exec Build/Scripts/runTests.sh -p 8.5 -s functional
+```
+
+With PHP 8.4 or 8.5 and Node.js installed directly, the same package commands
+also run without `ddev exec`. CI checks static analysis, unit and functional
+tests, dependency validity/security, the Content Blocks audit, and Tailwind
+bundle consistency on PHP 8.4 and 8.5.
+
+The [browser QA workflow](.github/workflows/browser-qa.yml) also checks all
+seeded previews at three widths in light and dark mode, and verifies lazy code
+highlighting against the built Vite modules.
 
 ### CSS cascade layers
+
+Tailwind scans only the explicit rendering sources listed in its entry point,
+including PHP icon sizes and RTE alignment classes. Add any new class producer
+there; the pre-commit hook checks the rendering directories and build dependencies.
+Documentation is deliberately excluded from the bundle.
 
 The Tailwind v4 entry point (`Resources/Private/Tailwind/desiderio.css`) uses native CSS cascade layers (`theme, base, components, utilities`). Element defaults go in `@layer base`, shared component classes in `@layer components` (so utility classes can override them), and custom utilities are declared with `@utility` — never `@layer utilities`, which is Tailwind v3 syntax. The per-feature stylesheets in `Resources/Private/Css/desiderio/` stay **unlayered** on purpose: unlayered CSS always beats layered CSS, so they override Tailwind without specificity hacks. Details in `Documentation/Developer/Index.rst` (section "CSS cascade layers").
 
@@ -324,4 +355,4 @@ Full documentation lives in `Documentation/`:
 - `Documentation/Editor/Index.rst`
 - `Documentation/Developer/Index.rst`
 - `Documentation/ShadcnUpgrade.md`
-- `Documentation/Reports/code-quality.md` — thermo-nuclear maintainability review (v2.6.0)
+- [Architecture contracts](SPECIFICATION.md)

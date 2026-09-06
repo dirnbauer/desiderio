@@ -5,11 +5,9 @@ declare(strict_types=1);
 /**
  * Zero-loss proof for the collection-table consolidation.
  *
- * Run BEFORE the migration to capture a baseline, AFTER it to compare:
- *
- *   ddev exec php Build/Scripts/verify-collection-merge.php snapshot before.json
- *   …run the migration…
- *   ddev exec php Build/Scripts/verify-collection-merge.php compare before.json
+ * Capture a baseline BEFORE migration, then compare AFTER migration. Follow
+ * Documentation/Developer/CollectionTableConsolidation.rst for the commands
+ * and application paths; this extension's development vendor tree is not a site.
  *
  * The comparison is a MULTISET of per-row payload hashes, not a row count and
  * not a uid comparison. Counts cannot see a row whose content was silently
@@ -35,15 +33,16 @@ use TYPO3\CMS\Core\Core\SystemEnvironmentBuilder;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
-$autoload = dirname(__DIR__, 2) . '/vendor/autoload.php';
-if (!is_file($autoload)) {
+$appPath = (string)getenv('TYPO3_PATH_APP');
+$autoload = ($appPath !== '' ? rtrim($appPath, '/') : dirname(__DIR__, 2)) . '/vendor/autoload.php';
+if ($appPath === '' && !is_file($autoload)) {
     // Installed as a dependency: climb to the project's vendor directory.
     $autoload = dirname(__DIR__, 5) . '/vendor/autoload.php';
 }
-require $autoload;
+$classLoader = require $autoload;
 
 SystemEnvironmentBuilder::run(0, SystemEnvironmentBuilder::REQUESTTYPE_CLI);
-Bootstrap::init(require dirname($autoload) . '/autoload.php');
+Bootstrap::init($classLoader);
 
 $mode = $argv[1] ?? '';
 $file = $argv[2] ?? '';

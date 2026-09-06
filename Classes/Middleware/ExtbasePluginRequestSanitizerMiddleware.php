@@ -56,7 +56,7 @@ final class ExtbasePluginRequestSanitizerMiddleware implements MiddlewareInterfa
     private function sanitizeParameterBag(array $parameters): array
     {
         foreach ($parameters as $key => $value) {
-            if (!is_array($value) || !$this->isExtbasePluginNamespace($key)) {
+            if (!is_array($value) || !str_starts_with($key, 'tx_')) {
                 continue;
             }
 
@@ -66,23 +66,13 @@ final class ExtbasePluginRequestSanitizerMiddleware implements MiddlewareInterfa
         return $parameters;
     }
 
-    private function isExtbasePluginNamespace(string $namespace): bool
-    {
-        return str_starts_with($namespace, 'tx_');
-    }
-
     /**
      * @param array<mixed, mixed> $arguments
      * @return array<string, mixed>
      */
     private function sanitizePluginArguments(array $arguments): array
     {
-        $sanitized = [];
-        foreach ($arguments as $argumentKey => $argumentValue) {
-            if (is_string($argumentKey)) {
-                $sanitized[$argumentKey] = $argumentValue;
-            }
-        }
+        $sanitized = $this->normalizeParameterBag($arguments);
 
         foreach (['controller', 'action'] as $argumentName) {
             if (!array_key_exists($argumentName, $sanitized)) {

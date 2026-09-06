@@ -6,8 +6,9 @@
 Installation
 ============
 
-Desiderio targets TYPO3 v14.3 and PHP 8.4 or newer. Older TYPO3
-branches are not supported.
+Desiderio requires TYPO3 14.3.6 or newer on the 14.3 branch and PHP 8.4
+or 8.5. Composer installs Content Blocks, the Form Framework, Workspaces,
+Visual Editor, and the Vite asset collector as package dependencies.
 
 ..  rst-class:: bignums
 
@@ -43,6 +44,41 @@ branches are not supported.
         :caption: Flush TYPO3 caches
 
         vendor/bin/typo3 cache:flush
+
+..  _installation-upgrading:
+
+Upgrading an existing installation
+=================================
+
+Back up the database and FAL files, then update the installed package and
+TYPO3 dependencies from the application root:
+
+..  code-block:: shell
+    :caption: Update Desiderio and TYPO3 14.3 dependencies
+
+    composer update webconsulting/desiderio 'typo3/cms-*' --with-all-dependencies
+    vendor/bin/typo3 extension:setup
+    vendor/bin/typo3 upgrade:list
+
+Review pending upgrade wizards before clearing caches and checking the site.
+When upgrading from before Desiderio 3.0, preserve the old collection tables
+until the ``desiderioSharedCollectionTables`` wizard and its data comparison
+have completed. The :doc:`collection migration guide
+<../Developer/CollectionTableConsolidation>` describes the required snapshot,
+copy, reference remapping, and verification order.
+
+For older plain-text fields converted to RTE fields, review the dry-run output
+of ``vendor/bin/typo3 desiderio:migrate-rte-content`` before adding ``--apply``.
+This uses the committed conversion manifest and leaves existing HTML intact.
+
+..  code-block:: shell
+    :caption: Clear caches after successful migrations
+
+    vendor/bin/typo3 cache:flush
+
+Verify representative page layouts, changed content elements, form handling,
+and any enabled Blog, News, Solr, or Powermail integration. Demo seeders replace
+fixture content and are not a required upgrade step for an editorial site.
 
 ..  _installation-optional-integrations:
 

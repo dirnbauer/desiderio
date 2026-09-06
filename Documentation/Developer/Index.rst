@@ -29,8 +29,8 @@ The component layer currently contains 17 atoms, 28 molecules, 4 layout
 primitives, and 4 site organisms (53 typed Fluid components in total). Content elements
 compose those primitives instead of hardcoding one-off markup.
 
-See :ref:`developer-atomic-design` for the layer rules, migration order,
-and reference content elements.
+See :ref:`developer-atomic-design` for component conventions and reference
+content elements.
 
 ..  toctree::
     :maxdepth: 1
@@ -208,39 +208,24 @@ all ``pre-push``, ``post-checkout``, ``post-commit``, and ``post-merge``
 are: thin ``git lfs`` shims. The only project-specific hook is
 ``pre-commit``.
 
-The ``pre-commit`` hook keeps the Tailwind bundle honest:
+The ``pre-commit`` hook checks staged changes under :file:`Classes/`,
+:file:`Configuration/`, :file:`ContentBlocks/`, and :file:`Resources/`, plus
+the root :file:`package.json` and :file:`package-lock.json`. These broad Git
+path checks do not duplicate Tailwind's source list. Documentation-only and
+test-only commits skip the gate.
 
-#.  It inspects the **staged** files. If none touch a path that can add or
-    remove utility classes — :file:`Resources/Private/Tailwind/`,
-    :file:`Resources/Private/Components/`, :file:`Resources/Private/Templates/`,
-    :file:`Resources/Private/Extensions/`, :file:`Resources/Private/ShadcnUi/`,
-    :file:`Resources/Private/ClassicContent/`, :file:`Resources/Private/Solr/`,
-    :file:`Resources/Public/Js/`, or :file:`ContentBlocks/` — it exits
-    immediately. Commits that only touch PHP, tests, or docs pay nothing.
-#.  Otherwise it runs :file:`Build/Scripts/check-tailwind-built.sh`, which
-    hashes :file:`Resources/Public/Css/desiderio-tailwind.css`, re-runs
-    ``npm run build:css``, and re-hashes.
-#.  **Identical hashes** → the committed bundle already matches the
-    sources → the commit proceeds (you will see
-    ``OK: … is in sync with Tailwind sources``).
-#.  **Different hashes** → a template introduced classes the committed
-    bundle is missing → the commit is **rejected**. The script has already
-    rebuilt the bundle locally; stage it and re-commit:
+For matching changes, the hook invokes ``Build/Scripts/runTests.sh -s tailwind``.
+The runner uses DDEV when available, rebuilds the bundle, and rejects stale
+CSS. The hook also verifies that the rebuilt CSS is staged. If it rejects a
+commit, review and stage the refreshed bundle before retrying:
 
-    ..  code-block:: shell
+..  code-block:: shell
+    :caption: Include the rebuilt Tailwind bundle
 
-        npm run build:css
-        git add Resources/Public/Css/desiderio-tailwind.css
+    git add Resources/Public/Css/desiderio-tailwind.css
 
-Without the rebuild the pushed CSS would be missing utility classes the
-new templates rely on, and layout, spacing, card, or font styles silently
-disappear in the frontend with no error.
-
-The same :file:`check-tailwind-built.sh` runs from three call sites — the
-``pre-commit`` hook, :file:`Build/Scripts/runTests.sh`, and the
-``tailwind-bundle`` CI job — so a stale bundle is caught locally, in a
-full test run, and in CI. :file:`CONTRIBUTING.md` documents the same steps
-from the contributor's angle.
+The full local suite and the ``tailwind-bundle`` CI job use the same build
+check, keeping committed CSS aligned with its rendering sources.
 
 ..  _developer-shadcn:
 
@@ -350,6 +335,17 @@ handles HTTP and form value mapping only.
     *   - ``desiderio:news:seed-taxonomy``
         - Assign default category/tag relations to visible News records
           without taxonomy. No-op when ``georgringer/news`` is not loaded.
+    *   - ``desiderio:library:seed``
+        - Create or update element library records for visual pickers.
+    *   - ``desiderio:library:urls``
+        - List isolated preview URLs; supports ``--json``, ``--site``,
+          and ``--folder``.
+    *   - ``desiderio:library:warm``
+        - Warm rendered previews in the TYPO3 page cache. See
+          :ref:`developer-element-library`.
+    *   - ``desiderio:migrate-rte-content``
+        - Report plain text in converted RTE fields; ``--apply`` writes
+          the HTML conversion from the committed conversion manifest.
 
 See :ref:`known-problems-seed-command` for workspace and Production
 guards on the styleguide seeder.
@@ -703,43 +699,24 @@ already holds, so the search box always does *something*.
 Maintainability
 ===============
 
-The thermo-nuclear code quality review
-(:file:`Documentation/Reports/code-quality.md`) tracks structural debt.
-The primary risk is oversized seed commands:
+Keep commands focused on orchestration. Fixture normalization, FAL writes,
+collection persistence, and schema handling belong in ``Classes/Seeding/``.
+Brevo configuration precedence belongs in ``BrevoConfigurationResolver``.
 
-..  list-table::
-    :header-rows: 1
-    :widths: 45 15 40
-
-    *   - File
-        - Lines
-        - Guidance
-    *   - ``SeedStyleguidePagesCommand.php``
-        - ~610
-        - Thin orchestration shell. Add fixture logic to
-          ``StyleguideFixtureResolver``, not the command.
-    *   - ``SeedStarterSitesCommand.php``
-        - ~810
-        - Thin orchestration shell. Add content-building logic to
-          ``StarterContentBuilder``.
-    *   - ``SeedBlogPagesCommand.php``
-        - ~160
-        - Thin orchestration shell. Add blog tree logic to
-          ``BlogPageTreeSeeder``, not the command.
-    *   - ``BrevoContactFinisher.php``
-        - ~420
-        - Configuration precedence lives in ``BrevoConfigurationResolver``.
-          Extend the resolver, not inline ``resolveBoolean`` chains.
-
-Rules for new PHP in ``Classes/``:
-
-- Do not push any file from under 1,000 lines to over 1,000 lines.
-- Put seeding and fixture normalization in ``Classes/Seeding/``, not in
-  command classes.
-- Reuse ``DatabaseSchemaHelper``, ``StyleguideDemoValueGenerator``, and
-  ``StyleguideCollectionAliasPolicy`` instead of bespoke copies.
-- New code must pass PHPStan at ``level: max`` without extending
-  ``Build/phpstan-baseline.neon``.
+*   Reuse the existing schema, field-normalization, collection, and workspace
+    services before adding another helper.
+*   Keep each class responsible for one behavior. Split unrelated logic before
+    a file grows beyond 1,000 lines; moving code alone is not a simplification.
+*   Prefer TYPO3 APIs and constructor injection over custom infrastructure.
+*   New code must pass PHPStan at ``level: max`` without extending
+    :file:`phpstan-baseline.neon`.
+*   Maintain generated assets through the commands in :file:`package.json`.
+    Completed source-rewrite scripts are removed after their output becomes
+    the maintained source. Database upgrade wizards and their verification
+    tools remain available for existing installations.
+*   Put durable behavior and operating instructions in this manual. Record
+    change-specific test results in the pull request instead of maintaining
+    duplicate dated audit reports.
 
 ..  _developer-quality-bar:
 
@@ -756,25 +733,17 @@ Run the local checks before shipping code changes:
 ..  code-block:: shell
     :caption: Local checks
 
-    composer validate
-    Build/Scripts/runTests.sh
+    ddev exec Build/Scripts/runTests.sh
 
 For targeted checks:
 
 ..  code-block:: shell
     :caption: Targeted checks
 
-    Build/Scripts/runTests.sh phpstan
-    Build/Scripts/runTests.sh phpunit
-    Build/Scripts/runTests.sh audit
-    Build/Scripts/runFunctionalTests.sh
+    ddev exec Build/Scripts/runTests.sh -s phpstan
+    ddev exec Build/Scripts/runTests.sh phpunit
+    ddev exec Build/Scripts/runTests.sh -s audit
+    ddev exec Build/Scripts/runTests.sh -s functional
 
-..  _developer-reports:
-
-Reports
--------
-
-``Documentation/Reports/`` contains the latest project audit reports for
-TYPO3 conformance, security, workspaces, testing, docs, code quality,
-and broader security review. Use those reports as context before changing
-TCA, Fluid, TypoScript, or seed scripts.
+The DDEV setup and application build commands are maintained in
+:file:`README.md`. CI covers PHP 8.4 and 8.5 on TYPO3 14.3.6 or newer.

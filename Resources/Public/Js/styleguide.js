@@ -177,13 +177,6 @@ function desiderioInit() {
   window.addEventListener('hashchange', onHashChange);
   window.requestAnimationFrame(onHashChange);
 
-  // Sidebar link clicks
-  allNavLinks.forEach(function (link) {
-    link.addEventListener('click', function (e) {
-      // Let the hashchange handler deal with it
-    });
-  });
-
   /* ================================================================ */
   /*  SVG Icons (Lucide subset)                                        */
   /* ================================================================ */

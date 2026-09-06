@@ -7,9 +7,11 @@ namespace Webconsulting\Desiderio\Library;
 use Symfony\Component\Yaml\Yaml;
 use TYPO3\CMS\Core\Cache\CacheManager;
 use TYPO3\CMS\Core\Localization\LanguageService;
+use TYPO3\CMS\Core\SystemResource\Publishing\SystemResourcePublisherInterface;
+use TYPO3\CMS\Core\SystemResource\Publishing\UriGenerationOptions;
+use TYPO3\CMS\Core\SystemResource\SystemResourceFactory;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Core\Utility\PathUtility;
 
 /**
  * Catalog of all Content Blocks content elements shipped by Desiderio and,
@@ -33,7 +35,7 @@ final class ElementCatalog
 {
     /**
      * Host extensions shipped by us. Further providers register themselves in
-     * their ext_localconf.php; see getHostExtensions().
+     * their ext_localconf.php; see hostExtensions().
      */
     private const HOST_EXTENSIONS = ['desiderio', 'innesto'];
 
@@ -54,6 +56,8 @@ final class ElementCatalog
 
     public function __construct(
         private readonly CacheManager $cacheManager,
+        private readonly SystemResourceFactory $systemResourceFactory,
+        private readonly SystemResourcePublisherInterface $resourcePublisher,
     ) {}
 
     /**
@@ -308,21 +312,6 @@ final class ElementCatalog
     }
 
     /**
-     * Web path of the published wizard icon (content-blocks publishes each
-     * element's assets to EXT:<host>/Resources/Public/ContentBlocks/<vendor>/<name>).
-     *
-     * @param array{name: string, hostExtension: string, vendor?: string} $element
-     */
-    public function getIconWebPath(array $element): string
-    {
-        return $this->resolveIconWebPath(
-            $element['hostExtension'],
-            is_string($element['vendor'] ?? null) ? $element['vendor'] : '',
-            $element['name'],
-        );
-    }
-
-    /**
      * Every extension whose ContentBlocks/ContentElements directory feeds the
      * catalog: the ones we ship plus any provider that registered itself with
      *
@@ -337,19 +326,8 @@ final class ElementCatalog
      * extension would fill the picker with elements that carry no demo content,
      * keywords or descriptions. Hosting stays opt-in.
      *
-     * @return list<string>
-     */
-    private function getHostExtensions(): array
-    {
-        return self::hostExtensions();
-    }
-
-    /**
-     * The host list, reachable without an instance.
-     *
-     * ContentBlockDefinitionRegistry needs the same list to know which
-     * extensions' elements exist at all, and duplicating the lookup is how the
-     * two drift apart.
+     * ContentBlockDefinitionRegistry uses this same list to resolve collection
+     * definitions for every registered provider.
      *
      * @return list<string>
      */
@@ -380,7 +358,7 @@ final class ElementCatalog
     private function scanContentElementConfigs(): array
     {
         $entries = [];
-        foreach ($this->getHostExtensions() as $hostExtension) {
+        foreach (self::hostExtensions() as $hostExtension) {
             if (!ExtensionManagementUtility::isLoaded($hostExtension)) {
                 continue;
             }
@@ -469,7 +447,7 @@ final class ElementCatalog
      */
     private function computeFingerprint(): string
     {
-        $hostExtensions = $this->getHostExtensions();
+        $hostExtensions = self::hostExtensions();
         // Part of the fingerprint itself: registering or removing a provider
         // changes the catalog even when no config.yaml mtime moved.
         $parts = ['hosts:' . implode(',', $hostExtensions)];
@@ -522,7 +500,7 @@ final class ElementCatalog
     public function getSearchFingerprint(): string
     {
         $parts = [self::SEARCH_FINGERPRINT_VERSION, $this->computeFingerprint()];
-        foreach ($this->getHostExtensions() as $hostExtension) {
+        foreach (self::hostExtensions() as $hostExtension) {
             if (!ExtensionManagementUtility::isLoaded($hostExtension)) {
                 continue;
             }
@@ -671,11 +649,7 @@ final class ElementCatalog
             if (!is_file(GeneralUtility::getFileAbsFileName($publicPath))) {
                 continue;
             }
-            try {
-                return PathUtility::getPublicResourceWebPath($publicPath);
-            } catch (\Throwable) {
-                return '';
-            }
+            return $this->generateIconUrl($publicPath);
         }
 
         return '';
@@ -708,8 +682,18 @@ final class ElementCatalog
         if (!is_file(GeneralUtility::getFileAbsFileName($publicPath))) {
             return '';
         }
+
+        return $this->generateIconUrl($publicPath);
+    }
+
+    private function generateIconUrl(string $resourceIdentifier): string
+    {
         try {
-            return PathUtility::getPublicResourceWebPath($publicPath);
+            return (string)$this->resourcePublisher->generateUri(
+                $this->systemResourceFactory->createPublicResource($resourceIdentifier),
+                null,
+                new UriGenerationOptions(cacheBusting: false),
+            );
         } catch (\Throwable) {
             return '';
         }

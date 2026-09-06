@@ -1,0 +1,24 @@
+name: desideriotest/nested
+typeName: desideriotest_nested
+title: Provider nested collections
+prefixFields: false
+fields:
+  - identifier: header
+    useExistingField: true
+  - identifier: sections
+    type: Collection
+    table: desiderio_test_sections
+    prefixField: true
+    minItems: 1
+    maxItems: 1
+    fields:
+      - identifier: title
+        type: Text
+      - identifier: links
+        type: Collection
+        table: desiderio_test_links
+        minItems: 1
+        maxItems: 1
+        fields:
+          - identifier: label
+            type: Text

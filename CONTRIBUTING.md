@@ -1,8 +1,7 @@
 # Contributing to Desiderio
 
-Thanks for considering a contribution. Desiderio targets **TYPO3 v14.3
-LTS only** — no v13 fallback — so every PR must keep the LTS commitment
-intact.
+Desiderio targets **TYPO3 14.3.6+ and PHP 8.4–8.5**. Use the
+[DDEV setup](README.md#development) for a reproducible local environment.
 
 ## Workflow
 
@@ -14,50 +13,46 @@ intact.
    Build/Scripts/setup-hooks.sh
    ```
 
-   That sets `core.hooksPath = Build/Hooks` and rebuilds `desiderio-tailwind.css`
-   automatically when a commit touches templates, components, or content
-   blocks. If the bundle would change, the commit is rejected with a
-   single-line fix instruction.
+   That sets `core.hooksPath = Build/Hooks`. When staged rendering code or
+   build dependencies change, the hook checks the Tailwind rebuild and
+   confirms that the resulting CSS is staged.
 3. Run the full local check before pushing:
 
    ```bash
-   Build/Scripts/runTests.sh
-   Build/Scripts/runFunctionalTests.sh
+   ddev exec Build/Scripts/runTests.sh
    ```
 
-   That runs PHPStan at `level: max`, the unit tests, the SQLite-backed
-   functional seeding schema tests, the deep
-   content element audit, and verifies the Tailwind bundle is in sync.
-   CI re-runs the same matrix across PHP 8.4 + 8.5.
-4. If you touched a Content Block, also run:
+   That runs PHPStan at `level: max`, the unit tests (including the strict
+   content element audit), SQLite-backed functional tests, dependency checks,
+   and Tailwind bundle verification. CI covers PHP 8.4 and 8.5.
+4. For a focused Content Block check while editing, run:
 
    ```bash
-   php scripts/audit-content-elements.php > /tmp/audit.json
+   ddev exec Build/Scripts/runTests.sh -s audit
    ```
 
-   The strict categories (`template_undeclared_field`,
-   `hardcoded_inline_style`, `hardcoded_color`, etc.) must stay at zero.
+   Strict categories such as `template_undeclared_field`,
+   `hardcoded_inline_style`, and `hardcoded_color` must stay at zero.
+   This check already runs in the unit suite; it need not be repeated after
+   the full gate passes.
 5. If you edited any Fluid template, partial, layout, or component, the
    compiled Tailwind bundle must travel with the change:
 
    ```bash
-   npm run build:css
+   ddev exec npm run build:css
    git add Resources/Public/Css/desiderio-tailwind.css
    ```
 
-   The pre-commit hook does this automatically when hooks are enabled.
-   The `tailwind-bundle` CI job rejects PRs where the committed bundle
-   is out of date.
-6. Open a PR against `main`. Reference any
-   `Documentation/Reports/*.md` finding your change addresses. Read
-   `Documentation/Reports/code-quality.md` before touching seed commands
-   or finishers — do not grow files past 1,000 lines without decomposing
-   into `Classes/Seeding/` services first.
+   The pre-commit hook checks the rebuild and staging; it does not stage
+   files for you. The `tailwind-bundle` CI job rejects stale committed CSS.
+6. Open a PR against `main` with the behavior change and validation results.
+   Follow the [maintainability rules](Documentation/Developer/Index.rst)
+   when changing seed commands, shared services, or finishers. Update the
+   relevant manual page when a command or configuration contract changes.
 
 ## Coding standards
 
-- PHP 8.4+ with `declare(strict_types=1);` on every PHP file (except
-  `ext_emconf.php`).
+- PHP 8.4+ with `declare(strict_types=1);` on every PHP file.
 - Constructor DI for services — no `GeneralUtility::makeInstance()` for
   Symfony-injectable classes.
 - Fluid 5 strict-typed `<f:argument>` on every component.
@@ -76,8 +71,8 @@ intact.
   children appear in the others, silently. The Record Type must set
   `prefixFields: false` so its columns keep their plain names, and a sharing
   Collection must not keep its own `fields:` (they are inert). The audit gates
-  all of this; `Documentation/Developer/CollectionTableConsolidation.md`
-  explains why only 12 of the 23 candidate groups qualified.
+  all of this; the [collection guide](Documentation/Developer/CollectionTableConsolidation.rst)
+  explains the shared models and upgrade procedure.
 - Content Block image fields render through `<f:image>` or `f:uri.image()`.
   Pass custom `data-*` attributes through structured Fluid arguments such as
   `data="{d-gallery-main: 'true'}"`; do not hand-write literal `<img>` tags for
@@ -89,8 +84,8 @@ intact.
 - English label files use `srcLang="en"` only.
 - Translated files use `srcLang="en" trgLang="<code>"` and
   `<segment state="final">` segments.
-- The `Build/Scripts/convert-xliff-1-2-to-2-0.php` helper rewrites
-  legacy 1.2 documents in place; idempotent on already-2.0 files.
+- Maintain the XLIFF 2.0 files directly. The completed source conversion
+  is enforced by the structure tests; no conversion script is required.
 
 ## Commit style
 
@@ -107,8 +102,7 @@ Open an issue with:
 - Affected TYPO3 version (must be 14.3.x — older is out of scope).
 - Affected PHP version.
 - Reproduction steps or a failing test case.
-- A link to the relevant `Documentation/Reports/*.md` finding if
-  applicable.
+- The relevant failing check or error output, if available.
 
 ## License
 

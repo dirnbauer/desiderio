@@ -21,11 +21,11 @@
     ],
     "require": {
         "php": "^8.4",
-        "typo3/cms-backend": "^14.3",
-        "typo3/cms-extbase": "^14.3",
-        "typo3/cms-filelist": "^14.3",
-        "typo3/cms-frontend": "^14.3",
-        "typo3/cms-install": "^14.3",
+        "typo3/cms-backend": "^14.3.6",
+        "typo3/cms-extbase": "^14.3.6",
+        "typo3/cms-filelist": "^14.3.6",
+        "typo3/cms-frontend": "^14.3.6",
+        "typo3/cms-install": "^14.3.6",
         "webconsulting/desiderio": "dev-ci"
     },
     "config": {
@@ -41,6 +41,6 @@
             "web-dir": "public"
         }
     },
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "prefer-stable": true
 }

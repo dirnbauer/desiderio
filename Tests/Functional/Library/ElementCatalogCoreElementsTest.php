@@ -44,6 +44,14 @@ final class ElementCatalogCoreElementsTest extends FunctionalTestCase
         // The custom Content Block "textmedia" (desiderio_textmedia) and the
         // native core "textmedia" coexist as distinct catalog entries.
         self::assertArrayHasKey('desiderio_textmedia', $byCType);
+
+        foreach ([
+            'bullets' => '/Icons/ContentElements/core-bullets.svg',
+            'desiderio_textmedia' => '/ContentBlocks/desiderio/textmedia/icon.svg',
+        ] as $cType => $iconPath) {
+            self::assertStringStartsWith('/', $byCType[$cType]['iconUrl']);
+            self::assertStringEndsWith($iconPath, $byCType[$cType]['iconUrl'], 'Cached picker icons must keep stable, unversioned public paths');
+        }
     }
 
     public function testSeederCatalogCarriesNativeFixtures(): void

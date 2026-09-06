@@ -460,7 +460,6 @@ function renderTargets(array $recipes, string $style, string $preset, string $sc
         'Resources/Private/Components/Atom/Textarea/Textarea.fluid.html' => renderTextarea($recipes['textarea'], $header),
         'Resources/Private/Components/Atom/Typography/Typography.fluid.html' => renderTypography($localHeader),
         'Resources/Private/Components/Atom/ControlClass/ControlClass.fluid.html' => renderControlClass($recipes, $header),
-        'Resources/Private/Extensions/Powermail/Partials/Form/ShadcnClass.html' => renderPowermailShadcnClass($recipes, $header),
         'Resources/Private/Components/Molecule/AccordionItem/AccordionItem.fluid.html' => renderAccordionItem($recipes['accordion'], $header),
         'Resources/Private/Components/Molecule/Card/Card.fluid.html' => renderCard($recipes['card'], $header),
         'Resources/Private/Components/Molecule/CardContent/CardContent.fluid.html' => renderCardContent($recipes['card'], $header),
@@ -800,11 +799,6 @@ function renderControlClassSwitch(array $classes, string $header): string
 function renderControlClass(array $recipes, string $header): string
 {
     return renderControlClassSwitch(composeControlClassMap($recipes), $header);
-}
-
-function renderPowermailShadcnClass(array $recipes, string $header): string
-{
-    return renderControlClass($recipes, $header);
 }
 
 function renderField(array $recipes, string $header): string

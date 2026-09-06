@@ -57,7 +57,7 @@ theme variables. Innesto splits the conversion into two phases:
 Prerequisites
 =============
 
-*   A Composer-based TYPO3 v14.3 installation with Desiderio set up.
+*   A Composer-based TYPO3 v14.3.6+ installation with Desiderio set up.
 *   Innesto installed and added to the site's ``config.yaml``
     (see the `Innesto README <https://github.com/dirnbauer/innesto>`__).
 *   CLI access (``vendor/bin/typo3``); under ddev, prefix commands with

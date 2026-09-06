@@ -803,7 +803,6 @@ final class ContentRenderingTemplateTest extends TestCase
 
     public function testDesiderioPowermailOptionGroupsExposeVisibleLegend(): void
     {
-        $shadcnClasses = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/Powermail/Partials/Form/ShadcnClass.html');
         $groupTemplates = [
             'Resources/Private/Extensions/Powermail/Partials/Form/Field/Check.html',
             'Resources/Private/Extensions/Powermail/Partials/Form/Field/Radio.html',

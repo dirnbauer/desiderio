@@ -15,7 +15,7 @@ use Symfony\Component\Console\Output\OutputInterface;
  * Moves collection child rows into the shared record-type tables.
  *
  * 29 collections whose child field definitions were byte-identical now share 12
- * tables (see Documentation/Developer/CollectionTableConsolidation.md for how
+ * tables (see Documentation/Developer/CollectionTableConsolidation.rst for how
  * that set was chosen, and Build/Data/collection-merge-map.json for the map
  * itself). The rows have to follow, and every uid they are referenced by has to
  * follow with them.

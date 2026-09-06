@@ -5,7 +5,7 @@
  * Exists because "check centering, size, spacing" across 288 elements cannot be
  * eyeballed reliably — but it CAN be measured, compared against the catalog's
  * own dominant conventions, and reported as outliers. The conventions asserted
- * here were derived from the catalog itself (see DesignPhilosophy.md), so this
+ * here were derived from the catalog itself (see DesignPhilosophy.rst), so this
  * file is the executable form of the design philosophy:
  *
  *  1. A section header (eyebrow + heading + subheadline) is either centered or

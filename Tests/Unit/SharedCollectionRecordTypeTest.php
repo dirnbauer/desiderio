@@ -17,7 +17,7 @@ use Symfony\Component\Yaml\Yaml;
  * type simply wins, and the element silently loses its own labels, its
  * `required` flag or its RTE configuration.
  *
- * See Documentation/Developer/CollectionTableConsolidation.md for why only 12
+ * See Documentation/Developer/CollectionTableConsolidation.rst for why only 12
  * of the 23 identical-column groups were merged.
  */
 final class SharedCollectionRecordTypeTest extends TestCase

@@ -4,6 +4,50 @@ All notable changes to **webconsulting/desiderio** are documented in this
 file. The format follows [Keep a Changelog](https://keepachangelog.com/)
 and the project adheres to [Semantic Versioning](https://semver.org/).
 
+## [Unreleased]
+
+### Fixed
+
+- Updated the disposable QA installation to TYPO3 14.3.6 and aligned its
+  requirements and CI matrix with the extension's existing security floor.
+- Replaced deprecated icon URL generation with TYPO3's public System Resource
+  API, preserving stable URLs for both native and Content Block icons.
+- Fixed lazy code-language detection in Vite modules and added a browser
+  regression check for loading, highlighting, and escaped output.
+- Clear the QA application's TYPO3 caches after Vite builds so cached pages
+  do not reference deleted asset filenames.
+- Make the focused audit command enforce the existing strict audit test,
+  and avoid running that audit twice in the full test suite and CI.
+- Use the shared definition registry for provider seeding and nested collection
+  cleanup, with database regressions covering ownership and native fixtures.
+
+### Changed
+
+- Added a local DDEV configuration using PHP 8.4, Node 24, and the existing
+  SQLite QA app. The test runner now includes functional tests and Composer
+  validation/audit by default and supports explicit PHP 8.4/8.5 selection.
+- Updated PHPUnit's functional configuration to its current schema and
+  resolved the direct deprecation it exposed.
+- Restricted Tailwind scanning to actual rendering inputs, including RTE
+  alignment and PHP-generated icon classes. Documentation changes no longer
+  alter the CSS bundle; the rebuilt bundle is about 13% smaller.
+- Simplified the pre-commit CSS gate to Git path checks, removing its duplicate
+  source list, covering npm build dependencies, and rejecting unstaged CSS.
+- Refreshed both npm lockfiles to resolve the reported dependency advisories.
+- Updated installation, migration, architecture, and contribution guidance;
+  converted the two developer guides to renderable reStructuredText.
+
+### Removed
+
+- Twelve completed one-time migration, extraction, and debugging scripts.
+- Obsolete collection projection helpers, duplicate request normalization,
+  unused templates, and the duplicate Powermail control-class generator.
+- The provider-specific collection adapter, duplicate seeding branch/cache,
+  unused definition override, and pass-through catalog host helper.
+- Superseded audit snapshots, an obsolete rebuild plan, old documentation
+  settings, and four unreferenced screenshots. Existing-content upgrade
+  wizards and their verification tools remain supported.
+
 ## [4.0.6] — 2026-08-27
 
 ### Security
@@ -378,7 +422,7 @@ its own elements and its sites list only those.
 
 ### Added
 
-- **`Documentation/Developer/DesignPhilosophy.md`** — the design system's
+- **`Documentation/Developer/DesignPhilosophy.rst`** — the design system's
   conventions, written from measurement rather than taste, with every rule
   naming the check that enforces it.
 - **Type scale tokens.** `--d-leading-tight/snug/normal/relaxed` (leading is a
@@ -476,7 +520,7 @@ its own elements and its sites list only those.
   own `fields:` inert, so only collections with identical field DEFINITIONS
   qualify. 11 groups covering 54 tables diverge behaviourally — in 10 of them on
   a single `required` flag — and were deliberately left alone. See
-  `Documentation/Developer/CollectionTableConsolidation.md`.
+  `Documentation/Developer/CollectionTableConsolidation.rst`.
 
   Templates, fixtures and `library.json` are unaffected: field identifiers and
   the `tt_content` counter columns are unchanged by construction.
@@ -899,8 +943,8 @@ both and resumes per-release versioning._
   `BlogPageTreeSeeder`.
 - `ExtbasePluginRequestSanitizerMiddleware` — strips malformed Extbase plugin
   arguments from Visual Editor persistence requests.
-- `Documentation/Reports/code-quality.md` — thermo-nuclear maintainability
-  review and seed-command decomposition record.
+- Thermo-nuclear maintainability review and seed-command decomposition
+  record; ongoing guidance is maintained in the developer manual.
 
 ### Changed
 
@@ -1042,8 +1086,7 @@ both and resumes per-release versioning._
 - Two new structural tests assert the page-layout primitives, the
   required a11y locallang units, and the `<ul role="list">` patches
   across the override surface.
-- `Build/Scripts/inject-role-list.php` helper that idempotently adds
-  `role="list"` to `<ul>` tags whose visual style strips list
+- Applied `role="list"` to `<ul>` tags whose visual style strips list
   semantics (Tailwind flex/grid/divide).
 
 - **`webconsulting/desiderio-blog` site set** that replaces the upstream
@@ -1116,12 +1159,11 @@ on the result.
 - **GitHub Actions CI** workflow (`.github/workflows/ci.yml`) running
   PHPStan + PHPUnit + audit across PHP 8.3 / 8.4 × TYPO3 ^14.3.
 - **`Build/Scripts/runTests.sh`** local test runner mirroring CI.
-- **`Build/Scripts/convert-xliff-1-2-to-2-0.php`** migrator that ports
-  the 765 it/fr/es Content Block label files to XLIFF 2.0.
+- Converted the 765 it/fr/es Content Block label files to XLIFF 2.0.
 - **Documentation/guides.xml + Index.rst** ReST scaffold so the docs can
   be rendered with the official TYPO3 docs container.
-- **Documentation/Reports/** with six agentic-skill audit reports
-  (conformance, security, workspaces, testing, docs, security-audit).
+- Completed conformance, security, workspaces, testing, and documentation
+  audits for this release.
 
 ### Changed
 
@@ -1160,8 +1202,8 @@ on the result.
 Initial v14-targeting release. Replaces `webconsulting/desiderio 1.x`
 and `webconsulting/shadcn2fluid-templates 3.x` with a clean rewrite:
 255 Content Blocks, a 37-component shadcn/ui Fluid 5 library, six page
-templates, and five swappable visual presets. See `MIGRATION-PLAN.md`
-for the migration notes from the old extensions.
+templates, and five swappable visual presets. The original rebuild plan is
+complete; current upgrade guidance lives in the installation manual.
 
 [2.6.2]: https://github.com/dirnbauer/desiderio/releases/tag/v2.6.2
 [2.6.1]: https://github.com/dirnbauer/desiderio/releases/tag/v2.6.1

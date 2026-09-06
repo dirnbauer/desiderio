@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/11.2/phpunit.xsd"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/11.5/phpunit.xsd"
          backupGlobals="true"
          bootstrap="FunctionalTestsBootstrap.php"
          cacheDirectory="../.phpunit.cache"
@@ -26,7 +26,7 @@
         emits TYPO3 v14.3 deprecations we cannot fix here; those must not turn
         the suite red.
     -->
-    <source restrictDeprecations="true" restrictNotices="true" restrictWarnings="true">
+    <source ignoreIndirectDeprecations="true" restrictNotices="true" restrictWarnings="true">
         <include>
             <directory>../Classes</directory>
         </include>

@@ -3,7 +3,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "vite build"
+    "build": "vite build",
+    "postbuild": "php -d memory_limit=768M vendor/bin/typo3 cache:flush"
   },
   "devDependencies": {
     "vite": "^8.2.0",

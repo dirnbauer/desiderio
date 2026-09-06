@@ -10,7 +10,7 @@ use Webconsulting\Desiderio\Library\ElementCatalog;
 
 /**
  * Canonical loader for Content Block YAML definitions.
- * Used by seed commands and the frontend collection processor.
+ * Used by seed commands to resolve fields and collection tables.
  */
 final class ContentBlockDefinitionRegistry
 {
@@ -19,10 +19,8 @@ final class ContentBlockDefinitionRegistry
      */
     private static ?array $definitions = null;
 
-    /**
-     * @var array<string, array{collections: array<string, array<string, mixed>>}>|null
-     */
-    private static ?array $runtimeCollectionDefinitions = null;
+    /** @var array<string, list<array<string, mixed>>>|null table => fields */
+    private static ?array $recordTypeFields = null;
 
     /**
      * @param array<string, array{fields: array<string, array<string, mixed>>, collections: array<string, array<string, mixed>>}> $definitions
@@ -30,13 +28,11 @@ final class ContentBlockDefinitionRegistry
     public static function setDefinitionsForTesting(array $definitions): void
     {
         self::$definitions = $definitions;
-        self::$runtimeCollectionDefinitions = null;
     }
 
     public static function resetCache(): void
     {
         self::$definitions = null;
-        self::$runtimeCollectionDefinitions = null;
         self::$recordTypeFields = null;
     }
 
@@ -114,30 +110,6 @@ final class ContentBlockDefinitionRegistry
     public static function getDefinition(string $ctype): ?array
     {
         return self::getDefinitions()[$ctype] ?? null;
-    }
-
-    /**
-     * @return array<string, array{collections: array<string, array<string, mixed>>}>
-     */
-    public static function getRuntimeCollectionDefinitions(): array
-    {
-        if (self::$runtimeCollectionDefinitions !== null) {
-            return self::$runtimeCollectionDefinitions;
-        }
-
-        $definitions = [];
-        foreach (self::getDefinitions() as $ctype => $definition) {
-            if ($definition['collections'] === []) {
-                continue;
-            }
-
-            $definitions[$ctype] = [
-                'collections' => self::mapRuntimeCollections($definition['collections']),
-            ];
-        }
-
-        self::$runtimeCollectionDefinitions = $definitions;
-        return self::$runtimeCollectionDefinitions;
     }
 
     /**
@@ -230,35 +202,6 @@ final class ContentBlockDefinitionRegistry
                 ?? self::getConfiguredInteger($field, 'maxitems'),
         ];
     }
-
-    /**
-     * @param array<string, array<string, mixed>> $collections
-     * @return array<string, array<string, mixed>>
-     */
-    private static function mapRuntimeCollections(array $collections): array
-    {
-        $mapped = [];
-        foreach ($collections as $identifier => $collection) {
-            $nestedCollections = $collection['collections'] ?? [];
-            if (!is_array($nestedCollections)) {
-                $nestedCollections = [];
-            }
-
-            $mapped[$identifier] = [
-                'table' => is_string($collection['table'] ?? null) ? $collection['table'] : $identifier,
-                'fields' => is_array($collection['fields'] ?? null) ? $collection['fields'] : [],
-                'collections' => self::mapRuntimeCollections(self::normalizeStringKeyedNestedCollections($nestedCollections)),
-            ];
-        }
-
-        return $mapped;
-    }
-
-    /**
-     * @param array<string, mixed> $field
-     */
-    /** @var array<string, list<array<string, mixed>>>|null table => fields */
-    private static ?array $recordTypeFields = null;
 
     /**
      * Field lists of the shared Record Types, keyed by the table they define.
@@ -435,22 +378,6 @@ final class ContentBlockDefinitionRegistry
         foreach ($array as $key => $value) {
             if (is_string($key)) {
                 $normalized[$key] = $value;
-            }
-        }
-
-        return $normalized;
-    }
-
-    /**
-     * @param array<mixed> $collections
-     * @return array<string, array<string, mixed>>
-     */
-    private static function normalizeStringKeyedNestedCollections(array $collections): array
-    {
-        $normalized = [];
-        foreach ($collections as $key => $collection) {
-            if (is_string($key) && is_array($collection)) {
-                $normalized[$key] = self::normalizeStringKeyedArray($collection);
             }
         }
 

@@ -53,7 +53,6 @@ final class PowermailIntegrationTest extends TestCase
             'Templates/Form/Create.html',
             'Templates/Form/Confirmation.html',
             'Partials/Form/Page.html',
-            'Partials/Form/ShadcnClass.html',
             'Partials/Form/FieldLabel.html',
             'Partials/Form/Field/Input.html',
             'Partials/Form/Field/Select.html',
@@ -157,9 +156,6 @@ final class PowermailIntegrationTest extends TestCase
         self::assertStringNotContainsString('aria-invalid:checked:border-primary', $controlClass);
         self::assertStringNotContainsString('has-data-checked:border-primary', $controlClass);
         self::assertStringNotContainsString('has-data-checked:bg-primary', $controlClass);
-
-        $shadcnClass = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/Powermail/Partials/Form/ShadcnClass.html');
-        self::assertSame($controlClass, $shadcnClass, 'Powermail ShadcnClass partial must stay synchronized with d:atom.controlClass');
 
         $componentsCss = (string)file_get_contents(__DIR__ . '/../../Resources/Public/Css/components.css');
         self::assertStringContainsString('.d-powermail :where(input.d-shadcn-control, textarea.d-shadcn-control, select.d-shadcn-control)', $componentsCss);

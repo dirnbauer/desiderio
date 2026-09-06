@@ -172,8 +172,8 @@ final class ShadcnThemeTest extends TestCase
         self::assertStringNotContainsString('rounded-none', $input);
 
         // Radio buttons must stay circular regardless of preset.
-        $shadcnClass = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Extensions/Powermail/Partials/Form/ShadcnClass.html');
-        self::assertStringContainsString('rounded-full', $shadcnClass);
+        $controlClass = (string) file_get_contents(__DIR__ . '/../../Resources/Private/Components/Atom/ControlClass/ControlClass.fluid.html');
+        self::assertStringContainsString('rounded-full', $controlClass);
 
         // Focus-ring width and card elevation are tokenized too.
         self::assertStringContainsString('ring-(length:--d-ring-width)', $input);
@@ -234,7 +234,7 @@ final class ShadcnThemeTest extends TestCase
         $componentsJson = self::decodeJsonFile(__DIR__ . '/../../components.json');
         $packageJson = self::decodeJsonFile(__DIR__ . '/../../package.json');
 
-        self::assertStringContainsString('@import "tailwindcss";', $tailwindCss);
+        self::assertStringContainsString('@import "tailwindcss" source(none);', $tailwindCss);
         self::assertStringContainsString('@import "shadcn/tailwind.css";', $tailwindCss);
         self::assertStringContainsString('@source "../Components";', $tailwindCss);
         self::assertStringContainsString('@source "../Solr";', $tailwindCss);
@@ -289,7 +289,6 @@ final class ShadcnThemeTest extends TestCase
 
         self::assertStringContainsString('--icon-library=', $script);
         self::assertStringContainsString('Resources/Private/Components/Atom/ControlClass/ControlClass.fluid.html', $script);
-        self::assertStringContainsString('Resources/Private/Extensions/Powermail/Partials/Form/ShadcnClass.html', $script);
     }
 
     public function testShadcnCliContextAndRegistryAreConfigured(): void

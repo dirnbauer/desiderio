@@ -11,6 +11,7 @@ cd "$(dirname "$0")"
 # A QA sandbox: Development context (the seeder refuses Production, and the
 # server should show real errors when a render breaks).
 export TYPO3_CONTEXT=Development
+BASE_URL="${DDEV_PRIMARY_URL:-http://127.0.0.1:8080}/"
 
 # Content Blocks TCA compilation for 244 elements outgrows a 128M default.
 TYPO3="php -d memory_limit=768M vendor/bin/typo3"
@@ -24,16 +25,29 @@ if [ ! -f config/system/settings.php ]; then
     TYPO3_SETUP_ADMIN_EMAIL=qa@example.invalid \
     TYPO3_PROJECT_NAME='Desiderio QA' \
     TYPO3_SERVER_TYPE=other \
-    TYPO3_SETUP_CREATE_SITE='http://127.0.0.1:8080/' \
+    TYPO3_SETUP_CREATE_SITE="$BASE_URL" \
     $TYPO3 setup --force --no-interaction
 fi
+
+# Setup stores an absolute SQLite path. Resolve it at runtime so this same
+# disposable app works inside DDEV and on the host used by CI.
+cat > config/system/additional.php <<'PHP'
+<?php
+$GLOBALS['TYPO3_CONF_VARS']['DB']['Connections']['Default']['path'] =
+    dirname(__DIR__, 2) . '/var/sqlite/'
+    . basename($GLOBALS['TYPO3_CONF_VARS']['DB']['Connections']['Default']['path']);
+$GLOBALS['TYPO3_CONF_VARS']['SYS']['trustedHostsPattern'] =
+    '(?:localhost|127\\.0\\.0\\.1|'
+    . preg_quote((string) parse_url(getenv('DDEV_PRIMARY_URL') ?: 'http://127.0.0.1:8080', PHP_URL_HOST), '/')
+    . ')(?::[0-9]+)?';
+PHP
 
 # The site must load desiderio's TypoScript (preview page type, element
 # rendering). Setup wrote a bare FSC site; replace it with the known-good
 # config for this disposable app. Classic content rendering is owned by
 # Desiderio itself; fluid_styled_content is intentionally not installed.
-cat > config/sites/main/config.yaml <<'YAML'
-base: 'http://127.0.0.1:8080/'
+cat > config/sites/main/config.yaml <<YAML
+base: '$BASE_URL'
 rootPageId: 1
 dependencies:
   - webconsulting/desiderio-content-elements
@@ -62,7 +76,8 @@ printf 'elementLibrary:\n  storagePid: %s\n' "$FOLDER_UID" > config/sites/main/s
 
 $TYPO3 cache:flush
 
-echo "Bootstrap done. Serve with:"
+echo "Bootstrap done. Site: $BASE_URL"
+echo "Build assets, then use DDEV or serve directly:"
 echo "  (cd Build/CiApp && npm ci && npm run build)"
 echo "  TYPO3_CONTEXT=Production php -d memory_limit=768M -S 127.0.0.1:8080 -t Build/CiApp/public"
 echo "Preview URLs: vendor/bin/typo3 desiderio:library:urls --site=main --json"

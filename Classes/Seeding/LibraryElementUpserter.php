@@ -7,7 +7,7 @@ namespace Webconsulting\Desiderio\Seeding;
 use Doctrine\DBAL\ParameterType;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Resource\StorageRepository;
-use Webconsulting\Desiderio\Data\ContentBlockDefinitionRegistry;
+use Webconsulting\Desiderio\Library\CoreContentElements;
 
 /**
  * Idempotent per-CType upsert of element library demo records: every catalog
@@ -21,9 +21,9 @@ use Webconsulting\Desiderio\Data\ContentBlockDefinitionRegistry;
  * editor could keep, not a slide that promotes the design system (which is
  * exactly what the styleguide fixture is for). Whatever library.json leaves
  * out is completed by the neutral demo value generator, so an element without
- * one still seeds a full record. Desiderio definitions come from the registry,
- * Innesto definitions are built from their config.yaml; Innesto has no
- * library.json support yet and stays on the generator.
+ * one still seeds a full record. Every registered Content Block provider uses
+ * the shared definition registry. Native TYPO3 elements use their manifest
+ * fixtures instead.
  */
 final class LibraryElementUpserter
 {
@@ -32,16 +32,13 @@ final class LibraryElementUpserter
     private readonly ExtensionFalSeeder $falSeeder;
     private readonly CollectionRecordSeeder $collectionRecordSeeder;
 
-    /** @var array<string, list<array<string, mixed>>>|null */
-    private ?array $collectionsByParentTable = null;
-
     public function __construct(
         private readonly ConnectionPool $connectionPool,
         StorageRepository $storageRepository,
         private readonly DatabaseSchemaHelper $databaseSchema,
         private readonly StyleguideFixtureResolver $fixtureResolver,
         private readonly CollectionCleanupService $collectionCleanupService,
-        private readonly ElementCatalogDefinitions $catalogDefinitions,
+        private readonly ContentBlockCollectionMap $collectionMap,
     ) {
         $this->falSeeder = new ExtensionFalSeeder(
             $connectionPool,
@@ -58,7 +55,7 @@ final class LibraryElementUpserter
     }
 
     /**
-     * @param array{cType: string, name: string, hostExtension: string, config: array<string, mixed>, fixture: array<string, mixed>, libraryFixture?: array<string, mixed>} $element
+     * @param array{cType: string, name: string, hostExtension: string, fixture: array<string, mixed>, libraryFixture?: array<string, mixed>} $element
      * @return array{0: 'created'|'updated', 1: int} status and tt_content uid
      */
     public function upsert(int $folderPid, array $element, int $sorting, int $now): array
@@ -81,7 +78,7 @@ final class LibraryElementUpserter
         $this->collectionCleanupService->deleteCollectionRowsForParentUids(
             [$existingUid],
             'tt_content',
-            $this->getCollectionsByParentTable()
+            $this->collectionMap->getCollectionsByParentTable()
         );
 
         $row = $contentData['row'];
@@ -132,7 +129,7 @@ final class LibraryElementUpserter
         $this->collectionCleanupService->deleteCollectionRowsForParentUids(
             $duplicateUids,
             'tt_content',
-            $this->getCollectionsByParentTable()
+            $this->collectionMap->getCollectionsByParentTable()
         );
 
         $update = $this->connectionPool->getQueryBuilderForTable('tt_content');
@@ -177,60 +174,24 @@ final class LibraryElementUpserter
     }
 
     /**
-     * @param array{cType: string, name: string, hostExtension: string, config: array<string, mixed>, fixture: array<string, mixed>, libraryFixture?: array<string, mixed>} $element
+     * @param array{cType: string, name: string, hostExtension: string, fixture: array<string, mixed>, libraryFixture?: array<string, mixed>} $element
      * @param array<string, true> $columns
      * @return array{row: array<string, mixed>, collections: array<string, array{table: string, column?: string, items: list<array<string, mixed>>}>, fileReferences: array<string, list<array{file: string, title: string, alternative: string, description: string, source: string}>>}
      */
     private function buildContentData(int $pid, array $element, int $sorting, int $now, array $columns): array
     {
-        if ($element['hostExtension'] === \Webconsulting\Desiderio\Library\CoreContentElements::HOST) {
-            // Native CType: there is no registry definition or config.yaml, so the
-            // resolver's null-definition path maps the manifest fixture straight
-            // into native tt_content columns (and FAL refs). Unlike Content Blocks
-            // we DO pass the fixture, so the preview carries real example content.
-            return $this->fixtureResolver->buildContentInsert(
-                $pid,
-                $element['cType'],
-                $element['name'],
-                $element['fixture'],
-                $sorting,
-                $now,
-                $columns
-            );
-        }
+        $fixture = $element['hostExtension'] === CoreContentElements::HOST
+            ? $element['fixture']
+            : ($element['libraryFixture'] ?? []);
 
-        if ($element['hostExtension'] === 'desiderio') {
-            // library.json, NOT fixture.json: the styleguide fixture sells
-            // Desiderio itself, while the library record has to look like an
-            // editor's own page. A partial or missing payload is fine - the
-            // resolver completes every absent field from the registry
-            // definition with the neutral demo value generator, so an element
-            // without a library.json behaves exactly as it did before.
-            return $this->fixtureResolver->buildContentInsert(
-                $pid,
-                $element['cType'],
-                $element['name'],
-                $element['libraryFixture'] ?? [],
-                $sorting,
-                $now,
-                $columns
-            );
-        }
-
-        // Foreign host extension (innesto). The definition registry only scans
-        // EXT:desiderio, so build it from the element's own config.yaml and
-        // hand it to the resolver - that way innesto takes exactly the same
-        // authored-content path as desiderio instead of falling back to the
-        // generic vocabulary pool for every field.
         return $this->fixtureResolver->buildContentInsert(
             $pid,
             $element['cType'],
             $element['name'],
-            $element['libraryFixture'] ?? [],
+            $fixture,
             $sorting,
             $now,
-            $columns,
-            ContentBlockDefinitionRegistry::buildDefinitionFromConfig($element['config'])
+            $columns
         );
     }
 
@@ -351,17 +312,5 @@ final class LibraryElementUpserter
             ->fetchOne();
 
         return is_numeric($uid) ? (int)$uid : null;
-    }
-
-    /**
-     * Collections of ALL catalog elements (desiderio + innesto), keyed by
-     * parent table - the desiderio-only ContentBlockCollectionMap would miss
-     * innesto child tables during cleanup.
-     *
-     * @return array<string, list<array<string, mixed>>>
-     */
-    private function getCollectionsByParentTable(): array
-    {
-        return $this->collectionsByParentTable ??= $this->catalogDefinitions->getCollectionsByParentTable();
     }
 }

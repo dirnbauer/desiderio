@@ -32,7 +32,6 @@
     "minimum-stability": "stable",
     "prefer-stable": true,
     "suggest": {
-        "friendsoftypo3/visual-editor": "Optional. Inline visual editing when templates use f:render.text for text fields. Thank you to the friends of TYPO3 maintainers.",
         "georgringer/news": "Optional. Drives the shadcn-styled News templates and the DesiderioNews backend layout. Thank you, Georg Ringer.",
         "in2code/powermail": "Optional. Drives the shadcn-styled Powermail templates and demo form seeder. Thank you, in2code.",
         "studiomitte/friendlycaptcha": "Optional. Protects the bundled TYPO3 Form Framework and Powermail lab forms with Friendly Captcha. For TYPO3 14 install the fork: add the VCS repository https://github.com/dirnbauer/friendlycaptcha-typo3 and require studiomitte/friendlycaptcha:^14.0@dev. Without it the captcha element renders an inert placeholder and validation passes. Thank you, Studio Mitte.",

@@ -93,6 +93,9 @@ jobs:
             desiderio:library:urls --site=main --json > /tmp/ci-urls.json
           node -e "const d=require('/tmp/ci-urls.json');console.log((Array.isArray(d)?d:d.elements).length,'previews')"
 
+      - name: Code highlighting with the built Vite modules
+        run: node Build/VisualQa/code-highlighting.mjs --urls /tmp/ci-urls.json
+
       - name: Anatomy survey (target 0 findings)
         run: node Build/VisualQa/anatomy.mjs --urls /tmp/ci-urls.json
 

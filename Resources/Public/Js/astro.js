@@ -11,10 +11,6 @@
   var reduceMotionQuery = '(prefers-reduced-motion: reduce)';
   var coarsePointerQuery = '(pointer: coarse)';
 
-  // Captured at load (not inside async callbacks, where it is null) so the lazy
-  // highlight.js detector can resolve its sibling hljs-lite.js URL.
-  var astroScript = document.currentScript;
-
   function supports(selector) {
     return typeof selector === 'string' && selector.trim() !== '';
   }
@@ -247,8 +243,7 @@
 
   var hljsLoader = null;
 
-  // Lazy-load the highlight.js detector bundle that sits next to this file. It
-  // is only fetched the first time a code block needs autodetection.
+  // Vite resolves this lazy chunk for module scripts, where currentScript is null.
   function ensureHljs() {
     if (window.hljs) {
       return Promise.resolve(window.hljs);
@@ -258,25 +253,9 @@
       return hljsLoader;
     }
 
-    var base = (astroScript && astroScript.src) || '';
-    var url = base ? base.replace(/[^/]+$/, 'hljs-lite.js') : '';
-
-    if (!url) {
-      return Promise.resolve(null);
-    }
-
-    hljsLoader = new Promise(function (resolve) {
-      var script = document.createElement('script');
-      script.src = url;
-      script.async = true;
-      script.onload = function () {
-        resolve(window.hljs || null);
-      };
-      script.onerror = function () {
-        resolve(null);
-      };
-      document.head.appendChild(script);
-    });
+    hljsLoader = import('./hljs-lite.js')
+      .then(function () { return window.hljs || null; })
+      .catch(function () { return null; });
 
     return hljsLoader;
   }

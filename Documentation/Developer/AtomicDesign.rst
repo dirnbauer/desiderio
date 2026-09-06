@@ -5,68 +5,54 @@
 Atomic design layers
 ====================
 
-Desiderio follows atomic design with these Fluid layers:
+Desiderio composes typed Fluid components into Content Blocks and page shells:
 
 ..  code-block:: text
+    :caption: Component composition
 
-    Layouts     Section, Container, Grid, Stack
-    Atoms       Button, Typography, Badge, Icon, Input, …
-    Molecules   Card, Field, Alert, Tabs, Table, …
-    Organisms   244 Desiderio Content Block templates
-    Templates   Page shells, extension overrides
+    Layouts        Section, Container, Grid, Stack
+    Atoms          Button, Typography, Badge, Icon, Input, …
+    Molecules      Card, Field, Alert, Tabs, Table, …
+    Organisms      Shared site-level component groups
+    Content Blocks Editor-facing compositions and field wiring
+    Page templates Page shells and extension integration layouts
 
-Rules
------
+..  _developer-atomic-design-rules:
 
-1. **Atoms first.** Buttons always render through ``<d:atom.button>`` unless a
-   genuinely different control is required (for example icon-only toolbar
-   actions). Typography uses ``<d:atom.typography>``; icons use
-   ``<d:atom.icon>``.
-2. **Molecules compose atoms.** Plan cards use ``<d:molecule.card>`` with
-   ``cardHeader``, ``cardContent``, and ``cardFooter`` — not hand-rolled
-   ``<article>`` markup with duplicated border/shadow CSS.
-3. **Organisms compose molecules.** Content element templates only contain
-   layout (grid, spacing) and field wiring. Per-element CSS covers layout
-   only — not button colors, card borders, or typography scale.
-4. **Layouts wrap sections.** Every content element starts with
-   ``<d:layout.section>`` and ``<d:layout.container>``.
-5. **Variants, not duplicates.** Use atom ``variant`` props (``default``,
-   ``outline``, ``secondary``) instead of BEM modifiers like
-   ``__button--primary``.
+Component conventions
+---------------------
+
+*   Render shared controls through atoms such as ``<d:atom.button>`` and
+    ``<d:atom.icon>``. Use a distinct control only when its behavior differs.
+*   Compose cards through ``<d:molecule.card>`` and its slots. Reuse the
+    shared border, color, typography, and state rules.
+*   Use layouts for section and container structure; keep element-specific
+    CSS focused on composition.
+*   Select supported component variants before introducing another copy of
+    a shared button, badge, card, or link.
+*   Keep FAL image rendering and editable text in the TYPO3 ViewHelpers
+    documented in :ref:`developer-adding-content-elements`.
+
+The source migration to atomic primitives is complete. Edit the maintained
+components and templates directly, then run the structural and audit checks.
+
+..  _developer-atomic-design-references:
 
 Reference implementations
 -------------------------
 
-*   **Gold standard:** ``ContentBlocks/ContentElements/pricing-simple/``
-*   **Multi-tier pricing:** ``pricing-annual-monthly``, ``pricing-three-tier``
-*   **CTA patterns:** ``ContentBlocks/ContentElements/cta/``
+*   ``ContentBlocks/ContentElements/pricing-simple/``
+*   ``ContentBlocks/ContentElements/pricing-annual-monthly/``
+*   ``ContentBlocks/ContentElements/pricing-three-tier/``
+*   ``ContentBlocks/ContentElements/cta/``
 
-Migration status
-----------------
+..  _developer-atomic-design-testing:
 
-All 244 Desiderio Content Block frontend templates are migrated to atomic primitives.
-``Build/Scripts/migrate-content-elements-atoms.php`` applies the rules below
-with ``--dry-run`` or ``--write`` and is safe to re-run.
+Verification
+------------
 
-Migration rules (all content elements)
---------------------------------------
-
-1. Replace ``f:link.typolink`` CTAs with ``<d:atom.button href="…">``
-2. Replace plan/article shells with ``<d:molecule.card>`` where appropriate
-3. Replace ``<h2>``/``<p>`` headings with ``<d:atom.typography>``
-4. Replace inline SVG checks with ``<d:atom.icon name="check">``
-5. Replace custom badge spans with ``<d:atom.badge>``
-6. Replace navigation and text links with ``<d:atom.link>``
-7. Delete duplicated button/card CSS from ``assets/frontend.css``
-8. Run ``Build/Scripts/migrate-content-elements-atoms.php --write`` again after edits; its
-   cleanup pass deduplicates ``target`` attributes and strips leftover ``__button:hover``
-   rules from per-element CSS
-9. Verify in the styleguide at multiple breakpoints
-
-Testing
--------
-
-*   ``Tests/Unit/ComponentStructureTest.php`` — component inventory
-*   ``Tests/Unit/ContentBlockStructureTest.php`` — token policy + atom/button/link composition guards
-*   ``Tests/Unit/ContentElementAuditTest.php`` — no hardcoded colors/styles
-*   Manual: Desiderio styleguide → Plans & Pricing group at multiple breakpoints
+*   ``Tests/Unit/ComponentStructureTest.php`` checks the component inventory.
+*   ``Tests/Unit/ContentBlockStructureTest.php`` checks structural contracts.
+*   ``Tests/Unit/ContentElementAuditTest.php`` checks fields, tokens, and styles.
+*   Inspect changed elements in the styleguide at multiple viewport widths
+    and in light and dark mode.

@@ -1,79 +1,44 @@
 #!/usr/bin/env bash
-
-# Local test runner for the Desiderio TYPO3 v14.3 LTS extension.
-#
-# Mirrors the .github/workflows/ci.yml jobs so contributors can reproduce CI
-# results locally on their workstation. Picks the newest Homebrew PHP that
-# satisfies the >=8.4 constraint, falls back to whichever `php` is on PATH.
-#
-# Usage:
-#   Build/Scripts/runTests.sh                    # PHPStan + PHPUnit + audit + tailwind
-#   Build/Scripts/runTests.sh phpstan            # PHPStan only
-#   Build/Scripts/runTests.sh phpunit            # PHPUnit unit suite only
-#   Build/Scripts/runFunctionalTests.sh          # TYPO3 functional suite (SQLite)
-#   Build/Scripts/runTests.sh audit              # Content element audit
-#   Build/Scripts/runTests.sh validate           # composer validate + audit
-#   Build/Scripts/runTests.sh tailwind           # Verify Tailwind bundle is in sync
-#   Build/Scripts/runTests.sh -h                 # show help
-
+# Run the same checks locally and in CI. The default suite runs every gate.
+# Usage: Build/Scripts/runTests.sh [-s SUITE] [-p 8.4|8.5] [SUITE]
+# Suites: all, phpstan, unit (or phpunit), functional, audit, validate, tailwind
 set -euo pipefail
-
 cd "$(dirname "$0")/../.."
-ROOT="$(pwd)"
 
-usage() {
-  sed -n '3,20p' "$0"
-}
+# Use the project's PHP and Node versions when DDEV is available locally.
+if [[ -z "${IS_DDEV_PROJECT:-}" && -f .ddev/config.yaml ]] && command -v ddev >/dev/null 2>&1; then
+    exec ddev exec Build/Scripts/runTests.sh "$@"
+fi
 
-resolve_php() {
-  for candidate in /opt/homebrew/Cellar/php/*/bin/php /opt/homebrew/Cellar/php@8.5/*/bin/php /opt/homebrew/Cellar/php@8.4/*/bin/php; do
-    if [[ -x "$candidate" ]]; then
-      version="$($candidate -r 'echo PHP_MAJOR_VERSION."".PHP_MINOR_VERSION;')"
-      if [[ "$version" -ge 84 ]]; then
-        echo "$candidate"
-        return
-      fi
-    fi
-  done
-  command -v php
-}
+SUITE=all
+PHP="${PHP:-php}"
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        -s) SUITE="${2:?Missing suite after -s}"; shift 2 ;;
+        -p) PHP="php${2:?Missing PHP version after -p}"; shift 2 ;;
+        -h|--help|help) sed -n '2,4p' "$0"; exit 0 ;;
+        -*) echo "Unknown option: $1" >&2; exit 2 ;;
+        *) SUITE="$1"; shift ;;
+    esac
+done
+command -v "$PHP" >/dev/null || { echo "PHP executable unavailable: $PHP" >&2; exit 2; }
+"$PHP" -r 'exit(PHP_VERSION_ID >= 80400 ? 0 : 1);' || { echo 'PHP 8.4 or newer is required.' >&2; exit 2; }
+export PHP
+echo "Using $("$PHP" -r 'echo PHP_VERSION;')"
 
-PHP="$(resolve_php)"
-echo "Using $($PHP -v | head -1)" >&2
-
-TARGET="${1:-all}"
-
-case "$TARGET" in
-  -h|--help|help)
-    usage
-    exit 0
-    ;;
-  phpstan)
-    "$PHP" -d memory_limit=2G "$ROOT/vendor/bin/phpstan" analyse --no-progress
-    ;;
-  phpunit|unit)
-    "$PHP" "$ROOT/vendor/bin/phpunit" --testdox
-    ;;
-  audit)
-    "$PHP" "$ROOT/scripts/audit-content-elements.php" | "$PHP" -r '$d=json_decode(stream_get_contents(STDIN), true); print_r($d["summary"] ?? []);'
-    ;;
-  validate)
-    composer validate --strict --no-check-publish
-    composer audit --no-dev --abandoned=fail
-    ;;
-  tailwind|css)
-    "$ROOT/Build/Scripts/check-tailwind-built.sh"
-    ;;
-  all|"")
-    "$PHP" -d memory_limit=2G "$ROOT/vendor/bin/phpstan" analyse --no-progress
-    "$PHP" "$ROOT/vendor/bin/phpunit" --testdox
-    "$PHP" "$ROOT/scripts/audit-content-elements.php" > /tmp/desiderio-audit.json
-    "$PHP" -r '$d=json_decode(file_get_contents("/tmp/desiderio-audit.json"), true); foreach (($d["summary"] ?? []) as $k => $v) { if ($v > 0) printf("%s: %d\n", $k, $v); }'
-    "$ROOT/Build/Scripts/check-tailwind-built.sh"
-    ;;
-  *)
-    echo "Unknown target: $TARGET" >&2
-    usage
-    exit 1
-    ;;
-esac
+SUITES=("$SUITE")
+[[ "$SUITE" != all ]] || SUITES=(phpstan unit functional validate tailwind)
+for suite in "${SUITES[@]}"; do
+    case "$suite" in
+        phpstan) "$PHP" -d memory_limit=2G vendor/bin/phpstan analyse --no-progress ;;
+        phpunit|unit) "$PHP" vendor/bin/phpunit ;;
+        functional) Build/Scripts/runFunctionalTests.sh ;;
+        audit) "$PHP" vendor/bin/phpunit --filter ContentElementAuditTest ;;
+        validate)
+            "$PHP" "$(command -v composer)" validate --strict --no-check-publish
+            "$PHP" "$(command -v composer)" audit --abandoned=fail
+            ;;
+        tailwind|css) Build/Scripts/check-tailwind-built.sh ;;
+        *) echo "Unknown suite: $suite" >&2; exit 2 ;;
+    esac
+done

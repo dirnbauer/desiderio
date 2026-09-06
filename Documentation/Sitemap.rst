@@ -13,4 +13,3 @@ Sitemap
 *   :ref:`configuration`
 *   :ref:`known-problems`
 *   :ref:`changelog`
-*   :ref:`reports`

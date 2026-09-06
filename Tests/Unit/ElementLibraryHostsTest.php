@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Webconsulting\Desiderio\Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
-use TYPO3\CMS\Core\Cache\CacheManager;
 use Webconsulting\Desiderio\Library\ElementCatalog;
 use Webconsulting\Desiderio\Library\ElementSearchService;
 use Webconsulting\Desiderio\Middleware\ElementLibraryMiddleware;
@@ -48,12 +47,7 @@ final class ElementLibraryHostsTest extends TestCase
             ? []
             : ['EXTENSIONS' => ['desiderio' => ['libraryHostExtensions' => $registration]]];
 
-        $catalog = new ElementCatalog($this->createMock(CacheManager::class));
-        $method = new \ReflectionMethod($catalog, 'getHostExtensions');
-
-        /** @var list<string> $hosts */
-        $hosts = $method->invoke($catalog);
-        return $hosts;
+        return ElementCatalog::hostExtensions();
     }
 
     public function testTheShippedHostsAreListedWhenNoProviderRegistered(): void

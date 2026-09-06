@@ -1,4 +1,5 @@
-@import "tailwindcss";
+/* Scan rendering inputs explicitly; documentation must not change the bundle. */
+@import "tailwindcss" source(none);
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 @import "@fontsource-variable/inter";
@@ -12,7 +13,13 @@
 @source "../Extensions";
 @source "../ShadcnUi";
 @source "../ClassicContent";
+@source "../Presets";
+@source "../Form";
+@source "../FormCaptchaOverride";
 @source "../../Public/Js";
+@source "../../../Classes/ViewHelpers/IconViewHelper.php";
+@source "../../../Configuration/RTE/Desiderio.yaml";
+@source "../../../Configuration/Yaml/FriendlyCaptchaFallbackFormSetup.yaml";
 /* Only the Fluid templates carry markup classes. Scanning the whole
    ContentBlocks tree would treat words in config.yaml descriptions and
    XLF keyword catalogs (grid, table, flex, ...) as class candidates and

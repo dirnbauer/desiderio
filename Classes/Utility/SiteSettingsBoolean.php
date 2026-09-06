@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Webconsulting\Desiderio\Utility;
 
 use TYPO3\CMS\Core\Site\Entity\Site;
-use TYPO3\CMS\Core\Site\Entity\SiteSettings;
 
 final class SiteSettingsBoolean
 {

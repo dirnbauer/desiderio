@@ -1,0 +1,11 @@
+name: desiderio
+type: typo3
+docroot: Build/CiApp/public
+php_version: "8.4"
+nodejs_version: "24"
+webserver_type: nginx-fpm
+performance_mode: none
+omit_containers: [db]
+disable_settings_management: true
+web_environment:
+    - TYPO3_CONTEXT=Production

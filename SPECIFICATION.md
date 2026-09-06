@@ -1,389 +1,75 @@
-# Desiderio v2 — Specification
-
-**Status:** Stable release track (v2.6.x)
-**Target TYPO3:** `^14.3`
-**Target PHP:** `^8.3`
-**Philosophy:** One extension. No backward compatibility. No legacy cruft. Start clean.
-
----
-
-## 1. Goal
-
-A single TYPO3 v14 extension that ships:
-
-1. A **component library** (Fluid 5 atoms / molecules / layouts)
-2. A **content element library** (250 Content Blocks composing those components)
-3. A **theme layer** (backend layouts, page templates, partials, dark mode, styleguide)
-4. **Settings** per page template (density, container width, header style, footer style, accent, radius, font pair)
-5. A catalog of **visual variants** ("presets") applied via CSS layers
-
-`shadcn2fluid-templates` is **absorbed and deleted**. `desiderio` becomes self-contained.
-
----
-
-## 2. Extension Identity
-
-| Key | Value |
-| --- | --- |
-| Composer package | `webconsulting/desiderio` |
-| Extension key | `desiderio` |
-| PHP namespace | `Webconsulting\Desiderio\` |
-| Fluid prefix | `<d:…>` (global), `<desiderio:…>` (explicit) |
-| Version | `2.6.0` |
-| State | `stable` |
-| Dependencies | `friendsoftypo3/content-blocks ^2.2`, `praetorius/vite-asset-collector ^1.0` |
-
-The old `s2f:` prefix is **gone**. No alias. No deprecation. New installs only.
-
----
-
-## 3. Directory Layout
-
-```
-desiderio/
-├── composer.json
-├── ext_emconf.php
-├── ext_localconf.php                  # comment-only, assets live in site set
-├── README.md
-├── SPECIFICATION.md                   # this file
-├── LICENSE
-├── phpstan.neon.dist
-├── phpunit.xml.dist
-├── Build/
-│   └── phpstan-baseline.neon
-├── scripts/
-│   ├── fix-contentblocks.php          # codemod / linter
-│   └── generate-styleguide.php        # regenerate styleguide page
-├── Classes/
-│   ├── Components/
-│   │   └── ComponentCollection.php    # Fluid 5 component registration
-│   ├── Data/
-│   │   └── StyleguideContentGroups.php
-│   └── ViewHelpers/
-│       ├── StyleguideGroupsViewHelper.php
-│       ├── FixtureJsonViewHelper.php
-│       └── RecordHasFieldViewHelper.php
-├── Configuration/
-│   ├── Services.yaml                  # ViewHelper DI
-│   ├── Icons.php                      # icon registry
-│   ├── page.tsconfig                  # backend layout selector
-│   ├── BackendLayouts/                # 4 backend layouts (see §5)
-│   │   ├── DesiderioStartpage.tsconfig
-│   │   ├── DesiderioContentpage.tsconfig
-│   │   ├── DesiderioContentpageSidebar.tsconfig
-│   │   └── DesiderioStyleguide.tsconfig
-│   └── Sets/
-│       ├── Desiderio/                  # base site set (components + theme)
-│       │   ├── config.yaml
-│       │   ├── settings.definitions.yaml   # NEW — see §7
-│       │   ├── settings.yaml
-│       │   ├── setup.typoscript
-│       │   ├── page.tsconfig
-│       │   └── ...
-│       ├── DesiderioPresetSaas/             # SaaS Landing
-│       ├── DesiderioPresetCorporate/             # Mainline Corporate
-│       ├── DesiderioPresetPortfolio/             # Portfolio
-│       ├── DesiderioPresetEditorial/             # Blog & Magazine
-│       └── DesiderioPresetDashboard/             # Dashboard App
-├── ContentBlocks/
-│   └── ContentElements/                # 250 content elements (see §6)
-│       ├── hero-centered/
-│       ├── feature-bento/
-│       └── ...
-├── Resources/
-│   ├── Private/
-│   │   ├── Components/                 # Fluid 5 components
-│   │   │   ├── Atom/      (16)
-│   │   │   ├── Molecule/  (17)
-│   │   │   └── Layout/    (4)
-│   │   ├── Templates/
-│   │   │   └── Pages/                  # 5 page templates
-│   │   ├── Layouts/                    # shared page shell
-│   │   ├── Partials/                   # Header, Footer, DarkModeToggle, etc.
-│   │   └── Language/                   # locallang*.xlf
-│   └── Public/
-│       ├── Css/
-│       │   ├── desiderio.css           # base + tokens + reset
-│       │   ├── components.css          # BEM styles for 37 components
-│       │   ├── preset-saas.css … preset-dashboard.css   # variant layers
-│       │   └── theme.css               # shadcn OKLCH tokens
-│       ├── Js/
-│       │   └── desiderio.js            # dark mode, accordion, tabs, counters
-│       ├── Icons/                      # SVGs for backend wizard
-│       └── Vite/                       # vite-asset-collector entrypoints
-└── Tests/
-    └── Unit/
-        ├── ExtensionMetadataTest.php
-        ├── ContentBlockStructureTest.php
-        ├── ComponentStructureTest.php   # NEW
-        └── ViewHelpers/                 # NEW — unit tests for 3 ViewHelpers
-```
-
-> The word **"template"** in old docs is replaced by **"preset"** throughout the new codebase to stop the clash with "page template" (Fluid). A preset is a CSS layer plus default site settings. A page template is a Fluid file.
-
----
-
-## 4. Three-Layer Architecture
-
-```
-┌──────────────────────────────────────────────────────────┐
-│ Layer 3 — THEME                                          │
-│ Page templates · Backend layouts · Header/Footer · Presets │
-└──────────────────────────────────────────────────────────┘
-                          ▲ renders via PAGEVIEW
-┌──────────────────────────────────────────────────────────┐
-│ Layer 2 — CONTENT ELEMENTS (Content Blocks)              │
-│ 250 editor-facing elements in 10 wizard groups           │
-└──────────────────────────────────────────────────────────┘
-                          ▲ composes via <d:…>
-┌──────────────────────────────────────────────────────────┐
-│ Layer 1 — COMPONENTS (Fluid 5)                           │
-│ 17 atoms · 28 molecules · 4 layouts (typed <f:argument>) │
-└──────────────────────────────────────────────────────────┘
-```
-
-A content element **never** writes raw HTML. It composes components. A page template **never** writes card/hero markup. It renders content areas that render content elements.
-
----
-
-## 5. Backend Layouts & Page Templates
-
-Four backend layouts, five page templates. Default falls through to Contentpage.
-
-| Backend layout | Content areas | Page template | Use case |
-| --- | --- | --- | --- |
-| `DesiderioStartpage` | `stage`, `main` | `Startpage.html` | Home / landing |
-| `DesiderioContentpage` | `stage`, `main` | `Contentpage.html` | Standard subpage |
-| `DesiderioContentpageSidebar` | `stage`, `main`, `sidebar` | `Sidebar.html` | Blog, docs |
-| `DesiderioStyleguide` | `main` | `Styleguide.html` | Component browser |
-| _(fallback)_ | `stage`, `main` | `Default.html` | Unset pages |
-
-**Footer** is always a static partial (`Partials/Footer.html`). No footer content area.
-**Header** is always a static partial (`Partials/Header.html`) with a `DarkModeToggle` partial.
-
----
-
-## 6. Content Elements
-
-- **255** elements, grouped into **10 wizard groups** (see `Classes/Data/StyleguideContentGroups.php`).
-- Each lives at `ContentBlocks/ContentElements/<slug>/` with the standard Content Blocks layout:
-  - `config.yaml` · `src/Frontend.html` · `assets/icon.svg` · `language/labels.xlf` · `fixtures/default.json`
-- Naming: lowercase kebab (`hero-centered`, not `HeroCentered`).
-- Image and media fields render through TYPO3 Fluid ViewHelpers. Use
-  `<f:image image="{fileReference}" ... data="{d-gallery-main: 'true'}"/>`
-  for images and `f:uri.image(image: fileReference, ...)` for processed URLs in
-  JavaScript data attributes. Literal `<img>` tags must not be used for FAL
-  `FileReference` objects because they bypass Visual Editor image decoration
-  and can force Fluid to stringify the object.
-- Top-level `Collection` fields use `prefixField: true` while the root block
-  keeps `prefixFields: false`. This prevents common identifiers such as
-  `items`, `links`, or `features` from sharing one `tt_content` TCA column.
-- Collection child tables are generated per collection by default. Reuse a
-  child table only for a deliberate shared child model with identical fields and
-  unambiguous parent-field matching. The expected win is fewer tables and less
-  schema noise, not a major physical database-size reduction unless table
-  overhead itself is the problem.
-- Multilevel collections are valid when each level declares a stable `table`;
-  the styleguide seeder resolves and writes nested collection rows recursively.
-- `ContentBlockStructureTest` asserts:
-  - All 250 slugs exist · each has all required files · YAML parses · wizard group is one of the 10 · Fluid parses · fixture JSON parses.
-
-_List frozen in `SPECIFICATION-content-elements.md` (to be generated from current shadcn2fluid inventory)._
-
----
-
-## 7. Settings (NEW)
-
-Each preset is **more than CSS**. A set of typed settings is exposed via `Configuration/Sets/*/settings.definitions.yaml` and consumable in Fluid via `{settings.desiderio.*}`. Editors change them in the Site Management UI — no code changes.
-
-```yaml
-# Configuration/Sets/Desiderio/settings.definitions.yaml  (excerpt)
-settings:
-  desiderio.density:
-    type: string
-    default: comfortable
-    enum: [compact, comfortable, spacious]
-    label: "Vertical density"
-
-  desiderio.container:
-    type: string
-    default: wide
-    enum: [narrow, wide, full]
-    label: "Container width"
-
-  desiderio.header.style:
-    type: string
-    default: solid
-    enum: [solid, transparent, glass, sticky]
-    label: "Header style"
-
-  desiderio.footer.style:
-    type: string
-    default: columns
-    enum: [columns, centered, minimal, mega]
-    label: "Footer style"
-
-  desiderio.radius:
-    type: string
-    default: md
-    enum: [none, sm, md, lg, full]
-    label: "Border radius"
-
-  desiderio.accent:
-    type: string
-    default: slate
-    enum: [slate, rose, blue, emerald, amber, violet, custom]
-    label: "Accent palette"
-
-  desiderio.font.sans:
-    type: string
-    default: inter
-    enum: [inter, geist, system, serif]
-    label: "Sans font"
-
-  desiderio.darkModeDefault:
-    type: string
-    default: system
-    enum: [light, dark, system]
-    label: "Default color scheme"
-
-  desiderio.darkModeToggle:
-    type: bool
-    default: true
-    label: "Show dark-mode toggle"
-
-  desiderio.showStyleguide:
-    type: bool
-    default: false
-    label: "Render Styleguide template"
-```
-
-Presets override defaults (e.g. `DesiderioPresetEditorial` sets `desiderio.font.sans: serif`, `desiderio.container: narrow`). TypoScript and Fluid read these values through `{settings.desiderio.*}`. CSS reads them via a `<style>` block injected once in `<head>` that maps settings → CSS custom properties:
-
-```html
-<style>
-  :root {
-    --d-radius: var(--d-radius-{settings.desiderio.radius});
-    --d-container: var(--d-container-{settings.desiderio.container});
-    --d-accent: var(--d-accent-{settings.desiderio.accent});
-  }
-</style>
-```
-
-No build step. No SCSS. Pure CSS custom properties.
-
----
-
-## 8. Presets (formerly "templates")
-
-Five site sets extend the base. Each ships **one CSS file + settings overrides**:
-
-| Preset | Slug | Character | Overrides |
-| --- | --- | --- | --- |
-| SaaS | `desiderio-preset-saas` | SaaS Landing | glass header, spacious density, `blue` accent |
-| Corporate | `desiderio-preset-corporate` | Mainline Corporate | solid header, centered footer, `slate`, minimal radius |
-| Portfolio | `desiderio-preset-portfolio` | Portfolio | transparent header overlay, `rose`, `full` radius |
-| Editorial | `desiderio-preset-editorial` | Blog & Magazine | serif font, `narrow` container, columns footer |
-| Dashboard | `desiderio-preset-dashboard` | Dashboard App | sticky header, `compact` density, monospace accents |
-
-A preset **cannot** change markup, backend layouts, or component structure. It only changes:
-1. CSS (one preset CSS file loaded after `desiderio.css`)
-2. Setting defaults (in `settings.yaml`)
-
-Switching presets is always safe — never breaks content.
-
----
-
-## 9. Frontend Assets
-
-- **No npm build.** No Vite bundling of Fluid output.
-- `vite-asset-collector` is used only to register entrypoints for dev ergonomics (HMR for CSS in DDEV).
-- All CSS is hand-authored in `Resources/Public/Css/`.
-- JS is vanilla ES module (`desiderio.js`). No React, no Alpine, no jQuery.
-- Dark mode: `data-theme="dark"` on `<html>`, persisted in `localStorage`, respects `prefers-color-scheme` on first visit.
-
----
-
-## 10. Fluid 5 Components
-
-17 atoms, 28 molecules, 4 layouts (= 49 components). Each component uses typed `<f:argument>` and `<f:slot>`. The canonical inventory is enforced by `Tests/Unit/ComponentStructureTest.php`.
-
-```
-Atom:      AspectRatio Avatar Badge Button ControlClass Icon Image Input Label
-           Link Progress ScrollArea Select Separator Skeleton
-           Textarea Typography
-Molecule:  Accordion AccordionItem Alert AlertTitle AlertDescription
-           Card CardHeader CardContent CardFooter
-           CheckboxControl CheckedListItem Field FieldGroup FieldLabel FieldLegend
-           FieldSet FormRenderer OptionLabel RadioControl SelectNative
-           Table TableHeader TableRow TableCell
-           Tabs TabsList TabsTrigger TabsContent
-Layout:    Container Grid Section Stack
-```
-
-Registered in `Classes/Components/ComponentCollection.php`. Accessible in any Fluid template via `xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"`.
-
----
-
-## 11. ViewHelpers
-
-| ViewHelper | Purpose |
-| --- | --- |
-| `<d:styleguideGroups />` | Returns the 10 wizard groups + content element slugs, for the Styleguide page |
-| `<d:fixtureJson element="hero-centered" />` | Loads `ContentBlocks/ContentElements/<slug>/fixtures/default.json` |
-| `<d:recordHas field="media" record="{data}" />` | Safe check for record field presence, used by visual editor rendering |
-
-All three have dedicated unit tests.
-
----
-
-## 12. Styleguide
-
-A self-rendering page template. Iterates over the 10 groups × 25 elements, renders each with its fixture. Used for:
-
-- Design review
-- Visual regression
-- Onboarding ("what does this site have?")
-
-Gated by `settings.desiderio.showStyleguide`. Off by default in production.
-
----
-
-## 13. Testing
-
-- PHPUnit `^11.5` + TYPO3 Testing Framework `^9.0`
-- Unit tests:
-  - `ExtensionMetadataTest` — composer.json, ext_emconf, icon registry agree
-  - `ContentBlockStructureTest` — all 250 blocks valid
-  - `ComponentStructureTest` — all 37 components have `<f:argument>` definitions
-  - `ViewHelpers/*Test` — 3 ViewHelpers covered
-- Static analysis: PHPStan level 8 with small baseline
-- CI: GitHub Actions matrix {PHP 8.4, 8.5} × {TYPO3 14.3}
-
----
-
-## 14. Out of Scope
-
-- No React, Vue, Svelte or Livewire component runtime. Alpine and small,
-  progressive libraries are allowed when native HTML is insufficient.
-- Vite asset delivery uses `praetorius/vite-asset-collector`; custom manifest
-  readers, dev-server probes and asset ViewHelpers are out of scope.
-- No shadcn CLI dependency at runtime (it may be used manually to regenerate theme tokens into `theme.css`)
-- No fallback for PHP < 8.4 or TYPO3 < 14.3
-- No migration path from `s2f:` namespace — fresh installs only
-
----
-
-## 15. Acceptance Criteria
-
-The rebuild is done when:
-
-1. `composer require webconsulting/desiderio` pulls **one** extension.
-2. `shadcn2fluid-templates` no longer exists on disk or in Packagist mirrors used by our projects.
-3. A fresh TYPO3 14.3 site + Desiderio base set renders a Startpage with a hero, features, and footer — zero manual TypoScript.
-4. Switching to any preset via Site Management changes only visuals.
-5. Settings UI in Site Management lists all keys from §7.
-6. `composer test` passes (phpstan + phpunit).
-7. Styleguide renders all 250 elements without errors.
-8. Dark mode toggle works on all 5 presets.
-9. README.md describes the single extension with no reference to `shadcn2fluid_templates`.
+# Desiderio architecture
+
+Desiderio is the `webconsulting/desiderio` theme extension for **TYPO3
+14.3.6+ and PHP 8.4–8.5**. The installed versions are recorded in
+`composer.lock`; requirements and extension metadata are defined in
+`composer.json` and `ext_emconf.php`.
+
+This document describes the current architecture. Installation, configuration,
+and contributor workflows live in the [manual](Documentation/Index.rst) and
+[contributing guide](CONTRIBUTING.md).
+
+## Rendering layers
+
+| Layer | Source | Contract |
+| --- | --- | --- |
+| Components | `Resources/Private/Components/` | Fluid 5 atoms, molecules, layouts, and organisms with typed arguments; use the `d:` component namespace. |
+| Content elements | `ContentBlocks/ContentElements/` | 244 editor-facing Content Blocks compose shared components and expose fields through TCA. |
+| Theme | `Configuration/Sets/`, `Resources/Private/Templates/Pages/` | Site settings, backend layouts, page shells, headers, footers, and optional integration templates. |
+
+The component inventory is enforced by
+`Tests/Unit/ComponentStructureTest.php`. Content Blocks use `config.yaml`,
+`templates/frontend.html`, `templates/backend-preview.fluid.html`,
+`language/labels.xlf`, and `fixture.json`; the structural tests and content
+element audit enforce their contracts.
+
+The base and content-element site sets provide shared rendering. Scenario
+presets select defaults; Blog, News, Solr, and Powermail integrations activate
+through their own site sets when the matching extension is installed.
+
+## Content and themes
+
+Site settings select semantic colors, typography, spacing, radius, icon
+library, and light/dark behavior. Page templates expose those choices as
+`data-*` attributes; committed CSS implements the matching rules. The actual
+setting names and defaults live in
+`Configuration/Sets/Desiderio/settings.definitions.yaml` and the
+[configuration manual](Documentation/Configuration/Index.rst).
+
+Content stores semantic icon keys and TYPO3 FAL references. Render FAL images
+through `<f:image>` or `f:uri.image()` so processing and Visual Editor image
+decoration remain available. Render editable rich text with `f:render.text`.
+
+Collection fields have distinct parent-field identifiers. Shared child tables
+use explicit Record Types with matching field definitions and both
+`shareAcrossTables` and `shareAcrossFields`. Existing content is migrated by
+the retained `desiderioSharedCollectionTables` upgrade wizard; see
+[collection migration](Documentation/Developer/CollectionTableConsolidation.rst).
+
+## Assets and services
+
+Tailwind v4 compiles utility CSS; the feature CSS bundle is built from
+`Resources/Private/Css/desiderio/`. `npm run build:assets` also builds the
+syntax highlighters and synchronizes icon fonts. The output is committed so
+installed sites can use the package without building its source assets.
+Applications using Vite provide their own manifest through
+`praetorius/vite-asset-collector`; `Build/CiApp` is the local example.
+
+PHP classes use the `Webconsulting\Desiderio\` namespace and Symfony
+service registration. Console commands orchestrate seeding; shared FAL,
+collection, schema, and fixture behavior belongs in `Classes/Seeding/`.
+Middleware provides the element catalog, previews, search, and request
+normalization. Existing content migrations stay available independently of
+demo seeders.
+
+## Verification
+
+`Build/Scripts/runTests.sh` is the local quality gate. The DDEV setup and
+focused checks are documented in [README.md](README.md#development).
+PHPStan runs at `level: max`; PHPUnit, functional tests, the Content Blocks
+audit, dependency validation, and asset checks cover the package. Browser
+checks use the seeded application in `Build/CiApp`.
+
+Prefer core APIs and shared components. Remove completed source codemods
+once their output is maintained directly, but retain migrations that existing
+installations still need. Review implementation and documentation together.

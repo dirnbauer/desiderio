@@ -45,6 +45,60 @@ search form is enabled and pointed at a result page with the
 The frontend JavaScript enhances compatible Solr forms with debounced
 suggestions and keyboard-accessible result options.
 
+..  _configuration-extensions-facets:
+
+Filters are checkboxes
+----------------------
+
+Each facet group renders as a ``<fieldset>`` of checkboxes with a result count
+per option, because several options of one group can be active at once — a
+list of links cannot say that. The configured facets are:
+
+..  list-table::
+    :header-rows: 1
+    :widths: 24 26 50
+
+    *   - Facet
+        - Solr field
+        - Notes
+    *   - Content type
+        - ``type``
+        - Pages, News and any other indexed record type, relabelled through
+          the ``renderingInstruction`` of the set.
+    *   - Category
+        - ``category_stringM``
+        - Filled by the ``IndexQueueNews`` configuration the set imports
+          (``SOLR_RELATION`` over ``categories``). The group only appears once
+          categorized records are indexed.
+
+Both use ``operator = OR`` with ``keepAllOptionsOnSelection = 1`` and
+``minimumCount = 0``: ticking a second option widens the result set, and every
+option keeps the count it would have on its own, so the numbers do not
+collapse to zero while filtering.
+
+Checking a box navigates to the URL that adds the filter; unchecking it to the
+URL that removes it. The 40-line
+:file:`Resources/Public/Js/solr-facets.js` only saves the extra click —
+it validates the same origin, disables the group while the page loads, and
+never swaps results by AJAX. Without JavaScript every option is still a plain
+link inside ``<noscript>``, and a :guilabel:`Reset filters` link appears as
+soon as something is filtered.
+
+To add another facet, point it at an indexed field and reuse the ``Options``
+partial:
+
+..  code-block:: typoscript
+    :caption: config/sites/<site>/setup.typoscript
+
+    plugin.tx_solr.search.faceting.facets.author {
+        label = LLL:EXT:my_sitepackage/Resources/Private/Language/labels.xlf:facet.author
+        field = author
+        partialName = Options
+        operator = OR
+        keepAllOptionsOnSelection = 1
+        minimumCount = 0
+    }
+
 ..  _configuration-extensions-blog:
 
 Blog (EXT:blog)

@@ -8,6 +8,16 @@
 
 <f:section name="Facets">
     <div id="tx-solr-faceting" class="space-y-4">
+        <f:comment>
+            Reset is only offered once something is filtered — an always-visible
+            "clear" is noise on a result list nobody narrowed yet.
+        </f:comment>
+        <f:if condition="{resultSet.facets.used -> f:count()}">
+            <a href="{s:uri.facet.removeAllFacets()}" class="solr-ajaxified d-facet-reset">
+                <f:translate key="solr.facet.reset" domain="desiderio.labels">Reset filters</f:translate>
+            </a>
+        </f:if>
+
         <s:facet.area.group groupName="main" facets="{resultSet.facets.available}">
             <div class="space-y-4">
                 <f:for each="{areaFacets}" as="facet">

@@ -1,0 +1,175 @@
+/* Search facets as checkbox groups.
+   Layout and color come from Tailwind utilities in the templates; this file
+   holds the few rules utilities cannot express — the selected-row highlight
+   via :has(:checked), the sibling label states, the count badge and a touch
+   target that stays at 44px. Tokens only, so every preset and dark mode
+   follow automatically. */
+
+.d-facet-group {
+    min-width: 0;
+    margin: 0 0 var(--d-spacing-md, 1rem);
+    padding: 0;
+    border: 0;
+}
+
+.d-facet-group__legend {
+    float: none;
+    width: 100%;
+    margin: 0 0 var(--d-spacing-xs, 0.375rem);
+    padding: 0;
+    font-size: var(--d-text-sm, 0.875rem);
+    font-weight: var(--d-weight-semibold, 600);
+    line-height: 1.5;
+    color: var(--foreground);
+}
+
+.d-facet-group__options {
+    display: grid;
+    gap: 0.125rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.d-facet-group__options .tx-solr-facet-hidden {
+    display: none;
+}
+
+.d-facet-group__toggle {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.25rem;
+    padding-inline: 0.75rem;
+    color: var(--muted-foreground);
+    font-size: var(--d-text-sm, 0.875rem);
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+}
+
+.d-facet-group__toggle:hover,
+.d-facet-group__toggle:focus-visible {
+    color: var(--foreground);
+}
+
+.d-facet-option {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    /* Fitts's law, and WCAG 2.2 "Target Size (Minimum)": the whole row is the
+       target, not the 18px box. */
+    min-height: 44px;
+    padding: 0.375rem 0.5rem;
+    border-radius: max(0px, calc(var(--radius) - 2px));
+}
+
+.d-facet-option:hover {
+    background: var(--muted);
+}
+
+/* The row, not just the box, shows that the filter is on. */
+.d-facet-option:has(:checked) {
+    background: var(--accent);
+    color: var(--accent-foreground);
+}
+
+.d-facet-option:has(:focus-visible) {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+}
+
+.d-facet-option__checkbox {
+    flex: 0 0 1.125rem;
+    width: 1.125rem;
+    height: 1.125rem;
+    margin: 0;
+    /* Native checkbox rendering, tinted with the preset's accent. */
+    accent-color: var(--primary);
+    cursor: pointer;
+}
+
+.d-facet-option__checkbox:disabled {
+    cursor: progress;
+    opacity: 0.6;
+}
+
+.d-facet-option__label {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex: 1 1 auto;
+    gap: 0.5rem;
+    min-width: 0;
+    margin: 0;
+    font-size: var(--d-text-sm, 0.875rem);
+    line-height: 1.4;
+    cursor: pointer;
+}
+
+.d-facet-option__checkbox:checked + .d-facet-option__label {
+    font-weight: var(--d-weight-semibold, 600);
+}
+
+/* A narrow sidebar can be shorter than a compound word: keep the count's space
+   reserved and let the text itself wrap. */
+.d-facet-option__text {
+    flex: 1 1 auto;
+    min-width: 0;
+    overflow-wrap: anywhere;
+    hyphens: auto;
+}
+
+.d-facet-option__count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    min-width: 1.75rem;
+    min-height: 1.5rem;
+    padding: 0.125rem 0.375rem;
+    border-radius: max(0px, calc(var(--radius) - 4px));
+    background: var(--muted);
+    color: var(--muted-foreground);
+    font-size: var(--d-text-xs, 0.75rem);
+    font-weight: var(--d-weight-medium, 500);
+    font-variant-numeric: lining-nums tabular-nums;
+    line-height: 1;
+    white-space: nowrap;
+}
+
+.d-facet-option__checkbox:checked + .d-facet-option__label .d-facet-option__count {
+    background: var(--primary);
+    color: var(--primary-foreground);
+}
+
+.d-facet-option__fallback {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding-inline: 0.5rem;
+    color: var(--foreground);
+    font-size: var(--d-text-sm, 0.875rem);
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+}
+
+.d-facet-reset {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.25rem;
+    margin-block-end: var(--d-spacing-xs, 0.375rem);
+    color: var(--primary);
+    font-size: var(--d-text-sm, 0.875rem);
+    text-decoration: underline;
+    text-underline-offset: 0.15em;
+}
+
+.d-facet-reset:hover,
+.d-facet-reset:focus-visible {
+    color: var(--foreground);
+}
+
+/* While a filter navigation is in flight every control is disabled; say so. */
+#tx-solr-faceting[aria-busy="true"] {
+    cursor: progress;
+    opacity: 0.7;
+}

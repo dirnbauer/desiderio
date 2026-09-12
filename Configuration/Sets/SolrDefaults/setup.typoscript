@@ -35,6 +35,10 @@ plugin.tx_solr.search.faceting {
       field = type
       partialName = Options
       minimumCount = 0
+      # Multi-select semantics: ticking a second type WIDENS the result set
+      # (pages OR news), and every option keeps the count it would have on its
+      # own — which is what makes a checkbox group behave as visitors expect.
+      operator = OR
       keepAllOptionsOnSelection = 1
       manualSortOrder = pages,tx_news_domain_model_news,tx_skillflow_skill
       renderingInstruction = CASE
@@ -54,6 +58,20 @@ plugin.tx_solr.search.faceting {
         tx_skillflow_skill.data = LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:solr.contentType.skills
       }
     }
+
+    # Categories of the indexed records. `category_stringM` is filled by the
+    # IndexQueueNews configuration imported above (SOLR_RELATION over the
+    # `categories` field), so the facet appears as soon as categorized records
+    # are indexed and stays empty — not broken — when there are none.
+    category {
+      label = LLL:EXT:desiderio/Resources/Private/Language/labels.xlf:solr.facet.category
+      field = category_stringM
+      partialName = Options
+      minimumCount = 0
+      operator = OR
+      keepAllOptionsOnSelection = 1
+      sortBy = count
+    }
   }
 }
 
@@ -61,4 +79,7 @@ plugin.tx_solr.search.faceting {
 # show-more/filter controller is needed (suggest is desiderio's own).
 page.includeJSFooterlibs {
   solr-options = EXT:solr/Resources/Public/JavaScript/facet_options_controller.js
+  # Turns the facet checkboxes into one-click filters; the markup works
+  # without it through the <noscript> links.
+  desiderio-solr-facets = EXT:desiderio/Resources/Public/Js/solr-facets.js
 }

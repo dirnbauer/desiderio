@@ -913,6 +913,24 @@
         <target>{total, plural, one {Találat: {from} / #.} other {Találatok: {from}-{to} / #.}}</target>
       </segment>
     </unit>
+    <unit id="solr.facet.reset">
+      <segment state="final">
+        <source>Reset filters</source>
+        <target>Szűrők törlése</target>
+      </segment>
+    </unit>
+    <unit id="solr.facet.category">
+      <segment state="final">
+        <source>Category</source>
+        <target>Kategória</target>
+      </segment>
+    </unit>
+    <unit id="solr.facet.group.aria">
+      <segment state="final">
+        <source>Filter by {group}</source>
+        <target>Szűrés: {group}</target>
+      </segment>
+    </unit>
     <unit id="solr.facet.showMore">
       <segment state="final">
         <source>Show more</source>

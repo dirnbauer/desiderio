@@ -1483,6 +1483,24 @@
         <target>Zeige Ergebnis {from}.</target>
       </segment>
     </unit>
+    <unit id="solr.facet.reset">
+      <segment state="final">
+        <source>Reset filters</source>
+        <target>Filter zurücksetzen</target>
+      </segment>
+    </unit>
+    <unit id="solr.facet.category">
+      <segment state="final">
+        <source>Category</source>
+        <target>Kategorie</target>
+      </segment>
+    </unit>
+    <unit id="solr.facet.group.aria">
+      <segment state="final">
+        <source>Filter by {group}</source>
+        <target>Nach {group} filtern</target>
+      </segment>
+    </unit>
     <unit id="solr.facet.showMore">
       <segment state="final">
         <source>Show more</source>

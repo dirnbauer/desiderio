@@ -320,20 +320,26 @@ final class ShadcnThemeTest extends TestCase
         self::assertContains('desiderio-content-element-runtime', $itemNames);
     }
 
-    public function testSolrFacetTemplateReusesSuggestStyles(): void
+    public function testSolrFacetGroupRendersCheckboxesWithTheirStyles(): void
     {
         $facetTemplate = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Solr/Partials/Facets/Options.html');
         $frequentlySearchedTemplate = (string)file_get_contents(__DIR__ . '/../../Resources/Private/Solr/Partials/Search/FrequentlySearched.html');
         $desiderioCss = (string)file_get_contents(__DIR__ . '/../../Resources/Public/Css/desiderio.css');
 
-        self::assertStringContainsString('d-solr-suggest d-solr-suggest--facet', $facetTemplate);
-        self::assertStringContainsString('d-solr-suggest__option', $facetTemplate);
-        self::assertStringContainsString('d-solr-suggest__count', $facetTemplate);
+        // A facet group is a fieldset of checkboxes, not a list of links.
+        self::assertStringContainsString('<fieldset class="d-facet-group"', $facetTemplate);
+        self::assertStringContainsString('<legend class="d-facet-group__legend">', $facetTemplate);
+        self::assertStringContainsString('partial="Facets/Checkbox"', $facetTemplate);
+        // EXT:solr's show-more controller keys on these.
+        self::assertStringContainsString('tx-solr-facet-hidden', $facetTemplate);
+        self::assertStringContainsString('tx-solr-facet-show-all', $facetTemplate);
+
         self::assertStringContainsString('d-solr-suggest d-solr-suggest--facet', $frequentlySearchedTemplate);
         self::assertStringContainsString('d-solr-facet__list', $frequentlySearchedTemplate);
         self::assertStringContainsString('d-solr-suggest__option', $frequentlySearchedTemplate);
         self::assertStringContainsString('.d-solr-suggest--facet', $desiderioCss);
         self::assertStringContainsString('.d-solr-facet__list', $desiderioCss);
+        self::assertStringContainsString('.d-facet-option', $desiderioCss);
     }
 
     public function testSolrSuggestDropdownUsesContentTypeLabels(): void

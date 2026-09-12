@@ -1,36 +1,40 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en"
     xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
-    xmlns:s="http://typo3.org/ns/ApacheSolrForTypo3/Solr/ViewHelpers"
     data-namespace-typo3-fluid="true"
 >
+
+<f:comment>
+    One facet group: a fieldset of checkboxes, because several options of the
+    same group can be active at once. Options beyond settings.faceting.limit
+    are hidden behind the show-more toggle of EXT:solr's
+    facet_options_controller.js, which keys on tx-solr-facet-hidden and
+    tx-solr-facet-show-all; data-facet-name and data-facet-item-value stay for
+    the same reason.
+</f:comment>
 
 <f:argument name="facet" type="object" optional="true"/>
 <f:argument name="settings" type="array" optional="true"/>
 
 <f:variable name="facetOptionLimit">{f:if(condition: '{settings.faceting.limit}', then: '{settings.faceting.limit}', else: 10)}</f:variable>
 
-<section class="d-solr-suggest d-solr-suggest--facet" aria-labelledby="facet-label-{facet.name}">
-    <h2 class="d-solr-suggest__group" id="facet-label-{facet.name}">{facet.label}</h2>
+<fieldset class="d-facet-group" data-facet-name="{facet.name}">
+    <legend class="d-facet-group__legend">{facet.label}</legend>
 
-    <ul role="list" class="d-solr-facet__list facet-option-list facet-type-options fluidfacet" data-facet-name="{facet.name}" data-facet-label="{facet.label}" id="facet{facet.name}">
+    <ul role="list" class="d-facet-group__options facet-option-list facet-type-options fluidfacet" data-facet-name="{facet.name}" data-facet-label="{facet.label}" id="facet{facet.name}">
         <f:for each="{facet.options}" as="option" iteration="iteration">
             <li class="facet-option {f:if(condition:'!({iteration.index} < {facetOptionLimit})', then:' tx-solr-facet-hidden')}" data-facet-item-value="{option.value}">
-                <a class="facet solr-ajaxified d-solr-suggest__option {f:if(condition: option.selected, then: 'is-active')}" href="{s:uri.facet.addFacetItem(facet: facet, facetItem: option)}">
-                    <span class="d-solr-suggest__term">{option.label}</span>
-                    <span class="d-solr-suggest__count" aria-hidden="true">{option.documentCount}</span>
-                    <span class="sr-only">{f:translate(key: 'solr.resultCount.aria', domain: 'desiderio.labels', arguments: {count: option.documentCount})}</span>
-                </a>
+                <f:render partial="Facets/Checkbox" arguments="{facet: facet, item: option, id: 'd-facet-{facet.name}-{option.value -> f:format.urlencode()}'}"/>
             </li>
         </f:for>
 
         <f:if condition="{facet.options -> f:count()} > {facetOptionLimit}">
             <li>
-                <a href="#" class="tx-solr-facet-show-all d-solr-suggest__option d-solr-suggest__option--more" data-label-more="{f:translate(key: 'solr.facet.showMore', domain: 'desiderio.labels')}" data-label-less="{f:translate(key: 'solr.facet.showFewer', domain: 'desiderio.labels')}">
-                    <span class="d-solr-suggest__term"><f:translate key="solr.facet.showMore" domain="desiderio.labels">Show more</f:translate></span>
+                <a href="#" class="tx-solr-facet-show-all d-facet-group__toggle" data-label-more="{f:translate(key: 'solr.facet.showMore', domain: 'desiderio.labels')}" data-label-less="{f:translate(key: 'solr.facet.showFewer', domain: 'desiderio.labels')}">
+                    <f:translate key="solr.facet.showMore" domain="desiderio.labels">Show more</f:translate>
                 </a>
             </li>
         </f:if>
     </ul>
-</section>
+</fieldset>
 
 </html>

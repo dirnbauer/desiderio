@@ -1,0 +1,36 @@
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en"
+    xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+    xmlns:s="http://typo3.org/ns/ApacheSolrForTypo3/Solr/ViewHelpers"
+    xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+    data-namespace-typo3-fluid="true"
+>
+
+<f:comment>
+    One facet option. A selected option links to the URL that REMOVES it, an
+    unselected one to the URL that ADDS it — that is what makes the checkbox
+    behave like a checkbox: clicking it toggles exactly this filter and leaves
+    the others alone (the facet is configured with `operator = OR` and
+    `keepAllOptionsOnSelection`, so the other options keep their counts).
+</f:comment>
+
+<f:argument name="facet" type="object"/>
+<f:argument name="item" type="object"/>
+<f:argument name="id" type="string"/>
+
+<f:if condition="{item.selected}">
+    <f:then><f:variable name="targetUrl" value="{s:uri.facet.removeFacetItem(facet: facet, facetItem: item)}"/></f:then>
+    <f:else><f:variable name="targetUrl" value="{s:uri.facet.addFacetItem(facet: facet, facetItem: item)}"/></f:else>
+</f:if>
+
+<d:molecule.facetCheckbox
+    id="{id}"
+    name="facet-{facet.name}"
+    value="{item.value}"
+    label="{item.label}"
+    targetUrl="{targetUrl}"
+    count="{item.documentCount}"
+    checked="{item.selected}"
+    countLabel="{f:translate(key: 'solr.resultCount.aria', domain: 'desiderio.labels', arguments: {count: item.documentCount})}"
+/>
+
+</html>

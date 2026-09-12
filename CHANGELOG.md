@@ -36,6 +36,13 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 - One `npm run build` that runs every generator in order, and
   `Build/Scripts/check-generated-assets.sh`, which rebuilds and fails on a diff
   under `Resources/Public`.
+- Solr search filters are checkbox groups: `Facets/Checkbox.html` plus the new
+  `Molecule/FacetCheckbox` render every facet option as a real checkbox with its
+  result count, a `<noscript>` link fallback and a 44px touch target. Checking a
+  box navigates to the add/remove URL — `Resources/Public/Js/solr-facets.js`
+  (40 lines, same-origin checked, no AJAX) only saves the extra click. A
+  "Reset filters" link appears once something is filtered, the `type` facet uses
+  `operator = OR`, and a `category` facet on `category_stringM` is configured.
 
 ### Fixed
 

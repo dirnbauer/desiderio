@@ -1,0 +1,45 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+<f:comment>
+    One filter option as a real checkbox: the control that says "several of
+    these at once" without the visitor having to learn it. Checking it
+    navigates to `targetUrl` — the caller decides whether that adds or removes
+    the facet item, so this component stays free of any search-engine API.
+
+    Without JavaScript the checkbox cannot navigate, so the same URL is offered
+    as a plain link inside <noscript>.
+
+    The input is written out directly instead of through f:form.checkbox: it
+    is never submitted (the URL does the work), and the form ViewHelpers are
+    Extbase-only, which would tie this component to one plugin context.
+</f:comment>
+<f:argument name="id" type="string" />
+<f:argument name="name" type="string" />
+<f:argument name="value" type="string" />
+<f:argument name="label" type="string" />
+<f:argument name="targetUrl" type="string" />
+<f:argument name="count" type="integer" optional="{true}" default="{0}" />
+<f:argument name="checked" type="bool" optional="{true}" default="{false}" />
+<f:argument name="countLabel" type="string" optional="{true}" default="" />
+<f:argument name="class" type="string" optional="{true}" default="" />
+
+<div data-slot="facet-option" class="d-facet-option {class -> f:format.trim()}">
+    <input
+        type="checkbox"
+        id="{id}"
+        name="{name}"
+        value="{value}"
+        class="d-facet-option__checkbox"
+        data-d-facet-url="{targetUrl}"
+        {f:if(condition: checked, then: 'checked="checked"')}
+    />
+    <label for="{id}" class="d-facet-option__label">
+        <span class="d-facet-option__text">{label}</span>
+        <span class="d-facet-option__count" aria-hidden="true">{count}</span>
+        <span class="sr-only">{f:if(condition: countLabel, then: countLabel, else: '{count}')}</span>
+    </label>
+</div>
+<noscript>
+    <a href="{targetUrl}" class="d-facet-option__fallback">{label} ({count})</a>
+</noscript>
+</html>

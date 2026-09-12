@@ -38,6 +38,7 @@ return [
     'molecule.tabsContent' => ['arguments' => ['value' => 'tab-1', 'id' => 'tab-1-panel', 'labelledBy' => 'tab-1-trigger'], 'slots' => ['default' => 'Panel']],
     'molecule.fieldLabel' => ['arguments' => ['for' => 'field-1'], 'slots' => ['default' => 'Label']],
     'molecule.checkedListItem' => ['slots' => ['default' => 'Included']],
+    'molecule.facetCheckbox' => ['arguments' => ['id' => 'd-facet-type-pages', 'name' => 'facet-type', 'value' => 'pages', 'label' => 'Pages', 'targetUrl' => '/search?q=typo3', 'count' => 69, 'checked' => true, 'countLabel' => '69 results']],
     'molecule.sectionIntro' => ['arguments' => ['eyebrow' => 'Eyebrow', 'heading' => 'Heading', 'lead' => 'Lead']],
     'molecule.actionGroup' => ['slots' => ['default' => '<a href="/">Go</a>']],
     'molecule.featureItem' => ['arguments' => ['icon' => 'check', 'title' => 'Title', 'text' => 'Text']],

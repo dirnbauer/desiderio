@@ -793,6 +793,24 @@
         <target>{total, plural, one {Affichage du résultat {from} sur #.} other {Affichage des résultats {from} à {to} sur #.}}</target>
       </segment>
     </unit>
+    <unit id="solr.facet.reset">
+      <segment state="final">
+        <source>Reset filters</source>
+        <target>Réinitialiser les filtres</target>
+      </segment>
+    </unit>
+    <unit id="solr.facet.category">
+      <segment state="final">
+        <source>Category</source>
+        <target>Catégorie</target>
+      </segment>
+    </unit>
+    <unit id="solr.facet.group.aria">
+      <segment state="final">
+        <source>Filter by {group}</source>
+        <target>Filtrer par {group}</target>
+      </segment>
+    </unit>
     <unit id="solr.facet.showMore">
       <segment state="final">
         <source>Show more</source>

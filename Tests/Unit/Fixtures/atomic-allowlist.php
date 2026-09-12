@@ -29,7 +29,7 @@ return [
     // Extbase link ViewHelpers must own the anchor; the Card molecule renders a div.
     'Resources/Private/Extensions/News/Templates/News/Detail.html' => ['A4' => 'prev/next f:link.action anchors styled as cards; the link ViewHelper owns the element'],
     // EXT:solr hooks its AJAX behaviour on these exact elements (solr-ajaxified anchors, ids read by facet/sorting scripts).
-    'Resources/Private/Solr/Partials/Result/FacetsActive.html' => ['A4' => 'solr-ajaxified remove-facet anchors; the Badge atom has no href — reworked with the checkbox facets'],
+    'Resources/Private/Solr/Partials/Result/FacetsActive.html' => ['A4' => 'solr-ajaxified remove-facet anchors: the active filters must be links (also the no-JS fallback), and the Badge atom has no href'],
     'Resources/Private/Solr/Partials/Result/Sorting.html' => ['A4' => 'sorting dropdown panel toggled by EXT:solr JS, not a card surface'],
     'Resources/Private/Solr/Partials/Search/LastSearches.html' => ['A4' => 'section landmark with the id EXT:solr expects (tx-solr-lastsearches)'],
     // Styleguide-only viewport switcher glyphs (desktop/tablet/phone) that no icon library ships consistently.

@@ -1236,6 +1236,21 @@
         <source>Showing result {from}.</source>
       </segment>
     </unit>
+    <unit id="solr.facet.reset">
+      <segment>
+        <source>Reset filters</source>
+      </segment>
+    </unit>
+    <unit id="solr.facet.category">
+      <segment>
+        <source>Category</source>
+      </segment>
+    </unit>
+    <unit id="solr.facet.group.aria">
+      <segment>
+        <source>Filter by {group}</source>
+      </segment>
+    </unit>
     <unit id="solr.facet.showMore">
       <segment>
         <source>Show more</source>

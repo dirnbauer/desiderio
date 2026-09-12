@@ -5,6 +5,6 @@
 <f:variable name="buttonOutlineClass"><d:atom.controlClass slot="buttonOutline" /></f:variable>
 
 <div data-slot="form-item" class="powermail_fieldwrap_{field.marker} {field.css}">
-    <f:form.reset value="{field.title}" class="{buttonOutlineClass -> f:format.trim()}" />
+    <input type="reset" value="{field.title}" class="powermail_reset {buttonOutlineClass -> f:format.trim()}" />
 </div>
 </html>

@@ -18,3 +18,7 @@ services:
 
   Webconsulting\Desiderio\Domain\Factory\BlogCommentFormFactory:
     public: true
+
+  # Reachable from tests and the lint command; runs without a request.
+  Webconsulting\Desiderio\Templates\TemplateLinter:
+    public: true

@@ -1,0 +1,13 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"
+      data-namespace-typo3-fluid="true">
+
+<d:layout.section spacing="sm">
+    <d:layout.container>
+        <d:atom.typography tag="h2" variant="h2">{title -> f:format.htmlspecialchars()}</d:atom.typography>
+        <d:atom.button variant="outline" href="{f:uri.typolink(parameter: 1)}">Open</d:atom.button>
+        {d:atom.icon(name: 'check', size: 'xs')}
+    </d:layout.container>
+</d:layout.section>
+
+</html>

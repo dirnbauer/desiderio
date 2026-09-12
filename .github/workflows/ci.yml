@@ -47,7 +47,10 @@ jobs:
       - name: Audit composer dependencies
         run: composer audit --no-dev --abandoned=fail
 
-      - name: Run PHPStan (level max)
+      - name: Check coding standards
+        run: vendor/bin/php-cs-fixer fix --dry-run --diff
+
+      - name: Run PHPStan (level 8)
         run: vendor/bin/phpstan analyse --no-progress --memory-limit=2G
 
   unit-tests:
@@ -75,7 +78,7 @@ jobs:
         run: composer update --no-interaction --no-progress --prefer-dist
 
       - name: Run PHPUnit
-        run: vendor/bin/phpunit --testdox
+        run: vendor/bin/phpunit -c Build/phpunit/UnitTests.xml --testdox
 
   functional-tests:
     name: Functional tests (PHP ${{ matrix.php-version }} · TYPO3 ${{ matrix.typo3-version }} · SQLite)
@@ -134,3 +137,7 @@ jobs:
 
       - name: Verify generated assets are current
         run: Build/Scripts/check-generated-assets.sh
+
+      - name: Show the stale diff
+        if: failure()
+        run: git diff -- Resources/Public

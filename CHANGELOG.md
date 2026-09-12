@@ -6,7 +6,95 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+## [4.1.0] — 2026-09-12
+
+### Added
+
+- A Fluid 5 lint gate: `desiderio:templates:lint` parses every shipped template
+  with the runtime rendering context and reports unknown ViewHelpers, unknown
+  or missing arguments, undeclared namespaces, unknown components, orphaned
+  partials and removed constructs. Namespaces of extensions that are not
+  installed are skipped unless `--strict`.
+  `Tests/Functional/Templates/ShippedTemplatesLintTest` runs it over the whole
+  extension and requires zero errors.
+- An atomic-design conformance test that enforces the layer graph (atoms use no
+  molecules or organisms, molecules no organisms, organisms only in page
+  templates), the content element contract (at least one component inside a
+  section root, no partials) and the absence of raw button, card, badge,
+  heading and icon markup outside the component library. Reviewed exceptions
+  live in `Tests/Unit/Fixtures/atomic-allowlist.php` with a reason each.
+- Seven shared molecules — `SectionIntro`, `ActionGroup`, `Figure`,
+  `FeatureItem`, `Stat`, `Pagination`, `CaptchaPlaceholder` — and nine icons
+  (arrow-up/down, chevron-up, trending-up/down, minus, x, play, quote).
+  The component library grows from 53 to 60 typed components.
+- `Tests/Functional/Components/ComponentRenderingTest` renders every component
+  once with a minimal argument set, as a regression guard for Fluid 5 strict
+  argument validation.
+- `Build/Scripts/report-atomic-usage.php`: a read-only report of the component
+  histogram per content element and the raw class signatures that recur across
+  elements.
+- One `npm run build` that runs every generator in order, and
+  `Build/Scripts/check-generated-assets.sh`, which rebuilds and fails on a diff
+  under `Resources/Public`.
+
 ### Fixed
+
+- Four Powermail field partials closed `</d:molecule.field>` without opening
+  it, the reset field used the non-existent `f:form.reset` ViewHelper, and the
+  Create/Confirmation templates declared `f:argument` inside `f:section`, which
+  Fluid 5.3 rejects. The new lint gate found all of them.
+- Removed 475 unused `xmlns:` declarations (mostly backend previews) and
+  switched the Solr templates to the canonical TYPO3 Fluid namespace URI.
+
+### Changed
+
+- Pagination markup lives in `Molecule/Pagination`; the News and Blog partials
+  are thin call sites. **Deprecation note for sitepackages:** the never-registered
+  partials `Resources/Private/Partials/Pagination.html`,
+  `Partials/Pagination/Pagination.html` and `Partials/List/Pagination.html`
+  were removed. They were dead in this package (no `partialRootPaths` pointed
+  at `Resources/Private/Partials/`), but a sitepackage that copied those paths
+  into its own configuration must now render `<d:molecule.pagination …/>`
+  instead; `Resources/Private/Extensions/News/Partials/List/Pagination.html`
+  shows the argument mapping.
+- The captcha placeholder that four templates repeated verbatim is now
+  `Molecule/CaptchaPlaceholder`, and the override partial set moved from
+  `Resources/Private/FormCaptchaOverride/` to
+  `Resources/Private/Form/CaptchaOverride/`.
+- `Resources/Public/Css/components.css` had no generator; its rules are now
+  four partials in the manifest of `Resources/Public/Css/desiderio.css`. The
+  file is gone — projects that imported it directly should import
+  `desiderio.css` (or the Vite entry point) instead.
+- PHPStan runs at level 8 from a single `phpstan.neon` with no baseline; the 46
+  findings the baseline hid are fixed. Rector (typo3-rector, UP_TO_TYPO3_14)
+  and php-cs-fixer (typo3/coding-standards) now run over the codebase, and the
+  v14 upgrade-wizard namespaces are in use.
+- PHPUnit 12/13 with `typo3/testing-framework ^9.5`; the configurations moved to
+  `Build/phpunit/UnitTests.xml` and `Build/phpunit/FunctionalTests.xml`.
+- `ext_localconf.php` drops its defensive array juggling (173 -> 100 lines), and
+  the `--allow-production` guard the seed commands repeated moved into
+  `ProductionContextGuard`.
+- README is 113 instead of 358 lines; its reference material moved into the
+  manual (icon fonts, optional integrations, page templates, Visual Editor,
+  console commands, build and Innesto pages). `SPECIFICATION.md` is folded into
+  `Documentation/Developer/DesignPhilosophy.rst`.
+
+### Removed
+
+- The dead `styles.templates.*` site settings (the live registration is
+  `lib.contentElement.*RootPaths`; index 300 is documented as the sitepackage
+  override hook).
+- The feature-video render and verify scripts, which produced video files that
+  were never shipped. The video content elements stay.
+- `Resources/Private/Partials/`, `phpstan-baseline.neon`, `phpstan.neon.dist`,
+  `phpunit.xml.dist`, `Build/Scripts/check-tailwind-built.sh`,
+  `Documentation/ShadcnUpgrade.md` (now `Developer/ShadcnSync.rst`) and the
+  empty `Classes/DataProcessing/` and `Classes/Upgrades/` directories.
+
+
+### Also in this release (previously unreleased since 4.0.6)
+
+#### Fixed
 
 - Updated the disposable QA installation to TYPO3 14.3.6 and aligned its
   requirements and CI matrix with the extension's existing security floor.
@@ -21,7 +109,7 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 - Use the shared definition registry for provider seeding and nested collection
   cleanup, with database regressions covering ownership and native fixtures.
 
-### Changed
+#### Changed
 
 - Added a local DDEV configuration using PHP 8.4, Node 24, and the existing
   SQLite QA app. The test runner now includes functional tests and Composer
@@ -37,7 +125,7 @@ and the project adheres to [Semantic Versioning](https://semver.org/).
 - Updated installation, migration, architecture, and contribution guidance;
   converted the two developer guides to renderable reStructuredText.
 
-### Removed
+#### Removed
 
 - Twelve completed one-time migration, extraction, and debugging scripts.
 - Obsolete collection projection helpers, duplicate request normalization,

@@ -89,7 +89,7 @@ final class FacetCheckboxRenderingTest extends FunctionalTestCase
             $attributes,
         );
 
-        $request = (new ServerRequest('https://example.com/search', 'GET'))
+        $request = new ServerRequest('https://example.com/search', 'GET')
             ->withAttribute('applicationType', SystemEnvironmentBuilder::REQUESTTYPE_FE);
         $view = new TemplateView($this->get(RenderingContextFactory::class)->create([], $request));
         $view->getRenderingContext()->getTemplatePaths()->setTemplateSource($source);

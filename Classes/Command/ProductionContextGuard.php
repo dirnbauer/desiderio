@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Webconsulting\Desiderio\Command;
 
+use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputDefinition;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
@@ -20,7 +21,7 @@ final class ProductionContextGuard
 {
     public const string OPTION = 'allow-production';
 
-    public static function addOption(InputDefinition|\Symfony\Component\Console\Command\Command $target): void
+    public static function addOption(InputDefinition|Command $target): void
     {
         $option = new InputOption(
             self::OPTION,

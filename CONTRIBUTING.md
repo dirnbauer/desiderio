@@ -1,30 +1,32 @@
 # Contributing to Desiderio
 
 Desiderio targets **TYPO3 14.3.6+ and PHP 8.4–8.5**. Use the
-[DDEV setup](README.md#development) for a reproducible local environment.
+[DDEV setup](Documentation/Developer/Build.rst) for a reproducible local environment.
 
 ## Workflow
 
 1. Fork or create a feature branch from `main`.
 2. **One-time setup**: enable the repo's git hooks so the pre-commit
-   pipeline catches stale Tailwind bundles before they reach CI:
+   pipeline catches stale generated assets before they reach CI:
 
    ```bash
    Build/Scripts/setup-hooks.sh
    ```
 
    That sets `core.hooksPath = Build/Hooks`. When staged rendering code or
-   build dependencies change, the hook checks the Tailwind rebuild and
-   confirms that the resulting CSS is staged.
+   build dependencies change, the hook rebuilds the generated assets and
+   confirms that the result is staged.
 3. Run the full local check before pushing:
 
    ```bash
    ddev exec Build/Scripts/runTests.sh
    ```
 
-   That runs PHPStan at `level: max`, the unit tests (including the strict
-   content element audit), SQLite-backed functional tests, dependency checks,
-   and Tailwind bundle verification. CI covers PHP 8.4 and 8.5.
+   That runs PHPStan at `level: 8` (no baseline), the unit tests (including
+   the strict content element audit and the atomic-design conformance test),
+   SQLite-backed functional tests (including the Fluid template lint gate),
+   dependency checks, and the generated-assets verification. CI covers PHP
+   8.4 and 8.5.
 4. For a focused Content Block check while editing, run:
 
    ```bash
@@ -35,16 +37,17 @@ Desiderio targets **TYPO3 14.3.6+ and PHP 8.4–8.5**. Use the
    `hardcoded_inline_style`, and `hardcoded_color` must stay at zero.
    This check already runs in the unit suite; it need not be repeated after
    the full gate passes.
-5. If you edited any Fluid template, partial, layout, or component, the
-   compiled Tailwind bundle must travel with the change:
+5. If you edited any Fluid template, component, CSS partial or preset, the
+   generated assets must travel with the change:
 
    ```bash
-   ddev exec npm run build:css
-   git add Resources/Public/Css/desiderio-tailwind.css
+   ddev exec npm run build
+   git add Resources/Public
    ```
 
    The pre-commit hook checks the rebuild and staging; it does not stage
-   files for you. The `tailwind-bundle` CI job rejects stale committed CSS.
+   files for you. The `generated-assets` CI job rejects stale committed
+   output.
 6. Open a PR against `main` with the behavior change and validation results.
    Follow the [maintainability rules](Documentation/Developer/Index.rst)
    when changing seed commands, shared services, or finishers. Update the
@@ -52,10 +55,14 @@ Desiderio targets **TYPO3 14.3.6+ and PHP 8.4–8.5**. Use the
 
 ## Coding standards
 
-- PHP 8.4+ with `declare(strict_types=1);` on every PHP file.
+- PHP 8.4+ with `declare(strict_types=1);` on every PHP file; formatting is
+  `vendor/bin/php-cs-fixer fix` (typo3/coding-standards).
 - Constructor DI for services — no `GeneralUtility::makeInstance()` for
   Symfony-injectable classes.
-- Fluid 5 strict-typed `<f:argument>` on every component.
+- Fluid 5 strict-typed `<f:argument>` on every component; run
+  `vendor/bin/typo3 desiderio:templates:lint` after template changes.
+- Atoms use no molecules or organisms, molecules no organisms, and organisms
+  appear only in page templates — `AtomicDesignConformanceTest` enforces it.
 - Tailwind / shadcn tokens only — no `hsl()`, `rgb()`, `#hex` outside
   the icon `var(--token, fallback)` contract.
 - PSR-12 / PSR-4 layout, one class per file, namespace matches the

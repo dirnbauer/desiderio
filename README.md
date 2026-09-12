@@ -1,27 +1,27 @@
 # Desiderio
 
-Desiderio is a TYPO3 v14.3 theme extension with a shadcn/ui-inspired Fluid 5 component library, 244 Desiderio Content Blocks, page templates, optional Blog/News/Solr/Powermail overrides, and a runtime theme system driven by TYPO3 site settings.
+A TYPO3 v14.3 theme extension: a shadcn/ui-inspired **Fluid 5 component
+library** (17 atoms, 35 molecules, 4 layouts, 4 organisms), 244 Desiderio Content Blocks,
+page templates, optional Blog/News/Solr/Powermail overrides, and a runtime
+theme system driven by TYPO3 site settings.
 
-It is built for TYPO3 installations that need a complete editorial and marketing component set without a JavaScript component runtime. The committed assets include the Tailwind v4/shadcn CSS theme, lightweight progressive JavaScript, a small Prism syntax-highlighting bundle, and chart helpers. Asset delivery uses Simon Praetorius' official Vite integration; Desiderio contains no manifest reader or dev-server detection of its own.
+No JavaScript component runtime: the committed assets are the Tailwind v4 /
+shadcn CSS theme, lightweight progressive JavaScript, a small syntax
+highlighter and chart helpers. Asset delivery uses Simon Praetorius' Vite
+integration.
 
 ## Requirements
 
-- TYPO3 CMS `^14.3.6`
-- PHP `^8.4`
+- TYPO3 CMS `^14.3.6`, PHP `^8.4`, Composer-based installation
 - `friendsoftypo3/content-blocks` `^2.2`
-- `friendsoftypo3/visual-editor` `^1.8` and the Visual Editor enhancements package
+- `friendsoftypo3/visual-editor` `^1.8` plus the Visual Editor enhancements package
 - `praetorius/vite-asset-collector` `^1.18`
-- Composer-based TYPO3 installation
 
-Optional integrations are activated through separate site sets and only apply when the matching extension is installed:
+Optional, activated by their own site sets when installed: `georgringer/news`,
+`t3g/blog`, `apache-solr-for-typo3/solr`, `in2code/powermail`,
+`studiomitte/friendlycaptcha`.
 
-- `georgringer/news`
-- `t3g/blog`
-- `apache-solr-for-typo3/solr`
-- `in2code/powermail`
-- `studiomitte/friendlycaptcha`
-
-## Installation
+## Install
 
 ```bash
 composer require webconsulting/desiderio
@@ -33,326 +33,81 @@ Enable the site sets in this order:
 
 1. `Desiderio Base` (`webconsulting/desiderio`)
 2. `Desiderio Content Elements` (`webconsulting/desiderio-content-elements`)
-3. A scenario package, for example `webconsulting/desiderio-preset-corporate`
-4. Optional integration sets such as Blog, News, Solr, or Powermail
+3. a scenario package, e.g. `webconsulting/desiderio-preset-corporate`
+4. optional integration sets: Blog, News, Solr, Powermail
 
-## What Is Included
+## Configure
 
-Desiderio provides three layers:
+The look is selected in **Site Management → Settings** and rendered as `data-*`
+attributes on `<body>`, so a preset switch repaints colors, radius, density,
+focus rings, fonts and icons at runtime — content stores semantic icon keys and
+stays untouched:
 
-- **Components**: 17 atoms, 28 molecules, 4 layout primitives, and 4 organisms (53 typed Fluid components total).
-- **Content Blocks**: 244 editor-facing Desiderio Content Blocks grouped for heroes, features, data, conversion, editorial, media, social proof, navigation, forms, and footer patterns.
-- **Theme**: backend layouts, page templates, header/footer templates, CSS variables, JavaScript interactions, and site settings.
+`desiderio.shadcn.preset` · `desiderio.shadcn.style` ·
+`desiderio.shadcn.iconLibrary` · `desiderio.layout.density` ·
+`desiderio.layout.container` · `desiderio.layout.radius` ·
+`desiderio.typography.fontSans` · `desiderio.theme.darkModeDefault` ·
+`desiderio.theme.darkModeToggle`
 
-The current shadcn base is `radix-lyra` with the `b6G5977cw` mono olive preset and Tabler icons. The runtime preset selector also includes four other `ui.shadcn.com/create` presets, ten bundled house presets, and `custom`.
+Every setting, the form/search/Blog/News integrations, the self-hosted icon
+fonts and the Visual Editor behaviour are documented in
+[Documentation/Configuration](Documentation/Configuration/Index.rst).
 
-## Runtime Theming
+## Use
 
-The active look is selected in TYPO3 site settings and rendered as `data-*` attributes on the `<body>` element:
+Editors pick elements in the "Add content" panel, which shows a rendered
+preview per element and a typo-tolerant search. Content elements compose the
+Fluid components instead of one-off markup, so they follow the active preset
+and dark mode automatically.
 
-- `desiderio.shadcn.preset`
-- `desiderio.shadcn.style`
-- `desiderio.shadcn.iconLibrary`
-- `desiderio.layout.density`
-- `desiderio.layout.container`
-- `desiderio.layout.radius`
-- `desiderio.typography.fontSans`
-- `desiderio.theme.darkModeDefault`
-- `desiderio.theme.darkModeToggle`
-
-Preset changes repaint colors, radius, density, focus rings, fonts, and icon library behavior at runtime. Stored content uses semantic icon keys, so the icon library can be changed without rewriting records.
-
-## Icon Fonts
-
-All icon webfonts are **self-hosted inside the package** — no CDN requests, no
-external dependencies, no GDPR exposure. Content icons themselves render as
-inline SVGs (`IconViewHelper` emits one `<svg>` per library; CSS reveals the
-one matching `body[data-icon-library]`), so the webfonts are an additional
-offering for editors and custom markup, loaded per configured library.
-
-### How loading works
-
-The page layout resolves the configured library to a bundled stylesheet:
-
-```html
-<f:asset.css
-    identifier="desiderioIconFont"
-    href="{di:iconFont(library: site.configuration.settings.desiderio.shadcn.iconLibrary)}"
-    priority="1"
-/>
-```
-
-`di:iconFont` calls `IconRegistry::fontStylesheet()`, which maps every
-supported library to `EXT:desiderio/Resources/Public/IconFonts/<library>/<library>.css`.
-Each directory contains exactly three files: the stylesheet (rewritten to a
-single relative `woff2` source), the `woff2` font, and the upstream license.
-
-### Licensing
-
-Every bundled font was license-checked for redistribution inside a
-distributable TYPO3 package (verified June 2026):
-
-| Library | License | Bundled from | Redistribution |
-| --- | --- | --- | --- |
-| Lucide | ISC | `lucide-static` | allowed |
-| Tabler Icons | MIT | `@tabler/icons-webfont` | allowed |
-| Phosphor Icons | MIT | `@phosphor-icons/web` (regular weight) | allowed |
-| Remix Icon | Apache-2.0 | `remixicon` | allowed |
-| HugeIcons | proprietary font / MIT SVG data | generated in-house, see below | official font **forbidden**, own build allowed |
-
-**HugeIcons is the special case.** The official hugeicons webfont (formerly
-loaded from `cdn.hugeicons.com`) must not be redistributed — the
-[license agreement](https://hugeicons.com/license-agreement) explicitly covers
-the free versions and forbids shipping their icon fonts in downloadable
-packages. Their SVG icon *data* (`@hugeicons/core-free-icons`) is MIT,
-however, so Desiderio compiles its own webfont from it:
-
-1. all 6,156 free icons are exported as stroke SVGs from the MIT data,
-2. strokes are outlined into filled paths with `picosvg` (icon fonts cannot
-   render strokes; the venv lives in `var/picosvg-venv`),
-3. `fantasticon` compiles `hugeicons.woff2` + `hugeicons.css` with explicit
-   codepoints in the Unicode Private Use Area (U+E001 ff. — the default
-   numbering would overflow past U+FFFF and silently drop glyphs).
-
-The resulting font is Desiderio's own MIT-licensed build — it is *not* the
-official hugeicons webfont, and `Resources/Public/IconFonts/hugeicons/LICENSE-MIT.txt`
-documents that provenance. Never re-add the hugeicons CDN link or copy their
-official font files into the package; `IconRegistryTest` pins both rules.
-
-### Updating the fonts
+Seed demo content and the element library with the console commands:
 
 ```bash
-npm run build:iconfonts       # re-sync Lucide/Tabler/Phosphor/Remix from node_modules
-npm run build:hugeicons-font  # regenerate the HugeIcons font from MIT SVG data
-```
-
-Run these after bumping the corresponding npm packages. The HugeIcons build
-caches its outlining step in `var/hugeicons-font/`; delete that directory to
-force a full rebuild (~10 minutes for all icons).
-
-### Usage
-
-Font classes follow each library's upstream conventions, e.g.
-`<i class="hgi hgi-home-01"></i>` (HugeIcons build), `.icon-*` (Lucide),
-`.ti ti-*` (Tabler), `.ph ph-*` (Phosphor), `.ri-*` (Remix Icon). For content
-elements prefer the semantic `d:icon` component — it stays library-agnostic
-and switches with the preset.
-
-## Content Elements
-
-The content-element set includes, among others:
-
-- Hero and landing intro sections
-- Feature grids, feature sliders, timelines, tabs, accordions, and comparison blocks
-- Data visualizations with axes, units, legends, multiple colors, and accessible summaries
-- Code examples using a lightweight Prism/Astro highlighter instead of accent-colored pseudo highlighting
-- Testimonial, logo, team, advisor, review, and case-study sections
-- Form, newsletter, download, lead, conversion, and feedback blocks
-- Header, search, navigation, sitemap, and footer sections
-
-Images are rendered through TYPO3 FAL and Content Blocks fields. Media templates use stable aspect-ratio wrappers and `object-fit` rules to avoid stretched images.
-
-## Grafting Elements from shadcn Registries (Innesto)
-
-[Innesto](https://github.com/dirnbauer/innesto) is a companion extension that
-grafts components from any [shadcn/ui registry](https://registry.directory/)
-— shadcn/ui, Magic UI, Origin UI, Aceternity UI, … — onto Desiderio as
-additional Content Blocks elements:
-
-```bash
-vendor/bin/typo3 innesto:add magicui/marquee --ai
-```
-
-**Why it works well here:**
-
-- One command fetches the registry item, converts its CSS and theme variables,
-  scaffolds a complete element, and registers it in the New Content Element wizard.
-- Grafted elements use the Desiderio semantic tokens, so they follow the active
-  theme preset and dark mode automatically — no frontend build step.
-- The React→Fluid finishing pass is prompt-assisted (`--ai`) and reproducible.
-
-**What might not work:** React markup and props always need a finishing pass
-(automated or manual); npm/registry dependencies are not resolved; and heavily
-interactive components — comboboxes, command palettes, drag-and-drop — don't
-graft well, since they are state machines rather than documents. Best results
-come from presentational components: marquees, logo clouds, bento grids,
-animated lists.
-
-See the [step-by-step manual with a worked example and screenshots](https://github.com/dirnbauer/innesto/blob/main/Documentation/AddingContentElements.md).
-
-## Forms
-
-Desiderio ships shadcn-styled TYPO3 Form Framework templates and a shared `FormRenderer` molecule. Form controls use neutral theme borders by default and switch to destructive/red styling only for invalid states.
-
-Supported form features:
-
-- TYPO3 Form Framework finishers
-- Friendly Captcha integration and local Development-context test mode
-- Brevo contact synchronization through `BrevoContactFinisher`
-- Sanitized Brevo event tracking
-- DDEV/Mailpit-friendly local mail configuration
-- Styled validation messages and accessible required-field indicators
-
-Brevo is configured through site settings plus an external API key:
-
-- `desiderio.forms.brevo.enabled`
-- `desiderio.forms.brevo.listIds`
-- `desiderio.forms.brevo.strict`
-- `desiderio.forms.brevo.trackEvent`
-- `desiderio.forms.brevo.eventName`
-- `BREVO_API_KEY`
-
-## Search
-
-The Solr integration set registers shadcn-styled search templates, result cards, facets, suggestions, and a suggest endpoint. The site header search can be enabled through settings and pointed at an existing search result page:
-
-- `desiderio.search.enabled`
-- `desiderio.search.targetPageId`
-- `desiderio.search.queryParameter`
-
-The frontend JavaScript enhances compatible Solr forms with debounced suggestions and keyboard-accessible result options.
-
-## Console commands
-
-Desiderio ships Symfony console commands for demo content and integration setup:
-
-| Command | Purpose |
-| --- | --- |
-| `desiderio:styleguide:seed` | Create or update styleguide fixture pages below a parent page. Requires the live workspace; refuses Production without `--allow-production`. |
-| `desiderio:starter:seed` | Create or update the corporate starter site structure and demo content. |
-| `desiderio:blog:seed-pages` | Normalize an existing Blog page tree to Desiderio backend layouts. No-op when `t3g/blog` is not loaded. |
-| `desiderio:news:seed-taxonomy` | Assign default category/tag relations to visible News records that have none. No-op when `georgringer/news` is not loaded. |
-| `desiderio:library:seed` | Create or update the element library records used by visual pickers. |
-| `desiderio:library:urls` | List isolated element preview URLs, optionally as JSON. |
-| `desiderio:library:warm` | Warm rendered element previews in the TYPO3 page cache. |
-| `desiderio:migrate-rte-content` | Report legacy plain-text fields that need RTE markup; `--apply` writes the conversion. |
-
-Examples:
-
-```bash
+vendor/bin/typo3 desiderio:library:seed --parent=<page-uid>
 vendor/bin/typo3 desiderio:styleguide:seed --parent=<page-uid>
 vendor/bin/typo3 desiderio:starter:seed
-vendor/bin/typo3 desiderio:blog:seed-pages --root=<blog-root-uid>
-vendor/bin/typo3 desiderio:news:seed-taxonomy --storage-pid=<news-storage-pid>
 ```
 
-Seed commands write FAL assets under `fileadmin/desiderio-styleguide/` or `fileadmin/desiderio-starter/`. Re-running a seeder overwrites live-workspace fixture metadata in place.
+See [Documentation/Developer/Commands.rst](Documentation/Developer/Commands.rst)
+for the full list, and
+[Innesto](Documentation/Developer/Innesto.rst) for grafting elements from other
+shadcn registries.
 
-Commands are thin orchestration shells. Shared seeding logic lives in `Classes/Seeding/`:
-
-| Service | Responsibility |
-| --- | --- |
-| `ExtensionFalSeeder` | FAL import and `sys_file_reference` writes |
-| `CollectionRecordSeeder` | Recursive Content Blocks collection inserts |
-| `CollectionCleanupService` | Live-workspace-scoped collection/FAL cleanup |
-| `StyleguideFixtureResolver` | Styleguide YAML fixture normalization |
-| `StarterContentBuilder` | Starter-site content block payloads |
-| `BlogPageTreeSeeder` | Blog layout alignment and demo post seeding |
-| `FixtureFieldNormalizer` | Shared scalar/file/checkbox/date field normalization |
-
-`BrevoConfigurationResolver` centralizes Brevo finisher configuration precedence. See the [developer manual](Documentation/Developer/Index.rst) for the service map and maintainability rules.
-
-## Blog
-
-When `t3g/blog` is installed, `webconsulting/desiderio-blog` adds shadcn-styled Blog template paths. The templates cover list, detail, sidebar widgets, comments, author blocks, related posts, metadata badges, categories, tags, and RSS output headers.
-
-Existing Blog page trees can be aligned with `desiderio:blog:seed-pages` (see Console commands above).
-
-## News
-
-When `georgringer/news` is installed, `webconsulting/desiderio-news` adds shadcn-styled News templates for list and detail views. The templates use available news images, category/tag badges, responsive grids, metadata, and `NewsArticle` structured data.
-
-The News set supports the `DesiderioNews` backend layout and progressive load-more list mode.
-
-## Page Templates
-
-The extension provides these page templates/backend layouts:
-
-- `DesiderioStartpage`
-- `DesiderioContentpage`
-- `DesiderioContentpageSidebar`
-- `DesiderioStyleguide`
-- `DesiderioBlog`
-- `DesiderioNews`
-- `DesiderioExtension`
-- fallback `Default`
-
-The compact page title header is full width, uses a subtle themed background, and inherits the active shadcn preset.
-
-## Development
-
-DDEV provides the supported PHP 8.4 and Node.js 24 environment. Start the
-local TYPO3 application, install dependencies, and build both package assets
-and the application manifest:
+## Develop
 
 ```bash
 ddev start
 ddev exec composer install
 ddev exec npm ci
-ddev exec npm run build:assets
-ddev exec Build/CiApp/bootstrap.sh
-ddev exec -d /var/www/html/Build/CiApp npm ci
-ddev exec -d /var/www/html/Build/CiApp npm run build
+ddev exec npm run build              # every generator, in order
+ddev exec Build/CiApp/bootstrap.sh   # disposable SQLite app with seeded content
 ddev launch
 ```
 
-The disposable SQLite application lives in `Build/CiApp`. Its bootstrap seeds
-the element library and selects the DDEV site URL automatically. Its Vite build
-clears TYPO3 caches so repeated builds keep asset URLs valid.
-
-Run the complete quality gate:
-
 ```bash
-ddev exec Build/Scripts/runTests.sh
+ddev exec Build/Scripts/runTests.sh            # phpstan, unit, functional, validate, assets
+ddev exec Build/Scripts/runTests.sh -s phpstan # one suite
+vendor/bin/typo3 desiderio:templates:lint      # Fluid 5 lint gate
 ```
 
-Focused checks accept either a positional suite name or `-s`:
+The quality bar is PHPStan level 8 without a baseline, PHPUnit unit and
+functional suites, the Content Blocks audit, the Fluid template lint gate, the
+atomic-design conformance test, and a generated-assets check that rebuilds
+every asset and fails on a diff. Details:
+[Documentation/Developer/Build.rst](Documentation/Developer/Build.rst).
 
-```bash
-ddev exec Build/Scripts/runTests.sh -s phpstan
-ddev exec Build/Scripts/runTests.sh phpunit
-ddev exec Build/Scripts/runTests.sh -s functional
-ddev exec Build/Scripts/runTests.sh -s audit
-ddev exec Build/Scripts/runTests.sh -p 8.5 -s functional
-```
+## Docs
 
-With PHP 8.4 or 8.5 and Node.js installed directly, the same package commands
-also run without `ddev exec`. CI checks static analysis, unit and functional
-tests, dependency validity/security, the Content Blocks audit, and Tailwind
-bundle consistency on PHP 8.4 and 8.5.
+- [Introduction](Documentation/Introduction/Index.rst)
+- [Installation](Documentation/Installation/Index.rst)
+- [Configuration](Documentation/Configuration/Index.rst)
+- [For editors](Documentation/Editor/Index.rst)
+- [For developers](Documentation/Developer/Index.rst)
+- [Changelog](Documentation/Changelog/Index.rst)
+- [Contributing](CONTRIBUTING.md)
 
-The [browser QA workflow](.github/workflows/browser-qa.yml) also checks all
-seeded previews at three widths in light and dark mode, and verifies lazy code
-highlighting against the built Vite modules.
+## License
 
-### CSS cascade layers
-
-Tailwind scans only the explicit rendering sources listed in its entry point,
-including PHP icon sizes and RTE alignment classes. Add any new class producer
-there; the pre-commit hook checks the rendering directories and build dependencies.
-Documentation is deliberately excluded from the bundle.
-
-The Tailwind v4 entry point (`Resources/Private/Tailwind/desiderio.css`) uses native CSS cascade layers (`theme, base, components, utilities`). Element defaults go in `@layer base`, shared component classes in `@layer components` (so utility classes can override them), and custom utilities are declared with `@utility` — never `@layer utilities`, which is Tailwind v3 syntax. The per-feature stylesheets in `Resources/Private/Css/desiderio/` stay **unlayered** on purpose: unlayered CSS always beats layered CSS, so they override Tailwind without specificity hacks. Details in `Documentation/Developer/Index.rst` (section "CSS cascade layers").
-
-## Visual Editor compatibility
-
-Desiderio registers `ExtbasePluginRequestSanitizerMiddleware` to remove non-string or empty Extbase `controller` / `action` values from frontend query and POST arguments. Visual Editor persistence requests can otherwise leave these arguments malformed, causing News and other Extbase plugins to throw while the edited page is rendered.
-
-Content Block image fields should pass each FAL `FileReference` directly to `<f:image image="{fileReference}">`. In edit mode, Visual Editor decorates that output with the `data-veedit` metadata required by its image overlay. Custom `data-*` attributes are a separate concern and should be passed through Fluid's structured `data="{...}"` argument.
-
-The element picker ("Add content" panel) receives its catalog from the `?elementLibrary=1` endpoint. It includes the 244 Desiderio Content Blocks, supported native TYPO3 content types whose provider extensions are loaded, and blocks contributed by Innesto when that extension is installed. The catalog metadata derived from the on-disk definitions is **cached** as `desiderio_library` (using `SimpleFileBackend` by default), so opening the picker no longer re-parses all 244 Desiderio `config.yaml` files each time. The cache key fingerprints the definition paths and modification times, so adding, editing, or removing an element self-invalidates it; "flush all caches" also clears it.
-
-The picker displays rendered frontend previews in `<iframe>` elements, not generated image thumbnails. Each iframe URL renders one seeded `tt_content` record through a dedicated `PAGE` type, and its HTML response is stored in TYPO3's standard page cache with a separate entry per site base. Pre-render those responses with `vendor/bin/typo3 desiderio:library:warm` — with no arguments it warms every configured site's library; `--folder=<uid>` warms one folder across all sites that use it; `--site=<id>` restricts warming to one site. Details are in `Documentation/Developer/Index.rst` (sections "Element library catalog cache" and "Warming rendered iframe previews").
-
-The picker's search box is **typo-tolerant** and runs server-side (`?elementLibrarySearch=<term>`): a small "Solr without Solr" — a cached, weighted token index over each element's title, keywords, synonyms, group and description, with `levenshtein()`-based fuzzy matching that corrects typos, plus autocomplete and "did you mean" suggestions. It is pure PHP, with no external search service or library. See `Documentation/Developer/Index.rst` (section "Element library search").
-
-## Documentation
-
-Full documentation lives in `Documentation/`:
-
-- `Documentation/Installation/Index.rst`
-- `Documentation/Configuration/Index.rst`
-- `Documentation/Editor/Index.rst`
-- `Documentation/Developer/Index.rst`
-- `Documentation/ShadcnUpgrade.md`
-- [Architecture contracts](SPECIFICATION.md)
+GPL-2.0-or-later. See [LICENSE](LICENSE). Bundled icon webfonts keep their own
+licenses; see
+[Documentation/Configuration/IconFonts.rst](Documentation/Configuration/IconFonts.rst).

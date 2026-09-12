@@ -5,6 +5,54 @@
 Design philosophy
 =================
 
+..  _developer-design-layers:
+
+The three rendering layers
+--------------------------
+
+..  list-table::
+    :header-rows: 1
+    :widths: 20 34 46
+
+    *   - Layer
+        - Source
+        - Contract
+    *   - Components
+        - :file:`Resources/Private/Components/`
+        - Fluid 5 atoms, molecules, layouts and organisms with typed
+          arguments, called through the ``d:`` component namespace.
+    *   - Content elements
+        - :file:`ContentBlocks/ContentElements/`
+        - 244 editor-facing Content Blocks that compose those components and
+          expose their fields through TCA.
+    *   - Theme
+        - :file:`Configuration/Sets/`, :file:`Resources/Private/Templates/Pages/`
+        - Site settings, backend layouts, page shells, header and footer, and
+          the optional integration templates.
+
+The component inventory is enforced by ``Tests/Unit/ComponentStructureTest``
+and the layering by ``Tests/Unit/AtomicDesignConformanceTest``. Content Blocks
+use :file:`config.yaml`, :file:`templates/frontend.html`,
+:file:`templates/backend-preview.fluid.html`, :file:`language/labels.xlf` and
+:file:`fixture.json`; the structural tests and the content element audit
+enforce those contracts.
+
+The base and content-element site sets provide the shared rendering. Scenario
+presets select defaults; Blog, News, Solr and Powermail activate through their
+own site sets when the matching extension is installed
+(:ref:`configuration-extensions`).
+
+Collection fields have distinct parent-field identifiers. Shared child tables
+use explicit Record Types with matching field definitions and both
+``shareAcrossTables`` and ``shareAcrossFields``; existing content is migrated
+by the ``desiderioSharedCollectionTables`` upgrade wizard
+(:ref:`developer-collection-contract`).
+
+..  _developer-design-contracts:
+
+Element contracts
+-----------------
+
 The 244 Desiderio Content Blocks share component and token contracts.
 Structural checks live in ``scripts/audit-content-elements.php`` and the
 unit tests; theme contrast checks live in
@@ -99,8 +147,7 @@ Verification after an element change
 
     ddev exec Build/Scripts/runTests.sh -s audit
     ddev exec php Build/Scripts/audit-theme-contrast.php
-    ddev exec npm run build:css
-    ddev exec npm run build:desiderio-css
+    ddev exec npm run build
 
 Run the contrast check when changing theme tokens. For browser checks, obtain
 the current preview URLs from ``desiderio:library:urls --json`` and use them

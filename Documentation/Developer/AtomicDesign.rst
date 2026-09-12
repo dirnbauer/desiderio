@@ -12,10 +12,50 @@ Desiderio composes typed Fluid components into Content Blocks and page shells:
 
     Layouts        Section, Container, Grid, Stack
     Atoms          Button, Typography, Badge, Icon, Input, …
-    Molecules      Card, Field, Alert, Tabs, Table, …
-    Organisms      Shared site-level component groups
+    Molecules      Card, Field, Alert, Tabs, Table, SectionIntro, ActionGroup,
+                   Figure, FeatureItem, Stat, Pagination, CaptchaPlaceholder, …
+    Organisms      SiteHeader, SiteFooter, PageHeader, Breadcrumb
     Content Blocks Editor-facing compositions and field wiring
     Page templates Page shells and extension integration layouts
+
+Components live in :file:`Resources/Private/Components/<Layer>/<Name>/<Name>.fluid.html`
+and are called through the ``d:`` namespace
+(``xmlns:d="http://typo3.org/ns/Webconsulting/Desiderio/Components/ComponentCollection"``),
+which ``Classes/Components/ComponentCollection.php`` resolves.
+
+..  _developer-atomic-design-graph:
+
+The layer graph
+---------------
+
+The direction of composition is one-way, and
+``Tests/Unit/AtomicDesignConformanceTest.php`` fails the build when it is not:
+
+..  list-table::
+    :header-rows: 1
+    :widths: 24 76
+
+    *   - Layer
+        - May compose
+    *   - ``Atom``
+        - Nothing from the component library (ViewHelpers and markup only).
+    *   - ``Molecule``
+        - Atoms and other molecules — never an organism.
+    *   - ``Layout``
+        - Nothing from the component library.
+    *   - ``Organism``
+        - Atoms, molecules, layouts.
+    *   - Content element
+        - Atoms, molecules, layouts — never an organism, and no partials.
+    *   - Page template / preset
+        - Everything, including organisms.
+
+The same test keeps raw atomic markup out of templates: a button-, card- or
+badge-shaped ``class`` attribute, a styled heading, or an inline ``<svg>``
+where ``d:atom.icon`` has the icon, is a finding. The reviewed exceptions live
+in :file:`Tests/Unit/Fixtures/atomic-allowlist.php` with a reason each, and an
+allowlist entry that no longer matches a finding fails the test too — so the
+list can only shrink.
 
 ..  _developer-atomic-design-rules:
 
@@ -52,7 +92,17 @@ Verification
 ------------
 
 *   ``Tests/Unit/ComponentStructureTest.php`` checks the component inventory.
+*   ``Tests/Unit/AtomicDesignConformanceTest.php`` checks the layer graph, the
+    content element contract and raw atomic markup.
+*   ``Tests/Functional/Components/ComponentRenderingTest.php`` renders every
+    component once, so a renamed or newly required ``<f:argument>`` fails here
+    instead of on a page.
+*   ``Tests/Functional/Templates/ShippedTemplatesLintTest.php`` parses every
+    shipped template (:ref:`developer-template-lint`).
 *   ``Tests/Unit/ContentBlockStructureTest.php`` checks structural contracts.
 *   ``Tests/Unit/ContentElementAuditTest.php`` checks fields, tokens, and styles.
+*   ``Build/Scripts/report-atomic-usage.php`` prints a read-only component
+    histogram and the class signatures that recur across elements — the input
+    for deciding whether something deserves its own molecule.
 *   Inspect changed elements in the styleguide at multiple viewport widths
     and in light and dark mode.

@@ -49,7 +49,9 @@ assets.
     :maxdepth: 2
     :caption: For users
 
+    Introduction/Index
     Installation/Index
+    Configuration/Index
     Editor/Index
 
 ..  toctree::
@@ -57,7 +59,6 @@ assets.
     :caption: For developers
 
     Developer/Index
-    Configuration/Index
     KnownProblems/Index
 
 ..  toctree::

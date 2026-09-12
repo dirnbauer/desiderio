@@ -25,9 +25,10 @@ Desiderio is intentionally layered:
     Component layer
       Fluid 5 atoms, molecules, layouts, and organisms with typed arguments
 
-The component layer currently contains 17 atoms, 28 molecules, 4 layout
-primitives, and 4 site organisms (53 typed Fluid components in total). Content elements
-compose those primitives instead of hardcoding one-off markup.
+The component layer currently contains 17 atoms, 35 molecules, 4 layout
+primitives, and 4 site organisms (60 typed Fluid components in total). Content
+elements compose those primitives instead of hardcoding one-off markup, which
+``Tests/Unit/AtomicDesignConformanceTest`` enforces.
 
 See :ref:`developer-atomic-design` for component conventions and reference
 content elements.
@@ -39,6 +40,9 @@ content elements.
     AddingContentElements
     DesignPhilosophy
     ShadcnSync
+    Commands
+    Build
+    Innesto
     CollectionTableConsolidation
 
 ..  _developer-sets:
@@ -102,131 +106,13 @@ assets live in ``Resources/Public``:
 
 ..  _developer-css-layers:
 
-CSS cascade layers
-==================
+CSS, Tailwind layers and the build
+==================================
 
-The Tailwind v4 entry point
-:file:`Resources/Private/Tailwind/desiderio.css` uses native CSS cascade
-layers. ``@import "tailwindcss"`` declares the layer order ``theme, base,
-components, utilities`` as real ``@layer`` rules in the browser — not the
-build-time ``@layer`` directives Tailwind v3 used. The compiled output is
-committed to :file:`Resources/Public/Css/desiderio-tailwind.css` via
-``npm run build:css``.
-
-The layering conventions are:
-
-..  list-table::
-    :header-rows: 1
-    :widths: 30 70
-
-    *   - Bucket
-        - Contents and rules
-    *   - ``@layer base``
-        - Element defaults only: global border/outline colors, ``html``
-          font stack, ``body`` background and foreground tokens.
-    *   - ``@layer components``
-        - Shared component classes such as ``.frame``, ``.ce-frame``,
-          ``.desiderio-section``, and card surface defaults. Utility
-          classes always win against this layer because ``utilities``
-          comes later in the layer order — that is intentional and lets
-          content elements override component defaults per instance.
-    *   - ``@utility``
-        - Custom utilities (``d-control-h``, ``d-control-text``,
-          ``d-control-px``). Never write ``@layer utilities { ... }`` in
-          Tailwind v4; ``@utility`` is the replacement and additionally
-          makes the class variant-aware (``hover:``, ``md:``, ...).
-    *   - Unlayered CSS
-        - The per-feature stylesheets in
-          :file:`Resources/Private/Css/desiderio/` (header, footer, Solr,
-          content frames, presets, ...) deliberately use **no**
-          ``@layer`` at all.
-
-The unlayered files are a feature, not an omission: under native cascade
-layers, unlayered CSS always beats layered CSS regardless of specificity.
-That is what lets the feature stylesheets reliably override Tailwind
-utilities and component styles without specificity hacks or
-``!important``. Do not wrap them in ``@layer components`` — utility
-classes would suddenly win against them and break existing overrides.
-
-When adding styles, pick the bucket by intent: element default →
-``@layer base``; reusable, utility-overridable class →
-``@layer components``; new variant-aware utility → ``@utility``; feature
-or preset styling that must win over Tailwind → an unlayered file in
-:file:`Resources/Private/Css/desiderio/`.
-
-..  _developer-css-bundles:
-
-The two compiled CSS bundles
-----------------------------
-
-Two committed stylesheets are generated from sources; keep the
-distinction in mind when editing frontend code:
-
-..  list-table::
-    :header-rows: 1
-    :widths: 35 25 40
-
-    *   - Bundle
-        - Built by
-        - Source
-    *   - :file:`Resources/Public/Css/desiderio-tailwind.css`
-        - ``npm run build:css``
-        - The Tailwind v4 entry point plus every utility class that
-          Tailwind discovers by scanning templates, components, and
-          Content Blocks via ``@source``.
-    *   - :file:`Resources/Public/Css/desiderio.css`
-        - ``npm run build:desiderio-css``
-        - A plain concatenation of the unlayered feature partials in
-          :file:`Resources/Private/Css/desiderio/` (ordered by
-          :file:`manifest.txt`), minified.
-
-Editing a template can silently change which utility classes the
-Tailwind bundle must contain. Editing a partial only changes
-``desiderio.css``. The ``pre-commit`` hook below guards the first case —
-the one that is easy to forget.
-
-..  _developer-git-hooks:
-
-Git hooks and the Tailwind build guard
-======================================
-
-The repository ships its own git hooks under :file:`Build/Hooks/` so the
-staleness guard travels with the checkout instead of living in each
-developer's private :file:`.git/hooks/`. Enable them once per clone:
-
-..  code-block:: shell
-    :caption: One-time setup
-
-    Build/Scripts/setup-hooks.sh
-
-That script points git at the committed hooks by setting
-``core.hooksPath = Build/Hooks`` (and marks the scripts executable). It is
-idempotent and safe to re-run.
-
-Because ``core.hooksPath`` *replaces* :file:`.git/hooks/` wholesale, the
-standard Git LFS hooks have to live in :file:`Build/Hooks/` too — that is
-all ``pre-push``, ``post-checkout``, ``post-commit``, and ``post-merge``
-are: thin ``git lfs`` shims. The only project-specific hook is
-``pre-commit``.
-
-The ``pre-commit`` hook checks staged changes under :file:`Classes/`,
-:file:`Configuration/`, :file:`ContentBlocks/`, and :file:`Resources/`, plus
-the root :file:`package.json` and :file:`package-lock.json`. These broad Git
-path checks do not duplicate Tailwind's source list. Documentation-only and
-test-only commits skip the gate.
-
-For matching changes, the hook invokes ``Build/Scripts/runTests.sh -s tailwind``.
-The runner uses DDEV when available, rebuilds the bundle, and rejects stale
-CSS. The hook also verifies that the rebuilt CSS is staged. If it rejects a
-commit, review and stage the refreshed bundle before retrying:
-
-..  code-block:: shell
-    :caption: Include the rebuilt Tailwind bundle
-
-    git add Resources/Public/Css/desiderio-tailwind.css
-
-The full local suite and the ``tailwind-bundle`` CI job use the same build
-check, keeping committed CSS aligned with its rendering sources.
+The committed CSS is produced by ``npm run build``. How the cascade layers are
+used, why the feature partials are deliberately unlayered, and how the
+pre-commit hook keeps the generated assets current is documented in
+:doc:`Build`.
 
 ..  _developer-shadcn:
 
@@ -273,84 +159,10 @@ Optional extension templates are kept in dedicated folders:
 Console commands
 ================
 
-Desiderio uses Symfony console commands for demo sites and integration
-setup. Commands live in ``Classes/Command/``; shared seeding logic
-belongs in ``Classes/Seeding/`` — not inlined into command classes.
-
-Shared seeding services:
-
-..  list-table::
-    :header-rows: 1
-    :widths: 34 66
-
-    *   - Class
-        - Responsibility
-    *   - ``ExtensionFalSeeder``
-        - Import bundled assets and write ``sys_file_reference`` rows.
-    *   - ``CollectionRecordSeeder``
-        - Insert nested Content Blocks collection rows recursively.
-    *   - ``CollectionCleanupService``
-        - Delete collection rows and file references on live workspace
-          rows only.
-    *   - ``ContentBlockCollectionMap``
-        - Build the parent-table → collection-table lookup from block
-          definitions.
-    *   - ``LiveWorkspaceQueryHelper``
-        - Add ``t3ver_wsid`` / ``t3ver_oid`` constraints to destructive
-          seed queries.
-    *   - ``StyleguideFixtureResolver``
-        - Resolve styleguide YAML fixtures into ``tt_content`` rows,
-          collections, and FAL references.
-    *   - ``StarterContentBuilder``
-        - Build starter-site content inserts from ``StarterSiteDefinitions``
-          block payloads.
-    *   - ``BlogPageTreeSeeder``
-        - Discover EXT:blog setups, apply Desiderio backend layouts, and
-          seed demo posts with categories, tags, authors, and comments.
-    *   - ``FixtureFieldNormalizer``
-        - Shared Content Blocks field normalization (scalars, files,
-          checkboxes, dates) for styleguide and starter seeders.
-
-Static demo payloads also live under ``Classes/Data/``:
-``BlogDemoPostDefinitions`` and ``PowermailDemoFormDefinitions``.
-
-``BrevoConfigurationResolver`` (under ``Classes/Domain/Finishers/``)
-centralizes Brevo finisher configuration precedence; the finisher itself
-handles HTTP and form value mapping only.
-
-..  list-table::
-    :header-rows: 1
-    :widths: 32 68
-
-    *   - Command
-        - Purpose
-    *   - ``desiderio:styleguide:seed``
-        - Create or update styleguide fixture pages. Requires the live
-          workspace; refuses Production without ``--allow-production``.
-          Writes FAL assets to ``fileadmin/desiderio-styleguide/``.
-    *   - ``desiderio:starter:seed``
-        - Create or update the corporate starter site. Writes FAL assets
-          to ``fileadmin/desiderio-starter/``.
-    *   - ``desiderio:blog:seed-pages``
-        - Normalize Blog page trees to Desiderio backend layouts. No-op
-          when ``t3g/blog`` is not loaded.
-    *   - ``desiderio:news:seed-taxonomy``
-        - Assign default category/tag relations to visible News records
-          without taxonomy. No-op when ``georgringer/news`` is not loaded.
-    *   - ``desiderio:library:seed``
-        - Create or update element library records for visual pickers.
-    *   - ``desiderio:library:urls``
-        - List isolated preview URLs; supports ``--json``, ``--site``,
-          and ``--folder``.
-    *   - ``desiderio:library:warm``
-        - Warm rendered previews in the TYPO3 page cache. See
-          :ref:`developer-element-library`.
-    *   - ``desiderio:migrate-rte-content``
-        - Report plain text in converted RTE fields; ``--apply`` writes
-          the HTML conversion from the committed conversion manifest.
-
-See :ref:`known-problems-seed-command` for workspace and Production
-guards on the styleguide seeder.
+Desiderio uses Symfony console commands for demo sites, integration setup and
+the template lint gate. Commands live in ``Classes/Command/``; shared seeding
+logic belongs in ``Classes/Seeding/`` — not inlined into command classes. The
+command reference and the seeding service map are in :doc:`Commands`.
 
 ..  _developer-middleware:
 
@@ -710,8 +522,8 @@ Brevo configuration precedence belongs in ``BrevoConfigurationResolver``.
 *   Keep each class responsible for one behavior. Split unrelated logic before
     a file grows beyond 1,000 lines; moving code alone is not a simplification.
 *   Prefer TYPO3 APIs and constructor injection over custom infrastructure.
-*   New code must pass PHPStan at ``level: max`` without extending
-    :file:`phpstan-baseline.neon`.
+*   New code must pass PHPStan at ``level: 8``. There is no baseline file, so
+    a new finding is fixed, not recorded.
 *   Maintain generated assets through the commands in :file:`package.json`.
     Completed source-rewrite scripts are removed after their output becomes
     the maintained source. Database upgrade wizards and their verification
@@ -725,27 +537,12 @@ Brevo configuration precedence belongs in ``BrevoConfigurationResolver``.
 Quality bar
 ===========
 
-The CI workflow checks Composer validity, dependency security, PHPStan,
-PHPUnit, and the Content Block audit. The audit keeps categories such as
-``template_undeclared_field``, ``hardcoded_inline_style``, and
-``hardcoded_color`` at zero.
+The CI workflow checks Composer validity, dependency security, PHPStan level 8,
+unit and functional tests, and the generated assets. The Content Block audit
+keeps categories such as ``template_undeclared_field``,
+``hardcoded_inline_style`` and ``hardcoded_color`` at zero, the template lint
+gate keeps Fluid parse errors at zero, and the atomic-design conformance test
+keeps the component layering intact.
 
-Run the local checks before shipping code changes:
-
-..  code-block:: shell
-    :caption: Local checks
-
-    ddev exec Build/Scripts/runTests.sh
-
-For targeted checks:
-
-..  code-block:: shell
-    :caption: Targeted checks
-
-    ddev exec Build/Scripts/runTests.sh -s phpstan
-    ddev exec Build/Scripts/runTests.sh phpunit
-    ddev exec Build/Scripts/runTests.sh -s audit
-    ddev exec Build/Scripts/runTests.sh -s functional
-
-The DDEV setup and application build commands are maintained in
-:file:`README.md`. CI covers PHP 8.4 and 8.5 on TYPO3 14.3.6 or newer.
+:doc:`Build` lists the DDEV setup and every command that runs those checks
+locally. CI covers PHP 8.4 and 8.5 on TYPO3 14.3.6 or newer.

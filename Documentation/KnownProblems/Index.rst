@@ -32,13 +32,14 @@ metadata in place; do not point it at editor-curated FAL folders.
 Cleanup queries are explicitly scoped to live workspace rows when TYPO3
 versioning columns exist, so existing draft overlays are left alone.
 
-..  _known-problems-phpstan-baseline:
+..  _known-problems-seeding-types:
 
-PHPStan baseline
-================
+Legacy type drift in the seeding services
+=========================================
 
-Legacy type drift in ``Classes/Seeding/StyleguideFixtureResolver.php``
-and related seeding services is captured in ``phpstan-baseline.neon`` as
-a ratchet target. Seed commands are thin orchestration shells; do not
-move fixture logic back into ``Classes/Command/``. New code in
-``Classes/`` must pass at ``level: max`` without extending the baseline.
+``Classes/Seeding/StyleguideFixtureResolver.php`` and the related seeding
+services grew around loosely typed fixture payloads. The PHPStan baseline that
+used to hide the resulting findings is gone (4.1.0): the code is analysed at
+``level: 8`` like everything else, and new findings are fixed rather than
+recorded. Seed commands stay thin orchestration shells — do not move fixture
+logic back into ``Classes/Command/``.

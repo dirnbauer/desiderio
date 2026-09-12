@@ -9,6 +9,14 @@ Configuration
 Desiderio is configured through TYPO3 v14 site settings and optional site
 sets. Edit the values in :guilabel:`Site Management > Settings`.
 
+..  toctree::
+    :maxdepth: 1
+
+    PageTemplates
+    Extensions
+    IconFonts
+    VisualEditor
+
 ..  _configuration-site-settings:
 
 Core site settings
